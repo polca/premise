@@ -26,7 +26,8 @@ IAM_FUELS_VARS = VARIABLES_DIR / "fuels_variables.yaml"
 IAM_BIOMASS_VARS = VARIABLES_DIR / "biomass_variables.yaml"
 IAM_CEMENT_VARS = VARIABLES_DIR / "cement_variables.yaml"
 IAM_STEEL_VARS = VARIABLES_DIR / "steel_variables.yaml"
-IAM_DACCS_VARS = VARIABLES_DIR / "direct_air_capture_variables.yaml"
+IAM_CDR_VARS = VARIABLES_DIR / "carbon_dioxide_removal_variables.yaml"
+IAM_HEATING_VARS = VARIABLES_DIR / "heat_variables.yaml"
 IAM_TRSPT_TWO_WHEELERS_VARS = VARIABLES_DIR / "transport_two_wheelers_variables.yaml"
 IAM_TRSPT_CARS_VARS = VARIABLES_DIR / "transport_passenger_cars_variables.yaml"
 IAM_TRSPT_BUSES_VARS = VARIABLES_DIR / "transport_bus_variables.yaml"
@@ -82,6 +83,11 @@ def fetch_data(
         "Electricity - efficiency": (
             iam_data.electricity_efficiencies
             if hasattr(iam_data, "electricity_efficiencies")
+            else None
+        ),
+        "Heat (residential) - generation": (
+            iam_data.production_volumes
+            if hasattr(iam_data, "production_volumes")
             else None
         ),
         "Fuel (gasoline) - generation": (
@@ -172,10 +178,13 @@ def fetch_data(
             if hasattr(iam_data, "carbon_capture_rate")
             else None
         ),
-        "Direct Air Capture - generation": (
+        "CDR - generation": (
             iam_data.production_volumes
             if hasattr(iam_data, "production_volumes")
             else None
+        ),
+        "Direct Air Capture - energy mix": (
+            iam_data.daccs_energy_use if hasattr(iam_data, "daccs_energy_use") else None
         ),
         "Direct Air Capture - heat eff.": (
             iam_data.dac_heat_efficiencies
@@ -291,6 +300,9 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
         "Electricity - efficiency": {
             "filepath": IAM_ELEC_VARS,
         },
+        "Heat (residential) - generation": {
+            "filepath": IAM_HEATING_VARS,
+        },
         "Fuel (gasoline) - generation": {
             "filepath": IAM_FUELS_VARS,
             "filter": ["gasoline", "ethanol", "bioethanol", "methanol"],
@@ -377,16 +389,24 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
             "filepath": IAM_CARBON_CAPTURE_VARS,
             "variables": ["steel"],
         },
-        "Direct Air Capture - generation": {
-            "filepath": IAM_DACCS_VARS,
-            "variables": ["dac_solvent"],
+        "CDR - generation": {
+            "filepath": IAM_CDR_VARS,
+        },
+        "Direct Air Capture - energy mix": {
+            "filepath": IAM_HEATING_VARS,
+            "variables": [
+                "energy, for DACCS, from hydrogen turbine",
+                "energy, for DACCS, from gas boiler",
+                "energy, for DACCS, from other",
+                "energy, for DACCS, from electricity",
+            ],
         },
         "Direct Air Capture - heat eff.": {
-            "filepath": IAM_DACCS_VARS,
+            "filepath": IAM_CDR_VARS,
             "variables": ["dac_solvent"],
         },
         "Direct Air Capture - elec eff.": {
-            "filepath": IAM_DACCS_VARS,
+            "filepath": IAM_CDR_VARS,
             "variables": ["dac_solvent"],
         },
         "Transport (two-wheelers)": {
@@ -485,6 +505,9 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
 
                 if "CCS" in sector and iam_data is not None:
                     iam_data *= 100
+
+                if sector == "CDR - generation":
+                    iam_data *= -1
 
                 if iam_data is None:
                     continue
@@ -625,7 +648,7 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
                                 max_row=row + counter - 1,
                             )
 
-                            if "generation" in sector:
+                            if any(x in sector for x in ("generation", "mix")):
                                 chart = AreaChart(grouping="stacked")
                             elif "efficiency" in sector:
                                 chart = LineChart()
@@ -668,6 +691,7 @@ def generate_change_report(source, version, source_type, system_model):
         "premise_fuel",
         "premise_heat",
         "premise_battery",
+        "premise_wind_turbine",
         "premise_transport",
         "premise_steel",
         "premise_metal",

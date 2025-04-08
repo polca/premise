@@ -98,9 +98,13 @@ Steel - CCS:
   label: Share of emissions captured [%]
   expl_text: Share of steel emissions captured by CCS. Used to adjust the use of CCS in steel-producing datasets.
   offset: 10
-Direct Air Capture - generation:
-  label: Millions of tons of CO2 (Mt CO2, cumul.)
-  expl_text: Cumulated mass of CO2 removed by direct air capture. Used to calculate the learning rate of DAC systems. Assumes that sorbent- and solvent-based DAC systems are equally used.
+CDR - generation:
+  label: Millions of tons of CO2 (Mt CO2, cumul.) removed
+  expl_text: Cumulated mass of CO2 removed from the atmosphere.
+  offset: 10
+Direct Air Capture - energy mix:
+  label: Exajoules (EJ)
+  expl_text: Generated volumes of energy used by DAC, per technology. Used to calculate the energy supply mix of DAC.
   offset: 10
 Direct Air Capture - heat eff.:
   label: Efficiency gains (2020 = 1)
@@ -109,6 +113,10 @@ Direct Air Capture - heat eff.:
 Direct Air Capture - elec eff.:
   label: Efficiency gains (2020 = 1)
   expl_text: Electricity efficiency gains relative to 2020. Used to calibrate the efficiency of the DAC datasets.
+  offset: 10
+Heat (residential) - generation:
+  label: Exajoules (EJ)
+  expl_text: Generated volumes of residential heating, per technology. Used to calculate the residential heating supply mix.
   offset: 10
 Transport (two-wheelers):
   label: Vehicle-kilometers (million)

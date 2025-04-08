@@ -41,7 +41,7 @@ def _update_biomass(scenario, version, system_model):
         index=scenario.get("index"),
     )
 
-    if scenario["iam data"].biomass_markets is not None:
+    if scenario["iam data"].biomass_mix is not None:
         biomass.create_biomass_markets()
 
     biomass.relink_datasets()

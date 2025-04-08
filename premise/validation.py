@@ -750,6 +750,19 @@ class HeatValidation(BaseDatasetValidator):
 
                 expected_co2 += coal * 0.098
 
+                # add input of coal briquettes
+                briquettes = sum(
+                    [
+                        exc["amount"]
+                        for exc in ds["exchanges"]
+                        if "briquettes" in exc["name"]
+                        and exc["type"] == "technosphere"
+                        and exc["unit"] == "megajoule"
+                    ]
+                )
+
+                expected_co2 += 0.098
+
                 # add input of natural gas
                 nat_gas = sum(
                     [
@@ -762,6 +775,20 @@ class HeatValidation(BaseDatasetValidator):
                 )
 
                 expected_co2 += nat_gas * 0.06
+
+                # add input of liquefied natural gas
+
+                lpg = sum(
+                    [
+                        exc["amount"] * (36 if exc["unit"] == "cubic meter" else 47.5)
+                        for exc in ds["exchanges"]
+                        if "liquefied petroleum gas" in exc["name"]
+                        and exc["type"] == "technosphere"
+                        and exc["unit"] in ["cubic meter", "kilogram"]
+                    ]
+                )
+
+                expected_co2 += lpg * 0.0631
 
                 # add input of diesel
                 diesel = sum(
@@ -807,7 +834,7 @@ class HeatValidation(BaseDatasetValidator):
                     [
                         exc["amount"] * 18
                         for exc in ds["exchanges"]
-                        if any(x in exc["name"] for x in ["biomass", "wood"])
+                        if any(x in exc["name"] for x in ["biomass", "wood", "timber"])
                         and exc["type"] == "technosphere"
                         and exc["unit"] == "kilogram"
                     ]
@@ -841,6 +868,19 @@ class HeatValidation(BaseDatasetValidator):
 
                 expected_co2 += biogas * 0.058
 
+                # add input of methanol
+                methanol = sum(
+                    [
+                        exc["amount"] * 20
+                        for exc in ds["exchanges"]
+                        if "methanol" in exc["name"]
+                        and exc["type"] == "technosphere"
+                        and exc["unit"] == "kilogram"
+                    ]
+                )
+
+                expected_co2 += methanol * 0.069
+
                 # add input of hydrogen
                 hydrogen = sum(
                     [
@@ -867,7 +907,9 @@ class HeatValidation(BaseDatasetValidator):
                     [
                         energy,
                         coal,
+                        briquettes,
                         nat_gas,
+                        lpg,
                         diesel,
                         light_fue_oil,
                         heavy_fuel_oil,
@@ -875,14 +917,18 @@ class HeatValidation(BaseDatasetValidator):
                         methane,
                         biogas,
                         hydrogen,
+                        methanol,
                         electricity,
                     ]
                 )
 
                 efficiency = 1 / energy_input
 
-                if efficiency > 1.1 and "co-generation" not in ds["name"]:
-                    message = f"Heat conversion efficiency is {efficiency:.2f}, expected to be less than 1.1."
+                if efficiency > 1.15 and not any(
+                    x in ds["name"]
+                    for x in ["co-generation", "allocated", "allocation"]
+                ):
+                    message = f"Heat conversion efficiency is {efficiency:.2f}, expected to be less than 1.15."
                     self.log_issue(
                         ds, "heat conversion efficiency", message, issue_type="major"
                     )
@@ -1317,18 +1363,18 @@ class ElectricityValidation(BaseDatasetValidator):
         # corresponds to the IAM scenario projection
         vars = [
             x
-            for x in self.iam_data.electricity_markets.coords["variables"].values
+            for x in self.iam_data.electricity_mix.coords["variables"].values
             if x.lower().startswith("hydro")
         ]
 
-        if self.year in self.iam_data.electricity_markets.coords["year"].values:
+        if self.year in self.iam_data.electricity_mix.coords["year"].values:
 
-            hydro_share = self.iam_data.electricity_markets.sel(
+            hydro_share = self.iam_data.electricity_mix.sel(
                 variables=vars, year=self.year
-            ).sum(dim="variables") / self.iam_data.electricity_markets.sel(
+            ).sum(dim="variables") / self.iam_data.electricity_mix.sel(
                 variables=[
                     v
-                    for v in self.iam_data.electricity_markets.variables.values
+                    for v in self.iam_data.electricity_mix.variables.values
                     if v.lower() != "solar pv residential"
                 ],
                 year=self.year,
@@ -1336,12 +1382,12 @@ class ElectricityValidation(BaseDatasetValidator):
                 dim="variables"
             )
         else:
-            hydro_share = self.iam_data.electricity_markets.sel(variables=vars).interp(
+            hydro_share = self.iam_data.electricity_mix.sel(variables=vars).interp(
                 year=self.year
-            ).sum(dim="variables") / self.iam_data.electricity_markets.sel(
+            ).sum(dim="variables") / self.iam_data.electricity_mix.sel(
                 variables=[
                     v
-                    for v in self.iam_data.electricity_markets.variables.values
+                    for v in self.iam_data.electricity_mix.variables.values
                     if v.lower() != "solar pv residential"
                 ],
             ).interp(
@@ -1646,9 +1692,12 @@ class SteelValidation(BaseDatasetValidator):
                 if ds["location"] == "World":
                     continue
 
-                if self.year in self.iam_data.steel_markets.coords["year"].values:
+                if (
+                    self.year
+                    in self.iam_data.steel_technology_mix.coords["year"].values
+                ):
                     eaf_steel = (
-                        self.iam_data.steel_markets.sel(
+                        self.iam_data.steel_technology_mix.sel(
                             variables="steel - secondary",
                             region=ds["location"],
                             year=self.year,
@@ -1656,7 +1705,7 @@ class SteelValidation(BaseDatasetValidator):
                     ).values.item(0)
                 else:
                     eaf_steel = (
-                        self.iam_data.steel_markets.sel(
+                        self.iam_data.steel_technology_mix.sel(
                             variables="steel - secondary", region=ds["location"]
                         )
                         .interp(year=self.year)
@@ -2035,15 +2084,15 @@ class BiomassValidation(BaseDatasetValidator):
                 and ds["location"] in self.regions
                 and ds["location"] != "World"
             ):
-                if self.year in self.iam_data.biomass_markets.coords["year"].values:
-                    expected_share = self.iam_data.biomass_markets.sel(
+                if self.year in self.iam_data.biomass_mix.coords["year"].values:
+                    expected_share = self.iam_data.biomass_mix.sel(
                         variables="biomass - residual",
                         region=ds["location"],
                         year=self.year,
                     ).values.item(0)
                 else:
                     expected_share = (
-                        self.iam_data.biomass_markets.sel(
+                        self.iam_data.biomass_mix.sel(
                             variables="biomass - residual",
                             region=ds["location"],
                         )

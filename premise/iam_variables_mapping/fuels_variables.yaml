@@ -246,6 +246,14 @@ methane, synthetic:
       - methane, synthetic, gaseous
       - methane, from electrochemical methanation
 
+methane, from coal:
+  lhv: 47.5
+  co2: 0.06
+  biogenic_share: 1
+  ecoinvent_fuels_aliases:
+    fltr:
+      - methane, synthetic, gaseous, 5 bar, from coal-based hydrogen, at fuelling station
+
 liquid fossil fuels:
   lhv: 43
   co2: 0.0732
@@ -554,7 +562,9 @@ hydrogen, from electrolysis, PEM:
     gcam: Secondary Energy|Production|Hydrogen|Electrolysis
     remind: SE|Hydrogen|+|Electricity
     remind-eu: SE|Hydrogen|+|Electricity
-    image: Secondary Energy|Hydrogen|Electrolysis
+    image:
+      - Secondary Energy|Hydrogen|Electricity|Base-load electrolysis
+      - Secondary Energy|Hydrogen|Electricity|Curtailments electrolysis
     message: Secondary Energy|Hydrogen|Electricity
     witch: Secondary Energy|Hydrogen|Electricity|Pem
   eff_aliases:
@@ -565,6 +575,61 @@ hydrogen, from electrolysis, PEM:
     witch: Efficiency|Hydrogen|Electricity|Pem
   ecoinvent_aliases:
     fltr: hydrogen production, gaseous, 30 bar, from PEM electrolysis, from grid electricity
+    mask:
+      - carbon dioxide
+
+hydrogen, from electrolysis, PEM, from CSP:
+  lhv: 120
+  co2: 0
+  biogenic_share: 1
+  iam_aliases:
+    image: Secondary Energy|Hydrogen|Electricity|PEM Electrolyzer w/ CSP
+  ecoinvent_aliases:
+    fltr: hydrogen production, gaseous, 30 bar, from PEM electrolysis, from concentrated solar electricity
+    mask:
+      - carbon dioxide
+
+hydrogen, from electrolysis, PEM, from Solar PV:
+  lhv: 120
+  co2: 0
+  biogenic_share: 1
+  iam_aliases:
+    image: Secondary Energy|Hydrogen|Electricity|PEM Electrolyzer w/ PV
+  ecoinvent_aliases:
+    fltr: hydrogen production, gaseous, 30 bar, from PEM electrolysis, from solar photovoltaic electricity
+    mask:
+      - carbon dioxide
+
+hydrogen, from electrolysis, PEM, from onshore wind:
+  lhv: 120
+  co2: 0
+  biogenic_share: 1
+  iam_aliases:
+    image: Secondary Energy|Hydrogen|Electricity|PEM Electrolyzer w/ Onshore Wind
+  ecoinvent_aliases:
+    fltr: hydrogen production, gaseous, 30 bar, from PEM electrolysis, from onshore wind electricity
+    mask:
+      - carbon dioxide
+
+hydrogen, from electrolysis, PEM, from offshore wind:
+  lhv: 120
+  co2: 0
+  biogenic_share: 1
+  iam_aliases:
+    image: Secondary Energy|Hydrogen|Electricity|PEM Electrolyzer w/ Offnshore Wind
+  ecoinvent_aliases:
+    fltr: hydrogen production, gaseous, 30 bar, from PEM electrolysis, from offshore wind electricity
+    mask:
+      - carbon dioxide
+
+hydrogen, from electrolysis, PEM, from geothermal:
+  lhv: 120
+  co2: 0
+  biogenic_share: 1
+  iam_aliases:
+    image: Secondary Energy|Hydrogen|Electricity|PEM Electrolyzer w/ Geothermal
+  ecoinvent_aliases:
+    fltr: hydrogen production, gaseous, 30 bar, from PEM electrolysis, from geothermal electricity
     mask:
       - carbon dioxide
 
@@ -746,6 +811,26 @@ hydrogen, from biogas, with CCS:
   ecoinvent_aliases:
     fltr:
       - hydrogen production, steam methane reforming, from biomethane, with CCS
+
+hydrogen, from oil:
+    lhv: 120
+    co2: 0
+    biogenic_share: 1
+    ecoinvent_aliases:
+        fltr:
+          - hydrogen production, gaseous, petroleum refinery operation
+    iam_aliases:
+        image: Secondary Energy|Hydrogen|Oil w/o CCS
+
+hydrogen, from oil, with CCS:
+    lhv: 120
+    co2: 0
+    biogenic_share: 1
+    ecoinvent_aliases:
+        fltr:
+          - hydrogen production, gaseous, petroleum refinery operation, with CCS
+        iam_aliases:
+            image: Secondary Energy|Hydrogen|Oil w/CCS
 
 hydrogen:
   lhv: 120

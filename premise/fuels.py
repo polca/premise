@@ -300,10 +300,10 @@ def _update_fuels(scenario, version, system_model):
     if any(
         x is not None
         for x in (
-            scenario["iam data"].petrol_markets,
-            scenario["iam data"].diesel_markets,
-            scenario["iam data"].gas_markets,
-            scenario["iam data"].hydrogen_markets,
+            scenario["iam data"].petrol_blend,
+            scenario["iam data"].diesel_blend,
+            scenario["iam data"].natural_gas_blend,
+            scenario["iam data"].hydrogen_blend,
         )
     ):
         fuels.generate_fuel_markets()
@@ -399,10 +399,10 @@ class Fuels(BaseTransformation):
             dims=["variables"], coords={"variables": []}
         )
         for efficiency in [
-            self.iam_data.petrol_efficiencies,
-            self.iam_data.diesel_efficiencies,
-            self.iam_data.gas_efficiencies,
-            self.iam_data.hydrogen_efficiencies,
+            self.iam_data.petrol_technology_efficiencies,
+            self.iam_data.diesel_technology_efficiencies,
+            self.iam_data.gas_technology_efficiencies,
+            self.iam_data.hydrogen_technology_efficiencies,
         ]:
             if efficiency is not None:
                 self.fuel_efficiencies = xr.concat(
@@ -1406,130 +1406,30 @@ class Fuels(BaseTransformation):
 
         for fuel, activities in fuel_activities.items():
             for activity in activities:
-                if fuel == "methane, synthetic":
-                    original_ds = self.fetch_proxies(
-                        name=activity,
-                        ref_prod=" ",
-                        delete_original_dataset=False,
-                        empty_original_activity=False,
-                        exact_name_match=False,
-                        relink=False,
+                original_ds = self.fetch_proxies(
+                    name=activity["name"],
+                    ref_prod=activity["reference product"],
+                    exact_name_match=True,
+                )
+                new_ds = copy.deepcopy(original_ds)
+
+                for region, dataset in new_ds.items():
+                    dataset["code"] = str(uuid.uuid4().hex)
+                    for exc in ws.production(dataset):
+                        if "input" in exc:
+                            exc.pop("input")
+
+                    new_ds[region] = self.relink_technosphere_exchanges(
+                        dataset,
                     )
 
-                    for co2_type in [
-                        (
-                            "carbon dioxide, captured from atmosphere, with a sorbent-based direct air capture system, 100ktCO2, with waste heat, and grid electricity",
-                            "carbon dioxide, captured from atmosphere",
-                            "waste heat",
-                        ),
-                        (
-                            "carbon dioxide, captured from atmosphere, with a solvent-based direct air capture system, 1MtCO2, with heat pump heat, and grid electricity",
-                            "carbon dioxide, captured from atmosphere",
-                            "heat pump heat",
-                        ),
-                    ]:
-                        new_ds = copy.deepcopy(original_ds)
+                self.database.extend(new_ds.values())
 
-                        for region, dataset in new_ds.items():
-                            dataset["code"] = str(uuid.uuid4().hex)
-                            dataset["name"] += f", using {co2_type[2]}"
-                            for prod in ws.production(dataset):
-                                prod["name"] = dataset["name"]
-
-                                if "input" in prod:
-                                    del prod["input"]
-
-                            for exc in ws.technosphere(dataset):
-                                if (
-                                    "carbon dioxide, captured from atmosphere"
-                                    in exc["name"].lower()
-                                ):
-                                    # store amount
-                                    co2_amount = exc["amount"]
-
-                                    try:
-                                        # add new exchanges
-                                        dac_suppliers = self.find_suppliers(
-                                            name=co2_type[0],
-                                            ref_prod=co2_type[1],
-                                            unit="kilogram",
-                                            loc=region,
-                                        )
-
-                                    except IndexError:
-                                        dac_suppliers = None
-
-                                    if dac_suppliers:
-                                        # remove exchange
-                                        dataset["exchanges"].remove(exc)
-
-                                        dataset["exchanges"].extend(
-                                            {
-                                                "uncertainty type": 0,
-                                                "amount": co2_amount * share,
-                                                "type": "technosphere",
-                                                "product": supplier[2],
-                                                "name": supplier[0],
-                                                "unit": supplier[-1],
-                                                "location": supplier[1],
-                                            }
-                                            for supplier, share in dac_suppliers.items()
-                                        )
-
-                            for exc in ws.technosphere(dataset):
-                                if (
-                                    "methane, from electrochemical methanation"
-                                    in exc["name"]
-                                ):
-                                    exc["name"] += f", using {co2_type[2]}"
-                                    exc["location"] = dataset["location"]
-
-                                    dataset["name"] = dataset["name"].replace(
-                                        "from electrochemical methanation",
-                                        f"from electrochemical methanation "
-                                        f"(H2 from electrolysis, CO2 from DAC "
-                                        f"using {co2_type[2]})",
-                                    )
-
-                                    for prod in ws.production(dataset):
-                                        prod["name"] = prod["name"].replace(
-                                            "from electrochemical methanation",
-                                            f"from electrochemical methanation "
-                                            f"(H2 from electrolysis, CO2 from DAC "
-                                            f"using {co2_type[2]})",
-                                        )
-
-                        self.database.extend(new_ds.values())
-
-                        # add to log
-                        for new_dataset in list(new_ds.values()):
-                            self.write_log(new_dataset)
-
-                            # add it to list of created datasets
-                            self.add_to_index(new_dataset)
-                else:
-                    original_ds = self.fetch_proxies(
-                        name=activity, ref_prod=" ", exact_name_match=False
-                    )
-                    new_ds = copy.deepcopy(original_ds)
-
-                    for region, dataset in new_ds.items():
-                        dataset["code"] = str(uuid.uuid4().hex)
-                        for exc in ws.production(dataset):
-                            if "input" in exc:
-                                exc.pop("input")
-
-                        new_ds[region] = self.relink_technosphere_exchanges(
-                            dataset,
-                        )
-
-                    self.database.extend(new_ds.values())
-
-                    # add to log
-                    for new_dataset in list(new_ds.values()):
-                        self.write_log(new_dataset)
-                        # add it to list of created datasets
-                        self.add_to_index(new_dataset)
+                # add to log
+                for new_dataset in list(new_ds.values()):
+                    self.write_log(new_dataset)
+                    # add it to list of created datasets
+                    self.add_to_index(new_dataset)
 
     def generate_synthetic_fuel_activities(self):
         """

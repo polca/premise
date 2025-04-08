@@ -18,6 +18,7 @@ biomass crops - purpose grown:
 biomass wood - purpose grown:
   iam_aliases:
     message: Primary Energy|Biomass|Fuelwood
+    image: Primary Energy|Biomass|Traditional
   ecoinvent_aliases:
     fltr:
       name: market for wood chips
@@ -25,7 +26,9 @@ biomass wood - purpose grown:
 biomass - residual:
   iam_aliases:
     message: Primary Energy|Biomass|Residues
-    image: Primary Energy|Biomass|Residues
+    image:
+      - Primary Energy|Biomass|Residues
+      - Primary Energy|Biomass|Other
     remind: SE|Electricity|Biomass|Residues
     remind-eu: SE|Electricity|Biomass|Residues
     tiam-ucl: Primary Energy|Biomass|Residues

@@ -360,7 +360,6 @@ class BaseInventoryImport:
         self.version_in = version_in
         self.version_out = version_out
         self.biosphere_dict = get_biosphere_code(self.version_out)
-        # print(self.biosphere_dict)
         self.correspondence_bio_flows = get_correspondence_bio_flows()
         self.system_model = system_model
         self.consequential_blacklist = get_consequential_blacklist()
@@ -721,6 +720,18 @@ class BaseInventoryImport:
                                     y["delete"] = True
                             y["name"] = new_key[0]
 
+                    # **New fallback step: Try without subcomparment before deleting**
+                    if key not in self.biosphere_dict and not y.get("delete"):
+                        fallback_key = (key[0], key[1], "unspecified", key[3])
+                        if fallback_key in self.biosphere_dict:
+                            key = fallback_key
+                            y["categories"] = (key[1], "unspecified")
+                        else:
+                            print(
+                                f"Could not find a biosphere flow for {key} or {fallback_key} in {self.path.name}. Exchange deleted."
+                            )
+                            y["delete"] = True
+
                     try:
                         y["input"] = (
                             "biosphere3",
@@ -742,6 +753,7 @@ class BaseInventoryImport:
             "N-",
             "EUR",
             "Mannheim",
+            "Sohio",
         ]
 
         for ds in self.import_db.data:

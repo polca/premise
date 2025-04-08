@@ -216,12 +216,12 @@ def get_production_weighted_losses(
     return {"high": high, "medium": medium, "low": low}
 
 
-def filter_technology(dataset_names, database):
+def filter_technology(dataset_names, database, unit="kilowatt hour"):
     return list(
         ws.get_many(
             database,
             ws.either(*[ws.equals("name", name) for name in dataset_names]),
-            ws.equals("unit", "kilowatt hour"),
+            ws.equals("unit", unit),
         )
     )
 
@@ -254,12 +254,12 @@ def _update_electricity(
     if scenario["year"] >= 2020:
         electricity.adjust_aluminium_electricity_markets()
 
-    if scenario["iam data"].electricity_markets is not None:
+    if scenario["iam data"].electricity_mix is not None:
         electricity.update_electricity_markets()
     else:
         print("No electricity information found in IAM data. Skipping.")
 
-    if scenario["iam data"].electricity_efficiencies is not None:
+    if scenario["iam data"].electricity_technology_efficiencies is not None:
         electricity.update_electricity_efficiency()
     else:
         print("No electricity efficiencies found in IAM data. Skipping.")
@@ -453,7 +453,7 @@ class Electricity(BaseTransformation):
         # Loop through the technologies
         technologies = [
             tech
-            for tech in self.iam_data.electricity_markets.variables.values
+            for tech in self.iam_data.electricity_mix.variables.values
             if "solar pv residential" in tech.lower()
         ]
 
@@ -533,8 +533,8 @@ class Electricity(BaseTransformation):
                 if self.system_model == "consequential":
                     electricity_mix = dict(
                         zip(
-                            self.iam_data.electricity_markets.variables.values,
-                            self.iam_data.electricity_markets.sel(
+                            self.iam_data.electricity_mix.variables.values,
+                            self.iam_data.electricity_mix.sel(
                                 region=region, year=self.year
                             ).values,
                         )
@@ -544,8 +544,8 @@ class Electricity(BaseTransformation):
                     # Create a time-weighted average mix
                     electricity_mix = dict(
                         zip(
-                            self.iam_data.electricity_markets.variables.values,
-                            self.iam_data.electricity_markets.sel(
+                            self.iam_data.electricity_mix.variables.values,
+                            self.iam_data.electricity_mix.sel(
                                 region=region,
                             )
                             .interp(
@@ -561,14 +561,14 @@ class Electricity(BaseTransformation):
             if self.year in self.iam_data.production_volumes.coords["year"].values:
                 production_volume = self.iam_data.production_volumes.sel(
                     region=region,
-                    variables=self.iam_data.electricity_markets.variables.values,
+                    variables=self.iam_data.electricity_mix.variables.values,
                     year=self.year,
                 ).values.item(0)
             else:
                 production_volume = (
                     self.iam_data.production_volumes.sel(
                         region=region,
-                        variables=self.iam_data.electricity_markets.variables.values,
+                        variables=self.iam_data.electricity_mix.variables.values,
                     )
                     .interp(year=self.year)
                     .values.item(0)
@@ -805,14 +805,14 @@ class Electricity(BaseTransformation):
             if self.year in self.iam_data.production_volumes.coords["year"].values:
                 production_volume = self.iam_data.production_volumes.sel(
                     region=region,
-                    variables=self.iam_data.electricity_markets.variables.values,
+                    variables=self.iam_data.electricity_mix.variables.values,
                     year=self.year,
                 ).values.item(0)
             else:
                 production_volume = (
                     self.iam_data.production_volumes.sel(
                         region=region,
-                        variables=self.iam_data.electricity_markets.variables.values,
+                        variables=self.iam_data.electricity_mix.variables.values,
                     )
                     .interp(year=self.year)
                     .values.item(0)
@@ -995,7 +995,7 @@ class Electricity(BaseTransformation):
         # Loop through the technologies
         technologies = [
             tech
-            for tech in self.iam_data.electricity_markets.variables.values
+            for tech in self.iam_data.electricity_mix.variables.values
             if "solar pv residential" not in tech.lower()
         ]
 
@@ -1086,8 +1086,8 @@ class Electricity(BaseTransformation):
             if self.system_model == "consequential":
                 electricity_mix = dict(
                     zip(
-                        self.iam_data.electricity_markets.variables.values,
-                        self.iam_data.electricity_markets.sel(
+                        self.iam_data.electricity_mix.variables.values,
+                        self.iam_data.electricity_mix.sel(
                             region=region, year=self.year
                         ).values,
                     )
@@ -1096,8 +1096,8 @@ class Electricity(BaseTransformation):
             else:
                 electricity_mix = dict(
                     zip(
-                        self.iam_data.electricity_markets.variables.values,
-                        self.iam_data.electricity_markets.sel(
+                        self.iam_data.electricity_mix.variables.values,
+                        self.iam_data.electricity_mix.sel(
                             region=region,
                         )
                         .interp(
@@ -1122,14 +1122,14 @@ class Electricity(BaseTransformation):
             if self.year in self.iam_data.production_volumes.coords["year"].values:
                 production_volume = self.iam_data.production_volumes.sel(
                     region=region,
-                    variables=self.iam_data.electricity_markets.variables.values,
+                    variables=self.iam_data.electricity_mix.variables.values,
                     year=self.year,
                 ).values.item(0)
             else:
                 production_volume = (
                     self.iam_data.production_volumes.sel(
                         region=region,
-                        variables=self.iam_data.electricity_markets.variables.values,
+                        variables=self.iam_data.electricity_mix.variables.values,
                     )
                     .interp(year=self.year)
                     .values.item(0)
@@ -1289,7 +1289,7 @@ class Electricity(BaseTransformation):
             production_volume = (
                 self.iam_data.production_volumes.sel(
                     region=regions,
-                    variables=self.iam_data.electricity_markets.variables.values,
+                    variables=self.iam_data.electricity_mix.variables.values,
                     year=self.year,
                 )
                 .sum(dim=["region", "variables"])
@@ -1299,7 +1299,7 @@ class Electricity(BaseTransformation):
             production_volume = (
                 self.iam_data.production_volumes.sel(
                     region=regions,
-                    variables=self.iam_data.electricity_markets.variables.values,
+                    variables=self.iam_data.electricity_mix.variables.values,
                 )
                 .interp(year=self.year)
                 .sum(dim=["region", "variables"])
@@ -1335,7 +1335,7 @@ class Electricity(BaseTransformation):
                 share = (
                     self.iam_data.production_volumes.sel(
                         region=r,
-                        variables=self.iam_data.electricity_markets.variables.values,
+                        variables=self.iam_data.electricity_mix.variables.values,
                         year=self.year,
                     ).sum(dim="variables")
                     / self.iam_data.production_volumes.sel(
@@ -1344,7 +1344,7 @@ class Electricity(BaseTransformation):
                             for x in self.iam_data.production_volumes.region.values
                             if x != "World"
                         ],
-                        variables=self.iam_data.electricity_markets.variables.values,
+                        variables=self.iam_data.electricity_mix.variables.values,
                         year=self.year,
                     ).sum(dim=["variables", "region"])
                 ).values
@@ -1353,7 +1353,7 @@ class Electricity(BaseTransformation):
                     (
                         self.iam_data.production_volumes.sel(
                             region=r,
-                            variables=self.iam_data.electricity_markets.variables.values,
+                            variables=self.iam_data.electricity_mix.variables.values,
                         ).sum(dim="variables")
                         / self.iam_data.production_volumes.sel(
                             region=[
@@ -1361,7 +1361,7 @@ class Electricity(BaseTransformation):
                                 for x in self.iam_data.production_volumes.region.values
                                 if x != "World"
                             ],
-                            variables=self.iam_data.electricity_markets.variables.values,
+                            variables=self.iam_data.electricity_mix.variables.values,
                         ).sum(dim=["variables", "region"])
                     )
                     .interp(
@@ -1711,8 +1711,8 @@ class Electricity(BaseTransformation):
 
         # print("Adjust efficiency of power plants...")
 
-        eff_labels = self.iam_data.electricity_efficiencies.variables.values
-        all_techs = self.iam_data.electricity_markets.variables.values
+        eff_labels = self.iam_data.electricity_technology_efficiencies.variables.values
+        all_techs = self.iam_data.electricity_mix.variables.values
 
         technologies_map = self.get_iam_mapping(
             activity_map=self.powerplant_map,
@@ -1753,13 +1753,13 @@ class Electricity(BaseTransformation):
                     )
                     if (
                         iam_location
-                        in self.iam_data.electricity_efficiencies.coords[
+                        in self.iam_data.electricity_technology_efficiencies.coords[
                             "region"
                         ].values
                     ):
                         # Find relative efficiency change indicated by the IAM
                         scaling_factor = 1 / self.find_iam_efficiency_change(
-                            data=self.iam_data.electricity_efficiencies,
+                            data=self.iam_data.electricity_technology_efficiencies,
                             variable=technology,
                             location=iam_location,
                         )
@@ -1779,7 +1779,7 @@ class Electricity(BaseTransformation):
 
                 else:
                     new_efficiency = self.find_iam_efficiency_change(
-                        data=self.iam_data.electricity_efficiencies,
+                        data=self.iam_data.electricity_technology_efficiencies,
                         variable=technology,
                         location=self.geo.ecoinvent_to_iam_location(
                             dataset["location"]
