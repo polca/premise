@@ -101,6 +101,13 @@ direct air capture (solvent):
       - Carbon Capture|Storage|Biomass|Energy|Supply|Hydrogen
       - Carbon Capture|Storage|Fossil|Energy|Supply|Hydrogen
       - Carbon Capture|Storage|Fossil|Energy|Supply|Gases
+    witch:
+      - Final energy|Carbon Management|Direct Air Capture|Solvent|Electricity|Coal
+      - Final energy|Carbon Management|Direct Air Capture|Solvent|Electricity|Biomass
+      - Final energy|Carbon Management|Direct Air Capture|Solvent|Electricity|Gas
+      - Final energy|Carbon Management|Direct Air Capture|Solvent|Electricity|Wind
+      - Final energy|Carbon Management|Direct Air Capture|Solvent|Electricity|PV
+      - Final energy|Carbon Management|Direct Air Capture|Solvent|Electricity|CSP
 
   ecoinvent_aliases:
     fltr:
@@ -131,6 +138,13 @@ direct air capture (sorbent):
       - Carbon Capture|Storage|Biomass|Energy|Supply|Hydrogen
       - Carbon Capture|Storage|Fossil|Energy|Supply|Hydrogen
       - Carbon Capture|Storage|Fossil|Energy|Supply|Gases
+    witch: 
+      - Final energy|Carbon Management|Direct Air Capture|Sorbent|Electricity|Coal
+      - Final energy|Carbon Management|Direct Air Capture|Sorbent|Electricity|Biomass
+      - Final energy|Carbon Management|Direct Air Capture|Sorbent|Electricity|Gas
+      - Final energy|Carbon Management|Direct Air Capture|Sorbent|Electricity|Wind
+      - Final energy|Carbon Management|Direct Air Capture|Sorbent|Electricity|PV
+      - Final energy|Carbon Management|Direct Air Capture|Sorbent|Electricity|CSP    
 
   ecoinvent_aliases:
     fltr:
