@@ -1201,9 +1201,9 @@ class IAMDataCollection:
         )
 
         # Salvar o dataframe como uma planilha Excel                                       ##### Inclui essa parte:
-        #output_excel_path = filedir / f"{self.model}_{self.pathway}_data.xlsx"
-        #dataframe.to_excel(output_excel_path, index=False)
-        #print(f"Data saved to {output_excel_path}")
+        # output_excel_path = filedir / f"{self.model}_{self.pathway}_data.xlsx"
+        # dataframe.to_excel(output_excel_path, index=False)
+        # print(f"Data saved to {output_excel_path}")
 
         array = (
             dataframe.melt(
@@ -1218,7 +1218,7 @@ class IAMDataCollection:
 
         array.attrs["unit"] = dict(
             dataframe.groupby("variables")["unit"].first().to_dict().items()
-        )                                                                                 #### Termina Aqui
+        )  #### Termina Aqui
 
         return array
 
