@@ -835,6 +835,7 @@ class HeatValidation(BaseDatasetValidator):
                         exc["amount"] * 18
                         for exc in ds["exchanges"]
                         if any(x in exc["name"] for x in ["biomass", "wood", "timber"])
+                        and "ethanol" not in exc["name"]
                         and exc["type"] == "technosphere"
                         and exc["unit"] == "kilogram"
                     ]
