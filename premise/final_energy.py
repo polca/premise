@@ -33,8 +33,6 @@ def _update_final_energy(
         system_model=system_model,
     )
 
-
-
     final_energy.regionalize_heating_datasets()
 
     final_energy.relink_datasets()

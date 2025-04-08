@@ -435,8 +435,8 @@ class IAMDataCollection:
         }
 
         final_energy_vars = self.__get_iam_variable_labels(
-                IAM_FINAL_ENERGY_VARS, variable="iam_aliases"
-            )
+            IAM_FINAL_ENERGY_VARS, variable="iam_aliases"
+        )
 
         other_vars = self.__get_iam_variable_labels(
             IAM_OTHER_VARS, variable="iam_aliases"
@@ -655,9 +655,10 @@ class IAMDataCollection:
             sector="cement",
         )
         self.steel_technology_mix = self.__fetch_market_data(
-            data=data, input_vars=steel_prod_vars,
+            data=data,
+            input_vars=steel_prod_vars,
             system_model=self.system_model,
-            sector="steel"
+            sector="steel",
         )
         self.cdr_technology_mix = self.__fetch_market_data(
             data=data,
@@ -858,8 +859,13 @@ class IAMDataCollection:
         )
         # we may want to limit the efficiency change for vehicles
         # as we know those won't improve a lot more in the future
-        if self.road_freight_efficiencies is not None and self.use_absolute_efficiency == False:
-            self.road_freight_efficiencies = self.road_freight_efficiencies.clip(None, 1.25)
+        if (
+            self.road_freight_efficiencies is not None
+            and self.use_absolute_efficiency == False
+        ):
+            self.road_freight_efficiencies = self.road_freight_efficiencies.clip(
+                None, 1.25
+            )
 
         self.rail_freight_efficiencies = self.get_iam_efficiencies(
             data=data,
@@ -874,9 +880,13 @@ class IAMDataCollection:
         )
         # we may want to limit the efficiency change for vehicles
         # as we know those won't improve a lot more in the future
-        if self.passenger_car_efficiencies is not None and self.use_absolute_efficiency == False:
-            self.passenger_car_efficiencies = self.passenger_car_efficiencies.clip(None, 1.25)
-
+        if (
+            self.passenger_car_efficiencies is not None
+            and self.use_absolute_efficiency == False
+        ):
+            self.passenger_car_efficiencies = self.passenger_car_efficiencies.clip(
+                None, 1.25
+            )
 
         self.bus_efficiencies = self.get_iam_efficiencies(
             data=data,
@@ -895,8 +905,13 @@ class IAMDataCollection:
         )
         # we may want to limit the efficiency change for vehicles
         # as we know those won't improve a lot more in the future
-        if self.two_wheelers_efficiencies is not None and self.use_absolute_efficiency == False:
-            self.two_wheelers_efficiencies = self.two_wheelers_efficiencies.clip(None, 1.25)
+        if (
+            self.two_wheelers_efficiencies is not None
+            and self.use_absolute_efficiency == False
+        ):
+            self.two_wheelers_efficiencies = self.two_wheelers_efficiencies.clip(
+                None, 1.25
+            )
 
         self.land_use = self.__get_iam_production_volumes(
             data=data, input_vars=land_use_vars, fill=True

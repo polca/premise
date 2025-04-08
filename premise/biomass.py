@@ -162,23 +162,26 @@ class Biomass(BaseTransformation):
 
             for biomass_type, biomass_act in self.biomass_map.items():
 
-                if biomass_type not in self.iam_data.biomass_mix.coords["variables"].values:
+                if (
+                    biomass_type
+                    not in self.iam_data.biomass_mix.coords["variables"].values
+                ):
                     continue
 
-                if (
-                    self.year
-                    in self.iam_data.biomass_mix.coords["year"].values
-                ):
-                    share = self.iam_data.biomass_mix.sel(
-                                variables=biomass_type,
-                                region=region,
-                                year=self.year,
-                            ).values.item(0)
-                else:
+                if self.year in self.iam_data.biomass_mix.coords["year"].values:
                     share = self.iam_data.biomass_mix.sel(
                         variables=biomass_type,
-                        region=region
-                    ).interp(year=self.year).values.item(0),
+                        region=region,
+                        year=self.year,
+                    ).values.item(0)
+                else:
+                    share = (
+                        self.iam_data.biomass_mix.sel(
+                            variables=biomass_type, region=region
+                        )
+                        .interp(year=self.year)
+                        .values.item(0),
+                    )
 
                 if (
                     self.system_model == "consequential"
@@ -206,15 +209,21 @@ class Biomass(BaseTransformation):
                         suppliers = list(
                             ws.get_many(
                                 self.database,
-                                ws.either(*[
-                                    ws.contains("name", possible_name)
-                                    for possible_name in possible_names
-                                ]),
+                                ws.either(
+                                    *[
+                                        ws.contains("name", possible_name)
+                                        for possible_name in possible_names
+                                    ]
+                                ),
                                 ws.equals("location", possible_locations[counter]),
-                                ws.either(*[
-                                    ws.contains("reference product", possible_product)
-                                    for possible_product in ("chips", "residue")
-                                ]),
+                                ws.either(
+                                    *[
+                                        ws.contains(
+                                            "reference product", possible_product
+                                        )
+                                        for possible_product in ("chips", "residue")
+                                    ]
+                                ),
                                 ws.equals("unit", "kilogram"),
                                 ws.doesnt_contain_any(
                                     "name", ["willow", "post-consumer"]
