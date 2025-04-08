@@ -32,6 +32,7 @@ IAM_CEMENT_VARS = VARIABLES_DIR / "cement_variables.yaml"
 IAM_STEEL_VARS = VARIABLES_DIR / "steel_variables.yaml"
 IAM_CDR_VARS = VARIABLES_DIR / "carbon_dioxide_removal_variables.yaml"
 IAM_HEATING_VARS = VARIABLES_DIR / "heat_variables.yaml"
+IAM_FINAL_ENERGY_VARS = VARIABLES_DIR / "final_energy.yaml"
 IAM_OTHER_VARS = VARIABLES_DIR / "other_variables.yaml"
 IAM_TRANS_ROADFREIGHT_VARS = VARIABLES_DIR / "transport_roadfreight_variables.yaml"
 IAM_TRANS_RAILFREIGHT_VARS = VARIABLES_DIR / "transport_railfreight_variables.yaml"
@@ -433,6 +434,10 @@ class IAMDataCollection:
             if "EWR" in k
         }
 
+        final_energy_vars = self.__get_iam_variable_labels(
+                IAM_FINAL_ENERGY_VARS, variable="iam_aliases"
+            )
+
         other_vars = self.__get_iam_variable_labels(
             IAM_OTHER_VARS, variable="iam_aliases"
         )
@@ -646,21 +651,23 @@ class IAMDataCollection:
         self.cement_technology_mix = self.__fetch_market_data(
             data=data,
             input_vars=cement_prod_vars,
-            system_model="cutoff",
+            system_model=self.system_model,
             sector="cement",
         )
         self.steel_technology_mix = self.__fetch_market_data(
-            data=data, input_vars=steel_prod_vars, system_model="cutoff", sector="steel"
+            data=data, input_vars=steel_prod_vars,
+            system_model=self.system_model,
+            sector="steel"
         )
         self.cdr_technology_mix = self.__fetch_market_data(
             data=data,
             input_vars=cdr_prod_vars,
-            system_model="cutoff",
+            system_model=self.system_model,
         )
         self.biomass_mix = self.__fetch_market_data(
             data=data,
             input_vars=biomass_prod_vars,
-            system_model="cutoff",
+            system_model=self.system_model,
             sector="biomass",
         )
 
@@ -676,41 +683,41 @@ class IAMDataCollection:
             data=data,
             input_vars=other_vars,
             normalize=False,
-            system_model="cutoff",
+            system_model=self.system_model,
         )
 
         self.road_freight_fleet = self.__fetch_market_data(
             data=data,
             input_vars=roadfreight_prod_vars,
-            system_model="cutoff",
+            system_model=self.system_model,
             sector="transport",
         )
 
         self.rail_freight_fleet = self.__fetch_market_data(
             data=data,
             input_vars=railfreight_prod_vars,
-            system_model="cutoff",  # TODO: check how to handle this for consequencial
+            system_model=self.system_model,
             sector="transport",
         )
 
         self.passenger_car_fleet = self.__fetch_market_data(
             data=data,
             input_vars=passenger_cars_prod_vars,
-            system_model="cutoff",
+            system_model=self.system_model,
             sector="transport",
         )
 
         self.bus_fleet = self.__fetch_market_data(
             data=data,
             input_vars=bus_prod_vars,
-            system_model="cutoff",
+            system_model=self.system_model,
             sector="transport",
         )
 
         self.two_wheelers_fleet = self.__fetch_market_data(
             data=data,
             input_vars=two_wheelers_prod_vars,
-            system_model="cutoff",  # TODO: check how to handle this for consequencial
+            system_model=self.system_model,
             sector="transport",
         )
 
@@ -730,6 +737,11 @@ class IAMDataCollection:
             data=data,
             input_vars=ewr_heat_vars,
             system_model=self.system_model,
+        )
+
+        self.final_energy_use = self.__fetch_market_data(
+            data=data,
+            input_vars=final_energy_vars,
         )
 
         self.electricity_technology_efficiencies = self.get_iam_efficiencies(
@@ -844,6 +856,10 @@ class IAMDataCollection:
             production_labels=roadfreight_prod_vars,
             energy_labels=roadfreight_energy_vars,
         )
+        # we may want to limit the efficiency change for vehicles
+        # as we know those won't improve a lot more in the future
+        if self.road_freight_efficiencies is not None and self.use_absolute_efficiency == False:
+            self.road_freight_efficiencies = self.road_freight_efficiencies.clip(None, 1.25)
 
         self.rail_freight_efficiencies = self.get_iam_efficiencies(
             data=data,
@@ -856,18 +872,31 @@ class IAMDataCollection:
             production_labels=passenger_cars_prod_vars,
             energy_labels=passenger_cars_energy_vars,
         )
+        # we may want to limit the efficiency change for vehicles
+        # as we know those won't improve a lot more in the future
+        if self.passenger_car_efficiencies is not None and self.use_absolute_efficiency == False:
+            self.passenger_car_efficiencies = self.passenger_car_efficiencies.clip(None, 1.25)
+
 
         self.bus_efficiencies = self.get_iam_efficiencies(
             data=data,
             production_labels=bus_prod_vars,
             energy_labels=bus_energy_vars,
         )
+        # we may want to limit the efficiency change for vehicles
+        # as we know those won't improve a lot more in the future
+        if self.bus_efficiencies is not None and self.use_absolute_efficiency == False:
+            self.bus_efficiencies = self.bus_efficiencies.clip(None, 1.25)
 
         self.two_wheelers_efficiencies = self.get_iam_efficiencies(
             data=data,
             production_labels=two_wheelers_prod_vars,
             energy_labels=two_wheelers_energy_vars,
         )
+        # we may want to limit the efficiency change for vehicles
+        # as we know those won't improve a lot more in the future
+        if self.two_wheelers_efficiencies is not None and self.use_absolute_efficiency == False:
+            self.two_wheelers_efficiencies = self.two_wheelers_efficiencies.clip(None, 1.25)
 
         self.land_use = self.__get_iam_production_volumes(
             data=data, input_vars=land_use_vars, fill=True
@@ -1197,7 +1226,7 @@ class IAMDataCollection:
         self,
         data: xr.DataArray,
         input_vars: dict,
-        system_model: str,
+        system_model: str = "cutoff",
         normalize: bool = True,
         sector: str = None,
     ) -> [xr.DataArray, None]:

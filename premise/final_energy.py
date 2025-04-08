@@ -18,6 +18,11 @@ def _update_final_energy(
     version,
     system_model,
 ):
+
+    if scenario["iam data"].final_energy_use is None:
+        print("No final energy scenario data available -- skipping")
+        return scenario
+
     final_energy = FinalEnergy(
         database=scenario["database"],
         iam_data=scenario["iam data"],
@@ -27,6 +32,8 @@ def _update_final_energy(
         version=version,
         system_model=system_model,
     )
+
+
 
     final_energy.regionalize_heating_datasets()
 
@@ -100,8 +107,6 @@ class FinalEnergy(BaseTransformation):
                 continue
             if dataset["location"] in self.regions:
                 continue
-
-            print(dataset["name"], dataset["location"])
 
             datasets = self.fetch_proxies(
                 name=dataset["name"],

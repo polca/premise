@@ -798,7 +798,7 @@ class NewDatabase:
             (FILEPATH_FUEL_CELL, "3.10"),
             (FILEPATH_CSP, "3.9"),
             (FILEPATH_HYDROGEN_HEATING, "3.9"),
-            (FILEPATH_METHANOL_HEATING, "3.9"),
+            (FILEPATH_METHANOL_HEATING, "3.10"),
             (FILEPATH_ELECTRIC_HEATING, "3.10"),
             (FILEPATH_GERMANIUM, "3.9"),
             (FILEPATH_RHENIUM, "3.9"),

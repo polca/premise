@@ -39,6 +39,11 @@ def fetch_mapping(filepath: str) -> dict:
 
 
 def _update_emissions(scenario, version, system_model, gains_scenario):
+
+    if scenario["iam data"].gains_data_IAM is None:
+        print("No pollutant emissions scenario data available -- skipping")
+        return scenario
+
     emissions = Emissions(
         database=scenario["database"],
         year=scenario["year"],

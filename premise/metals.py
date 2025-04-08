@@ -35,6 +35,7 @@ logger = create_logger("metal")
 
 
 def _update_metals(scenario, version, system_model):
+
     metals = Metals(
         database=scenario["database"],
         model=scenario["model"],
@@ -516,7 +517,6 @@ class Metals(BaseTransformation):
                 try:
                     dataset_metal = self.get_metal_market_dataset(metal_activity_name)
                 except ws.NoResults:
-                    print(f"Could not find dataset for {metal_activity_name}.")
                     return
                 metal_users = ws.get_many(
                     self.database, ws.equals("name", final_technology)

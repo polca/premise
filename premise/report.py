@@ -806,19 +806,6 @@ def convert_log_to_excel_file(filepath):
     scenario and variable.
     """
 
-    try:
-        df = pd.read_csv(filepath, sep="|", header=None, on_bad_lines="skip")
-        df.columns = fetch_columns(filepath)
-        return df
-
-    except EmptyDataError:
-        # return an empty dataframe
-        return pd.DataFrame(columns=fetch_columns(filepath))
-
-    except ValueError:
-        # return dataframe without column names
-        print(
-            f"ValueError: column names {fetch_columns(filepath)} not found in {filepath}."
-            f"Instead, found: {pd.read_csv(filepath, sep='|', header=None, on_bad_lines='skip').columns}"
-        )
-        return pd.read_csv(filepath, sep="|", header=None, on_bad_lines="skip")
+    df = pd.read_csv(filepath, sep="|", header=None, on_bad_lines="skip")
+    df.columns = fetch_columns(filepath)
+    return df

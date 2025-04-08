@@ -15,6 +15,7 @@ from .filesystem_constants import DATA_DIR, VARIABLES_DIR
 
 POWERPLANT_TECHS = VARIABLES_DIR / "electricity_variables.yaml"
 FUELS_TECHS = VARIABLES_DIR / "fuels_variables.yaml"
+BIOMASS_TYPES = VARIABLES_DIR / "biomass_variables.yaml"
 METALS_TECHS = DATA_DIR / "metals" / "activities_mapping.yml"
 MATERIALS_TECHS = DATA_DIR / "utils" / "materials_vars.yml"
 CDR_TECHS = VARIABLES_DIR / "carbon_dioxide_removal_variables.yaml"
@@ -180,6 +181,18 @@ class InventorySet:
         self.final_energy_filters = get_mapping(
             filepath=FINAL_ENERGY, var="ecoinvent_aliases"
         )
+
+        self.biomass_filters = get_mapping(
+            filepath=BIOMASS_TYPES, var="ecoinvent_aliases"
+        )
+
+    def generate_biomass_map(self) -> dict:
+        """
+        Filter ecoinvent processes related to biomass.
+        Returns a dictionary with biomass names as keys (see below) and
+        a set of related ecoinvent activities' names as values.
+        """
+        return self.generate_sets_from_filters(self.biomass_filters)
 
     def generate_heat_map(self) -> dict:
         """

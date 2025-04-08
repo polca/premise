@@ -37,6 +37,11 @@ def fetch_mapping(filepath: str) -> dict:
 
 
 def _update_cdr(scenario, version, system_model):
+
+    if scenario["iam data"].cdr_technology_mix is None:
+        print("No CDR scenario data available -- skipping")
+        return scenario
+
     cdr = CarbonDioxideRemoval(
         database=scenario["database"],
         iam_data=scenario["iam data"],

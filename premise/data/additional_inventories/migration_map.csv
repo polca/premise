@@ -1334,3 +1334,19 @@ from,to,name_from,ref_prod_from,location_from,name_to,ref_prod_to,location_to
 310,39,"acrylonitrile production, Sohio process","hydrogen cyanide",RER,"Sohio process","hydrogen cyanide",RER
 310,39,"ethylenediaminetetraacetic acid production, alkaline cyanomethylation of ethylenediamine","EDTA, ethylenediaminetetraacetic acid",RER,"EDTA production","EDTA, ethylenediaminetetraacetic acid",RER
 310,38,"cement production, blast furnace slag 70-100%","cement, blast furnace slag 70-100%",US,"cement production, type S","cement, type S",US
+310,39,"hydrogen production, gaseous, petroleum refinery operation","hydrogen, gaseous, low pressure",Europe without Switzerland,"hydrogen production, gaseous, petroleum refinery operation","hydrogen, gaseous",Europe without Switzerland
+310,38,"hydrogen production, gaseous, petroleum refinery operation","hydrogen, gaseous, low pressure",Europe without Switzerland,"hydrogen production, gaseous, petroleum refinery operation","hydrogen, gaseous",Europe without Switzerland
+310,37,"hydrogen production, gaseous, petroleum refinery operation","hydrogen, gaseous, low pressure",Europe without Switzerland,"hydrogen production, gaseous, petroleum refinery operation","hydrogen, gaseous",Europe without Switzerland
+310,36,"hydrogen production, gaseous, petroleum refinery operation","hydrogen, gaseous, low pressure",Europe without Switzerland,"hydrogen production, gaseous, petroleum refinery operation","hydrogen, gaseous",Europe without Switzerland
+310,39,"methanol production, biomass gasification","methanol, from biomass",CH,"methanol production, from synthetic gas","methanol, from biomass",CH
+310,38,"methanol production, biomass gasification","methanol, from biomass",CH,"methanol production, from synthetic gas","methanol, from biomass",CH
+310,37,"methanol production, biomass gasification","methanol, from biomass",CH,"methanol production, from synthetic gas","methanol, from biomass",CH
+310,36,"methanol production, biomass gasification","methanol, from biomass",CH,"methanol production, from synthetic gas","methanol, from biomass",CH
+310,39,"methanol production, biomass gasification","methanol, from biomass",RoW,"methanol production, from synthetic gas","methanol, from biomass",RoW
+310,38,"methanol production, biomass gasification","methanol, from biomass",RoW,"methanol production, from synthetic gas","methanol, from biomass",RoW
+310,37,"methanol production, biomass gasification","methanol, from biomass",RoW,"methanol production, from synthetic gas","methanol, from biomass",RoW
+310,36,"methanol production, biomass gasification","methanol, from biomass",RoW,"methanol production, from synthetic gas","methanol, from biomass",RoW
+310,39,"market for electric powertrain, for electric scooter","electric powertrain, for electric scooter",GLO,"market for powertrain, for electric scooter","powertrain, for electric scooter",GLO
+310,38,"market for electric powertrain, for electric scooter","electric powertrain, for electric scooter",GLO,"market for powertrain, for electric scooter","powertrain, for electric scooter",GLO
+310,37,"market for electric powertrain, for electric scooter","electric powertrain, for electric scooter",GLO,"market for powertrain, for electric scooter","powertrain, for electric scooter",GLO
+310,36,"market for electric powertrain, for electric scooter","electric powertrain, for electric scooter",GLO,"market for powertrain, for electric scooter","powertrain, for electric scooter",GLO
