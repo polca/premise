@@ -8,6 +8,7 @@ dfs = {}
 
 print(os.getcwd())
 
+
 # Function to process each YAML file and extract data into DataFrame
 def process_yaml(file_path):
     with open(file_path, "r") as file:
@@ -217,4 +218,3 @@ with pd.ExcelWriter(refined_output_path_v2) as writer:
     for sheet, pivot_df in refined_pivot_tables_v2.items():
         if not pivot_df.empty:
             pivot_df.to_excel(writer, sheet_name=sheet)
-
