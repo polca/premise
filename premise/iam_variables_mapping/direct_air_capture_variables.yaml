@@ -44,10 +44,18 @@ dac_solvent:
 
 dac_sorbent:
 
+  iam_aliases:
+    witch: Carbon Sequestration|Direct Air Capture|Sorbent
   heat_uses:
-
+    witch: Final energy|Carbon Management|Direct Air Capture|Sorbent|Heat|Gases
   electricity_uses:
-
+    witch: 
+     - Final energy|Carbon Management|Direct Air Capture|Sorbent|Electricity|Coal
+     - Final energy|Carbon Management|Direct Air Capture|Sorbent|Electricity|Biomass
+     - Final energy|Carbon Management|Direct Air Capture|Sorbent|Electricity|Gas
+     - Final energy|Carbon Management|Direct Air Capture|Sorbent|Electricity|Wind
+     - Final energy|Carbon Management|Direct Air Capture|Sorbent|Electricity|PV
+     - Final energy|Carbon Management|Direct Air Capture|Sorbent|Electricity|CSP
 
   ecoinvent_aliases:
     fltr:
