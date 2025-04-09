@@ -791,6 +791,7 @@ class BaseTransformation:
 
             filters.append(ws.equals("location", d_iam_to_eco[region]))
 
+            dataset = None
             try:
                 dataset = ws.get_one(
                     subset or self.database,
@@ -808,11 +809,8 @@ class BaseTransformation:
                     f"{name, ref_prod}, : {[(r['name'], r['reference product'], r['location']) for r in results]}",
                 )
             except ws.NoResults as err:
-                print(region, d_iam_to_eco)
-                raise ws.NoResults(
-                    err,
-                    f"No dataset found for {name, ref_prod} in {d_iam_to_eco[region]}",
-                )
+                print(f"WARNING: No dataset found for {name, ref_prod}.")
+                return {}
 
             # if not self.is_in_index(dataset, region):
             if self.is_in_index(dataset, region):

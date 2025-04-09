@@ -85,10 +85,12 @@
     remind: ES|Transport|VKM|Pass|Road|LDV|Medium|BEV
     remind-eu: ES|Transport|VKM|Pass|Road|LDV|Medium|BEV
     tiam-ucl: Distance|Transport|Car|Electric|Electricity
+    witch: Energy Service|Transportation|Passenger|Light-Duty Vehicles|Battery-Electric
   energy_use_aliases:
     remind: FE|Transport|VKM|Pass|Road|LDV|Medium|BEV
     remind-eu: FE|Transport|VKM|Pass|Road|LDV|Medium|BEV
     tiam-ucl: Final Energy|Transport|Car|Electric|Electricity
+    witch: Final Energy|Transportation|Passenger|Light-Duty Vehicles|Electricity|Battery-Electric
   ecoinvent_aliases:
     fltr:
       - 'transport, passenger car, battery electric, Medium'
@@ -103,12 +105,14 @@
     remind-eu: ES|Transport|VKM|Pass|Road|LDV|Medium|FCEV
     tiam-ucl:
       - Distance|Transport|Car|Hydrogen Fuel Cell|Car Hydrogen
+    witch: Energy Service|Transportation|Passenger|Light-Duty Vehicles|Fuel-Cell-Electric
   energy_use_aliases:
     remind: FE|Transport|VKM|Pass|Road|LDV|Medium|FCEV
     remind-eu: FE|Transport|VKM|Pass|Road|LDV|Medium|FCEV
     tiam-ucl:
       - Final Energy|Transport|Car|Hydrogen Fuel Cell|Car Hydrogen
       - Final Energy|Transport|Car|Hydrogen Fuel Cell|Electricity
+    witch: Final Energy|Transportation|Passenger|Light-Duty Vehicles|Hydrogen|Fuel-Cell-Electric
   ecoinvent_aliases:
     fltr:
       - 'transport, passenger car, fuel cell electric, Medium'
@@ -208,8 +212,12 @@
 'passenger car, diesel, medium':
   iam_aliases:
       tiam-ucl: Distance|Transport|Car|Diesel|Diesel
+      witch: Energy Service|Transportation|Passenger|Light-Duty Vehicles|Internal Combustion
   energy_use_aliases:
       tiam-ucl: Final Energy|Transport|Car|Diesel|Diesel
+      witch: 
+        - Final Energy|Transportation|Light-Duty Vehicle|Internal Combustion|Liquids|Oil
+        - Final Energy|Transportation|Light-Duty Vehicle|Internal Combustion|Liquids|Biomass
   ecoinvent_aliases:
       fltr:
       - 'transport, passenger car, diesel, Medium, EURO-6'

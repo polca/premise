@@ -285,6 +285,7 @@ def update_dataset(dataset, supplier_key, amount):
 
 
 def _update_fuels(scenario, version, system_model):
+
     fuels = Fuels(
         database=scenario["database"],
         iam_data=scenario["iam data"],
@@ -313,7 +314,7 @@ def _update_fuels(scenario, version, system_model):
         scenario["index"] = fuels.index
 
     else:
-        print("No fuel markets found in IAM data. Skipping.")
+        print("No fuel scenario data available -- skipping")
 
     validate = FuelsValidation(
         model=scenario["model"],
@@ -1437,13 +1438,18 @@ class Fuels(BaseTransformation):
         """
 
         fuel_activities = fetch_mapping(LIQUID_FUEL_SOURCES)
+        processed_datasets = []
 
         for activities in fuel_activities.values():
             for activity in activities:
+                if activity in processed_datasets:
+                    continue
+
                 new_ds = self.fetch_proxies(
                     name=activity,
                     ref_prod=" ",
                     relink=False,
+                    exact_name_match=True,
                 )
                 for region, dataset in new_ds.items():
                     for exc in ws.production(dataset):
@@ -1495,6 +1501,8 @@ class Fuels(BaseTransformation):
                     self.write_log(dataset)
                     # add it to list of created datasets
                     self.add_to_index(dataset)
+
+                processed_datasets.append(activity)
 
     def adjust_land_use(self, dataset: dict, region: str, crop_type: str) -> dict:
         """

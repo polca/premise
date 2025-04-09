@@ -34,6 +34,11 @@ def load_cell_energy_density():
 
 
 def _update_battery(scenario, version, system_model):
+
+    if scenario["iam data"].battery_mobile_scenarios is None:
+        print("No battery scenario data available -- skipping")
+        return scenario
+
     battery = Battery(
         database=scenario["database"],
         iam_data=scenario["iam data"],
@@ -326,6 +331,7 @@ class Battery(BaseTransformation):
             log_params.get("LSB market share", ""),
             log_params.get("SIB market share", ""),
             log_params.get("VRFB market share", ""),
+            log_params.get("NAS market share", ""),
             log_params.get("LEAD-ACID market share", ""),
         ]
 

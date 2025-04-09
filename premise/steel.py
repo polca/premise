@@ -15,6 +15,11 @@ logger = create_logger("steel")
 
 
 def _update_steel(scenario, version, system_model):
+
+    if scenario["iam data"].steel_technology_mix is None:
+        print("No steel scenario data available -- skipping")
+        return scenario
+
     steel = Steel(
         database=scenario["database"],
         model=scenario["model"],
@@ -27,24 +32,21 @@ def _update_steel(scenario, version, system_model):
         index=scenario.get("index"),
     )
 
-    if scenario["iam data"].steel_technology_mix is not None:
-        steel.generate_activities()
-        steel.relink_datasets()
-        scenario["database"] = steel.database
-        scenario["cache"] = steel.cache
-        scenario["index"] = steel.index
-        validate = SteelValidation(
-            model=scenario["model"],
-            scenario=scenario["pathway"],
-            year=scenario["year"],
-            regions=scenario["iam data"].regions,
-            database=steel.database,
-            iam_data=scenario["iam data"],
-            system_model=system_model,
-        )
-        validate.run_steel_checks()
-    else:
-        print("No steel markets found in IAM data. Skipping.")
+    steel.generate_activities()
+    steel.relink_datasets()
+    scenario["database"] = steel.database
+    scenario["cache"] = steel.cache
+    scenario["index"] = steel.index
+    validate = SteelValidation(
+        model=scenario["model"],
+        scenario=scenario["pathway"],
+        year=scenario["year"],
+        regions=scenario["iam data"].regions,
+        database=steel.database,
+        iam_data=scenario["iam data"],
+        system_model=system_model,
+    )
+    validate.run_steel_checks()
 
     return scenario
 

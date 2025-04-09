@@ -7,7 +7,7 @@ AFRI_EAST:
   image: EAF
   tiam-ucl: AFR
   gcam: "South Africa"
-  witch: "mena"
+  witch: "ssa"
 AFRI_NORT:
   message: AFR
   remind: MEA
@@ -23,7 +23,7 @@ AFRI_WEST:
   image: WAF
   tiam-ucl: AFR
   gcam: "South Africa"
-  witch: "mena"
+  witch: "ssa"
 ASIA_STAN:
   message: PAS
   remind: OAS
@@ -31,7 +31,7 @@ ASIA_STAN:
   image: STAN
   tiam-ucl: ODA
   gcam: "Southeast Asia"
-  witch: "te"
+  witch: "ccasia"
 BRAZ_WHOL:
   message: LAM
   remind: LAM
@@ -63,7 +63,7 @@ CENT_EURO:
   image: CEU
   tiam-ucl: EEU
   gcam: EU-15
-  witch: "europe"
+  witch: "eu27"
 CHIN_PLUS:
   message: CHN
   remind: CHA
@@ -95,7 +95,7 @@ JAPA_WHOL:
   image: JAP
   tiam-ucl: JAP
   gcam: Japan
-  witch: jpnkor
+  witch: japan
 KORE_AALL:
   message: PAS
   remind: OAS
@@ -103,7 +103,7 @@ KORE_AALL:
   image: KOR
   tiam-ucl: SKO
   gcam: "South Korea"
-  witch: jpnkor
+  witch: korea
 LAME_REST:
   message: LAM
   remind: LAM
@@ -167,7 +167,7 @@ SOUA_REST:
   image: RSAS
   tiam-ucl: ODA
   gcam: "Southeast Asia"
-  witch: seasia
+  witch: sasia
 TURK_WHOL:
   message: WEU
   remind: MEA
@@ -199,4 +199,4 @@ WEST_EURO:
   image: WEU
   tiam-ucl: WEU
   gcam: EU-15
-  witch: europe
+  witch: eu27

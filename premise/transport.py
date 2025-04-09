@@ -30,24 +30,23 @@ FILEPATH_VEHICLES_MAP = DATA_DIR / "transport" / "vehicles_map.yaml"
 
 
 def _update_vehicles(scenario, vehicle_type, version, system_model):
-    has_fleet = False
-    if vehicle_type == "car":
-        if hasattr(scenario["iam data"], "passenger_car_markets"):
-            has_fleet = True
-    elif vehicle_type == "truck":
-        if hasattr(scenario["iam data"], "roadfreight_markets"):
-            has_fleet = True
-    elif vehicle_type == "train":
-        if hasattr(scenario["iam data"], "railfreight_markets"):
-            has_fleet = True
-    elif vehicle_type == "bus":
-        if hasattr(scenario["iam data"], "bus_markets"):
-            has_fleet = True
-    elif vehicle_type == "two-wheeler":
-        if hasattr(scenario["iam data"], "two_wheelers_markets"):
-            has_fleet = True
-    else:
+
+    fleet_data = {
+        "car": scenario["iam data"].passenger_car_fleet,
+        "truck": scenario["iam data"].road_freight_fleet,
+        "bus": scenario["iam data"].bus_fleet,
+        "train": scenario["iam data"].rail_freight_fleet,
+        "two-wheeler": scenario["iam data"].two_wheelers_fleet,
+    }
+
+    has_fleet = True
+
+    if vehicle_type not in fleet_data:
         raise ValueError("Unknown vehicle type.")
+
+    if fleet_data[vehicle_type] is None:
+        print(f"No {vehicle_type} fleet scenario data available -- skipping")
+        has_fleet = False
 
     trspt = Transport(
         database=scenario["database"],

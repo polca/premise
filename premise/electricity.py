@@ -232,6 +232,11 @@ def _update_electricity(
     system_model,
     use_absolute_efficiency,
 ):
+
+    if scenario["iam data"].electricity_mix is None:
+        print("No electricity scenario data available -- skipping")
+        return scenario
+
     electricity = Electricity(
         database=scenario["database"],
         iam_data=scenario["iam data"],

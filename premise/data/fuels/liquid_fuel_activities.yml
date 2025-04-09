@@ -1,7 +1,6 @@
 methanol:
   - methanol distillation, hydrogen from electrolysis, CO2 from DAC
   - methanol synthesis, hydrogen from electrolysis, CO2 from DAC
-  - methanol production, biomass gasification
 
 methanol, from coal, with CCS:
   - methanol distillation, hydrogen from coal gasification, with CCS

@@ -761,7 +761,7 @@ class HeatValidation(BaseDatasetValidator):
                     ]
                 )
 
-                expected_co2 += 0.098
+                expected_co2 += briquettes * 0.098
 
                 # add input of natural gas
                 nat_gas = sum(
@@ -835,6 +835,7 @@ class HeatValidation(BaseDatasetValidator):
                         exc["amount"] * 18
                         for exc in ds["exchanges"]
                         if any(x in exc["name"] for x in ["biomass", "wood", "timber"])
+                        and "ethanol" not in exc["name"]
                         and exc["type"] == "technosphere"
                         and exc["unit"] == "kilogram"
                     ]

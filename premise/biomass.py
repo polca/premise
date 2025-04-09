@@ -21,6 +21,7 @@ from .transformation import (
     uuid,
     ws,
 )
+from .activity_maps import InventorySet
 from .validation import BiomassValidation
 
 IAM_BIOMASS_VARS = VARIABLES_DIR / "biomass_variables.yaml"
@@ -29,6 +30,11 @@ logger = create_logger("biomass")
 
 
 def _update_biomass(scenario, version, system_model):
+
+    if scenario["iam data"].biomass_mix is None:
+        print("No biomass scenario data available -- skipping")
+        return scenario
+
     biomass = Biomass(
         database=scenario["database"],
         iam_data=scenario["iam data"],
@@ -106,29 +112,26 @@ class Biomass(BaseTransformation):
         )
         self.system_model = system_model
         self.biosphere_dict = biosphere_flows_dictionary(self.version)
+        mapping = InventorySet(database=database, version=version, model=model)
+        self.biomass_map = mapping.generate_biomass_map()
 
     def create_biomass_markets(self) -> None:
-        # print("Create biomass markets.")
 
-        with open(IAM_BIOMASS_VARS, encoding="utf-8") as stream:
-            biomass_map = yaml.safe_load(stream)
+        for activity in self.biomass_map["biomass - residual"]:
+            # create region-specific "Supply of forest residue" datasets
+            forest_residues_ds = self.fetch_proxies(
+                name=activity,
+                ref_prod="",
+                production_variable="biomass - residual",
+            )
 
-        # create region-specific "Supply of forest residue" datasets
-        forest_residues_ds = self.fetch_proxies(
-            name=biomass_map["biomass - residual"]["ecoinvent_aliases"]["fltr"]["name"],
-            ref_prod=biomass_map["biomass - residual"]["ecoinvent_aliases"]["fltr"][
-                "reference product"
-            ][0],
-            production_variable="biomass - residual",
-        )
+            # add them to the database
+            self.database.extend(forest_residues_ds.values())
 
-        # add them to the database
-        self.database.extend(forest_residues_ds.values())
-
-        # add log
-        for dataset in list(forest_residues_ds.values()):
-            self.write_log(dataset=dataset)
-            self.add_to_index(dataset)
+            # add log
+            for dataset in list(forest_residues_ds.values()):
+                self.write_log(dataset=dataset)
+                self.add_to_index(dataset)
 
         for region in self.regions:
             dataset = {
@@ -157,88 +160,34 @@ class Biomass(BaseTransformation):
                 ],
             }
 
-            available_biomass_vars = [
-                v
-                for v in list(biomass_map.keys())
-                if v in self.iam_data.production_volumes.variables.values
-            ]
-
-            if self.year in self.iam_data.production_volumes.coords["year"].values:
-                total_prod_vol = np.clip(
-                    (
-                        self.iam_data.production_volumes.sel(
-                            variables=available_biomass_vars,
-                            region=region,
-                            year=self.year,
-                        ).sum(dim="variables")
-                    ),
-                    1e-6,
-                    None,
-                )
-            else:
-                total_prod_vol = np.clip(
-                    (
-                        self.iam_data.production_volumes.sel(
-                            variables=available_biomass_vars, region=region
-                        )
-                        .interp(year=self.year)
-                        .sum(dim="variables")
-                    ),
-                    1e-6,
-                    None,
-                )
-
-            for biomass_type, biomass_act in biomass_map.items():
+            for biomass_type, biomass_act in self.biomass_map.items():
 
                 if (
-                    total_prod_vol < 1e-5
-                    and biomass_type != "biomass crops - purpose grown"
+                    biomass_type
+                    not in self.iam_data.biomass_mix.coords["variables"].values
                 ):
                     continue
 
-                if biomass_type in available_biomass_vars:
-                    if (
-                        self.year
-                        in self.iam_data.production_volumes.coords["year"].values
-                    ):
-                        share = np.clip(
-                            (
-                                self.iam_data.production_volumes.sel(
-                                    variables=biomass_type,
-                                    region=region,
-                                    year=self.year,
-                                ).sum()
-                                / total_prod_vol
-                            ).values.item(0),
-                            0,
-                            1,
+                if self.year in self.iam_data.biomass_mix.coords["year"].values:
+                    share = self.iam_data.biomass_mix.sel(
+                        variables=biomass_type,
+                        region=region,
+                        year=self.year,
+                    ).values.item(0)
+                else:
+                    share = (
+                        self.iam_data.biomass_mix.sel(
+                            variables=biomass_type, region=region
                         )
-                    else:
-                        share = np.clip(
-                            (
-                                self.iam_data.production_volumes.sel(
-                                    variables=biomass_type, region=region
-                                )
-                                .interp(year=self.year)
-                                .sum()
-                                / total_prod_vol
-                            ).values.item(0),
-                            0,
-                            1,
-                        )
-                elif (
+                        .interp(year=self.year)
+                        .values.item(0),
+                    )
+
+                if (
                     self.system_model == "consequential"
                     and biomass_type == "biomass - residual"
                 ):
                     share = 0
-                else:
-                    share = 0
-
-                if (
-                    total_prod_vol < 1e-5
-                    and biomass_type == "biomass crops - purpose grown"
-                ):
-                    share = 1
 
                 if share > 0:
                     ecoinvent_regions = self.geo.iam_to_ecoinvent_location(
@@ -252,10 +201,7 @@ class Biomass(BaseTransformation):
                         "RoW",
                         "GLO",
                     ]
-                    possible_name = biomass_act["ecoinvent_aliases"]["fltr"]["name"]
-                    possible_product = biomass_act["ecoinvent_aliases"]["fltr"][
-                        "reference product"
-                    ]
+                    possible_names = list(biomass_act)
 
                     suppliers, counter = [], 0
 
@@ -263,9 +209,21 @@ class Biomass(BaseTransformation):
                         suppliers = list(
                             ws.get_many(
                                 self.database,
-                                ws.contains("name", possible_name),
+                                ws.either(
+                                    *[
+                                        ws.contains("name", possible_name)
+                                        for possible_name in possible_names
+                                    ]
+                                ),
                                 ws.equals("location", possible_locations[counter]),
-                                ws.contains("reference product", possible_product),
+                                ws.either(
+                                    *[
+                                        ws.contains(
+                                            "reference product", possible_product
+                                        )
+                                        for possible_product in ("chips", "residue")
+                                    ]
+                                ),
                                 ws.equals("unit", "kilogram"),
                                 ws.doesnt_contain_any(
                                     "name", ["willow", "post-consumer"]

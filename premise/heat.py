@@ -25,6 +25,7 @@ logger = create_logger("heat")
 
 
 def _update_heat(scenario, version, system_model):
+
     heat = Heat(
         database=scenario["database"],
         iam_data=scenario["iam data"],
@@ -51,7 +52,10 @@ def _update_heat(scenario, version, system_model):
             energy_use_volumes=heat.iam_data.residential_heating_mix,
             production_volumes=heat.iam_data.production_volumes,
         )
+    else:
+        print("No residential heat scenario data available -- skipping")
 
+    if scenario["iam data"].daccs_energy_use is not None:
         heat.create_heat_markets(
             technologies=[
                 tech for tech in heat.iam_data.daccs_energy_use.variables.values
@@ -60,7 +64,10 @@ def _update_heat(scenario, version, system_model):
             energy_use_volumes=heat.iam_data.daccs_energy_use,
             production_volumes=heat.iam_data.production_volumes,
         )
+    else:
+        print("No DAC scenario data available -- skipping")
 
+    if scenario["iam data"].ewr_energy_use is not None:
         heat.create_heat_markets(
             technologies=[
                 tech for tech in heat.iam_data.ewr_energy_use.variables.values
@@ -69,6 +76,8 @@ def _update_heat(scenario, version, system_model):
             energy_use_volumes=heat.iam_data.ewr_energy_use,
             production_volumes=heat.iam_data.production_volumes,
         )
+    else:
+        print("No EWR scenario data available -- skipping")
 
     heat.relink_datasets()
 
@@ -124,10 +133,6 @@ class Heat(BaseTransformation):
         mapping = InventorySet(self.database)
         self.heat_techs = mapping.generate_heat_map()
         self.biosphere_flows = get_biosphere_code(self.version)
-
-        from pprint import pprint
-
-        pprint(self.heat_techs)
 
     def fetch_fuel_market_co2_emissions(self):
         """
@@ -688,5 +693,9 @@ class Heat(BaseTransformation):
 
         logger.info(
             f"{status}|{self.model}|{self.scenario}|{self.year}|"
-            f"{dataset['name']}|{dataset['location']}"
+            f"{dataset['name']}|{dataset['location']}|"
+            f"{dataset.get('log parameters', {}).get('initial amount of fossil CO2')}|"
+            f"{dataset.get('log parameters', {}).get('new amount of fossil CO2')}|"
+            f"{dataset.get('log parameters', {}).get('initial amount of biogenic CO2')}|"
+            f"{dataset.get('log parameters', {}).get('new amount of biogenic CO2')}"
         )

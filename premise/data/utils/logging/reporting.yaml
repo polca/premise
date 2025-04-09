@@ -551,6 +551,10 @@ premise_battery:
         name: VRFB market share
         description: Market share of VRFB
         unit: 0-1
+      NAS market share:
+        name: NAS market share
+        description: Market share of NAS
+        unit: 0-1
       LEAD-ACID market share:
         name: LEAD-ACID market share
         description: Market share of LEAD-ACID

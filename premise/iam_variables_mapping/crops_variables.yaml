@@ -22,6 +22,9 @@ sugar:
     tiam-ucl:
       temperate: sugarbeet
       tropical: sugarcane
+    witch:
+      temperate: sugarbeet
+      tropical: sugarcane
   land_use:
     image: Land Use|Marginal|Biomass|Sugar
     gcam: Land Use|Average|Biomass|Sugar
@@ -48,6 +51,9 @@ oil:
     tiam-ucl:
       temperate: rapeseed
       tropical: palm oil
+    witch:
+      temperate: rapeseed
+      tropical: palm oil
   land_use:
     image: Land Use|Marginal|Biomass|OilCrop
     gcam: Land Use|Average|Biomass|Oilcrops
@@ -72,6 +78,9 @@ wood:
       temperate: poplar
       tropical: eucalyptus
     tiam-ucl:
+      temperate: poplar
+      tropical: eucalyptus
+    witch:
       temperate: poplar
       tropical: eucalyptus
   land_use:
@@ -101,6 +110,9 @@ grass:
     tiam-ucl:
       temperate: switchgrass
       tropical: miscanthus
+    witch:
+      temperate: switchgrass
+      tropical: miscanthus
   land_use:
     image: Land Use|Marginal|Biomass|Grassy
     gcam: Land Use|Average|Biomass|Grass
@@ -125,6 +137,9 @@ grain:
       temperate: corn
       tropical: corn
     tiam-ucl:
+      temperate: corn
+      tropical: corn
+    witch:
       temperate: corn
       tropical: corn
   land_use:

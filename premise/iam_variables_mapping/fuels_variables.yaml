@@ -233,7 +233,10 @@ methane, fossil:
   lhv: 47.5
   co2: 0.06
   biogenic_share: 0
-
+methane, biogenic:
+  lhv: 47.5
+  co2: 0.06
+  biogenic_share: 1
 methane, synthetic:
   lhv: 47.5
   co2: 0.06
@@ -261,6 +264,7 @@ liquid fossil fuels:
     remind-eu: SE|Liquids|Fossil|+|Oil
     image: Secondary Energy|Consumption|Liquids|Fossil
     message: Secondary Energy|Liquids|Oil|Fuel
+    witch: Secondary Energy|Liquids|Fossil|Oil
 
 
 diesel:
@@ -355,6 +359,7 @@ petrol, synthetic, from electrolysis:
     gcam: Secondary Energy|Production|Biomass|BTL hydrogen
     remind: SE|Liquids|+|Hydrogen
     remind-eu: SE|Liquids|+|Hydrogen
+    witch: Secondary Energy|Liquids|Hydrogen|Electricity
   biogenic_share: 1
   ecoinvent_aliases:
     fltr:
@@ -371,6 +376,7 @@ petrol, synthetic, from coal:
     remind: SE|Liquids|Fossil|Coal|+|w/o CC
     remind-eu: SE|Liquids|Fossil|Coal|+|w/o CC
     message: Secondary Energy|Liquids|Coal|MTG|w/o CCS
+    witch: Secondary Energy|Liquids|Hydrogen|Fossil w/o CCS
   ecoinvent_aliases:
     fltr:
       - gasoline production, from methanol, hydrogen from coal gasification, energy allocation
@@ -386,6 +392,7 @@ petrol, synthetic, from coal, with CCS:
     remind: SE|Liquids|Fossil|Coal|+|w/ CC
     remind-eu: SE|Liquids|Fossil|Coal|+|w/ CC
     message: Secondary Energy|Liquids|Coal|MTG|w/ CCS
+    witch: Secondary Energy|Liquids|Hydrogen|Fossil w/ CCS
   ecoinvent_aliases:
     fltr:
       - gasoline production, from methanol, hydrogen from coal gasification, with CCS, energy allocation
@@ -401,6 +408,7 @@ diesel, synthetic, from electrolysis:
     gcam: Secondary Energy|Production|Hydrogen|Electrolysis
     remind: SE|Liquids|+|Hydrogen
     remind-eu: SE|Liquids|+|Hydrogen
+    witch: Secondary Energy|Liquids|Hydrogen|Electricity
   ecoinvent_aliases:
     fltr:
       - diesel production, synthetic, Fischer Tropsch process, hydrogen from electrolysis, energy allocation
@@ -420,6 +428,7 @@ diesel, synthetic, from coal:
     remind: SE|Liquids|Fossil|Coal|+|w/o CC
     remind-eu: SE|Liquids|Fossil|Coal|+|w/o CC
     message: Secondary Energy|Liquids|Coal|FT|w/o CCS
+    witch: Secondary Energy|Liquids|Hydrogen|Fossil w/o CCS
   ecoinvent_aliases:
     fltr:
     - diesel production, synthetic, Fischer Tropsch process, hydrogen from coal gasification, energy allocation
@@ -438,6 +447,7 @@ diesel, synthetic, from coal, with CCS:
     remind: SE|Liquids|Fossil|Coal|+|w/ CC
     remind-eu: SE|Liquids|Fossil|Coal|+|w/ CC
     message: Secondary Energy|Liquids|Coal|FT|w/ CCS
+    witch: Secondary Energy|Liquids|Hydrogen|Fossil w/ CCS
   ecoinvent_aliases:
     fltr:
       - diesel production, synthetic, Fischer Tropsch process, hydrogen from coal gasification, with CCS, energy allocation
@@ -556,12 +566,13 @@ hydrogen, from electrolysis, PEM:
       - Secondary Energy|Hydrogen|Electricity|Base-load electrolysis
       - Secondary Energy|Hydrogen|Electricity|Curtailments electrolysis
     message: Secondary Energy|Hydrogen|Electricity
-    witch: Secondary Energy|Hydrogen|Electricity
+    witch: Secondary Energy|Hydrogen|Electricity|Pem
   eff_aliases:
     gcam: Efficiency|Hydrogen|Electrolysis
     remind: Tech|Hydrogen|Electricity|Efficiency
     remind-eu: Tech|Hydrogen|Electricity|Efficiency
     tiam-ucl: Efficiency|Hydrogen|Electrolysis
+    witch: Efficiency|Hydrogen|Electricity|Pem
   ecoinvent_aliases:
     fltr: hydrogen production, gaseous, 30 bar, from PEM electrolysis, from grid electricity
     mask:
@@ -635,6 +646,10 @@ hydrogen, from electrolysis, SOEC:
   lhv: 120
   co2: 0
   biogenic_share: 1
+  iam_aliases:
+    witch: Secondary Energy|Hydrogen|Electricity|Soec
+  eff_aliases:
+    witch: Efficiency|Hydrogen|Electricity|Soec
   ecoinvent_aliases:
     fltr: hydrogen production, gaseous, 1 bar, from SOEC electrolysis, from grid electricity
     mask:
@@ -747,10 +762,12 @@ hydrogen, from natural gas:
     remind-eu: SE|Hydrogen|Gas|+|w/o CC
     image: Secondary Energy|Hydrogen|Gas|w/o CCS
     message: Secondary Energy|Hydrogen|Gas|w/o CCS
+    witch: Secondary Energy|Hydrogen|Gas|w/o CCS
   eff_aliases:
     gcam: Efficiency|Hydrogen|Gas|w/oCCS
     remind: Tech|Hydrogen|Gas|w/o CC|Efficiency
     remind-eu: Tech|Hydrogen|Gas|w/o CC|Efficiency
+    witch: Efficiency|Hydrogen|Gas|w/o CCS
   ecoinvent_aliases:
     fltr: hydrogen production, steam methane reforming
     mask:
@@ -768,10 +785,12 @@ hydrogen, from natural gas, with CCS:
     remind-eu: SE|Hydrogen|Gas|+|w/ CC
     image: Secondary Energy|Hydrogen|Gas|w/ CCS
     message: Secondary Energy|Hydrogen|Gas|w/o CCS
+    witch: Secondary Energy|Hydrogen|Gas|w/ CCS
   eff_aliases:
     gcam: Efficiency|Hydrogen|Gas|w/CCS
     remind: Tech|Hydrogen|Gas|w/ CC|Efficiency
     remind-eu: Tech|Hydrogen|Gas|w/ CC|Efficiency
+    witch: Efficiency|Hydrogen|Gas|w/ CCS
   ecoinvent_aliases:
     fltr: hydrogen production, steam methane reforming, with CCS
 

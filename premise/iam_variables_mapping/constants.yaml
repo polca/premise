@@ -184,14 +184,17 @@ LIST_WITCH_REGIONS:
   - mexico
   - mena
   - laca
-  - jpnkor
+  - japan
+  - korea
   - indonesia
   - india
-  - europe
+  - eu27
+  - othereurope
   - china
   - canada
   - brazil
   - sasia
+  - ccasia
   - World
 
 
@@ -208,6 +211,24 @@ PREFERRED_IAM_ORDER:
   - LAM
   - brazil
   - mexico
+  - te
+  - ccasia
+  - othereurope
+  - mena
+  - ssa
+  - laca
+  - oceania
+  - eu27
+  - sasia
+  - seasia
+  - canada
+  - usa
+  - china
+  - india
+  - indonesia
+  - japan
+  - southafrica
+  - korea
 
 BLACKLIST:
   - ME

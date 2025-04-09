@@ -1,10 +1,12 @@
 import glob
-
+import os
 import pandas as pd
 import yaml
 
 # Initialize a dictionary to store DataFrames
 dfs = {}
+
+print(os.getcwd())
 
 
 # Function to process each YAML file and extract data into DataFrame

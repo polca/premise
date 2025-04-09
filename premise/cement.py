@@ -26,6 +26,11 @@ logger = create_logger("cement")
 
 
 def _update_cement(scenario, version, system_model):
+
+    if scenario["iam data"].cement_technology_mix is None:
+        print("No cement scenario data available -- skipping")
+        return scenario
+
     cement = Cement(
         database=scenario["database"],
         model=scenario["model"],
