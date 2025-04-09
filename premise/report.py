@@ -677,8 +677,20 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
 
                             chart.add_data(values, titles_from_data=True)
                             chart.set_categories(cats)
-                            chart.title = f"{region} - {sector}"
-                            chart.y_axis.title = metadata[sector]["label"]
+
+                            chart.x_axis.majorTickMark = "out"
+                            chart.x_axis.tickLblPos = "nextTo"
+
+                            chart.y_axis.majorTickMark = "out"
+                            chart.y_axis.tickLblPos = "nextTo"
+
+                            chart.x_axis.delete = False
+                            chart.y_axis.delete = False
+
+                            chart.title = (
+                                f"{region} - {sector} ({metadata[sector]['label']})"
+                            )
+                            # chart.y_axis.title = metadata[sector]["label"] + "\n\n\n\n"
                             chart.height = 8
                             chart.width = 16
                             chart.anchor = f"{get_column_letter(col + 2)}{row + 1}"

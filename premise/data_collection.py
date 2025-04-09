@@ -523,12 +523,19 @@ class IAMDataCollection:
         # if "liquid fossil fuels" is in the list of fuel variables
         # we add the split of gasoline, diesel, LPG and kerosene
         # to `data`, because it means it's not already in the IAM file.
+
         data = self.__get_iam_data(
             key=key,
             filedir=filepath_iam_files,
             variables=new_vars,
             split_fossil_liquid_fuels=(
-                fuel_prod_vars if "liquid fossil fuels" in fuel_prod_vars else None
+                {
+                    k: v
+                    for k, v in fuel_prod_vars.items()
+                    if k in ["gasoline", "diesel", "kerosene", "liquid fossil fuels"]
+                }
+                if "liquid fossil fuels" in fuel_prod_vars
+                else None
             ),
         )
 
