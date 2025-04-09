@@ -1974,7 +1974,7 @@ Transport - Freight - Domestic Shipping - Elec:
 Transport - Freight - Domestic Shipping - H2:
   ecoinvent_aliases:
     fltr:
-      name: hydrogen, burned in gas turbine 1GW
+      name: hydrogen, used in a fuel cell in container ship
       reference product: heat
   iam_aliases:
     image: Final Energy|Transportation|Freight|National Shipping|Hydrogen
@@ -2042,7 +2042,7 @@ Transport - Freight - Int. Shipping - Elec:
 Transport - Freight - Int. Shipping - H2:
     ecoinvent_aliases:
         fltr:
-        name: hydrogen, burned in gas turbine 1GW
+        name: hydrogen, used in a fuel cell in container ship
         reference product: heat
     iam_aliases:
         image: Final Energy|Transportation|Freight|International Shipping|Hydrogen
