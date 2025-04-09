@@ -1096,7 +1096,8 @@ class IAMDataCollection:
 
         if filepath == "":
             raise FileNotFoundError(
-                f"Could not find any file containing both {self.model} and {self.pathway} in {filedir}"
+                f"Could not find any file containing both "
+                f"{self.model} and {self.pathway} in {filedir}"
             )
 
         if key is None:
@@ -1214,11 +1215,6 @@ class IAMDataCollection:
         array.attrs["unit"] = dict(
             dataframe.groupby("variables")["unit"].first().to_dict().items()
         )
-
-        # Salvar o dataframe como uma planilha Excel                                       ##### Inclui essa parte:
-        # output_excel_path = filedir / f"{self.model}_{self.pathway}_data.xlsx"
-        # dataframe.to_excel(output_excel_path, index=False)
-        # print(f"Data saved to {output_excel_path}")
 
         array = (
             dataframe.melt(

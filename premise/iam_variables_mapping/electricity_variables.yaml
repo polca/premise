@@ -132,6 +132,7 @@ Biomass IGCC CCS:
     remind: SE|Electricity|Biomass|++|Gasification Combined Cycle w/ CC
     remind-eu: SE|Electricity|Biomass|++|Gasification Combined Cycle w/ CC
     tiam-ucl: Secondary Energy|Electricity|Biomass gasification|w CCS
+    witch: Secondary Energy|Electricity|Biomass|w/ CCS
   max_efficiency: 0.4
 Biomass MSW:
   ecoinvent_aliases:
@@ -162,6 +163,7 @@ Biomass ST:
     image: Efficiency|Electricity|Biomass|w/o CCS|1
     message: Efficiency|Electricity|Biomass|w/o CCS|2
     tiam-ucl: Efficiency|Electricity|Biomass combustion|w/o CCS
+
   iam_aliases:
     gcam: Secondary Energy|Electricity|biomass (conv)
     image: Secondary Energy|Electricity|Biomass|w/o CCS|1

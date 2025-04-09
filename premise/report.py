@@ -72,17 +72,15 @@ def fetch_data(
         "GMST": iam_data.other_vars if hasattr(iam_data, "other_vars") else None,
         "Electricity - generation": (
             iam_data.production_volumes
-            if hasattr(iam_data, "production_volumes")
+            if hasattr(iam_data, "electricity_mix")
             else None
         ),
         "Electricity (biom) - generation": (
-            iam_data.production_volumes
-            if hasattr(iam_data, "production_volumes")
-            else None
+            iam_data.production_volumes if hasattr(iam_data, "biomass_mix") else None
         ),
         "Electricity - efficiency": (
-            iam_data.electricity_efficiencies
-            if hasattr(iam_data, "electricity_efficiencies")
+            iam_data.electricity_technology_efficiencies
+            if hasattr(iam_data, "electricity_technology_efficiencies")
             else None
         ),
         "Heat (residential) - generation": (
@@ -96,8 +94,8 @@ def fetch_data(
             else None
         ),
         "Fuel (gasoline) - efficiency": (
-            iam_data.petrol_efficiencies
-            if hasattr(iam_data, "petrol_efficiencies")
+            iam_data.petrol_technology_efficiencies
+            if hasattr(iam_data, "petrol_technology_efficiencies")
             else None
         ),
         "Fuel (diesel) - generation": (
@@ -106,8 +104,8 @@ def fetch_data(
             else None
         ),
         "Fuel (diesel) - efficiency": (
-            iam_data.diesel_efficiencies
-            if hasattr(iam_data, "diesel_efficiencies")
+            iam_data.diesel_technology_efficiencies
+            if hasattr(iam_data, "diesel_technology_efficiencies")
             else None
         ),
         "Fuel (gas) - generation": (
@@ -116,7 +114,9 @@ def fetch_data(
             else None
         ),
         "Fuel (gas) - efficiency": (
-            iam_data.gas_efficiencies if hasattr(iam_data, "gas_efficiencies") else None
+            iam_data.gas_technology_efficiencies
+            if hasattr(iam_data, "gas_technology_efficiencies")
+            else None
         ),
         "Fuel (hydrogen) - generation": (
             iam_data.production_volumes
@@ -124,8 +124,8 @@ def fetch_data(
             else None
         ),
         "Fuel (hydrogen) - efficiency": (
-            iam_data.hydrogen_efficiencies
-            if hasattr(iam_data, "hydrogen_efficiencies")
+            iam_data.hydrogen_technology_efficiencies
+            if hasattr(iam_data, "hydrogen_technology_efficiencies")
             else None
         ),
         "Fuel (kerosene) - generation": (
@@ -134,8 +134,8 @@ def fetch_data(
             else None
         ),
         "Fuel (kerosene) - efficiency": (
-            iam_data.kerosene_efficiencies
-            if hasattr(iam_data, "hydrogen_efficiencies")
+            iam_data.kerosene_technology_efficiencies
+            if hasattr(iam_data, "kerosene_technology_efficiencies")
             else None
         ),
         "Fuel (LPG) - generation": (
@@ -144,8 +144,8 @@ def fetch_data(
             else None
         ),
         "Fuel (LPG) - efficiency": (
-            iam_data.lpg_efficiencies
-            if hasattr(iam_data, "hydrogen_efficiencies")
+            iam_data.lpg_technology_efficiencies
+            if hasattr(iam_data, "lpg_technology_efficiencies")
             else None
         ),
         "Cement - generation": (
@@ -154,8 +154,8 @@ def fetch_data(
             else None
         ),
         "Cement - efficiency": (
-            iam_data.cement_efficiencies
-            if hasattr(iam_data, "cement_efficiencies")
+            iam_data.cement_technology_efficiencies
+            if hasattr(iam_data, "cement_technology_efficiencies")
             else None
         ),
         "Cement - CCS": (
@@ -169,8 +169,8 @@ def fetch_data(
             else None
         ),
         "Steel - efficiency": (
-            iam_data.steel_efficiencies
-            if hasattr(iam_data, "steel_efficiencies")
+            iam_data.steel_technology_efficiencies
+            if hasattr(iam_data, "steel_technology_efficiencies")
             else None
         ),
         "Steel - CCS": (
@@ -198,7 +198,7 @@ def fetch_data(
         ),
         "Transport (two-wheelers)": (
             iam_data.production_volumes
-            if hasattr(iam_data, "two_wheelers_markets")
+            if hasattr(iam_data, "two_wheelers_fleet")
             else None
         ),
         "Transport (two-wheelers) - eff": (
@@ -208,7 +208,7 @@ def fetch_data(
         ),
         "Transport (cars)": (
             iam_data.production_volumes
-            if hasattr(iam_data, "passenger_car_markets")
+            if hasattr(iam_data, "passenger_car_fleet")
             else None
         ),
         "Transport (cars) - eff": (
@@ -217,41 +217,46 @@ def fetch_data(
             else None
         ),
         "Transport (buses)": (
-            iam_data.production_volumes if hasattr(iam_data, "bus_markets") else None
+            iam_data.production_volumes if hasattr(iam_data, "bus_fleet") else None
         ),
         "Transport (buses) - eff": (
             iam_data.bus_efficiencies if hasattr(iam_data, "bus_efficiencies") else None
         ),
         "Transport (trucks)": (
             iam_data.production_volumes
-            if hasattr(iam_data, "roadfreight_markets")
+            if hasattr(iam_data, "road_freight_fleet")
             else None
         ),
         "Transport (trucks) - eff": (
-            iam_data.roadfreight_efficiencies
-            if hasattr(iam_data, "roadfreight_efficiencies")
+            iam_data.road_freight_efficiencies
+            if hasattr(iam_data, "road_freight_efficiencies")
             else None
         ),
         "Transport (trains)": (
             iam_data.production_volumes
-            if hasattr(iam_data, "railfreight_markets")
+            if hasattr(iam_data, "rail_freight_fleet")
             else None
         ),
         "Transport (trains) - eff": (
-            iam_data.railfreight_efficiencies
-            if hasattr(iam_data, "railfreight_efficiencies")
+            iam_data.rail_freight_efficiencies
+            if hasattr(iam_data, "rail_freight_efficiencies")
             else None
         ),
-        "Battery": (
-            iam_data.battery_scenarios
-            if hasattr(iam_data, "battery_scenarios")
+        "Battery (mobile)": (
+            iam_data.battery_mobile_scenarios
+            if hasattr(iam_data, "battery_mobile_scenarios")
+            else None
+        ),
+        "Battery (stationary)": (
+            iam_data.battery_stationary_scenarios
+            if hasattr(iam_data, "battery_stationary_scenarios")
             else None
         ),
     }
 
     if data[sector] is not None:
         iam_data = data[sector]
-        if sector == "Battery":
+        if sector in ("Battery (mobile)", "Battery (stationary)"):
             iam_data = iam_data.rename({"chemistry": "variables"})
 
         return iam_data.sel(
@@ -439,7 +444,7 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
         "Transport (trains) - eff": {
             "filepath": IAM_TRSPT_TRAINS_VARS,
         },
-        "Battery": {
+        "Battery (mobile)": {
             "variables": [
                 "NMC111",
                 "NMC532",
@@ -455,6 +460,17 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
                 "ASSB (oxidic)",
                 "ASSB (polymer)",
                 "ASSB (sulfidic)",
+            ],
+        },
+        "Battery (stationary)": {
+            "variables": [
+                "NMC111",
+                "NMC622",
+                "NMC811",
+                "LFP",
+                "LEAD-ACID",
+                "VRFB",
+                "NAS",
             ],
         },
     }
@@ -528,7 +544,7 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
 
                 row += 2
 
-                if sector == "Battery":
+                if sector in ("Battery (mobile)", "Battery (stationary)"):
                     for scen in iam_data.coords["scenario"].values:
 
                         worksheet.cell(column=col, row=row, value=scen)
@@ -650,7 +666,7 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
 
                             if any(x in sector for x in ("generation", "mix")):
                                 chart = AreaChart(grouping="stacked")
-                            elif "efficiency" in sector:
+                            elif "eff" in sector:
                                 chart = LineChart()
                             elif "CCS" in sector:
                                 chart = AreaChart()

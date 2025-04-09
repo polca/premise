@@ -158,7 +158,11 @@ Transport (trains) - eff:
   label: Efficiency gains (2020 = 1)
   expl_text: Energy efficiency gains per technology relative to 2020. Used to calibrate the efficiency of the train-based transport datasets.
   offset: 7
-Battery:
+Battery (mobile):
   label: Market share [%], capacity-wise
-  expl_text: Battery technology market shares, in capacity terms. Used to calculate the battery supply mix. Future shares from Degen et al., 2023. Shares prior to 2021 from Orangi et al., 2024.
+  expl_text: Mobile battery technology market shares, in capacity terms. Used to calculate the battery supply mix. Future shares from Degen et al., 2023. Shares prior to 2021 from Orangi et al., 2024.
+  offset: 10
+Battery (stationary):
+  label: Market share [%], capacity-wise
+  expl_text: Stationary battery technology market shares, in capacity terms. Used to calculate the battery supply mix. Future shares from Schlichenmaier & Naegler, 2022.
   offset: 10

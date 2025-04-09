@@ -278,7 +278,7 @@ diesel:
     remind-eu: SE|Liquids|Fossil|+|Oil|Diesel
     image: Secondary Energy|Consumption|Liquids|Fossil|Diesel
     message: Secondary Energy|Liquids|Oil|Fuel|Diesel
-    witch: Secondary Energy|Liquids|Fossil|Oil
+    witch: Secondary Energy|Liquids|Fossil|Oil|Diesel
   eff_aliases:
     gcam: Efficiency|Refined Liquids|Oil
     remind: Tech|Liquids|Fossil|Oil|Efficiency
@@ -315,6 +315,7 @@ gasoline:
     remind-eu: SE|Liquids|Fossil|+|Oil|Gasoline
     image: Secondary Energy|Consumption|Liquids|Fossil|Gasoline
     message: Secondary Energy|Liquids|Oil|Fuel|Gasoline
+    witch: Secondary Energy|Liquids|Fossil|Oil|Gasoline
   eff_aliases:
     gcam: Efficiency|Refined Liquids|Oil
     remind: Tech|Liquids|Fossil|Oil|Efficiency
