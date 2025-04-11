@@ -92,9 +92,9 @@ def load_metals_transport():
     df = pd.read_csv(filepath, sep=",")
 
     # remove rows without values under Weighted Average Distance
-    df = df.loc[~df["Weighted Average Distance"].isnull()]
+    df = df.loc[~df["Weighted Distance (km)"].isnull()]
     # remove rows with value 0 under Weighted Average Distance
-    df = df.loc[df["Weighted Average Distance"] != 0]
+    df = df.loc[df["Weighted Distance (km)"] != 0]
 
     df["country"] = coco.convert(df["Origin Label"], to="ISO2")
 
@@ -821,7 +821,7 @@ class Metals(BaseTransformation):
             if metal in self.alt_names:
                 trspt_data = self.get_weighted_average_distance(c, metal)
                 for i, row in trspt_data.iterrows():
-                    distance = row["Weighted Average Distance"]
+                    distance = row["Weighted Distance (km)"]
                     mode = row["TransportMode Label"]
                     tkm = distance / 1000 * share  # convert to tonne-kilometers x share
 
@@ -878,7 +878,7 @@ class Metals(BaseTransformation):
         return self.metals_transport.loc[
             (self.metals_transport["country"] == country)
             & (self.metals_transport["Metal"] == self.alt_names[metal]),
-            ["TransportMode Label", "Weighted Average Distance"],
+            ["TransportMode Label", "Weighted Distance (km)"],
         ]
 
     def create_metal_markets(self):
