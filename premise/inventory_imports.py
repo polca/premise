@@ -13,6 +13,7 @@ from typing import Dict, List, Union
 
 import bw2io
 import numpy as np
+import pandas as pd
 import requests
 import yaml
 from bw2io import CSVImporter, ExcelImporter, Migration
@@ -29,6 +30,7 @@ FILEPATH_CONSEQUENTIAL_BLACKLIST = DATA_DIR / "consequential" / "blacklist.yaml"
 CORRESPONDENCE_BIO_FLOWS = (
     DATA_DIR / "utils" / "export" / "correspondence_biosphere_flows.yaml"
 )
+FILEPATH_CLASSIFICATIONS = DATA_DIR / "utils" / "import" / "classifications.xlsx"
 
 TEMP_CSV_FILE = DIR_CACHED_DB / "temp.csv"
 
@@ -40,6 +42,27 @@ logging.basicConfig(
     format="%(asctime)s - %(levelname)s - %(module)s - %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S",
 )
+
+
+def get_classifications():
+    """
+    Retrieve the classification of the datasets to import.
+    """
+
+    df = pd.read_excel(
+        FILEPATH_CLASSIFICATIONS,
+    )
+
+    # Build the nested dictionary
+    classification_dict = {
+        (row["name"], row["product"]): {
+            "ISIC rev.4 ecoinvent": row["ISIC rev.4 ecoinvent"],
+            "CPC": row["CPC"],
+        }
+        for _, row in df.iterrows()
+    }
+
+    return classification_dict
 
 
 def get_correspondence_bio_flows():
@@ -366,6 +389,7 @@ class BaseInventoryImport:
         self.list_unlinked = []
         self.keep_uncertainty_data = keep_uncertainty_data
         self.path = path
+        self.classifications = get_classifications()
 
         if "http" in str(path):
             r = requests.head(path)
@@ -828,6 +852,23 @@ class BaseInventoryImport:
                 if act[key] is None:
                     act.pop(key)
 
+    def add_classifications(self):
+
+        for ds in self.import_db.data:
+            if (ds["name"], ds["reference product"]) in self.classifications:
+                ds["classifications"] = [
+                    {
+                        "ISIC rev.4 ecoinvent": self.classifications[
+                            (ds["name"], ds["reference product"])
+                        ]["ISIC rev.4 ecoinvent"],
+                        "CPC": self.classifications[
+                            (ds["name"], ds["reference product"])
+                        ]["CPC"],
+                    }
+                ]
+            else:
+                print(f"WARNING: {ds['name']} not in classifications")
+
     def display_unlinked_exchanges(self):
         """
         Display the list of unlinked exchanges
@@ -906,6 +947,7 @@ class DefaultInventory(BaseInventoryImport):
         self.add_biosphere_links()
         self.add_product_field_to_exchanges()
         self.check_units()
+        self.add_classifications()
 
         # Remove uncertainty data
         if not self.keep_uncertainty_data:
@@ -992,6 +1034,7 @@ class VariousVehicles(BaseInventoryImport):
         # Check for duplicates
         self.check_for_already_existing_datasets()
         self.check_units()
+        self.add_classifications()
 
         if self.list_unlinked:
             self.display_unlinked_exchanges()
@@ -1084,6 +1127,7 @@ class AdditionalInventory(BaseInventoryImport):
         self.import_db.data = check_for_duplicate_datasets(self.import_db.data)
         # check numbers format
         self.import_db.data = check_amount_format(self.import_db.data)
+        self.add_classifications()
 
         if self.list_unlinked:
             self.display_unlinked_exchanges()
