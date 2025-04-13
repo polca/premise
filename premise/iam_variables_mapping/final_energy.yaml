@@ -42,7 +42,7 @@ Buildings - Heating - Gases:
 Buildings - Heating - H2:
   ecoinvent_aliases:
     fltr:
-      name: hydrogen burned, in residential boiler
+      name: hydrogen, burned in residential boiler
       reference product: heat
   iam_aliases:
     remind: FE|Buildings|Heating|Hydrogen
@@ -88,7 +88,7 @@ Buildings - Heating - Oil:
 Buildings - Heating - Syn Fuel:
   ecoinvent_aliases:
     fltr:
-      name: diesel, synthetic, burned in residential boiler
+      name: methanol, synthetic, burned in residential boiler
       reference product: heat
   iam_aliases:
     remind: FE|Buildings|Liquids|+|Hydrogen
@@ -164,7 +164,7 @@ Buildings - Water heating - Heat:
 Buildings - Water heating - H2:
   ecoinvent_aliases:
     fltr:
-      name: hydrogen, burned in gas turbine 1GW
+      name: hydrogen, burned in residential boiler
       reference product: heat
   iam_aliases:
     image:
@@ -217,6 +217,7 @@ Buildings - Water heating - Nat Gas:
     fltr:
       name: natural gas, burned in residential natural gas boiler <100kW
       reference product: heat
+    mask: market
   iam_aliases:
     image:
       - Final Energy|Residential|Water Heating|Natural Gas
@@ -228,6 +229,7 @@ Buildings - Cooling - Elec:
     fltr:
       name: market group for electricity, low voltage
       reference product: electricity, low voltage
+  iam_aliases:
     image:
       - Final Energy|Commercial|Cooling|Electricity
       - Final Energy|Residential|Cooling Appliance|Electricity
@@ -238,6 +240,7 @@ Buildings - Cooking - Elec:
     fltr:
       name: market group for electricity, low voltage
       reference product: electricity, low voltage
+  iam_aliases:
     image:
       - Final Energy|Commercial|Cooking|Electricity
       - Final Energy|Residential|Cooking|Electricity
@@ -248,6 +251,8 @@ Buildings - Cooking - Nat Gas:
     fltr:
       name: natural gas, burned in residential natural gas boiler <100kW
       reference product: heat
+    mask: market
+  iam_aliases:
     image:
       - Final Energy|Commercial|Cooking|Gases|Fossil
       - Final Energy|Residential|Cooking|Natural Gas
@@ -257,6 +262,7 @@ Buildings - Cooking - Oil:
     fltr:
       name: light fuel oil, burned in residential boiler 10kW
       reference product: heat
+  iam_aliases:
     image:
       - Final Energy|Commercial|Cooking|Liquids|Fossil
       - Final Energy|Residential|Cooking|Liquid (fossil)
@@ -266,6 +272,7 @@ Buildings - Cooking - Coal:
     fltr:
       name: hard coal briquettes, burned in stove 5-15kW
       reference product: heat
+  iam_aliases:
     image:
       - Final Energy|Commercial|Cooking|Solids|Fossil
       - Final Energy|Residential|Cooking|Coal
@@ -275,6 +282,7 @@ Buildings - Cooking - Modern biomass:
     fltr:
       name: wood pellet, burned in residential stove 9kW
       reference product: heat
+  iam_aliases:
     image:
       - Final Energy|Commercial|Cooking|Solids|Biomass|Modern
       - Final Energy|Residential|Cooking|Modern Biomass
@@ -284,6 +292,7 @@ Buildings - Cooking - Traditional biomass:
     fltr:
       name: wood pellet, burned in residential stove 9kW
       reference product: heat
+  iam_aliases:
     image:
       - Final Energy|Commercial|Cooking|Solids|Biomass|Traditional
       - Final Energy|Residential|Cooking|Traditional Biomass
@@ -302,6 +311,7 @@ CDR - DAC - Gases:
     fltr:
       name: natural gas, burned in gas turbine
       reference product: natural gas, burned in gas turbine
+    mask: market
   iam_aliases:
     remind: FE|CDR|DAC|+|Gases
 
@@ -326,6 +336,10 @@ CDR - Enhanced Weathering - Diesel:
     fltr:
       name: diesel, burned in diesel-electric generating set, 10MW
       reference product: diesel, burned in diesel-electric generating set, 10MW
+    mask:
+      - biodiesel
+      - market
+      - extraction
   iam_aliases:
     remind: FE|CDR|EW|+|Diesel
 
@@ -342,6 +356,10 @@ CDR - OAE, electric calciner - Diesel:
     fltr:
       name: diesel, burned in diesel-electric generating set, 10MW
       reference product: diesel, burned in diesel-electric generating set, 10MW
+    mask:
+      - biodiesel
+      - market
+      - extraction
   iam_aliases:
     remind: FE|CDR|OAE, electric calciner|+|Diesel
 
@@ -366,6 +384,10 @@ CDR - OAE, traditional calciner - Diesel:
     fltr:
       name: diesel, burned in diesel-electric generating set, 10MW
       reference product: diesel, burned in diesel-electric generating set, 10MW
+    mask:
+      - biodiesel
+      - market
+      - extraction
   iam_aliases:
     remind: FE|CDR|OAE, traditional calciner|+|Diesel
 
@@ -382,14 +404,15 @@ CDR - OAE, traditional calciner - Gases:
     fltr:
       name: natural gas, burned in gas turbine
       reference product: natural gas, burned in gas turbine
+    mask: market
   iam_aliases:
     remind: FE|CDR|OAE, traditional calciner|+|Gases
 
 CDR - OAE, traditional calciner - Hydrogen:
     ecoinvent_aliases:
         fltr:
-        name: hydrogen, burned in gas turbine 1GW
-        reference product: heat
+          name: hydrogen, burned in gas turbine 1GW
+          reference product: heat
     iam_aliases:
         remind: FE|CDR|OAE, traditional calciner|+|Hydrogen
 
@@ -435,6 +458,7 @@ Industry - Cement - Nat Gas:
     fltr:
       name: natural gas, burned in gas turbine
       reference product: natural gas, burned in gas turbine
+    mask: market
   iam_aliases:
     remind: FE|Industry|Cement|Gases|+|Fossil
     image:
@@ -520,6 +544,7 @@ Industry - Cement - Secondary heat:
     fltr:
       name: treatment of municipal solid waste, municipal incineration
       reference product: heat, for reuse in municipal waste incineration only
+    mask: FAE
   iam_aliases:
     image:
       - Final Energy|Industry|Cement|Dry feed rotary kiln|Secondary Heat
@@ -575,6 +600,7 @@ Industry - Chemicals - Chemicals - Nat Gas:
     fltr:
       name: natural gas, burned in gas turbine
       reference product: natural gas, burned in gas turbine
+    mask: market
   iam_aliases:
     remind: FE|Industry|Chemicals|Gases|+|Fossil
 
@@ -639,6 +665,7 @@ Industry - Chemicals - Ammonia - Nat Gas:
     fltr:
       name: natural gas, burned in gas turbine
       reference product: natural gas, burned in gas turbine
+    mask: market
   iam_aliases:
     image: Final Energy|Industry|Chemicals|Ammonia|Gases|Fossil
 
@@ -680,6 +707,7 @@ Industry - Chemicals - Ammonia - Other:
     fltr:
       name: natural gas, burned in gas turbine
       reference product: natural gas, burned in gas turbine
+    mask: market
   iam_aliases:
     image: Final Energy|Industry|Chemicals|Ammonia|Other
 
@@ -696,6 +724,7 @@ Industry - Chemicals - Heavy Refinery Products - Nat Gas:
     fltr:
       name: natural gas, burned in gas turbine
       reference product: natural gas, burned in gas turbine
+    mask: market
   iam_aliases:
     image: Final Energy|Industry|Chemicals|Heavy Refinery Products|Gases|Fossil
 
@@ -745,6 +774,7 @@ Industry - Chemicals - High-Value Chemicals - Nat Gas:
     fltr:
       name: natural gas, burned in gas turbine
       reference product: natural gas, burned in gas turbine
+    mask: market
   iam_aliases:
     image: Final Energy|Industry|Chemicals|High-Value Chemicals|Gases|Fossil
 
@@ -794,6 +824,7 @@ Industry - Chemicals - Methanol - Nat Gas:
     fltr:
       name: natural gas, burned in gas turbine
       reference product: natural gas, burned in gas turbine
+    mask: market
   iam_aliases:
     image: Final Energy|Industry|Chemicals|Methanol|Gases|Fossil
 
@@ -843,6 +874,7 @@ Industry - Chemicals - Fertilizer - Nat Gas:
     fltr:
       name: natural gas, burned in gas turbine
       reference product: natural gas, burned in gas turbine
+    mask: market
   iam_aliases:
     image: Final Energy|Industry|Fertilizer production|Gases|Fossil
 
@@ -899,6 +931,7 @@ Industry - Food Processing - Nat Gas:
     fltr:
       name: natural gas, burned in gas turbine
       reference product: natural gas, burned in gas turbine
+    mask: market
   iam_aliases:
     image: Final Energy|Industry|Food Processing|Gases|Fossil
 
@@ -1000,6 +1033,7 @@ Industry - Other - Nat Gas:
     fltr:
       name: natural gas, burned in gas turbine
       reference product: natural gas, burned in gas turbine
+    mask: market
   iam_aliases:
     remind: FE|Industry|Other Industry|Gases|+|Fossil
     image: Final Energy|Industry|Other Sector|Gases|Fossil
@@ -1068,6 +1102,7 @@ Industry - Paper - Nat Gas:
     fltr:
       name: natural gas, burned in gas turbine
       reference product: natural gas, burned in gas turbine
+    mask: market
   iam_aliases:
     image: Final Energy|Industry|Pulp and Paper|Gases|Fossil
 
@@ -1508,106 +1543,115 @@ Industry - Steel - TGR BF/BOF + CCS - Biomass:
       - Final Energy|Industry|Iron and Steel|TGR BF/BOF BAT + CCS|Modern Biomass
       - Final Energy|Industry|Iron and Steel|TGR BF/BOF BAT + CCS|Traditional Biomass
 
-
-
-Industry - Steel - BF/BOF - Natural Gas:
+Industry - Steel - BF/BOF - Nat Gas:
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
       reference product: natural gas, burned in gas turbine
+    mask: market
   iam_aliases:
     image:
       - Final Energy|Industry|Iron and Steel|BF/BOF Standard|Natural Gas
       - Final Energy|Industry|Iron and Steel|BF/BOF Modernized|Natural Gas
 
-Industry - Steel - BF/BOF + CCS - Natural Gas:
+Industry - Steel - BF/BOF + CCS - Nat Gas:
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
       reference product: natural gas, burned in gas turbine
+    mask: market
   iam_aliases:
     image:
       - Final Energy|Industry|Iron and Steel|BF/ BOF Standard + CCS|Natural Gas
 
-Industry - Steel - DRI EAF - Natural Gas:
+Industry - Steel - DRI EAF - Nat Gas:
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
       reference product: natural gas, burned in gas turbine
+    mask: market
   iam_aliases:
     image:
       - Final Energy|Industry|Iron and Steel|DRI EAF|Natural Gas
 
-Industry - Steel - DRI EAF + CCS - Natural Gas:
+Industry - Steel - DRI EAF + CCS - Nat Gas:
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
       reference product: natural gas, burned in gas turbine
+    mask: market
   iam_aliases:
     image:
       - Final Energy|Industry|Iron and Steel|DRI EAF + CCS|Natural Gas
 
-Industry - Steel - EAF - Natural Gas:
+Industry - Steel - EAF - Nat Gas:
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
       reference product: natural gas, burned in gas turbine
+    mask: market
   iam_aliases:
     image:
       - Final Energy|Industry|Iron and Steel|EAF scrap|Natural Gas
 
-Industry - Steel - Electrowinning - Natural Gas:
+Industry - Steel - Electrowinning - Nat Gas:
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
       reference product: natural gas, burned in gas turbine
+    mask: market
   iam_aliases:
     image:
       - Final Energy|Industry|Iron and Steel|Electrowinning/EAF|Natural Gas
 
-Industry - Steel - H-DRI/EAF - Natural Gas:
+Industry - Steel - H-DRI/EAF - Nat Gas:
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
       reference product: natural gas, burned in gas turbine
+    mask: market
   iam_aliases:
     image:
       - Final Energy|Industry|Iron and Steel|H-DRI/EAF|Natural Gas
 
-Industry - Steel - SR/BOF - Natural Gas:
+Industry - Steel - SR/BOF - Nat Gas:
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
       reference product: natural gas, burned in gas turbine
+    mask: market
   iam_aliases:
     image:
       - Final Energy|Industry|Iron and Steel|SR/BOF|Natural Gas
 
 
-Industry - Steel - SR/BOF + CCS - Natural Gas:
+Industry - Steel - SR/BOF + CCS - Nat Gas:
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
       reference product: natural gas, burned in gas turbine
+    mask: market
   iam_aliases:
     image:
       - Final Energy|Industry|Iron and Steel|SR/BOF + CCS|Natural Gas
 
-Industry - Steel - TGR BF/BOF - Natural Gas:
+Industry - Steel - TGR BF/BOF - Nat Gas:
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
       reference product: natural gas, burned in gas turbine
+    mask: market
   iam_aliases:
     image:
       - Final Energy|Industry|Iron and Steel|TGR BF/BOF BAT|Natural Gas
       - Final Energy|Industry|Iron and Steel|TGR BF/BOF|Natural Gas
 
-Industry - Steel - TGR BF/BOF + CCS - Natural Gas:
+Industry - Steel - TGR BF/BOF + CCS - Nat Gas:
   ecoinvent_aliases:
     fltr:
       name: natural gas, burned in gas turbine
       reference product: natural gas, burned in gas turbine
+    mask: market
   iam_aliases:
     image:
       - Final Energy|Industry|Iron and Steel|TGR BF/BOF BAT + CCS|Natural Gas
@@ -1721,6 +1765,7 @@ Industry - Steel - BF/BOF - Secondary Heat:
     fltr:
       name: treatment of municipal solid waste, municipal incineration
       reference product: heat, for reuse in municipal waste incineration only
+    mask: FAE
   iam_aliases:
     image:
       - Final Energy|Industry|Iron and Steel|BF/BOF Standard|Secondary Heat
@@ -1731,6 +1776,7 @@ Industry - Steel - BF/BOF + CCS - Secondary Heat:
     fltr:
       name: treatment of municipal solid waste, municipal incineration
       reference product: heat, for reuse in municipal waste incineration only
+    mask: FAE
   iam_aliases:
     image:
       - Final Energy|Industry|Iron and Steel|BF/ BOF Standard + CCS|Secondary Heat
@@ -1740,6 +1786,7 @@ Industry - Steel - DRI EAF - Secondary Heat:
     fltr:
       name: treatment of municipal solid waste, municipal incineration
       reference product: heat, for reuse in municipal waste incineration only
+    mask: FAE
   iam_aliases:
     image:
       - Final Energy|Industry|Iron and Steel|DRI EAF|Secondary Heat
@@ -1749,6 +1796,7 @@ Industry - Steel - DRI EAF + CCS - Secondary Heat:
     fltr:
       name: treatment of municipal solid waste, municipal incineration
       reference product: heat, for reuse in municipal waste incineration only
+    mask: FAE
   iam_aliases:
     image:
       - Final Energy|Industry|Iron and Steel|DRI EAF + CCS|Secondary Heat
@@ -1758,6 +1806,7 @@ Industry - Steel - EAF - Secondary Heat:
     fltr:
       name: treatment of municipal solid waste, municipal incineration
       reference product: heat, for reuse in municipal waste incineration only
+    mask: FAE
   iam_aliases:
     image:
       - Final Energy|Industry|Iron and Steel|EAF scrap|Secondary Heat
@@ -1767,6 +1816,7 @@ Industry - Steel - Electrowinning - Secondary Heat:
     fltr:
       name: treatment of municipal solid waste, municipal incineration
       reference product: heat, for reuse in municipal waste incineration only
+    mask: FAE
   iam_aliases:
     image:
       - Final Energy|Industry|Iron and Steel|Electrowinning/EAF|Secondary Heat
@@ -1776,6 +1826,7 @@ Industry - Steel - H-DRI/EAF - Secondary Heat:
     fltr:
       name: treatment of municipal solid waste, municipal incineration
       reference product: heat, for reuse in municipal waste incineration only
+    mask: FAE
   iam_aliases:
     image:
       - Final Energy|Industry|Iron and Steel|H-DRI/EAF|Secondary Heat
@@ -1785,6 +1836,7 @@ Industry - Steel - SR/BOF - Secondary Heat:
     fltr:
       name: treatment of municipal solid waste, municipal incineration
       reference product: heat, for reuse in municipal waste incineration only
+    mask: FAE
   iam_aliases:
     image:
       - Final Energy|Industry|Iron and Steel|SR/BOF|Secondary Heat
@@ -1795,6 +1847,7 @@ Industry - Steel - SR/BOF + CCS - Secondary Heat:
     fltr:
       name: treatment of municipal solid waste, municipal incineration
       reference product: heat, for reuse in municipal waste incineration only
+    mask: FAE
   iam_aliases:
     image:
       - Final Energy|Industry|Iron and Steel|SR/BOF + CCS|Secondary Heat
@@ -1804,6 +1857,7 @@ Industry - Steel - TGR BF/BOF - Secondary Heat:
     fltr:
       name: treatment of municipal solid waste, municipal incineration
       reference product: heat, for reuse in municipal waste incineration only
+    mask: FAE
   iam_aliases:
     image:
       - Final Energy|Industry|Iron and Steel|TGR BF/BOF BAT|Secondary Heat
@@ -1814,6 +1868,7 @@ Industry - Steel - TGR BF/BOF + CCS - Secondary Heat:
     fltr:
       name: treatment of municipal solid waste, municipal incineration
       reference product: heat, for reuse in municipal waste incineration only
+    mask: FAE
   iam_aliases:
     image:
       - Final Energy|Industry|Iron and Steel|TGR BF/BOF BAT + CCS|Secondary Heat
@@ -1848,6 +1903,7 @@ Industry - Steel - All steel - Nat Gas:
     fltr:
       name: natural gas, burned in gas turbine
       reference product: natural gas, burned in gas turbine
+    mask: market
   iam_aliases:
     remind: FE|Industry|Steel|Gases|+|Fossil
 
@@ -1904,6 +1960,12 @@ Industry - Non-energy use - Solid coal:
     fltr:
       name: market for hard coal
       reference product: hard coal
+    mask:
+      - briquette
+      - mine
+      - ash
+      - factory
+      - plant
   iam_aliases:
     remind: FE|Non-energy Use|Industry|Solids|+|Fossil
 
@@ -1928,6 +1990,9 @@ Industry - Non-energy use - Nat Gas:
     fltr:
       name: market for natural gas, high pressure
       reference product: natural gas, high pressure
+    mask:
+      - period
+      - vehicle
   iam_aliases:
     remind: FE|Non-energy Use|Industry|Gases|+|Fossil
 
@@ -1942,8 +2007,9 @@ Industry - Non-energy use - Hydrogen:
 Industry - Non-energy use - Biofuel:
   ecoinvent_aliases:
     fltr:
-      name: market for methanol
+      name: methanol production, biomass gasification
       reference product: methanol
+    mask: factory
   iam_aliases:
     remind: FE|Non-energy Use|Industry|Liquids|+|Biomass
 
@@ -1978,6 +2044,7 @@ Transport - Freight - Domestic Shipping - H2:
       reference product: heat
   iam_aliases:
     image: Final Energy|Transportation|Freight|National Shipping|Hydrogen
+    tiam-ucl: Final Energy|Transport|Ship|Domestic|Hydrogen|Shipping Hydrogen
 
 Transport - Freight - Domestic Shipping - Biofuel:
   ecoinvent_aliases:
@@ -1987,6 +2054,9 @@ Transport - Freight - Domestic Shipping - Biofuel:
   iam_aliases:
     remind: FE|Transport|Freight|Domestic Shipping|Liquids|Biomass
     image: Final Energy|Transportation|Freight|National Shipping|Liquids|Biomass
+    tiam-ucl:
+      - Final Energy|Transport|Ship|Domestic|Biodiesel
+      - Final Energy|Transport|Ship|Domestic|Heavy Fuel Oil|Biodiesel
 
 Transport - Freight - Domestic Shipping - Liquid fossil:
   ecoinvent_aliases:
@@ -1996,11 +2066,15 @@ Transport - Freight - Domestic Shipping - Liquid fossil:
   iam_aliases:
     remind: FE|Transport|Freight|Domestic Shipping|Liquids|Fossil
     image: Final Energy|Transportation|Freight|National Shipping|Liquids|Fossil
+    tiam-ucl:
+      - Final Energy|Transport|Ship|Domestic|Diesel
+      - Final Energy|Transport|Ship|Domestic|Gasoline
+      - Final Energy|Transport|Ship|Domestic|Heavy Fuel Oil|Heavy Fuel Oil
 
 Transport - Freight - Domestic Shipping - Syn Fuel:
   ecoinvent_aliases:
     fltr:
-      name: hydrogen, burned in gas turbine 1GW
+      name: diesel, synthetic, burned in container ship
       reference product: heat
   iam_aliases:
     remind: FE|Transport|Freight|Domestic Shipping|Liquids|Hydrogen
@@ -2013,6 +2087,9 @@ Transport - Freight - Int. Shipping - Biofuel:
   iam_aliases:
     remind: FE|Transport|Bunkers|Freight|International Shipping|Liquids|Biomass
     image: Final Energy|Transportation|Freight|International Shipping|Liquids|Biomass
+    tiam-ucl:
+      - Final Energy|Transport|Ship|International|Biodiesel
+      - Final Energy|Transport|Ship|International|Heavy Fuel Oil|Biodiesel
 
 Transport - Freight - Int. Shipping - Liquid fossil:
   ecoinvent_aliases:
@@ -2022,11 +2099,15 @@ Transport - Freight - Int. Shipping - Liquid fossil:
   iam_aliases:
     remind: FE|Transport|Bunkers|Freight|International Shipping|Liquids|Fossil
     image: Final Energy|Transportation|Freight|International Shipping|Liquids|Fossil
+    tiam-ucl:
+      - Final Energy|Transport|Ship|International|Diesel
+      - Final Energy|Transport|Ship|International|Gasoline
+      - Final Energy|Transport|Ship|International|Heavy Fuel Oil|Heavy Fuel Oil
 
 Transport - Freight - Int. Shipping - Syn Fuel:
   ecoinvent_aliases:
     fltr:
-      name: hydrogen, burned in gas turbine 1GW
+      name: diesel, synthetic, burned in container ship
       reference product: heat
   iam_aliases:
     remind: FE|Transport|Bunkers|Freight|International Shipping|Liquids|Hydrogen
@@ -2042,19 +2123,21 @@ Transport - Freight - Int. Shipping - Elec:
 Transport - Freight - Int. Shipping - H2:
     ecoinvent_aliases:
         fltr:
-        name: hydrogen, used in a fuel cell in container ship
-        reference product: heat
+          name: hydrogen, used in a fuel cell in container ship
+          reference product: heat
     iam_aliases:
         image: Final Energy|Transportation|Freight|International Shipping|Hydrogen
+        tiam-ucl: Final Energy|Transport|Ship|International|Hydrogen|Shipping Hydrogen
 
 Transport - Freight - Rail - Elec:
   ecoinvent_aliases:
     fltr:
-      name: market group for electricity, low voltage
-      reference product: electricity, low voltage
+      name: electricity, used in passenger train
+      reference product: electricity, high voltage
   iam_aliases:
     remind: FE|Transport|Freight|Rail|Electricity
     image: Final Energy|Transportation|Freight|Train|Electricity
+    tiam-ucl: Final Energy|Transport|Rail|Freight|Electricity
 
 Transport - Freight - Rail - Biofuel:
   ecoinvent_aliases:
@@ -2064,15 +2147,18 @@ Transport - Freight - Rail - Biofuel:
   iam_aliases:
     remind: FE|Transport|Freight|Rail|Liquids|Biomass
     image: Final Energy|Transportation|Freight|Train|Liquids|Biomass
+    tiam-ucl: Final Energy|Transport|Rail|Freight|Biodiesel
 
 Transport - Freight - Rail - Liquid fossil:
   ecoinvent_aliases:
     fltr:
       name: diesel, burned in passenger train
       reference product: heat
+    mask: biodiesel
   iam_aliases:
     remind: FE|Transport|Freight|Rail|Liquids|Fossil
     image: Final Energy|Transportation|Freight|Train|Liquids|Fossil
+    tiam-ucl: Final Energy|Transport|Rail|Freight|Diesel
 
 Transport - Freight - Rail - Syn Fuel:
   ecoinvent_aliases:
@@ -2085,7 +2171,7 @@ Transport - Freight - Rail - Syn Fuel:
 Transport - Freight - Rail - H2:
   ecoinvent_aliases:
     fltr:
-      name: hydrogen, used in passenger train
+      name: hydrogen, used in a fuel cell in a passenger train
       reference product: heat
   iam_aliases:
     image: Final Energy|Transportation|Freight|Train|Hydrogen
@@ -2098,7 +2184,6 @@ Transport - Freight - Truck(18t) - Elec:
   iam_aliases:
     remind: FE|Transport|Freight|Road|Heavy|Truck(18t)|Electricity
     image: Final Energy|Transportation|Freight|Medium Truck|Electricity
-
 
 Transport - Freight - Truck(18t) - Bio CH4:
   ecoinvent_aliases:
@@ -2116,6 +2201,9 @@ Transport - Freight - Truck(18t) - Nat Gas:
   iam_aliases:
     remind: FE|Transport|Freight|Road|Heavy|Truck(18t)|Gases|Fossil
     image: Final Energy|Transportation|Freight|Medium Truck|Gas
+    tiam-ucl:
+      - Final Energy|Transport|Truck|Medium|Liquefied Petroleum Gas|Liquefied Petroleum Gas
+      - Final Energy|Transport|Truck|Medium|Natural Gas|Natural Gas
 
 Transport - Freight - Truck(18t) - SNG:
   ecoinvent_aliases:
@@ -2133,6 +2221,7 @@ Transport - Freight - Truck(18t) - H2:
   iam_aliases:
     remind: FE|Transport|Freight|Road|Heavy|Truck(18t)|Hydrogen
     image: Final Energy|Transportation|Freight|Medium Truck|Hydrogen
+    tiam-ucl: Final Energy|Transport|Truck|Medium|Hydrogen Fuel Cell|Truck Hydrogen
 
 
 Transport - Freight - Truck(18t) - Biofuel:
@@ -2143,15 +2232,24 @@ Transport - Freight - Truck(18t) - Biofuel:
   iam_aliases:
     remind: FE|Transport|Freight|Road|Heavy|Truck(18t)|Liquids|Biomass
     image: Final Energy|Transportation|Freight|Medium Truck|Liquids|Biomass
+    tiam-ucl:
+      - Final Energy|Transport|Truck|Medium|Diesel|Biodiesel
+      - Final Energy|Transport|Truck|Medium|Ethanol|Bioethanol #TODO: improve
+      - Final Energy|Transport|Truck|Medium|Methanol|Bioethanol #TODO: improve
+      - Final Energy|Transport|Truck|Medium|Methanol|Methanol #TODO: improve
 
 Transport - Freight - Truck(18t) - Liquid fossil:
   ecoinvent_aliases:
     fltr:
       name: diesel, burned in heavy-duty vehicle
       reference product: heat
+    mask: biodiesel
   iam_aliases:
     remind: FE|Transport|Freight|Road|Heavy|Truck(18t)|Liquids|Fossil
     image: Final Energy|Transportation|Freight|Medium Truck|Liquids|Fossil
+    tiam-ucl:
+      - Final Energy|Transport|Truck|Medium|Diesel|Diesel
+      - Final Energy|Transport|Truck|Medium|Gasoline|Gasoline #TODO: improve
 
 Transport - Freight - Truck(18t) - Syn Fuel:
   ecoinvent_aliases:
@@ -2214,6 +2312,7 @@ Transport - Freight - Truck(26t) - Liquid fossil:
     fltr:
       name: diesel, burned in heavy-duty vehicle
       reference product: heat
+    mask: biodiesel
   iam_aliases:
     remind: FE|Transport|Freight|Road|Heavy|Truck(26t)|Liquids|Fossil
 
@@ -2250,6 +2349,9 @@ Transport - Freight - Truck(40t) - Nat Gas:
   iam_aliases:
     remind: FE|Transport|Freight|Road|Heavy|Truck(40t)|Gases|Fossil
     image: Final Energy|Transportation|Freight|Heavy Truck|Gas
+    tiam-ucl:
+      - Final Energy|Transport|Truck|Heavy|Liquefied Petroleum Gas|Liquefied Petroleum Gas
+      - Final Energy|Transport|Truck|Heavy|Natural Gas|Natural Gas
 
 Transport - Freight - Truck(40t) - SNG:
   ecoinvent_aliases:
@@ -2267,6 +2369,7 @@ Transport - Freight - Truck(40t) - H2:
   iam_aliases:
     remind: FE|Transport|Freight|Road|Heavy|Truck(40t)|Hydrogen
     image: Final Energy|Transportation|Freight|Heavy Truck|Hydrogen
+    tiam-ucl: Final Energy|Transport|Truck|Heavy|Hydrogen Fuel Cell|Truck Hydrogen
 
 Transport - Freight - Truck(40t) - Biofuel:
   ecoinvent_aliases:
@@ -2276,15 +2379,23 @@ Transport - Freight - Truck(40t) - Biofuel:
   iam_aliases:
     remind: FE|Transport|Freight|Road|Heavy|Truck(40t)|Liquids|Biomass
     image: Final Energy|Transportation|Freight|Heavy Truck|Liquids|Biomass
+    tiam-ucl:
+      - Final Energy|Transport|Truck|Heavy|Diesel|Biodiesel
+      - Final Energy|Transport|Truck|Heavy|Methanol|Bioethanol
+      - Final Energy|Transport|Truck|Heavy|Methanol|Methanol
 
 Transport - Freight - Truck(40t) - Liquid fossil:
   ecoinvent_aliases:
     fltr:
       name: diesel, burned in heavy-duty vehicle
       reference product: heat
+    mask: biodiesel
   iam_aliases:
     remind: FE|Transport|Freight|Road|Heavy|Truck(40t)|Liquids|Fossil
     image: Final Energy|Transportation|Freight|Heavy Truck|Liquids|Fossil
+    tiam-ucl:
+      - Final Energy|Transport|Truck|Heavy|Diesel|Diesel
+      - Final Energy|Transport|Truck|Heavy|Gas|Gasoline
 
 Transport - Freight - Truck(40t) - Syn Fuel:
   ecoinvent_aliases:
@@ -2301,6 +2412,11 @@ Transport - Freight - Truck(0-3_5t) - Elec:
       reference product: electricity, low voltage
   iam_aliases:
     remind: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Electricity
+    tiam-ucl:
+      - Final Energy|Transport|Truck|Commercial|Diesel Plug-in Hybrid|Electricity
+      - Final Energy|Transport|Truck|Commercial|Electric|Electricity
+      - Final Energy|Transport|Truck|Commercial|Gasoline Plug-in Hybrid|Electricity
+      - Final Energy|Transport|Truck|Commercial|Hydrogen Fuel Cell|Electricity
 
 Transport - Freight - Truck(0-3_5t) - Bio CH4:
   ecoinvent_aliases:
@@ -2317,6 +2433,9 @@ Transport - Freight - Truck(0-3_5t) - Nat Gas:
       reference product: heat
   iam_aliases:
     remind: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Gases|Fossil
+    tiam-ucl:
+      - Final Energy|Transport|Truck|Commercial|Liquefied Petroleum Gas|Liquefied Petroleum Gas
+      - Final Energy|Transport|Truck|Commercial|Natural Gas|Natural Gas
 
 Transport - Freight - Truck(0-3_5t) - SNG:
   ecoinvent_aliases:
@@ -2349,6 +2468,11 @@ Transport - Freight - Truck(0-3_5t) - Liquid fossil:
       reference product: heat
   iam_aliases:
     remind: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Liquids|Fossil
+    tiam-ucl:
+      - Final Energy|Transport|Truck|Commercial|Diesel Hybrid|Diesel
+      - Final Energy|Transport|Truck|Commercial|Diesel Plug-in Hybrid|Diesel
+      - Final Energy|Transport|Truck|Commercial|Diesel|Diesel
+
 
 Transport - Freight - Truck(0-3_5t) - Syn Fuel:
   ecoinvent_aliases:
@@ -2365,6 +2489,11 @@ Transport - Freight - Truck(7_5t) - Elec:
       reference product: electricity, low voltage
   iam_aliases:
     remind: FE|Transport|Freight|Road|Light|Truck(7_5t)|Electricity
+    tiam-ucl:
+      - Final Energy|Transport|Truck|Light|Gasoline Plug-in Hybrid|Electricity
+      - Final Energy|Transport|Truck|Light|Electric|Electricity
+      - Final Energy|Transport|Truck|Light|Diesel Plug-in Hybrid|Electricity
+      - Final Energy|Transport|Truck|Light|Hydrogen Fuel Cell|Electricity
 
 Transport - Freight - Truck(7_5t) - Bio CH4:
   ecoinvent_aliases:
@@ -2381,6 +2510,9 @@ Transport - Freight - Truck(7_5t) - Nat Gas:
       reference product: heat
   iam_aliases:
     remind: FE|Transport|Freight|Road|Light|Truck(7_5t)|Gases|Fossil
+    tiam-ucl:
+      - Final Energy|Transport|Truck|Light|Liquefied Petroleum Gas|Liquefied Petroleum Gas #TODO: improve
+      - Final Energy|Transport|Truck|Light|Natural Gas|Natural Gas
 
 Transport - Freight - Truck(7_5t) - SNG:
   ecoinvent_aliases:
@@ -2397,6 +2529,7 @@ Transport - Freight - Truck(7_5t) - H2:
       reference product: heat
   iam_aliases:
     remind: FE|Transport|Freight|Road|Light|Truck(7_5t)|Hydrogen
+    tiam-ucl: Final Energy|Transport|Truck|Light|Hydrogen Fuel Cell|Car Hydrogen
 
 Transport - Freight - Truck(7_5t) - Biofuel:
   ecoinvent_aliases:
@@ -2405,14 +2538,24 @@ Transport - Freight - Truck(7_5t) - Biofuel:
       reference product: heat
   iam_aliases:
     remind: FE|Transport|Freight|Road|Light|Truck(7_5t)|Liquids|Biomass
+    tiam-ucl: Final Energy|Transport|Truck|Light|Ethanol|Bioethanol #TODO: improve
 
 Transport - Freight - Truck(7_5t) - Liquid fossil:
   ecoinvent_aliases:
     fltr:
       name: diesel, burned in heavy-duty vehicle
       reference product: heat
+    mask: biodiesel
   iam_aliases:
     remind: FE|Transport|Freight|Road|Light|Truck(7_5t)|Liquids|Fossil
+    tiam-ucl:
+      - Final Energy|Transport|Truck|Light|Diesel Hybrid|Diesel
+      - Final Energy|Transport|Truck|Light|Diesel Plug-in Hybrid|Diesel
+      - Final Energy|Transport|Truck|Light|Diesel|Diesel
+      - Final Energy|Transport|Truck|Light|Ethanol|Gasoline #TODO: improve
+      - Final Energy|Transport|Truck|Light|Gasoline Hybrid|Gasoline #TODO: improve
+      - Final Energy|Transport|Truck|Light|Gasoline Plug-in Hybrid|Gasoline #TODO: improve
+      - Final Energy|Transport|Truck|Light|Gasoline|Gasoline #TODO: improve
 
 Transport - Freight - Truck(7_5t) - Syn Fuel:
   ecoinvent_aliases:
@@ -2424,19 +2567,19 @@ Transport - Freight - Truck(7_5t) - Syn Fuel:
 
 Transport - Freight - Aviation - Elec:
     ecoinvent_aliases:
-        fltr:
+      fltr:
         name: electricity, used in aircraft
         reference product: electricity, low voltage
     iam_aliases:
-        image: Final Energy|Transportation|Freight|Air|Electricity
+      image: Final Energy|Transportation|Freight|Air|Electricity
 
 Transport - Freight - Aviation - H2:
     ecoinvent_aliases:
-        fltr:
-        name: hydrogen, used in aircraft
+      fltr:
+        name: hydrogen, burned in aircraft
         reference product: heat
     iam_aliases:
-        image: Final Energy|Transportation|Freight|Air|Hydrogen
+      image: Final Energy|Transportation|Freight|Air|Hydrogen
 
 Transport - Freight - Aviation - Liquid fossil:
   ecoinvent_aliases:
@@ -2462,6 +2605,7 @@ Transport - Pass - Int Aviation - Biofuel:
   iam_aliases:
     remind: FE|Transport|Bunkers|Pass|International Aviation|Liquids|Biomass
     image: Final Energy|Transportation|Passenger|International Aviation|Liquids|Biomass
+    tiam-ucl: Final Energy|Transport|Air|International|Biojet Kerosene
 
 Transport - Pass - Int Aviation - Liquid fossil:
   ecoinvent_aliases:
@@ -2471,22 +2615,25 @@ Transport - Pass - Int Aviation - Liquid fossil:
   iam_aliases:
     remind: FE|Transport|Bunkers|Pass|International Aviation|Liquids|Fossil
     image: Final Energy|Transportation|Passenger|International Aviation|Liquids|Fossil
+    tiam-ucl:
+      - Final Energy|Transport|Air|International|Aviation Gasoline
+      - Final Energy|Transport|Air|International|Jet Kerosene
 
 Transport - Pass - Int Aviation - H2:
-    ecoinvent_aliases:
-        fltr:
-        name: hydrogen, used in aircraft
+  ecoinvent_aliases:
+      fltr:
+        name: hydrogen, burned in aircraft
         reference product: heat
-    iam_aliases:
-        image: Final Energy|Transportation|Passenger|International Aviation|Hydrogen
+  iam_aliases:
+      image: Final Energy|Transportation|Passenger|International Aviation|Hydrogen
 
 Transport - Pass - Int Aviation - Elec:
-    ecoinvent_aliases:
-        fltr:
+  ecoinvent_aliases:
+      fltr:
         name: electricity, used in aircraft
         reference product: electricity, low voltage
-    iam_aliases:
-        image: Final Energy|Transportation|Passenger|International Aviation|Electricity
+  iam_aliases:
+      image: Final Energy|Transportation|Passenger|International Aviation|Electricity
 
 Transport - Pass - Int Aviation - Syn Fuel:
   ecoinvent_aliases:
@@ -2499,7 +2646,7 @@ Transport - Pass - Int Aviation - Syn Fuel:
 Transport - Pass - Domestic Aviation - H2:
   ecoinvent_aliases:
     fltr:
-      name: hydrogen, used in aircraft
+      name: hydrogen, burned in aircraft
       reference product: heat
   iam_aliases:
     remind: FE|Transport|Pass|Domestic Aviation|Hydrogen
@@ -2513,6 +2660,7 @@ Transport - Pass - Domestic Aviation - Biofuel:
   iam_aliases:
     remind: FE|Transport|Pass|Domestic Aviation|Liquids|Biomass
     image: Final Energy|Transportation|Passenger|Domestic Aviation|Liquids|Biomass
+    tiam-ucl: Final Energy|Transport|Air|Domestic|Biojet Kerosene
 
 Transport - Pass - Domestic Aviation - Liquid fossil:
   ecoinvent_aliases:
@@ -2522,6 +2670,9 @@ Transport - Pass - Domestic Aviation - Liquid fossil:
   iam_aliases:
     remind: FE|Transport|Pass|Domestic Aviation|Liquids|Fossil
     image: Final Energy|Transportation|Passenger|Domestic Aviation|Liquids|Fossil
+    tiam-ucl:
+      - Final Energy|Transport|Air|Domestic|Jet Kerosene
+      - Final Energy|Transport|Air|Domestic|Aviation Gasoline
 
 Transport - Pass - Domestic Aviation - Syn Fuel:
   ecoinvent_aliases:
@@ -2532,12 +2683,12 @@ Transport - Pass - Domestic Aviation - Syn Fuel:
     remind: FE|Transport|Pass|Domestic Aviation|Liquids|Hydrogen
 
 Transport - Pass - Domestic Aviation - Elec:
-    ecoinvent_aliases:
-        fltr:
+  ecoinvent_aliases:
+      fltr:
         name: electricity, used in aircraft
         reference product: electricity, low voltage
-    iam_aliases:
-        image: Final Energy|Transportation|Passenger|Domestic Aviation|Electricity
+  iam_aliases:
+      image: Final Energy|Transportation|Passenger|Domestic Aviation|Electricity
 
 Transport - Pass - Rail - Elec:
   ecoinvent_aliases:
@@ -2549,6 +2700,7 @@ Transport - Pass - Rail - Elec:
     image:
       - Final Energy|Transportation|Passenger|Rail (high speed)|Electricity
       - Final Energy|Transportation|Passenger|Rail (low speed)|Electricity
+    tiam-ucl: Final Energy|Transport|Rail|Passenger|Electricity
 
 
 Transport - Pass - Rail - Biofuel:
@@ -2561,17 +2713,20 @@ Transport - Pass - Rail - Biofuel:
     image:
       - Final Energy|Transportation|Passenger|Rail (high speed)|Lquids|Biomass
       - Final Energy|Transportation|Passenger|Rail (low speed)|Lquids|Biomass
+    tiam-ucl: Final Energy|Transport|Rail|Passenger|Biodiesel
 
 Transport - Pass - Rail - Liquid fossil:
   ecoinvent_aliases:
     fltr:
       name: diesel, burned in passenger train
       reference product: heat
+    mask: biodiesel
   iam_aliases:
     remind: FE|Transport|Pass|Rail|Liquids|Fossil
     image:
       - Final Energy|Transportation|Passenger|Rail (high speed)|Liquids|Fossil
       - Final Energy|Transportation|Passenger|Rail (low speed)|Liquids|Fossil
+    tiam-ucl: Final Energy|Transport|Rail|Passenger|Diesel
 
 Transport - Pass - Rail - Syn Fuel:
   ecoinvent_aliases:
@@ -2582,14 +2737,14 @@ Transport - Pass - Rail - Syn Fuel:
     remind: FE|Transport|Pass|Rail|Liquids|Hydrogen
 
 Transport - Pass - Rail - H2:
-    ecoinvent_aliases:
-        fltr:
-        name: hydrogen, used in passenger train
+  ecoinvent_aliases:
+      fltr:
+        name: hydrogen, used in a fuel cell in a passenger train
         reference product: heat
-    iam_aliases:
-        image:
-        - Final Energy|Transportation|Passenger|Rail (high speed)|Hydrogen
-        - Final Energy|Transportation|Passenger|Rail (low speed)|Hydrogen
+  iam_aliases:
+      image:
+      - Final Energy|Transportation|Passenger|Rail (high speed)|Hydrogen
+      - Final Energy|Transportation|Passenger|Rail (low speed)|Hydrogen
 
 Transport - Pass - Bus - Elec:
   ecoinvent_aliases:
@@ -2616,6 +2771,9 @@ Transport - Pass - Bus - Nat Gas:
   iam_aliases:
     remind: FE|Transport|Pass|Road|Bus|Gases|Fossil
     image: Final Energy|Transportation|Passenger|Bus|Gases
+    tiam-ucl:
+      - Final Energy|Transport|Bus|Liquefied Petroleum Gas|Liquefied Petroleum Gas
+      - Final Energy|Transport|Bus|Natural Gas|Natural Gas
 
 Transport - Pass - Bus - SNG:
   ecoinvent_aliases:
@@ -2633,6 +2791,7 @@ Transport - Pass - Bus - H2:
   iam_aliases:
     remind: FE|Transport|Pass|Road|Bus|Hydrogen
     image: Final Energy|Transportation|Passenger|Bus|Hydrogen
+    tiam-ucl: Final Energy|Transport|Bus|Hydrogen Fuel Cell|Bus Hydrogen
 
 Transport - Pass - Bus - Biofuel:
   ecoinvent_aliases:
@@ -2648,9 +2807,14 @@ Transport - Pass - Bus - Liquid fossil:
     fltr:
       name: diesel, burned in single deck coach or urban bus
       reference product: heat
+    mask: biodiesel
   iam_aliases:
     remind: FE|Transport|Pass|Road|Bus|Liquids|Fossil
     image: Final Energy|Transportation|Passenger|Bus|Liquids|Fossil
+    tiam-ucl:
+      - Final Energy|Transport|Bus|Diesel Hybrid|Diesel
+      - Final Energy|Transport|Bus|Diesel|Diesel
+      - Final Energy|Transport|Bus|Gasoline|Gasoline
 
 Transport - Pass - Bus - Syn Fuel:
   ecoinvent_aliases:
@@ -2835,6 +2999,7 @@ Transport - Pass - Van - Biofuel:
       reference product: heat
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|Liquids|Biomass
+    tiam-ucl: Final Energy|Transport|Truck|Commercial|Ethanol|Bioethanol
 
 Transport - Pass - Van - Liquid fossil:
   ecoinvent_aliases:
@@ -2843,6 +3008,11 @@ Transport - Pass - Van - Liquid fossil:
       reference product: heat
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|Liquids|Fossil
+    tiam-ucl:
+      - Final Energy|Transport|Truck|Commercial|Ethanol|Gasoline
+      - Final Energy|Transport|Truck|Commercial|Gasoline Hybrid|Gasoline
+      - Final Energy|Transport|Truck|Commercial|Gasoline|Gasoline
+      - Final Energy|Transport|Truck|Commercial|Gasoline Plug-in Hybrid|Gasoline
 
 Transport - Pass - Van - Syn Fuel:
   ecoinvent_aliases:
@@ -2924,6 +3094,11 @@ Transport - Pass - Midsize Car - Elec:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Electricity
     image: Final Energy|Transportation|Passenger|Light Duty Vehicle|Electricity
+    tiam-ucl:
+      - Final Energy|Transport|Car|Diesel Plug-in Hybrid|Electricity
+      - Final Energy|Transport|Car|Electric|Electricity
+      - Final Energy|Transport|Car|Gasoline Plug-in Hybrid|Electricity
+      - Final Energy|Transport|Car|Hydrogen Fuel Cell|Electricity
 
 Transport - Pass - Midsize Car - Bio CH4:
   ecoinvent_aliases:
@@ -2941,6 +3116,9 @@ Transport - Pass - Midsize Car - Nat Gas:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Gases|Fossil
     image: Final Energy|Transportation|Passenger|Light Duty Vehicle|Gases
+    tiam-ucl:
+      - Final Energy|Transport|Car|Liquefied Petroleum Gas|Liquefied Petroleum Gas
+      - Final Energy|Transport|Car|Natural Gas|Natural Gas
 
 Transport - Pass - Midsize Car - SNG:
   ecoinvent_aliases:
@@ -2958,6 +3136,7 @@ Transport - Pass - Midsize Car - H2:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Hydrogen
     image: Final Energy|Transportation|Passenger|Light Duty Vehicle|Hydrogen
+    tiam-ucl: Final Energy|Transport|Car|Hydrogen Fuel Cell|Car Hydrogen
 
 Transport - Pass - Midsize Car - Biofuel:
   ecoinvent_aliases:
@@ -2967,6 +3146,7 @@ Transport - Pass - Midsize Car - Biofuel:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Liquids|Biomass
     image: Final Energy|Transportation|Passenger|Light Duty Vehicle|Liquids|Biomass
+    tiam-ucl: Final Energy|Transport|Car|Ethanol|Bioethanol
 
 Transport - Pass - Midsize Car - Liquid fossil:
   ecoinvent_aliases:
@@ -2976,6 +3156,14 @@ Transport - Pass - Midsize Car - Liquid fossil:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Liquids|Fossil
     image: Final Energy|Transportation|Passenger|Light Duty Vehicle|Liquids|Fossil
+    tiam-ucl:
+      - Final Energy|Transport|Car|Diesel Hybrid|Diesel
+      - Final Energy|Transport|Car|Diesel Plug-in Hybrid|Diesel
+      - Final Energy|Transport|Car|Diesel|Diesel
+      - Final Energy|Transport|Car|Ethanol|Gasoline
+      - Final Energy|Transport|Car|Gasoline Hybrid|Gasoline
+      - Final Energy|Transport|Car|Gasoline Plug-in Hybrid|Gasoline
+      - Final Energy|Transport|Car|Gasoline|Gasoline
 
 Transport - Pass - Midsize Car - Syn Fuel:
   ecoinvent_aliases:
@@ -3040,6 +3228,14 @@ Transport - Pass - Mini Car - Liquid fossil:
       reference product: heat
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Liquids|Fossil
+
+Transport - Pass - Mini Car - Diesel:
+  ecoinvent_aliases:
+    fltr:
+      name: diesel, burned in passenger car
+      reference product: heat
+  iam_aliases:
+    tiam-ucl: Final Energy|Transport|Three Wheeler|Diesel|Diesel
 
 Transport - Pass - Mini Car - Syn Fuel:
   ecoinvent_aliases:
@@ -3160,6 +3356,7 @@ Transport - Pass - Motorcycle(50-250cc) - Biofuel:
       reference product: heat
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(50-250cc)|Liquids|Biomass
+    tiam-ucl: Final Energy|Transport|Three Wheeler|Diesel|Biodiesel
 
 Transport - Pass - Motorcycle(50-250cc) - Liquid fossil:
   ecoinvent_aliases:
@@ -3168,6 +3365,9 @@ Transport - Pass - Motorcycle(50-250cc) - Liquid fossil:
       reference product: heat
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(50-250cc)|Liquids|Fossil
+    tiam-ucl:
+      - Final Energy|Transport|Three Wheeler|Gasoline|Gasoline
+      - Final Energy|Transport|Two Wheeler|Gasoline|Gasoline
 
 Transport - Pass - Motorcycle(50-250cc) - Syn Fuel:
   ecoinvent_aliases:
