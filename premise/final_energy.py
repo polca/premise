@@ -88,7 +88,7 @@ class FinalEnergy(BaseTransformation):
             self.database,
             ws.either(
                 *[
-                    ws.contains("name", name)
+                    ws.equals("name", name)
                     for name in list(
                         set(
                             [
@@ -104,6 +104,8 @@ class FinalEnergy(BaseTransformation):
             if dataset["name"] in processed_datasets:
                 continue
             if dataset["location"] in self.regions:
+                continue
+            if any(self.is_in_index(dataset, region) for region in self.regions):
                 continue
 
             datasets = self.fetch_proxies(
