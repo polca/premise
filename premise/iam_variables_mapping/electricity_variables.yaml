@@ -962,7 +962,7 @@ Storage, Battery:
 Storage, Hydrogen:
   ecoinvent_aliases:
     fltr:
-    - electricity production, from hydrogen-fired one gigawatt gas turbine
+    - electricity production, from hydrogen-fired one gigawatt gas turbine, for grid balancing
   iam_aliases:
     remind: SE|Electricity|+|Hydrogen
     remind-eu: SE|Electricity|+|Hydrogen
