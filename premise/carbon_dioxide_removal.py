@@ -117,10 +117,16 @@ class CarbonDioxideRemoval(BaseTransformation):
         modifies the original datasets to include the heat source, and adds the modified datasets to the database.
 
         """
-
+        processed_datasets = []
         # get original dataset
         for technology, datasets in self.cdr_activities.items():
             for ds_name in datasets:
+
+                if ds_name in processed_datasets:
+                    continue
+
+                processed_datasets.append(ds_name)
+                # fetch the original dataset
                 new_ds = self.fetch_proxies(
                     name=ds_name,
                     ref_prod="",
