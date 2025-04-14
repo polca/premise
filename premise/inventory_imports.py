@@ -856,18 +856,25 @@ class BaseInventoryImport:
 
         for ds in self.import_db.data:
             if (ds["name"], ds["reference product"]) in self.classifications:
+
                 ds["classifications"] = [
-                    {
-                        "ISIC rev.4 ecoinvent": self.classifications[
-                            (ds["name"], ds["reference product"])
-                        ]["ISIC rev.4 ecoinvent"],
-                        "CPC": self.classifications[
-                            (ds["name"], ds["reference product"])
-                        ]["CPC"],
-                    }
+                    (
+                        "ISIC rev.4 ecoinvent",
+                        self.classifications[(ds["name"], ds["reference product"])][
+                            "ISIC rev.4 ecoinvent"
+                        ],
+                    ),
+                    (
+                        "CPC",
+                        self.classifications[(ds["name"], ds["reference product"])][
+                            "CPC"
+                        ],
+                    ),
                 ]
             else:
-                print(f"WARNING: {ds['name']} not in classifications")
+                print(
+                    f"WARNING: missing classification for {ds['name']} | {ds['reference product']}"
+                )
 
     def display_unlinked_exchanges(self):
         """
