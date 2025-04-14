@@ -2078,6 +2078,17 @@ Transport - Freight - Domestic Shipping - Syn Fuel:
       reference product: heat
   iam_aliases:
     remind: FE|Transport|Freight|Domestic Shipping|Liquids|Hydrogen
+    tiam-ucl:
+      - Final Energy|Transport|Ship|Domestic|Ammonia|Synthetic Ammonia
+
+Transport - Freight - Domestic Shipping - LNG:
+  ecoinvent_aliases:
+    fltr:
+      name:
+      reference product: heat
+  iam_aliases:
+    tiam-ucl: Final Energy|Transport|Ship|Domestic|Liquefied Natural Gas|Liquefied Natural Gas
+
 
 Transport - Freight - Int. Shipping - Biofuel:
   ecoinvent_aliases:
@@ -2111,6 +2122,7 @@ Transport - Freight - Int. Shipping - Syn Fuel:
       reference product: heat
   iam_aliases:
     remind: FE|Transport|Bunkers|Freight|International Shipping|Liquids|Hydrogen
+    tiam-ucl: Final Energy|Transport|Ship|International|Ammonia|Synthetic Ammonia
 
 Transport - Freight - Int. Shipping - Elec:
   ecoinvent_aliases:
@@ -2128,6 +2140,14 @@ Transport - Freight - Int. Shipping - H2:
     iam_aliases:
         image: Final Energy|Transportation|Freight|International Shipping|Hydrogen
         tiam-ucl: Final Energy|Transport|Ship|International|Hydrogen|Shipping Hydrogen
+
+Transport - Freight - Int. Shipping - LNG:
+  ecoinvent_aliases:
+    fltr:
+      name:
+      reference product: heat
+  iam_aliases:
+    tiam-ucl: Final Energy|Transport|Ship|International|Liquefied Natural Gas|Liquefied Natural Gas
 
 Transport - Freight - Rail - Elec:
   ecoinvent_aliases:
@@ -2565,7 +2585,7 @@ Transport - Freight - Truck(7_5t) - Syn Fuel:
   iam_aliases:
     remind: FE|Transport|Freight|Road|Light|Truck(7_5t)|Liquids|Hydrogen
 
-Transport - Freight - Aviation - Elec:
+Transport - Freight - Domestic Aviation - Elec:
     ecoinvent_aliases:
       fltr:
         name: electricity, used in aircraft
@@ -2573,7 +2593,7 @@ Transport - Freight - Aviation - Elec:
     iam_aliases:
       image: Final Energy|Transportation|Freight|Air|Electricity
 
-Transport - Freight - Aviation - H2:
+Transport - Freight - Domestic Aviation - H2:
     ecoinvent_aliases:
       fltr:
         name: hydrogen, burned in aircraft
@@ -2581,21 +2601,33 @@ Transport - Freight - Aviation - H2:
     iam_aliases:
       image: Final Energy|Transportation|Freight|Air|Hydrogen
 
-Transport - Freight - Aviation - Liquid fossil:
+Transport - Freight - Domestic Aviation - Liquid fossil:
   ecoinvent_aliases:
     fltr:
       name: kerosene, burned in aircraft
       reference product: heat
   iam_aliases:
     image: Final Energy|Transportation|Freight|Air|Liquids|Fossil
+    tiam-ucl:
+      - Final Energy|Transport|Air|Domestic|Aviation Gasoline
+      - Final Energy|Transport|Air|Domestic|Jet Kerosene
 
-Transport - Freight - Aviation - Biofuel:
+Transport - Freight - Domestic Aviation - Biofuel:
   ecoinvent_aliases:
     fltr:
       name: kerosene, from biomass, burned in aircraft
       reference product: heat
   iam_aliases:
     image: Final Energy|Transportation|Freight|Air|Liquids|Biomass
+    tiam-ucl: Final Energy|Transport|Air|Domestic|Biojet Kerosene
+
+Transport - Freight - Domestic Aviation - Syn Fuel:
+  ecoinvent_aliases:
+    fltr:
+      name: kerosene, synthetic, burned in aircraft
+      reference product: heat
+  iam_aliases:
+    tiam-ucl: Final Energy|Transport|Air|Domestic|Synthetic Jet Kerosene
 
 Transport - Pass - Int Aviation - Biofuel:
   ecoinvent_aliases:
@@ -2642,6 +2674,7 @@ Transport - Pass - Int Aviation - Syn Fuel:
       reference product: heat
   iam_aliases:
     remind: FE|Transport|Bunkers|Pass|International Aviation|Liquids|Hydrogen
+    tiam-ucl: Final Energy|Transport|Air|International|Synthetic Jet Kerosene
 
 Transport - Pass - Domestic Aviation - H2:
   ecoinvent_aliases:
@@ -2801,6 +2834,7 @@ Transport - Pass - Bus - Biofuel:
   iam_aliases:
     remind: FE|Transport|Pass|Road|Bus|Liquids|Biomass
     image: Final Energy|Transportation|Passenger|Bus|Liquids|Biomass
+    tiam-ucl: Final Energy|Transport|Bus|Ethanol|Bioethanol
 
 Transport - Pass - Bus - Liquid fossil:
   ecoinvent_aliases:
