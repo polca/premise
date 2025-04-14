@@ -33,6 +33,7 @@ IAM_TRSPT_CARS_VARS = VARIABLES_DIR / "transport_passenger_cars_variables.yaml"
 IAM_TRSPT_BUSES_VARS = VARIABLES_DIR / "transport_bus_variables.yaml"
 IAM_TRSPT_TRUCKS_VARS = VARIABLES_DIR / "transport_roadfreight_variables.yaml"
 IAM_TRSPT_TRAINS_VARS = VARIABLES_DIR / "transport_railfreight_variables.yaml"
+IAM_TRSPT_SHIPS_VARS = VARIABLES_DIR / "transport_sea_variables.yaml"
 IAM_OTHER_VARS = VARIABLES_DIR / "other_variables.yaml"
 IAM_CARBON_CAPTURE_VARS = VARIABLES_DIR / "carbon_capture_variables.yaml"
 REPORT_METADATA_FILEPATH = DATA_DIR / "utils" / "report" / "report.yaml"
@@ -242,6 +243,16 @@ def fetch_data(
             if hasattr(iam_data, "rail_freight_efficiencies")
             else None
         ),
+        "Transport (ships)": (
+            iam_data.production_volumes
+            if hasattr(iam_data, "sea_freight_fleet")
+            else None
+        ),
+        "Transport (ships) - eff": (
+            iam_data.sea_freight_efficiencies
+            if hasattr(iam_data, "sea_freight_efficiencies")
+            else None
+        ),
         "Battery (mobile)": (
             iam_data.battery_mobile_scenarios
             if hasattr(iam_data, "battery_mobile_scenarios")
@@ -443,6 +454,12 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
         },
         "Transport (trains) - eff": {
             "filepath": IAM_TRSPT_TRAINS_VARS,
+        },
+        "Transport (ships)": {
+            "filepath": IAM_TRSPT_SHIPS_VARS,
+        },
+        "Transport (ships) - eff": {
+            "filepath": IAM_TRSPT_SHIPS_VARS,
         },
         "Battery (mobile)": {
             "variables": [
