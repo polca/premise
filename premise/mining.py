@@ -21,6 +21,7 @@ from .logger import create_logger
 
 logger = create_logger("mining")
 
+
 def _update_mining(scenario, version, system_model):
     mining = Mining(
         database=scenario["database"],
@@ -42,6 +43,7 @@ def _update_mining(scenario, version, system_model):
 
     return scenario
 
+
 def load_tailings_config():
     """
     Load the tailings configuration file.
@@ -50,6 +52,7 @@ def load_tailings_config():
     filepath = DATA_DIR / "mining" / "tailing_activities.yaml"
     with open(filepath, "r", encoding="utf-8") as stream:
         return yaml.safe_load(stream)
+
 
 def interpolate_method_share(year: int, share_dict: dict) -> float:
     """
@@ -80,6 +83,7 @@ def interpolate_method_share(year: int, share_dict: dict) -> float:
 
     return share_dict[all_years[-1]]["mean"]
 
+
 def parse_tailings_shares(year: int, config_methods: dict) -> dict:
     """
     If config_methods = {
@@ -106,6 +110,7 @@ def parse_tailings_shares(year: int, config_methods: dict) -> dict:
             out[method] = 0.0
     return out
 
+
 def copy_exchange(exc: dict) -> dict:
     """
     Create a shallow copy of an exchange with the most relevant fields.
@@ -115,6 +120,7 @@ def copy_exchange(exc: dict) -> dict:
         for k in ["name", "product", "amount", "unit", "type", "input", "location"]
         if k in exc
     }
+
 
 def copy_activity(act: dict, location: str, product_name=None) -> dict:
     new_act = copy.deepcopy(act)
@@ -129,7 +135,12 @@ def copy_activity(act: dict, location: str, product_name=None) -> dict:
         if exc["type"] == "technosphere":
             # Keep technosphere input as-is unless it matches old reference product
             if "input" not in exc:
-                exc["input"] = (exc["name"], exc["product"], exc.get("location", "GLO"), exc.get("unit", "kilogram"))
+                exc["input"] = (
+                    exc["name"],
+                    exc["product"],
+                    exc.get("location", "GLO"),
+                    exc.get("unit", "kilogram"),
+                )
 
         elif exc["type"] == "production":
             has_production = True
@@ -143,23 +154,34 @@ def copy_activity(act: dict, location: str, product_name=None) -> dict:
     # Add production exchange if none exists
     if product_name and not has_production:
         print("[DEBUG] No production exchange found. Adding a new one.")
-        new_act.setdefault("exchanges", []).append({
-            "type": "production",
-            "name": new_act["name"],
-            "product": product_name,
-            "amount": 1,  # +1 to ensure square matrix linking
-            "unit": new_act.get("unit", "kilogram"),
-            "location": location,
-            "input": (new_act["name"], product_name, location, new_act.get("unit", "kilogram"))
-        })
+        new_act.setdefault("exchanges", []).append(
+            {
+                "type": "production",
+                "name": new_act["name"],
+                "product": product_name,
+                "amount": 1,  # +1 to ensure square matrix linking
+                "unit": new_act.get("unit", "kilogram"),
+                "location": location,
+                "input": (
+                    new_act["name"],
+                    product_name,
+                    location,
+                    new_act.get("unit", "kilogram"),
+                ),
+            }
+        )
 
     # Extra safety: ensure every production exchange has a valid input
     for exc in new_act["exchanges"]:
         if exc["type"] == "production" and "input" not in exc:
-            exc["input"] = (exc["name"], exc["product"], exc["location"], exc.get("unit", "kilogram"))
+            exc["input"] = (
+                exc["name"],
+                exc["product"],
+                exc["location"],
+                exc.get("unit", "kilogram"),
+            )
 
     return new_act
-
 
 
 def has_exchange_matching(activity, name_filters, prod_filters) -> bool:
@@ -193,17 +215,21 @@ def has_exchange_matching(activity, name_filters, prod_filters) -> bool:
     return False
 
 
-
 def activity_filter_factory(name_filters: dict, prod_filters: dict) -> callable:
     """
     Return a function that checks if an activity has at least one
     technosphere exchange that matches name_filters and prod_filters.
     """
+
     def filter_func(activity):
         return has_exchange_matching(activity, name_filters, prod_filters)
+
     return filter_func
 
-def partial_split_exchange(activity, old_cfg, bf_share, imp_share, get_backfill_provider):
+
+def partial_split_exchange(
+    activity, old_cfg, bf_share, imp_share, get_backfill_provider
+):
     """
     Within 'activity', partial-split any exchanges that matches 'old_cfg' (impoundment config).
     So if an exchange is e.g. 1.0 kg, we keep imp_share portion for original name/product, and
@@ -240,7 +266,6 @@ def partial_split_exchange(activity, old_cfg, bf_share, imp_share, get_backfill_
                 if any(f.lower() in exc_prod for f in prod_filters["mask"]):
                     matched = False
 
-
             if matched:
                 splitted = True
                 total_amount = exc["amount"]
@@ -252,7 +277,9 @@ def partial_split_exchange(activity, old_cfg, bf_share, imp_share, get_backfill_
                     logger.info(f"   -> impound portion: {keep_exc['amount']}")
 
                 if bf_share > 0:
-                    provider = get_backfill_provider(activity["location"], exc["product"])
+                    provider = get_backfill_provider(
+                        activity["location"], exc["product"]
+                    )
 
                     if provider:
                         bf_exc = copy_exchange(exc)
@@ -265,12 +292,14 @@ def partial_split_exchange(activity, old_cfg, bf_share, imp_share, get_backfill_
                             provider["name"],
                             provider["reference product"],
                             provider["location"],
-                            provider.get("unit", "kilogram")
+                            provider.get("unit", "kilogram"),
                         )
                         new_exchanges.append(bf_exc)
                         logger.info(f"   -> backfill portion: {bf_exc['amount']}")
                     else:
-                        logger.warning(f"[Mining] No backfill provider found for {activity['location']}")
+                        logger.warning(
+                            f"[Mining] No backfill provider found for {activity['location']}"
+                        )
                 continue
             else:
                 print(f"[Mining] No match for exchange: {exc_name} / {exc_prod}")
@@ -278,8 +307,6 @@ def partial_split_exchange(activity, old_cfg, bf_share, imp_share, get_backfill_
         new_exchanges.append(exc)
 
     activity["exchanges"] = new_exchanges
-
-
 
 
 class Mining(BaseTransformation):
@@ -318,17 +345,18 @@ class Mining(BaseTransformation):
         numeric_shares = parse_tailings_shares(self.year, config_glo)
         bf_share = numeric_shares.get("backfill", 0.0)
         imp_share = numeric_shares.get("impoundment", 1.0)
-        logger.info(f"[Mining] For year {self.year}, backfill={bf_share}, impoundment={imp_share}")
+        logger.info(
+            f"[Mining] For year {self.year}, backfill={bf_share}, impoundment={imp_share}"
+        )
 
         backfill_cfg = config_glo.get("backfill", {})
-        impound_cfg  = config_glo.get("impoundment", {})
+        impound_cfg = config_glo.get("impoundment", {})
 
         name_filters = impound_cfg.get("name", {})
         prod_filters = impound_cfg.get("reference product", {})
 
         def impound_filter_func(act):
             return has_exchange_matching(act, name_filters, prod_filters)
-
 
         impound_consumers = list(ws.get_many(self.database, impound_filter_func))
 
@@ -346,21 +374,25 @@ class Mining(BaseTransformation):
         name = "treatment of sulfidic tailings, generic, backfilling"
         generic_product = "sulfidic tailings, generic"
 
-        providers = list(ws.get_many(
-            self.database,
-            ws.equals("name", name),
-            ws.equals("reference product", product_name),
-            ws.equals("location", location),
-        ))
+        providers = list(
+            ws.get_many(
+                self.database,
+                ws.equals("name", name),
+                ws.equals("reference product", product_name),
+                ws.equals("location", location),
+            )
+        )
         if providers:
             return providers[0]
 
-        fallback = list(ws.get_many(
-            self.database,
-            ws.equals("name", name),
-            ws.equals("reference product", generic_product),
-            ws.equals("location", "GLO"),
-        ))
+        fallback = list(
+            ws.get_many(
+                self.database,
+                ws.equals("name", name),
+                ws.equals("reference product", generic_product),
+                ws.equals("location", "GLO"),
+            )
+        )
         if not fallback:
             print("[Mining] WARNING: No fallback found for backfill provider")
             return None
@@ -374,17 +406,9 @@ class Mining(BaseTransformation):
         self.write_log(new_provider, "created")
         return new_provider
 
-
     def write_log(self, dataset, status="updated"):
-        txt = (f"{status}|{self.model}|{self.scenario}|{self.year}|"
-               f"{dataset['name']}|{dataset.get('reference product','')}|{dataset['location']}")
+        txt = (
+            f"{status}|{self.model}|{self.scenario}|{self.year}|"
+            f"{dataset['name']}|{dataset.get('reference product','')}|{dataset['location']}"
+        )
         logger.info(txt)
-
-
-
-
-
-
-
-
-
