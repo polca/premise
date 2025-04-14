@@ -13,6 +13,7 @@ from .filesystem_constants import DATA_DIR
 from .geomap import Geomap
 from .logger import create_logger
 from .utils import rescale_exchanges
+from .inventory_imports import get_classifications
 import wurst.searching as ws
 
 logger = create_logger("validation")
@@ -165,6 +166,7 @@ class BaseDatasetValidator:
         self.minor_issues_log = []
         self.major_issues_log = []
         self.biosphere_name = biosphere_name
+        self.classifications = get_classifications()
 
     def check_matrix_squareness(self):
         """
@@ -561,6 +563,38 @@ class BaseDatasetValidator:
 
             ds["exchanges"] = [clean_up(exc) for exc in ds["exchanges"]]
 
+    def add_missing_classifications(self):
+
+        missing_classifications = []
+
+        for ds in self.database:
+            if "classifications" not in ds:
+                if (ds["name"], ds["reference product"]) in self.classifications:
+                    ds["classifications"] = [
+                        (
+                            "ISIC rev.4 ecoinvent",
+                            self.classifications[(ds["name"], ds["reference product"])][
+                                "ISIC rev.4 ecoinvent"
+                            ],
+                        ),
+                        (
+                            "CPC",
+                            self.classifications[(ds["name"], ds["reference product"])][
+                                "CPC"
+                            ],
+                        ),
+                    ]
+                else:
+                    missing_classifications.append(
+                        [ds["name"], ds["reference product"]]
+                    )
+
+        with open("missing_classifications.csv", "w") as f:
+            writer = csv.writer(f)
+            writer.writerow(["name", "reference product"])
+            for row in missing_classifications:
+                writer.writerow(row)
+
     def log_issue(self, dataset, reason, message, issue_type="minor"):
 
         if issue_type == "minor":
@@ -605,6 +639,7 @@ class BaseDatasetValidator:
         self.correct_fields_format()
         self.check_amount_format()
         self.reformat_parameters()
+        self.add_missing_classifications()
         self.check_uncertainty()
         self.save_log()
         if len(self.minor_issues_log) > 0:
