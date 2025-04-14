@@ -183,11 +183,13 @@ def create_fleet_vehicles(
         total_km = region_size_fleet.sum()
 
         if total_km > 0:
-            name = (
-                f"{vehicles_map[vehicle_type]['name']}, unspecified, long haul"
-                if vehicle_type == "truck"
-                else f"{vehicles_map[vehicle_type]['name']}, unspecified"
-            )
+
+            name = vehicles_map[vehicle_type]["name"]
+            if vehicle_type == "truck":
+                name = f"{name}, unspecified, long haul"
+            if vehicle_type == "car":
+                name = f"{name}, unspecified"
+
             act = {
                 "name": name,
                 "reference product": vehicles_map[vehicle_type]["name"],
@@ -205,7 +207,7 @@ def create_fleet_vehicles(
                 ],
                 "code": str(uuid.uuid4().hex),
                 "database": "premise",
-                "comment": f"Fleet-average vehicle for the year {year}, "
+                "comment": f"Fleet-average {vehicle_type} for the year {year}, "
                 f"for the region {region}.",
             }
 
@@ -386,6 +388,7 @@ class Transport(BaseTransformation):
         self.vehicle_fuel_map = mapping.generate_vehicle_fuel_map(
             transport_type=vehicle_type
         )
+
         self.battery_size = get_battery_size()
 
         # check if vehicle map is empty
@@ -419,31 +422,6 @@ class Transport(BaseTransformation):
 
         new_datasets = []
 
-        for ds in list(
-            set([(v["name"], v["reference product"]) for v in vehicle_datasets])
-        ):
-            new_datasets.extend(
-                self.fetch_proxies(
-                    subset=vehicle_datasets,
-                    name=ds[0],
-                    ref_prod=ds[1],
-                ).values()
-            )
-
-        for new_ds in new_datasets:
-            new_ds = self.adjust_transport_efficiency(new_ds)
-
-            if not self.is_in_index(new_ds):
-                self.add_to_index(new_ds)
-                self.database.append(new_ds)
-
-            else:
-                print(
-                    f"Dataset {new_ds['name'], new_ds['location']} already in the database."
-                )
-
-        fleet_act = []
-
         arr = None
         if self.vehicle_type == "two-wheeler":
             arr = self.iam_data.two_wheelers_fleet
@@ -457,6 +435,31 @@ class Transport(BaseTransformation):
             arr = self.iam_data.rail_freight_fleet
         if self.vehicle_type == "ship":
             arr = self.iam_data.sea_freight_fleet
+
+        processed_datasets = []
+        for vehicle_type, vehicle_dataset in self.vehicle_map.items():
+            vehicle_dataset = list(vehicle_dataset)[0]
+
+            if vehicle_dataset in processed_datasets:
+                continue
+
+            new_datasets.extend(
+                self.fetch_proxies(
+                    subset=vehicle_datasets,
+                    name=vehicle_dataset,
+                    ref_prod="",
+                    production_variable=vehicle_type,
+                ).values()
+            )
+
+        for new_ds in new_datasets:
+            new_ds = self.adjust_transport_efficiency(new_ds)
+
+            if not self.is_in_index(new_ds):
+                self.add_to_index(new_ds)
+                self.database.append(new_ds)
+
+        fleet_act = []
 
         if arr is None:
             return []
@@ -486,15 +489,15 @@ class Transport(BaseTransformation):
             ):
                 self.adjust_battery_size(ds)
 
-        # if trucks, need to reconnect everything
+        # if trucks or ships, need to reconnect everything
         # loop through datasets that use truck transport
-        if self.vehicle_type == "truck":
+        if self.vehicle_type in ("truck", "ship"):
 
             list_created_vehicles = [(v["name"], v["location"]) for v in fleet_act]
 
             for dataset in ws.get_many(
                 self.database,
-                ws.doesnt_contain_any("name", ["freight, lorry"]),
+                ws.doesnt_contain_any("name", ["freight"]),
                 ws.exclude(ws.equals("unit", "ton kilometer")),
             ):
                 for exc in ws.technosphere(
@@ -502,34 +505,37 @@ class Transport(BaseTransformation):
                     ws.either(
                         *[
                             ws.equals("name", v)
-                            for v in self.mapping["truck"]["old_trucks"]
+                            for v in self.mapping[self.vehicle_type]["old"]
                         ]
                     ),
                     ws.equals("unit", "ton kilometer"),
                 ):
 
-                    new_name = self.mapping["truck"]["old_trucks"][exc["name"]][
+                    new_name = self.mapping[self.vehicle_type]["old"][exc["name"]][
                         self.model
                     ]
                     new_loc = self.geo.ecoinvent_to_iam_location(dataset["location"])
 
                     if (new_name, new_loc) in list_created_vehicles:
                         exc["name"] = new_name
-                        exc["product"] = "transport, freight, lorry"
+                        exc["product"] = self.mapping[self.vehicle_type]["name"]
                         exc["location"] = new_loc
                     else:
                         print(f"Could not find dataset for {new_name} in {new_loc}.")
                         exc["name"] = (
                             "transport, freight, lorry, unspecified, long haul"
                         )
-                        exc["product"] = "transport, freight, lorry"
+                        exc["product"] = self.mapping[self.vehicle_type]["name"]
                         exc["location"] = "World"
 
             # also we need to empty the old transport datasets
             for dataset in ws.get_many(
                 self.database,
                 ws.either(
-                    *[ws.equals("name", v) for v in self.mapping["truck"]["old_trucks"]]
+                    *[
+                        ws.equals("name", v)
+                        for v in self.mapping[self.vehicle_type]["old"]
+                    ]
                 ),
             ):
                 dataset["exchanges"] = [
@@ -540,7 +546,7 @@ class Transport(BaseTransformation):
                 )
 
                 # add new truck as exchange
-                new_name = self.mapping["truck"]["old_trucks"][dataset["name"]][
+                new_name = self.mapping[self.vehicle_type]["old"][dataset["name"]][
                     self.model
                 ]
                 new_loc = self.geo.ecoinvent_to_iam_location(dataset["location"])
@@ -548,7 +554,7 @@ class Transport(BaseTransformation):
                 if (new_name, new_loc) in list_created_vehicles:
                     new_exc = {
                         "name": new_name,
-                        "product": "transport, freight, lorry",
+                        "product": self.mapping[self.vehicle_type]["name"],
                         "unit": "ton kilometer",
                         "location": new_loc,
                         "type": "technosphere",
@@ -558,14 +564,17 @@ class Transport(BaseTransformation):
                 else:
                     print(f"Could not find dataset for {new_name} in {new_loc}.")
                     new_exc = {
-                        "name": "transport, freight, lorry, unspecified, long haul",
-                        "product": "transport, freight, lorry",
+                        "name": self.mapping[self.vehicle_type]["name"],
+                        "product": self.mapping[self.vehicle_type]["name"],
                         "unit": "ton kilometer",
                         "location": "World",
                         "type": "technosphere",
                         "amount": 1,
                         "uncertainty type": 0,
                     }
+                    if self.vehicle_type == "truck":
+                        new_exc["name"] = f"{new_exc['name']}, unspecified, long haul"
+
                 dataset["exchanges"].append(new_exc)
 
         return fleet_act
@@ -598,11 +607,15 @@ class Transport(BaseTransformation):
 
         variable = self.rev_map[dataset["name"]]
 
-        scaling_factor = 1 / self.find_iam_efficiency_change(
-            data=data,
-            variable=variable,
-            location=dataset["location"],
-        )
+        if variable in data.coords["variables"].values:
+            scaling_factor = 1 / self.find_iam_efficiency_change(
+                data=data,
+                variable=variable,
+                location=dataset["location"],
+            )
+        else:
+            # if not found, we assume that the efficiency is 1
+            scaling_factor = 1
 
         if scaling_factor != 1:
             dataset = rescale_exchanges(

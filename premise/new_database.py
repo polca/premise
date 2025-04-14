@@ -940,6 +940,10 @@ class NewDatabase:
                 "func": _update_vehicles,
                 "args": ("truck", self.version, self.system_model),
             },
+            "ships": {
+                "func": _update_vehicles,
+                "args": ("ship", self.version, self.system_model),
+            },
             "buses": {
                 "func": _update_vehicles,
                 "args": ("bus", self.version, self.system_model),

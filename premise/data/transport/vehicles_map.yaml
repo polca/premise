@@ -33,6 +33,17 @@ car:
   unit: kilometer
   name: transport, passenger car
 
+ship:
+  unit: ton kilometer
+  name: transport, freight, sea, container ship, unspecified
+  old:
+    market for transport, freight, sea, container ship:
+      remind: transport, freight, sea, container ship, unspecified
+      remind-eu: transport, freight, sea, container ship, unspecified
+      image: transport, freight, sea, container ship, unspecified
+      tiam-ucl: transport, freight, sea, container ship, unspecified
+      witch: transport, freight, sea, container ship, unspecified
+
 truck:
   sizes:
     - 18t
@@ -42,7 +53,7 @@ truck:
     - 40t
   unit: ton kilometer
   name: transport, freight, lorry
-  old_trucks:
+  old:
     transport, freight, lorry 16-32 metric ton, EURO1:
       remind: transport, freight, lorry, 26t gross weight, unspecified powertrain, long haul
       remind-eu: transport, freight, lorry, 26t gross weight, unspecified powertrain, long haul

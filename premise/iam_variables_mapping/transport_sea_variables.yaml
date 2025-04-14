@@ -29,9 +29,24 @@ ship, marine oil:
   ecoinvent_aliases:
     fltr:
       - transport, freight, sea, container ship
+    mask:
+      - market
+      - biodiesel
+      - diesel
+      - hydrogen
+      - electricity
+      - ammonia
+      - methanol
+      - methane
+      - liquefied petroleum gas
+      - reefer
   ecoinvent_fuel_aliases:
     fltr:
       - heavy fuel oil
+    mask:
+      - burned
+      - heat
+      - import
 
 ship, diesel:
   iam_aliases:
@@ -50,10 +65,15 @@ ship, diesel:
       - Final Energy|Transport|Ship|International|Gasoline
   ecoinvent_aliases:
     fltr:
-      - transport, freight, sea, container ship
+      - transport, freight, sea, container ship, powered with diesel
   ecoinvent_fuel_aliases:
     fltr:
-      - heavy fuel oil
+      - diesel production
+    mask:
+      - biodiesel
+      - synthetic
+      - burned
+      - from
 
 ship, biodiesel:
   iam_aliases:
@@ -85,6 +105,9 @@ ship, biodiesel:
   ecoinvent_fuel_aliases:
     fltr:
       - biodiesel
+    mask:
+      - burned
+      - transport
 
 ship, electric:
   iam_aliases:
@@ -103,7 +126,14 @@ ship, electric:
       - transport, freight, sea, container ship, powered with electricity
   ecoinvent_fuel_aliases:
     fltr:
-      - electricity
+      - electricity, low voltage
+    mask:
+      - distribution
+      - transmission
+      - renewable
+      - import
+      - attribute
+      - residual
 
 ship, fuel cell:
   iam_aliases:
@@ -127,7 +157,14 @@ ship, fuel cell:
       - transport, freight, sea, container ship, powered with hydrogen
   ecoinvent_fuel_aliases:
     fltr:
-      - hydrogen
+      - hydrogen production
+      - market for hydrogen
+    mask:
+      - plant
+      - sulfide
+      - peroxide
+      - cyanide
+      - fluoride
 
 ship, ammonia:
   iam_aliases:
@@ -151,7 +188,7 @@ ship, ammonia:
       - transport, freight, sea, container ship, powered with liquid ammonia
   ecoinvent_fuel_aliases:
     fltr:
-      - ammonia
+      - ammonia production
 
 ship, methanol:
   iam_aliases:
@@ -166,6 +203,22 @@ ship, methanol:
   ecoinvent_fuel_aliases:
     fltr:
       - methanol
+    mask:
+      - diesel
+      - gasoline
+      - heat
+      - burned
+      - kerosene
+      - olefins
+      - liquefied
+      - transport
+      - acid
+      - formaldehyde
+      - distillation
+      - facility
+      - factory
+      - market
+      - propylene
 
 ship, synthetic methane:
   iam_aliases:
@@ -179,7 +232,7 @@ ship, synthetic methane:
       - transport, freight, sea, container ship, powered with synthetic methane
   ecoinvent_fuel_aliases:
     fltr:
-      - methane
+      - methane, from electrochemical methanation
 
 ship, synthetic LPG:
   iam_aliases:
@@ -200,3 +253,10 @@ ship, synthetic LPG:
   ecoinvent_fuel_aliases:
     fltr:
       - liquefied petroleum gas
+    mask:
+      - heat
+      - burned
+      - transport
+      - import
+      - biomethane
+      - diesel

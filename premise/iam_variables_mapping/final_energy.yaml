@@ -2084,7 +2084,7 @@ Transport - Freight - Domestic Shipping - Syn Fuel:
 Transport - Freight - Domestic Shipping - LNG:
   ecoinvent_aliases:
     fltr:
-      name:
+      name: liquefied petroleum gas, burned in residential natural gas boiler <100kW #TODO: improve
       reference product: heat
   iam_aliases:
     tiam-ucl: Final Energy|Transport|Ship|Domestic|Liquefied Natural Gas|Liquefied Natural Gas
@@ -2144,7 +2144,7 @@ Transport - Freight - Int. Shipping - H2:
 Transport - Freight - Int. Shipping - LNG:
   ecoinvent_aliases:
     fltr:
-      name:
+      name: liquefied petroleum gas, burned in residential natural gas boiler <100kW #TODO: improve
       reference product: heat
   iam_aliases:
     tiam-ucl: Final Energy|Transport|Ship|International|Liquefied Natural Gas|Liquefied Natural Gas
@@ -2586,12 +2586,12 @@ Transport - Freight - Truck(7_5t) - Syn Fuel:
     remind: FE|Transport|Freight|Road|Light|Truck(7_5t)|Liquids|Hydrogen
 
 Transport - Freight - Domestic Aviation - Elec:
-    ecoinvent_aliases:
-      fltr:
-        name: electricity, used in aircraft
-        reference product: electricity, low voltage
-    iam_aliases:
-      image: Final Energy|Transportation|Freight|Air|Electricity
+  ecoinvent_aliases:
+    fltr:
+      name: electricity, used in aircraft
+      reference product: electricity, low voltage
+  iam_aliases:
+    image: Final Energy|Transportation|Freight|Air|Electricity
 
 Transport - Freight - Domestic Aviation - H2:
     ecoinvent_aliases:

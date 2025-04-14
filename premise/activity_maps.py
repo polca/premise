@@ -31,6 +31,7 @@ TWO_WHEELERS = VARIABLES_DIR / "transport_two_wheelers_variables.yaml"
 BUSES = VARIABLES_DIR / "transport_bus_variables.yaml"
 TRUCKS = VARIABLES_DIR / "transport_roadfreight_variables.yaml"
 TRAINS = VARIABLES_DIR / "transport_railfreight_variables.yaml"
+SHIPS = VARIABLES_DIR / "transport_sea_variables.yaml"
 FINAL_ENERGY = VARIABLES_DIR / "final_energy.yaml"
 
 
@@ -344,6 +345,10 @@ class InventorySet:
             mapping = self.generate_sets_from_filters(
                 get_mapping(filepath=TRAINS, var="ecoinvent_aliases", model=self.model)
             )
+        elif transport_type == "ship":
+            mapping = self.generate_sets_from_filters(
+                get_mapping(filepath=SHIPS, var="ecoinvent_aliases", model=self.model)
+            )
 
         # remove empty values
         mapping = {key: val for key, val in mapping.items() if len(val) > 0}
@@ -376,6 +381,10 @@ class InventorySet:
         elif transport_type == "train":
             mapping = self.generate_sets_from_filters(
                 get_mapping(filepath=TRAINS, var="ecoinvent_fuel_aliases")
+            )
+        elif transport_type == "ship":
+            mapping = self.generate_sets_from_filters(
+                get_mapping(filepath=SHIPS, var="ecoinvent_fuel_aliases")
             )
 
         # remove empty values
