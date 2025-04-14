@@ -36,6 +36,7 @@ IAM_FINAL_ENERGY_VARS = VARIABLES_DIR / "final_energy.yaml"
 IAM_OTHER_VARS = VARIABLES_DIR / "other_variables.yaml"
 IAM_TRANS_ROADFREIGHT_VARS = VARIABLES_DIR / "transport_roadfreight_variables.yaml"
 IAM_TRANS_RAILFREIGHT_VARS = VARIABLES_DIR / "transport_railfreight_variables.yaml"
+IAM_TRANS_SEAFREIGHT_VARS = VARIABLES_DIR / "transport_sea_variables.yaml"
 IAM_TRANS_PASS_CARS_VARS = VARIABLES_DIR / "transport_passenger_cars_variables.yaml"
 IAM_TRANS_BUS_VARS = VARIABLES_DIR / "transport_bus_variables.yaml"
 IAM_TRANS_TWO_WHEELERS_VARS = VARIABLES_DIR / "transport_two_wheelers_variables.yaml"
@@ -458,6 +459,14 @@ class IAMDataCollection:
             IAM_TRANS_RAILFREIGHT_VARS, variable="energy_use_aliases"
         )
 
+        seafreight_prod_vars = self.__get_iam_variable_labels(
+            IAM_TRANS_SEAFREIGHT_VARS, variable="iam_aliases"
+        )
+
+        seafreight_energy_vars = self.__get_iam_variable_labels(
+            IAM_TRANS_SEAFREIGHT_VARS, variable="energy_use_aliases"
+        )
+
         passenger_cars_prod_vars = self.__get_iam_variable_labels(
             IAM_TRANS_PASS_CARS_VARS, variable="iam_aliases"
         )
@@ -509,6 +518,8 @@ class IAMDataCollection:
             + list(roadfreight_energy_vars.values())
             + list(railfreight_prod_vars.values())
             + list(railfreight_energy_vars.values())
+            + list(seafreight_prod_vars.values())
+            + list(seafreight_energy_vars.values())
             + list(passenger_cars_prod_vars.values())
             + list(passenger_cars_energy_vars.values())
             + list(bus_prod_vars.values())
@@ -708,6 +719,13 @@ class IAMDataCollection:
             sector="transport",
         )
 
+        self.sea_freight_fleet = self.__fetch_market_data(
+            data=data,
+            input_vars=seafreight_prod_vars,
+            system_model=self.system_model,
+            sector="transport",
+        )
+
         self.passenger_car_fleet = self.__fetch_market_data(
             data=data,
             input_vars=passenger_cars_prod_vars,
@@ -880,6 +898,21 @@ class IAMDataCollection:
             energy_labels=railfreight_energy_vars,
         )
 
+        self.sea_freight_efficiencies = self.get_iam_efficiencies(
+            data=data,
+            production_labels=seafreight_prod_vars,
+            energy_labels=seafreight_energy_vars,
+        )
+        # we may want to limit the efficiency change for vehicles
+        # as we know those won't improve a lot more in the future
+        if (
+            self.sea_freight_efficiencies is not None
+            and self.use_absolute_efficiency == False
+        ):
+            self.sea_freight_efficiencies = self.sea_freight_efficiencies.clip(
+                None, 1.25
+            )
+
         self.passenger_car_efficiencies = self.get_iam_efficiencies(
             data=data,
             production_labels=passenger_cars_prod_vars,
@@ -942,6 +975,7 @@ class IAMDataCollection:
                 **buildings_heat_vars,
                 **roadfreight_prod_vars,
                 **railfreight_prod_vars,
+                **seafreight_prod_vars,
                 **passenger_cars_prod_vars,
                 **bus_prod_vars,
                 **two_wheelers_prod_vars,
@@ -1222,21 +1256,6 @@ class IAMDataCollection:
         array.attrs["unit"] = dict(
             dataframe.groupby("variables")["unit"].first().to_dict().items()
         )
-
-        array = (
-            dataframe.melt(
-                id_vars=["region", "variables", "unit"],
-                var_name="year",
-                value_name="value",
-            )[["region", "variables", "year", "unit", "value"]]
-            .groupby(["region", "variables", "year"])["value"]
-            .mean()
-            .to_xarray()
-        )
-
-        array.attrs["unit"] = dict(
-            dataframe.groupby("variables")["unit"].first().to_dict().items()
-        )  #### Termina Aqui
 
         return array
 

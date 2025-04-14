@@ -37,6 +37,7 @@ def _update_vehicles(scenario, vehicle_type, version, system_model):
         "bus": scenario["iam data"].bus_fleet,
         "train": scenario["iam data"].rail_freight_fleet,
         "two-wheeler": scenario["iam data"].two_wheelers_fleet,
+        "ship": scenario["iam data"].sea_freight_fleet,
     }
 
     has_fleet = True
@@ -454,6 +455,8 @@ class Transport(BaseTransformation):
             arr = self.iam_data.bus_fleet
         if self.vehicle_type == "train":
             arr = self.iam_data.rail_freight_fleet
+        if self.vehicle_type == "ship":
+            arr = self.iam_data.sea_freight_fleet
 
         if arr is None:
             return []
@@ -585,6 +588,8 @@ class Transport(BaseTransformation):
             data = self.iam_data.rail_freight_efficiencies
         elif self.vehicle_type == "two-wheeler":
             data = self.iam_data.two_wheelers_efficiencies
+        elif self.vehicle_type == "ship":
+            data = self.iam_data.sea_freight_efficiencies
         else:
             raise ValueError("Unknown vehicle type.")
 
