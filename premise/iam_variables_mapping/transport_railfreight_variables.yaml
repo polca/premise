@@ -27,8 +27,8 @@ train, diesel-electric:
       - ES|Transport|Freight|Rail|Liquids|Fossil
       - ES|Transport|Freight|Rail|Liquids|Biomass
     tiam-ucl:
-      - Final Energy|Transport|Rail|Freight|Biodiesel
-      - Final Energy|Transport|Rail|Freight|Diesel
+      - Distance|Transport|Rail|Freight|Biodiesel
+      - Distance|Transport|Rail|Freight|Diesel
   energy_use_aliases:
     remind: 
       - FE|Transport|Freight|Rail|Liquids|Fossil
@@ -37,8 +37,8 @@ train, diesel-electric:
       - FE|Transport|Freight|Rail|Liquids|Fossil
       - FE|Transport|Freight|Rail|Liquids|Biomass
     tiam-ucl:
-      - Distance|Transport|Rail|Freight|Biodiesel
-      - Distance|Transport|Rail|Freight|Diesel
+      - Final Energy|Transport|Rail|Freight|Biodiesel
+      - Final Energy|Transport|Rail|Freight|Diesel
   ecoinvent_aliases:
     fltr:
       - transport, freight train, diesel-electric
