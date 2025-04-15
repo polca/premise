@@ -1610,9 +1610,9 @@ class Electricity(BaseTransformation):
         datasets_to_duplicate = [
             dataset
             for technology, datasets in self.powerplant_map.items()
-            for dataset in datasets if technology in techs
+            for dataset in datasets
+            if technology in techs
         ]
-
 
         datasets_to_duplicate.insert(
             0,
@@ -1620,17 +1620,22 @@ class Electricity(BaseTransformation):
         )
 
         datasets_to_duplicate.extend(
-            [ds for ds in self.databse if any(x in ds["name"] for x in [
-                "carbon dioxide storage from",
-                "carbon dioxide storage at",
-                "carbon dioxide, captured from hard coal",
-                "carbon dioxide, captured from lignite",
-                "carbon dioxide, captured from natural gas",
-                "carbon dioxide, captured at wood burning",
-                "carbon dioxide, captured at hydrogen burning",
-                ]
-            )
-             ]
+            [
+                ds
+                for ds in self.databse
+                if any(
+                    x in ds["name"]
+                    for x in [
+                        "carbon dioxide storage from",
+                        "carbon dioxide storage at",
+                        "carbon dioxide, captured from hard coal",
+                        "carbon dioxide, captured from lignite",
+                        "carbon dioxide, captured from natural gas",
+                        "carbon dioxide, captured at wood burning",
+                        "carbon dioxide, captured at hydrogen burning",
+                    ]
+                )
+            ]
         )
 
         for dataset in datasets_to_duplicate:

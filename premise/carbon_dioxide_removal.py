@@ -163,8 +163,7 @@ class CarbonDioxideRemoval(BaseTransformation):
                         energy_input = sum(
                             e["amount"]
                             for e in dataset["exchanges"]
-                            if e["type"] == "technosphere"
-                            and e["unit"] == "megajoule"
+                            if e["type"] == "technosphere" and e["unit"] == "megajoule"
                         )
                         energy_input += sum(
                             e["amount"] * 3.6

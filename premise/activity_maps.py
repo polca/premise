@@ -438,9 +438,7 @@ class InventorySet:
             for tech, fltr in filtr.items()
         }
 
-        mapping = {
-            tech: [act for act in actlst] for tech, actlst in techs.items()
-        }
+        mapping = {tech: [act for act in actlst] for tech, actlst in techs.items()}
 
         # check if all keys have values
         # if not, print warning

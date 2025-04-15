@@ -206,7 +206,8 @@ class Biomass(BaseTransformation):
 
                     while not suppliers:
                         suppliers = [
-                            ds for ds in biomass_datasets
+                            ds
+                            for ds in biomass_datasets
                             if ds["location"] == possible_locations[counter]
                         ]
                         counter += 1

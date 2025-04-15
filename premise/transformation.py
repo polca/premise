@@ -724,7 +724,7 @@ class BaseTransformation:
     def fetch_proxies(
         self,
         datasets: List[dict],
-        production_variable: [str, list] =None,
+        production_variable: [str, list] = None,
         relink=True,
         regions=None,
         geo_mapping: dict = None,
@@ -824,7 +824,6 @@ class BaseTransformation:
                 elif isinstance(production_variable, dict):
                     prod_vol = production_variable[region]
 
-
             for prod in ws.production(d_act[region]):
                 prod["location"] = region
                 prod["production volume"] = prod_vol
@@ -848,21 +847,16 @@ class BaseTransformation:
 
         if delete_original_datasets is True:
             # remove the dataset from `self.database`
-            self.database = [
-                ds
-                for ds in self.database
-                if ds not in datasets
-            ]
+            self.database = [ds for ds in self.database if ds not in datasets]
 
         return d_act
 
-
     def empty_original_datasets(
-            self,
-            datasets: list[dict],
-            production_variable: [str, dict],
-            loc_map: Dict[str, dict],
-            regions: List[str] = None,
+        self,
+        datasets: list[dict],
+        production_variable: [str, dict],
+        loc_map: Dict[str, dict],
+        regions: List[str] = None,
     ) -> None:
         """
         Empty original ecoinvent datasets and replace them with IAM-based inputs.
@@ -903,7 +897,9 @@ class BaseTransformation:
 
             # Clean dataset
             dataset["has_downstream_consumer"] = False
-            dataset["exchanges"] = [e for e in dataset["exchanges"] if e["type"] == "production"]
+            dataset["exchanges"] = [
+                e for e in dataset["exchanges"] if e["type"] == "production"
+            ]
             dataset["emptied"] = True
             dataset.pop("adjust efficiency", None)
 
@@ -915,19 +911,34 @@ class BaseTransformation:
                 dataset["exchanges"].append(build_exchange(dataset, locations[0], 1.0))
 
             elif isinstance(production_variable, list):
-                if all(v in self.iam_data.production_volumes.variables.values for v in production_variable):
-                    total = self.iam_data.production_volumes.sel(
-                        region=locations, variables=production_variable
-                    ).interp(year=self.year).sum(dim=["variables", "region"]).values.item(0)
+                if all(
+                    v in self.iam_data.production_volumes.variables.values
+                    for v in production_variable
+                ):
+                    total = (
+                        self.iam_data.production_volumes.sel(
+                            region=locations, variables=production_variable
+                        )
+                        .interp(year=self.year)
+                        .sum(dim=["variables", "region"])
+                        .values.item(0)
+                    )
 
                     for location in locations:
-                        share = self.iam_data.production_volumes.sel(
-                            region=location, variables=production_variable
-                        ).interp(year=self.year).sum(dim="variables").values.item(0)
+                        share = (
+                            self.iam_data.production_volumes.sel(
+                                region=location, variables=production_variable
+                            )
+                            .interp(year=self.year)
+                            .sum(dim="variables")
+                            .values.item(0)
+                        )
                         share = safe_div(share, total)
 
                         if share > 0:
-                            dataset["exchanges"].append(build_exchange(dataset, location, share))
+                            dataset["exchanges"].append(
+                                build_exchange(dataset, location, share)
+                            )
 
             elif isinstance(production_variable, dict):
                 for loc, share in production_variable.items():
@@ -936,7 +947,11 @@ class BaseTransformation:
             else:
                 share = 1 / len(locations)
                 dataset["exchanges"].extend(
-                    [build_exchange(dataset, loc, share) for loc in locations if share > 0]
+                    [
+                        build_exchange(dataset, loc, share)
+                        for loc in locations
+                        if share > 0
+                    ]
                 )
 
             self.write_log(dataset=dataset, status="empty")

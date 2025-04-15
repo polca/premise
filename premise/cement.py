@@ -19,7 +19,8 @@ from .transformation import (
     InventorySet,
     List,
     np,
-    ws, new_exchange,
+    ws,
+    new_exchange,
 )
 from .validation import CementValidation
 
@@ -145,9 +146,7 @@ class Cement(BaseTransformation):
         }
 
         for technology, datasets in ccs_datasets.items():
-            new_datasets = self.fetch_proxies(
-                datasets=datasets
-            )
+            new_datasets = self.fetch_proxies(datasets=datasets)
 
             if technology == "cement, dry feed rotary kiln, efficient, with MEA CCS":
                 # we adjust the heat needs by subtraction 3.66 MJ with what
@@ -189,8 +188,16 @@ class Cement(BaseTransformation):
         ]
 
         datasets_to_regionalize = [
-            ds for ds in self.database
-            if any(x in ds["name"] for x in ("industrial gases production, cryogenic air separation", "air separation, cryogenic", "market for oxygen, liquid",))
+            ds
+            for ds in self.database
+            if any(
+                x in ds["name"]
+                for x in (
+                    "industrial gases production, cryogenic air separation",
+                    "air separation, cryogenic",
+                    "market for oxygen, liquid",
+                )
+            )
         ]
 
         for dataset in datasets_to_regionalize:
@@ -227,7 +234,8 @@ class Cement(BaseTransformation):
         # and store them in a dictionary
 
         original_clinker_dataset = [
-            ds for ds in self.database
+            ds
+            for ds in self.database
             if ds["name"] == "clinker production"
             and ds["reference product"] == "clinker"
         ]
@@ -725,7 +733,8 @@ class Cement(BaseTransformation):
         ]
 
         original_clinker_markets = [
-            ds for ds in self.database
+            ds
+            for ds in self.database
             if ds["name"] == "market for clinker"
             and ds["reference product"] == "clinker"
         ]
@@ -862,7 +871,6 @@ class Cement(BaseTransformation):
                 groups[group_key].append(d)
             return list(groups.values())
 
-
         markets = group_dicts_by_keys(markets, keys=["name", "reference product"])
         new_datasets = []
         for market in markets:
@@ -882,21 +890,21 @@ class Cement(BaseTransformation):
 
         # cement production
         production_datasets = [
-            ds for ds in self.database
-            if "cement production" in ds["name"]
-            and "cement" in ds["reference product"]
+            ds
+            for ds in self.database
+            if "cement production" in ds["name"] and "cement" in ds["reference product"]
         ]
 
-        production_datasets = group_dicts_by_keys(production_datasets, keys=["name", "reference product"])
+        production_datasets = group_dicts_by_keys(
+            production_datasets, keys=["name", "reference product"]
+        )
 
         new_datasets = []
 
         for production_dataset in production_datasets:
             # Fetch proxy datasets (one per IAM region)
             # Delete old datasets
-            new_cement_production = self.fetch_proxies(
-                datasets=production_dataset
-            )
+            new_cement_production = self.fetch_proxies(datasets=production_dataset)
 
             # add to log
             for new_dataset in list(new_cement_production.values()):
