@@ -117,11 +117,10 @@ class Biomass(BaseTransformation):
 
     def create_biomass_markets(self) -> None:
 
-        for activity in self.biomass_map["biomass - residual"]:
+        for datasets in self.biomass_map["biomass - residual"]:
             # create region-specific "Supply of forest residue" datasets
             forest_residues_ds = self.fetch_proxies(
-                name=activity,
-                ref_prod="",
+                datasets=datasets,
                 production_variable="biomass - residual",
             )
 
@@ -160,7 +159,7 @@ class Biomass(BaseTransformation):
                 ],
             }
 
-            for biomass_type, biomass_act in self.biomass_map.items():
+            for biomass_type, biomass_datasets in self.biomass_map.items():
 
                 if (
                     biomass_type
@@ -201,35 +200,15 @@ class Biomass(BaseTransformation):
                         "RoW",
                         "GLO",
                     ]
-                    possible_names = list(biomass_act)
+                    possible_names = list(biomass_datasets)
 
                     suppliers, counter = [], 0
 
                     while not suppliers:
-                        suppliers = list(
-                            ws.get_many(
-                                self.database,
-                                ws.either(
-                                    *[
-                                        ws.contains("name", possible_name)
-                                        for possible_name in possible_names
-                                    ]
-                                ),
-                                ws.equals("location", possible_locations[counter]),
-                                ws.either(
-                                    *[
-                                        ws.contains(
-                                            "reference product", possible_product
-                                        )
-                                        for possible_product in ("chips", "residue")
-                                    ]
-                                ),
-                                ws.equals("unit", "kilogram"),
-                                ws.doesnt_contain_any(
-                                    "name", ["willow", "post-consumer"]
-                                ),
-                            )
-                        )
+                        suppliers = [
+                            ds for ds in biomass_datasets
+                            if ds["location"] == possible_locations[counter]
+                        ]
                         counter += 1
 
                     suppliers = get_shares_from_production_volume(suppliers)

@@ -120,98 +120,92 @@ class CarbonDioxideRemoval(BaseTransformation):
         processed_datasets = []
         # get original dataset
         for technology, datasets in self.cdr_activities.items():
-            for ds_name in datasets:
 
-                if ds_name in processed_datasets:
-                    continue
+            # fetch the original dataset
+            new_ds = self.fetch_proxies(
+                datasets=datasets,
+            )
 
-                processed_datasets.append(ds_name)
-                # fetch the original dataset
-                new_ds = self.fetch_proxies(
-                    name=ds_name,
-                    ref_prod="",
-                )
+            # relink to energy mix for CDR plant, if available
+            if any(
+                x in technology
+                for x in ("direct air capture", "enhanced rock weathering")
+            ):
 
-                # relink to energy mix for CDR plant, if available
-                if any(
-                    x in technology
-                    for x in ("direct air capture", "enhanced rock weathering")
+                energy_dataset_name = None
+                if technology == "direct air capture" and not any(
+                    x in y for y in datasets for x in ("industrial", "pump", "waste")
                 ):
-
-                    energy_dataset_name = None
-                    if technology == "direct air capture" and not any(
-                        x in ds_name for x in ("industrial", "pump", "waste")
-                    ):
-                        energy_dataset_name = (
-                            "market for energy, for direct air capture and storage"
-                        )
-
-                    if technology == "enhanced rock weathering":
-                        energy_dataset_name = (
-                            "market for energy, for enhanced rock weathering"
-                        )
-
-                    if energy_dataset_name is not None:
-                        for region, dataset in new_ds.items():
-                            try:
-                                energy_supply = ws.get_one(
-                                    self.database,
-                                    ws.equals(
-                                        "name",
-                                        energy_dataset_name,
-                                    ),
-                                    ws.equals("location", region),
-                                    ws.equals("unit", "megajoule"),
-                                )
-                            except ws.NoResults:
-                                continue
-
-                            energy_input = sum(
-                                e["amount"]
-                                for e in dataset["exchanges"]
-                                if e["type"] == "technosphere"
-                                and e["unit"] == "megajoule"
-                            )
-                            energy_input += sum(
-                                e["amount"] * 3.6
-                                for e in dataset["exchanges"]
-                                if e["type"] == "technosphere"
-                                and e["unit"] == "kilowatt hour"
-                            )
-                            dataset["exchanges"] = [
-                                e
-                                for e in dataset["exchanges"]
-                                if e["unit"] not in ["megajoule", "kilowatt hour"]
-                            ]
-                            dataset["exchanges"].append(
-                                {
-                                    "name": energy_supply["name"],
-                                    "location": region,
-                                    "amount": energy_input,
-                                    "uncertainty type": 0,
-                                    "unit": "megajoule",
-                                    "type": "technosphere",
-                                    "product": energy_supply["reference product"],
-                                }
-                            )
-
-                for k, dataset in new_ds.items():
-                    # Add created dataset to cache
-                    self.add_new_entry_to_cache(
-                        location=dataset["location"],
-                        exchange=dataset,
-                        allocated=[dataset],
-                        shares=[
-                            1.0,
-                        ],
+                    energy_dataset_name = (
+                        "market for energy, for direct air capture and storage"
                     )
 
-                    # add it to list of created datasets
-                    self.write_log(dataset)
-                    # add it to list of created datasets
-                    self.add_to_index(dataset)
+                if technology == "enhanced rock weathering":
+                    energy_dataset_name = (
+                        "market for energy, for enhanced rock weathering"
+                    )
 
-                self.database.extend(new_ds.values())
+                if energy_dataset_name is not None:
+                    for region, dataset in new_ds.items():
+                        try:
+                            energy_supply = ws.get_one(
+                                self.database,
+                                ws.equals(
+                                    "name",
+                                    energy_dataset_name,
+                                ),
+                                ws.equals("location", region),
+                                ws.equals("unit", "megajoule"),
+                            )
+                        except ws.NoResults:
+                            continue
+
+                        energy_input = sum(
+                            e["amount"]
+                            for e in dataset["exchanges"]
+                            if e["type"] == "technosphere"
+                            and e["unit"] == "megajoule"
+                        )
+                        energy_input += sum(
+                            e["amount"] * 3.6
+                            for e in dataset["exchanges"]
+                            if e["type"] == "technosphere"
+                            and e["unit"] == "kilowatt hour"
+                        )
+                        dataset["exchanges"] = [
+                            e
+                            for e in dataset["exchanges"]
+                            if e["unit"] not in ["megajoule", "kilowatt hour"]
+                        ]
+                        dataset["exchanges"].append(
+                            {
+                                "name": energy_supply["name"],
+                                "location": region,
+                                "amount": energy_input,
+                                "uncertainty type": 0,
+                                "unit": "megajoule",
+                                "type": "technosphere",
+                                "product": energy_supply["reference product"],
+                            }
+                        )
+
+            for k, dataset in new_ds.items():
+                # Add created dataset to cache
+                self.add_new_entry_to_cache(
+                    location=dataset["location"],
+                    exchange=dataset,
+                    allocated=[dataset],
+                    shares=[
+                        1.0,
+                    ],
+                )
+
+                # add it to list of created datasets
+                self.write_log(dataset)
+                # add it to list of created datasets
+                self.add_to_index(dataset)
+
+            self.database.extend(new_ds.values())
 
     def generate_world_market(
         self,
@@ -485,14 +479,10 @@ class CarbonDioxideRemoval(BaseTransformation):
             return new_dataset
 
         # Using a list comprehension to process all technologies
-        subset = filter_technology(
-            dataset_names=[item for subset in technologies.values() for item in subset],
-            database=self.database,
-            unit="kilogram",
-        )
+        datasets = technologies.values()
 
         new_datasets = [
-            generate_regional_markets(region, subset)
+            generate_regional_markets(region, datasets)
             for region in self.regions
             if region != "World"
             and self.iam_data.cdr_technology_mix.sel(

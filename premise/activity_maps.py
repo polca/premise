@@ -439,7 +439,7 @@ class InventorySet:
         }
 
         mapping = {
-            tech: {act["name"] for act in actlst} for tech, actlst in techs.items()
+            tech: [act for act in actlst] for tech, actlst in techs.items()
         }
 
         # check if all keys have values

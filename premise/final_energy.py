@@ -5,11 +5,7 @@ datasets based on IAM output data.
 
 from typing import List
 
-from wurst import searching as ws
-
 from .data_collection import IAMDataCollection
-from .filesystem_constants import DATA_DIR
-from .inventory_imports import DefaultInventory
 from .transformation import BaseTransformation, InventorySet
 
 
@@ -84,38 +80,22 @@ class FinalEnergy(BaseTransformation):
 
         new_datasets, processed_datasets = [], []
 
-        for dataset in ws.get_many(
-            self.database,
-            ws.either(
-                *[
-                    ws.equals("name", name)
-                    for name in list(
-                        set(
-                            [
-                                ", ".join(sorted(s))
-                                for s in self.final_energy_map.values()
-                            ]
-                        )
-                    )
-                ]
-            ),
-        ):
+        for technology, datasets in self.final_energy_map.items():
+            for dataset in datasets:
+                if dataset["name"] in processed_datasets:
+                    continue
+                if dataset["location"] in self.regions:
+                    continue
+                if any(self.is_in_index(dataset, region) for region in self.regions):
+                    continue
 
-            if dataset["name"] in processed_datasets:
-                continue
-            if dataset["location"] in self.regions:
-                continue
-            if any(self.is_in_index(dataset, region) for region in self.regions):
-                continue
+                datasets = self.fetch_proxies(
+                    datasets=dataset,
+                )
+                new_datasets.append(datasets)
 
-            datasets = self.fetch_proxies(
-                name=dataset["name"],
-                ref_prod=dataset["reference product"],
-            )
-            new_datasets.append(datasets)
+                processed_datasets.append(dataset["name"])
 
-            processed_datasets.append(dataset["name"])
-
-        for datasets in new_datasets:
-            self.database.extend(datasets.values())
-            self.add_to_index(datasets.values())
+            for new_dataset in new_datasets:
+                self.database.extend(new_dataset.values())
+                self.add_to_index(new_dataset.values())

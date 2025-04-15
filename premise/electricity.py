@@ -1607,22 +1607,20 @@ class Electricity(BaseTransformation):
             "Storage, Hydrogen",
         ]
 
-        list_datasets_to_duplicate = list(
-            set(
-                dataset["name"]
-                for dataset in self.database
-                if dataset["name"]
-                in [y for k, v in self.powerplant_map.items() for y in v if k in techs]
-            )
-        )
+        datasets_to_duplicate = [
+            dataset
+            for technology, datasets in self.powerplant_map.items()
+            for dataset in datasets if technology in techs
+        ]
 
-        list_datasets_to_duplicate.insert(
+
+        datasets_to_duplicate.insert(
             0,
             "hydrogen storage, for grid-balancing",
         )
 
-        list_datasets_to_duplicate.extend(
-            [
+        datasets_to_duplicate.extend(
+            [ds for ds in self.databse if any(x in ds["name"] for x in [
                 "carbon dioxide storage from",
                 "carbon dioxide storage at",
                 "carbon dioxide, captured from hard coal",
@@ -1630,21 +1628,14 @@ class Electricity(BaseTransformation):
                 "carbon dioxide, captured from natural gas",
                 "carbon dioxide, captured at wood burning",
                 "carbon dioxide, captured at hydrogen burning",
-            ]
+                ]
+            )
+             ]
         )
 
-        for dataset in ws.get_many(
-            self.database,
-            ws.either(
-                *[ws.contains("name", name) for name in list_datasets_to_duplicate]
-            ),
-            ws.exclude(ws.contains("name", "market")),
-            ws.exclude(ws.contains("name", ", oxy, ")),
-            ws.exclude(ws.contains("name", ", pre, ")),
-        ):
+        for dataset in datasets_to_duplicate:
             new_plants = self.fetch_proxies(
-                name=dataset["name"],
-                ref_prod=dataset["reference product"],
+                datasets=dataset,
                 production_variable=self.powerplant_map_rev.get(dataset["name"]),
             )
 
@@ -2031,8 +2022,7 @@ class Electricity(BaseTransformation):
                 self.database.append(new_dataset)
 
                 new_datasets = self.fetch_proxies(
-                    name=variable["proxy"]["new name"],
-                    ref_prod=variable["proxy"]["reference product"],
+                    datasets=new_dataset,
                     empty_original_activity=False,
                 )
 

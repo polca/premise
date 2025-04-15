@@ -9,6 +9,7 @@ of the wurst database to the newly created cement markets.
 
 import copy
 import uuid
+from collections import defaultdict
 
 from .export import biosphere_flows_dictionary
 from .logger import create_logger
@@ -18,7 +19,7 @@ from .transformation import (
     InventorySet,
     List,
     np,
-    ws,
+    ws, new_exchange,
 )
 from .validation import CementValidation
 
@@ -143,13 +144,12 @@ class Cement(BaseTransformation):
             },
         }
 
-        for variable in ccs_datasets:
-            datasets = self.fetch_proxies(
-                name=ccs_datasets[variable]["name"],
-                ref_prod=ccs_datasets[variable]["reference product"],
+        for technology, datasets in ccs_datasets.items():
+            new_datasets = self.fetch_proxies(
+                datasets=datasets
             )
 
-            if variable == "cement, dry feed rotary kiln, efficient, with MEA CCS":
+            if technology == "cement, dry feed rotary kiln, efficient, with MEA CCS":
                 # we adjust the heat needs by subtraction 3.66 MJ with what
                 # the plant is expected to produce as excess heat
 
@@ -167,13 +167,13 @@ class Cement(BaseTransformation):
                 excess_heat_generation = 0.3  # 30%
                 fossil_heat_input = heat_input - (excess_heat_generation * heat_input)
 
-                for region, dataset in datasets.items():
+                for region, dataset in new_datasets.items():
                     for exc in ws.technosphere(
                         dataset, ws.contains("unit", "megajoule")
                     ):
                         exc["amount"] = fossil_heat_input
 
-            for dataset in datasets.values():
+            for dataset in new_datasets.values():
                 self.add_to_index(dataset)
                 self.write_log(dataset)
                 self.database.append(dataset)
@@ -188,17 +188,21 @@ class Cement(BaseTransformation):
             "market for oxygen, liquid",
         ]
 
-        for ds_to_regionlaize in datasets_to_regionalize:
+        datasets_to_regionalize = [
+            ds for ds in self.database
+            if any(x in ds["name"] for x in ("industrial gases production, cryogenic air separation", "air separation, cryogenic", "market for oxygen, liquid",))
+        ]
+
+        for dataset in datasets_to_regionalize:
 
             air_separation = self.fetch_proxies(
-                name=ds_to_regionlaize,
-                ref_prod="oxygen, liquid",
+                datasets=dataset,
             )
 
-            for dataset in air_separation.values():
-                self.add_to_index(dataset)
-                self.write_log(dataset)
-                self.database.append(dataset)
+            for new_dataset in air_separation.values():
+                self.add_to_index(new_dataset)
+                self.write_log(new_dataset)
+                self.database.append(new_dataset)
 
     def build_clinker_production_datasets(self) -> list:
         """
@@ -221,9 +225,15 @@ class Cement(BaseTransformation):
 
         # Fetch clinker production activities
         # and store them in a dictionary
+
+        original_clinker_dataset = [
+            ds for ds in self.database
+            if ds["name"] == "clinker production"
+            and ds["reference product"] == "clinker"
+        ]
+
         clinker = self.fetch_proxies(
-            name="clinker production",
-            ref_prod="clinker",
+            datasets=original_clinker_dataset,
             production_variable="cement, dry feed rotary kiln",
             geo_mapping={r: "Europe without Switzerland" for r in self.regions},
         )
@@ -714,9 +724,14 @@ class Cement(BaseTransformation):
             "cement, dry feed rotary kiln, efficient, with MEA CCS",
         ]
 
+        original_clinker_markets = [
+            ds for ds in self.database
+            if ds["name"] == "market for clinker"
+            and ds["reference product"] == "clinker"
+        ]
+
         clinker_market_datasets = self.fetch_proxies(
-            name="market for clinker",
-            ref_prod="clinker",
+            datasets=original_clinker_markets,
             production_variable=[
                 v
                 for v in variables
@@ -836,18 +851,23 @@ class Cement(BaseTransformation):
             )
         )
 
-        unique_markets = list(
-            set([(m["name"], m["reference product"]) for m in markets])
-        )
+        # restructure the markets list with lists of datasets
+        # with the same name and reference product
+        # we want to group items of markets by name and reference product
 
+        def group_dicts_by_keys(dicts: list, keys: list):
+            groups = defaultdict(list)
+            for d in dicts:
+                group_key = tuple(d.get(k) for k in keys)
+                groups[group_key].append(d)
+            return list(groups.values())
+
+
+        markets = group_dicts_by_keys(markets, keys=["name", "reference product"])
         new_datasets = []
-
-        for dataset in unique_markets:
+        for market in markets:
             new_cement_markets = self.fetch_proxies(
-                name=dataset[0],
-                ref_prod=dataset[1],
-                production_variable="cement, dry feed rotary kiln",
-                subset=markets,
+                datasets=market,
             )
 
             # add to log
@@ -861,29 +881,21 @@ class Cement(BaseTransformation):
         self.database.extend(new_datasets)
 
         # cement production
-        production = list(
-            ws.get_many(
-                self.database,
-                ws.contains("name", "cement production"),
-                ws.contains("reference product", "cement"),
-                ws.doesnt_contain_any("name", excluded),
-            )
-        )
+        production_datasets = [
+            ds for ds in self.database
+            if "cement production" in ds["name"]
+            and "cement" in ds["reference product"]
+        ]
 
-        reduced_production = list(
-            set([(p["name"], p["reference product"]) for p in production])
-        )
+        production_datasets = group_dicts_by_keys(production_datasets, keys=["name", "reference product"])
 
         new_datasets = []
 
-        for dataset in reduced_production:
+        for production_dataset in production_datasets:
             # Fetch proxy datasets (one per IAM region)
             # Delete old datasets
             new_cement_production = self.fetch_proxies(
-                name=dataset[0],
-                ref_prod=dataset[1],
-                production_variable="cement, dry feed rotary kiln",
-                subset=production,
+                datasets=production_dataset
             )
 
             # add to log

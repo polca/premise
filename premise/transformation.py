@@ -700,49 +700,37 @@ class BaseTransformation:
         }
 
     def region_to_proxy_dataset_mapping(
-        self, name: str, ref_prod: str, regions: List[str] = None
-    ) -> Dict[str, str]:
+        self, datasets: list[dict], regions: List[str] = None
+    ) -> Dict[str, dict]:
         d_map = {
-            self.ecoinvent_to_iam_loc[d["location"]]: d["location"]
-            for d in ws.get_many(
-                self.database,
-                ws.equals("name", name),
-                ws.contains("reference product", ref_prod),
-            )
+            self.ecoinvent_to_iam_loc[d["location"]]: d
+            for d in datasets
             if d["location"] not in self.regions
         }
 
         if not regions:
             regions = self.regions
 
-        fallback_loc = None
         if "RoW" in d_map.values():
             fallback_loc = "RoW"
         else:
             if "GLO" in d_map.values():
                 fallback_loc = "GLO"
             else:
-                try:
-                    fallback_loc = list(d_map.values())[0]
-                except IndexError:
-                    print(name, ref_prod, regions, d_map)
+                fallback_loc = list(d_map.values())[0]
 
         return {region: d_map.get(region, fallback_loc) for region in regions}
 
     def fetch_proxies(
         self,
-        name,
-        ref_prod,
-        production_variable=None,
+        datasets: List[dict],
+        production_variable: [str, list] =None,
         relink=True,
         regions=None,
         geo_mapping: dict = None,
-        delete_original_dataset=False,
+        delete_original_datasets=False,
         empty_original_activity=True,
-        exact_name_match=True,
-        exact_product_match=False,
         unlist=True,
-        subset: list = None,
     ) -> Dict[str, dict]:
         """
         Fetch dataset proxies, given a dataset `name` and `reference product`.
@@ -757,7 +745,7 @@ class BaseTransformation:
         :param relink: if `relink`, exchanges from the datasets will be relinked to
         the most geographically-appropriate providers from the database. This is computer-intensive.
         :param regions: regions to create proxy datasets for. if None, all regions are considered.
-        :param delete_original_dataset: if True, delete original datasets from the database.
+        :param delete_original_datasets: if True, delete original datasets from the database.
         :param empty_original_activity: if True, empty original activities from exchanges.
         :param exact_name_match: if True, look for exact name matches.
         :param exact_product_match: if True, look for exact product matches.
@@ -766,53 +754,18 @@ class BaseTransformation:
         :return: dictionary with IAM regions as keys, proxy datasets as values.
         """
 
+        if not isinstance(datasets, list):
+            datasets = [datasets]
+
         d_iam_to_eco = geo_mapping or self.region_to_proxy_dataset_mapping(
-            name=name, ref_prod=ref_prod, regions=regions
+            datasets=datasets, regions=regions
         )
 
         d_act = {}
 
-        ds_name, ds_ref_prod = [None, None]
+        for region, dataset in d_iam_to_eco.items():
 
-        for region in d_iam_to_eco:
-            # build filters
-            if exact_name_match is True:
-                filters = [
-                    ws.equals("name", name),
-                ]
-            else:
-                filters = [
-                    ws.contains("name", name),
-                ]
-            if exact_product_match is True:
-                filters.append(ws.equals("reference product", ref_prod))
-            else:
-                filters.append(ws.contains("reference product", ref_prod))
-
-            filters.append(ws.equals("location", d_iam_to_eco[region]))
-
-            dataset = None
-            try:
-                dataset = ws.get_one(
-                    subset or self.database,
-                    *filters,
-                )
-            except ws.MultipleResults as err:
-                results = ws.get_many(
-                    subset or self.database,
-                    *filters,
-                )
-                raise ws.MultipleResults(
-                    err,
-                    "A single dataset was expected, "
-                    f"but found more than one for: "
-                    f"{name, ref_prod}, : {[(r['name'], r['reference product'], r['location']) for r in results]}",
-                )
-            except ws.NoResults as err:
-                print(f"WARNING: No dataset found for {name, ref_prod}.")
-                return {}
-
-            # if not self.is_in_index(dataset, region):
+            # if self.is_in_index(dataset, region):
             if self.is_in_index(dataset, region):
                 # delete original dataset from the database
                 self.database = [
@@ -835,6 +788,7 @@ class BaseTransformation:
             if "input" in d_act[region]:
                 del d_act[region]["input"]
 
+            prod_vol = 1
             if production_variable is not None:
                 # Add `production volume` field
                 if isinstance(production_variable, str):
@@ -866,15 +820,10 @@ class BaseTransformation:
                                 .sum(dim="variables")
                                 .values.item(0)
                             )
-                    else:
-                        prod_vol = 1
 
                 elif isinstance(production_variable, dict):
                     prod_vol = production_variable[region]
-                else:
-                    prod_vol = 1
-            else:
-                prod_vol = 1
+
 
             for prod in ws.production(d_act[region]):
                 prod["location"] = region
@@ -883,221 +832,114 @@ class BaseTransformation:
             if relink:
                 d_act[region] = self.relink_technosphere_exchanges(d_act[region])
 
-            ds_name = d_act[region]["name"]
-            ds_ref_prod = d_act[region]["reference product"]
-
-        if unlist is True:
-            # remove dataset from index
-            for ds in ws.get_many(
-                self.database,
-                ws.equals("name", ds_name),
-                ws.equals("reference product", ds_ref_prod),
-            ):
-                self.remove_from_index(ds)
+        if unlist:
+            for dataset in datasets:
+                self.remove_from_index(dataset)
 
         # empty original datasets
         # and make them link to new regional datasets
         if empty_original_activity is True:
             self.empty_original_datasets(
-                name=ds_name,
-                ref_prod=ds_ref_prod,
+                datasets=datasets,
                 loc_map=d_iam_to_eco,
                 production_variable=production_variable,
                 regions=regions,
             )
 
-        if delete_original_dataset is True:
+        if delete_original_datasets is True:
             # remove the dataset from `self.database`
             self.database = [
                 ds
                 for ds in self.database
-                if not (
-                    ds["name"] == ds_name and ds["reference product"] == ds_ref_prod
-                )
+                if ds not in datasets
             ]
 
         return d_act
 
+
     def empty_original_datasets(
-        self,
-        name: str,
-        ref_prod: str,
-        production_variable: [str, dict],
-        loc_map: Dict[str, str],
-        regions: List[str] = None,
+            self,
+            datasets: list[dict],
+            production_variable: [str, dict],
+            loc_map: Dict[str, dict],
+            regions: List[str] = None,
     ) -> None:
         """
-        Empty original ecoinvent dataset and introduce an input to the regional IAM
-        dataset that geographically comprises it.
-        :param name: dataset name
-        :param ref_prod: dataset reference product
-        :param loc_map: ecoinvent location to IAM location mapping for this activity
-        :param production_variable: IAM production variable
-        :param regions: regions to empty original datasets for
-        :return: Does not return anything. Just empties the original dataset.
+        Empty original ecoinvent datasets and replace them with IAM-based inputs.
         """
-
         regions = regions or self.regions
 
-        mapping = {}
-        if loc_map:
-            mapping = defaultdict(set)
-            for v in loc_map.values():
-                if self.geo.ecoinvent_to_iam_location(v) in loc_map.keys():
-                    mapping[v].add(self.geo.ecoinvent_to_iam_location(v))
-        existing_datasets = ws.get_many(
-            self.database,
-            ws.equals("name", name),
-            ws.equals("reference product", ref_prod),
-            ws.exclude(
-                ws.either(*[ws.equals("location", loc) for loc in self.regions])
-            ),
-        )
+        # Build mapping of ecoinvent to IAM locations
+        mapping = defaultdict(set)
+        for v in loc_map.values():
+            iam_loc = self.geo.ecoinvent_to_iam_location(v["location"])
+            if iam_loc in loc_map:
+                mapping[v["location"]].add(iam_loc)
 
-        for existing_ds in existing_datasets:
-            if existing_ds["location"] in mapping:
-                locations = list(mapping[existing_ds["location"]])
-            else:
-                locations = [self.ecoinvent_to_iam_loc[existing_ds["location"]]]
-                locations = [loc for loc in locations if loc in regions]
+        def safe_div(a, b):
+            return a / (b if b != 0 else 1.0)
 
-            if locations == [
-                "World",
-            ]:
+        def build_exchange(dataset, location, amount):
+            return {
+                "name": dataset["name"],
+                "product": dataset["reference product"],
+                "amount": amount,
+                "unit": dataset["unit"],
+                "uncertainty type": 0,
+                "location": location,
+                "type": "technosphere",
+            }
+
+        for dataset in datasets:
+            loc = dataset["location"]
+            locations = list(mapping.get(loc, [self.ecoinvent_to_iam_loc.get(loc)]))
+            locations = [l for l in locations if l in regions]
+
+            if locations == ["World"]:
                 locations = [r for r in regions if r != "World"]
 
-            if len(locations) == 0:
+            if not locations:
                 continue
 
-            # add tag
-            existing_ds["has_downstream_consumer"] = False
-            existing_ds["exchanges"] = [
-                e for e in existing_ds["exchanges"] if e["type"] == "production"
-            ]
-            existing_ds["emptied"] = True
+            # Clean dataset
+            dataset["has_downstream_consumer"] = False
+            dataset["exchanges"] = [e for e in dataset["exchanges"] if e["type"] == "production"]
+            dataset["emptied"] = True
+            dataset.pop("adjust efficiency", None)
 
-            # for cases where external scenarios are used
-            if "adjust efficiency" in existing_ds:
-                del existing_ds["adjust efficiency"]
+            if not dataset["exchanges"]:
+                print(f"ISSUE: no exchanges found in {dataset['name']} in {loc}")
 
-            if len(existing_ds["exchanges"]) == 0:
-                print(
-                    f"ISSUE: no exchanges found in {existing_ds['name']} "
-                    f"in {existing_ds['location']}"
-                )
-
-            def _(x):
-                return x if x != 0.0 else 1.0
-
+            # Add new exchanges
             if len(locations) == 1:
-                existing_ds["exchanges"].append(
-                    {
-                        "name": existing_ds["name"],
-                        "product": existing_ds["reference product"],
-                        "amount": 1.0,
-                        "unit": existing_ds["unit"],
-                        "uncertainty type": 0,
-                        "location": locations[0],
-                        "type": "technosphere",
-                    }
-                )
+                dataset["exchanges"].append(build_exchange(dataset, locations[0], 1.0))
 
-            elif isinstance(production_variable, list) and all(
-                i in self.iam_data.production_volumes.variables.values.tolist()
-                for i in production_variable
-            ):
-                for location in locations:
+            elif isinstance(production_variable, list):
+                if all(v in self.iam_data.production_volumes.variables.values for v in production_variable):
+                    total = self.iam_data.production_volumes.sel(
+                        region=locations, variables=production_variable
+                    ).interp(year=self.year).sum(dim=["variables", "region"]).values.item(0)
 
-                    if (
-                        self.year
-                        in self.iam_data.production_volumes.coords["year"].values
-                    ):
-                        share = (
-                            self.iam_data.production_volumes.sel(
-                                region=location,
-                                variables=production_variable,
-                                year=self.year,
-                            )
-                            .sum(dim="variables")
-                            .values.item(0)
-                        ) / _(
-                            self.iam_data.production_volumes.sel(
-                                region=locations,
-                                variables=production_variable,
-                                year=self.year,
-                            )
-                            .sum(dim=["variables", "region"])
-                            .values.item(0)
-                        )
-                    else:
-                        share = (
-                            self.iam_data.production_volumes.sel(
-                                region=location, variables=production_variable
-                            )
-                            .interp(year=self.year)
-                            .sum(dim="variables")
-                            .values.item(0)
-                        ) / _(
-                            self.iam_data.production_volumes.sel(
-                                region=locations, variables=production_variable
-                            )
-                            .interp(year=self.year)
-                            .sum(dim=["variables", "region"])
-                            .values.item(0)
-                        )
+                    for location in locations:
+                        share = self.iam_data.production_volumes.sel(
+                            region=location, variables=production_variable
+                        ).interp(year=self.year).sum(dim="variables").values.item(0)
+                        share = safe_div(share, total)
 
-                    if share > 0:
-                        existing_ds["exchanges"].append(
-                            {
-                                "name": existing_ds["name"],
-                                "product": existing_ds["reference product"],
-                                "amount": share,
-                                "unit": existing_ds["unit"],
-                                "uncertainty type": 0,
-                                "location": location,
-                                "type": "technosphere",
-                            }
-                        )
+                        if share > 0:
+                            dataset["exchanges"].append(build_exchange(dataset, location, share))
 
             elif isinstance(production_variable, dict):
-                existing_ds["exchanges"].extend(
-                    [
-                        {
-                            "name": existing_ds["name"],
-                            "product": existing_ds["reference product"],
-                            "amount": share,
-                            "unit": existing_ds["unit"],
-                            "uncertainty type": 0,
-                            "location": loc,
-                            "type": "technosphere",
-                        }
-                        for loc, share in production_variable.items()
-                    ]
-                )
+                for loc, share in production_variable.items():
+                    dataset["exchanges"].append(build_exchange(dataset, loc, share))
 
             else:
                 share = 1 / len(locations)
+                dataset["exchanges"].extend(
+                    [build_exchange(dataset, loc, share) for loc in locations if share > 0]
+                )
 
-                if share > 0:
-                    existing_ds["exchanges"].extend(
-                        [
-                            {
-                                "name": existing_ds["name"],
-                                "product": existing_ds["reference product"],
-                                "amount": share,
-                                "unit": existing_ds["unit"],
-                                "uncertainty type": 0,
-                                "location": location,
-                                "type": "technosphere",
-                            }
-                            for location in locations
-                        ]
-                    )
-
-            self.remove_from_index(existing_ds)
-
-            # add log
-            self.write_log(dataset=existing_ds, status="empty")
+            self.write_log(dataset=dataset, status="empty")
 
     def relink_datasets(self, excludes_datasets=None, alt_names=None):
         """
