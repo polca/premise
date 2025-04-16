@@ -576,10 +576,7 @@ class Steel(BaseTransformation):
                 )
                 dataset["comment"] = text + dataset["comment"]
 
-                if "log parameters" not in dataset:
-                    dataset["log parameters"] = {}
-
-                dataset["log parameters"].update(
+                dataset.setdefault("log parameters", {}).update(
                     {
                         "thermal efficiency change": scaling_factor,
                     }
@@ -632,10 +629,7 @@ class Steel(BaseTransformation):
                     }
                     dataset["exchanges"].append(ccs_exc)
 
-            if "log parameters" not in dataset:
-                dataset["log parameters"] = {}
-
-            dataset["log parameters"].update(
+            dataset.setdefault("log parameters", {}).update(
                 {"carbon capture rate": carbon_capture_rate}
             )
 

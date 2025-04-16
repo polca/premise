@@ -553,6 +553,8 @@ hydrogen, from petroleum:
   ecoinvent_aliases:
     fltr:
       - hydrogen production, gaseous, petroleum refinery operation
+    mask:
+      - CCS
 
 hydrogen, from electrolysis, PEM:
   lhv: 120

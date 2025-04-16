@@ -125,7 +125,7 @@ class Cement(BaseTransformation):
 
         for key, value in self.fuel_map.items():
             for v in list(value):
-                self.fuel_map_reverse[v] = key
+                self.fuel_map_reverse[v["name"]] = key
 
         self.biosphere_dict = biosphere_flows_dictionary(self.version)
 
@@ -145,8 +145,16 @@ class Cement(BaseTransformation):
             },
         }
 
-        for technology, datasets in ccs_datasets.items():
-            new_datasets = self.fetch_proxies(datasets=datasets)
+        for tech, details in ccs_datasets.items():
+            details["dataset"] = [
+                ds
+                for ds in self.database
+                if ds["name"] == details["name"]
+                and ds["reference product"] == details["reference product"]
+            ]
+
+        for technology, details in ccs_datasets.items():
+            new_datasets = self.fetch_proxies(datasets=details["dataset"])
 
             if technology == "cement, dry feed rotary kiln, efficient, with MEA CCS":
                 # we adjust the heat needs by subtraction 3.66 MJ with what
@@ -233,17 +241,23 @@ class Cement(BaseTransformation):
         # Fetch clinker production activities
         # and store them in a dictionary
 
-        original_clinker_dataset = [
+        original_clinker_datasets = [
             ds
             for ds in self.database
             if ds["name"] == "clinker production"
             and ds["reference product"] == "clinker"
         ]
 
+        eu_clinker_dataset = [
+            ds
+            for ds in original_clinker_datasets
+            if ds["location"] == "Europe without Switzerland"
+        ][0]
+
         clinker = self.fetch_proxies(
-            datasets=original_clinker_dataset,
+            datasets=original_clinker_datasets,
             production_variable="cement, dry feed rotary kiln",
-            geo_mapping={r: "Europe without Switzerland" for r in self.regions},
+            geo_mapping={r: eu_clinker_dataset for r in self.regions},
         )
 
         for variable in variables:
@@ -291,10 +305,7 @@ class Cement(BaseTransformation):
 
                     new_energy_input_per_ton_clinker = 3400
 
-                    if "log parameters" not in dataset:
-                        dataset["log parameters"] = {}
-
-                    dataset["log parameters"][
+                    dataset.setdefault("log parameters", {})[
                         "initial energy input per ton clinker"
                     ] = current_energy_input_per_ton_clinker
 

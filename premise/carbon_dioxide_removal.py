@@ -472,9 +472,6 @@ class CarbonDioxideRemoval(BaseTransformation):
 
             new_dataset["exchanges"] = new_exchanges
 
-            if "log parameters" not in new_dataset:
-                new_dataset["log parameters"] = {}
-
             return new_dataset
 
         # Using a list comprehension to process all technologies
@@ -557,10 +554,7 @@ class CarbonDioxideRemoval(BaseTransformation):
                             f"average DAC plant in {self.year}."
                         )
 
-                        if "log parameters" not in dataset:
-                            dataset["log parameters"] = {}
-
-                        dataset["log parameters"].update(
+                        dataset.setdefault("log parameters", {}).update(
                             {
                                 "electricity scaling factor": scaling_factor,
                             }
@@ -611,10 +605,7 @@ class CarbonDioxideRemoval(BaseTransformation):
                             f"average DAC plant in {self.year}."
                         )
 
-                        if "log parameters" not in dataset:
-                            dataset["log parameters"] = {}
-
-                        dataset["log parameters"].update(
+                        dataset.setdefault("log parameters", {}).update(
                             {
                                 "heat scaling factor": scaling_factor,
                             }

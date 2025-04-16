@@ -327,10 +327,7 @@ class Heat(BaseTransformation):
                                 }
                             )
 
-                        if "log parameters" not in ds:
-                            ds["log parameters"] = {}
-
-                        ds["log parameters"][
+                        ds.setdefault("log parameters", {})[
                             "initial amount of fossil CO2"
                         ] = initial_fossil_co2
                         ds["log parameters"]["new amount of fossil CO2"] = float(
@@ -641,9 +638,6 @@ class Heat(BaseTransformation):
                         )
 
             new_dataset["exchanges"] = new_exchanges
-
-            if "log parameters" not in new_dataset:
-                new_dataset["log parameters"] = {}
 
             return new_dataset
 

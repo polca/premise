@@ -78,7 +78,7 @@ class FinalEnergy(BaseTransformation):
 
     def regionalize_heating_datasets(self):
 
-        new_datasets, processed_datasets = [], []
+        processed_datasets = []
 
         for technology, datasets in self.final_energy_map.items():
             for dataset in datasets:
@@ -88,14 +88,12 @@ class FinalEnergy(BaseTransformation):
                     continue
                 if any(self.is_in_index(dataset, region) for region in self.regions):
                     continue
-
-                datasets = self.fetch_proxies(
-                    datasets=dataset,
-                )
-                new_datasets.append(datasets)
-
                 processed_datasets.append(dataset["name"])
 
-            for new_dataset in new_datasets:
-                self.database.extend(new_dataset.values())
-                self.add_to_index(new_dataset.values())
+                regionalized_datasets = self.fetch_proxies(
+                    datasets=dataset,
+                )
+
+                for new_dataset in regionalized_datasets.values():
+                    self.database.append(new_dataset)
+                    self.add_to_index(new_dataset)

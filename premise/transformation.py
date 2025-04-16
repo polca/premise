@@ -746,18 +746,13 @@ class BaseTransformation:
         fetch a dataset with a "RoW" location.
         Delete original datasets from the database.
 
-        :param name: name of the datasets to find
-        :param ref_prod: reference product of the datasets to find
         :param production_variable: name of variable in IAM data that refers to production volume
         :param relink: if `relink`, exchanges from the datasets will be relinked to
         the most geographically-appropriate providers from the database. This is computer-intensive.
         :param regions: regions to create proxy datasets for. if None, all regions are considered.
         :param delete_original_datasets: if True, delete original datasets from the database.
         :param empty_original_activity: if True, empty original activities from exchanges.
-        :param exact_name_match: if True, look for exact name matches.
-        :param exact_product_match: if True, look for exact product matches.
         :param unlist: if True, remove original datasets from the index.
-        :param subset: subset of the database to search in.
         :return: dictionary with IAM regions as keys, proxy datasets as values.
         """
 

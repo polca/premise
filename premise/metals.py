@@ -604,11 +604,8 @@ class Metals(BaseTransformation):
                             }
                         )
 
-                if "log parameters" not in ds:
-                    ds["log parameters"] = {}
-
                 for flow in dataset["additional flow"]:
-                    ds["log parameters"]["post-allocation correction"] = flow["amount"]
+                    ds.setdefault("log parameters", {})["post-allocation correction"] = flow["amount"]
 
                 self.write_log(ds, "updated")
 

@@ -139,17 +139,12 @@ def get_production_weighted_losses(
     # Fetch locations contained in IAM region
     cumul_prod, transf_loss = 0.0, 0.0
     for loc in locs:
-        dict_loss = losses.get(
-            loc,
-            {"Transformation loss high voltage": 0.0, "Production volume": 0.0},
-        )
+        loss = losses.get(loc, {})
+        prod = loss.get("Production volume", 0.0)
+        transf = loss.get("Transformation loss high voltage", 0.0)
 
-        transf_loss += (
-            dict_loss.get("Transformation loss high voltage", 0)
-            * dict_loss["Production volume"]
-        )
-
-        cumul_prod += dict_loss["Production volume"]
+        transf_loss += transf * prod
+        cumul_prod += prod
 
     if cumul_prod == 0:
         return {
@@ -308,6 +303,26 @@ def create_fuel_map(database, version, model) -> tuple[InventorySet, dict, dict]
 
     return mapping, fuel_map, fuel_map_reverse
 
+def select_or_interpolate(data, year, **kwargs):
+    """
+    Select IAM data at `year` if available, otherwise interpolate.
+    kwargs are passed to .sel()
+    """
+    if year in data.coords["year"].values:
+        return data.sel(year=year, **kwargs).values.item(0)
+    return data.sel(**kwargs).interp(year=year).values.item(0)
+
+def compute_time_weighted_mix(mix, region, year, period):
+    interp_range = np.arange(year, year + period + 1)
+    return dict(
+        zip(
+            mix.variables.values,
+            mix.sel(region=region)
+               .interp(year=interp_range, kwargs={"fill_value": "extrapolate"})
+               .mean(dim="year")
+               .values
+        )
+    )
 
 class Electricity(BaseTransformation):
     """
@@ -377,8 +392,7 @@ class Electricity(BaseTransformation):
         self.biosphere_dict = biosphere_flows_dictionary(self.version)
         self.use_absolute_efficiency = use_absolute_efficiency
 
-        self.powerplant_max_efficiency = mapping.powerplant_max_efficiency
-        self.powerplant_min_efficiency = mapping.powerplant_min_efficiency
+        self.powerplant_min_efficiency, self.powerplant_max_efficiency = mapping.generate_powerplant_efficiency_bounds()
 
     @lru_cache
     def get_production_per_tech_dict(self) -> Dict[Tuple[str, str], float]:
@@ -391,18 +405,14 @@ class Electricity(BaseTransformation):
 
         production_vols = {}
 
-        for dataset_names in self.powerplant_map.values():
-            for name in dataset_names:
-                for dataset in ws.get_many(
-                    self.database,
-                    ws.equals("name", name),
-                ):
-                    for exc in ws.production(dataset):
-                        # even if non-existent, we set a minimum value of 1e-9
-                        # because if not, we risk dividing by zero!!!
-                        production_vols[(dataset["name"], dataset["location"])] = max(
-                            float(exc.get("production volume", 1e-9)), 1e-9
-                        )
+        for technology, datasets in self.powerplant_map.items():
+            for dataset in datasets:
+                for exc in ws.production(dataset):
+                    # even if non-existent, we set a minimum value of 1e-9
+                    # because if not, we risk dividing by zero!!!
+                    production_vols[(dataset["name"], dataset["location"])] = max(
+                        float(exc.get("production volume", 1e-9)), 1e-9
+                    )
 
         return production_vols
 
@@ -429,25 +439,20 @@ class Electricity(BaseTransformation):
         :rtype: float
         """
 
-        # Fetch the production volume of the supplier
-        loc_production = float(
-            self.production_per_tech.get((supplier["name"], supplier["location"]), 0)
+        supplier_key = (supplier["name"], supplier["location"])
+        loc_production = float(self.production_per_tech.get(supplier_key, 0.0))
+
+        total_production = sum(
+            float(self.production_per_tech.get((s["name"], s["location"]), 0.0))
+            for s in suppliers
         )
-
-        # Fetch the total production volume of similar technologies in other locations
-        # contained within the IAM region.
-
-        total_production = 0
-        for loc in suppliers:
-            total_production += float(
-                self.production_per_tech.get((loc["name"], loc["location"]), 0)
-            )
 
         # If a corresponding production volume is found.
         if total_production != 0:
             return loc_production / total_production
         # If not, we allocate an equal share of supply
         return 1 / len(suppliers)
+
 
     def create_new_markets_low_voltage(self) -> None:
         """
@@ -550,37 +555,16 @@ class Electricity(BaseTransformation):
 
                 else:
                     # Create a time-weighted average mix
-                    electricity_mix = dict(
-                        zip(
-                            self.iam_data.electricity_mix.variables.values,
-                            self.iam_data.electricity_mix.sel(
-                                region=region,
-                            )
-                            .interp(
-                                year=np.arange(self.year, self.year + period + 1),
-                                kwargs={"fill_value": "extrapolate"},
-                            )
-                            .mean(dim="year")
-                            .values,
-                        )
+                    electricity_mix = compute_time_weighted_mix(
+                        self.iam_data.electricity_mix, region, self.year, period
                     )
 
-            # fetch production volume
-            if self.year in self.iam_data.production_volumes.coords["year"].values:
-                production_volume = self.iam_data.production_volumes.sel(
-                    region=region,
-                    variables=self.iam_data.electricity_mix.variables.values,
-                    year=self.year,
-                ).values.item(0)
-            else:
-                production_volume = (
-                    self.iam_data.production_volumes.sel(
-                        region=region,
-                        variables=self.iam_data.electricity_mix.variables.values,
-                    )
-                    .interp(year=self.year)
-                    .values.item(0)
-                )
+            production_volume = select_or_interpolate(
+                self.iam_data.production_volumes,
+                self.year,
+                region=region,
+                variables=self.iam_data.electricity_mix.variables.values
+            )
 
             # First, add the reference product exchange
             new_exchanges = [
@@ -734,10 +718,7 @@ class Electricity(BaseTransformation):
 
             new_dataset["exchanges"] = new_exchanges
 
-            if "log parameters" not in new_dataset:
-                new_dataset["log parameters"] = {}
-
-            new_dataset["log parameters"].update(
+            new_dataset.setdefault("log parameters", {}).update(
                 {
                     "distribution loss": distr_loss,
                     "transformation loss": transf_loss,
@@ -810,21 +791,12 @@ class Electricity(BaseTransformation):
             distr_loss = self.network_loss[region]["medium"]["distr_loss"]
 
             # fetch production volume
-            if self.year in self.iam_data.production_volumes.coords["year"].values:
-                production_volume = self.iam_data.production_volumes.sel(
-                    region=region,
-                    variables=self.iam_data.electricity_mix.variables.values,
-                    year=self.year,
-                ).values.item(0)
-            else:
-                production_volume = (
-                    self.iam_data.production_volumes.sel(
-                        region=region,
-                        variables=self.iam_data.electricity_mix.variables.values,
-                    )
-                    .interp(year=self.year)
-                    .values.item(0)
-                )
+            production_volume = select_or_interpolate(
+                self.iam_data.production_volumes,
+                self.year,
+                region=region,
+                variables=self.iam_data.electricity_mix.variables.values
+            )
 
             # First, add the reference product exchange
             new_exchanges = [
@@ -953,10 +925,7 @@ class Electricity(BaseTransformation):
 
             new_dataset["exchanges"] = new_exchanges
 
-            if "log parameters" not in new_dataset:
-                new_dataset["log parameters"] = {}
-
-            new_dataset["log parameters"].update(
+            new_dataset.setdefault("log parameters", {}).update(
                 {
                     "distribution loss": distr_loss,
                     "transformation loss": transf_loss,
@@ -1100,19 +1069,8 @@ class Electricity(BaseTransformation):
                 )
 
             else:
-                electricity_mix = dict(
-                    zip(
-                        self.iam_data.electricity_mix.variables.values,
-                        self.iam_data.electricity_mix.sel(
-                            region=region,
-                        )
-                        .interp(
-                            year=np.arange(self.year, self.year + period + 1),
-                            kwargs={"fill_value": "extrapolate"},
-                        )
-                        .mean(dim="year")
-                        .values,
-                    )
+                electricity_mix = compute_time_weighted_mix(
+                    self.iam_data.electricity_mix, region, self.year, period
                 )
 
             # remove `solar pv residential` from the mix
@@ -1125,21 +1083,12 @@ class Electricity(BaseTransformation):
             }
 
             # fetch production volume
-            if self.year in self.iam_data.production_volumes.coords["year"].values:
-                production_volume = self.iam_data.production_volumes.sel(
-                    region=region,
-                    variables=self.iam_data.electricity_mix.variables.values,
-                    year=self.year,
-                ).values.item(0)
-            else:
-                production_volume = (
-                    self.iam_data.production_volumes.sel(
-                        region=region,
-                        variables=self.iam_data.electricity_mix.variables.values,
-                    )
-                    .interp(year=self.year)
-                    .values.item(0)
-                )
+            production_volume = select_or_interpolate(
+                self.iam_data.production_volumes,
+                self.year,
+                region=region,
+                variables=self.iam_data.electricity_mix.variables.values
+            )
 
             # First, add the reference product exchange
             new_exchanges = [
@@ -1216,10 +1165,7 @@ class Electricity(BaseTransformation):
 
             new_dataset["exchanges"] = new_exchanges
 
-            if "log parameters" not in new_dataset:
-                new_dataset["log parameters"] = {}
-
-            new_dataset["log parameters"].update(
+            new_dataset.setdefault("log parameters", {}).update(
                 {
                     "distribution loss": 0.0,
                     "transformation loss": transf_loss,
@@ -1549,13 +1495,10 @@ class Electricity(BaseTransformation):
                             f"from {int(current_eff * 100)} pct. to {int(new_mean_eff * 100)} pt."
                         )
 
-                        if "log parameters" not in dataset:
-                            dataset["log parameters"] = {}
-
-                        dataset["log parameters"].update(
+                        dataset.setdefault("log parameters", {}).update(
                             {"old efficiency": current_eff}
                         )
-                        dataset["log parameters"].update(
+                        dataset.setdefault("log parameters", {}).update(
                             {"new efficiency": new_mean_eff}
                         )
 
@@ -1792,10 +1735,8 @@ class Electricity(BaseTransformation):
                     "new efficiency" not in dataset.get("log parameters", {})
                     and scaling_factor != 1
                 ):
-                    if "log parameters" not in dataset:
-                        dataset["log parameters"] = {}
 
-                    dataset["log parameters"].update(
+                    dataset.setdefault("log parameters", {}).update(
                         {
                             "old efficiency": ei_eff,
                             "new efficiency": new_efficiency,
@@ -1878,10 +1819,7 @@ class Electricity(BaseTransformation):
                                 ],
                             )
 
-                            if "log parameters" not in dataset:
-                                dataset["log parameters"] = {}
-
-                            dataset["log parameters"].update(
+                            dataset.setdefault("log parameters", {}).update(
                                 {
                                     "ecoinvent original efficiency": ei_eff,
                                     "Oberschelp et al. efficiency": new_eff.values.item(
@@ -1942,10 +1880,7 @@ class Electricity(BaseTransformation):
                                             emission_factor.values.item(0)
                                         )
 
-                                        if "log parameters" not in dataset:
-                                            dataset["log parameters"] = {}
-
-                                        dataset["log parameters"].update(
+                                        dataset.setdefault("log parameters", {}).update(
                                             {
                                                 f"{species} scaling factor": scaling_factor,
                                             }

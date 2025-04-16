@@ -256,11 +256,9 @@ def adjust_efficiency(dataset: dict, fuels_specs: dict, fuel_map_reverse: dict) 
                         )
 
                     # log the old and new efficiency
-                    if "log parameters" not in dataset:
-                        dataset["log parameters"] = {}
 
-                    dataset["log parameters"][f"old efficiency"] = current_efficiency
-                    dataset["log parameters"][f"new efficiency"] = expected_efficiency
+                    dataset.setdefault("log parameters", {})[f"old efficiency"] = current_efficiency
+                    dataset.setdefault("log parameters", {})[f"new efficiency"] = expected_efficiency
                     dataset[
                         "comment"
                     ] += f" Original efficiency: {current_efficiency:.2f}. New efficiency: {expected_efficiency:.2f}."
@@ -294,13 +292,11 @@ def adjust_efficiency(dataset: dict, fuels_specs: dict, fuel_map_reverse: dict) 
                         )
 
                 if not np.isclose(scaling_factor, 1, rtol=1e-3):
-                    if "log parameters" not in dataset:
-                        dataset["log parameters"] = {}
 
                     if eff_type == "technosphere":
                         # adjust technosphere flows
                         # all of them if no filters are provided
-                        dataset["log parameters"][
+                        dataset.setdefault("log parameters", {})[
                             "technosphere scaling factor"
                         ] = scaling_factor
                         if filters:
