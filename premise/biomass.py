@@ -8,6 +8,7 @@ the newly created biomass markets.
 """
 
 import yaml
+from collections import defaultdict
 
 from .export import biosphere_flows_dictionary
 from .filesystem_constants import VARIABLES_DIR
@@ -47,6 +48,7 @@ def _update_biomass(scenario, version, system_model):
         index=scenario.get("index"),
     )
 
+    biomass.regionalize_wood_chips_activities()
     if scenario["iam data"].biomass_mix is not None:
         biomass.create_biomass_markets()
 
@@ -114,6 +116,62 @@ class Biomass(BaseTransformation):
         self.biosphere_dict = biosphere_flows_dictionary(self.version)
         mapping = InventorySet(database=database, version=version, model=model)
         self.biomass_map = mapping.generate_biomass_map()
+
+    def regionalize_wood_chips_activities(self):
+        """
+        Regionalize wood chips activities, which are currently only available for RER, CA and RoW.
+
+        """
+
+        activities_to_regionalize = [
+            "softwood forestry, spruce, sustainable forest management",
+            "softwood forestry, pine, sustainable forest management",
+            "hardwood forestry, birch, sustainable forest management",
+            "hardwood forestry, oak, sustainable forest management",
+            "hardwood forestry, beech, sustainable forest management",
+            "hardwood forestry, mixed species, sustainable forest management",
+            "market for sawlog and veneer log, softwood, measured as solid wood under bark",
+            "market for sawlog and veneer log, hardwood, measured as solid wood under bark",
+            "sawing, softwood",
+            "sawing, hardwood",
+            "wood chips production, hardwood, at sawmill",
+            "wood chips production, softwood, at sawmill",
+            "willow production, short rotation coppice",
+            "hardwood forestry, eucalyptus ssp., planted forest management",
+        ]
+
+        dataset_groups = [
+            dataset
+            for dataset in self.database
+            if dataset["name"] in activities_to_regionalize
+        ]
+
+        def group_dicts_by_keys(dicts: list, keys: list):
+            groups = defaultdict(list)
+            for d in dicts:
+                group_key = tuple(d.get(k) for k in keys)
+                groups[group_key].append(d)
+            return list(groups.values())
+
+        dataset_groups = group_dicts_by_keys(
+            dataset_groups, keys=["name", "reference product"]
+        )
+
+        new_datasets = []
+        for datasets in dataset_groups:
+            regionalized_datasets = self.fetch_proxies(
+                datasets=datasets,
+            )
+
+            # add to log
+            for regionalized_dataset in list(regionalized_datasets.values()):
+                self.write_log(regionalized_dataset)
+                # add it to list of created datasets
+                self.add_to_index(regionalized_dataset)
+
+            new_datasets.extend(list(regionalized_datasets.values()))
+
+        self.database.extend(new_datasets)
 
     def create_biomass_markets(self) -> None:
 
@@ -200,7 +258,6 @@ class Biomass(BaseTransformation):
                         "RoW",
                         "GLO",
                     ]
-                    possible_names = list(biomass_datasets)
 
                     suppliers, counter = [], 0
 

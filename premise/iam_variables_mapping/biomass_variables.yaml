@@ -13,15 +13,17 @@ biomass crops - purpose grown:
     witch: Primary Energy|Biomass|1st Generation
   ecoinvent_aliases:
     fltr:
-      name: market for wood chips
-      reference product: wood chips
+      name:
+        - willow production, short rotation coppice
+        - hardwood forestry, eucalyptus ssp., planted forest management
+
 biomass wood - purpose grown:
   iam_aliases:
     message: Primary Energy|Biomass|Fuelwood
     image: Primary Energy|Biomass|Traditional
   ecoinvent_aliases:
     fltr:
-      name: market for wood chips
+      name: wood chips production
       reference product: wood chips
 biomass - residual:
   iam_aliases:
