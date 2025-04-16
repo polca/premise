@@ -327,6 +327,21 @@ def compute_time_weighted_mix(mix, region, year, period):
     )
 
 
+def make_generic_market_dataset(
+    name, reference_product, region, year, comment, database, unit="kilowatt hour"
+):
+    return {
+        "name": name,
+        "reference product": reference_product,
+        "location": region,
+        "unit": unit,
+        "code": str(uuid.uuid4().hex),
+        "database": database,
+        "comment": comment,
+        "exchanges": [],
+    }
+
+
 class Electricity(BaseTransformation):
     """
     Class that modifies electricity markets in the database based on IAM output data.
@@ -480,15 +495,15 @@ class Electricity(BaseTransformation):
         }
 
         # Create an empty dataset
-        generic_dataset = {
-            "name": "market group for electricity, low voltage",
-            "reference product": "electricity, low voltage",
-            "unit": "kilowatt hour",
-            "database": self.database[1]["database"],
-            "comment": f"Dataset created by `premise` from the IAM model {self.model.upper()}"
-            f" using the pathway {self.scenario} for the year {self.year}.",
-            "exchanges": [],
-        }
+        generic_dataset = make_generic_market_dataset(
+            name="market group for electricity, low voltage",
+            reference_product="electricity, low voltage",
+            region="",
+            year=self.year,
+            comment=f"Dataset created by `premise` from the IAM model {self.model} "
+            f"using the pathway {self.scenario} for the year {self.year}.",
+            database=self.database[1]["database"],
+        )
 
         def generate_regional_markets(region: str, period: int, subset: list) -> dict:
             new_dataset = copy.deepcopy(generic_dataset)
@@ -775,15 +790,15 @@ class Electricity(BaseTransformation):
         """
 
         # Create an empty dataset
-        generic_dataset = {
-            "name": "market group for electricity, medium voltage",
-            "reference product": "electricity, medium voltage",
-            "unit": "kilowatt hour",
-            "database": self.database[1]["database"],
-            "comment": f"Dataset created by `premise` from the IAM model {self.model.upper()}"
-            f" using the pathway {self.scenario} for the year {self.year}.",
-            "exchanges": [],
-        }
+        generic_dataset = make_generic_market_dataset(
+            name="market group for electricity, medium voltage",
+            reference_product="electricity, medium voltage",
+            region="",
+            year=self.year,
+            comment=f"Dataset created by `premise` from the IAM model {self.model} "
+            f"using the pathway {self.scenario} for the year {self.year}.",
+            database=self.database[1]["database"],
+        )
 
         def generate_regional_markets(region: str, period: int) -> dict:
 
@@ -985,15 +1000,15 @@ class Electricity(BaseTransformation):
             technology: self.powerplant_map[technology] for technology in technologies
         }
 
-        generic_dataset = {
-            "name": "market group for electricity, high voltage",
-            "reference product": "electricity, high voltage",
-            "unit": "kilowatt hour",
-            "database": self.database[1]["database"],
-            "comment": f"Dataset created by `premise` from the IAM model {self.model.upper()}"
-            f" using the pathway {self.scenario} for the year {self.year}.",
-            "exchanges": [],
-        }
+        generic_dataset = make_generic_market_dataset(
+            name="market group for electricity, high voltage",
+            reference_product="electricity, high voltage",
+            region="",
+            year=self.year,
+            comment=f"Dataset created by `premise` from the IAM model {self.model} "
+            f"using the pathway {self.scenario} for the year {self.year}.",
+            database=self.database[1]["database"],
+        )
 
         def generate_regional_markets(region: str, period: int, subset: list) -> dict:
 
