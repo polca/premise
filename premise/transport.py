@@ -631,7 +631,9 @@ class Transport(BaseTransformation):
                 ],
             )
 
-            dataset.setdefault("log parameters", {}).update({"efficiency change": scaling_factor})
+            dataset.setdefault("log parameters", {}).update(
+                {"efficiency change": scaling_factor}
+            )
 
             txt = f" Fuel/energy efficiency adjusted by a factor of {scaling_factor} according to the scenario."
             if "comment" not in dataset:

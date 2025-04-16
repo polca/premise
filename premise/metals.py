@@ -605,7 +605,9 @@ class Metals(BaseTransformation):
                         )
 
                 for flow in dataset["additional flow"]:
-                    ds.setdefault("log parameters", {})["post-allocation correction"] = flow["amount"]
+                    ds.setdefault("log parameters", {})[
+                        "post-allocation correction"
+                    ] = flow["amount"]
 
                 self.write_log(ds, "updated")
 

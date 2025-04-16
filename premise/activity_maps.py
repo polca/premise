@@ -139,15 +139,12 @@ class InventorySet:
         self.version = version
         self.model = model
 
-
         self.powerplant_max_efficiency = get_mapping(
             filepath=POWERPLANT_TECHS, var="max_efficiency", model=self.model
         )
         self.powerplant_min_efficiency = get_mapping(
             filepath=POWERPLANT_TECHS, var="min_efficiency", model=self.model
         )
-
-
 
     def generate_map(self, filters):
         """
@@ -162,9 +159,7 @@ class InventorySet:
         Returns a dictionary with biomass names as keys (see below) and
         a set of related ecoinvent activities' names as values.
         """
-        filters = get_mapping(
-            filepath=BIOMASS_TYPES, var="ecoinvent_aliases"
-        )
+        filters = get_mapping(filepath=BIOMASS_TYPES, var="ecoinvent_aliases")
         return self.generate_sets_from_filters(filters)
 
     def generate_heat_map(self) -> dict:
@@ -203,9 +198,7 @@ class InventorySet:
         Generate a dictionary with GAINS variables as keys and
         ecoinvent datasets as values.
         """
-        filters = get_mapping(
-            filepath=GAINS_MAPPING, var="ecoinvent_aliases"
-        )
+        filters = get_mapping(filepath=GAINS_MAPPING, var="ecoinvent_aliases")
         return self.generate_sets_from_filters(filters)
 
     def generate_powerplant_map(self) -> dict:
@@ -243,9 +236,7 @@ class InventorySet:
         :rtype: dict
 
         """
-        filters = get_mapping(
-            filepath=CARBON_STORAGE_TECHS, var="ecoinvent_aliases"
-        )
+        filters = get_mapping(filepath=CARBON_STORAGE_TECHS, var="ecoinvent_aliases")
         return self.generate_sets_from_filters(filters)
 
     def generate_powerplant_fuels_map(self) -> dict:
@@ -257,9 +248,7 @@ class InventorySet:
         :rtype: dict
 
         """
-        filters = get_mapping(
-            filepath=POWERPLANT_TECHS, var="ecoinvent_fuel_aliases"
-        )
+        filters = get_mapping(filepath=POWERPLANT_TECHS, var="ecoinvent_fuel_aliases")
         return self.generate_sets_from_filters(filters)
 
     def generate_powerplant_efficiency_bounds(self):
@@ -285,9 +274,7 @@ class InventorySet:
         :rtype: dict
 
         """
-        filters = get_mapping(
-            filepath=CEMENT_TECHS, var="ecoinvent_fuel_aliases"
-        )
+        filters = get_mapping(filepath=CEMENT_TECHS, var="ecoinvent_fuel_aliases")
         return self.generate_sets_from_filters(filters)
 
     def generate_fuel_map(self) -> dict:
@@ -311,9 +298,7 @@ class InventorySet:
         :rtype: dict
 
         """
-        filters = get_mapping(
-            filepath=FINAL_ENERGY, var="ecoinvent_aliases"
-        )
+        filters = get_mapping(filepath=FINAL_ENERGY, var="ecoinvent_aliases")
         return self.generate_sets_from_filters(filters)
 
     def generate_material_map(self) -> dict:
@@ -322,9 +307,7 @@ class InventorySet:
         Rerurns a dictionary with material names as keys (see below) and
         a set of related ecoinvent activities' names as values.
         """
-        filters = get_mapping(
-            filepath=MATERIALS_TECHS, var="ecoinvent_aliases"
-        )
+        filters = get_mapping(filepath=MATERIALS_TECHS, var="ecoinvent_aliases")
         return self.generate_sets_from_filters(filters)
 
     def generate_transport_map(self, transport_type: str) -> dict:

@@ -195,7 +195,6 @@ def update_co2_emissions(
     ):
         return dataset
 
-
     # subtract the biogenic CO2 amount to the initial fossil CO2 emission amount
     for exc in ws.biosphere(dataset, ws.equals("name", "Carbon dioxide, fossil")):
         dataset.setdefault("log parameters", {}).update(
@@ -204,7 +203,9 @@ def update_co2_emissions(
         exc["amount"] -= amount_non_fossil_co2
         if exc["amount"] < 0:
             exc["amount"] = 0
-        dataset.setdefault("log parameters", {}).update({"new amount of fossil CO2": exc["amount"]})
+        dataset.setdefault("log parameters", {}).update(
+            {"new amount of fossil CO2": exc["amount"]}
+        )
 
     # add the non-fossil CO2 emission flow
     non_fossil_co2 = {
@@ -664,7 +665,8 @@ class Fuels(BaseTransformation):
         supply_chain_scenarios = fetch_mapping(SUPPLY_CHAIN_SCENARIOS)
 
         datasets = [
-            ds for ds in self.database
+            ds
+            for ds in self.database
             if any(
                 x in ds["name"]
                 for x in [
@@ -676,7 +678,11 @@ class Fuels(BaseTransformation):
         ]
 
         for dataset in datasets:
-            new_ds = self.fetch_proxies(datasets=[dataset,])
+            new_ds = self.fetch_proxies(
+                datasets=[
+                    dataset,
+                ]
+            )
 
             for k, new_dataset in new_ds.items():
                 for exc in ws.production(new_dataset):
@@ -695,9 +701,11 @@ class Fuels(BaseTransformation):
                 self.add_to_index(new_dataset)
 
         datasets = [
-            ds for ds in self.database
+            ds
+            for ds in self.database
             if any(
-                x in ds["name"] for x in [
+                x in ds["name"]
+                for x in [
                     "hydrogenation of hydrogen",
                     "dehydrogenation of hydrogen",
                     "market group for electricity, low voltage",
@@ -709,10 +717,11 @@ class Fuels(BaseTransformation):
 
         datasets.extend(
             [
-                ds for ds in self.database
+                ds
+                for ds in self.database
                 if any(
-                    x in ds["name"] for x in
-                    [
+                    x in ds["name"]
+                    for x in [
                         c.get("regional storage", {}).get("name")
                         for c in supply_chain_scenarios.values()
                         if c.get("regional storage", {}).get("name")
@@ -732,15 +741,16 @@ class Fuels(BaseTransformation):
 
         datasets.extend(
             [
-                ds for ds in self.database
+                ds
+                for ds in self.database
                 if any(
-                x in ds["name"] for x in
-                [
-                    v["name"]
-                    for config in supply_chain_scenarios.values()
-                    for v in config["vehicle"]
-                ]
-            )
+                    x in ds["name"]
+                    for x in [
+                        v["name"]
+                        for config in supply_chain_scenarios.values()
+                        for v in config["vehicle"]
+                    ]
+                )
             ]
         )
 
@@ -1403,14 +1413,12 @@ class Fuels(BaseTransformation):
         for fuel, dataset_names in fuel_activities.items():
             for details in dataset_names:
                 datasets = [
-                    ds for ds in self.database
+                    ds
+                    for ds in self.database
                     if ds["name"] == details["name"]
                     and ds["reference product"] == details["reference product"]
-
                 ]
-                new_ds = self.fetch_proxies(
-                    datasets=datasets
-                )
+                new_ds = self.fetch_proxies(datasets=datasets)
 
                 # add to log
                 for new_dataset in new_ds.values():
@@ -1429,9 +1437,9 @@ class Fuels(BaseTransformation):
 
         for fuel_type, activities in fuel_activities.items():
             datasets = [
-                ds for ds in self.database if any(
-                    ds["name"].startswith(activity) for activity in activities
-                )
+                ds
+                for ds in self.database
+                if any(ds["name"].startswith(activity) for activity in activities)
             ]
             for dataset in datasets:
                 if dataset["name"] in processed_datasets:
@@ -1439,7 +1447,9 @@ class Fuels(BaseTransformation):
                 processed_datasets.append(dataset["name"])
 
                 new_datasets = self.fetch_proxies(
-                    datasets=[dataset,],
+                    datasets=[
+                        dataset,
+                    ],
                     relink=False,
                 )
                 for region, new_dataset in new_datasets.items():
@@ -1492,8 +1502,6 @@ class Fuels(BaseTransformation):
                     self.write_log(dataset)
                     # add it to list of created datasets
                     self.add_to_index(dataset)
-
-
 
     def adjust_land_use(self, dataset: dict, region: str, crop_type: str) -> dict:
         """
@@ -1741,16 +1749,15 @@ class Fuels(BaseTransformation):
                 datasets = [
                     ds
                     for ds in self.database
-                    if any(
-                        ds["name"].startswith(activity)
-                        for activity in activities
-                    )
+                    if any(ds["name"].startswith(activity) for activity in activities)
                 ]
 
                 for dataset in datasets:
                     # Fetch dataset for activity and regions
                     new_datasets = self.fetch_proxies(
-                        datasets=[dataset,],
+                        datasets=[
+                            dataset,
+                        ],
                         production_variable=self.get_production_label(
                             crop_type=crop_type
                         ),
@@ -2365,7 +2372,9 @@ class Fuels(BaseTransformation):
 
         d_fuels = self.get_fuel_mapping()
 
-        fuel_markets = mapping.generate_map(get_mapping(FUEL_MARKETS, "ecoinvent_aliases"))
+        fuel_markets = mapping.generate_map(
+            get_mapping(FUEL_MARKETS, "ecoinvent_aliases")
+        )
 
         vars_map = {
             "petrol, low-sulfur": [
@@ -2584,7 +2593,8 @@ class Fuels(BaseTransformation):
 
         # generate supply datasets for hydrogen
         dataset = [
-            ds for ds in self.database
+            ds
+            for ds in self.database
             if ds["name"] == "hydrogen supply, distributed by pipeline"
         ]
         hydrogen_supply = self.fetch_proxies(

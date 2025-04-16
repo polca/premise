@@ -303,6 +303,7 @@ def create_fuel_map(database, version, model) -> tuple[InventorySet, dict, dict]
 
     return mapping, fuel_map, fuel_map_reverse
 
+
 def select_or_interpolate(data, year, **kwargs):
     """
     Select IAM data at `year` if available, otherwise interpolate.
@@ -312,17 +313,19 @@ def select_or_interpolate(data, year, **kwargs):
         return data.sel(year=year, **kwargs).values.item(0)
     return data.sel(**kwargs).interp(year=year).values.item(0)
 
+
 def compute_time_weighted_mix(mix, region, year, period):
     interp_range = np.arange(year, year + period + 1)
     return dict(
         zip(
             mix.variables.values,
             mix.sel(region=region)
-               .interp(year=interp_range, kwargs={"fill_value": "extrapolate"})
-               .mean(dim="year")
-               .values
+            .interp(year=interp_range, kwargs={"fill_value": "extrapolate"})
+            .mean(dim="year")
+            .values,
         )
     )
+
 
 class Electricity(BaseTransformation):
     """
@@ -392,7 +395,9 @@ class Electricity(BaseTransformation):
         self.biosphere_dict = biosphere_flows_dictionary(self.version)
         self.use_absolute_efficiency = use_absolute_efficiency
 
-        self.powerplant_min_efficiency, self.powerplant_max_efficiency = mapping.generate_powerplant_efficiency_bounds()
+        self.powerplant_min_efficiency, self.powerplant_max_efficiency = (
+            mapping.generate_powerplant_efficiency_bounds()
+        )
 
     @lru_cache
     def get_production_per_tech_dict(self) -> Dict[Tuple[str, str], float]:
@@ -452,7 +457,6 @@ class Electricity(BaseTransformation):
             return loc_production / total_production
         # If not, we allocate an equal share of supply
         return 1 / len(suppliers)
-
 
     def create_new_markets_low_voltage(self) -> None:
         """
@@ -563,7 +567,7 @@ class Electricity(BaseTransformation):
                 self.iam_data.production_volumes,
                 self.year,
                 region=region,
-                variables=self.iam_data.electricity_mix.variables.values
+                variables=self.iam_data.electricity_mix.variables.values,
             )
 
             # First, add the reference product exchange
@@ -795,7 +799,7 @@ class Electricity(BaseTransformation):
                 self.iam_data.production_volumes,
                 self.year,
                 region=region,
-                variables=self.iam_data.electricity_mix.variables.values
+                variables=self.iam_data.electricity_mix.variables.values,
             )
 
             # First, add the reference product exchange
@@ -1087,7 +1091,7 @@ class Electricity(BaseTransformation):
                 self.iam_data.production_volumes,
                 self.year,
                 region=region,
-                variables=self.iam_data.electricity_mix.variables.values
+                variables=self.iam_data.electricity_mix.variables.values,
             )
 
             # First, add the reference product exchange

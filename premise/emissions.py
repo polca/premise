@@ -208,12 +208,13 @@ class Emissions(BaseTransformation):
                         exc, scaling_factor, remove_uncertainty=False
                     )
 
-
                     if "GAINS model" not in dataset.setdefault("log parameters", {}):
                         dataset.setdefault("log parameters", {})["GAINS model"] = model
 
                     if "GAINS sector" not in dataset.setdefault("log parameters", {}):
-                        dataset.setdefault("log parameters", {})["GAINS sector"] = sector
+                        dataset.setdefault("log parameters", {})[
+                            "GAINS sector"
+                        ] = sector
 
                     dataset.setdefault("log parameters", {}).update(
                         {f"{gains_pollutant} scaling factor": scaling_factor}
