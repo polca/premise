@@ -304,7 +304,7 @@ def create_fuel_map(database, version, model) -> tuple[InventorySet, dict, dict]
 
     for key, value in fuel_map.items():
         for v in list(value):
-            fuel_map_reverse[v] = key
+            fuel_map_reverse[v["name"]] = key
 
     return mapping, fuel_map, fuel_map_reverse
 
@@ -358,9 +358,12 @@ class Electricity(BaseTransformation):
         self.powerplant_map_rev = {}
         for k, v in self.powerplant_map.items():
             for pp in list(v):
-                self.powerplant_map_rev[pp] = k
+                self.powerplant_map_rev[pp["name"]] = k
 
         self.powerplant_fuels_map = mapping.generate_powerplant_fuels_map()
+        self.powerplant_fuels_map = {
+            k: [x["name"] for x in v] for k, v in self.powerplant_fuels_map.items()
+        }
 
         self.production_per_tech = self.get_production_per_tech_dict()
         losses = get_losses_per_country(self.database)
@@ -1045,21 +1048,19 @@ class Electricity(BaseTransformation):
 
             tech_suppliers = defaultdict(list)
 
-            for technology in ecoinvent_technologies:
+            for technology, datasets in ecoinvent_technologies.items():
                 suppliers, counter = [], 0
 
                 try:
                     while len(suppliers) == 0:
-                        suppliers = list(
-                            get_suppliers_of_a_region(
-                                database=subset,
-                                locations=possible_locations[counter],
-                                names=ecoinvent_technologies[technology],
-                                reference_prod="electricity",
-                                unit="kilowatt hour",
-                                exact_match=True,
+                        suppliers = [
+                            ds
+                            for ds in datasets
+                            if any(
+                                ds["location"] == x for x in possible_locations[counter]
                             )
-                        )
+                        ]
+
                         counter += 1
 
                     for supplier in suppliers:
@@ -1434,8 +1435,6 @@ class Electricity(BaseTransformation):
         :return:
         """
 
-        # print("Update efficiency of solar PV panels.")
-
         possible_techs = [
             "micro-Si",
             "single-Si",
@@ -1582,7 +1581,6 @@ class Electricity(BaseTransformation):
 
         """
 
-        # print("Create region-specific power plants.")
         all_plants = []
 
         techs = [
@@ -1614,15 +1612,16 @@ class Electricity(BaseTransformation):
             if technology in techs
         ]
 
-        datasets_to_duplicate.insert(
-            0,
-            "hydrogen storage, for grid-balancing",
-        )
+        datasets_to_duplicate = [
+            ds
+            for ds in self.database
+            if "hydrogen storage, for grid-balancing" in ds["name"]
+        ] + datasets_to_duplicate
 
         datasets_to_duplicate.extend(
             [
                 ds
-                for ds in self.databse
+                for ds in self.database
                 if any(
                     x in ds["name"]
                     for x in [
@@ -1640,7 +1639,9 @@ class Electricity(BaseTransformation):
 
         for dataset in datasets_to_duplicate:
             new_plants = self.fetch_proxies(
-                datasets=dataset,
+                datasets=[
+                    dataset,
+                ],
                 production_variable=self.powerplant_map_rev.get(dataset["name"]),
             )
 
@@ -1710,8 +1711,6 @@ class Electricity(BaseTransformation):
         :rtype: list
         """
 
-        # print("Adjust efficiency of power plants...")
-
         eff_labels = self.iam_data.electricity_technology_efficiencies.variables.values
         all_techs = self.iam_data.electricity_mix.variables.values
 
@@ -1723,18 +1722,8 @@ class Electricity(BaseTransformation):
 
         for technology in technologies_map:
             dict_technology = technologies_map[technology]
-            # print("Rescale inventories and emissions for", technology)
 
-            for dataset in ws.get_many(
-                self.database,
-                ws.equals("unit", "kilowatt hour"),
-                ws.either(
-                    *[
-                        ws.equals("name", n)
-                        for n in dict_technology["technology filters"]
-                    ]
-                ),
-            ):
+            for dataset in self.powerplant_map[technology]:
                 if not self.is_in_index(dataset):
                     continue
 
@@ -1852,15 +1841,7 @@ class Electricity(BaseTransformation):
 
         for tech in coal_techs:
             if tech in self.powerplant_map:
-                datasets = ws.get_many(
-                    self.database,
-                    ws.either(
-                        *[ws.contains("name", n) for n in self.powerplant_map[tech]]
-                    ),
-                    ws.equals("unit", "kilowatt hour"),
-                    ws.doesnt_contain_any("name", ["mine", "critical"]),
-                )
-
+                datasets = self.powerplant_map[tech]
                 for dataset in datasets:
                     loc = dataset["location"][:2]
                     if loc in self.iam_data.coal_power_plants.country.values:
@@ -2055,7 +2036,7 @@ class Electricity(BaseTransformation):
         self.powerplant_map_rev = {}
         for k, v in self.powerplant_map.items():
             for pp in list(v):
-                self.powerplant_map_rev[pp] = k
+                self.powerplant_map_rev[pp["name"]] = k
 
     def adjust_aluminium_electricity_markets(self) -> None:
         """
@@ -2159,7 +2140,6 @@ class Electricity(BaseTransformation):
 
         # We first need to empty 'market for electricity'
         # and 'market group for electricity' datasets
-        # print("Empty old electricity datasets")
 
         for dataset in ws.get_many(
             self.database,
@@ -2215,11 +2195,8 @@ class Electricity(BaseTransformation):
             )
 
         # We then need to create high voltage IAM electricity markets
-        # print("Create high voltage markets.")
         self.create_new_markets_high_voltage()
-        # print("Create medium voltage markets.")
         self.create_new_markets_medium_voltage()
-        # print("Create low voltage markets.")
         self.create_new_markets_low_voltage()
 
     def write_log(self, dataset, status="created"):

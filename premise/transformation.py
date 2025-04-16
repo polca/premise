@@ -379,6 +379,13 @@ def find_fuel_efficiency(
                 print(
                     f"Warning: {dataset['name'], dataset['location']} has no energy input"
                 )
+                for e in dataset["exchanges"]:
+                    print(e["name"], e["amount"], e["unit"])
+                print("----------------------------------------")
+
+                print("fuel filters")
+                print(fuel_filters)
+                print("----------------------------------------")
 
     if energy_input != 0 and float(energy_out) != 0:
         current_efficiency = float(energy_out) / energy_input
