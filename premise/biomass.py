@@ -72,6 +72,16 @@ def _update_biomass(scenario, version, system_model):
     return scenario
 
 
+def _group_datasets_by_keys(datasets: list, keys: list):
+    from collections import defaultdict
+
+    grouped = defaultdict(list)
+    for d in datasets:
+        group_key = tuple(d.get(k) for k in keys)
+        grouped[group_key].append(d)
+    return list(grouped.values())
+
+
 class Biomass(BaseTransformation):
     """
     Class that modifies biomass markets in the database based on IAM output data.
@@ -117,13 +127,8 @@ class Biomass(BaseTransformation):
         mapping = InventorySet(database=database, version=version, model=model)
         self.biomass_map = mapping.generate_biomass_map()
 
-    def regionalize_wood_chips_activities(self):
-        """
-        Regionalize wood chips activities, which are currently only available for RER, CA and RoW.
-
-        """
-
-        activities_to_regionalize = [
+    def _wood_chips_activity_names(self):
+        return [
             "softwood forestry, spruce, sustainable forest management",
             "softwood forestry, pine, sustainable forest management",
             "hardwood forestry, birch, sustainable forest management",
@@ -140,105 +145,53 @@ class Biomass(BaseTransformation):
             "hardwood forestry, eucalyptus ssp., planted forest management",
         ]
 
-        dataset_groups = [
-            dataset
-            for dataset in self.database
-            if dataset["name"] in activities_to_regionalize
-        ]
+    def _add_new_datasets(self, proxy_dict: dict):
+        for dataset in proxy_dict.values():
+            self.log_and_index(dataset)
+        self.database.extend(proxy_dict.values())
 
-        def group_dicts_by_keys(dicts: list, keys: list):
-            groups = defaultdict(list)
-            for d in dicts:
-                group_key = tuple(d.get(k) for k in keys)
-                groups[group_key].append(d)
-            return list(groups.values())
+    def regionalize_wood_chips_activities(self):
+        """
+        Regionalize wood chips and forestry-related activities, which are currently only
+        available in RER, CA and RoW.
+        """
+        target_names = self._wood_chips_activity_names()
+        matching_datasets = [ds for ds in self.database if ds["name"] in target_names]
 
-        dataset_groups = group_dicts_by_keys(
-            dataset_groups, keys=["name", "reference product"]
-        )
-
-        new_datasets = []
-        for datasets in dataset_groups:
-            regionalized_datasets = self.fetch_proxies(
-                datasets=datasets,
-            )
-
-            # add to log
-            for regionalized_dataset in list(regionalized_datasets.values()):
-                self.write_log(regionalized_dataset)
-                # add it to list of created datasets
-                self.add_to_index(regionalized_dataset)
-
-            new_datasets.extend(list(regionalized_datasets.values()))
-
-        self.database.extend(new_datasets)
+        for group in _group_datasets_by_keys(
+            matching_datasets, ["name", "reference product"]
+        ):
+            proxies = self.fetch_proxies(datasets=group)
+            self._add_new_datasets(proxies)
 
     def create_biomass_markets(self) -> None:
+        self._create_forest_residue_datasets()
+        self._create_regional_biomass_markets()
+        self._replace_biomass_inputs()
 
+    def _create_forest_residue_datasets(self):
         for datasets in self.biomass_map["biomass - residual"]:
-            # create region-specific "Supply of forest residue" datasets
-            forest_residues_ds = self.fetch_proxies(
+            proxies = self.fetch_proxies(
                 datasets=datasets,
                 production_variable="biomass - residual",
             )
 
-            # add them to the database
-            self.database.extend(forest_residues_ds.values())
+            self.database.extend(proxies.values())
+            for ds in proxies.values():
+                self.log_and_index(ds)
 
-            # add log
-            for dataset in list(forest_residues_ds.values()):
-                self.write_log(dataset=dataset)
-                self.add_to_index(dataset)
-
+    def _create_regional_biomass_markets(self):
         for region in self.regions:
-            dataset = {
-                "name": "market for biomass, used as fuel",
-                "reference product": "biomass, used as fuel",
-                "location": region,
-                "comment": f"Biomass market, created by `premise`, "
-                f"to align with projections for the region {region} in {self.year}. "
-                "Calculated for an average energy input (LHV) of 19 MJ/kg, dry basis. "
-                "Sum of inputs can be superior to 1, as "
-                "inputs of wood chips, wet-basis, have been multiplied by a factor 2.5, "
-                "to reach a LHV of 19 MJ (they have a LHV of 7.6 MJ, wet basis).",
-                "unit": "kilogram",
-                "database": "premise",
-                "code": str(uuid.uuid4().hex),
-                "exchanges": [
-                    {
-                        "name": "market for biomass, used as fuel",
-                        "product": "biomass, used as fuel",
-                        "amount": 1,
-                        "unit": "kilogram",
-                        "location": region,
-                        "uncertainty type": 0,
-                        "type": "production",
-                    }
-                ],
-            }
+            dataset = self._create_market_dataset(region)
 
             for biomass_type, biomass_datasets in self.biomass_map.items():
-
                 if (
                     biomass_type
                     not in self.iam_data.biomass_mix.coords["variables"].values
                 ):
                     continue
 
-                if self.year in self.iam_data.biomass_mix.coords["year"].values:
-                    share = self.iam_data.biomass_mix.sel(
-                        variables=biomass_type,
-                        region=region,
-                        year=self.year,
-                    ).values.item(0)
-                else:
-                    share = (
-                        self.iam_data.biomass_mix.sel(
-                            variables=biomass_type, region=region
-                        )
-                        .interp(year=self.year)
-                        .values.item(0),
-                    )
+                share = self._get_biomass_share(biomass_type, region)
 
                 if (
                     self.system_model == "consequential"
@@ -247,34 +200,11 @@ class Biomass(BaseTransformation):
                     share = 0
 
                 if share > 0:
-                    ecoinvent_regions = self.geo.iam_to_ecoinvent_location(
-                        dataset["location"]
+                    suppliers = self.get_suppliers_with_fallback(
+                        biomass_datasets, region
                     )
-                    possible_locations = [
-                        dataset["location"],
-                        *ecoinvent_regions,
-                        "RER",
-                        "Europe without Switzerland",
-                        "RoW",
-                        "GLO",
-                    ]
-
-                    suppliers, counter = [], 0
-
-                    while not suppliers:
-                        suppliers = [
-                            ds
-                            for ds in biomass_datasets
-                            if ds["location"] == possible_locations[counter]
-                        ]
-                        counter += 1
-
-                    suppliers = get_shares_from_production_volume(suppliers)
-
                     for supplier, supply_share in suppliers.items():
-                        multiplication_factor = 1.0
-                        amount = supply_share * share * multiplication_factor
-
+                        amount = supply_share * share
                         dataset["exchanges"].append(
                             {
                                 "type": "technosphere",
@@ -287,41 +217,84 @@ class Biomass(BaseTransformation):
                             }
                         )
 
-                if "log parameters" not in dataset:
-                    dataset["log parameters"] = {}
+                dataset["log parameters"]["biomass share"] = share
 
-                dataset["log parameters"].update(
-                    {
-                        "biomass share": share,
-                    }
-                )
-
-            # check that dataset has exchanges
-            number_tech_exchanges = len(
-                [exc for exc in dataset["exchanges"] if exc["type"] == "technosphere"]
-            )
-            if number_tech_exchanges == 0:
+            if not any(exc["type"] == "technosphere" for exc in dataset["exchanges"]):
                 raise ValueError(
                     f"Dataset {dataset['name']} has no technosphere exchanges."
                 )
 
             self.database.append(dataset)
+            self.log_and_index(dataset)
 
-            # add log
-            self.write_log(dataset=dataset)
-            self.add_to_index(dataset)
+    def _create_market_dataset(self, region):
+        return {
+            "name": "market for biomass, used as fuel",
+            "reference product": "biomass, used as fuel",
+            "location": region,
+            "comment": (
+                f"Biomass market, created by `premise`, to align with projections "
+                f"for the region {region} in {self.year}. "
+                "Calculated for an average energy input (LHV) of 19 MJ/kg, dry basis. "
+                "Sum of inputs can be superior to 1, as inputs of wood chips, wet-basis, "
+                "have been multiplied by a factor 2.5, to reach a LHV of 19 MJ "
+                "(they have a LHV of 7.6 MJ, wet basis)."
+            ),
+            "unit": "kilogram",
+            "database": "premise",
+            "code": str(uuid.uuid4().hex),
+            "exchanges": [
+                {
+                    "name": "market for biomass, used as fuel",
+                    "product": "biomass, used as fuel",
+                    "amount": 1,
+                    "unit": "kilogram",
+                    "location": region,
+                    "uncertainty type": 0,
+                    "type": "production",
+                }
+            ],
+            "log parameters": {},
+        }
 
-        # replace biomass inputs
+    def _get_biomass_share(self, biomass_type, region):
+        if self.year in self.iam_data.biomass_mix.coords["year"].values:
+            return self.iam_data.biomass_mix.sel(
+                variables=biomass_type,
+                region=region,
+                year=self.year,
+            ).values.item(0)
+        else:
+            return (
+                self.iam_data.biomass_mix.sel(variables=biomass_type, region=region)
+                .interp(year=self.year)
+                .values.item(0)
+            )
+
+    def get_suppliers_with_fallback(self, biomass_datasets, region):
+        ecoinvent_regions = self.geo.iam_to_ecoinvent_location(region)
+        fallback_locs = [
+            region,
+            *ecoinvent_regions,
+            "RER",
+            "Europe without Switzerland",
+            "RoW",
+            "GLO",
+        ]
+
+        for loc in fallback_locs:
+            suppliers = [ds for ds in biomass_datasets if ds["location"] == loc]
+            if suppliers:
+                return get_shares_from_production_volume(suppliers)
+
+        raise ValueError(f"No suppliers found for biomass in location {region}")
+
+    def _replace_biomass_inputs(self):
         for dataset in ws.get_many(
             self.database,
+            ws.either(*[ws.equals("unit", u) for u in ["kilowatt hour", "megajoule"]]),
             ws.either(
-                *[ws.equals("unit", unit) for unit in ["kilowatt hour", "megajoule"]]
-            ),
-            ws.either(
-                *[
-                    ws.contains("name", name)
-                    for name in ["electricity", "heat", "power"]
-                ]
+                *[ws.contains("name", n) for n in ["electricity", "heat", "power"]]
             ),
         ):
             for exc in ws.technosphere(
@@ -331,11 +304,15 @@ class Biomass(BaseTransformation):
             ):
                 exc["name"] = "market for biomass, used as fuel"
                 exc["product"] = "biomass, used as fuel"
+                exc["location"] = (
+                    dataset["location"]
+                    if dataset["location"] in self.regions
+                    else self.ecoinvent_to_iam_loc.get(dataset["location"], "GLO")
+                )
 
-                if dataset["location"] in self.regions:
-                    exc["location"] = dataset["location"]
-                else:
-                    exc["location"] = self.ecoinvent_to_iam_loc[dataset["location"]]
+    def log_and_index(self, dataset):
+        self.write_log(dataset)
+        self.add_to_index(dataset)
 
     def write_log(self, dataset, status="created"):
         """
