@@ -665,7 +665,6 @@ hydrogen, from solar:
     gcam: Efficiency|Hydrogen|Solar
   iam_aliases:
     gcam: Secondary Energy|Production|Hydrogen|Solar
-    image: Secondary Energy|Hydrogen|Solar
   ecoinvent_aliases:
     fltr:
       - hydrogen production, gaseous, 25 bar, from thermochemical water splitting, at solar tower

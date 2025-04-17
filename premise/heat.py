@@ -41,19 +41,19 @@ def _update_heat(scenario, version, system_model):
     heat.fetch_fuel_market_co2_emissions()
     heat.regionalize_heat_production_datasets()
 
-    if scenario["iam data"].residential_heating_mix is not None:
+    if scenario["iam data"].buildings_heating_mix is not None:
         heat.create_heat_markets(
             technologies=[
                 tech
-                for tech in heat.iam_data.residential_heating_mix.variables.values
-                if "residential" in tech.lower()
+                for tech in heat.iam_data.buildings_heating_mix.variables.values
+                if "buildings" in tech.lower()
             ],
-            name="market for heat, residential",
-            energy_use_volumes=heat.iam_data.residential_heating_mix,
+            name="market for heat, for buildings",
+            energy_use_volumes=heat.iam_data.buildings_heating_mix,
             production_volumes=heat.iam_data.production_volumes,
         )
     else:
-        print("No residential heat scenario data available -- skipping")
+        print("No buildings heat scenario data available -- skipping")
 
     if scenario["iam data"].daccs_energy_use is not None:
         heat.create_heat_markets(

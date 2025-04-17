@@ -122,7 +122,7 @@ def process_yaml(file_path):
     return df
 
 
-# Process all *.yaml files except "constants.yaml"
+# Process all *.yaml files except a few ones
 for file in glob.glob("*.yaml"):
     if file in [
         "constants.yaml",

@@ -291,11 +291,11 @@ truck, fuel cell electric, 18t:
     remind-eu: ES|Transport|Freight|Road|Truck (18t)|FCEV
     tiam-ucl: Distance|Transport|Truck|Medium|Hydrogen Fuel Cell|Truck Hydrogen
     image:
-      - Energy Service|Transportation|Freight|Med Truck|Fuel Cell Vehicle|Biofuels
-      - Energy Service|Transportation|Freight|Med Truck|Fuel Cell Vehicle|Gasoline
-      - Energy Service|Transportation|Freight|Med Truck|Fuel Cell Vehicle|Hydrogen
-      - Energy Service|Transportation|Freight|Med Truck|Internal Combustion Engine|Hydrogen
-      - Energy Service|Transportation|Freight|Med Truck|Hybrid engine|Hydrogen
+      - Energy Service|Transportation|Freight|Medium Truck|Fuel Cell Vehicle|Biofuels
+      - Energy Service|Transportation|Freight|Medium Truck|Fuel Cell Vehicle|Gasoline
+      - Energy Service|Transportation|Freight|Medium Truck|Fuel Cell Vehicle|Hydrogen
+      - Energy Service|Transportation|Freight|Medium Truck|Internal Combustion Engine|Hydrogen
+      - Energy Service|Transportation|Freight|Medium Truck|Hybrid engine|Hydrogen
   energy_use_aliases:
     remind: FE|Transport|Freight|Road|Truck (18t)|Hydrogen
     remind-eu: FE|Transport|Freight|Road|Truck (18t)|Hydrogen
@@ -315,8 +315,8 @@ truck, gasoline, 18t:
           - Distance|Transport|Truck|Medium|Methanol|Bioethanol
           - Distance|Transport|Truck|Medium|Methanol|Methanol
         image:
-          - Energy Service|Transportation|Freight|Med Truck|Internal combustion engine efficienct|Gasoline
-          - Energy Service|Transportation|Freight|Med Truck|Internal Combustion Engine|Gasoline
+          - Energy Service|Transportation|Freight|Medium Truck|Internal Combustion Engine Efficient|Gasoline
+          - Energy Service|Transportation|Freight|Medium Truck|Internal Combustion Engine|Gasoline
 
     energy_use_aliases:
         tiam-ucl:
@@ -339,8 +339,8 @@ truck, diesel, 18t:
       - Distance|Transport|Truck|Medium|Diesel|Biodiesel
       - Distance|Transport|Truck|Medium|Diesel|Diesel
     image:
-      - Energy Service|Transportation|Freight|Med Truck|Internal Combustion Engine|Biofuel
-      - Energy Service|Transportation|Freight|Med Truck|Internal Combustion Engine|Diesel
+      - Energy Service|Transportation|Freight|Medium Truck|Internal Combustion Engine|Biofuel
+      - Energy Service|Transportation|Freight|Medium Truck|Internal Combustion Engine|Diesel
   energy_use_aliases:
     remind: FE|Transport|Freight|Road|Truck (18t)|Liquids
     remind-eu: FE|Transport|Freight|Road|Truck (18t)|Liquids
@@ -356,7 +356,7 @@ truck, diesel, 18t:
 
 truck, gasoline hybrid, 18t:
     iam_aliases:
-      image: Energy Service|Transportation|Freight|Med Truck|Hybrid engine|Gasoline
+      image: Energy Service|Transportation|Freight|Medium Truck|Hybrid engine|Gasoline
     ecoinvent_aliases:
         fltr:
         - transport, freight, lorry, gasoline hybrid, 18t gross weight, EURO-VI, long haul
@@ -367,8 +367,8 @@ truck, gasoline hybrid, 18t:
 truck, diesel hybrid, 18t:
     iam_aliases:
       image:
-        - Energy Service|Transportation|Freight|Med Truck|Hybrid engine|Biofuel
-        - Energy Service|Transportation|Freight|Med Truck|Hybrid engine|Diesel
+        - Energy Service|Transportation|Freight|Medium Truck|Hybrid engine|Biofuel
+        - Energy Service|Transportation|Freight|Medium Truck|Hybrid engine|Diesel
     ecoinvent_aliases:
         fltr:
         - transport, freight, lorry, diesel hybrid, 18t gross weight, EURO-VI, long haul
@@ -380,7 +380,7 @@ truck, compressed gas, 18t:
   iam_aliases:
     remind: ES|Transport|Freight|Road|Truck (18t)|Gases
     remind-eu: ES|Transport|Freight|Road|Truck (18t)|Gases
-    image: Energy Service|Transportation|Freight|Med Truck|Hybrid engine|LNG
+    image: Energy Service|Transportation|Freight|Medium Truck|Hybrid engine|LNG
     tiam-ucl: Distance|Transport|Truck|Medium|Natural Gas|Natural Gas
   energy_use_aliases:
     remind: FE|Transport|Freight|Road|Truck (18t)|Gases
@@ -408,12 +408,12 @@ truck, liquefied petroleum gas, 18t:
 truck, diesel plugin hybrid, 18t:
     iam_aliases:
         image:
-          - Energy Service|Transportation|Freight|Med Truck|Plug-in electric vehicle 10km|Biofuel
-          - Energy Service|Transportation|Freight|Med Truck|Plug-in electric vehicle 10km|Oil
-          - Energy Service|Transportation|Freight|Med Truck|Plug-in electric vehicle 30km|Biofuel
-          - Energy Service|Transportation|Freight|Med Truck|Plug-in electric vehicle 30km|Oil
-          - Energy Service|Transportation|Freight|Med Truck|Plug-in electric vehicle 60km|Biofuel
-          - Energy Service|Transportation|Freight|Med Truck|Plug-in electric vehicle 60km|Oil
+          - Energy Service|Transportation|Freight|Medium Truck|Plug-in electric vehicle 10km|Biofuel
+          - Energy Service|Transportation|Freight|Medium Truck|Plug-in electric vehicle 10km|Oil
+          - Energy Service|Transportation|Freight|Medium Truck|Plug-in electric vehicle 30km|Biofuel
+          - Energy Service|Transportation|Freight|Medium Truck|Plug-in electric vehicle 30km|Oil
+          - Energy Service|Transportation|Freight|Medium Truck|Plug-in electric vehicle 60km|Biofuel
+          - Energy Service|Transportation|Freight|Medium Truck|Plug-in electric vehicle 60km|Oil
     ecoinvent_aliases:
         fltr:
         - transport, freight, lorry, plugin diesel hybrid, 18t gross weight, EURO-VI, long haul
@@ -567,7 +567,7 @@ truck, gasoline, 40t:
           - Distance|Transport|Truck|Heavy|Methanol|Methanol
         image:
           - Energy Service|Transportation|Freight|Heavy Truck|Internal Combustion Engine|Gasoline
-          - Energy Service|Transportation|Freight|Heavy Truck|Internal combustion engine efficienct|Gasoline
+          - Energy Service|Transportation|Freight|Heavy Truck|Internal Combustion Engine Efficient|Gasoline
     energy_use_aliases:
         tiam-ucl:
           - Final Energy|Transport|Truck|Heavy|Gas|Gasoline

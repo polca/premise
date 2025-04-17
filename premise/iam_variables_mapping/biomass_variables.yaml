@@ -4,7 +4,9 @@
 ---
 biomass crops - purpose grown:
   iam_aliases:
-    image: Primary Energy|Biomass|Energy Crops
+    image:
+      - Primary Energy|Biomass|Energy Crops
+      - Primary Energy|Biomass|Modern
     message: Primary Energy|Biomass|Energy Crops
     remind: SE|Electricity|Biomass|Energy Crops
     remind-eu: SE|Electricity|Biomass|Energy Crops
@@ -26,9 +28,7 @@ biomass wood - purpose grown:
 biomass - residual:
   iam_aliases:
     message: Primary Energy|Biomass|Residues
-    image:
-      - Primary Energy|Biomass|Residues
-      - Primary Energy|Biomass|Other
+    image: Primary Energy|Biomass|Residues
     remind: SE|Electricity|Biomass|Residues
     remind-eu: SE|Electricity|Biomass|Residues
     tiam-ucl: Primary Energy|Biomass|Residues

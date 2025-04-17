@@ -10,8 +10,9 @@ direct air capture (solvent) with storage:
   iam_aliases:
     remind: Emi|CO2|CDR|DACCS
     remind-eu: Emi|CO2|CDR|DACCS
-    image: Carbon Capture|Storage|Direct Air Capture
+    image: Carbon Capture|Direct Air Capture
     tiam-ucl: Carbon Capture|Storage|Direct Air Capture
+    witch: Carbon Sequestration|Direct Air Capture|Solvent
   energy_use_aliases:
     remind:
       - FE|CDR|DAC|+|Heat
@@ -19,23 +20,16 @@ direct air capture (solvent) with storage:
       - FE|CDR|DAC|+|Hydrogen
       - FE|CDR|DAC|+|Gases
     remind-eu:
-     - FE|CDR|DAC|+|Heat
-     - FE|CDR|DAC|+|Electricity
-     - FE|CDR|DAC|+|Hydrogen
-     - FE|CDR|DAC|+|Gases
+       - FE|CDR|DAC|+|Heat
+       - FE|CDR|DAC|+|Electricity
+       - FE|CDR|DAC|+|Hydrogen
+       - FE|CDR|DAC|+|Gases
     tiam-ucl:
       - Secondary Energy|Consumption|Direct Air Capture|Heat
       - Secondary Energy|Consumption|Direct Air Capture|Electricity
-    image:
-      - Carbon Capture|Storage|Biomass|Energy|Supply|Liquids
-      - Carbon Capture|Storage|Biomass|Energy|Supply|Other
-      - Carbon Capture|Storage|Fossil|Energy|Supply|Liquids
-      - Carbon Capture|Storage|Fossil|Energy|Supply|Other
-      - Carbon Capture|Storage|Biomass|Energy|Supply|Electricity
-      - Carbon Capture|Storage|Fossil|Energy|Supply|Electricity
-      - Carbon Capture|Storage|Biomass|Energy|Supply|Hydrogen
-      - Carbon Capture|Storage|Fossil|Energy|Supply|Hydrogen
-      - Carbon Capture|Storage|Fossil|Energy|Supply|Gases
+    witch:
+      - Final Energy|Carbon Management|Direct Air Capture|Solvent|Electricity|PV
+      - Final Energy|Carbon Management|Direct Air Capture|Solvent|Electricity|CSP
 
   ecoinvent_aliases:
     fltr:
@@ -47,108 +41,16 @@ direct air capture (solvent) with storage:
       - heat pump
 
 direct air capture (sorbent) with storage:
+  iam_aliases:
+    witch: Carbon Sequestration|Direct Air Capture|Sorbent
   energy_use_aliases:
-    remind:
-      - FE|CDR|DAC|+|Heat
-      - FE|CDR|DAC|+|Electricity
-      - FE|CDR|DAC|+|Hydrogen
-      - FE|CDR|DAC|+|Gases
-    remind-eu:
-      - FE|CDR|DAC|+|Heat
-      - FE|CDR|DAC|+|Electricity
-      - FE|CDR|DAC|+|Hydrogen
-      - FE|CDR|DAC|+|Gases
-    tiam-ucl:
-      - Secondary Energy|Consumption|Direct Air Capture|Heat
-      - Secondary Energy|Consumption|Direct Air Capture|Electricity
-    image:
-      - Carbon Capture|Storage|Biomass|Energy|Supply|Liquids
-      - Carbon Capture|Storage|Biomass|Energy|Supply|Other
-      - Carbon Capture|Storage|Fossil|Energy|Supply|Liquids
-      - Carbon Capture|Storage|Fossil|Energy|Supply|Other
-      - Carbon Capture|Storage|Biomass|Energy|Supply|Electricity
-      - Carbon Capture|Storage|Fossil|Energy|Supply|Electricity
-      - Carbon Capture|Storage|Biomass|Energy|Supply|Hydrogen
-      - Carbon Capture|Storage|Fossil|Energy|Supply|Hydrogen
-      - Carbon Capture|Storage|Fossil|Energy|Supply|Gases
+    witch:
+      - Final Energy|Carbon Management|Direct Air Capture|Sorbent|Heat|Gases
+      - Final Energy|Carbon Management|Direct Air Capture|Sorbent|Electricity|CSP
 
   ecoinvent_aliases:
     fltr:
       - carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2
-
-direct air capture (solvent):
-  energy_use_aliases:
-    remind:
-      - FE|CDR|DAC|+|Heat
-      - FE|CDR|DAC|+|Electricity
-      - FE|CDR|DAC|+|Hydrogen
-      - FE|CDR|DAC|+|Gases
-    remind-eu:
-      - FE|CDR|DAC|+|Heat
-      - FE|CDR|DAC|+|Electricity
-      - FE|CDR|DAC|+|Hydrogen
-      - FE|CDR|DAC|+|Gases
-    tiam-ucl:
-      - Secondary Energy|Consumption|Direct Air Capture|Heat
-      - Secondary Energy|Consumption|Direct Air Capture|Electricity
-    image:
-      - Carbon Capture|Storage|Biomass|Energy|Supply|Liquids
-      - Carbon Capture|Storage|Biomass|Energy|Supply|Other
-      - Carbon Capture|Storage|Fossil|Energy|Supply|Liquids
-      - Carbon Capture|Storage|Fossil|Energy|Supply|Other
-      - Carbon Capture|Storage|Biomass|Energy|Supply|Electricity
-      - Carbon Capture|Storage|Fossil|Energy|Supply|Electricity
-      - Carbon Capture|Storage|Biomass|Energy|Supply|Hydrogen
-      - Carbon Capture|Storage|Fossil|Energy|Supply|Hydrogen
-      - Carbon Capture|Storage|Fossil|Energy|Supply|Gases
-    witch:
-      - Final energy|Carbon Management|Direct Air Capture|Solvent|Electricity|Coal
-      - Final energy|Carbon Management|Direct Air Capture|Solvent|Electricity|Biomass
-      - Final energy|Carbon Management|Direct Air Capture|Solvent|Electricity|Gas
-      - Final energy|Carbon Management|Direct Air Capture|Solvent|Electricity|Wind
-      - Final energy|Carbon Management|Direct Air Capture|Solvent|Electricity|PV
-      - Final energy|Carbon Management|Direct Air Capture|Solvent|Electricity|CSP
-
-  ecoinvent_aliases:
-    fltr:
-      - carbon dioxide, captured, with a solvent-based direct air capture system, 1MtCO2
-
-direct air capture (sorbent):
-  energy_use_aliases:
-    remind:
-      - FE|CDR|DAC|+|Heat
-      - FE|CDR|DAC|+|Electricity
-      - FE|CDR|DAC|+|Hydrogen
-      - FE|CDR|DAC|+|Gases
-    remind-eu:
-      - FE|CDR|DAC|+|Heat
-      - FE|CDR|DAC|+|Electricity
-      - FE|CDR|DAC|+|Hydrogen
-      - FE|CDR|DAC|+|Gases
-    tiam-ucl:
-      - Secondary Energy|Consumption|Direct Air Capture|Heat
-      - Secondary Energy|Consumption|Direct Air Capture|Electricity
-    image:
-      - Carbon Capture|Storage|Biomass|Energy|Supply|Liquids
-      - Carbon Capture|Storage|Biomass|Energy|Supply|Other
-      - Carbon Capture|Storage|Fossil|Energy|Supply|Liquids
-      - Carbon Capture|Storage|Fossil|Energy|Supply|Other
-      - Carbon Capture|Storage|Biomass|Energy|Supply|Electricity
-      - Carbon Capture|Storage|Fossil|Energy|Supply|Electricity
-      - Carbon Capture|Storage|Biomass|Energy|Supply|Hydrogen
-      - Carbon Capture|Storage|Fossil|Energy|Supply|Hydrogen
-      - Carbon Capture|Storage|Fossil|Energy|Supply|Gases
-    witch: 
-      - Final energy|Carbon Management|Direct Air Capture|Sorbent|Electricity|Coal
-      - Final energy|Carbon Management|Direct Air Capture|Sorbent|Electricity|Biomass
-      - Final energy|Carbon Management|Direct Air Capture|Sorbent|Electricity|Gas
-      - Final energy|Carbon Management|Direct Air Capture|Sorbent|Electricity|Wind
-      - Final energy|Carbon Management|Direct Air Capture|Sorbent|Electricity|PV
-      - Final energy|Carbon Management|Direct Air Capture|Sorbent|Electricity|CSP    
-
-  ecoinvent_aliases:
-    fltr:
-      - carbon dioxide, captured, with a sorbent-based direct air capture system, 100ktCO2
 
 enhanced rock weathering:
     iam_aliases:

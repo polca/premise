@@ -114,9 +114,9 @@ Direct Air Capture - elec eff.:
   label: Efficiency gains (2020 = 1)
   expl_text: Electricity efficiency gains relative to 2020. Used to calibrate the efficiency of the DAC datasets.
   offset: 10
-Heat (residential) - generation:
+Heat (buildings) - generation:
   label: Exajoules (EJ)
-  expl_text: Generated volumes of residential heating, per technology. Used to calculate the residential heating supply mix.
+  expl_text: Generated volumes of heating for residential and commercial buildings (space and water heating), per technology. Used to calculate the buildings heating supply mix.
   offset: 10
 Transport (two-wheelers):
   label: Vehicle-kilometers (million)

@@ -416,7 +416,7 @@ class IAMDataCollection:
             for k, v in self.__get_iam_variable_labels(
                 IAM_HEATING_VARS, variable="iam_aliases"
             ).items()
-            if "residential" in k
+            if "buildings" in k
         }
 
         daccs_heat_vars = {
@@ -747,7 +747,7 @@ class IAMDataCollection:
             sector="transport",
         )
 
-        self.residential_heating_mix = self.__fetch_market_data(
+        self.buildings_heating_mix = self.__fetch_market_data(
             data=data,
             input_vars=buildings_heat_vars,
             system_model=self.system_model,
