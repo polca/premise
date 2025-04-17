@@ -35,7 +35,6 @@ IAM_TRSPT_TRUCKS_VARS = VARIABLES_DIR / "transport_road_freight.yaml"
 IAM_TRSPT_TRAINS_VARS = VARIABLES_DIR / "transport_railfreight.yaml"
 IAM_TRSPT_SHIPS_VARS = VARIABLES_DIR / "transport_sea_freight.yaml"
 IAM_OTHER_VARS = VARIABLES_DIR / "other.yaml"
-IAM_CARBON_CAPTURE_VARS = VARIABLES_DIR / "carbon_capture.yaml"
 REPORT_METADATA_FILEPATH = DATA_DIR / "utils" / "report" / "report.yaml"
 VEHICLES_MAP = DATA_DIR / "transport" / "vehicles_map.yaml"
 
@@ -159,11 +158,6 @@ def fetch_data(
             if hasattr(iam_data, "cement_technology_efficiencies")
             else None
         ),
-        "Cement - CCS": (
-            iam_data.carbon_capture_rate
-            if hasattr(iam_data, "carbon_capture_rate")
-            else None
-        ),
         "Steel - generation": (
             iam_data.production_volumes
             if hasattr(iam_data, "production_volumes")
@@ -172,11 +166,6 @@ def fetch_data(
         "Steel - efficiency": (
             iam_data.steel_technology_efficiencies
             if hasattr(iam_data, "steel_technology_efficiencies")
-            else None
-        ),
-        "Steel - CCS": (
-            iam_data.carbon_capture_rate
-            if hasattr(iam_data, "carbon_capture_rate")
             else None
         ),
         "CDR - generation": (
@@ -391,19 +380,11 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
         "Cement - efficiency": {
             "filepath": IAM_CEMENT_VARS,
         },
-        "Cement - CCS": {
-            "filepath": IAM_CARBON_CAPTURE_VARS,
-            "variables": ["cement"],
-        },
         "Steel - generation": {
             "filepath": IAM_STEEL_VARS,
         },
         "Steel - efficiency": {
             "filepath": IAM_STEEL_VARS,
-        },
-        "Steel - CCS": {
-            "filepath": IAM_CARBON_CAPTURE_VARS,
-            "variables": ["steel"],
         },
         "CDR - generation": {
             "filepath": IAM_CDR_VARS,

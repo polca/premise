@@ -2,14 +2,14 @@
 Integrates projections regarding steel production.
 """
 
-from typing import Dict, List
+from typing import List
 
-from .activity_maps import InventorySet
 from .data_collection import IAMDataCollection
 from .logger import create_logger
 from .transformation import BaseTransformation, ws
 from .utils import rescale_exchanges
 from .validation import SteelValidation
+from .activity_maps import InventorySet
 
 logger = create_logger("steel")
 
@@ -86,8 +86,6 @@ class Steel(BaseTransformation):
             index,
         )
         self.version = version
-        mapping = InventorySet(self.database)
-        self.material_map: dict = mapping.generate_material_map()
 
     def generate_activities(self):
         """
@@ -369,7 +367,6 @@ class Steel(BaseTransformation):
 
         """
         # Determine all steel activities in the database. Empty old datasets.
-        # print("Create new steel production datasets and empty old datasets")
 
         d_act_primary_steel = {
             mat: self.fetch_proxies(
@@ -399,9 +396,6 @@ class Steel(BaseTransformation):
         # and add carbon capture and storage, if needed
         for _, steel in d_act_primary_steel.items():
             steel = self.adjust_process_efficiency(steel)
-            steel = self.add_carbon_capture_and_storage(
-                datasets=steel,
-            )
             # update the database with the modified datasets
             self.database.extend(list(steel.values()))
 
@@ -414,9 +408,6 @@ class Steel(BaseTransformation):
         # and add carbon capture and storage, if needed
         for _, steel in d_act_secondary_steel.items():
             steel = self.adjust_process_efficiency(steel)
-            steel = self.add_carbon_capture_and_storage(
-                datasets=steel,
-            )
             # update the database with the modified datasets
             self.database.extend(list(steel.values()))
 
@@ -440,10 +431,6 @@ class Steel(BaseTransformation):
 
         # adjust efficiency of pig iron production
         pig_iron = self.adjust_process_efficiency(pig_iron)
-        # add carbon capture and storage, if needed
-        pig_iron = self.add_carbon_capture_and_storage(
-            datasets=pig_iron,
-        )
 
         self.database.extend(list(pig_iron.values()))
 
@@ -584,60 +571,6 @@ class Steel(BaseTransformation):
                         "thermal efficiency change": scaling_factor,
                     }
                 )
-
-        return datasets
-
-    def add_carbon_capture_and_storage(self, datasets: Dict[str, dict]):
-        """
-        Adds carbon capture-related energy exchanges to the input datasets for the given sector.
-
-        :param datasets: A dictionary of datasets to modify.
-        :return: A modified dictionary of datasets.
-        """
-
-        for region, dataset in datasets.items():
-            # Check if carbon capture rate data is available
-            # for this region and sector
-            carbon_capture_rate = self.get_carbon_capture_rate(
-                loc=dataset["location"], sector="steel"
-            )
-            if carbon_capture_rate > 0:
-                # Create a new CCS dataset if one doesn't exist
-                self.create_ccs_dataset(
-                    loc=region, bio_co2_stored=0, bio_co2_leaked=0, sector="steel"
-                )
-
-                # Modify the CO2 flow in the input dataset
-                for co2_flow in ws.biosphere(
-                    dataset, ws.contains("name", "Carbon dioxide, fossil")
-                ):
-                    co2_amount = co2_flow["amount"]
-                    # consider 90% capture efficiency
-                    carbon_capture_rate *= 0.9
-                    co2_emitted = co2_amount * (1 - carbon_capture_rate)
-                    co2_flow["amount"] = co2_emitted
-
-                    # Add an input from the CCS dataset to the input dataset
-                    ccs_exc = {
-                        "uncertainty type": 0,
-                        "loc": 0,
-                        "amount": co2_amount - co2_emitted,
-                        "type": "technosphere",
-                        "production volume": 0,
-                        "name": "carbon dioxide, captured at steel production plant, "
-                        "with underground storage, post, 200 km",
-                        "unit": "kilogram",
-                        "location": dataset["location"],
-                        "product": "carbon dioxide, captured and stored",
-                    }
-                    dataset["exchanges"].append(ccs_exc)
-
-            if "log parameters" not in dataset:
-                dataset["log parameters"] = {}
-
-            dataset["log parameters"].update(
-                {"carbon capture rate": carbon_capture_rate}
-            )
 
         return datasets
 

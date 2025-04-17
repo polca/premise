@@ -17,7 +17,6 @@ POWERPLANT_TECHS = VARIABLES_DIR / "electricity.yaml"
 FUELS_TECHS = VARIABLES_DIR / "fuels.yaml"
 BIOMASS_TYPES = VARIABLES_DIR / "biomass.yaml"
 METALS_TECHS = DATA_DIR / "metals" / "activities_mapping.yml"
-MATERIALS_TECHS = DATA_DIR / "utils" / "materials_vars.yml"
 CDR_TECHS = VARIABLES_DIR / "carbon_dioxide_removal.yaml"
 CARBON_STORAGE_TECHS = VARIABLES_DIR / "carbon_storage_variables.yaml"
 CEMENT_TECHS = VARIABLES_DIR / "cement.yaml"
@@ -155,10 +154,6 @@ class InventorySet:
         )
 
         self.fuels_filters = get_mapping(filepath=FUELS_TECHS, var="ecoinvent_aliases")
-
-        self.materials_filters = get_mapping(
-            filepath=MATERIALS_TECHS, var="ecoinvent_aliases"
-        )
 
         self.cdr_filters = get_mapping(filepath=CDR_TECHS, var="ecoinvent_aliases")
 
@@ -305,14 +300,6 @@ class InventorySet:
 
         """
         return self.generate_sets_from_filters(self.final_energy_filters)
-
-    def generate_material_map(self) -> dict:
-        """
-        Filter ecoinvent processes related to materials.
-        Rerurns a dictionary with material names as keys (see below) and
-        a set of related ecoinvent activities' names as values.
-        """
-        return self.generate_sets_from_filters(self.materials_filters)
 
     def generate_transport_map(self, transport_type: str) -> dict:
         """

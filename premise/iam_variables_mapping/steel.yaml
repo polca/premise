@@ -117,6 +117,10 @@ steel - primary - BF/BOF CCS:
     tiam-ucl:
       - Production|Steel|Primary|BF and BOF 1|w CCS
       - Production|Steel|Primary|BF and BOF 3|w CCS
+    remind: Production|Industry|Steel|Primary w CCS
+    remind-eu: Production|Industry|Steel|Primary w CCS
+    message: Production|Primary|Steel w CCS
+    gcam: Production|Industry|Steel|Primary w CCS
   energy_use_aliases:
     image:
       - Final Energy|Industry|Iron and Steel|BF/ BOF Standard + CCS|Coal

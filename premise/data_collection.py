@@ -42,7 +42,6 @@ IAM_TRANS_BUS_VARS = VARIABLES_DIR / "transport_bus.yaml"
 IAM_TRANS_TWO_WHEELERS_VARS = VARIABLES_DIR / "transport_two_wheelers.yaml"
 
 VEHICLES_MAP = DATA_DIR / "transport" / "vehicles_map.yaml"
-IAM_CARBON_CAPTURE_VARS = VARIABLES_DIR / "carbon_capture.yaml"
 CROPS_PROPERTIES = VARIABLES_DIR / "crops.yaml"
 GAINS_GEO_MAP = VARIABLES_DIR / "gains_regions.yaml"
 COAL_POWER_PLANTS_DATA = DATA_DIR / "electricity" / "coal_power_emissions_2012_v1.csv"
@@ -407,10 +406,6 @@ class IAMDataCollection:
             IAM_CROPS_VARS, variable="land_use_change"
         )
 
-        carbon_capture_vars = self.__get_iam_variable_labels(
-            IAM_CARBON_CAPTURE_VARS, variable="iam_aliases"
-        )
-
         buildings_heat_vars = {
             k: v
             for k, v in self.__get_iam_variable_labels(
@@ -509,7 +504,6 @@ class IAMDataCollection:
             + list(biomass_eff_vars.values())
             + list(land_use_vars.values())
             + list(land_use_change_vars.values())
-            + list(carbon_capture_vars.values())
             + list(buildings_heat_vars.values())
             + list(daccs_heat_vars.values())
             + list(ewr_heat_vars.values())
@@ -688,14 +682,6 @@ class IAMDataCollection:
             input_vars=biomass_prod_vars,
             system_model=self.system_model,
             sector="biomass",
-        )
-
-        self.carbon_capture_rate = self.__get_carbon_capture_rate(
-            dict_vars=self.__get_iam_variable_labels(
-                IAM_CARBON_CAPTURE_VARS,
-                variable="iam_aliases",
-            ),
-            data=data,
         )
 
         self.other_vars = self.__fetch_market_data(
