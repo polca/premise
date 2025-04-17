@@ -37,7 +37,7 @@ from .utils import (
 )
 from .validation import ElectricityValidation
 
-POWERPLANT_TECHS = VARIABLES_DIR / "electricity_variables.yaml"
+POWERPLANT_TECHS = VARIABLES_DIR / "electricity.yaml"
 
 logger = create_logger("electricity")
 

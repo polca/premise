@@ -127,7 +127,7 @@ for file in glob.glob("*.yaml"):
     if file in [
         "constants.yaml",
         "missing_geography_equivalences.yaml",
-        "gains_regions_mapping.yaml",
+        "gains_regions.yaml",
         "iam_region_to_climate.yaml",
     ]:
         continue

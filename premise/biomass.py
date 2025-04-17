@@ -24,7 +24,7 @@ from .transformation import (
 from .activity_maps import InventorySet
 from .validation import BiomassValidation
 
-IAM_BIOMASS_VARS = VARIABLES_DIR / "biomass_variables.yaml"
+IAM_BIOMASS_VARS = VARIABLES_DIR / "biomass.yaml"
 
 logger = create_logger("biomass")
 

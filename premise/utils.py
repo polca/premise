@@ -30,8 +30,8 @@ from .filesystem_constants import (
 )
 from .geomap import Geomap
 
-FUELS_PROPERTIES = VARIABLES_DIR / "fuels_variables.yaml"
-CROPS_PROPERTIES = VARIABLES_DIR / "crops_variables.yaml"
+FUELS_PROPERTIES = VARIABLES_DIR / "fuels.yaml"
+CROPS_PROPERTIES = VARIABLES_DIR / "crops.yaml"
 EFFICIENCY_RATIO_SOLAR_PV = DATA_DIR / "renewables" / "efficiency_solar_PV.csv"
 
 
