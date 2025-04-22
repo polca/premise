@@ -82,10 +82,6 @@ Cement - efficiency:
   label: Efficiency gains (2020 = 1)
   expl_text: Energy efficiency gains relative to 2020. Used to calibrate the efficiency of the clinker-producing datasets.
   offset: 10
-Cement - CCS:
-  label: Share of emissions captured [%]
-  expl_text: Share of cement emissions captured by CCS. Used to adjust the use of CCS in clinker-producing datasets.
-  offset: 10
 Steel - generation:
   label: Millions of tons (MT)
   expl_text: Generated volumes of steel by type (i.e., primary vs. secondary). Used to calculate steel supply mixes.
@@ -93,10 +89,6 @@ Steel - generation:
 Steel - efficiency:
   label: Efficiency gains (2020 = 1)
   expl_text: Energy efficiency gains per technology relative to 2020. Used to calibrate the efficiency of the steel-producing datasets.
-  offset: 10
-Steel - CCS:
-  label: Share of emissions captured [%]
-  expl_text: Share of steel emissions captured by CCS. Used to adjust the use of CCS in steel-producing datasets.
   offset: 10
 CDR - generation:
   label: Millions of tons of CO2 (Mt CO2, cumul.) removed
@@ -114,9 +106,9 @@ Direct Air Capture - elec eff.:
   label: Efficiency gains (2020 = 1)
   expl_text: Electricity efficiency gains relative to 2020. Used to calibrate the efficiency of the DAC datasets.
   offset: 10
-Heat (residential) - generation:
+Heat (buildings) - generation:
   label: Exajoules (EJ)
-  expl_text: Generated volumes of residential heating, per technology. Used to calculate the residential heating supply mix.
+  expl_text: Generated volumes of heating for residential and commercial buildings (space and water heating), per technology. Used to calculate the buildings heating supply mix.
   offset: 10
 Transport (two-wheelers):
   label: Vehicle-kilometers (million)

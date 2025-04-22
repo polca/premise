@@ -13,25 +13,23 @@ from wurst import searching as ws
 
 from .filesystem_constants import DATA_DIR, VARIABLES_DIR
 
-POWERPLANT_TECHS = VARIABLES_DIR / "electricity_variables.yaml"
-FUELS_TECHS = VARIABLES_DIR / "fuels_variables.yaml"
-BIOMASS_TYPES = VARIABLES_DIR / "biomass_variables.yaml"
+POWERPLANT_TECHS = VARIABLES_DIR / "electricity.yaml"
+FUELS_TECHS = VARIABLES_DIR / "fuels.yaml"
+BIOMASS_TYPES = VARIABLES_DIR / "biomass.yaml"
 METALS_TECHS = DATA_DIR / "metals" / "activities_mapping.yml"
-MATERIALS_TECHS = DATA_DIR / "utils" / "materials_vars.yml"
-CDR_TECHS = VARIABLES_DIR / "carbon_dioxide_removal_variables.yaml"
-CARBON_STORAGE_TECHS = VARIABLES_DIR / "carbon_storage_variables.yaml"
-CEMENT_TECHS = VARIABLES_DIR / "cement_variables.yaml"
+CDR_TECHS = VARIABLES_DIR / "carbon_dioxide_removal.yaml"
+CEMENT_TECHS = VARIABLES_DIR / "cement.yaml"
 GAINS_MAPPING = (
     DATA_DIR / "GAINS_emission_factors" / "gains_ecoinvent_sectoral_mapping.yaml"
 )
 ACTIVITIES_METALS_MAPPING = DATA_DIR / "metals" / "activities_mapping.yml"
-HEAT_TECHS = VARIABLES_DIR / "heat_variables.yaml"
-PASSENGER_CARS = VARIABLES_DIR / "transport_passenger_cars_variables.yaml"
-TWO_WHEELERS = VARIABLES_DIR / "transport_two_wheelers_variables.yaml"
-BUSES = VARIABLES_DIR / "transport_bus_variables.yaml"
-TRUCKS = VARIABLES_DIR / "transport_roadfreight_variables.yaml"
-TRAINS = VARIABLES_DIR / "transport_railfreight_variables.yaml"
-SHIPS = VARIABLES_DIR / "transport_sea_variables.yaml"
+HEAT_TECHS = VARIABLES_DIR / "heat.yaml"
+PASSENGER_CARS = VARIABLES_DIR / "transport_passenger_cars.yaml"
+TWO_WHEELERS = VARIABLES_DIR / "transport_two_wheelers.yaml"
+BUSES = VARIABLES_DIR / "transport_bus.yaml"
+TRUCKS = VARIABLES_DIR / "transport_road_freight.yaml"
+TRAINS = VARIABLES_DIR / "transport_rail_freight.yaml"
+SHIPS = VARIABLES_DIR / "transport_sea_freight.yaml"
 FINAL_ENERGY = VARIABLES_DIR / "final_energy.yaml"
 
 

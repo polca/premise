@@ -30,8 +30,7 @@ from .filesystem_constants import (
 )
 from .geomap import Geomap
 
-FUELS_PROPERTIES = VARIABLES_DIR / "fuels_variables.yaml"
-CROPS_PROPERTIES = VARIABLES_DIR / "crops_variables.yaml"
+FUELS_PROPERTIES = VARIABLES_DIR / "fuels.yaml"
 EFFICIENCY_RATIO_SOLAR_PV = DATA_DIR / "renewables" / "efficiency_solar_PV.csv"
 
 
@@ -140,18 +139,6 @@ def get_fuel_properties() -> dict:
         fuel_props = yaml.safe_load(stream)
 
     return fuel_props
-
-
-def get_crops_properties() -> dict:
-    """
-    Return a dictionary with crop names as keys and IAM labels as values
-    relating to land use change CO2 per crop type
-    :return: dict
-    """
-    with open(CROPS_PROPERTIES, "r", encoding="utf-8") as stream:
-        crop_props = yaml.safe_load(stream)
-
-    return crop_props
 
 
 def get_water_consumption_factors() -> dict:

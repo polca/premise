@@ -24,27 +24,26 @@ from .filesystem_constants import DATA_DIR, VARIABLES_DIR
 from .geomap import Geomap
 from .marginal_mixes import consequential_method
 
-IAM_ELEC_VARS = VARIABLES_DIR / "electricity_variables.yaml"
-IAM_FUELS_VARS = VARIABLES_DIR / "fuels_variables.yaml"
-IAM_BIOMASS_VARS = VARIABLES_DIR / "biomass_variables.yaml"
-IAM_CROPS_VARS = VARIABLES_DIR / "crops_variables.yaml"
-IAM_CEMENT_VARS = VARIABLES_DIR / "cement_variables.yaml"
-IAM_STEEL_VARS = VARIABLES_DIR / "steel_variables.yaml"
-IAM_CDR_VARS = VARIABLES_DIR / "carbon_dioxide_removal_variables.yaml"
-IAM_HEATING_VARS = VARIABLES_DIR / "heat_variables.yaml"
+IAM_ELEC_VARS = VARIABLES_DIR / "electricity.yaml"
+IAM_FUELS_VARS = VARIABLES_DIR / "fuels.yaml"
+IAM_BIOMASS_VARS = VARIABLES_DIR / "biomass.yaml"
+IAM_CROPS_VARS = VARIABLES_DIR / "crops.yaml"
+IAM_CEMENT_VARS = VARIABLES_DIR / "cement.yaml"
+IAM_STEEL_VARS = VARIABLES_DIR / "steel.yaml"
+IAM_CDR_VARS = VARIABLES_DIR / "carbon_dioxide_removal.yaml"
+IAM_HEATING_VARS = VARIABLES_DIR / "heat.yaml"
 IAM_FINAL_ENERGY_VARS = VARIABLES_DIR / "final_energy.yaml"
-IAM_OTHER_VARS = VARIABLES_DIR / "other_variables.yaml"
-IAM_TRANS_ROADFREIGHT_VARS = VARIABLES_DIR / "transport_roadfreight_variables.yaml"
-IAM_TRANS_RAILFREIGHT_VARS = VARIABLES_DIR / "transport_railfreight_variables.yaml"
-IAM_TRANS_SEAFREIGHT_VARS = VARIABLES_DIR / "transport_sea_variables.yaml"
-IAM_TRANS_PASS_CARS_VARS = VARIABLES_DIR / "transport_passenger_cars_variables.yaml"
-IAM_TRANS_BUS_VARS = VARIABLES_DIR / "transport_bus_variables.yaml"
-IAM_TRANS_TWO_WHEELERS_VARS = VARIABLES_DIR / "transport_two_wheelers_variables.yaml"
+IAM_OTHER_VARS = VARIABLES_DIR / "other.yaml"
+IAM_TRANS_ROADFREIGHT_VARS = VARIABLES_DIR / "transport_road_freight.yaml"
+IAM_TRANS_RAILFREIGHT_VARS = VARIABLES_DIR / "transport_rail_freight.yaml"
+IAM_TRANS_SEAFREIGHT_VARS = VARIABLES_DIR / "transport_sea_freight.yaml"
+IAM_TRANS_PASS_CARS_VARS = VARIABLES_DIR / "transport_passenger_cars.yaml"
+IAM_TRANS_BUS_VARS = VARIABLES_DIR / "transport_bus.yaml"
+IAM_TRANS_TWO_WHEELERS_VARS = VARIABLES_DIR / "transport_two_wheelers.yaml"
 
 VEHICLES_MAP = DATA_DIR / "transport" / "vehicles_map.yaml"
-IAM_CARBON_CAPTURE_VARS = VARIABLES_DIR / "carbon_capture_variables.yaml"
-CROPS_PROPERTIES = VARIABLES_DIR / "crops_variables.yaml"
-GAINS_GEO_MAP = VARIABLES_DIR / "gains_regions_mapping.yaml"
+CROPS_PROPERTIES = VARIABLES_DIR / "crops.yaml"
+GAINS_GEO_MAP = VARIABLES_DIR / "gains_regions.yaml"
 COAL_POWER_PLANTS_DATA = DATA_DIR / "electricity" / "coal_power_emissions_2012_v1.csv"
 BATTERY_MOBILE_SCENARIO_DATA = DATA_DIR / "battery" / "mobile_scenarios.csv"
 BATTERY_STATIONARY_SCENARIO_DATA = DATA_DIR / "battery" / "stationary_scenarios.csv"
@@ -407,10 +406,6 @@ class IAMDataCollection:
             IAM_CROPS_VARS, variable="land_use_change"
         )
 
-        carbon_capture_vars = self.__get_iam_variable_labels(
-            IAM_CARBON_CAPTURE_VARS, variable="iam_aliases"
-        )
-
         buildings_heat_vars = {
             k: v
             for k, v in self.__get_iam_variable_labels(
@@ -509,7 +504,6 @@ class IAMDataCollection:
             + list(biomass_eff_vars.values())
             + list(land_use_vars.values())
             + list(land_use_change_vars.values())
-            + list(carbon_capture_vars.values())
             + list(buildings_heat_vars.values())
             + list(daccs_heat_vars.values())
             + list(ewr_heat_vars.values())
@@ -688,14 +682,6 @@ class IAMDataCollection:
             input_vars=biomass_prod_vars,
             system_model=self.system_model,
             sector="biomass",
-        )
-
-        self.carbon_capture_rate = self.__get_carbon_capture_rate(
-            dict_vars=self.__get_iam_variable_labels(
-                IAM_CARBON_CAPTURE_VARS,
-                variable="iam_aliases",
-            ),
-            data=data,
         )
 
         self.other_vars = self.__fetch_market_data(

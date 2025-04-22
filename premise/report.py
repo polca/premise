@@ -21,21 +21,20 @@ from . import __version__
 from .filesystem_constants import DATA_DIR, VARIABLES_DIR
 from .logger import empty_log_files
 
-IAM_ELEC_VARS = VARIABLES_DIR / "electricity_variables.yaml"
-IAM_FUELS_VARS = VARIABLES_DIR / "fuels_variables.yaml"
-IAM_BIOMASS_VARS = VARIABLES_DIR / "biomass_variables.yaml"
-IAM_CEMENT_VARS = VARIABLES_DIR / "cement_variables.yaml"
-IAM_STEEL_VARS = VARIABLES_DIR / "steel_variables.yaml"
-IAM_CDR_VARS = VARIABLES_DIR / "carbon_dioxide_removal_variables.yaml"
-IAM_HEATING_VARS = VARIABLES_DIR / "heat_variables.yaml"
-IAM_TRSPT_TWO_WHEELERS_VARS = VARIABLES_DIR / "transport_two_wheelers_variables.yaml"
-IAM_TRSPT_CARS_VARS = VARIABLES_DIR / "transport_passenger_cars_variables.yaml"
-IAM_TRSPT_BUSES_VARS = VARIABLES_DIR / "transport_bus_variables.yaml"
-IAM_TRSPT_TRUCKS_VARS = VARIABLES_DIR / "transport_roadfreight_variables.yaml"
-IAM_TRSPT_TRAINS_VARS = VARIABLES_DIR / "transport_railfreight_variables.yaml"
-IAM_TRSPT_SHIPS_VARS = VARIABLES_DIR / "transport_sea_variables.yaml"
-IAM_OTHER_VARS = VARIABLES_DIR / "other_variables.yaml"
-IAM_CARBON_CAPTURE_VARS = VARIABLES_DIR / "carbon_capture_variables.yaml"
+IAM_ELEC_VARS = VARIABLES_DIR / "electricity.yaml"
+IAM_FUELS_VARS = VARIABLES_DIR / "fuels.yaml"
+IAM_BIOMASS_VARS = VARIABLES_DIR / "biomass.yaml"
+IAM_CEMENT_VARS = VARIABLES_DIR / "cement.yaml"
+IAM_STEEL_VARS = VARIABLES_DIR / "steel.yaml"
+IAM_CDR_VARS = VARIABLES_DIR / "carbon_dioxide_removal.yaml"
+IAM_HEATING_VARS = VARIABLES_DIR / "heat.yaml"
+IAM_TRSPT_TWO_WHEELERS_VARS = VARIABLES_DIR / "transport_two_wheelers.yaml"
+IAM_TRSPT_CARS_VARS = VARIABLES_DIR / "transport_passenger_cars.yaml"
+IAM_TRSPT_BUSES_VARS = VARIABLES_DIR / "transport_bus.yaml"
+IAM_TRSPT_TRUCKS_VARS = VARIABLES_DIR / "transport_road_freight.yaml"
+IAM_TRSPT_TRAINS_VARS = VARIABLES_DIR / "transport_rail_freight.yaml"
+IAM_TRSPT_SHIPS_VARS = VARIABLES_DIR / "transport_sea.yaml"
+IAM_OTHER_VARS = VARIABLES_DIR / "other.yaml"
 REPORT_METADATA_FILEPATH = DATA_DIR / "utils" / "report" / "report.yaml"
 VEHICLES_MAP = DATA_DIR / "transport" / "vehicles_map.yaml"
 
@@ -391,19 +390,11 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
         "Cement - efficiency": {
             "filepath": IAM_CEMENT_VARS,
         },
-        "Cement - CCS": {
-            "filepath": IAM_CARBON_CAPTURE_VARS,
-            "variables": ["cement"],
-        },
         "Steel - generation": {
             "filepath": IAM_STEEL_VARS,
         },
         "Steel - efficiency": {
             "filepath": IAM_STEEL_VARS,
-        },
-        "Steel - CCS": {
-            "filepath": IAM_CARBON_CAPTURE_VARS,
-            "variables": ["steel"],
         },
         "CDR - generation": {
             "filepath": IAM_CDR_VARS,

@@ -1,0 +1,287 @@
+from .utils import fetch_mapping, get_crops_properties
+from .config import BIOFUEL_SOURCES, REGION_CLIMATE_MAP
+
+crops_props = get_crops_properties()
+
+
+class BiofuelsMixin:
+
+    def generate_biofuel_activities(self):
+        """
+        Create region-specific biofuel datasets.
+        Update the conversion efficiency.
+        """
+        region_to_climate = fetch_mapping(REGION_CLIMATE_MAP)[self.model]
+        crop_types = list(crops_props.keys())
+        climates = set(region_to_climate.values())
+
+        climate_to_crop_type = {
+            clim: {
+                crop_type: crops_props[crop_type]["crop_type"][self.model][clim]
+                for crop_type in crop_types
+            }
+            for clim in climates
+        }
+
+        biofuel_activities = fetch_mapping(BIOFUEL_SOURCES)
+        processed_crops = []
+
+        for climate in ["tropical", "temperate"]:
+            regions = [k for k, v in region_to_climate.items() if v == climate]
+            for crop_type in climate_to_crop_type[climate]:
+                specific_crop = climate_to_crop_type[climate][crop_type]
+                if specific_crop in processed_crops:
+                    continue
+                processed_crops.append(specific_crop)
+
+                if specific_crop == "corn":
+                    regions = list(region_to_climate.keys())
+
+                activities = biofuel_activities[crop_type][specific_crop]
+
+                print("activities")
+                print(activities)
+                print()
+
+                datasets = [
+                    ds
+                    for ds in self.database
+                    if any(ds["name"].startswith(activity) for activity in activities)
+                ]
+
+                for dataset in datasets:
+                    new_datasets = self.fetch_proxies(
+                        datasets=[dataset],
+                        production_variable=self.get_production_label(
+                            crop_type=crop_type
+                        ),
+                        regions=regions,
+                    )
+
+                    new_datasets = {
+                        region: (
+                            self.adjust_land_use(ds, region, crop_type)
+                            if self.should_adjust_land_use(ds, crop_type)
+                            else ds
+                        )
+                        for region, ds in new_datasets.items()
+                    }
+
+                    new_datasets = {
+                        region: (
+                            self.adjust_land_use_change_emissions(ds, region, crop_type)
+                            if self.should_adjust_land_use_change_emissions(
+                                ds, crop_type
+                            )
+                            else ds
+                        )
+                        for region, ds in new_datasets.items()
+                    }
+
+                    self.database.extend(new_datasets.values())
+
+                    for new_dataset in new_datasets.values():
+                        self.write_log(new_dataset)
+                        self.add_to_index(new_dataset)
+
+    def get_production_label(self, crop_type: str) -> [str, None]:
+        """
+        Get the production label for the dataset.
+        """
+        try:
+            return [
+                i
+                for i in self.iam_fuel_markets.coords["variables"].values.tolist()
+                if crop_type.lower() in i.lower()
+            ][0]
+        except IndexError:
+            return None
+
+    def adjust_land_use(self, dataset: dict, region: str, crop_type: str) -> dict:
+        """
+        Adjust land use.
+
+        :param dataset: dataset to adjust
+        :param region: region of the dataset
+        :param crop_type: crop type of the dataset
+        :return: adjusted dataset
+
+        """
+        string = ""
+        land_use = 0
+
+        for exc in dataset["exchanges"]:
+            # we adjust the land use
+            if exc["type"] == "biosphere" and exc["name"].startswith("Occupation"):
+                if "LHV [MJ/kg as received]" in dataset:
+                    lower_heating_value = dataset["LHV [MJ/kg as received]"]
+                else:
+                    lower_heating_value = dataset.get("LHV [MJ/kg dry]", 0)
+
+                # Ha/GJ
+                if self.year in self.iam_data.land_use.coords["year"].values:
+                    land_use = self.iam_data.land_use.sel(
+                        region=region, variables=crop_type, year=self.year
+                    ).values
+                else:
+                    land_use = (
+                        self.iam_data.land_use.sel(region=region, variables=crop_type)
+                        .interp(year=self.year)
+                        .values
+                    )
+
+                # replace NA values with 0
+                if np.isnan(land_use):
+                    land_use = 0
+
+                if land_use > 0:
+                    # HA to m2
+                    land_use *= 10000
+                    # m2/GJ to m2/MJ
+                    land_use /= 1000
+                    # m2/kg, as received
+                    land_use *= lower_heating_value
+                    # update exchange value
+                    exc["amount"] = float(land_use)
+
+                    string = (
+                        f"The land area occupied has been modified to {land_use}, "
+                        f"to be in line with the scenario {self.scenario} of {self.model.upper()} "
+                        f"in {self.year} in the region {region}. "
+                    )
+
+        if string and land_use:
+            if "comment" in dataset:
+                dataset["comment"] += string
+            else:
+                dataset["comment"] = string
+
+            dataset.setdefault("log parameters", {}).update(
+                {
+                    "land footprint": land_use,
+                }
+            )
+
+        return dataset
+
+    def adjust_land_use_change_emissions(
+        self,
+        dataset: dict,
+        region: str,
+        crop_type: str,
+    ) -> dict:
+        """
+        Adjust land use change emissions to crop farming dataset
+        if the variable is provided by the IAM.
+
+        :param dataset: dataset to adjust
+        :param region: region of the dataset
+        :param crop_type: crop type of the dataset
+        :return: adjusted dataset
+
+        """
+
+        # then, we should include the Land Use Change-induced CO2 emissions
+        # those are given in kg CO2-eq./GJ of primary crop energy
+
+        # kg CO2/GJ
+        if self.year in self.iam_data.land_use_change.coords["year"].values:
+            land_use_co2 = self.iam_data.land_use_change.sel(
+                region=region, variables=crop_type, year=self.year
+            ).values
+        else:
+            land_use_co2 = (
+                self.iam_data.land_use_change.sel(region=region, variables=crop_type)
+                .interp(year=self.year)
+                .values
+            )
+
+        # replace NA values with 0
+        if np.isnan(land_use_co2):
+            land_use_co2 = 0
+
+        if land_use_co2 > 0:
+            # lower heating value, as received
+            if "LHV [MJ/kg as received]" in dataset:
+                lower_heating_value = dataset["LHV [MJ/kg as received]"]
+            else:
+                lower_heating_value = dataset.get("LHV [MJ/kg dry]", 0)
+
+            # kg CO2/MJ
+            land_use_co2 /= 1000
+            land_use_co2 *= lower_heating_value
+
+            land_use_co2_exc = {
+                "uncertainty type": 0,
+                "loc": float(land_use_co2),
+                "amount": float(land_use_co2),
+                "type": "biosphere",
+                "name": "Carbon dioxide, from soil or biomass stock",
+                "unit": "kilogram",
+                "input": (
+                    "biosphere3",
+                    self.biosphere_flows[
+                        (
+                            "Carbon dioxide, from soil or biomass stock",
+                            "air",
+                            "non-urban air or from high stacks",
+                            "kilogram",
+                        )
+                    ],
+                ),
+                "categories": (
+                    "air",
+                    "non-urban air or from high stacks",
+                ),
+            }
+            dataset["exchanges"].append(land_use_co2_exc)
+
+            string = (
+                f"{land_use_co2} kg of land use-induced CO2 has been added by premise, "
+                f"to be in line with the scenario {self.scenario} of {self.model.upper()} "
+                f"in {self.year} in the region {region}."
+            )
+
+            if "comment" in dataset:
+                dataset["comment"] += string
+            else:
+                dataset["comment"] = string
+
+            dataset.setdefault("log parameters", {}).update(
+                {
+                    "land use CO2": land_use_co2,
+                }
+            )
+
+        return dataset
+
+    def should_adjust_land_use(self, dataset: dict, crop_type: str) -> bool:
+        """
+        Check if the dataset should be adjusted for land use.
+        """
+
+        if self.iam_data.land_use is None:
+            return False
+        return (
+            any(i in dataset["name"].lower() for i in ("farming and supply",))
+            and crop_type.lower() in self.iam_data.land_use.variables.values
+            and not any(
+                i in dataset["name"].lower() for i in ["straw", "residue", "stover"]
+            )
+        )
+
+    def should_adjust_land_use_change_emissions(
+        self, dataset: dict, crop_type: str
+    ) -> bool:
+        """
+        Check if the dataset should be adjusted for land use change emissions.
+        """
+        if self.iam_data.land_use_change is None:
+            return False
+        return (
+            any(i in dataset["name"].lower() for i in ("farming and supply",))
+            and crop_type.lower() in self.iam_data.land_use_change.variables.values
+            and not any(
+                i in dataset["name"].lower() for i in ["straw", "residue", "stover"]
+            )
+        )

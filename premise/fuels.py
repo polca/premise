@@ -27,7 +27,7 @@ from .transformation import (
     ws,
 )
 
-from .utils import get_crops_properties, rescale_exchanges
+from .utils import rescale_exchanges
 from .validation import FuelsValidation
 
 logger = create_logger("fuel")
@@ -1334,75 +1334,6 @@ class Fuels(BaseTransformation):
             "location": region,
         }
 
-    def add_pre_cooling_electricity(
-        self, dataset: dict, region: str, subset: list
-    ) -> dict:
-        """
-        Add the electricity needed for pre-cooling the hydrogen.
-
-        :param dataset: The dataset to modify.
-        :param region: The region for which to add the activity.
-        :return: The modified dataset.
-        """
-
-        # finally, add pre-cooling
-        # is needed before filling vehicle tanks
-        # as the hydrogen is pumped, the ambient temperature
-        # vaporizes the gas, and because of the Thomson-Joule effect,
-        # the gas temperature increases.
-        # Hence, a refrigerant is needed to keep the H2 as low as
-        # -30 C during pumping.
-
-        # https://www.osti.gov/servlets/purl/1422579 gives us a formula
-        # to estimate pre-cooling electricity need
-        # it requires a capacity utilization for the fuelling station
-        # as well as an ambient temperature
-        # we will use a temp of 25 C
-        # and a capacity utilization going from 10 kg H2/day in 2020
-        # to 150 kg H2/day in 2050
-
-        t_amb = 25
-        cap_util = np.interp(self.year, [2020, 2050, 2100], [10, 150, 150])
-        el_pre_cooling = get_pre_cooling_energy(t_amb, float(cap_util))
-
-        suppliers = self.find_suppliers(
-            name="market group for electricity, low voltage",
-            ref_prod="electricity, low voltage",
-            unit="kilowatt hour",
-            loc=region,
-            exclude=["period"],
-            subset=subset,
-        )
-
-        for supplier, share in suppliers.items():
-            dataset["exchanges"].append(
-                {
-                    "uncertainty type": 0,
-                    "amount": el_pre_cooling * share,
-                    "type": "technosphere",
-                    "product": supplier[2],
-                    "name": supplier[0],
-                    "unit": supplier[-1],
-                    "location": supplier[1],
-                }
-            )
-
-        string = (
-            f"Pre-cooling electricity is considered ({el_pre_cooling}), "
-            f"assuming an ambiant temperature of {t_amb}C "
-            f"and a capacity utilization for the fuel station of {cap_util} kg/day."
-        )
-        if "comment" in dataset:
-            dataset["comment"] += string
-        else:
-            dataset["comment"] = string
-
-        dataset.setdefault("log parameters", {}).update(
-            {"electricity for hydrogen pre-cooling": el_pre_cooling}
-        )
-
-        return dataset
-
     def generate_biogas_activities(self):
         """
         Generate biogas activities.
@@ -1660,19 +1591,6 @@ class Fuels(BaseTransformation):
             )
 
         return dataset
-
-    def get_production_label(self, crop_type: str) -> [str, None]:
-        """
-        Get the production label for the dataset.
-        """
-        try:
-            return [
-                i
-                for i in self.iam_fuel_markets.coords["variables"].values.tolist()
-                if crop_type.lower() in i.lower()
-            ][0]
-        except IndexError:
-            return None
 
     def should_adjust_land_use(self, dataset: dict, crop_type: str) -> bool:
         """

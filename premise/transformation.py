@@ -718,15 +718,17 @@ class BaseTransformation:
         if not regions:
             regions = self.regions
 
-        if "RoW" in d_map.values():
-            fallback_loc = "RoW"
-        else:
-            if "GLO" in d_map.values():
-                fallback_loc = "GLO"
-            else:
-                fallback_loc = list(d_map.values())[0]
+        locs = {x["location"]: x for x in datasets}
 
-        return {region: d_map.get(region, fallback_loc) for region in regions}
+        if "RoW" in locs:
+            fallback_dataset = locs["RoW"]
+        else:
+            if "GLO" in locs:
+                fallback_dataset = locs["GLO"]
+            else:
+                fallback_dataset = list(locs.values())[0]
+
+        return {region: d_map.get(region, fallback_dataset) for region in regions}
 
     def fetch_proxies(
         self,

@@ -27,7 +27,6 @@ CO2:
   iam_aliases:
     remind: Emi|CO2
     remind-eu: Emi|CO2
-    image: Emissions|CO2
     message: Emissions|CO2
     tiam-ucl: Emissions|CO2
     witch: Emissions|CO2

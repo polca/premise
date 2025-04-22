@@ -36,7 +36,7 @@ from .export import (
 from .external import _update_external_scenarios
 from .external_data_validation import check_external_scenarios
 from .filesystem_constants import DIR_CACHED_DB, IAM_OUTPUT_DIR, INVENTORY_DIR
-from .fuels import _update_fuels
+from .fuels.base import _update_fuels
 from .heat import _update_heat
 from .inventory_imports import AdditionalInventory, DefaultInventory
 from .metals import _update_metals
