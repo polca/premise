@@ -1,46 +1,281 @@
 sulfidic tailings:
-  GLO:
-    backfill:
-      name:
-        fltr:
-          - treatment of sulfidic tailings, generic, backfilling
-        mask:
-          - impoundment
-          - market
-      reference product:
-        fltr:
-          - sulfidic tailings, generic
-      share:
+  backfill:
+    name:
+      fltr:
+        - treatment of sulfidic tailings, generic, backfilling
+      mask:
+        - impoundment
+        - market
+        - non-sulfidic
+        - flocculation-flotation
+        - leaching
+    reference product:
+      fltr:
+        - sulfidic tailings, generic
+    share:
+      GLO:
         2020:
-          min: 0
+          min: 0.05
+          max: 0.15
+          mean: 0.10
+        2050:
+          min: 0.15
+          max: 0.35
+          mean: 0.25
+      NAM:
+        2020:
+          min: 0.10
+          max: 0.20
+          mean: 0.15
+        2050:
+          min: 0.20
+          max: 0.40
+          mean: 0.30
+      LATAM:
+        2020:
+          min: 0.0
           max: 0.10
           mean: 0.05
         2050:
-          min: 0.10
-          max: 0.50
-          mean: 0.30
-    impoundment:
-      name:
-        fltr:
-          - treatment of sulfidic tailings
-          - tailings impoundment
-        mask:
-          - backfilling
-          - market
-      reference product:
-          fltr:
-            - sulfidic tailings
-          mask:
-              - backfilling
-              - non-sulfidic
-      share:
+          min: 0.15
+          max: 0.35
+          mean: 0.25
+      EUR:
         2020:
-          min: 0.90
-          max: 1.00
-          mean: 0.95
+          min: 0.10
+          max: 0.20
+          mean: 0.15
+        2050:
+          min: 0.20
+          max: 0.40
+          mean: 0.30
+      APAC:
+        2020:
+          min: 0.05
+          max: 0.15
+          mean: 0.10
+        2050:
+          min: 0.10
+          max: 0.30
+          mean: 0.20
+      AFR:
+        2020:
+          min: 0.0
+          max: 0.10
+          mean: 0.05
+        2050:
+          min: 0.05
+          max: 0.15
+          mean: 0.10
+  impoundment:
+    name:
+      fltr:
+        - treatment of sulfidic tailings
+        - tailings impoundment
+      mask:
+        - backfilling
+        - market
+    reference product:
+      fltr:
+        - sulfidic tailings
+      mask:
+        - backfilling
+        - non-sulfidic
+        - flocculation-flotation
+        - leaching
+        - roasting
+    share:
+      GLO:
+        2020:
+          min: 0.75
+          max: 0.95
+          mean: 0.85
+        2050:
+          min: 0.55
+          max: 0.75
+          mean: 0.65
+      NAM:
+        2020:
+          min: 0.70
+          max: 0.90
+          mean: 0.80
         2050:
           min: 0.50
+          max: 0.70
+          mean: 0.60
+      LATAM:
+        2020:
+          min: 0.80
+          max: 1.0
+          mean: 0.90
+        2050:
+          min: 0.55
+          max: 0.75
+          mean: 0.65
+      EUR:
+        2020:
+          min: 0.70
           max: 0.90
+          mean: 0.80
+        2050:
+          min: 0.45
+          max: 0.65
+          mean: 0.55
+      APAC:
+        2020:
+          min: 0.75
+          max: 0.95
+          mean: 0.85
+        2050:
+          min: 0.60
+          max: 0.80
           mean: 0.70
-
-
+      AFR:
+        2020:
+          min: 0.80
+          max: 1.0
+          mean: 0.90
+        2050:
+          min: 0.60
+          max: 0.80
+          mean: 0.70
+  flocculation:
+    name:
+      fltr:
+        - treatment of sulfidic tailings
+        - flocculation-flotation
+      mask:
+        - backfilling
+        - market
+        - impoundment
+        - non-sulfidic
+        - roasting
+        - leaching
+    reference product:
+      fltr:
+        - sulfidic tailings
+    share:
+      GLO:
+        2020:
+          min: 0.03
+          max: 0.06
+          mean: 0.04
+        2050:
+          min: 0.06
+          max: 0.12
+          mean: 0.08
+      NAM:
+        2020:
+          min: 0.03
+          max: 0.06
+          mean: 0.04
+        2050:
+          min: 0.03
+          max: 0.12
+          mean: 0.08
+      LATAM:
+        2020:
+          min: 0.03
+          max: 0.06
+          mean: 0.04
+        2050:
+          min: 0.06
+          max: 0.12
+          mean: 0.08
+      EUR:
+        2020:
+          min: 0.03
+          max: 0.06
+          mean: 0.04
+        2050:
+          min: 0.06
+          max: 0.12
+          mean: 0.08
+      APAC:
+        2020:
+          min: 0.03
+          max: 0.06
+          mean: 0.04
+        2050:
+          min: 0.06
+          max: 0.12
+          mean: 0.08
+      AFR:
+        2020:
+          min: 0.03
+          max: 0.06
+          mean: 0.04
+        2050:
+          min: 0.06
+          max: 0.12
+          mean: 0.08
+  roasting:
+    name:
+      fltr:
+        - treatment of sulfidic tailings
+        - roasting
+        - leaching
+      mask:
+        - backfilling
+        - market
+        - impoundment
+        - non-sulfidic
+        - flocuculation-flotation
+    reference product:
+      fltr:
+        - sulfidic tailings
+    share:
+      GLO:
+        2020:
+          min: 0.0
+          max: 0.02
+          mean: 0.01
+        2050:
+          min: 0.01
+          max: 0.04
+          mean: 0.02
+      NAM:
+        2020:
+          min: 0.0
+          max: 0.02
+          mean: 0.01
+        2050:
+          min: 0.01
+          max: 0.04
+          mean: 0.02
+      LATAM:
+        2020:
+          min: 0.0
+          max: 0.02
+          mean: 0.01
+        2050:
+          min: 0.01
+          max: 0.04
+          mean: 0.02
+      EUR:
+        2020:
+          min: 0.0
+          max: 0.02
+          mean: 0.01
+        2050:
+          min: 0.01
+          max: 0.04
+          mean: 0.02
+      APAC:
+        2020:
+          min: 0.0
+          max: 0.02
+          mean: 0.01
+        2050:
+          min: 0.01
+          max: 0.04
+          mean: 0.02
+      AFR:
+        2020:
+          min: 0.0
+          max: 0.02
+          mean: 0.01
+        2050:
+          min: 0.01
+          max: 0.04
+          mean: 0.02
