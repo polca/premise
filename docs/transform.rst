@@ -378,14 +378,14 @@ To better reflect these evolving practices in life cycle modeling, we modified t
 multiple treatment pathways for sulfidic tailings. These include:
 
 * **Surface impoundment**, which remains the default inventory in ecoinvent.
-* **Backfilling into underground voids**, based on Adrianto et al. (2023), which builds upon operational data
-from Reid et al. (2009). The life cycle inventory for this process includes the consumption of materials such as
+* **Backfilling into underground voids**, based on [1], which builds upon operational data
+from [3]. The life cycle inventory for this process includes the consumption of materials such as
 cement binders, slags, and fuel, and accounting for the associated energy demands. Backfilling is assumed to involve
 cement stabilization of the residues, effectively preventing leaching emissions from the deposited material.
-* **Flocculation-flotation**, based on Adrianto et al. (2022), where the sulfur-rich fraction from the tailings
+* **Flocculation-flotation**, based on [4], where the sulfur-rich fraction from the tailings
 stream is separated using polyacrylamide and xanthate as flocculants and collector agents to improve pyrite separation.
 The valorized output can potentially be used downstream in the cement and ceramic tiles industries.
-* **Roasting and leaching**, also based on Adrianto et al. (2022), involves first removing the sulfur content of tailings
+* **Roasting and leaching**, also based on [4], involves first removing the sulfur content of tailings
 through drying and roasting. Copper and zinc are then recovered using a combination of ammoniacal leaching, ion
 flotation, and chemical precipitation.
 
