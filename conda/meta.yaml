@@ -17,9 +17,11 @@ source:
 
 build:
   noarch: python
-  script: python -m pip install --no-deps --ignore-installed .
-  number: 0
+  script: "{{ PYTHON }} -m pip install . --no-deps -vv"
 
+test:
+  imports:
+    - premise
 
 
 requirements:
@@ -50,9 +52,9 @@ requirements:
     - tqdm
     - unfold
 
-  channels:
-    - conda-forge
-    - defaults
+channels:
+  - conda-forge
+  - defaults
 
 
 about:

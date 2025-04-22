@@ -87,10 +87,14 @@ bw2 = [
     "unfold",
 ]
 
+
+
 [tool.setuptools]
-license-files = ["LICENSE"]
 include-package-data = true
-packages = ["premise"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["premise*"]
 
 [tool.setuptools.dynamic]
 dependencies = {file = ["requirements.txt"]}
