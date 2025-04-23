@@ -15,7 +15,7 @@ import bw2io
 import numpy as np
 import requests
 import yaml
-from bw2io import CSVImporter, ExcelImporter, Migration
+from bw2io import CSVImporter, ExcelImporter, Migration, strategies
 from prettytable import PrettyTable
 from wurst import searching as ws
 
@@ -860,7 +860,9 @@ class DefaultInventory(BaseInventoryImport):
         )
 
     def load_inventory(self) -> bw2io.ExcelImporter:
-        return ExcelImporter(self.path)
+        importer = ExcelImporter(self.path)
+        importer.apply_strategy(strategies.csv_restore_tuples)
+        return importer
 
     def prepare_inventory(self) -> None:
         if self.version_in != self.version_out:
