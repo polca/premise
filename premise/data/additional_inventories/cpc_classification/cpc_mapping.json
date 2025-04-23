@@ -1,0 +1,939 @@
+{
+  "_example CPC class": [
+    {
+      "Activity": [
+        [
+          true,
+          "This value MUST be in Activity field"
+        ],
+        [
+          false,
+          "This value MUST NOT be in Activity field"
+        ]
+      ],
+      "reference product": [
+        [
+          true,
+          "This value MUST ALSO be in reference product field"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "This is an alternative to the above dict"
+        ]
+      ]
+    }
+  ],
+  "NO CLASSIFICATION": [
+    {
+      "reference product": [
+        [
+          true,
+          "carbon dioxide capture, from flue gas emissions"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "carbon dioxide from syngas combusiton"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "carbon dioxide from syngas and flue gas combusiton"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "carbon dioxide, captured"
+        ],
+        [
+          true,
+          "pipeline"
+        ],
+        [
+          true,
+          "storage"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "carbon dioxide storage"
+        ],
+        [
+          true,
+          "pipeline"
+        ],
+        [
+          true,
+          "storage"
+        ]
+      ]
+    }
+  ],
+  "17100:Electrical energy": [
+    {
+      "Activity": [
+        [
+          true,
+          "electricity production"
+        ]
+      ],
+      "reference product": [
+        [
+          true,
+          "electricity"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "kilowatt hour"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "electricity supply"
+        ]
+      ],
+      "reference product": [
+        [
+          true,
+          "electricity"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "kilowatt hour"
+        ]
+      ]
+    }
+  ],
+  "17200:Coal gas, water gas, producer gas and similar gases, other than petroleum gases and other gaseous hydrocarbons": [
+    {
+      "Activity": [
+        [
+          true,
+          "syngas, from"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "megajoule"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "synthetic natural gas from"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "megajoule"
+        ]
+      ]
+    },
+     {
+      "Activity": [
+        [
+          true,
+          "SNG"
+        ],
+        [
+          true,
+          ", at consumer"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "megajoule"
+        ]
+      ]
+    }
+  ],
+  "17300:Steam and hot water": [
+    {
+      "Activity": [
+        [
+          true,
+          "natural gas burnt in"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "megajoule"
+        ]
+      ]
+    }
+  ],
+  "34110:Hydrocarbons and their halogenated, sulphonated, nitrated or nitrosated derivatives": [
+    {
+      "Activity": [
+        [
+          true,
+          "r-132"
+        ],
+        [
+          true,
+          "production"
+        ]
+      ]
+    }
+  ],
+  "34170:Ethers, alcohol peroxides, ether peroxides, epoxides, acetals and hemiacetals, and their halogenated, sulphonated, nitrated or nitrosated derivatives; aldehyde-function compounds; ketone-function compounds and quinone-function compounds; enzymes; prepared enzymes n.e.c.; organic compounds n.e.c.": [
+    {
+      "Activity": [
+        [
+          true,
+          "dimethylether of polyethylene glycol"
+        ]
+      ]
+    }
+  ],
+  "34210:Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c.": [
+    {
+      "Activity": [
+        [
+          true,
+          "hydrogen, from"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "megajoule"
+        ]
+      ]
+    }
+  ],
+  "34220:Zinc oxide; zinc peroxide; chromium oxides and hydroxides; manganese oxides; iron oxides and hydroxides; earth colours; cobalt oxides and hydroxides; titanium oxides; lead oxides; red lead and orange lead; inorganic bases n.e.c.; metal oxides, hydroxides and peroxides n.e.c., except of mercury": [
+    {
+      "Activity": [
+        [
+          true,
+          "magnesium hydroxide production"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "nickel carbonate production"
+        ]
+      ]
+    }
+  ],
+  "34231:Chemical elements n.e.c.; inorganic acids except phosphoric, nitric and sulphonitric; inorganic oxygen compounds of boron, silicon and carbon; halogen or sulphur compounds of non-metals; sodium hydroxide; hydroxide and peroxide of magnesium; oxides, hydroxides and peroxides of strontium or barium; aluminium hydroxide; hydrozine and hydroxylamine and their inorganic salts": [
+    {
+      "Activity": [
+        [
+          true,
+          "sodium hexafluorophosphate production"
+        ]
+      ]
+    }
+  ],
+  "34240:Phosphates of triammonium; salts and peroxysalts of inorganic acids and metals n.e.c.": [
+    {
+      "Activity": [
+        [
+          true,
+          "lithium iron phosphate"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "disodium disulphite"
+        ]
+      ]
+    }
+  ],
+  "34651:Ammonia, anhydrous": [
+    {
+      "Activity": [
+        [
+          true,
+          "ammonia production"
+        ]
+      ],
+      "reference product": [
+        [
+          true,
+          "ammonia, anhydrous, liquid"
+        ]
+      ]
+    }
+  ],
+  "34720:Polymers of styrene, in primary forms": [
+    {
+      "Activity": [
+        [
+          true,
+          "styrene butadiene rubber (SBR)"
+        ]
+      ]
+    }
+  ],
+  "35491:Biodiesel": [
+    {
+      "Activity": [
+        [
+          true,
+          "rape methyl ester, at plant"
+        ]
+      ]
+    }
+  ],
+  "39380:Waste and scrap of primary cells, primary batteries and electric accumulators; spent primary cells, primary batteries and electric accumulators": [
+    {
+      "Activity": [
+        [
+          true,
+          "treatment"
+        ],
+        [
+          true,
+          "battery"
+        ]
+      ],
+      "reference product": [
+        [
+          true,
+          "waste"
+        ],
+        [
+          true,
+          "battery"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "shredding and sorting, "
+        ],
+        [
+          true,
+          "battery"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "recycling"
+        ],
+        [
+          true,
+          "battery"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "used"
+        ],
+        [
+          true,
+          "battery"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "treatment"
+        ],
+        [
+          true,
+          "vrfb"
+        ]
+      ]
+    }
+  ],
+  "41115:Other ferro-alloys": [
+    {
+      "Activity": [
+        [
+          true,
+          "vanadium"
+        ],
+        [
+          true,
+          "production"
+        ],
+        [
+          false,
+          "vanadium pentoxide production"
+        ],
+        [
+          false,
+          "electrolyte"
+        ]
+      ]
+    }
+
+  ],
+  "41601:Tungsten, molybdenum, tantalum, magnesium, cobalt, cadmium, titanium, zirconium, beryllium, gallium, hafnium, indium, niobium, rhenium and thallium, germanium and vanadium, unwrought, and powders thereof, except powders of magnesium; waste and scrap of gallium, hafnium, indium, niobium, rhenium, germanium and vanadium; cobalt mattes and other intermediate products of cobalt metallurgy": [
+    {
+      "Activity": [
+        [
+          true,
+          "vanadium pentoxide production"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "market for vanadium pentoxide"
+        ]
+      ]
+    }
+  ],
+  "44919:Special-purpose machinery n.e.c. (including machinery for isotopic separation, machines for assembling electric lamps in glass envelopes, machines for manufacturing glassware and rope making machines)": [
+    {
+      "Activity": [
+        [
+          true,
+          "ammonia"
+        ],
+        [
+          true,
+          "catalyst"
+        ],
+        [
+          true,
+          "production"
+        ]
+      ],
+      "reference product": [
+        [
+          true,
+          "ammonia"
+        ],
+        [
+          true,
+          "catalyst"
+        ]
+      ]
+    }
+  ],
+  "46410:Primary cells and primary batteries": [
+    {
+      "Activity": [
+        [
+          true,
+          "battery cell production"
+        ]
+      ],
+      "reference product": [
+        [
+          true,
+          "battery cell"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "battery cell assembly"
+        ]
+      ],
+      "reference product": [
+        [
+          true,
+          "battery cell"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "battery production, "
+        ]
+      ],
+      "reference product": [
+        [
+          true,
+          "battery, "
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "battery module production, "
+        ]
+      ],
+      "reference product": [
+        [
+          true,
+          "battery, "
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "market for battery, "
+        ]
+      ],
+      "reference product": [
+        [
+          true,
+          "battery, "
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "market for"
+        ],
+        [
+          true,
+          "battery cell"
+        ]
+      ],
+      "reference product": [
+        [
+          true,
+          "battery cell, "
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "battery system assembly"
+        ]
+      ],
+      "reference product": [
+        [
+          true,
+          "battery"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "battery stack assembly"
+        ]
+      ],
+      "reference product": [
+        [
+          true,
+          "battery"
+        ]
+      ]
+    }
+  ],
+  "46430:Parts of primary cells, primary batteries and electric accumulators (including separators)": [
+    {
+      "Activity": [
+        [
+          true,
+          "for Li-O2 battery"
+        ],
+        [
+          false,
+          "recycling"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "for LiS battery"
+        ],
+        [
+          false,
+          "recycling"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "for Li-ion battery"
+        ],
+        [
+          false,
+          "recycling"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "for SIB battery"
+        ],
+        [
+          false,
+          "recycling"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "for VRFB system"
+        ],
+        [
+          false,
+          "treatment"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "film extrusion process, lithium"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "surface production process, lithium"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "tab copper"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "tab aluminum"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "multilayer pouch"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "cell container"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "ode current collector"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          ", lfp"
+        ]
+      ],
+      "reference product": [
+        [
+          true,
+          ", lfp"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "kilogram"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "nca "
+        ],
+        [
+          true,
+          "oxide"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "nmc"
+        ],
+        [
+          true,
+          "oxide"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "battery separator"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "anode paste, lto"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "electro"
+        ],
+        [
+          true,
+          "lto"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "21700 container"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "nmmt"
+        ],
+        [
+          true,
+          "production"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "nmvp production"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "electrolyte production, sib"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "electrolyte solution production"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "nafion membrane production"
+        ]
+      ]
+    }
+  ],
+  "53251:Local pipelines": [
+    {
+      "Activity": [
+        [
+          true,
+          "pipeline, supercritical carbon dioxide"
+        ]
+      ]
+    }
+  ],
+  "53262:Power plants": [
+    {
+      "Activity": [
+        [
+          true,
+          "power plant"
+        ]
+      ],
+      "reference product": [
+        [
+          true,
+          "power plant"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    }
+  ],
+  "53269:Other constructions for manufacturing": [
+    {
+      "Activity": [
+        [
+          true,
+          "syngas production plant"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "sng"
+        ],
+        [
+          true,
+          "production plant"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    }
+  ],
+  "53290:Other civil engineering works": [
+    {
+      "Activity": [
+        [
+          true,
+          "carbon dioxide transport"
+        ],
+        [
+          true,
+          "infrastructure"
+        ]
+      ],
+      "reference product": [
+        [
+          true,
+          "carbon dioxide"
+        ]
+      ]
+    }
+  ],
+  "86219:Support services to other mining": [
+    {
+      "Activity": [
+        [
+          true,
+          "drilling"
+        ],
+        [
+          true,
+          "borehole"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "meter"
+        ]
+      ]
+    }
+  ],
+  "88731:Metal treatment and coating services": [
+    {
+      "Activity": [
+        [
+          true,
+          "nickel plating"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "square meter"
+        ]
+      ]
+    }
+  ]
+}
