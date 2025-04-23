@@ -18,7 +18,10 @@ files = [f for f in listdir(inventories_folder)
          if path.isfile(path.join(inventories_folder, f))
          and f.startswith("lci") and f.endswith(".xlsx")]
 files = sorted(files, key=str.casefold)  # sort for consistency
-n_files = len(files)
+
+# we use file sizes to estimate progress, not perfect, but better than judging by file number
+file_sizes = [path.getsize(path.join(inventories_folder, f)) for f in files]
+total_files_size = sum(file_sizes)
 
 def extract_inventory_from_sheet(df):
     """extract data from the sheet as list
@@ -128,7 +131,7 @@ def assign_cpc(inventory, classification_mapping):
                     failed.append(activity)
                     print(">>> FAIL, different classification found for:")
                     print(f"{activity['reference product'][0]} | {activity['Activity'][0]} | {activity['unit'][0]}")
-                    print(f"Old: {old_classification[0]} | New {classification}")
+                    print(f"Old: {old_classification[0].split('::')[0]} | New {classification}")
                     print(" + Update the classification mapping so that this activity mapping is not changed")
                     print(" + NEW value will be added to the activity\n")
 
@@ -173,9 +176,11 @@ def write_sheet(df, file_path, sheet_name):
         finally:
             df.to_excel(writer, sheet_name=sheet_name, index=False, header=False)
 
+c_size = 0
 for i, file_name in enumerate(files):
     # iterate over files
-    print(f"Adding/verifying classifications in {file_name} | {i + 1}/{n_files} ({round((i + 1)/n_files * 100, 1)}%)")
+    c_size += file_sizes[i]
+    print(f"Adding/verifying classifications in {file_name} | {round(c_size/total_files_size * 100, 1)}% ({i+1}/{len(files)})")
     file_path = path.join(inventories_folder, file_name)
 
     xls_file = openpyxl.load_workbook(file_path, read_only=True, keep_links=False)
