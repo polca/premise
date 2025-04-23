@@ -1,8 +1,8 @@
 import json
 from os import path, listdir
-import openpyxl
 import pandas as pd
 import numpy as np
+from bw2io.extractors import ExcelExtractor
 
 
 # read the mapping json
@@ -23,7 +23,7 @@ files = sorted(files, key=str.casefold)  # sort for consistency
 file_sizes = [path.getsize(path.join(inventories_folder, f)) for f in files]
 total_files_size = sum(file_sizes)
 
-def extract_inventory_from_sheet(df):
+def extract_inventory_from_sheet(sheet):
     """extract data from the sheet as list
 
     returns an excel sheet in the form of a list, with activities as dicts
@@ -43,14 +43,13 @@ def extract_inventory_from_sheet(df):
 
     in_act = False
     in_exc = False
-    for i, row in df.iterrows():
-
-        row = row.to_list()
+    for i, row in enumerate(sheet):
 
         if i == 0 and str(row[0]).lower() == "skip":
+            # if the cell A1 is 'skip', then skip the sheet
             return [], True
 
-        if isinstance(row[0], float) or (str(row[0]).title() != "Activity" and not in_act):
+        if row[0] == None or (str(row[0]).title() != "Activity" and not in_act):
             # this is non-activity data
 
             if in_act and in_exc:
@@ -62,14 +61,14 @@ def extract_inventory_from_sheet(df):
 
             l.append(row)
 
-        elif row[0].title() == "Activity" or in_act:
+        elif str(row[0]).title() == "Activity" or in_act:
             # this is the start of an activity
             in_act = True
 
-            if row[0].title() != "Exchanges" and not in_exc:
+            if str(row[0]).title() != "Exchanges" and not in_exc:
                 # this is metadata
                 act[row[0]] = row[1:]
-            elif row[0].title() == "Exchanges" or in_exc:
+            elif str(row[0]).title() == "Exchanges" or in_exc:
                 # these are exhanges
                 if not in_exc:
                     in_exc = True
@@ -131,7 +130,7 @@ def assign_cpc(inventory, classification_mapping):
                     failed.append(activity)
                     print(">>> FAIL, different classification found for:")
                     print(f"{activity['reference product'][0]} | {activity['Activity'][0]} | {activity['unit'][0]}")
-                    print(f"Old: {old_classification[0].split('::')[0]} | New {classification}")
+                    print(f"Old: {old_classification[0].split('::')[1]} | New {classification}")
                     print(" + Update the classification mapping so that this activity mapping is not changed")
                     print(" + NEW value will be added to the activity\n")
 
@@ -183,20 +182,19 @@ for i, file_name in enumerate(files):
     print(f"Adding/verifying classifications in {file_name} | {round(c_size/total_files_size * 100, 1)}% ({i+1}/{len(files)})")
     file_path = path.join(inventories_folder, file_name)
 
-    xls_file = openpyxl.load_workbook(file_path, read_only=True, keep_links=False)
-    sheet_names = xls_file.sheetnames
+    # extract the file
+    sheets = ExcelExtractor.extract(file_path)  # [(sheet_name, sheet data), ...]
 
     # iterate over sheets
-    for sheet_name in sheet_names:
+    for sheet_name, sheet in sheets:
         # convert to inventory list
-        df = pd.read_excel(file_path, header=None, sheet_name=sheet_name)
-        inventory, skip = extract_inventory_from_sheet(df)
+        inventory, skip = extract_inventory_from_sheet(sheet)
         if skip:
             print(f"  sheet: '{sheet_name}' has skip instruction")
             continue
         n_processes = len([d for d in inventory if isinstance(d, dict)])
 
-        if len(sheet_names) > 1:
+        if len(sheets) > 1:
             print(f"  {n_processes} processes in sheet: '{sheet_name}'")
 
         # assign classifications

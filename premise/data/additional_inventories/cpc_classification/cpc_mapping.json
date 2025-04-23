@@ -27,12 +27,116 @@
       ]
     }
   ],
-  "NO CLASSIFICATION": [
+  "01112:Wheat, other": [
+    {
+      "Activity": [
+       [
+          true,
+          "farming and supply"
+        ]
+      ],
+      "reference product": [
+        [
+          true,
+          "wheat"
+        ]
+      ]
+    }
+  ],
+  "01122:Maize (corn), other": [
     {
       "reference product": [
         [
           true,
-          "carbon dioxide capture, from flue gas emissions"
+          "corn"
+        ],
+        [
+          true,
+          ", harvested, at ethanol plant"
+        ]
+      ]
+    }
+  ],
+  "01290:Vegetables, fresh, n.e.c.": [
+    {
+      "reference product": [
+        [
+          true,
+          "switchgrass, harvested"
+        ]
+      ]
+    }
+  ],
+  "01443:Rape or colza seed": [
+    {
+      "reference product": [
+        [
+          true,
+          "rapeseed cultivation"
+        ]
+      ]
+    }
+  ],
+  "01491:Palm nuts and kernels": [
+    {
+      "reference product": [
+        [
+          true,
+          "Fresh Fruit Bunches (FFBs) production"
+        ]
+      ]
+    }
+  ],
+  "01801:Sugar beet": [
+    {
+      "reference product": [
+        [
+          true,
+          "sugar beet cultivation"
+        ]
+      ]
+    }
+  ],
+  "01802:Sugar cane": [
+    {
+      "reference product": [
+        [
+          true,
+          "sugarcane"
+        ],
+        [
+          true,
+          ", harvested, at ethanol plant"
+        ]
+      ]
+    }
+  ],
+  "01809:Other sugar crops n.e.c.": [
+    {
+      "reference product": [
+        [
+          true,
+          "sorghum, harvested"
+        ]
+      ]
+    }
+  ],
+  "01961:Live plants; bulbs, tubers and roots; cuttings and slips; mushroom spawn": [
+    {
+      "reference product": [
+        [
+          true,
+          "miscanthus, harvested"
+        ]
+      ]
+    }
+  ],
+  "03132:Fuel wood of non-coniferous wood": [
+    {
+      "reference product": [
+        [
+          true,
+          "willow, harvested"
         ]
       ]
     },
@@ -40,7 +144,7 @@
       "reference product": [
         [
           true,
-          "carbon dioxide from syngas combusiton"
+          "poplar, harvested"
         ]
       ]
     },
@@ -48,7 +152,59 @@
       "reference product": [
         [
           true,
-          "carbon dioxide from syngas and flue gas combusiton"
+          "eucalyptus, harvested"
+        ]
+      ]
+    }
+  ],
+  "032:Non-wood forest products": [
+    {
+      "reference product": [
+        [
+          true,
+          "forest residue"
+        ]
+      ]
+    }
+  ],
+  "04934:Farmed seaweeds and other algae, fresh, frozen or dried, whether or not ground, unfit for human consumption": [
+    {
+      "reference product": [
+        [
+          true,
+          "algae harvesting"
+        ]
+      ]
+    }
+  ],
+  "12010:Petroleum oils and oils obtained from bituminous minerals, crude": [
+    {
+      "reference product": [
+        [
+          true,
+          "crude oil, at production"
+        ]
+      ]
+    }
+  ],
+  "12020:Natural gas, liquefied or in the gaseous state": [
+    {
+      "Activity": [
+        [
+          true,
+          "biomethane production"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "biomethane"
+        ],
+        [
+          true,
+          "fuelling station"
         ]
       ]
     },
@@ -56,15 +212,23 @@
       "reference product": [
         [
           true,
-          "carbon dioxide, captured"
-        ],
+          "natural gas"
+        ]
+      ],
+      "unit": [
+        [
+         true,
+        "cubic meter"
+        ]
+      ]
+    }
+  ],
+  "14290:Other non-ferrous metal ores and concentrates (other than uranium or thorium ores and concentrates)": [
+    {
+      "reference product": [
         [
           true,
-          "pipeline"
-        ],
-        [
-          true,
-          "storage"
+          "copper-cobalt ore"
         ]
       ]
     },
@@ -72,15 +236,17 @@
       "reference product": [
         [
           true,
-          "carbon dioxide storage"
-        ],
+          "germanium, concentrate"
+        ]
+      ]
+    }
+  ],
+  "16390:Other minerals n.e.c.": [
+    {
+      "reference product": [
         [
           true,
-          "pipeline"
-        ],
-        [
-          true,
-          "storage"
+          "olivine, unprocessed"
         ]
       ]
     }
@@ -123,6 +289,34 @@
         [
           true,
           "kilowatt hour"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "gas, burned in gas turbine"
+        ]
+      ],
+      "unit": [
+        [
+         true,
+        "megajoule"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "diesel, burned in diesel-electric generating set"
+        ]
+      ],
+      "unit": [
+        [
+         true,
+        "megajoule"
         ]
       ]
     }
@@ -189,6 +383,94 @@
           "megajoule"
         ]
       ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "heat, district or industrial"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "megajoule"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "heat production"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "megajoule"
+        ]
+      ]
+    }
+  ],
+  "21641:Rape, colza and mustard oil, crude": [
+    {
+      "Activity": [
+        [
+          true,
+          "Extraction of vegetable oil from rapeseed"
+        ]
+      ]
+    }
+  ],
+  "21642:Rape, colza and mustard oil, refined": [
+    {
+      "Activity": [
+        [
+          true,
+          "Refining of crude vegetable oil from rapeseed"
+        ]
+      ]
+    }
+  ],
+  "21651:Palm oil, crude": [
+    {
+      "Activity": [
+        [
+          true,
+          "Crude Palm Oil extraction"
+        ]
+      ]
+    }
+  ],
+  "21652:Palm oil, refined": [
+    {
+      "Activity": [
+        [
+          true,
+          "Refining of vegetable oil from oil palm"
+        ]
+      ]
+    }
+  ],
+  "31230:Wood in chips or particles": [
+    {
+      "Activity": [
+        [
+          true,
+          "wood"
+        ],
+        [
+          true,
+          "chip"
+        ]
+      ],
+      "reference product": [
+        [
+          true,
+          "wood"
+        ]
+      ]
     }
   ],
   "34110:Hydrocarbons and their halogenated, sulphonated, nitrated or nitrosated derivatives": [
@@ -201,6 +483,46 @@
         [
           true,
           "production"
+        ]
+      ]
+    }
+  ],
+  "34131:Ethyl alcohol and other spirits, denatured, of any strength": [
+    {
+      "Activity": [
+        [
+          true,
+          "ethanol production"
+        ]
+      ],
+      "reference product": [
+        [
+          true,
+          "ethanol"
+        ]
+      ]
+    }
+  ],
+  "34150:Amine-function compounds; oxygen-function amino-compounds, except lysine and its esters and salts thereof and glutamic acid and its salts; ureines and their derivatives and salts thereof; carboxyimide-function compounds and imine-compounds; nitrile-function compounds; diazo-, azo- or azoxy-compounds; organic derivatives of hydrazine or of hydroxylamine; compounds with other nitrogen function": [
+    {
+      "reference product": [
+        [
+          true,
+          "polyacrylonitrile"
+        ],
+        [
+          false,
+          "electrode"
+        ]
+      ]
+    }
+  ],
+  "34160:Organo-sulphur compounds and other organo-inorganic compounds; heterocyclic compounds n.e.c.; nucleic acids and their salts": [
+    {
+      "reference product": [
+        [
+          true,
+          "dimethyl sulfoxide"
         ]
       ]
     }
@@ -257,6 +579,22 @@
           "sodium hexafluorophosphate production"
         ]
       ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "silica gel"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "amine-based silica"
+        ]
+      ]
     }
   ],
   "34240:Phosphates of triammonium; salts and peroxysalts of inorganic acids and metals n.e.c.": [
@@ -277,6 +615,40 @@
       ]
     }
   ],
+  "34250:Salts of oxometallic or peroxometallic acids; colloidal precious metals and compounds thereof; inorganic and organic compounds of mercury; other inorganic chemicals n.e.c.; compressed air; amalgams": [
+    {
+      "reference product": [
+        [
+          true,
+          "potassium iodide solution"
+        ]
+      ]
+    }
+  ],
+  "34400:Activated natural mineral products; animal black; tall oil; terpenic oils produced by the treatment of coniferous woods; crude dipentene; crude para-cymene; pine oil; rosin and resin acids, and derivatives thereof; rosin spirit and rosin oils; rum gums; wood tar; wood tar oils; wood creosote; wood naphtha; vegetable pitch; brewers' pitch": [
+    {
+      "reference product": [
+        [
+          true,
+          "olivine, ground"
+        ]
+      ]
+    }
+  ],
+  "34510:Wood charcoal": [
+    {
+      "reference product": [
+        [
+          true,
+          "biochar"
+        ],
+        [
+          false,
+          "applied to mineral soil"
+        ]
+      ]
+    }
+  ],
   "34651:Ammonia, anhydrous": [
     {
       "Activity": [
@@ -289,6 +661,16 @@
         [
           true,
           "ammonia, anhydrous, liquid"
+        ]
+      ]
+    }
+  ],
+  "34710:Polymers of ethylene, in primary forms": [
+    {
+      "reference product": [
+        [
+          true,
+          "polyethyleneimine"
         ]
       ]
     }
@@ -309,6 +691,52 @@
         [
           true,
           "rape methyl ester, at plant"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "ethanol"
+        ],
+        [
+          true,
+          "fuelling station"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "biodiesel production"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "biodiesel"
+        ],
+        [
+          true,
+          "fuelling station"
+        ]
+      ]
+    }
+  ],
+  "355:Man-made fibres": [
+    {
+      "reference product": [
+        [
+          true,
+          "carbon fiber"
+        ],
+        [
+          false,
+          "production"
         ]
       ]
     }
@@ -385,6 +813,16 @@
       ]
     }
   ],
+  "39920:Sewage sludge": [
+    {
+      "Activity": [
+        [
+          true,
+          "discharge, produced water"
+        ]
+      ]
+    }
+  ],
   "41115:Other ferro-alloys": [
     {
       "Activity": [
@@ -406,10 +844,9 @@
         ]
       ]
     }
-
   ],
   "41601:Tungsten, molybdenum, tantalum, magnesium, cobalt, cadmium, titanium, zirconium, beryllium, gallium, hafnium, indium, niobium, rhenium and thallium, germanium and vanadium, unwrought, and powders thereof, except powders of magnesium; waste and scrap of gallium, hafnium, indium, niobium, rhenium, germanium and vanadium; cobalt mattes and other intermediate products of cobalt metallurgy": [
-    {
+     {
       "Activity": [
         [
           true,
@@ -422,6 +859,36 @@
         [
           true,
           "market for vanadium pentoxide"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "cobalt sulfate"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "cobalt hydroxide"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "cobalt metal production"
+        ]
+      ],
+      "reference product": [
+        [
+          true,
+          "cobalt"
         ]
       ]
     }
@@ -450,6 +917,68 @@
         [
           true,
           "catalyst"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "direct air capture system"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    }
+  ],
+  "46121:Electrical transformers": [
+    {
+      "reference product": [
+        [
+          true,
+          "EV charger"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    }
+  ],
+  "46131:Parts of electric motors, generators and the like": [
+    {
+      "reference product": [
+        [
+          true,
+          "diesel-electric generating set production 10MW"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    }
+  ],
+  "463:Insulated wire and cable; optical fibre cables": [
+    {
+      "reference product": [
+        [
+          true,
+          "cables"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
         ]
       ]
     }
@@ -568,6 +1097,30 @@
         [
           true,
           "battery"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "market for battery capacity"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "fuel cell stack"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "fuel cell system"
         ]
       ]
     }
@@ -765,14 +1318,6 @@
       "Activity": [
         [
           true,
-          "21700 container"
-        ]
-      ]
-    },
-    {
-      "Activity": [
-        [
-          true,
           "nmmt"
         ],
         [
@@ -812,6 +1357,86 @@
           "nafion membrane production"
         ]
       ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "fuel cell balance of plant"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "polymer electrolyte membrane"
+        ],
+        [
+          true,
+          "nafion"
+        ]
+      ]
+    }
+  ],
+  "46939:Other electrical equipment n.e.c. (including electro-magnets; electro-magnetic couplings; clutches and brakes; electro-magnetic lifting heads; electrical particle accelerators; electrical signal generators and apparatus for electro-plating, electrolysis or electrophoresis)": [
+    {
+      "reference product": [
+        [
+          true,
+          "overhead lines"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "catenary mast"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "catenary system"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "distribution shed"
+        ]
+      ]
+    }
+  ],
+  "49112:Public-transport type passenger motor vehicles": [
+    {
+      "reference product": [
+        [
+          true,
+          "passenger bus"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    }
+  ],
+  "5321:Highways (except elevated highways), streets, roads, railways and airfield runways": [
+    {
+      "reference product": [
+        [
+          true,
+          "roadside barrier"
+        ]
+      ]
     }
   ],
   "53251:Local pipelines": [
@@ -836,6 +1461,20 @@
         [
           true,
           "power plant"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "geothermal heat plant"
         ]
       ],
       "unit": [
@@ -878,6 +1517,48 @@
           "unit"
         ]
       ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "production plant crude oil"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "plant onshore, natural gas, production"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "platform, crude oil, offshore"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
     }
   ],
   "53290:Other civil engineering works": [
@@ -900,6 +1581,82 @@
       ]
     }
   ],
+  "641:Local transport and sightseeing transportation services of passengers": [
+    {
+      "reference product": [
+        [
+          true,
+          "transport, passenger bus"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "person kilometer"
+        ]
+      ]
+    }
+  ],
+  "65131:Transport services via pipeline of petroleum and natural gas": [
+    {
+      "reference product": [
+        [
+          true,
+          "transport, natural gas"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "ton kilometer"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "transport, liquefied natural gas"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "ton kilometer"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "crude oil, import mix, at long distance transport"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "kilogram"
+        ]
+      ]
+    }
+  ],
+  "86211:Support services to oil and gas extraction": [
+    {
+      "Activity": [
+        [
+          true,
+          "well for exploration and production"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "meter"
+        ]
+      ]
+    }
+  ],
   "86219:Support services to other mining": [
     {
       "Activity": [
@@ -910,6 +1667,34 @@
         [
           true,
           "borehole"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "meter"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "stimulation, deep well"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "cubic meter"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "deep well, drilled"
         ]
       ],
       "unit": [
@@ -932,6 +1717,134 @@
         [
           true,
           "square meter"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "selective coating, sputtering"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "square meter"
+        ]
+      ]
+    }
+  ],
+  "94321:Hazardous waste treatment services": [
+    {
+      "reference product": [
+        [
+          true,
+          "carbon fiber production, exhaust gas treatment"
+        ]
+      ]
+    }
+  ],
+  "94339:Other non-hazardous waste treatment and disposal services": [
+    {
+      "reference product": [
+        [
+          true,
+          "waste cooking oil"
+        ]
+      ]
+    }
+  ],
+  "949:Other environmental protection services n.e.c.": [
+    {
+      "reference product": [
+        [
+          true,
+          "carbon dioxide capture, from flue gas emissions"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "carbon dioxide from syngas combusiton"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "carbon dioxide from syngas and flue gas combusiton"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "carbon dioxide, captured"
+        ],
+        [
+          true,
+          "pipeline"
+        ],
+        [
+          true,
+          "storage"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "carbon dioxide storage"
+        ],
+        [
+          true,
+          "pipeline"
+        ],
+        [
+          true,
+          "storage"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "biochar"
+        ],
+        [
+          true,
+          "applied to mineral soil"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "carbon dioxide, captured"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "carbon dioxide, stored"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "olivine, spread on coastal area"
         ]
       ]
     }
