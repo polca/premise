@@ -4,25 +4,6 @@ import pandas as pd
 import numpy as np
 from bw2io.extractors import ExcelExtractor
 
-
-# read the mapping json
-with open("cpc_mapping.json", "r") as file:
-    cpc_mapping = json.load(file)
-    cpc_mapping.pop("_example CPC class")  # drop the example to demonstrate file format
-
-# path to inventory files
-inventories_folder = path.abspath(path.join(path.dirname(path.abspath(__file__)), "converted_files"))  # replace with ".." later
-
-# get all files from the inventories folder that are actual inventories
-files = [f for f in listdir(inventories_folder)
-         if path.isfile(path.join(inventories_folder, f))
-         and f.startswith("lci") and f.endswith(".xlsx")]
-files = sorted(files, key=str.casefold)  # sort for consistency
-
-# we use file sizes to estimate progress, not perfect, but better than judging by file number
-file_sizes = [path.getsize(path.join(inventories_folder, f)) for f in files]
-total_files_size = sum(file_sizes)
-
 def extract_inventory_from_sheet(sheet):
     """extract data from the sheet as list
 
@@ -49,7 +30,7 @@ def extract_inventory_from_sheet(sheet):
             # if the cell A1 is 'skip', then skip the sheet
             return [], True
 
-        if row[0] == None or (str(row[0]).title() != "Activity" and not in_act):
+        if row[0] is None or (str(row[0]).title() != "Activity" and not in_act):
             # this is non-activity data
 
             if in_act and in_exc:
@@ -80,6 +61,7 @@ def extract_inventory_from_sheet(sheet):
         l.append(act)
 
     return l, False
+
 
 def assign_cpc(inventory, classification_mapping):
     """Assign the first classification that matches all criteria for this activity"""
@@ -130,9 +112,7 @@ def assign_cpc(inventory, classification_mapping):
                     failed.append(activity)
                     print(">>> FAIL, different classification found for:")
                     print(f"{activity['reference product'][0]} | {activity['Activity'][0]} | {activity['unit'][0]}")
-                    print(f"Old: {old_classification[0].split('::')[1]} | New {classification}")
-                    print(" + Update the classification mapping so that this activity mapping is not changed")
-                    print(" + NEW value will be added to the activity\n")
+                    print(f"Old: {old_classification[0].split('::')[1]} | New {classification}\n")
 
                 activity["classifications"] = classification_entry
             elif add and classification == "NO CLASSIFICATION":  # we found assigned no classification
@@ -140,12 +120,13 @@ def assign_cpc(inventory, classification_mapping):
             else:  # we found no classification for this activity, this should not happen and mapping should be updated
                 failed.append(activity)
                 print(">>> FAIL, no classification found for:")
-                print(f"{activity['reference product'][0]} | {activity['Activity'][0]} | {activity['unit'][0]}")
-                print(" + Update the classification mapping so that this activity is mapped\n")
+                print(f"{activity['reference product'][0]} | {activity['Activity'][0]} | {activity['unit'][0]}\n")
 
     return inventory, failed
 
+
 def inventory_to_df(export_list):
+    """Convert the inventory to a dataframe."""
     exp = []
     for row in export_list:
         if not isinstance(row, dict):
@@ -167,7 +148,9 @@ def inventory_to_df(export_list):
 
     return pd.DataFrame(exp)
 
+
 def write_sheet(df, file_path, sheet_name):
+    """Write a pandas dataframe to a sheet in an excel file."""
     with pd.ExcelWriter(file_path, engine='openpyxl', mode='a') as writer:
         workBook = writer.book
         try:
@@ -175,11 +158,32 @@ def write_sheet(df, file_path, sheet_name):
         finally:
             df.to_excel(writer, sheet_name=sheet_name, index=False, header=False)
 
-c_size = 0
+
+# read the mapping json
+with open("cpc_mapping.json", "r") as file:
+    cpc_mapping = json.load(file)
+    cpc_mapping.pop("_example CPC class")  # drop the example to demonstrate file format
+
+# path to inventory files
+inventories_folder = path.abspath(path.join(path.dirname(path.abspath(__file__)), ".."))
+
+# get all files from the inventories folder that are actual inventories
+files = [f for f in listdir(inventories_folder)
+         if path.isfile(path.join(inventories_folder, f))
+         and f.startswith("lci") and f.endswith(".xlsx")]
+files = sorted(files, key=str.casefold)  # sort for consistency
+
+# we use file sizes to estimate progress, not perfect, but better than judging by file number
+file_sizes = [path.getsize(path.join(inventories_folder, f)) for f in files]
+total_files_size = sum(file_sizes)
+
+cum_size = 0
+cum_proc = 0
 for i, file_name in enumerate(files):
     # iterate over files
-    c_size += file_sizes[i]
-    print(f"Adding/verifying classifications in {file_name} | {round(c_size/total_files_size * 100, 1)}% ({i+1}/{len(files)})")
+    cum_size += file_sizes[i]
+    progress = round(((cum_size/total_files_size) + ((i+1)/len(files))) / 2 * 100, 1)
+    print(f"Adding/verifying classifications in {file_name} | {progress}% ({i+1}/{len(files)} files)")
     file_path = path.join(inventories_folder, file_name)
 
     # extract the file
@@ -193,6 +197,7 @@ for i, file_name in enumerate(files):
             print(f"  sheet: '{sheet_name}' has skip instruction")
             continue
         n_processes = len([d for d in inventory if isinstance(d, dict)])
+        cum_proc += n_processes
 
         if len(sheets) > 1:
             print(f"  {n_processes} processes in sheet: '{sheet_name}'")
@@ -201,18 +206,15 @@ for i, file_name in enumerate(files):
         new_inventory, failed = assign_cpc(inventory, cpc_mapping)
 
         if len(failed) > 0:
-            print(f">>> {len(failed)}/{n_processes} FAILED processes in {file_name}, {sheet_name}")
+            print(f"+++ {len(failed)}/{n_processes} FAILED processes in file '{file_name}', sheet '{sheet_name}'")
+            print(f"    Added/verified classification of {cum_proc - len(failed)} processes | {progress}%.")
             user = input("continue? [y/N]")
+            # allow user to continue in case of overwriting existing mapping
             if user.lower() != "y":
                 raise BaseException
+
         # convert back and write to excel
         new_df = inventory_to_df(new_inventory)
         write_sheet(new_df, file_path, sheet_name)
 
-
-
-
-
-
-
-
+print(f"+++ Added/verified classification of {cum_proc} processes.")
