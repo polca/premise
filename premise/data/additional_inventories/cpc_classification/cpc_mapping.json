@@ -1,0 +1,4216 @@
+{
+  "_example CPC class": [
+    {
+      "Activity": [
+        [
+          true,
+          "This value MUST be in Activity field"
+        ],
+        [
+          false,
+          "This value MUST NOT be in Activity field"
+        ]
+      ],
+      "reference product": [
+        [
+          true,
+          "This value MUST ALSO be in reference product field"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "This is an alternative to the above dict"
+        ]
+      ]
+    }
+  ],
+  "01112:Wheat, other": [
+    {
+      "Activity": [
+       [
+          true,
+          "farming and supply"
+        ]
+      ],
+      "reference product": [
+        [
+          true,
+          "wheat"
+        ]
+      ]
+    }
+  ],
+  "01122:Maize (corn), other": [
+    {
+      "reference product": [
+        [
+          true,
+          "corn"
+        ],
+        [
+          true,
+          ", harvested, at ethanol plant"
+        ]
+      ]
+    }
+  ],
+  "01290:Vegetables, fresh, n.e.c.": [
+    {
+      "reference product": [
+        [
+          true,
+          "switchgrass, harvested"
+        ]
+      ]
+    }
+  ],
+  "01443:Rape or colza seed": [
+    {
+      "reference product": [
+        [
+          true,
+          "rapeseed cultivation"
+        ]
+      ]
+    }
+  ],
+  "01491:Palm nuts and kernels": [
+    {
+      "reference product": [
+        [
+          true,
+          "Fresh Fruit Bunches (FFBs) production"
+        ]
+      ]
+    }
+  ],
+  "01801:Sugar beet": [
+    {
+      "reference product": [
+        [
+          true,
+          "sugar beet cultivation"
+        ]
+      ]
+    }
+  ],
+  "01802:Sugar cane": [
+    {
+      "reference product": [
+        [
+          true,
+          "sugarcane"
+        ],
+        [
+          true,
+          ", harvested, at ethanol plant"
+        ]
+      ]
+    }
+  ],
+  "01809:Other sugar crops n.e.c.": [
+    {
+      "reference product": [
+        [
+          true,
+          "sorghum, harvested"
+        ]
+      ]
+    }
+  ],
+  "01961:Live plants; bulbs, tubers and roots; cuttings and slips; mushroom spawn": [
+    {
+      "reference product": [
+        [
+          true,
+          "miscanthus, harvested"
+        ]
+      ]
+    }
+  ],
+  "03132:Fuel wood of non-coniferous wood": [
+    {
+      "reference product": [
+        [
+          true,
+          "willow, harvested"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "poplar, harvested"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "eucalyptus, harvested"
+        ]
+      ]
+    }
+  ],
+  "032:Non-wood forest products": [
+    {
+      "reference product": [
+        [
+          true,
+          "forest residue"
+        ]
+      ]
+    }
+  ],
+  "04934:Farmed seaweeds and other algae, fresh, frozen or dried, whether or not ground, unfit for human consumption": [
+    {
+      "reference product": [
+        [
+          true,
+          "algae harvesting"
+        ]
+      ]
+    }
+  ],
+  "12010:Petroleum oils and oils obtained from bituminous minerals, crude": [
+    {
+      "reference product": [
+        [
+          true,
+          "crude oil, at production"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "crude oil extraction"
+        ]
+      ],
+      "reference product": [
+        [
+          true,
+          "crude oil"
+        ]
+      ]
+    }
+  ],
+  "12020:Natural gas, liquefied or in the gaseous state": [
+    {
+      "Activity": [
+        [
+          true,
+          "biomethane production"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "biomethane"
+        ],
+        [
+          true,
+          "fuelling station"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "natural gas"
+        ]
+      ],
+      "unit": [
+        [
+         true,
+        "cubic meter"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "methane"
+        ],
+        [
+          false,
+          "catalyst"
+        ],
+        [
+          false,
+          "CF3SO2F"
+        ]
+      ],
+      "unit": [
+        [
+         true,
+        "kilogram"
+        ]
+      ]
+    }
+  ],
+  "14290:Other non-ferrous metal ores and concentrates (other than uranium or thorium ores and concentrates)": [
+    {
+      "reference product": [
+        [
+          true,
+          "copper-cobalt ore"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "germanium, concentrate"
+        ]
+      ]
+    }
+  ],
+  "15200:Gypsum; anhydrite; limestone flux; limestone and other calcareous stone, of a kind used for the manufacture of lime or cement": [
+    {
+      "reference product": [
+        [
+          true,
+          "unprocessed limestone"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "crushed and washed limestone"
+        ]
+      ]
+    }
+  ],
+  "16190:Other chemical minerals": [
+    {
+      "reference product": [
+        [
+          true,
+          "fluorspar, 97% purity"
+        ]
+      ]
+    }
+  ],
+  "16320:Industrial diamonds, unworked or simply sawn, cleaved or bruted; pumice stone; emery; natural corundum, natural garnet and other natural abrasives": [
+    {
+      "reference product": [
+        [
+          true,
+          "synthetic diamond"
+        ]
+      ]
+    }
+  ],
+  "16390:Other minerals n.e.c.": [
+    {
+      "reference product": [
+        [
+          true,
+          "olivine, unprocessed"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "graphite ore"
+        ]
+      ]
+    }
+  ],
+  "17100:Electrical energy": [
+    {
+      "Activity": [
+        [
+          true,
+          "electricity production"
+        ]
+      ],
+      "reference product": [
+        [
+          true,
+          "electricity"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "kilowatt hour"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "electricity supply"
+        ]
+      ],
+      "reference product": [
+        [
+          true,
+          "electricity"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "kilowatt hour"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "gas, burned in gas turbine"
+        ]
+      ],
+      "unit": [
+        [
+         true,
+        "megajoule"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "diesel, burned in diesel-electric generating set"
+        ]
+      ],
+      "unit": [
+        [
+         true,
+        "megajoule"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "electricity, from residential heating system"
+        ]
+      ],
+      "unit": [
+        [
+         true,
+        "kilowatt hour"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "municipal waste incineration"
+        ]
+      ],
+      "reference product": [
+        [
+          true,
+          "electricity"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "kilowatt hour"
+        ]
+      ]
+    }
+  ],
+  "17200:Coal gas, water gas, producer gas and similar gases, other than petroleum gases and other gaseous hydrocarbons": [
+    {
+      "Activity": [
+        [
+          true,
+          "syngas, from"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "megajoule"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "synthetic natural gas from"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "megajoule"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "SNG"
+        ],
+        [
+          true,
+          ", at consumer"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "megajoule"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "syngas"
+        ],
+        [
+          true,
+          "production"
+        ]
+      ],
+      "reference product": [
+        [
+          true,
+          "syngas"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "kilogram"
+        ]
+      ]
+    }
+  ],
+  "17300:Steam and hot water": [
+    {
+      "Activity": [
+        [
+          true,
+          "natural gas burnt in"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "megajoule"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "heat, district or industrial"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "megajoule"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "heat production"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "megajoule"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "heat, from residential heating system"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "megajoule"
+        ]
+      ]
+    }
+  ],
+  "18000:Natural water": [
+    {
+      "reference product": [
+        [
+          true,
+          "water, pure"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "cooling water"
+        ],
+        [
+          false,
+          "used"
+        ]
+      ]
+    }
+  ],
+  "21641:Rape, colza and mustard oil, crude": [
+    {
+      "Activity": [
+        [
+          true,
+          "Extraction of vegetable oil from rapeseed"
+        ]
+      ]
+    }
+  ],
+  "21642:Rape, colza and mustard oil, refined": [
+    {
+      "Activity": [
+        [
+          true,
+          "Refining of crude vegetable oil from rapeseed"
+        ]
+      ]
+    }
+  ],
+  "21651:Palm oil, crude": [
+    {
+      "Activity": [
+        [
+          true,
+          "Crude Palm Oil extraction"
+        ]
+      ]
+    }
+  ],
+  "21652:Palm oil, refined": [
+    {
+      "Activity": [
+        [
+          true,
+          "Refining of vegetable oil from oil palm"
+        ]
+      ]
+    }
+  ],
+  "31230:Wood in chips or particles": [
+    {
+      "Activity": [
+        [
+          true,
+          "wood"
+        ],
+        [
+          true,
+          "chip"
+        ]
+      ],
+      "reference product": [
+        [
+          true,
+          "wood"
+        ]
+      ]
+    }
+  ],
+  "33100:Coke and semi-coke of coal, of lignite or of peat; retort carbon": [
+    {
+      "reference product": [
+        [
+          true,
+          "needle coke"
+        ]
+      ]
+    }
+  ],
+  "33311:Motor gasoline": [
+    {
+      "reference product": [
+        [
+          true,
+          "gasoline"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "kilogram"
+        ]
+      ]
+    }
+  ],
+  "33330:Naphtha": [
+    {
+      "reference product": [
+        [
+          true,
+          "naphtha"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "kilogram"
+        ]
+      ]
+    }
+  ],
+  "3334:Kerosenes": [
+    {
+      "reference product": [
+        [
+          true,
+          "kerosene"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "kilogram"
+        ]
+      ]
+    }
+  ],
+  "33360:Gas oil": [
+    {
+      "reference product": [
+        [
+          true,
+          "diesel"
+        ],
+        [
+          false,
+          "bio"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "kilogram"
+        ]
+      ]
+    }
+  ],
+  "33380:Lubricants": [
+    {
+      "reference product": [
+        [
+          true,
+          "Lubricating oil"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "kilogram"
+        ]
+      ]
+    }
+  ],
+  "334:Petroleum gases and other gaseous hydrocarbons, except natural gas": [
+    {
+      "reference product": [
+        [
+          true,
+          "liquefied petroleum gas"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "kilogram"
+        ]
+      ]
+    }
+  ],
+  "33710:Fuel elements (cartridges), non-irradiated, for nuclear reactors": [
+    {
+      "reference product": [
+        [
+          true,
+          "fuel elements PWR, UO2"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "MOX fuel element for LWR"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "U enriched 4.8%"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "Uranium, enriched 4.8%"
+        ]
+      ]
+    }
+  ],
+  "34:Basic chemicals": [
+    {
+      "reference product": [
+        [
+          true,
+          "ultra pure water"
+        ]
+      ]
+    }
+  ],
+  "34110:Hydrocarbons and their halogenated, sulphonated, nitrated or nitrosated derivatives": [
+    {
+      "Activity": [
+        [
+          true,
+          "r-132"
+        ],
+        [
+          true,
+          "production"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "dibenzyltoluene"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "dearomatized hydrocarbon fluid"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "methyl aluminum sesquichloride"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "gallium chloride"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "1,1-difluoroethane"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "ethylene bromide"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "methyl iodide"
+        ]
+      ]
+    }
+  ],
+  "34131:Ethyl alcohol and other spirits, denatured, of any strength": [
+    {
+      "Activity": [
+        [
+          true,
+          "ethanol production"
+        ]
+      ],
+      "reference product": [
+        [
+          true,
+          "ethanol"
+        ]
+      ]
+    }
+  ],
+  "34139:Other alcohols, phenols, phenol-alcohols, and their halogenated, sulphonated, nitrated or nitrosated derivatives; industrial fatty alcohols": [
+    {
+      "reference product": [
+        [
+          true,
+          "methanol"
+        ],
+        [
+          true,
+          "purified"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "methanol, from truck"
+        ]
+      ]
+    }
+  ],
+  "34150:Amine-function compounds; oxygen-function amino-compounds, except lysine and its esters and salts thereof and glutamic acid and its salts; ureines and their derivatives and salts thereof; carboxyimide-function compounds and imine-compounds; nitrile-function compounds; diazo-, azo- or azoxy-compounds; organic derivatives of hydrazine or of hydroxylamine; compounds with other nitrogen function": [
+    {
+      "reference product": [
+        [
+          true,
+          "polyacrylonitrile"
+        ],
+        [
+          false,
+          "electrode"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "silane"
+        ],
+        [
+          false,
+          "trimethyl"
+        ]
+      ]
+    }
+  ],
+  "34160:Organo-sulphur compounds and other organo-inorganic compounds; heterocyclic compounds n.e.c.; nucleic acids and their salts": [
+    {
+      "reference product": [
+        [
+          true,
+          "dimethyl sulfoxide"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "trimethyl aluminum"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "trimethyl gallium"
+        ]
+      ]
+    }
+  ],
+  "34170:Ethers, alcohol peroxides, ether peroxides, epoxides, acetals and hemiacetals, and their halogenated, sulphonated, nitrated or nitrosated derivatives; aldehyde-function compounds; ketone-function compounds and quinone-function compounds; enzymes; prepared enzymes n.e.c.; organic compounds n.e.c.": [
+    {
+      "Activity": [
+        [
+          true,
+          "dimethylether of polyethylene glycol"
+        ]
+      ]
+    }
+  ],
+  "34210:Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c.": [
+    {
+      "Activity": [
+        [
+          true,
+          "hydrogen, from"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "megajoule"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          false,
+          "storage"
+        ]
+      ],
+      "reference product": [
+        [
+          true,
+          "hydrogen, gaseous, "
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "hydrogen, "
+        ],
+        [
+          true,
+          "hydrogenated"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "carbon monoxide, "
+        ]
+      ]
+    }
+  ],
+  "34220:Zinc oxide; zinc peroxide; chromium oxides and hydroxides; manganese oxides; iron oxides and hydroxides; earth colours; cobalt oxides and hydroxides; titanium oxides; lead oxides; red lead and orange lead; inorganic bases n.e.c.; metal oxides, hydroxides and peroxides n.e.c., except of mercury": [
+    {
+      "Activity": [
+        [
+          true,
+          "magnesium hydroxide production"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "nickel carbonate production"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "lithium hydroxide"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "lithium brine, "
+        ]
+      ]
+    }
+  ],
+  "34231:Chemical elements n.e.c.; inorganic acids except phosphoric, nitric and sulphonitric; inorganic oxygen compounds of boron, silicon and carbon; halogen or sulphur compounds of non-metals; sodium hydroxide; hydroxide and peroxide of magnesium; oxides, hydroxides and peroxides of strontium or barium; aluminium hydroxide; hydrozine and hydroxylamine and their inorganic salts": [
+    {
+      "Activity": [
+        [
+          true,
+          "sodium hexafluorophosphate production"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "silica gel"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "amine-based silica"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "7n gallium"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "7n arsenic"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "silicon, solar grade"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "silicon, multi-si"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "silicon production, photovoltaics"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "silicon, metallurgical grade"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "silicon, single crystal"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "bromine, at plant"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "hydrogen fluoride"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "iodine"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "nitrogen trifluoride"
+        ]
+      ]
+    }
+  ],
+  "34240:Phosphates of triammonium; salts and peroxysalts of inorganic acids and metals n.e.c.": [
+    {
+      "Activity": [
+        [
+          true,
+          "lithium iron phosphate"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "disodium disulphite"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "lithium carbonate"
+        ]
+      ],
+      "Activity": [
+        [
+          false,
+          "recycling"
+        ]
+      ]
+    }
+  ],
+  "34250:Salts of oxometallic or peroxometallic acids; colloidal precious metals and compounds thereof; inorganic and organic compounds of mercury; other inorganic chemicals n.e.c.; compressed air; amalgams": [
+    {
+      "reference product": [
+        [
+          true,
+          "potassium iodide solution"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "compressed air"
+        ]
+      ]
+    }
+  ],
+  "34400:Activated natural mineral products; animal black; tall oil; terpenic oils produced by the treatment of coniferous woods; crude dipentene; crude para-cymene; pine oil; rosin and resin acids, and derivatives thereof; rosin spirit and rosin oils; rum gums; wood tar; wood tar oils; wood creosote; wood naphtha; vegetable pitch; brewers' pitch": [
+    {
+      "reference product": [
+        [
+          true,
+          "olivine, ground"
+        ]
+      ]
+    }
+  ],
+  "345:Miscellaneous basic chemical products": [
+    {
+      "reference product": [
+        [
+          true,
+          "Base 35858 chemical"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "Curing Agent 97652"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          false,
+          "painting"
+        ]
+      ],
+      "reference product": [
+        [
+          true,
+          "glass flake paint 35851"
+        ]
+      ]
+    }
+  ],
+  "34510:Wood charcoal": [
+    {
+      "reference product": [
+        [
+          true,
+          "biochar"
+        ],
+        [
+          false,
+          "applied to mineral soil"
+        ]
+      ]
+    }
+  ],
+  "34540:Oils and other products of the distillation of high temperature coal tar, and similar products; pitch and pitch coke, obtained from mineral tars": [
+    {
+      "reference product": [
+        [
+          true,
+          "tar pitch"
+        ]
+      ]
+    }
+  ],
+  "34651:Ammonia, anhydrous": [
+    {
+      "Activity": [
+        [
+          true,
+          "ammonia production"
+        ]
+      ],
+      "reference product": [
+        [
+          true,
+          "ammonia, anhydrous, liquid"
+        ]
+      ]
+    }
+  ],
+  "34710:Polymers of ethylene, in primary forms": [
+    {
+      "reference product": [
+        [
+          true,
+          "polyethyleneimine"
+        ]
+      ]
+    }
+  ],
+  "34720:Polymers of styrene, in primary forms": [
+    {
+      "Activity": [
+        [
+          true,
+          "styrene butadiene rubber (SBR)"
+        ]
+      ]
+    }
+  ],
+  "34730:Polymers of vinyl chloride or other halogenated olefins, in primary forms": [
+    {
+      "reference product": [
+        [
+          true,
+          "emulsion polymerisation, polyvinylchlorid"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "polyvinylalcohol"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "polyvinylbutyral, powder"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "polyvinylfluoride"
+        ],
+        [
+          false,
+          "film"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "vinyl fluoride"
+        ]
+      ]
+    }
+  ],
+  "35491:Biodiesel": [
+    {
+      "Activity": [
+        [
+          true,
+          "rape methyl ester, at plant"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "ethanol"
+        ],
+        [
+          true,
+          "fuelling station"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "biodiesel production"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "biodiesel"
+        ],
+        [
+          true,
+          "fuelling station"
+        ]
+      ]
+    }
+  ],
+  "34740:Polyacetals, other polyethers and epoxide resins, in primary forms; polycarbonates, alkyd resins, polyallyl esters and other polyesters, in primary forms": [
+    {
+      "Activity": [
+        [
+          true,
+          "epoxy paint primer/topcoat"
+        ]
+      ]
+    }
+  ],
+  "35499:Other chemical products n.e.c.": [
+    {
+      "reference product": [
+        [
+          true,
+          "metallization paste"
+        ]
+      ]
+    }
+  ],
+  "355:Man-made fibres": [
+    {
+      "reference product": [
+        [
+          true,
+          "carbon fiber"
+        ],
+        [
+          false,
+          "production"
+        ]
+      ]
+    }
+  ],
+  "36330:Plates, sheets, film, foil and strip, of plastics, not self-adhesive, non-cellular and not reinforced, laminated, supported or similarly combined with other materials": [
+    {
+      "reference product": [
+        [
+          true,
+          "polyvinylbutyral foil"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "polyvinylfluoride, film"
+        ]
+      ]
+    }
+  ],
+  "37420:Quicklime, slaked lime and hydraulic lime": [
+    {
+      "Activity": [
+        [
+          true,
+          "quicklime production"
+        ]
+      ],
+      "reference product": [
+        [
+          true,
+          "cao"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "hydrated lime"
+        ]
+      ]
+    }
+  ],
+  "37950:Artificial graphite; colloidal or semi-colloidal graphite; preparations based on graphite or other carbon in the form of semi-manufactures": [
+    {
+      "reference product": [
+        [
+          true,
+          "synthetic graphite"
+        ]
+      ]
+    }
+  ],
+  "37990:Non-metallic mineral products n.e.c. (including mineral wool, expanded mineral materials, worked mica, articles of mica, non-electrical articles of graphite or other carbon and articles of peat)": [
+    {
+      "reference product": [
+        [
+          true,
+          "graphite, battery grade"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "natural graphite, coated"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "graphite, purified"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "graphite, spherical"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "grahite precursor"
+        ]
+      ]
+    }
+  ],
+  "39380:Waste and scrap of primary cells, primary batteries and electric accumulators; spent primary cells, primary batteries and electric accumulators": [
+    {
+      "Activity": [
+        [
+          true,
+          "treatment"
+        ],
+        [
+          true,
+          "battery"
+        ]
+      ],
+      "reference product": [
+        [
+          true,
+          "waste"
+        ],
+        [
+          true,
+          "battery"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "shredding and sorting, "
+        ],
+        [
+          true,
+          "battery"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "recycling"
+        ],
+        [
+          true,
+          "battery"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "used"
+        ],
+        [
+          true,
+          "battery"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "treatment"
+        ],
+        [
+          true,
+          "vrfb"
+        ]
+      ]
+    }
+  ],
+  "39910:Municipal waste": [
+    {
+      "reference product": [
+        [
+          true,
+          "municipal solid waste"
+        ]
+      ]
+    }
+  ],
+  "39920:Sewage sludge": [
+    {
+      "Activity": [
+        [
+          true,
+          "discharge, produced water"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "waste water"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "water, used"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "treatment, effluent from NF3 production, to wastewater treatment, class 3"
+        ]
+      ]
+    }
+  ],
+  "39990:Other wastes n.e.c.": [
+    {
+      "Activity": [
+        [
+          true,
+          "treatment"
+        ]
+      ],
+      "reference product": [
+        [
+          true,
+          "used pipeline"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "EPR decommissioning"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "avoided burden from recycling"
+        ],
+        [
+          true,
+          "module"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "takeback and recycling"
+        ],
+        [
+          true,
+          "module"
+        ]
+      ]
+    }
+  ],
+  "41115:Other ferro-alloys": [
+    {
+      "Activity": [
+        [
+          true,
+          "vanadium"
+        ],
+        [
+          true,
+          "production"
+        ],
+        [
+          false,
+          "vanadium pentoxide production"
+        ],
+        [
+          false,
+          "electrolyte"
+        ]
+      ]
+    }
+  ],
+  "41350:Base metals clad with silver, and base metals, silver or gold clad with platinum, not further worked than semi-manufactured": [
+    {
+      "reference product": [
+        [
+          true,
+          "RWGS catalyst"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "nickel-based catalyst for methanation"
+        ]
+      ]
+    }
+  ],
+  "4160:Other non-ferrous metals and articles thereof (including waste and scrap of some metals); cermets and articles thereof": [
+    {
+      "reference product": [
+        [
+          true,
+          "ruthenium"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "iridium"
+        ]
+      ]
+    }
+  ],
+  "41601:Tungsten, molybdenum, tantalum, magnesium, cobalt, cadmium, titanium, zirconium, beryllium, gallium, hafnium, indium, niobium, rhenium and thallium, germanium and vanadium, unwrought, and powders thereof, except powders of magnesium; waste and scrap of gallium, hafnium, indium, niobium, rhenium, germanium and vanadium; cobalt mattes and other intermediate products of cobalt metallurgy": [
+     {
+      "Activity": [
+        [
+          true,
+          "vanadium pentoxide production"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "market for vanadium pentoxide"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "cobalt sulfate"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "cobalt hydroxide"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "cobalt metal production"
+        ]
+      ],
+      "reference product": [
+        [
+          true,
+          "cobalt"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "GaAs boule"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "GaAs ingot"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "rhenium"
+        ]
+      ]
+    }
+  ],
+  "42190:Other structures (except prefabricated buildings) and parts of structures, of iron, steel or aluminium; plates, rods, angles, shapes, sections, profiles, tubes and the like, prepared for use in structures, of iron, steel or aluminium; props and similar equipment for scaffolding, shuttering or pitpropping": [
+    {
+      "reference product": [
+        [
+          true,
+          "Cable Trays TI EPR"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "HVAC ducts"
+        ]
+      ]
+    }
+  ],
+  "42210:Reservoirs, tanks, vats and similar containers (other than for compressed or liquefied gas), of iron, steel or aluminium, of a capacity exceeding 300 litres, not fitted with mechanical or thermal equipment": [
+    {
+      "reference product": [
+        [
+          true,
+          "buffer tank"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "fuel tank"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "kilogram"
+        ]
+      ]
+    }
+  ],
+  "42220:Containers for compressed or liquefied gas, of iron, steel or aluminium": [
+    {
+      "reference product": [
+        [
+          true,
+          "high pressure hydrogen storage tank"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "HDPE tank liner"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "Fixed bed reactor"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "Sabatier reaction methanation unit"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "Fuel tank, compressed hydrogen gas, 700bar"
+        ]
+      ],
+      "reference product": [
+        [
+          true,
+          "Hydrogen tank"
+        ]
+      ]
+    }
+  ],
+  "42310:Nuclear reactors": [
+    {
+      "reference product": [
+        [
+          true,
+          "nuclear island"
+        ]
+      ]
+    }
+  ],
+  "42320:Steam or other vapour generating boilers (other than central heating hot water boilers capable also of producing low pressure steam); super-heated water boilers": [
+    {
+      "reference product": [
+        [
+          true,
+          "steam generator primary EPR"
+        ]
+      ]
+    }
+  ],
+  "42330:Auxiliary plant for use with boilers; condensers for steam or other vapour power units": [
+    {
+      "reference product": [
+        [
+          true,
+          "condenser EPR"
+        ]
+      ]
+    }
+  ],
+  "43220:Pumps for liquids; liquid elevators": [
+    {
+      "reference product": [
+        [
+          true,
+          "pump primary EPR"
+        ]
+      ]
+    }
+  ],
+  "4312:Internal combustion engines of a kind used for motor vehicles": [
+    {
+      "reference product": [
+        [
+          true,
+          "internal combustion engine, for lorry"
+        ]
+      ]
+    }
+  ],
+  "43143:Gas turbines other than turbo-jets and turbo-propellers": [
+    {
+      "reference product": [
+        [
+          true,
+          "turbine EPR"
+        ]
+      ]
+    }
+  ],
+  "43230:Air or vacuum pumps; air or other gas compressors": [
+    {
+      "reference product": [
+        [
+          true,
+          "compressor, for hydrogen transmission"
+        ]
+      ]
+    }
+  ],
+  "43240:Taps, cocks, valves and similar appliances for pipes, boiler shells, tanks, vats or the like": [
+    {
+      "reference product": [
+        [
+          true,
+          "valve, average, NI EPR"
+        ]
+      ]
+    }
+  ],
+  "43923:Fire extinguishers; spray guns and similar appliances; steam or sand blasting machines and similar jet projecting machines; mechanical appliances for projecting, dispersing or spraying liquids or powders, except agricultural or horticultural appliances": [
+    {
+      "reference product": [
+        [
+          true,
+          "Fire figting equipment TI EPR"
+        ]
+      ]
+    }
+  ],
+  "43912:Air-conditioning machines": [
+    {
+      "reference product": [
+        [
+          true,
+          "HVAC"
+        ],
+        [
+          false,
+          "ducts"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "HVAC equipment"
+        ]
+      ]
+    }
+  ],
+  "4393:General-purpose machinery n.e.c.": [
+    {
+      "reference product": [
+        [
+          true,
+          "Pipes, valves TI EPR"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "Tanks, pumps, vessels NI EPR"
+        ]
+      ]
+    }
+  ],
+  "44216:Machine-tools for deburring, sharpening, grinding, honing, lapping, polishing or otherwise finishing metal, sintered metal carbides or cermets by means of grinding stones, abrasives or polishing products; machine-tools for planing, shaping, slotting, broaching, gear cutting, gear grinding or gear finishing, sawing, cutting-off and other machine-tools working by removing metal, sintered metal carbides or cermets n.e.c.": [
+    {
+      "reference product": [
+        [
+          true,
+          "diamond saw"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "sawing slurry"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "cmp slurry"
+        ]
+      ]
+    }
+  ],
+  "44919:Special-purpose machinery n.e.c. (including machinery for isotopic separation, machines for assembling electric lamps in glass envelopes, machines for manufacturing glassware and rope making machines)": [
+    {
+      "Activity": [
+        [
+          true,
+          "ammonia"
+        ],
+        [
+          true,
+          "catalyst"
+        ],
+        [
+          true,
+          "production"
+        ]
+      ],
+      "reference product": [
+        [
+          true,
+          "ammonia"
+        ],
+        [
+          true,
+          "catalyst"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "direct air capture system"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    }
+  ],
+  "46121:Electrical transformers": [
+    {
+      "reference product": [
+        [
+          true,
+          "charger"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "transformer"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    }
+  ],
+  "46113:Electric generating sets and rotary converters": [
+    {
+      "reference product": [
+        [
+          true,
+          "generator EPR"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    }
+  ],
+  "46131:Parts of electric motors, generators and the like": [
+    {
+      "reference product": [
+        [
+          true,
+          "diesel-electric generating set production 10MW"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "Diesel generator"
+        ],
+        [
+          true,
+          "MW"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    }
+  ],
+  "46211:Electrical apparatus for switching or protecting electrical circuits, or for making connexions to or in electrical circuits, for a voltage exceeding 1000 V": [
+    {
+      "reference product": [
+        [
+          true,
+          "switchgear"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "isolated phase bus"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "I&C cabinet"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "SF6 MV circuit breaker"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "MV switch-disconnector cubicle"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    }
+  ],
+  "46220:Parts of electricity distribution or control apparatus": [
+    {
+      "reference product": [
+        [
+          true,
+          "inverter"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "charging stand"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "charging station"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    }
+  ],
+  "463:Insulated wire and cable; optical fibre cables": [
+    {
+      "reference product": [
+        [
+          true,
+          "cables"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "cable, average"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "meter"
+        ]
+      ]
+    }
+  ],
+  "46410:Primary cells and primary batteries": [
+    {
+      "Activity": [
+        [
+          true,
+          "battery cell production"
+        ]
+      ],
+      "reference product": [
+        [
+          true,
+          "battery cell"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "battery cell assembly"
+        ]
+      ],
+      "reference product": [
+        [
+          true,
+          "battery cell"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "battery production, "
+        ]
+      ],
+      "reference product": [
+        [
+          true,
+          "battery, "
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "battery module production, "
+        ]
+      ],
+      "reference product": [
+        [
+          true,
+          "battery, "
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "market for battery, "
+        ]
+      ],
+      "reference product": [
+        [
+          true,
+          "battery, "
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "market for"
+        ],
+        [
+          true,
+          "battery cell"
+        ]
+      ],
+      "reference product": [
+        [
+          true,
+          "battery cell, "
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "battery system assembly"
+        ]
+      ],
+      "reference product": [
+        [
+          true,
+          "battery"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "battery stack assembly"
+        ]
+      ],
+      "reference product": [
+        [
+          true,
+          "battery"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "market for battery capacity"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "fuel cell stack"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "fuel cell system"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "home electricity storage system"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          " for home storage system"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "kilogram"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "battery"
+        ],
+        [
+          true,
+          "kw"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    }
+  ],
+  "46420:Electric accumulators": [
+    {
+      "reference product": [
+        [
+          true,
+          "lead acid battery"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "storage battery"
+        ]
+      ]
+    }
+  ],
+  "46430:Parts of primary cells, primary batteries and electric accumulators (including separators)": [
+    {
+      "Activity": [
+        [
+          true,
+          "for Li-O2 battery"
+        ],
+        [
+          false,
+          "recycling"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "for LiS battery"
+        ],
+        [
+          false,
+          "recycling"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "for Li-ion battery"
+        ],
+        [
+          false,
+          "recycling"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "for SIB battery"
+        ],
+        [
+          false,
+          "recycling"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "for VRFB system"
+        ],
+        [
+          false,
+          "treatment"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "film extrusion process, lithium"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "surface production process, lithium"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "tab copper"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "tab aluminum"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "multilayer pouch"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "cell container"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "ode current collector"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          ", lfp"
+        ]
+      ],
+      "reference product": [
+        [
+          true,
+          ", lfp"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "kilogram"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "nca "
+        ],
+        [
+          true,
+          "oxide"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "nmc"
+        ],
+        [
+          true,
+          "oxide"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "battery separator"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "anode paste, lto"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "electro"
+        ],
+        [
+          true,
+          "lto"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "nmmt"
+        ],
+        [
+          true,
+          "production"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "nmvp production"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "electrolyte production, sib"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "electrolyte solution production"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "nafion membrane production"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "fuel cell balance of plant"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "polymer electrolyte membrane"
+        ],
+        [
+          true,
+          "nafion"
+        ]
+      ]
+    }
+  ],
+  "46939:Other electrical equipment n.e.c. (including electro-magnets; electro-magnetic couplings; clutches and brakes; electro-magnetic lifting heads; electrical particle accelerators; electrical signal generators and apparatus for electro-plating, electrolysis or electrophoresis)": [
+    {
+      "reference product": [
+        [
+          true,
+          "overhead lines"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "catenary mast"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "catenary system"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "distribution shed"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "electrolyzer"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "for thermochemical water splitting"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    }
+  ],
+  "47150:Diodes, transistors and similar semi-conductor devices; photosensitive semi-conductor devices; light emitting diodes; mounted piezo-electric crystals": [
+    {
+      "reference product": [
+        [
+          true,
+          "gaas wafer"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "square meter"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "perovskite wafer"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "square meter"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "perovskite"
+        ],
+        [
+          true,
+          "cell"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "photovoltaic module"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "photovoltaic panel"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "single-si wafer"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "square meter"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "multi-si wafer"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "square meter"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "photovoltaic cell"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "square meter"
+        ]
+      ]
+    }
+  ],
+  "47173:Parts for the goods of subclasses 47140 to 47160": [
+    {
+      "reference product": [
+        [
+          true,
+          "inductor, other"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "photovoltaic laminate"
+        ]
+      ]
+    }
+  ],
+  "49112:Public-transport type passenger motor vehicles": [
+    {
+      "reference product": [
+        [
+          true,
+          "passenger bus"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    }
+  ],
+  "49113:Motor cars and other motor vehicles principally designed for the transport of persons (except public-transport type vehicles, vehicles specially designed for travelling on snow, and golf cars and similar vehicles)": [
+    {
+      "reference product": [
+        [
+          true,
+          "passenger car"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "motorbike"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "scooter"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "moped"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "bicycle"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "electric bicycle"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    }
+  ],
+  "49114:Motor vehicles n.e.c. for the transport of goods": [
+    {
+      "reference product": [
+        [
+          true,
+          "truck"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "electric cargo bicycle"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    }
+  ],
+  "49129:Other parts and accessories n.e.c. of motor vehicles (including brakes, gear boxes, axles, road wheels, suspension shock absorbers, radiators, silencers, exhaust pipes, clutches, steering wheels, steering columns, steering boxes, and parts thereof)": [
+    {
+      "reference product": [
+        [
+          true,
+          "tires and wheels, for lorry"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "frame, blanks and saddle, for lorry"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "cabin, for lorry"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "exhaust system, for lorry"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "assembly operation, for lorry"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "retarder, for lorry"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "other components, for"
+        ],
+        [
+          true,
+          "lorry"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "power electronics, for lorry"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "suspension, for lorry"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "transmission, for lorry"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "gearbox, for lorry"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "Electrical equipment"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "Glider lightweighting"
+        ]
+      ]
+    }
+  ],
+  "4951:Rail locomotives and locomotive tenders": [
+    {
+      "reference product": [
+        [
+          true,
+          "locomotive"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    }
+  ],
+  "49520:Self-propelled railway or tramway coaches, vans and trucks (except maintenance or service vehicles)": [
+    {
+      "reference product": [
+        [
+          true,
+          "tram"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    }
+  ],
+  "5321:Highways (except elevated highways), streets, roads, railways and airfield runways": [
+    {
+      "reference product": [
+        [
+          true,
+          "roadside barrier"
+        ]
+      ]
+    }
+  ],
+  "53251:Local pipelines": [
+    {
+      "Activity": [
+        [
+          true,
+          "pipeline, supercritical carbon dioxide"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "pipeline, for hydrogen"
+        ],
+        [
+          false,
+          "used"
+        ]
+      ]
+    }
+  ],
+  "53262:Power plants": [
+    {
+      "Activity": [
+        [
+          true,
+          "power plant"
+        ]
+      ],
+      "reference product": [
+        [
+          true,
+          "power plant"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "geothermal heat plant"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "cooling tower"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "EPR"
+        ],
+        [
+          false,
+          "decommissioning"
+        ],
+        [
+          false,
+          "cable trays"
+        ],
+        [
+          false,
+          "condenser"
+        ],
+        [
+          false,
+          "generator"
+        ],
+        [
+          false,
+          "nuclear island"
+        ],
+        [
+          false,
+          "procurement"
+        ],
+        [
+          false,
+          "pump"
+        ],
+        [
+          false,
+          "turbine"
+        ],
+        [
+          false,
+          "valve"
+        ],
+        [
+          false,
+          "fire figting equipment"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "pre-fabricated components for WEC"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "wave energy converter platform"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    }
+  ],
+  "53269:Other constructions for manufacturing": [
+    {
+      "reference product": [
+        [
+          true,
+          "syngas production plant"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "sng"
+        ],
+        [
+          true,
+          "production plant"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "production plant crude oil"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "plant onshore, natural gas, production"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "platform, crude oil, offshore"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "fuelling station"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "wafer factory"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "photovoltaic cell factory"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "Gas-to-liquid plant"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "RWGS tank construction"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "unit"
+        ]
+      ]
+    }
+  ],
+  "53290:Other civil engineering works": [
+    {
+      "Activity": [
+        [
+          true,
+          "carbon dioxide transport"
+        ],
+        [
+          true,
+          "infrastructure"
+        ]
+      ],
+      "reference product": [
+        [
+          true,
+          "carbon dioxide"
+        ]
+      ]
+    }
+  ],
+  "542:General construction services of civil engineering works": [
+    {
+      "reference product": [
+        [
+          true,
+          "crane operation"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "forklift operation"
+        ]
+      ]
+    }
+  ],
+  "54730:Painting services": [
+    {
+      "Activity": [
+        [
+          true,
+          "painting"
+        ]
+      ],
+      "reference product": [
+        [
+          true,
+          "glass flake paint 35851"
+        ]
+      ]
+    }
+  ],
+  "641:Local transport and sightseeing transportation services of passengers": [
+    {
+      "reference product": [
+        [
+          true,
+          "transport, passenger bus"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "person kilometer"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "transport, passenger car"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "kilometer"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "transport, Kick Scooter"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "kilometer"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "transport, motorbike"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "kilometer"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "transport, scooter"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "kilometer"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "transport, moped"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "kilometer"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "transport, bicycle"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "kilometer"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "transport, tram"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "person-kilometer"
+        ]
+      ]
+    }
+  ],
+  "6511:Road transport services of freight": [
+    {
+      "reference product": [
+        [
+          true,
+          "transport, freight, lorry"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "ton kilometer"
+        ]
+      ]
+    }
+  ],
+  "6512:Railway transport services of freight": [
+    {
+      "reference product": [
+        [
+          true,
+          "transport, freight train"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "ton kilometer"
+        ]
+      ]
+    }
+  ],
+  "65131:Transport services via pipeline of petroleum and natural gas": [
+    {
+      "reference product": [
+        [
+          true,
+          "transport, natural gas"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "ton kilometer"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "transport, liquefied natural gas"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "ton kilometer"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "crude oil, import mix, at long distance transport"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "kilogram"
+        ]
+      ]
+    }
+  ],
+  "67220:Bulk liquid or gas storage services": [
+    {
+      "Activity": [
+        [
+          true,
+          "hydrogen storage"
+        ]
+      ],
+      "reference product": [
+        [
+          true,
+          "hydrogen"
+        ]
+      ]
+    }
+  ],
+  "83324:Engineering services for power projects": [
+    {
+      "reference product": [
+        [
+          true,
+          "procurement"
+        ],
+        [
+          true,
+          "EPR"
+        ]
+      ]
+    }
+  ],
+  "86211:Support services to oil and gas extraction": [
+    {
+      "Activity": [
+        [
+          true,
+          "well for exploration and production"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "meter"
+        ]
+      ]
+    }
+  ],
+  "86219:Support services to other mining": [
+    {
+      "Activity": [
+        [
+          true,
+          "drilling"
+        ],
+        [
+          true,
+          "borehole"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "meter"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "stimulation, deep well"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "cubic meter"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "deep well, drilled"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "meter"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "solution mining"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "filtering, through water ion exchanger"
+        ]
+      ]
+    }
+  ],
+  "86320:Gas distribution services through mains (on a fee or contract basis)": [
+    {
+      "reference product": [
+        [
+          true,
+          "hydrogen embrittlement inhibition"
+        ]
+      ]
+    }
+  ],
+  "87141:Maintenance and repair services of motor vehicles": [
+    {
+      "reference product": [
+        [
+          true,
+          "maintenance, electric bicycle, without battery"
+        ]
+      ]
+    }
+  ],
+  "87360:Installation services of electrical machinery and apparatus n.e.c.": [
+     {
+      "reference product": [
+        [
+          true,
+          "photovoltaic"
+        ],
+        [
+          true,
+          "installation"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "open ground construction"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "slanted-roof construction"
+        ]
+      ]
+    }
+  ],
+  "88731:Metal treatment and coating services": [
+    {
+      "Activity": [
+        [
+          true,
+          "nickel plating"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "square meter"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "selective coating, sputtering"
+        ]
+      ],
+      "unit": [
+        [
+          true,
+          "square meter"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "zinc coating for hydrogen pipeline"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "sand blasting"
+        ]
+      ]
+    },
+    {
+      "Activity": [
+        [
+          true,
+          "flame cutting"
+        ]
+      ]
+    }
+  ],
+  "94321:Hazardous waste treatment services": [
+    {
+      "reference product": [
+        [
+          true,
+          "carbon fiber production, exhaust gas treatment"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "exhaust, acidic"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "exhaust, caustic"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "exhaust, general"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "abated exhaust"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "tray cleaning"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "treatment"
+        ],
+        [
+          true,
+          "pv module"
+        ]
+      ]
+    }
+  ],
+  "94339:Other non-hazardous waste treatment and disposal services": [
+    {
+      "reference product": [
+        [
+          true,
+          "waste cooking oil"
+        ]
+      ]
+    }
+  ],
+  "949:Other environmental protection services n.e.c.": [
+    {
+      "reference product": [
+        [
+          true,
+          "carbon dioxide capture, from flue gas emissions"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "carbon dioxide from syngas combusiton"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "carbon dioxide from syngas and flue gas combusiton"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "carbon dioxide, captured"
+        ],
+        [
+          true,
+          "pipeline"
+        ],
+        [
+          true,
+          "storage"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "carbon dioxide storage"
+        ],
+        [
+          true,
+          "pipeline"
+        ],
+        [
+          true,
+          "storage"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "biochar"
+        ],
+        [
+          true,
+          "applied to mineral soil"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "carbon dioxide, captured"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "carbon dioxide, stored"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "olivine, spread on coastal area"
+        ]
+      ]
+    }
+  ]
+}
