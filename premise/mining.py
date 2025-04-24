@@ -20,6 +20,7 @@ logger = create_logger("mining")
 
 TAILINGS_REGIONS_FILE = DATA_DIR / "mining" / "tailings_topology.yaml"
 
+
 def _update_mining(scenario, version, system_model):
     mining = Mining(
         database=scenario["database"],
@@ -50,6 +51,7 @@ def load_tailings_config():
     filepath = DATA_DIR / "mining" / "tailing_activities.yaml"
     with open(filepath, "r", encoding="utf-8") as stream:
         return yaml.safe_load(stream)
+
 
 def load_tailings_topology():
     """
@@ -125,7 +127,7 @@ def copy_activity(act: dict, location: str, product_name=None) -> dict:
                     exc["name"],
                     exc["product"],
                     exc.get("location", "GLO"),
-                    exc.get("unit", "kilogram")
+                    exc.get("unit", "kilogram"),
                 )
 
         elif exc["type"] == "production":
@@ -134,7 +136,12 @@ def copy_activity(act: dict, location: str, product_name=None) -> dict:
             if product_name:
                 exc["product"] = product_name
             exc["location"] = location
-            exc["input"] = (exc["name"], exc["product"], location, exc.get("unit", "kilogram"))
+            exc["input"] = (
+                exc["name"],
+                exc["product"],
+                location,
+                exc.get("unit", "kilogram"),
+            )
 
     # Add production exchange if none exists
     if product_name and not has_production:
@@ -186,12 +193,17 @@ def has_exchange_matching(activity, name_filters, prod_filters) -> bool:
             continue
         if name_mask and any(f in exc.get("name", "").lower() for f in name_mask):
             continue
-        if product_fltr and not any(f in exc.get("product", "").lower() for f in product_fltr):
+        if product_fltr and not any(
+            f in exc.get("product", "").lower() for f in product_fltr
+        ):
             continue
-        if product_mask and any(f in exc.get("product", "").lower() for f in product_mask):
+        if product_mask and any(
+            f in exc.get("product", "").lower() for f in product_mask
+        ):
             continue
         return True
     return False
+
 
 class Mining(BaseTransformation):
     def __init__(
@@ -232,7 +244,9 @@ class Mining(BaseTransformation):
         return "GLO"
 
     def _make_filter(self, cfg):
-        return lambda act: has_exchange_matching(act, cfg.get("name", {}), cfg.get("reference product", {}))
+        return lambda act: has_exchange_matching(
+            act, cfg.get("name", {}), cfg.get("reference product", {})
+        )
 
     def _split_exchanges(self, act, config, shares):
 
@@ -258,14 +272,20 @@ class Mining(BaseTransformation):
                     keep_exc["amount"] = total * share
                     new_exchanges.append(keep_exc)
                 else:
-                    provider = self._get_or_create_provider(method, act["location"], exc["product"])
+                    provider = self._get_or_create_provider(
+                        method, act["location"], exc["product"]
+                    )
                     if provider:
                         new_exc = copy_exchange(exc)
                         new_exc["name"] = provider["name"]
                         new_exc["product"] = provider["reference product"]
                         new_exc["location"] = provider["location"]
-                        new_exc["input"] = (provider["name"], provider["reference product"], provider["location"],
-                                            provider.get("unit", "kilogram"))
+                        new_exc["input"] = (
+                            provider["name"],
+                            provider["reference product"],
+                            provider["location"],
+                            provider.get("unit", "kilogram"),
+                        )
                         new_exc["amount"] = total * share
                         new_exchanges.append(new_exc)
 
@@ -277,17 +297,44 @@ class Mining(BaseTransformation):
         prod_filters = cfg.get("reference product", {})
 
         name_fltr = [ws.contains("name", s) for s in name_filters.get("fltr", [])]
-        name_mask = [ws.exclude(ws.contains("name", s)) for s in name_filters.get("mask", [])]
-        prod_fltr = [ws.contains("reference product", s) for s in prod_filters.get("fltr", [])]
-        prod_mask = [ws.exclude(ws.contains("reference product", s)) for s in prod_filters.get("mask", [])]
+        name_mask = [
+            ws.exclude(ws.contains("name", s)) for s in name_filters.get("mask", [])
+        ]
+        prod_fltr = [
+            ws.contains("reference product", s) for s in prod_filters.get("fltr", [])
+        ]
+        prod_mask = [
+            ws.exclude(ws.contains("reference product", s))
+            for s in prod_filters.get("mask", [])
+        ]
 
-        providers = list(ws.get_many(self.database, *name_fltr, *prod_fltr, *name_mask, *prod_mask, ws.equals("location", location)))
+        providers = list(
+            ws.get_many(
+                self.database,
+                *name_fltr,
+                *prod_fltr,
+                *name_mask,
+                *prod_mask,
+                ws.equals("location", location),
+            )
+        )
         if providers:
             return providers[0]
 
-        fallback = list(ws.get_many(self.database, *name_fltr, *prod_fltr, *name_mask, *prod_mask, ws.equals("location", "GLO")))
+        fallback = list(
+            ws.get_many(
+                self.database,
+                *name_fltr,
+                *prod_fltr,
+                *name_mask,
+                *prod_mask,
+                ws.equals("location", "GLO"),
+            )
+        )
         if not fallback:
-            logger.warning(f"[Mining] No fallback found for method {method} at {location}")
+            logger.warning(
+                f"[Mining] No fallback found for method {method} at {location}"
+            )
             return None
 
         new_provider = copy_activity(fallback[0], location, product)
@@ -319,11 +366,3 @@ class Mining(BaseTransformation):
 def write_log(self, dataset, status="updated"):
     txt = f"{status}|{self.model}|{self.scenario}|{self.year}|{dataset['name']}|{dataset.get('reference product', '')}|{dataset['location']}"
     logger.info(txt)
-
-
-
-
-
-
-
-
