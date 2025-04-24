@@ -220,7 +220,7 @@ sulfidic tailings:
         - market
         - impoundment
         - non-sulfidic
-        - flocuculation-flotation
+        - flocculation-flotation
     reference product:
       fltr:
         - sulfidic tailings

@@ -4,23 +4,21 @@ Integrates projections regarding tailings treatment.
 
 import yaml
 import copy
-import numpy as np
 import uuid
-from functools import lru_cache
+from collections import defaultdict
 from .transformation import (
     BaseTransformation,
-    Dict,
     IAMDataCollection,
-    InventorySet,
     List,
-    Set,
     ws,
 )
 from .utils import DATA_DIR
 from .logger import create_logger
+from .geomap import Geomap
 
 logger = create_logger("mining")
 
+TAILINGS_REGIONS_FILE = DATA_DIR / "mining" / "tailings_topology.yaml"
 
 def _update_mining(scenario, version, system_model):
     mining = Mining(
@@ -51,6 +49,13 @@ def load_tailings_config():
 
     filepath = DATA_DIR / "mining" / "tailing_activities.yaml"
     with open(filepath, "r", encoding="utf-8") as stream:
+        return yaml.safe_load(stream)
+
+def load_tailings_topology():
+    """
+    Load the mapping of tailings regions to the IAM regions
+    """
+    with open(TAILINGS_REGIONS_FILE, "r", encoding="utf-8") as stream:
         return yaml.safe_load(stream)
 
 
@@ -84,31 +89,12 @@ def interpolate_method_share(year: int, share_dict: dict) -> float:
     return share_dict[all_years[-1]]["mean"]
 
 
-def parse_tailings_shares(year: int, config_methods: dict) -> dict:
-    """
-    If config_methods = {
-      "backfill": {
-         "name": {...},
-         "reference product":{...},
-         "share": {
-            2020:{ min, max, mean},
-            2050:{ min, max, mean}
-         }
-      },
-      "impoundment": { ... }
-    }
-
-    We'll parse the numeric 'mean' for the given year.
-    """
-    out = {}
-    for method, method_dict in config_methods.items():
-        if "share" in method_dict:
-            share_val = interpolate_method_share(year, method_dict["share"])
-            out[method] = share_val
-        else:
-            print("Missing share for activity:", method)
-            out[method] = 0.0
-    return out
+def parse_tailings_shares(year: int, config: dict, region: str) -> dict:
+    shares = {}
+    for method, cfg in config.items():
+        region_data = cfg.get("share", {}).get(region, cfg.get("share", {}).get("GLO"))
+        shares[method] = interpolate_method_share(year, region_data)
+    return shares
 
 
 def copy_exchange(exc: dict) -> dict:
@@ -139,7 +125,7 @@ def copy_activity(act: dict, location: str, product_name=None) -> dict:
                     exc["name"],
                     exc["product"],
                     exc.get("location", "GLO"),
-                    exc.get("unit", "kilogram"),
+                    exc.get("unit", "kilogram")
                 )
 
         elif exc["type"] == "production":
@@ -148,12 +134,10 @@ def copy_activity(act: dict, location: str, product_name=None) -> dict:
             if product_name:
                 exc["product"] = product_name
             exc["location"] = location
-            unit = exc.get("unit", "kilogram")
-            exc["input"] = (exc["name"], exc["product"], location, unit)
+            exc["input"] = (exc["name"], exc["product"], location, exc.get("unit", "kilogram"))
 
     # Add production exchange if none exists
     if product_name and not has_production:
-        print("[DEBUG] No production exchange found. Adding a new one.")
         new_act.setdefault("exchanges", []).append(
             {
                 "type": "production",
@@ -189,125 +173,25 @@ def has_exchange_matching(activity, name_filters, prod_filters) -> bool:
     Return True if the activity has at least one technosphere exchange that
     matches name_filters and prod_filters.
     """
+
     name_fltr = name_filters.get("fltr", [])
     name_mask = name_filters.get("mask", [])
     product_fltr = prod_filters.get("fltr", [])
     product_mask = prod_filters.get("mask", [])
 
-    exchanges = activity.get("exchanges", [])
-    for exc in exchanges:
+    for exc in activity.get("exchanges", []):
         if exc.get("type") != "technosphere":
             continue
-
-        exc_name = exc.get("name", "").lower()
-        exc_prod = exc.get("product", "").lower()
-
-        if name_fltr and not any(f in exc_name for f in name_fltr):
+        if name_fltr and not any(f in exc.get("name", "").lower() for f in name_fltr):
             continue
-        if name_mask and any(f in exc_name for f in name_mask):
+        if name_mask and any(f in exc.get("name", "").lower() for f in name_mask):
             continue
-        if product_fltr and not any(f in exc_prod for f in product_fltr):
+        if product_fltr and not any(f in exc.get("product", "").lower() for f in product_fltr):
             continue
-        if product_mask and any(f in exc_prod for f in product_mask):
+        if product_mask and any(f in exc.get("product", "").lower() for f in product_mask):
             continue
         return True
-
     return False
-
-
-def activity_filter_factory(name_filters: dict, prod_filters: dict) -> callable:
-    """
-    Return a function that checks if an activity has at least one
-    technosphere exchange that matches name_filters and prod_filters.
-    """
-
-    def filter_func(activity):
-        return has_exchange_matching(activity, name_filters, prod_filters)
-
-    return filter_func
-
-
-def partial_split_exchange(
-    activity, old_cfg, bf_share, imp_share, get_backfill_provider
-):
-    """
-    Within 'activity', partial-split any exchanges that matches 'old_cfg' (impoundment config).
-    So if an exchange is e.g. 1.0 kg, we keep imp_share portion for original name/product, and
-    route bf_share portion to the backfill provider.
-    """
-
-    name_filters = old_cfg.get("name", {})
-    prod_filters = old_cfg.get("reference product", {})
-
-    new_exchanges = []
-    splitted = False
-
-    for exc in activity["exchanges"]:
-        if splitted:
-            new_exchanges.append(exc)
-            continue
-
-        if exc.get("type") == "technosphere":
-            exc_name = exc.get("name", "").lower()
-            exc_prod = exc.get("product", "").lower()
-
-            matched = True
-
-            if name_filters.get("fltr"):
-                if not any(f.lower() in exc_name for f in name_filters["fltr"]):
-                    matched = False
-            if name_filters.get("mask"):
-                if any(f.lower() in exc_name for f in name_filters["mask"]):
-                    matched = False
-            if prod_filters.get("fltr") and matched:
-                if not any(f.lower() in exc_prod for f in prod_filters["fltr"]):
-                    matched = False
-            if prod_filters.get("mask") and matched:
-                if any(f.lower() in exc_prod for f in prod_filters["mask"]):
-                    matched = False
-
-            if matched:
-                splitted = True
-                total_amount = exc["amount"]
-
-                if imp_share > 0:
-                    keep_exc = copy_exchange(exc)
-                    keep_exc["amount"] = total_amount * imp_share
-                    new_exchanges.append(keep_exc)
-                    logger.info(f"   -> impound portion: {keep_exc['amount']}")
-
-                if bf_share > 0:
-                    provider = get_backfill_provider(
-                        activity["location"], exc["product"]
-                    )
-
-                    if provider:
-                        bf_exc = copy_exchange(exc)
-                        bf_exc["amount"] = total_amount * bf_share
-                        bf_exc["name"] = provider["name"]
-                        bf_exc["product"] = provider["reference product"]
-                        bf_exc["location"] = provider["location"]
-                        bf_exc["unit"] = provider.get("unit", "kilogram")
-                        bf_exc["input"] = (
-                            provider["name"],
-                            provider["reference product"],
-                            provider["location"],
-                            provider.get("unit", "kilogram"),
-                        )
-                        new_exchanges.append(bf_exc)
-                        logger.info(f"   -> backfill portion: {bf_exc['amount']}")
-                    else:
-                        logger.warning(
-                            f"[Mining] No backfill provider found for {activity['location']}"
-                        )
-                continue
-            else:
-                print(f"[Mining] No match for exchange: {exc_name} / {exc_prod}")
-
-        new_exchanges.append(exc)
-
-    activity["exchanges"] = new_exchanges
-
 
 class Mining(BaseTransformation):
     def __init__(
@@ -335,80 +219,111 @@ class Mining(BaseTransformation):
         )
         self.year = int(year)
         self.tailings_config = load_tailings_config()
+        self.tailings_topology = load_tailings_topology()
+        self.geomap = Geomap(model)
 
-    def update_tailings_treatment(self):
-        config_glo = self.tailings_config.get("sulfidic tailings", {}).get("GLO", {})
-        if not config_glo:
-            logger.info("[Mining] No config under 'sulfidic tailings' -> 'GLO'")
-            return
+    def _map_to_tailings_region(self, iam_loc: str) -> str:
+        """
+        Map IAM location to tailings region.
+        """
+        for region, locations in self.tailings_topology.items():
+            if iam_loc in locations:
+                return region
+        return "GLO"
 
-        numeric_shares = parse_tailings_shares(self.year, config_glo)
-        bf_share = numeric_shares.get("backfill", 0.0)
-        imp_share = numeric_shares.get("impoundment", 1.0)
-        logger.info(
-            f"[Mining] For year {self.year}, backfill={bf_share}, impoundment={imp_share}"
-        )
+    def _make_filter(self, cfg):
+        return lambda act: has_exchange_matching(act, cfg.get("name", {}), cfg.get("reference product", {}))
 
-        backfill_cfg = config_glo.get("backfill", {})
-        impound_cfg = config_glo.get("impoundment", {})
+    def _split_exchanges(self, act, config, shares):
 
-        name_filters = impound_cfg.get("name", {})
-        prod_filters = impound_cfg.get("reference product", {})
+        original_cfg = config.get("impoundment", {})
+        name_fltr = original_cfg.get("name", {})
+        prod_fltr = original_cfg.get("reference product", {})
 
-        def impound_filter_func(act):
-            return has_exchange_matching(act, name_filters, prod_filters)
+        new_exchanges = []
+        for exc in act["exchanges"]:
+            if exc.get("type") != "technosphere":
+                new_exchanges.append(exc)
+                continue
+            if not has_exchange_matching({"exchanges": [exc]}, name_fltr, prod_fltr):
+                new_exchanges.append(exc)
+                continue
 
-        impound_consumers = list(ws.get_many(self.database, impound_filter_func))
+            total = exc["amount"]
+            for method, share in shares.items():
+                if share == 0:
+                    continue
+                if method == "impoundment":
+                    keep_exc = copy_exchange(exc)
+                    keep_exc["amount"] = total * share
+                    new_exchanges.append(keep_exc)
+                else:
+                    provider = self._get_or_create_provider(method, act["location"], exc["product"])
+                    if provider:
+                        new_exc = copy_exchange(exc)
+                        new_exc["name"] = provider["name"]
+                        new_exc["product"] = provider["reference product"]
+                        new_exc["location"] = provider["location"]
+                        new_exc["input"] = (provider["name"], provider["reference product"], provider["location"],
+                                            provider.get("unit", "kilogram"))
+                        new_exc["amount"] = total * share
+                        new_exchanges.append(new_exc)
 
-        # partial-split them
-        for act in impound_consumers:
-            partial_split_exchange(
-                activity=act,
-                old_cfg=impound_cfg,
-                bf_share=bf_share,
-                imp_share=imp_share,
-                get_backfill_provider=self.get_or_create_local_backfill,
-            )
+        act["exchanges"] = new_exchanges
 
-    def get_or_create_local_backfill(self, location, product_name):
-        name = "treatment of sulfidic tailings, generic, backfilling"
-        generic_product = "sulfidic tailings, generic"
+    def _get_or_create_provider(self, method, location, product):
+        cfg = self.tailings_config.get("sulfidic tailings", {}).get(method, {})
+        name_filters = cfg.get("name", {})
+        prod_filters = cfg.get("reference product", {})
 
-        providers = list(
-            ws.get_many(
-                self.database,
-                ws.equals("name", name),
-                ws.equals("reference product", product_name),
-                ws.equals("location", location),
-            )
-        )
+        name_fltr = [ws.contains("name", s) for s in name_filters.get("fltr", [])]
+        name_mask = [ws.exclude(ws.contains("name", s)) for s in name_filters.get("mask", [])]
+        prod_fltr = [ws.contains("reference product", s) for s in prod_filters.get("fltr", [])]
+        prod_mask = [ws.exclude(ws.contains("reference product", s)) for s in prod_filters.get("mask", [])]
+
+        providers = list(ws.get_many(self.database, *name_fltr, *prod_fltr, *name_mask, *prod_mask, ws.equals("location", location)))
         if providers:
             return providers[0]
 
-        fallback = list(
-            ws.get_many(
-                self.database,
-                ws.equals("name", name),
-                ws.equals("reference product", generic_product),
-                ws.equals("location", "GLO"),
-            )
-        )
+        fallback = list(ws.get_many(self.database, *name_fltr, *prod_fltr, *name_mask, *prod_mask, ws.equals("location", "GLO")))
         if not fallback:
-            print("[Mining] WARNING: No fallback found for backfill provider")
+            logger.warning(f"[Mining] No fallback found for method {method} at {location}")
             return None
 
-        new_provider = copy_activity(fallback[0], location, product_name)
-        new_provider["reference product"] = product_name
-        new_provider["unit"] = fallback[0].get("unit", "kilogram")
-
+        new_provider = copy_activity(fallback[0], location, product)
         self.database.append(new_provider)
         self.add_to_index(new_provider)
         self.write_log(new_provider, "created")
         return new_provider
 
-    def write_log(self, dataset, status="updated"):
-        txt = (
-            f"{status}|{self.model}|{self.scenario}|{self.year}|"
-            f"{dataset['name']}|{dataset.get('reference product','')}|{dataset['location']}"
-        )
-        logger.info(txt)
+    def update_tailings_treatment(self):
+        config = self.tailings_config.get("sulfidic tailings", {})
+        impound_cfg = config.get("impoundment", {})
+
+        if not impound_cfg:
+            logger.info("[Mining] No config under 'sulfidic tailings' -> 'impoundment'")
+            return
+
+        impound_filter = self._make_filter(impound_cfg)
+        consumers = list(ws.get_many(self.database, impound_filter))
+
+        for act in consumers:
+            location = act["location"]
+            iam_loc = self.geomap.ecoinvent_to_iam_location(location)
+            tailings_region = self._map_to_tailings_region(iam_loc)
+            shares = parse_tailings_shares(self.year, config, tailings_region)
+
+            self._split_exchanges(act, config, shares)
+
+
+def write_log(self, dataset, status="updated"):
+    txt = f"{status}|{self.model}|{self.scenario}|{self.year}|{dataset['name']}|{dataset.get('reference product', '')}|{dataset['location']}"
+    logger.info(txt)
+
+
+
+
+
+
+
+

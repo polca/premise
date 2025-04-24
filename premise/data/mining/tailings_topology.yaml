@@ -1,0 +1,134 @@
+NAM:
+  # message
+  - NAM
+  # image
+  - CAN
+  - USA
+  # gcam
+  - Canada
+  - USA
+  # remind
+  - USA
+  # tiam
+  - CAN
+  # witch
+  - usa
+  - canada
+LATAM:
+  # message
+  - LAM
+  # image
+  - MEX
+  - RSAM
+  - BRA
+  # gcam
+  - Argentina
+  - Brazil
+  - Central America and Caribbean
+  - Colombia
+  - Mexico
+  - South America_Northern
+  - South America_Southern
+  # remind
+  - LAM
+  # tiam
+  - CSA
+  - MEX
+  - USA
+  # witch
+  - mexico
+  - brazil
+EUR:
+  # message
+  - EEU
+  - WEU
+  # image
+  - WEU
+  - CEU
+  # gcam
+  - EU-12
+  - EU-15
+  - Europe_Eastern
+  - European Free Trade Association
+  - Europe_Non_EU
+  # remind
+  - EUR
+  - NEU
+  - DEU
+  - ECE
+  - ECS
+  - ENC
+  - ESC
+  - ESW
+  - EWN
+  - FRA
+  - NEN
+  - NES
+  - UKI
+  # tiam
+  - EEU
+  - UK
+  - WEU
+  # witch
+  - europe
+APAC:
+  # message
+  - PAS
+  - PAO
+  - RCPA
+  - CHN
+  # image
+  - CHN
+  - INDO
+  - JAP
+  - KOR
+  - RSAS
+  - OCE
+  - SEAS
+  # gcam
+  - Australia_NZ
+  - China
+  - Indonesia
+  - Japan
+  - South Asia
+  - Southeast Asia
+  - South Korea
+  - Taiwan
+  # remind
+  - OAS
+  - CAZ
+  - CHA
+  - JPN
+  # tiam
+  - AUS
+  - CHI
+  - JP
+  - KR
+  # witch
+  - seasia
+  - oceania
+  - jpnkor
+  - indonesia
+  - china
+AFR:
+  # message
+  - AFR
+  # image
+  - RSAF
+  - WAF
+  - NAF
+  - EAF
+  - SAF
+  # gcam
+  - Africa_Eastern
+  - Africa_Northern
+  - Africa_Southern
+  - Africa_Western
+  - South Africa
+  # remind
+  - SSA
+  # tiam
+  - AFR
+  # witch
+  - ssa
+  - southafrica
