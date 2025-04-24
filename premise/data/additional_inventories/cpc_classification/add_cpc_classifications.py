@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 from bw2io.extractors import ExcelExtractor
 
+
 def extract_inventory_from_sheet(sheet):
     """extract data from the sheet as list
 
@@ -65,9 +66,11 @@ def extract_inventory_from_sheet(sheet):
 
 def assign_cpc(inventory, classification_mapping):
     """Assign the first classification that matches all criteria for this activity"""
+
     def find_classification(act):
         def check_filters(filters) -> bool:
             """Check a series of filters"""
+
             def check_filter(fltr) -> bool:
                 """Check one filter"""
                 for field, items in fltr.items():
@@ -81,12 +84,14 @@ def assign_cpc(inventory, classification_mapping):
                         if not item[0] == (item[1].lower() in act[field][0].lower()):
                             return False
                 return True
+
             ### end of check_filter
 
             for fltr in filters:
                 if check_filter(fltr):
                     return True
             return False  # all of the filters failed
+
         ### end of check_filters
 
         for classification, filters in classification_mapping.items():
@@ -95,6 +100,7 @@ def assign_cpc(inventory, classification_mapping):
                 return True, classification
 
         return False, ""
+
     ### end of find_classification
 
     # check each classification and its filters
@@ -103,24 +109,37 @@ def assign_cpc(inventory, classification_mapping):
 
         if isinstance(activity, dict):  # activities are dicts, non-dict can be skipped
             add, classification = find_classification(activity)
-            if add and classification != "NO CLASSIFICATION":  # we found a classification
+            if (
+                add and classification != "NO CLASSIFICATION"
+            ):  # we found a classification
                 classification_entry = [np.nan] * len(activity["Activity"])
                 classification_entry[0] = "CPC::" + classification
 
                 old_classification = activity.get("classifications", False)
-                if old_classification and old_classification[0] != classification_entry[0]:  # a different classification was found
+                if (
+                    old_classification
+                    and old_classification[0] != classification_entry[0]
+                ):  # a different classification was found
                     failed.append(activity)
                     print(">>> FAIL, different classification found for:")
-                    print(f"{activity['reference product'][0]} | {activity['Activity'][0]} | {activity['unit'][0]}")
-                    print(f"Old: {old_classification[0].split('::')[1]} | New {classification}\n")
+                    print(
+                        f"{activity['reference product'][0]} | {activity['Activity'][0]} | {activity['unit'][0]}"
+                    )
+                    print(
+                        f"Old: {old_classification[0].split('::')[1]} | New {classification}\n"
+                    )
 
                 activity["classifications"] = classification_entry
-            elif add and classification == "NO CLASSIFICATION":  # we found assigned no classification
+            elif (
+                add and classification == "NO CLASSIFICATION"
+            ):  # we found assigned no classification
                 continue
             else:  # we found no classification for this activity, this should not happen and mapping should be updated
                 failed.append(activity)
                 print(">>> FAIL, no classification found for:")
-                print(f"{activity['reference product'][0]} | {activity['Activity'][0]} | {activity['unit'][0]}\n")
+                print(
+                    f"{activity['reference product'][0]} | {activity['Activity'][0]} | {activity['unit'][0]}\n"
+                )
 
     return inventory, failed
 
@@ -151,7 +170,7 @@ def inventory_to_df(export_list):
 
 def write_sheet(df, file_path, sheet_name):
     """Write a pandas dataframe to a sheet in an excel file."""
-    with pd.ExcelWriter(file_path, engine='openpyxl', mode='a') as writer:
+    with pd.ExcelWriter(file_path, engine="openpyxl", mode="a") as writer:
         workBook = writer.book
         try:
             workBook.remove(workBook[sheet_name])
@@ -168,9 +187,13 @@ with open("cpc_mapping.json", "r") as file:
 inventories_folder = path.abspath(path.join(path.dirname(path.abspath(__file__)), ".."))
 
 # get all files from the inventories folder that are actual inventories
-files = [f for f in listdir(inventories_folder)
-         if path.isfile(path.join(inventories_folder, f))
-         and f.startswith("lci") and f.endswith(".xlsx")]
+files = [
+    f
+    for f in listdir(inventories_folder)
+    if path.isfile(path.join(inventories_folder, f))
+    and f.startswith("lci")
+    and f.endswith(".xlsx")
+]
 files = sorted(files, key=str.casefold)  # sort for consistency
 
 # we use file sizes to estimate progress, not perfect, but better than judging by file number
@@ -182,8 +205,12 @@ cum_proc = 0
 for i, file_name in enumerate(files):
     # iterate over files
     cum_size += file_sizes[i]
-    progress = round(((cum_size/total_files_size) + ((i+1)/len(files))) / 2 * 100, 1)
-    print(f"Adding/verifying classifications in {file_name} | {progress}% ({i+1}/{len(files)} files)")
+    progress = round(
+        ((cum_size / total_files_size) + ((i + 1) / len(files))) / 2 * 100, 1
+    )
+    print(
+        f"Adding/verifying classifications in {file_name} | {progress}% ({i+1}/{len(files)} files)"
+    )
     file_path = path.join(inventories_folder, file_name)
 
     # extract the file
@@ -206,8 +233,12 @@ for i, file_name in enumerate(files):
         new_inventory, failed = assign_cpc(inventory, cpc_mapping)
 
         if len(failed) > 0:
-            print(f"+++ {len(failed)}/{n_processes} FAILED processes in file '{file_name}', sheet '{sheet_name}'")
-            print(f"    Added/verified classification of {cum_proc - len(failed)} processes | {progress}%.")
+            print(
+                f"+++ {len(failed)}/{n_processes} FAILED processes in file '{file_name}', sheet '{sheet_name}'"
+            )
+            print(
+                f"    Added/verified classification of {cum_proc - len(failed)} processes | {progress}%."
+            )
             user = input("continue? [y/N]")
             # allow user to continue in case of overwriting existing mapping
             if user.lower() != "y":

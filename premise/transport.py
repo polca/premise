@@ -276,7 +276,10 @@ def create_fleet_vehicles(
                             "reference product": vehicles_map[vehicle_type]["name"],
                             "unit": vehicles_map[vehicle_type]["unit"],
                             "location": region,
-                            "classifications": ("CPC", "6511:Road transport services of freight"),
+                            "classifications": (
+                                "CPC",
+                                "6511:Road transport services of freight",
+                            ),
                             "exchanges": [
                                 {
                                     "name": name,
