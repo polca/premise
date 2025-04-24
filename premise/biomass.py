@@ -144,6 +144,7 @@ class Biomass(BaseTransformation):
                 "unit": "kilogram",
                 "database": "premise",
                 "code": str(uuid.uuid4().hex),
+                "classifications": ("CPC", "032:Non-wood forest products"),
                 "exchanges": [
                     {
                         "name": "market for biomass, used as fuel",

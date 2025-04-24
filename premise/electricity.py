@@ -470,6 +470,7 @@ class Electricity(BaseTransformation):
             "database": self.database[1]["database"],
             "comment": f"Dataset created by `premise` from the IAM model {self.model.upper()}"
             f" using the pathway {self.scenario} for the year {self.year}.",
+            "classifications": ("CPC", "17100:Electrical energy"),
             "exchanges": [],
         }
 
@@ -789,6 +790,7 @@ class Electricity(BaseTransformation):
             "database": self.database[1]["database"],
             "comment": f"Dataset created by `premise` from the IAM model {self.model.upper()}"
             f" using the pathway {self.scenario} for the year {self.year}.",
+            "classifications": ("CPC", "17100:Electrical energy"),
             "exchanges": [],
         }
 
@@ -1011,6 +1013,7 @@ class Electricity(BaseTransformation):
             "database": self.database[1]["database"],
             "comment": f"Dataset created by `premise` from the IAM model {self.model.upper()}"
             f" using the pathway {self.scenario} for the year {self.year}.",
+            "classifications": ("CPC", "17100:Electrical energy"),
             "exchanges": [],
         }
 
