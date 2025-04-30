@@ -83,14 +83,16 @@ def load_tailings_config(model: str):
                     continue  # Skip unmatched regions
                 for year, values in region_data.items():
                     years.add(int(year))
-                    records.append({
-                        "technology": tech,
-                        "region": mapped_region,
-                        "year": int(year),
-                        "min": values.get("min"),
-                        "max": values.get("max"),
-                        "mean": values.get("mean")
-                    })
+                    records.append(
+                        {
+                            "technology": tech,
+                            "region": mapped_region,
+                            "year": int(year),
+                            "min": values.get("min"),
+                            "max": values.get("max"),
+                            "mean": values.get("mean"),
+                        }
+                    )
 
         techs = sorted(set(techs))
         regions = sorted(set(r["region"] for r in records))
@@ -148,7 +150,10 @@ def copy_activity(act: dict, location: str, product_name=None) -> dict:
     if product_name:
         new_act["reference product"] = product_name
 
-    has_production = sum(e for e in new_act.get("exchanges", []) if e.get("type") == "production") > 0
+    has_production = (
+        sum(e for e in new_act.get("exchanges", []) if e.get("type") == "production")
+        > 0
+    )
 
     if has_production:
         for exc in new_act.get("exchanges", []):
@@ -330,12 +335,7 @@ class Mining(BaseTransformation):
         for waste_management_type, activities in self.mining_map.items():
             for activity in ws.get_many(
                 self.database,
-                ws.either(
-                    *[
-                        ws.equals("name", name)
-                        for name in activities
-                    ]
-                )
+                ws.either(*[ws.equals("name", name) for name in activities]),
             ):
                 iam_loc = self.geomap.ecoinvent_to_iam_location(activity["location"])
                 shares = self.tailings_shares.sel(
