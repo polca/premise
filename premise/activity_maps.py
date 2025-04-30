@@ -18,7 +18,6 @@ FUELS_TECHS = VARIABLES_DIR / "fuels.yaml"
 BIOMASS_TYPES = VARIABLES_DIR / "biomass.yaml"
 METALS_TECHS = DATA_DIR / "metals" / "activities_mapping.yml"
 CDR_TECHS = VARIABLES_DIR / "carbon_dioxide_removal.yaml"
-CARBON_STORAGE_TECHS = VARIABLES_DIR / "carbon_storage_variables.yaml"
 CEMENT_TECHS = VARIABLES_DIR / "cement.yaml"
 GAINS_MAPPING = (
     DATA_DIR / "GAINS_emission_factors" / "gains_ecoinvent_sectoral_mapping.yaml"
@@ -29,10 +28,10 @@ PASSENGER_CARS = VARIABLES_DIR / "transport_passenger_cars.yaml"
 TWO_WHEELERS = VARIABLES_DIR / "transport_two_wheelers.yaml"
 BUSES = VARIABLES_DIR / "transport_bus.yaml"
 TRUCKS = VARIABLES_DIR / "transport_road_freight.yaml"
-TRAINS = VARIABLES_DIR / "transport_railfreight.yaml"
+TRAINS = VARIABLES_DIR / "transport_rail_freight.yaml"
 SHIPS = VARIABLES_DIR / "transport_sea_freight.yaml"
 FINAL_ENERGY = VARIABLES_DIR / "final_energy.yaml"
-MINING_WASTE = DATA_DIR / "mining" / "tailing_activities.yaml"
+MINING_WASTE = DATA_DIR / "mining" / "tailings_activities.yaml"
 
 
 def get_mapping(filepath: Path, var: str, model: str = None) -> dict:
@@ -158,10 +157,6 @@ class InventorySet:
 
         self.cdr_filters = get_mapping(filepath=CDR_TECHS, var="ecoinvent_aliases")
 
-        self.carbon_storage_filters = get_mapping(
-            filepath=CARBON_STORAGE_TECHS, var="ecoinvent_aliases"
-        )
-
         self.cement_fuel_filters = get_mapping(
             filepath=CEMENT_TECHS, var="ecoinvent_fuel_aliases"
         )
@@ -250,17 +245,6 @@ class InventorySet:
 
         """
         return self.generate_sets_from_filters(self.cdr_filters)
-
-    def generate_carbon_storage_map(self) -> dict:
-        """
-        Filter ecoinvent processes related to carbon storage.
-
-        :return: dictionary with el. prod. techs as keys (see below) and
-            sets of related ecoinvent activities as values.
-        :rtype: dict
-
-        """
-        return self.generate_sets_from_filters(self.carbon_storage_filters)
 
     def generate_powerplant_fuels_map(self) -> dict:
         """

@@ -1,3 +1,16 @@
+GLO:
+  message:
+    - World
+  image:
+    - World
+  gcam:
+    - World
+  remind:
+    - World
+  tiam-ucl:
+    - World
+  witch:
+    - World
 NAM:
   message:
     - NAM
@@ -16,119 +29,131 @@ NAM:
     - canada
 LATAM:
   message:
-  - LAM
+    - LAM
   image:
-  - MEX
-  - RSAM
-  - BRA
+    - MEX
+    - RSAM
+    - BRA
   gcam:
-  - Argentina
-  - Brazil
-  - Central America and Caribbean
-  - Colombia
-  - Mexico
-  - South America_Northern
-  - South America_Southern
+    - Argentina
+    - Brazil
+    - Central America and Caribbean
+    - Colombia
+    - Mexico
+    - South America_Northern
+    - South America_Southern
   remind:
-  - LAM
+    - LAM
   tiam-ucl:
-  - CSA
-  - MEX
-  - USA
+    - CSA
+    - MEX
+    - USA
   witch:
-  - mexico
-  - brazil
+    - mexico
+    - brazil
 EUR:
   message:
-  - EEU
-  - WEU
+    - EEU
+    - WEU
   image:
-  - WEU
-  - CEU
+    - WEU
+    - CEU
   gcam:
-  - EU-12
-  - EU-15
-  - Europe_Eastern
-  - European Free Trade Association
-  - Europe_Non_EU
+    - EU-12
+    - EU-15
+    - Europe_Eastern
+    - European Free Trade Association
+    - Europe_Non_EU
   remind:
-  - EUR
-  - NEU
-  - DEU
-  - ECE
-  - ECS
-  - ENC
-  - ESC
-  - ESW
-  - EWN
-  - FRA
-  - NEN
-  - NES
-  - UKI
+    - EUR
+    - NEU
+    - DEU
+    - ECE
+    - ECS
+    - ENC
+    - ESC
+    - ESW
+    - EWN
+    - FRA
+    - NEN
+    - NES
+    - UKI
   tiam-ucl:
-  - EEU
-  - UK
-  - WEU
+    - EEU
+    - UK
+    - WEU
   witch:
-  - europe
+    - europe
 APAC:
   message:
-  - PAS
-  - PAO
-  - RCPA
-  - CHN
+    - PAS
+    - PAO
+    - RCPA
+    - CHN
+    - SAS
+    - FSU
   image:
-  - CHN
-  - INDO
-  - JAP
-  - KOR
-  - RSAS
-  - OCE
-  - SEAS
+    - CHN
+    - INDO
+    - JAP
+    - KOR
+    - RSAS
+    - OCE
+    - SEAS
+    - INDIA
+    - RUS
   gcam:
-  - Australia_NZ
-  - China
-  - Indonesia
-  - Japan
-  - South Asia
-  - Southeast Asia
-  - South Korea
-  - Taiwan
+    - Australia_NZ
+    - China
+    - Indonesia
+    - Japan
+    - South Asia
+    - Southeast Asia
+    - South Korea
+    - Taiwan
+    - India
+    - Russia
   remind:
-  - OAS
-  - CAZ
-  - CHA
-  - JPN
+    - OAS
+    - CAZ
+    - CHA
+    - JPN
+    - IND
+    - REF
   tiam-ucl:
-  - AUS
-  - CHI
-  - JP
-  - KR
+    - AUS
+    - CHI
+    - JP
+    - KR
+    - IND
+    - FSU
   witch:
-  - seasia
-  - oceania
-  - jpnkor
-  - indonesia
-  - china
+    - seasia
+    - oceania
+    - jpnkor
+    - indonesia
+    - china
+    - india
+    - te
 AFR:
   message:
-  - AFR
+    - AFR
   image:
-  - RSAF
-  - WAF
-  - NAF
-  - EAF
-  - SAF
+    - RSAF
+    - WAF
+    - NAF
+    - EAF
+    - SAF
   gcam:
-  - Africa_Eastern
-  - Africa_Northern
-  - Africa_Southern
-  - Africa_Western
-  - South Africa
+    - Africa_Eastern
+    - Africa_Northern
+    - Africa_Southern
+    - Africa_Western
+    - South Africa
   remind:
-  - SSA
+    - SSA
   tiam-ucl:
-  - AFR
+    - AFR
   witch:
-  - ssa
-  - southafrica
+    - ssa
+    - southafrica

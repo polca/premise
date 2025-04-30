@@ -106,7 +106,6 @@ class CarbonDioxideRemoval(BaseTransformation):
         mapping = InventorySet(self.database)
         self.cdr_plants = mapping.generate_cdr_map()
         self.cdr_activities = fetch_mapping(CDR_ACTIVITIES)
-        self.carbon_storage = mapping.generate_carbon_storage_map()
 
     def regionalize_cdr_activities(self) -> None:
         """

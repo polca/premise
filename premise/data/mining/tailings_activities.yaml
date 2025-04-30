@@ -1,17 +1,15 @@
 sulfidic tailings - backfill:
   ecoinvent_aliases:
-    name:
-      fltr:
-        - treatment of sulfidic tailings, generic, backfilling
-      mask:
-        - impoundment
-        - market
-        - non-sulfidic
-        - flocculation-flotation
-        - leaching
-    reference product:
-      fltr:
-        - sulfidic tailings, generic
+    fltr:
+      name: treatment of sulfidic tailings, generic, backfilling
+      reference product: sulfidic tailings, generic
+    mask:
+      - impoundment
+      - market
+      - non-sulfidic
+      - flocculation-flotation
+      - leaching
+
   share:
     GLO:
       2020:
@@ -69,17 +67,17 @@ sulfidic tailings - backfill:
         mean: 0.10
 sulfidic tailings - impoundment:
   ecoinvent_aliases:
-    name:
-      fltr:
+    fltr:
+      name:
         - treatment of sulfidic tailings
         - tailings impoundment
-      mask:
+      reference product:
+        - sulfidic tailings
+    mask:
+      name:
         - backfilling
         - market
-    reference product:
-      fltr:
-        - sulfidic tailings
-      mask:
+      reference product:
         - backfilling
         - non-sulfidic
         - flocculation-flotation
@@ -142,20 +140,20 @@ sulfidic tailings - impoundment:
         mean: 0.70
 sulfidic tailings - flocculation:
   ecoinvent_aliases:
-    name:
-      fltr:
+    fltr:
+      name:
         - treatment of sulfidic tailings
         - flocculation-flotation
-      mask:
+      reference product: sulfidic tailings
+    mask:
+      name:
         - backfilling
         - market
         - impoundment
         - non-sulfidic
         - roasting
         - leaching
-    reference product:
-      fltr:
-        - sulfidic tailings
+
   share:
     GLO:
       2020:
@@ -213,20 +211,20 @@ sulfidic tailings - flocculation:
         mean: 0.08
 sulfidic tailings - roasting:
   ecoinvent_aliases:
-    name:
-      fltr:
+    fltr:
+      name:
         - treatment of sulfidic tailings
         - roasting
         - leaching
-      mask:
-        - backfilling
-        - market
-        - impoundment
-        - non-sulfidic
-        - flocculation-flotation
-    reference product:
-      fltr:
-        - sulfidic tailings
+      reference product: sulfidic tailings
+    mask:
+      name:
+      - backfilling
+      - market
+      - impoundment
+      - non-sulfidic
+      - flocculation-flotation
+
   share:
     GLO:
       2020:

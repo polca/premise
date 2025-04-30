@@ -7,6 +7,7 @@ import copy
 import uuid
 import xarray as xr
 import numpy as np
+from collections import defaultdict
 from .transformation import (
     BaseTransformation,
     IAMDataCollection,
@@ -60,11 +61,9 @@ def load_tailings_config(model: str):
         region_map_raw = yaml.safe_load(f)
 
     def get_region_remap(region_map, model_name):
-        remap = {}
+        remap = defaultdict(list)
         for std_region, models in region_map.items():
-            equivalents = models.get(model_name, [])
-            for eq in equivalents:
-                remap[eq] = std_region
+            remap[std_region] = models.get(model_name, [])
         return remap
 
     def create_dataset(data, model_name, region_map_raw):
@@ -78,21 +77,22 @@ def load_tailings_config(model: str):
         for tech, tech_data in data.items():
             techs.append(tech)
             for raw_region, region_data in tech_data.get("share", {}).items():
-                mapped_region = region_remap.get(raw_region, None)
-                if mapped_region is None:
+                mapped_regions = region_remap.get(raw_region, None)
+                if mapped_regions is None:
                     continue  # Skip unmatched regions
                 for year, values in region_data.items():
                     years.add(int(year))
-                    records.append(
-                        {
-                            "technology": tech,
-                            "region": mapped_region,
-                            "year": int(year),
-                            "min": values.get("min"),
-                            "max": values.get("max"),
-                            "mean": values.get("mean"),
-                        }
-                    )
+                    for mapped_region in mapped_regions:
+                        records.append(
+                            {
+                                "technology": tech,
+                                "region": mapped_region,
+                                "year": int(year),
+                                "min": values.get("min"),
+                                "max": values.get("max"),
+                                "mean": values.get("mean"),
+                            }
+                        )
 
         techs = sorted(set(techs))
         regions = sorted(set(r["region"] for r in records))
@@ -239,6 +239,8 @@ class Mining(BaseTransformation):
         inv = InventorySet(database=database, version=version, model=model)
         self.mining_map = inv.generate_mining_waste_map()
 
+
+
     def _split_exchanges(self, act, config, shares):
 
         original_cfg = config.get("impoundment", {})
@@ -332,18 +334,112 @@ class Mining(BaseTransformation):
 
     def update_tailings_treatment(self):
 
-        for waste_management_type, activities in self.mining_map.items():
-            for activity in ws.get_many(
-                self.database,
-                ws.either(*[ws.equals("name", name) for name in activities]),
-            ):
-                iam_loc = self.geomap.ecoinvent_to_iam_location(activity["location"])
-                shares = self.tailings_shares.sel(
-                    technology=waste_management_type,
-                    region=iam_loc,
-                ).interp(year=self.year)
+        processed_datasets = []
 
-                self._split_exchanges(activity, shares)
+        for waste_management_type, activities in self.mining_map.items():
+            for activity in activities:
+                regionalized_datasets = self.fetch_proxies(
+                    name=activity,
+                    ref_prod="",
+                )
+
+                regionalized_datasets = {
+                    k: v for k, v in regionalized_datasets.items()
+                    if k in self.tailings_shares.region.values
+                }
+
+                processed_datasets.extend(regionalized_datasets.values())
+
+        for dataset in processed_datasets:
+            self.add_to_index(dataset)
+            self.write_log(dataset, "created")
+            self.database.append(dataset)
+
+
+        market_datasets = set(
+            [
+            ds["name"] for ds in ws.get_many(
+            self.database,
+            ws.contains("name", "market for sulfidic tailings")
+            )
+            ]
+        )
+
+        for market_dataset in market_datasets:
+            regionalized_datasets = self.fetch_proxies(
+                name=market_dataset,
+                ref_prod="",
+            )
+
+            regionalized_datasets = {
+                k: v for k, v in regionalized_datasets.items()
+                if k in self.tailings_shares.region.values
+            }
+
+            for region, market_dataset in regionalized_datasets.items():
+
+                if self.year < self.tailings_shares.year.values.min():
+                    year = self.tailings_shares.year.values.min()
+                elif self.year > self.tailings_shares.year.values.max():
+                    year = self.tailings_shares.year.values.max()
+                else:
+                    year = self.year
+                shares = self.tailings_shares.sel(
+                    region=region,
+                ).interp(year=year)
+
+                market_dataset["exchanges"] = [e for e in market_dataset["exchanges"] if e["type"] == "production"]
+
+                for waste_management_type in shares.technology.values:
+                    supplier = list(ws.get_many(
+                        self.database,
+                        ws.either(
+                            *[
+                                ws.contains("name", s)
+                                for s in self.mining_map[waste_management_type]
+                            ]
+                        ),
+                        ws.equals("location", region),
+                    ))
+                    if len(supplier) > 1:
+                        if waste_management_type == "sulfidic tailings - impoundment":
+                            # we have different datasets for impoundement
+                            supplier = [
+                                s
+                                for s in supplier
+                                if s["name"].split(", ")[-2] in market_dataset["name"]
+                            ]
+                        else:
+                            print(
+                                f"[Mining] More than one supplier found for {waste_management_type} in {region}"
+                            )
+                    if not supplier:
+                        print(
+                            f"[Mining] No supplier found for {waste_management_type} in {region}"
+                        )
+                        continue
+
+                    supplier = supplier[0]
+
+                    market_dataset["exchanges"].append(
+                        {
+                            "type": "technosphere",
+                            "name": supplier["name"],
+                            "product": supplier["reference product"],
+                            "amount": shares.sel(technology=waste_management_type)["mean"].values.item(0),
+                            "unit": supplier["unit"],
+                            "location": supplier["location"],
+                            "uncertainty type": 5,
+                            "loc": shares.sel(technology=waste_management_type)["mean"].values.item(0),
+                            "minimum": shares.sel(technology=waste_management_type)["min"].values.item(0),
+                            "maximum": shares.sel(technology=waste_management_type)["max"].values.item(0),
+                        }
+                    )
+
+            for region, regionalized_dataset in regionalized_datasets.items():
+                self.add_to_index(regionalized_dataset)
+                self.write_log(regionalized_dataset, "created")
+                self.database.append(regionalized_dataset)
 
 
 def write_log(self, dataset, status="updated"):
