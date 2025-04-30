@@ -32,6 +32,7 @@ TRUCKS = VARIABLES_DIR / "transport_road_freight.yaml"
 TRAINS = VARIABLES_DIR / "transport_railfreight.yaml"
 SHIPS = VARIABLES_DIR / "transport_sea_freight.yaml"
 FINAL_ENERGY = VARIABLES_DIR / "final_energy.yaml"
+MINING_WASTE = DATA_DIR / "mining" / "tailing_activities.yaml"
 
 
 def get_mapping(filepath: Path, var: str, model: str = None) -> dict:
@@ -182,6 +183,11 @@ class InventorySet:
             filepath=BIOMASS_TYPES, var="ecoinvent_aliases"
         )
 
+        self.mining_waste_filters = get_mapping(
+            filepath=MINING_WASTE, var="ecoinvent_aliases"
+        )
+
+
     def generate_biomass_map(self) -> dict:
         """
         Filter ecoinvent processes related to biomass.
@@ -289,6 +295,17 @@ class InventorySet:
 
         """
         return self.generate_sets_from_filters(self.fuels_filters)
+
+    def generate_mining_waste_map(self) -> dict:
+        """
+        Filter ecoinvent processes related to mining waste.
+
+        :return: dictionary with mining waste names as keys (see below) and
+            sets of related ecoinvent activities as values.
+        :rtype: dict
+
+        """
+        return self.generate_sets_from_filters(self.mining_waste_filters)
 
     def generate_final_energy_map(self) -> dict:
         """

@@ -40,6 +40,7 @@ from .fuels import _update_fuels
 from .heat import _update_heat
 from .inventory_imports import AdditionalInventory, DefaultInventory
 from .metals import _update_metals
+from .mining import _update_mining
 from .report import generate_change_report, generate_summary_report
 from .steel import _update_steel
 from .transport import _update_vehicles
@@ -916,6 +917,10 @@ class NewDatabase:
             },
             "metals": {
                 "func": _update_metals,
+                "args": (self.version, self.system_model),
+            },
+            "mining": {
+                "func": _update_mining,
                 "args": (self.version, self.system_model),
             },
             "heat": {"func": _update_heat, "args": (self.version, self.system_model)},
