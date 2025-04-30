@@ -239,8 +239,6 @@ class Mining(BaseTransformation):
         inv = InventorySet(database=database, version=version, model=model)
         self.mining_map = inv.generate_mining_waste_map()
 
-
-
     def _split_exchanges(self, act, config, shares):
 
         original_cfg = config.get("impoundment", {})
@@ -344,7 +342,8 @@ class Mining(BaseTransformation):
                 )
 
                 regionalized_datasets = {
-                    k: v for k, v in regionalized_datasets.items()
+                    k: v
+                    for k, v in regionalized_datasets.items()
                     if k in self.tailings_shares.region.values
                 }
 
@@ -355,13 +354,12 @@ class Mining(BaseTransformation):
             self.write_log(dataset, "created")
             self.database.append(dataset)
 
-
         market_datasets = set(
             [
-            ds["name"] for ds in ws.get_many(
-            self.database,
-            ws.contains("name", "market for sulfidic tailings")
-            )
+                ds["name"]
+                for ds in ws.get_many(
+                    self.database, ws.contains("name", "market for sulfidic tailings")
+                )
             ]
         )
 
@@ -372,7 +370,8 @@ class Mining(BaseTransformation):
             )
 
             regionalized_datasets = {
-                k: v for k, v in regionalized_datasets.items()
+                k: v
+                for k, v in regionalized_datasets.items()
                 if k in self.tailings_shares.region.values
             }
 
@@ -388,19 +387,23 @@ class Mining(BaseTransformation):
                     region=region,
                 ).interp(year=year)
 
-                market_dataset["exchanges"] = [e for e in market_dataset["exchanges"] if e["type"] == "production"]
+                market_dataset["exchanges"] = [
+                    e for e in market_dataset["exchanges"] if e["type"] == "production"
+                ]
 
                 for waste_management_type in shares.technology.values:
-                    supplier = list(ws.get_many(
-                        self.database,
-                        ws.either(
-                            *[
-                                ws.contains("name", s)
-                                for s in self.mining_map[waste_management_type]
-                            ]
-                        ),
-                        ws.equals("location", region),
-                    ))
+                    supplier = list(
+                        ws.get_many(
+                            self.database,
+                            ws.either(
+                                *[
+                                    ws.contains("name", s)
+                                    for s in self.mining_map[waste_management_type]
+                                ]
+                            ),
+                            ws.equals("location", region),
+                        )
+                    )
                     if len(supplier) > 1:
                         if waste_management_type == "sulfidic tailings - impoundment":
                             # we have different datasets for impoundement
@@ -426,13 +429,21 @@ class Mining(BaseTransformation):
                             "type": "technosphere",
                             "name": supplier["name"],
                             "product": supplier["reference product"],
-                            "amount": shares.sel(technology=waste_management_type)["mean"].values.item(0),
+                            "amount": shares.sel(technology=waste_management_type)[
+                                "mean"
+                            ].values.item(0),
                             "unit": supplier["unit"],
                             "location": supplier["location"],
                             "uncertainty type": 5,
-                            "loc": shares.sel(technology=waste_management_type)["mean"].values.item(0),
-                            "minimum": shares.sel(technology=waste_management_type)["min"].values.item(0),
-                            "maximum": shares.sel(technology=waste_management_type)["max"].values.item(0),
+                            "loc": shares.sel(technology=waste_management_type)[
+                                "mean"
+                            ].values.item(0),
+                            "minimum": shares.sel(technology=waste_management_type)[
+                                "min"
+                            ].values.item(0),
+                            "maximum": shares.sel(technology=waste_management_type)[
+                                "max"
+                            ].values.item(0),
                         }
                     )
 
