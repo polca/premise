@@ -7,8 +7,8 @@ steel - primary - BF/BOF:
     image:
       - Production|Industry|Iron and Steel|BF/BOF Modernized
       - Production|Industry|Iron and Steel|BF/BOF Standard
-    remind: Production|Industry|Steel|Primary
-    remind-eu: Production|Industry|Steel|Primary
+    remind: Production|Industry|Steel|+|BF-BOF
+    remind-eu: Production|Industry|Steel|+|BF-BOF
     message: Production|Primary|Steel
     gcam: Production|Industry|Steel|Primary
     tiam-ucl:
@@ -18,9 +18,19 @@ steel - primary - BF/BOF:
       - Production|Steel|Primary|BF and BOF 4
   energy_use_aliases:
     remind:
-      - FE|Industry|Steel|++|Primary
+      - FE|Industry|Steel|BF-BOF|+|Electricity
+      - FE|Industry|Steel|BF-BOF|+|Gases
+      - FE|Industry|Steel|BF-BOF|+|Heat
+      - FE|Industry|Steel|BF-BOF|+|Hydrogen
+      - FE|Industry|Steel|BF-BOF|+|Liquids
+      - FE|Industry|Steel|BF-BOF|+|Solids
     remind-eu:
-      - FE|Industry|Steel|++|Primary
+      - FE|Industry|Steel|BF-BOF|+|Electricity
+      - FE|Industry|Steel|BF-BOF|+|Gases
+      - FE|Industry|Steel|BF-BOF|+|Heat
+      - FE|Industry|Steel|BF-BOF|+|Hydrogen
+      - FE|Industry|Steel|BF-BOF|+|Liquids
+      - FE|Industry|Steel|BF-BOF|+|Solids
     image:
       - Final Energy|Industry|Iron and Steel|BF/BOF Modernized|Coal
       - Final Energy|Industry|Iron and Steel|BF/BOF Modernized|Electricity
@@ -109,6 +119,7 @@ steel - primary - BF/BOF:
       - steel production, converter
     mask:
       - hot rolled
+      - unalloyed
 
 steel - primary - BF/BOF CCS:
   iam_aliases:
@@ -117,8 +128,8 @@ steel - primary - BF/BOF CCS:
     tiam-ucl:
       - Production|Steel|Primary|BF and BOF 1|w CCS
       - Production|Steel|Primary|BF and BOF 3|w CCS
-    remind: Production|Industry|Steel|Primary w CCS
-    remind-eu: Production|Industry|Steel|Primary w CCS
+    remind: Production|Industry|Steel|+|BF-BOF-CCS
+    remind-eu: Production|Industry|Steel|+|BF-BOF-CCS
     message: Production|Primary|Steel w CCS
     gcam: Production|Industry|Steel|Primary w CCS
   energy_use_aliases:
@@ -155,15 +166,32 @@ steel - primary - BF/BOF CCS:
       - Final Energy|Production|Steel|Primary|BF and BOF 3|Liquefied Petroleum Gas|w CCS
       - Final Energy|Production|Steel|Primary|BF and BOF 3|Natural Gas|w CCS
       - Final Energy|Production|Steel|Primary|BF and BOF 3|Oil|w CCS
+    remind:
+      - FE|Industry|Steel|BF-BOF-CCS|+|Electricity
+      - FE|Industry|Steel|BF-BOF-CCS|+|Gases
+      - FE|Industry|Steel|BF-BOF-CCS|+|Heat
+      - FE|Industry|Steel|BF-BOF-CCS|+|Hydrogen
+      - FE|Industry|Steel|BF-BOF-CCS|+|Liquids
+      - FE|Industry|Steel|BF-BOF-CCS|+|Solids
+    remind-eu:
+      - FE|Industry|Steel|BF-BOF-CCS|+|Electricity
+      - FE|Industry|Steel|BF-BOF-CCS|+|Gases
+      - FE|Industry|Steel|BF-BOF-CCS|+|Heat
+      - FE|Industry|Steel|BF-BOF-CCS|+|Hydrogen
+      - FE|Industry|Steel|BF-BOF-CCS|+|Liquids
+      - FE|Industry|Steel|BF-BOF-CCS|+|Solids
   ecoinvent_aliases:
     fltr:
       - steel production, converter
     mask:
       - hot rolled
+      - unalloyed
 
 steel - primary - DRI:
   iam_aliases:
     image: Production|Industry|Iron and Steel|DRI EAF
+    remind: Production|Industry|Steel|+|DRI-NG-EAF
+    remind-eu: Production|Industry|Steel|+|DRI-NG-EAF
     tiam-ucl:
       - Production|Steel|Secondary|DRI and EAF 1
       - Production|Steel|Secondary|DRI and EAF 2|w/o CCS
@@ -195,15 +223,32 @@ steel - primary - DRI:
       - Final Energy|Production|Steel|Secondary|DRI and EAF 3|Electricity
       - Final Energy|Production|Steel|Secondary|DRI and EAF 3|Natural Gas
       - Final Energy|Production|Steel|Secondary|DRI and EAF 1|Coal
+    remind:
+      - FE|Industry|Steel|DRI-NG-EAF|+|Electricity
+      - FE|Industry|Steel|DRI-NG-EAF|+|Gases
+      - FE|Industry|Steel|DRI-NG-EAF|+|Heat
+      - FE|Industry|Steel|DRI-NG-EAF|+|Hydrogen
+      - FE|Industry|Steel|DRI-NG-EAF|+|Liquids
+      - FE|Industry|Steel|DRI-NG-EAF|+|Solids
+    remind-eu:
+      - FE|Industry|Steel|DRI-NG-EAF|+|Electricity
+      - FE|Industry|Steel|DRI-NG-EAF|+|Gases
+      - FE|Industry|Steel|DRI-NG-EAF|+|Heat
+      - FE|Industry|Steel|DRI-NG-EAF|+|Hydrogen
+      - FE|Industry|Steel|DRI-NG-EAF|+|Liquids
+      - FE|Industry|Steel|DRI-NG-EAF|+|Solids
   ecoinvent_aliases:
     fltr:
       - steel production, converter
     mask:
       - hot rolled
+      - unalloyed
 
 steel - primary - DRI CCS:
   iam_aliases:
     image: Production|Industry|Iron and Steel|DRI EAF + CCS
+    remind: Production|Industry|Steel|+|DRI-NG-EAF-CCS
+    remind-eu: Production|Industry|Steel|+|DRI-NG-EAF-CCS
     tiam-ucl:
       - Production|Steel|Secondary|DRI and EAF 2|w CCS
   energy_use_aliases:
@@ -221,16 +266,33 @@ steel - primary - DRI CCS:
       - Final Energy|Production|Steel|Secondary|DRI and EAF 2|w CCS|Natural Gas Mix
       - Final Energy|Production|Steel|Secondary|DRI and EAF 2|Electricity|w CCS
       - Final Energy|Production|Steel|Secondary|DRI and EAF 2|Natural Gas|w CCS
+    remind:
+      - FE|Industry|Steel|DRI-NG-EAF-CCS|+|Electricity
+      - FE|Industry|Steel|DRI-NG-EAF-CCS|+|Gases
+      - FE|Industry|Steel|DRI-NG-EAF-CCS|+|Heat
+      - FE|Industry|Steel|DRI-NG-EAF-CCS|+|Hydrogen
+      - FE|Industry|Steel|DRI-NG-EAF-CCS|+|Liquids
+      - FE|Industry|Steel|DRI-NG-EAF-CCS|+|Solids
+    remind-eu:
+      - FE|Industry|Steel|DRI-NG-EAF-CCS|+|Electricity
+      - FE|Industry|Steel|DRI-NG-EAF-CCS|+|Gases
+      - FE|Industry|Steel|DRI-NG-EAF-CCS|+|Heat
+      - FE|Industry|Steel|DRI-NG-EAF-CCS|+|Hydrogen
+      - FE|Industry|Steel|DRI-NG-EAF-CCS|+|Liquids
+      - FE|Industry|Steel|DRI-NG-EAF-CCS|+|Solids
   ecoinvent_aliases:
     fltr:
       - steel production, converter
     mask:
       - hot rolled
+      - unalloyed
 
 steel - primary - H-DRI:
   iam_aliases:
     image: Production|Industry|Iron and Steel|H-DRI/EAF
     tiam-ucl: Production|Steel|Secondary|DRH2 and EAF
+    remind: Production|Industry|Steel|+|DRI-H2-EAF
+    remind-eu: Production|Industry|Steel|+|DRI-H2-EAF
   energy_use_aliases:
     image:
       - Final Energy|Industry|Iron and Steel|H-DRI/EAF|Coal
@@ -244,11 +306,26 @@ steel - primary - H-DRI:
     tiam-ucl:
       - Final Energy|Production|Steel|Secondary|DRH2 and EAF|Electricity
       - Final Energy|Production|Steel|Secondary|DRH2 and EAF|Hydrogen
+    remind:
+      - FE|Industry|Steel|DRI-H2-EAF|+|Electricity
+      - FE|Industry|Steel|DRI-H2-EAF|+|Gases
+      - FE|Industry|Steel|DRI-H2-EAF|+|Heat
+      - FE|Industry|Steel|DRI-H2-EAF|+|Hydrogen
+      - FE|Industry|Steel|DRI-H2-EAF|+|Liquids
+      - FE|Industry|Steel|DRI-H2-EAF|+|Solids
+    remind-eu:
+      - FE|Industry|Steel|DRI-H2-EAF|+|Electricity
+      - FE|Industry|Steel|DRI-H2-EAF|+|Gases
+      - FE|Industry|Steel|DRI-H2-EAF|+|Heat
+      - FE|Industry|Steel|DRI-H2-EAF|+|Hydrogen
+      - FE|Industry|Steel|DRI-H2-EAF|+|Liquids
+      - FE|Industry|Steel|DRI-H2-EAF|+|Solids
   ecoinvent_aliases:
     fltr:
       - steel production, converter
     mask:
       - hot rolled
+      - unalloyed
 
 steel - primary - SR/BOF:
   iam_aliases:
@@ -268,6 +345,7 @@ steel - primary - SR/BOF:
       - steel production, converter
     mask:
       - hot rolled
+      - unalloyed
 
 steel - primary - SR/BOF CCS:
   iam_aliases:
@@ -287,6 +365,7 @@ steel - primary - SR/BOF CCS:
       - steel production, converter
     mask:
       - hot rolled
+      - unalloyed
 
 steel - primary - TGR BF/BOF:
   iam_aliases:
@@ -316,6 +395,7 @@ steel - primary - TGR BF/BOF:
       - steel production, converter
     mask:
       - hot rolled
+      - unalloyed
 
 steel - primary - TGR BF/BOF CCS:
   iam_aliases:
@@ -335,6 +415,7 @@ steel - primary - TGR BF/BOF CCS:
       - steel production, converter
     mask:
       - hot rolled
+      - unalloyed
 
 steel - primary - Electrowinning:
   iam_aliases:
@@ -354,11 +435,12 @@ steel - primary - Electrowinning:
       - steel production, converter
     mask:
       - hot rolled
+      - unalloyed
 
 steel - secondary:
   iam_aliases:
-    remind: Production|Industry|Steel|Secondary
-    remind-eu: Production|Industry|Steel|Secondary
+    remind: Production|Industry|Steel|+|SCRAP-EAF
+    remind-eu: Production|Industry|Steel|+|SCRAP-EAF
     image: Production|Industry|Iron and Steel|EAF scrap
     message: Production|Secondary|Steel
     gcam: Production|Industry|Steel|Secondary
@@ -368,9 +450,19 @@ steel - secondary:
       - Production|Steel|Secondary|EAF 3
   energy_use_aliases:
     remind:
-      - FE|Industry|Steel|++|Secondary
+      - FE|Industry|Steel|SCRAP-EAF|+|Electricity
+      - FE|Industry|Steel|SCRAP-EAF|+|Gases
+      - FE|Industry|Steel|SCRAP-EAF|+|Heat
+      - FE|Industry|Steel|SCRAP-EAF|+|Hydrogen
+      - FE|Industry|Steel|SCRAP-EAF|+|Liquids
+      - FE|Industry|Steel|SCRAP-EAF|+|Solids
     remind-eu:
-      - FE|Industry|Steel|++|Secondary
+      - FE|Industry|Steel|SCRAP-EAF|+|Electricity
+      - FE|Industry|Steel|SCRAP-EAF|+|Gases
+      - FE|Industry|Steel|SCRAP-EAF|+|Heat
+      - FE|Industry|Steel|SCRAP-EAF|+|Hydrogen
+      - FE|Industry|Steel|SCRAP-EAF|+|Liquids
+      - FE|Industry|Steel|SCRAP-EAF|+|Solids
     image:
       - Final Energy|Industry|Iron and Steel|EAF scrap|Coal
       - Final Energy|Industry|Iron and Steel|EAF scrap|Electricity
@@ -410,5 +502,6 @@ steel - secondary:
     mask:
       name:
         - hot rolled
+        - chromium
       reference product:
         - heat

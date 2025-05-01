@@ -18,8 +18,8 @@ population:
 
 GMST:
   iam_aliases:
-    remind: Temperature|Global Mean
-    remind-eu: Temperature|Global Mean
+    remind: MAGICC7 AR6|Raw Surface Temperature (GMST)|50.0th Percentile
+    remind-eu: MAGICC7 AR6|Raw Surface Temperature (GMST)|50.0th Percentile
     image: Temperature|Global Mean
     tiam-ucl: Temperature|Global Mean
     witch: Temperature|WITCH|Global Mean

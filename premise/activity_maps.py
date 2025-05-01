@@ -22,6 +22,7 @@ CEMENT_TECHS = VARIABLES_DIR / "cement.yaml"
 GAINS_MAPPING = (
     DATA_DIR / "GAINS_emission_factors" / "gains_ecoinvent_sectoral_mapping.yaml"
 )
+STEEL_TECHS = VARIABLES_DIR / "steel.yaml"
 ACTIVITIES_METALS_MAPPING = DATA_DIR / "metals" / "activities_mapping.yml"
 HEAT_TECHS = VARIABLES_DIR / "heat.yaml"
 PASSENGER_CARS = VARIABLES_DIR / "transport_passenger_cars.yaml"
@@ -161,6 +162,10 @@ class InventorySet:
             filepath=CEMENT_TECHS, var="ecoinvent_fuel_aliases"
         )
 
+        self.steel_filters = get_mapping(
+            filepath=STEEL_TECHS, var="ecoinvent_aliases"
+        )
+
         self.gains_filters_EU = get_mapping(
             filepath=GAINS_MAPPING, var="ecoinvent_aliases"
         )
@@ -267,6 +272,17 @@ class InventorySet:
 
         """
         return self.generate_sets_from_filters(self.cement_fuel_filters)
+
+    def generate_steel_map(self) -> dict:
+        """
+        Filter ecoinvent processes related to cement production.
+
+        :return: dictionary with el. prod. techs as keys (see below) and
+            sets of related ecoinvent activities as values.
+        :rtype: dict
+
+        """
+        return self.generate_sets_from_filters(self.steel_filters)
 
     def generate_fuel_map(self) -> dict:
         """

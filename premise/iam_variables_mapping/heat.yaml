@@ -70,7 +70,7 @@ heat, buildings, from district heating:
 
 heat, buildings, from hydrogen boiler:
   ecoinvent_aliases:
-    fltr: heat, buildings, by combustion of hydrogen using boiler, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid
+    fltr: heat, residential, by combustion of hydrogen using boiler, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid
   iam_aliases:
     remind: FE|Buildings|Heating|Hydrogen
     remind-eu: FE|Buildings|Heating|Hydrogen
@@ -82,19 +82,19 @@ heat, buildings, from hydrogen boiler:
 
 heat, buildings, from hydrogen CHP:
     ecoinvent_aliases:
-        fltr: heat, buildings, by combustion of hydrogen using CHP, allocated by exergy, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid
+        fltr: heat, residential, by combustion of hydrogen using CHP, allocated by exergy, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid
 
 heat, buildings, from hydrogen fuel cell:
     ecoinvent_aliases:
-        fltr: heat, buildings, by conversion of hydrogen using fuel cell, PEM, allocated by exergy, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid
+        fltr: heat, residential, by conversion of hydrogen using fuel cell, PEM, allocated by exergy, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid
 
 heat, buildings, from synthetic natural gas boiler:
     ecoinvent_aliases:
-        fltr: heat, buildings, by combustion of synthetic natural gas from catalytic methanation using boiler, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid and carbon sourced from DAC
+        fltr: heat, residential, by combustion of synthetic natural gas from catalytic methanation using boiler, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid and carbon sourced from DAC
 
 heat, buildings, from coal-based natural gas boiler:
     ecoinvent_aliases:
-        fltr: heat, buildings, by combustion of coal-based natural gas using boiler, distributed by pipeline
+        fltr: heat, residential, by combustion of coal-based natural gas using boiler, distributed by pipeline
 
 heat, buildings, from natural gas:
     ecoinvent_aliases:
@@ -110,25 +110,25 @@ heat, buildings, from natural gas:
 
 heat, buildings, from biomethane boiler:
     ecoinvent_aliases:
-        fltr: heat, buildings, by combustion of biomethane using boiler, distributed by pipeline
+        fltr: heat, residential, by combustion of biomethane using boiler, distributed by pipeline
 
 heat, buildings, from LPG boiler:
     ecoinvent_aliases:
-        fltr: heat, buildings, by combustion of liquefied petroleum gas using boiler, distributed by pipeline
+        fltr: heat, residential, by combustion of liquefied petroleum gas using boiler, distributed by pipeline
     iam_aliases:
       remind: FE|Buildings|Liquids|Fossil|+|Gas
       remind-eu: FE|Buildings|Liquids|Fossil|+|Gas
 
 heat, buildings, from biomass-based methanol boiler:
     ecoinvent_aliases:
-        fltr: heat, buildings, by combustion of methanol using boiler, distributed by truck, produced with biomass
+        fltr: heat, residential, by combustion of methanol using boiler, distributed by truck, produced with biomass
     iam_aliases:
       remind: FE|Buildings|Liquids|+|Biomass
       remind-eu: FE|Buildings|Liquids|+|Biomass
 
 heat, buildings, from coal-based methanol boiler:
     ecoinvent_aliases:
-        fltr: heat, buildings, by combustion of methanol using boiler, distributed by truck, produced with coal
+        fltr: heat, residential, by combustion of methanol using boiler, distributed by truck, produced with coal
     iam_aliases:
       remind: FE|Buildings|Liquids|Fossil|+|Coal
       remind-eu: FE|Buildings|Liquids|Fossil|+|Coal
@@ -178,7 +178,7 @@ heat, buildings, from heat pump:
 
 heat, buildings, from electric heater:
     ecoinvent_aliases:
-        fltr: heat, buildings, electric storage heater, using electricity from grid
+        fltr: heat, residential, electric storage heater, using electricity from grid
     iam_aliases:
       remind: FE|Buildings|Heating|Electricity|Resistance
       remind-eu: FE|Buildings|Heating|Electricity|Resistance

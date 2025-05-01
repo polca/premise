@@ -47,9 +47,6 @@ cement, dry feed rotary kiln:
       - Final Energy|Industry|Non-Metallic|Solids|Biomass
       - Final Energy|Industry|Non-Metallic|Solids|Fossil
 
-  eff_aliases:
-    remind: FE|Industry|Specific Energy Consumption|Cement
-    remind-eu: FE|Industry|Specific Energy Consumption|Cement
   ecoinvent_fuel_aliases:
     fltr:
       name:
@@ -137,6 +134,8 @@ cement, dry feed rotary kiln, efficient, with on-site CCS:
     gcam: Production|Industry|Cement w CCS
     tiam-ucl: Production|Cement w CCS
   energy_use_aliases:
+    remind: FE|Industry|+++|Cement w CCS
+    remind-eu: FE|Industry|+++|Cement w CCS
     image:
       - Final Energy|Industry|Cement|Efficient dry feed rotary kiln + On-site CCS|Coal
       - Final Energy|Industry|Cement|Efficient dry feed rotary kiln + On-site CCS|Electricity

@@ -117,14 +117,14 @@ class CarbonDioxideRemoval(BaseTransformation):
 
         """
         processed_datasets = []
+        new_datasets = []
         # get original dataset
         for technology, datasets in self.cdr_activities.items():
             for ds_name in datasets:
-
                 if ds_name in processed_datasets:
                     continue
-
                 processed_datasets.append(ds_name)
+
                 # fetch the original dataset
                 new_ds = self.fetch_proxies(
                     name=ds_name,
@@ -194,23 +194,17 @@ class CarbonDioxideRemoval(BaseTransformation):
                                 }
                             )
 
-                for k, dataset in new_ds.items():
-                    # Add created dataset to cache
-                    self.add_new_entry_to_cache(
-                        location=dataset["location"],
-                        exchange=dataset,
-                        allocated=[dataset],
-                        shares=[
-                            1.0,
-                        ],
-                    )
+                new_datasets.extend(new_ds.values())
 
-                    # add it to list of created datasets
-                    self.write_log(dataset)
-                    # add it to list of created datasets
-                    self.add_to_index(dataset)
 
-                self.database.extend(new_ds.values())
+
+        for dataset in new_datasets:
+            # add to database
+            self.database.append(dataset)
+            # add to index
+            self.add_to_index(dataset)
+            # write log
+            self.write_log(dataset)
 
     def generate_world_market(
         self,

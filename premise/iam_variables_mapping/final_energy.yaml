@@ -683,7 +683,7 @@ Industry - Chemicals - Ammonia - Liquid fossil:
       name: light fuel oil, burned in industrial furnace 1MW
       reference product: heat
   iam_aliases:
-    remind: Final Energy|Industry|Chemicals|Ammonia|Liquids|Fossil
+    image: Final Energy|Industry|Chemicals|Ammonia|Liquids|Fossil
 
 Industry - Chemicals - Ammonia - Solid coal:
   ecoinvent_aliases:
@@ -700,7 +700,7 @@ Industry - Chemicals - Ammonia - Solid Biomass:
       name: soft wood chips from forest, burned in furnace 1000kW
       reference product: heat
   iam_aliases:
-    remind: Final Energy|Industry|Chemicals|Ammonia|Solids|Biomass
+    image: Final Energy|Industry|Chemicals|Ammonia|Solids|Biomass
 
 Industry - Chemicals - Ammonia - Other:
   ecoinvent_aliases:
@@ -742,7 +742,7 @@ Industry - Chemicals - Heavy Refinery Products - Liquid fossil:
       name: light fuel oil, burned in industrial furnace 1MW
       reference product: heat
   iam_aliases:
-    remind: Final Energy|Industry|Chemicals|Heavy Refinery Products|Liquids|Fossil
+    image: Final Energy|Industry|Chemicals|Heavy Refinery Products|Liquids|Fossil
 
 Industry - Chemicals - Heavy Refinery Products - Solid coal:
   ecoinvent_aliases:
@@ -759,7 +759,7 @@ Industry - Chemicals - Heavy Refinery Products - Solid Biomass:
       name: soft wood chips from forest, burned in furnace 1000kW
       reference product: heat
   iam_aliases:
-    remind: Final Energy|Industry|Chemicals|Heavy Refinery Products|Solids|Biomass
+    image: Final Energy|Industry|Chemicals|Heavy Refinery Products|Solids|Biomass
 
 Industry - Chemicals - High-Value Chemicals - Elec:
   ecoinvent_aliases:
@@ -792,7 +792,7 @@ Industry - Chemicals - High-Value Chemicals - Liquid fossil:
       name: light fuel oil, burned in industrial furnace 1MW
       reference product: heat
   iam_aliases:
-    remind: Final Energy|Industry|Chemicals|High-Value Chemicals|Liquids|Fossil
+    image: Final Energy|Industry|Chemicals|High-Value Chemicals|Liquids|Fossil
 
 Industry - Chemicals - High-Value Chemicals - Solid coal:
   ecoinvent_aliases:
@@ -809,7 +809,7 @@ Industry - Chemicals - High-Value Chemicals - Solid Biomass:
       name: soft wood chips from forest, burned in furnace 1000kW
       reference product: heat
   iam_aliases:
-    remind: Final Energy|Industry|Chemicals|High-Value Chemicals|Solids|Biomass
+    image: Final Energy|Industry|Chemicals|High-Value Chemicals|Solids|Biomass
 
 Industry - Chemicals - Methanol - Elec:
   ecoinvent_aliases:
@@ -842,7 +842,7 @@ Industry - Chemicals - Methanol - Liquid fossil:
       name: light fuel oil, burned in industrial furnace 1MW
       reference product: heat
   iam_aliases:
-    remind: Final Energy|Industry|Chemicals|Methanol|Liquids|Fossil
+    image: Final Energy|Industry|Chemicals|Methanol|Liquids|Fossil
 
 Industry - Chemicals - Methanol - Solid coal:
   ecoinvent_aliases:
@@ -859,7 +859,7 @@ Industry - Chemicals - Methanol - Solid Biomass:
       name: soft wood chips from forest, burned in furnace 1000kW
       reference product: heat
   iam_aliases:
-    remind: Final Energy|Industry|Chemicals|Methanol|Solids|Biomass
+    image: Final Energy|Industry|Chemicals|Methanol|Solids|Biomass
 
 Industry - Chemicals - Fertilizer - Elec:
   ecoinvent_aliases:
@@ -900,7 +900,7 @@ Industry - Chemicals - Fertilizer - Liquid fossil:
       name: light fuel oil, burned in industrial furnace 1MW
       reference product: heat
   iam_aliases:
-    remind: Final Energy|Industry|Fertilizer production|Liquids|Fossil
+    image: Final Energy|Industry|Fertilizer production|Liquids|Fossil
 
 Industry - Chemicals - Fertilizer - Solid coal:
   ecoinvent_aliases:
@@ -916,7 +916,7 @@ Industry - Chemicals - Fertilizer - Solid Biomass:
       name: soft wood chips from forest, burned in furnace 1000kW
       reference product: heat
   iam_aliases:
-    remind: Final Energy|Industry|Fertilizer production|Solids|Biomass
+    image: Final Energy|Industry|Fertilizer production|Solids|Biomass
 
 Industry - Food Processing - Elec:
   ecoinvent_aliases:
@@ -957,7 +957,7 @@ Industry - Food Processing - Liquid fossil:
       name: light fuel oil, burned in industrial furnace 1MW
       reference product: heat
   iam_aliases:
-    remind: Final Energy|Industry|Food Processing|Liquids|Fossil
+    image: Final Energy|Industry|Food Processing|Liquids|Fossil
 
 Industry - Food Processing - Solid coal:
   ecoinvent_aliases:
@@ -973,7 +973,7 @@ Industry - Food Processing - Solid Biomass:
       name: soft wood chips from forest, burned in furnace 1000kW
       reference product: heat
   iam_aliases:
-    remind: Final Energy|Industry|Food Processing|Solids|Biomass
+    image: Final Energy|Industry|Food Processing|Solids|Biomass
 
 
 Industry - Other - Elec:
@@ -1128,7 +1128,7 @@ Industry - Paper - Liquid fossil:
       name: light fuel oil, burned in industrial furnace 1MW
       reference product: heat
   iam_aliases:
-    remind: Final Energy|Industry|Pulp and Paper|Liquids|Fossil
+    image: Final Energy|Industry|Pulp and Paper|Liquids|Fossil
 
 Industry - Paper - Solid coal:
   ecoinvent_aliases:
@@ -1144,7 +1144,7 @@ Industry - Paper - Solid Biomass:
       name: soft wood chips from forest, burned in furnace 1000kW
       reference product: heat
   iam_aliases:
-    remind: Final Energy|Industry|Pulp and Paper|Solids|Biomass
+    image: Final Energy|Industry|Pulp and Paper|Solids|Biomass
 
 Industry - Steel - BF/BOF - Elec:
   ecoinvent_aliases:
