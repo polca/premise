@@ -77,6 +77,8 @@ sulfidic tailings - impoundment:
       name:
         - backfilling
         - market
+        - flocculation
+        - roasting
       reference product:
         - backfilling
         - non-sulfidic

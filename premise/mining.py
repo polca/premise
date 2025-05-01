@@ -338,6 +338,7 @@ class Mining(BaseTransformation):
 
         for waste_management_type, activities in self.mining_map.items():
             for activity in activities:
+
                 regionalized_datasets = self.fetch_proxies(
                     name=activity,
                     ref_prod="",
@@ -351,6 +352,7 @@ class Mining(BaseTransformation):
                 processed_datasets.extend(regionalized_datasets.values())
 
         for dataset in processed_datasets:
+            #print(f"[Mining] Adding {dataset['name']} in {dataset['location']}")
             self.add_to_index(dataset)
             self.write_log(dataset, "created")
             self.database.append(dataset)
@@ -365,6 +367,7 @@ class Mining(BaseTransformation):
             ]
         )
 
+        processed_datasets = []
         for market_dataset in market_datasets:
             regionalized_datasets = self.fetch_proxies(
                 name=market_dataset,
@@ -403,7 +406,7 @@ class Mining(BaseTransformation):
                     ))
                     if len(supplier) > 1:
                         if waste_management_type == "sulfidic tailings - impoundment":
-                            # we have different datasets for impoundement
+                            # we have different datasets for impoundment
                             supplier = [
                                 s
                                 for s in supplier
@@ -436,10 +439,12 @@ class Mining(BaseTransformation):
                         }
                     )
 
-            for region, regionalized_dataset in regionalized_datasets.items():
-                self.add_to_index(regionalized_dataset)
-                self.write_log(regionalized_dataset, "created")
-                self.database.append(regionalized_dataset)
+            processed_datasets.extend(regionalized_datasets.values())
+
+        for dataset in processed_datasets:
+            self.add_to_index(dataset)
+            self.write_log(dataset, "created")
+            self.database.append(dataset)
 
 
 def write_log(self, dataset, status="updated"):
