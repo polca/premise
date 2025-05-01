@@ -239,96 +239,6 @@ class Mining(BaseTransformation):
         inv = InventorySet(database=database, version=version, model=model)
         self.mining_map = inv.generate_mining_waste_map()
 
-    def _split_exchanges(self, act, config, shares):
-
-        original_cfg = config.get("impoundment", {})
-        name_fltr = original_cfg.get("name", {})
-        prod_fltr = original_cfg.get("reference product", {})
-
-        impoundement_datasets = self.mining_map["sulfidic tailings - impoundment"]
-
-        new_exchanges = []
-        for exc in act["exchanges"]:
-            if exc.get("type") != "technosphere":
-                new_exchanges.append(exc)
-                continue
-            if exc not in impoundement_datasets:
-                new_exchanges.append(exc)
-                continue
-
-            total = exc["amount"]
-            for method, share in shares.items():
-                if share == 0:
-                    continue
-                if method == "impoundment":
-                    keep_exc = copy_exchange(exc)
-                    keep_exc["amount"] = total * share
-                    new_exchanges.append(keep_exc)
-                else:
-                    provider = self._get_or_create_provider(
-                        method, act["location"], exc["product"]
-                    )
-                    if provider:
-                        new_exc = copy_exchange(exc)
-                        new_exc["name"] = provider["name"]
-                        new_exc["product"] = provider["reference product"]
-                        new_exc["location"] = provider["location"]
-                        new_exc["amount"] = total * share
-                        new_exchanges.append(new_exc)
-
-        act["exchanges"] = new_exchanges
-
-    def _get_or_create_provider(self, method, location, product):
-        cfg = self.tailings_shares.get("sulfidic tailings", {}).get(method, {})
-        name_filters = cfg.get("name", {})
-        prod_filters = cfg.get("reference product", {})
-
-        name_fltr = [ws.contains("name", s) for s in name_filters.get("fltr", [])]
-        name_mask = [
-            ws.exclude(ws.contains("name", s)) for s in name_filters.get("mask", [])
-        ]
-        prod_fltr = [
-            ws.contains("reference product", s) for s in prod_filters.get("fltr", [])
-        ]
-        prod_mask = [
-            ws.exclude(ws.contains("reference product", s))
-            for s in prod_filters.get("mask", [])
-        ]
-
-        providers = list(
-            ws.get_many(
-                self.database,
-                *name_fltr,
-                *prod_fltr,
-                *name_mask,
-                *prod_mask,
-                ws.equals("location", location),
-            )
-        )
-        if providers:
-            return providers[0]
-
-        fallback = list(
-            ws.get_many(
-                self.database,
-                *name_fltr,
-                *prod_fltr,
-                *name_mask,
-                *prod_mask,
-                ws.equals("location", "GLO"),
-            )
-        )
-        if not fallback:
-            logger.warning(
-                f"[Mining] No fallback found for method {method} at {location}"
-            )
-            return None
-
-        new_provider = copy_activity(fallback[0], location, product)
-        self.database.append(new_provider)
-        self.add_to_index(new_provider)
-        self.write_log(new_provider, "created")
-        return new_provider
 
     def update_tailings_treatment(self):
 
@@ -434,16 +344,16 @@ class Mining(BaseTransformation):
                             "product": supplier["reference product"],
                             "amount": shares.sel(technology=waste_management_type)[
                                 "mean"
-                            ].values.item(0),
+                            ].values.item(0) * -1,
                             "unit": supplier["unit"],
                             "location": supplier["location"],
                             "uncertainty type": 5,
                             "loc": shares.sel(technology=waste_management_type)[
                                 "mean"
-                            ].values.item(0),
+                            ].values.item(0) * -1,
                             "minimum": shares.sel(technology=waste_management_type)[
                                 "min"
-                            ].values.item(0),
+                            ].values.item(0) * -1,
                             "maximum": shares.sel(technology=waste_management_type)[
                                 "max"
                             ].values.item(0),
