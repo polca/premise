@@ -121,7 +121,7 @@ class Steel(BaseTransformation):
             steel_markets = self.fetch_proxies(
                 name=market,
                 ref_prod=steel_product,
-                production_variable=self.iam_data.steel_technology_mix.variables.values
+                production_variable=self.iam_data.steel_technology_mix.variables.values,
             )
 
             # adjust share of primary and secondary steel
@@ -137,12 +137,18 @@ class Steel(BaseTransformation):
                     if region != "World":
                         for steel_type, activities in self.steel_map.items():
 
-                            if self.system_model == "consequential" and steel_type == "steel - secondary":
+                            if (
+                                self.system_model == "consequential"
+                                and steel_type == "steel - secondary"
+                            ):
                                 continue
 
                             activity = list(activities)[0]
 
-                            if steel_type in self.iam_data.steel_technology_mix.variables.values:
+                            if (
+                                steel_type
+                                in self.iam_data.steel_technology_mix.variables.values
+                            ):
                                 share = self.iam_data.steel_technology_mix.sel(
                                     variables=steel_type,
                                     region=region,
@@ -154,7 +160,7 @@ class Steel(BaseTransformation):
                                         ws.equals("name", activity),
                                         ws.equals("location", region),
                                         ws.equals("unit", "kilogram"),
-                                        ws.contains("reference product", "steel")
+                                        ws.contains("reference product", "steel"),
                                     )
 
                                     dataset["exchanges"].append(
@@ -172,14 +178,12 @@ class Steel(BaseTransformation):
                     total_share = sum(
                         exc["amount"]
                         for exc in dataset["exchanges"]
-                        if exc["type"] == "technosphere"
-                        and exc["unit"] == "kilogram"
+                        if exc["type"] == "technosphere" and exc["unit"] == "kilogram"
                     )
 
                     for exc in dataset["exchanges"]:
                         if exc["type"] == "technosphere" and exc["unit"] == "kilogram":
                             exc["amount"] /= total_share
-
 
             # populate World dataset
             steel_markets["World"]["exchanges"] = [
@@ -256,7 +260,6 @@ class Steel(BaseTransformation):
             # add to database
             self.database.append(dataset)
 
-
     def create_steel_production_activities(self):
         """
         Create steel production activities for different regions.
@@ -303,12 +306,10 @@ class Steel(BaseTransformation):
 
             processed_datasets.extend(regionalized_datasets.values())
 
-
         for dataset in processed_datasets:
             self.add_to_index(dataset)
             self.write_log(dataset, "created")
             self.database.append(dataset)
-
 
     def create_pig_iron_production_activities(self):
         """
@@ -319,14 +320,17 @@ class Steel(BaseTransformation):
             name="pig iron production",
             ref_prod="pig iron",
             production_variable=[
-                p for p in self.iam_data.steel_technology_mix.variables.values
+                p
+                for p in self.iam_data.steel_technology_mix.variables.values
                 if p != "steel - secondary"
             ],
         )
 
         # adjust efficiency of pig iron production
         for dataset in pig_iron.values():
-            dataset = self.adjust_process_efficiency(dataset, "steel - primary - BF/BOF")
+            dataset = self.adjust_process_efficiency(
+                dataset, "steel - primary - BF/BOF"
+            )
 
         # add to log
         for new_dataset in list(pig_iron.values()):
@@ -345,7 +349,8 @@ class Steel(BaseTransformation):
             name="market for pig iron",
             ref_prod="pig iron",
             production_variable=[
-                p for p in self.iam_data.steel_technology_mix.variables.values
+                p
+                for p in self.iam_data.steel_technology_mix.variables.values
                 if p != "steel - secondary"
             ],
         )
@@ -380,7 +385,6 @@ class Steel(BaseTransformation):
             "natural gas",
             "steam",
         ]
-
 
         scaling_factor = 1 / self.find_iam_efficiency_change(
             data=self.iam_data.steel_technology_efficiencies,
