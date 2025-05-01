@@ -142,7 +142,15 @@ class Cement(BaseTransformation):
             },
         }
 
+        new_datasets = []
+        processed_datasets = []
+
         for variable in ccs_datasets:
+
+            if ccs_datasets[variable]["name"] in processed_datasets:
+                continue
+            processed_datasets.append(ccs_datasets[variable]["name"])
+
             datasets = self.fetch_proxies(
                 name=ccs_datasets[variable]["name"],
                 ref_prod=ccs_datasets[variable]["reference product"],
@@ -172,10 +180,12 @@ class Cement(BaseTransformation):
                     ):
                         exc["amount"] = fossil_heat_input
 
-            for dataset in datasets.values():
-                self.add_to_index(dataset)
-                self.write_log(dataset)
-                self.database.append(dataset)
+            new_datasets.extend(datasets.values())
+
+        for dataset in new_datasets:
+            self.add_to_index(dataset)
+            self.write_log(dataset)
+            self.database.append(dataset)
 
         # also create region-specific air separation datasets
         datasets_to_regionalize = [
