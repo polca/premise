@@ -351,7 +351,7 @@ class Mining(BaseTransformation):
                 processed_datasets.extend(regionalized_datasets.values())
 
         for dataset in processed_datasets:
-            #print(f"[Mining] Adding {dataset['name']} in {dataset['location']}")
+            # print(f"[Mining] Adding {dataset['name']} in {dataset['location']}")
             self.add_to_index(dataset)
             self.write_log(dataset, "created")
             self.database.append(dataset)
