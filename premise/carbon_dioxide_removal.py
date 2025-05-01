@@ -196,8 +196,6 @@ class CarbonDioxideRemoval(BaseTransformation):
 
                 new_datasets.extend(new_ds.values())
 
-
-
         for dataset in new_datasets:
             # add to database
             self.database.append(dataset)
