@@ -239,7 +239,6 @@ class Mining(BaseTransformation):
         inv = InventorySet(database=database, version=version, model=model)
         self.mining_map = inv.generate_mining_waste_map()
 
-
     def update_tailings_treatment(self):
 
         processed_datasets = []
@@ -344,16 +343,19 @@ class Mining(BaseTransformation):
                             "product": supplier["reference product"],
                             "amount": shares.sel(technology=waste_management_type)[
                                 "mean"
-                            ].values.item(0) * -1,
+                            ].values.item(0)
+                            * -1,
                             "unit": supplier["unit"],
                             "location": supplier["location"],
                             "uncertainty type": 5,
                             "loc": shares.sel(technology=waste_management_type)[
                                 "mean"
-                            ].values.item(0) * -1,
+                            ].values.item(0)
+                            * -1,
                             "minimum": shares.sel(technology=waste_management_type)[
                                 "min"
-                            ].values.item(0) * -1,
+                            ].values.item(0)
+                            * -1,
                             "maximum": shares.sel(technology=waste_management_type)[
                                 "max"
                             ].values.item(0),
