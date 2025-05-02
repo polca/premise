@@ -126,7 +126,6 @@ class Cement(BaseTransformation):
 
         self.biosphere_dict = biosphere_flows_dictionary(self.version)
 
-
     def build_clinker_production_datasets(self) -> list:
         """
         Builds clinker production datasets for each IAM region.
