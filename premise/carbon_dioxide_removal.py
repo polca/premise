@@ -512,8 +512,6 @@ class CarbonDioxideRemoval(BaseTransformation):
             self.database.append(new_world_dataset)
             self.write_log(new_world_dataset)
 
-
-
     def write_log(self, dataset, status="created"):
         """
         Write log file.
