@@ -1118,7 +1118,9 @@ class IAMDataCollection:
         for root, dirs, files in os.walk(filedir):
             for file in files:
                 # Check if both model and pathway are present in the filename
-                if self.model in file and self.pathway in file:
+                model, pathway = file.split("_")
+                pathway = pathway.split(".")[0]
+                if self.model == model and self.pathway == pathway:
                     filepath = Path(os.path.join(root, file))
 
         if filepath == "":

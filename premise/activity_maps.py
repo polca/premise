@@ -8,7 +8,6 @@ from pathlib import Path
 from typing import List, Union
 
 import yaml
-from charset_normalizer.models import CliDetectionResult
 from wurst import searching as ws
 
 from .filesystem_constants import DATA_DIR, VARIABLES_DIR
@@ -442,11 +441,5 @@ class InventorySet:
         mapping = {
             tech: {act["name"] for act in actlst} for tech, actlst in techs.items()
         }
-
-        # check if all keys have values
-        # if not, print warning
-        for key, val in mapping.items():
-            if not val:
-                print(f"Warning: No activities found for {key} -- revise mapping.")
 
         return mapping

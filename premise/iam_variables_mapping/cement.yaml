@@ -128,14 +128,7 @@ cement, dry feed rotary kiln, efficient:
 cement, dry feed rotary kiln, efficient, with on-site CCS:
   iam_aliases:
     image: Production|Industry|Cement|Efficient dry feed rotary kiln + On-site CCS
-    remind: Production|Industry|Cement w CCS
-    remind-eu: Production|Industry|Cement w CCS
-    message: Production|Non-Metallic Minerals|Cement w CCS
-    gcam: Production|Industry|Cement w CCS
-    tiam-ucl: Production|Cement w CCS
   energy_use_aliases:
-    remind: FE|Industry|+++|Cement w CCS
-    remind-eu: FE|Industry|+++|Cement w CCS
     image:
       - Final Energy|Industry|Cement|Efficient dry feed rotary kiln + On-site CCS|Coal
       - Final Energy|Industry|Cement|Efficient dry feed rotary kiln + On-site CCS|Electricity
@@ -225,7 +218,14 @@ cement, dry feed rotary kiln, efficient, with oxyfuel CCS:
 cement, dry feed rotary kiln, efficient, with MEA CCS:
   iam_aliases:
     image: Production|Industry|Cement|Efficient dry feed rotary kiln + MEA CCS
+    remind: Production|Industry|Cement w CCS
+    remind-eu: Production|Industry|Cement w CCS
+    message: Production|Non-Metallic Minerals|Cement w CCS
+    gcam: Production|Industry|Cement w CCS
+    tiam-ucl: Production|Cement w CCS
   energy_use_aliases:
+    remind: FE|Industry|+++|Cement w CCS
+    remind-eu: FE|Industry|+++|Cement w CCS
     image:
       - Final Energy|Industry|Cement|Efficient dry feed rotary kiln + MEA CCS|Coal
       - Final Energy|Industry|Cement|Efficient dry feed rotary kiln + MEA CCS|Electricity

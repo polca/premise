@@ -126,88 +126,6 @@ class Cement(BaseTransformation):
 
         self.biosphere_dict = biosphere_flows_dictionary(self.version)
 
-    def build_CCS_datasets(self):
-        ccs_datasets = {
-            "cement, dry feed rotary kiln, efficient, with on-site CCS": {
-                "name": "carbon dioxide, captured, at cement production plant, using direct separation",
-                "reference product": "carbon dioxide, captured",
-            },
-            "cement, dry feed rotary kiln, efficient, with oxyfuel CCS": {
-                "name": "carbon dioxide, captured, at cement production plant, using oxyfuel",
-                "reference product": "carbon dioxide, captured",
-            },
-            "cement, dry feed rotary kiln, efficient, with MEA CCS": {
-                "name": "carbon dioxide, captured, at cement production plant, using monoethanolamine",
-                "reference product": "carbon dioxide, captured",
-            },
-        }
-
-        new_datasets = []
-        processed_datasets = []
-
-        for variable in ccs_datasets:
-
-            if ccs_datasets[variable]["name"] in processed_datasets:
-                continue
-            processed_datasets.append(ccs_datasets[variable]["name"])
-
-            datasets = self.fetch_proxies(
-                name=ccs_datasets[variable]["name"],
-                ref_prod=ccs_datasets[variable]["reference product"],
-            )
-
-            if variable == "cement, dry feed rotary kiln, efficient, with MEA CCS":
-                # we adjust the heat needs by subtraction 3.66 MJ with what
-                # the plant is expected to produce as excess heat
-
-                # Heat, as steam: 3.66 MJ/kg CO2 captured in 2020,
-                # decreasing to 2.6 GJ/t by 2050, by looking at
-                # the best-performing state-of-the-art technologies today
-                # https://www.globalccsinstitute.com/wp-content/uploads/2022/05/State-of-the-Art-CCS-Technologies-2022.pdf
-                # minus excess heat generated on site
-                # the contribution of excess heat is assumed to be
-                # 30% of heat requirement.
-
-                heat_input = np.clip(
-                    np.interp(self.year, [2020, 2050], [3.66, 2.6]), 2.6, 3.66
-                )
-                excess_heat_generation = 0.3  # 30%
-                fossil_heat_input = heat_input - (excess_heat_generation * heat_input)
-
-                for region, dataset in datasets.items():
-                    for exc in ws.technosphere(
-                        dataset, ws.contains("unit", "megajoule")
-                    ):
-                        exc["amount"] = fossil_heat_input
-
-            new_datasets.extend(datasets.values())
-
-        for dataset in new_datasets:
-            self.add_to_index(dataset)
-            self.write_log(dataset)
-            self.database.append(dataset)
-
-        # also create region-specific air separation datasets
-        datasets_to_regionalize = [
-            (
-                "industrial gases production, cryogenic air separation"
-                if self.version == "3.10"
-                else "air separation, cryogenic"
-            ),
-            "market for oxygen, liquid",
-        ]
-
-        for ds_to_regionlaize in datasets_to_regionalize:
-
-            air_separation = self.fetch_proxies(
-                name=ds_to_regionlaize,
-                ref_prod="oxygen, liquid",
-            )
-
-            for dataset in air_separation.values():
-                self.add_to_index(dataset)
-                self.write_log(dataset)
-                self.database.append(dataset)
 
     def build_clinker_production_datasets(self) -> list:
         """
@@ -576,8 +494,6 @@ class Cement(BaseTransformation):
         :return: Does not return anything. Modifies in place.
         """
 
-        # create CCS datasets
-        self.build_CCS_datasets()
         clinker_prod_datasets = self.build_clinker_production_datasets()
         self.database.extend(clinker_prod_datasets)
 

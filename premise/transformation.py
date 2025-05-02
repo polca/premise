@@ -725,7 +725,7 @@ class BaseTransformation:
                 try:
                     fallback_loc = list(d_map.values())[0]
                 except IndexError:
-                    print(name, ref_prod, regions, d_map)
+                    pass
 
         return {region: d_map.get(region, fallback_loc) for region in regions}
 
@@ -809,7 +809,6 @@ class BaseTransformation:
                     f"{name, ref_prod}, : {[(r['name'], r['reference product'], r['location']) for r in results]}",
                 )
             except ws.NoResults as err:
-                print(f"WARNING: No dataset found for {name, ref_prod}.")
                 return {}
 
             # if not self.is_in_index(dataset, region):

@@ -23,15 +23,26 @@ SUPPORTED_PATHWAYS:
   - SSP2-Base
   - SSP2-NDC
   - SSP2-NPi
+  - SSP2-rollBack
   - SSP2-PkBudg1150
   - SSP2-PkBudg500
+  - SSP2-PkBudg1000
+  - SSP2-PkBudg650
   - SSP2-RCP26
   - SSP2-RCP19
   - SSP1-Base
+  - SSP1-rollBack
   - SSP1-NDC
   - SSP1-NPi
   - SSP1-PkBudg1150
   - SSP1-PkBudg500
+  - SSP1-PkBudg1000
+  - SSP1-PkBudg650
+  - SSP3-NDC
+  - SSP3-NPi
+  - SSP3-rollBack
+  - SSP3-PkBudg1000
+  - SSP3-PkBudg650
   - SSP5-Base
   - SSP5-NDC
   - SSP5-NPi

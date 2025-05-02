@@ -116,11 +116,17 @@ class CarbonDioxideRemoval(BaseTransformation):
         modifies the original datasets to include the heat source, and adds the modified datasets to the database.
 
         """
+
         processed_datasets = []
         new_datasets = []
         # get original dataset
         for technology, datasets in self.cdr_activities.items():
             for ds_name in datasets:
+
+                ref = ""
+                if isinstance(ds_name, dict):
+                    ds_name, ref = ds_name["name"], ds_name["reference product"]
+
                 if ds_name in processed_datasets:
                     continue
                 processed_datasets.append(ds_name)
@@ -128,7 +134,7 @@ class CarbonDioxideRemoval(BaseTransformation):
                 # fetch the original dataset
                 new_ds = self.fetch_proxies(
                     name=ds_name,
-                    ref_prod="",
+                    ref_prod=ref,
                 )
 
                 # relink to energy mix for CDR plant, if available
@@ -506,123 +512,7 @@ class CarbonDioxideRemoval(BaseTransformation):
             self.database.append(new_world_dataset)
             self.write_log(new_world_dataset)
 
-    def adjust_dac_efficiency(self, datasets):
-        """
-        Fetch the cumulated deployment of DAC from IAM file.
-        Apply a learning rate -- see Qiu et al., 2022.
-        """
 
-        for region, dataset in datasets.items():
-            if self.iam_data.dac_electricity_efficiencies is not None:
-                if (
-                    region
-                    in self.iam_data.dac_electricity_efficiencies.coords[
-                        "region"
-                    ].values
-                ):
-                    if (
-                        self.year
-                        in self.iam_data.dac_electricity_efficiencies.coords[
-                            "year"
-                        ].values
-                    ):
-                        scaling_factor = float(
-                            1
-                            / self.iam_data.dac_electricity_efficiencies.sel(
-                                region=region, year=self.year
-                            ).values.item()
-                        )
-                    else:
-                        scaling_factor = float(
-                            1
-                            / self.iam_data.dac_electricity_efficiencies.sel(
-                                region=region
-                            )
-                            .interp(year=self.year)
-                            .values
-                        )
-
-                    # bound the scaling factor to 1.5 and 0.5
-                    scaling_factor = max(0.5, min(1.5, scaling_factor))
-
-                    if scaling_factor != 1:
-                        rescale_exchanges(
-                            dataset,
-                            scaling_factor,
-                            technosphere_filters=[ws.equals("unit", "kilowatt hour")],
-                        )
-
-                        # add in comments the scaling factor applied
-                        dataset["comment"] += (
-                            f" The electrical efficiency of the system has been "
-                            f"adjusted to match the efficiency of the "
-                            f"average DAC plant in {self.year}."
-                        )
-
-                        if "log parameters" not in dataset:
-                            dataset["log parameters"] = {}
-
-                        dataset["log parameters"].update(
-                            {
-                                "electricity scaling factor": scaling_factor,
-                            }
-                        )
-
-            if self.iam_data.cdr_technology_efficiencies is not None:
-                if (
-                    region
-                    in self.iam_data.cdr_technology_efficiencies.coords["region"].values
-                ):
-                    if (
-                        self.year
-                        in self.iam_data.cdr_technology_efficiencies.coords[
-                            "year"
-                        ].values
-                    ):
-                        scaling_factor = float(
-                            1
-                            / self.iam_data.cdr_technology_efficiencies.sel(
-                                region=region, year=self.year
-                            ).values.item()
-                        )
-                    else:
-                        scaling_factor = float(
-                            1
-                            / self.iam_data.cdr_technology_efficiencies.sel(
-                                region=region
-                            )
-                            .interp(year=self.year)
-                            .values
-                        )
-
-                    # bound the scaling factor to 1.5 and 0.5
-                    scaling_factor = max(0.5, min(1.5, scaling_factor))
-
-                    if scaling_factor != 1:
-
-                        rescale_exchanges(
-                            dataset,
-                            scaling_factor,
-                            technosphere_filters=[ws.equals("unit", "megajoule")],
-                        )
-
-                        # add in comments the scaling factor applied
-                        dataset["comment"] += (
-                            f" The thermal efficiency of the system has been "
-                            f"adjusted to match the efficiency of the "
-                            f"average DAC plant in {self.year}."
-                        )
-
-                        if "log parameters" not in dataset:
-                            dataset["log parameters"] = {}
-
-                        dataset["log parameters"].update(
-                            {
-                                "heat scaling factor": scaling_factor,
-                            }
-                        )
-
-        return datasets
 
     def write_log(self, dataset, status="created"):
         """
