@@ -414,6 +414,14 @@ class IAMDataCollection:
             if "buildings" in k
         }
 
+        industrial_heat_vars = {
+            k: v
+            for k, v in self.__get_iam_variable_labels(
+                IAM_HEATING_VARS, variable="iam_aliases"
+            ).items()
+            if "industrial" in k
+        }
+
         daccs_heat_vars = {
             k: v
             for k, v in self.__get_iam_variable_labels(
@@ -505,6 +513,7 @@ class IAMDataCollection:
             + list(land_use_vars.values())
             + list(land_use_change_vars.values())
             + list(buildings_heat_vars.values())
+            + list(industrial_heat_vars.values())
             + list(daccs_heat_vars.values())
             + list(ewr_heat_vars.values())
             + list(other_vars.values())
@@ -736,6 +745,12 @@ class IAMDataCollection:
         self.buildings_heating_mix = self.__fetch_market_data(
             data=data,
             input_vars=buildings_heat_vars,
+            system_model=self.system_model,
+        )
+
+        self.industrial_heat_mix = self.__fetch_market_data(
+            data=data,
+            input_vars=industrial_heat_vars,
             system_model=self.system_model,
         )
 

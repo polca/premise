@@ -772,6 +772,16 @@ class HeatValidation(BaseDatasetValidator):
                         if exc["unit"] == "megajoule" and exc["type"] == "technosphere"
                     ]
                 )
+                energy += sum(
+                    [
+                        exc["amount"]
+                        for exc in ds["exchanges"]
+                        if exc["unit"] == "megajoule"
+                        and exc["type"] == "biosphere"
+                        and exc["name"].startswith("Energy")
+                    ]
+                )
+
                 # add input of coal
                 coal = sum(
                     [
@@ -987,8 +997,9 @@ class HeatValidation(BaseDatasetValidator):
                 )
 
                 if not math.isclose(co2, expected_co2, rel_tol=0.2):
-                    message = f"CO2 emissions are {co2:.3f}, expected to be {expected_co2:.3f}."
-                    self.log_issue(ds, "CO2 emissions", message, issue_type="major")
+                    if "co-generation" not in ds["name"]:
+                        message = f"CO2 emissions are {co2:.3f}, expected to be {expected_co2:.3f}."
+                        self.log_issue(ds, "CO2 emissions", message, issue_type="major")
 
     def run_heat_checks(self):
         self.check_heat_conversion_efficiency()

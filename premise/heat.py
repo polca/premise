@@ -49,11 +49,41 @@ def _update_heat(scenario, version, system_model):
                 if "buildings" in tech.lower()
             ],
             name="market for heat, for buildings",
+            reference_product="heat, central or small-scale",
             energy_use_volumes=heat.iam_data.buildings_heating_mix,
             production_volumes=heat.iam_data.production_volumes,
         )
     else:
         print("No buildings heat scenario data available -- skipping")
+
+
+    if scenario["iam data"].industrial_heat_mix is not None:
+        heat.create_heat_markets(
+            technologies=[
+                tech
+                for tech in heat.iam_data.industrial_heat_mix.variables.values
+                if "industrial" in tech.lower()
+            ],
+            name="market for heat, district or industrial",
+            reference_product="heat, district or industrial",
+            energy_use_volumes=heat.iam_data.industrial_heat_mix,
+            production_volumes=heat.iam_data.production_volumes,
+        )
+        heat.relink_heat_markets(
+            current_input=[
+                {"name": "market for heat, district or industrial, natural gas", "reference product": "heat, district or industrial, natural gas"},
+                {"name": "market group for heat, district or industrial, natural gas", "reference product": "heat, district or industrial, natural gas"},
+                {"name": "market for heat, district or industrial, other than natural gas", "reference product": "heat, district or industrial, other than natural gas"},
+                {"name": "market group for heat, district or industrial, other than natural gas", "reference product": "heat, district or industrial, other than natural gas"},
+            ],
+            new_input={
+                "name": "market for heat, district or industrial",
+                "reference product": "heat, district or industrial",
+            }
+        )
+    else:
+        print("No industrial heat scenario data available -- skipping")
+
 
     if scenario["iam data"].daccs_energy_use is not None:
         heat.create_heat_markets(
@@ -61,6 +91,7 @@ def _update_heat(scenario, version, system_model):
                 tech for tech in heat.iam_data.daccs_energy_use.variables.values
             ],
             name="market for energy, for direct air capture and storage",
+            reference_product="energy, for direct air capture and storage",
             energy_use_volumes=heat.iam_data.daccs_energy_use,
             production_volumes=heat.iam_data.production_volumes,
         )
@@ -73,6 +104,7 @@ def _update_heat(scenario, version, system_model):
                 tech for tech in heat.iam_data.ewr_energy_use.variables.values
             ],
             name="market for energy, for enhanced rock weathering",
+            reference_product="energy, for enhanced rock weathering",
             energy_use_volumes=heat.iam_data.ewr_energy_use,
             production_volumes=heat.iam_data.production_volumes,
         )
@@ -209,7 +241,6 @@ class Heat(BaseTransformation):
                     continue
 
                 created_datasets.append(dataset["name"])
-
                 geo_mapping = None
                 if heat_tech == "heat, from natural gas (market)":
                     geo_mapping = {
@@ -480,7 +511,7 @@ class Heat(BaseTransformation):
         return dataset
 
     def create_heat_markets(
-        self, technologies, name, energy_use_volumes, production_volumes
+        self, technologies, name, reference_product, energy_use_volumes, production_volumes
     ):
 
         # Get the possible names of ecoinvent datasets
@@ -490,7 +521,7 @@ class Heat(BaseTransformation):
 
         generic_dataset = {
             "name": name,
-            "reference product": "heat, central or small-scale",
+            "reference product": reference_product,
             "unit": "megajoule",
             "database": self.database[1]["database"],
             "comment": f"Dataset created by `premise` from the IAM model {self.model.upper()}"
@@ -685,6 +716,31 @@ class Heat(BaseTransformation):
             )
             self.database.append(new_world_dataset)
             self.write_log(new_world_dataset)
+
+    def relink_heat_markets(self, current_input: list, new_input: dict):
+
+        for dataset in self.database:
+            for exc in ws.technosphere(
+                dataset,
+                ws.either(
+                    *[
+                        ws.equals("name", n)
+                        for n in [x["name"] for x in current_input]
+                    ]
+                ),
+                ws.either(
+                    *[
+                        ws.equals("product", n["reference product"])
+                        for n in current_input
+                    ]
+                ),
+            ):
+                print(f"Relinking {exc['name']} to {new_input['name']}")
+                exc["name"] = new_input["name"]
+                exc["product"] = new_input["reference product"]
+                exc["location"] = self.ecoinvent_to_iam_loc[dataset["location"]] if dataset["location"] not in self.regions else dataset["location"]
+                if "input" in exc:
+                    del exc["input"]
 
     def write_log(self, dataset, status="created"):
         """

@@ -200,6 +200,58 @@ heat, buildings, from light fuel oil boiler:
         - Final Energy|Commercial|Space Heating|Liquids|Fossil
         - Final Energy|Commercial|Water Heating|Liquids|Fossil
 
+heat, industrial, from heat pump:
+    ecoinvent_aliases:
+        fltr: heat production, air-water heat pump 10kW
+    iam_aliases:
+      remind: SE|Heat|Electricity|Heat Pump
+      remind-eu: SE|Heat|Electricity|Heat Pump
+
+
+heat, industrial, from natural gas CHP:
+    ecoinvent_aliases:
+        fltr:
+          name: heat and power co-generation, natural gas, conventional power plant, 100MW electrical
+          reference product: heat
+    iam_aliases:
+      remind: SE|Heat|Gas|Combined Heat and Power
+      remind-eu: SE|Heat|Gas|Combined Heat and Power
+
+heat, industrial, from coal CHP:
+    ecoinvent_aliases:
+        fltr:
+          name: heat and power co-generation, hard coal
+          reference product: heat
+    iam_aliases:
+      remind: SE|Heat|Coal|Combined Heat and Power
+      remind-eu: SE|Heat|Coal|Combined Heat and Power
+
+heat, industrial, from biomass CHP:
+    ecoinvent_aliases:
+        fltr:
+          name: heat and power co-generation, wood chips, 6667 kW
+          reference product: heat
+        mask:
+          - renewable
+          - state
+    iam_aliases:
+      remind: SE|Heat|Biomass|Combined Heat and Power
+      remind-eu: SE|Heat|Biomass|Combined Heat and Power
+
+heat, industrial, from geothermal:
+    ecoinvent_aliases:
+        fltr: heat production, deep geothermal
+    iam_aliases:
+      remind: SE|Heat|+|Geothermal
+      remind-eu: SE|Heat|+|Geothermal
+
+heat, industrial, from solar thermal:
+    ecoinvent_aliases:
+        fltr: heat production, at 110 MW concentrating solar power plant, with thermal energy storage
+    iam_aliases:
+      remind: SE|Heat|+|Solar
+      remind-eu: SE|Heat|+|Solar
+
 energy, for DACCS, from hydrogen turbine:
   ecoinvent_aliases:
     fltr: heat production, from hydrogen-fired one gigawatt gas turbine

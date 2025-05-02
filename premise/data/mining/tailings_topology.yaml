@@ -7,6 +7,8 @@ GLO:
     - World
   remind:
     - World
+  remind-eu:
+    - World
   tiam-ucl:
     - World
   witch:
@@ -21,6 +23,8 @@ NAM:
     - Canada
     - USA
   remind:
+    - USA
+  remind-eu:
     - USA
   tiam-ucl:
     - CAN
@@ -43,6 +47,8 @@ LATAM:
     - South America_Northern
     - South America_Southern
   remind:
+    - LAM
+  remind-eu:
     - LAM
   tiam-ucl:
     - CSA
@@ -67,6 +73,7 @@ EUR:
   remind:
     - EUR
     - NEU
+  remind-eu:
     - DEU
     - ECE
     - ECS
@@ -120,6 +127,13 @@ APAC:
     - JPN
     - IND
     - REF
+  remind-eu:
+    - OAS
+    - CAZ
+    - CHA
+    - JPN
+    - IND
+    - REF
   tiam-ucl:
     - AUS
     - CHI
@@ -151,6 +165,8 @@ AFR:
     - Africa_Western
     - South Africa
   remind:
+    - SSA
+  remind-eu:
     - SSA
   tiam-ucl:
     - AFR

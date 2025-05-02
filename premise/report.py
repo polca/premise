@@ -88,6 +88,11 @@ def fetch_data(
             if hasattr(iam_data, "production_volumes")
             else None
         ),
+        "Heat (all-purpose) - generation": (
+            iam_data.production_volumes
+            if hasattr(iam_data, "production_volumes")
+            else None
+        ),
         "Fuel (gasoline) - generation": (
             iam_data.production_volumes
             if hasattr(iam_data, "production_volumes")
@@ -306,6 +311,9 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
             "filepath": IAM_ELEC_VARS,
         },
         "Heat (buildings) - generation": {
+            "filepath": IAM_HEATING_VARS,
+        },
+        "Heat (all-purpose) - generation": {
             "filepath": IAM_HEATING_VARS,
         },
         "Fuel (gasoline) - generation": {
