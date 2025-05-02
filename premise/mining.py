@@ -131,7 +131,6 @@ def load_tailings_config(model: str):
     return create_dataset(tech_data, model_name=model, region_map_raw=region_map_raw)
 
 
-
 class Mining(BaseTransformation):
     def __init__(
         self,

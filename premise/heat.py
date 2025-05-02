@@ -56,7 +56,6 @@ def _update_heat(scenario, version, system_model):
     else:
         print("No buildings heat scenario data available -- skipping")
 
-
     if scenario["iam data"].industrial_heat_mix is not None:
         heat.create_heat_markets(
             technologies=[
@@ -71,19 +70,30 @@ def _update_heat(scenario, version, system_model):
         )
         heat.relink_heat_markets(
             current_input=[
-                {"name": "market for heat, district or industrial, natural gas", "reference product": "heat, district or industrial, natural gas"},
-                {"name": "market group for heat, district or industrial, natural gas", "reference product": "heat, district or industrial, natural gas"},
-                {"name": "market for heat, district or industrial, other than natural gas", "reference product": "heat, district or industrial, other than natural gas"},
-                {"name": "market group for heat, district or industrial, other than natural gas", "reference product": "heat, district or industrial, other than natural gas"},
+                {
+                    "name": "market for heat, district or industrial, natural gas",
+                    "reference product": "heat, district or industrial, natural gas",
+                },
+                {
+                    "name": "market group for heat, district or industrial, natural gas",
+                    "reference product": "heat, district or industrial, natural gas",
+                },
+                {
+                    "name": "market for heat, district or industrial, other than natural gas",
+                    "reference product": "heat, district or industrial, other than natural gas",
+                },
+                {
+                    "name": "market group for heat, district or industrial, other than natural gas",
+                    "reference product": "heat, district or industrial, other than natural gas",
+                },
             ],
             new_input={
                 "name": "market for heat, district or industrial",
                 "reference product": "heat, district or industrial",
-            }
+            },
         )
     else:
         print("No industrial heat scenario data available -- skipping")
-
 
     if scenario["iam data"].daccs_energy_use is not None:
         heat.create_heat_markets(
@@ -511,7 +521,12 @@ class Heat(BaseTransformation):
         return dataset
 
     def create_heat_markets(
-        self, technologies, name, reference_product, energy_use_volumes, production_volumes
+        self,
+        technologies,
+        name,
+        reference_product,
+        energy_use_volumes,
+        production_volumes,
     ):
 
         # Get the possible names of ecoinvent datasets
@@ -723,10 +738,7 @@ class Heat(BaseTransformation):
             for exc in ws.technosphere(
                 dataset,
                 ws.either(
-                    *[
-                        ws.equals("name", n)
-                        for n in [x["name"] for x in current_input]
-                    ]
+                    *[ws.equals("name", n) for n in [x["name"] for x in current_input]]
                 ),
                 ws.either(
                     *[
@@ -738,7 +750,11 @@ class Heat(BaseTransformation):
                 print(f"Relinking {exc['name']} to {new_input['name']}")
                 exc["name"] = new_input["name"]
                 exc["product"] = new_input["reference product"]
-                exc["location"] = self.ecoinvent_to_iam_loc[dataset["location"]] if dataset["location"] not in self.regions else dataset["location"]
+                exc["location"] = (
+                    self.ecoinvent_to_iam_loc[dataset["location"]]
+                    if dataset["location"] not in self.regions
+                    else dataset["location"]
+                )
                 if "input" in exc:
                     del exc["input"]
 
