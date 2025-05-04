@@ -161,7 +161,9 @@ class InventorySet:
             filepath=CEMENT_TECHS, var="ecoinvent_fuel_aliases"
         )
 
-        self.steel_filters = get_mapping(filepath=STEEL_TECHS, var="ecoinvent_aliases", model=self.model)
+        self.steel_filters = get_mapping(
+            filepath=STEEL_TECHS, var="ecoinvent_aliases", model=self.model
+        )
 
         self.gains_filters_EU = get_mapping(
             filepath=GAINS_MAPPING, var="ecoinvent_aliases"

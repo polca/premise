@@ -126,8 +126,8 @@ class Steel(BaseTransformation):
 
             # adjust share of primary and secondary steel
             if market in (
-                    "market for steel, unalloyed",
-                    "market for steel, low-alloyed"
+                "market for steel, unalloyed",
+                "market for steel, low-alloyed",
             ):
                 for region, dataset in steel_markets.items():
 
@@ -152,10 +152,14 @@ class Steel(BaseTransformation):
                                 steel_type
                                 in self.iam_data.steel_technology_mix.variables.values
                             ):
-                                share = self.iam_data.steel_technology_mix.sel(
-                                    variables=steel_type,
-                                    region=region,
-                                ).interp(year=self.year).values.item(0)
+                                share = (
+                                    self.iam_data.steel_technology_mix.sel(
+                                        variables=steel_type,
+                                        region=region,
+                                    )
+                                    .interp(year=self.year)
+                                    .values.item(0)
+                                )
 
                                 if share > 0:
                                     supplier = ws.get_one(
@@ -319,12 +323,14 @@ class Steel(BaseTransformation):
         Create region-specific pig iron production activities.
         """
 
-        pig_iron_datasets = list(ws.get_many(
-            self.database,
-            ws.contains("name", "pig iron production"),
-            ws.contains("reference product", "pig iron"),
-            ws.equals("unit", "kilogram"),
-        ))
+        pig_iron_datasets = list(
+            ws.get_many(
+                self.database,
+                ws.contains("name", "pig iron production"),
+                ws.contains("reference product", "pig iron"),
+                ws.equals("unit", "kilogram"),
+            )
+        )
 
         new_datasets, processed_datasets = [], []
 
