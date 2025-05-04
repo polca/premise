@@ -222,7 +222,6 @@ cement, dry feed rotary kiln, efficient, with MEA CCS:
     remind-eu: Production|Industry|Cement w CCS
     message: Production|Non-Metallic Minerals|Cement w CCS
     gcam: Production|Industry|Cement w CCS
-    tiam-ucl: Production|Cement w CCS
   energy_use_aliases:
     remind: FE|Industry|+++|Cement w CCS
     remind-eu: FE|Industry|+++|Cement w CCS

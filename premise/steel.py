@@ -152,7 +152,7 @@ class Steel(BaseTransformation):
                                 share = self.iam_data.steel_technology_mix.sel(
                                     variables=steel_type,
                                     region=region,
-                                ).interp(year=self.year)
+                                ).interp(year=self.year).values.item(0)
 
                                 if share > 0:
                                     supplier = ws.get_one(
@@ -167,7 +167,7 @@ class Steel(BaseTransformation):
                                         {
                                             "name": supplier["name"],
                                             "product": supplier["reference product"],
-                                            "amount": share.values.item(0),
+                                            "amount": share,
                                             "unit": "kilogram",
                                             "type": "technosphere",
                                             "location": region,

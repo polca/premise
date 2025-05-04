@@ -747,7 +747,6 @@ class Heat(BaseTransformation):
                     ]
                 ),
             ):
-                print(f"Relinking {exc['name']} to {new_input['name']}")
                 exc["name"] = new_input["name"]
                 exc["product"] = new_input["reference product"]
                 exc["location"] = (

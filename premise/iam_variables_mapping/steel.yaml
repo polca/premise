@@ -120,6 +120,7 @@ steel - primary - BF/BOF:
     mask:
       - hot rolled
       - unalloyed
+      - market
 
 steel - primary - BF/BOF CCS:
   iam_aliases:
@@ -182,10 +183,11 @@ steel - primary - BF/BOF CCS:
       - FE|Industry|Steel|BF-BOF-CCS|+|Solids
   ecoinvent_aliases:
     fltr:
-      - steel production, converter
+      - steel production, low-alloyed, BF/BOF + CCS
     mask:
-      - hot rolled
+      - market
       - unalloyed
+
 
 steel - primary - DRI:
   iam_aliases:
@@ -239,9 +241,9 @@ steel - primary - DRI:
       - FE|Industry|Steel|DRI-NG-EAF|+|Solids
   ecoinvent_aliases:
     fltr:
-      - steel production, converter
+      - steel production, low-alloyed, natural gas-based DRI + EAF
     mask:
-      - hot rolled
+      - CCS
       - unalloyed
 
 steel - primary - DRI CCS:
@@ -282,10 +284,10 @@ steel - primary - DRI CCS:
       - FE|Industry|Steel|DRI-NG-EAF-CCS|+|Solids
   ecoinvent_aliases:
     fltr:
-      - steel production, converter
+      - steel production, low-alloyed, natural gas-based DRI + EAF + CCS
     mask:
-      - hot rolled
       - unalloyed
+      - market
 
 steel - primary - H-DRI:
   iam_aliases:
@@ -322,10 +324,7 @@ steel - primary - H-DRI:
       - FE|Industry|Steel|DRI-H2-EAF|+|Solids
   ecoinvent_aliases:
     fltr:
-      - steel production, converter
-    mask:
-      - hot rolled
-      - unalloyed
+      - steel production, low-alloyed, hydrogen-based DRI + EAF
 
 steel - primary - SR/BOF:
   iam_aliases:
@@ -342,9 +341,9 @@ steel - primary - SR/BOF:
       - Final Energy|Industry|Iron and Steel|SR/BOF|Traditional Biomass
   ecoinvent_aliases:
     fltr:
-      - steel production, converter
+      - steel production, low-alloyed, SR/BOF
     mask:
-      - hot rolled
+      - CCS
       - unalloyed
 
 steel - primary - SR/BOF CCS:
@@ -362,10 +361,7 @@ steel - primary - SR/BOF CCS:
       - Final Energy|Industry|Iron and Steel|SR/BOF + CCS|Traditional Biomass
   ecoinvent_aliases:
     fltr:
-      - steel production, converter
-    mask:
-      - hot rolled
-      - unalloyed
+      - steel production, low-alloyed, SR/BOF + CCS
 
 steel - primary - TGR BF/BOF:
   iam_aliases:
@@ -392,9 +388,9 @@ steel - primary - TGR BF/BOF:
       - Final Energy|Industry|Iron and Steel|TGR BF/BOF|Traditional Biomass
   ecoinvent_aliases:
     fltr:
-      - steel production, converter
+      - steel production, low-alloyed, TGR-BF/BOF
     mask:
-      - hot rolled
+      - CCS
       - unalloyed
 
 steel - primary - TGR BF/BOF CCS:
@@ -412,10 +408,7 @@ steel - primary - TGR BF/BOF CCS:
       - Final Energy|Industry|Iron and Steel|TGR BF/BOF BAT + CCS|Traditional Biomass
   ecoinvent_aliases:
     fltr:
-      - steel production, converter
-    mask:
-      - hot rolled
-      - unalloyed
+      - steel production, low-alloyed, TGR-BF/BOF + CCS
 
 steel - primary - Electrowinning:
   iam_aliases:

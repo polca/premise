@@ -200,6 +200,7 @@ FILEPATH_OCEAN_LIMING = INVENTORY_DIR / "lci-ocean-liming.xlsx"
 FILEPATH_FINAL_ENERGY = INVENTORY_DIR / "lci-final-energy.xlsx"
 FILEPATH_SULFIDIC_TAILINGS = INVENTORY_DIR / "lci-sulfidic-tailings.xlsx"
 FILEPATH_SHIPS = INVENTORY_DIR / "lci-ships.xlsx"
+FILEPATH_STEEL = INVENTORY_DIR / "lci-steel.xlsx"
 
 config = load_constants()
 
@@ -817,6 +818,7 @@ class NewDatabase:
             (FILEPATH_FINAL_ENERGY, "3.10"),
             (FILEPATH_SULFIDIC_TAILINGS, "3.8"),
             (FILEPATH_SHIPS, "3.10"),
+            (FILEPATH_STEEL, "3.10"),
         ]
         for filepath in filepaths:
             # make an exception for FILEPATH_OIL_GAS_INVENTORIES
