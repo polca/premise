@@ -125,7 +125,10 @@ class Steel(BaseTransformation):
             )
 
             # adjust share of primary and secondary steel
-            if market == "market for steel, low-alloyed":
+            if market in (
+                    "market for steel, unalloyed",
+                    "market for steel, low-alloyed"
+            ):
                 for region, dataset in steel_markets.items():
 
                     dataset["exchanges"] = [
@@ -316,24 +319,34 @@ class Steel(BaseTransformation):
         Create region-specific pig iron production activities.
         """
 
-        pig_iron = self.fetch_proxies(
-            name="pig iron production",
-            ref_prod="pig iron",
-            production_variable=[
-                p
-                for p in self.iam_data.steel_technology_mix.variables.values
-                if p != "steel - secondary"
-            ],
-        )
+        pig_iron_datasets = list(ws.get_many(
+            self.database,
+            ws.contains("name", "pig iron production"),
+            ws.contains("reference product", "pig iron"),
+            ws.equals("unit", "kilogram"),
+        ))
 
-        # adjust efficiency of pig iron production
-        for dataset in pig_iron.values():
-            dataset = self.adjust_process_efficiency(
-                dataset, "steel - primary - BF/BOF"
+        new_datasets, processed_datasets = [], []
+
+        for pig_iron_dataset in pig_iron_datasets:
+            if pig_iron_dataset["name"] in processed_datasets:
+                continue
+            processed_datasets.append(pig_iron_dataset["name"])
+
+            pig_iron = self.fetch_proxies(
+                name=pig_iron_dataset["name"],
+                ref_prod=pig_iron_dataset["reference product"],
+                production_variable=[
+                    p
+                    for p in self.iam_data.steel_technology_mix.variables.values
+                    if p != "steel - secondary"
+                ],
             )
 
+            new_datasets.extend(pig_iron.values())
+
         # add to log
-        for new_dataset in list(pig_iron.values()):
+        for new_dataset in new_datasets:
             self.write_log(new_dataset)
             self.add_to_index(new_dataset)
             # add to database
