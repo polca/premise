@@ -1583,7 +1583,7 @@ class Export:
                                     writer.writerow(
                                         [
                                             name,
-                                            simapro_units[e["unit"]],
+                                            simapro_units.get(e["unit"], e["unit"]),
                                             1.0,
                                             "not defined",
                                             sub_category,
@@ -1595,7 +1595,7 @@ class Export:
                                     writer.writerow(
                                         [
                                             name,
-                                            simapro_units[e["unit"]],
+                                            simapro_units.get(e["unit"], e["unit"]),
                                             1.0,
                                             "100%",
                                             "not defined",
@@ -1619,7 +1619,7 @@ class Export:
                                     writer.writerow(
                                         [
                                             name,
-                                            simapro_units[e["unit"]],
+                                            simapro_units.get(e["unit"], e["unit"]),
                                             f"{e['amount']:.3E}",
                                             "undefined",
                                             0,
@@ -1652,7 +1652,7 @@ class Export:
                                     [
                                         dict_bio.get(e["name"], e["name"]),
                                         sub_compartment,
-                                        simapro_units[e["unit"]],
+                                        simapro_units.get(e["unit"], e["unit"]),
                                         f"{e['amount']:.3E}",
                                         "undefined",
                                         0,
@@ -1689,7 +1689,7 @@ class Export:
                                     [
                                         dict_bio.get(e["name"], e["name"]),
                                         sub_compartment,
-                                        simapro_units[unit],
+                                        simapro_units.get(e["unit"], e["unit"]),
                                         f"{e['amount']:.3E}",
                                         "undefined",
                                         0,
@@ -1728,7 +1728,7 @@ class Export:
                                     [
                                         dict_bio.get(e["name"], e["name"]),
                                         sub_compartment,
-                                        simapro_units[unit],
+                                        simapro_units.get(e["unit"], e["unit"]),
                                         f"{e['amount']:.3E}",
                                         "undefined",
                                         0,
@@ -1760,7 +1760,7 @@ class Export:
                                     [
                                         dict_bio.get(e["name"], e["name"]),
                                         sub_compartment,
-                                        simapro_units[e["unit"]],
+                                        simapro_units.get(e["unit"], e["unit"]),
                                         f"{e['amount']:.3E}",
                                         "undefined",
                                         0,
@@ -1785,7 +1785,7 @@ class Export:
                                     writer.writerow(
                                         [
                                             name,
-                                            simapro_units[e["unit"]],
+                                            simapro_units.get(e["unit"], e["unit"]),
                                             f"{e['amount'] * -1:.3E}",
                                             "undefined",
                                             0,
