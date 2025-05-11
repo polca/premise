@@ -148,6 +148,7 @@ def group_dicts_by_keys(dicts: list, keys: list):
         groups[group_key].append(d)
     return list(groups.values())
 
+
 class Heat(BaseTransformation):
     """
     Class that modifies fuel inventories and markets
@@ -246,23 +247,30 @@ class Heat(BaseTransformation):
         for heat_tech, heat_datasets in self.heat_techs.items():
 
             # Check if the dataset has already been seen
-            heat_datasets = [ds for ds in heat_datasets if ds["name"] not in seen_datasets]
+            heat_datasets = [
+                ds for ds in heat_datasets if ds["name"] not in seen_datasets
+            ]
 
             if not heat_datasets:
                 continue
 
             heat_datasets = group_dicts_by_keys(
                 heat_datasets,
-                ["name", "reference product", ],
+                [
+                    "name",
+                    "reference product",
+                ],
             )
 
             for heat_dataset in heat_datasets:
                 geo_mapping = None
                 if heat_tech == "heat, from natural gas (market)":
-                    european_dataset = [ds for ds in heat_dataset if ds["location"] == "Europe without Switzerland"][0]
-                    geo_mapping = {
-                        r: european_dataset for r in self.regions
-                    }
+                    european_dataset = [
+                        ds
+                        for ds in heat_dataset
+                        if ds["location"] == "Europe without Switzerland"
+                    ][0]
+                    geo_mapping = {r: european_dataset for r in self.regions}
 
                 new_ds = self.fetch_proxies(
                     datasets=heat_dataset,
@@ -529,8 +537,7 @@ class Heat(BaseTransformation):
 
         # Get the possible names of ecoinvent datasets
         ecoinvent_technologies = {
-            technology: self.heat_techs[technology]
-            for technology in technologies
+            technology: self.heat_techs[technology] for technology in technologies
         }
 
         generic_dataset = {
@@ -544,10 +551,7 @@ class Heat(BaseTransformation):
         }
 
         def generate_regional_markets(
-            region: str,
-            period: int,
-            subset: list,
-            production_volumes: xr.DataArray
+            region: str, period: int, subset: list, production_volumes: xr.DataArray
         ) -> dict:
 
             new_dataset = copy.deepcopy(generic_dataset)
@@ -578,7 +582,8 @@ class Heat(BaseTransformation):
                 try:
                     while len(suppliers) == 0:
                         suppliers = [
-                            ds for ds in activities
+                            ds
+                            for ds in activities
                             if ds["location"] in possible_locations[counter]
                         ]
                         counter += 1

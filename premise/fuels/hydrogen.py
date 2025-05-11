@@ -16,12 +16,14 @@ from .utils import (
 from .config import HYDROGEN_SOURCES, HYDROGEN_SUPPLY_LOSSES, SUPPLY_CHAIN_SCENARIOS
 from ..transformation import ws, uuid, np
 
+
 def group_dicts_by_keys(dicts: list, keys: list):
     groups = defaultdict(list)
     for d in dicts:
         group_key = tuple(d.get(k) for k in keys)
         groups[group_key].append(d)
     return list(groups.values())
+
 
 class HydrogenMixin:
     def generate_hydrogen_activities(self):
@@ -50,7 +52,9 @@ class HydrogenMixin:
 
             for new_dataset in datasets:
 
-                new_dataset = [ds for ds in new_dataset if ds["name"] not in seen_datasets]
+                new_dataset = [
+                    ds for ds in new_dataset if ds["name"] not in seen_datasets
+                ]
 
                 if not new_dataset:
                     continue
@@ -75,14 +79,22 @@ class HydrogenMixin:
                             }
                         )
 
-                        new_energy_use, min_energy_use, max_energy_use, scaling_factor = (
+                        (
+                            new_energy_use,
+                            min_energy_use,
+                            max_energy_use,
+                            scaling_factor,
+                        ) = (
                             None,
                             None,
                             None,
                             1,
                         )
 
-                        if fuel_type in self.fuel_efficiencies.variables.values.tolist():
+                        if (
+                            fuel_type
+                            in self.fuel_efficiencies.variables.values.tolist()
+                        ):
                             scaling_factor = 1 / self.find_iam_efficiency_change(
                                 data=self.fuel_efficiencies,
                                 variable=fuel_type,
@@ -141,12 +153,7 @@ class HydrogenMixin:
 
         datasets = ws.get_many(
             self.database,
-            ws.either(
-                *[
-                    ws.contains("name", keyword)
-                    for keyword in keywords
-                ]
-            )
+            ws.either(*[ws.contains("name", keyword) for keyword in keywords]),
         )
         datasets = group_dicts_by_keys(datasets, ["name", "reference product"])
         new_datasets, seen_datasets = [], []

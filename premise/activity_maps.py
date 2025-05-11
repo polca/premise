@@ -35,6 +35,7 @@ FINAL_ENERGY = VARIABLES_DIR / "final_energy.yaml"
 MINING_WASTE = DATA_DIR / "mining" / "tailings_activities.yaml"
 CARBON_STORAGE_TECHS = VARIABLES_DIR / "carbon_dioxide_removal.yaml"
 
+
 def get_mapping(filepath: Path, var: str, model: str = None) -> dict:
     """
     Loa a YAML file and return a dictionary given a variable.
@@ -138,15 +139,20 @@ def debug_mapping_to_dataframe(mapping: dict) -> pd.DataFrame:
             "Category": category,
             "Market": market,
             "Product": product,
-            "Locations": sorted(locations)  # Sorting for consistent display
+            "Locations": sorted(locations),  # Sorting for consistent display
         }
         for (category, market, product), locations in temp_records.items()
     ]
 
-    df = pd.DataFrame(records).sort_values(by=["Category", "Market"]).reset_index(drop=True)
+    df = (
+        pd.DataFrame(records)
+        .sort_values(by=["Category", "Market"])
+        .reset_index(drop=True)
+    )
     # Optional: Visually hide duplicated categories
     df.loc[df["Category"].duplicated(), "Category"] = ""
     return df
+
 
 class InventorySet:
     """
@@ -262,7 +268,6 @@ class InventorySet:
         filters = get_mapping(filepath=CDR_TECHS, var="ecoinvent_aliases")
         return self.generate_sets_from_filters(filters)
 
-
     def generate_powerplant_fuels_map(self) -> dict:
         """
         Filter ecoinvent processes related to electricity production.
@@ -315,7 +320,6 @@ class InventorySet:
         )
         return self.generate_sets_from_filters(filters)
 
-
     def generate_fuel_map(self) -> dict:
         """
         Filter ecoinvent processes related to fuel supply.
@@ -337,9 +341,7 @@ class InventorySet:
         :rtype: dict
 
         """
-        filters = get_mapping(
-            filepath=MINING_WASTE, var="ecoinvent_aliases"
-        )
+        filters = get_mapping(filepath=MINING_WASTE, var="ecoinvent_aliases")
         return self.generate_sets_from_filters(filters)
 
     def generate_final_energy_map(self) -> dict:
