@@ -225,8 +225,7 @@ def create_fleet_vehicles(
                         candidate_vehicles = vehicle
 
                     vehicle_dataset = [
-                        ds for ds in candidate_vehicles
-                        if ds["location"] == region
+                        ds for ds in candidate_vehicles if ds["location"] == region
                     ][0]
 
                     act["exchanges"].append(
@@ -294,7 +293,8 @@ def create_fleet_vehicles(
                                 candidate_vehicles = mapping[pwt]
 
                                 vehicle_dataset = [
-                                    ds for ds in candidate_vehicles
+                                    ds
+                                    for ds in candidate_vehicles
                                     if ds["location"] == region
                                 ][0]
 
@@ -362,8 +362,12 @@ class Transport(BaseTransformation):
         self.database = database
         self.mapping = get_vehicles_mapping()
 
-        self.activity_mapping = InventorySet(database=database, version=version, model=model)
-        self.vehicle_map = self.activity_mapping.generate_transport_map(transport_type=vehicle_type)
+        self.activity_mapping = InventorySet(
+            database=database, version=version, model=model
+        )
+        self.vehicle_map = self.activity_mapping.generate_transport_map(
+            transport_type=vehicle_type
+        )
         self.rev_map = {}
         for k, v in self.vehicle_map.items():
             for x in v:
@@ -442,7 +446,9 @@ class Transport(BaseTransformation):
         if arr is None:
             return []
 
-        self.vehicle_map = self.activity_mapping.generate_transport_map(transport_type=self.vehicle_type)
+        self.vehicle_map = self.activity_mapping.generate_transport_map(
+            transport_type=self.vehicle_type
+        )
         fleet_act.extend(
             create_fleet_vehicles(
                 datasets=new_datasets,

@@ -126,10 +126,10 @@ class Steel(BaseTransformation):
                     for market in [
                         "market for steel, low-alloyed",
                         "market for steel, unalloyed",
-                        "market for steel, chromium steel 18/8"
+                        "market for steel, chromium steel 18/8",
                     ]
                 ]
-            )
+            ),
         )
 
         steel_markets = group_dicts_by_keys(steel_markets, ["name", "location"])
@@ -138,7 +138,9 @@ class Steel(BaseTransformation):
 
         for steel_market in steel_markets:
 
-            steel_market = [ds for ds in steel_market if ds["name"] not in seen_datasets]
+            steel_market = [
+                ds for ds in steel_market if ds["name"] not in seen_datasets
+            ]
 
             if not steel_market:
                 continue
@@ -149,10 +151,13 @@ class Steel(BaseTransformation):
             )
 
             # adjust share of primary and secondary steel
-            if any(x in steel_market[0]["name"] for x in (
-                "market for steel, unalloyed",
-                "market for steel, low-alloyed",
-            )):
+            if any(
+                x in steel_market[0]["name"]
+                for x in (
+                    "market for steel, unalloyed",
+                    "market for steel, low-alloyed",
+                )
+            ):
                 for region, dataset in regionalized_markets.items():
 
                     dataset["exchanges"] = [
@@ -310,9 +315,7 @@ class Steel(BaseTransformation):
                 if not activity:
                     continue
 
-                regionalized_datasets = self.fetch_proxies(
-                    datasets=activity
-                )
+                regionalized_datasets = self.fetch_proxies(datasets=activity)
 
                 # adjust efficiency of steel production
                 for dataset in regionalized_datasets.values():
@@ -328,7 +331,9 @@ class Steel(BaseTransformation):
             ws.contains("reference product", "steel"),
             ws.equals("unit", "kilogram"),
         )
-        steel_datasets = [ds for ds in steel_datasets if ds["name"] not in set(seen_datasets)]
+        steel_datasets = [
+            ds for ds in steel_datasets if ds["name"] not in set(seen_datasets)
+        ]
 
         steel_datasets = group_dicts_by_keys(steel_datasets, ["name", "location"])
 
@@ -339,9 +344,7 @@ class Steel(BaseTransformation):
             if not dataset:
                 continue
 
-            regionalized_datasets = self.fetch_proxies(
-                datasets=dataset
-            )
+            regionalized_datasets = self.fetch_proxies(datasets=dataset)
 
             processed_datasets.extend(regionalized_datasets.values())
             seen_datasets.extend([ds["name"] for ds in dataset])
@@ -357,21 +360,22 @@ class Steel(BaseTransformation):
         """
 
         pig_iron_datasets = [
-            ds for ds in self.database
+            ds
+            for ds in self.database
             if ds["name"].startswith("pig iron production")
             and ds["unit"] == "kilogram"
             and ds["reference product"] == "pig iron"
         ]
 
-        pig_iron_datasets = group_dicts_by_keys(
-            pig_iron_datasets, ["name", "location"]
-        )
+        pig_iron_datasets = group_dicts_by_keys(pig_iron_datasets, ["name", "location"])
 
         new_datasets, seen_datasets = [], []
 
         for pig_iron_dataset in pig_iron_datasets:
 
-            pig_iron_dataset = [ds for ds in pig_iron_dataset if ds["name"] not in seen_datasets]
+            pig_iron_dataset = [
+                ds for ds in pig_iron_dataset if ds["name"] not in seen_datasets
+            ]
 
             if not pig_iron_dataset:
                 continue
@@ -406,15 +410,15 @@ class Steel(BaseTransformation):
             ws.contains("name", "market for pig iron"),
         )
 
-        pig_iron_markets = group_dicts_by_keys(
-            pig_iron_markets, ["name", "location"]
-        )
+        pig_iron_markets = group_dicts_by_keys(pig_iron_markets, ["name", "location"])
 
         new_datasets, seen_datasets = [], []
 
         for pig_iron_market in pig_iron_markets:
 
-            pig_iron_market = [ds for ds in pig_iron_market if ds["name"] not in seen_datasets]
+            pig_iron_market = [
+                ds for ds in pig_iron_market if ds["name"] not in seen_datasets
+            ]
 
             if not pig_iron_market:
                 continue

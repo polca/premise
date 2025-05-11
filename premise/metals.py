@@ -624,11 +624,13 @@ class Metals(BaseTransformation):
         Create a new mining activity in a new location.
         """
 
-        datasets = list(ws.get_many(
-            self.database,
-            ws.equals("name", name),
-            ws.equals("reference product", reference_product),
-        ))
+        datasets = list(
+            ws.get_many(
+                self.database,
+                ws.equals("name", name),
+                ws.equals("reference product", reference_product),
+            )
+        )
 
         geography_mapping = {
             k: [x for x in datasets if x["location"] == v][0]

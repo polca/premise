@@ -178,9 +178,7 @@ class Mining(BaseTransformation):
             activities = group_dicts_by_keys(activities, ["name", "reference product"])
 
             for activity in activities:
-                regionalized_datasets = self.fetch_proxies(
-                    datasets=activity
-                )
+                regionalized_datasets = self.fetch_proxies(datasets=activity)
 
                 regionalized_datasets = {
                     k: v
@@ -196,8 +194,7 @@ class Mining(BaseTransformation):
             self.database.append(dataset)
 
         market_datasets = ws.get_many(
-            self.database,
-            ws.contains("name", "market for sulfidic tailings")
+            self.database, ws.contains("name", "market for sulfidic tailings")
         )
 
         market_datasets = group_dicts_by_keys(
@@ -207,9 +204,7 @@ class Mining(BaseTransformation):
         processed_datasets = []
 
         for market_dataset in market_datasets:
-            regionalized_datasets = self.fetch_proxies(
-                datasets=market_dataset
-            )
+            regionalized_datasets = self.fetch_proxies(datasets=market_dataset)
 
             regionalized_datasets = {
                 k: v

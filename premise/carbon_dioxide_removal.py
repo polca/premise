@@ -74,6 +74,7 @@ def group_dicts_by_keys(dicts: list, keys: list):
         groups[group_key].append(d)
     return list(groups.values())
 
+
 class CarbonDioxideRemoval(BaseTransformation):
     """
     Class that modifies DAC and DACCS inventories and markets
@@ -145,7 +146,9 @@ class CarbonDioxideRemoval(BaseTransformation):
 
                     energy_dataset_name = None
                     if technology == "direct air capture" and not any(
-                        x in y for y in datasets for x in ("industrial", "pump", "waste")
+                        x in y
+                        for y in datasets
+                        for x in ("industrial", "pump", "waste")
                     ):
                         energy_dataset_name = (
                             "market for energy, for direct air capture and storage"
@@ -174,7 +177,8 @@ class CarbonDioxideRemoval(BaseTransformation):
                             energy_input = sum(
                                 e["amount"]
                                 for e in dataset["exchanges"]
-                                if e["type"] == "technosphere" and e["unit"] == "megajoule"
+                                if e["type"] == "technosphere"
+                                and e["unit"] == "megajoule"
                             )
                             energy_input += sum(
                                 e["amount"] * 3.6
@@ -354,7 +358,6 @@ class CarbonDioxideRemoval(BaseTransformation):
         self,
     ):
 
-
         generic_dataset = {
             "name": "market for carbon dioxide removal",
             "reference product": "carbon dioxide, captured and stored",
@@ -396,8 +399,7 @@ class CarbonDioxideRemoval(BaseTransformation):
                             ds
                             for ds in datasets
                             if any(
-                                ds["location"] == x
-                                for x in possible_locations[counter]
+                                ds["location"] == x for x in possible_locations[counter]
                             )
                         ]
 
