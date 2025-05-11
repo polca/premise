@@ -20,12 +20,8 @@ train, electric:
 
 train, diesel-electric:
   iam_aliases:
-    remind: 
-      - ES|Transport|Freight|Rail|Liquids|Fossil
-      - ES|Transport|Freight|Rail|Liquids|Biomass
-    remind-eu:
-      - ES|Transport|Freight|Rail|Liquids|Fossil
-      - ES|Transport|Freight|Rail|Liquids|Biomass
+    remind: ES|Transport|Freight|Rail|Liquids
+    remind-eu: ES|Transport|Freight|Rail|Liquids
     tiam-ucl:
       - Distance|Transport|Rail|Freight|Biodiesel
       - Distance|Transport|Rail|Freight|Diesel

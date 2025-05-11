@@ -30,6 +30,11 @@ industrial CCS:
   - carbon dioxide, captured, at cement production plant, using monoethanolamine
   - carbon dioxide, captured, at cement production plant, using direct separation
   - carbon dioxide, captured, at cement production plant, using oxyfuel
+  - name: industrial gases production, cryogenic air separation
+    reference product: oxygen, liquid
+  - name: air separation, cryogenic
+    reference product: oxygen, liquid
+  - market for oxygen, liquid
 
 land use:
   - carbon dioxide, captured and stored, by land-use change

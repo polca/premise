@@ -40,6 +40,7 @@ from .fuels.base import _update_fuels
 from .heat import _update_heat
 from .inventory_imports import AdditionalInventory, DefaultInventory
 from .metals import _update_metals
+from .mining import _update_mining
 from .report import generate_change_report, generate_summary_report
 from .steel import _update_steel
 from .transport import _update_vehicles
@@ -199,6 +200,7 @@ FILEPATH_OCEAN_LIMING = INVENTORY_DIR / "lci-ocean-liming.xlsx"
 FILEPATH_FINAL_ENERGY = INVENTORY_DIR / "lci-final-energy.xlsx"
 FILEPATH_SULFIDIC_TAILINGS = INVENTORY_DIR / "lci-sulfidic-tailings.xlsx"
 FILEPATH_SHIPS = INVENTORY_DIR / "lci-ships.xlsx"
+FILEPATH_STEEL = INVENTORY_DIR / "lci-steel.xlsx"
 
 config = load_constants()
 
@@ -816,6 +818,7 @@ class NewDatabase:
             (FILEPATH_FINAL_ENERGY, "3.10"),
             (FILEPATH_SULFIDIC_TAILINGS, "3.8"),
             (FILEPATH_SHIPS, "3.10"),
+            (FILEPATH_STEEL, "3.10"),
         ]
         for filepath in filepaths:
             # make an exception for FILEPATH_OIL_GAS_INVENTORIES
@@ -916,6 +919,10 @@ class NewDatabase:
             },
             "metals": {
                 "func": _update_metals,
+                "args": (self.version, self.system_model),
+            },
+            "mining": {
+                "func": _update_mining,
                 "args": (self.version, self.system_model),
             },
             "heat": {"func": _update_heat, "args": (self.version, self.system_model)},

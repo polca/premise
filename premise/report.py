@@ -83,7 +83,12 @@ def fetch_data(
             if hasattr(iam_data, "electricity_technology_efficiencies")
             else None
         ),
-        "Heat (residential) - generation": (
+        "Heat (buildings) - generation": (
+            iam_data.production_volumes
+            if hasattr(iam_data, "production_volumes")
+            else None
+        ),
+        "Heat (all-purpose) - generation": (
             iam_data.production_volumes
             if hasattr(iam_data, "production_volumes")
             else None
@@ -158,11 +163,6 @@ def fetch_data(
             if hasattr(iam_data, "cement_technology_efficiencies")
             else None
         ),
-        "Cement - CCS": (
-            iam_data.carbon_capture_rate
-            if hasattr(iam_data, "carbon_capture_rate")
-            else None
-        ),
         "Steel - generation": (
             iam_data.production_volumes
             if hasattr(iam_data, "production_volumes")
@@ -171,11 +171,6 @@ def fetch_data(
         "Steel - efficiency": (
             iam_data.steel_technology_efficiencies
             if hasattr(iam_data, "steel_technology_efficiencies")
-            else None
-        ),
-        "Steel - CCS": (
-            iam_data.carbon_capture_rate
-            if hasattr(iam_data, "carbon_capture_rate")
             else None
         ),
         "CDR - generation": (
@@ -315,7 +310,10 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
         "Electricity - efficiency": {
             "filepath": IAM_ELEC_VARS,
         },
-        "Heat (residential) - generation": {
+        "Heat (buildings) - generation": {
+            "filepath": IAM_HEATING_VARS,
+        },
+        "Heat (all-purpose) - generation": {
             "filepath": IAM_HEATING_VARS,
         },
         "Fuel (gasoline) - generation": {

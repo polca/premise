@@ -41,19 +41,59 @@ def _update_heat(scenario, version, system_model):
     heat.fetch_fuel_market_co2_emissions()
     heat.regionalize_heat_production_datasets()
 
-    if scenario["iam data"].residential_heating_mix is not None:
+    if scenario["iam data"].buildings_heating_mix is not None:
         heat.create_heat_markets(
             technologies=[
                 tech
-                for tech in heat.iam_data.residential_heating_mix.variables.values
-                if "residential" in tech.lower()
+                for tech in heat.iam_data.buildings_heating_mix.variables.values
+                if "buildings" in tech.lower()
             ],
-            name="market for heat, residential",
-            energy_use_volumes=heat.iam_data.residential_heating_mix,
+            name="market for heat, for buildings",
+            reference_product="heat, central or small-scale",
+            energy_use_volumes=heat.iam_data.buildings_heating_mix,
             production_volumes=heat.iam_data.production_volumes,
         )
     else:
-        print("No residential heat scenario data available -- skipping")
+        print("No buildings heat scenario data available -- skipping")
+
+    if scenario["iam data"].industrial_heat_mix is not None:
+        heat.create_heat_markets(
+            technologies=[
+                tech
+                for tech in heat.iam_data.industrial_heat_mix.variables.values
+                if "industrial" in tech.lower()
+            ],
+            name="market for heat, district or industrial",
+            reference_product="heat, district or industrial",
+            energy_use_volumes=heat.iam_data.industrial_heat_mix,
+            production_volumes=heat.iam_data.production_volumes,
+        )
+        heat.relink_heat_markets(
+            current_input=[
+                {
+                    "name": "market for heat, district or industrial, natural gas",
+                    "reference product": "heat, district or industrial, natural gas",
+                },
+                {
+                    "name": "market group for heat, district or industrial, natural gas",
+                    "reference product": "heat, district or industrial, natural gas",
+                },
+                {
+                    "name": "market for heat, district or industrial, other than natural gas",
+                    "reference product": "heat, district or industrial, other than natural gas",
+                },
+                {
+                    "name": "market group for heat, district or industrial, other than natural gas",
+                    "reference product": "heat, district or industrial, other than natural gas",
+                },
+            ],
+            new_input={
+                "name": "market for heat, district or industrial",
+                "reference product": "heat, district or industrial",
+            },
+        )
+    else:
+        print("No industrial heat scenario data available -- skipping")
 
     if scenario["iam data"].daccs_energy_use is not None:
         heat.create_heat_markets(
@@ -61,6 +101,7 @@ def _update_heat(scenario, version, system_model):
                 tech for tech in heat.iam_data.daccs_energy_use.variables.values
             ],
             name="market for energy, for direct air capture and storage",
+            reference_product="energy, for direct air capture and storage",
             energy_use_volumes=heat.iam_data.daccs_energy_use,
             production_volumes=heat.iam_data.production_volumes,
         )
@@ -73,6 +114,7 @@ def _update_heat(scenario, version, system_model):
                 tech for tech in heat.iam_data.ewr_energy_use.variables.values
             ],
             name="market for energy, for enhanced rock weathering",
+            reference_product="energy, for enhanced rock weathering",
             energy_use_volumes=heat.iam_data.ewr_energy_use,
             production_volumes=heat.iam_data.production_volumes,
         )
@@ -98,6 +140,13 @@ def _update_heat(scenario, version, system_model):
 
     return scenario
 
+
+def group_dicts_by_keys(dicts: list, keys: list):
+    groups = defaultdict(list)
+    for d in dicts:
+        group_key = tuple(d.get(k) for k in keys)
+        groups[group_key].append(d)
+    return list(groups.values())
 
 class Heat(BaseTransformation):
     """
@@ -130,8 +179,8 @@ class Heat(BaseTransformation):
         )
 
         self.carbon_intensity_markets = {}
-        mapping = InventorySet(self.database)
-        self.heat_techs = mapping.generate_heat_map()
+        self.mapping = InventorySet(self.database)
+        self.heat_techs = self.mapping.generate_heat_map()
         self.biosphere_flows = get_biosphere_code(self.version)
 
     def fetch_fuel_market_co2_emissions(self):
@@ -192,46 +241,36 @@ class Heat(BaseTransformation):
 
         """
 
-        created_datasets = []
+        created_datasets, seen_datasets = [], []
 
         for heat_tech, heat_datasets in self.heat_techs.items():
-            datasets = list(
-                ws.get_many(
-                    self.database,
-                    ws.either(*[ws.equals("name", n) for n in heat_datasets]),
-                    ws.equals("unit", "megajoule"),
-                    ws.doesnt_contain_any("location", self.regions),
-                )
+
+            # Check if the dataset has already been seen
+            heat_datasets = [ds for ds in heat_datasets if ds["name"] not in seen_datasets]
+
+            if not heat_datasets:
+                continue
+
+            heat_datasets = group_dicts_by_keys(
+                heat_datasets,
+                ["name", "reference product", ],
             )
 
-            for dataset in datasets:
-                if dataset["name"] in created_datasets:
-                    continue
-
-                created_datasets.append(dataset["name"])
-
+            for heat_dataset in heat_datasets:
                 geo_mapping = None
                 if heat_tech == "heat, from natural gas (market)":
+                    european_dataset = [ds for ds in heat_dataset if ds["location"] == "Europe without Switzerland"][0]
                     geo_mapping = {
-                        r: "Europe without Switzerland" for r in self.regions
+                        r: european_dataset for r in self.regions
                     }
 
                 new_ds = self.fetch_proxies(
-                    name=dataset["name"],
-                    ref_prod=dataset["reference product"],
-                    exact_name_match=True,
-                    exact_product_match=True,
-                    subset=datasets,
+                    datasets=heat_dataset,
                     geo_mapping=geo_mapping,
                 )
 
-                if len(new_ds) == 0:
-                    continue
-
                 for ds in new_ds.values():
-
                     fossil_co2, non_fossil_co2 = 0.0, 0.0
-
                     for exc in ws.technosphere(ds):
                         if (
                             exc["name"],
@@ -340,11 +379,14 @@ class Heat(BaseTransformation):
                             non_fossil_co2
                         )
 
-                for new_dataset in list(new_ds.values()):
-                    self.write_log(new_dataset)
-                    # add it to list of created datasets
-                    self.add_to_index(new_dataset)
-                    self.database.append(new_dataset)
+                created_datasets.extend(new_ds.values())
+                seen_datasets.extend([ds["name"] for ds in new_ds.values()])
+
+        for new_dataset in created_datasets:
+            self.write_log(new_dataset)
+            # add it to list of created datasets
+            self.add_to_index(new_dataset)
+            self.database.append(new_dataset)
 
     def generate_world_market(
         self,
@@ -477,17 +519,23 @@ class Heat(BaseTransformation):
         return dataset
 
     def create_heat_markets(
-        self, technologies, name, energy_use_volumes, production_volumes
+        self,
+        technologies,
+        name,
+        reference_product,
+        energy_use_volumes,
+        production_volumes,
     ):
 
         # Get the possible names of ecoinvent datasets
         ecoinvent_technologies = {
-            technology: self.heat_techs[technology] for technology in technologies
+            technology: self.heat_techs[technology]
+            for technology in technologies
         }
 
         generic_dataset = {
             "name": name,
-            "reference product": "heat, central or small-scale",
+            "reference product": reference_product,
             "unit": "megajoule",
             "database": self.database[1]["database"],
             "comment": f"Dataset created by `premise` from the IAM model {self.model.upper()}"
@@ -496,7 +544,10 @@ class Heat(BaseTransformation):
         }
 
         def generate_regional_markets(
-            region: str, period: int, subset: list, production_volumes: xr.DataArray
+            region: str,
+            period: int,
+            subset: list,
+            production_volumes: xr.DataArray
         ) -> dict:
 
             new_dataset = copy.deepcopy(generic_dataset)
@@ -521,24 +572,18 @@ class Heat(BaseTransformation):
 
             tech_suppliers = defaultdict(list)
 
-            for technology in ecoinvent_technologies:
+            for technology, activities in ecoinvent_technologies.items():
                 suppliers, counter = [], 0
 
                 try:
                     while len(suppliers) == 0:
-                        suppliers = list(
-                            get_suppliers_of_a_region(
-                                database=subset,
-                                locations=possible_locations[counter],
-                                names=ecoinvent_technologies[technology],
-                                reference_prod="heat",
-                                unit="megajoule",
-                                exact_match=True,
-                            )
-                        )
+                        suppliers = [
+                            ds for ds in activities
+                            if ds["location"] in possible_locations[counter]
+                        ]
                         counter += 1
 
-                    tech_suppliers[technology] = suppliers
+                    tech_suppliers[technology] = suppliers[:1]
 
                 except IndexError as exc:
                     if self.system_model == "consequential":
@@ -657,6 +702,7 @@ class Heat(BaseTransformation):
             unit="megajoule",
         )
 
+        self.heat_techs = self.mapping.generate_heat_map()
         new_datasets = [
             generate_regional_markets(region, period, subset, energy_use_volumes)
             for period in periods
@@ -679,6 +725,31 @@ class Heat(BaseTransformation):
             )
             self.database.append(new_world_dataset)
             self.write_log(new_world_dataset)
+
+    def relink_heat_markets(self, current_input: list, new_input: dict):
+
+        for dataset in self.database:
+            for exc in ws.technosphere(
+                dataset,
+                ws.either(
+                    *[ws.equals("name", n) for n in [x["name"] for x in current_input]]
+                ),
+                ws.either(
+                    *[
+                        ws.equals("product", n["reference product"])
+                        for n in current_input
+                    ]
+                ),
+            ):
+                exc["name"] = new_input["name"]
+                exc["product"] = new_input["reference product"]
+                exc["location"] = (
+                    self.ecoinvent_to_iam_loc[dataset["location"]]
+                    if dataset["location"] not in self.regions
+                    else dataset["location"]
+                )
+                if "input" in exc:
+                    del exc["input"]
 
     def write_log(self, dataset, status="created"):
         """

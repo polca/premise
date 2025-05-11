@@ -5,12 +5,12 @@
 
 truck, battery electric, 3.5t:
   iam_aliases:
-    remind: ES|Transport|Freight|Road|Truck (0-3.5t)|Electric
-    remind-eu: ES|Transport|Freight|Road|Truck (0-3.5t)|Electric
+    remind: ES|Transport|Freight|Road|Light|Truck(0-3_5t)|BEV
+    remind-eu: ES|Transport|Freight|Road|Light|Truck(0-3_5t)|BEV
     tiam-ucl: Distance|Transport|Truck|Light|Electric|Electricity
   energy_use_aliases:
-    remind: FE|Transport|Freight|Road|Truck (0-3.5t)|Electricity
-    remind-eu: FE|Transport|Freight|Road|Truck (0-3.5t)|Electricity
+    remind: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Electricity
+    remind-eu: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Electricity
     tiam-ucl: Final Energy|Transport|Truck|Light|Electric|Electricity
   ecoinvent_aliases:
     fltr:
@@ -21,11 +21,11 @@ truck, battery electric, 3.5t:
 
 truck, fuel cell electric, 3.5t:
   iam_aliases:
-    remind: ES|Transport|Freight|Road|Truck (0-3.5t)|FCEV
-    remind-eu: ES|Transport|Freight|Road|Truck (0-3.5t)|FCEV
+    remind: ES|Transport|Freight|Road|Light|Truck(0-3_5t)|FCEV
+    remind-eu: ES|Transport|Freight|Road|Light|Truck(0-3_5t)|FCEV
   energy_use_aliases:
-    remind: FE|Transport|Freight|Road|Truck (0-3.5t)|Hydrogen
-    remind-eu: FE|Transport|Freight|Road|Truck (0-3.5t)|Hydrogen
+    remind: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Hydrogen
+    remind-eu: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Hydrogen
   ecoinvent_aliases:
     fltr:
       - transport, freight, lorry, fuel cell electric, 3.5t gross weight, long haul
@@ -59,12 +59,12 @@ truck, gasoline, 3.5t:
 
 truck, diesel, 3.5t:
   iam_aliases:
-    remind: ES|Transport|Freight|Road|Truck (0-3.5t)|Liquids
-    remind-eu: ES|Transport|Freight|Road|Truck (0-3.5t)|Liquids
+    remind: ES|Transport|Freight|Road|Light|Truck(0-3_5t)|Liquids
+    remind-eu: ES|Transport|Freight|Road|Light|Truck(0-3_5t)|Liquids
     tiam-ucl: Distance|Transport|Truck|Light|Diesel|Diesel
   energy_use_aliases:
-    remind: FE|Transport|Freight|Road|Truck (0-3.5t)|Liquids
-    remind-eu: FE|Transport|Freight|Road|Truck (0-3.5t)|Liquids
+    remind: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Liquids
+    remind-eu: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Liquids
     tiam-ucl: Final Energy|Transport|Truck|Light|Diesel|Diesel
   ecoinvent_aliases:
     fltr:
@@ -103,12 +103,12 @@ truck, plugin diesel hybrid, 3.5t:
 
 truck, compressed gas, 3.5t:
   iam_aliases:
-    remind: ES|Transport|Freight|Road|Truck (0-3.5t)|Gases
-    remind-eu: ES|Transport|Freight|Road|Truck (0-3.5t)|Gases
+    remind: ES|Transport|Freight|Road|Light|Truck(0-3_5t)|Gases
+    remind-eu: ES|Transport|Freight|Road|Light|Truck(0-3_5t)|Gases
     tiam-ucl: Distance|Transport|Truck|Light|Natural Gas|Natural Gas
   energy_use_aliases:
-    remind: FE|Transport|Freight|Road|Truck (0-3.5t)|Gases
-    remind-eu: FE|Transport|Freight|Road|Truck (0-3.5t)|Gases
+    remind: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Gases
+    remind-eu: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Gases
     tiam-ucl: Final Energy|Transport|Truck|Light|Natural Gas|Natural Gas
   ecoinvent_aliases:
     fltr:
@@ -132,13 +132,13 @@ truck, liquefied petroleum gas, 3.5t:
 
 truck, battery electric, 7.5t:
   iam_aliases:
-    remind: ES|Transport|Freight|Road|Truck (7.5t)|Electric
-    remind-eu: ES|Transport|Freight|Road|Truck (7.5t)|Electric
+    remind: ES|Transport|Freight|Road|Light|Truck(7_5t)|BEV
+    remind-eu: ES|Transport|Freight|Road|Light|Truck(7_5t)|BEV
     tiam-ucl: Distance|Transport|Truck|Commercial|Electric|Electricity
     witch: Energy Service|Transportation|Freight|Truck|Battery-Electric
   energy_use_aliases:
-    remind: FE|Transport|Freight|Road|Truck (7.5t)|Electricity
-    remind-eu: FE|Transport|Freight|Road|Truck (7.5t)|Electricity
+    remind: FE|Transport|Freight|Road|Light|Truck(7_5t)|Electricity
+    remind-eu: FE|Transport|Freight|Road|Light|Truck(7_5t)|Electricity
     tiam-ucl: Final Energy|Transport|Truck|Commercial|Electric|Electricity
     witch: Final Energy|Transportation|Freight|Truck|Battery-Electric|Electricity
   ecoinvent_aliases:
@@ -150,15 +150,15 @@ truck, battery electric, 7.5t:
 
 truck, fuel cell electric, 7.5t:
   iam_aliases:
-    remind: ES|Transport|Freight|Road|Truck (7.5t)|FCEV
-    remind-eu: ES|Transport|Freight|Road|Truck (7.5t)|FCEV
+    remind: ES|Transport|Freight|Road|Light|Truck(7_5t)|FCEV
+    remind-eu: ES|Transport|Freight|Road|Light|Truck(7_5t)|FCEV
     tiam-ucl:
       - Distance|Transport|Truck|Commercial|Hydrogen Fuel Cell|Electricity
       - Distance|Transport|Truck|Commercial|Hydrogen Fuel Cell|Truck Hydrogen
     witch: Energy Service|Transportation|Freight|Truck|Fuel-Cell-Electric
   energy_use_aliases:
-    remind: FE|Transport|Freight|Road|Truck (7.5t)|Hydrogen
-    remind-eu: FE|Transport|Freight|Road|Truck (7.5t)|Hydrogen
+    remind: FE|Transport|Freight|Road|Light|Truck(7_5t)|Hydrogen
+    remind-eu: FE|Transport|Freight|Road|Light|Truck(7_5t)|Hydrogen
     tiam-ucl:
       - Final Energy|Transport|Truck|Commercial|Hydrogen Fuel Cell|Electricity
       - Final Energy|Transport|Truck|Commercial|Hydrogen Fuel Cell|Truck Hydrogen
@@ -197,15 +197,15 @@ truck, gasoline, 7.5t:
 
 truck, diesel, 7.5t:
   iam_aliases:
-    remind: ES|Transport|Freight|Road|Truck (7.5t)|Liquids
-    remind-eu: ES|Transport|Freight|Road|Truck (7.5t)|Liquids
+    remind: ES|Transport|Freight|Road|Light|Truck(7_5t)|Liquids
+    remind-eu: ES|Transport|Freight|Road|Light|Truck(7_5t)|Liquids
     tiam-ucl: Distance|Transport|Truck|Commercial|Diesel|Diesel
     witch: Energy Service|Transportation|Freight|Truck|Internal Combustion
   energy_use_aliases:
-    remind: FE|Transport|Freight|Road|Truck (7.5t)|Liquids
-    remind-eu: FE|Transport|Freight|Road|Truck (7.5t)|Liquids
+    remind: FE|Transport|Freight|Road|Light|Truck(7_5t)|Liquids
+    remind-eu: FE|Transport|Freight|Road|Light|Truck(7_5t)|Liquids
     tiam-ucl: Final Energy|Transport|Truck|Commercial|Diesel|Diesel
-    witch: 
+    witch:
       - Final Energy|Transportation|Freight|Truck|Internal Combustion|Liquids|Oil
       - Final Energy|Transportation|Freight|Truck|Internal Combustion|Liquids|Biomass
   ecoinvent_aliases:
@@ -245,12 +245,12 @@ truck, plugin diesel hybrid, 7.5t:
 
 truck, compressed gas, 7.5t:
   iam_aliases:
-    remind: ES|Transport|Freight|Road|Truck (7.5t)|Gases
-    remind-eu: ES|Transport|Freight|Road|Truck (7.5t)|Gases
+    remind: ES|Transport|Freight|Road|Light|Truck(7_5t)|Gases
+    remind-eu: ES|Transport|Freight|Road|Light|Truck(7_5t)|Gases
     tiam-ucl: Distance|Transport|Truck|Commercial|Natural Gas|Natural Gas
   energy_use_aliases:
-    remind: FE|Transport|Freight|Road|Truck (7.5t)|Gases
-    remind-eu: FE|Transport|Freight|Road|Truck (7.5t)|Gases
+    remind: FE|Transport|Freight|Road|Light|Truck(7_5t)|Gases
+    remind-eu: FE|Transport|Freight|Road|Light|Truck(7_5t)|Gases
     tiam-ucl: Final Energy|Transport|Truck|Commercial|Natural Gas|Natural Gas
   ecoinvent_aliases:
     fltr:
@@ -273,11 +273,11 @@ truck, liquefied petroleum gas, 7.5t:
 
 truck, battery electric, 18t:
   iam_aliases:
-    remind: ES|Transport|Freight|Road|Truck (18t)|Electric
-    remind-eu: ES|Transport|Freight|Road|Truck (18t)|Electric
+    remind: ES|Transport|Freight|Road|Heavy|Truck(18t)|BEV
+    remind-eu: ES|Transport|Freight|Road|Heavy|Truck(18t)|BEV
   energy_use_aliases:
-    remind: FE|Transport|Freight|Road|Truck (18t)|Electricity
-    remind-eu: FE|Transport|Freight|Road|Truck (18t)|Electricity
+    remind: FE|Transport|Freight|Road|Heavy|Truck(18t)|Electricity
+    remind-eu: FE|Transport|Freight|Road|Heavy|Truck(18t)|Electricity
   ecoinvent_aliases:
     fltr:
       - transport, freight, lorry, battery electric, 18t gross weight, long haul
@@ -287,8 +287,8 @@ truck, battery electric, 18t:
 
 truck, fuel cell electric, 18t:
   iam_aliases:
-    remind: ES|Transport|Freight|Road|Truck (18t)|FCEV
-    remind-eu: ES|Transport|Freight|Road|Truck (18t)|FCEV
+    remind: ES|Transport|Freight|Road|Heavy|Truck(18t)|FCEV
+    remind-eu: ES|Transport|Freight|Road|Heavy|Truck(18t)|FCEV
     tiam-ucl: Distance|Transport|Truck|Medium|Hydrogen Fuel Cell|Truck Hydrogen
     image:
       - Energy Service|Transportation|Freight|Medium Truck|Fuel Cell Vehicle|Biofuels
@@ -297,8 +297,8 @@ truck, fuel cell electric, 18t:
       - Energy Service|Transportation|Freight|Medium Truck|Internal Combustion Engine|Hydrogen
       - Energy Service|Transportation|Freight|Medium Truck|Hybrid engine|Hydrogen
   energy_use_aliases:
-    remind: FE|Transport|Freight|Road|Truck (18t)|Hydrogen
-    remind-eu: FE|Transport|Freight|Road|Truck (18t)|Hydrogen
+    remind: FE|Transport|Freight|Road|Heavy|Truck(18t)|Hydrogen
+    remind-eu: FE|Transport|Freight|Road|Heavy|Truck(18t)|Hydrogen
     tiam-ucl: Final Energy|Transport|Truck|Medium|Hydrogen Fuel Cell|Truck Hydrogen
   ecoinvent_aliases:
     fltr:
@@ -333,8 +333,8 @@ truck, gasoline, 18t:
 
 truck, diesel, 18t:
   iam_aliases:
-    remind: ES|Transport|Freight|Road|Truck (18t)|Liquids
-    remind-eu: ES|Transport|Freight|Road|Truck (18t)|Liquids
+    remind: ES|Transport|Freight|Road|Heavy|Truck(18t)|Liquids
+    remind-eu: ES|Transport|Freight|Road|Heavy|Truck(18t)|Liquids
     tiam-ucl:
       - Distance|Transport|Truck|Medium|Diesel|Biodiesel
       - Distance|Transport|Truck|Medium|Diesel|Diesel
@@ -342,8 +342,8 @@ truck, diesel, 18t:
       - Energy Service|Transportation|Freight|Medium Truck|Internal Combustion Engine|Biofuel
       - Energy Service|Transportation|Freight|Medium Truck|Internal Combustion Engine|Diesel
   energy_use_aliases:
-    remind: FE|Transport|Freight|Road|Truck (18t)|Liquids
-    remind-eu: FE|Transport|Freight|Road|Truck (18t)|Liquids
+    remind: FE|Transport|Freight|Road|Heavy|Truck(18t)|Liquids
+    remind-eu: FE|Transport|Freight|Road|Heavy|Truck(18t)|Liquids
     tiam-ucl:
       - Final Energy|Transport|Truck|Medium|Diesel|Biodiesel
       - Final Energy|Transport|Truck|Medium|Diesel|Diesel
@@ -378,13 +378,13 @@ truck, diesel hybrid, 18t:
 
 truck, compressed gas, 18t:
   iam_aliases:
-    remind: ES|Transport|Freight|Road|Truck (18t)|Gases
-    remind-eu: ES|Transport|Freight|Road|Truck (18t)|Gases
+    remind: ES|Transport|Freight|Road|Heavy|Truck(18t)|Gases
+    remind-eu: ES|Transport|Freight|Road|Heavy|Truck(18t)|Gases
     image: Energy Service|Transportation|Freight|Medium Truck|Hybrid engine|LNG
     tiam-ucl: Distance|Transport|Truck|Medium|Natural Gas|Natural Gas
   energy_use_aliases:
-    remind: FE|Transport|Freight|Road|Truck (18t)|Gases
-    remind-eu: FE|Transport|Freight|Road|Truck (18t)|Gases
+    remind: FE|Transport|Freight|Road|Heavy|Truck(18t)|Gases
+    remind-eu: FE|Transport|Freight|Road|Heavy|Truck(18t)|Gases
     tiam-ucl: Final Energy|Transport|Truck|Medium|Natural Gas|Natural Gas
   ecoinvent_aliases:
     fltr:
@@ -423,11 +423,11 @@ truck, diesel plugin hybrid, 18t:
 
 truck, battery electric, 26t:
   iam_aliases:
-    remind: ES|Transport|Freight|Road|Truck (26t)|Electric
-    remind-eu: ES|Transport|Freight|Road|Truck (26t)|Electric
+    remind: ES|Transport|Freight|Road|Heavy|Truck(26t)|BEV
+    remind-eu: ES|Transport|Freight|Road|Heavy|Truck(26t)|BEV
   energy_use_aliases:
-    remind: FE|Transport|Freight|Road|Truck (26t)|Electricity
-    remind-eu: FE|Transport|Freight|Road|Truck (26t)|Electricity
+    remind: FE|Transport|Freight|Road|Heavy|Truck(26t)|Electricity
+    remind-eu: FE|Transport|Freight|Road|Heavy|Truck(26t)|Electricity
   ecoinvent_aliases:
     fltr:
       - transport, freight, lorry, battery electric, 26t gross weight, long haul
@@ -437,11 +437,11 @@ truck, battery electric, 26t:
 
 truck, fuel cell electric, 26t:
   iam_aliases:
-    remind: ES|Transport|Freight|Road|Truck (26t)|FCEV
-    remind-eu: ES|Transport|Freight|Road|Truck (26t)|FCEV
+    remind: ES|Transport|Freight|Road|Heavy|Truck(26t)|FCEV
+    remind-eu: ES|Transport|Freight|Road|Heavy|Truck(26t)|FCEV
   energy_use_aliases:
-    remind: FE|Transport|Freight|Road|Truck (26t)|Hydrogen
-    remind-eu: FE|Transport|Freight|Road|Truck (26t)|Hydrogen
+    remind: FE|Transport|Freight|Road|Heavy|Truck(26t)|Hydrogen
+    remind-eu: FE|Transport|Freight|Road|Heavy|Truck(26t)|Hydrogen
   ecoinvent_aliases:
     fltr:
       - transport, freight, lorry, fuel cell electric, 26t gross weight, long haul
@@ -451,11 +451,11 @@ truck, fuel cell electric, 26t:
 
 truck, diesel, 26t:
   iam_aliases:
-    remind: ES|Transport|Freight|Road|Truck (26t)|Liquids
-    remind-eu: ES|Transport|Freight|Road|Truck (26t)|Liquids
+    remind: ES|Transport|Freight|Road|Heavy|Truck(26t)|Liquids
+    remind-eu: ES|Transport|Freight|Road|Heavy|Truck(26t)|Liquids
   energy_use_aliases:
-    remind: FE|Transport|Freight|Road|Truck (26t)|Liquids
-    remind-eu: FE|Transport|Freight|Road|Truck (26t)|Liquids
+    remind: FE|Transport|Freight|Road|Heavy|Truck(26t)|Liquids
+    remind-eu: FE|Transport|Freight|Road|Heavy|Truck(26t)|Liquids
   ecoinvent_aliases:
     fltr:
       - transport, freight, lorry, diesel, 26t gross weight, EURO-VI, long haul
@@ -465,11 +465,11 @@ truck, diesel, 26t:
 
 truck, compressed gas, 26t:
   iam_aliases:
-    remind: ES|Transport|Freight|Road|Truck (26t)|Gases
-    remind-eu: ES|Transport|Freight|Road|Truck (26t)|Gases
+    remind: ES|Transport|Freight|Road|Heavy|Truck(26t)|Gases
+    remind-eu: ES|Transport|Freight|Road|Heavy|Truck(26t)|Gases
   energy_use_aliases:
-    remind: FE|Transport|Freight|Road|Truck (26t)|Gases
-    remind-eu: FE|Transport|Freight|Road|Truck (26t)|Gases
+    remind: FE|Transport|Freight|Road|Heavy|Truck(26t)|Gases
+    remind-eu: FE|Transport|Freight|Road|Heavy|Truck(26t)|Gases
   ecoinvent_aliases:
     fltr:
       - transport, freight, lorry, compressed gas, 26t gross weight, EURO-VI, long haul
@@ -479,11 +479,11 @@ truck, compressed gas, 26t:
 
 truck, battery electric, 40t:
   iam_aliases:
-    remind: ES|Transport|Freight|Road|Truck (40t)|Electric
-    remind-eu: ES|Transport|Freight|Road|Truck (40t)|Electric
+    remind: ES|Transport|Freight|Road|Heavy|Truck(40t)|BEV
+    remind-eu: ES|Transport|Freight|Road|Heavy|Truck(40t)|BEV
   energy_use_aliases:
-    remind: FE|Transport|Freight|Road|Truck (40t)|Electricity
-    remind-eu: FE|Transport|Freight|Road|Truck (40t)|Electricity
+    remind: FE|Transport|Freight|Road|Heavy|Truck(40t)|Electricity
+    remind-eu: FE|Transport|Freight|Road|Heavy|Truck(40t)|Electricity
   ecoinvent_aliases:
     fltr:
       - transport, freight, lorry, battery electric, 40t gross weight, long haul
@@ -493,8 +493,8 @@ truck, battery electric, 40t:
 
 truck, fuel cell electric, 40t:
   iam_aliases:
-    remind: ES|Transport|Freight|Road|Truck (40t)|FCEV
-    remind-eu: ES|Transport|Freight|Road|Truck (40t)|FCEV
+    remind: ES|Transport|Freight|Road|Heavy|Truck(40t)|FCEV
+    remind-eu: ES|Transport|Freight|Road|Heavy|Truck(40t)|FCEV
     tiam-ucl: Distance|Transport|Truck|Heavy|Hydrogen Fuel Cell|Truck Hydrogen
     image:
       - Energy Service|Transportation|Freight|Heavy Truck|Fuel Cell Vehicle|Biofuels
@@ -502,8 +502,8 @@ truck, fuel cell electric, 40t:
       - Energy Service|Transportation|Freight|Heavy Truck|Fuel Cell Vehicle|Hydrogen
       - Energy Service|Transportation|Freight|Heavy Truck|Internal Combustion Engine|Hydrogen
   energy_use_aliases:
-    remind: FE|Transport|Freight|Road|Truck (40t)|Hydrogen
-    remind-eu: FE|Transport|Freight|Road|Truck (40t)|Hydrogen
+    remind: FE|Transport|Freight|Road|Heavy|Truck(40t)|Hydrogen
+    remind-eu: FE|Transport|Freight|Road|Heavy|Truck(40t)|Hydrogen
     tiam-ucl: Final Energy|Transport|Truck|Heavy|Hydrogen Fuel Cell|Truck Hydrogen
   ecoinvent_aliases:
     fltr:
@@ -537,8 +537,8 @@ truck, gasoline hybrid, 40t:
 
 truck, diesel, 40t:
   iam_aliases:
-    remind: ES|Transport|Freight|Road|Truck (40t)|Liquids
-    remind-eu: ES|Transport|Freight|Road|Truck (40t)|Liquids
+    remind: ES|Transport|Freight|Road|Heavy|Truck(40t)|Liquids
+    remind-eu: ES|Transport|Freight|Road|Heavy|Truck(40t)|Liquids
     tiam-ucl:
       - Distance|Transport|Truck|Heavy|Diesel|Biodiesel
       - Distance|Transport|Truck|Heavy|Diesel|Diesel
@@ -547,8 +547,8 @@ truck, diesel, 40t:
       - Energy Service|Transportation|Freight|Heavy Truck|Internal Combustion Engine|Diesel
 
   energy_use_aliases:
-    remind: FE|Transport|Freight|Road|Truck (40t)|Liquids
-    remind-eu: FE|Transport|Freight|Road|Truck (40t)|Liquids
+    remind: FE|Transport|Freight|Road|Heavy|Truck(40t)|Liquids
+    remind-eu: FE|Transport|Freight|Road|Heavy|Truck(40t)|Liquids
     tiam-ucl:
       - Final Energy|Transport|Truck|Heavy|Diesel|Biodiesel
       - Final Energy|Transport|Truck|Heavy|Diesel|Diesel
@@ -582,13 +582,13 @@ truck, gasoline, 40t:
 
 truck, compressed gas, 40t:
   iam_aliases:
-    remind: ES|Transport|Freight|Road|Truck (40t)|Gases
-    remind-eu: ES|Transport|Freight|Road|Truck (40t)|Gases
+    remind: ES|Transport|Freight|Road|Heavy|Truck(40t)|Gases
+    remind-eu: ES|Transport|Freight|Road|Heavy|Truck(40t)|Gases
     image: Energy Service|Transportation|Freight|Heavy Truck|Hybrid engine|LNG
     tiam-ucl: Distance|Transport|Truck|Heavy|Natural Gas|Natural Gas
   energy_use_aliases:
-    remind: FE|Transport|Freight|Road|Truck (40t)|Gases
-    remind-eu: FE|Transport|Freight|Road|Truck (40t)|Gases
+    remind: FE|Transport|Freight|Road|Heavy|Truck(40t)|Gases
+    remind-eu: FE|Transport|Freight|Road|Heavy|Truck(40t)|Gases
     tiam-ucl: Final Energy|Transport|Truck|Heavy|Natural Gas|Natural Gas
   ecoinvent_aliases:
     fltr:

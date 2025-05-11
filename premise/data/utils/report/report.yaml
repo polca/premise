@@ -110,6 +110,10 @@ Heat (buildings) - generation:
   label: Exajoules (EJ)
   expl_text: Generated volumes of heating for residential and commercial buildings (space and water heating), per technology. Used to calculate the buildings heating supply mix.
   offset: 10
+Heat (all-purpose) - generation:
+  label: Exajoules (EJ)
+  expl_text: Generated volumes of heat for all purpose, per technology. Used to calculate the heat supply mix.
+  offset: 10
 Transport (two-wheelers):
   label: Vehicle-kilometers (million)
   expl_text: Number of vehicle-kilometers driven by two-wheelers. Used to calculate fleet-average vehicles.

@@ -411,7 +411,15 @@ class IAMDataCollection:
             for k, v in self.__get_iam_variable_labels(
                 IAM_HEATING_VARS, variable="iam_aliases"
             ).items()
-            if "residential" in k
+            if "buildings" in k
+        }
+
+        industrial_heat_vars = {
+            k: v
+            for k, v in self.__get_iam_variable_labels(
+                IAM_HEATING_VARS, variable="iam_aliases"
+            ).items()
+            if "industrial" in k
         }
 
         daccs_heat_vars = {
@@ -505,6 +513,7 @@ class IAMDataCollection:
             + list(land_use_vars.values())
             + list(land_use_change_vars.values())
             + list(buildings_heat_vars.values())
+            + list(industrial_heat_vars.values())
             + list(daccs_heat_vars.values())
             + list(ewr_heat_vars.values())
             + list(other_vars.values())
@@ -733,9 +742,15 @@ class IAMDataCollection:
             sector="transport",
         )
 
-        self.residential_heating_mix = self.__fetch_market_data(
+        self.buildings_heating_mix = self.__fetch_market_data(
             data=data,
             input_vars=buildings_heat_vars,
+            system_model=self.system_model,
+        )
+
+        self.industrial_heat_mix = self.__fetch_market_data(
+            data=data,
+            input_vars=industrial_heat_vars,
             system_model=self.system_model,
         )
 
@@ -1118,7 +1133,9 @@ class IAMDataCollection:
         for root, dirs, files in os.walk(filedir):
             for file in files:
                 # Check if both model and pathway are present in the filename
-                if self.model in file and self.pathway in file:
+                model, pathway = file.split("_")
+                pathway = pathway.split(".")[0]
+                if self.model == model and self.pathway == pathway:
                     filepath = Path(os.path.join(root, file))
 
         if filepath == "":

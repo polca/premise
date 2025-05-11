@@ -769,7 +769,6 @@ class BaseTransformation:
 
         for region, dataset in d_iam_to_eco.items():
 
-            # if self.is_in_index(dataset, region):
             if self.is_in_index(dataset, region):
                 # delete original dataset from the database
                 self.database = [

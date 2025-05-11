@@ -1,3 +1,5 @@
+from collections import defaultdict
+
 from .utils import (
     get_compression_effort,
     get_pre_cooling_energy,
@@ -14,6 +16,12 @@ from .utils import (
 from .config import HYDROGEN_SOURCES, HYDROGEN_SUPPLY_LOSSES, SUPPLY_CHAIN_SCENARIOS
 from ..transformation import ws, uuid, np
 
+def group_dicts_by_keys(dicts: list, keys: list):
+    groups = defaultdict(list)
+    for d in dicts:
+        group_key = tuple(d.get(k) for k in keys)
+        groups[group_key].append(d)
+    return list(groups.values())
 
 class HydrogenMixin:
     def generate_hydrogen_activities(self):
@@ -26,6 +34,7 @@ class HydrogenMixin:
         self._generate_supply_chain_variants(losses, supply_chain_scenarios)
 
     def _adjust_energy_inputs_for_hydrogen(self, hydrogen_parameters):
+        new_datasets, seen_datasets = [], []
         for fuel_type, datasets in self.fuel_map.items():
 
             if not fuel_type.startswith("hydrogen"):
@@ -37,79 +46,91 @@ class HydrogenMixin:
             efficiency = params.get("efficiency")
             floor_value = params.get("floor value")
 
-            new_ds = self.fetch_proxies(
-                datasets=datasets, production_variable=fuel_type
-            )
+            datasets = group_dicts_by_keys(datasets, ["name", "reference product"])
 
-            if params:
-                for region, dataset in new_ds.items():
-                    initial_energy_use = sum(
-                        exc["amount"]
-                        for exc in dataset["exchanges"]
-                        if exc["unit"] == feedstock_unit
-                        and feedstock_name in exc["name"]
-                        and exc["type"] != "production"
-                    )
+            for new_dataset in datasets:
 
-                    dataset.setdefault("log parameters", {}).update(
-                        {
-                            "initial energy input for hydrogen production": initial_energy_use
-                        }
-                    )
+                new_dataset = [ds for ds in new_dataset if ds["name"] not in seen_datasets]
 
-                    new_energy_use, min_energy_use, max_energy_use, scaling_factor = (
-                        None,
-                        None,
-                        None,
-                        1,
-                    )
+                if not new_dataset:
+                    continue
 
-                    if fuel_type in self.fuel_efficiencies.variables.values.tolist():
-                        scaling_factor = 1 / self.find_iam_efficiency_change(
-                            data=self.fuel_efficiencies,
-                            variable=fuel_type,
-                            location=region,
-                        )
-                        new_energy_use = max(
-                            scaling_factor * initial_energy_use, floor_value
+                new_ds = self.fetch_proxies(
+                    datasets=new_dataset, production_variable=fuel_type
+                )
+
+                if params:
+                    for region, dataset in new_ds.items():
+                        initial_energy_use = sum(
+                            exc["amount"]
+                            for exc in dataset["exchanges"]
+                            if exc["unit"] == feedstock_unit
+                            and feedstock_name in exc["name"]
+                            and exc["type"] != "production"
                         )
 
-                    if scaling_factor == 1 and "electrolysis" in fuel_type:
-                        new_energy_use, min_energy_use, max_energy_use = (
-                            adjust_electrolysis_electricity_requirement(
-                                self.year, efficiency
+                        dataset.setdefault("log parameters", {}).update(
+                            {
+                                "initial energy input for hydrogen production": initial_energy_use
+                            }
+                        )
+
+                        new_energy_use, min_energy_use, max_energy_use, scaling_factor = (
+                            None,
+                            None,
+                            None,
+                            1,
+                        )
+
+                        if fuel_type in self.fuel_efficiencies.variables.values.tolist():
+                            scaling_factor = 1 / self.find_iam_efficiency_change(
+                                data=self.fuel_efficiencies,
+                                variable=fuel_type,
+                                location=region,
                             )
+                            new_energy_use = max(
+                                scaling_factor * initial_energy_use, floor_value
+                            )
+
+                        if scaling_factor == 1 and "electrolysis" in fuel_type:
+                            new_energy_use, min_energy_use, max_energy_use = (
+                                adjust_electrolysis_electricity_requirement(
+                                    self.year, efficiency
+                                )
+                            )
+
+                        try:
+                            scaling_factor = new_energy_use / initial_energy_use
+                        except (ZeroDivisionError, TypeError):
+                            scaling_factor = 1
+
+                        if scaling_factor != 1:
+                            if min_energy_use is not None:
+                                for exc in ws.technosphere(
+                                    dataset,
+                                    ws.contains("name", feedstock_name),
+                                    ws.equals("unit", feedstock_unit),
+                                ):
+                                    exc["amount"] *= scaling_factor
+                                    exc["uncertainty type"] = 5
+                                    exc["loc"] = exc["amount"]
+                                    exc["minimum"] = exc["amount"] * (
+                                        min_energy_use / new_energy_use
+                                    )
+                                    exc["maximum"] = exc["amount"] * (
+                                        max_energy_use / new_energy_use
+                                    )
+
+                        dataset.setdefault("log parameters", {}).update(
+                            {"new energy input for hydrogen production": new_energy_use}
                         )
 
-                    try:
-                        scaling_factor = new_energy_use / initial_energy_use
-                    except (ZeroDivisionError, TypeError):
-                        scaling_factor = 1
+                new_datasets.extend(new_ds.values())
+                seen_datasets.extend([ds["name"] for ds in new_dataset])
 
-                    if scaling_factor != 1:
-                        if min_energy_use is not None:
-                            for exc in ws.technosphere(
-                                dataset,
-                                ws.contains("name", feedstock_name),
-                                ws.equals("unit", feedstock_unit),
-                            ):
-                                exc["amount"] *= scaling_factor
-                                exc["uncertainty type"] = 5
-                                exc["loc"] = exc["amount"]
-                                exc["minimum"] = exc["amount"] * (
-                                    min_energy_use / new_energy_use
-                                )
-                                exc["maximum"] = exc["amount"] * (
-                                    max_energy_use / new_energy_use
-                                )
-
-                    dataset.setdefault("log parameters", {}).update(
-                        {"new energy input for hydrogen production": new_energy_use}
-                    )
-
-            for dataset in new_ds.values():
-                self.database.append(dataset)
-                self.add_to_index(dataset)
+        for dataset in new_datasets:
+            self.database.append(dataset)
+            self.add_to_index(dataset)
 
     def _generate_supporting_hydrogen_datasets(self):
         keywords = [
@@ -117,20 +138,36 @@ class HydrogenMixin:
             "geological hydrogen storage",
             "hydrogen refuelling station",
         ]
-        for ds in self.database:
-            if any(k in ds["name"] for k in keywords):
-                new_ds = self.fetch_proxies(
-                    datasets=[
-                        ds,
-                    ]
-                )
-                for new_d in new_ds.values():
-                    for exc in ws.production(new_d):
-                        exc.pop("input", None)
-                    updated = self.relink_technosphere_exchanges(new_d)
-                    self.database.append(updated)
-                    self.add_to_index(updated)
-                    self.write_log(updated)
+
+        datasets = ws.get_many(
+            self.database,
+            ws.either(
+                *[
+                    ws.contains("name", keyword)
+                    for keyword in keywords
+                ]
+            )
+        )
+        datasets = group_dicts_by_keys(datasets, ["name", "reference product"])
+        new_datasets, seen_datasets = [], []
+        for ds in datasets:
+
+            ds = [d for d in ds if d["name"] not in seen_datasets]
+
+            if not ds:
+                continue
+
+            new_ds = self.fetch_proxies(
+                datasets=ds,
+            )
+
+            seen_datasets.append(d["name"] for d in ds)
+            new_datasets.extend(new_ds.values())
+
+        for new_d in new_datasets:
+            self.database.append(new_d)
+            self.add_to_index(new_d)
+            self.write_log(new_d)
 
     def _generate_supply_chain_variants(self, losses, supply_chain_scenarios):
         self.fuel_map = self.mapping.generate_fuel_map()

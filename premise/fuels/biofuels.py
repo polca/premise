@@ -39,10 +39,6 @@ class BiofuelsMixin:
 
                 activities = biofuel_activities[crop_type][specific_crop]
 
-                print("activities")
-                print(activities)
-                print()
-
                 datasets = [
                     ds
                     for ds in self.database

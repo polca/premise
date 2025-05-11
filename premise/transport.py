@@ -184,20 +184,20 @@ def create_fleet_vehicles(
 
         if total_km > 0:
 
-            name = vehicles_map[vehicle_type]["name"]
+            candidate_vehicles = vehicles_map[vehicle_type]["name"]
             if vehicle_type == "truck":
-                name = f"{name}, unspecified, long haul"
+                candidate_vehicles = f"{candidate_vehicles}, unspecified, long haul"
             if vehicle_type == "car":
-                name = f"{name}, unspecified"
+                candidate_vehicles = f"{candidate_vehicles}, unspecified"
 
             act = {
-                "name": name,
+                "name": candidate_vehicles,
                 "reference product": vehicles_map[vehicle_type]["name"],
                 "unit": vehicles_map[vehicle_type]["unit"],
                 "location": region,
                 "exchanges": [
                     {
-                        "name": name,
+                        "name": candidate_vehicles,
                         "product": vehicles_map[vehicle_type]["name"],
                         "unit": vehicles_map[vehicle_type]["unit"],
                         "location": region,
@@ -219,29 +219,15 @@ def create_fleet_vehicles(
                     indiv_share = (indiv_km / total_km).values.item(0)
 
                     try:
-                        name = mapping[vehicle]
+                        candidate_vehicles = mapping[vehicle]
                     except KeyError:
                         print(mapping)
-                        name = vehicle
+                        candidate_vehicles = vehicle
 
-                    if isinstance(name, set):
-                        # check if length of set is 1
-                        if len(name) == 1:
-                            # if so, take the only element
-                            name = next(iter(name))
-
-                    try:
-                        vehicle_dataset = ws.get_one(
-                            datasets,
-                            ws.equals("name", name),
-                            ws.equals("location", region),
-                        )
-                    except ws.NoResults:
-                        print(f"Could not find dataset for {name} in {region}.")
-                        continue
-                    except ws.MultipleResults:
-                        print(f"Multiple datasets found for {name} in {region}.")
-                        continue
+                    vehicle_dataset = [
+                        ds for ds in candidate_vehicles
+                        if ds["location"] == region
+                    ][0]
 
                     act["exchanges"].append(
                         {
@@ -268,18 +254,18 @@ def create_fleet_vehicles(
                     ).sum()
 
                     if total_size_km > 0:
-                        name = (
+                        candidate_vehicles = (
                             f"{vehicles_map[vehicle_type]['name']}, {size} gross weight, "
                             f"unspecified powertrain, long haul"
                         )
                         act = {
-                            "name": name,
+                            "name": candidate_vehicles,
                             "reference product": vehicles_map[vehicle_type]["name"],
                             "unit": vehicles_map[vehicle_type]["unit"],
                             "location": region,
                             "exchanges": [
                                 {
-                                    "name": name,
+                                    "name": candidate_vehicles,
                                     "product": vehicles_map[vehicle_type]["name"],
                                     "unit": vehicles_map[vehicle_type]["unit"],
                                     "location": region,
@@ -305,18 +291,12 @@ def create_fleet_vehicles(
                             if indiv_km > 0:
                                 indiv_share = (indiv_km / total_size_km).values.item(0)
 
-                                name = mapping[pwt]
-                                if isinstance(name, set):
-                                    # check if length of set is 1
-                                    if len(name) == 1:
-                                        # if so, take the only element
-                                        name = next(iter(name))
+                                candidate_vehicles = mapping[pwt]
 
-                                vehicle_dataset = ws.get_one(
-                                    datasets,
-                                    ws.equals("name", name),
-                                    ws.equals("location", region),
-                                )
+                                vehicle_dataset = [
+                                    ds for ds in candidate_vehicles
+                                    if ds["location"] == region
+                                ][0]
 
                                 act["exchanges"].append(
                                     {
@@ -382,10 +362,14 @@ class Transport(BaseTransformation):
         self.database = database
         self.mapping = get_vehicles_mapping()
 
-        mapping = InventorySet(database=database, version=version, model=model)
-        self.vehicle_map = mapping.generate_transport_map(transport_type=vehicle_type)
-        self.rev_map = {next(iter(v)): k for k, v in self.vehicle_map.items()}
-        self.vehicle_fuel_map = mapping.generate_vehicle_fuel_map(
+        self.activity_mapping = InventorySet(database=database, version=version, model=model)
+        self.vehicle_map = self.activity_mapping.generate_transport_map(transport_type=vehicle_type)
+        self.rev_map = {}
+        for k, v in self.vehicle_map.items():
+            for x in v:
+                self.rev_map[x["name"]] = k
+
+        self.vehicle_fuel_map = self.activity_mapping.generate_vehicle_fuel_map(
             transport_type=vehicle_type
         )
 
@@ -437,22 +421,16 @@ class Transport(BaseTransformation):
             arr = self.iam_data.sea_freight_fleet
 
         processed_datasets = []
-        for vehicle_type, vehicle_dataset in self.vehicle_map.items():
-            vehicle_dataset = list(vehicle_dataset)[0]
+        for vehicle_type, vehicle_datasets in self.vehicle_map.items():
 
-            if vehicle_dataset in processed_datasets:
-                continue
-
-            new_datasets.extend(
+            processed_datasets.extend(
                 self.fetch_proxies(
-                    subset=vehicle_datasets,
-                    name=vehicle_dataset,
-                    ref_prod="",
+                    datasets=vehicle_datasets,
                     production_variable=vehicle_type,
                 ).values()
             )
 
-        for new_ds in new_datasets:
+        for new_ds in processed_datasets:
             new_ds = self.adjust_transport_efficiency(new_ds)
 
             if not self.is_in_index(new_ds):
@@ -464,6 +442,7 @@ class Transport(BaseTransformation):
         if arr is None:
             return []
 
+        self.vehicle_map = self.activity_mapping.generate_transport_map(transport_type=self.vehicle_type)
         fleet_act.extend(
             create_fleet_vehicles(
                 datasets=new_datasets,

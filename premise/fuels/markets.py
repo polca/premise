@@ -15,6 +15,7 @@ from ..transformation import ws, get_shares_from_production_volume
 
 class FuelMarketsMixin:
 
+
     def generate_fuel_supply_chains(self):
         """Duplicate fuel chains and make them IAM region-specific."""
         self.generate_hydrogen_activities()

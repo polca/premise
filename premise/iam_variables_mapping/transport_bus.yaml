@@ -86,11 +86,11 @@
       - hydrogen
 'bus, battery electric':
   iam_aliases:
-    remind: ES|Transport|Pass|Road|Bus|Electric
-    remind-eu: ES|Transport|Pass|Road|Bus|Electric
+    remind: ES|Transport|Pass|Road|Bus|BEV
+    remind-eu: ES|Transport|Pass|Road|Bus|BEV
   energy_use_aliases:
-    remind: FE|Transport|Pass|Road|Bus|Electric
-    remind-eu: FE|Transport|Pass|Road|Bus|Electric
+    remind: FE|Transport|Pass|Road|Bus|Electricity
+    remind-eu: FE|Transport|Pass|Road|Bus|Electricity
   ecoinvent_aliases:
     fltr:
       - 'transport, passenger bus, battery electric - overnight charging, 13m single deck urban bus'

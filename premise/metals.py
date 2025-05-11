@@ -161,7 +161,7 @@ def extend_dataframe(df, mapping):
         # For each process in the set associated with the key, duplicate the matching rows
         for process in processes:
             temp_rows = matching_rows.copy()
-            temp_rows["ecoinvent_technology"] = process
+            temp_rows["ecoinvent_technology"] = process["name"]
             new_rows.extend(temp_rows.to_dict("records"))
     new_df = pd.DataFrame(new_rows)
 
@@ -215,7 +215,7 @@ def rev_metals_map(mapping: dict) -> dict:
     rev_mapping = {}
     for key, val in mapping.items():
         for v in val:
-            rev_mapping[v] = key
+            rev_mapping[v["name"]] = key
     return rev_mapping
 
 
@@ -392,6 +392,7 @@ class Metals(BaseTransformation):
         for dataset in self.database:
             if dataset["name"] in self.rev_activities_metals_map:
                 origin_var = self.rev_activities_metals_map[dataset["name"]]
+
                 self.update_metal_use(dataset, origin_var)
 
     @lru_cache()
@@ -618,14 +619,19 @@ class Metals(BaseTransformation):
         new_locations: dict,
         geography_mapping=None,
         shares: dict = None,
-        subset: list = None,
     ) -> dict:
         """
         Create a new mining activity in a new location.
         """
 
+        datasets = list(ws.get_many(
+            self.database,
+            ws.equals("name", name),
+            ws.equals("reference product", reference_product),
+        ))
+
         geography_mapping = {
-            k: v
+            k: [x for x in datasets if x["location"] == v][0]
             for k, v in geography_mapping.items()
             if not self.is_in_index(
                 {"name": name, "reference product": reference_product, "location": k}
@@ -636,18 +642,14 @@ class Metals(BaseTransformation):
             return {}
 
         # Get the original datasets
-        datasets = self.fetch_proxies(
-            name=name,
-            ref_prod=reference_product,
+        regionalized_datasets = self.fetch_proxies(
+            datasets=datasets,
             regions=new_locations.values(),
             geo_mapping=geography_mapping,
             production_variable=shares,
-            exact_name_match=True,
-            exact_product_match=True,
-            subset=subset,
         )
 
-        return datasets
+        return regionalized_datasets
 
     def get_shares(self, df: pd.DataFrame, new_locations: dict, name, ref_prod) -> dict:
         """
@@ -722,7 +724,6 @@ class Metals(BaseTransformation):
                 new_locations=new_locations,
                 geography_mapping=geography_mapping,
                 shares={k[2]: v for k, v in shares.items()},
-                subset=subset,
             )
 
             # add new datasets to database
@@ -915,9 +916,6 @@ class Metals(BaseTransformation):
             dataframe["Region"].notnull() & dataframe["2020"].isnull()
         ]
 
-        dataset_names = list(dataframe_parent["Process"].unique())
-        subset = filter_technology(dataset_names, self.database)
-
         for metal in dataframe_parent["Metal"].unique():
             df_metal = dataframe_parent.loc[dataframe["Metal"] == metal]
 
@@ -932,7 +930,6 @@ class Metals(BaseTransformation):
                     name=name,
                     reference_product=ref_prod,
                     geography_mapping=geography_mapping,
-                    subset=subset,
                 )
 
                 self.database.extend(datasets.values())

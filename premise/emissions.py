@@ -105,11 +105,11 @@ class Emissions(BaseTransformation):
 
         for s in self.gains_map_europe:
             for t in self.gains_map_europe[s]:
-                self.rev_gains_map_europe[t] = s
+                self.rev_gains_map_europe[t["name"]] = s
 
         for s in self.gains_map_global:
             for t in self.gains_map_global[s]:
-                self.rev_gains_map_global[t] = s
+                self.rev_gains_map_global[t["name"]] = s
 
     def prepare_data(self, data):
 

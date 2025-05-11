@@ -15,7 +15,8 @@ class SyntheticFuelsMixin:
             datasets = [
                 ds
                 for ds in self.database
-                if any(ds["name"].startswith(activity) for activity in activities)
+                if any(ds["name"].startswith(activity)
+                for activity in activities)
             ]
             for dataset in datasets:
                 if dataset["name"] in processed_datasets:

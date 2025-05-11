@@ -117,6 +117,8 @@ class Fuels(
                     dim="variables",
                 )
 
+        self.new_fuel_markets = {}
+
     def find_suppliers(
         self,
         name: str,

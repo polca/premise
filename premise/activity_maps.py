@@ -8,7 +8,7 @@ from pathlib import Path
 from typing import List, Union
 
 import yaml
-from charset_normalizer.models import CliDetectionResult
+import pandas as pd
 from wurst import searching as ws
 
 from .filesystem_constants import DATA_DIR, VARIABLES_DIR
@@ -22,6 +22,7 @@ CEMENT_TECHS = VARIABLES_DIR / "cement.yaml"
 GAINS_MAPPING = (
     DATA_DIR / "GAINS_emission_factors" / "gains_ecoinvent_sectoral_mapping.yaml"
 )
+STEEL_TECHS = VARIABLES_DIR / "steel.yaml"
 ACTIVITIES_METALS_MAPPING = DATA_DIR / "metals" / "activities_mapping.yml"
 HEAT_TECHS = VARIABLES_DIR / "heat.yaml"
 PASSENGER_CARS = VARIABLES_DIR / "transport_passenger_cars.yaml"
@@ -31,7 +32,8 @@ TRUCKS = VARIABLES_DIR / "transport_road_freight.yaml"
 TRAINS = VARIABLES_DIR / "transport_rail_freight.yaml"
 SHIPS = VARIABLES_DIR / "transport_sea_freight.yaml"
 FINAL_ENERGY = VARIABLES_DIR / "final_energy.yaml"
-
+MINING_WASTE = DATA_DIR / "mining" / "tailings_activities.yaml"
+CARBON_STORAGE_TECHS = VARIABLES_DIR / "carbon_dioxide_removal.yaml"
 
 def get_mapping(filepath: Path, var: str, model: str = None) -> dict:
     """
@@ -112,6 +114,40 @@ def act_fltr(
     return list(ws.get_many(database, *filters))
 
 
+def debug_mapping_to_dataframe(mapping: dict) -> pd.DataFrame:
+    """
+    Convert a mapping dictionary of the form {category: [activities]} into a grouped DataFrame
+    with a 'Location' column listing all locations per (Category, Market, Product) combination.
+
+    :param mapping: Dictionary where keys are categories and values are lists of activity dicts.
+    :return: A pandas DataFrame with columns 'Category', 'Market', 'Product', and 'Locations'.
+    """
+    from collections import defaultdict
+
+    temp_records = defaultdict(set)
+
+    for category, activities in mapping.items():
+        for act in activities:
+            if isinstance(act, dict) and "name" in act and "reference product" in act:
+                key = (category, act.get("name"), act.get("reference product"))
+                temp_records[key].add(act.get("location"))
+
+    # Prepare final records
+    records = [
+        {
+            "Category": category,
+            "Market": market,
+            "Product": product,
+            "Locations": sorted(locations)  # Sorting for consistent display
+        }
+        for (category, market, product), locations in temp_records.items()
+    ]
+
+    df = pd.DataFrame(records).sort_values(by=["Category", "Market"]).reset_index(drop=True)
+    # Optional: Visually hide duplicated categories
+    df.loc[df["Category"].duplicated(), "Category"] = ""
+    return df
+
 class InventorySet:
     """
     Hosts different filter sets to find equivalencies
@@ -185,9 +221,10 @@ class InventorySet:
 
     def generate_gains_mapping_IAM(self, mapping):
         EU_to_IAM_var = get_mapping(filepath=GAINS_MAPPING, var="gains_aliases_IAM")
-        new_map = defaultdict(set)
+        new_map = defaultdict(list)
+
         for eu, iam in EU_to_IAM_var.items():
-            new_map[iam].update(mapping[eu])
+            new_map[iam].extend(mapping[eu])
 
         return new_map
 
@@ -225,17 +262,6 @@ class InventorySet:
         filters = get_mapping(filepath=CDR_TECHS, var="ecoinvent_aliases")
         return self.generate_sets_from_filters(filters)
 
-    def generate_carbon_storage_map(self) -> dict:
-        """
-        Filter ecoinvent processes related to carbon storage.
-
-        :return: dictionary with el. prod. techs as keys (see below) and
-            sets of related ecoinvent activities as values.
-        :rtype: dict
-
-        """
-        filters = get_mapping(filepath=CARBON_STORAGE_TECHS, var="ecoinvent_aliases")
-        return self.generate_sets_from_filters(filters)
 
     def generate_powerplant_fuels_map(self) -> dict:
         """
@@ -275,6 +301,21 @@ class InventorySet:
         filters = get_mapping(filepath=CEMENT_TECHS, var="ecoinvent_fuel_aliases")
         return self.generate_sets_from_filters(filters)
 
+    def generate_steel_map(self) -> dict:
+        """
+        Filter ecoinvent processes related to cement production.
+
+        :return: dictionary with el. prod. techs as keys (see below) and
+            sets of related ecoinvent activities as values.
+        :rtype: dict
+
+        """
+        filters = get_mapping(
+            filepath=STEEL_TECHS, var="ecoinvent_aliases", model=self.model
+        )
+        return self.generate_sets_from_filters(filters)
+
+
     def generate_fuel_map(self) -> dict:
         """
         Filter ecoinvent processes related to fuel supply.
@@ -287,6 +328,20 @@ class InventorySet:
         filters = get_mapping(filepath=FUELS_TECHS, var="ecoinvent_aliases")
         return self.generate_sets_from_filters(filters)
 
+    def generate_mining_waste_map(self) -> dict:
+        """
+        Filter ecoinvent processes related to mining waste.
+
+        :return: dictionary with mining waste names as keys (see below) and
+            sets of related ecoinvent activities as values.
+        :rtype: dict
+
+        """
+        filters = get_mapping(
+            filepath=MINING_WASTE, var="ecoinvent_aliases"
+        )
+        return self.generate_sets_from_filters(filters)
+
     def generate_final_energy_map(self) -> dict:
         """
         Filter ecoinvent processes related to final energy consumption.
@@ -297,15 +352,6 @@ class InventorySet:
 
         """
         filters = get_mapping(filepath=FINAL_ENERGY, var="ecoinvent_aliases")
-        return self.generate_sets_from_filters(filters)
-
-    def generate_material_map(self) -> dict:
-        """
-        Filter ecoinvent processes related to materials.
-        Rerurns a dictionary with material names as keys (see below) and
-        a set of related ecoinvent activities' names as values.
-        """
-        filters = get_mapping(filepath=MATERIALS_TECHS, var="ecoinvent_aliases")
         return self.generate_sets_from_filters(filters)
 
     def generate_transport_map(self, transport_type: str) -> dict:
