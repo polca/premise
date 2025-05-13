@@ -4,6 +4,7 @@ export.py contains all the functions to format, prepare and export databases.
 
 import csv
 import datetime
+import unicodedata
 import json
 import multiprocessing as mp
 import os
@@ -46,14 +47,34 @@ DIR_DATAPACKAGE = Path.cwd() / "export" / "datapackage"
 DIR_DATAPACKAGE_TEMP = Path.cwd() / "export" / "temp"
 
 
-def replace_unsupported_characters(text):
-    if text:
-        if isinstance(text, str):
-            return text.encode("latin-1", errors="replace").decode("latin-1")
-        else:
-            return text
-    else:
-        return ""
+import unicodedata
+
+def clean_csv_field(text):
+    if not isinstance(text, str):
+        return text
+
+    # Normalize Unicode first to combine diacritics like U+0301
+    text = unicodedata.normalize('NFKC', text)
+
+    # Replace smart quotes
+    replacements = {
+        '“': "'", '”': "'", '‘': "'", '’': "'",
+        '““': "'", '””': "'",
+        '""': '"',  # optional: collapse double quotes
+    }
+    for k, v in replacements.items():
+        text = text.replace(k, v)
+
+    # Remove line breaks and excessive whitespace
+    text = text.replace('\n', ' ').replace('\r', ' ')
+    text = ' '.join(text.split())  # removes extra spaces
+
+    # Encode to Latin-1, replacing unencodable characters
+    text = text.encode("latin-1", errors="replace").decode("latin-1")
+
+    return text
+
+
 
 
 def get_simapro_units() -> Dict[str, str]:
@@ -128,27 +149,6 @@ def get_simapro_category_of_exchange():
             dict_cat[(row["name"].lower(), row["product"].lower())] = dict(row)
 
     return dict_cat
-
-
-def load_references():
-    """Load a dictionary with references of datasets"""
-
-    # Load the matching dictionary
-    filename = "references.csv"
-    filepath = DATA_DIR / "utils" / "export" / filename
-    if not filepath.is_file():
-        raise FileNotFoundError("The dictionary of references could not be found.")
-    with open(filepath, encoding="utf-8") as file:
-        csv_list = [[val.strip() for val in r.split(";")] for r in file.readlines()]
-    _, *data = csv_list
-
-    dict_reference = {}
-    for row in data:
-        name, source, description = row
-        dict_reference[name] = {"source": source, "description": description}
-
-    return dict_reference
-
 
 def get_simapro_biosphere_dictionnary():
     """
@@ -1465,7 +1465,6 @@ class Export:
         filename = f"simapro_export_{self.model}_{self.scenario}_{self.year}.csv"
 
         dict_cat_simapro = get_simapro_category_of_exchange()
-        dict_refs = load_references()
 
         unlinked_biosphere_flows = []
 
@@ -1529,26 +1528,17 @@ class Export:
                         writer.writerow([f"{datetime.today():%d.%m.%Y}"])
 
                     if item == "Comment":
-                        if ds["name"] in dict_refs:
-                            string = re.sub(
-                                "[^a-zA-Z0-9 .,]", "", dict_refs[ds["name"]]["source"]
-                            )
+                        string = ""
+                        if "comment" in ds:
+                            string = ds["comment"]
 
-                            if dict_refs[ds["name"]]["description"] != "":
-                                string += " " + re.sub(
-                                    "[^a-zA-Z0-9 .,]",
-                                    "",
-                                    dict_refs[ds["name"]]["description"],
-                                )
-
+                        # Add dataset UUID to comment field
+                        if len(string) > 0:
+                            string += f" | ID: {ds['code']}"
                         else:
-                            if "comment" in ds:
-                                string = re.sub("[^a-zA-Z0-9 .,]", "", ds["comment"])
+                            string = f"ID: {ds['code']}"
 
-                        # Add dataset UUID to comment filed
-                        string += f" | ID: {ds['code']}"
-
-                        writer.writerow([string])
+                        writer.writerow([clean_csv_field(string)])
 
                     if item in (
                         "Cut off rules",
@@ -1587,7 +1577,7 @@ class Export:
                                             1.0,
                                             "not defined",
                                             sub_category,
-                                            f"{replace_unsupported_characters(e.get('comment'))} | ID = {uuids[(e['name'],e['product'],e['location'])]}",
+                                            f"{clean_csv_field(e.get('comment'))} | ID = {uuids[(e['name'],e['product'],e['location'])]}",
                                         ]
                                     )
 
@@ -1600,7 +1590,7 @@ class Export:
                                             "100%",
                                             "not defined",
                                             sub_category,
-                                            f"{replace_unsupported_characters(e.get('comment'))} | ID = {uuids[(e['name'], e['product'], e['location'])]}",
+                                            f"{clean_csv_field(e.get('comment'))} | ID = {uuids[(e['name'], e['product'], e['location'])]}",
                                         ]
                                     )
                                 e["used"] = True
@@ -1625,7 +1615,7 @@ class Export:
                                             0,
                                             0,
                                             0,
-                                            f"{replace_unsupported_characters(e.get('comment'))} | ID = {uuids[(e['name'], e['product'], e['location'])]}",
+                                            f"{clean_csv_field(e.get('comment'))} | ID = {uuids[(e['name'], e['product'], e['location'])]}",
                                         ]
                                     )
                                     e["used"] = True
@@ -1658,7 +1648,7 @@ class Export:
                                         0,
                                         0,
                                         0,
-                                        f"{replace_unsupported_characters(e.get('comment'))} | ID = {self.bio_dict.get((e['name'],e['categories'][0],'unspecified' if len(e['categories']) == 1 else e['categories'][1], e['unit']))}",
+                                        f"{clean_csv_field(e.get('comment'))} | ID = {self.bio_dict.get((e['name'],e['categories'][0],'unspecified' if len(e['categories']) == 1 else e['categories'][1], e['unit']))}",
                                     ]
                                 )
                                 e["used"] = True
@@ -1674,7 +1664,6 @@ class Export:
 
                                 if e["name"].lower() == "water":
                                     unit = "kilogram"
-                                    # e["unit"] = "kilogram"
                                     # going from cubic meters to kilograms
                                     e["amount"] *= 1000
                                 else:
@@ -1689,13 +1678,13 @@ class Export:
                                     [
                                         dict_bio.get(e["name"], e["name"]),
                                         sub_compartment,
-                                        simapro_units.get(e["unit"], e["unit"]),
+                                        simapro_units.get(unit, unit),
                                         f"{e['amount']:.3E}",
                                         "undefined",
                                         0,
                                         0,
                                         0,
-                                        f"{replace_unsupported_characters(e.get('comment'))} | ID = {self.bio_dict.get((e['name'], e['categories'][0], 'unspecified' if len(e['categories']) == 1 else e['categories'][1], e['unit']))}",
+                                        f"{clean_csv_field(e.get('comment'))} | ID = {self.bio_dict.get((e['name'], e['categories'][0], 'unspecified' if len(e['categories']) == 1 else e['categories'][1], e['unit']))}",
                                     ]
                                 )
                                 e["used"] = True
@@ -1714,7 +1703,7 @@ class Export:
 
                                 if e["name"].lower() == "water":
                                     unit = "kilogram"
-                                    # e["unit"] = "kilogram"
+                                    # going from cubic meters to kilograms
                                     e["amount"] *= 1000
                                 else:
                                     unit = e["unit"]
@@ -1728,13 +1717,13 @@ class Export:
                                     [
                                         dict_bio.get(e["name"], e["name"]),
                                         sub_compartment,
-                                        simapro_units.get(e["unit"], e["unit"]),
+                                        simapro_units.get(unit, unit),
                                         f"{e['amount']:.3E}",
                                         "undefined",
                                         0,
                                         0,
                                         0,
-                                        f"{replace_unsupported_characters(e.get('comment'))} | ID = {self.bio_dict.get((e['name'], e['categories'][0], 'unspecified' if len(e['categories']) == 1 else e['categories'][1], e['unit']))}",
+                                        f"{clean_csv_field(e.get('comment'))} | ID = {self.bio_dict.get((e['name'], e['categories'][0], 'unspecified' if len(e['categories']) == 1 else e['categories'][1], e['unit']))}",
                                     ]
                                 )
                                 e["used"] = True
@@ -1766,7 +1755,7 @@ class Export:
                                         0,
                                         0,
                                         0,
-                                        f"{replace_unsupported_characters(e.get('comment'))} | ID = {self.bio_dict.get((e['name'], e['categories'][0], 'unspecified' if len(e['categories']) == 1 else e['categories'][1], e['unit']))}",
+                                        f"{clean_csv_field(e.get('comment'))} | ID = {self.bio_dict.get((e['name'], e['categories'][0], 'unspecified' if len(e['categories']) == 1 else e['categories'][1], e['unit']))}",
                                     ]
                                 )
                                 e["used"] = True
@@ -1791,7 +1780,7 @@ class Export:
                                             0,
                                             0,
                                             0,
-                                            f"{replace_unsupported_characters(e.get('comment'))} | ID = {uuids[(e['name'], e['product'], e['location'])]}",
+                                            f"{clean_csv_field(e.get('comment'))} | ID = {uuids[(e['name'], e['product'], e['location'])]}",
                                         ]
                                     )
                                     e["used"] = True
