@@ -577,14 +577,18 @@ class BaseInventoryImport:
                 if exchange["type"] == "technosphere":
                     # Check if the field 'product' is present
                     if not "product" in exchange:
-                        exchange["product"] = self.correct_product_field(
-                            (
-                                exchange["name"],
-                                exchange["location"],
-                                exchange["unit"],
-                                exchange.get("reference product", None),
+                        try:
+                            exchange["product"] = self.correct_product_field(
+                                (
+                                    exchange["name"],
+                                    exchange["location"],
+                                    exchange["unit"],
+                                    exchange.get("reference product", None),
+                                )
                             )
-                        )
+                        except KeyError:
+                            print(f"Could not find a product for {exchange} in {dataset['name']}")
+                            raise IndexError()
 
                     # If a 'reference product' field is present, we make sure
                     # it matches with the new 'product' field
