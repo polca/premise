@@ -587,7 +587,9 @@ class BaseInventoryImport:
                                 )
                             )
                         except KeyError:
-                            print(f"Could not find a product for {exchange} in {dataset['name']}")
+                            print(
+                                f"Could not find a product for {exchange} in {dataset['name']}"
+                            )
                             raise IndexError()
 
                     # If a 'reference product' field is present, we make sure
