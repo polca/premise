@@ -49,32 +49,35 @@ DIR_DATAPACKAGE_TEMP = Path.cwd() / "export" / "temp"
 
 import unicodedata
 
+
 def clean_csv_field(text):
     if not isinstance(text, str):
         return text
 
     # Normalize Unicode first to combine diacritics like U+0301
-    text = unicodedata.normalize('NFKC', text)
+    text = unicodedata.normalize("NFKC", text)
 
     # Replace smart quotes
     replacements = {
-        '“': "'", '”': "'", '‘': "'", '’': "'",
-        '““': "'", '””': "'",
+        "“": "'",
+        "”": "'",
+        "‘": "'",
+        "’": "'",
+        "““": "'",
+        "””": "'",
         '""': '"',  # optional: collapse double quotes
     }
     for k, v in replacements.items():
         text = text.replace(k, v)
 
     # Remove line breaks and excessive whitespace
-    text = text.replace('\n', ' ').replace('\r', ' ')
-    text = ' '.join(text.split())  # removes extra spaces
+    text = text.replace("\n", " ").replace("\r", " ")
+    text = " ".join(text.split())  # removes extra spaces
 
     # Encode to Latin-1, replacing unencodable characters
     text = text.encode("latin-1", errors="replace").decode("latin-1")
 
     return text
-
-
 
 
 def get_simapro_units() -> Dict[str, str]:
@@ -149,6 +152,7 @@ def get_simapro_category_of_exchange():
             dict_cat[(row["name"].lower(), row["product"].lower())] = dict(row)
 
     return dict_cat
+
 
 def get_simapro_biosphere_dictionnary():
     """
