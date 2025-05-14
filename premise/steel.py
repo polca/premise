@@ -15,13 +15,6 @@ from .activity_maps import InventorySet
 logger = create_logger("steel")
 
 
-def group_dicts_by_keys(dicts: list, keys: list):
-    groups = defaultdict(list)
-    for d in dicts:
-        group_key = tuple(d.get(k) for k in keys)
-        groups[group_key].append(d)
-    return list(groups.values())
-
 
 def _update_steel(scenario, version, system_model):
 
@@ -118,177 +111,30 @@ class Steel(BaseTransformation):
         :return: Does not return anything. Adds new markets to database.
         """
 
-        steel_markets = ws.get_many(
+        for ds in ws.get_many(
             self.database,
-            ws.either(
-                *[
-                    ws.contains("name", market)
-                    for market in [
-                        "market for steel, low-alloyed",
-                        "market for steel, unalloyed",
-                        "market for steel, chromium steel 18/8",
+            ws.contains("name", "market for steel"),
+            ws.equals("unit", "kilogram"),
+            ws.contains("reference product", "steel"),
+            ws.doesnt_contain_any("name", [
+                "chromium", "rolled", "removed", "residue"
+            ])
+        ):
+
+            self.process_and_add_markets(
+                name=ds["name"],
+                reference_product=ds["reference_product"],
+                unit=ds["unit"],
+                mapping=self.steel_map,
+                production_volumes=self.iam_data.production_volumes,
+                system_model=self.system_model,
+                blacklist={
+                    "consequential": [
+                        "steel - secondary",
                     ]
-                ]
-            ),
-        )
-
-        steel_markets = group_dicts_by_keys(steel_markets, ["name", "location"])
-
-        new_steel_markets, seen_datasets = [], []
-
-        for steel_market in steel_markets:
-
-            steel_market = [
-                ds for ds in steel_market if ds["name"] not in seen_datasets
-            ]
-
-            if not steel_market:
-                continue
-
-            regionalized_markets = self.fetch_proxies(
-                datasets=steel_market,
-                production_variable=self.iam_data.steel_technology_mix.variables.values,
+                }
             )
 
-            # adjust share of primary and secondary steel
-            if any(
-                x in steel_market[0]["name"]
-                for x in (
-                    "market for steel, unalloyed",
-                    "market for steel, low-alloyed",
-                )
-            ):
-                for region, dataset in regionalized_markets.items():
-
-                    dataset["exchanges"] = [
-                        e
-                        for e in dataset["exchanges"]
-                        if e["type"] == "production" or e["unit"] == "ton kilometer"
-                    ]
-
-                    if region != "World":
-                        for steel_type, activities in self.steel_map.items():
-
-                            if (
-                                self.system_model == "consequential"
-                                and steel_type == "steel - secondary"
-                            ):
-                                continue
-
-                            activity = list(activities)[0]
-
-                            if (
-                                steel_type
-                                in self.iam_data.steel_technology_mix.variables.values
-                            ):
-                                share = (
-                                    self.iam_data.steel_technology_mix.sel(
-                                        variables=steel_type,
-                                        region=region,
-                                    )
-                                    .interp(year=self.year)
-                                    .values.item(0)
-                                )
-
-                                if share > 0:
-
-                                    dataset["exchanges"].append(
-                                        {
-                                            "name": activity["name"],
-                                            "product": activity["reference product"],
-                                            "amount": share,
-                                            "unit": "kilogram",
-                                            "type": "technosphere",
-                                            "location": region,
-                                        }
-                                    )
-
-                    # let's normalize shares to make sure them up to 1
-                    total_share = sum(
-                        exc["amount"]
-                        for exc in dataset["exchanges"]
-                        if exc["type"] == "technosphere" and exc["unit"] == "kilogram"
-                    )
-
-                    for exc in dataset["exchanges"]:
-                        if exc["type"] == "technosphere" and exc["unit"] == "kilogram":
-                            exc["amount"] /= total_share
-
-            # populate World dataset
-            regionalized_markets["World"]["exchanges"] = [
-                x
-                for x in regionalized_markets["World"]["exchanges"]
-                if x["type"] == "production"
-            ]
-            regions = [r for r in self.regions if r != "World"]
-
-            for region in regions:
-                try:
-                    if (
-                        self.year
-                        in self.iam_data.production_volumes.coords["year"].values
-                    ):
-                        share = (
-                            self.iam_data.production_volumes.sel(
-                                variables=self.iam_data.steel_technology_mix.variables.values,
-                                region=region,
-                                year=self.year,
-                            ).sum(dim="variables")
-                            / self.iam_data.production_volumes.sel(
-                                variables=self.iam_data.steel_technology_mix.variables.values,
-                                region=[
-                                    x
-                                    for x in self.iam_data.production_volumes.region.values
-                                    if x != "World"
-                                ],
-                                year=self.year,
-                            ).sum(dim=["variables", "region"])
-                        ).values.item(0)
-                    else:
-                        share = (
-                            self.iam_data.production_volumes.sel(
-                                variables=self.iam_data.steel_technology_mix.variables.values,
-                                region=region,
-                            )
-                            .interp(year=self.year)
-                            .sum(dim="variables")
-                            / self.iam_data.production_volumes.sel(
-                                variables=self.iam_data.steel_technology_mix.variables.values,
-                                region=[
-                                    x
-                                    for x in self.iam_data.production_volumes.region.values
-                                    if x != "World"
-                                ],
-                            )
-                            .interp(year=self.year)
-                            .sum(dim=["variables", "region"])
-                        ).values.item(0)
-
-                except KeyError:
-                    # equal share to all regions
-                    share = 1 / len(regions)
-
-                if share > 0:
-                    regionalized_markets["World"]["exchanges"].append(
-                        {
-                            "name": steel_market[0]["name"],
-                            "product": steel_market[0]["reference product"],
-                            "amount": share,
-                            "unit": "kilogram",
-                            "type": "technosphere",
-                            "location": region,
-                        }
-                    )
-
-            new_steel_markets.extend(regionalized_markets.values())
-            seen_datasets.extend([ds["name"] for ds in steel_market])
-
-        # add to log
-        for dataset in new_steel_markets:
-            self.write_log(dataset)
-            self.add_to_index(dataset)
-            # add to database
-            self.database.append(dataset)
 
     def create_steel_production_activities(self):
         """
@@ -298,106 +144,50 @@ class Steel(BaseTransformation):
         # Determine all steel activities in the database.
         # Empty old datasets.
 
-        processed_datasets, seen_datasets = [], []
+        self.process_and_add_activities(
+            mapping=self.steel_map,
+            efficiency_adjustment_fn=self.adjust_process_efficiency,
+        )
 
-        for steel_type, activities in self.steel_map.items():
-
-            activities = [ds for ds in activities if ds["name"] not in seen_datasets]
-
-            if not activities:
-                continue
-
-            activities = group_dicts_by_keys(activities, ["name", "reference product"])
-
-            for activity in activities:
-
-                activity = [ds for ds in activity if ds["name"] not in seen_datasets]
-                if not activity:
-                    continue
-
-                regionalized_datasets = self.fetch_proxies(datasets=activity)
-
-                # adjust efficiency of steel production
-                for dataset in regionalized_datasets.values():
-                    self.adjust_process_efficiency(dataset, steel_type)
-
-                processed_datasets.extend(regionalized_datasets.values())
-                seen_datasets.extend([ds["name"] for ds in activity])
-
-        # regionalize other steel datasets
+        # make other steel datasets region-specific
         steel_datasets = ws.get_many(
             self.database,
             ws.contains("name", "steel production"),
             ws.contains("reference product", "steel"),
             ws.equals("unit", "kilogram"),
         )
-        steel_datasets = [
-            ds for ds in steel_datasets if ds["name"] not in set(seen_datasets)
-        ]
+        steel_datasets = {
+            "other": [
+                ds for ds in steel_datasets
+                if ds.get("regionalized", False) is False
+            ]
+        }
 
-        steel_datasets = group_dicts_by_keys(steel_datasets, ["name", "location"])
+        self.process_and_add_activities(
+            mapping=steel_datasets,
+        )
 
-        for dataset in steel_datasets:
-
-            dataset = [ds for ds in dataset if ds["name"] not in seen_datasets]
-
-            if not dataset:
-                continue
-
-            regionalized_datasets = self.fetch_proxies(datasets=dataset)
-
-            processed_datasets.extend(regionalized_datasets.values())
-            seen_datasets.extend([ds["name"] for ds in dataset])
-
-        for dataset in processed_datasets:
-            self.add_to_index(dataset)
-            self.write_log(dataset, "created")
-            self.database.append(dataset)
 
     def create_pig_iron_production_activities(self):
         """
         Create region-specific pig iron production activities.
         """
 
-        pig_iron_datasets = [
-            ds
-            for ds in self.database
-            if ds["name"].startswith("pig iron production")
-            and ds["unit"] == "kilogram"
-            and ds["reference product"] == "pig iron"
-        ]
-
-        pig_iron_datasets = group_dicts_by_keys(pig_iron_datasets, ["name", "location"])
-
-        new_datasets, seen_datasets = [], []
-
-        for pig_iron_dataset in pig_iron_datasets:
-
-            pig_iron_dataset = [
-                ds for ds in pig_iron_dataset if ds["name"] not in seen_datasets
+        pig_iron = {
+            "pig iron": [
+                ds
+                for ds in self.database
+                if ds["name"].startswith("pig iron production")
+                and ds["unit"] == "kilogram"
+                and ds["reference product"] == "pig iron"
+                and ds.get("regionalized", False) is False
             ]
+        }
 
-            if not pig_iron_dataset:
-                continue
+        self.process_and_add_activities(
+            mapping=pig_iron,
+        )
 
-            pig_iron = self.fetch_proxies(
-                datasets=pig_iron_dataset,
-                production_variable=[
-                    p
-                    for p in self.iam_data.steel_technology_mix.variables.values
-                    if p != "steel - secondary"
-                ],
-            )
-
-            new_datasets.extend(pig_iron.values())
-            seen_datasets.extend([ds["name"] for ds in pig_iron_dataset])
-
-        # add to log
-        for new_dataset in new_datasets:
-            self.write_log(new_dataset)
-            self.add_to_index(new_dataset)
-            # add to database
-            self.database.append(new_dataset)
 
     def create_pig_iron_markets(self):
         """
@@ -405,42 +195,21 @@ class Steel(BaseTransformation):
         Adds datasets to the database.
         """
 
-        pig_iron_markets = ws.get_many(
-            self.database,
-            ws.contains("name", "market for pig iron"),
+        self.process_and_add_markets(
+            name="market for pig iron",
+            reference_product="pig iron",
+            unit="kilogram",
+            mapping={
+                "pig iron": [
+                    ds
+                    for ds in self.database
+                    if ds["name"] == "pig iron production"
+                    and ds["unit"] == "kilogram"
+                    and ds["reference product"] == "pig iron"
+                ]
+            },
         )
 
-        pig_iron_markets = group_dicts_by_keys(pig_iron_markets, ["name", "location"])
-
-        new_datasets, seen_datasets = [], []
-
-        for pig_iron_market in pig_iron_markets:
-
-            pig_iron_market = [
-                ds for ds in pig_iron_market if ds["name"] not in seen_datasets
-            ]
-
-            if not pig_iron_market:
-                continue
-
-            regionalized_markets = self.fetch_proxies(
-                datasets=pig_iron_market,
-                production_variable=[
-                    p
-                    for p in self.iam_data.steel_technology_mix.variables.values
-                    if p != "steel - secondary"
-                ],
-            )
-
-            new_datasets.extend(regionalized_markets.values())
-            seen_datasets.extend([ds["name"] for ds in pig_iron_market])
-
-        # add to log
-        for new_dataset in new_datasets:
-            self.write_log(new_dataset)
-            self.add_to_index(new_dataset)
-            # add to database
-            self.database.append(new_dataset)
 
     def adjust_process_efficiency(self, dataset, sector):
         """

@@ -113,6 +113,12 @@ def redefine_uncertainty_params(old_exc, new_exc):
         print(new_exc)
         return None, None, None, None, None
 
+def group_dicts_by_keys(dicts: list, keys: list):
+    groups = defaultdict(list)
+    for d in dicts:
+        group_key = tuple(d.get(k) for k in keys)
+        groups[group_key].append(d)
+    return list(groups.values())
 
 def get_suppliers_of_a_region(
     database: List[dict],
@@ -706,6 +712,220 @@ class BaseTransformation:
             for tech in technologies
         }
 
+    def process_and_add_markets(
+            self,
+            name,
+            reference_product,
+            unit,
+            mapping,
+            production_volumes=None,
+            additional_exchanges_fn=None,
+            system_model="cut-off",
+            blacklist=None
+    ):
+        """
+        Generalized method to create and add regionalized market datasets.
+
+        Parameters
+        ----------
+        production_datasets : list of dict
+            Datasets representing regionalized production activities.
+        market_name : str
+            Name of the market activity (e.g., "market for steel").
+        reference_product : str
+            The reference product of the market.
+        production_shares : dict
+            Dictionary with region as key and production share as value.
+        region_list : list of str
+            List of regions for which to create markets.
+        additional_exchanges_fn : callable, optional
+            Function to add extra exchanges to the market dataset (e.g., transport, losses).
+        """
+
+        blacklist = blacklist or {}
+
+        regions = [region for region in self.regions if region != "World"]
+
+        for region in regions:
+            market_dataset = {
+                "name": name,
+                "reference product": reference_product,
+                "location": region,
+                "unit": unit,
+                "exchanges": [
+                    {
+                        "name": name,
+                        "product": reference_product,
+                        "amount": 1.0,
+                        "unit": unit,
+                        "type": "production",
+                        "production volume": production_volumes.sel(
+                            region=region,
+                        ).inter(year=self.year).sum(dim="technology").values.item(0)
+                    }
+                ],
+            }
+
+            for technology, activities in mapping.items():
+                activity = [
+                    ds for ds in activities if ds["location"] == region
+                ][0]
+
+                share = (
+                    production_volumes.sel(
+                        variables=technology,
+                        region=region,
+                    )
+                    .interp(year=self.year)
+                    .sum(dim="variables")
+                    / production_volumes.sel(
+                        variables=production_volumes.variables.values,
+                        region=region,
+                )
+                .interp(year=self.year)
+                .sum(dim=["variables", "region"])
+                ).values.item(0)
+
+                if share > 0:
+                    if technology not in blacklist.get(system_model, []):
+                        market_dataset["exchanges"].append({
+                            "name": activity["name"],
+                            "product": activity["reference product"],
+                            "amount": share,
+                            "unit": activity["unit"],
+                            "type": "technosphere",
+                        })
+
+
+            if additional_exchanges_fn:
+                additional_exchanges_fn(market_dataset, region)
+
+            self.database.append(market_dataset)
+            self.add_to_index(market_dataset)
+            self.write_log(market_dataset, "created")
+
+        # create the World market
+        world_market = {
+            "name": name,
+            "reference product": reference_product,
+            "location": "World",
+            "unit": unit,
+            "exchanges": [
+                {
+                    "name": name,
+                    "product": reference_product,
+                    "amount": 1.0,
+                    "unit": unit,
+                    "type": "production",
+                }
+            ],
+        }
+
+        for region in regions:
+            share = (
+                production_volumes.sel(
+                    variables=production_volumes.variables.values,
+                    region=region,
+                )
+                .interp(year=self.year)
+                .sum(dim="variables")
+                / production_volumes.sel(
+                    variables=production_volumes.variables.values,
+                    region=regions,
+            )
+            .interp(year=self.year)
+            .sum(dim=["variables", "region"])
+            ).values.item(0)
+
+            if share > 0:
+                world_market["exchanges"].append({
+                    "name": region,
+                    "product": reference_product,
+                    "amount": share,
+                    "unit": unit,
+                    "type": "technosphere",
+                })
+
+        self.database.append(world_market)
+        self.add_to_index(world_market)
+        self.write_log(world_market, "created")
+
+        datasets = ws.get_many(
+            self.database,
+            ws.equals("name", name),
+            ws.equals("reference product", reference_product),
+            ws.equals("regionalized", False)
+        )
+        self.empty_original_datasets(
+            datasets=datasets,
+            loc_map={
+                self.geo.ecoinvent_to_iam_location(x["location"]): x["location"]
+                for x in datasets
+            },
+            production_variable=production_volumes,
+            regions=regions,
+        )
+
+
+    def process_and_add_activities(
+            self,
+            mapping,
+            efficiency_adjustment_fn=None,
+            scaling_factors=None,
+    ):
+        """
+        Generalized processing of activities and adding them to the database.
+
+        Parameters
+        ----------
+        mapping : dict or pd.DataFrame
+            Mapping containing the relevant activity data.
+        proxy_selection_fn : callable
+            Function to fetch proxies based on the mapping.
+        efficiency_adjustment_fn : callable, optional
+            Function to adjust process efficiency. If None, no adjustment is done.
+        scaling_factors : dict, optional
+            Dictionary with scaling factors for inputs.
+        log_message : str, optional
+            Message to log after processing.
+        add_to_index : bool, optional
+            Whether to add new activities to the index.
+        """
+
+        processed_datasets, seen_datasets = [], []
+
+        for technology, activities in mapping.items():
+            activities = [ds for ds in activities if ds["name"] not in seen_datasets]
+
+            if not activities:
+                continue
+
+            activities = group_dicts_by_keys(activities, ["name", "reference product"])
+
+            for activity in activities:
+                activity = [ds for ds in activity if ds["name"] not in seen_datasets]
+
+                if not activity:
+                    continue
+
+                regionalized_datasets = self.fetch_proxies(
+                    datasets=activity,
+                    production_variable=technology
+                )
+
+                # adjust efficiency of steel production
+                if efficiency_adjustment_fn:
+                    for dataset in regionalized_datasets.values():
+                        efficiency_adjustment_fn(dataset, technology)
+
+                processed_datasets.extend(regionalized_datasets.values())
+                seen_datasets.extend([ds["name"] for ds in activity])
+
+        for dataset in processed_datasets:
+            self.add_to_index(dataset)
+            self.write_log(dataset, "created")
+            self.database.append(dataset)
+
     def region_to_proxy_dataset_mapping(
         self, datasets: list[dict], regions: List[str] = None
     ) -> Dict[str, dict]:
@@ -778,18 +998,19 @@ class BaseTransformation:
                     != (dataset["name"], dataset["reference product"], region)
                 ]
 
-            d_act[region] = copy.deepcopy(dataset)
-            d_act[region]["location"] = region
-            d_act[region]["code"] = str(uuid.uuid4().hex)
+            dataset = copy.deepcopy(dataset)
+            dataset["location"] = region
+            dataset["code"] = str(uuid.uuid4().hex)
+            dataset["regionalized"] = True
 
-            for exc in ws.production(d_act[region]):
+            for exc in ws.production(dataset):
                 if "input" in exc:
                     del exc["input"]
                 if "location" in exc:
                     exc["location"] = region
 
-            if "input" in d_act[region]:
-                del d_act[region]["input"]
+            if "input" in dataset:
+                del dataset["input"]
 
             prod_vol = 1
             if production_variable is not None:
@@ -827,12 +1048,12 @@ class BaseTransformation:
                 elif isinstance(production_variable, dict):
                     prod_vol = production_variable[region]
 
-            for prod in ws.production(d_act[region]):
+            for prod in ws.production(dataset):
                 prod["location"] = region
                 prod["production volume"] = prod_vol
 
             if relink:
-                d_act[region] = self.relink_technosphere_exchanges(d_act[region])
+                d_act[region] = self.relink_technosphere_exchanges(dataset)
 
         if unlist:
             for dataset in datasets:

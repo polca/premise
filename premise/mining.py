@@ -213,7 +213,6 @@ class Mining(BaseTransformation):
             }
 
             for region, dataset in regionalized_datasets.items():
-
                 if self.year < self.tailings_shares.year.values.min():
                     year = self.tailings_shares.year.values.min()
                 elif self.year > self.tailings_shares.year.values.max():
