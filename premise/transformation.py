@@ -113,12 +113,14 @@ def redefine_uncertainty_params(old_exc, new_exc):
         print(new_exc)
         return None, None, None, None, None
 
+
 def group_dicts_by_keys(dicts: list, keys: list):
     groups = defaultdict(list)
     for d in dicts:
         group_key = tuple(d.get(k) for k in keys)
         groups[group_key].append(d)
     return list(groups.values())
+
 
 def get_suppliers_of_a_region(
     database: List[dict],
@@ -713,15 +715,15 @@ class BaseTransformation:
         }
 
     def process_and_add_markets(
-            self,
-            name,
-            reference_product,
-            unit,
-            mapping,
-            production_volumes=None,
-            additional_exchanges_fn=None,
-            system_model="cut-off",
-            blacklist=None
+        self,
+        name,
+        reference_product,
+        unit,
+        mapping,
+        production_volumes=None,
+        additional_exchanges_fn=None,
+        system_model="cut-off",
+        blacklist=None,
     ):
         """
         Generalized method to create and add regionalized market datasets.
@@ -761,15 +763,16 @@ class BaseTransformation:
                         "type": "production",
                         "production volume": production_volumes.sel(
                             region=region,
-                        ).inter(year=self.year).sum(dim="technology").values.item(0)
+                        )
+                        .inter(year=self.year)
+                        .sum(dim="technology")
+                        .values.item(0),
                     }
                 ],
             }
 
             for technology, activities in mapping.items():
-                activity = [
-                    ds for ds in activities if ds["location"] == region
-                ][0]
+                activity = [ds for ds in activities if ds["location"] == region][0]
 
                 share = (
                     production_volumes.sel(
@@ -781,21 +784,22 @@ class BaseTransformation:
                     / production_volumes.sel(
                         variables=production_volumes.variables.values,
                         region=region,
-                )
-                .interp(year=self.year)
-                .sum(dim=["variables", "region"])
+                    )
+                    .interp(year=self.year)
+                    .sum(dim=["variables", "region"])
                 ).values.item(0)
 
                 if share > 0:
                     if technology not in blacklist.get(system_model, []):
-                        market_dataset["exchanges"].append({
-                            "name": activity["name"],
-                            "product": activity["reference product"],
-                            "amount": share,
-                            "unit": activity["unit"],
-                            "type": "technosphere",
-                        })
-
+                        market_dataset["exchanges"].append(
+                            {
+                                "name": activity["name"],
+                                "product": activity["reference product"],
+                                "amount": share,
+                                "unit": activity["unit"],
+                                "type": "technosphere",
+                            }
+                        )
 
             if additional_exchanges_fn:
                 additional_exchanges_fn(market_dataset, region)
@@ -832,19 +836,21 @@ class BaseTransformation:
                 / production_volumes.sel(
                     variables=production_volumes.variables.values,
                     region=regions,
-            )
-            .interp(year=self.year)
-            .sum(dim=["variables", "region"])
+                )
+                .interp(year=self.year)
+                .sum(dim=["variables", "region"])
             ).values.item(0)
 
             if share > 0:
-                world_market["exchanges"].append({
-                    "name": region,
-                    "product": reference_product,
-                    "amount": share,
-                    "unit": unit,
-                    "type": "technosphere",
-                })
+                world_market["exchanges"].append(
+                    {
+                        "name": region,
+                        "product": reference_product,
+                        "amount": share,
+                        "unit": unit,
+                        "type": "technosphere",
+                    }
+                )
 
         self.database.append(world_market)
         self.add_to_index(world_market)
@@ -854,7 +860,7 @@ class BaseTransformation:
             self.database,
             ws.equals("name", name),
             ws.equals("reference product", reference_product),
-            ws.equals("regionalized", False)
+            ws.equals("regionalized", False),
         )
         self.empty_original_datasets(
             datasets=datasets,
@@ -866,12 +872,11 @@ class BaseTransformation:
             regions=regions,
         )
 
-
     def process_and_add_activities(
-            self,
-            mapping,
-            efficiency_adjustment_fn=None,
-            scaling_factors=None,
+        self,
+        mapping,
+        efficiency_adjustment_fn=None,
+        scaling_factors=None,
     ):
         """
         Generalized processing of activities and adding them to the database.
@@ -909,8 +914,7 @@ class BaseTransformation:
                     continue
 
                 regionalized_datasets = self.fetch_proxies(
-                    datasets=activity,
-                    production_variable=technology
+                    datasets=activity, production_variable=technology
                 )
 
                 # adjust efficiency of steel production

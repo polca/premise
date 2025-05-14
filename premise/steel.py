@@ -15,7 +15,6 @@ from .activity_maps import InventorySet
 logger = create_logger("steel")
 
 
-
 def _update_steel(scenario, version, system_model):
 
     if scenario["iam data"].steel_technology_mix is None:
@@ -116,9 +115,7 @@ class Steel(BaseTransformation):
             ws.contains("name", "market for steel"),
             ws.equals("unit", "kilogram"),
             ws.contains("reference product", "steel"),
-            ws.doesnt_contain_any("name", [
-                "chromium", "rolled", "removed", "residue"
-            ])
+            ws.doesnt_contain_any("name", ["chromium", "rolled", "removed", "residue"]),
         ):
 
             self.process_and_add_markets(
@@ -132,9 +129,8 @@ class Steel(BaseTransformation):
                     "consequential": [
                         "steel - secondary",
                     ]
-                }
+                },
             )
-
 
     def create_steel_production_activities(self):
         """
@@ -158,15 +154,13 @@ class Steel(BaseTransformation):
         )
         steel_datasets = {
             "other": [
-                ds for ds in steel_datasets
-                if ds.get("regionalized", False) is False
+                ds for ds in steel_datasets if ds.get("regionalized", False) is False
             ]
         }
 
         self.process_and_add_activities(
             mapping=steel_datasets,
         )
-
 
     def create_pig_iron_production_activities(self):
         """
@@ -188,7 +182,6 @@ class Steel(BaseTransformation):
             mapping=pig_iron,
         )
 
-
     def create_pig_iron_markets(self):
         """
         Create region-specific pig iron markets.
@@ -209,7 +202,6 @@ class Steel(BaseTransformation):
                 ]
             },
         )
-
 
     def adjust_process_efficiency(self, dataset, sector):
         """
