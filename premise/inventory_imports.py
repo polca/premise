@@ -1039,8 +1039,13 @@ class AdditionalInventory(BaseInventoryImport):
         if "http" in path_str:
             if ":/" in path_str and "://" not in path_str:
                 path_str = path_str.replace(":/", "://")
-            self.download_file(path_str, TEMP_CSV_FILE if path_str.endswith(".csv") else TEMP_EXCEL_FILE)
-            temp_file_path = TEMP_CSV_FILE if path_str.endswith(".csv") else TEMP_EXCEL_FILE
+            self.download_file(
+                path_str,
+                TEMP_CSV_FILE if path_str.endswith(".csv") else TEMP_EXCEL_FILE,
+            )
+            temp_file_path = (
+                TEMP_CSV_FILE if path_str.endswith(".csv") else TEMP_EXCEL_FILE
+            )
         else:
             temp_file_path = self.path
 
@@ -1050,9 +1055,7 @@ class AdditionalInventory(BaseInventoryImport):
             try:
                 return CSVImporter(temp_file_path)
             except:
-                raise ValueError(
-                    f"The file from {self.path} is not a valid CSV file."
-                )
+                raise ValueError(f"The file from {self.path} is not a valid CSV file.")
 
         raise ValueError(
             "Incorrect filetype for inventories. Should be either .xlsx or .csv"

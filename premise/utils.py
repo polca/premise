@@ -461,4 +461,3 @@ def end_of_process(scenario):
         scenario["index"] = {}
 
     return scenario
-

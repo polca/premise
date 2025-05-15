@@ -5,7 +5,13 @@ import sys
 
 from .new_database import NewDatabase
 
-def comparative_analysis(ndb: NewDatabase = None, indicators: list = None, databases: list = None, limit: int = 1000 ) -> pd.DataFrame:
+
+def comparative_analysis(
+    ndb: NewDatabase = None,
+    indicators: list = None,
+    databases: list = None,
+    limit: int = 1000,
+) -> pd.DataFrame:
     """
     A function that does an LCA of all common datasets in databases
     contained in scenarios, and compare them with the original
@@ -26,7 +32,9 @@ def comparative_analysis(ndb: NewDatabase = None, indicators: list = None, datab
 
     if indicators is None:
         indicators = [
-            m for m in bw2data.methods if "ef v3.1" in str(m).lower()
+            m
+            for m in bw2data.methods
+            if "ef v3.1" in str(m).lower()
             and "lt" not in str(m).lower()
             and "en15804" in str(m).lower()
         ]
@@ -35,15 +43,13 @@ def comparative_analysis(ndb: NewDatabase = None, indicators: list = None, datab
         raise ValueError("No indicators to calculate.")
 
     if databases:
-        databases = [
-            bw2data.Database(db)
-            for db in databases
-        ]
+        databases = [bw2data.Database(db) for db in databases]
     else:
         original_db = bw2data.Database(ndb.source)
         new_databases = [
             bw2data.Database(s["database name"])
-            for s in ndb.scenarios if s["database name"]
+            for s in ndb.scenarios
+            if s["database name"]
         ]
         databases = [original_db] + new_databases
 
@@ -77,7 +83,9 @@ def comparative_analysis(ndb: NewDatabase = None, indicators: list = None, datab
             method_matrices.append(lca.characterization_matrix.copy())
 
         datasets = list(db)
-        for x, ds in tqdm(enumerate(datasets), total=len(datasets), desc=f"Processing {db.name}"):
+        for x, ds in tqdm(
+            enumerate(datasets), total=len(datasets), desc=f"Processing {db.name}"
+        ):
             key = (
                 ds["name"],
                 ds["reference product"],
@@ -90,14 +98,16 @@ def comparative_analysis(ndb: NewDatabase = None, indicators: list = None, datab
             # iterate through the "classifications" list
             # which contains tuples, and fetch the second item
             cpc = [
-                item[1].split(":")[-1] for item in ds.get("classifications", [])
+                item[1].split(":")[-1]
+                for item in ds.get("classifications", [])
                 if item[0] == "CPC"
             ]
             if cpc:
                 cpc = cpc[0]
 
             isic = [
-                item[1].split(":")[-1] for item in ds.get("classifications", [])
+                item[1].split(":")[-1]
+                for item in ds.get("classifications", [])
                 if item[0] == "ISIC rev.4 ecoinvent"
             ]
             if isic:
@@ -128,7 +138,9 @@ def comparative_analysis(ndb: NewDatabase = None, indicators: list = None, datab
                 if indicators[j] not in scores[key]:
                     scores[key][indicators[j]] = {}
 
-                scores[key][indicators[j]][db.name] = (characterization_matrix * lca.inventory).sum()
+                scores[key][indicators[j]][db.name] = (
+                    characterization_matrix * lca.inventory
+                ).sum()
             sys.stdout.flush()
 
     # Convert nested dictionary to DataFrame
@@ -142,7 +154,7 @@ def comparative_analysis(ndb: NewDatabase = None, indicators: list = None, datab
             "reference product": ref_prod,
             "location": loc,
             "ISIC": isic,
-            "CPC": cpc
+            "CPC": cpc,
         }
 
         for method, db_scores in result.items():
