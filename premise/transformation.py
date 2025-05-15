@@ -2194,7 +2194,8 @@ class BaseTransformation:
         ]
 
         possible_locations = [loc for loc in possible_locations if loc in self.geo.geo]
-
+        print(location)
+        print(possible_locations)
         with resolved_row(possible_locations, self.geo.geo) as g:
             func = g.contained if contained else g.intersects
 

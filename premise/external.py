@@ -9,9 +9,11 @@ from collections import defaultdict
 from functools import lru_cache
 from pathlib import Path
 from typing import List, Union
+from pprint import pprint
 
 import numpy as np
 import wurst
+from wurst import copy_to_new_location
 import xarray as xr
 import yaml
 from datapackage import Package
@@ -95,7 +97,7 @@ def _update_external_scenarios(
 
             scenario["database"] = checked_database
             scenario["database"].extend(checked_inventories)
-            configurations = dictionary_merge(configurations, configuration)
+            configurations[d] = configuration
 
         external_scenario = ExternalScenario(
             database=scenario["database"],
@@ -431,18 +433,18 @@ class ExternalScenario(BaseTransformation):
             for v in list(value):
                 self.fuel_map_reverse[v] = key
 
-        external_scenario_regions = []
+        external_scenario_regions = {}
         for datapackage_number, datapackage in enumerate(self.datapackages):
-            external_scenario_regions.extend(
+            external_scenario_regions[datapackage_number] = (
                 self.external_scenarios_data[datapackage_number]["regions"]
             )
 
-        self.configurations = configurations or {}
+        self.configurations = configurations or []
 
-        ds_names = get_recursively(self.configurations, "name")
+        for d, data in self.external_scenarios_data.items():
+            ds_names = get_recursively(self.configurations[d], "name")
+            self.regionalize_inventories(ds_names, external_scenario_regions[d], data)
 
-        for data in self.external_scenarios_data.values():
-            self.regionalize_inventories(ds_names, external_scenario_regions, data)
         self.dict_bio_flows = get_biosphere_flow_uuid(self.version)
         self.outdated_flows = get_correspondence_bio_flows()
 
@@ -460,9 +462,10 @@ class ExternalScenario(BaseTransformation):
             ws.equals("regionalize", True),
             ws.either(*[ws.contains("name", name) for name in list(set(ds_names))]),
         ):
-            # remove "regionalize" tag
-            if "regionalize" in ds:
-                del ds["regionalize"]
+            if ds.get("regionalize", False) is False:
+                continue
+
+            del ds["regionalize"]
 
             processed_key = (ds["name"], ds["reference product"], ds["unit"])
             if ds["location"] not in regions and processed_key not in processed:
@@ -789,40 +792,25 @@ class ExternalScenario(BaseTransformation):
 
                             # we loop through the possible locations
                             # by order of preference
-                            try:
-                                while not suppliers:
-                                    # suppliers = list(
-                                    #     ws.get_many(
-                                    #         self.database,
-                                    #         ws.equals("name", name),
-                                    #         ws.equals(
-                                    #             "reference product",
-                                    #             ref_prod,
-                                    #         ),
-                                    #         ws.equals(
-                                    #             "location", possible_locations[counter]
-                                    #         ),
-                                    #     )
-                                    # )
 
+                            for possible_location in possible_locations:
+                                if not suppliers:
                                     suppliers = [
                                         s
                                         for s in self.database
                                         if s["name"].lower() == name.lower()
                                         and s["reference product"].lower()
                                         == ref_prod.lower()
-                                        and s["location"] == possible_locations[counter]
+                                        and s["location"] == possible_location
                                     ]
 
-                                    counter += 1
-
-                            except IndexError as err:
+                            if not suppliers:
                                 raise ValueError(
                                     f"Regionalized datasets for pathway {pathway_to_include} "
                                     f"with `name` {name} and `reference product` {ref_prod} "
                                     f"cannot be found in "
                                     f"locations {possible_locations}."
-                                ) from err
+                                )
 
                             if not exists_in_database or regionalize_dataset:
                                 for ds in suppliers:
@@ -840,25 +828,94 @@ class ExternalScenario(BaseTransformation):
         :return: np.ndarray
         """
 
-        return np.clip(
-            (
-                self.external_scenarios_data[i]["production volume"]
-                .sel(
-                    region=region,
-                    variables=var,
-                )
-                .interp(year=self.year)
-                / self.external_scenarios_data[i]["production volume"]
-                .sel(
-                    region=region,
-                    variables=variables,
-                )
-                .interp(year=self.year)
-                .sum(dim="variables")
-            ).values.item(0),
-            0,
-            1,
-        )
+        if self.year < min(
+            self.external_scenarios_data[i]["production volume"].coords["year"].values
+        ):
+            return np.clip(
+                (
+                    self.external_scenarios_data[i]["production volume"]
+                    .sel(
+                        region=region,
+                        variables=var,
+                    )
+                    .interp(
+                        year=min(
+                            self.external_scenarios_data[i]["production volume"]
+                            .coords["year"]
+                            .values
+                        )
+                    )
+                    / self.external_scenarios_data[i]["production volume"]
+                    .sel(
+                        region=region,
+                        variables=variables,
+                    )
+                    .interp(
+                        year=min(
+                            self.external_scenarios_data[i]["production volume"]
+                            .coords["year"]
+                            .values
+                        )
+                    )
+                    .sum(dim="variables")
+                ).values.item(0),
+                0,
+                1,
+            )
+        elif self.year > max(
+            self.external_scenarios_data[i]["production volume"].coords["year"].values
+        ):
+            return np.clip(
+                (
+                    self.external_scenarios_data[i]["production volume"]
+                    .sel(
+                        region=region,
+                        variables=var,
+                    )
+                    .interp(
+                        year=max(
+                            self.external_scenarios_data[i]["production volume"]
+                            .coords["year"]
+                            .values
+                        )
+                    )
+                    / self.external_scenarios_data[i]["production volume"]
+                    .sel(
+                        region=region,
+                        variables=variables,
+                    )
+                    .interp(
+                        year=max(
+                            self.external_scenarios_data[i]["production volume"]
+                            .coords["year"]
+                            .values
+                        )
+                    )
+                    .sum(dim="variables")
+                ).values.item(0),
+                0,
+                1,
+            )
+        else:
+            return np.clip(
+                (
+                    self.external_scenarios_data[i]["production volume"]
+                    .sel(
+                        region=region,
+                        variables=var,
+                    )
+                    .interp(year=self.year)
+                    / self.external_scenarios_data[i]["production volume"]
+                    .sel(
+                        region=region,
+                        variables=variables,
+                    )
+                    .interp(year=self.year)
+                    .sum(dim="variables")
+                ).values.item(0),
+                0,
+                1,
+            )
 
     def fetch_potential_suppliers(
         self, possible_locations: list, name: str, ref_prod: str
@@ -884,7 +941,28 @@ class ExternalScenario(BaseTransformation):
                 ]
 
         if not act:
-            print("Cannot find -> ", name, ref_prod, possible_locations)
+
+            act = [
+                a
+                for a in self.database
+                if a["name"].lower() == name.lower()
+                and a["reference product"].lower() == ref_prod.lower()
+            ]
+
+            if act:
+                # create a copy of the dataset
+                # and change its location to the first possible location
+                candidate = copy_to_new_location(act[0], possible_locations[0])
+                candidate = self.relink_technosphere_exchanges(candidate)
+                self.database.append(candidate)
+                act = [candidate]
+
+            else:
+                raise ValueError(
+                    f"Cannot find dataset with name {name} and "
+                    f"reference product {ref_prod} "
+                    f"for location {possible_locations}."
+                )
 
         return act
 
@@ -1035,6 +1113,7 @@ class ExternalScenario(BaseTransformation):
         return datatset
 
     def get_region_for_non_null_production_volume(self, i, variables):
+
         nz = np.argwhere(
             (
                 self.external_scenarios_data[i]["production volume"]
@@ -1043,7 +1122,6 @@ class ExternalScenario(BaseTransformation):
                 > 0
             ).values
         )
-
         return [
             self.external_scenarios_data[i]["production volume"]
             .coords["region"][x[0]]
@@ -1063,20 +1141,22 @@ class ExternalScenario(BaseTransformation):
         # Loop through custom scenarios
         for i, dp in enumerate(self.datapackages):
             # Open corresponding config file
+            configuration = self.configurations[i]
 
             # Check if information on market creation is provided
-            if "markets" in self.configurations:
-                for market_vars in self.configurations["markets"]:
+            if "markets" in configuration:
+                for market_vars in configuration["markets"]:
                     # fetch all scenario file variables that
                     # relate to this market
                     pathways = market_vars["includes"]
-                    production_variables = fetch_var(self.configurations, pathways)
+                    production_variables = fetch_var(configuration, pathways)
                     waste_market = market_vars.get("waste market", False)
                     isfuel = {}
                     market_status = {}
 
                     # Check if there are regions we should not
                     # create a market for
+
                     regions = self.get_region_for_non_null_production_volume(
                         i=i, variables=production_variables
                     )
@@ -1114,13 +1194,54 @@ class ExternalScenario(BaseTransformation):
                                 .values.item(0)
                             )
                         else:
-                            production_volume = (
+                            if self.year < min(
                                 self.external_scenarios_data[i]["production volume"]
-                                .sel(variables=production_variables, region=region)
-                                .sum(dim="variables")
-                                .interp(year=self.year)
-                                .values.item(0)
-                            )
+                                .coords["year"]
+                                .values
+                            ):
+                                production_volume = (
+                                    self.external_scenarios_data[i]["production volume"]
+                                    .sel(variables=production_variables, region=region)
+                                    .sum(dim="variables")
+                                    .interp(
+                                        year=min(
+                                            self.external_scenarios_data[i][
+                                                "production volume"
+                                            ]
+                                            .coords["year"]
+                                            .values
+                                        )
+                                    )
+                                    .values.item(0)
+                                )
+                            elif self.year > max(
+                                self.external_scenarios_data[i]["production volume"]
+                                .coords["year"]
+                                .values
+                            ):
+                                production_volume = (
+                                    self.external_scenarios_data[i]["production volume"]
+                                    .sel(variables=production_variables, region=region)
+                                    .sum(dim="variables")
+                                    .interp(
+                                        year=max(
+                                            self.external_scenarios_data[i][
+                                                "production volume"
+                                            ]
+                                            .coords["year"]
+                                            .values
+                                        )
+                                    )
+                                    .values.item(0)
+                                )
+                            else:
+                                production_volume = (
+                                    self.external_scenarios_data[i]["production volume"]
+                                    .sel(variables=production_variables, region=region)
+                                    .sum(dim="variables")
+                                    .interp(year=self.year)
+                                    .values.item(0)
+                                )
 
                         # Update production volume of the market
                         for e in ws.production(new_market):
@@ -1128,13 +1249,13 @@ class ExternalScenario(BaseTransformation):
 
                         new_excs = []
                         for pathway in pathways:
-                            var = fetch_var(self.configurations, [pathway])[0]
+                            var = fetch_var(configuration, [pathway])[0]
 
                             # fetch the dataset name/ref corresponding to this item
                             # under `production pathways`
                             (name, ref_prod, _, _, _, ratio) = (
                                 fetch_dataset_description_from_production_pathways(
-                                    self.configurations, pathway
+                                    configuration, pathway
                                 )
                             )
 
@@ -1243,11 +1364,6 @@ class ExternalScenario(BaseTransformation):
                             # check if there are variables that
                             # relate to inefficiencies or losses
 
-                            self.database.append(new_market)
-                            self.write_log(new_market)
-                            self.add_to_index(new_market)
-                            market_status[region] = True
-
                             # check if we should add some additional exchanges
                             if "add" in market_vars:
                                 for additional_exc in market_vars["add"]:
@@ -1273,6 +1389,10 @@ class ExternalScenario(BaseTransformation):
                                 self.adjust_efficiency_of_new_markets(
                                     new_market, market_vars, region, efficiency_data
                                 )
+                            self.database.append(new_market)
+                            self.write_log(new_market)
+                            self.add_to_index(new_market)
+                            market_status[region] = True
 
                         else:
                             print(
