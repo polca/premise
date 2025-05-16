@@ -10,6 +10,14 @@ cement, dry feed rotary kiln:
     gcam: Production|Industry|Cement
     tiam-ucl: Production|Cement
 
+  ecoinvent_aliases:
+    fltr:
+      name: clinker production
+      reference product: clinker
+    mask:
+      - kiln
+      - CCS
+
   energy_use_aliases:
     remind: FE|Industry|+++|Cement
     remind-eu: FE|Industry|+++|Cement
@@ -83,6 +91,15 @@ cement, dry feed rotary kiln:
 cement, dry feed rotary kiln, efficient:
   iam_aliases:
     image: Production|Industry|Cement|Efficient dry feed rotary kiln
+  ecoinvent_aliases:
+    fltr:
+      name:
+        - clinker production
+        - efficient
+      reference product: clinker
+    mask:
+      - CCS
+
   energy_use_aliases:
     image:
       - Final Energy|Industry|Cement|Efficient dry feed rotary kiln|Coal
@@ -128,6 +145,15 @@ cement, dry feed rotary kiln, efficient:
 cement, dry feed rotary kiln, efficient, with on-site CCS:
   iam_aliases:
     image: Production|Industry|Cement|Efficient dry feed rotary kiln + On-site CCS
+
+  ecoinvent_aliases:
+    fltr:
+      name:
+        - clinker production
+        - efficient
+        - on-site
+      reference product: clinker
+
   energy_use_aliases:
     image:
       - Final Energy|Industry|Cement|Efficient dry feed rotary kiln + On-site CCS|Coal
@@ -173,6 +199,15 @@ cement, dry feed rotary kiln, efficient, with on-site CCS:
 cement, dry feed rotary kiln, efficient, with oxyfuel CCS:
   iam_aliases:
     image: Production|Industry|Cement|Efficient dry feed rotary kiln + Oxy-combustion CCS
+
+  ecoinvent_aliases:
+    fltr:
+      name:
+        - clinker production
+        - efficient
+        - oxyfuel
+      reference product: clinker
+
   energy_use_aliases:
     image:
         - Final Energy|Industry|Cement|Efficient dry feed rotary kiln + Oxy-combustion CCS|Coal
@@ -222,6 +257,15 @@ cement, dry feed rotary kiln, efficient, with MEA CCS:
     remind-eu: Production|Industry|Cement w CCS
     message: Production|Non-Metallic Minerals|Cement w CCS
     gcam: Production|Industry|Cement w CCS
+
+  ecoinvent_aliases:
+    fltr:
+      name:
+        - clinker production
+        - efficient
+        - MEA
+      reference product: clinker
+
   energy_use_aliases:
     remind: FE|Industry|+++|Cement w CCS
     remind-eu: FE|Industry|+++|Cement w CCS

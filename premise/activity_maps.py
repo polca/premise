@@ -308,7 +308,7 @@ class InventorySet:
 
     def generate_steel_map(self) -> dict:
         """
-        Filter ecoinvent processes related to cement production.
+        Filter ecoinvent processes related to steel production.
 
         :return: dictionary with el. prod. techs as keys (see below) and
             sets of related ecoinvent activities as values.
@@ -317,6 +317,20 @@ class InventorySet:
         """
         filters = get_mapping(
             filepath=STEEL_TECHS, var="ecoinvent_aliases", model=self.model
+        )
+        return self.generate_sets_from_filters(filters)
+
+    def generate_cement_map(self) -> dict:
+        """
+        Filter ecoinvent processes related to cement production.
+
+        :return: dictionary with el. prod. techs as keys (see below) and
+            sets of related ecoinvent activities as values.
+        :rtype: dict
+
+        """
+        filters = get_mapping(
+            filepath=CEMENT_TECHS, var="ecoinvent_aliases", model=self.model
         )
         return self.generate_sets_from_filters(filters)
 

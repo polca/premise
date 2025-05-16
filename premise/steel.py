@@ -87,8 +87,8 @@ class Steel(BaseTransformation):
             index,
         )
         self.version = version
-        inv = InventorySet(self.database, self.version, self.model)
-        self.steel_map = inv.generate_steel_map()
+        self.inv = InventorySet(self.database, self.version, self.model)
+        self.steel_map = self.inv.generate_steel_map()
 
     def generate_activities(self):
         """
@@ -118,9 +118,12 @@ class Steel(BaseTransformation):
             ws.doesnt_contain_any("name", ["chromium", "rolled", "removed", "residue"]),
         ):
 
+            if ds.get("regionalized", False) is True:
+                continue
+
             self.process_and_add_markets(
                 name=ds["name"],
-                reference_product=ds["reference_product"],
+                reference_product=ds["reference product"],
                 unit=ds["unit"],
                 mapping=self.steel_map,
                 production_volumes=self.iam_data.production_volumes,
@@ -141,8 +144,8 @@ class Steel(BaseTransformation):
         # Empty old datasets.
 
         self.process_and_add_activities(
-            mapping=self.steel_map,
             efficiency_adjustment_fn=self.adjust_process_efficiency,
+            mapping=self.steel_map,
         )
 
         # make other steel datasets region-specific
@@ -154,7 +157,10 @@ class Steel(BaseTransformation):
         )
         steel_datasets = {
             "other": [
-                ds for ds in steel_datasets if ds.get("regionalized", False) is False
+                ds for ds in steel_datasets
+                if not any(
+                    ds in sublist for sublist in self.steel_map.values()
+                )
             ]
         }
 
