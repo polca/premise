@@ -600,14 +600,20 @@ class BaseInventoryImport:
                 if exchange["type"] == "technosphere":
                     # Check if the field 'product' is present
                     if not "product" in exchange:
-                        exchange["product"] = self.correct_product_field(
-                            (
-                                exchange["name"],
-                                exchange["location"],
-                                exchange["unit"],
-                                exchange.get("reference product", None),
+                        try:
+                            exchange["product"] = self.correct_product_field(
+                                (
+                                    exchange["name"],
+                                    exchange["location"],
+                                    exchange["unit"],
+                                    exchange.get("reference product", None),
+                                )
                             )
-                        )
+                        except KeyError:
+                            print(
+                                f"Could not find a product for {exchange} in {dataset['name']}"
+                            )
+                            raise IndexError()
 
                     # If a 'reference product' field is present, we make sure
                     # it matches with the new 'product' field
@@ -1062,18 +1068,29 @@ class AdditionalInventory(BaseInventoryImport):
 
     def download_file(self, url, local_path) -> None:
         try:
-            response = requests.get(url)
+            response = requests.get(url, stream=True)
             response.raise_for_status()
-            with open(local_path, "w", encoding="utf-8") as file:
-                writer = csv.writer(
-                    file,
-                    quoting=csv.QUOTE_NONE,
-                    delimiter=",",
-                    quotechar="'",
-                    escapechar="\\",
-                )
-                for line in response.iter_lines():
-                    writer.writerow(line.decode("utf-8").split(","))
+
+            # Save Excel file directly as binary
+            if Path(local_path).suffix == ".xlsx":
+                with open(local_path, "wb") as file:
+                    for chunk in response.iter_content(chunk_size=8192):
+                        file.write(chunk)
+
+            # Otherwise, assume it's a CSV (text)
+            else:
+                with open(local_path, "w", newline="", encoding="utf-8") as file:
+                    writer = csv.writer(
+                        file,
+                        quoting=csv.QUOTE_MINIMAL,
+                        delimiter=",",
+                        quotechar="'",
+                        escapechar="\\",
+                    )
+                    for line in response.iter_lines():
+                        decoded_line = line.decode("utf-8", errors="replace")
+                        writer.writerow(decoded_line.split(","))
+
         except requests.RequestException as e:
             raise ConnectionError(f"Error downloading the file: {e}") from e
 
@@ -1083,15 +1100,23 @@ class AdditionalInventory(BaseInventoryImport):
         if "http" in path_str:
             if ":/" in path_str and "://" not in path_str:
                 path_str = path_str.replace(":/", "://")
-            self.download_file(path_str, TEMP_CSV_FILE)
-            file_path = TEMP_CSV_FILE
+            self.download_file(
+                path_str,
+                TEMP_CSV_FILE if path_str.endswith(".csv") else TEMP_EXCEL_FILE,
+            )
+            temp_file_path = (
+                TEMP_CSV_FILE if path_str.endswith(".csv") else TEMP_EXCEL_FILE
+            )
         else:
-            file_path = self.path
+            temp_file_path = self.path
 
-        if file_path.suffix == ".xlsx":
-            return ExcelImporter(file_path)
-        if file_path.suffix == ".csv":
-            return CSVImporter(file_path)
+        if temp_file_path.suffix == ".xlsx":
+            return ExcelImporter(temp_file_path)
+        if temp_file_path.suffix == ".csv":
+            try:
+                return CSVImporter(temp_file_path)
+            except:
+                raise ValueError(f"The file from {self.path} is not a valid CSV file.")
 
         raise ValueError(
             "Incorrect filetype for inventories. Should be either .xlsx or .csv"

@@ -1153,6 +1153,7 @@ class NewDatabase:
                 original_database=self.database,
                 biosphere_name=self.biosphere_name,
             )
+            scenario["database name"] = name[s]
             write_brightway_database(
                 scenario["database"],
                 name[s],
