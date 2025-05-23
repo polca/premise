@@ -714,7 +714,7 @@ class Heat(BaseTransformation):
             for period in periods
             for region in self.regions
             if region != "World"
-            and energy_use_volumes.sel(region=region, year=self.year).sum() > 0
+            and energy_use_volumes.sel(region=region).interp(year=self.year).sum() > 0
         ]
 
         self.database.extend(new_datasets)
@@ -723,7 +723,7 @@ class Heat(BaseTransformation):
             self.write_log(ds)
             self.add_to_index(ds)
 
-        if energy_use_volumes.sel(year=self.year).sum() > 0:
+        if energy_use_volumes.interp(year=self.year).sum() > 0:
             new_world_dataset = self.generate_world_market(
                 dataset=copy.deepcopy(generic_dataset),
                 regions=self.regions,

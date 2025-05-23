@@ -180,7 +180,7 @@ class Biomass(BaseTransformation):
                             variables=biomass_type, region=region
                         )
                         .interp(year=self.year)
-                        .values.item(0),
+                        .values.item(0)
                     )
 
                 if (

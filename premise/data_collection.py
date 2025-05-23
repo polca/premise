@@ -1341,7 +1341,7 @@ class IAMDataCollection:
         market_data = market_data.fillna(0)
 
         # remove attrs
-        market_data.attrs = {}
+        #market_data.attrs = {}
 
         return market_data
 
