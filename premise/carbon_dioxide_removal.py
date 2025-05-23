@@ -415,9 +415,9 @@ class CarbonDioxideRemoval(BaseTransformation):
             cdr_mix = dict(
                 zip(
                     self.iam_data.cdr_technology_mix.variables.values,
-                    self.iam_data.cdr_technology_mix.sel(
-                        region=region
-                    ).interp(year=self.year).values,
+                    self.iam_data.cdr_technology_mix.sel(region=region)
+                    .interp(year=self.year)
+                    .values,
                 )
             )
 
@@ -492,9 +492,9 @@ class CarbonDioxideRemoval(BaseTransformation):
             generate_regional_markets(region, subset)
             for region in self.regions
             if region != "World"
-            and self.iam_data.cdr_technology_mix.sel(
-                region=region
-            ).interp(year=self.year).sum()
+            and self.iam_data.cdr_technology_mix.sel(region=region)
+            .interp(year=self.year)
+            .sum()
             > 0
         ]
 
