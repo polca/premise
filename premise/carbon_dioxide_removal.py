@@ -324,7 +324,7 @@ class CarbonDioxideRemoval(BaseTransformation):
                 )
 
             if np.isnan(share):
-                print("Incorrect market share for", dataset["name"], "in", region)
+                share = 1 / len(regions)
 
             if share > 0:
                 # Add exchange for the region

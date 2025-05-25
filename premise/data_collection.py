@@ -1321,6 +1321,13 @@ class IAMDataCollection:
             rev_input_vars[v] for v in market_data.variables.values
         ]
 
+        # check World region
+        # if empty, fill it with the sum of all regions
+        if "World" in market_data.region.values:
+            if market_data.sel(region="World").sum() == 0:
+                print(f"World region is empty for, filling it with the sum of all regions.")
+                market_data.loc[dict(region="World")] = market_data.sum(dim="region")
+
         # if duplicates in market_data.coords["variables"]
         # we sum them
         if len(market_data.coords["variables"].values.tolist()) != len(
@@ -1341,8 +1348,13 @@ class IAMDataCollection:
         # fill NaNs with zeros
         market_data = market_data.fillna(0)
 
-        # remove attrs
-        # market_data.attrs = {}
+
+        # remove uneeded attrs
+        market_data.attrs = {
+            "unit": {
+                k: v for k, v in market_data.attrs["unit"].items() if k in input_vars.values()
+            }
+        }
 
         return market_data
 
@@ -1487,166 +1499,6 @@ class IAMDataCollection:
 
         return eff_data
 
-    def __get_carbon_capture_rate(
-        self, dict_vars: Dict[str, str], data: xr.DataArray
-    ) -> xr.DataArray:
-        """
-        Returns a xarray with carbon capture rates for steel and cement production.
-
-        :param dict_vars: dictionary that contains AIM variables to search for
-        :param data: IAM data
-        :return: a xarray with carbon capture rates, for each year and region
-        """
-
-        # If the year specified is not contained within the range of years given by the IAM
-        if self.year < data.year.values.min() or self.year > data.year.values.max():
-            raise KeyError(
-                f"{self.year} is outside of the boundaries "
-                f"of the IAM file: {data.year.values.min()}-{data.year.values.max()}"
-            )
-
-        # Finally, if the specified year falls in between two periods provided by the IAM
-        # Interpolation between two periods
-
-        # if variable is missing, we assume that the rate is 0
-        # and that none of the  CO2 emissions are captured
-
-        if isinstance(dict_vars.get("cement - cco2", []), str):
-            dict_vars["cement - cco2"] = [
-                dict_vars["cement - cco2"],
-            ]
-
-        if not any(
-            x in data.variables.values.tolist()
-            for x in dict_vars.get("cement - cco2", [])
-        ):
-            print("Cannot find variables for cement capture rate.")
-            cement_rate = xr.DataArray(
-                np.zeros((len(data.region), len(data.year))),
-                coords=[data.region, data.year],
-                dims=["region", "year"],
-            )
-
-        else:
-            cement_rate = data.loc[:, dict_vars["cement - cco2"], :].sum(
-                dim=["variables"]
-            ) / data.loc[:, dict_vars["cement - co2"], :].sum(dim=["variables"])
-
-        cement_rate.coords["variables"] = "cement"
-
-        if isinstance(dict_vars.get("steel - cco2", []), str):
-            dict_vars["steel - cco2"] = [
-                dict_vars["steel - cco2"],
-            ]
-
-        if not any(
-            x in data.variables.values.tolist()
-            for x in dict_vars.get("steel - cco2", [])
-        ):
-            print("Cannot find variables for steel capture rate.")
-            steel_rate = xr.DataArray(
-                np.zeros((len(data.region), len(data.year))),
-                coords=[data.region, data.year],
-                dims=["region", "year"],
-            )
-        else:
-            steel_rate = data.loc[:, dict_vars["steel - cco2"], :].sum(
-                dim="variables"
-            ) / data.loc[:, dict_vars["steel - co2"], :].sum(dim="variables")
-
-        steel_rate.coords["variables"] = "steel"
-
-        rate = xr.concat([cement_rate, steel_rate], dim="variables")
-
-        # forward fill missing values
-        rate = rate.ffill(dim="year")
-
-        rate = rate.fillna(0)
-
-        # we need to fix the rate for "World"
-        # as it is sometimes neglected in the
-        # IAM files
-
-        if "World" in rate.region.values.tolist():
-            if not any(
-                x in data.variables.values.tolist()
-                for x in dict_vars.get("cement - cco2", [])
-            ):
-                rate.loc[dict(region="World", variables="cement")] = 0
-            else:
-                try:
-                    rate.loc[dict(region="World", variables="cement")] = (
-                        data.loc[
-                            dict(
-                                region=[r for r in self.regions if r != "World"],
-                                variables=dict_vars["cement - cco2"],
-                            )
-                        ]
-                        .sum(dim=["variables", "region"])
-                        .values
-                        / data.loc[
-                            dict(
-                                region=[r for r in self.regions if r != "World"],
-                                variables=dict_vars["cement - co2"],
-                            )
-                        ]
-                        .sum(dim=["variables", "region"])
-                        .values
-                    )
-
-                except ZeroDivisionError:
-                    rate.loc[dict(region="World", variables="cement")] = 0
-
-                try:
-                    rate.loc[dict(region="World", variables="steel")] = data.loc[
-                        dict(
-                            region=[r for r in self.regions if r != "World"],
-                            variables=dict_vars["steel - cco2"],
-                        )
-                    ].sum(dim=["variables", "region"]) / data.loc[
-                        dict(
-                            region=[r for r in self.regions if r != "World"],
-                            variables=dict_vars["steel - co2"],
-                        )
-                    ].sum(
-                        dim=["variables", "region"]
-                    )
-
-                except ZeroDivisionError:
-                    rate.loc[dict(region="World", variables="steel")] = 0
-
-            if not any(
-                x in data.variables.values.tolist()
-                for x in dict_vars.get("steel - cco2", [])
-            ):
-                rate.loc[dict(region="World", variables="steel")] = 0
-            else:
-                rate.loc[dict(region="World", variables="steel")] = (
-                    data.loc[
-                        dict(
-                            region=[r for r in self.regions if r != "World"],
-                            variables=dict_vars["steel - cco2"],
-                        )
-                    ]
-                    .sum(dim=["variables", "region"])
-                    .values
-                    / data.loc[
-                        dict(
-                            region=[r for r in self.regions if r != "World"],
-                            variables=dict_vars["steel - co2"],
-                        )
-                    ]
-                    .sum(dim=["variables", "region"])
-                    .values
-                )
-
-        # we ensure that the rate can only be between 0 and 1
-        rate.values = np.clip(rate, 0, 1)
-
-        # values under 0.001 are considered as 0
-        rate = xr.where(rate < 0.001, 0, rate)
-
-        return rate
 
     def __get_iam_production_volumes(
         self, input_vars, data, fill: bool = False

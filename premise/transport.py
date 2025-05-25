@@ -491,7 +491,7 @@ class Transport(BaseTransformation):
 
         # if trucks or ships, need to reconnect everything
         # loop through datasets that use truck transport
-        if self.vehicle_type in ("truck", "ship"):
+        if self.vehicle_type in ("truck", "ship", "train"):
 
             list_created_vehicles = [(v["name"], v["location"]) for v in fleet_act]
 
