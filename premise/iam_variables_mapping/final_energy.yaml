@@ -2585,8 +2585,8 @@ Transport - Pass - Rail - Biofuel:
   iam_aliases:
     remind: FE|Transport|Pass|Rail|Liquids|Biomass
     image:
-    - Final Energy|Transportation|Passenger|Rail (high speed)|Lquids|Biomass
-    - Final Energy|Transportation|Passenger|Rail (low speed)|Lquids|Biomass
+    - Final Energy|Transportation|Passenger|Rail (high speed)|Liquids|Biomass
+    - Final Energy|Transportation|Passenger|Rail (low speed)|Liquids|Biomass
     tiam-ucl: Final Energy|Transport|Rail|Passenger|Biodiesel
     remind-eu: FE|Transport|Pass|Rail|Liquids|Biomass
 Transport - Pass - Rail - Liquid fossil:

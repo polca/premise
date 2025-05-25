@@ -48,6 +48,14 @@ SUPPORTED_PATHWAYS:
   - SSP5-NPi
   - SSP5-PkBudg1150
   - SSP5-PkBudg500
+  - SSP1-L
+  - SSP1-Ma
+  - SSP1-VLLO
+  - SSP2-L
+  - SSP2-M
+  - SSP2-VLHO
+  - SSP3-H
+  - SSP5-H
   - static
 
 LIST_MESSAGE_REGIONS:

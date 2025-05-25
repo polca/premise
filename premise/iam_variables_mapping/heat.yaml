@@ -200,13 +200,19 @@ heat, buildings, from light fuel oil boiler:
         - Final Energy|Commercial|Space Heating|Liquids|Fossil
         - Final Energy|Commercial|Water Heating|Liquids|Fossil
 
+heat, industrial, from hydrogen:
+    ecoinvent_aliases:
+        fltr: hydrogen, burned in gas turbine 1GW
+    iam_aliases:
+      image: Final Energy|Industry|Other Sector|Hydrogen
+
 heat, industrial, from heat pump:
     ecoinvent_aliases:
         fltr: heat production, air-water heat pump 10kW
     iam_aliases:
       remind: SE|Heat|Electricity|Heat Pump
       remind-eu: SE|Heat|Electricity|Heat Pump
-
+      image: Final Energy|Industry|Other Sector|Electricity
 
 heat, industrial, from natural gas CHP:
     ecoinvent_aliases:
@@ -216,6 +222,7 @@ heat, industrial, from natural gas CHP:
     iam_aliases:
       remind: SE|Heat|Gas|Combined Heat and Power
       remind-eu: SE|Heat|Gas|Combined Heat and Power
+      image: Final Energy|Industry|Other Sector|Gases|Fossil
 
 heat, industrial, from coal CHP:
     ecoinvent_aliases:
@@ -225,6 +232,7 @@ heat, industrial, from coal CHP:
     iam_aliases:
       remind: SE|Heat|Coal|Combined Heat and Power
       remind-eu: SE|Heat|Coal|Combined Heat and Power
+      image: Final Energy|Industry|Other Sector|Solids|Fossil
 
 heat, industrial, from biomass CHP:
     ecoinvent_aliases:
@@ -237,6 +245,13 @@ heat, industrial, from biomass CHP:
     iam_aliases:
       remind: SE|Heat|Biomass|Combined Heat and Power
       remind-eu: SE|Heat|Biomass|Combined Heat and Power
+      image: Final Energy|Industry|Other Sector|Solids|Biomass
+
+heat, industrial, from light fuel oil boiler:
+    ecoinvent_aliases:
+        fltr: heat production, light fuel oil, at industrial furnace 1MW
+    iam_aliases:
+      image: Final Energy|Industry|Other Sector|Liquids|Fossil
 
 heat, industrial, from geothermal:
     ecoinvent_aliases:

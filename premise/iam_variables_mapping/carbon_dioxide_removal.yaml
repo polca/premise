@@ -14,6 +14,8 @@ direct air capture (solvent) with storage:
     tiam-ucl: Carbon Capture|Storage|Direct Air Capture
     witch: Carbon Sequestration|Direct Air Capture|Solvent
   energy_use_aliases:
+    image:
+      - Final Energy|Carbon Management|Direct Air Capture
     remind:
       - FE|CDR|DAC|+|Electricity
       - FE|CDR|DAC|+|Gases

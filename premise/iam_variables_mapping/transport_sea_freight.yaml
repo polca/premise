@@ -11,6 +11,9 @@ ship, marine oil:
       - Distance|Transport|Ship|Domestic|Heavy Fuel Oil|Heavy Fuel Oil
       - Distance|Transport|Ship|International|Heavy Fuel Oil
       - Distance|Transport|Ship|International|Heavy Fuel Oil|Heavy Fuel Oil
+    image:
+      - Energy Service|Transportation|Freight|National Shipping|Liquids|Fossil
+      - Energy Service|Transportation|Freight|International Shipping|Liquids|Fossil
   energy_use_aliases:
     remind:
       - FE|Transport|Bunkers|Freight|International Shipping|Liquids|Fossil
@@ -82,6 +85,9 @@ ship, biodiesel:
       - Distance|Transport|Ship|International|Biodiesel
       - Distance|Transport|Ship|Domestic|Heavy Fuel Oil|Biodiesel
       - Distance|Transport|Ship|International|Heavy Fuel Oil|Biodiesel
+    image:
+      - Energy Service|Transportation|Freight|International Shipping|Liquids|Biomass
+      - Energy Service|Transportation|Freight|National Shipping|Liquids|Biomass
   energy_use_aliases:
     remind:
       - FE|Transport|Freight|Domestic Shipping|Liquids|Biomass
@@ -109,15 +115,13 @@ ship, biodiesel:
 
 ship, electric:
   iam_aliases:
-    remind:
-    remind-eu:
-    tiam-ucl:
+    image:
+      - Energy Service|Transportation|Freight|National Shipping|Electricity
+      - Energy Service|Transportation|Freight|International Shipping|Electricity
   energy_use_aliases:
-    remind:
-    remind-eu:
     image:
       - Final Energy|Transportation|Freight|National Shipping|Electricity
-      - Final Energy|Transportation|Freight|International Shipping|Electricity
+      - Energy Service|Transportation|Freight|International Shipping|Electricity
     tiam-ucl:
   ecoinvent_aliases:
     fltr:
@@ -136,6 +140,8 @@ ship, electric:
 ship, fuel cell:
   iam_aliases:
     image:
+      - Energy Service|Transportation|Freight|International Shipping|Hydrogen
+      - Energy Service|Transportation|Freight|National Shipping|Hydrogen
     tiam-ucl:
       - Distance|Transport|Ship|Domestic|Hydrogen|Shipping Hydrogen
       - Distance|Transport|Ship|International|Hydrogen|Shipping Hydrogen

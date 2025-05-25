@@ -974,6 +974,7 @@ class IAMDataCollection:
                 **cdr_prod_vars,
                 **biomass_prod_vars,
                 **buildings_heat_vars,
+                **industrial_heat_vars,
                 **roadfreight_prod_vars,
                 **railfreight_prod_vars,
                 **seafreight_prod_vars,
