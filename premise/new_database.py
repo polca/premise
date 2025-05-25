@@ -517,7 +517,7 @@ class NewDatabase:
     def __init__(
         self,
         scenarios: List[dict],
-        source_version: str = "3.10",
+        source_version: str = "3.11",
         source_type: str = "brightway",
         key: Union[bytes, str] = None,
         source_db: str = None,
@@ -549,11 +549,11 @@ class NewDatabase:
         # and system_model is "consequential"
         # raise an error
         if (
-            self.version not in ["3.8", "3.9", "3.9.1", "3.10"]
+            self.version not in ["3.8", "3.9", "3.9.1", "3.10", "3.11"]
             and self.system_model == "consequential"
         ):
             raise ValueError(
-                "Consequential system model is only available for ecoinvent 3.8, 3.9 or 3.10."
+                "Consequential system model is only available for ecoinvent 3.8, 3.9, 3.10 or 3.11."
             )
 
         if gains_scenario not in ["CLE", "MFR"]:
@@ -830,6 +830,7 @@ class NewDatabase:
                 "3.9",
                 "3.9.1",
                 "3.10",
+                "3.11"
             ]:
                 continue
 

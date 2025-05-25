@@ -256,6 +256,8 @@ def biosphere_flows_dictionary(version):
         fp = DATA_DIR / "utils" / "export" / "flows_biosphere_39.csv"
     elif version == "3.10":
         fp = DATA_DIR / "utils" / "export" / "flows_biosphere_310.csv"
+    elif version == "3.11":
+        fp = DATA_DIR / "utils" / "export" / "flows_biosphere_311.csv"
     else:
         fp = DATA_DIR / "utils" / "export" / "flows_biosphere_38.csv"
 

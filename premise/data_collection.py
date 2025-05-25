@@ -1325,9 +1325,6 @@ class IAMDataCollection:
         # if empty, fill it with the sum of all regions
         if "World" in market_data.region.values:
             if market_data.sel(region="World").sum() == 0:
-                print(
-                    f"World region is empty for, filling it with the sum of all regions."
-                )
                 market_data.loc[dict(region="World")] = market_data.sum(dim="region")
 
         # if duplicates in market_data.coords["variables"]

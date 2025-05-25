@@ -85,6 +85,8 @@ def get_biosphere_code(version) -> dict:
         fp = DATA_DIR / "utils" / "export" / "flows_biosphere_39.csv"
     elif version == "3.10":
         fp = DATA_DIR / "utils" / "export" / "flows_biosphere_310.csv"
+    elif version == "3.11":
+        fp = DATA_DIR / "utils" / "export" / "flows_biosphere_311.csv"
     elif version == "3.7":
         fp = DATA_DIR / "utils" / "export" / "flows_biosphere_37.csv"
     else:
@@ -407,7 +409,7 @@ class BaseInventoryImport:
         # register migration maps
         # as imported inventories link
         # to different ecoinvent versions
-        ei_versions = ["35", "36", "37", "38", "39", "310"]
+        ei_versions = ["35", "36", "37", "38", "39", "310", "311"]
 
         for combination in itertools.product(ei_versions, ei_versions):
             if combination[0] != combination[1]:
@@ -930,7 +932,8 @@ class DefaultInventory(BaseInventoryImport):
 
     def prepare_inventory(self) -> None:
         if self.version_in != self.version_out:
-            # if version_out is 3.9 or 3.10, migrate towards 3.8 first, then 3.9 or 3.10
+            # if version_out is 3.9, 3.10 or 3.11,
+            # migrate towards 3.8 first, then 3.9, 3.10 or 3.11
             if self.version_out in ["3.9", "3.9.1", "3.10"] and self.version_in in [
                 "3.5",
                 "3.6",
@@ -942,6 +945,20 @@ class DefaultInventory(BaseInventoryImport):
                 )
                 self.import_db.migrate(
                     f"migration_38_{self.version_out.replace('.', '')}"
+                )
+            if self.version_out == "3.11" and self.version_in in [
+                "3.5",
+                "3.6",
+                "3.7",
+                "3.8",
+                "3.9"
+            ]:
+                print("Migrating to 3.10 first")
+                self.import_db.migrate(
+                    f"migration_{self.version_in.replace('.', '')}_310"
+                )
+                self.import_db.migrate(
+                    f"migration_310_{self.version_out.replace('.', '')}"
                 )
             self.import_db.migrate(
                 f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}"
@@ -1024,7 +1041,7 @@ class VariousVehicles(BaseInventoryImport):
 
     def prepare_inventory(self):
         # if version_out is 3.9, migrate towards 3.8 first, then 3.9
-        if self.version_out in ["3.9", "3.9.1", "3.10"]:
+        if self.version_out in ["3.9", "3.9.1", "3.10", "3.11"]:
             if self.version_out in ["3.9", "3.9.1", "3.10"] and self.version_in in [
                 "3.5",
                 "3.6",
@@ -1036,6 +1053,20 @@ class VariousVehicles(BaseInventoryImport):
                 )
                 self.import_db.migrate(
                     f"migration_38_{self.version_out.replace('.', '')}"
+                )
+            if self.version_out == "3.11" and self.version_in in [
+                "3.5",
+                "3.6",
+                "3.7",
+                "3.8",
+                "3.9"
+            ]:
+                print("Migrating to 3.10 first")
+                self.import_db.migrate(
+                    f"migration_{self.version_in.replace('.', '')}_310"
+                )
+                self.import_db.migrate(
+                    f"migration_310_{self.version_out.replace('.', '')}"
                 )
             self.import_db.migrate(
                 f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}"
@@ -1136,6 +1167,21 @@ class AdditionalInventory(BaseInventoryImport):
                 )
                 self.import_db.migrate(
                     f"migration_38_{self.version_out.replace('.', '')}"
+                )
+
+            if self.version_out == "3.11" and self.version_in in [
+                "3.5",
+                "3.6",
+                "3.7",
+                "3.8",
+                "3.9"
+            ]:
+                print("Migrating to 3.10 first")
+                self.import_db.migrate(
+                    f"migration_{self.version_in.replace('.', '')}_310"
+                )
+                self.import_db.migrate(
+                    f"migration_310_{self.version_out.replace('.', '')}"
                 )
 
             self.import_db.migrate(

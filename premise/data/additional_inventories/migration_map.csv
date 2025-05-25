@@ -1349,3 +1349,154 @@ from,to,name_from,ref_prod_from,location_from,name_to,ref_prod_to,location_to
 310,38,"market for powertrain, for electric scooter","powertrain, for electric scooter",GLO,"market for powertrain, for electric scooter","powertrain, for electric scooter",GLO
 310,37,"market for powertrain, for electric scooter","powertrain, for electric scooter",GLO,"market for electric powertrain, for electric scooter","powertrain, for electric scooter",GLO
 310,36,"market for powertrain, for electric scooter","powertrain, for electric scooter",GLO,"market for electric powertrain, for electric scooter","powertrain, for electric scooter",GLO
+310,311,"transport, freight, lorry >32 metric ton, EURO4","transport, freight, lorry >32 metric ton, EURO4",RER,"transport, freight, lorry, >32 metric ton, diesel, EURO 4","transport, freight, lorry, >32 metric ton, diesel, EURO 4",RER
+310,311,"treatment of scrap aluminium, municipal incineration FAE",scrap aluminium,CH,"treatment of waste aluminium, municipal incineration FAE",waste aluminium,CH
+310,311,"treatment of scrap copper, municipal incineration FAE",scrap copper,CH,"treatment of waste copper, municipal incineration FAE",waste copper,CH
+310,311,"treatment of scrap steel, inert material landfill",scrap steel,CH,"treatment of waste steel, inert material landfill",waste steel,CH
+310,311,"lime production, milled, loose",lime,CH,"limestone production, milled, loose","limestone, milled, loose",CH
+310,311,"market for transport, freight, lorry, unspecified","transport, freight, lorry, unspecified",RER,"market for transport, freight, lorry, unspecified","transport, freight, lorry, diesel, unspecified",RER
+310,311,"market for transport, freight train","transport, freight train",Europe without Switzerland,"market for transport, freight, train, fleet average","transport, freight, train, fleet average",Europe without Switzerland
+310,311,"transport, freight, lorry 16-32 metric ton, EURO4","transport, freight, lorry 16-32 metric ton, EURO4",RER,"transport, freight, lorry, 16-32 metric ton, diesel, EURO 4","transport, freight, lorry, 16-32 metric ton, diesel, EURO 4",RER
+310,311,"lime production, milled, packed","lime, packed",CH,"limestone production, milled, packed","limestone, milled, packed",CH
+310,311,"heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas","heat, district or industrial, other than natural gas",CH,"heat, from municipal waste incineration to generic market for heat, district or industrial, other than natural gas","heat, district or industrial, other than natural gas",CH
+310,311,"treatment of scrap copper, municipal incineration",scrap copper,Europe without Switzerland,"treatment of waste copper, municipal incineration",waste copper,Europe without Switzerland
+310,311,"market for transport, freight, lorry, unspecified","transport, freight, lorry, unspecified",RER,"market for transport, freight, lorry, unspecified","transport, freight, lorry, diesel, unspecified",RER
+310,311,"market for lime, hydrated, packed","lime, hydrated, packed",RER,"market for hydrated lime, packed","hydrated lime, packed",RER
+310,311,"market for transport, freight, sea, bulk carrier for dry goods","transport, freight, sea, bulk carrier for dry goods",GLO,"market for transport, freight, sea, bulk carrier for dry goods, heavy fuel oil","transport, freight, sea, bulk carrier for dry goods, heavy fuel oil",GLO
+310,311,"transport, freight, lorry >32 metric ton, EURO3","transport, freight, lorry >32 metric ton, EURO3",RoW,"transport, freight, lorry, >32 metric ton, diesel, EURO 3","transport, freight, lorry, >32 metric ton, diesel, EURO 3",RoW
+310,311,"market group for transport, freight, inland waterways, barge","transport, freight, inland waterways, barge",GLO,"market group for transport, freight, inland waterways, barge, diesel","transport, freight, inland waterways, barge, diesel",GLO
+310,311,"market for transport, freight, lorry, unspecified","transport, freight, lorry, unspecified",RoW,"market for transport, freight, lorry, unspecified","transport, freight, lorry, diesel, unspecified",RoW
+310,311,"market for transport, freight, sea, container ship","transport, freight, sea, container ship",GLO,"market for transport, freight, sea, container ship, heavy fuel oil","transport, freight, sea, container ship, heavy fuel oil",GLO
+310,311,"market group for transport, freight train","transport, freight train",GLO,"market group for transport, freight, train, fleet average","transport, freight, train, fleet average",GLO
+310,311,"market for lime, hydraulic","lime, hydraulic",RoW,market for hydraulic lime,hydraulic lime,RoW
+310,311,"market group for transport, freight, lorry, unspecified","transport, freight, lorry, unspecified",GLO,"market group for transport, freight, lorry, diesel, unspecified","transport, freight, lorry, diesel, unspecified",GLO
+310,311,market for lime,lime,RoW,"market for limestone, milled, loose","limestone, milled, loose",RoW
+310,311,"market for transport, freight train","transport, freight train",RoW,"market for transport, freight, train, fleet average","transport, freight, train, fleet average",RoW
+310,311,"market for transport, freight, inland waterways, barge","transport, freight, inland waterways, barge",RoW,"market for transport, freight, inland waterways, barge, diesel","transport, freight, inland waterways, barge, diesel",RoW
+310,311,"market group for transport, freight, light commercial vehicle","transport, freight, light commercial vehicle",GLO,"market group for transport, freight, light commercial vehicle, fleet average","transport, freight, light commercial vehicle, fleet average",GLO
+310,311,"market for transport, freight train","transport, freight train",CN,"market for transport, freight, train, fleet average","transport, freight, train, fleet average",CN
+310,311,market for methylchloride,methylchloride,RoW,market for methyl chloride,methyl chloride,RoW
+310,311,market for methylchloride,methylchloride,RER,market for methyl chloride,methyl chloride,RER
+310,311,"market group for transport, freight train","transport, freight train",GLO,"market group for transport, freight, train, fleet average","transport, freight, train, fleet average",GLO
+310,311,"market group for transport, freight, inland waterways, barge","transport, freight, inland waterways, barge",GLO,"market group for transport, freight, inland waterways, barge, diesel","transport, freight, inland waterways, barge, diesel",GLO
+310,311,"market group for transport, freight, lorry, unspecified","transport, freight, lorry, unspecified",GLO,"market group for transport, freight, lorry, diesel, unspecified","transport, freight, lorry, diesel, unspecified",GLO
+310,311,"market for transport, freight, sea, container ship","transport, freight, sea, container ship",GLO,"market for transport, freight, sea, container ship, heavy fuel oil","transport, freight, sea, container ship, heavy fuel oil",GLO
+310,311,market for butyl acetate,butyl acetate,RoW,market for n-butyl acetate,n-butyl acetate,RoW
+310,311,market for scrap copper,scrap copper,RoW,market for waste copper,waste copper,RoW
+310,311,market for scrap steel,scrap steel,RoW,market for waste steel,waste steel,RoW
+310,311,"market for transport, freight train","transport, freight train",Europe without Switzerland,"market for transport, freight, train, fleet average","transport, freight, train, fleet average",Europe without Switzerland
+310,311,"market for transport, freight, lorry 16-32 metric ton, EURO6","transport, freight, lorry 16-32 metric ton, EURO6",RER,"market for transport, freight, lorry, 16-32 metric ton, diesel, EURO 6","transport, freight, lorry, 16-32 metric ton, diesel, EURO 6",RER
+310,311,market for scrap copper,scrap copper,Europe without Switzerland,market for waste copper,waste copper,Europe without Switzerland
+310,311,"lime production, hydrated, packed","lime, hydrated, packed",CH,"hydrated lime production, packed","hydrated lime, packed",CH
+310,311,"market for transport, freight, lorry >32 metric ton, EURO6","transport, freight, lorry >32 metric ton, EURO6",RER,"market for transport, freight, lorry, >32 metric ton, diesel, EURO 6","transport, freight, lorry, >32 metric ton, diesel, EURO 6",RER
+310,311,"polyvinylchloride production, bulk polymerisation","polyvinylchloride, bulk polymerised",RER,"polyvinyl chloride production, unspecified polymerisation, weighted average","polyvinyl chloride, unspecified polymerisation, weighted average",RER
+310,311,market for electric arc furnace converter,electric arc furnace converter,GLO,market for electric arc furnace,electric arc furnace,GLO
+310,311,"market group for transport, freight train","transport, freight train",RER,"market group for transport, freight, train, fleet average","transport, freight, train, fleet average",RER
+310,311,"market for transport, freight train","transport, freight train",RoW,"market for transport, freight, train, fleet average","transport, freight, train, fleet average",RoW
+310,311,market for lime,lime,RoW,"market for limestone, milled, loose","limestone, milled, loose",RoW
+310,311,"market for transport, freight, lorry 16-32 metric ton, EURO5","transport, freight, lorry 16-32 metric ton, EURO5",RER,"market for transport, freight, lorry, 16-32 metric ton, diesel, EURO 5","transport, freight, lorry, 16-32 metric ton, diesel, EURO 5",RER
+310,311,"market for transport, freight, inland waterways, barge","transport, freight, inland waterways, barge",RER,"market for transport, freight, inland waterways, barge, diesel","transport, freight, inland waterways, barge, diesel",RER
+310,311,"methanol production, natural gas reforming",methanol,RoW,"methanol production, from natural gas reforming",methanol,RoW
+310,311,"transport, freight train, electricity","transport, freight train",Europe without Switzerland,"transport, freight, train, electric","transport, freight, train, fleet average",Europe without Switzerland
+310,311,"market for acetic acid, without water, in 98% solution state","acetic acid, without water, in 98% solution state",GLO,market for acetic acid,acetic acid,GLO
+310,311,"market for lime, hydrated, loose weight","lime, hydrated, loose weight",RoW,"market for hydrated lime, loose","hydrated lime, loose",RoW
+310,311,"market for lime, hydrated, packed","lime, hydrated, packed",RER,"market for hydrated lime, packed","hydrated lime, packed",RER
+310,311,"market for battery, Li-ion, LFP, rechargeable, prismatic","battery, Li-ion, LFP, rechargeable, prismatic",GLO,"market for battery, Li-ion, LFP, rechargeable","battery, Li-ion, LFP, rechargeable",GLO
+310,311,"market for battery, Li-ion, NMC111, rechargeable, prismatic","battery, Li-ion, NMC111, rechargeable, prismatic",GLO,"market for battery, Li-ion, NMC111, rechargeable","battery, Li-ion, NMC111, rechargeable",GLO
+310,311,"market for battery, Li-ion, NMC811, rechargeable, prismatic","battery, Li-ion, NMC811, rechargeable, prismatic",GLO,"market for battery, Li-ion, NMC811, rechargeable","battery, Li-ion, NMC811, rechargeable",GLO
+310,311,"market for battery, Li-ion, NCA, rechargeable, prismatic","battery, Li-ion, NCA, rechargeable, prismatic",GLO,"market for battery, Li-ion, NCA, rechargeable","battery, Li-ion, NCA, rechargeable",GLO
+310,311,"market for battery, Li-ion, LiMn2O4, rechargeable, prismatic","battery, Li-ion, LiMn2O4, rechargeable, prismatic",GLO,"market for battery, Li-ion, LiMn2O4, rechargeable","battery, Li-ion, LiMn2O4, rechargeable",GLO
+310,311,"market for battery, NaCl","battery, NaCl",GLO,"market for battery, Na-NiCl, rechargeable","battery, Na-NiCl, rechargeable",GLO
+310,311,"lime production, hydrated, packed","lime, hydrated, packed",CH,"hydrated lime production, packed","hydrated lime, packed",CH
+310,311,"market for transport, freight, sea, container ship","transport, freight, sea, container ship",GLO,"market for transport, freight, sea, container ship, heavy fuel oil","transport, freight, sea, container ship, heavy fuel oil",GLO
+310,311,"transport, freight train, diesel","transport, freight train",Europe without Switzerland,"transport, freight, train, diesel","transport, freight, train, fleet average",Europe without Switzerland
+310,311,"transport, freight, lorry 7.5-16 metric ton, EURO4","transport, freight, lorry 7.5-16 metric ton, EURO4",RER,"transport, freight, lorry, 7.5-16 metric ton, diesel, EURO 4","transport, freight, lorry, 7.5-16 metric ton, diesel, EURO 4",RER
+310,311,"market for transport, freight, lorry 3.5-7.5 metric ton, EURO4","transport, freight, lorry 3.5-7.5 metric ton, EURO4",RER,"market for transport, freight, lorry, 3.5-7.5 metric ton, diesel, EURO 4","transport, freight, lorry, 3.5-7.5 metric ton, diesel, EURO 4",RER
+310,311,"lime production, milled, packed","lime, packed",CH,"limestone production, milled, packed","limestone, milled, packed",CH
+310,311,"market for transport, freight train","transport, freight train",CH,"market for transport, freight, train, fleet average","transport, freight, train, fleet average",CH
+310,311,"market for transport, freight, lorry 16-32 metric ton, EURO4","transport, freight, lorry 16-32 metric ton, EURO4",RER,"market for transport, freight, lorry, 16-32 metric ton, diesel, EURO 4","transport, freight, lorry, 16-32 metric ton, diesel, EURO 4",RER
+310,311,"polyvinylchloride production, bulk polymerisation","polyvinylchloride, bulk polymerised",RER,"polyvinyl chloride production, unspecified polymerisation, weighted average","polyvinyl chloride, unspecified polymerisation, weighted average",RER
+310,311,"methanol production, natural gas reforming",methanol,RoW,"methanol production, from natural gas reforming",methanol,RoW
+310,311,"transport, freight, light commercial vehicle","transport, freight, light commercial vehicle",Europe without Switzerland,"transport, freight, light commercial vehicle, fleet average","transport, freight, light commercial vehicle, fleet average",Europe without Switzerland
+310,311,refrigerant R134a production,refrigerant R134a,RER,refrigerant R134a production,"tetrafluoroethane, R134a",RER
+310,311,butyl acrylate production,butyl acrylate,RER,"butyl acrylate production, butanol esterification with acrylic acid",butyl acrylate,RER
+310,311,"market for gallium, semiconductor-grade","gallium, semiconductor-grade",GLO,"market for gallium, high-grade","gallium, high-grade",GLO
+310,311,"market for transport, freight, lorry 16-32 metric ton, EURO3","transport, freight, lorry 16-32 metric ton, EURO3",RoW,"market for transport, freight, lorry, 16-32 metric ton, diesel, EURO 3","transport, freight, lorry, 16-32 metric ton, diesel, EURO 3",RoW
+310,311,"acetic acid production, butane oxidation","acetic acid, without water, in 98% solution state",RER,"acetic acid production, from n-butane oxidation",acetic acid,RER
+310,311,vinyl acetate production,vinyl acetate,RER,"vinyl acetate production, from ethylene acetoxylation",vinyl acetate,RER
+310,311,"butanols production, hydroformylation of propylene",1-butanol,RER,"butanols production, hydroformylation of propylene",n-butanol,RER
+310,311,"market for lime, packed","lime, packed",RoW,"market for limestone, milled, packed","limestone, milled, packed",RoW
+310,311,market for scrap steel,scrap steel,Europe without Switzerland,market for waste steel,waste steel,Europe without Switzerland
+310,311,market for scrap aluminium,scrap aluminium,Europe without Switzerland,market for waste aluminium,waste aluminium,Europe without Switzerland
+310,311,"market for transport, freight train","transport, freight train",Europe without Switzerland,"market for transport, freight, train, fleet average","transport, freight, train, fleet average",Europe without Switzerland
+310,311,"market for transport, freight, lorry, unspecified","transport, freight, lorry, unspecified",RER,"market for transport, freight, lorry, unspecified","transport, freight, lorry, diesel, unspecified",RER
+310,311,"lime production, milled, packed","lime, packed",RoW,"limestone production, milled, packed","limestone, milled, packed",RoW
+310,311,"market for transport, freight train","transport, freight train",RoW,"market for transport, freight, train, fleet average","transport, freight, train, fleet average",RoW
+310,311,"transport, freight, inland waterways, barge","transport, freight, inland waterways, barge",RoW,"transport, freight, inland waterways, barge, diesel","transport, freight, inland waterways, barge, diesel",RoW
+310,311,"transport, helicopter","transport, helicopter",GLO,"transport, helicopter, kerosene","transport, helicopter, kerosene",GLO
+310,311,"transport, helicopter, LTO cycle","transport, helicopter, LTO cycle",GLO,"transport, helicopter, kerosene, LTO cycle","transport, helicopter, kerosene, LTO cycle",GLO
+310,311,market for scrap steel,scrap steel,Europe without Switzerland,market for waste steel,waste steel,Europe without Switzerland
+310,311,market for lime,lime,RER,"market for limestone, milled, loose","limestone, milled, loose",RER
+310,311,"market for transport, freight, inland waterways, barge","transport, freight, inland waterways, barge",RoW,"market for transport, freight, inland waterways, barge, diesel","transport, freight, inland waterways, barge, diesel",RoW
+310,311,"market for transport, freight, lorry, unspecified","transport, freight, lorry, unspecified",RoW,"market for transport, freight, lorry, unspecified","transport, freight, lorry, diesel, unspecified",RoW
+310,311,market for lime,lime,RoW,"market for limestone, milled, loose","limestone, milled, loose",RoW
+310,311,"market for transport, freight, lorry, unspecified","transport, freight, lorry, unspecified",RoW,"market for transport, freight, lorry, unspecified","transport, freight, lorry, diesel, unspecified",RoW
+310,311,"market for transport, freight, inland waterways, barge","transport, freight, inland waterways, barge",RoW,"market for transport, freight, inland waterways, barge, diesel","transport, freight, inland waterways, barge, diesel",RoW
+310,311,market for lime,lime,RER,"market for limestone, milled, loose","limestone, milled, loose",RER
+310,311,"market for transport, freight, inland waterways, barge","transport, freight, inland waterways, barge",RER,"market for transport, freight, inland waterways, barge, diesel","transport, freight, inland waterways, barge, diesel",RER
+310,311,"market for transport, freight, sea, tanker for petroleum","transport, freight, sea, tanker for petroleum",GLO,"market for transport, freight, sea, tanker for petroleum, heavy fuel oil","transport, freight, sea, tanker for petroleum, heavy fuel oil",GLO
+310,311,"market for transport, freight, lorry, unspecified","transport, freight, lorry, unspecified",RER,"market for transport, freight, lorry, unspecified","transport, freight, lorry, diesel, unspecified",RER
+310,311,"market for transport, freight train","transport, freight train",Europe without Switzerland,"market for transport, freight, train, fleet average","transport, freight, train, fleet average",Europe without Switzerland
+310,311,market for 1-butanol,1-butanol,GLO,market for n-butanol,n-butanol,GLO
+310,311,"transport, freight, inland waterways, barge","transport, freight, inland waterways, barge",RER,"transport, freight, inland waterways, barge, diesel","transport, freight, inland waterways, barge, diesel",RER
+310,311,market for scrap steel,scrap steel,Europe without Switzerland,market for waste steel,waste steel,Europe without Switzerland
+310,311,"market for transport, freight train","transport, freight train",Europe without Switzerland,"market for transport, freight, train, fleet average","transport, freight, train, fleet average",Europe without Switzerland
+310,311,"market for transport, freight, lorry >32 metric ton, EURO4","transport, freight, lorry >32 metric ton, EURO4",RER,"market for transport, freight, lorry, >32 metric ton, diesel, EURO 4","transport, freight, lorry, >32 metric ton, diesel, EURO 4",RER
+310,311,market for scrap steel,scrap steel,CH,market for waste steel,waste steel,CH
+310,311,market for scrap copper,scrap copper,CH,market for waste copper,waste copper,CH
+310,311,market for scrap aluminium,scrap aluminium,CH,market for waste aluminium,waste aluminium,CH
+310,311,"market for transport, freight, lorry, unspecified","transport, freight, lorry, unspecified",RER,"market for transport, freight, lorry, unspecified","transport, freight, lorry, diesel, unspecified",RER
+310,311,"market for lime, hydrated, packed","lime, hydrated, packed",RoW,"market for hydrated lime, packed","hydrated lime, packed",RoW
+310,311,"market for transport, freight, lorry 16-32 metric ton, EURO3","transport, freight, lorry 16-32 metric ton, EURO3",RER,"market for transport, freight, lorry, 16-32 metric ton, diesel, EURO 3","transport, freight, lorry, 16-32 metric ton, diesel, EURO 3",RER
+310,311,"market for transport, freight, lorry 16-32 metric ton, EURO3","transport, freight, lorry 16-32 metric ton, EURO3",BR,"market for transport, freight, lorry, 16-32 metric ton, diesel, EURO 3","transport, freight, lorry, 16-32 metric ton, diesel, EURO 3",BR
+310,311,"market for transport, freight, lorry 16-32 metric ton, EURO3","transport, freight, lorry 16-32 metric ton, EURO3",RoW,"market for transport, freight, lorry, 16-32 metric ton, diesel, EURO 3","transport, freight, lorry, 16-32 metric ton, diesel, EURO 3",RoW
+310,311,"market for transport, freight, sea, bulk carrier for dry goods","transport, freight, sea, bulk carrier for dry goods",GLO,"market for transport, freight, sea, bulk carrier for dry goods, heavy fuel oil","transport, freight, sea, bulk carrier for dry goods, heavy fuel oil",GLO
+310,311,"market for lime, packed","lime, packed",RoW,"market for limestone, milled, packed","limestone, milled, packed",RoW
+310,311,"transport, freight, sea, container ship","transport, freight, sea, container ship",GLO,"transport, freight, sea, container ship, heavy fuel oil","transport, freight, sea, container ship, heavy fuel oil",GLO
+310,311,market for refrigerant R134a,refrigerant R134a,GLO,"market for tetrafluoroethane, R134a","tetrafluoroethane, R134a",GLO
+310,311,"market for transport, freight, lorry >32 metric ton, EURO6","transport, freight, lorry >32 metric ton, EURO6",RER,"market for transport, freight, lorry, >32 metric ton, diesel, EURO 6","transport, freight, lorry, >32 metric ton, diesel, EURO 6",RER
+310,311,"market for polyethylene, high density, granulate, recycled","polyethylene, high density, granulate, recycled",Europe without Switzerland,"market for polyethylene, high density, granulate, recycled","polyethylene, high density, granulate, recycled",RoW
+310,311,"gallium production, semiconductor-grade","gallium, semiconductor-grade",GLO,"high-grade gallium production, from low-grade gallium","gallium, high-grade",CN
+310,311,methylchloride production,methylchloride,WEU,"methyl chloride production, from methanol hydrochlorination",methyl chloride,RER
+310,311,"market for acetic acid, without water, in 98% solution state","acetic acid, without water, in 98% solution state",GLO,market for acetic acid,acetic acid,GLO
+310,311,"market group for transport, freight, lorry, unspecified","transport, freight, lorry, unspecified",GLO,"market group for transport, freight, lorry, diesel, unspecified","transport, freight, lorry, diesel, unspecified",GLO
+310,311,"market group for transport, freight train","transport, freight train",GLO,"market group for transport, freight, train, fleet average","transport, freight, train, fleet average",GLO
+310,311,"market for transport, freight, sea, container ship","transport, freight, sea, container ship",GLO,"market for transport, freight, sea, container ship, heavy fuel oil","transport, freight, sea, container ship, heavy fuel oil",GLO
+310,311,"market group for transport, freight train","transport, freight train",RER,"market group for transport, freight, train, fleet average","transport, freight, train, fleet average",RER
+310,311,diethyl ether production,"diethyl ether, without water, in 99.95% solution state",GLO,"diethyl ether production, from ethanol dehydration","diethyl ether, without water, in 99.95% solution state",GLO
+310,311,market for 1-butanol,1-butanol,GLO,market for n-butanol,n-butanol,GLO
+310,311,"market for transport, freight, inland waterways, barge","transport, freight, inland waterways, barge",RER,"market for transport, freight, inland waterways, barge, diesel","transport, freight, inland waterways, barge, diesel",RER
+310,311,"market for transport, freight, lorry >32 metric ton, EURO6","transport, freight, lorry >32 metric ton, EURO6",RER,"market for transport, freight, lorry, >32 metric ton, diesel, EURO 6","transport, freight, lorry, >32 metric ton, diesel, EURO 6",RER
+310,311,"market for transport, tractor and trailer, agricultural","transport, tractor and trailer, agricultural",CH,"market for transport, freight, tractor and trailer, diesel, agricultural","transport, freight, tractor and trailer, diesel, agricultural",CH
+310,311,"market for transport, freight, lorry 16-32 metric ton, EURO4","transport, freight, lorry 16-32 metric ton, EURO4",RER,"market for transport, freight, lorry, 16-32 metric ton, diesel, EURO 4","transport, freight, lorry, 16-32 metric ton, diesel, EURO 4",RER
+310,311,"market for transport, freight, sea, bulk carrier for dry goods","transport, freight, sea, bulk carrier for dry goods",GLO,"market for transport, freight, sea, bulk carrier for dry goods, heavy fuel oil","transport, freight, sea, bulk carrier for dry goods, heavy fuel oil",GLO
+310,311,"market for transport, freight, lorry >32 metric ton, EURO3","transport, freight, lorry >32 metric ton, EURO3",RoW,"market for transport, freight, lorry, >32 metric ton, diesel, EURO 3","transport, freight, lorry, >32 metric ton, diesel, EURO 3",RoW
+310,311,"market for transport, freight, lorry >32 metric ton, EURO5","transport, freight, lorry >32 metric ton, EURO5",RER,"market for transport, freight, lorry, >32 metric ton, diesel, EURO 5","transport, freight, lorry, >32 metric ton, diesel, EURO 5",RER
+310,311,"transport, tram","transport, tram",CH,"transport, passenger, tram, electric","transport, passenger, tram, electric",CH
+310,311,market for scrap steel,scrap steel,Europe without Switzerland,market for waste steel,waste steel,Europe without Switzerland
+310,311,"transport, helicopter",None,GLO,"transport, helicopter, kerosene","transport, helicopter, kerosene",GLO
+310,311,"transport, helicopter, LTO cycle",None,GLO,"transport, helicopter, kerosene, LTO cycle","transport, helicopter, kerosene, LTO cycle",GLO
+310,311,"market for polyvinylchloride, bulk polymerised","polyvinylchloride, bulk polymerised",GLO,"market for polyvinyl chloride, unspecified polymerisation, weighted average","polyvinyl chloride, unspecified polymerisation, weighted average",RoW
+310,311,market for methyl acrylate,methyl acrylate,GLO,market for methyl acrylate,methyl acrylate,RER
+310,311,market for lithium hexafluorophosphate,lithium hexafluorophosphate,GLO,market for lithium hexafluorophosphate,lithium hexafluorophosphate,CN
+310,311,market for phthalic anhydride,phthalic anhydride,GLO,market for phthalic anhydride,phthalic anhydride,RER
+310,311,market for styrene,styrene,GLO,market for styrene,styrene,RER
+310,311,market for phthalic anhydride,phthalic anhydride,GLO,market for phthalic anhydride,phthalic anhydride,RER
+310,311,"market for polyvinylchloride, emulsion polymerised","polyvinylchloride, emulsion polymerised",GLO,"market for polyvinyl chloride, emulsion polymerised","polyvinyl chloride, emulsion polymerised",RoW
+310,311,"market for polyvinylchloride, suspension polymerised","polyvinylchloride, suspension polymerised",GLO,"market for polyvinyl chloride, suspension polymerised","polyvinyl chloride, suspension polymerised",RoW
+310,311,market for cumene,cumene,GLO,market for cumene,cumene,RER
+310,311,market for methyl acetate,methyl acetate,GLO,market for methyl acetate,methyl acetate,RER
+310,311,"acetic acid production, methanol carboxylation (Monsanto), product in 98% solution state","acetic acid, without water, in 98% solution state",RER,"acetic acid production, from low-pressure methanol carbonylation","acetic acid",RER
+310,311,market for vinyl acetate,vinyl acetate,GLO,market for vinyl acetate,vinyl acetate,RER
+310,311,"market for metal part of electronics scrap, in copper, anode","metal part of electronics scrap, in copper, anode",GLO,"market for metal part of electronics scrap, in copper, anode","metal part of electronics scrap, in copper, anode",RoW
+310,311,market for hard coal,hard coal,"Europe, without Russia and Türkiye",market for hard coal,hard coal,DE
