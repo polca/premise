@@ -1325,7 +1325,9 @@ class IAMDataCollection:
         # if empty, fill it with the sum of all regions
         if "World" in market_data.region.values:
             if market_data.sel(region="World").sum() == 0:
-                print(f"World region is empty for, filling it with the sum of all regions.")
+                print(
+                    f"World region is empty for, filling it with the sum of all regions."
+                )
                 market_data.loc[dict(region="World")] = market_data.sum(dim="region")
 
         # if duplicates in market_data.coords["variables"]
@@ -1348,11 +1350,12 @@ class IAMDataCollection:
         # fill NaNs with zeros
         market_data = market_data.fillna(0)
 
-
         # remove uneeded attrs
         market_data.attrs = {
             "unit": {
-                k: v for k, v in market_data.attrs["unit"].items() if k in input_vars.values()
+                k: v
+                for k, v in market_data.attrs["unit"].items()
+                if k in input_vars.values()
             }
         }
 
@@ -1498,7 +1501,6 @@ class IAMDataCollection:
             eff_data = xr.where(eff_data < 0, 0, eff_data)
 
         return eff_data
-
 
     def __get_iam_production_volumes(
         self, input_vars, data, fill: bool = False
