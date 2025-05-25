@@ -312,11 +312,15 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
         },
         "Heat (buildings) - generation": {
             "filepath": IAM_HEATING_VARS,
-            "filter": ["heat, buildings",]
+            "filter": [
+                "heat, buildings",
+            ],
         },
         "Heat (industrial) - generation": {
             "filepath": IAM_HEATING_VARS,
-            "filter": ["heat, industrial",]
+            "filter": [
+                "heat, industrial",
+            ],
         },
         "Fuel (gasoline) - generation": {
             "filepath": IAM_FUELS_VARS,
@@ -497,9 +501,7 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
 
         if "filter" in filepath:
             variables = [
-                x
-                for x in variables
-                if any(x.startswith(y) for y in filepath["filter"])
+                x for x in variables if any(x.startswith(y) for y in filepath["filter"])
             ]
 
         # before creating the worksheet
@@ -541,13 +543,11 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
                     variable=variables,
                 )
 
-
                 if iam_data is None:
                     continue
 
                 if "CCS" in sector and iam_data is not None:
                     iam_data *= 100
-
 
                 if iam_data is None:
                     continue
