@@ -946,7 +946,7 @@ class DefaultInventory(BaseInventoryImport):
                 self.import_db.migrate(
                     f"migration_38_{self.version_out.replace('.', '')}"
                 )
-            if self.version_out == "3.11" and self.version_in in [
+            elif self.version_out == "3.11" and self.version_in in [
                 "3.5",
                 "3.6",
                 "3.7",
@@ -960,9 +960,10 @@ class DefaultInventory(BaseInventoryImport):
                 self.import_db.migrate(
                     f"migration_310_{self.version_out.replace('.', '')}"
                 )
-            self.import_db.migrate(
-                f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}"
-            )
+            else:
+                self.import_db.migrate(
+                    f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}"
+                )
 
         if self.system_model == "consequential":
             self.import_db.data = (
@@ -1040,8 +1041,9 @@ class VariousVehicles(BaseInventoryImport):
         return ExcelImporter(self.path)
 
     def prepare_inventory(self):
-        # if version_out is 3.9, migrate towards 3.8 first, then 3.9
-        if self.version_out in ["3.9", "3.9.1", "3.10", "3.11"]:
+        if self.version_in != self.version_out:
+            # if version_out is 3.9, 3.10 or 3.11,
+            # migrate towards 3.8 first, then 3.9, 3.10 or 3.11
             if self.version_out in ["3.9", "3.9.1", "3.10"] and self.version_in in [
                 "3.5",
                 "3.6",
@@ -1054,7 +1056,7 @@ class VariousVehicles(BaseInventoryImport):
                 self.import_db.migrate(
                     f"migration_38_{self.version_out.replace('.', '')}"
                 )
-            if self.version_out == "3.11" and self.version_in in [
+            elif self.version_out == "3.11" and self.version_in in [
                 "3.5",
                 "3.6",
                 "3.7",
@@ -1068,9 +1070,10 @@ class VariousVehicles(BaseInventoryImport):
                 self.import_db.migrate(
                     f"migration_310_{self.version_out.replace('.', '')}"
                 )
-            self.import_db.migrate(
-                f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}"
-            )
+            else:
+                self.import_db.migrate(
+                    f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}"
+                )
 
         self.lower_case_technosphere_exchanges()
         self.add_biosphere_links()
@@ -1154,8 +1157,9 @@ class AdditionalInventory(BaseInventoryImport):
         )
 
     def prepare_inventory(self):
-        if str(self.version_in) != self.version_out:
-            # if version_out is 3.9 or 3.10, migrate towards 3.8 first, then 3.9/3.10
+        if self.version_in != self.version_out:
+            # if version_out is 3.9, 3.10 or 3.11,
+            # migrate towards 3.8 first, then 3.9, 3.10 or 3.11
             if self.version_out in ["3.9", "3.9.1", "3.10"] and self.version_in in [
                 "3.5",
                 "3.6",
@@ -1168,8 +1172,7 @@ class AdditionalInventory(BaseInventoryImport):
                 self.import_db.migrate(
                     f"migration_38_{self.version_out.replace('.', '')}"
                 )
-
-            if self.version_out == "3.11" and self.version_in in [
+            elif self.version_out == "3.11" and self.version_in in [
                 "3.5",
                 "3.6",
                 "3.7",
@@ -1183,10 +1186,10 @@ class AdditionalInventory(BaseInventoryImport):
                 self.import_db.migrate(
                     f"migration_310_{self.version_out.replace('.', '')}"
                 )
-
-            self.import_db.migrate(
-                f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}"
-            )
+            else:
+                self.import_db.migrate(
+                    f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}"
+                )
 
         if self.system_model == "consequential":
             self.import_db.data = (

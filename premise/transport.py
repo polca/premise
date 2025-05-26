@@ -221,7 +221,7 @@ def create_fleet_vehicles(
                     try:
                         name = mapping[vehicle]
                     except KeyError:
-                        print(mapping)
+                        print(f"Could not find {vehicle} in {mapping}.")
                         name = vehicle
 
                     if isinstance(name, set):

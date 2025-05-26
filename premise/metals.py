@@ -33,6 +33,19 @@ from .utils import DATA_DIR
 
 logger = create_logger("metal")
 
+EI311_NAME_CHANGES = {
+    'sodium borate mine operation and beneficiation': 'sodium borates mine operation and beneficiation',
+    'gallium production, semiconductor-grade': 'high-grade gallium production, from low-grade gallium',
+}
+
+EI311_PRODUCT_CHANGES = {
+    'gallium, semiconductor-grade':'gallium, high-grade'
+}
+
+EI311_LOCATION_CHANGES = {
+'high-grade gallium production, from low-grade gallium': 'CN'
+}
+
 
 def _update_metals(scenario, version, system_model):
 
@@ -633,6 +646,9 @@ class Metals(BaseTransformation):
             )
         }
 
+        if name  == "high-grade gallium production, from low-grade gallium":
+            print(geography_mapping)
+
         if len(geography_mapping) == 0:
             return {}
 
@@ -647,6 +663,11 @@ class Metals(BaseTransformation):
             exact_product_match=True,
             subset=subset,
         )
+
+        if name == "high-grade gallium production, from low-grade gallium":
+            print(datasets)
+            for d in datasets.values():
+                print(d["name"], d["location"], d["reference product"])
 
         return datasets
 
@@ -714,7 +735,14 @@ class Metals(BaseTransformation):
             # fetch shares for each location in df
             shares = self.get_shares(group, new_locations, name, ref_prod)
 
+
+
             geography_mapping = self.get_geo_mapping(group, new_locations)
+
+
+            if name == "high-grade gallium production, from low-grade gallium":
+                print("new locations", new_locations)
+                print("geo mapping", geography_mapping)
 
             # if not, we create it
             datasets = self.create_new_mining_activity(
@@ -832,14 +860,24 @@ class Metals(BaseTransformation):
                     elif mode == "Sea":
                         name = "transport, freight, sea, container ship"
                         reference_product = "transport, freight, sea, container ship"
+                        if self.version == "3.11":
+                            name += ", heavy fuel oil"
+                            reference_product += ", heavy fuel oil"
                         loc = "GLO"
                     elif mode == "Railway":
-                        name = "market group for transport, freight train"
-                        reference_product = "transport, freight train"
+                        if self.version == "3.11":
+                            name = "market group for transport, freight, train, fleet average"
+                            reference_product = "transport, freight, train, fleet average"
+                        else:
+                            name = "market group for transport, freight train"
+                            reference_product = "transport, freight train"
                         loc = "GLO"
                     else:
                         name = "market for transport, freight, lorry, unspecified"
-                        reference_product = "transport, freight, lorry, unspecified"
+                        if self.version == "3.11":
+                            reference_product = "transport, freight, lorry, diesel, unspecified"
+                        else:
+                            reference_product = "transport, freight, lorry, unspecified"
                         loc = "RoW"
 
                     excs.append(
@@ -887,6 +925,23 @@ class Metals(BaseTransformation):
         dataframe = load_mining_shares_mapping()
         dataframe = dataframe.loc[dataframe["Work done"] == "Yes"]
         dataframe = dataframe.loc[~dataframe["Country"].isnull()]
+
+        # update certain values under "Process" and "Reference product"
+        # if ecoinvent 3.11 is used
+        if self.version == "3.11":
+            dataframe["Process"] = dataframe["Process"].replace(EI311_NAME_CHANGES)
+            dataframe["Reference product"] = dataframe[
+                "Reference product"
+            ].replace(EI311_PRODUCT_CHANGES)
+
+            for k, v in EI311_LOCATION_CHANGES.items():
+                dataframe.loc[dataframe["Process"] == k, "Region"] = v
+
+            # we also need to remove "graphite ore mining"
+            dataframe = dataframe.loc[
+                dataframe["Process"] != "graphite ore mining"
+            ]
+
         dataframe_shares = dataframe
 
         self.country_codes.update(
@@ -909,37 +964,6 @@ class Metals(BaseTransformation):
             self.add_to_index(dataset)
             self.write_log(dataset, "created")
 
-        # filter dataframe_parent to only keep rows
-        # which have a region and no values under columns from 2020 to 2030
-
-        dataframe_parent = dataframe.loc[
-            dataframe["Region"].notnull() & dataframe["2020"].isnull()
-        ]
-
-        dataset_names = list(dataframe_parent["Process"].unique())
-        subset = filter_technology(dataset_names, self.database)
-
-        for metal in dataframe_parent["Metal"].unique():
-            df_metal = dataframe_parent.loc[dataframe["Metal"] == metal]
-
-            for (name, ref_prod), group in df_metal.groupby(
-                ["Process", "Reference product"]
-            ):
-
-                geography_mapping = self.get_geo_mapping(group)
-
-                # if not, we create it
-                datasets = self.create_new_mining_activity(
-                    name=name,
-                    reference_product=ref_prod,
-                    geography_mapping=geography_mapping,
-                    subset=subset,
-                )
-
-                self.database.extend(datasets.values())
-                for dataset in datasets.values():
-                    self.add_to_index(dataset)
-                    self.write_log(dataset, "created")
 
     def write_log(self, dataset, status="created"):
         """

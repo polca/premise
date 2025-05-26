@@ -83,10 +83,11 @@ air:
   t-Butylamine: t-Butyl amine
   Chlorosilane, trimethyl-: Trimethylchlorosilane
   Isohexane: 2-Methylpentane
-
-
-
-
+  Methane, bromo-, Halon 1001: Bromomethane
+  Methane, bromochlorodifluoro-, Halon 1211: Bromochlorodifluoromethane
+  Methane, bromotrifluoro-, Halon 1301: Bromotrifluoromethane
+  Pyrethrin: Pyrethrin II
+  Pyrethrum: Pyrethrins
 
 natural resource:
   Iridium: Iridium, in ground
@@ -171,6 +172,7 @@ natural resource:
   TiO2, 54% in ilmenite, 18% in crude ore: TiO2, 54% in ilmenite, 18% in crude ore, in ground
   Calcite: Calcite, in ground
   Olivine: Olivine, in ground
+  Carbon, organic, in soil or biomass stock: Carbon, organic, decrease in soil or biomass stock
 
 
 soil:

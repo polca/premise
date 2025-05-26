@@ -15,7 +15,7 @@ train, electric:
     image: Final Energy|Transportation|Freight|Train|Electricity
   ecoinvent_aliases:
     fltr:
-      - transport, freight train, electricity
+      - transport, freight train, electric
   ecoinvent_fuel_aliases:
     fltr:
       - electricity

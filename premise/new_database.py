@@ -160,7 +160,8 @@ FILEPATH_LITHIUM = INVENTORY_DIR / "lci-lithium.xlsx"
 FILEPATH_COBALT = INVENTORY_DIR / "lci-cobalt.xlsx"
 FILEPATH_GRAPHITE = INVENTORY_DIR / "lci-graphite.xlsx"
 FILEPATH_BATTERIES_NMC_NCA_LFP = INVENTORY_DIR / "lci-batteries-NMC111-811-NCA-LFP.xlsx"
-FILEPATH_BATTERIES_NMC622_LTO = INVENTORY_DIR / "lci-batteries-NMC622-LTO.xlsx"
+FILEPATH_BATTERIES_NMC622_532 = INVENTORY_DIR / "lci-batteries-NMC622-NMC532.xlsx"
+FILEPATH_BATTERIES_NMC955_LTO = INVENTORY_DIR / "lci-batteries-NMC955-LTO.xlsx"
 FILEPATH_LIO2_BATTERY = INVENTORY_DIR / "lci-batteries-LiO2.xlsx"
 FILEPATH_LIS_BATTERY = INVENTORY_DIR / "lci-batteries-LiS.xlsx"
 FILEPATH_PHOTOVOLTAICS = INVENTORY_DIR / "lci-PV.xlsx"
@@ -744,7 +745,8 @@ class NewDatabase:
             (FILEPATH_COBALT, "3.8"),
             (FILEPATH_GRAPHITE, "3.8"),
             (FILEPATH_BATTERIES_NMC_NCA_LFP, "3.8"),
-            (FILEPATH_BATTERIES_NMC622_LTO, "3.8"),
+            (FILEPATH_BATTERIES_NMC622_532, "3.8"),
+            (FILEPATH_BATTERIES_NMC955_LTO, "3.8"),
             (FILEPATH_LIS_BATTERY, "3.9"),
             (FILEPATH_LIO2_BATTERY, "3.9"),
             (FILEPATH_VANADIUM, "3.9"),
@@ -830,6 +832,14 @@ class NewDatabase:
                 "3.9",
                 "3.9.1",
                 "3.10",
+                "3.11"
+            ]:
+                continue
+
+            if filepath[0] in [
+                FILEPATH_BATTERIES_NMC622_532,
+                FILEPATH_GRAPHITE
+            ] and self.version in [
                 "3.11"
             ]:
                 continue
@@ -1142,7 +1152,7 @@ class NewDatabase:
             try:
                 scenario = load_database(scenario)
             except KeyError:
-                print("KeyError")
+                print("Load unmodified database")
                 scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
             except FileNotFoundError:
                 print("FileNotFoundError")
