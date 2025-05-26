@@ -833,10 +833,8 @@ class NewDatabase:
 
             if filepath[0] in [
                 FILEPATH_BATTERIES_NMC622_532,
-                FILEPATH_GRAPHITE
-            ] and self.version in [
-                "3.11"
-            ]:
+                FILEPATH_GRAPHITE,
+            ] and self.version in ["3.11"]:
                 continue
 
             inventory = DefaultInventory(

@@ -34,17 +34,13 @@ from .utils import DATA_DIR
 logger = create_logger("metal")
 
 EI311_NAME_CHANGES = {
-    'sodium borate mine operation and beneficiation': 'sodium borates mine operation and beneficiation',
-    'gallium production, semiconductor-grade': 'high-grade gallium production, from low-grade gallium',
+    "sodium borate mine operation and beneficiation": "sodium borates mine operation and beneficiation",
+    "gallium production, semiconductor-grade": "high-grade gallium production, from low-grade gallium",
 }
 
-EI311_PRODUCT_CHANGES = {
-    'gallium, semiconductor-grade':'gallium, high-grade'
-}
+EI311_PRODUCT_CHANGES = {"gallium, semiconductor-grade": "gallium, high-grade"}
 
-EI311_LOCATION_CHANGES = {
-'high-grade gallium production, from low-grade gallium': 'CN'
-}
+EI311_LOCATION_CHANGES = {"high-grade gallium production, from low-grade gallium": "CN"}
 
 
 def _update_metals(scenario, version, system_model):
@@ -646,7 +642,7 @@ class Metals(BaseTransformation):
             )
         }
 
-        if name  == "high-grade gallium production, from low-grade gallium":
+        if name == "high-grade gallium production, from low-grade gallium":
             print(geography_mapping)
 
         if len(geography_mapping) == 0:
@@ -735,10 +731,7 @@ class Metals(BaseTransformation):
             # fetch shares for each location in df
             shares = self.get_shares(group, new_locations, name, ref_prod)
 
-
-
             geography_mapping = self.get_geo_mapping(group, new_locations)
-
 
             if name == "high-grade gallium production, from low-grade gallium":
                 print("new locations", new_locations)
@@ -867,7 +860,9 @@ class Metals(BaseTransformation):
                     elif mode == "Railway":
                         if self.version == "3.11":
                             name = "market group for transport, freight, train, fleet average"
-                            reference_product = "transport, freight, train, fleet average"
+                            reference_product = (
+                                "transport, freight, train, fleet average"
+                            )
                         else:
                             name = "market group for transport, freight train"
                             reference_product = "transport, freight train"
@@ -875,7 +870,9 @@ class Metals(BaseTransformation):
                     else:
                         name = "market for transport, freight, lorry, unspecified"
                         if self.version == "3.11":
-                            reference_product = "transport, freight, lorry, diesel, unspecified"
+                            reference_product = (
+                                "transport, freight, lorry, diesel, unspecified"
+                            )
                         else:
                             reference_product = "transport, freight, lorry, unspecified"
                         loc = "RoW"
@@ -930,17 +927,15 @@ class Metals(BaseTransformation):
         # if ecoinvent 3.11 is used
         if self.version == "3.11":
             dataframe["Process"] = dataframe["Process"].replace(EI311_NAME_CHANGES)
-            dataframe["Reference product"] = dataframe[
-                "Reference product"
-            ].replace(EI311_PRODUCT_CHANGES)
+            dataframe["Reference product"] = dataframe["Reference product"].replace(
+                EI311_PRODUCT_CHANGES
+            )
 
             for k, v in EI311_LOCATION_CHANGES.items():
                 dataframe.loc[dataframe["Process"] == k, "Region"] = v
 
             # we also need to remove "graphite ore mining"
-            dataframe = dataframe.loc[
-                dataframe["Process"] != "graphite ore mining"
-            ]
+            dataframe = dataframe.loc[dataframe["Process"] != "graphite ore mining"]
 
         dataframe_shares = dataframe
 
@@ -963,7 +958,6 @@ class Metals(BaseTransformation):
             self.database.append(dataset)
             self.add_to_index(dataset)
             self.write_log(dataset, "created")
-
 
     def write_log(self, dataset, status="created"):
         """
