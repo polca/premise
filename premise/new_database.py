@@ -828,12 +828,7 @@ class NewDatabase:
             if filepath[0] in [
                 FILEPATH_OIL_GAS_INVENTORIES,
                 FILEPATH_BATTERIES_NMC_NCA_LFP,
-            ] and self.version in [
-                "3.9",
-                "3.9.1",
-                "3.10",
-                "3.11"
-            ]:
+            ] and self.version in ["3.9", "3.9.1", "3.10", "3.11"]:
                 continue
 
             if filepath[0] in [

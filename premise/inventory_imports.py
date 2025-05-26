@@ -951,7 +951,7 @@ class DefaultInventory(BaseInventoryImport):
                 "3.6",
                 "3.7",
                 "3.8",
-                "3.9"
+                "3.9",
             ]:
                 print("Migrating to 3.10 first")
                 self.import_db.migrate(
@@ -1061,7 +1061,7 @@ class VariousVehicles(BaseInventoryImport):
                 "3.6",
                 "3.7",
                 "3.8",
-                "3.9"
+                "3.9",
             ]:
                 print("Migrating to 3.10 first")
                 self.import_db.migrate(
@@ -1177,7 +1177,7 @@ class AdditionalInventory(BaseInventoryImport):
                 "3.6",
                 "3.7",
                 "3.8",
-                "3.9"
+                "3.9",
             ]:
                 print("Migrating to 3.10 first")
                 self.import_db.migrate(
