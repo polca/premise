@@ -646,9 +646,6 @@ class Metals(BaseTransformation):
             )
         }
 
-        if name  == "high-grade gallium production, from low-grade gallium":
-            print(geography_mapping)
-
         if len(geography_mapping) == 0:
             return {}
 
@@ -663,11 +660,6 @@ class Metals(BaseTransformation):
             exact_product_match=True,
             subset=subset,
         )
-
-        if name == "high-grade gallium production, from low-grade gallium":
-            print(datasets)
-            for d in datasets.values():
-                print(d["name"], d["location"], d["reference product"])
 
         return datasets
 
@@ -735,14 +727,7 @@ class Metals(BaseTransformation):
             # fetch shares for each location in df
             shares = self.get_shares(group, new_locations, name, ref_prod)
 
-
-
             geography_mapping = self.get_geo_mapping(group, new_locations)
-
-
-            if name == "high-grade gallium production, from low-grade gallium":
-                print("new locations", new_locations)
-                print("geo mapping", geography_mapping)
 
             # if not, we create it
             datasets = self.create_new_mining_activity(
