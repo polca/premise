@@ -661,6 +661,11 @@ class Metals(BaseTransformation):
             subset=subset,
         )
 
+        if name == "high-grade gallium production, from low-grade gallium":
+            print(datasets)
+            for d in datasets.values():
+                print(d["name"], d["location"], d["reference product"])
+
         return datasets
 
     def get_shares(self, df: pd.DataFrame, new_locations: dict, name, ref_prod) -> dict:
