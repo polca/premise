@@ -43,6 +43,7 @@ ship, marine oil:
       - methane
       - liquefied petroleum gas
       - reefer
+      - average
   ecoinvent_fuel_aliases:
     fltr:
       - heavy fuel oil

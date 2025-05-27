@@ -6,6 +6,7 @@ mapping between ``premise`` and ``ecoinvent`` terminology.
 from collections import defaultdict
 from pathlib import Path
 from typing import List, Union
+import pandas as pd
 
 import yaml
 from wurst import searching as ws
@@ -112,6 +113,55 @@ def act_fltr(
 
     return list(ws.get_many(database, *filters))
 
+def debug_mapping_to_dataframe(scenario) -> pd.DataFrame:
+    """
+    Convert a mapping dictionary of the form {category: [activities]} into a grouped DataFrame
+    with a 'Location' column listing all locations per (Category, Market, Product) combination.
+
+    :param mapping: Dictionary where keys are categories and values are lists of activity dicts.
+    :return: A pandas DataFrame with columns 'Category', 'Market', 'Product', and 'Locations'.
+    """
+
+    temp_records = list()
+    inv = InventorySet(
+        database=scenario["database"],
+        version=scenario.get("version", None),
+        model=scenario.get("model", None),
+    )
+    for sector, mapping in [
+        ("biomass", inv.generate_biomass_map()),
+        ("heat", inv.generate_heat_map()),
+        ("cdr", inv.generate_cdr_map()),
+        ("cement fuels", inv.generate_cement_fuels_map()),
+        ("final energy", inv.generate_final_energy_map()),
+        ("fuel", inv.generate_fuel_map()),
+        ("gains", inv.generate_gains_mapping()),
+        ("powerplant", inv.generate_powerplant_map()),
+        ("powerplant fuels", inv.generate_powerplant_fuels_map()),
+        ("steel", inv.generate_steel_map()),
+        ("mining waste", inv.generate_mining_waste_map()),
+        ("car", inv.generate_transport_map("car")),
+        ("two-wheelers", inv.generate_transport_map("two-wheeler")),
+        ("bus", inv.generate_transport_map("bus")),
+        ("truck", inv.generate_transport_map("truck")),
+        ("train", inv.generate_transport_map("train")),
+        ("ship", inv.generate_transport_map("ship")),
+    ]:
+        for category, activities in mapping.items():
+            for act in activities:
+                temp_records.append((sector, category, act))
+
+    # only keep unique combinations of Category and Activity
+    temp_records = list(set(temp_records))
+    # sort by Category and Activity
+    temp_records.sort(key=lambda x: (x[0], x[1], x[2]))
+
+    df = (
+        pd.DataFrame(temp_records, columns=["Sector", "Category", "Activity"])
+        .sort_values(by=["Sector", "Category", "Activity"])
+        .reset_index(drop=True)
+    )
+    return df
 
 class InventorySet:
     """

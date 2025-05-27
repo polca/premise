@@ -17,7 +17,7 @@ key = os.environ["IAM_FILES_KEY"]
 # convert to bytes
 key = key.encode()
 
-ei_version = "3.10"
+ei_version = "3.11"
 system_model = "cutoff"
 
 scenarios = [
@@ -33,12 +33,16 @@ def test_brightway():
     clear_inventory_cache()
 
     if f"ecoinvent-{ei_version}-{system_model}" not in bw2data.databases:
+        print("Importing ecoinvent")
         bw2io.import_ecoinvent_release(
             version=ei_version,
             system_model=system_model,
             username=ei_user,
             password=ei_pass,
+            biosphere_name=f"ecoinvent-{ei_version}-biosphere",
         )
+
+    bw2data.projects.set_current(f"ecoinvent-{ei_version}-{system_model}")
 
     ndb = NewDatabase(
         scenarios=scenarios,
@@ -46,15 +50,16 @@ def test_brightway():
         source_version=ei_version,
         key=key,
         system_model=system_model,
-        biosphere_name=f"ecoinvent-{ei_version}-biosphere",
+        biosphere_name=[db for db in bw2data.databases if "biosphere" in db][0],
     )
 
     ndb.update()
 
-    ndb.write_db_to_simapro(filepath="simapro_export.csv")
+    ndb.write_datapackage(name="datapackage")
 
     # check existence of files
-    assert os.path.exists("simapro_export.csv")
+    cwd = os.getcwd()
+    assert os.path.exists(f"{cwd}/export/datapackage/datapackage.zip")
 
     # destroy all objects
     del ndb

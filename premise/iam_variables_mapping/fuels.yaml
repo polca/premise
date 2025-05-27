@@ -531,6 +531,7 @@ diesel, synthetic, from natural gas:
   ecoinvent_aliases:
     fltr:
       - diesel production, synthetic, Fischer Tropsch process, from natural gas, energy allocation
+    mask: carbon capture
 
 diesel, synthetic, from natural gas, with CCS:
   lhv: 43
@@ -1213,6 +1214,7 @@ liquefied petroleum gas, synthetic, from natural gas:
   ecoinvent_aliases:
     fltr:
       - liquefied petroleum gas production, synthetic, Fischer Tropsch process, from natural gas, energy allocation
+    mask: carbon capture
   eff_aliases:
     tiam-ucl: Efficiency|Liquids|Natural gas|FT fuel mix (diesel, kerosene, naptha, ELC)|w/o CCS
 
@@ -1237,6 +1239,7 @@ liquefied petroleum gas, synthetic, from biomass:
   ecoinvent_aliases:
     fltr:
       - liquefied petroleum gas production, synthetic, Fischer Tropsch process, hydrogen from wood gasification, energy allocation
+    mask: carbon capture
   eff_aliases:
     tiam-ucl: Efficiency|Liquids|Biomass|FT fuel mix (diesel, kerosene, naptha, ELC)|w/o CCS
 
@@ -1541,6 +1544,7 @@ kerosene, synthetic, from natural gas, energy allocation:
   ecoinvent_aliases:
     fltr:
       - kerosene production, synthetic, Fischer Tropsch process, from natural gas, energy allocation
+    mask: carbon capture
 
 kerosene, synthetic, from natural gas, energy allocation, with CCS:
   lhv: 43

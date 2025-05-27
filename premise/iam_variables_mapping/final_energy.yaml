@@ -131,6 +131,7 @@ Buildings - Other - Elec:
     fltr:
       name: market group for electricity, low voltage
       reference product: electricity, low voltage
+    mask: period
   iam_aliases:
     remind: FE|Buildings|non-Heating|Electricity|Conventional
     image:
@@ -144,6 +145,7 @@ Buildings - Water heating - Elec:
     fltr:
       name: market group for electricity, low voltage
       reference product: electricity, low voltage
+    mask: period
   iam_aliases:
     image:
     - Final Energy|Commercial|Water Heating|Electricity
@@ -217,6 +219,7 @@ Buildings - Cooling - Elec:
     fltr:
       name: market group for electricity, low voltage
       reference product: electricity, low voltage
+    mask: period
   iam_aliases:
     image:
     - Final Energy|Commercial|Cooling|Electricity
@@ -227,6 +230,8 @@ Buildings - Cooking - Elec:
     fltr:
       name: market group for electricity, low voltage
       reference product: electricity, low voltage
+    mask: period
+    mask: period
   iam_aliases:
     image:
     - Final Energy|Commercial|Cooking|Electricity
@@ -282,6 +287,7 @@ CDR - DAC - Elec:
     fltr:
       name: market group for electricity, low voltage
       reference product: electricity, low voltage
+    mask: period
   iam_aliases:
     remind: FE|CDR|DAC|+|Electricity
     remind-eu: FE|CDR|DAC|+|Electricity
@@ -327,6 +333,7 @@ CDR - Enhanced Weathering - Elec:
     fltr:
       name: market group for electricity, low voltage
       reference product: electricity, low voltage
+    mask: period
   iam_aliases:
     remind: FE|CDR|EW|+|Electricity
     remind-eu: FE|CDR|EW|+|Electricity
@@ -347,6 +354,7 @@ CDR - OAE, electric calciner - Elec:
     fltr:
       name: market group for electricity, low voltage
       reference product: electricity, low voltage
+    mask: period
   iam_aliases:
     remind: FE|CDR|OAE, electric calciner|+|Electricity
     remind-eu: FE|CDR|OAE, electric calciner|+|Electricity
@@ -375,6 +383,7 @@ CDR - OAE, traditional calciner - Elec:
     fltr:
       name: market group for electricity, low voltage
       reference product: electricity, low voltage
+    mask: period
   iam_aliases:
     remind: FE|CDR|OAE, traditional calciner|+|Electricity
     remind-eu: FE|CDR|OAE, traditional calciner|+|Electricity
@@ -400,6 +409,7 @@ Industry - Cement - Elec:
     fltr:
       name: market group for electricity, low voltage
       reference product: electricity, low voltage
+    mask: period
   iam_aliases:
     remind: FE|Industry|Cement|+|Electricity
     image:
@@ -551,6 +561,7 @@ Industry - Chemicals - Elec:
     fltr:
       name: market group for electricity, low voltage
       reference product: electricity, low voltage
+    mask: period
   iam_aliases:
     remind: FE|Industry|Chemicals|+|Electricity
     remind-eu: FE|Industry|Chemicals|+|Electricity
@@ -567,6 +578,7 @@ Industry - Chemicals - Chemicals - Elec, high temp:
     fltr:
       name: market group for electricity, low voltage
       reference product: electricity, low voltage
+    mask: period
   iam_aliases:
     remind: FE|Industry|Chemicals|Electricity|+|High-temperature heat
     remind-eu: FE|Industry|Chemicals|Electricity|+|High-temperature heat
@@ -575,6 +587,7 @@ Industry - Chemicals - Chemicals - Elec, low temp:
     fltr:
       name: market group for electricity, low voltage
       reference product: electricity, low voltage
+    mask: period
   iam_aliases:
     remind: FE|Industry|Chemicals|Electricity|+|Mechanical work and low-temperature
       heat
@@ -650,6 +663,7 @@ Industry - Chemicals - Ammonia - Elec:
     fltr:
       name: market group for electricity, low voltage
       reference product: electricity, low voltage
+    mask: period
   iam_aliases:
     image: Final Energy|Industry|Chemicals|Ammonia|Electricity
 Industry - Chemicals - Ammonia - Nat Gas:
@@ -701,6 +715,7 @@ Industry - Chemicals - Heavy Refinery Products - Elec:
     fltr:
       name: market group for electricity, low voltage
       reference product: electricity, low voltage
+    mask: period
   iam_aliases:
     image: Final Energy|Industry|Chemicals|Heavy Refinery Products|Electricity
 Industry - Chemicals - Heavy Refinery Products - Nat Gas:
@@ -744,6 +759,7 @@ Industry - Chemicals - High-Value Chemicals - Elec:
     fltr:
       name: market group for electricity, low voltage
       reference product: electricity, low voltage
+    mask: period
   iam_aliases:
     image: Final Energy|Industry|Chemicals|High-Value Chemicals|Electricity
 Industry - Chemicals - High-Value Chemicals - Nat Gas:
@@ -787,6 +803,7 @@ Industry - Chemicals - Methanol - Elec:
     fltr:
       name: market group for electricity, low voltage
       reference product: electricity, low voltage
+    mask: period
   iam_aliases:
     image: Final Energy|Industry|Chemicals|Methanol|Electricity
 Industry - Chemicals - Methanol - Nat Gas:
@@ -830,6 +847,7 @@ Industry - Chemicals - Fertilizer - Elec:
     fltr:
       name: market group for electricity, low voltage
       reference product: electricity, low voltage
+    mask: period
   iam_aliases:
     image: Final Energy|Industry|Fertilizer production|Electricity
 Industry - Chemicals - Fertilizer - Nat Gas:
@@ -880,6 +898,7 @@ Industry - Food Processing - Elec:
     fltr:
       name: market group for electricity, low voltage
       reference product: electricity, low voltage
+    mask: period
   iam_aliases:
     image: Final Energy|Industry|Food Processing|Electricity
 Industry - Food Processing - Nat Gas:
@@ -930,6 +949,7 @@ Industry - Other - Elec:
     fltr:
       name: market group for electricity, low voltage
       reference product: electricity, low voltage
+    mask: period
   iam_aliases:
     remind: FE|Industry|Other Industry|+|Electricity
     remind-eu: FE|Industry|Other Industry|+|Electricity
@@ -957,6 +977,7 @@ Industry - Other - Elec, high temp:
     fltr:
       name: market group for electricity, low voltage
       reference product: electricity, low voltage
+    mask: period
   iam_aliases:
     remind: FE|Industry|Other Industry|Electricity|+|High-temperature heat
     remind-eu: FE|Industry|Other Industry|Electricity|+|High-temperature heat
@@ -965,6 +986,7 @@ Industry - Other - Elec, low temp:
     fltr:
       name: market group for electricity, low voltage
       reference product: electricity, low voltage
+    mask: period
   iam_aliases:
     remind: FE|Industry|Other Industry|Electricity|+|Mechanical work and low-temperature
       heat
@@ -1044,6 +1066,7 @@ Industry - Paper - Elec:
     fltr:
       name: market group for electricity, low voltage
       reference product: electricity, low voltage
+    mask: period
   iam_aliases:
     image: Final Energy|Industry|Pulp and Paper|Electricity
 Industry - Paper - Nat Gas:
@@ -1094,6 +1117,7 @@ Industry - Steel - BF/BOF - Elec:
     fltr:
       name: market group for electricity, low voltage
       reference product: electricity, low voltage
+    mask: period
   iam_aliases:
     image:
     - Final Energy|Industry|Iron and Steel|BF/BOF Standard|Electricity
@@ -1103,6 +1127,7 @@ Industry - Steel - BF/BOF + CCS - Elec:
     fltr:
       name: market group for electricity, low voltage
       reference product: electricity, low voltage
+    mask: period
   iam_aliases:
     image: Final Energy|Industry|Iron and Steel|BF/ BOF Standard + CCS|Electricity
 Industry - Steel - DRI EAF - Elec:
@@ -1110,6 +1135,7 @@ Industry - Steel - DRI EAF - Elec:
     fltr:
       name: market group for electricity, low voltage
       reference product: electricity, low voltage
+    mask: period
   iam_aliases:
     image: Final Energy|Industry|Iron and Steel|DRI EAF|Electricity
 Industry - Steel - DRI EAF + CCS - Elec:
@@ -1117,6 +1143,7 @@ Industry - Steel - DRI EAF + CCS - Elec:
     fltr:
       name: market group for electricity, low voltage
       reference product: electricity, low voltage
+    mask: period
   iam_aliases:
     image: Final Energy|Industry|Iron and Steel|DRI EAF + CCS|Electricity
 Industry - Steel - EAF - Elec:
@@ -1124,6 +1151,7 @@ Industry - Steel - EAF - Elec:
     fltr:
       name: market group for electricity, low voltage
       reference product: electricity, low voltage
+    mask: period
   iam_aliases:
     image: Final Energy|Industry|Iron and Steel|EAF scrap|Electricity
 Industry - Steel - Electrowinning - Elec:
@@ -1131,6 +1159,7 @@ Industry - Steel - Electrowinning - Elec:
     fltr:
       name: market group for electricity, low voltage
       reference product: electricity, low voltage
+    mask: period
   iam_aliases:
     image: Final Energy|Industry|Iron and Steel|Electrowinning/EAF|Electricity
 Industry - Steel - H-DRI/EAF - Elec:
@@ -1138,6 +1167,7 @@ Industry - Steel - H-DRI/EAF - Elec:
     fltr:
       name: market group for electricity, low voltage
       reference product: electricity, low voltage
+    mask: period
   iam_aliases:
     image: Final Energy|Industry|Iron and Steel|H-DRI/EAF|Electricity
 Industry - Steel - SR/BOF - Elec:
@@ -1145,6 +1175,7 @@ Industry - Steel - SR/BOF - Elec:
     fltr:
       name: market group for electricity, low voltage
       reference product: electricity, low voltage
+    mask: period
   iam_aliases:
     image: Final Energy|Industry|Iron and Steel|SR/BOF|Electricity
 Industry - Steel - SR/BOF + CCS - Elec:
@@ -1152,6 +1183,7 @@ Industry - Steel - SR/BOF + CCS - Elec:
     fltr:
       name: market group for electricity, low voltage
       reference product: electricity, low voltage
+    mask: period
   iam_aliases:
     image: Final Energy|Industry|Iron and Steel|SR/BOF + CCS|Electricity
 Industry - Steel - TGR BF/BOF - Elec:
@@ -1159,6 +1191,7 @@ Industry - Steel - TGR BF/BOF - Elec:
     fltr:
       name: market group for electricity, low voltage
       reference product: electricity, low voltage
+    mask: period
   iam_aliases:
     image:
     - Final Energy|Industry|Iron and Steel|TGR BF/BOF BAT|Electricity
@@ -1168,6 +1201,7 @@ Industry - Steel - TGR BF/BOF + CCS - Elec:
     fltr:
       name: market group for electricity, low voltage
       reference product: electricity, low voltage
+    mask: period
   iam_aliases:
     image: Final Energy|Industry|Iron and Steel|TGR BF/BOF BAT + CCS|Electricity
 Industry - Steel - BF/BOF - Coal:
@@ -1732,6 +1766,7 @@ Industry - Steel - All steel - Elec:
     fltr:
       name: market group for electricity, low voltage
       reference product: electricity, low voltage
+    mask: period
   iam_aliases:
     remind: FE|Industry|Steel|+|Electricity
     remind-eu: FE|Industry|Steel|+|Electricity

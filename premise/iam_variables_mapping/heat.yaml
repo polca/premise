@@ -58,7 +58,9 @@ heat, from hydrogen turbine:
 
 heat, buildings, from district heating:
     ecoinvent_aliases:
-        fltr: heat, district or industrial, other than natural gas
+        fltr: market for heat, district or industrial
+        mask:
+            - natural gas
     iam_aliases:
       remind: FE|Buildings|Heating|District Heating
       remind-eu: FE|Buildings|Heating|District Heating
@@ -148,6 +150,7 @@ heat, buildings, from coal stove:
 heat, buildings, from wood logs heater:
     ecoinvent_aliases:
         fltr: heat production, mixed logs, at wood heater 6kW
+        mask: 2014
     iam_aliases:
       remind: FE|Buildings|Solids|Biomass|+|Traditional
       remind-eu: FE|Buildings|Solids|Biomass|+|Traditional
@@ -160,6 +163,7 @@ heat, buildings, from wood logs heater:
 heat, buildings, from wood pellets heater:
     ecoinvent_aliases:
         fltr: heat production, wood pellet, at furnace 9kW
+        mask: 2014
     iam_aliases:
       remind: FE|Buildings|Solids|Biomass|+|Modern
       remind-eu: FE|Buildings|Solids|Biomass|+|Modern
@@ -270,6 +274,7 @@ heat, industrial, from solar thermal:
 energy, for DACCS, from hydrogen turbine:
   ecoinvent_aliases:
     fltr: heat production, from hydrogen-fired one gigawatt gas turbine
+    mask: balancing
   iam_aliases:
     remind: FE|CDR|DAC|+|Hydrogen
     remind-eu: FE|CDR|DAC|+|Hydrogen

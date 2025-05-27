@@ -7,7 +7,7 @@ import bw2io
 import pytest
 from dotenv import load_dotenv
 
-from premise import IncrementalDatabase, clear_inventory_cache
+from premise import NewDatabase, clear_inventory_cache
 from premise.utils import delete_all_pickles
 
 load_dotenv()
@@ -18,7 +18,7 @@ key = os.environ["IAM_FILES_KEY"]
 # convert to bytes
 key = key.encode()
 
-ei_version = "3.10"
+ei_version = "3.11"
 system_model = "cutoff"
 
 scenarios = [
@@ -29,7 +29,7 @@ scenarios = [
 
 
 @pytest.mark.slow
-def test_increment():
+def test_brightway():
     bw2data.projects.set_current(f"ecoinvent-{ei_version}-{system_model}")
     clear_inventory_cache()
 
@@ -41,7 +41,7 @@ def test_increment():
             password=ei_pass,
         )
 
-    ndb = IncrementalDatabase(
+    ndb = NewDatabase(
         scenarios=scenarios,
         source_db=f"ecoinvent-{ei_version}-{system_model}",
         source_version=ei_version,
@@ -50,22 +50,16 @@ def test_increment():
         biosphere_name=f"ecoinvent-{ei_version}-biosphere",
     )
 
-    sectors = {
-        "electricity": "electricity",
-        "steel": "steel",
-        "others": ["cement", "cars", "fuels"],
-    }
+    ndb.update()
 
-    ndb.update(sectors=sectors)
-
-    if "incremental" in bw2data.databases:
+    if "superstructure" in bw2data.databases:
         del bw2data.databases["superstructure"]
 
-    ndb.write_increment_db_to_brightway("incremental", file_format="csv")
+    ndb.write_superstructure_db_to_brightway("superstructure")
 
-    method = [m for m in bw2data.methods if "IPCC" in str(m)][0]
+    method = [m for m in bw2data.methods if "IPCC" in m[0]][0]
 
-    lca = bw2calc.LCA({bw2data.Database("incremental").random(): 1}, method)
+    lca = bw2calc.LCA({bw2data.Database("superstructure").random(): 1}, method)
     lca.lci()
     lca.lcia()
     assert isinstance(lca.score, float)
