@@ -516,12 +516,7 @@ class Transport(BaseTransformation):
                         exc["location"] = new_loc
                     else:
                         print(f"Could not find dataset for {new_name} in {new_loc}.")
-                        exc["name"] = (
-                            "transport, freight, lorry, fleet average"
-                        )
-                        exc["product"] = self.mapping[self.vehicle_type]["name"]
-                        exc["location"] = "World"
-
+                        continue
             # also we need to empty the old transport datasets
             for dataset in ws.get_many(
                 self.database,

@@ -9,17 +9,17 @@ train:
   name: transport, freight, train
   old:
     market for transport, freight train:
-      remind: transport, freight, train
-      remind-eu: transport, freight, train
-      image: transport, freight, train
-      tiam-ucl: transport, freight, train
-      witch: transport, freight, train
+      remind: transport, freight, train, fleet average
+      remind-eu: transport, freight, train, fleet average
+      image: transport, freight, train, fleet average
+      tiam-ucl: transport, freight, train, fleet average
+      witch: transport, freight, train, fleet average
     market for transport, freight, train, fleet average:
-        remind: transport, freight, train
-        remind-eu: transport, freight, train
-        image: transport, freight, train
-        tiam-ucl: transport, freight, train
-        witch: transport, freight, train
+        remind: transport, freight, train, fleet average
+        remind-eu: transport, freight, train, fleet average
+        image: transport, freight, train, fleet average
+        tiam-ucl: transport, freight, train, fleet average
+        witch: transport, freight, train, fleet average
 
 two-wheeler:
   sizes:
@@ -48,20 +48,20 @@ car:
 
 ship:
   unit: ton kilometer
-  name: transport, freight, sea, container ship, unspecified
+  name: transport, freight, sea, container ship
   old:
     market for transport, freight, sea, container ship:
-      remind: transport, freight, sea, container ship, unspecified
-      remind-eu: transport, freight, sea, container ship, unspecified
-      image: transport, freight, sea, container ship, unspecified
-      tiam-ucl: transport, freight, sea, container ship, unspecified
-      witch: transport, freight, sea, container ship, unspecified
+      remind: transport, freight, sea, container ship, fleet average
+      remind-eu: transport, freight, sea, container ship, fleet average
+      image: transport, freight, sea, container ship, fleet average
+      tiam-ucl: transport, freight, sea, container ship, fleet average
+      witch: transport, freight, sea, container ship, fleet average
     market for transport, freight, sea, container ship, heavy fuel oil:
-      remind: transport, freight, sea, container ship, unspecified
-      remind-eu: transport, freight, sea, container ship, unspecified
-      image: transport, freight, sea, container ship, unspecified
-      tiam-ucl: transport, freight, sea, container ship, unspecified
-      witch: transport, freight, sea, container ship, unspecified
+      remind: transport, freight, sea, container ship, fleet average
+      remind-eu: transport, freight, sea, container ship, fleet average
+      image: transport, freight, sea, container ship, fleet average
+      tiam-ucl: transport, freight, sea, container ship, fleet average
+      witch: transport, freight, sea, container ship, fleet average
 
 truck:
   sizes:

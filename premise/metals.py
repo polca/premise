@@ -9,8 +9,7 @@ Integrates projections regarding use of metals in the economy from:
 import uuid
 from functools import lru_cache
 from itertools import groupby
-from pprint import pprint
-from typing import Optional, Tuple
+from typing import Optional
 
 import country_converter as coco
 import numpy as np
@@ -656,11 +655,6 @@ class Metals(BaseTransformation):
             exact_product_match=True,
             subset=subset,
         )
-
-        if name == "high-grade gallium production, from low-grade gallium":
-            print(datasets)
-            for d in datasets.values():
-                print(d["name"], d["location"], d["reference product"])
 
         return datasets
 
