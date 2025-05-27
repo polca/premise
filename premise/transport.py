@@ -184,11 +184,7 @@ def create_fleet_vehicles(
 
         if total_km > 0:
 
-            name = vehicles_map[vehicle_type]["name"]
-            if vehicle_type == "truck":
-                name = f"{name}, unspecified, long haul"
-            if vehicle_type == "car":
-                name = f"{name}, unspecified"
+            name = f"{vehicles_map[vehicle_type]['name']}, fleet average"
 
             act = {
                 "name": name,
@@ -259,7 +255,7 @@ def create_fleet_vehicles(
 
             # also create size-specific fleet vehicles
             if vehicle_type == "truck":
-                sizes = ["3.5t", "7.5t", "18t", "26t", "40t"]
+                sizes = ["3.5 metric ton", "7.5 metric ton", "18 metric ton", "26 metric ton", "40 metric ton"]
                 for size in sizes:
                     total_size_km = region_size_fleet.sel(
                         variables=[
@@ -269,8 +265,7 @@ def create_fleet_vehicles(
 
                     if total_size_km > 0:
                         name = (
-                            f"{vehicles_map[vehicle_type]['name']}, {size} gross weight, "
-                            f"unspecified powertrain, long haul"
+                            f"{vehicles_map[vehicle_type]['name']}, {size}, fleet average"
                         )
                         act = {
                             "name": name,
@@ -293,7 +288,7 @@ def create_fleet_vehicles(
                                 version,
                                 system_model,
                             ),
-                            "comment": f"Fleet-average vehicle for the year {year}, for the region {region}.",
+                            "comment": f"Fleet-average {size} vehicle for the year {year}, for the region {region}.",
                         }
 
                         for pwt in [
@@ -492,7 +487,6 @@ class Transport(BaseTransformation):
         # if trucks or ships, need to reconnect everything
         # loop through datasets that use truck transport
         if self.vehicle_type in ("truck", "ship", "train"):
-
             list_created_vehicles = [(v["name"], v["location"]) for v in fleet_act]
 
             for dataset in ws.get_many(
@@ -523,7 +517,7 @@ class Transport(BaseTransformation):
                     else:
                         print(f"Could not find dataset for {new_name} in {new_loc}.")
                         exc["name"] = (
-                            "transport, freight, lorry, unspecified, long haul"
+                            "transport, freight, lorry, fleet average"
                         )
                         exc["product"] = self.mapping[self.vehicle_type]["name"]
                         exc["location"] = "World"
@@ -573,7 +567,7 @@ class Transport(BaseTransformation):
                         "uncertainty type": 0,
                     }
                     if self.vehicle_type == "truck":
-                        new_exc["name"] = f"{new_exc['name']}, unspecified, long haul"
+                        new_exc["name"] = f"{new_exc['name']}, fleet average"
 
                 dataset["exchanges"].append(new_exc)
 

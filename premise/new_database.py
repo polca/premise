@@ -1436,4 +1436,4 @@ class NewDatabase:
             self.source, self.version, self.source_type, self.system_model
         )
         # saved under working directory
-        print(f"Report saved under {os.getcwd()}.")
+        print(f"Report saved under {os.getcwd()}/export/change reports/.")
