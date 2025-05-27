@@ -255,7 +255,13 @@ def create_fleet_vehicles(
 
             # also create size-specific fleet vehicles
             if vehicle_type == "truck":
-                sizes = ["3.5 metric ton", "7.5 metric ton", "18 metric ton", "26 metric ton", "40 metric ton"]
+                sizes = [
+                    "3.5 metric ton",
+                    "7.5 metric ton",
+                    "18 metric ton",
+                    "26 metric ton",
+                    "40 metric ton",
+                ]
                 for size in sizes:
                     total_size_km = region_size_fleet.sel(
                         variables=[
@@ -264,9 +270,7 @@ def create_fleet_vehicles(
                     ).sum()
 
                     if total_size_km > 0:
-                        name = (
-                            f"{vehicles_map[vehicle_type]['name']}, {size}, fleet average"
-                        )
+                        name = f"{vehicles_map[vehicle_type]['name']}, {size}, fleet average"
                         act = {
                             "name": name,
                             "reference product": vehicles_map[vehicle_type]["name"],
@@ -516,9 +520,7 @@ class Transport(BaseTransformation):
                         exc["location"] = new_loc
                     else:
                         print(f"Could not find dataset for {new_name} in {new_loc}.")
-                        exc["name"] = (
-                            "transport, freight, lorry, fleet average"
-                        )
+                        exc["name"] = "transport, freight, lorry, fleet average"
                         exc["product"] = self.mapping[self.vehicle_type]["name"]
                         exc["location"] = "World"
 
