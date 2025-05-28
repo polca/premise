@@ -40,6 +40,7 @@ include premise/data/transport/bus/*.csv
 include premise/data/transport/car/*.csv
 include premise/data/transport/truck/*.csv
 include premise/data/transport/two-wheeler/*.csv
+include premise/data/transport/aviation/*.csv
 include premise/data/battery/*.yaml
 include premise/data/battery/*.csv
 include premise/data/GAINS_emission_factors/*.csv
@@ -61,6 +62,8 @@ include premise/data/utils/*.csv
 include premise/data/utils/*.yml
 include premise/data/utils/*.yaml
 include premise/data/utils/*.json
+include premise/data/utils/import/*.xlsx
+include premise/data/utils/*.xlsx
 include premise/data/utils/export/*.csv
 include premise/data/utils/export/*.json
 include premise/data/utils/export/*.yml
