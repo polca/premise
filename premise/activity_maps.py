@@ -113,6 +113,7 @@ def act_fltr(
 
     return list(ws.get_many(database, *filters))
 
+
 def debug_mapping_to_dataframe(scenario) -> pd.DataFrame:
     """
     Convert a mapping dictionary of the form {category: [activities]} into a grouped DataFrame
@@ -162,6 +163,7 @@ def debug_mapping_to_dataframe(scenario) -> pd.DataFrame:
         .reset_index(drop=True)
     )
     return df
+
 
 class InventorySet:
     """
