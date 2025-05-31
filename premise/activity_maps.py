@@ -202,7 +202,7 @@ class InventorySet:
         filters = get_mapping(filepath=BIOMASS_TYPES, var="ecoinvent_aliases")
         return self.generate_sets_from_filters(filters)
 
-    def generate_heat_map(self) -> dict:
+    def generate_heat_map(self, model) -> dict:
         """
         Filter ecoinvent processes related to heat production.
 
@@ -211,7 +211,7 @@ class InventorySet:
         :rtype: dict
 
         """
-        filters = get_mapping(filepath=HEAT_TECHS, var="ecoinvent_aliases")
+        filters = get_mapping(filepath=HEAT_TECHS, var="ecoinvent_aliases", model=model)
         return self.generate_sets_from_filters(filters)
 
     def generate_activities_using_metals_map(self) -> dict:
@@ -256,7 +256,7 @@ class InventorySet:
         )
         return self.generate_sets_from_filters(filters)
 
-    def generate_cdr_map(self) -> dict:
+    def generate_cdr_map(self, model = None) -> dict:
         """
         Filter ecoinvent processes related to direct air capture.
 
@@ -265,7 +265,7 @@ class InventorySet:
         :rtype: dict
 
         """
-        filters = get_mapping(filepath=CDR_TECHS, var="ecoinvent_aliases")
+        filters = get_mapping(filepath=CDR_TECHS, var="ecoinvent_aliases", model=model)
         return self.generate_sets_from_filters(filters)
 
     def generate_powerplant_fuels_map(self) -> dict:
@@ -334,7 +334,7 @@ class InventorySet:
         )
         return self.generate_sets_from_filters(filters)
 
-    def generate_fuel_map(self) -> dict:
+    def generate_fuel_map(self, model) -> dict:
         """
         Filter ecoinvent processes related to fuel supply.
 
@@ -343,7 +343,7 @@ class InventorySet:
         :rtype: dict
 
         """
-        filters = get_mapping(filepath=FUELS_TECHS, var="ecoinvent_aliases")
+        filters = get_mapping(filepath=FUELS_TECHS, var="ecoinvent_aliases", model=model)
         return self.generate_sets_from_filters(filters)
 
     def generate_mining_waste_map(self) -> dict:

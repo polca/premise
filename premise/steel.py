@@ -33,7 +33,10 @@ def _update_steel(scenario, version, system_model):
         index=scenario.get("index"),
     )
 
-    steel.generate_activities()
+    steel.create_pig_iron_production_activities()
+    steel.create_pig_iron_markets()
+    steel.create_steel_production_activities()
+    steel.create_steel_markets()
     steel.relink_datasets()
     scenario["database"] = steel.database
     scenario["cache"] = steel.cache
@@ -90,18 +93,6 @@ class Steel(BaseTransformation):
         self.inv = InventorySet(self.database, self.version, self.model)
         self.steel_map = self.inv.generate_steel_map()
 
-    def generate_activities(self):
-        """
-        This function generates new activities for primary and secondary steel
-        production and add them to the wurst database.
-
-        :return: Returns a modified database with newly added steel activities for the corresponding year
-        """
-
-        self.create_pig_iron_production_activities()
-        self.create_pig_iron_markets()
-        self.create_steel_production_activities()
-        self.create_steel_markets()
 
     def create_steel_markets(self):
         """

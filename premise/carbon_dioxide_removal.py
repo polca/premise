@@ -112,7 +112,8 @@ class CarbonDioxideRemoval(BaseTransformation):
         self.version = version
         self.system_model = system_model
         self.mapping = InventorySet(self.database)
-        self.cdr_map = self.mapping.generate_cdr_map()
+        self.cdr_map = self.mapping.generate_cdr_map(model=self.model)
+
 
     def regionalize_cdr_activities(self) -> None:
         """
@@ -128,111 +129,6 @@ class CarbonDioxideRemoval(BaseTransformation):
             efficiency_adjustment_fn=self.adjust_cdr_efficiency,
             mapping=self.cdr_map,
         )
-
-       for technology in (
-            "direct air capture (solvent) with storage",
-            "direct air capture (sorbent) with storage",
-            "enhanced rock weathering"
-       ):
-        processed_datasets = []
-        # get original dataset
-        for technology, datasets in self.cdr_map.items():
-
-            datasets = group_dicts_by_keys(
-                datasets,
-                ["name", "reference product"],
-            )
-
-            for dataset in datasets:
-                # fetch the original dataset
-                new_ds = self.fetch_proxies(
-                    datasets=dataset,
-                )
-
-                # relink to energy mix for CDR plant, if available
-                if any(
-                    x in technology
-                    for x in ("direct air capture", "enhanced rock weathering")
-                ):
-
-                    energy_dataset_name = None
-                    if technology == "direct air capture" and not any(
-                        x in y
-                        for y in datasets
-                        for x in ("industrial", "pump", "waste")
-                    ):
-                        energy_dataset_name = (
-                            "market for energy, for direct air capture and storage"
-                        )
-
-                    if technology == "enhanced rock weathering":
-                        energy_dataset_name = (
-                            "market for energy, for enhanced rock weathering"
-                        )
-
-                    if energy_dataset_name is not None:
-                        for region, dataset in new_ds.items():
-                            try:
-                                energy_supply = ws.get_one(
-                                    self.database,
-                                    ws.equals(
-                                        "name",
-                                        energy_dataset_name,
-                                    ),
-                                    ws.equals("location", region),
-                                    ws.equals("unit", "megajoule"),
-                                )
-                            except ws.NoResults:
-                                continue
-
-                            energy_input = sum(
-                                e["amount"]
-                                for e in dataset["exchanges"]
-                                if e["type"] == "technosphere"
-                                and e["unit"] == "megajoule"
-                            )
-                            energy_input += sum(
-                                e["amount"] * 3.6
-                                for e in dataset["exchanges"]
-                                if e["type"] == "technosphere"
-                                and e["unit"] == "kilowatt hour"
-                            )
-                            dataset["exchanges"] = [
-                                e
-                                for e in dataset["exchanges"]
-                                if e["unit"] not in ["megajoule", "kilowatt hour"]
-                            ]
-                            dataset["exchanges"].append(
-                                {
-                                    "name": energy_supply["name"],
-                                    "location": region,
-                                    "amount": energy_input,
-                                    "uncertainty type": 0,
-                                    "unit": "megajoule",
-                                    "type": "technosphere",
-                                    "product": energy_supply["reference product"],
-                                }
-                            )
-
-                processed_datasets.extend(new_ds.values())
-
-        for new_dataset in processed_datasets:
-            # Add created dataset to cache
-            self.add_new_entry_to_cache(
-                location=new_dataset["location"],
-                exchange=new_dataset,
-                allocated=[new_dataset],
-                shares=[
-                    1.0,
-                ],
-            )
-
-            # add it to list of created datasets
-            self.write_log(new_dataset)
-            # add it to list of created datasets
-            self.add_to_index(new_dataset)
-
-            self.database.append(new_dataset)
 
 
     def create_cdr_markets(
@@ -269,10 +165,8 @@ class CarbonDioxideRemoval(BaseTransformation):
                     efficiencies = self.iam_data.cdr_technology_efficiencies.sel(
                         region=region, variables=technology
                     ).interp(year=self.year)
-                print(f"Found efficiency for {technology} in IAM data for {region}.")
 
         if efficiencies is None:
-            print(f"No efficiency found for {technology} in IAM data for {region}.")
             return dataset
 
         scaling_factor = float(
@@ -285,8 +179,14 @@ class CarbonDioxideRemoval(BaseTransformation):
 
         if scaling_factor != 1:
             rescale_exchanges(
-                dataset,
-                scaling_factor,
+                ds=dataset,
+                value=scaling_factor,
+                technosphere_filters=[
+                    ws.exclude(ws.contains("name", "carbon dioxide"))
+                ],
+                biosphere_filters=[
+                    ws.exclude(ws.contains("name", "Carbon dioxide"))
+                ],
             )
 
             # add in comments the scaling factor applied

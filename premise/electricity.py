@@ -1604,7 +1604,6 @@ class Electricity(BaseTransformation):
                 datasets=[
                     dataset,
                 ],
-                production_variable=self.powerplant_map_rev.get(dataset["name"]),
             )
 
             for new_plant in new_plants.values():
@@ -1962,8 +1961,7 @@ class Electricity(BaseTransformation):
                 self.database.append(new_dataset)
 
                 new_datasets = self.fetch_proxies(
-                    datasets=new_dataset,
-                    empty_original_activity=False,
+                    datasets=[new_dataset],
                 )
 
                 for ds in new_datasets.values():
@@ -1980,7 +1978,6 @@ class Electricity(BaseTransformation):
                     )
 
                     self.add_to_index(ds)
-
                 self.database.extend(new_datasets.values())
 
         mapping = InventorySet(self.database, model=self.model)

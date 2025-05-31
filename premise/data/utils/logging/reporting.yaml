@@ -377,22 +377,6 @@ premise_fuel:
         name: Energy input for hydrogen production after adjustment
         description: Energy input for hydrogen production (kWh, MJ or kg fuel) per kg hydrogen
         unit: kWh, MJ or kg fuel /kg
-      hydrogen distribution losses:
-        name: Hydrogen distribution losses
-        description: Hydrogen distribution losses (kg) per kg hydrogen
-        unit: kg/kg
-      electricity for hydrogen compression:
-        name: Electricity for hydrogen compression
-        description: Electricity for hydrogen compression (kWh) per kg fuel
-        unit: kWh/kg
-      electricity for hydrogen compression after dehydrogenation:
-        name: Electricity for hydrogen compression after dehydrogenation
-        description: Electricity for hydrogen compression after dehydrogenation (kWh) per kg fuel
-        unit: kWh/kg
-      electricity for hydrogen pre-cooling:
-        name: Electricity for hydrogen pre-cooling
-        description: Electricity for hydrogen pre-cooling (kWh) per kg fuel at fuelling station
-        unit: kWh/kg
       fuel conversion efficiency:
         name: Change in fuel conversion efficiency
         description: Change in fuel conversion efficiency (scaling factor)

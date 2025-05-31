@@ -20,10 +20,10 @@ direct air capture (solvent) with storage:
       - FE|CDR|DAC|+|Heat
       - FE|CDR|DAC|+|Hydrogen
     remind-eu:
-       - FE|CDR|DAC|+|Electricity
-       - FE|CDR|DAC|+|Gases
-       - FE|CDR|DAC|+|Heat
-       - FE|CDR|DAC|+|Hydrogen
+     - FE|CDR|DAC|+|Electricity
+     - FE|CDR|DAC|+|Gases
+     - FE|CDR|DAC|+|Heat
+     - FE|CDR|DAC|+|Hydrogen
     tiam-ucl:
       - Secondary Energy|Consumption|Direct Air Capture|Heat
       - Secondary Energy|Consumption|Direct Air Capture|Electricity
@@ -54,22 +54,22 @@ direct air capture (sorbent) with storage:
 
 enhanced rock weathering:
     iam_aliases:
-        remind: Emi|CO2|CDR|+|EW
-        remind-eu: Emi|CO2|CDR|+|EW
+      remind: Emi|CO2|CDR|+|EW
+      remind-eu: Emi|CO2|CDR|+|EW
     energy_use_aliases:
-        remind:
-          - FE|CDR|EW|+|Diesel
-          - FE|CDR|EW|+|Electricity
-        remind-eu:
-          - FE|CDR|EW|+|Diesel
-          - FE|CDR|EW|+|Electricity
+      remind:
+        - FE|CDR|EW|+|Diesel
+        - FE|CDR|EW|+|Electricity
+      remind-eu:
+        - FE|CDR|EW|+|Diesel
+        - FE|CDR|EW|+|Electricity
     ecoinvent_aliases:
         fltr: carbon dioxide, captured and stored, by olivine spreading on coastline
 
 ocean liming:
     iam_aliases:
-        remind: Emi|CO2|CDR|+|OAE
-        remind-eu: Emi|CO2|CDR|+|OAE
+      remind: Emi|CO2|CDR|+|OAE
+      remind-eu: Emi|CO2|CDR|+|OAE
     ecoinvent_aliases:
         fltr: carbon dioxide, captured and stored, by ocean liming
 
@@ -79,25 +79,36 @@ biochar:
 
 bioenergy, with CCS:
   iam_aliases:
-      remind: Emi|CO2|CDR|+|BECCS
-      remind-eu: Emi|CO2|CDR|+|BECCS
+    remind: Emi|CO2|CDR|+|BECCS
+    remind-eu: Emi|CO2|CDR|+|BECCS
   ecoinvent_aliases:
       fltr: carbon dioxide, captured and stored, at wood burning power plant, pipeline 200km, storage 1000m
 
 biomass industrial emissions with CCS:
   iam_aliases:
-      remind: Emi|CO2|CDR|+|Synthetic Fuels CCS
-      remind-eu: Emi|CO2|CDR|+|Synthetic Fuels CCS
+    remind: Emi|CO2|CDR|+|Synthetic Fuels CCS
+    remind-eu: Emi|CO2|CDR|+|Synthetic Fuels CCS
   ecoinvent_aliases:
       fltr: carbon dioxide, captured and stored, from a hydrogen production plant using steam methane reforming of biomethane
 
 land-use change:
   iam_aliases:
-      remind: Emi|CO2|CDR|+|Land-Use Change
-      remind-eu: Emi|CO2|CDR|+|Land-Use Change
+    remind:
+    remind-eu:
+    image:
+    witch:
+    message:
+    tiam-ucl:
   ecoinvent_aliases:
       fltr: carbon dioxide, captured and stored, by land-use change
 
 industrial capture:
+  iam_aliases:
+    remind:
+    remind-eu:
+    image:
+    witch:
+    message:
+    tiam-ucl:
   ecoinvent_aliases:
       fltr: carbon dioxide, captured, at

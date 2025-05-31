@@ -648,7 +648,6 @@ class Metals(BaseTransformation):
             datasets=datasets,
             regions=new_locations.values(),
             geo_mapping=geography_mapping,
-            production_variable=shares,
         )
 
         return regionalized_datasets

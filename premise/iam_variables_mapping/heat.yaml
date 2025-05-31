@@ -98,11 +98,11 @@ heat, buildings, from synthetic natural gas boiler:
 
 heat, buildings, from coal-based natural gas boiler:
     ecoinvent_aliases:
-        fltr: heat, residential, by combustion of coal-based natural gas using boiler, distributed by pipeline
+      fltr: heat, residential, by combustion of coal-based natural gas using boiler, distributed by pipeline
 
 heat, buildings, from natural gas:
     ecoinvent_aliases:
-        fltr: heat production, natural gas, at boiler condensing modulating <100kW
+      fltr: heat production, natural gas, at boiler condensing modulating <100kW
     iam_aliases:
       remind: FE|Buildings|Heating|Gases
       remind-eu: FE|Buildings|Heating|Gases
@@ -114,32 +114,32 @@ heat, buildings, from natural gas:
 
 heat, buildings, from biomethane boiler:
     ecoinvent_aliases:
-        fltr: heat, residential, by combustion of biomethane using boiler, distributed by pipeline
+      fltr: heat, residential, by combustion of biomethane using boiler, distributed by pipeline
 
 heat, buildings, from LPG boiler:
     ecoinvent_aliases:
-        fltr: heat, residential, by combustion of liquefied petroleum gas using boiler, distributed by pipeline
+      fltr: heat, residential, by combustion of liquefied petroleum gas using boiler, distributed by pipeline
     iam_aliases:
       remind: FE|Buildings|Liquids|Fossil|+|Gas
       remind-eu: FE|Buildings|Liquids|Fossil|+|Gas
 
 heat, buildings, from biomass-based methanol boiler:
     ecoinvent_aliases:
-        fltr: heat, residential, by combustion of methanol using boiler, distributed by truck, produced with biomass
+      fltr: heat, residential, by combustion of methanol using boiler, distributed by truck, produced with biomass
     iam_aliases:
       remind: FE|Buildings|Liquids|+|Biomass
       remind-eu: FE|Buildings|Liquids|+|Biomass
 
 heat, buildings, from coal-based methanol boiler:
     ecoinvent_aliases:
-        fltr: heat, residential, by combustion of methanol using boiler, distributed by truck, produced with coal
+      fltr: heat, residential, by combustion of methanol using boiler, distributed by truck, produced with coal
     iam_aliases:
       remind: FE|Buildings|Liquids|Fossil|+|Coal
       remind-eu: FE|Buildings|Liquids|Fossil|+|Coal
 
 heat, buildings, from coal stove:
     ecoinvent_aliases:
-        fltr: heat production, hard coal briquette, stove 5-15kW
+      fltr: heat production, hard coal briquette, stove 5-15kW
     iam_aliases:
       remind: FE|Buildings|Solids|Coal
       remind-eu: FE|Buildings|Solids|Coal
@@ -151,8 +151,8 @@ heat, buildings, from coal stove:
 
 heat, buildings, from wood logs heater:
     ecoinvent_aliases:
-        fltr: heat production, mixed logs, at wood heater 6kW
-        mask: state-of-the-art 2014
+      fltr: heat production, mixed logs, at wood heater 6kW
+      mask: state-of-the-art 2014
     iam_aliases:
       remind: FE|Buildings|Solids|Biomass|+|Traditional
       remind-eu: FE|Buildings|Solids|Biomass|+|Traditional
@@ -164,8 +164,8 @@ heat, buildings, from wood logs heater:
 
 heat, buildings, from wood pellets heater:
     ecoinvent_aliases:
-        fltr: heat production, wood pellet, at furnace 9kW
-        mask: state-of-the-art 2014
+      fltr: heat production, wood pellet, at furnace 9kW
+      mask: state-of-the-art 2014
     iam_aliases:
       remind: FE|Buildings|Solids|Biomass|+|Modern
       remind-eu: FE|Buildings|Solids|Biomass|+|Modern
@@ -177,7 +177,7 @@ heat, buildings, from wood pellets heater:
 
 heat, buildings, from heat pump:
     ecoinvent_aliases:
-        fltr: heat production, air-water heat pump 10kW
+      fltr: heat production, air-water heat pump 10kW
     iam_aliases:
       remind: FE|Buildings|Heating|Electricity|Heat pump
       remind-eu: FE|Buildings|Heating|Electricity|Heat pump
@@ -212,7 +212,6 @@ heat, industrial, from heat pump:
     iam_aliases:
       remind: SE|Heat|Electricity|Heat Pump
       remind-eu: SE|Heat|Electricity|Heat Pump
-
 
 heat, industrial, from natural gas CHP:
     ecoinvent_aliases:

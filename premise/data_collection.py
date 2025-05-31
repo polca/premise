@@ -414,6 +414,7 @@ class IAMDataCollection:
             if "buildings" in k
         }
 
+
         industrial_heat_vars = {
             k: v
             for k, v in self.__get_iam_variable_labels(
@@ -974,6 +975,10 @@ class IAMDataCollection:
                 **cdr_prod_vars,
                 **biomass_prod_vars,
                 **buildings_heat_vars,
+                **industrial_heat_vars,
+                **daccs_heat_vars,
+                **ewr_heat_vars,
+                #**final_energy_vars,
                 **roadfreight_prod_vars,
                 **railfreight_prod_vars,
                 **seafreight_prod_vars,

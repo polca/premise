@@ -9,18 +9,34 @@ class BiogasMixin:
         """
         fuel_activities = fetch_mapping(METHANE_SOURCES)
 
-        for fuel, dataset_names in fuel_activities.items():
-            for details in dataset_names:
-                datasets = [
-                    ds
-                    for ds in self.database
-                    if ds["name"] == details["name"]
-                    and ds["reference product"] == details["reference product"]
-                ]
+        methane_map = {
+            k: ws.get_one(
+                self.database,
+                ws.equals("name", v["name"]),
+                ws.equals("reference product", v["reference product"]),
+            )
+            for k, v in fuel_activities.items()
+        }
 
-                new_ds = self.fetch_proxies(datasets=datasets)
+        self.process_and_add_activities(
+            mapping=methane_map,
+        )
 
-                for new_dataset in new_ds.values():
-                    self.database.append(new_dataset)
-                    self.write_log(new_dataset)
-                    self.add_to_index(new_dataset)
+        # create markets for natural gas and biogas
+
+        for market_name in [
+            "market for natural gas, high pressure",
+            "market group for natural gas, high pressure",
+        ]:
+            self.process_and_add_markets(
+                name=market_name,
+                reference_product="natural gas, high pressure",
+                unit="cubic meter",
+                mapping={
+                    k: v
+                    for k, v in self.fuel_map.items()
+                    if k.startswith("methane")
+                },
+                system_model=self.system_model,
+                production_volumes=self.iam_data.production_volumes
+            )

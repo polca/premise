@@ -39,7 +39,8 @@ def _update_heat(scenario, version, system_model):
     )
 
     heat.fetch_fuel_market_co2_emissions()
-    heat.regionalize_heat_production_datasets()
+    heat.regionalize_activities()
+    heat.adjust_carbon_dioxide_emissions()
 
     if scenario["iam data"].buildings_heating_mix is not None:
         heat.create_heat_markets(
@@ -49,9 +50,7 @@ def _update_heat(scenario, version, system_model):
                 if "buildings" in tech.lower()
             ],
             name="market for heat, for buildings",
-            reference_product="heat, central or small-scale",
-            energy_use_volumes=heat.iam_data.buildings_heating_mix,
-            production_volumes=heat.iam_data.production_volumes,
+            reference_product="heat, central or small-scale"
         )
     else:
         print("No buildings heat scenario data available -- skipping")
@@ -64,9 +63,7 @@ def _update_heat(scenario, version, system_model):
                 if "industrial" in tech.lower()
             ],
             name="market for heat, district or industrial",
-            reference_product="heat, district or industrial",
-            energy_use_volumes=heat.iam_data.industrial_heat_mix,
-            production_volumes=heat.iam_data.production_volumes,
+            reference_product="heat, district or industrial"
         )
         heat.relink_heat_markets(
             current_input=[
@@ -101,9 +98,7 @@ def _update_heat(scenario, version, system_model):
                 tech for tech in heat.iam_data.daccs_energy_use.variables.values
             ],
             name="market for energy, for direct air capture and storage",
-            reference_product="energy, for direct air capture and storage",
-            energy_use_volumes=heat.iam_data.daccs_energy_use,
-            production_volumes=heat.iam_data.production_volumes,
+            reference_product="energy, for direct air capture and storage"
         )
     else:
         print("No DAC scenario data available -- skipping")
@@ -114,9 +109,7 @@ def _update_heat(scenario, version, system_model):
                 tech for tech in heat.iam_data.ewr_energy_use.variables.values
             ],
             name="market for energy, for enhanced rock weathering",
-            reference_product="energy, for enhanced rock weathering",
-            energy_use_volumes=heat.iam_data.ewr_energy_use,
-            production_volumes=heat.iam_data.production_volumes,
+            reference_product="energy, for enhanced rock weathering"
         )
     else:
         print("No EWR scenario data available -- skipping")
@@ -139,14 +132,6 @@ def _update_heat(scenario, version, system_model):
     scenario["index"] = heat.index
 
     return scenario
-
-
-def group_dicts_by_keys(dicts: list, keys: list):
-    groups = defaultdict(list)
-    for d in dicts:
-        group_key = tuple(d.get(k) for k in keys)
-        groups[group_key].append(d)
-    return list(groups.values())
 
 
 class Heat(BaseTransformation):
@@ -181,7 +166,7 @@ class Heat(BaseTransformation):
 
         self.carbon_intensity_markets = {}
         self.mapping = InventorySet(self.database)
-        self.heat_techs = self.mapping.generate_heat_map()
+        self.heat_techs = self.mapping.generate_heat_map(model=self.model)
         self.biosphere_flows = get_biosphere_code(self.version)
 
     def fetch_fuel_market_co2_emissions(self):
@@ -236,500 +221,155 @@ class Heat(BaseTransformation):
 
         self.carbon_intensity_markets.update(new_keys)
 
-    def regionalize_heat_production_datasets(self):
+
+    def regionalize_activities(self):
+
+        self.process_and_add_activities(
+            mapping=self.heat_techs,
+            production_volumes=self.iam_data.production_volumes,
+        )
+        self.heat_techs = self.mapping.generate_heat_map(model=self.model)
+
+    def adjust_carbon_dioxide_emissions(self):
         """
         Regionalize heat production.
 
         """
 
-        created_datasets, seen_datasets = [], []
-
         for heat_tech, heat_datasets in self.heat_techs.items():
-
-            # Check if the dataset has already been seen
-            heat_datasets = [
-                ds for ds in heat_datasets if ds["name"] not in seen_datasets
-            ]
-
-            if not heat_datasets:
-                continue
-
-            heat_datasets = group_dicts_by_keys(
-                heat_datasets,
-                [
-                    "name",
-                    "reference product",
-                ],
-            )
-
-            for heat_dataset in heat_datasets:
-                geo_mapping = None
-                if heat_tech == "heat, from natural gas (market)":
-                    european_dataset = [
-                        ds
-                        for ds in heat_dataset
-                        if ds["location"] == "Europe without Switzerland"
-                    ][0]
-                    geo_mapping = {r: european_dataset for r in self.regions}
-
-                new_ds = self.fetch_proxies(
-                    datasets=heat_dataset,
-                    geo_mapping=geo_mapping,
-                )
-
-                for ds in new_ds.values():
-                    fossil_co2, non_fossil_co2 = 0.0, 0.0
-                    for exc in ws.technosphere(ds):
-                        if (
-                            exc["name"],
-                            exc["location"],
-                        ) in self.carbon_intensity_markets:
-                            fossil_co2 += (
-                                exc["amount"]
-                                * self.carbon_intensity_markets[
-                                    (exc["name"], exc["location"])
-                                ]["fossil"]
-                            )
-
-                            non_fossil_co2 += (
-                                exc["amount"]
-                                * self.carbon_intensity_markets[
-                                    (exc["name"], exc["location"])
-                                ]["non-fossil"]
-                            )
-
-                    if fossil_co2 + non_fossil_co2 > 0:
-
-                        initial_fossil_co2 = sum(
-                            [
-                                exc["amount"]
-                                for exc in ws.biosphere(ds)
-                                if exc["name"] == "Carbon dioxide, fossil"
-                            ]
-                        )
-                        initial_non_fossil_co2 = sum(
-                            [
-                                exc["amount"]
-                                for exc in ws.biosphere(ds)
-                                if exc["name"] == "Carbon dioxide, non-fossil"
-                            ]
+            for dataset in heat_datasets:
+                fossil_co2, non_fossil_co2 = 0.0, 0.0
+                for exc in ws.technosphere(dataset):
+                    if (
+                        exc["name"],
+                        exc["location"],
+                    ) in self.carbon_intensity_markets:
+                        fossil_co2 += (
+                            exc["amount"]
+                            * self.carbon_intensity_markets[
+                                (exc["name"], exc["location"])
+                            ]["fossil"]
                         )
 
-                        ds["exchanges"] = [
-                            e
-                            for e in ds["exchanges"]
-                            if e["name"]
-                            not in (
-                                "Carbon dioxide, fossil",
-                                "Carbon dioxide, non-fossil",
-                            )
+                        non_fossil_co2 += (
+                            exc["amount"]
+                            * self.carbon_intensity_markets[
+                                (exc["name"], exc["location"])
+                            ]["non-fossil"]
+                        )
+
+                if fossil_co2 + non_fossil_co2 > 0:
+
+                    initial_fossil_co2 = sum(
+                        [
+                            exc["amount"]
+                            for exc in ws.biosphere(dataset)
+                            if exc["name"] == "Carbon dioxide, fossil"
                         ]
+                    )
+                    initial_non_fossil_co2 = sum(
+                        [
+                            exc["amount"]
+                            for exc in ws.biosphere(dataset)
+                            if exc["name"] == "Carbon dioxide, non-fossil"
+                        ]
+                    )
 
-                        if fossil_co2 > 0:
-                            ds["exchanges"].append(
-                                {
-                                    "uncertainty type": 0,
-                                    "loc": fossil_co2,
-                                    "amount": fossil_co2,
-                                    "name": "Carbon dioxide, fossil",
-                                    "categories": ("air",),
-                                    "type": "biosphere",
-                                    "unit": "kilogram",
-                                    "input": (
-                                        "biosphere3",
-                                        self.biosphere_flows[
-                                            (
-                                                "Carbon dioxide, fossil",
-                                                "air",
-                                                "unspecified",
-                                                "kilogram",
-                                            )
-                                        ],
-                                    ),
-                                }
-                            )
-
-                        if non_fossil_co2 > 0:
-
-                            ds["exchanges"].append(
-                                {
-                                    "uncertainty type": 0,
-                                    "loc": non_fossil_co2,
-                                    "amount": non_fossil_co2,
-                                    "name": "Carbon dioxide, non-fossil",
-                                    "categories": ("air",),
-                                    "type": "biosphere",
-                                    "unit": "kilogram",
-                                    "input": (
-                                        "biosphere3",
-                                        self.biosphere_flows[
-                                            (
-                                                "Carbon dioxide, non-fossil",
-                                                "air",
-                                                "unspecified",
-                                                "kilogram",
-                                            )
-                                        ],
-                                    ),
-                                }
-                            )
-
-                        ds.setdefault("log parameters", {})[
-                            "initial amount of fossil CO2"
-                        ] = initial_fossil_co2
-                        ds["log parameters"]["new amount of fossil CO2"] = float(
-                            fossil_co2
+                    dataset["exchanges"] = [
+                        e
+                        for e in dataset["exchanges"]
+                        if e["name"]
+                        not in (
+                            "Carbon dioxide, fossil",
+                            "Carbon dioxide, non-fossil",
                         )
-                        ds["log parameters"][
-                            "initial amount of biogenic CO2"
-                        ] = initial_non_fossil_co2
-                        ds["log parameters"]["new amount of biogenic CO2"] = float(
-                            non_fossil_co2
+                    ]
+
+                    if fossil_co2 > 0:
+                        dataset["exchanges"].append(
+                            {
+                                "uncertainty type": 0,
+                                "loc": fossil_co2,
+                                "amount": fossil_co2,
+                                "name": "Carbon dioxide, fossil",
+                                "categories": ("air",),
+                                "type": "biosphere",
+                                "unit": "kilogram",
+                                "input": (
+                                    "biosphere3",
+                                    self.biosphere_flows[
+                                        (
+                                            "Carbon dioxide, fossil",
+                                            "air",
+                                            "unspecified",
+                                            "kilogram",
+                                        )
+                                    ],
+                                ),
+                            }
                         )
 
-                created_datasets.extend(new_ds.values())
-                seen_datasets.extend([ds["name"] for ds in new_ds.values()])
+                    if non_fossil_co2 > 0:
 
-        for new_dataset in created_datasets:
-            self.write_log(new_dataset)
-            # add it to list of created datasets
-            self.add_to_index(new_dataset)
-            self.database.append(new_dataset)
+                        dataset["exchanges"].append(
+                            {
+                                "uncertainty type": 0,
+                                "loc": non_fossil_co2,
+                                "amount": non_fossil_co2,
+                                "name": "Carbon dioxide, non-fossil",
+                                "categories": ("air",),
+                                "type": "biosphere",
+                                "unit": "kilogram",
+                                "input": (
+                                    "biosphere3",
+                                    self.biosphere_flows[
+                                        (
+                                            "Carbon dioxide, non-fossil",
+                                            "air",
+                                            "unspecified",
+                                            "kilogram",
+                                        )
+                                    ],
+                                ),
+                            }
+                        )
 
-    def generate_world_market(
-        self,
-        dataset: dict,
-        regions: List[str],
-        production_volumes: xr.DataArray,
-    ) -> dict:
-        """
-        Generate the world market for a given dataset and product variables.
-
-        :param dataset: The dataset for which to generate the world market.
-        :param regions: A dictionary of activity datasets, keyed by region.
-
-        This function generates the world market exchanges for a given dataset and set of product variables.
-        It first filters out non-production exchanges from the dataset, and then calculates the total production
-        volume for the world using the given product variables. For each region, it calculates the share of the
-        production volume and adds a technosphere exchange to the dataset with the appropriate share.
-
-        """
-
-        # rename location
-        dataset["location"] = "World"
-        dataset["code"] = str(uuid.uuid4().hex)
-
-        # remove existing production exchange if any
-        dataset["exchanges"] = [
-            exc for exc in dataset["exchanges"] if exc["type"] != "production"
-        ]
-
-        if self.year in production_volumes.coords["year"].values:
-            production_volume = (
-                production_volumes.sel(
-                    region=regions,
-                    variables=production_volumes.variables.values,
-                    year=self.year,
-                )
-                .sum(dim=["region", "variables"])
-                .values.item(0)
-            )
-        else:
-            production_volume = (
-                production_volumes.sel(
-                    region=regions,
-                    variables=production_volumes.variables.values,
-                )
-                .interp(year=self.year)
-                .sum(dim=["region", "variables"])
-                .values.item(0)
-            )
-
-        # add production exchange
-        dataset["exchanges"].append(
-            {
-                "uncertainty type": 0,
-                "loc": 1,
-                "amount": 1,
-                "type": "production",
-                "production volume": production_volume,
-                "product": dataset["reference product"],
-                "name": dataset["name"],
-                "unit": dataset["unit"],
-                "location": "World",
-            }
-        )
-
-        # Filter out non-production exchanges
-        dataset["exchanges"] = [
-            e for e in dataset["exchanges"] if e["type"] == "production"
-        ]
-
-        # Calculate share of production volume for each region
-        for r in regions:
-            if r == "World":
-                continue
-
-            if self.year in production_volumes.coords["year"].values:
-                share = (
-                    production_volumes.sel(
-                        region=r,
-                        variables=production_volumes.variables.values,
-                        year=self.year,
-                    ).sum(dim="variables")
-                    / production_volumes.sel(
-                        region=[
-                            x for x in production_volumes.region.values if x != "World"
-                        ],
-                        variables=production_volumes.variables.values,
-                        year=self.year,
-                    ).sum(dim=["variables", "region"])
-                ).values
-            else:
-                share = (
-                    (
-                        production_volumes.sel(
-                            region=r,
-                            variables=production_volumes.variables.values,
-                        ).sum(dim="variables")
-                        / production_volumes.sel(
-                            region=[
-                                x
-                                for x in production_volumes.region.values
-                                if x != "World"
-                            ],
-                            variables=production_volumes.variables.values,
-                        ).sum(dim=["variables", "region"])
+                    dataset.setdefault("log parameters", {})[
+                        "initial amount of fossil CO2"
+                    ] = initial_fossil_co2
+                    dataset["log parameters"]["new amount of fossil CO2"] = float(
+                        fossil_co2
                     )
-                    .interp(
-                        year=self.year,
-                        kwargs={"fill_value": "extrapolate"},
+                    dataset["log parameters"][
+                        "initial amount of biogenic CO2"
+                    ] = initial_non_fossil_co2
+                    dataset["log parameters"]["new amount of biogenic CO2"] = float(
+                        non_fossil_co2
                     )
-                    .values
-                )
 
-            if np.isnan(share):
-                print("Incorrect market share for", dataset["name"], "in", r)
-
-            if share > 0:
-                # Add exchange for the region
-                exchange = {
-                    "uncertainty type": 0,
-                    "amount": share,
-                    "type": "technosphere",
-                    "product": dataset["reference product"],
-                    "name": dataset["name"],
-                    "unit": dataset["unit"],
-                    "location": r,
-                }
-                dataset["exchanges"].append(exchange)
-
-        return dataset
 
     def create_heat_markets(
         self,
         technologies,
         name,
         reference_product,
-        energy_use_volumes,
-        production_volumes,
     ):
 
         # Get the possible names of ecoinvent datasets
         ecoinvent_technologies = {
-            technology: self.heat_techs[technology] for technology in technologies
+            technology: self.heat_techs[technology]
+            for technology in technologies
         }
 
-        generic_dataset = {
-            "name": name,
-            "reference product": reference_product,
-            "unit": "megajoule",
-            "database": self.database[1]["database"],
-            "comment": f"Dataset created by `premise` from the IAM model {self.model.upper()}"
-            f" using the pathway {self.scenario} for the year {self.year}.",
-            "exchanges": [],
-        }
-
-        def generate_regional_markets(
-            region: str, period: int, subset: list, production_volumes: xr.DataArray
-        ) -> dict:
-
-            new_dataset = copy.deepcopy(generic_dataset)
-            new_dataset["location"] = region
-            new_dataset["code"] = str(uuid.uuid4().hex)
-
-            # Fetch ecoinvent regions contained in the IAM region
-            ecoinvent_regions = self.geo.iam_to_ecoinvent_location(region)
-
-            # Fetch electricity-producing technologies contained in the IAM region
-            # if they cannot be found for the ecoinvent locations concerned
-            # we widen the scope to EU-based datasets, and RoW, and finally Switzerland
-
-            possible_locations = [
-                [region],
-                ecoinvent_regions,
-                ["RER"],
-                ["RoW"],
-                ["CH"],
-                list(self.ecoinvent_to_iam_loc.keys()),
-            ]
-
-            tech_suppliers = defaultdict(list)
-
-            for technology, activities in ecoinvent_technologies.items():
-                suppliers, counter = [], 0
-
-                try:
-                    while len(suppliers) == 0:
-                        suppliers = [
-                            ds
-                            for ds in activities
-                            if ds["location"] in possible_locations[counter]
-                        ]
-                        counter += 1
-
-                    tech_suppliers[technology] = suppliers[:1]
-
-                except IndexError as exc:
-                    if self.system_model == "consequential":
-                        continue
-                    raise IndexError(
-                        f"Couldn't find suppliers for {technology} when looking for {ecoinvent_technologies[technology]}."
-                        f"Ony found: {[(x['name'], x['reference product'], x['location']) for x in self.database if x['name'] in ecoinvent_technologies[technology]]}"
-                    ) from exc
-
-            if self.system_model == "consequential":
-                heat_mix = dict(
-                    zip(
-                        production_volumes.variables.values,
-                        production_volumes.sel(region=region, year=self.year).values,
-                    )
-                )
-
-            else:
-                heat_mix = dict(
-                    zip(
-                        production_volumes.variables.values,
-                        production_volumes.sel(
-                            region=region,
-                        )
-                        .interp(
-                            year=np.arange(self.year, self.year + period + 1),
-                            kwargs={"fill_value": "extrapolate"},
-                        )
-                        .mean(dim="year")
-                        .values,
-                    )
-                )
-
-            # normalize the mix to 1
-            total = sum(heat_mix.values())
-            heat_mix = {tech: heat_mix[tech] / total for tech in heat_mix}
-
-            # fetch production volume
-            if self.year in production_volumes.coords["year"].values:
-                production_volume = production_volumes.sel(
-                    region=region,
-                    variables=production_volumes.variables.values,
-                    year=self.year,
-                ).values.item(0)
-            else:
-                production_volume = (
-                    production_volumes.sel(
-                        region=region,
-                        variables=production_volumes.variables.values,
-                    )
-                    .interp(year=self.year)
-                    .values.item(0)
-                )
-
-            # First, add the reference product exchange
-            new_exchanges = [
-                {
-                    "uncertainty type": 0,
-                    "loc": 1,
-                    "amount": 1,
-                    "type": "production",
-                    "production volume": float(production_volume),
-                    "product": new_dataset["reference product"],
-                    "name": new_dataset["name"],
-                    "unit": new_dataset["unit"],
-                    "location": region,
-                }
-            ]
-
-            if period != 0:
-                # this dataset is for a period of time
-                new_dataset["name"] += f", {period}-year period"
-                new_dataset["comment"] += (
-                    f" Average heat mix over a {period}"
-                    f"-year period {self.year}-{self.year + period}."
-                )
-                new_exchanges[0]["name"] = new_dataset["name"]
-
-            for technology in technologies:
-                # If the given technology contributes to the mix
-                if heat_mix[technology] > 0:
-                    # Contribution in supply
-                    amount = heat_mix[technology]
-
-                    for supplier in tech_suppliers[technology]:
-                        new_exchanges.append(
-                            {
-                                "uncertainty type": 0,
-                                "loc": amount,
-                                "amount": amount,
-                                "type": "technosphere",
-                                "product": supplier["reference product"],
-                                "name": supplier["name"],
-                                "unit": supplier["unit"],
-                                "location": supplier["location"],
-                            }
-                        )
-
-            new_dataset["exchanges"] = new_exchanges
-
-            return new_dataset
-
-        if self.system_model == "consequential":
-            periods = [
-                0,
-            ]
-        else:
-            periods = [0, 20, 40, 60]
-
-        # Using a list comprehension to process all technologies
-        subset = filter_technology(
-            dataset_names=[
-                item for subset in ecoinvent_technologies.values() for item in subset
-            ],
-            database=self.database,
+        self.process_and_add_markets(
+            name=name,
+            reference_product=reference_product,
             unit="megajoule",
+            mapping=ecoinvent_technologies,
+            production_volumes=self.iam_data.production_volumes,
+            system_model=self.system_model,
         )
 
-        self.heat_techs = self.mapping.generate_heat_map()
-        new_datasets = [
-            generate_regional_markets(region, period, subset, energy_use_volumes)
-            for period in periods
-            for region in self.regions
-            if region != "World"
-            and energy_use_volumes.sel(region=region, year=self.year).sum() > 0
-        ]
-
-        self.database.extend(new_datasets)
-
-        for ds in new_datasets:
-            self.write_log(ds)
-            self.add_to_index(ds)
-
-        if energy_use_volumes.sel(year=self.year).sum() > 0:
-            new_world_dataset = self.generate_world_market(
-                dataset=copy.deepcopy(generic_dataset),
-                regions=self.regions,
-                production_volumes=production_volumes,
-            )
-            self.database.append(new_world_dataset)
-            self.write_log(new_world_dataset)
 
     def relink_heat_markets(self, current_input: list, new_input: dict):
 

@@ -63,6 +63,12 @@ def _update_vehicles(scenario, vehicle_type, version, system_model):
         index=scenario.get("index"),
     )
 
+    trspt.regionalize_transport_datasets()
+
+    if fleet_data[vehicle_type] is not None:
+        trspt.create_vehicle_markets()
+        trspt.relink_transport_datasets()
+
     scenario["database"] = trspt.database
     scenario["cache"] = trspt.cache
     scenario["index"] = trspt.index
@@ -384,85 +390,74 @@ class Transport(BaseTransformation):
             if not v:
                 print(f"Vehicle map is empty for {self.vehicle_type}.")
 
-        if self.has_fleet:
-            fleet_datasets = self.create_vehicle_markets()
-            self.database.extend(fleet_datasets)
-            self.add_to_index(fleet_datasets)
+
+    def regionalize_transport_datasets(self):
+        """
+        Regionalize transport datasets, which are currently only available in RER, CA and RoW.
+        """
+
+        # create and regionalize transport datasets
+        self.process_and_add_activities(
+            mapping=self.vehicle_map,
+            efficiency_adjustment_fn=self.adjust_transport_efficiency
+        )
+
 
     def create_vehicle_markets(self) -> list:
         """
         Create vehicle market (fleet average) datasets.
         """
 
-        # create and regionalize transport datasets
-        vehicle_datasets = list(
-            ws.get_many(
-                self.database,
-                ws.either(
-                    *[
-                        ws.equals("name", v)
-                        for name in self.vehicle_map.values()
-                        for v in name
-                    ]
-                ),
-            )
-        )
-
-        new_datasets = []
-
-        arr = None
         if self.vehicle_type == "two-wheeler":
-            arr = self.iam_data.two_wheelers_fleet
-        if self.vehicle_type == "car":
-            arr = self.iam_data.passenger_car_fleet
+            name = "market for transport, passenger, two-wheeler"
+            reference_product = "transport, passenger, two-wheeler"
+            unit = "kilometer"
+        elif self.vehicle_type == "car":
+            name = "market for transport, passenger car"
+            reference_product = "transport, passenger car"
+            unit = "kilometer"
+        elif self.vehicle_type == "truck":
+            name = "market for transport, freight, lorry"
+            reference_product = "transport, freight, lorry"
+            unit = "ton kilometer"
+        elif self.vehicle_type == "bus":
+            name = "market for transport, passenger bus"
+            reference_product = "transport, passenger bus"
+            unit = "kilometer"
+        elif self.vehicle_type == "train":
+            name = "market for transport, freight, rail"
+            reference_product = "transport, freight, rail"
+            unit = "ton kilometer"
+        else:
+            name = "market for transport, freight, ship"
+            reference_product = "transport, freight, ship"
+            unit = "ton kilometer"
+
+        self.process_and_add_markets(
+            name=name,
+            reference_product=reference_product,
+            unit=unit,
+            mapping=self.vehicle_map,
+            system_model=self.system_model,
+            production_volumes=self.iam_data.production_volumes
+        )
+
+        # if trucks, build size-specific markets
         if self.vehicle_type == "truck":
-            arr = self.iam_data.road_freight_fleet
-        if self.vehicle_type == "bus":
-            arr = self.iam_data.bus_fleet
-        if self.vehicle_type == "train":
-            arr = self.iam_data.rail_freight_fleet
-        if self.vehicle_type == "ship":
-            arr = self.iam_data.sea_freight_fleet
-
-        processed_datasets = []
-        for vehicle_type, vehicle_datasets in self.vehicle_map.items():
-
-            processed_datasets.extend(
-                self.fetch_proxies(
-                    datasets=vehicle_datasets,
-                    production_variable=vehicle_type,
-                ).values()
-            )
-
-        for new_ds in processed_datasets:
-            new_ds = self.adjust_transport_efficiency(new_ds)
-
-            if not self.is_in_index(new_ds):
-                self.add_to_index(new_ds)
-                self.database.append(new_ds)
-
-        fleet_act = []
-
-        if arr is None:
-            return []
-
-        self.vehicle_map = self.activity_mapping.generate_transport_map(
-            transport_type=self.vehicle_type
-        )
-        fleet_act.extend(
-            create_fleet_vehicles(
-                datasets=new_datasets,
-                vehicle_type=self.vehicle_type,
-                year=self.year,
-                model=self.model,
-                version=self.version,
-                system_model=self.system_model,
-                scenario=self.scenario,
-                regions=self.regions,
-                arr=arr,
-                mapping=self.vehicle_map,
-            )
-        )
+            for size in ["3.5t", "7.5t", "18t", "26t", "40t"]:
+                new_name = f"{name}, {size} gross weight, long haul"
+                self.process_and_add_markets(
+                    name=new_name,
+                    reference_product=reference_product,
+                    unit=unit,
+                    mapping=self.vehicle_map,
+                    system_model=self.system_model,
+                    production_volumes=self.iam_data.production_volumes.sel(
+                        variables=[
+                            v for v in self.iam_data.production_volumes.coords["variables"].values if size in v
+                        ]
+                    )
+                )
 
         # if trucks, adjust battery size
         if self.vehicle_type == "truck":
@@ -474,11 +469,10 @@ class Transport(BaseTransformation):
             ):
                 self.adjust_battery_size(ds)
 
+    def relink_transport_datasets(self):
         # if trucks or ships, need to reconnect everything
         # loop through datasets that use truck transport
         if self.vehicle_type in ("truck", "ship"):
-
-            list_created_vehicles = [(v["name"], v["location"]) for v in fleet_act]
 
             for dataset in ws.get_many(
                 self.database,
@@ -500,71 +494,12 @@ class Transport(BaseTransformation):
                         self.model
                     ]
                     new_loc = self.geo.ecoinvent_to_iam_location(dataset["location"])
+                    exc["name"] = new_name
+                    exc["product"] = self.mapping[self.vehicle_type]["name"].replace("market for ", "")
+                    exc["location"] = new_loc
 
-                    if (new_name, new_loc) in list_created_vehicles:
-                        exc["name"] = new_name
-                        exc["product"] = self.mapping[self.vehicle_type]["name"]
-                        exc["location"] = new_loc
-                    else:
-                        print(f"Could not find dataset for {new_name} in {new_loc}.")
-                        exc["name"] = (
-                            "transport, freight, lorry, unspecified, long haul"
-                        )
-                        exc["product"] = self.mapping[self.vehicle_type]["name"]
-                        exc["location"] = "World"
 
-            # also we need to empty the old transport datasets
-            for dataset in ws.get_many(
-                self.database,
-                ws.either(
-                    *[
-                        ws.equals("name", v)
-                        for v in self.mapping[self.vehicle_type]["old"]
-                    ]
-                ),
-            ):
-                dataset["exchanges"] = [
-                    e for e in dataset["exchanges"] if e["type"] == "production"
-                ]
-                dataset["comment"] = (
-                    "This dataset has been replaced by new fleet-average vehicles."
-                )
-
-                # add new truck as exchange
-                new_name = self.mapping[self.vehicle_type]["old"][dataset["name"]][
-                    self.model
-                ]
-                new_loc = self.geo.ecoinvent_to_iam_location(dataset["location"])
-
-                if (new_name, new_loc) in list_created_vehicles:
-                    new_exc = {
-                        "name": new_name,
-                        "product": self.mapping[self.vehicle_type]["name"],
-                        "unit": "ton kilometer",
-                        "location": new_loc,
-                        "type": "technosphere",
-                        "amount": 1,
-                        "uncertainty type": 0,
-                    }
-                else:
-                    print(f"Could not find dataset for {new_name} in {new_loc}.")
-                    new_exc = {
-                        "name": self.mapping[self.vehicle_type]["name"],
-                        "product": self.mapping[self.vehicle_type]["name"],
-                        "unit": "ton kilometer",
-                        "location": "World",
-                        "type": "technosphere",
-                        "amount": 1,
-                        "uncertainty type": 0,
-                    }
-                    if self.vehicle_type == "truck":
-                        new_exc["name"] = f"{new_exc['name']}, unspecified, long haul"
-
-                dataset["exchanges"].append(new_exc)
-
-        return fleet_act
-
-    def adjust_transport_efficiency(self, dataset):
+    def adjust_transport_efficiency(self, dataset, technology=None):
         """
         Adjust transport efficiency of transport datasets based on IAM data.
 
