@@ -49,88 +49,61 @@ class HydrogenMixin:
         """
         Adjust the efficiency of hydrogen production datasets based on the technology.
         """
+        params = hydrogen_parameters.get(technology)
+        if not params:
+            print("Could not find efficiency parameters for technology:", technology)
+            return
 
-        params = hydrogen_parameters.get(technology, {})
-        feedstock_name = params.get("feedstock name")
-        feedstock_unit = params.get("feedstock unit")
+        feedstock_name = params["feedstock name"]
+        feedstock_unit = params["feedstock unit"]
         efficiency = params.get("efficiency")
         floor_value = params.get("floor value")
 
-        if params:
-            initial_energy_use = sum(
-                exc["amount"]
-                for exc in dataset["exchanges"]
-                if exc["unit"] == feedstock_unit
-                and feedstock_name in exc["name"]
-                and exc["type"] != "production"
+        initial_energy_use = sum(
+            exc["amount"]
+            for exc in dataset["exchanges"]
+            if exc["unit"] == feedstock_unit
+            and feedstock_name in exc["name"]
+            and exc["type"] != "production"
+        )
+        dataset.setdefault("log parameters", {})["initial energy input for hydrogen production"] = initial_energy_use
+
+        new_energy_use = None
+        min_energy_use = None
+        max_energy_use = None
+
+        if technology in self.fuel_efficiencies.variables.values.tolist():
+            scaling_factor = 1 / self.find_iam_efficiency_change(
+                data=self.fuel_efficiencies,
+                variable=technology,
+                location=dataset["location"],
             )
-
-            dataset.setdefault("log parameters", {}).update(
-                {
-                    "initial energy input for hydrogen production": initial_energy_use
-                }
+            new_energy_use = max(scaling_factor * initial_energy_use, floor_value)
+        elif "electrolysis" in technology:
+            new_energy_use, min_energy_use, max_energy_use = adjust_electrolysis_electricity_requirement(
+                self.year, efficiency
             )
+            scaling_factor = new_energy_use / initial_energy_use if initial_energy_use else 1
+        else:
+            scaling_factor = 1
 
-            (
-                new_energy_use,
-                min_energy_use,
-                max_energy_use,
-                scaling_factor,
-            ) = (
-                None,
-                None,
-                None,
-                1,
-            )
+        if scaling_factor == 1:
+            return
 
-            if (
-                    technology
-                    in self.fuel_efficiencies.variables.values.tolist()
-            ):
+        for exc in ws.technosphere(
+                dataset,
+                ws.contains("name", feedstock_name),
+                ws.equals("unit", feedstock_unit),
+        ):
+            exc["amount"] *= scaling_factor
+            exc["uncertainty type"] = 5
+            exc["loc"] = exc["amount"]
+            if min_energy_use:
+                exc["minimum"] = exc["amount"] * (min_energy_use / new_energy_use)
+            if max_energy_use:
+                exc["maximum"] = exc["amount"] * (max_energy_use / new_energy_use)
 
-                scaling_factor = 1 / self.find_iam_efficiency_change(
-                    data=self.fuel_efficiencies,
-                    variable=technology,
-                    location=dataset["location"],
-                )
-                new_energy_use = max(
-                    scaling_factor * initial_energy_use, floor_value
-                )
-
-            if scaling_factor == 1 and "electrolysis" in technology:
-                new_energy_use, min_energy_use, max_energy_use = (
-                    adjust_electrolysis_electricity_requirement(
-                        self.year, efficiency
-                    )
-                )
-
-            try:
-                scaling_factor = new_energy_use / initial_energy_use
-            except (ZeroDivisionError, TypeError):
-                scaling_factor = 1
-
-            if scaling_factor != 1:
-                for exc in ws.technosphere(
-                        dataset,
-                        ws.contains("name", feedstock_name),
-                        ws.equals("unit", feedstock_unit),
-                ):
-                    exc["amount"] *= scaling_factor
-                    exc["uncertainty type"] = 5
-                    exc["loc"] = exc["amount"]
-                    if min_energy_use is not None:
-                        exc["minimum"] = exc["amount"] * (
-                                min_energy_use / new_energy_use
-                        )
-                    if max_energy_use is not None:
-                        exc["maximum"] = exc["amount"] * (
-                                max_energy_use / new_energy_use
-                        )
-
-                dataset.setdefault("log parameters", {}).update(
-                    {"new energy input for hydrogen production": new_energy_use}
-                )
-
+        dataset["log parameters"]["new energy input for hydrogen production"] = new_energy_use
 
     def _generate_supporting_hydrogen_datasets(self):
         keywords = [

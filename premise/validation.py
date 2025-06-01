@@ -1632,7 +1632,7 @@ class FuelsValidation(BaseDatasetValidator):
                             (
                                 x["amount"]
                                 if x["unit"] == "cubic meter"
-                                else x["amount"] / 0.74
+                                else x["amount"] / 0.716
                             )
                             for x in ds["exchanges"]
                             if x["type"] == "technosphere"
@@ -1649,7 +1649,7 @@ class FuelsValidation(BaseDatasetValidator):
                             and x["unit"] in ("kilogram", "cubic meter")
                         ]
                     )
-                if total < 0.99 or total > 2:
+                if total < 0.99 or total > 1/0.716:
                     message = f"Fuel market inputs sum to {total}."
                     self.log_issue(
                         ds,

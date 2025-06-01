@@ -172,7 +172,7 @@ def get_suppliers_of_a_region(
 
 def get_shares_from_production_volume(
     ds_list: Union[Dict[str, Any], List[Dict[str, Any]]],
-) -> Dict[Tuple[Any, Any, Any, Any], float]:
+) -> list:
     """
     Return shares of supply of each dataset in `ds_list`
     based on respective production volumes
@@ -183,7 +183,7 @@ def get_shares_from_production_volume(
     if not isinstance(ds_list, list):
         ds_list = [ds_list]
 
-    dict_act = {}
+    suppliers = []
     total_production_volume = 0
 
     for act in ds_list:
@@ -197,23 +197,26 @@ def get_shares_from_production_volume(
                 # because if not, we risk dividing by zero!!!
                 production_volume = max(float(exc.get("production volume", 1e-9)), 1e-9)
 
-        dict_act[
-            (
-                act["name"],
-                act["location"],
-                act["reference product"],
-                act["unit"],
-            )
-        ] = production_volume
+        suppliers.append(
+            {
+                "name": act["name"],
+                "reference product": act["reference product"],
+                "location": act["location"],
+                "unit": act["unit"],
+                "production volume": production_volume,
+            }
+        )
         total_production_volume += production_volume
 
     def nonzero(x):
         return x if x != 0.0 else 1.0
 
-    for dataset in dict_act:
-        dict_act[dataset] /= nonzero(total_production_volume)
+    for supplier in suppliers:
+        supplier["share"] = (
+            supplier["production volume"] / nonzero(total_production_volume)
+        )
 
-    return dict_act
+    return suppliers
 
 
 def get_tuples_from_database(database: List[dict]) -> List[Tuple[str, str, str]]:
@@ -519,100 +522,6 @@ class BaseTransformation:
 
         return location in [k["location"] for k in self.index[key]]
 
-    def select_multiple_suppliers(
-        self,
-        possible_names: Tuple[str],
-        dataset_location: str,
-        look_for: Tuple[str] = None,
-        blacklist: Tuple[str,] = None,
-        exclude_region: Tuple[str] = None,
-        subset: List[str] = None,
-    ):
-        """
-        Select multiple suppliers for a specific fuel.
-        """
-
-        # We have several potential fuel suppliers
-        # We will look up their respective production volumes
-        # And include them proportionally to it
-
-        ecoinvent_regions = self.iam_to_ecoinvent_loc[dataset_location]
-
-        possible_locations = [
-            dataset_location,
-            [*ecoinvent_regions],
-            "RoW",
-            "GLO",
-            "Europe without Switzerland",
-            "RER",
-        ]
-
-        suppliers, counter = [], 0
-
-        extra_filters = []
-        if look_for:
-            extra_filters.append(
-                ws.either(
-                    *[ws.contains("reference product", item) for item in look_for]
-                )
-            )
-        if blacklist:
-            extra_filters.append(
-                ws.exclude(
-                    ws.either(*[ws.contains("reference product", x) for x in blacklist])
-                )
-            )
-            extra_filters.append(
-                ws.exclude(ws.either(*[ws.contains("name", x) for x in blacklist]))
-            )
-
-        if exclude_region:
-            extra_filters.append(
-                ws.exclude(
-                    ws.either(*[ws.contains("location", x) for x in exclude_region])
-                )
-            )
-
-        try:
-            while not suppliers:
-                suppliers = list(
-                    ws.get_many(
-                        subset or self.database,
-                        ws.either(*[ws.equals("name", sup) for sup in possible_names]),
-                        (
-                            ws.either(
-                                *[
-                                    ws.equals("location", item)
-                                    for item in possible_locations[counter]
-                                ]
-                            )
-                            if isinstance(possible_locations[counter], list)
-                            else ws.equals("location", possible_locations[counter])
-                        ),
-                        *extra_filters,
-                    )
-                )
-                counter += 1
-        except IndexError as err:
-
-            suppliers = list(
-                ws.get_many(
-                    subset or self.database,
-                    ws.either(*[ws.contains("name", sup) for sup in possible_names]),
-                    *extra_filters,
-                )
-            )
-
-            if not suppliers:
-                raise IndexError(
-                    f"No supplier found for {possible_names} in {possible_locations}, "
-                    f"looking for terms: {look_for} "
-                    f"and with blacklist: {blacklist}"
-                ) from err
-
-        suppliers = get_shares_from_production_volume(suppliers)
-
-        return suppliers
 
     def get_ecoinvent_locs(self) -> List[str]:
         """
@@ -776,6 +685,7 @@ class BaseTransformation:
         additional_exchanges_fn=None,
         system_model="cut-off",
         blacklist=None,
+        conversion_factor=None,
     ):
         """
         Generalized method to create and add regionalized market datasets.
@@ -796,6 +706,7 @@ class BaseTransformation:
             Function to add extra exchanges to the market dataset (e.g., transport, losses).
         """
 
+        conversion_factor = conversion_factor or {}
         blacklist = blacklist or {}
 
         if production_volumes is not None:
@@ -850,22 +761,34 @@ class BaseTransformation:
 
             for technology, activities in mapping.items():
                 if (technology, region) in technology_shares_dict:
-                    activity = [ds for ds in activities if ds["location"] == region][0]
+                    suppliers = [ds for ds in activities if ds["location"] == region]
+                    if len(suppliers) == 0:
+                        suppliers = [ds for ds in activities if ds["location"] in self.iam_to_ecoinvent_loc[region]]
+                    if len(suppliers) == 0:
+                        suppliers = [ds for ds in activities if ds["location"] == "RoW"]
+                    if len(suppliers) == 0:
+                        raise ValueError(f"No activity found for technology {technology} in region {region}. "
+                                         f"Available activities: {[(a['name'], a['location']) for a in activities]}.")
+
+                    if len(suppliers) > 1:
+                        suppliers = get_shares_from_production_volume(suppliers)
+
                     share = technology_shares_dict.get((technology, region), 0)
 
                     if share > 0:
                         if technology not in blacklist.get(system_model, []):
-                            market_dataset["exchanges"].append(
-                                {
-                                    "name": activity["name"],
-                                    "product": activity["reference product"],
-                                    "location": region,
-                                    "amount": share,
-                                    "unit": activity["unit"],
-                                    "uncertainty type": 0,
-                                    "type": "technosphere",
-                                }
-                            )
+                            for supplier in suppliers:
+                                market_dataset["exchanges"].append(
+                                    {
+                                        "name": supplier["name"],
+                                        "product": supplier["reference product"],
+                                        "location": supplier["location"],
+                                        "amount": share * conversion_factor.get(technology, 1.0) * supplier.get("share", 1.0),
+                                        "unit": supplier["unit"],
+                                        "uncertainty type": 0,
+                                        "type": "technosphere",
+                                    }
+                                )
 
             if additional_exchanges_fn:
                 additional_exchanges_fn(market_dataset)

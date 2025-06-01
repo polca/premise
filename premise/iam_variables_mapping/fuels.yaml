@@ -118,19 +118,11 @@ natural gas:
   ecoinvent_aliases:
     fltr:
       name:
-        - natural gas, high pressure
-        - natural gas, medium pressure
-        - natural gas, low pressure
-        - natural gas, at production
-        - gas, natural, in ground
-        - natural gas production
+        - natural gas
         - petroleum and gas production
-        - market for natural gas
-        - market group for natural gas
-        - evaporation of natural gas
-        - natural gas, high pressure, at consumer
       reference product:
         - natural gas
+      unit: cubic meter
 
     mask:
       name:
@@ -147,7 +139,10 @@ natural gas:
         - venting
         - liquids
         - network
-        - import from
+        - market
+        - reduction
+        - from high to low
+
 gas, natural, in ground:
   lhv: 45
   co2: 0.0564
@@ -203,7 +198,22 @@ biogas:
     mask:
       - market
 
-biomethane:
+waste:
+  lhv: 17
+  co2: 0.07
+  biogenic_share: 0.34
+  ecoinvent_aliases:
+    fltr:
+      reference product:
+        - waste plastic, mixture
+    mask:
+      name:
+        - treatment
+methane, fossil:
+  lhv: 47.5
+  co2: 0.06
+  biogenic_share: 0
+methane, from biomass:
   lhv: 47.5
   co2: 0.06
   biogenic_share: 1
@@ -223,25 +233,6 @@ biomethane:
       name:
         - burned
         - station
-waste:
-  lhv: 17
-  co2: 0.07
-  biogenic_share: 0.34
-  ecoinvent_aliases:
-    fltr:
-      reference product:
-        - waste plastic, mixture
-    mask:
-      name:
-        - treatment
-methane, fossil:
-  lhv: 47.5
-  co2: 0.06
-  biogenic_share: 0
-methane, biogenic:
-  lhv: 47.5
-  co2: 0.06
-  biogenic_share: 1
 methane, synthetic:
   lhv: 47.5
   co2: 0.06
