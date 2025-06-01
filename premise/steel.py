@@ -93,7 +93,6 @@ class Steel(BaseTransformation):
         self.inv = InventorySet(self.database, self.version, self.model)
         self.steel_map = self.inv.generate_steel_map()
 
-
     def create_steel_markets(self):
         """
         Create steel markets for different regions
@@ -148,10 +147,9 @@ class Steel(BaseTransformation):
         )
         steel_datasets = {
             "other": [
-                ds for ds in steel_datasets
-                if not any(
-                    ds in sublist for sublist in self.steel_map.values()
-                )
+                ds
+                for ds in steel_datasets
+                if not any(ds in sublist for sublist in self.steel_map.values())
             ]
         }
 

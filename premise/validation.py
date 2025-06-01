@@ -1649,7 +1649,7 @@ class FuelsValidation(BaseDatasetValidator):
                             and x["unit"] in ("kilogram", "cubic meter")
                         ]
                     )
-                if total < 0.99 or total > 1/0.716:
+                if total < 0.99 or total > 1 / 0.716:
                     message = f"Fuel market inputs sum to {total}."
                     self.log_issue(
                         ds,

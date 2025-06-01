@@ -34,12 +34,13 @@ class BiofuelsMixin:
 
                 activities = biofuel_activities[crop_type][specific_crop]
 
-                mapping={
+                mapping = {
                     specific_crop: [
                         ds
                         for ds in self.database
-                        if any(ds["name"].startswith(activity)
-                        for activity in activities)
+                        if any(
+                            ds["name"].startswith(activity) for activity in activities
+                        )
                     ]
                 }
 
@@ -48,10 +49,9 @@ class BiofuelsMixin:
                     regions=regions,
                     efficiency_adjustment_fn=[
                         self.adjust_land_use,
-                        self.adjust_land_use_change_emissions
+                        self.adjust_land_use_change_emissions,
                     ],
                 )
-
 
     def adjust_land_use(self, dataset: dict, crop_type: str) -> dict:
         """
@@ -85,7 +85,9 @@ class BiofuelsMixin:
                     ).values
                 else:
                     land_use = (
-                        self.iam_data.land_use.sel(region=dataset["location"], variables=crop_type)
+                        self.iam_data.land_use.sel(
+                            region=dataset["location"], variables=crop_type
+                        )
                         .interp(year=self.year)
                         .values
                     )
@@ -153,7 +155,9 @@ class BiofuelsMixin:
             ).values
         else:
             land_use_co2 = (
-                self.iam_data.land_use_change.sel(region=dataset["location"], variables=crop_type)
+                self.iam_data.land_use_change.sel(
+                    region=dataset["location"], variables=crop_type
+                )
                 .interp(year=self.year)
                 .values
             )

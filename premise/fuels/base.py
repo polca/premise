@@ -17,6 +17,7 @@ from ..logger import create_logger
 
 logger = create_logger("fuel")
 
+
 def _update_fuels(scenario, version, system_model):
 
     fuels = Fuels(
@@ -40,10 +41,10 @@ def _update_fuels(scenario, version, system_model):
             scenario["iam data"].hydrogen_blend,
         )
     ):
-        #fuels.generate_hydrogen_activities()
-        #fuels.generate_synthetic_fuel_activities()
+        # fuels.generate_hydrogen_activities()
+        # fuels.generate_synthetic_fuel_activities()
         fuels.generate_biogas_activities()
-        #fuels.generate_fuel_markets()
+        # fuels.generate_fuel_markets()
         fuels.relink_datasets()
         scenario["database"] = fuels.database
         scenario["cache"] = fuels.cache
@@ -144,4 +145,3 @@ class Fuels(
             f"{dataset.get('log parameters', {}).get('non-fossil CO2 per kg fuel', '')}|"
             f"{dataset.get('log parameters', {}).get('lower heating value', '')}"
         )
-

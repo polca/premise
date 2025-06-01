@@ -256,7 +256,7 @@ class InventorySet:
         )
         return self.generate_sets_from_filters(filters)
 
-    def generate_cdr_map(self, model = None) -> dict:
+    def generate_cdr_map(self, model=None) -> dict:
         """
         Filter ecoinvent processes related to direct air capture.
 
@@ -343,7 +343,9 @@ class InventorySet:
         :rtype: dict
 
         """
-        filters = get_mapping(filepath=FUELS_TECHS, var="ecoinvent_aliases", model=model)
+        filters = get_mapping(
+            filepath=FUELS_TECHS, var="ecoinvent_aliases", model=model
+        )
         return self.generate_sets_from_filters(filters)
 
     def generate_mining_waste_map(self) -> dict:

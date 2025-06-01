@@ -390,7 +390,6 @@ class Transport(BaseTransformation):
             if not v:
                 print(f"Vehicle map is empty for {self.vehicle_type}.")
 
-
     def regionalize_transport_datasets(self):
         """
         Regionalize transport datasets, which are currently only available in RER, CA and RoW.
@@ -399,9 +398,8 @@ class Transport(BaseTransformation):
         # create and regionalize transport datasets
         self.process_and_add_activities(
             mapping=self.vehicle_map,
-            efficiency_adjustment_fn=self.adjust_transport_efficiency
+            efficiency_adjustment_fn=self.adjust_transport_efficiency,
         )
-
 
     def create_vehicle_markets(self) -> list:
         """
@@ -439,7 +437,7 @@ class Transport(BaseTransformation):
             unit=unit,
             mapping=self.vehicle_map,
             system_model=self.system_model,
-            production_volumes=self.iam_data.production_volumes
+            production_volumes=self.iam_data.production_volumes,
         )
 
         # if trucks, build size-specific markets
@@ -454,9 +452,13 @@ class Transport(BaseTransformation):
                     system_model=self.system_model,
                     production_volumes=self.iam_data.production_volumes.sel(
                         variables=[
-                            v for v in self.iam_data.production_volumes.coords["variables"].values if size in v
+                            v
+                            for v in self.iam_data.production_volumes.coords[
+                                "variables"
+                            ].values
+                            if size in v
                         ]
-                    )
+                    ),
                 )
 
         # if trucks, adjust battery size
@@ -495,9 +497,10 @@ class Transport(BaseTransformation):
                     ]
                     new_loc = self.geo.ecoinvent_to_iam_location(dataset["location"])
                     exc["name"] = new_name
-                    exc["product"] = self.mapping[self.vehicle_type]["name"].replace("market for ", "")
+                    exc["product"] = self.mapping[self.vehicle_type]["name"].replace(
+                        "market for ", ""
+                    )
                     exc["location"] = new_loc
-
 
     def adjust_transport_efficiency(self, dataset, technology=None):
         """

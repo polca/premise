@@ -19,9 +19,7 @@ class HydrogenMixin:
     def _regionalize_hydrogen_activities(self):
 
         hydrogen_map = {
-            k: v
-            for k, v in self.fuel_map.items()
-            if k.startswith("hydrogen")
+            k: v for k, v in self.fuel_map.items() if k.startswith("hydrogen")
         }
 
         self.process_and_add_activities(
@@ -36,13 +34,11 @@ class HydrogenMixin:
             reference_product="hydrogen, gaseous, low pressure",
             unit="kilogram",
             mapping={
-                k: v
-                for k, v in self.fuel_map.items()
-                if k.startswith("hydrogen")
+                k: v for k, v in self.fuel_map.items() if k.startswith("hydrogen")
             },
             system_model=self.system_model,
             production_volumes=self.iam_data.production_volumes,
-            additional_exchanges_fn=self._add_transport_to_hydrogen_datasets
+            additional_exchanges_fn=self._add_transport_to_hydrogen_datasets,
         )
 
     def _adjust_hydrogen_efficiency(self, dataset, technology):
@@ -66,7 +62,9 @@ class HydrogenMixin:
             and feedstock_name in exc["name"]
             and exc["type"] != "production"
         )
-        dataset.setdefault("log parameters", {})["initial energy input for hydrogen production"] = initial_energy_use
+        dataset.setdefault("log parameters", {})[
+            "initial energy input for hydrogen production"
+        ] = initial_energy_use
 
         new_energy_use = None
         min_energy_use = None
@@ -80,10 +78,12 @@ class HydrogenMixin:
             )
             new_energy_use = max(scaling_factor * initial_energy_use, floor_value)
         elif "electrolysis" in technology:
-            new_energy_use, min_energy_use, max_energy_use = adjust_electrolysis_electricity_requirement(
-                self.year, efficiency
+            new_energy_use, min_energy_use, max_energy_use = (
+                adjust_electrolysis_electricity_requirement(self.year, efficiency)
             )
-            scaling_factor = new_energy_use / initial_energy_use if initial_energy_use else 1
+            scaling_factor = (
+                new_energy_use / initial_energy_use if initial_energy_use else 1
+            )
         else:
             scaling_factor = 1
 
@@ -91,9 +91,9 @@ class HydrogenMixin:
             return
 
         for exc in ws.technosphere(
-                dataset,
-                ws.contains("name", feedstock_name),
-                ws.equals("unit", feedstock_unit),
+            dataset,
+            ws.contains("name", feedstock_name),
+            ws.equals("unit", feedstock_unit),
         ):
             exc["amount"] *= scaling_factor
             exc["uncertainty type"] = 5
@@ -103,7 +103,9 @@ class HydrogenMixin:
             if max_energy_use:
                 exc["maximum"] = exc["amount"] * (max_energy_use / new_energy_use)
 
-        dataset["log parameters"]["new energy input for hydrogen production"] = new_energy_use
+        dataset["log parameters"][
+            "new energy input for hydrogen production"
+        ] = new_energy_use
 
     def _generate_supporting_hydrogen_datasets(self):
         keywords = [
@@ -111,11 +113,7 @@ class HydrogenMixin:
         ]
 
         hydrogen_distribution_map = {
-            k: [ws.get_one(
-                self.database,
-                ws.equals("name", k)
-            )]
-            for k in keywords
+            k: [ws.get_one(self.database, ws.equals("name", k))] for k in keywords
         }
 
         self.process_and_add_activities(
@@ -134,5 +132,3 @@ class HydrogenMixin:
                 "amount": 1,
             }
         )
-
-

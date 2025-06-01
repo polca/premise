@@ -3,17 +3,12 @@ from .config import LIQUID_FUEL_SOURCES
 from ..transformation import ws
 
 
-
 class SyntheticFuelsMixin:
     def generate_synthetic_fuel_activities(self):
         """
         Generate region-specific synthetic fuel datasets.
         """
-        synfuel_map = {
-            k: v
-            for k, v in self.fuel_map.items()
-            if "synthetic" in k
-        }
+        synfuel_map = {k: v for k, v in self.fuel_map.items() if "synthetic" in k}
 
         self.process_and_add_activities(
             mapping=synfuel_map,
@@ -26,24 +21,19 @@ class SyntheticFuelsMixin:
 
         # gasoline
         self.process_and_add_markets(
-            name= "market for petrol, low-sulfur",
+            name="market for petrol, low-sulfur",
             reference_product="gasoline",
             unit="kilogram",
             mapping={
                 k: v
                 for k, v in self.fuel_map.items()
                 if any(
-                    k.startswith(x) for x in (
-                        "gasoline",
-                        "bioethanol",
-                        "ethanol",
-                        "petrol",
-                        "methanol"
-                    )
+                    k.startswith(x)
+                    for x in ("gasoline", "bioethanol", "ethanol", "petrol", "methanol")
                 )
             },
             system_model=self.system_model,
-            production_volumes=self.iam_data.production_volumes
+            production_volumes=self.iam_data.production_volumes,
         )
 
         # diesel
@@ -59,12 +49,10 @@ class SyntheticFuelsMixin:
                 mapping={
                     k: v
                     for k, v in self.fuel_map.items()
-                    if any(
-                        k.startswith(x) for x in ("diesel", "biodiesel")
-                    )
+                    if any(k.startswith(x) for x in ("diesel", "biodiesel"))
                 },
                 system_model=self.system_model,
-                production_volumes=self.iam_data.production_volumes
+                production_volumes=self.iam_data.production_volumes,
             )
 
         # jet fuel
@@ -73,12 +61,10 @@ class SyntheticFuelsMixin:
             reference_product="kerosene",
             unit="kilogram",
             mapping={
-                k: v
-                for k, v in self.fuel_map.items()
-                if k.startswith("kerosene")
+                k: v for k, v in self.fuel_map.items() if k.startswith("kerosene")
             },
             system_model=self.system_model,
-            production_volumes=self.iam_data.production_volumes
+            production_volumes=self.iam_data.production_volumes,
         )
 
         # lpg
@@ -92,7 +78,5 @@ class SyntheticFuelsMixin:
                 if k.startswith("liquefied petroleum gas")
             },
             system_model=self.system_model,
-            production_volumes=self.iam_data.production_volumes
+            production_volumes=self.iam_data.production_volumes,
         )
-
-

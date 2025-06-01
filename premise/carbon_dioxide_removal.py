@@ -114,7 +114,6 @@ class CarbonDioxideRemoval(BaseTransformation):
         self.mapping = InventorySet(self.database)
         self.cdr_map = self.mapping.generate_cdr_map(model=self.model)
 
-
     def regionalize_cdr_activities(self) -> None:
         """
         Generates regional variants of the direct air capture process with varying heat sources.
@@ -130,7 +129,6 @@ class CarbonDioxideRemoval(BaseTransformation):
             mapping=self.cdr_map,
         )
 
-
     def create_cdr_markets(
         self,
     ):
@@ -144,20 +142,27 @@ class CarbonDioxideRemoval(BaseTransformation):
             system_model=self.system_model,
         )
 
-
     def adjust_cdr_efficiency(self, dataset, technology):
         """
         Fetch the cumulated deployment of DAC from IAM file.
         Apply a learning rate -- see Qiu et al., 2022.
         """
 
-
         region = dataset["location"]
 
         efficiencies = None
-        if technology in self.iam_data.cdr_technology_efficiencies.coords["variables"].values:
-            if region in self.iam_data.cdr_technology_efficiencies.coords["region"].values:
-                if self.year in self.iam_data.cdr_technology_efficiencies.coords["year"].values:
+        if (
+            technology
+            in self.iam_data.cdr_technology_efficiencies.coords["variables"].values
+        ):
+            if (
+                region
+                in self.iam_data.cdr_technology_efficiencies.coords["region"].values
+            ):
+                if (
+                    self.year
+                    in self.iam_data.cdr_technology_efficiencies.coords["year"].values
+                ):
                     efficiencies = self.iam_data.cdr_technology_efficiencies.sel(
                         region=region, year=self.year, variables=technology
                     )
@@ -169,10 +174,7 @@ class CarbonDioxideRemoval(BaseTransformation):
         if efficiencies is None:
             return dataset
 
-        scaling_factor = float(
-            1
-            / efficiencies.values.item(0)
-        )
+        scaling_factor = float(1 / efficiencies.values.item(0))
 
         # bound the scaling factor to 1.5 and 0.5
         scaling_factor = max(0.5, min(1.5, scaling_factor))
@@ -184,9 +186,7 @@ class CarbonDioxideRemoval(BaseTransformation):
                 technosphere_filters=[
                     ws.exclude(ws.contains("name", "carbon dioxide"))
                 ],
-                biosphere_filters=[
-                    ws.exclude(ws.contains("name", "Carbon dioxide"))
-                ],
+                biosphere_filters=[ws.exclude(ws.contains("name", "Carbon dioxide"))],
             )
 
             # add in comments the scaling factor applied
@@ -201,7 +201,6 @@ class CarbonDioxideRemoval(BaseTransformation):
                     "electricity scaling factor": scaling_factor,
                 }
             )
-
 
         return dataset
 

@@ -6,6 +6,7 @@ It eventually re-links all the cement-consuming activities (e.g., concrete produ
 of the wurst database to the newly created cement markets.
 
 """
+
 import copy
 import uuid
 
@@ -119,7 +120,6 @@ class Cement(BaseTransformation):
         self.cement_fuels_map: dict = mapping.generate_cement_fuels_map()
         self.cement_map = mapping.generate_cement_map()
 
-
         # reverse the fuel map to get a mapping from ecoinvent to premise
         self.fuel_map_reverse: dict = {}
 
@@ -146,7 +146,6 @@ class Cement(BaseTransformation):
         )
 
     def adjust_process_efficiency(self, dataset, technology):
-
 
         # from Kellenberger at al. 2007, the total energy
         # input per ton of clinker is 3.4 GJ/ton clinker
@@ -184,23 +183,18 @@ class Cement(BaseTransformation):
 
             # but if efficient kiln,
             # set the energy input to 3000 kJ/kg clinker
-            if technology.startswith(
-                "cement, dry feed rotary kiln, efficient"
-            ):
+            if technology.startswith("cement, dry feed rotary kiln, efficient"):
                 new_energy_input_per_ton_clinker = 3000
 
-            dataset["log parameters"][
-                "new energy input per ton clinker"
-            ] = int(new_energy_input_per_ton_clinker)
-
-            scaling_factor = (
+            dataset["log parameters"]["new energy input per ton clinker"] = int(
                 new_energy_input_per_ton_clinker
-                / current_energy_input_per_ton_clinker
             )
 
-            dataset["log parameters"][
-                "energy scaling factor"
-            ] = scaling_factor
+            scaling_factor = (
+                new_energy_input_per_ton_clinker / current_energy_input_per_ton_clinker
+            )
+
+            dataset["log parameters"]["energy scaling factor"] = scaling_factor
 
             # rescale hard coal consumption and related emissions
             coal_specs = self.fuels_specs["hard coal"]
@@ -219,9 +213,7 @@ class Cement(BaseTransformation):
                     )
                     / 1000
                 )
-                exc["amount"] = np.clip(
-                    new_coal_input / coal_specs["lhv"], 0, None
-                )
+                exc["amount"] = np.clip(new_coal_input / coal_specs["lhv"], 0, None)
 
             # rescale combustion-related fossil CO2 emissions
             for exc in ws.biosphere(
@@ -229,21 +221,15 @@ class Cement(BaseTransformation):
                 ws.contains("name", "Carbon dioxide"),
             ):
                 if exc["name"] == "Carbon dioxide, fossil":
-                    dataset["log parameters"]["initial fossil CO2"] = exc[
-                        "amount"
+                    dataset["log parameters"]["initial fossil CO2"] = exc["amount"]
+                    co2_reduction = (old_coal_input - new_coal_input) * coal_specs[
+                        "co2"
                     ]
-                    co2_reduction = (
-                        old_coal_input - new_coal_input
-                    ) * coal_specs["co2"]
                     exc["amount"] -= co2_reduction
-                    dataset["log parameters"]["new fossil CO2"] = exc[
-                        "amount"
-                    ]
+                    dataset["log parameters"]["new fossil CO2"] = exc["amount"]
 
                 if exc["name"] == "Carbon dioxide, non-fossil":
-                    dataset["log parameters"]["initial biogenic CO2"] = exc[
-                        "amount"
-                    ]
+                    dataset["log parameters"]["initial biogenic CO2"] = exc["amount"]
 
         # add 0.005 kg/kg clinker of ammonia use for NOx removal
         # according to Muller et al., 2024
@@ -251,10 +237,7 @@ class Cement(BaseTransformation):
             dataset,
             ws.contains("name", "market for ammonia"),
         ):
-            if (
-                technology
-                == "cement, dry feed rotary kiln, efficient, with MEA CCS"
-            ):
+            if technology == "cement, dry feed rotary kiln, efficient, with MEA CCS":
                 exc["amount"] = 0.00662
             else:
                 exc["amount"] = 0.005
@@ -270,10 +253,7 @@ class Cement(BaseTransformation):
                 "cement, dry feed rotary kiln, efficient, with oxyfuel CCS",
             ]:
                 exc["amount"] = 1.22e-5
-            elif (
-                technology
-                == "cement, dry feed rotary kiln, efficient, with MEA CCS"
-            ):
+            elif technology == "cement, dry feed rotary kiln, efficient, with MEA CCS":
                 exc["amount"] = 3.8e-4
             else:
                 exc["amount"] = 7.6e-4
@@ -333,13 +313,9 @@ class Cement(BaseTransformation):
                 # only 95% of process emissions (calcination) are captured
                 CCS_amount = 0.543 * ccs_datasets[technology]["capture share"]
             else:
-                CCS_amount = (
-                    CO2_amount * ccs_datasets[technology]["capture share"]
-                )
+                CCS_amount = CO2_amount * ccs_datasets[technology]["capture share"]
 
-            dataset["log parameters"]["carbon capture rate"] = (
-                CCS_amount / CO2_amount
-            )
+            dataset["log parameters"]["carbon capture rate"] = CCS_amount / CO2_amount
 
             ccs_exc = {
                 "uncertainty type": 0,
@@ -382,18 +358,14 @@ class Cement(BaseTransformation):
                     dataset,
                     ws.contains("name", "Carbon dioxide, non-fossil"),
                 ):
-                    dataset["log parameters"]["initial biogenic CO2"] = exc[
-                        "amount"
-                    ]
+                    dataset["log parameters"]["initial biogenic CO2"] = exc["amount"]
                     exc["amount"] *= (CO2_amount - CCS_amount) / CO2_amount
 
                     # make sure it's not negative
                     if exc["amount"] < 0:
                         exc["amount"] = 0
 
-                    dataset["log parameters"]["new biogenic CO2"] = exc[
-                        "amount"
-                    ]
+                    dataset["log parameters"]["new biogenic CO2"] = exc["amount"]
 
                     biogenic_CO2_reduction = (
                         dataset["log parameters"]["initial biogenic CO2"]
@@ -463,7 +435,6 @@ class Cement(BaseTransformation):
             system_model=self.system_model,
         )
 
-
     def create_cement_market_datasets(self):
         # exclude the regionalization of these datasets
         # because they are very rarely used in the database
@@ -498,8 +469,7 @@ class Cement(BaseTransformation):
             "CEM IV/B",
             "type ICo",
             "carbon",
-            "unspecified"
-            "mortar"
+            "unspecified" "mortar",
         ]
 
         # cement markets
@@ -515,10 +485,9 @@ class Cement(BaseTransformation):
                 ws.doesnt_contain_any("location", self.regions),
             )
         )
-        markets = list(set([
-            (m["name"], m["reference product"], m["unit"])
-            for m in markets
-        ]))
+        markets = list(
+            set([(m["name"], m["reference product"], m["unit"]) for m in markets])
+        )
 
         for market in markets:
 
@@ -528,7 +497,8 @@ class Cement(BaseTransformation):
                     for ds in self.database
                     if ds["unit"] == "kilogram"
                     and ds["reference product"] == market[1]
-                    and ds["name"] == market[0].replace("market for cement", "cement production")
+                    and ds["name"]
+                    == market[0].replace("market for cement", "cement production")
                 ]
             }
 
@@ -543,7 +513,6 @@ class Cement(BaseTransformation):
                 system_model=self.system_model,
             )
 
-
     def create_cement_production_datasets(self):
         # cement production
         production_datasets = [
@@ -554,9 +523,7 @@ class Cement(BaseTransformation):
             and ds.get("regionalized", False) is False
         ]
 
-        cement = {
-            "cement": production_datasets
-        }
+        cement = {"cement": production_datasets}
 
         self.process_and_add_activities(
             mapping=cement,
@@ -569,7 +536,7 @@ class Cement(BaseTransformation):
             ws.equals("name", "clinker production"),
             ws.equals("reference product", "clinker"),
             ws.equals("unit", "kilogram"),
-            ws.equals("location", "Europe without Switzerland")
+            ws.equals("location", "Europe without Switzerland"),
         )
 
         for technolgy in self.cement_map.keys():
@@ -581,9 +548,7 @@ class Cement(BaseTransformation):
             new_dataset["name"] = technolgy.replace("cement", "clinker production")
             new_dataset["code"] = uuid.uuid4().hex
 
-            for e in ws.production(
-                new_dataset
-            ):
+            for e in ws.production(new_dataset):
                 e["name"] = technolgy.replace("cement", "clinker production")
                 if "input" in e:
                     del e["input"]
@@ -593,9 +558,6 @@ class Cement(BaseTransformation):
             self.add_to_index(new_dataset)
             self.write_log(new_dataset, "created")
             self.database.append(new_dataset)
-
-
-
 
     def write_log(self, dataset, status="created"):
         """

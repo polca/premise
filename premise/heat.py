@@ -50,7 +50,7 @@ def _update_heat(scenario, version, system_model):
                 if "buildings" in tech.lower()
             ],
             name="market for heat, for buildings",
-            reference_product="heat, central or small-scale"
+            reference_product="heat, central or small-scale",
         )
     else:
         print("No buildings heat scenario data available -- skipping")
@@ -63,7 +63,7 @@ def _update_heat(scenario, version, system_model):
                 if "industrial" in tech.lower()
             ],
             name="market for heat, district or industrial",
-            reference_product="heat, district or industrial"
+            reference_product="heat, district or industrial",
         )
         heat.relink_heat_markets(
             current_input=[
@@ -98,7 +98,7 @@ def _update_heat(scenario, version, system_model):
                 tech for tech in heat.iam_data.daccs_energy_use.variables.values
             ],
             name="market for energy, for direct air capture and storage",
-            reference_product="energy, for direct air capture and storage"
+            reference_product="energy, for direct air capture and storage",
         )
     else:
         print("No DAC scenario data available -- skipping")
@@ -109,7 +109,7 @@ def _update_heat(scenario, version, system_model):
                 tech for tech in heat.iam_data.ewr_energy_use.variables.values
             ],
             name="market for energy, for enhanced rock weathering",
-            reference_product="energy, for enhanced rock weathering"
+            reference_product="energy, for enhanced rock weathering",
         )
     else:
         print("No EWR scenario data available -- skipping")
@@ -220,7 +220,6 @@ class Heat(BaseTransformation):
                 new_keys[("market for natural gas, low pressure", key[1])] = value
 
         self.carbon_intensity_markets.update(new_keys)
-
 
     def regionalize_activities(self):
 
@@ -347,7 +346,6 @@ class Heat(BaseTransformation):
                         non_fossil_co2
                     )
 
-
     def create_heat_markets(
         self,
         technologies,
@@ -357,8 +355,7 @@ class Heat(BaseTransformation):
 
         # Get the possible names of ecoinvent datasets
         ecoinvent_technologies = {
-            technology: self.heat_techs[technology]
-            for technology in technologies
+            technology: self.heat_techs[technology] for technology in technologies
         }
 
         self.process_and_add_markets(
@@ -369,7 +366,6 @@ class Heat(BaseTransformation):
             production_volumes=self.iam_data.production_volumes,
             system_model=self.system_model,
         )
-
 
     def relink_heat_markets(self, current_input: list, new_input: dict):
 

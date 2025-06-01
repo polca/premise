@@ -122,7 +122,6 @@ class Biomass(BaseTransformation):
             get_mapping(filepath=BIOMASS_ACTIVITIES, var="ecoinvent_aliases")
         )
 
-
     def regionalize_wood_chips_activities(self):
         """
         Regionalize wood chips and forestry-related activities,
@@ -136,7 +135,6 @@ class Biomass(BaseTransformation):
         self.process_and_add_activities(
             mapping=self.biomass_map,
         )
-
 
     def create_regional_biomass_markets(self):
 

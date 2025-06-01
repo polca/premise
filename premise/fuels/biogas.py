@@ -13,21 +13,18 @@ class BiogasMixin:
         fuel_activities = fetch_mapping(METHANE_SOURCES)
 
         methane_map = {
-            k: list(ws.get_many(
-                self.database,
-                ws.either(
-                    *[
-                        ws.equals("name", x["name"])
-                        for x in v
-                    ]
-                ),
-                ws.either(
-                    *[
-                        ws.equals("reference product", x["reference product"])
-                        for x in v
-                    ]
-                ),
-            ))
+            k: list(
+                ws.get_many(
+                    self.database,
+                    ws.either(*[ws.equals("name", x["name"]) for x in v]),
+                    ws.either(
+                        *[
+                            ws.equals("reference product", x["reference product"])
+                            for x in v
+                        ]
+                    ),
+                )
+            )
             for k, v in fuel_activities.items()
         }
 
@@ -45,7 +42,9 @@ class BiogasMixin:
         ]:
             self.process_and_add_markets(
                 name=market_name,
-                reference_product=market_name.replace("market for ", "").replace("market group for ", ""),
+                reference_product=market_name.replace("market for ", "").replace(
+                    "market group for ", ""
+                ),
                 unit="cubic meter",
                 mapping={
                     k: v
@@ -63,7 +62,7 @@ class BiogasMixin:
                     "methane, from biomass": 0.716,
                     "methane, synthetic": 0.716,
                     "methane, from coal": 0.716,
-                }
+                },
             )
 
         self.update_carbon_dioxide_emissions()
@@ -74,12 +73,16 @@ class BiogasMixin:
         """
         # Filter only relevant fuels
         filtered_mapping = {
-            k: v for k, v in self.fuel_map.items() if k.startswith(("natural gas", "methane"))
+            k: v
+            for k, v in self.fuel_map.items()
+            if k.startswith(("natural gas", "methane"))
         }
 
-        _, tech_shares, region_weights = self.get_technology_and_regional_production_shares(
-            production_volumes=self.iam_data.production_volumes,
-            mapping=filtered_mapping,
+        _, tech_shares, region_weights = (
+            self.get_technology_and_regional_production_shares(
+                production_volumes=self.iam_data.production_volumes,
+                mapping=filtered_mapping,
+            )
         )
 
         # Build nested fuel share dictionary
@@ -99,8 +102,7 @@ class BiogasMixin:
 
         # Normalize global mix
         fuel_shares["World"] = {
-            fuel: round(value / total_weight, 2)
-            for fuel, value in world_mix.items()
+            fuel: round(value / total_weight, 2) for fuel, value in world_mix.items()
         }
 
         # Relevant natural gas market names
@@ -113,15 +115,15 @@ class BiogasMixin:
         # Find and process datasets
         datasets = ws.get_many(
             self.database,
-            ws.exclude(
-                ws.either(*[ws.equals("name", name) for name in gas_names])
-            )
+            ws.exclude(ws.either(*[ws.equals("name", name) for name in gas_names])),
         )
 
         for ds in datasets:
             # Sum relevant technosphere exchanges and remap locations
             sum_ng = 0
-            for exc in ws.technosphere(ds, ws.either(*[ws.equals("name", name) for name in gas_names])):
+            for exc in ws.technosphere(
+                ds, ws.either(*[ws.equals("name", name) for name in gas_names])
+            ):
                 sum_ng += exc["amount"]
                 exc["location"] = (
                     ds["location"]
@@ -151,26 +153,33 @@ class BiogasMixin:
             share_non_fossil = 1 - fuel_shares[loc].get("natural gas", 1.0)
 
             if share_non_fossil > 0:
-                non_fossil_CO2 = sum_ng * share_non_fossil * 2.12  # 2.12 kg CO2 per m3 of natural gas
+                non_fossil_CO2 = (
+                    sum_ng * share_non_fossil * 2.12
+                )  # 2.12 kg CO2 per m3 of natural gas
 
                 for e in ws.biosphere(ds, ws.equals("name", "Carbon dioxide, fossil")):
                     e["amount"] = max(0, e["amount"] - non_fossil_CO2)
                     break  # only adjust one exchange
 
                 # Add the non-fossil CO2 exchange
-                ds["exchanges"].append({
-                    "uncertainty type": 0,
-                    "amount": non_fossil_CO2,
-                    "type": "biosphere",
-                    "name": "Carbon dioxide, non-fossil",
-                    "unit": "kilogram",
-                    "categories": ("air",),
-                    "input": (
-                        "biosphere3",
-                        self.biosphere_flows[
-                            ("Carbon dioxide, non-fossil", "air", "unspecified", "kilogram")
-                        ],
-                    ),
-                })
-
-
+                ds["exchanges"].append(
+                    {
+                        "uncertainty type": 0,
+                        "amount": non_fossil_CO2,
+                        "type": "biosphere",
+                        "name": "Carbon dioxide, non-fossil",
+                        "unit": "kilogram",
+                        "categories": ("air",),
+                        "input": (
+                            "biosphere3",
+                            self.biosphere_flows[
+                                (
+                                    "Carbon dioxide, non-fossil",
+                                    "air",
+                                    "unspecified",
+                                    "kilogram",
+                                )
+                            ],
+                        ),
+                    }
+                )
