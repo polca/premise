@@ -1514,3 +1514,7 @@ from,to,name_from,ref_prod_from,location_from,name_to,ref_prod_to,location_to
 310,311,"market for battery, Li-oxygen, Li-O2","battery, Li-O2",GLO,"market for battery, Li-oxygen, Li-O2, rechargeable","battery, Li-O2, rechargeable",GLO
 310,311,"natural graphite production, coated","natural graphite, coated",CN,"coated natural graphite production",natural graphite, coated,CN
 310,311,synthetic graphite production,"synthetic graphite, 99% pure",CN,"synthetic graphite production, battery grade, via Acheson powder route","synthetic graphite, battery grade",CN
+310,38,coke production,coke,DE,market for coke,coke,GLO
+39,38,"market for hydrogen, gaseous, low pressure","hydrogen, gaseous, low pressure",RER,"market for hydrogen, liquid","hydrogen, liquid",RER
+39,38,"market for sodium hydroxide, without water, in 50% solution state","sodium hydroxide, without water, in 50% solution state",RER,"market for sodium hydroxide, without water, in 50% solution state","sodium hydroxide, without water, in 50% solution state",GLO
+39,38,"market for acrylic dispersion, with water, in 58% solution state","acrylic dispersion, with water, in 58% solution state",RER,"market for acrylic dispersion, without water, in 65% solution state","acrylic dispersion, without water, in 65% solution state",RER
