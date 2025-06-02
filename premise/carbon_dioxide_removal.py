@@ -150,16 +150,18 @@ class CarbonDioxideRemoval(BaseTransformation):
                             if technology == "direct air capture" and not any(
                                     x in ds_name for x in ("industrial", "pump", "waste")
                             ):
-                                if self.iam_data.daccs_energy_use.sel(region=region).interp(year=self.year).sum() > 0:
-                                    energy_dataset_name = (
-                                        "market for energy, for direct air capture and storage"
-                                    )
+                                if self.iam_data.daccs_energy_use is not None:
+                                    if self.iam_data.daccs_energy_use.sel(region=region).interp(year=self.year).sum() > 0:
+                                        energy_dataset_name = (
+                                            "market for energy, for direct air capture and storage"
+                                        )
 
                             if technology == "enhanced rock weathering":
-                                if self.iam_data.ewr_energy_use.sel(region=region).interp(year=self.year).sum() > 0:
-                                    energy_dataset_name = (
-                                        "market for energy, for enhanced rock weathering"
-                                    )
+                                if self.iam_data.ewr_energy_use is not None:
+                                    if self.iam_data.ewr_energy_use.sel(region=region).interp(year=self.year).sum() > 0:
+                                        energy_dataset_name = (
+                                            "market for energy, for enhanced rock weathering"
+                                        )
 
                             if energy_dataset_name is not None:
                                 try:
