@@ -593,12 +593,12 @@ class Metals(BaseTransformation):
                                 exc["amount"] += flow["amount"]
                     else:
                         new_exchange = {
-                                "name": flow["name"],
-                                "amount": flow["amount"],
-                                "unit": flow["unit"],
-                                "type": "biosphere",
-                                "categories": tuple(flow["categories"].split("::")),
-                            }
+                            "name": flow["name"],
+                            "amount": flow["amount"],
+                            "unit": flow["unit"],
+                            "type": "biosphere",
+                            "categories": tuple(flow["categories"].split("::")),
+                        }
 
                         key = (
                             flow["name"],
@@ -933,10 +933,7 @@ class Metals(BaseTransformation):
 
         # filter out rows where "Process" refers to a non-existing process
         existing_activities, existing_products = zip(
-            *[
-                (act["name"], act["reference product"])
-                for act in self.database
-            ]
+            *[(act["name"], act["reference product"]) for act in self.database]
         )
 
         dataframe = dataframe.loc[
@@ -957,8 +954,6 @@ class Metals(BaseTransformation):
 
             # we also need to remove "graphite ore mining"
             dataframe = dataframe.loc[dataframe["Process"] != "graphite ore mining"]
-
-
 
         dataframe_shares = dataframe
 
