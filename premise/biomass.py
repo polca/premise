@@ -226,7 +226,10 @@ class Biomass(BaseTransformation):
                                 ),
                                 ws.equals("unit", "kilogram"),
                                 ws.doesnt_contain_any(
-                                    "name", ["post-consumer",]
+                                    "name",
+                                    [
+                                        "post-consumer",
+                                    ],
                                 ),
                             )
                         )

@@ -472,11 +472,14 @@ class Heat(BaseTransformation):
             if r == "World":
                 continue
 
-            if production_volumes.sel(
-                        region=r,
-                        variables=production_volumes.variables.values,
-                        year=self.year,
-                    ).sum(dim="variables") == 0:
+            if (
+                production_volumes.sel(
+                    region=r,
+                    variables=production_volumes.variables.values,
+                    year=self.year,
+                ).sum(dim="variables")
+                == 0
+            ):
                 continue
 
             if self.year in production_volumes.coords["year"].values:
