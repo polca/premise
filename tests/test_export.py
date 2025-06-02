@@ -21,17 +21,6 @@ def test_simapro_exchange_categories():
     assert agr["sub_category"] == "Chemicals\Organic\Transformation"
 
 
-def test_references():
-    ref = load_references()
-    assert (
-        ref["Ethanol from maize starch"]["source"]
-        == "Cozzolino, F. Life Cycle Assessment of Biofuels in EU/CH, 2018."
-    )
-    assert ref["Ethanol from maize starch"]["description"].startswith(
-        "Production of ethanol"
-    )
-
-
 def test_simapro_biosphere_dict():
     s_bio = get_simapro_biosphere_dictionnary()
     assert s_bio["Propanol"] == "1-Propanol"

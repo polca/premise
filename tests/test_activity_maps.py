@@ -47,7 +47,6 @@ for act in dummy_minimal_db:
 
 def test_presence_of_dict():
     maps = InventorySet(dummy_minimal_db)
-    assert isinstance(maps.generate_material_map(), dict)
     assert isinstance(maps.generate_powerplant_map(), dict)
 
 

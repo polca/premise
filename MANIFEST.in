@@ -17,6 +17,7 @@ include premise/data/electricity/*.csv
 include premise/data/electricity/*.yml
 include premise/data/electricity/*.yaml
 include premise/data/cement/*.csv
+include premise/data/cdr/*.yaml
 include premise/data/cement/*.yml
 include premise/data/steel/*.txt
 include premise/data/steel/*.csv
