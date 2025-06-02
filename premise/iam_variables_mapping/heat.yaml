@@ -58,9 +58,7 @@ heat, from hydrogen turbine:
 
 heat, buildings, from district heating:
     ecoinvent_aliases:
-        fltr: market for heat, district or industrial
-        mask:
-            - natural gas
+        fltr: market for heat, district or industrial, natural gas
     iam_aliases:
       remind: FE|Buildings|Heating|District Heating
       remind-eu: FE|Buildings|Heating|District Heating
@@ -150,7 +148,7 @@ heat, buildings, from coal stove:
 heat, buildings, from wood logs heater:
     ecoinvent_aliases:
         fltr: heat production, mixed logs, at wood heater 6kW
-        mask: 2014
+        mask: '2014'
     iam_aliases:
       remind: FE|Buildings|Solids|Biomass|+|Traditional
       remind-eu: FE|Buildings|Solids|Biomass|+|Traditional
@@ -162,8 +160,8 @@ heat, buildings, from wood logs heater:
 
 heat, buildings, from wood pellets heater:
     ecoinvent_aliases:
-        fltr: heat production, wood pellet, at furnace 9kW
-        mask: 2014
+      fltr: heat production, wood pellet, at furnace 9kW
+      mask: '2014'
     iam_aliases:
       remind: FE|Buildings|Solids|Biomass|+|Modern
       remind-eu: FE|Buildings|Solids|Biomass|+|Modern
@@ -175,14 +173,14 @@ heat, buildings, from wood pellets heater:
 
 heat, buildings, from heat pump:
     ecoinvent_aliases:
-        fltr: heat production, air-water heat pump 10kW
+      fltr: heat production, air-water heat pump 10kW
     iam_aliases:
       remind: FE|Buildings|Heating|Electricity|Heat pump
       remind-eu: FE|Buildings|Heating|Electricity|Heat pump
 
 heat, buildings, from electric heater:
     ecoinvent_aliases:
-        fltr: heat, residential, electric storage heater, using electricity from grid
+      fltr: heat, residential, electric storage heater, using electricity from grid
     iam_aliases:
       remind: FE|Buildings|Heating|Electricity|Resistance
       remind-eu: FE|Buildings|Heating|Electricity|Resistance
@@ -194,7 +192,7 @@ heat, buildings, from electric heater:
 
 heat, buildings, from light fuel oil boiler:
     ecoinvent_aliases:
-        fltr: heat production, light fuel oil, at boiler 100kW condensing, non-modulating
+      fltr: heat production, light fuel oil, at boiler 100kW condensing, non-modulating
     iam_aliases:
       remind: FE|Buildings|Liquids|Fossil|+|Oil
       remind-eu: FE|Buildings|Liquids|Fossil|+|Oil
@@ -206,13 +204,13 @@ heat, buildings, from light fuel oil boiler:
 
 heat, industrial, from hydrogen:
     ecoinvent_aliases:
-        fltr: hydrogen, burned in gas turbine 1GW
+      fltr: hydrogen, burned in gas turbine 1GW
     iam_aliases:
       image: Final Energy|Industry|Other Sector|Hydrogen
 
 heat, industrial, from heat pump:
     ecoinvent_aliases:
-        fltr: heat production, air-water heat pump 10kW
+      fltr: heat production, air-water heat pump 10kW
     iam_aliases:
       remind: SE|Heat|Electricity|Heat Pump
       remind-eu: SE|Heat|Electricity|Heat Pump
@@ -220,9 +218,9 @@ heat, industrial, from heat pump:
 
 heat, industrial, from natural gas CHP:
     ecoinvent_aliases:
-        fltr:
-          name: heat and power co-generation, natural gas, conventional power plant, 100MW electrical
-          reference product: heat
+      fltr:
+        name: heat and power co-generation, natural gas, conventional power plant, 100MW electrical
+        reference product: heat
     iam_aliases:
       remind: SE|Heat|Gas|Combined Heat and Power
       remind-eu: SE|Heat|Gas|Combined Heat and Power
@@ -230,9 +228,9 @@ heat, industrial, from natural gas CHP:
 
 heat, industrial, from coal CHP:
     ecoinvent_aliases:
-        fltr:
-          name: heat and power co-generation, hard coal
-          reference product: heat
+      fltr:
+        name: heat and power co-generation, hard coal
+        reference product: heat
     iam_aliases:
       remind: SE|Heat|Coal|Combined Heat and Power
       remind-eu: SE|Heat|Coal|Combined Heat and Power
@@ -240,12 +238,12 @@ heat, industrial, from coal CHP:
 
 heat, industrial, from biomass CHP:
     ecoinvent_aliases:
-        fltr:
-          name: heat and power co-generation, wood chips, 6667 kW
-          reference product: heat
-        mask:
-          - renewable
-          - state
+      fltr:
+        name: heat and power co-generation, wood chips, 6667 kW
+        reference product: heat
+      mask:
+        - renewable
+        - state
     iam_aliases:
       remind: SE|Heat|Biomass|Combined Heat and Power
       remind-eu: SE|Heat|Biomass|Combined Heat and Power
@@ -253,20 +251,20 @@ heat, industrial, from biomass CHP:
 
 heat, industrial, from light fuel oil boiler:
     ecoinvent_aliases:
-        fltr: heat production, light fuel oil, at industrial furnace 1MW
+      fltr: heat production, light fuel oil, at industrial furnace 1MW
     iam_aliases:
       image: Final Energy|Industry|Other Sector|Liquids|Fossil
 
 heat, industrial, from geothermal:
     ecoinvent_aliases:
-        fltr: heat production, deep geothermal
+      fltr: heat production, deep geothermal
     iam_aliases:
       remind: SE|Heat|+|Geothermal
       remind-eu: SE|Heat|+|Geothermal
 
 heat, industrial, from solar thermal:
     ecoinvent_aliases:
-        fltr: heat production, at 110 MW concentrating solar power plant, with thermal energy storage
+      fltr: heat production, at 110 MW concentrating solar power plant, with thermal energy storage
     iam_aliases:
       remind: SE|Heat|+|Solar
       remind-eu: SE|Heat|+|Solar
@@ -310,18 +308,18 @@ energy, for DACCS, from electricity:
 
 energy, for EWR, from electricity:
     ecoinvent_aliases:
-        fltr: electricity, medium-voltage, used as final energy
+      fltr: electricity, medium-voltage, used as final energy
     iam_aliases:
       remind: FE|CDR|EW|+|Electricity
       remind-eu: FE|CDR|EW|+|Electricity
 
 energy, from EWR, from diesel:
     ecoinvent_aliases:
-        fltr: diesel, burned in diesel-electric generating set, 10MW
-        mask:
-          - market
-          - biodiesel
-          - oil
+      fltr: diesel, burned in diesel-electric generating set, 10MW
+      mask:
+        - market
+        - biodiesel
+        - oil
     iam_aliases:
       remind: FE|CDR|EW|+|Diesel
       remind-eu: FE|CDR|EW|+|Diesel

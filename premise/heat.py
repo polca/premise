@@ -51,7 +51,9 @@ def _update_heat(scenario, version, system_model):
             name="market for heat, for buildings",
             reference_product="heat, central or small-scale",
             energy_use_volumes=heat.iam_data.buildings_heating_mix,
-            production_volumes=heat.iam_data.production_volumes,
+            production_volumes=heat.iam_data.production_volumes.sel(
+                variables=heat.iam_data.buildings_heating_mix.variables.values
+            ),
         )
     else:
         print("No buildings heat scenario data available -- skipping")
@@ -66,7 +68,9 @@ def _update_heat(scenario, version, system_model):
             name="market for heat, district or industrial",
             reference_product="heat, district or industrial",
             energy_use_volumes=heat.iam_data.industrial_heat_mix,
-            production_volumes=heat.iam_data.production_volumes,
+            production_volumes=heat.iam_data.production_volumes.sel(
+                variables=heat.iam_data.industrial_heat_mix.variables.values
+            ),
         )
         heat.relink_heat_markets(
             current_input=[
@@ -103,7 +107,9 @@ def _update_heat(scenario, version, system_model):
             name="market for energy, for direct air capture and storage",
             reference_product="energy, for direct air capture and storage",
             energy_use_volumes=heat.iam_data.daccs_energy_use,
-            production_volumes=heat.iam_data.production_volumes,
+            production_volumes=heat.iam_data.production_volumes.sel(
+                variables=heat.iam_data.daccs_energy_use.variables.values
+            ),
         )
     else:
         print("No DAC scenario data available -- skipping")
@@ -116,7 +122,9 @@ def _update_heat(scenario, version, system_model):
             name="market for energy, for enhanced rock weathering",
             reference_product="energy, for enhanced rock weathering",
             energy_use_volumes=heat.iam_data.ewr_energy_use,
-            production_volumes=heat.iam_data.production_volumes,
+            production_volumes=heat.iam_data.production_volumes.sel(
+                variables=heat.iam_data.ewr_energy_use.variables.values
+            ),
         )
     else:
         print("No EWR scenario data available -- skipping")
@@ -464,6 +472,13 @@ class Heat(BaseTransformation):
             if r == "World":
                 continue
 
+            if production_volumes.sel(
+                        region=r,
+                        variables=production_volumes.variables.values,
+                        year=self.year,
+                    ).sum(dim="variables") == 0:
+                continue
+
             if self.year in production_volumes.coords["year"].values:
                 share = (
                     production_volumes.sel(
@@ -594,7 +609,7 @@ class Heat(BaseTransformation):
                         continue
                     raise IndexError(
                         f"Couldn't find suppliers for {technology} when looking for {ecoinvent_technologies[technology]}."
-                        f"Ony found: {[(x['name'], x['reference product'], x['location']) for x in self.database if x['name'] in ecoinvent_technologies[technology]]}"
+                        f"Only found: {[(x['name'], x['reference product'], x['location']) for x in self.database if x['name'] in ecoinvent_technologies[technology]]}"
                     ) from exc
 
             if self.system_model == "consequential":

@@ -222,9 +222,8 @@ def create_fleet_vehicles(
 
                     if isinstance(name, set):
                         # check if length of set is 1
-                        if len(name) == 1:
-                            # if so, take the only element
-                            name = next(iter(name))
+                        # if so, take the only element
+                        name = next(iter(name))
 
                     try:
                         vehicle_dataset = ws.get_one(
@@ -233,7 +232,7 @@ def create_fleet_vehicles(
                             ws.equals("location", region),
                         )
                     except ws.NoResults:
-                        print(f"Could not find dataset for {name} in {region}.")
+                        print(f"Could not find a dataset for {name} in {region} to create fleet.")
                         continue
                     except ws.MultipleResults:
                         print(f"Multiple datasets found for {name} in {region}.")
@@ -519,7 +518,7 @@ class Transport(BaseTransformation):
                         exc["product"] = self.mapping[self.vehicle_type]["name"]
                         exc["location"] = new_loc
                     else:
-                        print(f"Could not find dataset for {new_name} in {new_loc}.")
+                        print(f"Could not find dataset for {new_name} in {new_loc} to connect to.")
                         continue
             # also we need to empty the old transport datasets
             for dataset in ws.get_many(

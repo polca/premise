@@ -38,7 +38,6 @@ EI311_NAME_CHANGES = {
 }
 
 EI311_PRODUCT_CHANGES = {"gallium, semiconductor-grade": "gallium, high-grade"}
-
 EI311_LOCATION_CHANGES = {"high-grade gallium production, from low-grade gallium": "CN"}
 
 
@@ -593,24 +592,46 @@ class Metals(BaseTransformation):
                             ] == tuple(flow["categories"].split("::")):
                                 exc["amount"] += flow["amount"]
                     else:
-                        ds["exchanges"].append(
-                            {
+                        new_exchange = {
                                 "name": flow["name"],
                                 "amount": flow["amount"],
                                 "unit": flow["unit"],
                                 "type": "biosphere",
                                 "categories": tuple(flow["categories"].split("::")),
-                                "input": (
-                                    "biosphere3",
-                                    self.biosphere_flow_codes[
-                                        flow["name"],
-                                        flow["categories"].split("::")[0],
-                                        flow["categories"].split("::")[1],
-                                        flow["unit"],
-                                    ],
-                                ),
                             }
+
+                        key = (
+                            flow["name"],
+                            flow["categories"].split("::")[0],
+                            flow["categories"].split("::")[1],
+                            flow["unit"],
                         )
+
+                        if key in self.biosphere_flow_codes:
+                            new_exchange["input"] = (
+                                "biosphere3",
+                                self.biosphere_flow_codes[key],
+                            )
+                        else:
+                            # change first item of key, to add ", in ground"
+                            new_key = (
+                                f"{flow['name']}, in ground",
+                                flow["categories"].split("::")[0],
+                                flow["categories"].split("::")[1],
+                                flow["unit"],
+                            )
+                            if new_key in self.biosphere_flow_codes:
+                                new_exchange["input"] = (
+                                    "biosphere3",
+                                    self.biosphere_flow_codes[new_key],
+                                )
+                            else:
+                                logger.warning(
+                                    f"Could not find biosphere flow for {new_key} in {self.version}"
+                                )
+                                continue
+
+                        ds["exchanges"].append(new_exchange)
 
                 if "log parameters" not in ds:
                     ds["log parameters"] = {}
@@ -910,6 +931,19 @@ class Metals(BaseTransformation):
         dataframe = dataframe.loc[dataframe["Work done"] == "Yes"]
         dataframe = dataframe.loc[~dataframe["Country"].isnull()]
 
+        # filter out rows where "Process" refers to a non-existing process
+        existing_activities, existing_products = zip(
+            *[
+                (act["name"], act["reference product"])
+                for act in self.database
+            ]
+        )
+
+        dataframe = dataframe.loc[
+            dataframe["Process"].isin(existing_activities)
+            & dataframe["Reference product"].isin(existing_products)
+        ]
+
         # update certain values under "Process" and "Reference product"
         # if ecoinvent 3.11 is used
         if self.version == "3.11":
@@ -923,6 +957,8 @@ class Metals(BaseTransformation):
 
             # we also need to remove "graphite ore mining"
             dataframe = dataframe.loc[dataframe["Process"] != "graphite ore mining"]
+
+
 
         dataframe_shares = dataframe
 

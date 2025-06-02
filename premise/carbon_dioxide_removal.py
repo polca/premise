@@ -143,62 +143,66 @@ class CarbonDioxideRemoval(BaseTransformation):
                     for x in ("direct air capture", "enhanced rock weathering")
                 ):
 
-                    energy_dataset_name = None
-                    if technology == "direct air capture" and not any(
-                        x in ds_name for x in ("industrial", "pump", "waste")
-                    ):
-                        energy_dataset_name = (
-                            "market for energy, for direct air capture and storage"
-                        )
-
-                    if technology == "enhanced rock weathering":
-                        energy_dataset_name = (
-                            "market for energy, for enhanced rock weathering"
-                        )
-
-                    if energy_dataset_name is not None:
                         for region, dataset in new_ds.items():
-                            try:
-                                energy_supply = ws.get_one(
-                                    self.database,
-                                    ws.equals(
-                                        "name",
-                                        energy_dataset_name,
-                                    ),
-                                    ws.equals("location", region),
-                                    ws.equals("unit", "megajoule"),
-                                )
-                            except ws.NoResults:
-                                continue
 
-                            energy_input = sum(
-                                e["amount"]
-                                for e in dataset["exchanges"]
-                                if e["type"] == "technosphere"
-                                and e["unit"] == "megajoule"
-                            )
-                            energy_input += sum(
-                                e["amount"] * 3.6
-                                for e in dataset["exchanges"]
-                                if e["type"] == "technosphere"
-                                and e["unit"] == "kilowatt hour"
-                            )
-                            dataset["exchanges"] = [
-                                e
-                                for e in dataset["exchanges"]
-                                if e["unit"] not in ["megajoule", "kilowatt hour"]
-                            ]
-                            dataset["exchanges"].append(
-                                {
-                                    "name": energy_supply["name"],
-                                    "location": region,
-                                    "amount": energy_input,
-                                    "uncertainty type": 0,
-                                    "unit": "megajoule",
-                                    "type": "technosphere",
-                                    "product": energy_supply["reference product"],
-                                }
-                            )
+                            energy_dataset_name = None
+
+                            if technology == "direct air capture" and not any(
+                                    x in ds_name for x in ("industrial", "pump", "waste")
+                            ):
+                                if self.iam_data.daccs_energy_use.sel(region=region).interp(year=self.year).sum() > 0:
+                                    energy_dataset_name = (
+                                        "market for energy, for direct air capture and storage"
+                                    )
+
+                            if technology == "enhanced rock weathering":
+                                if self.iam_data.ewr_energy_use.sel(region=region).interp(year=self.year).sum() > 0:
+                                    energy_dataset_name = (
+                                        "market for energy, for enhanced rock weathering"
+                                    )
+
+                            if energy_dataset_name is not None:
+                                try:
+                                    energy_supply = ws.get_one(
+                                        self.database,
+                                        ws.equals(
+                                            "name",
+                                            energy_dataset_name,
+                                        ),
+                                        ws.equals("location", region),
+                                        ws.equals("unit", "megajoule"),
+                                    )
+                                except ws.NoResults:
+                                    continue
+
+                                energy_input = sum(
+                                    e["amount"]
+                                    for e in dataset["exchanges"]
+                                    if e["type"] == "technosphere"
+                                    and e["unit"] == "megajoule"
+                                )
+                                energy_input += sum(
+                                    e["amount"] * 3.6
+                                    for e in dataset["exchanges"]
+                                    if e["type"] == "technosphere"
+                                    and e["unit"] == "kilowatt hour"
+                                )
+                                dataset["exchanges"] = [
+                                    e
+                                    for e in dataset["exchanges"]
+                                    if e["unit"] not in ["megajoule", "kilowatt hour"]
+                                ]
+                                dataset["exchanges"].append(
+                                    {
+                                        "name": energy_supply["name"],
+                                        "location": region,
+                                        "amount": energy_input,
+                                        "uncertainty type": 0,
+                                        "unit": "megajoule",
+                                        "type": "technosphere",
+                                        "product": energy_supply["reference product"],
+                                    }
+                                )
 
                 new_datasets.extend(new_ds.values())
 
