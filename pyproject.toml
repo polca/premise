@@ -122,3 +122,17 @@ exclude = [
     ".eggs",
     "docs/conf.py",
 ]
+
+[tool.setuptools.package-data]
+premise = [
+    "data/**/*.txt",
+    "data/**/*.csv",
+    "data/**/*.json",
+    "data/**/*.yml",
+    "data/**/*.yaml",
+    "data/**/*.xlsx",
+    "data/**/*.pickle",
+    "iam_variables_mapping/*.yaml",
+    "iam_variables_mapping/*.xlsx",
+    "iam_variables_mapping/topologies/*.json"
+]
