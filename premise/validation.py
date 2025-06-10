@@ -218,7 +218,11 @@ class BaseDatasetValidator:
                         self.log_issue(ds, "incomplete uncertainty data", message)
 
                     if exc.get("uncertainty type", 0) == 2 and "loc" not in exc:
-                        exc["loc"] = math.log(exc["amount"])
+                        if exc["amount"] < 0:
+                            exc["loc"] = math.log(exc["amount"] * -1)
+                            exc["negative"] = True
+                        else:
+                            exc["loc"] = math.log(exc["amount"])
 
                     if exc.get("uncertainty type", 0) == 3 and "loc" not in exc:
                         exc["loc"] = exc["amount"]
