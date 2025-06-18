@@ -1483,6 +1483,10 @@
         [
           true,
           "hydrated lime"
+        ],
+        [
+          false,
+          "spread on ocean"
         ]
       ]
     }
@@ -4209,6 +4213,14 @@
         [
           true,
           "olivine, spread on coastal area"
+        ]
+      ]
+    },
+    {
+      "reference product": [
+        [
+          true,
+          "hydrated lime, spread on ocean"
         ]
       ]
     }
