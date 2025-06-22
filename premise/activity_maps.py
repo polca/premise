@@ -32,7 +32,10 @@ TRUCKS = VARIABLES_DIR / "transport_road_freight.yaml"
 TRAINS = VARIABLES_DIR / "transport_rail_freight.yaml"
 SHIPS = VARIABLES_DIR / "transport_sea_freight.yaml"
 FINAL_ENERGY = VARIABLES_DIR / "final_energy.yaml"
-MINING_WASTE = DATA_DIR / "mining" / "tailings_activities.yaml"
+MINING_WASTE = DATA_DIR / "interventions" / "tailings_activities.yaml"
+COPPER_WASTE = DATA_DIR / "interventions" / "copper_recovery_activities.yaml"
+EAF_SLAG_WASTE = DATA_DIR / "interventions" / "EAF_slag_activities.yaml"
+BOF_SLAG_WASTE = DATA_DIR / "interventions" / "BOF_slag_activities.yaml"
 
 
 def get_mapping(filepath: Path, var: str, model: str = None) -> dict:
@@ -141,6 +144,8 @@ def debug_mapping_to_dataframe(scenario) -> pd.DataFrame:
         ("powerplant fuels", inv.generate_powerplant_fuels_map()),
         ("steel", inv.generate_steel_map()),
         ("mining waste", inv.generate_mining_waste_map()),
+        ("copper waste", inv.generate_copper_waste_map()),
+        ("slag waste", inv.generate_slag_waste_map()),
         ("car", inv.generate_transport_map("car")),
         ("two-wheelers", inv.generate_transport_map("two-wheeler")),
         ("bus", inv.generate_transport_map("bus")),
@@ -236,6 +241,15 @@ class InventorySet:
 
         self.mining_waste_filters = get_mapping(
             filepath=MINING_WASTE, var="ecoinvent_aliases"
+        )
+        self.copper_waste_filters = get_mapping(
+            filepath=COPPER_WASTE, var="ecoinvent_aliases"
+        )
+        self.eaf_slag_waste_filters = get_mapping(
+            filepath=EAF_SLAG_WASTE, var="ecoinvent_aliases"
+        )
+        self.bof_slag_waste_filters = get_mapping(
+            filepath=BOF_SLAG_WASTE, var="ecoinvent_aliases"
         )
 
     def generate_biomass_map(self) -> dict:
@@ -356,6 +370,39 @@ class InventorySet:
 
         """
         return self.generate_sets_from_filters(self.mining_waste_filters)
+
+    def generate_copper_waste_map(self) -> dict:
+        """
+        Filter ecoinvent processes related to copper waste.
+
+        :return: dictionary with copper waste names as keys (see below) and
+            sets of related ecoinvent activities as values.
+        :rtype: dict
+
+        """
+        return self.generate_sets_from_filters(self.copper_waste_filters)
+
+    def generate_eaf_slag_waste_map(self) -> dict:
+        """
+        Filter ecoinvent processes related to EAF slag waste.
+
+        :return: dictionary with slag waste names as keys (see below) and
+            sets of related ecoinvent activities as values.
+        :rtype: dict
+
+        """
+        return self.generate_sets_from_filters(self.eaf_slag_waste_filters)
+
+    def generate_bof_slag_waste_map(self) -> dict:
+        """
+        Filter ecoinvent processes related to BOF slag waste.
+
+        :return: dictionary with slag waste names as keys (see below) and
+            sets of related ecoinvent activities as values.
+        :rtype: dict
+
+        """
+        return self.generate_sets_from_filters(self.bof_slag_waste_filters)
 
     def generate_final_energy_map(self) -> dict:
         """

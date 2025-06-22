@@ -1,0 +1,84 @@
+treatment of EAF slag - landfill:
+  ecoinvent_aliases:
+    fltr:
+      name: treatment of electric arc furnace slag, residual material landfill
+      reference product: electric arc furnace slag
+  share:
+    EUR:
+      2020:
+        min: 0.96
+        max: 0.96
+        mean: 0.96
+      2050:
+        min: 0.2
+        max: 0.5
+        mean: 0.35
+#    CH:
+#      2020:
+#        min: 1
+#        max: 1
+#        mean: 1
+#      2050:
+#        min: 0.2
+#        max: 0.7
+#        mean: 0.5
+    INDIA:
+      2020:
+        min: 1
+        max: 1
+        mean: 1
+      2050:
+        min: 0.2
+        max: 0.7
+        mean: 0.5
+    GLO:
+      2020:
+        min: 0.96
+        max: 0.96
+        mean: 0.96
+      2050:
+        min: 0.2
+        max: 0.7
+        mean: 0.5
+treatment of EAF slag - recovery:
+  ecoinvent_aliases:
+    fltr:
+      name: electric arc furnace slag to market for electric arc furnace slag, for recovery
+      reference product: electric arc furnace slag
+  share:
+    EUR:
+      2020:
+        min: 0.04
+        max: 0.04
+        mean: 0.04
+      2050:
+        min: 0.5
+        max: 0.8
+        mean: 0.65
+#    CH:
+#      2020:
+#        min: 0
+#        max: 0
+#        mean: 0
+#      2050:
+#        min: 0.3
+#        max: 0.8
+#        mean: 0.5
+    INDIA:
+      2020:
+        min: 0
+        max: 0
+        mean: 0
+      2050:
+        min: 0.3
+        max: 0.8
+        mean: 0.5
+    GLO:
+      2020:
+        min: 0.04
+        max: 0.04
+        mean: 0.04
+      2050:
+        min: 0.3
+        max: 0.8
+        mean: 0.5

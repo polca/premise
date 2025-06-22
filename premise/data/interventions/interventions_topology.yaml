@@ -173,3 +173,18 @@ AFR:
   witch:
     - ssa
     - southafrica
+INDIA:
+  message:
+    - SAS
+  image:
+    - INDIA
+  gcam:
+    - India
+  remind:
+    - IND
+  remind-eu:
+    - IND
+  tiam-ucl:
+    - IND
+  witch:
+    - india
