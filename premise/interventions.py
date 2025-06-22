@@ -91,14 +91,16 @@ def load_config(file_path, model: str):
                 for year, values in region_data.items():
                     years.add(int(year))
                     for mapped_region in mapped_regions:
-                        records.append({
-                            "technology": tech,
-                            "region": mapped_region,
-                            "year": int(year),
-                            "min": values.get("min"),
-                            "max": values.get("max"),
-                            "mean": values.get("mean"),
-                        })
+                        records.append(
+                            {
+                                "technology": tech,
+                                "region": mapped_region,
+                                "year": int(year),
+                                "min": values.get("min"),
+                                "max": values.get("max"),
+                                "mean": values.get("mean"),
+                            }
+                        )
 
         techs = sorted(set(techs))
         regions = sorted(set(r["region"] for r in records))
@@ -149,7 +151,17 @@ class Interventions(BaseTransformation):
         cache: dict = None,
         index: dict = None,
     ):
-        super().__init__(database, iam_data, model, pathway, year, version, system_model, cache, index)
+        super().__init__(
+            database,
+            iam_data,
+            model,
+            pathway,
+            year,
+            version,
+            system_model,
+            cache,
+            index,
+        )
         self.year = int(year)
         self.geomap = Geomap(model)
         self.tailings_shares = load_config(TAILINGS_CONFIG_FILE, model)
@@ -191,8 +203,8 @@ class Interventions(BaseTransformation):
             [
                 ds["name"]
                 for ds in ws.get_many(
-                self.database, ws.contains("name", "market for sulfidic tailings")
-            )
+                    self.database, ws.contains("name", "market for sulfidic tailings")
+                )
             ]
         )
 
@@ -212,26 +224,30 @@ class Interventions(BaseTransformation):
 
             ### Old markets were consuming positive amounts of the new markets. We need to invert this
             for ds in self.database:
-                if (ds["name"] == market_dataset and
-                        ds["location"] not in self.tailings_shares.region.values):
+                if (
+                    ds["name"] == market_dataset
+                    and ds["location"] not in self.tailings_shares.region.values
+                ):
                     iam_region = self.geomap.ecoinvent_to_iam_location(ds["location"])
                     if iam_region in regionalized_datasets:
                         regional_market = regionalized_datasets[iam_region]
 
-                        prod_exchanges = [e for e in ds["exchanges"] if e["type"] == "production"]
-                        prod_exchanges.append({
-                            "type": "technosphere",
-                            "name": regional_market["name"],
-                            "product": regional_market["reference product"],
-                            "amount": -1,
-                            "unit": regional_market["unit"],
-                            "location": regional_market["location"],
-                        })
+                        prod_exchanges = [
+                            e for e in ds["exchanges"] if e["type"] == "production"
+                        ]
+                        prod_exchanges.append(
+                            {
+                                "type": "technosphere",
+                                "name": regional_market["name"],
+                                "product": regional_market["reference product"],
+                                "amount": -1,
+                                "unit": regional_market["unit"],
+                                "location": regional_market["location"],
+                            }
+                        )
 
                         ds["exchanges"] = prod_exchanges
                         self.write_log(ds, "updated to link to regional market")
-
-
 
             for region, market_dataset in regionalized_datasets.items():
 
@@ -282,22 +298,30 @@ class Interventions(BaseTransformation):
 
                     supplier = supplier[0]
 
-                    amount_mean = -1 * shares.sel(technology=waste_management_type)["mean"].values.item(0)
-                    amount_min = -1 * shares.sel(technology=waste_management_type)["min"].values.item(0)
-                    amount_max = -1 * shares.sel(technology=waste_management_type)["max"].values.item(0)
+                    amount_mean = -1 * shares.sel(technology=waste_management_type)[
+                        "mean"
+                    ].values.item(0)
+                    amount_min = -1 * shares.sel(technology=waste_management_type)[
+                        "min"
+                    ].values.item(0)
+                    amount_max = -1 * shares.sel(technology=waste_management_type)[
+                        "max"
+                    ].values.item(0)
 
-                    market_dataset["exchanges"].append({
-                        "type": "technosphere",
-                        "name": supplier["name"],
-                        "product": supplier["reference product"],
-                        "amount": amount_mean,
-                        "unit": supplier["unit"],
-                        "location": supplier["location"],
-                        "uncertainty type": 5,
-                        "loc": amount_mean,
-                        "minimum": amount_min,
-                        "maximum": amount_max,
-                    })
+                    market_dataset["exchanges"].append(
+                        {
+                            "type": "technosphere",
+                            "name": supplier["name"],
+                            "product": supplier["reference product"],
+                            "amount": amount_mean,
+                            "unit": supplier["unit"],
+                            "location": supplier["location"],
+                            "uncertainty type": 5,
+                            "loc": amount_mean,
+                            "minimum": amount_min,
+                            "maximum": amount_max,
+                        }
+                    )
 
             processed_datasets.extend(regionalized_datasets.values())
 
@@ -313,8 +337,16 @@ class Interventions(BaseTransformation):
         """
 
         slag_configs = {
-            "EAF": (self.eaf_slag_map, self.eaf_slag_shares, "market for electric arc furnace slag"),
-            "BOF": (self.bof_slag_map, self.bof_slag_shares, "market for basic oxygen furnace slag"),
+            "EAF": (
+                self.eaf_slag_map,
+                self.eaf_slag_shares,
+                "market for electric arc furnace slag",
+            ),
+            "BOF": (
+                self.bof_slag_map,
+                self.bof_slag_shares,
+                "market for basic oxygen furnace slag",
+            ),
         }
 
         for slag_type, (slag_map, slag_shares, market_name) in slag_configs.items():
@@ -364,21 +396,29 @@ class Interventions(BaseTransformation):
                 }
 
                 for ds in self.database:
-                    if (ds["name"] == market_dataset and
-                            ds["location"] not in slag_shares.region.values):
-                        iam_region = self.geomap.ecoinvent_to_iam_location(ds["location"])
+                    if (
+                        ds["name"] == market_dataset
+                        and ds["location"] not in slag_shares.region.values
+                    ):
+                        iam_region = self.geomap.ecoinvent_to_iam_location(
+                            ds["location"]
+                        )
                         if iam_region in regionalized_datasets:
                             regional_market = regionalized_datasets[iam_region]
 
-                            prod_exchanges = [e for e in ds["exchanges"] if e["type"] == "production"]
-                            prod_exchanges.append({
-                                "type": "technosphere",
-                                "name": regional_market["name"],
-                                "product": regional_market["reference product"],
-                                "amount": -1,
-                                "unit": regional_market["unit"],
-                                "location": regional_market["location"],
-                            })
+                            prod_exchanges = [
+                                e for e in ds["exchanges"] if e["type"] == "production"
+                            ]
+                            prod_exchanges.append(
+                                {
+                                    "type": "technosphere",
+                                    "name": regional_market["name"],
+                                    "product": regional_market["reference product"],
+                                    "amount": -1,
+                                    "unit": regional_market["unit"],
+                                    "location": regional_market["location"],
+                                }
+                            )
 
                             ds["exchanges"] = prod_exchanges
                             self.write_log(ds, "updated to link to regional market")
@@ -392,57 +432,85 @@ class Interventions(BaseTransformation):
                     else:
                         year = self.year
 
-                    target_region = region if region in slag_shares.region.values else "GLO"
+                    target_region = (
+                        region if region in slag_shares.region.values else "GLO"
+                    )
 
                     if target_region != region:
-                        print(f"[Interventions] No slag share data for region '{region}', falling back to 'GLO'.")
+                        print(
+                            f"[Interventions] No slag share data for region '{region}', falling back to 'GLO'."
+                        )
                         if "GLO" not in slag_shares.region.values:
-                            print(f"[Interventions] No data for GLO either — skipping region '{region}'")
+                            print(
+                                f"[Interventions] No data for GLO either — skipping region '{region}'"
+                            )
                             continue
 
                     shares = slag_shares.sel(region=target_region).interp(year=year)
 
                     market_ds["exchanges"] = [
-                        e for e in market_ds["exchanges"]
+                        e
+                        for e in market_ds["exchanges"]
                         if e["type"] == "production"
-                           or (e["type"] == "technosphere"
-                               and ("transport" in e.get("name", "").lower()
-                                    or "freight" in e.get("name", "").lower()))
+                        or (
+                            e["type"] == "technosphere"
+                            and (
+                                "transport" in e.get("name", "").lower()
+                                or "freight" in e.get("name", "").lower()
+                            )
+                        )
                     ]
 
                     for treatment_type in shares.technology.values:
                         suppliers = list(
                             ws.get_many(
                                 self.database,
-                                ws.either(*[ws.contains("name", s) for s in slag_map[treatment_type]]),
+                                ws.either(
+                                    *[
+                                        ws.contains("name", s)
+                                        for s in slag_map[treatment_type]
+                                    ]
+                                ),
                                 ws.equals("location", target_region),
                             )
                         )
 
                         if len(suppliers) > 1:
-                            print(f"[Interventions] More than one supplier found for {treatment_type} in {region}")
+                            print(
+                                f"[Interventions] More than one supplier found for {treatment_type} in {region}"
+                            )
                         if not suppliers:
-                            print(f"[Interventions] No supplier found for {treatment_type} in {region}")
+                            print(
+                                f"[Interventions] No supplier found for {treatment_type} in {region}"
+                            )
                             continue
 
                         supplier = suppliers[0]
 
-                        amount_mean = -1 * shares.sel(technology=treatment_type)["mean"].values.item(0)
-                        amount_min = -1 * shares.sel(technology=treatment_type)["min"].values.item(0)
-                        amount_max = -1 * shares.sel(technology=treatment_type)["max"].values.item(0)
+                        amount_mean = -1 * shares.sel(technology=treatment_type)[
+                            "mean"
+                        ].values.item(0)
+                        amount_min = -1 * shares.sel(technology=treatment_type)[
+                            "min"
+                        ].values.item(0)
+                        amount_max = -1 * shares.sel(technology=treatment_type)[
+                            "max"
+                        ].values.item(0)
 
-                        market_ds["exchanges"].append({
-                            "type": "technosphere",
-                            "name": supplier["name"],
-                            "product": supplier["reference product"],
-                            "amount": amount_mean,
-                            "unit": supplier["unit"],
-                            "location": supplier["location"],
-                            "uncertainty type": 5,
-                            "loc": amount_mean,
-                            "minimum": amount_min,
-                            "maximum": amount_max,
-                        })
+                        market_ds["exchanges"].append(
+                            {
+                                "type": "technosphere",
+                                "name": supplier["name"],
+                                "product": supplier["reference product"],
+                                "amount": amount_mean,
+                                "unit": supplier["unit"],
+                                "location": supplier["location"],
+                                "uncertainty type": 5,
+                                "loc": amount_mean,
+                                "minimum": amount_min,
+                                "maximum": amount_max,
+                            }
+                        )
 
                 processed_datasets.extend(regionalized_datasets.values())
 
@@ -464,7 +532,9 @@ class Interventions(BaseTransformation):
         else:
             year = self.year
 
-        scrap_amounts = self.copper_shares.sel(technology="scrap copper").interp(year=year)
+        scrap_amounts = self.copper_shares.sel(technology="scrap copper").interp(
+            year=year
+        )
         ash_amounts = self.copper_shares.sel(technology="bottom ash").interp(year=year)
 
         activities = ws.get_many(
@@ -475,27 +545,33 @@ class Interventions(BaseTransformation):
         for act in activities:
             for exc in act["exchanges"]:
                 if exc["type"] == "technosphere":
-                    if (exc["name"] == "copper scrap, sorted, pressed, Recycled Content cut-off" and
-                            exc["product"] == "copper scrap, sorted, pressed"):
-                        exc.update({
-                            "amount": scrap_amounts["mean"].item() * -1,
-                            "uncertainty type": 5,
-                            "loc": scrap_amounts["mean"].item() * -1,
-                            "minimum": scrap_amounts["min"].item() * -1,
-                            "maximum": scrap_amounts["max"].item() * -1,
-                        })
-
-                    elif (
-                            exc["name"].startswith("market for bottom ash")
-                            and exc["product"].startswith("bottom ash")
+                    if (
+                        exc["name"]
+                        == "copper scrap, sorted, pressed, Recycled Content cut-off"
+                        and exc["product"] == "copper scrap, sorted, pressed"
                     ):
-                        exc.update({
-                            "amount": ash_amounts["mean"].item() * -1,
-                            "uncertainty type": 5,
-                            "loc": ash_amounts["mean"].item() * -1,
-                            "minimum": ash_amounts["min"].item() * -1,
-                            "maximum": ash_amounts["max"].item() * -1,
-                        })
+                        exc.update(
+                            {
+                                "amount": scrap_amounts["mean"].item() * -1,
+                                "uncertainty type": 5,
+                                "loc": scrap_amounts["mean"].item() * -1,
+                                "minimum": scrap_amounts["min"].item() * -1,
+                                "maximum": scrap_amounts["max"].item() * -1,
+                            }
+                        )
+
+                    elif exc["name"].startswith("market for bottom ash") and exc[
+                        "product"
+                    ].startswith("bottom ash"):
+                        exc.update(
+                            {
+                                "amount": ash_amounts["mean"].item() * -1,
+                                "uncertainty type": 5,
+                                "loc": ash_amounts["mean"].item() * -1,
+                                "minimum": ash_amounts["min"].item() * -1,
+                                "maximum": ash_amounts["max"].item() * -1,
+                            }
+                        )
 
             self.write_log(act, "[Interventions] Updated copper treatment")
 
