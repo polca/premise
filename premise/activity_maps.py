@@ -36,6 +36,7 @@ MINING_WASTE = DATA_DIR / "interventions" / "tailings_activities.yaml"
 COPPER_WASTE = DATA_DIR / "interventions" / "copper_recovery_activities.yaml"
 EAF_SLAG_WASTE = DATA_DIR / "interventions" / "EAF_slag_activities.yaml"
 BOF_SLAG_WASTE = DATA_DIR / "interventions" / "BOF_slag_activities.yaml"
+BRAKE_WEAR = DATA_DIR / "interventions" / "brake_wear_activities.yaml"
 
 
 def get_mapping(filepath: Path, var: str, model: str = None) -> dict:
@@ -251,6 +252,10 @@ class InventorySet:
         self.bof_slag_waste_filters = get_mapping(
             filepath=BOF_SLAG_WASTE, var="ecoinvent_aliases"
         )
+        self.brake_wear_filters = get_mapping(
+            filepath=BRAKE_WEAR, var="ecoinvent_aliases"
+        )
+
 
     def generate_biomass_map(self) -> dict:
         """
@@ -403,6 +408,17 @@ class InventorySet:
 
         """
         return self.generate_sets_from_filters(self.bof_slag_waste_filters)
+
+    def generate_brake_wear_map(self) -> dict:
+        """
+        Filter ecoinvent processes related to brake wear.
+
+        :return: dictionary with brake wear names as keys (see below) and
+            sets of related ecoinvent activities as values.
+        :rtype: dict
+
+        """
+        return self.generate_sets_from_filters(self.brake_wear_filters)
 
     def generate_final_energy_map(self) -> dict:
         """

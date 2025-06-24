@@ -26,6 +26,7 @@ TAILINGS_CONFIG_FILE = DATA_DIR / "interventions" / "tailings_activities.yaml"
 EAF_SLAG_CONFIG_FILE = DATA_DIR / "interventions" / "EAF_slag_activities.yaml"
 BOF_SLAG_CONFIG_FILE = DATA_DIR / "interventions" / "BOF_slag_activities.yaml"
 COPPER_CONFIG_FILE = DATA_DIR / "interventions" / "copper_recovery_activities.yaml"
+BRAKE_WEAR_CONFIG_FILE = DATA_DIR / "interventions" / "brake_wear_activities.yaml"
 
 
 def _update_interventions(scenario, version, system_model):
@@ -47,6 +48,7 @@ def _update_interventions(scenario, version, system_model):
     interventions.update_tailings_treatment()
     interventions.update_slag_treatment()
     interventions.update_copper_treatment()
+    interventions.update_brake_wear()
     interventions.relink_datasets()
     scenario["database"] = interventions.database
     scenario["cache"] = interventions.cache
@@ -168,11 +170,13 @@ class Interventions(BaseTransformation):
         self.eaf_slag_shares = load_config(EAF_SLAG_CONFIG_FILE, model)
         self.bof_slag_shares = load_config(BOF_SLAG_CONFIG_FILE, model)
         self.copper_shares = load_config(COPPER_CONFIG_FILE, model)
+        self.brake_wear_shares = load_config(BRAKE_WEAR_CONFIG_FILE, model)
         inv = InventorySet(database=database, version=version, model=model)
         self.tailings_map = inv.generate_mining_waste_map()
         self.eaf_slag_map = inv.generate_eaf_slag_waste_map()
         self.bof_slag_map = inv.generate_bof_slag_waste_map()
         self.copper_map = inv.generate_copper_waste_map()
+        self.brake_wear_map = inv.generate_brake_wear_map()
 
     def update_tailings_treatment(self):
 
@@ -539,7 +543,10 @@ class Interventions(BaseTransformation):
 
         activities = ws.get_many(
             self.database,
-            ws.startswith("name", "treatment of waste copper, municipal incineration"),
+            ws.either(
+                ws.startswith("name", "treatment of waste copper, municipal incineration"),
+                ws.startswith("name", "treatment of scrap copper, municipal incineration"),
+        )
         )
 
         for act in activities:
@@ -574,6 +581,68 @@ class Interventions(BaseTransformation):
                         )
 
             self.write_log(act, "[Interventions] Updated copper treatment")
+
+    def update_brake_wear(self):
+        """
+        Update biosphere flows for copper and antimony ions in brake wear emissions
+        activities based on year-specific values for the appropriate region.
+        """
+
+        min_year = self.brake_wear_shares.year.values.min()
+        max_year = self.brake_wear_shares.year.values.max()
+        year = np.clip(self.year, min_year, max_year)
+
+        fallback_region = None
+        for r in self.brake_wear_shares.region.values:
+            if "GLO" in self.geomap.iam_to_ecoinvent_location(r):
+                fallback_region = r
+                break
+
+        activities = ws.get_many(
+            self.database,
+                ws.startswith("name", "treatment of brake wear emissions"),
+            )
+
+        for act in activities:
+            iam_region = self.geomap.ecoinvent_to_iam_location(act["location"])
+
+            matching_regions = [
+                r for r in self.brake_wear_shares.region.values
+                if iam_region in self.geomap.ecoinvent_to_iam_location(r)
+            ]
+
+            target_region = matching_regions[0] if matching_regions else fallback_region
+
+            for exc in act["exchanges"]:
+                if exc["type"] == "biosphere":
+                    if exc["name"] == "Copper ion":
+                        tech = "brake wear - copper"
+                    elif exc["name"] == "Antimony ion":
+                        tech = "brake wear - antimony"
+                    else:
+                        continue
+
+                    if tech:
+                        try:
+                            data = self.brake_wear_shares.sel(
+                                region=target_region, technology=tech
+                            )
+                            data = data.dropna("year", how="all")
+                            share = data.interp(year=year)
+
+                            exc.update({
+                                "amount": share["mean"].item(),
+                                "uncertainty type": 5,
+                                "loc": share["mean"].item(),
+                                "minimum": share["min"].item(),
+                                "maximum": share["max"].item(),
+                            })
+                        except KeyError:
+                            print(f"[Interventions] No data for {tech} in {target_region} at year {year}")
+                            continue
+
+            self.write_log(act, "[Interventions] Updated brake wear emissions")
+
 
     def write_log(self, dataset, status="updated"):
         txt = f"{status}|{self.model}|{self.scenario}|{self.year}|{dataset['name']}|{dataset.get('reference product', '')}|{dataset['location']}"
