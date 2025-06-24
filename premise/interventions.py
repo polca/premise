@@ -544,9 +544,13 @@ class Interventions(BaseTransformation):
         activities = ws.get_many(
             self.database,
             ws.either(
-                ws.startswith("name", "treatment of waste copper, municipal incineration"),
-                ws.startswith("name", "treatment of scrap copper, municipal incineration"),
-        )
+                ws.startswith(
+                    "name", "treatment of waste copper, municipal incineration"
+                ),
+                ws.startswith(
+                    "name", "treatment of scrap copper, municipal incineration"
+                ),
+            ),
         )
 
         for act in activities:
@@ -600,14 +604,15 @@ class Interventions(BaseTransformation):
 
         activities = ws.get_many(
             self.database,
-                ws.startswith("name", "treatment of brake wear emissions"),
-            )
+            ws.startswith("name", "treatment of brake wear emissions"),
+        )
 
         for act in activities:
             iam_region = self.geomap.ecoinvent_to_iam_location(act["location"])
 
             matching_regions = [
-                r for r in self.brake_wear_shares.region.values
+                r
+                for r in self.brake_wear_shares.region.values
                 if iam_region in self.geomap.ecoinvent_to_iam_location(r)
             ]
 
@@ -630,19 +635,22 @@ class Interventions(BaseTransformation):
                             data = data.dropna("year", how="all")
                             share = data.interp(year=year)
 
-                            exc.update({
-                                "amount": share["mean"].item(),
-                                "uncertainty type": 5,
-                                "loc": share["mean"].item(),
-                                "minimum": share["min"].item(),
-                                "maximum": share["max"].item(),
-                            })
+                            exc.update(
+                                {
+                                    "amount": share["mean"].item(),
+                                    "uncertainty type": 5,
+                                    "loc": share["mean"].item(),
+                                    "minimum": share["min"].item(),
+                                    "maximum": share["max"].item(),
+                                }
+                            )
                         except KeyError:
-                            print(f"[Interventions] No data for {tech} in {target_region} at year {year}")
+                            print(
+                                f"[Interventions] No data for {tech} in {target_region} at year {year}"
+                            )
                             continue
 
             self.write_log(act, "[Interventions] Updated brake wear emissions")
-
 
     def write_log(self, dataset, status="updated"):
         txt = f"{status}|{self.model}|{self.scenario}|{self.year}|{dataset['name']}|{dataset.get('reference product', '')}|{dataset['location']}"
