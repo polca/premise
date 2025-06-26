@@ -2189,3 +2189,94 @@ class BiomassValidation(BaseDatasetValidator):
             print(
                 "---> MAJOR anomalies found during biomass update: check the change report."
             )
+
+class MetalsValidation(BaseDatasetValidator):
+    def __init__(self, model, scenario, year, regions, database, iam_data):
+        super().__init__(model, scenario, year, regions, database)
+        self.iam_data = iam_data
+
+    def run_metals_checks(self):
+        self.check_market_balance()
+        self.check_split_yaml_consistency()
+        self.check_interpolation()
+        self.save_log()
+        if self.major_issues_log:
+            print(
+                "---> MAJOR anomalies found during metals update: check the change report."
+            )
+
+    def check_market_balance(self):
+        """
+        Check that the inputs of the metals markets sum to 1
+        """
+        for metal in self.metals_list:
+            try:
+                name = f"market for {metal}"
+                ds = ws.get_one(
+                    self.database,
+                    ws.equals("name", name),
+                    ws.equals("location", "World"),
+                    ws.equals("location", "World"),
+                    ws.equals("unit", "kilogram"),
+                )
+            except Exception:
+                continue
+
+            total_kg_inputs = sum(
+                e["amount"]
+                for e in ds["exchanges"]
+                if e["type"] == "technosphere" and e["unit"] == "kilogram"
+            )
+            if not np.isclose(total_kg_inputs, 1.0, rtol=1e-3):
+                message = f"Metal market inputs sum to {total_kg_inputs}."
+                self.log_issue(
+                    ds,
+                    "metal market inputs do not sum to 1",
+                    message,
+                    issue_type="major",
+                )
+
+    def check_split_yaml_consistency(self):
+        """
+        Check that the split YAML files for metals sum to 1 for each metal
+        """
+        for metal, data in self.prim_sec_split.items():
+            for year in data["shares"]["primary"]:
+                primary = data["shares"]["primary"].get(year, 0)
+                secondary = data["shares"]["secondary"].get(year, 0)
+                total = primary + secondary
+                if not np.isclose(total, 1.0, rtol=1e-3):
+                    message = (
+                        f"Metal {metal} shares for year {year} do not sum to 1: "
+                        f"primary={primary}, secondary={secondary}, total={total}."
+                    )
+                    self.log_issue(
+                        {"name": metal, "year": year},
+                        "metal shares do not sum to 1",
+                        message,
+                        issue_type="major",)
+
+    def check_interpolation(self):
+        """
+        Check that the interpolation of metal shares is consistent
+        """
+        test_cases = [
+            ({2020: 0.8, 2050: 0.5}, 2020, 0.8),
+            ({2020: 0.8, 2050: 0.5}, 2050, 0.5),
+            ({2020: 0.8, 2050: 0.5}, 2035, 0.65),
+            ({2020: 1.0}, 2040, 1.0),
+            ]
+
+        for shares, year, expected in test_cases:
+            result = self.interpolate_by_year(year, shares)
+            if not np.isclose(result, expected, rtol=1e-3):
+                message = (
+                    f"Interpolation for year {year} with shares {shares} "
+                    f"expected {expected}, got {result}."
+                )
+                self.log_issue(
+                    {"year": year, "shares": shares},
+                    "interpolation error",
+                    message,
+                    issue_type="major",
+                )

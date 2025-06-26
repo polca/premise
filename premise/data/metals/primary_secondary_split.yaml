@@ -1,0 +1,10 @@
+copper, cathode:
+  name: market for copper, cathode
+  reference product: copper, cathode
+  shares:
+    primary:
+      2020: 0.8
+      2050: 0.6
+    secondary:
+      2020: 0.2
+      2050: 0.4

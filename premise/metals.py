@@ -29,6 +29,7 @@ from .transformation import (
     ws,
 )
 from .utils import DATA_DIR
+from .validation import MetalsValidation
 
 logger = create_logger("metal")
 
@@ -61,6 +62,20 @@ def _update_metals(scenario, version, system_model):
     scenario["database"] = metals.database
     scenario["cache"] = metals.cache
     scenario["index"] = metals.index
+
+    validate = MetalsValidation(
+        model = scenario["model"],
+        scenario = scenario["pathway"],
+        year = scenario["year"],
+        regions = scenario["iam data"].regions,
+        database = metals.database,
+        iam_data= scenario["iam data"],
+    )
+
+    validate.prim_sec_split = metals.prim_sec_split
+    validate.interpolate_by_year = interpolate_by_year
+    validate.metals_list = load_mining_shares_mapping()["Metal"].unique().tolist()
+    validate.run_metals_checks()
 
     return scenario
 
@@ -133,6 +148,23 @@ def load_mining_shares_mapping():
         df_filtered.loc[metal_indices, years] = metal_df.div(sum_df)
 
     return df
+
+def load_primary_secondary_split():
+    """
+    Load mapping for primary and secondary split of metal markets.
+    """
+    path = DATA_DIR / "metals" / "primary_secondary_split.yaml"
+    with open(path, "r", encoding="utf-8") as stream:
+        return yaml.safe_load(stream)
+
+def load_secondary_activity_routes():
+    """
+    Load mapping for secondary activity routes.
+    """
+    path = DATA_DIR / "metals" / "secondary_supply_activities.yaml"
+    with open(path, "r", encoding="utf-8") as stream:
+        return yaml.safe_load(stream) or {}
+
 
 
 def load_activities_mapping():
@@ -314,6 +346,44 @@ def filter_technology(dataset_names, database):
         )
     )
 
+def build_ws_filter(field: str, query: dict):
+    """
+    Given a field and a query like {'contains': 'foo'}, return a filter function.
+    """
+    if "equals" in query:
+        return ws.equals(field, query["equals"])
+    elif "contains" in query:
+        return ws.contains(field, query["contains"])
+    elif "startswith" in query:
+        return ws.startswith(field, query["startswith"])
+    elif "either" in query:
+        return ws.either(*[build_ws_filter(field, q) for q in query["either"]])
+    elif "all" in query:
+        return lambda x: all(build_ws_filter(field, q)(x) for q in query["all"])
+    else:
+        raise ValueError(f"Unsupported filter for {field}: {query}")
+
+def interpolate_by_year(target_year: int, data: dict) -> float:
+    """
+    Interpolate (or extrapolate) a value for the given `target_year`
+    from a dictionary like {2020: 0.1, 2030: 0.5, ...}.
+    """
+    data = {int(k): v for k, v in data.items()}
+    years = sorted(data)
+
+    if target_year in years:
+        return data[target_year]
+    elif target_year < years[0]:
+        return data[years[0]]
+    elif target_year > years[-1]:
+        return data[years[-1]]
+    else:
+        for i in range(len(years) - 1):
+            y0, y1 = years[i], years[i + 1]
+            if y0 < target_year < y1:
+                v0, v1 = data[y0], data[y1]
+                return v0 + (v1 - v0) * (target_year - y0) / (y1 - y0)
+
 
 class Metals(BaseTransformation):
     """
@@ -390,6 +460,8 @@ class Metals(BaseTransformation):
         self.biosphere_flow_codes = biosphere_flows_dictionary(version=self.version)
         self.metals_transport = load_metals_transport()
         self.alt_names = load_metals_alternative_names()
+        self.prim_sec_split = load_primary_secondary_split()
+        self.secondary_activity_routes = load_secondary_activity_routes()
 
     def update_metals_use_in_database(self):
         """
@@ -810,11 +882,24 @@ class Metals(BaseTransformation):
             "code": str(uuid.uuid4()),
         }
 
+        _, _, p_share, s_share = self.get_market_split_shares(metal)
+
         # add mining exchanges
-        dataset["exchanges"].extend(self.create_region_specific_markets(df))
+        # dataset["exchanges"].extend(self.create_region_specific_markets(df))
+        primary_exchanges = self.create_region_specific_markets(df)
+        for exc in primary_exchanges:
+            exc["amount"] *= p_share
+        dataset["exchanges"].extend(primary_exchanges)
+
+        # Add burden-free secondary market exchange
+        secondary_exchanges = self.build_secondary_market_exchanges(dataset["reference product"], s_share)
+        if secondary_exchanges:
+            dataset["exchanges"].extend(secondary_exchanges)
 
         # add transport exchanges
         trspt_exc = self.add_transport_to_market(dataset, metal)
+        for exc in trspt_exc:
+            exc["amount"] *= p_share
         if len(trspt_exc) > 0:
             dataset["exchanges"].extend(trspt_exc)
 
@@ -931,6 +1016,8 @@ class Metals(BaseTransformation):
         dataframe = dataframe.loc[dataframe["Work done"] == "Yes"]
         dataframe = dataframe.loc[~dataframe["Country"].isnull()]
 
+        #################### TODO: This is a shortcut
+
         # filter out rows where "Process" refers to a non-existing process
         existing_activities, existing_products = zip(
             *[(act["name"], act["reference product"]) for act in self.database]
@@ -940,6 +1027,7 @@ class Metals(BaseTransformation):
             dataframe["Process"].isin(existing_activities)
             & dataframe["Reference product"].isin(existing_products)
         ]
+        #########################
 
         # update certain values under "Process" and "Reference product"
         # if ecoinvent 3.11 is used
@@ -976,6 +1064,97 @@ class Metals(BaseTransformation):
             self.database.append(dataset)
             self.add_to_index(dataset)
             self.write_log(dataset, "created")
+
+    def get_market_split_shares(self, metal_key: str) -> tuple[str, str, float, float]:
+        """
+        For a given metal_key (e.g., 'copper, cathod'), return:
+        - market name
+        - reference product
+        - primary share (interpolated)
+        - secondary share (interpolated)
+        """
+        entry = self.prim_sec_split.get(metal_key, None)
+        if not entry:
+            default_name = f"market for {metal_key}"
+            default_reference_product = metal_key
+            print(f"[Metals] WARNING: No entry found for metal key: {metal_key} in 'primary_secondary_split.yaml'")
+            return default_name, default_reference_product, 1.0, 0.0
+
+        name = entry["name"]
+        reference_product = entry["reference product"]
+
+        p = interpolate_by_year(self.year, entry["shares"]["primary"])
+        s = interpolate_by_year(self.year, entry["shares"]["secondary"])
+        total = p + s
+
+        if total > 1:
+            print(f"[Metals] Warning: Total shares for {metal_key} exceed 1: {total}. Normalizing.")
+
+        return (
+            name,
+            reference_product,
+            p / total if total > 0 else 0,  # Avoid division by zero
+            s / total if total > 0 else 0,  # Avoid division by zero
+        )
+
+    def build_secondary_market_exchanges(self, metal: str, s_share: float) -> list:
+        """
+        Build technosphere exchanges from flexible secondary activity filters in YAML.
+        """
+
+        if metal not in self.secondary_activity_routes:
+            print(f"[Metals] WARNING: No secondary activity routes found for {metal}. Skipping.")
+            return []
+
+        route_entries = self.secondary_activity_routes[metal]
+
+        # 1. Interpolate shares and cache them
+        entries_with_shares = []
+        total_relative_share = 0
+
+        for entry in route_entries:
+            try:
+                share = interpolate_by_year(self.year, entry["shares"])
+                entries_with_shares.append((entry, share))
+                total_relative_share += share
+            except Exception:
+                logger.warning(f"[Metals] Failed to interpolate shares for {metal} in entry: {entry}")
+                continue
+
+        if total_relative_share == 0:
+            logger.warning(f"[Metals] Total relative share for {metal} is zero, no exchanges created.")
+            return []
+
+        exchanges = []
+
+        # 2. Build secondary exchanges with normalized amount
+
+        for entry, share in entries_with_shares:
+            filters = []
+            for field in ["name", "reference product", "location"]:
+                if field in entry:
+                    filters.append(build_ws_filter(field, entry[field]))
+
+            candidates = list(ws.get_many(self.database, *filters))
+
+            if not candidates:
+                logger.warning(f"[Metals] No candidates found for entry: {entry}")
+                continue
+            if len(candidates) > 1:
+                logger.warning(f"[Metals] Multiple candidates found for entry: {entry}, using the first one.")
+
+            ds = candidates[0]
+
+            exchanges.append({
+                "name": ds["name"],
+                "product": ds["reference product"],
+                "location": ds["location"],
+                "amount": s_share * (share / total_relative_share),  # Normalize by total relative share
+                "type": "technosphere",
+                "unit": ds["unit"],
+            })
+
+        return exchanges
 
     def write_log(self, dataset, status="created"):
         """

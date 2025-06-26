@@ -1,0 +1,103 @@
+copper, cathode:
+  - name:
+      all:
+        - startswith: treatment of metal part
+        - contains: electrolytic refining
+    reference product:
+      equals: copper, cathode
+    location:
+      equals: SE
+    shares:
+      2020: 2.2277037972547e-06
+  - name:
+      all:
+        - startswith: treatment of metal part
+        - contains: electrolytic refining
+    reference product:
+      equals: copper, cathode
+    location:
+      equals: RoW
+    shares:
+      2020: 0.000840421088561419
+  - name:
+      startswith: treatment of copper cake
+    reference product:
+      equals: copper, cathode
+    location:
+      equals: GLO
+    shares:
+      2020: 0.00220044467157194
+  - name:
+      all:
+        - startswith: treatment of copper scrap
+        - contains: electrolytic refining
+    reference product:
+      equals: copper, cathode
+    location:
+      equals: RoW
+    shares:
+        2020: 0.15032405184868
+  - name:
+      all:
+        - startswith: treatment of copper scrap
+        - contains: electrolytic refining
+    reference product:
+      equals: copper, cathode
+    location:
+      equals: RER
+    shares:
+      2020: 0.0340482359153305
+  - name:
+      all:
+        - startswith: treatment of non-Fe-Co-metals
+        - contains: pyrometallurgical processing
+    reference product:
+      equals: copper, cathode
+    location:
+      equals: GLO
+    shares:
+      2020: 2.13217351759321e-06
+  - name:
+      contains: treatment of used cable
+    reference product:
+      equals: copper, cathode
+    location:
+      equals: GLO
+    shares:
+      2020: 0.0119240905590003
+  - name:
+      all:
+        - startswith: treatment of non-Fe-Co-metals
+        - contains: hydrometallurgical processing
+    reference product:
+      equals: copper, cathode
+    location:
+      equals: GLO
+    shares:
+      2020: 9.32830849573793e-07
+
+
+
+####### examples
+#aluminium, primary, ingot:
+#  - name:
+#      startswith: treatment of aluminium scrap
+#    reference product:
+#      equals: aluminium, primary, ingot
+#    location:
+#      equals: GLO
+#    shares:
+#      2020: 1.0
+#
+#zinc:
+#  - name:
+#      contains: zinc scrap
+#    reference product:
+#      equals: zinc
+#    location:
+#      either:
+#        - equals: CH
+#        - equals: GLO
+#    shares:
+#      2020: 0.5
+#      2030: 0.7
