@@ -2190,6 +2190,7 @@ class BiomassValidation(BaseDatasetValidator):
                 "---> MAJOR anomalies found during biomass update: check the change report."
             )
 
+
 class MetalsValidation(BaseDatasetValidator):
     def __init__(self, model, scenario, year, regions, database, iam_data):
         super().__init__(model, scenario, year, regions, database)
@@ -2254,7 +2255,8 @@ class MetalsValidation(BaseDatasetValidator):
                         {"name": metal, "year": year},
                         "metal shares do not sum to 1",
                         message,
-                        issue_type="major",)
+                        issue_type="major",
+                    )
 
     def check_interpolation(self):
         """
@@ -2265,7 +2267,7 @@ class MetalsValidation(BaseDatasetValidator):
             ({2020: 0.8, 2050: 0.5}, 2050, 0.5),
             ({2020: 0.8, 2050: 0.5}, 2035, 0.65),
             ({2020: 1.0}, 2040, 1.0),
-            ]
+        ]
 
         for shares, year, expected in test_cases:
             result = self.interpolate_by_year(year, shares)

@@ -64,12 +64,12 @@ def _update_metals(scenario, version, system_model):
     scenario["index"] = metals.index
 
     validate = MetalsValidation(
-        model = scenario["model"],
-        scenario = scenario["pathway"],
-        year = scenario["year"],
-        regions = scenario["iam data"].regions,
-        database = metals.database,
-        iam_data= scenario["iam data"],
+        model=scenario["model"],
+        scenario=scenario["pathway"],
+        year=scenario["year"],
+        regions=scenario["iam data"].regions,
+        database=metals.database,
+        iam_data=scenario["iam data"],
     )
 
     validate.prim_sec_split = metals.prim_sec_split
@@ -149,6 +149,7 @@ def load_mining_shares_mapping():
 
     return df
 
+
 def load_primary_secondary_split():
     """
     Load mapping for primary and secondary split of metal markets.
@@ -157,6 +158,7 @@ def load_primary_secondary_split():
     with open(path, "r", encoding="utf-8") as stream:
         return yaml.safe_load(stream)
 
+
 def load_secondary_activity_routes():
     """
     Load mapping for secondary activity routes.
@@ -164,7 +166,6 @@ def load_secondary_activity_routes():
     path = DATA_DIR / "metals" / "secondary_supply_activities.yaml"
     with open(path, "r", encoding="utf-8") as stream:
         return yaml.safe_load(stream) or {}
-
 
 
 def load_activities_mapping():
@@ -346,6 +347,7 @@ def filter_technology(dataset_names, database):
         )
     )
 
+
 def build_ws_filter(field: str, query: dict):
     """
     Given a field and a query like {'contains': 'foo'}, return a filter function.
@@ -362,6 +364,7 @@ def build_ws_filter(field: str, query: dict):
         return lambda x: all(build_ws_filter(field, q)(x) for q in query["all"])
     else:
         raise ValueError(f"Unsupported filter for {field}: {query}")
+
 
 def interpolate_by_year(target_year: int, data: dict) -> float:
     """
@@ -892,7 +895,9 @@ class Metals(BaseTransformation):
         dataset["exchanges"].extend(primary_exchanges)
 
         # Add burden-free secondary market exchange
-        secondary_exchanges = self.build_secondary_market_exchanges(dataset["reference product"], s_share)
+        secondary_exchanges = self.build_secondary_market_exchanges(
+            dataset["reference product"], s_share
+        )
         if secondary_exchanges:
             dataset["exchanges"].extend(secondary_exchanges)
 
@@ -1077,7 +1082,9 @@ class Metals(BaseTransformation):
         if not entry:
             default_name = f"market for {metal_key}"
             default_reference_product = metal_key
-            print(f"[Metals] WARNING: No entry found for metal key: {metal_key} in 'primary_secondary_split.yaml'")
+            print(
+                f"[Metals] WARNING: No entry found for metal key: {metal_key} in 'primary_secondary_split.yaml'"
+            )
             return default_name, default_reference_product, 1.0, 0.0
 
         name = entry["name"]
@@ -1088,7 +1095,9 @@ class Metals(BaseTransformation):
         total = p + s
 
         if total > 1:
-            print(f"[Metals] Warning: Total shares for {metal_key} exceed 1: {total}. Normalizing.")
+            print(
+                f"[Metals] Warning: Total shares for {metal_key} exceed 1: {total}. Normalizing."
+            )
 
         return (
             name,
@@ -1103,7 +1112,9 @@ class Metals(BaseTransformation):
         """
 
         if metal not in self.secondary_activity_routes:
-            print(f"[Metals] WARNING: No secondary activity routes found for {metal}. Skipping.")
+            print(
+                f"[Metals] WARNING: No secondary activity routes found for {metal}. Skipping."
+            )
             return []
 
         route_entries = self.secondary_activity_routes[metal]
@@ -1118,11 +1129,15 @@ class Metals(BaseTransformation):
                 entries_with_shares.append((entry, share))
                 total_relative_share += share
             except Exception:
-                logger.warning(f"[Metals] Failed to interpolate shares for {metal} in entry: {entry}")
+                logger.warning(
+                    f"[Metals] Failed to interpolate shares for {metal} in entry: {entry}"
+                )
                 continue
 
         if total_relative_share == 0:
-            logger.warning(f"[Metals] Total relative share for {metal} is zero, no exchanges created.")
+            logger.warning(
+                f"[Metals] Total relative share for {metal} is zero, no exchanges created."
+            )
             return []
 
         exchanges = []
@@ -1141,18 +1156,25 @@ class Metals(BaseTransformation):
                 logger.warning(f"[Metals] No candidates found for entry: {entry}")
                 continue
             if len(candidates) > 1:
-                logger.warning(f"[Metals] Multiple candidates found for entry: {entry}, using the first one.")
+                logger.warning(
+                    f"[Metals] Multiple candidates found for entry: {entry}, using the first one."
+                )
 
             ds = candidates[0]
 
-            exchanges.append({
-                "name": ds["name"],
-                "product": ds["reference product"],
-                "location": ds["location"],
-                "amount": s_share * (share / total_relative_share),  # Normalize by total relative share
-                "type": "technosphere",
-                "unit": ds["unit"],
-            })
+            exchanges.append(
+                {
+                    "name": ds["name"],
+                    "product": ds["reference product"],
+                    "location": ds["location"],
+                    "amount": s_share
+                    * (
+                        share / total_relative_share
+                    ),  # Normalize by total relative share
+                    "type": "technosphere",
+                    "unit": ds["unit"],
+                }
+            )
 
         return exchanges
 
