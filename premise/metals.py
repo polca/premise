@@ -57,12 +57,12 @@ def _update_metals(scenario, version, system_model):
     scenario["index"] = metals.index
 
     validate = MetalsValidation(
-        model = scenario["model"],
-        scenario = scenario["pathway"],
-        year = scenario["year"],
-        regions = scenario["iam data"].regions,
-        database = metals.database,
-        iam_data= scenario["iam data"],
+        model=scenario["model"],
+        scenario=scenario["pathway"],
+        year=scenario["year"],
+        regions=scenario["iam data"].regions,
+        database=metals.database,
+        iam_data=scenario["iam data"],
     )
 
     validate.prim_sec_split = metals.prim_sec_split
@@ -142,6 +142,7 @@ def load_mining_shares_mapping():
 
     return df
 
+
 def load_primary_secondary_split():
     """
     Load mapping for primary and secondary split of metal markets.
@@ -150,6 +151,7 @@ def load_primary_secondary_split():
     with open(path, "r", encoding="utf-8") as stream:
         return yaml.safe_load(stream)
 
+
 def load_secondary_activity_routes():
     """
     Load mapping for secondary activity routes.
@@ -157,7 +159,6 @@ def load_secondary_activity_routes():
     path = DATA_DIR / "metals" / "secondary_supply_activities.yaml"
     with open(path, "r", encoding="utf-8") as stream:
         return yaml.safe_load(stream) or {}
-
 
 
 def load_activities_mapping():
@@ -339,6 +340,7 @@ def filter_technology(dataset_names, database):
         )
     )
 
+
 def build_ws_filter(field: str, query: dict):
     """
     Given a field and a query like {'contains': 'foo'}, return a filter function.
@@ -355,6 +357,7 @@ def build_ws_filter(field: str, query: dict):
         return lambda x: all(build_ws_filter(field, q)(x) for q in query["all"])
     else:
         raise ValueError(f"Unsupported filter for {field}: {query}")
+
 
 def interpolate_by_year(target_year: int, data: dict) -> float:
     """
@@ -802,11 +805,12 @@ class Metals(BaseTransformation):
     #
     #     return mapping
 
-    def get_geo_mapping(self,
-                        df: pd.DataFrame,
-                        new_locations: dict,
-                        subset: list[dict],
-                        ) -> dict:
+    def get_geo_mapping(
+        self,
+        df: pd.DataFrame,
+        new_locations: dict,
+        subset: list[dict],
+    ) -> dict:
         """
         Choose, for each country, which existing dataset location will serve as
         the template when creating the country-specific copy.
@@ -819,9 +823,7 @@ class Metals(BaseTransformation):
         mapping = {}
 
         for long_loc, short_loc in new_locations.items():
-            region_value = (
-                df.loc[df["Country"] == long_loc, "Region"].iloc[0]
-            )
+            region_value = df.loc[df["Country"] == long_loc, "Region"].iloc[0]
 
             # Case 1: Region contains a plain string (e.g., "CN")
             if isinstance(region_value, str):
@@ -837,7 +839,9 @@ class Metals(BaseTransformation):
             if isinstance(region_value, dict) and "either" in region_value:
 
                 candidates = [
-                    opt.get("equals") for opt in region_value["either"] if "equals" in opt
+                    opt.get("equals")
+                    for opt in region_value["either"]
+                    if "equals" in opt
                 ]
 
                 if len(candidates) == 0:
@@ -870,7 +874,6 @@ class Metals(BaseTransformation):
                 f"[Metals] Region mapping for {long_loc} is not a recognized format: {region_value}. "
                 "Skipping this location."
             )
-
 
         return mapping
 
@@ -930,7 +933,9 @@ class Metals(BaseTransformation):
             )
 
             if not datasets:
-                logger.warning(f"[Metals] Could not create mining datasets for: {name} || {ref_prod}")
+                logger.warning(
+                    f"[Metals] Could not create mining datasets for: {name} || {ref_prod}"
+                )
                 continue
 
             # add new datasets to database
@@ -964,7 +969,6 @@ class Metals(BaseTransformation):
 
         return new_exchanges
 
-
     def create_market(self, metal, df):
         """
         Create regionalized technosphere exchanges for a metal market based on production shares.
@@ -992,12 +996,13 @@ class Metals(BaseTransformation):
         primary_exchanges = self.create_region_specific_markets(df)
 
         if not primary_exchanges:
-            logger.warning(f"[Metals] No primary exchanges created for {metal}. Skipping market creation.")
+            logger.warning(
+                f"[Metals] No primary exchanges created for {metal}. Skipping market creation."
+            )
             return None
 
         ref_prod = primary_exchanges[0]["product"]
         market_name = f"market for {ref_prod}"
-
 
         dataset = {
             "name": market_name,
@@ -1028,7 +1033,9 @@ class Metals(BaseTransformation):
         dataset["exchanges"].extend(primary_exchanges)
 
         # Add burden-free secondary market exchange
-        secondary_exchanges = self.build_secondary_market_exchanges(dataset["reference product"], s_share)
+        secondary_exchanges = self.build_secondary_market_exchanges(
+            dataset["reference product"], s_share
+        )
         if secondary_exchanges:
             dataset["exchanges"].extend(secondary_exchanges)
 
@@ -1155,7 +1162,11 @@ class Metals(BaseTransformation):
         # Read the filters
         for col in ["Process", "Reference product", "Region"]:
             dataframe[col] = dataframe[col].apply(
-                lambda x: yaml.safe_load(x) if isinstance(x, str) and x.strip().startswith("{") else x
+                lambda x: (
+                    yaml.safe_load(x)
+                    if isinstance(x, str) and x.strip().startswith("{")
+                    else x
+                )
             )
 
         self.country_codes.update(
@@ -1180,7 +1191,9 @@ class Metals(BaseTransformation):
             for _, row in df_metal.iterrows():
                 filters = []
                 filters.append(build_ws_filter("name", row["Process"]))
-                filters.append(build_ws_filter("reference product", row["Reference product"]))
+                filters.append(
+                    build_ws_filter("reference product", row["Reference product"])
+                )
 
                 if pd.notna(row.get("Region")) and isinstance(row["Region"], dict):
                     filters.append(build_ws_filter("location", row["Region"]))
@@ -1189,7 +1202,8 @@ class Metals(BaseTransformation):
 
                 if not candidates:
                     logger.warning(
-                        f"[Metals] No dataset found for '{metal}' with filters: {row['Process']} || {row['Reference product']}")
+                        f"[Metals] No dataset found for '{metal}' with filters: {row['Process']} || {row['Reference product']}"
+                    )
                     continue
 
                 matched_rows.append(row)
@@ -1207,7 +1221,9 @@ class Metals(BaseTransformation):
                 self.add_to_index(dataset)
                 self.write_log(dataset, "created")
             else:
-                logger.warning(f"[Metals] No valid datasets found to build market for metal '{metal}'. Skipping.")
+                logger.warning(
+                    f"[Metals] No valid datasets found to build market for metal '{metal}'. Skipping."
+                )
 
     def get_market_split_shares(self, metal_key: str) -> tuple[str, str, float, float]:
         """
@@ -1232,7 +1248,9 @@ class Metals(BaseTransformation):
         total = p + s
 
         if total > 1:
-            print(f"[Metals] Warning: Total shares for {metal_key} exceed 1: {total}. Normalizing.")
+            print(
+                f"[Metals] Warning: Total shares for {metal_key} exceed 1: {total}. Normalizing."
+            )
 
         return (
             name,
@@ -1262,11 +1280,15 @@ class Metals(BaseTransformation):
                 entries_with_shares.append((entry, share))
                 total_relative_share += share
             except Exception:
-                logger.warning(f"[Metals] Failed to interpolate shares for {metal} in entry: {entry}")
+                logger.warning(
+                    f"[Metals] Failed to interpolate shares for {metal} in entry: {entry}"
+                )
                 continue
 
         if total_relative_share == 0:
-            logger.warning(f"[Metals] Total relative share for {metal} is zero, no exchanges created.")
+            logger.warning(
+                f"[Metals] Total relative share for {metal} is zero, no exchanges created."
+            )
             return []
 
         exchanges = []
@@ -1285,18 +1307,25 @@ class Metals(BaseTransformation):
                 logger.warning(f"[Metals] No candidates found for entry: {entry}")
                 continue
             if len(candidates) > 1:
-                logger.warning(f"[Metals] Multiple candidates found for entry: {entry}, using the first one.")
+                logger.warning(
+                    f"[Metals] Multiple candidates found for entry: {entry}, using the first one."
+                )
 
             ds = candidates[0]
 
-            exchanges.append({
-                "name": ds["name"],
-                "product": ds["reference product"],
-                "location": ds["location"],
-                "amount": s_share * (share / total_relative_share),  # Normalize by total relative share
-                "type": "technosphere",
-                "unit": ds["unit"],
-            })
+            exchanges.append(
+                {
+                    "name": ds["name"],
+                    "product": ds["reference product"],
+                    "location": ds["location"],
+                    "amount": s_share
+                    * (
+                        share / total_relative_share
+                    ),  # Normalize by total relative share
+                    "type": "technosphere",
+                    "unit": ds["unit"],
+                }
+            )
 
         return exchanges
 
