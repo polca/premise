@@ -334,7 +334,7 @@ class InventorySet:
         )
         return self.generate_sets_from_filters(filters)
 
-    def generate_fuel_map(self, model) -> dict:
+    def generate_fuel_map(self) -> dict:
         """
         Filter ecoinvent processes related to fuel supply.
 
@@ -344,7 +344,7 @@ class InventorySet:
 
         """
         filters = get_mapping(
-            filepath=FUELS_TECHS, var="ecoinvent_aliases", model=model
+            filepath=FUELS_TECHS, var="ecoinvent_aliases"
         )
         return self.generate_sets_from_filters(filters)
 

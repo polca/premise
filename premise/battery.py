@@ -137,7 +137,7 @@ class Battery(BaseTransformation):
                 "LSB": "market for battery capacity, Li-sulfur, Li-S",
                 "NCA": "market for battery capacity, Li-ion, NCA",
                 "NMC111": "market for battery capacity, Li-ion, NMC111",
-                "NMC532": "market for battery capacity, Li-ion, NMC523",
+                "NMC532": "market for battery capacity, Li-ion, NMC532",
                 "NMC622": "market for battery capacity, Li-ion, NMC622",
                 "NMC811": "market for battery capacity, Li-ion, NMC811",
                 "NMC900-Si": "market for battery capacity, Li-ion, NMC955",

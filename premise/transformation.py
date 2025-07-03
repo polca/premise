@@ -324,6 +324,12 @@ def calculate_input_energy(
         try:
             lhv = fuels_specs[fuel_map_reverse[fuel_name]]["lhv"]
         except KeyError:
+            print(f"Warning: LHV for {fuel_name} not found in fuel specifications.")
+            print()
+            print(f"Available fuel specs keys: {list(fuels_specs.keys())}.")
+            print()
+            print(f"Available fuel map reverse keys: {list(fuel_map_reverse.keys())}.")
+            print()
             lhv = 0
     elif fuel_unit == "kilowatt hour":
         lhv = 3.6

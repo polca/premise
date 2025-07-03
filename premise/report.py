@@ -88,7 +88,7 @@ def fetch_data(
             if hasattr(iam_data, "production_volumes")
             else None
         ),
-        "Heat (all-purpose) - generation": (
+        "Heat (industrial) - generation": (
             iam_data.production_volumes
             if hasattr(iam_data, "production_volumes")
             else None
@@ -312,9 +312,15 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
         },
         "Heat (buildings) - generation": {
             "filepath": IAM_HEATING_VARS,
+            "filter": [
+                "heat, buildings",
+            ],
         },
-        "Heat (all-purpose) - generation": {
+        "Heat (industrial) - generation": {
             "filepath": IAM_HEATING_VARS,
+            "filter": [
+                "heat, industrial",
+            ],
         },
         "Fuel (gasoline) - generation": {
             "filepath": IAM_FUELS_VARS,
@@ -492,12 +498,27 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
             variables = filepath["variables"]
         else:
             variables = get_variables(filepath["filepath"])
-            if "filter" in filepath:
-                variables = [
-                    x
-                    for x in variables
-                    if any(x.startswith(y) for y in filepath["filter"])
-                ]
+
+        if "filter" in filepath:
+            variables = [
+                x for x in variables if any(x.startswith(y) for y in filepath["filter"])
+            ]
+
+        # before creating the worksheet
+        # check if we have data to plot
+
+        is_data = False
+        for scenario in scenarios:
+            iam_data = fetch_data(
+                iam_data=scenario["iam data"],
+                sector=sector,
+                variable=variables,
+            )
+            if iam_data is not None:
+                is_data = True
+                break
+        if not is_data:
+            continue
 
         worksheet = workbook.create_sheet(sector)
 

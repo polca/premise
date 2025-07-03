@@ -60,7 +60,7 @@ else:
 if key:
     rdc = IAMDataCollection(
         model="remind",
-        pathway="SSP2-Base",
+        pathway="SSP2-NPi",
         year=2012,
         filepath_iam_files=DATA_DIR / "iam_output_files",
         key=str.encode(key),
@@ -70,7 +70,7 @@ if key:
         database=db,
         iam_data=rdc,
         model="remind",
-        pathway="SSP2-Base",
+        pathway="SSP2-NPi",
         year=2012,
         version="3.5",
         system_model="cutoff",

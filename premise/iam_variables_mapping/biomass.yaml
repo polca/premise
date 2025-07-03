@@ -23,7 +23,7 @@ biomass wood - purpose grown:
     image: Primary Energy|Biomass|Traditional
   ecoinvent_aliases:
     fltr:
-      name: market for wood chips, wet, measured as dry mass
+      name: market for wood chips
       reference product: wood chips
     mask: willow
 biomass - residual:

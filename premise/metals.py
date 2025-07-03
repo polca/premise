@@ -9,8 +9,7 @@ Integrates projections regarding use of metals in the economy from:
 import uuid
 from functools import lru_cache
 from itertools import groupby
-from pprint import pprint
-from typing import Optional, Tuple
+from typing import Optional
 
 import country_converter as coco
 import numpy as np
@@ -32,6 +31,14 @@ from .transformation import (
 from .utils import DATA_DIR
 
 logger = create_logger("metal")
+
+EI311_NAME_CHANGES = {
+    "sodium borate mine operation and beneficiation": "sodium borates mine operation and beneficiation",
+    "gallium production, semiconductor-grade": "high-grade gallium production, from low-grade gallium",
+}
+
+EI311_PRODUCT_CHANGES = {"gallium, semiconductor-grade": "gallium, high-grade"}
+EI311_LOCATION_CHANGES = {"high-grade gallium production, from low-grade gallium": "CN"}
 
 
 def _update_metals(scenario, version, system_model):
@@ -392,7 +399,6 @@ class Metals(BaseTransformation):
         for dataset in self.database:
             if dataset["name"] in self.rev_activities_metals_map:
                 origin_var = self.rev_activities_metals_map[dataset["name"]]
-
                 self.update_metal_use(dataset, origin_var)
 
     @lru_cache()
@@ -888,6 +894,34 @@ class Metals(BaseTransformation):
         dataframe = load_mining_shares_mapping()
         dataframe = dataframe.loc[dataframe["Work done"] == "Yes"]
         dataframe = dataframe.loc[~dataframe["Country"].isnull()]
+
+        # filter out rows where "Process" refers to a non-existing process
+        existing_pairs = set(
+            (act["name"], act["reference product"]) for act in self.database
+        )
+
+        dataframe = dataframe[
+            dataframe.apply(
+                lambda row: (row["Process"], row["Reference product"])
+                in existing_pairs,
+                axis=1,
+            )
+        ]
+
+        # update certain values under "Process" and "Reference product"
+        # if ecoinvent 3.11 is used
+        if self.version == "3.11":
+            dataframe["Process"] = dataframe["Process"].replace(EI311_NAME_CHANGES)
+            dataframe["Reference product"] = dataframe["Reference product"].replace(
+                EI311_PRODUCT_CHANGES
+            )
+
+            for k, v in EI311_LOCATION_CHANGES.items():
+                dataframe.loc[dataframe["Process"] == k, "Region"] = v
+
+            # we also need to remove "graphite ore mining"
+            dataframe = dataframe.loc[dataframe["Process"] != "graphite ore mining"]
+
         dataframe_shares = dataframe
 
         self.country_codes.update(

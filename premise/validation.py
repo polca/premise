@@ -154,6 +154,7 @@ class BaseDatasetValidator:
         original_database=None,
         db_name=None,
         biosphere_name=None,
+        system_model="cutoff",
     ):
         self.original_database = original_database
         self.database = database
@@ -218,13 +219,34 @@ class BaseDatasetValidator:
                         self.log_issue(ds, "incomplete uncertainty data", message)
 
                     if exc.get("uncertainty type", 0) == 2 and "loc" not in exc:
-                        exc["loc"] = math.log(exc["amount"])
+                        if exc["amount"] < 0:
+                            exc["loc"] = math.log(exc["amount"] * -1)
+                            exc["negative"] = True
+                        else:
+                            exc["loc"] = math.log(exc["amount"])
 
                     if exc.get("uncertainty type", 0) == 3 and "loc" not in exc:
                         exc["loc"] = exc["amount"]
 
-                    if exc.get("uncertainty type", 0) == 5 and "loc" not in exc:
-                        exc["loc"] = exc["amount"]
+                    if exc.get("uncertainty type", 0) == 5:
+                        if "loc" not in exc:
+                            exc["loc"] = exc["amount"]
+                        if exc["minimum"] > exc["loc"]:
+                            message = f"Exchange {exc['name']} has a minimum value greater than the loc value."
+                            self.log_issue(
+                                ds,
+                                "uncertainty minimum greater than loc",
+                                message,
+                                issue_type="major",
+                            )
+                        if exc["maximum"] < exc["loc"]:
+                            message = f"Exchange {exc['name']} has a maximum value less than the loc value."
+                            self.log_issue(
+                                ds,
+                                "uncertainty maximum less than loc",
+                                message,
+                                issue_type="major",
+                            )
 
     def check_datasets_integrity(self):
         # Verify no unintended loss of datasets
@@ -646,6 +668,7 @@ class BaseDatasetValidator:
             print("Minor anomalies found: check the change report.")
         if len(self.major_issues_log) > 0:
             print("---> MAJOR anomalies found: check the change report.")
+            raise ValueError
 
 
 class BatteryValidation(BaseDatasetValidator):
@@ -742,6 +765,26 @@ class HeatValidation(BaseDatasetValidator):
     def __init__(self, model, scenario, year, regions, database, iam_data):
         super().__init__(model, scenario, year, regions, database)
         self.iam_data = iam_data
+
+    def check_heat_markets_input(self):
+        # Check that the sum of heat inputs in the market for heat is equal to 1
+        for ds in ws.get_many(
+            self.database,
+            ws.contains("name", "market for heat"),
+            ws.equals("unit", "megajoule"),
+        ):
+            total = sum(
+                [
+                    exc["amount"]
+                    for exc in ds["exchanges"]
+                    if exc["type"] == "technosphere" and exc["unit"] == "megajoule"
+                ]
+            )
+            if not np.isclose(total, 1.0, rtol=1e-3):
+                message = f"Total exchange amount is {total}, not 1.0"
+                self.log_issue(
+                    ds, "Incorrect market shares", message, issue_type="major"
+                )
 
     def check_heat_conversion_efficiency(self):
         # Check that the heat conversion efficiency is within the expected range
@@ -1632,7 +1675,7 @@ class FuelsValidation(BaseDatasetValidator):
                             (
                                 x["amount"]
                                 if x["unit"] == "cubic meter"
-                                else x["amount"] / 0.716
+                                else x["amount"] / 0.74
                             )
                             for x in ds["exchanges"]
                             if x["type"] == "technosphere"
@@ -1649,7 +1692,7 @@ class FuelsValidation(BaseDatasetValidator):
                             and x["unit"] in ("kilogram", "cubic meter")
                         ]
                     )
-                if total < 0.99 or total > 1 / 0.716:
+                if total < 0.99 or total > 2:
                     message = f"Fuel market inputs sum to {total}."
                     self.log_issue(
                         ds,
@@ -1808,7 +1851,7 @@ class SteelValidation(BaseDatasetValidator):
                     and x["type"] == "technosphere"
                     and x["amount"] > 0
                 ]
-                if len(pig_iron) == 0:
+                if not pig_iron:
                     message = "No input of pig iron found."
                     self.log_issue(
                         ds,
@@ -1835,7 +1878,6 @@ class SteelValidation(BaseDatasetValidator):
                 ds["name"].startswith("steel production, electric")
                 and "steel" in ds["reference product"]
                 and ds["location"] in self.regions
-                and ds["unit"] == "kilogram"
             ):
                 electricity = sum(
                     [
@@ -1844,7 +1886,6 @@ class SteelValidation(BaseDatasetValidator):
                         if x["type"] == "technosphere" and x["unit"] == "kilowatt hour"
                     ]
                 )
-
                 # if electricity use is inferior to 0.39 MWh/kg
                 # or superior to 0.8 MWh/kg, log a warning
 
@@ -2093,9 +2134,12 @@ class CementValidation(BaseDatasetValidator):
 
 
 class BiomassValidation(BaseDatasetValidator):
-    def __init__(self, model, scenario, year, regions, database, iam_data):
-        super().__init__(model, scenario, year, regions, database)
+    def __init__(
+        self, model, scenario, year, regions, database, iam_data, system_model
+    ):
+        super().__init__(model, scenario, year, regions, database, system_model)
         self.iam_data = iam_data
+        self.system_model = system_model
 
     def check_biomass_markets(self):
         # check that the biomass markets inputs
@@ -2127,6 +2171,8 @@ class BiomassValidation(BaseDatasetValidator):
         # check that the share of residual biomass
         # in the biomass market is equal to the IAM projections
 
+        is_consequential = self.system_model == "consequential"
+
         for ds in self.database:
             if (
                 ds["name"] == "market for biomass, used as fuel"
@@ -2134,20 +2180,26 @@ class BiomassValidation(BaseDatasetValidator):
                 and ds["location"] != "World"
             ):
                 if self.year in self.iam_data.biomass_mix.coords["year"].values:
-                    expected_share = self.iam_data.biomass_mix.sel(
-                        variables="biomass - residual",
-                        region=ds["location"],
-                        year=self.year,
-                    ).values.item(0)
-                else:
-                    expected_share = (
-                        self.iam_data.biomass_mix.sel(
+                    if not is_consequential:
+                        expected_share = self.iam_data.biomass_mix.sel(
                             variables="biomass - residual",
                             region=ds["location"],
+                            year=self.year,
+                        ).values.item(0)
+                    else:
+                        expected_share = 0.0
+                else:
+                    if not is_consequential:
+                        expected_share = (
+                            self.iam_data.biomass_mix.sel(
+                                variables="biomass - residual",
+                                region=ds["location"],
+                            )
+                            .interp(year=self.year)
+                            .values.item(0)
                         )
-                        .interp(year=self.year)
-                        .values.item(0)
-                    )
+                    else:
+                        expected_share = 0.0
 
                 residual_biomass = sum(
                     [

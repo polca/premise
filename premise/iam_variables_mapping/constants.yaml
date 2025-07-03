@@ -9,6 +9,7 @@ SUPPORTED_EI_VERSIONS:
   - "3.9"
   - "3.9.1"
   - "3.10"
+  - "3.11"
 
 SUPPORTED_MODELS:
   - remind
@@ -24,6 +25,8 @@ SUPPORTED_PATHWAYS:
   - SSP2-NDC
   - SSP2-NPi
   - SSP2-rollBack
+  - SSP2-PkBudg1150
+  - SSP2-PkBudg500
   - SSP2-PkBudg1000
   - SSP2-PkBudg650
   - SSP2-RCP26
@@ -32,6 +35,8 @@ SUPPORTED_PATHWAYS:
   - SSP1-rollBack
   - SSP1-NDC
   - SSP1-NPi
+  - SSP1-PkBudg1150
+  - SSP1-PkBudg500
   - SSP1-PkBudg1000
   - SSP1-PkBudg650
   - SSP3-NDC
@@ -39,6 +44,19 @@ SUPPORTED_PATHWAYS:
   - SSP3-rollBack
   - SSP3-PkBudg1000
   - SSP3-PkBudg650
+  - SSP5-Base
+  - SSP5-NDC
+  - SSP5-NPi
+  - SSP5-PkBudg1150
+  - SSP5-PkBudg500
+  - SSP1-L
+  - SSP1-Ma
+  - SSP1-VLLO
+  - SSP2-L
+  - SSP2-M
+  - SSP2-VLHO
+  - SSP3-H
+  - SSP5-H
   - static
 
 LIST_MESSAGE_REGIONS:

@@ -32,7 +32,7 @@ class BiogasMixin:
             mapping=methane_map,
         )
 
-        self.fuel_map = self.mapping.generate_fuel_map(model=self.model)
+        self.fuel_map = self.mapping.generate_fuel_map()
 
         # create markets for natural gas and biogas
         for market_name in [

@@ -6,19 +6,32 @@ train:
     - diesel-electric
     - fuel cell
   unit: ton kilometer
-  name: market for transport, freight, train
+  name: transport, freight, train
+  old:
+    market for transport, freight train:
+      remind: transport, freight, train, fleet average
+      remind-eu: transport, freight, train, fleet average
+      image: transport, freight, train, fleet average
+      tiam-ucl: transport, freight, train, fleet average
+      witch: transport, freight, train, fleet average
+    market for transport, freight, train, fleet average:
+        remind: transport, freight, train, fleet average
+        remind-eu: transport, freight, train, fleet average
+        image: transport, freight, train, fleet average
+        tiam-ucl: transport, freight, train, fleet average
+        witch: transport, freight, train, fleet average
 
 two-wheeler:
   sizes:
     - motorbike
   unit: kilometer
-  name: market for transport, motorbike
+  name: transport, motorbike
 
 bus:
   sizes:
     - 13m single deck urban bus
   unit: person kilometer
-  name: market for transport, passenger bus
+  name: transport, passenger bus
 
 car:
   sizes:
@@ -31,233 +44,408 @@ car:
     - Large SUV
     - Van
   unit: kilometer
-  name: market for transport, passenger car
+  name: transport, passenger car
 
 ship:
   unit: ton kilometer
-  name: market for transport, freight, sea, container ship
+  name: transport, freight, sea, container ship
   old:
     market for transport, freight, sea, container ship:
-      remind: market for transport, freight, sea, container ship
-      remind-eu: market for transport, freight, sea, container ship
-      image: market for transport, freight, sea, container ship
-      tiam-ucl: market for transport, freight, sea, container ship
-      witch: market for transport, freight, sea, container ship
+      remind: transport, freight, sea, container ship, fleet average
+      remind-eu: transport, freight, sea, container ship, fleet average
+      image: transport, freight, sea, container ship, fleet average
+      tiam-ucl: transport, freight, sea, container ship, fleet average
+      witch: transport, freight, sea, container ship, fleet average
+    market for transport, freight, sea, container ship, heavy fuel oil:
+      remind: transport, freight, sea, container ship, fleet average
+      remind-eu: transport, freight, sea, container ship, fleet average
+      image: transport, freight, sea, container ship, fleet average
+      tiam-ucl: transport, freight, sea, container ship, fleet average
+      witch: transport, freight, sea, container ship, fleet average
 
 truck:
   sizes:
-    - 18t
-    - 26t
-    - 3.5t
-    - 7.5t
-    - 40t
+    - 18 metric ton
+    - 26 metric ton
+    - 3.5 metric ton
+    - 7.5 metric ton
+    - 40 metric ton
   unit: ton kilometer
-  name: market for transport, freight, lorry
+  name: transport, freight, lorry
   old:
     transport, freight, lorry 16-32 metric ton, EURO1:
-      remind: market for transport, freight, lorry, 26t gross weight, long haul
-      remind-eu: market for transport, freight, lorry, 26t gross weight, long haul
-      image: market for transport, freight, lorry, 18t gross weight, long haul
-      tiam-ucl: market for transport, freight, lorry, 18t gross weight, long haul
-      witch: market for transport, freight, lorry, 7.5t gross weight, long haul
+      remind: transport, freight, lorry, 26 metric ton, fleet average
+      remind-eu: transport, freight, lorry, 26 metric ton, fleet average
+      image: transport, freight, lorry, 18 metric ton, fleet average
+      tiam-ucl: transport, freight, lorry, 18 metric ton, fleet average
+      witch: transport, freight, lorry, 7.5 metric ton, fleet average
     transport, freight, lorry 3.5-7.5 metric ton, EURO3:
-      remind: market for transport, freight, lorry, 7.5t gross weight, long haul
-      remind-eu: market for transport, freight, lorry, 7.5t gross weight, long haul
-      image: market for transport, freight, lorry, 18t gross weight, long haul
-      tiam-ucl: market for transport, freight, lorry, 7.5t gross weight, long haul
-      witch: market for transport, freight, lorry, 7.5t gross weight, long haul
+      remind: transport, freight, lorry, 7.5 metric ton, fleet average
+      remind-eu: transport, freight, lorry, 7.5 metric ton, fleet average
+      image: transport, freight, lorry, 18 metric ton, fleet average
+      tiam-ucl: transport, freight, lorry, 7.5 metric ton, fleet average
+      witch: transport, freight, lorry, 7.5 metric ton, fleet average
     transport, freight, lorry 16-32 metric ton, EURO5:
-      remind: market for transport, freight, lorry, 26t gross weight, long haul
-      remind-eu: market for transport, freight, lorry, 26t gross weight, long haul
-      image: market for transport, freight, lorry, 18t gross weight, long haul
-      tiam-ucl: market for transport, freight, lorry, 18t gross weight, long haul
-      witch: market for transport, freight, lorry, 7.5t gross weight, long haul
+      remind: transport, freight, lorry, 26 metric ton, fleet average
+      remind-eu: transport, freight, lorry, 26 metric ton, fleet average
+      image: transport, freight, lorry, 18 metric ton, fleet average
+      tiam-ucl: transport, freight, lorry, 18 metric ton, fleet average
+      witch: transport, freight, lorry, 7.5 metric ton, fleet average
     transport, freight, lorry >32 metric ton, EURO1:
-      remind: market for transport, freight, lorry, 40t gross weight, long haul
-      remind-eu: market for transport, freight, lorry, 40t gross weight, long haul
-      image: market for transport, freight, lorry, 40t gross weight, long haul
-      tiam-ucl: market for transport, freight, lorry, 40t gross weight, long haul
-      witch: market for transport, freight, lorry, 7.5t gross weight, long haul
+      remind: transport, freight, lorry, 40 metric ton, fleet average
+      remind-eu: transport, freight, lorry, 40 metric ton, fleet average
+      image: transport, freight, lorry, 40 metric ton, fleet average
+      tiam-ucl: transport, freight, lorry, 40 metric ton, fleet average
+      witch: transport, freight, lorry, 7.5 metric ton, fleet average
     transport, freight, lorry 3.5-7.5 metric ton, EURO4:
-      remind: market for transport, freight, lorry, 7.5t gross weight, long haul
-      remind-eu: market for transport, freight, lorry, 7.5t gross weight, long haul
-      image: market for transport, freight, lorry, 18t gross weight, long haul
-      tiam-ucl: market for transport, freight, lorry, 7.5t gross weight, long haul
-      witch: market for transport, freight, lorry, 7.5t gross weight, long haul
-    transport, freight, lorry, all sizes, EURO1 to generic market for transport, freight, lorry:
-      remind: market for transport, freight, lorry, long haul
-      remind-eu: market for transport, freight, lorry, long haul
-      image: market for transport, freight, lorry, long haul
-      tiam-ucl: market for transport, freight, lorry, long haul
-      witch: market for transport, freight, lorry, long haul
+      remind: transport, freight, lorry, 7.5 metric ton, fleet average
+      remind-eu: transport, freight, lorry, 7.5 metric ton, fleet average
+      image: transport, freight, lorry, 18 metric ton, fleet average
+      tiam-ucl: transport, freight, lorry, 7.5 metric ton, fleet average
+      witch: transport, freight, lorry, 7.5 metric ton, fleet average
+    transport, freight, lorry, all sizes, EURO1 to generic market for transport, freight, lorry, unspecified:
+      remind: transport, freight, lorry, fleet average
+      remind-eu: transport, freight, lorry, fleet average
+      image: transport, freight, lorry, fleet average
+      tiam-ucl: transport, freight, lorry, fleet average
+      witch: transport, freight, lorry, fleet average
     transport, freight, lorry 7.5-16 metric ton, EURO6:
-      remind: market for transport, freight, lorry, 18t gross weight, long haul
-      remind-eu: market for transport, freight, lorry, 18t gross weight, long haul
-      image: market for transport, freight, lorry, 18t gross weight, long haul
-      tiam-ucl: market for transport, freight, lorry, 18t gross weight, long haul
-      witch: market for transport, freight, lorry, 7.5t gross weight, long haul
+      remind: transport, freight, lorry, 18 metric ton, fleet average
+      remind-eu: transport, freight, lorry, 18 metric ton, fleet average
+      image: transport, freight, lorry, 18 metric ton, fleet average
+      tiam-ucl: transport, freight, lorry, 18 metric ton, fleet average
+      witch: transport, freight, lorry, 7.5 metric ton, fleet average
     transport, freight, lorry 7.5-16 metric ton, EURO1:
-      remind: market for transport, freight, lorry, 18t gross weight, long haul
-      remind-eu: market for transport, freight, lorry, 18t gross weight, long haul
-      image: market for transport, freight, lorry, 18t gross weight, long haul
-      tiam-ucl: market for transport, freight, lorry, 18t gross weight, long haul
-      witch: market for transport, freight, lorry, 7.5t gross weight, long haul
-    transport, freight, lorry, all sizes, EURO3 to generic market for transport, freight, lorry:
-      remind: market for transport, freight, lorry, long haul
-      remind-eu: market for transport, freight, lorry, long haul
-      image: market for transport, freight, lorry, long haul
-      tiam-ucl: market for transport, freight, lorry, long haul
-      witch: market for transport, freight, lorry, long haul
+      remind: transport, freight, lorry, 18 metric ton, fleet average
+      remind-eu: transport, freight, lorry, 18 metric ton, fleet average
+      image: transport, freight, lorry, 18 metric ton, fleet average
+      tiam-ucl: transport, freight, lorry, 18 metric ton, fleet average
+      witch: transport, freight, lorry, 7.5 metric ton, fleet average
+    transport, freight, lorry, all sizes, EURO3 to generic market for transport, freight, lorry, unspecified:
+      remind: transport, freight, lorry, fleet average
+      remind-eu: transport, freight, lorry, fleet average
+      image: transport, freight, lorry, fleet average
+      tiam-ucl: transport, freight, lorry, fleet average
+      witch: transport, freight, lorry, fleet average
     transport, freight, lorry 16-32 metric ton, EURO6:
-      remind: market for transport, freight, lorry, 26t gross weight, long haul
-      remind-eu: market for transport, freight, lorry, 26t gross weight, long haul
-      image: market for transport, freight, lorry, 18t gross weight, long haul
-      tiam-ucl: market for transport, freight, lorry, 18t gross weight, long haul
-      witch: market for transport, freight, lorry, 7.5t gross weight, long haul
+      remind: transport, freight, lorry, 26 metric ton, fleet average
+      remind-eu: transport, freight, lorry, 26 metric ton, fleet average
+      image: transport, freight, lorry, 18 metric ton, fleet average
+      tiam-ucl: transport, freight, lorry, 18 metric ton, fleet average
+      witch: transport, freight, lorry, 7.5 metric ton, fleet average
     transport, freight, lorry 7.5-16 metric ton, EURO2:
-      remind: market for transport, freight, lorry, 18t gross weight, long haul
-      remind-eu: market for transport, freight, lorry, 18t gross weight, long haul
-      image: market for transport, freight, lorry, 18t gross weight, long haul
-      tiam-ucl: market for transport, freight, lorry, 18t gross weight, long haul
-      witch: market for transport, freight, lorry, 7.5t gross weight, long haul
+      remind: transport, freight, lorry, 18 metric ton, fleet average
+      remind-eu: transport, freight, lorry, 18 metric ton, fleet average
+      image: transport, freight, lorry, 18 metric ton, fleet average
+      tiam-ucl: transport, freight, lorry, 18 metric ton, fleet average
+      witch: transport, freight, lorry, 7.5 metric ton, fleet average
     transport, freight, lorry 7.5-16 metric ton, EURO3:
-      remind: market for transport, freight, lorry, 18t gross weight, long haul
-      remind-eu: market for transport, freight, lorry, 18t gross weight, long haul
-      image: market for transport, freight, lorry, 18t gross weight, long haul
-      tiam-ucl: market for transport, freight, lorry, 18t gross weight, long haul
-      witch: market for transport, freight, lorry, 7.5t gross weight, long haul
+      remind: transport, freight, lorry, 18 metric ton, fleet average
+      remind-eu: transport, freight, lorry, 18 metric ton, fleet average
+      image: transport, freight, lorry, 18 metric ton, fleet average
+      tiam-ucl: transport, freight, lorry, 18 metric ton, fleet average
+      witch: transport, freight, lorry, 7.5 metric ton, fleet average
     transport, freight, lorry 7.5-16 metric ton, EURO4:
-      remind: market for transport, freight, lorry, 18t gross weight, long haul
-      remind-eu: market for transport, freight, lorry, 18t gross weight, long haul
-      image: market for transport, freight, lorry, 18t gross weight, long haul
-      tiam-ucl: market for transport, freight, lorry, 18t gross weight, long haul
-      witch: market for transport, freight, lorry, 7.5t gross weight, long haul
+      remind: transport, freight, lorry, 18 metric ton, fleet average
+      remind-eu: transport, freight, lorry, 18 metric ton, fleet average
+      image: transport, freight, lorry, 18 metric ton, fleet average
+      tiam-ucl: transport, freight, lorry, 18 metric ton, fleet average
+      witch: transport, freight, lorry, 7.5 metric ton, fleet average
     transport, freight, lorry 16-32 metric ton, EURO2:
-      remind: market for transport, freight, lorry, 26t gross weight, long haul
-      remind-eu: market for transport, freight, lorry, 26t gross weight, long haul
-      image: market for transport, freight, lorry, 18t gross weight, long haul
-      tiam-ucl: market for transport, freight, lorry, 18t gross weight, long haul
-      witch: market for transport, freight, lorry, 7.5t gross weight, long haul
+      remind: transport, freight, lorry, 26 metric ton, fleet average
+      remind-eu: transport, freight, lorry, 26 metric ton, fleet average
+      image: transport, freight, lorry, 18 metric ton, fleet average
+      tiam-ucl: transport, freight, lorry, 18 metric ton, fleet average
+      witch: transport, freight, lorry, 7.5 metric ton, fleet average
     transport, freight, lorry >32 metric ton, EURO6:
-      remind: market for transport, freight, lorry, 40t gross weight, long haul
-      remind-eu: market for transport, freight, lorry, 40t gross weight, long haul
-      image: market for transport, freight, lorry, 40t gross weight, long haul
-      tiam-ucl: market for transport, freight, lorry, 40t gross weight, long haul
-      witch: market for transport, freight, lorry, 7.5t gross weight, long haul
+      remind: transport, freight, lorry, 40 metric ton, fleet average
+      remind-eu: transport, freight, lorry, 40 metric ton, fleet average
+      image: transport, freight, lorry, 40 metric ton, fleet average
+      tiam-ucl: transport, freight, lorry, 40 metric ton, fleet average
+      witch: transport, freight, lorry, 7.5 metric ton, fleet average
     transport, freight, lorry 3.5-7.5 metric ton, EURO2:
-      remind: market for transport, freight, lorry, 7.5t gross weight, long haul
-      remind-eu: market for transport, freight, lorry, 7.5t gross weight, long haul
-      image: market for transport, freight, lorry, 18t gross weight, long haul
-      tiam-ucl: market for transport, freight, lorry, 7.5t gross weight, long haul
-      witch: market for transport, freight, lorry, 7.5t gross weight, long haul
+      remind: transport, freight, lorry, 7.5 metric ton, fleet average
+      remind-eu: transport, freight, lorry, 7.5 metric ton, fleet average
+      image: transport, freight, lorry, 18 metric ton, fleet average
+      tiam-ucl: transport, freight, lorry, 7.5 metric ton, fleet average
+      witch: transport, freight, lorry, 7.5 metric ton, fleet average
     transport, freight, lorry 3.5-7.5 metric ton, EURO1:
-      remind: market for transport, freight, lorry, 7.5t gross weight, long haul
-      remind-eu: market for transport, freight, lorry, 7.5t gross weight, long haul
-      image: market for transport, freight, lorry, 18t gross weight, long haul
-      tiam-ucl: market for transport, freight, lorry, 7.5t gross weight, long haul
-      witch: market for transport, freight, lorry, 7.5t gross weight, long haul
-    transport, freight, lorry, all sizes, EURO2 to generic market for transport, freight, lorry:
-      remind: market for transport, freight, lorry, long haul
-      remind-eu: market for transport, freight, lorry, long haul
-      image: market for transport, freight, lorry, long haul
-      tiam-ucl: market for transport, freight, lorry, long haul
-      witch: market for transport, freight, lorry, long haul
+      remind: transport, freight, lorry, 7.5 metric ton, fleet average
+      remind-eu: transport, freight, lorry, 7.5 metric ton, fleet average
+      image: transport, freight, lorry, 18 metric ton, fleet average
+      tiam-ucl: transport, freight, lorry, 7.5 metric ton, fleet average
+      witch: transport, freight, lorry, 7.5 metric ton, fleet average
+    transport, freight, lorry, all sizes, EURO2 to generic market for transport, freight, lorry, unspecified:
+      remind: transport, freight, lorry, fleet average
+      remind-eu: transport, freight, lorry, fleet average
+      image: transport, freight, lorry, fleet average
+      tiam-ucl: transport, freight, lorry, fleet average
+      witch: transport, freight, lorry, fleet average
     transport, freight, lorry 16-32 metric ton, unregulated:
-      remind: market for transport, freight, lorry, 26t gross weight, long haul
-      remind-eu: market for transport, freight, lorry, 26t gross weight, long haul
-      image: market for transport, freight, lorry, 18t gross weight, long haul
-      tiam-ucl: market for transport, freight, lorry, 18t gross weight, long haul
-      witch: market for transport, freight, lorry, 7.5t gross weight, long haul
+      remind: transport, freight, lorry, 26 metric ton, fleet average
+      remind-eu: transport, freight, lorry, 26 metric ton, fleet average
+      image: transport, freight, lorry, 18 metric ton, fleet average
+      tiam-ucl: transport, freight, lorry, 18 metric ton, fleet average
+      witch: transport, freight, lorry, 7.5 metric ton, fleet average
     transport, freight, lorry >32 metric ton, unregulated:
-      remind: market for transport, freight, lorry, 40t gross weight, long haul
-      remind-eu: market for transport, freight, lorry, 40t gross weight, long haul
-      image: market for transport, freight, lorry, 40t gross weight, long haul
-      tiam-ucl: market for transport, freight, lorry, 40t gross weight, long haul
-      witch: market for transport, freight, lorry, 7.5t gross weight, long haul
+      remind: transport, freight, lorry, 40 metric ton, fleet average
+      remind-eu: transport, freight, lorry, 40 metric ton, fleet average
+      image: transport, freight, lorry, 40 metric ton, fleet average
+      tiam-ucl: transport, freight, lorry, 40 metric ton, fleet average
+      witch: transport, freight, lorry, 7.5 metric ton, fleet average
     transport, freight, lorry >32 metric ton, EURO3:
-      remind: market for transport, freight, lorry, 40t gross weight, long haul
-      remind-eu: market for transport, freight, lorry, 40t gross weight, long haul
-      image: market for transport, freight, lorry, 40t gross weight, long haul
-      tiam-ucl: market for transport, freight, lorry, 40t gross weight, long haul
-      witch: market for transport, freight, lorry, 7.5t gross weight, long haul
+      remind: transport, freight, lorry, 40 metric ton, fleet average
+      remind-eu: transport, freight, lorry, 40 metric ton, fleet average
+      image: transport, freight, lorry, 40 metric ton, fleet average
+      tiam-ucl: transport, freight, lorry, 40 metric ton, fleet average
+      witch: transport, freight, lorry, 7.5 metric ton, fleet average
     transport, freight, lorry 3.5-7.5 metric ton, unregulated:
-      remind: market for transport, freight, lorry, 7.5t gross weight, long haul
-      remind-eu: market for transport, freight, lorry, 7.5t gross weight, long haul
-      image: market for transport, freight, lorry, 18t gross weight, long haul
-      tiam-ucl: market for transport, freight, lorry, 7.5t gross weight, long haul
-      witch: market for transport, freight, lorry, 7.5t gross weight, long haul
+      remind: transport, freight, lorry, 7.5 metric ton, fleet average
+      remind-eu: transport, freight, lorry, 7.5 metric ton, fleet average
+      image: transport, freight, lorry, 18 metric ton, fleet average
+      tiam-ucl: transport, freight, lorry, 7.5 metric ton, fleet average
+      witch: transport, freight, lorry, 7.5 metric ton, fleet average
     transport, freight, lorry 7.5-16 metric ton, EURO5:
-      remind: market for transport, freight, lorry, 18t gross weight, long haul
-      remind-eu: market for transport, freight, lorry, 18t gross weight, long haul
-      image: market for transport, freight, lorry, 18t gross weight, long haul
-      tiam-ucl: market for transport, freight, lorry, 18t gross weight, long haul
-      witch: market for transport, freight, lorry, 7.5t gross weight, long haul
+      remind: transport, freight, lorry, 18 metric ton, fleet average
+      remind-eu: transport, freight, lorry, 18 metric ton, fleet average
+      image: transport, freight, lorry, 18 metric ton, fleet average
+      tiam-ucl: transport, freight, lorry, 18 metric ton, fleet average
+      witch: transport, freight, lorry, 7.5 metric ton, fleet average
     transport, freight, lorry 3.5-7.5 metric ton, EURO6:
-      remind: market for transport, freight, lorry, 7.5t gross weight, long haul
-      remind-eu: market for transport, freight, lorry, 7.5t gross weight, long haul
-      image: market for transport, freight, lorry, 18t gross weight, long haul
-      tiam-ucl: market for transport, freight, lorry, 7.5t gross weight, long haul
-      witch: market for transport, freight, lorry, 7.5t gross weight, long haul
+      remind: transport, freight, lorry, 7.5 metric ton, fleet average
+      remind-eu: transport, freight, lorry, 7.5 metric ton, fleet average
+      image: transport, freight, lorry, 18 metric ton, fleet average
+      tiam-ucl: transport, freight, lorry, 7.5 metric ton, fleet average
+      witch: transport, freight, lorry, 7.5 metric ton, fleet average
     transport, freight, lorry 7.5-16 metric ton, unregulated:
-      remind: market for transport, freight, lorry, 18t gross weight, long haul
-      remind-eu: market for transport, freight, lorry, 18t gross weight, long haul
-      image: market for transport, freight, lorry, 18t gross weight, long haul
-      tiam-ucl: market for transport, freight, lorry, 18t gross weight, long haul
-      witch: market for transport, freight, lorry, 7.5t gross weight, long haul
+      remind: transport, freight, lorry, 18 metric ton, fleet average
+      remind-eu: transport, freight, lorry, 18 metric ton, fleet average
+      image: transport, freight, lorry, 18 metric ton, fleet average
+      tiam-ucl: transport, freight, lorry, 18 metric ton, fleet average
+      witch: transport, freight, lorry, 7.5 metric ton, fleet average
     transport, freight, lorry 3.5-7.5 metric ton, EURO5:
-      remind: market for transport, freight, lorry, 7.5t gross weight, long haul
-      remind-eu: market for transport, freight, lorry, 7.5t gross weight, long haul
-      image: market for transport, freight, lorry, 18t gross weight, long haul
-      tiam-ucl: market for transport, freight, lorry, 7.5t gross weight, long haul
-      witch: market for transport, freight, lorry, 7.5t gross weight, long haul
+      remind: transport, freight, lorry, 7.5 metric ton, fleet average
+      remind-eu: transport, freight, lorry, 7.5 metric ton, fleet average
+      image: transport, freight, lorry, 18 metric ton, fleet average
+      tiam-ucl: transport, freight, lorry, 7.5 metric ton, fleet average
+      witch: transport, freight, lorry, 7.5 metric ton, fleet average
     transport, freight, lorry >32 metric ton, EURO2:
-      remind: market for transport, freight, lorry, 40t gross weight, long haul
-      remind-eu: market for transport, freight, lorry, 40t gross weight, long haul
-      image: market for transport, freight, lorry, 40t gross weight, long haul
-      tiam-ucl: market for transport, freight, lorry, 40t gross weight, long haul
-      witch: market for transport, freight, lorry, 7.5t gross weight, long haul
+      remind: transport, freight, lorry, 40 metric ton, fleet average
+      remind-eu: transport, freight, lorry, 40 metric ton, fleet average
+      image: transport, freight, lorry, 40 metric ton, fleet average
+      tiam-ucl: transport, freight, lorry, 40 metric ton, fleet average
+      witch: transport, freight, lorry, 7.5 metric ton, fleet average
     transport, freight, lorry 16-32 metric ton, EURO3:
-      remind: market for transport, freight, lorry, 26t gross weight, long haul
-      remind-eu: market for transport, freight, lorry, 26t gross weight, long haul
-      image: market for transport, freight, lorry, 18t gross weight, long haul
-      tiam-ucl: market for transport, freight, lorry, 18t gross weight, long haul
-      witch: market for transport, freight, lorry, 7.5t gross weight, long haul
-    transport, freight, lorry, all sizes, EURO5 to generic market for transport, freight, lorry:
-      remind: market for transport, freight, lorry, long haul
-      remind-eu: market for transport, freight, lorry, long haul
-      image: market for transport, freight, lorry, long haul
-      tiam-ucl: market for transport, freight, lorry, long haul
-      witch: market for transport, freight, lorry, long haul
-    transport, freight, lorry, all sizes, EURO6 to generic market for transport, freight, lorry:
-      remind: market for transport, freight, lorry, long haul
-      remind-eu: market for transport, freight, lorry, long haul
-      image: market for transport, freight, lorry, long haul
-      tiam-ucl: market for transport, freight, lorry, long haul
-      witch: market for transport, freight, lorry, long haul
+      remind: transport, freight, lorry, 26 metric ton, fleet average
+      remind-eu: transport, freight, lorry, 26 metric ton, fleet average
+      image: transport, freight, lorry, 18 metric ton, fleet average
+      tiam-ucl: transport, freight, lorry, 18 metric ton, fleet average
+      witch: transport, freight, lorry, 7.5 metric ton, fleet average
+    transport, freight, lorry, all sizes, EURO5 to generic market for transport, freight, lorry, unspecified:
+      remind: transport, freight, lorry, fleet average
+      remind-eu: transport, freight, lorry, fleet average
+      image: transport, freight, lorry, fleet average
+      tiam-ucl: transport, freight, lorry, fleet average
+      witch: transport, freight, lorry, fleet average
+    transport, freight, lorry, all sizes, EURO6 to generic market for transport, freight, lorry, unspecified:
+      remind: transport, freight, lorry, fleet average
+      remind-eu: transport, freight, lorry, fleet average
+      image: transport, freight, lorry, fleet average
+      tiam-ucl: transport, freight, lorry, fleet average
+      witch: transport, freight, lorry, fleet average
     transport, freight, lorry 16-32 metric ton, EURO4:
-      remind: market for transport, freight, lorry, 26t gross weight, long haul
-      remind-eu: market for transport, freight, lorry, 26t gross weight, long haul
-      image: market for transport, freight, lorry, 18t gross weight, long haul
-      tiam-ucl: market for transport, freight, lorry, 18t gross weight, long haul
-      witch: market for transport, freight, lorry, 7.5t gross weight, long haul
+      remind: transport, freight, lorry, 26 metric ton, fleet average
+      remind-eu: transport, freight, lorry, 26 metric ton, fleet average
+      image: transport, freight, lorry, 18 metric ton, fleet average
+      tiam-ucl: transport, freight, lorry, 18 metric ton, fleet average
+      witch: transport, freight, lorry, 7.5 metric ton, fleet average
     transport, freight, lorry >32 metric ton, EURO4:
-      remind: market for transport, freight, lorry, 40t gross weight, long haul
-      remind-eu: market for transport, freight, lorry, 40t gross weight, long haul
-      image: market for transport, freight, lorry, 40t gross weight, long haul
-      tiam-ucl: market for transport, freight, lorry, 40t gross weight, long haul
-      witch: market for transport, freight, lorry, 7.5t gross weight, long haul
+      remind: transport, freight, lorry, 40 metric ton, fleet average
+      remind-eu: transport, freight, lorry, 40 metric ton, fleet average
+      image: transport, freight, lorry, 40 metric ton, fleet average
+      tiam-ucl: transport, freight, lorry, 40 metric ton, fleet average
+      witch: transport, freight, lorry, 7.5 metric ton, fleet average
     transport, freight, lorry >32 metric ton, EURO5:
-      remind: market for transport, freight, lorry, 40t gross weight, long haul
-      remind-eu: market for transport, freight, lorry, 40t gross weight, long haul
-      image: market for transport, freight, lorry, 40t gross weight, long haul
-      tiam-ucl: market for transport, freight, lorry, 40t gross weight, long haul
-      witch: market for transport, freight, lorry, 7.5t gross weight, long haul
-    transport, freight, lorry, all sizes, unregulated to generic market for transport, freight, lorry:
-      remind: market for transport, freight, lorry, long haul
-      remind-eu: market for transport, freight, lorry, long haul
-      image: market for transport, freight, lorry, long haul
-      tiam-ucl: market for transport, freight, lorry, long haul
-      witch: market for transport, freight, lorry, long haul
+      remind: transport, freight, lorry, 40 metric ton, fleet average
+      remind-eu: transport, freight, lorry, 40 metric ton, fleet average
+      image: transport, freight, lorry, 40 metric ton, fleet average
+      tiam-ucl: transport, freight, lorry, 40 metric ton, fleet average
+      witch: transport, freight, lorry, 7.5 metric ton, fleet average
+    transport, freight, lorry, all sizes, unregulated to generic market for transport, freight, lorry, unspecified:
+      remind: transport, freight, lorry, fleet average
+      remind-eu: transport, freight, lorry, fleet average
+      image: transport, freight, lorry, fleet average
+      tiam-ucl: transport, freight, lorry, fleet average
+      witch: transport, freight, lorry, fleet average
+    
+    transport, freight, lorry, 16-32 metric ton, diesel, EURO 1:
+      remind: transport, freight, lorry, 26 metric ton, fleet average
+      remind-eu: transport, freight, lorry, 26 metric ton, fleet average
+      image: transport, freight, lorry, 18 metric ton, fleet average
+      tiam-ucl: transport, freight, lorry, 18 metric ton, fleet average
+      witch: transport, freight, lorry, 7.5 metric ton, fleet average
+    transport, freight, lorry, 3.5-7.5 metric ton, diesel, EURO 3:
+      remind: transport, freight, lorry, 7.5 metric ton, fleet average
+      remind-eu: transport, freight, lorry, 7.5 metric ton, fleet average
+      image: transport, freight, lorry, 18 metric ton, fleet average
+      tiam-ucl: transport, freight, lorry, 7.5 metric ton, fleet average
+      witch: transport, freight, lorry, 7.5 metric ton, fleet average
+    transport, freight, lorry, 16-32 metric ton, diesel, EURO 5:
+      remind: transport, freight, lorry, 26 metric ton, fleet average
+      remind-eu: transport, freight, lorry, 26 metric ton, fleet average
+      image: transport, freight, lorry, 18 metric ton, fleet average
+      tiam-ucl: transport, freight, lorry, 18 metric ton, fleet average
+      witch: transport, freight, lorry, 7.5 metric ton, fleet average
+    transport, freight, lorry, >32 metric ton, diesel, EURO 1:
+      remind: transport, freight, lorry, 40 metric ton, fleet average
+      remind-eu: transport, freight, lorry, 40 metric ton, fleet average
+      image: transport, freight, lorry, 40 metric ton, fleet average
+      tiam-ucl: transport, freight, lorry, 40 metric ton, fleet average
+      witch: transport, freight, lorry, 7.5 metric ton, fleet average
+    transport, freight, lorry, 3.5-7.5 metric ton, diesel, EURO 4:
+      remind: transport, freight, lorry, 7.5 metric ton, fleet average
+      remind-eu: transport, freight, lorry, 7.5 metric ton, fleet average
+      image: transport, freight, lorry, 18 metric ton, fleet average
+      tiam-ucl: transport, freight, lorry, 7.5 metric ton, fleet average
+      witch: transport, freight, lorry, 7.5 metric ton, fleet average
+    transport, freight, lorry, 7.5-16 metric ton, diesel, EURO 6:
+      remind: transport, freight, lorry, 18 metric ton, fleet average
+      remind-eu: transport, freight, lorry, 18 metric ton, fleet average
+      image: transport, freight, lorry, 18 metric ton, fleet average
+      tiam-ucl: transport, freight, lorry, 18 metric ton, fleet average
+      witch: transport, freight, lorry, 7.5 metric ton, fleet average
+    transport, freight, lorry, 7.5-16 metric ton, diesel, EURO 1:
+      remind: transport, freight, lorry, 18 metric ton, fleet average
+      remind-eu: transport, freight, lorry, 18 metric ton, fleet average
+      image: transport, freight, lorry, 18 metric ton, fleet average
+      tiam-ucl: transport, freight, lorry, 18 metric ton, fleet average
+      witch: transport, freight, lorry, 7.5 metric ton, fleet average
+    transport, freight, lorry, 16-32 metric ton, diesel, EURO 6:
+      remind: transport, freight, lorry, 26 metric ton, fleet average
+      remind-eu: transport, freight, lorry, 26 metric ton, fleet average
+      image: transport, freight, lorry, 18 metric ton, fleet average
+      tiam-ucl: transport, freight, lorry, 18 metric ton, fleet average
+      witch: transport, freight, lorry, 7.5 metric ton, fleet average
+    transport, freight, lorry, 7.5-16 metric ton, diesel, EURO 2:
+      remind: transport, freight, lorry, 18 metric ton, fleet average
+      remind-eu: transport, freight, lorry, 18 metric ton, fleet average
+      image: transport, freight, lorry, 18 metric ton, fleet average
+      tiam-ucl: transport, freight, lorry, 18 metric ton, fleet average
+      witch: transport, freight, lorry, 7.5 metric ton, fleet average
+    transport, freight, lorry, 7.5-16 metric ton, diesel, EURO 3:
+      remind: transport, freight, lorry, 18 metric ton, fleet average
+      remind-eu: transport, freight, lorry, 18 metric ton, fleet average
+      image: transport, freight, lorry, 18 metric ton, fleet average
+      tiam-ucl: transport, freight, lorry, 18 metric ton, fleet average
+      witch: transport, freight, lorry, 7.5 metric ton, fleet average
+    transport, freight, lorry, 7.5-16 metric ton, diesel, EURO 4:
+      remind: transport, freight, lorry, 18 metric ton, fleet average
+      remind-eu: transport, freight, lorry, 18 metric ton, fleet average
+      image: transport, freight, lorry, 18 metric ton, fleet average
+      tiam-ucl: transport, freight, lorry, 18 metric ton, fleet average
+      witch: transport, freight, lorry, 7.5 metric ton, fleet average
+    transport, freight, lorry, 16-32 metric ton, diesel, EURO 2:
+      remind: transport, freight, lorry, 26 metric ton, fleet average
+      remind-eu: transport, freight, lorry, 26 metric ton, fleet average
+      image: transport, freight, lorry, 18 metric ton, fleet average
+      tiam-ucl: transport, freight, lorry, 18 metric ton, fleet average
+      witch: transport, freight, lorry, 7.5 metric ton, fleet average
+    transport, freight, lorry, >32 metric ton, diesel, EURO 6:
+      remind: transport, freight, lorry, 40 metric ton, fleet average
+      remind-eu: transport, freight, lorry, 40 metric ton, fleet average
+      image: transport, freight, lorry, 40 metric ton, fleet average
+      tiam-ucl: transport, freight, lorry, 40 metric ton, fleet average
+      witch: transport, freight, lorry, 7.5 metric ton, fleet average
+    transport, freight, lorry, 3.5-7.5 metric ton, diesel, EURO 2:
+      remind: transport, freight, lorry, 7.5 metric ton, fleet average
+      remind-eu: transport, freight, lorry, 7.5 metric ton, fleet average
+      image: transport, freight, lorry, 18 metric ton, fleet average
+      tiam-ucl: transport, freight, lorry, 7.5 metric ton, fleet average
+      witch: transport, freight, lorry, 7.5 metric ton, fleet average
+    transport, freight, lorry, 3.5-7.5 metric ton, diesel, EURO 1:
+      remind: transport, freight, lorry, 7.5 metric ton, fleet average
+      remind-eu: transport, freight, lorry, 7.5 metric ton, fleet average
+      image: transport, freight, lorry, 18 metric ton, fleet average
+      tiam-ucl: transport, freight, lorry, 7.5 metric ton, fleet average
+      witch: transport, freight, lorry, 7.5 metric ton, fleet average
+    transport, freight, lorry, 16-32 metric ton, diesel, unregulated:
+      remind: transport, freight, lorry, 26 metric ton, fleet average
+      remind-eu: transport, freight, lorry, 26 metric ton, fleet average
+      image: transport, freight, lorry, 18 metric ton, fleet average
+      tiam-ucl: transport, freight, lorry, 18 metric ton, fleet average
+      witch: transport, freight, lorry, 7.5 metric ton, fleet average
+    transport, freight, lorry, >32 metric ton, diesel, unregulated:
+      remind: transport, freight, lorry, 40 metric ton, fleet average
+      remind-eu: transport, freight, lorry, 40 metric ton, fleet average
+      image: transport, freight, lorry, 40 metric ton, fleet average
+      tiam-ucl: transport, freight, lorry, 40 metric ton, fleet average
+      witch: transport, freight, lorry, 7.5 metric ton, fleet average
+    transport, freight, lorry, >32 metric ton, diesel, EURO 3:
+      remind: transport, freight, lorry, 40 metric ton, fleet average
+      remind-eu: transport, freight, lorry, 40 metric ton, fleet average
+      image: transport, freight, lorry, 40 metric ton, fleet average
+      tiam-ucl: transport, freight, lorry, 40 metric ton, fleet average
+      witch: transport, freight, lorry, 7.5 metric ton, fleet average
+    transport, freight, lorry, 3.5-7.5 metric ton, diesel, unregulated:
+      remind: transport, freight, lorry, 7.5 metric ton, fleet average
+      remind-eu: transport, freight, lorry, 7.5 metric ton, fleet average
+      image: transport, freight, lorry, 18 metric ton, fleet average
+      tiam-ucl: transport, freight, lorry, 7.5 metric ton, fleet average
+      witch: transport, freight, lorry, 7.5 metric ton, fleet average
+    transport, freight, lorry, 7.5-16 metric ton, diesel, EURO 5:
+      remind: transport, freight, lorry, 18 metric ton, fleet average
+      remind-eu: transport, freight, lorry, 18 metric ton, fleet average
+      image: transport, freight, lorry, 18 metric ton, fleet average
+      tiam-ucl: transport, freight, lorry, 18 metric ton, fleet average
+      witch: transport, freight, lorry, 7.5 metric ton, fleet average
+    transport, freight, lorry, 3.5-7.5 metric ton, diesel, EURO 6:
+      remind: transport, freight, lorry, 7.5 metric ton, fleet average
+      remind-eu: transport, freight, lorry, 7.5 metric ton, fleet average
+      image: transport, freight, lorry, 18 metric ton, fleet average
+      tiam-ucl: transport, freight, lorry, 7.5 metric ton, fleet average
+      witch: transport, freight, lorry, 7.5 metric ton, fleet average
+    transport, freight, lorry, 7.5-16 metric ton, diesel, unregulated:
+      remind: transport, freight, lorry, 18 metric ton, fleet average
+      remind-eu: transport, freight, lorry, 18 metric ton, fleet average
+      image: transport, freight, lorry, 18 metric ton, fleet average
+      tiam-ucl: transport, freight, lorry, 18 metric ton, fleet average
+      witch: transport, freight, lorry, 7.5 metric ton, fleet average
+    transport, freight, lorry, 3.5-7.5 metric ton, diesel, EURO 5:
+      remind: transport, freight, lorry, 7.5 metric ton, fleet average
+      remind-eu: transport, freight, lorry, 7.5 metric ton, fleet average
+      image: transport, freight, lorry, 18 metric ton, fleet average
+      tiam-ucl: transport, freight, lorry, 7.5 metric ton, fleet average
+      witch: transport, freight, lorry, 7.5 metric ton, fleet average
+    transport, freight, lorry, >32 metric ton, diesel, EURO 2:
+      remind: transport, freight, lorry, 40 metric ton, fleet average
+      remind-eu: transport, freight, lorry, 40 metric ton, fleet average
+      image: transport, freight, lorry, 40 metric ton, fleet average
+      tiam-ucl: transport, freight, lorry, 40 metric ton, fleet average
+      witch: transport, freight, lorry, 7.5 metric ton, fleet average
+    transport, freight, lorry, 16-32 metric ton, diesel, EURO 3:
+      remind: transport, freight, lorry, 26 metric ton, fleet average
+      remind-eu: transport, freight, lorry, 26 metric ton, fleet average
+      image: transport, freight, lorry, 18 metric ton, fleet average
+      tiam-ucl: transport, freight, lorry, 18 metric ton, fleet average
+      witch: transport, freight, lorry, 7.5 metric ton, fleet average
+    transport, freight, lorry, 16-32 metric ton, diesel, EURO 4:
+      remind: transport, freight, lorry, 26 metric ton, fleet average
+      remind-eu: transport, freight, lorry, 26 metric ton, fleet average
+      image: transport, freight, lorry, 18 metric ton, fleet average
+      tiam-ucl: transport, freight, lorry, 18 metric ton, fleet average
+      witch: transport, freight, lorry, 7.5 metric ton, fleet average
+    transport, freight, lorry, >32 metric ton, diesel, EURO 4:
+      remind: transport, freight, lorry, 40 metric ton, fleet average
+      remind-eu: transport, freight, lorry, 40 metric ton, fleet average
+      image: transport, freight, lorry, 40 metric ton, fleet average
+      tiam-ucl: transport, freight, lorry, 40 metric ton, fleet average
+      witch: transport, freight, lorry, 7.5 metric ton, fleet average
+    transport, freight, lorry, >32 metric ton, diesel, EURO 5:
+      remind: transport, freight, lorry, 40 metric ton, fleet average
+      remind-eu: transport, freight, lorry, 40 metric ton, fleet average
+      image: transport, freight, lorry, 40 metric ton, fleet average
+      tiam-ucl: transport, freight, lorry, 40 metric ton, fleet average
+      witch: transport, freight, lorry, 7.5 metric ton, fleet average
 
 powertrain:
   fuel cell electric: FCEV

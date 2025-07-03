@@ -77,22 +77,6 @@ class PathwaysDataPackage:
         else:
             self.datapackage.update()
 
-        for scenario in self.datapackage.scenarios:
-            scenario = load_database(scenario)
-            energy = FinalEnergy(
-                database=scenario["database"],
-                iam_data=scenario["iam data"],
-                model=scenario["model"],
-                pathway=scenario["pathway"],
-                year=scenario["year"],
-                version=self.datapackage.version,
-                system_model=self.datapackage.system_model,
-            )
-            energy.import_heating_inventories()
-            scenario["database"] = energy.database
-
-            dump_database(scenario)
-
         self.export_datapackage(
             name=name,
             contributors=contributors,
@@ -308,7 +292,7 @@ class PathwaysDataPackage:
         data_list, extra_units = [], {}
         for scenario in self.datapackage.scenarios:
             data = scenario["iam data"].data.interp(year=scenario["year"])
-            extra_units.update(scenario["iam data"].energy_use_volumes.attrs["unit"])
+            extra_units.update(scenario["iam data"].final_energy_use.attrs["unit"])
             scenario_name = f"{scenario['model']} - {scenario['pathway']}"
             if "external data" in scenario:
                 for ext, external in scenario["external data"].items():

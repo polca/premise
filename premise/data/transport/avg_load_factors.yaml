@@ -3,23 +3,23 @@
 ---
 truck:
   urban delivery:
-    3.5t: 0.26
-    7.5t: 0.52
-    18t: 1.35
-    26t: 2.05
-    32t: 6.1
-    40t: 6.1
+    3.5 metric ton: 0.26
+    7.5 metric ton: 0.52
+    18 metric ton: 1.35
+    26 metric ton: 2.05
+    32 metric ton: 6.1
+    40 metric ton: 6.1
   regional delivery:
-    3.5t: 0.26
-    7.5t: 0.52
-    18t: 1.35
-    26t: 2.05
-    32t: 6.1
-    40t: 6.1
+    3.5 metric ton: 0.26
+    7.5 metric ton: 0.52
+    18 metric ton: 1.35
+    26 metric ton: 2.05
+    32 metric ton: 6.1
+    40 metric ton: 6.1
   long haul:
-    3.5t: 0.8
-    7.5t: 1.6
-    18t: 4.1
-    26t: 6.2
-    32t: 9.1
-    40t: 9.1
+    3.5 metric ton: 0.8
+    7.5 metric ton: 1.6
+    18 metric ton: 4.1
+    26 metric ton: 6.2
+    32 metric ton: 9.1
+    40 metric ton: 9.1

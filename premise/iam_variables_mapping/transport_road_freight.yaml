@@ -3,7 +3,7 @@
 ---
 
 
-truck, battery electric, 3.5t:
+truck, battery electric, 3.5 metric ton:
   iam_aliases:
     remind: ES|Transport|Freight|Road|Light|Truck(0-3_5t)|BEV
     remind-eu: ES|Transport|Freight|Road|Light|Truck(0-3_5t)|BEV
@@ -14,12 +14,12 @@ truck, battery electric, 3.5t:
     tiam-ucl: Final Energy|Transport|Truck|Light|Electric|Electricity
   ecoinvent_aliases:
     fltr:
-      - transport, freight, lorry, battery electric, 3.5t gross weight, long haul
+      - transport, freight, lorry, battery electric, 3.5 metric ton
   ecoinvent_fuel_aliases:
     fltr:
       - electricity
 
-truck, fuel cell electric, 3.5t:
+truck, fuel cell electric, 3.5 metric ton:
   iam_aliases:
     remind: ES|Transport|Freight|Road|Light|Truck(0-3_5t)|FCEV
     remind-eu: ES|Transport|Freight|Road|Light|Truck(0-3_5t)|FCEV
@@ -28,12 +28,12 @@ truck, fuel cell electric, 3.5t:
     remind-eu: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Hydrogen
   ecoinvent_aliases:
     fltr:
-      - transport, freight, lorry, fuel cell electric, 3.5t gross weight, long haul
+      - transport, freight, lorry, fuel cell electric, 3.5 metric ton
   ecoinvent_fuel_aliases:
     fltr:
       - hydrogen
 
-truck, gasoline, 3.5t:
+truck, gasoline, 3.5 metric ton:
   iam_aliases:
     tiam-ucl:
       - Distance|Transport|Truck|Light|Ethanol|Bioethanol
@@ -52,12 +52,12 @@ truck, gasoline, 3.5t:
       - Final Energy|Transport|Truck|Light|Gasoline Plug-in Hybrid|Gasoline
   ecoinvent_aliases:
     fltr:
-      - transport, freight, lorry, gasoline, 3.5t gross weight, EURO-VI, long haul
+      - transport, freight, lorry, gasoline, 3.5 metric ton
   ecoinvent_fuel_aliases:
     fltr:
       - petrol, low-sulfur
 
-truck, diesel, 3.5t:
+truck, diesel, 3.5 metric ton:
   iam_aliases:
     remind: ES|Transport|Freight|Road|Light|Truck(0-3_5t)|Liquids
     remind-eu: ES|Transport|Freight|Road|Light|Truck(0-3_5t)|Liquids
@@ -68,24 +68,24 @@ truck, diesel, 3.5t:
     tiam-ucl: Final Energy|Transport|Truck|Light|Diesel|Diesel
   ecoinvent_aliases:
     fltr:
-      - transport, freight, lorry, diesel, 3.5t gross weight, EURO-VI, long haul
+      - transport, freight, lorry, diesel, 3.5 metric ton
   ecoinvent_fuel_aliases:
     fltr:
       - diesel
 
-truck, diesel hybrid, 3.5t:
+truck, diesel hybrid, 3.5 metric ton:
     iam_aliases:
       tiam-ucl: Distance|Transport|Truck|Light|Diesel Hybrid|Diesel
     energy_use_aliases:
       tiam-ucl: Final Energy|Transport|Truck|Light|Diesel Hybrid|Diesel
     ecoinvent_aliases:
         fltr:
-        - transport, freight, lorry, diesel hybrid, 3.5t gross weight, EURO-VI, long haul
+        - transport, freight, lorry, diesel hybrid, 3.5 metric ton
     ecoinvent_fuel_aliases:
         fltr:
         - diesel
 
-truck, plugin diesel hybrid, 3.5t:
+truck, plugin diesel hybrid, 3.5 metric ton:
   iam_aliases:
     tiam-ucl:
       - Distance|Transport|Truck|Light|Diesel Plug-in Hybrid|Diesel
@@ -96,12 +96,12 @@ truck, plugin diesel hybrid, 3.5t:
       - Final Energy|Transport|Truck|Light|Diesel Plug-in Hybrid|Electricity
   ecoinvent_aliases:
     fltr:
-      - transport, freight, lorry, plugin diesel hybrid, 3.5t gross weight, EURO-VI, long haul
+      - transport, freight, lorry, plugin diesel hybrid, 3.5 metric ton
   ecoinvent_fuel_aliases:
     fltr:
       - diesel
 
-truck, compressed gas, 3.5t:
+truck, compressed gas, 3.5 metric ton:
   iam_aliases:
     remind: ES|Transport|Freight|Road|Light|Truck(0-3_5t)|Gases
     remind-eu: ES|Transport|Freight|Road|Light|Truck(0-3_5t)|Gases
@@ -112,25 +112,25 @@ truck, compressed gas, 3.5t:
     tiam-ucl: Final Energy|Transport|Truck|Light|Natural Gas|Natural Gas
   ecoinvent_aliases:
     fltr:
-      - transport, freight, lorry, compressed gas, 3.5t gross weight, EURO-VI, long haul
+      - transport, freight, lorry, compressed gas, 3.5 metric ton
   ecoinvent_fuel_aliases:
     fltr:
       - natural gas
 
-truck, liquefied petroleum gas, 3.5t:
+truck, liquefied petroleum gas, 3.5 metric ton:
   iam_aliases:
     tiam-ucl: Distance|Transport|Truck|Light|Liquefied Petroleum Gas|Liquefied Petroleum Gas
   energy_use_aliases:
     tiam-ucl: Final Energy|Transport|Truck|Light|Liquefied Petroleum Gas|Liquefied Petroleum Gas
   ecoinvent_aliases:
     fltr:
-      - transport, freight, lorry, liquefied petroleum gas, 3.5t gross weight, EURO-VI, long haul
+      - transport, freight, lorry, liquefied petroleum gas, 3.5 metric ton
   ecoinvent_fuel_aliases:
     fltr:
       - liquefied petroleum gas
 
 
-truck, battery electric, 7.5t:
+truck, battery electric, 7.5 metric ton:
   iam_aliases:
     remind: ES|Transport|Freight|Road|Light|Truck(7_5t)|BEV
     remind-eu: ES|Transport|Freight|Road|Light|Truck(7_5t)|BEV
@@ -143,12 +143,12 @@ truck, battery electric, 7.5t:
     witch: Final Energy|Transportation|Freight|Truck|Battery-Electric|Electricity
   ecoinvent_aliases:
     fltr:
-      - transport, freight, lorry, battery electric, 7.5t gross weight, long haul
+      - transport, freight, lorry, battery electric, 7.5 metric ton
   ecoinvent_fuel_aliases:
     fltr:
       - electricity
 
-truck, fuel cell electric, 7.5t:
+truck, fuel cell electric, 7.5 metric ton:
   iam_aliases:
     remind: ES|Transport|Freight|Road|Light|Truck(7_5t)|FCEV
     remind-eu: ES|Transport|Freight|Road|Light|Truck(7_5t)|FCEV
@@ -165,12 +165,12 @@ truck, fuel cell electric, 7.5t:
     witch: Final Energy|Transportation|Freight|Truck|Fuel-Cell-Electric|Hydrogen
   ecoinvent_aliases:
     fltr:
-      - transport, freight, lorry, fuel cell electric, 7.5t gross weight, long haul
+      - transport, freight, lorry, fuel cell electric, 7.5 metric ton
   ecoinvent_fuel_aliases:
     fltr:
       - hydrogen
 
-truck, gasoline, 7.5t:
+truck, gasoline, 7.5 metric ton:
   iam_aliases:
     tiam-ucl:
       - Distance|Transport|Truck|Commercial|Ethanol|Bioethanol
@@ -189,13 +189,13 @@ truck, gasoline, 7.5t:
       - Final Energy|Transport|Truck|Commercial|Gasoline|Gasoline
   ecoinvent_aliases:
     fltr:
-      - transport, freight, lorry, gasoline, 7.5t gross weight, EURO-VI, long haul
+      - transport, freight, lorry, gasoline, 7.5 metric ton
   ecoinvent_fuel_aliases:
     fltr:
       - petrol, low-sulfur
 
 
-truck, diesel, 7.5t:
+truck, diesel, 7.5 metric ton:
   iam_aliases:
     remind: ES|Transport|Freight|Road|Light|Truck(7_5t)|Liquids
     remind-eu: ES|Transport|Freight|Road|Light|Truck(7_5t)|Liquids
@@ -210,24 +210,24 @@ truck, diesel, 7.5t:
       - Final Energy|Transportation|Freight|Truck|Internal Combustion|Liquids|Biomass
   ecoinvent_aliases:
     fltr:
-      - transport, freight, lorry, diesel, 7.5t gross weight, EURO-VI, long haul
+      - transport, freight, lorry, diesel, 7.5 metric ton
   ecoinvent_fuel_aliases:
     fltr:
       - diesel
 
-truck, diesel hybrid, 7.5t:
+truck, diesel hybrid, 7.5 metric ton:
     iam_aliases:
       tiam-ucl: Distance|Transport|Truck|Commercial|Diesel Hybrid|Diesel
     energy_use_aliases:
       tiam-ucl: Final Energy|Transport|Truck|Commercial|Diesel Hybrid|Diesel
     ecoinvent_aliases:
         fltr:
-        - transport, freight, lorry, diesel hybrid, 7.5t gross weight, EURO-VI, long haul
+        - transport, freight, lorry, diesel hybrid, 7.5 metric ton
     ecoinvent_fuel_aliases:
         fltr:
         - diesel
 
-truck, plugin diesel hybrid, 7.5t:
+truck, plugin diesel hybrid, 7.5 metric ton:
     iam_aliases:
       tiam-ucl:
         - Distance|Transport|Truck|Commercial|Diesel Plug-in Hybrid|Diesel
@@ -238,12 +238,12 @@ truck, plugin diesel hybrid, 7.5t:
         - Final Energy|Transport|Truck|Commercial|Diesel Plug-in Hybrid|Electricity
     ecoinvent_aliases:
         fltr:
-        - transport, freight, lorry, plugin diesel hybrid, 7.5t gross weight, EURO-VI, long haul
+        - transport, freight, lorry, plugin diesel hybrid, 7.5 metric ton
     ecoinvent_fuel_aliases:
         fltr:
         - diesel
 
-truck, compressed gas, 7.5t:
+truck, compressed gas, 7.5 metric ton:
   iam_aliases:
     remind: ES|Transport|Freight|Road|Light|Truck(7_5t)|Gases
     remind-eu: ES|Transport|Freight|Road|Light|Truck(7_5t)|Gases
@@ -254,24 +254,24 @@ truck, compressed gas, 7.5t:
     tiam-ucl: Final Energy|Transport|Truck|Commercial|Natural Gas|Natural Gas
   ecoinvent_aliases:
     fltr:
-      - transport, freight, lorry, compressed gas, 7.5t gross weight, EURO-VI, long haul
+      - transport, freight, lorry, compressed gas, 7.5 metric ton
   ecoinvent_fuel_aliases:
     fltr:
       - natural gas
 
-truck, liquefied petroleum gas, 7.5t:
+truck, liquefied petroleum gas, 7.5 metric ton:
   iam_aliases:
     tiam-ucl: Distance|Transport|Truck|Commercial|Liquefied Petroleum Gas|Liquefied Petroleum Gas
   energy_use_aliases:
     tiam-ucl: Final Energy|Transport|Truck|Commercial|Liquefied Petroleum Gas|Liquefied Petroleum Gas
   ecoinvent_aliases:
     fltr:
-      - transport, freight, lorry, liquefied petroleum gas, 7.5t gross weight, EURO-VI, long haul
+      - transport, freight, lorry, liquefied petroleum gas, 7.5 metric ton
   ecoinvent_fuel_aliases:
     fltr:
       - liquefied petroleum gas
 
-truck, battery electric, 18t:
+truck, battery electric, 18 metric ton:
   iam_aliases:
     remind: ES|Transport|Freight|Road|Heavy|Truck(18t)|BEV
     remind-eu: ES|Transport|Freight|Road|Heavy|Truck(18t)|BEV
@@ -280,12 +280,12 @@ truck, battery electric, 18t:
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(18t)|Electricity
   ecoinvent_aliases:
     fltr:
-      - transport, freight, lorry, battery electric, 18t gross weight, long haul
+      - transport, freight, lorry, battery electric, 18 metric ton
   ecoinvent_fuel_aliases:
     fltr:
       - electricity
 
-truck, fuel cell electric, 18t:
+truck, fuel cell electric, 18 metric ton:
   iam_aliases:
     remind: ES|Transport|Freight|Road|Heavy|Truck(18t)|FCEV
     remind-eu: ES|Transport|Freight|Road|Heavy|Truck(18t)|FCEV
@@ -302,12 +302,12 @@ truck, fuel cell electric, 18t:
     tiam-ucl: Final Energy|Transport|Truck|Medium|Hydrogen Fuel Cell|Truck Hydrogen
   ecoinvent_aliases:
     fltr:
-      - transport, freight, lorry, fuel cell electric, 18t gross weight, long haul
+      - transport, freight, lorry, fuel cell electric, 18 metric ton
   ecoinvent_fuel_aliases:
     fltr:
       - hydrogen
 
-truck, gasoline, 18t:
+truck, gasoline, 18 metric ton:
     iam_aliases:
         tiam-ucl:
           - Distance|Transport|Truck|Medium|Ethanol|Bioethanol
@@ -326,12 +326,12 @@ truck, gasoline, 18t:
           - Final Energy|Transport|Truck|Medium|Methanol|Methanol
     ecoinvent_aliases:
         fltr:
-        - transport, freight, lorry, gasoline, 18t gross weight, EURO-VI, long haul
+        - transport, freight, lorry, gasoline, 18 metric ton
     ecoinvent_fuel_aliases:
         fltr:
         - petrol, low-sulfur
 
-truck, diesel, 18t:
+truck, diesel, 18 metric ton:
   iam_aliases:
     remind: ES|Transport|Freight|Road|Heavy|Truck(18t)|Liquids
     remind-eu: ES|Transport|Freight|Road|Heavy|Truck(18t)|Liquids
@@ -349,34 +349,34 @@ truck, diesel, 18t:
       - Final Energy|Transport|Truck|Medium|Diesel|Diesel
   ecoinvent_aliases:
     fltr:
-      - transport, freight, lorry, diesel, 18t gross weight, EURO-VI, long haul
+      - transport, freight, lorry, diesel, 18 metric ton
   ecoinvent_fuel_aliases:
     fltr:
       - diesel
 
-truck, gasoline hybrid, 18t:
+truck, gasoline hybrid, 18 metric ton:
     iam_aliases:
       image: Energy Service|Transportation|Freight|Medium Truck|Hybrid engine|Gasoline
     ecoinvent_aliases:
         fltr:
-        - transport, freight, lorry, gasoline hybrid, 18t gross weight, EURO-VI, long haul
+        - transport, freight, lorry, gasoline hybrid, 18 metric ton
     ecoinvent_fuel_aliases:
         fltr:
         - diesel
 
-truck, diesel hybrid, 18t:
+truck, diesel hybrid, 18 metric ton:
     iam_aliases:
       image:
         - Energy Service|Transportation|Freight|Medium Truck|Hybrid engine|Biofuel
         - Energy Service|Transportation|Freight|Medium Truck|Hybrid engine|Diesel
     ecoinvent_aliases:
         fltr:
-        - transport, freight, lorry, diesel hybrid, 18t gross weight, EURO-VI, long haul
+        - transport, freight, lorry, diesel hybrid, 18 metric ton
     ecoinvent_fuel_aliases:
         fltr:
         - diesel
 
-truck, compressed gas, 18t:
+truck, compressed gas, 18 metric ton:
   iam_aliases:
     remind: ES|Transport|Freight|Road|Heavy|Truck(18t)|Gases
     remind-eu: ES|Transport|Freight|Road|Heavy|Truck(18t)|Gases
@@ -388,24 +388,24 @@ truck, compressed gas, 18t:
     tiam-ucl: Final Energy|Transport|Truck|Medium|Natural Gas|Natural Gas
   ecoinvent_aliases:
     fltr:
-      - transport, freight, lorry, compressed gas, 18t gross weight, EURO-VI, long haul
+      - transport, freight, lorry, compressed gas, 18 metric ton
   ecoinvent_fuel_aliases:
     fltr:
       - natural gas
 
-truck, liquefied petroleum gas, 18t:
+truck, liquefied petroleum gas, 18 metric ton:
   iam_aliases:
       tiam-ucl: Distance|Transport|Truck|Medium|Liquefied Petroleum Gas|Liquefied Petroleum Gas
   energy_use_aliases:
       tiam-ucl: Final Energy|Transport|Truck|Medium|Liquefied Petroleum Gas|Liquefied Petroleum Gas
   ecoinvent_aliases:
       fltr:
-      - transport, freight, lorry, liquefied petroleum gas, 18t gross weight, EURO-VI, long haul
+      - transport, freight, lorry, liquefied petroleum gas, 18 metric ton
   ecoinvent_fuel_aliases:
       fltr:
       - liquefied petroleum gas
 
-truck, diesel plugin hybrid, 18t:
+truck, diesel plugin hybrid, 18 metric ton:
     iam_aliases:
         image:
           - Energy Service|Transportation|Freight|Medium Truck|Plug-in electric vehicle 10km|Biofuel
@@ -416,12 +416,12 @@ truck, diesel plugin hybrid, 18t:
           - Energy Service|Transportation|Freight|Medium Truck|Plug-in electric vehicle 60km|Oil
     ecoinvent_aliases:
         fltr:
-        - transport, freight, lorry, plugin diesel hybrid, 18t gross weight, EURO-VI, long haul
+        - transport, freight, lorry, plugin diesel hybrid, 18 metric ton
     ecoinvent_fuel_aliases:
         fltr:
         - diesel
 
-truck, battery electric, 26t:
+truck, battery electric, 26 metric ton:
   iam_aliases:
     remind: ES|Transport|Freight|Road|Heavy|Truck(26t)|BEV
     remind-eu: ES|Transport|Freight|Road|Heavy|Truck(26t)|BEV
@@ -430,12 +430,12 @@ truck, battery electric, 26t:
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(26t)|Electricity
   ecoinvent_aliases:
     fltr:
-      - transport, freight, lorry, battery electric, 26t gross weight, long haul
+      - transport, freight, lorry, battery electric, 26 metric ton
   ecoinvent_fuel_aliases:
     fltr:
       - electricity
 
-truck, fuel cell electric, 26t:
+truck, fuel cell electric, 26 metric ton:
   iam_aliases:
     remind: ES|Transport|Freight|Road|Heavy|Truck(26t)|FCEV
     remind-eu: ES|Transport|Freight|Road|Heavy|Truck(26t)|FCEV
@@ -444,12 +444,12 @@ truck, fuel cell electric, 26t:
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(26t)|Hydrogen
   ecoinvent_aliases:
     fltr:
-      - transport, freight, lorry, fuel cell electric, 26t gross weight, long haul
+      - transport, freight, lorry, fuel cell electric, 26 metric ton
   ecoinvent_fuel_aliases:
     fltr:
       - hydrogen
 
-truck, diesel, 26t:
+truck, diesel, 26 metric ton:
   iam_aliases:
     remind: ES|Transport|Freight|Road|Heavy|Truck(26t)|Liquids
     remind-eu: ES|Transport|Freight|Road|Heavy|Truck(26t)|Liquids
@@ -458,12 +458,12 @@ truck, diesel, 26t:
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(26t)|Liquids
   ecoinvent_aliases:
     fltr:
-      - transport, freight, lorry, diesel, 26t gross weight, EURO-VI, long haul
+      - transport, freight, lorry, diesel, 26 metric ton
   ecoinvent_fuel_aliases:
     fltr:
       - diesel
 
-truck, compressed gas, 26t:
+truck, compressed gas, 26 metric ton:
   iam_aliases:
     remind: ES|Transport|Freight|Road|Heavy|Truck(26t)|Gases
     remind-eu: ES|Transport|Freight|Road|Heavy|Truck(26t)|Gases
@@ -472,12 +472,12 @@ truck, compressed gas, 26t:
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(26t)|Gases
   ecoinvent_aliases:
     fltr:
-      - transport, freight, lorry, compressed gas, 26t gross weight, EURO-VI, long haul
+      - transport, freight, lorry, compressed gas, 26 metric ton
   ecoinvent_fuel_aliases:
     fltr:
       - natural gas
 
-truck, battery electric, 40t:
+truck, battery electric, 40 metric ton:
   iam_aliases:
     remind: ES|Transport|Freight|Road|Heavy|Truck(40t)|BEV
     remind-eu: ES|Transport|Freight|Road|Heavy|Truck(40t)|BEV
@@ -486,12 +486,12 @@ truck, battery electric, 40t:
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(40t)|Electricity
   ecoinvent_aliases:
     fltr:
-      - transport, freight, lorry, battery electric, 40t gross weight, long haul
+      - transport, freight, lorry, battery electric, 40 metric ton
   ecoinvent_fuel_aliases:
     fltr:
       - electricity
 
-truck, fuel cell electric, 40t:
+truck, fuel cell electric, 40 metric ton:
   iam_aliases:
     remind: ES|Transport|Freight|Road|Heavy|Truck(40t)|FCEV
     remind-eu: ES|Transport|Freight|Road|Heavy|Truck(40t)|FCEV
@@ -507,12 +507,12 @@ truck, fuel cell electric, 40t:
     tiam-ucl: Final Energy|Transport|Truck|Heavy|Hydrogen Fuel Cell|Truck Hydrogen
   ecoinvent_aliases:
     fltr:
-      - transport, freight, lorry, fuel cell electric, 40t gross weight, long haul
+      - transport, freight, lorry, fuel cell electric, 40 metric ton
   ecoinvent_fuel_aliases:
     fltr:
       - hydrogen
 
-truck, diesel hybrid, 40t:
+truck, diesel hybrid, 40 metric ton:
     iam_aliases:
         image:
           - Energy Service|Transportation|Freight|Heavy Truck|Hybrid engine|Biofuel
@@ -520,22 +520,22 @@ truck, diesel hybrid, 40t:
           - Energy Service|Transportation|Freight|Heavy Truck|Hybrid engine|Hydrogen
     ecoinvent_aliases:
         fltr:
-        - transport, freight, lorry, diesel hybrid, 40t gross weight, EURO-VI, long haul
+        - transport, freight, lorry, diesel hybrid, 40 metric ton
     ecoinvent_fuel_aliases:
         fltr:
         - diesel
 
-truck, gasoline hybrid, 40t:
+truck, gasoline hybrid, 40 metric ton:
     iam_aliases:
         image: Energy Service|Transportation|Freight|Heavy Truck|Hybrid engine|Gasoline
     ecoinvent_aliases:
         fltr:
-        - transport, freight, lorry, gasoline hybrid, 40t gross weight, EURO-VI, long haul
+        - transport, freight, lorry, gasoline hybrid, 40 metric ton
     ecoinvent_fuel_aliases:
         fltr:
         - diesel
 
-truck, diesel, 40t:
+truck, diesel, 40 metric ton:
   iam_aliases:
     remind: ES|Transport|Freight|Road|Heavy|Truck(40t)|Liquids
     remind-eu: ES|Transport|Freight|Road|Heavy|Truck(40t)|Liquids
@@ -554,12 +554,12 @@ truck, diesel, 40t:
       - Final Energy|Transport|Truck|Heavy|Diesel|Diesel
   ecoinvent_aliases:
     fltr:
-      - transport, freight, lorry, diesel, 40t gross weight, EURO-VI, long haul
+      - transport, freight, lorry, diesel, 40 metric ton
   ecoinvent_fuel_aliases:
     fltr:
       - diesel
 
-truck, gasoline, 40t:
+truck, gasoline, 40 metric ton:
     iam_aliases:
         tiam-ucl:
           - Distance|Transport|Truck|Heavy|Gas|Gasoline
@@ -575,12 +575,12 @@ truck, gasoline, 40t:
           - Final Energy|Transport|Truck|Heavy|Methanol|Methanol
     ecoinvent_aliases:
         fltr:
-        - transport, freight, lorry, gasoline, 40t gross weight, EURO-VI, long haul
+        - transport, freight, lorry, gasoline, 40 metric ton
     ecoinvent_fuel_aliases:
         fltr:
         - petrol, low-sulfur
 
-truck, compressed gas, 40t:
+truck, compressed gas, 40 metric ton:
   iam_aliases:
     remind: ES|Transport|Freight|Road|Heavy|Truck(40t)|Gases
     remind-eu: ES|Transport|Freight|Road|Heavy|Truck(40t)|Gases
@@ -592,24 +592,24 @@ truck, compressed gas, 40t:
     tiam-ucl: Final Energy|Transport|Truck|Heavy|Natural Gas|Natural Gas
   ecoinvent_aliases:
     fltr:
-      - transport, freight, lorry, compressed gas, 40t gross weight, EURO-VI, long haul
+      - transport, freight, lorry, compressed gas, 40 metric ton
   ecoinvent_fuel_aliases:
     fltr:
       - natural gas
 
-truck, liquefied petroleum gas, 40t:
+truck, liquefied petroleum gas, 40 metric ton:
     iam_aliases:
         tiam-ucl: Distance|Transport|Truck|Heavy|Liquefied Petroleum Gas|Liquefied Petroleum Gas
     energy_use_aliases:
         tiam-ucl: Final Energy|Transport|Truck|Heavy|Liquefied Petroleum Gas|Liquefied Petroleum Gas
     ecoinvent_aliases:
         fltr:
-        - transport, freight, lorry, liquefied petroleum gas, 40t gross weight, EURO-VI, long haul
+        - transport, freight, lorry, liquefied petroleum gas, 40 metric ton
     ecoinvent_fuel_aliases:
         fltr:
         - liquefied petroleum gas
 
-truck, diesel plugin hybrid, 40t:
+truck, diesel plugin hybrid, 40 metric ton:
     iam_aliases:
         image:
           - Energy Service|Transportation|Freight|Heavy Truck|Plug-in electric vehicle 10km|Biofuel
@@ -620,7 +620,7 @@ truck, diesel plugin hybrid, 40t:
           - Energy Service|Transportation|Freight|Heavy Truck|Plug-in electric vehicle 60km|Oil
     ecoinvent_aliases:
         fltr:
-        - transport, freight, lorry, plugin diesel hybrid, 40t gross weight, EURO-VI, long haul
+        - transport, freight, lorry, plugin diesel hybrid, 40 metric ton
     ecoinvent_fuel_aliases:
         fltr:
         - diesel

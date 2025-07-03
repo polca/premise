@@ -63,6 +63,7 @@ def _update_biomass(scenario, version, system_model):
         regions=scenario["iam data"].regions,
         database=biomass.database,
         iam_data=scenario["iam data"],
+        system_model=system_model,
     )
 
     validate.run_biomass_checks()

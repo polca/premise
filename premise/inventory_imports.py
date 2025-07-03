@@ -85,6 +85,8 @@ def get_biosphere_code(version) -> dict:
         fp = DATA_DIR / "utils" / "export" / "flows_biosphere_39.csv"
     elif version == "3.10":
         fp = DATA_DIR / "utils" / "export" / "flows_biosphere_310.csv"
+    elif version == "3.11":
+        fp = DATA_DIR / "utils" / "export" / "flows_biosphere_311.csv"
     elif version == "3.7":
         fp = DATA_DIR / "utils" / "export" / "flows_biosphere_37.csv"
     else:
@@ -136,15 +138,15 @@ def generate_migration_maps(origin: str, destination: str) -> Dict[str, list]:
                     data["location"] = row[7]
                 response["data"].append(((row[2], row[3], row[4]), data))
 
-            if row[0] == destination and row[1] == origin:
-                data = {}
-                if row[2] != "":
-                    data["name"] = row[2]
-                if row[3] != "":
-                    data["reference product"] = row[3]
-                if row[4] != "":
-                    data["location"] = row[4]
-                response["data"].append(((row[5], row[6], row[7]), data))
+            # if row[0] == destination and row[1] == origin:
+            #    data = {}
+            #    if row[2] != "":
+            #        data["name"] = row[2]
+            #    if row[3] != "":
+            #        data["reference product"] = row[3]
+            #    if row[4] != "":
+            #        data["location"] = row[4]
+            #    response["data"].append(((row[5], row[6], row[7]), data))
 
         return response
 
@@ -407,7 +409,7 @@ class BaseInventoryImport:
         # register migration maps
         # as imported inventories link
         # to different ecoinvent versions
-        ei_versions = ["35", "36", "37", "38", "39", "310"]
+        ei_versions = ["35", "36", "37", "38", "39", "310", "311"]
 
         for combination in itertools.product(ei_versions, ei_versions):
             if combination[0] != combination[1]:
@@ -600,14 +602,20 @@ class BaseInventoryImport:
                 if exchange["type"] == "technosphere":
                     # Check if the field 'product' is present
                     if not "product" in exchange:
-                        exchange["product"] = self.correct_product_field(
-                            (
-                                exchange["name"],
-                                exchange["location"],
-                                exchange["unit"],
-                                exchange.get("reference product", None),
+                        try:
+                            exchange["product"] = self.correct_product_field(
+                                (
+                                    exchange["name"],
+                                    exchange["location"],
+                                    exchange["unit"],
+                                    exchange.get("reference product", None),
+                                )
                             )
-                        )
+                        except KeyError:
+                            print(
+                                f"Could not find a product for {exchange} in {dataset['name']}"
+                            )
+                            raise IndexError()
 
                     # If a 'reference product' field is present, we make sure
                     # it matches with the new 'product' field
@@ -924,22 +932,41 @@ class DefaultInventory(BaseInventoryImport):
 
     def prepare_inventory(self) -> None:
         if self.version_in != self.version_out:
-            # if version_out is 3.9 or 3.10, migrate towards 3.8 first, then 3.9 or 3.10
+            # if version_out is 3.9, 3.10 or 3.11,
+            # migrate towards 3.8 first, then 3.9, 3.10 or 3.11
             if self.version_out in ["3.9", "3.9.1", "3.10"] and self.version_in in [
                 "3.5",
                 "3.6",
                 "3.7",
             ]:
-                print("Migrating to 3.8 first")
+                print(f"Migrating from {self.version_in} to 3.8 first")
                 self.import_db.migrate(
                     f"migration_{self.version_in.replace('.', '')}_38"
                 )
+                print(f"Migrating from 3.8 to {self.version_out}")
                 self.import_db.migrate(
                     f"migration_38_{self.version_out.replace('.', '')}"
                 )
-            self.import_db.migrate(
-                f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}"
-            )
+            elif self.version_out == "3.11" and self.version_in in [
+                "3.5",
+                "3.6",
+                "3.7",
+                "3.8",
+                "3.9",
+            ]:
+                print(f"Migrating from {self.version_in} to 3.10 first")
+                self.import_db.migrate(
+                    f"migration_{self.version_in.replace('.', '')}_310"
+                )
+                print(f"Migrating from 3.10 to {self.version_out}")
+                self.import_db.migrate(
+                    f"migration_310_{self.version_out.replace('.', '')}"
+                )
+            else:
+                print(f"Migrating from {self.version_in} to {self.version_out}")
+                self.import_db.migrate(
+                    f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}"
+                )
 
         if self.system_model == "consequential":
             self.import_db.data = (
@@ -1017,23 +1044,42 @@ class VariousVehicles(BaseInventoryImport):
         return ExcelImporter(self.path)
 
     def prepare_inventory(self):
-        # if version_out is 3.9, migrate towards 3.8 first, then 3.9
-        if self.version_out in ["3.9", "3.9.1", "3.10"]:
+        if self.version_in != self.version_out:
+            # if version_out is 3.9, 3.10 or 3.11,
+            # migrate towards 3.8 first, then 3.9, 3.10 or 3.11
             if self.version_out in ["3.9", "3.9.1", "3.10"] and self.version_in in [
                 "3.5",
                 "3.6",
                 "3.7",
             ]:
-                print("Migrating to 3.8 first")
+                print(f"Migrating from {self.version_in} to 3.8 first")
                 self.import_db.migrate(
                     f"migration_{self.version_in.replace('.', '')}_38"
                 )
+                print(f"Migrating from 3.8 to {self.version_out}")
                 self.import_db.migrate(
                     f"migration_38_{self.version_out.replace('.', '')}"
                 )
-            self.import_db.migrate(
-                f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}"
-            )
+            elif self.version_out == "3.11" and self.version_in in [
+                "3.5",
+                "3.6",
+                "3.7",
+                "3.8",
+                "3.9",
+            ]:
+                print(f"Migrating from {self.version_in} to 3.10 first")
+                self.import_db.migrate(
+                    f"migration_{self.version_in.replace('.', '')}_310"
+                )
+                print(f"Migrating from 3.10 to {self.version_out}")
+                self.import_db.migrate(
+                    f"migration_310_{self.version_out.replace('.', '')}"
+                )
+            else:
+                print(f"Migrating from {self.version_in} to {self.version_out}")
+                self.import_db.migrate(
+                    f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}"
+                )
 
         self.lower_case_technosphere_exchanges()
         self.add_biosphere_links()
@@ -1062,18 +1108,29 @@ class AdditionalInventory(BaseInventoryImport):
 
     def download_file(self, url, local_path) -> None:
         try:
-            response = requests.get(url)
+            response = requests.get(url, stream=True)
             response.raise_for_status()
-            with open(local_path, "w", encoding="utf-8") as file:
-                writer = csv.writer(
-                    file,
-                    quoting=csv.QUOTE_NONE,
-                    delimiter=",",
-                    quotechar="'",
-                    escapechar="\\",
-                )
-                for line in response.iter_lines():
-                    writer.writerow(line.decode("utf-8").split(","))
+
+            # Save Excel file directly as binary
+            if Path(local_path).suffix == ".xlsx":
+                with open(local_path, "wb") as file:
+                    for chunk in response.iter_content(chunk_size=8192):
+                        file.write(chunk)
+
+            # Otherwise, assume it's a CSV (text)
+            else:
+                with open(local_path, "w", newline="", encoding="utf-8") as file:
+                    writer = csv.writer(
+                        file,
+                        quoting=csv.QUOTE_MINIMAL,
+                        delimiter=",",
+                        quotechar="'",
+                        escapechar="\\",
+                    )
+                    for line in response.iter_lines():
+                        decoded_line = line.decode("utf-8", errors="replace")
+                        writer.writerow(decoded_line.split(","))
+
         except requests.RequestException as e:
             raise ConnectionError(f"Error downloading the file: {e}") from e
 
@@ -1083,39 +1140,65 @@ class AdditionalInventory(BaseInventoryImport):
         if "http" in path_str:
             if ":/" in path_str and "://" not in path_str:
                 path_str = path_str.replace(":/", "://")
-            self.download_file(path_str, TEMP_CSV_FILE)
-            file_path = TEMP_CSV_FILE
+            self.download_file(
+                path_str,
+                TEMP_CSV_FILE if path_str.endswith(".csv") else TEMP_EXCEL_FILE,
+            )
+            temp_file_path = (
+                TEMP_CSV_FILE if path_str.endswith(".csv") else TEMP_EXCEL_FILE
+            )
         else:
-            file_path = self.path
+            temp_file_path = self.path
 
-        if file_path.suffix == ".xlsx":
-            return ExcelImporter(file_path)
-        if file_path.suffix == ".csv":
-            return CSVImporter(file_path)
+        if temp_file_path.suffix == ".xlsx":
+            return ExcelImporter(temp_file_path)
+        if temp_file_path.suffix == ".csv":
+            try:
+                return CSVImporter(temp_file_path)
+            except:
+                raise ValueError(f"The file from {self.path} is not a valid CSV file.")
 
         raise ValueError(
             "Incorrect filetype for inventories. Should be either .xlsx or .csv"
         )
 
     def prepare_inventory(self):
-        if str(self.version_in) != self.version_out:
-            # if version_out is 3.9 or 3.10, migrate towards 3.8 first, then 3.9/3.10
+        if self.version_in != self.version_out:
+            # if version_out is 3.9, 3.10 or 3.11,
+            # migrate towards 3.8 first, then 3.9, 3.10 or 3.11
             if self.version_out in ["3.9", "3.9.1", "3.10"] and self.version_in in [
                 "3.5",
                 "3.6",
                 "3.7",
             ]:
-                print("Migrating to 3.8 first")
+                print(f"Migrating from {self.version_in} to 3.8 first")
                 self.import_db.migrate(
                     f"migration_{self.version_in.replace('.', '')}_38"
                 )
+                print(f"Migrating from 3.8 to {self.version_out}")
                 self.import_db.migrate(
                     f"migration_38_{self.version_out.replace('.', '')}"
                 )
-
-            self.import_db.migrate(
-                f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}"
-            )
+            elif self.version_out == "3.11" and self.version_in in [
+                "3.5",
+                "3.6",
+                "3.7",
+                "3.8",
+                "3.9",
+            ]:
+                print(f"Migrating from {self.version_in} to 3.10 first")
+                self.import_db.migrate(
+                    f"migration_{self.version_in.replace('.', '')}_310"
+                )
+                print(f"Migrating from 3.10 to {self.version_out}")
+                self.import_db.migrate(
+                    f"migration_310_{self.version_out.replace('.', '')}"
+                )
+            else:
+                print(f"Migrating from {self.version_in} to {self.version_out}")
+                self.import_db.migrate(
+                    f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}"
+                )
 
         if self.system_model == "consequential":
             self.import_db.data = (

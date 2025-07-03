@@ -22,6 +22,7 @@ hydrogen:
     '3.8': market for hydrogen, gaseous
     '3.9': market for hydrogen, gaseous
     '3.10': market for hydrogen, gaseous, low pressure
+    '3.11': market for hydrogen, gaseous, low pressure
   reference product: hydrogen, gaseous
   unit: kilogram
   lhv: 120

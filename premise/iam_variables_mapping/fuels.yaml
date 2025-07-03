@@ -30,6 +30,7 @@ hard coal:
         - ash
         - clinker
         - charcoal
+
 pulverised lignite:
   lhv: 1
   co2: 0.098
@@ -139,10 +140,7 @@ natural gas:
         - venting
         - liquids
         - network
-        - market
-        - reduction
-        - from high to low
-
+        - import from
 gas, natural, in ground:
   lhv: 45
   co2: 0.0564
@@ -527,6 +525,7 @@ diesel, synthetic, from natural gas:
   ecoinvent_aliases:
     fltr:
       - diesel production, synthetic, Fischer Tropsch process, from natural gas, energy allocation
+    mask: carbon capture
 
 diesel, synthetic, from natural gas, with CCS:
   lhv: 43
@@ -542,7 +541,6 @@ diesel, synthetic, from natural gas, with CCS:
 
 heat, from hydrogen:
   lhv: 1
-
 hydrogen, from petroleum:
   lhv: 120
   co2: 0
@@ -833,10 +831,10 @@ hydrogen, from oil, with CCS:
     co2: 0
     biogenic_share: 1
     ecoinvent_aliases:
-      fltr:
-        - hydrogen production, gaseous, petroleum refinery operation, with CCS
-      iam_aliases:
-          image: Secondary Energy|Hydrogen|Oil w/CCS
+        fltr:
+          - hydrogen production, gaseous, petroleum refinery operation, with CCS
+        iam_aliases:
+            image: Secondary Energy|Hydrogen|Oil w/CCS
 
 hydrogen:
   lhv: 120
@@ -1219,7 +1217,7 @@ liquefied petroleum gas, synthetic, from natural gas:
   ecoinvent_aliases:
     fltr:
       - liquefied petroleum gas production, synthetic, Fischer Tropsch process, from natural gas, energy allocation
-    mask: capture
+    mask: carbon capture
   eff_aliases:
     tiam-ucl: Efficiency|Liquids|Natural gas|FT fuel mix (diesel, kerosene, naptha, ELC)|w/o CCS
 
@@ -1244,6 +1242,7 @@ liquefied petroleum gas, synthetic, from biomass:
   ecoinvent_aliases:
     fltr:
       - liquefied petroleum gas production, synthetic, Fischer Tropsch process, hydrogen from wood gasification, energy allocation
+    mask: carbon capture
   eff_aliases:
     tiam-ucl: Efficiency|Liquids|Biomass|FT fuel mix (diesel, kerosene, naptha, ELC)|w/o CCS
 
@@ -1548,6 +1547,7 @@ kerosene, synthetic, from natural gas, energy allocation:
   ecoinvent_aliases:
     fltr:
       - kerosene production, synthetic, Fischer Tropsch process, from natural gas, energy allocation
+    mask: carbon capture
 
 kerosene, synthetic, from natural gas, energy allocation, with CCS:
   lhv: 43

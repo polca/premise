@@ -816,7 +816,9 @@ Oil CC:
     - market group for heavy fuel oil
     - market for diesel
     mask:
-      name: burned
+      name:
+        - burned
+        - period
   eff_aliases:
     gcam: Efficiency|Electricity|refined liquids (CC)
     image: Efficiency|Electricity|Oil|w/o CCS|2
@@ -893,7 +895,9 @@ Oil ST:
     - market group for heavy fuel oil
     - market for diesel
     mask:
-      name: burned
+      name:
+        - burned
+        - period
   eff_aliases:
     gcam: Efficiency|Electricity|refined liquids (steam/CT)
     image: Efficiency|Electricity|Oil|w/o CCS|1

@@ -822,13 +822,13 @@ def consequential_method(
     table = PrettyTable(
         [
             "Region",
-            "Measurement method",
-            "Foresight?",
+            "Method",
+            "Foresight",
             "Duration",
-            "Avg. start year",
-            "Avg. end year",
-            "Avg. capital repl. rate",
-            "Volume change",
+            "Start",
+            "End",
+            "Cap repl.",
+            "Vol ch.",
         ]
     )
     for row in summary:
@@ -836,13 +836,13 @@ def consequential_method(
 
     table._max_width = {
         "Region": 10,
-        "Measurement method": 20,
-        "Foresight?": 10,
+        "Method": 10,
+        "Foresight": 10,
         "Duration": 10,
-        "Avg. start year": 10,
-        "Avg. end year": 10,
-        "Avg. capital repl. rate": 20,
-        "Volume change": 20,
+        "Start": 10,
+        "End": 10,
+        "Cap repl.": 10,
+        "Vol ch.": 10,
     }
     table.hrules = ALL
     print(table)

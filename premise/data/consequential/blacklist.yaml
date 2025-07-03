@@ -120,6 +120,15 @@
     reference product: nitrogen, liquid
     location: RER
 
+- name: industrial gases production, cryogenic air separation
+  reference product: nitrogen, liquid
+  unit: kilogram
+  location: RER
+  replacement:
+    name: market for nitrogen, liquid
+    reference product: nitrogen, liquid
+    location: RER
+
 - name: coking
   reference product: coal gas
   unit: megajoule
@@ -164,7 +173,6 @@
     name: market for neutralising agent, sodium hydroxide-equivalent
     reference product: neutralising agent, sodium hydroxide-equivalent
     location: GLO
-
 
 - name: oxidation of butane
   reference product: methyl acetate
@@ -301,4 +309,38 @@
     reference product: iron ore concentrate
     location: GLO
 
+- name: chlor-alkali electrolysis, membrane cell
+  reference product: sodium hydroxide, without water, in 50% solution state
+  unit: kilogram
+  location: RER
+  replacement:
+    name: market for sodium hydroxide, without water, in 50% solution state
+    reference product: sodium hydroxide, without water, in 50% solution state
+    location: GLO
 
+- name: Sohio process
+  reference product: acetonitrile
+  unit: kilogram
+  location: RER
+  replacement:
+    name: market for acetonitrile
+    reference product: acetonitrile
+    location: GLO
+
+- name: acrylonitrile production, Sohio process
+  reference product: acetonitrile
+  unit: kilogram
+  location: RER
+  replacement:
+    name: market for acetonitrile
+    reference product: acetonitrile
+    location: GLO
+
+- name: heat, from municipal waste incineration to generic market for heat, district or industrial, other than natural gas
+  reference product: heat, district or industrial, other than natural gas
+  location: CH
+  unit: megajoule
+  replacement:
+    name: heat, from municipal waste incineration to generic market for heat, district or industrial, other than natural gas
+    reference product: heat, for reuse in municipal waste incineration only
+    location: CH

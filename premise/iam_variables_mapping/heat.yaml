@@ -52,7 +52,7 @@ heat, from wood chips:
 
 heat, from coal furnace:
     ecoinvent_aliases:
-      fltr: heat production, at hard coal industrial furnace 1-10MW
+        fltr: heat production, at hard coal industrial furnace 1-10MW
 
 heat, from hydrogen turbine:
   ecoinvent_aliases:
@@ -98,11 +98,11 @@ heat, buildings, from synthetic natural gas boiler:
 
 heat, buildings, from coal-based natural gas boiler:
     ecoinvent_aliases:
-      fltr: heat, residential, by combustion of coal-based natural gas using boiler, distributed by pipeline
+        fltr: heat, residential, by combustion of coal-based natural gas using boiler, distributed by pipeline
 
 heat, buildings, from natural gas:
     ecoinvent_aliases:
-      fltr: heat production, natural gas, at boiler condensing modulating <100kW
+        fltr: heat production, natural gas, at boiler condensing modulating <100kW
     iam_aliases:
       remind: FE|Buildings|Heating|Gases
       remind-eu: FE|Buildings|Heating|Gases
@@ -114,32 +114,32 @@ heat, buildings, from natural gas:
 
 heat, buildings, from biomethane boiler:
     ecoinvent_aliases:
-      fltr: heat, residential, by combustion of biomethane using boiler, distributed by pipeline
+        fltr: heat, residential, by combustion of biomethane using boiler, distributed by pipeline
 
 heat, buildings, from LPG boiler:
     ecoinvent_aliases:
-      fltr: heat, residential, by combustion of liquefied petroleum gas using boiler, distributed by pipeline
+        fltr: heat, residential, by combustion of liquefied petroleum gas using boiler, distributed by pipeline
     iam_aliases:
       remind: FE|Buildings|Liquids|Fossil|+|Gas
       remind-eu: FE|Buildings|Liquids|Fossil|+|Gas
 
 heat, buildings, from biomass-based methanol boiler:
     ecoinvent_aliases:
-      fltr: heat, residential, by combustion of methanol using boiler, distributed by truck, produced with biomass
+        fltr: heat, residential, by combustion of methanol using boiler, distributed by truck, produced with biomass
     iam_aliases:
       remind: FE|Buildings|Liquids|+|Biomass
       remind-eu: FE|Buildings|Liquids|+|Biomass
 
 heat, buildings, from coal-based methanol boiler:
     ecoinvent_aliases:
-      fltr: heat, residential, by combustion of methanol using boiler, distributed by truck, produced with coal
+        fltr: heat, residential, by combustion of methanol using boiler, distributed by truck, produced with coal
     iam_aliases:
       remind: FE|Buildings|Liquids|Fossil|+|Coal
       remind-eu: FE|Buildings|Liquids|Fossil|+|Coal
 
 heat, buildings, from coal stove:
     ecoinvent_aliases:
-      fltr: heat production, hard coal briquette, stove 5-15kW
+        fltr: heat production, hard coal briquette, stove 5-15kW
     iam_aliases:
       remind: FE|Buildings|Solids|Coal
       remind-eu: FE|Buildings|Solids|Coal
@@ -184,7 +184,7 @@ heat, buildings, from heat pump:
 
 heat, buildings, from electric heater:
     ecoinvent_aliases:
-        fltr: heat, residential, electric storage heater, using electricity from grid
+      fltr: heat, residential, electric storage heater, using electricity from grid
     iam_aliases:
       remind: FE|Buildings|Heating|Electricity|Resistance
       remind-eu: FE|Buildings|Heating|Electricity|Resistance
@@ -196,7 +196,7 @@ heat, buildings, from electric heater:
 
 heat, buildings, from light fuel oil boiler:
     ecoinvent_aliases:
-        fltr: heat production, light fuel oil, at boiler 100kW condensing, non-modulating
+      fltr: heat production, light fuel oil, at boiler 100kW condensing, non-modulating
     iam_aliases:
       remind: FE|Buildings|Liquids|Fossil|+|Oil
       remind-eu: FE|Buildings|Liquids|Fossil|+|Oil
@@ -206,53 +206,69 @@ heat, buildings, from light fuel oil boiler:
         - Final Energy|Commercial|Space Heating|Liquids|Fossil
         - Final Energy|Commercial|Water Heating|Liquids|Fossil
 
+heat, industrial, from hydrogen:
+    ecoinvent_aliases:
+      fltr: hydrogen, burned in gas turbine 1GW
+    iam_aliases:
+      image: Final Energy|Industry|Other Sector|Hydrogen
+
 heat, industrial, from heat pump:
     ecoinvent_aliases:
-        fltr: heat production, air-water heat pump 10kW
+      fltr: heat production, air-water heat pump 10kW
     iam_aliases:
       remind: SE|Heat|Electricity|Heat Pump
       remind-eu: SE|Heat|Electricity|Heat Pump
+      image: Final Energy|Industry|Other Sector|Electricity
 
 heat, industrial, from natural gas CHP:
     ecoinvent_aliases:
-        fltr:
-          name: heat and power co-generation, natural gas, conventional power plant, 100MW electrical
-          reference product: heat
+      fltr:
+        name: heat and power co-generation, natural gas, conventional power plant, 100MW electrical
+        reference product: heat
     iam_aliases:
       remind: SE|Heat|Gas|Combined Heat and Power
       remind-eu: SE|Heat|Gas|Combined Heat and Power
+      image: Final Energy|Industry|Other Sector|Gases|Fossil
 
 heat, industrial, from coal CHP:
     ecoinvent_aliases:
-        fltr:
-          name: heat and power co-generation, hard coal
-          reference product: heat
+      fltr:
+        name: heat and power co-generation, hard coal
+        reference product: heat
     iam_aliases:
       remind: SE|Heat|Coal|Combined Heat and Power
       remind-eu: SE|Heat|Coal|Combined Heat and Power
+      image: Final Energy|Industry|Other Sector|Solids|Fossil
 
 heat, industrial, from biomass CHP:
     ecoinvent_aliases:
-        fltr:
-          name: heat and power co-generation, wood chips, 6667 kW
-          reference product: heat
-        mask:
-          - renewable
-          - state
+      fltr:
+        name: heat and power co-generation, wood chips, 6667 kW
+        reference product: heat
+      mask:
+        - renewable
+        - state
     iam_aliases:
       remind: SE|Heat|Biomass|Combined Heat and Power
       remind-eu: SE|Heat|Biomass|Combined Heat and Power
+      image: Final Energy|Industry|Other Sector|Solids|Biomass
+
+heat, industrial, from light fuel oil boiler:
+    ecoinvent_aliases:
+      fltr: heat production, light fuel oil, at industrial furnace 1MW
+    iam_aliases:
+      image: Final Energy|Industry|Other Sector|Liquids|Fossil
 
 heat, industrial, from geothermal:
     ecoinvent_aliases:
-        fltr: heat production, deep geothermal
+      fltr: heat production, deep geothermal
     iam_aliases:
       remind: SE|Heat|+|Geothermal
       remind-eu: SE|Heat|+|Geothermal
 
 heat, industrial, from solar thermal:
     ecoinvent_aliases:
-        fltr: heat production, at 110 MW concentrating solar power plant, with thermal energy storage
+      fltr: heat production, at 110 MW concentrating solar power plant, with thermal energy storage
     iam_aliases:
       remind: SE|Heat|+|Solar
       remind-eu: SE|Heat|+|Solar
@@ -296,18 +312,18 @@ energy, for DACCS, from electricity:
 
 energy, for EWR, from electricity:
     ecoinvent_aliases:
-        fltr: electricity, medium-voltage, used as final energy
+      fltr: electricity, medium-voltage, used as final energy
     iam_aliases:
       remind: FE|CDR|EW|+|Electricity
       remind-eu: FE|CDR|EW|+|Electricity
 
 energy, from EWR, from diesel:
     ecoinvent_aliases:
-        fltr: diesel, burned in diesel-electric generating set, 10MW
-        mask:
-          - market
-          - biodiesel
-          - oil
+      fltr: diesel, burned in diesel-electric generating set, 10MW
+      mask:
+        - market
+        - biodiesel
+        - oil
     iam_aliases:
       remind: FE|CDR|EW|+|Diesel
       remind-eu: FE|CDR|EW|+|Diesel
