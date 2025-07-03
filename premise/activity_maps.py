@@ -343,9 +343,7 @@ class InventorySet:
         :rtype: dict
 
         """
-        filters = get_mapping(
-            filepath=FUELS_TECHS, var="ecoinvent_aliases"
-        )
+        filters = get_mapping(filepath=FUELS_TECHS, var="ecoinvent_aliases")
         return self.generate_sets_from_filters(filters)
 
     def generate_mining_waste_map(self) -> dict:
