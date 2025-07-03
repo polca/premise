@@ -9,7 +9,6 @@ from collections import defaultdict
 from functools import lru_cache
 from pathlib import Path
 from typing import List, Union
-from pprint import pprint
 
 import numpy as np
 import wurst
@@ -35,7 +34,7 @@ from .transformation import (
     find_fuel_efficiency,
     get_shares_from_production_volume,
 )
-from .utils import HiddenPrints, get_fuel_properties, rescale_exchanges
+from .utils import get_fuel_properties, rescale_exchanges
 
 LOG_CONFIG = DATA_DIR / "utils" / "logging" / "logconfig.yaml"
 
@@ -242,7 +241,7 @@ def adjust_efficiency(dataset: dict, fuels_specs: dict, fuel_map_reverse: dict) 
                         1.0,
                     ]:
                         print(
-                            f"Stopping: Efficiency factor for {dataset['name']} in {dataset['location']} is {current_efficiency}"
+                            f"Warning: Efficiency factor for {dataset['name']} in {dataset['location']} is {current_efficiency}"
                             f"and expected efficiency is {expected_efficiency}."
                         )
                         continue

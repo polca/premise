@@ -808,7 +808,6 @@ class BaseTransformation:
                     f"{name, ref_prod}, : {[(r['name'], r['reference product'], r['location']) for r in results]}",
                 )
             except ws.NoResults as err:
-                print(region, d_iam_to_eco)
                 raise ws.NoResults(
                     err,
                     f"No dataset found for {name, ref_prod} in {d_iam_to_eco[region]}",
@@ -2194,8 +2193,6 @@ class BaseTransformation:
         ]
 
         possible_locations = [loc for loc in possible_locations if loc in self.geo.geo]
-        print(location)
-        print(possible_locations)
         with resolved_row(possible_locations, self.geo.geo) as g:
             func = g.contained if contained else g.intersects
 

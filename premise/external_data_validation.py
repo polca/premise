@@ -77,7 +77,6 @@ def flag_activities_to_adjust(
                 variables=dataset_vars["production volume variable"]
             )
         except KeyError:
-            print(list(scenario_data.keys()))
             print(
                 f"Variable {dataset_vars['production volume variable']} not found in scenario data for scenario."
             )
@@ -573,8 +572,9 @@ def check_inventories(
                     inventory_data,
                 )
             except ValueError as e:
-                print(key, val, potential_candidates)
-                print()
+                raise ValueError(
+                    f"Dataset {key[0]} and {key[1]} is not found in the original database."
+                ) from e
 
             if duplicate_name:
                 for candidate in candidates:
