@@ -536,6 +536,7 @@ class NewDatabase:
         use_absolute_efficiency=False,
         biosphere_name: str = "biosphere3",
     ) -> None:
+        self.sector_update_methods = None
         self.source = source_db
         self.version = check_db_version(source_version)
         self.source_type = source_type
@@ -902,7 +903,7 @@ class NewDatabase:
         """
         Update a specific sector by name.
         """
-        sector_update_methods = {
+        self.sector_update_methods = {
             "biomass": {
                 "func": _update_biomass,
                 "args": (self.version, self.system_model),
@@ -985,16 +986,16 @@ class NewDatabase:
             description = f"Processing scenarios for {len(sectors)} sectors"
         elif sectors is None:
             description = "Processing scenarios for all sectors"
-            sectors = [s for s in list(sector_update_methods.keys())]
+            sectors = [s for s in list(self.sector_update_methods.keys())]
 
         assert isinstance(sectors, list), "sector_name should be a list of strings"
         assert all(
             isinstance(item, str) for item in sectors
         ), "sector_name should be a list of strings"
         assert all(
-            item in sector_update_methods for item in sectors
+            item in self.sector_update_methods for item in sectors
         ), "Unknown resource name(s): {}".format(
-            [item for item in sectors if item not in sector_update_methods]
+            [item for item in sectors if item not in self.sector_update_methods]
         )
 
         with tqdm(total=len(self.scenarios), desc=description, ncols=70) as pbar_outer:
@@ -1014,8 +1015,8 @@ class NewDatabase:
                         continue
 
                     # Prepare the function and arguments
-                    update_func = sector_update_methods[sector]["func"]
-                    fixed_args = sector_update_methods[sector]["args"]
+                    update_func = self.sector_update_methods[sector]["func"]
+                    fixed_args = self.sector_update_methods[sector]["args"]
                     scenario = update_func(scenario, *fixed_args)
 
                     if "applied functions" not in scenario:

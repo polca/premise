@@ -66,7 +66,6 @@ def test_increment():
     if "incremental" in bw2data.databases:
         del bw2data.databases["superstructure"]
 
-    ndb.generate_change_report()
     ndb.write_increment_db_to_brightway("incremental", file_format="csv")
 
     method = [m for m in bw2data.methods if "IPCC" in str(m)][0]

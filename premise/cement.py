@@ -44,6 +44,7 @@ def _update_cement(scenario, version, system_model):
     )
 
     if scenario["iam data"].cement_technology_mix is not None:
+        cement.create_cement_CCS_datasets()
         cement.create_clinker_technology_datasets()
         cement.replace_clinker_production_with_markets()
         cement.build_clinker_production_datasets()
@@ -558,6 +559,38 @@ class Cement(BaseTransformation):
             self.add_to_index(new_dataset)
             self.write_log(new_dataset, "created")
             self.database.append(new_dataset)
+
+
+    def create_cement_CCS_datasets(self):
+
+        # add CCS datasets
+        ccs_datasets = {
+            "on-site CCS": {
+                "name": "carbon dioxide, captured, at cement production plant, using direct separation",
+                "reference product": "carbon dioxide, captured",
+            },
+            "oxyfuel CCS": {
+                "name": "carbon dioxide, captured, at cement production plant, using oxyfuel",
+                "reference product": "carbon dioxide, captured",
+            },
+            "MEA CCS": {
+                "name": "carbon dioxide, captured, at cement production plant, using monoethanolamine",
+                "reference product": "carbon dioxide, captured",
+            },
+        }
+
+        ccs_mapping = {
+            k: [ws.get_one(
+                self.database,
+                ws.equals("name", v["name"]),
+                ws.equals("reference product", v["reference product"]),
+            )]
+            for k, v in ccs_datasets.items()
+        }
+
+        self.process_and_add_activities(
+            mapping=ccs_mapping,
+        )
 
     def write_log(self, dataset, status="created"):
         """

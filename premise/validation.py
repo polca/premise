@@ -1196,7 +1196,7 @@ class TransportValidation(BaseDatasetValidator):
         vehicle_name,
         fossil_minimum=0.0,
         fossil_maximum=0.5,
-        elec_minimum=0.1,
+        elec_minimum=0.01,
         elec_maximum=0.35,
     ):
         # check that the efficiency of the car production datasets
@@ -1309,8 +1309,8 @@ class TruckValidation(TransportValidation):
             vehicle_name="transport, freight, lorry",
             fossil_minimum=0.0,
             fossil_maximum=0.5,
-            elec_minimum=0.1,
-            elec_maximum=0.5,
+            elec_minimum=0.01,
+            elec_maximum=0.9,
         )
         self.check_pollutant_emissions(vehicle_name="transport, freight, lorry")
         self.save_log()

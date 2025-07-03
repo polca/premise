@@ -338,6 +338,7 @@ def make_generic_market_dataset(
         "code": str(uuid.uuid4().hex),
         "database": database,
         "comment": comment,
+        "regionalized": True,
         "exchanges": [],
     }
 
@@ -529,6 +530,8 @@ class Electricity(BaseTransformation):
             for technology in ecoinvent_technologies:
                 suppliers, counter = [], 0
 
+                print(technology)
+
                 while len(suppliers) == 0:
                     suppliers = list(
                         get_suppliers_of_a_region(
@@ -597,6 +600,7 @@ class Electricity(BaseTransformation):
                     "name": "market group for electricity, low voltage",
                     "unit": "kilowatt hour",
                     "location": region,
+                    "regionalized": True,
                 }
             ]
 
