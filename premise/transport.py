@@ -210,8 +210,8 @@ class Transport(BaseTransformation):
         """
 
         name = f"market for {self.mapping[self.vehicle_type]['name']}"
-        reference_product = self.mapping[self.vehicle_type]['name']
-        unit = self.mapping[self.vehicle_type]['unit']
+        reference_product = self.mapping[self.vehicle_type]["name"]
+        unit = self.mapping[self.vehicle_type]["unit"]
 
         self.process_and_add_markets(
             name=name,

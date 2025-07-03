@@ -560,7 +560,6 @@ class Cement(BaseTransformation):
             self.write_log(new_dataset, "created")
             self.database.append(new_dataset)
 
-
     def create_cement_CCS_datasets(self):
 
         # add CCS datasets
@@ -580,11 +579,13 @@ class Cement(BaseTransformation):
         }
 
         ccs_mapping = {
-            k: [ws.get_one(
-                self.database,
-                ws.equals("name", v["name"]),
-                ws.equals("reference product", v["reference product"]),
-            )]
+            k: [
+                ws.get_one(
+                    self.database,
+                    ws.equals("name", v["name"]),
+                    ws.equals("reference product", v["reference product"]),
+                )
+            ]
             for k, v in ccs_datasets.items()
         }
 
