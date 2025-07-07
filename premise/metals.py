@@ -509,7 +509,9 @@ class Metals(BaseTransformation):
         ]
 
         if tech_rows.empty:
-            logger.warning(f"No matching rows for {dataset['name']}, {dataset['location']}.")
+            logger.warning(
+                f"No matching rows for {dataset['name']}, {dataset['location']}."
+            )
             return
 
         conversion_factor = self.conversion_factors_dict.get(
@@ -936,7 +938,6 @@ class Metals(BaseTransformation):
                 subset=subset,
             )
 
-
             # add new datasets to database
             self.database.extend(datasets.values())
             self.add_to_index(datasets.values())
@@ -1087,13 +1088,16 @@ class Metals(BaseTransformation):
                     self.database,
                     ws.equals("name", f"market for {ref_prod}"),
                     ws.equals("reference product", ref_prod),
-                    ws.either(ws.equals("location", "GLO"), ws.equals("location", "RoW")),
+                    ws.either(
+                        ws.equals("location", "GLO"), ws.equals("location", "RoW")
+                    ),
                 )
             )
 
             for old_market in old_markets:
                 consumers = [
-                    ds for ds in self.database
+                    ds
+                    for ds in self.database
                     if any(
                         exc.get("type") == "technosphere"
                         and exc.get("name") == old_market["name"]
@@ -1107,10 +1111,10 @@ class Metals(BaseTransformation):
                     modified = False
                     for exc in consumer["exchanges"]:
                         if (
-                                exc.get("name") == old_market["name"]
-                                and exc.get("product") == old_market["reference product"]
-                                and exc.get("location") == old_market["location"]
-                                and exc.get("type") == "technosphere"
+                            exc.get("name") == old_market["name"]
+                            and exc.get("product") == old_market["reference product"]
+                            and exc.get("location") == old_market["location"]
+                            and exc.get("type") == "technosphere"
                         ):
                             exc.update(
                                 {
@@ -1262,7 +1266,9 @@ class Metals(BaseTransformation):
                 candidates = list(ws.get_many(self.database, *filters))
 
                 if not candidates:
-                    print(f"[Metals] No datasets found for '{metal}' with filters: {row['Process']} || {row['Reference product']}")
+                    print(
+                        f"[Metals] No datasets found for '{metal}' with filters: {row['Process']} || {row['Reference product']}"
+                    )
                     logger.warning(
                         f"[Metals] No dataset found for '{metal}' with filters: {row['Process']} || {row['Reference product']}"
                     )
@@ -1275,7 +1281,9 @@ class Metals(BaseTransformation):
                 dataset = self.create_market(metal, df_matched)
 
                 if dataset is None:
-                    logger.warning(f"[Metals] No dataset created for metal '{metal}'. Skipping.")
+                    logger.warning(
+                        f"[Metals] No dataset created for metal '{metal}'. Skipping."
+                    )
                     print(f"[Metals] No dataset created for metal '{metal}'. Skipping.")
                     continue
 
@@ -1302,7 +1310,9 @@ class Metals(BaseTransformation):
         if not entry:
             default_name = f"market for {metal_key}"
             default_reference_product = metal_key
-            logger.warning(f"[Metals] WARNING: No entry found for metal key: {metal_key} in 'primary_secondary_split.yaml'")
+            logger.warning(
+                f"[Metals] WARNING: No entry found for metal key: {metal_key} in 'primary_secondary_split.yaml'"
+            )
             return default_name, default_reference_product, 1.0, 0.0
 
         name = entry["name"]
