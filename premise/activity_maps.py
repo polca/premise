@@ -32,6 +32,7 @@ TRUCKS = VARIABLES_DIR / "transport_road_freight.yaml"
 TRAINS = VARIABLES_DIR / "transport_rail_freight.yaml"
 SHIPS = VARIABLES_DIR / "transport_sea_freight.yaml"
 FINAL_ENERGY = VARIABLES_DIR / "final_energy.yaml"
+CAPACITY_ADDITION = VARIABLES_DIR / "capacity_addition.yaml"
 MINING_WASTE = DATA_DIR / "interventions" / "tailings_activities.yaml"
 COPPER_WASTE = DATA_DIR / "interventions" / "copper_recovery_activities.yaml"
 EAF_SLAG_WASTE = DATA_DIR / "interventions" / "EAF_slag_activities.yaml"
@@ -139,6 +140,7 @@ def debug_mapping_to_dataframe(scenario) -> pd.DataFrame:
         ("cdr", inv.generate_cdr_map()),
         ("cement fuels", inv.generate_cement_fuels_map()),
         ("final energy", inv.generate_final_energy_map()),
+        ("capacity addition", inv.generate_capacity_addition_map()),
         ("fuel", inv.generate_fuel_map()),
         ("gains", inv.generate_gains_mapping()),
         ("powerplant", inv.generate_powerplant_map()),
@@ -236,6 +238,10 @@ class InventorySet:
             filepath=FINAL_ENERGY, var="ecoinvent_aliases"
         )
 
+        self.capacity_addition_filters = get_mapping(
+            filepath=CAPACITY_ADDITION, var="ecoinvent_aliases"
+        )
+
         self.biomass_filters = get_mapping(
             filepath=BIOMASS_TYPES, var="ecoinvent_aliases"
         )
@@ -255,6 +261,8 @@ class InventorySet:
         self.brake_wear_filters = get_mapping(
             filepath=BRAKE_WEAR, var="ecoinvent_aliases"
         )
+
+
 
     def generate_biomass_map(self) -> dict:
         """
@@ -429,6 +437,17 @@ class InventorySet:
 
         """
         return self.generate_sets_from_filters(self.final_energy_filters)
+
+    def generate_capacity_addition_map(self) -> dict:
+        """
+        Filter ecoinvent processes related to capacity addition.
+
+        :return: dictionary with capacity addition names as keys (see below) and
+            sets of related ecoinvent activities as values.
+        :rtype: dict
+
+        """
+        return self.generate_sets_from_filters(self.capacity_addition_filters)
 
     def generate_transport_map(self, transport_type: str) -> dict:
         """

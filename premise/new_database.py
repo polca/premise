@@ -535,6 +535,7 @@ class NewDatabase:
         gains_scenario="CLE",
         use_absolute_efficiency=False,
         biosphere_name: str = "biosphere3",
+        split_capacity_operation: bool = False,
     ) -> None:
         self.source = source_db
         self.version = check_db_version(source_version)
@@ -545,6 +546,7 @@ class NewDatabase:
         self.keep_imports_uncertainty = keep_imports_uncertainty
         self.keep_source_db_uncertainty = keep_source_db_uncertainty
         self.biosphere_name = check_presence_biosphere_database(biosphere_name)
+        self.split_capacity_operation = split_capacity_operation
 
         # if version is anything other than 3.8 or 3.9
         # and system_model is "consequential"
@@ -965,7 +967,7 @@ class NewDatabase:
             },
             "final energy": {
                 "func": _update_final_energy,
-                "args": (self.version, self.system_model),
+                "args": (self.version, self.system_model, self.split_capacity_operation),
             },
             "external": {
                 "func": _update_external_scenarios,

@@ -1,0 +1,10 @@
+Buildings - Heating - Heat pump - New Cap:
+  ecoinvent_aliases:
+    fltr:
+      name: market for heat pump, brine-water, 10kW
+      reference product: heat pump, brine-water, 10kW
+  iam_aliases:
+    remind: New Cap|Heat|+|Electricity|Heat Pump
+
+
+

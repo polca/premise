@@ -36,6 +36,7 @@ class PathwaysDataPackage:
         gains_scenario="CLE",
         use_absolute_efficiency=False,
         biosphere_name="biosphere3",
+        split_capacity_operation: bool = False,
     ):
         self.years = years
         self.scenarios = []
@@ -62,9 +63,26 @@ class PathwaysDataPackage:
             gains_scenario=gains_scenario,
             use_absolute_efficiency=use_absolute_efficiency,
             biosphere_name=biosphere_name,
+            split_capacity_operation=split_capacity_operation,
         )
 
         self.scenario_names = []
+
+    # def create_datapackage(
+    #     self,
+    #     name: str = f"pathways_{date.today()}",
+    #     contributors: list = None,
+    #     transformations: list = None,
+    # ):
+    #     if transformations:
+    #         self.datapackage.update(transformations)
+    #     else:
+    #         self.datapackage.update()
+    #
+    #     self.export_datapackage(
+    #         name=name,
+    #         contributors=contributors,
+    #     )
 
     def create_datapackage(
         self,
@@ -72,11 +90,32 @@ class PathwaysDataPackage:
         contributors: list = None,
         transformations: list = None,
     ):
+        """
+        Create a data package for scenario analysis.
+
+        If final energy split logic is used, it will inject the capacity addition data
+        directly into scenario configurations.
+        """
+
+        # Check if final energy split logic was used
+        capacity_addition_data = None
+        for t in transformations or []:
+            if isinstance(t, FinalEnergy) and t.split_capacity_operation:
+                capacity_addition_data = t.get_patched_yaml_data()
+                break
+
+        # Store the patched configuration only if needed
+        if capacity_addition_data:
+            for scenario in self.datapackage.scenarios:
+                scenario.setdefault("configurations", {})["capacity_addition"] = capacity_addition_data
+
+        # Update the datapackage with transformations
         if transformations:
             self.datapackage.update(transformations)
         else:
             self.datapackage.update()
 
+        # Export the datapackage
         self.export_datapackage(
             name=name,
             contributors=contributors,
@@ -186,15 +225,34 @@ class PathwaysDataPackage:
         # the folder is located in the same folder as this module
 
         model_variables = []
+        yamls_to_load = []
+
+        # Check if any scenario has a patched capacity addition config
+        patched_capacity_addition = None
+        for scenario in self.scenarios:
+            if "configurations" in scenario and "capacity_addition" in scenario["configurations"]:
+                patched_capacity_addition = scenario["configurations"]["capacity_addition"]
+                print(f"Found patched capacity addition data with {len(patched_capacity_addition)} variables")
+                break
+
+        if patched_capacity_addition:
+            yamls_to_load.append(("capacity_addition.yaml", patched_capacity_addition))
 
         for file in (
             Path(__file__).resolve().parent.glob("iam_variables_mapping/*.yaml")
         ):
+            if file.name == "capacity_addition.yaml" and patched_capacity_addition:
+                continue  # skip reading the file version
             # open the file
-            with open(file, "r") as f:
-                # load the YAML file
-                data = yaml.full_load(f)
-            # iterate through all variables in the YAML file
+            try:
+                with open(file, "r") as f:
+                    data = yaml.full_load(f)
+                yamls_to_load.append((file.name, data))
+            except Exception as e:
+                print(f"Warning: Could not load {file.name}: {e}")
+                continue
+        # iterate through all variables in the YAML files
+        for file_name, data in yamls_to_load:
             for var, val in data.items():
                 if all(x in val for x in ["iam_aliases", "ecoinvent_aliases"]):
                     for model, model_var in val["iam_aliases"].items():

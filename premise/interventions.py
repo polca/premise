@@ -1,5 +1,9 @@
 """
-Integrates projections regarding tailings treatment.
+Integrates projections regarding:
+    - Sulfidic tailings treatment.
+    - Slag treatment (EAF and BOF).
+    - Copper treatment (recycling and incineration shares).
+    - Brake wear emissions (copper and antimony ions).
 """
 
 import yaml
