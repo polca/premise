@@ -15,6 +15,7 @@ import re
 
 import contextlib
 
+
 def _update_final_energy(
     scenario,
     version,
@@ -43,7 +44,9 @@ def _update_final_energy(
         final_energy.generate_capacity_addition_datasets()
         # and patch the scenario with the yaml data (in memory, not in disk)
         scenario["configurations"] = scenario.get("configurations", {})
-        scenario["configurations"]["capacity addition"] = final_energy.get_patched_yaml_data()
+        scenario["configurations"][
+            "capacity addition"
+        ] = final_energy.get_patched_yaml_data()
 
     final_energy.relink_datasets()
     scenario["database"] = final_energy.database
@@ -152,29 +155,42 @@ class FinalEnergy(BaseTransformation):
                     continue
 
                 for orig in matches:
-                    print(f"  ✅ Matched dataset: '{orig['name']}' @ {orig['location']}")
+                    print(
+                        f"  ✅ Matched dataset: '{orig['name']}' @ {orig['location']}"
+                    )
 
                     # Infer capacity
                     installed_kw = self.extract_installed_capacity(orig)
                     if installed_kw is None:
                         print(
-                            f"    ⚠️ Could not infer installed capacity for '{orig['name']}' — skipping normalization.")
+                            f"    ⚠️ Could not infer installed capacity for '{orig['name']}' — skipping normalization."
+                        )
                         scaling_factor = 1
                     else:
                         scaling_factor = 1_000_000 / installed_kw
-                        print(f"    🔄 Scaling factor to 1 GW: {scaling_factor:.0f} (from {installed_kw} kW/unit)")
+                        print(
+                            f"    🔄 Scaling factor to 1 GW: {scaling_factor:.0f} (from {installed_kw} kW/unit)"
+                        )
 
                     # Remove from operation datasets
                     for op in self.database:
-                        if any(exc["type"] == "technosphere" and exc["name"] == name for exc in
-                               op.get("exchanges", [])):
+                        if any(
+                            exc["type"] == "technosphere" and exc["name"] == name
+                            for exc in op.get("exchanges", [])
+                        ):
                             before = len(op["exchanges"])
                             op["exchanges"] = [
-                                exc for exc in op["exchanges"]
-                                if not (exc["type"] == "technosphere" and exc["name"] == name)
+                                exc
+                                for exc in op["exchanges"]
+                                if not (
+                                    exc["type"] == "technosphere"
+                                    and exc["name"] == name
+                                )
                             ]
                             after = len(op["exchanges"])
-                            print(f"    🧹 Removed {before - after} exchanges from '{op['name']}'")
+                            print(
+                                f"    🧹 Removed {before - after} exchanges from '{op['name']}'"
+                            )
 
                     # Build new dataset manually
                     new_name = self.rename_to_1GW(orig["name"]) + ", capacity addition"
@@ -192,20 +208,25 @@ class FinalEnergy(BaseTransformation):
 
                     # Add scaled exchanges
                     for exc in orig.get("exchanges", []):
-                        if exc["type"] in ("technosphere", "biosphere") and "amount" in exc:
+                        if (
+                            exc["type"] in ("technosphere", "biosphere")
+                            and "amount" in exc
+                        ):
                             new_exc = exc.copy()
                             new_exc["amount"] *= scaling_factor
                             new_ds["exchanges"].append(new_exc)
 
                     # Add production exchange
-                    new_ds["exchanges"].append({
-                        "name": new_name,
-                        "product": new_ref_prod,
-                        "amount": 1,
-                        "unit": orig["unit"],
-                        "location": orig["location"],
-                        "type": "production",
-                    })
+                    new_ds["exchanges"].append(
+                        {
+                            "name": new_name,
+                            "product": new_ref_prod,
+                            "amount": 1,
+                            "unit": orig["unit"],
+                            "location": orig["location"],
+                            "type": "production",
+                        }
+                    )
 
                     self.database.append(new_ds)
                     self.add_to_index([new_ds])
@@ -248,14 +269,18 @@ class FinalEnergy(BaseTransformation):
         """
         Replace any installed capacity info in the format '123kW', '5 MW', '0.5TW' with '1GW'.
         """
-        return re.sub(r"\b\d+(\.\d+)?\s?(W|kW|MW|GW|TW)\b", "1GW", name, flags=re.IGNORECASE)
+        return re.sub(
+            r"\b\d+(\.\d+)?\s?(W|kW|MW|GW|TW)\b", "1GW", name, flags=re.IGNORECASE
+        )
 
     def get_patched_yaml_data(self):
         patched = {}
 
         for variable, dataset_names in self.capacity_addition_map.items():
             for name in dataset_names:
-                for ds in ws.get_many(self.database, ws.contains("name", "capacity addition")):
+                for ds in ws.get_many(
+                    self.database, ws.contains("name", "capacity addition")
+                ):
                     if name in ds["name"]:
                         patched[variable] = {
                             "ecoinvent_aliases": {
@@ -265,11 +290,9 @@ class FinalEnergy(BaseTransformation):
                                 }
                             },
                             "iam_aliases": {
-                                self.model: self.iam_data.final_energy_use.get_key(variable)
+                                self.model: self.iam_data.final_energy_use.get_key(
+                                    variable
+                                )
                             },
                         }
         return patched
-
-
-
-

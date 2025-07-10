@@ -967,7 +967,11 @@ class NewDatabase:
             },
             "final energy": {
                 "func": _update_final_energy,
-                "args": (self.version, self.system_model, self.split_capacity_operation),
+                "args": (
+                    self.version,
+                    self.system_model,
+                    self.split_capacity_operation,
+                ),
             },
             "external": {
                 "func": _update_external_scenarios,

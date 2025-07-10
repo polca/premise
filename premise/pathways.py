@@ -107,7 +107,9 @@ class PathwaysDataPackage:
         # Store the patched configuration only if needed
         if capacity_addition_data:
             for scenario in self.datapackage.scenarios:
-                scenario.setdefault("configurations", {})["capacity_addition"] = capacity_addition_data
+                scenario.setdefault("configurations", {})[
+                    "capacity_addition"
+                ] = capacity_addition_data
 
         # Update the datapackage with transformations
         if transformations:
@@ -230,9 +232,16 @@ class PathwaysDataPackage:
         # Check if any scenario has a patched capacity addition config
         patched_capacity_addition = None
         for scenario in self.scenarios:
-            if "configurations" in scenario and "capacity_addition" in scenario["configurations"]:
-                patched_capacity_addition = scenario["configurations"]["capacity_addition"]
-                print(f"Found patched capacity addition data with {len(patched_capacity_addition)} variables")
+            if (
+                "configurations" in scenario
+                and "capacity_addition" in scenario["configurations"]
+            ):
+                patched_capacity_addition = scenario["configurations"][
+                    "capacity_addition"
+                ]
+                print(
+                    f"Found patched capacity addition data with {len(patched_capacity_addition)} variables"
+                )
                 break
 
         if patched_capacity_addition:

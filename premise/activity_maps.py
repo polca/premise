@@ -262,8 +262,6 @@ class InventorySet:
             filepath=BRAKE_WEAR, var="ecoinvent_aliases"
         )
 
-
-
     def generate_biomass_map(self) -> dict:
         """
         Filter ecoinvent processes related to biomass.
