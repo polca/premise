@@ -198,7 +198,96 @@ How to use it?
 
 The best way is to follow [the examples from the Jupyter Notebook](https://github.com/polca/premise/blob/master/examples/examples.ipynb). 
 
-# Support
+## Disclaimer on the Use of IAM-Based Scenarios in Premise
+
+Premise integrates data from Integrated Assessment Models (IAMs) into the 
+ecoinvent life cycle inventory (LCI) database to produce prospective, 
+scenario-specific LCA databases. This enables practitioners to model the
+environmental impacts of technologies and systems under plausible future 
+conditions. However, it is essential to recognize the nature and 
+limitations of the underlying IAM scenarios to responsibly interpret 
+and apply ``premise`` outputs.
+
+This disclaimer is informed by the critical insights and recommendations 
+presented in the article:
+
+> *de Bortoli, A., Chanel, A., Chabas, C., Greffe, T., & Louineau, E. (2025). More rationality and inclusivity are imperative in reference transition scenarios based on IAMs and shared socioeconomic pathways—recommendations for prospective LCA. Renewable and Sustainable Energy Reviews, 222, 115924. https://doi.org/10.1016/j.rser.2025.115924*
+
+### Nature of IAM-Based Scenarios
+
+IAMs, such as REMIND, IMAGE, and TIAM-UCL, simulate socio-technical 
+transitions by combining models of the economy, energy systems, land use, 
+and climate. They are used to create scenarios aligned with the Shared 
+Socioeconomic Pathways (SSPs) and Representative Concentration Pathways 
+(RCPs) frameworks developed by the IPCC. These models and pathways serve 
+as standardized tools to explore climate mitigation strategies under 
+various socio-economic futures.
+
+While IAMs offer a structured and policy-relevant way to explore 
+decarbonization pathways, their scenarios are not predictions. 
+They are "what-if" simulations based on a set of assumptions and modeling 
+choices that are inherently subjective, value-laden, and reflective of 
+specific worldviews.
+
+### Key Limitations
+
+1. **Optimistic Technological Assumptions**  
+   Many mainstream IAMs assume aggressive deployment of technologies (e.g., 
+   carbon dioxide removal or advanced renewables) that may not be feasible 
+   due to technical, economic, or social constraints.
+
+2. **Neglect of Demand-Side and Social Dynamics**  
+   IAMs often emphasize technological solutions and underrepresent lifestyle 
+   changes, equity, institutional barriers, and behavioral feedbacks.
+
+3. **Blind Spots in Biophysical and Geopolitical Constraints**  
+   Constraints on resource availability (e.g., critical minerals, land, 
+   water) are often oversimplified or ignored.
+
+4. **Embedded Economic Paradigm and Value Judgments**  
+   The SSPs assume perpetual GDP growth and reflect neoclassical economic 
+   thinking, potentially sidelining alternative visions of sustainability 
+   and well-being.
+
+5. **Underrepresentation of Justice and Global South Perspectives**  
+   IAM scenarios may perpetuate global inequalities by assuming continued 
+   economic and energy dominance of the Global North.
+
+6. **Opaque Ethical Assumptions**  
+   Key ethical parameters such as discount rates or equity considerations 
+   are rarely made explicit, despite their large impact on outcomes.
+
+### Recommendations for Responsible Use
+
+- **Transparency**: Clearly state the IAM, SSP, and RCP used. Communicate 
+  their assumptions, scope, and limitations to end users.
+
+- **Scenario Screening**: Where possible, favor scenarios with credible 
+  assumptions regarding technology deployment, demand-side measures, 
+  and material feasibility.
+
+- **Reflect Variability**: Consider using multiple scenarios or ensembles 
+  to capture the uncertainty inherent in IAM projections.
+
+- **Consider Alternatives**: Incorporate or contrast scenarios from models 
+  using alternative economic paradigms (e.g., post-Keynesian, ecological 
+  macroeconomics) and societal narratives (e.g., degrowth, sufficiency).
+
+- **Ethical Reflexivity**: Recognize and reflect on the value-laden choices 
+  embedded in IAMs. Prioritize transparency and intergenerational equity.
+
+### Final Note
+
+``premise`` provides a robust, transparent foundation for scenario-based 
+prospective LCA. However, the reliability and legitimacy of resulting 
+assessments depend heavily on the careful selection and interpretation 
+of input scenarios. Practitioners are encouraged to engage critically 
+with the underlying assumptions of IAM-based projections and to use 
+``premise`` in conjunction with a broader reflection on possible, 
+plausible, and desirable futures.
+
+
+## Support
 
 Do not hesitate to contact [romain.sacchi@psi.ch](mailto:romain.sacchi@psi.ch).
 
