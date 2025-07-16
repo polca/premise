@@ -299,7 +299,7 @@ def create_fuel_map(database, version, model) -> tuple[InventorySet, dict, dict]
 
     for key, value in fuel_map.items():
         for v in list(value):
-            fuel_map_reverse[v["name"]] = key
+            fuel_map_reverse[v["reference product"]] = key
 
     return mapping, fuel_map, fuel_map_reverse
 
@@ -527,59 +527,63 @@ class Electricity(BaseTransformation):
 
             tech_suppliers = defaultdict(list)
 
-            for technology in ecoinvent_technologies:
+            for technology, datasets in ecoinvent_technologies.items():
                 suppliers, counter = [], 0
 
-                print(technology)
+                try:
+                    while len(suppliers) == 0:
+                        suppliers = [
+                            ds
+                            for ds in datasets
+                            if any(
+                                ds["location"] == x for x in possible_locations[counter]
+                            )
+                        ]
 
-                while len(suppliers) == 0:
-                    suppliers = list(
-                        get_suppliers_of_a_region(
-                            database=subset,
-                            locations=possible_locations[counter],
-                            names=ecoinvent_technologies[technology],
-                            reference_prod="electricity",
-                            unit="kilowatt hour",
-                            exact_match=True,
-                        )
+                        counter += 1
+
+                    for supplier in suppliers:
+                        share = self.get_production_weighted_share(supplier, suppliers)
+                        tech_suppliers[technology].append((supplier, share))
+
+                    # remove suppliers that have a supply share inferior to 0.1%
+                    tech_suppliers[technology] = [
+                        supplier
+                        for supplier in tech_suppliers[technology]
+                        if supplier[1] > 0.001
+                    ]
+                    # rescale the shares so that they sum to 1
+                    total_share = sum(
+                        supplier[1] for supplier in tech_suppliers[technology]
                     )
-                    counter += 1
+                    tech_suppliers[technology] = [
+                        (supplier[0], supplier[1] / total_share)
+                        for supplier in tech_suppliers[technology]
+                    ]
 
-                for supplier in suppliers:
-                    share = self.get_production_weighted_share(supplier, suppliers)
-                    tech_suppliers[technology].append((supplier, share))
+                except IndexError as exc:
+                    if self.system_model == "consequential":
+                        continue
+                    raise IndexError(
+                        f"Couldn't find suppliers for {technology} when looking for {ecoinvent_technologies[technology]}."
+                    ) from exc
 
-                # remove suppliers that have a supply share inferior to 0.1%
-                tech_suppliers[technology] = [
-                    supplier
-                    for supplier in tech_suppliers[technology]
-                    if supplier[1] > 0.001
-                ]
-                # rescale the shares so that they sum to 1
-                total_share = sum(
-                    supplier[1] for supplier in tech_suppliers[technology]
+            # Create a time-weighted average mix
+            if self.system_model == "consequential":
+                electricity_mix = dict(
+                    zip(
+                        self.iam_data.electricity_mix.variables.values,
+                        self.iam_data.electricity_mix.sel(
+                            region=region, year=self.year
+                        ).values,
+                    )
                 )
-                tech_suppliers[technology] = [
-                    (supplier[0], supplier[1] / total_share)
-                    for supplier in tech_suppliers[technology]
-                ]
 
+            else:
                 # Create a time-weighted average mix
-                if self.system_model == "consequential":
-                    electricity_mix = dict(
-                        zip(
-                            self.iam_data.electricity_mix.variables.values,
-                            self.iam_data.electricity_mix.sel(
-                                region=region, year=self.year
-                            ).values,
-                        )
-                    )
-
-                else:
-                    # Create a time-weighted average mix
-                    electricity_mix = compute_time_weighted_mix(
-                        self.iam_data.electricity_mix, region, self.year, period
-                    )
+                electricity_mix = compute_time_weighted_mix(
+                    self.iam_data.electricity_mix, region, self.year, period
+                )
 
             production_volume = select_or_interpolate(
                 self.iam_data.production_volumes,

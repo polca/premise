@@ -200,7 +200,7 @@ class Emissions(BaseTransformation):
                 model=model,
             )
 
-            if scaling_factor != 1.0 and scaling_factor > 0.0:
+            if 1 > scaling_factor > 0:
                 if f"{gains_pollutant} scaling factor" not in dataset.get(
                     "log parameters", {}
                 ):

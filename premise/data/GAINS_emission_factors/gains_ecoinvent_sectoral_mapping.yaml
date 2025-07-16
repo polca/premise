@@ -566,7 +566,7 @@ CON_LOSSHC1:
 CON_LOSSHF:
   ecoinvent_aliases:
     fltr:
-    - crude oil, import mix, at long distance transport
+    - petroleum and gas production
   gains_aliases_EU: CON_LOSSHF
   gains_aliases_IAM: Transformations_HLF
 DOM_OTHGAS:
@@ -952,7 +952,7 @@ MSW_URB_WOODNOF:
 PP_ENGGAS:
   ecoinvent_aliases:
     fltr:
-    - natural gas, burned in gas motor, for storage
+    - natural gas, burned in
   gains_aliases_EU: PP_ENGGAS
   gains_aliases_IAM: Power_Gen_NatGas
 PP_ENGMD:
@@ -1136,10 +1136,8 @@ PP_MOD_CCSBC1:
 PP_MOD_CCSBIOG:
   ecoinvent_aliases:
     fltr:
-    - Biogas, burned in power plant/post, pipeline 200km, storage 1000m/RER
-    - Biogas, in ATR H2-CC/pre, pipeline 200km, storage 1000m
-    - Biogas, burned in power plant/post, pipeline 400km, storage 1000m/RER
-    - Biogas, burned in power plant/post, pipeline 400km, storage 3000m/RER
+    - biomethane, low pressure burned
+    - biomethane, burned
   gains_aliases_EU: PP_MOD_CCSBIOG
   gains_aliases_IAM: Power_Gen_Bio_Trad
 PP_MOD_CCSFWD:
@@ -1157,8 +1155,7 @@ PP_MOD_CCSGAS:
 PP_MOD_CCSHC1:
   ecoinvent_aliases:
     fltr:
-    - electricity production, at hard coal-fired power plant, oxy, pipeline 200km, storage 1000m
-      electricity production, at hard coal-fired power plant, post, pipeline 200km, storage 1000m
+    - electricity production, at hard coal-fired power plant, post, pipeline 200km, storage 1000m
   gains_aliases_EU: PP_MOD_CCSHC1
   gains_aliases_IAM: Power_Gen_Coal_IGCC_CCS
 PP_NEWBIOG:
@@ -1310,7 +1307,8 @@ PR_ADIPNOF:
 PR_CEMNOF:
   ecoinvent_aliases:
     fltr:
-    - clinker production
+      name: clinker production
+      reference product: clinker
   gains_aliases_EU: PR_CEMNOF
   gains_aliases_IAM: CEMENT
 PR_NIACNOF:
@@ -1389,6 +1387,8 @@ STEELVAR:
     mask:
       name:
       - waste
+      - market
+      - treatment
   gains_aliases_EU: STEELVAR
   gains_aliases_IAM: STEEL
 TRANSGAS:
@@ -1412,6 +1412,7 @@ TRA_OT_AGRMD:
   ecoinvent_aliases:
     fltr:
     - transport, tractor and trailer, agricultural
+    - transport, freight, tractor and trailer, diesel, agricultural
     mask:
       name:
       - market
@@ -1421,6 +1422,7 @@ TRA_OT_AIRGSL:
   ecoinvent_aliases:
     fltr:
     - transport, passengers, passenger aircraft
+    - transport, passenger, aircraft
   gains_aliases_EU: TRA_OT_AIRGSL
 TRA_OT_INWMD:
   ecoinvent_aliases:
@@ -1442,6 +1444,8 @@ TRA_RD_HDBMD:
     fltr:
     - transport, passenger coach
     - transport, regular bus
+    - transport, passenger, coach, diesel
+    - transport, passenger, bus, diesel, regular
     mask:
       name:
       - market
@@ -1478,44 +1482,53 @@ TRA_RD_LD2GSL:
 TRA_RD_LD4CGAS:
   ecoinvent_aliases:
     fltr:
-    - transport, passenger car, large size, natural gas
-    - transport, passenger car, small size, natural gas
-    - transport, passenger car, medium size, natural gas
+      - transport, passenger car
+    mask:
+      - diesel
+      - petrol
+      - gasoline
   gains_aliases_EU: TRA_RD_LD4CGAS
   gains_aliases_IAM: End_Use_Transport_NatGas
 TRA_RD_LD4CGSL:
   ecoinvent_aliases:
     fltr:
-    - transport, passenger car, medium size, petrol
-    - transport, passenger car, small size, petrol
-    - transport, passenger car, large size, petrol
+      - transport, passenger car
+    mask:
+      - diesel
+      - compressed gas
+
   gains_aliases_EU: TRA_RD_LD4CGSL
   gains_aliases_IAM: End_Use_Transport_LDT_LLF
 TRA_RD_LD4CLPG:
   ecoinvent_aliases:
     fltr:
     - transport, passenger car, medium size, liquefied petroleum gas
+    - transport, passenger, car, liquefied petroleum ga
   gains_aliases_EU: TRA_RD_LD4CLPG
   gains_aliases_IAM: End_Use_Transport_LDT_LLF
 TRA_RD_LD4CMD:
   ecoinvent_aliases:
     fltr:
-    - transport, passenger car, large size, diesel
-    - transport, passenger car, small size, diesel
-    - transport, passenger car, medium size, diesel
+      - transport, passenger car
+    mask:
+      - compressed gas
+      - gasoline
+      - petrol
   gains_aliases_EU: TRA_RD_LD4CMD
   gains_aliases_IAM: End_Use_Transport_LDT_HLF
 TRA_RD_LD4TMD:
   ecoinvent_aliases:
     fltr:
-    - transport, freight, lorry 3.5-7.5 metric ton
-    - transport, freight, lorry with refrigeration machine, 3.5-7.5 ton
+      - 3.5-7.5 metric ton
+      - 3.5 metric ton
+      - 7.5 metric ton
   gains_aliases_EU: TRA_RD_LD4TMD
   gains_aliases_IAM: End_Use_Transport_LDT_HLF
 WASTE_FLRNOF:
   ecoinvent_aliases:
     fltr:
-    - treatment of waste refinery gas, burned in flare
+      - waste refinery gas, burned in flare
+    mask: market
   gains_aliases_EU: WASTE_FLRNOF
   gains_aliases_IAM: Losses_Prod_Conventional_Gas
 WOODTIM:
@@ -1533,140 +1546,144 @@ WOODTIM:
       dry
     - wood preservation, dipping/immersion, solvent-based preservative, outdoor use,
       no ground contact
+    mask: market
   gains_aliases_EU: WOODTIM
 WOOD_CRTIM:
   ecoinvent_aliases:
     fltr:
-    - wood preservation, pressure vessel, creosote, outdoor use, ground contact
-    - wood preservation, hot/cold dipping, creosote, outdoor use, ground contact
+      - wood preservation, pressure vessel, creosote, outdoor use, ground contact
+      - wood preservation, hot/cold dipping, creosote, outdoor use, ground contact
+    mask: market
   gains_aliases_EU: WOOD_CRTIM
 WW_DOM_CC_TRMPOP:
   ecoinvent_aliases:
     fltr:
-    - treatment of wastewater, from residence
-    - treatment of wastewater, average
+      - wastewater, from residence
+      - wastewater, average
+    mask: market
   gains_aliases_EU: WW_DOM_CC_TRMPOP
   gains_aliases_IAM: Waste_Water_Municipal
 Waste_Solid_IndustrialNOF:
   ecoinvent_aliases:
     fltr:
-    - treatment of used refrigerant
-    - treatment of used sealing tape, aluminium/PE, 50 mm wide
-    - treatment of inert waste
-    - treatment of sewage sludge by anaerobic digestion
-    - treatment of crust from Parkes process for lead production
-    - treatment of refractory spent pot liner from Al electrolysis, residual material
+    - used refrigerant
+    - used sealing tape, aluminium/PE, 50 mm wide
+    - inert waste
+    - sewage sludge by anaerobic digestion
+    - crust from Parkes process for lead production
+    - refractory spent pot liner from Al electrolysis, residual material
       landfill
-    - treatment of scrap lead acid battery, remelting
-    - treatment of spent antifreezer liquid, hazardous waste incineration
-    - treatment of used capacitor, to hazardous waste incineration
-    - treatment of used trawler, steel
-    - treatment of decarbonising waste, residual material landfill
-    - treatment of spent catalytic converter for cars, underground deposit
-    - treatment of spent solvent mixture, hazardous waste incineration
-    - treatment of electric arc furnace
-    - treatment of waste cement
-    - treatment of tallow to esterquat
-    - treatment of tin slag, residual material landfill
-    - treatment of waste gypsum
-    - treatment of waste mineral wool
-    - treatment of sludge from steel rolling, residual material landfill
-    - treatment of sludge, NaCl electrolysis
-    - treatment of H3PO4 purification residue, residual material landfill
-    - treatment of used locomotive
-    - treatment of residue from cooling tower, sanitary landfill
-    - treatment of waste asphalt
-    - treatment of lignite ash, sanitary landfill
-    - treatment of spent Formox catalyst base from formaldehyde production, residual
+    - scrap lead acid battery, remelting
+    - spent antifreezer liquid, hazardous waste incineration
+    - used capacitor, to hazardous waste incineration
+    - used trawler, steel
+    - decarbonising waste, residual material landfill
+    - spent catalytic converter for cars, underground deposit
+    - spent solvent mixture, hazardous waste incineration
+    - electric arc furnace
+    - waste cement
+    - tallow to esterquat
+    - tin slag, residual material landfill
+    - waste gypsum
+    - waste mineral wool
+    - sludge from steel rolling, residual material landfill
+    - sludge, NaCl electrolysis
+    - H3PO4 purification residue, residual material landfill
+    - used locomotive
+    - residue from cooling tower, sanitary landfill
+    - waste asphalt
+    - lignite ash, sanitary landfill
+    - spent Formox catalyst base from formaldehyde production, residual
       material landfill
-    - treatment of leach residue from copper production, neutralisation
-    - treatment of decommissioned airport infrastructure, contaminated gravel
-    - treatment of used purse seiner
-    - treatment of copper slag, residual material landfill
-    - treatment of used Ni-metal hydride battery, pyrometallurgical treatment
-    - treatment of hazardous waste, hazardous waste incineration
-    - treatment of used train
-    - treatment of waste reinforced plasterboard
-    - treatment of nickel smelter slag, residual material landfill
-    - treatment of decommissioned chemical production facilities
-    - treatment of non-sulfidic
-    - treatment of hard coal ash, sanitary landfill
-    - treatment of used lorry
-    - treatment of lignite ash, opencast refill
-    - treatment of used IT accessory, mechanical treatment
-    - treatment of waste emulsion paint
-    - treatment of used liquid crystal display
-    - treatment of decommissioned road
-    - treatment of spent sawing slurry from Si-wafer cutting
-    - treatment of used long liner, steel
-    - treatment of waste mineral oil, hazardous waste incineration
-    - treatment of condensate from light oil boiler
-    - treatment of spoil from hard coal mining, in surface landfill
-    - treatment of sludge from FeCl3 production, underground deposit
-    - treatment of spoil from lignite mining, in surface landfill
-    - treatment of precious metal from electronics scrap, in anode slime, precious
+    - leach residue from copper production, neutralisation
+    - decommissioned airport infrastructure, contaminated gravel
+    - used purse seiner
+    - copper slag, residual material landfill
+    - used Ni-metal hydride battery, pyrometallurgical treatment
+    - hazardous waste, hazardous waste incineration
+    - used train
+    - waste reinforced plasterboard
+    - nickel smelter slag, residual material landfill
+    - decommissioned chemical production facilities
+    - non-sulfidic
+    - hard coal ash, sanitary landfill
+    - used lorry
+    - lignite ash, opencast refill
+    - used IT accessory, mechanical treatment
+    - waste emulsion paint
+    - used liquid crystal display
+    - decommissioned road
+    - spent sawing slurry from Si-wafer cutting
+    - used long liner, steel
+    - waste mineral oil, hazardous waste incineration
+    - condensate from light oil boiler
+    - spoil from hard coal mining, in surface landfill
+    - sludge from FeCl3 production, underground deposit
+    - spoil from lignite mining, in surface landfill
+    - precious metal from electronics scrap, in anode slime, precious
       metal extraction
-    - treatment of used powertrain
-    - treatment of mill scale, residual material landfill
-    - treatment of used industrial electronic device
-    - treatment of waste paint
-    - treatment of used reefer, intermodal shipping container, 40-foot, high-cube
-    - treatment of waste mineral plaster
-    - treatment of fly ash and scrubber sludge, hazardous waste incineration
-    - treatment of spent perfluoropentane
-    - treatment of decommissioned pipeline, natural gas, inert material landfill
-    - treatment of used room-connecting overflow element, steel, approx. 40 m3/h
-    - treatment of hard coal ash, residual material landfill
-    - treatment of spent catalyst base from ethyleneoxide production, residual material
+    - used powertrain
+    - mill scale, residual material landfill
+    - used industrial electronic device
+    - waste paint
+    - used reefer, intermodal shipping container, 40-foot, high-cube
+    - waste mineral plaster
+    - fly ash and scrubber sludge, hazardous waste incineration
+    - spent perfluoropentane
+    - decommissioned pipeline, natural gas, inert material landfill
+    - used room-connecting overflow element, steel, approx. 40 m3/h
+    - hard coal ash, residual material landfill
+    - spent catalyst base from ethyleneoxide production, residual material
       landfill
-    - treatment of used insulation spiral-seam duct
-    - treatment of waste zeolite
-    - treatment of copper cake
-    - treatment of limestone residue, inert material landfill
-    - treatment of waste x-ray film
-    - treatment of tailing, from uranium milling
-    - treatment of sulfidic tailing
-    - treatment of scrap printed wiring boards, shredding and separation
-    - treatment of residue from TiO2 production
-    - treatment of redmud from bauxite digestion, residual material landfill
-    - treatment of used tram
-    - treatment of waste concrete
-    - treatment of waste reinforced concrete
-    - treatment of used air
-    - treatment of waste bitumen, sanitary landfill
-    - treatment of residue from Na-dichromate production, residual material landfill
-    - treatment of used intermodal shipping container
-    - treatment of decommissioned tram track
-    - treatment of used internal combustion engine, shredding
-    - treatment of spent oxychlor catalyst, hazardous waste incineration
-    - treatment of heat carrier liquid, 40% C3H8O2, capacity 1.1E10l/year
-    - treatment of spent catalytic converter NOx reduction, underground deposit
-    - treatment of used light commercial vehicle
-    - treatment of used outside air intake, stainless steel, DN 370
-    - treatment of used blower and heat exchange unit
-    - treatment of drilling waste
-    - treatment of used triple glazing, U<0.5W/m2K, collection for final disposal
-    - treatment of coal slurry, impoundment
-    - treatment of refinery sludge
-    - treatment of lead smelter slag, residual material landfill
-    - treatment of used railway track
-    - treatment of hazardous waste, underground deposit
-    - treatment of spent pot liner from Al electrolysis, carbon fraction, residual
+    - used insulation spiral-seam duct
+    - waste zeolite
+    - copper cake
+    - limestone residue, inert material landfill
+    - waste x-ray film
+    - tailing, from uranium milling
+    - sulfidic tailing
+    - scrap printed wiring boards, shredding and separation
+    - residue from TiO2 production
+    - redmud from bauxite digestion, residual material landfill
+    - used tram
+    - waste concrete
+    - waste reinforced concrete
+    - used air
+    - waste bitumen, sanitary landfill
+    - residue from Na-dichromate production, residual material landfill
+    - used intermodal shipping container
+    - decommissioned tram track
+    - used internal combustion engine, shredding
+    - spent oxychlor catalyst, hazardous waste incineration
+    - heat carrier liquid, 40% C3H8O2, capacity 1.1E10l/year
+    - spent catalytic converter NOx reduction, underground deposit
+    - used light commercial vehicle
+    - used outside air intake, stainless steel, DN 370
+    - used blower and heat exchange unit
+    - drilling waste
+    - used triple glazing, U<0.5W/m2K, collection for final disposal
+    - coal slurry, impoundment
+    - refinery sludge
+    - lead smelter slag, residual material landfill
+    - used railway track
+    - hazardous waste, underground deposit
+    - spent pot liner from Al electrolysis, carbon fraction, residual
       material landfill
-    - treatment of residue from rutile production, synthetic, 56% water, residual
+    - residue from rutile production, synthetic, 56% water, residual
       material landfill
-    - treatment of shredder fraction from manual dismantling, shredding
-    - treatment of pollutant from rail ballast, residual material landfill
-    - treatment of filter dust from Al electrolysis, residual material landfill
-    - treatment of spent activated carbon
-    - treatment of uranium tailing, non-radioactive emission
-    - treatment of used diesel-electric generating set
-    - treatment of used ventilation control and wiring
-    - treatment of used Li-ion battery
-    - treatment of non-Fe-Co-metals, from used Li-ion battery, hydrometallurgical
+    - shredder fraction from manual dismantling, shredding
+    - pollutant from rail ballast, residual material landfill
+    - filter dust from Al electrolysis, residual material landfill
+    - spent activated carbon
+    - uranium tailing, non-radioactive emission
+    - used diesel-electric generating set
+    - used ventilation control and wiring
+    - used Li-ion battery
+    - non-Fe-Co-metals, from used Li-ion battery, hydrometallurgical
       processing
-    - treatment of salt tailing from potash mine, residual material landfill
-    - treatment of used motor scooter
+    - salt tailing from potash mine, residual material landfill
+    - used motor scooter
+  mask: market
   gains_aliases_EU: Waste_Solid_IndustrialNOF
   gains_aliases_IAM: Waste_Solid_Industrial
 Waste_Water_IndustrialNOF:
@@ -1678,10 +1695,11 @@ Waste_Water_IndustrialNOF:
     mask:
       name:
       - whey
-      - ' potato'
-      - ' maize'
-      - ' from residence'
-      - ' average'
-      - ' unpolluted'
+      - potato
+      - maize
+      - from residence
+      - average
+      - unpolluted
+      - market
   gains_aliases_EU: Waste_Water_IndustrialNOF
   gains_aliases_IAM: Waste_Water_Industrial

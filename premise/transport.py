@@ -175,7 +175,7 @@ class Transport(BaseTransformation):
             database=database, version=version, model=model
         )
         self.vehicle_map = self.activity_mapping.generate_transport_map(
-            transport_type=vehicle_type
+            transport_type=vehicle_type,
         )
         self.rev_map = {}
         for k, v in self.vehicle_map.items():
@@ -226,21 +226,26 @@ class Transport(BaseTransformation):
         if self.vehicle_type == "truck":
             for size in self.mapping[self.vehicle_type]["sizes"]:
                 new_name = f"{name}, {size}"
+                production_volumes = self.iam_data.production_volumes.sel(
+                    variables=[
+                        v
+                        for v in self.iam_data.production_volumes.coords[
+                            "variables"
+                        ].values
+                        if size in v
+                    ]
+                )
+
+                if production_volumes.size == 0:
+                    continue
+
                 self.process_and_add_markets(
                     name=new_name,
                     reference_product=reference_product,
                     unit=unit,
                     mapping=self.vehicle_map,
                     system_model=self.system_model,
-                    production_volumes=self.iam_data.production_volumes.sel(
-                        variables=[
-                            v
-                            for v in self.iam_data.production_volumes.coords[
-                                "variables"
-                            ].values
-                            if size in v
-                        ]
-                    ),
+                    production_volumes=production_volumes,
                 )
 
         # if trucks, adjust battery size

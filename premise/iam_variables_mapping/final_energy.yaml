@@ -1,13 +1,14 @@
 Buildings - Heating - District Heating:
   ecoinvent_aliases:
     fltr:
-      name: market for heat, district or industrial, natural gas
-      reference product: heat, district or industrial, natural gas
+      name: market for heat, district or industrial
+      reference product: heat, district or industrial
+    mask: natural gas
   iam_aliases:
     remind: FE|Buildings|Heating|District Heating
     image:
-    - Final Energy|Commercial|Space Heating|Heat
-    - Final Energy|Residential|Space Heating|Heat
+      - Final Energy|Commercial|Space Heating|Heat
+      - Final Energy|Residential|Space Heating|Heat
     remind-eu: FE|Buildings|Heating|District Heating
 Buildings - Heating - Heat pump:
   ecoinvent_aliases:
@@ -25,6 +26,7 @@ Buildings - Heating - Resistance:
     fltr:
       name: market group for electricity, low voltage
       reference product: electricity, low voltage
+    mask: period
   iam_aliases:
     remind: FE|Buildings|Heating|Electricity|Resistance
     remind-eu: FE|Buildings|Heating|Electricity|Resistance
@@ -1880,6 +1882,7 @@ Industry - Non-energy use - Nat Gas:
     mask:
     - period
     - vehicle
+    - refuse
   iam_aliases:
     remind: FE|Non-energy Use|Industry|Gases|+|Fossil
     remind-eu: FE|Non-energy Use|Industry|Gases|+|Fossil
@@ -3142,6 +3145,7 @@ Transport - Pass - Mini Car - Diesel:
     fltr:
       name: diesel, burned in passenger car
       reference product: heat
+    mask: biodiesel
   iam_aliases:
     tiam-ucl: Final Energy|Transport|Three Wheeler|Diesel|Diesel
 Transport - Pass - Mini Car - Syn Fuel:

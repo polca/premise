@@ -26,7 +26,11 @@ class BiogasMixin:
                 )
             )
             for k, v in fuel_activities.items()
+            if k in self.fuel_map
         }
+
+        if not methane_map:
+            return
 
         self.process_and_add_activities(
             mapping=methane_map,

@@ -1675,7 +1675,7 @@ class FuelsValidation(BaseDatasetValidator):
                             (
                                 x["amount"]
                                 if x["unit"] == "cubic meter"
-                                else x["amount"] / 0.74
+                                else x["amount"] / 0.716
                             )
                             for x in ds["exchanges"]
                             if x["type"] == "technosphere"

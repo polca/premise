@@ -86,7 +86,7 @@ class Fuels(
         # or methods specific to Fuels class
         self.cached_suppliers = {}
         self.mapping = InventorySet(self.database)
-        self.fuel_map = self.mapping.generate_fuel_map()
+        self.fuel_map = self.mapping.generate_fuel_map(model=self.model)
 
         self.rev_fuel_map = {
             activity["name"]: fuel

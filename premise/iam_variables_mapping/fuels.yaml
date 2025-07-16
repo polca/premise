@@ -46,13 +46,13 @@ pulverised lignite:
             - briquettes
             - ash
             - clinker
+
 lignite:
   lhv: 8.7
   co2: 0.115
   biogenic_share: 0
   ecoinvent_aliases:
     fltr:
-      - market for lignite
       - lignite mine operation
     mask:
       name:
@@ -60,6 +60,8 @@ lignite:
         - plant
         - briquettes
         - ash
+        - market
+
 petroleum coke:
   lhv: 31.3
   co2: 0.0975
@@ -141,6 +143,10 @@ natural gas:
         - liquids
         - network
         - import from
+        - market
+        - reduction
+        - storage
+
 gas, natural, in ground:
   lhv: 45
   co2: 0.0564
@@ -168,6 +174,8 @@ heavy fuel oil:
         - burned
         - import
         - synthetic
+        - market
+        - transport
   biogenic_share: 0
 
 oil, crude, in ground:
@@ -183,7 +191,10 @@ light fuel oil:
     fltr:
       reference product:
         - light fuel oil
-    mask: waste
+    mask:
+      - market
+      - import
+      - waste
 
 biogas:
   lhv: 22.73
@@ -211,6 +222,7 @@ methane, fossil:
   lhv: 47.5
   co2: 0.06
   biogenic_share: 0
+
 methane, from biomass:
   lhv: 47.5
   co2: 0.06
@@ -282,7 +294,6 @@ diesel:
       name:
         - diesel production
         - petroleum refinery operation
-        - market for diesel
       reference product:
         - diesel
     mask:
@@ -297,6 +308,7 @@ diesel:
         - capture
         - CCS
         - period
+        - market
 
 gasoline:
   lhv: 42.6
@@ -322,7 +334,6 @@ gasoline:
       name:
         - petrol production
         - petroleum refinery operation
-        - market for petrol
 
     mask:
       name:
@@ -331,6 +342,7 @@ gasoline:
         - burned
         - ETBE
         - period
+        - market
 
 petrol, 5% ethanol:
   lhv: 41.7
@@ -1130,7 +1142,6 @@ ethanol:
   biogenic_share: 1
   ecoinvent_aliases:
     fltr:
-      - market for ethanol
       - ethanol, without water
 
 ethyl tert-butyl ether:
@@ -1264,8 +1275,13 @@ liquefied petroleum gas, synthetic, from coal:
   biogenic_share: 0
   ecoinvent_aliases:
     fltr:
-      name: synthetic fuel production, from coal, high temperature Fisher-Tropsch operations
+      name:
+        - Fisher-Tropsch operations
+        - Fischer-Tropsch operations
       reference product: liquefied petroleum gas
+    mask:
+      - carbon capture
+      - heat
   iam_aliases:
     tiam-ucl: Secondary Energy|Liquids|Coal|FT|Liquid Petroleum Gas|w/o CCS
   eff_aliases:

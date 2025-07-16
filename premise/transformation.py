@@ -321,9 +321,15 @@ def calculate_input_energy(
 
     # if fuel input other than MJ
     if fuel_unit in ["kilogram", "cubic meter"]:
-        try:
+        fuel_name = fuel_name.replace("market for ", "").replace("market group for ", "")
+        if fuel_name in fuel_map_reverse:
             lhv = fuels_specs[fuel_map_reverse[fuel_name]]["lhv"]
-        except KeyError:
+        elif any(x.startswith(fuel_name) for x in fuel_map_reverse.keys()):
+            fuels = [
+                x for x in fuel_map_reverse.keys() if x.startswith(fuel_name)
+            ]
+            lhv = fuels_specs[fuel_map_reverse[fuels[0]]]["lhv"]
+        else:
             print(f"Warning: LHV for {fuel_name} not found in fuel specifications.")
             print()
             print(f"Available fuel specs keys: {list(fuels_specs.keys())}.")
@@ -739,6 +745,21 @@ class BaseTransformation:
             regional_shares_dict = {reg: 1 / len(regions) for reg in regions}
 
         for region in regions:
+
+            if production_volumes is not None:
+                production_volume = float(
+                    production_volumes.sel(
+                        region=region,
+                    )
+                    .sum(dim="variables")
+                    .values.item(0)
+                )
+
+                if production_volume == 0:
+                    continue
+            else:
+                production_volume = 0.0
+
             production_exchange = {
                 "name": name,
                 "product": reference_product,
@@ -750,13 +771,7 @@ class BaseTransformation:
             }
 
             if production_volumes is not None:
-                production_exchange["production volume"] = float(
-                    production_volumes.sel(
-                        region=region,
-                    )
-                    .sum(dim="variables")
-                    .values.item(0)
-                )
+                production_exchange["production volume"] = production_volume
 
             market_dataset = {
                 "name": name,

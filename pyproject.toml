@@ -7,7 +7,8 @@ name = "premise"
 authors = [
   { name="Romain Sacchi", email="romain.sacchi@psi.ch" },
   { name="Alois Dirnaichner", email="dirnaichner@pik-potsdam.de" },
-  { name="Chris Mutel", email="cmutel@gmail.com" }
+  { name="Chris Mutel", email="cmutel@gmail.com" },
+  { name="Alvaro Hahn Menacho", email="alvaro.hahn-menacho@psi.ch" }
 ]
 maintainers = [
   { name="Romain Sacchi", email="romain.sacchi@psi.ch" }

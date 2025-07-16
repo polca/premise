@@ -15,7 +15,12 @@ train, electric:
     image: Final Energy|Transportation|Freight|Train|Electricity
   ecoinvent_aliases:
     fltr:
-      - transport, freight train, electricity
+      - train, electric
+    mask:
+      - market
+      - used
+      - passenger
+
   ecoinvent_fuel_aliases:
     fltr:
       - electricity
@@ -47,7 +52,11 @@ train, diesel-electric:
       - Final Energy|Transportation|Freight|Train|Gas
   ecoinvent_aliases:
     fltr:
-      - transport, freight train, diesel-electric
+      - train, diesel
+    mask:
+      - market
+      - used
+      - passenger
   ecoinvent_fuel_aliases:
     fltr:
       - diesel
@@ -64,6 +73,10 @@ train, fuel cell:
   ecoinvent_aliases:
     fltr:
       - transport, freight train, fuel cell, hydrogen
+    mask:
+      - market
+      - used
+      - passenger
   ecoinvent_fuel_aliases:
     fltr:
       - hydrogen

@@ -12,6 +12,7 @@ import pandas as pd
 from wurst import searching as ws
 
 from .filesystem_constants import DATA_DIR, VARIABLES_DIR
+from .utils import load_database
 
 POWERPLANT_TECHS = VARIABLES_DIR / "electricity.yaml"
 FUELS_TECHS = VARIABLES_DIR / "fuels.yaml"
@@ -115,7 +116,7 @@ def act_fltr(
     return list(ws.get_many(database, *filters))
 
 
-def debug_mapping_to_dataframe(mapping: dict) -> pd.DataFrame:
+def mapping_to_dataframe(scenario) -> pd.DataFrame:
     """
     Convert a mapping dictionary of the form {category: [activities]} into a grouped DataFrame
     with a 'Location' column listing all locations per (Category, Market, Product) combination.
@@ -123,35 +124,68 @@ def debug_mapping_to_dataframe(mapping: dict) -> pd.DataFrame:
     :param mapping: Dictionary where keys are categories and values are lists of activity dicts.
     :return: A pandas DataFrame with columns 'Category', 'Market', 'Product', and 'Locations'.
     """
-    from collections import defaultdict
 
-    temp_records = defaultdict(set)
+    temp_records = list()
 
-    for category, activities in mapping.items():
-        for act in activities:
-            if isinstance(act, dict) and "name" in act and "reference product" in act:
-                key = (category, act.get("name"), act.get("reference product"))
-                temp_records[key].add(act.get("location"))
+    if "database" not in scenario:
+        scenario = load_database(scenario)
 
-    # Prepare final records
-    records = [
-        {
-            "Category": category,
-            "Market": market,
-            "Product": product,
-            "Locations": sorted(locations),  # Sorting for consistent display
-        }
-        for (category, market, product), locations in temp_records.items()
-    ]
-
-    df = (
-        pd.DataFrame(records)
-        .sort_values(by=["Category", "Market"])
-        .reset_index(drop=True)
+    inv = InventorySet(
+        database=scenario["database"],
+        version=scenario.get("version", None),
+        model=scenario.get("model", None),
     )
-    # Optional: Visually hide duplicated categories
-    df.loc[df["Category"].duplicated(), "Category"] = ""
-    return df
+    for sector, mapping in [
+        ("biomass", inv.generate_biomass_map()),
+        ("heat", inv.generate_heat_map(model=scenario.get("model"))),
+        ("cdr", inv.generate_cdr_map()),
+        ("cement fuels", inv.generate_cement_fuels_map()),
+        ("final energy", inv.generate_final_energy_map()),
+        ("fuel", inv.generate_fuel_map()),
+        ("gains", inv.generate_gains_mapping()),
+        ("powerplant", inv.generate_powerplant_map()),
+        ("powerplant fuels", inv.generate_powerplant_fuels_map()),
+        ("steel", inv.generate_steel_map()),
+        ("mining waste", inv.generate_mining_waste_map()),
+        ("car", inv.generate_transport_map("car")),
+        ("two-wheelers", inv.generate_transport_map("two-wheeler")),
+        ("bus", inv.generate_transport_map("bus")),
+        ("truck", inv.generate_transport_map("truck")),
+        ("train", inv.generate_transport_map("train")),
+        ("ship", inv.generate_transport_map("ship")),
+    ]:
+        for category, activities in mapping.items():
+            for act in activities:
+                temp_records.append((
+                    sector,
+                    category,
+                    act.get("name"),
+                    act.get("reference product"),
+                    act.get("location"),
+                ))
+
+    # Deduplicate and sort
+    temp_records = list(set(temp_records))
+
+    df = pd.DataFrame(
+        temp_records,
+        columns=["Sector", "Category", "Name", "Reference product", "Location"]
+    )
+
+    grouped_df = (
+        df.groupby(["Sector", "Category", "Name", "Reference product"])["Location"]
+        .unique()
+        .reset_index()
+    )
+
+    # Optional: convert list of locations to string
+    grouped_df["Location"] = grouped_df["Location"].apply(lambda x: ", ".join(sorted(x)))
+
+    # Optional: visually hide duplicate sectors and categories
+    grouped_df.loc[grouped_df["Sector"].duplicated(), "Sector"] = ""
+    grouped_df.loc[grouped_df["Category"].duplicated(), "Category"] = ""
+
+    return grouped_df
 
 
 class InventorySet:
@@ -334,7 +368,7 @@ class InventorySet:
         )
         return self.generate_sets_from_filters(filters)
 
-    def generate_fuel_map(self) -> dict:
+    def generate_fuel_map(self, model=None) -> dict:
         """
         Filter ecoinvent processes related to fuel supply.
 
@@ -343,7 +377,7 @@ class InventorySet:
         :rtype: dict
 
         """
-        filters = get_mapping(filepath=FUELS_TECHS, var="ecoinvent_aliases")
+        filters = get_mapping(filepath=FUELS_TECHS, var="ecoinvent_aliases", model=model)
         return self.generate_sets_from_filters(filters)
 
     def generate_mining_waste_map(self) -> dict:
@@ -367,7 +401,7 @@ class InventorySet:
         :rtype: dict
 
         """
-        filters = get_mapping(filepath=FINAL_ENERGY, var="ecoinvent_aliases")
+        filters = get_mapping(filepath=FINAL_ENERGY, var="ecoinvent_aliases", model=self.model)
         return self.generate_sets_from_filters(filters)
 
     def generate_transport_map(self, transport_type: str) -> dict:
