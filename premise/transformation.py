@@ -321,13 +321,13 @@ def calculate_input_energy(
 
     # if fuel input other than MJ
     if fuel_unit in ["kilogram", "cubic meter"]:
-        fuel_name = fuel_name.replace("market for ", "").replace("market group for ", "")
+        fuel_name = fuel_name.replace("market for ", "").replace(
+            "market group for ", ""
+        )
         if fuel_name in fuel_map_reverse:
             lhv = fuels_specs[fuel_map_reverse[fuel_name]]["lhv"]
         elif any(x.startswith(fuel_name) for x in fuel_map_reverse.keys()):
-            fuels = [
-                x for x in fuel_map_reverse.keys() if x.startswith(fuel_name)
-            ]
+            fuels = [x for x in fuel_map_reverse.keys() if x.startswith(fuel_name)]
             lhv = fuels_specs[fuel_map_reverse[fuels[0]]]["lhv"]
         else:
             print(f"Warning: LHV for {fuel_name} not found in fuel specifications.")

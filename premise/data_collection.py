@@ -621,7 +621,6 @@ class IAMDataCollection:
             sector="gas",
         )
 
-
         self.hydrogen_blend = self.__fetch_market_data(
             data=data,
             input_vars={

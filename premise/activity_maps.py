@@ -156,20 +156,22 @@ def mapping_to_dataframe(scenario) -> pd.DataFrame:
     ]:
         for category, activities in mapping.items():
             for act in activities:
-                temp_records.append((
-                    sector,
-                    category,
-                    act.get("name"),
-                    act.get("reference product"),
-                    act.get("location"),
-                ))
+                temp_records.append(
+                    (
+                        sector,
+                        category,
+                        act.get("name"),
+                        act.get("reference product"),
+                        act.get("location"),
+                    )
+                )
 
     # Deduplicate and sort
     temp_records = list(set(temp_records))
 
     df = pd.DataFrame(
         temp_records,
-        columns=["Sector", "Category", "Name", "Reference product", "Location"]
+        columns=["Sector", "Category", "Name", "Reference product", "Location"],
     )
 
     grouped_df = (
@@ -179,7 +181,9 @@ def mapping_to_dataframe(scenario) -> pd.DataFrame:
     )
 
     # Optional: convert list of locations to string
-    grouped_df["Location"] = grouped_df["Location"].apply(lambda x: ", ".join(sorted(x)))
+    grouped_df["Location"] = grouped_df["Location"].apply(
+        lambda x: ", ".join(sorted(x))
+    )
 
     # Optional: visually hide duplicate sectors and categories
     grouped_df.loc[grouped_df["Sector"].duplicated(), "Sector"] = ""
@@ -377,7 +381,9 @@ class InventorySet:
         :rtype: dict
 
         """
-        filters = get_mapping(filepath=FUELS_TECHS, var="ecoinvent_aliases", model=model)
+        filters = get_mapping(
+            filepath=FUELS_TECHS, var="ecoinvent_aliases", model=model
+        )
         return self.generate_sets_from_filters(filters)
 
     def generate_mining_waste_map(self) -> dict:
@@ -401,7 +407,9 @@ class InventorySet:
         :rtype: dict
 
         """
-        filters = get_mapping(filepath=FINAL_ENERGY, var="ecoinvent_aliases", model=self.model)
+        filters = get_mapping(
+            filepath=FINAL_ENERGY, var="ecoinvent_aliases", model=self.model
+        )
         return self.generate_sets_from_filters(filters)
 
     def generate_transport_map(self, transport_type: str) -> dict:
