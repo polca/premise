@@ -744,7 +744,6 @@ class BaseTransformation:
             }
             regional_shares_dict = {reg: 1 / len(regions) for reg in regions}
 
-
         transport_operations = self.extract_market_logistics(
             name=name,
             reference_product=reference_product,
@@ -837,7 +836,9 @@ class BaseTransformation:
 
             # add transport operations
             transport_location = [
-                loc for loc in transport_operations.keys() if loc in self.iam_to_ecoinvent_loc[region]
+                loc
+                for loc in transport_operations.keys()
+                if loc in self.iam_to_ecoinvent_loc[region]
             ]
 
             if len(transport_location) == 0:
@@ -938,11 +939,10 @@ class BaseTransformation:
             regions=regions,
         )
 
-
     def extract_market_logistics(
-            self,
-            name: str,
-            reference_product: str,
+        self,
+        name: str,
+        reference_product: str,
     ) -> Dict[Tuple[str, str, str], dict]:
         datasets = list(
             ws.get_many(
@@ -955,10 +955,7 @@ class BaseTransformation:
         transport_operations = {}
 
         for dataset in datasets:
-            for exc in ws.technosphere(
-                dataset,
-                ws.contains("unit", "kilometer")
-            ):
+            for exc in ws.technosphere(dataset, ws.contains("unit", "kilometer")):
                 transport_operations[dataset["location"]] = {
                     "name": exc["name"],
                     "reference product": exc["product"],
@@ -969,7 +966,6 @@ class BaseTransformation:
                 }
 
         return transport_operations
-
 
     def process_and_add_activities(
         self,
