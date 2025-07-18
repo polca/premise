@@ -13,6 +13,9 @@ from wurst import searching as ws
 
 from .filesystem_constants import DATA_DIR, VARIABLES_DIR
 from .utils import load_database
+from .logger import create_logger
+
+logger = create_logger("mapping")
 
 POWERPLANT_TECHS = VARIABLES_DIR / "electricity.yaml"
 FUELS_TECHS = VARIABLES_DIR / "fuels.yaml"
@@ -545,6 +548,9 @@ class InventorySet:
         # if not, print warning
         for key, val in mapping.items():
             if not val:
-                print(f"Warning: No activities found for {key} -- revise mapping.")
+                logger.info(f"{self.model}|{key}|No activities found for this technology.||")
+            else:
+                for v in val:
+                    logger.info(f"{self.model}|{key}|{v['name']}|{v['reference product']}|{v['location']}")
 
         return mapping

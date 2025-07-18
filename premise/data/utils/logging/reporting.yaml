@@ -705,6 +705,35 @@ premise_external_scenarios:
         unit: 0-1
     tab: External scenarios
 
+
+premise_mapping:
+    columns:
+      timestamp:
+        name: timestamp
+        description: Timestamp of the log entry
+      module:
+        name: module
+        description: Module name
+      level:
+        name: level
+        description: Log level
+      model:
+          name: model
+          description: IAM model name
+      variable:
+          name: variable
+          description: Variable name
+      name:
+          name: name
+          description: Name of the dataset
+      reference product:
+          name: reference product
+          description: Reference product
+      location:
+          name: location
+          description: Location
+    tab: Mapping
+
 premise_validation:
     columns:
       timestamp:

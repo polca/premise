@@ -753,6 +753,7 @@ def generate_change_report(source, version, source_type, system_model):
         "premise_cement",
         "premise_emissions",
         "premise_external_scenarios",
+        "premise_mapping",
         "premise_validation",
     ]
 

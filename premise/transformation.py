@@ -744,6 +744,12 @@ class BaseTransformation:
             }
             regional_shares_dict = {reg: 1 / len(regions) for reg in regions}
 
+
+        transport_operations = self.extract_market_logistics(
+            name=name,
+            reference_product=reference_product,
+        )
+
         for region in regions:
 
             if production_volumes is not None:
@@ -829,6 +835,42 @@ class BaseTransformation:
             if additional_exchanges_fn:
                 additional_exchanges_fn(market_dataset)
 
+            # add transport operations
+            transport_location = [
+                loc for loc in transport_operations.keys() if loc in self.iam_to_ecoinvent_loc[region]
+            ]
+
+            if len(transport_location) == 0:
+                # check if RoW is available
+                transport_location = [
+                    loc for loc in transport_operations.keys() if loc == "RoW"
+                ]
+
+            if len(transport_location) == 0:
+                # check if GLO is available
+                transport_location = [
+                    loc for loc in transport_operations.keys() if loc == "GLO"
+                ]
+
+            if len(transport_location) > 0:
+                transport_location = transport_location[0]
+            else:
+                transport_location = None
+
+            if transport_location:
+                transport_op = transport_operations[transport_location]
+                market_dataset["exchanges"].append(
+                    {
+                        "name": transport_op["name"],
+                        "product": transport_op["reference product"],
+                        "location": transport_op["location"],
+                        "amount": transport_op["amount"],
+                        "unit": transport_op["unit"],
+                        "uncertainty type": 0,
+                        "type": transport_op["type"],
+                    }
+                )
+
             self.database.append(market_dataset)
             self.add_to_index(market_dataset)
             self.write_log(market_dataset, "created")
@@ -895,6 +937,39 @@ class BaseTransformation:
             production_shares=regional_shares_dict,
             regions=regions,
         )
+
+
+    def extract_market_logistics(
+            self,
+            name: str,
+            reference_product: str,
+    ) -> Dict[Tuple[str, str, str], dict]:
+        datasets = list(
+            ws.get_many(
+                self.database,
+                ws.equals("name", name),
+                ws.equals("reference product", reference_product),
+            )
+        )
+
+        transport_operations = {}
+
+        for dataset in datasets:
+            for exc in ws.technosphere(
+                dataset,
+                ws.contains("unit", "kilometer")
+            ):
+                transport_operations[dataset["location"]] = {
+                    "name": exc["name"],
+                    "reference product": exc["product"],
+                    "location": exc["location"],
+                    "amount": exc["amount"],
+                    "unit": exc["unit"],
+                    "type": exc["type"],
+                }
+
+        return transport_operations
+
 
     def process_and_add_activities(
         self,

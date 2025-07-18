@@ -1423,6 +1423,7 @@ TRA_OT_AIRGSL:
     fltr:
     - transport, passengers, passenger aircraft
     - transport, passenger, aircraft
+    - transport, passenger aircraft
   gains_aliases_EU: TRA_OT_AIRGSL
 TRA_OT_INWMD:
   ecoinvent_aliases:
