@@ -761,7 +761,7 @@ class BaseTransformation:
                 )
 
                 if production_volume == 0:
-                   continue
+                    continue
             else:
                 production_volume = 0.0
 
@@ -1241,9 +1241,7 @@ class BaseTransformation:
 
             if iam_location == "World":
                 iam_location = [
-                    r for r in regions
-                    if r != "World"
-                    and self.is_in_index(dataset, r)
+                    r for r in regions if r != "World" and self.is_in_index(dataset, r)
                 ]
 
             if not iam_location:
@@ -1704,7 +1702,6 @@ class BaseTransformation:
             }
             for (name, prod, loc, unit), excs in grouped_exchanges
         ]
-
 
     def find_iam_efficiency_change(
         self,
