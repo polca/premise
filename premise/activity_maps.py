@@ -548,9 +548,13 @@ class InventorySet:
         # if not, print warning
         for key, val in mapping.items():
             if not val:
-                logger.info(f"{self.model}|{key}|No activities found for this technology.||")
+                logger.info(
+                    f"{self.model}|{key}|No activities found for this technology.||"
+                )
             else:
                 for v in val:
-                    logger.info(f"{self.model}|{key}|{v['name']}|{v['reference product']}|{v['location']}")
+                    logger.info(
+                        f"{self.model}|{key}|{v['name']}|{v['reference product']}|{v['location']}"
+                    )
 
         return mapping
