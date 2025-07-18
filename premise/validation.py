@@ -427,7 +427,7 @@ class BaseDatasetValidator:
                     )
                     not in dataset_names
                 ):
-                    message = f"Dataset {dataset['name']} links to a non-existing dataset: {exchange['name']}."
+                    message = f"Dataset {dataset['name']} in {dataset['location']} links to a non-existing dataset: {exchange['name']} in {exchange['location']}."
                     self.log_issue(
                         dataset, "non-existing dataset", message, issue_type="major"
                     )

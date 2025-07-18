@@ -94,6 +94,8 @@ class BiogasMixin:
         for (fuel, region), value in tech_shares.items():
             fuel_shares[region][fuel] = round(value, 2)
 
+        fuel_shares = {k: v for k, v in fuel_shares.items() if sum(v.values()) > 0}
+
         # Compute global weighted mix
         world_mix = defaultdict(float)
         total_weight = 0.0
@@ -128,12 +130,10 @@ class BiogasMixin:
             for exc in ws.technosphere(
                 ds, ws.either(*[ws.equals("name", name) for name in gas_names])
             ):
-                sum_ng += exc["amount"]
-                exc["location"] = (
-                    ds["location"]
-                    if ds["location"] in fuel_shares
-                    else self.ecoinvent_to_iam_loc[ds["location"]]
-                )
+
+                if ds["location"] in fuel_shares:
+                    exc["location"] = ds["location"]
+                    sum_ng += exc["amount"]
 
             if sum_ng == 0:
                 continue

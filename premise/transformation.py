@@ -762,7 +762,7 @@ class BaseTransformation:
                 )
 
                 if production_volume == 0:
-                    continue
+                   continue
             else:
                 production_volume = 0.0
 
@@ -1240,8 +1240,15 @@ class BaseTransformation:
             ecoinvent_location = dataset["location"]
             iam_location = loc_map[ecoinvent_location]
 
+            if not self.is_in_index(dataset, iam_location):
+                iam_location = "World"
+
             if iam_location == "World":
-                iam_location = [r for r in regions if r != "World"]
+                iam_location = [
+                    r for r in regions
+                    if r != "World"
+                    and self.is_in_index(dataset, r)
+                ]
 
             if not iam_location:
                 continue
@@ -1702,36 +1709,6 @@ class BaseTransformation:
             for (name, prod, loc, unit), excs in grouped_exchanges
         ]
 
-    def get_carbon_capture_rate(self, loc: str, sector: str) -> float:
-        """
-        Returns the carbon capture rate (between 0 and 1) as indicated by the IAM
-        It is calculated as CO2 captured / (CO2 captured + CO2 emitted)
-
-        :param loc: location of the dataset
-        :param sector: name of the sector to look capture rate for
-        :return: rate of carbon capture
-        """
-
-        if sector in self.iam_data.carbon_capture_rate.variables.values:
-            if self.year in self.iam_data.carbon_capture_rate.coords["year"].values:
-                rate = self.iam_data.carbon_capture_rate.sel(
-                    variables=sector,
-                    region=loc,
-                    year=self.year,
-                ).values.item(0)
-            else:
-                rate = (
-                    self.iam_data.carbon_capture_rate.sel(
-                        variables=sector,
-                        region=loc,
-                    )
-                    .interp(year=self.year)
-                    .values
-                )
-        else:
-            rate = 0
-
-        return rate
 
     def find_iam_efficiency_change(
         self,
