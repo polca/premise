@@ -69,7 +69,7 @@ methanol, from wood, with CCS: 35
 methanol, from grass: 35
 methanol, from grass, with CCS: 35
 natural gas: 35
-biomethane: 35
+methane, from biomass: 35
 hydrogen, from electrolysis, PEM: 30
 hydrogen, from electrolysis, AEC: 30
 hydrogen, from electrolysis, SOEC: 30
