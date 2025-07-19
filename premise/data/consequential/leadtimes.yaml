@@ -56,8 +56,8 @@ diesel, synthetic, from wood: 3
 diesel, synthetic, from wood, with CCS: 3
 diesel, synthetic, from grass: 3
 diesel, synthetic, from grass, with CCS: 3
-biodiesel, from used cooking oil: 3
-biodiesel, from used cooking oil, with CCS: 3
+biodiesel, from oil crops: 3
+biodiesel, from oil crops, with CCS: 3
 bioethanol, from wood: 3
 bioethanol, from wood, with CCS: 3
 bioethanol, from grass: 3
@@ -66,6 +66,7 @@ bioethanol, from grain: 3
 bioethanol, from grain, with CCS: 3
 bioethanol, from sugar: 3
 bioethanol, from sugar, with CCS: 3
+bioethanol, from residues: 3
 methanol, from wood: 3
 methanol, from wood, with CCS: 3
 methanol, from grass: 3

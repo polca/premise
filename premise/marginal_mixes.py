@@ -18,6 +18,7 @@ from .filesystem_constants import DATA_DIR
 
 IAM_LEADTIMES = DATA_DIR / "consequential" / "leadtimes.yaml"
 IAM_LIFETIMES = DATA_DIR / "consequential" / "lifetimes.yaml"
+CONSTRAINED_SUPPLIERS = DATA_DIR / "consequential" / "constrained_suppliers.yaml"
 
 
 @lru_cache
@@ -67,6 +68,15 @@ def get_leadtime(list_tech: Tuple) -> np.ndarray:
 
     return np.array(val, dtype=float)
 
+def get_list_contrained_suppliers():
+    """
+    Get a list of constrained suppliers from the leadtimes.yaml file.
+    :return: a list of constrained suppliers
+    :rtype: list
+    """
+    with open(CONSTRAINED_SUPPLIERS, "r", encoding="utf-8") as stream:
+        return yaml.safe_load(stream)
+
 
 def fetch_avg_leadtime(leadtime: np.ndarray, shares: [np.ndarray, xr.DataArray]) -> int:
     """
@@ -111,26 +121,6 @@ def fetch_volume_change(data: xr.DataArray, start_year: int, end_year: int) -> n
         )
         / (end_year - start_year)
     ).values
-
-
-def remove_constrained_suppliers(data: xr.DataArray) -> xr.DataArray:
-    """
-    Remove the shares of suppliers that are constrained from the market.
-    """
-
-    # we set CHP suppliers to zero
-    # as electricity production is not a
-    # determining product for CHPs
-    tech_to_ignore = ["CHP", "biomethane", "biogas"]
-    data.loc[
-        dict(
-            variables=[
-                v for v in data.variables.values if any(x in v for x in tech_to_ignore)
-            ],
-        )
-    ] = 0
-
-    return data
 
 
 def consequential_method(
@@ -199,8 +189,19 @@ def consequential_method(
     data_full = data_full.interpolate_na(dim="year", method="akima")
 
     techs = tuple(data_full.variables.values.tolist())
+    constrained_suppliers = get_list_contrained_suppliers()
     leadtime = get_leadtime(techs)
     lifetime = get_lifetime(techs)
+
+    # set constrained suppliers to zero
+    data_full.loc[
+        dict(
+            variables=[
+                tech for tech in techs
+                if tech in constrained_suppliers
+            ]
+        )
+    ] = 0
 
     # create a list to store variables values
     # for each region
@@ -358,8 +359,6 @@ def consequential_method(
         volume_change = fetch_volume_change(
             data_full.sel(region=region), avg_start, avg_end
         )
-
-        data_full = remove_constrained_suppliers(data_full)
 
         # second, we measure production growth
         # within the determined time interval
