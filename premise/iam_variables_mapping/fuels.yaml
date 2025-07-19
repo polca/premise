@@ -853,15 +853,15 @@ hydrogen:
   co2: 0
   biogenic_share: 1
 
-biodiesel, from used cooking oil:
+biodiesel, from oil crops:
   lhv: 38
   co2: 0.0734
   biogenic_share: 1
   iam_aliases:
     tiam-ucl: Secondary Energy|Liquids|Biomass|Biodiesel|w/o CCS
     gcam: Secondary Energy|Production|Refined Liquids|Biomass|Biodiesel
-    remind: SE|Liquids|Biomass|Biodiesel
-    remind-eu: SE|Liquids|Biomass|Biodiesel
+    remind: SE|Liquids|Biomass|Non-Cellulosic|+|Oil-based
+    remind-eu: SE|Liquids|Biomass|Non-Cellulosic|+|Oil-based
     image: Secondary Energy|Consumption|Liquids|Biomass|Biodiesel|Oilcrops|w/oCCS
   eff_aliases:
     tiam-ucl: Efficiency|Liquids|Biomass|FT fuel mix (diesel, kerosene, naptha, ELC)|w/o CCS
@@ -872,7 +872,7 @@ biodiesel, from used cooking oil:
   ecoinvent_aliases:
     fltr:
       name:
-        - biodiesel production, via transesterification
+        - biodiesel production, via transesterification, from rapeseed oil
     mask:
       name:
         - expansion
@@ -881,9 +881,8 @@ biodiesel, from used cooking oil:
         - station
         - algae
         - palm
-        - rapeseed
 
-biodiesel, from used cooking oil, with CCS:
+biodiesel, from oil crops, with CCS:
   lhv: 38
   co2: 0.0734
   biogenic_share: 1
@@ -909,8 +908,8 @@ bioethanol, from wood:
   biogenic_share: 1
   iam_aliases:
     gcam: Secondary Energy|Production|Refined Liquids|Biomass|Ethanol|Cellulose|w/oCCS
-    remind: SE|Liquids|Biomass|Cellulosic|+|w/o CC
-    remind-eu: SE|Liquids|Biomass|Cellulosic|+|w/o CC
+    remind: SE|Liquids|Biomass|Cellulosic|++|Energy Crops
+    remind-eu: SE|Liquids|Biomass|Cellulosic|++|Energy Crops
     image: Secondary Energy|Consumption|Liquids|Biomass|Ethanol|Woody|w/oCCS
     message: Secondary Energy|Liquids|Biomass|Ethanol|w/o CCS
     witch: Secondary Energy|Liquids|Biomass|Energy Crops
@@ -970,6 +969,22 @@ bioethanol, from wood, with CCS:
         - processing
         - synthetic
 
+bioethanol, from residues:
+  lhv: 26.5
+  co2: 0.0739
+  biogenic_share: 1
+  iam_aliases:
+      remind: SE|Liquids|Biomass|Cellulosic|++|Residues
+      remind-eu: SE|Liquids|Biomass|Cellulosic|++|Residues
+  eff_aliases:
+      remind: Tech|Liquids|Biomass|Cellulosic|++|Residues
+      remind-eu: Tech|Liquids|Biomass|Cellulosic|++|Residues
+  ecoinvent_aliases:
+    fltr:
+      name: ethanol production, via fermentation, from forest residues, energy allocation
+
+
+#TODO improve mapping here
 bioethanol, from grass:
   lhv: 26.5
   co2: 0.0739
@@ -990,7 +1005,6 @@ bioethanol, from grass:
         - ethanol production, via fermentation, from sorghum
         - ethanol production from grass
         - ethanol production from sweet sorghum
-
       reference product: ethanol
 
     mask:
@@ -1085,8 +1099,8 @@ bioethanol, from sugar:
   biogenic_share: 1
   iam_aliases:
     gcam: Secondary Energy|Production|Refined Liquids|Biomass|Ethanol|Sugar
-    remind: SE|Liquids|Biomass|Conventional Ethanol
-    remind-eu: SE|Liquids|Biomass|Conventional Ethanol
+    remind: SE|Liquids|Biomass|Non-Cellulosic|+|Sugar and Starch
+    remind-eu: SE|Liquids|Biomass|Non-Cellulosic|+|Sugar and Starch
     image: Secondary Energy|Consumption|Liquids|Biomass|Ethanol|Sugar|w/oCCS
     witch: Secondary Energy|Liquids|Biomass|1st Generation
   eff_aliases:
