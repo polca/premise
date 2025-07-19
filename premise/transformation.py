@@ -831,6 +831,19 @@ class BaseTransformation:
                                     }
                                 )
 
+            # normalize the shares
+            total_share = sum(
+                exc["amount"]
+                for exc in market_dataset["exchanges"]
+                if exc["type"] == "technosphere"
+            )
+            if total_share > 0:
+                for exc in market_dataset["exchanges"]:
+                    if exc["type"] == "technosphere":
+                        exc["amount"] /= total_share
+            else:
+                continue
+
             if additional_exchanges_fn:
                 additional_exchanges_fn(market_dataset)
 
@@ -900,21 +913,28 @@ class BaseTransformation:
                 ],
             }
 
+            candidate = {
+                "name": name,
+                "reference product": reference_product,
+                "unit": unit,
+            }
             for region in regions:
                 share = regional_shares_dict.get(region, 0)
 
                 if share > 0:
-                    world_market["exchanges"].append(
-                        {
-                            "name": name,
-                            "product": reference_product,
-                            "location": region,
-                            "amount": share,
-                            "unit": unit,
-                            "uncertainty type": 0,
-                            "type": "technosphere",
-                        }
-                    )
+                    if self.is_in_index(candidate, region):
+                        # add the regional market shares
+                        world_market["exchanges"].append(
+                            {
+                                "name": name,
+                                "product": reference_product,
+                                "location": region,
+                                "amount": share,
+                                "unit": unit,
+                                "uncertainty type": 0,
+                                "type": "technosphere",
+                            }
+                        )
 
             self.database.append(world_market)
             self.add_to_index(world_market)

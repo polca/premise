@@ -154,6 +154,13 @@ class Biomass(BaseTransformation):
         )
 
     def replace_biomass_inputs(self):
+
+        new_candidate = {
+            "name": "market for biomass, used as fuel",
+            "reference product": "biomass, used as fuel",
+            "unit": "kilogram",
+        }
+
         for dataset in ws.get_many(
             self.database,
             ws.either(*[ws.equals("unit", u) for u in ["kilowatt hour", "megajoule"]]),
@@ -166,13 +173,18 @@ class Biomass(BaseTransformation):
                 ws.contains("name", "market for wood chips"),
                 ws.equals("unit", "kilogram"),
             ):
-                exc["name"] = "market for biomass, used as fuel"
-                exc["product"] = "biomass, used as fuel"
-                exc["location"] = (
-                    dataset["location"]
-                    if dataset["location"] in self.regions
-                    else self.ecoinvent_to_iam_loc.get(dataset["location"], "GLO")
-                )
+
+                if dataset["location"] in self.regions:
+                    location = dataset["location"]
+                else:
+                    location = self.ecoinvent_to_iam_loc.get(
+                        dataset["location"], "GLO"
+                    )
+
+                if self.is_in_index(new_candidate, location):
+                    exc["name"] = "market for biomass, used as fuel"
+                    exc["product"] = "biomass, used as fuel"
+                    exc["location"] = location
 
     def write_log(self, dataset, status="created"):
         """

@@ -242,7 +242,8 @@ class Steel(BaseTransformation):
                     if exc["unit"] == "kilowatt hour"
                 )
 
-                scaling_factor = max(0.444 / electricity, scaling_factor)
+                if electricity > 0:
+                    scaling_factor = max(0.444 / electricity, scaling_factor)
 
             # if pig iron production, we want to make sure
             # that the scaling down will not bring energy consumption

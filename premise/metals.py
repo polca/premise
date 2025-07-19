@@ -391,6 +391,48 @@ class Metals(BaseTransformation):
         self.metals_transport = load_metals_transport()
         self.alt_names = load_metals_alternative_names()
 
+        self.metals_transport_activities = {
+            "air": ws.get_one(
+                self.database,
+                ws.contains("name", "aircraft"),
+                ws.contains("name", "freight"),
+                ws.contains("name", "belly"),
+                ws.contains("name", "long haul"),
+                ws.contains("name", "market"),
+                ws.equals("location", "GLO"),
+            ),
+            "sea": ws.get_one(
+                self.database,
+                ws.contains("name", "transport"),
+                ws.contains("name", "freight"),
+                ws.contains("name", "sea"),
+                ws.contains("name", "container ship"),
+                ws.contains("name", "market"),
+                ws.exclude(ws.contains("name", "reefer")),
+                ws.equals("location", "GLO"),
+            ),
+            "railway": ws.get_one(
+                self.database,
+                ws.contains("name", "transport"),
+                ws.contains("name", "freight"),
+                ws.contains("name", "train"),
+                ws.contains("name", "market"),
+                ws.exclude(ws.contains("name", "reefer")),
+                ws.equals("location", "GLO"),
+            ),
+            "road": ws.get_one(
+                self.database,
+                ws.contains("name", "transport"),
+                ws.contains("name", "freight"),
+                ws.contains("name", "lorry"),
+                ws.contains("name", "market"),
+                ws.contains("name", "unspecified"),
+                ws.exclude(ws.contains("name", "reefer")),
+                ws.equals("location", "GLO"),
+            ),
+        }
+
+
     def update_metals_use_in_database(self):
         """
         Update the database with metals use factors.
@@ -829,34 +871,18 @@ class Metals(BaseTransformation):
                 trspt_data = self.get_weighted_average_distance(c, metal)
                 for i, row in trspt_data.iterrows():
                     distance = row["Weighted Distance (km)"]
-                    mode = row["TransportMode Label"]
+                    mode = row["TransportMode Label"].lower()
                     tkm = distance / 1000 * share  # convert to tonne-kilometers x share
 
-                    if mode == "Air":
-                        name = "transport, freight, aircraft, belly-freight, long haul"
-                        reference_product = "transport, freight, aircraft, long haul"
-                        loc = "GLO"
-                    elif mode == "Sea":
-                        name = "transport, freight, sea, container ship"
-                        reference_product = "transport, freight, sea, container ship"
-                        loc = "GLO"
-                    elif mode == "Railway":
-                        name = "market group for transport, freight train"
-                        reference_product = "transport, freight train"
-                        loc = "GLO"
-                    else:
-                        name = "market for transport, freight, lorry, unspecified"
-                        reference_product = "transport, freight, lorry, unspecified"
-                        loc = "RoW"
-
+                    transport_dataset = self.metals_transport_activities[mode]
                     excs.append(
                         {
-                            "name": name,
-                            "product": reference_product,
-                            "location": loc,
+                            "name": transport_dataset["name"],
+                            "product": transport_dataset["reference product"],
+                            "location": transport_dataset["location"],
                             "amount": tkm,
                             "type": "technosphere",
-                            "unit": "ton kilometer",
+                            "unit": transport_dataset["unit"],
                         }
                     )
 
