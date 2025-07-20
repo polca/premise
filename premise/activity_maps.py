@@ -551,7 +551,7 @@ class InventorySet:
                 logger.info(
                     f"{self.model}|{key}|No activities found for this technology.||"
                 )
-            #else:
+            # else:
             #    for v in val:
             #        logger.info(
             #            f"{self.model}|{key}|{v['name']}|{v['reference product']}|{v['location']}"

@@ -761,7 +761,6 @@ class Electricity(BaseTransformation):
         else:
             periods = [0, 20, 40, 60]
 
-
         new_datasets = [
             generate_regional_markets(region, period)
             for region in self.regions
@@ -1044,10 +1043,7 @@ class Electricity(BaseTransformation):
                     suppliers = [
                         ds
                         for ds in datasets
-                        if any(
-                            ds["location"] == x
-                            for x in possible_locations[counter]
-                        )
+                        if any(ds["location"] == x for x in possible_locations[counter])
                     ]
 
                     if len(suppliers) > 0:
@@ -1195,7 +1191,6 @@ class Electricity(BaseTransformation):
             ]
         else:
             periods = [0, 20, 40, 60]
-
 
         new_datasets = [
             generate_regional_markets(region, period)

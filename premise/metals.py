@@ -432,7 +432,6 @@ class Metals(BaseTransformation):
             ),
         }
 
-
     def update_metals_use_in_database(self):
         """
         Update the database with metals use factors.
@@ -638,12 +637,15 @@ class Metals(BaseTransformation):
                             flow["name"],
                             flow["categories"].split("::")[0],
                             flow["categories"].split("::")[1],
-                            flow["unit"]
+                            flow["unit"],
                         )
 
                         flow_code = None
                         if flow_key in self.biosphere_flow_codes:
-                            flow_code = ("biosphere3", self.biosphere_flow_codes[flow_key])
+                            flow_code = (
+                                "biosphere3",
+                                self.biosphere_flow_codes[flow_key],
+                            )
                         else:
                             # try with ", in ground"
                             new_name = flow["name"] + ", in ground"
@@ -654,13 +656,15 @@ class Metals(BaseTransformation):
                                 flow["unit"],
                             )
                             if flow_key in self.biosphere_flow_codes:
-                                flow_code = ("biosphere3", self.biosphere_flow_codes[flow_key])
+                                flow_code = (
+                                    "biosphere3",
+                                    self.biosphere_flow_codes[flow_key],
+                                )
                             else:
                                 print(
                                     f"Warning: Flow {flow_key} not found in biosphere flows."
                                 )
                                 continue
-
 
                         ds["exchanges"].append(
                             {

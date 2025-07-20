@@ -68,6 +68,7 @@ def get_leadtime(list_tech: Tuple) -> np.ndarray:
 
     return np.array(val, dtype=float)
 
+
 def get_list_contrained_suppliers():
     """
     Get a list of constrained suppliers from the leadtimes.yaml file.
@@ -195,12 +196,7 @@ def consequential_method(
 
     # set constrained suppliers to zero
     data_full.loc[
-        dict(
-            variables=[
-                tech for tech in techs
-                if tech in constrained_suppliers
-            ]
-        )
+        dict(variables=[tech for tech in techs if tech in constrained_suppliers])
     ] = 0
 
     # create a list to store variables values
