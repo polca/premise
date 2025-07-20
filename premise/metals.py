@@ -634,6 +634,34 @@ class Metals(BaseTransformation):
                             ] == tuple(flow["categories"].split("::")):
                                 exc["amount"] += flow["amount"]
                     else:
+                        flow_key = (
+                            flow["name"],
+                            flow["categories"].split("::")[0],
+                            flow["categories"].split("::")[1],
+                            flow["unit"]
+                        )
+
+                        flow_code = None
+                        if flow_key in self.biosphere_flow_codes:
+                            flow_code = ("biosphere3", self.biosphere_flow_codes[flow_key])
+                        else:
+                            # try with ", in ground"
+                            new_name = flow["name"] + ", in ground"
+                            flow_key = (
+                                new_name,
+                                flow["categories"].split("::")[0],
+                                flow["categories"].split("::")[1],
+                                flow["unit"],
+                            )
+                            if flow_key in self.biosphere_flow_codes:
+                                flow_code = ("biosphere3", self.biosphere_flow_codes[flow_key])
+                            else:
+                                print(
+                                    f"Warning: Flow {flow_key} not found in biosphere flows."
+                                )
+                                continue
+
+
                         ds["exchanges"].append(
                             {
                                 "name": flow["name"],
@@ -641,15 +669,7 @@ class Metals(BaseTransformation):
                                 "unit": flow["unit"],
                                 "type": "biosphere",
                                 "categories": tuple(flow["categories"].split("::")),
-                                "input": (
-                                    "biosphere3",
-                                    self.biosphere_flow_codes[
-                                        flow["name"],
-                                        flow["categories"].split("::")[0],
-                                        flow["categories"].split("::")[1],
-                                        flow["unit"],
-                                    ],
-                                ),
+                                "input": flow_code,
                             }
                         )
 

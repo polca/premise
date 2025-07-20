@@ -174,16 +174,6 @@
     reference product: neutralising agent, sodium hydroxide-equivalent
     location: GLO
 
-- name: market for neutralising agent, sodium hydroxide-equivalent
-  reference product: neutralising agent, sodium hydroxide-equivalent
-  unit: kilogram
-  location: GLO
-  replacement:
-    name: market for neutralising agent, sodium hydroxide-equivalent
-    reference product: neutralising agent, sodium hydroxide-equivalent
-    location: RoW
-
-
 - name: oxidation of butane
   reference product: methyl acetate
   unit: kilogram

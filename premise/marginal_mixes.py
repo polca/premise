@@ -12,7 +12,7 @@ import numpy as np
 import xarray as xr
 import yaml
 from numpy import ndarray
-from prettytable import ALL, PrettyTable
+from prettytable import PrettyTable
 
 from .filesystem_constants import DATA_DIR
 
@@ -843,7 +843,6 @@ def consequential_method(
         "Cap repl.": 10,
         "Vol ch.": 10,
     }
-    table.hrules = ALL
     print(table)
 
     return market_shares

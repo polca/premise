@@ -16,7 +16,7 @@ import pandas as pd
 import xarray as xr
 import yaml
 from country_converter import CountryConverter
-from prettytable import ALL, PrettyTable
+from prettytable import HRuleStyle, PrettyTable
 from wurst import rescale_exchange
 from wurst.searching import biosphere, equals, get_many, technosphere
 
@@ -219,7 +219,6 @@ def get_regions_definition(model: str) -> None:
         table.add_row([region, list_countries])
 
     table._max_width = {"Region": 50, "Countries": 125}
-    table.hrules = ALL
 
     print(table)
 
@@ -287,7 +286,6 @@ def info_on_utils_functions():
     )
     # align text to the left
     table.align = "l"
-    table.hrules = ALL
     table._max_width = {"Utils functions": 50, "Description": 32}
     print(table)
 

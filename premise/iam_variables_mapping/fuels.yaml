@@ -977,14 +977,12 @@ bioethanol, from residues:
       remind: SE|Liquids|Biomass|Cellulosic|++|Residues
       remind-eu: SE|Liquids|Biomass|Cellulosic|++|Residues
   eff_aliases:
-      remind: Tech|Liquids|Biomass|Cellulosic|++|Residues
-      remind-eu: Tech|Liquids|Biomass|Cellulosic|++|Residues
+      remind: Tech|Liquids|Biomass|Biodiesel|Efficiency
+      remind-eu: Tech|Liquids|Biomass|Biodiesel|Efficiency
   ecoinvent_aliases:
     fltr:
       name: ethanol production, via fermentation, from forest residues, energy allocation
 
-
-#TODO improve mapping here
 bioethanol, from grass:
   lhv: 26.5
   co2: 0.0739

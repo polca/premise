@@ -1517,7 +1517,7 @@ class Export:
                     if item == "Process name":
                         name = f"{ds['reference product']} {{{ds.get('location', 'GLO')}}}| {ds['name']} | {dataset_suffix}"
 
-                        writer.writerow([name])
+                        writer.writerow([clean_csv_field(name)])
 
                     if item == "Type":
                         writer.writerow(["Unit process"])
@@ -1575,6 +1575,7 @@ class Export:
                         for e in ds["exchanges"]:
                             if e["type"] == "production":
                                 name = f"{e['product']} {{{e.get('location', 'GLO')}}}| {e['name']} | {dataset_suffix}"
+                                name = clean_csv_field(name)
 
                                 if item == "Waste treatment":
                                     writer.writerow(
@@ -1612,6 +1613,7 @@ class Export:
 
                                 if exc_cat != "waste treatment":
                                     name = f"{e['product']} {{{e.get('location', 'GLO')}}}| {e['name']} | {dataset_suffix}"
+                                    name = clean_csv_field(name)
 
                                     writer.writerow(
                                         [
@@ -1777,6 +1779,7 @@ class Export:
 
                                 if exc_cat == "waste treatment":
                                     name = f"{e['product']} {{{e.get('location', 'GLO')}}}| {e['name']} | {dataset_suffix}"
+                                    name = clean_csv_field(name)
 
                                     writer.writerow(
                                         [
