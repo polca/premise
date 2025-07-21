@@ -620,7 +620,7 @@ class Metals(BaseTransformation):
                     for exc in ws.biosphere(
                         ds,
                         ws.equals("name", flow["name"]),
-                        ws.equals("categories", tuple(flow["categories"].split("::")))
+                        ws.equals("categories", tuple(flow["categories"].split("::"))),
                     ):
                         exc["amount"] += flow["amount"]
                         found = True
@@ -980,8 +980,6 @@ class Metals(BaseTransformation):
             self.database.append(dataset)
             self.add_to_index(dataset)
             self.write_log(dataset, "created")
-
-
 
     def write_log(self, dataset, status="created"):
         """

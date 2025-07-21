@@ -379,13 +379,10 @@ class BaseInventoryImport:
     ) -> None:
         """Create a :class:`BaseInventoryImport` instance."""
         self.database = database
-        #self.db_code = [x["code"] for x in self.database]
+        # self.db_code = [x["code"] for x in self.database]
         self.db_names = [
-            (
-                x["name"].lower(),
-                x["reference product"].lower(),
-                x["location"]
-            ) for x in self.database
+            (x["name"].lower(), x["reference product"].lower(), x["location"])
+            for x in self.database
         ]
         self.version_in = version_in
         self.version_out = version_out
@@ -456,7 +453,6 @@ class BaseInventoryImport:
             if key in self.db_names:
                 already_exist.append(ds)
 
-
         if len(already_exist) > 0:
             print(
                 "The following datasets to import already exist "
@@ -471,7 +467,14 @@ class BaseInventoryImport:
                 name = self.path.name
 
             for dataset in already_exist:
-                table.add_row([dataset["name"][:30], dataset["reference product"][:30], dataset["location"], name[:30]])
+                table.add_row(
+                    [
+                        dataset["name"][:30],
+                        dataset["reference product"][:30],
+                        dataset["location"],
+                        name[:30],
+                    ]
+                )
 
             print(table)
 

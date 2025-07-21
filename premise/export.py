@@ -1038,7 +1038,8 @@ def _prepare_database(
 
 def get_uuids(db):
     return {
-        (ds["name"], ds["reference product"], ds["location"]): str(uuid.uuid4().hex) for ds in db
+        (ds["name"], ds["reference product"], ds["location"]): str(uuid.uuid4().hex)
+        for ds in db
     }
 
 
@@ -1484,13 +1485,7 @@ class Export:
             writer.writerow([])
 
             for ds in self.db:
-                ds_uuid = uuids[
-                    (
-                        ds["name"],
-                        ds["reference product"],
-                        ds["location"]
-                    )
-                ]
+                ds_uuid = uuids[(ds["name"], ds["reference product"], ds["location"])]
                 try:
                     main_category, sub_category = (
                         dict_cat_simapro[
@@ -1639,7 +1634,8 @@ class Export:
                         for e in ds["exchanges"]:
                             if (
                                 e["type"] == "biosphere"
-                                and e.get("categories", (None, ))[0] == "natural resource"
+                                and e.get("categories", (None,))[0]
+                                == "natural resource"
                             ):
                                 if e["name"] not in dict_bio:
                                     unlinked_biosphere_flows.append(
@@ -1670,7 +1666,10 @@ class Export:
                                 e["used"] = True
                     if item == "Emissions to air":
                         for e in ds["exchanges"]:
-                            if e["type"] == "biosphere" and e.get("categories", (None, ))[0] == "air":
+                            if (
+                                e["type"] == "biosphere"
+                                and e.get("categories", (None,))[0] == "air"
+                            ):
                                 if len(e["categories"]) > 1:
                                     sub_compartment = simapro_subs.get(
                                         e["categories"][1], e["categories"][1]
@@ -1708,7 +1707,7 @@ class Export:
                         for e in ds["exchanges"]:
                             if (
                                 e["type"] == "biosphere"
-                                and e.get("categories", (None, ))[0] == "water"
+                                and e.get("categories", (None,))[0] == "water"
                             ):
                                 if len(e["categories"]) > 1:
                                     sub_compartment = simapro_subs.get(
