@@ -852,9 +852,6 @@ def consequential_method(
             if num_unconstrained > 0:
                 market_shares.loc[
                     {"region": region, "variables": unconstrained_suppliers}
-                ] = (
-                    1 / num_unconstrained
-                )
-
+                ] = (1 / num_unconstrained)
 
     return market_shares
