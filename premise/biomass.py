@@ -187,9 +187,7 @@ class Biomass(BaseTransformation):
                 if dataset["location"] in self.regions:
                     location = dataset["location"]
                 else:
-                    location = self.ecoinvent_to_iam_loc.get(
-                        dataset["location"], "GLO"
-                    )
+                    location = self.ecoinvent_to_iam_loc.get(dataset["location"], "GLO")
 
                 if self.is_in_index(new_candidate, location):
                     exc["name"] = "market for biomass, used as fuel"
