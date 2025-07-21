@@ -127,7 +127,9 @@ def load_mining_shares_mapping():
     years = [str(year) for year in range(2020, 2031)]
     for metal in df_filtered["Metal"].unique():
         metal_indices = df_filtered["Metal"] == metal
-        df_filtered.loc[:, years] = df_filtered.groupby("Metal")[years].transform(lambda x: x / x.sum())
+        df_filtered.loc[:, years] = df_filtered.groupby("Metal")[years].transform(
+            lambda x: x / x.sum()
+        )
 
     return df
 
@@ -437,12 +439,8 @@ class Metals(BaseTransformation):
         Efficiently return all datasets whose 'name' is in dataset_names.
         """
         return [
-            ds
-            for name in dataset_names
-            for ds in self.db_index_by_name.get(name, [])
+            ds for name in dataset_names for ds in self.db_index_by_name.get(name, [])
         ]
-
-
 
     @lru_cache()
     def get_metal_market_dataset(self, metal_activity_name: str):
@@ -472,8 +470,7 @@ class Metals(BaseTransformation):
         """
 
         filtered_index = {
-            k: self.db_index_by_name.get(k, [])
-            for k in self.rev_activities_metals_map
+            k: self.db_index_by_name.get(k, []) for k in self.rev_activities_metals_map
         }
 
         for activity_name, datasets in filtered_index.items():
@@ -488,7 +485,7 @@ class Metals(BaseTransformation):
 
         tech_rows = self.extended_dataframe.loc[
             self.extended_dataframe["ecoinvent_technology"] == dataset["name"]
-            ]
+        ]
 
         if tech_rows.empty:
             print(f"No matching rows for {dataset['name']}, {dataset['location']}.")
@@ -510,7 +507,7 @@ class Metals(BaseTransformation):
             demanding_process_rows = tech_rows[
                 (tech_rows["final_technology"] == final_technology)
                 & tech_rows["demanding_process"].notna()
-                ]
+            ]
 
             if not demanding_process_rows.empty:
                 for _, row in demanding_process_rows.iterrows():
@@ -524,10 +521,12 @@ class Metals(BaseTransformation):
             else:
                 tech_specific_rows = tech_rows[
                     tech_rows["final_technology"] == final_technology
-                    ]
+                ]
                 for metal in available_metals:
                     if metal in tech_specific_rows["Element"].values:
-                        match = tech_specific_rows[tech_specific_rows["Element"] == metal]
+                        match = tech_specific_rows[
+                            tech_specific_rows["Element"] == metal
+                        ]
                         if not match.empty:
                             metal_row = match.iloc[0]
                             self.process_metal_update(
@@ -539,7 +538,7 @@ class Metals(BaseTransformation):
                             )
 
     def process_metal_update(
-            self, metal_row, dataset, final_technology, technology, conversion_factor
+        self, metal_row, dataset, final_technology, technology, conversion_factor
     ):
         """
         Process the update for a given metal and technology.
@@ -553,20 +552,20 @@ class Metals(BaseTransformation):
                 metal=metal_row["Element"], origin_var=technology
             )
             median_value = (
-                    use_factors.sel(variable="median").item()
-                    * unit_converter
-                    * conversion_factor
+                use_factors.sel(variable="median").item()
+                * unit_converter
+                * conversion_factor
             )
 
             min_value = (
-                    use_factors.sel(variable="min").item()
-                    * unit_converter
-                    * conversion_factor
+                use_factors.sel(variable="min").item()
+                * unit_converter
+                * conversion_factor
             )
             max_value = (
-                    use_factors.sel(variable="max").item()
-                    * unit_converter
-                    * conversion_factor
+                use_factors.sel(variable="max").item()
+                * unit_converter
+                * conversion_factor
             )
 
             if median_value != 0 and not np.isnan(median_value):
@@ -631,11 +630,14 @@ class Metals(BaseTransformation):
                             flow["name"],
                             flow["categories"].split("::")[0],
                             flow["categories"].split("::")[1],
-                            flow["unit"]
+                            flow["unit"],
                         )
 
                         if flow_key in self.biosphere_flow_codes:
-                            flow_code = ("biosphere3", self.biosphere_flow_codes[flow_key])
+                            flow_code = (
+                                "biosphere3",
+                                self.biosphere_flow_codes[flow_key],
+                            )
                         else:
                             # try with ", in ground"
                             new_name = flow["name"] + ", in ground"
@@ -646,13 +648,15 @@ class Metals(BaseTransformation):
                                 flow["unit"],
                             )
                             if flow_key in self.biosphere_flow_codes:
-                                flow_code = ("biosphere3", self.biosphere_flow_codes[flow_key])
+                                flow_code = (
+                                    "biosphere3",
+                                    self.biosphere_flow_codes[flow_key],
+                                )
                             else:
                                 print(
                                     f"Warning: Flow {flow_key} not found in biosphere flows."
                                 )
                                 continue
-
 
                         ds["exchanges"].append(
                             {
@@ -671,7 +675,6 @@ class Metals(BaseTransformation):
                     ] = flow["amount"]
 
                 self.write_log(ds, "updated")
-
 
     def get_shares(self, df: pd.DataFrame, new_locations: dict, name, ref_prod) -> dict:
         """
@@ -780,7 +783,9 @@ class Metals(BaseTransformation):
         dataset["exchanges"] = [exc for exc in dataset["exchanges"] if exc]
 
         # Remove old market datasets (excluding "World")
-        for old_market in self.db_index.get(dataset_name, {}).get(reference_product, []):
+        for old_market in self.db_index.get(dataset_name, {}).get(
+            reference_product, []
+        ):
             if old_market["location"] != "World":
                 self.remove_from_index(old_market)
                 assert not self.is_in_index(old_market), (
@@ -850,7 +855,9 @@ class Metals(BaseTransformation):
             k: self.db_index_full[name][reference_product][v][0]
             for k, v in geography_mapping.items()
             if self.db_index_full[name][reference_product].get(v)
-            and not self.is_in_index({"name": name, "reference product": reference_product, "location": k})
+            and not self.is_in_index(
+                {"name": name, "reference product": reference_product, "location": k}
+            )
         }
 
         if not geo_map_filtered:
@@ -879,10 +886,16 @@ class Metals(BaseTransformation):
                 trspt_data = self.get_weighted_average_distance(c, metal)
                 for _, row in trspt_data.iterrows():
                     key = (
-                        self.metals_transport_activities[row["TransportMode Label"].lower()]["name"],
-                        self.metals_transport_activities[row["TransportMode Label"].lower()]["reference product"],
+                        self.metals_transport_activities[
+                            row["TransportMode Label"].lower()
+                        ]["name"],
+                        self.metals_transport_activities[
+                            row["TransportMode Label"].lower()
+                        ]["reference product"],
                         "GLO",  # fixed location
-                        self.metals_transport_activities[row["TransportMode Label"].lower()]["unit"],
+                        self.metals_transport_activities[
+                            row["TransportMode Label"].lower()
+                        ]["unit"],
                     )
                     exc_map[key] += (row["Weighted Distance (km)"] / 1000) * share
 
@@ -925,7 +938,9 @@ class Metals(BaseTransformation):
             (act["name"], act["reference product"]) for act in self.database
         )
 
-        dataframe["pair"] = list(zip(dataframe["Process"], dataframe["Reference product"]))
+        dataframe["pair"] = list(
+            zip(dataframe["Process"], dataframe["Reference product"])
+        )
         dataframe = dataframe[dataframe["pair"].isin(existing_pairs)]
         dataframe.drop(columns="pair", inplace=True)
 

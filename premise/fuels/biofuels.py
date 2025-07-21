@@ -33,9 +33,7 @@ class BiofuelsMixin:
             "forest residues": [
                 ds
                 for ds in self.database
-                if any(
-                    ds["name"].startswith(activity) for activity in activities
-                )
+                if any(ds["name"].startswith(activity) for activity in activities)
             ]
         }
 
@@ -49,9 +47,7 @@ class BiofuelsMixin:
             "used cooking oil": [
                 ds
                 for ds in self.database
-                if any(
-                    ds["name"].startswith(activity) for activity in activities
-                )
+                if any(ds["name"].startswith(activity) for activity in activities)
             ]
         }
 
@@ -59,7 +55,6 @@ class BiofuelsMixin:
             mapping=mapping,
             regions=self.regions,
         )
-
 
         for climate in ["tropical", "temperate"]:
             regions = [k for k, v in region_to_climate.items() if v == climate]

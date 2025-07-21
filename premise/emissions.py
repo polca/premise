@@ -136,17 +136,29 @@ class Emissions(BaseTransformation):
             name = ds["name"]
             loc = ds["location"]
 
-            if name in self.rev_gains_map_europe and loc in self.gains_europe.coords["region"]:
+            if (
+                name in self.rev_gains_map_europe
+                and loc in self.gains_europe.coords["region"]
+            ):
                 sector = self.rev_gains_map_europe[name]
-                self.update_pollutant_emissions(ds, sector, model="GAINS-EU", regions=self.gains_europe.region.values)
+                self.update_pollutant_emissions(
+                    ds,
+                    sector,
+                    model="GAINS-EU",
+                    regions=self.gains_europe.region.values,
+                )
                 self.write_log(ds, status="updated")
 
             elif name in self.rev_gains_map_global:
                 iam_loc = self.ecoinvent_to_iam_loc.get(loc)
                 if iam_loc and iam_loc in self.gains_global.coords["region"]:
                     sector = self.rev_gains_map_global[name]
-                    self.update_pollutant_emissions(ds, sector, model="GAINS-IAM",
-                                                    regions=self.gains_global.region.values)
+                    self.update_pollutant_emissions(
+                        ds,
+                        sector,
+                        model="GAINS-IAM",
+                        regions=self.gains_global.region.values,
+                    )
                     self.write_log(ds, status="updated")
 
     def update_pollutant_emissions(
@@ -165,7 +177,8 @@ class Emissions(BaseTransformation):
         # Update biosphere exchanges according to GAINS emission values
         relevant = set(self.ei_pollutants)
         biosphere_excs = [
-            exc for exc in dataset["exchanges"]
+            exc
+            for exc in dataset["exchanges"]
             if exc["type"] == "biosphere" and exc["name"] in relevant
         ]
 
@@ -216,7 +229,9 @@ class Emissions(BaseTransformation):
         data = self.gains_europe if model == "GAINS-EU" else self.gains_global
 
         try:
-            sf = data.loc[dict(region=location, pollutant=pollutant, sector=sector)].item()
+            sf = data.loc[
+                dict(region=location, pollutant=pollutant, sector=sector)
+            ].item()
         except KeyError:
             return 1.0
 

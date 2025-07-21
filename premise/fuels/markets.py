@@ -109,4 +109,3 @@ class FuelMarketsMixin:
             fuel_share = 0
 
         return float(fuel_share)
-
