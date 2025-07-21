@@ -289,10 +289,12 @@ class Battery(BaseTransformation):
                 )
 
                 for exc in ws.technosphere(ds, ws.equals("unit", "kilogram")):
+
                     exc["amount"] *= scaling_factor
-                    exc["loc"] *= scaling_factor
-                    exc["minimum"] *= scaling_factor_min
-                    exc["maximum"] *= scaling_factor_max
+                    if exc.get("uncertainty type") == 5:
+                        exc["loc"] *= scaling_factor
+                        exc["minimum"] *= scaling_factor_min
+                        exc["maximum"] *= scaling_factor_max
 
                 ds["log parameters"]["new battery mass"] = sum(
                     e["amount"]

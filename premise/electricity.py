@@ -328,7 +328,7 @@ def compute_time_weighted_mix(mix, region, year, period):
 
 
 def make_generic_market_dataset(
-    name, reference_product, region, year, comment, database, unit="kilowatt hour"
+    name, reference_product, region, comment, unit="kilowatt hour"
 ):
     return {
         "name": name,
@@ -336,7 +336,7 @@ def make_generic_market_dataset(
         "location": region,
         "unit": unit,
         "code": str(uuid.uuid4().hex),
-        "database": database,
+        "database": "",
         "comment": comment,
         "regionalized": True,
         "exchanges": [],
@@ -500,10 +500,8 @@ class Electricity(BaseTransformation):
             name="market group for electricity, low voltage",
             reference_product="electricity, low voltage",
             region="",
-            year=self.year,
             comment=f"Dataset created by `premise` from the IAM model {self.model} "
             f"using the pathway {self.scenario} for the year {self.year}.",
-            database=self.database[1]["database"],
         )
 
         def generate_regional_markets(region: str, period: int) -> dict:
@@ -611,7 +609,7 @@ class Electricity(BaseTransformation):
             if period != 0:
                 # this dataset is for a period of time
                 new_dataset["name"] += f", {period}-year period"
-                new_dataset["comment"] += (
+                new_dataset["comment"] = (
                     f" Average electricity mix over a {period}"
                     f"-year period {self.year}-{self.year + period}."
                 )
@@ -794,10 +792,8 @@ class Electricity(BaseTransformation):
             name="market group for electricity, medium voltage",
             reference_product="electricity, medium voltage",
             region="",
-            year=self.year,
             comment=f"Dataset created by `premise` from the IAM model {self.model} "
             f"using the pathway {self.scenario} for the year {self.year}.",
-            database=self.database[1]["database"],
         )
 
         def generate_regional_markets(region: str, period: int) -> dict:
@@ -839,7 +835,7 @@ class Electricity(BaseTransformation):
             if period != 0:
                 # this dataset is for a period of time
                 new_dataset["name"] += f", {period}-year period"
-                new_dataset["comment"] += (
+                new_dataset["comment"] = (
                     f" Average electricity mix over a {period}"
                     f"-year period {self.year}-{self.year + period}."
                 )
@@ -1004,10 +1000,8 @@ class Electricity(BaseTransformation):
             name="market group for electricity, high voltage",
             reference_product="electricity, high voltage",
             region="",
-            year=self.year,
             comment=f"Dataset created by `premise` from the IAM model {self.model} "
             f"using the pathway {self.scenario} for the year {self.year}.",
-            database=self.database[1]["database"],
         )
 
         def generate_regional_markets(region: str, period: int) -> dict:
@@ -1131,7 +1125,7 @@ class Electricity(BaseTransformation):
             if period != 0:
                 # this dataset is for a period of time
                 new_dataset["name"] += f", {period}-year period"
-                new_dataset["comment"] += (
+                new_dataset["comment"] = (
                     f" Average electricity mix over a {period}"
                     f"-year period {self.year}-{self.year + period}."
                 )

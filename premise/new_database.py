@@ -57,6 +57,7 @@ from .utils import (
     print_version,
     warning_about_biogenic_co2,
     end_of_process,
+    create_cache
 )
 from .renewables import _update_wind_turbines
 
@@ -669,7 +670,8 @@ class NewDatabase:
         print("Cannot find cached database. Will create one now for next time...")
         clear_existing_cache()
         database = self.__clean_database()
-        pickle.dump(database, open(file_name, "wb"))
+        database = create_cache(database, file_name)
+        #pickle.dump(database, open(file_name, "wb"))
         return database
 
     def __find_cached_inventories(self, db_name: str) -> Union[None, List[dict]]:
@@ -703,7 +705,7 @@ class NewDatabase:
         # else, extract the database, pickle it for next time and return it
         print("Cannot find cached inventories. Will create them now for next time...")
         data = self.__import_inventories()
-        pickle.dump(data, open(file_name, "wb"))
+        _ = create_cache(data, file_name)
         print(
             "Data cached. It is advised to restart your workflow at this point.\n"
             "This allows premise to use the cached data instead, which results in\n"
@@ -1054,7 +1056,7 @@ class NewDatabase:
 
         for scenario in self.scenarios:
             try:
-                scenario = load_database(scenario)
+                scenario = load_database(scenario, load_metadata=True)
             except KeyError:
                 scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
             except FileNotFoundError:
@@ -1150,7 +1152,7 @@ class NewDatabase:
 
         for s, scenario in enumerate(self.scenarios):
             try:
-                scenario = load_database(scenario)
+                scenario = load_database(scenario, load_metadata=True)
             except KeyError:
                 print("Load unmodified database")
                 scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
@@ -1232,7 +1234,7 @@ class NewDatabase:
 
         for s, scenario in enumerate(self.scenarios):
             try:
-                scenario = load_database(scenario)
+                scenario = load_database(scenario, load_metadata=True)
             except KeyError:
                 scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
             except FileNotFoundError:
@@ -1284,7 +1286,7 @@ class NewDatabase:
 
         for scenario in self.scenarios:
             try:
-                scenario = load_database(scenario)
+                scenario = load_database(scenario, load_metadata=True)
             except KeyError:
                 scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
             except FileNotFoundError:
@@ -1340,7 +1342,7 @@ class NewDatabase:
 
         for scenario in self.scenarios:
             try:
-                scenario = load_database(scenario)
+                scenario = load_database(scenario, load_metadata=True)
             except KeyError:
                 scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
             except FileNotFoundError:
@@ -1389,7 +1391,7 @@ class NewDatabase:
 
         for scenario in self.scenarios:
             try:
-                scenario = load_database(scenario)
+                scenario = load_database(scenario, load_metadata=True)
             except KeyError:
                 scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
             except FileNotFoundError:

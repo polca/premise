@@ -616,29 +616,17 @@ class Metals(BaseTransformation):
                 self.database,
                 *filters,
             ):
-
                 for flow in dataset["additional flow"]:
-                    # check first if flow already exists
-                    if (
-                        len(
-                            list(
-                                [
-                                    e
-                                    for e in ds["exchanges"]
-                                    if e["name"] == flow["name"]
-                                    and e["categories"]
-                                    == tuple(flow["categories"].split("::"))
-                                ]
-                            )
-                        )
-                        > 0
+                    found = False
+                    for exc in ws.biosphere(
+                        ds,
+                        ws.equals("name", flow["name"]),
+                        ws.equals("categories", tuple(flow["categories"].split("::")))
                     ):
-                        for exc in ds["exchanges"]:
-                            if exc["name"] == flow["name"] and exc[
-                                "categories"
-                            ] == tuple(flow["categories"].split("::")):
-                                exc["amount"] += flow["amount"]
-                    else:
+                        exc["amount"] += flow["amount"]
+                        found = True
+
+                    if not found:
                         flow_key = (
                             flow["name"],
                             flow["categories"].split("::")[0],
@@ -646,7 +634,6 @@ class Metals(BaseTransformation):
                             flow["unit"]
                         )
 
-                        flow_code = None
                         if flow_key in self.biosphere_flow_codes:
                             flow_code = ("biosphere3", self.biosphere_flow_codes[flow_key])
                         else:
@@ -979,34 +966,7 @@ class Metals(BaseTransformation):
             self.add_to_index(dataset)
             self.write_log(dataset, "created")
 
-        # filter dataframe_parent to only keep rows
-        # which have a region and no values under columns from 2020 to 2030
 
-        dataframe_parent = dataframe.loc[
-            dataframe["Region"].notnull() & dataframe["2020"].isnull()
-        ]
-
-
-
-        grouped_parent_dfs = dict(tuple(dataframe_parent.groupby("Metal")))
-
-        for metal, df_metal in grouped_parent_dfs.items():
-            for (name, ref_prod), group in df_metal.groupby(["Process", "Reference product"]):
-                # Construct new_locations
-                new_locations = {
-                    c: self.country_codes[c]
-                    for c in group["Country"].unique()
-                    if c in self.country_codes
-                }
-
-                geography_mapping = self.get_geo_mapping(group, new_locations)
-
-                datasets = self.create_new_mining_activity(
-                    name=name,
-                    reference_product=ref_prod,
-                    new_locations=new_locations,
-                    geography_mapping=geography_mapping,
-                )
 
     def write_log(self, dataset, status="created"):
         """

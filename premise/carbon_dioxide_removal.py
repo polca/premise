@@ -190,7 +190,7 @@ class CarbonDioxideRemoval(BaseTransformation):
             )
 
             # add in comments the scaling factor applied
-            dataset["comment"] += (
+            dataset["comment"] = (
                 f" The efficiency of the system has been "
                 f"adjusted to match the efficiency of the "
                 f"average CDR plant in {self.year}."

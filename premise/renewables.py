@@ -109,11 +109,16 @@ class WindTurbine(BaseTransformation):
             ws.either(*[ws.contains("name", tech) for tech in datasets_terms]),
             ws.exclude(ws.contains("name", "direct drive")),
         ):
-            if dataset["code"] not in processed:
+            key = (
+                dataset["name"],
+                dataset["reference product"],
+                dataset["location"]
+            )
+            if key not in processed:
                 dataset_copy = self.create_dataset_copy(dataset, "direct drive")
                 dataset_copy = relink(dataset_copy)
                 new_datasets.append(dataset_copy)
-                processed.append(dataset["code"])
+                processed.append(key)
 
         self.database.extend(new_datasets)
 

@@ -19,6 +19,7 @@ from country_converter import CountryConverter
 from prettytable import HRuleStyle, PrettyTable
 from wurst import rescale_exchange
 from wurst.searching import biosphere, equals, get_many, technosphere
+import numpy as np
 
 from . import __version__
 from .data_collection import get_delimiter
@@ -389,7 +390,7 @@ def dump_database(scenario):
     return scenario
 
 
-def load_database(scenario, delete=True):
+def load_database(scenario, delete=True, load_metadata=False):
     """
     Load database from a pickle file.
     :param scenario: scenario dictionary
@@ -404,11 +405,24 @@ def load_database(scenario, delete=True):
     # load pickle
     with open(filepath, "rb") as f:
         scenario["database"] = pickle.load(f)
+
+    if load_metadata:
+        filepath_metadata = Path(f"{filepath} (metadata)".replace(".pickle", ".cache"))
+        with open(filepath_metadata, "rb") as f:
+            metadata = pickle.load(f)
+            for ds in scenario["database"]:
+                ds.update(metadata.get((ds["name"], ds["reference product"], ds["location"]), {}))
+    else:
+        filepath_metadata = None
+
     del scenario["database filepath"]
 
     # delete the file
     if delete:
         filepath.unlink()
+
+    if load_metadata:
+        filepath_metadata.unlink()
 
     return scenario
 
@@ -446,3 +460,100 @@ def end_of_process(scenario):
         scenario["index"] = {}
 
     return scenario
+
+
+def downcast_value(val):
+    if isinstance(val, float):
+        return np.float32(val)
+    return val
+
+def trim_exchanges(exc):
+
+    # only keep certain keys and remove None or NaN values
+
+    return {
+        k: downcast_value(v) for k, v in exc.items()
+        if k in [
+            'uncertainty type',
+            'loc',
+            'scale',
+            'amount',
+            'type',
+            'production volume',
+            'product',
+            'name',
+            'unit',
+            'location',
+            'shape',
+            'minimum',
+            'maximum',
+            'categories'
+        ]
+           and pd.notna(v)
+    }
+
+def create_cache(database, file_name):
+    """
+    Create a cache for the database.
+    But store the metadata separately.
+    """
+
+    metadata = {
+        (ds["name"], ds["reference product"], ds["location"]): {
+            k: v
+        } for ds in database
+        for k, v in ds.items() if k not in [
+            "name",
+            "reference product",
+            "location",
+            "unit",
+            "exchanges"
+        ]
+    }
+
+    database = [
+        {k: v for k, v in ds.items() if k in [
+            "name",
+            "reference product",
+            "location",
+            "unit",
+            "exchanges",
+            ]
+         }
+        for ds in database
+    ]
+
+    for ds in database:
+        # trim exchanges
+        ds["exchanges"] = [trim_exchanges(exc) for exc in ds["exchanges"]]
+
+    # create a cache file
+    cache_file = DIR_CACHED_DB / f"{file_name} (metadata).cache"
+
+    with open(cache_file, "wb") as f:
+        pickle.dump(metadata, f)
+
+    # cache the database
+
+    with open(file_name, "wb") as f:
+        pickle.dump(database, f)
+
+    return database
+
+def load_metadata(file_name):
+    """
+    Load metadata from a cache file.
+    :param file_name: name of the cache file
+    :return: metadata dictionary
+    """
+    cache_file = f"{file_name} (metadata).cache"
+
+    if not cache_file.exists():
+        raise FileNotFoundError(f"Cache file {cache_file} does not exist.")
+
+    with open(cache_file, "rb") as f:
+        metadata = pickle.load(f)
+
+    return metadata
+
+

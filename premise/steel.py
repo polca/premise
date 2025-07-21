@@ -291,7 +291,7 @@ class Steel(BaseTransformation):
                 f"region {dataset['location']} in {self.year}, following the scenario {self.scenario}. "
                 f"The energy efficiency of the process has been improved by {int((1 - scaling_factor) * 100)}%."
             )
-            dataset["comment"] = text + dataset["comment"]
+            dataset["comment"] = text
 
             if "log parameters" not in dataset:
                 dataset["log parameters"] = {}

@@ -261,12 +261,12 @@ class Transport(BaseTransformation):
     def relink_transport_datasets(self):
         # if trucks or ships, need to reconnect everything
         # loop through datasets that use truck transport
-        if self.vehicle_type in ("truck", "ship", "train"):
 
+        if "old" in self.mapping[self.vehicle_type]:
             for dataset in ws.get_many(
                 self.database,
-                ws.doesnt_contain_any("name", ["freight"]),
-                ws.exclude(ws.equals("unit", "ton kilometer")),
+                ws.doesnt_contain_any("name", ["freight", "transport"]),
+                ws.exclude(ws.contains("unit", "kilometer")),
             ):
                 for exc in ws.technosphere(
                     dataset,
@@ -405,7 +405,7 @@ class Transport(BaseTransformation):
             exc["minimum"] = min_battery_size
             exc["maximum"] = max_battery_size
 
-        ds["comment"] += f" Battery size adjusted to {mean_battery_size} kWh."
+        ds["comment"] = f" Battery size adjusted to {mean_battery_size} kWh."
 
     def write_log(self, dataset, status="created"):
         """

@@ -33,6 +33,7 @@ CORRESPONDENCE_BIO_FLOWS = (
 FILEPATH_CLASSIFICATIONS = DATA_DIR / "utils" / "import" / "classifications.xlsx"
 
 TEMP_CSV_FILE = DIR_CACHED_DB / "temp.csv"
+TEMP_EXCEL_FILE = DIR_CACHED_DB / "temp.xlsx"
 
 
 logging.basicConfig(
@@ -378,9 +379,13 @@ class BaseInventoryImport:
     ) -> None:
         """Create a :class:`BaseInventoryImport` instance."""
         self.database = database
-        self.db_code = [x["code"] for x in self.database]
+        #self.db_code = [x["code"] for x in self.database]
         self.db_names = [
-            (x["name"], x["reference product"], x["location"]) for x in self.database
+            (
+                x["name"].lower(),
+                x["reference product"].lower(),
+                x["location"]
+            ) for x in self.database
         ]
         self.version_in = version_in
         self.version_out = version_out
@@ -440,20 +445,17 @@ class BaseInventoryImport:
         """
 
         # print if we find datasets that already exist
-        already_exist = [
-            (x["name"].lower(), x["reference product"].lower(), x["location"])
-            for x in self.import_db.data
-            if x["code"] in self.db_code
-        ]
 
-        already_exist.extend(
-            [
-                (x["name"].lower(), x["reference product"].lower(), x["location"])
-                for x in self.import_db.data
-                if (x["name"].lower(), x["reference product"].lower(), x["location"])
-                in self.db_names
-            ]
-        )
+        already_exist = []
+        for ds in self.import_db.data:
+            key = (
+                ds["name"].lower(),
+                ds["reference product"].lower(),
+                ds["location"],
+            )
+            if key in self.db_names:
+                already_exist.append(ds)
+
 
         if len(already_exist) > 0:
             print(
@@ -469,17 +471,12 @@ class BaseInventoryImport:
                 name = self.path.name
 
             for dataset in already_exist:
-                table.add_row([dataset[0][:30], dataset[1][:30], dataset[2], name[:30]])
+                table.add_row([dataset["name"][:30], dataset["reference product"][:30], dataset["location"], name[:30]])
 
             print(table)
 
         self.import_db.data = [
-            x for x in self.import_db.data if x["code"] not in self.db_code
-        ]
-        self.import_db.data = [
-            x
-            for x in self.import_db.data
-            if (x["name"], x["reference product"], x["location"]) not in self.db_names
+            ds for ds in self.import_db.data if ds not in already_exist
         ]
 
     def merge_inventory(self) -> List[dict]:
