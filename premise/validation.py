@@ -2363,7 +2363,10 @@ class BiomassValidation(BaseDatasetValidator):
             ),
         ):
 
-            if dataset["location"] in regions or self.geo.ecoinvent_to_iam_location(dataset["location"]) in regions:
+            if (
+                dataset["location"] in regions
+                or self.geo.ecoinvent_to_iam_location(dataset["location"]) in regions
+            ):
                 assert (
                     len(
                         [
