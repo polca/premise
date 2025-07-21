@@ -27,6 +27,40 @@ class BiofuelsMixin:
 
         biofuel_activities = fetch_mapping(BIOFUEL_SOURCES)
 
+        # regionalize wood-based biofuels for all regions
+        activities = biofuel_activities["wood"]["forest residues"]
+        mapping = {
+            "forest residues": [
+                ds
+                for ds in self.database
+                if any(
+                    ds["name"].startswith(activity) for activity in activities
+                )
+            ]
+        }
+
+        self.process_and_add_activities(
+            mapping=mapping,
+            regions=self.regions,
+        )
+
+        activities = biofuel_activities["oil"]["used cooking oil"]
+        mapping = {
+            "used cooking oil": [
+                ds
+                for ds in self.database
+                if any(
+                    ds["name"].startswith(activity) for activity in activities
+                )
+            ]
+        }
+
+        self.process_and_add_activities(
+            mapping=mapping,
+            regions=self.regions,
+        )
+
+
         for climate in ["tropical", "temperate"]:
             regions = [k for k, v in region_to_climate.items() if v == climate]
             for crop_type in climate_to_crop_type[climate]:

@@ -1191,8 +1191,6 @@ methanol, from grass:
       - methanol production, from synthetic gas
       - methanol production, biomass gasification
 
-
-
 methanol, from wood, with CCS:
   lhv: 19.9
   co2: 0.069

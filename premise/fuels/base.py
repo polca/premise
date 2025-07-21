@@ -3,7 +3,7 @@ import xarray as xr
 from .hydrogen import HydrogenMixin
 from .biogas import BiogasMixin
 from .biofuels import BiofuelsMixin
-from .synfuels import SyntheticFuelsMixin
+from .liquid_fuels import SyntheticFuelsMixin
 from .markets import FuelMarketsMixin
 from .utils import fetch_mapping
 from .config import FUEL_GROUPS
@@ -41,10 +41,9 @@ def _update_fuels(scenario, version, system_model):
             scenario["iam data"].hydrogen_blend,
         )
     ):
-        # fuels.generate_hydrogen_activities()
-        # fuels.generate_synthetic_fuel_activities()
+        fuels.generate_hydrogen_activities()
+        fuels.generate_synthetic_fuel_activities()
         fuels.generate_biogas_activities()
-        # fuels.generate_fuel_markets()
         fuels.relink_datasets()
         scenario["database"] = fuels.database
         scenario["cache"] = fuels.cache

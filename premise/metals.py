@@ -8,14 +8,13 @@ Integrates projections regarding use of metals in the economy from:
 
 import uuid
 from functools import lru_cache
-from itertools import groupby
 from typing import Optional
+from collections import defaultdict
 
 import country_converter as coco
 import numpy as np
 import pandas as pd
 import yaml
-from _operator import itemgetter
 
 from .export import biosphere_flows_dictionary
 from .logger import create_logger
@@ -103,7 +102,7 @@ def load_metals_transport():
     # remove rows with value 0 under Weighted Average Distance
     df = df.loc[df["Weighted Distance (km)"] != 0]
 
-    df["country"] = coco.convert(df["Origin Label"], to="ISO2")
+    df["country"] = df["Country"]
 
     return df
 
@@ -122,15 +121,13 @@ def load_mining_shares_mapping():
     # remove suppliers whose markets share is below the cutoff
     cut_off = 0.01
 
-    df_filtered = df[df.loc[:, "2020":"2030"].max(axis=1) > cut_off]
+    df_filtered = df.loc[df.loc[:, "2020":"2030"].max(axis=1) > cut_off].copy()
 
     # Normalize remaining data back to 100% for each metal
     years = [str(year) for year in range(2020, 2031)]
     for metal in df_filtered["Metal"].unique():
         metal_indices = df_filtered["Metal"] == metal
-        metal_df = df_filtered.loc[metal_indices, years]
-        sum_df = metal_df.sum(axis=0)
-        df_filtered.loc[metal_indices, years] = metal_df.div(sum_df)
+        df_filtered.loc[:, years] = df_filtered.groupby("Metal")[years].transform(lambda x: x / x.sum())
 
     return df
 
@@ -306,15 +303,6 @@ def update_exchanges(
     return activity
 
 
-def filter_technology(dataset_names, database):
-    return list(
-        ws.get_many(
-            database,
-            ws.either(*[ws.contains("name", name) for name in dataset_names]),
-        )
-    )
-
-
 class Metals(BaseTransformation):
     """
     Class that modifies metal demand of different technologies
@@ -432,16 +420,29 @@ class Metals(BaseTransformation):
             ),
         }
 
+        self.build_db_indexes()
 
-    def update_metals_use_in_database(self):
-        """
-        Update the database with metals use factors.
-        """
+        self.weighted_transport_distances = {
+            (row["country"], row["Metal"]): row
+            for _, row in self.metals_transport.iterrows()
+        }
 
-        for dataset in self.database:
-            if dataset["name"] in self.rev_activities_metals_map:
-                origin_var = self.rev_activities_metals_map[dataset["name"]]
-                self.update_metal_use(dataset, origin_var)
+        self.transport_lookup = {
+            (row["country"], row["Metal"]): row
+            for _, row in self.metals_transport.iterrows()
+        }
+
+    def filter_technology(self, dataset_names):
+        """
+        Efficiently return all datasets whose 'name' is in dataset_names.
+        """
+        return [
+            ds
+            for name in dataset_names
+            for ds in self.db_index_by_name.get(name, [])
+        ]
+
+
 
     @lru_cache()
     def get_metal_market_dataset(self, metal_activity_name: str):
@@ -465,30 +466,38 @@ class Metals(BaseTransformation):
         else:
             raise ValueError(f"Invalid metal activity name: {metal_activity_name}")
 
-    def update_metal_use(
-        self,
-        dataset: dict,
-        technology: str,
-    ) -> None:
+    def update_metals_use_in_database(self):
         """
-        Update metal use based on metal intensity data.
-        :param dataset: dataset to adjust metal use for
-        :param technology: metal intensity variable name to look up
-        :return: Does not return anything. Modified in place.
+        Update the database with metal use factors using a pre-indexed approach.
         """
 
-        # Pre-fetch relevant data to minimize DataFrame operations
+        filtered_index = {
+            k: self.db_index_by_name.get(k, [])
+            for k in self.rev_activities_metals_map
+        }
+
+        for activity_name, datasets in filtered_index.items():
+            technology = self.rev_activities_metals_map[activity_name]
+            for dataset in datasets:
+                self.update_metal_use(dataset, technology)
+
+    def update_metal_use(self, dataset: dict, technology: str) -> None:
+        """
+        Update metal use based on metal intensity data.
+        """
+
         tech_rows = self.extended_dataframe.loc[
             self.extended_dataframe["ecoinvent_technology"] == dataset["name"]
-        ]
+            ]
 
         if tech_rows.empty:
             print(f"No matching rows for {dataset['name']}, {dataset['location']}.")
             return
 
         conversion_factor = self.conversion_factors_dict.get(
-            tech_rows["ecoinvent_technology"].iloc[0], None
+            tech_rows["ecoinvent_technology"].iloc[0], 1
         )
+
         available_metals = (
             self.precomputed_medians.sel(origin_var=technology)
             .dropna(dim="metal", how="all")["metal"]
@@ -498,14 +507,13 @@ class Metals(BaseTransformation):
         unique_final_technologies = tech_rows["final_technology"].unique()
 
         for final_technology in unique_final_technologies:
-
             demanding_process_rows = tech_rows[
                 (tech_rows["final_technology"] == final_technology)
                 & tech_rows["demanding_process"].notna()
-            ]
+                ]
 
             if not demanding_process_rows.empty:
-                for index, row in demanding_process_rows.iterrows():
+                for _, row in demanding_process_rows.iterrows():
                     self.process_metal_update(
                         metal_row=row,
                         dataset=dataset,
@@ -516,22 +524,22 @@ class Metals(BaseTransformation):
             else:
                 tech_specific_rows = tech_rows[
                     tech_rows["final_technology"] == final_technology
-                ]
+                    ]
                 for metal in available_metals:
                     if metal in tech_specific_rows["Element"].values:
-                        metal_row = tech_specific_rows[
-                            tech_specific_rows["Element"] == metal
-                        ].iloc[0]
-                        self.process_metal_update(
-                            metal_row=metal_row,
-                            dataset=dataset,
-                            conversion_factor=conversion_factor,
-                            final_technology=final_technology,
-                            technology=technology,
-                        )
+                        match = tech_specific_rows[tech_specific_rows["Element"] == metal]
+                        if not match.empty:
+                            metal_row = match.iloc[0]
+                            self.process_metal_update(
+                                metal_row=metal_row,
+                                dataset=dataset,
+                                conversion_factor=conversion_factor,
+                                final_technology=final_technology,
+                                technology=technology,
+                            )
 
     def process_metal_update(
-        self, metal_row, dataset, final_technology, technology, conversion_factor
+            self, metal_row, dataset, final_technology, technology, conversion_factor
     ):
         """
         Process the update for a given metal and technology.
@@ -545,32 +553,29 @@ class Metals(BaseTransformation):
                 metal=metal_row["Element"], origin_var=technology
             )
             median_value = (
-                use_factors.sel(variable="median").item()
-                * unit_converter
-                * conversion_factor
+                    use_factors.sel(variable="median").item()
+                    * unit_converter
+                    * conversion_factor
             )
 
             min_value = (
-                use_factors.sel(variable="min").item()
-                * unit_converter
-                * conversion_factor
+                    use_factors.sel(variable="min").item()
+                    * unit_converter
+                    * conversion_factor
             )
             max_value = (
-                use_factors.sel(variable="max").item()
-                * unit_converter
-                * conversion_factor
+                    use_factors.sel(variable="max").item()
+                    * unit_converter
+                    * conversion_factor
             )
 
             if median_value != 0 and not np.isnan(median_value):
-
                 try:
                     dataset_metal = self.get_metal_market_dataset(metal_activity_name)
                 except ws.NoResults:
                     return
-                metal_users = ws.get_many(
-                    self.database, ws.equals("name", final_technology)
-                )
 
+                metal_users = self.db_index_by_name.get(final_technology, [])
                 for metal_user in metal_users:
                     update_exchanges(
                         activity=metal_user,
@@ -680,45 +685,6 @@ class Metals(BaseTransformation):
 
                 self.write_log(ds, "updated")
 
-    def create_new_mining_activity(
-        self,
-        name: str,
-        reference_product: str,
-        new_locations: dict,
-        geography_mapping=None,
-        shares: dict = None,
-    ) -> dict:
-        """
-        Create a new mining activity in a new location.
-        """
-
-        datasets = list(
-            ws.get_many(
-                self.database,
-                ws.equals("name", name),
-                ws.equals("reference product", reference_product),
-            )
-        )
-
-        geography_mapping = {
-            k: [x for x in datasets if x["location"] == v][0]
-            for k, v in geography_mapping.items()
-            if not self.is_in_index(
-                {"name": name, "reference product": reference_product, "location": k}
-            )
-        }
-
-        if len(geography_mapping) == 0:
-            return {}
-
-        # Get the original datasets
-        regionalized_datasets = self.fetch_proxies(
-            datasets=datasets,
-            regions=new_locations.values(),
-            geo_mapping=geography_mapping,
-        )
-
-        return regionalized_datasets
 
     def get_shares(self, df: pd.DataFrame, new_locations: dict, name, ref_prod) -> dict:
         """
@@ -750,133 +716,168 @@ class Metals(BaseTransformation):
                 share = share.values[0]
                 shares[(name, ref_prod, short_location)] = share
 
+        # filter-out shares that are below 1% and normalize the rest
+        shares = {k: v for k, v in shares.items() if v >= 0.01}
+        if not shares:
+            return {}
+        total = sum(shares.values())
+        shares = {k: v / total for k, v in shares.items()}
+
         return shares
 
     def get_geo_mapping(self, df: pd.DataFrame, new_locations: dict) -> dict:
-        """
-        Fetch the value under "Region" for each location in new_locations.
-        """
-
         mapping = {}
+        grouped = df.groupby("Country")
 
-        for long_location, short_location in new_locations.items():
-            if len(df.loc[df["Country"] == long_location, "Region"]) > 0:
-                mapping[short_location] = df.loc[
-                    df["Country"] == long_location, "Region"
-                ].values[0]
+        regions_df = df[["Country", "Region"]].drop_duplicates()
+        for long_loc, iso2 in new_locations.items():
+            region_row = regions_df.loc[regions_df["Country"] == long_loc]
+            if not region_row.empty:
+                mapping[iso2] = region_row["Region"].iloc[0]
 
         return mapping
 
-    def create_region_specific_markets(self, df: pd.DataFrame) -> List[dict]:
-        new_exchanges = []
+    def build_db_indexes(self):
+        self.db_index_by_name = defaultdict(list)
+        self.db_index = defaultdict(lambda: defaultdict(list))
+        self.db_index_full = defaultdict(lambda: defaultdict(lambda: defaultdict(list)))
 
-        # iterate through unique pair of process - reference product in df:
-        # for each pair, create a new mining activity
+        for ds in self.database:
+            name = ds.get("name")
+            ref_prod = ds.get("reference product")
+            location = ds.get("location")
 
-        dataset_names = list(df["Process"].unique())
-        subset = filter_technology(dataset_names, self.database)
-
-        for (name, ref_prod), group in df.groupby(["Process", "Reference product"]):
-
-            new_locations = {
-                c: self.country_codes[c] for c in group["Country"].unique()
-            }
-            # fetch shares for each location in df
-            shares = self.get_shares(group, new_locations, name, ref_prod)
-
-            geography_mapping = self.get_geo_mapping(group, new_locations)
-
-            # if not, we create it
-            datasets = self.create_new_mining_activity(
-                name=name,
-                reference_product=ref_prod,
-                new_locations=new_locations,
-                geography_mapping=geography_mapping,
-                shares={k[2]: v for k, v in shares.items()},
-            )
-
-            # add new datasets to database
-            self.database.extend(datasets.values())
-            self.add_to_index(datasets.values())
-
-            for dataset in datasets.values():
-                self.write_log(dataset, "created")
-
-            new_exchanges.extend(
-                [
-                    {
-                        "name": k[0],
-                        "product": k[1],
-                        "location": k[2],
-                        "unit": "kilogram",
-                        "amount": share,
-                        "type": "technosphere",
-                    }
-                    for k, share in shares.items()
-                ]
-            )
-
-        # normalize amounts to 1
-        total = sum([exc["amount"] for exc in new_exchanges])
-        new_exchanges = [
-            {k: v for k, v in exc.items() if k != "amount"}
-            | {"amount": exc["amount"] / total}
-            for exc in new_exchanges
-        ]
-
-        return new_exchanges
+            self.db_index_by_name[name].append(ds)
+            self.db_index[name][ref_prod].append(ds)
+            self.db_index_full[name][ref_prod][location].append(ds)
 
     def create_market(self, metal, df):
-        # check if market already exists
-        # if so, remove it
+        """
+        Create a market dataset for a given metal using region-specific mining and transport exchanges.
+        """
+
+        metal_name = metal[0].lower() + metal[1:]
+        dataset_name = f"market for {metal_name}"
+        reference_product = metal_name
 
         dataset = {
-            "name": f"market for {metal[0].lower() + metal[1:]}",
+            "name": dataset_name,
             "location": "World",
+            "reference product": reference_product,
+            "unit": "kilogram",
+            "production amount": 1,
+            "comment": "Created by premise",
+            "code": str(uuid.uuid4()),
             "exchanges": [
                 {
-                    "name": f"market for {metal[0].lower() + metal[1:]}",
-                    "product": f"{metal[0].lower() + metal[1:]}",
+                    "name": dataset_name,
+                    "product": reference_product,
                     "location": "World",
                     "amount": 1,
                     "type": "production",
                     "unit": "kilogram",
                 }
             ],
-            "reference product": f"{metal[0].lower() + metal[1:]}",
-            "unit": "kilogram",
-            "production amount": 1,
-            "comment": "Created by premise",
-            "code": str(uuid.uuid4()),
         }
 
-        # add mining exchanges
-        dataset["exchanges"].extend(self.create_region_specific_markets(df))
+        # Add mining exchanges
+        new_exchanges = self.create_region_specific_markets(df)
+        dataset["exchanges"].extend(new_exchanges)
 
-        # add transport exchanges
+        # Add transport exchanges
         trspt_exc = self.add_transport_to_market(dataset, metal)
-        if len(trspt_exc) > 0:
+        if trspt_exc:
             dataset["exchanges"].extend(trspt_exc)
 
-        # filter out None
+        # Remove None entries
         dataset["exchanges"] = [exc for exc in dataset["exchanges"] if exc]
 
-        # remove old market dataset
-        for old_market in ws.get_many(
-            self.database,
-            ws.equals("name", dataset["name"]),
-            ws.equals("reference product", dataset["reference product"]),
-            ws.exclude(ws.equals("location", "World")),
-        ):
-            self.remove_from_index(old_market)
-            assert (
-                self.is_in_index(old_market) is False
-            ), f"Market {(old_market['name'], old_market['reference product'], old_market['location'])} still in index"
+        # Remove old market datasets (excluding "World")
+        for old_market in self.db_index.get(dataset_name, {}).get(reference_product, []):
+            if old_market["location"] != "World":
+                self.remove_from_index(old_market)
+                assert not self.is_in_index(old_market), (
+                    f"Market {(old_market['name'], old_market['reference product'], old_market['location'])} "
+                    f"still in index"
+                )
 
         return dataset
 
+    def create_region_specific_markets(self, df: pd.DataFrame) -> List[dict]:
+        new_exchanges = []
+
+        all_new_datasets = []
+        for (name, ref_prod), group in df.groupby(["Process", "Reference product"]):
+
+            new_locations = {
+                c: self.country_codes[c]
+                for c in group["Country"].unique()
+                if c in self.country_codes
+            }
+
+            shares = self.get_shares(group, new_locations, name, ref_prod)
+            geography_mapping = self.get_geo_mapping(group, new_locations)
+
+            new_datasets = self.create_new_mining_activity(
+                name=name,
+                reference_product=ref_prod,
+                new_locations=new_locations,
+                geography_mapping=geography_mapping,
+            )
+            all_new_datasets.extend(new_datasets.values())
+
+            new_exchanges.extend(
+                {
+                    "name": k[0],
+                    "product": k[1],
+                    "location": k[2],
+                    "unit": "kilogram",
+                    "amount": share,
+                    "type": "technosphere",
+                }
+                for k, share in shares.items()
+            )
+
+        # Normalize shares to sum to 1
+        total = sum(exc["amount"] for exc in new_exchanges)
+        for exc in new_exchanges:
+            exc["amount"] /= total
+
+        self.database.extend(all_new_datasets)
+        self.add_to_index(all_new_datasets)
+
+        for dataset in all_new_datasets:
+            self.write_log(dataset, "created")
+
+        return new_exchanges
+
+    def create_new_mining_activity(
+        self,
+        name: str,
+        reference_product: str,
+        new_locations: dict,
+        geography_mapping: dict = None,
+    ) -> dict:
+
+        geo_map_filtered = {
+            k: self.db_index_full[name][reference_product][v][0]
+            for k, v in geography_mapping.items()
+            if self.db_index_full[name][reference_product].get(v)
+            and not self.is_in_index({"name": name, "reference product": reference_product, "location": k})
+        }
+
+        if not geo_map_filtered:
+            return {}
+
+        datasets = self.db_index.get(name, {}).get(reference_product, [])
+
+        return self.fetch_proxies(
+            datasets=datasets,
+            regions=new_locations.values(),
+            geo_mapping=geo_map_filtered,
+        )
+
     def add_transport_to_market(self, dataset, metal) -> list:
-        excs = []
 
         origin_shares = {
             e["location"]: e["amount"]
@@ -884,55 +885,46 @@ class Metals(BaseTransformation):
             if e["type"] == "technosphere"
         }
 
-        # multiply shares with the weighted transport distance from
-        # the transport dataset
+        exc_map = defaultdict(float)
+
         for c, share in origin_shares.items():
             if metal in self.alt_names:
                 trspt_data = self.get_weighted_average_distance(c, metal)
-                for i, row in trspt_data.iterrows():
-                    distance = row["Weighted Distance (km)"]
-                    mode = row["TransportMode Label"].lower()
-                    tkm = distance / 1000 * share  # convert to tonne-kilometers x share
-
-                    transport_dataset = self.metals_transport_activities[mode]
-                    excs.append(
-                        {
-                            "name": transport_dataset["name"],
-                            "product": transport_dataset["reference product"],
-                            "location": transport_dataset["location"],
-                            "amount": tkm,
-                            "type": "technosphere",
-                            "unit": transport_dataset["unit"],
-                        }
+                for _, row in trspt_data.iterrows():
+                    key = (
+                        self.metals_transport_activities[row["TransportMode Label"].lower()]["name"],
+                        self.metals_transport_activities[row["TransportMode Label"].lower()]["reference product"],
+                        "GLO",  # fixed location
+                        self.metals_transport_activities[row["TransportMode Label"].lower()]["unit"],
                     )
+                    exc_map[key] += (row["Weighted Distance (km)"] / 1000) * share
 
-            else:
-                pass
-
-        # sum up duplicates
         excs = [
             {
-                "name": name,
-                "product": prod,
-                "location": location,
-                "unit": unit,
+                "name": k[0],
+                "product": k[1],
+                "location": k[2],
+                "unit": k[3],
                 "type": "technosphere",
-                "amount": sum([exc["amount"] for exc in exchanges]),
+                "amount": v,
             }
-            for (name, prod, location, unit), exchanges in groupby(
-                sorted(excs, key=itemgetter("name", "product", "location", "unit")),
-                key=itemgetter("name", "product", "location", "unit"),
-            )
+            for k, v in exc_map.items()
         ]
 
         return excs
 
     def get_weighted_average_distance(self, country, metal):
-        return self.metals_transport.loc[
-            (self.metals_transport["country"] == country)
-            & (self.metals_transport["Metal"] == self.alt_names[metal]),
-            ["TransportMode Label", "Weighted Distance (km)"],
+        alt_metal = self.alt_names.get(metal)
+        if not alt_metal:
+            return pd.DataFrame()  # fallback
+
+        rows = [
+            row
+            for (c, m), row in self.transport_lookup.items()
+            if c == country and m == alt_metal
         ]
+
+        return pd.DataFrame(rows)
 
     def create_metal_markets(self):
         self.post_allocation_correction()
@@ -946,13 +938,9 @@ class Metals(BaseTransformation):
             (act["name"], act["reference product"]) for act in self.database
         )
 
-        dataframe = dataframe[
-            dataframe.apply(
-                lambda row: (row["Process"], row["Reference product"])
-                in existing_pairs,
-                axis=1,
-            )
-        ]
+        dataframe["pair"] = list(zip(dataframe["Process"], dataframe["Reference product"]))
+        dataframe = dataframe[dataframe["pair"].isin(existing_pairs)]
+        dataframe.drop(columns="pair", inplace=True)
 
         # update certain values under "Process" and "Reference product"
         # if ecoinvent 3.11 is used
@@ -982,8 +970,9 @@ class Metals(BaseTransformation):
         # fix France (French Guiana) to GF
         self.country_codes["France (French Guiana)"] = "GF"
 
-        for metal in dataframe_shares["Metal"].unique():
-            df_metal = dataframe.loc[dataframe["Metal"] == metal]
+        grouped_metal_dfs = dict(tuple(dataframe_shares.groupby("Metal")))
+
+        for metal, df_metal in grouped_metal_dfs.items():
             dataset = self.create_market(metal, df_metal)
 
             self.database.append(dataset)
@@ -997,26 +986,27 @@ class Metals(BaseTransformation):
             dataframe["Region"].notnull() & dataframe["2020"].isnull()
         ]
 
-        for metal in dataframe_parent["Metal"].unique():
-            df_metal = dataframe_parent.loc[dataframe["Metal"] == metal]
 
-            for (name, ref_prod), group in df_metal.groupby(
-                ["Process", "Reference product"]
-            ):
 
-                geography_mapping = self.get_geo_mapping(group)
+        grouped_parent_dfs = dict(tuple(dataframe_parent.groupby("Metal")))
 
-                # if not, we create it
+        for metal, df_metal in grouped_parent_dfs.items():
+            for (name, ref_prod), group in df_metal.groupby(["Process", "Reference product"]):
+                # Construct new_locations
+                new_locations = {
+                    c: self.country_codes[c]
+                    for c in group["Country"].unique()
+                    if c in self.country_codes
+                }
+
+                geography_mapping = self.get_geo_mapping(group, new_locations)
+
                 datasets = self.create_new_mining_activity(
                     name=name,
                     reference_product=ref_prod,
+                    new_locations=new_locations,
                     geography_mapping=geography_mapping,
                 )
-
-                self.database.extend(datasets.values())
-                for dataset in datasets.values():
-                    self.add_to_index(dataset)
-                    self.write_log(dataset, "created")
 
     def write_log(self, dataset, status="created"):
         """

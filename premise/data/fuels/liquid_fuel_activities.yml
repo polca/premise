@@ -6,6 +6,9 @@ methanol, from coal, with CCS:
   - methanol distillation, hydrogen from coal gasification, with CCS
   - methanol synthesis, hydrogen from coal gasification, with CCS
 
+methanol, from wood, with CCS:
+  - methanol distillation, from wood, with CCS
+
 fischer-tropsch:
   - diesel production, synthetic, Fischer Tropsch process, hydrogen from electrolysis, energy allocation
   - kerosene production, synthetic, Fischer Tropsch process, hydrogen from electrolysis, energy allocation

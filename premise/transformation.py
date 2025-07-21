@@ -857,13 +857,15 @@ class BaseTransformation:
             if len(transport_location) == 0:
                 # check if RoW is available
                 transport_location = [
-                    loc for loc in transport_operations.keys() if loc == "RoW"
+                    loc for loc in transport_operations.keys()
+                    if loc == "RoW"
                 ]
 
             if len(transport_location) == 0:
                 # check if GLO is available
                 transport_location = [
-                    loc for loc in transport_operations.keys() if loc == "GLO"
+                    loc for loc in transport_operations.keys()
+                    if loc == "GLO"
                 ]
 
             if len(transport_location) > 0:
@@ -1345,7 +1347,11 @@ class BaseTransformation:
             # to compare with the new exchanges
             excs_to_relink_dict = defaultdict(float)
             for exc in excs_to_relink:
-                excs_to_relink_dict[exc["product"]] += exc["amount"]
+                try:
+                    excs_to_relink_dict[exc["product"]] += exc["amount"]
+                except:
+                    print(exc)
+                    raise
 
             # Create a set of unique exchanges to relink
             # turn this into a list of dictionaries

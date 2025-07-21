@@ -207,6 +207,7 @@ class BaseDatasetValidator:
         for ds in self.database:
             for exc in ds["exchanges"]:
                 if int(exc.get("uncertainty type", 0)) not in [0, 1]:
+
                     if not all(
                         f in exc
                         for f in MANDATORY_UNCERTAINTY_FIELDS[
@@ -218,35 +219,39 @@ class BaseDatasetValidator:
                         )
                         self.log_issue(ds, "incomplete uncertainty data", message)
 
-                    if exc.get("uncertainty type", 0) == 2 and "loc" not in exc:
-                        if exc["amount"] < 0:
-                            exc["loc"] = math.log(exc["amount"] * -1)
-                            exc["negative"] = True
-                        else:
-                            exc["loc"] = math.log(exc["amount"])
+                    try:
+                        if exc.get("uncertainty type", 0) == 2 and "loc" not in exc:
+                            if exc["amount"] < 0:
+                                exc["loc"] = math.log(exc["amount"] * -1)
+                                exc["negative"] = True
+                            else:
+                                exc["loc"] = math.log(exc["amount"])
 
-                    if exc.get("uncertainty type", 0) == 3 and "loc" not in exc:
-                        exc["loc"] = exc["amount"]
-
-                    if exc.get("uncertainty type", 0) == 5:
-                        if "loc" not in exc:
+                        if exc.get("uncertainty type", 0) == 3 and "loc" not in exc:
                             exc["loc"] = exc["amount"]
-                        if exc["minimum"] > exc["loc"]:
-                            message = f"Exchange {exc['name']} has a minimum value greater than the loc value."
-                            self.log_issue(
-                                ds,
-                                "uncertainty minimum greater than loc",
-                                message,
-                                issue_type="major",
-                            )
-                        if exc["maximum"] < exc["loc"]:
-                            message = f"Exchange {exc['name']} has a maximum value less than the loc value."
-                            self.log_issue(
-                                ds,
-                                "uncertainty maximum less than loc",
-                                message,
-                                issue_type="major",
-                            )
+
+                        if exc.get("uncertainty type", 0) == 5:
+                            if "loc" not in exc:
+                                exc["loc"] = exc["amount"]
+                            if exc["minimum"] > exc["loc"]:
+                                message = f"Exchange {exc['name']} has a minimum value greater than the loc value."
+                                self.log_issue(
+                                    ds,
+                                    "uncertainty minimum greater than loc",
+                                    message,
+                                    issue_type="major",
+                                )
+                            if exc["maximum"] < exc["loc"]:
+                                message = f"Exchange {exc['name']} has a maximum value less than the loc value."
+                                self.log_issue(
+                                    ds,
+                                    "uncertainty maximum less than loc",
+                                    message,
+                                    issue_type="major",
+                                )
+                    except KeyError:
+                        print(f"Issue with exchange {exc}")
+                        raise
 
     def check_datasets_integrity(self):
         # Verify no unintended loss of datasets
@@ -767,7 +772,10 @@ class HeatValidation(BaseDatasetValidator):
         self.iam_data = iam_data
 
     def check_heat_markets_input(self):
-        # Check that the sum of heat inputs in the market for heat is equal to 1
+
+        # Check that the sum of heat inputs in
+        # the market for heat is equal to 1
+
         for ds in ws.get_many(
             self.database,
             ws.contains("name", "market for heat"),
@@ -787,7 +795,10 @@ class HeatValidation(BaseDatasetValidator):
                 )
 
     def check_heat_conversion_efficiency(self):
-        # Check that the heat conversion efficiency is within the expected range
+
+        # Check that the heat conversion efficiency
+        # is within the expected range
+
         for ds in self.database:
             if (
                 "heat" in ds["name"]
@@ -1045,6 +1056,7 @@ class HeatValidation(BaseDatasetValidator):
                         self.log_issue(ds, "CO2 emissions", message, issue_type="major")
 
     def run_heat_checks(self):
+        self.check_heat_markets_input()
         self.check_heat_conversion_efficiency()
         self.save_log()
 
@@ -1701,6 +1713,21 @@ class FuelsValidation(BaseDatasetValidator):
                         issue_type="major",
                     )
 
+    def check_empty_fuel_markets(self):
+
+        fuel_market_names = [
+            "market for petrol, low-sulfur",
+            "market for diesel, low-sulfur",
+            "market for hydrogen, gaseous, low pressure",
+        ]
+
+        for ds in self.database:
+            if (
+                any(ds["name"].startswith(x) for x in fuel_market_names)
+                and ds["location"] not in self.regions
+            ):
+                assert all(e["location"] in self.regions for e in ds["exchanges"] if e["type"] == "technosphere"), f"Fuel market {ds['name']} in {ds['location']} has exchanges with locations not in the IAM regions list."
+
     def check_electrolysis_electricity_input(self):
         # check that the input of electricity for hydrogen production
         # is within the expected range
@@ -1729,9 +1756,36 @@ class FuelsValidation(BaseDatasetValidator):
                         issue_type="major",
                     )
 
+    def checking_linking(self):
+
+        fuel_market_names = [
+            "market for petrol, low-sulfur",
+            "market group for petrol, low-sulfur",
+            "market for diesel, low-sulfur",
+            "market group for diesel, low-sulfur",
+        ]
+
+        for ds in self.database:
+            if ds["location"] not in ["RoW", "GLO", "World"]:
+                for e in ds["exchanges"]:
+                    if (
+                        e["type"] == "technosphere"
+                        and any(e["name"].startswith(x) for x in fuel_market_names)
+                    ):
+                        # check that the location of the input
+                        # matches the location of the dataset
+                        # according to the geo-linking rules
+                        if ds["location"] in self.regions:
+                            assert e["location"]  == ds["location"], f"Fuel market input {e['name']} in {e['location']} has incorrect location for dataset {ds['name']} in {ds['location']}."
+                        else:
+                            assert e["location"] == self.geo.ecoinvent_to_iam_location(ds["location"]), f"Fuel market input {e['name']} in {e['location']} has incorrect location for dataset {ds['name']} in {ds['location']}."
+
+
     def run_fuel_checks(self):
         self.check_fuel_market_composition()
+        self.check_empty_fuel_markets()
         self.check_electrolysis_electricity_input()
+        self.checking_linking()
         self.save_log()
 
         if len(self.major_issues_log) > 0:
@@ -1832,6 +1886,41 @@ class SteelValidation(BaseDatasetValidator):
                             message,
                             issue_type="major",
                         )
+
+    def check_empty_markets(self):
+
+        market_names = [
+            "market for steel, low-alloyed",
+            "market for steel, unalloyed",
+        ]
+
+        for ds in self.database:
+            if (
+                    any(ds["name"].startswith(x) for x in market_names)
+                    and ds["location"] not in self.regions
+            ):
+                assert all(e["location"] in self.regions for e in ds["exchanges"] if e[
+                    "type"] == "technosphere"), f"Steel market {ds['name']} in {ds['location']} has exchanges with locations not in the IAM regions list."
+
+
+    def checking_linking(self):
+
+        fuel_market_names = [
+            "market for steel, low-alloyed",
+            "market for steel, unalloyed",
+        ]
+
+        for ds in self.database:
+            for e in ds["exchanges"]:
+                if (
+                    e["type"] == "technosphere"
+                    and any(e["name"].startswith(x) for x in fuel_market_names)
+                ):
+                    # check that the location of the input
+                    # matches the location of the dataset
+                    # according to the geo-linking rules
+                    assert e["location"] == self.geo.ecoinvent_to_iam_location(ds["location"]), f"Steel market input {e['name']} in {e['location']} has incorrect location for dataset {ds['name']} in {ds['location']}."
+
 
     def check_pig_iron_input(self):
         """
@@ -1956,6 +2045,7 @@ class SteelValidation(BaseDatasetValidator):
 
     def run_steel_checks(self):
         self.check_steel_markets()
+        self.check_empty_markets()
         self.check_steel_energy_use()
         self.check_pig_iron_input()
         self.save_log()
@@ -2022,6 +2112,39 @@ class CementValidation(BaseDatasetValidator):
                         message,
                         issue_type="major",
                     )
+
+    def check_empty_markets(self):
+
+        market_names = [
+            "market for clinker",
+        ]
+
+        for ds in self.database:
+            if (
+                    any(ds["name"].startswith(x) for x in market_names)
+                    and ds["location"] not in self.regions
+            ):
+                assert all(e["location"] in self.regions for e in ds["exchanges"] if e[
+                    "type"] == "technosphere"), (f"Clinker market {ds['name']} in {ds['location']} has exchanges with "
+                                                 f"locations not in the IAM regions list.")
+
+    def checking_linking(self):
+
+        fuel_market_names = [
+            "market for clinker",
+        ]
+
+        for ds in self.database:
+            for e in ds["exchanges"]:
+                if (
+                    e["type"] == "technosphere"
+                    and any(e["name"].startswith(x) for x in fuel_market_names)
+                ):
+                    # check that the location of the input
+                    # matches the location of the dataset
+                    # according to the geo-linking rules
+                    assert e["location"] == self.geo.ecoinvent_to_iam_location(ds["location"]), f"Clinker market input {e['name']} in {e['location']} has incorrect location for dataset {ds['name']} in {ds['location']}."
+
 
     def check_clinker_energy_use(self):
         # check that clinker production datasets
@@ -2124,6 +2247,7 @@ class CementValidation(BaseDatasetValidator):
 
     def run_cement_checks(self):
         self.check_cement_markets()
+        self.check_empty_markets()
         self.check_clinker_energy_use()
         self.save_log()
 
@@ -2166,6 +2290,48 @@ class BiomassValidation(BaseDatasetValidator):
                         message,
                         issue_type="major",
                     )
+
+    def checking_linking(self):
+
+
+        for dataset in ws.get_many(
+            self.database,
+            ws.either(*[ws.equals("unit", u) for u in ["kilowatt hour", "megajoule"]]),
+            ws.either(
+                *[ws.contains("name", n) for n in ["electricity", "heat", "power"]]
+            ),
+            ws.either(
+                *[ws.contains("name", n) for n in ["biomass", "wood",]]
+            ),
+            ws.exclude(
+                ws.either(
+                    *[ws.contains("name", n)
+                      for n in [
+                          "treatment",
+                          "untreated",
+                          "logs",
+                          "solar",
+                            "storage",
+                            "methanol",
+                            "hydrogen"
+                      ]
+                    ]
+                )
+            )
+        ):
+
+            assert len(
+                [
+                    e for e in dataset["exchanges"]
+                    if e["type"] == "technosphere"
+                    and e["name"] == "market for biomass, used as fuel"
+                ]
+            ) >= 1, (f"Dataset {dataset['name']} in {dataset['location']} "
+                     f"should have one or more exchanges to "
+                     f"'market for biomass, used as fuel'. "
+                     f"Currently has {len([e for e in dataset['exchanges'] if e['type'] == 'technosphere' and e['name'] == 'market for biomass, used as fuel'])}.")
+
+
 
     def check_residual_biomass_share(self):
         # check that the share of residual biomass
@@ -2232,6 +2398,7 @@ class BiomassValidation(BaseDatasetValidator):
 
     def run_biomass_checks(self):
         self.check_biomass_markets()
+        self.checking_linking()
         self.check_residual_biomass_share()
         self.save_log()
 

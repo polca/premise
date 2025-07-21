@@ -100,8 +100,12 @@ class HydrogenMixin:
             exc["loc"] = exc["amount"]
             if min_energy_use:
                 exc["minimum"] = exc["amount"] * (min_energy_use / new_energy_use)
+            else:
+                exc["minimum"] = exc["loc"] * 0.9
             if max_energy_use:
                 exc["maximum"] = exc["amount"] * (max_energy_use / new_energy_use)
+            else:
+                exc["maximum"] = exc["loc"] * 1.1
 
         dataset["log parameters"][
             "new energy input for hydrogen production"
@@ -109,11 +113,11 @@ class HydrogenMixin:
 
     def _generate_supporting_hydrogen_datasets(self):
         keywords = [
-            "hydrogen transport, distributed by pipeline",
+            "hydrogen supply, distributed by pipeline",
         ]
 
         hydrogen_distribution_map = {
-            k: [ws.get_one(self.database, ws.equals("name", k))] for k in keywords
+            k: [ws.get_one(self.database, ws.contains("name", k))] for k in keywords
         }
 
         self.process_and_add_activities(
@@ -124,11 +128,12 @@ class HydrogenMixin:
 
         dataset["exchanges"].append(
             {
-                "name": "hydrogen transport, distributed by pipeline",
-                "reference product": "hydrogen, gaseous, from pipeline",
+                "name": "hydrogen supply, distributed by pipeline",
+                "product": "hydrogen, gaseous, from pipeline",
                 "location": dataset["location"],
                 "unit": "kilogram",
                 "type": "technosphere",
+                "uncertainty type": 0,
                 "amount": 1,
             }
         )

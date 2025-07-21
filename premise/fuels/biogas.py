@@ -131,8 +131,13 @@ class BiogasMixin:
                 ds, ws.either(*[ws.equals("name", name) for name in gas_names])
             ):
 
-                if ds["location"] in fuel_shares:
-                    exc["location"] = ds["location"]
+                if ds["location"] in self.regions:
+                    new_loc = ds["location"]
+                else:
+                    new_loc = self.ecoinvent_to_iam_loc.get(ds["location"], "World")
+
+                if self.is_in_index(exc, new_loc):
+                    exc["location"] = new_loc
                     sum_ng += exc["amount"]
 
             if sum_ng == 0:

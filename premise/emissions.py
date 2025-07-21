@@ -113,25 +113,17 @@ class Emissions(BaseTransformation):
 
     def prepare_data(self, data):
 
-        def _(x):
+        def _safe_divide(x):
             return xr.where((np.isnan(x)) | (x == 0), 1, x)
 
-        if self.year in data.coords["year"].values:
-            data = data.sel(year=[self.year]) / _(
-                data.loc[
-                    dict(
-                        year=2020,
-                    )
-                ]
-            )
+        base = data.sel(year=2020)
+
+        if self.year in data.coords["year"]:
+            year_slice = data.sel(year=self.year)
         else:
-            data = data.interp(year=[self.year]) / _(
-                data.loc[
-                    dict(
-                        year=2020,
-                    )
-                ]
-            )
+            year_slice = data.interp(year=self.year)
+
+        data = year_slice / _safe_divide(base)
 
         # replace 0 values with 1
         data = xr.where((np.isnan(data)) | (data == 0), 1, data)
@@ -141,35 +133,21 @@ class Emissions(BaseTransformation):
     def update_emissions_in_database(self):
         # print("Integrating GAINS EU emission factors.")
         for ds in self.database:
-            if (
-                ds["name"] in self.rev_gains_map_europe
-                and ds["location"] in self.gains_europe.coords["region"]
-            ):
-                gains_sector = self.rev_gains_map_europe[ds["name"]]
-                self.update_pollutant_emissions(
-                    ds,
-                    gains_sector,
-                    model="GAINS-EU",
-                    regions=self.gains_europe.region.values,
-                )
+            name = ds["name"]
+            loc = ds["location"]
+
+            if name in self.rev_gains_map_europe and loc in self.gains_europe.coords["region"]:
+                sector = self.rev_gains_map_europe[name]
+                self.update_pollutant_emissions(ds, sector, model="GAINS-EU", regions=self.gains_europe.region.values)
                 self.write_log(ds, status="updated")
 
-        # print("Integrating GAINS IAM emission factors.")
-        for ds in self.database:
-            if (
-                ds["name"] in self.rev_gains_map_global
-                and self.ecoinvent_to_iam_loc[ds["location"]]
-                in self.gains_global.coords["region"]
-            ):
-                gains_sector = self.rev_gains_map_global[ds["name"]]
-                self.update_pollutant_emissions(
-                    ds,
-                    gains_sector,
-                    model="GAINS-IAM",
-                    regions=self.gains_global.region.values,
-                )
-
-                self.write_log(ds, status="updated")
+            elif name in self.rev_gains_map_global:
+                iam_loc = self.ecoinvent_to_iam_loc.get(loc)
+                if iam_loc and iam_loc in self.gains_global.coords["region"]:
+                    sector = self.rev_gains_map_global[name]
+                    self.update_pollutant_emissions(ds, sector, model="GAINS-IAM",
+                                                    regions=self.gains_global.region.values)
+                    self.write_log(ds, status="updated")
 
     def update_pollutant_emissions(
         self, dataset: dict, sector: str, model: str, regions: list
@@ -185,9 +163,13 @@ class Emissions(BaseTransformation):
         """
 
         # Update biosphere exchanges according to GAINS emission values
-        for exc in ws.biosphere(
-            dataset, ws.either(*[ws.equals("name", x) for x in self.ei_pollutants])
-        ):
+        relevant = set(self.ei_pollutants)
+        biosphere_excs = [
+            exc for exc in dataset["exchanges"]
+            if exc["type"] == "biosphere" and exc["name"] in relevant
+        ]
+
+        for exc in biosphere_excs:
             gains_pollutant = self.ei_pollutants[exc["name"]]
             scaling_factor = self.find_gains_emissions_change(
                 pollutant=gains_pollutant,
@@ -208,17 +190,12 @@ class Emissions(BaseTransformation):
                         exc, scaling_factor, remove_uncertainty=False
                     )
 
-                    if "GAINS model" not in dataset.setdefault("log parameters", {}):
-                        dataset.setdefault("log parameters", {})["GAINS model"] = model
-
-                    if "GAINS sector" not in dataset.setdefault("log parameters", {}):
-                        dataset.setdefault("log parameters", {})[
-                            "GAINS sector"
-                        ] = sector
-
-                    dataset.setdefault("log parameters", {}).update(
-                        {f"{gains_pollutant} scaling factor": scaling_factor}
-                    )
+                    logp = dataset.setdefault("log parameters", {})
+                    if "GAINS model" not in logp:
+                        logp["GAINS model"] = model
+                    if "GAINS sector" not in logp:
+                        logp["GAINS sector"] = sector
+                    logp[f"{gains_pollutant} scaling factor"] = scaling_factor
 
         return dataset
 
@@ -238,34 +215,21 @@ class Emissions(BaseTransformation):
 
         data = self.gains_europe if model == "GAINS-EU" else self.gains_global
 
-        key_exists = all(
-            k in data.coords[dim].values
-            for k, dim in zip(
-                [location, pollutant, sector, self.year],
-                ["region", "pollutant", "sector", "year"],
-            )
+        try:
+            sf = data.loc[dict(region=location, pollutant=pollutant, sector=sector)].item()
+        except KeyError:
+            return 1.0
+
+        if np.isnan(sf) or sf == 0.0:
+            return 1.0
+
+        # Clip once
+        sf = np.clip(
+            sf,
+            1 if self.year < 2020 else 0,
+            1 if self.year > 2020 else 1e6,
         )
-
-        if key_exists:
-            scaling_factor = data.loc[
-                dict(
-                    region=location,
-                    pollutant=pollutant,
-                    sector=sector,
-                )
-            ]
-
-            scaling_factor = np.clip(
-                scaling_factor,
-                1 if self.year < 2020 else 0,
-                1 if self.year > 2020 else 1e6,
-            )
-
-            if np.isnan(scaling_factor) or scaling_factor == 0.0:
-                scaling_factor = 1.0
-
-            return float(scaling_factor)
-        return 1.0
+        return float(sf)
 
     def write_log(self, dataset, status="created"):
         """
