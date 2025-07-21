@@ -857,15 +857,13 @@ class BaseTransformation:
             if len(transport_location) == 0:
                 # check if RoW is available
                 transport_location = [
-                    loc for loc in transport_operations.keys()
-                    if loc == "RoW"
+                    loc for loc in transport_operations.keys() if loc == "RoW"
                 ]
 
             if len(transport_location) == 0:
                 # check if GLO is available
                 transport_location = [
-                    loc for loc in transport_operations.keys()
-                    if loc == "GLO"
+                    loc for loc in transport_operations.keys() if loc == "GLO"
                 ]
 
             if len(transport_location) > 0:

@@ -1726,7 +1726,11 @@ class FuelsValidation(BaseDatasetValidator):
                 any(ds["name"].startswith(x) for x in fuel_market_names)
                 and ds["location"] not in self.regions
             ):
-                assert all(e["location"] in self.regions for e in ds["exchanges"] if e["type"] == "technosphere"), f"Fuel market {ds['name']} in {ds['location']} has exchanges with locations not in the IAM regions list."
+                assert all(
+                    e["location"] in self.regions
+                    for e in ds["exchanges"]
+                    if e["type"] == "technosphere"
+                ), f"Fuel market {ds['name']} in {ds['location']} has exchanges with locations not in the IAM regions list."
 
     def check_electrolysis_electricity_input(self):
         # check that the input of electricity for hydrogen production
@@ -1768,18 +1772,20 @@ class FuelsValidation(BaseDatasetValidator):
         for ds in self.database:
             if ds["location"] not in ["RoW", "GLO", "World"]:
                 for e in ds["exchanges"]:
-                    if (
-                        e["type"] == "technosphere"
-                        and any(e["name"].startswith(x) for x in fuel_market_names)
+                    if e["type"] == "technosphere" and any(
+                        e["name"].startswith(x) for x in fuel_market_names
                     ):
                         # check that the location of the input
                         # matches the location of the dataset
                         # according to the geo-linking rules
                         if ds["location"] in self.regions:
-                            assert e["location"]  == ds["location"], f"Fuel market input {e['name']} in {e['location']} has incorrect location for dataset {ds['name']} in {ds['location']}."
+                            assert (
+                                e["location"] == ds["location"]
+                            ), f"Fuel market input {e['name']} in {e['location']} has incorrect location for dataset {ds['name']} in {ds['location']}."
                         else:
-                            assert e["location"] == self.geo.ecoinvent_to_iam_location(ds["location"]), f"Fuel market input {e['name']} in {e['location']} has incorrect location for dataset {ds['name']} in {ds['location']}."
-
+                            assert e["location"] == self.geo.ecoinvent_to_iam_location(
+                                ds["location"]
+                            ), f"Fuel market input {e['name']} in {e['location']} has incorrect location for dataset {ds['name']} in {ds['location']}."
 
     def run_fuel_checks(self):
         self.check_fuel_market_composition()
@@ -1896,12 +1902,14 @@ class SteelValidation(BaseDatasetValidator):
 
         for ds in self.database:
             if (
-                    any(ds["name"].startswith(x) for x in market_names)
-                    and ds["location"] not in self.regions
+                any(ds["name"].startswith(x) for x in market_names)
+                and ds["location"] not in self.regions
             ):
-                assert all(e["location"] in self.regions for e in ds["exchanges"] if e[
-                    "type"] == "technosphere"), f"Steel market {ds['name']} in {ds['location']} has exchanges with locations not in the IAM regions list."
-
+                assert all(
+                    e["location"] in self.regions
+                    for e in ds["exchanges"]
+                    if e["type"] == "technosphere"
+                ), f"Steel market {ds['name']} in {ds['location']} has exchanges with locations not in the IAM regions list."
 
     def checking_linking(self):
 
@@ -1912,15 +1920,15 @@ class SteelValidation(BaseDatasetValidator):
 
         for ds in self.database:
             for e in ds["exchanges"]:
-                if (
-                    e["type"] == "technosphere"
-                    and any(e["name"].startswith(x) for x in fuel_market_names)
+                if e["type"] == "technosphere" and any(
+                    e["name"].startswith(x) for x in fuel_market_names
                 ):
                     # check that the location of the input
                     # matches the location of the dataset
                     # according to the geo-linking rules
-                    assert e["location"] == self.geo.ecoinvent_to_iam_location(ds["location"]), f"Steel market input {e['name']} in {e['location']} has incorrect location for dataset {ds['name']} in {ds['location']}."
-
+                    assert e["location"] == self.geo.ecoinvent_to_iam_location(
+                        ds["location"]
+                    ), f"Steel market input {e['name']} in {e['location']} has incorrect location for dataset {ds['name']} in {ds['location']}."
 
     def check_pig_iron_input(self):
         """
@@ -2121,12 +2129,17 @@ class CementValidation(BaseDatasetValidator):
 
         for ds in self.database:
             if (
-                    any(ds["name"].startswith(x) for x in market_names)
-                    and ds["location"] not in self.regions
+                any(ds["name"].startswith(x) for x in market_names)
+                and ds["location"] not in self.regions
             ):
-                assert all(e["location"] in self.regions for e in ds["exchanges"] if e[
-                    "type"] == "technosphere"), (f"Clinker market {ds['name']} in {ds['location']} has exchanges with "
-                                                 f"locations not in the IAM regions list.")
+                assert all(
+                    e["location"] in self.regions
+                    for e in ds["exchanges"]
+                    if e["type"] == "technosphere"
+                ), (
+                    f"Clinker market {ds['name']} in {ds['location']} has exchanges with "
+                    f"locations not in the IAM regions list."
+                )
 
     def checking_linking(self):
 
@@ -2136,15 +2149,15 @@ class CementValidation(BaseDatasetValidator):
 
         for ds in self.database:
             for e in ds["exchanges"]:
-                if (
-                    e["type"] == "technosphere"
-                    and any(e["name"].startswith(x) for x in fuel_market_names)
+                if e["type"] == "technosphere" and any(
+                    e["name"].startswith(x) for x in fuel_market_names
                 ):
                     # check that the location of the input
                     # matches the location of the dataset
                     # according to the geo-linking rules
-                    assert e["location"] == self.geo.ecoinvent_to_iam_location(ds["location"]), f"Clinker market input {e['name']} in {e['location']} has incorrect location for dataset {ds['name']} in {ds['location']}."
-
+                    assert e["location"] == self.geo.ecoinvent_to_iam_location(
+                        ds["location"]
+                    ), f"Clinker market input {e['name']} in {e['location']} has incorrect location for dataset {ds['name']} in {ds['location']}."
 
     def check_clinker_energy_use(self):
         # check that clinker production datasets
@@ -2293,7 +2306,6 @@ class BiomassValidation(BaseDatasetValidator):
 
     def checking_linking(self):
 
-
         for dataset in ws.get_many(
             self.database,
             ws.either(*[ws.equals("unit", u) for u in ["kilowatt hour", "megajoule"]]),
@@ -2301,37 +2313,48 @@ class BiomassValidation(BaseDatasetValidator):
                 *[ws.contains("name", n) for n in ["electricity", "heat", "power"]]
             ),
             ws.either(
-                *[ws.contains("name", n) for n in ["biomass", "wood",]]
+                *[
+                    ws.contains("name", n)
+                    for n in [
+                        "biomass",
+                        "wood",
+                    ]
+                ]
             ),
             ws.exclude(
                 ws.either(
-                    *[ws.contains("name", n)
-                      for n in [
-                          "treatment",
-                          "untreated",
-                          "logs",
-                          "solar",
+                    *[
+                        ws.contains("name", n)
+                        for n in [
+                            "treatment",
+                            "untreated",
+                            "logs",
+                            "solar",
                             "storage",
                             "methanol",
-                            "hydrogen"
-                      ]
+                            "hydrogen",
+                        ]
                     ]
                 )
-            )
+            ),
         ):
 
-            assert len(
-                [
-                    e for e in dataset["exchanges"]
-                    if e["type"] == "technosphere"
-                    and e["name"] == "market for biomass, used as fuel"
-                ]
-            ) >= 1, (f"Dataset {dataset['name']} in {dataset['location']} "
-                     f"should have one or more exchanges to "
-                     f"'market for biomass, used as fuel'. "
-                     f"Currently has {len([e for e in dataset['exchanges'] if e['type'] == 'technosphere' and e['name'] == 'market for biomass, used as fuel'])}.")
-
-
+            assert (
+                len(
+                    [
+                        e
+                        for e in dataset["exchanges"]
+                        if e["type"] == "technosphere"
+                        and e["name"] == "market for biomass, used as fuel"
+                    ]
+                )
+                >= 1
+            ), (
+                f"Dataset {dataset['name']} in {dataset['location']} "
+                f"should have one or more exchanges to "
+                f"'market for biomass, used as fuel'. "
+                f"Currently has {len([e for e in dataset['exchanges'] if e['type'] == 'technosphere' and e['name'] == 'market for biomass, used as fuel'])}."
+            )
 
     def check_residual_biomass_share(self):
         # check that the share of residual biomass

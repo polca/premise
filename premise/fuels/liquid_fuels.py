@@ -50,8 +50,12 @@ class SyntheticFuelsMixin:
 
         self.update_fuel_carbon_dioxide_emissions(
             variables=[
-                k for k in self.fuel_map.keys()
-                if any(k.startswith(x) for x in ("gasoline", "bioethanol", "ethanol", "petrol", "methanol"))
+                k
+                for k in self.fuel_map.keys()
+                if any(
+                    k.startswith(x)
+                    for x in ("gasoline", "bioethanol", "ethanol", "petrol", "methanol")
+                )
             ],
             market_names=[
                 "market for petrol, low-sulfur",
@@ -59,15 +63,18 @@ class SyntheticFuelsMixin:
             ],
             co2_intensity=3.15,
             fossil_variables=[
-                k for k in self.fuel_map.keys()
-                if any(k.startswith(x) for x in (
-                    "gasoline",
-                    "petrol",
-                    "petrol, synthetic, from coal",
-                    "petrol, synthetic, from coal, with CCS"
+                k
+                for k in self.fuel_map.keys()
+                if any(
+                    k.startswith(x)
+                    for x in (
+                        "gasoline",
+                        "petrol",
+                        "petrol, synthetic, from coal",
+                        "petrol, synthetic, from coal, with CCS",
+                    )
                 )
-            )
-            ]
+            ],
         )
 
         # diesel
@@ -91,7 +98,8 @@ class SyntheticFuelsMixin:
 
         self.update_fuel_carbon_dioxide_emissions(
             variables=[
-                k for k in self.fuel_map.keys()
+                k
+                for k in self.fuel_map.keys()
                 if any(k.startswith(x) for x in ("diesel", "biodiesel"))
             ],
             market_names=[
@@ -101,23 +109,23 @@ class SyntheticFuelsMixin:
             ],
             co2_intensity=3.15,
             fossil_variables=[
-                k for k in self.fuel_map.keys()
-                if any(k.startswith(x) for x in (
-                    "diesel",
-                    "diesel, synthetic, from natural gas",
-                    "diesel, synthetic, from natural gas, with CCS",
-                    "diesel, synthetic, from coal",
-                    "diesel, synthetic, from coal, with CCS"
+                k
+                for k in self.fuel_map.keys()
+                if any(
+                    k.startswith(x)
+                    for x in (
+                        "diesel",
+                        "diesel, synthetic, from natural gas",
+                        "diesel, synthetic, from natural gas, with CCS",
+                        "diesel, synthetic, from coal",
+                        "diesel, synthetic, from coal, with CCS",
+                    )
                 )
-                )
-            ]
+            ],
         )
 
         # jet fuel
-        if {
-            k: v for k, v in self.fuel_map.items()
-            if k.startswith("kerosene")
-            }:
+        if {k: v for k, v in self.fuel_map.items() if k.startswith("kerosene")}:
             self.process_and_add_markets(
                 name="market for kerosene",
                 reference_product="kerosene",
@@ -131,7 +139,8 @@ class SyntheticFuelsMixin:
 
             self.update_fuel_carbon_dioxide_emissions(
                 variables=[
-                    k for k in self.fuel_map.keys()
+                    k
+                    for k in self.fuel_map.keys()
                     if any(k.startswith(x) for x in ("kerosene",))
                 ],
                 market_names=[
@@ -139,23 +148,26 @@ class SyntheticFuelsMixin:
                 ],
                 co2_intensity=3.15,
                 fossil_variables=[
-                    k for k in self.fuel_map.keys()
-                    if any(k.startswith(x) for x in (
-                        "kerosene, from petroleum",
-                        "kerosene, synthetic, from natural gas, energy allocation",
-                        "kerosene, synthetic, from coal, energy allocation",
-                        "kerosene, synthetic, from coal, energy allocation, with CCS"
+                    k
+                    for k in self.fuel_map.keys()
+                    if any(
+                        k.startswith(x)
+                        for x in (
+                            "kerosene, from petroleum",
+                            "kerosene, synthetic, from natural gas, energy allocation",
+                            "kerosene, synthetic, from coal, energy allocation",
+                            "kerosene, synthetic, from coal, energy allocation, with CCS",
+                        )
                     )
-                           )
-                ]
+                ],
             )
-
 
         # lpg
         if {
-            k: v for k, v in self.fuel_map.items()
+            k: v
+            for k, v in self.fuel_map.items()
             if k.startswith("liquefied petroleum gas")
-            }:
+        }:
             self.process_and_add_markets(
                 name="market for liquefied petroleum gas",
                 reference_product="liquefied petroleum gas",
@@ -171,7 +183,8 @@ class SyntheticFuelsMixin:
 
             self.update_fuel_carbon_dioxide_emissions(
                 variables=[
-                    k for k in self.fuel_map.keys()
+                    k
+                    for k in self.fuel_map.keys()
                     if any(k.startswith(x) for x in ("liquefied petroleum gas",))
                 ],
                 market_names=[
@@ -179,28 +192,29 @@ class SyntheticFuelsMixin:
                 ],
                 co2_intensity=2.88,
                 fossil_variables=[
-                    k for k in self.fuel_map.keys()
-                    if any(k.startswith(x) for x in (
-                        'liquefied petroleum gas, synthetic, from natural gas, with CCS',
-                       'liquefied petroleum gas, synthetic, from natural gas',
-                       'liquefied petroleum gas, synthetic, from coal',
-                       'liquefied petroleum gas',
-                       'liquefied petroleum gas, synthetic, from coal, with CCS'
+                    k
+                    for k in self.fuel_map.keys()
+                    if any(
+                        k.startswith(x)
+                        for x in (
+                            "liquefied petroleum gas, synthetic, from natural gas, with CCS",
+                            "liquefied petroleum gas, synthetic, from natural gas",
+                            "liquefied petroleum gas, synthetic, from coal",
+                            "liquefied petroleum gas",
+                            "liquefied petroleum gas, synthetic, from coal, with CCS",
+                        )
                     )
-                           )
-                ]
+                ],
             )
 
-    def update_fuel_carbon_dioxide_emissions(self, variables, market_names, co2_intensity, fossil_variables):
+    def update_fuel_carbon_dioxide_emissions(
+        self, variables, market_names, co2_intensity, fossil_variables
+    ):
         """
         Update carbon dioxide emissions for biogas datasets.
         """
         # Filter only relevant fuels
-        filtered_mapping = {
-            k: v
-            for k, v in self.fuel_map.items()
-            if k in variables
-        }
+        filtered_mapping = {k: v for k, v in self.fuel_map.items() if k in variables}
 
         _, tech_shares, region_weights = (
             self.get_technology_and_regional_production_shares(
@@ -234,20 +248,16 @@ class SyntheticFuelsMixin:
         # Find and process datasets
         datasets = ws.get_many(
             self.database,
-            ws.exclude(
-                ws.either(
-                    *[ws.equals("name", name)
-                      for name in market_names]
-                )
-            ),
+            ws.exclude(ws.either(*[ws.equals("name", name) for name in market_names])),
         )
 
         for ds in datasets:
             # Sum relevant technosphere exchanges and remap locations
             sum_fuel = 0
             for exc in ws.technosphere(
-                    ds, ws.either(*[ws.equals("name", name) for name in market_names]),
-                    ws.equals("unit", "kilogram")
+                ds,
+                ws.either(*[ws.equals("name", name) for name in market_names]),
+                ws.equals("unit", "kilogram"),
             ):
 
                 if ds["location"] in self.regions:
@@ -279,14 +289,11 @@ class SyntheticFuelsMixin:
                 else self.ecoinvent_to_iam_loc[ds["location"]]
             )
             share_non_fossil = 1 - sum(
-                fuel_shares[loc].get(x, 0.0)
-                for x in fossil_variables
+                fuel_shares[loc].get(x, 0.0) for x in fossil_variables
             )
 
             if share_non_fossil > 0:
-                non_fossil_CO2 = (
-                        sum_fuel * share_non_fossil * co2_intensity
-                )
+                non_fossil_CO2 = sum_fuel * share_non_fossil * co2_intensity
 
                 for e in ws.biosphere(ds, ws.equals("name", "Carbon dioxide, fossil")):
                     e["amount"] = max(0, e["amount"] - non_fossil_CO2)
@@ -314,4 +321,3 @@ class SyntheticFuelsMixin:
                         ),
                     }
                 )
-

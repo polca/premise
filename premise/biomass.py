@@ -167,18 +167,14 @@ class Biomass(BaseTransformation):
             ws.either(
                 *[ws.contains("name", n) for n in ["electricity", "heat", "power"]]
             ),
-            ws.exclude(
-                ws.contains("name", "logs")
-            )
+            ws.exclude(ws.contains("name", "logs")),
         ):
             for exc in ws.technosphere(
                 dataset,
                 ws.either(
                     *[
-                        ws.contains("name", n) for n in [
-                            "market for wood chips",
-                            "market for wood pellet"
-                        ]
+                        ws.contains("name", n)
+                        for n in ["market for wood chips", "market for wood pellet"]
                     ]
                 ),
                 ws.equals("unit", "kilogram"),
