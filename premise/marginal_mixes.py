@@ -213,9 +213,9 @@ def consequential_method(
             region=region, year=year
         ).sum(dim="variables")
 
-        # if shares contains only NaNs, we give its elements the value 1
+        # are all shares to zero?
         if shares.isnull().all():
-            shares = xr.ones_like(shares)
+            continue
 
         time_parameters = {
             (False, False, False, False): {
@@ -840,5 +840,21 @@ def consequential_method(
         "Vol ch.": 10,
     }
     print(table)
+
+    # check if, for some regions, the market shares are all zero
+    for region in market_shares.region.values:
+        if market_shares.sel(region=region).sum(dim="variables").values == 0:
+            # in such case, we distribute the shares equally among unconstrained suppliers
+            unconstrained_suppliers = [
+                tech for tech in techs if tech not in constrained_suppliers
+            ]
+            num_unconstrained = len(unconstrained_suppliers)
+            if num_unconstrained > 0:
+                market_shares.loc[
+                    {"region": region, "variables": unconstrained_suppliers}
+                ] = (
+                    1 / num_unconstrained
+                )
+
 
     return market_shares

@@ -1342,17 +1342,9 @@ class IAMDataCollection:
             market_data = market_data.groupby("variables").sum(dim="variables")
 
         if system_model == "consequential":
-            consequential_mix = consequential_method(
+            market_data = consequential_method(
                 market_data, self.year, self.system_model_args, sector
             )
-            # check if for some region, the sum of all technologies is zero
-            for region in consequential_mix.region.values:
-                if consequential_mix.sel(region=region).sum() == 0:
-                    # replace with market_data
-                    consequential_mix.loc[dict(region=region)] = market_data.sel(
-                        region=region
-                    ).interp(year=self.year)
-            market_data = consequential_mix
         else:
             if normalize is True:
                 market_data /= market_data.groupby("region").sum(dim="variables")

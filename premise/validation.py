@@ -2306,6 +2306,8 @@ class BiomassValidation(BaseDatasetValidator):
 
     def checking_linking(self):
 
+        regions = self.iam_data.biomass_mix.coords["region"].values
+
         for dataset in ws.get_many(
             self.database,
             ws.either(*[ws.equals("unit", u) for u in ["kilowatt hour", "megajoule"]]),
@@ -2339,22 +2341,23 @@ class BiomassValidation(BaseDatasetValidator):
             ),
         ):
 
-            assert (
-                len(
-                    [
-                        e
-                        for e in dataset["exchanges"]
-                        if e["type"] == "technosphere"
-                        and e["name"] == "market for biomass, used as fuel"
-                    ]
+            if dataset["location"] in regions or self.geo.ecoinvent_to_iam_location(dataset["location"]) in regions:
+                assert (
+                    len(
+                        [
+                            e
+                            for e in dataset["exchanges"]
+                            if e["type"] == "technosphere"
+                            and e["name"] == "market for biomass, used as fuel"
+                        ]
+                    )
+                    >= 1
+                ), (
+                    f"Dataset {dataset['name']} in {dataset['location']} "
+                    f"should have one or more exchanges to "
+                    f"'market for biomass, used as fuel'. "
+                    f"Currently has {len([e for e in dataset['exchanges'] if e['type'] == 'technosphere' and e['name'] == 'market for biomass, used as fuel'])}."
                 )
-                >= 1
-            ), (
-                f"Dataset {dataset['name']} in {dataset['location']} "
-                f"should have one or more exchanges to "
-                f"'market for biomass, used as fuel'. "
-                f"Currently has {len([e for e in dataset['exchanges'] if e['type'] == 'technosphere' and e['name'] == 'market for biomass, used as fuel'])}."
-            )
 
     def check_residual_biomass_share(self):
         # check that the share of residual biomass

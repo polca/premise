@@ -144,7 +144,7 @@ class Biomass(BaseTransformation):
             reference_product="biomass, used as fuel",
             unit="kilogram",
             mapping=self.biomass_map,
-            production_volumes=self.iam_data.production_volumes,
+            production_volumes=self.iam_data.biomass_mix,
             system_model=self.system_model,
             blacklist={
                 "consequential": [
