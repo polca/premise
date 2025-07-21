@@ -6,14 +6,13 @@ import csv
 import math
 
 import numpy as np
-import pandas as pd
 import yaml
 
 from .filesystem_constants import DATA_DIR
 from .geomap import Geomap
 from .logger import create_logger
-from .utils import rescale_exchanges
-from .inventory_imports import get_classifications
+from .utils import rescale_exchanges, get_uuids
+from .inventory_imports import get_classifications, get_biosphere_code
 import wurst.searching as ws
 
 logger = create_logger("validation")
@@ -154,6 +153,7 @@ class BaseDatasetValidator:
         original_database=None,
         db_name=None,
         biosphere_name=None,
+        version=None,
         system_model="cutoff",
     ):
         self.original_database = original_database
@@ -167,6 +167,7 @@ class BaseDatasetValidator:
         self.minor_issues_log = []
         self.major_issues_log = []
         self.biosphere_name = biosphere_name
+        self.biosphere_codes = get_biosphere_code(version)
         self.classifications = get_classifications()
 
     def check_matrix_squareness(self):
@@ -490,8 +491,14 @@ class BaseDatasetValidator:
                         self.log_issue(dataset, "circular reference", message)
 
     def check_database_name(self):
+
+        uuids = get_uuids(self.database)
+
         for ds in self.database:
             ds["database"] = self.db_name
+            ds["code"] = uuids[
+                (ds["name"], ds["reference product"], ds["location"])
+            ]
             for exc in ds["exchanges"]:
                 if exc["type"] in ["production", "technosphere"]:
                     if "input" in exc:
@@ -499,11 +506,26 @@ class BaseDatasetValidator:
                 if exc["type"] == "biosphere":
                     # check that the first item of the code field
                     # corresponds to biosphere_name
-                    if "input" not in exc:
-                        exc["input"] = (self.biosphere_name, exc["name"])
+                    if "input" in exc:
+                        if exc["input"][0] != self.biosphere_name:
+                            exc["input"] = (self.biosphere_name, exc["input"][1])
+                    else:
+                        exc["input"] = (
+                            self.biosphere_name,
+                            self.biosphere_codes[
+                                exc["name"],
+                                exc["categories"][0],
+                                exc["categories"][1] if len(exc["categories"]) > 1 else "unspecified",
+                                exc["unit"]
+                            ]
+                        )
 
-                    if exc["input"][0] != self.biosphere_name:
-                        exc["input"] = (self.biosphere_name, exc["input"][1])
+
+                if exc["type"] == "technosphere":
+                    exc["input"] = (
+                        self.db_name,
+                        uuids[exc["name"], exc["product"], exc["location"]],
+                    )
 
     def remove_unused_fields(self):
         """

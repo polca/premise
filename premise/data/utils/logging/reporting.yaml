@@ -610,16 +610,9 @@ premise_emissions:
       region:
         name: region
         description: Region name
-      GAINS model:
-        name: GAINS model
-        description: Name of GAINS model
       GAINS sector:
         name: GAINS sector
         description: Name of GAINS sector variable
-      CO reduction factor:
-        name: CO scaling factor
-        description: Scaling factor applied on the initial amount of CO emissions
-        unit: unitless
       CH4 reduction factor:
         name: CH4 scaling factor
         description: Scaling factor applied on the initial amount of CH4 emissions

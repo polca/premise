@@ -16,18 +16,14 @@ from .filesystem_constants import DATA_DIR
 from .logger import create_logger
 from .transformation import (
     BaseTransformation,
-    Dict,
     IAMDataCollection,
     InventorySet,
     List,
-    Set,
-    ws,
 )
 
 logger = create_logger("emissions")
 
 EI_POLLUTANTS = DATA_DIR / "GAINS_emission_factors" / "GAINS_ei_pollutants.yaml"
-GAINS_SECTORS = DATA_DIR / "GAINS_emission_factors" / "GAINS_EU_sectors_mapping.yaml"
 
 
 def fetch_mapping(filepath: str) -> dict:
@@ -89,27 +85,18 @@ class Emissions(BaseTransformation):
         )
 
         self.version = version
-        self.gains_europe = self.prepare_data(iam_data.gains_data_EU)
-        self.gains_global = self.prepare_data(iam_data.gains_data_IAM)
+        self.gains_IAM = self.prepare_data(iam_data.gains_data_IAM)
         self.ei_pollutants = fetch_mapping(EI_POLLUTANTS)
         self.gains_pollutant = {v: k for k, v in self.ei_pollutants.items()}
-        self.gains_sectors = fetch_mapping(GAINS_SECTORS)
         self.gains_scenario = gains_scenario
 
         mapping = InventorySet(self.database)
-        self.gains_map_europe: Dict[str, Set] = mapping.generate_gains_mapping()
-        self.gains_map_global: Dict[str, Set] = mapping.generate_gains_mapping_IAM(
-            mapping=self.gains_map_europe
-        )
-        self.rev_gains_map_europe, self.rev_gains_map_global = {}, {}
+        self.gains_map = mapping.generate_gains_mapping()
+        self.rev_gains_map = {}
 
-        for s in self.gains_map_europe:
-            for t in self.gains_map_europe[s]:
-                self.rev_gains_map_europe[t["name"]] = s
-
-        for s in self.gains_map_global:
-            for t in self.gains_map_global[s]:
-                self.rev_gains_map_global[t["name"]] = s
+        for s in self.gains_map:
+            for t in self.gains_map[s]:
+                self.rev_gains_map[t["name"]] = s
 
     def prepare_data(self, data):
 
@@ -131,38 +118,23 @@ class Emissions(BaseTransformation):
         return data
 
     def update_emissions_in_database(self):
-        # print("Integrating GAINS EU emission factors.")
         for ds in self.database:
             name = ds["name"]
             loc = ds["location"]
 
-            if (
-                name in self.rev_gains_map_europe
-                and loc in self.gains_europe.coords["region"]
-            ):
-                sector = self.rev_gains_map_europe[name]
-                self.update_pollutant_emissions(
-                    ds,
-                    sector,
-                    model="GAINS-EU",
-                    regions=self.gains_europe.region.values,
-                )
-                self.write_log(ds, status="updated")
-
-            elif name in self.rev_gains_map_global:
+            if name in self.rev_gains_map:
                 iam_loc = self.ecoinvent_to_iam_loc.get(loc)
-                if iam_loc and iam_loc in self.gains_global.coords["region"]:
-                    sector = self.rev_gains_map_global[name]
+                if iam_loc and iam_loc in self.gains_IAM.coords["region"]:
+                    sector = self.rev_gains_map[name]
                     self.update_pollutant_emissions(
                         ds,
                         sector,
-                        model="GAINS-IAM",
-                        regions=self.gains_global.region.values,
+                        regions=self.gains_IAM.region.values,
                     )
                     self.write_log(ds, status="updated")
 
     def update_pollutant_emissions(
-        self, dataset: dict, sector: str, model: str, regions: list
+        self, dataset: dict, sector: str, regions: list
     ) -> dict:
         """
         Update pollutant emissions based on GAINS data.
@@ -192,11 +164,10 @@ class Emissions(BaseTransformation):
                     else self.ecoinvent_to_iam_loc[dataset["location"]]
                 ),
                 sector=sector,
-                model=model,
             )
 
             if 1 > scaling_factor > 0:
-                if f"{gains_pollutant} scaling factor" not in dataset.get(
+                if gains_pollutant not in dataset.get(
                     "log parameters", {}
                 ):
                     wurst.rescale_exchange(
@@ -204,17 +175,15 @@ class Emissions(BaseTransformation):
                     )
 
                     logp = dataset.setdefault("log parameters", {})
-                    if "GAINS model" not in logp:
-                        logp["GAINS model"] = model
                     if "GAINS sector" not in logp:
                         logp["GAINS sector"] = sector
-                    logp[f"{gains_pollutant} scaling factor"] = scaling_factor
+                    logp[gains_pollutant] = scaling_factor
 
         return dataset
 
     @lru_cache
     def find_gains_emissions_change(
-        self, pollutant: str, location: str, sector: str, model: str
+        self, pollutant: str, location: str, sector: str
     ) -> Union[ndarray, float]:
         """
         Return the relative change in emissions compared to 2020
@@ -223,27 +192,18 @@ class Emissions(BaseTransformation):
         :param sector: name of technology/sector
         :param location: location of emitting dataset
         :model: GAINS model
-        :return: a scaling factor
+        :return: a
         """
 
-        data = self.gains_europe if model == "GAINS-EU" else self.gains_global
+        data = self.gains_IAM
 
-        try:
-            sf = data.loc[
-                dict(region=location, pollutant=pollutant, sector=sector)
-            ].item()
-        except KeyError:
-            return 1.0
-
+        sf = data.loc[
+            dict(region=location, pollutant=pollutant, sector=sector)
+        ].item()
+        
         if np.isnan(sf) or sf == 0.0:
             return 1.0
 
-        # Clip once
-        sf = np.clip(
-            sf,
-            1 if self.year < 2020 else 0,
-            1 if self.year > 2020 else 1e6,
-        )
         return float(sf)
 
     def write_log(self, dataset, status="created"):
@@ -251,21 +211,17 @@ class Emissions(BaseTransformation):
         Write log file.
         """
 
-        if "log parameters" in dataset:
-            if "GAINS model" in dataset["log parameters"]:
-                logger.info(
-                    f"{status}|{self.model}|{self.scenario}|{self.year}|"
-                    f"{dataset['name']}|{dataset['location']}|"
-                    f"{dataset.get('log parameters', {}).get('GAINS model', '')}|"
-                    f"{dataset.get('log parameters', {}).get('GAINS sector', '')}|"
-                    f"{dataset.get('log parameters', {}).get('CO scaling factor', '')}|"
-                    f"{dataset.get('log parameters', {}).get('CH4 scaling factor', '')}|"
-                    f"{dataset.get('log parameters', {}).get('N2O scaling factor', '')}|"
-                    f"{dataset.get('log parameters', {}).get('NH3 scaling factor', '')}|"
-                    f"{dataset.get('log parameters', {}).get('NOx scaling factor', '')}|"
-                    f"{dataset.get('log parameters', {}).get('PM1 scaling factor', '')}|"
-                    f"{dataset.get('log parameters', {}).get('PM10 scaling factor', '')}|"
-                    f"{dataset.get('log parameters', {}).get('PM25 scaling factor', '')}|"
-                    f"{dataset.get('log parameters', {}).get('SO2 scaling factor', '')}|"
-                    f"{dataset.get('log parameters', {}).get('VOC scaling factor', '')}"
-                )
+        logger.info(
+            f"{status}|{self.model}|{self.scenario}|{self.year}|"
+            f"{dataset['name']}|{dataset['location']}|"
+            f"{dataset.get('log parameters', {}).get('GAINS sector', '')}|"
+            f"{dataset.get('log parameters', {}).get('CH4', '')}|"
+            f"{dataset.get('log parameters', {}).get('N2O', '')}|"
+            f"{dataset.get('log parameters', {}).get('NH3', '')}|"
+            f"{dataset.get('log parameters', {}).get('NOx', '')}|"
+            f"{dataset.get('log parameters', {}).get('PM1', '')}|"
+            f"{dataset.get('log parameters', {}).get('PM10', '')}|"
+            f"{dataset.get('log parameters', {}).get('PM25', '')}|"
+            f"{dataset.get('log parameters', {}).get('SO2', '')}|"
+            f"{dataset.get('log parameters', {}).get('VOC', '')}"
+        )

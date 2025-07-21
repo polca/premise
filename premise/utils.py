@@ -305,7 +305,7 @@ def warning_about_biogenic_co2() -> None:
             "Global Warming potential indicators.\n"
             "`premise_gwp` provides characterization factors for such flows.\n"
             "It also provides factors for hydrogen emissions to air.\n\n"
-            "Within your bw2 project:\n"
+            "Within your Brightway project:\n"
             "from premise_gwp import add_premise_gwp\n"
             "add_premise_gwp()"
         ]
@@ -394,6 +394,8 @@ def load_database(scenario, delete=True, load_metadata=False):
     """
     Load database from a pickle file.
     :param scenario: scenario dictionary
+    :param delete: if True, delete the file after loading
+    :param load_metadata: if True, load metadata from the cache files
 
     """
 
@@ -407,26 +409,39 @@ def load_database(scenario, delete=True, load_metadata=False):
         scenario["database"] = pickle.load(f)
 
     if load_metadata:
-        filepath_metadata = Path(f"{filepath} (metadata)".replace(".pickle", ".cache"))
-        with open(filepath_metadata, "rb") as f:
-            metadata = pickle.load(f)
-            for ds in scenario["database"]:
-                ds.update(
-                    metadata.get(
-                        (ds["name"], ds["reference product"], ds["location"]), {}
-                    )
+
+        filepaths = [
+            scenario["database metadata cache filepath"],
+            scenario["inventories metadata cache filepath"],
+        ]
+
+        # check if metadata files exist
+        for filepath_metadata in filepaths:
+            if not Path(filepath_metadata).exists():
+                raise FileNotFoundError(
+                    f"Metadata file {filepath_metadata} does not exist."
                 )
-    else:
-        filepath_metadata = None
+            # load metadata from the cache files
+            with open(filepath_metadata, "rb") as f:
+                metadata = pickle.load(f)
+                # update each dataset with the metadata
+                for ds in scenario["database"]:
+                    key = (ds["name"], ds["reference product"], ds["location"])
+                    for k, v in metadata.get(key, {}).items():
+                        if k not in ds:
+                            ds[k] = v
+                        else:
+                            # if the key already exists, concatenate the values
+                            if isinstance(ds[k], list):
+                                ds[k].extend(v)
+                            else:
+                                ds[k] = f"{ds[k]}. {v}"
 
     del scenario["database filepath"]
 
     # delete the file
     if delete:
         filepath.unlink()
-
-    if load_metadata:
-        filepath_metadata.unlink()
 
     return scenario
 
@@ -507,10 +522,10 @@ def create_cache(database, file_name):
     """
 
     metadata = {
-        (ds["name"], ds["reference product"], ds["location"]): {k: v}
+        (ds["name"], ds["reference product"], ds["location"]): {
+            k: v for k, v in ds.items() if k not in ["name", "reference product", "location", "unit", "exchanges"]
+        }
         for ds in database
-        for k, v in ds.items()
-        if k not in ["name", "reference product", "location", "unit", "exchanges"]
     }
 
     database = [
@@ -534,9 +549,9 @@ def create_cache(database, file_name):
         ds["exchanges"] = [trim_exchanges(exc) for exc in ds["exchanges"]]
 
     # create a cache file
-    cache_file = DIR_CACHED_DB / f"{file_name} (metadata).cache"
+    metadata_cache_file = DIR_CACHED_DB / f"{file_name} (metadata).cache"
 
-    with open(cache_file, "wb") as f:
+    with open(metadata_cache_file, "wb") as f:
         pickle.dump(metadata, f)
 
     # cache the database
@@ -544,7 +559,7 @@ def create_cache(database, file_name):
     with open(file_name, "wb") as f:
         pickle.dump(database, f)
 
-    return database
+    return database, metadata_cache_file
 
 
 def load_metadata(file_name):
@@ -562,3 +577,9 @@ def load_metadata(file_name):
         metadata = pickle.load(f)
 
     return metadata
+
+def get_uuids(db):
+    return {
+        (ds["name"], ds["reference product"], ds["location"]): str(uuid.uuid4().hex)
+        for ds in db
+    }

@@ -31,7 +31,7 @@ from . import __version__
 from .data_collection import get_delimiter
 from .filesystem_constants import DATA_DIR
 from .inventory_imports import get_correspondence_bio_flows
-from .utils import reset_all_codes
+from .utils import reset_all_codes, get_uuids
 from .validation import BaseDatasetValidator
 
 
@@ -995,7 +995,7 @@ def check_geographical_linking(scenario, original_database):
     return scenario
 
 
-def prepare_db_for_export(scenario, name, original_database, biosphere_name=None):
+def prepare_db_for_export(scenario, name, original_database, version, biosphere_name=None):
     """
     Prepare a database for export.
     """
@@ -1013,6 +1013,7 @@ def prepare_db_for_export(scenario, name, original_database, biosphere_name=None
         database=scenario["database"],
         db_name=name,
         biosphere_name=biosphere_name,
+        version=version
     )
     validator.run_all_checks()
 
@@ -1024,6 +1025,7 @@ def _prepare_database(
     db_name,
     original_database,
     biosphere_name,
+    version
 ):
 
     scenario["database"] = prepare_db_for_export(
@@ -1031,16 +1033,10 @@ def _prepare_database(
         name=db_name,
         original_database=original_database,
         biosphere_name=biosphere_name,
+        version=version
     )
 
     return scenario
-
-
-def get_uuids(db):
-    return {
-        (ds["name"], ds["reference product"], ds["location"]): str(uuid.uuid4().hex)
-        for ds in db
-    }
 
 
 class Export:

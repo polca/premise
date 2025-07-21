@@ -616,12 +616,16 @@ class NewDatabase:
         print("- Extracting source database")
         if use_cached_database:
             self.database = self.__find_cached_db(source_db)
+            for scenario in self.scenarios:
+                scenario["database metadata cache filepath"] = self.database_metadata_cache_filepath
         else:
             self.database = self.__clean_database()
 
         print("- Extracting inventories")
         if use_cached_inventories:
             data = self.__find_cached_inventories(source_db)
+            for scenario in self.scenarios:
+                scenario["inventories metadata cache filepath"] = self.inventories_metadata_cache_filepath
             if data is not None:
                 self.database.extend(data)
         else:
@@ -664,13 +668,15 @@ class NewDatabase:
         if file_name.exists():
             # return the cached database
             with open(file_name, "rb") as f:
+                self.database_metadata_cache_filepath = DIR_CACHED_DB / f"{file_name} (metadata).cache"
                 return pickle.load(f)
 
         # extract the database, pickle it for next time and return it
         print("Cannot find cached database. Will create one now for next time...")
         clear_existing_cache()
         database = self.__clean_database()
-        database = create_cache(database, file_name)
+        database, metadata_cache_filepath = create_cache(database, file_name)
+        self.database_metadata_cache_filepath = metadata_cache_filepath
         # pickle.dump(database, open(file_name, "wb"))
         return database
 
@@ -700,12 +706,14 @@ class NewDatabase:
         if file_name.exists():
             # return the cached database
             with open(file_name, "rb") as f:
+                self.inventories_metadata_cache_filepath = DIR_CACHED_DB / f"{file_name} (metadata).cache"
                 return pickle.load(f)
 
         # else, extract the database, pickle it for next time and return it
         print("Cannot find cached inventories. Will create them now for next time...")
         data = self.__import_inventories()
-        _ = create_cache(data, file_name)
+        _, inventories_metadata_cache_filepath = create_cache(data, file_name)
+        self.inventories_metadata_cache_filepath = inventories_metadata_cache_filepath
         print(
             "Data cached. It is advised to restart your workflow at this point.\n"
             "This allows premise to use the cached data instead, which results in\n"
@@ -1055,11 +1063,10 @@ class NewDatabase:
             )
 
         for scenario in self.scenarios:
-            try:
+            if "database filepath" in scenario:
                 scenario = load_database(scenario, load_metadata=True)
-            except KeyError:
-                scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
-            except FileNotFoundError:
+            else:
+                print("WARNING: loading unmodified database!")
                 scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
 
             try:
@@ -1068,6 +1075,7 @@ class NewDatabase:
                     db_name=name,
                     original_database=self.database,
                     biosphere_name=self.biosphere_name,
+                    version=self.version
                 )
             except ValueError:
                 self.generate_change_report()
@@ -1097,6 +1105,7 @@ class NewDatabase:
             name="database",
             original_database=self.database,
             biosphere_name=self.biosphere_name,
+            version=self.version
         )
 
         write_brightway_database(
@@ -1151,13 +1160,10 @@ class NewDatabase:
         print("Write new database(s) to Brightway.")
 
         for s, scenario in enumerate(self.scenarios):
-            try:
+            if "database filepath" in scenario:
                 scenario = load_database(scenario, load_metadata=True)
-            except KeyError:
-                print("Load unmodified database")
-                scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
-            except FileNotFoundError:
-                print("FileNotFoundError")
+            else:
+                print("WARNING: loading unmodified database!")
                 scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
 
             try:
@@ -1166,6 +1172,7 @@ class NewDatabase:
                     db_name=name[s],
                     original_database=self.database,
                     biosphere_name=self.biosphere_name,
+                    version=self.version
                 )
             except ValueError:
                 self.generate_change_report()
@@ -1233,11 +1240,10 @@ class NewDatabase:
         print("Write new database(s) to matrix.")
 
         for s, scenario in enumerate(self.scenarios):
-            try:
+            if "database filepath" in scenario:
                 scenario = load_database(scenario, load_metadata=True)
-            except KeyError:
-                scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
-            except FileNotFoundError:
+            else:
+                print("WARNING: loading unmodified database!")
                 scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
 
             try:
@@ -1246,6 +1252,7 @@ class NewDatabase:
                     db_name="database",
                     original_database=self.database,
                     biosphere_name=self.biosphere_name,
+                    version=self.version
                 )
             except ValueError:
                 self.generate_change_report()
@@ -1285,11 +1292,10 @@ class NewDatabase:
         print("Write Simapro import file(s).")
 
         for scenario in self.scenarios:
-            try:
+            if "database filepath" in scenario:
                 scenario = load_database(scenario, load_metadata=True)
-            except KeyError:
-                scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
-            except FileNotFoundError:
+            else:
+                print("WARNING: loading unmodified database!")
                 scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
 
             try:
@@ -1298,6 +1304,7 @@ class NewDatabase:
                     db_name="database",
                     original_database=self.database,
                     biosphere_name=self.biosphere_name,
+                    version=self.version
                 )
             except ValueError:
                 self.generate_change_report()
@@ -1341,11 +1348,10 @@ class NewDatabase:
         print("Write Simapro import file(s) for OpenLCA.")
 
         for scenario in self.scenarios:
-            try:
+            if "database filepath" in scenario:
                 scenario = load_database(scenario, load_metadata=True)
-            except KeyError:
-                scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
-            except FileNotFoundError:
+            else:
+                print("WARNING: loading unmodified database!")
                 scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
 
             try:
@@ -1354,6 +1360,7 @@ class NewDatabase:
                     db_name="database",
                     original_database=self.database,
                     biosphere_name=self.biosphere_name,
+                    version=self.version
                 )
             except ValueError:
                 self.generate_change_report()
@@ -1390,11 +1397,10 @@ class NewDatabase:
             raise ValueError(f"No cached inventories found at {cache_fp}.")
 
         for scenario in self.scenarios:
-            try:
+            if "database filepath" in scenario:
                 scenario = load_database(scenario, load_metadata=True)
-            except KeyError:
-                scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
-            except FileNotFoundError:
+            else:
+                print("WARNING: loading unmodified database!")
                 scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
 
             try:
@@ -1403,6 +1409,7 @@ class NewDatabase:
                     db_name=name,
                     original_database=self.database,
                     biosphere_name=self.biosphere_name,
+                    version=self.version
                 )
             except ValueError:
                 self.generate_change_report()

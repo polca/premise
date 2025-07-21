@@ -266,15 +266,6 @@ class InventorySet:
         )
         return self.generate_sets_from_filters(filters)
 
-    def generate_gains_mapping_IAM(self, mapping):
-        EU_to_IAM_var = get_mapping(filepath=GAINS_MAPPING, var="gains_aliases_IAM")
-        new_map = defaultdict(list)
-
-        for eu, iam in EU_to_IAM_var.items():
-            new_map[iam].extend(mapping[eu])
-
-        return new_map
-
     def generate_gains_mapping(self):
         """
         Generate a dictionary with GAINS variables as keys and
