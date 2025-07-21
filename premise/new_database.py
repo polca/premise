@@ -617,7 +617,9 @@ class NewDatabase:
         if use_cached_database:
             self.database = self.__find_cached_db(source_db)
             for scenario in self.scenarios:
-                scenario["database metadata cache filepath"] = self.database_metadata_cache_filepath
+                scenario["database metadata cache filepath"] = (
+                    self.database_metadata_cache_filepath
+                )
         else:
             self.database = self.__clean_database()
 
@@ -625,7 +627,9 @@ class NewDatabase:
         if use_cached_inventories:
             data = self.__find_cached_inventories(source_db)
             for scenario in self.scenarios:
-                scenario["inventories metadata cache filepath"] = self.inventories_metadata_cache_filepath
+                scenario["inventories metadata cache filepath"] = (
+                    self.inventories_metadata_cache_filepath
+                )
             if data is not None:
                 self.database.extend(data)
         else:
@@ -668,7 +672,9 @@ class NewDatabase:
         if file_name.exists():
             # return the cached database
             with open(file_name, "rb") as f:
-                self.database_metadata_cache_filepath = DIR_CACHED_DB / f"{file_name} (metadata).cache"
+                self.database_metadata_cache_filepath = (
+                    DIR_CACHED_DB / f"{file_name} (metadata).cache"
+                )
                 return pickle.load(f)
 
         # extract the database, pickle it for next time and return it
@@ -706,7 +712,9 @@ class NewDatabase:
         if file_name.exists():
             # return the cached database
             with open(file_name, "rb") as f:
-                self.inventories_metadata_cache_filepath = DIR_CACHED_DB / f"{file_name} (metadata).cache"
+                self.inventories_metadata_cache_filepath = (
+                    DIR_CACHED_DB / f"{file_name} (metadata).cache"
+                )
                 return pickle.load(f)
 
         # else, extract the database, pickle it for next time and return it
@@ -1075,7 +1083,7 @@ class NewDatabase:
                     db_name=name,
                     original_database=self.database,
                     biosphere_name=self.biosphere_name,
-                    version=self.version
+                    version=self.version,
                 )
             except ValueError:
                 self.generate_change_report()
@@ -1105,7 +1113,7 @@ class NewDatabase:
             name="database",
             original_database=self.database,
             biosphere_name=self.biosphere_name,
-            version=self.version
+            version=self.version,
         )
 
         write_brightway_database(
@@ -1172,7 +1180,7 @@ class NewDatabase:
                     db_name=name[s],
                     original_database=self.database,
                     biosphere_name=self.biosphere_name,
-                    version=self.version
+                    version=self.version,
                 )
             except ValueError:
                 self.generate_change_report()
@@ -1252,7 +1260,7 @@ class NewDatabase:
                     db_name="database",
                     original_database=self.database,
                     biosphere_name=self.biosphere_name,
-                    version=self.version
+                    version=self.version,
                 )
             except ValueError:
                 self.generate_change_report()
@@ -1304,7 +1312,7 @@ class NewDatabase:
                     db_name="database",
                     original_database=self.database,
                     biosphere_name=self.biosphere_name,
-                    version=self.version
+                    version=self.version,
                 )
             except ValueError:
                 self.generate_change_report()
@@ -1360,7 +1368,7 @@ class NewDatabase:
                     db_name="database",
                     original_database=self.database,
                     biosphere_name=self.biosphere_name,
-                    version=self.version
+                    version=self.version,
                 )
             except ValueError:
                 self.generate_change_report()
@@ -1409,7 +1417,7 @@ class NewDatabase:
                     db_name=name,
                     original_database=self.database,
                     biosphere_name=self.biosphere_name,
-                    version=self.version
+                    version=self.version,
                 )
             except ValueError:
                 self.generate_change_report()

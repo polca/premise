@@ -11,7 +11,7 @@ def comparative_analysis(
     indicators: list = None,
     databases: list = None,
     limit: int = 1000,
-    direct_only = False
+    direct_only=False,
 ) -> pd.DataFrame:
     """
     A function that does an LCA of all common datasets in databases

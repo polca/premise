@@ -523,7 +523,9 @@ def create_cache(database, file_name):
 
     metadata = {
         (ds["name"], ds["reference product"], ds["location"]): {
-            k: v for k, v in ds.items() if k not in ["name", "reference product", "location", "unit", "exchanges"]
+            k: v
+            for k, v in ds.items()
+            if k not in ["name", "reference product", "location", "unit", "exchanges"]
         }
         for ds in database
     }
@@ -577,6 +579,7 @@ def load_metadata(file_name):
         metadata = pickle.load(f)
 
     return metadata
+
 
 def get_uuids(db):
     return {
