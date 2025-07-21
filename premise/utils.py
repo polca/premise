@@ -411,7 +411,11 @@ def load_database(scenario, delete=True, load_metadata=False):
         with open(filepath_metadata, "rb") as f:
             metadata = pickle.load(f)
             for ds in scenario["database"]:
-                ds.update(metadata.get((ds["name"], ds["reference product"], ds["location"]), {}))
+                ds.update(
+                    metadata.get(
+                        (ds["name"], ds["reference product"], ds["location"]), {}
+                    )
+                )
     else:
         filepath_metadata = None
 
@@ -467,30 +471,34 @@ def downcast_value(val):
         return np.float32(val)
     return val
 
+
 def trim_exchanges(exc):
 
     # only keep certain keys and remove None or NaN values
 
     return {
-        k: downcast_value(v) for k, v in exc.items()
-        if k in [
-            'uncertainty type',
-            'loc',
-            'scale',
-            'amount',
-            'type',
-            'production volume',
-            'product',
-            'name',
-            'unit',
-            'location',
-            'shape',
-            'minimum',
-            'maximum',
-            'categories'
+        k: downcast_value(v)
+        for k, v in exc.items()
+        if k
+        in [
+            "uncertainty type",
+            "loc",
+            "scale",
+            "amount",
+            "type",
+            "production volume",
+            "product",
+            "name",
+            "unit",
+            "location",
+            "shape",
+            "minimum",
+            "maximum",
+            "categories",
         ]
-           and pd.notna(v)
+        and pd.notna(v)
     }
+
 
 def create_cache(database, file_name):
     """
@@ -499,27 +507,25 @@ def create_cache(database, file_name):
     """
 
     metadata = {
-        (ds["name"], ds["reference product"], ds["location"]): {
-            k: v
-        } for ds in database
-        for k, v in ds.items() if k not in [
-            "name",
-            "reference product",
-            "location",
-            "unit",
-            "exchanges"
-        ]
+        (ds["name"], ds["reference product"], ds["location"]): {k: v}
+        for ds in database
+        for k, v in ds.items()
+        if k not in ["name", "reference product", "location", "unit", "exchanges"]
     }
 
     database = [
-        {k: v for k, v in ds.items() if k in [
-            "name",
-            "reference product",
-            "location",
-            "unit",
-            "exchanges",
+        {
+            k: v
+            for k, v in ds.items()
+            if k
+            in [
+                "name",
+                "reference product",
+                "location",
+                "unit",
+                "exchanges",
             ]
-         }
+        }
         for ds in database
     ]
 
@@ -540,6 +546,7 @@ def create_cache(database, file_name):
 
     return database
 
+
 def load_metadata(file_name):
     """
     Load metadata from a cache file.
@@ -555,5 +562,3 @@ def load_metadata(file_name):
         metadata = pickle.load(f)
 
     return metadata
-
-

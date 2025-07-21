@@ -1442,8 +1442,6 @@ class BaseTransformation:
 
         return self.cache.get(loc, {}).get(self.model, {}).get(key)
 
-
-
     def find_alternative_locations(self, act, exc, alt_names):
         """
         Find alternative locations for an exchange, trying "market for" and "market group for"

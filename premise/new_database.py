@@ -57,7 +57,7 @@ from .utils import (
     print_version,
     warning_about_biogenic_co2,
     end_of_process,
-    create_cache
+    create_cache,
 )
 from .renewables import _update_wind_turbines
 
@@ -671,7 +671,7 @@ class NewDatabase:
         clear_existing_cache()
         database = self.__clean_database()
         database = create_cache(database, file_name)
-        #pickle.dump(database, open(file_name, "wb"))
+        # pickle.dump(database, open(file_name, "wb"))
         return database
 
     def __find_cached_inventories(self, db_name: str) -> Union[None, List[dict]]:
