@@ -157,7 +157,8 @@ def mapping_to_dataframe(scenario) -> pd.DataFrame:
         ("steel", inv.generate_steel_map()),
         ("mining waste", inv.generate_mining_waste_map()),
         ("copper waste", inv.generate_copper_waste_map()),
-        ("slag waste", inv.generate_slag_waste_map()),
+        ("BOF slag waste", inv.generate_bof_slag_waste_map()),
+        ("EAF slag waste", inv.generate_eaf_slag_waste_map()),
         ("car", inv.generate_transport_map("car")),
         ("two-wheelers", inv.generate_transport_map("two-wheeler")),
         ("bus", inv.generate_transport_map("bus")),
@@ -461,6 +462,21 @@ class InventorySet:
             filepath=FINAL_ENERGY, var="ecoinvent_aliases", model=self.model
         )
         return self.generate_sets_from_filters(filters)
+
+    def generate_capacity_addition_map(self) -> dict:
+        """
+        Filter ecoinvent processes related to capacity addition.
+
+        :return: dictionary with capacity addition names as keys (see below) and
+            sets of related ecoinvent activities as values.
+        :rtype: dict
+
+        """
+        filters = get_mapping(
+            filepath=CAPACITY_ADDITION, var="ecoinvent_aliases"
+        )
+        return self.generate_sets_from_filters(filters)
+
 
     def generate_transport_map(self, transport_type: str) -> dict:
         """

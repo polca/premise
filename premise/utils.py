@@ -558,14 +558,16 @@ def create_cache(database, file_name):
         # trim exchanges
         ds["exchanges"] = [trim_exchanges(exc) for exc in ds["exchanges"]]
 
+    # make sure thw directory exists
+    DIR_CACHED_DB.mkdir(parents=True, exist_ok=True)
+
     # create a cache file
-    metadata_cache_file = DIR_CACHED_DB / f"{file_name} (metadata).cache"
+    metadata_cache_file = Path(str(file_name).replace('.pickle', ' (metadata).pickle'))
 
     with open(metadata_cache_file, "wb") as f:
         pickle.dump(metadata, f)
 
     # cache the database
-
     with open(file_name, "wb") as f:
         pickle.dump(database, f)
 

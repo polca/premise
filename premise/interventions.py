@@ -184,44 +184,24 @@ class Interventions(BaseTransformation):
 
     def update_tailings_treatment(self):
 
-        processed_datasets = []
 
-        for waste_management_type, activities in self.tailings_map.items():
-            for activity in activities:
-                regionalized_datasets = self.fetch_proxies(
-                    name=activity,
-                    ref_prod="",
-                )
-
-                regionalized_datasets = {
-                    k: v
-                    for k, v in regionalized_datasets.items()
-                    if k in self.tailings_shares.region.values
-                }
-
-                processed_datasets.extend(regionalized_datasets.values())
-
-        for dataset in processed_datasets:
-            # print(f"[Mining] Adding {dataset['name']} in {dataset['location']}")
-            self.add_to_index(dataset)
-            self.write_log(dataset, "created")
-            self.database.append(dataset)
-
-        market_datasets = set(
-            [
-                ds["name"]
-                for ds in ws.get_many(
-                    self.database, ws.contains("name", "market for sulfidic tailings")
-                )
-            ]
+        self.process_and_add_activities(
+            mapping=self.tailings_map,
+            regions=self.tailings_shares.region.values.tolist(),
         )
+
+        market_datasets = [
+            ds
+            for ds in ws.get_many(
+                self.database, ws.contains("name", "market for sulfidic tailings")
+            )
+        ]
+
 
         processed_datasets = []
         for market_dataset in market_datasets:
             regionalized_datasets = self.fetch_proxies(
-                name=market_dataset,
-                ref_prod="",
-                empty_original_activity=False,
+                datasets=market_dataset,
             )
 
             regionalized_datasets = {
@@ -274,18 +254,12 @@ class Interventions(BaseTransformation):
                 ]
 
                 for waste_management_type in shares.technology.values:
-                    supplier = list(
-                        ws.get_many(
-                            self.database,
-                            ws.either(
-                                *[
-                                    ws.contains("name", s)
-                                    for s in self.tailings_map[waste_management_type]
-                                ]
-                            ),
-                            ws.equals("location", region),
-                        )
-                    )
+
+                    supplier = [
+                        ds for ds in self.tailings_map[waste_management_type]
+                        if ds["location"] == region
+                    ]
+
                     if len(supplier) > 1:
                         if waste_management_type == "sulfidic tailings - impoundment":
                             # we have different datasets for impoundment
@@ -357,44 +331,27 @@ class Interventions(BaseTransformation):
             ),
         }
 
+
+
         for slag_type, (slag_map, slag_shares, market_name) in slag_configs.items():
 
-            processed_datasets = []
+            self.process_and_add_activities(
+                mapping=slag_map,
+                regions=slag_shares.region.values.tolist(),
+            )
 
-            for treatment_type, activities in slag_map.items():
-                for activity in activities:
-                    regionalized_datasets = self.fetch_proxies(
-                        name=activity,
-                        ref_prod="",
-                    )
-
-                    regionalized_datasets = {
-                        k: v
-                        for k, v in regionalized_datasets.items()
-                        if k in slag_shares.region.values
-                    }
-
-                    processed_datasets.extend(regionalized_datasets.values())
-
-            for dataset in processed_datasets:
-                self.add_to_index(dataset)
-                self.write_log(dataset, "created")
-                self.database.append(dataset)
-
-            market_datasets = {
-                ds["name"]
+            market_datasets = [
+                ds
                 for ds in ws.get_many(
                     self.database,
                     ws.startswith("name", market_name),
                 )
-            }
+            ]
 
             processed_datasets = []
             for market_dataset in market_datasets:
                 regionalized_datasets = self.fetch_proxies(
-                    name=market_dataset,
-                    ref_prod="",
-                    empty_original_activity=False,
+                    datasets=[market_dataset],
                 )
 
                 regionalized_datasets = {
@@ -470,18 +427,10 @@ class Interventions(BaseTransformation):
                     ]
 
                     for treatment_type in shares.technology.values:
-                        suppliers = list(
-                            ws.get_many(
-                                self.database,
-                                ws.either(
-                                    *[
-                                        ws.contains("name", s)
-                                        for s in slag_map[treatment_type]
-                                    ]
-                                ),
-                                ws.equals("location", target_region),
-                            )
-                        )
+                        suppliers = [
+                            ds for ds in slag_map[treatment_type]
+                            if ds["location"] == target_region
+                        ]
 
                         if len(suppliers) > 1:
                             print(

@@ -676,7 +676,7 @@ class NewDatabase:
             # return the cached database
             with open(file_name, "rb") as f:
                 self.database_metadata_cache_filepath = (
-                    DIR_CACHED_DB / f"{file_name} (metadata).cache"
+                    f"{Path(str(file_name).replace('.pickle', ' (metadata).pickle'))}"
                 )
                 return pickle.load(f)
 
@@ -716,7 +716,7 @@ class NewDatabase:
             # return the cached database
             with open(file_name, "rb") as f:
                 self.inventories_metadata_cache_filepath = (
-                    DIR_CACHED_DB / f"{file_name} (metadata).cache"
+                    Path(str(file_name).replace('.pickle', ' (metadata).pickle'))
                 )
                 return pickle.load(f)
 
