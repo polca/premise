@@ -193,12 +193,16 @@ class PathwaysDataPackage:
 
         # Check if any scenario has a patched capacity addition config
         patched_capacity_addition = None
-        if 'premise.final_energy' in sys.modules:
-            final_energy_module = sys.modules['premise.final_energy']
-            patched_capacity_addition = getattr(final_energy_module, '_PATCHED_CAPACITY_ADDITION', None)
+        if "premise.final_energy" in sys.modules:
+            final_energy_module = sys.modules["premise.final_energy"]
+            patched_capacity_addition = getattr(
+                final_energy_module, "_PATCHED_CAPACITY_ADDITION", None
+            )
 
         if patched_capacity_addition:
-            print(f"✅ Found globally stored capacity addition data with {len(patched_capacity_addition)} variables")
+            print(
+                f"✅ Found globally stored capacity addition data with {len(patched_capacity_addition)} variables"
+            )
             yamls_to_load.append(("capacity_addition.yaml", patched_capacity_addition))
         else:
             print("ℹ️ No globally stored capacity addition data found")
@@ -302,10 +306,10 @@ class PathwaysDataPackage:
                                     if not any(v in d["name"] for v in variables)
                                 ]
 
-        if patched_capacity_addition and 'premise.final_energy' in sys.modules:
-            final_energy_module = sys.modules['premise.final_energy']
-            if hasattr(final_energy_module, '_PATCHED_CAPACITY_ADDITION'):
-                delattr(final_energy_module, '_PATCHED_CAPACITY_ADDITION')
+        if patched_capacity_addition and "premise.final_energy" in sys.modules:
+            final_energy_module = sys.modules["premise.final_energy"]
+            if hasattr(final_energy_module, "_PATCHED_CAPACITY_ADDITION"):
+                delattr(final_energy_module, "_PATCHED_CAPACITY_ADDITION")
 
         with open(Path.cwd() / "pathways" / "mapping" / "mapping.yaml", "w") as f:
             yaml.dump(mapping, f)
@@ -322,12 +326,16 @@ class PathwaysDataPackage:
             data = scenario["iam data"].data.interp(year=scenario["year"])
             extra_units.update(scenario["iam data"].final_energy_use.attrs["unit"])
 
-            if 'premise.final_energy' in sys.modules:
-                final_energy_module = sys.modules['premise.final_energy']
-                patched_units = getattr(final_energy_module, '_PATCHED_CAPACITY_UNITS', None)
+            if "premise.final_energy" in sys.modules:
+                final_energy_module = sys.modules["premise.final_energy"]
+                patched_units = getattr(
+                    final_energy_module, "_PATCHED_CAPACITY_UNITS", None
+                )
                 if patched_units:
                     extra_units.update(patched_units)
-                    print(f"✅ Added {len(patched_units)} capacity addition units to extra_units")
+                    print(
+                        f"✅ Added {len(patched_units)} capacity addition units to extra_units"
+                    )
 
             scenario_name = f"{scenario['model']} - {scenario['pathway']}"
             if "external data" in scenario:
