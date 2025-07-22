@@ -191,7 +191,6 @@ class Interventions(BaseTransformation):
 
     def update_tailings_treatment(self):
 
-
         self.process_and_add_activities(
             mapping=self.tailings_map,
             regions=self.tailings_shares.region.values.tolist(),
@@ -267,7 +266,8 @@ class Interventions(BaseTransformation):
                 for waste_management_type in shares.technology.values:
 
                     supplier = [
-                        ds for ds in self.tailings_map[waste_management_type]
+                        ds
+                        for ds in self.tailings_map[waste_management_type]
                         if ds["location"] == region
                     ]
 
@@ -441,7 +441,8 @@ class Interventions(BaseTransformation):
 
                     for treatment_type in shares.technology.values:
                         suppliers = [
-                            ds for ds in slag_map[treatment_type]
+                            ds
+                            for ds in slag_map[treatment_type]
                             if ds["location"] == target_region
                         ]
 

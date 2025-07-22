@@ -715,8 +715,8 @@ class NewDatabase:
         if file_name.exists():
             # return the cached database
             with open(file_name, "rb") as f:
-                self.inventories_metadata_cache_filepath = (
-                    Path(str(file_name).replace('.pickle', ' (metadata).pickle'))
+                self.inventories_metadata_cache_filepath = Path(
+                    str(file_name).replace(".pickle", " (metadata).pickle")
                 )
                 return pickle.load(f)
 
