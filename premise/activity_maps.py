@@ -472,11 +472,8 @@ class InventorySet:
         :rtype: dict
 
         """
-        filters = get_mapping(
-            filepath=CAPACITY_ADDITION, var="ecoinvent_aliases"
-        )
+        filters = get_mapping(filepath=CAPACITY_ADDITION, var="ecoinvent_aliases")
         return self.generate_sets_from_filters(filters)
-
 
     def generate_transport_map(self, transport_type: str) -> dict:
         """
