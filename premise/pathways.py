@@ -11,6 +11,7 @@ from typing import List
 
 import xarray as xr
 import yaml
+import sys
 from datapackage import Package
 
 from . import __version__
@@ -68,56 +69,17 @@ class PathwaysDataPackage:
 
         self.scenario_names = []
 
-    # def create_datapackage(
-    #     self,
-    #     name: str = f"pathways_{date.today()}",
-    #     contributors: list = None,
-    #     transformations: list = None,
-    # ):
-    #     if transformations:
-    #         self.datapackage.update(transformations)
-    #     else:
-    #         self.datapackage.update()
-    #
-    #     self.export_datapackage(
-    #         name=name,
-    #         contributors=contributors,
-    #     )
-
     def create_datapackage(
         self,
         name: str = f"pathways_{date.today()}",
         contributors: list = None,
         transformations: list = None,
     ):
-        """
-        Create a data package for scenario analysis.
-
-        If final energy split logic is used, it will inject the capacity addition data
-        directly into scenario configurations.
-        """
-
-        # Check if final energy split logic was used
-        capacity_addition_data = None
-        for t in transformations or []:
-            if isinstance(t, FinalEnergy) and t.split_capacity_operation:
-                capacity_addition_data = t.get_patched_yaml_data()
-                break
-
-        # Store the patched configuration only if needed
-        if capacity_addition_data:
-            for scenario in self.datapackage.scenarios:
-                scenario.setdefault("configurations", {})[
-                    "capacity_addition"
-                ] = capacity_addition_data
-
-        # Update the datapackage with transformations
         if transformations:
             self.datapackage.update(transformations)
         else:
             self.datapackage.update()
 
-        # Export the datapackage
         self.export_datapackage(
             name=name,
             contributors=contributors,
@@ -231,26 +193,20 @@ class PathwaysDataPackage:
 
         # Check if any scenario has a patched capacity addition config
         patched_capacity_addition = None
-        for scenario in self.scenarios:
-            if (
-                "configurations" in scenario
-                and "capacity_addition" in scenario["configurations"]
-            ):
-                patched_capacity_addition = scenario["configurations"][
-                    "capacity_addition"
-                ]
-                print(
-                    f"Found patched capacity addition data with {len(patched_capacity_addition)} variables"
-                )
-                break
+        if 'premise.final_energy' in sys.modules:
+            final_energy_module = sys.modules['premise.final_energy']
+            patched_capacity_addition = getattr(final_energy_module, '_PATCHED_CAPACITY_ADDITION', None)
 
         if patched_capacity_addition:
+            print(f"✅ Found globally stored capacity addition data with {len(patched_capacity_addition)} variables")
             yamls_to_load.append(("capacity_addition.yaml", patched_capacity_addition))
+        else:
+            print("ℹ️ No globally stored capacity addition data found")
 
         for file in (
             Path(__file__).resolve().parent.glob("iam_variables_mapping/*.yaml")
         ):
-            if file.name == "capacity_addition.yaml" and patched_capacity_addition:
+            if file.name == "capacity_addition.yaml":
                 continue  # skip reading the file version
             # open the file
             try:
@@ -346,6 +302,11 @@ class PathwaysDataPackage:
                                     if not any(v in d["name"] for v in variables)
                                 ]
 
+        if patched_capacity_addition and 'premise.final_energy' in sys.modules:
+            final_energy_module = sys.modules['premise.final_energy']
+            if hasattr(final_energy_module, '_PATCHED_CAPACITY_ADDITION'):
+                delattr(final_energy_module, '_PATCHED_CAPACITY_ADDITION')
+
         with open(Path.cwd() / "pathways" / "mapping" / "mapping.yaml", "w") as f:
             yaml.dump(mapping, f)
 
@@ -360,6 +321,14 @@ class PathwaysDataPackage:
         for scenario in self.datapackage.scenarios:
             data = scenario["iam data"].data.interp(year=scenario["year"])
             extra_units.update(scenario["iam data"].final_energy_use.attrs["unit"])
+
+            if 'premise.final_energy' in sys.modules:
+                final_energy_module = sys.modules['premise.final_energy']
+                patched_units = getattr(final_energy_module, '_PATCHED_CAPACITY_UNITS', None)
+                if patched_units:
+                    extra_units.update(patched_units)
+                    print(f"✅ Added {len(patched_units)} capacity addition units to extra_units")
+
             scenario_name = f"{scenario['model']} - {scenario['pathway']}"
             if "external data" in scenario:
                 for ext, external in scenario["external data"].items():

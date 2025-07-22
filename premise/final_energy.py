@@ -13,7 +13,10 @@ from .transformation import BaseTransformation, InventorySet
 import uuid
 import re
 
-import contextlib
+from pathlib import Path
+import yaml
+import sys
+
 
 
 def _update_final_energy(
@@ -59,6 +62,8 @@ def _update_final_energy(
 class FinalEnergy(BaseTransformation):
     """
     Class that creates heating datasets based on IAM output data.
+
+    It also adds capacity addition datasets based on capacity_addition.yaml
 
     :ivar database: database dictionary from :attr:`.NewDatabase.database`
     :ivar model: can be 'remind' or 'image'. str from :attr:`.NewDatabase.model`
@@ -136,120 +141,334 @@ class FinalEnergy(BaseTransformation):
             self.database.extend(datasets.values())
             self.add_to_index(datasets.values())
 
-    @contextlib.contextmanager
     def generate_capacity_addition_datasets(self):
         """
-        Create standalone capacity datasets and zero out their use from operation datasets.
+        Generate capacity addition datasets using simplified approach.
+
+        For each capacity addition key:
+        1. Find all datasets matching the filter criteria
+        2. Remove them from operational datasets (zero them out)
+        3. Create one unified capacity dataset combining all found datasets
+
+        Supports multiple filter blocks for combining different technologies
+        (e.g., wind fixed + moving parts) and AND logic within filter lists
+        (e.g., solar photovoltaic AND installation).
         """
 
         print("🔧 Generating capacity addition datasets...\n")
 
-        for key, dataset_names in self.capacity_addition_map.items():
+
+        for key, config in self.capacity_addition_map.items():
             print(f"🧩 Processing key: '{key}'")
 
-            for name in dataset_names:
-                matches = ws.get_many(self.database, ws.equals("name", name))
+            # Generate clean capacity addition name based on key
+            suffix = key.replace("New Cap - ", "").strip()
+            new_name = f"capacity addition, 1GW, {suffix}"
+            new_ref_prod = f"capacity addition, 1GW, {suffix}"
 
-                if not matches:
-                    print(f"  ⚠️ No match found for: {name}")
-                    continue
+            self.process_capacity_addition(key, config, new_name, new_ref_prod)
 
-                for orig in matches:
-                    print(
-                        f"  ✅ Matched dataset: '{orig['name']}' @ {orig['location']}"
-                    )
+    def process_capacity_addition(self, key, config, new_name, new_ref_prod):
+        """
+        Process a single capacity addition configuration.
 
-                    # Infer capacity
-                    installed_kw = self.extract_installed_capacity(orig)
-                    if installed_kw is None:
-                        print(
-                            f"    ⚠️ Could not infer installed capacity for '{orig['name']}' — skipping normalization."
-                        )
-                        scaling_factor = 1
-                    else:
-                        scaling_factor = 1_000_000 / installed_kw
-                        print(
-                            f"    🔄 Scaling factor to 1 GW: {scaling_factor:.0f} (from {installed_kw} kW/unit)"
-                        )
+        Creates one exchange per filter block.
 
-                    # Remove from operation datasets
-                    for op in self.database:
-                        if any(
-                            exc["type"] == "technosphere" and exc["name"] == name
-                            for exc in op.get("exchanges", [])
-                        ):
-                            before = len(op["exchanges"])
-                            op["exchanges"] = [
-                                exc
-                                for exc in op["exchanges"]
-                                if not (
-                                    exc["type"] == "technosphere"
-                                    and exc["name"] == name
-                                )
-                            ]
-                            after = len(op["exchanges"])
-                            print(
-                                f"    🧹 Removed {before - after} exchanges from '{op['name']}'"
-                            )
+        :param key: capacity addition key (e.g., "New Cap - Electricity - Solar")
+        :param config: configuration dictionary from YAML
+        :param new_name: name for the new capacity dataset
+        :param new_ref_prod: reference product for the new capacity dataset
+        """
 
-                    # Build new dataset manually
-                    new_name = self.rename_to_1GW(orig["name"]) + ", capacity addition"
-                    new_ref_prod = orig["reference product"] + ", capacity addition"
-                    new_ds = {
-                        "name": new_name,
-                        "reference product": new_ref_prod,
-                        "location": orig["location"],
-                        "unit": orig["unit"],
-                        "comment": "Created by premise. Infrastructure-only dataset for capacity addition (normalized to 1 GW).",
-                        "code": str(uuid.uuid4()),
-                        "exchanges": [],
-                        "type": "process",
-                    }
+        if "fltr" not in config:
+            print(f"  ⚠️ No fltr specified in config")
+            return
 
-                    # Add scaled exchanges
-                    for exc in orig.get("exchanges", []):
-                        if (
-                            exc["type"] in ("technosphere", "biosphere")
-                            and "amount" in exc
-                        ):
-                            new_exc = exc.copy()
-                            new_exc["amount"] *= scaling_factor
-                            new_ds["exchanges"].append(new_exc)
+        # Find all datasets matching the filter criteria
+        matched_datasets = self.get_datasets_from_filter(config)
 
-                    # Add production exchange
-                    new_ds["exchanges"].append(
-                        {
-                            "name": new_name,
-                            "product": new_ref_prod,
-                            "amount": 1,
-                            "unit": orig["unit"],
-                            "location": orig["location"],
-                            "type": "production",
-                        }
-                    )
+        if not matched_datasets:
+            print(f"  ⚠️ No datasets found with filter: {config}")
+            return
 
-                    self.database.append(new_ds)
-                    self.add_to_index([new_ds])
-                    print(f"    ✅ Added new capacity dataset: {new_ds['name']}")
+        print(f"  ✅ Found {len(matched_datasets)} datasets to process")
+
+        # Remove all matched datasets from operational datasets (zero them out)
+        self.remove_infrastructure_from_operations(matched_datasets)
+
+        # Create capacity dataset using all matched datasets
+        self.create_unified_capacity_dataset(matched_datasets, new_name, new_ref_prod)
+
+        print(f"  ✅ Completed processing for {key}")
+
+    def remove_infrastructure_from_operations(self, infrastructure_datasets):
+        """
+        Remove infrastructure datasets from all operational datasets.
+
+        This "zeros out" the infrastructure datasets by removing them from
+        all operational activities that might consume them.
+
+        :param infrastructure_datasets: list of infrastructure datasets to remove
+                                      Can be either datasets or (dataset, filter_index) tuples
+        """
+
+        # Handle both formats: datasets or (dataset, filter_index) tuples
+        if infrastructure_datasets and isinstance(infrastructure_datasets[0], tuple):
+            datasets = [ds for ds, _ in infrastructure_datasets]
+        else:
+            datasets = infrastructure_datasets
+
+        infrastructure_names = [ds["name"] for ds in datasets]
+        total_removed = 0
+
+        for op_dataset in self.database:
+            original_count = len(op_dataset.get("exchanges", []))
+            op_dataset["exchanges"] = [
+                exc for exc in op_dataset.get("exchanges", [])
+                if not (exc["type"] == "technosphere" and exc["name"] in infrastructure_names)
+            ]
+            removed_count = original_count - len(op_dataset["exchanges"])
+            total_removed += removed_count
+
+        print(f"    📊 Total infrastructure exchanges removed: {total_removed}")
+
+    def create_unified_capacity_dataset(self, matched_datasets_with_filter, new_name, new_ref_prod):
+        """
+        Create a unified capacity dataset from matched infrastructure datasets.
+
+        - Cancels ALL matched datasets from operations
+        - For single filter: selects ONE representative dataset (first one)
+        - For multiple filters: selects ONE representative per filter block
+        - Scales to 1GW capacity
+
+        :param matched_datasets_with_filter: list of (dataset, filter_index) tuples
+        :param new_name: name for the capacity dataset
+        :param new_ref_prod: reference product for the capacity dataset
+        """
+
+        if not matched_datasets_with_filter:
+            return
+
+        # Extract just the datasets for cancellation
+        matched_datasets = [ds for ds, _ in matched_datasets_with_filter]
+
+        print(f"    📊 Processing {len(matched_datasets)} matched datasets")
+        print(f"    🧹 Cancelled {len(matched_datasets)} datasets from operations")
+
+        # Group datasets by filter index
+        filter_groups = {}
+        for ds, filter_idx in matched_datasets_with_filter:
+            if filter_idx not in filter_groups:
+                filter_groups[filter_idx] = []
+            filter_groups[filter_idx].append(ds)
+
+        # Select one representative from each filter group
+        infrastructure_exchanges = []
+
+        for filter_idx, datasets_in_group in filter_groups.items():
+            # Select first dataset from this filter group as representative
+            representative_ds = datasets_in_group[0]
+
+            print(f"    📊 Selected representative from filter {filter_idx}: {representative_ds['name']}")
+
+            # Extract capacity and calculate scaling factor
+            individual_kw = self.extract_installed_capacity(representative_ds)
+            if individual_kw is None:
+                individual_scaling = 1
+                print(f"      ⚠️ Could not extract capacity for {representative_ds['name']}, using scaling factor 1")
+            else:
+                # Scale to 1GW (1,000,000 kW)
+                individual_scaling = 1_000_000 / individual_kw
+                print(
+                    f"      📊 {representative_ds['name']}: {individual_kw / 1000:.0f} MW → factor {individual_scaling:.2f}")
+
+            # Create exchange for this representative dataset
+            infrastructure_exchanges.append({
+                "name": representative_ds["name"],
+                "product": representative_ds["reference product"],
+                "amount": individual_scaling,
+                "unit": representative_ds["unit"],
+                "type": "technosphere",
+                "location": representative_ds["location"]
+            })
+
+        # Use first representative for location/unit (they should be similar anyway)
+        first_representative = list(filter_groups.values())[0][0]
+
+        # Create capacity dataset
+        capacity_dataset = self.create_capacity_dataset(
+            new_name, new_ref_prod, first_representative["location"], first_representative["unit"],
+            infrastructure_exchanges,
+            f"Representative dataset(s) selected from {len(matched_datasets)} cancelled datasets"
+        )
+
+        self.database.append(capacity_dataset)
+        self.add_to_index([capacity_dataset])
+
+        print(f"    ✅ Created capacity dataset with {len(infrastructure_exchanges)} infrastructure input(s)")
+
+        for i, exchange in enumerate(infrastructure_exchanges):
+            print(f"      Input {i + 1}: {exchange['name']} (amount: {exchange['amount']:.2f})")
+
+        # Create regional variants
+        regionalized = self.fetch_proxies(name=new_name, ref_prod=new_ref_prod)
+        for reg_ds in regionalized.values():
+            if not any(ds["name"] == reg_ds["name"] and ds["location"] == reg_ds["location"] for ds in self.database):
+                self.database.append(reg_ds)
+                self.add_to_index([reg_ds])
+
+        print(f"    🌍 Added {len(regionalized)} regional variants")
+
+    def get_datasets_from_filter(self, ecoinvent_aliases):
+        """
+        Get datasets using filtering with support for multiple filter blocks.
+
+        Supports the new YAML structure where fltr can be:
+        - A single filter object
+        - A list of filter objects (results are combined)
+
+        Within each filter object:
+        - Lists use AND logic (all terms must appear)
+        - Multiple filter objects use OR logic (any can match)
+
+        :param ecoinvent_aliases: dictionary containing filter specifications
+        :return: list of (dataset, filter_index) tuples to track which filter each dataset came from
+        """
+
+        fltr = ecoinvent_aliases.get("fltr", {})
+
+        if not fltr:
+            return []
+
+        # Handle new structure where fltr can be a list of filter objects
+        if isinstance(fltr, list):
+            # Multiple filter blocks - track which block each dataset came from
+            all_datasets = []
+            for i, filter_block in enumerate(fltr):
+                datasets = self.apply_single_filter(filter_block)
+                for ds in datasets:
+                    all_datasets.append((ds, i))
+            return all_datasets
+        else:
+            # Single filter block - all datasets come from filter 0
+            datasets = self.apply_single_filter(fltr)
+            return [(ds, 0) for ds in datasets]
+
+    def apply_single_filter(self, filter_block):
+        """
+        Apply a single filter block to find matching datasets.
+
+        Supports filtering by:
+        - name: substring matching with AND logic for lists
+        - reference product: substring matching with AND logic for lists
+        - unit: exact matching
+        - mask: exclusion filtering
+
+        :param filter_block: single filter specification dictionary
+        :return: list of matching datasets
+        """
+
+        # Start with all datasets
+        datasets = list(self.database)
+
+        # Apply name filter
+        if "name" in filter_block:
+            names = filter_block["name"]
+            if isinstance(names, list):
+                # AND logic: all names must appear in the dataset name
+                for name in names:
+                    datasets = [ds for ds in datasets if name in ds["name"]]
+            else:
+                # Single name: must appear in dataset name
+                datasets = [ds for ds in datasets if names in ds["name"]]
+
+        # Apply reference product filter
+        if "reference product" in filter_block:
+            ref_prods = filter_block["reference product"]
+            if isinstance(ref_prods, list):
+                # AND logic: all reference products must appear in the dataset reference product
+                for ref_prod in ref_prods:
+                    datasets = [ds for ds in datasets if ref_prod in ds["reference product"]]
+            else:
+                # Single reference product: must appear in dataset reference product
+                datasets = [ds for ds in datasets if ref_prods in ds["reference product"]]
+
+        # Apply unit filter (exact match)
+        if "unit" in filter_block:
+            unit_filter = filter_block["unit"]
+            datasets = [ds for ds in datasets if ds.get("unit") == unit_filter]
+
+        # Apply mask (exclusions)
+        if "mask" in filter_block:
+            mask = filter_block["mask"]
+            if isinstance(mask, str):
+                datasets = [ds for ds in datasets if mask not in ds["name"]]
+            elif isinstance(mask, list):
+                datasets = [ds for ds in datasets if not any(m in ds["name"] for m in mask)]
+
+        return datasets
+
+    def create_capacity_dataset(self, name, ref_prod, location, unit, exchanges, comment_suffix):
+        """
+        Create a capacity dataset with standard structure.
+
+        :param name: dataset name
+        :param ref_prod: reference product
+        :param location: dataset location
+        :param unit: dataset unit
+        :param exchanges: list of input exchanges
+        :param comment_suffix: additional comment text
+        :return: capacity dataset dictionary
+        """
+
+        capacity_dataset = {
+            "name": name,
+            "reference product": ref_prod,
+            "location": location,
+            "unit": unit,
+            "comment": f"Created by premise. Infrastructure-only dataset for capacity addition (normalized to 1 GW). {comment_suffix}",
+            "code": str(uuid.uuid4()),
+            "exchanges": exchanges.copy(),
+            "type": "process",
+        }
+
+        # Add production exchange
+        capacity_dataset["exchanges"].append({
+            "name": name,
+            "product": ref_prod,
+            "amount": 1,
+            "unit": unit,
+            "location": location,
+            "type": "production",
+        })
+
+        return capacity_dataset
 
     def extract_installed_capacity(self, dataset):
         """
         Try to infer installed capacity and unit from dataset name.
         E.g. 'heat pump, brine-water, 10kW' → 10.0
+             'photovoltaic installation, 156 kWp' → 156.0
              'market for turbine, 0.5 MW'   → 500.0
 
-        Supports units: kW, MW, GW, TW — returns in kW.
+        If not found in name, tries the dataset description/comment.
+
+        Supports units: kW, kWp, MW, MWp, GW, GWp, TW — returns in kW.
         Returns None if not parsable.
         """
 
         unit_factors = {
             "kw": 1,
+            "kwp": 1,  # kWp is same as kW for capacity
             "mw": 1e3,
+            "mwp": 1e3,  # MWp is same as MW for capacity
             "gw": 1e6,
+            "gwp": 1e6,  # GWp is same as GW for capacity
             "tw": 1e9,
         }
 
-        pattern = r"([\d\.]+)\s*(kW|MW|GW|TW)"
+        # Updated pattern to handle optional 'p' suffix
+        pattern = r"([\d\.]+)\s*(kWp?|MWp?|GWp?|TWp?)"
         m = re.search(pattern, dataset["name"], flags=re.IGNORECASE)
 
         if m:
@@ -262,37 +481,124 @@ class FinalEnergy(BaseTransformation):
             else:
                 print(f"⚠️ Unrecognized unit: {unit}")
                 return None
-        else:
-            return None
 
-    def rename_to_1GW(self, name: str) -> str:
-        """
-        Replace any installed capacity info in the format '123kW', '5 MW', '0.5TW' with '1GW'.
-        """
-        return re.sub(
-            r"\b\d+(\.\d+)?\s?(W|kW|MW|GW|TW)\b", "1GW", name, flags=re.IGNORECASE
-        )
+        # If not found in name, try the reference product
+        ref_product = dataset.get("reference product", "")
+        if ref_product:
+            m = re.search(pattern, ref_product, flags=re.IGNORECASE)
+            if m:
+                value = float(m.group(1))
+                unit = m.group(2).lower()
+                factor = unit_factors.get(unit)
+
+                if factor:
+                    return value * factor  # Return in kW
+                else:
+                    print(f"⚠️ Unrecognized unit: {unit}")
+                    return None
+
+        # If not found in reference product, try the comment
+        comment  = dataset.get("comment", "")
+        if comment :
+            m = re.search(pattern, comment , flags=re.IGNORECASE)
+            if m:
+                value = float(m.group(1))
+                unit = m.group(2).lower()
+                factor = unit_factors.get(unit)
+
+                if factor:
+                    return value * factor  # Return in kW
+                else:
+                    print(f"⚠️ Unrecognized unit: {unit}")
+                    return None
 
     def get_patched_yaml_data(self):
-        patched = {}
+        """
+        Generate YAML configuration for capacity datasets.
 
-        for variable, dataset_names in self.capacity_addition_map.items():
-            for name in dataset_names:
-                for ds in ws.get_many(
-                    self.database, ws.contains("name", "capacity addition")
-                ):
-                    if name in ds["name"]:
-                        patched[variable] = {
-                            "ecoinvent_aliases": {
-                                "fltr": {
-                                    "name": ds["name"],
-                                    "reference product": ds["reference product"],
-                                }
-                            },
-                            "iam_aliases": {
-                                self.model: self.iam_data.final_energy_use.get_key(
-                                    variable
-                                )
-                            },
-                        }
+        Creates configuration entries for each capacity dataset that was
+        successfully created, mapping them to IAM aliases for integration.
+
+        :return: dictionary with patched YAML configuration
+        """
+
+        yaml_file = Path(__file__).parent / "iam_variables_mapping" / "capacity_addition.yaml"
+
+        if not yaml_file.exists():
+            print("⚠️ capacity_addition.yaml not found")
+            return {}
+
+        with open(yaml_file, 'r') as f:
+            original_yaml = yaml.safe_load(f)
+
+        patched = {}
+        capacity_units = {}
+
+        for variable in self.capacity_addition_map.keys():
+            suffix = variable.replace("New Cap - ", "").strip()
+            capacity_name = f"capacity addition, 1GW, {suffix}"
+
+            # Look for capacity addition datasets (any region)
+            capacity_datasets = list(ws.get_many(self.database, ws.equals("name", capacity_name)))
+
+            if not capacity_datasets:
+                print(f"⚠️ No capacity dataset found for {variable}")
+                continue
+
+            # Use first found dataset as template for YAML
+            template_ds = capacity_datasets[0]
+
+            # Get IAM aliases from the original YAML
+            original_config = original_yaml.get(variable, {})
+            original_iam_aliases = original_config.get("iam_aliases", {})
+
+            if self.model not in original_iam_aliases:
+                print(f"⚠️ No IAM alias found for {self.model} in {variable} - skipping")
+                continue
+
+            iam_variable = original_iam_aliases[self.model]
+
+            patched[variable] = {
+                "ecoinvent_aliases": {
+                    "fltr": {
+                        "name": template_ds["name"],
+                        "reference product": template_ds["reference product"],
+                    }
+                },
+                "iam_aliases": {
+                    self.model: iam_variable
+                },
+            }
+
+            if hasattr(self.iam_data.final_energy_use, 'attrs') and 'unit' in self.iam_data.final_energy_use.attrs:
+                if iam_variable in self.iam_data.final_energy_use.attrs['unit']:
+                    capacity_units[iam_variable] = self.iam_data.final_energy_use.attrs['unit'][iam_variable]
+                    print(f"✅ Found unit for {iam_variable} in final_energy_use: {capacity_units[iam_variable]}")
+
+            # If not found, check in production_volumes
+            if iam_variable not in capacity_units:
+                if hasattr(self.iam_data.production_volumes,
+                           'attrs') and 'unit' in self.iam_data.production_volumes.attrs:
+                    if iam_variable in self.iam_data.production_volumes.attrs['unit']:
+                        capacity_units[iam_variable] = self.iam_data.production_volumes.attrs['unit'][iam_variable]
+                        print(f"✅ Found unit for {iam_variable} in production_volumes: {capacity_units[iam_variable]}")
+
+            # If still not found, check in the main data array
+            if iam_variable not in capacity_units:
+                if hasattr(self.iam_data.data, 'attrs') and 'unit' in self.iam_data.data.attrs:
+                    if iam_variable in self.iam_data.data.attrs['unit']:
+                        capacity_units[iam_variable] = self.iam_data.data.attrs['unit'][iam_variable]
+                        print(f"✅ Found unit for {iam_variable} in main data: {capacity_units[iam_variable]}")
+
+            print(f"✅ {variable} → {original_iam_aliases[self.model]}")
+
+        # Store the patched data globally in memory
+        if patched:
+            # Store in the premise.final_energy module
+            final_energy_module = sys.modules['premise.final_energy']
+            final_energy_module._PATCHED_CAPACITY_ADDITION = patched
+            final_energy_module._PATCHED_CAPACITY_UNITS = capacity_units
+            print(f"📦 Stored {len(patched)} capacity variables globally in memory")
+            print(f"📦 Found units for {len(capacity_units)} IAM variables")
+
         return patched

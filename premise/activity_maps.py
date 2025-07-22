@@ -445,7 +445,7 @@ class InventorySet:
         :rtype: dict
 
         """
-        return self.generate_sets_from_filters(self.capacity_addition_filters)
+        return self.capacity_addition_filters
 
     def generate_transport_map(self, transport_type: str) -> dict:
         """
