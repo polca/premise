@@ -283,10 +283,10 @@ class Interventions(BaseTransformation):
                     amount_mean = -1 * shares.sel(technology=waste_management_type)[
                         "mean"
                     ].values.item(0)
-                    amount_min = -1 * shares.sel(technology=waste_management_type)[
+                    amount_max = -1 * shares.sel(technology=waste_management_type)[
                         "min"
                     ].values.item(0)
-                    amount_max = -1 * shares.sel(technology=waste_management_type)[
+                    amount_min = -1 * shares.sel(technology=waste_management_type)[
                         "max"
                     ].values.item(0)
 
@@ -447,10 +447,10 @@ class Interventions(BaseTransformation):
                         amount_mean = -1 * shares.sel(technology=treatment_type)[
                             "mean"
                         ].values.item(0)
-                        amount_min = -1 * shares.sel(technology=treatment_type)[
+                        amount_max = -1 * shares.sel(technology=treatment_type)[
                             "min"
                         ].values.item(0)
-                        amount_max = -1 * shares.sel(technology=treatment_type)[
+                        amount_min = -1 * shares.sel(technology=treatment_type)[
                             "max"
                         ].values.item(0)
 
