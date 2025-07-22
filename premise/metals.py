@@ -1197,7 +1197,6 @@ class Metals(BaseTransformation):
 
             self.substitute_old_markets(new_dataset=dataset, df_metal=df_metal)
 
-
     def get_market_split_shares(self, metal_key: str) -> tuple[str, str, float, float]:
         """
         For a given metal_key (e.g., 'copper, cathod'), return:

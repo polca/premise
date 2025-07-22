@@ -397,9 +397,7 @@ class InventorySet:
         :rtype: dict
 
         """
-        filters = get_mapping(
-            filepath=MINING_WASTE, var="ecoinvent_aliases"
-        )
+        filters = get_mapping(filepath=MINING_WASTE, var="ecoinvent_aliases")
         return self.generate_sets_from_filters(filters)
 
     def generate_copper_waste_map(self) -> dict:
@@ -411,9 +409,7 @@ class InventorySet:
         :rtype: dict
 
         """
-        filters = get_mapping(
-            filepath=COPPER_WASTE, var="ecoinvent_aliases"
-        )
+        filters = get_mapping(filepath=COPPER_WASTE, var="ecoinvent_aliases")
         return self.generate_sets_from_filters(filters)
 
     def generate_eaf_slag_waste_map(self) -> dict:
@@ -425,9 +421,7 @@ class InventorySet:
         :rtype: dict
 
         """
-        filters = get_mapping(
-            filepath=EAF_SLAG_WASTE, var="ecoinvent_aliases"
-        )
+        filters = get_mapping(filepath=EAF_SLAG_WASTE, var="ecoinvent_aliases")
         return self.generate_sets_from_filters(filters)
 
     def generate_bof_slag_waste_map(self) -> dict:
@@ -439,9 +433,7 @@ class InventorySet:
         :rtype: dict
 
         """
-        filters = get_mapping(
-            filepath=BOF_SLAG_WASTE, var="ecoinvent_aliases"
-        )
+        filters = get_mapping(filepath=BOF_SLAG_WASTE, var="ecoinvent_aliases")
         return self.generate_sets_from_filters(filters)
 
     def generate_brake_wear_map(self) -> dict:
@@ -453,9 +445,7 @@ class InventorySet:
         :rtype: dict
 
         """
-        filters = get_mapping(
-            filepath=BRAKE_WEAR, var="ecoinvent_aliases"
-        )
+        filters = get_mapping(filepath=BRAKE_WEAR, var="ecoinvent_aliases")
         return self.generate_sets_from_filters(filters)
 
     def generate_final_energy_map(self) -> dict:
