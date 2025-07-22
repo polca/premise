@@ -7,8 +7,6 @@ Integrates projections regarding:
 """
 
 import yaml
-import copy
-import uuid
 import xarray as xr
 import numpy as np
 from collections import defaultdict
@@ -223,7 +221,7 @@ class Interventions(BaseTransformation):
             ### Old markets were consuming positive amounts of the new markets. We need to invert this
             for ds in self.database:
                 if (
-                    ds["name"] == market_datasets[0]["name"]
+                    ds["name"] == datasets[0]["name"]
                     and ds["location"] not in self.tailings_shares.region.values
                 ):
                     iam_region = self.geomap.ecoinvent_to_iam_location(ds["location"])
@@ -375,7 +373,7 @@ class Interventions(BaseTransformation):
 
                 for ds in self.database:
                     if (
-                        ds["name"] == market_datasets[0]["name"]
+                        ds["name"] == datasets[0]["name"]
                         and ds["location"] not in slag_shares.region.values
                     ):
                         iam_region = self.geomap.ecoinvent_to_iam_location(
