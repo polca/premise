@@ -139,17 +139,12 @@ def get_production_weighted_losses(
     # Fetch locations contained in IAM region
     cumul_prod, transf_loss = 0.0, 0.0
     for loc in locs:
-        dict_loss = losses.get(
-            loc,
-            {"Transformation loss high voltage": 0.0, "Production volume": 0.0},
-        )
+        loss = losses.get(loc, {})
+        prod = loss.get("Production volume", 0.0)
+        transf = loss.get("Transformation loss high voltage", 0.0)
 
-        transf_loss += (
-            dict_loss.get("Transformation loss high voltage", 0)
-            * dict_loss["Production volume"]
-        )
-
-        cumul_prod += dict_loss["Production volume"]
+        transf_loss += transf * prod
+        cumul_prod += prod
 
     if cumul_prod == 0:
         return {
@@ -304,9 +299,48 @@ def create_fuel_map(database, version, model) -> tuple[InventorySet, dict, dict]
 
     for key, value in fuel_map.items():
         for v in list(value):
-            fuel_map_reverse[v] = key
+            fuel_map_reverse[v["reference product"]] = key
 
     return mapping, fuel_map, fuel_map_reverse
+
+
+def select_or_interpolate(data, year, **kwargs):
+    """
+    Select IAM data at `year` if available, otherwise interpolate.
+    kwargs are passed to .sel()
+    """
+    if year in data.coords["year"].values:
+        return data.sel(year=year, **kwargs).values.item(0)
+    return data.sel(**kwargs).interp(year=year).values.item(0)
+
+
+def compute_time_weighted_mix(mix, region, year, period):
+    interp_range = np.arange(year, year + period + 1)
+    return dict(
+        zip(
+            mix.variables.values,
+            mix.sel(region=region)
+            .interp(year=interp_range, kwargs={"fill_value": "extrapolate"})
+            .mean(dim="year")
+            .values,
+        )
+    )
+
+
+def make_generic_market_dataset(
+    name, reference_product, region, comment, unit="kilowatt hour"
+):
+    return {
+        "name": name,
+        "reference product": reference_product,
+        "location": region,
+        "unit": unit,
+        "code": str(uuid.uuid4().hex),
+        "database": "",
+        "comment": comment,
+        "regionalized": True,
+        "exchanges": [],
+    }
 
 
 class Electricity(BaseTransformation):
@@ -358,9 +392,12 @@ class Electricity(BaseTransformation):
         self.powerplant_map_rev = {}
         for k, v in self.powerplant_map.items():
             for pp in list(v):
-                self.powerplant_map_rev[pp] = k
+                self.powerplant_map_rev[pp["name"]] = k
 
         self.powerplant_fuels_map = mapping.generate_powerplant_fuels_map()
+        self.powerplant_fuels_map = {
+            k: [x["name"] for x in v] for k, v in self.powerplant_fuels_map.items()
+        }
 
         self.production_per_tech = self.get_production_per_tech_dict()
         losses = get_losses_per_country(self.database)
@@ -374,8 +411,9 @@ class Electricity(BaseTransformation):
         self.biosphere_dict = biosphere_flows_dictionary(self.version)
         self.use_absolute_efficiency = use_absolute_efficiency
 
-        self.powerplant_max_efficiency = mapping.powerplant_max_efficiency
-        self.powerplant_min_efficiency = mapping.powerplant_min_efficiency
+        self.powerplant_min_efficiency, self.powerplant_max_efficiency = (
+            mapping.generate_powerplant_efficiency_bounds()
+        )
 
     @lru_cache
     def get_production_per_tech_dict(self) -> Dict[Tuple[str, str], float]:
@@ -388,18 +426,14 @@ class Electricity(BaseTransformation):
 
         production_vols = {}
 
-        for dataset_names in self.powerplant_map.values():
-            for name in dataset_names:
-                for dataset in ws.get_many(
-                    self.database,
-                    ws.equals("name", name),
-                ):
-                    for exc in ws.production(dataset):
-                        # even if non-existent, we set a minimum value of 1e-9
-                        # because if not, we risk dividing by zero!!!
-                        production_vols[(dataset["name"], dataset["location"])] = max(
-                            float(exc.get("production volume", 1e-9)), 1e-9
-                        )
+        for technology, datasets in self.powerplant_map.items():
+            for dataset in datasets:
+                for exc in ws.production(dataset):
+                    # even if non-existent, we set a minimum value of 1e-9
+                    # because if not, we risk dividing by zero!!!
+                    production_vols[(dataset["name"], dataset["location"])] = max(
+                        float(exc.get("production volume", 1e-9)), 1e-9
+                    )
 
         return production_vols
 
@@ -426,19 +460,13 @@ class Electricity(BaseTransformation):
         :rtype: float
         """
 
-        # Fetch the production volume of the supplier
-        loc_production = float(
-            self.production_per_tech.get((supplier["name"], supplier["location"]), 0)
+        supplier_key = (supplier["name"], supplier["location"])
+        loc_production = float(self.production_per_tech.get(supplier_key, 0.0))
+
+        total_production = sum(
+            float(self.production_per_tech.get((s["name"], s["location"]), 0.0))
+            for s in suppliers
         )
-
-        # Fetch the total production volume of similar technologies in other locations
-        # contained within the IAM region.
-
-        total_production = 0
-        for loc in suppliers:
-            total_production += float(
-                self.production_per_tech.get((loc["name"], loc["location"]), 0)
-            )
 
         # If a corresponding production volume is found.
         if total_production != 0:
@@ -468,17 +496,15 @@ class Electricity(BaseTransformation):
         }
 
         # Create an empty dataset
-        generic_dataset = {
-            "name": "market group for electricity, low voltage",
-            "reference product": "electricity, low voltage",
-            "unit": "kilowatt hour",
-            "database": self.database[1]["database"],
-            "comment": f"Dataset created by `premise` from the IAM model {self.model.upper()}"
-            f" using the pathway {self.scenario} for the year {self.year}.",
-            "exchanges": [],
-        }
+        generic_dataset = make_generic_market_dataset(
+            name="market group for electricity, low voltage",
+            reference_product="electricity, low voltage",
+            region="",
+            comment=f"Dataset created by `premise` from the IAM model {self.model} "
+            f"using the pathway {self.scenario} for the year {self.year}.",
+        )
 
-        def generate_regional_markets(region: str, period: int, subset: list) -> dict:
+        def generate_regional_markets(region: str, period: int) -> dict:
             new_dataset = copy.deepcopy(generic_dataset)
             new_dataset["location"] = region
             new_dataset["code"] = str(uuid.uuid4().hex)
@@ -499,85 +525,70 @@ class Electricity(BaseTransformation):
 
             tech_suppliers = defaultdict(list)
 
-            for technology in ecoinvent_technologies:
+            for technology, datasets in ecoinvent_technologies.items():
                 suppliers, counter = [], 0
 
-                while len(suppliers) == 0:
-                    suppliers = list(
-                        get_suppliers_of_a_region(
-                            database=subset,
-                            locations=possible_locations[counter],
-                            names=ecoinvent_technologies[technology],
-                            reference_prod="electricity",
-                            unit="kilowatt hour",
-                            exact_match=True,
-                        )
+                try:
+                    while len(suppliers) == 0:
+                        suppliers = [
+                            ds
+                            for ds in datasets
+                            if any(
+                                ds["location"] == x for x in possible_locations[counter]
+                            )
+                        ]
+
+                        counter += 1
+
+                    for supplier in suppliers:
+                        share = self.get_production_weighted_share(supplier, suppliers)
+                        tech_suppliers[technology].append((supplier, share))
+
+                    # remove suppliers that have a supply share inferior to 0.1%
+                    tech_suppliers[technology] = [
+                        supplier
+                        for supplier in tech_suppliers[technology]
+                        if supplier[1] > 0.001
+                    ]
+                    # rescale the shares so that they sum to 1
+                    total_share = sum(
+                        supplier[1] for supplier in tech_suppliers[technology]
                     )
-                    counter += 1
+                    tech_suppliers[technology] = [
+                        (supplier[0], supplier[1] / total_share)
+                        for supplier in tech_suppliers[technology]
+                    ]
 
-                for supplier in suppliers:
-                    share = self.get_production_weighted_share(supplier, suppliers)
-                    tech_suppliers[technology].append((supplier, share))
+                except IndexError as exc:
+                    if self.system_model == "consequential":
+                        continue
+                    raise IndexError(
+                        f"Couldn't find suppliers for {technology} when looking for {ecoinvent_technologies[technology]}."
+                    ) from exc
 
-                # remove suppliers that have a supply share inferior to 0.1%
-                tech_suppliers[technology] = [
-                    supplier
-                    for supplier in tech_suppliers[technology]
-                    if supplier[1] > 0.001
-                ]
-                # rescale the shares so that they sum to 1
-                total_share = sum(
-                    supplier[1] for supplier in tech_suppliers[technology]
+            # Create a time-weighted average mix
+            if self.system_model == "consequential":
+                electricity_mix = dict(
+                    zip(
+                        self.iam_data.electricity_mix.variables.values,
+                        self.iam_data.electricity_mix.sel(
+                            region=region, year=self.year
+                        ).values,
+                    )
                 )
-                tech_suppliers[technology] = [
-                    (supplier[0], supplier[1] / total_share)
-                    for supplier in tech_suppliers[technology]
-                ]
 
-                # Create a time-weighted average mix
-                if self.system_model == "consequential":
-                    electricity_mix = dict(
-                        zip(
-                            self.iam_data.electricity_mix.variables.values,
-                            self.iam_data.electricity_mix.sel(
-                                region=region, year=self.year
-                            ).values,
-                        )
-                    )
-
-                else:
-                    # Create a time-weighted average mix
-                    electricity_mix = dict(
-                        zip(
-                            self.iam_data.electricity_mix.variables.values,
-                            self.iam_data.electricity_mix.sel(
-                                region=region,
-                            )
-                            .interp(
-                                year=np.arange(self.year, self.year + period + 1),
-                                kwargs={"fill_value": "extrapolate"},
-                            )
-                            .mean(dim="year")
-                            .values,
-                        )
-                    )
-
-            # fetch production volume
-            if self.year in self.iam_data.production_volumes.coords["year"].values:
-                production_volume = self.iam_data.production_volumes.sel(
-                    region=region,
-                    variables=self.iam_data.electricity_mix.variables.values,
-                    year=self.year,
-                ).values.item(0)
             else:
-                production_volume = (
-                    self.iam_data.production_volumes.sel(
-                        region=region,
-                        variables=self.iam_data.electricity_mix.variables.values,
-                    )
-                    .interp(year=self.year)
-                    .values.item(0)
+                # Create a time-weighted average mix
+                electricity_mix = compute_time_weighted_mix(
+                    self.iam_data.electricity_mix, region, self.year, period
                 )
+
+            production_volume = select_or_interpolate(
+                self.iam_data.production_volumes,
+                self.year,
+                region=region,
+                variables=self.iam_data.electricity_mix.variables.values,
+            )
 
             # First, add the reference product exchange
             new_exchanges = [
@@ -591,13 +602,14 @@ class Electricity(BaseTransformation):
                     "name": "market group for electricity, low voltage",
                     "unit": "kilowatt hour",
                     "location": region,
+                    "regionalized": True,
                 }
             ]
 
             if period != 0:
                 # this dataset is for a period of time
                 new_dataset["name"] += f", {period}-year period"
-                new_dataset["comment"] += (
+                new_dataset["comment"] = (
                     f" Average electricity mix over a {period}"
                     f"-year period {self.year}-{self.year + period}."
                 )
@@ -731,10 +743,7 @@ class Electricity(BaseTransformation):
 
             new_dataset["exchanges"] = new_exchanges
 
-            if "log parameters" not in new_dataset:
-                new_dataset["log parameters"] = {}
-
-            new_dataset["log parameters"].update(
+            new_dataset.setdefault("log parameters", {}).update(
                 {
                     "distribution loss": distr_loss,
                     "transformation loss": transf_loss,
@@ -750,16 +759,8 @@ class Electricity(BaseTransformation):
         else:
             periods = [0, 20, 40, 60]
 
-        # Using a list comprehension to process all technologies
-        subset = filter_technology(
-            dataset_names=[
-                item for subset in ecoinvent_technologies.values() for item in subset
-            ],
-            database=self.database,
-        )
-
         new_datasets = [
-            generate_regional_markets(region, period, subset)
+            generate_regional_markets(region, period)
             for region in self.regions
             for period in periods
             if region != "World"
@@ -787,15 +788,13 @@ class Electricity(BaseTransformation):
         """
 
         # Create an empty dataset
-        generic_dataset = {
-            "name": "market group for electricity, medium voltage",
-            "reference product": "electricity, medium voltage",
-            "unit": "kilowatt hour",
-            "database": self.database[1]["database"],
-            "comment": f"Dataset created by `premise` from the IAM model {self.model.upper()}"
-            f" using the pathway {self.scenario} for the year {self.year}.",
-            "exchanges": [],
-        }
+        generic_dataset = make_generic_market_dataset(
+            name="market group for electricity, medium voltage",
+            reference_product="electricity, medium voltage",
+            region="",
+            comment=f"Dataset created by `premise` from the IAM model {self.model} "
+            f"using the pathway {self.scenario} for the year {self.year}.",
+        )
 
         def generate_regional_markets(region: str, period: int) -> dict:
 
@@ -807,21 +806,12 @@ class Electricity(BaseTransformation):
             distr_loss = self.network_loss[region]["medium"]["distr_loss"]
 
             # fetch production volume
-            if self.year in self.iam_data.production_volumes.coords["year"].values:
-                production_volume = self.iam_data.production_volumes.sel(
-                    region=region,
-                    variables=self.iam_data.electricity_mix.variables.values,
-                    year=self.year,
-                ).values.item(0)
-            else:
-                production_volume = (
-                    self.iam_data.production_volumes.sel(
-                        region=region,
-                        variables=self.iam_data.electricity_mix.variables.values,
-                    )
-                    .interp(year=self.year)
-                    .values.item(0)
-                )
+            production_volume = select_or_interpolate(
+                self.iam_data.production_volumes,
+                self.year,
+                region=region,
+                variables=self.iam_data.electricity_mix.variables.values,
+            )
 
             # First, add the reference product exchange
             new_exchanges = [
@@ -845,7 +835,7 @@ class Electricity(BaseTransformation):
             if period != 0:
                 # this dataset is for a period of time
                 new_dataset["name"] += f", {period}-year period"
-                new_dataset["comment"] += (
+                new_dataset["comment"] = (
                     f" Average electricity mix over a {period}"
                     f"-year period {self.year}-{self.year + period}."
                 )
@@ -950,10 +940,7 @@ class Electricity(BaseTransformation):
 
             new_dataset["exchanges"] = new_exchanges
 
-            if "log parameters" not in new_dataset:
-                new_dataset["log parameters"] = {}
-
-            new_dataset["log parameters"].update(
+            new_dataset.setdefault("log parameters", {}).update(
                 {
                     "distribution loss": distr_loss,
                     "transformation loss": transf_loss,
@@ -1009,17 +996,15 @@ class Electricity(BaseTransformation):
             technology: self.powerplant_map[technology] for technology in technologies
         }
 
-        generic_dataset = {
-            "name": "market group for electricity, high voltage",
-            "reference product": "electricity, high voltage",
-            "unit": "kilowatt hour",
-            "database": self.database[1]["database"],
-            "comment": f"Dataset created by `premise` from the IAM model {self.model.upper()}"
-            f" using the pathway {self.scenario} for the year {self.year}.",
-            "exchanges": [],
-        }
+        generic_dataset = make_generic_market_dataset(
+            name="market group for electricity, high voltage",
+            reference_product="electricity, high voltage",
+            region="",
+            comment=f"Dataset created by `premise` from the IAM model {self.model} "
+            f"using the pathway {self.scenario} for the year {self.year}.",
+        )
 
-        def generate_regional_markets(region: str, period: int, subset: list) -> dict:
+        def generate_regional_markets(region: str, period: int) -> dict:
 
             new_dataset = copy.deepcopy(generic_dataset)
             new_dataset["location"] = region
@@ -1045,48 +1030,37 @@ class Electricity(BaseTransformation):
 
             tech_suppliers = defaultdict(list)
 
-            for technology in ecoinvent_technologies:
-                suppliers, counter = [], 0
+            for technology, datasets in ecoinvent_technologies.items():
+                suppliers = []
 
-                try:
-                    while len(suppliers) == 0:
-                        suppliers = list(
-                            get_suppliers_of_a_region(
-                                database=subset,
-                                locations=possible_locations[counter],
-                                names=ecoinvent_technologies[technology],
-                                reference_prod="electricity",
-                                unit="kilowatt hour",
-                                exact_match=True,
-                            )
-                        )
-                        counter += 1
-
-                    for supplier in suppliers:
-                        share = self.get_production_weighted_share(supplier, suppliers)
-                        tech_suppliers[technology].append((supplier, share))
-
-                    # remove suppliers that have a supply share inferior to 0.1%
-                    tech_suppliers[technology] = [
-                        supplier
-                        for supplier in tech_suppliers[technology]
-                        if supplier[1] > 0.001
-                    ]
-                    # rescale the shares so that they sum to 1
-                    total_share = sum(
-                        supplier[1] for supplier in tech_suppliers[technology]
-                    )
-                    tech_suppliers[technology] = [
-                        (supplier[0], supplier[1] / total_share)
-                        for supplier in tech_suppliers[technology]
+                for counter in range(len(possible_locations)):
+                    suppliers = [
+                        ds
+                        for ds in datasets
+                        if any(ds["location"] == x for x in possible_locations[counter])
                     ]
 
-                except IndexError as exc:
-                    if self.system_model == "consequential":
-                        continue
-                    raise IndexError(
-                        f"Couldn't find suppliers for {technology} when looking for {ecoinvent_technologies[technology]}."
-                    ) from exc
+                    if len(suppliers) > 0:
+                        break
+
+                for supplier in suppliers:
+                    share = self.get_production_weighted_share(supplier, suppliers)
+                    tech_suppliers[technology].append((supplier, share))
+
+                # remove suppliers that have a supply share inferior to 0.1%
+                tech_suppliers[technology] = [
+                    supplier
+                    for supplier in tech_suppliers[technology]
+                    if supplier[1] > 0.001
+                ]
+                # rescale the shares so that they sum to 1
+                total_share = sum(
+                    supplier[1] for supplier in tech_suppliers[technology]
+                )
+                tech_suppliers[technology] = [
+                    (supplier[0], supplier[1] / total_share)
+                    for supplier in tech_suppliers[technology]
+                ]
 
             if self.system_model == "consequential":
                 electricity_mix = dict(
@@ -1099,19 +1073,8 @@ class Electricity(BaseTransformation):
                 )
 
             else:
-                electricity_mix = dict(
-                    zip(
-                        self.iam_data.electricity_mix.variables.values,
-                        self.iam_data.electricity_mix.sel(
-                            region=region,
-                        )
-                        .interp(
-                            year=np.arange(self.year, self.year + period + 1),
-                            kwargs={"fill_value": "extrapolate"},
-                        )
-                        .mean(dim="year")
-                        .values,
-                    )
+                electricity_mix = compute_time_weighted_mix(
+                    self.iam_data.electricity_mix, region, self.year, period
                 )
 
             # remove `solar pv residential` from the mix
@@ -1124,21 +1087,12 @@ class Electricity(BaseTransformation):
             }
 
             # fetch production volume
-            if self.year in self.iam_data.production_volumes.coords["year"].values:
-                production_volume = self.iam_data.production_volumes.sel(
-                    region=region,
-                    variables=self.iam_data.electricity_mix.variables.values,
-                    year=self.year,
-                ).values.item(0)
-            else:
-                production_volume = (
-                    self.iam_data.production_volumes.sel(
-                        region=region,
-                        variables=self.iam_data.electricity_mix.variables.values,
-                    )
-                    .interp(year=self.year)
-                    .values.item(0)
-                )
+            production_volume = select_or_interpolate(
+                self.iam_data.production_volumes,
+                self.year,
+                region=region,
+                variables=self.iam_data.electricity_mix.variables.values,
+            )
 
             # First, add the reference product exchange
             new_exchanges = [
@@ -1171,7 +1125,7 @@ class Electricity(BaseTransformation):
             if period != 0:
                 # this dataset is for a period of time
                 new_dataset["name"] += f", {period}-year period"
-                new_dataset["comment"] += (
+                new_dataset["comment"] = (
                     f" Average electricity mix over a {period}"
                     f"-year period {self.year}-{self.year + period}."
                 )
@@ -1215,10 +1169,7 @@ class Electricity(BaseTransformation):
 
             new_dataset["exchanges"] = new_exchanges
 
-            if "log parameters" not in new_dataset:
-                new_dataset["log parameters"] = {}
-
-            new_dataset["log parameters"].update(
+            new_dataset.setdefault("log parameters", {}).update(
                 {
                     "distribution loss": 0.0,
                     "transformation loss": transf_loss,
@@ -1235,16 +1186,8 @@ class Electricity(BaseTransformation):
         else:
             periods = [0, 20, 40, 60]
 
-        # Using a list comprehension to process all technologies
-        subset = filter_technology(
-            dataset_names=[
-                item for subset in ecoinvent_technologies.values() for item in subset
-            ],
-            database=self.database,
-        )
-
         new_datasets = [
-            generate_regional_markets(region, period, subset)
+            generate_regional_markets(region, period)
             for period in periods
             for region in self.regions
             if region != "World"
@@ -1434,8 +1377,6 @@ class Electricity(BaseTransformation):
         :return:
         """
 
-        # print("Update efficiency of solar PV panels.")
-
         possible_techs = [
             "micro-Si",
             "single-Si",
@@ -1550,13 +1491,10 @@ class Electricity(BaseTransformation):
                             f"from {int(current_eff * 100)} pct. to {int(new_mean_eff * 100)} pt."
                         )
 
-                        if "log parameters" not in dataset:
-                            dataset["log parameters"] = {}
-
-                        dataset["log parameters"].update(
+                        dataset.setdefault("log parameters", {}).update(
                             {"old efficiency": current_eff}
                         )
-                        dataset["log parameters"].update(
+                        dataset.setdefault("log parameters", {}).update(
                             {"new efficiency": new_mean_eff}
                         )
 
@@ -1582,7 +1520,6 @@ class Electricity(BaseTransformation):
 
         """
 
-        # print("Create region-specific power plants.")
         all_plants = []
 
         techs = [
@@ -1607,45 +1544,43 @@ class Electricity(BaseTransformation):
             "Storage, Hydrogen",
         ]
 
-        list_datasets_to_duplicate = list(
-            set(
-                dataset["name"]
-                for dataset in self.database
-                if dataset["name"]
-                in [y for k, v in self.powerplant_map.items() for y in v if k in techs]
-            )
-        )
+        datasets_to_duplicate = [
+            dataset
+            for technology, datasets in self.powerplant_map.items()
+            for dataset in datasets
+            if technology in techs
+        ]
 
-        list_datasets_to_duplicate.insert(
-            0,
-            "hydrogen storage, for grid-balancing",
-        )
+        datasets_to_duplicate = [
+            ds
+            for ds in self.database
+            if "hydrogen storage, for grid-balancing" in ds["name"]
+        ] + datasets_to_duplicate
 
-        list_datasets_to_duplicate.extend(
+        datasets_to_duplicate.extend(
             [
-                "carbon dioxide storage from",
-                "carbon dioxide storage at",
-                "carbon dioxide, captured from hard coal",
-                "carbon dioxide, captured from lignite",
-                "carbon dioxide, captured from natural gas",
-                "carbon dioxide, captured at wood burning",
-                "carbon dioxide, captured at hydrogen burning",
+                ds
+                for ds in self.database
+                if any(
+                    x in ds["name"]
+                    for x in [
+                        "carbon dioxide storage from",
+                        "carbon dioxide storage at",
+                        "carbon dioxide, captured from hard coal",
+                        "carbon dioxide, captured from lignite",
+                        "carbon dioxide, captured from natural gas",
+                        "carbon dioxide, captured at wood burning",
+                        "carbon dioxide, captured at hydrogen burning",
+                    ]
+                )
             ]
         )
 
-        for dataset in ws.get_many(
-            self.database,
-            ws.either(
-                *[ws.contains("name", name) for name in list_datasets_to_duplicate]
-            ),
-            ws.exclude(ws.contains("name", "market")),
-            ws.exclude(ws.contains("name", ", oxy, ")),
-            ws.exclude(ws.contains("name", ", pre, ")),
-        ):
+        for dataset in datasets_to_duplicate:
             new_plants = self.fetch_proxies(
-                name=dataset["name"],
-                ref_prod=dataset["reference product"],
-                production_variable=self.powerplant_map_rev.get(dataset["name"]),
+                datasets=[
+                    dataset,
+                ],
             )
 
             for new_plant in new_plants.values():
@@ -1714,8 +1649,6 @@ class Electricity(BaseTransformation):
         :rtype: list
         """
 
-        # print("Adjust efficiency of power plants...")
-
         eff_labels = self.iam_data.electricity_technology_efficiencies.variables.values
         all_techs = self.iam_data.electricity_mix.variables.values
 
@@ -1727,18 +1660,8 @@ class Electricity(BaseTransformation):
 
         for technology in technologies_map:
             dict_technology = technologies_map[technology]
-            # print("Rescale inventories and emissions for", technology)
 
-            for dataset in ws.get_many(
-                self.database,
-                ws.equals("unit", "kilowatt hour"),
-                ws.either(
-                    *[
-                        ws.equals("name", n)
-                        for n in dict_technology["technology filters"]
-                    ]
-                ),
-            ):
+            for dataset in self.powerplant_map[technology]:
                 if not self.is_in_index(dataset):
                     continue
 
@@ -1807,10 +1730,8 @@ class Electricity(BaseTransformation):
                     "new efficiency" not in dataset.get("log parameters", {})
                     and scaling_factor != 1
                 ):
-                    if "log parameters" not in dataset:
-                        dataset["log parameters"] = {}
 
-                    dataset["log parameters"].update(
+                    dataset.setdefault("log parameters", {}).update(
                         {
                             "old efficiency": ei_eff,
                             "new efficiency": new_efficiency,
@@ -1856,15 +1777,7 @@ class Electricity(BaseTransformation):
 
         for tech in coal_techs:
             if tech in self.powerplant_map:
-                datasets = ws.get_many(
-                    self.database,
-                    ws.either(
-                        *[ws.contains("name", n) for n in self.powerplant_map[tech]]
-                    ),
-                    ws.equals("unit", "kilowatt hour"),
-                    ws.doesnt_contain_any("name", ["mine", "critical"]),
-                )
-
+                datasets = self.powerplant_map[tech]
                 for dataset in datasets:
                     loc = dataset["location"][:2]
                     if loc in self.iam_data.coal_power_plants.country.values:
@@ -1901,10 +1814,7 @@ class Electricity(BaseTransformation):
                                 ],
                             )
 
-                            if "log parameters" not in dataset:
-                                dataset["log parameters"] = {}
-
-                            dataset["log parameters"].update(
+                            dataset.setdefault("log parameters", {}).update(
                                 {
                                     "ecoinvent original efficiency": ei_eff,
                                     "Oberschelp et al. efficiency": new_eff.values.item(
@@ -1965,10 +1875,7 @@ class Electricity(BaseTransformation):
                                             emission_factor.values.item(0)
                                         )
 
-                                        if "log parameters" not in dataset:
-                                            dataset["log parameters"] = {}
-
-                                        dataset["log parameters"].update(
+                                        dataset.setdefault("log parameters", {}).update(
                                             {
                                                 f"{species} scaling factor": scaling_factor,
                                             }
@@ -2031,9 +1938,7 @@ class Electricity(BaseTransformation):
                 self.database.append(new_dataset)
 
                 new_datasets = self.fetch_proxies(
-                    name=variable["proxy"]["new name"],
-                    ref_prod=variable["proxy"]["reference product"],
-                    empty_original_activity=False,
+                    datasets=[new_dataset],
                 )
 
                 for ds in new_datasets.values():
@@ -2050,7 +1955,6 @@ class Electricity(BaseTransformation):
                     )
 
                     self.add_to_index(ds)
-
                 self.database.extend(new_datasets.values())
 
         mapping = InventorySet(self.database, model=self.model)
@@ -2060,7 +1964,7 @@ class Electricity(BaseTransformation):
         self.powerplant_map_rev = {}
         for k, v in self.powerplant_map.items():
             for pp in list(v):
-                self.powerplant_map_rev[pp] = k
+                self.powerplant_map_rev[pp["name"]] = k
 
     def adjust_aluminium_electricity_markets(self) -> None:
         """
@@ -2164,7 +2068,6 @@ class Electricity(BaseTransformation):
 
         # We first need to empty 'market for electricity'
         # and 'market group for electricity' datasets
-        # print("Empty old electricity datasets")
 
         for dataset in ws.get_many(
             self.database,
@@ -2220,11 +2123,8 @@ class Electricity(BaseTransformation):
             )
 
         # We then need to create high voltage IAM electricity markets
-        # print("Create high voltage markets.")
         self.create_new_markets_high_voltage()
-        # print("Create medium voltage markets.")
         self.create_new_markets_medium_voltage()
-        # print("Create low voltage markets.")
         self.create_new_markets_low_voltage()
 
     def write_log(self, dataset, status="created"):

@@ -549,6 +549,9 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
                 if "CCS" in sector and iam_data is not None:
                     iam_data *= 100
 
+                if sector == "CDR - generation":
+                    iam_data *= -1
+
                 if iam_data is None:
                     continue
 
@@ -750,6 +753,7 @@ def generate_change_report(source, version, source_type, system_model):
         "premise_cement",
         "premise_emissions",
         "premise_external_scenarios",
+        "premise_mapping",
         "premise_validation",
     ]
 

@@ -71,71 +71,6 @@ What's new in 2.3.0?
 - PathwaysDataPackage: a new class that allows exporting data packages to ``pathways``.
 
 
-What's new in 2.2.0?
-====================
-
-- `IncrementalDatabase`: allows distinguishing the contribution of each sector to the total impact.
-
-What's new in 2.1.4?
-====================
-
-- Integration of TIAM-UCL scenarios
-
-
-What's new in 2.1.1?
-====================
-
-- Ecoinvent 3.10 support
-- Adds inventories on ammonia production
-- Fixes issues with scaling applied to PV systems
-
-What's new in 2.1.0?
-====================
-
-- More efficient use of memory.
-- Easier syntax for using custom scenarios.
-
-What's new in 2.0.0?
-====================
-
-- Adds .write_db_to_olca(), which produces a slightly modified version of a Simapro CSV database file which can then be imported in OpenLCA. The use of the SimaPro_Import.csv mapping file must be selected.
-- Marginal mixes were wrong because the average lifetime of the mix was calculated using the technology-specific lead time values instead of lifetime values.
-- Fix issue with CCS implementation in IMAGE scenarios
-- Fix several issues with external/custom scenarios linking algorithm.
-- Drops DAC efficiency improvement based on cumulated deployment. Uses directly efficiency variables now (if provided).
-- Improves documentation for consequential modelling.
-- Code-breaking change: update functions are now called like so: .update(xxx). For example, to update the electricity sector: .update(["electricity",]). To update all sectors: .update().
-- Changes minimum Python requirement to 3.10
-
-What's new in 1.8.0?
-====================
-
--  Added support for brightway 2.5 (requires `bw2data` >= 4.0.0)
--  Added support for Python 3.11
--  Uses bw2io 0.8.10
--  Adds electricity storage in electricity markets -- see [docs](https://premise.readthedocs.io/en/latest/transform.html#storage)
--  Adds [scenario explorer dashboard](https://premisedash-6f5a0259c487.herokuapp.com/)
-
-What's new in 1.5.0?
-====================
-
--  Added support for ecoinvent 3.9 and 3.9.1
--  Added support for ecoinvent 3.8 and 3.9/3.9.1 consequential -- see [docs](https://premise.readthedocs.io/en/latest/consequential.html)
--  Added REMIND SSP1 and SSP5 scenarios -- see [docs](https://premise.readthedocs.io/en/latest/introduction.html#default-iam-scenarios)
--  Updated GAINS emission factors, using GAINS-EU and GAINS-IAM -- see [docs](https://premise.readthedocs.io/en/latest/transform.html#gains-emission-factors)
--  Added new inventories for DAC and DACCS -- see [docs](https://premise.readthedocs.io/en/latest/transform.html#direct-air-capture)
--  Added new inventories for EPR and SMR nuclear reactors -- see [EPR inventories](https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-nuclear_EPR.xlsx) and [SMR inventories](https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-nuclear_SMR.xlsx)
--  Made mapping to new IAM models easier -- see [docs](https://premise.readthedocs.io/en/latest/mapping.html)
--  Better logging of changes made to the ecoinvent database -- see [docs](https://premise.readthedocs.io/en/latest/transform.html#logs)
-
-What's new in 1.3.0?
-====================
-
--   Added support for user-generated scenarios (see [docs](https://premise.readthedocs.io/en/latest/user_scenarios.html) and [notebook](https://github.com/polca/premise/blob/master/examples/examples%20user-defined%20scenarios.ipynb))
--   Updated REMIND scenarios to REMIND v.3.0
-
-
-
 Documentation
 -------------
 [https://premise.readthedocs.io/en/latest/](https://premise.readthedocs.io/en/latest/)
@@ -198,7 +133,96 @@ How to use it?
 
 The best way is to follow [the examples from the Jupyter Notebook](https://github.com/polca/premise/blob/master/examples/examples.ipynb). 
 
-# Support
+## Disclaimer on the Use of IAM-Based Scenarios in Premise
+
+Premise integrates data from Integrated Assessment Models (IAMs) into the 
+ecoinvent life cycle inventory (LCI) database to produce prospective, 
+scenario-specific LCA databases. This enables practitioners to model the
+environmental impacts of technologies and systems under plausible future 
+conditions. However, it is essential to recognize the nature and 
+limitations of the underlying IAM scenarios to responsibly interpret 
+and apply ``premise`` outputs.
+
+This disclaimer is informed by the critical insights and recommendations 
+presented in the article:
+
+> *de Bortoli, A., Chanel, A., Chabas, C., Greffe, T., & Louineau, E. (2025). More rationality and inclusivity are imperative in reference transition scenarios based on IAMs and shared socioeconomic pathways—recommendations for prospective LCA. Renewable and Sustainable Energy Reviews, 222, 115924. https://doi.org/10.1016/j.rser.2025.115924*
+
+### Nature of IAM-Based Scenarios
+
+IAMs, such as REMIND, IMAGE, and TIAM-UCL, simulate socio-technical 
+transitions by combining models of the economy, energy systems, land use, 
+and climate. They are used to create scenarios aligned with the Shared 
+Socioeconomic Pathways (SSPs) and Representative Concentration Pathways 
+(RCPs) frameworks developed by the IPCC. These models and pathways serve 
+as standardized tools to explore climate mitigation strategies under 
+various socio-economic futures.
+
+While IAMs offer a structured and policy-relevant way to explore 
+decarbonization pathways, their scenarios are not predictions. 
+They are "what-if" simulations based on a set of assumptions and modeling 
+choices that are inherently subjective, value-laden, and reflective of 
+specific worldviews.
+
+### Key Limitations
+
+1. **Optimistic Technological Assumptions**  
+   Many mainstream IAMs assume aggressive deployment of technologies (e.g., 
+   carbon dioxide removal or advanced renewables) that may not be feasible 
+   due to technical, economic, or social constraints.
+
+2. **Neglect of Demand-Side and Social Dynamics**  
+   IAMs often emphasize technological solutions and underrepresent lifestyle 
+   changes, equity, institutional barriers, and behavioral feedbacks.
+
+3. **Blind Spots in Biophysical and Geopolitical Constraints**  
+   Constraints on resource availability (e.g., critical minerals, land, 
+   water) are often oversimplified or ignored.
+
+4. **Embedded Economic Paradigm and Value Judgments**  
+   The SSPs assume perpetual GDP growth and reflect neoclassical economic 
+   thinking, potentially sidelining alternative visions of sustainability 
+   and well-being.
+
+5. **Underrepresentation of Justice and Global South Perspectives**  
+   IAM scenarios may perpetuate global inequalities by assuming continued 
+   economic and energy dominance of the Global North.
+
+6. **Opaque Ethical Assumptions**  
+   Key ethical parameters such as discount rates or equity considerations 
+   are rarely made explicit, despite their large impact on outcomes.
+
+### Recommendations for Responsible Use
+
+- **Transparency**: Clearly state the IAM, SSP, and RCP used. Communicate 
+  their assumptions, scope, and limitations to end users.
+
+- **Scenario Screening**: Where possible, favor scenarios with credible 
+  assumptions regarding technology deployment, demand-side measures, 
+  and material feasibility.
+
+- **Reflect Variability**: Consider using multiple scenarios or ensembles 
+  to capture the uncertainty inherent in IAM projections.
+
+- **Consider Alternatives**: Incorporate or contrast scenarios from models 
+  using alternative economic paradigms (e.g., post-Keynesian, ecological 
+  macroeconomics) and societal narratives (e.g., degrowth, sufficiency).
+
+- **Ethical Reflexivity**: Recognize and reflect on the value-laden choices 
+  embedded in IAMs. Prioritize transparency and intergenerational equity.
+
+### Final Note
+
+``premise`` provides a robust, transparent foundation for scenario-based 
+prospective LCA. However, the reliability and legitimacy of resulting 
+assessments depend heavily on the careful selection and interpretation 
+of input scenarios. Practitioners are encouraged to engage critically 
+with the underlying assumptions of IAM-based projections and to use 
+``premise`` in conjunction with a broader reflection on possible, 
+plausible, and desirable futures.
+
+
+## Support
 
 Do not hesitate to contact [romain.sacchi@psi.ch](mailto:romain.sacchi@psi.ch).
 

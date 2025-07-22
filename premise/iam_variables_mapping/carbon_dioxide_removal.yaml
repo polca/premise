@@ -92,10 +92,3 @@ biomass industrial emissions with CCS:
       remind-eu: Emi|CO2|CDR|+|Synthetic Fuels CCS
   ecoinvent_aliases:
       fltr: carbon dioxide, captured and stored, from a hydrogen production plant using steam methane reforming of biomethane
-
-land-use change:
-  iam_aliases:
-      remind: Emi|CO2|CDR|+|Land-Use Change
-      remind-eu: Emi|CO2|CDR|+|Land-Use Change
-  ecoinvent_aliases:
-      fltr: carbon dioxide, captured and stored, by land-use change

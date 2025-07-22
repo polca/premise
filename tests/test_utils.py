@@ -2,6 +2,7 @@ from unittest.mock import call, patch
 
 from premise import __version__
 from premise.utils import *
+from premise.fuels.utils import get_crops_properties
 
 
 def test_ei_db_label():

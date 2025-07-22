@@ -33,6 +33,7 @@ CORRESPONDENCE_BIO_FLOWS = (
 FILEPATH_CLASSIFICATIONS = DATA_DIR / "utils" / "import" / "classifications.xlsx"
 
 TEMP_CSV_FILE = DIR_CACHED_DB / "temp.csv"
+TEMP_EXCEL_FILE = DIR_CACHED_DB / "temp.xlsx"
 
 
 logging.basicConfig(
@@ -138,15 +139,15 @@ def generate_migration_maps(origin: str, destination: str) -> Dict[str, list]:
                     data["location"] = row[7]
                 response["data"].append(((row[2], row[3], row[4]), data))
 
-            if row[0] == destination and row[1] == origin:
-                data = {}
-                if row[2] != "":
-                    data["name"] = row[2]
-                if row[3] != "":
-                    data["reference product"] = row[3]
-                if row[4] != "":
-                    data["location"] = row[4]
-                response["data"].append(((row[5], row[6], row[7]), data))
+            # if row[0] == destination and row[1] == origin:
+            #    data = {}
+            #    if row[2] != "":
+            #        data["name"] = row[2]
+            #    if row[3] != "":
+            #        data["reference product"] = row[3]
+            #    if row[4] != "":
+            #        data["location"] = row[4]
+            #    response["data"].append(((row[5], row[6], row[7]), data))
 
         return response
 
@@ -378,9 +379,10 @@ class BaseInventoryImport:
     ) -> None:
         """Create a :class:`BaseInventoryImport` instance."""
         self.database = database
-        self.db_code = [x["code"] for x in self.database]
+        # self.db_code = [x["code"] for x in self.database]
         self.db_names = [
-            (x["name"], x["reference product"], x["location"]) for x in self.database
+            (x["name"].lower(), x["reference product"].lower(), x["location"])
+            for x in self.database
         ]
         self.version_in = version_in
         self.version_out = version_out
@@ -440,20 +442,16 @@ class BaseInventoryImport:
         """
 
         # print if we find datasets that already exist
-        already_exist = [
-            (x["name"].lower(), x["reference product"].lower(), x["location"])
-            for x in self.import_db.data
-            if x["code"] in self.db_code
-        ]
 
-        already_exist.extend(
-            [
-                (x["name"].lower(), x["reference product"].lower(), x["location"])
-                for x in self.import_db.data
-                if (x["name"].lower(), x["reference product"].lower(), x["location"])
-                in self.db_names
-            ]
-        )
+        already_exist = []
+        for ds in self.import_db.data:
+            key = (
+                ds["name"].lower(),
+                ds["reference product"].lower(),
+                ds["location"],
+            )
+            if key in self.db_names:
+                already_exist.append(ds)
 
         if len(already_exist) > 0:
             print(
@@ -469,17 +467,19 @@ class BaseInventoryImport:
                 name = self.path.name
 
             for dataset in already_exist:
-                table.add_row([dataset[0][:30], dataset[1][:30], dataset[2], name[:30]])
+                table.add_row(
+                    [
+                        dataset["name"][:30],
+                        dataset["reference product"][:30],
+                        dataset["location"],
+                        name[:30],
+                    ]
+                )
 
             print(table)
 
         self.import_db.data = [
-            x for x in self.import_db.data if x["code"] not in self.db_code
-        ]
-        self.import_db.data = [
-            x
-            for x in self.import_db.data
-            if (x["name"], x["reference product"], x["location"]) not in self.db_names
+            ds for ds in self.import_db.data if ds not in already_exist
         ]
 
     def merge_inventory(self) -> List[dict]:
@@ -939,10 +939,11 @@ class DefaultInventory(BaseInventoryImport):
                 "3.6",
                 "3.7",
             ]:
-                print("Migrating to 3.8 first")
+                print(f"Migrating from {self.version_in} to 3.8 first")
                 self.import_db.migrate(
                     f"migration_{self.version_in.replace('.', '')}_38"
                 )
+                print(f"Migrating from 3.8 to {self.version_out}")
                 self.import_db.migrate(
                     f"migration_38_{self.version_out.replace('.', '')}"
                 )
@@ -953,14 +954,16 @@ class DefaultInventory(BaseInventoryImport):
                 "3.8",
                 "3.9",
             ]:
-                print("Migrating to 3.10 first")
+                print(f"Migrating from {self.version_in} to 3.10 first")
                 self.import_db.migrate(
                     f"migration_{self.version_in.replace('.', '')}_310"
                 )
+                print(f"Migrating from 3.10 to {self.version_out}")
                 self.import_db.migrate(
                     f"migration_310_{self.version_out.replace('.', '')}"
                 )
             else:
+                print(f"Migrating from {self.version_in} to {self.version_out}")
                 self.import_db.migrate(
                     f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}"
                 )
@@ -1049,10 +1052,11 @@ class VariousVehicles(BaseInventoryImport):
                 "3.6",
                 "3.7",
             ]:
-                print("Migrating to 3.8 first")
+                print(f"Migrating from {self.version_in} to 3.8 first")
                 self.import_db.migrate(
                     f"migration_{self.version_in.replace('.', '')}_38"
                 )
+                print(f"Migrating from 3.8 to {self.version_out}")
                 self.import_db.migrate(
                     f"migration_38_{self.version_out.replace('.', '')}"
                 )
@@ -1063,14 +1067,16 @@ class VariousVehicles(BaseInventoryImport):
                 "3.8",
                 "3.9",
             ]:
-                print("Migrating to 3.10 first")
+                print(f"Migrating from {self.version_in} to 3.10 first")
                 self.import_db.migrate(
                     f"migration_{self.version_in.replace('.', '')}_310"
                 )
+                print(f"Migrating from 3.10 to {self.version_out}")
                 self.import_db.migrate(
                     f"migration_310_{self.version_out.replace('.', '')}"
                 )
             else:
+                print(f"Migrating from {self.version_in} to {self.version_out}")
                 self.import_db.migrate(
                     f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}"
                 )
@@ -1165,10 +1171,11 @@ class AdditionalInventory(BaseInventoryImport):
                 "3.6",
                 "3.7",
             ]:
-                print("Migrating to 3.8 first")
+                print(f"Migrating from {self.version_in} to 3.8 first")
                 self.import_db.migrate(
                     f"migration_{self.version_in.replace('.', '')}_38"
                 )
+                print(f"Migrating from 3.8 to {self.version_out}")
                 self.import_db.migrate(
                     f"migration_38_{self.version_out.replace('.', '')}"
                 )
@@ -1179,14 +1186,16 @@ class AdditionalInventory(BaseInventoryImport):
                 "3.8",
                 "3.9",
             ]:
-                print("Migrating to 3.10 first")
+                print(f"Migrating from {self.version_in} to 3.10 first")
                 self.import_db.migrate(
                     f"migration_{self.version_in.replace('.', '')}_310"
                 )
+                print(f"Migrating from 3.10 to {self.version_out}")
                 self.import_db.migrate(
                     f"migration_310_{self.version_out.replace('.', '')}"
                 )
             else:
+                print(f"Migrating from {self.version_in} to {self.version_out}")
                 self.import_db.migrate(
                     f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}"
                 )

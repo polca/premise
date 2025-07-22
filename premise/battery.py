@@ -200,16 +200,13 @@ class Battery(BaseTransformation):
             # replace NaNs with zeros
             shares = shares.fillna(0)
 
-            if "log parameters" not in ds:
-                ds["log parameters"] = {}
-
             for exc in ws.technosphere(ds):
                 if exc["name"] in datasets_mapping:
                     exc["amount"] = shares.sel(
                         chemistry=datasets_mapping[exc["name"]]
                     ).values.item()
 
-                    ds["log parameters"][
+                    ds.setdefault("log parameters", {})[
                         f"{datasets_mapping[exc['name']]} market share"
                     ] = exc["amount"]
 
@@ -277,17 +274,14 @@ class Battery(BaseTransformation):
                     None,
                 )
 
-                if "log parameters" not in ds:
-                    ds["log parameters"] = {}
-
-                ds["log parameters"]["battery input"] = [
+                ds.setdefault("log parameters", {})["battery input"] = [
                     e["name"]
                     for e in ws.technosphere(
                         ds, ws.contains("name", "market for battery")
                     )
                 ][0]
 
-                ds["log parameters"]["old battery mass"] = sum(
+                ds.setdefault("log parameters", {})["old battery mass"] = sum(
                     e["amount"]
                     for e in ws.technosphere(
                         ds, ws.contains("name", "market for battery")
@@ -295,10 +289,12 @@ class Battery(BaseTransformation):
                 )
 
                 for exc in ws.technosphere(ds, ws.equals("unit", "kilogram")):
+
                     exc["amount"] *= scaling_factor
-                    exc["loc"] *= scaling_factor
-                    exc["minimum"] *= scaling_factor_min
-                    exc["maximum"] *= scaling_factor_max
+                    if exc.get("uncertainty type") == 5:
+                        exc["loc"] *= scaling_factor
+                        exc["minimum"] *= scaling_factor_min
+                        exc["maximum"] *= scaling_factor_max
 
                 ds["log parameters"]["new battery mass"] = sum(
                     e["amount"]

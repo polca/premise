@@ -1590,7 +1590,7 @@ They appear in the LCI database as the following:
  ========================================================================================= =============================================================
 
 The mapping file linking IAM variables to the truck datasets is available
-here: https://github.com/polca/premise/blob/master/premise/iam_variables_mapping/transport_roadfreight_variables.yaml
+here: https://github.com/polca/premise/blob/master/premise/iam_variables_mapping/transport_road_freight.yaml
 
 Relinking
 ---------
@@ -1945,7 +1945,7 @@ Fuel markets
 
 The market shares are based on the IAM scenario data regarding the composition of
 liquid and gaseous secondary energy carriers. The ampping between the IAM scenario
-data and the fuel markets is described under: https://github.com/polca/premise/tree/master/premise/iam_variables_mapping/fuels_variables.yaml
+data and the fuel markets is described under: https://github.com/polca/premise/tree/master/premise/iam_variables_mapping/fuels.yaml
 
 
 .. warning::

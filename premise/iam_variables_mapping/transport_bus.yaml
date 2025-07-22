@@ -30,7 +30,7 @@
     tiam-ucl: Final Energy|Transport|Bus|Gasoline|Gasoline
   ecoinvent_aliases:
     fltr:
-      - 'transport, passenger bus, gasoline, 13m single deck urban bus, EURO-VI'
+      - transport, passenger bus, gasoline, 13m single deck urban bus, EURO-VI
   ecoinvent_fuel_aliases:
     fltr:
       - petrol, low-sulfur
@@ -41,10 +41,10 @@
     energy_use_aliases:
         tiam-ucl: Final Energy|Transport|Bus|Gasoline|Gasoline
     ecoinvent_aliases:
-        fltr:
-        - 'transport, passenger bus, gasoline, 13m single deck urban bus, EURO-VI'
+      fltr:
+        - transport, passenger bus, diesel hybrid, 13m single deck coach bus, EURO-VI
     ecoinvent_fuel_aliases:
-        fltr:
+      fltr:
         - diesel
 
 'bus, compressed gas':

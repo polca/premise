@@ -143,7 +143,6 @@ def get_metals_intensity_factors_data() -> xr.DataArray:
     return array
 
 
-@lru_cache
 def get_gains_IAM_data(model, gains_scenario):
     filepath = Path(
         DATA_DIR / "GAINS_emission_factors" / "iam_data" / gains_scenario
@@ -189,67 +188,6 @@ def get_gains_IAM_data(model, gains_scenario):
     arr = arr.drop_duplicates(dim="region")
 
     return arr
-
-
-@lru_cache
-def get_gains_EU_data() -> xr.DataArray:
-    """
-    Read the GAINS emissions csv file and return an `xarray` with dimensions:
-
-    * region
-    * pollutant
-    * sector
-    * year
-
-    :return: a multidimensional array with GAINS emissions data
-
-    """
-
-    filename = "GAINS_emission_factors_EU.csv"
-    filepath = DATA_DIR / "GAINS_emission_factors" / filename
-
-    gains_emi_EU = pd.read_csv(
-        filepath,
-        delimiter=get_delimiter(filepath=filepath),
-        low_memory=False,
-        dtype={
-            "Region": str,
-            "Sector": str,
-            "Activity": str,
-            "variable": str,
-            "value": float,
-            "year": int,
-            "substance": str,
-            "Activity_long": str,
-        },
-        encoding="utf-8",
-    )
-    gains_emi_EU["sector"] = gains_emi_EU["Sector"] + gains_emi_EU["Activity"]
-    gains_emi_EU.drop(
-        [
-            "Sector",
-            "Activity",
-        ],
-        axis=1,
-    )
-
-    gains_emi_EU = gains_emi_EU[~gains_emi_EU["value"].isna()]
-
-    gains_emi_EU = gains_emi_EU.rename(
-        columns={"Region": "region", "substance": "pollutant"}
-    )
-
-    array = (
-        gains_emi_EU.groupby(["region", "pollutant", "year", "sector"])["value"]
-        .mean()
-        .to_xarray()
-    )
-
-    array = array.interpolate_na(dim="year", method="nearest", fill_value="extrapolate")
-    array = array.bfill(dim="year")
-    array = array.ffill(dim="year")
-
-    return array
 
 
 def fix_efficiencies(data: xr.DataArray, min_year: int) -> xr.DataArray:
@@ -558,7 +496,6 @@ class IAMDataCollection:
         self.regions = data.region.values.tolist()
         self.system_model = system_model
 
-        self.gains_data_EU = get_gains_EU_data()
         self.gains_data_IAM = get_gains_IAM_data(
             self.model, gains_scenario=gains_scenario
         )
@@ -685,6 +622,7 @@ class IAMDataCollection:
             data=data,
             input_vars=cdr_prod_vars,
             system_model=self.system_model,
+            sector="cdr",
         )
         self.biomass_mix = self.__fetch_market_data(
             data=data,
@@ -697,73 +635,77 @@ class IAMDataCollection:
             data=data,
             input_vars=other_vars,
             normalize=False,
-            system_model=self.system_model,
+            system_model="cutoff",
         )
 
         self.road_freight_fleet = self.__fetch_market_data(
             data=data,
             input_vars=roadfreight_prod_vars,
             system_model=self.system_model,
-            sector="transport",
+            sector="road transport",
         )
 
         self.rail_freight_fleet = self.__fetch_market_data(
             data=data,
             input_vars=railfreight_prod_vars,
             system_model=self.system_model,
-            sector="transport",
+            sector="rail transport",
         )
 
         self.sea_freight_fleet = self.__fetch_market_data(
             data=data,
             input_vars=seafreight_prod_vars,
             system_model=self.system_model,
-            sector="transport",
+            sector="sea transport",
         )
 
         self.passenger_car_fleet = self.__fetch_market_data(
             data=data,
             input_vars=passenger_cars_prod_vars,
             system_model=self.system_model,
-            sector="transport",
+            sector="passenger car",
         )
 
         self.bus_fleet = self.__fetch_market_data(
             data=data,
             input_vars=bus_prod_vars,
             system_model=self.system_model,
-            sector="transport",
+            sector="passenger bus",
         )
 
         self.two_wheelers_fleet = self.__fetch_market_data(
             data=data,
             input_vars=two_wheelers_prod_vars,
             system_model=self.system_model,
-            sector="transport",
+            sector="two-wheeler",
         )
 
         self.buildings_heating_mix = self.__fetch_market_data(
             data=data,
             input_vars=buildings_heat_vars,
             system_model=self.system_model,
+            sector="buildings heating",
         )
 
         self.industrial_heat_mix = self.__fetch_market_data(
             data=data,
             input_vars=industrial_heat_vars,
             system_model=self.system_model,
+            sector="industrial heating",
         )
 
         self.daccs_energy_use = self.__fetch_market_data(
             data=data,
             input_vars=daccs_heat_vars,
             system_model=self.system_model,
+            sector="daccs heating",
         )
 
         self.ewr_energy_use = self.__fetch_market_data(
             data=data,
             input_vars=ewr_heat_vars,
             system_model=self.system_model,
+            sector="ewr heating",
         )
 
         self.final_energy_use = self.__fetch_market_data(

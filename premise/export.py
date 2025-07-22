@@ -31,8 +31,9 @@ from . import __version__
 from .data_collection import get_delimiter
 from .filesystem_constants import DATA_DIR
 from .inventory_imports import get_correspondence_bio_flows
-from .utils import reset_all_codes
+from .utils import reset_all_codes, get_uuids
 from .validation import BaseDatasetValidator
+
 
 FILEPATH_SIMAPRO_UNITS = DATA_DIR / "utils" / "export" / "simapro_units.yml"
 FILEPATH_SIMAPRO_COMPARTMENTS = (
@@ -994,7 +995,9 @@ def check_geographical_linking(scenario, original_database):
     return scenario
 
 
-def prepare_db_for_export(scenario, name, original_database, biosphere_name=None):
+def prepare_db_for_export(
+    scenario, name, original_database, version, biosphere_name=None
+):
     """
     Prepare a database for export.
     """
@@ -1012,33 +1015,24 @@ def prepare_db_for_export(scenario, name, original_database, biosphere_name=None
         database=scenario["database"],
         db_name=name,
         biosphere_name=biosphere_name,
+        version=version,
     )
     validator.run_all_checks()
 
     return validator.database
 
 
-def _prepare_database(
-    scenario,
-    db_name,
-    original_database,
-    biosphere_name,
-):
+def _prepare_database(scenario, db_name, original_database, biosphere_name, version):
 
     scenario["database"] = prepare_db_for_export(
         scenario,
         name=db_name,
         original_database=original_database,
         biosphere_name=biosphere_name,
+        version=version,
     )
 
     return scenario
-
-
-def get_uuids(db):
-    return {
-        (ds["name"], ds["reference product"], ds["location"]): ds["code"] for ds in db
-    }
 
 
 class Export:
@@ -1483,6 +1477,7 @@ class Export:
             writer.writerow([])
 
             for ds in self.db:
+                ds_uuid = uuids[(ds["name"], ds["reference product"], ds["location"])]
                 try:
                     main_category, sub_category = (
                         dict_cat_simapro[
@@ -1516,7 +1511,7 @@ class Export:
                     if item == "Process name":
                         name = f"{ds['reference product']} {{{ds.get('location', 'GLO')}}}| {ds['name']} | {dataset_suffix}"
 
-                        writer.writerow([name])
+                        writer.writerow([clean_csv_field(name)])
 
                     if item == "Type":
                         writer.writerow(["Unit process"])
@@ -1540,9 +1535,9 @@ class Export:
 
                         # Add dataset UUID to comment field
                         if len(string) > 0:
-                            string += f" | ID: {ds['code']}"
+                            string += f" | ID: {ds_uuid}"
                         else:
-                            string = f"ID: {ds['code']}"
+                            string = f"ID: {ds_uuid}"
 
                         writer.writerow([clean_csv_field(string)])
 
@@ -1574,6 +1569,7 @@ class Export:
                         for e in ds["exchanges"]:
                             if e["type"] == "production":
                                 name = f"{e['product']} {{{e.get('location', 'GLO')}}}| {e['name']} | {dataset_suffix}"
+                                name = clean_csv_field(name)
 
                                 if item == "Waste treatment":
                                     writer.writerow(
@@ -1611,6 +1607,7 @@ class Export:
 
                                 if exc_cat != "waste treatment":
                                     name = f"{e['product']} {{{e.get('location', 'GLO')}}}| {e['name']} | {dataset_suffix}"
+                                    name = clean_csv_field(name)
 
                                     writer.writerow(
                                         [
@@ -1629,7 +1626,8 @@ class Export:
                         for e in ds["exchanges"]:
                             if (
                                 e["type"] == "biosphere"
-                                and e["categories"][0] == "natural resource"
+                                and e.get("categories", (None,))[0]
+                                == "natural resource"
                             ):
                                 if e["name"] not in dict_bio:
                                     unlinked_biosphere_flows.append(
@@ -1660,7 +1658,10 @@ class Export:
                                 e["used"] = True
                     if item == "Emissions to air":
                         for e in ds["exchanges"]:
-                            if e["type"] == "biosphere" and e["categories"][0] == "air":
+                            if (
+                                e["type"] == "biosphere"
+                                and e.get("categories", (None,))[0] == "air"
+                            ):
                                 if len(e["categories"]) > 1:
                                     sub_compartment = simapro_subs.get(
                                         e["categories"][1], e["categories"][1]
@@ -1698,7 +1699,7 @@ class Export:
                         for e in ds["exchanges"]:
                             if (
                                 e["type"] == "biosphere"
-                                and e["categories"][0] == "water"
+                                and e.get("categories", (None,))[0] == "water"
                             ):
                                 if len(e["categories"]) > 1:
                                     sub_compartment = simapro_subs.get(
@@ -1737,7 +1738,7 @@ class Export:
                         for e in ds["exchanges"]:
                             if (
                                 e["type"] == "biosphere"
-                                and e["categories"][0] == "soil"
+                                and e.get("categories", (None,))[0] == "soil"
                             ):
                                 if len(e["categories"]) > 1:
                                     sub_compartment = simapro_subs.get(
@@ -1776,6 +1777,7 @@ class Export:
 
                                 if exc_cat == "waste treatment":
                                     name = f"{e['product']} {{{e.get('location', 'GLO')}}}| {e['name']} | {dataset_suffix}"
+                                    name = clean_csv_field(name)
 
                                     writer.writerow(
                                         [

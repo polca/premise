@@ -6,12 +6,16 @@ mapping between ``premise`` and ``ecoinvent`` terminology.
 from collections import defaultdict
 from pathlib import Path
 from typing import List, Union
-import pandas as pd
 
 import yaml
+import pandas as pd
 from wurst import searching as ws
 
 from .filesystem_constants import DATA_DIR, VARIABLES_DIR
+from .utils import load_database
+from .logger import create_logger
+
+logger = create_logger("mapping")
 
 POWERPLANT_TECHS = VARIABLES_DIR / "electricity.yaml"
 FUELS_TECHS = VARIABLES_DIR / "fuels.yaml"
@@ -32,6 +36,7 @@ TRUCKS = VARIABLES_DIR / "transport_road_freight.yaml"
 TRAINS = VARIABLES_DIR / "transport_rail_freight.yaml"
 SHIPS = VARIABLES_DIR / "transport_sea_freight.yaml"
 FINAL_ENERGY = VARIABLES_DIR / "final_energy.yaml"
+CARBON_STORAGE_TECHS = VARIABLES_DIR / "carbon_dioxide_removal.yaml"
 CAPACITY_ADDITION = VARIABLES_DIR / "capacity_addition.yaml"
 MINING_WASTE = DATA_DIR / "interventions" / "tailings_activities.yaml"
 COPPER_WASTE = DATA_DIR / "interventions" / "copper_recovery_activities.yaml"
@@ -119,7 +124,7 @@ def act_fltr(
     return list(ws.get_many(database, *filters))
 
 
-def debug_mapping_to_dataframe(scenario) -> pd.DataFrame:
+def mapping_to_dataframe(scenario) -> pd.DataFrame:
     """
     Convert a mapping dictionary of the form {category: [activities]} into a grouped DataFrame
     with a 'Location' column listing all locations per (Category, Market, Product) combination.
@@ -129,6 +134,10 @@ def debug_mapping_to_dataframe(scenario) -> pd.DataFrame:
     """
 
     temp_records = list()
+
+    if "database" not in scenario:
+        scenario = load_database(scenario)
+
     inv = InventorySet(
         database=scenario["database"],
         version=scenario.get("version", None),
@@ -136,7 +145,7 @@ def debug_mapping_to_dataframe(scenario) -> pd.DataFrame:
     )
     for sector, mapping in [
         ("biomass", inv.generate_biomass_map()),
-        ("heat", inv.generate_heat_map()),
+        ("heat", inv.generate_heat_map(model=scenario.get("model"))),
         ("cdr", inv.generate_cdr_map()),
         ("cement fuels", inv.generate_cement_fuels_map()),
         ("final energy", inv.generate_final_energy_map()),
@@ -158,19 +167,40 @@ def debug_mapping_to_dataframe(scenario) -> pd.DataFrame:
     ]:
         for category, activities in mapping.items():
             for act in activities:
-                temp_records.append((sector, category, act))
+                temp_records.append(
+                    (
+                        sector,
+                        category,
+                        act.get("name"),
+                        act.get("reference product"),
+                        act.get("location"),
+                    )
+                )
 
-    # only keep unique combinations of Category and Activity
+    # Deduplicate and sort
     temp_records = list(set(temp_records))
-    # sort by Category and Activity
-    temp_records.sort(key=lambda x: (x[0], x[1], x[2]))
 
-    df = (
-        pd.DataFrame(temp_records, columns=["Sector", "Category", "Activity"])
-        .sort_values(by=["Sector", "Category", "Activity"])
-        .reset_index(drop=True)
+    df = pd.DataFrame(
+        temp_records,
+        columns=["Sector", "Category", "Name", "Reference product", "Location"],
     )
-    return df
+
+    grouped_df = (
+        df.groupby(["Sector", "Category", "Name", "Reference product"])["Location"]
+        .unique()
+        .reset_index()
+    )
+
+    # Optional: convert list of locations to string
+    grouped_df["Location"] = grouped_df["Location"].apply(
+        lambda x: ", ".join(sorted(x))
+    )
+
+    # Optional: visually hide duplicate sectors and categories
+    grouped_df.loc[grouped_df["Sector"].duplicated(), "Sector"] = ""
+    grouped_df.loc[grouped_df["Category"].duplicated(), "Category"] = ""
+
+    return grouped_df
 
 
 class InventorySet:
@@ -198,10 +228,6 @@ class InventorySet:
         self.version = version
         self.model = model
 
-        self.powerplant_filters = get_mapping(
-            filepath=POWERPLANT_TECHS, var="ecoinvent_aliases", model=self.model
-        )
-
         self.powerplant_max_efficiency = get_mapping(
             filepath=POWERPLANT_TECHS, var="max_efficiency", model=self.model
         )
@@ -209,58 +235,12 @@ class InventorySet:
             filepath=POWERPLANT_TECHS, var="min_efficiency", model=self.model
         )
 
-        self.powerplant_fuels_filters = get_mapping(
-            filepath=POWERPLANT_TECHS, var="ecoinvent_fuel_aliases"
-        )
-
-        self.fuels_filters = get_mapping(filepath=FUELS_TECHS, var="ecoinvent_aliases")
-
-        self.cdr_filters = get_mapping(filepath=CDR_TECHS, var="ecoinvent_aliases")
-
-        self.cement_fuel_filters = get_mapping(
-            filepath=CEMENT_TECHS, var="ecoinvent_fuel_aliases"
-        )
-
-        self.steel_filters = get_mapping(
-            filepath=STEEL_TECHS, var="ecoinvent_aliases", model=self.model
-        )
-
-        self.gains_filters_EU = get_mapping(
-            filepath=GAINS_MAPPING, var="ecoinvent_aliases"
-        )
-        self.heat_filters = get_mapping(filepath=HEAT_TECHS, var="ecoinvent_aliases")
-
-        self.activity_metals_filters = get_mapping(
-            filepath=ACTIVITIES_METALS_MAPPING, var="ecoinvent_aliases"
-        )
-
-        self.final_energy_filters = get_mapping(
-            filepath=FINAL_ENERGY, var="ecoinvent_aliases"
-        )
-
-        self.capacity_addition_filters = get_mapping(
-            filepath=CAPACITY_ADDITION, var="ecoinvent_aliases"
-        )
-
-        self.biomass_filters = get_mapping(
-            filepath=BIOMASS_TYPES, var="ecoinvent_aliases"
-        )
-
-        self.mining_waste_filters = get_mapping(
-            filepath=MINING_WASTE, var="ecoinvent_aliases"
-        )
-        self.copper_waste_filters = get_mapping(
-            filepath=COPPER_WASTE, var="ecoinvent_aliases"
-        )
-        self.eaf_slag_waste_filters = get_mapping(
-            filepath=EAF_SLAG_WASTE, var="ecoinvent_aliases"
-        )
-        self.bof_slag_waste_filters = get_mapping(
-            filepath=BOF_SLAG_WASTE, var="ecoinvent_aliases"
-        )
-        self.brake_wear_filters = get_mapping(
-            filepath=BRAKE_WEAR, var="ecoinvent_aliases"
-        )
+    def generate_map(self, filters):
+        """
+        Generate a dictionary with ecoinvent activities as keys and
+        ecoinvent datasets as values.
+        """
+        return self.generate_sets_from_filters(filters)
 
     def generate_biomass_map(self) -> dict:
         """
@@ -268,9 +248,10 @@ class InventorySet:
         Returns a dictionary with biomass names as keys (see below) and
         a set of related ecoinvent activities' names as values.
         """
-        return self.generate_sets_from_filters(self.biomass_filters)
+        filters = get_mapping(filepath=BIOMASS_TYPES, var="ecoinvent_aliases")
+        return self.generate_sets_from_filters(filters)
 
-    def generate_heat_map(self) -> dict:
+    def generate_heat_map(self, model) -> dict:
         """
         Filter ecoinvent processes related to heat production.
 
@@ -279,7 +260,8 @@ class InventorySet:
         :rtype: dict
 
         """
-        return self.generate_sets_from_filters(self.heat_filters)
+        filters = get_mapping(filepath=HEAT_TECHS, var="ecoinvent_aliases", model=model)
+        return self.generate_sets_from_filters(filters)
 
     def generate_activities_using_metals_map(self) -> dict:
         """
@@ -287,22 +269,18 @@ class InventorySet:
         Returns a dictionary with metal names as keys (see below) and
         a set of related ecoinvent activities' names as values.
         """
-        return self.generate_sets_from_filters(self.activity_metals_filters)
-
-    def generate_gains_mapping_IAM(self, mapping):
-        EU_to_IAM_var = get_mapping(filepath=GAINS_MAPPING, var="gains_aliases_IAM")
-        new_map = defaultdict(set)
-        for eu, iam in EU_to_IAM_var.items():
-            new_map[iam].update(mapping[eu])
-
-        return new_map
+        filters = get_mapping(
+            filepath=ACTIVITIES_METALS_MAPPING, var="ecoinvent_aliases"
+        )
+        return self.generate_sets_from_filters(filters)
 
     def generate_gains_mapping(self):
         """
         Generate a dictionary with GAINS variables as keys and
         ecoinvent datasets as values.
         """
-        return self.generate_sets_from_filters(self.gains_filters_EU)
+        filters = get_mapping(filepath=GAINS_MAPPING, var="ecoinvent_aliases")
+        return self.generate_sets_from_filters(filters)
 
     def generate_powerplant_map(self) -> dict:
         """
@@ -313,9 +291,12 @@ class InventorySet:
         :rtype: dict
 
         """
-        return self.generate_sets_from_filters(self.powerplant_filters)
+        filters = get_mapping(
+            filepath=POWERPLANT_TECHS, var="ecoinvent_aliases", model=self.model
+        )
+        return self.generate_sets_from_filters(filters)
 
-    def generate_cdr_map(self) -> dict:
+    def generate_cdr_map(self, model=None) -> dict:
         """
         Filter ecoinvent processes related to direct air capture.
 
@@ -324,7 +305,8 @@ class InventorySet:
         :rtype: dict
 
         """
-        return self.generate_sets_from_filters(self.cdr_filters)
+        filters = get_mapping(filepath=CDR_TECHS, var="ecoinvent_aliases", model=model)
+        return self.generate_sets_from_filters(filters)
 
     def generate_powerplant_fuels_map(self) -> dict:
         """
@@ -335,7 +317,22 @@ class InventorySet:
         :rtype: dict
 
         """
-        return self.generate_sets_from_filters(self.powerplant_fuels_filters)
+        filters = get_mapping(filepath=POWERPLANT_TECHS, var="ecoinvent_fuel_aliases")
+        return self.generate_sets_from_filters(filters)
+
+    def generate_powerplant_efficiency_bounds(self):
+        """
+        Generate a dictionary with ecoinvent activities as keys and
+        efficiency bounds as values.
+        """
+        min_efficiency = get_mapping(
+            filepath=POWERPLANT_TECHS, var="min_efficiency", model=self.model
+        )
+        max_efficiency = get_mapping(
+            filepath=POWERPLANT_TECHS, var="max_efficiency", model=self.model
+        )
+
+        return min_efficiency, max_efficiency
 
     def generate_cement_fuels_map(self) -> dict:
         """
@@ -346,9 +343,24 @@ class InventorySet:
         :rtype: dict
 
         """
-        return self.generate_sets_from_filters(self.cement_fuel_filters)
+        filters = get_mapping(filepath=CEMENT_TECHS, var="ecoinvent_fuel_aliases")
+        return self.generate_sets_from_filters(filters)
 
     def generate_steel_map(self) -> dict:
+        """
+        Filter ecoinvent processes related to steel production.
+
+        :return: dictionary with el. prod. techs as keys (see below) and
+            sets of related ecoinvent activities as values.
+        :rtype: dict
+
+        """
+        filters = get_mapping(
+            filepath=STEEL_TECHS, var="ecoinvent_aliases", model=self.model
+        )
+        return self.generate_sets_from_filters(filters)
+
+    def generate_cement_map(self) -> dict:
         """
         Filter ecoinvent processes related to cement production.
 
@@ -357,9 +369,12 @@ class InventorySet:
         :rtype: dict
 
         """
-        return self.generate_sets_from_filters(self.steel_filters)
+        filters = get_mapping(
+            filepath=CEMENT_TECHS, var="ecoinvent_aliases", model=self.model
+        )
+        return self.generate_sets_from_filters(filters)
 
-    def generate_fuel_map(self) -> dict:
+    def generate_fuel_map(self, model=None) -> dict:
         """
         Filter ecoinvent processes related to fuel supply.
 
@@ -368,7 +383,10 @@ class InventorySet:
         :rtype: dict
 
         """
-        return self.generate_sets_from_filters(self.fuels_filters)
+        filters = get_mapping(
+            filepath=FUELS_TECHS, var="ecoinvent_aliases", model=model
+        )
+        return self.generate_sets_from_filters(filters)
 
     def generate_mining_waste_map(self) -> dict:
         """
@@ -379,7 +397,10 @@ class InventorySet:
         :rtype: dict
 
         """
-        return self.generate_sets_from_filters(self.mining_waste_filters)
+        filters = get_mapping(
+            filepath=MINING_WASTE, var="ecoinvent_aliases"
+        )
+        return self.generate_sets_from_filters(filters)
 
     def generate_copper_waste_map(self) -> dict:
         """
@@ -390,7 +411,10 @@ class InventorySet:
         :rtype: dict
 
         """
-        return self.generate_sets_from_filters(self.copper_waste_filters)
+        filters = get_mapping(
+            filepath=COPPER_WASTE, var="ecoinvent_aliases"
+        )
+        return self.generate_sets_from_filters(filters)
 
     def generate_eaf_slag_waste_map(self) -> dict:
         """
@@ -401,7 +425,10 @@ class InventorySet:
         :rtype: dict
 
         """
-        return self.generate_sets_from_filters(self.eaf_slag_waste_filters)
+        filters = get_mapping(
+            filepath=EAF_SLAG_WASTE, var="ecoinvent_aliases"
+        )
+        return self.generate_sets_from_filters(filters)
 
     def generate_bof_slag_waste_map(self) -> dict:
         """
@@ -412,7 +439,10 @@ class InventorySet:
         :rtype: dict
 
         """
-        return self.generate_sets_from_filters(self.bof_slag_waste_filters)
+        filters = get_mapping(
+            filepath=BOF_SLAG_WASTE, var="ecoinvent_aliases"
+        )
+        return self.generate_sets_from_filters(filters)
 
     def generate_brake_wear_map(self) -> dict:
         """
@@ -423,7 +453,10 @@ class InventorySet:
         :rtype: dict
 
         """
-        return self.generate_sets_from_filters(self.brake_wear_filters)
+        filters = get_mapping(
+            filepath=BRAKE_WEAR, var="ecoinvent_aliases"
+        )
+        return self.generate_sets_from_filters(filters)
 
     def generate_final_energy_map(self) -> dict:
         """
@@ -434,18 +467,10 @@ class InventorySet:
         :rtype: dict
 
         """
-        return self.generate_sets_from_filters(self.final_energy_filters)
-
-    def generate_capacity_addition_map(self) -> dict:
-        """
-        Filter ecoinvent processes related to capacity addition.
-
-        :return: dictionary with capacity addition names as keys (see below) and
-            sets of related ecoinvent activities as values.
-        :rtype: dict
-
-        """
-        return self.capacity_addition_filters
+        filters = get_mapping(
+            filepath=FINAL_ENERGY, var="ecoinvent_aliases", model=self.model
+        )
+        return self.generate_sets_from_filters(filters)
 
     def generate_transport_map(self, transport_type: str) -> dict:
         """
@@ -531,7 +556,10 @@ class InventorySet:
         Rerurns a dictionary with material names as keys (see below) and
         a set of related ecoinvent activities' names as values.
         """
-        return self.generate_sets_from_filters(self.activity_metals_filters)
+        filters = get_mapping(
+            filepath=ACTIVITIES_METALS_MAPPING, var="ecoinvent_aliases"
+        )
+        return self.generate_sets_from_filters(filters)
 
     def generate_sets_from_filters(self, filtr: dict, database=None) -> dict:
         """
@@ -571,8 +599,19 @@ class InventorySet:
             for tech, fltr in filtr.items()
         }
 
-        mapping = {
-            tech: {act["name"] for act in actlst} for tech, actlst in techs.items()
-        }
+        mapping = techs
+
+        # check if all keys have values
+        # if not, print warning
+        for key, val in mapping.items():
+            if not val:
+                logger.info(
+                    f"{self.model}|{key}|No activities found for this technology.||"
+                )
+            # else:
+            #    for v in val:
+            #        logger.info(
+            #            f"{self.model}|{key}|{v['name']}|{v['reference product']}|{v['location']}"
+            #        )
 
         return mapping

@@ -11,6 +11,7 @@ def comparative_analysis(
     indicators: list = None,
     databases: list = None,
     limit: int = 1000,
+    direct_only=False,
 ) -> pd.DataFrame:
     """
     A function that does an LCA of all common datasets in databases
@@ -92,6 +93,8 @@ def comparative_analysis(
                 ds["location"],
             )
 
+            index = lca.activity_dict[ds.key]
+
             if key not in common_datasets:
                 continue
 
@@ -138,9 +141,14 @@ def comparative_analysis(
                 if indicators[j] not in scores[key]:
                     scores[key][indicators[j]] = {}
 
-                scores[key][indicators[j]][db.name] = (
-                    characterization_matrix * lca.inventory
-                ).sum()
+                if direct_only:
+                    scores[key][indicators[j]][db.name] = (
+                        characterization_matrix * lca.inventory
+                    )[:, index].sum()
+                else:
+                    scores[key][indicators[j]][db.name] = (
+                        characterization_matrix * lca.inventory
+                    ).sum()
             sys.stdout.flush()
 
     # Convert nested dictionary to DataFrame

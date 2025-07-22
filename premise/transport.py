@@ -21,10 +21,6 @@ from .validation import CarValidation, TruckValidation
 
 logger = create_logger("transport")
 
-FILEPATH_FLEET_COMP = IAM_OUTPUT_DIR / "fleet_files" / "fleet_all_vehicles.csv"
-FILEPATH_IMAGE_TRUCKS_FLEET_COMP = (
-    IAM_OUTPUT_DIR / "fleet_files" / "image_fleet_trucks.csv"
-)
 FILEPATH_TRUCK_LOAD_FACTORS = DATA_DIR / "transport" / "avg_load_factors.yaml"
 FILEPATH_VEHICLES_MAP = DATA_DIR / "transport" / "vehicles_map.yaml"
 
@@ -62,6 +58,12 @@ def _update_vehicles(scenario, vehicle_type, version, system_model):
         has_fleet=has_fleet,
         index=scenario.get("index"),
     )
+
+    trspt.regionalize_transport_datasets()
+
+    if fleet_data[vehicle_type] is not None:
+        trspt.create_vehicle_markets()
+        trspt.relink_transport_datasets()
 
     scenario["database"] = trspt.database
     scenario["cache"] = trspt.cache
@@ -122,219 +124,6 @@ def get_vehicles_mapping() -> Dict[str, dict]:
         return out
 
 
-def normalize_exchange_amounts(list_act: List[dict]) -> List[dict]:
-    """
-    In vehicle market datasets, we need to ensure that the total contribution
-    of single vehicle types equal 1.
-
-    :param list_act: list of transport market activities
-    :return: same list, with activity exchanges normalized to 1
-
-    """
-
-    for act in list_act:
-        total = 0
-        for exc in act["exchanges"]:
-            if exc["type"] == "technosphere":
-                total += exc["amount"]
-
-        for exc in act["exchanges"]:
-            if exc["type"] == "technosphere":
-                exc["amount"] /= total
-
-    return list_act
-
-
-def create_fleet_vehicles(
-    datasets: List[dict],
-    vehicle_type: str,
-    year: int,
-    model: str,
-    scenario: str,
-    version: str,
-    system_model: str,
-    regions: List[str],
-    arr: xr.DataArray,
-    mapping: dict,
-) -> List[dict[str, Union[Union[str, float], Any]]]:
-    """
-    Create datasets for fleet average vehicles based on IAM fleet data.
-
-    :param datasets: vehicle datasets of all size, powertrain and construction years.
-    :param vehicle_type: "car", "truck"
-    :param year: year for the fleet average vehicle
-    :param model: IAM model
-    :param scenario: IAM scenario
-    :param regions: IAM regions
-    :return: list of fleet average vehicle datasets
-    """
-
-    vehicles_map = get_vehicles_mapping()
-
-    list_act = []
-
-    for region in regions:
-        if year in arr.coords["year"].values:
-            region_size_fleet = arr.sel(region=region, year=year)
-
-        else:
-            region_size_fleet = arr.sel(region=region).interp(year=year)
-
-        total_km = region_size_fleet.sum()
-
-        if total_km > 0:
-
-            name = f"{vehicles_map[vehicle_type]['name']}, fleet average"
-
-            act = {
-                "name": name,
-                "reference product": vehicles_map[vehicle_type]["name"],
-                "unit": vehicles_map[vehicle_type]["unit"],
-                "location": region,
-                "exchanges": [
-                    {
-                        "name": name,
-                        "product": vehicles_map[vehicle_type]["name"],
-                        "unit": vehicles_map[vehicle_type]["unit"],
-                        "location": region,
-                        "type": "production",
-                        "amount": 1,
-                    }
-                ],
-                "code": str(uuid.uuid4().hex),
-                "database": "premise",
-                "comment": f"Fleet-average {vehicle_type} for the year {year}, "
-                f"for the region {region}.",
-            }
-
-            for vehicle in arr.coords["variables"].values:
-                indiv_km = region_size_fleet.sel(
-                    variables=vehicle,
-                )
-                if indiv_km > 0:
-                    indiv_share = (indiv_km / total_km).values.item(0)
-
-                    try:
-                        name = mapping[vehicle]
-                    except KeyError:
-                        print(f"Could not find {vehicle} in {mapping}.")
-                        name = vehicle
-
-                    if isinstance(name, set):
-                        # check if length of set is 1
-                        # if so, take the only element
-                        name = next(iter(name))
-
-                    try:
-                        vehicle_dataset = ws.get_one(
-                            datasets,
-                            ws.equals("name", name),
-                            ws.equals("location", region),
-                        )
-                    except ws.NoResults:
-                        print(
-                            f"Could not find a dataset for {name} in {region} to create fleet."
-                        )
-                        continue
-                    except ws.MultipleResults:
-                        print(f"Multiple datasets found for {name} in {region}.")
-                        continue
-
-                    act["exchanges"].append(
-                        {
-                            "name": vehicle_dataset["name"],
-                            "product": vehicle_dataset["reference product"],
-                            "unit": vehicle_dataset["unit"],
-                            "location": region,
-                            "type": "technosphere",
-                            "amount": indiv_share,
-                        }
-                    )
-
-            if len(act["exchanges"]) > 1:
-                list_act.append(act)
-
-            # also create size-specific fleet vehicles
-            if vehicle_type == "truck":
-                sizes = [
-                    "3.5 metric ton",
-                    "7.5 metric ton",
-                    "18 metric ton",
-                    "26 metric ton",
-                    "40 metric ton",
-                ]
-                for size in sizes:
-                    total_size_km = region_size_fleet.sel(
-                        variables=[
-                            v for v in arr.coords["variables"].values if size in v
-                        ]
-                    ).sum()
-
-                    if total_size_km > 0:
-                        name = f"{vehicles_map[vehicle_type]['name']}, {size}, fleet average"
-                        act = {
-                            "name": name,
-                            "reference product": vehicles_map[vehicle_type]["name"],
-                            "unit": vehicles_map[vehicle_type]["unit"],
-                            "location": region,
-                            "exchanges": [
-                                {
-                                    "name": name,
-                                    "product": vehicles_map[vehicle_type]["name"],
-                                    "unit": vehicles_map[vehicle_type]["unit"],
-                                    "location": region,
-                                    "type": "production",
-                                    "amount": 1,
-                                }
-                            ],
-                            "code": str(uuid.uuid4().hex),
-                            "database": eidb_label(
-                                {"model": model, "pathway": scenario, "year": year},
-                                version,
-                                system_model,
-                            ),
-                            "comment": f"Fleet-average {size} vehicle for the year {year}, for the region {region}.",
-                        }
-
-                        for pwt in [
-                            v for v in arr.coords["variables"].values if size in v
-                        ]:
-                            indiv_km = region_size_fleet.sel(
-                                variables=pwt,
-                            )
-                            if indiv_km > 0:
-                                indiv_share = (indiv_km / total_size_km).values.item(0)
-
-                                name = mapping[pwt]
-                                if isinstance(name, set):
-                                    # check if length of set is 1
-                                    if len(name) == 1:
-                                        # if so, take the only element
-                                        name = next(iter(name))
-
-                                vehicle_dataset = ws.get_one(
-                                    datasets,
-                                    ws.equals("name", name),
-                                    ws.equals("location", region),
-                                )
-
-                                act["exchanges"].append(
-                                    {
-                                        "name": vehicle_dataset["name"],
-                                        "product": vehicle_dataset["reference product"],
-                                        "unit": vehicle_dataset["unit"],
-                                        "location": region,
-                                        "type": "technosphere",
-                                        "amount": indiv_share,
-                                    }
-                                )
-
-                        if len(act["exchanges"]) > 1:
-                            list_act.append(act)
-
-    return normalize_exchange_amounts(list_act)
-
-
 class Transport(BaseTransformation):
     """
     Class that modifies transport markets in ecoinvent based on IAM output data.
@@ -382,10 +171,18 @@ class Transport(BaseTransformation):
         self.database = database
         self.mapping = get_vehicles_mapping()
 
-        mapping = InventorySet(database=database, version=version, model=model)
-        self.vehicle_map = mapping.generate_transport_map(transport_type=vehicle_type)
-        self.rev_map = {next(iter(v)): k for k, v in self.vehicle_map.items()}
-        self.vehicle_fuel_map = mapping.generate_vehicle_fuel_map(
+        self.activity_mapping = InventorySet(
+            database=database, version=version, model=model
+        )
+        self.vehicle_map = self.activity_mapping.generate_transport_map(
+            transport_type=vehicle_type,
+        )
+        self.rev_map = {}
+        for k, v in self.vehicle_map.items():
+            for x in v:
+                self.rev_map[x["name"]] = k
+
+        self.vehicle_fuel_map = self.activity_mapping.generate_vehicle_fuel_map(
             transport_type=vehicle_type
         )
 
@@ -396,88 +193,60 @@ class Transport(BaseTransformation):
             if not v:
                 print(f"Vehicle map is empty for {self.vehicle_type}.")
 
-        if self.has_fleet:
-            fleet_datasets = self.create_vehicle_markets()
-            self.database.extend(fleet_datasets)
-            self.add_to_index(fleet_datasets)
+    def regionalize_transport_datasets(self):
+        """
+        Regionalize transport datasets, which are currently only available in RER, CA and RoW.
+        """
+
+        # create and regionalize transport datasets
+        self.process_and_add_activities(
+            mapping=self.vehicle_map,
+            efficiency_adjustment_fn=self.adjust_transport_efficiency,
+        )
 
     def create_vehicle_markets(self) -> list:
         """
         Create vehicle market (fleet average) datasets.
         """
 
-        # create and regionalize transport datasets
-        vehicle_datasets = list(
-            ws.get_many(
-                self.database,
-                ws.either(
-                    *[
-                        ws.equals("name", v)
-                        for name in self.vehicle_map.values()
-                        for v in name
-                    ]
-                ),
-            )
+        name = f"market for {self.mapping[self.vehicle_type]['name']}"
+        reference_product = self.mapping[self.vehicle_type]["name"]
+        unit = self.mapping[self.vehicle_type]["unit"]
+
+        self.process_and_add_markets(
+            name=name,
+            reference_product=reference_product,
+            unit=unit,
+            mapping=self.vehicle_map,
+            system_model=self.system_model,
+            production_volumes=self.iam_data.production_volumes,
         )
 
-        new_datasets = []
-
-        arr = None
-        if self.vehicle_type == "two-wheeler":
-            arr = self.iam_data.two_wheelers_fleet
-        if self.vehicle_type == "car":
-            arr = self.iam_data.passenger_car_fleet
+        # if trucks, build size-specific markets
         if self.vehicle_type == "truck":
-            arr = self.iam_data.road_freight_fleet
-        if self.vehicle_type == "bus":
-            arr = self.iam_data.bus_fleet
-        if self.vehicle_type == "train":
-            arr = self.iam_data.rail_freight_fleet
-        if self.vehicle_type == "ship":
-            arr = self.iam_data.sea_freight_fleet
+            for size in self.mapping[self.vehicle_type]["sizes"]:
+                new_name = f"{name}, {size}"
+                production_volumes = self.iam_data.production_volumes.sel(
+                    variables=[
+                        v
+                        for v in self.iam_data.production_volumes.coords[
+                            "variables"
+                        ].values
+                        if size in v
+                    ]
+                )
 
-        processed_datasets = []
-        for vehicle_type, vehicle_dataset in self.vehicle_map.items():
-            vehicle_dataset = list(vehicle_dataset)[0]
+                if production_volumes.size == 0:
+                    continue
 
-            if vehicle_dataset in processed_datasets:
-                continue
-
-            new_datasets.extend(
-                self.fetch_proxies(
-                    subset=vehicle_datasets,
-                    name=vehicle_dataset,
-                    ref_prod="",
-                    production_variable=vehicle_type,
-                ).values()
-            )
-
-        for new_ds in new_datasets:
-            new_ds = self.adjust_transport_efficiency(new_ds)
-
-            if not self.is_in_index(new_ds):
-                self.add_to_index(new_ds)
-                self.database.append(new_ds)
-
-        fleet_act = []
-
-        if arr is None:
-            return []
-
-        fleet_act.extend(
-            create_fleet_vehicles(
-                datasets=new_datasets,
-                vehicle_type=self.vehicle_type,
-                year=self.year,
-                model=self.model,
-                version=self.version,
-                system_model=self.system_model,
-                scenario=self.scenario,
-                regions=self.regions,
-                arr=arr,
-                mapping=self.vehicle_map,
-            )
-        )
+                self.process_and_add_markets(
+                    name=new_name,
+                    reference_product=reference_product,
+                    unit=unit,
+                    mapping=self.vehicle_map,
+                    system_model=self.system_model,
+                    production_volumes=production_volumes,
+                )
 
         # if trucks, adjust battery size
         if self.vehicle_type == "truck":
@@ -489,15 +258,15 @@ class Transport(BaseTransformation):
             ):
                 self.adjust_battery_size(ds)
 
+    def relink_transport_datasets(self):
         # if trucks or ships, need to reconnect everything
         # loop through datasets that use truck transport
-        if self.vehicle_type in ("truck", "ship", "train"):
-            list_created_vehicles = [(v["name"], v["location"]) for v in fleet_act]
 
+        if "old" in self.mapping[self.vehicle_type]:
             for dataset in ws.get_many(
                 self.database,
-                ws.doesnt_contain_any("name", ["freight"]),
-                ws.exclude(ws.equals("unit", "ton kilometer")),
+                ws.doesnt_contain_any("name", ["freight", "transport"]),
+                ws.exclude(ws.contains("unit", "kilometer")),
             ):
                 for exc in ws.technosphere(
                     dataset,
@@ -514,68 +283,11 @@ class Transport(BaseTransformation):
                         self.model
                     ]
                     new_loc = self.geo.ecoinvent_to_iam_location(dataset["location"])
+                    exc["name"] = new_name
+                    exc["product"] = self.mapping[self.vehicle_type]["name"]
+                    exc["location"] = new_loc
 
-                    if (new_name, new_loc) in list_created_vehicles:
-                        exc["name"] = new_name
-                        exc["product"] = self.mapping[self.vehicle_type]["name"]
-                        exc["location"] = new_loc
-                    else:
-                        print(
-                            f"Could not find dataset for {new_name} in {new_loc} to connect to."
-                        )
-                        continue
-            # also we need to empty the old transport datasets
-            for dataset in ws.get_many(
-                self.database,
-                ws.either(
-                    *[
-                        ws.equals("name", v)
-                        for v in self.mapping[self.vehicle_type]["old"]
-                    ]
-                ),
-            ):
-                dataset["exchanges"] = [
-                    e for e in dataset["exchanges"] if e["type"] == "production"
-                ]
-                dataset["comment"] = (
-                    "This dataset has been replaced by new fleet-average vehicles."
-                )
-
-                # add new truck as exchange
-                new_name = self.mapping[self.vehicle_type]["old"][dataset["name"]][
-                    self.model
-                ]
-                new_loc = self.geo.ecoinvent_to_iam_location(dataset["location"])
-
-                if (new_name, new_loc) in list_created_vehicles:
-                    new_exc = {
-                        "name": new_name,
-                        "product": self.mapping[self.vehicle_type]["name"],
-                        "unit": "ton kilometer",
-                        "location": new_loc,
-                        "type": "technosphere",
-                        "amount": 1,
-                        "uncertainty type": 0,
-                    }
-                else:
-                    print(f"Could not find dataset for {new_name} in {new_loc}.")
-                    new_exc = {
-                        "name": self.mapping[self.vehicle_type]["name"],
-                        "product": self.mapping[self.vehicle_type]["name"],
-                        "unit": "ton kilometer",
-                        "location": "World",
-                        "type": "technosphere",
-                        "amount": 1,
-                        "uncertainty type": 0,
-                    }
-                    if self.vehicle_type == "truck":
-                        new_exc["name"] = f"{new_exc['name']}, fleet average"
-
-                dataset["exchanges"].append(new_exc)
-
-        return fleet_act
-
-    def adjust_transport_efficiency(self, dataset):
+    def adjust_transport_efficiency(self, dataset, technology=None):
         """
         Adjust transport efficiency of transport datasets based on IAM data.
 
@@ -620,16 +332,16 @@ class Transport(BaseTransformation):
                 technosphere_filters=[
                     ws.either(
                         *[
-                            ws.contains("name", v)
+                            ws.contains("name", v["name"])
                             for v in self.vehicle_fuel_map[variable]
                         ]
                     )
                 ],
             )
-            if "log parameters" not in dataset:
-                dataset["log parameters"] = {}
 
-            dataset["log parameters"].update({"efficiency change": scaling_factor})
+            dataset.setdefault("log parameters", {}).update(
+                {"efficiency change": scaling_factor}
+            )
 
             txt = f" Fuel/energy efficiency adjusted by a factor of {scaling_factor} according to the scenario."
             if "comment" not in dataset:
@@ -693,7 +405,7 @@ class Transport(BaseTransformation):
             exc["minimum"] = min_battery_size
             exc["maximum"] = max_battery_size
 
-        ds["comment"] += f" Battery size adjusted to {mean_battery_size} kWh."
+        ds["comment"] = f" Battery size adjusted to {mean_battery_size} kWh."
 
     def write_log(self, dataset, status="created"):
         """

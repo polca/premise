@@ -30,6 +30,7 @@ hard coal:
         - ash
         - clinker
         - charcoal
+
 pulverised lignite:
   lhv: 1
   co2: 0.098
@@ -45,13 +46,13 @@ pulverised lignite:
             - briquettes
             - ash
             - clinker
+
 lignite:
   lhv: 8.7
   co2: 0.115
   biogenic_share: 0
   ecoinvent_aliases:
     fltr:
-      - market for lignite
       - lignite mine operation
     mask:
       name:
@@ -59,6 +60,8 @@ lignite:
         - plant
         - briquettes
         - ash
+        - market
+
 petroleum coke:
   lhv: 31.3
   co2: 0.0975
@@ -118,17 +121,11 @@ natural gas:
   ecoinvent_aliases:
     fltr:
       name:
-        - natural gas, high pressure
-        - natural gas, medium pressure
-        - natural gas, low pressure
-        - natural gas, at production
-        - gas, natural, in ground
-        - natural gas production
+        - natural gas
         - petroleum and gas production
-        - market for natural gas
-        - market group for natural gas
-        - evaporation of natural gas
-        - natural gas, high pressure, at consumer
+      reference product:
+        - natural gas
+      unit: cubic meter
 
     mask:
       name:
@@ -146,6 +143,10 @@ natural gas:
         - liquids
         - network
         - import from
+        - market
+        - reduction
+        - storage
+
 gas, natural, in ground:
   lhv: 45
   co2: 0.0564
@@ -173,6 +174,8 @@ heavy fuel oil:
         - burned
         - import
         - synthetic
+        - market
+        - transport
   biogenic_share: 0
 
 oil, crude, in ground:
@@ -188,6 +191,10 @@ light fuel oil:
     fltr:
       reference product:
         - light fuel oil
+    mask:
+      - market
+      - import
+      - waste
 
 biogas:
   lhv: 22.73
@@ -197,8 +204,26 @@ biogas:
     fltr:
       reference product:
         - biogas
+    mask:
+      - market
 
-biomethane:
+waste:
+  lhv: 17
+  co2: 0.07
+  biogenic_share: 0.34
+  ecoinvent_aliases:
+    fltr:
+      reference product:
+        - waste plastic, mixture
+    mask:
+      name:
+        - treatment
+methane, fossil:
+  lhv: 47.5
+  co2: 0.06
+  biogenic_share: 0
+
+methane, from biomass:
   lhv: 47.5
   co2: 0.06
   biogenic_share: 1
@@ -218,25 +243,6 @@ biomethane:
       name:
         - burned
         - station
-waste:
-  lhv: 17
-  co2: 0.07
-  biogenic_share: 0.34
-  ecoinvent_aliases:
-    fltr:
-      reference product:
-        - waste plastic, mixture
-    mask:
-      name:
-        - treatment
-methane, fossil:
-  lhv: 47.5
-  co2: 0.06
-  biogenic_share: 0
-methane, biogenic:
-  lhv: 47.5
-  co2: 0.06
-  biogenic_share: 1
 methane, synthetic:
   lhv: 47.5
   co2: 0.06
@@ -288,7 +294,6 @@ diesel:
       name:
         - diesel production
         - petroleum refinery operation
-        - market for diesel
       reference product:
         - diesel
     mask:
@@ -303,6 +308,7 @@ diesel:
         - capture
         - CCS
         - period
+        - market
 
 gasoline:
   lhv: 42.6
@@ -328,7 +334,6 @@ gasoline:
       name:
         - petrol production
         - petroleum refinery operation
-        - market for petrol
 
     mask:
       name:
@@ -337,6 +342,7 @@ gasoline:
         - burned
         - ETBE
         - period
+        - market
 
 petrol, 5% ethanol:
   lhv: 41.7
@@ -554,6 +560,7 @@ hydrogen, from petroleum:
   ecoinvent_aliases:
     fltr:
       - hydrogen production, gaseous, petroleum refinery operation
+    mask: CCS
 
 hydrogen, from electrolysis, PEM:
   lhv: 120
@@ -730,8 +737,13 @@ hydrogen, from coal:
     remind: Tech|Hydrogen|Coal|w/o CC|Efficiency
     remind-eu: Tech|Hydrogen|Coal|w/o CC|Efficiency
   ecoinvent_aliases:
-    fltr: hydrogen production, coal gasification
-    mask: CCS
+    fltr:
+      name: hydrogen production, coal gasification
+      reference product: hydrogen, gaseous
+    mask:
+      - CCS
+      - heat
+      - sulfur
 
 hydrogen, from coal, with CCS:
   lhv: 120
@@ -770,7 +782,9 @@ hydrogen, from natural gas:
     remind-eu: Tech|Hydrogen|Gas|w/o CC|Efficiency
     witch: Efficiency|Hydrogen|Gas|w/o CCS
   ecoinvent_aliases:
-    fltr: hydrogen production, steam methane reforming
+    fltr:
+      name: hydrogen production, steam methane reforming
+      reference product: hydrogen, gaseous
     mask:
       name:
         - biomethane
@@ -818,8 +832,9 @@ hydrogen, from oil:
     co2: 0
     biogenic_share: 1
     ecoinvent_aliases:
-        fltr:
-          - hydrogen production, gaseous, petroleum refinery operation
+      fltr:
+        - hydrogen production, gaseous, petroleum refinery operation
+      mask: CCS
     iam_aliases:
         image: Secondary Energy|Hydrogen|Oil w/o CCS
 
@@ -838,15 +853,15 @@ hydrogen:
   co2: 0
   biogenic_share: 1
 
-biodiesel, from used cooking oil:
+biodiesel, from oil crops:
   lhv: 38
   co2: 0.0734
   biogenic_share: 1
   iam_aliases:
     tiam-ucl: Secondary Energy|Liquids|Biomass|Biodiesel|w/o CCS
     gcam: Secondary Energy|Production|Refined Liquids|Biomass|Biodiesel
-    remind: SE|Liquids|Biomass|Biodiesel
-    remind-eu: SE|Liquids|Biomass|Biodiesel
+    remind: SE|Liquids|Biomass|Non-Cellulosic|+|Oil-based
+    remind-eu: SE|Liquids|Biomass|Non-Cellulosic|+|Oil-based
     image: Secondary Energy|Consumption|Liquids|Biomass|Biodiesel|Oilcrops|w/oCCS
   eff_aliases:
     tiam-ucl: Efficiency|Liquids|Biomass|FT fuel mix (diesel, kerosene, naptha, ELC)|w/o CCS
@@ -857,7 +872,7 @@ biodiesel, from used cooking oil:
   ecoinvent_aliases:
     fltr:
       name:
-        - biodiesel production, via transesterification
+        - biodiesel production, via transesterification, from rapeseed oil
     mask:
       name:
         - expansion
@@ -866,9 +881,8 @@ biodiesel, from used cooking oil:
         - station
         - algae
         - palm
-        - rapeseed
 
-biodiesel, from used cooking oil, with CCS:
+biodiesel, from oil crops, with CCS:
   lhv: 38
   co2: 0.0734
   biogenic_share: 1
@@ -894,8 +908,8 @@ bioethanol, from wood:
   biogenic_share: 1
   iam_aliases:
     gcam: Secondary Energy|Production|Refined Liquids|Biomass|Ethanol|Cellulose|w/oCCS
-    remind: SE|Liquids|Biomass|Cellulosic|+|w/o CC
-    remind-eu: SE|Liquids|Biomass|Cellulosic|+|w/o CC
+    remind: SE|Liquids|Biomass|Cellulosic|++|Energy Crops
+    remind-eu: SE|Liquids|Biomass|Cellulosic|++|Energy Crops
     image: Secondary Energy|Consumption|Liquids|Biomass|Ethanol|Woody|w/oCCS
     message: Secondary Energy|Liquids|Biomass|Ethanol|w/o CCS
     witch: Secondary Energy|Liquids|Biomass|Energy Crops
@@ -955,6 +969,20 @@ bioethanol, from wood, with CCS:
         - processing
         - synthetic
 
+bioethanol, from residues:
+  lhv: 26.5
+  co2: 0.0739
+  biogenic_share: 1
+  iam_aliases:
+      remind: SE|Liquids|Biomass|Cellulosic|++|Residues
+      remind-eu: SE|Liquids|Biomass|Cellulosic|++|Residues
+  eff_aliases:
+      remind: Tech|Liquids|Biomass|Biodiesel|Efficiency
+      remind-eu: Tech|Liquids|Biomass|Biodiesel|Efficiency
+  ecoinvent_aliases:
+    fltr:
+      name: ethanol production, via fermentation, from forest residues, energy allocation
+
 bioethanol, from grass:
   lhv: 26.5
   co2: 0.0739
@@ -975,7 +1003,6 @@ bioethanol, from grass:
         - ethanol production, via fermentation, from sorghum
         - ethanol production from grass
         - ethanol production from sweet sorghum
-
       reference product: ethanol
 
     mask:
@@ -1070,8 +1097,8 @@ bioethanol, from sugar:
   biogenic_share: 1
   iam_aliases:
     gcam: Secondary Energy|Production|Refined Liquids|Biomass|Ethanol|Sugar
-    remind: SE|Liquids|Biomass|Conventional Ethanol
-    remind-eu: SE|Liquids|Biomass|Conventional Ethanol
+    remind: SE|Liquids|Biomass|Non-Cellulosic|+|Sugar and Starch
+    remind-eu: SE|Liquids|Biomass|Non-Cellulosic|+|Sugar and Starch
     image: Secondary Energy|Consumption|Liquids|Biomass|Ethanol|Sugar|w/oCCS
     witch: Secondary Energy|Liquids|Biomass|1st Generation
   eff_aliases:
@@ -1127,7 +1154,6 @@ ethanol:
   biogenic_share: 1
   ecoinvent_aliases:
     fltr:
-      - market for ethanol
       - ethanol, without water
 
 ethyl tert-butyl ether:
@@ -1164,8 +1190,6 @@ methanol, from grass:
     fltr:
       - methanol production, from synthetic gas
       - methanol production, biomass gasification
-
-
 
 methanol, from wood, with CCS:
   lhv: 19.9
@@ -1261,8 +1285,13 @@ liquefied petroleum gas, synthetic, from coal:
   biogenic_share: 0
   ecoinvent_aliases:
     fltr:
-      name: synthetic fuel production, from coal, high temperature Fisher-Tropsch operations
+      name:
+        - Fisher-Tropsch operations
+        - Fischer-Tropsch operations
       reference product: liquefied petroleum gas
+    mask:
+      - carbon capture
+      - heat
   iam_aliases:
     tiam-ucl: Secondary Energy|Liquids|Coal|FT|Liquid Petroleum Gas|w/o CCS
   eff_aliases:

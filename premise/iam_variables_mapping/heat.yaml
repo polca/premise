@@ -25,8 +25,10 @@ heat, from steam (market):
 heat, from natural gas:
   ecoinvent_aliases:
     fltr:
-      - heat production, natural gas
-      - heat and power co-generation, natural gas
+      name:
+        - heat production, natural gas
+        - heat and power co-generation, natural gas
+      reference product: heat
     mask: market
 
 heat, from natural gas (market):
@@ -55,10 +57,12 @@ heat, from coal furnace:
 heat, from hydrogen turbine:
   ecoinvent_aliases:
     fltr: heat production, from hydrogen-fired one gigawatt gas turbine
+    mask: balancing
 
 heat, buildings, from district heating:
     ecoinvent_aliases:
-        fltr: market for heat, district or industrial, natural gas
+        fltr: heat, district or industrial, other than natural gas
+        mask: group
     iam_aliases:
       remind: FE|Buildings|Heating|District Heating
       remind-eu: FE|Buildings|Heating|District Heating
@@ -147,8 +151,8 @@ heat, buildings, from coal stove:
 
 heat, buildings, from wood logs heater:
     ecoinvent_aliases:
-        fltr: heat production, mixed logs, at wood heater 6kW
-        mask: '2014'
+      fltr: heat production, mixed logs, at wood heater 6kW
+      mask: state-of-the-art 2014
     iam_aliases:
       remind: FE|Buildings|Solids|Biomass|+|Traditional
       remind-eu: FE|Buildings|Solids|Biomass|+|Traditional
@@ -161,7 +165,7 @@ heat, buildings, from wood logs heater:
 heat, buildings, from wood pellets heater:
     ecoinvent_aliases:
       fltr: heat production, wood pellet, at furnace 9kW
-      mask: '2014'
+      mask: state-of-the-art 2014
     iam_aliases:
       remind: FE|Buildings|Solids|Biomass|+|Modern
       remind-eu: FE|Buildings|Solids|Biomass|+|Modern
@@ -210,7 +214,7 @@ heat, industrial, from hydrogen:
 
 heat, industrial, from heat pump:
     ecoinvent_aliases:
-      fltr: heat production, air-water heat pump 10kW
+      fltr: heat production, water-water heat pump, industrial, 100kW
     iam_aliases:
       remind: SE|Heat|Electricity|Heat Pump
       remind-eu: SE|Heat|Electricity|Heat Pump

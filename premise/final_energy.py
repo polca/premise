@@ -5,17 +5,8 @@ datasets based on IAM output data.
 
 from typing import List
 
-from wurst import searching as ws
-
 from .data_collection import IAMDataCollection
 from .transformation import BaseTransformation, InventorySet
-
-import uuid
-import re
-
-from pathlib import Path
-import yaml
-import sys
 
 
 def _update_final_energy(
@@ -102,43 +93,9 @@ class FinalEnergy(BaseTransformation):
 
     def regionalize_heating_datasets(self):
 
-        new_datasets, processed_datasets = [], []
-
-        for dataset in ws.get_many(
-            self.database,
-            ws.either(
-                *[
-                    ws.equals("name", name)
-                    for name in list(
-                        set(
-                            [
-                                ", ".join(sorted(s))
-                                for s in self.final_energy_map.values()
-                            ]
-                        )
-                    )
-                ]
-            ),
-        ):
-
-            if dataset["name"] in processed_datasets:
-                continue
-            if dataset["location"] in self.regions:
-                continue
-            if any(self.is_in_index(dataset, region) for region in self.regions):
-                continue
-
-            datasets = self.fetch_proxies(
-                name=dataset["name"],
-                ref_prod=dataset["reference product"],
-            )
-            new_datasets.append(datasets)
-
-            processed_datasets.append(dataset["name"])
-
-        for datasets in new_datasets:
-            self.database.extend(datasets.values())
-            self.add_to_index(datasets.values())
+        self.process_and_add_activities(
+            mapping=self.final_energy_map,
+        )
 
     def generate_capacity_addition_datasets(self):
         """

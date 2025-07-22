@@ -1,0 +1,82 @@
+spruce:
+  ecoinvent_aliases:
+    fltr:
+      name: softwood forestry, spruce
+    mask: market
+
+pine:
+  ecoinvent_aliases:
+    fltr:
+      name: softwood forestry, pine
+    mask: market
+
+birch:
+  ecoinvent_aliases:
+    fltr:
+      name: hardwood forestry, birch
+    mask: market
+
+oak:
+  ecoinvent_aliases:
+    fltr:
+      name: hardwood forestry, oak
+    mask: market
+
+beech:
+  ecoinvent_aliases:
+    fltr:
+      name: hardwood forestry, beech
+    mask: market
+
+mixed_species:
+  ecoinvent_aliases:
+    fltr:
+      name: hardwood forestry, mixed species
+      reference product: wood chips
+    mask: market
+
+softwood market:
+  ecoinvent_aliases:
+    fltr:
+      name: market for sawlog and veneer log, softwood
+
+hardwood market:
+  ecoinvent_aliases:
+    fltr:
+      name: market for sawlog and veneer log, hardwood
+
+sawing, softwood:
+  ecoinvent_aliases:
+    fltr:
+      name: sawing, softwood
+
+sawing, hardwood:
+  ecoinvent_aliases:
+    fltr:
+      name: sawing, hardwood
+
+wood chips, hardwood:
+  ecoinvent_aliases:
+    fltr:
+      name: wood chips production, hardwood
+    mask: market
+
+
+wood chips, softwood:
+  ecoinvent_aliases:
+    fltr:
+      name: wood chips production, softwood
+    mask: market
+
+willow production:
+  ecoinvent_aliases:
+    fltr:
+      name: willow production
+    mask: market
+
+eucalyptus:
+  ecoinvent_aliases:
+    fltr:
+      name: hardwood forestry, eucalyptus
+    mask: market
+
