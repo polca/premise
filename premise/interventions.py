@@ -519,8 +519,8 @@ class Interventions(BaseTransformation):
                                 "amount": scrap_amounts["mean"].item() * -1,
                                 "uncertainty type": 5,
                                 "loc": scrap_amounts["mean"].item() * -1,
-                                "minimum": scrap_amounts["min"].item() * -1,
-                                "maximum": scrap_amounts["max"].item() * -1,
+                                "minimum": scrap_amounts["max"].item() * -1,
+                                "maximum": scrap_amounts["min"].item() * -1,
                             }
                         )
 
@@ -532,8 +532,8 @@ class Interventions(BaseTransformation):
                                 "amount": ash_amounts["mean"].item() * -1,
                                 "uncertainty type": 5,
                                 "loc": ash_amounts["mean"].item() * -1,
-                                "minimum": ash_amounts["min"].item() * -1,
-                                "maximum": ash_amounts["max"].item() * -1,
+                                "minimum": ash_amounts["max"].item() * -1,
+                                "maximum": ash_amounts["min"].item() * -1,
                             }
                         )
 
