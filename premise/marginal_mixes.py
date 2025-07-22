@@ -819,7 +819,6 @@ def consequential_method(
 
             market_shares.loc[{"region": region}] = shares
 
-
     # print a summary of the results
     print()
     print(f"Summary of the {sector} marginal market mixes:")

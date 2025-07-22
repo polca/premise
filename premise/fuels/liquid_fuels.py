@@ -33,14 +33,15 @@ class SyntheticFuelsMixin:
 
         # gasoline
         # check that IAM data has "petrol_blend" attribute
-        if hasattr(self.iam_data, 'petrol_blend'):
+        if hasattr(self.iam_data, "petrol_blend"):
             mapping = {
                 k: v
                 for k, v in self.fuel_map.items()
                 if any(
                     k.startswith(x)
                     for x in ("gasoline", "bioethanol", "ethanol", "petrol", "methanol")
-                ) and self.iam_data.petrol_blend.sel(variables=k).sum() > 0
+                )
+                and self.iam_data.petrol_blend.sel(variables=k).sum() > 0
             }
             if mapping:
                 self.process_and_add_markets(
@@ -58,7 +59,13 @@ class SyntheticFuelsMixin:
                         for k in self.fuel_map.keys()
                         if any(
                             k.startswith(x)
-                            for x in ("gasoline", "bioethanol", "ethanol", "petrol", "methanol")
+                            for x in (
+                                "gasoline",
+                                "bioethanol",
+                                "ethanol",
+                                "petrol",
+                                "methanol",
+                            )
                         )
                     ],
                     market_names=[
@@ -83,7 +90,7 @@ class SyntheticFuelsMixin:
 
         # diesel
         # check that IAM data has "diesel_blend" attribute
-        if hasattr(self.iam_data, 'diesel_blend'):
+        if hasattr(self.iam_data, "diesel_blend"):
             mapping = {
                 k: v
                 for k, v in self.fuel_map.items()
@@ -135,12 +142,12 @@ class SyntheticFuelsMixin:
 
         # jet fuel
         # check that IAM data has "kerosene_blend" attribute
-        if hasattr(self.iam_data, 'kerosene_blend'):
+        if hasattr(self.iam_data, "kerosene_blend"):
             mapping = {
                 k: v
                 for k, v in self.fuel_map.items()
                 if k.startswith("kerosene")
-                   and self.iam_data.kerosene_blend.sel(variables=k).sum() > 0
+                and self.iam_data.kerosene_blend.sel(variables=k).sum() > 0
             }
             if mapping:
                 self.process_and_add_markets(
@@ -179,7 +186,7 @@ class SyntheticFuelsMixin:
 
         # lpg
         # check that IAM data has "lgp_blend" attribute
-        if hasattr(self.iam_data, 'lpg_blend'):
+        if hasattr(self.iam_data, "lpg_blend"):
             mapping = {
                 k: v
                 for k, v in self.fuel_map.items()
