@@ -167,9 +167,7 @@ class Emissions(BaseTransformation):
             )
 
             if 1 > scaling_factor > 0:
-                if gains_pollutant not in dataset.get(
-                    "log parameters", {}
-                ):
+                if gains_pollutant not in dataset.get("log parameters", {}):
                     wurst.rescale_exchange(
                         exc, scaling_factor, remove_uncertainty=False
                     )
@@ -197,10 +195,8 @@ class Emissions(BaseTransformation):
 
         data = self.gains_IAM
 
-        sf = data.loc[
-            dict(region=location, pollutant=pollutant, sector=sector)
-        ].item()
-        
+        sf = data.loc[dict(region=location, pollutant=pollutant, sector=sector)].item()
+
         if np.isnan(sf) or sf == 0.0:
             return 1.0
 

@@ -496,9 +496,7 @@ class BaseDatasetValidator:
 
         for ds in self.database:
             ds["database"] = self.db_name
-            ds["code"] = uuids[
-                (ds["name"], ds["reference product"], ds["location"])
-            ]
+            ds["code"] = uuids[(ds["name"], ds["reference product"], ds["location"])]
             for exc in ds["exchanges"]:
                 if exc["type"] in ["production", "technosphere"]:
                     if "input" in exc:
@@ -515,11 +513,14 @@ class BaseDatasetValidator:
                             self.biosphere_codes[
                                 exc["name"],
                                 exc["categories"][0],
-                                exc["categories"][1] if len(exc["categories"]) > 1 else "unspecified",
-                                exc["unit"]
-                            ]
+                                (
+                                    exc["categories"][1]
+                                    if len(exc["categories"]) > 1
+                                    else "unspecified"
+                                ),
+                                exc["unit"],
+                            ],
                         )
-
 
                 if exc["type"] == "technosphere":
                     exc["input"] = (
