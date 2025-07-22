@@ -114,6 +114,8 @@ CHEMBULK:
     - ethylene glycol monoethyl ether production
     - trifluoroacetic acid production
     - phenolic resin production
+    mask:
+    - market
   gains_aliases_IAM: CHEMBULK
 CHEM:
   ecoinvent_aliases:
@@ -197,7 +199,6 @@ CHEM:
     - mischmetal production, primary
     - acetaldehyde production
     - sulfur trioxide production
-    - adipic acid production
     - epoxy resin production, liquid
     - vinyl acetate production
     - propyl amine production
@@ -527,6 +528,8 @@ CHEM:
     - indium tin oxide powder production, nanoscale, for sputtering target
     - phenylenediamine production
     - cationic resin production
+    mask:
+    - market
   gains_aliases_IAM: CHEM
 Transformations_Coal:
   ecoinvent_aliases:
@@ -534,22 +537,30 @@ Transformations_Coal:
     - lignite briquettes production
     - coking
     - hard coal briquettes production
+    mask:
+    - market
   gains_aliases_IAM: Transformations_Coal
 Transformations_LLF:
   ecoinvent_aliases:
     fltr:
     - transport, pipeline, onshore, petroleum
     - transport, pipeline, offshore, petroleum
+    mask:
+    - market
   gains_aliases_IAM: Transformations_LLF
 Transformations_HLF:
   ecoinvent_aliases:
     fltr:
     - petroleum and gas production
+    mask:
+    - market
   gains_aliases_IAM: Transformations_HLF
 End_Use_Residential_NatGas:
   ecoinvent_aliases:
     fltr:
     - propane, burned in building machine
+    mask:
+    - market
   gains_aliases_IAM: End_Use_Residential_NatGas
 End_Use_Residential_LLF:
   ecoinvent_aliases:
@@ -557,6 +568,8 @@ End_Use_Residential_LLF:
     - petrol, unleaded, burned in machinery
     - ethanol, burned in
     - petrol burned in
+    mask:
+    - market
   gains_aliases_IAM: End_Use_Residential_LLF
 End_Use_Services_Bio_Trad_Heat:
   ecoinvent_aliases:
@@ -565,17 +578,23 @@ End_Use_Services_Bio_Trad_Heat:
     - wood logs, burned in
     - wood pellet, burned in
     - heat production, mixed logs
+    mask:
+    - market
   gains_aliases_IAM: End_Use_Services_Bio_Trad_Heat
 End_Use_Residential_Bio_Trad_Heat:
   ecoinvent_aliases:
     fltr:
     - treatment of stalk, in wood heater 6kW
+    mask:
+    - market
   gains_aliases_IAM: End_Use_Residential_Bio_Trad_Heat
 End_Use_Residential_Coal_Heat:
   ecoinvent_aliases:
     fltr:
     - heat production, hard coal coke, stove
     - heat production, lignite briquette, at stove
+    mask:
+    - market
   gains_aliases_IAM: End_Use_Residential_Coal_Heat
 Waste_Water_Industrial:
   ecoinvent_aliases:
@@ -585,6 +604,8 @@ Waste_Water_Industrial:
     - treatment of rainwater mineral oil storage
     - treatment of wastewater
     - treatment of wastewater from maize
+    mask:
+    - market
   gains_aliases_IAM: Waste_Water_Industrial
 Waste_Solid_Industrial:
   ecoinvent_aliases:
@@ -739,6 +760,8 @@ Waste_Solid_Industrial:
     - fly ash and scrubber sludge, hazardous waste incineration
     - waste zeolite
     - waste mineral oil, hazardous waste incineration
+    mask:
+    - market
   gains_aliases_IAM: Waste_Solid_Industrial
 End_Use_Industry_NatGas:
   ecoinvent_aliases:
@@ -749,17 +772,23 @@ End_Use_Industry_NatGas:
     - refinery gas, burned in furnace
     - sweet gas, burned in gas turbine
     - sour gas, burned in gas turbine
+    mask:
+    - market
   gains_aliases_IAM: End_Use_Industry_NatGas
 End_Use_Industry_LLF:
   ecoinvent_aliases:
     fltr:
     - heat production, light fuel oil
     - heat production, light fuel oil, at industrial furnace
+    mask:
+    - market
   gains_aliases_IAM: End_Use_Industry_LLF
 End_Use_Industry_HLF:
   ecoinvent_aliases:
     fltr:
     - heat production, heavy fuel oil
+    mask:
+    - market
   gains_aliases_IAM: End_Use_Industry_HLF
 End_Use_Industry_Coal:
   ecoinvent_aliases:
@@ -767,6 +796,8 @@ End_Use_Industry_Coal:
     - treatment of coal tar, in industrial
     - heat production, at coal coke
     - heat production, at hard coal
+    mask:
+    - market
   gains_aliases_IAM: End_Use_Industry_Coal
 PAPER:
   ecoinvent_aliases:
@@ -777,6 +808,8 @@ PAPER:
     - paper production, wood
     - kraft paper production
     - paper production, newsprint, recycled
+    mask:
+    - market
   gains_aliases_IAM: PAPER
 End_Use_Industry_Bio_Trad:
   ecoinvent_aliases:
@@ -787,12 +820,16 @@ End_Use_Industry_Bio_Trad:
     - heat production, untreated waste wood
     - heat production, wood pellet
     - heat production, mixed logs
+    mask:
+    - market
   gains_aliases_IAM: End_Use_Industry_Bio_Trad
 Losses_Coal:
   ecoinvent_aliases:
     fltr:
     - hard coal mine operation
     - lignite mine operation
+    mask:
+    - market
   gains_aliases_IAM: Losses_Coal
 Waste_Solid_Municipal:
   ecoinvent_aliases:
@@ -910,8 +947,7 @@ Waste_Solid_Municipal:
     - treatment of used liquid crystal display module, municipal
     - treatment of residue from shredder fraction from manual dismantling
     mask:
-      name:
-      - open burning
+    - market
   gains_aliases_IAM: Waste_Solid_Municipal
 Power_Gen_NatGas:
   ecoinvent_aliases:
@@ -938,6 +974,8 @@ Power_Gen_NatGas:
       future
     - heat and power co-generation, natural gas, 1MW electrical, lean burn
     - natural gas, burned in
+    mask:
+    - market
   gains_aliases_IAM: Power_Gen_NatGas
 Power_Gen_HLF:
   ecoinvent_aliases:
@@ -948,12 +986,16 @@ Power_Gen_HLF:
     - heavy fuel oil, burned in refinery furnace
     - electricity production, oil
     - water pump operation, diesel
+    mask:
+    - market
   gains_aliases_IAM: Power_Gen_HLF
 Power_Gen_Coal_Old:
   ecoinvent_aliases:
     fltr:
     - electricity production, hard coal
     - electricity production, peat
+    mask:
+    - market
   gains_aliases_IAM: Power_Gen_Coal_Old
 Power_Gen_Bio_Trad_Old:
   ecoinvent_aliases:
@@ -962,6 +1004,8 @@ Power_Gen_Bio_Trad_Old:
     - heat production, straw
     - treatment of bagasse, from sugarcane
     - heat and power co-generation, wood chips
+    mask:
+    - market
   gains_aliases_IAM: Power_Gen_Bio_Trad_Old
 Power_Gen_LLF:
   ecoinvent_aliases:
@@ -977,6 +1021,8 @@ Power_Gen_LLF:
     - hydrogen production, steam methane reforming, from biomethane
     - hydrogen production, steam methane reforming, with CCS
     - hydrogen, used in
+    mask:
+    - market
   gains_aliases_IAM: Power_Gen_LLF
 Power_Gen_Coal_IGCC_CCS:
   ecoinvent_aliases:
@@ -992,8 +1038,7 @@ Power_Gen_Coal_IGCC_CCS:
     - electricity production, at lignite-fired power plant, post, pipeline 200km,
       storage 1000m
     mask:
-      name:
-      - pipeline
+    - market
   gains_aliases_IAM: Power_Gen_Coal_IGCC_CCS
 Power_Gen_Coal_New:
   ecoinvent_aliases:
@@ -1004,8 +1049,9 @@ Power_Gen_Coal_New:
     - heat and power co-generation, hard coal
     - electricity production, hard coal, supercritical
     - heat and power co-generation, lignite
+    mask:
+    - market
   gains_aliases_IAM: Power_Gen_Coal_New
-
 Power_Gen_Bio_Trad_New:
   ecoinvent_aliases:
     fltr:
@@ -1024,6 +1070,8 @@ Power_Gen_Bio_Trad_New:
     - biomethane, low pressure burned
     - electricity production, at biomass
     - biomethane, burned
+    mask:
+    - market
   gains_aliases_IAM: Power_Gen_Bio_Trad_New
 Losses_Prod_Conventional_Gas:
   ecoinvent_aliases:
@@ -1033,28 +1081,38 @@ Losses_Prod_Conventional_Gas:
     - treatment of waste natural gas, sweet
     - waste refinery gas, burned in flare
     - treatment of waste natural gas, sour,
+    mask:
+    - market
   gains_aliases_IAM: Losses_Prod_Conventional_Gas
 AACID:
   ecoinvent_aliases:
     fltr:
     - adipic acid production
+    mask:
+    - market
   gains_aliases_IAM: AACID
 CEMENT:
   ecoinvent_aliases:
     fltr:
       name: clinker production
       reference product: clinker
+    mask:
+    - market
   gains_aliases_IAM: CEMENT
 NACID:
   ecoinvent_aliases:
     fltr:
     - nitric acid production
+    mask:
+    - market
   gains_aliases_IAM: NACID
 CUSM:
   ecoinvent_aliases:
     fltr:
     - smelting and refining of nickel concentrate
     - smelting of copper concentrate, sulfide ore
+    mask:
+    - market
   gains_aliases_IAM: CUSM
 STEEL:
   ecoinvent_aliases:
@@ -1068,16 +1126,15 @@ STEEL:
     - iron sinter production
     - sheet rolling, chromium steel
     mask:
-      name:
-      - waste
-      - market
-      - treatment
+    - market
   gains_aliases_IAM: STEEL
 Losses_Distribution_Use:
   ecoinvent_aliases:
     fltr:
     - transport, pipeline, long distance, natural gas
     - transport, natural gas
+    mask:
+    - market
   gains_aliases_IAM: Losses_Distribution_Use
 End_Use_Transport_OFF_HLF:
   ecoinvent_aliases:
@@ -1087,8 +1144,7 @@ End_Use_Transport_OFF_HLF:
     - transport, freight, inland waterways
     - transport, freight train, diesel
     mask:
-      name:
-      - market
+    - market
   gains_aliases_IAM: End_Use_Transport_OFF_HLF
 End_Use_Transport_AGR_HLF:
   ecoinvent_aliases:
@@ -1096,8 +1152,7 @@ End_Use_Transport_AGR_HLF:
     - transport, tractor and trailer, agricultural
     - transport, freight, tractor and trailer, diesel, agricultural
     mask:
-      name:
-      - market
+    - market
   gains_aliases_IAM: End_Use_Transport_AGR_HLF
 End_Use_Transport_HDT_HLF:
   ecoinvent_aliases:
@@ -1112,22 +1167,22 @@ End_Use_Transport_HDT_HLF:
     - transport, freight, lorry 7.5-16 metric ton
     - transport, freight, lorry 16-32 metric ton
     mask:
-      name:
-      - market
+    - market
   gains_aliases_IAM: End_Use_Transport_HDT_HLF
 End_Use_Transport_NatGas:
   ecoinvent_aliases:
     fltr:
     - transport, passenger car
     - transport, freight, lorry, compressed gas
+    mask:
+    - market
   gains_aliases_IAM: End_Use_Transport_NatGas
 End_Use_Transport_MC_LLF:
   ecoinvent_aliases:
     fltr:
     - transport, passenger, motor scooter
     mask:
-      name:
-      - market
+    - market
   gains_aliases_IAM: End_Use_Transport_MC_LLF
 End_Use_Transport_LDT_LLF:
   ecoinvent_aliases:
@@ -1138,6 +1193,7 @@ End_Use_Transport_LDT_LLF:
     mask:
     - diesel
     - compressed gas
+    - market
   gains_aliases_IAM: End_Use_Transport_LDT_LLF
 End_Use_Transport_LDT_HLF:
   ecoinvent_aliases:
@@ -1150,35 +1206,39 @@ End_Use_Transport_LDT_HLF:
     - compressed gas
     - gasoline
     - petrol
+    - market
   gains_aliases_IAM: End_Use_Transport_LDT_HLF
 Waste_Water_Municipal:
   ecoinvent_aliases:
     fltr:
     - wastewater, from residence
     - wastewater, average
-    mask: market
+    mask:
+    - market
   gains_aliases_IAM: Waste_Water_Municipal
-
 End_Use_Services_Coal_Heat:
   ecoinvent_aliases:
     fltr:
-      - hard coal, burned in
-      - heat and power co-generation, hard coal
-      - hard coal briquettes, burned in stove 5-15kW
-      - heat production, at hard coal
+    - hard coal, burned in
+    - heat and power co-generation, hard coal
+    - hard coal briquettes, burned in stove 5-15kW
+    - heat production, at hard coal
+    mask:
+    - market
   gains_aliases_IAM: End_Use_Services_Coal_Heat
-
 End_Use_Residential_Bio_Mod:
   ecoinvent_aliases:
     fltr:
-      - heat production, wood pellet
-      - heat production, wood chips
-      - heat production, untreated waste wood
-      - heat production, hardwood chips
-      - heat and power co-generation, wood chips
-      - wood pellets, burned in stirling heat
-      - wood logs, burned in wood stove
-      - wood pellet, burned in residential stove
+    - heat production, wood pellet
+    - heat production, wood chips
+    - heat production, untreated waste wood
+    - heat production, hardwood chips
+    - heat and power co-generation, wood chips
+    - wood pellets, burned in stirling heat
+    - wood logs, burned in wood stove
+    - wood pellet, burned in residential stove
+    mask:
+    - market
   gains_aliases_IAM: End_Use_Residential_Bio_Mod
 
 Losses_Prod_Shale_Gas:
@@ -1211,6 +1271,7 @@ End_Use_Residential_HLF:
 Transformations_NatGas:
   ecoinvent_aliases:
     fltr:
-      - evaporation of natural gas
-      
+    - evaporation of natural gas
+    mask:
+    - market
   gains_aliases_IAM: Transformations_NatGas

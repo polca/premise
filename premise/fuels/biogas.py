@@ -39,37 +39,42 @@ class BiogasMixin:
         self.fuel_map = self.mapping.generate_fuel_map()
 
         # create markets for natural gas and biogas
-        for market_name in [
-            "market for natural gas, high pressure",
-            "market group for natural gas, high pressure",
-            "market for natural gas, low pressure",
-        ]:
-            self.process_and_add_markets(
-                name=market_name,
-                reference_product=market_name.replace("market for ", "").replace(
-                    "market group for ", ""
-                ),
-                unit="cubic meter",
-                mapping={
-                    k: v
-                    for k, v in self.fuel_map.items()
-                    if any(k.startswith(x) for x in ["natural gas", "methane"])
-                },
-                system_model=self.system_model,
-                production_volumes=self.iam_data.production_volumes,
-                blacklist={
-                    "consequential": [
-                        "methane, from biomass",
-                    ]
-                },
-                conversion_factor={
-                    "methane, from biomass": 0.716,
-                    "methane, synthetic": 0.716,
-                    "methane, from coal": 0.716,
-                },
-            )
+        # check that IAM data has "natural_gas_blend" attribute
+        if hasattr(self.iam_data, 'natural_gas_blend'):
+            mapping = {
+                k: v
+                for k, v in self.fuel_map.items()
+                if any(k.startswith(x) for x in ["natural gas", "methane"])
+                   and self.iam_data.natural_gas_blend.sel(variables=k).sum() > 0
+            }
+            if mapping:
+                for market_name in [
+                    "market for natural gas, high pressure",
+                    "market group for natural gas, high pressure",
+                    "market for natural gas, low pressure",
+                ]:
+                    self.process_and_add_markets(
+                        name=market_name,
+                        reference_product=market_name.replace("market for ", "").replace(
+                            "market group for ", ""
+                        ),
+                        unit="cubic meter",
+                        mapping=mapping,
+                        system_model=self.system_model,
+                        production_volumes=self.iam_data.production_volumes,
+                        blacklist={
+                            "consequential": [
+                                "methane, from biomass",
+                            ]
+                        },
+                        conversion_factor={
+                            "methane, from biomass": 0.716,
+                            "methane, synthetic": 0.716,
+                            "methane, from coal": 0.716,
+                        },
+                    )
 
-        self.update_carbon_dioxide_emissions()
+                self.update_carbon_dioxide_emissions()
 
     def update_carbon_dioxide_emissions(self):
         """

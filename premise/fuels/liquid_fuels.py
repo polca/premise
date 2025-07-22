@@ -32,180 +32,195 @@ class SyntheticFuelsMixin:
         self.fuel_map = self.mapping.generate_fuel_map(model=self.model)
 
         # gasoline
-        self.process_and_add_markets(
-            name="market for petrol, low-sulfur",
-            reference_product="petrol, low-sulfur",
-            unit="kilogram",
-            mapping={
+        # check that IAM data has "petrol_blend" attribute
+        if hasattr(self.iam_data, 'petrol_blend'):
+            mapping = {
                 k: v
                 for k, v in self.fuel_map.items()
                 if any(
                     k.startswith(x)
                     for x in ("gasoline", "bioethanol", "ethanol", "petrol", "methanol")
+                ) and self.iam_data.petrol_blend.sel(variables=k).sum() > 0
+            }
+            if mapping:
+                self.process_and_add_markets(
+                    name="market for petrol, low-sulfur",
+                    reference_product="petrol, low-sulfur",
+                    unit="kilogram",
+                    mapping=mapping,
+                    system_model=self.system_model,
+                    production_volumes=self.iam_data.production_volumes,
                 )
-            },
-            system_model=self.system_model,
-            production_volumes=self.iam_data.production_volumes,
-        )
 
-        self.update_fuel_carbon_dioxide_emissions(
-            variables=[
-                k
-                for k in self.fuel_map.keys()
-                if any(
-                    k.startswith(x)
-                    for x in ("gasoline", "bioethanol", "ethanol", "petrol", "methanol")
+                self.update_fuel_carbon_dioxide_emissions(
+                    variables=[
+                        k
+                        for k in self.fuel_map.keys()
+                        if any(
+                            k.startswith(x)
+                            for x in ("gasoline", "bioethanol", "ethanol", "petrol", "methanol")
+                        )
+                    ],
+                    market_names=[
+                        "market for petrol, low-sulfur",
+                        "market group for petrol, low-sulfur",
+                    ],
+                    co2_intensity=3.15,
+                    fossil_variables=[
+                        k
+                        for k in self.fuel_map.keys()
+                        if any(
+                            k.startswith(x)
+                            for x in (
+                                "gasoline",
+                                "petrol",
+                                "petrol, synthetic, from coal",
+                                "petrol, synthetic, from coal, with CCS",
+                            )
+                        )
+                    ],
                 )
-            ],
-            market_names=[
-                "market for petrol, low-sulfur",
-                "market group for petrol, low-sulfur",
-            ],
-            co2_intensity=3.15,
-            fossil_variables=[
-                k
-                for k in self.fuel_map.keys()
-                if any(
-                    k.startswith(x)
-                    for x in (
-                        "gasoline",
-                        "petrol",
-                        "petrol, synthetic, from coal",
-                        "petrol, synthetic, from coal, with CCS",
-                    )
-                )
-            ],
-        )
 
         # diesel
-        for market_name in [
-            "market for diesel",
-            "market for diesel, low-sulfur",
-            "market group for diesel, low-sulfur",
-        ]:
-            self.process_and_add_markets(
-                name=market_name,
-                reference_product="diesel, low-sulfur",
-                unit="kilogram",
-                mapping={
-                    k: v
-                    for k, v in self.fuel_map.items()
-                    if any(k.startswith(x) for x in ("diesel", "biodiesel"))
-                },
-                system_model=self.system_model,
-                production_volumes=self.iam_data.production_volumes,
-            )
-
-        self.update_fuel_carbon_dioxide_emissions(
-            variables=[
-                k
-                for k in self.fuel_map.keys()
+        # check that IAM data has "diesel_blend" attribute
+        if hasattr(self.iam_data, 'diesel_blend'):
+            mapping = {
+                k: v
+                for k, v in self.fuel_map.items()
                 if any(k.startswith(x) for x in ("diesel", "biodiesel"))
-            ],
-            market_names=[
-                "market for diesel",
-                "market for diesel, low-sulfur",
-                "market group for diesel, low-sulfur",
-            ],
-            co2_intensity=3.15,
-            fossil_variables=[
-                k
-                for k in self.fuel_map.keys()
-                if any(
-                    k.startswith(x)
-                    for x in (
-                        "diesel",
-                        "diesel, synthetic, from natural gas",
-                        "diesel, synthetic, from natural gas, with CCS",
-                        "diesel, synthetic, from coal",
-                        "diesel, synthetic, from coal, with CCS",
+                and self.iam_data.diesel_blend.sel(variables=k).sum() > 0
+            }
+            if mapping:
+                for market_name in [
+                    "market for diesel",
+                    "market for diesel, low-sulfur",
+                    "market group for diesel, low-sulfur",
+                ]:
+                    self.process_and_add_markets(
+                        name=market_name,
+                        reference_product="diesel, low-sulfur",
+                        unit="kilogram",
+                        mapping=mapping,
+                        system_model=self.system_model,
+                        production_volumes=self.iam_data.production_volumes,
                     )
+
+                self.update_fuel_carbon_dioxide_emissions(
+                    variables=[
+                        k
+                        for k in self.fuel_map.keys()
+                        if any(k.startswith(x) for x in ("diesel", "biodiesel"))
+                    ],
+                    market_names=[
+                        "market for diesel",
+                        "market for diesel, low-sulfur",
+                        "market group for diesel, low-sulfur",
+                    ],
+                    co2_intensity=3.15,
+                    fossil_variables=[
+                        k
+                        for k in self.fuel_map.keys()
+                        if any(
+                            k.startswith(x)
+                            for x in (
+                                "diesel",
+                                "diesel, synthetic, from natural gas",
+                                "diesel, synthetic, from natural gas, with CCS",
+                                "diesel, synthetic, from coal",
+                                "diesel, synthetic, from coal, with CCS",
+                            )
+                        )
+                    ],
                 )
-            ],
-        )
 
         # jet fuel
-        if {k: v for k, v in self.fuel_map.items() if k.startswith("kerosene")}:
-            self.process_and_add_markets(
-                name="market for kerosene",
-                reference_product="kerosene",
-                unit="kilogram",
-                mapping={
-                    k: v for k, v in self.fuel_map.items() if k.startswith("kerosene")
-                },
-                system_model=self.system_model,
-                production_volumes=self.iam_data.production_volumes,
-            )
+        # check that IAM data has "kerosene_blend" attribute
+        if hasattr(self.iam_data, 'kerosene_blend'):
+            mapping = {
+                k: v
+                for k, v in self.fuel_map.items()
+                if k.startswith("kerosene")
+                   and self.iam_data.kerosene_blend.sel(variables=k).sum() > 0
+            }
+            if mapping:
+                self.process_and_add_markets(
+                    name="market for kerosene",
+                    reference_product="kerosene",
+                    unit="kilogram",
+                    mapping=mapping,
+                    system_model=self.system_model,
+                    production_volumes=self.iam_data.production_volumes,
+                )
 
-            self.update_fuel_carbon_dioxide_emissions(
-                variables=[
-                    k
-                    for k in self.fuel_map.keys()
-                    if any(k.startswith(x) for x in ("kerosene",))
-                ],
-                market_names=[
-                    "market for kerosene",
-                ],
-                co2_intensity=3.15,
-                fossil_variables=[
-                    k
-                    for k in self.fuel_map.keys()
-                    if any(
-                        k.startswith(x)
-                        for x in (
-                            "kerosene, from petroleum",
-                            "kerosene, synthetic, from natural gas, energy allocation",
-                            "kerosene, synthetic, from coal, energy allocation",
-                            "kerosene, synthetic, from coal, energy allocation, with CCS",
+                self.update_fuel_carbon_dioxide_emissions(
+                    variables=[
+                        k
+                        for k in self.fuel_map.keys()
+                        if any(k.startswith(x) for x in ("kerosene",))
+                    ],
+                    market_names=[
+                        "market for kerosene",
+                    ],
+                    co2_intensity=3.15,
+                    fossil_variables=[
+                        k
+                        for k in self.fuel_map.keys()
+                        if any(
+                            k.startswith(x)
+                            for x in (
+                                "kerosene, from petroleum",
+                                "kerosene, synthetic, from natural gas, energy allocation",
+                                "kerosene, synthetic, from coal, energy allocation",
+                                "kerosene, synthetic, from coal, energy allocation, with CCS",
+                            )
                         )
-                    )
-                ],
-            )
+                    ],
+                )
 
         # lpg
-        if {
-            k: v
-            for k, v in self.fuel_map.items()
-            if k.startswith("liquefied petroleum gas")
-        }:
-            self.process_and_add_markets(
-                name="market for liquefied petroleum gas",
-                reference_product="liquefied petroleum gas",
-                unit="kilogram",
-                mapping={
-                    k: v
-                    for k, v in self.fuel_map.items()
-                    if k.startswith("liquefied petroleum gas")
-                },
-                system_model=self.system_model,
-                production_volumes=self.iam_data.production_volumes,
-            )
+        # check that IAM data has "lgp_blend" attribute
+        if hasattr(self.iam_data, 'lpg_blend'):
+            mapping = {
+                k: v
+                for k, v in self.fuel_map.items()
+                if k.startswith("liquefied petroleum gas")
+                and self.iam_data.lpg_blend.sel(variables=k).sum() > 0
+            }
+            if mapping:
+                self.process_and_add_markets(
+                    name="market for liquefied petroleum gas",
+                    reference_product="liquefied petroleum gas",
+                    unit="kilogram",
+                    mapping=mapping,
+                    system_model=self.system_model,
+                    production_volumes=self.iam_data.production_volumes,
+                )
 
-            self.update_fuel_carbon_dioxide_emissions(
-                variables=[
-                    k
-                    for k in self.fuel_map.keys()
-                    if any(k.startswith(x) for x in ("liquefied petroleum gas",))
-                ],
-                market_names=[
-                    "market for liquefied petroleum gas",
-                ],
-                co2_intensity=2.88,
-                fossil_variables=[
-                    k
-                    for k in self.fuel_map.keys()
-                    if any(
-                        k.startswith(x)
-                        for x in (
-                            "liquefied petroleum gas, synthetic, from natural gas, with CCS",
-                            "liquefied petroleum gas, synthetic, from natural gas",
-                            "liquefied petroleum gas, synthetic, from coal",
-                            "liquefied petroleum gas",
-                            "liquefied petroleum gas, synthetic, from coal, with CCS",
+                self.update_fuel_carbon_dioxide_emissions(
+                    variables=[
+                        k
+                        for k in self.fuel_map.keys()
+                        if any(k.startswith(x) for x in ("liquefied petroleum gas",))
+                    ],
+                    market_names=[
+                        "market for liquefied petroleum gas",
+                    ],
+                    co2_intensity=2.88,
+                    fossil_variables=[
+                        k
+                        for k in self.fuel_map.keys()
+                        if any(
+                            k.startswith(x)
+                            for x in (
+                                "liquefied petroleum gas, synthetic, from natural gas, with CCS",
+                                "liquefied petroleum gas, synthetic, from natural gas",
+                                "liquefied petroleum gas, synthetic, from coal",
+                                "liquefied petroleum gas",
+                                "liquefied petroleum gas, synthetic, from coal, with CCS",
+                            )
                         )
-                    )
-                ],
-            )
+                    ],
+                )
 
     def update_fuel_carbon_dioxide_emissions(
         self, variables, market_names, co2_intensity, fossil_variables

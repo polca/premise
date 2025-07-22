@@ -2367,22 +2367,28 @@ class BiomassValidation(BaseDatasetValidator):
                 dataset["location"] in regions
                 or self.geo.ecoinvent_to_iam_location(dataset["location"]) in regions
             ):
-                assert (
-                    len(
-                        [
-                            e
-                            for e in dataset["exchanges"]
-                            if e["type"] == "technosphere"
-                            and e["name"] == "market for biomass, used as fuel"
-                        ]
-                    )
-                    >= 1
-                ), (
-                    f"Dataset {dataset['name']} in {dataset['location']} "
-                    f"should have one or more exchanges to "
-                    f"'market for biomass, used as fuel'. "
-                    f"Currently has {len([e for e in dataset['exchanges'] if e['type'] == 'technosphere' and e['name'] == 'market for biomass, used as fuel'])}."
+                loc = (
+                    dataset["location"]
+                    if dataset["location"] in regions
+                    else self.geo.ecoinvent_to_iam_location(dataset["location"])
                 )
+                if self.iam_data.biomass_mix.sel(region=loc).sum() > 0:
+                    assert (
+                        len(
+                            [
+                                e
+                                for e in dataset["exchanges"]
+                                if e["type"] == "technosphere"
+                                and e["name"] == "market for biomass, used as fuel"
+                            ]
+                        )
+                        >= 1
+                    ), (
+                        f"Dataset {dataset['name']} in {dataset['location']} "
+                        f"should have one or more exchanges to "
+                        f"'market for biomass, used as fuel'. "
+                        f"Currently has {len([e for e in dataset['exchanges'] if e['type'] == 'technosphere' and e['name'] == 'market for biomass, used as fuel'])}."
+                    )
 
     def check_residual_biomass_share(self):
         # check that the share of residual biomass
