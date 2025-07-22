@@ -40,12 +40,12 @@ class BiogasMixin:
 
         # create markets for natural gas and biogas
         # check that IAM data has "natural_gas_blend" attribute
-        if hasattr(self.iam_data, 'natural_gas_blend'):
+        if hasattr(self.iam_data, "natural_gas_blend"):
             mapping = {
                 k: v
                 for k, v in self.fuel_map.items()
                 if any(k.startswith(x) for x in ["natural gas", "methane"])
-                   and self.iam_data.natural_gas_blend.sel(variables=k).sum() > 0
+                and self.iam_data.natural_gas_blend.sel(variables=k).sum() > 0
             }
             if mapping:
                 for market_name in [
@@ -55,9 +55,9 @@ class BiogasMixin:
                 ]:
                     self.process_and_add_markets(
                         name=market_name,
-                        reference_product=market_name.replace("market for ", "").replace(
-                            "market group for ", ""
-                        ),
+                        reference_product=market_name.replace(
+                            "market for ", ""
+                        ).replace("market group for ", ""),
                         unit="cubic meter",
                         mapping=mapping,
                         system_model=self.system_model,
