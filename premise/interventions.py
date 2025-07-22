@@ -149,6 +149,7 @@ def group_dicts_by_keys(dicts: list, keys: list):
         groups[group_key].append(d)
     return list(groups.values())
 
+
 class Interventions(BaseTransformation):
     def __init__(
         self,
@@ -204,7 +205,6 @@ class Interventions(BaseTransformation):
         market_datasets = group_dicts_by_keys(
             market_datasets, ["name", "reference product"]
         )
-
 
         processed_datasets = []
         for datasets in market_datasets:
