@@ -499,7 +499,7 @@ class FinalEnergy(BaseTransformation):
         }
 
         # Updated pattern to handle optional 'p' suffix
-        pattern = r"([\d\.]+)\s*(kWp?|MWp?|GWp?|TWp?)"
+        pattern = r"([\d\.]+)\s*(kWp?|MWp?|GWp?|TWp?)(?!h)"
         m = re.search(pattern, dataset["name"], flags=re.IGNORECASE)
 
         if m:

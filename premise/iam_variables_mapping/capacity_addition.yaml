@@ -124,7 +124,7 @@ New Cap - Electricity - Hydropower:
   ecoinvent_aliases:
     fltr:
       - name: hydropower plant construction
-        reference product: hydropower plant, 1MWel
+        reference product: hydropower
         unit: unit
         mask: market
   iam_aliases:
