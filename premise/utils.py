@@ -431,11 +431,19 @@ def load_database(scenario, delete=True, load_metadata=False):
                         if k not in ds:
                             ds[k] = v
                         else:
+                            # try to evaluate
+                            try:
+                                v = eval(v)
+                            except (NameError, SyntaxError, TypeError):
+                                pass
+
                             # if the key already exists, concatenate the values
                             if isinstance(ds[k], list):
                                 ds[k].extend(v)
-                            else:
+                            elif isinstance(ds[k], str):
                                 ds[k] = f"{ds[k]}. {v}"
+                            elif isinstance(ds[k], dict):
+                                ds[k].update(v)
 
     del scenario["database filepath"]
 

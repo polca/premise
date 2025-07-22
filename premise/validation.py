@@ -601,11 +601,12 @@ class BaseDatasetValidator:
                     else:
                         ds["parameters"] = [ds["parameters"]]
                 else:
-                    ds["parameters"] = [
-                        {"name": k, "amount": v}
-                        for o in ds["parameters"]
-                        for k, v in o.items()
-                    ]
+                    if isinstance(ds["parameters"][0], dict):
+                        ds["parameters"] = [
+                            {"name": k, "amount": v}
+                            for o in ds["parameters"]
+                            for k, v in o.items()
+                        ]
 
             for key, value in list(ds.items()):
                 if not value:
