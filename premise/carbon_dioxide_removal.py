@@ -67,14 +67,6 @@ def _update_cdr(scenario, version, system_model):
     return scenario
 
 
-def group_dicts_by_keys(dicts: list, keys: list):
-    groups = defaultdict(list)
-    for d in dicts:
-        group_key = tuple(d.get(k) for k in keys)
-        groups[group_key].append(d)
-    return list(groups.values())
-
-
 class CarbonDioxideRemoval(BaseTransformation):
     """
     Class that modifies DAC and DACCS inventories and markets

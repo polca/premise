@@ -144,6 +144,13 @@ def load_config(file_path, model: str):
     return create_dataset(tech_data, model_name=model, region_map_raw=region_map_raw)
 
 
+def group_dicts_by_keys(dicts: list, keys: list):
+    groups = defaultdict(list)
+    for d in dicts:
+        group_key = tuple(d.get(k) for k in keys)
+        groups[group_key].append(d)
+    return list(groups.values())
+
 class Interventions(BaseTransformation):
     def __init__(
         self,
@@ -197,11 +204,15 @@ class Interventions(BaseTransformation):
             )
         ]
 
+        market_datasets = group_dicts_by_keys(
+            market_datasets, ["name", "reference product"]
+        )
+
 
         processed_datasets = []
-        for market_dataset in market_datasets:
+        for datasets in market_datasets:
             regionalized_datasets = self.fetch_proxies(
-                datasets=market_dataset,
+                datasets=datasets,
             )
 
             regionalized_datasets = {
@@ -213,7 +224,7 @@ class Interventions(BaseTransformation):
             ### Old markets were consuming positive amounts of the new markets. We need to invert this
             for ds in self.database:
                 if (
-                    ds["name"] == market_dataset
+                    ds["name"] == market_datasets[0]["name"]
                     and ds["location"] not in self.tailings_shares.region.values
                 ):
                     iam_region = self.geomap.ecoinvent_to_iam_location(ds["location"])
@@ -331,8 +342,6 @@ class Interventions(BaseTransformation):
             ),
         }
 
-
-
         for slag_type, (slag_map, slag_shares, market_name) in slag_configs.items():
 
             self.process_and_add_activities(
@@ -348,10 +357,14 @@ class Interventions(BaseTransformation):
                 )
             ]
 
+            market_datasets = group_dicts_by_keys(
+                market_datasets, ["name", "reference product"]
+            )
+
             processed_datasets = []
-            for market_dataset in market_datasets:
+            for datasets in market_datasets:
                 regionalized_datasets = self.fetch_proxies(
-                    datasets=[market_dataset],
+                    datasets=datasets,
                 )
 
                 regionalized_datasets = {
@@ -362,7 +375,7 @@ class Interventions(BaseTransformation):
 
                 for ds in self.database:
                     if (
-                        ds["name"] == market_dataset
+                        ds["name"] == market_datasets[0]["name"]
                         and ds["location"] not in slag_shares.region.values
                     ):
                         iam_region = self.geomap.ecoinvent_to_iam_location(
