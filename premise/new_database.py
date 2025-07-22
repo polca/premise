@@ -203,6 +203,7 @@ FILEPATH_FINAL_ENERGY = INVENTORY_DIR / "lci-final-energy.xlsx"
 FILEPATH_SULFIDIC_TAILINGS = INVENTORY_DIR / "lci-sulfidic-tailings.xlsx"
 FILEPATH_SHIPS = INVENTORY_DIR / "lci-ships.xlsx"
 FILEPATH_STEEL = INVENTORY_DIR / "lci-steel.xlsx"
+FILEPATH_IND_HEAT_PUMP = INVENTORY_DIR / "lci-heat-pump-high-temp.xlsx"
 
 config = load_constants()
 
@@ -774,6 +775,7 @@ class NewDatabase:
             (FILEPATH_SIB_BATTERY, "3.9"),
             (FILEPATH_BATTERY_CAPACITY, "3.10"),
             (FILEPATH_HOME_STORAGE_BATTERIES, "3.9"),
+            (FILEPATH_IND_HEAT_PUMP, "3.11"),
             (FILEPATH_PHOTOVOLTAICS, "3.7"),
             (FILEPATH_PGM, "3.8"),
             (FILEPATH_HYDROGEN_INVENTORIES, "3.9"),

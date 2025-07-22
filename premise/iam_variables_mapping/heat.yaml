@@ -214,7 +214,7 @@ heat, industrial, from hydrogen:
 
 heat, industrial, from heat pump:
     ecoinvent_aliases:
-      fltr: heat production, air-water heat pump 10kW
+      fltr: heat production, water-water heat pump, industrial, 100kW
     iam_aliases:
       remind: SE|Heat|Electricity|Heat Pump
       remind-eu: SE|Heat|Electricity|Heat Pump
