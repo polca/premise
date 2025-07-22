@@ -207,17 +207,18 @@ class Emissions(BaseTransformation):
         Write log file.
         """
 
-        logger.info(
-            f"{status}|{self.model}|{self.scenario}|{self.year}|"
-            f"{dataset['name']}|{dataset['location']}|"
-            f"{dataset.get('log parameters', {}).get('GAINS sector', '')}|"
-            f"{dataset.get('log parameters', {}).get('CH4', '')}|"
-            f"{dataset.get('log parameters', {}).get('N2O', '')}|"
-            f"{dataset.get('log parameters', {}).get('NH3', '')}|"
-            f"{dataset.get('log parameters', {}).get('NOx', '')}|"
-            f"{dataset.get('log parameters', {}).get('PM1', '')}|"
-            f"{dataset.get('log parameters', {}).get('PM10', '')}|"
-            f"{dataset.get('log parameters', {}).get('PM25', '')}|"
-            f"{dataset.get('log parameters', {}).get('SO2', '')}|"
-            f"{dataset.get('log parameters', {}).get('VOC', '')}"
-        )
+        if "GAINS sector" in dataset.get("log parameters", {}):
+            logger.info(
+                f"{status}|{self.model}|{self.scenario}|{self.year}|"
+                f"{dataset['name']}|{dataset['location']}|"
+                f"{dataset.get('log parameters', {}).get('GAINS sector', '')}|"
+                f"{dataset.get('log parameters', {}).get('CH4', '')}|"
+                f"{dataset.get('log parameters', {}).get('N2O', '')}|"
+                f"{dataset.get('log parameters', {}).get('NH3', '')}|"
+                f"{dataset.get('log parameters', {}).get('NOx', '')}|"
+                f"{dataset.get('log parameters', {}).get('PM1', '')}|"
+                f"{dataset.get('log parameters', {}).get('PM10', '')}|"
+                f"{dataset.get('log parameters', {}).get('PM25', '')}|"
+                f"{dataset.get('log parameters', {}).get('SO2', '')}|"
+                f"{dataset.get('log parameters', {}).get('VOC', '')}"
+            )

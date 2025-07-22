@@ -559,6 +559,10 @@ End_Use_Residential_NatGas:
   ecoinvent_aliases:
     fltr:
     - propane, burned in building machine
+    - natural gas, burned in residential
+    - hydrogen, burned in residential
+    - biomethane, burned in residential
+
     mask:
     - market
   gains_aliases_IAM: End_Use_Residential_NatGas
@@ -568,6 +572,11 @@ End_Use_Residential_LLF:
     - petrol, unleaded, burned in machinery
     - ethanol, burned in
     - petrol burned in
+    - methanol from biomass, burned in residential
+    - methanol from coal, burned in residential
+    - light fuel oil, burned in residential
+    - methanol, synthetic, burned in residential
+    - liquefied petroleum gas, burned in residential
     mask:
     - market
   gains_aliases_IAM: End_Use_Residential_LLF
@@ -780,6 +789,7 @@ End_Use_Industry_LLF:
     fltr:
     - heat production, light fuel oil
     - heat production, light fuel oil, at industrial furnace
+    - light fuel oil, burned in industrial
     mask:
     - market
   gains_aliases_IAM: End_Use_Industry_LLF
@@ -973,7 +983,9 @@ Power_Gen_NatGas:
     - natural gas, burned in solid oxide fuel cell, with micro gas turbine, 180kWe,
       future
     - heat and power co-generation, natural gas, 1MW electrical, lean burn
-    - natural gas, burned in
+    - natural gas, burned in gas turbine
+    - natural gas, synthetic, burned in gas turbine
+    - hydrogen, burned in gas turbine
     mask:
     - market
   gains_aliases_IAM: Power_Gen_NatGas
@@ -983,9 +995,13 @@ Power_Gen_HLF:
     - heat and power co-generation, diesel, 200kW electrical, SCR-NOx reduction
     - heat and power co-generation, oil
     - diesel, burned in
+    - diesel, synthetic, burned in
     - heavy fuel oil, burned in refinery furnace
     - electricity production, oil
     - water pump operation, diesel
+    - heavy fuel oil, burned in container ship
+    - diesel, synthetic, burned in container ship
+    - methanol from biomass, burned in container ship
     mask:
     - market
   gains_aliases_IAM: Power_Gen_HLF
@@ -1004,6 +1020,7 @@ Power_Gen_Bio_Trad_Old:
     - heat production, straw
     - treatment of bagasse, from sugarcane
     - heat and power co-generation, wood chips
+    - soft wood chips from forest, burned in
     mask:
     - market
   gains_aliases_IAM: Power_Gen_Bio_Trad_Old
@@ -1070,6 +1087,7 @@ Power_Gen_Bio_Trad_New:
     - biomethane, low pressure burned
     - electricity production, at biomass
     - biomethane, burned
+    - methanol from biomass, burned in a container ship
     mask:
     - market
   gains_aliases_IAM: Power_Gen_Bio_Trad_New
@@ -1166,6 +1184,9 @@ End_Use_Transport_HDT_HLF:
     - transport, regular bus
     - transport, freight, lorry 7.5-16 metric ton
     - transport, freight, lorry 16-32 metric ton
+    - diesel, burned in heavy-duty vehicle
+    - diesel, burned in single deck coach or urban bus
+    - diesel, burned in passenger train
     mask:
     - market
   gains_aliases_IAM: End_Use_Transport_HDT_HLF
@@ -1174,6 +1195,9 @@ End_Use_Transport_NatGas:
     fltr:
     - transport, passenger car
     - transport, freight, lorry, compressed gas
+    - compressed gas, burned in passenger car
+    - compressed gas, synthetic, burned in passenger car
+    - biomethane, burned in passenger car
     mask:
     - market
   gains_aliases_IAM: End_Use_Transport_NatGas
@@ -1190,6 +1214,11 @@ End_Use_Transport_LDT_LLF:
     - transport, passenger car
     - transport, passenger, car, liquefied petroleum ga
     - transport, passenger car, medium size, liquefied petroleum gas
+    - petrol, burned in passenger car
+    - petrol, synthetic, burned in passenger car
+    - petrol, burned in motorcycle
+    - petrol, synthetic, burned in motorcycle
+    - bioethanol, burned in motorcycle
     mask:
     - diesel
     - compressed gas
@@ -1202,6 +1231,10 @@ End_Use_Transport_LDT_HLF:
     - transport, passenger car
     - 7.5 metric ton
     - 3.5-7.5 metric ton
+    - diesel, burned in passenger car
+    - diesel, synthetic, burned in passenger car
+    - diesel, burned in heavy
+    - diesel, synthetic, burned in heavy
     mask:
     - compressed gas
     - gasoline

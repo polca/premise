@@ -453,14 +453,14 @@ Industry - Cement - Nat Gas:
   iam_aliases:
     remind: FE|Industry|Cement|Gases|+|Fossil
     image:
-    - Final Energy|Industry|Cement|Dry feed rotary kiln|Natural Gas
-    - Final Energy|Industry|Cement|Efficient dry feed rotary kiln + MEA CCS|Natural
-      Gas
-    - Final Energy|Industry|Cement|Efficient dry feed rotary kiln + On-site CCS|Natural
-      Gas
-    - Final Energy|Industry|Cement|Efficient dry feed rotary kiln + Oxy-combustion
-      CCS|Natural Gas
-    - Final Energy|Industry|Cement|Efficient dry feed rotary kiln|Natural Gas
+      - Final Energy|Industry|Cement|Dry feed rotary kiln|Natural Gas
+      - Final Energy|Industry|Cement|Efficient dry feed rotary kiln + MEA CCS|Natural
+        Gas
+      - Final Energy|Industry|Cement|Efficient dry feed rotary kiln + On-site CCS|Natural
+        Gas
+      - Final Energy|Industry|Cement|Efficient dry feed rotary kiln + Oxy-combustion
+        CCS|Natural Gas
+      - Final Energy|Industry|Cement|Efficient dry feed rotary kiln|Natural Gas
     remind-eu: FE|Industry|Cement|Gases|+|Fossil
 Industry - Cement - SNG:
   ecoinvent_aliases:
@@ -1195,8 +1195,8 @@ Industry - Steel - TGR BF/BOF - Elec:
     mask: period
   iam_aliases:
     image:
-    - Final Energy|Industry|Iron and Steel|TGR BF/BOF BAT|Electricity
-    - Final Energy|Industry|Iron and Steel|TGR BF/BOF|Electricity
+      - Final Energy|Industry|Iron and Steel|TGR BF/BOF BAT|Electricity
+      - Final Energy|Industry|Iron and Steel|TGR BF/BOF|Electricity
 Industry - Steel - TGR BF/BOF + CCS - Elec:
   ecoinvent_aliases:
     fltr:
@@ -1277,8 +1277,8 @@ Industry - Steel - TGR BF/BOF - Coal:
       reference product: heat
   iam_aliases:
     image:
-    - Final Energy|Industry|Iron and Steel|TGR BF/BOF BAT|Coal
-    - Final Energy|Industry|Iron and Steel|TGR BF/BOF|Coal
+      - Final Energy|Industry|Iron and Steel|TGR BF/BOF BAT|Coal
+      - Final Energy|Industry|Iron and Steel|TGR BF/BOF|Coal
 Industry - Steel - TGR BF/BOF + CCS - Coal:
   ecoinvent_aliases:
     fltr:
@@ -1358,8 +1358,8 @@ Industry - Steel - TGR BF/BOF - H2:
       reference product: heat
   iam_aliases:
     image:
-    - Final Energy|Industry|Iron and Steel|TGR BF/BOF BAT|Hydrogen
-    - Final Energy|Industry|Iron and Steel|TGR BF/BOF|Hydrogen
+      - Final Energy|Industry|Iron and Steel|TGR BF/BOF BAT|Hydrogen
+      - Final Energy|Industry|Iron and Steel|TGR BF/BOF|Hydrogen
 Industry - Steel - TGR BF/BOF + CCS - H2:
   ecoinvent_aliases:
     fltr:
