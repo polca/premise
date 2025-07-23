@@ -1,0 +1,189 @@
+#"""
+#This file contains the mapping of capacity addition variables.
+#
+#INFRASTRUCTURE SOURCE APPROACH:
+#The system uses infrastructure datasets directly as capacity addition inputs:
+#- Finds infrastructure datasets matching the filter criteria
+#- Removes (zeros out) these datasets from all operational activities in the database
+#- Creates unified capacity addition datasets scaled to 1GW capacity
+#- Supports multiple filter blocks for combining different technologies
+#
+#Configuration structure:
+#- fltr: Filter specification (can be single object or list of objects)
+#  - For single filter: all matching datasets are combined
+#  - For multiple filters: one representative dataset per filter block
+#  - Within each filter, lists use AND logic (all terms must match)
+#  - Supported filter fields:
+#    - name: substring matching (string or list)
+#    - reference product: substring matching (string or list)
+#    - unit: exact matching (string)
+#    - mask: exclusion filtering (string or list)
+#- iam_aliases: Mapping to IAM model variables (e.g., remind: "New Cap|Electricity|+|Solar")
+#
+#Process flow:
+#1. Find all datasets matching filter criteria
+#2. Remove matched datasets from all operational activities (cancellation)
+#3. Select representative dataset(s):
+#   - Single filter: first matched dataset
+#   - Multiple filters: first dataset from each filter block
+#4. Scale representative(s) to contribute to 1GW capacity
+#5. Create unified capacity addition dataset with all representatives as inputs
+#6. Generate regional variants
+#
+#Example configurations:
+#- Single technology: one filter block finds all relevant infrastructure
+#- Multi-component technology: multiple filter blocks (e.g., wind fixed + moving parts)
+#- Complex filtering: use name lists for AND logic, mask for exclusions
+#"""
+New Cap - Electricity - Solar PV:
+  ecoinvent_aliases:
+    fltr:
+      - name:
+          - photovoltaic
+          - installation
+        reference product:
+          - photovoltaic
+          - installation
+        unit: unit
+        mask: market
+  iam_aliases:
+    remind: New Cap|Electricity|Solar|+|PV
+    remind-eu: New Cap|Electricity|Solar|+|PV
+New Cap - Electricity - Solar CSP:
+  ecoinvent_aliases:
+    fltr:
+      name: concentrated solar power plant
+      reference product: concentrated solar power plant
+      unit: unit
+  iam_aliases:
+    remind: New Cap|Electricity|Solar|+|CSP
+    remind-eu: New Cap|Electricity|Solar|+|CSP
+New Cap - Electricity - Wind Onshore:
+  ecoinvent_aliases:
+    fltr:
+      - name:
+          - market for wind
+        reference product: wind
+        unit: unit
+        mask:
+          - connection
+          - offshore
+      - name:
+          - market for wind
+        reference product: connection
+        unit: unit
+  iam_aliases:
+    remind: New Cap|Electricity|Wind|+|Onshore
+    remind-eu: New Cap|Electricity|Wind|+|Onshore
+New Cap - Electricity - Wind Offshore:
+  ecoinvent_aliases:
+    fltr:
+      - name:
+          - market for wind
+          - offshore
+        reference product: wind
+        unit: unit
+        mask:
+          - moving
+      - name:
+          - market for wind
+          - offshore
+        reference product: wind
+        unit: unit
+        mask: fixed
+  iam_aliases:
+    remind: New Cap|Electricity|Wind|+|Offshore
+    remind-eu: New Cap|Electricity|Wind|+|Offshore
+New Cap - Electricity - Nuclear:
+  ecoinvent_aliases:
+    fltr:
+      - name: nuclear power plant construction,
+        reference product: nuclear power plant,
+        mask: alpine
+  iam_aliases:
+    remind: New Cap|Electricity|+|Nuclear
+New Cap - Electricity - Biomass:
+  ecoinvent_aliases:
+    fltr:
+      - name: furnace production, wood chips, with silo
+        reference product: furnace, wood chips, with silo
+        unit: unit
+      - name: market for heat and power co-generation unit, organic Rankine cycle
+        reference product: heat and power co-generation unit, organic Rankine cycle
+        unit: unit
+  iam_aliases:
+    remind: New Cap|Electricity|+|Biomass
+    remind-eu: New Cap|Electricity|+|Biomass
+New Cap - Electricity - Coal:
+  ecoinvent_aliases:
+    fltr:
+      name:
+        - hard coal
+        - power plant
+      reference product:
+        - hard coal
+        - power plant
+      unit: unit
+      mask:
+        - dismantling,
+        - construction,
+  iam_aliases:
+      remind: New Cap|Electricity|+|Coal
+      remind-eu: New Cap|Electricity|+|Coal
+New Cap - Electricity - Gas:
+  ecoinvent_aliases:
+    fltr:
+      name: gas power plant construction
+      reference product: gas power plant
+      unit: unit
+      mask: market
+  iam_aliases:
+    remind: New Cap|Electricity|+|Gas
+    remind-eu: New Cap|Electricity|+|Gas
+New Cap - Electricity - Geothermal:
+  ecoinvent_aliases:
+    fltr:
+      name: geothermal power plant construction
+      reference product: geothermal power plant, 5.5MWel
+      unit: unit
+      mask: market
+  iam_aliases:
+    remind: New Cap|Electricity|+|Geothermal
+    remind-eu: New Cap|Electricity|+|Geothermal
+New Cap - Electricity - Hydropower:
+  ecoinvent_aliases:
+    fltr:
+      - name: hydropower plant construction
+        reference product: hydropower
+        unit: unit
+        mask: market
+  iam_aliases:
+    remind: New Cap|Electricity|+|Hydro
+    remind-eu: New Cap|Electricity|+|Hydro
+New Cap - Electricity - Hydrogen:
+  ecoinvent_aliases:
+    fltr:
+      - name: gas power plant construction, combined cycle, 400MW electrical
+        reference product: gas power plant, combined cycle, 400MW electrical
+        unit: unit
+  iam_aliases:
+    remind: New Cap|Electricity|+|Hydrogen
+    remind-eu: New Cap|Electricity|+|Hydrogen
+New Cap - Electricity - Oil:
+  ecoinvent_aliases:
+    fltr:
+      name: oil power plant
+      reference product: oil power plant
+      unit: unit
+  iam_aliases:
+    remind: New Cap|Electricity|+|Oil
+    remind-eu: New Cap|Electricity|+|Oil
+#New Cap|Electricity|Storage|Battery:
+#  ecoinvent_aliases:
+#    fltr:
+#      name: market for battery capacity, stationary (CONT scenario)
+#      reference product: electricity storage capacity
+#      unit: kilowatt hour
+#  iam_aliases:
+#    remind: New Cap|Electricity|Storage|Battery
+#    remind-eu: New Cap|Electricity|Storage|Battery

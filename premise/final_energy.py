@@ -4,9 +4,16 @@ datasets based on IAM output data.
 """
 
 from typing import List
+import uuid
+import re
+from pathlib import Path
+import yaml
+import sys
 
 from .data_collection import IAMDataCollection
 from .transformation import BaseTransformation, InventorySet
+
+from wurst import searching as ws
 
 
 def _update_final_energy(
@@ -286,7 +293,7 @@ class FinalEnergy(BaseTransformation):
             )
 
         # Create regional variants
-        regionalized = self.fetch_proxies(name=new_name, ref_prod=new_ref_prod)
+        regionalized = self.fetch_proxies(datasets=[capacity_dataset])
         for reg_ds in regionalized.values():
             if not any(
                 ds["name"] == reg_ds["name"] and ds["location"] == reg_ds["location"]
