@@ -365,17 +365,11 @@ def build_ws_filter(field: str, query: dict):
                 continue
 
             if operator == "contains":
-                filters.append(
-                    ws.contains(field, value)
-                )
+                filters.append(ws.contains(field, value))
             elif operator == "equals":
-                filters.append(
-                    ws.equals(field, value)
-                )
+                filters.append(ws.equals(field, value))
             elif operator == "startswith":
-                filters.append(
-                    ws.startswith(field, value)
-                )
+                filters.append(ws.startswith(field, value))
             elif operator == "all":
                 for q in value:
                     filters += build_ws_filter(field, q)
@@ -388,7 +382,9 @@ def build_ws_filter(field: str, query: dict):
                     filters.append(ws.either(*res))
 
             else:
-                raise ValueError(f"Unsupported operator {operator} for field {field} in query {query}")
+                raise ValueError(
+                    f"Unsupported operator {operator} for field {field} in query {query}"
+                )
 
     if not filters:
         raise ValueError(f"No valid filters provided for field {field}")
@@ -865,14 +861,18 @@ class Metals(BaseTransformation):
             ref_prod_filter = eval(group["Reference product"].iloc[0])
 
             try:
-                filters = build_ws_filter("name", proc_filter) + build_ws_filter("reference product", ref_prod_filter)
+                filters = build_ws_filter("name", proc_filter) + build_ws_filter(
+                    "reference product", ref_prod_filter
+                )
                 subset = list(ws.get_many(self.database, *filters))
 
             except Exception as e:
                 logger.error(
                     f"[Metals] Error fetching datasets for process '{proc_filter}' and reference product '{ref_prod_filter}': {e}"
                 )
-                print(f"failed with process '{proc_filter}' and reference product '{ref_prod_filter}")
+                print(
+                    f"failed with process '{proc_filter}' and reference product '{ref_prod_filter}"
+                )
                 continue
 
             if not subset:
@@ -1009,7 +1009,11 @@ class Metals(BaseTransformation):
             dataset["exchanges"].extend(trspt_exc)
 
         # filter out None
-        dataset["exchanges"] = [exc for exc in dataset["exchanges"] if self.is_in_index(exc) or exc["type"] == "production"]
+        dataset["exchanges"] = [
+            exc
+            for exc in dataset["exchanges"]
+            if self.is_in_index(exc) or exc["type"] == "production"
+        ]
 
         # remove old market dataset
         for old_market in ws.get_many(
