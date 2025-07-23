@@ -920,7 +920,6 @@ def generate_superstructure_db(
     df = df.drop_duplicates()
     # detect duplicate based on `from key` and `to key` and log them
 
-
     df = df.drop_duplicates(subset=["from key", "to key"])
     after = len(df)
     print(f"Dropped {before - after} duplicate(s).")
