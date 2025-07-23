@@ -445,6 +445,15 @@ def load_database(scenario, delete=True, load_metadata=False):
                             elif isinstance(ds[k], dict):
                                 ds[k].update(v)
 
+    # re-attribute a code to every dataset
+    uuids = get_uuids(scenario["database"])
+    for ds in scenario["database"]:
+        key = (ds["name"], ds["reference product"], ds["location"])
+        if key in uuids:
+            ds["code"] = uuids[key]
+        else:
+            ds["code"] = str(uuid.uuid4().hex)
+
     del scenario["database filepath"]
 
     # delete the file

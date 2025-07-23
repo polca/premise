@@ -1847,7 +1847,7 @@ Industry - Steel - All steel - Solid coal:
 Industry - Non-energy use - Solid coal:
   ecoinvent_aliases:
     fltr:
-      name: market for hard coal
+      name: hard coal mine operation
       reference product: hard coal
     mask:
     - briquette
@@ -1861,7 +1861,7 @@ Industry - Non-energy use - Solid coal:
 Industry - Non-energy use - Biomass:
   ecoinvent_aliases:
     fltr:
-      name: market for plywood
+      name: plywood production
       reference product: plywood
   iam_aliases:
     remind: FE|Non-energy Use|Industry|Solids|+|Biomass
