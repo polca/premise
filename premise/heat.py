@@ -60,24 +60,24 @@ def _update_heat(scenario, version, system_model):
                 },
                 {
                     "name": "market for heat, central or small-scale, biomethane",
-                    "reference product": "heat, central or small-scale, biomethane"
+                    "reference product": "heat, central or small-scale, biomethane",
                 },
                 {
                     "name": "market for heat, central or small-scale, Jakobsberg",
-                    "reference product": "heat, central or small-scale, Jakobsberg"
+                    "reference product": "heat, central or small-scale, Jakobsberg",
                 },
                 {
                     "name": "market for heat, central or small-scale, natural gas",
-                    "reference product": "heat, central or small-scale, natural gas"
+                    "reference product": "heat, central or small-scale, natural gas",
                 },
                 {
                     "name": "market for heat, central or small-scale, natural gas and heat pump, Jakobsberg",
-                    "reference product": "heat, central or small-scale, natural gas and heat pump, Jakobsberg"
+                    "reference product": "heat, central or small-scale, natural gas and heat pump, Jakobsberg",
                 },
                 {
                     "name": "market for heat, central or small-scale, natural gas, Jakobsberg",
-                    "reference product": "heat, central or small-scale, natural gas, Jakobsberg"
-                }
+                    "reference product": "heat, central or small-scale, natural gas, Jakobsberg",
+                },
             ],
             new_input={
                 "name": "market for heat, for buildings",
@@ -118,7 +118,7 @@ def _update_heat(scenario, version, system_model):
                 {
                     "name": "market for heat, from steam, in chemical industry",
                     "reference product": "heat, from steam, in chemical industry",
-                }
+                },
             ],
             new_input={
                 "name": "market for heat, district or industrial",

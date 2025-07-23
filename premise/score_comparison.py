@@ -175,7 +175,7 @@ def comparative_analysis(
 
 
 def interconnection_analysis(
-        database: bw2data.Database,
+    database: bw2data.Database,
 ):
     """
     A function that list all datasets in teh database
@@ -200,12 +200,12 @@ def interconnection_analysis(
     records = []
     for key, count in counts.items():
         name, ref_prod, loc = key
-        records.append({
-            "name": name,
-            "reference product": ref_prod,
-            "location": loc,
-            "count": count
-        })
+        records.append(
+            {
+                "name": name,
+                "reference product": ref_prod,
+                "location": loc,
+                "count": count,
+            }
+        )
     return pd.DataFrame(records).sort_values(by="count", ascending=False)
-
-
