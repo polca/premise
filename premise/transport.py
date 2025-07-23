@@ -265,7 +265,6 @@ class Transport(BaseTransformation):
         if "old" in self.mapping[self.vehicle_type]:
             for dataset in ws.get_many(
                 self.database,
-                ws.doesnt_contain_any("name", ["freight", "transport"]),
                 ws.exclude(ws.contains("unit", "kilometer")),
             ):
                 for exc in ws.technosphere(
