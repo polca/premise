@@ -235,8 +235,10 @@ class BaseDatasetValidator:
                             if "loc" not in exc:
                                 exc["loc"] = exc["amount"]
                             if exc["minimum"] > exc["loc"]:
-                                message = (f"Exchange {exc['name']} - {exc['location']} has a minimum value greater than the loc value."
-                                           f"Min: {exc['minimum']}, Max: {exc['maximum']}, Loc: {exc['loc']}")
+                                message = (
+                                    f"Exchange {exc['name']} - {exc['location']} has a minimum value greater than the loc value."
+                                    f"Min: {exc['minimum']}, Max: {exc['maximum']}, Loc: {exc['loc']}"
+                                )
                                 self.log_issue(
                                     ds,
                                     "uncertainty minimum greater than loc",
@@ -246,7 +248,8 @@ class BaseDatasetValidator:
                             if exc["maximum"] < exc["loc"]:
                                 message = (
                                     f"Exchange {exc['name']} - {exc['location']} has a maximum value lower than the loc value."
-                                    f"Min: {exc['minimum']}, Max: {exc['maximum']}, Loc: {exc['loc']}")
+                                    f"Min: {exc['minimum']}, Max: {exc['maximum']}, Loc: {exc['loc']}"
+                                )
                                 self.log_issue(
                                     ds,
                                     "uncertainty maximum less than loc",
