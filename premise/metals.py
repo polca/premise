@@ -351,18 +351,49 @@ def build_ws_filter(field: str, query: dict):
     """
     Given a field and a query like {'contains': 'foo'}, return a filter function.
     """
-    if "equals" in query:
-        return ws.equals(field, query["equals"])
-    elif "contains" in query:
-        return ws.contains(field, query["contains"])
-    elif "startswith" in query:
-        return ws.startswith(field, query["startswith"])
-    elif "either" in query:
-        return ws.either(*[build_ws_filter(field, q) for q in query["either"]])
-    elif "all" in query:
-        return lambda x: all(build_ws_filter(field, q)(x) for q in query["all"])
+
+    if not isinstance(query, list):
+        queries = [query]
     else:
-        raise ValueError(f"Unsupported filter for {field}: {query}")
+        queries = query
+
+    filters = []
+
+    for query in queries:
+        for operator, value in query.items():
+            if value == "":
+                continue
+
+            if operator == "contains":
+                filters.append(
+                    ws.contains(field, value)
+                )
+            elif operator == "equals":
+                filters.append(
+                    ws.equals(field, value)
+                )
+            elif operator == "startswith":
+                filters.append(
+                    ws.startswith(field, value)
+                )
+            elif operator == "all":
+                for q in value:
+                    filters += build_ws_filter(field, q)
+
+            elif operator == "either":
+                res = []
+                for q in value:
+                    res += build_ws_filter(field, q)
+                if res:
+                    filters.append(ws.either(*res))
+
+            else:
+                raise ValueError(f"Unsupported operator {operator} for field {field} in query {query}")
+
+    if not filters:
+        raise ValueError(f"No valid filters provided for field {field}")
+
+    return filters
 
 
 def interpolate_by_year(target_year: int, data: dict) -> float:
@@ -800,7 +831,6 @@ class Metals(BaseTransformation):
 
     def get_geo_mapping(self, df: pd.DataFrame, new_locations: dict) -> dict:
         mapping = {}
-        grouped = df.groupby("Country")
 
         regions_df = df[["Country", "Region"]].drop_duplicates()
         for long_loc, iso2 in new_locations.items():
@@ -832,21 +862,18 @@ class Metals(BaseTransformation):
         df["Reference_product_str"] = df["Reference product"].apply(str)
 
         for (_, _), group in df.groupby(["Process_str", "Reference_product_str"]):
-            proc_filter = group["Process"].iloc[0]
-            ref_prod_filter = group["Reference product"].iloc[0]
+            proc_filter = eval(group["Process"].iloc[0])
+            ref_prod_filter = eval(group["Reference product"].iloc[0])
 
             try:
-                filters = [
-                    build_ws_filter("name", proc_filter),
-                    build_ws_filter("reference product", ref_prod_filter),
-                ]
-
+                filters = build_ws_filter("name", proc_filter) + build_ws_filter("reference product", ref_prod_filter)
                 subset = list(ws.get_many(self.database, *filters))
 
             except Exception as e:
                 logger.error(
                     f"[Metals] Error fetching datasets for process '{proc_filter}' and reference product '{ref_prod_filter}': {e}"
                 )
+                print(f"failed with process '{proc_filter}' and reference product '{ref_prod_filter}")
                 continue
 
             if not subset:
@@ -867,7 +894,7 @@ class Metals(BaseTransformation):
 
             # fetch shares for each location in df
             shares = self.get_shares(group, new_locations, name, ref_prod)
-            geography_mapping = self.get_geo_mapping(group, new_locations, subset)
+            geography_mapping = self.get_geo_mapping(group, new_locations)
 
             # if not, we create it
             datasets = self.create_new_mining_activity(
@@ -898,10 +925,9 @@ class Metals(BaseTransformation):
         for exc in new_exchanges:
             exc["amount"] /= total
 
-        self.database.extend(new_datasets)
-        self.add_to_index(new_datasets)
-
         for dataset in new_datasets:
+            self.database.append(dataset)
+            self.add_to_index(dataset)
             self.write_log(dataset, "created")
 
         return new_exchanges
@@ -984,7 +1010,7 @@ class Metals(BaseTransformation):
             dataset["exchanges"].extend(trspt_exc)
 
         # filter out None
-        dataset["exchanges"] = [exc for exc in dataset["exchanges"] if exc]
+        dataset["exchanges"] = [exc for exc in dataset["exchanges"] if self.is_in_index(exc) or exc["type"] == "production"]
 
         # remove old market dataset
         for old_market in ws.get_many(
@@ -1271,7 +1297,8 @@ class Metals(BaseTransformation):
             filters = []
             for field in ["name", "reference product", "location"]:
                 if field in entry:
-                    filters.append(build_ws_filter(field, entry[field]))
+                    res = build_ws_filter(field, entry[field])
+                    filters += res
 
             candidates = list(ws.get_many(self.database, *filters))
 
