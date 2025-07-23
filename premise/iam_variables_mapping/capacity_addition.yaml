@@ -35,7 +35,7 @@
 #- Multi-component technology: multiple filter blocks (e.g., wind fixed + moving parts)
 #- Complex filtering: use name lists for AND logic, mask for exclusions
 #"""
-New Cap - Electricity - Solar:
+New Cap - Electricity - Solar PV:
   ecoinvent_aliases:
     fltr:
       - name:
@@ -47,23 +47,53 @@ New Cap - Electricity - Solar:
         unit: unit
         mask: market
   iam_aliases:
-    remind: New Cap|Electricity|+|Solar
-    remind-eu: New Cap|Electricity|+|Solar
-New Cap - Electricity - Wind:
+    remind: New Cap|Electricity|Solar|+|PV
+    remind-eu: New Cap|Electricity|Solar|+|PV
+New Cap - Electricity - Solar CSP:
+  ecoinvent_aliases:
+    fltr:
+      name: concentrated solar power plant
+      reference product: concentrated solar power plant
+      unit: unit
+  iam_aliases:
+    remind: New Cap|Electricity|Solar|+|CSP
+    remind-eu: New Cap|Electricity|Solar|+|CSP
+New Cap - Electricity - Wind Onshore:
   ecoinvent_aliases:
     fltr:
       - name:
           - market for wind
         reference product: wind
         unit: unit
-        mask: connection
+        mask:
+          - connection
+          - offshore
       - name:
           - market for wind
         reference product: connection
         unit: unit
   iam_aliases:
-    remind: New Cap|Electricity|+|Wind
-    remind-eu: New Cap|Electricity|+|Wind
+    remind: New Cap|Electricity|Wind|+|Onshore
+    remind-eu: New Cap|Electricity|Wind|+|Onshore
+New Cap - Electricity - Wind Offshore:
+  ecoinvent_aliases:
+    fltr:
+      - name:
+          - market for wind
+          - offshore
+        reference product: wind
+        unit: unit
+        mask:
+          - moving
+      - name:
+          - market for wind
+          - offshore
+        reference product: wind
+        unit: unit
+        mask: fixed
+  iam_aliases:
+    remind: New Cap|Electricity|Wind|+|Offshore
+    remind-eu: New Cap|Electricity|Wind|+|Offshore
 New Cap - Electricity - Nuclear:
   ecoinvent_aliases:
     fltr:
@@ -130,4 +160,30 @@ New Cap - Electricity - Hydropower:
   iam_aliases:
     remind: New Cap|Electricity|+|Hydro
     remind-eu: New Cap|Electricity|+|Hydro
-
+New Cap - Electricity - Hydrogen:
+  ecoinvent_aliases:
+    fltr:
+      - name: gas power plant construction, combined cycle, 400MW electrical
+        reference product: gas power plant, combined cycle, 400MW electrical
+        unit: unit
+  iam_aliases:
+    remind: New Cap|Electricity|+|Hydrogen
+    remind-eu: New Cap|Electricity|+|Hydrogen
+New Cap - Electricity - Oil:
+  ecoinvent_aliases:
+    fltr:
+      name: oil power plant
+      reference product: oil power plant
+      unit: unit
+  iam_aliases:
+    remind: New Cap|Electricity|+|Oil
+    remind-eu: New Cap|Electricity|+|Oil
+#New Cap|Electricity|Storage|Battery:
+#  ecoinvent_aliases:
+#    fltr:
+#      name: market for battery capacity, stationary (CONT scenario)
+#      reference product: electricity storage capacity
+#      unit: kilowatt hour
+#  iam_aliases:
+#    remind: New Cap|Electricity|Storage|Battery
+#    remind-eu: New Cap|Electricity|Storage|Battery
