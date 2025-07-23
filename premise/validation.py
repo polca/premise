@@ -233,6 +233,7 @@ class BaseDatasetValidator:
 
                         if exc.get("uncertainty type", 0) == 5:
                             if "loc" not in exc:
+                                print(f"'loc' not found in exchange {exc['name']} in dataset {ds['name']}{ds['location']}")
                                 exc["loc"] = exc["amount"]
                             if exc["minimum"] > exc["loc"]:
                                 message = (f"Exchange {exc['name']} - {exc['location']} has a minimum value greater than the loc value."
@@ -241,8 +242,11 @@ class BaseDatasetValidator:
                                     ds,
                                     "uncertainty minimum greater than loc",
                                     message,
-                                    issue_type="major",
+                                    issue_type="minor",
                                 )
+
+                                # fix it
+                                exc["minimum"] = exc["loc"]
                             if exc["maximum"] < exc["loc"]:
                                 message = (
                                     f"Exchange {exc['name']} - {exc['location']} has a maximum value lower than the loc value."
@@ -251,8 +255,12 @@ class BaseDatasetValidator:
                                     ds,
                                     "uncertainty maximum less than loc",
                                     message,
-                                    issue_type="major",
+                                    issue_type="minor",
                                 )
+
+                                # fix it
+                                exc["maximum"] = exc["loc"]
+
                     except KeyError:
                         print(f"Issue with exchange {exc}")
                         raise
