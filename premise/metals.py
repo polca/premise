@@ -824,93 +824,73 @@ class Metals(BaseTransformation):
             self.db_index[name][ref_prod].append(ds)
             self.db_index_full[name][ref_prod][location].append(ds)
 
-    def create_market(self, metal, df):
-        """
-        Create a market dataset for a given metal using region-specific mining and transport exchanges.
-        """
-
-        metal_name = metal[0].lower() + metal[1:]
-        dataset_name = f"market for {metal_name}"
-        reference_product = metal_name
-
-        dataset = {
-            "name": dataset_name,
-            "location": "World",
-            "reference product": reference_product,
-            "unit": "kilogram",
-            "production amount": 1,
-            "comment": "Created by premise",
-            "code": str(uuid.uuid4()),
-            "exchanges": [
-                {
-                    "name": dataset_name,
-                    "product": reference_product,
-                    "location": "World",
-                    "amount": 1,
-                    "type": "production",
-                    "unit": "kilogram",
-                }
-            ],
-        }
-
-        # Add mining exchanges
-        new_exchanges = self.create_region_specific_markets(df)
-        dataset["exchanges"].extend(new_exchanges)
-
-        # Add transport exchanges
-        trspt_exc = self.add_transport_to_market(dataset, metal)
-        if trspt_exc:
-            dataset["exchanges"].extend(trspt_exc)
-
-        # Remove None entries
-        dataset["exchanges"] = [exc for exc in dataset["exchanges"] if exc]
-
-        # Remove old market datasets (excluding "World")
-        for old_market in self.db_index.get(dataset_name, {}).get(
-            reference_product, []
-        ):
-            if old_market["location"] != "World":
-                self.remove_from_index(old_market)
-                assert not self.is_in_index(old_market), (
-                    f"Market {(old_market['name'], old_market['reference product'], old_market['location'])} "
-                    f"still in index"
-                )
-
-        return dataset
 
     def create_region_specific_markets(self, df: pd.DataFrame) -> List[dict]:
-        new_exchanges = []
+        new_exchanges, new_datasets = [], []
 
-        all_new_datasets = []
-        for (name, ref_prod), group in df.groupby(["Process", "Reference product"]):
+        df["Process_str"] = df["Process"].apply(str)
+        df["Reference_product_str"] = df["Reference product"].apply(str)
+
+        for (_, _), group in df.groupby(["Process_str", "Reference_product_str"]):
+            proc_filter = group["Process"].iloc[0]
+            ref_prod_filter = group["Reference product"].iloc[0]
+
+            try:
+                filters = [
+                    build_ws_filter("name", proc_filter),
+                    build_ws_filter("reference product", ref_prod_filter),
+                ]
+
+                subset = list(ws.get_many(self.database, *filters))
+
+            except Exception as e:
+                logger.error(
+                    f"[Metals] Error fetching datasets for process '{proc_filter}' and reference product '{ref_prod_filter}': {e}"
+                )
+                continue
+
+            if not subset:
+                logger.warning(
+                    f"[Metals] No datasets found for filter combination:\n"
+                    f"  name: {proc_filter}\n"
+                    f"  reference product: {ref_prod_filter}"
+                )
+                continue
+
+            first_match = subset[0]
+            name = first_match["name"]
+            ref_prod = first_match["reference product"]
 
             new_locations = {
-                c: self.country_codes[c]
-                for c in group["Country"].unique()
-                if c in self.country_codes
+                c: self.country_codes[c] for c in group["Country"].unique()
             }
 
+            # fetch shares for each location in df
             shares = self.get_shares(group, new_locations, name, ref_prod)
-            geography_mapping = self.get_geo_mapping(group, new_locations)
+            geography_mapping = self.get_geo_mapping(group, new_locations, subset)
 
-            new_datasets = self.create_new_mining_activity(
+            # if not, we create it
+            datasets = self.create_new_mining_activity(
                 name=name,
                 reference_product=ref_prod,
                 new_locations=new_locations,
                 geography_mapping=geography_mapping,
             )
-            all_new_datasets.extend(new_datasets.values())
+
+            new_datasets.extend(datasets.values())
 
             new_exchanges.extend(
-                {
-                    "name": k[0],
-                    "product": k[1],
-                    "location": k[2],
-                    "unit": "kilogram",
-                    "amount": share,
-                    "type": "technosphere",
-                }
-                for k, share in shares.items()
+                [
+                    {
+                        "name": k[0],
+                        "product": k[1],
+                        "location": k[2],
+                        "unit": "kilogram",
+                        "amount": share,
+                        "type": "technosphere",
+                    }
+                    for k, share in shares.items()
+                ]
             )
 
         # Normalize shares to sum to 1
@@ -918,15 +898,15 @@ class Metals(BaseTransformation):
         for exc in new_exchanges:
             exc["amount"] /= total
 
-        self.database.extend(all_new_datasets)
-        self.add_to_index(all_new_datasets)
+        self.database.extend(new_datasets)
+        self.add_to_index(new_datasets)
 
-        for dataset in all_new_datasets:
+        for dataset in new_datasets:
             self.write_log(dataset, "created")
 
         return new_exchanges
 
-    def create_market(self, metal, df):
+    def create_market(self, metal, df) -> Optional[dict]:
         """
         Create regionalized technosphere exchanges for a metal market based on production shares.
 
@@ -1085,6 +1065,35 @@ class Metals(BaseTransformation):
                     if modified:
                         self.write_log(consumer, "relinked to new metal market")
 
+    def create_new_mining_activity(
+            self,
+            name: str,
+            reference_product: str,
+            new_locations: dict,
+            geography_mapping: dict = None,
+    ) -> dict:
+
+        geo_map_filtered = {
+            k: self.db_index_full[name][reference_product][v][0]
+            for k, v in geography_mapping.items()
+            if self.db_index_full[name][reference_product].get(v)
+               and not self.is_in_index(
+                {"name": name, "reference product": reference_product, "location": k}
+            )
+        }
+
+        if not geo_map_filtered:
+            return {}
+
+        datasets = self.db_index.get(name, {}).get(reference_product, [])
+
+        return self.fetch_proxies(
+            datasets=datasets,
+            regions=new_locations.values(),
+            geo_mapping=geo_map_filtered,
+        )
+
+
     def add_transport_to_market(self, dataset, metal) -> list:
 
         origin_shares = {
@@ -1147,31 +1156,6 @@ class Metals(BaseTransformation):
         dataframe = dataframe.loc[dataframe["Work done"] == "Yes"]
         dataframe = dataframe.loc[~dataframe["Country"].isnull()]
 
-        # filter out rows where "Process" refers to a non-existing process
-        existing_pairs = set(
-            (act["name"], act["reference product"]) for act in self.database
-        )
-
-        dataframe["pair"] = list(
-            zip(dataframe["Process"], dataframe["Reference product"])
-        )
-        dataframe = dataframe[dataframe["pair"].isin(existing_pairs)]
-        dataframe.drop(columns="pair", inplace=True)
-
-        # update certain values under "Process" and "Reference product"
-        # if ecoinvent 3.11 is used
-        if self.version == "3.11":
-            dataframe["Process"] = dataframe["Process"].replace(EI311_NAME_CHANGES)
-            dataframe["Reference product"] = dataframe["Reference product"].replace(
-                EI311_PRODUCT_CHANGES
-            )
-
-            for k, v in EI311_LOCATION_CHANGES.items():
-                dataframe.loc[dataframe["Process"] == k, "Region"] = v
-
-            # we also need to remove "graphite ore mining"
-            dataframe = dataframe.loc[dataframe["Process"] != "graphite ore mining"]
-
         dataframe_shares = dataframe
 
         self.country_codes.update(
@@ -1190,12 +1174,11 @@ class Metals(BaseTransformation):
 
         for metal, df_metal in grouped_metal_dfs.items():
             dataset = self.create_market(metal, df_metal)
-
-            self.database.append(dataset)
-            self.add_to_index(dataset)
-            self.write_log(dataset, "created")
-
-            self.substitute_old_markets(new_dataset=dataset, df_metal=df_metal)
+            if dataset:
+                self.database.append(dataset)
+                self.add_to_index(dataset)
+                self.write_log(dataset, "created")
+                self.substitute_old_markets(new_dataset=dataset, df_metal=df_metal)
 
     def get_market_split_shares(self, metal_key: str) -> tuple[str, str, float, float]:
         """

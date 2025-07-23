@@ -292,12 +292,6 @@ class SyntheticFuelsMixin:
                 fuel_shares[loc].get(x, 0.0) for x in fossil_variables
             )
 
-            if ds["name"] == "excavation, skid-steer loader" and ds["location"] == "RER":
-                print(f"Processing dataset {ds['name']} in location {loc} with share_non_fossil: {share_non_fossil:.2f}")
-                print(f"Sum fuel: {sum_fuel:.2f}, Fossil CO2: {fossil_co2:.2f}. CO2 Intensity: {co2_intensity:.2f}")
-                print(f"Fossil variables: {fossil_variables}")
-                print("Fuel shares:", fuel_shares[loc])
-
             if share_non_fossil > 0:
                 non_fossil_CO2 = sum_fuel * share_non_fossil * co2_intensity
 
