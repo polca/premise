@@ -636,12 +636,12 @@ def generate_scenario_difference_file(
 
     bio_dict = biosphere_flows_dictionary(version)
 
-    exc_codes.update(
-        {
-            (a["name"], a["reference product"], a["location"], a["unit"]): a["code"]
-            for a in origin_db
-        }
-    )
+    # exc_codes.update(
+    #    {
+    #        (a["name"], a["reference product"], a["location"], a["unit"]): a["code"]
+    #        for a in origin_db
+    #    }
+    # )
     # Turn list into set for O(1) membership tests
     list_acts = set(get_list_unique_acts([{"database": origin_db}] + scenarios))
 
@@ -918,7 +918,8 @@ def generate_superstructure_db(
     # should not be any, but just in case
     before = len(df)
     df = df.drop_duplicates()
-    # detect duplicate based on `from key` and `to key`
+    # detect duplicate based on `from key` and `to key` and log them
+
     df = df.drop_duplicates(subset=["from key", "to key"])
     after = len(df)
     print(f"Dropped {before - after} duplicate(s).")

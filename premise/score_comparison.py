@@ -172,3 +172,40 @@ def comparative_analysis(
             records.append(row)
 
     return pd.DataFrame(records)
+
+
+def interconnection_analysis(
+    database: bw2data.Database,
+):
+    """
+    A function that list all datasets in teh database
+    and counts the numbers of datasets each
+    gives inputs to.
+    """
+
+    counts = {}
+
+    for ds in database:
+        key = (ds["name"], ds["reference product"], ds["location"])
+        if key not in counts:
+            counts[key] = 0
+
+    for ds in database:
+        for exc in ds.technosphere():
+            key = (exc["name"], exc["product"], exc["location"])
+            if key in counts:
+                counts[key] += 1
+
+    # Convert counts to DataFrame
+    records = []
+    for key, count in counts.items():
+        name, ref_prod, loc = key
+        records.append(
+            {
+                "name": name,
+                "reference product": ref_prod,
+                "location": loc,
+                "count": count,
+            }
+        )
+    return pd.DataFrame(records).sort_values(by="count", ascending=False)

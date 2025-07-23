@@ -1430,6 +1430,8 @@ from,to,name_from,ref_prod_from,location_from,name_to,ref_prod_to,location_to
 310,311,"market for transport, freight, lorry >32 metric ton, EURO6","transport, freight, lorry >32 metric ton, EURO6",RER,"market for transport, freight, lorry, >32 metric ton, diesel, EURO 6","transport, freight, lorry, >32 metric ton, diesel, EURO 6",RER
 310,311,"polyvinylchloride production, bulk polymerisation","polyvinylchloride, bulk polymerised",RER,"polyvinyl chloride production, unspecified polymerisation, weighted average","polyvinyl chloride, unspecified polymerisation, weighted average",RER
 311,310,"market for polyvinyl chloride, unspecified polymerisation, weighted average","polyvinyl chloride, unspecified polymerisation, weighted average",RoW,"market for polyvinylchloride, bulk polymerised","polyvinylchloride, bulk polymerised",GLO
+311,39,"market for polyvinyl chloride, unspecified polymerisation, weighted average","polyvinyl chloride, unspecified polymerisation, weighted average",RoW,"market for polyvinylchloride, bulk polymerised","polyvinylchloride, bulk polymerised",GLO
+311,38,"market for polyvinyl chloride, unspecified polymerisation, weighted average","polyvinyl chloride, unspecified polymerisation, weighted average",RoW,"market for polyvinylchloride, bulk polymerised","polyvinylchloride, bulk polymerised",GLO
 310,311,market for electric arc furnace converter,electric arc furnace converter,GLO,market for electric arc furnace,electric arc furnace,GLO
 310,311,"market group for transport, freight train","transport, freight train",RER,"market group for transport, freight, train, fleet average","transport, freight, train, fleet average",RER
 310,311,"market for transport, freight train","transport, freight train",RoW,"market for transport, freight, train, fleet average","transport, freight, train, fleet average",RoW
@@ -1505,6 +1507,8 @@ from,to,name_from,ref_prod_from,location_from,name_to,ref_prod_to,location_to
 310,311,"transport, freight, sea, container ship","transport, freight, sea, container ship",GLO,"transport, freight, sea, container ship, heavy fuel oil","transport, freight, sea, container ship, heavy fuel oil",GLO
 310,311,market for refrigerant R134a,refrigerant R134a,GLO,"market for tetrafluoroethane, R134a","tetrafluoroethane, R134a",GLO
 311,310,"market for tetrafluoroethane, R134a","tetrafluoroethane, R134a",GLO,market for refrigerant R134a,refrigerant R134a,GLO
+311,39,"market for tetrafluoroethane, R134a","tetrafluoroethane, R134a",GLO,market for refrigerant R134a,refrigerant R134a,GLO
+311,38,"market for tetrafluoroethane, R134a","tetrafluoroethane, R134a",GLO,market for refrigerant R134a,refrigerant R134a,GLO
 310,311,"market for transport, freight, lorry >32 metric ton, EURO6","transport, freight, lorry >32 metric ton, EURO6",RER,"market for transport, freight, lorry, >32 metric ton, diesel, EURO 6","transport, freight, lorry, >32 metric ton, diesel, EURO 6",RER
 310,311,"market for polyethylene, high density, granulate, recycled","polyethylene, high density, granulate, recycled",Europe without Switzerland,"market for polyethylene, high density, granulate, recycled","polyethylene, high density, granulate, recycled",RoW
 310,311,"gallium production, semiconductor-grade","gallium, semiconductor-grade",GLO,"high-grade gallium production, from low-grade gallium","gallium, high-grade",CN

@@ -1112,7 +1112,7 @@ class NewDatabase:
 
         self.database = prepare_db_for_export(
             scenario=tmp_scenario,
-            name="database",
+            name=name,
             original_database=self.database,
             biosphere_name=self.biosphere_name,
             version=self.version,

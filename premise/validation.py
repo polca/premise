@@ -233,23 +233,39 @@ class BaseDatasetValidator:
 
                         if exc.get("uncertainty type", 0) == 5:
                             if "loc" not in exc:
+                                print(
+                                    f"'loc' not found in exchange {exc['name']} in dataset {ds['name']}{ds['location']}"
+                                )
                                 exc["loc"] = exc["amount"]
                             if exc["minimum"] > exc["loc"]:
-                                message = f"Exchange {exc['name']} has a minimum value greater than the loc value."
+                                message = (
+                                    f"Exchange {exc['name']} - {exc['location']} has a minimum value greater than the loc value."
+                                    f"Min: {exc['minimum']}, Max: {exc['maximum']}, Loc: {exc['loc']}"
+                                )
                                 self.log_issue(
                                     ds,
                                     "uncertainty minimum greater than loc",
                                     message,
-                                    issue_type="major",
+                                    issue_type="minor",
                                 )
+
+                                # fix it
+                                exc["minimum"] = exc["loc"]
                             if exc["maximum"] < exc["loc"]:
-                                message = f"Exchange {exc['name']} has a maximum value less than the loc value."
+                                message = (
+                                    f"Exchange {exc['name']} - {exc['location']} has a maximum value lower than the loc value."
+                                    f"Min: {exc['minimum']}, Max: {exc['maximum']}, Loc: {exc['loc']}"
+                                )
                                 self.log_issue(
                                     ds,
                                     "uncertainty maximum less than loc",
                                     message,
-                                    issue_type="major",
+                                    issue_type="minor",
                                 )
+
+                                # fix it
+                                exc["maximum"] = exc["loc"]
+
                     except KeyError:
                         print(f"Issue with exchange {exc}")
                         raise
@@ -496,7 +512,7 @@ class BaseDatasetValidator:
 
         for ds in self.database:
             ds["database"] = self.db_name
-            ds["code"] = uuids[(ds["name"], ds["reference product"], ds["location"])]
+            # ds["code"] = uuids[(ds["name"], ds["reference product"], ds["location"])]
             for exc in ds["exchanges"]:
                 if exc["type"] in ["production", "technosphere"]:
                     if "input" in exc:
@@ -522,11 +538,11 @@ class BaseDatasetValidator:
                             ],
                         )
 
-                if exc["type"] == "technosphere":
-                    exc["input"] = (
-                        self.db_name,
-                        uuids[exc["name"], exc["product"], exc["location"]],
-                    )
+                # if exc["type"] == "technosphere":
+                #    exc["input"] = (
+                #        self.db_name,
+                #        uuids[exc["name"], exc["product"], exc["location"]],
+                #    )
 
     def remove_unused_fields(self):
         """
@@ -2465,3 +2481,51 @@ class BiomassValidation(BaseDatasetValidator):
             print(
                 "---> MAJOR anomalies found during biomass update: check the change report."
             )
+
+
+class MetalsValidation(BaseDatasetValidator):
+    def __init__(self, model, scenario, year, regions, database, iam_data):
+        super().__init__(model, scenario, year, regions, database)
+        self.iam_data = iam_data
+
+    def run_metals_checks(self):
+        self.check_market_balance()
+        self.save_log()
+        if self.major_issues_log:
+            print(
+                "---> MAJOR anomalies found during metals update: check the change report."
+            )
+
+    def check_market_balance(self):
+        """
+        Check that the inputs of the metals markets sum to 1
+        """
+        for metal in [
+            "bauxite", "chromium", "bentonite", "cobalt"
+        ]:
+            try:
+                name = f"market for {metal}"
+                ds = ws.get_one(
+                    self.database,
+                    ws.equals("name", name),
+                    ws.equals("location", "World"),
+                    ws.equals("location", "World"),
+                    ws.equals("unit", "kilogram"),
+                )
+            except Exception:
+                continue
+
+            total_kg_inputs = sum(
+                e["amount"]
+                for e in ds["exchanges"]
+                if e["type"] == "technosphere" and e["unit"] == "kilogram"
+            )
+            if not np.isclose(total_kg_inputs, 1.0, rtol=1e-3):
+                message = f"Metal market inputs sum to {total_kg_inputs}."
+                self.log_issue(
+                    ds,
+                    "metal market inputs do not sum to 1",
+                    message,
+                    issue_type="major",
+                )
+

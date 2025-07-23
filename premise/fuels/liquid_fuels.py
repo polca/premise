@@ -44,49 +44,46 @@ class SyntheticFuelsMixin:
                 and self.iam_data.petrol_blend.sel(variables=k).sum() > 0
             }
             if mapping:
-                self.process_and_add_markets(
-                    name="market for petrol, low-sulfur",
-                    reference_product="petrol, low-sulfur",
-                    unit="kilogram",
-                    mapping=mapping,
-                    system_model=self.system_model,
-                    production_volumes=self.iam_data.production_volumes,
-                )
+                for market_name in [
+                    "market for petrol",
+                    "market for petrol, low-sulfur",
+                ]:
+                    self.process_and_add_markets(
+                        name=market_name,
+                        reference_product=market_name.replace("market for ", ""),
+                        unit="kilogram",
+                        mapping=mapping,
+                        system_model=self.system_model,
+                        production_volumes=self.iam_data.production_volumes,
+                    )
 
-                self.update_fuel_carbon_dioxide_emissions(
-                    variables=[
-                        k
-                        for k in self.fuel_map.keys()
-                        if any(
-                            k.startswith(x)
-                            for x in (
-                                "gasoline",
-                                "bioethanol",
-                                "ethanol",
-                                "petrol",
-                                "methanol",
+                    self.update_fuel_carbon_dioxide_emissions(
+                        variables=[
+                            k
+                            for k in self.fuel_map.keys()
+                            if any(
+                                k.startswith(x)
+                                for x in (
+                                    "gasoline",
+                                    "bioethanol",
+                                    "ethanol",
+                                    "petrol",
+                                    "methanol",
+                                )
                             )
-                        )
-                    ],
-                    market_names=[
-                        "market for petrol, low-sulfur",
-                        "market group for petrol, low-sulfur",
-                    ],
-                    co2_intensity=3.15,
-                    fossil_variables=[
-                        k
-                        for k in self.fuel_map.keys()
-                        if any(
-                            k.startswith(x)
-                            for x in (
-                                "gasoline",
-                                "petrol",
-                                "petrol, synthetic, from coal",
-                                "petrol, synthetic, from coal, with CCS",
-                            )
-                        )
-                    ],
-                )
+                        ],
+                        market_names=[
+                            "market for petrol, low-sulfur",
+                            "market for petrol, unleaded",
+                        ],
+                        co2_intensity=3.15,
+                        fossil_variables=[
+                            "gasoline",
+                            "petrol",
+                            "petrol, synthetic, from coal",
+                            "petrol, synthetic, from coal, with CCS",
+                        ],
+                    )
 
         # diesel
         # check that IAM data has "diesel_blend" attribute
@@ -102,10 +99,13 @@ class SyntheticFuelsMixin:
                     "market for diesel",
                     "market for diesel, low-sulfur",
                     "market group for diesel, low-sulfur",
+                    "market group for diesel",
                 ]:
                     self.process_and_add_markets(
                         name=market_name,
-                        reference_product="diesel, low-sulfur",
+                        reference_product=market_name.replace(
+                            "market for ", ""
+                        ).replace("market group for ", ""),
                         unit="kilogram",
                         mapping=mapping,
                         system_model=self.system_model,
@@ -122,21 +122,15 @@ class SyntheticFuelsMixin:
                         "market for diesel",
                         "market for diesel, low-sulfur",
                         "market group for diesel, low-sulfur",
+                        "market group for diesel",
                     ],
                     co2_intensity=3.15,
                     fossil_variables=[
-                        k
-                        for k in self.fuel_map.keys()
-                        if any(
-                            k.startswith(x)
-                            for x in (
-                                "diesel",
-                                "diesel, synthetic, from natural gas",
-                                "diesel, synthetic, from natural gas, with CCS",
-                                "diesel, synthetic, from coal",
-                                "diesel, synthetic, from coal, with CCS",
-                            )
-                        )
+                        "diesel",
+                        "diesel, synthetic, from natural gas",
+                        "diesel, synthetic, from natural gas, with CCS",
+                        "diesel, synthetic, from coal",
+                        "diesel, synthetic, from coal, with CCS",
                     ],
                 )
 
@@ -170,17 +164,10 @@ class SyntheticFuelsMixin:
                     ],
                     co2_intensity=3.15,
                     fossil_variables=[
-                        k
-                        for k in self.fuel_map.keys()
-                        if any(
-                            k.startswith(x)
-                            for x in (
-                                "kerosene, from petroleum",
-                                "kerosene, synthetic, from natural gas, energy allocation",
-                                "kerosene, synthetic, from coal, energy allocation",
-                                "kerosene, synthetic, from coal, energy allocation, with CCS",
-                            )
-                        )
+                        "kerosene, from petroleum",
+                        "kerosene, synthetic, from natural gas, energy allocation",
+                        "kerosene, synthetic, from coal, energy allocation",
+                        "kerosene, synthetic, from coal, energy allocation, with CCS",
                     ],
                 )
 
@@ -214,18 +201,11 @@ class SyntheticFuelsMixin:
                     ],
                     co2_intensity=2.88,
                     fossil_variables=[
-                        k
-                        for k in self.fuel_map.keys()
-                        if any(
-                            k.startswith(x)
-                            for x in (
-                                "liquefied petroleum gas, synthetic, from natural gas, with CCS",
-                                "liquefied petroleum gas, synthetic, from natural gas",
-                                "liquefied petroleum gas, synthetic, from coal",
-                                "liquefied petroleum gas",
-                                "liquefied petroleum gas, synthetic, from coal, with CCS",
-                            )
-                        )
+                        "liquefied petroleum gas, synthetic, from natural gas, with CCS",
+                        "liquefied petroleum gas, synthetic, from natural gas",
+                        "liquefied petroleum gas, synthetic, from coal",
+                        "liquefied petroleum gas",
+                        "liquefied petroleum gas, synthetic, from coal, with CCS",
                     ],
                 )
 
