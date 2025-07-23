@@ -103,7 +103,9 @@ class SyntheticFuelsMixin:
                 ]:
                     self.process_and_add_markets(
                         name=market_name,
-                        reference_product=market_name.replace("market for ", "").replace("market group for ", ""),
+                        reference_product=market_name.replace(
+                            "market for ", ""
+                        ).replace("market group for ", ""),
                         unit="kilogram",
                         mapping=mapping,
                         system_model=self.system_model,

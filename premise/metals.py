@@ -854,7 +854,6 @@ class Metals(BaseTransformation):
             self.db_index[name][ref_prod].append(ds)
             self.db_index_full[name][ref_prod][location].append(ds)
 
-
     def create_region_specific_markets(self, df: pd.DataFrame) -> List[dict]:
         new_exchanges, new_datasets = [], []
 
@@ -1092,18 +1091,18 @@ class Metals(BaseTransformation):
                         self.write_log(consumer, "relinked to new metal market")
 
     def create_new_mining_activity(
-            self,
-            name: str,
-            reference_product: str,
-            new_locations: dict,
-            geography_mapping: dict = None,
+        self,
+        name: str,
+        reference_product: str,
+        new_locations: dict,
+        geography_mapping: dict = None,
     ) -> dict:
 
         geo_map_filtered = {
             k: self.db_index_full[name][reference_product][v][0]
             for k, v in geography_mapping.items()
             if self.db_index_full[name][reference_product].get(v)
-               and not self.is_in_index(
+            and not self.is_in_index(
                 {"name": name, "reference product": reference_product, "location": k}
             )
         }
@@ -1118,7 +1117,6 @@ class Metals(BaseTransformation):
             regions=new_locations.values(),
             geo_mapping=geo_map_filtered,
         )
-
 
     def add_transport_to_market(self, dataset, metal) -> list:
 
