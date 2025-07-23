@@ -636,12 +636,12 @@ def generate_scenario_difference_file(
 
     bio_dict = biosphere_flows_dictionary(version)
 
-    #exc_codes.update(
+    # exc_codes.update(
     #    {
     #        (a["name"], a["reference product"], a["location"], a["unit"]): a["code"]
     #        for a in origin_db
     #    }
-    #)
+    # )
     # Turn list into set for O(1) membership tests
     list_acts = set(get_list_unique_acts([{"database": origin_db}] + scenarios))
 

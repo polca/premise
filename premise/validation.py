@@ -512,7 +512,7 @@ class BaseDatasetValidator:
 
         for ds in self.database:
             ds["database"] = self.db_name
-            #ds["code"] = uuids[(ds["name"], ds["reference product"], ds["location"])]
+            # ds["code"] = uuids[(ds["name"], ds["reference product"], ds["location"])]
             for exc in ds["exchanges"]:
                 if exc["type"] in ["production", "technosphere"]:
                     if "input" in exc:
@@ -538,7 +538,7 @@ class BaseDatasetValidator:
                             ],
                         )
 
-                #if exc["type"] == "technosphere":
+                # if exc["type"] == "technosphere":
                 #    exc["input"] = (
                 #        self.db_name,
                 #        uuids[exc["name"], exc["product"], exc["location"]],
