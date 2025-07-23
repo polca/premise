@@ -43,8 +43,8 @@ brake wear - antimony:
         mean: 0.0158
       2050:
         min: 0.0004
-        max: 0.0008
-        mean: 0.0006
+        max: 0.0006
+        mean: 0.00048
     GLO:
       2020:
         min: 0.0158
@@ -52,5 +52,5 @@ brake wear - antimony:
         mean: 0.0158
       2050:
         min: 0.0004
-        max: 0.0008
-        mean: 0.0006
+        max: 0.0006
+        mean: 0.00048
