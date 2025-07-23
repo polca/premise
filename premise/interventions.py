@@ -299,6 +299,13 @@ class Interventions(BaseTransformation):
                         "max"
                     ].values.item(0)
 
+                    if amount_min > amount_mean or amount_max < amount_mean:
+                        print(
+                            f"[Interventions] Amounts for {waste_management_type} in {region} are inconsistent: "
+                            f"mean={amount_mean}, min={amount_min}, max={amount_max}"
+                        )
+                        continue
+
                     market_dataset["exchanges"].append(
                         {
                             "type": "technosphere",
@@ -466,6 +473,13 @@ class Interventions(BaseTransformation):
                             "max"
                         ].values.item(0)
 
+                        if amount_min > amount_mean or amount_max < amount_mean:
+                            print(
+                                f"[Interventions] Amounts for {treatment_type} in {region} are inconsistent: "
+                                f"mean={amount_mean}, min={amount_min}, max={amount_max}"
+                            )
+                            continue
+
                         market_ds["exchanges"].append(
                             {
                                 "type": "technosphere",
@@ -526,6 +540,17 @@ class Interventions(BaseTransformation):
                         == "copper scrap, sorted, pressed, Recycled Content cut-off"
                         and exc["product"] == "copper scrap, sorted, pressed"
                     ):
+                        mean = scrap_amounts["mean"].item() * -1
+                        minimum = scrap_amounts["max"].item() * -1
+                        maximum = scrap_amounts["min"].item() * -1
+
+                        if minimum > mean or maximum < mean:
+                            print(
+                                f"[Interventions] Amounts for {act['name']} in {act['location']} are inconsistent: "
+                                f"mean={mean}, min={minimum}, max={maximum}"
+                            )
+                            continue
+
                         exc.update(
                             {
                                 "amount": scrap_amounts["mean"].item() * -1,
@@ -539,6 +564,18 @@ class Interventions(BaseTransformation):
                     elif exc["name"].startswith("market for bottom ash") and exc[
                         "product"
                     ].startswith("bottom ash"):
+
+                        mean = ash_amounts["mean"].item() * -1
+                        minimum = ash_amounts["max"].item() * -1
+                        maximum = ash_amounts["min"].item() * -1
+
+                        if minimum > mean or maximum < mean:
+                            print(
+                                f"[Interventions] Amounts for {act['name']} in {act['location']} are inconsistent: "
+                                f"mean={mean}, min={minimum}, max={maximum}"
+                            )
+                            continue
+
                         exc.update(
                             {
                                 "amount": ash_amounts["mean"].item() * -1,
@@ -599,6 +636,17 @@ class Interventions(BaseTransformation):
                             )
                             data = data.dropna("year", how="all")
                             share = data.interp(year=year)
+
+                            mean = share["mean"].item() * -1
+                            minimum = share["max"].item() * -1
+                            maximum = share["min"].item() * -1
+
+                            if minimum > mean or maximum < mean:
+                                print(
+                                    f"[Interventions] Amounts for {act['name']} in {act['location']} are inconsistent: "
+                                    f"mean={mean}, min={minimum}, max={maximum}"
+                                )
+                                continue
 
                             exc.update(
                                 {
