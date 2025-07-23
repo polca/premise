@@ -233,7 +233,9 @@ class BaseDatasetValidator:
 
                         if exc.get("uncertainty type", 0) == 5:
                             if "loc" not in exc:
-                                print(f"'loc' not found in exchange {exc['name']} in dataset {ds['name']}{ds['location']}")
+                                print(
+                                    f"'loc' not found in exchange {exc['name']} in dataset {ds['name']}{ds['location']}"
+                                )
                                 exc["loc"] = exc["amount"]
                             if exc["minimum"] > exc["loc"]:
                                 message = (
