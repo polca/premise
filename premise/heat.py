@@ -252,7 +252,8 @@ class Heat(BaseTransformation):
     def regionalize_activities(self):
 
         production_volumes_vars = [
-            v for v in self.heat_techs.keys()
+            v
+            for v in self.heat_techs.keys()
             if v in self.iam_data.production_volumes.coords["variables"].values
         ]
 
