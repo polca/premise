@@ -503,7 +503,6 @@ diesel, synthetic, from grass:
   co2: 0.0732
   biogenic_share: 1
   iam_aliases:
-    gcam: Secondary Energy|Production|Refined Liquids|Biomass|FT Biofuels|w/oCCS
     image: Secondary Energy|Consumption|Liquids|Biomass|FT Diesel|Grassy|w/oCCS
   eff_aliases:
     gcam: Efficiency|Refined Liquids|Biomass|FT Biofuels|w/oCCS
@@ -517,7 +516,6 @@ diesel, synthetic, from grass, with CCS:
   co2: 0.0732
   biogenic_share: 1
   iam_aliases:
-    gcam: Secondary Energy|Production|Refined Liquids|Biomass|FT Biofuels|w/CCS
     image: Secondary Energy|Consumption|Liquids|Biomass|FT Diesel|Grassy|w/CCS
   eff_aliases:
     gcam: Efficiency|Refined Liquids|Biomass|FT Biofuels|w/CCS

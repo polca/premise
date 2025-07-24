@@ -282,6 +282,12 @@ cement, dry feed rotary kiln, efficient, with MEA CCS:
       - Final Energy|Industry|Cement|Efficient dry feed rotary kiln + MEA CCS|Oil
       - Final Energy|Industry|Cement|Efficient dry feed rotary kiln + MEA CCS|Secondary Heat
       - Final Energy|Industry|Cement|Efficient dry feed rotary kiln + MEA CCS|Traditional Biomass
+    gcam:
+      - Final Energy|Industry|Cement w CCS|Biomass
+      - Final Energy|Industry|Cement w CCS|Coal
+      - Final Energy|Industry|Cement w CCS|Electricity
+      - Final Energy|Industry|Cement w CCS|Gas
+      - Final Energy|Industry|Cement w CCS|Refined Liquids
   ecoinvent_fuel_aliases:
     fltr:
       name:
