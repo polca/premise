@@ -1153,7 +1153,13 @@ class IAMDataCollection:
 
         # remove any column that is not in the range of years
         dataframe = dataframe.loc[
-            :, [c for c in dataframe.columns if isinstance(c, str) or (isinstance(c, int) and self.min_year <= c <= self.max_year)]
+            :,
+            [
+                c
+                for c in dataframe.columns
+                if isinstance(c, str)
+                or (isinstance(c, int) and self.min_year <= c <= self.max_year)
+            ],
         ]
 
         dataframe = dataframe.reset_index()
