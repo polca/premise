@@ -256,15 +256,11 @@ class Heat(BaseTransformation):
             if v in self.iam_data.production_volumes.coords["variables"].values
         ]
 
-        print(f"Production volumes variables: {production_volumes_vars}")
-
         production_volumes = None
         if production_volumes_vars:
             production_volumes = self.iam_data.production_volumes.sel(
                 variables=production_volumes_vars
             )
-
-        print(f"Production volumes: {production_volumes}")
 
         self.process_and_add_activities(
             mapping=self.heat_techs,

@@ -49,9 +49,9 @@ BATTERY_MOBILE_SCENARIO_DATA = DATA_DIR / "battery" / "mobile_scenarios.csv"
 BATTERY_STATIONARY_SCENARIO_DATA = DATA_DIR / "battery" / "stationary_scenarios.csv"
 
 
-def print_missing_variables(missing_vars):
+def print_missing_variables(missing_vars, file_name: str = None):
     if missing_vars:
-        print("The following variables are missing from the IAM file:")
+        print(f"The following variables are missing from the IAM file: {file_name}")
     table = PrettyTable(
         [
             "Variable",
@@ -278,6 +278,7 @@ class IAMDataCollection:
         self.use_absolute_efficiency = use_absolute_efficiency
         self.min_year = 2005
         self.max_year = 2100
+        self.filepath_iam_files = filepath_iam_files
         key = key or None
 
         electricity_prod_vars = self.__get_iam_variable_labels(
@@ -1082,6 +1083,7 @@ class IAMDataCollection:
                 pathway = pathway.split(".")[0]
                 if self.model == model and self.pathway == pathway:
                     filepath = Path(os.path.join(root, file))
+                    self.filepath_iam_files = filepath
 
         if filepath == "":
             raise FileNotFoundError(
@@ -1253,7 +1255,7 @@ class IAMDataCollection:
         missing_vars = set(vars) - set(data.variables.values)
 
         if missing_vars:
-            print_missing_variables(missing_vars)
+            print_missing_variables(missing_vars, str(self.filepath_iam_files))
 
         available_vars = list(set(vars) - missing_vars)
 
@@ -1353,7 +1355,7 @@ class IAMDataCollection:
         if efficiency_labels:
             missing_vars = set(efficiency_labels.values()) - set(data.variables.values)
             if missing_vars:
-                print_missing_variables(missing_vars)
+                print_missing_variables(missing_vars, str(self.filepath_iam_files))
 
             available_vars = list(set(efficiency_labels.values()) - missing_vars)
             rev_eff_labels = {v: k for k, v in efficiency_labels.items()}
@@ -1491,7 +1493,7 @@ class IAMDataCollection:
         missing_vars = set(vars) - set(data.variables.values)
 
         if missing_vars:
-            print_missing_variables(missing_vars)
+            print_missing_variables(missing_vars, str(self.filepath_iam_files))
 
         available_vars = list(set(vars) - missing_vars)
 

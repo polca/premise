@@ -51,7 +51,7 @@ direct air capture (solvent) with storage:
 direct air capture (sorbent) with storage:
   iam_aliases:
     witch: Carbon Sequestration|Direct Air Capture|Sorbent
-    gcam: 'Carbon Capture|Storage|Direct Air Capture|lowtemp DAC heatpump'
+    gcam: Carbon Capture|Storage|Direct Air Capture|lowtemp DAC heatpump
   energy_use_aliases:
     witch:
       - Final Energy|Carbon Management|Direct Air Capture|Sorbent|Heat|Gases
