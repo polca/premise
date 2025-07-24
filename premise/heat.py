@@ -9,17 +9,9 @@ from .transformation import (
     IAMDataCollection,
     List,
     ws,
-    get_suppliers_of_a_region,
 )
 from .validation import HeatValidation
 from .inventory_imports import get_biosphere_code
-from .electricity import filter_technology
-
-import copy
-import uuid
-import numpy as np
-from collections import defaultdict
-import xarray as xr
 
 logger = create_logger("heat")
 
@@ -137,7 +129,7 @@ def _update_heat(scenario, version, system_model):
             reference_product="energy, for direct air capture and storage",
         )
     else:
-        print("No DAC scenario data available -- skipping")
+        print("No DAC energy mix data available -- skipping")
 
     if scenario["iam data"].ewr_energy_use is not None:
         heat.create_heat_markets(
@@ -148,7 +140,7 @@ def _update_heat(scenario, version, system_model):
             reference_product="energy, for enhanced rock weathering",
         )
     else:
-        print("No EWR scenario data available -- skipping")
+        print("No EWR energy mix data available -- skipping")
 
     heat.relink_datasets()
 
@@ -259,9 +251,24 @@ class Heat(BaseTransformation):
 
     def regionalize_activities(self):
 
+        production_volumes_vars = [
+            v for v in self.heat_techs.keys()
+            if v in self.iam_data.production_volumes.coords["variables"].values
+        ]
+
+        print(f"Production volumes variables: {production_volumes_vars}")
+
+        production_volumes = None
+        if production_volumes_vars:
+            production_volumes = self.iam_data.production_volumes.sel(
+                variables=production_volumes_vars
+            )
+
+        print(f"Production volumes: {production_volumes}")
+
         self.process_and_add_activities(
             mapping=self.heat_techs,
-            production_volumes=self.iam_data.production_volumes,
+            production_volumes=production_volumes,
         )
         self.heat_techs = self.mapping.generate_heat_map(model=self.model)
 
