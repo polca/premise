@@ -234,7 +234,7 @@ def fix_efficiencies(data: xr.DataArray, min_year: int) -> xr.DataArray:
     # only consider efficiency change between
     # 50% and 300% relative to 2020
     data.values = np.clip(data, 0.5, None)
-    data.values = np.clip(data, None, 3)
+    data.values = np.clip(data, None, 2)
 
     return data
 
@@ -1143,7 +1143,18 @@ class IAMDataCollection:
         # identify the lowest and highest column name that is numeric
         # and consider it the minimum year
         self.min_year = min(x for x in dataframe.columns if isinstance(x, int))
+        # limit to 2005
+        if self.min_year < 2005:
+            self.min_year = 2005
         self.max_year = max(x for x in dataframe.columns if isinstance(x, int))
+        # limit to 2100
+        if self.max_year > 2100:
+            self.max_year = 2100
+
+        # remove any column that is not in the range of years
+        dataframe = dataframe.loc[
+            :, [c for c in dataframe.columns if isinstance(c, str) or (isinstance(c, int) and self.min_year <= c <= self.max_year)]
+        ]
 
         dataframe = dataframe.reset_index()
 
