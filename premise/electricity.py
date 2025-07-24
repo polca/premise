@@ -1803,9 +1803,14 @@ class Electricity(BaseTransformation):
 
                         if not np.isnan(new_eff.values.item(0)):
                             # Rescale all the exchanges except for a few biosphere exchanges
+                            scaling_factor = ei_eff / new_eff.values.item(0)
+
+                            # limit scaling factor to 1.5
+                            scaling_factor = min(scaling_factor, 1.5)
+
                             rescale_exchanges(
                                 dataset,
-                                ei_eff / new_eff.values.item(0),
+                                scaling_factor,
                                 remove_uncertainty=False,
                                 biosphere_filters=[
                                     ws.doesnt_contain_any(
@@ -1871,9 +1876,9 @@ class Electricity(BaseTransformation):
                                             emission_factor.values.item(0)
                                             / exc["amount"]
                                         )
-                                        exc["amount"] = float(
-                                            emission_factor.values.item(0)
-                                        )
+                                        # limit scaling factor to 5
+                                        scaling_factor = min(scaling_factor, 5)
+                                        exc["amount"] *= scaling_factor
 
                                         dataset.setdefault("log parameters", {}).update(
                                             {
