@@ -678,8 +678,6 @@ class BaseTransformation:
 
         regional_shares = (production_volumes / regional_totals).fillna(0)
         world_shares = (regional_totals / regional_totals.sum()).fillna(0)
-        regional_shares.to_dataframe("x").to_excel("regional_shares.xlsx")
-        world_shares.to_dataframe("x").to_excel("world_shares.xlsx")
 
         technology_shares_dict = {
             (var, reg): regional_shares.sel(variables=var, region=reg).values.item(0)
