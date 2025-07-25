@@ -162,9 +162,9 @@ Selecting the appropriate IAM for use with *premise* depends on the focus of you
 Our recommendation is to assess the sensitivity of your results across different IAMs for a given climate target.
 IAMs will deploy different technologies and resources to achieve the same climate target, which will lead to different life cycle inventories.
 
-Additionally, the level of sectoral integration in **premise** varies across IAMs, which can affect the results.
+Additionally, the level of sectoral integration in *premise* varies across IAMs, which can affect the results.
 
-This table below summarize the numbers of variables mapping with **premise** for each IAM and sector:
+This table below summarize the numbers of variables mapping with *premise* for each IAM and sector:
 
 .. list-table::
    :header-rows: 1
@@ -258,7 +258,7 @@ And here is a plot of the same data:
    :width: 600pt
    :align: center
 
-The table and plot show how **premise** connects to IMAGE, REMIND, REMIND-EU, and TIAM-UCL,
+The table and plot show how *premise* connects to IMAGE, REMIND, REMIND-EU, and TIAM-UCL,
 focusing on energy generation, industry, and transport:
 
 * REMIND and REMIND-EU have the broadest coverage, with strong mappings in electricity (34 variables), fuels (42 variables), and transport, especially passenger cars (60 variables) and road freight (40 variables).
@@ -305,7 +305,7 @@ Sectoral observations:
 * Includes CO₂ removal and electricity in high detail.
 
 
-* Limitations:*
+*Limitations:*
 
 * Industrial coverage (cement, steel) is moderate compared to IMAGE.
 * Not as many scenarios available as for REMIND.
@@ -325,10 +325,12 @@ Sectoral observations:
 Choosing the right scenario
 ---------------------------
 
-The choice of scenario depends on the climate target you want to achieve,
-the IAM you want to use, and the sectoral integration level you need.
+The criteria for scenario selection depend on the objective of the study.
+One possible criterion is the climate target, which can be expressed as the
+global mean surface temperature (GMST) increase by 2100.
 
-Here is a comparison regarding the global mean surface temperature (GMST) increase by 2100:
+Here is a comparison across scenarios with respect to the global mean surface
+temperature (GMST) increase by 2100:
 
 .. list-table::
    :header-rows: 1
@@ -641,12 +643,15 @@ And here is a plot of the same data:
    :width: 600pt
    :align: center
 
+Hence, the choice of model and scenario is usually a weighted trade-off between:
 
-Default IAM scenarios
----------------------
+1. the characteristics of the model (e.g., regionalization, technology detail, land-use modeling, myopic vs. perfect foresight, etc.),
+2. the climate target (e.g., 1.5°C, 2.0°C, etc.),
+3. the extent of sectoral integration (e.g., how many sectors are mapped in *premise*), and
+4. the availability of scenarios (e.g., some models have more scenarios than others).
 
-Provided a decryption key (ask the maintainers_), the following IAM scenarios are available when
-installing *premise*:
+Below is another list of the scenarios available in *premise* for each IAM, by SSP family
+and GMST increase by 2100.
 
 .. list-table::
    :header-rows: 1
@@ -797,7 +802,14 @@ installing *premise*:
      - SSP5-H
      -
 
-CarbonBrief_ wrote a good article explaining the meaning of the SSP/RCP system.
+CarbonBrief_ wrote a good article explaining the meaning of the SSP system.
+
+Note that while scenarios are denominated by their SSP family, they do not follow a uniform
+system to describe the climate objective. For example, *REMIND* uses *NDC*, *NPi* and *carbon peak budgets*
+(650 and 1000 GtC) climate trajectories, while *IMAGE* uses *medium*, *low*, and *very low* forcing scenarios
+(with or without overshoot), and TIAM-UCL uses *Representative Concentration Pathways* (RCPs)
+to denote the climate target (e.g., RCP 1.9, 2.6, 4.5 and Base).
+
 
 Additionally, we provided a summary of the main characteristics of each scenario `here <https://premisedash-6f5a0259c487.herokuapp.com/>`_.
 
