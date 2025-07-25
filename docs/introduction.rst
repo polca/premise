@@ -86,6 +86,7 @@ Quick Reference
 +---------------------+---------------+---------------+---------------+-----------------+
 
 **REMIND**
+
 REMIND (Regionalized Model of Investment and Development) is a CGE-based energy-economy IAM with perfect
 foresight. Its main strength lies in capturing interactions between macroeconomic growth and energy
 transitions across 12–13 global regions. Compared to IMAGE, REMIND provides more detailed energy market
@@ -95,6 +96,7 @@ better for studying long-term global climate policies rather than detailed techn
 REMIND-EU builds directly on REMIND but adds EU-specific regionalization.
 
 **REMIND-EU**
+
 REMIND-EU is a regionalized version of REMIND, designed to analyze the European Union’s energy
 transition with country-level resolution (at least, for France, Germany, and the UK). It retains
 REMIND’s CGE approach and perfect foresight but includes EU-specific policies and technologies,
@@ -104,6 +106,7 @@ studying European Green Deal scenarios. Compared to TIAM-UCL, REMIND-EU has less
 but better macroeconomic and cross-sectoral insights for EU policymaking.
 
 **IMAGE**
+
 IMAGE (Integrated Model to Assess the Global Environment) is a simulation-based IAM with a
 recursive-dynamic structure (myopic foresight). It excels in land-use, agriculture, and
 biodiversity modeling, making it the best choice for scenarios that involve climate–ecosystem
@@ -112,6 +115,7 @@ no explicit macroeconomic CGE framework. However, its biophysical integration an
 (unlike TIAM-UCL, which lacks this entirely) makes it complementary to energy-focused models.
 
 **TIAM-UCL**
+
 TIAM-UCL is a bottom-up, technology-rich energy system model based on linear optimization
 with perfect foresight. It focuses on detailed technology pathways, energy supply chains,
 and long-term decarbonization strategies. Compared to REMIND and IMAGE, TIAM-UCL lacks
@@ -160,7 +164,7 @@ This table below summarize the numbers of variables mapping with **premise** for
 
 And here is a plot of the same data:
 
-.. image:: mapped_vars_comparison.png.png
+.. image:: mapped_vars_comparison.png
    :width: 600pt
    :align: center
 
@@ -179,48 +183,44 @@ Sectoral observations:
 
 
 **IMAGE**
-*Strengths:*
 
+*Strengths:*
 * Strong coverage of electricity (51 variables) and fuels (53 variables).
 * Detailed industrial sectors, especially cement (10) and steel (22).
 * Broad mapping across transport sub-sectors, except for two-wheelers.
 
 *Limitation:*
-
 * No coverage of two-wheelers, and fewer transport details than REMIND for passenger cars.
 
 **REMIND**
-*Strengths:*
 
+*Strengths:*
 * Broad coverage of electricity (34) and fuels (42).
 * Highly detailed transport, with 60 variables for passenger cars and 40 for road freight.
 * Comprehensive coverage of carbon dioxide removal (7).
 
 *Limitation:*
-
 * Less detailed in cement and steel compared to IMAGE.
 
 **REMIND-EU**
-*Strengths:*
 
+*Strengths:*
 * Same broad mapping as REMIND, but with EU-specific detail.
 * Excellent coverage of transport and fuels, aligned with EU decarbonization pathways.
 * Includes CO₂ removal and electricity in high detail.
 
 * Limitation:*
-
 * Industrial coverage (cement, steel) is moderate compared to IMAGE.
 * Not as many scenarios available as for REMIND.
 
 **TIAM-UCL**
-*Strengths:*
 
+*Strengths:*
 * Strong focus on electricity (61) and fuels (55).
 * Detailed road freight (50) and transport mapping.
 * Good coverage of passenger cars (20 variables).
 
 *Limitation:*
-
 * Limited representation of cement (2) and heat (2) sectors.
 
 Choosing the right scenario
@@ -351,6 +351,8 @@ Two options:
 
 From Pypi:
 
+.. code-block:: console
+
     pip install premise
 
 will install the package and the required dependencies.
@@ -361,18 +363,26 @@ This means that ``premise`` will output databases that are compatible with Brigh
 If you want to use the results in the Brightway 2 framework (e.g., to read them in ``activity-browser``),
 you need to specify it in the installation command:
 
+.. code-block:: console
+
     pip install "premise[bw2]"
 
 You can also specify that you want to use Brightway 2.5:
+
+.. code-block:: console
 
     pip install "premise[bw25]"
 
 A development version with the latest advancements (but with the risks of unseen bugs),
 is available from Anaconda Cloud. Similarly, you should specify that you want to use Brightway 2.5:
 
+.. code-block:: console
+
     conda install -c conda-forge premise-bw25
 
 Or rather use Brightway2 (for Activity Browser-compatibility):
+
+.. code-block:: console
 
     conda install -c conda-forge premise-bw2
 

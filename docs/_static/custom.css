@@ -1,4 +1,5 @@
-/* Force table cell content to wrap in Sphinx RTD theme */
+/* Force table cell content to wrap and fit within the window */
+.wy-table-responsive table,
 .wy-table-responsive table td,
 .wy-table-responsive table th {
     white-space: normal !important;
@@ -6,14 +7,17 @@
     word-break: break-word;
 }
 
-/* Ensure long words or URLs break cleanly */
-td, th {
-    overflow-wrap: break-word;
-    hyphens: auto;
-}
-
-/* Optional: Make tables use full width for better wrapping */
+/* Make table width adapt to container width */
 .wy-table-responsive table {
     table-layout: auto !important;
     width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: auto;
+}
+
+/* Improve appearance of table cells */
+td, th {
+    overflow-wrap: break-word;
+    hyphens: auto;
+    vertical-align: top;
 }
