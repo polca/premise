@@ -51,39 +51,78 @@ Finally, you should properly refer the IAM model used with *premise*:
 Models
 ------
 
-+-------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Model       | Description                                                                                                                                                                                                                                                   |
-+=============+===============================================================================================================================================================================================================================================================+
-| REMIND      | REMIND (Regionalized Model of Investment and Development) is an integrated assessment model that combines macroeconomic growth, energy system, and climate policy analysis. It is designed to analyze long-term energy transition pathways, accounting for    |
-|             | technological, economic, and environmental factors. REMIND simulates how regions invest in different technologies and energy resources to balance economic growth and climate targets, while considering factors like energy efficiency, emissions, and       |
-|             | resource availability. The model is particularly strong in its detailed representation of energy markets and macroeconomic interactions across regions, making it valuable for global climate policy assessments.                                             |
-+-------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| REMIND-EU   | REMIND-EU is a regionalized version of the REMIND model, specifically tailored to analyze energy systems and climate policies within the European Union. It incorporates detailed representations of EU member states' energy markets, technological options, |
-|             | and policy frameworks. It allows for a more granular analysis of how EU-specific policies, such as the European Green Deal, affect energy transition pathways, emissions reductions, and economic development within the EU context.                          |
-+-------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| IMAGE       | IMAGE (Integrated Model to Assess the Global Environment) is a comprehensive IAM developed to explore the interactions between human development, energy consumption, and environmental systems over the long term. It focuses on assessing how land use,     |
-|             | food systems, energy systems, and climate change interact under different policy scenarios. The model integrates biophysical processes, such as land-use change and greenhouse gas emissions, with socio-economic drivers like population growth and economic |
-|             | development. IMAGE is commonly used for analyzing sustainable development strategies, climate impacts, biodiversity loss, and exploring mitigation and adaptation options.                                                                                    |
-+-------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| TIAM-UCL    | TIAM-UCL (TIMES Integrated Assessment Model by University College London) is a global energy system model based on the TIMES (The Integrated MARKAL-EFOM System) framework, developed to evaluate long-term decarbonization pathways for global energy        |
-|             | systems. It provides detailed insights into energy technology options, resource availability, and emission reduction strategies under various climate policy scenarios. The model focuses on the trade-offs and synergies between energy security, economic   |
-|             | costs, and environmental outcomes. TIAM-UCL is frequently used to analyze scenarios consistent with the Paris Agreement and examine technological innovation's role in mitigating climate change globally.                                                    |
-+-------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+.. list-table::
+   :header-rows: 1
+   :widths: 20 15
+
+   * - Model
+     - Description
+   * - REMIND
+     - REMIND (Regionalized Model of Investment and Development) is an integrated assessment model that combines macroeconomic growth, energy system, and climate policy analysis. It is designed to analyze long-term energy transition pathways, accounting for
+   * -
+     - technological, economic, and environmental factors. REMIND simulates how regions invest in different technologies and energy resources to balance economic growth and climate targets, while considering factors like energy efficiency, emissions, and
+   * -
+     - resource availability. The model is particularly strong in its detailed representation of energy markets and macroeconomic interactions across regions, making it valuable for global climate policy assessments.
+   * - REMIND-EU
+     - REMIND-EU is a regionalized version of the REMIND model, specifically tailored to analyze energy systems and climate policies within the European Union. It incorporates detailed representations of EU member states' energy markets, technological options,
+   * -
+     - and policy frameworks. It allows for a more granular analysis of how EU-specific policies, such as the European Green Deal, affect energy transition pathways, emissions reductions, and economic development within the EU context.
+   * - IMAGE
+     - IMAGE (Integrated Model to Assess the Global Environment) is a comprehensive IAM developed to explore the interactions between human development, energy consumption, and environmental systems over the long term. It focuses on assessing how land use,
+   * -
+     - food systems, energy systems, and climate change interact under different policy scenarios. The model integrates biophysical processes, such as land-use change and greenhouse gas emissions, with socio-economic drivers like population growth and economic
+   * -
+     - development. IMAGE is commonly used for analyzing sustainable development strategies, climate impacts, biodiversity loss, and exploring mitigation and adaptation options.
+   * - TIAM-UCL
+     - TIAM-UCL (TIMES Integrated Assessment Model by University College London) is a global energy system model based on the TIMES (The Integrated MARKAL-EFOM System) framework, developed to evaluate long-term decarbonization pathways for global energy
+   * -
+     - systems. It provides detailed insights into energy technology options, resource availability, and emission reduction strategies under various climate policy scenarios. The model focuses on the trade-offs and synergies between energy security, economic
+   * -
+     - costs, and environmental outcomes. TIAM-UCL is frequently used to analyze scenarios consistent with the Paris Agreement and examine technological innovation's role in mitigating climate change globally.
 
 
 Quick Reference
 ---------------
 
-+---------------------+---------------+---------------+---------------+-----------------+
-| Property            | REMIND        | REMIND-EU     | IMAGE         | TIAM-UCL        |
-+=====================+===============+===============+===============+=================+
-| **Model Type**      | CGE + Energy  | CGE + Energy  | IAM (PEM)     | Bottom-up       |
-| **Foresight**       | ✓ Perfect     | ✓ Perfect     | ✗ Myopic      | ✓ Perfect       |
-| **Energy System**   | ✓ Detailed    | ✓ Detailed    | ✓ Moderate    | ✓ Very detailed |
-| **Land Use**        | ✓ (MAGPIE)    | ✓ (MAGPIE)    | ✓ Integrated  | ✗               |
-| **Regional Focus**  | Global        | EU + Global   | Global        | Global          |
-| **Key Strength**    | Energy-economy| EU policies   | Land & climate| Tech pathways   |
-+---------------------+---------------+---------------+---------------+-----------------+
+.. list-table::
+   :header-rows: 1
+   :widths: 20 15 15 15 15
+
+   * - Property
+     - REMIND
+     - REMIND-EU
+     - IMAGE
+     - TIAM-UCL
+   * - **Model Type**
+     - CGE + Energy
+     - CGE + Energy
+     - IAM (PEM)
+     - Bottom-up
+   * - **Foresight**
+     - ✓ Perfect
+     - ✓ Perfect
+     - ✗ Myopic
+     - ✓ Perfect
+   * - **Energy System**
+     - ✓ Detailed
+     - ✓ Detailed
+     - ✓ Moderate
+     - ✓ Very detailed
+   * - **Land Use**
+     - ✓ (MAGPIE)
+     - ✓ (MAGPIE)
+     - ✓ Integrated
+     - ✗
+   * - **Regional Focus**
+     - Global
+     - EU + Global
+     - Global
+     - Global
+   * - **Key Strength**
+     - Energy-economy
+     - EU policies
+     - Land & climate
+     - Tech pathways
 
 **REMIND**
 
@@ -141,25 +180,90 @@ Additionally, the level of sectoral integration in **premise** varies across IAM
 
 This table below summarize the numbers of variables mapping with **premise** for each IAM and sector:
 
-+--------------------------+---------+----------+-------------+------------+
-| Sector                   |   image |   remind |   remind-eu |   tiam-ucl |
-+==========================+=========+==========+=============+============+
-| Biomass                  |       3 |        2 |           2 |          2 |
-| Carbon Dioxide Removal   |       2 |        7 |           7 |          2 |
-| Cement                   |      10 |        4 |           4 |          2 |
-| Crops                    |       5 |        0 |           0 |          1 |
-| Electricity              |      51 |       34 |          34 |         61 |
-| Fuels                    |      53 |       42 |          42 |         55 |
-| Heat                     |      14 |       24 |          24 |          2 |
-| Other                    |       4 |        4 |           4 |          4 |
-| Steel                    |      22 |       12 |          12 |         12 |
-| Transport Bus            |       8 |        8 |           8 |         12 |
-| Transport Passenger Cars |       8 |       60 |          60 |         20 |
-| Transport Rail Freight   |       6 |        6 |           6 |          4 |
-| Transport Road Freight   |      14 |       40 |          40 |         50 |
-| Transport Sea Freight    |       8 |       12 |          12 |         13 |
-| Transport Two Wheelers   |       0 |       12 |          12 |          0 |
-+--------------------------+---------+----------+-------------+------------+
+.. list-table::
+   :header-rows: 1
+   :widths: 20 15 15 15 15
+
+   * - Sector
+     - image
+     - remind
+     - remind-eu
+     - tiam-ucl
+   * - Biomass
+     - 3
+     - 2
+     - 2
+     - 2
+   * - Carbon Dioxide Removal
+     - 2
+     - 7
+     - 7
+     - 2
+   * - Cement
+     - 10
+     - 4
+     - 4
+     - 2
+   * - Crops
+     - 5
+     - 0
+     - 0
+     - 1
+   * - Electricity
+     - 51
+     - 34
+     - 34
+     - 61
+   * - Fuels
+     - 53
+     - 42
+     - 42
+     - 55
+   * - Heat
+     - 14
+     - 24
+     - 24
+     - 2
+   * - Other
+     - 4
+     - 4
+     - 4
+     - 4
+   * - Steel
+     - 22
+     - 12
+     - 12
+     - 12
+   * - Transport Bus
+     - 8
+     - 8
+     - 8
+     - 12
+   * - Transport Passenger Cars
+     - 8
+     - 60
+     - 60
+     - 20
+   * - Transport Rail Freight
+     - 6
+     - 6
+     - 6
+     - 4
+   * - Transport Road Freight
+     - 14
+     - 40
+     - 40
+     - 50
+   * - Transport Sea Freight
+     - 8
+     - 12
+     - 12
+     - 13
+   * - Transport Two Wheelers
+     - 0
+     - 12
+     - 12
+     - 0
 
 
 And here is a plot of the same data:
@@ -185,42 +289,50 @@ Sectoral observations:
 **IMAGE**
 
 *Strengths:*
+
 * Strong coverage of electricity (51 variables) and fuels (53 variables).
 * Detailed industrial sectors, especially cement (10) and steel (22).
 * Broad mapping across transport sub-sectors, except for two-wheelers.
 
 *Limitation:*
+
 * No coverage of two-wheelers, and fewer transport details than REMIND for passenger cars.
 
 **REMIND**
 
 *Strengths:*
+
 * Broad coverage of electricity (34) and fuels (42).
 * Highly detailed transport, with 60 variables for passenger cars and 40 for road freight.
 * Comprehensive coverage of carbon dioxide removal (7).
 
 *Limitation:*
+
 * Less detailed in cement and steel compared to IMAGE.
 
 **REMIND-EU**
 
 *Strengths:*
+
 * Same broad mapping as REMIND, but with EU-specific detail.
 * Excellent coverage of transport and fuels, aligned with EU decarbonization pathways.
 * Includes CO₂ removal and electricity in high detail.
 
 * Limitation:*
+
 * Industrial coverage (cement, steel) is moderate compared to IMAGE.
 * Not as many scenarios available as for REMIND.
 
 **TIAM-UCL**
 
 *Strengths:*
+
 * Strong focus on electricity (61) and fuels (55).
 * Detailed road freight (50) and transport mapping.
 * Good coverage of passenger cars (20 variables).
 
 *Limitation:*
+
 * Limited representation of cement (2) and heat (2) sectors.
 
 Choosing the right scenario
@@ -231,39 +343,310 @@ the IAM you want to use, and the sectoral integration level you need.
 
 Here is a comparison regarding the global mean surface temperature (GMST) increase by 2100:
 
-+-----------------------------+--------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+--------+
-| Scenario                    | <1.5   | 1.5–1.7   | 1.7–2.0   | 2.0–2.5   | 2.5–2.8   | 2.8–3.0   | 3.0–3.2   | 3.2–3.5   | >3.5   |
-+=============================+========+===========+===========+===========+===========+===========+===========+===========+========+
-| remind - SSP1-PkBudg650     | ✓      |           |           |           |           |           |           |           |        |
-| image - SSP1-VLLO           | ✓      |           |           |           |           |           |           |           |        |
-| image - SSP2-VLHO           | ✓      |           |           |           |           |           |           |           |        |
-| remind - SSP2-PkBudg650     | ✓      |           |           |           |           |           |           |           |        |
-| remind-eu - SSP2-PkBudg650  |        | ✓         |           |           |           |           |           |           |        |
-| tiam-ucl - SSP2-RCP19       |        | ✓         |           |           |           |           |           |           |        |
-| remind - SSP1-PkBudg1000    |        | ✓         |           |           |           |           |           |           |        |
-| image - SSP2-L              |        | ✓         |           |           |           |           |           |           |        |
-| image - SSP1-L              |        |           | ✓         |           |           |           |           |           |        |
-| tiam-ucl - SSP2-RCP26       |        |           | ✓         |           |           |           |           |           |        |
-| remind - SSP3-PkBudg1000    |        |           | ✓         |           |           |           |           |           |        |
-| remind-eu - SSP2-PkBudg1000 |        |           | ✓         |           |           |           |           |           |        |
-| remind - SSP2-PkBudg1000    |        |           | ✓         |           |           |           |           |           |        |
-| remind - SSP1-NDC           |        |           | ✓         |           |           |           |           |           |        |
-| remind - SSP1-NPi           |        |           |           | ✓         |           |           |           |           |        |
-| remind-eu - SSP2-NDC        |        |           |           | ✓         |           |           |           |           |        |
-| remind - SSP2-NDC           |        |           |           | ✓         |           |           |           |           |        |
-| remind - SSP3-NDC           |        |           |           |           | ✓         |           |           |           |        |
-| image - SSP1-Ma             |        |           |           |           | ✓         |           |           |           |        |
-| tiam-ucl - SSP2-RCP45       |        |           |           |           | ✓         |           |           |           |        |
-| image - SSP2-M              |        |           |           |           |           | ✓         |           |           |        |
-| remind-eu - SSP2-NPi        |        |           |           |           |           |           | ✓         |           |        |
-| remind - SSP2-NPi           |        |           |           |           |           |           | ✓         |           |        |
-| tiam-ucl - SSP2-Base        |        |           |           |           |           |           | ✓         |           |        |
-| remind - SSP3-NPi           |        |           |           |           |           |           | ✓         |           |        |
-| remind - SSP2-rollBack      |        |           |           |           |           |           |           | ✓         |        |
-| image - SSP3-H              |        |           |           |           |           |           |           | ✓         |        |
-| image - SSP5-H              |        |           |           |           |           |           |           |           | ✓      |
-| remind - SSP3-rollBack      |        |           |           |           |           |           |           |           | ✓      |
-+-----------------------------+--------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+--------+
+.. list-table::
+   :header-rows: 1
+   :widths: 20 15 15 15 15 15 15 15 15 15
+
+   * - Scenario
+     - <1.5
+     - 1.5–1.7
+     - 1.7–2.0
+     - 2.0–2.5
+     - 2.5–2.8
+     - 2.8–3.0
+     - 3.0–3.2
+     - 3.2–3.5
+     - >3.5
+   * - remind - SSP1-PkBudg650
+     - ✓
+     -
+     -
+     -
+     -
+     -
+     -
+     -
+     -
+   * - image - SSP1-VLLO
+     - ✓
+     -
+     -
+     -
+     -
+     -
+     -
+     -
+     -
+   * - image - SSP2-VLHO
+     - ✓
+     -
+     -
+     -
+     -
+     -
+     -
+     -
+     -
+   * - remind - SSP2-PkBudg650
+     - ✓
+     -
+     -
+     -
+     -
+     -
+     -
+     -
+     -
+   * - remind-eu - SSP2-PkBudg650
+     -
+     - ✓
+     -
+     -
+     -
+     -
+     -
+     -
+     -
+   * - tiam-ucl - SSP2-RCP19
+     -
+     - ✓
+     -
+     -
+     -
+     -
+     -
+     -
+     -
+   * - remind - SSP1-PkBudg1000
+     -
+     - ✓
+     -
+     -
+     -
+     -
+     -
+     -
+     -
+   * - image - SSP2-L
+     -
+     - ✓
+     -
+     -
+     -
+     -
+     -
+     -
+     -
+   * - image - SSP1-L
+     -
+     -
+     - ✓
+     -
+     -
+     -
+     -
+     -
+     -
+   * - tiam-ucl - SSP2-RCP26
+     -
+     -
+     - ✓
+     -
+     -
+     -
+     -
+     -
+     -
+   * - remind - SSP3-PkBudg1000
+     -
+     -
+     - ✓
+     -
+     -
+     -
+     -
+     -
+     -
+   * - remind-eu - SSP2-PkBudg1000
+     -
+     -
+     - ✓
+     -
+     -
+     -
+     -
+     -
+     -
+   * - remind - SSP2-PkBudg1000
+     -
+     -
+     - ✓
+     -
+     -
+     -
+     -
+     -
+     -
+   * - remind - SSP1-NDC
+     -
+     -
+     - ✓
+     -
+     -
+     -
+     -
+     -
+     -
+   * - remind - SSP1-NPi
+     -
+     -
+     -
+     - ✓
+     -
+     -
+     -
+     -
+     -
+   * - remind-eu - SSP2-NDC
+     -
+     -
+     -
+     - ✓
+     -
+     -
+     -
+     -
+     -
+   * - remind - SSP2-NDC
+     -
+     -
+     -
+     - ✓
+     -
+     -
+     -
+     -
+     -
+   * - remind - SSP3-NDC
+     -
+     -
+     -
+     -
+     - ✓
+     -
+     -
+     -
+     -
+   * - image - SSP1-Ma
+     -
+     -
+     -
+     -
+     - ✓
+     -
+     -
+     -
+     -
+   * - tiam-ucl - SSP2-RCP45
+     -
+     -
+     -
+     -
+     - ✓
+     -
+     -
+     -
+     -
+   * - image - SSP2-M
+     -
+     -
+     -
+     -
+     -
+     - ✓
+     -
+     -
+     -
+   * - remind-eu - SSP2-NPi
+     -
+     -
+     -
+     -
+     -
+     -
+     - ✓
+     -
+     -
+   * - remind - SSP2-NPi
+     -
+     -
+     -
+     -
+     -
+     -
+     - ✓
+     -
+     -
+   * - tiam-ucl - SSP2-Base
+     -
+     -
+     -
+     -
+     -
+     -
+     - ✓
+     -
+     -
+   * - remind - SSP3-NPi
+     -
+     -
+     -
+     -
+     -
+     -
+     - ✓
+     -
+     -
+   * - remind - SSP2-rollBack
+     -
+     -
+     -
+     -
+     -
+     -
+     -
+     - ✓
+     -
+   * - image - SSP3-H
+     -
+     -
+     -
+     -
+     -
+     -
+     -
+     - ✓
+     -
+   * - image - SSP5-H
+     -
+     -
+     -
+     -
+     -
+     -
+     -
+     -
+     - ✓
+   * - remind - SSP3-rollBack
+     -
+     -
+     -
+     -
+     -
+     -
+     -
+     -
+     - ✓
 
 And here is a plot of the same data:
 
@@ -293,33 +676,154 @@ Default IAM scenarios
 Provided a decryption key (ask the maintainers_), the following IAM scenarios are available when
 installing *premise*:
 
-+------------------+-----------------------+-------------------------------------------+---------------------------------+-----------+------------+
-| SSP scenario     | GMST increase by 2100 | Climate policy / label                    | REMIND                          | IMAGE     | TIAM-UCL   |
-+==================+=======================+===========================================+=================================+===========+============+
-| **SSP1**         | 2.56°C                | Medium forcing                            |                                 | SSP1-Ma   |            |
-| **SSP1**         | 1.72°C                | Low forcing                               |                                 | SSP1-L    |            |
-| **SSP1**         | 1.35°C                | Very low forcing                          |                                 | SSP1-VLLO |            |
-| **SSP1**         | 1.92°C                | NDC (nat. determined contributions)       | SSP1-NDC                        |           |            |
-| **SSP1**         | 2.13°C                | NPI (nat. policies implemented)           | SSP1-NPi                        |           |            |
-| **SSP1**         | 1.3–1.7°C             | Paris-consistent (peak budget)            | SSP1-PkBudg650, SSP1-PkBudg1000 |           |            |
-| **SSP2**         | 3.11°C                | Base (no explicit policy, TIAM reference) |                                 |           | SSP2-Base  |
-| **SSP2**         | 1.66°C                | Low forcing                               |                                 | SSP2-L    |            |
-| **SSP2**         | 2.80°C                | Medium forcing                            |                                 | SSP2-M    |            |
-| **SSP2**         | 1.42°C                | Very low/high forcing (IMAGE VLHO)        |                                 | SSP2-VLHO |            |
-| **SSP2**         | 2.36°C                | NDC (nat. determined contributions)       | SSP2-NDC                        |           |            |
-| **SSP2**         | 3.0°C                 | NPI (nat. policies implemented)           | SSP2-NPi                        |           |            |
-| **SSP2**         | 1.50–1.9°C            | Paris-consistent (peak budget)            | SSP2-PkBudg650, SSP2-PkBudg1000 |           |            |
-| **SSP2**         | 3.24°C                | Rollback                                  | SSP2-rollBack                   |           |            |
-| **SSP2–RCP1.9**  | 1.65°C                | Paris-consistent                          |                                 |           | SSP2-RCP19 |
-| **SSP2–RCP2.6**  | 1.83°C                | Paris-consistent                          |                                 |           | SSP2-RCP26 |
-| **SSP2–RCP4.5**  | 2.78°C                | Weaker policy                             |                                 |           | SSP2-RCP45 |
-| **SSP3**         | 3.50°C                | High forcing                              |                                 | SSP3-H    |            |
-| **SSP3**         | 2.54°C                | NDC (nat. determined contributions)       | SSP3-NDC                        |           |            |
-| **SSP3**         | 3.20°C                | NPI (nat. policies implemented)           | SSP3-NPi                        |           |            |
-| **SSP3**         | 1.85°C                | Paris-consistent (peak budget)            | SSP3-PkBudg1000                 |           |            |
-| **SSP3**         | 3.75°C                | Rollback                                  | SSP3-rollBack                   |           |            |
-| **SSP5**         | 3.51°C                | High forcing                              |                                 | SSP5-H    |            |
-+------------------+-----------------------+-------------------------------------------+---------------------------------+-----------+------------+
+.. list-table::
+   :header-rows: 1
+   :widths: 20 15 15 15 15 15
+
+   * - SSP scenario
+     - GMST increase by 2100
+     - Climate policy / label
+     - REMIND
+     - IMAGE
+     - TIAM-UCL
+   * - **SSP1**
+     - 2.56°C
+     - Medium forcing
+     -
+     - SSP1-Ma
+     -
+   * - **SSP1**
+     - 1.72°C
+     - Low forcing
+     -
+     - SSP1-L
+     -
+   * - **SSP1**
+     - 1.35°C
+     - Very low forcing
+     -
+     - SSP1-VLLO
+     -
+   * - **SSP1**
+     - 1.92°C
+     - NDC (nat. determined contributions)
+     - SSP1-NDC
+     -
+     -
+   * - **SSP1**
+     - 2.13°C
+     - NPI (nat. policies implemented)
+     - SSP1-NPi
+     -
+     -
+   * - **SSP1**
+     - 1.3–1.7°C
+     - Paris-consistent (peak budget)
+     - SSP1-PkBudg650, SSP1-PkBudg1000
+     -
+     -
+   * - **SSP2**
+     - 3.11°C
+     - Base (no explicit policy, TIAM reference)
+     -
+     -
+     - SSP2-Base
+   * - **SSP2**
+     - 1.66°C
+     - Low forcing
+     -
+     - SSP2-L
+     -
+   * - **SSP2**
+     - 2.80°C
+     - Medium forcing
+     -
+     - SSP2-M
+     -
+   * - **SSP2**
+     - 1.42°C
+     - Very low/high forcing (IMAGE VLHO)
+     -
+     - SSP2-VLHO
+     -
+   * - **SSP2**
+     - 2.36°C
+     - NDC (nat. determined contributions)
+     - SSP2-NDC
+     -
+     -
+   * - **SSP2**
+     - 3.0°C
+     - NPI (nat. policies implemented)
+     - SSP2-NPi
+     -
+     -
+   * - **SSP2**
+     - 1.50–1.9°C
+     - Paris-consistent (peak budget)
+     - SSP2-PkBudg650, SSP2-PkBudg1000
+     -
+     -
+   * - **SSP2**
+     - 3.24°C
+     - Rollback
+     - SSP2-rollBack
+     -
+     -
+   * - **SSP2–RCP1.9**
+     - 1.65°C
+     - Paris-consistent
+     -
+     -
+     - SSP2-RCP19
+   * - **SSP2–RCP2.6**
+     - 1.83°C
+     - Paris-consistent
+     -
+     -
+     - SSP2-RCP26
+   * - **SSP2–RCP4.5**
+     - 2.78°C
+     - Weaker policy
+     -
+     -
+     - SSP2-RCP45
+   * - **SSP3**
+     - 3.50°C
+     - High forcing
+     -
+     - SSP3-H
+     -
+   * - **SSP3**
+     - 2.54°C
+     - NDC (nat. determined contributions)
+     - SSP3-NDC
+     -
+     -
+   * - **SSP3**
+     - 3.20°C
+     - NPI (nat. policies implemented)
+     - SSP3-NPi
+     -
+     -
+   * - **SSP3**
+     - 1.85°C
+     - Paris-consistent (peak budget)
+     - SSP3-PkBudg1000
+     -
+     -
+   * - **SSP3**
+     - 3.75°C
+     - Rollback
+     - SSP3-rollBack
+     -
+     -
+   * - **SSP5**
+     - 3.51°C
+     - High forcing
+     -
+     - SSP5-H
+     -
 
 CarbonBrief_ wrote a good article explaining the meaning of the SSP/RCP system.
 
