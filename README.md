@@ -136,11 +136,7 @@ The best way is to follow [the examples from the Jupyter Notebook](https://githu
 
 ## Disclaimer on the Use of IAM-Based Scenarios in Premise
 
-Premise integrates data from Integrated Assessment Models (IAMs) into the 
-ecoinvent life cycle inventory (LCI) database to produce prospective, 
-scenario-specific LCA databases. This enables practitioners to model the
-environmental impacts of technologies and systems under plausible future 
-conditions. However, it is essential to recognize the nature and 
+It is essential to recognize the nature and 
 limitations of the underlying IAM scenarios to responsibly interpret 
 and apply ``premise`` outputs.
 
@@ -154,10 +150,10 @@ presented in the article:
 IAMs, such as REMIND, IMAGE, and TIAM-UCL, simulate socio-technical 
 transitions by combining models of the economy, energy systems, land use, 
 and climate. They are used to create scenarios aligned with the Shared 
-Socioeconomic Pathways (SSPs) and Representative Concentration Pathways 
-(RCPs) frameworks developed by the IPCC. These models and pathways serve 
-as standardized tools to explore climate mitigation strategies under 
-various socio-economic futures.
+Socioeconomic Pathways (SSPs) and climate trajectories, such as the Representative 
+Concentration Pathways (RCPs) framework developed by the IPCC. These models and 
+pathways serve as standardized tools to explore climate mitigation strategies under 
+various socioeconomic futures.
 
 While IAMs offer a structured and policy-relevant way to explore 
 decarbonization pathways, their scenarios are not predictions. 
@@ -178,7 +174,7 @@ specific worldviews.
 
 3. **Blind Spots in Biophysical and Geopolitical Constraints**  
    Constraints on resource availability (e.g., critical minerals, land, 
-   water) are often oversimplified or ignored.
+   water) are often simplified or, for some IAMs, ignored.
 
 4. **Embedded Economic Paradigm and Value Judgments**  
    The SSPs assume perpetual GDP growth and reflect neoclassical economic 
@@ -195,19 +191,16 @@ specific worldviews.
 
 ### Recommendations for Responsible Use
 
-- **Transparency**: Clearly state the IAM, SSP, and RCP used. Communicate 
+- **Transparency**: Clearly state the IAM, SSP, and climate trajectory used. Communicate 
   their assumptions, scope, and limitations to end users.
 
 - **Scenario Screening**: Where possible, favor scenarios with credible 
   assumptions regarding technology deployment, demand-side measures, 
-  and material feasibility.
+  and material feasibility. Use extreme scenarios (e.g., RCP 1.9, RCP 6.0) 
+  cautiously, as they may not reflect realistic futures.
 
 - **Reflect Variability**: Consider using multiple scenarios or ensembles 
   to capture the uncertainty inherent in IAM projections.
-
-- **Consider Alternatives**: Incorporate or contrast scenarios from models 
-  using alternative economic paradigms (e.g., post-Keynesian, ecological 
-  macroeconomics) and societal narratives (e.g., degrowth, sufficiency).
 
 - **Ethical Reflexivity**: Recognize and reflect on the value-laden choices 
   embedded in IAMs. Prioritize transparency and intergenerational equity.
