@@ -1,8 +1,9 @@
 TRANSFORM
 =========
 
-A series of transformations are applied to the Life Cycle Inventory (LCI) database to align process performance
-and technology market shares with the outputs from the Integrated Assessment Model (IAM) scenario.
+A series of transformations are applied to the Life Cycle Inventory (LCI) database to align
+process performanceand technology market shares with the outputs from the Integrated Assessment
+Model (IAM) scenario.
 
 Mobile batteries
 ++++++++++++++++
