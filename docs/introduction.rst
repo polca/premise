@@ -41,7 +41,7 @@ Additionally, you may want to cite the ecoinvent v.3 database:
 
 Wernet, G. et al. The ecoinvent database version 3 (part I): overview and methodology. Int. J. Life Cycle Assess. 21, 1218–1230 (2016) . http://link.springer.com/10.1007/s11367-016-1087-8.
 
-Finally, you may want to cite the IAM model used with *premise*:
+Finally, you should properly refer the IAM model used with *premise*:
 
 * REMIND: Baumstark et al. REMIND2.1: transformation and innovation dynamics of the energy-economic system within climate and sustainability limits, Geoscientific Model Development, 2021.
 * IMAGE: Stehfest, Elke, et al. Integrated assessment of global environmental change with IMAGE 3.0: Model description and policy applications. Netherlands Environmental Assessment Agency (PBL), 2014.

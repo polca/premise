@@ -5,6 +5,9 @@
     white-space: normal !important;
     word-wrap: break-word;
     word-break: break-word;
+    overflow-wrap: break-word;
+    vertical-align: top;
+    padding: 0.5em;
 }
 
 /* Make table width adapt to container width */
@@ -12,10 +15,11 @@
     table-layout: auto !important;
     width: 100% !important;
     max-width: 100% !important;
+    border-collapse: collapse;
     overflow-x: auto;
 }
 
-/* Improve appearance of table cells */
+/* Improve appearance of all table cells */
 td, th {
     overflow-wrap: break-word;
     hyphens: auto;
