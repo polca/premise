@@ -1807,6 +1807,8 @@ class Electricity(BaseTransformation):
 
                             # limit scaling factor to 1.5
                             scaling_factor = min(scaling_factor, 1.5)
+                            # set a floor value of 0.5
+                            scaling_factor = max(scaling_factor, 0.5)
 
                             rescale_exchanges(
                                 dataset,
