@@ -1559,9 +1559,12 @@ class IAMDataCollection:
             resource = dp.get_resource("scenario_data")
             # getting scenario data in binary format
             scenario_data = resource.raw_read()
-            df = pd.read_csv(
-                BytesIO(scenario_data),
-            )
+            try:
+                df = pd.read_csv(
+                    BytesIO(scenario_data),
+                )
+            except:
+                df = pd.read_excel(BytesIO(scenario_data))
             # set headers from first row
             try:
                 df.columns = resource.headers
