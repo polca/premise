@@ -64,7 +64,7 @@ def test_increment():
     ndb.update(sectors=sectors)
 
     if "incremental" in bw2data.databases:
-        del bw2data.databases["superstructure"]
+        del bw2data.databases["incremental"]
 
     ndb.write_increment_db_to_brightway("incremental", file_format="csv")
 

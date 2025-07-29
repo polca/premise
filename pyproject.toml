@@ -135,5 +135,6 @@ premise = [
     "data/**/*.pickle",
     "iam_variables_mapping/*.yaml",
     "iam_variables_mapping/*.xlsx",
-    "iam_variables_mapping/topologies/*.json"
+    "iam_variables_mapping/topologies/*.json",
+    "fuels/*.py",
 ]

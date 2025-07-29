@@ -85,4 +85,4 @@ def test_losses():
 @pytest.mark.skipif(not key, reason="No access to decryption key")
 def test_powerplant_map():
     s = el.powerplant_map["Biomass IGCC CCS"]
-    assert isinstance(s, set)
+    assert isinstance(s, list)

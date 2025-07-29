@@ -62,7 +62,9 @@ heat, from hydrogen turbine:
 heat, buildings, from district heating:
     ecoinvent_aliases:
         fltr: heat, district or industrial, other than natural gas
-        mask: group
+        mask:
+          - group
+          - generic
     iam_aliases:
       remind: FE|Buildings|Heating|District Heating
       remind-eu: FE|Buildings|Heating|District Heating
