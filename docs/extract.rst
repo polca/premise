@@ -652,6 +652,67 @@ on the parameters of Ozawa_ et al. (2019), accessible here: LCI_H2_turbine_.
 .. _Ozawa: https://doi.org/10.1016/j.ijhydene.2019.02.230
 .. _LCI_H2_turbine: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-hydrogen-turbine.xlsx
 
+
+Steel
+-----
+
+*premise* imports inventories for a wide range of steel production technologies.
+These include conventional blast furnace-basic oxygen furnace (BF-BOF) routes,
+as well as emerging processes such as direct reduction (DRI), hydrogen-based
+production, electrowinning, and carbon capture (CCS) variants.
+
+The table below provides an overview of the included datasets, their key
+input(s), and assumed regional scope.
+
++-----------------------------------------------------------------------------------------------------------------------------+-----------------------------------------+--------+------+--------+----------------------------------+
+| Dataset | Main input | Unit | Loc | Floor | Literature reference |
++=============================================================================================================================+=========================================+========+======+=======+==================================+
+| steel production, blast furnace-basic oxygen furnace, low-alloyed | pig iron, alloys | kg | GLO | 1.0 | Harpprecht_ et al. 2025 [LCI_] |
+| steel production, blast furnace-basic oxygen furnace, unalloyed | pig iron | kg | GLO | 1.0 | |
+| alloys production, for low-alloyed steel | ferroalloys | kg | GLO | 1.0 | |
+| pig iron production, blast furnace, with carbon capture and storage | hard coal, CCS | kg | GLO | 1.0 | |
+| carbon dioxide, captured at pig iron production plant, using monoethanolamine | CO₂ (captured) | kg | GLO | 1.0 | |
+| steel production, blast furnace-basic oxygen furnace, with carbon capture and storage, low-alloyed | pig iron, CCS, alloys | kg | GLO | 1.0 | |
+| steel production, blast furnace-basic oxygen furnace, with carbon capture and storage, unalloyed | pig iron, CCS | kg | GLO | 1.0 | |
+| pig iron production, top gas recycling-blast furnace | hard coal | kg | GLO | 1.0 | |
+| steel production, blast furnace-basic oxygen furnace, with top gas recycling, low-alloyed | pig iron (TGR), alloys | kg | GLO | 1.0 | |
+| steel production, blast furnace-basic oxygen furnace, with top gas recycling, unalloyed | pig iron (TGR) | kg | GLO | 1.0 | |
+| pig iron production, blast furnace, with top gas recycling, with carbon capture and storage | hard coal, CCS | kg | GLO | 1.0 | |
+| carbon dioxide, captured at steel production plant, using vacuum pressure swing adsorption | CO₂ (captured) | kg | GLO | 1.0 | |
+| steel production, blast furnace-basic oxygen furnace, with top gas recycling, with CCS, low-alloyed | pig iron (TGR-CCS), alloys | kg | GLO | 1.0 | |
+| steel production, blast furnace-basic oxygen furnace, with top gas recycling, with CCS, unalloyed | pig iron (TGR-CCS) | kg | GLO | 1.0 | |
+| pig iron production, with natural gas-based direct reduction | natural gas | kg | GLO | 1.0 | |
+| steel production, natural gas-based direct reduction iron-electric arc furnace, low-alloyed | sponge iron, alloys | kg | GLO | 1.0 | |
+| steel production, natural gas-based direct reduction iron-electric arc furnace, unalloyed | sponge iron | kg | GLO | 1.0 | |
+| pig iron production, with natural gas-based direct reduction, with carbon capture and storage | natural gas, CCS | kg | GLO | 1.0 | |
+| carbon dioxide, captured at steel production plant using DRI, using vacuum pressure swing adsorption | CO₂ (captured) | kg | GLO | 1.0 | |
+| steel production, natural gas-based DRI-EAF, with CCS, low-alloyed | sponge iron (CCS), alloys | kg | GLO | 1.0 | |
+| steel production, natural gas-based DRI-EAF, with CCS, unalloyed | sponge iron (CCS) | kg | GLO | 1.0 | |
+| steel production, hydrogen-based DRI-EAF, low-alloyed | hydrogen, electricity, alloys | kg | GLO | 1.0 | |
+| steel production, hydrogen-based DRI-EAF, unalloyed | hydrogen, electricity | kg | GLO | 1.0 | |
+| pig iron production, hydrogen-based direct reduction iron | hydrogen, iron ore | kg | GLO | 1.0 | |
+| preheating of iron ore pellets | electricity | MJ | GLO | 1.0 | |
+| preheating of hydrogen | electricity | MJ | GLO | 1.0 | |
+| pig iron production, by electrowinning | electricity, NaOH | kg | GLO | 1.0 | |
+| leaching of iron ore | acid, water | kg | GLO | 1.0 | |
+| market for cathode, graphite | graphite | unit | GLO | 1.0 | |
+| nickel anode production, for electrolysis of iron ore | nickel | unit | GLO | 1.0 | |
+| production of alkaline solution from sodium hydroxide of 50 wt-% | NaOH, water | kg | GLO | 1.0 | |
+| steel production, electrowinning-electric arc furnace, low-alloyed | iron (electrowon), alloys | kg | GLO | 1.0 | |
+| steel production, electrowinning-electric arc furnace, unalloyed | iron (electrowon) | kg | GLO | 1.0 | |
+| ultrafine grinding of iron ore | electricity | MJ | GLO | 1.0 | |
++-----------------------------------------------------------------------------------------------------------------------------+-----------------------------------------+--------+------+--------+----------------------------------+
+
+These inventories provide a modular basis for modeling steel systems under various future-oriented scenarios and technological configurations.
+
+.. _Harpprecht: https://doi.org/10.1039/D5EE01356A
+.. _LCI: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-steel.xlsx
+
+
+Cement
+------
+
+
 Ammonia
 -------
 
