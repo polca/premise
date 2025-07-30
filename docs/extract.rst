@@ -712,6 +712,59 @@ These inventories provide a modular basis for modeling steel systems under vario
 Cement
 ------
 
+*premise* introduces inventories for capturing carbon dioxide at cement
+production plants using three prospective technologies:
+
+* Post-combustion capture using monoethanolamine (MEA)
+* Direct separation
+* Oxyfuel combustion
+
+These inventories represent the gate-to-gate capture of 1 kg of CO₂ and
+include upstream material and energy inputs as well as transport and storage
+of the captured CO₂.
+
++---------------------------------------------------------------------------------------------------------------------+--------------------------+--------+------+--------+-------------------------------------------+
+| Dataset | Capture method | Unit | Loc | Eff. | Literature reference |
++=====================================================================================================================+==========================+========+======+========+===========================================+
+| carbon dioxide, captured, at cement production plant, using monoethanolamine | MEA | kg CO₂ | RER | 90% | Müller_ et al. 2024 [LCI_CC_] |
++---------------------------------------------------------------------------------------------------------------------+--------------------------+--------+------+--------+-------------------------------------------+
+| carbon dioxide, captured, at cement production plant, using direct separation | Direct separation | kg CO₂ | RER | 95% | Müller_ et al. 2024 [LCI_CC_] |
++---------------------------------------------------------------------------------------------------------------------+--------------------------+--------+------+--------+-------------------------------------------+
+| carbon dioxide, captured, at cement production plant, using oxyfuel | Oxyfuel | kg CO₂ | RER | 90% | Müller_ et al. 2024 [LCI_CC_] |
++---------------------------------------------------------------------------------------------------------------------+--------------------------+--------+------+--------+-------------------------------------------+
+
+Monoethanolamine (MEA)
+**********************
+
+Represents conventional post-combustion carbon capture using MEA solvents,
+based on the CEMCAP study (Voldsund, 2019). The dataset includes heat and
+electricity demand for regeneration and compression, solvent losses, chemical
+pretreatment (NaOH), and incineration of spent solvents. Heat is assumed to be
+provided by the same fuel mix as the cement kiln.
+
+Direct separation
+*****************
+
+Models CO₂ capture via a separate calciner (as in the LEILAC project),
+allowing for nearly pure CO₂ stream separation without additional chemical
+solvents. Includes extra electricity consumption for calciner operation
+and CO₂ compression.
+
+Oxyfuel combustion
+******************
+
+Simulates complete fuel combustion in a controlled O₂/CO₂ atmosphere.
+The resulting flue gas has high CO₂ purity, reducing downstream separation
+needs. Liquid oxygen is supplied via an air separation unit (ASU), and waste
+heat is recovered to offset some electricity needs. Emissions of SOₓ, NOₓ, CO,
+and Hg are significantly reduced.
+
+All three capture routes include subsequent CO₂ compression, transport, and
+storage via the carbon dioxide compression, transport and storage dataset
+from *premise*.
+
+.. _Müller: https://doi.org/10.1016/j.jclepro.2024.141884
+.. _LCI_CC: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-carbon-capture.xlsx
 
 Ammonia
 -------
