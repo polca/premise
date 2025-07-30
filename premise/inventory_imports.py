@@ -636,9 +636,8 @@ class BaseInventoryImport:
                             n = exc["name"].replace("market group for", "market for")
 
                         else:
-                            raise ValueError(
-                                f"Could not find a valid amount for exchange {exc['name']} in dataset {ds['name']} with reference product {ref_prod} and location {loc}"
-                            )
+                            print(f"Could not find a valid amount for exchange {exc['name']} in dataset {ds['name']} with reference product {ref_prod} and location {loc}")
+                            return
 
                         for e in ws.technosphere(
                             ds,
@@ -649,9 +648,8 @@ class BaseInventoryImport:
                             sum_amount += e["amount"]
 
                         if sum_amount == 0:
-                            raise ValueError(
-                                f"Could not find a valid amount for exchange {exc['name']} | {exc['product']} in dataset {ds['name']} with reference product {ref_prod} and location {loc}"
-                            )
+                            print(f"Could not find a valid amount for exchange {exc['name']} | {exc['product']} in dataset {ds['name']} with reference product {ref_prod} and location {loc}")
+                            return
 
                     exc["amount"] = sum_amount
                     exc.pop("replacement name", None)
