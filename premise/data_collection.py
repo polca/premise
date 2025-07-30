@@ -23,6 +23,7 @@ from prettytable import PrettyTable
 from .filesystem_constants import DATA_DIR, VARIABLES_DIR
 from .geomap import Geomap
 from .marginal_mixes import consequential_method
+from .scenario_downloader import download_csv
 
 IAM_ELEC_VARS = VARIABLES_DIR / "electricity.yaml"
 IAM_FUELS_VARS = VARIABLES_DIR / "fuels.yaml"
@@ -1073,62 +1074,55 @@ class IAMDataCollection:
 
         """
 
-        # find file in directory which name contains both self.model and self.pathway
-        # Walk through the directory
-        filepath = ""
-        for root, dirs, files in os.walk(filedir):
-            for file in files:
-                # Check if both model and pathway are present in the filename
-                model, pathway = file.split("_")
-                pathway = pathway.split(".")[0]
-                if self.model == model and self.pathway == pathway:
-                    filepath = Path(os.path.join(root, file))
-                    self.filepath_iam_files = filepath
+        # Build file name based on self.model and self.pathway
+        file_name = f"{self.model}_{self.pathway}"
 
-        if filepath == "":
-            raise FileNotFoundError(
-                f"Could not find any file containing both "
-                f"{self.model} and {self.pathway} in {filedir}"
-            )
+        # Possible file extensions
+        extensions = [".csv", ".mif", ".xls", ".xlsx"]
 
-        if key is None:
-            # Uses a non-encrypted file
-            # if extension is ".csv"
-            if filepath.suffix in [".csv", ".mif"]:
-                print(f"Reading {filepath} as csv file")
-                with open(filepath, "rb") as file:
-                    # read the encrypted data
-                    encrypted_data = file.read()
-                    # create a temp csv-like file to pass to pandas.read_csv()
-                    data = StringIO(str(encrypted_data, "latin-1"))
+        file_path = None
 
-            elif filepath.suffix in [".xls", ".xlsx"]:
-                print(f"Reading {filepath} as excel file")
-                data = pd.read_excel(filepath)
+        # Check for file with any of the possible extensions
+        for ext in extensions:
+            potential_file_path = Path(filedir) / (file_name + ext)
+            if potential_file_path.exists():
+                file_path = potential_file_path
+                print(f"Found file: {file_path.stem}")
+                break
 
+        if file_path is None:
+            if key is None:
+                raise FileNotFoundError(f"File {file_name} not found with any supported extension in {filedir}")
             else:
-                raise ValueError(
-                    f"Extension {filepath.suffix} is not supported. Please use .csv, .mif, .xls or .xlsx."
-                )
-        else:
-            # Uses an encrypted file
+                # If key is provided, download the file
+                download_folder = filedir
+                url = f"https://zenodo.org/record/16604066/files/{file_name}.csv"
+                file_path = download_csv(file_name + ".csv", url, download_folder)
+
+        # Decrypt the file if a key is provided
+        if key is not None:
             fernet_obj = Fernet(key)
-            with open(filepath, "rb") as file:
-                # read the encrypted data
+            with open(file_path, "rb") as file:
                 encrypted_data = file.read()
 
-            # decrypt data
+            # Decrypt data
             decrypted_data = fernet_obj.decrypt(encrypted_data)
             data = StringIO(str(decrypted_data, "latin-1"))
-
-        if filepath.suffix in [".csv", ".mif"]:
-            dataframe = pd.read_csv(
-                data,
-                sep=get_delimiter(data=copy.copy(data).readline()),
-                encoding="latin-1",
-            )
         else:
-            dataframe = data
+            # Read the file as it is if no key is provided
+            with open(file_path, "rb") as file:
+                encrypted_data = file.read()
+                data = StringIO(str(encrypted_data, "latin-1"))
+
+        # Now that we have the file (decrypted or not), check extension and process it accordingly
+        if file_path.suffix in [".csv", ".mif"]:
+            print(f"Reading {file_path.stem} as CSV file")
+            dataframe = pd.read_csv(data, sep=get_delimiter(data=copy.copy(data).readline()), encoding="latin-1")
+        elif file_path.suffix in [".xls", ".xlsx"]:
+            print(f"Reading {file_path.stem} as Excel file")
+            dataframe = pd.read_excel(file_path)
+        else:
+            raise ValueError(f"Unsupported file extension: {file_path.suffix}")
 
         # if a column name can be an integer
         # we convert it to an integer
