@@ -664,44 +664,45 @@ production, electrowinning, and carbon capture (CCS) variants.
 The table below provides an overview of the included datasets, their key
 input(s), and assumed regional scope.
 
-+-----------------------------------------------------------------------------------------------------------------------------+-----------------------------------------+--------+------+--------+----------------------------------+
-| Dataset | Main input | Unit | Loc | Floor | Literature reference |
-+=============================================================================================================================+=========================================+========+======+=======+==================================+
-| steel production, blast furnace-basic oxygen furnace, low-alloyed | pig iron, alloys | kg | GLO | 1.0 | Harpprecht_ et al. 2025 [LCI_] |
-| steel production, blast furnace-basic oxygen furnace, unalloyed | pig iron | kg | GLO | 1.0 | |
-| alloys production, for low-alloyed steel | ferroalloys | kg | GLO | 1.0 | |
-| pig iron production, blast furnace, with carbon capture and storage | hard coal, CCS | kg | GLO | 1.0 | |
-| carbon dioxide, captured at pig iron production plant, using monoethanolamine | CO₂ (captured) | kg | GLO | 1.0 | |
-| steel production, blast furnace-basic oxygen furnace, with carbon capture and storage, low-alloyed | pig iron, CCS, alloys | kg | GLO | 1.0 | |
-| steel production, blast furnace-basic oxygen furnace, with carbon capture and storage, unalloyed | pig iron, CCS | kg | GLO | 1.0 | |
-| pig iron production, top gas recycling-blast furnace | hard coal | kg | GLO | 1.0 | |
-| steel production, blast furnace-basic oxygen furnace, with top gas recycling, low-alloyed | pig iron (TGR), alloys | kg | GLO | 1.0 | |
-| steel production, blast furnace-basic oxygen furnace, with top gas recycling, unalloyed | pig iron (TGR) | kg | GLO | 1.0 | |
-| pig iron production, blast furnace, with top gas recycling, with carbon capture and storage | hard coal, CCS | kg | GLO | 1.0 | |
-| carbon dioxide, captured at steel production plant, using vacuum pressure swing adsorption | CO₂ (captured) | kg | GLO | 1.0 | |
-| steel production, blast furnace-basic oxygen furnace, with top gas recycling, with CCS, low-alloyed | pig iron (TGR-CCS), alloys | kg | GLO | 1.0 | |
-| steel production, blast furnace-basic oxygen furnace, with top gas recycling, with CCS, unalloyed | pig iron (TGR-CCS) | kg | GLO | 1.0 | |
-| pig iron production, with natural gas-based direct reduction | natural gas | kg | GLO | 1.0 | |
-| steel production, natural gas-based direct reduction iron-electric arc furnace, low-alloyed | sponge iron, alloys | kg | GLO | 1.0 | |
-| steel production, natural gas-based direct reduction iron-electric arc furnace, unalloyed | sponge iron | kg | GLO | 1.0 | |
-| pig iron production, with natural gas-based direct reduction, with carbon capture and storage | natural gas, CCS | kg | GLO | 1.0 | |
-| carbon dioxide, captured at steel production plant using DRI, using vacuum pressure swing adsorption | CO₂ (captured) | kg | GLO | 1.0 | |
-| steel production, natural gas-based DRI-EAF, with CCS, low-alloyed | sponge iron (CCS), alloys | kg | GLO | 1.0 | |
-| steel production, natural gas-based DRI-EAF, with CCS, unalloyed | sponge iron (CCS) | kg | GLO | 1.0 | |
-| steel production, hydrogen-based DRI-EAF, low-alloyed | hydrogen, electricity, alloys | kg | GLO | 1.0 | |
-| steel production, hydrogen-based DRI-EAF, unalloyed | hydrogen, electricity | kg | GLO | 1.0 | |
-| pig iron production, hydrogen-based direct reduction iron | hydrogen, iron ore | kg | GLO | 1.0 | |
-| preheating of iron ore pellets | electricity | MJ | GLO | 1.0 | |
-| preheating of hydrogen | electricity | MJ | GLO | 1.0 | |
-| pig iron production, by electrowinning | electricity, NaOH | kg | GLO | 1.0 | |
-| leaching of iron ore | acid, water | kg | GLO | 1.0 | |
-| market for cathode, graphite | graphite | unit | GLO | 1.0 | |
-| nickel anode production, for electrolysis of iron ore | nickel | unit | GLO | 1.0 | |
-| production of alkaline solution from sodium hydroxide of 50 wt-% | NaOH, water | kg | GLO | 1.0 | |
-| steel production, electrowinning-electric arc furnace, low-alloyed | iron (electrowon), alloys | kg | GLO | 1.0 | |
-| steel production, electrowinning-electric arc furnace, unalloyed | iron (electrowon) | kg | GLO | 1.0 | |
-| ultrafine grinding of iron ore | electricity | MJ | GLO | 1.0 | |
-+-----------------------------------------------------------------------------------------------------------------------------+-----------------------------------------+--------+------+--------+----------------------------------+
+==================================================================================================================  ==========
+Steel production and related processes                                                                               location
+==================================================================================================================  ==========
+steel production, blast furnace-basic oxygen furnace, low-alloyed                                                    GLO
+steel production, blast furnace-basic oxygen furnace, unalloyed                                                      GLO
+alloys production, for low-alloyed steel                                                                             GLO
+pig iron production, blast furnace, with carbon capture and storage                                                  GLO
+carbon dioxide, captured at pig iron production plant, using monoethanolamine                                        GLO
+steel production, blast furnace-basic oxygen furnace, with carbon capture and storage, low-alloyed                   GLO
+steel production, blast furnace-basic oxygen furnace, with carbon capture and storage, unalloyed                     GLO
+pig iron production, top gas recycling-blast furnace                                                                 GLO
+steel production, blast furnace-basic oxygen furnace, with top gas recycling, low-alloyed                            GLO
+steel production, blast furnace-basic oxygen furnace, with top gas recycling, unalloyed                              GLO
+pig iron production, blast furnace, with top gas recycling, with carbon capture and storage                          GLO
+carbon dioxide, captured at steel production plant, using vacuum pressure swing adsorption                           GLO
+steel production, blast furnace-basic oxygen furnace, with top gas recycling, with CCS, low-alloyed                  GLO
+steel production, blast furnace-basic oxygen furnace, with top gas recycling, with CCS, unalloyed                    GLO
+pig iron production, with natural gas-based direct reduction                                                         GLO
+steel production, natural gas-based direct reduction iron-electric arc furnace, low-alloyed                          GLO
+steel production, natural gas-based direct reduction iron-electric arc furnace, unalloyed                            GLO
+pig iron production, with natural gas-based direct reduction, with carbon capture and storage                        GLO
+carbon dioxide, captured at steel production plant using DRI, using vacuum pressure swing adsorption                 GLO
+steel production, natural gas-based DRI-EAF, with CCS, low-alloyed                                                   GLO
+steel production, natural gas-based DRI-EAF, with CCS, unalloyed                                                     GLO
+steel production, hydrogen-based DRI-EAF, low-alloyed                                                                GLO
+steel production, hydrogen-based DRI-EAF, unalloyed                                                                  GLO
+pig iron production, hydrogen-based direct reduction iron                                                            GLO
+preheating of iron ore pellets                                                                                       GLO
+preheating of hydrogen                                                                                               GLO
+pig iron production, by electrowinning                                                                               GLO
+leaching of iron ore                                                                                                 GLO
+market for cathode, graphite                                                                                         GLO
+nickel anode production, for electrolysis of iron ore                                                                GLO
+production of alkaline solution from sodium hydroxide of 50 wt-%                                                     GLO
+steel production, electrowinning-electric arc furnace, low-alloyed                                                   GLO
+steel production, electrowinning-electric arc furnace, unalloyed                                                     GLO
+ultrafine grinding of iron ore                                                                                       GLO
+==================================================================================================================  ==========
+
 
 These inventories provide a modular basis for modeling steel systems under various future-oriented scenarios and technological configurations.
 
@@ -723,15 +724,13 @@ These inventories represent the gate-to-gate capture of 1 kg of CO₂ and
 include upstream material and energy inputs as well as transport and storage
 of the captured CO₂.
 
-+---------------------------------------------------------------------------------------------------------------------+--------------------------+--------+------+--------+-------------------------------------------+
-| Dataset | Capture method | Unit | Loc | Eff. | Literature reference |
-+=====================================================================================================================+==========================+========+======+========+===========================================+
-| carbon dioxide, captured, at cement production plant, using monoethanolamine | MEA | kg CO₂ | RER | 90% | Müller_ et al. 2024 [LCI_CC_] |
-+---------------------------------------------------------------------------------------------------------------------+--------------------------+--------+------+--------+-------------------------------------------+
-| carbon dioxide, captured, at cement production plant, using direct separation | Direct separation | kg CO₂ | RER | 95% | Müller_ et al. 2024 [LCI_CC_] |
-+---------------------------------------------------------------------------------------------------------------------+--------------------------+--------+------+--------+-------------------------------------------+
-| carbon dioxide, captured, at cement production plant, using oxyfuel | Oxyfuel | kg CO₂ | RER | 90% | Müller_ et al. 2024 [LCI_CC_] |
-+---------------------------------------------------------------------------------------------------------------------+--------------------------+--------+------+--------+-------------------------------------------+
+==============================================================================  ==========
+Carbon capture at cement production plants                                       location
+==============================================================================  ==========
+carbon dioxide, captured, at cement production plant, using monoethanolamine     RER
+carbon dioxide, captured, at cement production plant, using direct separation    RER
+carbon dioxide, captured, at cement production plant, using oxyfuel              RER
+==============================================================================  ==========
 
 Monoethanolamine (MEA)
 **********************
