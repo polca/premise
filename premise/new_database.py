@@ -262,9 +262,11 @@ def check_pathway_name(name: str, filepath: Path, model: str) -> str:
     if (filepath / name_check).with_suffix(".csv").is_file():
         return name
 
-    raise ValueError(
-        f"Cannot find the IAM scenario file at this location: {filepath / name_check}."
+    print(
+        f"Cannot find the IAM scenario file at {filepath / name_check}. "
+        f"Will check online."
     )
+    return name
 
 
 def check_year(year: [int, float]) -> int:
