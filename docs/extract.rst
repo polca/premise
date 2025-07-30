@@ -659,7 +659,8 @@ Steel
 *premise* imports inventories for a wide range of steel production technologies.
 These include conventional blast furnace-basic oxygen furnace (BF-BOF) routes,
 as well as emerging processes such as direct reduction (DRI), hydrogen-based
-production, electrowinning, and carbon capture (CCS) variants.
+production, electrowinning, and carbon capture (CCS) variants. They are from Harpprecht_ et al. (2025).
+They can be found here: LCI_steel_.
 
 The table below provides an overview of the included datasets, their key
 input(s), and assumed regional scope.
@@ -707,7 +708,7 @@ ultrafine grinding of iron ore                                                  
 These inventories provide a modular basis for modeling steel systems under various future-oriented scenarios and technological configurations.
 
 .. _Harpprecht: https://doi.org/10.1039/D5EE01356A
-.. _LCI: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-steel.xlsx
+.. _LCI_steel: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-steel.xlsx
 
 
 Cement
@@ -722,7 +723,7 @@ production plants using three prospective technologies:
 
 These inventories represent the gate-to-gate capture of 1 kg of CO₂ and
 include upstream material and energy inputs as well as transport and storage
-of the captured CO₂.
+of the captured CO₂. They are from Muller_ et al. (2024). They can be found here: LCI_cement_.
 
 ==============================================================================  ==========
 Carbon capture at cement production plants                                       location
@@ -762,8 +763,8 @@ All three capture routes include subsequent CO₂ compression, transport, and
 storage via the carbon dioxide compression, transport and storage dataset
 from *premise*.
 
-.. _Müller: https://doi.org/10.1016/j.jclepro.2024.141884
-.. _LCI_CC: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-carbon-capture.xlsx
+.. _Muller: https://doi.org/10.1016/j.jclepro.2024.141884
+.. _LCI_cement: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-carbon-capture.xlsx
 
 Ammonia
 -------
