@@ -431,7 +431,7 @@ class ExternalScenario(BaseTransformation):
         self.fuel_map_reverse = {}
         for key, value in self.fuel_map.items():
             for v in list(value):
-                self.fuel_map_reverse[v] = key
+                self.fuel_map_reverse[v["name"]] = key
 
         external_scenario_regions = {}
         for datapackage_number, datapackage in enumerate(self.datapackages):
@@ -965,7 +965,7 @@ class ExternalScenario(BaseTransformation):
 
         return act
 
-    def write_suppliers_exchanges(self, suppliers: dict, supply_share: float) -> list:
+    def write_suppliers_exchanges(self, suppliers: list, supply_share: float) -> list:
         """
         Write the exchanges for the suppliers.
         :param suppliers: list of suppliers
@@ -975,15 +975,15 @@ class ExternalScenario(BaseTransformation):
 
         new_excs = []
 
-        for supplier, market_share in suppliers.items():
-            provider_share = supply_share * market_share
+        for supplier in suppliers:
+            provider_share = supply_share * supplier["share"]
 
             new_excs.append(
                 {
-                    "name": supplier[0],
-                    "product": supplier[2],
-                    "unit": supplier[-1],
-                    "location": supplier[1],
+                    "name": supplier["name"],
+                    "product": supplier["reference product"],
+                    "unit": supplier["unit"],
+                    "location": supplier["location"],
                     "type": "technosphere",
                     "amount": provider_share,
                     "uncertainty type": 0,

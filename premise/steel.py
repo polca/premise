@@ -34,7 +34,6 @@ def _update_steel(scenario, version, system_model):
     )
 
     steel.create_pig_iron_production_activities()
-    steel.create_pig_iron_markets()
     steel.create_steel_production_activities()
     steel.create_steel_markets()
     steel.relink_datasets()
@@ -53,6 +52,14 @@ def _update_steel(scenario, version, system_model):
     validate.run_steel_checks()
 
     return scenario
+
+
+def group_dicts_by_keys(dicts: list, keys: list):
+    groups = defaultdict(list)
+    for d in dicts:
+        group_key = tuple(d.get(k) for k in keys)
+        groups[group_key].append(d)
+    return list(groups.values())
 
 
 class Steel(BaseTransformation):
@@ -105,17 +112,37 @@ class Steel(BaseTransformation):
             ws.contains("name", "market for steel"),
             ws.equals("unit", "kilogram"),
             ws.contains("reference product", "steel"),
-            ws.doesnt_contain_any("name", ["chromium", "rolled", "removed", "residue"]),
+            ws.doesnt_contain_any(
+                "name", ["chromium", "rolled", "removed", "residue", "grain"]
+            ),
         ):
 
             if ds.get("regionalized", False) is True:
                 continue
 
+            mapping = {}
+            if "low-alloyed" in ds["name"]:
+                mapping = {
+                    k: [x for x in v if "low-alloyed" in x["name"]]
+                    for k, v in self.steel_map.items()
+                }
+
+            if "unalloyed" in ds["name"]:
+                mapping = {
+                    k: [
+                        x
+                        for x in v
+                        if "unalloyed" in x["name"]
+                        or x["name"].startswith("steel production, electric")
+                    ]
+                    for k, v in self.steel_map.items()
+                }
+
             self.process_and_add_markets(
                 name=ds["name"],
                 reference_product=ds["reference product"],
                 unit=ds["unit"],
-                mapping=self.steel_map,
+                mapping=mapping,
                 production_volumes=self.iam_data.production_volumes,
                 system_model=self.system_model,
                 blacklist={
@@ -162,40 +189,86 @@ class Steel(BaseTransformation):
         Create region-specific pig iron production activities.
         """
 
+        mapping = {
+            "carbon dioxide, captured at pig iron production plant, using monoethanolamine": [
+                ws.get_one(
+                    self.database,
+                    ws.equals(
+                        "name",
+                        "carbon dioxide, captured at pig iron production plant, using monoethanolamine",
+                    ),
+                ),
+            ],
+            "carbon dioxide, captured at steel production plant, using vacuum pressure swing adsorption": [
+                ws.get_one(
+                    self.database,
+                    ws.equals(
+                        "name",
+                        "carbon dioxide, captured at steel production plant, using vacuum pressure swing adsorption",
+                    ),
+                ),
+            ],
+            "carbon dioxide, captured at steel production plant using direct reduction iron, using vacuum pressure swing adsorption": [
+                ws.get_one(
+                    self.database,
+                    ws.equals(
+                        "name",
+                        "carbon dioxide, captured at steel production plant using direct reduction iron, using vacuum pressure swing adsorption",
+                    ),
+                ),
+            ],
+            "preheating of iron ore pellets": [
+                ws.get_one(
+                    self.database, ws.equals("name", "preheating of iron ore pellets")
+                ),
+            ],
+            "preheating of hydrogen": [
+                ws.get_one(self.database, ws.equals("name", "preheating of hydrogen")),
+            ],
+            "leaching of iron ore": [
+                ws.get_one(self.database, ws.equals("name", "leaching of iron ore")),
+            ],
+            "nickel anode production, for electrolysis of iron ore": [
+                ws.get_one(
+                    self.database,
+                    ws.equals(
+                        "name", "nickel anode production, for electrolysis of iron ore"
+                    ),
+                ),
+            ],
+            "production of alkaline solution from sodium hydroxide of 50 wt-%": [
+                ws.get_one(
+                    self.database,
+                    ws.equals(
+                        "name",
+                        "production of alkaline solution from sodium hydroxide of 50 wt-%",
+                    ),
+                ),
+            ],
+            "ultrafine grinding of iron ore": [
+                ws.get_one(
+                    self.database, ws.equals("name", "ultrafine grinding of iron ore")
+                ),
+            ],
+        }
+
+        self.process_and_add_activities(
+            mapping=mapping,
+        )
+
         pig_iron = {
             "pig iron": [
                 ds
                 for ds in self.database
                 if ds["name"].startswith("pig iron production")
                 and ds["unit"] == "kilogram"
-                and ds["reference product"] == "pig iron"
+                and "pig iron" in ds["reference product"]
                 and ds.get("regionalized", False) is False
             ]
         }
 
         self.process_and_add_activities(
             mapping=pig_iron,
-        )
-
-    def create_pig_iron_markets(self):
-        """
-        Create region-specific pig iron markets.
-        Adds datasets to the database.
-        """
-
-        self.process_and_add_markets(
-            name="market for pig iron",
-            reference_product="pig iron",
-            unit="kilogram",
-            mapping={
-                "pig iron": [
-                    ds
-                    for ds in self.database
-                    if ds["name"] == "pig iron production"
-                    and ds["unit"] == "kilogram"
-                    and ds["reference product"] == "pig iron"
-                ]
-            },
         )
 
     def adjust_process_efficiency(self, dataset, sector):
@@ -253,23 +326,53 @@ class Steel(BaseTransformation):
 
             if dataset["name"].startswith("pig iron production"):
                 energy = sum(
-                    exc["amount"]
-                    for exc in ws.technosphere(dataset)
-                    if exc["unit"] == "megajoule"
+                    [
+                        exc["amount"]
+                        for exc in dataset["exchanges"]
+                        if exc["unit"] == "megajoule" and exc["type"] == "technosphere"
+                    ]
                 )
-
                 # add input of coal
                 energy += sum(
-                    exc["amount"] * 26.4
-                    for exc in ws.technosphere(dataset)
-                    if "hard coal" in exc["name"] and exc["unit"] == "kilogram"
+                    [
+                        exc["amount"] * 26.4
+                        for exc in dataset["exchanges"]
+                        if "hard coal" in exc["name"]
+                        and exc["type"] == "technosphere"
+                        and exc["unit"] == "kilogram"
+                    ]
                 )
 
                 # add input of natural gas
                 energy += sum(
-                    exc["amount"] * 36
-                    for exc in ws.technosphere(dataset)
-                    if "natural gas" in exc["name"] and exc["unit"] == "cubic meter"
+                    [
+                        exc["amount"] * 36
+                        for exc in dataset["exchanges"]
+                        if "natural gas" in exc["name"]
+                        and exc["type"] == "technosphere"
+                        and exc["unit"] == "cubic meter"
+                    ]
+                )
+
+                # add electricity inputs
+                energy += sum(
+                    [
+                        exc["amount"] * 3.6
+                        for exc in dataset["exchanges"]
+                        if exc["type"] == "technosphere"
+                        and exc["unit"] == "kilowatt hour"
+                    ]
+                )
+
+                # add hydrogen inputs
+                energy += sum(
+                    [
+                        exc["amount"] * 120
+                        for exc in dataset["exchanges"]
+                        if "hydrogen" in exc["name"]
+                        and exc["type"] == "technosphere"
+                        and exc["unit"] == "kilogram"
+                    ]
                 )
 
                 scaling_factor = max(9.0 / energy, scaling_factor)

@@ -140,7 +140,7 @@ for file in glob.glob("*.yaml"):
 excel_file = "mapping_overview.xlsx"
 with pd.ExcelWriter(excel_file, engine="xlsxwriter") as writer:
     for sheet_name, df in dfs.items():
-        df.to_excel(writer, sheet_name=sheet_name, index=False)
+        df.to_excel(writer, sheet_name=sheet_name.replace(".Yaml", ""), index=False)
 
 # create a dataframe with all the data, plus a column for the file name
 all_data = pd.concat(

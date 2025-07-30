@@ -55,6 +55,7 @@ bw25 = [
     "pyYaml",
     "requests",
     "schema",
+    "scipy<1.14.0",  # scipy 1.14.0 is not compatible with bw2calc>2.0.1
     "sparse>=0.14.0",
     "wurst>=0.4",
     "xarray<=2024.2.0",

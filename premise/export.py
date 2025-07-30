@@ -1778,6 +1778,7 @@ class Export:
 
                                 if exc_cat == "waste treatment":
                                     name = f"{e['product']} {{{e.get('location', 'GLO')}}}| {e['name']} | {dataset_suffix}"
+                                    name = clean_csv_field(name)
 
                                     writer.writerow(
                                         [

@@ -135,7 +135,7 @@ class IncrementalDatabase(NewDatabase):
                         == scenario_id
                     ):
                         scenario["database filepath"] = database_filepath
-                        scenario = load_database(scenario, delete=False)
+                        scenario = load_database(scenario, delete=False, original_database=self.database)
                     else:
                         scenario["database"] = pickle.loads(
                             pickle.dumps(self.database, -1)

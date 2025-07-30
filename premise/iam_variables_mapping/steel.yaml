@@ -7,6 +7,7 @@ steel - primary - BF/BOF:
     image:
       - Production|Industry|Iron and Steel|BF/BOF Modernized
       - Production|Industry|Iron and Steel|BF/BOF Standard
+      - Production|Industry|Iron and Steel|SR/BOF
     remind: Production|Industry|Steel|+|BF-BOF
     remind-eu: Production|Industry|Steel|+|BF-BOF
     message: Production|Primary|Steel
@@ -50,6 +51,14 @@ steel - primary - BF/BOF:
       - Final Energy|Industry|Iron and Steel|BF/BOF Standard|Oil
       - Final Energy|Industry|Iron and Steel|BF/BOF Standard|Secondary Heat
       - Final Energy|Industry|Iron and Steel|BF/BOF Standard|Traditional Biomass
+      - Final Energy|Industry|Iron and Steel|SR/BOF|Coal
+      - Final Energy|Industry|Iron and Steel|SR/BOF|Electricity
+      - Final Energy|Industry|Iron and Steel|SR/BOF|Hydrogen
+      - Final Energy|Industry|Iron and Steel|SR/BOF|Modern Biomass
+      - Final Energy|Industry|Iron and Steel|SR/BOF|Natural Gas
+      - Final Energy|Industry|Iron and Steel|SR/BOF|Oil
+      - Final Energy|Industry|Iron and Steel|SR/BOF|Secondary Heat
+      - Final Energy|Industry|Iron and Steel|SR/BOF|Traditional Biomass
     message:
       - Final Energy|Industry|Steel|Primary|Electricity
       - Final Energy|Industry|Steel|Primary|Gases
@@ -118,16 +127,17 @@ steel - primary - BF/BOF:
       - Final Energy|Production|Steel|Primary|BF and BOF 1|Petroleum Coke|w/o CCS
   ecoinvent_aliases:
     fltr:
-      - steel production, converter
+      - steel production, blast furnace-basic oxygen furnace
     mask:
-      - hot rolled
-      - unalloyed
       - market
+      - carbon capture and storage
+      - top gas recycling
 
 steel - primary - BF/BOF CCS:
   iam_aliases:
     image:
       - Production|Industry|Iron and Steel|BF/ BOF Standard + CCS
+      - Production|Industry|Iron and Steel|SR/BOF + CCS
     tiam-ucl:
       - Production|Steel|Primary|BF and BOF 1|w CCS
       - Production|Steel|Primary|BF and BOF 3|w CCS
@@ -147,6 +157,14 @@ steel - primary - BF/BOF CCS:
       - Final Energy|Industry|Iron and Steel|BF/ BOF Standard + CCS|Oil
       - Final Energy|Industry|Iron and Steel|BF/ BOF Standard + CCS|Secondary Heat
       - Final Energy|Industry|Iron and Steel|BF/ BOF Standard + CCS|Traditional Biomass
+      - Final Energy|Industry|Iron and Steel|SR/BOF + CCS|Coal
+      - Final Energy|Industry|Iron and Steel|SR/BOF + CCS|Electricity
+      - Final Energy|Industry|Iron and Steel|SR/BOF + CCS|Hydrogen
+      - Final Energy|Industry|Iron and Steel|SR/BOF + CCS|Modern Biomass
+      - Final Energy|Industry|Iron and Steel|SR/BOF + CCS|Natural Gas
+      - Final Energy|Industry|Iron and Steel|SR/BOF + CCS|Oil
+      - Final Energy|Industry|Iron and Steel|SR/BOF + CCS|Secondary Heat
+      - Final Energy|Industry|Iron and Steel|SR/BOF + CCS|Traditional Biomass
     tiam-ucl:
       - Final Energy|Production|Steel|Primary|BF and BOF 1|Biofuels|w CCS
       - Final Energy|Production|Steel|Primary|BF and BOF 1|Blast Furnace Gas|w CCS
@@ -187,10 +205,10 @@ steel - primary - BF/BOF CCS:
       - FE|Industry|Steel|BF-BOF-CCS|+|Solids
   ecoinvent_aliases:
     fltr:
-      - steel production, low-alloyed, BF/BOF + CCS
+      - steel production, blast furnace-basic oxygen furnace, with carbon capture and storage
     mask:
       - market
-      - unalloyed
+      - top gas recycling
 
 
 steel - primary - DRI:
@@ -246,10 +264,9 @@ steel - primary - DRI:
       - FE|Industry|Steel|DRI-NG-EAF|+|Solids
   ecoinvent_aliases:
     fltr:
-      - steel production, low-alloyed, natural gas-based DRI + EAF
+      - steel production, natural gas-based direct reduction iron-electric arc furnace
     mask:
-      - CCS
-      - unalloyed
+      - carbon capture and storage
 
 steel - primary - DRI CCS:
   iam_aliases:
@@ -289,9 +306,8 @@ steel - primary - DRI CCS:
       - FE|Industry|Steel|DRI-NG-EAF-CCS|+|Solids
   ecoinvent_aliases:
     fltr:
-      - steel production, low-alloyed, natural gas-based DRI + EAF + CCS
+      - steel production, natural gas-based direct reduction iron-electric arc furnace, with carbon capture and storage
     mask:
-      - unalloyed
       - market
 
 steel - primary - H-DRI:
@@ -330,44 +346,7 @@ steel - primary - H-DRI:
       - FE|Industry|Steel|DRI-H2-EAF|+|Solids
   ecoinvent_aliases:
     fltr:
-      - steel production, low-alloyed, hydrogen-based DRI + EAF
-
-steel - primary - SR/BOF:
-  iam_aliases:
-    image: Production|Industry|Iron and Steel|SR/BOF
-  energy_use_aliases:
-    image:
-      - Final Energy|Industry|Iron and Steel|SR/BOF|Coal
-      - Final Energy|Industry|Iron and Steel|SR/BOF|Electricity
-      - Final Energy|Industry|Iron and Steel|SR/BOF|Hydrogen
-      - Final Energy|Industry|Iron and Steel|SR/BOF|Modern Biomass
-      - Final Energy|Industry|Iron and Steel|SR/BOF|Natural Gas
-      - Final Energy|Industry|Iron and Steel|SR/BOF|Oil
-      - Final Energy|Industry|Iron and Steel|SR/BOF|Secondary Heat
-      - Final Energy|Industry|Iron and Steel|SR/BOF|Traditional Biomass
-  ecoinvent_aliases:
-    fltr:
-      - steel production, low-alloyed, SR/BOF
-    mask:
-      - CCS
-      - unalloyed
-
-steel - primary - SR/BOF CCS:
-  iam_aliases:
-    image: Production|Industry|Iron and Steel|SR/BOF + CCS
-  energy_use_aliases:
-    image:
-      - Final Energy|Industry|Iron and Steel|SR/BOF + CCS|Coal
-      - Final Energy|Industry|Iron and Steel|SR/BOF + CCS|Electricity
-      - Final Energy|Industry|Iron and Steel|SR/BOF + CCS|Hydrogen
-      - Final Energy|Industry|Iron and Steel|SR/BOF + CCS|Modern Biomass
-      - Final Energy|Industry|Iron and Steel|SR/BOF + CCS|Natural Gas
-      - Final Energy|Industry|Iron and Steel|SR/BOF + CCS|Oil
-      - Final Energy|Industry|Iron and Steel|SR/BOF + CCS|Secondary Heat
-      - Final Energy|Industry|Iron and Steel|SR/BOF + CCS|Traditional Biomass
-  ecoinvent_aliases:
-    fltr:
-      - steel production, low-alloyed, SR/BOF + CCS
+      - steel production, hydrogen-based direct reduction iron-electric arc furnace
 
 steel - primary - TGR BF/BOF:
   iam_aliases:
@@ -394,10 +373,9 @@ steel - primary - TGR BF/BOF:
       - Final Energy|Industry|Iron and Steel|TGR BF/BOF|Traditional Biomass
   ecoinvent_aliases:
     fltr:
-      - steel production, low-alloyed, TGR-BF/BOF
+      - steel production, blast furnace-basic oxygen furnace, with top gas recycling
     mask:
-      - CCS
-      - unalloyed
+      - carbon capture and storage
 
 steel - primary - TGR BF/BOF CCS:
   iam_aliases:
@@ -414,7 +392,7 @@ steel - primary - TGR BF/BOF CCS:
       - Final Energy|Industry|Iron and Steel|TGR BF/BOF BAT + CCS|Traditional Biomass
   ecoinvent_aliases:
     fltr:
-      - steel production, low-alloyed, TGR-BF/BOF + CCS
+      - steel production, blast furnace-basic oxygen furnace, with top gas recycling, with carbon capture and storage
 
 steel - primary - Electrowinning:
   iam_aliases:
@@ -431,10 +409,8 @@ steel - primary - Electrowinning:
       - Final Energy|Industry|Iron and Steel|Electrowinning/EAF|Traditional Biomass
   ecoinvent_aliases:
     fltr:
-      - steel production, converter
-    mask:
-      - hot rolled
-      - unalloyed
+      - steel production, electrowinning-electric arc furnace
+
 
 steel - secondary:
   iam_aliases:

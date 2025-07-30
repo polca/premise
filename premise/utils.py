@@ -390,7 +390,9 @@ def dump_database(scenario):
     return scenario
 
 
-def load_database(scenario, delete=True, load_metadata=False):
+def load_database(
+    scenario, original_database, delete=True, load_metadata=False, warning=True
+):
     """
     Load database from a pickle file.
     :param scenario: scenario dictionary
@@ -402,11 +404,21 @@ def load_database(scenario, delete=True, load_metadata=False):
     if scenario.get("database") is not None:
         return scenario
 
-    filepath = scenario["database filepath"]
+    if "database filepath" not in scenario:
+        if warning:
+            print("WARNING: loading unmodified database!")
+        scenario["database"] = pickle.loads(pickle.dumps(original_database, -1))
 
-    # load pickle
-    with open(filepath, "rb") as f:
-        scenario["database"] = pickle.load(f)
+    else:
+        filepath = scenario["database filepath"]
+
+        # load pickle
+        with open(filepath, "rb") as f:
+            scenario["database"] = pickle.load(f)
+
+        # delete the file
+        if delete:
+            filepath.unlink()
 
     if load_metadata:
 
@@ -454,11 +466,8 @@ def load_database(scenario, delete=True, load_metadata=False):
         else:
             ds["code"] = str(uuid.uuid4().hex)
 
-    del scenario["database filepath"]
-
-    # delete the file
-    if delete:
-        filepath.unlink()
+    if "database filepath" in scenario:
+        del scenario["database filepath"]
 
     return scenario
 
@@ -542,7 +551,15 @@ def create_cache(database, file_name):
         (ds["name"], ds["reference product"], ds["location"]): {
             k: v
             for k, v in ds.items()
-            if k not in ["name", "reference product", "location", "unit", "exchanges"]
+            if k
+            not in [
+                "name",
+                "reference product",
+                "location",
+                "unit",
+                "exchanges",
+                "type",
+            ]
         }
         for ds in database
     }

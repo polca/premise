@@ -233,6 +233,9 @@ def check_for_datasets_compliance_with_consequential_database(
                                 exchange["reference product"] = d["replacement"][
                                     "reference product"
                                 ]
+                                exchange["product"] = d["replacement"][
+                                    "reference product"
+                                ]
                                 exchange["location"] = d["replacement"]["location"]
 
     return datasets
@@ -576,6 +579,89 @@ class BaseInventoryImport:
                         f"Please check the exchange {exchange} in the dataset {dataset['name']}."
                     )
 
+    def fill_data_gaps(self, exc):
+        """
+        Some datatsets have the exchange amount set to zero because of ecoinvent license restrictions
+        We need to replace the zero value with the correct amount, which we find in the ecoinvent database.
+        """
+
+        name, ref_prod, loc = (
+            exc["replacement name"],
+            exc["replacement product"],
+            exc["replacement location"],
+        )
+
+        try:
+            # for ds in ws.get_one(
+            #    self.database,
+            #    ws.equals("name", name),
+            #    ws.equals("reference product", ref_prod),
+            #    ws.equals("location", loc),
+            # ):
+            for ds in self.database:
+                if (
+                    ds["name"] == name
+                    and ds["reference product"] == ref_prod
+                    and ds["location"] == loc
+                ):
+                    sum_amount = 0
+                    if exc["type"] == "technosphere":
+
+                        for e in ws.technosphere(
+                            ds,
+                            ws.equals("name", exc["name"]),
+                            ws.equals("product", exc["product"]),
+                            # ws.equals("location", exc["location"]),
+                        ):
+                            sum_amount += e["amount"]
+
+                    elif exc["type"] == "biosphere":
+                        for e in ws.biosphere(
+                            ds,
+                            ws.equals("name", exc["name"]),
+                            ws.equals("categories", exc["categories"]),
+                            ws.equals("unit", exc["unit"]),
+                        ):
+                            sum_amount += e["amount"]
+
+                    else:
+                        raise ValueError(
+                            f"Exchange type {exc['type']} not supported for filling data gaps."
+                        )
+                    if sum_amount == 0:
+                        # trying with "market group for" or "market for"
+                        if "market for" in exc["name"]:
+                            n = exc["name"].replace("market for", "market group for")
+                        elif "market group for" in exc["name"]:
+                            n = exc["name"].replace("market group for", "market for")
+
+                        else:
+                            print(f"Could not find a valid amount for exchange {exc['name']} in dataset {ds['name']} with reference product {ref_prod} and location {loc}")
+                            return
+
+                        for e in ws.technosphere(
+                            ds,
+                            ws.equals("name", n),
+                            ws.equals("product", exc["product"]),
+                            # ws.equals("location", exc["location"]),
+                        ):
+                            sum_amount += e["amount"]
+
+                        if sum_amount == 0:
+                            print(f"Could not find a valid amount for exchange {exc['name']} | {exc['product']} in dataset {ds['name']} with reference product {ref_prod} and location {loc}")
+                            return
+
+                    exc["amount"] = sum_amount
+                    exc.pop("replacement name", None)
+                    exc.pop("replacement product", None)
+                    exc.pop("replacement location", None)
+
+        except ws.NoResults:
+            print(
+                f"Could not find a valid amount for exchange {exc['name']} in dataset {name} with reference product {ref_prod} and location {loc}"
+            )
+            raise
+
     def add_product_field_to_exchanges(self) -> None:
         """Add the `product` key to the production and
         technosphere exchanges in :attr:`import_db`.
@@ -632,6 +718,14 @@ class BaseInventoryImport:
                                     exchange.get("reference product", None),
                                 )
                             )
+
+                if exchange["type"] in (
+                    "technosphere",
+                    "biosphere",
+                ):
+                    # check if amount is missing and need to be filled
+                    if "replacement name" in exchange:
+                        self.fill_data_gaps(exchange)
 
         # Add a `code` field if missing
         for dataset in self.import_db.data:
