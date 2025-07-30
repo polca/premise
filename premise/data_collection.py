@@ -1092,7 +1092,9 @@ class IAMDataCollection:
 
         if file_path is None:
             if key is None:
-                raise FileNotFoundError(f"File {file_name} not found with any supported extension in {filedir}")
+                raise FileNotFoundError(
+                    f"File {file_name} not found with any supported extension in {filedir}"
+                )
             else:
                 # If key is provided, download the file
                 download_folder = filedir
@@ -1117,7 +1119,11 @@ class IAMDataCollection:
         # Now that we have the file (decrypted or not), check extension and process it accordingly
         if file_path.suffix in [".csv", ".mif"]:
             print(f"Reading {file_path.stem} as CSV file")
-            dataframe = pd.read_csv(data, sep=get_delimiter(data=copy.copy(data).readline()), encoding="latin-1")
+            dataframe = pd.read_csv(
+                data,
+                sep=get_delimiter(data=copy.copy(data).readline()),
+                encoding="latin-1",
+            )
         elif file_path.suffix in [".xls", ".xlsx"]:
             print(f"Reading {file_path.stem} as Excel file")
             dataframe = pd.read_excel(file_path)
