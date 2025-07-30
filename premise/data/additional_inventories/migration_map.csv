@@ -1565,3 +1565,10 @@ from,to,name_from,ref_prod_from,location_from,name_to,ref_prod_to,location_to
 38,39,"market for acrylic dispersion, with water, in 58% solution state","acrylic dispersion, with water, in 58% solution state",RER,"market for acrylic dispersion, with water, in 58% solution","acrylic dispersion, with water, in 58% solution state",RoW
 39,38,"market for acrylic dispersion, with water, in 58% solution","acrylic dispersion, with water, in 58% solution state",RER,"market for acrylic dispersion, without water, in 65% solution state","acrylic dispersion, without water, in 65% solution state",RER
 39,310,"market for acrylic dispersion, with water, in 58% solution","acrylic dispersion, with water, in 58% solution state",RER,"market for acrylic dispersion, with water, in 58% solution state","acrylic dispersion, with water, in 58% solution state",RER
+39,311,"market for transport, freight train","transport, freight train",US,"market for transport, freight, train, fleet average","transport, freight, train, fleet average",US
+39,311,"market for transport, freight train","transport, freight train",ZA,"market for transport, freight, train, fleet average","transport, freight, train, fleet average",ZA
+39,311,"market for transport, freight train","transport, freight train",IN,"market for transport, freight, train, fleet average","transport, freight, train, fleet average",IN
+310,311,"market for transport, freight train","transport, freight train",US,"market for transport, freight, train, fleet average","transport, freight, train, fleet average",US
+310,311,"market for transport, freight train","transport, freight train",ZA,"market for transport, freight, train, fleet average","transport, freight, train, fleet average",ZA
+310,311,"market for transport, freight train","transport, freight train",IN,"market for transport, freight, train, fleet average","transport, freight, train, fleet average",IN
+39,310,"market for electric arc furnace slag","electric arc furnace slag",RER,"market for electric arc furnace slag","electric arc furnace slag",Europe without Switzerland

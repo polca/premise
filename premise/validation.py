@@ -1876,7 +1876,8 @@ class SteelValidation(BaseDatasetValidator):
 
             # check that the inputs of EAF steel matches the IAM projections
             if (
-                ds["name"] == "market for steel, low-alloyed"
+                ds["name"].startswith("market for steel")
+                and any(x in ds["name"] for x in ["low-alloyed", "unalloyed"])
                 and ds["location"] in self.regions
             ):
                 if ds["location"] == "World":
@@ -1908,7 +1909,7 @@ class SteelValidation(BaseDatasetValidator):
                         for x in ds["exchanges"]
                         if x["type"] == "technosphere"
                         and x["unit"] == "kilogram"
-                        and "electric" in x["name"]
+                        and x["name"].startswith("steel production, electric")
                     ]
                 )
 
@@ -1978,13 +1979,15 @@ class SteelValidation(BaseDatasetValidator):
 
         for ds in self.database:
             if (
-                ds["name"] == "steel production, converter, low-alloyed"
+                ds["name"].startswith(
+                    "steel production, blast furnace-basic oxygen furnace"
+                )
                 and ds["location"] in self.regions
             ):
                 pig_iron = [
                     x
                     for x in ds["exchanges"]
-                    if "pig iron" in x["name"]
+                    if "pig iron production" in x["name"]
                     and x["type"] == "technosphere"
                     and x["amount"] > 0
                 ]
@@ -2080,7 +2083,28 @@ class SteelValidation(BaseDatasetValidator):
                     ]
                 )
 
-                if energy < 8.5:
+                # add electricity inputs
+                energy += sum(
+                    [
+                        exc["amount"] * 3.6
+                        for exc in ds["exchanges"]
+                        if exc["type"] == "technosphere"
+                        and exc["unit"] == "kilowatt hour"
+                    ]
+                )
+
+                # add hydrogen inputs
+                energy += sum(
+                    [
+                        exc["amount"] * 120
+                        for exc in ds["exchanges"]
+                        if "hydrogen" in exc["name"]
+                        and exc["type"] == "technosphere"
+                        and exc["unit"] == "kilogram"
+                    ]
+                )
+
+                if energy < 8.0:
                     message = (
                         f"Energy use for pig iron production is too low: {energy}."
                     )

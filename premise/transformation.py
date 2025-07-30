@@ -1296,6 +1296,7 @@ class BaseTransformation:
                 )
 
             self.write_log(dataset=dataset, status="empty")
+            self.remove_from_index(dataset)
 
     def relink_datasets(self, excludes_datasets=None, alt_names=None):
         """
