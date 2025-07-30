@@ -42,7 +42,6 @@ def test_variables_dir():
     assert cd_root not in str(VARIABLES_DIR)
 
 
-
 def test_user_data_dir():
     assert isinstance(DIR_CACHED_DB, Path)
     assert DIR_CACHED_DB.is_dir()
