@@ -1117,6 +1117,12 @@ class Metals(BaseTransformation):
         new_locations: dict,
         geography_mapping: dict = None,
     ) -> dict:
+        """
+        Create new mining activities for specified locations if they do not exist.
+
+        We try to use the geography_mapping to find the correct location (Region column) in the database.
+        It falls back to any matching activity if the specified region does not work.
+        """
 
         geo_map_filtered = {
             k: self.db_index_full[name][reference_product][v][0]
@@ -1127,7 +1133,32 @@ class Metals(BaseTransformation):
             )
         }
 
+        if not geo_map_filtered and name in self.db_index_full and reference_product in self.db_index_full[name]:
+            # Get any available activity to use as proxy
+            available_locations = list(self.db_index_full[name][reference_product].keys())
+            if available_locations:
+                proxy_activity = self.db_index_full[name][reference_product][available_locations[0]][0]
+
+                logger.warning(
+                    f"Falling back to proxy activity for {name}, {reference_product}. "
+                    f"Using location '{available_locations[0]}' for regions: "
+                    f"{[k for k in new_locations.values() if not self.is_in_index({'name': name, 'reference product': reference_product, 'location': k})]}"
+                )
+
+                # Build geo_map_filtered with this proxy for all needed locations
+                geo_map_filtered = {
+                    k: proxy_activity
+                    for k in new_locations.values()
+                    if not self.is_in_index(
+                        {"name": name, "reference product": reference_product, "location": k}
+                    )
+                }
+
         if not geo_map_filtered:
+            logger.error(
+                f"Failed to create activities for {name} in locations: "
+                f"{list(new_locations.values())}"
+            )
             return {}
 
         datasets = self.db_index.get(name, {}).get(reference_product, [])
