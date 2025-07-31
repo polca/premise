@@ -1133,11 +1133,19 @@ class Metals(BaseTransformation):
             )
         }
 
-        if not geo_map_filtered and name in self.db_index_full and reference_product in self.db_index_full[name]:
+        if (
+            not geo_map_filtered
+            and name in self.db_index_full
+            and reference_product in self.db_index_full[name]
+        ):
             # Get any available activity to use as proxy
-            available_locations = list(self.db_index_full[name][reference_product].keys())
+            available_locations = list(
+                self.db_index_full[name][reference_product].keys()
+            )
             if available_locations:
-                proxy_activity = self.db_index_full[name][reference_product][available_locations[0]][0]
+                proxy_activity = self.db_index_full[name][reference_product][
+                    available_locations[0]
+                ][0]
 
                 logger.warning(
                     f"Falling back to proxy activity for {name}, {reference_product}. "
@@ -1150,7 +1158,11 @@ class Metals(BaseTransformation):
                     k: proxy_activity
                     for k in new_locations.values()
                     if not self.is_in_index(
-                        {"name": name, "reference product": reference_product, "location": k}
+                        {
+                            "name": name,
+                            "reference product": reference_product,
+                            "location": k,
+                        }
                     )
                 }
 
