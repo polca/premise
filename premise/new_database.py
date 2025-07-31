@@ -262,9 +262,11 @@ def check_pathway_name(name: str, filepath: Path, model: str) -> str:
     if (filepath / name_check).with_suffix(".csv").is_file():
         return name
 
-    raise ValueError(
-        f"Cannot find the IAM scenario file at this location: {filepath / name_check}."
+    print(
+        f"Cannot find the IAM scenario file at {filepath / name_check}. "
+        f"Will check online."
     )
+    return name
 
 
 def check_year(year: [int, float]) -> int:
@@ -1028,7 +1030,12 @@ class NewDatabase:
             for scenario in self.scenarios:
                 # add database to scenarios
                 try:
-                    scenario = load_database(scenario, self.database)
+                    scenario = load_database(
+                        scenario=scenario,
+                        original_database=self.database,
+                        load_metadata=False,
+                        warning=False,
+                    )
                 except KeyError:
                     scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
                 except FileNotFoundError:
@@ -1079,11 +1086,9 @@ class NewDatabase:
             )
 
         for scenario in self.scenarios:
-            if "database filepath" in scenario:
-                scenario = load_database(scenario, self.database, load_metadata=True)
-            else:
-                print("WARNING: loading unmodified database!")
-                scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
+            scenario = load_database(
+                scenario=scenario, original_database=self.database, load_metadata=True
+            )
 
             try:
                 _prepare_database(
@@ -1176,11 +1181,9 @@ class NewDatabase:
         print("Write new database(s) to Brightway.")
 
         for s, scenario in enumerate(self.scenarios):
-            if "database filepath" in scenario:
-                scenario = load_database(scenario, self.database, load_metadata=True)
-            else:
-                print("WARNING: loading unmodified database!")
-                scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
+            scenario = load_database(
+                scenario=scenario, original_database=self.database, load_metadata=True
+            )
 
             try:
                 _prepare_database(
@@ -1256,11 +1259,9 @@ class NewDatabase:
         print("Write new database(s) to matrix.")
 
         for s, scenario in enumerate(self.scenarios):
-            if "database filepath" in scenario:
-                scenario = load_database(scenario, self.database, load_metadata=True)
-            else:
-                print("WARNING: loading unmodified database!")
-                scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
+            scenario = load_database(
+                scenario=scenario, original_database=self.database, load_metadata=True
+            )
 
             try:
                 _prepare_database(
@@ -1308,11 +1309,9 @@ class NewDatabase:
         print("Write Simapro import file(s).")
 
         for scenario in self.scenarios:
-            if "database filepath" in scenario:
-                scenario = load_database(scenario, self.database, load_metadata=True)
-            else:
-                print("WARNING: loading unmodified database!")
-                scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
+            scenario = load_database(
+                scenario=scenario, original_database=self.database, load_metadata=True
+            )
 
             try:
                 _prepare_database(
@@ -1364,11 +1363,9 @@ class NewDatabase:
         print("Write Simapro import file(s) for OpenLCA.")
 
         for scenario in self.scenarios:
-            if "database filepath" in scenario:
-                scenario = load_database(scenario, self.database, load_metadata=True)
-            else:
-                print("WARNING: loading unmodified database!")
-                scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
+            scenario = load_database(
+                scenario=scenario, original_database=self.database, load_metadata=True
+            )
 
             try:
                 _prepare_database(
@@ -1413,11 +1410,9 @@ class NewDatabase:
             raise ValueError(f"No cached inventories found at {cache_fp}.")
 
         for scenario in self.scenarios:
-            if "database filepath" in scenario:
-                scenario = load_database(scenario, self.database, load_metadata=True)
-            else:
-                print("WARNING: loading unmodified database!")
-                scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
+            scenario = load_database(
+                scenario=scenario, original_database=self.database, load_metadata=True
+            )
 
             try:
                 _prepare_database(
