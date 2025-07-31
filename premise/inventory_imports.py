@@ -1315,7 +1315,7 @@ class AdditionalInventory(BaseInventoryImport):
         self.import_db.data = check_for_duplicate_datasets(self.import_db.data)
         # check numbers format
         self.import_db.data = check_amount_format(self.import_db.data)
-        self.add_classifications()
+        #self.add_classifications()
 
         if self.list_unlinked:
             self.display_unlinked_exchanges()

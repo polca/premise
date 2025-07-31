@@ -473,12 +473,22 @@ class ExternalScenario(BaseTransformation):
 
                 # Check if datasets already exist for IAM regions
                 # if not, create them
+
+                if "region mapping" in ds:
+                    geo_mapping={
+                        k: ds
+                        for k in ds["region mapping"].keys()
+                    }
+                else:
+                    geo_mapping = {
+                        k: ds
+                        for k in regions
+                    }
+
                 new_acts = self.fetch_proxies(
-                    datasets=ds,
+                    datasets=[ds,],
                     regions=ds["regions"],
-                    geo_mapping=(
-                        ds["region mapping"] if "region mapping" in ds else None
-                    ),
+                    geo_mapping=geo_mapping,
                     unlist=False,
                 )
 
@@ -1366,19 +1376,37 @@ class ExternalScenario(BaseTransformation):
                             # check if we should add some additional exchanges
                             if "add" in market_vars:
                                 for additional_exc in market_vars["add"]:
-                                    add_excs = self.add_additional_exchanges(
-                                        name=additional_exc["name"],
-                                        ref_prod=additional_exc.get(
-                                            "reference product"
-                                        ),
-                                        categories=additional_exc.get("categories"),
-                                        unit=additional_exc.get("unit"),
-                                        amount=additional_exc.get("amount"),
-                                        region=region,
-                                        ei_version=dp.descriptor["ecoinvent"][
-                                            "version"
-                                        ],
-                                    )
+                                    if additional_exc["name"] == new_market["name"] and additional_exc.get("reference product") == new_market["reference product"]:
+                                        # it's some sort of loss or # inefficiency
+                                        add_excs = [
+                                            {
+                                                "name": additional_exc["name"],
+                                                "product": additional_exc.get(
+                                                    "reference product", None
+                                                ),
+                                                "unit": new_market["unit"],
+                                                "location": region,
+                                                "type": "technosphere",
+                                                "amount": additional_exc.get(
+                                                    "amount", 0
+                                                ),
+                                                "uncertainty type": 0,
+                                            }
+                                        ]
+                                    else:
+                                        add_excs = self.add_additional_exchanges(
+                                            name=additional_exc["name"],
+                                            ref_prod=additional_exc.get(
+                                                "reference product"
+                                            ),
+                                            categories=additional_exc.get("categories"),
+                                            unit=additional_exc.get("unit"),
+                                            amount=additional_exc.get("amount"),
+                                            region=region,
+                                            ei_version=dp.descriptor["ecoinvent"][
+                                                "version"
+                                            ],
+                                        )
                                     new_market["exchanges"].extend(add_excs)
 
                             if "efficiency" in market_vars:
