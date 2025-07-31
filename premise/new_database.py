@@ -1028,7 +1028,7 @@ class NewDatabase:
             for scenario in self.scenarios:
                 # add database to scenarios
                 try:
-                    scenario = load_database(scenario)
+                    scenario = load_database(scenario, self.database)
                 except KeyError:
                     scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
                 except FileNotFoundError:
@@ -1080,7 +1080,7 @@ class NewDatabase:
 
         for scenario in self.scenarios:
             if "database filepath" in scenario:
-                scenario = load_database(scenario, load_metadata=True)
+                scenario = load_database(scenario, self.database, load_metadata=True)
             else:
                 print("WARNING: loading unmodified database!")
                 scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
@@ -1177,7 +1177,7 @@ class NewDatabase:
 
         for s, scenario in enumerate(self.scenarios):
             if "database filepath" in scenario:
-                scenario = load_database(scenario, load_metadata=True)
+                scenario = load_database(scenario, self.database, load_metadata=True)
             else:
                 print("WARNING: loading unmodified database!")
                 scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
@@ -1257,7 +1257,7 @@ class NewDatabase:
 
         for s, scenario in enumerate(self.scenarios):
             if "database filepath" in scenario:
-                scenario = load_database(scenario, load_metadata=True)
+                scenario = load_database(scenario, self.database, load_metadata=True)
             else:
                 print("WARNING: loading unmodified database!")
                 scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
@@ -1309,7 +1309,7 @@ class NewDatabase:
 
         for scenario in self.scenarios:
             if "database filepath" in scenario:
-                scenario = load_database(scenario, load_metadata=True)
+                scenario = load_database(scenario, self.database, load_metadata=True)
             else:
                 print("WARNING: loading unmodified database!")
                 scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
@@ -1365,7 +1365,7 @@ class NewDatabase:
 
         for scenario in self.scenarios:
             if "database filepath" in scenario:
-                scenario = load_database(scenario, load_metadata=True)
+                scenario = load_database(scenario, self.database, load_metadata=True)
             else:
                 print("WARNING: loading unmodified database!")
                 scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
@@ -1414,7 +1414,7 @@ class NewDatabase:
 
         for scenario in self.scenarios:
             if "database filepath" in scenario:
-                scenario = load_database(scenario, load_metadata=True)
+                scenario = load_database(scenario, self.database, load_metadata=True)
             else:
                 print("WARNING: loading unmodified database!")
                 scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
