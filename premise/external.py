@@ -475,18 +475,14 @@ class ExternalScenario(BaseTransformation):
                 # if not, create them
 
                 if "region mapping" in ds:
-                    geo_mapping={
-                        k: ds
-                        for k in ds["region mapping"].keys()
-                    }
+                    geo_mapping = {k: ds for k in ds["region mapping"].keys()}
                 else:
-                    geo_mapping = {
-                        k: ds
-                        for k in regions
-                    }
+                    geo_mapping = {k: ds for k in regions}
 
                 new_acts = self.fetch_proxies(
-                    datasets=[ds,],
+                    datasets=[
+                        ds,
+                    ],
                     regions=ds["regions"],
                     geo_mapping=geo_mapping,
                     unlist=False,
@@ -1376,7 +1372,11 @@ class ExternalScenario(BaseTransformation):
                             # check if we should add some additional exchanges
                             if "add" in market_vars:
                                 for additional_exc in market_vars["add"]:
-                                    if additional_exc["name"] == new_market["name"] and additional_exc.get("reference product") == new_market["reference product"]:
+                                    if (
+                                        additional_exc["name"] == new_market["name"]
+                                        and additional_exc.get("reference product")
+                                        == new_market["reference product"]
+                                    ):
                                         # it's some sort of loss or # inefficiency
                                         add_excs = [
                                             {
