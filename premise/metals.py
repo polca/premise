@@ -1034,12 +1034,14 @@ class Metals(BaseTransformation):
         if exchange.get("type") != "technosphere":
             return True
 
-        activities = list(ws.get_many(
-            self.database,
-            ws.equals("name", exchange["name"]),
-            ws.equals("reference product", exchange["product"]),
-            ws.equals("location", exchange["location"]),
-        ))
+        activities = list(
+            ws.get_many(
+                self.database,
+                ws.equals("name", exchange["name"]),
+                ws.equals("reference product", exchange["product"]),
+                ws.equals("location", exchange["location"]),
+            )
+        )
 
         return len(activities) > 0
 
