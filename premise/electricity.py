@@ -1906,17 +1906,18 @@ class Electricity(BaseTransformation):
                                         if "comment" in dataset:
                                             dataset["comment"] += (
                                                 f" {species} emissions updated from "
-                                                f"{exc['amount']:.2f} to "
-                                                f"{exc['amount'] * scaling_factor:.2f} "
+                                                f"{exc['amount']:.2e} to "
+                                                f"{exc['amount'] * scaling_factor:.2e} "
                                                 f"based on Oberschelp et al. (2019)."
                                             )
                                         else:
                                             dataset["comment"] = (
-                                                f"{species} emissions updated from "
-                                                f"{exc['amount']:.2f} to "
-                                                f"{exc['amount'] * scaling_factor:.2f} "
+                                                f" {species} emissions updated from "
+                                                f"{exc['amount']:.2e} to "
+                                                f"{exc['amount'] * scaling_factor:.2e} "
                                                 f"based on Oberschelp et al. (2019)."
                                             )
+
                         self.write_log(dataset=dataset, status="updated")
 
     def create_missing_power_plant_datasets(self) -> None:
