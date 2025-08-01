@@ -1769,7 +1769,7 @@ class Electricity(BaseTransformation):
         coal_techs = ["Coal PC", "Coal CHP", "Coal SC", "Coal USC"]
 
         substances = [
-            #("CO2", "Carbon dioxide, fossil"),
+            # ("CO2", "Carbon dioxide, fossil"),
             ("SO2", "Sulfur dioxide"),
             ("CH4", "Methane, fossil"),
             ("NOx", "Nitrogen oxides"),
@@ -1816,11 +1816,11 @@ class Electricity(BaseTransformation):
                             rescale_exchanges(
                                 dataset,
                                 scaling_factor,
-                                #biosphere_filters=[
+                                # biosphere_filters=[
                                 #    ws.doesnt_contain_any(
                                 #        "name", [x[1] for x in substances]
                                 #    )
-                                #],
+                                # ],
                             )
 
                             dataset.setdefault("log parameters", {}).update(
