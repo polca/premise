@@ -384,17 +384,17 @@ class Electricity(BaseTransformation):
             cache,
             index,
         )
-        mapping, self.fuel_map, self.fuel_map_reverse = create_fuel_map(
+        self.mapping, self.fuel_map, self.fuel_map_reverse = create_fuel_map(
             self.database, self.version, self.model
         )
-        self.powerplant_map = mapping.generate_powerplant_map()
+        self.powerplant_map = self.mapping.generate_powerplant_map()
         # reverse dictionary of self.powerplant_map
         self.powerplant_map_rev = {}
         for k, v in self.powerplant_map.items():
             for pp in list(v):
                 self.powerplant_map_rev[pp["name"]] = k
 
-        self.powerplant_fuels_map = mapping.generate_powerplant_fuels_map()
+        self.powerplant_fuels_map = self.mapping.generate_powerplant_fuels_map()
         self.powerplant_fuels_map = {
             k: [x["name"] for x in v] for k, v in self.powerplant_fuels_map.items()
         }
@@ -412,7 +412,7 @@ class Electricity(BaseTransformation):
         self.use_absolute_efficiency = use_absolute_efficiency
 
         self.powerplant_min_efficiency, self.powerplant_max_efficiency = (
-            mapping.generate_powerplant_efficiency_bounds()
+            self.mapping.generate_powerplant_efficiency_bounds()
         )
 
     @lru_cache
@@ -1639,6 +1639,9 @@ class Electricity(BaseTransformation):
         for dataset in all_plants:
             self.write_log(dataset=dataset)
 
+        # update self.powerplant_map
+        self.powerplant_map = self.mapping.generate_powerplant_map()
+
     def update_electricity_efficiency(self) -> None:
         """
         This method modifies each ecoinvent coal, gas,
@@ -1766,7 +1769,7 @@ class Electricity(BaseTransformation):
         coal_techs = ["Coal PC", "Coal CHP", "Coal SC", "Coal USC"]
 
         substances = [
-            ("CO2", "Carbon dioxide, fossil"),
+            #("CO2", "Carbon dioxide, fossil"),
             ("SO2", "Sulfur dioxide"),
             ("CH4", "Methane, fossil"),
             ("NOx", "Nitrogen oxides"),
@@ -1813,12 +1816,11 @@ class Electricity(BaseTransformation):
                             rescale_exchanges(
                                 dataset,
                                 scaling_factor,
-                                remove_uncertainty=False,
-                                biosphere_filters=[
-                                    ws.doesnt_contain_any(
-                                        "name", [x[1] for x in substances]
-                                    )
-                                ],
+                                #biosphere_filters=[
+                                #    ws.doesnt_contain_any(
+                                #        "name", [x[1] for x in substances]
+                                #    )
+                                #],
                             )
 
                             dataset.setdefault("log parameters", {}).update(
@@ -1831,6 +1833,19 @@ class Electricity(BaseTransformation):
                                     / new_eff.values.item(0),
                                 }
                             )
+
+                            if "comment" in dataset:
+                                dataset["comment"] += (
+                                    f" Efficiency updated from {ei_eff:.2f} to "
+                                    f"{new_eff.values.item(0):.2f} "
+                                    f"based on Oberschelp et al. (2019)."
+                                )
+                            else:
+                                dataset["comment"] = (
+                                    f"Efficiency updated from {ei_eff:.2f} to "
+                                    f"{new_eff.values.item(0):.2f} "
+                                    f"based on Oberschelp et al. (2019)."
+                                )
 
                             self.update_ecoinvent_efficiency_parameter(
                                 dataset, ei_eff, new_eff.values.item(0)
@@ -1888,6 +1903,20 @@ class Electricity(BaseTransformation):
                                             }
                                         )
 
+                                        if "comment" in dataset:
+                                            dataset["comment"] += (
+                                                f" {species} emissions updated from "
+                                                f"{exc['amount']:.2f} to "
+                                                f"{exc['amount'] * scaling_factor:.2f} "
+                                                f"based on Oberschelp et al. (2019)."
+                                            )
+                                        else:
+                                            dataset["comment"] = (
+                                                f"{species} emissions updated from "
+                                                f"{exc['amount']:.2f} to "
+                                                f"{exc['amount'] * scaling_factor:.2f} "
+                                                f"based on Oberschelp et al. (2019)."
+                                            )
                         self.write_log(dataset=dataset, status="updated")
 
     def create_missing_power_plant_datasets(self) -> None:
