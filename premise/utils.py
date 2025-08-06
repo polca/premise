@@ -579,7 +579,10 @@ def create_cache(database, file_name):
                 "exchanges",
                 "type",
                 "comment",
-            ] and v is not None and v != "None" and v != "nan"
+            ]
+            and v is not None
+            and v != "None"
+            and v != "nan"
         }
         for ds in database
     }
