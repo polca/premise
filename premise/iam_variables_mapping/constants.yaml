@@ -31,6 +31,7 @@ SUPPORTED_PATHWAYS:
   - SSP2-PkBudg650
   - SSP2-RCP26
   - SSP2-RCP19
+  - SSP2-RCP45
   - SSP1-Base
   - SSP1-rollBack
   - SSP1-NDC

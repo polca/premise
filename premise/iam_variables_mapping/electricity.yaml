@@ -438,6 +438,7 @@ Coal SC:
     tiam-ucl: Secondary Energy|Electricity|Supercritical pulverised coal|w/o CCS
   min_efficiency: 0.44
   max_efficiency: 0.5
+
 Coal USC:
   ecoinvent_aliases:
     fltr:

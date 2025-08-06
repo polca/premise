@@ -440,20 +440,39 @@ def load_database(
                 for ds in scenario["database"]:
                     key = (ds["name"], ds["reference product"], ds["location"])
                     for k, v in metadata.get(key, {}).items():
+                        if k in [
+                            "code",
+                            "classifications",
+                            "worksheet name",
+                            "database",
+                        ]:
+                            continue
+
+                        if v is None or v == "None" or v == "nan" or not v:
+                            # skip None or empty values
+                            continue
+
                         if k not in ds:
                             ds[k] = v
-                        else:
-                            # try to evaluate
-                            try:
-                                v = eval(v)
-                            except (NameError, SyntaxError, TypeError):
-                                pass
 
+                        elif ds[k] is None:
+                            ds[k] = v
+
+                        else:
                             # if the key already exists, concatenate the values
                             if isinstance(ds[k], list):
                                 ds[k].extend(v)
+
                             elif isinstance(ds[k], str):
-                                ds[k] = f"{ds[k]}. {v}"
+                                try:
+                                    if len(ds[k]) != len(v):
+                                        ds[k] = f"{ds[k]}. {v}"
+                                except:
+                                    print("ERROR")
+                                    print(ds["name"])
+                                    print(ds[k], k, v)
+                                    pass
+
                             elif isinstance(ds[k], dict):
                                 ds[k].update(v)
 
@@ -559,7 +578,11 @@ def create_cache(database, file_name):
                 "unit",
                 "exchanges",
                 "type",
+                "comment",
             ]
+            and v is not None
+            and v != "None"
+            and v != "nan"
         }
         for ds in database
     }
@@ -575,6 +598,7 @@ def create_cache(database, file_name):
                 "location",
                 "unit",
                 "exchanges",
+                "comment",
             ]
         }
         for ds in database
