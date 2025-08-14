@@ -3,7 +3,7 @@ This module contains the class to create final energy use
 datasets based on IAM output data.
 """
 
-from typing import List
+from typing import List, Set
 import uuid
 import re
 from pathlib import Path
@@ -94,6 +94,9 @@ class FinalEnergy(BaseTransformation):
         self.version = version
         self.split_capacity_operation = split_capacity_operation
 
+        # Track infrastructure datasets to prevent them from being removed from operations
+        self.protected_infrastructure_names: Set[str] = set()
+
         mapping = InventorySet(database=database, version=version, model=model)
         self.final_energy_map = mapping.generate_final_energy_map()
         self.capacity_addition_map = mapping.generate_capacity_addition_map()
@@ -110,7 +113,7 @@ class FinalEnergy(BaseTransformation):
 
         For each capacity addition key:
         1. Find all datasets matching the filter criteria
-        2. Remove them from operational datasets (zero them out)
+        2. Remove them from operational datasets (zero them out) - UNLESS they are 'protected'
         3. Create one unified capacity dataset combining all found datasets
 
         Supports multiple filter blocks for combining different technologies
@@ -123,14 +126,21 @@ class FinalEnergy(BaseTransformation):
         for key, config in self.capacity_addition_map.items():
             print(f"🧩 Processing key: '{key}'")
 
-            # Generate clean capacity addition name based on key
-            suffix = key.replace("New Cap - ", "").strip()
-            new_name = f"capacity addition, 1GW, {suffix}"
-            new_ref_prod = f"capacity addition, 1GW, {suffix}"
+            is_transport = key.startswith("Sales - Transport")
 
-            self.process_capacity_addition(key, config, new_name, new_ref_prod)
+            if is_transport:
+                suffix = key.replace("Sales - Transport - ", "").strip()
+                new_name = f"transport capacity addition, 1 million units, {suffix}"
+                new_ref_prod = f"transport capacity addition, 1 million units, {suffix}"
+            else:
+                # Generate clean capacity addition name based on key
+                suffix = key.replace("New Cap - ", "").strip()
+                new_name = f"capacity addition, 1GW, {suffix}"
+                new_ref_prod = f"capacity addition, 1GW, {suffix}"
 
-    def process_capacity_addition(self, key, config, new_name, new_ref_prod):
+            self.process_capacity_addition(key, config, new_name, new_ref_prod, is_transport)
+
+    def process_capacity_addition(self, key, config, new_name, new_ref_prod, is_transport=False):
         """
         Process a single capacity addition configuration.
 
@@ -140,6 +150,7 @@ class FinalEnergy(BaseTransformation):
         :param config: configuration dictionary from YAML
         :param new_name: name for the new capacity dataset
         :param new_ref_prod: reference product for the new capacity dataset
+        :param is_transport: whether this is a transport sales dataset
         """
 
         if "fltr" not in config:
@@ -159,7 +170,9 @@ class FinalEnergy(BaseTransformation):
         self.remove_infrastructure_from_operations(matched_datasets)
 
         # Create capacity dataset using all matched datasets
-        self.create_unified_capacity_dataset(matched_datasets, new_name, new_ref_prod)
+        self.create_unified_capacity_dataset(
+            matched_datasets, new_name, new_ref_prod, is_transport
+        )
 
         print(f"  ✅ Completed processing for {key}")
 
@@ -180,10 +193,16 @@ class FinalEnergy(BaseTransformation):
         else:
             datasets = infrastructure_datasets
 
-        infrastructure_names = [ds["name"] for ds in datasets]
+        infrastructure_names = [
+            ds["name"] for ds in datasets
+            if ds["name"] not in self.protected_infrastructure_names
+        ]
         total_removed = 0
 
         for op_dataset in self.database:
+            # Skip capacity addition datasets themselves
+            if "capacity addition," in op_dataset["name"]:
+                continue
             original_count = len(op_dataset.get("exchanges", []))
             op_dataset["exchanges"] = [
                 exc
@@ -199,7 +218,7 @@ class FinalEnergy(BaseTransformation):
         print(f"    📊 Total infrastructure exchanges removed: {total_removed}")
 
     def create_unified_capacity_dataset(
-        self, matched_datasets_with_filter, new_name, new_ref_prod
+        self, matched_datasets_with_filter, new_name, new_ref_prod, is_transport=False
     ):
         """
         Create a unified capacity dataset from matched infrastructure datasets.
@@ -212,6 +231,7 @@ class FinalEnergy(BaseTransformation):
         :param matched_datasets_with_filter: list of (dataset, filter_index) tuples
         :param new_name: name for the capacity dataset
         :param new_ref_prod: reference product for the capacity dataset
+        :param is_transport: whether this is a transport sales dataset
         """
 
         if not matched_datasets_with_filter:
@@ -241,19 +261,27 @@ class FinalEnergy(BaseTransformation):
                 f"    📊 Selected representative from filter {filter_idx}: {representative_ds['name']}"
             )
 
-            # Extract capacity and calculate scaling factor
-            individual_kw = self.extract_installed_capacity(representative_ds)
-            if individual_kw is None:
-                individual_scaling = 1
+            self.protected_infrastructure_names.add(representative_ds["name"])
+
+            if is_transport:
+                individual_scaling = 1_000_000  # Scale transport to 1 million units
                 print(
-                    f"      ⚠️ Could not extract capacity for {representative_ds['name']}, using scaling factor 1"
+                    f"      📊 {representative_ds['name']}: 1 unit → {individual_scaling:,} units"
                 )
             else:
-                # Scale to 1GW (1,000,000 kW)
-                individual_scaling = 1_000_000 / individual_kw
-                print(
-                    f"      📊 {representative_ds['name']}: {individual_kw / 1000:.0f} MW → factor {individual_scaling:.2f}"
-                )
+                # Extract capacity and calculate scaling factor
+                individual_kw = self.extract_installed_capacity(representative_ds)
+                if individual_kw is None:
+                    individual_scaling = 1
+                    print(
+                        f"      ⚠️ Could not extract capacity for {representative_ds['name']}, using scaling factor 1"
+                    )
+                else:
+                    # Scale to 1GW (1,000,000 kW)
+                    individual_scaling = 1_000_000 / individual_kw
+                    print(
+                        f"      📊 {representative_ds['name']}: {individual_kw / 1000:.0f} MW → factor {individual_scaling:.2f}"
+                    )
 
             # Create exchange for this representative dataset
             infrastructure_exchanges.append(
@@ -532,8 +560,12 @@ class FinalEnergy(BaseTransformation):
         capacity_units = {}
 
         for variable in self.capacity_addition_map.keys():
-            suffix = variable.replace("New Cap - ", "").strip()
-            capacity_name = f"capacity addition, 1GW, {suffix}"
+            if variable.startswith("New Cap - "):
+                suffix = variable.replace("New Cap - ", "").strip()
+                capacity_name = f"capacity addition, 1GW, {suffix}"
+            elif variable.startswith("Sales - Transport - "):
+                suffix = variable.replace("Sales - Transport - ", "").strip()
+                capacity_name = f"transport capacity addition, 1 million units, {suffix}"
 
             # Look for capacity addition datasets (any region)
             capacity_datasets = list(

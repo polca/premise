@@ -2526,7 +2526,7 @@ class MetalsValidation(BaseDatasetValidator):
         """
         Check that the inputs of the metals markets sum to 1
         """
-        for metal in ["bauxite", "chromium", "bentonite", "cobalt"]:
+        for metal in self.metals_list:
             try:
                 name = f"market for {metal}"
                 ds = ws.get_one(

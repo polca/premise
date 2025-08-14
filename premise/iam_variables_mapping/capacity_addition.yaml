@@ -1,40 +1,37 @@
 #"""
-#This file contains the mapping of capacity addition variables.
+#This file contains the mapping of capacity addition variables for infrastructure datasets.
 #
 #INFRASTRUCTURE SOURCE APPROACH:
 #The system uses infrastructure datasets directly as capacity addition inputs:
 #- Finds infrastructure datasets matching the filter criteria
 #- Removes (zeros out) these datasets from all operational activities in the database
 #- Creates unified capacity addition datasets scaled to 1GW capacity
-#- Supports multiple filter blocks for combining different technologies
+#- Supports multiple filter blocks for combining different activities
 #
-#Configuration structure:
-#- fltr: Filter specification (can be single object or list of objects)
-#  - For single filter: all matching datasets are combined
-#  - For multiple filters: one representative dataset per filter block
-#  - Within each filter, lists use AND logic (all terms must match)
-#  - Supported filter fields:
-#    - name: substring matching (string or list)
-#    - reference product: substring matching (string or list)
-#    - unit: exact matching (string)
-#    - mask: exclusion filtering (string or list)
-#- iam_aliases: Mapping to IAM model variables (e.g., remind: "New Cap|Electricity|+|Solar")
+#PATCHING MECHANISM:
+#The system supports runtime patching of capacity addition data:
+#- Data can be stored globally in sys.modules['premise.final_energy']._PATCHED_CAPACITY_ADDITION
+#- This allows dynamic modification of capacity mappings without modifying the YAML file
+#- Patched data takes precedence over YAML file content
+#- Units are tracked separately in _PATCHED_CAPACITY_UNITS
 #
-#Process flow:
-#1. Find all datasets matching filter criteria
-#2. Remove matched datasets from all operational activities (cancellation)
-#3. Select representative dataset(s):
-#   - Single filter: first matched dataset
-#   - Multiple filters: first dataset from each filter block
-#4. Scale representative(s) to contribute to 1GW capacity
-#5. Create unified capacity addition dataset with all representatives as inputs
-#6. Generate regional variants
+#CONFIGURATION STRUCTURE:
+#Each top-level key (e.g., "New Cap - Electricity - Solar PV") defines a capacity addition variable.
 #
-#Example configurations:
-#- Single technology: one filter block finds all relevant infrastructure
-#- Multi-component technology: multiple filter blocks (e.g., wind fixed + moving parts)
-#- Complex filtering: use name lists for AND logic, mask for exclusions
-#"""
+#Required fields:
+#- ecoinvent_aliases: Defines how to find infrastructure datasets
+#  - fltr: Filter specification (can be single object or list of objects)
+#    - For single filter: all matching datasets are combined
+#    - For multiple filters: one representative dataset per filter block
+#    - Within each filter, lists use AND logic (all terms must match)
+#    - Supported filter fields:
+#      - name: substring matching (string or list of strings)
+#      - reference product: substring matching (string or list of strings)
+#      - unit: exact matching (string)
+#      - mask: exclusion filtering (string or list) - optional
+#- iam_aliases: Maps to IAM model variables
+#  - Key: IAM model name (e.g., "remind", "remind-eu")
+#  - Value: Variable name in that IAM model (e.g., "New Cap|Electricity|+|Solar")
 
 New Cap - Electricity - Solar PV:
   ecoinvent_aliases:
@@ -46,17 +43,17 @@ New Cap - Electricity - Solar PV:
         - photovoltaic
         - installation
       unit: unit
-    mask: market
+      mask: market
   iam_aliases:
     remind: New Cap|Electricity|+|Solar
     remind-eu: New Cap|Electricity|+|Solar
-
 New Cap - Electricity - Solar CSP:
   ecoinvent_aliases:
     fltr:
       name: concentrated solar power plant
       reference product: concentrated solar power plant
       unit: unit
+      mask: market
   iam_aliases:
     remind: New Cap|Electricity|Solar|+|CSP
     remind-eu: New Cap|Electricity|Solar|+|CSP
@@ -95,21 +92,21 @@ New Cap - Electricity - Nuclear:
     fltr:
       name: nuclear power plant construction,
       reference product: nuclear power plant,
-    mask: alpine
+      mask: alpine
   iam_aliases:
     remind: New Cap|Electricity|+|Nuclear
-
 New Cap - Electricity - Biomass:
   ecoinvent_aliases:
     fltr:
-      name:
-        - furnace production, wood chips, with silo
-        - market for heat and power co-generation unit, organic Rankine cycle
-      unit: unit
+      - name:
+          - furnace production, wood chips, with silo
+        unit: unit
+      - name:
+          - market for heat and power co-generation unit, organic Rankine cycle
+        unit: unit
   iam_aliases:
     remind: New Cap|Electricity|+|Biomass
     remind-eu: New Cap|Electricity|+|Biomass
-
 New Cap - Electricity - Coal:
   ecoinvent_aliases:
     fltr:
@@ -120,42 +117,39 @@ New Cap - Electricity - Coal:
         - hard coal
         - power plant
       unit: unit
-    mask:
-      - dismantling,
-      - construction,
+      mask:
+        - dismantling,
+        - construction,
   iam_aliases:
     remind: New Cap|Electricity|+|Coal
     remind-eu: New Cap|Electricity|+|Coal
-
 New Cap - Electricity - Gas:
   ecoinvent_aliases:
     fltr:
       name: gas power plant construction
       reference product: gas power plant
       unit: unit
-    mask: market
+      mask: market
   iam_aliases:
     remind: New Cap|Electricity|+|Gas
     remind-eu: New Cap|Electricity|+|Gas
-
 New Cap - Electricity - Geothermal:
   ecoinvent_aliases:
     fltr:
       name: geothermal power plant construction
       reference product: geothermal power plant, 5.5MWel
       unit: unit
-    mask: market
+      mask: market
   iam_aliases:
     remind: New Cap|Electricity|+|Geothermal
     remind-eu: New Cap|Electricity|+|Geothermal
-
 New Cap - Electricity - Hydropower:
   ecoinvent_aliases:
     fltr:
       name: hydropower plant construction
       reference product: hydropower
       unit: unit
-    mask: market
+      mask: market
   iam_aliases:
     remind: New Cap|Electricity|+|Hydro
     remind-eu: New Cap|Electricity|+|Hydro
@@ -186,3 +180,507 @@ New Cap - Electricity - Oil:
 #  iam_aliases:
 #    remind: New Cap|Electricity|Storage|Battery
 #    remind-eu: New Cap|Electricity|Storage|Battery
+New Cap - Heat - Biomass:
+  ecoinvent_aliases:
+    fltr:
+      - name:
+          - furnace production, wood chips, with silo
+        unit: unit
+      - name:
+          - market for heat and power co-generation unit, organic Rankine cycle
+        unit: unit
+  iam_aliases:
+    remind: New Cap|Heat|+|Biomass
+    remind-eu: New Cap|Heat|+|Biomass
+New Cap - Heat - Coal:
+  ecoinvent_aliases:
+    fltr:
+      name:
+        - hard coal
+        - power plant
+      reference product:
+        - hard coal
+        - power plant
+      unit: unit
+      mask:
+        - dismantling,
+        - construction,
+  iam_aliases:
+    remind: New Cap|Heat|+|Coal
+    remind-eu: New Cap|Heat|+|Coal
+New Cap - Heat - Heat Pump:
+  ecoinvent_aliases:
+    fltr:
+      name: heat pump production
+      reference product: heat pump
+      unit: unit
+      mask: market
+  iam_aliases:
+    remind: New Cap|Heat|+|Electricity|Heat Pump
+    remind-eu: New Cap|Heat|+|Electricity|Heat Pump
+New Cap - Heat - Gas:
+  ecoinvent_aliases:
+    fltr:
+      name: gas power plant construction
+      reference product: gas power plant
+      unit: unit
+      mask: market
+  iam_aliases:
+    remind: New Cap|Heat|+|Gas
+    remind-eu: New Cap|Heat|+|Gas
+New Cap - Heat - Solar:
+  ecoinvent_aliases:
+    fltr:
+      name: concentrating solar power plant construction
+      reference product: concentrating power plant
+      unit: unit
+  iam_aliases:
+    remind: New Cap|Heat|+|Solar
+    remind-eu: New Cap|Heat|+|Solar
+New Cap - Hydrogen - Total:
+  ecoinvent_aliases:
+    fltr:
+      name: electrolyzer production
+      reference product: electrolyzer
+      unit: unit
+      mask: treatment
+  iam_aliases:
+    remind: New Cap|Hydrogen
+    remind-eu: New Cap|Hydrogen
+Sales - Transport - Truck 18t BEV:
+  ecoinvent_aliases:
+    fltr:
+      name: lorry production, battery electric, 18 metric ton
+      reference product: truck
+      unit: unit
+  iam_aliases:
+    remind: Sales|Transport|Freight|Road|Heavy|Truck(18t)|BEV
+    remind-eu: Sales|Transport|Freight|Road|Heavy|Truck(18t)|BEV
+Sales - Transport - Truck 18t FCEV:
+  ecoinvent_aliases:
+    fltr:
+      name: lorry production, fuel cell electric, 18 metric ton
+      reference product: truck
+      unit: unit
+  iam_aliases:
+    remind: Sales|Transport|Freight|Road|Heavy|Truck(18t)|FCEV
+    remind-eu: Sales|Transport|Freight|Road|Heavy|Truck(18t)|FCEV
+Sales - Transport - Truck 18t Gases:
+  ecoinvent_aliases:
+    fltr:
+      name: lorry production, compressed gas, 18 metric ton
+      reference product: truck
+      unit: unit
+  iam_aliases:
+    remind: Sales|Transport|Freight|Road|Heavy|Truck(18t)|Gases
+    remind-eu: Sales|Transport|Freight|Road|Heavy|Truck(18t)|Gases
+Sales - Transport - Truck 18t Liquids:
+  ecoinvent_aliases:
+    fltr:
+      name: lorry production, diesel, 18 metric ton
+      reference product: truck
+      unit: unit
+  iam_aliases:
+    remind: Sales|Transport|Freight|Road|Heavy|Truck(18t)|Liquids
+    remind-eu: Sales|Transport|Freight|Road|Heavy|Truck(18t)|Liquids
+Sales - Transport - Truck 26t BEV:
+  ecoinvent_aliases:
+    fltr:
+      name: lorry production, battery electric, 26 metric ton
+      reference product: truck
+      unit: unit
+  iam_aliases:
+    remind: Sales|Transport|Freight|Road|Heavy|Truck(26t)|BEV
+    remind-eu: Sales|Transport|Freight|Road|Heavy|Truck(26t)|BEV
+Sales - Transport - Truck 26t FCEV:
+  ecoinvent_aliases:
+    fltr:
+      name: lorry production, fuel cell electric, 26 metric ton
+      reference product: truck
+      unit: unit
+  iam_aliases:
+    remind: Sales|Transport|Freight|Road|Heavy|Truck(26t)|FCEV
+    remind-eu: Sales|Transport|Freight|Road|Heavy|Truck(26t)|FCEV
+Sales - Transport - Truck 26t Gases:
+  ecoinvent_aliases:
+    fltr:
+      name: lorry production, battery electric, 26 metric ton
+      reference product: truck
+      unit: unit
+  iam_aliases:
+    remind: Sales|Transport|Freight|Road|Heavy|Truck(26t)|Gases
+    remind-eu: Sales|Transport|Freight|Road|Heavy|Truck(26t)|Gases
+Sales - Transport - Truck 26t Liquids:
+  ecoinvent_aliases:
+    fltr:
+      name: lorry production, diesel, 26 metric ton
+      reference product: truck
+      unit: unit
+  iam_aliases:
+    remind: Sales|Transport|Freight|Road|Heavy|Truck(26t)|Liquids
+    remind-eu: Sales|Transport|Freight|Road|Heavy|Truck(26t)|Liquids
+Sales - Transport - Truck 40t BEV:
+  ecoinvent_aliases:
+    fltr:
+      name: lorry production, battery electric, 40 metric ton
+      reference product: truck
+      unit: unit
+  iam_aliases:
+    remind: Sales|Transport|Freight|Road|Heavy|Truck(40t)|BEV
+    remind-eu: Sales|Transport|Freight|Road|Heavy|Truck(40t)|BEV
+Sales - Transport - Truck 40t FCEV:
+  ecoinvent_aliases:
+    fltr:
+      name: lorry production, fuel cell electric, 40 metric ton
+      reference product: truck
+      unit: unit
+  iam_aliases:
+    remind: Sales|Transport|Freight|Road|Heavy|Truck(40t)|FCEV
+    remind-eu: Sales|Transport|Freight|Road|Heavy|Truck(40t)|FCEV
+Sales - Transport - Truck 40t Gases:
+  ecoinvent_aliases:
+    fltr:
+      name: lorry production, compressed gas, 40 metric ton
+      reference product: truck
+      unit: unit
+  iam_aliases:
+    remind: Sales|Transport|Freight|Road|Heavy|Truck(40t)|Gases
+    remind-eu: Sales|Transport|Freight|Road|Heavy|Truck(40t)|Gases
+Sales - Transport - Truck 40t Liquids:
+  ecoinvent_aliases:
+    fltr:
+      name: lorry production, diesel, 40 metric ton
+      reference product: truck
+      unit: unit
+  iam_aliases:
+    remind: Sales|Transport|Freight|Road|Heavy|Truck(40t)|Liquids
+    remind-eu: Sales|Transport|Freight|Road|Heavy|Truck(40t)|Liquids
+Sales - Transport - Truck 3_5t BEV:
+  ecoinvent_aliases:
+    fltr:
+      name: lorry production, battery electric, 3.5 metric ton
+      reference product: truck
+      unit: unit
+  iam_aliases:
+    remind: Sales|Transport|Freight|Road|Light|Truck(0-3_5t)|BEV
+    remind-eu: Sales|Transport|Freight|Road|Light|Truck(0-3_5t)|BEV
+Sales - Transport - Truck 3_5t FCEV:
+  ecoinvent_aliases:
+    fltr:
+      name: lorry production, fuel cell electric, 3.5 metric ton
+      reference product: truck
+      unit: unit
+  iam_aliases:
+    remind: Sales|Transport|Freight|Road|Light|Truck(0-3_5t)|FCEV
+    remind-eu: Sales|Transport|Freight|Road|Light|Truck(0-3_5t)|FCEV
+Sales - Transport - Truck 3_5t Gases:
+  ecoinvent_aliases:
+    fltr:
+      name: lorry production, compressed gas, 3.5 metric ton
+      reference product: truck
+      unit: unit
+  iam_aliases:
+    remind: Sales|Transport|Freight|Road|Light|Truck(0-3_5t)|Gases
+    remind-eu: Sales|Transport|Freight|Road|Light|Truck(0-3_5t)|Gases
+Sales - Transport - Truck 3_5t Liquids:
+  ecoinvent_aliases:
+    fltr:
+      name: lorry production, diesel, 3.5 metric ton
+      reference product: truck
+      unit: unit
+  iam_aliases:
+    remind: Sales|Transport|Freight|Road|Light|Truck(0-3_5t)|Liquids
+    remind-eu: Sales|Transport|Freight|Road|Light|Truck(0-3_5t)|Liquids
+Sales - Transport - Truck 7_5t BEV:
+  ecoinvent_aliases:
+    fltr:
+      name: lorry production, battery electric, 7.5 metric ton
+      reference product: truck
+      unit: unit
+  iam_aliases:
+    remind: Sales|Transport|Freight|Road|Light|Truck(7_5t)|BEV
+    remind-eu: Sales|Transport|Freight|Road|Light|Truck(7_5t)|BEV
+Sales - Transport - Truck 7_5t FCEV:
+  ecoinvent_aliases:
+    fltr:
+      name: lorry production, fuel cell electric, 7.5 metric ton
+      reference product: truck
+      unit: unit
+  iam_aliases:
+    remind: Sales|Transport|Freight|Road|Light|Truck(7_5t)|FCEV
+    remind-eu: Sales|Transport|Freight|Road|Light|Truck(7_5t)|FCEV
+Sales - Transport - Truck 7_5t Gases:
+  ecoinvent_aliases:
+    fltr:
+      name: lorry production, compressed gas, 7.5 metric ton
+      reference product: truck
+      unit: unit
+  iam_aliases:
+    remind: Sales|Transport|Freight|Road|Light|Truck(7_5t)|Gases
+    remind-eu: Sales|Transport|Freight|Road|Light|Truck(7_5t)|Gases
+Sales - Transport - Truck 7_5t Liquids:
+  ecoinvent_aliases:
+    fltr:
+      name: lorry production, diesel, 7.5 metric ton
+      reference product: truck
+      unit: unit
+  iam_aliases:
+    remind: Sales|Transport|Freight|Road|Light|Truck(7_5t)|Liquids
+    remind-eu: Sales|Transport|Freight|Road|Light|Truck(7_5t)|Liquids
+Sales - Transport - Bus BEV:
+  ecoinvent_aliases:
+    fltr:
+      name: passenger bus, battery electric
+      reference product: passenger bus
+      unit: unit
+  iam_aliases:
+    remind: Sales|Transport|Pass|Road|Bus|BEV
+    remind-eu: Sales|Transport|Pass|Road|Bus|BEV
+Sales - Transport - Bus FCEV:
+  ecoinvent_aliases:
+    fltr:
+      name: passenger bus, fuel cell electric
+      reference product: passenger bus
+      unit: unit
+  iam_aliases:
+    remind: Sales|Transport|Pass|Road|Bus|FCEV
+    remind-eu: Sales|Transport|Pass|Road|Bus|FCEV
+Sales - Transport - Bus Gases:
+  ecoinvent_aliases:
+    fltr:
+      name: Passenger bus, compressed gas
+      reference product: Passenger bus
+      unit: unit
+  iam_aliases:
+    remind: Sales|Transport|Pass|Road|Bus|Gases
+    remind-eu: Sales|Transport|Pass|Road|Bus|Gases
+Sales - Transport - Bus Liquids:
+  ecoinvent_aliases:
+    fltr:
+      name: Passenger bus, diesel
+      reference product: Passenger bus
+      unit: unit
+  iam_aliases:
+    remind: Sales|Transport|Pass|Road|Bus|Liquids
+    remind-eu: Sales|Transport|Pass|Road|Bus|Liquids
+Sales - Transport - Large car and SUV BEV:
+  ecoinvent_aliases:
+    fltr:
+      name: passenger car, battery electric, Large
+      reference product: passenger car
+      unit: unit
+  iam_aliases:
+    remind: Sales|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|BEV
+    remind-eu: Sales|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|BEV
+Sales - Transport - Large car and SUV FCEV:
+  ecoinvent_aliases:
+    fltr:
+      name: passenger car, fuel cell electric, Large
+      reference product: passenger car
+      unit: unit
+  iam_aliases:
+    remind: Sales|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|FCEV
+    remind-eu: Sales|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|FCEV
+Sales - Transport - Large car and SUV Gases:
+  ecoinvent_aliases:
+    fltr:
+      name: Passenger car, compressed gas, Large
+      reference product: Passenger car
+      unit: unit
+  iam_aliases:
+    remind: Sales|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|Gases
+    remind-eu: Sales|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|Gases
+Sales - Transport - Large car and SUV Hybrid electric:
+  ecoinvent_aliases:
+    fltr:
+      name:
+        - Passenger car
+        - plugin
+        - Large
+      reference product: Passenger car
+      unit: unit
+  iam_aliases:
+    remind: Sales|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|Hybrid electric
+    remind-eu: Sales|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|Hybrid electric
+Sales - Transport - Large car and SUV Liquids:
+  ecoinvent_aliases:
+    fltr:
+      name:
+        - Passenger car
+        - EURO
+        - Large
+      reference product: Passenger car
+      unit: unit
+      mask:
+        - plugin
+        - compressed
+        - electric
+  iam_aliases:
+    remind: Sales|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|Liquids
+    remind-eu: Sales|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|Liquids
+Sales - Transport - Van BEV:
+  ecoinvent_aliases:
+    fltr:
+      name: passenger car, battery electric, Van
+      reference product: passenger car
+      unit: unit
+  iam_aliases:
+    remind: Sales|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|BEV
+    remind-eu: Sales|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|BEV
+Sales - Transport - Van FCEV:
+  ecoinvent_aliases:
+    fltr:
+      name: passenger car, fuel cell electric, Van
+      reference product: passenger car
+      unit: unit
+  iam_aliases:
+    remind: Sales|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|FCEV
+    remind-eu: Sales|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|FCEV
+Sales - Transport - Van Gases:
+  ecoinvent_aliases:
+    fltr:
+      name: Passenger car, compressed gas, Van
+      reference product: Passenger car
+      unit: unit
+  iam_aliases:
+    remind: Sales|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|Gases
+    remind-eu: Sales|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|Gases
+Sales - Transport - Van Hybrid electric:
+  ecoinvent_aliases:
+    fltr:
+      name:
+        - Passenger car
+        - plugin
+        - Van
+      reference product: Passenger car
+      unit: unit
+  iam_aliases:
+    remind: Sales|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|Hybrid electric
+    remind-eu: Sales|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|Hybrid electric
+Sales - Transport - Van Liquids:
+  ecoinvent_aliases:
+    fltr:
+      name:
+        - Passenger car
+        - EURO
+        - Van
+      reference product: Passenger car
+      unit: unit
+      mask:
+        - plugin
+        - compressed
+        - electric
+  iam_aliases:
+    remind: Sales|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|Liquids
+    remind-eu: Sales|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|Liquids
+Sales - Transport - Medium car BEV:
+  ecoinvent_aliases:
+    fltr:
+      name: passenger car, battery electric, Medium
+      reference product: passenger car
+      unit: unit
+  iam_aliases:
+    remind: Sales|Transport|Pass|Road|LDV|Four Wheelers|Medium|BEV
+    remind-eu: Sales|Transport|Pass|Road|LDV|Four Wheelers|Medium|BEV
+Sales - Transport - Medium car FCEV:
+  ecoinvent_aliases:
+    fltr:
+      name: passenger car, fuel cell electric, Medium
+      reference product: passenger car
+      unit: unit
+  iam_aliases:
+    remind: Sales|Transport|Pass|Road|LDV|Four Wheelers|Medium|FCEV
+    remind-eu: Sales|Transport|Pass|Road|LDV|Four Wheelers|Medium|FCEV
+Sales - Transport - Medium car Gases:
+  ecoinvent_aliases:
+    fltr:
+      name: Passenger car, compressed gas, Medium
+      reference product: Passenger car
+      unit: unit
+  iam_aliases:
+    remind: Sales|Transport|Pass|Road|LDV|Four Wheelers|Medium|Gases
+    remind-eu: Sales|Transport|Pass|Road|LDV|Four Wheelers|Medium|Gases
+Sales - Transport - Medium car Hybrid electric:
+  ecoinvent_aliases:
+    fltr:
+      name:
+        - Passenger car
+        - plugin
+        - Medium
+      reference product: Passenger car
+      unit: unit
+  iam_aliases:
+    remind: Sales|Transport|Pass|Road|LDV|Four Wheelers|Medium|Hybrid electric
+    remind-eu: Sales|Transport|Pass|Road|LDV|Four Wheelers|Medium|Hybrid electric
+Sales - Transport - Medium car Liquids:
+  ecoinvent_aliases:
+    fltr:
+      name:
+        - Passenger car
+        - EURO
+        - Medium
+      reference product: Passenger car
+      unit: unit
+      mask:
+        - plugin
+        - compressed
+        - electric
+  iam_aliases:
+    remind: Sales|Transport|Pass|Road|LDV|Four Wheelers|Medium|Liquids
+    remind-eu: Sales|Transport|Pass|Road|LDV|Four Wheelers|Medium|Liquids
+Sales - Transport - Small car BEV:
+  ecoinvent_aliases:
+    fltr:
+      name: passenger car, battery electric, Small
+      reference product: passenger car
+      unit: unit
+  iam_aliases:
+    remind: Sales|Transport|Pass|Road|LDV|Four Wheelers|Small|BEV
+    remind-eu: Sales|Transport|Pass|Road|LDV|Four Wheelers|Small|BEV
+Sales - Transport - Small car FCEV:
+  ecoinvent_aliases:
+    fltr:
+      name: passenger car, fuel cell electric, Small
+      reference product: passenger car
+      unit: unit
+  iam_aliases:
+    remind: Sales|Transport|Pass|Road|LDV|Four Wheelers|Small|FCEV
+    remind-eu: Sales|Transport|Pass|Road|LDV|Four Wheelers|Small|FCEV
+Sales - Transport - Small car Gases:
+  ecoinvent_aliases:
+    fltr:
+      name: Passenger car, compressed gas, Small
+      reference product: Passenger car
+      unit: unit
+  iam_aliases:
+    remind: Sales|Transport|Pass|Road|LDV|Four Wheelers|Small|Gases
+    remind-eu: Sales|Transport|Pass|Road|LDV|Four Wheelers|Small|Gases
+Sales - Transport - Small car Hybrid electric:
+  ecoinvent_aliases:
+    fltr:
+      name:
+        - Passenger car
+        - plugin
+        - Small
+      reference product: Passenger car
+      unit: unit
+  iam_aliases:
+    remind: Sales|Transport|Pass|Road|LDV|Four Wheelers|Small|Hybrid electric
+    remind-eu: Sales|Transport|Pass|Road|LDV|Four Wheelers|Small|Hybrid electric
+Sales - Transport - Small car Liquids:
+  ecoinvent_aliases:
+    fltr:
+      name:
+        - Passenger car
+        - EURO
+        - Small
+      reference product: Passenger car
+      unit: unit
+      mask:
+        - plugin
+        - compressed
+        - electric
+  iam_aliases:
+    remind: Sales|Transport|Pass|Road|LDV|Four Wheelers|Small|Liquids
+    remind-eu: Sales|Transport|Pass|Road|LDV|Four Wheelers|Small|Liquids
+
