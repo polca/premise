@@ -95,6 +95,7 @@ New Cap - Electricity - Nuclear:
       mask: alpine
   iam_aliases:
     remind: New Cap|Electricity|+|Nuclear
+    remind-eu: New Cap|Electricity|+|Nuclear
 New Cap - Electricity - Biomass:
   ecoinvent_aliases:
     fltr:

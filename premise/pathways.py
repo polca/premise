@@ -92,7 +92,7 @@ class PathwaysDataPackage:
     ):
 
         for scenario in self.datapackage.scenarios:
-            load_database(scenario)
+            load_database(scenario, self.datapackage.database)
             print("database" in scenario)
 
         # first, delete the content of the "pathways" folder
