@@ -147,6 +147,7 @@ PEMEL:
       - fuel cell
       - residential
       - methanol
+      - treatment
 AEL:
   ecoinvent_aliases:
     fltr:
@@ -160,6 +161,7 @@ AEL:
       - SOEC
       - market
       - fuel cell
+      - treatment
 HTEL - Yttrium:
 #HTEL:
   ecoinvent_aliases:
@@ -174,6 +176,7 @@ HTEL - Yttrium:
       - market
       - hydrogen production
       - fuel cell
+      - treatment
 ### PAFC fuel cells are not found in Ecoinvent
 c-Si:
   ecoinvent_aliases:
