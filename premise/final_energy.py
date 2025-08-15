@@ -138,9 +138,13 @@ class FinalEnergy(BaseTransformation):
                 new_name = f"capacity addition, 1GW, {suffix}"
                 new_ref_prod = f"capacity addition, 1GW, {suffix}"
 
-            self.process_capacity_addition(key, config, new_name, new_ref_prod, is_transport)
+            self.process_capacity_addition(
+                key, config, new_name, new_ref_prod, is_transport
+            )
 
-    def process_capacity_addition(self, key, config, new_name, new_ref_prod, is_transport=False):
+    def process_capacity_addition(
+        self, key, config, new_name, new_ref_prod, is_transport=False
+    ):
         """
         Process a single capacity addition configuration.
 
@@ -194,7 +198,8 @@ class FinalEnergy(BaseTransformation):
             datasets = infrastructure_datasets
 
         infrastructure_names = [
-            ds["name"] for ds in datasets
+            ds["name"]
+            for ds in datasets
             if ds["name"] not in self.protected_infrastructure_names
         ]
         total_removed = 0
@@ -565,7 +570,9 @@ class FinalEnergy(BaseTransformation):
                 capacity_name = f"capacity addition, 1GW, {suffix}"
             elif variable.startswith("Sales - Transport - "):
                 suffix = variable.replace("Sales - Transport - ", "").strip()
-                capacity_name = f"transport capacity addition, 1 million units, {suffix}"
+                capacity_name = (
+                    f"transport capacity addition, 1 million units, {suffix}"
+                )
 
             # Look for capacity addition datasets (any region)
             capacity_datasets = list(
