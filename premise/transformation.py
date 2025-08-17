@@ -748,7 +748,6 @@ class BaseTransformation:
         )
 
         for region in regions:
-
             if production_volumes is not None:
                 production_volume = float(
                     production_volumes.sel(
