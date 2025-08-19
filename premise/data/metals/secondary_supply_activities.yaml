@@ -8,7 +8,7 @@ aluminium, cast alloy:
     location:
       equals: RER
     shares:
-      2020: 0.1009969375122177
+      2020: 0.146745562
   - name:
       all:
         - startswith: treatment of aluminium scrap
@@ -18,7 +18,7 @@ aluminium, cast alloy:
     location:
       equals: RoW
     shares:
-      2020: 0.5096316856057583
+      2020: 0.740479761
   - name:
       all:
         - startswith: treatment of aluminium scrap
@@ -28,7 +28,7 @@ aluminium, cast alloy:
     location:
       equals: RER
     shares:
-      2020: 0.07761663654189148
+      2020: 0.112774677
 cobalt:
   - name:
       equals: treatment of used Li-ion battery, hydrometallurgical treatment
@@ -37,7 +37,7 @@ cobalt:
     location:
       equals: GLO
     shares:
-      2020: 0.00365324760278205
+      2020: 0.639097744
   - name:
       equals: treatment of used Li-ion battery, pyrometallurgical treatment
     reference product:
@@ -45,7 +45,7 @@ cobalt:
     location:
       equals: GLO
     shares:
-      2020: 0.00206301041098281
+      2020: 0.360902256
 copper, cathode:
   - name:
       all:
@@ -56,7 +56,7 @@ copper, cathode:
     location:
       equals: SE
     shares:
-      2020: 2.2277037972547e-06
+      2020: 1.11753E-05
   - name:
       all:
         - startswith: treatment of metal part
@@ -66,7 +66,7 @@ copper, cathode:
     location:
       equals: RoW
     shares:
-      2020: 0.000840421088561419
+      2020: 0.004215965
   - name:
       startswith: treatment of copper cake
     reference product:
@@ -74,7 +74,7 @@ copper, cathode:
     location:
       equals: GLO
     shares:
-      2020: 0.00220044467157194
+      2020: 0.01103851
   - name:
       all:
         - startswith: treatment of copper scrap
@@ -84,7 +84,7 @@ copper, cathode:
     location:
       equals: RoW
     shares:
-        2020: 0.15032405184868
+        2020: 0.754099222
   - name:
       all:
         - startswith: treatment of copper scrap
@@ -94,7 +94,7 @@ copper, cathode:
     location:
       equals: RER
     shares:
-      2020: 0.0340482359153305
+      2020: 0.170802662
   - name:
       all:
         - startswith: treatment of non-Fe-Co-metals
@@ -104,7 +104,7 @@ copper, cathode:
     location:
       equals: GLO
     shares:
-      2020: 2.13217351759321e-06
+      2020: 1.0696E-05
   - name:
       contains: treatment of used cable
     reference product:
@@ -112,7 +112,7 @@ copper, cathode:
     location:
       equals: GLO
     shares:
-      2020: 0.0119240905590003
+      2020: 0.05981709
   - name:
       all:
         - startswith: treatment of non-Fe-Co-metals
@@ -122,7 +122,7 @@ copper, cathode:
     location:
       equals: GLO
     shares:
-      2020: 9.32830849573793e-07
+      2020: 4.67954E-06
 gold:
   - name:
       equals: treatment of precious metal from electronics scrap, in anode slime, precious metal extraction
@@ -131,7 +131,7 @@ gold:
     location:
       equals: GLO
     shares:
-      2020: 1.17027172626919e-05
+      2020: 0.002643692
   - name:
       equals: treatment of precious metal from electronics scrap, in anode slime, precious metal extraction
     reference product:
@@ -139,7 +139,7 @@ gold:
     location:
       equals: RoW
     shares:
-      2020: 0.00441495426514466
+      2020: 0.997356308
 lead:
   - name:
       equals: treatment of scrap lead acid battery, remelting
@@ -148,7 +148,7 @@ lead:
     location:
       equals: RER
     shares:
-      2020: 0.181498908036093
+      2020: 0.330501558
   - name:
       equals: treatment of electronics scrap, metals recovery in copper smelter
     reference product:
@@ -156,7 +156,7 @@ lead:
     location:
       equals: RoW
     shares:
-      2020: 0.000150422428901923
+      2020: 0.000273913
   - name:
       equals: treatment of electronics scrap, metals recovery in copper smelter
     reference product:
@@ -164,7 +164,7 @@ lead:
     location:
       equals: SE
     shares:
-      2020: 3.98724663876049e-07
+      2020: 7.2606E-07
   - name:
       equals: treatment of scrap lead acid battery, remelting
     reference product:
@@ -172,7 +172,7 @@ lead:
     location:
       equals: RoW
     shares:
-      2020: 0.367512305128451
+      2020: 0.669223803
 lithium carbonate, battery grade:
   - name:
       startswith: treatment of
@@ -199,7 +199,7 @@ nickel, class 1:
     location:
       equals: SE
     shares:
-      2020: 5.36263530789971e-06
+      2020: 0.002643692
   - name:
       equals: treatment of metal part of electronics scrap, in copper, anode, by electrolytic refining
     reference product:
@@ -207,7 +207,7 @@ nickel, class 1:
     location:
       equals: RoW
     shares:
-      2020: 0.00202310190815179
+      2020: 0.997356308
 palladium:
   - name:
       equals: treatment of automobile catalyst
@@ -216,7 +216,7 @@ palladium:
     location:
       equals: RoW
     shares:
-      2020: 0.0127463678259298
+      2020: 0.081977843
   - name:
       equals: treatment of automobile catalyst
     reference product:
@@ -224,7 +224,7 @@ palladium:
     location:
       equals: RER
     shares:
-      2020: 0.0062948293553961
+      2020: 0.040484987
   - name:
       equals: treatment of precious metal from electronics scrap, in anode slime, precious metal extraction
     reference product:
@@ -232,13 +232,13 @@ palladium:
     location:
       equals: SE
     shares:
-      2020: 0.000360716763966031
+      2020: 0.002319938
   - name:
       equals: treatment of precious metal from electronics scrap, in anode slime, precious metal extraction
     reference product:
       equals: palladium
     location:
-      equals: 0.136083610313139
+      equals: 0.875217233
     shares:
       2020: RoW
 platinum:
@@ -249,7 +249,7 @@ platinum:
     location:
       equals: RoW
     shares:
-      2020: 0.0298559445554543
+      2020: 0.669410001
   - name:
       equals: treatment of automobile catalyst
     reference product:
@@ -257,7 +257,7 @@ platinum:
     location:
       equals: RER
     shares:
-      2020: 0.0147444416156288
+      2020: 0.330589999
 silver:
   - name:
       equals: treatment of crust from Parkes process for lead production
@@ -266,7 +266,7 @@ silver:
     location:
       equals: GLO
     shares:
-      2020: 0.0592613713353176
+      2020: 0.700186745
   - name:
       equals: treatment of precious metal from electronics scrap, in anode slime, precious metal extraction
     reference product:
@@ -274,7 +274,7 @@ silver:
     location:
       equals: SE
     shares:
-      2020: 4.33433698284942e-05
+      2020: 0.000512112
   - name:
       equals: treatment of precious metal from electronics scrap, in anode slime, precious metal extraction
     reference product:
@@ -282,7 +282,7 @@ silver:
     location:
       equals: RoW
     shares:
-      2020: 0.0163516721112372
+      2020: 0.19319877
   - name:
       equals: treatment of waste x-ray film
     reference product:
@@ -290,7 +290,7 @@ silver:
     location:
       equals: GLO
     shares:
-      2020: 0.00898013584679099
+      2020: 0.106102372
 zinc concentrate:
   - name:
       equals: metalliferous hydroxide sludge to market for zinc concentrate
