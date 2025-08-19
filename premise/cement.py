@@ -199,13 +199,14 @@ class Cement(BaseTransformation):
 
             # rescale hard coal consumption and related emissions
             coal_specs = self.fuels_specs["hard coal"]
+            coal_lhv = coal_specs["lhv"]["value"]
             old_coal_input, new_coal_input = 0, 0
             for exc in ws.technosphere(
                 dataset,
                 ws.contains("name", "hard coal"),
             ):
                 # in kJ
-                old_coal_input = float(exc["amount"] * coal_specs["lhv"])
+                old_coal_input = float(exc["amount"] * coal_lhv)
                 # in MJ
                 new_coal_input = old_coal_input - (
                     (
@@ -214,7 +215,7 @@ class Cement(BaseTransformation):
                     )
                     / 1000
                 )
-                exc["amount"] = np.clip(new_coal_input / coal_specs["lhv"], 0, None)
+                exc["amount"] = np.clip(new_coal_input / coal_lhv, 0, None)
 
             # rescale combustion-related fossil CO2 emissions
             for exc in ws.biosphere(

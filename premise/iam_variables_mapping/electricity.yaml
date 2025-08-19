@@ -331,6 +331,7 @@ Coal IGCC CCS:
     tiam-ucl: Secondary Energy|Electricity|Coal IGCC|w CCS
     witch: Secondary Energy|Electricity|Coal|w/ CCS|2
   max_efficiency: 0.45
+
 Coal PC:
   ecoinvent_aliases:
     fltr:
@@ -341,6 +342,7 @@ Coal PC:
       - mine
       - supercritical
       - subcritical
+      - conventional
   ecoinvent_fuel_aliases:
     fltr:
     - market for hard coal

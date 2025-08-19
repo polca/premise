@@ -1851,13 +1851,15 @@ Industry - Non-energy use - Solid coal:
       reference product: hard coal
     mask:
     - briquette
-    - mine
     - ash
     - factory
     - plant
   iam_aliases:
     remind: FE|Non-energy Use|Industry|Solids|+|Fossil
     remind-eu: FE|Non-energy Use|Industry|Solids|+|Fossil
+  lhv:
+    value: 24.2
+    unit: megajoule
 Industry - Non-energy use - Biomass:
   ecoinvent_aliases:
     fltr:
@@ -1866,6 +1868,10 @@ Industry - Non-energy use - Biomass:
   iam_aliases:
     remind: FE|Non-energy Use|Industry|Solids|+|Biomass
     remind-eu: FE|Non-energy Use|Industry|Solids|+|Biomass
+  lhv:
+    value: 16.2
+    unit: megajoule
+
 Industry - Non-energy use - Bio CH4:
   ecoinvent_aliases:
     fltr:
@@ -1874,6 +1880,10 @@ Industry - Non-energy use - Bio CH4:
   iam_aliases:
     remind: FE|Non-energy Use|Industry|Gases|+|Biomass
     remind-eu: FE|Non-energy Use|Industry|Gases|+|Biomass
+  lhv:
+    value: 47.5
+    unit: megajoule
+
 Industry - Non-energy use - Nat Gas:
   ecoinvent_aliases:
     fltr:
@@ -1886,6 +1896,10 @@ Industry - Non-energy use - Nat Gas:
   iam_aliases:
     remind: FE|Non-energy Use|Industry|Gases|+|Fossil
     remind-eu: FE|Non-energy Use|Industry|Gases|+|Fossil
+  lhv:
+    value: 47.5
+    unit: megajoule
+
 Industry - Non-energy use - Hydrogen:
   ecoinvent_aliases:
     fltr:
@@ -1894,6 +1908,10 @@ Industry - Non-energy use - Hydrogen:
   iam_aliases:
     remind: FE|Non-energy Use|Industry|Gases|+|Hydrogen
     remind-eu: FE|Non-energy Use|Industry|Gases|+|Hydrogen
+  lhv:
+    value: 120.0
+    unit: megajoule
+
 Industry - Non-energy use - Biofuel:
   ecoinvent_aliases:
     fltr:
@@ -1903,6 +1921,10 @@ Industry - Non-energy use - Biofuel:
   iam_aliases:
     remind: FE|Non-energy Use|Industry|Liquids|+|Biomass
     remind-eu: FE|Non-energy Use|Industry|Liquids|+|Biomass
+  lhv:
+    value: 19.9
+    unit: megajoule
+
 Industry - Non-energy use - Liquid fossil:
   ecoinvent_aliases:
     fltr:
@@ -1911,6 +1933,10 @@ Industry - Non-energy use - Liquid fossil:
   iam_aliases:
     remind: FE|Non-energy Use|Industry|Liquids|+|Fossil
     remind-eu: FE|Non-energy Use|Industry|Liquids|+|Fossil
+  lhv:
+    value: 42.6
+    unit: megajoule
+
 Industry - Non-energy use - Syn Fuel:
   ecoinvent_aliases:
     fltr:
@@ -1920,6 +1946,10 @@ Industry - Non-energy use - Syn Fuel:
   iam_aliases:
     remind: FE|Non-energy Use|Industry|Liquids|+|Hydrogen
     remind-eu: FE|Non-energy Use|Industry|Liquids|+|Hydrogen
+  lhv:
+    value: 43.0
+    unit: megajoule
+
 Transport - Freight - Domestic Shipping - Elec:
   ecoinvent_aliases:
     fltr:

@@ -325,10 +325,10 @@ def calculate_input_energy(
             "market group for ", ""
         )
         if fuel_name in fuel_map_reverse:
-            lhv = fuels_specs[fuel_map_reverse[fuel_name]]["lhv"]
+            lhv = fuels_specs[fuel_map_reverse[fuel_name]]["lhv"]["value"]
         elif any(x.startswith(fuel_name) for x in fuel_map_reverse.keys()):
             fuels = [x for x in fuel_map_reverse.keys() if x.startswith(fuel_name)]
-            lhv = fuels_specs[fuel_map_reverse[fuels[0]]]["lhv"]
+            lhv = fuels_specs[fuel_map_reverse[fuels[0]]]["lhv"]["value"]
         else:
             print(f"Warning: LHV for {fuel_name} not found in fuel specifications.")
             print()

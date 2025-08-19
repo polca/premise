@@ -17,6 +17,10 @@ biomass crops - purpose grown:
     fltr:
       name:
         - market for wood chips and particles, willow
+  lhv:
+    unit: megajoule
+    value: 18.5
+
 biomass wood - purpose grown:
   iam_aliases:
     message: Primary Energy|Biomass|Fuelwood
@@ -26,6 +30,10 @@ biomass wood - purpose grown:
       name: market for wood chips
       reference product: wood chips
     mask: willow
+  lhv:
+    unit: megajoule
+    value: 18.5
+
 biomass - residual:
   iam_aliases:
     message: Primary Energy|Biomass|Residues
@@ -39,3 +47,6 @@ biomass - residual:
     fltr:
       name: supply of forest residue
       reference product: forest residue
+  lhv:
+    unit: megajoule
+    value: 18.5
