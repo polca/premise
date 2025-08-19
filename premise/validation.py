@@ -1860,7 +1860,6 @@ class FuelsValidation(BaseDatasetValidator):
                                     issue_type="major",
                                 )
 
-
     def run_fuel_checks(self):
         self.check_fuel_market_composition()
         self.check_empty_fuel_markets()
