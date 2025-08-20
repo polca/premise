@@ -376,17 +376,6 @@ def find_fuel_efficiency(
     :return: the efficiency value set initially
     """
 
-    if fuel_filters is None:
-        fuel_filters = list(fuel_map_reverse.keys())
-        fuel_filters = [
-            x.replace("market for ", "").replace("market group for ", "")
-            for x in fuel_filters
-        ]
-        fuel_map_reverse = {
-            k.replace("market for ", "").replace("market group for ", ""): v
-            for k, v in fuel_map_reverse.items()
-        }
-
     def _sanitize_fuel_name(name: str) -> str:
         """Sanitize fuel name by removing market prefixes."""
         items_to_remove = [
@@ -399,6 +388,16 @@ def find_fuel_efficiency(
         for item in items_to_remove:
             name = name.replace(item, "")
         return name
+
+    if fuel_filters is None:
+        fuel_filters = list(fuel_map_reverse.keys())
+        fuel_filters = [
+            _sanitize_fuel_name(x)  for x in fuel_filters
+        ]
+    else:
+        fuel_filters = [
+            _sanitize_fuel_name(x) for x in fuel_filters
+        ]
 
     energy_input = np.sum(
         np.sum(
@@ -437,6 +436,8 @@ def find_fuel_efficiency(
         )
         if energy_input == 0:
             if not any(x in dataset["name"] for x in ("waste", "treatment")):
+                print()
+                print([_sanitize_fuel_name(e["name"]) for e in dataset["exchanges"] if e["type"] == "technosphere"])
                 print(
                     f"Warning: {dataset['name'], dataset['location']} has no energy input"
                 )
