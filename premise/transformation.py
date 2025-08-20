@@ -391,13 +391,9 @@ def find_fuel_efficiency(
 
     if fuel_filters is None:
         fuel_filters = list(fuel_map_reverse.keys())
-        fuel_filters = [
-            _sanitize_fuel_name(x)  for x in fuel_filters
-        ]
+        fuel_filters = [_sanitize_fuel_name(x) for x in fuel_filters]
     else:
-        fuel_filters = [
-            _sanitize_fuel_name(x) for x in fuel_filters
-        ]
+        fuel_filters = [_sanitize_fuel_name(x) for x in fuel_filters]
 
     energy_input = np.sum(
         np.sum(
@@ -437,7 +433,13 @@ def find_fuel_efficiency(
         if energy_input == 0:
             if not any(x in dataset["name"] for x in ("waste", "treatment")):
                 print()
-                print([_sanitize_fuel_name(e["name"]) for e in dataset["exchanges"] if e["type"] == "technosphere"])
+                print(
+                    [
+                        _sanitize_fuel_name(e["name"])
+                        for e in dataset["exchanges"]
+                        if e["type"] == "technosphere"
+                    ]
+                )
                 print(
                     f"Warning: {dataset['name'], dataset['location']} has no energy input"
                 )
