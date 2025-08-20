@@ -1350,6 +1350,7 @@ class ExternalScenario(BaseTransformation):
                                     for exc in new_excs[-len(suppliers) :]:
                                         exc["ratio"] = ratio
 
+
                         if len(new_excs) > 0:
                             total = 0
 
@@ -1599,6 +1600,7 @@ class ExternalScenario(BaseTransformation):
                         exc["location"],
                     )
                 )
+                new_loc = []
                 if len(regions) == 1:
                     new_loc = regions[0]
 
@@ -1613,9 +1615,12 @@ class ExternalScenario(BaseTransformation):
                         new_loc = "World"
 
                     else:
-                        new_loc = self.find_best_substitute_suppliers(
+                        candidate = self.find_best_substitute_suppliers(
                             new_name, new_ref, regions
-                        )["location"]
+                        )
+                        if len(candidate) > 0:
+                            new_loc = candidate[0]["location"]
+
 
                 if isinstance(new_loc, str):
                     new_loc = [(new_loc, 1.0)]
@@ -1772,6 +1777,7 @@ class ExternalScenario(BaseTransformation):
                         exc for exc in ds["exchanges"] if exc["type"] == "production"
                     ]
                     # add an exchange from a new supplier
+                    new_loc = []
                     if ds["location"] in ["GLO", "RoW"] and "World" in regions:
                         new_loc = "World"
                     elif ds["location"] in regions:
@@ -1779,9 +1785,11 @@ class ExternalScenario(BaseTransformation):
                     elif self.geo.ecoinvent_to_iam_location(ds["location"]) in regions:
                         new_loc = self.geo.ecoinvent_to_iam_location(ds["location"])
                     else:
-                        new_loc = self.find_best_substitute_suppliers(
+                        candidate = self.find_best_substitute_suppliers(
                             new_name, new_ref, regions
-                        )["location"]
+                        )
+                        if len(candidate) > 0:
+                            new_loc = candidate[0]["location"]
 
                     if isinstance(new_loc, str):
                         new_loc = [(new_loc, 1.0)]
@@ -1852,7 +1860,10 @@ class ExternalScenario(BaseTransformation):
                 )
             )
         )
-        return suppliers.sort(key=lambda x: x["share"], reverse=True)[0]
+        if len(suppliers) > 0:
+            return suppliers.sort(key=lambda x: x["share"], reverse=True)[0]
+        else:
+            return []
 
     def write_log(self, dataset, status="created"):
         """
