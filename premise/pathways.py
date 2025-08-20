@@ -243,6 +243,9 @@ class PathwaysDataPackage:
                                         for d in mapping[var]["dataset"]
                                     }
                                 ]
+                                if "lhv" in val:
+                                    mapping[var]["lhv"] = val["lhv"]
+
                             else:
                                 print(f"Leaving out {model_var} from {var}")
 
@@ -367,7 +370,7 @@ class PathwaysDataPackage:
 
         # add a unit column
         # units are contained as an attribute of the xarray
-        df["unit"] = df["variables"].map(extra_units)
+        df["unit"] = df["variables"].map(data.attrs["unit"])
 
         # split the columns "scenarios" into "model" and "pathway"
         df[["model", "pathway"]] = df["scenario"].str.split(" - ", n=1, expand=True)
@@ -452,7 +455,7 @@ class PathwaysDataPackage:
         # also, remove "pathways/" from the path of each resource
         for resource in data["resources"]:
             resource["path"] = (
-                resource["path"].replace("pathways/", "").replace("pathways\\", "")
+                resource["path"].replace(r"pathways/", "").replace(r"pathways\\", "")
             )
 
         # save it back as a json file

@@ -319,16 +319,29 @@ def calculate_input_energy(
     :return: amount of fuel energy, in MJ
     """
 
+    def _sanitize_fuel_name(name: str) -> str:
+        """Sanitize fuel name by removing market prefixes."""
+        items_to_remove = [
+            "market for ",
+            "market group for ",
+            ", high pressure",
+            ", low pressure",
+            ", used as fuel"
+        ]
+        for item in items_to_remove:
+            name = name.replace(item, "")
+        return name
+
     # if fuel input other than MJ
     if fuel_unit in ["kilogram", "cubic meter"]:
-        fuel_name = fuel_name.replace("market for ", "").replace(
-            "market group for ", ""
-        )
+        fuel_name = _sanitize_fuel_name(fuel_name)
         if fuel_name in fuel_map_reverse:
-            lhv = fuels_specs[fuel_map_reverse[fuel_name]]["lhv"]
+            lhv = fuels_specs[fuel_map_reverse[fuel_name]]["lhv"]["value"]
+        elif fuel_name in fuels_specs:
+            lhv = fuels_specs[fuel_name]["lhv"]["value"]
         elif any(x.startswith(fuel_name) for x in fuel_map_reverse.keys()):
             fuels = [x for x in fuel_map_reverse.keys() if x.startswith(fuel_name)]
-            lhv = fuels_specs[fuel_map_reverse[fuels[0]]]["lhv"]
+            lhv = fuels_specs[fuel_map_reverse[fuels[0]]]["lhv"]["value"]
         else:
             print(f"Warning: LHV for {fuel_name} not found in fuel specifications.")
             print()
@@ -365,6 +378,25 @@ def find_fuel_efficiency(
 
     if fuel_filters is None:
         fuel_filters = list(fuel_map_reverse.keys())
+        fuel_filters = [x.replace("market for ", "").replace("market group for ", "")
+                        for x in fuel_filters]
+        fuel_map_reverse = {
+            k.replace("market for ", "").replace("market group for ", ""): v
+            for k, v in fuel_map_reverse.items()
+        }
+
+    def _sanitize_fuel_name(name: str) -> str:
+        """Sanitize fuel name by removing market prefixes."""
+        items_to_remove = [
+            "market for ",
+            "market group for ",
+            ", high pressure",
+            ", low pressure",
+            ", used as fuel"
+        ]
+        for item in items_to_remove:
+            name = name.replace(item, "")
+        return name
 
     energy_input = np.sum(
         np.sum(
@@ -378,7 +410,7 @@ def find_fuel_efficiency(
                         fuel_map_reverse,
                     )
                     for exc in dataset["exchanges"]
-                    if exc["name"] in fuel_filters
+                    if any(fuel.startswith(_sanitize_fuel_name(exc["name"])) for fuel in fuel_filters)
                     and exc["type"] == "technosphere"
                     and exc["amount"] > 0.0
                 ]
@@ -748,7 +780,6 @@ class BaseTransformation:
         )
 
         for region in regions:
-
             if production_volumes is not None:
                 production_volume = float(
                     production_volumes.sel(
