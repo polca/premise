@@ -326,7 +326,7 @@ def calculate_input_energy(
             "market group for ",
             ", high pressure",
             ", low pressure",
-            ", used as fuel"
+            ", used as fuel",
         ]
         for item in items_to_remove:
             name = name.replace(item, "")
@@ -378,8 +378,10 @@ def find_fuel_efficiency(
 
     if fuel_filters is None:
         fuel_filters = list(fuel_map_reverse.keys())
-        fuel_filters = [x.replace("market for ", "").replace("market group for ", "")
-                        for x in fuel_filters]
+        fuel_filters = [
+            x.replace("market for ", "").replace("market group for ", "")
+            for x in fuel_filters
+        ]
         fuel_map_reverse = {
             k.replace("market for ", "").replace("market group for ", ""): v
             for k, v in fuel_map_reverse.items()
@@ -392,7 +394,7 @@ def find_fuel_efficiency(
             "market group for ",
             ", high pressure",
             ", low pressure",
-            ", used as fuel"
+            ", used as fuel",
         ]
         for item in items_to_remove:
             name = name.replace(item, "")
@@ -410,7 +412,10 @@ def find_fuel_efficiency(
                         fuel_map_reverse,
                     )
                     for exc in dataset["exchanges"]
-                    if any(fuel.startswith(_sanitize_fuel_name(exc["name"])) for fuel in fuel_filters)
+                    if any(
+                        fuel.startswith(_sanitize_fuel_name(exc["name"]))
+                        for fuel in fuel_filters
+                    )
                     and exc["type"] == "technosphere"
                     and exc["amount"] > 0.0
                 ]
