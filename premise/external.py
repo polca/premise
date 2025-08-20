@@ -226,13 +226,13 @@ def adjust_efficiency(dataset: dict, fuels_specs: dict, fuel_map_reverse: dict) 
                     # first, fetch expected efficiency
                     expected_efficiency = v[1][dataset["location"]]
 
-                    if expected_efficiency in (0.0 , 1.0):
+                    if expected_efficiency in (0.0, 1.0):
                         continue
 
                     # then, fetch the current efficiency
                     current_efficiency = dataset.get("current efficiency")
 
-                    if expected_efficiency in (0.0 , 1.0):
+                    if expected_efficiency in (0.0, 1.0):
                         continue
 
                     if current_efficiency is None:
@@ -252,7 +252,7 @@ def adjust_efficiency(dataset: dict, fuels_specs: dict, fuel_map_reverse: dict) 
                     scaling_factor = np.clip(
                         current_efficiency / expected_efficiency,
                         lower_bound,
-                        upper_bound
+                        upper_bound,
                     )
 
                     if scaling_factor >= 1.5:
