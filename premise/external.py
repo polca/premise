@@ -1350,7 +1350,6 @@ class ExternalScenario(BaseTransformation):
                                     for exc in new_excs[-len(suppliers) :]:
                                         exc["ratio"] = ratio
 
-
                         if len(new_excs) > 0:
                             total = 0
 
@@ -1620,7 +1619,6 @@ class ExternalScenario(BaseTransformation):
                         )
                         if len(candidate) > 0:
                             new_loc = candidate[0]["location"]
-
 
                 if isinstance(new_loc, str):
                     new_loc = [(new_loc, 1.0)]
