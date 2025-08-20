@@ -16,7 +16,7 @@ import pandas as pd
 import xarray as xr
 import yaml
 from country_converter import CountryConverter
-from prettytable import HRuleStyle, PrettyTable
+from prettytable import PrettyTable
 from wurst import rescale_exchange
 from wurst.searching import biosphere, equals, get_many, technosphere
 import numpy as np
@@ -442,7 +442,7 @@ def load_database(
                     for k, v in metadata.get(key, {}).items():
                         if k in [
                             "code",
-                            "classifications",
+                            # "classifications",
                             "worksheet name",
                             "database",
                         ]:

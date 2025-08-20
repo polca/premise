@@ -1766,11 +1766,30 @@ class FuelsValidation(BaseDatasetValidator):
                 any(ds["name"].startswith(x) for x in fuel_market_names)
                 and ds["location"] not in self.regions
             ):
-                assert all(
+                if not all(
                     e["location"] in self.regions
                     for e in ds["exchanges"]
                     if e["type"] == "technosphere"
-                ), f"Fuel market {ds['name']} in {ds['location']} has exchanges with locations not in the IAM regions list."
+                ):
+                    if (
+                        len(
+                            [
+                                d
+                                for d in self.database
+                                if d["name"] == ds["name"]
+                                and d["location"] in self.regions
+                            ]
+                        )
+                        > 0
+                    ):
+
+                        message = f"Inputs may have incorrect location."
+                        self.log_issue(
+                            ds,
+                            "Non-regionalized inputs",
+                            message,
+                            issue_type="major",
+                        )
 
     def check_electrolysis_electricity_input(self):
         # check that the input of electricity for hydrogen production
@@ -1819,13 +1838,27 @@ class FuelsValidation(BaseDatasetValidator):
                         # matches the location of the dataset
                         # according to the geo-linking rules
                         if ds["location"] in self.regions:
-                            assert (
-                                e["location"] == ds["location"]
-                            ), f"Fuel market input {e['name']} in {e['location']} has incorrect location for dataset {ds['name']} in {ds['location']}."
+                            if e["location"] != ds["location"]:
+                                if e["location"] != "World":
+                                    message = f"Fuel market input {e['name']} in {e['location']} has incorrect location for dataset {ds['name']} in {ds['location']}."
+                                    self.log_issue(
+                                        ds,
+                                        "incorrect fuel market input location",
+                                        message,
+                                        issue_type="major",
+                                    )
                         else:
-                            assert e["location"] == self.geo.ecoinvent_to_iam_location(
+                            # check that the location of the input
+                            if e["location"] != self.geo.ecoinvent_to_iam_location(
                                 ds["location"]
-                            ), f"Fuel market input {e['name']} in {e['location']} has incorrect location for dataset {ds['name']} in {ds['location']}."
+                            ):
+                                message = f"Fuel market input {e['name']} in {e['location']} has incorrect location for dataset {ds['name']} in {ds['location']}."
+                                self.log_issue(
+                                    ds,
+                                    "incorrect fuel market input location",
+                                    message,
+                                    issue_type="major",
+                                )
 
     def run_fuel_checks(self):
         self.check_fuel_market_composition()

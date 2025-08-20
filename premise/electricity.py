@@ -1538,6 +1538,7 @@ class Electricity(BaseTransformation):
             "Oil CC CCS",
             # "Oil ST",
             # "Oil CC",
+            # "Coal PC",
             "Coal CF 80-20",
             "Coal CF 50-50",
             "Storage, Battery",
