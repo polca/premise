@@ -337,10 +337,11 @@ def calculate_input_energy(
         fuel_name = _sanitize_fuel_name(fuel_name)
         if fuel_name in fuel_map_reverse:
             lhv = fuels_specs[fuel_map_reverse[fuel_name]]["lhv"]["value"]
-        elif fuel_name in fuels_specs:
-            lhv = fuels_specs[fuel_name]["lhv"]["value"]
-        elif any(x.startswith(fuel_name) for x in fuel_map_reverse.keys()):
-            fuels = [x for x in fuel_map_reverse.keys() if x.startswith(fuel_name)]
+        elif any(fuel_name.startswith(x) for x in fuels_specs.keys()):
+            fuels = [x for x in fuels_specs.keys() if fuel_name.startswith(x)]
+            lhv = fuels_specs[fuels[0]]["lhv"]["value"]
+        elif any(fuel_name.startswith(x) for x in fuel_map_reverse.keys()):
+            fuels = [x for x in fuel_map_reverse.keys() if fuel_name.startswith(x)]
             lhv = fuels_specs[fuel_map_reverse[fuels[0]]]["lhv"]["value"]
         else:
             print(f"Warning: LHV for {fuel_name} not found in fuel specifications.")

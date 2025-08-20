@@ -226,8 +226,15 @@ def adjust_efficiency(dataset: dict, fuels_specs: dict, fuel_map_reverse: dict) 
                     # first, fetch expected efficiency
                     expected_efficiency = v[1][dataset["location"]]
 
+                    if expected_efficiency in (0.0 , 1.0):
+                        continue
+
                     # then, fetch the current efficiency
                     current_efficiency = dataset.get("current efficiency")
+
+                    if expected_efficiency in (0.0 , 1.0):
+                        continue
+
                     if current_efficiency is None:
                         current_efficiency = find_fuel_efficiency(
                             dataset=dataset,
@@ -237,18 +244,16 @@ def adjust_efficiency(dataset: dict, fuels_specs: dict, fuel_map_reverse: dict) 
                         )
                         dataset["current efficiency"] = current_efficiency
 
-                    if expected_efficiency in [0.0, 1.0] or current_efficiency in [
-                        0.0,
-                        1.0,
-                    ]:
-                        print(
-                            f"Stopping: Efficiency factor for {dataset['name']} in {dataset['location']} is {current_efficiency}"
-                            f"and expected efficiency is {expected_efficiency}."
-                        )
-                        continue
+                    # we bound the final efficiency to (0.05, 0.6)
 
-                    # finally, calculate the scaling factor
-                    scaling_factor = current_efficiency / expected_efficiency
+                    lower_bound = expected_efficiency / 0.60
+                    upper_bound = expected_efficiency / 0.05
+
+                    scaling_factor = np.clip(
+                        current_efficiency / expected_efficiency,
+                        lower_bound,
+                        upper_bound
+                    )
 
                     if scaling_factor >= 1.5:
                         print(
@@ -1610,7 +1615,7 @@ class ExternalScenario(BaseTransformation):
                     else:
                         new_loc = self.find_best_substitute_suppliers(
                             new_name, new_ref, regions
-                        )
+                        )["location"]
 
                 if isinstance(new_loc, str):
                     new_loc = [(new_loc, 1.0)]
@@ -1776,7 +1781,7 @@ class ExternalScenario(BaseTransformation):
                     else:
                         new_loc = self.find_best_substitute_suppliers(
                             new_name, new_ref, regions
-                        )
+                        )["location"]
 
                     if isinstance(new_loc, str):
                         new_loc = [(new_loc, 1.0)]
@@ -1847,7 +1852,7 @@ class ExternalScenario(BaseTransformation):
                 )
             )
         )
-        return [(x[1], y) for x, y in suppliers.items()]
+        return suppliers.sort(key=lambda x: x["share"], reverse=True)[0]
 
     def write_log(self, dataset, status="created"):
         """

@@ -584,6 +584,7 @@ def check_inventories(
                     inventory_data,
                 )
             except ValueError as e:
+                print(f"Error processing dataset {key[0]} and {key[1]}: {e}")
                 print(key, val, potential_candidates)
                 print()
 
