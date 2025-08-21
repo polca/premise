@@ -786,7 +786,7 @@ class Metals(BaseTransformation):
 
                 self.write_log(ds, "updated")
 
-    def get_shares(self, df: pd.DataFrame, new_locations: dict, name, ref_prod) -> dict:
+    def get_shares(self, df: pd.DataFrame, new_locations: dict, name, ref_prod, normalize=True) -> dict:
         """
         Get shares of each location in the dataframe.
         :param df: Dataframe with mining shares
@@ -820,8 +820,10 @@ class Metals(BaseTransformation):
         shares = {k: v for k, v in shares.items() if v >= 0.01}
         if not shares:
             return {}
-        total = sum(shares.values())
-        shares = {k: v / total for k, v in shares.items()}
+
+        if normalize:
+            total = sum(shares.values())
+            shares = {k: v / total for k, v in shares.items()}
 
         return shares
 
@@ -892,7 +894,8 @@ class Metals(BaseTransformation):
             }
 
             # fetch shares for each location in df
-            shares = self.get_shares(group, new_locations, name, ref_prod)
+            # Do not normalize yet - THIS WAS CAUSING A DOUBLE NORMALIZATION AND BREAKING THINGS!
+            shares = self.get_shares(group, new_locations, name, ref_prod, normalize=False)
             geography_mapping = self.get_geo_mapping(group, new_locations)
 
             # if not, we create it
@@ -921,8 +924,9 @@ class Metals(BaseTransformation):
 
         # Normalize shares to sum to 1
         total = sum(exc["amount"] for exc in new_exchanges)
-        for exc in new_exchanges:
-            exc["amount"] /= total
+        if total > 0:
+            for exc in new_exchanges:
+                exc["amount"] /= total
 
         for dataset in new_datasets:
             self.database.append(dataset)
