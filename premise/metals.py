@@ -786,7 +786,9 @@ class Metals(BaseTransformation):
 
                 self.write_log(ds, "updated")
 
-    def get_shares(self, df: pd.DataFrame, new_locations: dict, name, ref_prod, normalize=True) -> dict:
+    def get_shares(
+        self, df: pd.DataFrame, new_locations: dict, name, ref_prod, normalize=True
+    ) -> dict:
         """
         Get shares of each location in the dataframe.
         :param df: Dataframe with mining shares
@@ -895,7 +897,9 @@ class Metals(BaseTransformation):
 
             # fetch shares for each location in df
             # Do not normalize yet - THIS WAS CAUSING A DOUBLE NORMALIZATION AND BREAKING THINGS!
-            shares = self.get_shares(group, new_locations, name, ref_prod, normalize=False)
+            shares = self.get_shares(
+                group, new_locations, name, ref_prod, normalize=False
+            )
             geography_mapping = self.get_geo_mapping(group, new_locations)
 
             # if not, we create it

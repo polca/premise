@@ -139,6 +139,7 @@ def clean_up(exc):
 
     return exc
 
+
 def _load_mining_shares_mapping_for_validation():
     """
     Minimal local loader to avoid importing metals.py and creating a cycle.
@@ -148,6 +149,7 @@ def _load_mining_shares_mapping_for_validation():
     df = pd.read_excel(fp, sheet_name="Shares_mapping")
     df.columns = df.columns.str.replace("Year ", "", regex=False)
     return df
+
 
 class BaseDatasetValidator:
     """
@@ -2660,8 +2662,8 @@ class MetalsValidation(BaseDatasetValidator):
         country_codes["France (French Guiana)"] = "GF"
 
         # Group df by metal
-        for metal in mining_shares_df['Metal'].unique():
-            metal_df = mining_shares_df[mining_shares_df['Metal'] == metal]
+        for metal in mining_shares_df["Metal"].unique():
+            metal_df = mining_shares_df[mining_shares_df["Metal"] == metal]
 
             # Find the 'World' market
             try:
@@ -2685,7 +2687,9 @@ class MetalsValidation(BaseDatasetValidator):
 
             # APPLY THE SAME FILTERING AS metals.py:
             metal_df_filtered = metal_df[metal_df["Work done"] == "Yes"].copy()
-            metal_df_filtered = metal_df_filtered[metal_df_filtered[year_col] >= 0.01].copy()
+            metal_df_filtered = metal_df_filtered[
+                metal_df_filtered[year_col] >= 0.01
+            ].copy()
 
             # Add up the shares in the excel by country (across all the different datasets)
             country_totals_excel = metal_df_filtered.groupby("Country")[year_col].sum()
@@ -2698,12 +2702,16 @@ class MetalsValidation(BaseDatasetValidator):
 
             # Get the shares from the market so we can compare
             actual_shares = {}
-            for exc in market['exchanges']:
-                if exc['type'] == 'technosphere' and exc.get('location') and exc['unit'] == 'kilogram':
-                    loc = exc['location']
+            for exc in market["exchanges"]:
+                if (
+                    exc["type"] == "technosphere"
+                    and exc.get("location")
+                    and exc["unit"] == "kilogram"
+                ):
+                    loc = exc["location"]
                     if loc not in actual_shares:
                         actual_shares[loc] = 0
-                    actual_shares[loc] += exc['amount']
+                    actual_shares[loc] += exc["amount"]
 
             # Get primary share for this metal
             primary_share = self.get_primary_share_for_metal(metal)
@@ -2718,7 +2726,11 @@ class MetalsValidation(BaseDatasetValidator):
                 actual = actual_shares.get(country_short, 0)
 
                 if expected > 0.01:  # Only check significant shares
-                    relative_error = abs(actual - expected) / expected if expected > 0 else float('inf')
+                    relative_error = (
+                        abs(actual - expected) / expected
+                        if expected > 0
+                        else float("inf")
+                    )
 
                     if relative_error > 0.3:  # More than 30% error
                         message = (
@@ -2731,7 +2743,7 @@ class MetalsValidation(BaseDatasetValidator):
                             market,
                             "metal market share mismatch",
                             message,
-                            issue_type="major"
+                            issue_type="major",
                         )
 
     def get_primary_share_for_metal(self, metal):
@@ -2755,10 +2767,3 @@ class MetalsValidation(BaseDatasetValidator):
             return primary_shares[2020]
         else:
             return 1.0
-
-
-
-
-
-
-
