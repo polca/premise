@@ -226,8 +226,15 @@ def adjust_efficiency(dataset: dict, fuels_specs: dict, fuel_map_reverse: dict) 
                     # first, fetch expected efficiency
                     expected_efficiency = v[1][dataset["location"]]
 
+                    if expected_efficiency in (0.0, 1.0):
+                        continue
+
                     # then, fetch the current efficiency
                     current_efficiency = dataset.get("current efficiency")
+
+                    if expected_efficiency in (0.0, 1.0):
+                        continue
+
                     if current_efficiency is None:
                         current_efficiency = find_fuel_efficiency(
                             dataset=dataset,
@@ -237,18 +244,16 @@ def adjust_efficiency(dataset: dict, fuels_specs: dict, fuel_map_reverse: dict) 
                         )
                         dataset["current efficiency"] = current_efficiency
 
-                    if expected_efficiency in [0.0, 1.0] or current_efficiency in [
-                        0.0,
-                        1.0,
-                    ]:
-                        print(
-                            f"Stopping: Efficiency factor for {dataset['name']} in {dataset['location']} is {current_efficiency}"
-                            f"and expected efficiency is {expected_efficiency}."
-                        )
-                        continue
+                    # we bound the final efficiency to (0.05, 0.6)
 
-                    # finally, calculate the scaling factor
-                    scaling_factor = current_efficiency / expected_efficiency
+                    lower_bound = expected_efficiency / 0.60
+                    upper_bound = expected_efficiency / 0.05
+
+                    scaling_factor = np.clip(
+                        current_efficiency / expected_efficiency,
+                        lower_bound,
+                        upper_bound,
+                    )
 
                     if scaling_factor >= 1.5:
                         print(
@@ -1594,6 +1599,7 @@ class ExternalScenario(BaseTransformation):
                         exc["location"],
                     )
                 )
+                new_loc = []
                 if len(regions) == 1:
                     new_loc = regions[0]
 
@@ -1608,9 +1614,11 @@ class ExternalScenario(BaseTransformation):
                         new_loc = "World"
 
                     else:
-                        new_loc = self.find_best_substitute_suppliers(
+                        candidate = self.find_best_substitute_suppliers(
                             new_name, new_ref, regions
                         )
+                        if len(candidate) > 0:
+                            new_loc = candidate[0]["location"]
 
                 if isinstance(new_loc, str):
                     new_loc = [(new_loc, 1.0)]
@@ -1767,6 +1775,7 @@ class ExternalScenario(BaseTransformation):
                         exc for exc in ds["exchanges"] if exc["type"] == "production"
                     ]
                     # add an exchange from a new supplier
+                    new_loc = []
                     if ds["location"] in ["GLO", "RoW"] and "World" in regions:
                         new_loc = "World"
                     elif ds["location"] in regions:
@@ -1774,9 +1783,11 @@ class ExternalScenario(BaseTransformation):
                     elif self.geo.ecoinvent_to_iam_location(ds["location"]) in regions:
                         new_loc = self.geo.ecoinvent_to_iam_location(ds["location"])
                     else:
-                        new_loc = self.find_best_substitute_suppliers(
+                        candidate = self.find_best_substitute_suppliers(
                             new_name, new_ref, regions
                         )
+                        if len(candidate) > 0:
+                            new_loc = candidate[0]["location"]
 
                     if isinstance(new_loc, str):
                         new_loc = [(new_loc, 1.0)]
@@ -1847,7 +1858,10 @@ class ExternalScenario(BaseTransformation):
                 )
             )
         )
-        return [(x[1], y) for x, y in suppliers.items()]
+        if len(suppliers) > 0:
+            return suppliers.sort(key=lambda x: x["share"], reverse=True)[0]
+        else:
+            return []
 
     def write_log(self, dataset, status="created"):
         """

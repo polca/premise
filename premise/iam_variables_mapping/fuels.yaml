@@ -222,7 +222,7 @@ biogas:
       reference product:
       - biogas
     mask:
-    - market
+      - market
 waste:
   lhv:
     unit: megajoule

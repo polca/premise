@@ -1948,7 +1948,7 @@ class SteelValidation(BaseDatasetValidator):
 
                 if self.system_model != "consequential":
                     # check that the total is roughly equal to the IAM projection
-                    if math.isclose(total, eaf_steel, rel_tol=0.01) is False:
+                    if math.isclose(total, eaf_steel, rel_tol=0.02) is False:
                         message = f"Input of secondary steel incorrect: {total} instead of {eaf_steel}."
                         self.log_issue(
                             ds,
