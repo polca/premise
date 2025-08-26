@@ -329,9 +329,11 @@ class PathwaysDataPackage:
         df["unit"] = df["variables"].map(data.attrs["unit"])
         # add units from extra_units if variable is in extra_units
         df["unit"] = df.apply(
-            lambda row: extra_units[row["variables"]]
-            if row["variables"] in extra_units
-            else row["unit"],
+            lambda row: (
+                extra_units[row["variables"]]
+                if row["variables"] in extra_units
+                else row["unit"]
+            ),
             axis=1,
         )
 
