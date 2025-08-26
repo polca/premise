@@ -1,0 +1,328 @@
+aluminium, cast alloy:
+  - name:
+      all:
+        - startswith: treatment of aluminium scrap
+        - contains: post-consumer, prepared for recycling, at refiner
+    reference product:
+      equals: aluminium, cast alloy
+    location:
+      equals: RER
+    shares:
+      2020: 0.146745562
+  - name:
+      all:
+        - startswith: treatment of aluminium scrap
+        - contains: new, at refiner
+    reference product:
+      equals: aluminium, cast alloy
+    location:
+      equals: RoW
+    shares:
+      2020: 0.740479761
+  - name:
+      all:
+        - startswith: treatment of aluminium scrap
+        - contains: new, at refiner
+    reference product:
+      equals: aluminium, cast alloy
+    location:
+      equals: RER
+    shares:
+      2020: 0.112774677
+cobalt:
+  - name:
+      equals: treatment of used Li-ion battery, hydrometallurgical treatment
+    reference product:
+      equals: cobalt
+    location:
+      equals: GLO
+    shares:
+      2020: 0.639097744
+  - name:
+      equals: treatment of used Li-ion battery, pyrometallurgical treatment
+    reference product:
+      equals: cobalt
+    location:
+      equals: GLO
+    shares:
+      2020: 0.360902256
+copper, cathode:
+  - name:
+      all:
+        - startswith: treatment of metal part
+        - contains: electrolytic refining
+    reference product:
+      equals: copper, cathode
+    location:
+      equals: SE
+    shares:
+      2020: 1.11753E-05
+  - name:
+      all:
+        - startswith: treatment of metal part
+        - contains: electrolytic refining
+    reference product:
+      equals: copper, cathode
+    location:
+      equals: RoW
+    shares:
+      2020: 0.004215965
+  - name:
+      startswith: treatment of copper cake
+    reference product:
+      equals: copper, cathode
+    location:
+      equals: GLO
+    shares:
+      2020: 0.01103851
+  - name:
+      all:
+        - startswith: treatment of copper scrap
+        - contains: electrolytic refining
+    reference product:
+      equals: copper, cathode
+    location:
+      equals: RoW
+    shares:
+        2020: 0.754099222
+  - name:
+      all:
+        - startswith: treatment of copper scrap
+        - contains: electrolytic refining
+    reference product:
+      equals: copper, cathode
+    location:
+      equals: RER
+    shares:
+      2020: 0.170802662
+  - name:
+      all:
+        - startswith: treatment of non-Fe-Co-metals
+        - contains: pyrometallurgical processing
+    reference product:
+      equals: copper, cathode
+    location:
+      equals: GLO
+    shares:
+      2020: 1.0696E-05
+  - name:
+      contains: treatment of used cable
+    reference product:
+      equals: copper, cathode
+    location:
+      equals: GLO
+    shares:
+      2020: 0.05981709
+  - name:
+      all:
+        - startswith: treatment of non-Fe-Co-metals
+        - contains: hydrometallurgical processing
+    reference product:
+      equals: copper, cathode
+    location:
+      equals: GLO
+    shares:
+      2020: 4.67954E-06
+gold:
+  - name:
+      equals: treatment of precious metal from electronics scrap, in anode slime, precious metal extraction
+    reference product:
+      equals: gold
+    location:
+      equals: GLO
+    shares:
+      2020: 0.002643692
+  - name:
+      equals: treatment of precious metal from electronics scrap, in anode slime, precious metal extraction
+    reference product:
+      equals: gold
+    location:
+      equals: RoW
+    shares:
+      2020: 0.997356308
+lead:
+  - name:
+      equals: treatment of scrap lead acid battery, remelting
+    reference product:
+      equals: lead
+    location:
+      equals: RER
+    shares:
+      2020: 0.330501558
+  - name:
+      equals: treatment of electronics scrap, metals recovery in copper smelter
+    reference product:
+      equals: lead
+    location:
+      equals: RoW
+    shares:
+      2020: 0.000273913
+  - name:
+      equals: treatment of electronics scrap, metals recovery in copper smelter
+    reference product:
+      equals: lead
+    location:
+      equals: SE
+    shares:
+      2020: 7.2606E-07
+  - name:
+      equals: treatment of scrap lead acid battery, remelting
+    reference product:
+      equals: lead
+    location:
+      equals: RoW
+    shares:
+      2020: 0.669223803
+lithium carbonate, battery grade:
+  - name:
+      startswith: treatment of
+    reference product:
+      equals: lithium carbonate
+    location:
+      equals: GLO
+    shares:
+      2020: 1
+manganese:
+  - name:
+      equals: treatment of non-Fe-Co-metals, from used Li-ion battery, hydrometallurgical processing
+    reference product:
+      equals: manganese
+    location:
+      equals: GLO
+    shares:
+      2020: 1
+nickel, class 1:
+  - name:
+      equals: treatment of metal part of electronics scrap, in copper, anode, by electrolytic refining
+    reference product:
+      equals: nickel, class 1
+    location:
+      equals: SE
+    shares:
+      2020: 0.002643692
+  - name:
+      equals: treatment of metal part of electronics scrap, in copper, anode, by electrolytic refining
+    reference product:
+      equals: nickel, class 1
+    location:
+      equals: RoW
+    shares:
+      2020: 0.997356308
+palladium:
+  - name:
+      equals: treatment of automobile catalyst
+    reference product:
+      equals: palladium
+    location:
+      equals: RoW
+    shares:
+      2020: 0.081977843
+  - name:
+      equals: treatment of automobile catalyst
+    reference product:
+      equals: palladium
+    location:
+      equals: RER
+    shares:
+      2020: 0.040484987
+  - name:
+      equals: treatment of precious metal from electronics scrap, in anode slime, precious metal extraction
+    reference product:
+      equals: palladium
+    location:
+      equals: SE
+    shares:
+      2020: 0.002319938
+  - name:
+      equals: treatment of precious metal from electronics scrap, in anode slime, precious metal extraction
+    reference product:
+      equals: palladium
+    location:
+      equals: 0.875217233
+    shares:
+      2020: RoW
+platinum:
+  - name:
+      equals: treatment of automobile catalyst
+    reference product:
+      equals: platinum
+    location:
+      equals: RoW
+    shares:
+      2020: 0.669410001
+  - name:
+      equals: treatment of automobile catalyst
+    reference product:
+      equals: platinum
+    location:
+      equals: RER
+    shares:
+      2020: 0.330589999
+silver:
+  - name:
+      equals: treatment of crust from Parkes process for lead production
+    reference product:
+      equals: silver
+    location:
+      equals: GLO
+    shares:
+      2020: 0.700186745
+  - name:
+      equals: treatment of precious metal from electronics scrap, in anode slime, precious metal extraction
+    reference product:
+      equals: silver
+    location:
+      equals: SE
+    shares:
+      2020: 0.000512112
+  - name:
+      equals: treatment of precious metal from electronics scrap, in anode slime, precious metal extraction
+    reference product:
+      equals: silver
+    location:
+      equals: RoW
+    shares:
+      2020: 0.19319877
+  - name:
+      equals: treatment of waste x-ray film
+    reference product:
+      equals: silver
+    location:
+      equals: GLO
+    shares:
+      2020: 0.106102372
+zinc concentrate:
+  - name:
+      equals: metalliferous hydroxide sludge to market for zinc concentrate
+    reference product:
+      equals: zinc concentrate
+    location:
+      equals: GLO
+    shares:
+      2020: 1
+
+
+
+####### examples
+#aluminium, primary, ingot:
+#  - name:
+#      startswith: treatment of aluminium scrap
+#    reference product:
+#      equals: aluminium, primary, ingot
+#    location:
+#      equals: GLO
+#    shares:
+#      2020: 1.0
+#
+#zinc:
+#  - name:
+#      contains: zinc scrap
+#    reference product:
+#      equals: zinc
+#    location:
+#      either:
+#        - equals: CH
+#        - equals: GLO
+#    shares:
+#      2020: 0.5
+#      2030: 0.7
