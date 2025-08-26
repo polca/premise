@@ -410,9 +410,10 @@ class PathwaysDataPackage:
 
         # also, remove "pathways/" from the path of each resource
         for resource in data["resources"]:
-            resource["path"] = (
-                resource["path"].replace("pathways/", "").replace("pathways\\", "")
-            )
+            path = resource["path"]
+            path = path.replace("pathways/", "").replace("pathways\\", "")
+            path = path.replace("\\", "/")
+            resource["path"] = path
 
         # save it back as a json file
         with open(Path.cwd() / "pathways" / "datapackage.json", "w") as fp:
