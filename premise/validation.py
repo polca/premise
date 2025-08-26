@@ -364,8 +364,11 @@ class BaseDatasetValidator:
         for loc in new_locations:
             if loc not in original_locations:
                 if loc not in self.regions:
-                    message = f"New location found: {loc}"
-                    self.log_issue({"location": loc}, "new location", message)
+                    try:
+                        self.geo.ecoinvent_to_iam_location(loc)
+                    except ValueError:
+                        message = f"New unregistered location found: {loc}"
+                        self.log_issue({"location": loc}, "new location", message)
 
     def validate_dataset_structure(self):
         # Check that all datasets have a list of exchanges and each exchange has a type
