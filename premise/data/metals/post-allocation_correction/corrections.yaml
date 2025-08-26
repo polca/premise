@@ -2653,6 +2653,18 @@
     categories: natural resource::in ground
     amount: 0.136553987 # original content multiplied by 0.136553987 (same ratio as boron)
     unit: kilogram
+- name: aluminium hydroxide production
+  reference product: gallium, in Bayer liquor from aluminium production
+  location: CN
+  unit: kilogram
+  ecoinvent version: # Previous versions included a flow of gallium. Not the case from ei3.11
+    - 3.11
+  additional flow:
+  - name: Gallium
+    categories: natural resource::in ground
+    amount: 1.0
+    unit: kilogram
+
 
 
 

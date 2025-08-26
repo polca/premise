@@ -28,6 +28,7 @@ from .transformation import (
     ws,
 )
 from .utils import DATA_DIR
+from .validation import MetalsValidation
 
 logger = create_logger("metal")
 
@@ -60,6 +61,20 @@ def _update_metals(scenario, version, system_model):
     scenario["database"] = metals.database
     scenario["cache"] = metals.cache
     scenario["index"] = metals.index
+
+    validate = MetalsValidation(
+        model=scenario["model"],
+        scenario=scenario["pathway"],
+        year=scenario["year"],
+        regions=scenario["iam data"].regions,
+        database=metals.database,
+        iam_data=scenario["iam data"],
+    )
+
+    validate.prim_sec_split = metals.prim_sec_split
+    validate.interpolate_by_year = interpolate_by_year
+    validate.metals_list = load_mining_shares_mapping()["Metal"].unique().tolist()
+    validate.run_metals_checks()
 
     return scenario
 
@@ -132,6 +147,24 @@ def load_mining_shares_mapping():
         )
 
     return df
+
+
+def load_primary_secondary_split():
+    """
+    Load mapping for primary and secondary split of metal markets.
+    """
+    path = DATA_DIR / "metals" / "primary_secondary_split.yaml"
+    with open(path, "r", encoding="utf-8") as stream:
+        return yaml.safe_load(stream)
+
+
+def load_secondary_activity_routes():
+    """
+    Load mapping for secondary activity routes.
+    """
+    path = DATA_DIR / "metals" / "secondary_supply_activities.yaml"
+    with open(path, "r", encoding="utf-8") as stream:
+        return yaml.safe_load(stream) or {}
 
 
 def load_activities_mapping():
@@ -305,6 +338,82 @@ def update_exchanges(
     return activity
 
 
+def filter_technology(dataset_names, database):
+    return list(
+        ws.get_many(
+            database,
+            ws.either(*[ws.contains("name", name) for name in dataset_names]),
+        )
+    )
+
+
+def build_ws_filter(field: str, query: dict):
+    """
+    Given a field and a query like {'contains': 'foo'}, return a filter function.
+    """
+
+    if not isinstance(query, list):
+        queries = [query]
+    else:
+        queries = query
+
+    filters = []
+
+    for query in queries:
+        for operator, value in query.items():
+            if value == "":
+                continue
+
+            if operator == "contains":
+                filters.append(ws.contains(field, value))
+            elif operator == "equals":
+                filters.append(ws.equals(field, value))
+            elif operator == "startswith":
+                filters.append(ws.startswith(field, value))
+            elif operator == "all":
+                for q in value:
+                    filters += build_ws_filter(field, q)
+
+            elif operator == "either":
+                res = []
+                for q in value:
+                    res += build_ws_filter(field, q)
+                if res:
+                    filters.append(ws.either(*res))
+
+            else:
+                raise ValueError(
+                    f"Unsupported operator {operator} for field {field} in query {query}"
+                )
+
+    if not filters:
+        raise ValueError(f"No valid filters provided for field {field}")
+
+    return filters
+
+
+def interpolate_by_year(target_year: int, data: dict) -> float:
+    """
+    Interpolate (or extrapolate) a value for the given `target_year`
+    from a dictionary like {2020: 0.1, 2030: 0.5, ...}.
+    """
+    data = {int(k): v for k, v in data.items()}
+    years = sorted(data)
+
+    if target_year in years:
+        return data[target_year]
+    elif target_year < years[0]:
+        return data[years[0]]
+    elif target_year > years[-1]:
+        return data[years[-1]]
+    else:
+        for i in range(len(years) - 1):
+            y0, y1 = years[i], years[i + 1]
+            if y0 < target_year < y1:
+                v0, v1 = data[y0], data[y1]
+                return v0 + (v1 - v0) * (target_year - y0) / (y1 - y0)
+
+
 class Metals(BaseTransformation):
     """
     Class that modifies metal demand of different technologies
@@ -434,13 +543,18 @@ class Metals(BaseTransformation):
             for _, row in self.metals_transport.iterrows()
         }
 
-    def filter_technology(self, dataset_names):
+        self.prim_sec_split = load_primary_secondary_split()
+        self.secondary_activity_routes = load_secondary_activity_routes()
+
+    def update_metals_use_in_database(self):
         """
-        Efficiently return all datasets whose 'name' is in dataset_names.
+        Update the database with metals use factors.
         """
-        return [
-            ds for name in dataset_names for ds in self.db_index_by_name.get(name, [])
-        ]
+
+        for dataset in self.database:
+            if dataset["name"] in self.rev_activities_metals_map:
+                origin_var = self.rev_activities_metals_map[dataset["name"]]
+                self.update_metal_use(dataset, origin_var)
 
     @lru_cache()
     def get_metal_market_dataset(self, metal_activity_name: str):
@@ -464,37 +578,32 @@ class Metals(BaseTransformation):
         else:
             raise ValueError(f"Invalid metal activity name: {metal_activity_name}")
 
-    def update_metals_use_in_database(self):
-        """
-        Update the database with metal use factors using a pre-indexed approach.
-        """
-
-        filtered_index = {
-            k: self.db_index_by_name.get(k, []) for k in self.rev_activities_metals_map
-        }
-
-        for activity_name, datasets in filtered_index.items():
-            technology = self.rev_activities_metals_map[activity_name]
-            for dataset in datasets:
-                self.update_metal_use(dataset, technology)
-
-    def update_metal_use(self, dataset: dict, technology: str) -> None:
+    def update_metal_use(
+        self,
+        dataset: dict,
+        technology: str,
+    ) -> None:
         """
         Update metal use based on metal intensity data.
+        :param dataset: dataset to adjust metal use for
+        :param technology: metal intensity variable name to look up
+        :return: Does not return anything. Modified in place.
         """
 
+        # Pre-fetch relevant data to minimize DataFrame operations
         tech_rows = self.extended_dataframe.loc[
             self.extended_dataframe["ecoinvent_technology"] == dataset["name"]
         ]
 
         if tech_rows.empty:
-            print(f"No matching rows for {dataset['name']}, {dataset['location']}.")
+            logger.warning(
+                f"No matching rows for {dataset['name']}, {dataset['location']}."
+            )
             return
 
         conversion_factor = self.conversion_factors_dict.get(
-            tech_rows["ecoinvent_technology"].iloc[0], 1
+            tech_rows["ecoinvent_technology"].iloc[0], None
         )
-
         available_metals = (
             self.precomputed_medians.sel(origin_var=technology)
             .dropna(dim="metal", how="all")["metal"]
@@ -504,13 +613,14 @@ class Metals(BaseTransformation):
         unique_final_technologies = tech_rows["final_technology"].unique()
 
         for final_technology in unique_final_technologies:
+
             demanding_process_rows = tech_rows[
                 (tech_rows["final_technology"] == final_technology)
                 & tech_rows["demanding_process"].notna()
             ]
 
             if not demanding_process_rows.empty:
-                for _, row in demanding_process_rows.iterrows():
+                for index, row in demanding_process_rows.iterrows():
                     self.process_metal_update(
                         metal_row=row,
                         dataset=dataset,
@@ -676,7 +786,9 @@ class Metals(BaseTransformation):
 
                 self.write_log(ds, "updated")
 
-    def get_shares(self, df: pd.DataFrame, new_locations: dict, name, ref_prod) -> dict:
+    def get_shares(
+        self, df: pd.DataFrame, new_locations: dict, name, ref_prod, normalize=True
+    ) -> dict:
         """
         Get shares of each location in the dataframe.
         :param df: Dataframe with mining shares
@@ -710,14 +822,15 @@ class Metals(BaseTransformation):
         shares = {k: v for k, v in shares.items() if v >= 0.01}
         if not shares:
             return {}
-        total = sum(shares.values())
-        shares = {k: v / total for k, v in shares.items()}
+
+        if normalize:
+            total = sum(shares.values())
+            shares = {k: v / total for k, v in shares.items()}
 
         return shares
 
     def get_geo_mapping(self, df: pd.DataFrame, new_locations: dict) -> dict:
         mapping = {}
-        grouped = df.groupby("Country")
 
         regions_df = df[["Country", "Region"]].drop_duplicates()
         for long_loc, iso2 in new_locations.items():
@@ -741,107 +854,269 @@ class Metals(BaseTransformation):
             self.db_index[name][ref_prod].append(ds)
             self.db_index_full[name][ref_prod][location].append(ds)
 
-    def create_market(self, metal, df):
-        """
-        Create a market dataset for a given metal using region-specific mining and transport exchanges.
-        """
+    def create_region_specific_markets(self, df: pd.DataFrame) -> List[dict]:
+        new_exchanges, new_datasets = [], []
 
-        metal_name = metal[0].lower() + metal[1:]
-        dataset_name = f"market for {metal_name}"
-        reference_product = metal_name
+        df["Process_str"] = df["Process"].apply(str)
+        df["Reference_product_str"] = df["Reference product"].apply(str)
+
+        for (_, _), group in df.groupby(["Process_str", "Reference_product_str"]):
+            proc_filter = eval(group["Process"].iloc[0])
+            ref_prod_filter = eval(group["Reference product"].iloc[0])
+
+            try:
+                filters = build_ws_filter("name", proc_filter) + build_ws_filter(
+                    "reference product", ref_prod_filter
+                )
+                subset = list(ws.get_many(self.database, *filters))
+
+            except Exception as e:
+                logger.error(
+                    f"[Metals] Error fetching datasets for process '{proc_filter}' and reference product '{ref_prod_filter}': {e}"
+                )
+                print(
+                    f"failed with process '{proc_filter}' and reference product '{ref_prod_filter}"
+                )
+                continue
+
+            if not subset:
+                logger.warning(
+                    f"[Metals] No datasets found for filter combination:\n"
+                    f"  name: {proc_filter}\n"
+                    f"  reference product: {ref_prod_filter}"
+                )
+                continue
+
+            first_match = subset[0]
+            name = first_match["name"]
+            ref_prod = first_match["reference product"]
+
+            new_locations = {
+                c: self.country_codes[c] for c in group["Country"].unique()
+            }
+
+            # fetch shares for each location in df
+            # Do not normalize yet - THIS WAS CAUSING A DOUBLE NORMALIZATION AND BREAKING THINGS!
+            shares = self.get_shares(
+                group, new_locations, name, ref_prod, normalize=False
+            )
+            geography_mapping = self.get_geo_mapping(group, new_locations)
+
+            # if not, we create it
+            datasets = self.create_new_mining_activity(
+                name=name,
+                reference_product=ref_prod,
+                new_locations=new_locations,
+                geography_mapping=geography_mapping,
+            )
+
+            new_datasets.extend(datasets.values())
+
+            new_exchanges.extend(
+                [
+                    {
+                        "name": k[0],
+                        "product": k[1],
+                        "location": k[2],
+                        "unit": "kilogram",
+                        "amount": share,
+                        "type": "technosphere",
+                    }
+                    for k, share in shares.items()
+                ]
+            )
+
+        # Normalize shares to sum to 1
+        total = sum(exc["amount"] for exc in new_exchanges)
+        if total > 0:
+            for exc in new_exchanges:
+                exc["amount"] /= total
+
+        for dataset in new_datasets:
+            self.database.append(dataset)
+            self.add_to_index(dataset)
+            self.write_log(dataset, "created")
+
+        return new_exchanges
+
+    def create_market(self, metal, df) -> Optional[dict]:
+        """
+        Create regionalized technosphere exchanges for a metal market based on production shares.
+
+        This function reads a DataFrame containing information on mining activity filters
+        (process and reference product), countries, and associated production shares.
+        For each unique combination of process and reference product filters, it:
+        - Finds matching datasets in the database using flexible filter logic.
+        - Derives geographic mappings and production shares.
+        - Creates new mining activities for countries where no dataset exists yet.
+        - Appends these to the database and builds the corresponding technosphere exchanges.
+
+        The function also normalizes all generated exchanges to sum to 1.
+
+        Args:
+            df (pd.DataFrame): A dataframe containing the following columns:
+                - 'Process': dict defining filter(s) for activity names.
+                - 'Reference product': dict defining filter(s) for reference products.
+                - 'Country': country names to create new datasets for.
+                - Production share columns per year (e.g., '2020', '2030', ...)
+        """
+        # check if market already exists
+        # if so, remove it
+
+        primary_exchanges = self.create_region_specific_markets(df)
+
+        if not primary_exchanges:
+            logger.warning(
+                f"[Metals] No primary exchanges created for {metal}. Skipping market creation."
+            )
+            return None
+
+        ref_prod = metal
+        market_name = f"market for {ref_prod}"
 
         dataset = {
-            "name": dataset_name,
+            "name": market_name,
             "location": "World",
-            "reference product": reference_product,
-            "unit": "kilogram",
-            "production amount": 1,
-            "comment": "Created by premise",
-            "code": str(uuid.uuid4()),
             "exchanges": [
                 {
-                    "name": dataset_name,
-                    "product": reference_product,
+                    "name": market_name,
+                    "product": ref_prod,
                     "location": "World",
                     "amount": 1,
                     "type": "production",
                     "unit": "kilogram",
                 }
             ],
+            "reference product": ref_prod,
+            "unit": "kilogram",
+            "production amount": 1,
+            "comment": "Created by premise",
+            "code": str(uuid.uuid4()),
         }
 
-        # Add mining exchanges
-        new_exchanges = self.create_region_specific_markets(df)
-        dataset["exchanges"].extend(new_exchanges)
+        _, _, p_share, s_share = self.get_market_split_shares(metal)
 
-        # Add transport exchanges
+        # add mining exchanges
+        # dataset["exchanges"].extend(self.create_region_specific_markets(df))
+        for exc in primary_exchanges:
+            exc["amount"] *= p_share
+        dataset["exchanges"].extend(primary_exchanges)
+
+        # Add burden-free secondary market exchange
+        secondary_exchanges = self.build_secondary_market_exchanges(
+            dataset["reference product"], s_share
+        )
+        if secondary_exchanges:
+            dataset["exchanges"].extend(secondary_exchanges)
+
+        # add transport exchanges
         trspt_exc = self.add_transport_to_market(dataset, metal)
-        if trspt_exc:
+        for exc in trspt_exc:
+            exc["amount"] *= p_share
+        if len(trspt_exc) > 0:
             dataset["exchanges"].extend(trspt_exc)
 
-        # Remove None entries
-        dataset["exchanges"] = [exc for exc in dataset["exchanges"] if exc]
+        # # filter out None
+        dataset["exchanges"] = [
+            exc
+            for exc in dataset["exchanges"]
+            if self.activity_exists(exc) or exc["type"] == "production"
+        ]
 
-        # Remove old market datasets (excluding "World")
-        for old_market in self.db_index.get(dataset_name, {}).get(
-            reference_product, []
+        # remove old market dataset
+        for old_market in ws.get_many(
+            self.database,
+            ws.equals("name", dataset["name"]),
+            ws.equals("reference product", dataset["reference product"]),
+            ws.exclude(ws.equals("location", "World")),
         ):
-            if old_market["location"] != "World":
-                self.remove_from_index(old_market)
-                assert not self.is_in_index(old_market), (
-                    f"Market {(old_market['name'], old_market['reference product'], old_market['location'])} "
-                    f"still in index"
-                )
+            self.remove_from_index(old_market)
+            assert (
+                self.is_in_index(old_market) is False
+            ), f"Market {(old_market['name'], old_market['reference product'], old_market['location'])} still in index"
 
         return dataset
 
-    def create_region_specific_markets(self, df: pd.DataFrame) -> List[dict]:
-        new_exchanges = []
+    def activity_exists(self, exchange: dict) -> bool:
+        """Check if an activity referenced by an exchange exists in the database."""
+        if exchange.get("type") != "technosphere":
+            return True
 
-        all_new_datasets = []
-        for (name, ref_prod), group in df.groupby(["Process", "Reference product"]):
-
-            new_locations = {
-                c: self.country_codes[c]
-                for c in group["Country"].unique()
-                if c in self.country_codes
-            }
-
-            shares = self.get_shares(group, new_locations, name, ref_prod)
-            geography_mapping = self.get_geo_mapping(group, new_locations)
-
-            new_datasets = self.create_new_mining_activity(
-                name=name,
-                reference_product=ref_prod,
-                new_locations=new_locations,
-                geography_mapping=geography_mapping,
+        activities = list(
+            ws.get_many(
+                self.database,
+                ws.equals("name", exchange["name"]),
+                ws.equals("reference product", exchange["product"]),
+                ws.equals("location", exchange["location"]),
             )
-            all_new_datasets.extend(new_datasets.values())
+        )
 
-            new_exchanges.extend(
-                {
-                    "name": k[0],
-                    "product": k[1],
-                    "location": k[2],
-                    "unit": "kilogram",
-                    "amount": share,
-                    "type": "technosphere",
-                }
-                for k, share in shares.items()
+        return len(activities) > 0
+
+    def substitute_old_markets(self, new_dataset: dict, df_metal: pd.DataFrame) -> None:
+        """
+        Substitute all old market links with the new 'World' market for the given metal key.
+        Uses flexible matching based on Reference product field in Excel.
+        """
+        old_ref_products = set()
+
+        for _, row in df_metal.iterrows():
+            ref_field = row.get("Reference product")
+            if isinstance(ref_field, dict):
+                if "either" in ref_field:
+                    old_ref_products.update(
+                        q.get("equals") for q in ref_field["either"] if "equals" in q
+                    )
+                elif "equals" in ref_field:
+                    old_ref_products.add(ref_field["equals"])
+            elif isinstance(ref_field, str):
+                old_ref_products.add(ref_field)
+
+        for ref_prod in old_ref_products:
+            old_markets = list(
+                ws.get_many(
+                    self.database,
+                    ws.equals("name", f"market for {ref_prod}"),
+                    ws.equals("reference product", ref_prod),
+                    ws.either(
+                        ws.equals("location", "GLO"), ws.equals("location", "RoW")
+                    ),
+                )
             )
 
-        # Normalize shares to sum to 1
-        total = sum(exc["amount"] for exc in new_exchanges)
-        for exc in new_exchanges:
-            exc["amount"] /= total
+            for old_market in old_markets:
+                consumers = [
+                    ds
+                    for ds in self.database
+                    if any(
+                        exc.get("type") == "technosphere"
+                        and exc.get("name") == old_market["name"]
+                        and exc.get("product") == old_market["reference product"]
+                        and exc.get("location") == old_market["location"]
+                        for exc in ds.get("exchanges", [])
+                    )
+                ]
 
-        self.database.extend(all_new_datasets)
-        self.add_to_index(all_new_datasets)
+                for consumer in consumers:
+                    modified = False
+                    for exc in consumer["exchanges"]:
+                        if (
+                            exc.get("name") == old_market["name"]
+                            and exc.get("product") == old_market["reference product"]
+                            and exc.get("location") == old_market["location"]
+                            and exc.get("type") == "technosphere"
+                        ):
+                            exc.update(
+                                {
+                                    "name": new_dataset["name"],
+                                    "product": new_dataset["reference product"],
+                                    "location": new_dataset["location"],
+                                }
+                            )
+                            modified = True
 
-        for dataset in all_new_datasets:
-            self.write_log(dataset, "created")
-
-        return new_exchanges
+                    if modified:
+                        self.write_log(consumer, "relinked to new metal market")
 
     def create_new_mining_activity(
         self,
@@ -850,6 +1125,12 @@ class Metals(BaseTransformation):
         new_locations: dict,
         geography_mapping: dict = None,
     ) -> dict:
+        """
+        Create new mining activities for specified locations if they do not exist.
+
+        We try to use the geography_mapping to find the correct location (Region column) in the database.
+        It falls back to any matching activity if the specified region does not work.
+        """
 
         geo_map_filtered = {
             k: self.db_index_full[name][reference_product][v][0]
@@ -860,7 +1141,44 @@ class Metals(BaseTransformation):
             )
         }
 
+        if (
+            not geo_map_filtered
+            and name in self.db_index_full
+            and reference_product in self.db_index_full[name]
+        ):
+            # Get any available activity to use as proxy
+            available_locations = list(
+                self.db_index_full[name][reference_product].keys()
+            )
+            if available_locations:
+                proxy_activity = self.db_index_full[name][reference_product][
+                    available_locations[0]
+                ][0]
+
+                logger.warning(
+                    f"Falling back to proxy activity for {name}, {reference_product}. "
+                    f"Using location '{available_locations[0]}' for regions: "
+                    f"{[k for k in new_locations.values() if not self.is_in_index({'name': name, 'reference product': reference_product, 'location': k})]}"
+                )
+
+                # Build geo_map_filtered with this proxy for all needed locations
+                geo_map_filtered = {
+                    k: proxy_activity
+                    for k in new_locations.values()
+                    if not self.is_in_index(
+                        {
+                            "name": name,
+                            "reference product": reference_product,
+                            "location": k,
+                        }
+                    )
+                }
+
         if not geo_map_filtered:
+            logger.error(
+                f"Failed to create activities for {name} in locations: "
+                f"{list(new_locations.values())}"
+            )
             return {}
 
         datasets = self.db_index.get(name, {}).get(reference_product, [])
@@ -933,31 +1251,6 @@ class Metals(BaseTransformation):
         dataframe = dataframe.loc[dataframe["Work done"] == "Yes"]
         dataframe = dataframe.loc[~dataframe["Country"].isnull()]
 
-        # filter out rows where "Process" refers to a non-existing process
-        existing_pairs = set(
-            (act["name"], act["reference product"]) for act in self.database
-        )
-
-        dataframe["pair"] = list(
-            zip(dataframe["Process"], dataframe["Reference product"])
-        )
-        dataframe = dataframe[dataframe["pair"].isin(existing_pairs)]
-        dataframe.drop(columns="pair", inplace=True)
-
-        # update certain values under "Process" and "Reference product"
-        # if ecoinvent 3.11 is used
-        if self.version == "3.11":
-            dataframe["Process"] = dataframe["Process"].replace(EI311_NAME_CHANGES)
-            dataframe["Reference product"] = dataframe["Reference product"].replace(
-                EI311_PRODUCT_CHANGES
-            )
-
-            for k, v in EI311_LOCATION_CHANGES.items():
-                dataframe.loc[dataframe["Process"] == k, "Region"] = v
-
-            # we also need to remove "graphite ore mining"
-            dataframe = dataframe.loc[dataframe["Process"] != "graphite ore mining"]
-
         dataframe_shares = dataframe
 
         self.country_codes.update(
@@ -976,10 +1269,140 @@ class Metals(BaseTransformation):
 
         for metal, df_metal in grouped_metal_dfs.items():
             dataset = self.create_market(metal, df_metal)
+            if dataset:
+                self.database.append(dataset)
+                self.add_to_index(dataset)
+                self.write_log(dataset, "created")
+                self.substitute_old_markets(new_dataset=dataset, df_metal=df_metal)
 
-            self.database.append(dataset)
-            self.add_to_index(dataset)
-            self.write_log(dataset, "created")
+    def get_market_split_shares(self, metal_key: str) -> tuple[str, str, float, float]:
+        """
+        For a given metal_key (e.g., 'copper, cathod'), return:
+        - market name
+        - reference product
+        - primary share (interpolated)
+        - secondary share (interpolated)
+
+        For consequential system model, always return 100% primary.
+        """
+        if self.system_model == "consequential":
+            default_name = f"market for {metal_key}"
+            default_reference_product = metal_key
+            return default_name, default_reference_product, 1.0, 0.0
+
+        entry = self.prim_sec_split.get(metal_key, None)
+        if not entry:
+            default_name = f"market for {metal_key}"
+            default_reference_product = metal_key
+            logger.warning(
+                f"[Metals] WARNING: No entry found for metal key: {metal_key} in 'primary_secondary_split.yaml'"
+            )
+            return default_name, default_reference_product, 1.0, 0.0
+
+        name = entry["name"]
+        reference_product = entry["reference product"]
+
+        p = interpolate_by_year(self.year, entry["shares"]["primary"])
+        s = interpolate_by_year(self.year, entry["shares"]["secondary"])
+        total = p + s
+
+        if total > 1:
+            logger.warning(
+                f"[Metals] WARNING: Total shares for {metal_key} exceed 1: {total}. Normalizing."
+            )
+
+        return (
+            name,
+            reference_product,
+            p / total if total > 0 else 0,  # Avoid division by zero
+            s / total if total > 0 else 0,  # Avoid division by zero
+        )
+
+    def build_secondary_market_exchanges(self, metal: str, s_share: float) -> list:
+        """
+        Build technosphere exchanges from flexible secondary activity filters in YAML.
+        """
+
+        # Check if secondary supply data is missing when it shouldn't be
+        if metal not in self.secondary_activity_routes:
+            # Only warn if the split actually defines a non-zero secondary share
+            entry = self.prim_sec_split.get(metal.lower())
+            if entry:
+                try:
+                    s = interpolate_by_year(self.year, entry["shares"]["secondary"])
+                    if s > 0:
+                        logger.warning(
+                            f"[Metals] Missing secondary supply activities for '{metal}' "
+                            f"despite non-zero secondary share ({s})."
+                        )
+                except Exception:
+                    logger.warning(
+                        f"[Metals] Could not interpolate secondary share for '{metal}'."
+                    )
+
+            return []
+
+        route_entries = self.secondary_activity_routes[metal]
+
+        # 1. Interpolate shares and cache them
+        entries_with_shares = []
+        total_relative_share = 0
+
+        for entry in route_entries:
+            try:
+                share = interpolate_by_year(self.year, entry["shares"])
+                entries_with_shares.append((entry, share))
+                total_relative_share += share
+            except Exception:
+                logger.warning(
+                    f"[Metals] Failed to interpolate shares for {metal} in entry: {entry}"
+                )
+                continue
+
+        if total_relative_share == 0:
+            logger.warning(
+                f"[Metals] Total relative share for {metal} is zero, no exchanges created."
+            )
+            return []
+
+        exchanges = []
+
+        # 2. Build secondary exchanges with normalized amount
+
+        for entry, share in entries_with_shares:
+            filters = []
+            for field in ["name", "reference product", "location"]:
+                if field in entry:
+                    res = build_ws_filter(field, entry[field])
+                    filters += res
+
+            candidates = list(ws.get_many(self.database, *filters))
+
+            if not candidates:
+                logger.warning(f"[Metals] No candidates found for entry: {entry}")
+                continue
+            if len(candidates) > 1:
+                logger.warning(
+                    f"[Metals] Multiple candidates found for entry: {entry}, using the first one."
+                )
+
+            ds = candidates[0]
+
+            exchanges.append(
+                {
+                    "name": ds["name"],
+                    "product": ds["reference product"],
+                    "location": ds["location"],
+                    "amount": s_share
+                    * (
+                        share / total_relative_share
+                    ),  # Normalize by total relative share
+                    "type": "technosphere",
+                    "unit": ds["unit"],
+                }
+            )
+
+        return exchanges
 
     def write_log(self, dataset, status="created"):
         """
