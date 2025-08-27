@@ -1530,6 +1530,15 @@ class IAMDataCollection:
         ):
             data_to_return = data_to_return.groupby("variables").sum(dim="variables")
 
+        # iterate through variables, and if the sum for the World region
+        # is zzero, we fill it with the sum of all regions
+        for var in data_to_return.variables.values:
+            if "World" in data_to_return.region.values:
+                if data_to_return.sel(region="World", variables=var).sum() == 0:
+                    data_to_return.loc[dict(region="World", variables=var)] = data_to_return.sum(
+                        dim="region"
+                    ).sel(variables=var)
+
         if fill:
             # if fill, we fill zero values
             # with the nearest year's value
