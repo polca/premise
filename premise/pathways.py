@@ -319,7 +319,9 @@ class PathwaysDataPackage:
         array = xr.concat(data_list, dim="scenario")
 
         # make sure pathways/scenario_data directory exists
-        (Path.cwd() / "pathways_temp" / "scenario_data").mkdir(parents=True, exist_ok=True)
+        (Path.cwd() / "pathways_temp" / "scenario_data").mkdir(
+            parents=True, exist_ok=True
+        )
         # save the xarray as csv
         df = array.to_dataframe().reset_index()
 
@@ -348,11 +350,16 @@ class PathwaysDataPackage:
         df = df.dropna(subset=["value"])
 
         # if scenario_data file already exists, delete it
-        if (Path.cwd() / "pathways_temp" / "scenario_data" / "scenario_data.csv").exists():
-            (Path.cwd() / "pathways_temp" / "scenario_data" / "scenario_data.csv").unlink()
+        if (
+            Path.cwd() / "pathways_temp" / "scenario_data" / "scenario_data.csv"
+        ).exists():
+            (
+                Path.cwd() / "pathways_temp" / "scenario_data" / "scenario_data.csv"
+            ).unlink()
 
         df.to_csv(
-            Path.cwd() / "pathways_temp" / "scenario_data" / "scenario_data.csv", index=False
+            Path.cwd() / "pathways_temp" / "scenario_data" / "scenario_data.csv",
+            index=False,
         )
 
     def build_datapackage(self, name: str, contributors: list = None):

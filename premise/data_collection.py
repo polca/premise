@@ -1298,7 +1298,6 @@ class IAMDataCollection:
         # attach units as the last step and keep a handle to the returned object
         market_data = market_data.assign_attrs(unit=unit_by_k)
 
-
         # assign as a brand-new dict so we don't alias or pollute
         market_data.attrs["unit"] = dict(unit_by_k)
 
@@ -1327,7 +1326,6 @@ class IAMDataCollection:
         market_data = market_data.bfill(dim="year")
         # fill NaNs with zeros
         market_data = market_data.fillna(0)
-
 
         return market_data
 
@@ -1554,9 +1552,9 @@ class IAMDataCollection:
         for var in data_to_return.variables.values:
             if "World" in data_to_return.region.values:
                 if data_to_return.sel(region="World", variables=var).sum() == 0:
-                    data_to_return.loc[dict(region="World", variables=var)] = data_to_return.sum(
-                        dim="region"
-                    ).sel(variables=var)
+                    data_to_return.loc[dict(region="World", variables=var)] = (
+                        data_to_return.sum(dim="region").sel(variables=var)
+                    )
 
         if fill:
             # if fill, we fill zero values
