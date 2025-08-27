@@ -91,12 +91,12 @@ class PathwaysDataPackage:
         for scenario in self.datapackage.scenarios:
             load_database(scenario, self.datapackage.database)
 
-        # first, delete the content of the "pathways" folder
-        shutil.rmtree(Path.cwd() / "pathways", ignore_errors=True)
+        # first, delete the content of the "pathways_temp" folder
+        shutil.rmtree(Path.cwd() / "pathways_temp", ignore_errors=True)
 
         # create matrices in current directory
         self.datapackage.write_db_to_matrices(
-            filepath=str(Path.cwd() / "pathways" / "inventories"),
+            filepath=str(Path.cwd() / "pathways_temp" / "inventories"),
         )
         self.add_scenario_data()
         self.add_variables_mapping()
@@ -144,7 +144,7 @@ class PathwaysDataPackage:
         """
 
         # create a "mapping" folder inside "pathways"
-        (Path.cwd() / "pathways" / "mapping").mkdir(parents=True, exist_ok=True)
+        (Path.cwd() / "pathways_temp" / "mapping").mkdir(parents=True, exist_ok=True)
 
         # make a list of unique variables
         vars = [
@@ -281,12 +281,12 @@ class PathwaysDataPackage:
                                     if not any(v in d["name"] for v in variables)
                                 ]
 
-        with open(Path.cwd() / "pathways" / "mapping" / "mapping.yaml", "w") as f:
+        with open(Path.cwd() / "pathways_temp" / "mapping" / "mapping.yaml", "w") as f:
             yaml.dump(mapping, f)
 
     def add_scenario_data(self):
         """
-        Add scenario data in the "pathways" folder.
+        Add scenario data in the "pathways_temp" folder.
 
         """
         # concatenate xarray across IAM scenarios
