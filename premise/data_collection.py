@@ -1284,6 +1284,24 @@ class IAMDataCollection:
             rev_input_vars[v] for v in market_data.variables.values
         ]
 
+        # add units by transferring those from `data`
+        unit_by_k = {}
+        for k in market_data.coords["variables"].values:
+            key = str(k)
+            v = input_vars[key]
+            if isinstance(v, list):
+                v = v[0]
+            unit = data.attrs.get("unit", {}).get(v)
+            if unit is not None:
+                unit_by_k[key] = unit
+
+        # attach units as the last step and keep a handle to the returned object
+        market_data = market_data.assign_attrs(unit=unit_by_k)
+
+
+        # assign as a brand-new dict so we don't alias or pollute
+        market_data.attrs["unit"] = dict(unit_by_k)
+
         # check World region
         # if empty, fill it with the sum of all regions
         if "World" in market_data.region.values:
@@ -1310,14 +1328,6 @@ class IAMDataCollection:
         # fill NaNs with zeros
         market_data = market_data.fillna(0)
 
-        # remove uneeded attrs
-        market_data.attrs = {
-            "unit": {
-                k: v
-                for k, v in market_data.attrs["unit"].items()
-                if k in input_vars.values()
-            }
-        }
 
         return market_data
 
@@ -1522,6 +1532,15 @@ class IAMDataCollection:
         data_to_return.coords["variables"] = [
             rev_input_vars[v] for v in data_to_return.variables.values
         ]
+
+        # add units, by transferring those from `data`
+        data_to_return.attrs["unit"] = {}
+        for k in data_to_return.variables.values:
+            v = input_vars[k]
+            if isinstance(v, list):
+                v = v[0]
+            if v in data.attrs["unit"]:
+                data_to_return.attrs["unit"][k] = data.attrs["unit"][v]
 
         # if duplicates in market_data.coords["variables"]
         # we sum them
