@@ -371,6 +371,15 @@ class PathwaysDataPackage:
         # add a unit column
         # units are contained as an attribute of the xarray
         df["unit"] = df["variables"].map(data.attrs["unit"])
+        # add units from extra_units if variable is in extra_units
+        df["unit"] = df.apply(
+            lambda row: (
+                extra_units[row["variables"]]
+                if row["variables"] in extra_units
+                else row["unit"]
+            ),
+            axis=1,
+        )
 
         # split the columns "scenarios" into "model" and "pathway"
         df[["model", "pathway"]] = df["scenario"].str.split(" - ", n=1, expand=True)
