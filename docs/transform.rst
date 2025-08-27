@@ -1517,7 +1517,7 @@ are obtained by scaling down the current inventories based on the
 vehicle efficiency improvements projected by the IAM scenario.
 
 Trucks
-------
+++++++
 
 The following size classes of medium and heavy duty trucks are imported:
 
@@ -1817,7 +1817,7 @@ a variety of hydrogen and CO2 sources. Additionally, hydrogen can be supplied
 by different means of transport, and in different states.
 
 Hydrogen
---------
+++++++++
 
 Several pathways for hydrogen production are modeled in *premise* (see Hydrogen section under EXTRACT>Import of additional inventories).
 
