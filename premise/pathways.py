@@ -90,7 +90,6 @@ class PathwaysDataPackage:
 
         for scenario in self.datapackage.scenarios:
             load_database(scenario, self.datapackage.database)
-            print("database" in scenario)
 
         # first, delete the content of the "pathways" folder
         shutil.rmtree(Path.cwd() / "pathways", ignore_errors=True)
@@ -294,7 +293,7 @@ class PathwaysDataPackage:
 
         data_list, extra_units = [], {}
         for scenario in self.datapackage.scenarios:
-            data = scenario["iam data"].data.interp(year=scenario["year"])
+            data = scenario["iam data"].production_volumes.interp(year=scenario["year"])
             extra_units.update(scenario["iam data"].final_energy_use.attrs["unit"])
             scenario_name = f"{scenario['model']} - {scenario['pathway']}"
             if "external data" in scenario:
@@ -320,7 +319,7 @@ class PathwaysDataPackage:
         array = xr.concat(data_list, dim="scenario")
 
         # make sure pathways/scenario_data directory exists
-        (Path.cwd() / "pathways" / "scenario_data").mkdir(parents=True, exist_ok=True)
+        (Path.cwd() / "pathways_temp" / "scenario_data").mkdir(parents=True, exist_ok=True)
         # save the xarray as csv
         df = array.to_dataframe().reset_index()
 
@@ -349,11 +348,11 @@ class PathwaysDataPackage:
         df = df.dropna(subset=["value"])
 
         # if scenario_data file already exists, delete it
-        if (Path.cwd() / "pathways" / "scenario_data" / "scenario_data.csv").exists():
-            (Path.cwd() / "pathways" / "scenario_data" / "scenario_data.csv").unlink()
+        if (Path.cwd() / "pathways_temp" / "scenario_data" / "scenario_data.csv").exists():
+            (Path.cwd() / "pathways_temp" / "scenario_data" / "scenario_data.csv").unlink()
 
         df.to_csv(
-            Path.cwd() / "pathways" / "scenario_data" / "scenario_data.csv", index=False
+            Path.cwd() / "pathways_temp" / "scenario_data" / "scenario_data.csv", index=False
         )
 
     def build_datapackage(self, name: str, contributors: list = None):
@@ -362,8 +361,8 @@ class PathwaysDataPackage:
         """
         # create a new datapackage
         package = Package(base_path=Path.cwd().as_posix())
-        package.infer("pathways/**/*.csv")
-        package.infer("pathways/**/*.yaml")
+        package.infer("pathways_temp/**/*.csv")
+        package.infer("pathways_temp/**/*.yaml")
 
         package.descriptor["name"] = name.replace(" ", "_").lower()
         package.descriptor["title"] = name.capitalize()
@@ -408,10 +407,10 @@ class PathwaysDataPackage:
         package.commit()
 
         # save the json file
-        package.save(str(Path.cwd() / "pathways" / "datapackage.json"))
+        package.save(str(Path.cwd() / "pathways_temp" / "datapackage.json"))
 
         # open the json file and ensure that all resource names are slugified
-        with open(Path.cwd() / "pathways" / "datapackage.json", "r") as f:
+        with open(Path.cwd() / "pathways_temp" / "datapackage.json", "r") as f:
             data = yaml.full_load(f)
 
         for resource in data["resources"]:
@@ -420,15 +419,16 @@ class PathwaysDataPackage:
         # also, remove "pathways/" from the path of each resource
         for resource in data["resources"]:
             path = resource["path"]
+            path = path.replace("pathways_temp", "pathways")
             path = path.replace("pathways/", "").replace("pathways\\", "")
             path = path.replace("\\", "/")
             resource["path"] = path
 
         # save it back as a json file
-        with open(Path.cwd() / "pathways" / "datapackage.json", "w") as fp:
+        with open(Path.cwd() / "pathways_temp" / "datapackage.json", "w") as fp:
             json.dump(data, fp)
 
         # zip the folder
-        shutil.make_archive(name, "zip", str(Path.cwd() / "pathways"))
+        shutil.make_archive(name, "zip", str(Path.cwd() / "pathways_temp"))
 
         print(f"Data package saved at {str(Path.cwd() / f'{name}.zip')}")
