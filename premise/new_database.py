@@ -204,6 +204,17 @@ FILEPATH_SULFIDIC_TAILINGS = INVENTORY_DIR / "lci-sulfidic-tailings.xlsx"
 FILEPATH_SHIPS = INVENTORY_DIR / "lci-ships.xlsx"
 FILEPATH_STEEL = INVENTORY_DIR / "lci-steel.xlsx"
 FILEPATH_IND_HEAT_PUMP = INVENTORY_DIR / "lci-heat-pump-high-temp.xlsx"
+FILEPATH_LFP_EOL = INVENTORY_DIR / "lci-battery-LFP-eol.xlsx"
+FILEPATH_LIB_EOL = INVENTORY_DIR / "lci-battery-LIB-eol.xlsx"
+FILEPATH_SIB_EOL = INVENTORY_DIR / "lci-battery-SIB-eol.xlsx"
+FILEPATH_PEMEL_EOL = INVENTORY_DIR / "lci-electrolyzer-PEM-eol.xlsx"
+FILEPATH_AEC_EOL = INVENTORY_DIR / "lci-electrolyzer-AEC-eol.xlsx"
+FILEPATH_SOEC_EOL = INVENTORY_DIR / "lci-electrolyzer-SOEC-eol.xlsx"
+FILEPATH_PEMFC_EOL = INVENTORY_DIR / "lci-fuel-cell-PEM-eol.xlsx"
+FILEPATH_SOFC_EOL = INVENTORY_DIR / "lci-fuel-cell-SOFC-eol.xlsx"
+FILEPATH_CIGS_EOL = INVENTORY_DIR / "lci-PV-CIGS-eol.xlsx"
+FILEPATH_PEROVSKITE_EOL = INVENTORY_DIR / "lci-PV-perovskite-eol.xlsx"
+FILEPATH_MAGNET_EOL = INVENTORY_DIR / "lci-wind-turbine-magnet-eol.xlsx"
 
 config = load_constants()
 
@@ -846,6 +857,17 @@ class NewDatabase:
             (FILEPATH_SULFIDIC_TAILINGS, "3.8"),
             (FILEPATH_SHIPS, "3.10"),
             (FILEPATH_STEEL, "3.9"),
+            (FILEPATH_LFP_EOL, "3.11"),
+            (FILEPATH_LIB_EOL, "3.11"),
+            (FILEPATH_SIB_EOL, "3.11"),
+            (FILEPATH_PEMEL_EOL, "3.11"),
+            (FILEPATH_AEC_EOL, "3.11"),
+            (FILEPATH_SOEC_EOL, "3.11"),
+            (FILEPATH_PEMFC_EOL, "3.11"),
+            (FILEPATH_SOFC_EOL, "3.11"),
+            (FILEPATH_CIGS_EOL, "3.11"),
+            (FILEPATH_PEROVSKITE_EOL, "3.11"),
+            (FILEPATH_MAGNET_EOL, "3.11"),
         ]
         for filepath in filepaths:
             # make an exception for FILEPATH_OIL_GAS_INVENTORIES
