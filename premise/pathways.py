@@ -218,7 +218,6 @@ class PathwaysDataPackage:
                             if "lhv" in val:
                                 mapping[var]["lhv"] = val["lhv"]
 
-
         # if external scenarios, extend mapping with external data
         for scenario in self.datapackage.scenarios:
             if "configurations" in scenario:
