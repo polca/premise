@@ -200,26 +200,24 @@ class PathwaysDataPackage:
                         if model_var in vars and model in [
                             s["model"] for s in self.scenarios
                         ]:
-                            if model_var not in model_variables:
-                                model_variables.append(model_var)
-                                mapping[var] = {"scenario variable": model_var}
-                                mapping[var]["dataset"] = self.find_activities(
-                                    filters=val["ecoinvent_aliases"].get("fltr"),
-                                    database=self.datapackage.scenarios[0]["database"],
-                                    mask=val["ecoinvent_aliases"].get("mask"),
-                                )
-                                mapping[var]["dataset"] = [
-                                    dict(t)
-                                    for t in {
-                                        tuple(sorted(d.items()))
-                                        for d in mapping[var]["dataset"]
-                                    }
-                                ]
-                                if "lhv" in val:
-                                    mapping[var]["lhv"] = val["lhv"]
 
-                            else:
-                                print(f"Leaving out {model_var} from {var}")
+                            model_variables.append(model_var)
+                            mapping[var] = {"scenario variable": model_var}
+                            mapping[var]["dataset"] = self.find_activities(
+                                filters=val["ecoinvent_aliases"].get("fltr"),
+                                database=self.datapackage.scenarios[0]["database"],
+                                mask=val["ecoinvent_aliases"].get("mask"),
+                            )
+                            mapping[var]["dataset"] = [
+                                dict(t)
+                                for t in {
+                                    tuple(sorted(d.items()))
+                                    for d in mapping[var]["dataset"]
+                                }
+                            ]
+                            if "lhv" in val:
+                                mapping[var]["lhv"] = val["lhv"]
+
 
         # if external scenarios, extend mapping with external data
         for scenario in self.datapackage.scenarios:
