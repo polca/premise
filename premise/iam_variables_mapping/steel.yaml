@@ -418,7 +418,7 @@ steel - secondary:
     remind-eu: Production|Industry|Steel|+|SCRAP-EAF
     image: Production|Industry|Iron and Steel|EAF scrap
     message: Production|Secondary|Steel
-    gcam: Production|Industry|Steel|Secondary
+    gcam: Production|Industry|Steel|Secondary|EAF with scrap
     tiam-ucl:
       - Production|Steel|Secondary|EAF 1
       - Production|Steel|Secondary|EAF 2
