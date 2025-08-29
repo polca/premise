@@ -27,19 +27,10 @@ from .transformation import (
     Set,
     ws,
 )
-from .utils import DATA_DIR
+from .utils import DATA_DIR, VARIABLES_DIR
 from .validation import MetalsValidation
 
 logger = create_logger("metal")
-
-EI311_NAME_CHANGES = {
-    "sodium borate mine operation and beneficiation": "sodium borates mine operation and beneficiation",
-    "gallium production, semiconductor-grade": "high-grade gallium production, from low-grade gallium",
-}
-
-EI311_PRODUCT_CHANGES = {"gallium, semiconductor-grade": "gallium, high-grade"}
-EI311_LOCATION_CHANGES = {"high-grade gallium production, from low-grade gallium": "CN"}
-
 
 def _update_metals(scenario, version, system_model):
 
@@ -57,6 +48,7 @@ def _update_metals(scenario, version, system_model):
 
     metals.create_metal_markets()
     metals.update_metals_use_in_database()
+    metals.connect_end_of_life_treatments()
     metals.relink_datasets()
     scenario["database"] = metals.database
     scenario["cache"] = metals.cache
@@ -179,6 +171,16 @@ def load_activities_mapping():
     df = df.loc[(df["filter"] == "Yes") | (df["filter"] == "yes")]
 
     return df
+
+def load_end_of_life_mapping():
+    """
+    Load end-of-life treatment mappings from YAML
+    """
+    filepath = VARIABLES_DIR / "end_of_life_treatments.yaml"
+    if not filepath.exists():
+        return {}
+    with open(filepath, "r", encoding="utf-8") as stream:
+        return yaml.safe_load(stream)
 
 
 # Define a function to replicate rows based on the generated activity sets
@@ -489,6 +491,7 @@ class Metals(BaseTransformation):
         self.biosphere_flow_codes = biosphere_flows_dictionary(version=self.version)
         self.metals_transport = load_metals_transport()
         self.alt_names = load_metals_alternative_names()
+        self.eol_config = load_end_of_life_mapping()
 
         self.metals_transport_activities = {
             "air": ws.get_one(
@@ -1396,6 +1399,366 @@ class Metals(BaseTransformation):
             )
 
         return exchanges
+
+    def connect_end_of_life_treatments(self):
+        """
+        Connect end-of-life treatment activities to consuming activities.
+        """
+        if not self.eol_config:
+            print("[Metals] WARNING: No end-of-life configuration found")
+            return
+
+        print(f"Processing {len(self.eol_config)} EOL treatment configurations...")
+
+
+        for treatment_id, config in self.eol_config.items():
+            print(f"\nProcessing EOL treatment: {treatment_id}")
+
+            consumer_filter = {
+                "name": config["consumer"]["name"],
+                "reference product": config["consumer"]["reference product"],
+            }
+
+            if config.get("treatment", {}).get("type") == "market":
+                print(f"  → Market treatment")
+                self._create_treatment_market(treatment_id, config, consumer_filter)
+            else:
+                print(f"  → Direct treatment")
+                self._connect_simple_treatment(treatment_id, config, consumer_filter)
+
+    def _connect_simple_treatment(self, treatment_id: str, config: dict, consumer_filter: dict):
+        """
+        Simple connection of a treatment activity to consumers.
+        """
+
+        ### Find consumers ###
+        consumers = list(ws.get_many(
+            self.database,
+            ws.contains("name", consumer_filter["name"]),
+            ws.contains("reference product", consumer_filter["reference product"]),
+        ))
+        if "mask" in consumer_filter:
+            masks = consumer_filter["mask"] if isinstance(consumer_filter["mask"], list) else [consumer_filter["mask"]]
+            consumers = [c for c in consumers if not any(m in c["name"] for m in masks)]
+        if not consumers:
+            logger.warning(f"[Metals] No consumers found for filter: {consumer_filter}")
+            return
+
+        print(f"  Found {len(consumers)} consumer activities:")
+        for consumer in consumers:
+            print(f"    - {consumer['name']} [{consumer['location']}]")
+
+        ### Find treatment activities ###
+        treatment_filter = {
+            "name": config["treatment"]["name"],
+            "reference product": config["treatment"]["reference product"],
+        }
+        treatment_datasets = list(ws.get_many(
+            self.database,
+            ws.contains("name", treatment_filter["name"]),
+            ws.contains("reference product", treatment_filter["reference product"]),
+        ))
+        if not treatment_datasets:
+            logger.warning(f"[Metals] No treatment datasets found for filter: {treatment_filter}")
+            return
+        if "mask" in config.get("treatment", {}):
+            masks = config["treatment"]["mask"] if isinstance(config["treatment"]["mask"], list) else [
+                config["treatment"]["mask"]]
+            treatment_datasets = [t for t in treatment_datasets if not any(m in t["name"] for m in masks)]
+
+        print(f"  Found {len(treatment_datasets)} suppliers")
+        for supplier in treatment_datasets:
+            print(f"      - {supplier['name']} [{supplier['location']}]")
+
+        ### Connect consumers to treatments ###
+        for consumer in consumers:
+            # Get amounts from treatments to be replaced
+            preserved_amount = -1  # default
+            if "replaces" in config.get("treatment", {}):
+                for old_treatment in config["treatment"]["replaces"]:
+                    for exc in consumer["exchanges"]:
+                        if (exc.get("type") == "technosphere" and
+                                exc.get("name") == old_treatment["name"] and
+                                exc.get("product") == old_treatment["reference product"]):
+                            preserved_amount = exc["amount"]
+                            break
+            # Remove treatments to be replaced
+            if "replaces" in config.get("treatment", {}):
+                self._remove_exchanges(consumer, config["treatment"]["replaces"])
+
+            # Try to find existing treatment in same location
+            local_treatment = None
+            for t in treatment_datasets:
+                if t["location"] == consumer["location"]:
+                    local_treatment = t
+                    print(f"    Found local treatment: {t['name']} [{t['location']}]")
+                    break
+            # If no local treatment, and consumer is not in GLO/World, try to fetch regional proxy
+            if not local_treatment and consumer["location"] not in ["GLO", "World"]:
+                regional_treatments = self.fetch_proxies(
+                    datasets=treatment_datasets,
+                    regions=[consumer["location"]]
+                )
+
+                if consumer["location"] in regional_treatments:
+                    local_treatment = regional_treatments[consumer["location"]]
+                    existing = any(ds["name"] == local_treatment["name"] and
+                                   ds["location"] == local_treatment["location"]
+                                   for ds in self.database)
+
+                    if not existing:
+                        self.add_to_index(local_treatment)
+                        self.database.append(local_treatment)
+                        print(f"    Created regional treatment: {local_treatment['name']} [{local_treatment['location']}]")
+                    else:
+                        print(f"    Regional treatment already exists: {local_treatment['name']} [{local_treatment['location']}]")
+            # Else, we grab the first available treatment
+            if not local_treatment:
+                local_treatment = treatment_datasets[0]
+                print(f"    Using fallback treatment: {local_treatment['name']} [{local_treatment['location']}]")
+
+            # Check if already connected
+            already_connected = any(
+                exc.get("type") == "technosphere" and
+                exc.get("name") == local_treatment["name"] and
+                exc.get("product") == local_treatment["reference product"]
+                for exc in consumer["exchanges"]
+            )
+
+            if not already_connected:
+                treatment_amount = self._calculate_treatment_amount(consumer, config, preserved_amount)
+
+                consumer["exchanges"].append({
+                    "name": local_treatment["name"],
+                    "product": local_treatment["reference product"],
+                    "location": local_treatment["location"],
+                    "amount": treatment_amount,  # Negative for waste output
+                    "unit": local_treatment.get("unit", "unit"),
+                    "type": "technosphere",
+                })
+                self.write_log(consumer, f"connected treatment {treatment_id}")
+
+    def _create_treatment_market(self, treatment_id: str, config: dict, consumer_filter: dict):
+        """
+        Create a market for the treatment and connect consumers to it.
+        """
+        consumers = list(ws.get_many(
+            self.database,
+            ws.contains("name", consumer_filter["name"]),
+            ws.contains("reference product", consumer_filter["reference product"]),
+        ))
+        if "mask" in consumer_filter:
+            masks = consumer_filter["mask"] if isinstance(consumer_filter["mask"], list) else [consumer_filter["mask"]]
+            consumers = [c for c in consumers if not any(m in c["name"] for m in masks)]
+        if not consumers:
+            logger.warning(f"[Metals] No consumers found for filter: {consumer_filter}")
+            return
+
+        print(f"  Found {len(consumers)} consumer activities:")
+        for consumer in consumers:
+            print(f"    - {consumer['name']} [{consumer['location']}]")
+
+        ### Create market template ###
+        market_name = config["treatment"]["name"]
+        market_ref_product = config["treatment"]["reference product"]
+
+        # Collect ALL existing treatment amounts before removing
+        existing_treatments = {}
+        for consumer in consumers:
+            consumer_treatments = {}
+            if "replaces" in config["treatment"]:
+                for old_treatment in config["treatment"]["replaces"]:
+                    for exc in consumer["exchanges"]:
+                        if (exc.get("type") == "technosphere" and
+                                exc.get("name") == old_treatment["name"] and
+                                exc.get("product") == old_treatment["reference product"]):
+                            consumer_treatments[exc["location"]] = exc["amount"]
+            existing_treatments[consumer["location"]] = consumer_treatments
+
+        # Remove old exchanges BEFORE creating markets
+        for consumer in consumers:
+            if "replaces" in config["treatment"]:
+                self._remove_exchanges(consumer, config["treatment"]["replaces"])
+
+        # Create market for each consumer location
+        for consumer in consumers:
+            market_location = consumer["location"]
+
+            # Skip if market already exists
+            if any(ds["name"] == market_name and
+                   ds["reference product"] == market_ref_product and
+                   ds["location"] == market_location
+                   for ds in self.database):
+                continue
+
+            treatment_datasets = []
+            for supplier_id, supplier_config in config["treatment"]["suppliers"].items():
+                suppliers = list(ws.get_many(
+                    self.database,
+                    ws.contains("name", supplier_config["name"]),
+                    ws.contains("reference product", supplier_config["reference product"])
+                ))
+                treatment_datasets.extend(suppliers)
+
+            # Get the unit from the first treatment found
+            market_unit = treatment_datasets[0]["unit"] if treatment_datasets else "unit"
+
+            market = {
+                "name": market_name,
+                "reference product": market_ref_product,
+                "location": market_location,
+                "unit": market_unit,
+                "comment": "Created by premise - EOL treatment market",
+                "code": str(uuid.uuid4()),
+                "exchanges": [
+                    {
+                        "name": market_name,
+                        "product": market_ref_product,
+                        "location": market_location,
+                        "amount": 1,
+                        "type": "production",
+                        "unit": "kilogram",
+                    }
+                ]
+            }
+
+            # Add suppliers with interpolated shares
+            for supplier_id, supplier_config in config["treatment"]["suppliers"].items():
+                suppliers = list(ws.get_many(
+                    self.database,
+                    ws.contains("name", supplier_config["name"]),
+                    ws.contains("reference product", supplier_config["reference product"])
+                ))
+
+                if not suppliers:
+                    continue
+
+                print(f"    {supplier_id}: {len(suppliers)} suppliers found")
+                for supplier in suppliers:
+                    print(f"      - {supplier['name']} [{supplier['location']}]")
+
+                # Find supplier in same location or use first
+                supplier = next((s for s in suppliers if s["location"] == market_location), suppliers[0])
+
+                share = interpolate_by_year(self.year, supplier_config["share"])
+
+                market["exchanges"].append({
+                    "name": supplier["name"],
+                    "product": supplier["reference product"],
+                    "location": supplier["location"],
+                    "amount": -share,
+                    "unit": "kilogram",
+                    "type": "technosphere",
+                })
+
+            self.database.append(market)
+            self.add_to_index(market)
+
+            # Connect consumer to new market
+            total_amount = sum(existing_treatments.get(consumer["location"], {}).values()) or -1
+
+            consumer["exchanges"].append({
+                "name": market["name"],
+                "product": market["reference product"],
+                "location": market["location"],
+                "amount": total_amount,
+                "unit": "kilogram",
+                "type": "technosphere",
+            })
+            self.write_log(consumer, f"connected to treatment market: {treatment_id}")
+
+    def _remove_exchanges(self, dataset: dict, treatments_to_remove: list):
+        """
+        Remove exchanges matching the removal criteria
+        """
+
+        dataset["exchanges"] = [
+            exc for exc in dataset["exchanges"]
+            if not self._matches_removal_criteria(exc, treatments_to_remove)
+        ]
+
+    def _matches_removal_criteria(self, exc: dict, treatments: list) -> bool:
+        """
+        Check if exchange matches removal criteria
+        """
+
+        if exc.get("type") != "technosphere":
+            return False
+
+        for treatment in treatments:
+            if (exc.get("name") == treatment["name"] and
+                    exc.get("product") == treatment["reference product"]):
+                # Check mask exclusions
+                if "mask" in treatment:
+                    masks = treatment["mask"] if isinstance(treatment["mask"], list) else [treatment["mask"]]
+                    if any(m in exc.get("name", "") for m in masks):
+                        return False  # Don't remove if mask term found
+                return True
+
+        return False
+
+    def _calculate_treatment_amount(self, consumer, config, preserved_amount=-1):
+        """Calculate treatment amount based on configuration and consumer capacity."""
+
+        if "multiplier" in config.get("treatment", {}):
+            multiplier_config = config["treatment"]["multiplier"]
+
+            capacity_kw = self._extract_installed_capacity(consumer)
+
+            if capacity_kw is not None:
+                capacity_mw = capacity_kw / 1000
+                factor = multiplier_config.get("factor_per_mw", 1.0)
+                treatment_amount = -factor * capacity_mw
+
+                print(f"    Capacity-based amount: {consumer['name']} ({capacity_mw:.1f} MW) "
+                      f"× {factor} kg/MW = {abs(treatment_amount):.1f} kg treatment")
+
+                return treatment_amount
+            else:
+                print(f"Warning: Could not extract capacity from {consumer['name']}, using preserved amount")
+
+        return preserved_amount
+
+    def _extract_installed_capacity(self, dataset):
+        """
+        Extract installed capacity from dataset name and convert to kW.
+        Copied from final_energy.py to avoid hacky imports.
+        """
+        import re
+
+        unit_factors = {
+            "kw": 1,
+            "kwp": 1,
+            "mw": 1e3,
+            "mwp": 1e3,
+            "gw": 1e6,
+            "gwp": 1e6,
+            "tw": 1e9,
+        }
+
+        pattern = r"([\d\.]+)\s*(kWp?|MWp?|GWp?|TWp?)(?!h)"
+
+        # Try dataset name first
+        m = re.search(pattern, dataset["name"], flags=re.IGNORECASE)
+        if m:
+            value = float(m.group(1))
+            unit = m.group(2).lower()
+            factor = unit_factors.get(unit)
+            if factor:
+                return value * factor
+
+        # Try reference product
+        ref_product = dataset.get("reference product", "")
+        if ref_product:
+            m = re.search(pattern, ref_product, flags=re.IGNORECASE)
+            if m:
+                value = float(m.group(1))
+                unit = m.group(2).lower()
+                factor = unit_factors.get(unit)
+                if factor:
+                    return value * factor
+
+        return None
 
     def write_log(self, dataset, status="created"):
         """
