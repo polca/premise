@@ -1724,7 +1724,11 @@ class Metals(BaseTransformation):
 
             if name_match and product_match:
                 if "mask" in treatment:
-                    masks = treatment["mask"] if isinstance(treatment["mask"], list) else [treatment["mask"]]
+                    masks = (
+                        treatment["mask"]
+                        if isinstance(treatment["mask"], list)
+                        else [treatment["mask"]]
+                    )
                     if any(mask in exc.get("name", "") for mask in masks):
                         return False
                 return True  # Matches name and product, and not excluded by mask
@@ -1772,43 +1776,56 @@ class Metals(BaseTransformation):
         # 1. Try exact location match first
         for treatment in treatment_datasets:
             if treatment["location"] == consumer_location:
-                print(f"    Found exact location match: {treatment['name']} [{treatment['location']}]")
+                print(
+                    f"    Found exact location match: {treatment['name']} [{treatment['location']}]"
+                )
                 return treatment
 
         # 2. If consumer is not in GLO/World/RoW, try to create regional proxy
         if consumer_location not in ["GLO", "World", "RoW"]:
             # Check if regional version already exists in database
             for ds in self.database:
-                if (ds["name"] == treatment_datasets[0]["name"] and
-                        ds["reference product"] == treatment_datasets[0]["reference product"] and
-                        ds["location"] == consumer_location):
-                    print(f"    Found existing regional treatment: {ds['name']} [{ds['location']}]")
+                if (
+                    ds["name"] == treatment_datasets[0]["name"]
+                    and ds["reference product"]
+                    == treatment_datasets[0]["reference product"]
+                    and ds["location"] == consumer_location
+                ):
+                    print(
+                        f"    Found existing regional treatment: {ds['name']} [{ds['location']}]"
+                    )
                     return ds
 
             # Create new regional proxy
             try:
                 regional_treatments = self.fetch_proxies(
-                    datasets=treatment_datasets,
-                    regions=[consumer_location]
+                    datasets=treatment_datasets, regions=[consumer_location]
                 )
                 if consumer_location in regional_treatments:
                     regional_treatment = regional_treatments[consumer_location]
                     self.add_to_index(regional_treatment)
                     self.database.append(regional_treatment)
                     print(
-                        f"    Created regional treatment: {regional_treatment['name']} [{regional_treatment['location']}]")
+                        f"    Created regional treatment: {regional_treatment['name']} [{regional_treatment['location']}]"
+                    )
                     return regional_treatment
             except Exception as e:
                 print(f"    Could not create regional proxy: {e}")
 
         # 3. Prefer GLO/World treatments over others
-        global_treatments = [t for t in treatment_datasets if t["location"] in ["GLO", "World"]]
+        global_treatments = [
+            t for t in treatment_datasets if t["location"] in ["GLO", "World"]
+        ]
         if global_treatments:
-            print(f"    Using global treatment: {global_treatments[0]['name']} [{global_treatments[0]['location']}]")
+            print(
+                f"    Using global treatment: {global_treatments[0]['name']} [{global_treatments[0]['location']}]"
+            )
             return global_treatments[0]
 
         # 4. Fall back to any treatment
-        print(f"    Using fallback treatment: {treatment_datasets[0]['name']} [{treatment_datasets[0]['location']}]")
+        print(
+            f"    Using fallback treatment: {treatment_datasets[0]['name']} [{treatment_datasets[0]['location']}]"
+        )
         return treatment_datasets[0]
 
     def _extract_installed_capacity(self, dataset):
