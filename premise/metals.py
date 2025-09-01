@@ -1507,42 +1507,7 @@ class Metals(BaseTransformation):
                 self._remove_exchanges(consumer, config["treatment"]["replaces"])
 
             # Try to find existing treatment in same location
-            local_treatment = None
-            for t in treatment_datasets:
-                if t["location"] == consumer["location"]:
-                    local_treatment = t
-                    print(f"    Found local treatment: {t['name']} [{t['location']}]")
-                    break
-            # If no local treatment, and consumer is not in GLO/World, try to fetch regional proxy
-            if not local_treatment and consumer["location"] not in ["GLO", "World"]:
-                regional_treatments = self.fetch_proxies(
-                    datasets=treatment_datasets, regions=[consumer["location"]]
-                )
-
-                if consumer["location"] in regional_treatments:
-                    local_treatment = regional_treatments[consumer["location"]]
-                    existing = any(
-                        ds["name"] == local_treatment["name"]
-                        and ds["location"] == local_treatment["location"]
-                        for ds in self.database
-                    )
-
-                    if not existing:
-                        self.add_to_index(local_treatment)
-                        self.database.append(local_treatment)
-                        print(
-                            f"    Created regional treatment: {local_treatment['name']} [{local_treatment['location']}]"
-                        )
-                    else:
-                        print(
-                            f"    Regional treatment already exists: {local_treatment['name']} [{local_treatment['location']}]"
-                        )
-            # Else, we grab the first available treatment
-            if not local_treatment:
-                local_treatment = treatment_datasets[0]
-                print(
-                    f"    Using fallback treatment: {local_treatment['name']} [{local_treatment['location']}]"
-                )
+            local_treatment = self._find_treatment(consumer, treatment_datasets)
 
             # Check if already connected
             already_connected = any(
@@ -1708,7 +1673,7 @@ class Metals(BaseTransformation):
                         "product": supplier["reference product"],
                         "location": supplier["location"],
                         "amount": -share,
-                        "unit": "kilogram",
+                        "unit": supplier.get("unit", "kilogram"),
                         "type": "technosphere",
                     }
                 )
@@ -1746,27 +1711,23 @@ class Metals(BaseTransformation):
 
     def _matches_removal_criteria(self, exc: dict, treatments: list) -> bool:
         """
-        Check if exchange matches removal criteria
+        Check if an exchange matches any of the removal criteria provided.
         """
 
         if exc.get("type") != "technosphere":
             return False
 
         for treatment in treatments:
-            if (
-                exc.get("name") == treatment["name"]
-                and exc.get("product") == treatment["reference product"]
-            ):
-                # Check mask exclusions
+
+            name_match = treatment["name"] in exc.get("name", "")
+            product_match = treatment["reference product"] in exc.get("product", "")
+
+            if name_match and product_match:
                 if "mask" in treatment:
-                    masks = (
-                        treatment["mask"]
-                        if isinstance(treatment["mask"], list)
-                        else [treatment["mask"]]
-                    )
-                    if any(m in exc.get("name", "") for m in masks):
-                        return False  # Don't remove if mask term found
-                return True
+                    masks = treatment["mask"] if isinstance(treatment["mask"], list) else [treatment["mask"]]
+                    if any(mask in exc.get("name", "") for mask in masks):
+                        return False
+                return True  # Matches name and product, and not excluded by mask
 
         return False
 
@@ -1795,6 +1756,60 @@ class Metals(BaseTransformation):
                 )
 
         return preserved_amount
+
+    def _find_treatment(self, consumer, treatment_datasets):
+        """
+        Find the best treatment for a consumer, prioritizing location matches.
+
+        Priority order:
+        1. Exact location match
+        2. Create regional proxy if consumer is not GLO/World/RoW
+        3. GLO/World treatment
+        4. Fallback
+        """
+        consumer_location = consumer["location"]
+
+        # 1. Try exact location match first
+        for treatment in treatment_datasets:
+            if treatment["location"] == consumer_location:
+                print(f"    Found exact location match: {treatment['name']} [{treatment['location']}]")
+                return treatment
+
+        # 2. If consumer is not in GLO/World/RoW, try to create regional proxy
+        if consumer_location not in ["GLO", "World", "RoW"]:
+            # Check if regional version already exists in database
+            for ds in self.database:
+                if (ds["name"] == treatment_datasets[0]["name"] and
+                        ds["reference product"] == treatment_datasets[0]["reference product"] and
+                        ds["location"] == consumer_location):
+                    print(f"    Found existing regional treatment: {ds['name']} [{ds['location']}]")
+                    return ds
+
+            # Create new regional proxy
+            try:
+                regional_treatments = self.fetch_proxies(
+                    datasets=treatment_datasets,
+                    regions=[consumer_location]
+                )
+                if consumer_location in regional_treatments:
+                    regional_treatment = regional_treatments[consumer_location]
+                    self.add_to_index(regional_treatment)
+                    self.database.append(regional_treatment)
+                    print(
+                        f"    Created regional treatment: {regional_treatment['name']} [{regional_treatment['location']}]")
+                    return regional_treatment
+            except Exception as e:
+                print(f"    Could not create regional proxy: {e}")
+
+        # 3. Prefer GLO/World treatments over others
+        global_treatments = [t for t in treatment_datasets if t["location"] in ["GLO", "World"]]
+        if global_treatments:
+            print(f"    Using global treatment: {global_treatments[0]['name']} [{global_treatments[0]['location']}]")
+            return global_treatments[0]
+
+        # 4. Fall back to any treatment
+        print(f"    Using fallback treatment: {treatment_datasets[0]['name']} [{treatment_datasets[0]['location']}]")
+        return treatment_datasets[0]
 
     def _extract_installed_capacity(self, dataset):
         """
