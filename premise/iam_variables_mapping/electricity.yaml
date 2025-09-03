@@ -944,7 +944,7 @@ Solar PV Centralized:
   iam_aliases:
     gcam: Secondary Energy|Electricity|PV
     image: Secondary Energy|Electricity|Solar|PV|1
-    message: Secondary Energy|Electricity|Solar|PV
+    message: Secondary Energy|Electricity|Solar|PV|Commercial
     remind: SE|Electricity|Solar|+|PV
     remind-eu: SE|Electricity|Solar|+|PV
     tiam-ucl: Secondary Energy|Electricity|Concentrated Solar PV centralised
@@ -956,6 +956,7 @@ Solar PV Residential:
   iam_aliases:
     gcam: Secondary Energy|Electricity|rooftop_pv
     image: Secondary Energy|Electricity|Solar|PV|2
+    message: Secondary Energy|Electricity|Solar|PV|Residential
     tiam-ucl: Secondary Energy|Electricity|Concentrated Solar PV decentralised
 Storage, Battery:
   ecoinvent_aliases:
