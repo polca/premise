@@ -1331,43 +1331,50 @@ Run
 
 
 
-The modelling of future improvements in the steel sector is relatively
-simple at the moment, and does not involve the emergence of new
-technologies (e.g., hydrogen-based DRI, electro-winning).
+The modelling of future improvements in the steel sector is now based on
+multiple explicit production routes for both primary and secondary steel,
+rather than only modifying the two generic ecoinvent datasets.
+This allows ``premise` to represent different process configurations
+(e.g., blast furnace–basic oxygen furnace, direct reduced iron with natural gas,
+electric arc furnace with varying scrap shares) and to adapt their energy
+requirements and emissions according to scenario projections.
 
 Dataset proxies
 ---------------
 
-*premise* duplicates steel production datasets in ecoinvent for the
-production of primary and secondary steel (called respectively
-"steel production, converter" and "steel production, electric")
-so as to create a proxy dataset for each IAM region.
+premise creates proxy datasets for each IAM region by duplicating
+all available steel production routes defined in its internal library
+(see lci-steel.xlsx).
+These include, for example:
 
-The location of the proxy datasets used for a given IAM region is a location
-included in the IAM region. If no valid dataset is found, *premise* resorts
-to using a rest-of-the-world (RoW) dataset to represent the IAM region.
+Primary routes: BF–BOF with different coke/natural gas shares, NG-DRI + EAF, etc.
 
-*premise* changes the location of these duplicated datasets and fill
-in different fields, such as that of *production volume*.
+Secondary routes: Scrap-based EAF with different efficiencies.
+
+These inventories are based on the work from Harpprechet_ et al., 2025.
+
+For each IAM region, premise changes the location of these duplicated datasets
+to match the IAM region (falling back to RoW if no valid location exists),
+and updates key metadata such as production volume.
+
+.. _Harpprechet: https://doi.org/10.1039/D5EE01356A
 
 Efficiency adjustment
 ---------------------
 
-Regarding primary steel production (using BO-BOF), *premise* adjusts
-the inputs of fuels found in:
+For each steel production route, premise applies efficiency improvements
+projected by the IAM scenario:
 
-* the pig iron production datasets,
-* the steel production datasets,
+For primary steel routes, energy and fuel inputs
+(coal, coke, natural gas, electricity) are scaled by the scenario-specific factor.
+Direct CO₂ emissions are adjusted accordingly.
 
-assuming an integrated steel mill unit, by multiplying these fuel
-inputs by a *scaling factor* provided by the IAM scenario.
+For secondary steel routes (EAF), the electricity input is scaled
+with the scenario factor, representing improved efficiency of scrap-based production.
 
-Typical fuel inputs for these process are natural gas, coal, coal-based coke.
-Emissions of (fossil) CO2 are scaled accordingly.
-
-Regarding the production of secondary steel (using EAF),
-*premise* adjusts the input of electricity based on the scaling factor
-provided by the IAM scenario.
+These adjustments are route-specific: each proxy dataset retains the
+structure of its underlying process (e.g., DRI vs. BF–BOF),
+but its energy intensity evolves in line with the scenario.
 
 
 .. note::
@@ -1395,53 +1402,46 @@ Carbon Capture and Storage
 If the IAM scenario indicates that a share of the CO2 emissions
 from the steel sector in a given region and year is sequestered and stored,
 *premise* adds a corresponding input from a CCS dataset.
-The datatset used to that effect is from Meunier_ et al., 2020.
-The dataset described the capture of CO2 from a cement plant, not a steel mill,
-but it is assumed to be an acceptable approximation since the CO2 concentration
-in the flue gases should not be significantly different.
 
 To that dataset, *premise* adds another dataset that models the storage
 of the CO2 underground, from Volkart_ et al, 2013.
 
-Besides electricity, the CCS process requires heat, water and others inputs
-to regenerate the amine-based sorbent. We use two data points to approximate the heat
-requirement: 3.66 MJ/kg CO2 captured in 2020, and 2.6 MJ/kg in 2050.
-The first number is from Meunier_ et al., 2020, while the second number is described
-as the best-performing pilot project today, according to the 2022 review of pilot
-projects by the Global CCS Institute_. It is further assumed that the heat requirement
-is fulfilled to an extent of 15% by the recovery of excess heat, as mentioned in
-the 2018 IEA_ cement roadmap report, which is assumed to be also valid in the
-case of a steel mill.
+The material and energy requirements of the CCS process are from the work of Harpprechet_ et al., 2025.
 
 
 Steel markets
 -------------
 
-*premise* create a dataset "market for steel, low-alloyed" for each IAM region.
+*premise* create a dataset "market for steel, low-alloyed" and "market for steel, unalloyed" for each IAM region.
 Within each dataset, the supply shares of primary and secondary steel
 are adjusted to reflect the projections from the IAM scenario, for a given region
 and year, based on the variables described in the steel_ mapping file.
 
-.. _steel: https://github.com/polca/premise/blob/master/premise/data/battery/scenario.csv
+.. _steel: https://github.com/polca/premise/blob/master/premise/iam_variables_mapping/steel.yaml
 
 The table below shows an example of the market for India, where 66% of the steel comes
 from an oxygen converter process (primary steel), while 34% comes from an electric arc
 furnace process (secondary steel).
 
- ================================================================= ============ ================ ===========
-  Output                                                            _            _                _
- ================================================================= ============ ================ ===========
-  producer                                                          amount       unit             location
-  market for steel, low-alloyed                                     1            kilogram         IND
+ ============================================================================================================================== ============ ================ ===========
+  Output                                                                                                                         _            _                _
+ ============================================================================================================================== ============ ================ ===========
+  producer                                                                                                                       amount       unit             location
+  market for steel, low-alloyed                                                                                                  1            kilogram         IND
   Input
-  supplier                                                          amount       unit             location
-  market group for transport, freight, inland waterways, barge      0.5          ton kilometer    GLO
-  market group for transport, freight train                         0.35         ton kilometer    GLO
-  market for transport, freight, sea, bulk carrier for dry goods    0.38         ton kilometer    GLO
-  transport, freight, lorry, unspecified, regional delivery         0.12         ton kilometer    IND
-  steel production, **converter**, low-alloyed                      0.66         kilogram         IND
-  steel production, **electric**, low-alloyed                       0.34         kilogram         IND
- ================================================================= ============ ================ ===========
+  supplier                                                                                                                       amount       unit             location
+  market group for transport, freight, inland waterways, barge                                                                   0.5          ton kilometer    GLO
+  market group for transport, freight train                                                                                      0.35         ton kilometer    GLO
+  market for transport, freight, sea, bulk carrier for dry goods                                                                 0.38         ton kilometer    GLO
+  transport, freight, lorry, unspecified, regional delivery                                                                      0.12         ton kilometer    IND
+  steel production, blast furnace-basic oxygen furnace, unalloyed                                                                0.66         kilogram         IND
+  steel production, blast furnace-basic oxygen furnace, with carbon capture and storage, unalloyed                               0.05         kilogram         IND
+  steel production, natural gas-based direct reduction iron-electric arc furnace, unalloyed                                      0.04         kilogram         IND
+  steel production, natural gas-based direct reduction iron-electric arc furnace, with carbon capture and storage, unalloyed     0.05         kilogram         IND
+  steel production, blast furnace-basic oxygen furnace, with top gas recycling, unalloyed                                        0.08         kilogram         IND
+  steel production, blast furnace-basic oxygen furnace, with top gas recycling, with carbon capture and storage, unalloyed       0.02         kilogram         IND
+  steel production, electric, low-alloyed                                                                                        0.10         kilogram         IND
+ ============================================================================================================================== ============ ================ ===========
 
 
 Original market datasets
@@ -1450,23 +1450,6 @@ Original market datasets
 Market datasets originally present in the ecoinvent LCI database are cleared
 from any inputs. Instead, an input from the newly created regional market
 is added, depending on the location of the dataset.
-
-The table below shows the example of the clinker market
-for South Africa, which now only includes an input from the "SAF"
-regional market, which "includes" it in terms of geography.
-
-
- ============================================ =========== ================ ===========
-  Output                                       _           _                _
- ============================================ =========== ================ ===========
-  producer                                     amount      unit             location
-  market for clinker                           1.00E+00    kilogram         **ZA**
- =========================================== =========== ================ ============
-  Input                                        _           _                _
- =========================================== =========== ================ ============
-  supplier                                     amount      unit             location
-  market for clinker                           1.00E+00    kilogram         **SAF**
- ============================================ =========== ================ ===========
 
 
 Relinking
