@@ -129,16 +129,6 @@ compressed gas,6.1,Nitrogen oxides,0.006443871
 compressed gas,6.2,Nitrogen oxides,0.006443871
 compressed gas,6.3,Nitrogen oxides,0.006443871
 compressed gas,7,Nitrogen oxides,0.006443871
-gasoline,1,Nitrogen dioxide,0.007094858
-gasoline,2,Nitrogen dioxide,0.004038743
-gasoline,3,Nitrogen dioxide,0.001306002
-gasoline,4,Nitrogen dioxide,0.001331224
-gasoline,5,Nitrogen dioxide,0.000509081
-gasoline,6,Nitrogen dioxide,0.000872038
-gasoline,6.1,Nitrogen dioxide,0.000326607
-gasoline,6.3,Nitrogen dioxide,0.000683268
-gasoline,6.2,Nitrogen dioxide,0.000649218
-gasoline,7,Nitrogen dioxide,0.00049536
 diesel,1,Nitrogen dioxide,0.023508462
 diesel,2,Nitrogen dioxide,0.036067969
 diesel,3,Nitrogen dioxide,0.161097146
