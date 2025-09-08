@@ -318,6 +318,9 @@ class Steel(BaseTransformation):
                 if electricity > 0:
                     scaling_factor = max(0.444 / electricity, scaling_factor)
 
+                    # cap electricity use to 0.8 kWh/kg steel
+                    scaling_factor = min(0.799 / electricity, scaling_factor)
+
             # if pig iron production, we want to make sure
             # that the scaling down will not bring energy consumption
             # below the minimum value of 9.0 MJ/kg
