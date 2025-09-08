@@ -291,7 +291,15 @@ class PathwaysDataPackage:
         data_list, extra_units = [], {}
         for scenario in self.datapackage.scenarios:
             data = scenario["iam data"].production_volumes.interp(year=scenario["year"])
-            extra_units.update(scenario["iam data"].final_energy_use.attrs["unit"])
+
+            # concatenate the final_energy array if it exists
+            if hasattr(scenario["iam data"], "final_energy_use"):
+                data = xr.concat(
+                    [data, scenario["iam data"].final_energy_use.interp(year=scenario["year"])],
+                    dim="variables",
+                )
+                extra_units.update(scenario["iam data"].final_energy_use.attrs["unit"])
+
             scenario_name = f"{scenario['model']} - {scenario['pathway']}"
             if "external data" in scenario:
                 for ext, external in scenario["external data"].items():
