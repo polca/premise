@@ -80,4 +80,5 @@ class FinalEnergy(BaseTransformation):
 
         self.process_and_add_activities(
             mapping=self.final_energy_map,
+            production_volumes=self.iam_data.production_volumes
         )

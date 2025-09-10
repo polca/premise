@@ -34,6 +34,7 @@ class BiogasMixin:
 
         self.process_and_add_activities(
             mapping=methane_map,
+            production_volumes=self.iam_data.production_volumes
         )
 
         self.fuel_map = self.mapping.generate_fuel_map()
