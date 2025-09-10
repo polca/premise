@@ -132,11 +132,15 @@ class Biomass(BaseTransformation):
 
         self.process_and_add_activities(
             mapping=self.biomass_activities,
-            production_volumes=self.iam_data.production_volumes
+            production_volumes=self.iam_data.production_volumes,
         )
         self.process_and_add_activities(
-            mapping={k: v for k, v in self.biomass_map.items() if k in self.iam_data.production_volumes.variables.values},
-            production_volumes=self.iam_data.production_volumes
+            mapping={
+                k: v
+                for k, v in self.biomass_map.items()
+                if k in self.iam_data.production_volumes.variables.values
+            },
+            production_volumes=self.iam_data.production_volumes,
         )
 
     def create_regional_biomass_markets(self):

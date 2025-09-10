@@ -679,8 +679,10 @@ class BaseTransformation:
 
     def get_technology_and_regional_production_shares(
         self, production_volumes: xr.DataArray, mapping: dict
-    ) -> tuple[None, dict[tuple[Any, str], float], dict[str, float]] | tuple[
-        DataArray, dict[tuple[Any, Any], Any], dict[Any, Any]]:
+    ) -> (
+        tuple[None, dict[tuple[Any, str], float], dict[str, float]]
+        | tuple[DataArray, dict[tuple[Any, Any], Any], dict[Any, Any]]
+    ):
 
         regions = [region for region in self.regions if region != "World"]
         year = self.year
@@ -690,9 +692,11 @@ class BaseTransformation:
             year = production_volumes.year.values.max()
 
         if not any(v in production_volumes.variables.values for v in mapping.keys()):
-            return None, {
-                (var, reg): 0.0 for var in mapping.keys() for reg in regions
-            }, {reg: 1 / len(regions) for reg in regions}
+            return (
+                None,
+                {(var, reg): 0.0 for var in mapping.keys() for reg in regions},
+                {reg: 1 / len(regions) for reg in regions},
+            )
 
         try:
             variables = [

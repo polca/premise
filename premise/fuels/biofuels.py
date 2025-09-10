@@ -40,7 +40,7 @@ class BiofuelsMixin:
         self.process_and_add_activities(
             mapping=mapping,
             regions=self.regions,
-            production_volumes=self.iam_data.production_volumes
+            production_volumes=self.iam_data.production_volumes,
         )
 
         activities = biofuel_activities["oil"]["used cooking oil"]
@@ -55,7 +55,7 @@ class BiofuelsMixin:
         self.process_and_add_activities(
             mapping=mapping,
             regions=self.regions,
-            production_volumes=self.iam_data.production_volumes
+            production_volumes=self.iam_data.production_volumes,
         )
 
         for climate in ["tropical", "temperate"]:
@@ -82,7 +82,7 @@ class BiofuelsMixin:
                         self.adjust_land_use,
                         self.adjust_land_use_change_emissions,
                     ],
-                    production_volumes=self.iam_data.production_volumes
+                    production_volumes=self.iam_data.production_volumes,
                 )
 
     def adjust_land_use(self, dataset: dict, crop_type: str) -> dict:
