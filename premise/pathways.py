@@ -295,7 +295,12 @@ class PathwaysDataPackage:
             # concatenate the final_energy array if it exists
             if hasattr(scenario["iam data"], "final_energy_use"):
                 data = xr.concat(
-                    [data, scenario["iam data"].final_energy_use.interp(year=scenario["year"])],
+                    [
+                        data,
+                        scenario["iam data"].final_energy_use.interp(
+                            year=scenario["year"]
+                        ),
+                    ],
                     dim="variables",
                 )
                 extra_units.update(scenario["iam data"].final_energy_use.attrs["unit"])
