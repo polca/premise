@@ -679,7 +679,10 @@ class BaseTransformation:
 
     def get_technology_and_regional_production_shares(
         self, production_volumes: xr.DataArray, mapping: dict
-    ) -> tuple[DataArray, dict[tuple[Any, Any], Any], dict[Any, Any]]:
+    ) -> (
+        tuple[None, dict[tuple[Any, str], float], dict[str, float]]
+        | tuple[DataArray, dict[tuple[Any, Any], Any], dict[Any, Any]]
+    ):
 
         regions = [region for region in self.regions if region != "World"]
         year = self.year
@@ -689,10 +692,10 @@ class BaseTransformation:
             year = production_volumes.year.values.max()
 
         if not any(v in production_volumes.variables.values for v in mapping.keys()):
-            raise KeyError(
-                f"The variable(s) {[v for v in list(mapping.keys()) if v not in production_volumes.variables.values]} not "
-                f"found in production volumes data. "
-                f"Available variables: {sorted(list(production_volumes.variables.values))}."
+            return (
+                None,
+                {(var, reg): 0.0 for var in mapping.keys() for reg in regions},
+                {reg: 1 / len(regions) for reg in regions},
             )
 
         try:
@@ -779,7 +782,7 @@ class BaseTransformation:
         else:
             regions = self.regions
             technology_shares_dict = {
-                (var, reg): 1.0 for var in mapping.keys() for reg in regions
+                (var, reg): 0.0 for var in mapping.keys() for reg in regions
             }
             regional_shares_dict = {reg: 1 / len(regions) for reg in regions}
 
@@ -1056,7 +1059,7 @@ class BaseTransformation:
             regions = regions or [
                 region for region in self.regions if region != "World"
             ]
-            production_volumes, technology_shares_dict, regional_shares_dict = (
+            production_volumes, _, regional_shares_dict = (
                 self.get_technology_and_regional_production_shares(
                     production_volumes=production_volumes,
                     mapping=mapping,
@@ -1246,7 +1249,7 @@ class BaseTransformation:
                                 f"Region {region} not found in production volumes data."
                             )
                 else:
-                    prod["production volume"] = 1.0
+                    prod["production volume"] = 0.0
 
             if relink:
                 d_act[region] = self.relink_technosphere_exchanges(dataset)
@@ -1313,6 +1316,11 @@ class BaseTransformation:
             dataset["exchanges"] = [
                 e for e in dataset["exchanges"] if e["type"] == "production"
             ]
+
+            # Empty production volume
+            for prod in ws.production(dataset):
+                prod["production volume"] = 0.0
+
             dataset["emptied"] = True
             dataset.pop("adjust efficiency", None)
 

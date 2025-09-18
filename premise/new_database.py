@@ -545,7 +545,7 @@ class NewDatabase:
         use_cached_database: bool = True,
         external_scenarios: list = None,
         quiet=False,
-        keep_imports_uncertainty=False,
+        keep_imports_uncertainty=True,
         keep_source_db_uncertainty=False,
         gains_scenario="CLE",
         use_absolute_efficiency=False,

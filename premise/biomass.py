@@ -132,9 +132,15 @@ class Biomass(BaseTransformation):
 
         self.process_and_add_activities(
             mapping=self.biomass_activities,
+            production_volumes=self.iam_data.production_volumes,
         )
         self.process_and_add_activities(
-            mapping=self.biomass_map,
+            mapping={
+                k: v
+                for k, v in self.biomass_map.items()
+                if k in self.iam_data.production_volumes.variables.values
+            },
+            production_volumes=self.iam_data.production_volumes,
         )
 
     def create_regional_biomass_markets(self):
@@ -163,9 +169,9 @@ class Biomass(BaseTransformation):
 
         for dataset in ws.get_many(
             self.database,
-            ws.either(*[ws.equals("unit", u) for u in ["kilowatt hour", "megajoule"]]),
+            ws.either(*[ws.equals("unit", u) for u in ["kilowatt hour", "megajoule", "kilogram"]]),
             ws.either(
-                *[ws.contains("name", n) for n in ["electricity", "heat", "power"]]
+                *[ws.contains("name", n) for n in ["electricity", "heat", "power", "hydrogen production"]]
             ),
             ws.exclude(ws.contains("name", "logs")),
         ):

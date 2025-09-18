@@ -93,14 +93,13 @@ class PathwaysDataPackage:
 
         for scenario in self.datapackage.scenarios:
             load_database(scenario, self.datapackage.database)
-            print("database" in scenario)
 
-        # first, delete the content of the "pathways" folder
-        shutil.rmtree(Path.cwd() / "pathways", ignore_errors=True)
+        # first, delete the content of the "pathways_temp" folder
+        shutil.rmtree(Path.cwd() / "pathways_temp", ignore_errors=True)
 
         # create matrices in current directory
         self.datapackage.write_db_to_matrices(
-            filepath=str(Path.cwd() / "pathways" / "inventories"),
+            filepath=str(Path.cwd() / "pathways_temp" / "inventories"),
         )
         self.add_scenario_data()
         self.add_variables_mapping()
@@ -148,7 +147,7 @@ class PathwaysDataPackage:
         """
 
         # create a "mapping" folder inside "pathways"
-        (Path.cwd() / "pathways" / "mapping").mkdir(parents=True, exist_ok=True)
+        (Path.cwd() / "pathways_temp" / "mapping").mkdir(parents=True, exist_ok=True)
 
         # make a list of unique variables
         vars = [
@@ -228,26 +227,23 @@ class PathwaysDataPackage:
                         if model_var in vars and model in [
                             s["model"] for s in self.scenarios
                         ]:
-                            if model_var not in model_variables:
-                                model_variables.append(model_var)
-                                mapping[var] = {"scenario variable": model_var}
-                                mapping[var]["dataset"] = self.find_activities(
-                                    filters=val["ecoinvent_aliases"].get("fltr"),
-                                    database=self.datapackage.scenarios[0]["database"],
-                                    mask=val["ecoinvent_aliases"].get("mask"),
-                                )
-                                mapping[var]["dataset"] = [
-                                    dict(t)
-                                    for t in {
-                                        tuple(sorted(d.items()))
-                                        for d in mapping[var]["dataset"]
-                                    }
-                                ]
-                                if "lhv" in val:
-                                    mapping[var]["lhv"] = val["lhv"]
 
-                            else:
-                                print(f"Leaving out {model_var} from {var}")
+                            model_variables.append(model_var)
+                            mapping[var] = {"scenario variable": model_var}
+                            mapping[var]["dataset"] = self.find_activities(
+                                filters=val["ecoinvent_aliases"].get("fltr"),
+                                database=self.datapackage.scenarios[0]["database"],
+                                mask=val["ecoinvent_aliases"].get("mask"),
+                            )
+                            mapping[var]["dataset"] = [
+                                dict(t)
+                                for t in {
+                                    tuple(sorted(d.items()))
+                                    for d in mapping[var]["dataset"]
+                                }
+                            ]
+                            if "lhv" in val:
+                                mapping[var]["lhv"] = val["lhv"]
 
         # if external scenarios, extend mapping with external data
         for scenario in self.datapackage.scenarios:
@@ -314,20 +310,27 @@ class PathwaysDataPackage:
             if hasattr(final_energy_module, "_PATCHED_CAPACITY_ADDITION"):
                 delattr(final_energy_module, "_PATCHED_CAPACITY_ADDITION")
 
-        with open(Path.cwd() / "pathways" / "mapping" / "mapping.yaml", "w") as f:
+        with open(Path.cwd() / "pathways_temp" / "mapping" / "mapping.yaml", "w") as f:
             yaml.dump(mapping, f)
 
     def add_scenario_data(self):
         """
-        Add scenario data in the "pathways" folder.
+        Add scenario data in the "pathways_temp" folder.
 
         """
         # concatenate xarray across IAM scenarios
 
         data_list, extra_units = [], {}
         for scenario in self.datapackage.scenarios:
-            data = scenario["iam data"].data.interp(year=scenario["year"])
-            extra_units.update(scenario["iam data"].final_energy_use.attrs["unit"])
+            data = scenario["iam data"].production_volumes.interp(year=scenario["year"])
+
+            # concatenate the final_energy array if it exists
+            if hasattr(scenario["iam data"], "final_energy_use"):
+                data = xr.concat(
+                    [data, scenario["iam data"].final_energy_use.interp(year=scenario["year"])],
+                    dim="variables",
+                )
+                extra_units.update(scenario["iam data"].final_energy_use.attrs["unit"])
 
             if "premise.final_energy" in sys.modules:
                 final_energy_module = sys.modules["premise.final_energy"]
@@ -364,7 +367,9 @@ class PathwaysDataPackage:
         array = xr.concat(data_list, dim="scenario")
 
         # make sure pathways/scenario_data directory exists
-        (Path.cwd() / "pathways" / "scenario_data").mkdir(parents=True, exist_ok=True)
+        (Path.cwd() / "pathways_temp" / "scenario_data").mkdir(
+            parents=True, exist_ok=True
+        )
         # save the xarray as csv
         df = array.to_dataframe().reset_index()
 
@@ -393,11 +398,16 @@ class PathwaysDataPackage:
         df = df.dropna(subset=["value"])
 
         # if scenario_data file already exists, delete it
-        if (Path.cwd() / "pathways" / "scenario_data" / "scenario_data.csv").exists():
-            (Path.cwd() / "pathways" / "scenario_data" / "scenario_data.csv").unlink()
+        if (
+            Path.cwd() / "pathways_temp" / "scenario_data" / "scenario_data.csv"
+        ).exists():
+            (
+                Path.cwd() / "pathways_temp" / "scenario_data" / "scenario_data.csv"
+            ).unlink()
 
         df.to_csv(
-            Path.cwd() / "pathways" / "scenario_data" / "scenario_data.csv", index=False
+            Path.cwd() / "pathways_temp" / "scenario_data" / "scenario_data.csv",
+            index=False,
         )
 
     def build_datapackage(self, name: str, contributors: list = None):
@@ -406,8 +416,8 @@ class PathwaysDataPackage:
         """
         # create a new datapackage
         package = Package(base_path=Path.cwd().as_posix())
-        package.infer("pathways/**/*.csv")
-        package.infer("pathways/**/*.yaml")
+        package.infer("pathways_temp/**/*.csv")
+        package.infer("pathways_temp/**/*.yaml")
 
         package.descriptor["name"] = name.replace(" ", "_").lower()
         package.descriptor["title"] = name.capitalize()
@@ -452,10 +462,10 @@ class PathwaysDataPackage:
         package.commit()
 
         # save the json file
-        package.save(str(Path.cwd() / "pathways" / "datapackage.json"))
+        package.save(str(Path.cwd() / "pathways_temp" / "datapackage.json"))
 
         # open the json file and ensure that all resource names are slugified
-        with open(Path.cwd() / "pathways" / "datapackage.json", "r") as f:
+        with open(Path.cwd() / "pathways_temp" / "datapackage.json", "r") as f:
             data = yaml.full_load(f)
 
         for resource in data["resources"]:
@@ -464,18 +474,16 @@ class PathwaysDataPackage:
         # also, remove "pathways/" from the path of each resource
         for resource in data["resources"]:
             path = resource["path"]
+            path = path.replace("pathways_temp", "pathways")
             path = path.replace("pathways/", "").replace("pathways\\", "")
             path = path.replace("\\", "/")
             resource["path"] = path
-            # resource["path"] = (
-            #     resource["path"].replace(r"pathways/", "").replace(r"pathways\\", "")
-            # )
 
         # save it back as a json file
-        with open(Path.cwd() / "pathways" / "datapackage.json", "w") as fp:
+        with open(Path.cwd() / "pathways_temp" / "datapackage.json", "w") as fp:
             json.dump(data, fp)
 
         # zip the folder
-        shutil.make_archive(name, "zip", str(Path.cwd() / "pathways"))
+        shutil.make_archive(name, "zip", str(Path.cwd() / "pathways_temp"))
 
         print(f"Data package saved at {str(Path.cwd() / f'{name}.zip')}")

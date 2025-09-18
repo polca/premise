@@ -1932,25 +1932,28 @@ class SteelValidation(BaseDatasetValidator):
                 if ds["location"] == "World":
                     continue
 
-                if (
-                    self.year
-                    in self.iam_data.steel_technology_mix.coords["year"].values
-                ):
-                    eaf_steel = (
-                        self.iam_data.steel_technology_mix.sel(
-                            variables="steel - secondary",
-                            region=ds["location"],
-                            year=self.year,
+                eaf_steel = 0
+                if "steel - secondary" in self.iam_data.steel_technology_mix.variables:
+                    if (
+                        self.year
+                        in self.iam_data.steel_technology_mix.coords["year"].values
+                    ):
+
+                        eaf_steel = (
+                            self.iam_data.steel_technology_mix.sel(
+                                variables="steel - secondary",
+                                region=ds["location"],
+                                year=self.year,
+                            )
+                        ).values.item(0)
+                    else:
+                        eaf_steel = (
+                            self.iam_data.steel_technology_mix.sel(
+                                variables="steel - secondary", region=ds["location"]
+                            )
+                            .interp(year=self.year)
+                            .values.item(0)
                         )
-                    ).values.item(0)
-                else:
-                    eaf_steel = (
-                        self.iam_data.steel_technology_mix.sel(
-                            variables="steel - secondary", region=ds["location"]
-                        )
-                        .interp(year=self.year)
-                        .values.item(0)
-                    )
 
                 total = sum(
                     [
@@ -1962,26 +1965,27 @@ class SteelValidation(BaseDatasetValidator):
                     ]
                 )
 
-                if self.system_model != "consequential":
-                    # check that the total is roughly equal to the IAM projection
-                    if math.isclose(total, eaf_steel, rel_tol=0.02) is False:
-                        message = f"Input of secondary steel incorrect: {total} instead of {eaf_steel}."
-                        self.log_issue(
-                            ds,
-                            "incorrect secondary steel market input",
-                            message,
-                            issue_type="major",
-                        )
-                else:
-                    # make sure the amount of secondary steel is 0
-                    if total > 0.01:
-                        message = f"Input of secondary steel is {total}."
-                        self.log_issue(
-                            ds,
-                            "incorrect secondary steel market input. Should be zero.",
-                            message,
-                            issue_type="major",
-                        )
+                if eaf_steel > 0:
+                    if self.system_model != "consequential":
+                        # check that the total is roughly equal to the IAM projection
+                        if math.isclose(total, eaf_steel, rel_tol=0.02) is False:
+                            message = f"Input of secondary steel incorrect: {total} instead of {eaf_steel}."
+                            self.log_issue(
+                                ds,
+                                "incorrect secondary steel market input",
+                                message,
+                                issue_type="major",
+                            )
+                    else:
+                        # make sure the amount of secondary steel is 0
+                        if total > 0.01:
+                            message = f"Input of secondary steel is {total}."
+                            self.log_issue(
+                                ds,
+                                "incorrect secondary steel market input. Should be zero.",
+                                message,
+                                issue_type="major",
+                            )
 
     def check_empty_markets(self):
 

@@ -549,8 +549,8 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
                 if "CCS" in sector and iam_data is not None:
                     iam_data *= 100
 
-                if sector == "CDR - generation":
-                    iam_data *= -1
+                # if sector == "CDR - generation":
+                #    iam_data *= -1
 
                 if iam_data is None:
                     continue

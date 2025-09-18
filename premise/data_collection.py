@@ -1284,6 +1284,23 @@ class IAMDataCollection:
             rev_input_vars[v] for v in market_data.variables.values
         ]
 
+        # add units by transferring those from `data`
+        unit_by_k = {}
+        for k in market_data.coords["variables"].values:
+            key = str(k)
+            v = input_vars[key]
+            if isinstance(v, list):
+                v = v[0]
+            unit = data.attrs.get("unit", {}).get(v)
+            if unit is not None:
+                unit_by_k[key] = unit
+
+        # attach units as the last step and keep a handle to the returned object
+        market_data = market_data.assign_attrs(unit=unit_by_k)
+
+        # assign as a brand-new dict so we don't alias or pollute
+        market_data.attrs["unit"] = dict(unit_by_k)
+
         # check World region
         # if empty, fill it with the sum of all regions
         if "World" in market_data.region.values:
@@ -1309,15 +1326,6 @@ class IAMDataCollection:
         market_data = market_data.bfill(dim="year")
         # fill NaNs with zeros
         market_data = market_data.fillna(0)
-
-        # remove uneeded attrs
-        market_data.attrs = {
-            "unit": {
-                k: v
-                for k, v in market_data.attrs["unit"].items()
-                if k in input_vars.values()
-            }
-        }
 
         return market_data
 
@@ -1494,41 +1502,60 @@ class IAMDataCollection:
                 f"of the IAM file: {data.year.values.min()}-{data.year.values.max()}"
             )
 
-        vars = flatten_list_to_strings(input_vars.values())
-
-        missing_vars = set(vars) - set(data.variables.values)
+        # Flatten and check presence
+        vars_flat = flatten_list_to_strings(input_vars.values())
+        missing_vars = set(vars_flat) - set(data.variables.values)
 
         if missing_vars:
             print_missing_variables(missing_vars, str(self.filepath_iam_files))
 
-        available_vars = list(set(vars) - missing_vars)
+        # Build the output per requested label to preserve duplicates
+        pieces = []
+        new_var_names = []
+        units = {}
 
-        if available_vars:
-            data_to_return = data.loc[:, available_vars, :]
-        else:
+        for label, spec in input_vars.items():
+            if isinstance(spec, list):
+                present = [s for s in spec if s in data.variables.values]
+                if not present:
+                    continue
+                da = data.sel(variables=present).sum(dim="variables")
+                for s in present:
+                    if s in data.attrs.get("unit", {}):
+                        units[label] = data.attrs["unit"][s]
+                        break
+            else:
+                if spec not in data.variables.values:
+                    continue
+                da = data.sel(variables=spec)
+                if spec in data.attrs.get("unit", {}):
+                    units[label] = data.attrs["unit"][spec]
+
+            # Ensure a 'variables' dimension exists (len=1), then set its coord to the requested label
+            if "variables" not in da.dims:
+                da = da.expand_dims("variables")
+            da = da.assign_coords(variables=[label])
+
+            pieces.append(da)
+            new_var_names.append(label)
+
+        if not pieces:
             return None
 
-        if any(isinstance(x, list) for x in input_vars.values()):
-            rev_input_vars = {}
-            for k, v in input_vars.items():
-                if isinstance(v, list):
-                    for x in v:
-                        rev_input_vars[x] = k
-                else:
-                    rev_input_vars[v] = k
-        else:
-            rev_input_vars = {v: k for k, v in input_vars.items()}
+        data_to_return = xr.concat(pieces, dim="variables")
+        data_to_return.attrs["unit"] = units
 
-        data_to_return.coords["variables"] = [
-            rev_input_vars[v] for v in data_to_return.variables.values
-        ]
-
-        # if duplicates in market_data.coords["variables"]
-        # we sum them
-        if len(data_to_return.coords["variables"].values.tolist()) != len(
-            set(data_to_return.coords["variables"].values.tolist())
-        ):
+        # If duplicate *labels* exist (rare), aggregate them
+        if len(new_var_names) != len(set(new_var_names)):
             data_to_return = data_to_return.groupby("variables").sum(dim="variables")
+
+        # === World fill ===
+        if "World" in data_to_return.region.values:
+            for var in data_to_return.coords["variables"].values:
+                if data_to_return.sel(region="World", variables=var).sum() == 0:
+                    data_to_return.loc[dict(region="World", variables=var)] = (
+                        data_to_return.sum(dim="region").sel(variables=var)
+                    )
 
         if fill:
             # if fill, we fill zero values

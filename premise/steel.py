@@ -163,6 +163,7 @@ class Steel(BaseTransformation):
         self.process_and_add_activities(
             efficiency_adjustment_fn=self.adjust_process_efficiency,
             mapping=self.steel_map,
+            production_volumes=self.iam_data.production_volumes,
         )
 
         # make other steel datasets region-specific
@@ -317,6 +318,9 @@ class Steel(BaseTransformation):
 
                 if electricity > 0:
                     scaling_factor = max(0.444 / electricity, scaling_factor)
+
+                    # cap electricity use to 0.8 kWh/kg steel
+                    scaling_factor = min(0.799 / electricity, scaling_factor)
 
             # if pig iron production, we want to make sure
             # that the scaling down will not bring energy consumption
