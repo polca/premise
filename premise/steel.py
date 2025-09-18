@@ -163,6 +163,7 @@ class Steel(BaseTransformation):
         self.process_and_add_activities(
             efficiency_adjustment_fn=self.adjust_process_efficiency,
             mapping=self.steel_map,
+            production_volumes=self.iam_data.production_volumes,
         )
 
         # make other steel datasets region-specific
