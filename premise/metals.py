@@ -1410,21 +1410,14 @@ class Metals(BaseTransformation):
             print("[Metals] WARNING: No end-of-life configuration found")
             return
 
-        print(f"Processing {len(self.eol_config)} EOL treatment configurations...")
-
-        for treatment_id, config in self.eol_config.items():
-            print(f"\nProcessing EOL treatment: {treatment_id}")
-
             consumer_filter = {
                 "name": config["consumer"]["name"],
                 "reference product": config["consumer"]["reference product"],
             }
 
             if config.get("treatment", {}).get("type") == "market":
-                print(f"  → Market treatment")
                 self._create_treatment_market(treatment_id, config, consumer_filter)
             else:
-                print(f"  → Direct treatment")
                 self._connect_simple_treatment(treatment_id, config, consumer_filter)
 
     def _connect_simple_treatment(
@@ -1453,9 +1446,6 @@ class Metals(BaseTransformation):
             logger.warning(f"[Metals] No consumers found for filter: {consumer_filter}")
             return
 
-        print(f"  Found {len(consumers)} consumer activities:")
-        for consumer in consumers:
-            print(f"    - {consumer['name']} [{consumer['location']}]")
 
         ### Find treatment activities ###
         treatment_filter = {
@@ -1484,9 +1474,6 @@ class Metals(BaseTransformation):
                 t for t in treatment_datasets if not any(m in t["name"] for m in masks)
             ]
 
-        print(f"  Found {len(treatment_datasets)} suppliers")
-        for supplier in treatment_datasets:
-            print(f"      - {supplier['name']} [{supplier['location']}]")
 
         ### Connect consumers to treatments ###
         for consumer in consumers:
@@ -1558,9 +1545,6 @@ class Metals(BaseTransformation):
             logger.warning(f"[Metals] No consumers found for filter: {consumer_filter}")
             return
 
-        print(f"  Found {len(consumers)} consumer activities:")
-        for consumer in consumers:
-            print(f"    - {consumer['name']} [{consumer['location']}]")
 
         ### Create market template ###
         market_name = config["treatment"]["name"]
@@ -1655,9 +1639,6 @@ class Metals(BaseTransformation):
                 if not suppliers:
                     continue
 
-                print(f"    {supplier_id}: {len(suppliers)} suppliers found")
-                for supplier in suppliers:
-                    print(f"      - {supplier['name']} [{supplier['location']}]")
 
                 # Find supplier in same location or use first
                 supplier = next(

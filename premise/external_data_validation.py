@@ -14,7 +14,7 @@ import wurst.searching as ws
 import yaml
 from datapackage import Package, exceptions, validate
 from prettytable import PrettyTable
-from schema import And, Optional, Schema, Use
+from schema import And, Optional, Schema, Use, Or
 
 from .geomap import Geomap
 from .utils import load_constants
@@ -791,6 +791,25 @@ def check_config_file(datapackage: datapackage.Package) -> int:
                         for i in s
                     ),
                 ),
+            },
+            Optional("capacity_addition"): {
+                Optional("settings"): {
+                    Optional("regions"): list,
+                    Optional("apply_to_all_regions"): bool,
+                },
+                str: {
+                    "ecoinvent_aliases": {
+                        "fltr":{
+                            Optional("name"): Or(str, list),
+                            Optional("reference product"): Or(str, list),
+                            Optional("unit"): str,
+                            Optional("mask"): Or(str, list),
+                        }
+                    },
+                    "iam_aliases": {
+                        str: str,
+                    },
+                }
             },
         }
     )

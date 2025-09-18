@@ -38,6 +38,7 @@ class PathwaysDataPackage:
         use_absolute_efficiency=False,
         biosphere_name="biosphere3",
         split_capacity_operation: bool = False,
+        split_external_capacity_operation: bool = False,
     ):
         self.years = years
         self.scenarios = []
@@ -65,6 +66,7 @@ class PathwaysDataPackage:
             use_absolute_efficiency=use_absolute_efficiency,
             biosphere_name=biosphere_name,
             split_capacity_operation=split_capacity_operation,
+            split_external_capacity_operation=split_external_capacity_operation,
         )
 
         self.scenario_names = []

@@ -551,6 +551,7 @@ class NewDatabase:
         use_absolute_efficiency=False,
         biosphere_name: str = "biosphere3",
         split_capacity_operation: bool = False,
+        split_external_capacity_operation: bool = False,
     ) -> None:
         self.sector_update_methods = None
         self.source = source_db
@@ -563,6 +564,7 @@ class NewDatabase:
         self.keep_source_db_uncertainty = keep_source_db_uncertainty
         self.biosphere_name = check_presence_biosphere_database(biosphere_name)
         self.split_capacity_operation = split_capacity_operation
+        self.split_external_capacity_operation = split_external_capacity_operation
 
         # if version is anything other than 3.8 or 3.9
         # and system_model is "consequential"
@@ -1023,6 +1025,7 @@ class NewDatabase:
                 "args": (
                     self.version,
                     self.system_model,
+                    self.split_external_capacity_operation,
                 ),
             },
         }
