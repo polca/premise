@@ -475,7 +475,6 @@ class FinalEnergy(BaseTransformation):
 
         return capacity_dataset
 
-
     def get_patched_yaml_data(self):
         """
         Generate YAML configuration for capacity datasets.

@@ -456,8 +456,11 @@ class ExternalScenario(BaseTransformation):
         self.configurations = configurations or []
 
         for d, data in self.external_scenarios_data.items():
-            config_without_capacity = {k: v for k, v in self.configurations[d].items()
-                                       if k != "capacity_addition"}
+            config_without_capacity = {
+                k: v
+                for k, v in self.configurations[d].items()
+                if k != "capacity_addition"
+            }
             ds_names = get_recursively(config_without_capacity, "name")
             # ds_names = get_recursively(self.configurations[d], "name")
             self.regionalize_inventories(ds_names, external_scenario_regions[d], data)
@@ -1902,12 +1905,17 @@ class ExternalScenario(BaseTransformation):
                 if config_regions:
                     external_regions = config_regions
                 else:
-                    external_regions = self.external_scenarios_data[d].get("regions", [])
+                    external_regions = self.external_scenarios_data[d].get(
+                        "regions", []
+                    )
                 print(f"  🌍 Processing regions: {external_regions}")
 
             # Get capacity addition configs (excluding settings)
-            capacity_configs = {k: v for k, v in configuration["capacity_addition"].items()
-                                if k != "settings"}
+            capacity_configs = {
+                k: v
+                for k, v in configuration["capacity_addition"].items()
+                if k != "settings"
+            }
 
             # Process each capacity addition configuration
             for key, config in capacity_configs.items():
@@ -1918,7 +1926,9 @@ class ExternalScenario(BaseTransformation):
                 if is_transport:
                     suffix = key.replace("Sales - Transport - ", "").strip()
                     new_name = f"transport capacity addition, 1 million units, {suffix}"
-                    new_ref_prod = f"transport capacity addition, 1 million units, {suffix}"
+                    new_ref_prod = (
+                        f"transport capacity addition, 1 million units, {suffix}"
+                    )
                 else:
                     suffix = key.replace("New Cap - ", "").strip()
                     new_name = f"capacity addition, 1GW, {suffix}"
@@ -1926,13 +1936,17 @@ class ExternalScenario(BaseTransformation):
 
                 # Process with flexible location filtering
                 self.process_external_capacity_addition(
-                    key, config, new_name, new_ref_prod,
-                    is_transport, external_regions
+                    key, config, new_name, new_ref_prod, is_transport, external_regions
                 )
 
     def process_external_capacity_addition(
-            self, key, config, new_name, new_ref_prod,
-            is_transport=False, external_regions=None
+        self,
+        key,
+        config,
+        new_name,
+        new_ref_prod,
+        is_transport=False,
+        external_regions=None,
     ):
         """
         Process a single external scenario capacity addition configuration.
@@ -1948,16 +1962,24 @@ class ExternalScenario(BaseTransformation):
             return
 
         # Find datasets matching the filter criteria
-        matched_datasets = self.get_external_datasets_from_filter(ecoinvent_aliases, external_regions)
+        matched_datasets = self.get_external_datasets_from_filter(
+            ecoinvent_aliases, external_regions
+        )
 
         if not matched_datasets:
-            print(f"  ⚠️ No datasets found with filter in regions {external_regions}: {config}")
+            print(
+                f"  ⚠️ No datasets found with filter in regions {external_regions}: {config}"
+            )
             return
 
-        print(f"  ✅ Found {len(matched_datasets)} datasets to process in regions {external_regions}")
+        print(
+            f"  ✅ Found {len(matched_datasets)} datasets to process in regions {external_regions}"
+        )
 
         # Remove infrastructure from operations (with location filtering)
-        self.remove_external_infrastructure_from_operations(matched_datasets, external_regions)
+        self.remove_external_infrastructure_from_operations(
+            matched_datasets, external_regions
+        )
 
         # Create capacity dataset
         self.create_external_capacity_dataset(
@@ -1978,7 +2000,9 @@ class ExternalScenario(BaseTransformation):
 
         # Start with datasets from external regions only (if specified)
         if external_regions:
-            datasets = [ds for ds in self.database if ds.get("location") in external_regions]
+            datasets = [
+                ds for ds in self.database if ds.get("location") in external_regions
+            ]
         else:
             datasets = list(self.database)
 
@@ -1986,7 +2010,9 @@ class ExternalScenario(BaseTransformation):
         if isinstance(fltr, list):
             all_datasets = []
             for i, filter_block in enumerate(fltr):
-                filtered_datasets = self.apply_external_single_filter(filter_block, datasets)
+                filtered_datasets = self.apply_external_single_filter(
+                    filter_block, datasets
+                )
                 for ds in filtered_datasets:
                     all_datasets.append((ds, i))
             return all_datasets
@@ -2038,7 +2064,9 @@ class ExternalScenario(BaseTransformation):
 
         return datasets
 
-    def remove_external_infrastructure_from_operations(self, infrastructure_datasets, external_regions):
+    def remove_external_infrastructure_from_operations(
+        self, infrastructure_datasets, external_regions
+    ):
         """
         Remove infrastructure datasets from operational datasets, but only for external scenario regions.
         Mirrors the logic from final_energy.py remove_infrastructure_from_operations.
@@ -2067,18 +2095,25 @@ class ExternalScenario(BaseTransformation):
                 exc
                 for exc in op_dataset.get("exchanges", [])
                 if not (
-                        exc["type"] == "technosphere"
-                        and exc["name"] in infrastructure_names
+                    exc["type"] == "technosphere"
+                    and exc["name"] in infrastructure_names
                 )
             ]
             removed_count = original_count - len(op_dataset["exchanges"])
             total_removed += removed_count
 
         print(
-            f"  🗑️ Removed {total_removed} infrastructure exchanges from operational datasets in regions {external_regions}")
+            f"  🗑️ Removed {total_removed} infrastructure exchanges from operational datasets in regions {external_regions}"
+        )
 
-    def create_external_capacity_dataset(self, matched_datasets, new_name, new_ref_prod, is_transport=False,
-                                         external_regions=None):
+    def create_external_capacity_dataset(
+        self,
+        matched_datasets,
+        new_name,
+        new_ref_prod,
+        is_transport=False,
+        external_regions=None,
+    ):
         """
         Create capacity datasets for external scenarios.
         Mirrors the logic from final_energy.py create_unified_capacity_dataset.
@@ -2088,16 +2123,22 @@ class ExternalScenario(BaseTransformation):
             regions_to_process = external_regions
         else:
             # Get all unique regions from matched datasets
-            regions_to_process = list(set(ds.get("location") for ds, _ in matched_datasets))
+            regions_to_process = list(
+                set(ds.get("location") for ds, _ in matched_datasets)
+            )
 
         # Create capacity datasets for each region
         for region in regions_to_process:
             # Find datasets in this region
             region_datasets = []
             if matched_datasets and isinstance(matched_datasets[0], tuple):
-                region_datasets = [ds for ds, _ in matched_datasets if ds.get("location") == region]
+                region_datasets = [
+                    ds for ds, _ in matched_datasets if ds.get("location") == region
+                ]
             else:
-                region_datasets = [ds for ds in matched_datasets if ds.get("location") == region]
+                region_datasets = [
+                    ds for ds in matched_datasets if ds.get("location") == region
+                ]
 
             if not region_datasets:
                 continue
@@ -2114,7 +2155,8 @@ class ExternalScenario(BaseTransformation):
                 if individual_kw is None:
                     individual_scaling = 1
                     print(
-                        f"      ⚠️ Could not extract capacity for {representative_ds['name']}, using scaling factor 1")
+                        f"      ⚠️ Could not extract capacity for {representative_ds['name']}, using scaling factor 1"
+                    )
                 else:
                     # Scale to 1GW (1,000,000 kW)
                     individual_scaling = 1_000_000 / individual_kw
@@ -2132,24 +2174,28 @@ class ExternalScenario(BaseTransformation):
             }
 
             # Add infrastructure exchanges
-            capacity_dataset["exchanges"].append({
-                "name": representative_ds["name"],
-                "product": representative_ds["reference product"],
-                "location": representative_ds["location"],
-                "amount": individual_scaling,
-                "type": "technosphere",
-                "unit": representative_ds.get("unit", "unit"),
-            })
+            capacity_dataset["exchanges"].append(
+                {
+                    "name": representative_ds["name"],
+                    "product": representative_ds["reference product"],
+                    "location": representative_ds["location"],
+                    "amount": individual_scaling,
+                    "type": "technosphere",
+                    "unit": representative_ds.get("unit", "unit"),
+                }
+            )
 
             # Add production exchange
-            capacity_dataset["exchanges"].append({
-                "name": new_name,
-                "product": new_ref_prod,
-                "location": region,
-                "amount": 1,
-                "type": "production",
-                "unit": "unit",
-            })
+            capacity_dataset["exchanges"].append(
+                {
+                    "name": new_name,
+                    "product": new_ref_prod,
+                    "location": region,
+                    "amount": 1,
+                    "type": "production",
+                    "unit": "unit",
+                }
+            )
 
             # Add to database
             self.database.append(capacity_dataset)

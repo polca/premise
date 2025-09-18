@@ -799,7 +799,7 @@ def check_config_file(datapackage: datapackage.Package) -> int:
                 },
                 str: {
                     "ecoinvent_aliases": {
-                        "fltr":{
+                        "fltr": {
                             Optional("name"): Or(str, list),
                             Optional("reference product"): Or(str, list),
                             Optional("unit"): str,
@@ -809,7 +809,7 @@ def check_config_file(datapackage: datapackage.Package) -> int:
                     "iam_aliases": {
                         str: str,
                     },
-                }
+                },
             },
         }
     )

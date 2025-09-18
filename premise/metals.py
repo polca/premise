@@ -1446,7 +1446,6 @@ class Metals(BaseTransformation):
             logger.warning(f"[Metals] No consumers found for filter: {consumer_filter}")
             return
 
-
         ### Find treatment activities ###
         treatment_filter = {
             "name": config["treatment"]["name"],
@@ -1473,7 +1472,6 @@ class Metals(BaseTransformation):
             treatment_datasets = [
                 t for t in treatment_datasets if not any(m in t["name"] for m in masks)
             ]
-
 
         ### Connect consumers to treatments ###
         for consumer in consumers:
@@ -1544,7 +1542,6 @@ class Metals(BaseTransformation):
         if not consumers:
             logger.warning(f"[Metals] No consumers found for filter: {consumer_filter}")
             return
-
 
         ### Create market template ###
         market_name = config["treatment"]["name"]
@@ -1638,7 +1635,6 @@ class Metals(BaseTransformation):
 
                 if not suppliers:
                     continue
-
 
                 # Find supplier in same location or use first
                 supplier = next(
