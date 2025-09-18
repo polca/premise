@@ -169,9 +169,9 @@ class Biomass(BaseTransformation):
 
         for dataset in ws.get_many(
             self.database,
-            ws.either(*[ws.equals("unit", u) for u in ["kilowatt hour", "megajoule"]]),
+            ws.either(*[ws.equals("unit", u) for u in ["kilowatt hour", "megajoule", "kilogram"]]),
             ws.either(
-                *[ws.contains("name", n) for n in ["electricity", "heat", "power"]]
+                *[ws.contains("name", n) for n in ["electricity", "heat", "power", "hydrogen production"]]
             ),
             ws.exclude(ws.contains("name", "logs")),
         ):
