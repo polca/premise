@@ -30,7 +30,7 @@ FILEPATH_CONSEQUENTIAL_BLACKLIST = DATA_DIR / "consequential" / "blacklist.yaml"
 CORRESPONDENCE_BIO_FLOWS = (
     DATA_DIR / "utils" / "export" / "correspondence_biosphere_flows.yaml"
 )
-FILEPATH_CLASSIFICATIONS = DATA_DIR / "utils" / "import" / "classifications.xlsx"
+FILEPATH_CLASSIFICATIONS = DATA_DIR / "utils" / "import" / "classifications.csv"
 
 TEMP_CSV_FILE = DIR_CACHED_DB / "temp.csv"
 TEMP_EXCEL_FILE = DIR_CACHED_DB / "temp.xlsx"
@@ -50,8 +50,9 @@ def get_classifications():
     Retrieve the classification of the datasets to import.
     """
 
-    df = pd.read_excel(
+    df = pd.read_csv(
         FILEPATH_CLASSIFICATIONS,
+        sep=get_delimiter(filepath=FILEPATH_CLASSIFICATIONS)
     )
 
     # Build the nested dictionary
