@@ -208,16 +208,17 @@ def mapping_to_dataframe(scenario, original_database=None) -> pd.DataFrame:
 
     return grouped_df
 
+
 def get_capacity_addition_dataset_names(key: str) -> tuple[str, str, str]:
     """
     Generate capacity addition dataset names and units from a capacity addition key.
     Used by both regular and external capacity addition processing.
-    
+
     :param key: Capacity addition key (e.g., "New Cap - Electricity - Solar PV")
     :return: Tuple of (name, reference_product, unit)
     """
     is_transport = key.startswith("Sales - Transport")
-    
+
     if is_transport:
         suffix = key.replace("Sales - Transport - ", "").strip()
         new_name = f"transport capacity addition, 1 million units, {suffix}"
@@ -229,8 +230,9 @@ def get_capacity_addition_dataset_names(key: str) -> tuple[str, str, str]:
         new_name = f"capacity addition, 1GW, {suffix}"
         new_ref_prod = f"capacity addition, 1GW, {suffix}"
         unit = "gigawatt"
-    
+
     return new_name, new_ref_prod, unit
+
 
 class InventorySet:
     """
@@ -503,32 +505,32 @@ class InventorySet:
 
         """
         filters = get_mapping(filepath=CAPACITY_ADDITION, var="ecoinvent_aliases")
-        
+
         # Create placeholder datasets representing the capacity addition datasets that would be created
         capacity_mapping = {}
-        
+
         for key, config in filters.items():
             # Use the shared utility function (consistent with external scenarios)
             new_name, new_ref_prod, unit = get_capacity_addition_dataset_names(key)
-            
+
             # Create a placeholder dataset
             placeholder_dataset = {
-                'name': new_name,
-                'reference product': new_ref_prod,
-                'unit': unit,
-                'location': 'GLO',  # Global location as default
-                'database': 'capacity_addition_placeholder',
-                'code': f"capacity_addition_{key}",
+                "name": new_name,
+                "reference product": new_ref_prod,
+                "unit": unit,
+                "location": "GLO",  # Global location as default
+                "database": "capacity_addition_placeholder",
+                "code": f"capacity_addition_{key}",
             }
-            
+
             capacity_mapping[key] = [placeholder_dataset]
-        
+
         return capacity_mapping
 
     def generate_capacity_addition_filters(self) -> dict:
         """
         Get raw capacity addition filter configurations.
-        
+
         :return: dictionary with capacity addition names as keys and
             raw filter configurations as values.
         :rtype: dict
