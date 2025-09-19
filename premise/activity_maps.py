@@ -169,7 +169,9 @@ def mapping_to_dataframe(scenario, original_database=None) -> pd.DataFrame:
         for category, activities in mapping.items():
             for act in activities:
                 if not isinstance(act, dict):
-                    print(f"Skipping non-dict activity: {act}. Expected a dict, got a {type(act)} from {sector}.")
+                    print(
+                        f"Skipping non-dict activity: {act}. Expected a dict, got a {type(act)} from {sector}."
+                    )
                     continue
                 temp_records.append(
                     (
