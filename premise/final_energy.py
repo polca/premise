@@ -11,6 +11,7 @@ import sys
 
 from .data_collection import IAMDataCollection
 from .transformation import BaseTransformation, InventorySet
+from .activity_maps import get_capacity_addition_dataset_names
 
 from wurst import searching as ws
 
@@ -99,7 +100,8 @@ class FinalEnergy(BaseTransformation):
         mapping = InventorySet(database=database, version=version, model=model)
         self.final_energy_map = mapping.generate_final_energy_map()
         if self.split_capacity_operation:
-            self.capacity_addition_map = mapping.generate_capacity_addition_map()
+            # Get raw filter configurations for capacity addition processing
+            self.capacity_addition_map = mapping.generate_capacity_addition_filters()
         else:
             self.capacity_addition_map = {}
 
@@ -129,17 +131,9 @@ class FinalEnergy(BaseTransformation):
         for key, config in self.capacity_addition_map.items():
             print(f"🧩 Processing key: '{key}'")
 
+            # Use the shared utility function
+            new_name, new_ref_prod, unit = get_capacity_addition_dataset_names(key)
             is_transport = key.startswith("Sales - Transport")
-
-            if is_transport:
-                suffix = key.replace("Sales - Transport - ", "").strip()
-                new_name = f"transport capacity addition, 1 million units, {suffix}"
-                new_ref_prod = f"transport capacity addition, 1 million units, {suffix}"
-            else:
-                # Generate clean capacity addition name based on key
-                suffix = key.replace("New Cap - ", "").strip()
-                new_name = f"capacity addition, 1GW, {suffix}"
-                new_ref_prod = f"capacity addition, 1GW, {suffix}"
 
             self.process_capacity_addition(
                 key, config, new_name, new_ref_prod, is_transport
@@ -500,14 +494,8 @@ class FinalEnergy(BaseTransformation):
         capacity_units = {}
 
         for variable in self.capacity_addition_map.keys():
-            if variable.startswith("New Cap - "):
-                suffix = variable.replace("New Cap - ", "").strip()
-                capacity_name = f"capacity addition, 1GW, {suffix}"
-            elif variable.startswith("Sales - Transport - "):
-                suffix = variable.replace("Sales - Transport - ", "").strip()
-                capacity_name = (
-                    f"transport capacity addition, 1 million units, {suffix}"
-                )
+            # Use the shared utility function
+            capacity_name, _, _ = get_capacity_addition_dataset_names(variable)
 
             # Look for capacity addition datasets (any region)
             capacity_datasets = list(
