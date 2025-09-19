@@ -51,8 +51,7 @@ def get_classifications():
     """
 
     df = pd.read_csv(
-        FILEPATH_CLASSIFICATIONS,
-        sep=get_delimiter(filepath=FILEPATH_CLASSIFICATIONS)
+        FILEPATH_CLASSIFICATIONS, sep=get_delimiter(filepath=FILEPATH_CLASSIFICATIONS)
     )
 
     # Build the nested dictionary
