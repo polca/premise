@@ -124,19 +124,19 @@ def act_fltr(
     return list(ws.get_many(database, *filters))
 
 
-def mapping_to_dataframe(scenario) -> pd.DataFrame:
+def mapping_to_dataframe(scenario, original_database=None) -> pd.DataFrame:
     """
     Convert a mapping dictionary of the form {category: [activities]} into a grouped DataFrame
     with a 'Location' column listing all locations per (Category, Market, Product) combination.
 
-    :param mapping: Dictionary where keys are categories and values are lists of activity dicts.
+    :param scenario: A scenario dictionary containing a 'database' key with the ecoinvent database.
     :return: A pandas DataFrame with columns 'Category', 'Market', 'Product', and 'Locations'.
     """
 
     temp_records = list()
 
     if "database" not in scenario:
-        scenario = load_database(scenario)
+        scenario = load_database(scenario, original_database=original_database)
 
     inv = InventorySet(
         database=scenario["database"],
