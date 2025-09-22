@@ -947,7 +947,11 @@ class NewDatabase:
 
         return data
 
-    def update(self, sectors: [str, list, None] = None) -> None:
+    def update(
+        self,
+        sectors: [str, list, None] = None,
+        which_interventions=["tailings", "brake_wear", "slag", "copper"],
+    ) -> None:
         """
         Update a specific sector by name.
         """
@@ -976,7 +980,7 @@ class NewDatabase:
             },
             "interventions": {
                 "func": _update_interventions,
-                "args": (self.version, self.system_model),
+                "args": (self.version, self.system_model, which_interventions),
             },
             "heat": {"func": _update_heat, "args": (self.version, self.system_model)},
             "cdr": {"func": _update_cdr, "args": (self.version, self.system_model)},
