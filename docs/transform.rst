@@ -2317,14 +2317,12 @@ implementation in the wurst_ library.
   VI              NAM                               Central America and Caribbean   CSA                      LAM                         LAM              RCAM
   VN              RCPA                              Southeast Asia                  ODA                      OAS                         OAS              SEAS
   VU              PAS                               Southeast Asia                  ODA                      OAS                         OAS              OCE
-  XK              EU                               Europe_Non_EU                   EEU                      NEU                         NES              CEU
+  XK              EU                                Europe_Non_EU                   EEU                      NEU                         NES              CEU
   YE              MEA                               Middle East                     MEA                      MEA                         MEA              ME
   ZA              AFR                               South Africa                    AFR                      SSA                         SSA              SAF
   ZM              AFR                               Africa_Southern                 AFR                      SSA                         SSA              RSAF
   ZW              AFR                               Africa_Southern                 AFR                      SSA                         SSA              RSAF
 =============== ================================= ================================ ======================== =========================== ================ ========================
-
-
 
 
 The mapping between ecoinvent locations and IAM regions is available under the following directory:
