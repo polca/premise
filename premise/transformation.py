@@ -1077,7 +1077,9 @@ class BaseTransformation:
         if production_volumes is not None:
             production_volumes = production_volumes.sel(
                 variables=[
-                    v for v in list(mapping.keys()) if v in production_volumes.variables.values
+                    v
+                    for v in list(mapping.keys())
+                    if v in production_volumes.variables.values
                 ]
             )
 
