@@ -1072,6 +1072,14 @@ class BaseTransformation:
 
         processed_datasets, seen_datasets = [], []
 
+        # resize production volumes to the keys available in mapping
+        if production_volumes is not None:
+            production_volumes = production_volumes.sel(
+                variables=[
+                    v for v in list(mapping.keys()) if v in production_volumes.variables.values
+                ]
+            )
+
         for technology, grouped_activities in mapping.items():
             grouped_activities = [
                 ds for ds in grouped_activities if ds["name"] not in seen_datasets
