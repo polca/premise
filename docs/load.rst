@@ -193,7 +193,7 @@ You will need to select "SimaproCSV_Import.csv" as mapping file to use.
 Then import the ecoinvent impact assessment methods (available for free on OpenLCA's Nexus_ platform)
 into the Premise database as JSON-LD.
 
-_Nexus: https://nexus.openlca.org/
+.. _Nexus: https://nexus.openlca.org/
 
 .. image:: olca_fig3.png
    :width: 500pt
