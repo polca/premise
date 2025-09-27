@@ -151,8 +151,7 @@ This is done as follows:
 As Simapro CSV files for OpenLCA
 --------------------------------
 
-*premise* can export the databases as a modified version
-of Simapro-CSV files compatible with OpenLCA.
+*premise* can export the databases as a modified version of Simapro-CSV files compatible with OpenLCA.
 
 This is done as follows:
 
@@ -166,7 +165,19 @@ This is done as follows:
     original classification.
 
 
-The Simapro CSV files can be imported in OpenLCA in a new database like so:
+Then, create a database from scratch (in older versions this is the “create empty database” option).
+
+.. image:: olca_fig0.png
+   :width: 500pt
+   :align: center
+
+.. note::
+
+    In older versions the import steps were different (an empty database must be used for the import,
+    rather than a complete reference database, which has the openLCA elementary flows. As this complete reference
+    version will have flows not required by Premise.
+
+Import the file as a SimaPro CSV (import>other>Other LCA formats>SimaPro CSV).
 
 .. image:: olca_fig1.png
    :width: 500pt
@@ -179,28 +190,22 @@ You will need to select "SimaproCSV_Import.csv" as mapping file to use.
    :width: 500pt
    :align: center
 
+Then import the ecoinvent impact assessment methods (available for free on OpenLCA's Nexus_ platform)
+into the Premise database as JSON-LD.
 
-Finally, once imported, unlinked flows remain. They can be found under these highlighted folders:
+_Nexus: https://nexus.openlca.org/
 
 .. image:: olca_fig3.png
    :width: 500pt
    :align: center
 
-
-To link them, you need to import an additional mapping flow that you can find at the following path:
-https://github.com/polca/premise/blob/master/premise/data/utils/export/flow_mapping_olca.csv
-
-Then, you can import this file in OpenLCA: ("Tools" > "Flow mapping" > "Open file").
+Select the option "Overwrite all existing datasets" before importing, because our elementary flows may have
+more descriptions or never update existing data set to keep the descriptions from the CSV export of Premise for
+the elementary flows.
 
 .. image:: olca_fig4.png
    :width: 500pt
    :align: center
-
-
-And then go to "Flow mapping" > "Apply on database".
-A few dozens of unlinked flows will remain. You may fix that by manually mapping them.
-
-
 
 As a data package
 -----------------
