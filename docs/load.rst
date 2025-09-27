@@ -184,6 +184,7 @@ Import the file as a SimaPro CSV (import>other>Other LCA formats>SimaPro CSV).
    :align: center
 
 
+
 You will need to select "SimaproCSV_Import.csv" as mapping file to use.
 
 .. image:: olca_fig2.png

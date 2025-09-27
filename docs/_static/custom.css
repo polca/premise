@@ -25,3 +25,33 @@ td, th {
     hyphens: auto;
     vertical-align: top;
 }
+
+/* --- Images / figures spacing --- */
+.rst-content img {               /* all images */
+  margin-top: 0.9rem;
+  margin-bottom: 1.1rem;
+  display: inline-block;
+}
+
+.rst-content img.align-center,   /* centered images */
+.rst-content .figure.align-center img {
+  display: block;                /* ensure margins apply cleanly */
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.rst-content a.image-reference img {  /* images wrapped in links */
+  margin-top: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.rst-content .figure {           /* whole figure block (when using .. figure::) */
+  margin-top: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.rst-content .figure .caption {  /* optional: give captions some breathing room */
+  margin-top: 0.5rem;
+}
