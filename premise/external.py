@@ -268,6 +268,10 @@ def adjust_efficiency(dataset: dict, fuels_specs: dict, fuel_map_reverse: dict) 
                     dataset.setdefault("log parameters", {})[
                         f"new efficiency"
                     ] = expected_efficiency
+
+                    if "comment" not in dataset:
+                        dataset["comment"] = ""
+
                     dataset[
                         "comment"
                     ] += f" Original efficiency: {current_efficiency:.2f}. New efficiency: {expected_efficiency:.2f}."
