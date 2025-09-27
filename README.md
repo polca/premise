@@ -27,7 +27,7 @@ and to compare different energy policies. It includes a set of IAM scenarios
 and a set of tools to create custom scenarios.
 
 The tool was designed to be user-friendly and to allow for reproducible results. 
-While it is built on the [brightway2 framework](https://docs.brightway.dev/en/latest/), 
+While it is built on the [brightway framework](https://docs.brightway.dev/en/latest/), 
 its outputs can naturally be used in [Activity Browser](https://github.com/LCA-ActivityBrowser/activity-browser), 
 but also in other LCA software, such as [SimaPro](https://simapro.com/), [OpenLCA](https://www.openlca.org/), or directly in Python.
 
@@ -36,7 +36,7 @@ If this tool helps you in your research, please consider citing this publication
 
 Also, use the following references to cite the scenarios used with the tool:
 
-- REMIND scenarios: Baumstark et al. REMIND2.1: transformation and innovation dynamics of the energy-economic system within climate and sustainability limits, Geoscientific Model Development, 2021.
+- REMIND and REMIND-EU scenarios: Baumstark et al. REMIND2.1: transformation and innovation dynamics of the energy-economic system within climate and sustainability limits, Geoscientific Model Development, 2021.
 - IMAGE scenarios: Stehfest, Elke, et al. Integrated assessment of global environmental change with IMAGE 3.0: Model description and policy applications. Netherlands Environmental Assessment Agency (PBL), 2014.
 - TIAM-UCL scenarios: Pye, S., et al. The TIAM-UCL Model (Version 4.1.1) Documentation, 2020.
 
@@ -89,7 +89,7 @@ Requirements
 * License for [ecoinvent 3][1]. Please note that the ecoinvent database is not included in this package. Also, read ecoinvent's [GDPR & EULA](https://ecoinvent.org/gdpr-eula/).
 * Some IAM output files come with the library and are located by default in the subdirectory "/data/iam_output_files". 
  A file path can be specified to fetch IAM output files elsewhere on your computer.
- * [brightway2][2] (optional). If you want to use the results in the Brightway 2 framework (and [Activity Browser](https://github.com/LCA-ActivityBrowser/activity-browser)), you need `bw2data <4.0.0`. To produce Brightway 2.5-compatible databases, you need `bw2data >=4.0.0`. See the installation instructions below for more details.
+ * [Brightway][2] (optional). If you want to use the results in the Brightway framework (and [Activity Browser](https://github.com/LCA-ActivityBrowser/activity-browser)), you need `bw2data <4.0.0`. To produce Brightway 2.5-compatible databases, you need `bw2data >=4.0.0`. See the installation instructions below for more details.
 
 > [!NOTE]
 > Please note that the ecoinvent database is not included in this package. Also, read ecoinvent's [GDPR & EULA](https://ecoinvent.org/gdpr-eula/).
@@ -124,7 +124,7 @@ is available from Anaconda Cloud. Similarly, you should specify that you want to
 
     conda install -c conda-forge premise-bw25
 
-Or rather use Brightway2 (for Activity Browser-compatibility):
+Or rather use Brightway2:
 
     conda install -c conda-forge premise-bw2
 
