@@ -113,7 +113,7 @@ This means that ``premise`` will output databases that are compatible with Brigh
 
 
 > [!WARNING]
-> If you want to use the results in the Brightway 2 framework (e.g., to read them in ``activity-browser``), 
+> If you want to use the results in the Brightway 2 framework, 
 > you need to specify it in the installation command:
 
 >    pip install "premise[bw2]"
