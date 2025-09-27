@@ -151,7 +151,9 @@ This is done as follows:
 As Simapro CSV files for OpenLCA
 --------------------------------
 
-*premise* can export the databases as a modified version of Simapro-CSV files compatible with OpenLCA.
+*premise* can export the databases as a modified version of Simapro-CSV files compatible with OpenLCA_.
+
+.. _OpenLCA: https://www.openlca.org/
 
 This is done as follows:
 
@@ -173,8 +175,8 @@ Then, create a database from scratch (in older versions this is the “create em
 
 .. note::
 
-    In older versions the import steps were different (an empty database must be used for the import,
-    rather than a complete reference database, which has the openLCA elementary flows. As this complete reference
+    In older versions the import steps were different (an empty database had to be used for the import,
+    rather than a complete reference database with the openLCA elementary flows), as this complete reference
     version will have flows not required by Premise.
 
 Import the file as a SimaPro CSV (import>other>Other LCA formats>SimaPro CSV).
@@ -182,7 +184,6 @@ Import the file as a SimaPro CSV (import>other>Other LCA formats>SimaPro CSV).
 .. image:: olca_fig1.png
    :width: 500pt
    :align: center
-
 
 
 You will need to select "SimaproCSV_Import.csv" as mapping file to use.
