@@ -4,7 +4,7 @@ from .new_database import (
     NewDatabase,
     _update_biomass,
     _update_electricity,
-    _update_dac,
+    _update_cdr,
     _update_cement,
     _update_steel,
     _update_fuels,
@@ -56,7 +56,7 @@ class IncrementalDatabase(NewDatabase):
                 "func": _update_electricity,
                 "args": (self.version, self.system_model, self.use_absolute_efficiency),
             },
-            "dac": {"func": _update_dac, "args": (self.version, self.system_model)},
+            "dac": {"func": _update_cdr, "args": (self.version, self.system_model)},
             "cement": {
                 "func": _update_cement,
                 "args": (self.version, self.system_model),
@@ -135,7 +135,9 @@ class IncrementalDatabase(NewDatabase):
                         == scenario_id
                     ):
                         scenario["database filepath"] = database_filepath
-                        scenario = load_database(scenario, delete=False)
+                        scenario = load_database(
+                            scenario, delete=False, original_database=self.database
+                        )
                     else:
                         scenario["database"] = pickle.loads(
                             pickle.dumps(self.database, -1)

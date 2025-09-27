@@ -1,0 +1,110 @@
+# mapping between premise and IAM terminology
+# regarding direct air capture use
+
+# potential future improvement: distinguish between solvent-based
+# and sorbent-based direct air capture systems
+
+---
+
+direct air capture (solvent) with storage:
+  iam_aliases:
+    remind: Emi|CO2|CDR|+|DACCS
+    remind-eu: Emi|CO2|CDR|+|DACCS
+    image: Carbon Capture|Direct Air Capture
+    tiam-ucl: Carbon Capture|Storage|Direct Air Capture
+    witch: Carbon Sequestration|Direct Air Capture|Solvent
+    gcam:
+      - Carbon Capture|Storage|Direct Air Capture|hightemp DAC NG
+      - Carbon Capture|Storage|Direct Air Capture|hightemp DAC elec
+  energy_use_aliases:
+    image:
+      - Final Energy|Carbon Management|Direct Air Capture
+    remind:
+      - FE|CDR|DAC|+|Electricity
+      - FE|CDR|DAC|+|Gases
+      - FE|CDR|DAC|+|Heat
+      - FE|CDR|DAC|+|Hydrogen
+    remind-eu:
+       - FE|CDR|DAC|+|Electricity
+       - FE|CDR|DAC|+|Gases
+       - FE|CDR|DAC|+|Heat
+       - FE|CDR|DAC|+|Hydrogen
+    tiam-ucl:
+      - Secondary Energy|Consumption|Direct Air Capture|Heat
+      - Secondary Energy|Consumption|Direct Air Capture|Electricity
+    witch:
+      - Final Energy|Carbon Management|Direct Air Capture|Solvent|Electricity|PV
+      - Final Energy|Carbon Management|Direct Air Capture|Solvent|Electricity|CSP
+    gcam:
+      - Energy|Consumption|Direct Air Capture|hightemp DAC NG|Electricity
+      - Energy|Consumption|Direct Air Capture|hightemp DAC elec|Electricity
+
+  ecoinvent_aliases:
+    fltr:
+      - carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2
+
+    mask:
+      - waste
+      - industrial
+      - heat pump
+
+direct air capture (sorbent) with storage:
+  iam_aliases:
+    witch: Carbon Sequestration|Direct Air Capture|Sorbent
+    gcam: Carbon Capture|Storage|Direct Air Capture|lowtemp DAC heatpump
+  energy_use_aliases:
+    witch:
+      - Final Energy|Carbon Management|Direct Air Capture|Sorbent|Heat|Gases
+      - Final Energy|Carbon Management|Direct Air Capture|Sorbent|Electricity|CSP
+    gcam: Energy|Consumption|Direct Air Capture|lowtemp DAC heatpump|Electricity
+
+  ecoinvent_aliases:
+    fltr:
+      - carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2
+
+enhanced rock weathering:
+    iam_aliases:
+        remind: Emi|CO2|CDR|+|EW
+        remind-eu: Emi|CO2|CDR|+|EW
+    energy_use_aliases:
+        remind:
+          - FE|CDR|EW|+|Diesel
+          - FE|CDR|EW|+|Electricity
+        remind-eu:
+          - FE|CDR|EW|+|Diesel
+          - FE|CDR|EW|+|Electricity
+    ecoinvent_aliases:
+        fltr: carbon dioxide, captured and stored, by olivine spreading on coastline
+
+ocean liming:
+    iam_aliases:
+        remind: Emi|CO2|CDR|+|OAE
+        remind-eu: Emi|CO2|CDR|+|OAE
+    ecoinvent_aliases:
+        fltr: carbon dioxide, captured and stored, by ocean liming
+
+biochar:
+    ecoinvent_aliases:
+        fltr: carbon dioxide, captured and stored, by biochar application on mineral soil
+
+biomass power generation, with CCS:
+  iam_aliases:
+      remind: Emi|CO2|CDR|+|BECCS
+      remind-eu: Emi|CO2|CDR|+|BECCS
+      image: Carbon Capture|Energy|Supply|Electricity|Biomass
+  ecoinvent_aliases:
+      fltr: carbon dioxide, captured and stored, at wood burning power plant, pipeline 200km, storage 1000m
+
+synthetic fuels, with CCS:
+  iam_aliases:
+      remind: Emi|CO2|CDR|+|Synthetic Fuels CCS
+      remind-eu: Emi|CO2|CDR|+|Synthetic Fuels CCS
+      image: Carbon Capture|Energy|Supply|Hydrogen|Biomass
+  ecoinvent_aliases:
+      fltr: carbon dioxide, captured and stored, from a hydrogen production plant using steam methane reforming of biomethane
+
+biofuels, with CCS:
+  iam_aliases:
+      image: Carbon Capture|Energy|Supply|Liquids|Biomass
+  ecoinvent_aliases:
+      fltr: carbon dioxide, captured and stored, from a biomass fermentation plant

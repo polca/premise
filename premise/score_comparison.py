@@ -11,6 +11,7 @@ def comparative_analysis(
     indicators: list = None,
     databases: list = None,
     limit: int = 1000,
+    direct_only=False,
 ) -> pd.DataFrame:
     """
     A function that does an LCA of all common datasets in databases
@@ -92,6 +93,8 @@ def comparative_analysis(
                 ds["location"],
             )
 
+            index = lca.activity_dict[ds.key]
+
             if key not in common_datasets:
                 continue
 
@@ -138,9 +141,14 @@ def comparative_analysis(
                 if indicators[j] not in scores[key]:
                     scores[key][indicators[j]] = {}
 
-                scores[key][indicators[j]][db.name] = (
-                    characterization_matrix * lca.inventory
-                ).sum()
+                if direct_only:
+                    scores[key][indicators[j]][db.name] = (
+                        characterization_matrix * lca.inventory
+                    )[:, index].sum()
+                else:
+                    scores[key][indicators[j]][db.name] = (
+                        characterization_matrix * lca.inventory
+                    ).sum()
             sys.stdout.flush()
 
     # Convert nested dictionary to DataFrame
@@ -164,3 +172,40 @@ def comparative_analysis(
             records.append(row)
 
     return pd.DataFrame(records)
+
+
+def interconnection_analysis(
+    database: bw2data.Database,
+):
+    """
+    A function that list all datasets in teh database
+    and counts the numbers of datasets each
+    gives inputs to.
+    """
+
+    counts = {}
+
+    for ds in database:
+        key = (ds["name"], ds["reference product"], ds["location"])
+        if key not in counts:
+            counts[key] = 0
+
+    for ds in database:
+        for exc in ds.technosphere():
+            key = (exc["name"], exc["product"], exc["location"])
+            if key in counts:
+                counts[key] += 1
+
+    # Convert counts to DataFrame
+    records = []
+    for key, count in counts.items():
+        name, ref_prod, loc = key
+        records.append(
+            {
+                "name": name,
+                "reference product": ref_prod,
+                "location": loc,
+                "count": count,
+            }
+        )
+    return pd.DataFrame(records).sort_values(by="count", ascending=False)

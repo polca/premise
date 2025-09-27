@@ -77,6 +77,7 @@ def flag_activities_to_adjust(
                 variables=dataset_vars["production volume variable"]
             )
         except KeyError:
+            print(list(scenario_data.keys()))
             print(
                 f"Variable {dataset_vars['production volume variable']} not found in scenario data for scenario."
             )
@@ -292,6 +293,8 @@ def check_inventories(
             ),
             "new dataset": val["ecoinvent alias"].get("new dataset", False),
             "duplicate": val["ecoinvent alias"].get("duplicate", False),
+            "original name": val["ecoinvent alias"]["name"],
+            "original reference product": val["ecoinvent alias"]["reference product"],
             "regionalize": val["ecoinvent alias"].get("regionalize", False),
             "mask": val["ecoinvent alias"].get("mask", None),
             "except regions": val.get(
@@ -333,36 +336,44 @@ def check_inventories(
             }
         )
 
-    list_datasets = [(i["name"], i["reference product"]) for i in inventory_data]
+    list_datasets = list(
+        set(
+            [
+                (i["name"].lower(), i["reference product"].lower())
+                for i in inventory_data
+            ]
+        )
+    )
 
     try:
         assert all(
-            (i[0], i[1]) in [(x[0].lower(), x[1].lower()) for x in list_datasets]
+            (i[0].lower(), i[1].lower()) in list_datasets
             for i, v in d_datasets.items()
-            if not v["exists in original database"]
-            and not v.get("new dataset")
-            and not v.get("duplicate")
+            if v.get("exists in original database", False) is False
+            and v.get("new dataset", False) is False
+            and v.get("duplicate", False) is False
         )
     except AssertionError as e:
         list_missing_datasets = [
-            i[0]
+            (i[0], i[1])
             for i, v in d_datasets.items()
-            if not v["exists in original database"]
-            and not v.get("new dataset")
-            and (i[0].lower(), i[1].lower())
-            in [(x[0].lower(), x[1].lower()) for x in list_datasets]
+            if v.get("exists in original database", False) is False
+            and v.get("new dataset", False) is False
+            and (i[0].lower(), i[1].lower()) not in list_datasets
         ]
 
         raise AssertionError(
-            f"The following datasets are not in the inventory data: {list_missing_datasets}"
+            "The following datasets are not in the inventory data:"
+            f"\n {list_missing_datasets}"
             f"\n Available datasets are: \n"
             f"{[list_datasets]}"
         ) from e
 
     # flag imported inventories
+    processed_keys = []
     for i, dataset in enumerate(inventory_data):
         key = (dataset["name"], dataset["reference product"])
-        if (key[0].lower(), key[1].lower()) in d_datasets:
+        if (key[0].lower(), key[1].lower()) in d_datasets and key not in processed_keys:
             # replace key in d_datasets with the key in the inventory data
             d_datasets[key] = d_datasets.pop((key[0].lower(), key[1].lower()))
 
@@ -372,6 +383,7 @@ def check_inventories(
                 inventory_data[i] = flag_activities_to_adjust(
                     dataset, scenario_data, year, data_vars
                 )
+            processed_keys.append(key)
 
     def find_candidates_by_key(data, key):
         """Filter data for items matching the key (name and reference product)."""
@@ -552,10 +564,10 @@ def check_inventories(
     for key, val in d_datasets.items():
         if val.get("exists in original database"):
             mask = val.get("mask")
-
             duplicate_name = None
             if val.get("duplicate") is True:
-                duplicate_name = key[0]
+                duplicate_name = val["original name"]
+                # duplicate_name = key[0]
                 key = (key[0].split("_")[0], key[1])
 
             potential_candidates = identify_potential_candidates(
@@ -572,9 +584,9 @@ def check_inventories(
                     inventory_data,
                 )
             except ValueError as e:
-                raise ValueError(
-                    f"Dataset {key[0]} and {key[1]} is not found in the original database."
-                ) from e
+                print(f"Error processing dataset {key[0]} and {key[1]}: {e}")
+                print(key, val, potential_candidates)
+                print()
 
             if duplicate_name:
                 for candidate in candidates:

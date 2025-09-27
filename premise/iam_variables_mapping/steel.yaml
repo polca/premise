@@ -1,0 +1,482 @@
+# mapping between premise and IAM terminology regarding steel
+# production volumes and energy use
+---
+
+steel - primary - BF/BOF:
+  iam_aliases:
+    image:
+      - Production|Industry|Iron and Steel|BF/BOF Modernized
+      - Production|Industry|Iron and Steel|BF/BOF Standard
+      - Production|Industry|Iron and Steel|SR/BOF
+    remind: Production|Industry|Steel|+|BF-BOF
+    remind-eu: Production|Industry|Steel|+|BF-BOF
+    message: Production|Primary|Steel
+    gcam:
+      - Production|Industry|Steel|Primary|BLASTFUR
+      - Production|Industry|Steel|Primary|Biomass-based
+    tiam-ucl:
+      - Production|Steel|Primary|BF and BOF 1|w CCS
+      - Production|Steel|Primary|BF and BOF 2
+      - Production|Steel|Primary|BF and BOF 3|w/o CCS
+      - Production|Steel|Primary|BF and BOF 4
+  energy_use_aliases:
+    remind:
+      - FE|Industry|Steel|BF-BOF|+|Electricity
+      - FE|Industry|Steel|BF-BOF|+|Gases
+      - FE|Industry|Steel|BF-BOF|+|Heat
+      - FE|Industry|Steel|BF-BOF|+|Hydrogen
+      - FE|Industry|Steel|BF-BOF|+|Liquids
+      - FE|Industry|Steel|BF-BOF|+|Solids
+    remind-eu:
+      - FE|Industry|Steel|BF-BOF|+|Electricity
+      - FE|Industry|Steel|BF-BOF|+|Gases
+      - FE|Industry|Steel|BF-BOF|+|Heat
+      - FE|Industry|Steel|BF-BOF|+|Hydrogen
+      - FE|Industry|Steel|BF-BOF|+|Liquids
+      - FE|Industry|Steel|BF-BOF|+|Solids
+    image:
+      - Final Energy|Industry|Iron and Steel|BF/BOF Modernized|Coal
+      - Final Energy|Industry|Iron and Steel|BF/BOF Modernized|Electricity
+      - Final Energy|Industry|Iron and Steel|BF/BOF Modernized|Hydrogen
+      - Final Energy|Industry|Iron and Steel|BF/BOF Modernized|Modern Biomass
+      - Final Energy|Industry|Iron and Steel|BF/BOF Modernized|Natural Gas
+      - Final Energy|Industry|Iron and Steel|BF/BOF Modernized|Oil
+      - Final Energy|Industry|Iron and Steel|BF/BOF Modernized|Secondary Heat
+      - Final Energy|Industry|Iron and Steel|BF/BOF Modernized|Traditional Biomass
+      - Final Energy|Industry|Iron and Steel|BF/BOF Standard|Coal
+      - Final Energy|Industry|Iron and Steel|BF/BOF Standard|Electricity
+      - Final Energy|Industry|Iron and Steel|BF/BOF Standard|Hydrogen
+      - Final Energy|Industry|Iron and Steel|BF/BOF Standard|Modern Biomass
+      - Final Energy|Industry|Iron and Steel|BF/BOF Standard|Natural Gas
+      - Final Energy|Industry|Iron and Steel|BF/BOF Standard|Oil
+      - Final Energy|Industry|Iron and Steel|BF/BOF Standard|Secondary Heat
+      - Final Energy|Industry|Iron and Steel|BF/BOF Standard|Traditional Biomass
+      - Final Energy|Industry|Iron and Steel|SR/BOF|Coal
+      - Final Energy|Industry|Iron and Steel|SR/BOF|Electricity
+      - Final Energy|Industry|Iron and Steel|SR/BOF|Hydrogen
+      - Final Energy|Industry|Iron and Steel|SR/BOF|Modern Biomass
+      - Final Energy|Industry|Iron and Steel|SR/BOF|Natural Gas
+      - Final Energy|Industry|Iron and Steel|SR/BOF|Oil
+      - Final Energy|Industry|Iron and Steel|SR/BOF|Secondary Heat
+      - Final Energy|Industry|Iron and Steel|SR/BOF|Traditional Biomass
+    message:
+      - Final Energy|Industry|Steel|Primary|Electricity
+      - Final Energy|Industry|Steel|Primary|Gases
+      - Final Energy|Industry|Steel|Primary|Heat
+      - Final Energy|Industry|Steel|Primary|Hydrogen
+      - Final Energy|Industry|Steel|Primary|Liquids|Biomass
+      - Final Energy|Industry|Steel|Primary|Liquids|Oil
+      - Final Energy|Industry|Steel|Primary|Liquids|Other
+      - Final Energy|Industry|Steel|Primary|Solar
+      - Final Energy|Industry|Steel|Primary|Solids|Biomass
+      - Final Energy|Industry|Steel|Primary|Solids|Coal
+    gcam:
+      - Final Energy|Industry|Steel|Primary|Coal
+      - Final Energy|Industry|Steel|Primary|Electricity
+      - Final Energy|Industry|Steel|Primary|Refined Liquids
+      - Final Energy|Industry|Steel|Primary|Gas
+      - Final Energy|Industry|Steel|Primary|Biomass
+    tiam-ucl:
+      - Final Energy|Production|Steel|Primary|BF and BOF 1|Blast Furnace Gas|w/o CCS
+      - Final Energy|Production|Steel|Primary|BF and BOF 1|Coal|w/o CCS
+      - Final Energy|Production|Steel|Primary|BF and BOF 1|Coke Oven Coke|w/o CCS
+      - Final Energy|Production|Steel|Primary|BF and BOF 1|Coke Oven Gas|w/o CCS
+      - Final Energy|Production|Steel|Primary|BF and BOF 1|Electricity|w/o CCS
+      - Final Energy|Production|Steel|Primary|BF and BOF 1|Heat|w/o CCS
+      - Final Energy|Production|Steel|Primary|BF and BOF 1|Natural Gas|w/o CCS
+      - Final Energy|Production|Steel|Primary|BF and BOF 1|Oil|w/o CCS
+      - Final Energy|Production|Steel|Primary|BF and BOF 2|Blast Furnace Gas
+      - Final Energy|Production|Steel|Primary|BF and BOF 2|Coal
+      - Final Energy|Production|Steel|Primary|BF and BOF 2|Coke Oven Coke
+      - Final Energy|Production|Steel|Primary|BF and BOF 2|Coke Oven Gas
+      - Final Energy|Production|Steel|Primary|BF and BOF 2|Electricity
+      - Final Energy|Production|Steel|Primary|BF and BOF 2|Natural Gas
+      - Final Energy|Production|Steel|Primary|BF and BOF 2|Oil
+      - Final Energy|Production|Steel|Primary|BF and BOF 3|Biofuels|w/o CCS
+      - Final Energy|Production|Steel|Primary|BF and BOF 3|Blast Furnace Gas|w/o CCS
+      - Final Energy|Production|Steel|Primary|BF and BOF 3|Coal|w/o CCS
+      - Final Energy|Production|Steel|Primary|BF and BOF 3|Coke Oven Coke|w/o CCS
+      - Final Energy|Production|Steel|Primary|BF and BOF 3|Coke Oven Gas|w/o CCS
+      - Final Energy|Production|Steel|Primary|BF and BOF 3|Electricity|w/o CCS
+      - Final Energy|Production|Steel|Primary|BF and BOF 3|Heat|w/o CCS
+      - Final Energy|Production|Steel|Primary|BF and BOF 3|Heavy Fuel Oil|w/o CCS
+      - Final Energy|Production|Steel|Primary|BF and BOF 3|Liquefied Petroleum Gas|w/o CCS
+      - Final Energy|Production|Steel|Primary|BF and BOF 3|Natural Gas|w/o CCS
+      - Final Energy|Production|Steel|Primary|BF and BOF 3|Oil|w/o CCS
+      - Final Energy|Production|Steel|Primary|BF and BOF 3|Petroleum Coke|w/o CCS
+      - Final Energy|Production|Steel|Primary|BF and BOF 4|Biofuels
+      - Final Energy|Production|Steel|Primary|BF and BOF 4|Blast Furnace Gas
+      - Final Energy|Production|Steel|Primary|BF and BOF 4|Coal
+      - Final Energy|Production|Steel|Primary|BF and BOF 4|Coke Oven Coke
+      - Final Energy|Production|Steel|Primary|BF and BOF 4|Coke Oven Gas
+      - Final Energy|Production|Steel|Primary|BF and BOF 4|Electricity
+      - Final Energy|Production|Steel|Primary|BF and BOF 4|Heat
+      - Final Energy|Production|Steel|Primary|BF and BOF 4|Heavy Fuel Oil
+      - Final Energy|Production|Steel|Primary|BF and BOF 4|Liquefied Petroleum Gas
+      - Final Energy|Production|Steel|Primary|BF and BOF 4|Natural Gas
+      - Final Energy|Production|Steel|Primary|BF and BOF 4|Oil
+      - Final Energy|Production|Steel|Primary|BF and BOF 4|Petroleum Coke
+      - Final Energy|Production|Steel|Primary|BF and BOF 1|Liquefied Petroleum Gas|w/o CCS
+      - Final Energy|Production|Steel|Primary|BF and BOF 2|Heavy Fuel Oil
+      - Final Energy|Production|Steel|Primary|BF and BOF 2|Liquefied Petroleum Gas
+      - Final Energy|Production|Steel|Primary|BF and BOF 1|Heavy Fuel Oil|w/o CCS
+      - Final Energy|Production|Steel|Primary|BF and BOF 2|Biofuels
+      - Final Energy|Production|Steel|Primary|BF and BOF 2|Heat
+      - Final Energy|Production|Steel|Primary|BF and BOF 1|Biofuels|w/o CCS
+      - Final Energy|Production|Steel|Primary|BF and BOF 2|Petroleum Coke
+      - Final Energy|Production|Steel|Primary|BF and BOF 1|Petroleum Coke|w/o CCS
+  ecoinvent_aliases:
+    fltr:
+      - steel production, blast furnace-basic oxygen furnace
+    mask:
+      - market
+      - carbon capture and storage
+      - top gas recycling
+
+steel - primary - BF/BOF CCS:
+  iam_aliases:
+    image:
+      - Production|Industry|Iron and Steel|BF/ BOF Standard + CCS
+      - Production|Industry|Iron and Steel|SR/BOF + CCS
+    tiam-ucl:
+      - Production|Steel|Primary|BF and BOF 1|w CCS
+      - Production|Steel|Primary|BF and BOF 3|w CCS
+    remind: Production|Industry|Steel|+|BF-BOF-CCS
+    remind-eu: Production|Industry|Steel|+|BF-BOF-CCS
+    message: Production|Primary|Steel w CCS
+    gcam:
+      - Production|Industry|Steel|Primary|BLASTFUR CCS
+      - Production|Industry|Steel|Primary|BLASTFUR CCS with hydrogen
+  energy_use_aliases:
+    image:
+      - Final Energy|Industry|Iron and Steel|BF/ BOF Standard + CCS|Coal
+      - Final Energy|Industry|Iron and Steel|BF/ BOF Standard + CCS|Electricity
+      - Final Energy|Industry|Iron and Steel|BF/ BOF Standard + CCS|Hydrogen
+      - Final Energy|Industry|Iron and Steel|BF/ BOF Standard + CCS|Modern Biomass
+      - Final Energy|Industry|Iron and Steel|BF/ BOF Standard + CCS|Natural Gas
+      - Final Energy|Industry|Iron and Steel|BF/ BOF Standard + CCS|Oil
+      - Final Energy|Industry|Iron and Steel|BF/ BOF Standard + CCS|Secondary Heat
+      - Final Energy|Industry|Iron and Steel|BF/ BOF Standard + CCS|Traditional Biomass
+      - Final Energy|Industry|Iron and Steel|SR/BOF + CCS|Coal
+      - Final Energy|Industry|Iron and Steel|SR/BOF + CCS|Electricity
+      - Final Energy|Industry|Iron and Steel|SR/BOF + CCS|Hydrogen
+      - Final Energy|Industry|Iron and Steel|SR/BOF + CCS|Modern Biomass
+      - Final Energy|Industry|Iron and Steel|SR/BOF + CCS|Natural Gas
+      - Final Energy|Industry|Iron and Steel|SR/BOF + CCS|Oil
+      - Final Energy|Industry|Iron and Steel|SR/BOF + CCS|Secondary Heat
+      - Final Energy|Industry|Iron and Steel|SR/BOF + CCS|Traditional Biomass
+    tiam-ucl:
+      - Final Energy|Production|Steel|Primary|BF and BOF 1|Biofuels|w CCS
+      - Final Energy|Production|Steel|Primary|BF and BOF 1|Blast Furnace Gas|w CCS
+      - Final Energy|Production|Steel|Primary|BF and BOF 1|Coal|w CCS
+      - Final Energy|Production|Steel|Primary|BF and BOF 1|Coke Oven Coke|w CCS
+      - Final Energy|Production|Steel|Primary|BF and BOF 1|Coke Oven Gas|w CCS
+      - Final Energy|Production|Steel|Primary|BF and BOF 1|Electricity|w CCS
+      - Final Energy|Production|Steel|Primary|BF and BOF 1|Heat|w CCS
+      - Final Energy|Production|Steel|Primary|BF and BOF 1|Heavy Fuel Oil|w CCS
+      - Final Energy|Production|Steel|Primary|BF and BOF 1|Liquefied Petroleum Gas|w CCS
+      - Final Energy|Production|Steel|Primary|BF and BOF 1|Natural Gas|w CCS
+      - Final Energy|Production|Steel|Primary|BF and BOF 1|Oil|w CCS
+      - Final Energy|Production|Steel|Primary|BF and BOF 1|Petroleum Coke|w CCS
+      - Final Energy|Production|Steel|Primary|BF and BOF 3|Biofuels|w CCS
+      - Final Energy|Production|Steel|Primary|BF and BOF 3|Blast Furnace Gas|w CCS
+      - Final Energy|Production|Steel|Primary|BF and BOF 3|Coal|w CCS
+      - Final Energy|Production|Steel|Primary|BF and BOF 3|Coke Oven Coke|w CCS
+      - Final Energy|Production|Steel|Primary|BF and BOF 3|Coke Oven Gas|w CCS
+      - Final Energy|Production|Steel|Primary|BF and BOF 3|Electricity|w CCS
+      - Final Energy|Production|Steel|Primary|BF and BOF 3|Heat|w CCS
+      - Final Energy|Production|Steel|Primary|BF and BOF 3|Heavy Fuel Oil|w CCS
+      - Final Energy|Production|Steel|Primary|BF and BOF 3|Liquefied Petroleum Gas|w CCS
+      - Final Energy|Production|Steel|Primary|BF and BOF 3|Natural Gas|w CCS
+      - Final Energy|Production|Steel|Primary|BF and BOF 3|Oil|w CCS
+    remind:
+      - FE|Industry|Steel|BF-BOF-CCS|+|Electricity
+      - FE|Industry|Steel|BF-BOF-CCS|+|Gases
+      - FE|Industry|Steel|BF-BOF-CCS|+|Heat
+      - FE|Industry|Steel|BF-BOF-CCS|+|Hydrogen
+      - FE|Industry|Steel|BF-BOF-CCS|+|Liquids
+      - FE|Industry|Steel|BF-BOF-CCS|+|Solids
+    remind-eu:
+      - FE|Industry|Steel|BF-BOF-CCS|+|Electricity
+      - FE|Industry|Steel|BF-BOF-CCS|+|Gases
+      - FE|Industry|Steel|BF-BOF-CCS|+|Heat
+      - FE|Industry|Steel|BF-BOF-CCS|+|Hydrogen
+      - FE|Industry|Steel|BF-BOF-CCS|+|Liquids
+      - FE|Industry|Steel|BF-BOF-CCS|+|Solids
+  ecoinvent_aliases:
+    fltr:
+      - steel production, blast furnace-basic oxygen furnace, with carbon capture and storage
+    mask:
+      - market
+      - top gas recycling
+
+
+steel - primary - DRI:
+  iam_aliases:
+    image: Production|Industry|Iron and Steel|DRI EAF
+    remind: Production|Industry|Steel|+|DRI-NG-EAF
+    remind-eu: Production|Industry|Steel|+|DRI-NG-EAF
+    tiam-ucl:
+      - Production|Steel|Secondary|DRI and EAF 1
+      - Production|Steel|Secondary|DRI and EAF 2|w/o CCS
+      - Production|Steel|Secondary|DRI and EAF 3
+    gcam: Production|Industry|Steel|Primary|EAF with DRI
+  energy_use_aliases:
+    image:
+      - Final Energy|Industry|Iron and Steel|DRI EAF|Coal
+      - Final Energy|Industry|Iron and Steel|DRI EAF|Electricity
+      - Final Energy|Industry|Iron and Steel|DRI EAF|Hydrogen
+      - Final Energy|Industry|Iron and Steel|DRI EAF|Modern Biomass
+      - Final Energy|Industry|Iron and Steel|DRI EAF|Natural Gas
+      - Final Energy|Industry|Iron and Steel|DRI EAF|Oil
+      - Final Energy|Industry|Iron and Steel|DRI EAF|Secondary Heat
+      - Final Energy|Industry|Iron and Steel|DRI EAF|Traditional Biomass
+    tiam-ucl:
+      - Final Energy|Production|Steel|Secondary|DRI and EAF 1|Coal
+      - Final Energy|Production|Steel|Secondary|DRI and EAF 1|Electricity
+      - Final Energy|Production|Steel|Secondary|DRI and EAF 1|Natural Gas Mix
+      - Final Energy|Production|Steel|Secondary|DRI and EAF 2|w/o CCS|Coal
+      - Final Energy|Production|Steel|Secondary|DRI and EAF 2|w/o CCS|Electricity
+      - Final Energy|Production|Steel|Secondary|DRI and EAF 2|w/o CCS|Natural Gas Mix
+      - Final Energy|Production|Steel|Secondary|DRI and EAF 3|Electricity
+      - Final Energy|Production|Steel|Secondary|DRI and EAF 3|Natural Gas Mix
+      - Final Energy|Production|Steel|Secondary|DRI and EAF 1|Electricity
+      - Final Energy|Production|Steel|Secondary|DRI and EAF 1|Natural Gas
+      - Final Energy|Production|Steel|Secondary|DRI and EAF 2|Natural Gas|w/o CCS
+      - Final Energy|Production|Steel|Secondary|DRI and EAF 2|Electricity|w/o CCS
+      - Final Energy|Production|Steel|Secondary|DRI and EAF 2|Coal|w/o CCS
+      - Final Energy|Production|Steel|Secondary|DRI and EAF 3|Electricity
+      - Final Energy|Production|Steel|Secondary|DRI and EAF 3|Natural Gas
+      - Final Energy|Production|Steel|Secondary|DRI and EAF 1|Coal
+    remind:
+      - FE|Industry|Steel|DRI-NG-EAF|+|Electricity
+      - FE|Industry|Steel|DRI-NG-EAF|+|Gases
+      - FE|Industry|Steel|DRI-NG-EAF|+|Heat
+      - FE|Industry|Steel|DRI-NG-EAF|+|Hydrogen
+      - FE|Industry|Steel|DRI-NG-EAF|+|Liquids
+      - FE|Industry|Steel|DRI-NG-EAF|+|Solids
+    remind-eu:
+      - FE|Industry|Steel|DRI-NG-EAF|+|Electricity
+      - FE|Industry|Steel|DRI-NG-EAF|+|Gases
+      - FE|Industry|Steel|DRI-NG-EAF|+|Heat
+      - FE|Industry|Steel|DRI-NG-EAF|+|Hydrogen
+      - FE|Industry|Steel|DRI-NG-EAF|+|Liquids
+      - FE|Industry|Steel|DRI-NG-EAF|+|Solids
+  ecoinvent_aliases:
+    fltr:
+      - steel production, natural gas-based direct reduction iron-electric arc furnace
+    mask:
+      - carbon capture and storage
+
+steel - primary - DRI CCS:
+  iam_aliases:
+    image: Production|Industry|Iron and Steel|DRI EAF + CCS
+    remind: Production|Industry|Steel|+|DRI-NG-EAF-CCS
+    remind-eu: Production|Industry|Steel|+|DRI-NG-EAF-CCS
+    tiam-ucl: Production|Steel|Secondary|DRI and EAF 2|w CCS
+    gcam: Production|Industry|Steel|Primary|EAF with DRI CCS
+  energy_use_aliases:
+    image:
+      - Final Energy|Industry|Iron and Steel|DRI EAF + CCS|Coal
+      - Final Energy|Industry|Iron and Steel|DRI EAF + CCS|Electricity
+      - Final Energy|Industry|Iron and Steel|DRI EAF + CCS|Hydrogen
+      - Final Energy|Industry|Iron and Steel|DRI EAF + CCS|Modern Biomass
+      - Final Energy|Industry|Iron and Steel|DRI EAF + CCS|Natural Gas
+      - Final Energy|Industry|Iron and Steel|DRI EAF + CCS|Oil
+      - Final Energy|Industry|Iron and Steel|DRI EAF + CCS|Secondary Heat
+      - Final Energy|Industry|Iron and Steel|DRI EAF + CCS|Traditional Biomass
+    tiam-ucl:
+      - Final Energy|Production|Steel|Secondary|DRI and EAF 2|w CCS|Electricity
+      - Final Energy|Production|Steel|Secondary|DRI and EAF 2|w CCS|Natural Gas Mix
+      - Final Energy|Production|Steel|Secondary|DRI and EAF 2|Electricity|w CCS
+      - Final Energy|Production|Steel|Secondary|DRI and EAF 2|Natural Gas|w CCS
+    remind:
+      - FE|Industry|Steel|DRI-NG-EAF-CCS|+|Electricity
+      - FE|Industry|Steel|DRI-NG-EAF-CCS|+|Gases
+      - FE|Industry|Steel|DRI-NG-EAF-CCS|+|Heat
+      - FE|Industry|Steel|DRI-NG-EAF-CCS|+|Hydrogen
+      - FE|Industry|Steel|DRI-NG-EAF-CCS|+|Liquids
+      - FE|Industry|Steel|DRI-NG-EAF-CCS|+|Solids
+    remind-eu:
+      - FE|Industry|Steel|DRI-NG-EAF-CCS|+|Electricity
+      - FE|Industry|Steel|DRI-NG-EAF-CCS|+|Gases
+      - FE|Industry|Steel|DRI-NG-EAF-CCS|+|Heat
+      - FE|Industry|Steel|DRI-NG-EAF-CCS|+|Hydrogen
+      - FE|Industry|Steel|DRI-NG-EAF-CCS|+|Liquids
+      - FE|Industry|Steel|DRI-NG-EAF-CCS|+|Solids
+  ecoinvent_aliases:
+    fltr:
+      - steel production, natural gas-based direct reduction iron-electric arc furnace, with carbon capture and storage
+    mask:
+      - market
+
+steel - primary - H-DRI:
+  iam_aliases:
+    image: Production|Industry|Iron and Steel|H-DRI/EAF
+    tiam-ucl: Production|Steel|Secondary|DRH2 and EAF
+    remind: Production|Industry|Steel|+|DRI-H2-EAF
+    remind-eu: Production|Industry|Steel|+|DRI-H2-EAF
+    gcam: Production|Industry|Steel|Primary|BLASTFUR with hydrogen
+  energy_use_aliases:
+    image:
+      - Final Energy|Industry|Iron and Steel|H-DRI/EAF|Coal
+      - Final Energy|Industry|Iron and Steel|H-DRI/EAF|Electricity
+      - Final Energy|Industry|Iron and Steel|H-DRI/EAF|Hydrogen
+      - Final Energy|Industry|Iron and Steel|H-DRI/EAF|Modern Biomass
+      - Final Energy|Industry|Iron and Steel|H-DRI/EAF|Natural Gas
+      - Final Energy|Industry|Iron and Steel|H-DRI/EAF|Oil
+      - Final Energy|Industry|Iron and Steel|H-DRI/EAF|Secondary Heat
+      - Final Energy|Industry|Iron and Steel|H-DRI/EAF|Traditional Biomass
+    tiam-ucl:
+      - Final Energy|Production|Steel|Secondary|DRH2 and EAF|Electricity
+      - Final Energy|Production|Steel|Secondary|DRH2 and EAF|Hydrogen
+    remind:
+      - FE|Industry|Steel|DRI-H2-EAF|+|Electricity
+      - FE|Industry|Steel|DRI-H2-EAF|+|Gases
+      - FE|Industry|Steel|DRI-H2-EAF|+|Heat
+      - FE|Industry|Steel|DRI-H2-EAF|+|Hydrogen
+      - FE|Industry|Steel|DRI-H2-EAF|+|Liquids
+      - FE|Industry|Steel|DRI-H2-EAF|+|Solids
+    remind-eu:
+      - FE|Industry|Steel|DRI-H2-EAF|+|Electricity
+      - FE|Industry|Steel|DRI-H2-EAF|+|Gases
+      - FE|Industry|Steel|DRI-H2-EAF|+|Heat
+      - FE|Industry|Steel|DRI-H2-EAF|+|Hydrogen
+      - FE|Industry|Steel|DRI-H2-EAF|+|Liquids
+      - FE|Industry|Steel|DRI-H2-EAF|+|Solids
+  ecoinvent_aliases:
+    fltr:
+      - steel production, hydrogen-based direct reduction iron-electric arc furnace
+
+steel - primary - TGR BF/BOF:
+  iam_aliases:
+    image:
+      - Production|Industry|Iron and Steel|TGR BF/BOF BAT
+      - Production|Industry|Iron and Steel|TGR BF/BOF
+  energy_use_aliases:
+    image:
+      - Final Energy|Industry|Iron and Steel|TGR BF/BOF BAT|Coal
+      - Final Energy|Industry|Iron and Steel|TGR BF/BOF BAT|Electricity
+      - Final Energy|Industry|Iron and Steel|TGR BF/BOF BAT|Hydrogen
+      - Final Energy|Industry|Iron and Steel|TGR BF/BOF BAT|Modern Biomass
+      - Final Energy|Industry|Iron and Steel|TGR BF/BOF BAT|Natural Gas
+      - Final Energy|Industry|Iron and Steel|TGR BF/BOF BAT|Oil
+      - Final Energy|Industry|Iron and Steel|TGR BF/BOF BAT|Secondary Heat
+      - Final Energy|Industry|Iron and Steel|TGR BF/BOF BAT|Traditional Biomass
+      - Final Energy|Industry|Iron and Steel|TGR BF/BOF|Coal
+      - Final Energy|Industry|Iron and Steel|TGR BF/BOF|Electricity
+      - Final Energy|Industry|Iron and Steel|TGR BF/BOF|Hydrogen
+      - Final Energy|Industry|Iron and Steel|TGR BF/BOF|Modern Biomass
+      - Final Energy|Industry|Iron and Steel|TGR BF/BOF|Natural Gas
+      - Final Energy|Industry|Iron and Steel|TGR BF/BOF|Oil
+      - Final Energy|Industry|Iron and Steel|TGR BF/BOF|Secondary Heat
+      - Final Energy|Industry|Iron and Steel|TGR BF/BOF|Traditional Biomass
+  ecoinvent_aliases:
+    fltr:
+      - steel production, blast furnace-basic oxygen furnace, with top gas recycling
+    mask:
+      - carbon capture and storage
+
+steel - primary - TGR BF/BOF CCS:
+  iam_aliases:
+    image: Production|Industry|Iron and Steel|TGR BF/BOF BAT + CCS
+  energy_use_aliases:
+    image:
+      - Final Energy|Industry|Iron and Steel|TGR BF/BOF BAT + CCS|Coal
+      - Final Energy|Industry|Iron and Steel|TGR BF/BOF BAT + CCS|Electricity
+      - Final Energy|Industry|Iron and Steel|TGR BF/BOF BAT + CCS|Hydrogen
+      - Final Energy|Industry|Iron and Steel|TGR BF/BOF BAT + CCS|Modern Biomass
+      - Final Energy|Industry|Iron and Steel|TGR BF/BOF BAT + CCS|Natural Gas
+      - Final Energy|Industry|Iron and Steel|TGR BF/BOF BAT + CCS|Oil
+      - Final Energy|Industry|Iron and Steel|TGR BF/BOF BAT + CCS|Secondary Heat
+      - Final Energy|Industry|Iron and Steel|TGR BF/BOF BAT + CCS|Traditional Biomass
+  ecoinvent_aliases:
+    fltr:
+      - steel production, blast furnace-basic oxygen furnace, with top gas recycling, with carbon capture and storage
+
+steel - primary - Electrowinning:
+  iam_aliases:
+      image: Production|Industry|Iron and Steel|Electrowinning/EAF
+  energy_use_aliases:
+    image:
+      - Final Energy|Industry|Iron and Steel|Electrowinning/EAF|Coal
+      - Final Energy|Industry|Iron and Steel|Electrowinning/EAF|Electricity
+      - Final Energy|Industry|Iron and Steel|Electrowinning/EAF|Hydrogen
+      - Final Energy|Industry|Iron and Steel|Electrowinning/EAF|Modern Biomass
+      - Final Energy|Industry|Iron and Steel|Electrowinning/EAF|Natural Gas
+      - Final Energy|Industry|Iron and Steel|Electrowinning/EAF|Oil
+      - Final Energy|Industry|Iron and Steel|Electrowinning/EAF|Secondary Heat
+      - Final Energy|Industry|Iron and Steel|Electrowinning/EAF|Traditional Biomass
+  ecoinvent_aliases:
+    fltr:
+      - steel production, electrowinning-electric arc furnace
+
+
+steel - secondary:
+  iam_aliases:
+    remind: Production|Industry|Steel|+|SCRAP-EAF
+    remind-eu: Production|Industry|Steel|+|SCRAP-EAF
+    image: Production|Industry|Iron and Steel|EAF scrap
+    message: Production|Secondary|Steel
+    gcam: Production|Industry|Steel|Secondary|EAF with scrap
+    tiam-ucl:
+      - Production|Steel|Secondary|EAF 1
+      - Production|Steel|Secondary|EAF 2
+      - Production|Steel|Secondary|EAF 3
+  energy_use_aliases:
+    remind:
+      - FE|Industry|Steel|SCRAP-EAF|+|Electricity
+      - FE|Industry|Steel|SCRAP-EAF|+|Gases
+      - FE|Industry|Steel|SCRAP-EAF|+|Heat
+      - FE|Industry|Steel|SCRAP-EAF|+|Hydrogen
+      - FE|Industry|Steel|SCRAP-EAF|+|Liquids
+      - FE|Industry|Steel|SCRAP-EAF|+|Solids
+    remind-eu:
+      - FE|Industry|Steel|SCRAP-EAF|+|Electricity
+      - FE|Industry|Steel|SCRAP-EAF|+|Gases
+      - FE|Industry|Steel|SCRAP-EAF|+|Heat
+      - FE|Industry|Steel|SCRAP-EAF|+|Hydrogen
+      - FE|Industry|Steel|SCRAP-EAF|+|Liquids
+      - FE|Industry|Steel|SCRAP-EAF|+|Solids
+    image:
+      - Final Energy|Industry|Iron and Steel|EAF scrap|Coal
+      - Final Energy|Industry|Iron and Steel|EAF scrap|Electricity
+      - Final Energy|Industry|Iron and Steel|EAF scrap|Hydrogen
+      - Final Energy|Industry|Iron and Steel|EAF scrap|Modern Biomass
+      - Final Energy|Industry|Iron and Steel|EAF scrap|Natural Gas
+      - Final Energy|Industry|Iron and Steel|EAF scrap|Oil
+      - Final Energy|Industry|Iron and Steel|EAF scrap|Secondary Heat
+      - Final Energy|Industry|Iron and Steel|EAF scrap|Traditional Biomass
+    message:
+      - Final Energy|Industry|Steel|Secondary|Electricity
+      - Final Energy|Industry|Steel|Secondary|Gases
+    gcam:
+      - Final Energy|Industry|Steel|Secondary|Coal
+      - Final Energy|Industry|Steel|Secondary|Electricity
+      - Final Energy|Industry|Steel|Secondary|Refined Liquids
+      - Final Energy|Industry|Steel|Secondary|Gas
+    tiam-ucl:
+      - Final Energy|Production|Steel|Secondary|EAF 1|Coal
+      - Final Energy|Production|Steel|Secondary|EAF 1|Electricity
+      - Final Energy|Production|Steel|Secondary|EAF 1|Natural Gas Mix
+      - Final Energy|Production|Steel|Secondary|EAF 2|Electricity
+      - Final Energy|Production|Steel|Secondary|EAF 2|Natural Gas Mix
+      - Final Energy|Production|Steel|Secondary|EAF 3|Electricity
+      - Final Energy|Production|Steel|Secondary|EAF 3|Natural Gas Mix
+      - Final Energy|Production|Steel|Secondary|EAF 1|Electricity
+      - Final Energy|Production|Steel|Secondary|EAF 1|Natural Gas
+      - Final Energy|Production|Steel|Secondary|EAF 2|Electricity
+      - Final Energy|Production|Steel|Secondary|EAF 2|Natural Gas
+      - Final Energy|Production|Steel|Secondary|EAF 3|Electricity
+      - Final Energy|Production|Steel|Secondary|EAF 3|Natural Gas
+      - Final Energy|Production|Steel|Secondary|EAF 1|Coal
+
+  ecoinvent_aliases:
+    fltr:
+      - steel production, electric
+    mask:
+      name:
+        - hot rolled
+        - chromium
+      reference product:
+        - heat

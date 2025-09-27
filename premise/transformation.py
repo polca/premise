@@ -25,6 +25,7 @@ from constructive_geometries import resolved_row
 from wurst import reference_product, rescale_exchange
 from wurst import searching as ws
 from wurst import transformations as wt
+from xarray import DataArray
 
 from .activity_maps import InventorySet
 from .data_collection import IAMDataCollection
@@ -114,6 +115,14 @@ def redefine_uncertainty_params(old_exc, new_exc):
         return None, None, None, None, None
 
 
+def group_dicts_by_keys(dicts: list, keys: list):
+    groups = defaultdict(list)
+    for d in dicts:
+        group_key = tuple(d.get(k) for k in keys)
+        groups[group_key].append(d)
+    return list(groups.values())
+
+
 def get_suppliers_of_a_region(
     database: List[dict],
     locations: List[str],
@@ -137,7 +146,7 @@ def get_suppliers_of_a_region(
     :param exclude: list of terms to exclude
     """
 
-    if exact_match:
+    if exact_match is True:
         filters = [
             ws.either(*[ws.equals("name", supplier) for supplier in names]),
         ]
@@ -163,7 +172,7 @@ def get_suppliers_of_a_region(
 
 def get_shares_from_production_volume(
     ds_list: Union[Dict[str, Any], List[Dict[str, Any]]],
-) -> Dict[Tuple[Any, Any, Any, Any], float]:
+) -> list:
     """
     Return shares of supply of each dataset in `ds_list`
     based on respective production volumes
@@ -174,7 +183,7 @@ def get_shares_from_production_volume(
     if not isinstance(ds_list, list):
         ds_list = [ds_list]
 
-    dict_act = {}
+    suppliers = []
     total_production_volume = 0
 
     for act in ds_list:
@@ -188,23 +197,26 @@ def get_shares_from_production_volume(
                 # because if not, we risk dividing by zero!!!
                 production_volume = max(float(exc.get("production volume", 1e-9)), 1e-9)
 
-        dict_act[
-            (
-                act["name"],
-                act["location"],
-                act["reference product"],
-                act["unit"],
-            )
-        ] = production_volume
+        suppliers.append(
+            {
+                "name": act["name"],
+                "reference product": act["reference product"],
+                "location": act["location"],
+                "unit": act["unit"],
+                "production volume": production_volume,
+            }
+        )
         total_production_volume += production_volume
 
     def nonzero(x):
         return x if x != 0.0 else 1.0
 
-    for dataset in dict_act:
-        dict_act[dataset] /= nonzero(total_production_volume)
+    for supplier in suppliers:
+        supplier["share"] = supplier["production volume"] / nonzero(
+            total_production_volume
+        )
 
-    return dict_act
+    return suppliers
 
 
 def get_tuples_from_database(database: List[dict]) -> List[Tuple[str, str, str]]:
@@ -307,11 +319,37 @@ def calculate_input_energy(
     :return: amount of fuel energy, in MJ
     """
 
+    def _sanitize_fuel_name(name: str) -> str:
+        """Sanitize fuel name by removing market prefixes."""
+        items_to_remove = [
+            "market for ",
+            "market group for ",
+            ", high pressure",
+            ", low pressure",
+            ", used as fuel",
+        ]
+        for item in items_to_remove:
+            name = name.replace(item, "")
+        return name
+
     # if fuel input other than MJ
     if fuel_unit in ["kilogram", "cubic meter"]:
-        try:
-            lhv = fuels_specs[fuel_map_reverse[fuel_name]]["lhv"]
-        except KeyError:
+        fuel_name = _sanitize_fuel_name(fuel_name)
+        if fuel_name in fuel_map_reverse:
+            lhv = fuels_specs[fuel_map_reverse[fuel_name]]["lhv"]["value"]
+        elif any(fuel_name.startswith(x) for x in fuels_specs.keys()):
+            fuels = [x for x in fuels_specs.keys() if fuel_name.startswith(x)]
+            lhv = fuels_specs[fuels[0]]["lhv"]["value"]
+        elif any(fuel_name.startswith(x) for x in fuel_map_reverse.keys()):
+            fuels = [x for x in fuel_map_reverse.keys() if fuel_name.startswith(x)]
+            lhv = fuels_specs[fuel_map_reverse[fuels[0]]]["lhv"]["value"]
+        else:
+            print(f"Warning: LHV for {fuel_name} not found in fuel specifications.")
+            print()
+            print(f"Available fuel specs keys: {list(fuels_specs.keys())}.")
+            print()
+            print(f"Available fuel map reverse keys: {list(fuel_map_reverse.keys())}.")
+            print()
             lhv = 0
     elif fuel_unit == "kilowatt hour":
         lhv = 3.6
@@ -339,8 +377,24 @@ def find_fuel_efficiency(
     :return: the efficiency value set initially
     """
 
+    def _sanitize_fuel_name(name: str) -> str:
+        """Sanitize fuel name by removing market prefixes."""
+        items_to_remove = [
+            "market for ",
+            "market group for ",
+            ", high pressure",
+            ", low pressure",
+            ", used as fuel",
+        ]
+        for item in items_to_remove:
+            name = name.replace(item, "")
+        return name
+
     if fuel_filters is None:
         fuel_filters = list(fuel_map_reverse.keys())
+        fuel_filters = [_sanitize_fuel_name(x) for x in fuel_filters]
+    else:
+        fuel_filters = [_sanitize_fuel_name(x) for x in fuel_filters]
 
     energy_input = np.sum(
         np.sum(
@@ -354,7 +408,10 @@ def find_fuel_efficiency(
                         fuel_map_reverse,
                     )
                     for exc in dataset["exchanges"]
-                    if exc["name"] in fuel_filters
+                    if any(
+                        fuel.startswith(_sanitize_fuel_name(exc["name"]))
+                        for fuel in fuel_filters
+                    )
                     and exc["type"] == "technosphere"
                     and exc["amount"] > 0.0
                 ]
@@ -376,9 +433,24 @@ def find_fuel_efficiency(
         )
         if energy_input == 0:
             if not any(x in dataset["name"] for x in ("waste", "treatment")):
+                print()
+                print(
+                    [
+                        _sanitize_fuel_name(e["name"])
+                        for e in dataset["exchanges"]
+                        if e["type"] == "technosphere"
+                    ]
+                )
                 print(
                     f"Warning: {dataset['name'], dataset['location']} has no energy input"
                 )
+                for e in dataset["exchanges"]:
+                    print(e["name"], e["amount"], e["unit"])
+                print("----------------------------------------")
+
+                print("fuel filters")
+                print(fuel_filters)
+                print("----------------------------------------")
 
     if energy_input != 0 and float(energy_out) != 0:
         current_efficiency = float(energy_out) / energy_input
@@ -418,6 +490,7 @@ class BaseTransformation:
         cache: dict = None,
         index: dict = None,
     ) -> None:
+        self.mapping = None
         self.database: List[dict] = database
         self.iam_data: IAMDataCollection = iam_data
         self.model: str = model
@@ -501,101 +574,6 @@ class BaseTransformation:
             return ds["location"] in [k["location"] for k in self.index[key]]
 
         return location in [k["location"] for k in self.index[key]]
-
-    def select_multiple_suppliers(
-        self,
-        possible_names: Tuple[str],
-        dataset_location: str,
-        look_for: Tuple[str] = None,
-        blacklist: Tuple[str,] = None,
-        exclude_region: Tuple[str] = None,
-        subset: List[str] = None,
-    ):
-        """
-        Select multiple suppliers for a specific fuel.
-        """
-
-        # We have several potential fuel suppliers
-        # We will look up their respective production volumes
-        # And include them proportionally to it
-
-        ecoinvent_regions = self.iam_to_ecoinvent_loc[dataset_location]
-
-        possible_locations = [
-            dataset_location,
-            [*ecoinvent_regions],
-            "RoW",
-            "GLO",
-            "Europe without Switzerland",
-            "RER",
-        ]
-
-        suppliers, counter = [], 0
-
-        extra_filters = []
-        if look_for:
-            extra_filters.append(
-                ws.either(
-                    *[ws.contains("reference product", item) for item in look_for]
-                )
-            )
-        if blacklist:
-            extra_filters.append(
-                ws.exclude(
-                    ws.either(*[ws.contains("reference product", x) for x in blacklist])
-                )
-            )
-            extra_filters.append(
-                ws.exclude(ws.either(*[ws.contains("name", x) for x in blacklist]))
-            )
-
-        if exclude_region:
-            extra_filters.append(
-                ws.exclude(
-                    ws.either(*[ws.contains("location", x) for x in exclude_region])
-                )
-            )
-
-        try:
-            while not suppliers:
-                suppliers = list(
-                    ws.get_many(
-                        subset or self.database,
-                        ws.either(*[ws.equals("name", sup) for sup in possible_names]),
-                        (
-                            ws.either(
-                                *[
-                                    ws.equals("location", item)
-                                    for item in possible_locations[counter]
-                                ]
-                            )
-                            if isinstance(possible_locations[counter], list)
-                            else ws.equals("location", possible_locations[counter])
-                        ),
-                        *extra_filters,
-                    )
-                )
-                counter += 1
-        except IndexError as err:
-
-            suppliers = list(
-                ws.get_many(
-                    subset or self.database,
-                    ws.either(*[ws.contains("name", sup) for sup in possible_names]),
-                    *extra_filters,
-                )
-            )
-
-            if not suppliers:
-                raise IndexError(
-                    f"No supplier found for {possible_names} in {possible_locations}, "
-                    f"looking for terms: {look_for} "
-                    f"and with blacklist: {blacklist}"
-                ) from err
-
-        suppliers = get_shares_from_production_volume(suppliers)
-
-        return suppliers
 
     def get_ecoinvent_locs(self) -> List[str]:
         """
@@ -699,50 +677,517 @@ class BaseTransformation:
             for tech in technologies
         }
 
-    def region_to_proxy_dataset_mapping(
-        self, name: str, ref_prod: str, regions: List[str] = None
-    ) -> Dict[str, str]:
-        d_map = {
-            self.ecoinvent_to_iam_loc[d["location"]]: d["location"]
-            for d in ws.get_many(
+    def get_technology_and_regional_production_shares(
+        self, production_volumes: xr.DataArray, mapping: dict
+    ) -> (
+        tuple[None, dict[tuple[Any, str], float], dict[str, float]]
+        | tuple[DataArray, dict[tuple[Any, Any], Any], dict[Any, Any]]
+    ):
+
+        regions = [region for region in self.regions if region != "World"]
+        year = self.year
+        if self.year < production_volumes.year.values.min():
+            year = production_volumes.year.values.min()
+        if self.year > production_volumes.year.values.max():
+            year = production_volumes.year.values.max()
+
+        if not any(v in production_volumes.variables.values for v in mapping.keys()):
+            return (
+                None,
+                {(var, reg): 0.0 for var in mapping.keys() for reg in regions},
+                {reg: 1 / len(regions) for reg in regions},
+            )
+
+        try:
+            variables = [
+                v
+                for v in list(mapping.keys())
+                if v in production_volumes.variables.values
+            ]
+            if year in production_volumes.year.values:
+                production_volumes = production_volumes.sel(
+                    variables=variables, region=regions, year=year
+                )
+            else:
+                production_volumes = production_volumes.sel(
+                    variables=variables, region=regions
+                ).interp(year=year)
+        except KeyError:
+            raise KeyError(
+                f"The variable(s) {[v for v in list(mapping.keys()) if v not in production_volumes.variables.values]} not "
+                f"found in production volumes data. "
+                f"Available variables: {sorted(list(production_volumes.variables.values))}."
+            )
+        regional_totals = production_volumes.sum(dim="variables")
+
+        regional_shares = (production_volumes / regional_totals).fillna(0)
+        world_shares = (regional_totals / regional_totals.sum()).fillna(0)
+
+        technology_shares_dict = {
+            (var, reg): regional_shares.sel(variables=var, region=reg).values.item(0)
+            for var in regional_shares.variables.values
+            for reg in regional_shares.region.values
+        }
+
+        regional_shares_dict = {
+            reg: world_shares.sel(region=reg).item()
+            for reg in world_shares.region.values
+        }
+
+        return production_volumes, technology_shares_dict, regional_shares_dict
+
+    def process_and_add_markets(
+        self,
+        name,
+        reference_product,
+        unit,
+        mapping,
+        production_volumes=None,
+        additional_exchanges_fn=None,
+        system_model="cut-off",
+        blacklist=None,
+        conversion_factor=None,
+    ):
+        """
+        Generalized method to create and add regionalized market datasets.
+
+        Parameters
+        ----------
+        production_datasets : list of dict
+            Datasets representing regionalized production activities.
+        market_name : str
+            Name of the market activity (e.g., "market for steel").
+        reference_product : str
+            The reference product of the market.
+        production_shares : dict
+            Dictionary with region as key and production share as value.
+        region_list : list of str
+            List of regions for which to create markets.
+        additional_exchanges_fn : callable, optional
+            Function to add extra exchanges to the market dataset (e.g., transport, losses).
+        """
+
+        conversion_factor = conversion_factor or {}
+        blacklist = blacklist or {}
+
+        if production_volumes is not None:
+            regions = [region for region in self.regions if region != "World"]
+            production_volumes, technology_shares_dict, regional_shares_dict = (
+                self.get_technology_and_regional_production_shares(
+                    production_volumes=production_volumes,
+                    mapping=mapping,
+                )
+            )
+
+        else:
+            regions = self.regions
+            technology_shares_dict = {
+                (var, reg): 0.0 for var in mapping.keys() for reg in regions
+            }
+            regional_shares_dict = {reg: 1 / len(regions) for reg in regions}
+
+        transport_operations = self.extract_market_logistics(
+            name=name,
+            reference_product=reference_product,
+        )
+
+        for region in regions:
+            if production_volumes is not None:
+                production_volume = float(
+                    production_volumes.sel(
+                        region=region,
+                    )
+                    .sum(dim="variables")
+                    .values.item(0)
+                )
+
+                if production_volume == 0:
+                    continue
+            else:
+                production_volume = 0.0
+
+            production_exchange = {
+                "name": name,
+                "product": reference_product,
+                "location": region,
+                "amount": 1.0,
+                "unit": unit,
+                "uncertainty type": 0,
+                "type": "production",
+            }
+
+            if production_volumes is not None:
+                production_exchange["production volume"] = production_volume
+
+            market_dataset = {
+                "name": name,
+                "reference product": reference_product,
+                "location": region,
+                "unit": unit,
+                "regionalized": True,
+                "code": str(uuid.uuid4().hex),
+                "database": "",
+                "comment": f"Market dataset for {name} in {region} for {self.year}.",
+                "exchanges": [
+                    production_exchange,
+                ],
+            }
+
+            for technology, activities in mapping.items():
+                if (technology, region) in technology_shares_dict:
+                    suppliers = [ds for ds in activities if ds["location"] == region]
+                    if len(suppliers) == 0:
+                        suppliers = [
+                            ds
+                            for ds in activities
+                            if ds["location"] in self.iam_to_ecoinvent_loc[region]
+                        ]
+                    if len(suppliers) == 0:
+                        suppliers = [ds for ds in activities if ds["location"] == "RoW"]
+                    if len(suppliers) == 0:
+                        raise ValueError(
+                            f"No activity found for technology {technology} in region {region}. "
+                            f"Available activities: {[(a['name'], a['location']) for a in activities]}."
+                        )
+
+                    if len(suppliers) > 1:
+                        suppliers = get_shares_from_production_volume(suppliers)
+
+                    share = technology_shares_dict.get((technology, region), 0)
+
+                    if share > 0:
+                        if technology not in blacklist.get(system_model, []):
+                            for supplier in suppliers:
+                                market_dataset["exchanges"].append(
+                                    {
+                                        "name": supplier["name"],
+                                        "product": supplier["reference product"],
+                                        "location": supplier["location"],
+                                        "amount": share
+                                        * conversion_factor.get(technology, 1.0)
+                                        * supplier.get("share", 1.0),
+                                        "unit": supplier["unit"],
+                                        "uncertainty type": 0,
+                                        "type": "technosphere",
+                                    }
+                                )
+
+            # normalize the shares
+            total_share = sum(
+                exc["amount"]
+                for exc in market_dataset["exchanges"]
+                if exc["type"] == "technosphere"
+            )
+            if total_share > 0:
+                for exc in market_dataset["exchanges"]:
+                    if exc["type"] == "technosphere":
+                        exc["amount"] /= total_share
+            else:
+                continue
+
+            if additional_exchanges_fn:
+                additional_exchanges_fn(market_dataset)
+
+            # add transport operations
+            transport_location = [
+                loc
+                for loc in transport_operations.keys()
+                if loc in self.iam_to_ecoinvent_loc[region]
+            ]
+
+            if len(transport_location) == 0:
+                # check if RoW is available
+                transport_location = [
+                    loc for loc in transport_operations.keys() if loc == "RoW"
+                ]
+
+            if len(transport_location) == 0:
+                # check if GLO is available
+                transport_location = [
+                    loc for loc in transport_operations.keys() if loc == "GLO"
+                ]
+
+            if len(transport_location) > 0:
+                transport_location = transport_location[0]
+            else:
+                transport_location = None
+
+            if transport_location:
+                transport_op = transport_operations[transport_location]
+                market_dataset["exchanges"].append(
+                    {
+                        "name": transport_op["name"],
+                        "product": transport_op["reference product"],
+                        "location": transport_op["location"],
+                        "amount": transport_op["amount"],
+                        "unit": transport_op["unit"],
+                        "uncertainty type": 0,
+                        "type": transport_op["type"],
+                    }
+                )
+
+            self.database.append(market_dataset)
+            self.add_to_index(market_dataset)
+            self.write_log(market_dataset, "created")
+
+        if "World" not in regions:
+            # create the World market
+            world_market = {
+                "name": name,
+                "reference product": reference_product,
+                "location": "World",
+                "unit": unit,
+                "regionalized": True,
+                "code": str(uuid.uuid4().hex),
+                "database": "",
+                "comment": f"Market dataset for {name} in World for {self.year}.",
+                "exchanges": [
+                    {
+                        "name": name,
+                        "product": reference_product,
+                        "location": "World",
+                        "amount": 1.0,
+                        "unit": unit,
+                        "uncertainty type": 0,
+                        "type": "production",
+                    }
+                ],
+            }
+
+            candidate = {
+                "name": name,
+                "reference product": reference_product,
+                "unit": unit,
+            }
+            for region in regions:
+                share = regional_shares_dict.get(region, 0)
+
+                if share > 0:
+                    if self.is_in_index(candidate, region):
+                        # add the regional market shares
+                        world_market["exchanges"].append(
+                            {
+                                "name": name,
+                                "product": reference_product,
+                                "location": region,
+                                "amount": share,
+                                "unit": unit,
+                                "uncertainty type": 0,
+                                "type": "technosphere",
+                            }
+                        )
+
+            self.database.append(world_market)
+            self.add_to_index(world_market)
+            self.write_log(world_market, "created")
+
+        datasets = list(
+            ws.get_many(
                 self.database,
                 ws.equals("name", name),
-                ws.contains("reference product", ref_prod),
+                ws.equals("reference product", reference_product),
             )
+        )
+        datasets = [ds for ds in datasets if ds.get("regionalized", False) is False]
+
+        self.empty_original_datasets(
+            datasets=datasets,
+            loc_map={
+                x["location"]: self.geo.ecoinvent_to_iam_location(x["location"])
+                for x in datasets
+            },
+            production_shares=regional_shares_dict,
+            regions=regions,
+        )
+
+    def extract_market_logistics(
+        self,
+        name: str,
+        reference_product: str,
+    ) -> Dict[Tuple[str, str, str], dict]:
+        datasets = list(
+            ws.get_many(
+                self.database,
+                ws.equals("name", name),
+                ws.equals("reference product", reference_product),
+            )
+        )
+
+        transport_operations = {}
+
+        for dataset in datasets:
+            for exc in ws.technosphere(dataset, ws.contains("unit", "kilometer")):
+                transport_operations[dataset["location"]] = {
+                    "name": exc["name"],
+                    "reference product": exc["product"],
+                    "location": exc["location"],
+                    "amount": exc["amount"],
+                    "unit": exc["unit"],
+                    "type": exc["type"],
+                }
+
+        return transport_operations
+
+    def process_and_add_activities(
+        self,
+        mapping,
+        production_volumes=None,
+        efficiency_adjustment_fn=None,
+        regions=None,
+        scaling_factors=None,
+    ):
+        """
+        Generalized processing of activities and adding them to the database.
+
+        Parameters
+        ----------
+        mapping : dict or pd.DataFrame
+            Mapping containing the relevant activity data.
+        proxy_selection_fn : callable
+            Function to fetch proxies based on the mapping.
+        efficiency_adjustment_fn : callable, optional
+            Function to adjust process efficiency. If None, no adjustment is done.
+        scaling_factors : dict, optional
+            Dictionary with scaling factors for inputs.
+        log_message : str, optional
+            Message to log after processing.
+        add_to_index : bool, optional
+            Whether to add new activities to the index.
+        """
+
+        if production_volumes is not None:
+            regions = regions or [
+                region for region in self.regions if region != "World"
+            ]
+            production_volumes, _, regional_shares_dict = (
+                self.get_technology_and_regional_production_shares(
+                    production_volumes=production_volumes,
+                    mapping=mapping,
+                )
+            )
+
+        else:
+            regions = regions or self.regions
+            regional_shares_dict = {reg: 1 / len(regions) for reg in regions}
+
+        processed_datasets, seen_datasets = [], []
+
+        # resize production volumes to the keys available in mapping
+        if production_volumes is not None:
+            production_volumes = production_volumes.sel(
+                variables=[
+                    v
+                    for v in list(mapping.keys())
+                    if v in production_volumes.variables.values
+                ]
+            )
+
+        for technology, grouped_activities in mapping.items():
+            grouped_activities = [
+                ds for ds in grouped_activities if ds["name"] not in seen_datasets
+            ]
+
+            if not grouped_activities:
+                continue
+
+            grouped_activities = group_dicts_by_keys(
+                grouped_activities, ["name", "reference product"]
+            )
+
+            for activities in grouped_activities:
+                if not activities:
+                    continue
+
+                if any(ds for ds in activities if ds.get("regionalized", False)):
+                    # if any of the datasets in the activity is already regionalized, skip it
+                    mapping[technology].extend(
+                        [ds for ds in activities if ds.get("regionalized", True)]
+                    )
+                    continue
+
+                regionalized_datasets = self.fetch_proxies(
+                    datasets=activities,
+                    production_volumes=(
+                        production_volumes.sel(variables=technology)
+                        if production_volumes is not None
+                        else None
+                    ),
+                )
+
+                # adjust efficiency of steel production
+                if efficiency_adjustment_fn:
+                    for dataset in regionalized_datasets.values():
+                        if isinstance(efficiency_adjustment_fn, list):
+                            for fn in efficiency_adjustment_fn:
+                                fn(dataset, technology)
+                        else:
+                            efficiency_adjustment_fn(dataset, technology)
+
+                processed_datasets.extend(regionalized_datasets.values())
+                seen_datasets.extend([ds["name"] for ds in activities])
+                mapping[technology].extend(regionalized_datasets.values())
+
+                datasets = list(
+                    ws.get_many(
+                        self.database,
+                        ws.equals("name", activities[0]["name"]),
+                        ws.equals(
+                            "reference product", activities[0]["reference product"]
+                        ),
+                    )
+                )
+                datasets = [
+                    ds for ds in datasets if ds.get("regionalized", False) is False
+                ]
+
+                self.empty_original_datasets(
+                    datasets=datasets,
+                    loc_map={
+                        x["location"]: self.geo.ecoinvent_to_iam_location(x["location"])
+                        for x in datasets
+                    },
+                    production_shares=regional_shares_dict,
+                    regions=regions,
+                )
+
+        for dataset in processed_datasets:
+            self.add_to_index(dataset)
+            self.write_log(dataset, "created")
+            self.database.append(dataset)
+
+    def region_to_proxy_dataset_mapping(
+        self, datasets: list[dict], regions: List[str] = None
+    ) -> Dict[str, dict]:
+        d_map = {
+            self.ecoinvent_to_iam_loc[d["location"]]: d
+            for d in datasets
             if d["location"] not in self.regions
         }
 
         if not regions:
             regions = self.regions
 
-        fallback_loc = None
-        if "RoW" in d_map.values():
-            fallback_loc = "RoW"
-        else:
-            if "GLO" in d_map.values():
-                fallback_loc = "GLO"
-            else:
-                try:
-                    fallback_loc = list(d_map.values())[0]
-                except IndexError:
-                    print(name, ref_prod, regions, d_map)
+        locs = {x["location"]: x for x in datasets}
 
-        return {region: d_map.get(region, fallback_loc) for region in regions}
+        if "RoW" in locs:
+            fallback_dataset = locs["RoW"]
+        else:
+            if "GLO" in locs:
+                fallback_dataset = locs["GLO"]
+            else:
+                fallback_dataset = list(locs.values())[0]
+
+        return {region: d_map.get(region, fallback_dataset) for region in regions}
 
     def fetch_proxies(
         self,
-        name,
-        ref_prod,
-        production_variable=None,
+        datasets: List[dict],
+        production_volumes: xr.DataArray = None,
         relink=True,
         regions=None,
         geo_mapping: dict = None,
-        delete_original_dataset=False,
-        empty_original_activity=True,
-        exact_name_match=True,
-        exact_product_match=False,
+        delete_original_datasets=False,
         unlist=True,
-        subset: list = None,
     ) -> Dict[str, dict]:
         """
         Fetch dataset proxies, given a dataset `name` and `reference product`.
@@ -751,69 +1196,27 @@ class BaseTransformation:
         fetch a dataset with a "RoW" location.
         Delete original datasets from the database.
 
-        :param name: name of the datasets to find
-        :param ref_prod: reference product of the datasets to find
         :param production_variable: name of variable in IAM data that refers to production volume
         :param relink: if `relink`, exchanges from the datasets will be relinked to
         the most geographically-appropriate providers from the database. This is computer-intensive.
         :param regions: regions to create proxy datasets for. if None, all regions are considered.
-        :param delete_original_dataset: if True, delete original datasets from the database.
+        :param delete_original_datasets: if True, delete original datasets from the database.
         :param empty_original_activity: if True, empty original activities from exchanges.
-        :param exact_name_match: if True, look for exact name matches.
-        :param exact_product_match: if True, look for exact product matches.
         :param unlist: if True, remove original datasets from the index.
-        :param subset: subset of the database to search in.
         :return: dictionary with IAM regions as keys, proxy datasets as values.
         """
 
+        if not isinstance(datasets, list):
+            datasets = [datasets]
+
         d_iam_to_eco = geo_mapping or self.region_to_proxy_dataset_mapping(
-            name=name, ref_prod=ref_prod, regions=regions
+            datasets=datasets, regions=regions
         )
 
         d_act = {}
 
-        ds_name, ds_ref_prod = [None, None]
+        for region, dataset in d_iam_to_eco.items():
 
-        for region in d_iam_to_eco:
-            # build filters
-            if exact_name_match is True:
-                filters = [
-                    ws.equals("name", name),
-                ]
-            else:
-                filters = [
-                    ws.contains("name", name),
-                ]
-            if exact_product_match is True:
-                filters.append(ws.equals("reference product", ref_prod))
-            else:
-                filters.append(ws.contains("reference product", ref_prod))
-
-            filters.append(ws.equals("location", d_iam_to_eco[region]))
-
-            try:
-                dataset = ws.get_one(
-                    subset or self.database,
-                    *filters,
-                )
-            except ws.MultipleResults as err:
-                results = ws.get_many(
-                    subset or self.database,
-                    *filters,
-                )
-                raise ws.MultipleResults(
-                    err,
-                    "A single dataset was expected, "
-                    f"but found more than one for: "
-                    f"{name, ref_prod}, : {[(r['name'], r['reference product'], r['location']) for r in results]}",
-                )
-            except ws.NoResults as err:
-                raise ws.NoResults(
-                    err,
-                    f"No dataset found for {name, ref_prod} in {d_iam_to_eco[region]}",
-                )
-
-            # if not self.is_in_index(dataset, region):
             if self.is_in_index(dataset, region):
                 # delete original dataset from the database
                 self.database = [
@@ -823,282 +1226,135 @@ class BaseTransformation:
                     != (dataset["name"], dataset["reference product"], region)
                 ]
 
-            d_act[region] = copy.deepcopy(dataset)
-            d_act[region]["location"] = region
-            d_act[region]["code"] = str(uuid.uuid4().hex)
+            dataset = copy.deepcopy(dataset)
+            dataset["location"] = region
+            dataset["code"] = str(uuid.uuid4().hex)
+            dataset["regionalized"] = True
 
-            for exc in ws.production(d_act[region]):
+            for exc in ws.production(dataset):
                 if "input" in exc:
                     del exc["input"]
                 if "location" in exc:
                     exc["location"] = region
 
-            if "input" in d_act[region]:
-                del d_act[region]["input"]
+            if "input" in dataset:
+                del dataset["input"]
 
-            if production_variable is not None:
-                # Add `production volume` field
-                if isinstance(production_variable, str):
-                    production_variable = [
-                        production_variable,
-                    ]
-
-                if isinstance(production_variable, list):
-                    if all(
-                        i in self.iam_data.production_volumes.variables
-                        for i in production_variable
-                    ):
-                        if self.year in self.iam_data.production_volumes.coords["year"]:
-                            prod_vol = (
-                                self.iam_data.production_volumes.sel(
-                                    region=region,
-                                    variables=production_variable,
-                                    year=self.year,
-                                )
-                                .sum(dim="variables")
-                                .values.item(0)
-                            )
-                        else:
-                            prod_vol = (
-                                self.iam_data.production_volumes.sel(
-                                    region=region, variables=production_variable
-                                )
-                                .interp(year=self.year)
-                                .sum(dim="variables")
-                                .values.item(0)
-                            )
-                    else:
-                        prod_vol = 1
-
-                elif isinstance(production_variable, dict):
-                    prod_vol = production_variable[region]
-                else:
-                    prod_vol = 1
-            else:
-                prod_vol = 1
-
-            for prod in ws.production(d_act[region]):
+            for prod in ws.production(dataset):
                 prod["location"] = region
-                prod["production volume"] = prod_vol
+                if production_volumes is not None:
+                    # Add `production volume` field
+                    if region in production_volumes.region.values:
+                        prod["production volume"] = production_volumes.sel(
+                            region=prod["location"]
+                        ).values.item(0)
+                    else:
+                        if region == "World":
+                            # If the region is "World", use the total production volume
+                            prod["production volume"] = production_volumes.sum(
+                                dim="region"
+                            ).values.item(0)
+                        else:
+                            raise KeyError(
+                                f"Region {region} not found in production volumes data."
+                            )
+                else:
+                    prod["production volume"] = 0.0
 
             if relink:
-                d_act[region] = self.relink_technosphere_exchanges(d_act[region])
+                d_act[region] = self.relink_technosphere_exchanges(dataset)
 
-            ds_name = d_act[region]["name"]
-            ds_ref_prod = d_act[region]["reference product"]
+        if unlist:
+            for dataset in datasets:
+                self.remove_from_index(dataset)
 
-        if unlist is True:
-            # remove dataset from index
-            for ds in ws.get_many(
-                self.database,
-                ws.equals("name", ds_name),
-                ws.equals("reference product", ds_ref_prod),
-            ):
-                self.remove_from_index(ds)
-
-        # empty original datasets
-        # and make them link to new regional datasets
-        if empty_original_activity is True:
-            self.empty_original_datasets(
-                name=ds_name,
-                ref_prod=ds_ref_prod,
-                loc_map=d_iam_to_eco,
-                production_variable=production_variable,
-                regions=regions,
-            )
-
-        if delete_original_dataset is True:
+        if delete_original_datasets is True:
             # remove the dataset from `self.database`
-            self.database = [
-                ds
-                for ds in self.database
-                if not (
-                    ds["name"] == ds_name and ds["reference product"] == ds_ref_prod
-                )
-            ]
+            self.database = [ds for ds in self.database if ds not in datasets]
 
         return d_act
 
     def empty_original_datasets(
         self,
-        name: str,
-        ref_prod: str,
-        production_variable: [str, dict],
+        datasets: list[dict],
+        production_shares: dict,
         loc_map: Dict[str, str],
         regions: List[str] = None,
     ) -> None:
         """
-        Empty original ecoinvent dataset and introduce an input to the regional IAM
-        dataset that geographically comprises it.
-        :param name: dataset name
-        :param ref_prod: dataset reference product
-        :param loc_map: ecoinvent location to IAM location mapping for this activity
-        :param production_variable: IAM production variable
-        :param regions: regions to empty original datasets for
-        :return: Does not return anything. Just empties the original dataset.
+        Empty original ecoinvent datasets and replace them with IAM-based inputs.
         """
-
         regions = regions or self.regions
 
-        mapping = {}
-        if loc_map:
-            mapping = defaultdict(set)
-            for v in loc_map.values():
-                if self.geo.ecoinvent_to_iam_location(v) in loc_map.keys():
-                    mapping[v].add(self.geo.ecoinvent_to_iam_location(v))
-        existing_datasets = ws.get_many(
-            self.database,
-            ws.equals("name", name),
-            ws.equals("reference product", ref_prod),
-            ws.exclude(
-                ws.either(*[ws.equals("location", loc) for loc in self.regions])
-            ),
-        )
+        def build_exchange(dataset, location, amount):
+            return {
+                "name": dataset["name"],
+                "product": dataset["reference product"],
+                "amount": amount,
+                "unit": dataset["unit"],
+                "uncertainty type": 0,
+                "location": location,
+                "type": "technosphere",
+            }
 
-        for existing_ds in existing_datasets:
-            if existing_ds["location"] in mapping:
-                locations = list(mapping[existing_ds["location"]])
-            else:
-                locations = [self.ecoinvent_to_iam_loc[existing_ds["location"]]]
-                locations = [loc for loc in locations if loc in regions]
-
-            if locations == [
-                "World",
-            ]:
-                locations = [r for r in regions if r != "World"]
-
-            if len(locations) == 0:
+        for dataset in datasets:
+            if dataset.get("regionalized", False) is True:
+                print(
+                    f"Skipping {dataset['name']} in {dataset['location']}, already regionalized."
+                )
                 continue
 
-            # add tag
-            existing_ds["has_downstream_consumer"] = False
-            existing_ds["exchanges"] = [
-                e for e in existing_ds["exchanges"] if e["type"] == "production"
+            ecoinvent_location = dataset["location"]
+            iam_location = loc_map[ecoinvent_location]
+
+            if not self.is_in_index(dataset, iam_location):
+                iam_location = "World"
+
+            if iam_location == "World":
+                iam_location = [
+                    r for r in regions if r != "World" and self.is_in_index(dataset, r)
+                ]
+
+            if not iam_location:
+                continue
+
+            if isinstance(iam_location, str):
+                iam_location = [iam_location]
+
+            # Clean dataset
+            dataset["has_downstream_consumer"] = False
+            dataset["exchanges"] = [
+                e for e in dataset["exchanges"] if e["type"] == "production"
             ]
-            existing_ds["emptied"] = True
 
-            # for cases where external scenarios are used
-            if "adjust efficiency" in existing_ds:
-                del existing_ds["adjust efficiency"]
+            # Empty production volume
+            for prod in ws.production(dataset):
+                prod["production volume"] = 0.0
 
-            if len(existing_ds["exchanges"]) == 0:
+            dataset["emptied"] = True
+            dataset.pop("adjust efficiency", None)
+
+            if not dataset["exchanges"]:
                 print(
-                    f"ISSUE: no exchanges found in {existing_ds['name']} "
-                    f"in {existing_ds['location']}"
+                    f"ISSUE: no exchanges found in {dataset['name']} in {ecoinvent_location}"
                 )
 
-            def _(x):
-                return x if x != 0.0 else 1.0
-
-            if len(locations) == 1:
-                existing_ds["exchanges"].append(
-                    {
-                        "name": existing_ds["name"],
-                        "product": existing_ds["reference product"],
-                        "amount": 1.0,
-                        "unit": existing_ds["unit"],
-                        "uncertainty type": 0,
-                        "location": locations[0],
-                        "type": "technosphere",
-                    }
+            # Add new exchanges
+            if len(iam_location) == 1:
+                dataset["exchanges"].append(
+                    build_exchange(dataset, iam_location[0], 1.0)
                 )
 
-            elif isinstance(production_variable, list) and all(
-                i in self.iam_data.production_volumes.variables.values.tolist()
-                for i in production_variable
-            ):
-                for location in locations:
-
-                    if (
-                        self.year
-                        in self.iam_data.production_volumes.coords["year"].values
-                    ):
-                        share = (
-                            self.iam_data.production_volumes.sel(
-                                region=location,
-                                variables=production_variable,
-                                year=self.year,
-                            )
-                            .sum(dim="variables")
-                            .values.item(0)
-                        ) / _(
-                            self.iam_data.production_volumes.sel(
-                                region=locations,
-                                variables=production_variable,
-                                year=self.year,
-                            )
-                            .sum(dim=["variables", "region"])
-                            .values.item(0)
-                        )
-                    else:
-                        share = (
-                            self.iam_data.production_volumes.sel(
-                                region=location, variables=production_variable
-                            )
-                            .interp(year=self.year)
-                            .sum(dim="variables")
-                            .values.item(0)
-                        ) / _(
-                            self.iam_data.production_volumes.sel(
-                                region=locations, variables=production_variable
-                            )
-                            .interp(year=self.year)
-                            .sum(dim=["variables", "region"])
-                            .values.item(0)
-                        )
-
-                    if share > 0:
-                        existing_ds["exchanges"].append(
-                            {
-                                "name": existing_ds["name"],
-                                "product": existing_ds["reference product"],
-                                "amount": share,
-                                "unit": existing_ds["unit"],
-                                "uncertainty type": 0,
-                                "location": location,
-                                "type": "technosphere",
-                            }
-                        )
-
-            elif isinstance(production_variable, dict):
-                existing_ds["exchanges"].extend(
+            else:
+                dataset["exchanges"].extend(
                     [
-                        {
-                            "name": existing_ds["name"],
-                            "product": existing_ds["reference product"],
-                            "amount": share,
-                            "unit": existing_ds["unit"],
-                            "uncertainty type": 0,
-                            "location": loc,
-                            "type": "technosphere",
-                        }
-                        for loc, share in production_variable.items()
+                        build_exchange(dataset, loc, production_shares.get(loc, 0))
+                        for loc in iam_location
                     ]
                 )
 
-            else:
-                share = 1 / len(locations)
-
-                if share > 0:
-                    existing_ds["exchanges"].extend(
-                        [
-                            {
-                                "name": existing_ds["name"],
-                                "product": existing_ds["reference product"],
-                                "amount": share,
-                                "unit": existing_ds["unit"],
-                                "uncertainty type": 0,
-                                "location": location,
-                                "type": "technosphere",
-                            }
-                            for location in locations
-                        ]
-                    )
-
-            self.remove_from_index(existing_ds)
-
-            # add log
-            self.write_log(dataset=existing_ds, status="empty")
+            self.write_log(dataset=dataset, status="empty")
+            self.remove_from_index(dataset)
 
     def relink_datasets(self, excludes_datasets=None, alt_names=None):
         """
@@ -1146,7 +1402,11 @@ class BaseTransformation:
             # to compare with the new exchanges
             excs_to_relink_dict = defaultdict(float)
             for exc in excs_to_relink:
-                excs_to_relink_dict[exc["product"]] += exc["amount"]
+                try:
+                    excs_to_relink_dict[exc["product"]] += exc["amount"]
+                except:
+                    print(exc)
+                    raise
 
             # Create a set of unique exchanges to relink
             # turn this into a list of dictionaries
@@ -1238,105 +1498,6 @@ class BaseTransformation:
         )
 
         return self.cache.get(loc, {}).get(self.model, {}).get(key)
-
-    def create_ccs_dataset(
-        self,
-        loc: str,
-        bio_co2_stored: float,
-        bio_co2_leaked: float,
-        sector: str = "cement",
-    ) -> None:
-        """
-        Create a CCS dataset, reflecting the share of fossil vs. biogenic CO2.
-
-        Source for CO2 capture and compression:
-        https://www.sciencedirect.com/science/article/pii/S1750583613001230?via%3Dihub#fn0040
-
-        :param loc: location of the dataset to create
-        :param bio_co2_stored: share of biogenic CO2 over biogenic + fossil CO2
-        :param bio_co2_leaked: share of biogenic CO2 leaked back into the atmosphere
-        :param sector: name of the sector to look capture rate for
-        :return: Does not return anything, but adds the dataset to the database.
-
-        """
-
-        # select the dataset
-        # it is initially made for a cement plant, but it should be possible to
-        # use it for any plant with a similar flue gas composition (CO2 concentration
-        # and composition of the flue gas).
-        dataset = ws.get_one(
-            self.database,
-            ws.equals(
-                "name",
-                "carbon dioxide, captured at cement production plant, with underground storage, post, 200 km",
-            ),
-            ws.equals("location", "RER"),
-        )
-
-        # duplicate the dataset
-        ccs = wt.copy_to_new_location(dataset, loc)
-        ccs["code"] = str(uuid.uuid4().hex)
-
-        if sector != "cement":
-            ccs["name"] = ccs["name"].replace("cement", sector)
-            for e in ws.production(ccs):
-                e["name"] = e["name"].replace("cement", sector)
-
-        if not self.is_in_index(ccs):
-            if "input" in ccs:
-                ccs.pop("input")
-
-            # we first fix the biogenic CO2 permanent storage
-            # this corresponds to the share of biogenic CO2
-            # in the fossil + biogenic CO2 emissions of the plant
-
-            for exc in ws.biosphere(
-                ccs,
-                ws.equals("name", "Carbon dioxide, in air"),
-            ):
-                exc["amount"] = bio_co2_stored
-
-            if bio_co2_leaked > 0:
-                # then the biogenic CO2 leaked during the capture process
-                for exc in ws.biosphere(
-                    ccs,
-                    ws.equals("name", "Carbon dioxide, non-fossil"),
-                ):
-                    exc["amount"] = bio_co2_leaked
-
-            # the rest of CO2 leaked is fossil
-            for exc in ws.biosphere(ccs, ws.equals("name", "Carbon dioxide, fossil")):
-                exc["amount"] = 0.11 - bio_co2_leaked
-
-            # we adjust the heat needs by subtraction 3.66 MJ with what
-            # the plant is expected to produce as excess heat
-
-            # Heat, as steam: 3.66 MJ/kg CO2 captured in 2020,
-            # decreasing to 2.6 GJ/t by 2050, by looking at
-            # the best-performing state-of-the-art technologies today
-            # https://www.globalccsinstitute.com/wp-content/uploads/2022/05/State-of-the-Art-CCS-Technologies-2022.pdf
-            # minus excess heat generated on site
-            # the contribution of excess heat is assumed to be
-            # 30% of heat requirement.
-
-            heat_input = np.clip(
-                np.interp(self.year, [2020, 2050], [3.66, 2.6]), 2.6, 3.66
-            )
-            excess_heat_generation = 0.3  # 30%
-            fossil_heat_input = heat_input - (excess_heat_generation * heat_input)
-
-            for exc in ws.technosphere(ccs, ws.contains("name", "steam production")):
-                exc["amount"] = fossil_heat_input
-
-            if sector != "cement":
-                ccs["comment"] = ccs["comment"].replace("cement", sector)
-
-            # then, we need to find local suppliers of electricity, water, steam, etc.
-            ccs = self.relink_technosphere_exchanges(ccs)
-            self.add_to_index(ccs)
-
-            # finally, we add this new dataset to the database
-            self.database.append(ccs)
 
     def find_alternative_locations(self, act, exc, alt_names):
         """
@@ -1523,37 +1684,6 @@ class BaseTransformation:
             }
             for (name, prod, loc, unit), excs in grouped_exchanges
         ]
-
-    def get_carbon_capture_rate(self, loc: str, sector: str) -> float:
-        """
-        Returns the carbon capture rate (between 0 and 1) as indicated by the IAM
-        It is calculated as CO2 captured / (CO2 captured + CO2 emitted)
-
-        :param loc: location of the dataset
-        :param sector: name of the sector to look capture rate for
-        :return: rate of carbon capture
-        """
-
-        if sector in self.iam_data.carbon_capture_rate.variables.values:
-            if self.year in self.iam_data.carbon_capture_rate.coords["year"].values:
-                rate = self.iam_data.carbon_capture_rate.sel(
-                    variables=sector,
-                    region=loc,
-                    year=self.year,
-                ).values.item(0)
-            else:
-                rate = (
-                    self.iam_data.carbon_capture_rate.sel(
-                        variables=sector,
-                        region=loc,
-                    )
-                    .interp(year=self.year)
-                    .values
-                )
-        else:
-            rate = 0
-
-        return rate
 
     def find_iam_efficiency_change(
         self,
@@ -2193,6 +2323,7 @@ class BaseTransformation:
         ]
 
         possible_locations = [loc for loc in possible_locations if loc in self.geo.geo]
+
         with resolved_row(possible_locations, self.geo.geo) as g:
             func = g.contained if contained else g.intersects
 

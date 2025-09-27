@@ -12,48 +12,10 @@ The **EXTRACT** phase consists of the following steps:
 Current IAM scenarios
 """""""""""""""""""""
 
-*premise* includes several Integrated Assessment Model (IAM) scenarios,
-but you can also use other scenarios.
-In *premise*, scenarios are defined by their Shared Socio-economic
-Pathway (SSP), a climate trajectory—often represented by a Representative
-Concentration Pathway (RCP)—and a year (e.g., SSP1, Base, 2035).
+*premise* includes several Integrated Assessment Model (IAM) scenarios, but you can also use other scenarios.
+For a detailed description of the models and scenarios available, see the Introduction_.
 
-
-+------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+------------+
-| SSP/RCP scenario | GMST increase by 2100 | Society/economy trend                                                              | Climate policy                              | REMIND          | IMAGE      | TIAM-UCL   |
-+==================+=======================+====================================================================================+=============================================+=================+============+============+
-+------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+------------+
-| SSP1-None        | 2.3-2.8 °C            | Optimistic trends for human develop. and economy, driven by sustainable practices. | None                                        | SSP1-Base       | SSP1-Base  |            |
-+------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+------------+
-| SSP1-None        | ~2.2 °C               | Optimistic trends for human develop. and economy, driven by sustainable practices. | National Policies Implemented (NPI).        | SSP1-NPi        |            |            |
-+------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+------------+
-| SSP1-None        | ~1.9 °C               | Optimistic trends for human develop. and economy, driven by sustainable practices. | Nationally Determined Contributions (NDCs). | SSP1-NDC        |            |            |
-+------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+------------+
-| SSP1-RCP2.6      | ~1.7 °C               | Optimistic trends for human develop. and economy, driven by sustainable practices. | Paris Agreement objective.                  | SSP1-PkBudg1150 |            |            |
-+------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+------------+
-| SSP1-RCP1.9      | ~1.3 °C               | Optimistic trends for human develop. and economy, driven by sustainable practices. | Paris Agreement objective.                  | SSP1-PkBudg500  |            |            |
-+------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+------------+
-| SSP2-None        | ~3.5 °C               | Extrapolation from historical developments.                                        | None (eq. to RCP6)                          | SSP2-Base       | SSP2-Base  | SSP2-Base  |
-+------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+------------+
-| SSP2-None        | ~3.3 °C               | Extrapolation from historical developments.                                        | National Policies Implemented (NPI).        | SSP2-NPi        |            | SSP2-RCP45 |
-+------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+------------+
-| SSP2-None        | ~2.5 °C               | Extrapolation from historical developments.                                        | Nationally Determined Contributions (NDCs). | SSP2-NDC        |            |            |
-+------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+------------+
-| SSP2-RCP2.6      | 1.6-1.8 °C            | Extrapolation from historical developments.                                        | Paris Agreement objective.                  | SSP2-PkBudg1150 | SSP2-RCP26 | SSP2-RCP26 |
-+------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+------------+
-| SSP2-RCP1.9      | 1.2-1.4 °C            | Extrapolation from historical developments.                                        | Paris Agreement objective.                  | SSP2-PkBudg500  | SSP2-RCP19 | SSP2-RCP19 |
-+------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+------------+
-| SSP5-None        | ~4.5 °C               | Optimistic trends for human develop. and economy, driven by fossil fuels.          | None                                        | SSP5-Base       |            |            |
-+------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+------------+
-| SSP5-None        | ~4.0 °C               | Optimistic trends for human develop. and economy, driven by fossil fuels.          | National Policies Implemented (NPI).        | SSP5-NPi        |            |            |
-+------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+------------+
-| SSP5-None        | ~3.0 °C               | Optimistic trends for human develop. and economy, driven by fossil fuels.          | Nationally Determined Contributions (NDCs). | SSP5-NDC        |            |            |
-+------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+------------+
-| SSP5-RCP2.6      | ~1.7 °C               | Optimistic trends for human develop. and economy, driven by fossil fuels.          | Paris Agreement objective.                  | SSP5-PkBudg1150 |            |            |
-+------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+------------+
-| SSP5-RCP1.9      | ~1.0 °C               | Optimistic trends for human develop. and economy, driven by fossil fuels.          | Paris Agreement objective.                  | SSP5-PkBudg500  |            |            |
-+------------------+-----------------------+------------------------------------------------------------------------------------+---------------------------------------------+-----------------+------------+------------+
-
+.. _Introduction: introduction.rst
 
 .. note::
 
@@ -73,11 +35,10 @@ Supported versions of ecoinvent
 
 *premise* currently works with the following ecoinvent database versions:
 
-* v.3.6
-* v.3.7
 * **v.3.8, cut-off and consequential**
 * **v.3.9, cut-off and consequential**
 * **v.3.10, cut-off and consequential**
+* **v.3.11, cut-off and consequential**
 
 
 Supported sources of ecoinvent
@@ -126,7 +87,7 @@ indicate the database name in `source_db` and its version in `source_version`:
     )
 
 Note that a cache of the database will be created the first time and
-store in the library folder. Any subsequent creation of databases
+stored in the library folder. Any subsequent creation of databases
 using the same ecoinvent version will no longer require this extraction
 step.
 
@@ -690,6 +651,120 @@ on the parameters of Ozawa_ et al. (2019), accessible here: LCI_H2_turbine_.
 
 .. _Ozawa: https://doi.org/10.1016/j.ijhydene.2019.02.230
 .. _LCI_H2_turbine: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-hydrogen-turbine.xlsx
+
+
+Steel
+-----
+
+*premise* imports inventories for a wide range of steel production technologies.
+These include conventional blast furnace-basic oxygen furnace (BF-BOF) routes,
+as well as emerging processes such as direct reduction (DRI), hydrogen-based
+production, electrowinning, and carbon capture (CCS) variants. They are from Harpprecht_ et al. (2025).
+They can be found here: LCI_steel_.
+
+The table below provides an overview of the included datasets, their key
+input(s), and assumed regional scope.
+
+==================================================================================================================  ==========
+Steel production and related processes                                                                               location
+==================================================================================================================  ==========
+steel production, blast furnace-basic oxygen furnace, low-alloyed                                                    GLO
+steel production, blast furnace-basic oxygen furnace, unalloyed                                                      GLO
+alloys production, for low-alloyed steel                                                                             GLO
+pig iron production, blast furnace, with carbon capture and storage                                                  GLO
+carbon dioxide, captured at pig iron production plant, using monoethanolamine                                        GLO
+steel production, blast furnace-basic oxygen furnace, with carbon capture and storage, low-alloyed                   GLO
+steel production, blast furnace-basic oxygen furnace, with carbon capture and storage, unalloyed                     GLO
+pig iron production, top gas recycling-blast furnace                                                                 GLO
+steel production, blast furnace-basic oxygen furnace, with top gas recycling, low-alloyed                            GLO
+steel production, blast furnace-basic oxygen furnace, with top gas recycling, unalloyed                              GLO
+pig iron production, blast furnace, with top gas recycling, with carbon capture and storage                          GLO
+carbon dioxide, captured at steel production plant, using vacuum pressure swing adsorption                           GLO
+steel production, blast furnace-basic oxygen furnace, with top gas recycling, with CCS, low-alloyed                  GLO
+steel production, blast furnace-basic oxygen furnace, with top gas recycling, with CCS, unalloyed                    GLO
+pig iron production, with natural gas-based direct reduction                                                         GLO
+steel production, natural gas-based direct reduction iron-electric arc furnace, low-alloyed                          GLO
+steel production, natural gas-based direct reduction iron-electric arc furnace, unalloyed                            GLO
+pig iron production, with natural gas-based direct reduction, with carbon capture and storage                        GLO
+carbon dioxide, captured at steel production plant using DRI, using vacuum pressure swing adsorption                 GLO
+steel production, natural gas-based DRI-EAF, with CCS, low-alloyed                                                   GLO
+steel production, natural gas-based DRI-EAF, with CCS, unalloyed                                                     GLO
+steel production, hydrogen-based DRI-EAF, low-alloyed                                                                GLO
+steel production, hydrogen-based DRI-EAF, unalloyed                                                                  GLO
+pig iron production, hydrogen-based direct reduction iron                                                            GLO
+preheating of iron ore pellets                                                                                       GLO
+preheating of hydrogen                                                                                               GLO
+pig iron production, by electrowinning                                                                               GLO
+leaching of iron ore                                                                                                 GLO
+market for cathode, graphite                                                                                         GLO
+nickel anode production, for electrolysis of iron ore                                                                GLO
+production of alkaline solution from sodium hydroxide of 50 wt-%                                                     GLO
+steel production, electrowinning-electric arc furnace, low-alloyed                                                   GLO
+steel production, electrowinning-electric arc furnace, unalloyed                                                     GLO
+ultrafine grinding of iron ore                                                                                       GLO
+==================================================================================================================  ==========
+
+
+These inventories provide a modular basis for modeling steel systems under various future-oriented scenarios and technological configurations.
+
+.. _Harpprecht: https://doi.org/10.1039/D5EE01356A
+.. _LCI_steel: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-steel.xlsx
+
+
+Cement
+------
+
+*premise* introduces inventories for capturing carbon dioxide at cement
+production plants using three prospective technologies:
+
+* Post-combustion capture using monoethanolamine (MEA)
+* Direct separation
+* Oxyfuel combustion
+
+These inventories represent the gate-to-gate capture of 1 kg of CO₂ and
+include upstream material and energy inputs as well as transport and storage
+of the captured CO₂. They are from Muller_ et al. (2024). They can be found here: LCI_cement_.
+
+==============================================================================  ==========
+Carbon capture at cement production plants                                       location
+==============================================================================  ==========
+carbon dioxide, captured, at cement production plant, using monoethanolamine     RER
+carbon dioxide, captured, at cement production plant, using direct separation    RER
+carbon dioxide, captured, at cement production plant, using oxyfuel              RER
+==============================================================================  ==========
+
+Monoethanolamine (MEA)
+**********************
+
+Represents conventional post-combustion carbon capture using MEA solvents,
+based on the CEMCAP study (Voldsund, 2019). The dataset includes heat and
+electricity demand for regeneration and compression, solvent losses, chemical
+pretreatment (NaOH), and incineration of spent solvents. Heat is assumed to be
+provided by the same fuel mix as the cement kiln.
+
+Direct separation
+*****************
+
+Models CO₂ capture via a separate calciner (as in the LEILAC project),
+allowing for nearly pure CO₂ stream separation without additional chemical
+solvents. Includes extra electricity consumption for calciner operation
+and CO₂ compression.
+
+Oxyfuel combustion
+******************
+
+Simulates complete fuel combustion in a controlled O₂/CO₂ atmosphere.
+The resulting flue gas has high CO₂ purity, reducing downstream separation
+needs. Liquid oxygen is supplied via an air separation unit (ASU), and waste
+heat is recovered to offset some electricity needs. Emissions of SOₓ, NOₓ, CO,
+and Hg are significantly reduced.
+
+All three capture routes include subsequent CO₂ compression, transport, and
+storage via the carbon dioxide compression, transport and storage dataset
+from *premise*.
+
+.. _Muller: https://doi.org/10.1016/j.jclepro.2024.141884
+.. _LCI_cement: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-carbon-capture.xlsx
 
 Ammonia
 -------
@@ -1410,7 +1485,7 @@ as well as expected efficiency gains for photovoltaic panels and batteries.
 Air emissions
 *************
 
-*premise* relies on projections from the air emissions models GAINS-EU_ and GAINS-IAM_
+*premise* relies on projections from the air emissions model GAINS-IAM_
 to adjust the emissions of pollutants for different sectors.
 As with efficiencies, *premise* stores the change in emissions (called *scaling factor*)
 of a given technology relative to 2020. This is based on the fact that the emissions of
@@ -1423,7 +1498,6 @@ the emissions level given by GAINS, but rather its change over time relative to 
 For more information about this step, refer to sub-section "GAINS emission factors" in the
 EXTRACT section.
 
-.. _GAINS-EU: https://gains.iiasa.ac.at/gains/EUN/index.login
 .. _GAINS-IAM: https://gains.iiasa.ac.at/gains/IAM/index.login
 
 
@@ -1453,7 +1527,4 @@ in laboratories.
   2020                   11.9        17.9         16.8        14      14     16.8
   2050                   12.5        26.7         24.4        23.4    23.4   21
  ====================== =========== ============ =========== ======= ====== =======
-
-
-
 

@@ -1,0 +1,52 @@
+# mapping between premise and the terminology
+# used in the IAMs regarding the origin of biomass
+# used in the production of electricity
+---
+biomass crops - purpose grown:
+  iam_aliases:
+    image:
+      - Primary Energy|Biomass|Energy Crops
+      - Primary Energy|Biomass|Modern
+    message: Primary Energy|Biomass|Energy Crops
+    remind: SE|Electricity|Biomass|Energy Crops
+    remind-eu: SE|Electricity|Biomass|Energy Crops
+    tiam-ucl: Primary Energy|Biomass|Energy Crops
+    gcam: Production|Energy|Biomass|Energy Crops
+    witch: Primary Energy|Biomass|1st Generation
+  ecoinvent_aliases:
+    fltr:
+      name:
+        - market for wood chips and particles, willow
+  lhv:
+    unit: megajoule
+    value: 18.5
+
+biomass wood - purpose grown:
+  iam_aliases:
+    message: Primary Energy|Biomass|Fuelwood
+    image: Primary Energy|Biomass|Traditional
+  ecoinvent_aliases:
+    fltr:
+      name: market for wood chips
+      reference product: wood chips
+    mask: willow
+  lhv:
+    unit: megajoule
+    value: 18.5
+
+biomass - residual:
+  iam_aliases:
+    message: Primary Energy|Biomass|Residues
+    image: Primary Energy|Biomass|Residues
+    remind: SE|Electricity|Biomass|Residues
+    remind-eu: SE|Electricity|Biomass|Residues
+    tiam-ucl: Primary Energy|Biomass|Residues
+    gcam: Production|Energy|Biomass|Residues
+    witch: Primary Energy|Biomass|Residues
+  ecoinvent_aliases:
+    fltr:
+      name: supply of forest residue
+      reference product: forest residue
+  lhv:
+    unit: megajoule
+    value: 18.5

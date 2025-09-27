@@ -34,6 +34,11 @@ def load_cell_energy_density():
 
 
 def _update_battery(scenario, version, system_model):
+
+    if scenario["iam data"].battery_mobile_scenarios is None:
+        print("No battery scenario data available -- skipping")
+        return scenario
+
     battery = Battery(
         database=scenario["database"],
         iam_data=scenario["iam data"],
@@ -132,7 +137,7 @@ class Battery(BaseTransformation):
                 "LSB": "market for battery capacity, Li-sulfur, Li-S",
                 "NCA": "market for battery capacity, Li-ion, NCA",
                 "NMC111": "market for battery capacity, Li-ion, NMC111",
-                "NMC532": "market for battery capacity, Li-ion, NMC523",
+                "NMC532": "market for battery capacity, Li-ion, NMC532",
                 "NMC622": "market for battery capacity, Li-ion, NMC622",
                 "NMC811": "market for battery capacity, Li-ion, NMC811",
                 "NMC900-Si": "market for battery capacity, Li-ion, NMC955",
@@ -195,16 +200,13 @@ class Battery(BaseTransformation):
             # replace NaNs with zeros
             shares = shares.fillna(0)
 
-            if "log parameters" not in ds:
-                ds["log parameters"] = {}
-
             for exc in ws.technosphere(ds):
                 if exc["name"] in datasets_mapping:
                     exc["amount"] = shares.sel(
                         chemistry=datasets_mapping[exc["name"]]
                     ).values.item()
 
-                    ds["log parameters"][
+                    ds.setdefault("log parameters", {})[
                         f"{datasets_mapping[exc['name']]} market share"
                     ] = exc["amount"]
 
@@ -272,17 +274,14 @@ class Battery(BaseTransformation):
                     None,
                 )
 
-                if "log parameters" not in ds:
-                    ds["log parameters"] = {}
-
-                ds["log parameters"]["battery input"] = [
+                ds.setdefault("log parameters", {})["battery input"] = [
                     e["name"]
                     for e in ws.technosphere(
                         ds, ws.contains("name", "market for battery")
                     )
                 ][0]
 
-                ds["log parameters"]["old battery mass"] = sum(
+                ds.setdefault("log parameters", {})["old battery mass"] = sum(
                     e["amount"]
                     for e in ws.technosphere(
                         ds, ws.contains("name", "market for battery")
@@ -290,10 +289,12 @@ class Battery(BaseTransformation):
                 )
 
                 for exc in ws.technosphere(ds, ws.equals("unit", "kilogram")):
+
                     exc["amount"] *= scaling_factor
-                    exc["loc"] *= scaling_factor
-                    exc["minimum"] *= scaling_factor_min
-                    exc["maximum"] *= scaling_factor_max
+                    if exc.get("uncertainty type") == 5:
+                        exc["loc"] *= scaling_factor
+                        exc["minimum"] *= scaling_factor_min
+                        exc["maximum"] *= scaling_factor_max
 
                 ds["log parameters"]["new battery mass"] = sum(
                     e["amount"]
@@ -326,6 +327,7 @@ class Battery(BaseTransformation):
             log_params.get("LSB market share", ""),
             log_params.get("SIB market share", ""),
             log_params.get("VRFB market share", ""),
+            log_params.get("NAS market share", ""),
             log_params.get("LEAD-ACID market share", ""),
         ]
 

@@ -2,6 +2,7 @@ from unittest.mock import call, patch
 
 from premise import __version__
 from premise.utils import *
+from premise.fuels.utils import get_crops_properties
 
 
 def test_ei_db_label():
@@ -31,7 +32,7 @@ def test_crops_properties():
 def test_fuels_properties():
     fuels_props = get_fuel_properties()
     assert type(fuels_props) == dict
-    assert fuels_props["bioethanol, from wood, with CCS"]["lhv"] == 26.5
+    assert fuels_props["bioethanol, from wood, with CCS"]["lhv"]["value"] == 26.5
 
 
 def test_eff_solar_PV():

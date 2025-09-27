@@ -1,0 +1,37 @@
+gdp:
+  iam_aliases:
+    message: GDP|PPP
+    remind: GDP|PPP
+    remind-eu: GDP|PPP
+    image: GDP|PPP
+    tiam-ucl: GDP|PPP
+    witch: GDP|PPP
+    gcam: GDP|PPP
+
+population:
+  iam_aliases:
+    message: Population
+    remind: Population
+    remind-eu: Population
+    image: Population
+    tiam-ucl: Population
+    witch: Population
+    gcam: Population
+
+GMST:
+  iam_aliases:
+    remind: MAGICC7 AR6|Raw Surface Temperature (GMST)|50.0th Percentile
+    remind-eu: MAGICC7 AR6|Raw Surface Temperature (GMST)|50.0th Percentile
+    image: Temperature|Global Mean
+    tiam-ucl: Temperature|Global Mean
+    witch: Temperature|WITCH|Global Mean
+    gcam: Temperature|Global Mean
+CO2:
+  iam_aliases:
+    remind: Emi|CO2
+    remind-eu: Emi|CO2
+    message: Emissions|CO2
+    tiam-ucl: Emissions|CO2
+    witch: Emissions|CO2
+    image: Emissions|CO2
+    gcam: Emissions|CO2

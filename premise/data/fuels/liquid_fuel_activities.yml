@@ -6,6 +6,9 @@ methanol, from coal, with CCS:
   - methanol distillation, hydrogen from coal gasification, with CCS
   - methanol synthesis, hydrogen from coal gasification, with CCS
 
+methanol, from wood, with CCS:
+  - methanol distillation, from wood, with CCS
+
 fischer-tropsch:
   - diesel production, synthetic, Fischer Tropsch process, hydrogen from electrolysis, energy allocation
   - kerosene production, synthetic, Fischer Tropsch process, hydrogen from electrolysis, energy allocation
@@ -37,6 +40,9 @@ fischer-tropsch, from woody biomass:
   - syngas, RWGS, Production, for Fischer Tropsch process, hydrogen from wood gasification, with CCS
   - carbon monoxide, from RWGS, for Fischer Tropsch process, hydrogen from wood gasification
   - carbon monoxide, from RWGS, for Fischer Tropsch process, hydrogen from wood gasification, with CCS
+  - kerosene production, via Fischer-Tropsch, from forest product (non-residual), energy allocation
+  - kerosene production, via Fischer-Tropsch, from forest product (non-residual), with carbon capture and storage, energy allocation
+  - kerosene production, via Fischer-Tropsch, from forest residues, energy allocation
 
 fischer-tropsch, from coal:
   - diesel production, synthetic, Fischer Tropsch process, hydrogen from coal gasification, energy allocation

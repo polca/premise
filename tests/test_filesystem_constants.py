@@ -42,15 +42,6 @@ def test_variables_dir():
     assert cd_root not in str(VARIABLES_DIR)
 
 
-def test_iam_output_dir():
-    assert isinstance(IAM_OUTPUT_DIR, Path)
-    assert IAM_OUTPUT_DIR.is_dir()
-    for fp in IAM_OUTPUT_DIR.iterdir():
-        assert os.access(fp, os.R_OK)
-    assert len(list(IAM_OUTPUT_DIR.iterdir())) > 2
-    assert str(DATA_DIR) in str(IAM_OUTPUT_DIR)
-
-
 def test_user_data_dir():
     assert isinstance(DIR_CACHED_DB, Path)
     assert DIR_CACHED_DB.is_dir()

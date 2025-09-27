@@ -1,8 +1,9 @@
 TRANSFORM
 =========
 
-A series of transformations are applied to the Life Cycle Inventory (LCI) database to align process performance
-and technology market shares with the outputs from the Integrated Assessment Model (IAM) scenario.
+A series of transformations are applied to the Life Cycle Inventory (LCI) database to align
+process performanceand technology market shares with the outputs from the Integrated Assessment
+Model (IAM) scenario.
 
 Mobile batteries
 ++++++++++++++++
@@ -215,6 +216,233 @@ market for battery capacity, stationary (TC scenario)     GLO         Vanadium R
 
 `market for battery capacity, stationary (CONT scenario)` supplies any storage
 capacity needed in high voltage electricity markets.
+
+Metals
+++++++
+
+*premise* updates the material intensities of energy and transport technologies,
+with a particular focus on critical raw materials. The goal is to ensure that
+both current and future datasets accurately reflect the evolving material
+requirements of key technologies, such as wind turbines and batteries.
+Key processes include collecting and processing material intensity data, adding
+new metal production inventories, applying post-allocation corrections for
+co-mined metals, and constructing global markets for mined and refined metals.
+
+The workflow for updating material intensities in *premise* consists of the following steps:
+
+* *Data collection*: Material intensity data is sourced from literature and stored in structured files.
+* *Data processing*: The collected data is processed to align with the database, including unit conversions and mapping to relevant datasets.
+* *Inventories*: Additional inventories for metals production (e.g., Cobalt, Lithium, Vanadium) are added to the database.
+* *Post-allocation correction*: Multifunctional processes (e.g., co-mining) are adjusted to ensure proper mass balance.
+* *Markets creation*: Global supply markets for mined and refined metals are built, reflecting current and future regional contributions.
+
+To update the material intensities in the database, run the following code:
+
+.. code-block:: python
+
+    from premise import *
+    import brightway2 as bw
+
+    bw.projects.set_current("my_project)
+
+    ndb = NewDatabase(
+        scenarios=[
+                {"model":"remind", "pathway":"SSP2-Base", "year":2028}
+            ],
+        source_db="ecoinvent 3.7 cutoff",
+        source_version="3.7.1",
+        key='xxxxxxxxxxxxxxxxxxxxxxxxx'
+    )
+    ndb.update("metals")
+
+
+Data collection and processing
+------------------------------
+
+Distributions for material intensities, derived from a comprehensive literature
+collection, are provided in `SI_2_Material_requirements.xlsx <https://github.com/polca/premise/blob/master/premise/data/metals/SI_2_Material_requirements.xlsx>`_.
+From this database, `metals_db.csv <https://github.com/polca/premise/blob/master/premise/data/metals/metals_db.csv>`_ is created,
+which *premise* uses to update the material intensities for each technology.
+
+The mapping file that associate metal intensities to datasets to be
+updated can be found in `activity_mapping.yml <https://github.com/polca/premise/blob/master/premise/data/metals/activities_mapping.yml>`_.
+
+To convert the units in `metals_db.csv <https://github.com/polca/premise/blob/master/premise/data/metals/metals_db.csv>`_
+to the units used in ecoinvent (e.g., converting [kg metal/kW] to [kg metal/kg battery]), *premise* uses
+the conversion factors found in `conversion_factors.csv <https://github.com/polca/premise/blob/master/premise/data/metals/conversion_factors.xlsx>`_.
+
+Finally, *premise* uses the data under `metal_products.csv <https://github.com/polca/premise/blob/master/premise/data/metals/metal_product.xlsx>`_
+to refine the activity in ecoinvent to be updated, select the specific metal
+product (e.g., boric oxide for boron used in wind turbine magnets)
+and convert the intensities to the relevant compound (e.g., 1kg of Boron is converted to 86.19 kg of B2O3).
+
+
+Inventories
+-----------
+
+*premise* provides inventories for the following metals:
+
+* `Cobalt <https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-cobalt.xlsx>`_.
+* `Germanium <https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-germanium.xlsx>`_, as a co-product from zinc mine operation, based on the unallocated dataset in ecoinvent.
+* `Graphite <https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-graphite.xlsx>`_.
+* `Iridium <https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-PGM.xlsx>`_, as a co-product from PGM mine operation, based on the unallocated dataset in ecoinvent.
+* `Lithium <https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-lithium.xlsx>`_.
+* `Rhenium <https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-rhenium.xlsx>`_, as a co-product from copper mine operation, based on the unallocated dataset in ecoinvent.
+* `Ruthenium <https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-PGM.xlsx>`_, as a co-product from PGM mine operation, based on the unallocated dataset in ecoinvent.
+* and `Vanadium <https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-batteries-vanadium.xlsx>`_.
+
+The inventories are provided under `premise/data/additional_inventories <https://github.com/polca/premise/tree/master/premise/data/additional_inventories>`_
+
+Post-allocation correction
+--------------------------
+
+Regarding the co-production of metals in multifunctional processes
+(i.e., co-mining of metals), *premise* modifies the database to allocate
+according to physical mass balance: extraction of individual elements in the
+ore is fully attributed to the production of the respective metal; while other
+elementary and intermediate flows follow an economic allocation, which is the
+default option to deal with multi-functionality in ecoinvent. As discussed in
+Berger_ et al. (2023), this approach ensures a correct mass balance.
+
+For example, the amount of platinum resource included in the dataset representing
+the mining of 1 kg of platinum is set to 1 kg, while the amount of other
+metals (e.g., palladium, rhodium) is set to zero. The same approach is applied
+to the datasets representing the mining of the other co-mined metals.
+
+The file used to apply this correction is `corrections.yaml <https://github.com/polca/premise/blob/master/premise/data/metals/post-allocation_correction/corrections.yaml>`_.
+
+The markets are relinked to metals-consuming activities throughout the database.
+
+.. _Berger: https://doi.org/10.1007/s11367-020-01737-5
+
+
+Mining and refining markets creation
+------------------------------------
+
+*premise* builds global supply markets for several mined and refined metals.
+In these markets, the contribution of different mining and refining regions corresponds
+to their *current* market shares. Following this approach, the supply from different
+regions for a specific metal will be directly proportional to the country-level
+contributions to the global market. These shares are derived from various sources,
+mainly `BGS <https://www2.bgs.ac.uk/mineralsuk/statistics/worldStatistics.html>`_
+and `USGS <https://doi.org/https://doi.org/10.3133/mcs2023>`_, in addition to data from
+van den Brink_ et al. (2022) for Antimony refining.
+For certain markets where data was available, *premise* incorporates projections
+from `BNEF <https://about.bnef.com/>`_ regarding the development of future mining and refining projects to
+forecast the market shares' evolution up to 2030.
+
+The file used to build the global supply markets for mined and refined metals is `mining_shares_mapping.xlsx <https://github.com/polca/premise/blob/master/premise/data/metals/mining_shares_mapping.xlsx>`_.
+
+.. _van den Brink: https://doi.org/10.1016/j.resconrec.2022.106586
+
+Additionally, global metal supply markets modeled account for the average transport
+distances and modes of transport for the different metals from producer
+to consumer. These data are retrieved from `UNCTAD <https://unctad.org/system/files/official-document/ser-rp-2022d5_en.pdf>`_.
+
+Average transport distance and modes of transport for each producer can be found under: `transport_markets_data <https://github.com/polca/premise/blob/master/premise/data/metals/transport_markets_data.csv>`_.
+
+Mining
+++++++
+
+To update the mining practices in the database, run the following code:
+
+.. code-block:: python
+
+    from premise import *
+    import brightway2 as bw
+
+    bw.projects.set_current("my_project)
+
+    ndb = NewDatabase(
+        scenarios=[
+                {"model":"remind", "pathway":"SSP2-Base", "year":2028}
+            ],
+        source_db="ecoinvent 3.7 cutoff",
+        source_version="3.7.1",
+        key='xxxxxxxxxxxxxxxxxxxxxxxxx'
+    )
+    ndb.update("mining")
+
+Sulfidic tailings
+-----------------
+
+Mine tailings represent one of the most environmentally problematic waste streams generated by mining activities,
+especially when they originate from the processing of sulfidic ores. If not properly managed, such tailings can
+lead to acid mine drainage, causing long-term toxic contamination of surrounding ecosystems even decades after
+mine closure [1].
+
+Globally, most tailings generated through the beneficiation of hard rock metal ores and industrial minerals are
+stored in dammed impoundments where they are often submerged to minimize dust and reduce sulfide oxidation [2].
+However, a range of alternative tailings management strategies is increasingly being adopted.
+
+To better reflect these evolving practices in life cycle modeling, we modified the ecoinvent database by introducing
+multiple treatment pathways for sulfidic tailings. These include:
+
+* **Surface impoundment**, which remains the default inventory in ecoinvent.
+* **Backfilling into underground voids**, based on [1], which builds upon operational data
+from [3]. The life cycle inventory for this process includes the consumption of materials such as
+cement binders, slags, and fuel, and accounting for the associated energy demands. Backfilling is assumed to involve
+cement stabilization of the residues, effectively preventing leaching emissions from the deposited material.
+* **Flocculation-flotation**, based on [4], where the sulfur-rich fraction from the tailings
+stream is separated using polyacrylamide and xanthate as flocculants and collector agents to improve pyrite separation.
+The valorized output can potentially be used downstream in the cement and ceramic tiles industries.
+* **Roasting and leaching**, also based on [4], involves first removing the sulfur content of tailings
+through drying and roasting. Copper and zinc are then recovered using a combination of ammoniacal leaching, ion
+flotation, and chemical precipitation.
+
+In the default ecoinvent system, all sulfidic tailings are treated via impoundment. The table below presents regional
+estimates for the uptake of the various alternatives, along with the references used to approximate the data points or
+inform the underlying trends.
+
+These newly introduced treatment pathways represent a more energy- and material-intensive treatment alternative
+compared to impoundments. However, they also provide a means of significantly reducing, or potentially eliminating,
+leachate-related emissions, which are critical environmental burden of tailings disposal. The modeled transition
+thus captures the trade-offs between higher resource consumption and the mitigation of long-term pollution risks.
+The assumed reduction in impoundments reflects broader trends in the industry toward more sustainable and circular
+tailings management practices, supported by technological innovation and emerging environmental regulation [5].
+
++--------------+-------------------+-------------------+--------------------+--------------------+---------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+---------------------+
+| Region       | Backfilling 2020  | Backfilling 2050  | Impoundment 2020   | Impoundment 2050   | Ref. (BF/Imp)       | Floc-Flotation 2020        | Floc-Flotation 2050        | Roasting & Leaching 2020    | Roasting & Leaching 2050    | Ref. (Floc/R&L)      |
++==============+===================+===================+====================+====================+=====================+============================+============================+=============================+=============================+=====================+
+| North America| 15%               | 30%               | 80%                | 60%                | [6], [7]            | 4%                         | 8%                         | 1%                          | 2%                          | [1], [8], [9], [10]  |
++--------------+-------------------+-------------------+--------------------+--------------------+---------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+---------------------+
+| LATAM        | 5%                | 25%               | 90%                | 65%                | [7], [11]           | 4%                         | 8%                         | 1%                          | 2%                          | [1], [8], [9], [10]  |
++--------------+-------------------+-------------------+--------------------+--------------------+---------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+---------------------+
+| Europe       | 15%               | 35%               | 80%                | 55%                | [1], [12]           | 4%                         | 8%                         | 1%                          | 2%                          | [1], [8], [9], [10]  |
++--------------+-------------------+-------------------+--------------------+--------------------+---------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+---------------------+
+| APAC         | 10%               | 20%               | 85%                | 70%                | [13], [14]          | 4%                         | 8%                         | 1%                          | 2%                          | [1], [8], [9], [10]  |
++--------------+-------------------+-------------------+--------------------+--------------------+---------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+---------------------+
+| Africa       | 5%                | 10%               | 90%                | 70%                | [8], [15], [16]     | 4%                         | 6%                         | 1%                          | 2%                          | [1], [8], [9], [10]  |
++--------------+-------------------+-------------------+--------------------+--------------------+---------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+---------------------+
+| Global       | 10%               | 25%               | 85%                | 65%                | [7], [8], [16]      | 4%                         | 6%                         | 1%                          | 2%                          | [1], [8], [9], [10]  |
++--------------+-------------------+-------------------+--------------------+--------------------+---------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+---------------------+
+
+.. [1] https://doi.org/10.1016/j.scitotenv.2023.162038
+.. [2] https://doi.org/10.1016/j.jclepro.2017.03.129
+.. [3] http://dx.doi.org/10.1016/j.jclepro.2008.08.014
+.. [4] https://doi.org/10.1016/j.resconrec.2022.106567
+.. [5] https://doi.org/10.1016/j.clet.2022.100499
+.. [6] https://www.hecla.com/wp-content/uploads/Hecla-2021-TailingsMgmt_FactSheet.pdf
+.. [7] https://globaltailingsreview.org/wp-content/uploads/2020/08/global-industry-standard-on-tailings-management.pdf
+.. [8] https://globaltailingsreview.org/wpcontent/uploads/2020/09
+.. [9] https://www.nature.com/articles/s41598-021-84897-0
+.. [10] http://dx.doi.org/10.1016/j.jclepro.2019.01.312
+.. [11] https://doi.org/10.3390/su141710901
+.. [12] https://ec.europa.eu/environment/pdf/waste/mining/MWEI%20BREF.pdf.
+.. [13] https://doi.org/10.3390/rs13040743
+.. [14] https://doi.org/10.3389/feart.2021.726336
+.. [15] https://sancold.org.za/wp-content/uploads/2024/05/SANCOLD-Your-Tailings-Dam-2020.pdf
+.. [16] https://globaltailingsreview.org/wp-content/uploads/2020/09/Ch-II-Mine-Tailings-Facilities_Overview-and-Industry-Trends.pdf
+
+Inventories
+-----------
+
+*premise* provides several inventories regarding updated mining practices:
+
+* `Alternative treatment pathways for sulfidic tailings
+ <https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-sulfidic-tailings.xlsx>`_.
+
+The inventories are provided under `premise/data/additional_inventories <https://github.com/polca/premise/tree/master/premise/data/additional_inventories>`_
 
 Biomass
 +++++++
@@ -1103,43 +1331,50 @@ Run
 
 
 
-The modelling of future improvements in the steel sector is relatively
-simple at the moment, and does not involve the emergence of new
-technologies (e.g., hydrogen-based DRI, electro-winning).
+The modelling of future improvements in the steel sector is now based on
+multiple explicit production routes for both primary and secondary steel,
+rather than only modifying the two generic ecoinvent datasets.
+This allows ``premise` to represent different process configurations
+(e.g., blast furnace–basic oxygen furnace, direct reduced iron with natural gas,
+electric arc furnace with varying scrap shares) and to adapt their energy
+requirements and emissions according to scenario projections.
 
 Dataset proxies
 ---------------
 
-*premise* duplicates steel production datasets in ecoinvent for the
-production of primary and secondary steel (called respectively
-"steel production, converter" and "steel production, electric")
-so as to create a proxy dataset for each IAM region.
+premise creates proxy datasets for each IAM region by duplicating
+all available steel production routes defined in its internal library
+(see lci-steel.xlsx).
+These include, for example:
 
-The location of the proxy datasets used for a given IAM region is a location
-included in the IAM region. If no valid dataset is found, *premise* resorts
-to using a rest-of-the-world (RoW) dataset to represent the IAM region.
+Primary routes: BF–BOF with different coke/natural gas shares, NG-DRI + EAF, etc.
 
-*premise* changes the location of these duplicated datasets and fill
-in different fields, such as that of *production volume*.
+Secondary routes: Scrap-based EAF with different efficiencies.
+
+These inventories are based on the work from Harpprechet_ et al., 2025.
+
+For each IAM region, premise changes the location of these duplicated datasets
+to match the IAM region (falling back to RoW if no valid location exists),
+and updates key metadata such as production volume.
+
+.. _Harpprechet: https://doi.org/10.1039/D5EE01356A
 
 Efficiency adjustment
 ---------------------
 
-Regarding primary steel production (using BO-BOF), *premise* adjusts
-the inputs of fuels found in:
+For each steel production route, premise applies efficiency improvements
+projected by the IAM scenario:
 
-* the pig iron production datasets,
-* the steel production datasets,
+For primary steel routes, energy and fuel inputs
+(coal, coke, natural gas, electricity) are scaled by the scenario-specific factor.
+Direct CO₂ emissions are adjusted accordingly.
 
-assuming an integrated steel mill unit, by multiplying these fuel
-inputs by a *scaling factor* provided by the IAM scenario.
+For secondary steel routes (EAF), the electricity input is scaled
+with the scenario factor, representing improved efficiency of scrap-based production.
 
-Typical fuel inputs for these process are natural gas, coal, coal-based coke.
-Emissions of (fossil) CO2 are scaled accordingly.
-
-Regarding the production of secondary steel (using EAF),
-*premise* adjusts the input of electricity based on the scaling factor
-provided by the IAM scenario.
+These adjustments are route-specific: each proxy dataset retains the
+structure of its underlying process (e.g., DRI vs. BF–BOF),
+but its energy intensity evolves in line with the scenario.
 
 
 .. note::
@@ -1167,53 +1402,46 @@ Carbon Capture and Storage
 If the IAM scenario indicates that a share of the CO2 emissions
 from the steel sector in a given region and year is sequestered and stored,
 *premise* adds a corresponding input from a CCS dataset.
-The datatset used to that effect is from Meunier_ et al., 2020.
-The dataset described the capture of CO2 from a cement plant, not a steel mill,
-but it is assumed to be an acceptable approximation since the CO2 concentration
-in the flue gases should not be significantly different.
 
 To that dataset, *premise* adds another dataset that models the storage
 of the CO2 underground, from Volkart_ et al, 2013.
 
-Besides electricity, the CCS process requires heat, water and others inputs
-to regenerate the amine-based sorbent. We use two data points to approximate the heat
-requirement: 3.66 MJ/kg CO2 captured in 2020, and 2.6 MJ/kg in 2050.
-The first number is from Meunier_ et al., 2020, while the second number is described
-as the best-performing pilot project today, according to the 2022 review of pilot
-projects by the Global CCS Institute_. It is further assumed that the heat requirement
-is fulfilled to an extent of 15% by the recovery of excess heat, as mentioned in
-the 2018 IEA_ cement roadmap report, which is assumed to be also valid in the
-case of a steel mill.
+The material and energy requirements of the CCS process are from the work of Harpprechet_ et al., 2025.
 
 
 Steel markets
 -------------
 
-*premise* create a dataset "market for steel, low-alloyed" for each IAM region.
+*premise* create a dataset "market for steel, low-alloyed" and "market for steel, unalloyed" for each IAM region.
 Within each dataset, the supply shares of primary and secondary steel
 are adjusted to reflect the projections from the IAM scenario, for a given region
 and year, based on the variables described in the steel_ mapping file.
 
-.. _steel: https://github.com/polca/premise/blob/master/premise/data/battery/scenario.csv
+.. _steel: https://github.com/polca/premise/blob/master/premise/iam_variables_mapping/steel.yaml
 
 The table below shows an example of the market for India, where 66% of the steel comes
 from an oxygen converter process (primary steel), while 34% comes from an electric arc
 furnace process (secondary steel).
 
- ================================================================= ============ ================ ===========
-  Output                                                            _            _                _
- ================================================================= ============ ================ ===========
-  producer                                                          amount       unit             location
-  market for steel, low-alloyed                                     1            kilogram         IND
+ ============================================================================================================================== ============ ================ ===========
+  Output                                                                                                                         _            _                _
+ ============================================================================================================================== ============ ================ ===========
+  producer                                                                                                                       amount       unit             location
+  market for steel, low-alloyed                                                                                                  1            kilogram         IND
   Input
-  supplier                                                          amount       unit             location
-  market group for transport, freight, inland waterways, barge      0.5          ton kilometer    GLO
-  market group for transport, freight train                         0.35         ton kilometer    GLO
-  market for transport, freight, sea, bulk carrier for dry goods    0.38         ton kilometer    GLO
-  transport, freight, lorry, unspecified, regional delivery         0.12         ton kilometer    IND
-  steel production, **converter**, low-alloyed                      0.66         kilogram         IND
-  steel production, **electric**, low-alloyed                       0.34         kilogram         IND
- ================================================================= ============ ================ ===========
+  supplier                                                                                                                       amount       unit             location
+  market group for transport, freight, inland waterways, barge                                                                   0.5          ton kilometer    GLO
+  market group for transport, freight train                                                                                      0.35         ton kilometer    GLO
+  market for transport, freight, sea, bulk carrier for dry goods                                                                 0.38         ton kilometer    GLO
+  transport, freight, lorry, unspecified, regional delivery                                                                      0.12         ton kilometer    IND
+  steel production, blast furnace-basic oxygen furnace, unalloyed                                                                0.66         kilogram         IND
+  steel production, blast furnace-basic oxygen furnace, with carbon capture and storage, unalloyed                               0.05         kilogram         IND
+  steel production, natural gas-based direct reduction iron-electric arc furnace, unalloyed                                      0.04         kilogram         IND
+  steel production, natural gas-based direct reduction iron-electric arc furnace, with carbon capture and storage, unalloyed     0.05         kilogram         IND
+  steel production, blast furnace-basic oxygen furnace, with top gas recycling, unalloyed                                        0.08         kilogram         IND
+  steel production, blast furnace-basic oxygen furnace, with top gas recycling, with carbon capture and storage, unalloyed       0.02         kilogram         IND
+  steel production, electric, low-alloyed                                                                                        0.10         kilogram         IND
+ ============================================================================================================================== ============ ================ ===========
 
 
 Original market datasets
@@ -1222,23 +1450,6 @@ Original market datasets
 Market datasets originally present in the ecoinvent LCI database are cleared
 from any inputs. Instead, an input from the newly created regional market
 is added, depending on the location of the dataset.
-
-The table below shows the example of the clinker market
-for South Africa, which now only includes an input from the "SAF"
-regional market, which "includes" it in terms of geography.
-
-
- ============================================ =========== ================ ===========
-  Output                                       _           _                _
- ============================================ =========== ================ ===========
-  producer                                     amount      unit             location
-  market for clinker                           1.00E+00    kilogram         **ZA**
-============================================ =========== ================ ============
-  Input                                        _           _                _
-============================================ =========== ================ ============
-  supplier                                     amount      unit             location
-  market for clinker                           1.00E+00    kilogram         **SAF**
- ============================================ =========== ================ ===========
 
 
 Relinking
@@ -1289,7 +1500,7 @@ are obtained by scaling down the current inventories based on the
 vehicle efficiency improvements projected by the IAM scenario.
 
 Trucks
-------
+++++++
 
 The following size classes of medium and heavy duty trucks are imported:
 
@@ -1363,7 +1574,7 @@ They appear in the LCI database as the following:
  ========================================================================================= =============================================================
 
 The mapping file linking IAM variables to the truck datasets is available
-here: https://github.com/polca/premise/blob/master/premise/iam_variables_mapping/transport_roadfreight_variables.yaml
+here: https://github.com/polca/premise/blob/master/premise/iam_variables_mapping/transport_road_freight.yaml
 
 Relinking
 ---------
@@ -1589,7 +1800,7 @@ a variety of hydrogen and CO2 sources. Additionally, hydrogen can be supplied
 by different means of transport, and in different states.
 
 Hydrogen
---------
+++++++++
 
 Several pathways for hydrogen production are modeled in *premise* (see Hydrogen section under EXTRACT>Import of additional inventories).
 
@@ -1718,7 +1929,7 @@ Fuel markets
 
 The market shares are based on the IAM scenario data regarding the composition of
 liquid and gaseous secondary energy carriers. The ampping between the IAM scenario
-data and the fuel markets is described under: https://github.com/polca/premise/tree/master/premise/iam_variables_mapping/fuels_variables.yaml
+data and the fuel markets is described under: https://github.com/polca/premise/tree/master/premise/iam_variables_mapping/fuels.yaml
 
 
 .. warning::
@@ -1861,10 +2072,33 @@ Map of IMAGE regions
    :width: 500pt
    :align: center
 
-
 Map of REMIND regions
 
-.. image:: map_remind.png
+.. image:: map_remind_regions.png
+   :width: 500pt
+   :align: center
+
+Map of REMIND-EU regions
+
+.. image:: map_remind_eu_regions.png
+   :width: 500pt
+   :align: center
+
+Map of TIAM-UCL regions
+
+.. image:: map_tiam_ucl_regions.png
+   :width: 500pt
+   :align: center
+
+Map of GCAM regions
+
+.. image:: map_gcam_regions.png
+   :width: 500pt
+   :align: center
+
+Map of MESSAGE regions
+
+.. image:: map_message_regions.png
    :width: 500pt
    :align: center
 
@@ -1876,210 +2110,219 @@ implementation in the wurst_ library.
 .. _constructive_geometries: https://github.com/cmutel/constructive_geometries
 .. _wurst: https://github.com/polca/wurst
 
-
- =============== ================================= ================================ ======================== =========================== ========================
-  Country Code    message-topology.json             gcam-topology.json              tiam-ucl-topology.json   remind-topology.json        image-topology.json
- =============== ================================= ================================ ======================== =========================== ========================
-  AF              SAS                               South Asia                      ODA                      OAS                         RSAS
-  AG              LAM                               Central America and Caribbean   CSA                      LAM                         N/A
-  AI              LAM                               Central America and Caribbean   CSA                      LAM                         RCAM
-  AL              EEU                               Europe_Non_EU                   WEU                      NEU                         CEU
-  AM              FSU                               Central Asia                    FSU                      REF                         RUS
-  AO              AFR                               Africa_Southern                 AFR                      SSA                         RSAF
-  AR              LAM                               Argentina                       CSA                      LAM                         RSAM
-  AS              PAS                               Southeast Asia                  ODA                      OAS                         OCE
-  AT              WEU                               EU-15                           WEU                      EUR                         WEU
-  AU              PAO                               Australia_NZ                    AUS                      CAZ                         OCE
-  AZ              FSU                               Central Asia                    FSU                      REF                         RUS
-  BA              EEU                               Europe_Non_EU                   EEU                      NEU                         CEU
-  BD              SAS                               South Asia                      ODA                      OAS                         RSAS
-  BE              WEU                               EU-15                           WEU                      EUR                         WEU
-  BF              AFR                               Africa_Western                  AFR                      SSA                         WAF
-  BG              EEU                               EU-12                           EEU                      EUR                         CEU
-  BH              MEA                               Middle East                     MEA                      MEA                         ME
-  BI              AFR                               Africa_Eastern                  AFR                      SSA                         EAF
-  BJ              AFR                               Africa_Western                  AFR                      SSA                         WAF
-  BN              PAS                               Southeast Asia                  MEA                      OAS                         SEAS
-  BO              LAM                               South America_Southern          CSA                      LAM                         RSAM
-  BR              LAM                               Brazil                          CSA                      LAM                         BRA
-  BS              LAM                               Central America and Caribbean   CSA                      LAM                         RCAM
-  BT              SAS                               South Asia                      ODA                      OAS                         RSAS
-  BW              AFR                               Africa_Southern                 AFR                      SSA                         RSAF
-  BY              FSU                               Europe_Eastern                  FSU                      REF                         UKR
-  BZ              LAM                               Central America and Caribbean   CSA                      LAM                         RCAM
-  CA              NAM                               Canada                          CAN                      CAZ                         CAN
-  CD              AFR                               Africa_Western                  AFR                      SSA                         WAF
-  CF              AFR                               Africa_Western                  AFR                      SSA                         WAF
-  CG              AFR                               Africa_Western                  AFR                      SSA                         WAF
-  CH              WEU                               European Free Trade Association WEU                      NEU                         WEU
-  CI              AFR                               Africa_Western                  AFR                      SSA                         WAF
-  CL              LAM                               South America_Southern          CSA                      LAM                         RSAM
-  CM              AFR                               Africa_Western                  AFR                      SSA                         WAF
-  CN              CHN                               China                           CHI                      CHA                         CHN
-  CO              LAM                               Colombia                        CSA                      LAM                         RSAM
-  CR              LAM                               Central America and Caribbean   CSA                      LAM                         RCAM
-  CU              LAM                               Central America and Caribbean   CSA                      LAM                         RCAM
-  CY              WEU                               EU-12                           MEA                      EUR                         N/A
-  CZ              EEU                               EU-12                           EEU                      EUR                         CEU
-  DE              WEU                               EU-15                           WEU                      EUR                         WEU
-  DJ              AFR                               Africa_Eastern                  AFR                      SSA                         EAF
-  DK              WEU                               EU-15                           WEU                      EUR                         WEU
-  DM              LAM                               Central America and Caribbean   CSA                      LAM                         RCAM
-  DO              LAM                               Central America and Caribbean   CSA                      LAM                         RCAM
-  DZ              MEA                               Africa_Northern                 AFR                      MEA                         NAF
-  EC              LAM                               South America_Southern          CSA                      LAM                         RSAM
-  EE              EEU                               EU-12                           FSU                      EUR                         CEU
-  EG              MEA                               Africa_Northern                 AFR                      MEA                         NAF
-  ER              AFR                               Africa_Eastern                  AFR                      SSA                         EAF
-  ES              WEU                               EU-15                           WEU                      EUR                         WEU
-  ET              AFR                               Africa_Eastern                  AFR                      SSA                         EAF
-  FI              WEU                               EU-15                           WEU                      EUR                         WEU
-  FJ              PAS                               Southeast Asia                  ODA                      OAS                         OCE
-  FR              WEU                               EU-15                           WEU                      EUR                         WEU
-  GA              AFR                               Africa_Western                  AFR                      SSA                         WAF
-  GB              WEU                               EU-15                           UK                       EUR                         WEU
-  GE              FSU                               Central Asia                    FSU                      REF                         RUS
-  GF              LAM                               South America_Northern          CSA                      LAM                         RSAM
-  GH              AFR                               Africa_Western                  AFR                      SSA                         WAF
-  GI              WEU                               EU-15                           WEU                      EUR                         WEU
-  GL              WEU                               EU-15                           NEU                      NEU                         WEU
-  GM              AFR                               Africa_Western                  AFR                      SSA                         WAF
-  GN              AFR                               Africa_Western                  AFR                      SSA                         WAF
-  GQ              AFR                               Africa_Western                  AFR                      SSA                         WAF
-  GR              WEU                               EU-15                           WEU                      EUR                         WEU
-  GT              LAM                               Central America and Caribbean   CSA                      LAM                         RCAM
-  GW              AFR                               Africa_Western                  AFR                      SSA                         WAF
-  GY              LAM                               South America_Northern          CSA                      LAM                         RSAM
-  HK              CHN                               China                           CHI                      CHA                         CHN
-  HN              LAM                               Central America and Caribbean   CSA                      LAM                         RCAM
-  HR              EEU                               Europe_Non_EU                   EEU                      EUR                         CEU
-  HT              LAM                               Central America and Caribbean   CSA                      LAM                         RCAM
-  HU              EEU                               EU-12                           EEU                      EUR                         CEU
-  ID              PAS                               Indonesia                       ODA                      OAS                         INDO
-  IE              WEU                               EU-15                           WEU                      EUR                         WEU
-  IL              MEA                               Middle East                     MEA                      MEA                         ME
-  IN              SAS                               India                           IND                      IND                         INDIA
-  IQ              MEA                               Middle East                     MEA                      MEA                         ME
-  IR              MEA                               Middle East                     MEA                      MEA                         ME
-  IS              WEU                               European Free Trade Association WEU                      NEU                         WEU
-  IT              WEU                               EU-15                           WEU                      EUR                         WEU
-  JM              LAM                               Central America and Caribbean   CSA                      LAM                         RCAM
-  JO              MEA                               Middle East                     MEA                      MEA                         ME
-  JP              PAO                               Japan                           JPN                      JPN                         JAP
-  KE              AFR                               Africa_Eastern                  AFR                      SSA                         EAF
-  KG              FSU                               Central Asia                    FSU                      REF                         STAN
-  KH              RCPA                              Southeast Asia                  ODA                      OAS                         SEAS
-  KI              PAS                               Southeast Asia                  ODA                      OAS                         OCE
-  KM              AFR                               Africa_Eastern                  AFR                      SSA                         EAF
-  KN              LAM                               Central America and Caribbean   CSA                      LAM                         RCAM
-  KP              RCPA                              Southeast Asia                  ODA                      OAS                         KOR
-  KR              PAS                               South Korea                     SKO                      OAS                         KOR
-  KW              MEA                               Middle East                     MEA                      MEA                         ME
-  KY              LAM                               Central America and Caribbean   CSA                      LAM                         RCAM
-  KZ              FSU                               Central Asia                    FSU                      REF                         STAN
-  LA              RCPA                              Southeast Asia                  ODA                      OAS                         SEAS
-  LB              MEA                               Middle East                     MEA                      MEA                         ME
-  LC              LAM                               Central America and Caribbean   CSA                      LAM                         RCAM
-  LI              WEU                               EU-15                           WEU                      NEU                         WEU
-  LK              SAS                               South Asia                      ODA                      OAS                         RSAS
-  LR              AFR                               Africa_Western                  AFR                      SSA                         WAF
-  LS              AFR                               Africa_Southern                 AFR                      SSA                         RSAF
-  LT              EEU                               EU-12                           FSU                      EUR                         CEU
-  LU              WEU                               EU-15                           WEU                      EUR                         WEU
-  LV              EEU                               EU-12                           FSU                      EUR                         CEU
-  LY              MEA                               Africa_Northern                 AFR                      MEA                         NAF
-  MA              MEA                               Africa_Northern                 AFR                      MEA                         NAF
-  MC              WEU                               EU-15                           WEU                      NEU                         WEU
-  MD              FSU                               Europe_Eastern                  FSU                      REF                         UKR
-  ME              EEU                               Europe_Non_EU                   EEU                      NEU                         CEU
-  MG              AFR                               Africa_Eastern                  AFR                      SSA                         RSAF
-  MK              EEU                               Europe_Non_EU                   EEU                      NEU                         CEU
-  ML              AFR                               Africa_Western                  AFR                      SSA                         WAF
-  MM              PAS                               Southeast Asia                  ODA                      OAS                         SEAS
-  MN              RCPA                              Central Asia                    ODA                      OAS                         CHN
-  MO              CHN                               China                           CHI                      CHA                         CHN
-  MR              AFR                               Africa_Western                  AFR                      SSA                         WAF
-  MS              LAM                               Central America and Caribbean   CSA                      LAM                         RCAM
-  MT              WEU                               EU-12                           WEU                      EUR                         WEU
-  MU              AFR                               Africa_Eastern                  ODA                      SSA                         EAF
-  MW              AFR                               Africa_Southern                 AFR                      SSA                         RSAF
-  MX              LAM                               Mexico                          MEX                      MEX                         MEX
-  MY              PAS                               Southeast Asia                  ODA                      OAS                         SEAS
-  MZ              AFR                               Africa_Southern                 AFR                      SSA                         RSAF
-  NA              AFR                               Africa_Southern                 AFR                      SSA                         RSAF
-  NE              AFR                               Africa_Western                  AFR                      SSA                         WAF
-  NG              AFR                               Africa_Western                  AFR                      SSA                         WAF
-  NI              LAM                               Central America and Caribbean   CSA                      LAM                         RCAM
-  NL              WEU                               EU-15                           WEU                      EUR                         WEU
-  NO              WEU                               European Free Trade Association WEU                      NEU                         WEU
-  NP              SAS                               South Asia                      ODA                      OAS                         RSAS
-  NR              PAS                               Southeast Asia                  ODA                      OAS                         OCE
-  NU              PAS                               Southeast Asia                  ODA                      OAS                         OCE
-  NZ              PAO                               Australia_NZ                    AUS                      CAZ                         OCE
-  OM              MEA                               Middle East                     MEA                      MEA                         ME
-  PA              LAM                               Central America and Caribbean   CSA                      LAM                         RCAM
-  PE              LAM                               South America_Southern          CSA                      LAM                         RSAM
-  PF              PAS                               Southeast Asia                  ODA                      OAS                         OCE
-  PG              PAS                               Southeast Asia                  ODA                      OAS                         INDO
-  PH              PAS                               Southeast Asia                  ODA                      OAS                         SEAS
-  PK              SAS                               Pakistan                        ODA                      OAS                         RSAS
-  PL              EEU                               EU-12                           EEU                      EUR                         CEU
-  PT              WEU                               EU-15                           WEU                      EUR                         WEU
-  PY              LAM                               South America_Southern          CSA                      LAM                         RSAM
-  QA              MEA                               Middle East                     MEA                      MEA                         ME
-  RE              AFR                               Africa_Eastern                  AFR                      SSA                         EAF
-  RO              EEU                               EU-12                           EEU                      EUR                         CEU
-  RS              EEU                               Europe_Non_EU                   EEU                      NEU                         CEU
-  RW              AFR                               Africa_Eastern                  AFR                      SSA                         EAF
-  SA              MEA                               Middle East                     MEA                      MEA                         ME
-  SB              PAS                               Southeast Asia                  ODA                      OAS                         OCE
-  SC              AFR                               Africa_Eastern                  AFR                      SSA                         EAF
-  SD              MEA                               Africa_Eastern                  AFR                      MEA                         EAF
-  SE              WEU                               EU-15                           WEU                      EUR                         WEU
-  SG              PAS                               Southeast Asia                  ODA                      OAS                         SEAS
-  SH              AFR                               Africa_Western                  AFR                      SSA                         WAF
-  SI              EEU                               EU-12                           EEU                      EUR                         CEU
-  SK              EEU                               EU-12                           EEU                      EUR                         CEU
-  SL              AFR                               Africa_Western                  AFR                      SSA                         WAF
-  SM              WEU                               EU-15                           WEU                      NEU                         WEU
-  SN              AFR                               Africa_Western                  AFR                      SSA                         WAF
-  SO              AFR                               Africa_Eastern                  AFR                      SSA                         EAF
-  SR              LAM                               South America_Northern          CSA                      LAM                         RSAM
-  SS              AFR                               Africa_Eastern                  AFR                      SSA                         EAF
-  ST              AFR                               Africa_Western                  AFR                      SSA                         WAF
-  SV              LAM                               Central America and Caribbean   CSA                      LAM                         RCAM
-  SY              MEA                               Middle East                     MEA                      MEA                         ME
-  SZ              AFR                               Africa_Southern                 AFR                      SSA                         RSAF
-  TC              LAM                               Central America and Caribbean   CSA                      LAM                         RCAM
-  TD              AFR                               Africa_Western                  AFR                      SSA                         WAF
-  TG              AFR                               Africa_Western                  AFR                      SSA                         WAF
-  TH              PAS                               Southeast Asia                  ODA                      OAS                         SEAS
-  TJ              FSU                               Central Asia                    FSU                      REF                         STAN
-  TL              PAS                               Southeast Asia                  ODA                      OAS                         INDO
-  TM              FSU                               Central Asia                    FSU                      REF                         STAN
-  TN              MEA                               Africa_Northern                 AFR                      MEA                         NAF
-  TO              PAS                               Southeast Asia                  ODA                      OAS                         OCE
-  TR              WEU                               EU-15                           MEA                      MEA                         TUR
-  TT              LAM                               Central America and Caribbean   CSA                      LAM                         RCAM
-  TV              PAS                               Southeast Asia                  ODA                      OAS                         OCE
-  TZ              AFR                               Africa_Southern                 AFR                      SSA                         RSAF
-  UA              FSU                               Europe_Eastern                  FSU                      REF                         UKR
-  UG              AFR                               Africa_Eastern                  AFR                       SSA                         EAF
-  US              NAM                               USA                             USA                      USA                         USA
-  UY              LAM                               South America_Southern          CSA                      LAM                         RSAM
-  UZ              FSU                               Central Asia                    FSU                      REF                         STAN
-  VC              LAM                               Central America and Caribbean   CSA                      LAM                         RCAM
-  VE              LAM                               South America_Northern          CSA                      LAM                         RSAM
-  VG              N/A                               N/A                             N/A                      LAM                         RCAM
-  VI              NAM                               Central America and Caribbean   CSA                      LAM                         RCAM
-  VN              RCPA                              Southeast Asia                  ODA                      OAS                         SEAS
-  VU              PAS                               Southeast Asia                  ODA                      OAS                         OCE
-  YE              MEA                               Middle East                     MEA                      MEA                         ME
-  ZA              AFR                               South Africa                    AFR                      SSA                         SAF
-  ZM              AFR                               Africa_Southern                 AFR                      SSA                         RSAF
-  ZW              AFR                               Africa_Southern                 AFR                      SSA                         RSAF
- =============== ================================= ================================ ======================== =========================== ========================
-
+ =============== ================================= ================================ ======================== =========================== ================ ========================
+  Country Code    message                           gcam                             tiam-ucl                 remind                      remind-eu        image
+ =============== ================================= ================================ ======================== =========================== ================ ========================
+  AE              MEA                               Middle East                      MEA                      MEA                         MEA              ME
+  AF              SAS                               South Asia                       ODA                      OAS                         OAS              RSAS
+  AG              LAM                               Central America and Caribbean    CSA                      LAM                         LAM              N/A
+  AI              LAM                               Central America and Caribbean    CSA                      LAM                         LAM              RCAM
+  AL              EEU                               Europe_Non_EU                    WEU                      NEU                         NES              CEU
+  AM              FSU                               Central Asia                     FSU                      REF                         REF              RUS
+  AO              AFR                               Africa_Southern                  AFR                      SSA                         SSA              RSAF
+  AQ              MEA                               Middle East                      MEA                      MEA                         MEA              ME
+  AR              LAM                               Argentina                        CSA                      LAM                         LAM              RSAM
+  AS              PAS                               Southeast Asia                   ODA                      OAS                         OAS              OCE
+  AT              WEU                               EU-15                            WEU                      EUR                         EWN              WEU
+  AU              PAO                               Australia_NZ                     AUS                      CAZ                         CAZ              OCE
+  AZ              FSU                               Central Asia                     FSU                      REF                         REF              RUS
+  BA              EEU                               Europe_Non_EU                    EEU                      NEU                         NES              CEU
+  BD              SAS                               South Asia                       ODA                      OAS                         OAS              RSAS
+  BE              WEU                               EU-15                            WEU                      EUR                         EWN              WEU
+  BF              AFR                               Africa_Western                   AFR                      SSA                         SSA              WAF
+  BG              EEU                               EU-12                            EEU                      EUR                         ECS              CEU
+  BH              MEA                               Middle East                      MEA                      MEA                         MEA              ME
+  BI              AFR                               Africa_Eastern                   AFR                      SSA                         SSA              EAF
+  BJ              AFR                               Africa_Western                   AFR                      SSA                         SSA              WAF
+  BN              PAS                               Southeast Asia                   MEA                      OAS                         OAS              SEAS
+  BO              LAM                               South America_Southern           CSA                      LAM                         LAM              RSAM
+  BR              LAM                               Brazil                           CSA                      LAM                         LAM              BRA
+  BS              LAM                               Central America and Caribbean    CSA                      LAM                         LAM              RCAM
+  BT              SAS                               South Asia                       ODA                      OAS                         OAS              RSAS
+  BW              AFR                               Africa_Southern                  AFR                      SSA                         SSA              RSAF
+  BY              FSU                               Europe_Eastern                   FSU                      REF                         REF              UKR
+  BZ              LAM                               Central America and Caribbean    CSA                      LAM                         LAM              RCAM
+  CA              NAM                               Canada                           CAN                      CAZ                         CAZ              CAN
+  CD              AFR                               Africa_Western                   AFR                      SSA                         SSA              WAF
+  CF              AFR                               Africa_Western                   AFR                      SSA                         SSA              WAF
+  CG              AFR                               Africa_Western                   AFR                      SSA                         SSA              WAF
+  CH              WEU                               European Free Trade Association  WEU                      NEU                         NEN              WEU
+  CI              AFR                               Africa_Western                   AFR                      SSA                         SSA              WAF
+  CL              LAM                               South America_Southern           CSA                      LAM                         LAM              RSAM
+  CM              AFR                               Africa_Western                   AFR                      SSA                         SSA              WAF
+  CN              CHN                               China                            CHI                      CHA                         CHA              CHN
+  CO              LAM                               Colombia                         CSA                      LAM                         LAM              RSAM
+  CR              LAM                               Central America and Caribbean    CSA                      LAM                         LAM              RCAM
+  CU              LAM                               Central America and Caribbean    CSA                      LAM                         LAM              RCAM
+  CY              WEU                               EU-12                            MEA                      EUR                         ESC              N/A
+  CZ              EEU                               EU-12                            EEU                      EUR                         ECE              CEU
+  DE              WEU                               EU-15                            WEU                      EUR                         DEU              WEU
+  DJ              AFR                               Africa_Eastern                   AFR                      SSA                         SSA              EAF
+  DK              WEU                               EU-15                            WEU                      EUR                         ENC              WEU
+  DM              LAM                               Central America and Caribbean    CSA                      LAM                         LAM              RCAM
+  DO              LAM                               Central America and Caribbean    CSA                      LAM                         LAM              RCAM
+  DZ              MEA                               Africa_Northern                  AFR                      MEA                         MEA              NAF
+  EC              LAM                               South America_Southern           CSA                      LAM                         LAM              RSAM
+  EE              EEU                               EU-12                            FSU                      EUR                         ECE              CEU
+  EG              MEA                               Africa_Northern                  AFR                      MEA                         MEA              NAF
+  EH              AFR                               Africa_Northern                  AFR                      SSA                         SSA              NAF
+  ER              AFR                               Africa_Eastern                   AFR                      SSA                         SSA              EAF
+  ES              WEU                               EU-15                            WEU                      EUR                         ESW              WEU
+  ET              AFR                               Africa_Eastern                   AFR                      SSA                         SSA              EAF
+  FI              WEU                               EU-15                            WEU                      EUR                         ENC              WEU
+  FJ              PAS                               Southeast Asia                   ODA                      OAS                         OAS              OCE
+  FK              LAM                               South America_Southern           CSA                      LAM                         LAM              RSAM
+  FR              WEU                               EU-15                            WEU                      EUR                         FRA              WEU
+  GA              AFR                               Africa_Western                   AFR                      SSA                         SSA              WAF
+  GB              WEU                               EU-15                            UK                       EUR                         UKI              WEU
+  GE              FSU                               Central Asia                     FSU                      REF                         REF              RUS
+  GF              LAM                               South America_Northern           CSA                      LAM                         LAM              RSAM
+  GH              AFR                               Africa_Western                   AFR                      SSA                         SSA              WAF
+  GI              WEU                               EU-15                            WEU                      EUR                         UKI              WEU
+  GL              WEU                               EU-15                            NEU                      NEU                         NEN              WEU
+  GM              AFR                               Africa_Western                   AFR                      SSA                         SSA              WAF
+  GN              AFR                               Africa_Western                   AFR                      SSA                         SSA              WAF
+  GQ              AFR                               Africa_Western                   AFR                      SSA                         SSA              WAF
+  GR              WEU                               EU-15                            WEU                      EUR                         ESC              WEU
+  GT              LAM                               Central America and Caribbean    CSA                      LAM                         LAM              RCAM
+  GW              AFR                               Africa_Western                   AFR                      SSA                         SSA              WAF
+  GY              LAM                               South America_Northern           CSA                      LAM                         LAM              RSAM
+  HK              CHN                               China                            CHI                      CHA                         CHA              CHN
+  HN              LAM                               Central America and Caribbean    CSA                      LAM                         LAM              RCAM
+  HR              EEU                               Europe_Non_EU                    EEU                      EUR                         ECS              CEU
+  HT              LAM                               Central America and Caribbean    CSA                      LAM                         LAM              RCAM
+  HU              EEU                               EU-12                            EEU                      EUR                         ECS              CEU
+  ID              PAS                               Indonesia                        ODA                      OAS                         OAS              INDO
+  IE              WEU                               EU-15                            WEU                      EUR                         UKI              WEU
+  IL              MEA                               Middle East                      MEA                      MEA                         MEA              ME
+  IN              SAS                               India                            IND                      IND                         IND              INDIA
+  IQ              MEA                               Middle East                      MEA                      MEA                         MEA              ME
+  IR              MEA                               Middle East                      MEA                      MEA                         MEA              ME
+  IS              WEU                               European Free Trade Association  WEU                      NEU                         NEN              WEU
+  IT              WEU                               EU-15                            WEU                      EUR                         ESC              WEU
+  JM              LAM                               Central America and Caribbean    CSA                      LAM                         LAM              RCAM
+  JO              MEA                               Middle East                      MEA                      MEA                         MEA              ME
+  JP              PAO                               Japan                            JPN                      JPN                         JPN              JAP
+  KE              AFR                               Africa_Eastern                   AFR                      SSA                         SSA              EAF
+  KG              FSU                               Central Asia                     FSU                      REF                         REF              STAN
+  KH              RCPA                              Southeast Asia                   ODA                      OAS                         OAS              SEAS
+  KI              PAS                               Southeast Asia                   ODA                      OAS                         OAS              OCE
+  KM              AFR                               Africa_Eastern                   AFR                      SSA                         SSA              EAF
+  KN              LAM                               Central America and Caribbean    CSA                      LAM                         LAM              RCAM
+  KP              RCPA                              Southeast Asia                   ODA                      OAS                         OAS              KOR
+  KR              PAS                               South Korea                      SKO                      OAS                         OAS              KOR
+  KW              MEA                               Middle East                      MEA                      MEA                         MEA              ME
+  KY              LAM                               Central America and Caribbean    CSA                      LAM                         LAM              RCAM
+  KZ              FSU                               Central Asia                     FSU                      REF                         REF              STAN
+  LA              RCPA                              Southeast Asia                   ODA                      OAS                         OAS              SEAS
+  LB              MEA                               Middle East                      MEA                      MEA                         MEA              ME
+  LC              LAM                               Central America and Caribbean    CSA                      LAM                         LAM              RCAM
+  LI              WEU                               EU-15                            WEU                      NEU                         NEN              WEU
+  LK              SAS                               South Asia                       ODA                      OAS                         OAS              RSAS
+  LR              AFR                               Africa_Western                   AFR                      SSA                         SSA              WAF
+  LS              AFR                               Africa_Southern                  AFR                      SSA                         SSA              RSAF
+  LT              EEU                               EU-12                            FSU                      EUR                         ECE              CEU
+  LU              WEU                               EU-15                            WEU                      EUR                         EWN              WEU
+  LV              EEU                               EU-12                            FSU                      EUR                         ECE              CEU
+  LY              MEA                               Africa_Northern                  AFR                      MEA                         MEA              NAF
+  MA              MEA                               Africa_Northern                  AFR                      MEA                         MEA              NAF
+  MC              WEU                               EU-15                            WEU                      NEU                         NES              WEU
+  MD              FSU                               Europe_Eastern                   FSU                      REF                         REF              UKR
+  ME              EEU                               Europe_Non_EU                    EEU                      NEU                         NES              CEU
+  MG              AFR                               Africa_Eastern                   AFR                      SSA                         SSA              RSAF
+  MK              EEU                               Europe_Non_EU                    EEU                      NEU                         NES              CEU
+  ML              AFR                               Africa_Western                   AFR                      SSA                         SSA              WAF
+  MM              PAS                               Southeast Asia                   ODA                      OAS                         OAS              SEAS
+  MN              RCPA                              Central Asia                     ODA                      OAS                         OAS              CHN
+  MO              CHN                               China                            CHI                      CHA                         CHA              CHN
+  MR              AFR                               Africa_Western                   AFR                      SSA                         SSA              WAF
+  MS              LAM                               Central America and Caribbean    CSA                      LAM                         LAM              RCAM
+  MT              WEU                               EU-12                            WEU                      EUR                         ESC              WEU
+  MU              AFR                               Africa_Eastern                   ODA                      SSA                         SSA              EAF
+  MW              AFR                               Africa_Southern                  AFR                      SSA                         SSA              RSAF
+  MX              LAM                               Mexico                           MEX                      MEX                         LAM              MEX
+  MY              PAS                               Southeast Asia                   ODA                      OAS                         OAS              SEAS
+  MZ              AFR                               Africa_Southern                  AFR                      SSA                         SSA              RSAF
+  NA              AFR                               Africa_Southern                  AFR                      SSA                         SSA              RSAF
+  NC              PAS                               Southeast Asia                   ODA                      OAS                         OAS              OCE
+  NE              AFR                               Africa_Western                   AFR                      SSA                         SSA              WAF
+  NG              AFR                               Africa_Western                   AFR                      SSA                         SSA              WAF
+  NI              LAM                               Central America and Caribbean    CSA                      LAM                         LAM              RCAM
+  NL              WEU                               EU-15                            WEU                      EUR                         EWN              WEU
+  NO              WEU                               European Free Trade Association  WEU                      NEU                         NEN              WEU
+  NP              SAS                               South Asia                       ODA                      OAS                         OAS              RSAS
+  NR              PAS                               Southeast Asia                   ODA                      OAS                         OAS              OCE
+  NU              PAS                               Southeast Asia                   ODA                      OAS                         OAS              OCE
+  NZ              PAO                               Australia_NZ                     AUS                      CAZ                         CAZ              OCE
+  OM              MEA                               Middle East                      MEA                      MEA                         MEA              ME
+  PA              LAM                               Central America and Caribbean    CSA                      LAM                         LAM              RCAM
+  PE              LAM                               South America_Southern           CSA                      LAM                         LAM              RSAM
+  PF              PAS                               Southeast Asia                   ODA                      OAS                         OAS              OCE
+  PG              PAS                               Southeast Asia                   ODA                      OAS                         OAS              INDO
+  PH              PAS                               Southeast Asia                   ODA                      OAS                         OAS              SEAS
+  PK              SAS                               Pakistan                         ODA                      OAS                         OAS              RSAS
+  PL              EEU                               EU-12                            EEU                      EUR                         ECE              CEU
+  PR              LAM                               Central America and Caribbean    CSA                      LAM                         LAM              RCAM
+  PS              MEA                               Middle East                      MEA                      MEA                         MEA              ME
+  PT              WEU                               EU-15                            WEU                      EUR                         ESW              WEU
+  PY              LAM                               South America_Southern           CSA                      LAM                         LAM              RSAM
+  QA              MEA                               Middle East                      MEA                      MEA                         MEA              ME
+  RE              AFR                               Africa_Eastern                   AFR                      SSA                         SSA              EAF
+  RO              EEU                               EU-12                            EEU                      EUR                         ECS              CEU
+  RS              EEU                               Europe_Non_EU                    EEU                      NEU                         NES              CEU
+  RU              FSU                               Europe_Eastern                   FSU                      REF                         REF              RUS
+  RW              AFR                               Africa_Eastern                   AFR                      SSA                         SSA              EAF
+  SA              MEA                               Middle East                      MEA                      MEA                         MEA              ME
+  SB              PAS                               Southeast Asia                   ODA                      OAS                         OAS              OCE
+  SC              AFR                               Africa_Eastern                   AFR                      SSA                         SSA              EAF
+  SD              MEA                               Africa_Eastern                   AFR                      MEA                         MEA              EAF
+  SE              WEU                               EU-15                            WEU                      EUR                         ENC              WEU
+  SG              PAS                               Southeast Asia                   ODA                      OAS                         OAS              SEAS
+  SH              AFR                               Africa_Western                   AFR                      SSA                         SSA              WAF
+  SI              EEU                               EU-12                            EEU                      EUR                         ECS              CEU
+  SK              EEU                               EU-12                            EEU                      EUR                         ECE              CEU
+  SL              AFR                               Africa_Western                   AFR                      SSA                         SSA              WAF
+  SM              WEU                               EU-15                            WEU                      NEU                         NES              WEU
+  SN              AFR                               Africa_Western                   AFR                      SSA                         SSA              WAF
+  SO              AFR                               Africa_Eastern                   AFR                      SSA                         SSA              EAF
+  SR              LAM                               South America_Northern           CSA                      LAM                         LAM              RSAM
+  SS              AFR                               Africa_Eastern                   AFR                      SSA                         SSA              EAF
+  ST              AFR                               Africa_Western                   AFR                      SSA                         SSA              WAF
+  SV              LAM                               Central America and Caribbean    CSA                      LAM                         LAM              RCAM
+  SY              MEA                               Middle East                      MEA                      MEA                         MEA              ME
+  SZ              AFR                               Africa_Southern                  AFR                      SSA                         SSA              RSAF
+  TC              LAM                               Central America and Caribbean    CSA                      LAM                         LAM              RCAM
+  TD              AFR                               Africa_Western                   AFR                      SSA                         SSA              WAF
+  TF              MEA                               Africa_Northern                  AFR                      MEA                         MEA              NAF
+  TG              AFR                               Africa_Western                   AFR                      SSA                         SSA              WAF
+  TH              PAS                               Southeast Asia                   ODA                      OAS                         OAS              SEAS
+  TJ              FSU                               Central Asia                     FSU                      REF                         REF              STAN
+  TL              PAS                               Southeast Asia                   ODA                      OAS                         OAS              INDO
+  TM              FSU                               Central Asia                     FSU                      REF                         REF              STAN
+  TN              MEA                               Africa_Northern                  AFR                      MEA                         MEA              NAF
+  TO              PAS                               Southeast Asia                   ODA                      OAS                         OAS              OCE
+  TR              WEU                               EU-15                            MEA                      MEA                         NES              TUR
+  TT              LAM                               Central America and Caribbean    CSA                      LAM                         LAM              RCAM
+  TV              PAS                               Southeast Asia                   ODA                      OAS                         OAS              OCE
+  TW              PAS                               Southeast Asia                   ODA                      OAS                         OAS              OCE
+  TZ              AFR                               Africa_Southern                  AFR                      SSA                         SSA              RSAF
+  UA              FSU                               Europe_Eastern                   FSU                      REF                         REF              UKR
+  UG              AFR                               Africa_Eastern                   AFR                      SSA                         SSA              EAF
+  US              NAM                               USA                              USA                      USA                         USA              USA
+  UY              LAM                               South America_Southern           CSA                      LAM                         LAM              RSAM
+  UZ              FSU                               Central Asia                     FSU                      REF                         REF              STAN
+  VC              LAM                               Central America and Caribbean    CSA                      LAM                         LAM              RCAM
+  VE              LAM                               South America_Northern           CSA                      LAM                         LAM              RSAM
+  VG              N/A                               N/A                              ---                      LAM                         LAM              RCAM
+  VI              NAM                               Central America and Caribbean    CSA                      LAM                         LAM              RCAM
+  VN              RCPA                              Southeast Asia                   ODA                      OAS                         OAS              SEAS
+  VU              PAS                               Southeast Asia                   ODA                      OAS                         OAS              OCE
+  XK              EU                                Europe_Non_EU                    EEU                      NEU                         NES              CEU
+  YE              MEA                               Middle East                      MEA                      MEA                         MEA              ME
+  ZA              AFR                               South Africa                     AFR                      SSA                         SSA              SAF
+  ZM              AFR                               Africa_Southern                  AFR                      SSA                         SSA              RSAF
+  ZW              AFR                               Africa_Southern                  AFR                      SSA                         SSA              RSAF
+ =============== ================================= ================================ ======================== =========================== ================ ========================
 
 
 The mapping between ecoinvent locations and IAM regions is available under the following directory:

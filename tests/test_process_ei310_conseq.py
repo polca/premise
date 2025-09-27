@@ -19,13 +19,13 @@ key = os.environ["IAM_FILES_KEY"]
 # convert to bytes
 key = key.encode()
 
-ei_version = "3.10"
+ei_version = "3.10.1"
 system_model = "consequential"
 
 
 scenarios = [
-    {"model": "remind", "pathway": "SSP2-Base", "year": 2050},
-    {"model": "image", "pathway": "SSP2-RCP19", "year": 2050},
+    {"model": "remind", "pathway": "SSP2-rollBack", "year": 2050},
+    {"model": "image", "pathway": "SSP2-VLHO", "year": 2050},
     {"model": "tiam-ucl", "pathway": "SSP2-RCP19", "year": 2050},
 ]
 
@@ -45,13 +45,18 @@ def test_brightway():
             password=ei_pass,
         )
 
+    if f"ecoinvent-{ei_version}-biosphere" not in bw2data.databases:
+        biosphere_name = "biosphere3"
+    else:
+        biosphere_name = f"ecoinvent-{ei_version}-biosphere"
+
     ndb = NewDatabase(
         scenarios=scenarios,
         source_db=f"ecoinvent-{ei_version}-{system_model}",
         source_version=ei_version,
         key=key,
         system_model=system_model,
-        biosphere_name=f"ecoinvent-{ei_version}-biosphere",
+        biosphere_name=biosphere_name,
     )
 
     ndb.update()

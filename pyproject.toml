@@ -7,7 +7,8 @@ name = "premise"
 authors = [
   { name="Romain Sacchi", email="romain.sacchi@psi.ch" },
   { name="Alois Dirnaichner", email="dirnaichner@pik-potsdam.de" },
-  { name="Chris Mutel", email="cmutel@gmail.com" }
+  { name="Chris Mutel", email="cmutel@gmail.com" },
+  { name="Alvaro Hahn Menacho", email="alvaro.hahn-menacho@psi.ch" }
 ]
 maintainers = [
   { name="Romain Sacchi", email="romain.sacchi@psi.ch" }
@@ -54,6 +55,7 @@ bw25 = [
     "pyYaml",
     "requests",
     "schema",
+    "scipy<1.14.0",  # scipy 1.14.0 is not compatible with bw2calc>2.0.1
     "sparse>=0.14.0",
     "wurst>=0.4",
     "xarray<=2024.2.0",
@@ -125,4 +127,19 @@ exclude = [
     "dist",
     ".eggs",
     "docs/conf.py",
+]
+
+[tool.setuptools.package-data]
+premise = [
+    "data/**/*.txt",
+    "data/**/*.csv",
+    "data/**/*.json",
+    "data/**/*.yml",
+    "data/**/*.yaml",
+    "data/**/*.xlsx",
+    "data/**/*.pickle",
+    "iam_variables_mapping/*.yaml",
+    "iam_variables_mapping/*.xlsx",
+    "iam_variables_mapping/topologies/*.json",
+    "fuels/*.py",
 ]

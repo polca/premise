@@ -7,6 +7,7 @@ import json
 from collections import defaultdict
 from pathlib import Path
 from typing import Any, Dict, List, Optional
+from functools import lru_cache
 
 import yaml
 from constructive_geometries import Geomatcher
@@ -94,6 +95,7 @@ class Geomap:
             if isinstance(x, tuple) and x[0] == self.model.upper()
         ]
 
+    @lru_cache
     def iam_to_ecoinvent_location(
         self, location: str, contained: bool = True
     ) -> List[str]:
@@ -139,6 +141,7 @@ class Geomap:
 
         return ecoinvent_locations
 
+    @lru_cache
     def ecoinvent_to_iam_location(self, location: str) -> str:
         """
         Return an IAM region name for an ecoinvent location given.

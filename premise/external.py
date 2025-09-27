@@ -9,6 +9,7 @@ from collections import defaultdict
 from functools import lru_cache
 from pathlib import Path
 from typing import List, Union
+from pprint import pprint
 
 import numpy as np
 import wurst
@@ -34,7 +35,7 @@ from .transformation import (
     find_fuel_efficiency,
     get_shares_from_production_volume,
 )
-from .utils import get_fuel_properties, rescale_exchanges
+from .utils import HiddenPrints, get_fuel_properties, rescale_exchanges
 
 LOG_CONFIG = DATA_DIR / "utils" / "logging" / "logconfig.yaml"
 
@@ -225,8 +226,15 @@ def adjust_efficiency(dataset: dict, fuels_specs: dict, fuel_map_reverse: dict) 
                     # first, fetch expected efficiency
                     expected_efficiency = v[1][dataset["location"]]
 
+                    if expected_efficiency in (0.0, 1.0):
+                        continue
+
                     # then, fetch the current efficiency
                     current_efficiency = dataset.get("current efficiency")
+
+                    if expected_efficiency in (0.0, 1.0):
+                        continue
+
                     if current_efficiency is None:
                         current_efficiency = find_fuel_efficiency(
                             dataset=dataset,
@@ -236,18 +244,16 @@ def adjust_efficiency(dataset: dict, fuels_specs: dict, fuel_map_reverse: dict) 
                         )
                         dataset["current efficiency"] = current_efficiency
 
-                    if expected_efficiency in [0.0, 1.0] or current_efficiency in [
-                        0.0,
-                        1.0,
-                    ]:
-                        print(
-                            f"Warning: Efficiency factor for {dataset['name']} in {dataset['location']} is {current_efficiency}"
-                            f"and expected efficiency is {expected_efficiency}."
-                        )
-                        continue
+                    # we bound the final efficiency to (0.05, 0.6)
 
-                    # finally, calculate the scaling factor
-                    scaling_factor = current_efficiency / expected_efficiency
+                    lower_bound = expected_efficiency / 0.60
+                    upper_bound = expected_efficiency / 0.05
+
+                    scaling_factor = np.clip(
+                        current_efficiency / expected_efficiency,
+                        lower_bound,
+                        upper_bound,
+                    )
 
                     if scaling_factor >= 1.5:
                         print(
@@ -255,11 +261,17 @@ def adjust_efficiency(dataset: dict, fuels_specs: dict, fuel_map_reverse: dict) 
                         )
 
                     # log the old and new efficiency
-                    if "log parameters" not in dataset:
-                        dataset["log parameters"] = {}
 
-                    dataset["log parameters"][f"old efficiency"] = current_efficiency
-                    dataset["log parameters"][f"new efficiency"] = expected_efficiency
+                    dataset.setdefault("log parameters", {})[
+                        f"old efficiency"
+                    ] = current_efficiency
+                    dataset.setdefault("log parameters", {})[
+                        f"new efficiency"
+                    ] = expected_efficiency
+
+                    if "comment" not in dataset:
+                        dataset["comment"] = ""
+
                     dataset[
                         "comment"
                     ] += f" Original efficiency: {current_efficiency:.2f}. New efficiency: {expected_efficiency:.2f}."
@@ -293,13 +305,11 @@ def adjust_efficiency(dataset: dict, fuels_specs: dict, fuel_map_reverse: dict) 
                         )
 
                 if not np.isclose(scaling_factor, 1, rtol=1e-3):
-                    if "log parameters" not in dataset:
-                        dataset["log parameters"] = {}
 
                     if eff_type == "technosphere":
                         # adjust technosphere flows
                         # all of them if no filters are provided
-                        dataset["log parameters"][
+                        dataset.setdefault("log parameters", {})[
                             "technosphere scaling factor"
                         ] = scaling_factor
                         if filters:
@@ -430,7 +440,7 @@ class ExternalScenario(BaseTransformation):
         self.fuel_map_reverse = {}
         for key, value in self.fuel_map.items():
             for v in list(value):
-                self.fuel_map_reverse[v] = key
+                self.fuel_map_reverse[v["name"]] = key
 
         external_scenario_regions = {}
         for datapackage_number, datapackage in enumerate(self.datapackages):
@@ -472,13 +482,18 @@ class ExternalScenario(BaseTransformation):
 
                 # Check if datasets already exist for IAM regions
                 # if not, create them
+
+                if "region mapping" in ds:
+                    geo_mapping = {k: ds for k in ds["region mapping"].keys()}
+                else:
+                    geo_mapping = {k: ds for k in regions}
+
                 new_acts = self.fetch_proxies(
-                    name=ds["name"],
-                    ref_prod=ds["reference product"],
+                    datasets=[
+                        ds,
+                    ],
                     regions=ds["regions"],
-                    geo_mapping=(
-                        ds["region mapping"] if "region mapping" in ds else None
-                    ),
+                    geo_mapping=geo_mapping,
                     unlist=False,
                 )
 
@@ -965,7 +980,7 @@ class ExternalScenario(BaseTransformation):
 
         return act
 
-    def write_suppliers_exchanges(self, suppliers: dict, supply_share: float) -> list:
+    def write_suppliers_exchanges(self, suppliers: list, supply_share: float) -> list:
         """
         Write the exchanges for the suppliers.
         :param suppliers: list of suppliers
@@ -975,15 +990,15 @@ class ExternalScenario(BaseTransformation):
 
         new_excs = []
 
-        for supplier, market_share in suppliers.items():
-            provider_share = supply_share * market_share
+        for supplier in suppliers:
+            provider_share = supply_share * supplier["share"]
 
             new_excs.append(
                 {
-                    "name": supplier[0],
-                    "product": supplier[2],
-                    "unit": supplier[-1],
-                    "location": supplier[1],
+                    "name": supplier["name"],
+                    "product": supplier["reference product"],
+                    "unit": supplier["unit"],
+                    "location": supplier["location"],
                     "type": "technosphere",
                     "amount": provider_share,
                     "uncertainty type": 0,
@@ -1366,19 +1381,41 @@ class ExternalScenario(BaseTransformation):
                             # check if we should add some additional exchanges
                             if "add" in market_vars:
                                 for additional_exc in market_vars["add"]:
-                                    add_excs = self.add_additional_exchanges(
-                                        name=additional_exc["name"],
-                                        ref_prod=additional_exc.get(
-                                            "reference product"
-                                        ),
-                                        categories=additional_exc.get("categories"),
-                                        unit=additional_exc.get("unit"),
-                                        amount=additional_exc.get("amount"),
-                                        region=region,
-                                        ei_version=dp.descriptor["ecoinvent"][
-                                            "version"
-                                        ],
-                                    )
+                                    if (
+                                        additional_exc["name"] == new_market["name"]
+                                        and additional_exc.get("reference product")
+                                        == new_market["reference product"]
+                                    ):
+                                        # it's some sort of loss or # inefficiency
+                                        add_excs = [
+                                            {
+                                                "name": additional_exc["name"],
+                                                "product": additional_exc.get(
+                                                    "reference product", None
+                                                ),
+                                                "unit": new_market["unit"],
+                                                "location": region,
+                                                "type": "technosphere",
+                                                "amount": additional_exc.get(
+                                                    "amount", 0
+                                                ),
+                                                "uncertainty type": 0,
+                                            }
+                                        ]
+                                    else:
+                                        add_excs = self.add_additional_exchanges(
+                                            name=additional_exc["name"],
+                                            ref_prod=additional_exc.get(
+                                                "reference product"
+                                            ),
+                                            categories=additional_exc.get("categories"),
+                                            unit=additional_exc.get("unit"),
+                                            amount=additional_exc.get("amount"),
+                                            region=region,
+                                            ei_version=dp.descriptor["ecoinvent"][
+                                                "version"
+                                            ],
+                                        )
                                     new_market["exchanges"].extend(add_excs)
 
                             if "efficiency" in market_vars:
@@ -1566,6 +1603,7 @@ class ExternalScenario(BaseTransformation):
                         exc["location"],
                     )
                 )
+                new_loc = []
                 if len(regions) == 1:
                     new_loc = regions[0]
 
@@ -1580,9 +1618,11 @@ class ExternalScenario(BaseTransformation):
                         new_loc = "World"
 
                     else:
-                        new_loc = self.find_best_substitute_suppliers(
+                        candidate = self.find_best_substitute_suppliers(
                             new_name, new_ref, regions
                         )
+                        if len(candidate) > 0:
+                            new_loc = candidate[0]["location"]
 
                 if isinstance(new_loc, str):
                     new_loc = [(new_loc, 1.0)]
@@ -1739,6 +1779,7 @@ class ExternalScenario(BaseTransformation):
                         exc for exc in ds["exchanges"] if exc["type"] == "production"
                     ]
                     # add an exchange from a new supplier
+                    new_loc = []
                     if ds["location"] in ["GLO", "RoW"] and "World" in regions:
                         new_loc = "World"
                     elif ds["location"] in regions:
@@ -1746,9 +1787,11 @@ class ExternalScenario(BaseTransformation):
                     elif self.geo.ecoinvent_to_iam_location(ds["location"]) in regions:
                         new_loc = self.geo.ecoinvent_to_iam_location(ds["location"])
                     else:
-                        new_loc = self.find_best_substitute_suppliers(
+                        candidate = self.find_best_substitute_suppliers(
                             new_name, new_ref, regions
                         )
+                        if len(candidate) > 0:
+                            new_loc = candidate[0]["location"]
 
                     if isinstance(new_loc, str):
                         new_loc = [(new_loc, 1.0)]
@@ -1819,7 +1862,10 @@ class ExternalScenario(BaseTransformation):
                 )
             )
         )
-        return [(x[1], y) for x, y in suppliers.items()]
+        if len(suppliers) > 0:
+            return suppliers.sort(key=lambda x: x["share"], reverse=True)[0]
+        else:
+            return []
 
     def write_log(self, dataset, status="created"):
         """

@@ -12,12 +12,13 @@ import numpy as np
 import xarray as xr
 import yaml
 from numpy import ndarray
-from prettytable import ALL, PrettyTable
+from prettytable import PrettyTable
 
 from .filesystem_constants import DATA_DIR
 
 IAM_LEADTIMES = DATA_DIR / "consequential" / "leadtimes.yaml"
 IAM_LIFETIMES = DATA_DIR / "consequential" / "lifetimes.yaml"
+CONSTRAINED_SUPPLIERS = DATA_DIR / "consequential" / "constrained_suppliers.yaml"
 
 
 @lru_cache
@@ -68,6 +69,16 @@ def get_leadtime(list_tech: Tuple) -> np.ndarray:
     return np.array(val, dtype=float)
 
 
+def get_list_contrained_suppliers():
+    """
+    Get a list of constrained suppliers from the leadtimes.yaml file.
+    :return: a list of constrained suppliers
+    :rtype: list
+    """
+    with open(CONSTRAINED_SUPPLIERS, "r", encoding="utf-8") as stream:
+        return yaml.safe_load(stream)
+
+
 def fetch_avg_leadtime(leadtime: np.ndarray, shares: [np.ndarray, xr.DataArray]) -> int:
     """
     Calculate the average lead-time of a market.
@@ -111,26 +122,6 @@ def fetch_volume_change(data: xr.DataArray, start_year: int, end_year: int) -> n
         )
         / (end_year - start_year)
     ).values
-
-
-def remove_constrained_suppliers(data: xr.DataArray) -> xr.DataArray:
-    """
-    Remove the shares of suppliers that are constrained from the market.
-    """
-
-    # we set CHP suppliers to zero
-    # as electricity production is not a
-    # determining product for CHPs
-    tech_to_ignore = ["CHP", "biomethane", "biogas"]
-    data.loc[
-        dict(
-            variables=[
-                v for v in data.variables.values if any(x in v for x in tech_to_ignore)
-            ],
-        )
-    ] = 0
-
-    return data
 
 
 def consequential_method(
@@ -199,8 +190,14 @@ def consequential_method(
     data_full = data_full.interpolate_na(dim="year", method="akima")
 
     techs = tuple(data_full.variables.values.tolist())
+    constrained_suppliers = get_list_contrained_suppliers()
     leadtime = get_leadtime(techs)
     lifetime = get_lifetime(techs)
+
+    # set constrained suppliers to zero
+    data_full.loc[
+        dict(variables=[tech for tech in techs if tech in constrained_suppliers])
+    ] = 0
 
     # create a list to store variables values
     # for each region
@@ -216,9 +213,9 @@ def consequential_method(
             region=region, year=year
         ).sum(dim="variables")
 
-        # if shares contains only NaNs, we give its elements the value 1
+        # are all shares to zero?
         if shares.isnull().all():
-            shares = xr.ones_like(shares)
+            continue
 
         time_parameters = {
             (False, False, False, False): {
@@ -358,8 +355,6 @@ def consequential_method(
         volume_change = fetch_volume_change(
             data_full.sel(region=region), avg_start, avg_end
         )
-
-        data_full = remove_constrained_suppliers(data_full)
 
         # second, we measure production growth
         # within the determined time interval
@@ -816,19 +811,27 @@ def consequential_method(
                 {"region": region}
             ].sum(dim="variables")
 
+        if market_shares.sel(region=region).sum(dim="variables").values == 0:
+            # in such case, we use the average shares, minus the constrained suppliers
+
+            print(f"WARNING: All market shares for {region} are zero for {sector}. ")
+            print("Using average shares for unconstrained suppliers.")
+
+            market_shares.loc[{"region": region}] = shares
+
     # print a summary of the results
     print()
     print(f"Summary of the {sector} marginal market mixes:")
     table = PrettyTable(
         [
             "Region",
-            "Measurement method",
-            "Foresight?",
+            "Method",
+            "Foresight",
             "Duration",
-            "Avg. start year",
-            "Avg. end year",
-            "Avg. capital repl. rate",
-            "Volume change",
+            "Start",
+            "End",
+            "Cap repl.",
+            "Vol ch.",
         ]
     )
     for row in summary:
@@ -836,15 +839,14 @@ def consequential_method(
 
     table._max_width = {
         "Region": 10,
-        "Measurement method": 20,
-        "Foresight?": 10,
+        "Method": 10,
+        "Foresight": 10,
         "Duration": 10,
-        "Avg. start year": 10,
-        "Avg. end year": 10,
-        "Avg. capital repl. rate": 20,
-        "Volume change": 20,
+        "Start": 10,
+        "End": 10,
+        "Cap repl.": 10,
+        "Vol ch.": 10,
     }
-    table.hrules = ALL
     print(table)
 
     return market_shares

@@ -1,0 +1,1849 @@
+# calorific (wet basis)
+# CO2 emission factors (including biogenic share)
+# iam_aliases and eff_aliases for different IAMs
+# of different energy vectors.
+# LHVs are from ecoinvent when possible. If not, they are either from
+# engineeringtoolbox.com or phyllis.nl or IPCC 2006 guidelines
+
+# lhv -> MJ/kg, wet basis
+# co2 -> kg CO2/MJ
+# biogenic_share -> between 0 and 1
+---
+electricity:
+  lhv:
+    unit: megajoule
+    value: 3.6
+  biogenic_share: 0
+hard coal:
+  lhv:
+    unit: megajoule
+    value: 26.4
+  co2: 0.098
+  biogenic_share: 0
+  ecoinvent_aliases:
+    fltr:
+    - market for hard coal
+    - hard coal mine operation and hard coal preparation
+    mask:
+      name:
+      - factory
+      - plant
+      - briquettes
+      - ash
+      - clinker
+      - charcoal
+pulverised lignite:
+  lhv:
+    unit: megajoule
+    value: 1
+  co2: 0.098
+  biogenic_share: 0
+  ecoinvent_aliases:
+    fltr:
+      name:
+      - market for pulverised lignite
+    mask:
+      name:
+      - factory
+      - plant
+      - briquettes
+      - ash
+      - clinker
+lignite:
+  lhv:
+    unit: megajoule
+    value: 8.7
+  co2: 0.115
+  biogenic_share: 0
+  ecoinvent_aliases:
+    fltr:
+    - lignite mine operation
+    mask:
+      name:
+      - factory
+      - plant
+      - briquettes
+      - ash
+      - market
+petroleum coke:
+  lhv:
+    unit: megajoule
+    value: 31.3
+  co2: 0.0975
+  biogenic_share: 0
+  ecoinvent_aliases:
+    fltr:
+    - market for petroleum coke
+    - petroleum coke production, petroleum refinery operation
+biomass:
+  lhv:
+    unit: megajoule
+    value: 16.2
+  co2: 0.112
+  biogenic_share: 1
+  ecoinvent_aliases:
+    fltr:
+    - market for biomass, used as fuel
+    - market for wood chips
+    mask:
+      name:
+      - clinker
+      - factory
+wood pellet:
+  lhv:
+    unit: megajoule
+    value: 16.2
+  co2: 0.112
+  biogenic_share: 1
+  ecoinvent_aliases:
+    fltr:
+    - market for wood pellet
+    - market for biomass, used as fuel
+    - wood pellet production
+    mask:
+      name:
+      - clinker
+      - factory
+wood chips:
+  lhv:
+    unit: megajoule
+    value: 18.9
+  co2: 0.112
+  biogenic_share: 1
+  ecoinvent_aliases:
+    fltr:
+    - market for wood chips
+    - market for biomass, used as fuel
+natural gas:
+  lhv:
+    unit: megajoule
+    value: 36
+  co2: 0.06
+  biogenic_share: 0
+  iam_aliases:
+    gcam: Secondary Energy|Production|Natural Gas|Gas
+    remind: SE|Gases|Fossil|+|Natural Gas
+    remind-eu: SE|Gases|Fossil|+|Natural Gas
+    tiam-ucl: Secondary Energy|Liquids|Oil|Natural Gas Liquids
+    message: Secondary Energy|Gases|Natural Gas
+    witch: Secondary Energy|Gases|Fossil
+  ecoinvent_aliases:
+    fltr:
+      name:
+      - natural gas
+      - petroleum and gas production
+      reference product:
+      - natural gas
+      unit: cubic meter
+    mask:
+      name:
+      - synthetic
+      - burned
+      - vehicle grade
+      - electric
+      - evaporation
+      - consumer
+      - plant
+      - unprocessed
+      - station
+      - vented
+      - venting
+      - liquids
+      - network
+      - import from
+      - market
+      - reduction
+      - storage
+gas, natural, in ground:
+  lhv:
+    unit: megajoule
+    value: 45
+  co2: 0.0564
+  biogenic_share: 0
+refinery gas:
+  lhv:
+    unit: megajoule
+    value: 50.3
+  co2: 0.0667
+  biogenic_share: 0
+propane:
+  lhv:
+    unit: megajoule
+    value: 46.46
+  co2: 0.0611
+  biogenic_share: 0
+heavy fuel oil:
+  lhv:
+    unit: megajoule
+    value: 38.5
+  co2: 0.0739
+  iam_aliases:
+    tiam-ucl: Secondary Energy|Liquids|Oil|Heavy Fuel Oil
+  ecoinvent_aliases:
+    fltr:
+      reference product:
+      - heavy fuel oil
+    mask:
+      name:
+      - burned
+      - import
+      - synthetic
+      - market
+      - transport
+  biogenic_share: 0
+oil, crude, in ground:
+  lhv:
+    unit: megajoule
+    value: 38.5
+  co2: 0.0739
+  biogenic_share: 0
+light fuel oil:
+  lhv:
+    unit: megajoule
+    value: 42.6
+  co2: 0.0686
+  biogenic_share: 0
+  ecoinvent_aliases:
+    fltr:
+      reference product:
+      - light fuel oil
+    mask:
+    - market
+    - import
+    - waste
+biogas:
+  lhv:
+    unit: megajoule
+    value: 22.73
+  co2: 0.058
+  biogenic_share: 1
+  ecoinvent_aliases:
+    fltr:
+      reference product:
+      - biogas
+    mask:
+      - market
+waste:
+  lhv:
+    unit: megajoule
+    value: 17
+  co2: 0.07
+  biogenic_share: 0.34
+  ecoinvent_aliases:
+    fltr:
+      reference product:
+      - waste plastic, mixture
+    mask:
+      name:
+      - treatment
+methane, fossil:
+  lhv:
+    unit: megajoule
+    value: 47.5
+  co2: 0.06
+  biogenic_share: 0
+methane, from biomass:
+  lhv:
+    unit: megajoule
+    value: 47.5
+  co2: 0.06
+  biogenic_share: 1
+  iam_aliases:
+    tiam-ucl: Secondary Energy|Liquids|Biomass|Biomethane|Biogas
+    remind: SE|Gases|+|Biomass
+    remind-eu: SE|Gases|+|Biomass
+    message: Secondary Energy|Gases|Biomass
+  eff_aliases:
+    remind: Tech|Gases|Biomass|w/o CC|Efficiency
+    remind-eu: Tech|Gases|Biomass|w/o CC|Efficiency
+  ecoinvent_aliases:
+    fltr:
+    - biomethane, gaseous
+    - biomethane production
+    mask:
+      name:
+      - burned
+      - station
+methane, synthetic:
+  lhv:
+    unit: megajoule
+    value: 47.5
+  co2: 0.06
+  biogenic_share: 1
+  ecoinvent_fuels_aliases:
+    fltr:
+    - methane, synthetic, gaseous
+    - methane, from electrochemical methanation
+methane, from coal:
+  lhv:
+    unit: megajoule
+    value: 47.5
+  co2: 0.06
+  biogenic_share: 1
+  ecoinvent_fuels_aliases:
+    fltr:
+    - methane, synthetic, gaseous, 5 bar, from coal-based hydrogen, at fuelling station
+liquid fossil fuels:
+  lhv:
+    unit: megajoule
+    value: 43
+  co2: 0.0732
+  biogenic_share: 0
+  iam_aliases:
+    gcam: Secondary Energy|Production|Refined Liquids|Oil
+    remind: SE|Liquids|Fossil|+|Oil
+    remind-eu: SE|Liquids|Fossil|+|Oil
+    image: Secondary Energy|Consumption|Liquids|Fossil
+    message: Secondary Energy|Liquids|Oil|Fuel
+    witch: Secondary Energy|Liquids|Fossil|Oil
+diesel:
+  lhv:
+    unit: megajoule
+    value: 43.0
+  co2: 0.0732
+  biogenic_share: 0
+  iam_aliases:
+    tiam-ucl: Secondary Energy|Liquids|Oil|Diesel
+    gcam: Secondary Energy|Production|Refined Liquids|Oil|Diesel
+    remind: SE|Liquids|Fossil|+|Oil|Diesel
+    remind-eu: SE|Liquids|Fossil|+|Oil|Diesel
+    image: Secondary Energy|Consumption|Liquids|Fossil|Diesel
+    message: Secondary Energy|Liquids|Oil|Fuel|Diesel
+    witch: Secondary Energy|Liquids|Fossil|Oil|Diesel
+  eff_aliases:
+    gcam: Efficiency|Refined Liquids|Oil
+    remind: Tech|Liquids|Fossil|Oil|Efficiency
+    remind-eu: Tech|Liquids|Fossil|Oil|Efficiency
+  ecoinvent_aliases:
+    fltr:
+      name:
+      - diesel production
+      - petroleum refinery operation
+      reference product:
+      - diesel
+    mask:
+      name:
+      - import
+      - synthetic
+      - burned
+      - methanol
+      - electric
+      - biodiesel
+      - generator
+      - capture
+      - CCS
+      - period
+      - market
+gasoline:
+  lhv:
+    unit: megajoule
+    value: 42.6
+  co2: 0.0737
+  biogenic_share: 0
+  iam_aliases:
+    tiam-ucl: Secondary Energy|Liquids|Oil|Gasoline
+    gcam: Secondary Energy|Production|Refined Liquids|Oil|Gasoline
+    remind: SE|Liquids|Fossil|+|Oil|Gasoline
+    remind-eu: SE|Liquids|Fossil|+|Oil|Gasoline
+    image: Secondary Energy|Consumption|Liquids|Fossil|Gasoline
+    message: Secondary Energy|Liquids|Oil|Fuel|Gasoline
+    witch: Secondary Energy|Liquids|Fossil|Oil|Gasoline
+  eff_aliases:
+    gcam: Efficiency|Refined Liquids|Oil
+    remind: Tech|Liquids|Fossil|Oil|Efficiency
+    remind-eu: Tech|Liquids|Fossil|Oil|Efficiency
+  ecoinvent_aliases:
+    fltr:
+      reference product:
+      - petrol, low-sulfur
+      - petrol, unleaded
+      name:
+      - petrol production
+      - petroleum refinery operation
+    mask:
+      name:
+      - import
+      - synthetic
+      - burned
+      - ETBE
+      - period
+      - market
+petrol, 5% ethanol:
+  lhv:
+    unit: megajoule
+    value: 41.7
+  co2: 0.0735
+  biogenic_share: 0.05
+  ecoinvent_aliases:
+    fltr: petrol, 5% ethanol
+syngas:
+  lhv:
+    unit: megajoule
+    value: 23.9
+  biogenic_share: 0
+  ecoinvent_aliases:
+    fltr: syngas, RWGS
+petrol, synthetic, from electrolysis:
+  lhv:
+    unit: megajoule
+    value: 42.6
+  co2: 0.0737
+  eff_aliases:
+    gcam: Efficiency|Refined Liquids|Biomass|BTL hydrogen
+  iam_aliases:
+    gcam: Secondary Energy|Production|Biomass|BTL hydrogen
+    remind: SE|Liquids|+|Hydrogen
+    remind-eu: SE|Liquids|+|Hydrogen
+    witch: Secondary Energy|Liquids|Hydrogen|Electricity
+  biogenic_share: 1
+  ecoinvent_aliases:
+    fltr:
+    - gasoline production, from methanol, hydrogen from electrolysis, CO2 from DAC,
+      energy allocation
+petrol, synthetic, from coal:
+  lhv:
+    unit: megajoule
+    value: 42.6
+  co2: 0.0737
+  biogenic_share: 0
+  eff_aliases:
+    gcam: Efficiency|Coal to Liquids|w/oCCS
+  iam_aliases:
+    gcam: Secondary Energy|Production|Coal to Liquids|w/oCCS
+    remind: SE|Liquids|Fossil|Coal|+|w/o CC
+    remind-eu: SE|Liquids|Fossil|Coal|+|w/o CC
+    message: Secondary Energy|Liquids|Coal|MTG|w/o CCS
+    witch: Secondary Energy|Liquids|Hydrogen|Fossil w/o CCS
+  ecoinvent_aliases:
+    fltr:
+    - gasoline production, from methanol, hydrogen from coal gasification, energy
+      allocation
+petrol, synthetic, from coal, with CCS:
+  lhv:
+    unit: megajoule
+    value: 42.6
+  co2: 0.0737
+  biogenic_share: 0
+  eff_aliases:
+    gcam: Efficiency|Coal to Liquids|w/CCS
+  iam_aliases:
+    gcam: Secondary Energy|Production|Coal to Liquids|w/CCS
+    remind: SE|Liquids|Fossil|Coal|+|w/ CC
+    remind-eu: SE|Liquids|Fossil|Coal|+|w/ CC
+    message: Secondary Energy|Liquids|Coal|MTG|w/ CCS
+    witch: Secondary Energy|Liquids|Hydrogen|Fossil w/ CCS
+  ecoinvent_aliases:
+    fltr:
+    - gasoline production, from methanol, hydrogen from coal gasification, with CCS,
+      energy allocation
+diesel, synthetic, from electrolysis:
+  lhv:
+    unit: megajoule
+    value: 43
+  co2: 0.0732
+  biogenic_share: 1
+  eff_aliases:
+    gcam: Efficiency|Hydrogen|Electrolysis
+  iam_aliases:
+    tiam-ucl: Secondary Energy|Liquids|Hydrogen|Diesel
+    gcam: Secondary Energy|Production|Hydrogen|Electrolysis
+    remind: SE|Liquids|+|Hydrogen
+    remind-eu: SE|Liquids|+|Hydrogen
+    witch: Secondary Energy|Liquids|Hydrogen|Electricity
+  ecoinvent_aliases:
+    fltr:
+    - diesel production, synthetic, Fischer Tropsch process, hydrogen from electrolysis,
+      energy allocation
+    - diesel production, from methanol, hydrogen from electrolysis, CO2 from DAC,
+      energy allocation
+diesel, synthetic, from coal:
+  lhv:
+    unit: megajoule
+    value: 43
+  co2: 0.0732
+  biogenic_share: 0
+  eff_aliases:
+    tiam-ucl: Efficiency|Liquids|Coal|FT fuel mix (diesel, kerosene, naptha, ELC)|w/o
+      CCS
+    gcam: Efficiency|Coal to Liquids|w/oCCS
+  iam_aliases:
+    tiam-ucl: Secondary Energy|Liquids|Coal|FT|Diesel|w/o CCS
+    gcam: Secondary Energy|Production|Coal to Liquids|w/oCCS
+    remind: SE|Liquids|Fossil|Coal|+|w/o CC
+    remind-eu: SE|Liquids|Fossil|Coal|+|w/o CC
+    message: Secondary Energy|Liquids|Coal|FT|w/o CCS
+    witch: Secondary Energy|Liquids|Hydrogen|Fossil w/o CCS
+  ecoinvent_aliases:
+    fltr:
+    - diesel production, synthetic, Fischer Tropsch process, hydrogen from coal gasification,
+      energy allocation
+    - diesel production, from methanol, hydrogen from coal gasification, energy allocation
+diesel, synthetic, from coal, with CCS:
+  lhv:
+    unit: megajoule
+    value: 43
+  co2: 0.0732
+  biogenic_share: 0
+  eff_aliases:
+    tiam-ucl: Efficiency|Liquids|Coal|FT fuel mix (diesel, kerosene, naptha, ELC)|w
+      CCS
+    gcam: Efficiency|Coal to Liquids|w/CCS
+  iam_aliases:
+    tiam-ucl: Secondary Energy|Liquids|Coal|FT|Diesel|w CCS
+    gcam: Secondary Energy|Production|Coal to Liquids|w/CCS
+    remind: SE|Liquids|Fossil|Coal|+|w/ CC
+    remind-eu: SE|Liquids|Fossil|Coal|+|w/ CC
+    message: Secondary Energy|Liquids|Coal|FT|w/ CCS
+    witch: Secondary Energy|Liquids|Hydrogen|Fossil w/ CCS
+  ecoinvent_aliases:
+    fltr:
+    - diesel production, synthetic, Fischer Tropsch process, hydrogen from coal gasification,
+      with CCS, energy allocation
+    - diesel production, from methanol, hydrogen from coal gasification, with CCS,
+      energy allocation
+diesel, synthetic, from wood:
+  lhv:
+    unit: megajoule
+    value: 43
+  co2: 0.0732
+  biogenic_share: 1
+  iam_aliases:
+    tiam-ucl: Secondary Energy|Liquids|Biomass|FT|Diesel|w/o CCS
+    gcam: Secondary Energy|Production|Refined Liquids|Biomass|FT Biofuels|w/oCCS
+    remind: SE|Liquids|Biomass|BioFTR|w/o CC
+    remind-eu: SE|Liquids|Biomass|BioFTR|w/o CC
+    image: Secondary Energy|Consumption|Liquids|Biomass|FT Diesel|Woody|w/oCCS
+    message: Secondary Energy|Liquids|Biomass|FT|w/o CCS
+  eff_aliases:
+    tiam-ucl: Efficiency|Liquids|Biomass|FT fuel mix (diesel, kerosene, naptha, ELC)|w/o
+      CCS
+    gcam: Efficiency|Refined Liquids|Biomass|FT Biofuels|w/oCCS
+    image: Efficiency|Liquids|Biomass|FT Diesel|Woody|w/o CCS
+  ecoinvent_aliases:
+    fltr:
+    - diesel production, synthetic, Fischer Tropsch process, hydrogen from wood gasification,
+      energy allocation
+diesel, synthetic, from wood, with CCS:
+  lhv:
+    unit: megajoule
+    value: 43
+  co2: 0.0732
+  biogenic_share: 1
+  iam_aliases:
+    tiam-ucl: Secondary Energy|Liquids|Biomass|FT|Diesel|w CCS
+    gcam: Secondary Energy|Production|Refined Liquids|Biomass|FT Biofuels|w/CCS
+    remind: SE|Liquids|Biomass|BioFTR|w/ CC
+    remind-eu: SE|Liquids|Biomass|BioFTR|w/ CC
+    image: Secondary Energy|Consumption|Liquids|Biomass|FT Diesel|Woody|w/CCS
+    message: Secondary Energy|Liquids|Biomass|FT|w/ CCS
+  eff_aliases:
+    tiam-ucl: Efficiency|Liquids|Biomass|FT fuel mix (diesel, kerosene, naptha, ELC)|w
+      CCS
+    gcam: Efficiency|Refined Liquids|Biomass|FT Biofuels|w/CCS
+    image: Efficiency|Liquids|Biomass|FT Diesel|Woody|w/ CCS
+  ecoinvent_aliases:
+    fltr:
+    - diesel production, synthetic, Fischer Tropsch process, hydrogen from wood gasification,
+      with CCS, energy allocation
+diesel, synthetic, from grass:
+  lhv:
+    unit: megajoule
+    value: 43
+  co2: 0.0732
+  biogenic_share: 1
+  iam_aliases:
+    image: Secondary Energy|Consumption|Liquids|Biomass|FT Diesel|Grassy|w/oCCS
+  eff_aliases:
+    gcam: Efficiency|Refined Liquids|Biomass|FT Biofuels|w/oCCS
+    image: Efficiency|Liquids|Biomass|FT Diesel|Woody|w/o CCS
+  ecoinvent_aliases:
+    fltr:
+    - diesel production, synthetic, Fischer Tropsch process, hydrogen from wood gasification,
+      energy allocation
+diesel, synthetic, from grass, with CCS:
+  lhv:
+    unit: megajoule
+    value: 43
+  co2: 0.0732
+  biogenic_share: 1
+  iam_aliases:
+    image: Secondary Energy|Consumption|Liquids|Biomass|FT Diesel|Grassy|w/CCS
+  eff_aliases:
+    gcam: Efficiency|Refined Liquids|Biomass|FT Biofuels|w/CCS
+    image: Efficiency|Liquids|Biomass|FT Diesel|Woody|w/ CCS
+  ecoinvent_aliases:
+    fltr:
+    - diesel production, synthetic, Fischer Tropsch process, hydrogen from wood gasification,
+      with CCS, energy allocation
+diesel, synthetic, from natural gas:
+  lhv:
+    unit: megajoule
+    value: 43
+  co2: 0.0732
+  biogenic_share: 0
+  iam_aliases:
+    tiam-ucl: Secondary Energy|Liquids|Natural Gas|FT|Diesel|w/o CCS
+  eff_aliases:
+    tiam-ucl: Efficiency|Liquids|Natural gas|FT fuel mix (diesel, kerosene, naptha,
+      ELC)|w/o CCS
+  ecoinvent_aliases:
+    fltr:
+    - diesel production, synthetic, Fischer Tropsch process, from natural gas, energy
+      allocation
+    mask: carbon capture
+diesel, synthetic, from natural gas, with CCS:
+  lhv:
+    unit: megajoule
+    value: 43
+  co2: 0.0732
+  biogenic_share: 0
+  iam_aliases:
+    tiam-ucl: Secondary Energy|Liquids|Natural Gas|FT|Diesel|w CCS
+  eff_aliases:
+    tiam-ucl: Efficiency|Liquids|Natural gas|FT fuel mix (diesel, kerosene, naptha,
+      ELC)|w CCS
+  ecoinvent_aliases:
+    fltr:
+    - diesel production, synthetic, Fischer Tropsch process, from natural gas, energy
+      allocation, with carbon capture and storage
+heat, from hydrogen:
+  lhv:
+    unit: megajoule
+    value: 1
+hydrogen, from petroleum:
+  lhv:
+    unit: megajoule
+    value: 120
+  co2: 0
+  biogenic_share: 1
+  ecoinvent_aliases:
+    fltr:
+    - hydrogen production, gaseous, petroleum refinery operation
+    mask: CCS
+hydrogen, from electrolysis, PEM:
+  lhv:
+    unit: megajoule
+    value: 120
+  co2: 0
+  biogenic_share: 1
+  iam_aliases:
+    tiam-ucl: Secondary Energy|Hydrogen|Electrolysis|Hydrogen
+    gcam: Secondary Energy|Production|Hydrogen|Electrolysis
+    remind: SE|Hydrogen|+|Electricity
+    remind-eu: SE|Hydrogen|+|Electricity
+    image:
+    - Secondary Energy|Hydrogen|Electricity|Base-load electrolysis
+    - Secondary Energy|Hydrogen|Electricity|Curtailments electrolysis
+    message: Secondary Energy|Hydrogen|Electricity
+    witch: Secondary Energy|Hydrogen|Electricity|Pem
+  eff_aliases:
+    gcam: Efficiency|Hydrogen|Electrolysis
+    remind: Tech|Hydrogen|Electricity|Efficiency
+    remind-eu: Tech|Hydrogen|Electricity|Efficiency
+    tiam-ucl: Efficiency|Hydrogen|Electrolysis
+    witch: Efficiency|Hydrogen|Electricity|Pem
+  ecoinvent_aliases:
+    fltr: hydrogen production, gaseous, 30 bar, from PEM electrolysis, from grid electricity
+    mask:
+    - carbon dioxide
+hydrogen, from electrolysis, PEM, from CSP:
+  lhv:
+    unit: megajoule
+    value: 120
+  co2: 0
+  biogenic_share: 1
+  iam_aliases:
+    image: Secondary Energy|Hydrogen|Electricity|PEM Electrolyzer w/ CSP
+  ecoinvent_aliases:
+    fltr: hydrogen production, gaseous, 30 bar, from PEM electrolysis, from concentrated
+      solar electricity
+    mask:
+    - carbon dioxide
+hydrogen, from electrolysis, PEM, from Solar PV:
+  lhv:
+    unit: megajoule
+    value: 120
+  co2: 0
+  biogenic_share: 1
+  iam_aliases:
+    image: Secondary Energy|Hydrogen|Electricity|PEM Electrolyzer w/ PV
+  ecoinvent_aliases:
+    fltr: hydrogen production, gaseous, 30 bar, from PEM electrolysis, from open ground solar
+      photovoltaic electricity
+    mask:
+    - carbon dioxide
+hydrogen, from electrolysis, PEM, from onshore wind:
+  lhv:
+    unit: megajoule
+    value: 120
+  co2: 0
+  biogenic_share: 1
+  iam_aliases:
+    image: Secondary Energy|Hydrogen|Electricity|PEM Electrolyzer w/ Onshore Wind
+  ecoinvent_aliases:
+    fltr: hydrogen production, gaseous, 30 bar, from PEM electrolysis, from onshore
+      wind electricity
+    mask:
+    - carbon dioxide
+hydrogen, from electrolysis, PEM, from offshore wind:
+  lhv:
+    unit: megajoule
+    value: 120
+  co2: 0
+  biogenic_share: 1
+  iam_aliases:
+    image: Secondary Energy|Hydrogen|Electricity|PEM Electrolyzer w/ Offnshore Wind
+  ecoinvent_aliases:
+    fltr: hydrogen production, gaseous, 30 bar, from PEM electrolysis, from offshore
+      wind electricity
+    mask:
+    - carbon dioxide
+hydrogen, from electrolysis, PEM, from geothermal:
+  lhv:
+    unit: megajoule
+    value: 120
+  co2: 0
+  biogenic_share: 1
+  iam_aliases:
+    image: Secondary Energy|Hydrogen|Electricity|PEM Electrolyzer w/ Geothermal
+  ecoinvent_aliases:
+    fltr: hydrogen production, gaseous, 30 bar, from PEM electrolysis, from geothermal
+      electricity
+    mask:
+    - carbon dioxide
+
+hydrogen, from electrolysis, PEM, from hydropower:
+  lhv:
+    unit: megajoule
+    value: 120
+  co2: 0
+  biogenic_share: 1
+  ecoinvent_aliases:
+    fltr: hydrogen production, gaseous, 30 bar, from PEM electrolysis, from hydropower electricity
+    mask:
+    - carbon dioxide
+
+hydrogen, from electrolysis, AEC:
+  lhv:
+    unit: megajoule
+    value: 120
+  co2: 0
+  biogenic_share: 1
+  ecoinvent_aliases:
+    fltr: hydrogen production, gaseous, 20 bar, from AEC electrolysis, from grid electricity
+    mask:
+    - carbon dioxide
+hydrogen, from electrolysis, SOEC:
+  lhv:
+    unit: megajoule
+    value: 120
+  co2: 0
+  biogenic_share: 1
+  iam_aliases:
+    witch: Secondary Energy|Hydrogen|Electricity|Soec
+  eff_aliases:
+    witch: Efficiency|Hydrogen|Electricity|Soec
+  ecoinvent_aliases:
+    fltr: hydrogen production, gaseous, 1 bar, from SOEC electrolysis, from grid electricity
+    mask:
+    - steam
+    - carbon dioxide
+hydrogen, from solar:
+  lhv:
+    unit: megajoule
+    value: 120
+  co2: 0
+  biogenic_share: 1
+  eff_aliases:
+    gcam: Efficiency|Hydrogen|Solar
+  iam_aliases:
+    gcam: Secondary Energy|Production|Hydrogen|Solar
+  ecoinvent_aliases:
+    fltr:
+    - hydrogen production, gaseous, 25 bar, from thermochemical water splitting, at
+      solar tower
+hydrogen, from pyrolysis:
+  lhv:
+    unit: megajoule
+    value: 120
+  co2: 0
+  biogenic_share: 1
+  ecoinvent_aliases:
+    fltr:
+    - hydrogen production, gaseous, 100 bar, from methane pyrolysis
+hydrogen, from biomass:
+  lhv:
+    unit: megajoule
+    value: 120
+  co2: 0
+  biogenic_share: 1
+  iam_aliases:
+    tiam-ucl: Secondary Energy|Hydrogen|Biomass|Hydrogen|w/o CCS
+    gcam: Secondary Energy|Production|Hydrogen|Biomass|w/oCCS
+    remind: SE|Hydrogen|Biomass|+|w/o CC
+    remind-eu: SE|Hydrogen|Biomass|+|w/o CC
+    image: Secondary Energy|Hydrogen|Biomass|w/o CCS
+    message: Secondary Energy|Hydrogen|Biomass|w/o CCS
+  eff_aliases:
+    gcam: Efficiency|Hydrogen|Biomass|w/oCCS
+    remind: Tech|Hydrogen|Biomass|w/o CC|Efficiency
+    remind-eu: Tech|Hydrogen|Biomass|w/o CC|Efficiency
+  ecoinvent_aliases:
+    fltr:
+    - hydrogen production, gaseous, 25 bar, from gasification of woody biomass in
+      entrained flow gasifier, at gasification plant
+hydrogen, from biomass, with CCS:
+  lhv:
+    unit: megajoule
+    value: 120
+  co2: 0
+  biogenic_share: 1
+  iam_aliases:
+    tiam-ucl: Secondary Energy|Hydrogen|Biomass|Hydrogen|w CCS
+    gcam: Secondary Energy|Production|Hydrogen|Biomass|w/CCS
+    remind: SE|Hydrogen|Biomass|+|w/ CC
+    remind-eu: SE|Hydrogen|Biomass|+|w/ CC
+    image: Secondary Energy|Hydrogen|Biomass|w/ CCS
+    message: Secondary Energy|Hydrogen|Biomass|w/ CCS
+  eff_aliases:
+    gcam: Efficiency|Hydrogen|Biomass|w/CCS
+    remind: Tech|Hydrogen|Biomass|w/ CC|Efficiency
+    remind-eu: Tech|Hydrogen|Biomass|w/ CC|Efficiency
+  ecoinvent_aliases:
+    fltr:
+    - hydrogen production, gaseous, 25 bar, from gasification of woody biomass in
+      entrained flow gasifier, with CCS, at gasification plant
+hydrogen, from coal:
+  lhv:
+    unit: megajoule
+    value: 120
+  co2: 0
+  biogenic_share: 0
+  iam_aliases:
+    tiam-ucl: Secondary Energy|Hydrogen|Coal|Hydrogen|w/o CCS
+    remind: SE|Hydrogen|Coal|+|w/o CC
+    remind-eu: SE|Hydrogen|Coal|+|w/o CC
+    image: Secondary Energy|Hydrogen|Coal|w/o CCS
+    message: Secondary Energy|Hydrogen|Coal|w/o CCS
+  eff_aliases:
+    remind: Tech|Hydrogen|Coal|w/o CC|Efficiency
+    remind-eu: Tech|Hydrogen|Coal|w/o CC|Efficiency
+  ecoinvent_aliases:
+    fltr:
+      name: hydrogen production, coal gasification
+      reference product: hydrogen, gaseous
+    mask:
+    - CCS
+    - heat
+    - sulfur
+hydrogen, from coal, with CCS:
+  lhv:
+    unit: megajoule
+    value: 120
+  co2: 0
+  biogenic_share: 0
+  iam_aliases:
+    tiam-ucl: Secondary Energy|Hydrogen|Coal|Hydrogen|w CCS
+    gcam: Secondary Energy|Production|Hydrogen|Coal|w/CCS
+    remind: SE|Hydrogen|Coal|+|w/ CC
+    remind-eu: SE|Hydrogen|Coal|+|w/ CC
+    image: Secondary Energy|Hydrogen|Coal|w/ CCS
+    message: Secondary Energy|Hydrogen|Coal|w/ CCS
+  eff_aliases:
+    gcam: Efficiency|Hydrogen|Coal|w/CCS
+    remind: Tech|Hydrogen|Coal|w/ CC|Efficiency
+    remind-eu: Tech|Hydrogen|Coal|w/ CC|Efficiency
+  ecoinvent_aliases:
+    fltr: hydrogen production, coal gasification, with CCS
+hydrogen, from natural gas:
+  lhv:
+    unit: megajoule
+    value: 120
+  co2: 0
+  biogenic_share: 0
+  iam_aliases:
+    tiam-ucl: Secondary Energy|Hydrogen|Natural Gas|Hydrogen|w/o CCS
+    gcam: Secondary Energy|Production|Hydrogen|Gas|w/oCCS
+    remind: SE|Hydrogen|Gas|+|w/o CC
+    remind-eu: SE|Hydrogen|Gas|+|w/o CC
+    image: Secondary Energy|Hydrogen|Gas|w/o CCS
+    message: Secondary Energy|Hydrogen|Gas|w/o CCS
+    witch: Secondary Energy|Hydrogen|Gas|w/o CCS
+  eff_aliases:
+    gcam: Efficiency|Hydrogen|Gas|w/oCCS
+    remind: Tech|Hydrogen|Gas|w/o CC|Efficiency
+    remind-eu: Tech|Hydrogen|Gas|w/o CC|Efficiency
+    witch: Efficiency|Hydrogen|Gas|w/o CCS
+  ecoinvent_aliases:
+    fltr:
+      name: hydrogen production, steam methane reforming
+      reference product: hydrogen, gaseous
+    mask:
+      name:
+      - biomethane
+      - CCS
+hydrogen, from natural gas, with CCS:
+  lhv:
+    unit: megajoule
+    value: 120
+  co2: 0
+  biogenic_share: 0
+  iam_aliases:
+    gcam: Secondary Energy|Production|Hydrogen|Gas|w/CCS
+    remind: SE|Hydrogen|Gas|+|w/ CC
+    remind-eu: SE|Hydrogen|Gas|+|w/ CC
+    image: Secondary Energy|Hydrogen|Gas|w/ CCS
+    message: Secondary Energy|Hydrogen|Gas|w/o CCS
+    witch: Secondary Energy|Hydrogen|Gas|w/ CCS
+  eff_aliases:
+    gcam: Efficiency|Hydrogen|Gas|w/CCS
+    remind: Tech|Hydrogen|Gas|w/ CC|Efficiency
+    remind-eu: Tech|Hydrogen|Gas|w/ CC|Efficiency
+    witch: Efficiency|Hydrogen|Gas|w/ CCS
+  ecoinvent_aliases:
+    fltr: hydrogen production, steam methane reforming, with CCS
+hydrogen, from biogas:
+  lhv:
+    unit: megajoule
+    value: 120
+  co2: 0
+  biogenic_share: 1
+  ecoinvent_aliases:
+    fltr: hydrogen production, steam methane reforming, from biomethane
+    mask:
+      name:
+      - CCS
+hydrogen, from biogas, with CCS:
+  lhv:
+    unit: megajoule
+    value: 120
+  co2: 0
+  biogenic_share: 1
+  ecoinvent_aliases:
+    fltr:
+    - hydrogen production, steam methane reforming, from biomethane, with CCS
+hydrogen, from oil:
+  lhv:
+    unit: megajoule
+    value: 120
+  co2: 0
+  biogenic_share: 1
+  ecoinvent_aliases:
+    fltr:
+    - hydrogen production, gaseous, petroleum refinery operation
+    mask: CCS
+  iam_aliases:
+    image: Secondary Energy|Hydrogen|Oil w/o CCS
+hydrogen, from oil, with CCS:
+  lhv:
+    unit: megajoule
+    value: 120
+  co2: 0
+  biogenic_share: 1
+  ecoinvent_aliases:
+    fltr:
+    - hydrogen production, gaseous, petroleum refinery operation, with CCS
+    iam_aliases:
+      image: Secondary Energy|Hydrogen|Oil w/CCS
+hydrogen:
+  lhv:
+    unit: megajoule
+    value: 120
+  co2: 0
+  biogenic_share: 1
+biodiesel, from oil crops:
+  lhv:
+    unit: megajoule
+    value: 38
+  co2: 0.0734
+  biogenic_share: 1
+  iam_aliases:
+    tiam-ucl: Secondary Energy|Liquids|Biomass|Biodiesel|w/o CCS
+    gcam: Secondary Energy|Production|Refined Liquids|Biomass|Biodiesel
+    remind: SE|Liquids|Biomass|Non-Cellulosic|+|Oil-based
+    remind-eu: SE|Liquids|Biomass|Non-Cellulosic|+|Oil-based
+    image: Secondary Energy|Consumption|Liquids|Biomass|Biodiesel|Oilcrops|w/oCCS
+  eff_aliases:
+    tiam-ucl: Efficiency|Liquids|Biomass|FT fuel mix (diesel, kerosene, naptha, ELC)|w/o
+      CCS
+    gcam: Efficiency|Refined Liquids|Biomass|Biodiesel
+    remind: Tech|Liquids|Biomass|Biodiesel|Efficiency
+    remind-eu: Tech|Liquids|Biomass|Biodiesel|Efficiency
+    image: Efficiency|Liquids|Biomass|Biodiesel|Oilcrops|w/o CCS
+  ecoinvent_aliases:
+    fltr:
+      name:
+      - biodiesel production, via transesterification, from rapeseed oil
+    mask:
+      name:
+      - expansion
+      - economic
+      - capture
+      - station
+      - algae
+      - palm
+biodiesel, from oil crops, with CCS:
+  lhv:
+    unit: megajoule
+    value: 38
+  co2: 0.0734
+  biogenic_share: 1
+  iam_aliases:
+    tiam-ucl: Secondary Energy|Liquids|Biomass|Biodiesel|w CCS
+    image: Secondary Energy|Consumption|Liquids|Biomass|Biodiesel|Oilcrops|w/CCS
+  eff_aliases:
+    tiam-ucl: Efficiency|Liquids|Biomass|FT fuel mix (diesel, kerosene, naptha, ELC)|w
+      CCS
+    image: Efficiency|Liquids|Biomass|Biodiesel|Oilcrops|w/ CCS
+  ecoinvent_aliases:
+    fltr:
+      name:
+      - biodiesel production, via transesterification, from used cooking oil, with
+        carbon capture and storage
+    mask:
+      name:
+      - expansion
+      - economic
+      - station
+bioethanol, from wood:
+  lhv:
+    unit: megajoule
+    value: 26.5
+  co2: 0.0739
+  biogenic_share: 1
+  iam_aliases:
+    gcam: Secondary Energy|Production|Refined Liquids|Biomass|Ethanol|Cellulose|w/oCCS
+    remind: SE|Liquids|Biomass|Cellulosic|++|Energy Crops
+    remind-eu: SE|Liquids|Biomass|Cellulosic|++|Energy Crops
+    image: Secondary Energy|Consumption|Liquids|Biomass|Ethanol|Woody|w/oCCS
+    message: Secondary Energy|Liquids|Biomass|Ethanol|w/o CCS
+    witch: Secondary Energy|Liquids|Biomass|Energy Crops
+  eff_aliases:
+    gcam: Efficiency|Refined Liquids|Biomass|Ethanol|Cellulose|w/oCCS
+    remind: Tech|Liquids|Biomass|Lignocellulosic Ethanol|Efficiency
+    remind-eu: Tech|Liquids|Biomass|Lignocellulosic Ethanol|Efficiency
+    image: Efficiency|Liquids|Biomass|Ethanol|Woody|w/o CCS
+  ecoinvent_aliases:
+    fltr:
+      name:
+      - ethanol production, via fermentation, from forest
+      - ethanol production, via fermentation, from eucalyptus
+      - ethanol production, via fermentation, from poplar
+      - ethanol production, via fermentation, from willow
+      - ethanol production from wood
+      reference product: ethanol
+    mask:
+      name:
+      - expansion
+      - economic
+      - capture
+      - station
+      - plant
+      - processing
+      - synthetic
+      - dewatering
+      - hydration
+bioethanol, from wood, with CCS:
+  lhv:
+    unit: megajoule
+    value: 26.5
+  co2: 0.0739
+  biogenic_share: 1
+  iam_aliases:
+    gcam: Secondary Energy|Production|Refined Liquids|Biomass|Ethanol|Cellulose|w/CCS
+    remind: SE|Liquids|Biomass|Cellulosic|+|w/ CC
+    remind-eu: SE|Liquids|Biomass|Cellulosic|+|w/ CC
+    image: Secondary Energy|Consumption|Liquids|Biomass|Ethanol|Woody|w/CCS
+    message: Secondary Energy|Liquids|Biomass|Ethanol|w/ CCS
+  eff_aliases:
+    gcam: Efficiency|Refined Liquids|Biomass|Ethanol|Cellulose|w/CCS
+    remind: Tech|Liquids|Biomass|Lignocellulosic Ethanol|Efficiency
+    remind-eu: Tech|Liquids|Biomass|Lignocellulosic Ethanol|Efficiency
+    image: Efficiency|Liquids|Biomass|Ethanol|Woody|w/ CCS
+  ecoinvent_aliases:
+    fltr:
+    - ethanol production, via fermentation, from forest, with carbon capture and storage
+    - ethanol production, via fermentation, from eucalyptus, with carbon capture and
+      storage
+    - ethanol production, via fermentation, from poplar, with carbon capture and storage
+    mask:
+      name:
+      - expansion
+      - economic
+      - station
+      - plant
+      - processing
+      - synthetic
+bioethanol, from residues:
+  lhv:
+    unit: megajoule
+    value: 26.5
+  co2: 0.0739
+  biogenic_share: 1
+  iam_aliases:
+    remind: SE|Liquids|Biomass|Cellulosic|++|Residues
+    remind-eu: SE|Liquids|Biomass|Cellulosic|++|Residues
+  eff_aliases:
+    remind: Tech|Liquids|Biomass|Biodiesel|Efficiency
+    remind-eu: Tech|Liquids|Biomass|Biodiesel|Efficiency
+  ecoinvent_aliases:
+    fltr:
+      name: ethanol production, via fermentation, from forest residues, energy allocation
+bioethanol, from grass:
+  lhv:
+    unit: megajoule
+    value: 26.5
+  co2: 0.0739
+  biogenic_share: 1
+  iam_aliases:
+    remind: SE|Liquids|Biomass|++|Non-Cellulosic
+    remind-eu: SE|Liquids|Biomass|++|Non-Cellulosic
+    image: Secondary Energy|Consumption|Liquids|Biomass|Ethanol|Grassy|w/oCCS
+  eff_aliases:
+    remind: Tech|Liquids|Biomass|Lignocellulosic Ethanol|Efficiency
+    remind-eu: Tech|Liquids|Biomass|Lignocellulosic Ethanol|Efficiency
+    image: Efficiency|Liquids|Biomass|Ethanol|Grassy|w/o CCS
+  ecoinvent_aliases:
+    fltr:
+      name:
+      - ethanol production, via fermentation, from switchgrass
+      - ethanol production, via fermentation, from miscanthus
+      - ethanol production, via fermentation, from sorghum
+      - ethanol production from grass
+      - ethanol production from sweet sorghum
+      reference product: ethanol
+    mask:
+      name:
+      - expansion
+      - economic
+      - capture
+      - station
+      - plant
+      - processing
+      - synthetic
+      - dewatering
+      - hydration
+bioethanol, from grass, with CCS:
+  lhv:
+    unit: megajoule
+    value: 26.5
+  co2: 0.0739
+  biogenic_share: 1
+  iam_aliases:
+    image: Secondary Energy|Consumption|Liquids|Biomass|Ethanol|Grassy|w/CCS
+  eff_aliases:
+    image: Efficiency|Liquids|Biomass|Ethanol|Grassy|w/ CCS
+  ecoinvent_aliases:
+    fltr:
+    - ethanol production, via fermentation, from switchgrass, with carbon capture
+      and storage
+    - ethanol production, via fermentation, from miscanthus, with carbon capture and
+      storage
+    - ethanol production, via fermentation, from sorghum, with carbon capture and
+      storage
+    mask:
+      name:
+      - expansion
+      - economic
+      - station
+      - plant
+      - processing
+      - synthetic
+bioethanol, from grain:
+  lhv:
+    unit: megajoule
+    value: 26.5
+  co2: 0.0739
+  biogenic_share: 1
+  iam_aliases:
+    gcam: Secondary Energy|Production|Refined Liquids|Biomass|Ethanol|Corn
+    image: Secondary Energy|Consumption|Liquids|Biomass|Ethanol|Maize|w/oCCS
+  eff_aliases:
+    gcam: Efficiency|Refined Liquids|Biomass|Ethanol|Corn
+    image: Efficiency|Liquids|Biomass|Ethanol|Maize|w/o CCS
+  ecoinvent_aliases:
+    fltr:
+      name:
+      - ethanol production, via fermentation, from wheat grains
+      - ethanol production, via fermentation, from corn
+      - ethanol production from rye
+      - ethanol production from maize
+      reference product: ethanol
+    mask:
+      name:
+      - expansion
+      - economic
+      - carbon
+      - stover
+      - capture
+      - construction
+      - dewatering
+      - station
+      - plant
+      - processing
+      - synthetic
+      - hydration
+      - starch
+bioethanol, from grain, with CCS:
+  lhv:
+    unit: megajoule
+    value: 26.5
+  co2: 0.0739
+  biogenic_share: 1
+  iam_aliases:
+    image: Secondary Energy|Consumption|Liquids|Biomass|Ethanol|Maize|w/CCS
+  eff_aliases:
+    image: Efficiency|Liquids|Biomass|Ethanol|Maize|w/ CCS
+  ecoinvent_aliases:
+    fltr:
+    - ethanol production, via fermentation, from corn, with carbon capture and storage
+    mask:
+      name:
+      - expansion
+      - economic
+      - station
+bioethanol, from sugar:
+  lhv:
+    unit: megajoule
+    value: 26.5
+  co2: 0.0739
+  biogenic_share: 1
+  iam_aliases:
+    gcam: Secondary Energy|Production|Refined Liquids|Biomass|Ethanol|Sugar
+    remind: SE|Liquids|Biomass|Non-Cellulosic|+|Sugar and Starch
+    remind-eu: SE|Liquids|Biomass|Non-Cellulosic|+|Sugar and Starch
+    image: Secondary Energy|Consumption|Liquids|Biomass|Ethanol|Sugar|w/oCCS
+    witch: Secondary Energy|Liquids|Biomass|1st Generation
+  eff_aliases:
+    gcam: Efficiency|Refined Liquids|Biomass|Ethanol|Sugar
+    remind: Tech|Liquids|Biomass|Conventional Ethanol|Efficiency
+    remind-eu: Tech|Liquids|Biomass|Conventional Ethanol|Efficiency
+    image: Efficiency|Liquids|Biomass|Ethanol|Sugar|w/o CCS
+  ecoinvent_aliases:
+    fltr:
+      name:
+      - ethanol production, via fermentation, from sugarbeet
+      - ethanol production, via fermentation, from sugarcane
+      - ethanol production from sugar beet
+      reference product: ethanol
+    mask:
+      name:
+      - expansion
+      - economic
+      - straw
+      - capture
+      - station
+      - plant
+      - processing
+      - synthetic
+      - dewatering
+      - hydration
+bioethanol, from sugar, with CCS:
+  lhv:
+    unit: megajoule
+    value: 26.5
+  co2: 0.0739
+  biogenic_share: 1
+  iam_aliases:
+    image: Secondary Energy|Consumption|Liquids|Biomass|Ethanol|Sugar|w/CCS
+  eff_aliases:
+    image: Efficiency|Liquids|Biomass|Ethanol|Sugar|w/ CCS
+  ecoinvent_aliases:
+    fltr:
+    - ethanol production, via fermentation, from sugarbeet, with carbon capture and
+      storage
+    - ethanol production, via fermentation, from sugarcane, with carbon capture and
+      storage
+    mask:
+      name:
+      - expansion
+      - economic
+      - station
+      - plant
+      - processing
+      - synthetic
+ethanol:
+  lhv:
+    unit: megajoule
+    value: 26.5
+  co2: 0.0739
+  biogenic_share: 1
+  ecoinvent_aliases:
+    fltr:
+    - ethanol, without water
+ethyl tert-butyl ether:
+  lhv:
+    unit: megajoule
+    value: 37.97
+  ecoinvent_aliases:
+    fltr:
+    - ethyl tert-butyl ether
+methanol, from wood:
+  lhv:
+    unit: megajoule
+    value: 19.9
+  co2: 0.069
+  biogenic_share: 1
+  iam_aliases:
+    image: Secondary Energy|Consumption|Liquids|Biomass|Methanol|Woody|w/oCCS
+    message: Secondary Energy|Liquids|Biomass|Methanol|w/o CCS
+  eff_aliases:
+    image: Efficiency|Liquids|Biomass|Methanol|Woody|w/o CCS
+  ecoinvent_aliases:
+    fltr:
+      name:
+      - methanol production, from synthetic gas
+      - methanol production, biomass gasification
+methanol, from grass:
+  lhv:
+    unit: megajoule
+    value: 19.9
+  co2: 0.069
+  biogenic_share: 1
+  iam_aliases:
+    image: Secondary Energy|Consumption|Liquids|Biomass|Methanol|Grassy|w/oCCS
+  eff_aliases:
+    image: Efficiency|Liquids|Biomass|Methanol|Grassy|w/o CCS
+  ecoinvent_aliases:
+    fltr:
+    - methanol production, from synthetic gas
+    - methanol production, biomass gasification
+methanol, from wood, with CCS:
+  lhv:
+    unit: megajoule
+    value: 19.9
+  co2: 0.069
+  biogenic_share: 1
+  iam_aliases:
+    image: Secondary Energy|Consumption|Liquids|Biomass|Methanol|Woody|w/CCS
+    message: Secondary Energy|Liquids|Biomass|Methanol|w/ CCS
+  eff_aliases:
+    image: Efficiency|Liquids|Biomass|Methanol|Woody|w/ CCS
+  ecoinvent_aliases:
+    fltr:
+      name:
+      - methanol distillation, from wood, with CCS
+methanol, from grass, with CCS:
+  lhv:
+    unit: megajoule
+    value: 19.9
+  co2: 0.069
+  biogenic_share: 1
+  iam_aliases:
+    image: Secondary Energy|Consumption|Liquids|Biomass|Methanol|Grassy|w/CCS
+  eff_aliases:
+    image: Efficiency|Liquids|Biomass|Methanol|Grassy|w/ CCS
+  ecoinvent_aliases:
+    fltr:
+    - methanol distillation, from wood, with CCS
+liquefied petroleum gas:
+  lhv:
+    unit: megajoule
+    value: 45.5
+  co2: 0.0631
+  biogenic_share: 0
+  ecoinvent_aliases:
+    fltr:
+    - liquefied petroleum gas production, petroleum refinery operation
+    - market for liquefied petroleum gas
+  iam_aliases:
+    tiam-ucl: Secondary Energy|Liquids|Oil|Liquid Petroleum Gas
+liquefied petroleum gas, synthetic, from natural gas:
+  lhv:
+    unit: megajoule
+    value: 45.5
+  co2: 0.0631
+  biogenic_share: 0
+  iam_aliases:
+    tiam-ucl: Secondary Energy|Liquids|Natural Gas|FT|Liquid Petroleum Gas|w/o CCS
+  ecoinvent_aliases:
+    fltr:
+    - liquefied petroleum gas production, synthetic, Fischer Tropsch process, from
+      natural gas, energy allocation
+    mask: carbon capture
+  eff_aliases:
+    tiam-ucl: Efficiency|Liquids|Natural gas|FT fuel mix (diesel, kerosene, naptha,
+      ELC)|w/o CCS
+liquefied petroleum gas, synthetic, from natural gas, with CCS:
+  lhv:
+    unit: megajoule
+    value: 45.5
+  co2: 0.0631
+  biogenic_share: 0
+  iam_aliases:
+    tiam-ucl: Secondary Energy|Liquids|Natural Gas|FT|Liquid Petroleum Gas|w CCS
+  ecoinvent_aliases:
+    fltr:
+    - liquefied petroleum gas production, synthetic, Fischer Tropsch process, from
+      natural gas, energy allocation, with carbon capture and storage
+  eff_aliases:
+    tiam-ucl: Efficiency|Liquids|Natural gas|FT fuel mix (diesel, kerosene, naptha,
+      ELC)|w CCS
+liquefied petroleum gas, synthetic, from biomass:
+  lhv:
+    unit: megajoule
+    value: 45.5
+  co2: 0.0631
+  biogenic_share: 1
+  iam_aliases:
+    tiam-ucl: Secondary Energy|Liquids|Biomass|FT|Liquid Petroleum Gas|w/o CCS
+  ecoinvent_aliases:
+    fltr:
+    - liquefied petroleum gas production, synthetic, Fischer Tropsch process, hydrogen
+      from wood gasification, energy allocation
+    mask: carbon capture
+  eff_aliases:
+    tiam-ucl: Efficiency|Liquids|Biomass|FT fuel mix (diesel, kerosene, naptha, ELC)|w/o
+      CCS
+liquefied petroleum gas, synthetic, from biomass, with CCS:
+  lhv:
+    unit: megajoule
+    value: 45.5
+  co2: 0.0631
+  biogenic_share: 1
+  iam_aliases:
+    tiam-ucl: Secondary Energy|Liquids|Biomass|FT|Liquid Petroleum Gas|w CCS
+  ecoinvent_aliases:
+    fltr:
+    - liquefied petroleum gas production, synthetic, Fischer Tropsch process, hydrogen
+      from wood gasification, energy allocation, with carbon capture and storage
+  eff_aliases:
+    tiam-ucl: Efficiency|Liquids|Biomass|FT fuel mix (diesel, kerosene, naptha, ELC)|w
+      CCS
+liquefied petroleum gas, synthetic, from coal:
+  lhv:
+    unit: megajoule
+    value: 45.5
+  co2: 0.0631
+  biogenic_share: 0
+  ecoinvent_aliases:
+    fltr:
+      name:
+      - Fisher-Tropsch operations
+      - Fischer-Tropsch operations
+      reference product: liquefied petroleum gas
+    mask:
+    - carbon capture
+    - heat
+  iam_aliases:
+    tiam-ucl: Secondary Energy|Liquids|Coal|FT|Liquid Petroleum Gas|w/o CCS
+  eff_aliases:
+    tiam-ucl: Efficiency|Liquids|Coal|FT fuel mix (diesel, kerosene, naptha, ELC)|w/o
+      CCS
+liquefied petroleum gas, synthetic, from coal, with CCS:
+  lhv:
+    unit: megajoule
+    value: 45.5
+  co2: 0.0631
+  biogenic_share: 0
+  iam_aliases:
+    tiam-ucl: Secondary Energy|Liquids|Coal|FT|Liquid Petroleum Gas|w CCS
+  ecoinvent_aliases:
+    fltr:
+    - liquefied petroleum gas production, synthetic, Fischer Tropsch process, from
+      coal, energy allocation, with carbon capture and storage
+  eff_aliases:
+    tiam-ucl: Efficiency|Liquids|Coal|FT fuel mix (diesel, kerosene, naptha, ELC)|w
+      CCS
+uranium, enriched 3.8%:
+  lhv:
+    unit: megajoule
+    value: 4199040
+nuclear fuel element, for boiling water reactor:
+  ecoinvent_aliases:
+    fltr:
+    - nuclear fuel element, for boiling water reactor
+    - market for uranium, enriched 3.8%
+  lhv:
+    unit: megajoule
+    value: 4147200
+nuclear fuel element, for pressure water reactor:
+  lhv:
+    unit: megajoule
+    value: 4579200
+  ecoinvent_aliases:
+    fltr:
+    - nuclear fuel element, for pressure water reactor
+    - market for uranium hexafluoride
+uranium hexafluoride:
+  lhv:
+    unit: megajoule
+    value: 709166
+enriched uranium, 4.2%:
+  lhv:
+    unit: megajoule
+    value: 4579200
+mox fuel element:
+  lhv:
+    unit: megajoule
+    value: 4579200
+heat, from hard coal:
+  lhv:
+    unit: megajoule
+    value: 1
+  co2: 0.098
+  biogenic_share: 0
+heat, from lignite:
+  lhv:
+    unit: megajoule
+    value: 1
+  co2: 0.101
+  biogenic_share: 0
+heat, from petroleum coke:
+  lhv:
+    unit: megajoule
+    value: 1
+  co2: 0.0975
+  biogenic_share: 0
+heat, from wood pellet:
+  lhv:
+    unit: megajoule
+    value: 1
+  co2: 0.112
+  biogenic_share: 1
+heat, from natural gas, high pressure:
+  lhv:
+    unit: megajoule
+    value: 1
+  co2: 0.0564
+  biogenic_share: 0
+heat, from natural gas, low pressure:
+  lhv:
+    unit: megajoule
+    value: 1
+  co2: 0.0564
+  biogenic_share: 0
+heat, from heavy fuel oil:
+  lhv:
+    unit: megajoule
+    value: 1
+  co2: 0.0739
+  biogenic_share: 0
+heat, from light fuel oil:
+  lhv:
+    unit: megajoule
+    value: 1
+  co2: 0.0686
+  biogenic_share: 0
+heat, from biogas:
+  lhv:
+    unit: megajoule
+    value: 1
+  co2: 0.0546
+  biogenic_share: 1
+heat, from waste:
+  lhv:
+    unit: megajoule
+    value: 1
+  co2: 0.0917
+  biogenic_share: 0.34
+heat, from methane, fossil:
+  lhv:
+    unit: megajoule
+    value: 1
+  co2: 0.058
+  biogenic_share: 0
+heat, from methane, biogenic:
+  lhv:
+    unit: megajoule
+    value: 1
+  co2: 0.058
+  biogenic_share: 1
+heat, from diesel:
+  lhv:
+    unit: megajoule
+    value: 1
+  co2: 0.0732
+  biogenic_share: 0
+heat, from gasoline:
+  lhv:
+    unit: megajoule
+    value: 1
+  co2: 0.0737
+  biogenic_share: 0
+heat, from bioethanol:
+  lhv:
+    unit: megajoule
+    value: 1
+  co2: 0.0739
+  biogenic_share: 0
+heat, from biodiesel:
+  lhv:
+    unit: megajoule
+    value: 1
+  co2: 0.0734
+  biogenic_share: 1
+heat, from liquefied petroleum gas, natural:
+  lhv:
+    unit: megajoule
+    value: 1
+  co2: 0.0631
+  biogenic_share: 0
+heat, from liquefied petroleum gas, synthetic:
+  lhv:
+    unit: megajoule
+    value: 1
+  co2: 0.0631
+  biogenic_share: 0
+heat, from underground:
+  lhv:
+    unit: megajoule
+    value: 1
+  co2: 0
+  biogenic_share: 1
+heat, district or industrial:
+  lhv:
+    unit: megajoule
+    value: 1
+heat:
+  lhv:
+    unit: megajoule
+    value: 1
+bagasse, from sugarcane:
+  lhv:
+    unit: megajoule
+    value: 15.4
+bagasse, from sweet sorghum:
+  lhv:
+    unit: megajoule
+    value: 13.8
+sweet sorghum stem:
+  lhv:
+    unit: megajoule
+    value: 4.45
+energy, kinetic:
+  lhv:
+    unit: megajoule
+    value: 1
+cottonseed:
+  lhv:
+    unit: megajoule
+    value: 21.97
+flax husks:
+  lhv:
+    unit: megajoule
+    value: 21.5
+coconut husk:
+  lhv:
+    unit: megajoule
+    value: 20
+sugar beet pulp:
+  lhv:
+    unit: megajoule
+    value: 5.11
+cleft timber:
+  lhv:
+    unit: megajoule
+    value: 14.46
+rape meal:
+  lhv:
+    unit: megajoule
+    value: 31.1
+molasse, from sugar beet:
+  lhv:
+    unit: megajoule
+    value: 16.65
+sugar beet:
+  lhv:
+    unit: megajoule
+    value: 4.1
+barkey grain:
+  lhv:
+    unit: megajoule
+    value: 19.49
+rye grain:
+  lhv:
+    unit: megajoule
+    value: 12
+sugarcane:
+  lhv:
+    unit: megajoule
+    value: 5.3
+palm date:
+  lhv:
+    unit: megajoule
+    value: 10.8
+synthetic gas:
+  lhv:
+    unit: megajoule
+    value: 6.21
+whey:
+  lhv:
+    unit: megajoule
+    value: 1.28
+straw:
+  lhv:
+    unit: megajoule
+    value: 15.5
+grass:
+  lhv:
+    unit: megajoule
+    value: 17
+manure, liquid:
+  lhv:
+    unit: megajoule
+    value: 0.875
+manure, solid:
+  lhv:
+    unit: megajoule
+    value: 3.6
+meat and bone meal:
+  lhv:
+    unit: megajoule
+    value: 14.3
+  co2: 0.0814
+  biogenic_share: 1
+  ecoinvent_aliases:
+    fltr:
+    - market for meat and bone meal
+    - meat and bone meal to generic market for protein feed
+Carbon monoxide, from RWGS:
+  lhv:
+    unit: megajoule
+    value: 10.83
+kerosene, from petroleum:
+  lhv:
+    unit: megajoule
+    value: 43
+  co2: 0.0715
+  biogenic_share: 0
+  ecoinvent_aliases:
+    fltr:
+    - kerosene production, petroleum refinery operation
+  iam_aliases:
+    tiam-ucl: Secondary Energy|Liquids|Oil|Kerosene
+kerosene, synthetic, from electrolysis, energy allocation:
+  lhv:
+    unit: megajoule
+    value: 43
+  co2: 0.0715
+  biogenic_share: 1
+  ecoinvent_aliases:
+    fltr:
+    - kerosene production, from methanol, hydrogen from electrolysis, CO2 from DAC,
+      energy allocation
+    - kerosene production, synthetic, Fischer Tropsch process, hydrogen from electrolysis,
+      energy allocation
+kerosene, synthetic, from electrolysis, economic allocation:
+  lhv:
+    unit: megajoule
+    value: 43
+  co2: 0.0715
+  biogenic_share: 1
+  ecoinvent_aliases:
+    fltr:
+    - kerosene production, synthetic, Fischer Tropsch process, hydrogen from electrolysis,
+      economic allocation
+kerosene, synthetic, from coal, energy allocation:
+  lhv:
+    unit: megajoule
+    value: 43
+  co2: 0.0715
+  biogenic_share: 0
+  ecoinvent_aliases:
+    fltr:
+    - kerosene production, synthetic, Fischer Tropsch process, hydrogen from coal
+      gasification, energy allocation
+  iam_aliases:
+    tiam-ucl: Secondary Energy|Liquids|Coal|FT|Kerosene|w/o CCS
+  eff_aliases:
+    tiam-ucl: Efficiency|Liquids|Coal|FT fuel mix (diesel, kerosene, naptha, ELC)|w/o
+      CCS
+kerosene, synthetic, from coal, economic allocation:
+  lhv:
+    unit: megajoule
+    value: 43
+  co2: 0.0715
+  biogenic_share: 0
+  ecoinvent_aliases:
+    fltr:
+    - kerosene production, synthetic, Fischer Tropsch process, hydrogen from coal
+      gasification, economic allocation
+kerosene, synthetic, from coal, energy allocation, with CCS:
+  lhv:
+    unit: megajoule
+    value: 43
+  co2: 0.0715
+  biogenic_share: 0
+  ecoinvent_aliases:
+    fltr:
+    - kerosene production, synthetic, Fischer Tropsch process, hydrogen from coal
+      gasification, with CCS, energy allocation
+  iam_aliases:
+    tiam-ucl: Secondary Energy|Liquids|Coal|FT|Kerosene|w CCS
+  eff_aliases:
+    tiam-ucl: Efficiency|Liquids|Coal|FT fuel mix (diesel, kerosene, naptha, ELC)|w
+      CCS
+kerosene, synthetic, from coal, economic allocation, with CCS:
+  lhv:
+    unit: megajoule
+    value: 43
+  co2: 0.0715
+  biogenic_share: 0
+  ecoinvent_aliases:
+    fltr:
+    - kerosene production, from methanol, hydrogen from coal gasification, with CCS,
+      economic allocation
+    - kerosene production, synthetic, Fischer Tropsch process, hydrogen from coal
+      gasification, with CCS, economic allocation
+kerosene, synthetic, from biomass, energy allocation:
+  lhv:
+    unit: megajoule
+    value: 43
+  co2: 0.0715
+  biogenic_share: 1
+  iam_aliases:
+    tiam-ucl: Secondary Energy|Liquids|Biomass|FT|Kerosene|w/o CCS
+  eff_aliases:
+    tiam-ucl: Efficiency|Liquids|Biomass|FT fuel mix (diesel, kerosene, naptha, ELC)|w/o
+      CCS
+  ecoinvent_aliases:
+    fltr:
+    - kerosene production, via Fischer-Tropsch, from forest product (non-residual),
+      energy allocation
+kerosene, synthetic, from biomass, energy allocation, with CCS:
+  lhv:
+    unit: megajoule
+    value: 43
+  co2: 0.0715
+  biogenic_share: 1
+  iam_aliases:
+    tiam-ucl: Secondary Energy|Liquids|Biomass|FT|Kerosene|w CCS
+  eff_aliases:
+    tiam-ucl: Efficiency|Liquids|Biomass|FT fuel mix (diesel, kerosene, naptha, ELC)|w
+      CCS
+  ecoinvent_aliases:
+    fltr:
+    - kerosene production, via Fischer-Tropsch, from forest product (non-residual),
+      with carbon capture and storage, energy allocation
+kerosene, synthetic, from natural gas, energy allocation:
+  lhv:
+    unit: megajoule
+    value: 43
+  co2: 0.0715
+  biogenic_share: 1
+  iam_aliases:
+    tiam-ucl: Secondary Energy|Liquids|Natural Gas|FT|Kerosene|w/o CCS
+  eff_aliases:
+    tiam-ucl: Efficiency|Liquids|Natural gas|FT fuel mix (diesel, kerosene, naptha,
+      ELC)|w/o CCS
+  ecoinvent_aliases:
+    fltr:
+    - kerosene production, synthetic, Fischer Tropsch process, from natural gas, energy
+      allocation
+    mask: carbon capture
+kerosene, synthetic, from natural gas, energy allocation, with CCS:
+  lhv:
+    unit: megajoule
+    value: 43
+  co2: 0.0715
+  biogenic_share: 1
+  iam_aliases:
+    tiam-ucl: Secondary Energy|Liquids|Natural Gas|FT|Kerosene|w CCS
+  eff_aliases:
+    tiam-ucl: Efficiency|Liquids|Natural gas|FT fuel mix (diesel, kerosene, naptha,
+      ELC)|w CCS
+  ecoinvent_aliases:
+    fltr:
+    - kerosene production, synthetic, Fischer Tropsch process, from natural gas, energy
+      allocation, with carbon capture and storage

@@ -1,0 +1,56 @@
+direct air capture:
+  - carbon dioxide, captured, with a solvent-based direct air capture system, 1MtCO2
+  - carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2
+  - carbon dioxide, captured, with a solvent-based direct air capture system, 1MtCO2, with industrial steam heat, and grid electricity
+  - carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with industrial steam heat, and grid electricity
+  - carbon dioxide, captured, with a solvent-based direct air capture system, 1MtCO2, with heat pump heat, and grid electricity
+  - carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with heat pump heat, and grid electricity
+  - direct air capture system, solvent-based, 1MtCO2
+  - treatment of direct air capture system, solvent-based, 1MtCO2
+  - carbon dioxide, captured, with a sorbent-based direct air capture system, 100ktCO2
+  - carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2
+  - carbon dioxide, captured, with a sorbent-based direct air capture system, 100ktCO2, with waste heat, and grid electricity
+  - carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2, with waste heat, and grid electricity
+  - carbon dioxide, captured, with a sorbent-based direct air capture system, 100ktCO2, with industrial steam heat, and grid electricity
+  - carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2, with industrial steam heat, and grid electricity
+  - carbon dioxide, captured, with a sorbent-based direct air capture system, 100ktCO2, with heat pump heat, and grid electricity
+  - carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2, with heat pump heat, and grid electricity
+  - direct air capture system, sorbent-based, 100ktCO2
+  - treatment of direct air capture system, sorbent-based, 100ktCO2
+  - amine-based silica production, for sorbent-based direct air capture system
+  - polyethyleneimine (PEI) production, for sorbent-based direct air capture system
+  - silica gel production, for sorbent-based direct air capture system
+
+CO2 storage:
+  - carbon dioxide compression, transport and storage
+
+industrial CCS:
+  - carbon dioxide, captured, at municipal solid waste incineration plant, for subsequent reuse
+  - carbon dioxide, captured, at cement production plant, for subsequent reuse
+  - carbon dioxide, captured, at cement production plant, using monoethanolamine
+  - carbon dioxide, captured, at cement production plant, using direct separation
+  - carbon dioxide, captured, at cement production plant, using oxyfuel
+  - name: industrial gases production, cryogenic air separation
+    reference product: oxygen, liquid
+  - name: air separation, cryogenic
+    reference product: oxygen, liquid
+  - market for oxygen, liquid
+
+land use:
+  - carbon dioxide, captured and stored, by land-use change
+
+biochar:
+  - carbon dioxide, captured and stored, by biochar application on mineral soil
+  - biochar, from spruce wood pyrolysis
+
+
+enhanced rock weathering:
+  - carbon dioxide, captured and stored, by olivine spreading on coastline
+
+ocean liming:
+  - carbon dioxide, captured and stored, by ocean liming
+  - hydrated lime production, from quicklime with carbon capture and storage
+
+
+bioenergy, with CCS:
+  - carbon dioxide, captured and stored, at wood burning power plant, pipeline 200km, storage 1000m

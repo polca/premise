@@ -424,6 +424,7 @@ from,to,name_from,ref_prod_from,location_from,name_to,ref_prod_to,location_to
 38,39,"market for acrylic binder, without water, in 34% solution state","acrylic binder, without water, in 34% solution state",GLO,"market for acrylic binder, with water, in 54% solution state","acrylic binder, with water, in 54% solution state",GLO
 38,39,"market for acrylic binder, without water, in 34% solution state","acrylic binder, without water, in 34% solution state",RER,"market for acrylic binder, with water, in 54% solution state","acrylic binder, with water, in 54% solution state",RER
 310,37,"market for acrylic binder, with water, in 54% solution state","acrylic binder, with water, in 54% solution state",RER,"market for acrylic binder, without water, in 34% solution state","acrylic binder, without water, in 34% solution state",RER
+310,38,"market for acrylic binder, with water, in 54% solution state","acrylic binder, with water, in 54% solution state",RER,"market for acrylic binder, without water, in 34% solution state","acrylic binder, without water, in 34% solution state",RER
 38,39,"market for acrylic dispersion, without water, in 65% solution state","acrylic dispersion, without water, in 65% solution state",GLO,"market for acrylic dispersion, with water, in 58% solution","acrylic dispersion, with water, in 58% solution state",GLO
 38,39,"market for acrylic dispersion, without water, in 65% solution state","acrylic dispersion, without water, in 65% solution state",RER,"market for acrylic dispersion, with water, in 58% solution","acrylic dispersion, with water, in 58% solution state",RER
 38,39,"market for acrylic varnish, without water, in 87.5% solution state","acrylic varnish, without water, in 87.5% solution state",GLO,"market for acrylic varnish, with water, in 53% solution state","acrylic varnish, with water, in 53% solution state",GLO
@@ -521,6 +522,7 @@ from,to,name_from,ref_prod_from,location_from,name_to,ref_prod_to,location_to
 38,39,"market for stibnite ore, 70% stibnite","stibnite ore, 70% stibnite",GLO,market for stibnite concentrate,stibnite concentrate,GLO
 38,39,"market for zircon, 50% zirconium","zircon, 50% zirconium",GLO,market for zircon,zircon,GLO
 38,39,"market group for concrete, normal","concrete, normal",GLO,"market group for concrete, normal strength","concrete, normal strength",GLO
+39,38,"market group for concrete, normal strength","concrete, normal strength",GLO,"market group for concrete, normal","concrete, normal",GLO
 38,39,natural gas pressure reduction from high to low pressure,"natural gas, low pressure",CH,"natural gas pressure reduction, from high to low pressure","natural gas, low pressure",CH
 38,39,natural gas pressure reduction from high to low pressure,"natural gas, low pressure",GLO,"natural gas pressure reduction, from high to low pressure","natural gas, low pressure",BE
 38,39,natural gas pressure reduction from high to low pressure,"natural gas, low pressure",GLO,"natural gas pressure reduction, from high to low pressure","natural gas, low pressure",CA
@@ -577,6 +579,7 @@ from,to,name_from,ref_prod_from,location_from,name_to,ref_prod_to,location_to
 37,39,"treatment of wastewater, average, capacity 1E9l/year","wastewater, average",RoW,"treatment of wastewater, average, wastewater treatment","wastewater, average",RoW
 37,39,"treatment of wastewater, average, capacity 1E9l/year","wastewater, average",CH,"treatment of wastewater, average, wastewater treatment","wastewater, average",CH
 39,38,"treatment of wastewater, average, wastewater treatment","wastewater, average",CH,"treatment of wastewater, average, capacity 1E9l/year","wastewater, average",CH
+39,38,"treatment of wastewater, average, wastewater treatment","wastewater, average",Europe without Switzerland,"treatment of wastewater, average, capacity 1E9l/year","wastewater, average",Europe without Switzerland
 39,37,"treatment of wastewater, average, wastewater treatment","wastewater, average",CH,"treatment of wastewater, average, capacity 1E9l/year","wastewater, average",CH
 39,36,"treatment of wastewater, average, wastewater treatment","wastewater, average",CH,"treatment of wastewater, average, capacity 1E9l/year","wastewater, average",CH
 39,36,"treatment of wastewater, average, wastewater treatment","wastewater, average",Europe without Switzerland,"treatment of wastewater, average, capacity 1E9l/year","wastewater, average",Europe without Switzerland
@@ -590,23 +593,36 @@ from,to,name_from,ref_prod_from,location_from,name_to,ref_prod_to,location_to
 35,39,"concrete production, for civil engineering, with cement CEM II/B","concrete, sole plate and foundation",CH,"concrete production, 25MPa, for building construction, with cement, CEM II/B","concrete, 25MPa",CH
 35,39,"treatment of wastewater, average, capacity 1.1E10l/year","wastewater, average",CH,"treatment of wastewater, average, wastewater treatment","wastewater, average",CH
 37,39,"treatment of wastewater, average, capacity 1.1E10l/year","wastewater, average",CH,"treatment of wastewater, average, wastewater treatment","wastewater, average",CH
+38,39,"treatment of wastewater, average, capacity 1.1E10l/year","wastewater, average",CH,"treatment of wastewater, average, wastewater treatment","wastewater, average",CH
+38,310,"treatment of wastewater, average, capacity 1.1E10l/year","wastewater, average",CH,"treatment of wastewater, average, wastewater treatment","wastewater, average",CH
 38,39,"electricity, high voltage, production mix","electricity, high voltage",CN-QH,"market group for electricity, high voltage","electricity, high voltage",CN
 38,39,"treatment of wastewater, unpolluted, capacity 5E9l/year","wastewater, unpolluted",RoW,"treatment of wastewater, unpolluted, wastewater treatment","wastewater, unpolluted",RoW
+39,38,"treatment of wastewater, unpolluted, wastewater treatment","wastewater, unpolluted",RoW,"treatment of wastewater, unpolluted, capacity 5E9l/year","wastewater, unpolluted",RoW
 38,39,"treatment of wastewater, unpolluted, capacity 5E9l/year","wastewater, unpolluted",CH,"treatment of wastewater, unpolluted, wastewater treatment","wastewater, unpolluted",CH
 37,39,"treatment of wastewater, unpolluted, capacity 5E9l/year","wastewater, unpolluted",RoW,"treatment of wastewater, unpolluted, wastewater treatment","wastewater, unpolluted",RoW
 37,39,"treatment of wastewater, unpolluted, capacity 5E9l/year","wastewater, unpolluted",CH,"treatment of wastewater, unpolluted, wastewater treatment","wastewater, unpolluted",CH
 38,39,"market for concrete, sole plate and foundation","concrete, sole plate and foundation",CH,"market for concrete, 30MPa","concrete, 30MPa",CH
 37,39,"market for concrete, sole plate and foundation","concrete, sole plate and foundation",CH,"market for concrete, 30MPa","concrete, 30MPa",CH
 37,39,"soda production, solvay process","soda ash, light, crystalline, heptahydrate",RER,"soda production, solvay process","soda ash, light",RER
+38,39,"soda production, solvay process","soda ash, light, crystalline, heptahydrate",RER,"soda production, solvay process","soda ash, light",RER
 37,39,"soda production, solvay process","soda ash, light, crystalline, heptahydrate",RoW,"soda production, solvay process","soda ash, light",RoW
 37,39,"acetone production, liquid","acetone, liquid",RER,"phenol production, from cumene",phenol,RER
 37,39,"acetone production, liquid","acetone, liquid",RoW,"phenol production, from cumene",phenol,RoW
 37,39,"treatment of wastewater, unpolluted, from residence, capacity 1.1E10l/year","wastewater, unpolluted, from residence",CH,"treatment of wastewater, unpolluted, wastewater treatment","wastewater, unpolluted",CH
+38,39,"treatment of wastewater, unpolluted, from residence, capacity 1.1E10l/year","wastewater, unpolluted, from residence",CH,"treatment of wastewater, unpolluted, wastewater treatment","wastewater, unpolluted",CH
 37,39,"treatment of wastewater, from residence, capacity 1.1E10l/year","wastewater, from residence",CH,"treatment of wastewater, average, wastewater treatment","wastewater, average",CH
+38,310,"treatment of wastewater, from residence, capacity 1.1E10l/year","wastewater, from residence",CH,"treatment of wastewater, average, wastewater treatment","wastewater, average",CH
 37,39,"treatment of wastewater, from residence, capacity 1.1E10l/year","wastewater, from residence",RoW,"treatment of wastewater, average, wastewater treatment","wastewater, average",RoW
+38,310,"treatment of wastewater, from residence, capacity 1.1E10l/year","wastewater, from residence",RoW,"treatment of wastewater, average, wastewater treatment","wastewater, average",RoW
+38,39,"treatment of wastewater, from residence, capacity 1.1E10l/year","wastewater, from residence",RoW,"treatment of wastewater, average, wastewater treatment","wastewater, average",RoW
+38,39,"treatment of wastewater, from residence, capacity 1.1E10l/year","wastewater, from residence",CH,"treatment of wastewater, average, wastewater treatment","wastewater, average",CH
 37,39,"acrylic binder production, product in 34% solution state","acrylic binder, without water, in 34% solution state",RER,"acrylic binder production, with water, in 54% solution state","acrylic binder, with water, in 54% solution state",RER
+38,39,"acrylic binder production, product in 34% solution state","acrylic binder, without water, in 34% solution state",RER,"acrylic binder production, with water, in 54% solution state","acrylic binder, with water, in 54% solution state",RER
+38,310,"acrylic binder production, product in 34% solution state","acrylic binder, without water, in 34% solution state",RER,"acrylic binder production, with water, in 54% solution state","acrylic binder, with water, in 54% solution state",RER
 37,39,"acrylic binder production, product in 34% solution state","acrylic binder, without water, in 34% solution state",RoW,"acrylic binder production, with water, in 54% solution state","acrylic binder, with water, in 54% solution state",RoW
 37,39,"treatment of wastewater from PV cell production, capacity 5E9l/year",wastewater from PV cell production,CH,"treatment of wastewater from PV cell production, wastewater treatment",wastewater from PV cell production,CH
+38,39,"treatment of wastewater from PV cell production, capacity 5E9l/year",wastewater from PV cell production,CH,"treatment of wastewater from PV cell production, wastewater treatment",wastewater from PV cell production,CH
+38,310,"treatment of wastewater from PV cell production, capacity 5E9l/year",wastewater from PV cell production,CH,"treatment of wastewater from PV cell production, wastewater treatment",wastewater from PV cell production,CH
 38,39,"market for anode, graphite, for lithium-ion battery","anode, graphite, for lithium-ion battery",GLO,"market for anode, graphite, for Li-ion battery","anode, graphite, for Li-ion battery",CN
 37,39,"market for anode, graphite, for lithium-ion battery","anode, graphite, for lithium-ion battery",GLO,"market for anode, graphite, for Li-ion battery","anode, graphite, for Li-ion battery",CN
 37,39,"anode production, graphite, for lithium-ion battery","anode, graphite, for lithium-ion battery",RoW,"anode production, graphite, for Li-ion battery","anode, graphite, for Li-ion battery",RoW
@@ -650,6 +666,7 @@ from,to,name_from,ref_prod_from,location_from,name_to,ref_prod_to,location_to
 39,36,"market for concrete, normal strength","concrete, normal strength",RoW,"concrete, all types to generic market for concrete, normal strength","concrete, normal",RoW
 39,37,"market for concrete, normal strength","concrete, normal strength",RoW,"concrete, all types to generic market for concrete, normal strength","concrete, normal",RoW
 39,38,"market for concrete, normal strength","concrete, normal strength",RoW,"concrete, all types to generic market for concrete, normal strength","concrete, normal",RoW
+39,38,"market for concrete, normal strength","concrete, normal strength",CH,"concrete, all types to generic market for concrete, normal strength","concrete, normal",AT
 38,310,"concrete, all types to generic market for concrete, normal strength","concrete, normal",RoW,"concrete, all types to generic market for concrete, normal strength","concrete, normal strength",RoW
 39,310,"concrete, all types to generic market for concrete, normal strength","concrete, normal",RoW,"concrete, all types to generic market for concrete, normal strength","concrete, normal strength",RoW
 39,36,market for cerium oxide,cerium oxide,GLO,"market for cerium concentrate, 60% cerium oxide","cerium concentrate, 60% cerium oxide",GLO
@@ -717,9 +734,9 @@ from,to,name_from,ref_prod_from,location_from,name_to,ref_prod_to,location_to
 36,310,"market for chemicals, inorganic","chemical, inorganic",GLO,"market for chemical, inorganic",,
 35,310,"market for cellulose fibre, inclusive blowing in","cellulose fibre, inclusive blowing in",GLO,market for cellulose fibre,cellulose fibre,RoW
 36,310,"market for cellulose fibre, inclusive blowing in","cellulose fibre, inclusive blowing in",GLO,market for cellulose fibre,cellulose fibre,RoW
-35,310,"market for electric powertrain, for electric scooter","powertrain, for electric scooter",GLO,"market for powertrain, for electric scooter","powertrain, for electric scooter",
-36,310,"market for electric powertrain, for electric scooter","powertrain, for electric scooter",GLO,"market for powertrain, for electric scooter","powertrain, for electric scooter",
-37,310,"market for electric powertrain, for electric scooter","powertrain, for electric scooter",GLO,"market for powertrain, for electric scooter","powertrain, for electric scooter",
+35,310,"market for electric powertrain, for electric scooter","powertrain, for electric scooter",GLO,"market for powertrain, for electric scooter","powertrain, for electric scooter",GLO
+36,310,"market for electric powertrain, for electric scooter","powertrain, for electric scooter",GLO,"market for powertrain, for electric scooter","powertrain, for electric scooter",GLO
+37,310,"market for electric powertrain, for electric scooter","powertrain, for electric scooter",GLO,"market for powertrain, for electric scooter","powertrain, for electric scooter",GLO
 35,310,"market for electricity, low voltage, label-certified","electricity, low voltage, label-certified",CH,"market for electricity, low voltage, renewable energy products","electricity, low voltage, renewable energy products",
 36,310,"market for electricity, low voltage, label-certified","electricity, low voltage, label-certified",CH,"market for electricity, low voltage, renewable energy products","electricity, low voltage, renewable energy products",
 37,310,"market for electricity, low voltage, label-certified","electricity, low voltage, label-certified",CH,"market for electricity, low voltage, renewable energy products","electricity, low voltage, renewable energy products",
@@ -778,6 +795,7 @@ from,to,name_from,ref_prod_from,location_from,name_to,ref_prod_to,location_to
 38,310,"market for acrylic varnish, without water, in 87.5% solution state","acrylic varnish, without water, in 87.5% solution state",RER,"market for acrylic varnish, with water, in 53% solution state","acrylic varnish, with water, in 53% solution state",RER
 38,310,"market for battery cell, Li-ion","battery cell, Li-ion",GLO,"market for battery cell, Li-ion, LiMn2O4","battery cell, Li-ion, LiMn2O4",GLO
 38,310,"market for battery, Li-ion, rechargeable, prismatic","battery, Li-ion, rechargeable, prismatic",GLO,"market for battery, Li-ion, LiMn2O4, rechargeable, prismatic","battery, Li-ion, LiMn2O4, rechargeable, prismatic",GLO
+310,38,"market for battery, Li-ion, LiMn2O4, rechargeable, prismatic","battery, Li-ion, LiMn2O4, rechargeable, prismatic",GLO,"market for battery, Li-ion, rechargeable, prismatic","battery, Li-ion, rechargeable, prismatic",GLO
 38,310,"market for cathode, LiMn2O4, for lithium-ion battery","cathode, LiMn2O4, for lithium-ion battery",GLO,"market for cathode, LiMn2O4, for Li-ion battery","cathode, LiMn2O4, for Li-ion battery",GLO
 38,310,"market for cement, alternative constituents 21-35%","cement, alternative constituents 21-35%",CH,"market for cement, CEM II/B","cement, CEM II/B",CH
 38,310,"market for cement, alternative constituents 21-35%","cement, alternative constituents 21-35%",CO,"market for cement, ART","cement, ART",CO
@@ -908,7 +926,10 @@ from,to,name_from,ref_prod_from,location_from,name_to,ref_prod_to,location_to
 38,310,"treatment of wastewater, average, capacity 1E9l/year","wastewater, average",RoW,"treatment of wastewater, average, wastewater treatment","wastewater, average",RoW
 38,310,"treatment of wastewater, average, capacity 1E9l/year","wastewater, average",CH,"treatment of wastewater, average, wastewater treatment","wastewater, average",CH
 38,310,"treatment of wastewater, average, capacity 1E9l/year","wastewater, average",Europe without Switzerland,"treatment of wastewater, average, wastewater treatment","wastewater, average",Europe without Switzerland
+310,38,"treatment of wastewater, average, wastewater treatment","wastewater, average",Europe without Switzerland,"treatment of wastewater, average, capacity 1E9l/year","wastewater, average",Europe without Switzerland
 35,310,"concrete production, for civil engineering, with cement CEM II/B","concrete, sole plate and foundation",CH,"concrete production, 25MPa, for building construction, with cement, CEM II/B","concrete, 25MPa",CH
+38,310,"concrete production, for civil engineering, with cement CEM II/B","concrete, sole plate and foundation",CH,"concrete production, 25MPa, for building construction, with cement, CEM II/B","concrete, 25MPa",CH
+38,39,"concrete production, for civil engineering, with cement CEM II/B","concrete, sole plate and foundation",CH,"concrete production, 25MPa, for building construction, with cement, CEM II/B","concrete, 25MPa",CH
 35,310,"treatment of wastewater, average, capacity 1.1E10l/year","wastewater, average",CH,"treatment of wastewater, average, wastewater treatment","wastewater, average",CH
 37,310,"treatment of wastewater, average, capacity 1.1E10l/year","wastewater, average",CH,"treatment of wastewater, average, wastewater treatment","wastewater, average",CH
 38,310,"electricity, high voltage, production mix","electricity, high voltage",CN-QH,"market group for electricity, high voltage","electricity, high voltage",CN
@@ -919,6 +940,7 @@ from,to,name_from,ref_prod_from,location_from,name_to,ref_prod_to,location_to
 38,310,"market for concrete, sole plate and foundation","concrete, sole plate and foundation",CH,"market for concrete, 30MPa","concrete, 30MPa",CH
 37,310,"market for concrete, sole plate and foundation","concrete, sole plate and foundation",CH,"market for concrete, 30MPa","concrete, 30MPa",CH
 37,310,"soda production, solvay process","soda ash, light, crystalline, heptahydrate",RER,"soda production, solvay process","soda ash, light",RER
+38,310,"soda production, solvay process","soda ash, light, crystalline, heptahydrate",RER,"soda production, solvay process","soda ash, light",RER
 37,310,"soda production, solvay process","soda ash, light, crystalline, heptahydrate",RoW,"soda production, solvay process","soda ash, light",RoW
 37,310,"acetone production, liquid","acetone, liquid",RER,"phenol production, cumene oxidation","acetone, liquid",RER
 38,310,"acetone production, liquid","acetone, liquid",RER,"phenol production, cumene oxidation","acetone, liquid",RER
@@ -927,6 +949,7 @@ from,to,name_from,ref_prod_from,location_from,name_to,ref_prod_to,location_to
 37,310,"acetone production, liquid","acetone, liquid",RER,"phenol production, cumene oxidation","acetone, liquid",RER
 37,310,"acetone production, liquid","acetone, liquid",RoW,"phenol production, cumene oxidation","acetone, liquid",RoW
 37,310,"treatment of wastewater, unpolluted, from residence, capacity 1.1E10l/year","wastewater, unpolluted, from residence",CH,"treatment of wastewater, unpolluted, wastewater treatment","wastewater, unpolluted",CH
+38,310,"treatment of wastewater, unpolluted, from residence, capacity 1.1E10l/year","wastewater, unpolluted, from residence",CH,"treatment of wastewater, unpolluted, wastewater treatment","wastewater, unpolluted",CH
 37,310,"treatment of wastewater, from residence, capacity 1.1E10l/year","wastewater, from residence",CH,"treatment of wastewater, average, wastewater treatment","wastewater, average",CH
 37,310,"treatment of wastewater, from residence, capacity 1.1E10l/year","wastewater, from residence",RoW,"treatment of wastewater, average, wastewater treatment","wastewater, average",RoW
 37,310,"acrylic binder production, product in 34% solution state","acrylic binder, without water, in 34% solution state",RER,"acrylic binder production, with water, in 54% solution state","acrylic binder, with water, in 54% solution state",RER
@@ -964,27 +987,35 @@ from,to,name_from,ref_prod_from,location_from,name_to,ref_prod_to,location_to
 38,310,"treatment of inert waste, sanitary landfill",inert waste,CH,"treatment of aluminium scrap, new, at refiner","aluminium oxide, non-metallurgical",RER
 39,310,"treatment of inert waste, sanitary landfill",inert waste,CH,"treatment of aluminium scrap, new, at refiner","aluminium oxide, non-metallurgical",RER
 35,310,"treatment of lead in car shredder residue, municipal incineration",lead in car shredder residue,CH,"treatment of lead in car shredder residue, municipal incineration FAE",lead in car shredder residue,CH
+38,310,"treatment of lead in car shredder residue, municipal incineration",lead in car shredder residue,CH,"treatment of lead in car shredder residue, municipal incineration FAE",lead in car shredder residue,CH
 35,310,"treatment of scrap aluminium, municipal incineration",scrap aluminium,CH,"treatment of scrap aluminium, municipal incineration FAE",scrap aluminium,CH
+38,310,"treatment of scrap aluminium, municipal incineration",scrap aluminium,CH,"treatment of scrap aluminium, municipal incineration FAE",scrap aluminium,CH
 35,310,"treatment of scrap copper, municipal incineration",scrap copper,CH,"treatment of scrap copper, municipal incineration FAE",scrap copper,CH
+38,310,"treatment of scrap copper, municipal incineration",scrap copper,CH,"treatment of scrap copper, municipal incineration FAE",scrap copper,CH
 35,310,"treatment of waste glass, municipal incineration",waste glass,CH,"treatment of waste glass, municipal incineration FAE",waste glass,CH
 36,310,"treatment of waste glass, municipal incineration",waste glass,CH,"treatment of waste glass, municipal incineration FAE",waste glass,CH
 37,310,"treatment of waste glass, municipal incineration",waste glass,CH,"treatment of waste glass, municipal incineration FAE",waste glass,CH
 38,310,"treatment of waste glass, municipal incineration",waste glass,CH,"treatment of waste glass, municipal incineration FAE",waste glass,CH
 39,310,"treatment of waste glass, municipal incineration",waste glass,CH,"treatment of waste glass, municipal incineration FAE",waste glass,CH
 35,310,"treatment of waste polystyrene, municipal incineration",waste polystyrene,CH,"treatment of waste polystyrene, municipal incineration FAE",waste polystyrene,CH
+38,310,"treatment of waste polystyrene, municipal incineration",waste polystyrene,CH,"treatment of waste polystyrene, municipal incineration FAE",waste polystyrene,CH
 35,310,"treatment of waste wood, untreated, municipal incineration","waste wood, untreated",CH,"treatment of waste wood, untreated, municipal incineration FAE","waste wood, untreated",CH
 36,310,"treatment of waste wood, untreated, municipal incineration","waste wood, untreated",CH,"treatment of waste wood, untreated, municipal incineration FAE","waste wood, untreated",CH
 37,310,"treatment of waste wood, untreated, municipal incineration","waste wood, untreated",CH,"treatment of waste wood, untreated, municipal incineration FAE","waste wood, untreated",CH
 38,310,"treatment of waste wood, untreated, municipal incineration","waste wood, untreated",CH,"treatment of waste wood, untreated, municipal incineration FAE","waste wood, untreated",CH
 39,310,"treatment of waste wood, untreated, municipal incineration","waste wood, untreated",CH,"treatment of waste wood, untreated, municipal incineration FAE","waste wood, untreated",CH
 35,310,"treatment of zinc in car shredder residue, municipal incineration",zinc in car shredder residue,CH,"treatment of zinc in car shredder residue, municipal incineration FAE",zinc in car shredder residue,CH
+38,310,"treatment of zinc in car shredder residue, municipal incineration",zinc in car shredder residue,CH,"treatment of zinc in car shredder residue, municipal incineration FAE",zinc in car shredder residue,CH
 35,310,market for hard coal,hard coal,"Europe, without Russia and Turkey",market for hard coal,hard coal,"Europe, without Russia and Türkiye"
 36,310,market for hard coal,hard coal,"Europe, without Russia and Turkey",market for hard coal,hard coal,"Europe, without Russia and Türkiye"
 37,310,market for hard coal,hard coal,"Europe, without Russia and Turkey",market for hard coal,hard coal,"Europe, without Russia and Türkiye"
 38,310,market for hard coal,hard coal,"Europe, without Russia and Turkey",market for hard coal,hard coal,"Europe, without Russia and Türkiye"
 39,310,market for hard coal,hard coal,"Europe, without Russia and Turkey",market for hard coal,hard coal,"Europe, without Russia and Türkiye"
+310,39,market for hard coal,hard coal,"Europe, without Russia and Türkiye",market for hard coal,hard coal,"Europe, without Russia and Turkey"
+310,38,market for hard coal,hard coal,"Europe, without Russia and Türkiye",market for hard coal,hard coal,"Europe, without Russia and Turkey"
 35,310,"market for ammonia, liquid","ammonia, liquid",RER,"market for ammonia, anhydrous, liquid","ammonia, anhydrous, liquid",RER
 35,310,"treatment of waste emulsion paint, municipal incineration",waste emulsion paint,CH,"treatment of waste emulsion paint, municipal incineration FAE",waste emulsion paint,CH
+38,310,"treatment of waste emulsion paint, municipal incineration",waste emulsion paint,CH,"treatment of waste emulsion paint, municipal incineration FAE",waste emulsion paint,CH
 39,310,sodium chloride electrolysis,sodium,RER,"sodium production, sodium chloride electrolysis, molten salt cell",sodium,RER
 310,39,"sodium production, sodium chloride electrolysis, molten salt cell",sodium,RER,sodium chloride electrolysis,sodium,RER
 310,38,"sodium production, sodium chloride electrolysis, molten salt cell",sodium,RER,sodium chloride electrolysis,sodium,RER
@@ -1004,13 +1035,14 @@ from,to,name_from,ref_prod_from,location_from,name_to,ref_prod_to,location_to
 39,310,market for polyol,polyol,RER,"polyether polyols production, short chain","polyether polyols, short chain",RER
 39,310,market for polyol,polyol,RoW,"polyether polyols production, short chain","polyether polyols, short chain",RoW
 38,310,market for nickel smelter slag,nickel smelter slag,GLO,market for nickel smelter slag,nickel smelter slag,RoW
-37,310,"market for electric powertrain, for electric scooter","powertrain, for electric scooter",GLO,"market for powertrain, for electric scooter","powertrain, for electric scooter",GLO
 37,310,"treatment of wastewater from lorry production, capacity 4.7E10l/year",wastewater from lorry production,CH,"treatment of wastewater from lorry production, wastewater treatment, urban",wastewater from lorry production,CH
 37,310,"air separation, cryogenic","oxygen, liquid",RER,"industrial gases production, cryogenic air separation","oxygen, liquid",RER
+38,310,"air separation, cryogenic","oxygen, liquid",RER,"industrial gases production, cryogenic air separation","oxygen, liquid",RER
 37,310,market for ethylene glycol,ethylene glycol,GLO,market for ethylene glycol,ethylene glycol,RoW
 38,310,market for ethylene glycol,ethylene glycol,GLO,market for ethylene glycol,ethylene glycol,RoW
 39,310,market for ethylene glycol,ethylene glycol,GLO,market for ethylene glycol,ethylene glycol,RoW
 37,310,"air separation, cryogenic","oxygen, liquid",RoW,"industrial gases production, cryogenic air separation","oxygen, liquid",RoW
+38,310,"air separation, cryogenic","oxygen, liquid",RoW,"industrial gases production, cryogenic air separation","oxygen, liquid",RoW
 37,310,"treatment of wastewater, from residence, capacity 1.1E10l/year","wastewater, from residence",RoW,"treatment of wastewater, average, wastewater treatment","wastewater, average",RoW
 37,310,"market for internal combustion engine, passenger car","internal combustion engine, for passenger car",GLO,"market for internal combustion engine, passenger car","internal combustion engine, passenger car",GLO
 37,310,"treatment of used internal combustion engine, shredding","used internal combustion engine, from passenger car",GLO,"treatment of used internal combustion engine, passenger car, shredding","used internal combustion engine, passenger car",GLO
@@ -1020,7 +1052,9 @@ from,to,name_from,ref_prod_from,location_from,name_to,ref_prod_to,location_to
 35,310,"treatment of municipal solid waste, incineration",municipal solid waste,CH,"treatment of municipal solid waste, municipal incineration FAE",municipal solid waste,CH
 35,310,"treatment of waste plastic, mixture, municipal incineration","waste plastic, mixture",CH,"treatment of waste plastic, mixture, municipal incineration FAE","waste plastic, mixture",CH
 35,310,"treatment of waste textile, soiled, municipal incineration","waste textile, soiled",CH,"treatment of waste textile, soiled, municipal incineration FAE","waste textile, soiled",CH
+38,310,"treatment of waste textile, soiled, municipal incineration","waste textile, soiled",CH,"treatment of waste textile, soiled, municipal incineration FAE","waste textile, soiled",CH
 35,310,"treatment of wood ash mixture, pure, municipal incineration","wood ash mixture, pure",CH,"treatment of wood ash mixture, pure, municipal incineration FAE","wood ash mixture, pure",CH
+38,310,"treatment of wood ash mixture, pure, municipal incineration","wood ash mixture, pure",CH,"treatment of wood ash mixture, pure, municipal incineration FAE","wood ash mixture, pure",CH
 35,310,market for methanol,methanol,GLO,market for methanol,methanol,RoW
 36,310,market for methanol,methanol,GLO,market for methanol,methanol,RoW
 37,310,market for methanol,methanol,GLO,market for methanol,methanol,RoW
@@ -1051,7 +1085,6 @@ from,to,name_from,ref_prod_from,location_from,name_to,ref_prod_to,location_to
 37,310,"treatment of waste polyethylene, municipal incineration",waste polyethylene,CH,"treatment of waste polyethylene, municipal incineration FAE",waste polyethylene,CH
 38,310,"treatment of waste polyethylene, municipal incineration",waste polyethylene,CH,"treatment of waste polyethylene, municipal incineration FAE",waste polyethylene,CH
 39,310,"treatment of waste polyethylene, municipal incineration",waste polyethylene,CH,"treatment of waste polyethylene, municipal incineration FAE",waste polyethylene,CH
-35,310,"market for sodium hydroxide, without water, in 50% solution state","sodium hydroxide, without water, in 50% solution state",GLO,"market for sodium hydroxide, without water, in 50% solution state","sodium hydroxide, without water, in 50% solution state",RoW
 35,310,market for ethylene glycol,ethylene glycol,GLO,market for ethylene glycol,ethylene glycol,RoW
 35,310,"air separation, cryogenic","nitrogen, liquid",RER,"industrial gases production, cryogenic air separation","nitrogen, liquid",RoW
 36,310,"air separation, cryogenic","nitrogen, liquid",RER,"industrial gases production, cryogenic air separation","nitrogen, liquid",RoW
@@ -1264,6 +1297,8 @@ from,to,name_from,ref_prod_from,location_from,name_to,ref_prod_to,location_to
 37,310,market for xylene,xylene,RER,"market for xylene, mixed","xylene, mixed",RER
 38,310,market for xylene,xylene,RER,"market for xylene, mixed","xylene, mixed",RER
 39,310,market for xylene,xylene,RER,"market for xylene, mixed","xylene, mixed",RER
+310,38,"market for xylene, mixed","xylene, mixed",RER,market for xylene,xylene,RER
+310,39,"market for xylene, mixed","xylene, mixed",RER,market for xylene,xylene,RER
 35,310,market for ethylenediamine,ethylenediamine,RER,market for ethylene diamine,ethylene diamine,RER
 36,310,market for ethylenediamine,ethylenediamine,RER,market for ethylene diamine,ethylene diamine,RER
 37,310,market for ethylenediamine,ethylenediamine,RER,market for ethylene diamine,ethylene diamine,RER
@@ -1285,7 +1320,7 @@ from,to,name_from,ref_prod_from,location_from,name_to,ref_prod_to,location_to
 310,39,"market for sodium hydroxide, without water, in 50% solution state","sodium hydroxide, without water, in 50% solution state",RER,,,GLO
 37,310,"market for neutralising agent, sodium hydroxide-equivalent","neutralising agent, sodium hydroxide-equivalent",GLO,,,RoW
 38,310,"market for neutralising agent, sodium hydroxide-equivalent","neutralising agent, sodium hydroxide-equivalent",GLO,,,RoW
-39,310,"market for neutralising agent, sodium hydroxide-equivalent","neutralising agent, sodium hydroxide-equivalent",GLO,,,RoW
+39,310,"market for neutralising agent, sodium hydroxide-equivalent","neutralising agent, sodium hydroxide-equivalent",GLO,"market for neutralising agent, sodium hydroxide-equivalent","neutralising agent, sodium hydroxide-equivalent",RoW
 310,39,"market for diethylene glycol","diethylene glycol","RER","market for diethylene glycol","diethylene glycol","GLO"
 310,38,"market for diethylene glycol","diethylene glycol","RER","market for diethylene glycol","diethylene glycol","GLO"
 310,37,"market for diethylene glycol","diethylene glycol","RER","market for diethylene glycol","diethylene glycol","GLO"
@@ -1309,6 +1344,7 @@ from,to,name_from,ref_prod_from,location_from,name_to,ref_prod_to,location_to
 310,37,"market for chloroform","chloroform",RER,"market for trichloromethane","trichloromethane",RER
 310,38,"market for chloroform","chloroform",RER,"market for trichloromethane","trichloromethane",RER
 310,39,"market for chloroform","chloroform",RER,"market for trichloromethane","trichloromethane",RER
+39,310,"market for trichloromethane","trichloromethane",RER,"market for chloroform","chloroform",RER
 310,37,"market for benzene","benzene","RER","market for benzene","benzene","GLO"
 310,38,"market for benzene","benzene","RER","market for benzene","benzene","GLO"
 310,39,"market for benzene","benzene","RER","market for benzene","benzene","GLO"
@@ -1329,3 +1365,212 @@ from,to,name_from,ref_prod_from,location_from,name_to,ref_prod_to,location_to
 38,37,"market for battery module packaging, Li-ion","battery module packaging, Li-ion",GLO,"market for aluminium, wrought alloy","aluminium, wrought alloy","GLO"
 38,37,"market for anode, graphite, for Li-ion battery","anode, graphite, for Li-ion battery",RoW,"market for anode, graphite, for lithium-ion battery","anode, graphite, for lithium-ion battery",GLO
 38,37,"market for anode, silicon coated graphite, for Li-ion battery","anode, silicon coated graphite, for Li-ion battery",CN,"market for anode, graphite, for lithium-ion battery","anode, graphite, for lithium-ion battery",GLO
+310,39,"acrylonitrile production, Sohio process","acetonitrile",RER,"Sohio process","acetonitrile",RER
+39,310,"Sohio process","acetonitrile",RER,"acrylonitrile production, Sohio process","acetonitrile",RER
+310,39,"acrylonitrile production, Sohio process","acrylonitrile",RER,"Sohio process","acrylonitrile",RER
+310,39,"acrylonitrile production, Sohio process","hydrogen cyanide",RER,"Sohio process","hydrogen cyanide",RER
+310,39,"ethylenediaminetetraacetic acid production, alkaline cyanomethylation of ethylenediamine","EDTA, ethylenediaminetetraacetic acid",RER,"EDTA production","EDTA, ethylenediaminetetraacetic acid",RER
+39,310,"EDTA production","EDTA, ethylenediaminetetraacetic acid",RER,"ethylenediaminetetraacetic acid production, alkaline cyanomethylation of ethylenediamine","EDTA, ethylenediaminetetraacetic acid",RER
+310,38,"cement production, blast furnace slag 70-100%","cement, blast furnace slag 70-100%",US,"cement production, type S","cement, type S",US
+310,39,"hydrogen production, gaseous, petroleum refinery operation","hydrogen, gaseous, low pressure",Europe without Switzerland,"hydrogen production, gaseous, petroleum refinery operation","hydrogen, gaseous",Europe without Switzerland
+310,38,"hydrogen production, gaseous, petroleum refinery operation","hydrogen, gaseous, low pressure",Europe without Switzerland,"hydrogen production, gaseous, petroleum refinery operation","hydrogen, gaseous",Europe without Switzerland
+310,37,"hydrogen production, gaseous, petroleum refinery operation","hydrogen, gaseous, low pressure",Europe without Switzerland,"hydrogen production, gaseous, petroleum refinery operation","hydrogen, gaseous",Europe without Switzerland
+310,36,"hydrogen production, gaseous, petroleum refinery operation","hydrogen, gaseous, low pressure",Europe without Switzerland,"hydrogen production, gaseous, petroleum refinery operation","hydrogen, gaseous",Europe without Switzerland
+310,39,"methanol production, biomass gasification","methanol, from biomass",CH,"methanol production, from synthetic gas","methanol, from biomass",CH
+310,38,"methanol production, biomass gasification","methanol, from biomass",CH,"methanol production, from synthetic gas","methanol, from biomass",CH
+310,37,"methanol production, biomass gasification","methanol, from biomass",CH,"methanol production, from synthetic gas","methanol, from biomass",CH
+310,36,"methanol production, biomass gasification","methanol, from biomass",CH,"methanol production, from synthetic gas","methanol, from biomass",CH
+310,39,"methanol production, biomass gasification","methanol, from biomass",RoW,"methanol production, from synthetic gas","methanol, from biomass",RoW
+310,38,"methanol production, biomass gasification","methanol, from biomass",RoW,"methanol production, from synthetic gas","methanol, from biomass",RoW
+310,37,"methanol production, biomass gasification","methanol, from biomass",RoW,"methanol production, from synthetic gas","methanol, from biomass",RoW
+310,36,"methanol production, biomass gasification","methanol, from biomass",RoW,"methanol production, from synthetic gas","methanol, from biomass",RoW
+310,39,"market for powertrain, for electric scooter","powertrain, for electric scooter",GLO,"market for powertrain, for electric scooter","powertrain, for electric scooter",GLO
+310,38,"market for powertrain, for electric scooter","powertrain, for electric scooter",GLO,"market for powertrain, for electric scooter","powertrain, for electric scooter",GLO
+310,37,"market for powertrain, for electric scooter","powertrain, for electric scooter",GLO,"market for electric powertrain, for electric scooter","powertrain, for electric scooter",GLO
+310,36,"market for powertrain, for electric scooter","powertrain, for electric scooter",GLO,"market for electric powertrain, for electric scooter","powertrain, for electric scooter",GLO
+310,311,"transport, freight, lorry >32 metric ton, EURO4","transport, freight, lorry >32 metric ton, EURO4",RER,"transport, freight, lorry, >32 metric ton, diesel, EURO 4","transport, freight, lorry, >32 metric ton, diesel, EURO 4",RER
+310,311,"treatment of scrap aluminium, municipal incineration FAE",scrap aluminium,CH,"treatment of waste aluminium, municipal incineration FAE",waste aluminium,CH
+310,311,"treatment of scrap copper, municipal incineration FAE",scrap copper,CH,"treatment of waste copper, municipal incineration FAE",waste copper,CH
+310,311,"treatment of scrap steel, inert material landfill",scrap steel,CH,"treatment of waste steel, inert material landfill",waste steel,CH
+310,311,"lime production, milled, loose",lime,CH,"limestone production, milled, loose","limestone, milled, loose",CH
+310,311,"market for transport, freight, lorry, unspecified","transport, freight, lorry, unspecified",RER,"market for transport, freight, lorry, unspecified","transport, freight, lorry, diesel, unspecified",RER
+310,311,"market for transport, freight train","transport, freight train",Europe without Switzerland,"market for transport, freight, train, fleet average","transport, freight, train, fleet average",Europe without Switzerland
+310,311,"transport, freight, lorry 16-32 metric ton, EURO4","transport, freight, lorry 16-32 metric ton, EURO4",RER,"transport, freight, lorry, 16-32 metric ton, diesel, EURO 4","transport, freight, lorry, 16-32 metric ton, diesel, EURO 4",RER
+310,311,"lime production, milled, packed","lime, packed",CH,"limestone production, milled, packed","limestone, milled, packed",CH
+310,311,"heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas","heat, district or industrial, other than natural gas",CH,"heat, from municipal waste incineration to generic market for heat, district or industrial, other than natural gas","heat, district or industrial, other than natural gas",CH
+310,311,"treatment of scrap copper, municipal incineration",scrap copper,Europe without Switzerland,"treatment of waste copper, municipal incineration",waste copper,Europe without Switzerland
+310,311,"market for transport, freight, lorry, unspecified","transport, freight, lorry, unspecified",RER,"market for transport, freight, lorry, unspecified","transport, freight, lorry, diesel, unspecified",RER
+310,311,"market for lime, hydrated, packed","lime, hydrated, packed",RER,"market for hydrated lime, packed","hydrated lime, packed",RER
+310,311,"market for transport, freight, sea, bulk carrier for dry goods","transport, freight, sea, bulk carrier for dry goods",GLO,"market for transport, freight, sea, bulk carrier for dry goods, heavy fuel oil","transport, freight, sea, bulk carrier for dry goods, heavy fuel oil",GLO
+310,311,"transport, freight, lorry >32 metric ton, EURO3","transport, freight, lorry >32 metric ton, EURO3",RoW,"transport, freight, lorry, >32 metric ton, diesel, EURO 3","transport, freight, lorry, >32 metric ton, diesel, EURO 3",RoW
+310,311,"market group for transport, freight, inland waterways, barge","transport, freight, inland waterways, barge",GLO,"market group for transport, freight, inland waterways, barge, diesel","transport, freight, inland waterways, barge, diesel",GLO
+310,311,"market for transport, freight, lorry, unspecified","transport, freight, lorry, unspecified",RoW,"market for transport, freight, lorry, unspecified","transport, freight, lorry, diesel, unspecified",RoW
+310,311,"market for transport, freight, sea, container ship","transport, freight, sea, container ship",GLO,"market for transport, freight, sea, container ship, heavy fuel oil","transport, freight, sea, container ship, heavy fuel oil",GLO
+310,311,"market group for transport, freight train","transport, freight train",GLO,"market group for transport, freight, train, fleet average","transport, freight, train, fleet average",GLO
+310,311,"market for lime, hydraulic","lime, hydraulic",RoW,market for hydraulic lime,hydraulic lime,RoW
+310,311,"market group for transport, freight, lorry, unspecified","transport, freight, lorry, unspecified",GLO,"market group for transport, freight, lorry, diesel, unspecified","transport, freight, lorry, diesel, unspecified",GLO
+310,311,market for lime,lime,RoW,"market for limestone, milled, loose","limestone, milled, loose",RoW
+310,311,"market for transport, freight train","transport, freight train",RoW,"market for transport, freight, train, fleet average","transport, freight, train, fleet average",RoW
+310,311,"market for transport, freight, inland waterways, barge","transport, freight, inland waterways, barge",RoW,"market for transport, freight, inland waterways, barge, diesel","transport, freight, inland waterways, barge, diesel",RoW
+310,311,"market group for transport, freight, light commercial vehicle","transport, freight, light commercial vehicle",GLO,"market group for transport, freight, light commercial vehicle, fleet average","transport, freight, light commercial vehicle, fleet average",GLO
+310,311,"market for transport, freight train","transport, freight train",CN,"market for transport, freight, train, fleet average","transport, freight, train, fleet average",CN
+310,311,market for methylchloride,methylchloride,RoW,market for methyl chloride,methyl chloride,RoW
+310,311,market for methylchloride,methylchloride,RER,market for methyl chloride,methyl chloride,RER
+310,311,"market group for transport, freight train","transport, freight train",GLO,"market group for transport, freight, train, fleet average","transport, freight, train, fleet average",GLO
+310,311,"market group for transport, freight, inland waterways, barge","transport, freight, inland waterways, barge",GLO,"market group for transport, freight, inland waterways, barge, diesel","transport, freight, inland waterways, barge, diesel",GLO
+310,311,"market group for transport, freight, lorry, unspecified","transport, freight, lorry, unspecified",GLO,"market group for transport, freight, lorry, diesel, unspecified","transport, freight, lorry, diesel, unspecified",GLO
+310,311,"market for transport, freight, sea, container ship","transport, freight, sea, container ship",GLO,"market for transport, freight, sea, container ship, heavy fuel oil","transport, freight, sea, container ship, heavy fuel oil",GLO
+310,311,market for butyl acetate,butyl acetate,RoW,market for n-butyl acetate,n-butyl acetate,RoW
+310,311,market for scrap copper,scrap copper,RoW,market for waste copper,waste copper,RoW
+310,311,market for scrap steel,scrap steel,RoW,market for waste steel,waste steel,RoW
+310,311,"market for transport, freight train","transport, freight train",Europe without Switzerland,"market for transport, freight, train, fleet average","transport, freight, train, fleet average",Europe without Switzerland
+310,311,"market for transport, freight, lorry 16-32 metric ton, EURO6","transport, freight, lorry 16-32 metric ton, EURO6",RER,"market for transport, freight, lorry, 16-32 metric ton, diesel, EURO 6","transport, freight, lorry, 16-32 metric ton, diesel, EURO 6",RER
+310,311,market for scrap copper,scrap copper,Europe without Switzerland,market for waste copper,waste copper,Europe without Switzerland
+310,311,"lime production, hydrated, packed","lime, hydrated, packed",CH,"hydrated lime production, packed","hydrated lime, packed",CH
+310,311,"market for transport, freight, lorry >32 metric ton, EURO6","transport, freight, lorry >32 metric ton, EURO6",RER,"market for transport, freight, lorry, >32 metric ton, diesel, EURO 6","transport, freight, lorry, >32 metric ton, diesel, EURO 6",RER
+310,311,"polyvinylchloride production, bulk polymerisation","polyvinylchloride, bulk polymerised",RER,"polyvinyl chloride production, unspecified polymerisation, weighted average","polyvinyl chloride, unspecified polymerisation, weighted average",RER
+311,310,"market for polyvinyl chloride, unspecified polymerisation, weighted average","polyvinyl chloride, unspecified polymerisation, weighted average",RoW,"market for polyvinylchloride, bulk polymerised","polyvinylchloride, bulk polymerised",GLO
+311,39,"market for polyvinyl chloride, unspecified polymerisation, weighted average","polyvinyl chloride, unspecified polymerisation, weighted average",RoW,"market for polyvinylchloride, bulk polymerised","polyvinylchloride, bulk polymerised",GLO
+311,38,"market for polyvinyl chloride, unspecified polymerisation, weighted average","polyvinyl chloride, unspecified polymerisation, weighted average",RoW,"market for polyvinylchloride, bulk polymerised","polyvinylchloride, bulk polymerised",GLO
+310,311,market for electric arc furnace converter,electric arc furnace converter,GLO,market for electric arc furnace,electric arc furnace,GLO
+310,311,"market group for transport, freight train","transport, freight train",RER,"market group for transport, freight, train, fleet average","transport, freight, train, fleet average",RER
+310,311,"market for transport, freight train","transport, freight train",RoW,"market for transport, freight, train, fleet average","transport, freight, train, fleet average",RoW
+310,311,market for lime,lime,RoW,"market for limestone, milled, loose","limestone, milled, loose",RoW
+310,311,"market for transport, freight, lorry 16-32 metric ton, EURO5","transport, freight, lorry 16-32 metric ton, EURO5",RER,"market for transport, freight, lorry, 16-32 metric ton, diesel, EURO 5","transport, freight, lorry, 16-32 metric ton, diesel, EURO 5",RER
+310,311,"market for transport, freight, inland waterways, barge","transport, freight, inland waterways, barge",RER,"market for transport, freight, inland waterways, barge, diesel","transport, freight, inland waterways, barge, diesel",RER
+310,311,"methanol production, natural gas reforming",methanol,RoW,"methanol production, from natural gas reforming",methanol,RoW
+310,311,"transport, freight train, electricity","transport, freight train",Europe without Switzerland,"transport, freight, train, electric","transport, freight, train, fleet average",Europe without Switzerland
+310,311,"market for acetic acid, without water, in 98% solution state","acetic acid, without water, in 98% solution state",GLO,market for acetic acid,acetic acid,GLO
+310,311,"market for lime, hydrated, loose weight","lime, hydrated, loose weight",RoW,"market for hydrated lime, loose","hydrated lime, loose",RoW
+310,311,"market for lime, hydrated, packed","lime, hydrated, packed",RER,"market for hydrated lime, packed","hydrated lime, packed",RER
+310,311,"market for battery, Li-ion, LFP, rechargeable, prismatic","battery, Li-ion, LFP, rechargeable, prismatic",GLO,"market for battery, Li-ion, LFP, rechargeable","battery, Li-ion, LFP, rechargeable",GLO
+310,311,"market for battery, Li-ion, NMC111, rechargeable, prismatic","battery, Li-ion, NMC111, rechargeable, prismatic",GLO,"market for battery, Li-ion, NMC111, rechargeable","battery, Li-ion, NMC111, rechargeable",GLO
+310,311,"market for battery, Li-ion, NMC811, rechargeable, prismatic","battery, Li-ion, NMC811, rechargeable, prismatic",GLO,"market for battery, Li-ion, NMC811, rechargeable","battery, Li-ion, NMC811, rechargeable",GLO
+310,311,"market for battery, Li-ion, NCA, rechargeable, prismatic","battery, Li-ion, NCA, rechargeable, prismatic",GLO,"market for battery, Li-ion, NCA, rechargeable","battery, Li-ion, NCA, rechargeable",GLO
+310,311,"market for battery, Li-ion, LiMn2O4, rechargeable, prismatic","battery, Li-ion, LiMn2O4, rechargeable, prismatic",GLO,"market for battery, Li-ion, LiMn2O4, rechargeable","battery, Li-ion, LiMn2O4, rechargeable",GLO
+310,311,"market for battery, NaCl","battery, NaCl",GLO,"market for battery, Na-NiCl, rechargeable","battery, Na-NiCl, rechargeable",GLO
+310,311,"lime production, hydrated, packed","lime, hydrated, packed",CH,"hydrated lime production, packed","hydrated lime, packed",CH
+310,311,"market for transport, freight, sea, container ship","transport, freight, sea, container ship",GLO,"market for transport, freight, sea, container ship, heavy fuel oil","transport, freight, sea, container ship, heavy fuel oil",GLO
+310,311,"transport, freight train, diesel","transport, freight train",Europe without Switzerland,"transport, freight, train, diesel","transport, freight, train, fleet average",Europe without Switzerland
+310,311,"transport, freight, lorry 7.5-16 metric ton, EURO4","transport, freight, lorry 7.5-16 metric ton, EURO4",RER,"transport, freight, lorry, 7.5-16 metric ton, diesel, EURO 4","transport, freight, lorry, 7.5-16 metric ton, diesel, EURO 4",RER
+310,311,"market for transport, freight, lorry 3.5-7.5 metric ton, EURO4","transport, freight, lorry 3.5-7.5 metric ton, EURO4",RER,"market for transport, freight, lorry, 3.5-7.5 metric ton, diesel, EURO 4","transport, freight, lorry, 3.5-7.5 metric ton, diesel, EURO 4",RER
+310,311,"lime production, milled, packed","lime, packed",CH,"limestone production, milled, packed","limestone, milled, packed",CH
+310,311,"market for transport, freight train","transport, freight train",CH,"market for transport, freight, train, fleet average","transport, freight, train, fleet average",CH
+310,311,"market for transport, freight, lorry 16-32 metric ton, EURO4","transport, freight, lorry 16-32 metric ton, EURO4",RER,"market for transport, freight, lorry, 16-32 metric ton, diesel, EURO 4","transport, freight, lorry, 16-32 metric ton, diesel, EURO 4",RER
+310,311,"polyvinylchloride production, bulk polymerisation","polyvinylchloride, bulk polymerised",RER,"polyvinyl chloride production, unspecified polymerisation, weighted average","polyvinyl chloride, unspecified polymerisation, weighted average",RER
+310,311,"methanol production, natural gas reforming",methanol,RoW,"methanol production, from natural gas reforming",methanol,RoW
+310,311,"transport, freight, light commercial vehicle","transport, freight, light commercial vehicle",Europe without Switzerland,"transport, freight, light commercial vehicle, fleet average","transport, freight, light commercial vehicle, fleet average",Europe without Switzerland
+310,311,refrigerant R134a production,refrigerant R134a,RER,refrigerant R134a production,"tetrafluoroethane, R134a",RER
+310,311,butyl acrylate production,butyl acrylate,RER,"butyl acrylate production, butanol esterification with acrylic acid",butyl acrylate,RER
+310,311,"market for gallium, semiconductor-grade","gallium, semiconductor-grade",GLO,"market for gallium, high-grade","gallium, high-grade",GLO
+310,311,"market for transport, freight, lorry 16-32 metric ton, EURO3","transport, freight, lorry 16-32 metric ton, EURO3",RoW,"market for transport, freight, lorry, 16-32 metric ton, diesel, EURO 3","transport, freight, lorry, 16-32 metric ton, diesel, EURO 3",RoW
+310,311,"acetic acid production, butane oxidation","acetic acid, without water, in 98% solution state",RER,"acetic acid production, from n-butane oxidation",acetic acid,RER
+310,311,vinyl acetate production,vinyl acetate,RER,"vinyl acetate production, from ethylene acetoxylation",vinyl acetate,RER
+310,311,"butanols production, hydroformylation of propylene",1-butanol,RER,"butanols production, hydroformylation of propylene",n-butanol,RER
+310,311,"market for lime, packed","lime, packed",RoW,"market for limestone, milled, packed","limestone, milled, packed",RoW
+310,311,market for scrap steel,scrap steel,Europe without Switzerland,market for waste steel,waste steel,Europe without Switzerland
+310,311,market for scrap aluminium,scrap aluminium,Europe without Switzerland,market for waste aluminium,waste aluminium,Europe without Switzerland
+310,311,"market for transport, freight train","transport, freight train",Europe without Switzerland,"market for transport, freight, train, fleet average","transport, freight, train, fleet average",Europe without Switzerland
+310,311,"market for transport, freight, lorry, unspecified","transport, freight, lorry, unspecified",RER,"market for transport, freight, lorry, unspecified","transport, freight, lorry, diesel, unspecified",RER
+310,311,"lime production, milled, packed","lime, packed",RoW,"limestone production, milled, packed","limestone, milled, packed",RoW
+310,311,"market for transport, freight train","transport, freight train",RoW,"market for transport, freight, train, fleet average","transport, freight, train, fleet average",RoW
+310,311,"transport, freight, inland waterways, barge","transport, freight, inland waterways, barge",RoW,"transport, freight, inland waterways, barge, diesel","transport, freight, inland waterways, barge, diesel",RoW
+310,311,"transport, helicopter","transport, helicopter",GLO,"transport, helicopter, kerosene","transport, helicopter, kerosene",GLO
+310,311,"transport, helicopter, LTO cycle","transport, helicopter, LTO cycle",GLO,"transport, helicopter, kerosene, LTO cycle","transport, helicopter, kerosene, LTO cycle",GLO
+310,311,market for scrap steel,scrap steel,Europe without Switzerland,market for waste steel,waste steel,Europe without Switzerland
+310,311,market for lime,lime,RER,"market for limestone, milled, loose","limestone, milled, loose",RER
+310,311,"market for transport, freight, inland waterways, barge","transport, freight, inland waterways, barge",RoW,"market for transport, freight, inland waterways, barge, diesel","transport, freight, inland waterways, barge, diesel",RoW
+310,311,"market for transport, freight, lorry, unspecified","transport, freight, lorry, unspecified",RoW,"market for transport, freight, lorry, unspecified","transport, freight, lorry, diesel, unspecified",RoW
+310,311,market for lime,lime,RoW,"market for limestone, milled, loose","limestone, milled, loose",RoW
+310,311,"market for transport, freight, lorry, unspecified","transport, freight, lorry, unspecified",RoW,"market for transport, freight, lorry, unspecified","transport, freight, lorry, diesel, unspecified",RoW
+310,311,"market for transport, freight, inland waterways, barge","transport, freight, inland waterways, barge",RoW,"market for transport, freight, inland waterways, barge, diesel","transport, freight, inland waterways, barge, diesel",RoW
+310,311,market for lime,lime,RER,"market for limestone, milled, loose","limestone, milled, loose",RER
+310,311,"market for transport, freight, inland waterways, barge","transport, freight, inland waterways, barge",RER,"market for transport, freight, inland waterways, barge, diesel","transport, freight, inland waterways, barge, diesel",RER
+310,311,"market for transport, freight, sea, tanker for petroleum","transport, freight, sea, tanker for petroleum",GLO,"market for transport, freight, sea, tanker for petroleum, heavy fuel oil","transport, freight, sea, tanker for petroleum, heavy fuel oil",GLO
+310,311,"market for transport, freight, lorry, unspecified","transport, freight, lorry, unspecified",RER,"market for transport, freight, lorry, unspecified","transport, freight, lorry, diesel, unspecified",RER
+310,311,"market for transport, freight train","transport, freight train",Europe without Switzerland,"market for transport, freight, train, fleet average","transport, freight, train, fleet average",Europe without Switzerland
+310,311,market for 1-butanol,1-butanol,GLO,market for n-butanol,n-butanol,GLO
+310,311,"transport, freight, inland waterways, barge","transport, freight, inland waterways, barge",RER,"transport, freight, inland waterways, barge, diesel","transport, freight, inland waterways, barge, diesel",RER
+310,311,market for scrap steel,scrap steel,Europe without Switzerland,market for waste steel,waste steel,Europe without Switzerland
+310,311,"market for transport, freight train","transport, freight train",Europe without Switzerland,"market for transport, freight, train, fleet average","transport, freight, train, fleet average",Europe without Switzerland
+310,311,"market for transport, freight, lorry >32 metric ton, EURO4","transport, freight, lorry >32 metric ton, EURO4",RER,"market for transport, freight, lorry, >32 metric ton, diesel, EURO 4","transport, freight, lorry, >32 metric ton, diesel, EURO 4",RER
+310,311,market for scrap steel,scrap steel,CH,market for waste steel,waste steel,CH
+310,311,market for scrap copper,scrap copper,CH,market for waste copper,waste copper,CH
+310,311,market for scrap aluminium,scrap aluminium,CH,market for waste aluminium,waste aluminium,CH
+310,311,"market for transport, freight, lorry, unspecified","transport, freight, lorry, unspecified",RER,"market for transport, freight, lorry, unspecified","transport, freight, lorry, diesel, unspecified",RER
+310,311,"market for lime, hydrated, packed","lime, hydrated, packed",RoW,"market for hydrated lime, packed","hydrated lime, packed",RoW
+310,311,"market for transport, freight, lorry 16-32 metric ton, EURO3","transport, freight, lorry 16-32 metric ton, EURO3",RER,"market for transport, freight, lorry, 16-32 metric ton, diesel, EURO 3","transport, freight, lorry, 16-32 metric ton, diesel, EURO 3",RER
+310,311,"market for transport, freight, lorry 16-32 metric ton, EURO3","transport, freight, lorry 16-32 metric ton, EURO3",BR,"market for transport, freight, lorry, 16-32 metric ton, diesel, EURO 3","transport, freight, lorry, 16-32 metric ton, diesel, EURO 3",BR
+310,311,"market for transport, freight, lorry 16-32 metric ton, EURO3","transport, freight, lorry 16-32 metric ton, EURO3",RoW,"market for transport, freight, lorry, 16-32 metric ton, diesel, EURO 3","transport, freight, lorry, 16-32 metric ton, diesel, EURO 3",RoW
+310,311,"market for transport, freight, sea, bulk carrier for dry goods","transport, freight, sea, bulk carrier for dry goods",GLO,"market for transport, freight, sea, bulk carrier for dry goods, heavy fuel oil","transport, freight, sea, bulk carrier for dry goods, heavy fuel oil",GLO
+310,311,"market for lime, packed","lime, packed",RoW,"market for limestone, milled, packed","limestone, milled, packed",RoW
+310,311,"transport, freight, sea, container ship","transport, freight, sea, container ship",GLO,"transport, freight, sea, container ship, heavy fuel oil","transport, freight, sea, container ship, heavy fuel oil",GLO
+310,311,market for refrigerant R134a,refrigerant R134a,GLO,"market for tetrafluoroethane, R134a","tetrafluoroethane, R134a",GLO
+311,310,"market for tetrafluoroethane, R134a","tetrafluoroethane, R134a",GLO,market for refrigerant R134a,refrigerant R134a,GLO
+311,39,"market for tetrafluoroethane, R134a","tetrafluoroethane, R134a",GLO,market for refrigerant R134a,refrigerant R134a,GLO
+311,38,"market for tetrafluoroethane, R134a","tetrafluoroethane, R134a",GLO,market for refrigerant R134a,refrigerant R134a,GLO
+310,311,"market for transport, freight, lorry >32 metric ton, EURO6","transport, freight, lorry >32 metric ton, EURO6",RER,"market for transport, freight, lorry, >32 metric ton, diesel, EURO 6","transport, freight, lorry, >32 metric ton, diesel, EURO 6",RER
+310,311,"market for polyethylene, high density, granulate, recycled","polyethylene, high density, granulate, recycled",Europe without Switzerland,"market for polyethylene, high density, granulate, recycled","polyethylene, high density, granulate, recycled",RoW
+310,311,"gallium production, semiconductor-grade","gallium, semiconductor-grade",GLO,"high-grade gallium production, from low-grade gallium","gallium, high-grade",CN
+310,311,methylchloride production,methylchloride,WEU,"methyl chloride production, from methanol hydrochlorination",methyl chloride,RER
+310,311,"market for acetic acid, without water, in 98% solution state","acetic acid, without water, in 98% solution state",GLO,market for acetic acid,acetic acid,GLO
+310,311,"market group for transport, freight, lorry, unspecified","transport, freight, lorry, unspecified",GLO,"market group for transport, freight, lorry, diesel, unspecified","transport, freight, lorry, diesel, unspecified",GLO
+310,311,"market group for transport, freight train","transport, freight train",GLO,"market group for transport, freight, train, fleet average","transport, freight, train, fleet average",GLO
+310,311,"market for transport, freight, sea, container ship","transport, freight, sea, container ship",GLO,"market for transport, freight, sea, container ship, heavy fuel oil","transport, freight, sea, container ship, heavy fuel oil",GLO
+310,311,"market group for transport, freight train","transport, freight train",RER,"market group for transport, freight, train, fleet average","transport, freight, train, fleet average",RER
+310,311,diethyl ether production,"diethyl ether, without water, in 99.95% solution state",GLO,"diethyl ether production, from ethanol dehydration","diethyl ether, without water, in 99.95% solution state",GLO
+310,311,market for 1-butanol,1-butanol,GLO,market for n-butanol,n-butanol,GLO
+310,311,"market for transport, freight, inland waterways, barge","transport, freight, inland waterways, barge",RER,"market for transport, freight, inland waterways, barge, diesel","transport, freight, inland waterways, barge, diesel",RER
+310,311,"market for transport, freight, lorry >32 metric ton, EURO6","transport, freight, lorry >32 metric ton, EURO6",RER,"market for transport, freight, lorry, >32 metric ton, diesel, EURO 6","transport, freight, lorry, >32 metric ton, diesel, EURO 6",RER
+310,311,"market for transport, tractor and trailer, agricultural","transport, tractor and trailer, agricultural",CH,"market for transport, freight, tractor and trailer, diesel, agricultural","transport, freight, tractor and trailer, diesel, agricultural",CH
+310,311,"market for transport, freight, lorry 16-32 metric ton, EURO4","transport, freight, lorry 16-32 metric ton, EURO4",RER,"market for transport, freight, lorry, 16-32 metric ton, diesel, EURO 4","transport, freight, lorry, 16-32 metric ton, diesel, EURO 4",RER
+310,311,"market for transport, freight, sea, bulk carrier for dry goods","transport, freight, sea, bulk carrier for dry goods",GLO,"market for transport, freight, sea, bulk carrier for dry goods, heavy fuel oil","transport, freight, sea, bulk carrier for dry goods, heavy fuel oil",GLO
+310,311,"market for transport, freight, lorry >32 metric ton, EURO3","transport, freight, lorry >32 metric ton, EURO3",RoW,"market for transport, freight, lorry, >32 metric ton, diesel, EURO 3","transport, freight, lorry, >32 metric ton, diesel, EURO 3",RoW
+310,311,"market for transport, freight, lorry >32 metric ton, EURO5","transport, freight, lorry >32 metric ton, EURO5",RER,"market for transport, freight, lorry, >32 metric ton, diesel, EURO 5","transport, freight, lorry, >32 metric ton, diesel, EURO 5",RER
+310,311,"transport, tram","transport, tram",CH,"transport, passenger, tram, electric","transport, passenger, tram, electric",CH
+310,311,market for scrap steel,scrap steel,Europe without Switzerland,market for waste steel,waste steel,Europe without Switzerland
+310,311,"transport, helicopter",None,GLO,"transport, helicopter, kerosene","transport, helicopter, kerosene",GLO
+310,311,"transport, helicopter, LTO cycle",None,GLO,"transport, helicopter, kerosene, LTO cycle","transport, helicopter, kerosene, LTO cycle",GLO
+310,311,"market for polyvinylchloride, bulk polymerised","polyvinylchloride, bulk polymerised",GLO,"market for polyvinyl chloride, unspecified polymerisation, weighted average","polyvinyl chloride, unspecified polymerisation, weighted average",RoW
+310,311,market for methyl acrylate,methyl acrylate,GLO,market for methyl acrylate,methyl acrylate,RER
+310,311,market for lithium hexafluorophosphate,lithium hexafluorophosphate,GLO,market for lithium hexafluorophosphate,lithium hexafluorophosphate,CN
+310,311,market for phthalic anhydride,phthalic anhydride,GLO,market for phthalic anhydride,phthalic anhydride,RER
+310,311,market for styrene,styrene,GLO,market for styrene,styrene,RER
+310,311,market for phthalic anhydride,phthalic anhydride,GLO,market for phthalic anhydride,phthalic anhydride,RER
+310,311,"market for polyvinylchloride, emulsion polymerised","polyvinylchloride, emulsion polymerised",GLO,"market for polyvinyl chloride, emulsion polymerised","polyvinyl chloride, emulsion polymerised",RoW
+310,311,"market for polyvinylchloride, suspension polymerised","polyvinylchloride, suspension polymerised",GLO,"market for polyvinyl chloride, suspension polymerised","polyvinyl chloride, suspension polymerised",RoW
+310,311,market for cumene,cumene,GLO,market for cumene,cumene,RER
+310,311,market for methyl acetate,methyl acetate,GLO,market for methyl acetate,methyl acetate,RER
+310,311,"acetic acid production, methanol carboxylation (Monsanto), product in 98% solution state","acetic acid, without water, in 98% solution state",RER,"acetic acid production, from low-pressure methanol carbonylation","acetic acid",RER
+310,311,market for vinyl acetate,vinyl acetate,GLO,market for vinyl acetate,vinyl acetate,RER
+310,311,"market for metal part of electronics scrap, in copper, anode","metal part of electronics scrap, in copper, anode",GLO,"market for metal part of electronics scrap, in copper, anode","metal part of electronics scrap, in copper, anode",RoW
+310,311,market for hard coal,hard coal,"Europe, without Russia and Türkiye",market for hard coal,hard coal,DE
+310,311,"polymethyl methacrylate production, beads","polymethyl methacrylate, beads",RER,"market for polymethyl methacrylate","polymethyl methacrylate",RER
+310,311,"market for battery, Li-ion, LFP, rechargeable, prismatic","battery, Li-ion, LFP, rechargeable, prismatic",GLO,"market for battery, Li-ion, LFP, rechargeable","battery, Li-ion, LFP, rechargeable",GLO
+310,311,"market for battery, Li-ion, NMC111, rechargeable, prismatic","battery, Li-ion, NMC111, rechargeable, prismatic",GLO,"market for battery, Li-ion, NMC111, rechargeable","battery, Li-ion, NMC111, rechargeable",GLO
+310,311,"market for battery, Li-ion, NMC532","battery, Li-ion, NMC532",GLO,"market for battery, Li-ion, NMC532, rechargeable","battery, Li-ion, NMC532, rechargeable",GLO
+310,311,"market for battery, Li-ion, NMC622","battery, Li-ion, NMC622",GLO,"market for battery, Li-ion, NMC622, rechargeable","battery, Li-ion, NMC622, rechargeable",GLO
+310,311,"market for battery, Li-ion, NMC811, rechargeable, prismatic","battery, Li-ion, NMC811, rechargeable, prismatic",GLO,"market for battery, Li-ion, NMC811, rechargeable","battery, Li-ion, NMC811, rechargeable",GLO
+310,311,"market for battery, Li-ion, NMC955","battery, Li-ion, NMC955",GLO,"market for battery, Li-ion, NMC955, rechargeable","battery, Li-ion, NMC955, rechargeable",GLO
+310,311,"market for battery, Li-ion, NCA, rechargeable, prismatic","battery, Li-ion, NCA, rechargeable, prismatic",GLO,"market for battery, Li-ion, NCA, rechargeable","battery, Li-ion, NCA, rechargeable",GLO
+310,311,"market for battery, Li-ion, LTO","battery, Li-ion, LTO",GLO,"market for battery, Li-ion, LTO, rechargeable","battery, Li-ion, LTO, rechargeable",GLO
+310,311,"market for battery, Li-ion, LiMn2O4, rechargeable, prismatic","battery, Li-ion, LiMn2O4, rechargeable, prismatic",GLO,"market for battery, Li-ion, LiMn2O4, rechargeable","battery, Li-ion, LiMn2O4, rechargeable",GLO
+310,311,"market for battery, Li-sulfur, Li-S","battery, Li-S",GLO,"market for battery, Li-sulfur, Li-S, rechargeable","battery, Li-S, rechargeable",GLO
+310,311,"market for battery, Li-oxygen, Li-O2","battery, Li-O2",GLO,"market for battery, Li-oxygen, Li-O2, rechargeable","battery, Li-O2, rechargeable",GLO
+310,311,"natural graphite production, coated","natural graphite, coated",CN,"coated natural graphite production",natural graphite, coated,CN
+310,311,synthetic graphite production,"synthetic graphite, 99% pure",CN,"synthetic graphite production, battery grade, via Acheson powder route","synthetic graphite, battery grade",CN
+310,38,coke production,coke,DE,market for coke,coke,GLO
+310,39,coke production,coke,DE,market for coke,coke,GLO
+310,38,"market for hydrogen, gaseous, low pressure","hydrogen, gaseous, low pressure",RER,"market for hydrogen, liquid","hydrogen, liquid",RoW
+38,39,"market for acrylic dispersion, with water, in 58% solution state","acrylic dispersion, with water, in 58% solution state",RER,"market for acrylic dispersion, with water, in 58% solution","acrylic dispersion, with water, in 58% solution state",RoW
+39,38,"market for acrylic dispersion, with water, in 58% solution","acrylic dispersion, with water, in 58% solution state",RER,"market for acrylic dispersion, without water, in 65% solution state","acrylic dispersion, without water, in 65% solution state",RER
+39,310,"market for acrylic dispersion, with water, in 58% solution","acrylic dispersion, with water, in 58% solution state",RER,"market for acrylic dispersion, with water, in 58% solution state","acrylic dispersion, with water, in 58% solution state",RER
+39,311,"market for transport, freight train","transport, freight train",US,"market for transport, freight, train, fleet average","transport, freight, train, fleet average",US
+39,311,"market for transport, freight train","transport, freight train",ZA,"market for transport, freight, train, fleet average","transport, freight, train, fleet average",ZA
+39,311,"market for transport, freight train","transport, freight train",IN,"market for transport, freight, train, fleet average","transport, freight, train, fleet average",IN
+310,311,"market for transport, freight train","transport, freight train",US,"market for transport, freight, train, fleet average","transport, freight, train, fleet average",US
+310,311,"market for transport, freight train","transport, freight train",ZA,"market for transport, freight, train, fleet average","transport, freight, train, fleet average",ZA
+310,311,"market for transport, freight train","transport, freight train",IN,"market for transport, freight, train, fleet average","transport, freight, train, fleet average",IN
+39,310,"market for electric arc furnace slag","electric arc furnace slag",RER,"market for electric arc furnace slag","electric arc furnace slag",Europe without Switzerland
+310,311,"light fuel oil, import from Europe","light fuel oil",CH,"light fuel oil, import from Europe without Switzerland","light fuel oil",CH
+310,311,"diesel, low-sulfur, import from Europe","diesel, low-sulfur",CH,"diesel, low-sulfur, import from Europe without Switzerland","diesel, low-sulfur",CH

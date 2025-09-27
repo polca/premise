@@ -47,12 +47,12 @@ for act in dummy_minimal_db:
 
 def test_presence_of_dict():
     maps = InventorySet(dummy_minimal_db)
-    assert isinstance(maps.generate_material_map(), dict)
     assert isinstance(maps.generate_powerplant_map(), dict)
 
 
 def test_length_dict():
     maps = InventorySet(dummy_minimal_db)
-    assert len(maps.powerplant_filters) > 0
-    assert len(maps.powerplant_fuels_filters) > 0
-    assert len(maps.fuels_filters) > 0
+
+    assert len(maps.generate_powerplant_map()) > 0
+    assert len(maps.generate_fuel_map()) > 0
+    assert len(maps.generate_cement_map()) > 0

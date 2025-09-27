@@ -130,3 +130,25 @@ tiam-ucl:
   SKO: temperate
   UK: temperate
   WEU: temperate
+
+witch:
+  usa: temperate
+  te: temperate
+  ssa: tropical
+  southafrica: temperate
+  seasia: tropical
+  oceania: temperate
+  mexico: temperate
+  mena: temperate
+  laca: tropical
+  japan: temperate
+  korea: temperate
+  indonesia: tropical
+  india: tropical
+  eu27: temperate
+  othereurope: temperate
+  china: temperate
+  canada: temperate
+  brazil: tropical
+  sasia: tropical
+  ccasia: temperate

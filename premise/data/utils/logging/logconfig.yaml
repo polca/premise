@@ -104,6 +104,14 @@ handlers:
     formatter: simple
     mode: a
 
+  file_mapping:
+    class: logging.FileHandler
+    level: INFO
+    filename: "export/logs/premise_mapping.log"
+    encoding: utf8
+    formatter: simple
+    mode: a
+
   file_validation:
     class: logging.FileHandler
     level: INFO
@@ -171,6 +179,11 @@ loggers:
   external:
     level: INFO
     handlers: [ file_external ]
+    propagate: False
+
+  mapping:
+    level: INFO
+    handlers: [ file_mapping ]
     propagate: False
 
   validation:

@@ -1,0 +1,88 @@
+# mapping between premise and IAM terminology regarding two-wheelers
+# transport volumes (ES, billion vkm/y) and energy use (FE)
+---
+
+moped, gasoline:
+    iam_aliases:
+        remind: ES|Transport|Pass|Road|LDV|Two Wheelers|Moped|Liquids
+        remind-eu: ES|Transport|Pass|Road|LDV|Two Wheelers|Moped|Liquids
+    energy_use_aliases:
+        remind: FE|Transport|Pass|Road|LDV|Two Wheelers|Moped|Liquids
+        remind-eu: FE|Transport|Pass|Road|LDV|Two Wheelers|Moped|Liquids
+    ecoinvent_aliases:
+        fltr:
+            - transport, Scooter, gasoline, 4-11kW, EURO-5
+    ecoinvent_fuel_aliases:
+        fltr:
+            - gasoline
+
+moped, battery electric:
+    iam_aliases:
+        remind: ES|Transport|Pass|Road|LDV|Two Wheelers|Moped|BEV
+        remind-eu: ES|Transport|Pass|Road|LDV|Two Wheelers|Moped|BEV
+    energy_use_aliases:
+        remind: FE|Transport|Pass|Road|LDV|Two Wheelers|Moped|Electricity
+        remind-eu: FE|Transport|Pass|Road|LDV|Two Wheelers|Moped|Electricity
+    ecoinvent_aliases:
+        fltr:
+            - transport, Scooter, battery electric, 4-11kW
+    ecoinvent_fuel_aliases:
+        fltr:
+            - electricity
+
+
+motorcycle, 50-250cc, gasoline:
+    iam_aliases:
+        remind: ES|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(50-250cc)|Liquids
+        remind-eu: ES|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(50-250cc)|Liquids
+    energy_use_aliases:
+        remind: FE|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(50-250cc)|Liquids
+        remind-eu: FE|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(50-250cc)|Liquids
+    ecoinvent_aliases:
+        fltr:
+            - transport, Motorbike, gasoline, 11-35kW, EURO-5
+    ecoinvent_fuel_aliases:
+        fltr:
+            - gasoline
+
+motorcycle, 50-250cc, battery electric:
+    iam_aliases:
+        remind: ES|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(50-250cc)|BEV
+        remind-eu: ES|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(50-250cc)|BEV
+    energy_use_aliases:
+        remind: FE|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(50-250cc)|Electricity
+        remind-eu: FE|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(50-250cc)|Electricity
+    ecoinvent_aliases:
+        fltr:
+            - transport, Motorbike, battery electric, 11-35kW
+    ecoinvent_fuel_aliases:
+        fltr:
+            - electricity
+
+motorcycle, >250cc, gasoline:
+    iam_aliases:
+        remind: ES|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(>250cc)|Liquids
+        remind-eu: ES|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(>250cc)|Liquids
+    energy_use_aliases:
+        remind: FE|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(>250cc)|Liquids
+        remind-eu: FE|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(>250cc)|Liquids
+    ecoinvent_aliases:
+        fltr:
+            - transport, Motorbike, gasoline, >35kW, EURO-5
+    ecoinvent_fuel_aliases:
+        fltr:
+            - gasoline
+
+motorcycle, >250cc, battery electric:
+    iam_aliases:
+        remind: ES|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(>250cc)|BEV
+        remind-eu: ES|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(>250cc)|BEV
+    energy_use_aliases:
+        remind: FE|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(>250cc)|Electricity
+        remind-eu: FE|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(>250cc)|Electricity
+    ecoinvent_aliases:
+        fltr:
+            - transport, Motorbike, battery electric, >35kW
+    ecoinvent_fuel_aliases:
+        fltr:
+            - electricity

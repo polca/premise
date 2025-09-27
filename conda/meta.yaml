@@ -46,6 +46,7 @@ requirements:
     - pyYaml
     - requests
     - schema
+    - scipy<1.14.0
     - sparse>=0.14.0
     - wurst>=0.4
     - xarray<=2024.2.0

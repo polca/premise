@@ -16,9 +16,10 @@ import pandas as pd
 import xarray as xr
 import yaml
 from country_converter import CountryConverter
-from prettytable import ALL, PrettyTable
+from prettytable import PrettyTable
 from wurst import rescale_exchange
 from wurst.searching import biosphere, equals, get_many, technosphere
+import numpy as np
 
 from . import __version__
 from .data_collection import get_delimiter
@@ -30,8 +31,7 @@ from .filesystem_constants import (
 )
 from .geomap import Geomap
 
-FUELS_PROPERTIES = VARIABLES_DIR / "fuels_variables.yaml"
-CROPS_PROPERTIES = VARIABLES_DIR / "crops_variables.yaml"
+FUELS_PROPERTIES = VARIABLES_DIR / "fuels.yaml"
 EFFICIENCY_RATIO_SOLAR_PV = DATA_DIR / "renewables" / "efficiency_solar_PV.csv"
 
 
@@ -142,18 +142,6 @@ def get_fuel_properties() -> dict:
     return fuel_props
 
 
-def get_crops_properties() -> dict:
-    """
-    Return a dictionary with crop names as keys and IAM labels as values
-    relating to land use change CO2 per crop type
-    :return: dict
-    """
-    with open(CROPS_PROPERTIES, "r", encoding="utf-8") as stream:
-        crop_props = yaml.safe_load(stream)
-
-    return crop_props
-
-
 def get_water_consumption_factors() -> dict:
     """
     Return a dictionary from renewables/hydropower.yaml
@@ -232,7 +220,6 @@ def get_regions_definition(model: str) -> None:
         table.add_row([region, list_countries])
 
     table._max_width = {"Region": 50, "Countries": 125}
-    table.hrules = ALL
 
     print(table)
 
@@ -300,7 +287,6 @@ def info_on_utils_functions():
     )
     # align text to the left
     table.align = "l"
-    table.hrules = ALL
     table._max_width = {"Utils functions": 50, "Description": 32}
     print(table)
 
@@ -319,7 +305,7 @@ def warning_about_biogenic_co2() -> None:
             "Global Warming potential indicators.\n"
             "`premise_gwp` provides characterization factors for such flows.\n"
             "It also provides factors for hydrogen emissions to air.\n\n"
-            "Within your bw2 project:\n"
+            "Within your Brightway project:\n"
             "from premise_gwp import add_premise_gwp\n"
             "add_premise_gwp()"
         ]
@@ -404,26 +390,103 @@ def dump_database(scenario):
     return scenario
 
 
-def load_database(scenario, delete=True):
+def load_database(
+    scenario, original_database, delete=True, load_metadata=False, warning=True
+):
     """
     Load database from a pickle file.
     :param scenario: scenario dictionary
+    :param delete: if True, delete the file after loading
+    :param load_metadata: if True, load metadata from the cache files
 
     """
 
     if scenario.get("database") is not None:
         return scenario
 
-    filepath = scenario["database filepath"]
+    if "database filepath" not in scenario:
+        if warning:
+            print("WARNING: loading unmodified database!")
+        scenario["database"] = pickle.loads(pickle.dumps(original_database, -1))
 
-    # load pickle
-    with open(filepath, "rb") as f:
-        scenario["database"] = pickle.load(f)
-    del scenario["database filepath"]
+    else:
+        filepath = scenario["database filepath"]
 
-    # delete the file
-    if delete:
-        filepath.unlink()
+        # load pickle
+        with open(filepath, "rb") as f:
+            scenario["database"] = pickle.load(f)
+
+        # delete the file
+        if delete:
+            filepath.unlink()
+
+    if load_metadata:
+
+        filepaths = [
+            scenario["database metadata cache filepath"],
+            scenario["inventories metadata cache filepath"],
+        ]
+
+        # check if metadata files exist
+        for filepath_metadata in filepaths:
+            if not Path(filepath_metadata).exists():
+                raise FileNotFoundError(
+                    f"Metadata file {filepath_metadata} does not exist."
+                )
+            # load metadata from the cache files
+            with open(filepath_metadata, "rb") as f:
+                metadata = pickle.load(f)
+                # update each dataset with the metadata
+                for ds in scenario["database"]:
+                    key = (ds["name"], ds["reference product"], ds["location"])
+                    for k, v in metadata.get(key, {}).items():
+                        if k in [
+                            "code",
+                            # "classifications",
+                            "worksheet name",
+                            "database",
+                        ]:
+                            continue
+
+                        if v is None or v == "None" or v == "nan" or not v:
+                            # skip None or empty values
+                            continue
+
+                        if k not in ds:
+                            ds[k] = v
+
+                        elif ds[k] is None:
+                            ds[k] = v
+
+                        else:
+                            # if the key already exists, concatenate the values
+                            if isinstance(ds[k], list):
+                                ds[k].extend(v)
+
+                            elif isinstance(ds[k], str):
+                                try:
+                                    if len(ds[k]) != len(v):
+                                        ds[k] = f"{ds[k]}. {v}"
+                                except:
+                                    print("ERROR")
+                                    print(ds["name"])
+                                    print(ds[k], k, v)
+                                    pass
+
+                            elif isinstance(ds[k], dict):
+                                ds[k].update(v)
+
+    # re-attribute a code to every dataset
+    uuids = get_uuids(scenario["database"])
+    for ds in scenario["database"]:
+        key = (ds["name"], ds["reference product"], ds["location"])
+        if key in uuids:
+            ds["code"] = uuids[key]
+        else:
+            ds["code"] = str(uuid.uuid4().hex)
+
+    if "database filepath" in scenario:
+        del scenario["database filepath"]
 
     return scenario
 
@@ -461,3 +524,125 @@ def end_of_process(scenario):
         scenario["index"] = {}
 
     return scenario
+
+
+def downcast_value(val):
+    if isinstance(val, float):
+        return np.float32(val)
+    return val
+
+
+def trim_exchanges(exc):
+
+    # only keep certain keys and remove None or NaN values
+
+    return {
+        k: downcast_value(v)
+        for k, v in exc.items()
+        if k
+        in [
+            "uncertainty type",
+            "loc",
+            "scale",
+            "amount",
+            "type",
+            "production volume",
+            "product",
+            "name",
+            "unit",
+            "location",
+            "shape",
+            "minimum",
+            "maximum",
+            "categories",
+        ]
+        and pd.notna(v)
+    }
+
+
+def create_cache(database, file_name):
+    """
+    Create a cache for the database.
+    But store the metadata separately.
+    """
+
+    metadata = {
+        (ds["name"], ds["reference product"], ds["location"]): {
+            k: v
+            for k, v in ds.items()
+            if k
+            not in [
+                "name",
+                "reference product",
+                "location",
+                "unit",
+                "exchanges",
+                "type",
+                "comment",
+            ]
+            and v is not None
+            and v != "None"
+            and v != "nan"
+        }
+        for ds in database
+    }
+
+    database = [
+        {
+            k: v
+            for k, v in ds.items()
+            if k
+            in [
+                "name",
+                "reference product",
+                "location",
+                "unit",
+                "exchanges",
+                "comment",
+            ]
+        }
+        for ds in database
+    ]
+
+    for ds in database:
+        # trim exchanges
+        ds["exchanges"] = [trim_exchanges(exc) for exc in ds["exchanges"]]
+
+    # make sure thw directory exists
+    DIR_CACHED_DB.mkdir(parents=True, exist_ok=True)
+
+    # create a cache file
+    metadata_cache_file = Path(str(file_name).replace(".pickle", " (metadata).pickle"))
+
+    with open(metadata_cache_file, "wb") as f:
+        pickle.dump(metadata, f)
+
+    # cache the database
+    with open(file_name, "wb") as f:
+        pickle.dump(database, f)
+
+    return database, metadata_cache_file
+
+
+def load_metadata(file_name):
+    """
+    Load metadata from a cache file.
+    :param file_name: name of the cache file
+    :return: metadata dictionary
+    """
+    cache_file = f"{file_name} (metadata).cache"
+
+    if not cache_file.exists():
+        raise FileNotFoundError(f"Cache file {cache_file} does not exist.")
+
+    with open(cache_file, "rb") as f:
+        metadata = pickle.load(f)
+
+    return metadata
+
+
+def get_uuids(db):
+    return {
+        (ds["name"], ds["reference product"], ds["location"]): str(uuid.uuid4().hex)
+        for ds in db
+    }
