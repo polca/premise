@@ -1574,3 +1574,5 @@ from,to,name_from,ref_prod_from,location_from,name_to,ref_prod_to,location_to
 39,310,"market for electric arc furnace slag","electric arc furnace slag",RER,"market for electric arc furnace slag","electric arc furnace slag",Europe without Switzerland
 310,311,"light fuel oil, import from Europe","light fuel oil",CH,"light fuel oil, import from Europe without Switzerland","light fuel oil",CH
 310,311,"diesel, low-sulfur, import from Europe","diesel, low-sulfur",CH,"diesel, low-sulfur, import from Europe without Switzerland","diesel, low-sulfur",CH
+39,310,"market for blast furnace slag","blast furnace slag",GLO,"market for blast furnace slag","blast furnace slag",RoW
+39,311,"market for blast furnace slag","blast furnace slag",GLO,"market for blast furnace slag","blast furnace slag",RoW
