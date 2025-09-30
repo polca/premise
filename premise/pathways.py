@@ -232,7 +232,7 @@ class PathwaysDataPackage:
                         ]:
 
                             model_variables.append(model_var)
-                            mapping[var] = {"scenario variable": model_var}
+                            mapping[var] = {"scenario variable": var}
                             mapping[var]["dataset"] = self.find_activities(
                                 filters=val["ecoinvent_aliases"].get("fltr"),
                                 database=self.datapackage.scenarios[0]["database"],
