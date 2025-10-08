@@ -98,8 +98,9 @@ class PathwaysDataPackage:
         self.datapackage.write_db_to_matrices(
             filepath=str(Path.cwd() / "pathways_temp" / "inventories"),
         )
-        self.add_scenario_data()
+        self.variables_name_change = {}
         self.add_variables_mapping()
+        self.add_scenario_data()
         self.build_datapackage(name, contributors)
 
     def find_activities(
@@ -193,6 +194,12 @@ class PathwaysDataPackage:
             with open(file, "r") as f:
                 # load the YAML file
                 data = yaml.full_load(f)
+
+            if "final" in file.stem:
+                prefix = f"FE - {file.stem}"
+            else:
+                prefix = f"SE - {file.stem}"
+
             # iterate through all variables in the YAML file
             for var, val in data.items():
                 if all(x in val for x in ["iam_aliases", "ecoinvent_aliases"]):
@@ -202,21 +209,25 @@ class PathwaysDataPackage:
                         ]:
 
                             model_variables.append(model_var)
-                            mapping[var] = {"scenario variable": model_var}
-                            mapping[var]["dataset"] = self.find_activities(
+
+                            prefixed_var = f"{prefix} - {var}"
+                            self.variables_name_change[var] = prefixed_var
+
+                            mapping[prefixed_var] = {"scenario variable": model_var}
+                            mapping[prefixed_var]["dataset"] = self.find_activities(
                                 filters=val["ecoinvent_aliases"].get("fltr"),
                                 database=self.datapackage.scenarios[0]["database"],
                                 mask=val["ecoinvent_aliases"].get("mask"),
                             )
-                            mapping[var]["dataset"] = [
+                            mapping[prefixed_var]["dataset"] = [
                                 dict(t)
                                 for t in {
                                     tuple(sorted(d.items()))
-                                    for d in mapping[var]["dataset"]
+                                    for d in mapping[prefixed_var]["dataset"]
                                 }
                             ]
                             if "lhv" in val:
-                                mapping[var]["lhv"] = val["lhv"]
+                                mapping[prefixed_var]["lhv"] = val["lhv"]
 
         # if external scenarios, extend mapping with external data
         for scenario in self.datapackage.scenarios:
@@ -230,147 +241,149 @@ class PathwaysDataPackage:
                             variable_scenario_name = variable_details.get(
                                 "production volume", {}
                             ).get("variable", 0)
-                            mapping[variable] = {
+
+                            prefixed_var = f"EXT - {key} - {variable}"
+
+                            mapping[prefixed_var] = {
                                 "scenario variable": variable_scenario_name
                             }
                             filters = variable_details.get("ecoinvent alias")
                             mask = variable_details.get("ecoinvent alias").get("mask")
 
-                            mapping[variable]["dataset"] = self.find_activities(
+                            mapping[prefixed_var]["dataset"] = self.find_activities(
                                 filters=filters,
                                 database=scenario["database"],
                                 mask=mask,
                             )
 
-                            mapping[variable]["dataset"] = [
+                            mapping[prefixed_var]["dataset"] = [
                                 dict(t)
                                 for t in {
                                     tuple(sorted(d.items()))
-                                    for d in mapping[variable]["dataset"]
+                                    for d in mapping[prefixed_var]["dataset"]
                                 }
                             ]
 
-                            if len(mapping[variable]["dataset"]) == 0:
+                            if len(mapping[prefixed_var]["dataset"]) == 0:
                                 print(
-                                    f"No dataset found for {variable} in {variable_scenario_name}"
+                                    f"No dataset found for {prefixed_var} in {variable_scenario_name}"
                                 )
                                 print(f"Filters: {filters}")
                                 print(f"Mask: {mask}")
                                 continue
 
-                            variables = list(val["production pathways"].keys())
-                            variables.remove(variable)
+                            variables = [f"EXT - {key} - {v}" for v in list(val["production pathways"].keys())]
+                            variables.remove(prefixed_var)
                             # remove datasets which names are in list of variables
                             # except for the current variable
                             if (
                                 len(
                                     [
                                         d
-                                        for d in mapping[variable]["dataset"]
+                                        for d in mapping[prefixed_var]["dataset"]
                                         if not any(v in d["name"] for v in variables)
                                     ]
                                 )
                                 > 0
                             ):
-                                mapping[variable]["dataset"] = [
+                                mapping[prefixed_var]["dataset"] = [
                                     d
-                                    for d in mapping[variable]["dataset"]
+                                    for d in mapping[prefixed_var]["dataset"]
                                     if not any(v in d["name"] for v in variables)
                                 ]
 
         with open(Path.cwd() / "pathways_temp" / "mapping" / "mapping.yaml", "w") as f:
             yaml.dump(mapping, f)
 
+
+
     def add_scenario_data(self):
         """
         Add scenario data in the "pathways_temp" folder.
-
         """
-        # concatenate xarray across IAM scenarios
+
+        def _prefix_vars(arr, prefix: str):
+            # prefix the variables coordinate
+            new_vars = [f"{prefix} - {v}" for v in arr.coords["variables"].values.tolist()]
+            return arr.assign_coords(variables=("variables", new_vars))
 
         data_list, extra_units = [], {}
-        for scenario in self.datapackage.scenarios:
-            data = scenario["iam data"].production_volumes.interp(year=scenario["year"])
 
-            # concatenate the final_energy array if it exists
+        for scenario in self.datapackage.scenarios:
+            # --- base: production volumes
+            pv = scenario["iam data"].production_volumes.interp(year=scenario["year"])
+            old_vars = pv.coords["variables"].values.tolist()
+            # translate model var -> final mapping key; fallback to readable default
+            new_vars = [self.variables_name_change.get(v, v) for v in old_vars]
+            pv = pv.assign_coords(variables=("variables", new_vars))
+            # same for units
+            units = {self.variables_name_change.get(k, k): v for k, v in pv.attrs.get("unit", {}).items()}
+
+            # --- optional: final energy use
             if hasattr(scenario["iam data"], "final_energy_use"):
-                data = xr.concat(
-                    [
-                        data,
-                        scenario["iam data"].final_energy_use.interp(
-                            year=scenario["year"]
-                        ),
-                    ],
-                    dim="variables",
-                )
-                extra_units.update(scenario["iam data"].final_energy_use.attrs["unit"])
+                fe = scenario["iam data"].final_energy_use.interp(year=scenario["year"])
+                fe = _prefix_vars(fe, "FE")
+                fe_units = {f"FE - {k}": v for k, v in fe.attrs.get("unit", {}).items()}
+
+                # concat along variables
+                pv = xr.concat([pv, fe], dim="variables")
+                # merge unit dicts
+                units.update(fe_units)
 
             scenario_name = f"{scenario['model']} - {scenario['pathway']}"
+
+            # --- optional: external data blocks
             if "external data" in scenario:
-                for ext, external in scenario["external data"].items():
-                    data = xr.concat(
-                        [
-                            data,
-                            external["production volume"].interp(year=scenario["year"]),
-                        ],
-                        dim="variables",
-                    )
-                    extra_units.update(external["production volume"].attrs["unit"])
-                    scenario_name += (
-                        f" - {scenario['external scenarios'][ext]['scenario']}"
-                    )
+                for ext_key, external in scenario["external data"].items():
+                    ext = external["production volume"].interp(year=scenario["year"])
+                    # prefix includes the external block key so different externals don't collide
+                    ext_prefix = f"EXT - {ext_key}"
+                    ext = _prefix_vars(ext, ext_prefix)
+                    ext_units = {f"{ext_prefix} - {k}": v
+                                 for k, v in external["production volume"].attrs.get("unit", {}).items()}
 
-            # add a scenario dimension
-            data = data.expand_dims("scenario")
-            data.coords["scenario"] = [scenario_name]
+                    pv = xr.concat([pv, ext], dim="variables")
+                    units.update(ext_units)
+                    extra_units.update(ext_units)
+                    scenario_name += f" - {scenario['external scenarios'][ext_key]['scenario']}"
 
-            data_list.append(data)
+            # add scenario dimension
+            pv = pv.expand_dims("scenario")
+            pv = pv.assign_coords(scenario=[scenario_name])
 
+            # keep the merged units on the array (xarray may drop attrs on concat later)
+            pv.attrs["unit"] = units
+
+            data_list.append(pv)
+
+        # concat all scenarios
         array = xr.concat(data_list, dim="scenario")
 
-        # make sure pathways/scenario_data directory exists
-        (Path.cwd() / "pathways_temp" / "scenario_data").mkdir(
-            parents=True, exist_ok=True
-        )
-        # save the xarray as csv
+        # ensure output dir
+        outdir = Path.cwd() / "pathways_temp" / "scenario_data"
+        outdir.mkdir(parents=True, exist_ok=True)
+
+        # dataframe export
         df = array.to_dataframe().reset_index()
 
-        # add a unit column
-        # units are contained as an attribute of the xarray
-        df["unit"] = df["variables"].map(data.attrs["unit"])
-        # add units from extra_units if variable is in extra_units
-        df["unit"] = df.apply(
-            lambda row: (
-                extra_units[row["variables"]]
-                if row["variables"] in extra_units
-                else row["unit"]
-            ),
-            axis=1,
-        )
+        # units column (lookup matches our prefixed variable names)
+        # prefer array-level units, then fall back to extra_units if you keep that convention
+        unit_map = dict(array.attrs.get("unit", {}))
+        unit_map.update(extra_units)  # in case you want this precedence
+        df["unit"] = df["variables"].map(unit_map)
 
-        # split the columns "scenarios" into "model" and "pathway"
+        # split scenario into model/pathway
         df[["model", "pathway"]] = df["scenario"].str.split(" - ", n=1, expand=True)
-        # remove any spaces in the "pathway" column
-        # df["pathway"] = df["pathway"].str.replace(" ", "")
         df = df.drop(columns=["scenario"])
 
         self.scenario_names = df["pathway"].unique().tolist()
 
-        # remove rows with empty values under "value"
         df = df.dropna(subset=["value"])
 
-        # if scenario_data file already exists, delete it
-        if (
-            Path.cwd() / "pathways_temp" / "scenario_data" / "scenario_data.csv"
-        ).exists():
-            (
-                Path.cwd() / "pathways_temp" / "scenario_data" / "scenario_data.csv"
-            ).unlink()
-
-        df.to_csv(
-            Path.cwd() / "pathways_temp" / "scenario_data" / "scenario_data.csv",
-            index=False,
-        )
+        outfile = outdir / "scenario_data.csv"
+        if outfile.exists():
+            outfile.unlink()
+        df.to_csv(outfile, index=False)
 
     def build_datapackage(self, name: str, contributors: list = None):
         """

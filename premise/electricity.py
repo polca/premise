@@ -268,6 +268,9 @@ def _update_electricity(
     scenario["database"] = electricity.database
     scenario["index"] = electricity.index
     scenario["cache"] = electricity.cache
+    if "mapping" not in scenario:
+        scenario["mapping"] = {}
+    scenario["mapping"].update(electricity.powerplant_map)
 
     validate = ElectricityValidation(
         model=scenario["model"],
