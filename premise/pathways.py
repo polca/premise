@@ -272,7 +272,10 @@ class PathwaysDataPackage:
                                 print(f"Mask: {mask}")
                                 continue
 
-                            variables = [f"EXT - {key} - {v}" for v in list(val["production pathways"].keys())]
+                            variables = [
+                                f"EXT - {key} - {v}"
+                                for v in list(val["production pathways"].keys())
+                            ]
                             variables.remove(prefixed_var)
                             # remove datasets which names are in list of variables
                             # except for the current variable
@@ -295,8 +298,6 @@ class PathwaysDataPackage:
         with open(Path.cwd() / "pathways_temp" / "mapping" / "mapping.yaml", "w") as f:
             yaml.dump(mapping, f)
 
-
-
     def add_scenario_data(self):
         """
         Add scenario data in the "pathways_temp" folder.
@@ -304,7 +305,9 @@ class PathwaysDataPackage:
 
         def _prefix_vars(arr, prefix: str):
             # prefix the variables coordinate
-            new_vars = [f"{prefix} - {v}" for v in arr.coords["variables"].values.tolist()]
+            new_vars = [
+                f"{prefix} - {v}" for v in arr.coords["variables"].values.tolist()
+            ]
             return arr.assign_coords(variables=("variables", new_vars))
 
         data_list, extra_units = [], {}
@@ -317,7 +320,10 @@ class PathwaysDataPackage:
             new_vars = [self.variables_name_change.get(v, v) for v in old_vars]
             pv = pv.assign_coords(variables=("variables", new_vars))
             # same for units
-            units = {self.variables_name_change.get(k, k): v for k, v in pv.attrs.get("unit", {}).items()}
+            units = {
+                self.variables_name_change.get(k, k): v
+                for k, v in pv.attrs.get("unit", {}).items()
+            }
 
             # --- optional: final energy use
             if hasattr(scenario["iam data"], "final_energy_use"):
@@ -339,13 +345,19 @@ class PathwaysDataPackage:
                     # prefix includes the external block key so different externals don't collide
                     ext_prefix = f"EXT - {ext_key}"
                     ext = _prefix_vars(ext, ext_prefix)
-                    ext_units = {f"{ext_prefix} - {k}": v
-                                 for k, v in external["production volume"].attrs.get("unit", {}).items()}
+                    ext_units = {
+                        f"{ext_prefix} - {k}": v
+                        for k, v in external["production volume"]
+                        .attrs.get("unit", {})
+                        .items()
+                    }
 
                     pv = xr.concat([pv, ext], dim="variables")
                     units.update(ext_units)
                     extra_units.update(ext_units)
-                    scenario_name += f" - {scenario['external scenarios'][ext_key]['scenario']}"
+                    scenario_name += (
+                        f" - {scenario['external scenarios'][ext_key]['scenario']}"
+                    )
 
             # add scenario dimension
             pv = pv.expand_dims("scenario")

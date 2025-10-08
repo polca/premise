@@ -1050,7 +1050,6 @@ class NewDatabase:
                         scenario["applied functions"] = []
                     scenario["applied functions"].append(sector)
 
-
                 # dump database
                 dump_database(scenario)
                 # Manually update the outer progress bar after each sector is completed
