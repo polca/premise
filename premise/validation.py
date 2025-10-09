@@ -152,10 +152,7 @@ def _load_mining_shares_mapping_for_validation():
 
 
 def convert_numpy_generics_to_float(
-    records,
-    *,
-    in_place: bool = False,
-    convert_keys: bool = False
+    records, *, in_place: bool = False, convert_keys: bool = False
 ) -> list:
     """
     Walk a list of dictionaries and convert any NumPy scalar (np.generic)
@@ -239,6 +236,7 @@ def convert_numpy_generics_to_float(
         return obj
 
     return _sanitize(records)
+
 
 class BaseDatasetValidator:
     """
@@ -442,7 +440,6 @@ class BaseDatasetValidator:
             {k: v for k, v in dataset.items() if v is not None}
             for dataset in self.database
         ]
-
 
     def check_for_orphaned_datasets(self):
         # check the presence of orphan datasets
@@ -689,9 +686,7 @@ class BaseDatasetValidator:
 
         # we also want to remove any numpy generics
         # that would prevent json serialization
-        self.database = convert_numpy_generics_to_float(
-            self.database
-        )
+        self.database = convert_numpy_generics_to_float(self.database)
 
     def check_amount_format(self):
         """

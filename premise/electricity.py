@@ -1486,8 +1486,12 @@ class Electricity(BaseTransformation):
                         exc["amount"] *= scaling_factor
                         exc["uncertainty type"] = 5
                         exc["loc"] = float(exc["amount"])
-                        exc["minimum"] = float(exc["amount"] * (new_min_eff / new_mean_eff))
-                        exc["maximum"] = float(exc["amount"] * (new_max_eff / new_mean_eff))
+                        exc["minimum"] = float(
+                            exc["amount"] * (new_min_eff / new_mean_eff)
+                        )
+                        exc["maximum"] = float(
+                            exc["amount"] * (new_max_eff / new_mean_eff)
+                        )
 
                         dataset["comment"] = (
                             f"`premise` has changed the efficiency "

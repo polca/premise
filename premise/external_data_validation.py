@@ -602,32 +602,45 @@ def check_inventories(
                     database.append(ds)
 
             if "variable" in val:
-                mapping[val["variable"]] = [{
-                    "name": val["original name"],
-                    "reference product": val["original reference product"],
-                    "unit": candidates[0]["unit"]
-                }]
+                mapping[val["variable"]] = [
+                    {
+                        "name": val["original name"],
+                        "reference product": val["original reference product"],
+                        "unit": candidates[0]["unit"],
+                    }
+                ]
         else:
             # new dataset
-            unit = [act for act in inventory_data if act["name"] == val["original name"] and act["reference product"] == val["original reference product"]]
+            unit = [
+                act
+                for act in inventory_data
+                if act["name"] == val["original name"]
+                and act["reference product"] == val["original reference product"]
+            ]
             if len(unit) > 0:
                 unit = unit[0]["unit"]
             else:
                 # dataset not yet created.
                 # we need to look into the `markets` section of the config file
                 for market in configuration.get("markets", {}):
-                    if market["name"] == val["original name"] and market["reference product"] == val["original reference product"]:
+                    if (
+                        market["name"] == val["original name"]
+                        and market["reference product"]
+                        == val["original reference product"]
+                    ):
                         unit = market["unit"]
                         break
 
             ds = {
                 "name": val["original name"],
-                "reference product": val["original reference product"]
+                "reference product": val["original reference product"],
             }
             if unit:
                 ds["unit"] = unit
             else:
-                print(f"Could not find unit for dataset {val['original name']} - {val['original reference product']}. Please make sure the unit is specified in the inventory data or in the markets section of the config file.")
+                print(
+                    f"Could not find unit for dataset {val['original name']} - {val['original reference product']}. Please make sure the unit is specified in the inventory data or in the markets section of the config file."
+                )
 
             mapping[val["variable"]] = [ds]
 

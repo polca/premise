@@ -1246,15 +1246,17 @@ class BaseTransformation:
                 if production_volumes is not None:
                     # Add `production volume` field
                     if region in production_volumes.region.values:
-                        prod["production volume"] = float(production_volumes.sel(
-                            region=prod["location"]
-                        ).values.item(0))
+                        prod["production volume"] = float(
+                            production_volumes.sel(region=prod["location"]).values.item(
+                                0
+                            )
+                        )
                     else:
                         if region == "World":
                             # If the region is "World", use the total production volume
-                            prod["production volume"] = float(production_volumes.sum(
-                                dim="region"
-                            ).values.item(0))
+                            prod["production volume"] = float(
+                                production_volumes.sum(dim="region").values.item(0)
+                            )
                         else:
                             raise KeyError(
                                 f"Region {region} not found in production volumes data."

@@ -228,7 +228,9 @@ class Cement(BaseTransformation):
                 ws.contains("name", "Carbon dioxide"),
             ):
                 if exc["name"] == "Carbon dioxide, fossil":
-                    dataset["log parameters"]["initial fossil CO2"] = float(exc["amount"])
+                    dataset["log parameters"]["initial fossil CO2"] = float(
+                        exc["amount"]
+                    )
                     co2_reduction = (old_coal_input - new_coal_input) * coal_specs[
                         "co2"
                     ]
@@ -236,7 +238,9 @@ class Cement(BaseTransformation):
                     dataset["log parameters"]["new fossil CO2"] = float(exc["amount"])
 
                 if exc["name"] == "Carbon dioxide, non-fossil":
-                    dataset["log parameters"]["initial biogenic CO2"] = float(exc["amount"])
+                    dataset["log parameters"]["initial biogenic CO2"] = float(
+                        exc["amount"]
+                    )
 
         # add 0.005 kg/kg clinker of ammonia use for NOx removal
         # according to Muller et al., 2024
@@ -365,7 +369,9 @@ class Cement(BaseTransformation):
                     dataset,
                     ws.contains("name", "Carbon dioxide, non-fossil"),
                 ):
-                    dataset["log parameters"]["initial biogenic CO2"] = float(exc["amount"])
+                    dataset["log parameters"]["initial biogenic CO2"] = float(
+                        exc["amount"]
+                    )
                     exc["amount"] *= (CO2_amount - CCS_amount) / CO2_amount
 
                     # make sure it's not negative

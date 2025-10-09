@@ -86,13 +86,15 @@ def _update_external_scenarios(
             resource = data_package.get_resource("config")
             config_file = yaml.safe_load(resource.raw_read())
 
-            checked_inventories, checked_database, configuration, mapping = check_inventories(
-                configuration=config_file,
-                inventory_data=inventories,
-                scenario_data=scenario["external data"][d],
-                database=scenario["database"],
-                year=scenario["year"],
-                model=scenario["model"],
+            checked_inventories, checked_database, configuration, mapping = (
+                check_inventories(
+                    configuration=config_file,
+                    inventory_data=inventories,
+                    scenario_data=scenario["external data"][d],
+                    database=scenario["database"],
+                    year=scenario["year"],
+                    model=scenario["model"],
+                )
             )
 
             scenario["database"] = checked_database

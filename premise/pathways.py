@@ -120,14 +120,20 @@ class PathwaysDataPackage:
                 for k, v in mapping.items():
                     datasets = []
                     for x in v:
-                        data = {"name": x["name"], "reference product": x["reference product"], "unit": x["unit"]}
+                        data = {
+                            "name": x["name"],
+                            "reference product": x["reference product"],
+                            "unit": x["unit"],
+                        }
                         if "lhv" in x:
                             data["lhv"] = x["lhv"]
                         datasets.append(data)
-                    mappings[f"{prefix} - {sector} - {k}"] = {"dataset": [
-                        json.loads(s)
-                        for s in {json.dumps(d, sort_keys=True) for d in datasets}
-                    ]}
+                    mappings[f"{prefix} - {sector} - {k}"] = {
+                        "dataset": [
+                            json.loads(s)
+                            for s in {json.dumps(d, sort_keys=True) for d in datasets}
+                        ]
+                    }
                     self.variables_name_change[k] = f"{prefix} - {sector} - {k}"
 
         # create a "mapping" folder inside "pathways"
