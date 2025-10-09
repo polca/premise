@@ -86,7 +86,7 @@ def _update_external_scenarios(
             resource = data_package.get_resource("config")
             config_file = yaml.safe_load(resource.raw_read())
 
-            checked_inventories, checked_database, configuration = check_inventories(
+            checked_inventories, checked_database, configuration, mapping = check_inventories(
                 configuration=config_file,
                 inventory_data=inventories,
                 scenario_data=scenario["external data"][d],
@@ -97,6 +97,11 @@ def _update_external_scenarios(
 
             scenario["database"] = checked_database
             scenario["database"].extend(checked_inventories)
+
+            if "mapping" not in scenario:
+                scenario["mapping"] = {}
+            scenario["mapping"][f"external_{d}"] = mapping
+
             configurations[d] = configuration
 
         external_scenario = ExternalScenario(
@@ -381,7 +386,6 @@ def fetch_dataset_description_from_production_pathways(
                 v["ecoinvent alias"]["regionalize"],
                 v["ecoinvent alias"].get("ratio", 1),
             )
-    return
 
 
 def fetch_var(config_file: dict, list_vars: list) -> list:

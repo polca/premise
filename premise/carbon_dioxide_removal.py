@@ -64,6 +64,10 @@ def _update_cdr(scenario, version, system_model):
     else:
         print("No DAC information found in IAM data. Skipping.")
 
+    if "mapping" not in scenario:
+        scenario["mapping"] = {}
+    scenario["mapping"]["cdr"] = cdr.cdr_map
+
     return scenario
 
 

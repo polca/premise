@@ -73,7 +73,7 @@ def _update_biomass(scenario, version, system_model):
     scenario["cache"] = biomass.cache
     if "mapping" not in scenario:
         scenario["mapping"] = {}
-    scenario["mapping"].update(biomass.biomass_activities)
+    scenario["mapping"]["biomass"] = biomass.biomass_activities
 
     return scenario
 

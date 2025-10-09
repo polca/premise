@@ -69,6 +69,10 @@ def _update_vehicles(scenario, vehicle_type, version, system_model):
     scenario["cache"] = trspt.cache
     scenario["index"] = trspt.index
 
+    if "mapping" not in scenario:
+        scenario["mapping"] = {}
+    scenario["mapping"][vehicle_type] = trspt.vehicle_map
+
     validation_func = {
         "car": CarValidation,
         "truck": TruckValidation,
@@ -400,9 +404,9 @@ class Transport(BaseTransformation):
         for exc in ws.technosphere(ds, ws.contains("name", "market for battery")):
             exc["amount"] = mean_battery_size
             exc["uncertainty type"] = 5
-            exc["loc"] = exc["amount"]
-            exc["minimum"] = min_battery_size
-            exc["maximum"] = max_battery_size
+            exc["loc"] = float(exc["amount"])
+            exc["minimum"] = float(min_battery_size)
+            exc["maximum"] = float(max_battery_size)
 
         ds["comment"] = f" Battery size adjusted to {mean_battery_size} kWh."
 

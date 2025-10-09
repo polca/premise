@@ -14,10 +14,8 @@ import yaml
 from datapackage import Package
 
 from . import __version__
-from .activity_maps import act_fltr
-from .final_energy import FinalEnergy
 from .new_database import NewDatabase
-from .utils import dump_database, load_database
+from .utils import load_database
 
 
 class PathwaysDataPackage:
@@ -103,200 +101,40 @@ class PathwaysDataPackage:
         self.add_scenario_data()
         self.build_datapackage(name, contributors)
 
-    def find_activities(
-        self, filters: [str, list], database, mask: [str, list, None] = None
-    ):
-        """
-        Find activities in the database.
-
-        :param filters: value(s) to filter with.
-        :type filters: Union[str, lst, dict]
-        :param mask: value(s) to filter with.
-        :type mask: Union[str, lst, dict]
-        :param database: A lice cycle inventory database
-        :type database: brightway2 database object
-        :return: list dictionaries with activity names, reference products and units
-        """
-        # remove unwanted keys, anything other than "name", "reference product" and "unit"
-        if isinstance(filters, dict):
-            filters = {
-                k: v
-                for k, v in filters.items()
-                if k in ["name", "reference product", "unit"]
-            }
-
-        return [
-            {
-                "name": act["name"],
-                "reference product": act["reference product"],
-                "unit": act["unit"],
-            }
-            for act in act_fltr(
-                database=database,
-                fltr=filters,
-                mask=mask or {},
-            )
-        ]
-
     def add_variables_mapping(self):
         """
         Add variables mapping in the "pathways" folder.
 
         """
 
+        mappings = {}
+        for scenario in self.datapackage.scenarios:
+            for sector, mapping in scenario["mapping"].items():
+                if sector == "final energy":
+                    prefix = "FE"
+                elif sector.startswith("external"):
+                    prefix = "EXT"
+                else:
+                    prefix = "SE"
+
+                for k, v in mapping.items():
+                    datasets = []
+                    for x in v:
+                        data = {"name": x["name"], "reference product": x["reference product"], "unit": x["unit"]}
+                        if "lhv" in x:
+                            data["lhv"] = x["lhv"]
+                        datasets.append(data)
+                    mappings[f"{prefix} - {sector} - {k}"] = {"dataset": [
+                        json.loads(s)
+                        for s in {json.dumps(d, sort_keys=True) for d in datasets}
+                    ]}
+                    self.variables_name_change[k] = f"{prefix} - {sector} - {k}"
+
         # create a "mapping" folder inside "pathways"
         (Path.cwd() / "pathways_temp" / "mapping").mkdir(parents=True, exist_ok=True)
 
-        # make a list of unique variables
-        vars = [
-            self.datapackage.scenarios[s]["iam data"]
-            .data.coords["variables"]
-            .values.tolist()
-            for s in range(len(self.scenarios))
-        ]
-
-        # extend to variables in external scenarios
-        for scenario in self.scenarios:
-            if "external scenarios" in scenario:
-                for s in scenario["external data"]:
-                    vars.extend(
-                        [
-                            scenario["external data"][s]["production volume"]
-                            .coords["variables"]
-                            .values.tolist()
-                        ]
-                    )
-
-        # remove efficiency and emissions variables
-        vars = [
-            [
-                v
-                for v in var
-                if "efficiency" not in v.lower() and "emission" not in v.lower()
-            ]
-            for var in vars
-        ]
-
-        # concatenate the list
-        vars = list(set([item for sublist in vars for item in sublist]))
-
-        mapping = {}
-
-        # iterate through all YAML files contained in the "iam_variables_mapping" folder
-        # the folder is located in the same folder as this module
-
-        model_variables = []
-
-        for file in (
-            Path(__file__).resolve().parent.glob("iam_variables_mapping/*.yaml")
-        ):
-            # open the file
-            with open(file, "r") as f:
-                # load the YAML file
-                data = yaml.full_load(f)
-
-            if "final" in file.stem:
-                prefix = f"FE - {file.stem}"
-            else:
-                prefix = f"SE - {file.stem}"
-
-            # iterate through all variables in the YAML file
-            for var, val in data.items():
-                if all(x in val for x in ["iam_aliases", "ecoinvent_aliases"]):
-                    for model, model_var in val["iam_aliases"].items():
-                        if model_var in vars and model in [
-                            s["model"] for s in self.scenarios
-                        ]:
-
-                            model_variables.append(model_var)
-
-                            prefixed_var = f"{prefix} - {var}"
-                            self.variables_name_change[var] = prefixed_var
-
-                            mapping[prefixed_var] = {"scenario variable": model_var}
-                            mapping[prefixed_var]["dataset"] = self.find_activities(
-                                filters=val["ecoinvent_aliases"].get("fltr"),
-                                database=self.datapackage.scenarios[0]["database"],
-                                mask=val["ecoinvent_aliases"].get("mask"),
-                            )
-                            mapping[prefixed_var]["dataset"] = [
-                                dict(t)
-                                for t in {
-                                    tuple(sorted(d.items()))
-                                    for d in mapping[prefixed_var]["dataset"]
-                                }
-                            ]
-                            if "lhv" in val:
-                                mapping[prefixed_var]["lhv"] = val["lhv"]
-
-        # if external scenarios, extend mapping with external data
-        for scenario in self.datapackage.scenarios:
-            if "configurations" in scenario:
-                configurations = scenario["configurations"]
-                for key, val in configurations.items():
-                    for variable, variable_details in val.get(
-                        "production pathways", {}
-                    ).items():
-                        if variable not in mapping:
-                            variable_scenario_name = variable_details.get(
-                                "production volume", {}
-                            ).get("variable", 0)
-
-                            prefixed_var = f"EXT - {key} - {variable}"
-
-                            mapping[prefixed_var] = {
-                                "scenario variable": variable_scenario_name
-                            }
-                            filters = variable_details.get("ecoinvent alias")
-                            mask = variable_details.get("ecoinvent alias").get("mask")
-
-                            mapping[prefixed_var]["dataset"] = self.find_activities(
-                                filters=filters,
-                                database=scenario["database"],
-                                mask=mask,
-                            )
-
-                            mapping[prefixed_var]["dataset"] = [
-                                dict(t)
-                                for t in {
-                                    tuple(sorted(d.items()))
-                                    for d in mapping[prefixed_var]["dataset"]
-                                }
-                            ]
-
-                            if len(mapping[prefixed_var]["dataset"]) == 0:
-                                print(
-                                    f"No dataset found for {prefixed_var} in {variable_scenario_name}"
-                                )
-                                print(f"Filters: {filters}")
-                                print(f"Mask: {mask}")
-                                continue
-
-                            variables = [
-                                f"EXT - {key} - {v}"
-                                for v in list(val["production pathways"].keys())
-                            ]
-                            variables.remove(prefixed_var)
-                            # remove datasets which names are in list of variables
-                            # except for the current variable
-                            if (
-                                len(
-                                    [
-                                        d
-                                        for d in mapping[prefixed_var]["dataset"]
-                                        if not any(v in d["name"] for v in variables)
-                                    ]
-                                )
-                                > 0
-                            ):
-                                mapping[prefixed_var]["dataset"] = [
-                                    d
-                                    for d in mapping[prefixed_var]["dataset"]
-                                    if not any(v in d["name"] for v in variables)
-                                ]
-
         with open(Path.cwd() / "pathways_temp" / "mapping" / "mapping.yaml", "w") as f:
-            yaml.dump(mapping, f)
+            yaml.dump(mappings, f)
 
     def add_scenario_data(self):
         """
