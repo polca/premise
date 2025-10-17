@@ -1,7 +1,7 @@
 # ``premise``
 
 <div style="text-align:center">
-<img src="https://github.com/polca/premise/raw/master/docs/large.png" height="300"/>
+<img src="https://github.com/polca/premise/raw/master/docs/large.png" alt="premise logo" height="300"/>
 </div>
 
 # **PR**ospective **E**nviron**M**ental **I**mpact As**SE**ssment
@@ -9,11 +9,11 @@
 
 
 <p align="center">
-  <a href="https://badge.fury.io/py/premise" target="_blank"><img src="https://badge.fury.io/py/premise.svg"></a>
-  <a href="https://anaconda.org/conda-forge/premise" target="_blank"><img src="https://img.shields.io/conda/vn/conda-forge/premise.svg"></a>
-  <a href="https://github.com/polca/premise" target="_blank"><img src="https://github.com/polca/premise/actions/workflows/main.yml/badge.svg?branch=master"></a>
-  <a href="https://coveralls.io/github/polca/premise" target="_blank"><img src="https://coveralls.io/repos/github/polca/premise/badge.svg"></a>
-  <a href="https://premise.readthedocs.io/en/latest/" target="_blank"><img src="https://readthedocs.org/projects/premise/badge/?version=latest"></a>
+  <a href="https://badge.fury.io/py/premise" target="_blank"><img src="https://badge.fury.io/py/premise.svg" alt="PyPI version"></a>
+  <a href="https://anaconda.org/conda-forge/premise" target="_blank"><img src="https://img.shields.io/conda/vn/conda-forge/premise.svg" alt="Conda version"></a>
+  <a href="https://github.com/polca/premise" target="_blank"><img src="https://github.com/polca/premise/actions/workflows/main.yml/badge.svg?branch=master" alt="Build status"></a>
+  <a href="https://coveralls.io/github/polca/premise" target="_blank"><img src="https://coveralls.io/repos/github/polca/premise/badge.svg" alt="Coverage status"></a>
+  <a href="https://premise.readthedocs.io/en/latest/" target="_blank"><img src="https://readthedocs.org/projects/premise/badge/?version=latest" alt="Documentation status"></a>
 </p>
 
 ``premise`` is a Python tool for prospective life cycle assessment. 
