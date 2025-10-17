@@ -1,0 +1,17 @@
+name: Accessibility Scanner
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  accessibility_scanner:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: github/accessibility-scanner@v2
+        with:
+          urls: |
+            https://github.com/polca/premise
+          repository: polca/premise
+          token: ${{ secrets.GH_TOKEN }}
+          cache_key: cached_results-premise.json
