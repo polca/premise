@@ -2846,3 +2846,23 @@ treatment of waste from perovskite module treatment,waste from perovskite module
 "hydrogen production, gaseous, 30 bar, from PEM electrolysis, from open ground solar photovoltaic electricity","hydrogen, gaseous, 30 bar",2011:Manufacture of basic chemicals,"34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
 "hydrogen production, gaseous, 30 bar, from PEM electrolysis, from rooftop solar photovoltaic electricity","hydrogen, gaseous, 30 bar",2011:Manufacture of basic chemicals,"34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
 "hydrogen production, gaseous, 30 bar, from PEM electrolysis, from hydropower electricity","hydrogen, gaseous, 30 bar",2011:Manufacture of basic chemicals,"34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
+"drying of birch wood chips","birch, chipped and dried",1610:Sawmilling and planing of wood,31230: Wood in chips or particles
+"biochar production, from birch pyrolysis","biochar",3821:Treatment and disposal of non-hazardous waste,39990: Other wastes n.e.c.
+"carbon dioxide, captured and stored, by birch biochar application on mineral soil","carbon dioxide, captured","2011:Manufacture of basic chemicals","34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
+"drying of oak wood chips","oak, chipped and dried",1610:Sawmilling and planing of wood,31230: Wood in chips or particles
+"biochar production, from oak pyrolysis","biochar",3821:Treatment and disposal of non-hazardous waste,39990: Other wastes n.e.c.
+"carbon dioxide, captured and stored, by oak biochar application on mineral soil","carbon dioxide, captured","2011:Manufacture of basic chemicals","34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
+"supply of rice husk","rice husk, fresh",1610:Sawmilling and planing of wood,31230: Wood in chips or particles
+"drying and chipping of rice husk","rice husk, chipped and dried",1610:Sawmilling and planing of wood,31230: Wood in chips or particles
+"biochar production, from rice husk pyrolysis","biochar",3821:Treatment and disposal of non-hazardous waste,39990: Other wastes n.e.c.
+"carbon dioxide, captured and stored, by rice husk biochar application on mineral soil","carbon dioxide, captured","2011:Manufacture of basic chemicals","34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
+"supply of rice straw","rice straw, fresh",1610:Sawmilling and planing of wood,31230: Wood in chips or particles
+"drying and chipping of rice straw","rice straw, chipped and dried",1610:Sawmilling and planing of wood,31230: Wood in chips or particles
+"biochar production, from rice straw pyrolysis","biochar",3821:Treatment and disposal of non-hazardous waste,39990: Other wastes n.e.c.
+"carbon dioxide, captured and stored, by rice straw biochar application on mineral soil","carbon dioxide, captured","2011:Manufacture of basic chemicals","34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
+"drying of spruce wood chips","spruce, chipped and dried",1610:Sawmilling and planing of wood,31230: Wood in chips or particles
+"biochar production, from spruce pyrolysis","biochar",3821:Treatment and disposal of non-hazardous waste,39990: Other wastes n.e.c.
+"carbon dioxide, captured and stored, by spruce biochar application on mineral soil","carbon dioxide, captured","2011:Manufacture of basic chemicals","34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
+"drying of willow wood chips","willow, chipped and dried",1610:Sawmilling and planing of wood,31230: Wood in chips or particles
+"biochar production, from willow pyrolysis","biochar",3821:Treatment and disposal of non-hazardous waste,39990: Other wastes n.e.c.
+"carbon dioxide, captured and stored, by willow biochar application on mineral soil","carbon dioxide, captured","2011:Manufacture of basic chemicals","34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
