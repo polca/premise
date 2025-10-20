@@ -1865,6 +1865,9 @@ Industry - Non-energy use - Biomass:
     fltr:
       name: plywood production
       reference product: plywood
+    mask:
+      - market
+      - treatment
   iam_aliases:
     remind: FE|Non-energy Use|Industry|Solids|+|Biomass
     remind-eu: FE|Non-energy Use|Industry|Solids|+|Biomass

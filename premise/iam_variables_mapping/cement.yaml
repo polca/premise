@@ -17,7 +17,6 @@ cement, dry feed rotary kiln:
     mask:
       - kiln
       - CCS
-      - average
 
   energy_use_aliases:
     remind: FE|Industry|+++|Cement
