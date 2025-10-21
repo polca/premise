@@ -159,6 +159,10 @@ def _update_heat(scenario, version, system_model):
     scenario["cache"] = heat.cache
     scenario["index"] = heat.index
 
+    if "mapping" not in scenario:
+        scenario["mapping"] = {}
+    scenario["mapping"]["heat"] = heat.heat_techs
+
     return scenario
 
 
@@ -328,8 +332,8 @@ class Heat(BaseTransformation):
                         dataset["exchanges"].append(
                             {
                                 "uncertainty type": 0,
-                                "loc": fossil_co2,
-                                "amount": fossil_co2,
+                                "loc": float(fossil_co2),
+                                "amount": float(fossil_co2),
                                 "name": "Carbon dioxide, fossil",
                                 "categories": ("air",),
                                 "type": "biosphere",
@@ -353,8 +357,8 @@ class Heat(BaseTransformation):
                         dataset["exchanges"].append(
                             {
                                 "uncertainty type": 0,
-                                "loc": non_fossil_co2,
-                                "amount": non_fossil_co2,
+                                "loc": float(non_fossil_co2),
+                                "amount": float(non_fossil_co2),
                                 "name": "Carbon dioxide, non-fossil",
                                 "categories": ("air",),
                                 "type": "biosphere",

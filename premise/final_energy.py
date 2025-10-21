@@ -36,6 +36,10 @@ def _update_final_energy(
     scenario["index"] = final_energy.index
     scenario["cache"] = final_energy.cache
 
+    if "mapping" not in scenario:
+        scenario["mapping"] = {}
+    scenario["mapping"]["final energy"] = final_energy.final_energy_map
+
     return scenario
 
 

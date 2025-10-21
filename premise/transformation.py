@@ -1105,13 +1105,14 @@ class BaseTransformation:
                     )
                     continue
 
+                prod_vol = None
+                if production_volumes is not None:
+                    if technology in production_volumes.coords["variables"].values:
+                        prod_vol = production_volumes.sel(variables=technology)
+
                 regionalized_datasets = self.fetch_proxies(
                     datasets=activities,
-                    production_volumes=(
-                        production_volumes.sel(variables=technology)
-                        if production_volumes is not None
-                        else None
-                    ),
+                    production_volumes=prod_vol,
                 )
 
                 # adjust efficiency of steel production
@@ -1245,15 +1246,17 @@ class BaseTransformation:
                 if production_volumes is not None:
                     # Add `production volume` field
                     if region in production_volumes.region.values:
-                        prod["production volume"] = production_volumes.sel(
-                            region=prod["location"]
-                        ).values.item(0)
+                        prod["production volume"] = float(
+                            production_volumes.sel(region=prod["location"]).values.item(
+                                0
+                            )
+                        )
                     else:
                         if region == "World":
                             # If the region is "World", use the total production volume
-                            prod["production volume"] = production_volumes.sum(
-                                dim="region"
-                            ).values.item(0)
+                            prod["production volume"] = float(
+                                production_volumes.sum(dim="region").values.item(0)
+                            )
                         else:
                             raise KeyError(
                                 f"Region {region} not found in production volumes data."
@@ -1442,19 +1445,19 @@ class BaseTransformation:
                         )
 
                         if loc:
-                            exc["loc"] = loc
+                            exc["loc"] = float(loc)
 
                         if scale:
-                            exc["scale"] = scale
+                            exc["scale"] = float(scale)
 
                         if minimum:
-                            exc["minimum"] = minimum
+                            exc["minimum"] = float(minimum)
 
                         if maximum:
-                            exc["maximum"] = maximum
+                            exc["maximum"] = float(maximum)
 
                         if negative:
-                            exc["negative"] = negative
+                            exc["negative"] = float(negative)
 
             # Update act["exchanges"] by removing the exchanges to relink
             act["exchanges"] = [e for e in act["exchanges"] if e not in excs_to_relink]
@@ -2256,19 +2259,19 @@ class BaseTransformation:
                     )
 
                     if loc:
-                        exc["loc"] = loc
+                        exc["loc"] = float(loc)
 
                     if scale:
-                        exc["scale"] = scale
+                        exc["scale"] = float(scale)
 
                     if negative:
-                        exc["negative"] = negative
+                        exc["negative"] = float(negative)
 
                     if minimum:
-                        exc["minimum"] = minimum
+                        exc["minimum"] = float(minimum)
 
                     if maximum:
-                        exc["maximum"] = maximum
+                        exc["maximum"] = float(maximum)
 
         dataset["exchanges"] = [
             exc for exc in dataset["exchanges"] if exc["type"] != "technosphere"
