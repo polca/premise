@@ -927,7 +927,7 @@ class IAMDataCollection:
                 **passenger_cars_prod_vars,
                 **bus_prod_vars,
                 **two_wheelers_prod_vars,
-                **final_energy_vars
+                **final_energy_vars,
             },
         )
 
