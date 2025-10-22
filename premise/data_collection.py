@@ -1099,7 +1099,7 @@ class IAMDataCollection:
             else:
                 # If key is provided, download the file
                 download_folder = filedir
-                url = f"https://zenodo.org/record/16604066/files/{file_name}.csv"
+                url = f"https://zenodo.org/records/17413172/files/{file_name}.csv"
                 file_path = download_csv(file_name + ".csv", url, download_folder)
 
         # Decrypt the file if a key is provided

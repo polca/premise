@@ -7,7 +7,7 @@ Purpose
 *premise* enables the alignment of life cycle inventories within the ecoinvent_
 3.8-3.11 database, using either a "cut-off" or "consequential"
 system model, to match the output results of Integrated
-Assessment Models (IAMs) such as REMIND_ (and REMIND-EU), IMAGE_ or TIAM-UCL_.
+Assessment Models (IAMs) such as REMIND_ (and REMIND-EU), IMAGE_, TIAM-UCL_ or GCAM_.
 This allows for the creation of life cycle inventory databases
 under future policy scenarios for any year between 2005 and 2100.
 
@@ -15,6 +15,7 @@ under future policy scenarios for any year between 2005 and 2100.
 .. _REMIND: https://www.pik-potsdam.de/en/institute/departments/transformation-pathways/models/remind
 .. _IMAGE: https://models.pbl.nl/image/index.php/Welcome_to_IMAGE_3.2_Documentation
 .. _TIAM-UCL: https://www.ucl.ac.uk/energy-models/models/tiam-ucl
+.. _GCAM: https://gcims.pnnl.gov/modeling/gcam-global-change-analysis-model
 
 
 .. note::
@@ -46,6 +47,7 @@ Finally, you should properly refer the IAM model used with *premise*:
 * REMIND: Baumstark et al. REMIND2.1: transformation and innovation dynamics of the energy-economic system within climate and sustainability limits, Geoscientific Model Development, 2021.
 * IMAGE: Stehfest, Elke, et al. Integrated assessment of global environmental change with IMAGE 3.0: Model description and policy applications. Netherlands Environmental Assessment Agency (PBL), 2014.
 * TIAM-UCL: Pye, S., et al. The TIAM-UCL Model (Version 4.1.1) Documentation, 2020.
+* GCAM: Calvin, K., Patel, P., Clarke, L., Asrar, G., Bond-Lamberty, B., Cui, R. Y., Di Vittorio, A., Dorheim, K., Edmonds, J., Hartin, C., Hejazi, M., Horowitz, R., Iyer, G., Kyle, P., Kim, S., Link, R., McJeon, H., Smith, S. J., Snyder, A., Waldhoff, S., and Wise, M.: GCAM v5.1: representing the linkages between energy, water, land, climate, and economic systems, Geosci. Model Dev., 12, 677–698, https://doi.org/10.5194/gmd-12-677-2019, 2019.
 
 
 Models
@@ -65,6 +67,8 @@ Models
      - IMAGE (Integrated Model to Assess the Global Environment) is a comprehensive IAM developed to explore the interactions between human development, energy consumption, and environmental systems over the long term. It focuses on assessing how land use, food systems, energy systems, and climate change interact under different policy scenarios. The model integrates biophysical processes, such as land-use change and greenhouse gas emissions, with socio-economic drivers like population growth and economic development. IMAGE is commonly used for analyzing sustainable development strategies, climate impacts, biodiversity loss, and exploring mitigation and adaptation options.
    * - TIAM-UCL
      - TIAM-UCL (TIMES Integrated Assessment Model by University College London) is a global energy system model based on the TIMES (The Integrated MARKAL-EFOM System) framework, developed to evaluate long-term decarbonization pathways for global energy systems. It provides detailed insights into energy technology options, resource availability, and emission reduction strategies under various climate policy scenarios. The model focuses on the trade-offs and synergies between energy security, economic costs, and environmental outcomes. TIAM-UCL is frequently used to analyze scenarios consistent with the Paris Agreement and examine technological innovation's role in mitigating climate change globally.
+   * - GCAM
+     - GCAM (Global Change Analysis Model) is an integrated assessment model that simulates the interactions between energy, water, land use, climate, and economic systems on a global scale. It is designed to analyze how different policy scenarios, technological developments, and socio-economic factors influence greenhouse gas emissions, energy production and consumption, land use changes, and climate outcomes. GCAM incorporates detailed representations of energy technologies, agricultural systems, and land-use dynamics, allowing for comprehensive assessments of mitigation strategies and their implications for sustainable development. The model is widely used for exploring pathways to achieve climate targets while considering trade-offs across multiple sectors.
 
 
 Quick Reference
@@ -79,29 +83,35 @@ Quick Reference
      - REMIND-EU
      - IMAGE
      - TIAM-UCL
+     - GCAM
    * - **Model Type**
      - CGE + Energy
      - CGE + Energy
      - IAM (PEM)
      - Bottom-up
+     - IAM (PEM)
    * - **Foresight**
      - ✓ Perfect
      - ✓ Perfect
      - ✗ Myopic
      - ✓ Perfect
+     - ✗ Myopic
    * - **Energy System**
      - ✓ Detailed
      - ✓ Detailed
      - ✓ Moderate
      - ✓ Very detailed
+     - ✓ Moderate
    * - **Land Use**
      - ✓ (MAGPIE)
      - ✓ (MAGPIE)
      - ✓ Integrated
      - ✗
+     - ✓ Integrated
    * - **Regional Focus**
      - Global
      - EU + Global
+     - Global
      - Global
      - Global
    * - **Key Strength**
@@ -109,6 +119,7 @@ Quick Reference
      - EU policies
      - Land & climate
      - Tech pathways
+     - Coupled land–water–energy
 
 **REMIND**
 
@@ -149,6 +160,19 @@ technology detail and resource-specific analyses (e.g., hydrogen pathways, renew
 deployment). It is particularly suited for Paris Agreement-compliant energy transitions
 and cost-optimal technology portfolios.
 
+**GCAM**
+
+GCAM (Global Change Analysis Model) is a recursive-dynamic IAM based on partial equilibrium
+with myopic foresight. Its distinguishing feature is the tight coupling of energy, land,
+water, and agriculture systems within a single framework. Compared to REMIND, GCAM lacks
+intertemporal optimization and macroeconomic feedbacks but offers richer integration of
+land and water systems. Compared to IMAGE, GCAM places stronger emphasis on regional
+bioenergy–land-use trade-offs and water constraints, although its energy system detail
+is slightly more stylized. Unlike TIAM-UCL, GCAM is not technology-optimization–driven,
+but it captures market-driven transitions in land and energy under policy constraints.
+This makes it especially suitable for analyzing cross-sectoral impacts of climate, land,
+and water policies in a globally consistent framework.
+
 Choosing the Right IAM
 ----------------------
 
@@ -158,6 +182,7 @@ Selecting the appropriate IAM for use with *premise* depends on the focus of you
 - **REMIND-EU** is ideal for **EU-focused studies**, particularly those assessing the **European Green Deal** or country-level decarbonization strategies within the EU.
 - **IMAGE** is the preferred choice when **land-use change, agriculture, biodiversity, or climate–ecosystem interactions** are central to the analysis. Its biophysical and environmental modules complement energy-focused IAMs.
 - **TIAM-UCL** is most appropriate for exploring **detailed technology pathways**, resource allocation, and **cost-optimal energy system designs**, particularly for **Paris Agreement-compatible scenarios**.
+- **GCAM** is most suitable when the cross-sectoral links between land, water, energy, and agriculture are crucial. It is especially useful for questions involving bioenergy deployment, water scarcity constraints, or food–land competition under climate policy.
 
 Our recommendation is to assess the sensitivity of your results across different IAMs for a given climate target.
 IAMs will deploy different technologies and resources to achieve the same climate target, which will lead to different life cycle inventories.
@@ -168,15 +193,17 @@ This table below summarize the numbers of variables mapping with *premise* for e
 
 .. list-table::
    :header-rows: 1
-   :widths: 20 15 15 15 15
+   :widths: 20 15 15 15 15 15
 
    * - Sector
      - image
      - remind
      - remind-eu
      - tiam-ucl
+     - gcam
    * - Biomass
      - 3
+     - 2
      - 2
      - 2
      - 2
@@ -185,32 +212,39 @@ This table below summarize the numbers of variables mapping with *premise* for e
      - 7
      - 7
      - 2
+     - 3
    * - Cement
      - 10
      - 4
      - 4
+     - 2
      - 2
    * - Crops
      - 5
      - 0
      - 0
      - 1
+     - 0
    * - Electricity
      - 51
      - 34
      - 34
      - 61
+     - 27
    * - Fuels
      - 53
      - 42
      - 42
      - 55
+     - 24
    * - Heat
      - 14
      - 24
      - 24
      - 2
+     - 0
    * - Other
+     - 4
      - 4
      - 4
      - 4
@@ -220,35 +254,42 @@ This table below summarize the numbers of variables mapping with *premise* for e
      - 12
      - 12
      - 12
+     - 8
    * - Transport Bus
      - 8
      - 8
      - 8
      - 12
+     - 0
    * - Transport Passenger Cars
      - 8
      - 60
      - 60
      - 20
+     - 0
    * - Transport Rail Freight
      - 6
      - 6
      - 6
      - 4
+     - 0
    * - Transport Road Freight
      - 14
      - 40
      - 40
      - 50
+     - 0
    * - Transport Sea Freight
      - 8
      - 12
      - 12
      - 13
+     - 0
    * - Transport Two Wheelers
      - 0
      - 12
      - 12
+     - 0
      - 0
 
 
@@ -258,12 +299,13 @@ And here is a plot of the same data:
    :width: 600pt
    :align: center
 
-The table and plot show how *premise* connects to IMAGE, REMIND, REMIND-EU, and TIAM-UCL,
+The table and plot show how *premise* connects to IMAGE, REMIND, REMIND-EU, TIAM-UCL and GCAM,
 focusing on energy generation, industry, and transport:
 
 * REMIND and REMIND-EU have the broadest coverage, with strong mappings in electricity (34 variables), fuels (42 variables), and transport, especially passenger cars (60 variables) and road freight (40 variables).
 * IMAGE offers extensive integration (417 variables), particularly in electricity (51 variables), fuels (53 variables), and industrial sectors like cement (10 variables) and steel (22 variables). However, two-wheelers are not covered by IMAGE.
 * TIAM-UCL is highly detailed in electricity (61 variables), fuels (55 variables), and road freight (50 variables) but has lower coverage in cement and heat compared to REMIND and IMAGE.
+* GCAM provides moderate coverage across energy and industrial sectors but comparatively limited transport sector detail. Its strength lies less in technology-rich transport modeling and more in the integration of land, water, agriculture and energy, which is not fully reflected in this variable count but is central to its role in scenario analysis.
 
 Sectoral observations:
 
@@ -321,6 +363,20 @@ Sectoral observations:
 *Limitation:*
 
 * Limited representation of cement (2) and heat (2) sectors.
+
+
+**GCAM**
+
+*Strengths:*
+
+* Integrated coverage of land, energy, water, and agriculture systems — GCAM’s key advantage over the other IAMs.
+* Moderate detail in electricity (27) and fuels (24), sufficient for energy–land–water linkages.
+* Includes biomass and CDR pathways with explicit land-use competition interactions.
+
+*Limitations:*
+
+* Very limited representation of the transport sector (no dedicated passenger car, freight, or modal breakdowns), which means technology-level transport pathways cannot be explored with premise.
+* Industrial detail (cement 2, steel 8) is lower than in IMAGE and REMIND, reflecting its broader systems focus rather than technology granularity.
 
 Choosing the right scenario
 ---------------------------
@@ -636,6 +692,26 @@ temperature (GMST) increase by 2100:
      -
      -
      - ✓
+   * - gcam - SSP2-RCP26
+     -
+     -
+     - ✓
+     -
+     -
+     -
+     -
+     -
+     -
+   * - gcam - SSP2-Base
+     -
+     -
+     -
+     -
+     -
+     -
+     -
+     - ✓
+     -
 
 And here is a plot of the same data:
 
@@ -663,17 +739,13 @@ and GMST increase by 2100.
      - REMIND
      - IMAGE
      - TIAM-UCL
-   * - **SSP1**
-     - 2.56°C
-     - Medium forcing
+     - GCAM
+     * - **SSP1**
+     - 1.3–1.7°C
+     - Paris-consistent (peak budget)
+     - SSP1-PkBudg650, SSP1-PkBudg1000
      -
-     - SSP1-Ma
      -
-   * - **SSP1**
-     - 1.72°C
-     - Low forcing
-     -
-     - SSP1-L
      -
    * - **SSP1**
      - 1.35°C
@@ -681,10 +753,19 @@ and GMST increase by 2100.
      -
      - SSP1-VLLO
      -
+     -
+   * - **SSP1**
+     - 1.72°C
+     - Low forcing
+     -
+     - SSP1-L
+     -
+     -
    * - **SSP1**
      - 1.92°C
      - NDC (nat. determined contributions)
      - SSP1-NDC
+     -
      -
      -
    * - **SSP1**
@@ -693,46 +774,19 @@ and GMST increase by 2100.
      - SSP1-NPi
      -
      -
+     -
    * - **SSP1**
-     - 1.3–1.7°C
-     - Paris-consistent (peak budget)
-     - SSP1-PkBudg650, SSP1-PkBudg1000
-     -
-     -
-   * - **SSP2**
-     - 3.11°C
-     - Base (no explicit policy, TIAM reference)
-     -
-     -
-     - SSP2-Base
-   * - **SSP2**
-     - 1.66°C
-     - Low forcing
-     -
-     - SSP2-L
-     -
-   * - **SSP2**
-     - 2.80°C
+     - 2.56°C
      - Medium forcing
      -
-     - SSP2-M
+     - SSP1-Ma
+     -
      -
    * - **SSP2**
      - 1.42°C
      - Very low/high forcing (IMAGE VLHO)
      -
      - SSP2-VLHO
-     -
-   * - **SSP2**
-     - 2.36°C
-     - NDC (nat. determined contributions)
-     - SSP2-NDC
-     -
-     -
-   * - **SSP2**
-     - 3.0°C
-     - NPI (nat. policies implemented)
-     - SSP2-NPi
      -
      -
    * - **SSP2**
@@ -741,46 +795,62 @@ and GMST increase by 2100.
      - SSP2-PkBudg650, SSP2-PkBudg1000
      -
      -
+     -
    * - **SSP2**
-     - 3.24°C
-     - Rollback
-     - SSP2-rollBack
+     - 1.6-1.8 °C
+     - Low forcing
      -
+     - SSP2-L
      -
+     - SSP2-RCP26
    * - **SSP2–RCP1.9**
      - 1.65°C
      - Paris-consistent
      -
      -
      - SSP2-RCP19
+     -
    * - **SSP2–RCP2.6**
      - 1.83°C
      - Paris-consistent
      -
      -
      - SSP2-RCP26
-   * - **SSP2–RCP4.5**
-     - 2.78°C
-     - Weaker policy
      -
-     -
-     - SSP2-RCP45
-   * - **SSP3**
-     - 3.50°C
-     - High forcing
-     -
-     - SSP3-H
-     -
-   * - **SSP3**
-     - 2.54°C
+   * - **SSP2**
+     - 2.36°C
      - NDC (nat. determined contributions)
-     - SSP3-NDC
+     - SSP2-NDC
      -
      -
-   * - **SSP3**
-     - 3.20°C
+     -
+
+   * - **SSP2**
+     - 2.80°C
+     - Medium forcing
+     -
+     - SSP2-M
+     - SSP2-RCP45
+     -
+   * - **SSP2**
+     - 3.0°C
      - NPI (nat. policies implemented)
-     - SSP3-NPi
+     - SSP2-NPi
+     -
+     -
+     -
+   * - **SSP2**
+     - 3.1-3.5°C
+     - Base (no explicit policy, TIAM reference)
+     -
+     -
+     - SSP2-Base
+     - SSP2-Base
+   * - **SSP2**
+     - 3.24°C
+     - Rollback
+     - SSP2-rollBack
+     -
      -
      -
    * - **SSP3**
@@ -789,10 +859,33 @@ and GMST increase by 2100.
      - SSP3-PkBudg1000
      -
      -
+     -
+   * - **SSP3**
+     - 2.54°C
+     - NDC (nat. determined contributions)
+     - SSP3-NDC
+     -
+     -
+     -
+   * - **SSP3**
+     - 3.20°C
+     - NPI (nat. policies implemented)
+     - SSP3-NPi
+     -
+     -
+     -
+   * - **SSP3**
+     - 3.50°C
+     - High forcing
+     -
+     - SSP3-H
+     -
+     -
    * - **SSP3**
      - 3.75°C
      - Rollback
      - SSP3-rollBack
+     -
      -
      -
    * - **SSP5**
@@ -801,13 +894,14 @@ and GMST increase by 2100.
      -
      - SSP5-H
      -
+     -
 
 CarbonBrief_ wrote a good article explaining the meaning of the SSP system.
 
 Note that while scenarios are denominated by their SSP family, they do not follow a uniform
 system to describe the climate objective. For example, *REMIND* uses *NDC*, *NPi* and *carbon peak budgets*
-(650 and 1000 GtC) climate trajectories, while *IMAGE* uses *medium*, *low*, and *very low* forcing scenarios
-(with or without overshoot), and TIAM-UCL uses *Representative Concentration Pathways* (RCPs)
+(650 and 1000 GtCO2e) climate trajectories, while *IMAGE* uses *medium*, *low*, and *very low* forcing scenarios
+(with or without overshoot), and TIAM-UCL and GCAM use *Representative Concentration Pathways* (RCPs)
 to denote the climate target (e.g., RCP 1.9, 2.6, 4.5 and Base).
 
 
