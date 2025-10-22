@@ -542,6 +542,16 @@ temperature (GMST) increase by 2100:
      -
      -
      -
+   * - gcam - SSP2-RCP26
+     -
+     -
+     - ✓
+     -
+     -
+     -
+     -
+     -
+     -
    * - remind - SSP1-NPi
      -
      -
@@ -672,6 +682,16 @@ temperature (GMST) increase by 2100:
      -
      - ✓
      -
+   * - gcam - SSP2-Base
+     -
+     -
+     -
+     -
+     -
+     -
+     -
+     - ✓
+     -
    * - image - SSP5-H
      -
      -
@@ -692,26 +712,8 @@ temperature (GMST) increase by 2100:
      -
      -
      - ✓
-   * - gcam - SSP2-RCP26
-     -
-     -
-     - ✓
-     -
-     -
-     -
-     -
-     -
-     -
-   * - gcam - SSP2-Base
-     -
-     -
-     -
-     -
-     -
-     -
-     -
-     - ✓
-     -
+
+
 
 And here is a plot of the same data:
 
