@@ -169,17 +169,6 @@ class PathwaysDataPackage:
                 for k, v in pv.attrs.get("unit", {}).items()
             }
 
-            # --- optional: final energy use
-            if hasattr(scenario["iam data"], "final_energy_use"):
-                fe = scenario["iam data"].final_energy_use.interp(year=scenario["year"])
-                fe = _prefix_vars(fe, "FE")
-                fe_units = {f"FE - {k}": v for k, v in fe.attrs.get("unit", {}).items()}
-
-                # concat along variables
-                pv = xr.concat([pv, fe], dim="variables")
-                # merge unit dicts
-                units.update(fe_units)
-
             scenario_name = f"{scenario['model']} - {scenario['pathway']}"
 
             # --- optional: external data blocks
