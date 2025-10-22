@@ -1163,7 +1163,7 @@ Efficiency adjustment
 
 *premise* then adjusts the thermal efficiency of the process.
 
-It first calculates the energy input in teh current (original) dataset,
+It first calculates the energy input in the current (original) dataset,
 by looking up the fuel inputs and their respective lower heating values.
 
 Once the energy required per ton clinker today (2020) is known, it is

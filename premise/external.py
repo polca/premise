@@ -419,7 +419,7 @@ class ExternalScenario(BaseTransformation):
         configurations: dict = None,
     ):
         """
-        :param database: list of datasets representing teh database
+        :param database: list of datasets representing the database
         :param iam_data: IAM data: production volumes, efficiency, etc.
         :param external_scenarios: list of data packages representing the external scenarios
         :param external_scenarios_data: IAM data: production volumes, efficiency, etc.

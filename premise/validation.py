@@ -1608,7 +1608,7 @@ class ElectricityValidation(BaseDatasetValidator):
             )
 
     def check_electricity_mix(self):
-        # check that the electricity mix in teh market datasets
+        # check that the electricity mix in the market datasets
         # corresponds to the IAM scenario projection
         vars = [
             x
