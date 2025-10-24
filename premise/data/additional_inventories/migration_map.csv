@@ -1576,3 +1576,13 @@ from,to,name_from,ref_prod_from,location_from,name_to,ref_prod_to,location_to
 310,311,"diesel, low-sulfur, import from Europe","diesel, low-sulfur",CH,"diesel, low-sulfur, import from Europe without Switzerland","diesel, low-sulfur",CH
 39,310,"market for blast furnace slag","blast furnace slag",GLO,"market for blast furnace slag","blast furnace slag",RoW
 39,311,"market for blast furnace slag","blast furnace slag",GLO,"market for blast furnace slag","blast furnace slag",RoW
+311,310,"hydrated lime production, packed","hydrated lime, packed",CH,"lime production, hydrated, packed","lime, hydrated, packed",CH
+311,310,"market group for hard coal","hard coal",GLO,"market for hard coal","hard coal",RoW
+311,310,"market for hydrated lime, loose","hydrated lime, loose",CH,"market for lime, hydrated, loose weight","lime, hydrated, loose weight",CH
+311,310,market for waste steel,waste steel,Europe without Switzerland,market for scrap steel,scrap steel,Europe without Switzerland
+311,310,market for waste steel,waste steel,CH,market for scrap steel,scrap steel,CH
+311,310,market for waste aluminium,waste aluminium,Europe without Switzerland,market for waste aluminium,waste aluminium,RoW
+311,310,market for waste copper,waste copper,Europe without Switzerland,market for scrap copper,scrap copper,Europe without Switzerland
+311,310,"market for transport, freight, lorry, 16-32 metric ton, diesel, EURO 3","transport, freight, lorry, 16-32 metric ton, diesel, EURO 3",RER,"market for transport, freight, lorry 16-32 metric ton, EURO3","transport, freight, lorry 16-32 metric ton, EURO3",RER
+311,310,"market for transport, freight, lorry, >32 metric ton, diesel, EURO 3","transport, freight, lorry, >32 metric ton, diesel, EURO 3",RER,"market for transport, freight, lorry >32 metric ton, EURO3","transport, freight, lorry >32 metric ton, EURO3",RER
+311,310,"market for transport, freight, train, fleet average","transport, freight, train, fleet average",Europe without Switzerland,"market for transport, freight train","transport, freight train",Europe without Switzerland
