@@ -7,7 +7,7 @@ cement, dry feed rotary kiln:
     remind-eu: Production|Industry|Cement
     image: Production|Industry|Cement|Dry feed rotary kiln
     message: Production|Non-Metallic Minerals|Cement
-    gcam: Production|Industry|Cement
+    gcam: Production|Industry|Cement|cement
     tiam-ucl: Production|Cement
 
   ecoinvent_aliases:
@@ -17,7 +17,6 @@ cement, dry feed rotary kiln:
     mask:
       - kiln
       - CCS
-      - average
 
   energy_use_aliases:
     remind: FE|Industry|+++|Cement
@@ -261,7 +260,7 @@ cement, dry feed rotary kiln, efficient, with MEA CCS:
     remind: Production|Industry|Cement w CCS
     remind-eu: Production|Industry|Cement w CCS
     message: Production|Non-Metallic Minerals|Cement w CCS
-    gcam: Production|Industry|Cement w CCS
+    gcam: Production|Industry|Cement|cement CCS
 
   ecoinvent_aliases:
     fltr:

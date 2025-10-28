@@ -178,7 +178,7 @@ def interconnection_analysis(
     database: bw2data.Database,
 ):
     """
-    A function that list all datasets in teh database
+    A function that list all datasets in the database
     and counts the numbers of datasets each
     gives inputs to.
     """

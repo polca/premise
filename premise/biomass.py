@@ -71,6 +71,9 @@ def _update_biomass(scenario, version, system_model):
     scenario["database"] = biomass.database
     scenario["index"] = biomass.index
     scenario["cache"] = biomass.cache
+    if "mapping" not in scenario:
+        scenario["mapping"] = {}
+    scenario["mapping"]["biomass"] = biomass.biomass_activities
 
     return scenario
 

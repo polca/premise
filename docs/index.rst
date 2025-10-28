@@ -1,6 +1,7 @@
 .. image:: large.png
    :width: 200pt
    :align: center
+   :alt: premise logo
 
 
 User guide
