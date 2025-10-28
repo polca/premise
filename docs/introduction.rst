@@ -298,6 +298,7 @@ And here is a plot of the same data:
 .. image:: mapped_vars_comparison.png
    :width: 600pt
    :align: center
+   :alt: Comparison plot of mapped variables across IAM models
 
 The table and plot show how *premise* connects to IMAGE, REMIND, REMIND-EU, TIAM-UCL and GCAM,
 focusing on energy generation, industry, and transport:
@@ -720,6 +721,7 @@ And here is a plot of the same data:
 .. image:: GMST_comparison.png
    :width: 600pt
    :align: center
+   :alt: Global mean surface temperature (GMST) comparison across scenarios
 
 Hence, the choice of model and scenario is usually a weighted trade-off between:
 
@@ -922,6 +924,7 @@ Workflow
 --------
 
 .. image:: main_workflow.png
+   :alt: Main workflow diagram of premise ETL process
 
 As illustrated in the workflow diagram above, *premise* follows an Extract, Transform, Load (ETL_) process:
 
