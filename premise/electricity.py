@@ -693,8 +693,8 @@ class Electricity(BaseTransformation):
                         new_exchanges.append(
                             {
                                 "uncertainty type": 0,
-                                "loc": (amount * share),
-                                "amount": (amount * share),
+                                "loc": float(amount * share),
+                                "amount": float(amount * share),
                                 "type": "technosphere",
                                 "product": supplier["reference product"],
                                 "name": supplier["name"],
@@ -1157,8 +1157,8 @@ class Electricity(BaseTransformation):
                         new_exchanges.append(
                             {
                                 "uncertainty type": 0,
-                                "loc": (amount * share),
-                                "amount": (amount * share),
+                                "loc": float(amount * share),
+                                "amount": float(amount * share),
                                 "type": "technosphere",
                                 "product": supplier["reference product"],
                                 "name": supplier["name"],
@@ -1481,9 +1481,13 @@ class Electricity(BaseTransformation):
                         scaling_factor = float(current_eff / new_mean_eff)
                         exc["amount"] *= scaling_factor
                         exc["uncertainty type"] = 5
-                        exc["loc"] = exc["amount"]
-                        exc["minimum"] = exc["amount"] * (new_min_eff / new_mean_eff)
-                        exc["maximum"] = exc["amount"] * (new_max_eff / new_mean_eff)
+                        exc["loc"] = float(exc["amount"])
+                        exc["minimum"] = float(
+                            exc["amount"] * (new_min_eff / new_mean_eff)
+                        )
+                        exc["maximum"] = float(
+                            exc["amount"] * (new_max_eff / new_mean_eff)
+                        )
 
                         dataset["comment"] = (
                             f"`premise` has changed the efficiency "

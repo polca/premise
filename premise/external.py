@@ -275,6 +275,10 @@ def adjust_efficiency(dataset: dict, fuels_specs: dict, fuel_map_reverse: dict) 
                     dataset.setdefault("log parameters", {})[
                         f"new efficiency"
                     ] = expected_efficiency
+
+                    if "comment" not in dataset:
+                        dataset["comment"] = ""
+
                     dataset[
                         "comment"
                     ] += f" Original efficiency: {current_efficiency:.2f}. New efficiency: {expected_efficiency:.2f}."
@@ -384,7 +388,6 @@ def fetch_dataset_description_from_production_pathways(
                 v["ecoinvent alias"]["regionalize"],
                 v["ecoinvent alias"].get("ratio", 1),
             )
-    return
 
 
 def fetch_var(config_file: dict, list_vars: list) -> list:

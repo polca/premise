@@ -3,7 +3,7 @@ Consequential modelling
 
 The premise module allows users to import and adjust
 the consequential system model of the ecoinvent database
-v.3.8, v.3.9 and v.3.10, with a focus on electricity and fuel markets.
+v.3.8, v.3.9, v.3.10 and v.3.11.
 This work is based on a publication available
 at https://doi.org/10.1016/j.rser.2023.113830
 
@@ -14,8 +14,9 @@ If you use this module, please cite the publication:
 Renewable and Sustainable Energy Reviews,
 Volume 188, 2023, doi: 10.1016/j.rser.2023.113830
 
-Currently, the identification of marginal supplying
-technologies is limited to the electricity and fuel sectors.
+Based on user preferences (or the default ones), Premise
+builds marginal mixes for the different commodities for which
+production volumes are provided in the IAM scenario.
 
 Some technologies are excluded from the marginal markets
 due to constraints on their feedstock availability.

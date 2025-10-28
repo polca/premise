@@ -668,7 +668,7 @@ hydrogen, from electrolysis, PEM, from Solar PV:
   iam_aliases:
     image: Secondary Energy|Hydrogen|Electricity|PEM Electrolyzer w/ PV
   ecoinvent_aliases:
-    fltr: hydrogen production, gaseous, 30 bar, from PEM electrolysis, from solar
+    fltr: hydrogen production, gaseous, 30 bar, from PEM electrolysis, from open ground solar
       photovoltaic electricity
     mask:
     - carbon dioxide
@@ -711,6 +711,18 @@ hydrogen, from electrolysis, PEM, from geothermal:
       electricity
     mask:
     - carbon dioxide
+
+hydrogen, from electrolysis, PEM, from hydropower:
+  lhv:
+    unit: megajoule
+    value: 120
+  co2: 0
+  biogenic_share: 1
+  ecoinvent_aliases:
+    fltr: hydrogen production, gaseous, 30 bar, from PEM electrolysis, from hydropower electricity
+    mask:
+    - carbon dioxide
+
 hydrogen, from electrolysis, AEC:
   lhv:
     unit: megajoule
