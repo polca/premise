@@ -395,7 +395,6 @@ def fetch_dataset_description_from_production_pathways(
                 v["ecoinvent alias"]["regionalize"],
                 v["ecoinvent alias"].get("ratio", 1),
             )
-    return
 
 
 def fetch_var(config_file: dict, list_vars: list) -> list:
