@@ -342,14 +342,76 @@ class PathwaysDataPackage:
 
             if "premise.final_energy" in sys.modules:
                 final_energy_module = sys.modules["premise.final_energy"]
+                patched_capacity_addition = getattr(
+                    final_energy_module, "_PATCHED_CAPACITY_ADDITION", None
+                )
                 patched_units = getattr(
                     final_energy_module, "_PATCHED_CAPACITY_UNITS", None
                 )
-                if patched_units:
-                    extra_units.update(patched_units)
-                    print(
-                        f"✅ Added {len(patched_units)} capacity addition units to extra_units"
-                    )
+                if patched_capacity_addition and patched_units:
+                    # Build mapping from YAML keys to IAM variable names
+                    key_to_iam_vars = {}
+                    for yaml_key, var_config in patched_capacity_addition.items():
+                        if "iam_aliases" in var_config:
+                            iam_var = var_config["iam_aliases"].get(scenario["model"])
+                            if iam_var:
+                                # iam_var could be a string or a list
+                                if isinstance(iam_var, list):
+                                    key_to_iam_vars[yaml_key] = iam_var
+                                else:
+                                    key_to_iam_vars[yaml_key] = [iam_var]
+
+                    # Extract and process capacity addition variables from raw IAM data
+                    if key_to_iam_vars and hasattr(scenario["iam data"], "data"):
+                        iam_data_full = scenario["iam data"].data
+                        capacity_pieces = []
+                        remapped_units = {}
+
+                        for yaml_key, iam_vars in key_to_iam_vars.items():
+                            # Check which IAM variables exist in the data
+                            existing_vars = [
+                                v for v in iam_vars
+                                if v in iam_data_full.coords["variables"].values
+                            ]
+
+                            if not existing_vars:
+                                continue
+
+                            # Extract data for these variables and interpolate to year
+                            capacity_da = iam_data_full.sel(
+                                variables=existing_vars
+                            ).interp(year=scenario["year"])
+
+                            # If multiple variables, sum them
+                            if len(existing_vars) > 1:
+                                capacity_da = capacity_da.sum(dim="variables")
+                                # Ensure variables dimension exists after sum
+                                if "variables" not in capacity_da.dims:
+                                    capacity_da = capacity_da.expand_dims("variables")
+
+                            # Rename to YAML key
+                            capacity_da = capacity_da.assign_coords(variables=[yaml_key])
+                            capacity_pieces.append(capacity_da)
+
+                            # Get unit
+                            for iam_var in existing_vars:
+                                if iam_var in patched_units:
+                                    remapped_units[yaml_key] = patched_units[iam_var]
+                                    break
+
+                        if capacity_pieces:
+                            # Concatenate all capacity data
+                            capacity_data = xr.concat(capacity_pieces, dim="variables")
+
+                            # Concatenate with existing data
+                            data = xr.concat([data, capacity_data], dim="variables")
+
+                            print(
+                                f"✅ Added {len(capacity_pieces)} capacity addition variables to scenario data"
+                            )
+
+                            # Update units
+                            extra_units.update(remapped_units)
 
             scenario_name = f"{scenario['model']} - {scenario['pathway']}"
             if "external data" in scenario:

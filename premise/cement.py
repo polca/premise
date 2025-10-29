@@ -69,6 +69,10 @@ def _update_cement(scenario, version, system_model):
     else:
         print("No cement markets found in IAM data. Skipping.")
 
+    if "mapping" not in scenario:
+        scenario["mapping"] = {}
+    scenario["mapping"]["cement"] = cement.cement_map
+
     return scenario
 
 
@@ -224,15 +228,19 @@ class Cement(BaseTransformation):
                 ws.contains("name", "Carbon dioxide"),
             ):
                 if exc["name"] == "Carbon dioxide, fossil":
-                    dataset["log parameters"]["initial fossil CO2"] = exc["amount"]
+                    dataset["log parameters"]["initial fossil CO2"] = float(
+                        exc["amount"]
+                    )
                     co2_reduction = (old_coal_input - new_coal_input) * coal_specs[
                         "co2"
                     ]
                     exc["amount"] -= co2_reduction
-                    dataset["log parameters"]["new fossil CO2"] = exc["amount"]
+                    dataset["log parameters"]["new fossil CO2"] = float(exc["amount"])
 
                 if exc["name"] == "Carbon dioxide, non-fossil":
-                    dataset["log parameters"]["initial biogenic CO2"] = exc["amount"]
+                    dataset["log parameters"]["initial biogenic CO2"] = float(
+                        exc["amount"]
+                    )
 
         # add 0.005 kg/kg clinker of ammonia use for NOx removal
         # according to Muller et al., 2024
@@ -322,8 +330,8 @@ class Cement(BaseTransformation):
 
             ccs_exc = {
                 "uncertainty type": 0,
-                "loc": CCS_amount,
-                "amount": CCS_amount,
+                "loc": float(CCS_amount),
+                "amount": float(CCS_amount),
                 "type": "technosphere",
                 "production volume": 0,
                 "name": ccs_datasets[technology]["name"],
@@ -361,7 +369,9 @@ class Cement(BaseTransformation):
                     dataset,
                     ws.contains("name", "Carbon dioxide, non-fossil"),
                 ):
-                    dataset["log parameters"]["initial biogenic CO2"] = exc["amount"]
+                    dataset["log parameters"]["initial biogenic CO2"] = float(
+                        exc["amount"]
+                    )
                     exc["amount"] *= (CO2_amount - CCS_amount) / CO2_amount
 
                     # make sure it's not negative
@@ -379,8 +389,8 @@ class Cement(BaseTransformation):
                     dataset["exchanges"].append(
                         {
                             "uncertainty type": 0,
-                            "loc": biogenic_CO2_reduction,
-                            "amount": biogenic_CO2_reduction,
+                            "loc": float(biogenic_CO2_reduction),
+                            "amount": float(biogenic_CO2_reduction),
                             "type": "biosphere",
                             "name": "Carbon dioxide, in air",
                             "unit": "kilogram",

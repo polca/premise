@@ -1287,7 +1287,14 @@ class Metals(BaseTransformation):
         - reference product
         - primary share (interpolated)
         - secondary share (interpolated)
+
+        For consequential system model, always return 100% primary.
         """
+        if self.system_model == "consequential":
+            default_name = f"market for {metal_key}"
+            default_reference_product = metal_key
+            return default_name, default_reference_product, 1.0, 0.0
+
         entry = self.prim_sec_split.get(metal_key, None)
         if not entry:
             default_name = f"market for {metal_key}"

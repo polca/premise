@@ -220,7 +220,7 @@ steel - primary - DRI:
       - Production|Steel|Secondary|DRI and EAF 1
       - Production|Steel|Secondary|DRI and EAF 2|w/o CCS
       - Production|Steel|Secondary|DRI and EAF 3
-    gcam: Production|Industry|Steel|Primary|EAF with DRI
+    gcam: Production|Industry|Steel|Secondary|EAF with DRI
   energy_use_aliases:
     image:
       - Final Energy|Industry|Iron and Steel|DRI EAF|Coal

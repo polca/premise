@@ -600,7 +600,7 @@ class Interventions(BaseTransformation):
 
         min_year = self.brake_wear_shares.year.values.min()
         max_year = self.brake_wear_shares.year.values.max()
-        year = np.clip(self.year, min_year, max_year)
+        year = int(np.clip(self.year, min_year, max_year))
 
         fallback_region = None
         for r in self.brake_wear_shares.region.values:
