@@ -555,7 +555,7 @@ def trim_exchanges(exc):
             "minimum",
             "maximum",
             "categories",
-            "comment"
+            "comment",
         ]
         and pd.notna(v)
     }
