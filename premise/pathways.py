@@ -370,7 +370,8 @@ class PathwaysDataPackage:
                         for yaml_key, iam_vars in key_to_iam_vars.items():
                             # Check which IAM variables exist in the data
                             existing_vars = [
-                                v for v in iam_vars
+                                v
+                                for v in iam_vars
                                 if v in iam_data_full.coords["variables"].values
                             ]
 
@@ -390,7 +391,9 @@ class PathwaysDataPackage:
                                     capacity_da = capacity_da.expand_dims("variables")
 
                             # Rename to YAML key
-                            capacity_da = capacity_da.assign_coords(variables=[yaml_key])
+                            capacity_da = capacity_da.assign_coords(
+                                variables=[yaml_key]
+                            )
                             capacity_pieces.append(capacity_da)
 
                             # Get unit
