@@ -161,6 +161,7 @@ LIST_TIAM-UCL_REGIONS:
   - World
 
 LIST_GCAM_REGIONS:
+# CHECK THESE. REGIONS CHANGED FROM GCAM6 to GCAM8
   - Africa_Eastern
   - Africa_Northern
   - Africa_Southern
