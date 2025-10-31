@@ -17,14 +17,10 @@ heat, from steam:
   ecoinvent_aliases:
     fltr: steam production, as energy carrier
     mask: market
-  iam_aliases:
-    message: Secondary Energy|Heat|Nuclear
 
 heat, from steam (market):
   ecoinvent_aliases:
     fltr: market for heat, from steam
-  iam_aliases:
-    message: Secondary Energy|Heat
 
 heat, from natural gas:
   ecoinvent_aliases:
@@ -43,8 +39,6 @@ heat, from natural gas (market):
       - market for heat, central or small-scale, natural gas
       - market for heat, district or industrial, natural gas
     mask: Jakobsberg
-  iam_aliases:
-    message: Secondary Energy|Heat|Gas
 
 heat, from light fuel oil:
   ecoinvent_aliases:
