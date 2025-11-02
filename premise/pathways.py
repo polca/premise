@@ -150,7 +150,9 @@ class PathwaysDataPackage:
                         original_dataset = ws.get_one(
                             scenario["database"],
                             ws.equals("name", cdr_ds_info["name"]),
-                            ws.equals("reference product", cdr_ds_info["reference product"]),
+                            ws.equals(
+                                "reference product", cdr_ds_info["reference product"]
+                            ),
                             ws.equals("location", cdr_ds_info["location"]),
                         )
                     except:
@@ -160,17 +162,19 @@ class PathwaysDataPackage:
                             f"WARNING: CDR dataset not found: {cdr_ds_info['name']} "
                             f"in {cdr_ds_info['location']}"
                         )
-                        modifications_report.append({
-                            "model": scenario["model"],
-                            "pathway": scenario["pathway"],
-                            "year": scenario["year"],
-                            "technology": cdr_tech,
-                            "location": cdr_ds_info['location'],
-                            "original_name": cdr_ds_info['name'],
-                            "new_name": "NOT FOUND - SKIPPED",
-                            "electricity_removed_kwh": 0,
-                            "heat_removed_mj": 0,
-                        })
+                        modifications_report.append(
+                            {
+                                "model": scenario["model"],
+                                "pathway": scenario["pathway"],
+                                "year": scenario["year"],
+                                "technology": cdr_tech,
+                                "location": cdr_ds_info["location"],
+                                "original_name": cdr_ds_info["name"],
+                                "new_name": "NOT FOUND - SKIPPED",
+                                "electricity_removed_kwh": 0,
+                                "heat_removed_mj": 0,
+                            }
+                        )
                         continue
                     # 2. Create new dataset based on original, removing energy inputs
                     new_dataset = {
@@ -210,14 +214,17 @@ class PathwaysDataPackage:
                             exc_unit = exc.get("unit", "")
 
                             # Check for electricity: "electricity" in name AND unit "kilowatt hour"
-                            if "electricity" in exc_name_lower and exc_unit == "kilowatt hour":
+                            if (
+                                "electricity" in exc_name_lower
+                                and exc_unit == "kilowatt hour"
+                            ):
                                 is_energy = True
                                 removed_electricity += exc.get("amount", 0)
                             # Check for heat: "heat" in name AND unit "megajoule"
                             elif "heat" in exc_name_lower and exc_unit == "megajoule":
                                 is_energy = True
                                 removed_heat += exc.get("amount", 0)
-                            
+
                             if not is_energy:
                                 # Keep non-energy inputs
                                 new_dataset["exchanges"].append(exc.copy())
@@ -238,24 +245,28 @@ class PathwaysDataPackage:
                     scenario["database"].append(new_dataset)
 
                     # 4. Update mapping
-                    energy_stripped_mapping[cdr_tech].append({
-                        "name": new_dataset["name"],
-                        "reference product": new_dataset["reference product"],
-                        "unit": new_dataset["unit"],
-                        "location": new_dataset["location"],
-                    })
+                    energy_stripped_mapping[cdr_tech].append(
+                        {
+                            "name": new_dataset["name"],
+                            "reference product": new_dataset["reference product"],
+                            "unit": new_dataset["unit"],
+                            "location": new_dataset["location"],
+                        }
+                    )
 
-                    modifications_report.append({
-                        "model": scenario["model"],
-                        "pathway": scenario["pathway"],
-                        "year": scenario["year"],
-                        "technology": cdr_tech,
-                        "location": new_dataset["location"],
-                        "original_name": original_dataset["name"],
-                        "new_name": new_dataset["name"],
-                        "electricity_removed_kwh": removed_electricity,
-                        "heat_removed_mj": removed_heat,
-                    })
+                    modifications_report.append(
+                        {
+                            "model": scenario["model"],
+                            "pathway": scenario["pathway"],
+                            "year": scenario["year"],
+                            "technology": cdr_tech,
+                            "location": new_dataset["location"],
+                            "original_name": original_dataset["name"],
+                            "new_name": new_dataset["name"],
+                            "electricity_removed_kwh": removed_electricity,
+                            "heat_removed_mj": removed_heat,
+                        }
+                    )
 
                     total_removed += 1
 
@@ -391,9 +402,9 @@ class PathwaysDataPackage:
         df = df.dropna(subset=["value"])
 
         # Normalize CDR signs: They have to be always positive values in pathways
-        cdr_mask = df['variables'].str.contains('SE - cdr', case=False, na=False)
+        cdr_mask = df["variables"].str.contains("SE - cdr", case=False, na=False)
         if cdr_mask.any():
-            df.loc[cdr_mask, 'value'] = df.loc[cdr_mask, 'value'].abs()
+            df.loc[cdr_mask, "value"] = df.loc[cdr_mask, "value"].abs()
 
         outfile = outdir / "scenario_data.csv"
         if outfile.exists():
@@ -494,15 +505,24 @@ class PathwaysDataPackage:
             f.write("CDR ENERGY INPUTS MODIFICATION REPORT\n")
             f.write("=" * 80 + "\n\n")
 
-            f.write("This report documents modifications made to Carbon Dioxide Removal (CDR)\n")
-            f.write("datasets for pathways analysis. Energy inputs (electricity and heat) have\n")
-            f.write("been removed to avoid double-counting when using final energy variables.\n\n")
+            f.write(
+                "This report documents modifications made to Carbon Dioxide Removal (CDR)\n"
+            )
+            f.write(
+                "datasets for pathways analysis. Energy inputs (electricity and heat) have\n"
+            )
+            f.write(
+                "been removed to avoid double-counting when using final energy variables.\n\n"
+            )
 
-            f.write("Material inputs, infrastructure, and negative CO2 emissions are preserved.\n")
+            f.write(
+                "Material inputs, infrastructure, and negative CO2 emissions are preserved.\n"
+            )
             f.write("-" * 80 + "\n\n")
 
             # Group by scenario
             from collections import defaultdict
+
             by_scenario = defaultdict(list)
             for mod in modifications:
                 key = (mod["model"], mod["pathway"], mod["year"])
@@ -529,19 +549,25 @@ class PathwaysDataPackage:
                         f.write(f"    Original dataset: {mod['original_name']}\n")
                         f.write(f"    New dataset:      {mod['new_name']}\n")
 
-                        if mod['electricity_removed_kwh'] > 0:
-                            f.write(f"    Electricity removed: {mod['electricity_removed_kwh']:,.2f} kWh\n")
-                            total_elec += mod['electricity_removed_kwh']
+                        if mod["electricity_removed_kwh"] > 0:
+                            f.write(
+                                f"    Electricity removed: {mod['electricity_removed_kwh']:,.2f} kWh\n"
+                            )
+                            total_elec += mod["electricity_removed_kwh"]
 
-                        if mod['heat_removed_mj'] > 0:
-                            f.write(f"    Heat removed:        {mod['heat_removed_mj']:,.2f} MJ\n")
-                            total_heat += mod['heat_removed_mj']
+                        if mod["heat_removed_mj"] > 0:
+                            f.write(
+                                f"    Heat removed:        {mod['heat_removed_mj']:,.2f} MJ\n"
+                            )
+                            total_heat += mod["heat_removed_mj"]
 
                     # Summary for this technology
                     f.write(f"\n  Summary for {tech}:\n")
                     f.write(f"    Total datasets modified: {len(tech_mods)}\n")
                     if total_elec > 0:
-                        f.write(f"    Total electricity removed: {total_elec:,.2f} kWh\n")
+                        f.write(
+                            f"    Total electricity removed: {total_elec:,.2f} kWh\n"
+                        )
                     if total_heat > 0:
                         f.write(f"    Total heat removed: {total_heat:,.2f} MJ\n")
                     f.write("\n")
@@ -564,4 +590,3 @@ class PathwaysDataPackage:
             f.write("=" * 80 + "\n")
 
         print(f"CDR modifications report saved: {report_path}")
-
