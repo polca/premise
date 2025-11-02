@@ -69,7 +69,18 @@ class PathwaysDataPackage:
         name: str = f"pathways_{date.today()}",
         contributors: list = None,
         transformations: list = None,
+        strip_cdr_energy: bool = False,
     ):
+        """
+        Create and export a scenario datapackage.
+
+        :param name: Name of the datapackage.
+        :param contributors: List of contributors to the datapackage.
+        :param transformations: List of transformations to apply to the datapackage.
+        :param strip_cdr_energy: If True, remove energy inputs (electricity, heat) from CDR
+        datasets to avoid double-counting when using "startswith('SE - cdr')" variables in pathways.
+        Default is False.
+        """
         if transformations:
             self.datapackage.update(transformations)
         else:
@@ -78,12 +89,14 @@ class PathwaysDataPackage:
         self.export_datapackage(
             name=name,
             contributors=contributors,
+            strip_cdr_energy=strip_cdr_energy,
         )
 
     def export_datapackage(
         self,
         name: str,
         contributors: list = None,
+        strip_cdr_energy: bool = False,
     ):
 
         for scenario in self.datapackage.scenarios:
@@ -91,6 +104,10 @@ class PathwaysDataPackage:
 
         # first, delete the content of the "pathways_temp" folder
         shutil.rmtree(Path.cwd() / "pathways_temp", ignore_errors=True)
+
+        if strip_cdr_energy:
+            # remove energy inputs from CDR datasets
+            self._create_energy_stripped_cdr_datasets()
 
         # create matrices in current directory
         self.datapackage.write_db_to_matrices(
@@ -100,6 +117,154 @@ class PathwaysDataPackage:
         self.add_variables_mapping()
         self.add_scenario_data()
         self.build_datapackage(name, contributors)
+
+    def _create_energy_stripped_cdr_datasets(self):
+        """
+        Create modified CDR datasets with energy inputs removed for pathways analysis.
+
+        Removes electricity (kilowatt hour) and heat (megajoule) inputs to avoid
+        double-counting when using "startswith('SE - cdr')" variables in pathways.
+        Material inputs, infrastructure, and negative CO2 emissionsa are preserved.
+
+        The mapping is then updated to point to these modified datasets.
+        """
+        from .transformation import ws
+        import uuid
+
+        modifications_report = []
+
+        for scenario in self.datapackage.scenarios:
+            if "mapping" not in scenario or "cdr" not in scenario["mapping"]:
+                continue
+
+            energy_stripped_mapping = {}
+            total_removed = 0
+
+            for cdr_tech, cdr_datasets in scenario["mapping"]["cdr"].items():
+
+                energy_stripped_mapping[cdr_tech] = []
+
+                for cdr_ds_info in cdr_datasets:
+                    # 1. Find the original dataset in the database
+                    try:
+                        original_dataset = ws.get_one(
+                            scenario["database"],
+                            ws.equals("name", cdr_ds_info["name"]),
+                            ws.equals("reference product", cdr_ds_info["reference product"]),
+                            ws.equals("location", cdr_ds_info["location"]),
+                        )
+                    except:
+                        # Dataset not found, keep original
+                        energy_stripped_mapping[cdr_tech].append(cdr_ds_info)
+                        print(
+                            f"WARNING: CDR dataset not found: {cdr_ds_info['name']} "
+                            f"in {cdr_ds_info['location']}"
+                        )
+                        modifications_report.append({
+                            "model": scenario["model"],
+                            "pathway": scenario["pathway"],
+                            "year": scenario["year"],
+                            "technology": cdr_tech,
+                            "location": cdr_ds_info['location'],
+                            "original_name": cdr_ds_info['name'],
+                            "new_name": "NOT FOUND - SKIPPED",
+                            "electricity_removed_kwh": 0,
+                            "heat_removed_mj": 0,
+                        })
+                        continue
+                    # 2. Create new dataset based on original, removing energy inputs
+                    new_dataset = {
+                        "name": f"{original_dataset['name']}, energy-free for pathways",
+                        "location": original_dataset["location"],
+                        "reference product": original_dataset["reference product"],
+                        "unit": original_dataset["unit"],
+                        "code": str(uuid.uuid4()),
+                        "database": original_dataset.get("database"),
+                        "comment": (
+                            f"Modified version of '{original_dataset['name']}' for pathways analysis. "
+                            f"Energy inputs (electricity, heat) removed to avoid double-counting "
+                            f"when using final energy variables. Material inputs, infrastructure, "
+                            f"and negative CO2 emissions preserved."
+                        ),
+                        "exchanges": [],
+                    }
+
+                    for field in ["production amount", "categories"]:
+                        if field in original_dataset:
+                            new_dataset[field] = original_dataset[field]
+
+                    removed_electricity = 0
+                    removed_heat = 0
+
+                    for exc in original_dataset.get("exchanges", []):
+                        if exc["type"] == "production":
+                            new_dataset["exchanges"].append(exc.copy())
+                            continue
+                        if exc["type"] == "biosphere":
+                            new_dataset["exchanges"].append(exc.copy())
+                            continue
+
+                        if exc["type"] == "technosphere":
+                            is_energy = False
+                            exc_name_lower = exc.get("name", "").lower()
+                            exc_unit = exc.get("unit", "")
+
+                            # Check for electricity: "electricity" in name AND unit "kilowatt hour"
+                            if "electricity" in exc_name_lower and exc_unit == "kilowatt hour":
+                                is_energy = True
+                                removed_electricity += exc.get("amount", 0)
+                            # Check for heat: "heat" in name AND unit "megajoule"
+                            elif "heat" in exc_name_lower and exc_unit == "megajoule":
+                                is_energy = True
+                                removed_heat += exc.get("amount", 0)
+                            
+                            if not is_energy:
+                                # Keep non-energy inputs
+                                new_dataset["exchanges"].append(exc.copy())
+
+                    # Update production exchange to match new dataset name
+                    for exc in ws.production(new_dataset):
+                        exc["name"] = new_dataset["name"]
+                        if "input" in exc:
+                            del exc["input"]
+
+                    new_dataset["log parameters"] = {
+                        "electricity removed (kWh)": removed_electricity,
+                        "heat removed (MJ)": removed_heat,
+                        "original dataset": original_dataset["name"],
+                    }
+
+                    # 3. Add new dataset to database
+                    scenario["database"].append(new_dataset)
+
+                    # 4. Update mapping
+                    energy_stripped_mapping[cdr_tech].append({
+                        "name": new_dataset["name"],
+                        "reference product": new_dataset["reference product"],
+                        "unit": new_dataset["unit"],
+                        "location": new_dataset["location"],
+                    })
+
+                    modifications_report.append({
+                        "model": scenario["model"],
+                        "pathway": scenario["pathway"],
+                        "year": scenario["year"],
+                        "technology": cdr_tech,
+                        "location": new_dataset["location"],
+                        "original_name": original_dataset["name"],
+                        "new_name": new_dataset["name"],
+                        "electricity_removed_kwh": removed_electricity,
+                        "heat_removed_mj": removed_heat,
+                    })
+
+                    total_removed += 1
+
+            # 5. Replace original mapping with energy-stripped version
+            if energy_stripped_mapping:
+                scenario["mapping"]["cdr"] = energy_stripped_mapping
+
+        if modifications_report:
+            self._write_cdr_modifications_report(modifications_report)
 
     def add_variables_mapping(self):
         """
@@ -225,6 +390,11 @@ class PathwaysDataPackage:
 
         df = df.dropna(subset=["value"])
 
+        # Normalize CDR signs: They have to be always positive values in pathways
+        cdr_mask = df['variables'].str.contains('SE - cdr', case=False, na=False)
+        if cdr_mask.any():
+            df.loc[cdr_mask, 'value'] = df.loc[cdr_mask, 'value'].abs()
+
         outfile = outdir / "scenario_data.csv"
         if outfile.exists():
             outfile.unlink()
@@ -238,6 +408,7 @@ class PathwaysDataPackage:
         package = Package(base_path=Path.cwd().as_posix())
         package.infer("pathways_temp/**/*.csv")
         package.infer("pathways_temp/**/*.yaml")
+        package.infer("pathways_temp/**/*.txt")
 
         package.descriptor["name"] = name.replace(" ", "_").lower()
         package.descriptor["title"] = name.capitalize()
@@ -307,3 +478,90 @@ class PathwaysDataPackage:
         shutil.make_archive(name, "zip", str(Path.cwd() / "pathways_temp"))
 
         print(f"Data package saved at {str(Path.cwd() / f'{name}.zip')}")
+
+    def _write_cdr_modifications_report(self, modifications: list):
+        """
+        Write a report of CDR modifications to a text file in the datapackage.
+
+        :param modifications: List of dictionaries containing modification details
+        """
+        report_dir = Path.cwd() / "pathways_temp"
+        report_dir.mkdir(parents=True, exist_ok=True)
+        report_path = report_dir / "cdr_energy_modifications.txt"
+
+        with open(report_path, "w", encoding="utf-8") as f:
+            f.write("=" * 80 + "\n")
+            f.write("CDR ENERGY INPUTS MODIFICATION REPORT\n")
+            f.write("=" * 80 + "\n\n")
+
+            f.write("This report documents modifications made to Carbon Dioxide Removal (CDR)\n")
+            f.write("datasets for pathways analysis. Energy inputs (electricity and heat) have\n")
+            f.write("been removed to avoid double-counting when using final energy variables.\n\n")
+
+            f.write("Material inputs, infrastructure, and negative CO2 emissions are preserved.\n")
+            f.write("-" * 80 + "\n\n")
+
+            # Group by scenario
+            from collections import defaultdict
+            by_scenario = defaultdict(list)
+            for mod in modifications:
+                key = (mod["model"], mod["pathway"], mod["year"])
+                by_scenario[key].append(mod)
+
+            for (model, pathway, year), mods in sorted(by_scenario.items()):
+                f.write(f"\nScenario: {model} - {pathway} ({year})\n")
+                f.write("=" * 80 + "\n\n")
+
+                # Group by technology
+                by_tech = defaultdict(list)
+                for mod in mods:
+                    by_tech[mod["technology"]].append(mod)
+
+                for tech, tech_mods in sorted(by_tech.items()):
+                    f.write(f"  Technology: {tech}\n")
+                    f.write("  " + "-" * 76 + "\n")
+
+                    total_elec = 0
+                    total_heat = 0
+
+                    for mod in tech_mods:
+                        f.write(f"\n  Location: {mod['location']}\n")
+                        f.write(f"    Original dataset: {mod['original_name']}\n")
+                        f.write(f"    New dataset:      {mod['new_name']}\n")
+
+                        if mod['electricity_removed_kwh'] > 0:
+                            f.write(f"    Electricity removed: {mod['electricity_removed_kwh']:,.2f} kWh\n")
+                            total_elec += mod['electricity_removed_kwh']
+
+                        if mod['heat_removed_mj'] > 0:
+                            f.write(f"    Heat removed:        {mod['heat_removed_mj']:,.2f} MJ\n")
+                            total_heat += mod['heat_removed_mj']
+
+                    # Summary for this technology
+                    f.write(f"\n  Summary for {tech}:\n")
+                    f.write(f"    Total datasets modified: {len(tech_mods)}\n")
+                    if total_elec > 0:
+                        f.write(f"    Total electricity removed: {total_elec:,.2f} kWh\n")
+                    if total_heat > 0:
+                        f.write(f"    Total heat removed: {total_heat:,.2f} MJ\n")
+                    f.write("\n")
+
+            # Overall summary
+            f.write("\n" + "=" * 80 + "\n")
+            f.write("OVERALL SUMMARY\n")
+            f.write("=" * 80 + "\n\n")
+            f.write(f"Total CDR datasets modified: {len(modifications)}\n")
+            f.write(f"Scenarios processed: {len(by_scenario)}\n")
+
+            # Count unique technologies
+            unique_techs = set(mod["technology"] for mod in modifications)
+            f.write(f"CDR technologies affected: {len(unique_techs)}\n")
+            for tech in sorted(unique_techs):
+                f.write(f"  - {tech}\n")
+
+            f.write("\n" + "=" * 80 + "\n")
+            f.write("End of report\n")
+            f.write("=" * 80 + "\n")
+
+        print(f"CDR modifications report saved: {report_path}")
+
