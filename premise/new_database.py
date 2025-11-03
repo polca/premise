@@ -516,6 +516,14 @@ class NewDatabase:
     :vartype source_db: str
     :ivar system_model: Can be `cutoff` (default) or `consequential`.
     :vartype system_model: str
+    :ivar system_model_args: arguments for the system model.
+    :vartype system_model_args: dict
+    :ivar version: ecoinvent database version.
+    :vartype version: str
+    :ivar biosphere_name: name of the biosphere database in the current project.
+    :vartype biosphere_name: str
+    :ivar generate_reports: whether to generate change and summary reports.
+    :vartype generate_reports: bool
 
     """
 
@@ -541,6 +549,30 @@ class NewDatabase:
         biosphere_name: str = "biosphere3",
         generate_reports: bool = True,
     ) -> None:
+
+        """
+        Initialize the NewDatabase class.
+
+        :param scenarios: list of IAM scenarios to use.
+        :param source_version: ecoinvent database version. Default is "3.11".
+        :param source_type: source of the ecoinvent database. Can be `brightway` or `ecospold`. Default is `brightway`.
+        :param key: decryption key for encrypted IAM data files. Default is None.
+        :param source_db: name of the source ecoinvent database in the current project. Default is None.
+        :param source_file_path: file path to the ecospold files, if source_type is `ecospold`. Default is None.
+        :param additional_inventories: list of additional inventories to import. Default is None.
+        :param system_model: system model to use. Can be `cutoff` (default) or `consequential`. Default is `cutoff`.
+        :param system_args: arguments for the system model. Default is None.
+        :param use_cached_inventories: whether to use cached inventories. Default is True.
+        :param use_cached_database: whether to use a cached database. Default is True.
+        :param external_scenarios: list of external scenarios to use. Default is None.
+        :param quiet: whether to suppress output messages. Default is False.
+        :param keep_imports_uncertainty: whether to keep uncertainty in imported inventories. Default is True.
+        :param keep_source_db_uncertainty: whether to keep uncertainty in the source database. Default is False.
+        :param gains_scenario: gains scenario to use. Can be either 'CLE' or 'MFR'. Default is 'CLE'.
+        :param use_absolute_efficiency: whether to use absolute efficiency values. Default is False.
+        :param biosphere_name: name of the biosphere database in the current project. Default is "biosphere3".
+        :param generate_reports: whether to generate change and summary reports. Default is True.
+        """
         self.sector_update_methods = None
         self.source = source_db
         self.version = check_db_version(source_version)
