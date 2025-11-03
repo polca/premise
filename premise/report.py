@@ -273,6 +273,7 @@ def fetch_data(
 
 # --- Helpers (new) ------------------------------------------------------------
 
+
 def _dataarray_to_wide_df(da: xr.DataArray) -> pd.DataFrame:
     """
     Convert a (variables, year[, ...]) DataArray into a wide DataFrame
@@ -308,7 +309,9 @@ def _dataarray_to_wide_df(da: xr.DataArray) -> pd.DataFrame:
         return pd.DataFrame()
 
 
-def _write_wide_df(worksheet, start_row: int, start_col: int, df: pd.DataFrame) -> tuple[int, int]:
+def _write_wide_df(
+    worksheet, start_row: int, start_col: int, df: pd.DataFrame
+) -> tuple[int, int]:
     """
     Write a wide DataFrame (index as categories, columns as series)
     to the worksheet starting at (start_row, start_col).
@@ -331,16 +334,26 @@ def _write_wide_df(worksheet, start_row: int, start_col: int, df: pd.DataFrame) 
         if not any(v is not None for v in row_vals):
             continue
         for c_idx, value in enumerate(row_vals, 0):
-            worksheet.cell(row=start_row + n_rows, column=start_col + c_idx, value=value)
+            worksheet.cell(
+                row=start_row + n_rows, column=start_col + c_idx, value=value
+            )
             n_cols = max(n_cols, c_idx + 1)
         n_rows += 1
 
     return (n_rows, n_cols)
 
 
-def _add_chart_if_data(worksheet, sector: str, title: str,
-                       start_row: int, start_col: int, n_rows: int, n_cols: int,
-                       y_axis_label: str | None, with_charts: bool = True):
+def _add_chart_if_data(
+    worksheet,
+    sector: str,
+    title: str,
+    start_row: int,
+    start_col: int,
+    n_rows: int,
+    n_cols: int,
+    y_axis_label: str | None,
+    with_charts: bool = True,
+):
     """
     Add an Area/Line chart using the block written by _write_wide_df.
     Guarded to avoid invalid ranges and empty data.
@@ -358,7 +371,7 @@ def _add_chart_if_data(worksheet, sector: str, title: str,
     # - Categories are in (start_col), series start at (start_col+1)
     min_col_vals = start_col + 1
     max_col_vals = start_col + (n_cols - 1)
-    min_row_vals = start_row      # include header for titles_from_data=True
+    min_row_vals = start_row  # include header for titles_from_data=True
     max_row_vals = start_row + (n_rows - 1)
 
     # Safety: ensure ranges make sense
@@ -404,7 +417,7 @@ def _add_chart_if_data(worksheet, sector: str, title: str,
     chart.y_axis.delete = False
 
     chart.height = 8
-    chart.width  = 16
+    chart.width = 16
     # Anchor next to the table block
     chart.anchor = f"{get_column_letter(start_col + 2)}{start_row + 1}"
 
@@ -413,7 +426,10 @@ def _add_chart_if_data(worksheet, sector: str, title: str,
 
 # --- generate_summary_report (updated) ---------------------------------------
 
-def generate_summary_report(scenarios: list, filename: Path, *, with_charts: bool = True) -> None:
+
+def generate_summary_report(
+    scenarios: list, filename: Path, *, with_charts: bool = True
+) -> None:
     """
     Generate a summary report of the scenarios.
 
@@ -428,20 +444,62 @@ def generate_summary_report(scenarios: list, filename: Path, *, with_charts: boo
         "Electricity - generation": {"filepath": IAM_ELEC_VARS},
         "Electricity (biom) - generation": {"filepath": IAM_BIOMASS_VARS},
         "Electricity - efficiency": {"filepath": IAM_ELEC_VARS},
-        "Heat (buildings) - generation": {"filepath": IAM_HEATING_VARS, "filter": ["heat, buildings"]},
-        "Heat (industrial) - generation": {"filepath": IAM_HEATING_VARS, "filter": ["heat, industrial"]},
-        "Fuel (gasoline) - generation": {"filepath": IAM_FUELS_VARS, "filter": ["gasoline", "ethanol", "bioethanol", "methanol"]},
-        "Fuel (gasoline) - efficiency": {"filepath": IAM_FUELS_VARS, "filter": ["gasoline", "ethanol", "bioethanol", "methanol"]},
-        "Fuel (diesel) - generation": {"filepath": IAM_FUELS_VARS, "filter": ["diesel", "biodiesel"]},
-        "Fuel (diesel) - efficiency": {"filepath": IAM_FUELS_VARS, "filter": ["diesel", "biodiesel"]},
-        "Fuel (gas) - generation": {"filepath": IAM_FUELS_VARS, "filter": ["natural gas", "biogas", "methane", "biomethane"]},
-        "Fuel (gas) - efficiency": {"filepath": IAM_FUELS_VARS, "filter": ["natural gas", "biogas", "methane", "biomethane"]},
-        "Fuel (hydrogen) - generation": {"filepath": IAM_FUELS_VARS, "filter": ["hydrogen"]},
-        "Fuel (hydrogen) - efficiency": {"filepath": IAM_FUELS_VARS, "filter": ["hydrogen"]},
-        "Fuel (kerosene) - generation": {"filepath": IAM_FUELS_VARS, "filter": ["kerosene"]},
-        "Fuel (kerosene) - efficiency": {"filepath": IAM_FUELS_VARS, "filter": ["kerosene"]},
-        "Fuel (LPG) - generation": {"filepath": IAM_FUELS_VARS, "filter": ["liquefied petroleum gas"]},
-        "Fuel (LPG) - efficiency": {"filepath": IAM_FUELS_VARS, "filter": ["liquefied petroleum gas"]},
+        "Heat (buildings) - generation": {
+            "filepath": IAM_HEATING_VARS,
+            "filter": ["heat, buildings"],
+        },
+        "Heat (industrial) - generation": {
+            "filepath": IAM_HEATING_VARS,
+            "filter": ["heat, industrial"],
+        },
+        "Fuel (gasoline) - generation": {
+            "filepath": IAM_FUELS_VARS,
+            "filter": ["gasoline", "ethanol", "bioethanol", "methanol"],
+        },
+        "Fuel (gasoline) - efficiency": {
+            "filepath": IAM_FUELS_VARS,
+            "filter": ["gasoline", "ethanol", "bioethanol", "methanol"],
+        },
+        "Fuel (diesel) - generation": {
+            "filepath": IAM_FUELS_VARS,
+            "filter": ["diesel", "biodiesel"],
+        },
+        "Fuel (diesel) - efficiency": {
+            "filepath": IAM_FUELS_VARS,
+            "filter": ["diesel", "biodiesel"],
+        },
+        "Fuel (gas) - generation": {
+            "filepath": IAM_FUELS_VARS,
+            "filter": ["natural gas", "biogas", "methane", "biomethane"],
+        },
+        "Fuel (gas) - efficiency": {
+            "filepath": IAM_FUELS_VARS,
+            "filter": ["natural gas", "biogas", "methane", "biomethane"],
+        },
+        "Fuel (hydrogen) - generation": {
+            "filepath": IAM_FUELS_VARS,
+            "filter": ["hydrogen"],
+        },
+        "Fuel (hydrogen) - efficiency": {
+            "filepath": IAM_FUELS_VARS,
+            "filter": ["hydrogen"],
+        },
+        "Fuel (kerosene) - generation": {
+            "filepath": IAM_FUELS_VARS,
+            "filter": ["kerosene"],
+        },
+        "Fuel (kerosene) - efficiency": {
+            "filepath": IAM_FUELS_VARS,
+            "filter": ["kerosene"],
+        },
+        "Fuel (LPG) - generation": {
+            "filepath": IAM_FUELS_VARS,
+            "filter": ["liquefied petroleum gas"],
+        },
+        "Fuel (LPG) - efficiency": {
+            "filepath": IAM_FUELS_VARS,
+            "filter": ["liquefied petroleum gas"],
+        },
         "Cement - generation": {"filepath": IAM_CEMENT_VARS},
         "Cement - efficiency": {"filepath": IAM_CEMENT_VARS},
         "Steel - generation": {"filepath": IAM_STEEL_VARS},
@@ -456,8 +514,14 @@ def generate_summary_report(scenarios: list, filename: Path, *, with_charts: boo
                 "energy, for DACCS, from electricity",
             ],
         },
-        "Direct Air Capture - heat eff.": {"filepath": IAM_CDR_VARS, "variables": ["dac_solvent"]},
-        "Direct Air Capture - elec eff.": {"filepath": IAM_CDR_VARS, "variables": ["dac_solvent"]},
+        "Direct Air Capture - heat eff.": {
+            "filepath": IAM_CDR_VARS,
+            "variables": ["dac_solvent"],
+        },
+        "Direct Air Capture - elec eff.": {
+            "filepath": IAM_CDR_VARS,
+            "variables": ["dac_solvent"],
+        },
         "Transport (two-wheelers)": {"filepath": IAM_TRSPT_TWO_WHEELERS_VARS},
         "Transport (two-wheelers) - eff": {"filepath": IAM_TRSPT_TWO_WHEELERS_VARS},
         "Transport (cars)": {"filepath": IAM_TRSPT_CARS_VARS},
@@ -470,8 +534,35 @@ def generate_summary_report(scenarios: list, filename: Path, *, with_charts: boo
         "Transport (trains) - eff": {"filepath": IAM_TRSPT_TRAINS_VARS},
         "Transport (ships)": {"filepath": IAM_TRSPT_SHIPS_VARS},
         "Transport (ships) - eff": {"filepath": IAM_TRSPT_SHIPS_VARS},
-        "Battery (mobile)": {"variables": ["NMC111","NMC532","NMC622","NMC811","NMC900","NMC900-Si","LFP","NCA","LSB","SIB","LAB","ASSB (oxidic)","ASSB (polymer)","ASSB (sulfidic)"]},
-        "Battery (stationary)": {"variables": ["NMC111","NMC622","NMC811","LFP","LEAD-ACID","VRFB","NAS"]},
+        "Battery (mobile)": {
+            "variables": [
+                "NMC111",
+                "NMC532",
+                "NMC622",
+                "NMC811",
+                "NMC900",
+                "NMC900-Si",
+                "LFP",
+                "NCA",
+                "LSB",
+                "SIB",
+                "LAB",
+                "ASSB (oxidic)",
+                "ASSB (polymer)",
+                "ASSB (sulfidic)",
+            ]
+        },
+        "Battery (stationary)": {
+            "variables": [
+                "NMC111",
+                "NMC622",
+                "NMC811",
+                "LFP",
+                "LEAD-ACID",
+                "VRFB",
+                "NAS",
+            ]
+        },
     }
 
     with open(REPORT_METADATA_FILEPATH, encoding="utf-8") as stream:
@@ -488,12 +579,16 @@ def generate_summary_report(scenarios: list, filename: Path, *, with_charts: boo
             variables = get_variables(spec["filepath"])
 
         if "filter" in spec:
-            variables = [x for x in variables if any(x.startswith(y) for y in spec["filter"])]
+            variables = [
+                x for x in variables if any(x.startswith(y) for y in spec["filter"])
+            ]
 
         # Skip sectors with no available data across all scenarios
         is_data = False
         for scenario in scenarios:
-            iam_da = fetch_data(iam_data=scenario["iam data"], sector=sector, variable=variables)
+            iam_da = fetch_data(
+                iam_data=scenario["iam data"], sector=sector, variable=variables
+            )
             if iam_da is not None:
                 is_data = True
                 break
@@ -514,7 +609,9 @@ def generate_summary_report(scenarios: list, filename: Path, *, with_charts: boo
             if key in scenario_list:
                 continue
 
-            iam_da = fetch_data(iam_data=scenario["iam data"], sector=sector, variable=variables)
+            iam_da = fetch_data(
+                iam_data=scenario["iam data"], sector=sector, variable=variables
+            )
             if iam_da is None:
                 continue
 
@@ -534,7 +631,9 @@ def generate_summary_report(scenarios: list, filename: Path, *, with_charts: boo
             # Header
             header = f"{scenario['model'].upper()} - {scenario['pathway'].upper()}"
             worksheet.cell(column=col, row=row, value=header)
-            worksheet.cell(column=col, row=row).font = Font(bold=True, size=14, underline="single")
+            worksheet.cell(column=col, row=row).font = Font(
+                bold=True, size=14, underline="single"
+            )
             row += 2
 
             if sector in ("Battery (mobile)", "Battery (stationary)"):
@@ -613,6 +712,7 @@ def generate_summary_report(scenarios: list, filename: Path, *, with_charts: boo
 
 # --- generate_change_report (updated, hardened) -------------------------------
 
+
 def generate_change_report(source, version, source_type, system_model):
     """
     Generate a change report of the scenarios from the log files.
@@ -661,7 +761,9 @@ def generate_change_report(source, version, source_type, system_model):
 
     dim_holder = DimensionHolder(worksheet=worksheet)
     for col in range(worksheet.min_column, worksheet.max_column + 1):
-        dim_holder[get_column_letter(col)] = ColumnDimension(worksheet, min=col, max=col, width=20)
+        dim_holder[get_column_letter(col)] = ColumnDimension(
+            worksheet, min=col, max=col, width=20
+        )
     worksheet.column_dimensions = dim_holder
 
     for name in log_filepaths:
@@ -679,7 +781,9 @@ def generate_change_report(source, version, source_type, system_model):
 
         # Create per-sector sheet
         tab_meta = metadata.get(name, {})
-        tab_name = tab_meta.get("tab", fetch_tab_name(name) if isinstance(name, str) else name)
+        tab_name = tab_meta.get(
+            "tab", fetch_tab_name(name) if isinstance(name, str) else name
+        )
         # Ensure a valid, unique sheet name (Excel max 31 chars)
         tab_name = (tab_name or name)[:31]
         worksheet = workbook.create_sheet(tab_name)
@@ -702,12 +806,15 @@ def generate_change_report(source, version, source_type, system_model):
             worksheet.append(r)
 
     # Save workbook
-    fp_out = Path(DIR_LOG_REPORT / f"change_report {datetime.now().strftime('%Y-%m-%d')}.xlsx")
+    fp_out = Path(
+        DIR_LOG_REPORT / f"change_report {datetime.now().strftime('%Y-%m-%d')}.xlsx"
+    )
     workbook.save(fp_out)
     empty_log_files()
 
 
 # --- fetch_columns / fetch_tab_name (safe) ------------------------------------
+
 
 def fetch_columns(variable):
     """
@@ -735,18 +842,21 @@ def fetch_tab_name(variable):
 
 # --- convert_log_to_excel_file (hardened) -------------------------------------
 
+
 def convert_log_to_excel_file(filepath):
     """
     Read a '|' delimited log file into a DataFrame with columns from reporting.yaml.
     Handles mismatched column counts by trimming/padding; skips bad lines.
     """
     # Engine=python is more forgiving for irregular lines
-    df = pd.read_csv(filepath, sep="|", header=None, on_bad_lines="skip", engine="python")
+    df = pd.read_csv(
+        filepath, sep="|", header=None, on_bad_lines="skip", engine="python"
+    )
     cols = fetch_columns(filepath)
 
     # Align column counts
     if df.shape[1] > len(cols):
-        df = df.iloc[:, :len(cols)]
+        df = df.iloc[:, : len(cols)]
     elif df.shape[1] < len(cols):
         # pad with NA columns
         for _ in range(len(cols) - df.shape[1]):
