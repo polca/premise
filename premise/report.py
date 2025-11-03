@@ -300,10 +300,10 @@ def _dataarray_to_wide_df(da: xr.DataArray) -> pd.DataFrame:
         # Ensure index is sortable (years)
         if not df.empty:
             try:
-                df.index = pd.to_numeric(df.index, errors="ignore")
-                df = df.sort_index()
+                df.index = pd.to_numeric(df.index)
             except Exception:
                 pass
+            df = df.sort_index()
         return df
     except Exception:
         return pd.DataFrame()
