@@ -34,6 +34,7 @@ class PathwaysDataPackage:
         gains_scenario="CLE",
         use_absolute_efficiency=False,
         biosphere_name="biosphere3",
+        generate_reports: bool = True,
     ):
         self.years = years
         self.scenarios = []
@@ -60,6 +61,7 @@ class PathwaysDataPackage:
             gains_scenario=gains_scenario,
             use_absolute_efficiency=use_absolute_efficiency,
             biosphere_name=biosphere_name,
+            generate_reports=generate_reports,
         )
 
         self.scenario_names = []
@@ -75,12 +77,12 @@ class PathwaysDataPackage:
         else:
             self.datapackage.update()
 
-        self.export_datapackage(
+        self._export_datapackage(
             name=name,
             contributors=contributors,
         )
 
-    def export_datapackage(
+    def _export_datapackage(
         self,
         name: str,
         contributors: list = None,
@@ -97,11 +99,11 @@ class PathwaysDataPackage:
             filepath=str(Path.cwd() / "pathways_temp" / "inventories"),
         )
         self.variables_name_change = {}
-        self.add_variables_mapping()
-        self.add_scenario_data()
-        self.build_datapackage(name, contributors)
+        self._add_variables_mapping()
+        self._add_scenario_data()
+        self._build_datapackage(name, contributors)
 
-    def add_variables_mapping(self):
+    def _add_variables_mapping(self):
         """
         Add variables mapping in the "pathways" folder.
 
@@ -142,7 +144,7 @@ class PathwaysDataPackage:
         with open(Path.cwd() / "pathways_temp" / "mapping" / "mapping.yaml", "w") as f:
             yaml.dump(mappings, f)
 
-    def add_scenario_data(self):
+    def _add_scenario_data(self):
         """
         Add scenario data in the "pathways_temp" folder.
         """
@@ -230,7 +232,7 @@ class PathwaysDataPackage:
             outfile.unlink()
         df.to_csv(outfile, index=False)
 
-    def build_datapackage(self, name: str, contributors: list = None):
+    def _build_datapackage(self, name: str, contributors: list = None):
         """
         Create and export a scenario datapackage.
         """
