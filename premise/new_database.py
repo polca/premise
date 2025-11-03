@@ -539,6 +539,7 @@ class NewDatabase:
         gains_scenario="CLE",
         use_absolute_efficiency=False,
         biosphere_name: str = "biosphere3",
+        generate_reports: bool = True,
     ) -> None:
         self.sector_update_methods = None
         self.source = source_db
@@ -550,6 +551,7 @@ class NewDatabase:
         self.keep_imports_uncertainty = keep_imports_uncertainty
         self.keep_source_db_uncertainty = keep_source_db_uncertainty
         self.biosphere_name = check_presence_biosphere_database(biosphere_name)
+        self.generate_reports = generate_reports
 
         # if version is anything other than 3.8 or 3.9
         # and system_model is "consequential"
@@ -1128,10 +1130,11 @@ class NewDatabase:
             name=name,
         )
 
-        # generate scenario report
-        self.generate_scenario_report()
-        # generate change report from logs
-        self.generate_change_report()
+        if self.generate_reports:
+            # generate scenario report
+            self.generate_scenario_report()
+            # generate change report from logs
+            self.generate_change_report()
 
         for scenario in self.scenarios:
             end_of_process(scenario)
@@ -1202,10 +1205,11 @@ class NewDatabase:
             end_of_process(scenario)
 
         delete_all_pickles()
-        # generate scenario report
-        self.generate_scenario_report()
-        # generate change report from logs
-        self.generate_change_report()
+        if self.generate_reports:
+            # generate scenario report
+            self.generate_scenario_report()
+            # generate change report from logs
+            self.generate_change_report()
 
     def write_db_to_matrices(self, filepath: str = None):
         """
@@ -1281,10 +1285,11 @@ class NewDatabase:
             # end_of_process(scenario)
 
         # delete_all_pickles()
-        # generate scenario report
-        self.generate_scenario_report()
-        # generate change report from logs
-        self.generate_change_report()
+        if self.generate_reports:
+            # generate scenario report
+            self.generate_scenario_report()
+            # generate change report from logs
+            self.generate_change_report()
 
     def write_db_to_simapro(self, filepath: str = None):
         """
@@ -1335,10 +1340,11 @@ class NewDatabase:
             end_of_process(scenario)
 
         delete_all_pickles()
-        # generate scenario report
-        self.generate_scenario_report()
-        # generate change report from logs
-        self.generate_change_report()
+        if self.generate_reports:
+            # generate scenario report
+            self.generate_scenario_report()
+            # generate change report from logs
+            self.generate_change_report()
 
     def write_db_to_olca(self, filepath: str = None):
         """
@@ -1385,10 +1391,11 @@ class NewDatabase:
             end_of_process(scenario)
 
         delete_all_pickles()
-        # generate scenario report
-        self.generate_scenario_report()
-        # generate change report from logs
-        self.generate_change_report()
+        if self.generate_reports:
+            # generate scenario report
+            self.generate_scenario_report()
+            # generate change report from logs
+            self.generate_change_report()
 
     def write_datapackage(
         self,
@@ -1448,10 +1455,11 @@ class NewDatabase:
             name=name,
         )
 
-        # generate scenario report
-        self.generate_scenario_report()
-        # generate change report from logs
-        self.generate_change_report()
+        if self.generate_reports:
+            # generate scenario report
+            self.generate_scenario_report()
+            # generate change report from logs
+            self.generate_change_report()
 
     def generate_scenario_report(
         self,
