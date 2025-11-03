@@ -549,7 +549,6 @@ class NewDatabase:
         biosphere_name: str = "biosphere3",
         generate_reports: bool = True,
     ) -> None:
-
         """
         Initialize the NewDatabase class.
 
