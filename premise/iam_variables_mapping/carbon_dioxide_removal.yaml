@@ -33,9 +33,7 @@ direct air capture (solvent) with storage:
     witch:
       - Final Energy|Carbon Management|Direct Air Capture|Solvent|Electricity|PV
       - Final Energy|Carbon Management|Direct Air Capture|Solvent|Electricity|CSP
-    gcam:
-      - Energy|Consumption|Direct Air Capture|hightemp DAC NG|Electricity
-      - Energy|Consumption|Direct Air Capture|hightemp DAC elec|Electricity
+    gcam: Final Energy|Carbon Management|Direct Air Capture|Solvent
 
   ecoinvent_aliases:
     fltr:
@@ -54,7 +52,7 @@ direct air capture (sorbent) with storage:
     witch:
       - Final Energy|Carbon Management|Direct Air Capture|Sorbent|Heat|Gases
       - Final Energy|Carbon Management|Direct Air Capture|Sorbent|Electricity|CSP
-    gcam: Energy|Consumption|Direct Air Capture|lowtemp DAC heatpump|Electricity
+    gcam: Final Energy|Carbon Management|Direct Air Capture|Sorbent
 
   ecoinvent_aliases:
     fltr:
