@@ -6,9 +6,7 @@ scenario = 'ssp24p5tol5'
 
 conn = gcamreader.LocalDBConn(dbpath=dbpath, dbfile=scenario)
 
-query_files = [f for f in os.listdir('queries') if f.endswith('.xml') and not re.search('nrel', f)]
-
-print(query_files)
+query_files = [f for f in os.listdir('queries') if f.endswith('.xml')]
 
 for qf in query_files:
     queries = gcamreader.parse_batch_query(os.path.join('queries', qf))

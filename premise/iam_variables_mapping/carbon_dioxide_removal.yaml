@@ -13,9 +13,7 @@ direct air capture (solvent) with storage:
     image: Carbon Capture|Direct Air Capture
     tiam-ucl: Carbon Capture|Storage|Direct Air Capture
     witch: Carbon Sequestration|Direct Air Capture|Solvent
-    gcam:
-      - Carbon Capture|Storage|Direct Air Capture|hightemp DAC NG
-      - Carbon Capture|Storage|Direct Air Capture|hightemp DAC elec
+    gcam: Carbon Sequestration|Direct Air Capture|Solvent
   energy_use_aliases:
     image:
       - Final Energy|Carbon Management|Direct Air Capture

@@ -2,9 +2,9 @@ import pandas as pd
 from pathlib import Path
 import os
 
-def run_biofuel(scenario_name):
+def run_biomass(scenario_name):
 
-	DATA_DIR = Path(os.path.join('..', 'queryresults', scenario_name))
+	DATA_DIR = Path(os.path.join('..', 'queries', 'queryresults', scenario_name))
 
 	biofuel = pd.read_csv(DATA_DIR / "purpose-grown biomass production.csv")
 
@@ -17,7 +17,7 @@ def run_biofuel(scenario_name):
     # concatenate dfs
 	biofuel_output = pd.concat([biofuel_output, temp_df], axis=0)
 
-	residue = pd.read_csv(DATA_DIR / "Residue biomass production.csv")
+	residue = pd.read_csv(DATA_DIR / "residue biomass production.csv")
 
 	temp_df = residue.copy()
 	temp_df = temp_df.groupby(['Units', 'scenario', 'region', 'sector', 'Year'])['value'].agg('sum').reset_index()
@@ -41,7 +41,7 @@ def run_biofuel(scenario_name):
 	biofuel_output['Model'] = 'GCAM'
 	residue_output['Model'] = 'GCAM'
 
-	# replace Unit column with expected values (EJ/yr, million tkm/yr)
+	# replace Unit column with expected values (EJ/yr)
 	biofuel_output['Unit'] = 'EJ/yr'
 	residue_output['Unit'] = 'EJ/yr'
 
@@ -70,5 +70,11 @@ def run_biofuel(scenario_name):
 	# tidy up dataframe (fix multiple index column names in year columns)
 	out_df.columns = ['Scenario', 'Region', 'Model', 'Variable', 'Unit'] + [str(x[1]) for x in out_df.columns[5:]]
 
+	# create output directory if it doesn't exist
+
+	if not os.path.exists(os.path.join('..', 'output', scenario_name)):
+		os.mkdir(os.path.join('..', 'output', scenario_name))
+
 	# write to file
-	out_df.to_excel(os.path.join('..', 'output', scenario_name, 'iamc_template_gcam_biofuel.xlsx'), index=False)
+	out_df.to_excel(os.path.join('..', 'output', scenario_name, 'iamc_template_gcam_biomass.xlsx'), index=False)
+

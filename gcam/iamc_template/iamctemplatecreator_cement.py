@@ -7,18 +7,13 @@ import os
 
 def run_cement(scenario_name):
     # Need to change path for each scenario
-    DATA_DIR = Path(os.path.join('..', 'queryresults', scenario_name))
+    DATA_DIR = Path(os.path.join('..', 'queries', 'queryresults', scenario_name))
 
-    # load LCI data from GCAM for cement. three files: 
+    # load LCI data from GCAM for cement. two files: 
     # - one with physical output (activity in Mt) 
     # - one with energy use (in EJ)
-    # - one with process heat energy (in EJ)
-    cement_output = pd.read_csv(DATA_DIR /'cement gen by gen tech.csv')
+    cement_output = pd.read_csv(DATA_DIR /'cement production by tech.csv')
     cement_input = pd.read_csv(DATA_DIR /'cement final energy by tech and fuel.csv')
-    cement_process_heat = pd.read_csv(DATA_DIR /'process heat cement final energy by tech and fuel.csv')
-
-    # concatenate cement_input and cement_process_heat
-    cement_input = pd.concat([cement_input, cement_process_heat], axis=0)
 
     # we need to reshape all of the data in a format premise can understand
     # first, reshape cement_output
@@ -98,6 +93,9 @@ def run_cement(scenario_name):
     # tidy up dataframe (fix multiple index column names in year columns)
     out_df.columns = ['Scenario', 'Region', 'Model', 'Variable', 'Unit'] + [str(x[1]) for x in out_df.columns[5:]]
 
+    # create output directory if it doesn't exist
+    if not os.path.exists(os.path.join('..', 'output', scenario_name)):
+        os.mkdir(os.path.join('..', 'output', scenario_name))
+
     # write to file
     out_df.to_excel(os.path.join('..', 'output', scenario_name, 'iamc_template_gcam_cement.xlsx'), index=False)
-
