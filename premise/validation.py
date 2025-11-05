@@ -2652,7 +2652,9 @@ class BiomassValidation(BaseDatasetValidator):
 
 
 class MetalsValidation(BaseDatasetValidator):
-    def __init__(self, model, scenario, year, regions, database, iam_data, system_model):
+    def __init__(
+        self, model, scenario, year, regions, database, iam_data, system_model
+    ):
         super().__init__(model, scenario, year, regions, database, system_model)
         self.iam_data = iam_data
         self.system_model = system_model
@@ -2825,7 +2827,9 @@ class MetalsValidation(BaseDatasetValidator):
                 expected = expected_shares.get(country_long, 0) * primary_share
                 actual = actual_shares.get(country_short, 0)
 
-                if expected > 0.01 and self.system_model != "consequential":  # Only check significant shares
+                if (
+                    expected > 0.01 and self.system_model != "consequential"
+                ):  # Only check significant shares
                     relative_error = (
                         abs(actual - expected) / expected
                         if expected > 0
