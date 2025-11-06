@@ -40,8 +40,9 @@ def download_csv(file_name: str, url: str, download_folder: Path) -> Path:
             total_size = int(response.headers.get("Content-Length", 0))
             with (
                 open(file_path, "wb") as file_handle,
-                tqdm(total=total_size, unit="B", unit_scale=True, desc=file_name)
-                as progress,
+                tqdm(
+                    total=total_size, unit="B", unit_scale=True, desc=file_name
+                ) as progress,
             ):
                 for chunk in response.iter_content(chunk_size=1024):
                     if chunk:

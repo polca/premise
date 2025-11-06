@@ -37,7 +37,11 @@ SHIPS = VARIABLES_DIR / "transport_sea_freight.yaml"
 FINAL_ENERGY = VARIABLES_DIR / "final_energy.yaml"
 MINING_WASTE = DATA_DIR / "mining" / "tailings_activities.yaml"
 CARBON_STORAGE_TECHS = VARIABLES_DIR / "carbon_dioxide_removal.yaml"
-def get_mapping(filepath: Path, var: str, model: Optional[str] = None) -> Dict[str, dict]:
+
+
+def get_mapping(
+    filepath: Path, var: str, model: Optional[str] = None
+) -> Dict[str, dict]:
     """Load a YAML mapping file and return the entries for ``var``.
 
     :param filepath: Path to the YAML file containing the mappings.
@@ -518,7 +522,9 @@ class InventorySet:
         return self.generate_sets_from_filters(filters)
 
     def generate_sets_from_filters(
-        self, filtr: Dict[str, Dict[str, FilterType]], database: Optional[List[dict]] = None
+        self,
+        filtr: Dict[str, Dict[str, FilterType]],
+        database: Optional[List[dict]] = None,
     ) -> ActivityMapping:
         """Generate activity mappings using Wurst filter specifications.
 

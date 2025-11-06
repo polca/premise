@@ -261,9 +261,7 @@ class DatabaseCleaner:
             )
         ]
 
-    def find_location_given_lookup_dict(
-        self, lookup_dict: Dict[str, str]
-    ) -> List[str]:
+    def find_location_given_lookup_dict(self, lookup_dict: Dict[str, str]) -> List[str]:
         """Return locations matching the filters in ``lookup_dict``.
 
         :param lookup_dict: Field/value pairs used to filter activities.
