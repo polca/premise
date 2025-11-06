@@ -241,7 +241,18 @@ class InventorySet:
         a set of related ecoinvent activities' names as values.
         """
         filters = get_mapping(filepath=BIOMASS_TYPES, var="ecoinvent_aliases")
-        return self.generate_sets_from_filters(filters)
+
+        lhv = get_mapping(filepath=BIOMASS_TYPES, var="lhv")
+
+        sets = self.generate_sets_from_filters(filters)
+
+        # add LHV info to datasets in sets
+        for key, activities in sets.items():
+            if key in lhv:
+                for act in activities:
+                    act["lhv"] = lhv[key]
+
+        return sets
 
     def generate_heat_map(self, model) -> dict:
         """
@@ -378,7 +389,18 @@ class InventorySet:
         filters = get_mapping(
             filepath=FUELS_TECHS, var="ecoinvent_aliases", model=model
         )
-        return self.generate_sets_from_filters(filters)
+
+        lhv = get_mapping(filepath=FUELS_TECHS, var="lhv")
+
+        sets = self.generate_sets_from_filters(filters)
+
+        # add LHV info to datasets in sets
+        for key, activities in sets.items():
+            if key in lhv:
+                for act in activities:
+                    act["lhv"] = lhv[key]
+
+        return sets
 
     def generate_mining_waste_map(self) -> dict:
         """
@@ -404,7 +426,18 @@ class InventorySet:
         filters = get_mapping(
             filepath=FINAL_ENERGY, var="ecoinvent_aliases", model=self.model
         )
-        return self.generate_sets_from_filters(filters)
+
+        lhv = get_mapping(filepath=FINAL_ENERGY, var="lhv")
+
+        sets = self.generate_sets_from_filters(filters)
+
+        # add LHV info to datasets in sets
+        for key, activities in sets.items():
+            if key in lhv:
+                for act in activities:
+                    act["lhv"] = lhv[key]
+
+        return sets
 
     def generate_transport_map(self, transport_type: str) -> dict:
         """

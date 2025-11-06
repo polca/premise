@@ -302,7 +302,7 @@ def check_uncertainty_data(data, filename):
                     if missing_parameters:
                         rows.append(
                             [
-                                dataset["name"][:50],
+                                dataset["name"][:30],
                                 exc["name"][:30],
                                 exc["uncertainty type"],
                                 missing_parameters,
@@ -314,7 +314,7 @@ def check_uncertainty_data(data, filename):
                         if exc.get("negative") is not True:
                             rows.append(
                                 [
-                                    dataset["name"][:50],
+                                    dataset["name"][:30],
                                     exc["name"][:30],
                                     exc["uncertainty type"],
                                     "'negative' should be TRUE",
@@ -327,7 +327,7 @@ def check_uncertainty_data(data, filename):
                     if exc["minimum"] == exc["maximum"]:
                         rows.append(
                             [
-                                dataset["name"][:50],
+                                dataset["name"][:30],
                                 exc["name"][:30],
                                 exc["uncertainty type"],
                                 "minimum and maximum are equal",
@@ -341,7 +341,7 @@ def check_uncertainty_data(data, filename):
                     ):
                         rows.append(
                             [
-                                dataset["name"][:50],
+                                dataset["name"][:30],
                                 exc["name"][:30],
                                 exc["uncertainty type"],
                                 "loc not within minimum and maximum",

@@ -225,7 +225,7 @@ aluminium oxide production,aluminium oxide,material,Others\Obsolete
 "aluminium production, primary, liquid, sÃ¶derberg","aluminium, primary, liquid",material,Others\Obsolete
 "aluminium production, primary, liquid, sï¿½derberg","aluminium, primary, liquid",material,Metals\Non ferro\Transformation
 "aluminium production, primary, liquid, Soderberg","aluminium, primary, liquid",material,Metals\Non ferro\Transformation
-"aluminium production, primary, liquid, S�derberg","aluminium, primary, liquid",material,Metals\Non ferro\Transformation
+"aluminium production, primary, liquid, S�derberg","aluminium, primary, liquid",material,Metals\Non ferro\Transformation
 "aluminium production, primary, liquid, Soderberg_obsolete","aluminium, primary, liquid",material,Others\Obsolete
 "aluminium scrap, new, Recycled Content cut-off","aluminium scrap, new",material,Metals\Non ferro\Transformation
 "aluminium scrap, new, Recycled Content cut-off_obsolete","aluminium scrap, new",material,Others\Obsolete
@@ -1659,39 +1659,39 @@ containment penetration epr,containment penetration epr,energy,Electricity by fu
 "converter production, for electric passenger car","converter, for electric passenger car",material,Electronics\Component\Transformation
 conveyor belt production,conveyor belt,transport,Building equipment\Transformation\Infrastructure
 "cookstove production, gas or electric",cookstove,material,Appliances\Transformation\Infrastructure
-"cooling energy production, at -100 �C, propylene-ethylene compression refrigeration system 1 MW","cooling energy, at -100 �C",energy,Cogeneration\Gas\Transformation
-"cooling energy production, at -100 �C, R-134a-carbon dioxide-ethylene compression refrigeration system 1 MW","cooling energy, at -100 �C",energy,Cogeneration\Gas\Transformation
+"cooling energy production, at -100 �C, propylene-ethylene compression refrigeration system 1 MW","cooling energy, at -100 �C",energy,Cogeneration\Gas\Transformation
+"cooling energy production, at -100 �C, R-134a-carbon dioxide-ethylene compression refrigeration system 1 MW","cooling energy, at -100 �C",energy,Cogeneration\Gas\Transformation
 "cooling energy production, at -100 ¡C, propylene-ethylene compression refrigeration system 1 MW","cooling energy, at -100 ¡C",material,Others\Obsolete
 "cooling energy production, at -100 ¡C, R-134a-carbon dioxide-ethylene compression refrigeration system 1 MW","cooling energy, at -100 ¡C",material,Others\Obsolete
 "cooling energy production, at -100 Â°c, propylene-ethylene compression refrigeration system 1 mw","cooling energy, at -100 Â°c",material,Others\Obsolete
 "cooling energy production, at -100 Â°c, r-134a-carbon dioxide-ethylene compression refrigeration system 1 mw","cooling energy, at -100 Â°c",material,Others\Obsolete
 "cooling energy production, at -100 ï¿½c, propylene-ethylene compression refrigeration system 1 mw","cooling energy, at -100 ï¿½c",energy,Cogeneration\Gas\Transformation
 "cooling energy production, at -100 ï¿½c, r-134a-carbon dioxide-ethylene compression refrigeration system 1 mw","cooling energy, at -100 ï¿½c",energy,Cogeneration\Gas\Transformation
-"cooling energy production, at -15 �C, R-134a compression refrigeration system 1 MW","cooling energy, at -15 �C",energy,Cogeneration\Gas\Transformation
+"cooling energy production, at -15 �C, R-134a compression refrigeration system 1 MW","cooling energy, at -15 �C",energy,Cogeneration\Gas\Transformation
 "cooling energy production, at -15 ¡C, R-134a compression refrigeration system 1 MW","cooling energy, at -15 ¡C",material,Others\Obsolete
 "cooling energy production, at -15 Â°c, r-134a compression refrigeration system 1 mw","cooling energy, at -15 Â°c",material,Others\Obsolete
 "cooling energy production, at -15 ï¿½c, r-134a compression refrigeration system 1 mw","cooling energy, at -15 ï¿½c",energy,Cogeneration\Gas\Transformation
-"cooling energy production, at -160 �C, propylene-ethylene-methane compression refrigeration system 1 MW","cooling energy, at -160 �C",energy,Cogeneration\Gas\Transformation
+"cooling energy production, at -160 �C, propylene-ethylene-methane compression refrigeration system 1 MW","cooling energy, at -160 �C",energy,Cogeneration\Gas\Transformation
 "cooling energy production, at -160 ¡C, propylene-ethylene-methane compression refrigeration system 1 MW","cooling energy, at -160 ¡C",material,Others\Obsolete
 "cooling energy production, at -160 Â°c, propylene-ethylene-methane compression refrigeration system 1 mw","cooling energy, at -160 Â°c",material,Others\Obsolete
 "cooling energy production, at -160 ï¿½c, propylene-ethylene-methane compression refrigeration system 1 mw","cooling energy, at -160 ï¿½c",energy,Cogeneration\Gas\Transformation
-"cooling energy production, at -25 �C, ammonia compression refrigeration system 1 MW","cooling energy, at -25 �C",energy,Cogeneration\Gas\Transformation
-"cooling energy production, at -25 �C, propylene compression refrigeration system 1 MW","cooling energy, at -25 �C",energy,Cogeneration\Gas\Transformation
+"cooling energy production, at -25 �C, ammonia compression refrigeration system 1 MW","cooling energy, at -25 �C",energy,Cogeneration\Gas\Transformation
+"cooling energy production, at -25 �C, propylene compression refrigeration system 1 MW","cooling energy, at -25 �C",energy,Cogeneration\Gas\Transformation
 "cooling energy production, at -25 ¡C, ammonia compression refrigeration system 1 MW","cooling energy, at -25 ¡C",material,Others\Obsolete
 "cooling energy production, at -25 ¡C, propylene compression refrigeration system 1 MW","cooling energy, at -25 ¡C",material,Others\Obsolete
 "cooling energy production, at -25 Â°c, ammonia compression refrigeration system 1 mw","cooling energy, at -25 Â°c",material,Others\Obsolete
 "cooling energy production, at -25 Â°c, propylene compression refrigeration system 1 mw","cooling energy, at -25 Â°c",material,Others\Obsolete
 "cooling energy production, at -25 ï¿½c, ammonia compression refrigeration system 1 mw","cooling energy, at -25 ï¿½c",energy,Cogeneration\Gas\Transformation
 "cooling energy production, at -25 ï¿½c, propylene compression refrigeration system 1 mw","cooling energy, at -25 ï¿½c",energy,Cogeneration\Gas\Transformation
-"cooling energy production, at -45 �C, propylene compression refrigeration system 1 MW","cooling energy, at -45 �C",energy,Cogeneration\Gas\Transformation
-"cooling energy production, at -45 �C, R-134a compression refrigeration system 1 MW","cooling energy, at -45 �C",energy,Cogeneration\Gas\Transformation
+"cooling energy production, at -45 �C, propylene compression refrigeration system 1 MW","cooling energy, at -45 �C",energy,Cogeneration\Gas\Transformation
+"cooling energy production, at -45 �C, R-134a compression refrigeration system 1 MW","cooling energy, at -45 �C",energy,Cogeneration\Gas\Transformation
 "cooling energy production, at -45 ¡C, propylene compression refrigeration system 1 MW","cooling energy, at -45 ¡C",material,Others\Obsolete
 "cooling energy production, at -45 ¡C, R-134a compression refrigeration system 1 MW","cooling energy, at -45 ¡C",material,Others\Obsolete
 "cooling energy production, at -45 Â°c, propylene compression refrigeration system 1 mw","cooling energy, at -45 Â°c",material,Others\Obsolete
 "cooling energy production, at -45 Â°c, r-134a compression refrigeration system 1 mw","cooling energy, at -45 Â°c",material,Others\Obsolete
 "cooling energy production, at -45 ï¿½c, propylene compression refrigeration system 1 mw","cooling energy, at -45 ï¿½c",energy,Cogeneration\Gas\Transformation
 "cooling energy production, at -45 ï¿½c, r-134a compression refrigeration system 1 mw","cooling energy, at -45 ï¿½c",energy,Cogeneration\Gas\Transformation
-"cooling energy production, at -55 �C, propylene-ethylene compression refrigeration system 1 MW","cooling energy, at -55 �C",energy,Cogeneration\Gas\Transformation
+"cooling energy production, at -55 �C, propylene-ethylene compression refrigeration system 1 MW","cooling energy, at -55 �C",energy,Cogeneration\Gas\Transformation
 "cooling energy production, at -55 ¡C, propylene-ethylene compression refrigeration system 1 MW","cooling energy, at -55 ¡C",material,Others\Obsolete
 "cooling energy production, at -55 Â°c, propylene-ethylene compression refrigeration system 1 mw","cooling energy, at -55 Â°c",material,Others\Obsolete
 "cooling energy production, at -55 ï¿½c, propylene-ethylene compression refrigeration system 1 mw","cooling energy, at -55 ï¿½c",energy,Cogeneration\Gas\Transformation
@@ -6043,27 +6043,27 @@ market for container ship,container ship,transport,Water\Market\Infrastructure
 market for conveyor belt,conveyor belt,transport,Building equipment\Market\Infrastructure
 market for cookstove,cookstove,material,Appliances\Market\Infrastructure
 market for cooling energy,cooling energy,energy,Cogeneration\Gas\Market
-"market for cooling energy, at -100 �C","cooling energy, at -100 �C",energy,Cogeneration\Gas\Transformation
+"market for cooling energy, at -100 �C","cooling energy, at -100 �C",energy,Cogeneration\Gas\Transformation
 "market for cooling energy, at -100 ¡C","cooling energy, at -100 ¡C",material,Others\Obsolete
 "market for cooling energy, at -100 Â°c","cooling energy, at -100 Â°c",material,Others\Obsolete
 "market for cooling energy, at -100 ï¿½c","cooling energy, at -100 ï¿½c",energy,Cogeneration\Gas\Market
-"market for cooling energy, at -15 �C","cooling energy, at -15 �C",energy,Cogeneration\Gas\Transformation
+"market for cooling energy, at -15 �C","cooling energy, at -15 �C",energy,Cogeneration\Gas\Transformation
 "market for cooling energy, at -15 ¡C","cooling energy, at -15 ¡C",material,Others\Obsolete
 "market for cooling energy, at -15 Â°c","cooling energy, at -15 Â°c",material,Others\Obsolete
 "market for cooling energy, at -15 ï¿½c","cooling energy, at -15 ï¿½c",energy,Cogeneration\Gas\Market
-"market for cooling energy, at -160 �C","cooling energy, at -160 �C",energy,Cogeneration\Gas\Transformation
+"market for cooling energy, at -160 �C","cooling energy, at -160 �C",energy,Cogeneration\Gas\Transformation
 "market for cooling energy, at -160 ¡C","cooling energy, at -160 ¡C",material,Others\Obsolete
 "market for cooling energy, at -160 Â°c","cooling energy, at -160 Â°c",material,Others\Obsolete
 "market for cooling energy, at -160 ï¿½c","cooling energy, at -160 ï¿½c",energy,Cogeneration\Gas\Market
-"market for cooling energy, at -25 �C","cooling energy, at -25 �C",energy,Cogeneration\Gas\Transformation
+"market for cooling energy, at -25 �C","cooling energy, at -25 �C",energy,Cogeneration\Gas\Transformation
 "market for cooling energy, at -25 ¡C","cooling energy, at -25 ¡C",material,Others\Obsolete
 "market for cooling energy, at -25 Â°c","cooling energy, at -25 Â°c",material,Others\Obsolete
 "market for cooling energy, at -25 ï¿½c","cooling energy, at -25 ï¿½c",energy,Cogeneration\Gas\Market
-"market for cooling energy, at -45 �C","cooling energy, at -45 �C",energy,Cogeneration\Gas\Transformation
+"market for cooling energy, at -45 �C","cooling energy, at -45 �C",energy,Cogeneration\Gas\Transformation
 "market for cooling energy, at -45 ¡C","cooling energy, at -45 ¡C",material,Others\Obsolete
 "market for cooling energy, at -45 Â°c","cooling energy, at -45 Â°c",material,Others\Obsolete
 "market for cooling energy, at -45 ï¿½c","cooling energy, at -45 ï¿½c",energy,Cogeneration\Gas\Market
-"market for cooling energy, at -55 �C","cooling energy, at -55 �C",energy,Cogeneration\Gas\Transformation
+"market for cooling energy, at -55 �C","cooling energy, at -55 �C",energy,Cogeneration\Gas\Transformation
 "market for cooling energy, at -55 ¡C","cooling energy, at -55 ¡C",material,Others\Obsolete
 "market for cooling energy, at -55 Â°c","cooling energy, at -55 Â°c",material,Others\Obsolete
 "market for cooling energy, at -55 ï¿½c","cooling energy, at -55 ï¿½c",energy,Cogeneration\Gas\Market
@@ -8290,7 +8290,7 @@ market for sanitary landfill facility,sanitary landfill facility,processing,Wast
 "market for sawlog and veneer log, paranÃ¡ pine, measured as solid wood under bark","sawlog and veneer log, paranÃ¡ pine, measured as solid wood under bark",material,Others\Obsolete
 "market for sawlog and veneer log, paranï¿½ pine, measured as solid wood under bark","sawlog and veneer log, paranï¿½ pine, measured as solid wood under bark",material,Wood\Extraction\Market
 "market for sawlog and veneer log, parana pine, measured as solid wood under bark","sawlog and veneer log, parana pine, measured as solid wood under bark",material,Wood\Extraction\Market
-"market for sawlog and veneer log, paran� pine, measured as solid wood under bark","sawlog and veneer log, paran� pine, measured as solid wood under bark",material,Wood\Extraction\Market
+"market for sawlog and veneer log, paran� pine, measured as solid wood under bark","sawlog and veneer log, paran� pine, measured as solid wood under bark",material,Wood\Extraction\Market
 "market for sawlog and veneer log, softwood, debarked, measured as solid wood","sawlog and veneer log, softwood, debarked, measured as solid wood",material,Wood\Extraction\Market
 "market for sawlog and veneer log, softwood, measured as solid wood under bark","sawlog and veneer log, softwood, measured as solid wood under bark",material,Wood\Extraction\Market
 market for sawmill,sawmill,material,Wood\Products\Market\Infrastructure
@@ -8332,7 +8332,7 @@ market for sawmill,sawmill,material,Wood\Products\Market\Infrastructure
 "market for sawnwood, parana pine from sustainable forest management, kiln dried","sawnwood, parana pine from sustainable forest management, kiln dried",material,Others\Obsolete
 "market for sawnwood, parana pine from sustainable forest management, kiln dried_obsolete","sawnwood, parana pine from sustainable forest management, kiln dried",material,Others\Obsolete
 "market for sawnwood, parana pine, dried (u=10%)","sawnwood, parana pine, dried (u=10%)",material,Wood\Products\Market
-"market for sawnwood, paran� pine, dried (u=10%)","sawnwood, paran� pine, dried (u=10%)",material,Wood\Products\Market
+"market for sawnwood, paran� pine, dried (u=10%)","sawnwood, paran� pine, dried (u=10%)",material,Wood\Products\Market
 "market for sawnwood, softwood, dried (u=10%), planed","sawnwood, softwood, dried (u=10%), planed",material,Wood\Products\Market
 "market for sawnwood, softwood, dried (u=20%), planed","sawnwood, softwood, dried (u=20%), planed",material,Wood\Products\Market
 "market for sawnwood, softwood, raw","sawnwood, softwood, raw",material,Wood\Products\Market
@@ -8722,15 +8722,15 @@ market for stalk,stalk,material,Agricultural\Intermediate products\Market
 market for stalk shredding,stalk shredding,waste treatment,Others\Obsolete
 market for stalk_obsolete,stalk,waste treatment,Others\Obsolete
 market for stamping for thermoplastic composite product,stamping for thermoplastic composite product,material,Others\Obsolete
-"market for stamping, electricity use, 300 � 500 t press, > 200 �C","stamping, electricity use, 300 � 500 t press, > 200 �C",energy,Others\Obsolete
-"market for stamping, electricity use, 300 � 500 t press, 150 - 200 �C","stamping, electricity use, 300 � 500 t press, 150 - 200 �C",energy,Others\Obsolete
-"market for stamping, electricity use, 300 � 500 t press, 60 - 150 �C","stamping, electricity use, 300 � 500 t press, 60 - 150 �C",energy,Others\Obsolete
+"market for stamping, electricity use, 300 � 500 t press, > 200 �C","stamping, electricity use, 300 � 500 t press, > 200 �C",energy,Others\Obsolete
+"market for stamping, electricity use, 300 � 500 t press, 150 - 200 �C","stamping, electricity use, 300 � 500 t press, 150 - 200 �C",energy,Others\Obsolete
+"market for stamping, electricity use, 300 � 500 t press, 60 - 150 �C","stamping, electricity use, 300 � 500 t press, 60 - 150 �C",energy,Others\Obsolete
 "market for stamping, electricity use, 300 Ð 500 t press, > 200 ¡C","stamping, electricity use, 300 Ð 500 t press, > 200 ¡C",material,Other
 "market for stamping, electricity use, 300 Ð 500 t press, 150 - 200 ¡C","stamping, electricity use, 300 Ð 500 t press, 150 - 200 ¡C",material,Other
 "market for stamping, electricity use, 300 Ð 500 t press, 60 - 150 ¡C","stamping, electricity use, 300 Ð 500 t press, 60 - 150 ¡C",material,Other
-"market for stamping, electricity use, 50 � 150 t press, > 200 �C","stamping, electricity use, 50 � 150 t press, > 200 �C",energy,Others\Obsolete
-"market for stamping, electricity use, 50 � 150 t press, 150 - 200 �C","stamping, electricity use, 50 � 150 t press, 150 - 200 �C",energy,Others\Obsolete
-"market for stamping, electricity use, 50 � 150 t press, 60 - 150 �C","stamping, electricity use, 50 � 150 t press, 60 - 150 �C",energy,Others\Obsolete
+"market for stamping, electricity use, 50 � 150 t press, > 200 �C","stamping, electricity use, 50 � 150 t press, > 200 �C",energy,Others\Obsolete
+"market for stamping, electricity use, 50 � 150 t press, 150 - 200 �C","stamping, electricity use, 50 � 150 t press, 150 - 200 �C",energy,Others\Obsolete
+"market for stamping, electricity use, 50 � 150 t press, 60 - 150 �C","stamping, electricity use, 50 � 150 t press, 60 - 150 �C",energy,Others\Obsolete
 "market for stamping, electricity use, 50 Ð 150 t press, > 200 ¡C","stamping, electricity use, 50 Ð 150 t press, > 200 ¡C",material,Other
 "market for stamping, electricity use, 50 Ð 150 t press, 150 - 200 ¡C","stamping, electricity use, 50 Ð 150 t press, 150 - 200 ¡C",material,Other
 "market for stamping, electricity use, 50 Ð 150 t press, 60 - 150 ¡C","stamping, electricity use, 50 Ð 150 t press, 60 - 150 ¡C",material,Other
@@ -8890,18 +8890,18 @@ market for tetrahydrofuran,tetrahydrofuran,material,Chemicals\Organic\Market
 "market for thermal storage system, solar tower power plant, 20 MW","thermal storage system, solar tower power plant, 20 MW",energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
 market for thermo-mechanical pulp,thermo-mechanical pulp,material,Paper+ Board\Pulp\Market
 market for thermocompression for wet thermoset composite product,thermocompression for wet thermoset composite product,material,Electronics\Component\Market
-"market for thermocompression, electricity use, 200 � 500 t press, 120 �C, 20 minutes cycle","thermocompression, electricity use, 200 � 500 t press, 120 �C, 20 minutes cycle",material,Electronics\Component\Market
-"market for thermocompression, electricity use, 200 � 500 t press, 120 �C, 60 minutes cycle","thermocompression, electricity use, 200 � 500 t press, 120 �C, 60 minutes cycle",material,Electronics\Component\Market
-"market for thermocompression, electricity use, 200 � 500 t press, 180 �C, 20 minutes cycle","thermocompression, electricity use, 200 � 500 t press, 180 �C, 20 minutes cycle",material,Electronics\Component\Market
-"market for thermocompression, electricity use, 200 � 500 t press, 180 �C, 60 minutes cycle","thermocompression, electricity use, 200 � 500 t press, 180 �C, 60 minutes cycle",material,Electronics\Component\Market
+"market for thermocompression, electricity use, 200 � 500 t press, 120 �C, 20 minutes cycle","thermocompression, electricity use, 200 � 500 t press, 120 �C, 20 minutes cycle",material,Electronics\Component\Market
+"market for thermocompression, electricity use, 200 � 500 t press, 120 �C, 60 minutes cycle","thermocompression, electricity use, 200 � 500 t press, 120 �C, 60 minutes cycle",material,Electronics\Component\Market
+"market for thermocompression, electricity use, 200 � 500 t press, 180 �C, 20 minutes cycle","thermocompression, electricity use, 200 � 500 t press, 180 �C, 20 minutes cycle",material,Electronics\Component\Market
+"market for thermocompression, electricity use, 200 � 500 t press, 180 �C, 60 minutes cycle","thermocompression, electricity use, 200 � 500 t press, 180 �C, 60 minutes cycle",material,Electronics\Component\Market
 "market for thermocompression, electricity use, 200 Ð 500 t press, 120 ¡C, 20 minutes cycle","thermocompression, electricity use, 200 Ð 500 t press, 120 ¡C, 20 minutes cycle",material,Electronics\Component\Market
 "market for thermocompression, electricity use, 200 Ð 500 t press, 120 ¡C, 60 minutes cycle","thermocompression, electricity use, 200 Ð 500 t press, 120 ¡C, 60 minutes cycle",material,Electronics\Component\Market
 "market for thermocompression, electricity use, 200 Ð 500 t press, 180 ¡C, 20 minutes cycle","thermocompression, electricity use, 200 Ð 500 t press, 180 ¡C, 20 minutes cycle",material,Electronics\Component\Market
 "market for thermocompression, electricity use, 200 Ð 500 t press, 180 ¡C, 60 minutes cycle","thermocompression, electricity use, 200 Ð 500 t press, 180 ¡C, 60 minutes cycle",material,Electronics\Component\Market
-"market for thermocompression, electricity use, 50 � 150 t press, 120 �C, 20 minutes cycle","thermocompression, electricity use, 50 � 150 t press, 120 �C, 20 minutes cycle",material,Electronics\Component\Market
-"market for thermocompression, electricity use, 50 � 150 t press, 120 �C, 60 minutes cycle","thermocompression, electricity use, 50 � 150 t press, 120 �C, 60 minutes cycle",material,Electronics\Component\Market
-"market for thermocompression, electricity use, 50 � 150 t press, 180 �C, 20 minutes cycle","thermocompression, electricity use, 50 � 150 t press, 180 �C, 20 minutes cycle",material,Electronics\Component\Market
-"market for thermocompression, electricity use, 50 � 150 t press, 180 �C, 60 minutes cycle","thermocompression, electricity use, 50 � 150 t press, 180 �C, 60 minutes cycle",material,Electronics\Component\Market
+"market for thermocompression, electricity use, 50 � 150 t press, 120 �C, 20 minutes cycle","thermocompression, electricity use, 50 � 150 t press, 120 �C, 20 minutes cycle",material,Electronics\Component\Market
+"market for thermocompression, electricity use, 50 � 150 t press, 120 �C, 60 minutes cycle","thermocompression, electricity use, 50 � 150 t press, 120 �C, 60 minutes cycle",material,Electronics\Component\Market
+"market for thermocompression, electricity use, 50 � 150 t press, 180 �C, 20 minutes cycle","thermocompression, electricity use, 50 � 150 t press, 180 �C, 20 minutes cycle",material,Electronics\Component\Market
+"market for thermocompression, electricity use, 50 � 150 t press, 180 �C, 60 minutes cycle","thermocompression, electricity use, 50 � 150 t press, 180 �C, 60 minutes cycle",material,Electronics\Component\Market
 "market for thermocompression, electricity use, 50 Ð 150 t press, 120 ¡C, 20 minutes cycle","thermocompression, electricity use, 50 Ð 150 t press, 120 ¡C, 20 minutes cycle",material,Electronics\Component\Market
 "market for thermocompression, electricity use, 50 Ð 150 t press, 120 ¡C, 60 minutes cycle","thermocompression, electricity use, 50 Ð 150 t press, 120 ¡C, 60 minutes cycle",material,Electronics\Component\Market
 "market for thermocompression, electricity use, 50 Ð 150 t press, 180 ¡C, 20 minutes cycle","thermocompression, electricity use, 50 Ð 150 t press, 180 ¡C, 20 minutes cycle",material,Electronics\Component\Market
@@ -9462,7 +9462,7 @@ market for ventilation components factory,ventilation components factory,materia
 "market for ventilation control and wiring, decentralized unit","ventilation control and wiring, decentralized unit",material,Construction\Ventilation\Market
 "market for ventilation duct, connection piece, steel, 100x50 mm","ventilation duct, connection piece, steel, 100x50 mm",material,Construction\Ventilation\Market
 "market for ventilation duct, elbow 90 degrees, steel, 100x50 mm","ventilation duct, elbow 90 degrees, steel, 100x50 mm",material,Construction\Ventilation\Market
-"market for ventilation duct, elbow 90�, steel, 100x50 mm","ventilation duct, elbow 90�, steel, 100x50 mm",material,Construction\Ventilation\Market
+"market for ventilation duct, elbow 90�, steel, 100x50 mm","ventilation duct, elbow 90�, steel, 100x50 mm",material,Construction\Ventilation\Market
 "market for ventilation duct, elbow 90¡, steel, 100x50 mm","ventilation duct, elbow 90¡, steel, 100x50 mm",material,Metals\Ferro\Transformation
 "market for ventilation duct, elbow 90¡, steel, 100x50 mm","ventilation duct, elbow 90¡, steel, 100x50 mm",material,Metals\Ferro\Transformation
 "market for ventilation duct, elbow 90Â¡, steel, 100x50 mm","ventilation duct, elbow 90Â¡, steel, 100x50 mm",material,Metals\Ferro\Transformation
@@ -12132,9 +12132,9 @@ sanitary landfill facility construction,sanitary landfill facility,processing,Wa
 "sawing and planing, parana pine, kiln dried","wood chips, dry, measured as dry mass",material,Others\Obsolete
 "sawing and planing, parana pine, kiln dried","residual wood, dry",material,Wood\Byproducts\Transformation
 "sawing and planing, parana pine, kiln dried","sawnwood, parana pine, dried (u=10%)",material,Wood\Products\Transformation
-"sawing and planing, paran� pine, kiln dried","sawnwood, paran� pine, dried (u=10%)",material,Wood\Products\Transformation
-"sawing and planing, paran� pine, kiln dried","electricity, low voltage",material,Wood\Products\Transformation
-"sawing and planing, paran� pine, kiln dried","residual wood, dry",material,Wood\Products\Transformation
+"sawing and planing, paran� pine, kiln dried","sawnwood, paran� pine, dried (u=10%)",material,Wood\Products\Transformation
+"sawing and planing, paran� pine, kiln dried","electricity, low voltage",material,Wood\Products\Transformation
+"sawing and planing, paran� pine, kiln dried","residual wood, dry",material,Wood\Products\Transformation
 sawing slurry production,sawing slurry,energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
 "sawing, hardwood","saw dust, wet, measured as dry mass",material,Others\Obsolete
 "sawing, hardwood","sawnwood, hardwood, raw, debarked",material,Others\Obsolete
@@ -12167,7 +12167,7 @@ sawmill construction,sawmill,material,Wood\Products\Transformation\Infrastructur
 "sawnwood, paranÃ¡ pine, dried u=10%, import from br","sawnwood, paranÃ¡ pine, dried u=10%",material,Others\Obsolete
 "sawnwood, paranï¿½ pine, dried (u=10%), import from br","sawnwood, paranï¿½ pine, dried (u=10%)",material,Wood\Products\Market\Import
 "sawnwood, parana pine, dried (u=10%), import from BR","sawnwood, parana pine, dried (u=10%)",material,Wood\Products\Market\Import
-"sawnwood, paran� pine, dried (u=10%), import from BR","sawnwood, paran� pine, dried (u=10%)",material,Wood\Products\Market\Import
+"sawnwood, paran� pine, dried (u=10%), import from BR","sawnwood, paran� pine, dried (u=10%)",material,Wood\Products\Market\Import
 "sba-15 production, for lis battery",sba-15,material,Electronics\Battery\Transformation
 "scandium oxide production, from rare earth tailings",iron ore concentrate,material,Chemicals\Inorganic\Transformation
 "scandium oxide production, from rare earth tailings","rare earth oxide concentrate, 50% REO",material,Chemicals\Inorganic\Transformation
@@ -12403,7 +12403,7 @@ sodium tripolyphosphate production,sodium tripolyphosphate,material,Chemicals\Wa
 "softwood forestry, paranÃ¡ pine, sustainable forest management","sawlog and veneer log, paranÃ¡ pine, measured as solid wood under bark",material,Others\Obsolete
 "softwood forestry, paranï¿½ pine, sustainable forest management","sawlog and veneer log, paranï¿½ pine, measured as solid wood under bark",material,Wood\Extraction\Transformation
 "softwood forestry, parana pine, sustainable forest management","sawlog and veneer log, parana pine, measured as solid wood under bark",material,Wood\Extraction\Transformation
-"softwood forestry, paran� pine, sustainable forest management","sawlog and veneer log, paran� pine, measured as solid wood under bark",material,Wood\Extraction\Transformation
+"softwood forestry, paran� pine, sustainable forest management","sawlog and veneer log, paran� pine, measured as solid wood under bark",material,Wood\Extraction\Transformation
 "softwood forestry, pine, sustainable forest management","wood chips, wet, measured as dry mass",material,Wood\Byproducts\Transformation
 "softwood forestry, pine, sustainable forest management","bundle, energy wood, measured as dry mass",material,Wood\Extraction\Transformation
 "softwood forestry, pine, sustainable forest management","cleft timber, measured as dry mass",material,Wood\Extraction\Transformation
@@ -12502,15 +12502,15 @@ sponge iron production,sponge iron,material,Chemicals\Inorganic\Transformation
 "stack monitoring interface assembly, for vrfb system","stack monitoring interface, for vrfb system",material,Others\Obsolete
 stalk shredding,stalk shredding,material,Others\Obsolete
 "stamping for thermoplastic composite product, excluding electricity use",stamping for thermoplastic composite product,material,Others\Obsolete
-"stamping, electricity use, 300 � 500 t press, > 200 �C","stamping, electricity use, 300 � 500 t press, > 200 �C",energy,Others\Obsolete
-"stamping, electricity use, 300 � 500 t press, 150 - 200 �C","stamping, electricity use, 300 � 500 t press, 150 - 200 �C",energy,Others\Obsolete
-"stamping, electricity use, 300 � 500 t press, 60 - 150 �C","stamping, electricity use, 300 � 500 t press, 60 - 150 �C",energy,Others\Obsolete
+"stamping, electricity use, 300 � 500 t press, > 200 �C","stamping, electricity use, 300 � 500 t press, > 200 �C",energy,Others\Obsolete
+"stamping, electricity use, 300 � 500 t press, 150 - 200 �C","stamping, electricity use, 300 � 500 t press, 150 - 200 �C",energy,Others\Obsolete
+"stamping, electricity use, 300 � 500 t press, 60 - 150 �C","stamping, electricity use, 300 � 500 t press, 60 - 150 �C",energy,Others\Obsolete
 "stamping, electricity use, 300 Ð 500 t press, > 200 ¡C","stamping, electricity use, 300 Ð 500 t press, > 200 ¡C",energy,Others\Obsolete
 "stamping, electricity use, 300 Ð 500 t press, 150 - 200 ¡C","stamping, electricity use, 300 Ð 500 t press, 150 - 200 ¡C",energy,Others\Obsolete
 "stamping, electricity use, 300 Ð 500 t press, 60 - 150 ¡C","stamping, electricity use, 300 Ð 500 t press, 60 - 150 ¡C",energy,Other
-"stamping, electricity use, 50 � 150 t press, > 200 �C","stamping, electricity use, 50 � 150 t press, > 200 �C",energy,Others\Obsolete
-"stamping, electricity use, 50 � 150 t press, 150 - 200 �C","stamping, electricity use, 50 � 150 t press, 150 - 200 �C",energy,Others\Obsolete
-"stamping, electricity use, 50 � 150 t press, 60 - 150 �C","stamping, electricity use, 50 � 150 t press, 60 - 150 �C",energy,Others\Obsolete
+"stamping, electricity use, 50 � 150 t press, > 200 �C","stamping, electricity use, 50 � 150 t press, > 200 �C",energy,Others\Obsolete
+"stamping, electricity use, 50 � 150 t press, 150 - 200 �C","stamping, electricity use, 50 � 150 t press, 150 - 200 �C",energy,Others\Obsolete
+"stamping, electricity use, 50 � 150 t press, 60 - 150 �C","stamping, electricity use, 50 � 150 t press, 60 - 150 �C",energy,Others\Obsolete
 "stamping, electricity use, 50 Ð 150 t press, > 200 ¡C","stamping, electricity use, 50 Ð 150 t press, > 200 ¡C",energy,Others\Obsolete
 "stamping, electricity use, 50 Ð 150 t press, 150 - 200 ¡C","stamping, electricity use, 50 Ð 150 t press, 150 - 200 ¡C",energy,Others\Obsolete
 "stamping, electricity use, 50 Ð 150 t press, 60 - 150 ¡C","stamping, electricity use, 50 Ð 150 t press, 60 - 150 ¡C",energy,Other
@@ -12843,18 +12843,18 @@ tetrahydrofuran production,tetrahydrofuran,material,Chemicals\Organic\Transforma
 "thermal storage system construction, solar tower power plant, 20 MW","used nitrate salts, for solar power application",material,Chemicals\Inorganic\Transformation
 thermo-mechanical pulp production,thermo-mechanical pulp,material,Paper+ Board\Pulp\Transformation
 "thermocompression for wet thermoset composite product, excluding electricity use",thermocompression for wet thermoset composite product,material,Others\Obsolete
-"thermocompression, electricity use, 200 � 500 t press, 120 �C, 20 minutes cycle","thermocompression, electricity use, 200 � 500 t press, 120 �C, 20 minutes cycle",material,Others\Obsolete
-"thermocompression, electricity use, 200 � 500 t press, 120 �C, 60 minutes cycle","thermocompression, electricity use, 200 � 500 t press, 120 �C, 60 minutes cycle",material,Others\Obsolete
-"thermocompression, electricity use, 200 � 500 t press, 180 �C, 20 minutes cycle","thermocompression, electricity use, 200 � 500 t press, 180 �C, 20 minutes cycle",material,Others\Obsolete
-"thermocompression, electricity use, 200 � 500 t press, 180 �C, 60 minutes cycle","thermocompression, electricity use, 200 � 500 t press, 180 �C, 60 minutes cycle",material,Others\Obsolete
+"thermocompression, electricity use, 200 � 500 t press, 120 �C, 20 minutes cycle","thermocompression, electricity use, 200 � 500 t press, 120 �C, 20 minutes cycle",material,Others\Obsolete
+"thermocompression, electricity use, 200 � 500 t press, 120 �C, 60 minutes cycle","thermocompression, electricity use, 200 � 500 t press, 120 �C, 60 minutes cycle",material,Others\Obsolete
+"thermocompression, electricity use, 200 � 500 t press, 180 �C, 20 minutes cycle","thermocompression, electricity use, 200 � 500 t press, 180 �C, 20 minutes cycle",material,Others\Obsolete
+"thermocompression, electricity use, 200 � 500 t press, 180 �C, 60 minutes cycle","thermocompression, electricity use, 200 � 500 t press, 180 �C, 60 minutes cycle",material,Others\Obsolete
 "thermocompression, electricity use, 200 Ð 500 t press, 120 ¡C, 20 minutes cycle","thermocompression, electricity use, 200 Ð 500 t press, 120 ¡C, 20 minutes cycle",processing,Other
 "thermocompression, electricity use, 200 Ð 500 t press, 120 ¡C, 60 minutes cycle","thermocompression, electricity use, 200 Ð 500 t press, 120 ¡C, 60 minutes cycle",processing,Other
 "thermocompression, electricity use, 200 Ð 500 t press, 180 ¡C, 20 minutes cycle","thermocompression, electricity use, 200 Ð 500 t press, 180 ¡C, 20 minutes cycle",energy,Others\Obsolete
 "thermocompression, electricity use, 200 Ð 500 t press, 180 ¡C, 60 minutes cycle","thermocompression, electricity use, 200 Ð 500 t press, 180 ¡C, 60 minutes cycle",processing,Other
-"thermocompression, electricity use, 50 � 150 t press, 120 �C, 20 minutes cycle","thermocompression, electricity use, 50 � 150 t press, 120 �C, 20 minutes cycle",processing,Other
-"thermocompression, electricity use, 50 � 150 t press, 120 �C, 60 minutes cycle","thermocompression, electricity use, 50 � 150 t press, 120 �C, 60 minutes cycle",processing,Other
-"thermocompression, electricity use, 50 � 150 t press, 180 �C, 20 minutes cycle","thermocompression, electricity use, 50 � 150 t press, 180 �C, 20 minutes cycle",processing,Other
-"thermocompression, electricity use, 50 � 150 t press, 180 �C, 60 minutes cycle","thermocompression, electricity use, 50 � 150 t press, 180 �C, 60 minutes cycle",processing,Other
+"thermocompression, electricity use, 50 � 150 t press, 120 �C, 20 minutes cycle","thermocompression, electricity use, 50 � 150 t press, 120 �C, 20 minutes cycle",processing,Other
+"thermocompression, electricity use, 50 � 150 t press, 120 �C, 60 minutes cycle","thermocompression, electricity use, 50 � 150 t press, 120 �C, 60 minutes cycle",processing,Other
+"thermocompression, electricity use, 50 � 150 t press, 180 �C, 20 minutes cycle","thermocompression, electricity use, 50 � 150 t press, 180 �C, 20 minutes cycle",processing,Other
+"thermocompression, electricity use, 50 � 150 t press, 180 �C, 60 minutes cycle","thermocompression, electricity use, 50 � 150 t press, 180 �C, 60 minutes cycle",processing,Other
 "thermocompression, electricity use, 50 Ð 150 t press, 120 ¡C, 20 minutes cycle","thermocompression, electricity use, 50 Ð 150 t press, 120 ¡C, 20 minutes cycle",processing,Other
 "thermocompression, electricity use, 50 Ð 150 t press, 120 ¡C, 60 minutes cycle","thermocompression, electricity use, 50 Ð 150 t press, 120 ¡C, 60 minutes cycle",processing,Other
 "thermocompression, electricity use, 50 Ð 150 t press, 180 ¡C, 20 minutes cycle","thermocompression, electricity use, 50 Ð 150 t press, 180 ¡C, 20 minutes cycle",energy,Others\Obsolete
@@ -16572,7 +16572,7 @@ ventilation components factory construction,ventilation components factory,mater
 "ventilation control and wiring production, decentralized unit","ventilation control and wiring, decentralized unit",material,Construction\Ventilation\Transformation
 "ventilation duct production, connection piece, steel, 100x50 mm","ventilation duct, connection piece, steel, 100x50 mm",material,Construction\Ventilation\Transformation
 "ventilation duct production, elbow 90 degrees, steel, 100x50 mm","ventilation duct, elbow 90 degrees, steel, 100x50 mm",material,Construction\Ventilation\Transformation
-"ventilation duct production, elbow 90�, steel, 100x50 mm","ventilation duct, elbow 90�, steel, 100x50 mm",material,Construction\Ventilation\Transformation
+"ventilation duct production, elbow 90�, steel, 100x50 mm","ventilation duct, elbow 90�, steel, 100x50 mm",material,Construction\Ventilation\Transformation
 "ventilation duct production, elbow 90¡, steel, 100x50 mm","ventilation duct, elbow 90¡, steel, 100x50 mm",material,Metals\Ferro\Transformation
 "ventilation duct production, elbow 90¡, steel, 100x50 mm","ventilation duct, elbow 90¡, steel, 100x50 mm",material,Construction\Ventilation\Transformation
 "ventilation duct production, elbow 90Â¡, steel, 100x50 mm","ventilation duct, elbow 90Â¡, steel, 100x50 mm",material,Metals\Ferro\Transformation
@@ -16917,3 +16917,41 @@ zirconium oxide production,zirconium oxide,material,Chemicals\Inorganic\Transfor
 zucchini production,zucchini,material,Agricultural\Plant production\Vegetables\Transformation
 "zucchini production, conventional, plain region",zucchini,material,Agricultural\Plant production\Fruits\Transformation
 "zucchini production, organic, plain region","zucchini, organic",material,Agricultural\Plant production\Fruits\Transformation
+"carbon dioxide, captured and stored, from a biomass fermentation plant","carbon dioxide, captured",material,Chemicals\Gases\Liquified\Transformation
+"hydrogen production, gaseous, 30 bar, from PEM electrolysis, from open ground solar photovoltaic electricity","hydrogen, gaseous, 30 bar",material,Fuels\Others\Transformation
+"hydrogen production, gaseous, 30 bar, from PEM electrolysis, from rooftop solar photovoltaic electricity","hydrogen, gaseous, 30 bar",material,Fuels\Others\Transformation
+"hydrogen production, gaseous, 30 bar, from PEM electrolysis, from hydropower electricity","hydrogen, gaseous, 30 bar",material,Fuels\Others\Transformation
+"steel production, blast furnace-basic oxygen furnace, low-alloyed","steel, low-alloyed",material,Metals\Ferro\Transformation
+"steel production, blast furnace-basic oxygen furnace, unalloyed","steel, unalloyed",material,Metals\Ferro\Transformation
+"alloys production, for low-alloyed steel","alloys, for low-alloyed steel",material,Metals\Ferro\Transformation
+"pig iron production, blast furnace, with carbon capture and storage","pig iron",material,Metals\Ferro\Transformation
+"carbon dioxide, captured at pig iron production plant, using monoethanolamine","carbon dioxide, captured",material,Chemicals\Gases\Liquified\Transformation
+"steel production, blast furnace-basic oxygen furnace, with carbon capture and storage, low-alloyed","steel, low-alloyed",material,Metals\Ferro\Transformation
+"steel production, blast furnace-basic oxygen furnace, with carbon capture and storage, unalloyed","steel, unalloyed",material,Metals\Ferro\Transformation
+"pig iron production, top gas recycling-blast furnace","pig iron",material,Metals\Ferro\Transformation
+"steel production, blast furnace-basic oxygen furnace, with top gas recycling, low-alloyed","steel, low-alloyed",material,Metals\Ferro\Transformation
+"steel production, blast furnace-basic oxygen furnace, with top gas recycling, unalloyed","steel, unalloyed",material,Metals\Ferro\Transformation
+"pig iron production, blast furnace, with top gas recycling, with carbon capture and storage","pig iron",material,Metals\Ferro\Transformation
+"carbon dioxide, captured at steel production plant, using vacuum pressure swing adsorption","carbon dioxide, captured",material,Chemicals\Gases\Liquified\Transformation
+"steel production, blast furnace-basic oxygen furnace, with top gas recycling, with carbon capture and storage, low-alloyed","steel, low-alloyed",material,Metals\Ferro\Transformation
+"steel production, blast furnace-basic oxygen furnace, with top gas recycling, with carbon capture and storage, unalloyed","steel, unalloyed",material,Metals\Ferro\Transformation
+"pig iron production, with natural gas-based direct reduction","iron",material,Metals\Ferro\Transformation
+"steel production, natural gas-based direct reduction iron-electric arc furnace, low-alloyed","steel, low-alloyed",material,Metals\Ferro\Transformation
+"steel production, natural gas-based direct reduction iron-electric arc furnace, unalloyed","steel, unalloyed",material,Metals\Ferro\Transformation
+"pig iron production, with natural gas-based direct reduction, with carbon capture and storage","pig iron",material,Metals\Ferro\Transformation
+"carbon dioxide, captured at steel production plant using direct reduction iron, using vacuum pressure swing adsorption","carbon dioxide, captured",material,Chemicals\Gases\Liquified\Transformation
+"steel production, natural gas-based direct reduction iron-electric arc furnace, with carbon capture and storage, low-alloyed","steel, low-alloyed",material,Metals\Ferro\Transformation
+"steel production, natural gas-based direct reduction iron-electric arc furnace, with carbon capture and storage, unalloyed","steel, unalloyed",material,Metals\Ferro\Transformation
+"steel production, hydrogen-based direct reduction iron-electric arc furnace, low-alloyed","steel, low-alloyed",material,Metals\Ferro\Transformation
+"steel production, hydrogen-based direct reduction iron-electric arc furnace, unalloyed","steel, unalloyed",material,Metals\Ferro\Transformation
+"pig iron production, hydrogen-based direct reduction iron","pig iron",material,Metals\Ferro\Transformation
+"preheating of iron ore pellets","iron ore pellets, hot",material,Metals\Ferro\Transformation
+"preheating of hydrogen","hydrogen, hot",material,Metals\Ferro\Transformation
+"pig iron production, by electrowinning","pig iron",material,Metals\Ferro\Transformation
+"leaching of iron ore","iron oxide in alkaline solution",material,Metals\Ferro\Transformation
+"market for cathode, graphite","cathode, graphite",material,Metals\Ferro\Transformation
+"nickel anode production, for electrolysis of iron ore","nickel anode, for electrolysis of iron ore",material,Metals\Ferro\Transformation
+"production of alkaline solution from sodium hydroxide of 50 wt-%","alkaline solution with 50 wt-% sodium hydroxide",material,Metals\Ferro\Transformation
+"steel production, electrowinning-electric arc furnace, low-alloyed","steel, low-alloyed",material,Metals\Ferro\Transformation
+"steel production, electrowinning-electric arc furnace, unalloyed","steel, unalloyed",material,Metals\Ferro\Transformation
+"ultrafine grinding of iron ore","iron ore, ultrafine ground",material,Metals\Ferro\Transformation

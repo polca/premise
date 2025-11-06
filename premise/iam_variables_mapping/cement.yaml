@@ -6,8 +6,8 @@ cement, dry feed rotary kiln:
     remind: Production|Industry|Cement
     remind-eu: Production|Industry|Cement
     image: Production|Industry|Cement|Dry feed rotary kiln
-    message: Production|Non-Metallic Minerals|Cement
-    gcam: Production|Industry|Cement
+    message: Production|Non-Metallic Minerals|Clinker|w/o CCS
+    gcam: Production|Industry|Cement|cement
     tiam-ucl: Production|Cement
 
   ecoinvent_aliases:
@@ -17,7 +17,6 @@ cement, dry feed rotary kiln:
     mask:
       - kiln
       - CCS
-      - average
 
   energy_use_aliases:
     remind: FE|Industry|+++|Cement
@@ -32,16 +31,18 @@ cement, dry feed rotary kiln:
       - Final Energy|Industry|Cement|Dry feed rotary kiln|Secondary Heat
       - Final Energy|Industry|Cement|Dry feed rotary kiln|Traditional Biomass
     message:
-      - Final Energy|Industry|Non-Metallic Minerals|Cement|Electricity
-      - Final Energy|Industry|Non-Metallic Minerals|Cement|Gases
-      - Final Energy|Industry|Non-Metallic Minerals|Cement|Heat
-      - Final Energy|Industry|Non-Metallic Minerals|Cement|Hydrogen
-      - Final Energy|Industry|Non-Metallic Minerals|Cement|Liquids|Biomass
-      - Final Energy|Industry|Non-Metallic Minerals|Cement|Liquids|Oil
-      - Final Energy|Industry|Non-Metallic Minerals|Cement|Liquids|Other
-      - Final Energy|Industry|Non-Metallic Minerals|Cement|Solar
-      - Final Energy|Industry|Non-Metallic Minerals|Cement|Solids|Biomass
-      - Final Energy|Industry|Non-Metallic Minerals|Cement|Solids|Coal
+      - Final Energy|Industry|Non-Metallic Minerals|Cement|w/o CCS|Electricity
+      - Final Energy|Industry|Non-Metallic Minerals|Cement|w/o CCS|Electricity|Heat
+      - Final Energy|Industry|Non-Metallic Minerals|Cement|w/o CCS|Gases|Gas
+      - Final Energy|Industry|Non-Metallic Minerals|Cement|w/o CCS|Hydrogen
+      - Final Energy|Industry|Non-Metallic Minerals|Cement|w/o CCS|Liquids|Biomass
+      - Final Energy|Industry|Non-Metallic Minerals|Cement|w/o CCS|Liquids|Coal
+      - Final Energy|Industry|Non-Metallic Minerals|Cement|w/o CCS|Liquids|Gas
+      - Final Energy|Industry|Non-Metallic Minerals|Cement|w/o CCS|Liquids|Hydrogen
+      - Final Energy|Industry|Non-Metallic Minerals|Cement|w/o CCS|Liquids|Oil
+      - Final Energy|Industry|Non-Metallic Minerals|Cement|w/o CCS|Solids|Biomass
+      - Final Energy|Industry|Non-Metallic Minerals|Cement|w/o CCS|Solids|Coal
+      - Final Energy|Industry|Non-Metallic Minerals|Cement|w/o CCS|Solids|Coke
     gcam:
       - Final Energy|Industry|Cement|Electricity
       - Final Energy|Industry|Cement|Coal
@@ -214,14 +215,14 @@ cement, dry feed rotary kiln, efficient, with oxyfuel CCS:
 
   energy_use_aliases:
     image:
-        - Final Energy|Industry|Cement|Efficient dry feed rotary kiln + Oxy-combustion CCS|Coal
-        - Final Energy|Industry|Cement|Efficient dry feed rotary kiln + Oxy-combustion CCS|Electricity
-        - Final Energy|Industry|Cement|Efficient dry feed rotary kiln + Oxy-combustion CCS|Hydrogen
-        - Final Energy|Industry|Cement|Efficient dry feed rotary kiln + Oxy-combustion CCS|Modern Biomass
-        - Final Energy|Industry|Cement|Efficient dry feed rotary kiln + Oxy-combustion CCS|Natural Gas
-        - Final Energy|Industry|Cement|Efficient dry feed rotary kiln + Oxy-combustion CCS|Oil
-        - Final Energy|Industry|Cement|Efficient dry feed rotary kiln + Oxy-combustion CCS|Secondary Heat
-        - Final Energy|Industry|Cement|Efficient dry feed rotary kiln + Oxy-combustion CCS|Traditional Biomass
+      - Final Energy|Industry|Cement|Efficient dry feed rotary kiln + Oxy-combustion CCS|Coal
+      - Final Energy|Industry|Cement|Efficient dry feed rotary kiln + Oxy-combustion CCS|Electricity
+      - Final Energy|Industry|Cement|Efficient dry feed rotary kiln + Oxy-combustion CCS|Hydrogen
+      - Final Energy|Industry|Cement|Efficient dry feed rotary kiln + Oxy-combustion CCS|Modern Biomass
+      - Final Energy|Industry|Cement|Efficient dry feed rotary kiln + Oxy-combustion CCS|Natural Gas
+      - Final Energy|Industry|Cement|Efficient dry feed rotary kiln + Oxy-combustion CCS|Oil
+      - Final Energy|Industry|Cement|Efficient dry feed rotary kiln + Oxy-combustion CCS|Secondary Heat
+      - Final Energy|Industry|Cement|Efficient dry feed rotary kiln + Oxy-combustion CCS|Traditional Biomass
   ecoinvent_fuel_aliases:
     fltr:
       name:
@@ -260,8 +261,8 @@ cement, dry feed rotary kiln, efficient, with MEA CCS:
     image: Production|Industry|Cement|Efficient dry feed rotary kiln + MEA CCS
     remind: Production|Industry|Cement w CCS
     remind-eu: Production|Industry|Cement w CCS
-    message: Production|Non-Metallic Minerals|Cement w CCS
-    gcam: Production|Industry|Cement w CCS
+    message: Production|Non-Metallic Minerals|Clinker|w/ CCS
+    gcam: Production|Industry|Cement|cement CCS
 
   ecoinvent_aliases:
     fltr:
@@ -289,6 +290,19 @@ cement, dry feed rotary kiln, efficient, with MEA CCS:
       - Final Energy|Industry|Cement w CCS|Electricity
       - Final Energy|Industry|Cement w CCS|Gas
       - Final Energy|Industry|Cement w CCS|Refined Liquids
+    message:
+      - Final Energy|Industry|Non-Metallic Minerals|Cement|w/ CCS|Electricity
+      - Final Energy|Industry|Non-Metallic Minerals|Cement|w/ CCS|Electricity|Heat
+      - Final Energy|Industry|Non-Metallic Minerals|Cement|w/ CCS|Gases|Gas
+      - Final Energy|Industry|Non-Metallic Minerals|Cement|w/ CCS|Hydrogen
+      - Final Energy|Industry|Non-Metallic Minerals|Cement|w/ CCS|Liquids|Biomass
+      - Final Energy|Industry|Non-Metallic Minerals|Cement|w/ CCS|Liquids|Coal
+      - Final Energy|Industry|Non-Metallic Minerals|Cement|w/ CCS|Liquids|Gas
+      - Final Energy|Industry|Non-Metallic Minerals|Cement|w/ CCS|Liquids|Hydrogen
+      - Final Energy|Industry|Non-Metallic Minerals|Cement|w/ CCS|Liquids|Oil
+      - Final Energy|Industry|Non-Metallic Minerals|Cement|w/ CCS|Solids|Biomass
+      - Final Energy|Industry|Non-Metallic Minerals|Cement|w/ CCS|Solids|Coal
+      - Final Energy|Industry|Non-Metallic Minerals|Cement|w/ CCS|Solids|Coke
   ecoinvent_fuel_aliases:
     fltr:
       name:

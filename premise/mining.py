@@ -221,7 +221,7 @@ class Mining(BaseTransformation):
                     year = self.year
                 shares = self.tailings_shares.sel(
                     region=region,
-                ).interp(year=year)
+                ).interp(year=int(year))
 
                 dataset["exchanges"] = [
                     e for e in dataset["exchanges"] if e["type"] == "production"

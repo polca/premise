@@ -1163,7 +1163,7 @@ Efficiency adjustment
 
 *premise* then adjusts the thermal efficiency of the process.
 
-It first calculates the energy input in teh current (original) dataset,
+It first calculates the energy input in the current (original) dataset,
 by looking up the fuel inputs and their respective lower heating values.
 
 Once the energy required per ton clinker today (2020) is known, it is
@@ -2071,36 +2071,42 @@ Map of IMAGE regions
 .. image:: map_image.png
    :width: 500pt
    :align: center
+   :alt: Map of IMAGE regions
 
 Map of REMIND regions
 
 .. image:: map_remind_regions.png
    :width: 500pt
    :align: center
+   :alt: Map of REMIND regions
 
 Map of REMIND-EU regions
 
 .. image:: map_remind_eu_regions.png
    :width: 500pt
    :align: center
+   :alt: Map of REMIND-EU regions
 
 Map of TIAM-UCL regions
 
 .. image:: map_tiam_ucl_regions.png
    :width: 500pt
    :align: center
+   :alt: Map of TIAM-UCL regions
 
 Map of GCAM regions
 
 .. image:: map_gcam_regions.png
    :width: 500pt
    :align: center
+   :alt: Map of GCAM regions
 
 Map of MESSAGE regions
 
 .. image:: map_message_regions.png
    :width: 500pt
    :align: center
+   :alt: Map of MESSAGE regions
 
 
 *premise* uses the following correspondence between ecoinvent locations

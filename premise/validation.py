@@ -151,6 +151,93 @@ def _load_mining_shares_mapping_for_validation():
     return df
 
 
+def convert_numpy_generics_to_float(
+    records, *, in_place: bool = False, convert_keys: bool = False
+) -> list:
+    """
+    Walk a list of dictionaries and convert any NumPy scalar (np.generic)
+    to a Python float. Nested dicts/lists/tuples/sets are handled.
+
+    :param records: List of dictionaries to sanitize.
+    :param in_place: If True, modify the input records in place. If False,
+        return a new sanitized copy.
+    :param convert_keys: If True, also convert dictionary keys that are
+        NumPy scalars to floats (and then to strings for JSON safety).
+    :return: Sanitized list of dictionaries.
+    """
+
+    def _to_float_if_np_scalar(x):
+        # Only convert NumPy scalars; leave arrays and other types alone.
+        if isinstance(x, np.generic):
+            # This will turn np.bool_(True) -> 1.0 and np.int64(3) -> 3.0
+            # which is what the user requested (everything to float).
+            return float(x)
+        return x
+
+    def _sanitize(obj):
+        # Convert NumPy scalar immediately
+        if isinstance(obj, np.generic):
+            return _to_float_if_np_scalar(obj)
+
+        # Dicts
+        if isinstance(obj, dict):
+            if in_place:
+                # Potentially rewrite keys if requested
+                if convert_keys:
+                    # Rebuild only if any key needs conversion
+                    needs_rebuild = any(isinstance(k, np.generic) for k in obj.keys())
+                    if needs_rebuild:
+                        new_obj = {}
+                        for k, v in obj.items():
+                            new_k = _to_float_if_np_scalar(k)
+                            if isinstance(new_k, float):
+                                # Keys must be strings for JSON, so cast to str
+                                new_k = str(new_k)
+                            new_obj[new_k] = _sanitize(v)
+                        obj.clear()
+                        obj.update(new_obj)
+                    else:
+                        for k in list(obj.keys()):
+                            obj[k] = _sanitize(obj[k])
+                else:
+                    for k in list(obj.keys()):
+                        obj[k] = _sanitize(obj[k])
+                return obj
+            else:
+                if convert_keys:
+                    new_obj = {}
+                    for k, v in obj.items():
+                        new_k = _to_float_if_np_scalar(k)
+                        if isinstance(new_k, float):
+                            new_k = str(new_k)  # JSON-safe key
+                        new_obj[new_k] = _sanitize(v)
+                    return new_obj
+                else:
+                    return {k: _sanitize(v) for k, v in obj.items()}
+
+        # Lists
+        if isinstance(obj, list):
+            if in_place:
+                for i in range(len(obj)):
+                    obj[i] = _sanitize(obj[i])
+                return obj
+            else:
+                return [_sanitize(v) for v in obj]
+
+        # Tuples: return same type
+        if isinstance(obj, tuple):
+            return tuple(_sanitize(v) for v in obj)
+
+        # Sets: keep as set (note: not JSON-serializable by default)
+        if isinstance(obj, set):
+            return {_sanitize(v) for v in obj}
+
+        # Anything else (including numpy arrays) left as-is
+        return obj
+
+    return _sanitize(records)
+
+
 class BaseDatasetValidator:
     """
     Base class for validating datasets after they have been transformed.
@@ -236,20 +323,20 @@ class BaseDatasetValidator:
                     try:
                         if exc.get("uncertainty type", 0) == 2 and "loc" not in exc:
                             if exc["amount"] < 0:
-                                exc["loc"] = math.log(exc["amount"] * -1)
+                                exc["loc"] = float(math.log(exc["amount"] * -1))
                                 exc["negative"] = True
                             else:
-                                exc["loc"] = math.log(exc["amount"])
+                                exc["loc"] = float(math.log(exc["amount"]))
 
                         if exc.get("uncertainty type", 0) == 3 and "loc" not in exc:
-                            exc["loc"] = exc["amount"]
+                            exc["loc"] = float(exc["amount"])
 
                         if exc.get("uncertainty type", 0) == 5:
                             if "loc" not in exc:
                                 print(
                                     f"'loc' not found in exchange {exc['name']} in dataset {ds['name']}{ds['location']}"
                                 )
-                                exc["loc"] = exc["amount"]
+                                exc["loc"] = float(exc["amount"])
                             if exc["minimum"] > exc["loc"]:
                                 message = (
                                     f"Exchange {exc['name']} - {exc['location']} has a minimum value greater than the loc value."
@@ -596,6 +683,10 @@ class BaseDatasetValidator:
             for key, value in list(dataset.items()):
                 if value is None:
                     del dataset[key]
+
+        # we also want to remove any numpy generics
+        # that would prevent json serialization
+        self.database = convert_numpy_generics_to_float(self.database)
 
     def check_amount_format(self):
         """
@@ -1517,7 +1608,7 @@ class ElectricityValidation(BaseDatasetValidator):
             )
 
     def check_electricity_mix(self):
-        # check that the electricity mix in teh market datasets
+        # check that the electricity mix in the market datasets
         # corresponds to the IAM scenario projection
         vars = [
             x
@@ -2561,9 +2652,12 @@ class BiomassValidation(BaseDatasetValidator):
 
 
 class MetalsValidation(BaseDatasetValidator):
-    def __init__(self, model, scenario, year, regions, database, iam_data):
-        super().__init__(model, scenario, year, regions, database)
+    def __init__(
+        self, model, scenario, year, regions, database, iam_data, system_model
+    ):
+        super().__init__(model, scenario, year, regions, database, system_model)
         self.iam_data = iam_data
+        self.system_model = system_model
 
     def run_metals_checks(self):
         self.check_market_balance()
@@ -2571,6 +2665,7 @@ class MetalsValidation(BaseDatasetValidator):
         self.check_interpolation()
         self.check_excel_shares_preserved()
         self.save_log()
+
         if self.major_issues_log:
             print(
                 "---> MAJOR anomalies found during metals update: check the change report."
@@ -2732,7 +2827,9 @@ class MetalsValidation(BaseDatasetValidator):
                 expected = expected_shares.get(country_long, 0) * primary_share
                 actual = actual_shares.get(country_short, 0)
 
-                if expected > 0.01:  # Only check significant shares
+                if (
+                    expected > 0.01 and self.system_model != "consequential"
+                ):  # Only check significant shares
                     relative_error = (
                         abs(actual - expected) / expected
                         if expected > 0
