@@ -249,6 +249,7 @@ def flatten(list_to_flatten):
             rt.append(i)
     return rt
 
+
 def _read_tabular_from_resource(resource) -> pd.DataFrame:
     """Read a binary resource as CSV, fall back to Excel."""
     raw = resource.raw_read()
@@ -256,6 +257,7 @@ def _read_tabular_from_resource(resource) -> pd.DataFrame:
         return pd.read_csv(BytesIO(raw))
     except Exception:
         return pd.read_excel(BytesIO(raw))
+
 
 def _apply_headers(df: pd.DataFrame, resource) -> pd.DataFrame:
     """Assign headers from the resource if present; raise a clear error if mismatched."""
@@ -268,6 +270,7 @@ def _apply_headers(df: pd.DataFrame, resource) -> pd.DataFrame:
             "Check that the values in the scenario data file are separated by commas, not semicolons."
         ) from err
     return df
+
 
 def _to_xarray(subset: pd.DataFrame) -> Any:
     """
@@ -293,6 +296,7 @@ def _to_xarray(subset: pd.DataFrame) -> Any:
     arr.attrs["unit"] = units
     return arr
 
+
 def _pv_variable_map(cfg: Dict) -> Dict[str, str]:
     """
     Map internal variable names -> external variable labels for production volume.
@@ -304,6 +308,7 @@ def _pv_variable_map(cfg: Dict) -> Dict[str, str]:
         except KeyError:
             continue
     return out
+
 
 def _efficiency_variables(cfg: Dict) -> Dict[str, List[str]]:
     """
@@ -331,6 +336,7 @@ def _efficiency_variables(cfg: Dict) -> Dict[str, List[str]]:
             groups[f"market {m_idx}"] = vars_
 
     return groups
+
 
 def _efficiency_ref_years(cfg: Dict) -> Dict[str, Dict[str, Any]]:
     """
@@ -1682,8 +1688,9 @@ class IAMDataCollection:
 
         return data_to_return
 
-
-    def get_external_data(self, external_scenarios: List[Dict[str, Any]]) -> Dict[int, Dict[str, Any]]:
+    def get_external_data(
+        self, external_scenarios: List[Dict[str, Any]]
+    ) -> Dict[int, Dict[str, Any]]:
         """
         Fetch data from external sources.
 
@@ -1726,9 +1733,10 @@ class IAMDataCollection:
             if pv_map:
                 ext_labels = set(pv_map.values())
                 pv_subset = df.loc[
-                            (df["scenario"] == scenario_name) & (df["variables"].isin(ext_labels)),
-                            "region":,
-                            ].copy()
+                    (df["scenario"] == scenario_name)
+                    & (df["variables"].isin(ext_labels)),
+                    "region":,
+                ].copy()
 
                 # rename external labels to internal names
                 inverse_map = {v: k for k, v in pv_map.items()}
@@ -1743,9 +1751,10 @@ class IAMDataCollection:
             eff_labels = sorted({lab for labs in eff_groups.values() for lab in labs})
             if eff_labels:
                 eff_subset = df.loc[
-                             (df["scenario"] == scenario_name) & (df["variables"].isin(eff_labels)),
-                             "region":,
-                             ].copy()
+                    (df["scenario"] == scenario_name)
+                    & (df["variables"].isin(eff_labels)),
+                    "region":,
+                ].copy()
 
                 eff_arr = _to_xarray(eff_subset)
 
@@ -1771,7 +1780,9 @@ class IAMDataCollection:
                     if absolute:
                         # treat efficiency time series as given; back/forward fill across years
                         eff_arr.loc[{"variables": var}] = (
-                            eff_arr.loc[{"variables": var}].bfill(dim="year").ffill(dim="year")
+                            eff_arr.loc[{"variables": var}]
+                            .bfill(dim="year")
+                            .ffill(dim="year")
                         )
                     else:
                         ref_y = meta.get("reference year")
@@ -1779,7 +1790,7 @@ class IAMDataCollection:
                             # normalize by value at reference year
                             denom = eff_arr.loc[{"variables": var}].sel(year=int(ref_y))
                             eff_arr.loc[{"variables": var}] = (
-                                    eff_arr.loc[{"variables": var}] / denom
+                                eff_arr.loc[{"variables": var}] / denom
                             )
                             # turn NaNs from division by 0 / missing into ones (neutral factor)
                             eff_arr = eff_arr.fillna(1)
