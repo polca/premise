@@ -10,7 +10,7 @@ from datetime import datetime
 from functools import lru_cache
 from numbers import Number
 from pathlib import Path
-from typing import Optional
+from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
 
 import pandas as pd
 import xarray as xr
@@ -36,16 +36,32 @@ EFFICIENCY_RATIO_SOLAR_PV = DATA_DIR / "renewables" / "efficiency_solar_PV.csv"
 
 
 def rescale_exchanges(
-    ds,
-    value,
-    technosphere_filters=None,
-    biosphere_filters=None,
-    remove_uncertainty=False,
-):
+    ds: Dict[str, Any],
+    value: Number,
+    technosphere_filters: Optional[Sequence[Any]] = None,
+    biosphere_filters: Optional[Sequence[Any]] = None,
+    remove_uncertainty: bool = False,
+) -> Dict[str, Any]:
+    """Scale exchanges in a dataset by a constant factor.
+
+    This function is adapted from :mod:`wurst`'s
+    ``change_exchanges_by_constant_factor`` but maintains the option to keep
+    uncertainty data attached to exchanges.
+
+    :param ds: Dataset dictionary that contains the exchanges to rescale.
+    :type ds: dict
+    :param value: Factor used to scale each selected exchange.
+    :type value: numbers.Number
+    :param technosphere_filters: Filters passed to :func:`wurst.searching.technosphere`.
+    :type technosphere_filters: Sequence, optional
+    :param biosphere_filters: Filters passed to :func:`wurst.searching.biosphere`.
+    :type biosphere_filters: Sequence, optional
+    :param remove_uncertainty: Whether to drop the uncertainty information when scaling.
+    :type remove_uncertainty: bool
+    :return: The updated dataset with the scaled exchanges.
+    :rtype: dict
     """
-    Adapted from wurst's change_exchanges_by_constant_factor
-    but adds the possibility to preserve uncertainty data.
-    """
+
     assert isinstance(ds, dict), "Must pass dataset dictionary document"
     assert isinstance(value, Number), "Constant factor ``value`` must be a number"
 
@@ -59,49 +75,78 @@ def rescale_exchanges(
 
 
 # Disable printing
-def blockPrint():
+def blockPrint() -> None:
+    """Redirect ``stdout`` to ``os.devnull``.
+
+    This helper can be used to silence output temporarily when a context
+    manager is not required.
+    """
+
     with open(os.devnull, "w") as devnull:
         sys.stdout = devnull
 
 
 # Restore printing
-def enablePrint():
+def enablePrint() -> None:
+    """Restore ``stdout`` to the original stream."""
+
     sys.stdout = sys.__stdout__
 
 
 class HiddenPrints:
-    """
-    From https://stackoverflow.com/questions/8391411/how-to-block-calls-to-print
+    """Context manager to silence ``print`` statements temporarily.
+
+    Adapted from a recipe shared on StackOverflow_.
+
+    .. _StackOverflow: https://stackoverflow.com/questions/8391411/
+       how-to-block-calls-to-print
     """
 
     def __init__(self):
+        """Initialise the context manager state."""
+
         self._original_stdout = None
 
     def __enter__(self):
+        """Replace ``stdout`` with ``os.devnull``.
+
+        :return: The context manager instance so it can be reused if needed.
+        :rtype: HiddenPrints
+        """
+
         self._original_stdout = sys.stdout
         sys.stdout = open(os.devnull, "w", encoding="utf-8")
 
+        return self
+
     def __exit__(self, exc_type, exc_val, exc_tb):
+        """Restore the original ``stdout`` stream."""
+
         sys.stdout.close()
         sys.stdout = self._original_stdout
 
 
 def eidb_label(
-    scenario: dict,
+    scenario: Dict[str, Any],
     version: str,
     system_model: str = "cutoff",
 ) -> str:
-    """
-    Return a label to name a scenario.
-    :param model: IAM model
-    :param scenario: SSP/RCP scenario
-    :param year: year
-    :param version: version of the ecoinvent database
-    :param system_model: cutoff or consequential
-    :return: scenario label, str.
+    """Build a readable label for an ecoinvent scenario.
+
+    :param scenario: Scenario metadata containing the IAM model, pathway and year.
+    :type scenario: dict
+    :param version: Target ecoinvent version.
+    :type version: str
+    :param system_model: Ecoinvent system model (``"cutoff"`` or ``"consequential"``).
+    :type system_model: str
+    :return: A descriptive label, including optional external scenarios and timestamp.
+    :rtype: str
     """
 
-    name = f"ei_{system_model}_{version}_{scenario['model']}_{scenario['pathway']}_{scenario['year']}"
+    name = (
+        f"ei_{system_model}_{version}_{scenario['model']}"
+        f"_{scenario['pathway']}_{scenario['year']}"
+    )
 
     if "external scenarios" in scenario:
         for ext_scenario in scenario["external scenarios"]:
@@ -113,10 +158,11 @@ def eidb_label(
     return name
 
 
-def load_constants():
-    """
-    Load constants from the constants.yaml file.
-    :return: dict
+def load_constants() -> Dict[str, Any]:
+    """Load global constants from ``constants.yaml``.
+
+    :return: Mapping of constant names to their values.
+    :rtype: dict
     """
     with open(VARIABLES_DIR / "constants.yaml", "r", encoding="utf-8") as stream:
         constants = yaml.safe_load(stream)
@@ -125,14 +171,13 @@ def load_constants():
 
 
 @lru_cache
-def get_fuel_properties() -> dict:
-    """
-    Loads a yaml file into a dictionary.
-    This dictionary contains lower heating values
-    CO2 emission factors, biogenic carbon share, for a number of fuel types.
-    Mostly taken from ecoinvent and
-    https://www.engineeringtoolbox.com/fuels-higher-calorific-values-d_169.html
-    :return: dictionary that contains lower heating values
+def get_fuel_properties() -> Dict[str, Any]:
+    """Retrieve physical properties for the supported fuel mix.
+
+    The information originates from ecoinvent and
+    `<https://www.engineeringtoolbox.com/fuels-higher-calorific-values-d_169.html>`_.
+
+    :return: Mapping of fuel names to their properties.
     :rtype: dict
     """
 
@@ -142,10 +187,11 @@ def get_fuel_properties() -> dict:
     return fuel_props
 
 
-def get_water_consumption_factors() -> dict:
-    """
-    Return a dictionary from renewables/hydropower.yaml
-    with correction factors for hydropower datasets
+def get_water_consumption_factors() -> Dict[str, Any]:
+    """Return water-consumption correction factors for hydropower datasets.
+
+    :return: Mapping of hydropower technologies to correction factors.
+    :rtype: dict
     """
     with open(
         DATA_DIR / "renewables" / "hydropower.yaml", "r", encoding="utf-8"
@@ -156,9 +202,10 @@ def get_water_consumption_factors() -> dict:
 
 
 def get_efficiency_solar_photovoltaics() -> xr.DataArray:
-    """
-    Return an array with PV module efficiencies in function of year and technology.
-    :return: xr.DataArray with PV module efficiencies
+    """Return PV module efficiencies across time and technology.
+
+    :return: Efficiencies indexed by year, technology and statistic type.
+    :rtype: xarray.DataArray
     """
 
     dataframe = pd.read_csv(
@@ -181,14 +228,15 @@ def get_efficiency_solar_photovoltaics() -> xr.DataArray:
     return array
 
 
-def default_global_location(database):
-    """
-    Set missing locations to ```GLO```
-    for datasets in ``database``.
-    Changes location if ``location``
-    is missing or ``None``.
-    Will add key ``location`` if missing.
-    :param database: database to update
+def default_global_location(database: Iterable[Dict[str, Any]]) -> Iterable[Dict[str, Any]]:
+    """Ensure that each dataset has a location set.
+
+    Missing locations are defaulted to ``"GLO"``.
+
+    :param database: Collection of dataset dictionaries to inspect.
+    :type database: collections.abc.Iterable
+    :return: The updated database, provided for convenience to support chaining.
+    :rtype: collections.abc.Iterable
     """
 
     for dataset in get_many(database, *[equals("location", None)]):
@@ -197,11 +245,11 @@ def default_global_location(database):
 
 
 def get_regions_definition(model: str) -> None:
-    """
-    :param model: IAM model name, e.g., "remind", "image"
+    """Print a table describing the IAM regions and their countries.
 
-    Return a table containing the list of countries
-    corresponding to each region of the model."""
+    :param model: IAM model name, e.g. ``"remind"`` or ``"image"``.
+    :type model: str
+    """
     table = PrettyTable(["Region", "Countries"])
 
     geo = Geomap(model)
@@ -224,11 +272,15 @@ def get_regions_definition(model: str) -> None:
     print(table)
 
 
-def clear_existing_cache(all_versions: Optional[bool] = False, filter=None) -> None:
-    """Clears the cache folder, except for files which contain __version__ in name.
-    Useful when updating `premise`
-    or encountering issues with
-    inventories.
+def clear_existing_cache(
+    all_versions: bool = False, filter: Optional[str] = None
+) -> None:
+    """Delete cached databases except for the active version.
+
+    :param all_versions: Whether to delete cached files for every version.
+    :type all_versions: bool
+    :param filter: Optional substring that cached filenames must contain.
+    :type filter: str, optional
     """
 
     [
@@ -242,11 +294,15 @@ def clear_existing_cache(all_versions: Optional[bool] = False, filter=None) -> N
 
 # clear the cache folder
 def clear_cache() -> None:
+    """Remove all cached database files."""
+
     clear_existing_cache(all_versions=True)
     print("Cache folder cleared!")
 
 
 def clear_inventory_cache() -> None:
+    """Remove cached inventory data only."""
+
     clear_existing_cache(
         all_versions=True,
         filter="inventories",
@@ -255,11 +311,13 @@ def clear_inventory_cache() -> None:
 
 
 def print_version():
+    """Display the installed ``premise`` version."""
+
     print(f"premise v.{__version__}")
 
 
 def info_on_utils_functions():
-    """Display message to list utils functions"""
+    """Print a summary table of helper utilities."""
 
     table = PrettyTable(["Utils functions", "Description"])
     table.add_row(
@@ -292,10 +350,7 @@ def info_on_utils_functions():
 
 
 def warning_about_biogenic_co2() -> None:
-    """
-    Prints a simple warning about characterizing biogenic CO2 flows.
-    :return: Does not return anything.
-    """
+    """Explain why biogenic CO₂ flows should be characterised explicitly."""
     table = PrettyTable(["Warning"])
     table.add_row(
         [
@@ -316,9 +371,7 @@ def warning_about_biogenic_co2() -> None:
 
 
 def hide_messages():
-    """
-    Hide messages from the console.
-    """
+    """Print guidance on suppressing console output programmatically."""
 
     print("Keep uncertainty data?")
     print(
@@ -329,11 +382,13 @@ def hide_messages():
     print("NewDatabase(..., quiet=True)")
 
 
-def reset_all_codes(data):
-    """
-    Re-generate all codes in each dataset of a database
-    Remove all code for each production and technosphere exchanges
-    in each dataset.
+def reset_all_codes(data: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """Assign new UUID codes to datasets and their exchanges.
+
+    :param data: Database composed of dataset dictionaries.
+    :type data: list
+    :return: Updated database with refreshed codes.
+    :rtype: list
     """
     for ds in data:
         ds["code"] = str(uuid.uuid4())
@@ -345,17 +400,22 @@ def reset_all_codes(data):
     return data
 
 
-def delete_log():
-    """
-    Delete log file.
-    It is located in the working directory.
-    """
+def delete_log() -> None:
+    """Delete the ``premise.log`` file in the current working directory."""
     log_path = Path.cwd() / "premise.log"
     if log_path.exists():
         log_path.unlink()
 
 
-def create_scenario_list(scenarios: list) -> list:
+def create_scenario_list(scenarios: List[Dict[str, Any]]) -> List[str]:
+    """Create human-readable names for IAM scenarios.
+
+    :param scenarios: List of scenario metadata dictionaries.
+    :type scenarios: list
+    :return: Readable scenario names that include IAM model, pathway and year.
+    :rtype: list
+    """
+
     list_scenarios = []
 
     for scenario in scenarios:
@@ -370,10 +430,13 @@ def create_scenario_list(scenarios: list) -> list:
     return list_scenarios
 
 
-def dump_database(scenario):
-    """
-    Dump database to a pickle file.
-    :param scenario: scenario dictionary
+def dump_database(scenario: Dict[str, Any]) -> Dict[str, Any]:
+    """Persist a scenario database to disk.
+
+    :param scenario: Scenario dictionary which may contain a ``"database"`` key.
+    :type scenario: dict
+    :return: The input scenario with the ``"database"`` replaced by a file reference.
+    :rtype: dict
     """
 
     if scenario.get("database") is None:
@@ -391,14 +454,26 @@ def dump_database(scenario):
 
 
 def load_database(
-    scenario, original_database, delete=True, load_metadata=False, warning=True
-):
-    """
-    Load database from a pickle file.
-    :param scenario: scenario dictionary
-    :param delete: if True, delete the file after loading
-    :param load_metadata: if True, load metadata from the cache files
+    scenario: Dict[str, Any],
+    original_database: List[Dict[str, Any]],
+    delete: bool = True,
+    load_metadata: bool = False,
+    warning: bool = True,
+) -> Dict[str, Any]:
+    """Load a cached database back into memory.
 
+    :param scenario: Scenario definition potentially referencing a cached database.
+    :type scenario: dict
+    :param original_database: In-memory reference database used as a fallback copy.
+    :type original_database: list
+    :param delete: Remove the cached pickle after loading when ``True``.
+    :type delete: bool
+    :param load_metadata: Reload the metadata cache alongside the database.
+    :type load_metadata: bool
+    :param warning: Display a warning when reusing the unmodified original database.
+    :type warning: bool
+    :return: Scenario dictionary with the ``"database"`` entry populated in memory.
+    :rtype: dict
     """
 
     if scenario.get("database") is not None:
@@ -491,9 +566,11 @@ def load_database(
     return scenario
 
 
-def delete_all_pickles(filepath=None):
-    """
-    Delete all pickle files in the cache folder.
+def delete_all_pickles(filepath: Optional[Path] = None) -> None:
+    """Remove cached pickle files from the cache directory.
+
+    :param filepath: Specific pickle file to delete. When ``None``, delete all.
+    :type filepath: pathlib.Path, optional
     """
 
     if filepath is not None:
@@ -506,10 +583,13 @@ def delete_all_pickles(filepath=None):
             file.unlink()
 
 
-def end_of_process(scenario):
-    """
-    Delete all pickle files in the cache folder.
-    And all information not needed from the memory
+def end_of_process(scenario: Dict[str, Any]) -> Dict[str, Any]:
+    """Release cached information stored in a scenario definition.
+
+    :param scenario: Scenario dictionary to clean up.
+    :type scenario: dict
+    :return: Scenario stripped of database information and caches.
+    :rtype: dict
     """
 
     # delete the database from the scenario
@@ -526,13 +606,22 @@ def end_of_process(scenario):
     return scenario
 
 
-def downcast_value(val):
+def downcast_value(val: Any) -> Any:
+    """Convert ``float`` values to ``float32`` for smaller cache size."""
+
     if isinstance(val, float):
         return np.float32(val)
     return val
 
 
-def trim_exchanges(exc):
+def trim_exchanges(exc: Dict[str, Any]) -> Dict[str, Any]:
+    """Filter an exchange dictionary to retain serialisable keys only.
+
+    :param exc: Exchange dictionary from a dataset.
+    :type exc: dict
+    :return: Sanitised exchange containing only supported keys.
+    :rtype: dict
+    """
 
     # only keep certain keys and remove None or NaN values
 
@@ -561,10 +650,17 @@ def trim_exchanges(exc):
     }
 
 
-def create_cache(database, file_name):
-    """
-    Create a cache for the database.
-    But store the metadata separately.
+def create_cache(
+    database: List[Dict[str, Any]], file_name: Path
+) -> Tuple[List[Dict[str, Any]], Path]:
+    """Persist a database and its metadata into cache files.
+
+    :param database: Database to cache.
+    :type database: list
+    :param file_name: Target file that will store the database pickle.
+    :type file_name: pathlib.Path
+    :return: Tuple with the trimmed database and the metadata cache path.
+    :rtype: tuple
     """
 
     metadata = {
@@ -625,24 +721,34 @@ def create_cache(database, file_name):
     return database, metadata_cache_file
 
 
-def load_metadata(file_name):
+def load_metadata(file_name: Path) -> Dict[str, Any]:
+    """Load metadata stored alongside a cached database.
+
+    :param file_name: Cache file containing the database pickle.
+    :type file_name: pathlib.Path
+    :return: Metadata dictionary indexed by dataset identifiers.
+    :rtype: dict
     """
-    Load metadata from a cache file.
-    :param file_name: name of the cache file
-    :return: metadata dictionary
-    """
-    cache_file = f"{file_name} (metadata).cache"
+    cache_file = Path(f"{file_name} (metadata).cache")
 
     if not cache_file.exists():
         raise FileNotFoundError(f"Cache file {cache_file} does not exist.")
 
-    with open(cache_file, "rb") as f:
+    with cache_file.open("rb") as f:
         metadata = pickle.load(f)
 
     return metadata
 
 
-def get_uuids(db):
+def get_uuids(db: Iterable[Dict[str, Any]]) -> Dict[tuple, str]:
+    """Create a mapping between dataset identifiers and random UUIDs.
+
+    :param db: Iterable of dataset dictionaries.
+    :type db: collections.abc.Iterable
+    :return: Mapping from dataset identity tuple to UUID string.
+    :rtype: dict
+    """
+
     return {
         (ds["name"], ds["reference product"], ds["location"]): str(uuid.uuid4().hex)
         for ds in db
