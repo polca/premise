@@ -228,7 +228,9 @@ def get_efficiency_solar_photovoltaics() -> xr.DataArray:
     return array
 
 
-def default_global_location(database: Iterable[Dict[str, Any]]) -> Iterable[Dict[str, Any]]:
+def default_global_location(
+    database: Iterable[Dict[str, Any]],
+) -> Iterable[Dict[str, Any]]:
     """Ensure that each dataset has a location set.
 
     Missing locations are defaulted to ``"GLO"``.
