@@ -11,7 +11,7 @@ from functools import lru_cache
 from io import BytesIO, StringIO
 from itertools import chain
 from pathlib import Path
-from typing import Dict, List, Union
+from typing import Dict, List, Union, Any
 
 import numpy as np
 import pandas as pd
@@ -248,6 +248,124 @@ def flatten(list_to_flatten):
         else:
             rt.append(i)
     return rt
+
+
+def _read_tabular_from_resource(resource) -> pd.DataFrame:
+    """Read a binary resource as CSV, fall back to Excel."""
+    raw = resource.raw_read()
+    try:
+        return pd.read_csv(BytesIO(raw))
+    except Exception:
+        return pd.read_excel(BytesIO(raw))
+
+
+def _apply_headers(df: pd.DataFrame, resource) -> pd.DataFrame:
+    """Assign headers from the resource if present; raise a clear error if mismatched."""
+    try:
+        if hasattr(resource, "headers") and resource.headers:
+            df.columns = resource.headers
+    except ValueError as err:
+        raise ValueError(
+            "The number of headers in the scenario data file is not correct. "
+            "Check that the values in the scenario data file are separated by commas, not semicolons."
+        ) from err
+    return df
+
+
+def _to_xarray(subset: pd.DataFrame) -> Any:
+    """
+    Common path: melt -> groupby mean -> to_xarray, set dtypes and add 'unit' attrs.
+    Expects columns: region, variables, unit, plus wide 'year' columns.
+    """
+    arr = (
+        subset.melt(
+            id_vars=["region", "variables", "unit"],
+            var_name="year",
+            value_name="value",
+        )[["region", "variables", "year", "value"]]
+        .groupby(["region", "variables", "year"])["value"]
+        .mean()
+        .to_xarray()
+    )
+    # types
+    arr = arr.astype(np.float64)
+    arr.coords["year"] = arr.coords["year"].astype(np.int64)
+
+    # add units per variable
+    units = subset.groupby("variables")["unit"].first().to_dict()
+    arr.attrs["unit"] = units
+    return arr
+
+
+def _pv_variable_map(cfg: Dict) -> Dict[str, str]:
+    """
+    Map internal variable names -> external variable labels for production volume.
+    """
+    out = {}
+    for k, v in cfg.get("production pathways", {}).items():
+        try:
+            out[k] = v["production volume"]["variable"]
+        except KeyError:
+            continue
+    return out
+
+
+def _efficiency_variables(cfg: Dict) -> Dict[str, List[str]]:
+    """
+    Collect all efficiency variable labels grouped by a key (pathway or market group).
+    Returns dict of group_name -> [external variable labels].
+    """
+    groups: Dict[str, List[str]] = {}
+
+    # from production pathways
+    for k, v in cfg.get("production pathways", {}).items():
+        vars_ = []
+        for e in v.get("efficiency", []):
+            if "variable" in e:
+                vars_.append(e["variable"])
+        if vars_:
+            groups[k] = vars_
+
+    # from markets (a list of dicts, each possibly with 'efficiency': [ ... ])
+    for m_idx, market in enumerate(cfg.get("markets", []) or []):
+        vars_ = []
+        for e in market.get("efficiency", []):
+            if "variable" in e:
+                vars_.append(e["variable"])
+        if vars_:
+            groups[f"market {m_idx}"] = vars_
+
+    return groups
+
+
+def _efficiency_ref_years(cfg: Dict) -> Dict[str, Dict[str, Any]]:
+    """
+    Build {variable_label: {'reference year': int|None, 'absolute': bool}}
+    from both production pathways and markets.
+    """
+    ref_years: Dict[str, Dict[str, Any]] = {}
+
+    # production pathways
+    for v in cfg.get("production pathways", {}).values():
+        for e in v.get("efficiency", []):
+            var = e.get("variable")
+            if var:
+                ref_years[var] = {
+                    "reference year": e.get("reference year", None),
+                    "absolute": bool(e.get("absolute", False)),
+                }
+
+    # markets
+    for market in cfg.get("markets", []) or []:
+        for e in market.get("efficiency", []):
+            var = e.get("variable")
+            if var:
+                ref_years[var] = {
+                    "reference year": e.get("reference year", None),
+                    "absolute": bool(e.get("absolute", False)),
+                }
+
+    return ref_years
 
 
 class IAMDataCollection:
@@ -1570,184 +1688,114 @@ class IAMDataCollection:
 
         return data_to_return
 
-    def get_external_data(self, external_scenarios: list):
+    def get_external_data(
+        self, external_scenarios: List[Dict[str, Any]]
+    ) -> Dict[int, Dict[str, Any]]:
         """
         Fetch data from external sources.
-        :param external_scenarios: a list of dictionaries
-        with keys "scenario" and "data"
-        :return: a dictionary with data
 
+        Parameters
+        ----------
+        external_scenarios : list of dict
+            Each dict has keys:
+              - "scenario": str (scenario name to filter the table)
+              - "data": a data package-like object exposing get_resource(name)->resource,
+                        where resource has .raw_read() (bytes) and optionally .headers
+
+        Returns
+        -------
+        dict
+            {i: {
+                'production volume': xarray.DataArray (optional),
+                'efficiency': xarray.DataArray (optional),
+                'regions': list of regions present in the subset (if PV was found),
+                'config': parsed YAML config
+            }}
         """
-        data = {}
+        data: Dict[int, Dict[str, Any]] = {}
 
-        for i, external_scenario in enumerate(external_scenarios):
-            scenario, dp = external_scenario["scenario"], external_scenario["data"]
+        for i, external in enumerate(external_scenarios):
+            scenario_name = external["scenario"]
+            dp = external["data"]
             data[i] = {}
 
-            resource = dp.get_resource("scenario_data")
-            # getting scenario data in binary format
-            scenario_data = resource.raw_read()
-            try:
-                df = pd.read_csv(
-                    BytesIO(scenario_data),
-                )
-            except:
-                df = pd.read_excel(BytesIO(scenario_data))
-            # set headers from first row
-            try:
-                df.columns = resource.headers
-            except ValueError as err:
-                raise ValueError(
-                    f"The number of headers in scenario data file are not correct. {err}"
-                    f"Check that the values in the scenario data file are separated by commas, not semicolons."
-                ) from err
+            # ---- Load tabular scenario data ----
+            scen_res = dp.get_resource("scenario_data")
+            df = _apply_headers(_read_tabular_from_resource(scen_res), scen_res)
 
-            resource = dp.get_resource("config")
-            config_file = yaml.safe_load(resource.raw_read())
+            # ---- Load config ----
+            cfg_res = dp.get_resource("config")
+            config = yaml.safe_load(cfg_res.raw_read()) or {}
+            data[i]["config"] = config  # always store for transparency
 
-            if "production pathways" in config_file:
-                variables = {}
-                for k, v in config_file["production pathways"].items():
-                    try:
-                        variables[k] = v["production volume"]["variable"]
-                    except KeyError:
-                        continue
-
-                subset = df.loc[
-                    (df["scenario"] == scenario)
-                    & (df["variables"].isin(variables.values())),
+            # ---------- Production volume ----------
+            pv_map = _pv_variable_map(config)  # internal -> external label
+            if pv_map:
+                ext_labels = set(pv_map.values())
+                pv_subset = df.loc[
+                    (df["scenario"] == scenario_name)
+                    & (df["variables"].isin(ext_labels)),
                     "region":,
-                ]
+                ].copy()
 
-                array = (
-                    subset.melt(
-                        id_vars=["region", "variables", "unit"],
-                        var_name="year",
-                        value_name="value",
-                    )[["region", "variables", "year", "value"]]
-                    .groupby(["region", "variables", "year"])["value"]
-                    .mean()
-                    .to_xarray()
-                )
+                # rename external labels to internal names
+                inverse_map = {v: k for k, v in pv_map.items()}
+                pv_subset["variables"] = pv_subset["variables"].map(inverse_map)
 
-                # convert to float64
-                array = array.astype(np.float64)
-                # convert year dim to int64
-                array.coords["year"] = array.coords["year"].astype(np.int64)
+                pv_arr = _to_xarray(pv_subset)
+                data[i]["production volume"] = pv_arr
+                data[i]["regions"] = pv_subset["region"].unique().tolist()
 
-                # add the unit as an attribute, as a dictionary with variables as keys
-                array.attrs["unit"] = dict(
-                    subset.groupby("variables")["unit"].first().to_dict().items()
-                )
+            # ---------- Efficiency ----------
+            eff_groups = _efficiency_variables(config)  # group -> [ext labels]
+            eff_labels = sorted({lab for labs in eff_groups.values() for lab in labs})
+            if eff_labels:
+                eff_subset = df.loc[
+                    (df["scenario"] == scenario_name)
+                    & (df["variables"].isin(eff_labels)),
+                    "region":,
+                ].copy()
 
-                data[i]["production volume"] = array
-                regions = subset["region"].unique().tolist()
-                data[i]["regions"] = regions
+                eff_arr = _to_xarray(eff_subset)
 
-                variables = {}
-                if "production pathways" in config_file:
-                    for k, v in config_file["production pathways"].items():
-                        try:
-                            variables[k] = [e["variable"] for e in v["efficiency"]]
-                        except KeyError:
-                            continue
+                # reference-year logic & normalization
+                ref_years = _efficiency_ref_years(config)
 
-                if "markets" in config_file:
-                    for m, market in enumerate(config_file["markets"]):
-                        try:
-                            variables[f"market {m}"] = [
-                                e["variable"] for e in market["efficiency"]
-                            ]
-                        except KeyError:
-                            continue
+                # fill missing ref years with earliest year present in the array
+                if "year" in eff_arr.coords and eff_arr.coords["year"].size:
+                    earliest_year = int(eff_arr.coords["year"].values.min())
+                else:
+                    earliest_year = None
 
-                if len(variables) > 0:
-                    subset = df.loc[
-                        (df["scenario"] == scenario)
-                        & (df["variables"].isin(list(chain(*variables.values())))),
-                        "region":,
-                    ]
+                for var, meta in ref_years.items():
+                    if meta.get("reference year") is None and earliest_year is not None:
+                        meta["reference year"] = earliest_year
 
-                    array = (
-                        subset.melt(
-                            id_vars=["region", "variables", "unit"],
-                            var_name="year",
-                            value_name="value",
-                        )[["region", "variables", "year", "value"]]
-                        .groupby(["region", "variables", "year"])["value"]
-                        .mean()
-                        .to_xarray()
-                    )
-                    # convert to float64
-                    array = array.astype(np.float64)
-                    # convert year dim to int64
-                    array.coords["year"] = array.coords["year"].astype(np.int64)
+                # apply absolute vs normalized behavior
+                for var, meta in ref_years.items():
+                    if var not in eff_arr.coords.get("variables", []):
+                        continue  # variable not present after filtering
 
-                    array.attrs["unit"] = dict(
-                        subset.groupby("variables")["unit"].first().to_dict().items()
-                    )
-
-                    ref_years = {}
-
-                    if "production pathways" in config_file:
-                        for v in config_file["production pathways"].values():
-                            for e, f in v.items():
-                                if e == "efficiency":
-                                    for x in f:
-                                        ref_years[x["variable"]] = {
-                                            "reference year": x.get(
-                                                "reference year", None
-                                            ),
-                                            "absolute": x.get("absolute", False),
-                                        }
-
-                    if "markets" in config_file:
-                        for market in config_file["markets"]:
-                            for e, f in market.items():
-                                if f == "efficiency":
-                                    for x in f["efficiency"]:
-                                        ref_years[x["variable"]] = {
-                                            "reference year": x.get(
-                                                "reference year", None
-                                            ),
-                                            "absolute": x.get("absolute", False),
-                                        }
-
-                    for variable, values in ref_years.items():
-                        reference_year = values["reference year"]
-                        if reference_year is None:
-                            # use the earliest year in `array`
-                            values["reference year"] = array.coords["year"].values.min()
-
-                    for variable, values in ref_years.items():
-                        reference_year = values["reference year"]
-                        absolute = values["absolute"]
-
-                        if absolute:
-                            # we consider efficiencies as given
-                            # back-fill nans
-                            array.loc[{"variables": variable}] = array.loc[
-                                {"variables": variable}
-                            ].bfill(dim="year")
-                            # forward-fill nans
-                            array.loc[{"variables": variable}] = array.loc[
-                                {"variables": variable}
-                            ].ffill(dim="year")
-                            pass
-                        else:
-                            # we normalize efficiencies
-                            array.loc[{"variables": variable}] = array.loc[
-                                {"variables": variable}
-                            ] / array.loc[{"variables": variable}].sel(
-                                year=int(reference_year)
+                    absolute = bool(meta.get("absolute", False))
+                    if absolute:
+                        # treat efficiency time series as given; back/forward fill across years
+                        eff_arr.loc[{"variables": var}] = (
+                            eff_arr.loc[{"variables": var}]
+                            .bfill(dim="year")
+                            .ffill(dim="year")
+                        )
+                    else:
+                        ref_y = meta.get("reference year")
+                        if ref_y is not None:
+                            # normalize by value at reference year
+                            denom = eff_arr.loc[{"variables": var}].sel(year=int(ref_y))
+                            eff_arr.loc[{"variables": var}] = (
+                                eff_arr.loc[{"variables": var}] / denom
                             )
+                            # turn NaNs from division by 0 / missing into ones (neutral factor)
+                            eff_arr = eff_arr.fillna(1)
 
-                            # convert NaNs to ones
-                            array = array.fillna(1)
-
-                    data[i]["efficiency"] = array
-
-            data[i]["config"] = config_file
+                data[i]["efficiency"] = eff_arr
 
         return data
 

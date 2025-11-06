@@ -77,7 +77,6 @@ def flag_activities_to_adjust(
                 variables=dataset_vars["production volume variable"]
             )
         except KeyError:
-            print(list(scenario_data.keys()))
             print(
                 f"Variable {dataset_vars['production volume variable']} not found in scenario data for scenario."
             )
@@ -307,9 +306,7 @@ def check_inventories(
             "replaces": val.get("replaces", []),
             "replaces in": val.get("replaces in", []),
             "replacement ratio": val.get("replacement ratio", 1),
-            "production volume variable": val.get("production volume", {}).get(
-                "variable"
-            ),
+            "production volume variable": pathway,
             "variable": pathway,
         }
         for pathway, val in configuration["production pathways"].items()

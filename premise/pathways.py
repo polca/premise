@@ -130,7 +130,7 @@ class PathwaysDataPackage:
                         if "lhv" in x:
                             data["lhv"] = x["lhv"]
                         datasets.append(data)
-                    mappings[f"{prefix} - {sector} - {k}"] = {
+                    mappings[f"{prefix} - {sector.replace('external_', '')} - {k}"] = {
                         "dataset": [
                             json.loads(s)
                             for s in {json.dumps(d, sort_keys=True) for d in datasets}
