@@ -84,6 +84,7 @@ biomass:
   ecoinvent_aliases:
     fltr:
     - market for biomass, used as fuel
+    - market for lignocellulosic biomass, used as fuel
     - market for wood chips
     mask:
       name:
@@ -99,6 +100,7 @@ wood pellet:
     fltr:
     - market for wood pellet
     - market for biomass, used as fuel
+    - market for lignocellulosic biomass, used as fuel
     - wood pellet production
     mask:
       name:
@@ -114,6 +116,7 @@ wood chips:
     fltr:
     - market for wood chips
     - market for biomass, used as fuel
+    - market for lignocellulosic biomass, used as fuel
 natural gas:
   lhv:
     unit: megajoule

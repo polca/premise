@@ -147,7 +147,7 @@ class Biomass(BaseTransformation):
 
         self.process_and_add_markets(
             name="market for lignocellulosic biomass, used as fuel",
-            reference_product="lignocellulosic biomass, used as fuel",
+            reference_product="lignocellulosic biomass",
             unit="kilogram",
             mapping=self.biomass_map,
             production_volumes=self.iam_data.biomass_mix,
@@ -163,7 +163,7 @@ class Biomass(BaseTransformation):
 
         new_candidate = {
             "name": "market for lignocellulosic biomass, used as fuel",
-            "reference product": "lignocellulosic biomass, used as fuel",
+            "reference product": "lignocellulosic biomass",
             "unit": "kilogram",
         }
 
@@ -209,7 +209,7 @@ class Biomass(BaseTransformation):
 
                 if self.is_in_index(new_candidate, location):
                     exc["name"] = "market for lignocellulosic biomass, used as fuel"
-                    exc["product"] = "lignocellulosic biomass, used as fuel"
+                    exc["product"] = "lignocellulosic biomass"
                     exc["location"] = location
 
     def write_log(self, dataset, status="created"):

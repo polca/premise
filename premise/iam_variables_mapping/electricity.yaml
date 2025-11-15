@@ -25,6 +25,7 @@ Biomass CHP:
     fltr:
     - market for wood chips, wet, measured as dry mass
     - market for biomass, used as fuel
+    - market for lignocellulosic biomass, used as fuel
   eff_aliases:
     image: Efficiency|Electricity|Biomass|w/o CCS|3
     remind: Tech|Electricity|Biomass|Combined Heat and Power w/o CC|Efficiency
@@ -51,6 +52,7 @@ Biomass CHP (existing):
     fltr:
     - market for wood chips, wet, measured as dry mass
     - market for biomass, used as fuel
+    - market for lignocellulosic biomass, used as fuel
   eff_aliases:
     tiam-ucl: Efficiency|Electricity|Existing biomass|w/o CCS
   exists in database: false
@@ -92,6 +94,7 @@ Biomass IGCC:
     fltr:
     - market for wood chips, wet, measured as dry mass
     - market for biomass, used as fuel
+    - market for lignocellulosic biomass, used as fuel
   eff_aliases:
     gcam: Efficiency|Electricity|biomass (IGCC)
     image: Efficiency|Electricity|Biomass|w/o CCS|2
@@ -117,6 +120,7 @@ Biomass IGCC CCS:
     fltr:
     - market for wood chips, wet, measured as dry mass
     - market for biomass, used as fuel
+    - market for lignocellulosic biomass, used as fuel
   eff_aliases:
     gcam: Efficiency|Electricity|biomass (IGCC CCS)
     image: Efficiency|Electricity|Biomass|w/ CCS|1
@@ -143,6 +147,7 @@ Biomass MSW:
     fltr:
     - market for wood chips, wet, measured as dry mass
     - market for biomass, used as fuel
+    - market for lignocellulosic biomass, used as fuel
   eff_aliases:
     tiam-ucl: Efficiency|Electricity|MSW|w/o CCS
   iam_aliases:
@@ -158,6 +163,7 @@ Biomass ST:
     fltr:
     - market for wood chips, wet, measured as dry mass
     - market for biomass, used as fuel
+    - market for lignocellulosic biomass, used as fuel
   eff_aliases:
     gcam: Efficiency|Electricity|biomass (conv)
     image: Efficiency|Electricity|Biomass|w/o CCS|1
@@ -179,6 +185,7 @@ Biomass ST CCS:
     fltr:
     - market for wood chips, wet, measured as dry mass
     - market for biomass, used as fuel
+    - market for lignocellulosic biomass, used as fuel
   eff_aliases:
     tiam-ucl: Efficiency|Electricity|Biomass combustion|w CCS
   iam_aliases:
@@ -193,6 +200,7 @@ Coal CF 50-50:
     - market for hard coal
     - market for wood chips, wet, measured as dry mass
     - market for biomass, used as fuel
+    - market for lignocellulosic biomass, used as fuel
     mask:
       name:
       - factory
@@ -213,6 +221,7 @@ Coal CF 80-20:
     - market for hard coal
     - market for wood chips, wet, measured as dry mass
     - market for biomass, used as fuel
+    - market for lignocellulosic biomass, used as fuel
     mask:
       name:
       - factory
