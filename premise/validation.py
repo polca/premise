@@ -2492,7 +2492,7 @@ class BiomassValidation(BaseDatasetValidator):
 
         for ds in self.database:
             if (
-                ds["name"].startswith("market for biomass, used as fuel")
+                ds["name"].startswith("market for lignocellulosic biomass, used as fuel")
                 and ds["location"] in self.regions
                 and ds["location"] != "World"
             ):
@@ -2565,15 +2565,15 @@ class BiomassValidation(BaseDatasetValidator):
                                 e
                                 for e in dataset["exchanges"]
                                 if e["type"] == "technosphere"
-                                and e["name"] == "market for biomass, used as fuel"
+                                and e["name"] == "market for lignocellulosic biomass, used as fuel"
                             ]
                         )
                         >= 1
                     ), (
                         f"Dataset {dataset['name']} in {dataset['location']} "
                         f"should have one or more exchanges to "
-                        f"'market for biomass, used as fuel'. "
-                        f"Currently has {len([e for e in dataset['exchanges'] if e['type'] == 'technosphere' and e['name'] == 'market for biomass, used as fuel'])}."
+                        f"'market for lignocellulosic biomass, used as fuel'. "
+                        f"Currently has {len([e for e in dataset['exchanges'] if e['type'] == 'technosphere' and e['name'] == 'market for lignocellulosic biomass, used as fuel'])}."
                     )
 
     def check_residual_biomass_share(self):
@@ -2584,7 +2584,7 @@ class BiomassValidation(BaseDatasetValidator):
 
         for ds in self.database:
             if (
-                ds["name"] == "market for biomass, used as fuel"
+                ds["name"] == "market for lignocellulosic biomass, used as fuel"
                 and ds["location"] in self.regions
                 and ds["location"] != "World"
             ):

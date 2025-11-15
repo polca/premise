@@ -175,17 +175,25 @@ class Biomass(BaseTransformation):
             ws.either(
                 *[
                     ws.equals("unit", u)
-                    for u in ["kilowatt hour", "megajoule", "kilogram"]
+                    for u in ["kilowatt hour", "megajoule", "kilogram", "cubic meter"]
                 ]
             ),
             ws.either(
                 *[
                     ws.contains("name", n)
-                    for n in ["electricity", "heat", "power", "hydrogen production"]
+                    for n in [
+                        "electricity",
+                        "heat",
+                        "power",
+                        "hydrogen production",
+                        "biomethane production",
+                        "ethanol production",
+                    ]
                 ]
             ),
             ws.exclude(ws.contains("name", "logs")),
         ):
+
             for exc in ws.technosphere(
                 dataset,
                 ws.either(
