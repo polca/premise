@@ -8,8 +8,8 @@ biomass crops - purpose grown:
       - Primary Energy|Biomass|Energy Crops
       - Primary Energy|Biomass|Modern
     message: Primary Energy|Biomass|Energy Crops
-    remind: SE|Electricity|Biomass|Energy Crops
-    remind-eu: SE|Electricity|Biomass|Energy Crops
+    remind: PE|Production|Biomass|Lignocellulosic|+|Energy Crops
+    remind-eu: PE|Production|Biomass|Lignocellulosic|+|Energy Crops
     tiam-ucl: Primary Energy|Biomass|Energy Crops
     gcam: Production|Energy|Biomass|Energy Crops
     witch: Primary Energy|Biomass|1st Generation
@@ -38,8 +38,8 @@ biomass - residual:
   iam_aliases:
     message: Primary Energy|Biomass|Residues
     image: Primary Energy|Biomass|Residues
-    remind: SE|Electricity|Biomass|Residues
-    remind-eu: SE|Electricity|Biomass|Residues
+    remind: PE|Production|Biomass|Lignocellulosic|+|Residues
+    remind-eu: PE|Production|Biomass|Lignocellulosic|+|Residues
     tiam-ucl: Primary Energy|Biomass|Residues
     gcam: Production|Energy|Biomass|Residues
     witch: Primary Energy|Biomass|Residues
