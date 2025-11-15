@@ -2492,7 +2492,9 @@ class BiomassValidation(BaseDatasetValidator):
 
         for ds in self.database:
             if (
-                ds["name"].startswith("market for lignocellulosic biomass, used as fuel")
+                ds["name"].startswith(
+                    "market for lignocellulosic biomass, used as fuel"
+                )
                 and ds["location"] in self.regions
                 and ds["location"] != "World"
             ):
@@ -2565,7 +2567,8 @@ class BiomassValidation(BaseDatasetValidator):
                                 e
                                 for e in dataset["exchanges"]
                                 if e["type"] == "technosphere"
-                                and e["name"] == "market for lignocellulosic biomass, used as fuel"
+                                and e["name"]
+                                == "market for lignocellulosic biomass, used as fuel"
                             ]
                         )
                         >= 1
