@@ -16,7 +16,7 @@ biomass crops - purpose grown:
   ecoinvent_aliases:
     fltr:
       name:
-        - market for wood chips and particles, willow
+        - market for wood chips, wet
   lhv:
     unit: megajoule
     value: 18.5

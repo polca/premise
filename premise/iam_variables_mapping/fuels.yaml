@@ -1026,10 +1026,6 @@ bioethanol, from wood:
   ecoinvent_aliases:
     fltr:
       name:
-      - ethanol production, via fermentation, from forest
-      - ethanol production, via fermentation, from eucalyptus
-      - ethanol production, via fermentation, from poplar
-      - ethanol production, via fermentation, from willow
       - ethanol production from wood
       reference product: ethanol
     mask:
