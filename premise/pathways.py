@@ -4,6 +4,7 @@ used to create a data package for scenario analysis.
 """
 
 import json
+import csv
 import shutil
 from datetime import date
 from pathlib import Path
@@ -101,6 +102,7 @@ class PathwaysDataPackage:
         self.variables_name_change = {}
         self._add_variables_mapping()
         self._add_scenario_data()
+        self._add_classifications_file()
         self._build_datapackage(name, contributors)
 
     def _add_variables_mapping(self):
@@ -231,6 +233,69 @@ class PathwaysDataPackage:
         if outfile.exists():
             outfile.unlink()
         df.to_csv(outfile, index=False)
+
+    def _add_classifications_file(self):
+        """
+        Export activity classifications to a CSV file in the datapackage.
+
+        Each row is one activity–classification pair with columns:
+        - name
+        - reference product
+        - unit
+        - location
+        - classification_system  (e.g. "CPC", "ISIC")
+        - classification_code    (e.g. "xxxx: manufacture of ...")
+
+        Databases are taken from each scenario dict under key "database",
+        where "database" is a list of activity dictionaries.
+        """
+
+        outdir = Path.cwd() / "pathways_temp" / "classifications"
+        outdir.mkdir(parents=True, exist_ok=True)
+
+        outfile = outdir / "classifications.csv"
+
+        fieldnames = [
+            "name",
+            "reference product",
+            "classification_system",
+            "classification_code",
+        ]
+
+        # We will deduplicate rows across all scenarios so the same activity
+        # doesn't appear multiple times just because it appears in many years.
+        seen = set()
+
+        with open(outfile, "w", newline="", encoding="utf-8") as f:
+            writer = csv.DictWriter(f, fieldnames=fieldnames)
+            writer.writeheader()
+
+            for scenario in self.datapackage.scenarios:
+                db = scenario.get("database") or []
+                for ds in db:
+                    name = ds.get("name", "")
+                    ref = ds.get("reference product", "")
+
+                    # classifications is a list of tuples:
+                    classifications = ds.get("classifications") or []
+
+                    if not classifications:
+                        continue
+
+                    for system, code in classifications:
+                        key = (name, ref, system, code)
+                        if key in seen:
+                            continue
+                        seen.add(key)
+
+                        writer.writerow(
+                            {
+                                "name": name,
+                                "reference product": ref,
+                                "classification_system": system,
+                                "classification_code": code,
+                            }
+                        )
 
     def _build_datapackage(self, name: str, contributors: list = None):
         """
