@@ -278,19 +278,22 @@ class PathwaysDataPackage:
 
                     if not classifications:
                         print(f"No classifications for {name}")
-                        if (ds["name"], ds["reference product"]) in self.classifications:
+                        if (
+                            ds["name"],
+                            ds["reference product"],
+                        ) in self.classifications:
                             ds["classifications"] = [
                                 (
                                     "ISIC rev.4 ecoinvent",
-                                    self.classifications[(ds["name"], ds["reference product"])][
-                                        "ISIC rev.4 ecoinvent"
-                                    ],
+                                    self.classifications[
+                                        (ds["name"], ds["reference product"])
+                                    ]["ISIC rev.4 ecoinvent"],
                                 ),
                                 (
                                     "CPC",
-                                    self.classifications[(ds["name"], ds["reference product"])][
-                                        "CPC"
-                                    ],
+                                    self.classifications[
+                                        (ds["name"], ds["reference product"])
+                                    ]["CPC"],
                                 ),
                             ]
                             classifications = ds.get("classifications")
@@ -310,7 +313,6 @@ class PathwaysDataPackage:
                             }
                         )
 
-
     def _build_datapackage(self, name: str, contributors: list = None):
         """
         Create and export a scenario datapackage.
@@ -322,11 +324,13 @@ class PathwaysDataPackage:
 
         for file in csv_files:
             relpath = file.relative_to(Path.cwd()).as_posix()
-            package.add_resource({
-                "path": relpath,
-                "profile": "tabular-data-resource",
-                "encoding": "utf-8",
-            })
+            package.add_resource(
+                {
+                    "path": relpath,
+                    "profile": "tabular-data-resource",
+                    "encoding": "utf-8",
+                }
+            )
 
         package.infer("pathways_temp/**/*.yaml")
         package.infer()
