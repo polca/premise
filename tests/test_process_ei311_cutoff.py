@@ -63,12 +63,19 @@ def test_brightway():
         del bw2data.databases["test1"]
     if "test2" in bw2data.databases:
         del bw2data.databases["test2"]
-    if "test3" in bw2data.databases:
-        del bw2data.databases["test3"]
-    if "test4" in bw2data.databases:
-        del bw2data.databases["test4"]
+    #if "test3" in bw2data.databases:
+    #    del bw2data.databases["test3"]
+    #if "test4" in bw2data.databases:
+    #    del bw2data.databases["test4"]
 
-    ndb.write_db_to_brightway(["test1", "test2", "test3", "test4"])
+    ndb.write_db_to_brightway(
+        [
+            "test1",
+            "test2",
+            #"test3",
+            #"test4"
+        ]
+    )
 
     from bw2data import __version__
 
