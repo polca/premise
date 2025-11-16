@@ -16,6 +16,7 @@ from datapackage import Package
 
 from . import __version__
 from .new_database import NewDatabase
+from .inventory_imports import get_classifications
 from .utils import load_database
 
 
@@ -66,6 +67,7 @@ class PathwaysDataPackage:
         )
 
         self.scenario_names = []
+        self.classifications = get_classifications()
 
     def create_datapackage(
         self,
@@ -88,9 +90,6 @@ class PathwaysDataPackage:
         name: str,
         contributors: list = None,
     ):
-
-        for scenario in self.datapackage.scenarios:
-            load_database(scenario, self.datapackage.database)
 
         # first, delete the content of the "pathways_temp" folder
         shutil.rmtree(Path.cwd() / "pathways_temp", ignore_errors=True)
@@ -262,8 +261,6 @@ class PathwaysDataPackage:
             "classification_code",
         ]
 
-        # We will deduplicate rows across all scenarios so the same activity
-        # doesn't appear multiple times just because it appears in many years.
         seen = set()
 
         with open(outfile, "w", newline="", encoding="utf-8") as f:
@@ -273,14 +270,30 @@ class PathwaysDataPackage:
             for scenario in self.datapackage.scenarios:
                 db = scenario.get("database") or []
                 for ds in db:
-                    name = ds.get("name", "")
-                    ref = ds.get("reference product", "")
+                    name = ds["name"]
+                    ref = ds["reference product"]
 
                     # classifications is a list of tuples:
                     classifications = ds.get("classifications") or []
 
                     if not classifications:
-                        continue
+                        print(f"No classifications for {name}")
+                        if (ds["name"], ds["reference product"]) in self.classifications:
+                            ds["classifications"] = [
+                                (
+                                    "ISIC rev.4 ecoinvent",
+                                    self.classifications[(ds["name"], ds["reference product"])][
+                                        "ISIC rev.4 ecoinvent"
+                                    ],
+                                ),
+                                (
+                                    "CPC",
+                                    self.classifications[(ds["name"], ds["reference product"])][
+                                        "CPC"
+                                    ],
+                                ),
+                            ]
+                            classifications = ds.get("classifications")
 
                     for system, code in classifications:
                         key = (name, ref, system, code)
@@ -297,14 +310,26 @@ class PathwaysDataPackage:
                             }
                         )
 
+
     def _build_datapackage(self, name: str, contributors: list = None):
         """
         Create and export a scenario datapackage.
         """
         # create a new datapackage
         package = Package(base_path=Path.cwd().as_posix())
-        package.infer("pathways_temp/**/*.csv")
+        # Find all CSV files manually
+        csv_files = list((Path.cwd() / "pathways_temp").glob("**/*.csv"))
+
+        for file in csv_files:
+            relpath = file.relative_to(Path.cwd()).as_posix()
+            package.add_resource({
+                "path": relpath,
+                "profile": "tabular-data-resource",
+                "encoding": "utf-8",
+            })
+
         package.infer("pathways_temp/**/*.yaml")
+        package.infer()
 
         package.descriptor["name"] = name.replace(" ", "_").lower()
         package.descriptor["title"] = name.capitalize()

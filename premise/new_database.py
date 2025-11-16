@@ -1293,7 +1293,7 @@ class NewDatabase:
             )
 
             try:
-                _prepare_database(
+                scenario = _prepare_database(
                     scenario=scenario,
                     db_name="database",
                     original_database=self.database,
@@ -1313,9 +1313,6 @@ class NewDatabase:
                 system_model=self.system_model,
             ).export_db_to_matrices()
 
-            # end_of_process(scenario)
-
-        # delete_all_pickles()
         if self.generate_reports:
             # generate scenario report
             self.generate_scenario_report()

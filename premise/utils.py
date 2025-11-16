@@ -459,7 +459,7 @@ def load_database(
     scenario: Dict[str, Any],
     original_database: List[Dict[str, Any]],
     delete: bool = True,
-    load_metadata: bool = False,
+    load_metadata: bool = True,
     warning: bool = True,
 ) -> Dict[str, Any]:
     """Load a cached database back into memory.
@@ -519,7 +519,6 @@ def load_database(
                     for k, v in metadata.get(key, {}).items():
                         if k in [
                             "code",
-                            # "classifications",
                             "worksheet name",
                             "database",
                         ]:
