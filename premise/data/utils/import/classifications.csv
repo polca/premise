@@ -3160,3 +3160,23 @@ zinc mine operation,lead concentrate,0729:Mining of other non-ferrous metal ores
 zinc mine operation,sand,0729:Mining of other non-ferrous metal ores,14290: Other non-ferrous metal ores and concentrates (other than uranium or thorium ores and concentrates)
 zinc mine operation,zinc concentrate,0729:Mining of other non-ferrous metal ores,14290: Other non-ferrous metal ores and concentrates (other than uranium or thorium ores and concentrates)
 "zirconium and hafnium tetrachloride production, from zircon",hafnium tetrachloride,0729:Mining of other non-ferrous metal ores,14290: Other non-ferrous metal ores and concentrates (other than uranium or thorium ores and concentrates)
+"market for natural gas, high pressure","natural gas, high pressure",1920:Manufacture of refined petroleum products,33360: Gas oil
+"market group for natural gas, high pressure","natural gas, high pressure",1920:Manufacture of refined petroleum products,33360: Gas oil
+"market for natural gas, low pressure","natural gas, low pressure",1920:Manufacture of refined petroleum products,33360: Gas oil
+"heat production, air-water heat pump 10kW","heat, air-water heat pump 10kW",3530:Steam and air conditioning supply,17300: Steam and hot water
+"heat production, natural gas, at boiler condensing modulating >100kW","heat, district or industrial, natural gas",3530:Steam and air conditioning supply,17300: Steam and hot water
+"diesel, burned in diesel-electric generating set, 10MW","diesel, burned in diesel-electric generating set, 10MW","3510:Electric power generation, transmission and distribution",17100: Electrical energy
+"market for energy, for direct air capture and storage","energy, for direct air capture and storage",3530:Steam and air conditioning supply,17300: Steam and hot water
+"market for energy, for enhanced rock weathering","energy, for enhanced rock weathering",3530:Steam and air conditioning supply,17300: Steam and hot water
+"market for transport, motorbike","transport, motorbike",4921:Urban and suburban passenger land transport,"64119: Other land transportation services of passengers, n.e.c."
+"market for transport, freight, lorry, 26 metric ton","transport, freight, lorry",4923:Freight transport by road,6511: Road transport services of freight
+"market for transport, freight, lorry, 3.5 metric ton","transport, freight, lorry",4923:Freight transport by road,6511: Road transport services of freight
+"market for transport, freight, lorry, 7.5 metric ton","transport, freight, lorry",4923:Freight transport by road,6511: Road transport services of freight
+"heat production, biomethane, at boiler condensing modulating <100kW","heat, central or small-scale, biomethane",3530:Steam and air conditioning supply,17300: Steam and hot water
+"hard coal mine operation","hard coal, run-of-mine",0510:Mining of hard coal,11010: Hard coal
+"hard coal mine operation and hard coal preparation","hard coal",0510:Mining of hard coal,11010: Hard coal
+"hard coal mine operation, underground","hard coal, run-of-mine",0510:Mining of hard coal,11010: Hard coal
+"hard coal mine operation, open cast, truck and shovel","hard coal, run-of-mine",0510:Mining of hard coal,11010: Hard coal
+"hard coal mine operation, open cast, dragline","hard coal, run-of-mine",0510:Mining of hard coal,11010: Hard coal
+"plywood production","plywood",1621:Manufacture of veneer sheets and wood-based panels,"31450: Plywood, veneer panels and similar laminated wood of bamboo"
+"market for light fuel oil","light fuel oil",1920:Manufacture of refined petroleum products,33370: Fuel oils n.e.c.
