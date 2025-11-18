@@ -1,0 +1,56 @@
+brake wear - copper:
+  ecoinvent_aliases:
+    fltr:
+      name: Copper ion
+      reference product: treatment of brake wear emissions
+  share:
+    EUR:
+      2020:
+        min: 0.081
+        max: 0.081
+        mean: 0.081
+      2025:
+        min: 0.02
+        max: 0.03
+        mean: 0.026
+      2050:
+        min: 0.002
+        mean: 0.0026
+        max: 0.003
+    GLO:
+      2020:
+        min: 0.081
+        max: 0.081
+        mean: 0.081
+      2025:
+        min: 0.02
+        max: 0.03
+        mean: 0.026
+      2050:
+        min: 0.002
+        mean: 0.0026
+        max: 0.003
+brake wear - antimony:
+  ecoinvent_aliases:
+    fltr:
+      name: Antimony ion
+      reference product: treatment of brake wear emissions
+  share:
+    EUR:
+      2020:
+        min: 0.0158
+        max: 0.0158
+        mean: 0.0158
+      2050:
+        min: 0.0004
+        max: 0.0006
+        mean: 0.00048
+    GLO:
+      2020:
+        min: 0.0158
+        max: 0.0158
+        mean: 0.0158
+      2050:
+        min: 0.0004
+        max: 0.0006
+        mean: 0.00048

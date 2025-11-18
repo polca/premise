@@ -40,7 +40,8 @@ from .fuels.base import _update_fuels
 from .heat import _update_heat
 from .inventory_imports import AdditionalInventory, DefaultInventory
 from .metals import _update_metals
-from .mining import _update_mining
+# from .mining import _update_mining
+from .interventions import _update_interventions
 from .report import generate_change_report, generate_summary_report
 from .steel import _update_steel
 from .transport import _update_vehicles
@@ -204,6 +205,17 @@ FILEPATH_SULFIDIC_TAILINGS = INVENTORY_DIR / "lci-sulfidic-tailings.xlsx"
 FILEPATH_SHIPS = INVENTORY_DIR / "lci-ships.xlsx"
 FILEPATH_STEEL = INVENTORY_DIR / "lci-steel.xlsx"
 FILEPATH_IND_HEAT_PUMP = INVENTORY_DIR / "lci-heat-pump-high-temp.xlsx"
+FILEPATH_LFP_EOL = INVENTORY_DIR / "lci-battery-LFP-eol.xlsx"
+FILEPATH_LIB_EOL = INVENTORY_DIR / "lci-battery-LIB-eol.xlsx"
+FILEPATH_SIB_EOL = INVENTORY_DIR / "lci-battery-SIB-eol.xlsx"
+FILEPATH_PEMEL_EOL = INVENTORY_DIR / "lci-electrolyzer-PEM-eol.xlsx"
+FILEPATH_AEC_EOL = INVENTORY_DIR / "lci-electrolyzer-AEC-eol.xlsx"
+FILEPATH_SOEC_EOL = INVENTORY_DIR / "lci-electrolyzer-SOEC-eol.xlsx"
+FILEPATH_PEMFC_EOL = INVENTORY_DIR / "lci-fuel-cell-PEMFC-eol.xlsx"
+FILEPATH_SOFC_EOL = INVENTORY_DIR / "lci-fuel-cell-SOFC-eol.xlsx"
+FILEPATH_CIGS_EOL = INVENTORY_DIR / "lci-PV-CIGS-eol.xlsx"
+FILEPATH_PEROVSKITE_EOL = INVENTORY_DIR / "lci-PV-perovskite-eol.xlsx"
+FILEPATH_MAGNET_EOL = INVENTORY_DIR / "lci-wind-turbine-magnet-eol.xlsx"
 
 config = load_constants()
 
@@ -548,6 +560,8 @@ class NewDatabase:
         use_absolute_efficiency=False,
         biosphere_name: str = "biosphere3",
         generate_reports: bool = True,
+        split_capacity_operation: bool = False,
+        split_external_capacity_operation: bool = False,
     ) -> None:
         """
         Initialize the NewDatabase class.
@@ -582,6 +596,8 @@ class NewDatabase:
         self.keep_imports_uncertainty = keep_imports_uncertainty
         self.keep_source_db_uncertainty = keep_source_db_uncertainty
         self.biosphere_name = check_presence_biosphere_database(biosphere_name)
+        self.split_capacity_operation = split_capacity_operation
+        self.split_external_capacity_operation = split_external_capacity_operation
         self.generate_reports = generate_reports
 
         # if version is anything other than 3.8 or 3.9
@@ -877,6 +893,17 @@ class NewDatabase:
             (FILEPATH_SULFIDIC_TAILINGS, "3.8"),
             (FILEPATH_SHIPS, "3.10"),
             (FILEPATH_STEEL, "3.9"),
+            (FILEPATH_LFP_EOL, "3.11"),
+            (FILEPATH_LIB_EOL, "3.11"),
+            (FILEPATH_SIB_EOL, "3.11"),
+            (FILEPATH_PEMEL_EOL, "3.11"),
+            (FILEPATH_AEC_EOL, "3.11"),
+            (FILEPATH_SOEC_EOL, "3.11"),
+            (FILEPATH_PEMFC_EOL, "3.11"),
+            (FILEPATH_SOFC_EOL, "3.11"),
+            (FILEPATH_CIGS_EOL, "3.11"),
+            (FILEPATH_PEROVSKITE_EOL, "3.11"),
+            (FILEPATH_MAGNET_EOL, "3.11"),
         ]
         for filepath in filepaths:
             # make an exception for FILEPATH_OIL_GAS_INVENTORIES
@@ -981,8 +1008,8 @@ class NewDatabase:
                 "func": _update_metals,
                 "args": (self.version, self.system_model),
             },
-            "mining": {
-                "func": _update_mining,
+            "interventions": {
+                "func": _update_interventions,
                 "args": (self.version, self.system_model),
             },
             "heat": {"func": _update_heat, "args": (self.version, self.system_model)},
@@ -1021,13 +1048,18 @@ class NewDatabase:
             },
             "final energy": {
                 "func": _update_final_energy,
-                "args": (self.version, self.system_model),
+                "args": (
+                    self.version,
+                    self.system_model,
+                    self.split_capacity_operation,
+                ),
             },
             "external": {
                 "func": _update_external_scenarios,
                 "args": (
                     self.version,
                     self.system_model,
+                    self.split_external_capacity_operation,
                 ),
             },
         }

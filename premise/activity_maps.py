@@ -35,8 +35,13 @@ TRUCKS = VARIABLES_DIR / "transport_road_freight.yaml"
 TRAINS = VARIABLES_DIR / "transport_rail_freight.yaml"
 SHIPS = VARIABLES_DIR / "transport_sea_freight.yaml"
 FINAL_ENERGY = VARIABLES_DIR / "final_energy.yaml"
-MINING_WASTE = DATA_DIR / "mining" / "tailings_activities.yaml"
 CARBON_STORAGE_TECHS = VARIABLES_DIR / "carbon_dioxide_removal.yaml"
+CAPACITY_ADDITION = VARIABLES_DIR / "capacity_addition.yaml"
+MINING_WASTE = DATA_DIR / "interventions" / "tailings_activities.yaml"
+COPPER_WASTE = DATA_DIR / "interventions" / "copper_recovery_activities.yaml"
+EAF_SLAG_WASTE = DATA_DIR / "interventions" / "EAF_slag_activities.yaml"
+BOF_SLAG_WASTE = DATA_DIR / "interventions" / "BOF_slag_activities.yaml"
+BRAKE_WEAR = DATA_DIR / "interventions" / "brake_wear_activities.yaml"
 
 
 def get_mapping(
@@ -198,6 +203,31 @@ def mapping_to_dataframe(
     grouped_df.loc[grouped_df["Category"].duplicated(), "Category"] = ""
 
     return grouped_df
+
+
+def get_capacity_addition_dataset_names(key: str) -> tuple[str, str, str]:
+    """
+    Generate capacity addition dataset names and units from a capacity addition key.
+    Used by both regular and external capacity addition processing.
+
+    :param key: Capacity addition key (e.g., "New Cap - Electricity - Solar PV")
+    :return: Tuple of (name, reference_product, unit)
+    """
+    is_transport = key.startswith("Sales - Transport")
+
+    if is_transport:
+        suffix = key.replace("Sales - Transport - ", "").strip()
+        new_name = f"transport capacity addition, 1 million units, {suffix}"
+        new_ref_prod = f"transport capacity addition, 1 million units, {suffix}"
+        unit = "million units"
+    else:
+        # Generate clean capacity addition name based on key
+        suffix = key.replace("New Cap - ", "").strip()
+        new_name = f"capacity addition, 1GW, {suffix}"
+        new_ref_prod = f"capacity addition, 1GW, {suffix}"
+        unit = "gigawatt"
+
+    return new_name, new_ref_prod, unit
 
 
 class InventorySet:
@@ -404,8 +434,58 @@ class InventorySet:
         filters = get_mapping(filepath=MINING_WASTE, var="ecoinvent_aliases")
         return self.generate_sets_from_filters(filters)
 
+    def generate_copper_waste_map(self) -> dict:
+        """
+        Filter ecoinvent processes related to copper waste.
+
+        :return: dictionary with copper waste names as keys (see below) and
+            sets of related ecoinvent activities as values.
+        :rtype: dict
+
+        """
+        filters = get_mapping(filepath=COPPER_WASTE, var="ecoinvent_aliases")
+        return self.generate_sets_from_filters(filters)
+
+    def generate_eaf_slag_waste_map(self) -> dict:
+        """
+        Filter ecoinvent processes related to EAF slag waste.
+
+        :return: dictionary with slag waste names as keys (see below) and
+            sets of related ecoinvent activities as values.
+        :rtype: dict
+
+        """
+        filters = get_mapping(filepath=EAF_SLAG_WASTE, var="ecoinvent_aliases")
+        return self.generate_sets_from_filters(filters)
+
+    def generate_bof_slag_waste_map(self) -> dict:
+        """
+        Filter ecoinvent processes related to BOF slag waste.
+
+        :return: dictionary with slag waste names as keys (see below) and
+            sets of related ecoinvent activities as values.
+        :rtype: dict
+
+        """
+        filters = get_mapping(filepath=BOF_SLAG_WASTE, var="ecoinvent_aliases")
+        return self.generate_sets_from_filters(filters)
+
+    def generate_brake_wear_map(self) -> dict:
+        """
+        Filter ecoinvent processes related to brake wear.
+
+        :return: dictionary with brake wear names as keys (see below) and
+            sets of related ecoinvent activities as values.
+        :rtype: dict
+
+        """
+        filters = get_mapping(filepath=BRAKE_WEAR, var="ecoinvent_aliases")
+        return self.generate_sets_from_filters(filters)
+
     def generate_final_energy_map(self) -> ActivityMapping:
         """Return mapping of final energy carriers to activities.
+
+
 
         :return: Mapping keyed by energy carrier name.
         :rtype: ActivityMapping
@@ -425,6 +505,50 @@ class InventorySet:
                     act["lhv"] = lhv[key]
 
         return sets
+
+    def generate_capacity_addition_map(self) -> dict:
+        """
+        Generate placeholder datasets representing capacity addition datasets.
+        Returns capacity addition datasets regardless of split_capacity_operation flag,
+        consistent with other mapping functions.
+
+        :return: dictionary with capacity addition names as keys (see below) and
+            lists of placeholder capacity addition datasets as values.
+        :rtype: dict
+
+        """
+        filters = get_mapping(filepath=CAPACITY_ADDITION, var="ecoinvent_aliases")
+
+        # Create placeholder datasets representing the capacity addition datasets that would be created
+        capacity_mapping = {}
+
+        for key, config in filters.items():
+            # Use the shared utility function (consistent with external scenarios)
+            new_name, new_ref_prod, unit = get_capacity_addition_dataset_names(key)
+
+            # Create a placeholder dataset
+            placeholder_dataset = {
+                "name": new_name,
+                "reference product": new_ref_prod,
+                "unit": unit,
+                "location": "GLO",  # Global location as default
+                "database": "capacity_addition_placeholder",
+                "code": f"capacity_addition_{key}",
+            }
+
+            capacity_mapping[key] = [placeholder_dataset]
+
+        return capacity_mapping
+
+    def generate_capacity_addition_filters(self) -> dict:
+        """
+        Get raw capacity addition filter configurations.
+
+        :return: dictionary with capacity addition names as keys and
+            raw filter configurations as values.
+        :rtype: dict
+        """
+        return get_mapping(filepath=CAPACITY_ADDITION, var="ecoinvent_aliases")
 
     def generate_transport_map(self, transport_type: str) -> ActivityMapping:
         """Return mapping of transport technologies to activities.

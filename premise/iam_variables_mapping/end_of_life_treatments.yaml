@@ -1,0 +1,162 @@
+fuel_cell_pem_stack:
+  consumer:
+    name: fuel cell stack production, 1 kWe, proton exchange membrane (PEM)
+    reference product: fuel cell stack, 1 kWe, proton exchange membrane (PEM)
+  treatment:
+    name: treatment of used fuel cell stack, 1kWe, PEM
+    reference product: used fuel cell stack, 1kWe, PEM
+    mask:
+      - platinum recovery
+fuel_cell_pem_bop:
+  consumer:
+    name: fuel cell Balance of Plant production, 1 kWe, proton exchange membrane (PEM)
+    reference product: fuel cell Balance of Plant, 1 kWe, proton exchange membrane (PEM)
+  treatment:
+    name: treatment of used fuel cell balance of plant, 1kWe, PEM
+    reference product: used fuel cell balance of plant, 1kWe, PEM
+fuel_cell_so_stack:
+  consumer:
+    name: fuel cell production, stack solid oxide, 125kW electrical, future
+    reference product: fuel cell, stack solid oxide, 125kW electrical, future
+  treatment:
+    name: treatment of used fuel cell stack, 125kW, SOFC
+    reference product: used fuel cell stack, 125kWe, SOFC
+electrolyzer_pem_stack:
+  consumer:
+#    name: electrolyzer production, 1MWe, PEM, Stack
+#    reference product: electrolyzer, 1MWe, PEM, Stack
+    name: hydrogen production, gaseous, 30 bar, from PEM electrolysis
+    reference product: hydrogen, gaseous, 30 bar
+  treatment:
+    name: treatment of used electrolyzer Stack, 1MWe, PEM
+    reference product: used electrolyzer stack, 1MWe, PEM
+    replaces:
+      - name: treatment of electrolyzer stack, 1MWe, PEM
+        reference product: used electrolyzer stack, 1MWe, PEM
+electrolyzer_alk_stack:
+  consumer:
+    name: from AEC electrolysis
+    reference product: hydrogen, gaseous
+  treatment:
+    name: treatment of used electrolyzer Stack, 1MWe, AEC
+    reference product: used electrolyzer stack, 1MWe, AEC
+    mask:
+      - platinum recovery
+    replaces:
+      - name: treatment of electrolyzer stack, 1MWe, AEC
+        reference product: used electrolyzer stack, 1MWe, AEC
+electrolyzer_so_stack:
+  consumer:
+    name: from SOEC electrolysis
+    reference product: hydrogen, gaseous
+  treatment:
+    name: treatment of used electrolyzer Stack, 1MWe, SOEC
+    reference product: used electrolyzer stack, 1MWe, SOEC
+    replaces:
+      - name: treatment of electrolyzer stack, 1MWe, SOEC
+        reference product: used electrolyzer stack, 1MWe, SOEC
+pv_cigs_panel:
+  consumer:
+    name: photovoltaic panel production, CIS
+    reference product: photovoltaic panel, CIS
+  treatment:
+    name: treatment of used CIGS PV module, double green process
+    reference product: used thin-film PV module
+pv_perovskite_panel:
+  consumer:
+    name: perovskite photovoltaic module assembly
+    reference product: perovskite photovoltaic module
+  treatment:
+    name: treatment of used perovskite, delamination, pyrolysis, chemical treatment
+    reference product: used perovskite module
+lfp_battery:
+  consumer:
+    name: battery cell production, Li-ion, LFP
+    reference product: battery cell, Li-ion, LFP
+  treatment:
+    type: market
+    name: market for used LFP battery cell
+    reference product: used LFP battery cell
+    suppliers:
+      hydrometallurgical:
+        name: treatment of used LFP battery cell, hydrometallurgical treatment
+        reference product: used LFP battery cell
+        share:
+          2020: 0.5
+          2050: 0.5
+      pyrometallurgical:
+        name: treatment of used LFP battery cell, pyrometallurgical treatment
+        reference product: used LFP battery cell
+        share:
+          2020: 0.5
+          2050: 0.5
+sib_battery:
+  consumer:
+    name: battery cell production, SIB, with NMMT cathode and fossil-HC anode
+    reference product: battery cell
+  treatment:
+    type: market
+    name: market for used SIB battery cell
+    reference product: used SIB battery cell
+    suppliers:
+      hydrometallurgical:
+        name: treatment of used SIB battery cell, hydrometallurgical treatment
+        reference product: used SIB battery cell
+        share:
+          2020: 0.5
+          2050: 0.5
+      pyrometallurgical:
+        name: treatment of used SIB battery cell, pyrometallurgical treatment
+        reference product: used SIB battery cell
+        share:
+          2020: 0.5
+          2050: 0.5
+li_ion_battery:
+  consumer:
+    name: market for used Li-ion battery
+    reference product: used Li-ion battery
+  treatment:
+    type: market
+    name: market for treatment of used Li-ion battery
+    reference product: used Li-ion battery
+    replaces:
+      - name: treatment of used Li-ion battery
+        reference product: used Li-ion battery
+        mask:
+          - new
+    suppliers:
+      hydrometallurgical:
+        name: treatment of used Li-ion battery with hydrometallurgical treatment
+        reference product: used Li-ion battery
+        share:
+          2020: 0.5
+          2050: 0.5
+      pyrometallurgical:
+        name: treatment of used Li-ion battery with pyrometallurgical treatment
+        reference product: used Li-ion battery
+        share:
+          2020: 0.5
+          2050: 0.5
+wind_turbines_pm_direct_drive:
+  consumer:
+    name: direct drive
+    reference product: wind turbine
+    mask:
+      - electricity, high voltage
+      - connection
+  treatment:
+    name: treatment of used permanent magnet, collection, decoating, hydrogen decrepitation, milling
+    reference product: used permanent magnet
+    multiplier:
+      factor_per_mw: 625
+wind_turbines_pm_gearbox:
+  consumer:
+    name: wind turbine construction
+    reference product: wind turbine
+    mask:
+      - direct drive
+  treatment:
+    name: treatment of used permanent magnet, collection, decoating, hydrogen decrepitation, milling
+    reference product: used permanent magnet
+    multiplier:
+      factor_per_mw: 134

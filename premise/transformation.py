@@ -1359,6 +1359,74 @@ class BaseTransformation:
             self.write_log(dataset=dataset, status="empty")
             self.remove_from_index(dataset)
 
+    def extract_installed_capacity(self, dataset):
+        """
+        Try to infer installed capacity and unit from dataset name.
+        E.g. 'heat pump, brine-water, 10kW' → 10.0
+             'photovoltaic installation, 156 kWp' → 156.0
+             'market for turbine, 0.5 MW'   → 500.0
+
+        If not found in name, tries the dataset description/comment.
+
+        Supports units: kW, kWp, MW, MWp, GW, GWp, TW — returns in kW.
+        Returns None if not parsable.
+        """
+
+        unit_factors = {
+            "kw": 1,
+            "kwp": 1,  # kWp is same as kW for capacity
+            "mw": 1e3,
+            "mwp": 1e3,  # MWp is same as MW for capacity
+            "gw": 1e6,
+            "gwp": 1e6,  # GWp is same as GW for capacity
+            "tw": 1e9,
+        }
+
+        # Updated pattern to handle optional 'p' suffix
+        pattern = r"([\d\.]+)\s*(kWp?|MWp?|GWp?|TWp?)(?!h)"
+        m = re.search(pattern, dataset["name"], flags=re.IGNORECASE)
+
+        if m:
+            value = float(m.group(1))
+            unit = m.group(2).lower()
+            factor = unit_factors.get(unit)
+
+            if factor:
+                return value * factor  # Return in kW
+            else:
+                print(f"⚠️ Unrecognized unit: {unit}")
+                return None
+
+        # If not found in name, try the reference product
+        ref_product = dataset.get("reference product", "")
+        if ref_product:
+            m = re.search(pattern, ref_product, flags=re.IGNORECASE)
+            if m:
+                value = float(m.group(1))
+                unit = m.group(2).lower()
+                factor = unit_factors.get(unit)
+
+                if factor:
+                    return value * factor  # Return in kW
+                else:
+                    print(f"⚠️ Unrecognized unit: {unit}")
+                    return None
+
+        # If not found in reference product, try the comment
+        comment = dataset.get("comment", "")
+        if comment:
+            m = re.search(pattern, comment, flags=re.IGNORECASE)
+            if m:
+                value = float(m.group(1))
+                unit = m.group(2).lower()
+                factor = unit_factors.get(unit)
+
+                if factor:
+                    return value * factor  # Return in kW
+                else:
+                    print(f"⚠️ Unrecognized unit: {unit}")
+                    return None
+
     def relink_datasets(self, excludes_datasets=None, alt_names=None):
         """
         For a given exchange name, product, and unit, change its location to an IAM location,

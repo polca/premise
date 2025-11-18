@@ -1,0 +1,30 @@
+scrap copper:
+  ecoinvent_aliases:
+    fltr:
+      name: copper scrap, sorted, pressed, Recycled Content cut-off
+      reference product: copper scrap, sorted, pressed
+  share:
+    GLO:
+      2020:
+        min: 0.31
+        max: 0.31
+        mean: 0.31
+      2050:
+        min: 0.4
+        max: 0.5
+        mean: 0.45
+bottom ash:
+  ecoinvent_aliases:
+    fltr:
+      name: market for bottom ash,
+      reference product: bottom ash,
+  share:
+    GLO:
+      2020:
+        min: 0.89
+        max: 0.89
+        mean: 0.89
+      2050:
+        min: 0.63
+        max: 0.78
+        mean: 0.705

@@ -1,0 +1,48 @@
+treatment of BOF slag - landfill:
+  ecoinvent_aliases:
+    fltr:
+      name: treatment of basic oxygen furnace slag, residual material landfill
+      reference product: basic oxygen furnace slag
+  share:
+    EUR:
+      2020:
+        min: 0.79
+        max: 0.79
+        mean: 0.79
+      2050:
+        min: 0.13
+        max: 0.23
+        mean: 0.18
+    GLO:
+      2020:
+        min: 0.79
+        max: 0.79
+        mean: 0.79
+      2050:
+        min: 0.13
+        max: 0.23
+        mean: 0.18
+treatment of BOF slag - recovery:
+  ecoinvent_aliases:
+    fltr:
+      name: basic oxygen furnace slag to market for basic oxygen furnace slag, for recovery
+      reference product: basic oxygen furnace slag
+  share:
+    EUR:
+      2020:
+        min: 0.21
+        max: 0.21
+        mean: 0.21
+      2050:
+        min: 0.77
+        max: 0.87
+        mean: 0.82
+    GLO:
+      2020:
+        min: 0.21
+        max: 0.21
+        mean: 0.21
+      2050:
+        min: 0.77
+        max: 0.87
+        mean: 0.82
