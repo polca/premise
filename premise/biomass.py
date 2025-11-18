@@ -149,8 +149,8 @@ class Biomass(BaseTransformation):
     def create_regional_biomass_markets(self):
 
         self.process_and_add_markets(
-            name="market for biomass, used as fuel",
-            reference_product="biomass, used as fuel",
+            name="market for lignocellulosic biomass, used as fuel",
+            reference_product="lignocellulosic biomass",
             unit="kilogram",
             mapping=self.biomass_map,
             production_volumes=self.iam_data.biomass_mix,
@@ -165,8 +165,8 @@ class Biomass(BaseTransformation):
     def replace_biomass_inputs(self):
 
         new_candidate = {
-            "name": "market for biomass, used as fuel",
-            "reference product": "biomass, used as fuel",
+            "name": "market for lignocellulosic biomass, used as fuel",
+            "reference product": "lignocellulosic biomass",
             "unit": "kilogram",
         }
 
@@ -175,17 +175,25 @@ class Biomass(BaseTransformation):
             ws.either(
                 *[
                     ws.equals("unit", u)
-                    for u in ["kilowatt hour", "megajoule", "kilogram"]
+                    for u in ["kilowatt hour", "megajoule", "kilogram", "cubic meter"]
                 ]
             ),
             ws.either(
                 *[
                     ws.contains("name", n)
-                    for n in ["electricity", "heat", "power", "hydrogen production"]
+                    for n in [
+                        "electricity",
+                        "heat",
+                        "power",
+                        "hydrogen production",
+                        "biomethane production",
+                        "ethanol production",
+                    ]
                 ]
             ),
             ws.exclude(ws.contains("name", "logs")),
         ):
+
             for exc in ws.technosphere(
                 dataset,
                 ws.either(
@@ -203,8 +211,8 @@ class Biomass(BaseTransformation):
                     location = self.ecoinvent_to_iam_loc.get(dataset["location"], "GLO")
 
                 if self.is_in_index(new_candidate, location):
-                    exc["name"] = "market for biomass, used as fuel"
-                    exc["product"] = "biomass, used as fuel"
+                    exc["name"] = "market for lignocellulosic biomass, used as fuel"
+                    exc["product"] = "lignocellulosic biomass"
                     exc["location"] = location
 
     def write_log(self, dataset, status="created"):

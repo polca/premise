@@ -84,6 +84,7 @@ biomass:
   ecoinvent_aliases:
     fltr:
     - market for biomass, used as fuel
+    - market for lignocellulosic biomass, used as fuel
     - market for wood chips
     mask:
       name:
@@ -99,6 +100,7 @@ wood pellet:
     fltr:
     - market for wood pellet
     - market for biomass, used as fuel
+    - market for lignocellulosic biomass, used as fuel
     - wood pellet production
     mask:
       name:
@@ -114,6 +116,7 @@ wood chips:
     fltr:
     - market for wood chips
     - market for biomass, used as fuel
+    - market for lignocellulosic biomass, used as fuel
 natural gas:
   lhv:
     unit: megajoule
@@ -294,7 +297,7 @@ liquid fossil fuels:
     remind: SE|Liquids|Fossil|+|Oil
     remind-eu: SE|Liquids|Fossil|+|Oil
     image: Secondary Energy|Consumption|Liquids|Fossil
-    message: Secondary Energy|Liquids|Oil|Fuel
+    message: Secondary Energy|Liquids|Oil
     witch: Secondary Energy|Liquids|Fossil|Oil
 diesel:
   lhv:
@@ -308,7 +311,7 @@ diesel:
     remind: SE|Liquids|Fossil|+|Oil|Diesel
     remind-eu: SE|Liquids|Fossil|+|Oil|Diesel
     image: Secondary Energy|Consumption|Liquids|Fossil|Diesel
-    message: Secondary Energy|Liquids|Oil|Fuel|Diesel
+    message: Secondary Energy|Liquids|Oil|Light
     witch: Secondary Energy|Liquids|Fossil|Oil|Diesel
   eff_aliases:
     gcam: Efficiency|Refined Liquids|Oil
@@ -346,7 +349,7 @@ gasoline:
     remind: SE|Liquids|Fossil|+|Oil|Gasoline
     remind-eu: SE|Liquids|Fossil|+|Oil|Gasoline
     image: Secondary Energy|Consumption|Liquids|Fossil|Gasoline
-    message: Secondary Energy|Liquids|Oil|Fuel|Gasoline
+    message: Secondary Energy|Liquids|Oil|Light
     witch: Secondary Energy|Liquids|Fossil|Oil|Gasoline
   eff_aliases:
     gcam: Efficiency|Refined Liquids|Oil
@@ -1026,10 +1029,6 @@ bioethanol, from wood:
   ecoinvent_aliases:
     fltr:
       name:
-      - ethanol production, via fermentation, from forest
-      - ethanol production, via fermentation, from eucalyptus
-      - ethanol production, via fermentation, from poplar
-      - ethanol production, via fermentation, from willow
       - ethanol production from wood
       reference product: ethanol
     mask:

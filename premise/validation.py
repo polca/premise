@@ -2492,7 +2492,9 @@ class BiomassValidation(BaseDatasetValidator):
 
         for ds in self.database:
             if (
-                ds["name"].startswith("market for biomass, used as fuel")
+                ds["name"].startswith(
+                    "market for lignocellulosic biomass, used as fuel"
+                )
                 and ds["location"] in self.regions
                 and ds["location"] != "World"
             ):
@@ -2565,15 +2567,16 @@ class BiomassValidation(BaseDatasetValidator):
                                 e
                                 for e in dataset["exchanges"]
                                 if e["type"] == "technosphere"
-                                and e["name"] == "market for biomass, used as fuel"
+                                and e["name"]
+                                == "market for lignocellulosic biomass, used as fuel"
                             ]
                         )
                         >= 1
                     ), (
                         f"Dataset {dataset['name']} in {dataset['location']} "
                         f"should have one or more exchanges to "
-                        f"'market for biomass, used as fuel'. "
-                        f"Currently has {len([e for e in dataset['exchanges'] if e['type'] == 'technosphere' and e['name'] == 'market for biomass, used as fuel'])}."
+                        f"'market for lignocellulosic biomass, used as fuel'. "
+                        f"Currently has {len([e for e in dataset['exchanges'] if e['type'] == 'technosphere' and e['name'] == 'market for lignocellulosic biomass, used as fuel'])}."
                     )
 
     def check_residual_biomass_share(self):
@@ -2584,7 +2587,7 @@ class BiomassValidation(BaseDatasetValidator):
 
         for ds in self.database:
             if (
-                ds["name"] == "market for biomass, used as fuel"
+                ds["name"] == "market for lignocellulosic biomass, used as fuel"
                 and ds["location"] in self.regions
                 and ds["location"] != "World"
             ):
@@ -2652,9 +2655,12 @@ class BiomassValidation(BaseDatasetValidator):
 
 
 class MetalsValidation(BaseDatasetValidator):
-    def __init__(self, model, scenario, year, regions, database, iam_data):
-        super().__init__(model, scenario, year, regions, database)
+    def __init__(
+        self, model, scenario, year, regions, database, iam_data, system_model
+    ):
+        super().__init__(model, scenario, year, regions, database, system_model)
         self.iam_data = iam_data
+        self.system_model = system_model
 
     def run_metals_checks(self):
         self.check_market_balance()
@@ -2662,6 +2668,7 @@ class MetalsValidation(BaseDatasetValidator):
         self.check_interpolation()
         self.check_excel_shares_preserved()
         self.save_log()
+
         if self.major_issues_log:
             print(
                 "---> MAJOR anomalies found during metals update: check the change report."
@@ -2823,7 +2830,9 @@ class MetalsValidation(BaseDatasetValidator):
                 expected = expected_shares.get(country_long, 0) * primary_share
                 actual = actual_shares.get(country_short, 0)
 
-                if expected > 0.01:  # Only check significant shares
+                if (
+                    expected > 0.01 and self.system_model != "consequential"
+                ):  # Only check significant shares
                     relative_error = (
                         abs(actual - expected) / expected
                         if expected > 0

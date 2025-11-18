@@ -30,6 +30,8 @@ heat, from natural gas:
         - heat and power co-generation, natural gas
       reference product: heat
     mask: market
+  iam_aliases:
+    message: Secondary Energy|Heat|Gas
 
 heat, from natural gas (market):
   ecoinvent_aliases:
@@ -42,6 +44,8 @@ heat, from light fuel oil:
   ecoinvent_aliases:
     fltr: heat production, light fuel oil
     mask: market
+  iam_aliases:
+    message: Secondary Energy|Heat|Oil
 
 heat, from wood chips:
   ecoinvent_aliases:
@@ -49,10 +53,14 @@ heat, from wood chips:
       - heat production, softwood chips
       - heat production, hardwood chips
     mask: market
+  iam_aliases:
+    message: Secondary Energy|Heat|Biomass
 
 heat, from coal furnace:
     ecoinvent_aliases:
         fltr: heat production, at hard coal industrial furnace 1-10MW
+    iam_aliases:
+      message: Secondary Energy|Heat|Coal
 
 heat, from hydrogen turbine:
   ecoinvent_aliases:
@@ -73,6 +81,7 @@ heat, buildings, from district heating:
         - Final Energy|Residential|Water Heating|Heat
         - Final Energy|Commercial|Space Heating|Heat
         - Final Energy|Commercial|Water Heating|Heat
+      message: Final Energy|Residential and Commercial|Heat
 
 heat, buildings, from hydrogen boiler:
   ecoinvent_aliases:
@@ -85,6 +94,7 @@ heat, buildings, from hydrogen boiler:
       - Final Energy|Residential|Water Heating|Hydrogen
       - Final Energy|Commercial|Space Heating|Hydrogen
       - Final Energy|Commercial|Water Heating|Hydrogen
+    message: Final Energy|Residential and Commercial|Hydrogen|Combustion
 
 heat, buildings, from hydrogen CHP:
     ecoinvent_aliases:
@@ -93,6 +103,8 @@ heat, buildings, from hydrogen CHP:
 heat, buildings, from hydrogen fuel cell:
     ecoinvent_aliases:
         fltr: heat, residential, by conversion of hydrogen using fuel cell, PEM, allocated by exergy, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid
+    iam_aliases:
+      message: Final Energy|Residential and Commercial|Hydrogen|Fuel Cell
 
 heat, buildings, from synthetic natural gas boiler:
     ecoinvent_aliases:
@@ -113,10 +125,13 @@ heat, buildings, from natural gas:
         - Final Energy|Residential|Water Heating|Natural Gas
         - Final Energy|Commercial|Space Heating|Gases|Fossil
         - Final Energy|Commercial|Water Heating|Gases|Fossil
+      message: Final Energy|Residential and Commercial|Gases
 
 heat, buildings, from biomethane boiler:
     ecoinvent_aliases:
         fltr: heat, residential, by combustion of biomethane using boiler, distributed by pipeline
+    iam_aliases:
+      message: Final Energy|Residential and Commercial|Gases|Biomass
 
 heat, buildings, from LPG boiler:
     ecoinvent_aliases:
@@ -150,6 +165,7 @@ heat, buildings, from coal stove:
         - Final Energy|Residential|Water Heating|Coal
         - Final Energy|Commercial|Space Heating|Solids|Fossil
         - Final Energy|Commercial|Water Heating|Solids|Fossil
+      message: Final Energy|Residential and Commercial|Solids|Coal
 
 heat, buildings, from wood logs heater:
     ecoinvent_aliases:
@@ -163,6 +179,7 @@ heat, buildings, from wood logs heater:
        - Final Energy|Residential|Water Heating|Traditional Biomass
        - Final Energy|Commercial|Space Heating|Solids|Biomass|Traditional
        - Final Energy|Commercial|Water Heating|Solids|Biomass|Traditional
+      message: Final Energy|Residential and Commercial|Solids|Biomass|Traditional
 
 heat, buildings, from wood pellets heater:
     ecoinvent_aliases:
@@ -176,6 +193,7 @@ heat, buildings, from wood pellets heater:
         - Final Energy|Residential|Water Heating|Modern Biomass
         - Final Energy|Commercial|Space Heating|Solids|Biomass|Modern
         - Final Energy|Commercial|Water Heating|Solids|Biomass|Modern
+      message: Final Energy|Residential and Commercial|Solids|Biomass|Modern
 
 heat, buildings, from heat pump:
     ecoinvent_aliases:
@@ -183,6 +201,7 @@ heat, buildings, from heat pump:
     iam_aliases:
       remind: FE|Buildings|Heating|Electricity|Heat pump
       remind-eu: FE|Buildings|Heating|Electricity|Heat pump
+      message: Final Energy|Residential and Commercial|Electricity|Thermal|Heat Pumps
 
 heat, buildings, from electric heater:
     ecoinvent_aliases:
@@ -195,6 +214,7 @@ heat, buildings, from electric heater:
         - Final Energy|Residential|Water Heating|Electricity
         - Final Energy|Commercial|Space Heating|Electricity
         - Final Energy|Commercial|Water Heating|Electricity
+      message: Final Energy|Residential and Commercial|Electricity|Thermal|Resistance
 
 heat, buildings, from light fuel oil boiler:
     ecoinvent_aliases:
@@ -207,12 +227,14 @@ heat, buildings, from light fuel oil boiler:
         - Final Energy|Residential|Water Heating|Liquid (fossil)
         - Final Energy|Commercial|Space Heating|Liquids|Fossil
         - Final Energy|Commercial|Water Heating|Liquids|Fossil
+      message: Final Energy|Residential and Commercial|Liquids|Oil
 
 heat, industrial, from hydrogen:
     ecoinvent_aliases:
       fltr: hydrogen, burned in gas turbine 1GW
     iam_aliases:
       image: Final Energy|Industry|Other Sector|Hydrogen
+      message: Final Energy|Industry|Other Sector|Hydrogen|Combustion
 
 heat, industrial, from heat pump:
     ecoinvent_aliases:
@@ -222,6 +244,7 @@ heat, industrial, from heat pump:
       remind: SE|Heat|Electricity|Heat Pump
       remind-eu: SE|Heat|Electricity|Heat Pump
       image: Final Energy|Industry|Other Sector|Electricity
+      message: Final Energy|Industry|Other Sector|Electricity|Thermal|Heat Pumps
 
 heat, industrial, from natural gas CHP:
     ecoinvent_aliases:
@@ -232,6 +255,7 @@ heat, industrial, from natural gas CHP:
       remind: SE|Heat|Gas|Combined Heat and Power
       remind-eu: SE|Heat|Gas|Combined Heat and Power
       image: Final Energy|Industry|Other Sector|Gases|Fossil
+      message: Final Energy|Industry|Other Sector|Gases|Gas
 
 heat, industrial, from coal CHP:
     ecoinvent_aliases:
@@ -242,6 +266,7 @@ heat, industrial, from coal CHP:
       remind: SE|Heat|Coal|Combined Heat and Power
       remind-eu: SE|Heat|Coal|Combined Heat and Power
       image: Final Energy|Industry|Other Sector|Solids|Fossil
+      message: Final Energy|Industry|Other Sector|Solids|Coal
 
 heat, industrial, from biomass CHP:
     ecoinvent_aliases:
@@ -255,12 +280,14 @@ heat, industrial, from biomass CHP:
       remind: SE|Heat|Biomass|Combined Heat and Power
       remind-eu: SE|Heat|Biomass|Combined Heat and Power
       image: Final Energy|Industry|Other Sector|Solids|Biomass
+      message: Final Energy|Industry|Other Sector|Solids|Biomass
 
 heat, industrial, from light fuel oil boiler:
     ecoinvent_aliases:
       fltr: heat production, light fuel oil, at industrial furnace 1MW
     iam_aliases:
       image: Final Energy|Industry|Other Sector|Liquids|Fossil
+      message: Final Energy|Industry|Other Sector|Liquids|Oil|Thermal
 
 heat, industrial, from geothermal:
     ecoinvent_aliases:
@@ -268,6 +295,7 @@ heat, industrial, from geothermal:
     iam_aliases:
       remind: SE|Heat|+|Geothermal
       remind-eu: SE|Heat|+|Geothermal
+      message: Final Energy|Industry|Other Sector
 
 heat, industrial, from solar thermal:
     ecoinvent_aliases:
@@ -275,6 +303,7 @@ heat, industrial, from solar thermal:
     iam_aliases:
       remind: SE|Heat|+|Solar
       remind-eu: SE|Heat|+|Solar
+      message: Final Energy|Industry|Other Sector|Solar
 
 energy, for DACCS, from hydrogen turbine:
   ecoinvent_aliases:
@@ -283,6 +312,7 @@ energy, for DACCS, from hydrogen turbine:
   iam_aliases:
     remind: FE|CDR|DAC|+|Hydrogen
     remind-eu: FE|CDR|DAC|+|Hydrogen
+    message: Final Energy|Carbon Management|Direct Air Capture|Hydrogen
 
 energy, for DACCS, from gas boiler:
   ecoinvent_aliases:
@@ -291,6 +321,7 @@ energy, for DACCS, from gas boiler:
     remind: FE|CDR|DAC|+|Gases
     remind-eu: FE|CDR|DAC|+|Gases
     witch: Final Energy|Carbon Management|Direct Air Capture|Sorbent|Heat|Gases
+    message: Final Energy|Carbon Management|Direct Air Capture|Gases
 
 energy, for DACCS, from other:
   ecoinvent_aliases:
@@ -312,6 +343,7 @@ energy, for DACCS, from electricity:
       - Final Energy|Carbon Management|Direct Air Capture|Sorbent|Electricity|Gas
       - Final Energy|Carbon Management|Direct Air Capture|Solvent|Electricity|CSP
       - Final Energy|Carbon Management|Direct Air Capture|Solvent|Electricity|PV
+    message: Final Energy|Carbon Management|Direct Air Capture|Electricity
 
 energy, for EWR, from electricity:
     ecoinvent_aliases:

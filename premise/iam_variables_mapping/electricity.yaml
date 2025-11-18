@@ -25,6 +25,7 @@ Biomass CHP:
     fltr:
     - market for wood chips, wet, measured as dry mass
     - market for biomass, used as fuel
+    - market for lignocellulosic biomass, used as fuel
   eff_aliases:
     image: Efficiency|Electricity|Biomass|w/o CCS|3
     remind: Tech|Electricity|Biomass|Combined Heat and Power w/o CC|Efficiency
@@ -51,6 +52,7 @@ Biomass CHP (existing):
     fltr:
     - market for wood chips, wet, measured as dry mass
     - market for biomass, used as fuel
+    - market for lignocellulosic biomass, used as fuel
   eff_aliases:
     tiam-ucl: Efficiency|Electricity|Existing biomass|w/o CCS
   exists in database: false
@@ -92,17 +94,18 @@ Biomass IGCC:
     fltr:
     - market for wood chips, wet, measured as dry mass
     - market for biomass, used as fuel
+    - market for lignocellulosic biomass, used as fuel
   eff_aliases:
     gcam: Efficiency|Electricity|biomass (IGCC)
     image: Efficiency|Electricity|Biomass|w/o CCS|2
-    message: Efficiency|Electricity|Biomass|w/o CCS|1
+    message: Efficiency|Electricity|Biomass|Solids|w/o CCS|1
     remind: Tech|Electricity|Biomass|Gasification Combined Cycle w/o CC|Efficiency
     remind-eu: Tech|Electricity|Biomass|Gasification Combined Cycle w/o CC|Efficiency
     tiam-ucl: Efficiency|Electricity|Biomass gasification|w/o CCS
   iam_aliases:
     gcam: Secondary Energy|Electricity|biomass (IGCC)
     image: Secondary Energy|Electricity|Biomass|w/o CCS|2
-    message: Secondary Energy|Electricity|Biomass|w/o CCS|1
+    message: Secondary Energy|Electricity|Biomass|Solids|w/o CCS|1
     remind: SE|Electricity|Biomass|++|Gasification Combined Cycle w/o CC
     remind-eu: SE|Electricity|Biomass|++|Gasification Combined Cycle w/o CC
     tiam-ucl: Secondary Energy|Electricity|Biomass gasification|w/o CCS
@@ -117,10 +120,11 @@ Biomass IGCC CCS:
     fltr:
     - market for wood chips, wet, measured as dry mass
     - market for biomass, used as fuel
+    - market for lignocellulosic biomass, used as fuel
   eff_aliases:
     gcam: Efficiency|Electricity|biomass (IGCC CCS)
     image: Efficiency|Electricity|Biomass|w/ CCS|1
-    message: Efficiency|Electricity|Biomass|w/o CCS|1
+    message: Efficiency|Electricity|Biomass|Solids|w/o CCS|1
     remind: Tech|Electricity|Biomass|Gasification Combined Cycle w/ CC|Efficiency
     remind-eu: Tech|Electricity|Biomass|Gasification Combined Cycle w/ CC|Efficiency
     tiam-ucl: Efficiency|Electricity|Biomass gasification|w CCS
@@ -128,7 +132,7 @@ Biomass IGCC CCS:
   iam_aliases:
     gcam: Secondary Energy|Electricity|biomass (IGCC CCS)
     image: Secondary Energy|Electricity|Biomass|w/ CCS|1
-    message: Secondary Energy|Electricity|Biomass|w/ CCS|1
+    message: Secondary Energy|Electricity|Biomass|Solids|w/ CCS|1
     remind: SE|Electricity|Biomass|++|Gasification Combined Cycle w/ CC
     remind-eu: SE|Electricity|Biomass|++|Gasification Combined Cycle w/ CC
     tiam-ucl: Secondary Energy|Electricity|Biomass gasification|w CCS
@@ -143,6 +147,7 @@ Biomass MSW:
     fltr:
     - market for wood chips, wet, measured as dry mass
     - market for biomass, used as fuel
+    - market for lignocellulosic biomass, used as fuel
   eff_aliases:
     tiam-ucl: Efficiency|Electricity|MSW|w/o CCS
   iam_aliases:
@@ -158,16 +163,17 @@ Biomass ST:
     fltr:
     - market for wood chips, wet, measured as dry mass
     - market for biomass, used as fuel
+    - market for lignocellulosic biomass, used as fuel
   eff_aliases:
     gcam: Efficiency|Electricity|biomass (conv)
     image: Efficiency|Electricity|Biomass|w/o CCS|1
-    message: Efficiency|Electricity|Biomass|w/o CCS|2
+    message: Efficiency|Electricity|Biomass|Solids|w/o CCS|2
     tiam-ucl: Efficiency|Electricity|Biomass combustion|w/o CCS
 
   iam_aliases:
     gcam: Secondary Energy|Electricity|biomass (conv)
     image: Secondary Energy|Electricity|Biomass|w/o CCS|1
-    message: Secondary Energy|Electricity|Biomass|w/o CCS|2
+    message: Secondary Energy|Electricity|Biomass|Solids|w/o CCS|2
     tiam-ucl: Secondary Energy|Electricity|Biomass combustion|w/o CCS
   max_efficiency: 0.3
 Biomass ST CCS:
@@ -179,6 +185,7 @@ Biomass ST CCS:
     fltr:
     - market for wood chips, wet, measured as dry mass
     - market for biomass, used as fuel
+    - market for lignocellulosic biomass, used as fuel
   eff_aliases:
     tiam-ucl: Efficiency|Electricity|Biomass combustion|w CCS
   iam_aliases:
@@ -193,6 +200,7 @@ Coal CF 50-50:
     - market for hard coal
     - market for wood chips, wet, measured as dry mass
     - market for biomass, used as fuel
+    - market for lignocellulosic biomass, used as fuel
     mask:
       name:
       - factory
@@ -213,6 +221,7 @@ Coal CF 80-20:
     - market for hard coal
     - market for wood chips, wet, measured as dry mass
     - market for biomass, used as fuel
+    - market for lignocellulosic biomass, used as fuel
     mask:
       name:
       - factory
@@ -944,7 +953,7 @@ Solar PV Centralized:
   iam_aliases:
     gcam: Secondary Energy|Electricity|PV
     image: Secondary Energy|Electricity|Solar|PV|1
-    message: Secondary Energy|Electricity|Solar|PV
+    message: Secondary Energy|Electricity|Solar|PV|Commercial
     remind: SE|Electricity|Solar|+|PV
     remind-eu: SE|Electricity|Solar|+|PV
     tiam-ucl: Secondary Energy|Electricity|Concentrated Solar PV centralised
@@ -956,6 +965,7 @@ Solar PV Residential:
   iam_aliases:
     gcam: Secondary Energy|Electricity|rooftop_pv
     image: Secondary Energy|Electricity|Solar|PV|2
+    message: Secondary Energy|Electricity|Solar|PV|Residential
     tiam-ucl: Secondary Energy|Electricity|Concentrated Solar PV decentralised
 Storage, Battery:
   ecoinvent_aliases:

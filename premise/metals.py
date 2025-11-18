@@ -69,6 +69,7 @@ def _update_metals(scenario, version, system_model):
         regions=scenario["iam data"].regions,
         database=metals.database,
         iam_data=scenario["iam data"],
+        system_model=metals.system_model,
     )
 
     validate.prim_sec_split = metals.prim_sec_split

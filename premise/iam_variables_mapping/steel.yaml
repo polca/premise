@@ -10,7 +10,9 @@ steel - primary - BF/BOF:
       - Production|Industry|Iron and Steel|SR/BOF
     remind: Production|Industry|Steel|+|BF-BOF
     remind-eu: Production|Industry|Steel|+|BF-BOF
-    message: Production|Primary|Steel
+    message:
+      - Production|Iron and Steel|Steel|Primary|BOF|Conventional
+      - Production|Iron and Steel|Steel|Secondary|BOF|Conventional
     gcam:
       - Production|Industry|Steel|Primary|BLASTFUR
       - Production|Industry|Steel|Primary|Biomass-based
@@ -60,16 +62,7 @@ steel - primary - BF/BOF:
       - Final Energy|Industry|Iron and Steel|SR/BOF|Secondary Heat
       - Final Energy|Industry|Iron and Steel|SR/BOF|Traditional Biomass
     message:
-      - Final Energy|Industry|Steel|Primary|Electricity
-      - Final Energy|Industry|Steel|Primary|Gases
-      - Final Energy|Industry|Steel|Primary|Heat
-      - Final Energy|Industry|Steel|Primary|Hydrogen
-      - Final Energy|Industry|Steel|Primary|Liquids|Biomass
-      - Final Energy|Industry|Steel|Primary|Liquids|Oil
-      - Final Energy|Industry|Steel|Primary|Liquids|Other
-      - Final Energy|Industry|Steel|Primary|Solar
-      - Final Energy|Industry|Steel|Primary|Solids|Biomass
-      - Final Energy|Industry|Steel|Primary|Solids|Coal
+    - Final Energy|Industry|Iron and Steel|BOF|Conventional|Electricity
     gcam:
       - Final Energy|Industry|Steel|Primary|Coal
       - Final Energy|Industry|Steel|Primary|Electricity
@@ -143,7 +136,6 @@ steel - primary - BF/BOF CCS:
       - Production|Steel|Primary|BF and BOF 3|w CCS
     remind: Production|Industry|Steel|+|BF-BOF-CCS
     remind-eu: Production|Industry|Steel|+|BF-BOF-CCS
-    message: Production|Primary|Steel w CCS
     gcam:
       - Production|Industry|Steel|Primary|BLASTFUR CCS
       - Production|Industry|Steel|Primary|BLASTFUR CCS with hydrogen
@@ -221,6 +213,7 @@ steel - primary - DRI:
       - Production|Steel|Secondary|DRI and EAF 2|w/o CCS
       - Production|Steel|Secondary|DRI and EAF 3
     gcam: Production|Industry|Steel|Secondary|EAF with DRI
+    message: Production|Iron and Steel|Steel|Primary|EAF|Sponge Iron
   energy_use_aliases:
     image:
       - Final Energy|Industry|Iron and Steel|DRI EAF|Coal
@@ -262,6 +255,10 @@ steel - primary - DRI:
       - FE|Industry|Steel|DRI-NG-EAF|+|Hydrogen
       - FE|Industry|Steel|DRI-NG-EAF|+|Liquids
       - FE|Industry|Steel|DRI-NG-EAF|+|Solids
+    message:
+      - Final Energy|Industry|Iron and Steel|EAF|Sponge Iron|Electricity
+      - Final Energy|Industry|Iron and Steel|EAF|Sponge Iron|Gases|Biomass
+      - Final Energy|Industry|Iron and Steel|EAF|Sponge Iron|Gases|Gas
   ecoinvent_aliases:
     fltr:
       - steel production, natural gas-based direct reduction iron-electric arc furnace
@@ -353,6 +350,9 @@ steel - primary - TGR BF/BOF:
     image:
       - Production|Industry|Iron and Steel|TGR BF/BOF BAT
       - Production|Industry|Iron and Steel|TGR BF/BOF
+    message:
+      - Production|Iron and Steel|Steel|Primary|BOF|TGR
+      - Production|Iron and Steel|Steel|Secondary|BOF|TGR
   energy_use_aliases:
     image:
       - Final Energy|Industry|Iron and Steel|TGR BF/BOF BAT|Coal
@@ -371,6 +371,8 @@ steel - primary - TGR BF/BOF:
       - Final Energy|Industry|Iron and Steel|TGR BF/BOF|Oil
       - Final Energy|Industry|Iron and Steel|TGR BF/BOF|Secondary Heat
       - Final Energy|Industry|Iron and Steel|TGR BF/BOF|Traditional Biomass
+    message:
+      - Final Energy|Industry|Iron and Steel|BOF|TGR|Electricity
   ecoinvent_aliases:
     fltr:
       - steel production, blast furnace-basic oxygen furnace, with top gas recycling
@@ -417,7 +419,10 @@ steel - secondary:
     remind: Production|Industry|Steel|+|SCRAP-EAF
     remind-eu: Production|Industry|Steel|+|SCRAP-EAF
     image: Production|Industry|Iron and Steel|EAF scrap
-    message: Production|Secondary|Steel
+    message:
+    - Production|Iron and Steel|Steel|Secondary|EAF|Scrap
+    - Production|Iron and Steel|Steel|Secondary|BOF|TGR
+    - Production|Iron and Steel|Steel|Secondary|BOF|Conventional
     gcam: Production|Industry|Steel|Secondary|EAF with scrap
     tiam-ucl:
       - Production|Steel|Secondary|EAF 1
@@ -448,8 +453,9 @@ steel - secondary:
       - Final Energy|Industry|Iron and Steel|EAF scrap|Secondary Heat
       - Final Energy|Industry|Iron and Steel|EAF scrap|Traditional Biomass
     message:
-      - Final Energy|Industry|Steel|Secondary|Electricity
-      - Final Energy|Industry|Steel|Secondary|Gases
+      - Final Energy|Industry|Iron and Steel|EAF|Scrap|Electricity
+      - Final Energy|Industry|Iron and Steel|EAF|Scrap|Gases|Gas
+      - Final Energy|Industry|Iron and Steel|EAF|Scrap|Gases|Biomass
     gcam:
       - Final Energy|Industry|Steel|Secondary|Coal
       - Final Energy|Industry|Steel|Secondary|Electricity
@@ -480,3 +486,47 @@ steel - secondary:
         - chromium
       reference product:
         - heat
+
+sponge iron - DRI w/o CCS:
+  iam_aliases:
+    message:
+    - Production|Iron and Steel|Sponge Iron|Gas|w/o CCS
+    - Production|Iron and Steel|Sponge Iron|Coal|w/o CCS
+  energy_use_aliases:
+    message:
+     - Final Energy|Industry|Iron and Steel|DRI|w/o CCS|Electricity
+     - Final Energy|Industry|Iron and Steel|DRI|w/o CCS|Gases|Gas
+     - Final Energy|Industry|Iron and Steel|DRI|w/o CCS|Gases|Biomass
+     - Final Energy|Industry|Iron and Steel|DRI|Solids|Coal
+sponge iron - DRI w/ CCS:
+  iam_aliases:
+    message: Production|Iron and Steel|Sponge Iron|Gas|w/ CCS
+  energy_use_aliases:
+    message:
+     - Final Energy|Industry|Iron and Steel|DRI|w/ CCS|Electricity
+     - Final Energy|Industry|Iron and Steel|DRI|w/ CCS|Gases|Gas
+     - Final Energy|Industry|Iron and Steel|DRI|w/ CCS|Gases|Biomass
+sponge iron - DRI H2:
+  iam_aliases:
+    message: Production|Iron and Steel|Sponge Iron|Hydrogen
+  energy_use_aliases:
+    message: Final Energy|Industry|Iron and Steel|Hydrogen
+
+pig iron - BF w/o CCS:
+  iam_aliases:
+    message: Production|Iron and Steel|Pig Iron|w/o CCS
+  energy_use_aliases:
+    message:
+      - Final Energy|Industry|Iron and Steel|BF|w/o CCS|Electricity
+      - Final Energy|Industry|Iron and Steel|BF|w/o CCS|Gases|Coal
+      - Final Energy|Industry|Iron and Steel|BF|w/o CCS|Solids|Biomass
+      - Final Energy|Industry|Iron and Steel|BF|w/o CCS|Solids|Coal
+pig iron - BF w/ CCS:
+  iam_aliases:
+    message: Production|Iron and Steel|Pig Iron|w/ CCS
+  energy_use_aliases:
+    message:
+      - Final Energy|Industry|Iron and Steel|BF|w/ CCS|Electricity
+      - Final Energy|Industry|Iron and Steel|BF|w/ CCS|Gases|Coal
+      - Final Energy|Industry|Iron and Steel|BF|w/ CCS|Solids|Biomass
+      - Final Energy|Industry|Iron and Steel|BF|w/ CCS|Solids|Coal
