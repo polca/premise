@@ -69,6 +69,10 @@ def _update_cement(scenario, version, system_model):
     else:
         print("No cement markets found in IAM data. Skipping.")
 
+    if "mapping" not in scenario:
+        scenario["mapping"] = {}
+    scenario["mapping"]["cement"] = cement.cement_map
+
     return scenario
 
 

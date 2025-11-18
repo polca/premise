@@ -833,28 +833,6 @@ and GMST increase by 2100.
      -
      - SSP2-M
      - SSP2-RCP45
-     -
-   * - **SSP2**
-     - 3.0°C
-     - NPI (nat. policies implemented)
-     - SSP2-NPi
-     -
-     -
-     -
-   * - **SSP2**
-     - 3.1-3.5°C
-     - Base (no explicit policy, TIAM reference)
-     -
-     -
-     - SSP2-Base
-     - SSP2-Base
-   * - **SSP2**
-     - 3.24°C
-     - Rollback
-     - SSP2-rollBack
-     -
-     -
-     -
    * - **SSP3**
      - 1.85°C
      - Paris-consistent (peak budget)
@@ -868,19 +846,16 @@ and GMST increase by 2100.
      - SSP3-NDC
      -
      -
-     -
    * - **SSP3**
      - 3.20°C
      - NPI (nat. policies implemented)
      - SSP3-NPi
      -
      -
-     -
    * - **SSP3**
-     - 3.50°C
-     - High forcing
-     -
-     - SSP3-H
+     - 1.85°C
+     - Paris-consistent (peak budget)
+     - SSP3-PkBudg1000
      -
      -
    * - **SSP3**

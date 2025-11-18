@@ -40,6 +40,11 @@ def _update_steel(scenario, version, system_model):
     scenario["database"] = steel.database
     scenario["cache"] = steel.cache
     scenario["index"] = steel.index
+
+    if "mapping" not in scenario:
+        scenario["mapping"] = {}
+    scenario["mapping"]["steel"] = steel.steel_map
+
     validate = SteelValidation(
         model=scenario["model"],
         scenario=scenario["pathway"],

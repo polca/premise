@@ -69,6 +69,10 @@ def _update_vehicles(scenario, vehicle_type, version, system_model):
     scenario["cache"] = trspt.cache
     scenario["index"] = trspt.index
 
+    if "mapping" not in scenario:
+        scenario["mapping"] = {}
+    scenario["mapping"][vehicle_type] = trspt.vehicle_map
+
     validation_func = {
         "car": CarValidation,
         "truck": TruckValidation,

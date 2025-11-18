@@ -548,6 +548,7 @@ class NewDatabase:
         keep_imports_uncertainty=True,
         keep_source_db_uncertainty=False,
         gains_scenario="CLE",
+        metals_scenario="default",
         use_absolute_efficiency=False,
         biosphere_name: str = "biosphere3",
         split_capacity_operation: bool = False,
@@ -580,6 +581,10 @@ class NewDatabase:
         if gains_scenario not in ["CLE", "MFR"]:
             raise ValueError("gains_scenario must be either 'CLE' or 'MFR'")
         self.gains_scenario = gains_scenario
+
+        if metals_scenario not in ["default", "optimistic"]:
+            raise ValueError("metals_scenario must be either 'default' or 'optimistic'")
+        self.metals_scenario = metals_scenario
 
         if self.source_type == "ecospold":
             self.source_file_path = check_ei_filepath(source_file_path)
@@ -622,6 +627,7 @@ class NewDatabase:
                 system_model=self.system_model,
                 system_model_args=self.system_model_args,
                 gains_scenario=self.gains_scenario,
+                metals_scenario=self.metals_scenario,
                 use_absolute_efficiency=self.use_absolute_efficiency,
             )
             scenario["iam data"] = data

@@ -111,7 +111,7 @@ def get_oil_product_volumes(model) -> pd.DataFrame:
     return df
 
 
-def get_metals_intensity_factors_data() -> xr.DataArray:
+def get_metals_intensity_factors_data(metals_scenario) -> xr.DataArray:
     """
     Read the materials intensity factors csv file and return an `xarray` with dimensions:
 
@@ -122,8 +122,10 @@ def get_metals_intensity_factors_data() -> xr.DataArray:
 
     This data is further used in metals.py.
     """
-
-    filepath = Path(DATA_DIR / "metals" / "metals_db.csv")
+    if metals_scenario == "optimistic":
+        filepath = Path(DATA_DIR / "metals" / "metals_db_optimistic_v2.csv")
+    else:
+        filepath = Path(DATA_DIR / "metals" / "metals_db.csv")
     df = pd.read_csv(filepath)
     df = df.melt(
         id_vars=["metal", "year", "origin_var"],
@@ -269,6 +271,7 @@ class IAMDataCollection:
         system_model: str = "cutoff",
         system_model_args: dict = None,
         gains_scenario: str = "CLE",
+        metals_scenario: str = "default",
         use_absolute_efficiency: bool = False,
     ) -> None:
         self.model = model
@@ -906,7 +909,9 @@ class IAMDataCollection:
             data=data, input_vars=land_use_change_vars, fill=True
         )
 
-        self.metals_intensity_factors = get_metals_intensity_factors_data()
+        self.metals_intensity_factors = get_metals_intensity_factors_data(
+            metals_scenario
+        )
 
         self.production_volumes = self.__get_iam_production_volumes(
             data=data,
@@ -927,6 +932,7 @@ class IAMDataCollection:
                 **passenger_cars_prod_vars,
                 **bus_prod_vars,
                 **two_wheelers_prod_vars,
+                **final_energy_vars,
             },
         )
 

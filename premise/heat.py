@@ -159,6 +159,10 @@ def _update_heat(scenario, version, system_model):
     scenario["cache"] = heat.cache
     scenario["index"] = heat.index
 
+    if "mapping" not in scenario:
+        scenario["mapping"] = {}
+    scenario["mapping"]["heat"] = heat.heat_techs
+
     return scenario
 
 
