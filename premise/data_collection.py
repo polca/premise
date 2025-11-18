@@ -123,7 +123,7 @@ def get_metals_intensity_factors_data(metals_scenario) -> xr.DataArray:
     This data is further used in metals.py.
     """
     if metals_scenario == "optimistic":
-        filepath = Path(DATA_DIR / "metals" / "metals_db_optimistic.csv")
+        filepath = Path(DATA_DIR / "metals" / "metals_db_optimistic_v2.csv")
     else:
         filepath = Path(DATA_DIR / "metals" / "metals_db.csv")
     df = pd.read_csv(filepath)
