@@ -517,13 +517,6 @@ class PathwaysDataPackage:
                             else:
                                 print(f"  ⚠️ No external capacity datasets found for: {yaml_key}")
 
-        # Clean up global state
-        if patched_capacity_addition and "premise.final_energy" in sys.modules:
-            final_energy_module = sys.modules["premise.final_energy"]
-            if hasattr(final_energy_module, "_PATCHED_CAPACITY_ADDITION"):
-                delattr(final_energy_module, "_PATCHED_CAPACITY_ADDITION")
-                print("🧹 Cleaned up global _PATCHED_CAPACITY_ADDITION")
-
         # create a "mapping" folder inside "pathways"
         (Path.cwd() / "pathways_temp" / "mapping").mkdir(parents=True, exist_ok=True)
 
@@ -621,6 +614,8 @@ class PathwaysDataPackage:
                             pv = xr.concat([pv, capacity_data], dim="variables")
                             units.update(remapped_units)
                             extra_units.update(remapped_units)
+                            print(f"  ✅ Added {len(capacity_pieces)} internal capacity variables to scenario")
+                            print(f"     Variables: {[yaml_key for yaml_key in key_to_iam_vars.keys()][:5]}...")
 
             if "configurations" in scenario:
                 for config_idx, config_value in scenario["configurations"].items():

@@ -304,6 +304,36 @@ class FinalEnergy(BaseTransformation):
         # Use first representative for location/unit (they should be similar anyway)
         first_representative = list(filter_groups.values())[0][0]
 
+        # Try to get classifications from the dataset first, otherwise look up from CSV
+        classifications = first_representative.get("classifications")
+
+        if not classifications:
+            # Look up from the classifications CSV (for base ecoinvent datasets)
+            from .inventory_imports import get_classifications
+            classifications_dict = get_classifications()
+
+            key = (first_representative["name"], first_representative["reference product"])
+
+            if key in classifications_dict:
+                classifications = [
+                    ("ISIC rev.4 ecoinvent", classifications_dict[key]["ISIC rev.4 ecoinvent"]),
+                    ("CPC", classifications_dict[key]["CPC"]),
+                ]
+            else:
+                if is_transport:
+                    # Transport capacity = vehicle manufacturing
+                    classifications = [
+                        ("ISIC rev.4 ecoinvent", "2910:Manufacture of motor vehicles"),
+                        ("CPC",
+                         "49113: Motor cars and other motor vehicles principally designed for the transport of persons (except public-transport type vehicles), including racing cars and go-karts")
+                    ]
+                else:
+                    # Energy capacity = utility construction
+                    classifications = [
+                        ("ISIC rev.4 ecoinvent", "4220:Construction of utility projects"),
+                        ("CPC", "53262: Power plants")
+                    ]
+
         # Create capacity dataset
         capacity_dataset = self.create_capacity_dataset(
             new_name,
@@ -312,6 +342,7 @@ class FinalEnergy(BaseTransformation):
             first_representative["unit"],
             infrastructure_exchanges,
             f"Representative dataset(s) selected from {len(matched_datasets)} cancelled datasets",
+            classifications=classifications,
         )
 
         self.database.append(capacity_dataset)
@@ -434,7 +465,7 @@ class FinalEnergy(BaseTransformation):
         return datasets
 
     def create_capacity_dataset(
-        self, name, ref_prod, location, unit, exchanges, comment_suffix
+        self, name, ref_prod, location, unit, exchanges, comment_suffix, classifications=None
     ):
         """
         Create a capacity dataset with standard structure.
@@ -445,6 +476,7 @@ class FinalEnergy(BaseTransformation):
         :param unit: dataset unit
         :param exchanges: list of input exchanges
         :param comment_suffix: additional comment text
+        :param classifications: optional list of (system, code) tuples
         :return: capacity dataset dictionary
         """
 
@@ -458,6 +490,10 @@ class FinalEnergy(BaseTransformation):
             "exchanges": exchanges.copy(),
             "type": "process",
         }
+
+        # Add classifications if provided
+        if classifications:
+            capacity_dataset["classifications"] = classifications
 
         # Add production exchange
         capacity_dataset["exchanges"].append(
@@ -533,45 +569,50 @@ class FinalEnergy(BaseTransformation):
                 "iam_aliases": {self.model: iam_variable},
             }
 
-            if (
-                hasattr(self.iam_data.final_energy_use, "attrs")
-                and "unit" in self.iam_data.final_energy_use.attrs
-            ):
-                if iam_variable in self.iam_data.final_energy_use.attrs["unit"]:
-                    capacity_units[iam_variable] = self.iam_data.final_energy_use.attrs[
-                        "unit"
-                    ][iam_variable]
-                    print(
-                        f"✅ Found unit for {iam_variable} in final_energy_use: {capacity_units[iam_variable]}"
-                    )
+            # Handle case where iam_variable could be a list or a single value
+            iam_vars_to_check = iam_variable if isinstance(iam_variable, list) else [iam_variable]
 
-            # If not found, check in production_volumes
-            if iam_variable not in capacity_units:
+            for iam_var in iam_vars_to_check:
+                # Check in final_energy_use
                 if (
-                    hasattr(self.iam_data.production_volumes, "attrs")
-                    and "unit" in self.iam_data.production_volumes.attrs
+                        hasattr(self.iam_data.final_energy_use, "attrs")
+                        and "unit" in self.iam_data.final_energy_use.attrs
                 ):
-                    if iam_variable in self.iam_data.production_volumes.attrs["unit"]:
-                        capacity_units[iam_variable] = (
-                            self.iam_data.production_volumes.attrs["unit"][iam_variable]
-                        )
+                    if iam_var in self.iam_data.final_energy_use.attrs["unit"]:
+                        capacity_units[iam_var] = self.iam_data.final_energy_use.attrs[
+                            "unit"
+                        ][iam_var]
                         print(
-                            f"✅ Found unit for {iam_variable} in production_volumes: {capacity_units[iam_variable]}"
+                            f"✅ Found unit for {iam_var} in final_energy_use: {capacity_units[iam_var]}"
                         )
 
-            # If still not found, check in the main data array
-            if iam_variable not in capacity_units:
-                if (
-                    hasattr(self.iam_data.data, "attrs")
-                    and "unit" in self.iam_data.data.attrs
-                ):
-                    if iam_variable in self.iam_data.data.attrs["unit"]:
-                        capacity_units[iam_variable] = self.iam_data.data.attrs["unit"][
-                            iam_variable
-                        ]
-                        print(
-                            f"✅ Found unit for {iam_variable} in main data: {capacity_units[iam_variable]}"
-                        )
+                # If not found, check in production_volumes
+                if iam_var not in capacity_units:
+                    if (
+                            hasattr(self.iam_data.production_volumes, "attrs")
+                            and "unit" in self.iam_data.production_volumes.attrs
+                    ):
+                        if iam_var in self.iam_data.production_volumes.attrs["unit"]:
+                            capacity_units[iam_var] = (
+                                self.iam_data.production_volumes.attrs["unit"][iam_var]
+                            )
+                            print(
+                                f"✅ Found unit for {iam_var} in production_volumes: {capacity_units[iam_var]}"
+                            )
+
+                # If still not found, check in the main data array
+                if iam_var not in capacity_units:
+                    if (
+                            hasattr(self.iam_data.data, "attrs")
+                            and "unit" in self.iam_data.data.attrs
+                    ):
+                        if iam_var in self.iam_data.data.attrs["unit"]:
+                            capacity_units[iam_var] = self.iam_data.data.attrs["unit"][
+                                iam_var
+                            ]
+                            print(
+                                f"✅ Found unit for {iam_var} in main data: {capacity_units[iam_var]}"
+                            )
 
             print(f"✅ {variable} → {original_iam_aliases[self.model]}")
 

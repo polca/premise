@@ -23,8 +23,8 @@ from .activity_maps import InventorySet
 
 logger = create_logger("interventions")
 
-TAILINGS_REGIONS_FILE = DATA_DIR / "interventions" / "interventions_topology.yaml"
-TAILINGS_CONFIG_FILE = DATA_DIR / "interventions" / "tailings_activities.yaml"
+TAILINGS_REGIONS_FILE = DATA_DIR / "mining" / "tailings_topology.yaml"
+TAILINGS_CONFIG_FILE = DATA_DIR / "mining" / "tailings_activities.yaml"
 EAF_SLAG_CONFIG_FILE = DATA_DIR / "interventions" / "EAF_slag_activities.yaml"
 BOF_SLAG_CONFIG_FILE = DATA_DIR / "interventions" / "BOF_slag_activities.yaml"
 COPPER_CONFIG_FILE = DATA_DIR / "interventions" / "copper_recovery_activities.yaml"
@@ -248,9 +248,9 @@ class Interventions(BaseTransformation):
             for region, market_dataset in regionalized_datasets.items():
 
                 if self.year < self.tailings_shares.year.values.min():
-                    year = self.tailings_shares.year.values.min()
+                    year = int(self.tailings_shares.year.values.min())
                 elif self.year > self.tailings_shares.year.values.max():
-                    year = self.tailings_shares.year.values.max()
+                    year = int(self.tailings_shares.year.values.max())
                 else:
                     year = self.year
                 shares = self.tailings_shares.sel(
@@ -409,9 +409,9 @@ class Interventions(BaseTransformation):
                 for region, market_ds in regionalized_datasets.items():
 
                     if self.year < slag_shares.year.values.min():
-                        year = slag_shares.year.values.min()
+                        year = int(slag_shares.year.values.min())
                     elif self.year > slag_shares.year.values.max():
-                        year = slag_shares.year.values.max()
+                        year = int(slag_shares.year.values.max())
                     else:
                         year = self.year
 
@@ -509,9 +509,9 @@ class Interventions(BaseTransformation):
         """
 
         if self.year < self.copper_shares.year.values.min():
-            year = self.copper_shares.year.values.min()
+            year = int(self.copper_shares.year.values.min())
         elif self.year > self.copper_shares.year.values.max():
-            year = self.copper_shares.year.values.max()
+            year = int(self.copper_shares.year.values.max())
         else:
             year = self.year
 
@@ -596,7 +596,7 @@ class Interventions(BaseTransformation):
 
         min_year = self.brake_wear_shares.year.values.min()
         max_year = self.brake_wear_shares.year.values.max()
-        year = np.clip(self.year, min_year, max_year)
+        year = int(np.clip(self.year, min_year, max_year))
 
         fallback_region = None
         for r in self.brake_wear_shares.region.values:
