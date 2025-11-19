@@ -109,7 +109,7 @@ wood pellet:
 wood chips:
   lhv:
     unit: megajoule
-    value: 18.9
+    value: 16.2
   co2: 0.112
   biogenic_share: 1
   ecoinvent_aliases:
