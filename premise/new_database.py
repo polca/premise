@@ -40,6 +40,7 @@ from .fuels.base import _update_fuels
 from .heat import _update_heat
 from .inventory_imports import AdditionalInventory, DefaultInventory
 from .metals import _update_metals
+
 # from .mining import _update_mining
 from .interventions import _update_interventions
 from .report import generate_change_report, generate_summary_report

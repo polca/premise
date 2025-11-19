@@ -363,9 +363,13 @@ class PathwaysDataPackage:
                             ref_prod_value = fltr["reference product"]
                             if isinstance(ref_prod_value, list):
                                 for ref_prod in ref_prod_value:
-                                    filters.append(ws.contains("reference product", ref_prod))
+                                    filters.append(
+                                        ws.contains("reference product", ref_prod)
+                                    )
                             else:
-                                filters.append(ws.contains("reference product", ref_prod_value))
+                                filters.append(
+                                    ws.contains("reference product", ref_prod_value)
+                                )
 
                         # Find matching datasets
                         if filters:
@@ -375,38 +379,42 @@ class PathwaysDataPackage:
                             if "mask" in fltr:
                                 mask = fltr["mask"]
                                 if isinstance(mask, str):
-                                    matched = [ds for ds in matched if mask not in ds["name"]]
+                                    matched = [
+                                        ds for ds in matched if mask not in ds["name"]
+                                    ]
                                 elif isinstance(mask, list):
                                     matched = [
-                                        ds for ds in matched
+                                        ds
+                                        for ds in matched
                                         if not any(m in ds["name"] for m in mask)
                                     ]
 
                             # Extract dataset info
                             for ds in matched:
-                                datasets.append({
-                                    "name": ds["name"],
-                                    "reference product": ds["reference product"],
-                                    "unit": ds.get("unit", "unit"),
-                                })
+                                datasets.append(
+                                    {
+                                        "name": ds["name"],
+                                        "reference product": ds["reference product"],
+                                        "unit": ds.get("unit", "unit"),
+                                    }
+                                )
 
                         # Deduplicate datasets
                         unique_datasets = [
                             dict(t)
-                            for t in {
-                                tuple(sorted(d.items()))
-                                for d in datasets
-                            }
+                            for t in {tuple(sorted(d.items())) for d in datasets}
                         ]
 
                         if unique_datasets:
                             # Use YAML key directly as the variable name
-                            mappings[yaml_key] = {
-                                "dataset": unique_datasets
-                            }
-                            print(f"  ✅ Added capacity mapping: {yaml_key} ({len(unique_datasets)} dataset(s))")
+                            mappings[yaml_key] = {"dataset": unique_datasets}
+                            print(
+                                f"  ✅ Added capacity mapping: {yaml_key} ({len(unique_datasets)} dataset(s))"
+                            )
                         else:
-                            print(f"  ⚠️ No datasets found for capacity addition: {yaml_key}")
+                            print(
+                                f"  ⚠️ No datasets found for capacity addition: {yaml_key}"
+                            )
         else:
             print("ℹ️ No globally stored capacity addition data found")
 
@@ -416,34 +424,50 @@ class PathwaysDataPackage:
                 configurations = scenario["configurations"]
                 for config_key, config_value in configurations.items():
                     # Process production pathways from external scenarios
-                    for variable, variable_details in config_value.get("production pathways", {}).items():
+                    for variable, variable_details in config_value.get(
+                        "production pathways", {}
+                    ).items():
                         if variable not in mappings:
                             variable_scenario_name = variable_details.get(
                                 "production volume", {}
                             ).get("variable", variable)
 
-                            ecoinvent_alias = variable_details.get("ecoinvent alias", {})
+                            ecoinvent_alias = variable_details.get(
+                                "ecoinvent alias", {}
+                            )
 
                             # Find datasets using ecoinvent alias filters
                             filters = []
                             if "name" in ecoinvent_alias:
-                                filters.append(ws.contains("name", ecoinvent_alias["name"]))
+                                filters.append(
+                                    ws.contains("name", ecoinvent_alias["name"])
+                                )
                             if "reference product" in ecoinvent_alias:
                                 filters.append(
-                                    ws.contains("reference product", ecoinvent_alias["reference product"])
+                                    ws.contains(
+                                        "reference product",
+                                        ecoinvent_alias["reference product"],
+                                    )
                                 )
 
                             if filters:
-                                matched = list(ws.get_many(scenario["database"], *filters))
+                                matched = list(
+                                    ws.get_many(scenario["database"], *filters)
+                                )
 
                                 # Apply mask if present
                                 mask = ecoinvent_alias.get("mask")
                                 if mask:
                                     if isinstance(mask, str):
-                                        matched = [ds for ds in matched if mask not in ds["name"]]
+                                        matched = [
+                                            ds
+                                            for ds in matched
+                                            if mask not in ds["name"]
+                                        ]
                                     elif isinstance(mask, list):
                                         matched = [
-                                            ds for ds in matched
+                                            ds
+                                            for ds in matched
                                             if not any(m in ds["name"] for m in mask)
                                         ]
 
@@ -460,62 +484,72 @@ class PathwaysDataPackage:
                                 unique_datasets = [
                                     dict(t)
                                     for t in {
-                                        tuple(sorted(d.items()))
-                                        for d in datasets
+                                        tuple(sorted(d.items())) for d in datasets
                                     }
                                 ]
 
                                 if unique_datasets:
                                     mappings[variable] = {
                                         "scenario variable": variable_scenario_name,
-                                        "dataset": unique_datasets
+                                        "dataset": unique_datasets,
                                     }
                                 else:
                                     print(
                                         f"⚠️ No dataset found for {variable} in {variable_scenario_name}"
                                     )
 
-                    for yaml_key, cap_config in config_value.get("capacity_addition", {}).items():
+                    for yaml_key, cap_config in config_value.get(
+                        "capacity_addition", {}
+                    ).items():
                         if yaml_key == "settings":  # Skip settings block
                             continue
 
                         if yaml_key not in mappings:
                             # Determine the capacity dataset name that was created
                             if yaml_key.startswith("Sales - Transport"):
-                                suffix = yaml_key.replace("Sales - Transport - ", "").strip()
+                                suffix = yaml_key.replace(
+                                    "Sales - Transport - ", ""
+                                ).strip()
                                 capacity_name = f"transport capacity addition, 1 million units, {suffix}"
                             else:
                                 suffix = yaml_key.replace("New Cap - ", "").strip()
                                 capacity_name = f"capacity addition, 1GW, {suffix}"
 
                             # Find the created capacity datasets in the database
-                            matched = list(ws.get_many(
-                                scenario["database"],
-                                ws.equals("name", capacity_name)
-                            ))
+                            matched = list(
+                                ws.get_many(
+                                    scenario["database"],
+                                    ws.equals("name", capacity_name),
+                                )
+                            )
 
                             if matched:
-                                datasets = [{
-                                    "name": ds["name"],
-                                    "reference product": ds["reference product"],
-                                    "unit": ds.get("unit", "unit"),
-                                } for ds in matched]
+                                datasets = [
+                                    {
+                                        "name": ds["name"],
+                                        "reference product": ds["reference product"],
+                                        "unit": ds.get("unit", "unit"),
+                                    }
+                                    for ds in matched
+                                ]
 
                                 # Deduplicate
                                 unique_datasets = [
-                                    dict(t) for t in {
+                                    dict(t)
+                                    for t in {
                                         tuple(sorted(d.items())) for d in datasets
                                     }
                                 ]
 
                                 if unique_datasets:
-                                    mappings[yaml_key] = {
-                                        "dataset": unique_datasets
-                                    }
+                                    mappings[yaml_key] = {"dataset": unique_datasets}
                                     print(
-                                        f"  ✅ Added external capacity mapping: {yaml_key} ({len(unique_datasets)} dataset(s))")
+                                        f"  ✅ Added external capacity mapping: {yaml_key} ({len(unique_datasets)} dataset(s))"
+                                    )
                             else:
-                                print(f"  ⚠️ No external capacity datasets found for: {yaml_key}")
+                                print(
+                                    f"  ⚠️ No external capacity datasets found for: {yaml_key}"
+                                )
 
         # create a "mapping" folder inside "pathways"
         (Path.cwd() / "pathways_temp" / "mapping").mkdir(parents=True, exist_ok=True)
@@ -582,7 +616,8 @@ class PathwaysDataPackage:
 
                         for yaml_key, iam_vars in key_to_iam_vars.items():
                             existing_vars = [
-                                v for v in iam_vars
+                                v
+                                for v in iam_vars
                                 if v in iam_data_full.coords["variables"].values
                             ]
 
@@ -595,12 +630,16 @@ class PathwaysDataPackage:
 
                             # If multiple variables, sum them
                             if len(existing_vars) > 1:
-                                capacity_da = capacity_da.sum(dim="variables", keep_attrs=True)
+                                capacity_da = capacity_da.sum(
+                                    dim="variables", keep_attrs=True
+                                )
                                 if "variables" not in capacity_da.dims:
                                     capacity_da = capacity_da.expand_dims("variables")
 
                             # Rename to YAML key
-                            capacity_da = capacity_da.assign_coords(variables=[yaml_key])
+                            capacity_da = capacity_da.assign_coords(
+                                variables=[yaml_key]
+                            )
                             capacity_pieces.append(capacity_da)
 
                             # Get unit
@@ -614,8 +653,12 @@ class PathwaysDataPackage:
                             pv = xr.concat([pv, capacity_data], dim="variables")
                             units.update(remapped_units)
                             extra_units.update(remapped_units)
-                            print(f"  ✅ Added {len(capacity_pieces)} internal capacity variables to scenario")
-                            print(f"     Variables: {[yaml_key for yaml_key in key_to_iam_vars.keys()][:5]}...")
+                            print(
+                                f"  ✅ Added {len(capacity_pieces)} internal capacity variables to scenario"
+                            )
+                            print(
+                                f"     Variables: {[yaml_key for yaml_key in key_to_iam_vars.keys()][:5]}..."
+                            )
 
             if "configurations" in scenario:
                 for config_idx, config_value in scenario["configurations"].items():
@@ -629,7 +672,9 @@ class PathwaysDataPackage:
                                 continue
 
                             if "iam_aliases" in cap_config:
-                                iam_var = cap_config["iam_aliases"].get(scenario["model"])
+                                iam_var = cap_config["iam_aliases"].get(
+                                    scenario["model"]
+                                )
                                 if iam_var:
                                     if isinstance(iam_var, list):
                                         ext_key_to_iam_vars[yaml_key] = iam_var
@@ -637,7 +682,9 @@ class PathwaysDataPackage:
                                         ext_key_to_iam_vars[yaml_key] = [iam_var]
 
                         # Extract external capacity addition variables from external scenario data
-                        if ext_key_to_iam_vars and config_idx in scenario.get("external data", {}):
+                        if ext_key_to_iam_vars and config_idx in scenario.get(
+                            "external data", {}
+                        ):
                             external_data = scenario["external data"][config_idx]
 
                             # Check if this external scenario has production volume data
@@ -648,42 +695,63 @@ class PathwaysDataPackage:
                                 for yaml_key, iam_vars in ext_key_to_iam_vars.items():
                                     # Check which IAM variables exist in external data
                                     existing_vars = [
-                                        v for v in iam_vars
-                                        if v in external_data["production volume"].coords["variables"].values
+                                        v
+                                        for v in iam_vars
+                                        if v
+                                        in external_data["production volume"]
+                                        .coords["variables"]
+                                        .values
                                     ]
 
                                     if not existing_vars:
                                         continue
 
                                     # Extract data for these variables
-                                    capacity_da = external_data["production volume"].sel(
-                                        variables=existing_vars
-                                    ).interp(year=scenario["year"])
+                                    capacity_da = (
+                                        external_data["production volume"]
+                                        .sel(variables=existing_vars)
+                                        .interp(year=scenario["year"])
+                                    )
 
                                     # If multiple variables, sum them
                                     if len(existing_vars) > 1:
-                                        capacity_da = capacity_da.sum(dim="variables", keep_attrs=True)
+                                        capacity_da = capacity_da.sum(
+                                            dim="variables", keep_attrs=True
+                                        )
                                         if "variables" not in capacity_da.dims:
-                                            capacity_da = capacity_da.expand_dims("variables")
+                                            capacity_da = capacity_da.expand_dims(
+                                                "variables"
+                                            )
 
                                     # Rename to YAML key
-                                    capacity_da = capacity_da.assign_coords(variables=[yaml_key])
+                                    capacity_da = capacity_da.assign_coords(
+                                        variables=[yaml_key]
+                                    )
                                     ext_capacity_pieces.append(capacity_da)
 
                                     # Get unit from external data
                                     for iam_var in existing_vars:
-                                        pv_attrs = external_data["production volume"].attrs.get("unit", {})
+                                        pv_attrs = external_data[
+                                            "production volume"
+                                        ].attrs.get("unit", {})
                                         if iam_var in pv_attrs:
-                                            ext_remapped_units[yaml_key] = pv_attrs[iam_var]
+                                            ext_remapped_units[yaml_key] = pv_attrs[
+                                                iam_var
+                                            ]
                                             break
 
                                 if ext_capacity_pieces:
-                                    ext_capacity_data = xr.concat(ext_capacity_pieces, dim="variables")
-                                    pv = xr.concat([pv, ext_capacity_data], dim="variables")
+                                    ext_capacity_data = xr.concat(
+                                        ext_capacity_pieces, dim="variables"
+                                    )
+                                    pv = xr.concat(
+                                        [pv, ext_capacity_data], dim="variables"
+                                    )
                                     units.update(ext_remapped_units)
                                     extra_units.update(ext_remapped_units)
                                     print(
-                                        f"  ✅ Added {len(ext_capacity_pieces)} external capacity variables from config {config_idx}")
+                                        f"  ✅ Added {len(ext_capacity_pieces)} external capacity variables from config {config_idx}"
+                                    )
 
             # --- optional: external data blocks
             if "external data" in scenario:
