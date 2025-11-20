@@ -5375,6 +5375,7 @@ market for bilge oil,bilge oil,waste treatment,Others\Market
 market for biogas,biogas,material,Fuels\Biofuels\Biogas\Market
 "market for biogas, from grass","biogas, from grass",material,Fuels\Biofuels\Biogas\Market
 "market for biomass, used as fuel","biomass, used as fuel",material,Fuels\Others\Transformation
+"market for lignocellulosic biomass, used as fuel","lignocellulosic biomass, used as fuel",material,Fuels\Others\Transformation
 "market for biomethane, high pressure","biomethane, high pressure",material,Fuels\Biofuels\Methane\Market
 "market for biomethane, high pressure, vehicle grade","biomethane, high pressure, vehicle grade",material,Fuels\Biofuels\Methane\Market
 "market for biomethane, low pressure","biomethane, low pressure",material,Fuels\Biofuels\Methane\Market

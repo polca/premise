@@ -22,7 +22,7 @@ ei_version = "3.11"
 system_model = "cutoff"
 
 scenarios = [
-    {"model": "remind", "pathway": "SSP2-rollBack", "year": 2050},
+    {"model": "remind", "pathway": "SSP3-rollBack", "year": 2050},
     {"model": "image", "pathway": "SSP2-VLHO", "year": 2050},
     {"model": "tiam-ucl", "pathway": "SSP2-RCP19", "year": 2050},
 ]

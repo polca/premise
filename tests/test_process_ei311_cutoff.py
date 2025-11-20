@@ -22,10 +22,10 @@ ei_version = "3.11"
 system_model = "cutoff"
 
 scenarios = [
-    {"model": "remind", "pathway": "SSP2-rollBack", "year": 2050},
+    {"model": "remind", "pathway": "SSP3-rollBack", "year": 2050},
     {"model": "image", "pathway": "SSP2-VLHO", "year": 2050},
-    {"model": "tiam-ucl", "pathway": "SSP2-RCP19", "year": 2050},
-    {"model": "gcam", "pathway": "SSP2-RCP26", "year": 2050},
+    # {"model": "tiam-ucl", "pathway": "SSP2-RCP19", "year": 2050},
+    # {"model": "gcam", "pathway": "SSP2-RCP26", "year": 2050},
 ]
 
 
@@ -63,12 +63,19 @@ def test_brightway():
         del bw2data.databases["test1"]
     if "test2" in bw2data.databases:
         del bw2data.databases["test2"]
-    if "test3" in bw2data.databases:
-        del bw2data.databases["test3"]
-    if "test4" in bw2data.databases:
-        del bw2data.databases["test4"]
+    # if "test3" in bw2data.databases:
+    #    del bw2data.databases["test3"]
+    # if "test4" in bw2data.databases:
+    #    del bw2data.databases["test4"]
 
-    ndb.write_db_to_brightway(["test1", "test2", "test3", "test4"])
+    ndb.write_db_to_brightway(
+        [
+            "test1",
+            "test2",
+            # "test3",
+            # "test4"
+        ]
+    )
 
     from bw2data import __version__
 

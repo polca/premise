@@ -1052,7 +1052,7 @@ class HeatValidation(BaseDatasetValidator):
                 # add input of light fuel oil
                 light_fue_oil = sum(
                     [
-                        exc["amount"] * 41.8
+                        exc["amount"] * 42.6
                         for exc in ds["exchanges"]
                         if "light fuel oil" in exc["name"]
                         and exc["type"] == "technosphere"
@@ -1065,7 +1065,7 @@ class HeatValidation(BaseDatasetValidator):
                 # add input of heavy fuel oil
                 heavy_fuel_oil = sum(
                     [
-                        exc["amount"] * 41.8
+                        exc["amount"] * 38.5
                         for exc in ds["exchanges"]
                         if "heavy fuel oil" in exc["name"]
                         and exc["type"] == "technosphere"
@@ -1078,7 +1078,7 @@ class HeatValidation(BaseDatasetValidator):
                 # add input of biomass
                 biomass = sum(
                     [
-                        exc["amount"] * 18
+                        exc["amount"] * 16.2
                         for exc in ds["exchanges"]
                         if any(x in exc["name"] for x in ["biomass", "wood", "timber"])
                         and "ethanol" not in exc["name"]
@@ -1584,19 +1584,19 @@ class ElectricityValidation(BaseDatasetValidator):
                     # matches the location of the dataset
                     # according to the geo-linking rules
                     self.check_geo_linking(
-                        input_exc[0]["location"], dataset["location"]
+                        input_exc[0]["location"], dataset["location"], dataset["name"]
                     )
 
-    def check_geo_linking(self, exc_loc, dataset_loc):
+    def check_geo_linking(self, exc_loc, dataset_loc, dataset_name):
         # check that the location of the input
         # matches the location of the dataset
         # according to the ecoinvent-IAM geo-linking rules
         if dataset_loc in ["RER", "Europe without Switzerland", "FR"]:
-            if exc_loc not in ["EUR", "WEU", "EU-15"]:
+            if exc_loc not in ["EUR", "WEU", "EU-15", "FRA"]:
                 message = "Electricity market input has incorrect location."
                 self.log_issue(
                     {"location": dataset_loc},
-                    "incorrect old electricity market input",
+                    f"{dataset_name} has incorrect old electricity market input: {exc_loc}",
                     message,
                 )
         if exc_loc != self.geo.ecoinvent_to_iam_location(dataset_loc):
@@ -2492,7 +2492,9 @@ class BiomassValidation(BaseDatasetValidator):
 
         for ds in self.database:
             if (
-                ds["name"].startswith("market for biomass, used as fuel")
+                ds["name"].startswith(
+                    "market for lignocellulosic biomass, used as fuel"
+                )
                 and ds["location"] in self.regions
                 and ds["location"] != "World"
             ):
@@ -2565,15 +2567,16 @@ class BiomassValidation(BaseDatasetValidator):
                                 e
                                 for e in dataset["exchanges"]
                                 if e["type"] == "technosphere"
-                                and e["name"] == "market for biomass, used as fuel"
+                                and e["name"]
+                                == "market for lignocellulosic biomass, used as fuel"
                             ]
                         )
                         >= 1
                     ), (
                         f"Dataset {dataset['name']} in {dataset['location']} "
                         f"should have one or more exchanges to "
-                        f"'market for biomass, used as fuel'. "
-                        f"Currently has {len([e for e in dataset['exchanges'] if e['type'] == 'technosphere' and e['name'] == 'market for biomass, used as fuel'])}."
+                        f"'market for lignocellulosic biomass, used as fuel'. "
+                        f"Currently has {len([e for e in dataset['exchanges'] if e['type'] == 'technosphere' and e['name'] == 'market for lignocellulosic biomass, used as fuel'])}."
                     )
 
     def check_residual_biomass_share(self):
@@ -2584,7 +2587,7 @@ class BiomassValidation(BaseDatasetValidator):
 
         for ds in self.database:
             if (
-                ds["name"] == "market for biomass, used as fuel"
+                ds["name"] == "market for lignocellulosic biomass, used as fuel"
                 and ds["location"] in self.regions
                 and ds["location"] != "World"
             ):

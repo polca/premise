@@ -68,6 +68,23 @@ direct air capture (sorbent) with storage:
     fltr:
       - carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2
 
+direct air capture (calcium oxide) with storage:
+  iam_aliases:
+    witch: Carbon Sequestration|Direct Air Capture|Calcium Oxide
+  energy_use_aliases:
+    witch:
+      - Final Energy|Carbon Management|Direct Air Capture|Calcium Oxide|Electricity|Gas
+      - Final Energy|Carbon Management|Direct Air Capture|Calcium Oxide|Electricity|Wind
+      - Final Energy|Carbon Management|Direct Air Capture|Calcium Oxide|Electricity|Biomass
+      - Final Energy|Carbon Management|Direct Air Capture|Calcium Oxide|Electricity|PV
+      - Final Energy|Carbon Management|Direct Air Capture|Calcium Oxide|Electricity|CSP
+
+  ecoinvent_aliases:
+    fltr:
+      - carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2
+
+
+
 enhanced rock weathering:
     iam_aliases:
         remind: Emi|CO2|CDR|+|EW
@@ -82,23 +99,39 @@ enhanced rock weathering:
     ecoinvent_aliases:
         fltr: carbon dioxide, captured and stored, by olivine spreading on coastline
 
+materials:
+  iam_aliases:
+    message: Carbon Sequestration|Materials|Plastics
+    remind:
+      - Emi|CO2|CDR|Materials|+|Plastics
+      - Emi|CO2|CDR|Materials|+|Non-Plastics
+    remind-eu:
+      - Emi|CO2|CDR|Materials|+|Plastics
+      - Emi|CO2|CDR|Materials|+|Non-Plastics
+
+afforestation:
+  iam_aliases:
+    message: Carbon Sequestration|Land Use|Afforestation
+
+
 ocean liming:
     iam_aliases:
         remind: Emi|CO2|CDR|+|OAE
         remind-eu: Emi|CO2|CDR|+|OAE
+        gcam: Carbon Capture|Storage|Direct Air Capture|direct ocean capture (stand-alone)
     ecoinvent_aliases:
         fltr: carbon dioxide, captured and stored, by ocean liming
 
 biochar:
     ecoinvent_aliases:
-        fltr: carbon dioxide, captured and stored, by biochar application on mineral soil
+        fltr: biochar application on mineral soil
 
 biomass power generation, with CCS:
   iam_aliases:
       remind: Emi|CO2|CDR|+|BECCS
       remind-eu: Emi|CO2|CDR|+|BECCS
       image: Carbon Capture|Energy|Supply|Electricity|Biomass
-      message: Carbon Capture|Energy|Supply|Electricity|Biomass
+      message: Carbon Sequestration|CCS|Biomass
   ecoinvent_aliases:
       fltr: carbon dioxide, captured and stored, at wood burning power plant, pipeline 200km, storage 1000m
 

@@ -108,7 +108,7 @@ class CarbonDioxideRemoval(BaseTransformation):
         self.version = version
         self.system_model = system_model
         self.mapping = InventorySet(self.database)
-        self.cdr_map = self.mapping.generate_cdr_map(model=self.model)
+        self.cdr_map = self.mapping.generate_cdr_map()
 
     def regionalize_cdr_activities(self) -> None:
         """

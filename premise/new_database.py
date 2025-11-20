@@ -197,6 +197,7 @@ FILEPATH_PV_GAAS = INVENTORY_DIR / "lci-PV-GaAs.xlsx"
 FILEPATH_PV_PEROVSKITE = INVENTORY_DIR / "lci-PV-perovskite.xlsx"
 FILEPATH_BATTERY_CAPACITY = INVENTORY_DIR / "lci-battery-capacity.xlsx"
 FILEPATH_BIOCHAR = INVENTORY_DIR / "lci-cdr-biochar.xlsx"
+FILEPATH_CEMENT_MINERALIZATION = INVENTORY_DIR / "lci-cdr-cement-mineralization.xlsx"
 FILEPATH_ENHANCED_WEATHERING = INVENTORY_DIR / "lci-coastal-enhanced-weathering.xlsx"
 FILEPATH_OCEAN_LIMING = INVENTORY_DIR / "lci-ocean-liming.xlsx"
 FILEPATH_FINAL_ENERGY = INVENTORY_DIR / "lci-final-energy.xlsx"
@@ -871,6 +872,7 @@ class NewDatabase:
             (FILEPATH_PV_GAAS, "3.10"),
             (FILEPATH_PV_PEROVSKITE, "3.10"),
             (FILEPATH_BIOCHAR, "3.10"),
+            (FILEPATH_CEMENT_MINERALIZATION, "3.11"),
             (FILEPATH_OCEAN_LIMING, "3.10"),
             (FILEPATH_ENHANCED_WEATHERING, "3.10"),
             (FILEPATH_FINAL_ENERGY, "3.10"),
@@ -1293,7 +1295,7 @@ class NewDatabase:
             )
 
             try:
-                _prepare_database(
+                scenario = _prepare_database(
                     scenario=scenario,
                     db_name="database",
                     original_database=self.database,
@@ -1313,9 +1315,6 @@ class NewDatabase:
                 system_model=self.system_model,
             ).export_db_to_matrices()
 
-            # end_of_process(scenario)
-
-        # delete_all_pickles()
         if self.generate_reports:
             # generate scenario report
             self.generate_scenario_report()

@@ -4,6 +4,7 @@ used to create a data package for scenario analysis.
 """
 
 import json
+import csv
 import shutil
 from datetime import date
 from pathlib import Path
@@ -15,6 +16,7 @@ from datapackage import Package
 
 from . import __version__
 from .new_database import NewDatabase
+from .inventory_imports import get_classifications
 from .utils import load_database
 
 
@@ -65,6 +67,7 @@ class PathwaysDataPackage:
         )
 
         self.scenario_names = []
+        self.classifications = get_classifications()
 
     def create_datapackage(
         self,
@@ -88,9 +91,6 @@ class PathwaysDataPackage:
         contributors: list = None,
     ):
 
-        for scenario in self.datapackage.scenarios:
-            load_database(scenario, self.datapackage.database)
-
         # first, delete the content of the "pathways_temp" folder
         shutil.rmtree(Path.cwd() / "pathways_temp", ignore_errors=True)
 
@@ -101,6 +101,7 @@ class PathwaysDataPackage:
         self.variables_name_change = {}
         self._add_variables_mapping()
         self._add_scenario_data()
+        self._add_classifications_file()
         self._build_datapackage(name, contributors)
 
     def _add_variables_mapping(self):
@@ -232,14 +233,107 @@ class PathwaysDataPackage:
             outfile.unlink()
         df.to_csv(outfile, index=False)
 
+    def _add_classifications_file(self):
+        """
+        Export activity classifications to a CSV file in the datapackage.
+
+        Each row is one activity–classification pair with columns:
+        - name
+        - reference product
+        - unit
+        - location
+        - classification_system  (e.g. "CPC", "ISIC")
+        - classification_code    (e.g. "xxxx: manufacture of ...")
+
+        Databases are taken from each scenario dict under key "database",
+        where "database" is a list of activity dictionaries.
+        """
+
+        outdir = Path.cwd() / "pathways_temp" / "classifications"
+        outdir.mkdir(parents=True, exist_ok=True)
+
+        outfile = outdir / "classifications.csv"
+
+        fieldnames = [
+            "name",
+            "reference product",
+            "classification_system",
+            "classification_code",
+        ]
+
+        seen = set()
+
+        with open(outfile, "w", newline="", encoding="utf-8") as f:
+            writer = csv.DictWriter(f, fieldnames=fieldnames)
+            writer.writeheader()
+
+            for scenario in self.datapackage.scenarios:
+                db = scenario.get("database") or []
+                for ds in db:
+                    name = ds["name"]
+                    ref = ds["reference product"]
+
+                    # classifications is a list of tuples:
+                    classifications = ds.get("classifications") or []
+
+                    if not classifications:
+                        print(f"No classifications for {name}")
+                        if (
+                            ds["name"],
+                            ds["reference product"],
+                        ) in self.classifications:
+                            ds["classifications"] = [
+                                (
+                                    "ISIC rev.4 ecoinvent",
+                                    self.classifications[
+                                        (ds["name"], ds["reference product"])
+                                    ]["ISIC rev.4 ecoinvent"],
+                                ),
+                                (
+                                    "CPC",
+                                    self.classifications[
+                                        (ds["name"], ds["reference product"])
+                                    ]["CPC"],
+                                ),
+                            ]
+                            classifications = ds.get("classifications")
+
+                    for system, code in classifications:
+                        key = (name, ref, system, code)
+                        if key in seen:
+                            continue
+                        seen.add(key)
+
+                        writer.writerow(
+                            {
+                                "name": name,
+                                "reference product": ref,
+                                "classification_system": system,
+                                "classification_code": code,
+                            }
+                        )
+
     def _build_datapackage(self, name: str, contributors: list = None):
         """
         Create and export a scenario datapackage.
         """
         # create a new datapackage
         package = Package(base_path=Path.cwd().as_posix())
-        package.infer("pathways_temp/**/*.csv")
+        # Find all CSV files manually
+        csv_files = list((Path.cwd() / "pathways_temp").glob("**/*.csv"))
+
+        for file in csv_files:
+            relpath = file.relative_to(Path.cwd()).as_posix()
+            package.add_resource(
+                {
+                    "path": relpath,
+                    "profile": "tabular-data-resource",
+                    "encoding": "utf-8",
+                }
+            )
+
         package.infer("pathways_temp/**/*.yaml")
+        package.infer()
 
         package.descriptor["name"] = name.replace(" ", "_").lower()
         package.descriptor["title"] = name.capitalize()

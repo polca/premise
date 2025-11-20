@@ -1,11 +1,10 @@
-"""
-activity_maps.py contains InventorySet, which is a class that provides all necessary
-mapping between ``premise`` and ``ecoinvent`` terminology.
-"""
+"""Mappings between Premise activities and their ecoinvent counterparts."""
+
+from __future__ import annotations
 
 from collections import defaultdict
 from pathlib import Path
-from typing import List, Union
+from typing import Dict, List, Optional, Tuple, Union
 
 import yaml
 import pandas as pd
@@ -40,52 +39,53 @@ MINING_WASTE = DATA_DIR / "mining" / "tailings_activities.yaml"
 CARBON_STORAGE_TECHS = VARIABLES_DIR / "carbon_dioxide_removal.yaml"
 
 
-def get_mapping(filepath: Path, var: str, model: str = None) -> dict:
-    """
-    Loa a YAML file and return a dictionary given a variable.
-    :param filepath: YAML file path
-    :param var: variable to return the dictionary for.
-    :param model: if provided, only return the dictionary for this model.
-    :return: a dictionary
+def get_mapping(
+    filepath: Path, var: str, model: Optional[str] = None
+) -> Dict[str, dict]:
+    """Load a YAML mapping file and return the entries for ``var``.
+
+    :param filepath: Path to the YAML file containing the mappings.
+    :type filepath: pathlib.Path
+    :param var: Variable to extract from the mapping.
+    :type var: str
+    :param model: Optional model identifier used to filter the mapping entries.
+    :type model: Optional[str]
+    :return: Dictionary where keys correspond to activity names and values to mapping metadata.
+    :rtype: Dict[str, dict]
     """
 
     with open(filepath, "r", encoding="utf-8") as stream:
         techs = yaml.full_load(stream)
 
-    mapping = {}
+    mapping: Dict[str, dict] = {}
     for key, val in techs.items():
         if var in val:
-            if model is None:
+            if model is None or model in val.get("iam_aliases", {}):
                 mapping[key] = val[var]
-            else:
-                if model in val.get("iam_aliases", {}):
-                    mapping[key] = val[var]
 
     return mapping
 
 
+FilterType = Union[str, List[str], Dict[str, Union[str, List[str]]]]
+ActivityMapping = Dict[str, List[dict]]
+
+
 def act_fltr(
     database: List[dict],
-    fltr: Union[str, List[str]] = None,
-    mask: Union[str, List[str]] = None,
+    fltr: Optional[FilterType] = None,
+    mask: Optional[FilterType] = None,
 ) -> List[dict]:
-    """Filter `database` for activities matching field contents given by `fltr` excluding strings in `mask`.
-    `fltr`: string, list of strings or dictionary.
-    If a string is provided, it is used to match the name field from the start (*startswith*).
-    If a list is provided, all strings in the lists are used and results are joined (*or*).
-    A dict can be given in the form <fieldname>: <str> to filter for <str> in <fieldname>.
-    `mask`: used in the same way as `fltr`, but filters add up with each other (*and*).
-    `filter_exact` and `mask_exact`: boolean, set `True` to only allow for exact matches.
+    """Filter activities in ``database`` using inclusive and exclusive criteria.
 
-    :param database: A lice cycle inventory database
-    :type database: brightway2 database object
-    :param fltr: value(s) to filter with.
-    :type fltr: Union[str, lst, dict]
-    :param mask: value(s) to filter with.
-    :type mask: Union[str, lst, dict]
-    :return: list of activity data set names
-    :rtype: list
-
+    :param database: Life cycle inventory database to filter.
+    :type database: List[dict]
+    :param fltr: Filter values used to include activities. Strings apply to the ``name`` field by default.
+    :type fltr: Optional[FilterType]
+    :param mask: Filter values used to exclude activities.
+    :type mask: Optional[FilterType]
+    :return: List of activities matching the filter conditions.
+    :rtype: List[dict]
+    :raises AssertionError: If no filter values are provided.
     """
     if fltr is None:
         fltr = {}
@@ -119,16 +119,21 @@ def act_fltr(
     return list(ws.get_many(database, *filters))
 
 
-def mapping_to_dataframe(scenario, original_database=None) -> pd.DataFrame:
-    """
-    Convert a mapping dictionary of the form {category: [activities]} into a grouped DataFrame
-    with a 'Location' column listing all locations per (Category, Market, Product) combination.
+def mapping_to_dataframe(
+    scenario: Dict[str, Union[str, List[dict]]],
+    original_database: Optional[List[dict]] = None,
+) -> pd.DataFrame:
+    """Convert mapping dictionaries into a grouped :class:`pandas.DataFrame`.
 
-    :param scenario: A scenario dictionary containing a 'database' key with the ecoinvent database.
-    :return: A pandas DataFrame with columns 'Category', 'Market', 'Product', and 'Locations'.
+    :param scenario: Scenario dictionary containing a ``database`` key with the ecoinvent database.
+    :type scenario: Dict[str, Union[str, List[dict]]]
+    :param original_database: Optional original database used to reload the scenario.
+    :type original_database: Optional[List[dict]]
+    :return: DataFrame with aggregated mapping information and location lists.
+    :rtype: pandas.DataFrame
     """
 
-    temp_records = list()
+    temp_records: List[Tuple[str, str, str, str, str]] = []
 
     if "database" not in scenario:
         scenario = load_database(scenario, original_database=original_database)
@@ -196,26 +201,24 @@ def mapping_to_dataframe(scenario, original_database=None) -> pd.DataFrame:
 
 
 class InventorySet:
-    """
-    Hosts different filter sets to find equivalencies
-    between ``premise`` terms and ``ecoinvent`` activities and exchanges.
-
-    It stores:
-    * material_filters: filters for activities related to materials.
-    * powerplant_filters: filters for activities related to power generation technologies.
-    * powerplant_fuel_filters: filters for fuel providers in power generation technologies.
-    * fuel_filters: filters for fuel providers in general.
-    * emissions_map: REMIND emission labels as keys, ecoinvent emission labels as values
-
-    The functions :func:`generate_material_map`, :func:`generate_powerplant_map`
-    and :func:`generate_fuel_map` can
-    be used to extract the actual activity objects as dictionaries.
-    These functions return the result of applying :func:`act_fltr` to the filter dictionaries.
-    """
+    """Generate activity mappings between Premise sectors and ecoinvent datasets."""
 
     def __init__(
-        self, database: List[dict], version: str = None, model: str = None
+        self,
+        database: List[dict],
+        version: Optional[str] = None,
+        model: Optional[str] = None,
     ) -> None:
+        """Initialise the inventory set with the source database and metadata.
+
+        :param database: Life cycle inventory database represented as a list of datasets.
+        :type database: List[dict]
+        :param version: Version identifier of the ecoinvent database.
+        :type version: Optional[str]
+        :param model: IAM model identifier used to select specific mappings.
+        :type model: Optional[str]
+        """
+
         self.database = database
         self.version = version
         self.model = model
@@ -227,18 +230,22 @@ class InventorySet:
             filepath=POWERPLANT_TECHS, var="min_efficiency", model=self.model
         )
 
-    def generate_map(self, filters):
+    def generate_map(self, filters: Dict[str, dict]) -> ActivityMapping:
+        """Generate an activity mapping using the provided filter definitions.
+
+        :param filters: Mapping specifications used to query the database.
+        :type filters: Dict[str, dict]
+        :return: Dictionary with technology keys and matching datasets.
+        :rtype: ActivityMapping
         """
-        Generate a dictionary with ecoinvent activities as keys and
-        ecoinvent datasets as values.
-        """
+
         return self.generate_sets_from_filters(filters)
 
-    def generate_biomass_map(self) -> dict:
-        """
-        Filter ecoinvent processes related to biomass.
-        Returns a dictionary with biomass names as keys (see below) and
-        a set of related ecoinvent activities' names as values.
+    def generate_biomass_map(self) -> ActivityMapping:
+        """Return mapping of biomass technologies to ecoinvent activities.
+
+        :return: Mapping keyed by biomass technology name.
+        :rtype: ActivityMapping
         """
         filters = get_mapping(filepath=BIOMASS_TYPES, var="ecoinvent_aliases")
 
@@ -254,79 +261,75 @@ class InventorySet:
 
         return sets
 
-    def generate_heat_map(self, model) -> dict:
-        """
-        Filter ecoinvent processes related to heat production.
+    def generate_heat_map(self, model: Optional[str]) -> ActivityMapping:
+        """Return mapping of heat production technologies to activities.
 
-        :return: dictionary with heat prod. techs as keys (see below) and
-            sets of related ecoinvent activities as values.
-        :rtype: dict
-
+        :param model: IAM model identifier used to filter the mapping.
+        :type model: Optional[str]
+        :return: Mapping keyed by heat technology name.
+        :rtype: ActivityMapping
         """
         filters = get_mapping(filepath=HEAT_TECHS, var="ecoinvent_aliases", model=model)
         return self.generate_sets_from_filters(filters)
 
-    def generate_activities_using_metals_map(self) -> dict:
-        """
-        Filter ecoinvent processes related to metals.
-        Returns a dictionary with metal names as keys (see below) and
-        a set of related ecoinvent activities' names as values.
+    def generate_activities_using_metals_map(self) -> ActivityMapping:
+        """Return mapping of metal-using activities to ecoinvent datasets.
+
+        :return: Mapping keyed by metal name.
+        :rtype: ActivityMapping
         """
         filters = get_mapping(
             filepath=ACTIVITIES_METALS_MAPPING, var="ecoinvent_aliases"
         )
         return self.generate_sets_from_filters(filters)
 
-    def generate_gains_mapping(self):
-        """
-        Generate a dictionary with GAINS variables as keys and
-        ecoinvent datasets as values.
+    def generate_gains_mapping(self) -> ActivityMapping:
+        """Return mapping between GAINS variables and ecoinvent datasets.
+
+        :return: Mapping keyed by GAINS variable name.
+        :rtype: ActivityMapping
         """
         filters = get_mapping(filepath=GAINS_MAPPING, var="ecoinvent_aliases")
         return self.generate_sets_from_filters(filters)
 
-    def generate_powerplant_map(self) -> dict:
-        """
-        Filter ecoinvent processes related to electricity production.
+    def generate_powerplant_map(self) -> ActivityMapping:
+        """Return mapping of power plant technologies to activities.
 
-        :return: dictionary with el. prod. techs as keys (see below) and
-            sets of related ecoinvent activities as values.
-        :rtype: dict
-
+        :return: Mapping keyed by electricity production technology.
+        :rtype: ActivityMapping
         """
         filters = get_mapping(
             filepath=POWERPLANT_TECHS, var="ecoinvent_aliases", model=self.model
         )
         return self.generate_sets_from_filters(filters)
 
-    def generate_cdr_map(self, model=None) -> dict:
-        """
-        Filter ecoinvent processes related to direct air capture.
+    def generate_cdr_map(self, model: Optional[str] = None) -> ActivityMapping:
+        """Return mapping of carbon dioxide removal technologies to activities.
 
-        :return: dictionary with el. prod. techs as keys (see below) and
-            sets of related ecoinvent activities as values.
-        :rtype: dict
-
+        :param model: IAM model identifier used to filter the mapping.
+        :type model: Optional[str]
+        :return: Mapping keyed by carbon removal technology.
+        :rtype: ActivityMapping
         """
         filters = get_mapping(filepath=CDR_TECHS, var="ecoinvent_aliases", model=model)
         return self.generate_sets_from_filters(filters)
 
-    def generate_powerplant_fuels_map(self) -> dict:
-        """
-        Filter ecoinvent processes related to electricity production.
+    def generate_powerplant_fuels_map(self) -> ActivityMapping:
+        """Return mapping of power plant fuel supply chains to activities.
 
-        :return: dictionary with el. prod. techs as keys (see below) and
-            sets of related ecoinvent activities as values.
-        :rtype: dict
-
+        :return: Mapping keyed by fuel technology.
+        :rtype: ActivityMapping
         """
         filters = get_mapping(filepath=POWERPLANT_TECHS, var="ecoinvent_fuel_aliases")
         return self.generate_sets_from_filters(filters)
 
-    def generate_powerplant_efficiency_bounds(self):
-        """
-        Generate a dictionary with ecoinvent activities as keys and
-        efficiency bounds as values.
+    def generate_powerplant_efficiency_bounds(
+        self,
+    ) -> Tuple[Dict[str, dict], Dict[str, dict]]:
+        """Return minimum and maximum efficiency mappings for power plants.
+
+        :return: Tuple ``(min_efficiency, max_efficiency)`` containing lookup dictionaries.
+        :rtype: Tuple[Dict[str, dict], Dict[str, dict]]
         """
         min_efficiency = get_mapping(
             filepath=POWERPLANT_TECHS, var="min_efficiency", model=self.model
@@ -337,54 +340,44 @@ class InventorySet:
 
         return min_efficiency, max_efficiency
 
-    def generate_cement_fuels_map(self) -> dict:
-        """
-        Filter ecoinvent processes related to cement production.
+    def generate_cement_fuels_map(self) -> ActivityMapping:
+        """Return mapping of cement production fuels to ecoinvent activities.
 
-        :return: dictionary with el. prod. techs as keys (see below) and
-            sets of related ecoinvent activities as values.
-        :rtype: dict
-
+        :return: Mapping keyed by cement fuel category.
+        :rtype: ActivityMapping
         """
         filters = get_mapping(filepath=CEMENT_TECHS, var="ecoinvent_fuel_aliases")
         return self.generate_sets_from_filters(filters)
 
-    def generate_steel_map(self) -> dict:
-        """
-        Filter ecoinvent processes related to steel production.
+    def generate_steel_map(self) -> ActivityMapping:
+        """Return mapping of steel production routes to activities.
 
-        :return: dictionary with el. prod. techs as keys (see below) and
-            sets of related ecoinvent activities as values.
-        :rtype: dict
-
+        :return: Mapping keyed by steel technology name.
+        :rtype: ActivityMapping
         """
         filters = get_mapping(
             filepath=STEEL_TECHS, var="ecoinvent_aliases", model=self.model
         )
         return self.generate_sets_from_filters(filters)
 
-    def generate_cement_map(self) -> dict:
-        """
-        Filter ecoinvent processes related to cement production.
+    def generate_cement_map(self) -> ActivityMapping:
+        """Return mapping of cement production routes to activities.
 
-        :return: dictionary with el. prod. techs as keys (see below) and
-            sets of related ecoinvent activities as values.
-        :rtype: dict
-
+        :return: Mapping keyed by cement technology name.
+        :rtype: ActivityMapping
         """
         filters = get_mapping(
             filepath=CEMENT_TECHS, var="ecoinvent_aliases", model=self.model
         )
         return self.generate_sets_from_filters(filters)
 
-    def generate_fuel_map(self, model=None) -> dict:
-        """
-        Filter ecoinvent processes related to fuel supply.
+    def generate_fuel_map(self, model: Optional[str] = None) -> ActivityMapping:
+        """Return mapping of fuel supply chains to activities.
 
-        :return: dictionary with fuel names as keys (see below) and
-            sets of related ecoinvent activities as values.
-        :rtype: dict
-
+        :param model: IAM model identifier used to filter the mapping.
+        :type model: Optional[str]
+        :return: Mapping keyed by fuel name.
+        :rtype: ActivityMapping
         """
         filters = get_mapping(
             filepath=FUELS_TECHS, var="ecoinvent_aliases", model=model
@@ -402,26 +395,20 @@ class InventorySet:
 
         return sets
 
-    def generate_mining_waste_map(self) -> dict:
-        """
-        Filter ecoinvent processes related to mining waste.
+    def generate_mining_waste_map(self) -> ActivityMapping:
+        """Return mapping of mining waste management activities.
 
-        :return: dictionary with mining waste names as keys (see below) and
-            sets of related ecoinvent activities as values.
-        :rtype: dict
-
+        :return: Mapping keyed by mining waste type.
+        :rtype: ActivityMapping
         """
         filters = get_mapping(filepath=MINING_WASTE, var="ecoinvent_aliases")
         return self.generate_sets_from_filters(filters)
 
-    def generate_final_energy_map(self) -> dict:
-        """
-        Filter ecoinvent processes related to final energy consumption.
+    def generate_final_energy_map(self) -> ActivityMapping:
+        """Return mapping of final energy carriers to activities.
 
-        :return: dictionary with final energy names as keys (see below) and
-            sets of related ecoinvent activities as values.
-        :rtype: dict
-
+        :return: Mapping keyed by energy carrier name.
+        :rtype: ActivityMapping
         """
         filters = get_mapping(
             filepath=FINAL_ENERGY, var="ecoinvent_aliases", model=self.model
@@ -439,13 +426,16 @@ class InventorySet:
 
         return sets
 
-    def generate_transport_map(self, transport_type: str) -> dict:
+    def generate_transport_map(self, transport_type: str) -> ActivityMapping:
+        """Return mapping of transport technologies to activities.
+
+        :param transport_type: Transport mode to retrieve (e.g. ``"car"``).
+        :type transport_type: str
+        :return: Mapping keyed by transport technology.
+        :rtype: ActivityMapping
         """
-        Filter ecoinvent processes related to transport.
-        Rerurns a dictionary with transport type as keys (see below) and
-        a set of related ecoinvent activities' names as values.
-        """
-        mapping = {}
+
+        mapping: ActivityMapping = {}
         if transport_type == "car":
             mapping = self.generate_sets_from_filters(
                 get_mapping(
@@ -480,13 +470,16 @@ class InventorySet:
 
         return mapping
 
-    def generate_vehicle_fuel_map(self, transport_type: str) -> dict:
+    def generate_vehicle_fuel_map(self, transport_type: str) -> ActivityMapping:
+        """Return mapping of transport fuel supply chains to activities.
+
+        :param transport_type: Transport mode to retrieve fuel mappings for.
+        :type transport_type: str
+        :return: Mapping keyed by transport fuel type.
+        :rtype: ActivityMapping
         """
-        Filter ecoinvent processes related to transport fuels.
-        Rerurns a dictionary with transport type as keys (see below) and
-        a set of related ecoinvent activities' names as values.
-        """
-        mapping = {}
+
+        mapping: ActivityMapping = {}
         if transport_type == "car":
             mapping = self.generate_sets_from_filters(
                 get_mapping(filepath=PASSENGER_CARS, var="ecoinvent_fuel_aliases")
@@ -517,32 +510,35 @@ class InventorySet:
 
         return mapping
 
-    def generate_metals_activities_map(self) -> dict:
-        """
-        Filter ecoinvent processes related to metals.
-        Rerurns a dictionary with material names as keys (see below) and
-        a set of related ecoinvent activities' names as values.
+    def generate_metals_activities_map(self) -> ActivityMapping:
+        """Return mapping of metal-related activities to datasets.
+
+        :return: Mapping keyed by material name.
+        :rtype: ActivityMapping
         """
         filters = get_mapping(
             filepath=ACTIVITIES_METALS_MAPPING, var="ecoinvent_aliases"
         )
         return self.generate_sets_from_filters(filters)
 
-    def generate_sets_from_filters(self, filtr: dict, database=None) -> dict:
-        """
-        Generate a dictionary with sets of activity names for
-        technologies from the filter specifications.
+    def generate_sets_from_filters(
+        self,
+        filtr: Dict[str, Dict[str, FilterType]],
+        database: Optional[List[dict]] = None,
+    ) -> ActivityMapping:
+        """Generate activity mappings using Wurst filter specifications.
 
-        :param filtr:
-        :func:`activity_maps.InventorySet.act_fltr`.
-        :return: dictionary with the same keys as provided in filter
-            and a set of activity data set names as values.
-        :rtype: dict
+        :param filtr: Filter configuration mapping technology names to filter definitions.
+        :type filtr: Dict[str, Dict[str, FilterType]]
+        :param database: Optional database subset to apply the filters on.
+        :type database: Optional[List[dict]]
+        :return: Mapping keyed by technology name with matching activities as values.
+        :rtype: ActivityMapping
         """
 
         database = database or self.database
 
-        names = []
+        names: List[str] = []
 
         for entry in filtr.values():
             if "fltr" in entry:
