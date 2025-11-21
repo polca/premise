@@ -109,7 +109,7 @@ wood pellet:
 wood chips:
   lhv:
     unit: megajoule
-    value: 18.9
+    value: 16.2
   co2: 0.112
   biogenic_share: 1
   ecoinvent_aliases:
@@ -393,6 +393,8 @@ petrol, synthetic, from electrolysis:
   co2: 0.0737
   eff_aliases:
     gcam: Efficiency|Refined Liquids|Biomass|BTL hydrogen
+    remind: Tech|Liquids|Hydrogen|Efficiency
+    remind-eu: Tech|Liquids|Hydrogen|Efficiency
   iam_aliases:
     gcam: Secondary Energy|Production|Biomass|BTL hydrogen
     remind: SE|Liquids|+|Hydrogen
@@ -411,6 +413,8 @@ petrol, synthetic, from coal:
   biogenic_share: 0
   eff_aliases:
     gcam: Efficiency|Coal to Liquids|w/oCCS
+    remind: Tech|Liquids|Fossil|Coal|w/o CC|Efficiency
+    remind-eu: Tech|Liquids|Fossil|Coal|w/o CC|Efficiency
   iam_aliases:
     gcam: Secondary Energy|Production|Coal to Liquids|w/oCCS
     remind: SE|Liquids|Fossil|Coal|+|w/o CC
@@ -429,6 +433,8 @@ petrol, synthetic, from coal, with CCS:
   biogenic_share: 0
   eff_aliases:
     gcam: Efficiency|Coal to Liquids|w/CCS
+    remind: Tech|Liquids|Fossil|Coal|w/ CC|Efficiency
+    remind-eu: Tech|Liquids|Fossil|Coal|w/ CC|Efficiency
   iam_aliases:
     gcam: Secondary Energy|Production|Coal to Liquids|w/CCS
     remind: SE|Liquids|Fossil|Coal|+|w/ CC
@@ -447,6 +453,8 @@ diesel, synthetic, from electrolysis:
   biogenic_share: 1
   eff_aliases:
     gcam: Efficiency|Hydrogen|Electrolysis
+    remind: Tech|Liquids|Fossil|Coal|w/o CC|Efficiency
+    remind-eu: Tech|Liquids|Fossil|Coal|w/o CC|Efficiency
   iam_aliases:
     tiam-ucl: Secondary Energy|Liquids|Hydrogen|Diesel
     gcam: Secondary Energy|Production|Hydrogen|Electrolysis
@@ -469,6 +477,8 @@ diesel, synthetic, from coal:
     tiam-ucl: Efficiency|Liquids|Coal|FT fuel mix (diesel, kerosene, naptha, ELC)|w/o
       CCS
     gcam: Efficiency|Coal to Liquids|w/oCCS
+    remind: Tech|Liquids|Fossil|Coal|w/o CC|Efficiency
+    remind-eu: Tech|Liquids|Fossil|Coal|w/o CC|Efficiency
   iam_aliases:
     tiam-ucl: Secondary Energy|Liquids|Coal|FT|Diesel|w/o CCS
     gcam: Secondary Energy|Production|Coal to Liquids|w/oCCS
@@ -491,6 +501,8 @@ diesel, synthetic, from coal, with CCS:
     tiam-ucl: Efficiency|Liquids|Coal|FT fuel mix (diesel, kerosene, naptha, ELC)|w
       CCS
     gcam: Efficiency|Coal to Liquids|w/CCS
+    remind: Tech|Liquids|Fossil|Coal|w/ CC|Efficiency
+    remind-eu: Tech|Liquids|Fossil|Coal|w/ CC|Efficiency
   iam_aliases:
     tiam-ucl: Secondary Energy|Liquids|Coal|FT|Diesel|w CCS
     gcam: Secondary Energy|Production|Coal to Liquids|w/CCS
@@ -522,6 +534,8 @@ diesel, synthetic, from wood:
       CCS
     gcam: Efficiency|Refined Liquids|Biomass|FT Biofuels|w/oCCS
     image: Efficiency|Liquids|Biomass|FT Diesel|Woody|w/o CCS
+    remind: Tech|Liquids|Biomass|BioFTR|w/o CC|Efficiency
+    remind-eu: Tech|Liquids|Biomass|BioFTR|w/o CC|Efficiency
   ecoinvent_aliases:
     fltr:
     - diesel production, synthetic, Fischer Tropsch process, hydrogen from wood gasification,
@@ -544,6 +558,8 @@ diesel, synthetic, from wood, with CCS:
       CCS
     gcam: Efficiency|Refined Liquids|Biomass|FT Biofuels|w/CCS
     image: Efficiency|Liquids|Biomass|FT Diesel|Woody|w/ CCS
+    remind: Tech|Liquids|Biomass|BioFTR|w/ CC|Efficiency
+    remind-eu: Tech|Liquids|Biomass|BioFTR|w/ CC|Efficiency
   ecoinvent_aliases:
     fltr:
     - diesel production, synthetic, Fischer Tropsch process, hydrogen from wood gasification,
@@ -1016,8 +1032,8 @@ bioethanol, from wood:
   biogenic_share: 1
   iam_aliases:
     gcam: Secondary Energy|Production|Refined Liquids|Biomass|Ethanol|Cellulose|w/oCCS
-    remind: SE|Liquids|Biomass|Cellulosic|++|Energy Crops
-    remind-eu: SE|Liquids|Biomass|Cellulosic|++|Energy Crops
+    remind: SE|Liquids|Biomass|Lignocellulosic Ethanol
+    remind-eu: SE|Liquids|Biomass|Lignocellulosic Ethanol
     image: Secondary Energy|Consumption|Liquids|Biomass|Ethanol|Woody|w/oCCS
     message: Secondary Energy|Liquids|Biomass|Ethanol|w/o CCS
     witch: Secondary Energy|Liquids|Biomass|Energy Crops
@@ -1050,14 +1066,10 @@ bioethanol, from wood, with CCS:
   biogenic_share: 1
   iam_aliases:
     gcam: Secondary Energy|Production|Refined Liquids|Biomass|Ethanol|Cellulose|w/CCS
-    remind: SE|Liquids|Biomass|Cellulosic|+|w/ CC
-    remind-eu: SE|Liquids|Biomass|Cellulosic|+|w/ CC
     image: Secondary Energy|Consumption|Liquids|Biomass|Ethanol|Woody|w/CCS
     message: Secondary Energy|Liquids|Biomass|Ethanol|w/ CCS
   eff_aliases:
     gcam: Efficiency|Refined Liquids|Biomass|Ethanol|Cellulose|w/CCS
-    remind: Tech|Liquids|Biomass|Lignocellulosic Ethanol|Efficiency
-    remind-eu: Tech|Liquids|Biomass|Lignocellulosic Ethanol|Efficiency
     image: Efficiency|Liquids|Biomass|Ethanol|Woody|w/ CCS
   ecoinvent_aliases:
     fltr:
@@ -1079,12 +1091,9 @@ bioethanol, from residues:
     value: 26.5
   co2: 0.0739
   biogenic_share: 1
-  iam_aliases:
-    remind: SE|Liquids|Biomass|Cellulosic|++|Residues
-    remind-eu: SE|Liquids|Biomass|Cellulosic|++|Residues
   eff_aliases:
-    remind: Tech|Liquids|Biomass|Biodiesel|Efficiency
-    remind-eu: Tech|Liquids|Biomass|Biodiesel|Efficiency
+    remind: Tech|Liquids|Biomass|Lignocellulosic Ethanol|Efficiency
+    remind-eu: Tech|Liquids|Biomass|Lignocellulosic Ethanol|Efficiency
   ecoinvent_aliases:
     fltr:
       name: ethanol production, via fermentation, from forest residues, energy allocation
@@ -1095,8 +1104,6 @@ bioethanol, from grass:
   co2: 0.0739
   biogenic_share: 1
   iam_aliases:
-    remind: SE|Liquids|Biomass|++|Non-Cellulosic
-    remind-eu: SE|Liquids|Biomass|++|Non-Cellulosic
     image: Secondary Energy|Consumption|Liquids|Biomass|Ethanol|Grassy|w/oCCS
   eff_aliases:
     remind: Tech|Liquids|Biomass|Lignocellulosic Ethanol|Efficiency
