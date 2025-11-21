@@ -16,6 +16,7 @@ direct air capture (solvent) with storage:
     gcam:
       - Carbon Capture|Storage|Direct Air Capture|hightemp DAC NG
       - Carbon Capture|Storage|Direct Air Capture|hightemp DAC elec
+    message: Carbon Capture|Direct Air Capture|Solvent
   energy_use_aliases:
     image:
       - Final Energy|Carbon Management|Direct Air Capture
@@ -38,6 +39,9 @@ direct air capture (solvent) with storage:
     gcam:
       - Energy|Consumption|Direct Air Capture|hightemp DAC NG|Electricity
       - Energy|Consumption|Direct Air Capture|hightemp DAC elec|Electricity
+    message:
+      - Final Energy|Carbon Management|Direct Air Capture|Solvent|Electricity
+      - Final Energy|Carbon Management|Direct Air Capture|Gases
 
   ecoinvent_aliases:
     fltr:
@@ -52,11 +56,13 @@ direct air capture (sorbent) with storage:
   iam_aliases:
     witch: Carbon Sequestration|Direct Air Capture|Sorbent
     gcam: Carbon Capture|Storage|Direct Air Capture|lowtemp DAC heatpump
+    message: Carbon Capture|Direct Air Capture|Sorbent
   energy_use_aliases:
     witch:
       - Final Energy|Carbon Management|Direct Air Capture|Sorbent|Heat|Gases
       - Final Energy|Carbon Management|Direct Air Capture|Sorbent|Electricity|CSP
     gcam: Energy|Consumption|Direct Air Capture|lowtemp DAC heatpump|Electricity
+    message: Final Energy|Carbon Management|Direct Air Capture|Sorbent|Electricity
 
   ecoinvent_aliases:
     fltr:
@@ -92,6 +98,7 @@ biomass power generation, with CCS:
       remind: Emi|CO2|CDR|+|BECCS
       remind-eu: Emi|CO2|CDR|+|BECCS
       image: Carbon Capture|Energy|Supply|Electricity|Biomass
+      message: Carbon Capture|Energy|Supply|Electricity|Biomass
   ecoinvent_aliases:
       fltr: carbon dioxide, captured and stored, at wood burning power plant, pipeline 200km, storage 1000m
 
@@ -100,11 +107,13 @@ synthetic fuels, with CCS:
       remind: Emi|CO2|CDR|+|Synthetic Fuels CCS
       remind-eu: Emi|CO2|CDR|+|Synthetic Fuels CCS
       image: Carbon Capture|Energy|Supply|Hydrogen|Biomass
+      message: Carbon Capture|Energy|Supply|Hydrogen|Biomass
   ecoinvent_aliases:
       fltr: carbon dioxide, captured and stored, from a hydrogen production plant using steam methane reforming of biomethane
 
 biofuels, with CCS:
   iam_aliases:
       image: Carbon Capture|Energy|Supply|Liquids|Biomass
+      message: Carbon Capture|Energy|Supply|Liquids|Biomass
   ecoinvent_aliases:
       fltr: carbon dioxide, captured and stored, from a biomass fermentation plant

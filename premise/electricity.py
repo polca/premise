@@ -1713,10 +1713,8 @@ class Electricity(BaseTransformation):
                         )
 
                         scaling_factor = ei_eff / new_efficiency
-
                     else:
                         scaling_factor = 1
-
                 else:
                     new_efficiency = self.find_iam_efficiency_change(
                         data=self.iam_data.electricity_technology_efficiencies,
@@ -1755,8 +1753,6 @@ class Electricity(BaseTransformation):
                     )
 
                     # Rescale all the technosphere exchanges
-                    # according to the change in efficiency between `year`
-                    # and 2020 from the IAM efficiency values
                     rescale_exchanges(dataset, scaling_factor)
 
                     self.write_log(dataset=dataset, status="updated")

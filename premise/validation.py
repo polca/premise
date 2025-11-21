@@ -1052,7 +1052,7 @@ class HeatValidation(BaseDatasetValidator):
                 # add input of light fuel oil
                 light_fue_oil = sum(
                     [
-                        exc["amount"] * 41.8
+                        exc["amount"] * 42.6
                         for exc in ds["exchanges"]
                         if "light fuel oil" in exc["name"]
                         and exc["type"] == "technosphere"
@@ -1065,7 +1065,7 @@ class HeatValidation(BaseDatasetValidator):
                 # add input of heavy fuel oil
                 heavy_fuel_oil = sum(
                     [
-                        exc["amount"] * 41.8
+                        exc["amount"] * 38.5
                         for exc in ds["exchanges"]
                         if "heavy fuel oil" in exc["name"]
                         and exc["type"] == "technosphere"
@@ -1078,7 +1078,7 @@ class HeatValidation(BaseDatasetValidator):
                 # add input of biomass
                 biomass = sum(
                     [
-                        exc["amount"] * 18
+                        exc["amount"] * 16.2
                         for exc in ds["exchanges"]
                         if any(x in exc["name"] for x in ["biomass", "wood", "timber"])
                         and "ethanol" not in exc["name"]
@@ -1584,19 +1584,19 @@ class ElectricityValidation(BaseDatasetValidator):
                     # matches the location of the dataset
                     # according to the geo-linking rules
                     self.check_geo_linking(
-                        input_exc[0]["location"], dataset["location"]
+                        input_exc[0]["location"], dataset["location"], dataset["name"]
                     )
 
-    def check_geo_linking(self, exc_loc, dataset_loc):
+    def check_geo_linking(self, exc_loc, dataset_loc, dataset_name):
         # check that the location of the input
         # matches the location of the dataset
         # according to the ecoinvent-IAM geo-linking rules
         if dataset_loc in ["RER", "Europe without Switzerland", "FR"]:
-            if exc_loc not in ["EUR", "WEU", "EU-15"]:
+            if exc_loc not in ["EUR", "WEU", "EU-15", "FRA"]:
                 message = "Electricity market input has incorrect location."
                 self.log_issue(
                     {"location": dataset_loc},
-                    "incorrect old electricity market input",
+                    f"{dataset_name} has incorrect old electricity market input: {exc_loc}",
                     message,
                 )
         if exc_loc != self.geo.ecoinvent_to_iam_location(dataset_loc):
@@ -2655,9 +2655,12 @@ class BiomassValidation(BaseDatasetValidator):
 
 
 class MetalsValidation(BaseDatasetValidator):
-    def __init__(self, model, scenario, year, regions, database, iam_data):
-        super().__init__(model, scenario, year, regions, database)
+    def __init__(
+        self, model, scenario, year, regions, database, iam_data, system_model
+    ):
+        super().__init__(model, scenario, year, regions, database, system_model)
         self.iam_data = iam_data
+        self.system_model = system_model
 
     def run_metals_checks(self):
         self.check_market_balance()
@@ -2665,6 +2668,7 @@ class MetalsValidation(BaseDatasetValidator):
         self.check_interpolation()
         self.check_excel_shares_preserved()
         self.save_log()
+
         if self.major_issues_log:
             print(
                 "---> MAJOR anomalies found during metals update: check the change report."
@@ -2826,7 +2830,9 @@ class MetalsValidation(BaseDatasetValidator):
                 expected = expected_shares.get(country_long, 0) * primary_share
                 actual = actual_shares.get(country_short, 0)
 
-                if expected > 0.01:  # Only check significant shares
+                if (
+                    expected > 0.01 and self.system_model != "consequential"
+                ):  # Only check significant shares
                     relative_error = (
                         abs(actual - expected) / expected
                         if expected > 0

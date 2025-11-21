@@ -19,7 +19,7 @@ biomass crops - purpose grown:
         - market for wood chips, wet
   lhv:
     unit: megajoule
-    value: 18.5
+    value: 16.2
 
 biomass wood - purpose grown:
   iam_aliases:
@@ -32,7 +32,7 @@ biomass wood - purpose grown:
     mask: willow
   lhv:
     unit: megajoule
-    value: 18.5
+    value: 16.5
 
 biomass - residual:
   iam_aliases:
@@ -49,4 +49,4 @@ biomass - residual:
       reference product: forest residue
   lhv:
     unit: megajoule
-    value: 18.5
+    value: 16.2

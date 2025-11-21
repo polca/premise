@@ -2,30 +2,35 @@ spruce:
   ecoinvent_aliases:
     fltr:
       name: softwood forestry, spruce
+      reference product: wood chips
     mask: market
 
 pine:
   ecoinvent_aliases:
     fltr:
       name: softwood forestry, pine
+      reference product: wood chips
     mask: market
 
 birch:
   ecoinvent_aliases:
     fltr:
       name: hardwood forestry, birch
+      reference product: wood chips
     mask: market
 
 oak:
   ecoinvent_aliases:
     fltr:
       name: hardwood forestry, oak
+      reference product: wood chips
     mask: market
 
 beech:
   ecoinvent_aliases:
     fltr:
       name: hardwood forestry, beech
+      reference product: wood chips
     mask: market
 
 mixed_species:
@@ -39,11 +44,13 @@ sawing, softwood:
   ecoinvent_aliases:
     fltr:
       name: sawing, softwood
+      reference product: sawnwood
 
 sawing, hardwood:
   ecoinvent_aliases:
     fltr:
       name: sawing, hardwood
+      reference product: sawnwood
 
 wood chips, hardwood:
   ecoinvent_aliases:
@@ -68,12 +75,13 @@ eucalyptus:
   ecoinvent_aliases:
     fltr:
       name: hardwood forestry, eucalyptus
+      reference product: sawlog
     mask: market
 
 softwood market:
   ecoinvent_aliases:
     fltr:
-      name: market for sawlog and veneer log, softwood
+      name: market for sawlog and veneer log, softwood, measured as solid wood
 
 hardwood market:
   ecoinvent_aliases:

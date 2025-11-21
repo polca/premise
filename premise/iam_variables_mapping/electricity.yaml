@@ -15,12 +15,13 @@ Biogas CHP:
 Biomass CHP:
   ecoinvent_aliases:
     fltr:
-    - heat and power co-generation, wood chips
+    - heat and power co-generation, wood chips, 6667
     mask:
       reference product:
       - heat
       - label
       - renewable
+      - state
   ecoinvent_fuel_aliases:
     fltr:
     - market for wood chips, wet, measured as dry mass
@@ -98,14 +99,14 @@ Biomass IGCC:
   eff_aliases:
     gcam: Efficiency|Electricity|biomass (IGCC)
     image: Efficiency|Electricity|Biomass|w/o CCS|2
-    message: Efficiency|Electricity|Biomass|w/o CCS|1
+    message: Efficiency|Electricity|Biomass|Solids|w/o CCS|1
     remind: Tech|Electricity|Biomass|Gasification Combined Cycle w/o CC|Efficiency
     remind-eu: Tech|Electricity|Biomass|Gasification Combined Cycle w/o CC|Efficiency
     tiam-ucl: Efficiency|Electricity|Biomass gasification|w/o CCS
   iam_aliases:
     gcam: Secondary Energy|Electricity|biomass (IGCC)
     image: Secondary Energy|Electricity|Biomass|w/o CCS|2
-    message: Secondary Energy|Electricity|Biomass|w/o CCS|1
+    message: Secondary Energy|Electricity|Biomass|Solids|w/o CCS|1
     remind: SE|Electricity|Biomass|++|Gasification Combined Cycle w/o CC
     remind-eu: SE|Electricity|Biomass|++|Gasification Combined Cycle w/o CC
     tiam-ucl: Secondary Energy|Electricity|Biomass gasification|w/o CCS
@@ -124,7 +125,7 @@ Biomass IGCC CCS:
   eff_aliases:
     gcam: Efficiency|Electricity|biomass (IGCC CCS)
     image: Efficiency|Electricity|Biomass|w/ CCS|1
-    message: Efficiency|Electricity|Biomass|w/o CCS|1
+    message: Efficiency|Electricity|Biomass|Solids|w/o CCS|1
     remind: Tech|Electricity|Biomass|Gasification Combined Cycle w/ CC|Efficiency
     remind-eu: Tech|Electricity|Biomass|Gasification Combined Cycle w/ CC|Efficiency
     tiam-ucl: Efficiency|Electricity|Biomass gasification|w CCS
@@ -132,7 +133,7 @@ Biomass IGCC CCS:
   iam_aliases:
     gcam: Secondary Energy|Electricity|biomass (IGCC CCS)
     image: Secondary Energy|Electricity|Biomass|w/ CCS|1
-    message: Secondary Energy|Electricity|Biomass|w/ CCS|1
+    message: Secondary Energy|Electricity|Biomass|Solids|w/ CCS|1
     remind: SE|Electricity|Biomass|++|Gasification Combined Cycle w/ CC
     remind-eu: SE|Electricity|Biomass|++|Gasification Combined Cycle w/ CC
     tiam-ucl: Secondary Energy|Electricity|Biomass gasification|w CCS
@@ -167,13 +168,13 @@ Biomass ST:
   eff_aliases:
     gcam: Efficiency|Electricity|biomass (conv)
     image: Efficiency|Electricity|Biomass|w/o CCS|1
-    message: Efficiency|Electricity|Biomass|w/o CCS|2
+    message: Efficiency|Electricity|Biomass|Solids|w/o CCS|2
     tiam-ucl: Efficiency|Electricity|Biomass combustion|w/o CCS
 
   iam_aliases:
     gcam: Secondary Energy|Electricity|biomass (conv)
     image: Secondary Energy|Electricity|Biomass|w/o CCS|1
-    message: Secondary Energy|Electricity|Biomass|w/o CCS|2
+    message: Secondary Energy|Electricity|Biomass|Solids|w/o CCS|2
     tiam-ucl: Secondary Energy|Electricity|Biomass combustion|w/o CCS
   max_efficiency: 0.3
 Biomass ST CCS:
@@ -237,9 +238,10 @@ Coal CHP:
   ecoinvent_aliases:
     fltr:
     - heat and power co-generation, hard coal
-    - heat and power co-generation, lignite
     mask:
-      reference product: heat
+      reference product:
+        - heat
+        - lignite
   ecoinvent_fuel_aliases:
     fltr:
     - market for hard coal
@@ -310,19 +312,16 @@ Coal IGCC CCS:
     fltr:
     - electricity production, at hard coal-fired IGCC power plant, pre, pipeline 200km,
       storage 1000m
-    - electricity production, at lignite-fired IGCC power plant, pre, pipeline 200km,
-      storage 1000m
   ecoinvent_fuel_aliases:
     fltr:
     - market for hard coal
-    - lignite mine operation
-    - market for lignite
     mask:
       name:
       - factory
       - plant
       - briquettes
       - ash
+      - lignite
   eff_aliases:
     gcam: Efficiency|Electricity|coal (IGCC CCS)
     image: Efficiency|Electricity|Coal|w/ CCS|1
@@ -345,13 +344,13 @@ Coal PC:
   ecoinvent_aliases:
     fltr:
     - electricity production, hard coal
-    - electricity production, lignite
     mask:
       name:
       - mine
       - supercritical
       - subcritical
       - conventional
+      - lignite
   ecoinvent_fuel_aliases:
     fltr:
     - market for hard coal
@@ -584,7 +583,6 @@ Gas CHP:
     fltr:
     - heat and power co-generation, natural gas, combined cycle power plant, 400MW
       electrical
-    - heat and power co-generation, natural gas, conventional power plant, 100MW electrical
     mask:
       reference product: heat
   ecoinvent_fuel_aliases:
@@ -953,7 +951,7 @@ Solar PV Centralized:
   iam_aliases:
     gcam: Secondary Energy|Electricity|PV
     image: Secondary Energy|Electricity|Solar|PV|1
-    message: Secondary Energy|Electricity|Solar|PV
+    message: Secondary Energy|Electricity|Solar|PV|Commercial
     remind: SE|Electricity|Solar|+|PV
     remind-eu: SE|Electricity|Solar|+|PV
     tiam-ucl: Secondary Energy|Electricity|Concentrated Solar PV centralised
@@ -965,6 +963,7 @@ Solar PV Residential:
   iam_aliases:
     gcam: Secondary Energy|Electricity|rooftop_pv
     image: Secondary Energy|Electricity|Solar|PV|2
+    message: Secondary Energy|Electricity|Solar|PV|Residential
     tiam-ucl: Secondary Energy|Electricity|Concentrated Solar PV decentralised
 Storage, Battery:
   ecoinvent_aliases:

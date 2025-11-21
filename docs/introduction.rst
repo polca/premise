@@ -298,6 +298,7 @@ And here is a plot of the same data:
 .. image:: mapped_vars_comparison.png
    :width: 600pt
    :align: center
+   :alt: Comparison plot of mapped variables across IAM models
 
 The table and plot show how *premise* connects to IMAGE, REMIND, REMIND-EU, TIAM-UCL and GCAM,
 focusing on energy generation, industry, and transport:
@@ -720,6 +721,7 @@ And here is a plot of the same data:
 .. image:: GMST_comparison.png
    :width: 600pt
    :align: center
+   :alt: Global mean surface temperature (GMST) comparison across scenarios
 
 Hence, the choice of model and scenario is usually a weighted trade-off between:
 
@@ -761,13 +763,6 @@ and GMST increase by 2100.
      - Low forcing
      -
      - SSP1-L
-     -
-     -
-   * - **SSP1**
-     - 1.92°C
-     - NDC (nat. determined contributions)
-     - SSP1-NDC
-     -
      -
      -
    * - **SSP1**
@@ -833,29 +828,26 @@ and GMST increase by 2100.
      -
      - SSP2-M
      - SSP2-RCP45
-   * - **SSP3**
-     - 1.85°C
-     - Paris-consistent (peak budget)
-     - SSP3-PkBudg1000
      -
-     -
-     -
-   * - **SSP3**
-     - 2.54°C
-     - NDC (nat. determined contributions)
-     - SSP3-NDC
-     -
-     -
-   * - **SSP3**
-     - 3.20°C
+   * - **SSP2**
+     - 3.0°C
      - NPI (nat. policies implemented)
-     - SSP3-NPi
+     - SSP2-NPi
      -
      -
+     -
+   * - **SSP2**
+     - 3.1-3.5°C
+     - Base (no explicit policy, TIAM reference)
+     -
+     -
+     - SSP2-Base
+     - SSP2-Base
    * - **SSP3**
-     - 1.85°C
-     - Paris-consistent (peak budget)
-     - SSP3-PkBudg1000
+     - 3.50°C
+     - High forcing
+     -
+     - SSP3-H
      -
      -
    * - **SSP3**
@@ -897,6 +889,7 @@ Workflow
 --------
 
 .. image:: main_workflow.png
+   :alt: Main workflow diagram of premise ETL process
 
 As illustrated in the workflow diagram above, *premise* follows an Extract, Transform, Load (ETL_) process:
 

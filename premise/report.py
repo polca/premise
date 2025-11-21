@@ -271,56 +271,186 @@ def fetch_data(
     return None
 
 
-def generate_summary_report(scenarios: list, filename: Path) -> None:
+# --- Helpers (new) ------------------------------------------------------------
+
+
+def _dataarray_to_wide_df(da: xr.DataArray) -> pd.DataFrame:
+    """
+    Convert a (variables, year[, ...]) DataArray into a wide DataFrame
+    with variables as columns and year as the index.
+    Returns an empty DataFrame if conversion yields nothing useful.
+    """
+    if da is None:
+        return pd.DataFrame()
+
+    # Defensive: ensure expected coordinates exist
+    if "variables" not in da.coords or "year" not in da.coords:
+        return pd.DataFrame()
+
+    try:
+        df = da.to_dataframe("val")
+        # Want wide format with variables as columns, years as rows
+        # After unstack, top level 'val' remains; select it and transpose so rows are years
+        df = df.unstack()["val"].T
+        df = df.rename_axis(index=None)
+        # Drop columns that are completely NA
+        df = df.dropna(axis=1, how="all")
+        # Drop rows that are completely NA
+        df = df.dropna(axis=0, how="all")
+        # Ensure index is sortable (years)
+        if not df.empty:
+            try:
+                df.index = pd.to_numeric(df.index)
+            except Exception:
+                pass
+            df = df.sort_index()
+        return df
+    except Exception:
+        return pd.DataFrame()
+
+
+def _write_wide_df(
+    worksheet, start_row: int, start_col: int, df: pd.DataFrame
+) -> tuple[int, int]:
+    """
+    Write a wide DataFrame (index as categories, columns as series)
+    to the worksheet starting at (start_row, start_col).
+    Returns (n_rows_written, n_cols_written).
+    """
+    if df is None or df.empty:
+        return (0, 0)
+
+    # Compose a table with the index in the first column
+    table = df.copy()
+    table.insert(0, "__cats__", table.index)
+
+    # Use openpyxl helper to get row-wise representation
+    rows = dataframe_to_rows(table, index=False, header=True)
+
+    n_rows = 0
+    n_cols = 0
+    for r_idx, row_vals in enumerate(rows):
+        # openpyxl sometimes yields trailing None-only rows; filter them
+        if not any(v is not None for v in row_vals):
+            continue
+        for c_idx, value in enumerate(row_vals, 0):
+            worksheet.cell(
+                row=start_row + n_rows, column=start_col + c_idx, value=value
+            )
+            n_cols = max(n_cols, c_idx + 1)
+        n_rows += 1
+
+    return (n_rows, n_cols)
+
+
+def _add_chart_if_data(
+    worksheet,
+    sector: str,
+    title: str,
+    start_row: int,
+    start_col: int,
+    n_rows: int,
+    n_cols: int,
+    y_axis_label: str | None,
+    with_charts: bool = True,
+):
+    """
+    Add an Area/Line chart using the block written by _write_wide_df.
+    Guarded to avoid invalid ranges and empty data.
+    """
+    if not with_charts:
+        return
+
+    # Need at least header row + 1 data row, and at least 1 series column
+    if n_rows < 2 or n_cols < 2:
+        return
+
+    # Cells:
+    # - Column layout is: [__cats__ | series1 | series2 | ...]
+    # - Header at start_row, data from start_row+1 to start_row+n_rows-1
+    # - Categories are in (start_col), series start at (start_col+1)
+    min_col_vals = start_col + 1
+    max_col_vals = start_col + (n_cols - 1)
+    min_row_vals = start_row  # include header for titles_from_data=True
+    max_row_vals = start_row + (n_rows - 1)
+
+    # Safety: ensure ranges make sense
+    if max_col_vals < min_col_vals or max_row_vals <= min_row_vals:
+        return
+
+    values = Reference(
+        worksheet,
+        min_col=min_col_vals,
+        min_row=min_row_vals,
+        max_col=max_col_vals,
+        max_row=max_row_vals,
+    )
+    cats = Reference(
+        worksheet,
+        min_col=start_col,
+        min_row=start_row + 1,
+        max_row=max_row_vals,
+    )
+
+    # Pick chart type
+    if any(x in sector for x in ("generation", "mix", "Transport")):
+        chart = AreaChart(grouping="stacked")
+    elif "eff" in sector:
+        chart = LineChart()
+    elif "CCS" in sector:
+        chart = AreaChart()
+    else:
+        chart = LineChart()
+
+    # Configure and attach
+    chart.add_data(values, titles_from_data=True)
+    chart.set_categories(cats)
+    chart.title = title
+    if y_axis_label:
+        chart.y_axis.title = y_axis_label
+
+    chart.x_axis.majorTickMark = "out"
+    chart.x_axis.tickLblPos = "nextTo"
+    chart.y_axis.majorTickMark = "out"
+    chart.y_axis.tickLblPos = "nextTo"
+    chart.x_axis.delete = False
+    chart.y_axis.delete = False
+
+    chart.height = 8
+    chart.width = 16
+    # Anchor next to the table block
+    chart.anchor = f"{get_column_letter(start_col + 2)}{start_row + 1}"
+
+    worksheet.add_chart(chart)
+
+
+# --- generate_summary_report (updated) ---------------------------------------
+
+
+def generate_summary_report(
+    scenarios: list, filename: Path, *, with_charts: bool = True
+) -> None:
     """
     Generate a summary report of the scenarios.
+
+    with_charts: set to False for huge runs to reduce memory usage.
     """
 
     SECTORS = {
-        "Population": {
-            "filepath": IAM_OTHER_VARS,
-            "variables": [
-                "population",
-            ],
-        },
-        "GDP": {
-            "filepath": IAM_OTHER_VARS,
-            "variables": [
-                "gdp",
-            ],
-        },
-        "CO2": {
-            "filepath": IAM_OTHER_VARS,
-            "variables": [
-                "CO2",
-            ],
-        },
-        "GMST": {
-            "filepath": IAM_OTHER_VARS,
-            "variables": [
-                "GMST",
-            ],
-        },
-        "Electricity - generation": {
-            "filepath": IAM_ELEC_VARS,
-        },
-        "Electricity (biom) - generation": {
-            "filepath": IAM_BIOMASS_VARS,
-        },
-        "Electricity - efficiency": {
-            "filepath": IAM_ELEC_VARS,
-        },
+        "Population": {"filepath": IAM_OTHER_VARS, "variables": ["population"]},
+        "GDP": {"filepath": IAM_OTHER_VARS, "variables": ["gdp"]},
+        "CO2": {"filepath": IAM_OTHER_VARS, "variables": ["CO2"]},
+        "GMST": {"filepath": IAM_OTHER_VARS, "variables": ["GMST"]},
+        "Electricity - generation": {"filepath": IAM_ELEC_VARS},
+        "Electricity (biom) - generation": {"filepath": IAM_BIOMASS_VARS},
+        "Electricity - efficiency": {"filepath": IAM_ELEC_VARS},
         "Heat (buildings) - generation": {
             "filepath": IAM_HEATING_VARS,
-            "filter": [
-                "heat, buildings",
-            ],
+            "filter": ["heat, buildings"],
         },
         "Heat (industrial) - generation": {
             "filepath": IAM_HEATING_VARS,
-            "filter": [
-                "heat, industrial",
-            ],
+            "filter": ["heat, industrial"],
         },
         "Fuel (gasoline) - generation": {
             "filepath": IAM_FUELS_VARS,
@@ -332,17 +462,11 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
         },
         "Fuel (diesel) - generation": {
             "filepath": IAM_FUELS_VARS,
-            "filter": [
-                "diesel",
-                "biodiesel",
-            ],
+            "filter": ["diesel", "biodiesel"],
         },
         "Fuel (diesel) - efficiency": {
             "filepath": IAM_FUELS_VARS,
-            "filter": [
-                "diesel",
-                "biodiesel",
-            ],
+            "filter": ["diesel", "biodiesel"],
         },
         "Fuel (gas) - generation": {
             "filepath": IAM_FUELS_VARS,
@@ -354,55 +478,33 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
         },
         "Fuel (hydrogen) - generation": {
             "filepath": IAM_FUELS_VARS,
-            "filter": [
-                "hydrogen",
-            ],
+            "filter": ["hydrogen"],
         },
         "Fuel (hydrogen) - efficiency": {
             "filepath": IAM_FUELS_VARS,
-            "filter": [
-                "hydrogen",
-            ],
+            "filter": ["hydrogen"],
         },
         "Fuel (kerosene) - generation": {
             "filepath": IAM_FUELS_VARS,
-            "filter": [
-                "kerosene",
-            ],
+            "filter": ["kerosene"],
         },
         "Fuel (kerosene) - efficiency": {
             "filepath": IAM_FUELS_VARS,
-            "filter": [
-                "kerosene",
-            ],
+            "filter": ["kerosene"],
         },
         "Fuel (LPG) - generation": {
             "filepath": IAM_FUELS_VARS,
-            "filter": [
-                "liquefied petroleum gas",
-            ],
+            "filter": ["liquefied petroleum gas"],
         },
         "Fuel (LPG) - efficiency": {
             "filepath": IAM_FUELS_VARS,
-            "filter": [
-                "liquefied petroleum gas",
-            ],
+            "filter": ["liquefied petroleum gas"],
         },
-        "Cement - generation": {
-            "filepath": IAM_CEMENT_VARS,
-        },
-        "Cement - efficiency": {
-            "filepath": IAM_CEMENT_VARS,
-        },
-        "Steel - generation": {
-            "filepath": IAM_STEEL_VARS,
-        },
-        "Steel - efficiency": {
-            "filepath": IAM_STEEL_VARS,
-        },
-        "CDR - generation": {
-            "filepath": IAM_CDR_VARS,
-        },
+        "Cement - generation": {"filepath": IAM_CEMENT_VARS},
+        "Cement - efficiency": {"filepath": IAM_CEMENT_VARS},
+        "Steel - generation": {"filepath": IAM_STEEL_VARS},
+        "Steel - efficiency": {"filepath": IAM_STEEL_VARS},
+        "CDR - generation": {"filepath": IAM_CDR_VARS},
         "Direct Air Capture - energy mix": {
             "filepath": IAM_HEATING_VARS,
             "variables": [
@@ -420,42 +522,18 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
             "filepath": IAM_CDR_VARS,
             "variables": ["dac_solvent"],
         },
-        "Transport (two-wheelers)": {
-            "filepath": IAM_TRSPT_TWO_WHEELERS_VARS,
-        },
-        "Transport (two-wheelers) - eff": {
-            "filepath": IAM_TRSPT_TWO_WHEELERS_VARS,
-        },
-        "Transport (cars)": {
-            "filepath": IAM_TRSPT_CARS_VARS,
-        },
-        "Transport (cars) - eff": {
-            "filepath": IAM_TRSPT_CARS_VARS,
-        },
-        "Transport (buses)": {
-            "filepath": IAM_TRSPT_BUSES_VARS,
-        },
-        "Transport (buses) - eff": {
-            "filepath": IAM_TRSPT_BUSES_VARS,
-        },
-        "Transport (trucks)": {
-            "filepath": IAM_TRSPT_TRUCKS_VARS,
-        },
-        "Transport (trucks) - eff": {
-            "filepath": IAM_TRSPT_TRUCKS_VARS,
-        },
-        "Transport (trains)": {
-            "filepath": IAM_TRSPT_TRAINS_VARS,
-        },
-        "Transport (trains) - eff": {
-            "filepath": IAM_TRSPT_TRAINS_VARS,
-        },
-        "Transport (ships)": {
-            "filepath": IAM_TRSPT_SHIPS_VARS,
-        },
-        "Transport (ships) - eff": {
-            "filepath": IAM_TRSPT_SHIPS_VARS,
-        },
+        "Transport (two-wheelers)": {"filepath": IAM_TRSPT_TWO_WHEELERS_VARS},
+        "Transport (two-wheelers) - eff": {"filepath": IAM_TRSPT_TWO_WHEELERS_VARS},
+        "Transport (cars)": {"filepath": IAM_TRSPT_CARS_VARS},
+        "Transport (cars) - eff": {"filepath": IAM_TRSPT_CARS_VARS},
+        "Transport (buses)": {"filepath": IAM_TRSPT_BUSES_VARS},
+        "Transport (buses) - eff": {"filepath": IAM_TRSPT_BUSES_VARS},
+        "Transport (trucks)": {"filepath": IAM_TRSPT_TRUCKS_VARS},
+        "Transport (trucks) - eff": {"filepath": IAM_TRSPT_TRUCKS_VARS},
+        "Transport (trains)": {"filepath": IAM_TRSPT_TRAINS_VARS},
+        "Transport (trains) - eff": {"filepath": IAM_TRSPT_TRAINS_VARS},
+        "Transport (ships)": {"filepath": IAM_TRSPT_SHIPS_VARS},
+        "Transport (ships) - eff": {"filepath": IAM_TRSPT_SHIPS_VARS},
         "Battery (mobile)": {
             "variables": [
                 "NMC111",
@@ -472,7 +550,7 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
                 "ASSB (oxidic)",
                 "ASSB (polymer)",
                 "ASSB (sulfidic)",
-            ],
+            ]
         },
         "Battery (stationary)": {
             "variables": [
@@ -483,7 +561,7 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
                 "LEAD-ACID",
                 "VRFB",
                 "NAS",
-            ],
+            ]
         },
     }
 
@@ -493,28 +571,25 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
     workbook = openpyxl.Workbook()
     workbook.remove(workbook.active)
 
-    for sector, filepath in SECTORS.items():
-        if "variables" in filepath:
-            variables = filepath["variables"]
+    for sector, spec in SECTORS.items():
+        # Build variable list
+        if "variables" in spec:
+            variables = spec["variables"]
         else:
-            variables = get_variables(filepath["filepath"])
+            variables = get_variables(spec["filepath"])
 
-        if "filter" in filepath:
+        if "filter" in spec:
             variables = [
-                x for x in variables if any(x.startswith(y) for y in filepath["filter"])
+                x for x in variables if any(x.startswith(y) for y in spec["filter"])
             ]
 
-        # before creating the worksheet
-        # check if we have data to plot
-
+        # Skip sectors with no available data across all scenarios
         is_data = False
         for scenario in scenarios:
-            iam_data = fetch_data(
-                iam_data=scenario["iam data"],
-                sector=sector,
-                variable=variables,
+            iam_da = fetch_data(
+                iam_data=scenario["iam data"], sector=sector, variable=variables
             )
-            if iam_data is not None:
+            if iam_da is not None:
                 is_data = True
                 break
         if not is_data:
@@ -523,211 +598,119 @@ def generate_summary_report(scenarios: list, filename: Path) -> None:
         worksheet = workbook.create_sheet(sector)
 
         col, row = (1, 1)
+        expl_text = metadata.get(sector, {}).get("expl_text", "")
+        worksheet.cell(column=col, row=row, value=expl_text)
 
-        worksheet.cell(
-            column=col,
-            row=row,
-            value=metadata[sector]["expl_text"],
-        )
-
-        scenario_list = []
-
-        last_col_used = 0
+        scenario_list = set()
+        last_col_used = 1
 
         for scenario_idx, scenario in enumerate(scenarios):
-            if (scenario["model"], scenario["pathway"]) not in scenario_list:
+            key = (scenario["model"], scenario["pathway"])
+            if key in scenario_list:
+                continue
 
-                iam_data = fetch_data(
-                    iam_data=scenario["iam data"],
-                    sector=sector,
-                    variable=variables,
-                )
+            iam_da = fetch_data(
+                iam_data=scenario["iam data"], sector=sector, variable=variables
+            )
+            if iam_da is None:
+                continue
 
-                if iam_data is None:
-                    continue
+            # Optional unit conversions (kept from your code; "CCS" sectors not present though)
+            if "CCS" in sector:
+                try:
+                    iam_da = iam_da * 100
+                except Exception:
+                    pass
 
-                if "CCS" in sector and iam_data is not None:
-                    iam_data *= 100
+            if scenario_idx > 0:
+                # Put some horizontal spacing between scenario blocks
+                col = last_col_used + metadata.get(sector, {}).get("offset", 2)
 
-                # if sector == "CDR - generation":
-                #    iam_data *= -1
+            row = 3
 
-                if iam_data is None:
-                    continue
+            # Header
+            header = f"{scenario['model'].upper()} - {scenario['pathway'].upper()}"
+            worksheet.cell(column=col, row=row, value=header)
+            worksheet.cell(column=col, row=row).font = Font(
+                bold=True, size=14, underline="single"
+            )
+            row += 2
 
-                if scenario_idx > 0:
-                    col = last_col_used + metadata[sector]["offset"]
+            if sector in ("Battery (mobile)", "Battery (stationary)"):
+                # Iterate per sub-scenario within batteries
+                for scen in iam_da.coords["scenario"].values:
+                    worksheet.cell(column=col, row=row, value=scen)
+                    row += 3
 
-                row = 3
+                    sub = iam_da.sel(
+                        scenario=scen,
+                        year=[y for y in iam_da.coords["year"].values if y <= 2100],
+                    )
+                    df = _dataarray_to_wide_df(sub)
+                    if df.empty:
+                        continue
 
-                worksheet.cell(
-                    column=col,
-                    row=row,
-                    value=f"{scenario['model'].upper()} - {scenario['pathway'].upper()}",
-                )
-                worksheet.cell(column=col, row=row).font = Font(
-                    bold=True, size=14, underline="single"
-                )
+                    n_rows, n_cols = _write_wide_df(worksheet, row, col, df)
+                    _add_chart_if_data(
+                        worksheet=worksheet,
+                        sector=sector,
+                        title=f"{scen} scenario",
+                        start_row=row,
+                        start_col=col,
+                        n_rows=n_rows,
+                        n_cols=n_cols,
+                        y_axis_label=metadata.get(sector, {}).get("label"),
+                        with_charts=with_charts,
+                    )
 
-                row += 2
+                    last_col_used = max(last_col_used, col + n_cols - 1)
+                    row += n_rows + 2
 
-                if sector in ("Battery (mobile)", "Battery (stationary)"):
-                    for scen in iam_data.coords["scenario"].values:
+            else:
+                # Iterate per region
+                for region in getattr(scenario["iam data"], "regions", []):
+                    if sector in ("GMST", "CO2") and region != "World":
+                        continue
 
-                        worksheet.cell(column=col, row=row, value=scen)
+                    worksheet.cell(column=col, row=row, value=region)
+                    row += 3
 
-                        row += 3
+                    # IMPORTANT: use DataArray coords, not DataArray.variables (Dataset-only)
+                    valid_vars = set(iam_da.coords["variables"].values)
+                    pick_vars = [v for v in variables if v in valid_vars]
 
-                        dataframe = iam_data.sel(
-                            scenario=scen,
-                            year=[
-                                y for y in iam_data.coords["year"].values if y <= 2100
-                            ],
-                        )
+                    sub = iam_da.sel(
+                        variables=pick_vars,
+                        region=region,
+                        year=[y for y in iam_da.coords["year"].values if y <= 2100],
+                    )
 
-                        if len(dataframe) > 0:
-                            dataframe = dataframe.to_dataframe("val")
-                            dataframe = dataframe.unstack()["val"]
-                            dataframe = dataframe.T
-                            dataframe = dataframe.rename_axis(index=None)
+                    df = _dataarray_to_wide_df(sub)
+                    if df.empty:
+                        continue
 
-                            data = dataframe_to_rows(dataframe)
+                    n_rows, n_cols = _write_wide_df(worksheet, row, col, df)
+                    _add_chart_if_data(
+                        worksheet=worksheet,
+                        sector=sector,
+                        title=f"{region} - {sector} ({metadata.get(sector, {}).get('label', '')})",
+                        start_row=row,
+                        start_col=col,
+                        n_rows=n_rows,
+                        n_cols=n_cols,
+                        y_axis_label=None,  # title already includes label
+                        with_charts=with_charts,
+                    )
 
-                            counter = 0
-                            for _, data_row in enumerate(data, 1):
-                                if data_row != [None]:
-                                    for c_idx, value in enumerate(data_row, 1):
-                                        worksheet.cell(
-                                            row=row + counter,
-                                            column=col + c_idx,
-                                            value=value,
-                                        )
-                                        last_col_used = col + c_idx
-                                    counter += 1
+                    last_col_used = max(last_col_used, col + n_cols - 1)
+                    row += n_rows + 2
 
-                            values = Reference(
-                                worksheet,
-                                min_col=col + 2,
-                                min_row=row,
-                                max_col=col + c_idx,
-                                max_row=row + counter - 1,
-                            )
-                            cats = Reference(
-                                worksheet,
-                                min_col=col + 1,
-                                min_row=row + 1,
-                                max_row=row + counter - 1,
-                            )
-                            chart = AreaChart(grouping="stacked")
-
-                            chart.add_data(values, titles_from_data=True)
-                            chart.set_categories(cats)
-                            chart.title = f"{scen} scenario"
-                            chart.y_axis.title = metadata[sector]["label"]
-                            chart.height = 8
-                            chart.width = 16
-                            chart.anchor = f"{get_column_letter(col + 2)}{row + 1}"
-                            worksheet.add_chart(chart)
-
-                            row += counter + 2
-
-                else:
-                    for region in scenario["iam data"].regions:
-                        if (
-                            sector
-                            in [
-                                "GMST",
-                                "CO2",
-                            ]
-                            and region != "World"
-                        ):
-                            continue
-
-                        worksheet.cell(column=col, row=row, value=region)
-
-                        row += 3
-
-                        dataframe = iam_data.sel(
-                            variables=[
-                                v for v in variables if v in iam_data.variables.values
-                            ],
-                            region=region,
-                            year=[
-                                y for y in iam_data.coords["year"].values if y <= 2100
-                            ],
-                        )
-
-                        if len(dataframe) > 0:
-                            dataframe = dataframe.to_dataframe("val")
-                            dataframe = dataframe.unstack()["val"]
-                            dataframe = dataframe.T
-                            dataframe = dataframe.rename_axis(index=None)
-
-                            data = dataframe_to_rows(dataframe)
-
-                            counter = 0
-                            for _, data_row in enumerate(data, 1):
-                                if data_row != [None]:
-                                    for c_idx, value in enumerate(data_row, 1):
-                                        worksheet.cell(
-                                            row=row + counter,
-                                            column=col + c_idx,
-                                            value=value,
-                                        )
-                                        last_col_used = col + c_idx
-                                    counter += 1
-
-                            values = Reference(
-                                worksheet,
-                                min_col=col + 2,
-                                min_row=row,
-                                max_col=col + c_idx,
-                                max_row=row + counter - 1,
-                            )
-                            cats = Reference(
-                                worksheet,
-                                min_col=col + 1,
-                                min_row=row + 1,
-                                max_row=row + counter - 1,
-                            )
-
-                            if any(x in sector for x in ("generation", "mix")):
-                                chart = AreaChart(grouping="stacked")
-                            elif "eff" in sector:
-                                chart = LineChart()
-                            elif "CCS" in sector:
-                                chart = AreaChart()
-                            elif "Transport" in sector:
-                                chart = AreaChart(grouping="stacked")
-                            else:
-                                chart = LineChart()
-
-                            chart.add_data(values, titles_from_data=True)
-                            chart.set_categories(cats)
-
-                            chart.x_axis.majorTickMark = "out"
-                            chart.x_axis.tickLblPos = "nextTo"
-
-                            chart.y_axis.majorTickMark = "out"
-                            chart.y_axis.tickLblPos = "nextTo"
-
-                            chart.x_axis.delete = False
-                            chart.y_axis.delete = False
-
-                            chart.title = (
-                                f"{region} - {sector} ({metadata[sector]['label']})"
-                            )
-                            # chart.y_axis.title = metadata[sector]["label"] + "\n\n\n\n"
-                            chart.height = 8
-                            chart.width = 16
-                            chart.anchor = f"{get_column_letter(col + 2)}{row + 1}"
-                            worksheet.add_chart(chart)
-
-                            row += counter + 2
-
-                scenario_list.append((scenario["model"], scenario["pathway"]))
+            scenario_list.add(key)
 
     workbook.save(filename)
+
+
+# --- generate_change_report (updated, hardened) -------------------------------
 
 
 def generate_change_report(source, version, source_type, system_model):
@@ -735,7 +718,6 @@ def generate_change_report(source, version, source_type, system_model):
     Generate a change report of the scenarios from the log files.
     """
 
-    # create an Excel workbook
     workbook = openpyxl.Workbook()
     workbook.remove(workbook.active)
 
@@ -757,15 +739,10 @@ def generate_change_report(source, version, source_type, system_model):
         "premise_validation",
     ]
 
-    # fetch YAML file containing the reporting metadata
+    # fetch reporting metadata
     with open(LOG_REPORTING_FILEPATH, encoding="utf-8") as f:
         metadata = yaml.load(f, Loader=yaml.FullLoader)
 
-    # create a first tab
-    # where is displayed
-    # the name and version of the library
-    # the date of the report
-    # and the name of the source database
     worksheet = workbook.create_sheet("Change report")
     worksheet.cell(row=1, column=1, value="Library name")
     worksheet.cell(row=1, column=2, value="Library version")
@@ -787,81 +764,103 @@ def generate_change_report(source, version, source_type, system_model):
         dim_holder[get_column_letter(col)] = ColumnDimension(
             worksheet, min=col, max=col, width=20
         )
-
     worksheet.column_dimensions = dim_holder
 
-    for filepath in log_filepaths:
-        fp = Path(DIR_LOGS / filepath).with_suffix(".log")
-        # check if log file exists
+    for name in log_filepaths:
+        fp = Path(DIR_LOGS / name).with_suffix(".log")
         if not fp.is_file():
             continue
-        # if file exists, check that it is not empty
         if os.stat(fp).st_size == 0:
             continue
 
-        df = convert_log_to_excel_file(fp)
+        try:
+            df = convert_log_to_excel_file(fp)
+        except Exception as e:
+            # skip this file if unreadable
+            continue
 
-        # create a worksheet for this sector
-        worksheet = workbook.create_sheet(fetch_tab_name(filepath))
+        # Create per-sector sheet
+        tab_meta = metadata.get(name, {})
+        tab_name = tab_meta.get(
+            "tab", fetch_tab_name(name) if isinstance(name, str) else name
+        )
+        # Ensure a valid, unique sheet name (Excel max 31 chars)
+        tab_name = (tab_name or name)[:31]
+        worksheet = workbook.create_sheet(tab_name)
 
-        # add a description of each column
-        # in each row
-        for col, column in enumerate(fetch_columns(fp), 1):
-            worksheet.cell(
-                row=1,
-                column=col,
-                value=metadata[filepath]["columns"][column]["description"],
-            )
-            worksheet.cell(
-                row=2,
-                column=col,
-                value=metadata[filepath]["columns"][column].get("unit"),
-            )
+        # Add column descriptions/units
+        cols = fetch_columns(fp)
+        colmeta = tab_meta.get("columns", {})
+        for c_idx, column in enumerate(cols, 1):
+            desc = colmeta.get(column, {}).get("description", column)
+            unit = colmeta.get(column, {}).get("unit", "")
+            worksheet.cell(row=1, column=c_idx, value=desc)
+            worksheet.cell(row=2, column=c_idx, value=unit)
 
-        # add the df dataframe to the sheet
+        # Append data rows
         for r in dataframe_to_rows(df, index=False):
+            # dataframe_to_rows yields header first; we already wrote descriptions/units,
+            # so skip the header row it produces.
+            if r and r[0] == df.columns[0]:
+                continue
             worksheet.append(r)
 
-    # save the workbook in the working directory
-    # the file name is change_report with the current date
-    fp = Path(
+    # Save workbook
+    fp_out = Path(
         DIR_LOG_REPORT / f"change_report {datetime.now().strftime('%Y-%m-%d')}.xlsx"
     )
-    workbook.save(fp)
+    workbook.save(fp_out)
     empty_log_files()
+
+
+# --- fetch_columns / fetch_tab_name (safe) ------------------------------------
 
 
 def fetch_columns(variable):
     """
-    Read reporting.yaml which return
-    the columns for the variable.
+    Read reporting.yaml and return the columns for the variable.
+    `variable` may be a Path or a string stem.
     """
-
+    stem = variable.stem if hasattr(variable, "stem") else Path(variable).stem
     with open(LOG_REPORTING_FILEPATH, "r", encoding="utf-8") as stream:
         reporting = yaml.safe_load(stream)
 
-    return list(reporting[variable.stem]["columns"].keys())
+    # Defensive: return listed columns or empty list
+    cols = reporting.get(stem, {}).get("columns", {})
+    return list(cols.keys())
 
 
 def fetch_tab_name(variable):
     """
-    Read reporting.yaml which return
-    the tab name for the variable.
+    Read reporting.yaml and return the tab name for the variable key (string).
     """
-
+    key = variable if isinstance(variable, str) else str(variable)
     with open(LOG_REPORTING_FILEPATH, "r", encoding="utf-8") as stream:
         reporting = yaml.safe_load(stream)
+    return reporting.get(key, {}).get("tab", key)
 
-    return reporting[variable]["tab"]
+
+# --- convert_log_to_excel_file (hardened) -------------------------------------
 
 
 def convert_log_to_excel_file(filepath):
     """
-    Read the log file premise.log in the working directory.
-    Load into pandas dataframe and group the data by
-    scenario and variable.
+    Read a '|' delimited log file into a DataFrame with columns from reporting.yaml.
+    Handles mismatched column counts by trimming/padding; skips bad lines.
     """
+    # Engine=python is more forgiving for irregular lines
+    df = pd.read_csv(
+        filepath, sep="|", header=None, on_bad_lines="skip", engine="python"
+    )
+    cols = fetch_columns(filepath)
 
-    df = pd.read_csv(filepath, sep="|", header=None, on_bad_lines="skip")
-    df.columns = fetch_columns(filepath)
+    # Align column counts
+    if df.shape[1] > len(cols):
+        df = df.iloc[:, : len(cols)]
+    elif df.shape[1] < len(cols):
+        # pad with NA columns
+        for _ in range(len(cols) - df.shape[1]):
+            df[df.shape[1]] = pd.NA
+
+    df.columns = cols
     return df

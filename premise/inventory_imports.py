@@ -139,16 +139,6 @@ def generate_migration_maps(origin: str, destination: str) -> Dict[str, list]:
                     data["location"] = row[7]
                 response["data"].append(((row[2], row[3], row[4]), data))
 
-            # if row[0] == destination and row[1] == origin:
-            #    data = {}
-            #    if row[2] != "":
-            #        data["name"] = row[2]
-            #    if row[3] != "":
-            #        data["reference product"] = row[3]
-            #    if row[4] != "":
-            #        data["location"] = row[4]
-            #    response["data"].append(((row[5], row[6], row[7]), data))
-
         return response
 
 
@@ -592,12 +582,7 @@ class BaseInventoryImport:
         )
 
         try:
-            # for ds in ws.get_one(
-            #    self.database,
-            #    ws.equals("name", name),
-            #    ws.equals("reference product", ref_prod),
-            #    ws.equals("location", loc),
-            # ):
+
             for ds in self.database:
                 if (
                     ds["name"] == name
@@ -795,6 +780,20 @@ class BaseInventoryImport:
         )
 
         return None
+
+    def correct_keys(self):
+        """Lower-case all keys in-place."""
+
+        new_db = []
+        for ds in self.import_db.data:
+            new_ds = {k.lower(): v for k, v in ds.items()}
+            new_ds["exchanges"] = [
+                {k.lower(): v for k, v in exc.items()}
+                for exc in ds.get("exchanges", [])
+            ]
+            new_db.append(new_ds)
+
+        self.import_db.data = new_db
 
     def add_biosphere_links(self) -> None:
         """Add links for biosphere exchanges to :attr:`import_db`
@@ -1079,6 +1078,7 @@ class DefaultInventory(BaseInventoryImport):
         self.add_biosphere_links()
         self.add_product_field_to_exchanges()
         self.check_units()
+        self.correct_keys()
         self.add_classifications()
 
         # Remove uncertainty data
