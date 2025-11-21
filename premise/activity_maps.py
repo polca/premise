@@ -233,6 +233,7 @@ def get_capacity_addition_dataset_names(key: str) -> tuple[str, str, str]:
 
     return new_name, new_ref_prod, unit
 
+
 class InventorySet:
     """Generate activity mappings between Premise sectors and ecoinvent datasets."""
 

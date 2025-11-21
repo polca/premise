@@ -556,9 +556,7 @@ class IAMDataCollection:
             IAM_TRANS_TWO_WHEELERS_VARS, variable="energy_use_aliases"
         )
 
-        capacity_vars = self.__get_iam_variable_labels(
-            CAPACITY, variable="iam_aliases"
-        )
+        capacity_vars = self.__get_iam_variable_labels(CAPACITY, variable="iam_aliases")
 
         # new_vars is a list of all variables that are declared above
 
@@ -1057,7 +1055,7 @@ class IAMDataCollection:
                 **bus_prod_vars,
                 **two_wheelers_prod_vars,
                 **final_energy_vars,
-                **capacity_vars
+                **capacity_vars,
             },
         )
 

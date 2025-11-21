@@ -86,12 +86,9 @@ class FinalEnergy(BaseTransformation):
         mapping = InventorySet(database=database, version=version, model=model)
         self.final_energy_map = mapping.generate_final_energy_map()
 
-
     def regionalize_heating_datasets(self):
 
         self.process_and_add_activities(
             mapping=self.final_energy_map,
             production_volumes=self.iam_data.production_volumes,
         )
-
-

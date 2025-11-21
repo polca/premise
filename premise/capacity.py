@@ -16,7 +16,6 @@ def _update_capacity(
     system_model,
 ):
 
-
     capacity = Capacity(
         database=scenario["database"],
         iam_data=scenario["iam data"],
@@ -38,6 +37,7 @@ def _update_capacity(
     scenario["mapping"]["capacity"] = capacity.map
 
     return scenario
+
 
 class Capacity(BaseTransformation):
     """
@@ -188,7 +188,12 @@ class Capacity(BaseTransformation):
         print(f"    📊 Total infrastructure exchanges removed: {total_removed}")
 
     def create_unified_capacity_dataset(
-        self, matched_datasets_with_filter, new_name, new_ref_prod, key, is_transport=False,
+        self,
+        matched_datasets_with_filter,
+        new_name,
+        new_ref_prod,
+        key,
+        is_transport=False,
     ):
         """
         Create a unified capacity dataset from matched infrastructure datasets.
@@ -438,4 +443,3 @@ class Capacity(BaseTransformation):
         )
 
         return capacity_dataset
-
