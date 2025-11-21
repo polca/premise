@@ -844,11 +844,6 @@ def fetch_tab_name(variable):
 
 
 def convert_log_to_excel_file(filepath):
-    """
-    Read a '|' delimited log file into a DataFrame with columns from reporting.yaml.
-    Handles mismatched column counts by trimming/padding; skips bad lines.
-    """
-    # Engine=python is more forgiving for irregular lines
     df = pd.read_csv(
         filepath, sep="|", header=None, on_bad_lines="skip", engine="python"
     )
@@ -858,9 +853,14 @@ def convert_log_to_excel_file(filepath):
     if df.shape[1] > len(cols):
         df = df.iloc[:, : len(cols)]
     elif df.shape[1] < len(cols):
-        # pad with NA columns
+        # pad with empty columns instead of pd.NA
         for _ in range(len(cols) - df.shape[1]):
-            df[df.shape[1]] = pd.NA
+            df[df.shape[1]] = None
 
     df.columns = cols
+
+    # Make sure there is no pandas.NA left anywhere
+    df = df.astype("object").where(df.notna(), None)
+
     return df
+
