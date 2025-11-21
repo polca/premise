@@ -863,4 +863,3 @@ def convert_log_to_excel_file(filepath):
     df = df.astype("object").where(df.notna(), None)
 
     return df
-
