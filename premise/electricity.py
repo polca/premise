@@ -250,6 +250,7 @@ def _update_electricity(
     electricity.update_efficiency_of_solar_pv()
     electricity.correct_hydropower_water_emissions()
     electricity.create_region_specific_power_plants()
+    electricity.align_renewable_primary_energy()
 
     if scenario["year"] >= 2020:
         electricity.adjust_aluminium_electricity_markets()
@@ -2168,6 +2169,195 @@ class Electricity(BaseTransformation):
         self.create_new_markets_high_voltage()
         self.create_new_markets_medium_voltage()
         self.create_new_markets_low_voltage()
+
+    def align_renewable_primary_energy(self):
+        """
+        Align primary energy flows in renewable electricity datasets with IAM assumptions.
+        REMIND assumes 1:1 conversion from primary to secondary energy for solar, wind, hydro,
+        geothermal, and nuclear. This method adjusts the primary energy flows to 3.6 MJ
+        (equivalent to 1 kWh) so CED method matches the IAM.
+        """
+
+        # Configuration for renewable technologies
+        renewable_configs = [
+            {
+                "name_starts_with": "electricity production, photovoltaic",
+                "flow_name": "Energy, solar, converted",
+                "flow_category": ("natural resource", "in air"),
+            },
+            {
+                "name_starts_with": "electricity production, hydro",
+                "flow_name": "Energy, potential (in hydropower reservoir), converted",
+                "flow_category": ("natural resource", "in water"),
+            },
+            {
+                "name_starts_with": "electricity production, wind",
+                "flow_name": "Energy, kinetic (in wind), converted",
+                "flow_category": ("natural resource", "in air"),
+            },
+            {
+                "name_starts_with": "electricity production, deep geothermal",
+                "flow_name": "Energy, geothermal, converted",
+                "flow_category": ("natural resource", "in ground"),
+            },
+        ]
+
+        # Process renewable technologies
+        for config in renewable_configs:
+            self._update_primary_energy_flow(
+                name_starts_with=config["name_starts_with"],
+                flow_name=config["flow_name"],
+                flow_category=config["flow_category"],
+                new_amount=3.6,  # MJ
+            )
+
+        # Process nuclear separately (requires adding a new flow)
+        self._add_nuclear_primary_energy()
+
+        logger.info("Primary energy alignment with REMIND completed.")
+
+    def _update_primary_energy_flow(
+            self,
+            name_starts_with: str,
+            flow_name: str,
+            flow_category: tuple,
+            new_amount: float
+    ):
+        """
+        Update the primary energy flow amount for matching datasets.
+
+        :param name_starts_with: Starting pattern for activity name
+        :param flow_name: Name of the biosphere flow to modify
+        :param flow_category: Tuple of (category, subcategory)
+        :param new_amount: New amount to set (in MJ)
+        """
+
+        count = 0
+        for dataset in self.database:
+            # Check if dataset matches criteria
+            if not dataset["name"].startswith(name_starts_with):
+                continue
+
+            # Check if it produces electricity
+            has_kwh_output = any(
+                exc["unit"] == "kilowatt hour" and exc["type"] == "production"
+                for exc in dataset.get("exchanges", [])
+            )
+
+            if not has_kwh_output:
+                continue
+
+            # Find and update the primary energy flow
+            for exc in ws.biosphere(dataset):
+                if exc["name"] == flow_name:
+                    old_amount = exc["amount"]
+                    exc["amount"] = new_amount
+
+                    # Log the change
+                    dataset.setdefault("log parameters", {}).update({
+                        f"primary energy {flow_name}": {
+                            "old": old_amount,
+                            "new": new_amount,
+                            "reason": "IAM primary energy alignment"
+                        }
+                    })
+
+                    count += 1
+                    self.write_log(dataset, "updated")
+                    break
+
+        logger.info(
+            f"Updated primary energy flow '{flow_name}' in {count} datasets "
+            f"starting with '{name_starts_with}'"
+        )
+
+    def _add_nuclear_primary_energy(self):
+        """
+        Add a primary energy flow to nuclear electricity production datasets.
+        Nuclear is handled differently because we add a new flow rather than modifying
+        an existing one. This avoids interfering with uranium extraction CED characterization.
+        """
+
+        # Find the biosphere flow code for the proxy flow
+        # Using "Energy, gross calorific value, in biomass" as a generic energy carrier
+        flow_key = (
+            "Energy, gross calorific value, in biomass, primary forest",
+            "natural resource",
+            "biotic",
+            "megajoule"
+        )
+
+        if flow_key not in self.biosphere_dict:
+            logger.warning(
+                "Could not find biosphere flow for nuclear primary energy proxy. "
+                "Skipping nuclear primary energy alignment."
+            )
+            return
+
+        flow_code = self.biosphere_dict[flow_key]
+
+        count = 0
+        for dataset in self.database:
+            # Check if dataset matches criteria
+            if not dataset["name"].startswith("electricity production, nuclear"):
+                continue
+
+            # Check if it produces electricity in kWh
+            has_kwh_output = any(
+                exc["unit"] == "kilowatt hour" and exc["type"] == "production"
+                for exc in dataset.get("exchanges", [])
+            )
+
+            if not has_kwh_output:
+                continue
+
+            # Check if it has radioactive flows (kilo Becquerel)
+            has_radioactive = any(
+                exc["unit"] == "kilo Becquerel" and exc["type"] == "biosphere"
+                for exc in dataset.get("exchanges", [])
+            )
+
+            if not has_radioactive:
+                continue
+
+            # Check if we already added this flow (to avoid duplicates)
+            already_has_flow = any(
+                exc.get("name") == "Energy, gross calorific value, in biomass, primary forest"
+                and exc.get("type") == "biosphere"
+                for exc in dataset.get("exchanges", [])
+            )
+
+            if already_has_flow:
+                continue
+
+            # Add the new primary energy flow
+            new_flow = {
+                "name": "Energy, gross calorific value, in biomass, primary forest",
+                "amount": 3.6,  # MJ per kWh
+                "unit": "megajoule",
+                "type": "biosphere",
+                "categories": ("natural resource", "biotic"),
+                "uncertainty type": 0,
+                "input": ("biosphere3", flow_code),
+            }
+
+            dataset["exchanges"].append(new_flow)
+
+            # Log the change
+            dataset.setdefault("log parameters", {}).update({
+                "nuclear primary energy added": {
+                    "amount": 3.6,
+                    "reason": "IAM primary energy alignment (proxy flow)",
+                    "note": "Using biomass energy flow as proxy to avoid uranium CED issues"
+                }
+            })
+
+            count += 1
+            self.write_log(dataset, "updated")
+
+        logger.info(
+            f"Added primary energy flow to {count} nuclear electricity datasets"
+        )
 
     def write_log(self, dataset, status="created"):
         """
