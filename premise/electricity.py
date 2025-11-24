@@ -2217,11 +2217,11 @@ class Electricity(BaseTransformation):
         logger.info("Primary energy alignment with REMIND completed.")
 
     def _update_primary_energy_flow(
-            self,
-            name_starts_with: str,
-            flow_name: str,
-            flow_category: tuple,
-            new_amount: float
+        self,
+        name_starts_with: str,
+        flow_name: str,
+        flow_category: tuple,
+        new_amount: float,
     ):
         """
         Update the primary energy flow amount for matching datasets.
@@ -2254,13 +2254,15 @@ class Electricity(BaseTransformation):
                     exc["amount"] = new_amount
 
                     # Log the change
-                    dataset.setdefault("log parameters", {}).update({
-                        f"primary energy {flow_name}": {
-                            "old": old_amount,
-                            "new": new_amount,
-                            "reason": "IAM primary energy alignment"
+                    dataset.setdefault("log parameters", {}).update(
+                        {
+                            f"primary energy {flow_name}": {
+                                "old": old_amount,
+                                "new": new_amount,
+                                "reason": "IAM primary energy alignment",
+                            }
                         }
-                    })
+                    )
 
                     count += 1
                     self.write_log(dataset, "updated")
@@ -2284,7 +2286,7 @@ class Electricity(BaseTransformation):
             "Energy, gross calorific value, in biomass, primary forest",
             "natural resource",
             "biotic",
-            "megajoule"
+            "megajoule",
         )
 
         if flow_key not in self.biosphere_dict:
@@ -2322,7 +2324,8 @@ class Electricity(BaseTransformation):
 
             # Check if we already added this flow (to avoid duplicates)
             already_has_flow = any(
-                exc.get("name") == "Energy, gross calorific value, in biomass, primary forest"
+                exc.get("name")
+                == "Energy, gross calorific value, in biomass, primary forest"
                 and exc.get("type") == "biosphere"
                 for exc in dataset.get("exchanges", [])
             )
@@ -2344,13 +2347,15 @@ class Electricity(BaseTransformation):
             dataset["exchanges"].append(new_flow)
 
             # Log the change
-            dataset.setdefault("log parameters", {}).update({
-                "nuclear primary energy added": {
-                    "amount": 3.6,
-                    "reason": "IAM primary energy alignment (proxy flow)",
-                    "note": "Using biomass energy flow as proxy to avoid uranium CED issues"
+            dataset.setdefault("log parameters", {}).update(
+                {
+                    "nuclear primary energy added": {
+                        "amount": 3.6,
+                        "reason": "IAM primary energy alignment (proxy flow)",
+                        "note": "Using biomass energy flow as proxy to avoid uranium CED issues",
+                    }
                 }
-            })
+            )
 
             count += 1
             self.write_log(dataset, "updated")
