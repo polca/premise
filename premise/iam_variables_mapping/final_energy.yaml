@@ -1938,8 +1938,8 @@ Industry - Non-energy use - Solid coal:
 Industry - Non-energy use - Biomass:
   ecoinvent_aliases:
     fltr:
-      name: plywood production
-      reference product: plywood
+      name: maize starch production
+      reference product: maize starch
     mask:
       - market
       - treatment
