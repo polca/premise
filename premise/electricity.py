@@ -781,6 +781,7 @@ class Electricity(BaseTransformation):
             regions=self.regions,
         )
         self.database.append(new_world_dataset)
+        self.add_to_index(new_world_dataset)
         self.write_log(new_world_dataset)
 
     def create_new_markets_medium_voltage(self) -> None:
@@ -979,6 +980,7 @@ class Electricity(BaseTransformation):
             regions=self.regions,
         )
         self.database.append(new_world_dataset)
+        self.add_to_index(new_world_dataset)
         self.write_log(new_world_dataset)
 
     def create_new_markets_high_voltage(self) -> None:
@@ -1208,6 +1210,7 @@ class Electricity(BaseTransformation):
             regions=self.regions,
         )
         self.database.append(new_world_dataset)
+        self.add_to_index(new_world_dataset)
         self.write_log(new_world_dataset)
 
     def generate_world_market(
