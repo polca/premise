@@ -84,7 +84,6 @@ direct air capture (calcium oxide) with storage:
       - carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2
 
 
-
 enhanced rock weathering:
     iam_aliases:
         remind: Emi|CO2|CDR|+|EW
@@ -113,6 +112,10 @@ afforestation:
   iam_aliases:
     message: Carbon Sequestration|Land Use|Afforestation
 
+
+cement mineralization:
+  ecoinvent_aliases:
+    fltr: carbon dioxide, captured and stored, in crushed concrete
 
 ocean liming:
     iam_aliases:
