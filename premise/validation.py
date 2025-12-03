@@ -140,13 +140,20 @@ def clean_up(exc):
     return exc
 
 
-def _load_mining_shares_mapping_for_validation():
+def _load_mining_shares_mapping_for_validation(ei_version):
     """
     Minimal local loader to avoid importing metals.py and creating a cycle.
     Mirrors the basic behavior of load_mining_shares_mapping used for checks.
     """
     fp = DATA_DIR / "metals" / "mining_shares_mapping.xlsx"
-    df = pd.read_excel(fp, sheet_name="Shares_mapping")
+
+    if ei_version == "3.11":
+        df = pd.read_excel(fp, sheet_name="ei311")
+    elif ei_version == "3.12":
+        df = pd.read_excel(fp, sheet_name="ei312")
+    else:
+        df = pd.read_excel(fp, sheet_name="ei310")
+
     df.columns = df.columns.str.replace("Year ", "", regex=False)
     return df
 
@@ -2656,11 +2663,12 @@ class BiomassValidation(BaseDatasetValidator):
 
 class MetalsValidation(BaseDatasetValidator):
     def __init__(
-        self, model, scenario, year, regions, database, iam_data, system_model
+        self, model, scenario, year, regions, database, iam_data, system_model, version
     ):
-        super().__init__(model, scenario, year, regions, database, system_model)
+        super().__init__(model, scenario, year, regions, database, system_model, version)
         self.iam_data = iam_data
         self.system_model = system_model
+        self.version = version
 
     def run_metals_checks(self):
         self.check_market_balance()
@@ -2756,7 +2764,7 @@ class MetalsValidation(BaseDatasetValidator):
         This should catch normalization bugs
         """
 
-        mining_shares_df = _load_mining_shares_mapping_for_validation()
+        mining_shares_df = _load_mining_shares_mapping_for_validation(self.version)
 
         country_codes = dict(
             zip(

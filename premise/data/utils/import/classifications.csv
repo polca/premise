@@ -3224,3 +3224,7 @@ zinc mine operation,zinc concentrate,0729:Mining of other non-ferrous metal ores
 "hard coal mine operation, open cast, dragline","hard coal, run-of-mine",0510:Mining of hard coal,11010: Hard coal
 "plywood production","plywood",1621:Manufacture of veneer sheets and wood-based panels,"31450: Plywood, veneer panels and similar laminated wood of bamboo"
 "market for light fuel oil","light fuel oil",1920:Manufacture of refined petroleum products,33370: Fuel oils n.e.c.
+"1,1-difluoroethane production","1,1-difluoroethane",2011:Manufacture of basic chemicals,"34150: Amine-function compounds; oxygen-function amino-compounds, except lysine and its esters and salts thereof and […]"
+"photovoltaics, electric installation for 3kWp module, at building","photovoltaics, electric installation for 3kWp module, at building",3320:Installation of industrial machinery and equipment,87360: Installation services of electrical machinery and apparatus n.e.c.
+"methanol production, from coal gasification","methanol",2011:Manufacture of basic chemicals,"34710: Polymers of ethylene, in primary forms"
+"carbon disulfide production, from natural gas","carbon disulfide",2011:Manufacture of basic chemicals,"34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."

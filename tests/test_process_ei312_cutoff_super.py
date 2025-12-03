@@ -18,7 +18,7 @@ key = os.environ["IAM_FILES_KEY"]
 # convert to bytes
 key = key.encode()
 
-ei_version = "3.11"
+ei_version = "3.12"
 system_model = "cutoff"
 
 scenarios = [
@@ -57,12 +57,21 @@ def test_brightway():
 
     ndb.update()
 
-    ndb.write_db_to_olca(filepath="olca_export.csv")
+    if "superstructure" in bw2data.databases:
+        del bw2data.databases["superstructure"]
 
-    # check existence of files
-    assert os.path.exists("olca_export.csv")
+    ndb.write_superstructure_db_to_brightway("superstructure")
+
+    method = [m for m in bw2data.methods if "IPCC" in m[0]][0]
+
+    lca = bw2calc.LCA({bw2data.Database("superstructure").random(): 1}, method)
+    lca.lci()
+    lca.lcia()
+    assert isinstance(lca.score, float)
+    print(lca.score)
 
     # destroy all objects
     del ndb
+    del lca
     gc.collect()
     delete_all_pickles()

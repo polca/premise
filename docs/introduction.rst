@@ -5,7 +5,7 @@ Purpose
 -------
 
 *premise* enables the alignment of life cycle inventories within the ecoinvent_
-3.8-3.11 database, using either a "cut-off" or "consequential"
+3.8-3.12 database, using either a "cut-off" or "consequential"
 system model, to match the output results of Integrated
 Assessment Models (IAMs) such as REMIND_ (and REMIND-EU), IMAGE_, TIAM-UCL_ or GCAM_.
 This allows for the creation of life cycle inventory databases
@@ -20,7 +20,7 @@ under future policy scenarios for any year between 2005 and 2100.
 
 .. note::
 
-    The ecoinvent database is not included in this package. You need to have a valid license for ecoinvent 3.6-3.11 to use *premise*.
+    The ecoinvent database is not included in this package. You need to have a valid license for ecoinvent 3.8-3.12 to use *premise*.
     Also, please read carefully ecoinvent's EULA_ before using *premise*.
 
 .. _EULA: https://ecoinvent.org/app/uploads/2024/01/EULA_new_branding_08_11_2023.pdf

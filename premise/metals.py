@@ -32,14 +32,6 @@ from .validation import MetalsValidation
 
 logger = create_logger("metal")
 
-EI311_NAME_CHANGES = {
-    "sodium borate mine operation and beneficiation": "sodium borates mine operation and beneficiation",
-    "gallium production, semiconductor-grade": "high-grade gallium production, from low-grade gallium",
-}
-
-EI311_PRODUCT_CHANGES = {"gallium, semiconductor-grade": "gallium, high-grade"}
-EI311_LOCATION_CHANGES = {"high-grade gallium production, from low-grade gallium": "CN"}
-
 
 def _update_metals(scenario, version, system_model):
 
@@ -70,6 +62,7 @@ def _update_metals(scenario, version, system_model):
         database=metals.database,
         iam_data=scenario["iam data"],
         system_model=metals.system_model,
+        version=metals.version,
     )
 
     validate.prim_sec_split = metals.prim_sec_split
@@ -123,15 +116,22 @@ def load_metals_transport():
     return df
 
 
-def load_mining_shares_mapping():
+def load_mining_shares_mapping(ei_version="312"):
     """
     Load mapping between mining shares from the different sources and ecoinvent
     """
 
     filepath = DATA_DIR / "metals" / "mining_shares_mapping.xlsx"
-    df = pd.read_excel(filepath, sheet_name="Shares_mapping")
 
-    # replace all instances of "Year " in columns by ""
+    if ei_version == "3.11":
+        df = pd.read_excel(filepath, sheet_name="ei311")
+    elif ei_version == "3.12":
+        df = pd.read_excel(filepath, sheet_name="ei312")
+    else:
+        df = pd.read_excel(filepath, sheet_name="ei310")
+
+
+    # replace all instances of "Year" in columns by ""
     df.columns = df.columns.str.replace("Year ", "")
 
     # remove suppliers whose markets share is below the cutoff
@@ -1248,7 +1248,7 @@ class Metals(BaseTransformation):
     def create_metal_markets(self):
         self.post_allocation_correction()
 
-        dataframe = load_mining_shares_mapping()
+        dataframe = load_mining_shares_mapping(self.version)
         dataframe = dataframe.loc[dataframe["Work done"] == "Yes"]
         dataframe = dataframe.loc[~dataframe["Country"].isnull()]
 

@@ -1,13 +1,12 @@
 import gc
 import os
 
-import bw2calc
 import bw2data
 import bw2io
 import pytest
 from dotenv import load_dotenv
 
-from premise import IncrementalDatabase, clear_inventory_cache
+from premise import NewDatabase, clear_inventory_cache
 from premise.utils import delete_all_pickles
 
 load_dotenv()
@@ -18,7 +17,7 @@ key = os.environ["IAM_FILES_KEY"]
 # convert to bytes
 key = key.encode()
 
-ei_version = "3.11"
+ei_version = "3.12"
 system_model = "cutoff"
 
 scenarios = [
@@ -29,24 +28,28 @@ scenarios = [
 
 
 @pytest.mark.slow
-def test_increment():
+def test_brightway():
     bw2data.projects.set_current(f"ecoinvent-{ei_version}-{system_model}")
     clear_inventory_cache()
 
     if f"ecoinvent-{ei_version}-{system_model}" not in bw2data.databases:
+        print("Importing ecoinvent")
         bw2io.import_ecoinvent_release(
             version=ei_version,
             system_model=system_model,
             username=ei_user,
             password=ei_pass,
+            biosphere_name=f"ecoinvent-{ei_version}-biosphere",
         )
+
+    bw2data.projects.set_current(f"ecoinvent-{ei_version}-{system_model}")
 
     if f"ecoinvent-{ei_version}-biosphere" not in bw2data.databases:
         biosphere_name = "biosphere3"
     else:
         biosphere_name = f"ecoinvent-{ei_version}-biosphere"
 
-    ndb = IncrementalDatabase(
+    ndb = NewDatabase(
         scenarios=scenarios,
         source_db=f"ecoinvent-{ei_version}-{system_model}",
         source_version=ei_version,
@@ -55,29 +58,15 @@ def test_increment():
         biosphere_name=biosphere_name,
     )
 
-    sectors = {
-        "electricity": "electricity",
-        "steel": "steel",
-        "others": ["cement", "cars", "fuels"],
-    }
+    ndb.update()
 
-    ndb.update(sectors=sectors)
+    ndb.write_datapackage(name="datapackage")
 
-    if "incremental" in bw2data.databases:
-        del bw2data.databases["incremental"]
-
-    ndb.write_increment_db_to_brightway("incremental", file_format="csv")
-
-    method = [m for m in bw2data.methods if "IPCC" in str(m)][0]
-
-    lca = bw2calc.LCA({bw2data.Database("incremental").random(): 1}, method)
-    lca.lci()
-    lca.lcia()
-    assert isinstance(lca.score, float)
-    print(lca.score)
+    # check existence of files
+    cwd = os.getcwd()
+    assert os.path.exists(f"{cwd}/export/datapackage/datapackage.zip")
 
     # destroy all objects
     del ndb
-    del lca
     gc.collect()
     delete_all_pickles()

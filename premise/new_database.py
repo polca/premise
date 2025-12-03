@@ -530,7 +530,7 @@ class NewDatabase:
     def __init__(
         self,
         scenarios: List[dict],
-        source_version: str = "3.11",
+        source_version: str = "3.12",
         source_type: str = "brightway",
         key: Union[bytes, str] = None,
         source_db: str = None,
@@ -553,7 +553,7 @@ class NewDatabase:
         Initialize the NewDatabase class.
 
         :param scenarios: list of IAM scenarios to use.
-        :param source_version: ecoinvent database version. Default is "3.11".
+        :param source_version: ecoinvent database version. Default is "3.12".
         :param source_type: source of the ecoinvent database. Can be `brightway` or `ecospold`. Default is `brightway`.
         :param key: decryption key for encrypted IAM data files. Default is None.
         :param source_db: name of the source ecoinvent database in the current project. Default is None.
@@ -588,11 +588,11 @@ class NewDatabase:
         # and system_model is "consequential"
         # raise an error
         if (
-            self.version not in ["3.8", "3.9", "3.9.1", "3.10", "3.11"]
+            self.version not in ["3.8", "3.9", "3.9.1", "3.10", "3.11", "3.12"]
             and self.system_model == "consequential"
         ):
             raise ValueError(
-                "Consequential system model is only available for ecoinvent 3.8, 3.9, 3.10 or 3.11."
+                "Consequential system model is only available for ecoinvent 3.8, 3.9, 3.10, 3.11, 3.12."
             )
 
         if gains_scenario not in ["CLE", "MFR"]:
@@ -884,13 +884,13 @@ class NewDatabase:
             if filepath[0] in [
                 FILEPATH_OIL_GAS_INVENTORIES,
                 FILEPATH_BATTERIES_NMC_NCA_LFP,
-            ] and self.version in ["3.9", "3.9.1", "3.10", "3.11"]:
+            ] and self.version in ["3.9", "3.9.1", "3.10", "3.11", "3.12"]:
                 continue
 
             if filepath[0] in [
                 FILEPATH_BATTERIES_NMC622_532,
                 FILEPATH_GRAPHITE,
-            ] and self.version in ["3.11"]:
+            ] and self.version in ["3.11", "3.12"]:
                 continue
 
             inventory = DefaultInventory(
