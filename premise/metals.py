@@ -130,7 +130,6 @@ def load_mining_shares_mapping(ei_version="312"):
     else:
         df = pd.read_excel(filepath, sheet_name="ei310")
 
-
     # replace all instances of "Year" in columns by ""
     df.columns = df.columns.str.replace("Year ", "")
 

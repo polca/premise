@@ -39,7 +39,6 @@ TEMP_EXCEL_FILE = DIR_CACHED_DB / "temp.xlsx"
 MIGRATIONS_DIR = DATA_DIR / "utils" / "import" / "migrations"
 
 
-
 logging.basicConfig(
     level=logging.DEBUG,
     filename="unlinked.log",
@@ -120,6 +119,7 @@ def get_consequential_blacklist():
 def normalize_version_for_migration(v: str) -> str:
     return normalize_version(v)
 
+
 def normalize_version(v: str) -> str:
     """
     Normalize ecoinvent version strings so that:
@@ -137,7 +137,6 @@ def normalize_version(v: str) -> str:
     return v
 
 
-
 def discover_biosphere_migrations(debug=False):
     folder = MIGRATIONS_DIR / "biosphere"
     migrations = {}
@@ -148,7 +147,7 @@ def discover_biosphere_migrations(debug=False):
     for fp in sorted(folder.glob("*.json")):
         data = json.load(fp.open())
 
-        raw_src = data["source_id"].split("-")[1]     # e.g. "3.5-biosphere"
+        raw_src = data["source_id"].split("-")[1]  # e.g. "3.5-biosphere"
         raw_dst = data["target_id"].split("-")[1]
 
         src = normalize_version(raw_src.replace("-biosphere", ""))
@@ -157,7 +156,6 @@ def discover_biosphere_migrations(debug=False):
         migrations[(src, dst)] = data
 
     return migrations
-
 
 
 def discover_available_migrations(debug: bool = False) -> Dict[tuple, dict]:
@@ -196,27 +194,28 @@ def discover_available_migrations(debug: bool = False) -> Dict[tuple, dict]:
     return migrations
 
 
-
 def build_version_graph(available: Dict[tuple, dict]) -> dict:
     """Bidirectional graph: version -> list of (neighbor, direction)."""
     graph = {}
     versions = set()
 
-    for (src, dst) in available.keys():
+    for src, dst in available.keys():
         versions.add(src)
         versions.add(dst)
 
     for v in versions:
         graph[v] = []
 
-    for (src, dst) in available.keys():
+    for src, dst in available.keys():
         graph[src].append((dst, "forward"))
         graph[dst].append((src, "backward"))
 
     return graph
 
 
-def resolve_migration_route(version_in: str, version_out: str, available: Dict[tuple, dict]):
+def resolve_migration_route(
+    version_in: str, version_out: str, available: Dict[tuple, dict]
+):
     """
     Find a sequence of steps (src, dst, direction) from version_in to version_out,
     where direction is 'forward' or 'backward'.
@@ -251,9 +250,10 @@ def resolve_migration_route(version_in: str, version_out: str, available: Dict[t
 
     # No path found – show what edges we actually have
     edges_str = "\n".join(
-        f"  {s} -> {d}" for (s, d) in sorted(
+        f"  {s} -> {d}"
+        for (s, d) in sorted(
             available.keys(),
-            key=lambda v: (float(v[0].replace('.', '')), float(v[1].replace('.', '')))
+            key=lambda v: (float(v[0].replace(".", "")), float(v[1].replace(".", ""))),
         )
     )
     raise ValueError(
@@ -278,9 +278,6 @@ def matches_source(exc: dict, source: dict) -> bool:
         if exc.get(key) != value:
             return False
     return True
-
-
-
 
 
 def apply_disaggregation(db: list, disaggregate_rules: list):
@@ -324,7 +321,6 @@ def apply_disaggregation(db: list, disaggregate_rules: list):
                 new_exchanges.append(new_exc)
 
         ds["exchanges"] = new_exchanges
-
 
 
 def apply_aggregation(db: list, disaggregate_rules: list):
@@ -416,7 +412,13 @@ def apply_backward_replace(db: list, replace_rules: list):
                 tgt = rule["target"]
 
                 if matches_source(exc, tgt):
-                    for field in ("name", "reference product", "location", "uuid", "formula"):
+                    for field in (
+                        "name",
+                        "reference product",
+                        "location",
+                        "uuid",
+                        "formula",
+                    ):
                         if field in src:
                             exc[field] = src[field]
 
@@ -425,6 +427,7 @@ def apply_backward_replace(db: list, replace_rules: list):
 
                     exc.pop("input", None)
                     break
+
 
 def apply_biosphere_migration(db, biosphere_rules):
     if not biosphere_rules:
@@ -473,7 +476,6 @@ def apply_biosphere_migration(db, biosphere_rules):
                     exc[key] = val
 
 
-
 def register_forward_migration_mapping(src_ver: str, dst_ver: str, data: dict) -> str:
     """
     Build and register a bw2io.Migration from JSON 'replace' and 'delete' sections.
@@ -513,7 +515,7 @@ def register_forward_migration_mapping(src_ver: str, dst_ver: str, data: dict) -
                     s.get("reference product"),
                     s.get("location"),
                 ),
-            {},
+                {},
             )
         )
 
@@ -524,7 +526,9 @@ def register_forward_migration_mapping(src_ver: str, dst_ver: str, data: dict) -
     return mig_name
 
 
-def apply_migration_step(importer, src_ver: str, dst_ver: str, direction: str, available: Dict[tuple, dict]):
+def apply_migration_step(
+    importer, src_ver: str, dst_ver: str, direction: str, available: Dict[tuple, dict]
+):
     """
     Apply one migration step, either forward or backward.
 
@@ -556,6 +560,7 @@ def apply_migration_step(importer, src_ver: str, dst_ver: str, direction: str, a
     biosphere_available = discover_biosphere_migrations()
     if (f_src, f_dst) in biosphere_available:
         apply_biosphere_migration(importer.data, biosphere_available[(f_src, f_dst)])
+
 
 def migrate_import_db(importer, version_in: str, version_out: str):
     """
@@ -839,7 +844,6 @@ class BaseInventoryImport:
 
         self.path = Path(path) if isinstance(path, str) else path
         self.import_db = self.load_inventory()
-
 
     def load_inventory(self) -> None:
         """Load an inventory from a specified path.
