@@ -66,7 +66,7 @@ def test_brightway():
 
     ndb.write_db_to_brightway(["test1", "test2", "test3"])
 
-    method = [m for m in bw2data.methods if "IPCC" in m[0]][0]
+    method = [m for m in bw2data.methods if "IPCC" in str(m)][0]
 
     lca = bw2calc.LCA({bw2data.Database("test1").random(): 1}, method)
     lca.lci()
