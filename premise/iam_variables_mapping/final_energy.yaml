@@ -536,7 +536,7 @@ Industry - Cement - Syn Fuel:
 Industry - Cement - Solid biomass:
   ecoinvent_aliases:
     fltr:
-      name: soft wood chips from forest, burned in furnace 1000kW
+      name: heat production, softwood chips from forest, at furnace 1000kW
       reference product: heat
   iam_aliases:
     message: Final Energy|Industry|Non-Metallic Minerals|Cement|Solids|Biomass
@@ -681,7 +681,7 @@ Industry - Chemicals - Chemicals - Syn Fuel:
 Industry - Chemicals - Chemicals - Solid Biomass:
   ecoinvent_aliases:
     fltr:
-      name: soft wood chips from forest, burned in furnace 1000kW
+      name: heat production, softwood chips from forest, at furnace 1000kW
       reference product: heat
   iam_aliases:
     remind: FE|Industry|Chemicals|Solids|+|Biomass
@@ -739,7 +739,7 @@ Industry - Chemicals - Ammonia - Solid coal:
 Industry - Chemicals - Ammonia - Solid Biomass:
   ecoinvent_aliases:
     fltr:
-      name: soft wood chips from forest, burned in furnace 1000kW
+      name: heat production, softwood chips from forest, at furnace 1000kW
       reference product: heat
   iam_aliases:
     message: Final Energy|Industry|Chemicals|Ammonia|Solids|Biomass
@@ -1938,10 +1938,9 @@ Industry - Non-energy use - Solid coal:
 Industry - Non-energy use - Biomass:
   ecoinvent_aliases:
     fltr:
-      name: plywood production
-      reference product: plywood
+      name: market for lignocellulosic biomass, used as fuel
+      reference product: lignocellulosic biomass
     mask:
-      - market
       - treatment
   iam_aliases:
     message:
