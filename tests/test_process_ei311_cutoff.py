@@ -28,6 +28,7 @@ scenarios = [
     # {"model": "gcam", "pathway": "SSP2-RCP26", "year": 2050},
 ]
 
+
 @pytest.mark.slow
 def test_brightway():
     bw2data.projects.set_current(f"ecoinvent-{ei_version}-{system_model}")
