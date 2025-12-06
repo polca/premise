@@ -94,6 +94,12 @@ beryllium production,beryllium,0729:Mining of other non-ferrous metal ores,14290
 "binder production, CMC-SBR, for SIB battery","binder, CMC-SBR",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
 "binder production, PVDF, for SIB battery","binder, PVDF",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
 "bio-propylene production, from methanol-to-propylene conversion","propylene, biogenic",2011:Manufacture of basic chemicals,"34710: Polymers of ethylene, in primary forms"
+"biochar production, from birch pyrolysis",biochar,3821:Treatment and disposal of non-hazardous waste,39990: Other wastes n.e.c.
+"biochar production, from oak pyrolysis",biochar,3821:Treatment and disposal of non-hazardous waste,39990: Other wastes n.e.c.
+"biochar production, from rice husk pyrolysis",biochar,3821:Treatment and disposal of non-hazardous waste,39990: Other wastes n.e.c.
+"biochar production, from rice straw pyrolysis",biochar,3821:Treatment and disposal of non-hazardous waste,39990: Other wastes n.e.c.
+"biochar production, from spruce pyrolysis",biochar,3821:Treatment and disposal of non-hazardous waste,39990: Other wastes n.e.c.
+"biochar production, from willow pyrolysis",biochar,3821:Treatment and disposal of non-hazardous waste,39990: Other wastes n.e.c.
 "biochar, from spruce wood pyrolysis",biochar,3821:Treatment and disposal of non-hazardous waste,39990: Other wastes n.e.c.
 "biodiesel production, via Fischer-Tropsch, from forest product (non-residual), energy allocation","biodiesel, from forest residues",1920:Manufacture of refined petroleum products,33360: Gas oil
 "biodiesel production, via Fischer-Tropsch, from forest residues, energy allocation","biodiesel, from forest residues",1920:Manufacture of refined petroleum products,33360: Gas oil
@@ -137,8 +143,10 @@ cables,cables,0161:Support activities for crop production,86119: Other support s
 "cadmium sludge, recovered from CdTe PV module treatment","cadmium sludge, recovered from CdTe PV module treatment",3821:Treatment and disposal of non-hazardous waste,39920: Sewage sludge
 "carbon dioxide capture, from flue gas emissions, using monoethanolamine","carbon dioxide capture, from flue gas emissions, using monoethanolamine",2011:Manufacture of basic chemicals,"34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
 "carbon dioxide compression, transport and storage","carbon dioxide, stored",2011:Manufacture of basic chemicals,"34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
+"carbon dioxide evaporation, for cement mineralization","carbon dioxide, evaporated",2011:Manufacture of basic chemicals,"34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
 "carbon dioxide from syngas and flue gas combusiton, transport and injection in a geological reservoir","carbon dioxide from syngas and flue gas combusiton, transport and injection in a geological reservoir",2011:Manufacture of basic chemicals,"34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
 "carbon dioxide from syngas combusiton, transport and injection in a geological reservoir","carbon dioxide from syngas combusiton, transport and injection in a geological reservoir",2011:Manufacture of basic chemicals,"34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
+"carbon dioxide liquefaction, at biogas upgrading plant","carbon dioxide, liquefied",2011:Manufacture of basic chemicals,"34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
 "carbon dioxide storage at hydrogen production plant, pre, pipeline 200km, storage 1000m","carbon dioxide storage at hydrogen production plant, pre, pipeline 200km, storage 1000m",2011:Manufacture of basic chemicals,"34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
 "carbon dioxide storage at hydrogen production plant, pre, pipeline 400km, storage 3000m","carbon dioxide storage at hydrogen production plant, pre, pipeline 400km, storage 3000m",2011:Manufacture of basic chemicals,"34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
 "carbon dioxide storage at synthetic natural gas plant, post, 200km pipeline, storage 1000m","carbon dioxide storage at synthetic natural gas plant, post, 200km pipeline, storage 1000m",2011:Manufacture of basic chemicals,"34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
@@ -164,13 +172,21 @@ cables,cables,0161:Support activities for crop production,86119: Other support s
 "carbon dioxide storage from natural gas, pre, 200km pipeline, storage 1000m","carbon dioxide storage from natural gas, pre, 200km pipeline, storage 1000m",2011:Manufacture of basic chemicals,"34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
 "carbon dioxide storage from natural gas, pre, 400km pipeline, storage 3000m","carbon dioxide storage from natural gas, pre, 400km pipeline, storage 3000m",2011:Manufacture of basic chemicals,"34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
 "carbon dioxide transport and injection in a geological reservoir, infrastructure","carbon dioxide transport and injection in a geological reservoir, infrastructure",2011:Manufacture of basic chemicals,"34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
+"carbon dioxide transport, for cement mineralization","carbon dioxide, transported",2011:Manufacture of basic chemicals,"34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
 "carbon dioxide, captured and stored, at wood burning power plant, pipeline 200km, storage 1000m","carbon dioxide, captured",2011:Manufacture of basic chemicals,"34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
 "carbon dioxide, captured and stored, by biochar application on mineral soil","carbon dioxide, captured",2011:Manufacture of basic chemicals,"34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
+"carbon dioxide, captured and stored, by birch biochar application on mineral soil","carbon dioxide, captured",2011:Manufacture of basic chemicals,"34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
 "carbon dioxide, captured and stored, by land-use change","carbon dioxide, captured",2011:Manufacture of basic chemicals,"34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
+"carbon dioxide, captured and stored, by oak biochar application on mineral soil","carbon dioxide, captured",2011:Manufacture of basic chemicals,"34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
 "carbon dioxide, captured and stored, by ocean liming","carbon dioxide, captured",2011:Manufacture of basic chemicals,"34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
 "carbon dioxide, captured and stored, by olivine spreading on coastline","carbon dioxide, captured",2011:Manufacture of basic chemicals,"34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
+"carbon dioxide, captured and stored, by rice husk biochar application on mineral soil","carbon dioxide, captured",2011:Manufacture of basic chemicals,"34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
+"carbon dioxide, captured and stored, by rice straw biochar application on mineral soil","carbon dioxide, captured",2011:Manufacture of basic chemicals,"34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
+"carbon dioxide, captured and stored, by spruce biochar application on mineral soil","carbon dioxide, captured",2011:Manufacture of basic chemicals,"34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
+"carbon dioxide, captured and stored, by willow biochar application on mineral soil","carbon dioxide, captured",2011:Manufacture of basic chemicals,"34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
 "carbon dioxide, captured and stored, from a biomass fermentation plant","carbon dioxide, captured",2011:Manufacture of basic chemicals,"34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
 "carbon dioxide, captured and stored, from a hydrogen production plant using steam methane reforming of biomethane","carbon dioxide, captured",2011:Manufacture of basic chemicals,"34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
+"carbon dioxide, captured and stored, in crushed concrete, via cement mineralization","carbon dioxide, captured",2011:Manufacture of basic chemicals,"34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
 "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2","carbon dioxide, captured",2011:Manufacture of basic chemicals,"34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
 "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with heat pump heat, and grid electricity","carbon dioxide, captured",2011:Manufacture of basic chemicals,"34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
 "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with industrial steam heat, and grid electricity","carbon dioxide, captured",2011:Manufacture of basic chemicals,"34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
@@ -420,6 +436,7 @@ diesel generator 2MW,diesel generator 2MW,0161:Support activities for crop produ
 "diesel production, synthetic, from methanol, hydrogen from electrolysis, CO2 from DAC, energy allocation, at fuelling station","diesel, synthetic, vehicle grade",1920:Manufacture of refined petroleum products,33360: Gas oil
 diesel-electric generating set production 10MW,diesel-electric generating set production 10MW,3530:Steam and air conditioning supply,17300: Steam and hot water
 "diesel, burned in diesel-electric generating set","diesel, burned in diesel-electric generating set",3530:Steam and air conditioning supply,17300: Steam and hot water
+"diesel, burned in diesel-electric generating set, 10MW","diesel, burned in diesel-electric generating set, 10MW","3510:Electric power generation, transmission and distribution",17100: Electrical energy
 "diesel, burned in diesel-electric generating set, at extraction site","diesel, burned in diesel-electric generating set, at extraction site",3530:Steam and air conditioning supply,17300: Steam and hot water
 "diesel, burned in heavy-duty vehicle",heat,3530:Steam and air conditioning supply,17300: Steam and hot water
 "diesel, burned in passenger car",heat,3530:Steam and air conditioning supply,17300: Steam and hot water
@@ -445,6 +462,12 @@ distribution sheds,distribution sheds,0161:Support activities for crop productio
 dolomite production,dolomite,0729:Mining of other non-ferrous metal ores,14290: Other non-ferrous metal ores and concentrates (other than uranium or thorium ores and concentrates)
 "double-polished GaAs wafer production - chemical, mechanical polishing (CMP)",double-polished GaAs wafer,2011:Manufacture of basic chemicals,47173: Parts for the goods of subclasses 47140 to 47160
 "drilling, deep borehole","drilling, deep borehole",0161:Support activities for crop production,86119: Other support services to crop production
+drying and chipping of rice husk,"rice husk, chipped and dried",0161:Support activities for crop production,"01913: Cereal straw, husks, unprepared, ground, pressed, or in the form of pellets"
+drying and chipping of rice straw,"rice straw, chipped and dried",0161:Support activities for crop production,"01913: Cereal straw, husks, unprepared, ground, pressed, or in the form of pellets"
+drying of birch wood chips,"birch, chipped and dried",0220:Logging,"3110: Wood, sawn or chipped lengthwise, sliced or peeled, of a thickness exceeding 6 mm; railway or tramway sleepers […]"
+drying of oak wood chips,"oak, chipped and dried",0220:Logging,"3110: Wood, sawn or chipped lengthwise, sliced or peeled, of a thickness exceeding 6 mm; railway or tramway sleepers […]"
+drying of spruce wood chips,"spruce, chipped and dried",0220:Logging,"3110: Wood, sawn or chipped lengthwise, sliced or peeled, of a thickness exceeding 6 mm; railway or tramway sleepers […]"
+drying of willow wood chips,"willow, chipped and dried",0220:Logging,"3110: Wood, sawn or chipped lengthwise, sliced or peeled, of a thickness exceeding 6 mm; railway or tramway sleepers […]"
 "electric bicycle production, without battery and motor","electric bicycle, without battery and motor","2710:Manufacture of electric motors, generators, transformers and electricity di","49913: Motorcycles and cycles fitted with an auxiliary motor, other than those with reciprocating internal combustion[…]"
 "electric cargo bicycle production, without battery and motor","electric cargo bicycle, without battery and motor","2710:Manufacture of electric motors, generators, transformers and electricity di","49913: Motorcycles and cycles fitted with an auxiliary motor, other than those with reciprocating internal combustion[…]"
 "electric installation, 1.3 MWp photovoltaic plant, at plant","electric installation, 1.3 MWp photovoltaic plant, at plant",3320:Installation of industrial machinery and equipment,87360: Installation services of electrical machinery and apparatus n.e.c.
@@ -810,6 +833,11 @@ gravel and sand quarry operation,sand,0729:Mining of other non-ferrous metal ore
 "hard carbon, from pitch, for SIB battery","hard carbon, from pitch",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
 "hard coal briquettes, burned in stove 5-15kW",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
 hard coal IGCC power plant 450MW,hard coal IGCC power plant 450MW,4220:Construction of utility projects,53262: Power plants
+hard coal mine operation,"hard coal, run-of-mine",0510:Mining of hard coal,11010: Hard coal
+hard coal mine operation and hard coal preparation,hard coal,0510:Mining of hard coal,11010: Hard coal
+"hard coal mine operation, open cast, dragline","hard coal, run-of-mine",0510:Mining of hard coal,11010: Hard coal
+"hard coal mine operation, open cast, truck and shovel","hard coal, run-of-mine",0510:Mining of hard coal,11010: Hard coal
+"hard coal mine operation, underground","hard coal, run-of-mine",0510:Mining of hard coal,11010: Hard coal
 "hard coal, burned in hard coal industrial furnace 1-10MW",heat,0510:Mining of hard coal,17300: Steam and hot water
 "hardwood forestry, beech, sustainable forest management","cleft timber, measured as dry mass",0220:Logging,"3110: Wood, sawn or chipped lengthwise, sliced or peeled, of a thickness exceeding 6 mm; railway or tramway sleepers […]"
 "hardwood forestry, beech, sustainable forest management","pulpwood, hardwood, measured as solid wood under bark",0220:Logging,"3110: Wood, sawn or chipped lengthwise, sliced or peeled, of a thickness exceeding 6 mm; railway or tramway sleepers […]"
@@ -836,11 +864,13 @@ HDPE tank liner,HDPE tank liner,0161:Support activities for crop production,8611
 "heat and power co-generation, natural gas, conventional power plant, 100MW electrical","heat, district or industrial, natural gas",3530:Steam and air conditioning supply,17300: Steam and hot water
 "heat and power co-generation, wood chips, 6667 kW","heat, district or industrial, other than natural gas",3530:Steam and air conditioning supply,17300: Steam and hot water
 "heat exchanger production, for VRFB system","heat exchanger, for VRFB system",2011:Manufacture of basic chemicals,17300: Steam and hot water
+"heat production, air-water heat pump 10kW","heat, air-water heat pump 10kW",3530:Steam and air conditioning supply,17300: Steam and hot water
 "heat production, at 110 MW concentrating solar power plant, with thermal energy storage",heat,3530:Steam and air conditioning supply,17300: Steam and hot water
 "heat production, at co-generation hard coal-fired power plant, post, pipeline 200km, storage 1000m","heat, district or industrial, other than natural gas",3530:Steam and air conditioning supply,17300: Steam and hot water
 "heat production, at co-generation natural gas-fired power plant, post, pipeline 200km, storage 1000m","heat, district or industrial, natural gas",3530:Steam and air conditioning supply,17300: Steam and hot water
 "heat production, at co-generation oil-fired power plant, post, pipeline 200km, storage 1000m","heat, district or industrial, other than natural gas",3530:Steam and air conditioning supply,17300: Steam and hot water
 "heat production, at co-generation wood-fired power plant, post, pipeline 200km, storage 1000m","heat, district or industrial, other than natural gas",3530:Steam and air conditioning supply,17300: Steam and hot water
+"heat production, biomethane, at boiler condensing modulating <100kW","heat, central or small-scale, biomethane",3530:Steam and air conditioning supply,17300: Steam and hot water
 "heat production, deep geothermal","heat, deep geothermal",3530:Steam and air conditioning supply,17300: Steam and hot water
 "heat production, from hydrogen-fired one gigawatt gas turbine",heat,3530:Steam and air conditioning supply,17300: Steam and hot water
 "heat production, from hydrogen-fired one gigawatt gas turbine, for grid balancing",heat,3530:Steam and air conditioning supply,17300: Steam and hot water
@@ -849,6 +879,7 @@ HDPE tank liner,HDPE tank liner,0161:Support activities for crop production,8611
 "heat production, light fuel oil, at industrial furnace 1MW","heat, district or industrial, other than natural gas",3530:Steam and air conditioning supply,17300: Steam and hot water
 "heat production, mixed logs, at wood heater 6kW","heat, central or small-scale, other than natural gas",3530:Steam and air conditioning supply,17300: Steam and hot water
 "heat production, natural gas, at boiler condensing modulating <100kW","heat, central or small-scale, natural gas",3530:Steam and air conditioning supply,17300: Steam and hot water
+"heat production, natural gas, at boiler condensing modulating >100kW","heat, district or industrial, natural gas",3530:Steam and air conditioning supply,17300: Steam and hot water
 "heat production, water-water heat pump, industrial, 100kW","heat, water-water heat pump, industrial, 100kW",3530:Steam and air conditioning supply,17300: Steam and hot water
 "heat production, wood pellet, at furnace 9kW","heat, central or small-scale, other than natural gas",3530:Steam and air conditioning supply,17300: Steam and hot water
 "heat pump production, industrial, water-water, 100 kW","heat pump, water-water, 100kW",4290:Construction of other civil engineering projects,53262: Power plants
@@ -1395,9 +1426,11 @@ market for dolomite,dolomite,0729:Mining of other non-ferrous metal ores,14290: 
 market for dysprosium oxide,dysprosium oxide,0729:Mining of other non-ferrous metal ores,14290: Other non-ferrous metal ores and concentrates (other than uranium or thorium ores and concentrates)
 "market for electricity, medium voltage, for LiS battery","electricity, medium voltage",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
 "market for energy, for direct air capture and storage","heat, central or small-scale",3530:Steam and air conditioning supply,17300: Steam and hot water
+"market for energy, for direct air capture and storage","energy, for direct air capture and storage",3530:Steam and air conditioning supply,17300: Steam and hot water
 "market for energy, for direct air capture and storage, 20-year period","heat, central or small-scale",3530:Steam and air conditioning supply,17300: Steam and hot water
 "market for energy, for direct air capture and storage, 40-year period","heat, central or small-scale",3530:Steam and air conditioning supply,17300: Steam and hot water
 "market for energy, for direct air capture and storage, 60-year period","heat, central or small-scale",3530:Steam and air conditioning supply,17300: Steam and hot water
+"market for energy, for enhanced rock weathering","energy, for enhanced rock weathering",3530:Steam and air conditioning supply,17300: Steam and hot water
 market for erbium oxide,erbium oxide,0729:Mining of other non-ferrous metal ores,14290: Other non-ferrous metal ores and concentrates (other than uranium or thorium ores and concentrates)
 market for europium oxide,europium oxide,0729:Mining of other non-ferrous metal ores,14290: Other non-ferrous metal ores and concentrates (other than uranium or thorium ores and concentrates)
 "market for ferroniobium, 66% Nb","ferroniobium, 66% Nb",0729:Mining of other non-ferrous metal ores,14290: Other non-ferrous metal ores and concentrates (other than uranium or thorium ores and concentrates)
@@ -1431,6 +1464,7 @@ market for lanthanum oxide,lanthanum oxide,0729:Mining of other non-ferrous meta
 market for lanthanum-cerium oxide,lanthanum-cerium oxide,0729:Mining of other non-ferrous metal ores,14290: Other non-ferrous metal ores and concentrates (other than uranium or thorium ores and concentrates)
 market for lead,lead,0729:Mining of other non-ferrous metal ores,14290: Other non-ferrous metal ores and concentrates (other than uranium or thorium ores and concentrates)
 market for lead concentrate,lead concentrate,0729:Mining of other non-ferrous metal ores,14290: Other non-ferrous metal ores and concentrates (other than uranium or thorium ores and concentrates)
+market for light fuel oil,light fuel oil,1920:Manufacture of refined petroleum products,33370: Fuel oils n.e.c.
 "market for lignocellulosic biomass, used as fuel",lignocellulosic biomass,0161:Support activities for crop production,86119: Other support services to crop production
 "market for lignocellulosic biomass, used as fuel","lignocellulosic biomass, used as fuel",0161:Support activities for crop production,86119: Other support services to crop production
 "market for lithium carbonate, battery grade","lithium carbonate, battery grade",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
@@ -1441,6 +1475,8 @@ market for manganese,manganese,0729:Mining of other non-ferrous metal ores,14290
 market for manganese concentrate,manganese concentrate,0729:Mining of other non-ferrous metal ores,14290: Other non-ferrous metal ores and concentrates (other than uranium or thorium ores and concentrates)
 market for molybdenite,molybdenite,0729:Mining of other non-ferrous metal ores,14290: Other non-ferrous metal ores and concentrates (other than uranium or thorium ores and concentrates)
 market for molybdenum,molybdenum,0729:Mining of other non-ferrous metal ores,14290: Other non-ferrous metal ores and concentrates (other than uranium or thorium ores and concentrates)
+"market for natural gas, high pressure","natural gas, high pressure",1920:Manufacture of refined petroleum products,33360: Gas oil
+"market for natural gas, low pressure","natural gas, low pressure",1920:Manufacture of refined petroleum products,33360: Gas oil
 market for neodymium oxide,neodymium oxide,0729:Mining of other non-ferrous metal ores,14290: Other non-ferrous metal ores and concentrates (other than uranium or thorium ores and concentrates)
 "market for nickel concentrate, 16% Ni","nickel concentrate, 16% Ni",0729:Mining of other non-ferrous metal ores,14290: Other non-ferrous metal ores and concentrates (other than uranium or thorium ores and concentrates)
 "market for nickel, class 1","nickel, class 1",0729:Mining of other non-ferrous metal ores,14290: Other non-ferrous metal ores and concentrates (other than uranium or thorium ores and concentrates)
@@ -1497,9 +1533,13 @@ market for titanium sponge,titanium sponge,0729:Mining of other non-ferrous meta
 market for titanium tetrachloride,titanium tetrachloride,0729:Mining of other non-ferrous metal ores,14290: Other non-ferrous metal ores and concentrates (other than uranium or thorium ores and concentrates)
 "market for transport, freight, lorry","transport, freight, lorry",4923:Freight transport by road,6511: Road transport services of freight
 "market for transport, freight, lorry, 18 metric ton","transport, freight, lorry",4923:Freight transport by road,6511: Road transport services of freight
+"market for transport, freight, lorry, 26 metric ton","transport, freight, lorry",4923:Freight transport by road,6511: Road transport services of freight
+"market for transport, freight, lorry, 3.5 metric ton","transport, freight, lorry",4923:Freight transport by road,6511: Road transport services of freight
 "market for transport, freight, lorry, 40 metric ton","transport, freight, lorry",4923:Freight transport by road,6511: Road transport services of freight
+"market for transport, freight, lorry, 7.5 metric ton","transport, freight, lorry",4923:Freight transport by road,6511: Road transport services of freight
 "market for transport, freight, sea, container ship","transport, freight, sea, container ship",5012:Sea and coastal freight water transport,65213: Coastal and transoceanic water transport services of intermodal containers by container ships
 "market for transport, freight, train","transport, freight, train",4912:Freight rail transport,6512: Railway transport services of freight
+"market for transport, motorbike","transport, motorbike",4921:Urban and suburban passenger land transport,"64119: Other land transportation services of passengers, n.e.c."
 "market for transport, passenger bus","transport, passenger bus",4921:Urban and suburban passenger land transport,641: Local transport and sightseeing transportation services of passengers
 "market for transport, passenger car","transport, passenger car",4922:Other passenger land transport,"64119: Other land transportation services of passengers, n.e.c."
 market for tungsten concentrate,tungsten concentrate,0729:Mining of other non-ferrous metal ores,14290: Other non-ferrous metal ores and concentrates (other than uranium or thorium ores and concentrates)
@@ -1542,6 +1582,7 @@ market group for diesel,diesel,1920:Manufacture of refined petroleum products,33
 "market group for electricity, medium voltage, 20-year period","electricity, medium voltage","3510:Electric power generation, transmission and distribution",17100: Electrical energy
 "market group for electricity, medium voltage, 40-year period","electricity, medium voltage","3510:Electric power generation, transmission and distribution",17100: Electrical energy
 "market group for electricity, medium voltage, 60-year period","electricity, medium voltage","3510:Electric power generation, transmission and distribution",17100: Electrical energy
+"market group for natural gas, high pressure","natural gas, high pressure",1920:Manufacture of refined petroleum products,33360: Gas oil
 "medium duty truck, battery electric, 18t gross weight, long haul",medium duty truck,2910:Manufacture of motor vehicles,49113: Motor cars and other motor vehicles principally designed for the transport of persons (except public-transport[…]
 "medium duty truck, battery electric, 26t gross weight, long haul",medium duty truck,2910:Manufacture of motor vehicles,49113: Motor cars and other motor vehicles principally designed for the transport of persons (except public-transport[…]
 "Medium duty truck, compressed gas, 18t gross weight, EURO-III, long haul","Medium duty truck, EURO-III",2910:Manufacture of motor vehicles,49113: Motor cars and other motor vehicles principally designed for the transport of persons (except public-transport[…]
@@ -2202,6 +2243,7 @@ piping primary EPR,piping primary EPR,4290:Construction of other civil engineeri
 "platinum group metal, extraction and refinery operations",ruthenium,2420:Manufacture of basic precious and other non-ferrous metals,"41320: Gold (including gold plated with platinum), unwrought or in semi-manufactured forms, or in powder form"
 "platinum group metal, mine and concentration operations",platinum group metal concentrate,0729:Mining of other non-ferrous metal ores,14290: Other non-ferrous metal ores and concentrates (other than uranium or thorium ores and concentrates)
 "pluronic P123 production, for LiS battery",pluronic P123,2011:Manufacture of basic chemicals,46410: Primary cells and primary batteries
+plywood production,plywood,1621:Manufacture of veneer sheets and wood-based panels,"31450: Plywood, veneer panels and similar laminated wood of bamboo"
 polar crane NI EPR,polar crane NI EPR,4290:Construction of other civil engineering projects,53262: Power plants
 polyacrylonitrile production (PAN) by polymerisation,polyacrylonitrile,0161:Support activities for crop production,86119: Other support services to crop production
 "polyacrylonitrile-based electrode production, for VRFB system","polyacrylonitrile-based electrode, for VFRB system","2710:Manufacture of electric motors, generators, transformers and electricity di","46430: Parts of primary cells, primary batteries and electric accumulators (including separators)"
@@ -2434,6 +2476,8 @@ strontium mine operation and beneficiation,"strontium sulfate, 90% SrSO4",0729:M
 "sulfur production, petroleum refinery operation",sulfur,0729:Mining of other non-ferrous metal ores,14290: Other non-ferrous metal ores and concentrates (other than uranium or thorium ores and concentrates)
 supply and refining of waste cooking oil,waste Cooking Oil,3821:Treatment and disposal of non-hazardous waste,39990: Other wastes n.e.c.
 supply of forest residue,forest residue,0161:Support activities for crop production,86119: Other support services to crop production
+supply of rice husk,"rice husk, fresh",0161:Support activities for crop production,"01913: Cereal straw, husks, unprepared, ground, pressed, or in the form of pellets"
+supply of rice straw,"rice straw, fresh",0161:Support activities for crop production,"01913: Cereal straw, husks, unprepared, ground, pressed, or in the form of pellets"
 support primary EPR,support primary EPR,4290:Construction of other civil engineering projects,53262: Power plants
 supports NI EPR,supports NI EPR,4290:Construction of other civil engineering projects,53262: Power plants
 "surface production process, lithium","surface production, lithium",2011:Manufacture of basic chemicals,34240: Phosphates of triammonium; salts and peroxysalts of inorganic acids and metals n.e.c.

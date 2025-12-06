@@ -753,6 +753,22 @@ class BaseTransformation:
 
         return production_volumes, technology_shares_dict, regional_shares_dict
 
+    def add_geo_definition_metadata(self, dataset):
+
+        if dataset["location"] in self.regions:
+            geo_coverage = self.iam_to_ecoinvent_loc[dataset["location"]]
+
+            if "comment" in dataset:
+                dataset[
+                    "comment"
+                ] += f" This IAM region covers the following ecoinvent location: {geo_coverage}"
+            else:
+                dataset["comment"] = (
+                    f"This IAM region covers the following ecoinvent location: {geo_coverage}"
+                )
+
+        return dataset
+
     def process_and_add_markets(
         self,
         name,
@@ -849,6 +865,9 @@ class BaseTransformation:
                     production_exchange,
                 ],
             }
+
+            # add geographical coverage definition
+            self.add_geo_definition_metadata(market_dataset)
 
             for technology, activities in mapping.items():
                 if (technology, region) in technology_shares_dict:
@@ -1131,6 +1150,10 @@ class BaseTransformation:
                     datasets=activities,
                     production_volumes=prod_vol,
                 )
+
+                # add geographical coverage definition
+                for ds in regionalized_datasets.values():
+                    self.add_geo_definition_metadata(ds)
 
                 # adjust efficiency of steel production
                 if efficiency_adjustment_fn:
