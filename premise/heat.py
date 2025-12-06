@@ -390,6 +390,53 @@ class Heat(BaseTransformation):
                         non_fossil_co2
                     )
 
+    def align_geothermal_primary_energy(self):
+        """
+        Align primary energy flow for deep geothermal heat production with IAM assumptions.
+        Sets "Energy, geothermal, converted" to 1 MJ per MJ of heat output
+        (1:1 conversion from primary to secondary energy).
+        """
+        count = 0
+        for dataset in self.database:
+            # Check if dataset matches "heat production, deep geothermal"
+            if not dataset["name"].startswith("heat production, deep geothermal"):
+                continue
+
+            # Check if it produces heat (megajoule output)
+            has_mj_output = any(
+                exc["unit"] == "megajoule" and exc["type"] == "production"
+                for exc in dataset.get("exchanges", [])
+            )
+
+            if not has_mj_output:
+                continue
+
+            # Find and update the primary energy flow
+            for exc in ws.biosphere(dataset):
+                if exc["name"] == "Energy, geothermal, converted":
+                    old_amount = exc["amount"]
+                    exc["amount"] = 1.0  # 1 MJ per MJ of heat
+
+                    # Log the change
+                    dataset.setdefault("log parameters", {}).update(
+                        {
+                            "primary energy Energy, geothermal, converted": {
+                                "old": old_amount,
+                                "new": 1.0,
+                                "reason": "IAM primary energy alignment for heat production",
+                            }
+                        }
+                    )
+
+                    count += 1
+                    self.write_log(dataset, "updated")
+                    break
+
+        logger.info(
+            f"Updated primary energy flow 'Energy, geothermal, converted' "
+            f"in {count} datasets for heat production, deep geothermal"
+        )
+
     def create_heat_markets(
         self,
         technologies,
