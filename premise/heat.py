@@ -33,6 +33,7 @@ def _update_heat(scenario, version, system_model):
     heat.fetch_fuel_market_co2_emissions()
     heat.regionalize_activities()
     heat.adjust_carbon_dioxide_emissions()
+    heat.align_geothermal_primary_energy()
 
     if scenario["iam data"].buildings_heating_mix is not None:
         heat.create_heat_markets(
