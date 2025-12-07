@@ -2494,7 +2494,8 @@ Transport - Freight - Truck(0-3_5t) - Biofuel:
 Transport - Freight - Truck(0-3_5t) - Liquid fossil:
   ecoinvent_aliases:
     fltr:
-      name: petrol, burned in passenger car
+#      name: petrol, burned in passenger car
+      name: diesel, burned in heavy-duty vehicle
       reference product: heat
   iam_aliases:
     remind: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Liquids|Fossil
