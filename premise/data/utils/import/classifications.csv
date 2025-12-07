@@ -880,6 +880,8 @@ HDPE tank liner,HDPE tank liner,0161:Support activities for crop production,8611
 "heat production, mixed logs, at wood heater 6kW","heat, central or small-scale, other than natural gas",3530:Steam and air conditioning supply,17300: Steam and hot water
 "heat production, natural gas, at boiler condensing modulating <100kW","heat, central or small-scale, natural gas",3530:Steam and air conditioning supply,17300: Steam and hot water
 "heat production, natural gas, at boiler condensing modulating >100kW","heat, district or industrial, natural gas",3530:Steam and air conditioning supply,17300: Steam and hot water
+"heat production, softwood chips from forest, at furnace 1000kW","heat, district or industrial, other than natural gas",3530:Steam and air conditioning supply,17300: Steam and hot water
+"heat production, softwood chips from forest, at furnace 1000kW, state-of-the-art 2014","heat, district or industrial, other than natural gas",3530:Steam and air conditioning supply,17300: Steam and hot water
 "heat production, water-water heat pump, industrial, 100kW","heat, water-water heat pump, industrial, 100kW",3530:Steam and air conditioning supply,17300: Steam and hot water
 "heat production, wood pellet, at furnace 9kW","heat, central or small-scale, other than natural gas",3530:Steam and air conditioning supply,17300: Steam and hot water
 "heat pump production, industrial, water-water, 100 kW","heat pump, water-water, 100kW",4290:Construction of other civil engineering projects,53262: Power plants
