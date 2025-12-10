@@ -3,7 +3,7 @@ Consequential modelling
 
 The premise module allows users to import and adjust
 the consequential system model of the ecoinvent database
-v.3.8, v.3.9, v.3.10 and v.3.11.
+v.3.8, v.3.9, v.3.10, v.3.11 and v.3.12.
 This work is based on a publication available
 at https://doi.org/10.1016/j.rser.2023.113830
 

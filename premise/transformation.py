@@ -2352,7 +2352,7 @@ class BaseTransformation:
         # and other locations longer than 2 characters (other than GLO)
         # are converted to tuples with ("ecoinvent", location).
 
-        possible_locations = [
+        filtered_possible_locations = [
             (
                 (self.model.upper(), loc)
                 if loc in self.regions
@@ -2365,17 +2365,24 @@ class BaseTransformation:
             for loc in possible_locations
         ]
 
-        possible_locations = [loc for loc in possible_locations if loc in self.geo.geo]
+        filtered_possible_locations = [
+            loc for loc in filtered_possible_locations if loc in self.geo.geo
+        ]
 
-        with resolved_row(possible_locations, self.geo.geo) as g:
-            func = g.contained if contained else g.intersects
+        try:
+            with resolved_row(filtered_possible_locations, self.geo.geo) as g:
+                func = g.contained if contained else g.intersects
 
-            gis_match = func(
-                location,
-                include_self=True,
-                exclusive=exclusive,
-                biggest_first=biggest_first,
-                only=possible_locations,
-            )
+                gis_match = func(
+                    location,
+                    include_self=True,
+                    exclusive=exclusive,
+                    biggest_first=biggest_first,
+                    only=filtered_possible_locations,
+                )
+        except:
+            print("location", location)
+            print("possible_locations", possible_locations)
+            print("filtered_possible_locations", filtered_possible_locations)
 
         return gis_match

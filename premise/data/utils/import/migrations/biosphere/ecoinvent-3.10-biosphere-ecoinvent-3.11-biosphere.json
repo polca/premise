@@ -1,0 +1,473 @@
+{
+  "name": "ecoinvent-3.10.1-biosphere-ecoinvent-3.11-biosphere",
+  "description": "Data migration file from ecoinvent-3.10.1-biosphere to ecoinvent-3.11-biosphere generated with `ecoinvent_migrate` version 0.6.2",
+  "contributors": [
+    {
+      "title": "ecoinvent association",
+      "path": "https://ecoinvent.org/",
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "title": "Chris Mutel",
+      "path": "https://chris.mutel.org/",
+      "roles": [
+        "wrangler"
+      ]
+    }
+  ],
+  "created": "2025-12-02T14:34:54.035570+00:00",
+  "version": "2.0.0",
+  "licenses": [
+    {
+      "name": "CC-BY-4.0",
+      "path": "https://creativecommons.org/licenses/by/4.0/legalcode",
+      "title": "Creative Commons Attribution 4.0 International"
+    }
+  ],
+  "graph_context": [
+    "edges"
+  ],
+  "mapping": {
+    "source": {
+      "expression language": "XPath",
+      "labels": {
+        "name": "//*:elementaryExchange/*:name/text()",
+        "unit": "//*:elementaryExchange/*:unitName/text()",
+        "uuid": "//*:elementaryExchange/@elementaryExchangeId",
+        "formula": "//*:elementaryExchange/@formula",
+        "context": [
+          "//*:elementaryExchange/*:compartment/*:compartment/text()",
+          "//*:elementaryExchange/*:compartment/*:subcompartment/text()"
+        ]
+      }
+    },
+    "target": {
+      "expression language": "XPath",
+      "labels": {
+        "name": "//*:elementaryExchange/*:name/text()",
+        "unit": "//*:elementaryExchange/*:unitName/text()",
+        "uuid": "//*:elementaryExchange/@elementaryExchangeId",
+        "formula": "//*:elementaryExchange/@formula",
+        "context": [
+          "//*:elementaryExchange/*:compartment/*:compartment/text()",
+          "//*:elementaryExchange/*:compartment/*:subcompartment/text()"
+        ]
+      }
+    }
+  },
+  "source_id": "ecoinvent-3.10.1-biosphere",
+  "target_id": "ecoinvent-3.11-biosphere",
+  "homepage": "https://github.com/brightway-lca/ecoinvent_migrate",
+  "replace": [
+    {
+      "source": {
+        "uuid": "77baca1e-1fb6-49f0-8799-c37f3c31debb",
+        "name": "Chloromethane"
+      },
+      "target": {
+        "uuid": "18ea247b-edc2-43fe-89bd-cedd04102bcc",
+        "name": "Methylchloride"
+      },
+      "comment": "This was a duplicate"
+    },
+    {
+      "source": {
+        "name": "Carbon, organic, in soil or biomass stock",
+        "formula": "C",
+        "unit": "kg",
+        "uuid": "8c2fe757-6866-4ed2-9f89-81012ad774a0"
+      },
+      "target": {
+        "name": "Carbon, organic, decrease in soil or biomass stock",
+        "uuid": "8c2fe757-6866-4ed2-9f89-81012ad774a0"
+      },
+      "comment": "Flow attribute change not listed in change report"
+    },
+    {
+      "source": {
+        "name": "Methane, bromo-, Halon 1001",
+        "formula": "CH3Br",
+        "unit": "kg",
+        "uuid": "4bf1c333-419b-4278-ac14-247c8bf563d6"
+      },
+      "target": {
+        "name": "Bromomethane",
+        "uuid": "4bf1c333-419b-4278-ac14-247c8bf563d6"
+      },
+      "comment": "Flow attribute change not listed in change report"
+    },
+    {
+      "source": {
+        "name": "Methane, bromochlorodifluoro-, Halon 1211",
+        "formula": "CBrClF2",
+        "unit": "kg",
+        "uuid": "816c43d1-bc30-4a72-81db-08cb6be4da4f"
+      },
+      "target": {
+        "name": "Bromochlorodifluoromethane",
+        "uuid": "816c43d1-bc30-4a72-81db-08cb6be4da4f"
+      },
+      "comment": "Flow attribute change not listed in change report"
+    },
+    {
+      "source": {
+        "name": "Methane, bromotrifluoro-, Halon 1301",
+        "formula": "CBrF3",
+        "unit": "kg",
+        "uuid": "18ddd879-5496-4419-8ab7-e0d3864d977d"
+      },
+      "target": {
+        "name": "Bromotrifluoromethane",
+        "uuid": "18ddd879-5496-4419-8ab7-e0d3864d977d"
+      },
+      "comment": "Flow attribute change not listed in change report"
+    },
+    {
+      "source": {
+        "name": "Methane, bromo-, Halon 1001",
+        "formula": "CH3Br",
+        "unit": "kg",
+        "uuid": "701cda28-4722-431c-b52f-05a735ef5ed3"
+      },
+      "target": {
+        "name": "Bromomethane",
+        "uuid": "701cda28-4722-431c-b52f-05a735ef5ed3"
+      },
+      "comment": "Flow attribute change not listed in change report"
+    },
+    {
+      "source": {
+        "name": "Methane, bromo-, Halon 1001",
+        "formula": "CH3Br",
+        "unit": "kg",
+        "uuid": "09e231fa-b1c2-4d63-9c57-7ea0e2210858"
+      },
+      "target": {
+        "name": "Bromomethane",
+        "uuid": "09e231fa-b1c2-4d63-9c57-7ea0e2210858"
+      },
+      "comment": "Flow attribute change not listed in change report"
+    },
+    {
+      "source": {
+        "name": "Methane, bromo-, Halon 1001",
+        "formula": "CH3Br",
+        "unit": "kg",
+        "uuid": "8c283de2-50d3-40c8-8bff-1e172c3398f8"
+      },
+      "target": {
+        "name": "Bromomethane",
+        "uuid": "8c283de2-50d3-40c8-8bff-1e172c3398f8"
+      },
+      "comment": "Flow attribute change not listed in change report"
+    },
+    {
+      "source": {
+        "name": "Methane, bromochlorodifluoro-, Halon 1211",
+        "formula": "CBrClF2",
+        "unit": "kg",
+        "uuid": "494eb62d-3e16-4a81-b344-6d6dfd9fd4e2"
+      },
+      "target": {
+        "name": "Bromochlorodifluoromethane",
+        "uuid": "494eb62d-3e16-4a81-b344-6d6dfd9fd4e2"
+      },
+      "comment": "Flow attribute change not listed in change report"
+    },
+    {
+      "source": {
+        "name": "Methane, bromochlorodifluoro-, Halon 1211",
+        "formula": "CBrClF2",
+        "unit": "kg",
+        "uuid": "06a4fedf-dab4-4ef1-90df-1d0ce8fe6477"
+      },
+      "target": {
+        "name": "Bromochlorodifluoromethane",
+        "uuid": "06a4fedf-dab4-4ef1-90df-1d0ce8fe6477"
+      },
+      "comment": "Flow attribute change not listed in change report"
+    },
+    {
+      "source": {
+        "name": "Methane, bromochlorodifluoro-, Halon 1211",
+        "formula": "CBrClF2",
+        "unit": "kg",
+        "uuid": "ee31ac2a-9336-4ed6-8077-9663003bc2f9"
+      },
+      "target": {
+        "name": "Bromochlorodifluoromethane",
+        "uuid": "ee31ac2a-9336-4ed6-8077-9663003bc2f9"
+      },
+      "comment": "Flow attribute change not listed in change report"
+    },
+    {
+      "source": {
+        "name": "Methane, bromotrifluoro-, Halon 1301",
+        "formula": "CBrF3",
+        "unit": "kg",
+        "uuid": "82957257-07f3-4536-ac8b-175cb2353c75"
+      },
+      "target": {
+        "name": "Bromotrifluoromethane",
+        "uuid": "82957257-07f3-4536-ac8b-175cb2353c75"
+      },
+      "comment": "Flow attribute change not listed in change report"
+    },
+    {
+      "source": {
+        "name": "Methane, bromotrifluoro-, Halon 1301",
+        "formula": "CBrF3",
+        "unit": "kg",
+        "uuid": "96b52062-5e2f-40de-921a-f443c08862e4"
+      },
+      "target": {
+        "name": "Bromotrifluoromethane",
+        "uuid": "96b52062-5e2f-40de-921a-f443c08862e4"
+      },
+      "comment": "Flow attribute change not listed in change report"
+    },
+    {
+      "source": {
+        "name": "Methane, bromotrifluoro-, Halon 1301",
+        "formula": "CBrF3",
+        "unit": "kg",
+        "uuid": "4ac2ffc3-312e-4e2d-88c4-2630d4a73d8c"
+      },
+      "target": {
+        "name": "Bromotrifluoromethane",
+        "uuid": "4ac2ffc3-312e-4e2d-88c4-2630d4a73d8c"
+      },
+      "comment": "Flow attribute change not listed in change report"
+    },
+    {
+      "source": {
+        "name": "Pyrethrin",
+        "formula": "C22H28O5",
+        "unit": "kg",
+        "uuid": "6f478f7b-1817-4316-8dd8-c65fdc1c6be7"
+      },
+      "target": {
+        "name": "Pyrethrin II",
+        "uuid": "6f478f7b-1817-4316-8dd8-c65fdc1c6be7"
+      },
+      "comment": "Flow attribute change not listed in change report"
+    },
+    {
+      "source": {
+        "name": "Silicon dioxide",
+        "formula": "O2Si",
+        "unit": "kg",
+        "uuid": "46190ab6-8a25-40e2-8be1-b5145fed2f25"
+      },
+      "target": {
+        "formula": "SiO2",
+        "uuid": "46190ab6-8a25-40e2-8be1-b5145fed2f25"
+      },
+      "comment": "Flow attribute change not listed in change report"
+    },
+    {
+      "source": {
+        "name": "Pyrethrum",
+        "formula": "C43H56O8",
+        "unit": "kg",
+        "uuid": "69edbf6f-66cb-5e8f-8741-f34a16fed5ca"
+      },
+      "target": {
+        "name": "Pyrethrins",
+        "uuid": "69edbf6f-66cb-5e8f-8741-f34a16fed5ca"
+      },
+      "comment": "Flow attribute change not listed in change report"
+    },
+    {
+      "source": {
+        "name": "Polychlorinated biphenyls",
+        "unit": "kg",
+        "uuid": "fed18945-b0e0-47a4-8fa0-6bc99c3c512a"
+      },
+      "target": {
+        "formula": "C12H10-xClx",
+        "uuid": "fed18945-b0e0-47a4-8fa0-6bc99c3c512a"
+      },
+      "comment": "Flow attribute change not listed in change report"
+    },
+    {
+      "source": {
+        "name": "Polychlorinated biphenyls",
+        "unit": "kg",
+        "uuid": "c9b97088-efc6-43c1-8d26-f78d6cdbb50b"
+      },
+      "target": {
+        "formula": "C12H10-xClx",
+        "uuid": "c9b97088-efc6-43c1-8d26-f78d6cdbb50b"
+      },
+      "comment": "Flow attribute change not listed in change report"
+    },
+    {
+      "source": {
+        "name": "Polychlorinated biphenyls",
+        "unit": "kg",
+        "uuid": "5d691e58-2074-4661-8525-d98a173e1c99"
+      },
+      "target": {
+        "formula": "C12H10-xClx",
+        "uuid": "5d691e58-2074-4661-8525-d98a173e1c99"
+      },
+      "comment": "Flow attribute change not listed in change report"
+    },
+    {
+      "source": {
+        "name": "Polychlorinated biphenyls",
+        "unit": "kg",
+        "uuid": "07279b73-709f-4ac2-a9e1-82fbd01ce301"
+      },
+      "target": {
+        "formula": "C12H10-xClx",
+        "uuid": "07279b73-709f-4ac2-a9e1-82fbd01ce301"
+      },
+      "comment": "Flow attribute change not listed in change report"
+    },
+    {
+      "source": {
+        "name": "Polychlorinated biphenyls",
+        "unit": "kg",
+        "uuid": "456b8003-1508-4000-a53c-752e02023445"
+      },
+      "target": {
+        "formula": "C12H10-xClx",
+        "uuid": "456b8003-1508-4000-a53c-752e02023445"
+      },
+      "comment": "Flow attribute change not listed in change report"
+    },
+    {
+      "source": {
+        "name": "Copper oxychloride",
+        "formula": "Cl2Cu4H12O6",
+        "unit": "kg",
+        "uuid": "5c309691-59d6-5439-ba94-30c990aacf49"
+      },
+      "target": {
+        "formula": "ClCu2H3O3",
+        "uuid": "5c309691-59d6-5439-ba94-30c990aacf49"
+      },
+      "comment": "Flow attribute change not listed in change report"
+    },
+    {
+      "source": {
+        "name": "Copper oxychloride",
+        "formula": "Cl2Cu4H12O6",
+        "unit": "kg",
+        "uuid": "8a0f9d4c-cf90-5c89-a79d-2926cc516521"
+      },
+      "target": {
+        "formula": "ClCu2H3O3",
+        "uuid": "8a0f9d4c-cf90-5c89-a79d-2926cc516521"
+      },
+      "comment": "Flow attribute change not listed in change report"
+    },
+    {
+      "source": {
+        "name": "Copper oxychloride",
+        "formula": "Cl2Cu4H12O6",
+        "unit": "kg",
+        "uuid": "08c9d29a-ba22-54a0-a500-b9a4709e35cf"
+      },
+      "target": {
+        "formula": "ClCu2H3O3",
+        "uuid": "08c9d29a-ba22-54a0-a500-b9a4709e35cf"
+      },
+      "comment": "Flow attribute change not listed in change report"
+    },
+    {
+      "source": {
+        "name": "Copper oxychloride",
+        "formula": "Cl2Cu4H12O6",
+        "unit": "kg",
+        "uuid": "aaca334b-09a5-589e-8088-d3bc090b12e0"
+      },
+      "target": {
+        "formula": "ClCu2H3O3",
+        "uuid": "aaca334b-09a5-589e-8088-d3bc090b12e0"
+      },
+      "comment": "Flow attribute change not listed in change report"
+    },
+    {
+      "source": {
+        "name": "Copper oxychloride",
+        "formula": "Cl2Cu4H12O6",
+        "unit": "kg",
+        "uuid": "a46f2cef-b328-5d0d-848d-aa485e50eb8e"
+      },
+      "target": {
+        "formula": "ClCu2H3O3",
+        "uuid": "a46f2cef-b328-5d0d-848d-aa485e50eb8e"
+      },
+      "comment": "Flow attribute change not listed in change report"
+    },
+    {
+      "source": {
+        "name": "Sulfur trioxide",
+        "formula": "O3S",
+        "unit": "kg",
+        "uuid": "13825fb9-6e24-409a-bfcd-5dc4fd61ef98"
+      },
+      "target": {
+        "formula": "SO3",
+        "uuid": "13825fb9-6e24-409a-bfcd-5dc4fd61ef98"
+      },
+      "comment": "Flow attribute change not listed in change report"
+    },
+    {
+      "source": {
+        "name": "Sulfur trioxide",
+        "formula": "O3S",
+        "unit": "kg",
+        "uuid": "b00950bc-99cb-4ee2-bbc0-5f878ea170c3"
+      },
+      "target": {
+        "formula": "SO3",
+        "uuid": "b00950bc-99cb-4ee2-bbc0-5f878ea170c3"
+      },
+      "comment": "Flow attribute change not listed in change report"
+    },
+    {
+      "source": {
+        "name": "Sulfur trioxide",
+        "formula": "O3S",
+        "unit": "kg",
+        "uuid": "48430c70-95e0-4036-9854-72cc772ac8b2"
+      },
+      "target": {
+        "formula": "SO3",
+        "uuid": "48430c70-95e0-4036-9854-72cc772ac8b2"
+      },
+      "comment": "Flow attribute change not listed in change report"
+    },
+    {
+      "source": {
+        "name": "Sulfur trioxide",
+        "formula": "O3S",
+        "unit": "kg",
+        "uuid": "3268d8df-59cc-4740-a89f-dee8355ad7c3"
+      },
+      "target": {
+        "formula": "SO3",
+        "uuid": "3268d8df-59cc-4740-a89f-dee8355ad7c3"
+      },
+      "comment": "Flow attribute change not listed in change report"
+    },
+    {
+      "source": {
+        "name": "Iodine",
+        "unit": "kg",
+        "uuid": "ed9d969e-f77b-5f66-aa23-1b43ec0e9fa1"
+      },
+      "target": {
+        "formula": "I2",
+        "uuid": "ed9d969e-f77b-5f66-aa23-1b43ec0e9fa1"
+      },
+      "comment": "Flow attribute change not listed in change report"
+    }
+  ]
+}

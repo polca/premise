@@ -97,6 +97,14 @@ IAI Area, EU27 & EFTA:
   tiam-ucl: WEU
   gcam: EU-15
   witch: europe
+IAI Area, Western and Central Europe:
+  remind: EUR
+  remind-eu: DEU
+  image: WEU
+  message: WEU
+  tiam-ucl: WEU
+  gcam: EU-15
+  witch: europe
 UN-OCEANIA:
   remind: CAZ
   remind-eu: AUS
@@ -234,6 +242,14 @@ IAI Area, South America:
   gcam: South America_Southern
   witch: laca
 IAI Area, Russia & RER w/o EU27 & EFTA:
+  remind: REF
+  remind-eu: REF
+  image: RUS
+  message: FSU
+  tiam-ucl: FSU
+  gcam: Russia
+  witch: te
+IAI Area, Russia and Eastern Europe:
   remind: REF
   remind-eu: REF
   image: RUS

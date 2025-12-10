@@ -33,6 +33,7 @@ class Geomap:
         self.constants = self.load_constants()
         self.topology = self.fetch_topology(model)
         self.additional_mappings = self.get_additional_mapping()
+        self.ei312_geographies = self.fetch_topology("ei312")
 
         self.setup_geography()
 
@@ -81,6 +82,9 @@ class Geomap:
         self.geo.add_definitions(
             {"World": ["GLO", "RoW"]}, self.model.upper(), relative=True
         )
+
+        # add ei312 new geographies
+        self.geo.add_definitions(self.ei312_geographies, "ecoinvent", relative=True)
 
         assert (self.model.upper(), "World") in self.geo.keys(), list(self.geo.keys())
 

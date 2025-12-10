@@ -1,0 +1,293 @@
+{
+  "name": "ecoinvent-3.5-biosphere-ecoinvent-3.6-biosphere",
+  "description": "Data migration file from ecoinvent-3.5-biosphere to ecoinvent-3.6-biosphere generated with `ecoinvent_migrate` version 0.6.2",
+  "contributors": [
+    {
+      "title": "ecoinvent association",
+      "path": "https://ecoinvent.org/",
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "title": "Chris Mutel",
+      "path": "https://chris.mutel.org/",
+      "roles": [
+        "wrangler"
+      ]
+    }
+  ],
+  "created": "2025-12-02T16:34:04.070114+00:00",
+  "version": "2.0.0",
+  "licenses": [
+    {
+      "name": "CC-BY-4.0",
+      "path": "https://creativecommons.org/licenses/by/4.0/legalcode",
+      "title": "Creative Commons Attribution 4.0 International"
+    }
+  ],
+  "graph_context": [
+    "edges"
+  ],
+  "mapping": {
+    "source": {
+      "expression language": "XPath",
+      "labels": {
+        "name": "//*:elementaryExchange/*:name/text()",
+        "unit": "//*:elementaryExchange/*:unitName/text()",
+        "uuid": "//*:elementaryExchange/@elementaryExchangeId",
+        "formula": "//*:elementaryExchange/@formula",
+        "context": [
+          "//*:elementaryExchange/*:compartment/*:compartment/text()",
+          "//*:elementaryExchange/*:compartment/*:subcompartment/text()"
+        ]
+      }
+    },
+    "target": {
+      "expression language": "XPath",
+      "labels": {
+        "name": "//*:elementaryExchange/*:name/text()",
+        "unit": "//*:elementaryExchange/*:unitName/text()",
+        "uuid": "//*:elementaryExchange/@elementaryExchangeId",
+        "formula": "//*:elementaryExchange/@formula",
+        "context": [
+          "//*:elementaryExchange/*:compartment/*:compartment/text()",
+          "//*:elementaryExchange/*:compartment/*:subcompartment/text()"
+        ]
+      }
+    }
+  },
+  "source_id": "ecoinvent-3.5-biosphere",
+  "target_id": "ecoinvent-3.6-biosphere",
+  "homepage": "https://github.com/brightway-lca/ecoinvent_migrate",
+  "delete": [
+    {
+      "source": {
+        "uuid": "46021b12-1b66-4e5f-8dfb-204543a83dc6",
+        "name": "venting of nitrogen, liquid"
+      },
+      "comment": "Deleted flow not listed in change report"
+    },
+    {
+      "source": {
+        "uuid": "7fd9a2f3-c52a-4e75-936a-570f70e6f94e",
+        "name": "residual wood, dry"
+      },
+      "comment": "Deleted flow not listed in change report"
+    },
+    {
+      "source": {
+        "uuid": "7db97fb7-ade7-4366-9ba4-cc8208419c23",
+        "name": "venting of argon, crude, liquid"
+      },
+      "comment": "Deleted flow not listed in change report"
+    }
+  ],
+  "replace": [
+    {
+      "source": {
+        "name": "strontium, in ground",
+        "unit": "kg",
+        "uuid": "0f1b21d0-2780-4742-87f2-28fb21a44db5"
+      },
+      "target": {
+        "name": "Strontium, in ground",
+        "formula": "Sr",
+        "uuid": "0f1b21d0-2780-4742-87f2-28fb21a44db5"
+      },
+      "comment": "Flow attribute change not listed in change report"
+    },
+    {
+      "source": {
+        "name": "Tin, in ground",
+        "unit": "kg",
+        "uuid": "53d5ef26-66d8-4536-afa2-2f6b114189ba"
+      },
+      "target": {
+        "formula": "Sn",
+        "uuid": "53d5ef26-66d8-4536-afa2-2f6b114189ba"
+      },
+      "comment": "Flow attribute change not listed in change report"
+    },
+    {
+      "source": {
+        "name": "Iron, in ground",
+        "unit": "kg",
+        "uuid": "8ce3ff02-7a1e-48e3-881e-3248b944f28a"
+      },
+      "target": {
+        "formula": "Fe",
+        "uuid": "8ce3ff02-7a1e-48e3-881e-3248b944f28a"
+      },
+      "comment": "Flow attribute change not listed in change report"
+    },
+    {
+      "source": {
+        "name": "Nickel, in ground",
+        "unit": "kg",
+        "uuid": "974213ef-1ba0-40e5-bc7b-52ef099e9e09"
+      },
+      "target": {
+        "formula": "Ni",
+        "uuid": "974213ef-1ba0-40e5-bc7b-52ef099e9e09"
+      },
+      "comment": "Flow attribute change not listed in change report"
+    },
+    {
+      "source": {
+        "name": "Copper, in ground",
+        "unit": "kg",
+        "uuid": "a9ac40a0-9bea-4c48-afa7-66aa6eb90624"
+      },
+      "target": {
+        "formula": "Cu",
+        "uuid": "a9ac40a0-9bea-4c48-afa7-66aa6eb90624"
+      },
+      "comment": "Flow attribute change not listed in change report"
+    },
+    {
+      "source": {
+        "name": "Zirconium, in ground",
+        "unit": "kg",
+        "uuid": "cd2932c5-a486-4bf1-99b8-815d8a7ce11a"
+      },
+      "target": {
+        "formula": "Zr",
+        "uuid": "cd2932c5-a486-4bf1-99b8-815d8a7ce11a"
+      },
+      "comment": "Flow attribute change not listed in change report"
+    },
+    {
+      "source": {
+        "name": "Uranium, in ground",
+        "unit": "kg",
+        "uuid": "2ba5e39b-adb6-4767-a51d-90c1cf32fe98"
+      },
+      "target": {
+        "formula": "U",
+        "uuid": "2ba5e39b-adb6-4767-a51d-90c1cf32fe98"
+      },
+      "comment": "Flow attribute change not listed in change report"
+    },
+    {
+      "source": {
+        "name": "Chromium, in ground",
+        "unit": "kg",
+        "uuid": "e189e2d4-3d3f-4ada-b302-91611784311f"
+      },
+      "target": {
+        "formula": "Cr",
+        "uuid": "e189e2d4-3d3f-4ada-b302-91611784311f"
+      },
+      "comment": "Flow attribute change not listed in change report"
+    },
+    {
+      "source": {
+        "name": "Titanium, in ground",
+        "unit": "kg",
+        "uuid": "2f033407-6060-4e1e-868c-9f362d10fdb2"
+      },
+      "target": {
+        "formula": "Ti",
+        "uuid": "2f033407-6060-4e1e-868c-9f362d10fdb2"
+      },
+      "comment": "Flow attribute change not listed in change report"
+    },
+    {
+      "source": {
+        "name": "Gallium, in ground",
+        "unit": "kg",
+        "uuid": "0878c1c6-4c1d-4f90-a2de-a9383855d5c6"
+      },
+      "target": {
+        "formula": "Ga",
+        "uuid": "0878c1c6-4c1d-4f90-a2de-a9383855d5c6"
+      },
+      "comment": "Flow attribute change not listed in change report"
+    },
+    {
+      "source": {
+        "name": "Aluminium, in ground",
+        "unit": "kg",
+        "uuid": "a45cd247-3532-4e27-bddc-b519fdb5e08f"
+      },
+      "target": {
+        "formula": "Al",
+        "uuid": "a45cd247-3532-4e27-bddc-b519fdb5e08f"
+      },
+      "comment": "Flow attribute change not listed in change report"
+    },
+    {
+      "source": {
+        "name": "Cobalt, in ground",
+        "unit": "kg",
+        "uuid": "d0779a5e-6969-4144-954e-ceb81fb83f15"
+      },
+      "target": {
+        "formula": "Co",
+        "uuid": "d0779a5e-6969-4144-954e-ceb81fb83f15"
+      },
+      "comment": "Flow attribute change not listed in change report"
+    },
+    {
+      "source": {
+        "name": "Gold, in ground",
+        "unit": "kg",
+        "uuid": "d080e6a4-42c6-484e-b5d7-d74693aec7d9"
+      },
+      "target": {
+        "formula": "Au",
+        "uuid": "d080e6a4-42c6-484e-b5d7-d74693aec7d9"
+      },
+      "comment": "Flow attribute change not listed in change report"
+    },
+    {
+      "source": {
+        "name": "Platinum, in ground",
+        "unit": "kg",
+        "uuid": "d13b2665-505d-49e2-8edd-dc966b0342af"
+      },
+      "target": {
+        "formula": "Pt",
+        "uuid": "d13b2665-505d-49e2-8edd-dc966b0342af"
+      },
+      "comment": "Flow attribute change not listed in change report"
+    },
+    {
+      "source": {
+        "name": "Palladium, in ground",
+        "unit": "kg",
+        "uuid": "edc69c63-a776-4dbf-acbf-e0368914980a"
+      },
+      "target": {
+        "formula": "Pd",
+        "uuid": "edc69c63-a776-4dbf-acbf-e0368914980a"
+      },
+      "comment": "Flow attribute change not listed in change report"
+    },
+    {
+      "source": {
+        "name": "Magnesium, in ground",
+        "unit": "kg",
+        "uuid": "9e5823ad-9d9b-4b98-b627-e39611b6a8bd"
+      },
+      "target": {
+        "formula": "Mg",
+        "uuid": "9e5823ad-9d9b-4b98-b627-e39611b6a8bd"
+      },
+      "comment": "Flow attribute change not listed in change report"
+    },
+    {
+      "source": {
+        "name": "Rhodium, in ground",
+        "unit": "kg",
+        "uuid": "4803f22f-6950-489b-914d-fa953a8081f6"
+      },
+      "target": {
+        "formula": "Rh",
+        "uuid": "4803f22f-6950-489b-914d-fa953a8081f6"
+      },
+      "comment": "Flow attribute change not listed in change report"
+    }
+  ]
+}
