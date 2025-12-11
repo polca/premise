@@ -5,6 +5,8 @@ from pathlib import Path
 import os
 # import yaml
 
+## DONE
+
 def run_cement(scenario_name):
     # Need to change path for each scenario
     DATA_DIR = Path(os.path.join('..', 'queries', 'queryresults', scenario_name))
