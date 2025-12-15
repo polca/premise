@@ -147,9 +147,13 @@ class PathwaysDataPackage:
                         key = f"{prefix} - {sector.replace('external_', '')} - {k}"
 
                         if key in mappings:
-                            existing_datasets = mappings[f"{prefix} - {sector.replace('external_', '')} - {k}"]["dataset"].copy()
+                            existing_datasets = mappings[
+                                f"{prefix} - {sector.replace('external_', '')} - {k}"
+                            ]["dataset"].copy()
                         else:
-                            mappings[f"{prefix} - {sector.replace('external_', '')} - {k}"] = {"dataset": []}
+                            mappings[
+                                f"{prefix} - {sector.replace('external_', '')} - {k}"
+                            ] = {"dataset": []}
                             existing_datasets = []
 
                         if len(existing_datasets) > 0:
@@ -160,7 +164,9 @@ class PathwaysDataPackage:
                         else:
                             mappings[key]["dataset"] = [
                                 json.loads(s)
-                                for s in {json.dumps(d, sort_keys=True) for d in datasets}
+                                for s in {
+                                    json.dumps(d, sort_keys=True) for d in datasets
+                                }
                             ]
 
                     self.variables_name_change[k] = f"{prefix} - {sector} - {k}"
