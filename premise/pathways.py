@@ -139,12 +139,30 @@ class PathwaysDataPackage:
                         if "lhv" in x:
                             data["lhv"] = x["lhv"]
                         datasets.append(data)
-                    mappings[f"{prefix} - {sector.replace('external_', '')} - {k}"] = {
-                        "dataset": [
-                            json.loads(s)
-                            for s in {json.dumps(d, sort_keys=True) for d in datasets}
-                        ]
-                    }
+
+                    if len(datasets) == 0:
+                        continue
+                    else:
+                        # if existing datasets already, we just add
+                        key = f"{prefix} - {sector.replace('external_', '')} - {k}"
+
+                        if key in mappings:
+                            existing_datasets = mappings[f"{prefix} - {sector.replace('external_', '')} - {k}"]["dataset"].copy()
+                        else:
+                            mappings[f"{prefix} - {sector.replace('external_', '')} - {k}"] = {"dataset": []}
+                            existing_datasets = []
+
+                        if len(existing_datasets) > 0:
+                            for dataset in datasets:
+                                if dataset not in existing_datasets:
+                                    mappings[key]["dataset"].append(dataset)
+
+                        else:
+                            mappings[key]["dataset"] = [
+                                json.loads(s)
+                                for s in {json.dumps(d, sort_keys=True) for d in datasets}
+                            ]
+
                     self.variables_name_change[k] = f"{prefix} - {sector} - {k}"
 
         # create a "mapping" folder inside "pathways"
