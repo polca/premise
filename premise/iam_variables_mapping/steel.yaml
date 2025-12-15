@@ -17,9 +17,7 @@ steel - primary - BF/BOF:
       - Production|Industry|Steel|Primary|BLASTFUR
       - Production|Industry|Steel|Primary|Biomass-based
     tiam-ucl:
-      - Production|Steel|Primary|BF and BOF 1|w CCS
       - Production|Steel|Primary|BF and BOF 2
-      - Production|Steel|Primary|BF and BOF 3|w/o CCS
       - Production|Steel|Primary|BF and BOF 4
   energy_use_aliases:
     remind:

@@ -188,6 +188,7 @@ class Biomass(BaseTransformation):
                         "hydrogen production",
                         "biomethane production",
                         "ethanol production",
+                        "synthetic gas",
                     ]
                 ]
             ),

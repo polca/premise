@@ -26,7 +26,6 @@ from .external_data_validation import check_inventories, find_iam_efficiency_cha
 from .filesystem_constants import DATA_DIR
 from .inventory_imports import (
     AdditionalInventory,
-    generate_migration_maps,
     get_biosphere_code,
     get_correspondence_bio_flows,
 )
@@ -1027,17 +1026,6 @@ class ExternalScenario(BaseTransformation):
         """
         Add additional exchanges to a dataset.
         """
-
-        # we need to ensure that the dataset exists
-        # to do so, we need to load migration.csv
-        # and check if the dataset is there
-        # if it is there, we need to use instead the new values
-
-        mapping = get_mapping_between_ei_versions(str(ei_version), self.version)
-
-        if (name, ref_prod) in mapping:
-            name = mapping[(name, ref_prod)]["name"]
-            ref_prod = mapping[(name, ref_prod)]["reference product"]
 
         if ref_prod is not None:
             # this is a technosphere exchange

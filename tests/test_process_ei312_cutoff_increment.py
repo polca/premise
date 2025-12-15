@@ -18,7 +18,7 @@ key = os.environ["IAM_FILES_KEY"]
 # convert to bytes
 key = key.encode()
 
-ei_version = "3.11"
+ei_version = "3.12"
 system_model = "cutoff"
 
 scenarios = [
@@ -41,10 +41,7 @@ def test_increment():
             password=ei_pass,
         )
 
-    if f"ecoinvent-{ei_version}-biosphere" not in bw2data.databases:
-        biosphere_name = "biosphere3"
-    else:
-        biosphere_name = f"ecoinvent-{ei_version}-biosphere"
+    bio_db = [db for db in bw2data.databases if "biosphere" in db][0]
 
     ndb = IncrementalDatabase(
         scenarios=scenarios,
@@ -52,7 +49,7 @@ def test_increment():
         source_version=ei_version,
         key=key,
         system_model=system_model,
-        biosphere_name=biosphere_name,
+        biosphere_name=bio_db,
     )
 
     sectors = {

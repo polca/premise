@@ -1,0 +1,86 @@
+{
+  "name": "ecoinvent-3.6-biosphere-ecoinvent-3.7.1-biosphere",
+  "description": "Data migration file from ecoinvent-3.6-biosphere to ecoinvent-3.7.1-biosphere generated with `ecoinvent_migrate` version 0.6.2",
+  "contributors": [
+    {
+      "title": "ecoinvent association",
+      "path": "https://ecoinvent.org/",
+      "roles": [
+        "author"
+      ]
+    },
+    {
+      "title": "Chris Mutel",
+      "path": "https://chris.mutel.org/",
+      "roles": [
+        "wrangler"
+      ]
+    }
+  ],
+  "created": "2025-12-02T16:26:52.691678+00:00",
+  "version": "2.0.0",
+  "licenses": [
+    {
+      "name": "CC-BY-4.0",
+      "path": "https://creativecommons.org/licenses/by/4.0/legalcode",
+      "title": "Creative Commons Attribution 4.0 International"
+    }
+  ],
+  "graph_context": [
+    "edges"
+  ],
+  "mapping": {
+    "source": {
+      "expression language": "XPath",
+      "labels": {
+        "name": "//*:elementaryExchange/*:name/text()",
+        "unit": "//*:elementaryExchange/*:unitName/text()",
+        "uuid": "//*:elementaryExchange/@elementaryExchangeId",
+        "formula": "//*:elementaryExchange/@formula",
+        "context": [
+          "//*:elementaryExchange/*:compartment/*:compartment/text()",
+          "//*:elementaryExchange/*:compartment/*:subcompartment/text()"
+        ]
+      }
+    },
+    "target": {
+      "expression language": "XPath",
+      "labels": {
+        "name": "//*:elementaryExchange/*:name/text()",
+        "unit": "//*:elementaryExchange/*:unitName/text()",
+        "uuid": "//*:elementaryExchange/@elementaryExchangeId",
+        "formula": "//*:elementaryExchange/@formula",
+        "context": [
+          "//*:elementaryExchange/*:compartment/*:compartment/text()",
+          "//*:elementaryExchange/*:compartment/*:subcompartment/text()"
+        ]
+      }
+    }
+  },
+  "source_id": "ecoinvent-3.6-biosphere",
+  "target_id": "ecoinvent-3.7.1-biosphere",
+  "homepage": "https://github.com/brightway-lca/ecoinvent_migrate",
+  "delete": [
+    {
+      "source": {
+        "uuid": "73dbaeb8-6b92-490d-859c-88e8148c71c4",
+        "name": "venting of argon, crude, liquid"
+      },
+      "comment": "Deleted flow not listed in change report"
+    },
+    {
+      "source": {
+        "uuid": "65567eed-ca09-4df6-8d17-0a1c994e8ad4",
+        "name": "residual wood, dry"
+      },
+      "comment": "Deleted flow not listed in change report"
+    },
+    {
+      "source": {
+        "uuid": "2ace0878-9d46-45ce-9321-8c3a6d73e950",
+        "name": "venting of nitrogen, liquid"
+      },
+      "comment": "Deleted flow not listed in change report"
+    }
+  ]
+}

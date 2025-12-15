@@ -565,7 +565,7 @@ class InventorySet:
         mapping = techs
 
         # check if all keys have values
-        # if not, print warning
+        # if not, log
         for key, val in mapping.items():
             if not val:
                 logger.info(
