@@ -248,7 +248,9 @@ def load_post_allocation_correction_factors(ei_version="3.12"):
 
     if not filepath.exists():
         print(f"Warning: {filename} not found, using corrections_310.yaml as fallback")
-        filepath = DATA_DIR / "metals" / "post-allocation_correction" / "corrections_310.yaml"
+        filepath = (
+            DATA_DIR / "metals" / "post-allocation_correction" / "corrections_310.yaml"
+        )
 
     with open(filepath, "r", encoding="utf-8") as stream:
         factors = yaml.safe_load(stream)
