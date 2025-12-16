@@ -408,7 +408,10 @@ class Transport(BaseTransformation):
             exc["minimum"] = float(min_battery_size)
             exc["maximum"] = float(max_battery_size)
 
-        ds["comment"] = f" Battery size adjusted to {mean_battery_size} kWh."
+        if "comment" not in ds:
+            ds["comment"] = ""
+
+        ds["comment"] += f" Battery size adjusted to {mean_battery_size} kWh."
 
     def write_log(self, dataset, status="created"):
         """
