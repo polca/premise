@@ -1497,8 +1497,11 @@ class Electricity(BaseTransformation):
                             exc["amount"] * (new_max_eff / new_mean_eff)
                         )
 
-                        dataset["comment"] = (
-                            f"`premise` has changed the efficiency "
+                        if "comment" not in dataset:
+                            dataset["comment"] = ""
+
+                        dataset["comment"] += (
+                            f" `premise` has changed the efficiency "
                             f"of this photovoltaic installation "
                             f"from {int(current_eff * 100)} pct. to {int(new_mean_eff * 100)} pt."
                         )

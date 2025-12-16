@@ -562,7 +562,7 @@ def check_inventories(
     mapping = {}
 
     for key, val in d_datasets.items():
-        if val.get("exists in original database"):
+        if val.get("exists in original database") is True:
             mask = val.get("mask")
             duplicate_name = None
             if val.get("duplicate") is True:
@@ -636,7 +636,8 @@ def check_inventories(
                 ds["unit"] = unit
             else:
                 print(
-                    f"Could not find unit for dataset {val['original name']} - {val['original reference product']}. Please make sure the unit is specified in the inventory data or in the markets section of the config file."
+                    f"Could not find unit for {ds}. "
+                    f"Please make sure the unit is specified in the inventory data or in the markets section of the config file."
                 )
 
             mapping[val["variable"]] = [ds]
