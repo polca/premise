@@ -344,7 +344,6 @@ def compute_time_weighted_mix(mix, region, year, period):
     return dict(zip(mix.variables.values, values))
 
 
-
 def make_generic_market_dataset(
     name, reference_product, region, comment, unit="kilowatt hour"
 ):

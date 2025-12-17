@@ -42,7 +42,7 @@ class TrailsDataPackage:
         assert "model" in scenario, "Missing `model` key in `scenario`."
         assert "pathway" in scenario, "Missing `pathway` key in `scenario`."
         assert "year" not in scenario, "Key `year` not needed in `scenario`."
-        
+
         self.years = years
 
         # build self.scenarios, a list of dictionaries (scenario)
@@ -116,7 +116,6 @@ class TrailsDataPackage:
         self.variables_name_change = {}
         self._add_classifications_file()
         self._build_datapackage(name, contributors)
-
 
     def _add_classifications_file(self):
         """
