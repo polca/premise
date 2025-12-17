@@ -321,15 +321,28 @@ def select_or_interpolate(data, year, **kwargs):
 
 def compute_time_weighted_mix(mix, region, year, period):
     interp_range = np.arange(year, year + period + 1)
-    return dict(
-        zip(
-            mix.variables.values,
-            mix.sel(region=region)
-            .interp(year=interp_range, kwargs={"fill_value": "extrapolate"})
-            .mean(dim="year")
-            .values,
-        )
+
+    values = (
+        mix.sel(region=region)
+        .interp(year=interp_range, kwargs={"fill_value": "extrapolate"})
+        .mean(dim="year")
+        .values
     )
+
+    # Remove negative contributions
+    values = np.where(values < 0, 0.0, values)
+
+    total = values.sum()
+
+    if total == 0:
+        raise ValueError(
+            "All mix components are zero or negative after filtering; "
+            "cannot compute a normalized mix."
+        )
+
+    values = values / total
+
+    return dict(zip(mix.variables.values, values))
 
 
 def make_generic_market_dataset(
