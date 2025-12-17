@@ -21,11 +21,11 @@ from .inventory_imports import get_classifications
 from .utils import load_database
 
 
-class PathwaysDataPackage:
+class TrailsDataPackage:
     def __init__(
         self,
-        scenarios: List[dict],
-        years: List[int] = range(2005, 2105, 5),
+        scenario: dict,
+        years: List[int] = range(2005, 2105, 10),
         source_version: str = "3.12",
         source_type: str = "brightway",
         key: bytes = None,
@@ -39,13 +39,20 @@ class PathwaysDataPackage:
         biosphere_name="biosphere3",
         generate_reports: bool = True,
     ):
+        assert "model" in scenario, "Missing `model` key in `scenario`."
+        assert "pathway" in scenario, "Missing `pathway` key in `scenario`."
+        assert "year" not in scenario, "Key `year` not needed in `scenario`."
+        
         self.years = years
+
+        # build self.scenarios, a list of dictionaries (scenario)
+        # each dictionary has a `year` field, from `years`
+
         self.scenarios = []
         for year in years:
-            for scenario in scenarios:
-                new_entry = scenario.copy()
-                new_entry["year"] = year
-                self.scenarios.append(new_entry)
+            sc = scenario.copy()
+            sc["year"] = year
+            self.scenarios.append(sc)
 
         self.source_db = source_db
         self.source_version = source_version
@@ -79,7 +86,7 @@ class PathwaysDataPackage:
 
     def create_datapackage(
         self,
-        name: str = f"pathways_{date.today()}",
+        name: str = f"trails_{date.today()}",
         contributors: list = None,
         transformations: list = None,
     ):
@@ -99,171 +106,17 @@ class PathwaysDataPackage:
         contributors: list = None,
     ):
 
-        # first, delete the content of the "pathways_temp" folder
-        shutil.rmtree(Path.cwd() / "pathways_temp", ignore_errors=True)
+        # first, delete the content of the "trails_temp" folder
+        shutil.rmtree(Path.cwd() / "trails_temp", ignore_errors=True)
 
         # create matrices in current directory
         self.datapackage.write_db_to_matrices(
-            filepath=str(Path.cwd() / "pathways_temp" / "inventories"),
+            filepath=str(Path.cwd() / "trails_temp" / "inventories"),
         )
         self.variables_name_change = {}
-        self._add_variables_mapping()
-        self._add_scenario_data()
         self._add_classifications_file()
         self._build_datapackage(name, contributors)
 
-    def _add_variables_mapping(self):
-        """
-        Add variables mapping in the "pathways" folder.
-
-        """
-
-        mappings = {}
-        for scenario in self.datapackage.scenarios:
-            for sector, mapping in scenario["mapping"].items():
-                if sector == "final energy":
-                    prefix = "FE"
-                elif sector.startswith("external"):
-                    prefix = "EXT"
-                else:
-                    prefix = "SE"
-
-                for k, v in mapping.items():
-                    datasets = []
-                    for x in v:
-                        data = {
-                            "name": x["name"],
-                            "reference product": x["reference product"],
-                            "unit": x["unit"],
-                        }
-                        if "lhv" in x:
-                            data["lhv"] = x["lhv"]
-                        datasets.append(data)
-
-                    if len(datasets) == 0:
-                        continue
-                    else:
-                        # if existing datasets already, we just add
-                        key = f"{prefix} - {sector.replace('external_', '')} - {k}"
-
-                        if key in mappings:
-                            existing_datasets = mappings[
-                                f"{prefix} - {sector.replace('external_', '')} - {k}"
-                            ]["dataset"].copy()
-                        else:
-                            mappings[
-                                f"{prefix} - {sector.replace('external_', '')} - {k}"
-                            ] = {"dataset": []}
-                            existing_datasets = []
-
-                        if len(existing_datasets) > 0:
-                            for dataset in datasets:
-                                if dataset not in existing_datasets:
-                                    mappings[key]["dataset"].append(dataset)
-
-                        else:
-                            mappings[key]["dataset"] = [
-                                json.loads(s)
-                                for s in {
-                                    json.dumps(d, sort_keys=True) for d in datasets
-                                }
-                            ]
-
-                    self.variables_name_change[k] = f"{prefix} - {sector} - {k}"
-
-        # create a "mapping" folder inside "pathways"
-        (Path.cwd() / "pathways_temp" / "mapping").mkdir(parents=True, exist_ok=True)
-
-        with open(Path.cwd() / "pathways_temp" / "mapping" / "mapping.yaml", "w") as f:
-            yaml.dump(mappings, f)
-
-    def _add_scenario_data(self):
-        """
-        Add scenario data in the "pathways_temp" folder.
-        """
-
-        def _prefix_vars(arr, prefix: str):
-            # prefix the variables coordinate
-            new_vars = [
-                f"{prefix} - {v}" for v in arr.coords["variables"].values.tolist()
-            ]
-            return arr.assign_coords(variables=("variables", new_vars))
-
-        data_list, extra_units = [], {}
-
-        for scenario in self.datapackage.scenarios:
-            # --- base: production volumes
-            pv = scenario["iam data"].production_volumes.interp(year=scenario["year"])
-            old_vars = pv.coords["variables"].values.tolist()
-            # translate model var -> final mapping key; fallback to readable default
-            new_vars = [self.variables_name_change.get(v, v) for v in old_vars]
-            pv = pv.assign_coords(variables=("variables", new_vars))
-            # same for units
-            units = {
-                self.variables_name_change.get(k, k): v
-                for k, v in pv.attrs.get("unit", {}).items()
-            }
-
-            scenario_name = f"{scenario['model']} - {scenario['pathway']}"
-
-            # --- optional: external data blocks
-            if "external data" in scenario:
-                for ext_key, external in scenario["external data"].items():
-                    ext = external["production volume"].interp(year=scenario["year"])
-                    # prefix includes the external block key so different externals don't collide
-                    ext_prefix = f"EXT - {ext_key}"
-                    ext = _prefix_vars(ext, ext_prefix)
-                    ext_units = {
-                        f"{ext_prefix} - {k}": v
-                        for k, v in external["production volume"]
-                        .attrs.get("unit", {})
-                        .items()
-                    }
-
-                    pv = xr.concat([pv, ext], dim="variables")
-                    units.update(ext_units)
-                    extra_units.update(ext_units)
-                    scenario_name += (
-                        f" - {scenario['external scenarios'][ext_key]['scenario']}"
-                    )
-
-            # add scenario dimension
-            pv = pv.expand_dims("scenario")
-            pv = pv.assign_coords(scenario=[scenario_name])
-
-            # keep the merged units on the array (xarray may drop attrs on concat later)
-            pv.attrs["unit"] = units
-
-            data_list.append(pv)
-
-        # concat all scenarios
-        array = xr.concat(data_list, dim="scenario")
-
-        # ensure output dir
-        outdir = Path.cwd() / "pathways_temp" / "scenario_data"
-        outdir.mkdir(parents=True, exist_ok=True)
-
-        # dataframe export
-        df = array.to_dataframe().reset_index()
-
-        # units column (lookup matches our prefixed variable names)
-        # prefer array-level units, then fall back to extra_units if you keep that convention
-        unit_map = dict(array.attrs.get("unit", {}))
-        unit_map.update(extra_units)  # in case you want this precedence
-        df["unit"] = df["variables"].map(unit_map)
-
-        # split scenario into model/pathway
-        df[["model", "pathway"]] = df["scenario"].str.split(" - ", n=1, expand=True)
-        df = df.drop(columns=["scenario"])
-
-        self.scenario_names = df["pathway"].unique().tolist()
-
-        df = df.dropna(subset=["value"])
-
-        outfile = outdir / "scenario_data.csv"
-        if outfile.exists():
-            outfile.unlink()
-        df.to_csv(outfile, index=False)
 
     def _add_classifications_file(self):
         """
@@ -281,7 +134,7 @@ class PathwaysDataPackage:
         where "database" is a list of activity dictionaries.
         """
 
-        outdir = Path.cwd() / "pathways_temp" / "classifications"
+        outdir = Path.cwd() / "trails_temp" / "classifications"
         outdir.mkdir(parents=True, exist_ok=True)
 
         outfile = outdir / "classifications.csv"
@@ -352,7 +205,7 @@ class PathwaysDataPackage:
         # create a new datapackage
         package = Package(base_path=Path.cwd().as_posix())
         # Find all CSV files manually
-        csv_files = list((Path.cwd() / "pathways_temp").glob("**/*.csv"))
+        csv_files = list((Path.cwd() / "trails_temp").glob("**/*.csv"))
 
         for file in csv_files:
             relpath = file.relative_to(Path.cwd()).as_posix()
@@ -364,7 +217,7 @@ class PathwaysDataPackage:
                 }
             )
 
-        package.infer("pathways_temp/**/*.yaml")
+        package.infer("trails_temp/**/*.yaml")
         package.infer()
 
         package.descriptor["name"] = name.replace(" ", "_").lower()
@@ -379,7 +232,7 @@ class PathwaysDataPackage:
             "scenario",
             "data package",
             "premise",
-            "pathways",
+            "trails",
         ]
         package.descriptor["licenses"] = [
             {
@@ -410,28 +263,28 @@ class PathwaysDataPackage:
         package.commit()
 
         # save the json file
-        package.save(str(Path.cwd() / "pathways_temp" / "datapackage.json"))
+        package.save(str(Path.cwd() / "trails_temp" / "datapackage.json"))
 
         # open the json file and ensure that all resource names are slugified
-        with open(Path.cwd() / "pathways_temp" / "datapackage.json", "r") as f:
+        with open(Path.cwd() / "trails_temp" / "datapackage.json", "r") as f:
             data = yaml.full_load(f)
 
         for resource in data["resources"]:
             resource["name"] = resource["name"].replace(" ", "_").lower()
 
-        # also, remove "pathways/" from the path of each resource
+        # also, remove "trails/" from the path of each resource
         for resource in data["resources"]:
             path = resource["path"]
-            path = path.replace("pathways_temp", "pathways")
-            path = path.replace("pathways/", "").replace("pathways\\", "")
+            path = path.replace("trails_temp", "trails")
+            path = path.replace("trails/", "").replace("trails\\", "")
             path = path.replace("\\", "/")
             resource["path"] = path
 
         # save it back as a json file
-        with open(Path.cwd() / "pathways_temp" / "datapackage.json", "w") as fp:
+        with open(Path.cwd() / "trails_temp" / "datapackage.json", "w") as fp:
             json.dump(data, fp)
 
         # zip the folder
-        shutil.make_archive(name, "zip", str(Path.cwd() / "pathways_temp"))
+        shutil.make_archive(name, "zip", str(Path.cwd() / "trails_temp"))
 
-        print(f"Data package saved at {str(Path.cwd() / f'{name}.zip')}")
+        print(f"Trails data package saved at {str(Path.cwd() / f'{name}.zip')}")

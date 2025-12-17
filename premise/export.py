@@ -1256,6 +1256,15 @@ class Export:
                 delimiter=";",
                 lineterminator="\n",
             )
+            writer.writerow(
+                [
+                    "name",
+                    "reference product",
+                    "unit",
+                    "location",
+                    "index"
+                ]
+            )
             index_A = create_index_of_A_matrix(self.db)
             for d in index_A:
                 data = list(d) + [index_A[d]]
@@ -1295,6 +1304,15 @@ class Export:
                 file,
                 delimiter=";",
                 lineterminator="\n",
+            )
+            writer.writerow(
+                [
+                    "name",
+                    "compartment",
+                    "subcompartment",
+                    "unit",
+                    "index"
+                ]
             )
             for d in index_B:
                 data = list(d) + [index_B[d]]
