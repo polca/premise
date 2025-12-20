@@ -10,6 +10,8 @@ import uuid
 from functools import lru_cache
 from pathlib import Path
 from typing import Dict, List, Union
+import json
+from collections import deque
 
 import bw2io
 import numpy as np
@@ -25,7 +27,6 @@ from .data_collection import get_delimiter
 from .filesystem_constants import DATA_DIR, DIR_CACHED_DB, INVENTORY_DIR
 from .geomap import Geomap
 
-FILEPATH_MIGRATION_MAP = INVENTORY_DIR / "migration_map.csv"
 FILEPATH_CONSEQUENTIAL_BLACKLIST = DATA_DIR / "consequential" / "blacklist.yaml"
 CORRESPONDENCE_BIO_FLOWS = (
     DATA_DIR / "utils" / "export" / "correspondence_biosphere_flows.yaml"
@@ -34,6 +35,8 @@ FILEPATH_CLASSIFICATIONS = DATA_DIR / "utils" / "import" / "classifications.csv"
 
 TEMP_CSV_FILE = DIR_CACHED_DB / "temp.csv"
 TEMP_EXCEL_FILE = DIR_CACHED_DB / "temp.xlsx"
+
+MIGRATIONS_DIR = DATA_DIR / "utils" / "import" / "migrations"
 
 
 logging.basicConfig(
@@ -88,6 +91,8 @@ def get_biosphere_code(version) -> dict:
         fp = DATA_DIR / "utils" / "export" / "flows_biosphere_310.csv"
     elif version == "3.11":
         fp = DATA_DIR / "utils" / "export" / "flows_biosphere_311.csv"
+    elif version == "3.12":
+        fp = DATA_DIR / "utils" / "export" / "flows_biosphere_312.csv"
     elif version == "3.7":
         fp = DATA_DIR / "utils" / "export" / "flows_biosphere_37.csv"
     else:
@@ -111,35 +116,473 @@ def get_consequential_blacklist():
         return flows
 
 
-@lru_cache
-def generate_migration_maps(origin: str, destination: str) -> Dict[str, list]:
-    """
-    Generate mapping for ecoinvent datasets across different database versions.
-    :param origin: ecoinvent database version to find equivalence from (e.g., "3.6")
-    :param destination: ecoinvent database version to find equivalence for (e.g., "3.8")
-    :return: a migration map dicitonary for bw2io
-    """
+def normalize_version_for_migration(v: str) -> str:
+    return normalize_version(v)
 
-    response = {"fields": ["name", "reference product", "location"], "data": []}
 
-    with open(FILEPATH_MIGRATION_MAP, "r", encoding="utf-8") as read_obj:
-        csv_reader = csv.reader(
-            read_obj,
-            delimiter=get_delimiter(filepath=FILEPATH_MIGRATION_MAP),
+def normalize_version(v: str) -> str:
+    """
+    Normalize ecoinvent version strings so that:
+    - '3.7.1' becomes '3.7'
+    - '3.9.1' becomes '3.9'
+    - '3.10.1' becomes '3.10'
+    - '3.9' stays '3.9'
+    - '3.9.0' becomes '3.9'
+    """
+    parts = v.split(".")
+    if len(parts) == 2:
+        return v  # already normalized
+    if len(parts) >= 3:
+        return ".".join(parts[:2])  # keep only major.minor
+    return v
+
+
+def discover_biosphere_migrations(debug=False):
+    folder = MIGRATIONS_DIR / "biosphere"
+    migrations = {}
+
+    if debug:
+        print(f"[migration] Looking for biosphere JSONs in: {folder}")
+
+    for fp in sorted(folder.glob("*.json")):
+        data = json.load(fp.open())
+
+        raw_src = data["source_id"].split("-")[1]  # e.g. "3.5-biosphere"
+        raw_dst = data["target_id"].split("-")[1]
+
+        src = normalize_version(raw_src.replace("-biosphere", ""))
+        dst = normalize_version(raw_dst.replace("-biosphere", ""))
+
+        migrations[(src, dst)] = data
+
+    return migrations
+
+
+def discover_available_migrations(debug: bool = False) -> Dict[tuple, dict]:
+    """
+    Read all technosphere migration JSONs (cutoff) and return a mapping:
+    {(source_version, target_version): json_data}
+
+    If debug is True, print discovered steps.
+    """
+    folder = MIGRATIONS_DIR / "cutoff"
+    migrations: Dict[tuple, dict] = {}
+
+    if debug:
+        print(f"[migration] Looking for JSONs in: {folder}")
+
+    for fp in sorted(folder.glob("*.json")):
+        with fp.open() as f:
+            data = json.load(f)
+
+        # example source_id: "ecoinvent-3.5-cutoff"
+        try:
+            raw_src = data["source_id"].split("-")[1]
+            raw_dst = data["target_id"].split("-")[1]
+
+            src = normalize_version(raw_src)
+            dst = normalize_version(raw_dst)
+        except Exception as e:
+            raise ValueError(f"Malformed source_id/target_id in {fp}: {e}")
+
+        migrations[(src, dst)] = data
+
+    if debug:
+        if not migrations:
+            print("[migration] No migration JSONs found.")
+
+    return migrations
+
+
+def build_version_graph(available: Dict[tuple, dict]) -> dict:
+    """Bidirectional graph: version -> list of (neighbor, direction)."""
+    graph = {}
+    versions = set()
+
+    for src, dst in available.keys():
+        versions.add(src)
+        versions.add(dst)
+
+    for v in versions:
+        graph[v] = []
+
+    for src, dst in available.keys():
+        graph[src].append((dst, "forward"))
+        graph[dst].append((src, "backward"))
+
+    return graph
+
+
+def resolve_migration_route(
+    version_in: str, version_out: str, available: Dict[tuple, dict]
+):
+    """
+    Find a sequence of steps (src, dst, direction) from version_in to version_out,
+    where direction is 'forward' or 'backward'.
+    """
+    if version_in == version_out:
+        return []
+
+    graph = build_version_graph(available)
+
+    if version_in not in graph or version_out not in graph:
+        msg = [
+            f"Versions {version_in} or {version_out} not in migration graph.",
+            "Known versions:",
+            ", ".join(sorted(graph.keys())),
+        ]
+        raise ValueError("\n".join(msg))
+
+    visited = {version_in}
+    queue = deque([(version_in, [])])
+
+    while queue:
+        current, path = queue.popleft()
+        for neighbor, direction in graph[current]:
+            if neighbor in visited:
+                continue
+            step = (current, neighbor, direction)
+            new_path = path + [step]
+            if neighbor == version_out:
+                return new_path
+            visited.add(neighbor)
+            queue.append((neighbor, new_path))
+
+    # No path found – show what edges we actually have
+    edges_str = "\n".join(
+        f"  {s} -> {d}"
+        for (s, d) in sorted(
+            available.keys(),
+            key=lambda v: (float(v[0].replace(".", "")), float(v[1].replace(".", ""))),
         )
-        next(csv_reader)
-        for row in csv_reader:
-            if row[0] == origin and row[1] == destination:
-                data = {}
-                if row[5] != "":
-                    data["name"] = row[5]
-                if row[6] != "":
-                    data["reference product"] = row[6]
-                if row[7] != "":
-                    data["location"] = row[7]
-                response["data"].append(((row[2], row[3], row[4]), data))
+    )
+    raise ValueError(
+        f"No migration route found from {version_in} to {version_out}.\n"
+        "Available migration pairs are:\n"
+        f"{edges_str}"
+    )
 
-        return response
+
+def matches_source(exc: dict, source: dict) -> bool:
+    """
+    Return True if exchange matches the given source specification.
+
+    Only keys present in `source` are checked, except for keys we
+    deliberately ignore: 'unit', 'allocation', 'comment'.
+    """
+    IGNORE_KEYS = {"unit", "allocation", "comment"}
+
+    for key, value in source.items():
+        if key in IGNORE_KEYS:
+            continue
+        if exc.get(key) != value:
+            return False
+    return True
+
+
+def apply_disaggregation(db: list, disaggregate_rules: list):
+    if not disaggregate_rules:
+        return
+
+    for ds in db:
+        new_exchanges = []
+
+        for exc in ds["exchanges"]:
+            if exc.get("type") != "technosphere":
+                new_exchanges.append(exc)
+                continue
+
+            rule = next(
+                (r for r in disaggregate_rules if matches_source(exc, r["source"])),
+                None,
+            )
+
+            if rule is None:
+                new_exchanges.append(exc)
+                continue
+
+            original_amount = exc["amount"]
+
+            for tgt in rule["targets"]:
+                new_exc = exc.copy()
+
+                for field in ("name", "reference product", "location"):
+                    if field in tgt:
+                        new_exc[field] = tgt[field]
+
+                if "reference product" in tgt:
+                    new_exc["product"] = tgt["reference product"]
+
+                alloc = tgt.get("allocation", 1.0)
+                new_exc["amount"] = original_amount * alloc
+
+                new_exc.pop("input", None)
+
+                new_exchanges.append(new_exc)
+
+        ds["exchanges"] = new_exchanges
+
+
+def apply_aggregation(db: list, disaggregate_rules: list):
+    """
+    Backward aggregation: inverse of apply_disaggregation.
+    Many target exchanges are summed into a single source exchange.
+    """
+    if not disaggregate_rules:
+        return
+
+    for ds in db:
+        exchanges = ds["exchanges"]
+        new_exchanges = []
+        used_indices = set()
+
+        for idx, exc in enumerate(exchanges):
+            if idx in used_indices:
+                continue
+
+            if exc.get("type") != "technosphere":
+                new_exchanges.append(exc)
+                continue
+
+            applied_rule = False
+
+            for rule in disaggregate_rules:
+                targets = rule["targets"]
+
+                if not any(matches_source(exc, t) for t in targets):
+                    continue
+
+                matching_indices = []
+                total_amount = 0.0
+                first_match = None
+
+                for j, ex2 in enumerate(exchanges):
+                    if j in used_indices:
+                        continue
+                    if ex2.get("type") != "technosphere":
+                        continue
+                    if any(matches_source(ex2, t) for t in targets):
+                        matching_indices.append(j)
+                        used_indices.add(j)
+                        total_amount += ex2["amount"]
+                        if first_match is None:
+                            first_match = ex2
+
+                if not matching_indices:
+                    continue
+
+                new_exc = first_match.copy()
+                src = rule["source"]
+
+                for field in ("name", "reference product", "location"):
+                    if field in src:
+                        new_exc[field] = src[field]
+
+                if "reference product" in src:
+                    new_exc["product"] = src["reference product"]
+
+                new_exc["amount"] = total_amount
+                new_exc.pop("input", None)
+
+                new_exchanges.append(new_exc)
+                applied_rule = True
+                break
+
+            if not applied_rule:
+                new_exchanges.append(exc)
+
+        ds["exchanges"] = new_exchanges
+
+
+def apply_backward_replace(db: list, replace_rules: list):
+    """
+    Backward replace:
+    for each rule, find exchanges matching the TARGET and change them back to SOURCE.
+    """
+    if not replace_rules:
+        return
+
+    for ds in db:
+        for exc in ds["exchanges"]:
+            if exc.get("type") not in ("technosphere", "biosphere"):
+                continue
+
+            for rule in replace_rules:
+                src = rule["source"]
+                tgt = rule["target"]
+
+                if matches_source(exc, tgt):
+                    for field in (
+                        "name",
+                        "reference product",
+                        "location",
+                        "uuid",
+                        "formula",
+                    ):
+                        if field in src:
+                            exc[field] = src[field]
+
+                    if "reference product" in src:
+                        exc["product"] = src["reference product"]
+
+                    exc.pop("input", None)
+                    break
+
+
+def apply_biosphere_migration(db, biosphere_rules):
+    if not biosphere_rules:
+        return
+
+    # --- DELETE rules ---
+    for ds in db:
+        new_ex = []
+        for exc in ds["exchanges"]:
+            if exc.get("type") != "biosphere":
+                new_ex.append(exc)
+                continue
+
+            should_delete = False
+            for rule in biosphere_rules.get("delete", []):
+                src = rule["source"]
+                # UUID is ignored
+                if exc.get("name") == src.get("name"):
+                    should_delete = True
+                    break
+
+            if not should_delete:
+                new_ex.append(exc)
+
+        ds["exchanges"] = new_ex
+
+    # --- REPLACE rules ---
+    for ds in db:
+        for exc in ds["exchanges"]:
+            if exc.get("type") != "biosphere":
+                continue
+
+            for rule in biosphere_rules.get("replace", []):
+                src = rule["source"]
+
+                # UUID ignored
+                if exc.get("name") != src.get("name"):
+                    continue
+                if "unit" in src and exc.get("unit") != src["unit"]:
+                    continue
+
+                # Apply all target attributes EXCEPT uuid
+                for key, val in rule["target"].items():
+                    if key == "uuid":
+                        continue
+                    exc[key] = val
+
+
+def register_forward_migration_mapping(src_ver: str, dst_ver: str, data: dict) -> str:
+    """
+    Build and register a bw2io.Migration from JSON 'replace' and 'delete' sections.
+    Returns the migration name.
+    """
+    mig_name = f"migration_{src_ver.replace('.', '')}_{dst_ver.replace('.', '')}"
+
+    mapping = {
+        "fields": ["name", "reference product", "location"],
+        "data": [],
+    }
+
+    for item in data.get("replace", []):
+        src = item["source"]
+        tgt = item["target"]
+
+        # make a copy without unit
+        tgt_clean = {k: v for k, v in tgt.items() if k != "unit"}
+
+        mapping["data"].append(
+            (
+                (
+                    src.get("name"),
+                    src.get("reference product"),
+                    src.get("location"),
+                ),
+                tgt_clean,
+            )
+        )
+
+    for item in data.get("delete", []):
+        s = item["source"]
+        mapping["data"].append(
+            (
+                (
+                    s.get("name"),
+                    s.get("reference product"),
+                    s.get("location"),
+                ),
+                {},
+            )
+        )
+
+    Migration(mig_name).write(
+        mapping,
+        description=f"Change technosphere names due to change from {src_ver} to {dst_ver}",
+    )
+    return mig_name
+
+
+def apply_migration_step(
+    importer, src_ver: str, dst_ver: str, direction: str, available: Dict[tuple, dict]
+):
+    """
+    Apply one migration step, either forward or backward.
+
+    importer: self.import_db (ExcelImporter/CSVImporter)
+    src_ver, dst_ver: strings like "3.6", "3.7"
+    direction: "forward" or "backward"
+    available: {(src, dst): json_data}
+    """
+    if direction == "forward":
+        f_src, f_dst = src_ver, dst_ver
+    elif direction == "backward":
+        f_src, f_dst = dst_ver, src_ver
+    else:
+        raise ValueError(f"Unknown direction {direction}")
+
+    data = available[(f_src, f_dst)]
+
+    if direction == "forward":
+        print(f"Applying forward migration {f_src} -> {f_dst}")
+        mig_name = register_forward_migration_mapping(f_src, f_dst, data)
+        importer.migrate(mig_name)
+        apply_disaggregation(importer.data, data.get("disaggregate", []))
+    else:
+        print(f"Applying backward migration {f_src} <- {f_dst}")
+        apply_backward_replace(importer.data, data.get("replace", []))
+        apply_aggregation(importer.data, data.get("disaggregate", []))
+        # 'delete' rules are not reversible and are ignored here.
+
+    biosphere_available = discover_biosphere_migrations()
+    if (f_src, f_dst) in biosphere_available:
+        apply_biosphere_migration(importer.data, biosphere_available[(f_src, f_dst)])
+
+
+def migrate_import_db(importer, version_in: str, version_out: str):
+    """
+    Apply all necessary steps (forward and/or backward) to migrate
+    the imported inventory technosphere exchanges from version_in to version_out,
+    using JSON migration files.
+    """
+    src = normalize_version_for_migration(version_in)
+    dst = normalize_version_for_migration(version_out)
+
+    if src == dst:
+        return
+
+    # set debug=True at least while you're testing
+    available = discover_available_migrations(debug=False)
+
+    route = resolve_migration_route(src, dst, available)
+
+    print("Migration route:", " → ".join([route[0][0]] + [step[1] for step in route]))
+
+    for step_src, step_dst, direction in route:
+        apply_migration_step(importer, step_src, step_dst, direction, available)
 
 
 def check_for_duplicate_datasets(data: List[dict]) -> List[dict]:
@@ -388,6 +831,7 @@ class BaseInventoryImport:
         self.path = path
         self.classifications = get_classifications()
 
+        print(f"Importing {path}")
         if "http" in str(path):
             r = requests.head(path)
             if r.status_code != 200:
@@ -400,20 +844,6 @@ class BaseInventoryImport:
 
         self.path = Path(path) if isinstance(path, str) else path
         self.import_db = self.load_inventory()
-
-        # register migration maps
-        # as imported inventories link
-        # to different ecoinvent versions
-        ei_versions = ["35", "36", "37", "38", "39", "310", "311"]
-
-        for combination in itertools.product(ei_versions, ei_versions):
-            if combination[0] != combination[1]:
-                mapping = generate_migration_maps(combination[0], combination[1])
-                if len(mapping["data"]) > 0:
-                    Migration(f"migration_{combination[0]}_{combination[1]}").write(
-                        mapping,
-                        description=f"Change technosphere names due to change from {combination[0]} to {combination[1]}",
-                    )
 
     def load_inventory(self) -> None:
         """Load an inventory from a specified path.
@@ -850,7 +1280,7 @@ class BaseInventoryImport:
                             y["name"] = new_key[0]
 
                     # **New fallback step: Try without subcomparment before deleting**
-                    if key not in self.biosphere_dict and not y.get("delete"):
+                    if key not in self.biosphere_dict and y.get("delete") is False:
                         fallback_key = (key[0], key[1], "unspecified", key[3])
                         if fallback_key in self.biosphere_dict:
                             key = fallback_key
@@ -1028,42 +1458,7 @@ class DefaultInventory(BaseInventoryImport):
         return ExcelImporter(self.path)
 
     def prepare_inventory(self) -> None:
-        if self.version_in != self.version_out:
-            # if version_out is 3.9, 3.10 or 3.11,
-            # migrate towards 3.8 first, then 3.9, 3.10 or 3.11
-            if self.version_out in ["3.9", "3.9.1", "3.10"] and self.version_in in [
-                "3.5",
-                "3.6",
-                "3.7",
-            ]:
-                print(f"Migrating from {self.version_in} to 3.8 first")
-                self.import_db.migrate(
-                    f"migration_{self.version_in.replace('.', '')}_38"
-                )
-                print(f"Migrating from 3.8 to {self.version_out}")
-                self.import_db.migrate(
-                    f"migration_38_{self.version_out.replace('.', '')}"
-                )
-            elif self.version_out == "3.11" and self.version_in in [
-                "3.5",
-                "3.6",
-                "3.7",
-                "3.8",
-                "3.9",
-            ]:
-                print(f"Migrating from {self.version_in} to 3.10 first")
-                self.import_db.migrate(
-                    f"migration_{self.version_in.replace('.', '')}_310"
-                )
-                print(f"Migrating from 3.10 to {self.version_out}")
-                self.import_db.migrate(
-                    f"migration_310_{self.version_out.replace('.', '')}"
-                )
-            else:
-                print(f"Migrating from {self.version_in} to {self.version_out}")
-                self.import_db.migrate(
-                    f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}"
-                )
+        migrate_import_db(self.import_db, self.version_in, self.version_out)
 
         if self.system_model == "consequential":
             self.import_db.data = (
@@ -1142,42 +1537,7 @@ class VariousVehicles(BaseInventoryImport):
         return ExcelImporter(self.path)
 
     def prepare_inventory(self):
-        if self.version_in != self.version_out:
-            # if version_out is 3.9, 3.10 or 3.11,
-            # migrate towards 3.8 first, then 3.9, 3.10 or 3.11
-            if self.version_out in ["3.9", "3.9.1", "3.10"] and self.version_in in [
-                "3.5",
-                "3.6",
-                "3.7",
-            ]:
-                print(f"Migrating from {self.version_in} to 3.8 first")
-                self.import_db.migrate(
-                    f"migration_{self.version_in.replace('.', '')}_38"
-                )
-                print(f"Migrating from 3.8 to {self.version_out}")
-                self.import_db.migrate(
-                    f"migration_38_{self.version_out.replace('.', '')}"
-                )
-            elif self.version_out == "3.11" and self.version_in in [
-                "3.5",
-                "3.6",
-                "3.7",
-                "3.8",
-                "3.9",
-            ]:
-                print(f"Migrating from {self.version_in} to 3.10 first")
-                self.import_db.migrate(
-                    f"migration_{self.version_in.replace('.', '')}_310"
-                )
-                print(f"Migrating from 3.10 to {self.version_out}")
-                self.import_db.migrate(
-                    f"migration_310_{self.version_out.replace('.', '')}"
-                )
-            else:
-                print(f"Migrating from {self.version_in} to {self.version_out}")
-                self.import_db.migrate(
-                    f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}"
-                )
+        migrate_import_db(self.import_db, self.version_in, self.version_out)
 
         self.lower_case_technosphere_exchanges()
         self.add_biosphere_links()
@@ -1261,42 +1621,7 @@ class AdditionalInventory(BaseInventoryImport):
         )
 
     def prepare_inventory(self):
-        if self.version_in != self.version_out:
-            # if version_out is 3.9, 3.10 or 3.11,
-            # migrate towards 3.8 first, then 3.9, 3.10 or 3.11
-            if self.version_out in ["3.9", "3.9.1", "3.10"] and self.version_in in [
-                "3.5",
-                "3.6",
-                "3.7",
-            ]:
-                print(f"Migrating from {self.version_in} to 3.8 first")
-                self.import_db.migrate(
-                    f"migration_{self.version_in.replace('.', '')}_38"
-                )
-                print(f"Migrating from 3.8 to {self.version_out}")
-                self.import_db.migrate(
-                    f"migration_38_{self.version_out.replace('.', '')}"
-                )
-            elif self.version_out == "3.11" and self.version_in in [
-                "3.5",
-                "3.6",
-                "3.7",
-                "3.8",
-                "3.9",
-            ]:
-                print(f"Migrating from {self.version_in} to 3.10 first")
-                self.import_db.migrate(
-                    f"migration_{self.version_in.replace('.', '')}_310"
-                )
-                print(f"Migrating from 3.10 to {self.version_out}")
-                self.import_db.migrate(
-                    f"migration_310_{self.version_out.replace('.', '')}"
-                )
-            else:
-                print(f"Migrating from {self.version_in} to {self.version_out}")
-                self.import_db.migrate(
-                    f"migration_{self.version_in.replace('.', '')}_{self.version_out.replace('.', '')}"
-                )
+        migrate_import_db(self.import_db, self.version_in, self.version_out)
 
         if self.system_model == "consequential":
             self.import_db.data = (
@@ -1315,7 +1640,6 @@ class AdditionalInventory(BaseInventoryImport):
         self.import_db.data = check_for_duplicate_datasets(self.import_db.data)
         # check numbers format
         self.import_db.data = check_amount_format(self.import_db.data)
-        # self.add_classifications()
 
         if self.list_unlinked:
             self.display_unlinked_exchanges()

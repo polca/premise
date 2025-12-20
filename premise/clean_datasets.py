@@ -66,12 +66,12 @@ def get_biosphere_flow_uuid(version: str) -> Dict[Tuple[str, str, str, str], str
     :raises FileNotFoundError: If the lookup table for the given version is missing.
     """
 
-    if version == "3.11":
+    if version == "3.12":
+        fp = DATA_DIR / "utils" / "export" / "flows_biosphere_312.csv"
+    elif version == "3.11":
         fp = DATA_DIR / "utils" / "export" / "flows_biosphere_311.csv"
     elif version == "3.10":
         fp = DATA_DIR / "utils" / "export" / "flows_biosphere_310.csv"
-    elif version == "3.11":
-        fp = DATA_DIR / "utils" / "export" / "flows_biosphere_311.csv"
     elif version == "3.9":
         fp = DATA_DIR / "utils" / "export" / "flows_biosphere_39.csv"
     else:

@@ -229,6 +229,10 @@ heat, buildings, from light fuel oil boiler:
         - Final Energy|Commercial|Water Heating|Liquids|Fossil
       message: Final Energy|Residential and Commercial|Liquids|Oil
 
+heat, industrial, from biomass:
+    ecoinvent_aliases:
+      fltr: heat production, softwood chips from forest, at furnace 1000kW
+
 heat, industrial, from hydrogen:
     ecoinvent_aliases:
       fltr: hydrogen, burned in gas turbine 1GW

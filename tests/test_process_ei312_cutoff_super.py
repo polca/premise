@@ -1,6 +1,7 @@
 import gc
 import os
 
+import bw2calc
 import bw2data
 import bw2io
 import pytest
@@ -17,7 +18,7 @@ key = os.environ["IAM_FILES_KEY"]
 # convert to bytes
 key = key.encode()
 
-ei_version = "3.11"
+ei_version = "3.12"
 system_model = "cutoff"
 
 scenarios = [
@@ -33,21 +34,14 @@ def test_brightway():
     clear_inventory_cache()
 
     if f"ecoinvent-{ei_version}-{system_model}" not in bw2data.databases:
-        print("Importing ecoinvent")
         bw2io.import_ecoinvent_release(
             version=ei_version,
             system_model=system_model,
             username=ei_user,
             password=ei_pass,
-            biosphere_name=f"ecoinvent-{ei_version}-biosphere",
         )
 
-    bw2data.projects.set_current(f"ecoinvent-{ei_version}-{system_model}")
-
-    if f"ecoinvent-{ei_version}-biosphere" not in bw2data.databases:
-        biosphere_name = "biosphere3"
-    else:
-        biosphere_name = f"ecoinvent-{ei_version}-biosphere"
+    bio_db = [db for db in bw2data.databases if "biosphere" in db][0]
 
     ndb = NewDatabase(
         scenarios=scenarios,
@@ -55,18 +49,26 @@ def test_brightway():
         source_version=ei_version,
         key=key,
         system_model=system_model,
-        biosphere_name=biosphere_name,
+        biosphere_name=bio_db,
     )
 
     ndb.update()
 
-    ndb.write_datapackage(name="datapackage")
+    if "superstructure" in bw2data.databases:
+        del bw2data.databases["superstructure"]
 
-    # check existence of files
-    cwd = os.getcwd()
-    assert os.path.exists(f"{cwd}/export/datapackage/datapackage.zip")
+    ndb.write_superstructure_db_to_brightway("superstructure")
+
+    method = [m for m in bw2data.methods if "IPCC" in m[0]][0]
+
+    lca = bw2calc.LCA({bw2data.Database("superstructure").random(): 1}, method)
+    lca.lci()
+    lca.lcia()
+    assert isinstance(lca.score, float)
+    print(lca.score)
 
     # destroy all objects
     del ndb
+    del lca
     gc.collect()
     delete_all_pickles()

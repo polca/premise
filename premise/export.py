@@ -259,6 +259,8 @@ def biosphere_flows_dictionary(version):
         fp = DATA_DIR / "utils" / "export" / "flows_biosphere_310.csv"
     elif version == "3.11":
         fp = DATA_DIR / "utils" / "export" / "flows_biosphere_311.csv"
+    elif version == "3.12":
+        fp = DATA_DIR / "utils" / "export" / "flows_biosphere_312.csv"
     else:
         fp = DATA_DIR / "utils" / "export" / "flows_biosphere_38.csv"
 
@@ -1254,6 +1256,7 @@ class Export:
                 delimiter=";",
                 lineterminator="\n",
             )
+            writer.writerow(["name", "reference product", "unit", "location", "index"])
             index_A = create_index_of_A_matrix(self.db)
             for d in index_A:
                 data = list(d) + [index_A[d]]
@@ -1294,6 +1297,7 @@ class Export:
                 delimiter=";",
                 lineterminator="\n",
             )
+            writer.writerow(["name", "compartment", "subcompartment", "unit", "index"])
             for d in index_B:
                 data = list(d) + [index_B[d]]
                 writer.writerow(data)

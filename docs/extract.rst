@@ -39,6 +39,7 @@ Supported versions of ecoinvent
 * **v.3.9, cut-off and consequential**
 * **v.3.10, cut-off and consequential**
 * **v.3.11, cut-off and consequential**
+* **v.3.12, cut-off and consequential**
 
 
 Supported sources of ecoinvent
@@ -276,7 +277,23 @@ into a brightway2-friendly format. They can be consulted here: LCI_PV_.
 .. _IEA_PV: https://iea-pvps.org/wp-content/uploads/2020/12/IEA-PVPS-LCI-report-2020.pdf
 .. _LCI_PV: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-PV.xlsx
 
-They consist of the following PV installation types:
+The methodology follows the IEA-PVPS Task 12 approach to construct country-specific photovoltaic
+electricity mixes in life cycle assessment by starting from technology- and installation-specific
+capacity archetypes and translating them into per-kWh inventory coefficients. For each country,
+photovoltaic capacity is disaggregated by installation type (rooftop, façade, ground-mounted),
+module technology (e.g. mono-Si, multi-Si, thin-film variants), and mounting/integration option.
+These capacity shares are combined with country-specific annual electricity yields (kWh/kWp·yr),
+derived from irradiation-based PV productivity data and corrected according to PVPS Task 12 guidelines,
+and with a fixed system lifetime (30 years), to convert installed capacity into lifetime electricity
+output. We further split the installed capacity in each country between residential (<= 3kWp) and commercial (>3 kWp) installations.
+The resulting lifetime-normalized contributions are then scaled so that their sum delivers
+exactly 1 kWh of photovoltaic electricity, yielding electricity-weighted shares for each archetype.
+These shares are implemented in the LCI as exchanges to specific PV system construction activities,
+producing a country-specific, technology-resolved PV electricity mix that is consistent with
+observed productivity differences while remaining transparent and extensible to additional countries.
+
+
+The PV installation datasets provided by the report are listed in the table below.
 
  ============================================================================================ ===========
   PV installation                                                                              location
@@ -309,8 +326,9 @@ They consist of the following PV installation types:
  ============================================================================================ ===========
 
 
-Although these datasets have a limited number of locations (CH, RER, DE, ES),
-the IEA report provides country-specific load factors:
+Although these datasets have a limited number of locations (CH, RER, DE, ES), the IEA report provides
+country-specific productivity (in annual kWh produced per kWp) for 33 countries, which are used to build
+country-specific PV electricity mixes:
 
  ======================= =========== ========= ==========
   production [kWh/kWp]    roof-top    façade    central
@@ -349,6 +367,30 @@ the IEA report provides country-specific load factors:
   DK                      971         680       1030
   LU                      908         635       962
  ======================= =========== ========= ==========
+
+To extend the set of country-specific photovoltaic electricity datasets beyond those originally covered
+in IEA-PVPS Task 12, we followed a structured, PVPS-consistent extrapolation approach.
+First, country-specific annual PV electricity yields for a reference, free-standing system were
+derived from the GlobalSolarAtlas_ by aggregating monthly PVOUT rasters into annual values and
+computing country averages. These reference yields were then disaggregated into rooftop, façade, and
+centralized yields using empirical yield ratios inferred from the Task 12 country dataset,
+thereby preserving the relative productivity differences between installation types.
+In parallel, national PV deployment structures were approximated by assigning residential,
+commercial, and centralized capacity shares using available international statistics (where possible)
+and transparent proxy assumptions otherwise. Within each market segment, capacity was further
+distributed across PV technology and installation archetypes following the same hierarchical
+logic as in Task 12. Finally, these capacity shares were converted into per-kWh inventory coefficients
+using country-specific yields and a fixed system lifetime, and embedded into duplicated LCI templates
+to generate fully specified, country-resolved photovoltaic electricity datasets. This procedure
+ensures methodological continuity with the original PVPS datasets while enabling consistent,
+scalable extension to additional countries.
+
+.. _GlobalSolarAtlas: https://globalsolaratlas.info/download/world
+
+Finally, we collected electricity generation volumes through photovoltaic installations from the 2025 IRENA_ Renewable
+Energy Statistics to provide country-specific mix shares when building regional electricity mixes.
+
+.. _IRENA: https://www.irena.org/Publications/2025/Jul/Renewable-energy-statistics-2025
 
 
 In the report, the generation potential per installation type is multiplied by the number of installations
@@ -489,7 +531,7 @@ They are available in the following locations:
 
 .. note::
 
-    These two technologies are not included in the current country-specific production mix datasets.
+    These two technologies are not included in the current country-specific production mix datasets, as IAM scenarios do not specify sub-technology mixes.
 
 Geothermal
 **********
