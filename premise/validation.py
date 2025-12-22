@@ -1952,6 +1952,12 @@ class FuelsValidation(BaseDatasetValidator):
             "market group for diesel, low-sulfur",
         ]
 
+        regions_with_fuel_markets = set()
+        for market_name in ["market for petrol, low-sulfur", "market for diesel, low-sulfur"]:
+            for ds in self.database:
+                if ds["name"] == market_name and ds["location"] in self.regions:
+                    regions_with_fuel_markets.add(ds["location"])
+
         for ds in self.database:
             if ds["location"] not in ["RoW", "GLO", "World"]:
                 for e in ds["exchanges"]:
@@ -1961,9 +1967,22 @@ class FuelsValidation(BaseDatasetValidator):
                         # check that the location of the input
                         # matches the location of the dataset
                         # according to the geo-linking rules
-                        if ds["location"] in self.regions:
-                            if e["location"] != ds["location"]:
-                                if e["location"] != "World":
+                        if ds["location"] in regions_with_fuel_markets:
+                            if ds["location"] in self.regions and ds["location"]:
+                                if e["location"] != ds["location"]:
+                                    if e["location"] != "World":
+                                        message = f"Fuel market input {e['name']} in {e['location']} has incorrect location for dataset {ds['name']} in {ds['location']}."
+                                        self.log_issue(
+                                            ds,
+                                            "incorrect fuel market input location",
+                                            message,
+                                            issue_type="major",
+                                        )
+                            else:
+                                # check that the location of the input
+                                if e["location"] != self.geo.ecoinvent_to_iam_location(
+                                    ds["location"]
+                                ):
                                     message = f"Fuel market input {e['name']} in {e['location']} has incorrect location for dataset {ds['name']} in {ds['location']}."
                                     self.log_issue(
                                         ds,
@@ -1971,18 +1990,6 @@ class FuelsValidation(BaseDatasetValidator):
                                         message,
                                         issue_type="major",
                                     )
-                        else:
-                            # check that the location of the input
-                            if e["location"] != self.geo.ecoinvent_to_iam_location(
-                                ds["location"]
-                            ):
-                                message = f"Fuel market input {e['name']} in {e['location']} has incorrect location for dataset {ds['name']} in {ds['location']}."
-                                self.log_issue(
-                                    ds,
-                                    "incorrect fuel market input location",
-                                    message,
-                                    issue_type="major",
-                                )
 
     def run_fuel_checks(self):
         self.check_fuel_market_composition()
