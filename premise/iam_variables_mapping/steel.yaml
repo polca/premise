@@ -12,7 +12,7 @@ steel - primary - BF/BOF:
     remind-eu: Production|Industry|Steel|+|BF-BOF
     message:
       - Production|Iron and Steel|Steel|Primary|BOF|Conventional
-      - Production|Iron and Steel|Steel|Secondary|BOF|Conventional
+#      - Production|Iron and Steel|Steel|Secondary|BOF|Conventional
     gcam:
       - Production|Industry|Steel|Primary|BLASTFUR
       - Production|Industry|Steel|Primary|Biomass-based
@@ -350,7 +350,7 @@ steel - primary - TGR BF/BOF:
       - Production|Industry|Iron and Steel|TGR BF/BOF
     message:
       - Production|Iron and Steel|Steel|Primary|BOF|TGR
-      - Production|Iron and Steel|Steel|Secondary|BOF|TGR
+#      - Production|Iron and Steel|Steel|Secondary|BOF|TGR
   energy_use_aliases:
     image:
       - Final Energy|Industry|Iron and Steel|TGR BF/BOF BAT|Coal
@@ -509,7 +509,7 @@ steel - secondary:
 #    message: Production|Iron and Steel|Sponge Iron|Hydrogen
 #  energy_use_aliases:
 #    message: Final Energy|Industry|Iron and Steel|Hydrogen
-#
+
 #pig iron - BF w/o CCS:
 #  iam_aliases:
 #    message: Production|Iron and Steel|Pig Iron|w/o CCS

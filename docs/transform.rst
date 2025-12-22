@@ -763,7 +763,7 @@ improving its performance in the past, relative to today.
 Photovoltaics panels
 --------------------
 
-Photovoltaic panels are expected to improve over time. The following module efficiencies (mena, minimum, maximum)
+Photovoltaic panels are expected to improve over time. The following module efficiencies (mean, minimum, maximum)
 are considered for the different types of PV panels, applied as a triangular distribution on the panel surface
 required to reach the peak power output of the dataset:
 
