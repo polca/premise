@@ -3274,4 +3274,5 @@ zinc mine operation,zinc concentrate,0729:Mining of other non-ferrous metal ores
 "heat production, hardwood chips from forest, at furnace 300kW","heat, district or industrial, other than natural gas","3530:Steam and air conditioning supply","17300: Steam and hot water"
 "heat production, softwood chips from forest, at furnace 50kW, state-of-the-art 2014","heat, central or small-scale, other than natural gas","3530:Steam and air conditioning supply","17300: Steam and hot water"
 "heat production, softwood chips from forest, at furnace 5000kW, state-of-the-art 2014","heat, district or industrial, other than natural gas","3530:Steam and air conditioning supply","17300: Steam and hot water"
-"heat production, at hard coal industrial furnace 1-10MW","heat production, at hard coal industrial furnace 1-10MW","3530:Steam and air conditioning supply","17300: Steam and hot water"
+"heat production, at hard coal industrial furnace 1-10MW","heat, district or industrial, other than natural gas","3530:Steam and air conditioning supply","17300: Steam and hot water"
+"heat production, softwood chips from forest, at furnace 300kW", "heat, district or industrial, other than natural gas","3530:Steam and air conditioning supply","17300: Steam and hot water"
