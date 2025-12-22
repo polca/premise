@@ -1953,7 +1953,10 @@ class FuelsValidation(BaseDatasetValidator):
         ]
 
         regions_with_fuel_markets = set()
-        for market_name in ["market for petrol, low-sulfur", "market for diesel, low-sulfur"]:
+        for market_name in [
+            "market for petrol, low-sulfur",
+            "market for diesel, low-sulfur",
+        ]:
             for ds in self.database:
                 if ds["name"] == market_name and ds["location"] in self.regions:
                     regions_with_fuel_markets.add(ds["location"])
