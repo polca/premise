@@ -966,9 +966,16 @@ class BaseTransformation:
             self.add_to_index(market_dataset)
             self.write_log(market_dataset, "created")
 
-        if "World" not in regions and production_volumes.sel(
+        if (
+            "World" not in regions
+            and production_volumes.sel(
                 region=[reg for reg in regions if reg != "World"]
-            ).sum(dim="region").sum().values.item(0) > 0:
+            )
+            .sum(dim="region")
+            .sum()
+            .values.item(0)
+            > 0
+        ):
 
             # create the World market
             world_market = {
