@@ -3445,32 +3445,86 @@ Transport - Pass - Motorcycle(>250cc) - Syn Fuel:
     remind-eu: FE|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(>250cc)|Liquids|Hydrogen
 
 Transportation excl. International Shipping - Electricity:
+  ecoinvent_aliases:
+    fltr:
+      name: electricity, used in passenger car
+      reference product: electricity, low voltage
   iam_aliases:
     message: Final Energy|Transportation|Electricity
-Transportation excl. International Shipping - Gases:
+Transportation excl. International Shipping - Gases|Gas:
+  ecoinvent_aliases:
+    fltr:
+      name: compressed gas, burned in passenger car
+      reference product: heat
   iam_aliases:
-    message: Final Energy|Transportation|Gases
+    message: Final Energy|Transportation|Gases|Gas
+Transportation excl. International Shipping - Gases|Biomass:
+  ecoinvent_aliases:
+    fltr:
+      name: biomethane, burned in passenger car
+      reference product: heat
+  iam_aliases:
+    message: Final Energy|Transportation|Gases|Biomass
 Transportation excl. International Shipping - Hydrogen:
+  ecoinvent_aliases:
+    fltr:
+      name: hydrogen, used in a fuel cell in a passenger car
+      reference product: heat
   iam_aliases:
     message: Final Energy|Transportation|Hydrogen
 Transportation excl. International Shipping - Liquids|Biomass|Fuel Cell:
+  ecoinvent_aliases:
+    fltr:
+      name: methanol from biomass, burned in container ship
+      reference product: heat
   iam_aliases:
     message: Final Energy|Transportation|Liquids|Biomass|Fuel Cell
 Transportation excl. International Shipping - Liquids|Biomass|Combustion:
+  ecoinvent_aliases:
+    fltr:
+      name: biodiesel, burned in passenger car
+      reference product: heat
   iam_aliases:
     message: Final Energy|Transportation|Liquids|Biomass|Combustion
 Transportation excl. International Shipping - Liquids|Coal:
+  ecoinvent_aliases:
+    fltr:
+      name: diesel, synthetic, burned in passenger car
+      reference product: heat
   iam_aliases:
     message: Final Energy|Transportation|Liquids|Coal
 Transportation excl. International Shipping - Liquids|Gas:
+  ecoinvent_aliases:
+    fltr:
+      name: compressed gas, synthetic, burned in passenger car
+      reference product: heat
   iam_aliases:
     message: Final Energy|Transportation|Liquids|Gas
 Transportation excl. International Shipping - Liquids|Oil|Light:
+  ecoinvent_aliases:
+    fltr:
+      name: petrol, burned in passenger car
+      reference product: heat
   iam_aliases:
-    message: Final Energy|Transportation|Liquids|Oil|Heavy
+    message: Final Energy|Transportation|Liquids|Oil|Light
 Transportation excl. International Shipping - Liquids|Oil|Heavy:
+  ecoinvent_aliases:
+    fltr:
+      name: heavy fuel oil, burned in container ship
+      reference product: heat
   iam_aliases:
     message: Final Energy|Transportation|Liquids|Oil|Heavy
 Transportation excl. International Shipping - Other:
+  ecoinvent_aliases:
+    fltr:
+      name: diesel, burned in passenger car
+      reference product: heat
+  iam_aliases:
+    message: Final Energy|Transportation|Other
+Transportation excl. International Shipping - Solids|Coal:
+  ecoinvent_aliases:
+    fltr:
+      name: hard coal, burned in hard coal industrial furnace 1-10MW
+      reference product: heat
   iam_aliases:
     message: Final Energy|Transportation|Solids|Coal

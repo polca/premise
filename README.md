@@ -91,9 +91,8 @@ Requirements
 ------------
 * **Python 3.10, 3.11 or 3.12**
 * License for [ecoinvent 3][1]. Please note that the ecoinvent database is not included in this package. Also, read ecoinvent's [GDPR & EULA](https://ecoinvent.org/gdpr-eula/).
-* Some IAM output files come with the library and are located by default in the subdirectory "/data/iam_output_files". 
- A file path can be specified to fetch IAM output files elsewhere on your computer.
- * [Brightway][2] (optional). If you want to use the results in the Brightway framework (and [Activity Browser](https://github.com/LCA-ActivityBrowser/activity-browser)), you need `bw2data <4.0.0`. To produce Brightway 2.5-compatible databases, you need `bw2data >=4.0.0`. See the installation instructions below for more details.
+* Scenarios available through Premise can be consulted [here](https://premisedash-6f5a0259c487.herokuapp.com/).
+* If you want to use the results in the Brightway 2 framework, you need `bw2data <4.0.0`. To produce Brightway 2.5-compatible databases, you need `bw2data >=4.0.0`. See the installation instructions below for more details.
 
 > [!NOTE]
 > Please note that the ecoinvent database is not included in this package. Also, read ecoinvent's [GDPR & EULA](https://ecoinvent.org/gdpr-eula/).
