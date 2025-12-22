@@ -485,46 +485,46 @@ steel - secondary:
       reference product:
         - heat
 
-sponge iron - DRI w/o CCS:
-  iam_aliases:
-    message:
-    - Production|Iron and Steel|Sponge Iron|Gas|w/o CCS
-    - Production|Iron and Steel|Sponge Iron|Coal|w/o CCS
-  energy_use_aliases:
-    message:
-     - Final Energy|Industry|Iron and Steel|DRI|w/o CCS|Electricity
-     - Final Energy|Industry|Iron and Steel|DRI|w/o CCS|Gases|Gas
-     - Final Energy|Industry|Iron and Steel|DRI|w/o CCS|Gases|Biomass
-     - Final Energy|Industry|Iron and Steel|DRI|Solids|Coal
-sponge iron - DRI w/ CCS:
-  iam_aliases:
-    message: Production|Iron and Steel|Sponge Iron|Gas|w/ CCS
-  energy_use_aliases:
-    message:
-     - Final Energy|Industry|Iron and Steel|DRI|w/ CCS|Electricity
-     - Final Energy|Industry|Iron and Steel|DRI|w/ CCS|Gases|Gas
-     - Final Energy|Industry|Iron and Steel|DRI|w/ CCS|Gases|Biomass
-sponge iron - DRI H2:
-  iam_aliases:
-    message: Production|Iron and Steel|Sponge Iron|Hydrogen
-  energy_use_aliases:
-    message: Final Energy|Industry|Iron and Steel|Hydrogen
-
-pig iron - BF w/o CCS:
-  iam_aliases:
-    message: Production|Iron and Steel|Pig Iron|w/o CCS
-  energy_use_aliases:
-    message:
-      - Final Energy|Industry|Iron and Steel|BF|w/o CCS|Electricity
-      - Final Energy|Industry|Iron and Steel|BF|w/o CCS|Gases|Coal
-      - Final Energy|Industry|Iron and Steel|BF|w/o CCS|Solids|Biomass
-      - Final Energy|Industry|Iron and Steel|BF|w/o CCS|Solids|Coal
-pig iron - BF w/ CCS:
-  iam_aliases:
-    message: Production|Iron and Steel|Pig Iron|w/ CCS
-  energy_use_aliases:
-    message:
-      - Final Energy|Industry|Iron and Steel|BF|w/ CCS|Electricity
-      - Final Energy|Industry|Iron and Steel|BF|w/ CCS|Gases|Coal
-      - Final Energy|Industry|Iron and Steel|BF|w/ CCS|Solids|Biomass
-      - Final Energy|Industry|Iron and Steel|BF|w/ CCS|Solids|Coal
+#sponge iron - DRI w/o CCS:
+#  iam_aliases:
+#    message:
+#    - Production|Iron and Steel|Sponge Iron|Gas|w/o CCS
+#    - Production|Iron and Steel|Sponge Iron|Coal|w/o CCS
+#  energy_use_aliases:
+#    message:
+#     - Final Energy|Industry|Iron and Steel|DRI|w/o CCS|Electricity
+#     - Final Energy|Industry|Iron and Steel|DRI|w/o CCS|Gases|Gas
+#     - Final Energy|Industry|Iron and Steel|DRI|w/o CCS|Gases|Biomass
+#     - Final Energy|Industry|Iron and Steel|DRI|Solids|Coal
+#sponge iron - DRI w/ CCS:
+#  iam_aliases:
+#    message: Production|Iron and Steel|Sponge Iron|Gas|w/ CCS
+#  energy_use_aliases:
+#    message:
+#     - Final Energy|Industry|Iron and Steel|DRI|w/ CCS|Electricity
+#     - Final Energy|Industry|Iron and Steel|DRI|w/ CCS|Gases|Gas
+#     - Final Energy|Industry|Iron and Steel|DRI|w/ CCS|Gases|Biomass
+#sponge iron - DRI H2:
+#  iam_aliases:
+#    message: Production|Iron and Steel|Sponge Iron|Hydrogen
+#  energy_use_aliases:
+#    message: Final Energy|Industry|Iron and Steel|Hydrogen
+#
+#pig iron - BF w/o CCS:
+#  iam_aliases:
+#    message: Production|Iron and Steel|Pig Iron|w/o CCS
+#  energy_use_aliases:
+#    message:
+#      - Final Energy|Industry|Iron and Steel|BF|w/o CCS|Electricity
+#      - Final Energy|Industry|Iron and Steel|BF|w/o CCS|Gases|Coal
+#      - Final Energy|Industry|Iron and Steel|BF|w/o CCS|Solids|Biomass
+#      - Final Energy|Industry|Iron and Steel|BF|w/o CCS|Solids|Coal
+#pig iron - BF w/ CCS:
+#  iam_aliases:
+#    message: Production|Iron and Steel|Pig Iron|w/ CCS
+#  energy_use_aliases:
+#    message:
+#      - Final Energy|Industry|Iron and Steel|BF|w/ CCS|Electricity
+#      - Final Energy|Industry|Iron and Steel|BF|w/ CCS|Gases|Coal
+#      - Final Energy|Industry|Iron and Steel|BF|w/ CCS|Solids|Biomass
+#      - Final Energy|Industry|Iron and Steel|BF|w/ CCS|Solids|Coal
