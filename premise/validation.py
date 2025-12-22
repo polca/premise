@@ -1875,35 +1875,45 @@ class FuelsValidation(BaseDatasetValidator):
             "market for hydrogen, gaseous, low pressure",
         ]
 
-        for ds in self.database:
-            if (
-                any(ds["name"].startswith(x) for x in fuel_market_names)
-                and ds["location"] not in self.regions
-            ):
-                if not all(
-                    e["location"] in self.regions
-                    for e in ds["exchanges"]
-                    if e["type"] == "technosphere"
-                ):
-                    if (
-                        len(
-                            [
-                                d
-                                for d in self.database
-                                if d["name"] == ds["name"]
-                                and d["location"] in self.regions
-                            ]
-                        )
-                        > 0
-                    ):
+        for fuel in fuel_market_names:
 
-                        message = f"Inputs may have incorrect location."
-                        self.log_issue(
-                            ds,
-                            "Non-regionalized inputs",
-                            message,
-                            issue_type="major",
-                        )
+            regionalized_markets = [
+                d
+                for d in self.database
+                if d["name"] == fuel and d["location"] in self.regions
+            ]
+
+            if len(regionalized_markets) > 0:
+
+                for ds in self.database:
+                    if (
+                        ds["name"].startswith(fuel)
+                        and ds["location"] not in self.regions
+                    ):
+                        if not all(
+                            e["location"] in self.regions
+                            for e in ds["exchanges"]
+                            if e["type"] == "technosphere"
+                        ):
+                            if (
+                                len(
+                                    [
+                                        d
+                                        for d in self.database
+                                        if d["name"] == ds["name"]
+                                        and d["location"] in self.regions
+                                    ]
+                                )
+                                > 0
+                            ):
+
+                                message = f"Inputs may have incorrect location."
+                                self.log_issue(
+                                    ds,
+                                    "Non-regionalized inputs",
+                                    message,
+                                    issue_type="major",
+                                )
 
     def check_electrolysis_electricity_input(self):
         # check that the input of electricity for hydrogen production
