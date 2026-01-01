@@ -19,19 +19,23 @@ import bw2data
 from . import __version__
 from .new_database import NewDatabase
 from .inventory_imports import get_classifications
-from  .filesystem_constants import DATA_DIR
+from .filesystem_constants import DATA_DIR
 from .utils import load_database, dump_database
 
-FILEPATH_TEMPORAL_PARAMETERS = DATA_DIR / "trails" / "classifications_temporal_params.xlsx"
+FILEPATH_TEMPORAL_PARAMETERS = (
+    DATA_DIR / "trails" / "classifications_temporal_params.xlsx"
+)
 
 
 class KeyLoader(yaml.SafeLoader):
     pass
 
+
 def key_constructor(loader, node):
     # node is a YAML sequence; construct as tuple (hashable)
     seq = loader.construct_sequence(node)
     return tuple(seq)
+
 
 KeyLoader.add_constructor("!key", key_constructor)
 
@@ -80,6 +84,7 @@ def _mean_age_from_params(dist_type, loc, scale, mn, mx, lifetime):
 
     # Unknown / missing type: fallback
     return lifetime / 2.0
+
 
 class TrailsDataPackage:
     def __init__(
@@ -144,8 +149,8 @@ class TrailsDataPackage:
         self.scenario_names = []
         self.classifications = get_classifications()
 
-        self.stock_asset_params, self.service_operation_lifetimes = self._load_temporal_specs_from_excel(
-            FILEPATH_TEMPORAL_PARAMETERS
+        self.stock_asset_params, self.service_operation_lifetimes = (
+            self._load_temporal_specs_from_excel(FILEPATH_TEMPORAL_PARAMETERS)
         )
 
     def create_datapackage(
@@ -165,7 +170,7 @@ class TrailsDataPackage:
         )
 
     def _load_temporal_specs_from_excel(
-            self, path: Path
+        self, path: Path
     ) -> tuple[Dict[Tuple[str, str], dict], Dict[Tuple[str, str], float]]:
         """
         Returns:
@@ -179,7 +184,9 @@ class TrailsDataPackage:
         required = {"name", "reference product", "temporal_tag"}
         missing = required - set(df.columns)
         if missing:
-            raise ValueError(f"Temporal params Excel file missing columns: {sorted(missing)}")
+            raise ValueError(
+                f"Temporal params Excel file missing columns: {sorted(missing)}"
+            )
 
         def _clean(x):
             if x is None:
@@ -231,7 +238,6 @@ class TrailsDataPackage:
                     "temporal_min": _num(row.get("minimum")),
                     "temporal_max": _num(row.get("maximum")),
                 }
-
 
             elif tag == "service_operation":
 
@@ -374,7 +380,7 @@ class TrailsDataPackage:
                     "path": relpath,
                     "profile": "tabular-data-resource",
                     "encoding": "utf-8",
-                    "dialect": {"delimiter": ";"}
+                    "dialect": {"delimiter": ";"},
                 }
             )
 
@@ -573,10 +579,14 @@ class TrailsDataPackage:
                 out[key] = idx
         return out
 
-    def _build_global_A_index(self, slice_dirs: List[Path]) -> Tuple[List[AKey], Dict[AKey, int]]:
+    def _build_global_A_index(
+        self, slice_dirs: List[Path]
+    ) -> Tuple[List[AKey], Dict[AKey, int]]:
         # Baseline ordering from first slice, then append novel keys sorted
         first = self._read_A_index(slice_dirs[0] / "A_matrix_index.csv")
-        ordered: List[TrailsDataPackage.AKey] = sorted(first.keys(), key=lambda k: first[k])
+        ordered: List[TrailsDataPackage.AKey] = sorted(
+            first.keys(), key=lambda k: first[k]
+        )
 
         seen: Set[TrailsDataPackage.AKey] = set(ordered)
         new_keys: Set[TrailsDataPackage.AKey] = set()
@@ -593,9 +603,13 @@ class TrailsDataPackage:
         global_map = {k: i for i, k in enumerate(ordered)}
         return ordered, global_map
 
-    def _build_global_B_index(self, slice_dirs: List[Path]) -> Tuple[List[BKey], Dict[BKey, int]]:
+    def _build_global_B_index(
+        self, slice_dirs: List[Path]
+    ) -> Tuple[List[BKey], Dict[BKey, int]]:
         first = self._read_B_index(slice_dirs[0] / "B_matrix_index.csv")
-        ordered: List[TrailsDataPackage.BKey] = sorted(first.keys(), key=lambda k: first[k])
+        ordered: List[TrailsDataPackage.BKey] = sorted(
+            first.keys(), key=lambda k: first[k]
+        )
 
         seen: Set[TrailsDataPackage.BKey] = set(ordered)
         new_keys: Set[TrailsDataPackage.BKey] = set()
@@ -652,7 +666,9 @@ class TrailsDataPackage:
     # Matrix rewriting (indices only)
     # -----------------------------
 
-    def _rewrite_A_matrix_indices_only(self, path: Path, map_A: Dict[int, int]) -> Set[int]:
+    def _rewrite_A_matrix_indices_only(
+        self, path: Path, map_A: Dict[int, int]
+    ) -> Set[int]:
         """
         Rewrite A_matrix.csv, changing only:
           - index of activity
@@ -663,12 +679,16 @@ class TrailsDataPackage:
         tmp = path.with_suffix(".csv.tmp")
         present: Set[int] = set()
 
-        with path.open("r", encoding="utf-8", newline="") as fin, tmp.open(
-                "w", encoding="utf-8", newline=""
-        ) as fout:
+        with (
+            path.open("r", encoding="utf-8", newline="") as fin,
+            tmp.open("w", encoding="utf-8", newline="") as fout,
+        ):
             r = csv.DictReader(fin, delimiter=";")
             fieldnames = r.fieldnames or []
-            if "index of activity" not in fieldnames or "index of product" not in fieldnames:
+            if (
+                "index of activity" not in fieldnames
+                or "index of product" not in fieldnames
+            ):
                 raise ValueError(f"{path} missing required A matrix columns.")
 
             w = csv.DictWriter(fout, fieldnames=fieldnames, delimiter=";")
@@ -687,7 +707,9 @@ class TrailsDataPackage:
         tmp.replace(path)
         return present
 
-    def _rewrite_B_matrix_indices_only(self, path: Path, map_A: Dict[int, int], map_B: Dict[int, int]) -> None:
+    def _rewrite_B_matrix_indices_only(
+        self, path: Path, map_A: Dict[int, int], map_B: Dict[int, int]
+    ) -> None:
         """
         Rewrite B_matrix.csv, changing only:
           - index of activity (using map_A)
@@ -695,12 +717,16 @@ class TrailsDataPackage:
         """
         tmp = path.with_suffix(".csv.tmp")
 
-        with path.open("r", encoding="utf-8", newline="") as fin, tmp.open(
-                "w", encoding="utf-8", newline=""
-        ) as fout:
+        with (
+            path.open("r", encoding="utf-8", newline="") as fin,
+            tmp.open("w", encoding="utf-8", newline="") as fout,
+        ):
             r = csv.DictReader(fin, delimiter=";")
             fieldnames = r.fieldnames or []
-            if "index of activity" not in fieldnames or "index of biosphere flow" not in fieldnames:
+            if (
+                "index of activity" not in fieldnames
+                or "index of biosphere flow" not in fieldnames
+            ):
                 raise ValueError(f"{path} missing required B matrix columns.")
 
             w = csv.DictWriter(fout, fieldnames=fieldnames, delimiter=";")
@@ -720,10 +746,10 @@ class TrailsDataPackage:
     # -----------------------------
 
     def _append_placeholders_to_A(
-            self,
-            a_mat_path: Path,
-            global_n: int,
-            present_global_acts: Set[int],
+        self,
+        a_mat_path: Path,
+        global_n: int,
+        present_global_acts: Set[int],
     ) -> None:
         """
         Append diagonal placeholder rows to A_matrix.csv for missing activities.
@@ -745,7 +771,9 @@ class TrailsDataPackage:
             # Sanity: required columns must exist
             for req in ("index of activity", "index of product", "value", "flip"):
                 if req not in fieldnames:
-                    raise ValueError(f"{a_mat_path} missing required column '{req}' needed for placeholders.")
+                    raise ValueError(
+                        f"{a_mat_path} missing required column '{req}' needed for placeholders."
+                    )
 
         # Append rows
         with a_mat_path.open("a", encoding="utf-8", newline="") as f:
@@ -776,7 +804,9 @@ class TrailsDataPackage:
            (type 4) over [-lifetime, -1] onto all technosphere + biosphere exchanges that do not already have one.
         """
         stock_assets = getattr(self, "stock_asset_params", {})  # (name, ref) -> params
-        service_ops = getattr(self, "service_operation_lifetimes", {})  # (name, ref) -> lifetime
+        service_ops = getattr(
+            self, "service_operation_lifetimes", {}
+        )  # (name, ref) -> lifetime
 
         def _has_temporal(e: dict) -> bool:
             # Treat any existing temporal_distribution as "already has a distribution"

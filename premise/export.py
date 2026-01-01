@@ -1259,8 +1259,7 @@ class Export:
                     "temporal_scale",
                     "temporal_min",
                     "temporal_max",
-
-            ]
+                ]
             )
             for row in rows:
                 writer.writerow(row)
