@@ -6,20 +6,80 @@ used to create a data package for scenario analysis.
 import json
 import csv
 import shutil
+import math
 from datetime import date
 from pathlib import Path
-from typing import List
+from typing import List, Dict, Tuple, Set
 
-import xarray as xr
 import yaml
+import pandas as pd
 from datapackage import Package
 import bw2data
 
 from . import __version__
 from .new_database import NewDatabase
 from .inventory_imports import get_classifications
-from .utils import load_database
+from  .filesystem_constants import DATA_DIR
+from .utils import load_database, dump_database
 
+FILEPATH_TEMPORAL_PARAMETERS = DATA_DIR / "trails" / "classifications_temporal_params.xlsx"
+
+
+class KeyLoader(yaml.SafeLoader):
+    pass
+
+def key_constructor(loader, node):
+    # node is a YAML sequence; construct as tuple (hashable)
+    seq = loader.construct_sequence(node)
+    return tuple(seq)
+
+KeyLoader.add_constructor("!key", key_constructor)
+
+
+def _mean_age_from_params(dist_type, loc, scale, mn, mx, lifetime):
+    """
+    Compute mean age (mu) from existing temporal distribution parameters.
+    Falls back to lifetime/2 if not computable.
+    """
+    # Default fallback
+    if lifetime is None or lifetime <= 0:
+        return None
+
+    try:
+        t = int(dist_type) if dist_type is not None else None
+    except Exception:
+        t = None
+
+    # Type 2: lognormal on AGE
+    if t == 2:
+        if loc is None or scale is None or scale <= 0:
+            return lifetime / 2.0
+        try:
+            return float(math.exp(float(loc) + 0.5 * float(scale) ** 2))
+        except Exception:
+            return lifetime / 2.0
+
+    # Vintage-based types: compute E[vintage] then mu = -E[vintage]
+    if t == 4:
+        if mn is None or mx is None:
+            return lifetime / 2.0
+        Ev = (float(mn) + float(mx)) / 2.0
+        return -Ev
+
+    if t == 5:
+        if mn is None or mx is None or loc is None:
+            return lifetime / 2.0
+        Ev = (float(mn) + float(mx) + float(loc)) / 3.0
+        return -Ev
+
+    if t == 3:
+        # Approximate truncated normal mean with loc
+        if loc is None:
+            return lifetime / 2.0
+        return -float(loc)
+
+    # Unknown / missing type: fallback
+    return lifetime / 2.0
 
 class TrailsDataPackage:
     def __init__(
@@ -84,6 +144,10 @@ class TrailsDataPackage:
         self.scenario_names = []
         self.classifications = get_classifications()
 
+        self.stock_asset_params, self.service_operation_lifetimes = self._load_temporal_specs_from_excel(
+            FILEPATH_TEMPORAL_PARAMETERS
+        )
+
     def create_datapackage(
         self,
         name: str = f"trails_{date.today()}",
@@ -100,6 +164,101 @@ class TrailsDataPackage:
             contributors=contributors,
         )
 
+    def _load_temporal_specs_from_excel(
+            self, path: Path
+    ) -> tuple[Dict[Tuple[str, str], dict], Dict[Tuple[str, str], float]]:
+        """
+        Returns:
+          stock_assets: dict[(name, ref)] -> exchange-level temporal params for stock_asset suppliers
+          service_ops:  dict[(name, ref)] -> lifetime (years) for service_operation datasets
+        """
+        import pandas as pd
+
+        df = pd.read_excel(path)
+
+        required = {"name", "reference product", "temporal_tag"}
+        missing = required - set(df.columns)
+        if missing:
+            raise ValueError(f"Temporal params Excel file missing columns: {sorted(missing)}")
+
+        def _clean(x):
+            if x is None:
+                return None
+            try:
+                if pd.isna(x):
+                    return None
+            except Exception:
+                pass
+            if isinstance(x, str):
+                s = x.strip()
+                return s if s else None
+            return x
+
+        def _num(x):
+            x = _clean(x)
+            if x is None:
+                return None
+            try:
+                return float(x)
+            except Exception:
+                return None
+
+        stock_assets: Dict[Tuple[str, str], dict] = {}
+        service_ops: Dict[Tuple[str, str], float] = {}
+
+        for _, row in df.iterrows():
+            tag = _clean(row.get("temporal_tag"))
+            name = _clean(row.get("name"))
+            ref = _clean(row.get("reference product"))
+            if not name or not ref or not tag:
+                continue
+
+            if tag == "stock_asset":
+                dist_type = _clean(row.get("age distribution type"))
+                if dist_type is not None:
+                    try:
+                        dist_type = int(float(dist_type))
+                    except Exception:
+                        dist_type = None
+
+                if dist_type is None:
+                    continue  # cannot apply without a type
+
+                stock_assets[(name, ref)] = {
+                    "temporal_distribution": dist_type,
+                    "temporal_loc": _num(row.get("loc")),
+                    "temporal_scale": _num(row.get("scale")),
+                    "temporal_min": _num(row.get("minimum")),
+                    "temporal_max": _num(row.get("maximum")),
+                }
+
+
+            elif tag == "service_operation":
+
+                L = _num(row.get("lifetime"))
+
+                if L is None or L <= 0:
+                    continue
+
+                dist_type = _clean(row.get("age distribution type"))
+                if dist_type is not None:
+
+                    try:
+                        dist_type = int(float(dist_type))
+                    except Exception:
+                        dist_type = None
+
+                loc = _num(row.get("loc"))
+                scale = _num(row.get("scale"))
+                mn = _num(row.get("minimum"))
+                mx = _num(row.get("maximum"))
+                mu = _mean_age_from_params(dist_type, loc, scale, mn, mx, float(L))
+                # Clip mu to [0, L] to avoid pathological kernels
+                mu = min(max(0.0, float(mu)), float(L))
+                service_ops[(name, ref)] = {"lifetime": float(L), "mean_age": float(mu)}
+
+        return stock_assets, service_ops
+
     def _export_datapackage(
         self,
         name: str,
@@ -108,6 +267,8 @@ class TrailsDataPackage:
 
         # first, delete the content of the "trails_temp" folder
         shutil.rmtree(Path.cwd() / "trails_temp", ignore_errors=True)
+
+        self.add_temporal_distributions()
 
         # create matrices in current directory
         self.datapackage.write_db_to_matrices(
@@ -213,6 +374,7 @@ class TrailsDataPackage:
                     "path": relpath,
                     "profile": "tabular-data-resource",
                     "encoding": "utf-8",
+                    "dialect": {"delimiter": ";"}
                 }
             )
 
@@ -283,7 +445,391 @@ class TrailsDataPackage:
         with open(Path.cwd() / "trails_temp" / "datapackage.json", "w") as fp:
             json.dump(data, fp)
 
+        # reorder matrices and indices
+        self.reorder_matrices()
+
         # zip the folder
         shutil.make_archive(name, "zip", str(Path.cwd() / "trails_temp"))
 
         print(f"Trails data package saved at {str(Path.cwd() / f'{name}.zip')}")
+
+    def reorder_matrices(self) -> None:
+        """
+        Harmonize matrix index spaces across all year-folders in trails_temp/inventories.
+
+        Rules implemented:
+          - Existing rows in A_matrix.csv and B_matrix.csv are preserved verbatim
+            EXCEPT for the integer index columns which are remapped to a global ordering.
+          - A_matrix_index.csv and B_matrix_index.csv are rewritten to the global ordering.
+          - For activities missing in a given year, append one diagonal placeholder row to A:
+              value = 1
+              flip  = 0
+            (Other columns in this new row use deterministic/neutral defaults.)
+        """
+
+        print("Reordering matrices to global index spaces...")
+        base = Path.cwd() / "trails_temp" / "inventories"
+        slice_dirs = self._find_slice_dirs(base)
+
+        if not slice_dirs:
+            raise FileNotFoundError(
+                f"No inventory folders found under {base} containing the required files."
+            )
+
+        # 1) Build global indices (union across all slices)
+        global_A_keys, global_A_index = self._build_global_A_index(slice_dirs)
+        global_B_keys, global_B_index = self._build_global_B_index(slice_dirs)
+
+        # 2) Apply to each slice
+        for d in slice_dirs:
+            a_idx_path = d / "A_matrix_index.csv"
+            b_idx_path = d / "B_matrix_index.csv"
+            a_mat_path = d / "A_matrix.csv"
+            b_mat_path = d / "B_matrix.csv"
+
+            # Build local->global maps
+            local_A = self._read_A_index(a_idx_path)  # key -> local int
+            local_B = self._read_B_index(b_idx_path)  # key -> local int
+
+            map_A = {local_i: global_A_index[k] for k, local_i in local_A.items()}
+            map_B = {local_i: global_B_index[k] for k, local_i in local_B.items()}
+
+            # Rewrite index CSVs to global ordering
+            self._write_A_index_global(a_idx_path, global_A_keys)
+            self._write_B_index_global(b_idx_path, global_B_keys)
+
+            # Rewrite matrices (only index columns changed)
+            present_global_acts = self._rewrite_A_matrix_indices_only(a_mat_path, map_A)
+            self._rewrite_B_matrix_indices_only(b_mat_path, map_A, map_B)
+
+            # Append placeholder diagonal rows for missing global activities
+            self._append_placeholders_to_A(
+                a_mat_path=a_mat_path,
+                global_n=len(global_A_keys),
+                present_global_acts=present_global_acts,
+            )
+
+    # -----------------------------
+    # Discovery
+    # -----------------------------
+
+    def _find_slice_dirs(self, base: Path) -> List[Path]:
+        required = {
+            "A_matrix.csv",
+            "A_matrix_index.csv",
+            "B_matrix.csv",
+            "B_matrix_index.csv",
+        }
+        out: List[Path] = []
+        if not base.exists():
+            return out
+
+        # Find directories that contain all required files
+        for d in base.rglob("*"):
+            if not d.is_dir():
+                continue
+            names = {p.name for p in d.iterdir() if p.is_file()}
+            if required.issubset(names):
+                out.append(d)
+
+        # Stable traversal (reproducible)
+        out.sort(key=lambda p: p.as_posix())
+        return out
+
+    # -----------------------------
+    # Index parsing / writing
+    # -----------------------------
+
+    AKey = Tuple[str, str, str, str]  # (name, ref product, unit, location)
+    BKey = Tuple[str, str, str, str]  # (name, compartment, subcompartment, unit)
+
+    def _read_A_index(self, path: Path) -> Dict[AKey, int]:
+        out: Dict[TrailsDataPackage.AKey, int] = {}
+        with path.open("r", encoding="utf-8", newline="") as f:
+            r = csv.DictReader(f, delimiter=";")
+            for row in r:
+                key = (
+                    (row.get("name") or "").strip(),
+                    (row.get("reference product") or "").strip(),
+                    (row.get("unit") or "").strip(),
+                    (row.get("location") or "").strip(),
+                )
+                idx = int(row["index"])
+                out[key] = idx
+        return out
+
+    def _read_B_index(self, path: Path) -> Dict[BKey, int]:
+        out: Dict[TrailsDataPackage.BKey, int] = {}
+        with path.open("r", encoding="utf-8", newline="") as f:
+            r = csv.DictReader(f, delimiter=";")
+            for row in r:
+                key = (
+                    (row.get("name") or "").strip(),
+                    (row.get("compartment") or "").strip(),
+                    (row.get("subcompartment") or "").strip(),
+                    (row.get("unit") or "").strip(),
+                )
+                idx = int(row["index"])
+                out[key] = idx
+        return out
+
+    def _build_global_A_index(self, slice_dirs: List[Path]) -> Tuple[List[AKey], Dict[AKey, int]]:
+        # Baseline ordering from first slice, then append novel keys sorted
+        first = self._read_A_index(slice_dirs[0] / "A_matrix_index.csv")
+        ordered: List[TrailsDataPackage.AKey] = sorted(first.keys(), key=lambda k: first[k])
+
+        seen: Set[TrailsDataPackage.AKey] = set(ordered)
+        new_keys: Set[TrailsDataPackage.AKey] = set()
+
+        for d in slice_dirs[1:]:
+            idx = self._read_A_index(d / "A_matrix_index.csv")
+            for k in idx.keys():
+                if k not in seen:
+                    new_keys.add(k)
+
+        for k in sorted(new_keys):
+            ordered.append(k)
+
+        global_map = {k: i for i, k in enumerate(ordered)}
+        return ordered, global_map
+
+    def _build_global_B_index(self, slice_dirs: List[Path]) -> Tuple[List[BKey], Dict[BKey, int]]:
+        first = self._read_B_index(slice_dirs[0] / "B_matrix_index.csv")
+        ordered: List[TrailsDataPackage.BKey] = sorted(first.keys(), key=lambda k: first[k])
+
+        seen: Set[TrailsDataPackage.BKey] = set(ordered)
+        new_keys: Set[TrailsDataPackage.BKey] = set()
+
+        for d in slice_dirs[1:]:
+            idx = self._read_B_index(d / "B_matrix_index.csv")
+            for k in idx.keys():
+                if k not in seen:
+                    new_keys.add(k)
+
+        for k in sorted(new_keys):
+            ordered.append(k)
+
+        global_map = {k: i for i, k in enumerate(ordered)}
+        return ordered, global_map
+
+    def _write_A_index_global(self, path: Path, global_keys: List[AKey]) -> None:
+        tmp = path.with_suffix(".csv.tmp")
+        fieldnames = ["name", "reference product", "unit", "location", "index"]
+        with tmp.open("w", encoding="utf-8", newline="") as f:
+            w = csv.DictWriter(f, fieldnames=fieldnames, delimiter=";")
+            w.writeheader()
+            for i, (name, ref, unit, loc) in enumerate(global_keys):
+                w.writerow(
+                    {
+                        "name": name,
+                        "reference product": ref,
+                        "unit": unit,
+                        "location": loc,
+                        "index": i,
+                    }
+                )
+        tmp.replace(path)
+
+    def _write_B_index_global(self, path: Path, global_keys: List[BKey]) -> None:
+        tmp = path.with_suffix(".csv.tmp")
+        fieldnames = ["name", "compartment", "subcompartment", "unit", "index"]
+        with tmp.open("w", encoding="utf-8", newline="") as f:
+            w = csv.DictWriter(f, fieldnames=fieldnames, delimiter=";")
+            w.writeheader()
+            for i, (name, comp, subcomp, unit) in enumerate(global_keys):
+                w.writerow(
+                    {
+                        "name": name,
+                        "compartment": comp,
+                        "subcompartment": subcomp,
+                        "unit": unit,
+                        "index": i,
+                    }
+                )
+        tmp.replace(path)
+
+    # -----------------------------
+    # Matrix rewriting (indices only)
+    # -----------------------------
+
+    def _rewrite_A_matrix_indices_only(self, path: Path, map_A: Dict[int, int]) -> Set[int]:
+        """
+        Rewrite A_matrix.csv, changing only:
+          - index of activity
+          - index of product
+
+        Returns the set of global activity indices present as row indices after rewrite.
+        """
+        tmp = path.with_suffix(".csv.tmp")
+        present: Set[int] = set()
+
+        with path.open("r", encoding="utf-8", newline="") as fin, tmp.open(
+                "w", encoding="utf-8", newline=""
+        ) as fout:
+            r = csv.DictReader(fin, delimiter=";")
+            fieldnames = r.fieldnames or []
+            if "index of activity" not in fieldnames or "index of product" not in fieldnames:
+                raise ValueError(f"{path} missing required A matrix columns.")
+
+            w = csv.DictWriter(fout, fieldnames=fieldnames, delimiter=";")
+            w.writeheader()
+
+            for row in r:
+                old_i = int(row["index of activity"])
+                old_j = int(row["index of product"])
+                new_i = map_A[old_i]
+                new_j = map_A[old_j]
+                row["index of activity"] = str(new_i)
+                row["index of product"] = str(new_j)
+                w.writerow(row)
+                present.add(new_i)
+
+        tmp.replace(path)
+        return present
+
+    def _rewrite_B_matrix_indices_only(self, path: Path, map_A: Dict[int, int], map_B: Dict[int, int]) -> None:
+        """
+        Rewrite B_matrix.csv, changing only:
+          - index of activity (using map_A)
+          - index of biosphere flow (using map_B)
+        """
+        tmp = path.with_suffix(".csv.tmp")
+
+        with path.open("r", encoding="utf-8", newline="") as fin, tmp.open(
+                "w", encoding="utf-8", newline=""
+        ) as fout:
+            r = csv.DictReader(fin, delimiter=";")
+            fieldnames = r.fieldnames or []
+            if "index of activity" not in fieldnames or "index of biosphere flow" not in fieldnames:
+                raise ValueError(f"{path} missing required B matrix columns.")
+
+            w = csv.DictWriter(fout, fieldnames=fieldnames, delimiter=";")
+            w.writeheader()
+
+            for row in r:
+                old_i = int(row["index of activity"])
+                old_k = int(row["index of biosphere flow"])
+                row["index of activity"] = str(map_A[old_i])
+                row["index of biosphere flow"] = str(map_B[old_k])
+                w.writerow(row)
+
+        tmp.replace(path)
+
+    # -----------------------------
+    # Placeholders
+    # -----------------------------
+
+    def _append_placeholders_to_A(
+            self,
+            a_mat_path: Path,
+            global_n: int,
+            present_global_acts: Set[int],
+    ) -> None:
+        """
+        Append diagonal placeholder rows to A_matrix.csv for missing activities.
+
+        Requirement from user:
+          - value = 1
+          - flip  = 0
+
+        We keep the file schema and set other fields to neutral defaults for new rows.
+        """
+        missing = [i for i in range(global_n) if i not in present_global_acts]
+        if not missing:
+            return
+
+        # We must use the same columns as the file already has.
+        with a_mat_path.open("r", encoding="utf-8", newline="") as f:
+            r = csv.DictReader(f, delimiter=";")
+            fieldnames = r.fieldnames or []
+            # Sanity: required columns must exist
+            for req in ("index of activity", "index of product", "value", "flip"):
+                if req not in fieldnames:
+                    raise ValueError(f"{a_mat_path} missing required column '{req}' needed for placeholders.")
+
+        # Append rows
+        with a_mat_path.open("a", encoding="utf-8", newline="") as f:
+            w = csv.DictWriter(f, fieldnames=fieldnames, delimiter=";")
+
+            for g in missing:
+                row = {k: "" for k in fieldnames}
+
+                row["index of activity"] = str(g)
+                row["index of product"] = str(g)
+                row["value"] = "1"
+                row["flip"] = "0"
+
+                # Neutral defaults for typical uncertainty schema (only for new placeholder rows)
+                if "uncertainty type" in row:
+                    row["uncertainty type"] = "0"
+                if "loc" in row:
+                    row["loc"] = "1"
+                if "negative" in row:
+                    row["negative"] = "0"
+
+                w.writerow(row)
+
+    def add_temporal_distributions(self):
+        """
+        1) For technosphere exchanges that draw from a stock_asset supplier, inject the supplier-specific temporal params.
+        2) If the *dataset itself* is tagged service_operation, then inject a default uniform temporal distribution
+           (type 4) over [-lifetime, -1] onto all technosphere + biosphere exchanges that do not already have one.
+        """
+        stock_assets = getattr(self, "stock_asset_params", {})  # (name, ref) -> params
+        service_ops = getattr(self, "service_operation_lifetimes", {})  # (name, ref) -> lifetime
+
+        def _has_temporal(e: dict) -> bool:
+            # Treat any existing temporal_distribution as "already has a distribution"
+            return e.get("temporal_distribution") is not None
+
+        for s, scenario in enumerate(self.datapackage.scenarios):
+            scenario = load_database(scenario, self.datapackage.database)
+            db = scenario["database"]
+
+            for ds in db:
+                ds_name = (ds.get("name") or "").strip()
+                ds_ref = (ds.get("reference product") or "").strip()
+
+                # ---- (A) service_operation: dataset-level default on all exchanges (unless already present)
+                spec = service_ops.get((ds_name, ds_ref))
+                if spec is not None:
+                    L = float(spec["lifetime"])
+                    mu = float(spec["mean_age"])
+
+                    # Option C kernel support
+                    mn = -mu
+                    mx = L - mu
+
+                    for e in ds.get("exchanges", []):
+                        if e.get("type") not in ("technosphere", "biosphere"):
+                            continue
+                        if e.get("temporal_distribution") is not None:
+                            continue
+
+                        e["temporal_distribution"] = 4  # uniform kernel
+                        e["temporal_loc"] = None
+                        e["temporal_scale"] = None
+                        e["temporal_min"] = mn
+                        e["temporal_max"] = mx
+
+                # ---- (B) stock_asset suppliers: exchange-level override for technosphere (even if service_operation ran)
+                # This is done after (A) so that stock_asset-specific params can overwrite the default uniform, if desired.
+                for e in ds.get("exchanges", []):
+                    if e.get("type") != "technosphere":
+                        continue
+
+                    sup_name = (e.get("name") or "").strip()
+                    sup_ref = (e.get("product") or "").strip()
+                    key = (sup_name, sup_ref)
+
+                    params = stock_assets.get(key)
+                    if not params:
+                        continue
+
+                    e["temporal_distribution"] = params["temporal_distribution"]
+                    e["temporal_loc"] = params.get("temporal_loc")
+                    e["temporal_scale"] = params.get("temporal_scale")
+                    e["temporal_min"] = params.get("temporal_min")
+                    e["temporal_max"] = params.get("temporal_max")
+
+            self.datapackage.scenarios[s] = dump_database(scenario)

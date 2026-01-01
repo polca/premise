@@ -1152,6 +1152,11 @@ class Export:
                             exc.get("maximum"),
                             1 if exc["amount"] < 0 else 0,
                             1,
+                            exc.get("temporal_distribution"),
+                            exc.get("temporal_loc"),
+                            exc.get("temporal_scale"),
+                            exc.get("temporal_min"),
+                            exc.get("temporal_max"),
                         ]
                         list_exchanges.append(row)
 
@@ -1197,6 +1202,11 @@ class Export:
                             exc.get("maximum"),
                             1 if exc["amount"] < 0 else 0,
                             1,
+                            exc.get("temporal_distribution"),
+                            exc.get("temporal_loc"),
+                            exc.get("temporal_scale"),
+                            exc.get("temporal_min"),
+                            exc.get("temporal_max"),
                         ]
                     except KeyError:
                         print(
@@ -1244,7 +1254,13 @@ class Export:
                     "maximum",
                     "negative",
                     "flip",
-                ]
+                    "temporal_distribution",
+                    "temporal_loc",
+                    "temporal_scale",
+                    "temporal_min",
+                    "temporal_max",
+
+            ]
             )
             for row in rows:
                 writer.writerow(row)
@@ -1284,6 +1300,11 @@ class Export:
                     "maximum",
                     "negative",
                     "flip",
+                    "temporal_distribution",
+                    "temporal_loc",
+                    "temporal_scale",
+                    "temporal_min",
+                    "temporal_max",
                 ]
             )
             rows = self.create_B_matrix_coordinates()
