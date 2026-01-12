@@ -164,7 +164,7 @@ class SyntheticFuelsMixin:
                     ],
                     co2_intensity=3.15,
                     fossil_variables=[
-                        "kerosene, from petroleum",
+                        "kerosene",
                         "kerosene, synthetic, from natural gas, energy allocation",
                         "kerosene, synthetic, from coal, energy allocation",
                         "kerosene, synthetic, from coal, energy allocation, with CCS",

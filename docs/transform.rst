@@ -700,7 +700,7 @@ the different fuels used in combustion-based power plants.
   grass                                                              17
   manure, liquid                                                     0.875
   manure, solid                                                      3.6
-  kerosene, from petroleum                                           43
+  kerosene                                           43
   kerosene, synthetic, from electrolysis, energy allocation          43
   kerosene, synthetic, from electrolysis, economic allocation        43
   kerosene, synthetic, from coal, energy allocation                  43
