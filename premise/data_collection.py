@@ -604,7 +604,7 @@ class IAMDataCollection:
                 {
                     k: v
                     for k, v in fuel_prod_vars.items()
-                    if k in ["gasoline", "diesel", "kerosene", "liquid fossil fuels"]
+                    if k in ["gasoline", "diesel", "kerosene", "liquid fossil fuels", "heavy fuel oil", "liquefied petroleum gas"]
                 }
                 if "liquid fossil fuels" in fuel_prod_vars
                 else None
@@ -1298,6 +1298,7 @@ class IAMDataCollection:
         # we add the split of gasoline, diesel, LPG and kerosene
 
         if split_fossil_liquid_fuels is not None:
+            print(split_fossil_liquid_fuels)
             # get the split of gasoline, diesel, LPG and kerosene
             df = get_oil_product_volumes(self.model)
             variable_liquid_fuel = split_fossil_liquid_fuels["liquid fossil fuels"]
