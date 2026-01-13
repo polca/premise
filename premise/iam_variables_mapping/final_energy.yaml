@@ -810,13 +810,32 @@ Industry - Chemicals - Ammonia - Nat Gas:
   iam_aliases:
     message: Final Energy|Industry|Chemicals|Ammonia|Gases|Gas
     image: Final Energy|Industry|Chemicals|Ammonia|Gases|Fossil
-Industry - Chemicals - Ammonia - Biofuel:
+
+Industry - Chemicals - Ammonia - Biofuel - Traditional biomass- Residues:
   ecoinvent_aliases:
     fltr:
-      name: methanol from biomass, burned in residential boiler
+      name:
       reference product: heat
   iam_aliases:
-    image: Final Energy|Industry|Chemicals|Ammonia|Liquids|Biomass
+    image: Final Energy|Industry|Chemicals|Ammonia|Liquids|Biomass|Allocated Biomass|Traditional|Residues
+
+Industry - Chemicals - Ammonia - Biofuel - Modern biomass- Energy crops:
+  ecoinvent_aliases:
+    fltr:
+      name:
+      reference product: heat
+  iam_aliases:
+    image: Final Energy|Industry|Chemicals|Ammonia|Liquids|Biomass|Allocated Biomass|Modern|Energy Crops
+
+Industry - Chemicals - Ammonia - Biofuel - Modern biomass- Residues:
+  ecoinvent_aliases:
+    fltr:
+      name:
+      reference product: heat
+  iam_aliases:
+    image: Final Energy|Industry|Chemicals|Ammonia|Liquids|Biomass|Allocated Biomass|Modern|Residues
+
+
 Industry - Chemicals - Ammonia - Liquid fossil:
   ecoinvent_aliases:
     fltr:
@@ -840,7 +859,32 @@ Industry - Chemicals - Ammonia - Solid Biomass:
       reference product: heat
   iam_aliases:
     message: Final Energy|Industry|Chemicals|Ammonia|Solids|Biomass
-    image: Final Energy|Industry|Chemicals|Ammonia|Solids|Biomass
+
+Industry - Chemicals - Ammonia - Solid Biomass - Traditional biomass - Residues:
+  ecoinvent_aliases:
+    fltr:
+      name:
+      reference product: heat
+  iam_aliases:
+    image: Final Energy|Industry|Chemicals|Ammonia|Solids|Biomass|Allocated Biomass|Traditional|Residues
+
+Industry - Chemicals - Ammonia - Solid Biomass - Modern biomass - Energy crops:
+  ecoinvent_aliases:
+    fltr:
+      name:
+      reference product: heat
+  iam_aliases:
+    image: Final Energy|Industry|Chemicals|Ammonia|Solids|Biomass|Allocated Biomass|Modern|Energy Crops
+
+Industry - Chemicals - Ammonia - Solid Biomass - Modern biomass - Residues:
+  ecoinvent_aliases:
+    fltr:
+      name:
+      reference product: heat
+  iam_aliases:
+    image: Final Energy|Industry|Chemicals|Ammonia|Solids|Biomass|Allocated Biomass|Modern|Residues
+
+
 Industry - Chemicals - Ammonia - Other:
   ecoinvent_aliases:
     fltr:
@@ -866,13 +910,31 @@ Industry - Chemicals - Heavy Refinery Products - Nat Gas:
     mask: market
   iam_aliases:
     image: Final Energy|Industry|Chemicals|Heavy Refinery Products|Gases|Fossil
-Industry - Chemicals - Heavy Refinery Products - Biofuel:
+
+Industry - Chemicals - Heavy Refinery Products - Biofuel - Traditional biomass - Residues:
   ecoinvent_aliases:
     fltr:
-      name: methanol from biomass, burned in residential boiler
+      name:
       reference product: heat
   iam_aliases:
-    image: Final Energy|Industry|Chemicals|Heavy Refinery Products|Liquids|Biomass
+    image: Final Energy|Industry|Chemicals|Heavy Refinery Products|Liquids|Biomass|Allocated Biomass|Traditional|Residues
+
+Industry - Chemicals - Heavy Refinery Products - Biofuel - Modern biomass - Energy crops:
+  ecoinvent_aliases:
+    fltr:
+      name:
+      reference product: heat
+  iam_aliases:
+    image: Final Energy|Industry|Chemicals|Heavy Refinery Products|Liquids|Biomass|Allocated Biomass|Modern|Energy Crops
+
+Industry - Chemicals - Heavy Refinery Products - Biofuel - Modern biomass - Residues:
+  ecoinvent_aliases:
+    fltr:
+      name:
+      reference product: heat
+  iam_aliases:
+    image: Final Energy|Industry|Chemicals|Heavy Refinery Products|Liquids|Biomass|Allocated Biomass|Modern|Residues
+
 Industry - Chemicals - Heavy Refinery Products - Liquid fossil:
   ecoinvent_aliases:
     fltr:
@@ -887,13 +949,31 @@ Industry - Chemicals - Heavy Refinery Products - Solid coal:
       reference product: heat
   iam_aliases:
     image: Final Energy|Industry|Chemicals|Heavy Refinery Products|Solids|Fossil
-Industry - Chemicals - Heavy Refinery Products - Solid Biomass:
+
+
+Industry - Chemicals - Heavy Refinery Products - Solid Biomass - Traditional biomass - Residues:
   ecoinvent_aliases:
     fltr:
-      name: soft wood chips from forest, burned in furnace 1000kW
+      name:
       reference product: heat
   iam_aliases:
-    image: Final Energy|Industry|Chemicals|Heavy Refinery Products|Solids|Biomass
+    image: Final Energy|Industry|Chemicals|Heavy Refinery Products|Solids|Biomass|Allocated Biomass|Traditional|Residues
+
+Industry - Chemicals - Heavy Refinery Products - Solid Biomass - Modern biomass - Energy crops:
+  ecoinvent_aliases:
+    fltr:
+      name:
+      reference product: heat
+  iam_aliases:
+    image: Final Energy|Industry|Chemicals|Heavy Refinery Products|Solids|Biomass|Allocated Biomass|Modern|Energy Crops
+
+Industry - Chemicals - Heavy Refinery Products - Solid Biomass - Modern biomass - Residues:
+  ecoinvent_aliases:
+    fltr:
+      name:
+      reference product: heat
+  iam_aliases:
+    image: Final Energy|Industry|Chemicals|Heavy Refinery Products|Solids|Biomass|Allocated Biomass|Modern|Residues
 
 Industry - Chemicals - High-Value Chemicals - Elec:
   ecoinvent_aliases:
@@ -920,7 +1000,31 @@ Industry - Chemicals - High-Value Chemicals - Biofuel:
       reference product: heat
   iam_aliases:
     message: Final Energy|Industry|Chemicals|High-Value Chemicals|Liquids|Biomass
-    image: Final Energy|Industry|Chemicals|High-Value Chemicals|Liquids|Biomass
+
+Industry - Chemicals - High-Value Chemicals - Biofuel - Traditional biomass - Residues:
+  ecoinvent_aliases:
+    fltr:
+      name:
+      reference product: heat
+  iam_aliases:
+    image: Final Energy|Industry|Chemicals|High-Value Chemicals|Liquids|Biomass|Allocated Biomass|Traditional|Residues
+
+Industry - Chemicals - High-Value Chemicals - Biofuel - Modern biomass - Energy crops:
+  ecoinvent_aliases:
+    fltr:
+      name:
+      reference product: heat
+  iam_aliases:
+    image: Final Energy|Industry|Chemicals|High-Value Chemicals|Liquids|Biomass|Allocated Biomass|Modern|Energy Crops
+
+Industry - Chemicals - High-Value Chemicals - Biofuel - Modern biomass - Residues:
+  ecoinvent_aliases:
+    fltr:
+      name:
+      reference product: heat
+  iam_aliases:
+    image: Final Energy|Industry|Chemicals|High-Value Chemicals|Liquids|Biomass|Allocated Biomass|Modern|Residues
+
 Industry - Chemicals - High-Value Chemicals - Liquid fossil:
   ecoinvent_aliases:
     fltr:
@@ -944,7 +1048,31 @@ Industry - Chemicals - High-Value Chemicals - Solid Biomass:
       reference product: heat
   iam_aliases:
     message: Final Energy|Industry|Chemicals|High-Value Chemicals|Solids|Biomass
-    image: Final Energy|Industry|Chemicals|High-Value Chemicals|Solids|Biomass
+
+Industry - Chemicals - Methanol - Biofuel - Traditional biomass - Residues:
+  ecoinvent_aliases:
+    fltr:
+      name:
+      reference product: heat
+  iam_aliases:
+    image: Final Energy|Industry|Chemicals|Methanol|Liquids|Biomass|Allocated Biomass|Traditional|Residues
+
+Industry - Chemicals - Methanol - Biofuel - Modern biomass - Energy crops:
+    ecoinvent_aliases:
+        fltr:
+            name:
+            reference product: heat
+    iam_aliases:
+        image: Final Energy|Industry|Chemicals|Methanol|Liquids|Biomass|Allocated Biomass|Modern|Energy Crops
+
+Industry - Chemicals - Methanol - Biofuel - Modern biomass - Residues:
+    ecoinvent_aliases:
+        fltr:
+            name:
+            reference product: heat
+    iam_aliases:
+        image: Final Energy|Industry|Chemicals|Methanol|Liquids|Biomass|Allocated Biomass|Modern|Residues
+
 Industry - Chemicals - Methanol - Elec:
   ecoinvent_aliases:
     fltr:
@@ -963,13 +1091,7 @@ Industry - Chemicals - Methanol - Nat Gas:
   iam_aliases:
     message: Final Energy|Industry|Chemicals|Methanol|Gases|Gas
     image: Final Energy|Industry|Chemicals|Methanol|Gases|Fossil
-Industry - Chemicals - Methanol - Biofuel:
-  ecoinvent_aliases:
-    fltr:
-      name: methanol from biomass, burned in residential boiler
-      reference product: heat
-  iam_aliases:
-    image: Final Energy|Industry|Chemicals|Methanol|Liquids|Biomass
+
 Industry - Chemicals - Methanol - Liquid fossil:
   ecoinvent_aliases:
     fltr:
@@ -985,6 +1107,7 @@ Industry - Chemicals - Methanol - Solid coal:
   iam_aliases:
     message: Final Energy|Industry|Chemicals|Methanol|Solids|Coal
     image: Final Energy|Industry|Chemicals|Methanol|Solids|Fossil
+
 Industry - Chemicals - Methanol - Solid Biomass:
   ecoinvent_aliases:
     fltr:
@@ -992,7 +1115,30 @@ Industry - Chemicals - Methanol - Solid Biomass:
       reference product: heat
   iam_aliases:
     message: Final Energy|Industry|Chemicals|Methanol|Solids|Biomass
-    image: Final Energy|Industry|Chemicals|Methanol|Solids|Biomass
+
+Industry - Chemicals - Methanol - Solid Biomass - Traditional biomass - Residues:
+  ecoinvent_aliases:
+    fltr:
+      name:
+      reference product: heat
+  iam_aliases:
+    image: Final Energy|Industry|Chemicals|Methanol|Solids|Biomass|Allocated Biomass|Traditional|Residues
+
+Industry - Chemicals - Methanol - Solid Biomass - Modern biomass - Energy crops:
+  ecoinvent_aliases:
+    fltr:
+      name:
+      reference product: heat
+  iam_aliases:
+    image: Final Energy|Industry|Chemicals|Methanol|Solids|Biomass|Allocated Biomass|Modern|Energy Crops
+
+Industry - Chemicals - Methanol - Solid Biomass - Modern biomass - Residues:
+  ecoinvent_aliases:
+    fltr:
+      name:
+      reference product: heat
+  iam_aliases:
+    image: Final Energy|Industry|Chemicals|Methanol|Solids|Biomass|Allocated Biomass|Modern|Residues
 
 Industry - Chemicals - Fertilizer - Elec:
   ecoinvent_aliases:
@@ -1042,6 +1188,7 @@ Industry - Chemicals - Fertilizer - Solid coal:
   iam_aliases:
     message: Final Energy|Industry|Chemicals|Ammonia|Solids|Coal
     image: Final Energy|Industry|Fertilizer production|Solids|Fossil
+
 Industry - Chemicals - Fertilizer - Solid Biomass:
   ecoinvent_aliases:
     fltr:
@@ -1049,7 +1196,30 @@ Industry - Chemicals - Fertilizer - Solid Biomass:
       reference product: heat
   iam_aliases:
     message: Final Energy|Industry|Chemicals|Ammonia|Solids|Biomass
-    image: Final Energy|Industry|Fertilizer production|Solids|Biomass
+
+Industry - Chemicals - Fertilizer - Solid Biomass - Traditional biomass - Residues:
+  ecoinvent_aliases:
+    fltr:
+      name:
+      reference product: heat
+  iam_aliases:
+    image: Final Energy|Industry|Fertilizer production|Solids|Biomass|Allocated Biomass|Traditional|Residues
+
+Industry - Chemicals - Fertilizer - Solid Biomass - Modern biomass - Energy crops:
+  ecoinvent_aliases:
+    fltr:
+      name:
+      reference product: heat
+  iam_aliases:
+    image: Final Energy|Industry|Fertilizer production|Solids|Biomass|Allocated Biomass|Modern|Energy Crops
+
+Industry - Chemicals - Fertilizer - Solid Biomass - Modern biomass - Residues:
+  ecoinvent_aliases:
+    fltr:
+      name:
+      reference product: heat
+  iam_aliases:
+    image: Final Energy|Industry|Fertilizer production|Solids|Biomass|Allocated Biomass|Modern|Residues
 
 Industry - Food Processing - Elec:
   ecoinvent_aliases:
@@ -1095,13 +1265,30 @@ Industry - Food Processing - Solid coal:
       reference product: heat
   iam_aliases:
     image: Final Energy|Industry|Food Processing|Solids|Fossil
-Industry - Food Processing - Solid Biomass:
+
+Industry - Food Processing - Solid Biomass - Traditional biomass - Residues:
   ecoinvent_aliases:
     fltr:
       name: soft wood chips from forest, burned in furnace 1000kW
       reference product: heat
   iam_aliases:
-    image: Final Energy|Industry|Food Processing|Solids|Biomass
+    image: Final Energy|Industry|Food Processing|Solids|Biomass|Allocated Biomass|Traditional|Residues
+
+Industry - Food Processing - Solid Biomass - Modern biomass - Energy crops:
+  ecoinvent_aliases:
+    fltr:
+      name: soft wood chips from forest, burned in furnace 1000kW
+      reference product: heat
+  iam_aliases:
+    image: Final Energy|Industry|Food Processing|Solids|Biomass|Allocated Biomass|Modern|Energy Crops
+
+Industry - Food Processing - Solid Biomass - Modern biomass - Residues:
+  ecoinvent_aliases:
+    fltr:
+      name: soft wood chips from forest, burned in furnace 1000kW
+      reference product: heat
+  iam_aliases:
+    image: Final Energy|Industry|Food Processing|Solids|Biomass|Allocated Biomass|Modern|Residues
 
 Industry - Other - Elec:
   ecoinvent_aliases:
@@ -1253,7 +1440,32 @@ Industry - Other - Solid Biomass:
     message: Final Energy|Industry|Other Sector|Solids|Biomass
     remind: FE|Industry|Other Industry|Solids|+|Biomass
     remind-eu: FE|Industry|Other Industry|Solids|+|Biomass
-    image: Final Energy|Industry|Other Sector|Solids|Biomass
+
+Industry - Other - Solid Biomass - Traditional biomass - Residues:
+  ecoinvent_aliases:
+    fltr:
+      name:
+      reference product: heat
+  iam_aliases:
+    image: Final Energy|Industry|Other Sector|Solids|Biomass|Allocated Biomass|Traditional|Residues
+
+Industry - Other - Solid Biomass - Modern biomass - Energy crops:
+  ecoinvent_aliases:
+    fltr:
+      name:
+      reference product: heat
+  iam_aliases:
+    image: Final Energy|Industry|Other Sector|Solids|Biomass|Allocated Biomass|Modern|Energy Crops
+
+Industry - Other - Solid Biomass - Modern biomass - Residues:
+  ecoinvent_aliases:
+    fltr:
+      name:
+      reference product: heat
+  iam_aliases:
+    image: Final Energy|Industry|Other Sector|Solids|Biomass|Allocated Biomass|Modern|Residues
+
+
 Industry - Other - Solid coal:
   ecoinvent_aliases:
     fltr:
@@ -1309,13 +1521,30 @@ Industry - Paper - Solid coal:
       reference product: heat
   iam_aliases:
     image: Final Energy|Industry|Pulp and Paper|Solids|Fossil
-Industry - Paper - Solid Biomass:
+
+Industry - Paper - Solid Biomass - Traditional biomass - Residues:
   ecoinvent_aliases:
     fltr:
-      name: soft wood chips from forest, burned in furnace 1000kW
+      name:
       reference product: heat
   iam_aliases:
-    image: Final Energy|Industry|Pulp and Paper|Solids|Biomass
+    image: Final Energy|Industry|Pulp and Paper|Solids|Biomass|Allocated Biomass|Traditional|Residues
+
+Industry - Paper - Solid Biomass - Modern biomass - Energy crops:
+  ecoinvent_aliases:
+    fltr:
+      name:
+      reference product: heat
+  iam_aliases:
+    image: Final Energy|Industry|Pulp and Paper|Solids|Biomass|Allocated Biomass|Modern|Energy Crops
+
+Industry - Paper - Solid Biomass - Modern biomass - Residues:
+  ecoinvent_aliases:
+    fltr:
+      name:
+      reference product: heat
+  iam_aliases:
+    image: Final Energy|Industry|Pulp and Paper|Solids|Biomass|Allocated Biomass|Modern|Residues
 
 Industry - Steel - BF/BOF - Elec:
   ecoinvent_aliases:
@@ -2272,7 +2501,6 @@ Transport - Freight - Domestic Shipping - Biofuel:
       name: methanol from biomass, burned in container ship
       reference product: heat
   iam_aliases:
-    image: Final Energy|Transportation|Freight|National Shipping|Liquids|Biomass
     tiam-ucl:
     - Final Energy|Transport|Ship|Domestic|Biodiesel
     - Final Energy|Transport|Ship|Domestic|Heavy Fuel Oil|Biodiesel
@@ -2285,6 +2513,7 @@ Transport - Freight - Domestic Shipping - Biofuel - Energy crops:
   iam_aliases:
     remind: FE|Non-energy Use|Industry|Liquids|+|Biomass|Allocated Feedstock|Cellulosic|Energy Crops
     remind-eu: FE|Non-energy Use|Industry|Liquids|+|Biomass|Allocated Feedstock|Cellulosic|Energy Crops
+    image: Final Energy|Transportation|Freight|National Shipping|Liquids|Biomass|Allocated Biomass|Modern|Energy Crops
 
 Transport - Freight - Domestic Shipping - Biofuel - Residues:
   ecoinvent_aliases:
@@ -2294,6 +2523,9 @@ Transport - Freight - Domestic Shipping - Biofuel - Residues:
   iam_aliases:
     remind: FE|Non-energy Use|Industry|Liquids|+|Biomass|Allocated Feedstock|Cellulosic|Residues
     remind-eu: FE|Non-energy Use|Industry|Liquids|+|Biomass|Allocated Feedstock|Cellulosic|Residues
+    image:
+      - Final Energy|Transportation|Freight|National Shipping|Liquids|Biomass|Allocated Biomass|Traditional|Residues
+      - Final Energy|Transportation|Freight|National Shipping|Liquids|Biomass|Allocated Biomass|Modern|Residues
 
 Transport - Freight - Domestic Shipping - Biofuel - Oil crops:
   ecoinvent_aliases:
@@ -2351,11 +2583,34 @@ Transport - Freight - Int. Shipping - Biofuel:
       name: methanol from biomass, burned in container ship
       reference product: heat
   iam_aliases:
-    image: Final Energy|Transportation|Freight|International Shipping|Liquids|Biomass
     tiam-ucl:
     - Final Energy|Transport|Ship|International|Biodiesel
     - Final Energy|Transport|Ship|International|Heavy Fuel Oil|Biodiesel
     message: Final Energy|Bunkers|Liquids|Biomass
+
+Transport - Freight - Int. Shipping - Biofuel - Traditional biomass - Residues:
+  ecoinvent_aliases:
+    fltr:
+      name:
+      reference product: heat
+  iam_aliases:
+    image: Final Energy|Transportation|Freight|International Shipping|Liquids|Biomass|Allocated Biomass|Traditional|Residues
+
+Transport - Freight - Int. Shipping - Biofuel - Traditional biomass - Energy crops:
+  ecoinvent_aliases:
+    fltr:
+      name:
+      reference product: heat
+  iam_aliases:
+    image: Final Energy|Transportation|Freight|International Shipping|Liquids|Biomass|Allocated Biomass|Modern|Energy Crops
+
+Transport - Freight - Int. Shipping - Biofuel - Modern biomass - Residues:
+  ecoinvent_aliases:
+    fltr:
+      name:
+      reference product: heat
+  iam_aliases:
+    image: Final Energy|Transportation|Freight|International Shipping|Liquids|Biomass|Allocated Biomass|Modern|Residues
 
 Transport - Freight - Int. Shipping - Biofuel - Energy crops:
   ecoinvent_aliases:
@@ -2461,7 +2716,6 @@ Transport - Freight - Rail - Biofuel:
       name: biodiesel, burned in passenger train
       reference product: heat
   iam_aliases:
-    image: Final Energy|Transportation|Freight|Train|Liquids|Biomass
     tiam-ucl: Final Energy|Transport|Rail|Freight|Biodiesel
 
 Transport - Freight - Rail - Biofuel - Energy crops:
@@ -2472,6 +2726,7 @@ Transport - Freight - Rail - Biofuel - Energy crops:
   iam_aliases:
     remind: FE|Transport|Freight|Rail|Liquids|Biomass|Allocated Feedstock|Cellulosic|Energy Crops
     remind-eu: FE|Transport|Freight|Rail|Liquids|Biomass|Allocated Feedstock|Cellulosic|Energy Crops
+    image: Final Energy|Transportation|Freight|Train|Liquids|Biomass|Allocated Biomass|Modern|Energy Crops
 
 Transport - Freight - Rail - Biofuel - Residues:
   ecoinvent_aliases:
@@ -2481,6 +2736,10 @@ Transport - Freight - Rail - Biofuel - Residues:
   iam_aliases:
     remind: FE|Transport|Freight|Rail|Liquids|Biomass|Allocated Feedstock|Cellulosic|Residues
     remind-eu: FE|Transport|Freight|Rail|Liquids|Biomass|Allocated Feedstock|Cellulosic|Residues
+    image:
+      - Final Energy|Transportation|Freight|Train|Liquids|Biomass|Allocated Biomass|Traditional|Residues
+      - Final Energy|Transportation|Freight|Train|Liquids|Biomass|Allocated Biomass|Modern|Residues
+
 
 Transport - Freight - Rail - Biofuel - Oil crops:
   ecoinvent_aliases:
@@ -2575,13 +2834,6 @@ Transport - Freight - Truck(18t) - H2:
     tiam-ucl: Final Energy|Transport|Truck|Medium|Hydrogen Fuel Cell|Truck Hydrogen
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(18t)|Hydrogen
 
-Transport - Freight - Truck(18t) - Biofuel:
-  ecoinvent_aliases:
-    fltr:
-      name: biodiesel, burned in heavy-duty vehicle
-      reference product: heat
-  iam_aliases:
-    image: Final Energy|Transportation|Freight|Medium Truck|Liquids|Biomass
 
 Transport - Freight - Truck(18t) - Biofuel - Energy crops:
   ecoinvent_aliases:
@@ -2591,6 +2843,7 @@ Transport - Freight - Truck(18t) - Biofuel - Energy crops:
   iam_aliases:
     remind: FE|Transport|Freight|Road|Heavy|Truck(18t)|Liquids|Biomass|Allocated Feedstock|Cellulosic|Energy Crops
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(18t)|Liquids|Biomass|Allocated Feedstock|Cellulosic|Energy Crops
+    image: Final Energy|Transportation|Freight|Medium Truck|Liquids|Biomass|Allocated Biomass|Modern|Energy Crops
 
 Transport - Freight - Truck(18t) - Biofuel - Residues:
   ecoinvent_aliases:
@@ -2600,6 +2853,9 @@ Transport - Freight - Truck(18t) - Biofuel - Residues:
   iam_aliases:
     remind: FE|Transport|Freight|Road|Heavy|Truck(18t)|Liquids|Biomass|Allocated Feedstock|Cellulosic|Residues
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(18t)|Liquids|Biomass|Allocated Feedstock|Cellulosic|Residues
+    image:
+      - Final Energy|Transportation|Freight|Medium Truck|Liquids|Biomass|Allocated Biomass|Traditional|Residues
+      - Final Energy|Transportation|Freight|Medium Truck|Liquids|Biomass|Allocated Biomass|Modern|Residues
 
 Transport - Freight - Truck(18t) - Biofuel - Oil crops:
   ecoinvent_aliases:
@@ -2792,11 +3048,34 @@ Transport - Freight - Truck(40t) - Biofuel:
       name: biodiesel, burned in heavy-duty vehicle
       reference product: heat
   iam_aliases:
-    image: Final Energy|Transportation|Freight|Heavy Truck|Liquids|Biomass
     tiam-ucl:
     - Final Energy|Transport|Truck|Heavy|Diesel|Biodiesel
     - Final Energy|Transport|Truck|Heavy|Methanol|Bioethanol
     - Final Energy|Transport|Truck|Heavy|Methanol|Methanol
+
+Transport - Freight - Truck(40t) - Biofuel - Traditional biomass - Residues:
+  ecoinvent_aliases:
+    fltr:
+      name:
+      reference product: heat
+  iam_aliases:
+    image: Final Energy|Transportation|Freight|Heavy Truck|Liquids|Biomass|Allocated Biomass|Traditional|Residues
+
+Transport - Freight - Truck(40t) - Biofuel - Traditional biomass - Energy crops:
+  ecoinvent_aliases:
+    fltr:
+      name:
+      reference product: heat
+  iam_aliases:
+    image: Final Energy|Transportation|Freight|Heavy Truck|Liquids|Biomass|Allocated Biomass|Modern|Energy Crops
+
+Transport - Freight - Truck(40t) - Biofuel - Modern biomass - Residues:
+  ecoinvent_aliases:
+    fltr:
+      name:
+      reference product: heat
+  iam_aliases:
+    image: Final Energy|Transportation|Freight|Heavy Truck|Liquids|Biomass|Allocated Biomass|Modern|Residues
 
 Transport - Freight - Truck(40t) - Biofuel - Energy crops:
   ecoinvent_aliases:
@@ -3110,14 +3389,39 @@ Transport - Freight - Domestic Aviation - Liquid fossil:
     tiam-ucl:
     - Final Energy|Transport|Air|Domestic|Aviation Gasoline
     - Final Energy|Transport|Air|Domestic|Jet Kerosene
+
 Transport - Freight - Domestic Aviation - Biofuel:
   ecoinvent_aliases:
     fltr:
       name: kerosene, from biomass, burned in aircraft
       reference product: heat
   iam_aliases:
-    image: Final Energy|Transportation|Freight|Air|Liquids|Biomass
     tiam-ucl: Final Energy|Transport|Air|Domestic|Biojet Kerosene
+
+Transport - Freight - Domestic Aviation - Biofuel - Traditional biomass - Residues:
+  ecoinvent_aliases:
+    fltr:
+      name: kerosene, from biomass, burned in aircraft
+      reference product: heat
+  iam_aliases:
+    image: Final Energy|Transportation|Freight|Air|Liquids|Biomass|Allocated Biomass|Traditional|Residues
+
+Transport - Freight - Domestic Aviation - Biofuel - Traditional biomass - Energy crops:
+  ecoinvent_aliases:
+    fltr:
+      name: kerosene, from biomass, burned in aircraft
+      reference product: heat
+  iam_aliases:
+    image: Final Energy|Transportation|Freight|Air|Liquids|Biomass|Allocated Biomass|Modern|Energy Crops
+
+Transport - Freight - Domestic Aviation - Biofuel - Modern biomass - Residues:
+  ecoinvent_aliases:
+    fltr:
+      name: kerosene, from biomass, burned in aircraft
+      reference product: heat
+  iam_aliases:
+    image: Final Energy|Transportation|Freight|Air|Liquids|Biomass|Allocated Biomass|Modern|Residues
+
 Transport - Freight - Domestic Aviation - Syn Fuel:
   ecoinvent_aliases:
     fltr:
@@ -3132,7 +3436,6 @@ Transport - Pass - Int Aviation - Biofuel:
       name: kerosene, from biomass, burned in aircraft
       reference product: heat
   iam_aliases:
-    image: Final Energy|Transportation|Passenger|International Aviation|Liquids|Biomass
     tiam-ucl: Final Energy|Transport|Air|International|Biojet Kerosene
 
 Transport - Pass - Int Aviation - Biofuel - Energy crops:
@@ -3143,6 +3446,7 @@ Transport - Pass - Int Aviation - Biofuel - Energy crops:
   iam_aliases:
     remind: FE|Transport|Bunkers|Pass|International Aviation|Liquids|Biomass|Allocated Feedstock|Cellulosic|Energy Crops
     remind-eu: FE|Transport|Bunkers|Pass|International Aviation|Liquids|Biomass|Allocated Feedstock|Cellulosic|Energy Crops
+    image: Final Energy|Transportation|Passenger|International Aviation|Liquids|Biomass|Allocated Biomass|Modern|Energy Crops
 
 Transport - Pass - Int Aviation - Biofuel - Residues:
   ecoinvent_aliases:
@@ -3152,6 +3456,9 @@ Transport - Pass - Int Aviation - Biofuel - Residues:
   iam_aliases:
     remind: FE|Transport|Bunkers|Pass|International Aviation|Liquids|Biomass|Allocated Feedstock|Cellulosic|Residues
     remind-eu: FE|Transport|Bunkers|Pass|International Aviation|Liquids|Biomass|Allocated Feedstock|Cellulosic|Residues
+    image:
+      - Final Energy|Transportation|Passenger|International Aviation|Liquids|Biomass|Allocated Biomass|Traditional|Residues
+      - Final Energy|Transportation|Passenger|International Aviation|Liquids|Biomass|Allocated Biomass|Modern|Residues
 
 Transport - Pass - Int Aviation - Biofuel - Oil crops:
   ecoinvent_aliases:
@@ -3222,7 +3529,6 @@ Transport - Pass - Domestic Aviation - Biofuel:
       name: kerosene, from biomass, burned in aircraft
       reference product: heat
   iam_aliases:
-    image: Final Energy|Transportation|Passenger|Domestic Aviation|Liquids|Biomass
     tiam-ucl: Final Energy|Transport|Air|Domestic|Biojet Kerosene
 
 Transport - Pass - Domestic Aviation - Biofuel - Energy crops:
@@ -3233,6 +3539,7 @@ Transport - Pass - Domestic Aviation - Biofuel - Energy crops:
   iam_aliases:
     remind: FE|Transport|Pass|Domestic Aviation|Liquids|Biomass|Allocated Feedstock|Cellulosic|Energy Crops
     remind-eu: FE|Transport|Pass|Domestic Aviation|Liquids|Biomass|Allocated Feedstock|Cellulosic|Energy Crops
+    image: Final Energy|Transportation|Passenger|Domestic Aviation|Liquids|Biomass|Allocated Biomass|Modern|Energy Crops
 
 Transport - Pass - Domestic Aviation - Biofuel - Residues:
   ecoinvent_aliases:
@@ -3242,6 +3549,9 @@ Transport - Pass - Domestic Aviation - Biofuel - Residues:
   iam_aliases:
     remind: FE|Transport|Pass|Domestic Aviation|Liquids|Biomass|Allocated Feedstock|Cellulosic|Residues
     remind-eu: FE|Transport|Pass|Domestic Aviation|Liquids|Biomass|Allocated Feedstock|Cellulosic|Residues
+    image:
+      - Final Energy|Transportation|Passenger|Domestic Aviation|Liquids|Biomass|Allocated Biomass|Traditional|Residues
+      - Final Energy|Transportation|Passenger|Domestic Aviation|Liquids|Biomass|Allocated Biomass|Modern|Residues
 
 Transport - Pass - Domestic Aviation - Biofuel - Oil crops:
   ecoinvent_aliases:
@@ -3308,9 +3618,6 @@ Transport - Pass - Rail - Biofuel:
       name: biodiesel, burned in passenger train
       reference product: heat
   iam_aliases:
-    image:
-    - Final Energy|Transportation|Passenger|Rail (high speed)|Liquids|Biomass
-    - Final Energy|Transportation|Passenger|Rail (low speed)|Liquids|Biomass
     tiam-ucl: Final Energy|Transport|Rail|Passenger|Biodiesel
 
 Transport - Pass - Rail - Biofuel - Energy crops:
@@ -3321,6 +3628,9 @@ Transport - Pass - Rail - Biofuel - Energy crops:
   iam_aliases:
     remind: FE|Transport|Pass|Rail|Liquids|Biomass|Allocated Feedstock|Cellulosic|Energy Crops
     remind-eu: FE|Transport|Pass|Rail|Liquids|Biomass|Allocated Feedstock|Cellulosic|Energy Crops
+    image:
+      - Final Energy|Transportation|Passenger|Rail (high speed)|Liquids|Biomass|Allocated Biomass|Modern|Energy Crops
+      - Final Energy|Transportation|Passenger|Rail (low speed)|Liquids|Biomass|Allocated Biomass|Modern|Energy Crops
 
 Transport - Pass - Rail - Biofuel - Residues:
   ecoinvent_aliases:
@@ -3330,6 +3640,11 @@ Transport - Pass - Rail - Biofuel - Residues:
   iam_aliases:
     remind: FE|Transport|Pass|Rail|Liquids|Biomass|Allocated Feedstock|Cellulosic|Residues
     remind-eu: FE|Transport|Pass|Rail|Liquids|Biomass|Allocated Feedstock|Cellulosic|Residues
+    image:
+      - Final Energy|Transportation|Passenger|Rail (high speed)|Liquids|Biomass|Allocated Biomass|Traditional|Residues
+      - Final Energy|Transportation|Passenger|Rail (high speed)|Liquids|Biomass|Allocated Biomass|Modern|Residues
+      - Final Energy|Transportation|Passenger|Rail (low speed)|Liquids|Biomass|Allocated Biomass|Traditional|Residues
+      - Final Energy|Transportation|Passenger|Rail (low speed)|Liquids|Biomass|Allocated Biomass|Modern|Residues
 
 Transport - Pass - Rail - Biofuel - Oil crops:
   ecoinvent_aliases:
@@ -3434,7 +3749,6 @@ Transport - Pass - Bus - Biofuel:
       reference product: heat
   iam_aliases:
     remind: FE|Transport|Pass|Road|Bus|Liquids|Biomass
-    image: Final Energy|Transportation|Passenger|Bus|Liquids|Biomass
     tiam-ucl: Final Energy|Transport|Bus|Ethanol|Bioethanol
     remind-eu: FE|Transport|Pass|Road|Bus|Liquids|Biomass
 
@@ -3446,6 +3760,7 @@ Transport - Pass - Bus - Biofuel - Energy crops:
   iam_aliases:
     remind: FE|Transport|Pass|Road|Bus|Liquids|Biomass|Allocated Feedstock|Cellulosic|Energy Crops
     remind-eu: FE|Transport|Pass|Road|Bus|Liquids|Biomass|Allocated Feedstock|Cellulosic|Energy Crops
+    image: Final Energy|Transportation|Passenger|Bus|Liquids|Biomass|Allocated Biomass|Modern|Energy Crops
 
 Transport - Pass - Bus - Biofuel - Residues:
   ecoinvent_aliases:
@@ -3455,6 +3770,9 @@ Transport - Pass - Bus - Biofuel - Residues:
   iam_aliases:
     remind: FE|Transport|Pass|Road|Bus|Liquids|Biomass|Allocated Feedstock|Cellulosic|Residues
     remind-eu: FE|Transport|Pass|Road|Bus|Liquids|Biomass|Allocated Feedstock|Cellulosic|Residues
+    image:
+      - Final Energy|Transportation|Passenger|Bus|Liquids|Biomass|Allocated Biomass|Traditional|Residues
+      - Final Energy|Transportation|Passenger|Bus|Liquids|Biomass|Allocated Biomass|Modern|Residues
 
 Transport - Pass - Bus - Biofuel - Oil crops:
   ecoinvent_aliases:
@@ -3944,7 +4262,6 @@ Transport - Pass - Midsize Car - Biofuel:
       name: biodiesel, burned in passenger car
       reference product: heat
   iam_aliases:
-    image: Final Energy|Transportation|Passenger|Light Duty Vehicle|Liquids|Biomass
     tiam-ucl: Final Energy|Transport|Car|Ethanol|Bioethanol
 
 Transport - Pass - Midsize Car - Biofuel - Energy crops:
@@ -3955,6 +4272,7 @@ Transport - Pass - Midsize Car - Biofuel - Energy crops:
     iam_aliases:
         remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Liquids|Biomass|Allocated Feedstock|Cellulosic|Energy Crops
         remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Liquids|Biomass|Allocated Feedstock|Cellulosic|Energy Crops
+        image: Final Energy|Transportation|Passenger|Light Duty Vehicle|Liquids|Biomass|Allocated Biomass|Modern|Energy Crops
 
 Transport - Pass - Midsize Car - Biofuel - Residues:
     ecoinvent_aliases:
@@ -3964,6 +4282,9 @@ Transport - Pass - Midsize Car - Biofuel - Residues:
     iam_aliases:
         remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Liquids|Biomass|Allocated Feedstock|Cellulosic|Residues
         remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Liquids|Biomass|Allocated Feedstock|Cellulosic|Residues
+        image:
+          - Final Energy|Transportation|Passenger|Light Duty Vehicle|Liquids|Biomass|Allocated Biomass|Traditional|Residues
+          - Final Energy|Transportation|Passenger|Light Duty Vehicle|Liquids|Biomass|Allocated Biomass|Modern|Residues
 
 Transport - Pass - Midsize Car - Biofuel - Oil crops:
     ecoinvent_aliases:
