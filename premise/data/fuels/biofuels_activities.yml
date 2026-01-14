@@ -16,6 +16,9 @@ oil:
     - biodiesel production, via transesterification, from used cooking oil, energy allocation
     - biodiesel production, via transesterification, from used cooking oil, with carbon capture and storage, energy allocation
     - biodiesel, from used cooking oil, at fuelling station
+  forest:
+    - biodiesel production, via Fischer-Tropsch, from forest product (non-residual), energy allocation
+    - biodiesel production, via Fischer-Tropsch, from forest residues, energy allocation
 
 grass:
   switchgrass:

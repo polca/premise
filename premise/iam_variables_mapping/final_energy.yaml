@@ -73,7 +73,7 @@ Buildings - Heating - Biofuel:
 Buildings - Heating - Biofuel - Cellulosic - Energy crops:
   ecoinvent_aliases:
     fltr:
-      name:
+      name: methanol, from non-residual cellulosic biomass, burned in residential boiler
       reference product: heat
   iam_aliases:
     remind: FE|Buildings|Liquids|+|Biomass|Allocated Feedstock|Cellulosic|Energy Crops
@@ -82,7 +82,7 @@ Buildings - Heating - Biofuel - Cellulosic - Energy crops:
 Buildings - Heating - Biofuel - Cellulosic - Residues:
   ecoinvent_aliases:
     fltr:
-      name:
+      name: methanol, from residual cellulosic biomass, burned in residential boiler
       reference product: heat
   iam_aliases:
     remind: FE|Buildings|Liquids|+|Biomass|Allocated Feedstock|Cellulosic|Residues
@@ -91,20 +91,11 @@ Buildings - Heating - Biofuel - Cellulosic - Residues:
 Buildings - Heating - Biofuel - Non-cellulosic - Oil crops:
   ecoinvent_aliases:
     fltr:
-      name:
+      name: methanol, from oily biomass, burned in residential boiler
       reference product: heat
   iam_aliases:
     remind: FE|Buildings|Liquids|+|Biomass|Allocated Feedstock|Non-Cellulosic|Oil-based
     remind-eu: FE|Buildings|Liquids|+|Biomass|Allocated Feedstock|Non-Cellulosic|Oil-based
-
-Buildings - Heating - Biofuel - Non-cellulosic - Sugar crops:
-  ecoinvent_aliases:
-    fltr:
-      name:
-      reference product: heat
-  iam_aliases:
-    remind: FE|Buildings|Liquids|+|Biomass|Allocated Feedstock|Non-Cellulosic|Sugar and Starch
-    remind-eu: FE|Buildings|Liquids|+|Biomass|Allocated Feedstock|Non-Cellulosic|Sugar and Starch
 
 Buildings - Heating - Liquid coal:
   ecoinvent_aliases:
@@ -548,7 +539,7 @@ Industry - Cement - Biofuel:
 Industry - Cement - Biofuel - Cellulosic - Energy crops:
   ecoinvent_aliases:
     fltr:
-      name:
+      name: methanol, from non-residual cellulosic biomass, burned in residential boiler
       reference product: heat
   iam_aliases:
     remind: FE|Industry|Cement|Liquids|+|Biomass|Allocated Feedstock|Cellulosic|Energy Crops
@@ -557,7 +548,7 @@ Industry - Cement - Biofuel - Cellulosic - Energy crops:
 Industry - Cement - Biofuel - Cellulosic - Residues:
   ecoinvent_aliases:
     fltr:
-      name:
+      name: methanol, from residual cellulosic biomass, burned in residential boiler
       reference product: heat
   iam_aliases:
     remind: FE|Industry|Cement|Liquids|+|Biomass|Allocated Feedstock|Cellulosic|Residues
@@ -566,21 +557,11 @@ Industry - Cement - Biofuel - Cellulosic - Residues:
 Industry - Cement - Biofuel - Non-cellulosic - Oil crops:
   ecoinvent_aliases:
     fltr:
-      name:
+      name: methanol, from oily biomass, burned in residential boiler
       reference product: heat
   iam_aliases:
     remind: FE|Industry|Cement|Liquids|+|Biomass|Allocated Feedstock|Non-Cellulosic|Oil-based
     remind-eu: FE|Industry|Cement|Liquids|+|Biomass|Allocated Feedstock|Non-Cellulosic|Oil-based
-
-Industry - Cement - Biofuel - Non-cellulosic - Sugar crops:
-  ecoinvent_aliases:
-    fltr:
-      name:
-      reference product: heat
-  iam_aliases:
-    remind: FE|Industry|Cement|Liquids|+|Biomass|Allocated Feedstock|Non-Cellulosic|Sugar and Starch
-    remind-eu: FE|Industry|Cement|Liquids|+|Biomass|Allocated Feedstock|Non-Cellulosic|Sugar and Starch
-
 
 Industry - Cement - Oil:
   ecoinvent_aliases:
@@ -726,7 +707,7 @@ Industry - Chemicals - Chemicals - SNG:
 Industry - Chemicals - Chemicals - Biofuel - Cellulosic - Energy crops:
   ecoinvent_aliases:
     fltr:
-      name:
+      name: methanol, from non-residual cellulosic biomass, burned in residential boiler
       reference product: heat
   iam_aliases:
     remind: FE|Industry|Chemicals|Liquids|+|Biomass|Allocated Feedstock|Cellulosic|Energy Crops
@@ -735,7 +716,7 @@ Industry - Chemicals - Chemicals - Biofuel - Cellulosic - Energy crops:
 Industry - Chemicals - Chemicals - Biofuel - Cellulosic - Residues:
   ecoinvent_aliases:
     fltr:
-      name:
+      name: methanol, from residual cellulosic biomass, burned in residential boiler
       reference product: heat
   iam_aliases:
     remind: FE|Industry|Chemicals|Liquids|+|Biomass|Allocated Feedstock|Cellulosic|Residues
@@ -744,20 +725,11 @@ Industry - Chemicals - Chemicals - Biofuel - Cellulosic - Residues:
 Industry - Chemicals - Chemicals - Biofuel - Non-cellulosic - Oil crops:
   ecoinvent_aliases:
     fltr:
-      name:
+      name: methanol, from oily biomass, burned in residential boiler
       reference product: heat
   iam_aliases:
     remind: FE|Industry|Chemicals|Liquids|+|Biomass|Allocated Feedstock|Non-Cellulosic|Oil-based
     remind-eu: FE|Industry|Chemicals|Liquids|+|Biomass|Allocated Feedstock|Non-Cellulosic|Oil-based
-
-Industry - Chemicals - Chemicals - Biofuel - Non-cellulosic - Sugar crops:
-  ecoinvent_aliases:
-    fltr:
-      name:
-      reference product: heat
-  iam_aliases:
-    remind: FE|Industry|Chemicals|Liquids|+|Biomass|Allocated Feedstock|Non-Cellulosic|Sugar and Starch
-    remind-eu: FE|Industry|Chemicals|Liquids|+|Biomass|Allocated Feedstock|Non-Cellulosic|Sugar and Starch
 
 Industry - Chemicals - Chemicals - Liquid fossil:
   ecoinvent_aliases:
@@ -811,26 +783,26 @@ Industry - Chemicals - Ammonia - Nat Gas:
     message: Final Energy|Industry|Chemicals|Ammonia|Gases|Gas
     image: Final Energy|Industry|Chemicals|Ammonia|Gases|Fossil
 
-Industry - Chemicals - Ammonia - Biofuel - Traditional biomass- Residues:
+Industry - Chemicals - Ammonia - Biofuel - Traditional biomass - Residues:
   ecoinvent_aliases:
     fltr:
-      name:
+      name: methanol, from non-residual cellulosic biomass, burned in residential boiler
       reference product: heat
   iam_aliases:
     image: Final Energy|Industry|Chemicals|Ammonia|Liquids|Biomass|Allocated Biomass|Traditional|Residues
 
-Industry - Chemicals - Ammonia - Biofuel - Modern biomass- Energy crops:
+Industry - Chemicals - Ammonia - Biofuel - Modern biomass - Energy crops:
   ecoinvent_aliases:
     fltr:
-      name:
+      name: methanol, from non-residual cellulosic biomass, burned in residential boiler
       reference product: heat
   iam_aliases:
     image: Final Energy|Industry|Chemicals|Ammonia|Liquids|Biomass|Allocated Biomass|Modern|Energy Crops
 
-Industry - Chemicals - Ammonia - Biofuel - Modern biomass- Residues:
+Industry - Chemicals - Ammonia - Biofuel - Modern biomass - Residues:
   ecoinvent_aliases:
     fltr:
-      name:
+      name: methanol, from residual cellulosic biomass, burned in residential boiler
       reference product: heat
   iam_aliases:
     image: Final Energy|Industry|Chemicals|Ammonia|Liquids|Biomass|Allocated Biomass|Modern|Residues
@@ -863,7 +835,7 @@ Industry - Chemicals - Ammonia - Solid Biomass:
 Industry - Chemicals - Ammonia - Solid Biomass - Traditional biomass - Residues:
   ecoinvent_aliases:
     fltr:
-      name:
+      name: methanol, from residual cellulosic biomass, burned in residential boiler
       reference product: heat
   iam_aliases:
     image: Final Energy|Industry|Chemicals|Ammonia|Solids|Biomass|Allocated Biomass|Traditional|Residues
@@ -871,7 +843,7 @@ Industry - Chemicals - Ammonia - Solid Biomass - Traditional biomass - Residues:
 Industry - Chemicals - Ammonia - Solid Biomass - Modern biomass - Energy crops:
   ecoinvent_aliases:
     fltr:
-      name:
+      name: methanol, from non-residual cellulosic biomass, burned in residential boiler
       reference product: heat
   iam_aliases:
     image: Final Energy|Industry|Chemicals|Ammonia|Solids|Biomass|Allocated Biomass|Modern|Energy Crops
@@ -879,7 +851,7 @@ Industry - Chemicals - Ammonia - Solid Biomass - Modern biomass - Energy crops:
 Industry - Chemicals - Ammonia - Solid Biomass - Modern biomass - Residues:
   ecoinvent_aliases:
     fltr:
-      name:
+      name: methanol, from residual cellulosic biomass, burned in residential boiler
       reference product: heat
   iam_aliases:
     image: Final Energy|Industry|Chemicals|Ammonia|Solids|Biomass|Allocated Biomass|Modern|Residues
@@ -914,7 +886,7 @@ Industry - Chemicals - Heavy Refinery Products - Nat Gas:
 Industry - Chemicals - Heavy Refinery Products - Biofuel - Traditional biomass - Residues:
   ecoinvent_aliases:
     fltr:
-      name:
+      name: methanol, from residual cellulosic biomass, burned in residential boiler
       reference product: heat
   iam_aliases:
     image: Final Energy|Industry|Chemicals|Heavy Refinery Products|Liquids|Biomass|Allocated Biomass|Traditional|Residues
@@ -922,7 +894,7 @@ Industry - Chemicals - Heavy Refinery Products - Biofuel - Traditional biomass -
 Industry - Chemicals - Heavy Refinery Products - Biofuel - Modern biomass - Energy crops:
   ecoinvent_aliases:
     fltr:
-      name:
+      name: methanol, from non-residual cellulosic biomass, burned in residential boiler
       reference product: heat
   iam_aliases:
     image: Final Energy|Industry|Chemicals|Heavy Refinery Products|Liquids|Biomass|Allocated Biomass|Modern|Energy Crops
@@ -930,7 +902,7 @@ Industry - Chemicals - Heavy Refinery Products - Biofuel - Modern biomass - Ener
 Industry - Chemicals - Heavy Refinery Products - Biofuel - Modern biomass - Residues:
   ecoinvent_aliases:
     fltr:
-      name:
+      name: methanol, from residual cellulosic biomass, burned in residential boiler
       reference product: heat
   iam_aliases:
     image: Final Energy|Industry|Chemicals|Heavy Refinery Products|Liquids|Biomass|Allocated Biomass|Modern|Residues
@@ -954,7 +926,7 @@ Industry - Chemicals - Heavy Refinery Products - Solid coal:
 Industry - Chemicals - Heavy Refinery Products - Solid Biomass - Traditional biomass - Residues:
   ecoinvent_aliases:
     fltr:
-      name:
+      name: methanol, from residual cellulosic biomass, burned in residential boiler
       reference product: heat
   iam_aliases:
     image: Final Energy|Industry|Chemicals|Heavy Refinery Products|Solids|Biomass|Allocated Biomass|Traditional|Residues
@@ -962,7 +934,7 @@ Industry - Chemicals - Heavy Refinery Products - Solid Biomass - Traditional bio
 Industry - Chemicals - Heavy Refinery Products - Solid Biomass - Modern biomass - Energy crops:
   ecoinvent_aliases:
     fltr:
-      name:
+      name: methanol, from non-residual cellulosic biomass, burned in residential boiler
       reference product: heat
   iam_aliases:
     image: Final Energy|Industry|Chemicals|Heavy Refinery Products|Solids|Biomass|Allocated Biomass|Modern|Energy Crops
@@ -970,7 +942,7 @@ Industry - Chemicals - Heavy Refinery Products - Solid Biomass - Modern biomass 
 Industry - Chemicals - Heavy Refinery Products - Solid Biomass - Modern biomass - Residues:
   ecoinvent_aliases:
     fltr:
-      name:
+      name: methanol, from residual cellulosic biomass, burned in residential boiler
       reference product: heat
   iam_aliases:
     image: Final Energy|Industry|Chemicals|Heavy Refinery Products|Solids|Biomass|Allocated Biomass|Modern|Residues
@@ -1004,7 +976,7 @@ Industry - Chemicals - High-Value Chemicals - Biofuel:
 Industry - Chemicals - High-Value Chemicals - Biofuel - Traditional biomass - Residues:
   ecoinvent_aliases:
     fltr:
-      name:
+      name: methanol, from residual cellulosic biomass, burned in residential boiler
       reference product: heat
   iam_aliases:
     image: Final Energy|Industry|Chemicals|High-Value Chemicals|Liquids|Biomass|Allocated Biomass|Traditional|Residues
@@ -1012,7 +984,7 @@ Industry - Chemicals - High-Value Chemicals - Biofuel - Traditional biomass - Re
 Industry - Chemicals - High-Value Chemicals - Biofuel - Modern biomass - Energy crops:
   ecoinvent_aliases:
     fltr:
-      name:
+      name: methanol, from non-residual cellulosic biomass, burned in residential boiler
       reference product: heat
   iam_aliases:
     image: Final Energy|Industry|Chemicals|High-Value Chemicals|Liquids|Biomass|Allocated Biomass|Modern|Energy Crops
@@ -1020,7 +992,7 @@ Industry - Chemicals - High-Value Chemicals - Biofuel - Modern biomass - Energy 
 Industry - Chemicals - High-Value Chemicals - Biofuel - Modern biomass - Residues:
   ecoinvent_aliases:
     fltr:
-      name:
+      name: methanol, from residual cellulosic biomass, burned in residential boiler
       reference product: heat
   iam_aliases:
     image: Final Energy|Industry|Chemicals|High-Value Chemicals|Liquids|Biomass|Allocated Biomass|Modern|Residues
@@ -1052,23 +1024,23 @@ Industry - Chemicals - High-Value Chemicals - Solid Biomass:
 Industry - Chemicals - Methanol - Biofuel - Traditional biomass - Residues:
   ecoinvent_aliases:
     fltr:
-      name:
+      name: methanol, from residual cellulosic biomass, burned in residential boiler
       reference product: heat
   iam_aliases:
     image: Final Energy|Industry|Chemicals|Methanol|Liquids|Biomass|Allocated Biomass|Traditional|Residues
 
 Industry - Chemicals - Methanol - Biofuel - Modern biomass - Energy crops:
     ecoinvent_aliases:
-        fltr:
-            name:
-            reference product: heat
+      fltr:
+        name: methanol, from non-residual cellulosic biomass, burned in residential boiler
+        reference product: heat
     iam_aliases:
         image: Final Energy|Industry|Chemicals|Methanol|Liquids|Biomass|Allocated Biomass|Modern|Energy Crops
 
 Industry - Chemicals - Methanol - Biofuel - Modern biomass - Residues:
     ecoinvent_aliases:
         fltr:
-            name:
+            name: methanol, from residual cellulosic biomass, burned in residential boiler
             reference product: heat
     iam_aliases:
         image: Final Energy|Industry|Chemicals|Methanol|Liquids|Biomass|Allocated Biomass|Modern|Residues
@@ -1119,7 +1091,7 @@ Industry - Chemicals - Methanol - Solid Biomass:
 Industry - Chemicals - Methanol - Solid Biomass - Traditional biomass - Residues:
   ecoinvent_aliases:
     fltr:
-      name:
+      name: methanol, from residual cellulosic biomass, burned in residential boiler
       reference product: heat
   iam_aliases:
     image: Final Energy|Industry|Chemicals|Methanol|Solids|Biomass|Allocated Biomass|Traditional|Residues
@@ -1127,7 +1099,7 @@ Industry - Chemicals - Methanol - Solid Biomass - Traditional biomass - Residues
 Industry - Chemicals - Methanol - Solid Biomass - Modern biomass - Energy crops:
   ecoinvent_aliases:
     fltr:
-      name:
+      name: methanol, from non-residual cellulosic biomass, burned in residential boiler
       reference product: heat
   iam_aliases:
     image: Final Energy|Industry|Chemicals|Methanol|Solids|Biomass|Allocated Biomass|Modern|Energy Crops
@@ -1135,7 +1107,7 @@ Industry - Chemicals - Methanol - Solid Biomass - Modern biomass - Energy crops:
 Industry - Chemicals - Methanol - Solid Biomass - Modern biomass - Residues:
   ecoinvent_aliases:
     fltr:
-      name:
+      name: methanol, from residual cellulosic biomass, burned in residential boiler
       reference product: heat
   iam_aliases:
     image: Final Energy|Industry|Chemicals|Methanol|Solids|Biomass|Allocated Biomass|Modern|Residues
@@ -1200,7 +1172,7 @@ Industry - Chemicals - Fertilizer - Solid Biomass:
 Industry - Chemicals - Fertilizer - Solid Biomass - Traditional biomass - Residues:
   ecoinvent_aliases:
     fltr:
-      name:
+      name: methanol, from residual cellulosic biomass, burned in residential boiler
       reference product: heat
   iam_aliases:
     image: Final Energy|Industry|Fertilizer production|Solids|Biomass|Allocated Biomass|Traditional|Residues
@@ -1208,7 +1180,7 @@ Industry - Chemicals - Fertilizer - Solid Biomass - Traditional biomass - Residu
 Industry - Chemicals - Fertilizer - Solid Biomass - Modern biomass - Energy crops:
   ecoinvent_aliases:
     fltr:
-      name:
+      name: methanol, from non-residual cellulosic biomass, burned in residential boiler
       reference product: heat
   iam_aliases:
     image: Final Energy|Industry|Fertilizer production|Solids|Biomass|Allocated Biomass|Modern|Energy Crops
@@ -1216,7 +1188,7 @@ Industry - Chemicals - Fertilizer - Solid Biomass - Modern biomass - Energy crop
 Industry - Chemicals - Fertilizer - Solid Biomass - Modern biomass - Residues:
   ecoinvent_aliases:
     fltr:
-      name:
+      name: methanol, from residual cellulosic biomass, burned in residential boiler
       reference product: heat
   iam_aliases:
     image: Final Energy|Industry|Fertilizer production|Solids|Biomass|Allocated Biomass|Modern|Residues
@@ -1269,7 +1241,7 @@ Industry - Food Processing - Solid coal:
 Industry - Food Processing - Solid Biomass - Traditional biomass - Residues:
   ecoinvent_aliases:
     fltr:
-      name: soft wood chips from forest, burned in furnace 1000kW
+      name:
       reference product: heat
   iam_aliases:
     image: Final Energy|Industry|Food Processing|Solids|Biomass|Allocated Biomass|Traditional|Residues
@@ -1285,7 +1257,7 @@ Industry - Food Processing - Solid Biomass - Modern biomass - Energy crops:
 Industry - Food Processing - Solid Biomass - Modern biomass - Residues:
   ecoinvent_aliases:
     fltr:
-      name: soft wood chips from forest, burned in furnace 1000kW
+      name:
       reference product: heat
   iam_aliases:
     image: Final Energy|Industry|Food Processing|Solids|Biomass|Allocated Biomass|Modern|Residues
@@ -1380,7 +1352,7 @@ Industry - Other - Biofuel:
 Industry - Other - Biofuel - Cellulosic - Energy crops:
   ecoinvent_aliases:
     fltr:
-      name:
+      name: methanol, from non-residual cellulosic biomass, burned in residential boiler
       reference product: heat
   iam_aliases:
     remind: FE|Industry|Other Industry|Liquids|+|Biomass|Allocated Feedstock|Cellulosic|Energy Crops
@@ -1389,7 +1361,7 @@ Industry - Other - Biofuel - Cellulosic - Energy crops:
 Industry - Other - Biofuel - Cellulosic - Residues:
   ecoinvent_aliases:
     fltr:
-      name:
+      name: methanol, from residual cellulosic biomass, burned in residential boiler
       reference product: heat
   iam_aliases:
     remind: FE|Industry|Other Industry|Liquids|+|Biomass|Allocated Feedstock|Cellulosic|Residues
@@ -1398,20 +1370,11 @@ Industry - Other - Biofuel - Cellulosic - Residues:
 Industry - Other - Biofuel - Non-cellulosic - Oil crops:
   ecoinvent_aliases:
     fltr:
-      name:
+      name: methanol, from oily biomass, burned in residential boiler
       reference product: heat
   iam_aliases:
     remind: FE|Industry|Other Industry|Liquids|+|Biomass|Allocated Feedstock|Non-Cellulosic|Oil-based
     remind-eu: FE|Industry|Other Industry|Liquids|+|Biomass|Allocated Feedstock|Non-Cellulosic|Oil-based
-
-Industry - Other - Biofuel - Non-cellulosic - Sugar crops:
-  ecoinvent_aliases:
-    fltr:
-      name:
-      reference product: heat
-  iam_aliases:
-    remind: FE|Industry|Other Industry|Liquids|+|Biomass|Allocated Feedstock|Non-Cellulosic|Sugar and Starch
-    remind-eu: FE|Industry|Other Industry|Liquids|+|Biomass|Allocated Feedstock|Non-Cellulosic|Sugar and Starch
 
 Industry - Other - Liquid fossil:
   ecoinvent_aliases:
@@ -1452,7 +1415,7 @@ Industry - Other - Solid Biomass - Traditional biomass - Residues:
 Industry - Other - Solid Biomass - Modern biomass - Energy crops:
   ecoinvent_aliases:
     fltr:
-      name:
+      name: soft wood chips from forest, burned in furnace 1000kW
       reference product: heat
   iam_aliases:
     image: Final Energy|Industry|Other Sector|Solids|Biomass|Allocated Biomass|Modern|Energy Crops
@@ -1533,7 +1496,7 @@ Industry - Paper - Solid Biomass - Traditional biomass - Residues:
 Industry - Paper - Solid Biomass - Modern biomass - Energy crops:
   ecoinvent_aliases:
     fltr:
-      name:
+      name: soft wood chips from forest, burned in furnace 1000kW
       reference product: heat
   iam_aliases:
     image: Final Energy|Industry|Pulp and Paper|Solids|Biomass|Allocated Biomass|Modern|Energy Crops
@@ -1553,7 +1516,6 @@ Industry - Steel - BF/BOF - Elec:
       reference product: electricity, low voltage
     mask: period
   iam_aliases:
-    # TODO: add to reporting in MESSAGE and then paste here
     image:
     - Final Energy|Industry|Iron and Steel|BF/BOF Standard|Electricity
     - Final Energy|Industry|Iron and Steel|BF/BOF Modernized|Electricity
@@ -2244,7 +2206,7 @@ Industry - Steel - All steel - SNG:
 Industry - Steel - All steel - Biofuel - Energy crops:
   ecoinvent_aliases:
     fltr:
-      name:
+      name: methanol, from non-residual cellulosic biomass, burned in residential boiler
       reference product: heat
   iam_aliases:
     remind: FE|Industry|Other Industry|Liquids|+|Biomass|Allocated Feedstock|Cellulosic|Energy Crops
@@ -2253,7 +2215,7 @@ Industry - Steel - All steel - Biofuel - Energy crops:
 Industry - Steel - All steel - Biofuel - Residues:
   ecoinvent_aliases:
     fltr:
-      name:
+      name: methanol, from residual cellulosic biomass, burned in residential boiler
       reference product: heat
   iam_aliases:
     remind: FE|Industry|Other Industry|Liquids|+|Biomass|Allocated Feedstock|Cellulosic|Residues
@@ -2262,20 +2224,11 @@ Industry - Steel - All steel - Biofuel - Residues:
 Industry - Steel - All steel - Biofuel - Oil crops:
   ecoinvent_aliases:
     fltr:
-      name:
+      name: methanol, from oily biomass, burned in residential boiler
       reference product: heat
   iam_aliases:
     remind: FE|Industry|Other Industry|Liquids|+|Biomass|Allocated Feedstock|Non-Cellulosic|Oil-based
     remind-eu: FE|Industry|Other Industry|Liquids|+|Biomass|Allocated Feedstock|Non-Cellulosic|Oil-based
-
-Industry - Steel - All steel - Biofuel - Sugar crops:
-  ecoinvent_aliases:
-    fltr:
-      name:
-      reference product: heat
-  iam_aliases:
-    remind: FE|Industry|Other Industry|Liquids|+|Biomass|Allocated Feedstock|Non-Cellulosic|Sugar and Starch
-    remind-eu: FE|Industry|Other Industry|Liquids|+|Biomass|Allocated Feedstock|Non-Cellulosic|Sugar and Starch
 
 Industry - Steel - All steel - Liquid fossil:
   ecoinvent_aliases:
@@ -2404,7 +2357,7 @@ Industry - Non-energy use - Biofuel:
 Industry - Non-energy use - Biofuel - Energy crops:
   ecoinvent_aliases:
     fltr:
-      name:
+      name: methanol, from non-residual cellulosic biomass, burned in residential boiler
       reference product:
     mask: factory
   iam_aliases:
@@ -2417,7 +2370,7 @@ Industry - Non-energy use - Biofuel - Energy crops:
 Industry - Non-energy use - Biofuel - Residues:
   ecoinvent_aliases:
     fltr:
-      name:
+      name: methanol, from residual cellulosic biomass, burned in residential boiler
       reference product:
     mask: factory
   iam_aliases:
@@ -2430,25 +2383,12 @@ Industry - Non-energy use - Biofuel - Residues:
 Industry - Non-energy use - Biofuel - Oil crops:
   ecoinvent_aliases:
     fltr:
-      name:
+      name: methanol, from oily biomass, burned in residential boiler
       reference product:
     mask: factory
   iam_aliases:
     remind: FE|Non-energy Use|Industry|Liquids|+|Biomass|Allocated Feedstock|Non-Cellulosic|Oil-based
     remind-eu: FE|Non-energy Use|Industry|Liquids|+|Biomass|Allocated Feedstock|Non-Cellulosic|Oil-based
-  lhv:
-    value: 19.9
-    unit: megajoule
-
-Industry - Non-energy use - Biofuel - Sugar crops:
-  ecoinvent_aliases:
-    fltr:
-      name:
-      reference product:
-    mask: factory
-  iam_aliases:
-    remind: FE|Non-energy Use|Industry|Liquids|+|Biomass|Allocated Feedstock|Non-Cellulosic|Sugar and Starch
-    remind-eu: FE|Non-energy Use|Industry|Liquids|+|Biomass|Allocated Feedstock|Non-Cellulosic|Sugar and Starch
   lhv:
     value: 19.9
     unit: megajoule
@@ -2535,15 +2475,6 @@ Transport - Freight - Domestic Shipping - Biofuel - Oil crops:
   iam_aliases:
     remind: FE|Non-energy Use|Industry|Liquids|+|Biomass|Allocated Feedstock|Non-Cellulosic|Oil-based
     remind-eu: FE|Non-energy Use|Industry|Liquids|+|Biomass|Allocated Feedstock|Non-Cellulosic|Oil-based
-
-Transport - Freight - Domestic Shipping - Biofuel - Sugar crops:
-  ecoinvent_aliases:
-    fltr:
-      name:
-      reference product: heat
-  iam_aliases:
-    remind: FE|Non-energy Use|Industry|Liquids|+|Biomass|Allocated Feedstock|Non-Cellulosic|Sugar and Starch
-    remind-eu: FE|Non-energy Use|Industry|Liquids|+|Biomass|Allocated Feedstock|Non-Cellulosic|Sugar and Starch
 
 Transport - Freight - Domestic Shipping - Liquid fossil:
   ecoinvent_aliases:
@@ -2639,15 +2570,6 @@ Transport - Freight - Int. Shipping - Biofuel - Oil crops:
     remind: FE|Non-energy Use|Industry|Liquids|+|Biomass|Allocated Feedstock|Non-Cellulosic|Oil-based
     remind-eu: FE|Non-energy Use|Industry|Liquids|+|Biomass|Allocated Feedstock|Non-Cellulosic|Oil-based
 
-Transport - Freight - Int. Shipping - Biofuel - Sugar crops:
-  ecoinvent_aliases:
-    fltr:
-      name:
-      reference product: heat
-  iam_aliases:
-    remind: FE|Non-energy Use|Industry|Liquids|+|Biomass|Allocated Feedstock|Non-Cellulosic|Sugar and Starch
-    remind-eu: FE|Non-energy Use|Industry|Liquids|+|Biomass|Allocated Feedstock|Non-Cellulosic|Sugar and Starch
-
 Transport - Freight - Int. Shipping - Liquid fossil:
   ecoinvent_aliases:
     fltr:
@@ -2731,7 +2653,7 @@ Transport - Freight - Rail - Biofuel - Energy crops:
 Transport - Freight - Rail - Biofuel - Residues:
   ecoinvent_aliases:
     fltr:
-      name:
+      name: biodiesel, from residual cellulosic biomass, burned in passenger train
       reference product: heat
   iam_aliases:
     remind: FE|Transport|Freight|Rail|Liquids|Biomass|Allocated Feedstock|Cellulosic|Residues
@@ -2744,20 +2666,11 @@ Transport - Freight - Rail - Biofuel - Residues:
 Transport - Freight - Rail - Biofuel - Oil crops:
   ecoinvent_aliases:
     fltr:
-      name:
+      name: biodiesel, from non-residual oily biomass, burned in passenger train
       reference product: heat
   iam_aliases:
     remind: FE|Transport|Freight|Rail|Liquids|Biomass|Allocated Feedstock|Non-Cellulosic|Oil-based
     remind-eu: FFE|Transport|Freight|Rail|Liquids|Biomass|Allocated Feedstock|Non-Cellulosic|Oil-based
-
-Transport - Freight - Rail - Biofuel - Sugar crops:
-  ecoinvent_aliases:
-    fltr:
-      name:
-      reference product: heat
-  iam_aliases:
-    remind: FE|Transport|Freight|Rail|Liquids|Biomass|Allocated Feedstock|Non-Cellulosic|Sugar and Starch
-    remind-eu: FE|Transport|Freight|Rail|Liquids|Biomass|Allocated Feedstock|Non-Cellulosic|Sugar and Starch
 
 Transport - Freight - Rail - Liquid fossil:
   ecoinvent_aliases:
@@ -2866,16 +2779,6 @@ Transport - Freight - Truck(18t) - Biofuel - Oil crops:
     remind: FE|Transport|Freight|Road|Heavy|Truck(18t)|Liquids|Biomass|Allocated Feedstock|Non-Cellulosic|Oil-based
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(18t)|Liquids|Biomass|Allocated Feedstock|Non-Cellulosic|Oil-based
 
-Transport - Freight - Truck(18t) - Biofuel - Sugar crops:
-  ecoinvent_aliases:
-    fltr:
-      name:
-      reference product: heat
-  iam_aliases:
-    remind: FE|Transport|Freight|Road|Heavy|Truck(18t)|Liquids|Biomass|Allocated Feedstock|Non-Cellulosic|Sugar and Starch
-    remind-eu: FE|Transport|Freight|Road|Heavy|Truck(18t)|Liquids|Biomass|Allocated Feedstock|Non-Cellulosic|Sugar and Starch
-
-
 Transport - Freight - Truck(18t) - Liquid fossil:
   ecoinvent_aliases:
     fltr:
@@ -2965,16 +2868,6 @@ Transport - Freight - Truck(26t) - Biofuel - Oil crops:
   iam_aliases:
     remind: FE|Transport|Freight|Road|Heavy|Truck(26t)|Liquids|Biomass|Allocated Feedstock|Non-Cellulosic|Oil-based
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(26t)|Liquids|Biomass|Allocated Feedstock|Non-Cellulosic|Oil-based
-
-Transport - Freight - Truck(26t) - Biofuel - Sugar crops:
-  ecoinvent_aliases:
-    fltr:
-      name:
-      reference product: heat
-  iam_aliases:
-    remind: FE|Transport|Freight|Road|Heavy|Truck(26t)|Liquids|Biomass|Allocated Feedstock|Non-Cellulosic|Sugar and Starch
-    remind-eu: FE|Transport|Freight|Road|Heavy|Truck(26t)|Liquids|Biomass|Allocated Feedstock|Non-Cellulosic|Sugar and Starch
-
 
 Transport - Freight - Truck(26t) - Liquid fossil:
   ecoinvent_aliases:
@@ -3106,17 +2999,6 @@ Transport - Freight - Truck(40t) - Biofuel - Oil crops:
     remind: FE|Transport|Freight|Road|Heavy|Truck(40t)|Liquids|Biomass|Allocated Feedstock|Non-Cellulosic|Oil-based
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(40t)|Liquids|Biomass|Allocated Feedstock|Non-Cellulosic|Oil-based
 
-
-Transport - Freight - Truck(40t) - Biofuel - Sugar crops:
-  ecoinvent_aliases:
-    fltr:
-      name:
-      reference product: heat
-  iam_aliases:
-    remind: FE|Transport|Freight|Road|Heavy|Truck(40t)|Liquids|Biomass|Allocated Feedstock|Non-Cellulosic|Sugar and Starch
-    remind-eu: FE|Transport|Freight|Road|Heavy|Truck(40t)|Liquids|Biomass|Allocated Feedstock|Non-Cellulosic|Sugar and Starch
-
-
 Transport - Freight - Truck(40t) - Liquid fossil:
   ecoinvent_aliases:
     fltr:
@@ -3191,7 +3073,7 @@ Transport - Freight - Truck(0-3_5t) - H2:
 Transport - Freight - Truck(0-3_5t) - Biofuel - Energy crops:
   ecoinvent_aliases:
     fltr:
-      name: biodiesel, burned in passenger car
+      name:
       reference product: heat
   iam_aliases:
     remind: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Liquids|Biomass|Allocated Feedstock|Cellulosic|Energy Crops
@@ -3214,15 +3096,6 @@ Transport - Freight - Truck(0-3_5t) - Biofuel - Oil crops:
   iam_aliases:
     remind: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Liquids|Biomass|Allocated Feedstock|Non-Cellulosic|Oil-based
     remind-eu: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Liquids|Biomass|Allocated Feedstock|Non-Cellulosic|Oil-based
-
-Transport - Freight - Truck(0-3_5t) - Biofuel - Sugar crops:
-  ecoinvent_aliases:
-    fltr:
-      name:
-      reference product: heat
-  iam_aliases:
-    remind: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Liquids|Biomass|Allocated Feedstock|Non-Cellulosic|Sugar and Starch
-    remind-eu: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Liquids|Biomass|Allocated Feedstock|Non-Cellulosic|Sugar and Starch
 
 Transport - Freight - Truck(0-3_5t) - Liquid fossil:
   ecoinvent_aliases:
@@ -3330,16 +3203,6 @@ Transport - Freight - Truck(7_5t) - Biofuel - Oil crops:
     remind: FE|Transport|Freight|Road|Light|Truck(7_5t)|Liquids|Biomass|Allocated Feedstock|Non-Cellulosic|Oil-based
     remind-eu: FE|Transport|Freight|Road|Light|Truck(7_5t)|Liquids|Biomass|Allocated Feedstock|Non-Cellulosic|Oil-based
 
-Transport - Freight - Truck(7_5t) - Biofuel - Sugar crops:
-  ecoinvent_aliases:
-    fltr:
-      name:
-      reference product: heat
-  iam_aliases:
-    remind: FE|Transport|Freight|Road|Light|Truck(7_5t)|Liquids|Biomass|Allocated Feedstock|Non-Cellulosic|Sugar and Starch
-    remind-eu: FE|Transport|Freight|Road|Light|Truck(7_5t)|Liquids|Biomass|Allocated Feedstock|Non-Cellulosic|Sugar and Starch
-
-
 Transport - Freight - Truck(7_5t) - Liquid fossil:
   ecoinvent_aliases:
     fltr:
@@ -3401,7 +3264,7 @@ Transport - Freight - Domestic Aviation - Biofuel:
 Transport - Freight - Domestic Aviation - Biofuel - Traditional biomass - Residues:
   ecoinvent_aliases:
     fltr:
-      name: kerosene, from biomass, burned in aircraft
+      name:
       reference product: heat
   iam_aliases:
     image: Final Energy|Transportation|Freight|Air|Liquids|Biomass|Allocated Biomass|Traditional|Residues
@@ -3409,7 +3272,7 @@ Transport - Freight - Domestic Aviation - Biofuel - Traditional biomass - Residu
 Transport - Freight - Domestic Aviation - Biofuel - Traditional biomass - Energy crops:
   ecoinvent_aliases:
     fltr:
-      name: kerosene, from biomass, burned in aircraft
+      name:
       reference product: heat
   iam_aliases:
     image: Final Energy|Transportation|Freight|Air|Liquids|Biomass|Allocated Biomass|Modern|Energy Crops
@@ -3417,7 +3280,7 @@ Transport - Freight - Domestic Aviation - Biofuel - Traditional biomass - Energy
 Transport - Freight - Domestic Aviation - Biofuel - Modern biomass - Residues:
   ecoinvent_aliases:
     fltr:
-      name: kerosene, from biomass, burned in aircraft
+      name:
       reference product: heat
   iam_aliases:
     image: Final Energy|Transportation|Freight|Air|Liquids|Biomass|Allocated Biomass|Modern|Residues
@@ -3468,15 +3331,6 @@ Transport - Pass - Int Aviation - Biofuel - Oil crops:
   iam_aliases:
     remind: FE|Transport|Bunkers|Pass|International Aviation|Liquids|Biomass|Allocated Feedstock|Non-Cellulosic|Oil-based
     remind-eu: FE|Transport|Bunkers|Pass|International Aviation|Liquids|Biomass|Allocated Feedstock|Non-Cellulosic|Oil-based
-
-Transport - Pass - Int Aviation - Biofuel - Sugar crops:
-  ecoinvent_aliases:
-    fltr:
-      name:
-      reference product: heat
-  iam_aliases:
-    remind: FE|Transport|Bunkers|Pass|International Aviation|Liquids|Biomass|Allocated Feedstock|Non-Cellulosic|Sugar and Starch
-    remind-eu: FE|Transport|Bunkers|Pass|International Aviation|Liquids|Biomass|Allocated Feedstock|Non-Cellulosic|Sugar and Starch
 
 Transport - Pass - Int Aviation - Liquid fossil:
   ecoinvent_aliases:
@@ -3562,16 +3416,6 @@ Transport - Pass - Domestic Aviation - Biofuel - Oil crops:
     remind: FE|Transport|Pass|Domestic Aviation|Liquids|Biomass|Allocated Feedstock|Non-Cellulosic|Oil-based
     remind-eu: FE|Transport|Pass|Domestic Aviation|Liquids|Biomass|Allocated Feedstock|Non-Cellulosic|Oil-based
 
-Transport - Pass - Domestic Aviation - Biofuel - Sugar crops:
-  ecoinvent_aliases:
-    fltr:
-      name:
-      reference product: heat
-  iam_aliases:
-    remind: FE|Transport|Pass|Domestic Aviation|Liquids|Biomass|Allocated Feedstock|Non-Cellulosic|Sugar and Starch
-    remind-eu: FE|Transport|Pass|Domestic Aviation|Liquids|Biomass|Allocated Feedstock|Non-Cellulosic|Sugar and Starch
-
-
 Transport - Pass - Domestic Aviation - Liquid fossil:
   ecoinvent_aliases:
     fltr:
@@ -3654,15 +3498,6 @@ Transport - Pass - Rail - Biofuel - Oil crops:
   iam_aliases:
     remind: FE|Transport|Pass|Rail|Liquids|Biomass|Allocated Feedstock|Non-Cellulosic|Oil-based
     remind-eu: FE|Transport|Pass|Rail|Liquids|Biomass|Allocated Feedstock|Non-Cellulosic|Oil-based
-
-Transport - Pass - Rail - Biofuel - Sugar crops:
-  ecoinvent_aliases:
-    fltr:
-      name:
-      reference product: heat
-  iam_aliases:
-    remind: FE|Transport|Pass|Rail|Liquids|Biomass|Allocated Feedstock|Non-Cellulosic|Sugar and Starch
-    remind-eu: FE|Transport|Pass|Rail|Liquids|Biomass|Allocated Feedstock|Non-Cellulosic|Sugar and Starch
 
 Transport - Pass - Rail - Liquid fossil:
   ecoinvent_aliases:
@@ -3782,15 +3617,6 @@ Transport - Pass - Bus - Biofuel - Oil crops:
   iam_aliases:
     remind: FE|Transport|Pass|Road|Bus|Liquids|Biomass|Allocated Feedstock|Non-Cellulosic|Oil-based
     remind-eu: FE|Transport|Pass|Road|Bus|Liquids|Biomass|Allocated Feedstock|Non-Cellulosic|Oil-based
-
-Transport - Pass - Bus - Biofuel - Sugar crops:
-  ecoinvent_aliases:
-    fltr:
-      name:
-      reference product: heat
-  iam_aliases:
-    remind: FE|Transport|Pass|Road|Bus|Liquids|Biomass|Allocated Feedstock|Non-Cellulosic|Sugar and Starch
-    remind-eu: FE|Transport|Pass|Road|Bus|Liquids|Biomass|Allocated Feedstock|Non-Cellulosic|Sugar and Starch
 
 Transport - Pass - Bus - Liquid fossil:
   ecoinvent_aliases:
@@ -3952,8 +3778,8 @@ Transport - Pass - Large Car - H2:
 Transport - Pass - Large Car - Biofuel - Energy crops:
     ecoinvent_aliases:
         fltr:
-        name:
-        reference product: heat
+          name:
+          reference product: heat
     iam_aliases:
         remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Liquids|Biomass|Allocated Feedstock|Cellulosic|Energy Crops
         remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Liquids|Biomass|Allocated Feedstock|Cellulosic|Energy Crops
