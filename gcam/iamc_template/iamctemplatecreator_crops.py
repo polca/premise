@@ -109,6 +109,3 @@ def run_crop(scenario_name):
 
     # write to file
     out_df.to_excel(os.path.join('..', 'output', scenario_name, 'iamc_template_gcam_crops.xlsx'), index=False)
-
-
-run_crop('ssp24p5tol5')

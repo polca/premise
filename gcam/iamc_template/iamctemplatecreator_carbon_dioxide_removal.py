@@ -86,7 +86,6 @@ def run_cdr(scenario_name):
                                         index=['Scenario', 'Region', 'Model', 'Variable', 'Unit'],
                                         columns=['Year'],
                                         aggfunc='sum').reset_index()
-    print(cdr_energy_pivot)
     out_df = pd.concat([cdr_pivot, cdr_energy_pivot]).reset_index(drop=True)
 
     # tidy up dataframe (fix multiple index column names in year columns)
