@@ -192,12 +192,8 @@ class Biomass(BaseTransformation):
                     ]
                 ]
             ),
-            ws.exclude(
-                ws.contains("name", "logs")
-            ),
-            ws.exclude(
-                ws.contains("name", "residual")
-            ),
+            ws.exclude(ws.contains("name", "logs")),
+            ws.exclude(ws.contains("name", "residual")),
         ):
 
             for exc in ws.technosphere(
