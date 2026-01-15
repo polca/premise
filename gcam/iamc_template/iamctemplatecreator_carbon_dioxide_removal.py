@@ -97,4 +97,6 @@ def run_cdr(scenario_name):
       os.mkdir(os.path.join('..', 'output', scenario_name))
 
     # write to file
-    out_df.to_excel(os.path.join('..', 'output', scenario_name, 'iamc_template_gcam_cdr.xlsx'), index=False)
+    out_df.to_excel(os.path.join('..', 'output', scenario_name, 'iamc_template_gcam_carbon_dioxide_removal.xlsx'), index=False)
+
+run_cdr('ssp24p5tol5')
