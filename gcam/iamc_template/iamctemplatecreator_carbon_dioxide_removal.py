@@ -5,8 +5,6 @@ from pathlib import Path
 import os
 # import yaml
 
-## DONE
-
 def run_cdr(scenario_name):
     # Need to change path for each scenario
     DATA_DIR = Path(os.path.join('..', 'queries', 'queryresults', scenario_name))
@@ -98,5 +96,3 @@ def run_cdr(scenario_name):
 
     # write to file
     out_df.to_excel(os.path.join('..', 'output', scenario_name, 'iamc_template_gcam_carbon_dioxide_removal.xlsx'), index=False)
-
-run_cdr('ssp24p5tol5')

@@ -5,7 +5,7 @@ from pathlib import Path
 import os
 # import yaml
 
-def run_passenger_car(scenario_name):
+def run_passenger_cars(scenario_name):
     # Need to change path for each scenario
     DATA_DIR = Path(os.path.join('..', 'queries', 'queryresults', scenario_name))
 

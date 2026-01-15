@@ -2,19 +2,17 @@
 import pandas as pd
 import numpy as np
 from pathlib import Path
-# import yaml
+import os
 
 def run_steel(scenario_name):
     # Need to change path for each scenario
-    DATA_DIR = Path(r"../GCAM_queryresults_"+scenario_name)
-
-    print(DATA_DIR)
+    DATA_DIR = Path(os.path.join('..', 'queries', 'queryresults', scenario_name))
 
     # load LCI data from GCAM for steel. two files: 
     # - one with physical output (activity in MMT) 
     # - one with energy use (in EJ)
-    steel_output = pd.read_csv(DATA_DIR /'steel gen by gen tech.csv')
-    steel_input = pd.read_csv(DATA_DIR /'steel final energy by tech and fuel.csv')
+    steel_output = pd.read_csv(DATA_DIR /'iron and steel production by tech.csv')
+    steel_input = pd.read_csv(DATA_DIR /'iron and steel final energy by tech and fuel.csv')
 
     # we need to reshape all of the data in a format premise can understand
     # first, reshape steel_output
@@ -93,7 +91,11 @@ def run_steel(scenario_name):
     # tidy up dataframe (fix multiple index column names in year columns)
     out_df.columns = ['Scenario', 'Region', 'Model', 'Variable', 'Unit'] + [str(x[1]) for x in out_df.columns[5:]]
 
+    # create output directory if it doesn't exist
+    if not os.path.exists(os.path.join('..', 'output', scenario_name)):
+        os.mkdir(os.path.join('..', 'output', scenario_name))
+
     # write to file
-    out_df.to_excel('./iamc_template/'+scenario_name+'/iamc_template_gcam_steel.xlsx', index=False)
+    out_df.to_excel(os.path.join('..', 'output', scenario_name, 'iamc_template_gcam_steel.xlsx'), index=False)
 
 
