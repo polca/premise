@@ -8,8 +8,6 @@ def run_passenger_car(scenario_name):
     # Need to change path for each scenario
     DATA_DIR = Path(r"../GCAM_queryresults_"+scenario_name)
 
-    print(DATA_DIR)
-
     # load LCI data from GCAM for passenger car. two files: one with physical output (activity in passenger-km) and one with energy use (in EJ)
     passenger_car_output = pd.read_csv(DATA_DIR /'passenger car physical output by technology.csv')
     passenger_car_input = pd.read_csv(DATA_DIR /'passenger car final energy by technology and fuel.csv')

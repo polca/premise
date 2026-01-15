@@ -7,9 +7,7 @@ from pathlib import Path
 def run_freight_truck(scenario_name):
     # Need to change path for each scenario
     DATA_DIR = Path(r"../GCAM_queryresults_"+scenario_name)
-
-    print(DATA_DIR)
-
+    
     # load LCI data from GCAM for freight truck. two files: one with physical output (activity in ton-km) and one with energy use (in EJ)
     freight_truck_output = pd.read_csv(DATA_DIR /'freight truck physical output by technology.csv')
     freight_truck_input = pd.read_csv(DATA_DIR /'freight truck final energy by technology and fuel.csv')
