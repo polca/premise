@@ -3,6 +3,20 @@ import numpy as np
 from pathlib import Path
 import os
 
+# code from Google AI
+
+def sort_strings_then_numbers(item):
+    """
+    Key function to sort items with strings first, then numbers.
+    """
+    # Check if the item can be treated as a number (after potential conversion to string)
+    is_number = str(item).isdigit()
+    # Return a tuple for comparison:
+    # (True, item) for numbers (which sorts after False)
+    # (False, item) for strings (which sorts first)
+    return (is_number, str(item))
+
+
 # import iamctemplatecrator for each sector
 from iamctemplatecreator_biomass import run_biomass
 from iamctemplatecreator_carbon_dioxide_removal import run_cdr
@@ -45,5 +59,7 @@ for sc in scenarios:
 	df_list = [pd.read_excel(os.path.join('..', 'output', sc, f)) for f in excel_files]
 	out_df = pd.concat(df_list, axis=0)
 
+	# order columns with number names after other columns
+	out_df = out_df.reindex(sorted(out_df.columns, key=sort_strings_then_numbers), axis=1)
 	# output
 	out_df.to_excel(os.path.join('..', 'output', sc, f'iamc_template_gcam_{sc}.xlsx'), index=False)
