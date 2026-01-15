@@ -7,11 +7,15 @@ import os
 
 def run_bus(scenario_name):
     # Need to change path for each scenario
-    DATA_DIR = Path(os.path.join('..', 'queryresults', scenario_name))
+    DATA_DIR = Path(os.path.join('..', 'queries', 'queryresults', scenario_name))
 
     # load LCI data from GCAM for bus. two files: one with physical output (activity in passenger-km) and one with energy use (in EJ)
-    bus_output = pd.read_csv(DATA_DIR /'bus physical output by technology.csv')
-    bus_input = pd.read_csv(DATA_DIR /'bus final energy by technology and fuel.csv')
+    bus_output = pd.read_csv(DATA_DIR / 'transport service output by tech.csv')
+    bus_input = pd.read_csv(DATA_DIR / 'transport final energy by tech and fuel.csv')
+
+    # subset to only bus data
+    bus_output = bus_output[bus_output['subsector'] == 'Bus']
+    bus_input = bus_input[bus_input['mode'] == 'Bus']
 
 
     # we need to reshape all of the data in a format premise can understand
@@ -30,10 +34,10 @@ def run_bus(scenario_name):
 
     # now reshape bus_input
     temp_df = bus_input.copy()
-    temp_df = temp_df.groupby(['Units', 'scenario', 'region', 'sector', 'subsector', 'technology','Year'])['value'].agg('sum').reset_index()
+    temp_df = temp_df.groupby(['Units', 'scenario', 'region', 'sector', 'mode', 'technology','Year'])['value'].agg('sum').reset_index()
     bus_input = temp_df.copy()
     # add world region by aggregating all data
-    temp_df = temp_df.groupby(['Units', 'scenario', 'sector', 'subsector', 'technology','Year'])['value'].agg('sum').reset_index()
+    temp_df = temp_df.groupby(['Units', 'scenario', 'sector', 'mode', 'technology','Year'])['value'].agg('sum').reset_index()
     temp_df['region'] = 'World'
     bus_input = pd.concat([bus_input, temp_df], axis=0)
 
@@ -57,7 +61,7 @@ def run_bus(scenario_name):
     # define Variable
     # input: Final Energy|Transport|Pass|Road|{subsector}|{technology}
     # output: Distance|Transport|Pass|Road|{subsector}|{technology}
-    bus_input['Variable'] = 'Final Energy|Transport|Pass|Road|' + bus_input['subsector'] + '|' + bus_input['technology']
+    bus_input['Variable'] = 'Final Energy|Transport|Pass|Road|' + bus_input['mode'] + '|' + bus_input['technology']
     bus_output['Variable'] = 'Distance|Transport|Pass|Road|' + bus_output['subsector'] + '|' + bus_output['technology'] 
 
     # reorder columns and remove unnecessary columns (sector, subsector, technology)
@@ -82,4 +86,6 @@ def run_bus(scenario_name):
     out_df.columns = ['Scenario', 'Region', 'Model', 'Variable', 'Unit'] + [str(x[1]) for x in out_df.columns[5:]]
 
     # write to file
-    out_df.to_excel(os.path.join('..', 'output', scenario_name, 'iamc_template_gcam_bus.xlsx'), index=False) 
+    out_df.to_excel(os.path.join('..', 'output', scenario_name, 'iamc_template_gcam_transport_bus.xlsx'), index=False) 
+
+run_bus('ssp24p5tol5')
