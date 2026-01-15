@@ -4,139 +4,140 @@ import yaml
 from pathlib import Path
 import os
 
-def run_electricity(scenario_name):
+def run_fuel(scenario_name):
     DATA_DIR = Path(os.path.join('..', 'queries', 'queryresults', scenario_name))
 
-    # load LCI data for fuels. four files
+    # load LCI data for fuels. five files
     liquids_production = pd.read_csv(DATA_DIR / 'refined liquids production by tech.csv')
-    liquids_input = pd.read_csv(DATA_DIR / 'refined liquids inputs by tech.csv')
-    elec_gen = pd.read_csv(DATA_DIR /'elec gen by gen tech.csv')
-    elec_input = pd.read_csv(DATA_DIR /'elec energy input by elec gen tech.csv')
+    gas_production = pd.read_csv(DATA_DIR / 'gas production by tech.csv')
+    hydrogen_production = pd.read_csv(DATA_DIR / 'hydrogen production by tech.csv')
+    hydrogen_input = pd.read_csv(DATA_DIR / 'hydrogen inputs by tech.csv')
+
+    # hard-coded tech mappings
+
+    hydrogen_tech_mapping = {
+        'biomass to H2': 'Biomass',
+        'biomass to H2 CCS': 'Biomass CCS',
+        'coal chemical CCS': 'Coal CCS',
+        'electrolysis': 'Electrolysis',
+        'gas ATR CCS': pd.NA,
+        'natural gas steam reforming': 'Gas'
+    }
+    hydrogen_production['technology'] = hydrogen_production['technology'].replace(hydrogen_tech_mapping)
+    hydrogen_input['technology'] = hydrogen_input['technology'].replace(hydrogen_tech_mapping)
+
 
 
     # we need to reshape all of the data in a format premise can understand
-    # first, reshape elec_gen
+    # first, reshape liquids_production
     # store in temp_df
-    temp_df = elec_gen.copy()
-    temp_df['technology'] = temp_df['technology'].replace({
-      'biomass (IGCC CCS)': 'Biomass IGCC CCS',
-      'biomass (IGCC)': 'Biomass IGCC',
-      'biomass (conv CCS)': 'Biomass CHP CCS',
-      'biomass (conv)': 'Biomass CHP',
-      'coal (IGCC CCS)': 'Coal IGCC CCS',
-      'coal (IGCC)': 'Coal IGCC',
-      'coal (conv pul CCS)': 'Coal PC CCS',
-      'coal (conv pul)': 'Coal PC',
-      'gas (CC CCS)': 'Gas CC CCS',
-      'gas (CC)': 'Gas CC',
-      'gas (steam/CT)': 'Gas ST',
-      'geothermal': 'Geothermal',
-      'hydro': 'Hydro',
-      'Gen_III': 'Nuclear EPR',
-      'refined liquids (CC CCS)': 'Oil CC CCS',
-      'refined liquids (CC)': 'Oil CC',
-      'refined liquids (steam/CT)': 'Oil ST',
-      'rooftop_pv': 'Solar PV Residential',
-      'CSP_storage': pd.NA,
-      'PV': 'Solar PV Centralized',
-      'PV_storage': pd.NA,
-      'wind': 'Wind Onshore',
-      'wind_offshore': 'Wind Offshore',
-      'wind_storage': pd.NA,
-      'CSP': 'Solar CSP',
-      'Gen_II_LWR': 'Nuclear'
-    })
-
-    temp_df = temp_df.dropna().groupby(['Units', 'scenario', 'region', 'technology', 'Year'])['value'].agg('sum').reset_index()
-    elec_gen = temp_df.copy()
+    temp_df = liquids_production.copy()
+    temp_df = temp_df.dropna().groupby(['Units', 'scenario', 'region', 'sector', 'Year'])['value'].agg('sum').reset_index()
+    liquids_production = temp_df.copy()
     # add world region by aggregating all data
-    temp_df = temp_df.groupby(['Units', 'scenario', 'technology','Year'])['value'].agg('sum').reset_index()
+    temp_df = temp_df.groupby(['Units', 'scenario', 'sector','Year'])['value'].agg('sum').reset_index()
     temp_df['region'] = 'World'
     # concatenate dfs
-    elec_gen = pd.concat([elec_gen, temp_df], axis=0)
+    liquids_production = pd.concat([liquids_production, temp_df], axis=0)
 
-    # now reshape elec_input
-    temp_df = elec_input.copy()
-    temp_df['technology'] = temp_df['technology'].replace({
-      'biomass (IGCC CCS)': 'Biomass IGCC CCS',
-      'biomass (IGCC)': 'Biomass IGCC',
-      'biomass (conv CCS)': 'Biomass CHP CCS',
-      'biomass (conv)': 'Biomass CHP',
-      'coal (IGCC CCS)': 'Coal IGCC CCS',
-      'coal (IGCC)': 'Coal IGCC',
-      'coal (conv pul CCS)': 'Coal PC CCS',
-      'coal (conv pul)': 'Coal PC',
-      'gas (CC CCS)': 'Gas CC CCS',
-      'gas (CC)': 'Gas CC',
-      'gas (steam/CT)': 'Gas ST',
-      'geothermal': 'Geothermal',
-      'hydro': 'Hydro',
-      'Gen_III': 'Nuclear EPR',
-      'refined liquids (CC CCS)': 'Oil CC CCS',
-      'refined liquids (CC)': 'Oil CC',
-      'refined liquids (steam/CT)': 'Oil ST',
-      'rooftop_pv': 'Solar PV Residential',
-      'CSP_storage': pd.NA,
-      'PV': 'Solar PV Centralized',
-      'PV_storage': pd.NA,
-      'wind': 'Wind Onshore',
-      'wind_offshore': 'Wind Offshore',
-      'wind_storage': pd.NA,
-      'CSP': 'Solar CSP',
-      'Gen_II_LWR': 'Nuclear'
-    })
-
-    temp_df = temp_df.groupby(['Units', 'scenario', 'region', 'technology','Year'])['value'].agg('sum').reset_index()
-    elec_input = temp_df.copy()
+    # same with gas production
+    temp_df = gas_production.copy()
+    temp_df = temp_df.groupby(['Units', 'scenario', 'region', 'sector', 'Year'])['value'].agg('sum').reset_index()
+    gas_production = temp_df.copy()
     # add world region
-    temp_df = temp_df.groupby(['Units', 'scenario', 'technology','Year'])['value'].agg('sum').reset_index()
+    temp_df = temp_df.groupby(['Units', 'scenario', 'sector', 'Year'])['value'].agg('sum').reset_index()
     temp_df['region'] = 'World'
-    elec_input = pd.concat([elec_input, temp_df], axis=0)
+    gas_production = pd.concat([gas_production, temp_df], axis=0)
 
-    # calculate electricity efficiency
+    # same with hydrogen production
+    temp_df = hydrogen_production.copy()
+    temp_df = temp_df.groupby(['Units', 'scenario', 'region', 'technology', 'Year'])['value'].agg('sum').reset_index()
+    hydrogen_production = temp_df.copy()
+    # add world region
+    temp_df = temp_df.groupby(['Units', 'scenario', 'technology', 'Year'])['value'].agg('sum').reset_index()
+    temp_df['region'] = 'World'
+    hydrogen_production = pd.concat([hydrogen_production, temp_df], axis=0)
+
+    # same with hydrogen inputs
+    temp_df = hydrogen_input.copy()
+    temp_df = temp_df.groupby(['Units', 'scenario', 'region', 'technology', 'Year'])['value'].agg('sum').reset_index()
+    hydrogen_input = temp_df.copy()
+    # add world region
+    temp_df = temp_df.groupby(['Units', 'scenario', 'technology', 'Year'])['value'].agg('sum').reset_index()
+    temp_df['region'] = 'World'
+    hydrogen_input = pd.concat([hydrogen_input, temp_df], axis=0)
+    # only keep technologies that are present in hydrogen_production
+    hydrogen_input = hydrogen_input[hydrogen_input['technology'].isin(hydrogen_production['technology'].unique())]
+    # only keep inputs that have EJ units
+    hydrogen_input = hydrogen_input[hydrogen_input['Units'] == 'EJ']
+    
+    # calculate hydrogen production efficiency
     # merge dataframes
-    elec_eff = pd.merge(elec_gen, elec_input, on=['scenario', 'region', 'technology', 'Year'], suffixes=('_gen', '_input'))
-    elec_eff['value'] = elec_eff['value_gen']/elec_eff['value_input']
-    elec_eff = elec_eff.drop(['value_gen', 'value_input'], axis=1)
+    hydrogen_eff = pd.merge(hydrogen_production, hydrogen_input, on=['scenario', 'region', 'technology', 'Year'], suffixes=('_prod', '_input'))
+    hydrogen_eff['value'] = hydrogen_eff['value_prod']/hydrogen_eff['value_input']
+    hydrogen_eff = hydrogen_eff.drop(['value_prod', 'value_input'], axis=1)
+
 
     # now we need to format these dfs into IAMC format
     # first, rename existing columns to columns in IAMC format
-    elec_gen = elec_gen.rename(columns={'region': 'Region', 'scenario': 'Scenario', 'Units': 'Unit'})
-    elec_eff = elec_eff.rename(columns={'region': 'Region', 'scenario': 'Scenario', 'Units': 'Unit'})
+    liquids_production = liquids_production.rename(columns={'region': 'Region', 'scenario': 'Scenario', 'Units': 'Unit'})
+    gas_production = gas_production.rename(columns={'region': 'Region', 'scenario': 'Scenario', 'Units': 'Unit'})
+    hydrogen_production = hydrogen_production.rename(columns={'region': 'Region', 'scenario': 'Scenario', 'Units': 'Unit'})
+    hydrogen_eff = hydrogen_eff.rename(columns={'region': 'Region', 'scenario': 'Scenario', 'Units': 'Unit'})
 
     # replace Scenario with scenario_name
-    elec_gen['Scenario'] = scenario_name
-    elec_eff['Scenario'] = scenario_name
+    liquids_production['Scenario'] = scenario_name
+    gas_production['Scenario'] = scenario_name
+    hydrogen_production['Scenario'] = scenario_name
+    hydrogen_eff['Scenario'] = scenario_name
+
     # add GCAM as Model
-    elec_gen['Model'] = 'GCAM'
-    elec_eff['Model'] = 'GCAM'
+    liquids_production['Model'] = 'GCAM'
+    gas_production['Model'] = 'GCAM'
+    hydrogen_production['Model'] = 'GCAM'
+    hydrogen_eff['Model'] = 'GCAM'
 
     # replace Unit column with expected values (EJ/yr, unitless)
-    elec_gen['Unit'] = 'EJ/yr'
-    elec_eff['Unit'] = 'unitless'
+    liquids_production['Unit'] = 'EJ/yr'
+    gas_production['Unit'] = 'EJ/yr'
+    hydrogen_production['Unit'] = 'EJ/yr'
+    hydrogen_eff['Unit'] = 'unitless'
 
     # define variable
-    # 
-    elec_gen['Variable'] = 'Secondary Energy|Electricity|' + elec_gen['technology']
-    elec_eff['Variable'] = 'Efficiency|Electricity|' + elec_eff['technology']
+    liquids_production['Variable'] = 'Secondary Energy|Production|Refined Liquids|Oil'
+    gas_production['Variable'] = 'Secondary Energy|Production|Natural Gas|Gas'
+    hydrogen_production['Variable'] = 'Secondary Energy|Production|Hydrogen|' + hydrogen_production['technology']
+    hydrogen_eff['Variable'] = 'Efficiency|Hydrogen|' + hydrogen_eff['technology']
 
     # reorder columns and remove unnecessary columns (sector, subsector, technology)
-    elec_gen = elec_gen[['Scenario', 'Region', 'Model', 'Variable', 'Unit', 'Year', 'value']]
-    elec_eff = elec_eff[['Scenario', 'Region', 'Model', 'Variable', 'Unit', 'Year', 'value']]
+    liquids_production = liquids_production[['Scenario', 'Region', 'Model', 'Variable', 'Unit', 'Year', 'value']]
+    gas_production = gas_production[['Scenario', 'Region', 'Model', 'Variable', 'Unit', 'Year', 'value']]
+    hydrogen_production = hydrogen_production[['Scenario', 'Region', 'Model', 'Variable', 'Unit', 'Year', 'value']]
+    hydrogen_eff = hydrogen_eff[['Scenario', 'Region', 'Model', 'Variable', 'Unit', 'Year', 'value']]
 
     # pivot dfs, creating columns for each year
 
-    elec_gen_pivot = pd.pivot_table(elec_gen,
+    liquids_production_pivot = pd.pivot_table(liquids_production,
                                         values=['value'],
                                         index=['Scenario', 'Region', 'Model', 'Variable', 'Unit'],
                                         columns=['Year'],
                                         aggfunc='sum').reset_index()
-    elec_eff_pivot = pd.pivot_table(elec_eff,
+    gas_production_pivot = pd.pivot_table(gas_production,
                                         values=['value'],
                                         index=['Scenario', 'Region', 'Model', 'Variable', 'Unit'],
                                         columns=['Year'],
                                         aggfunc='sum').reset_index()
-    out_df = pd.concat([elec_gen_pivot, elec_eff_pivot]).reset_index(drop=True)
+    hydrogen_production_pivot = pd.pivot_table(hydrogen_production,
+                                        values=['value'],
+                                        index=['Scenario', 'Region', 'Model', 'Variable', 'Unit'],
+                                        columns=['Year'],
+                                        aggfunc='sum').reset_index()
+    hydrogen_eff_pivot = pd.pivot_table(hydrogen_eff,
+                                        values=['value'],
+                                        index=['Scenario', 'Region', 'Model', 'Variable', 'Unit'],
+                                        columns=['Year'],
+                                        aggfunc='sum').reset_index()
+    out_df = pd.concat([liquids_production_pivot, gas_production_pivot, hydrogen_production_pivot, hydrogen_eff_pivot]).reset_index(drop=True)
 
     # tidy up dataframe (fix multiple index column names in year columns)
     out_df.columns = ['Scenario', 'Region', 'Model', 'Variable', 'Unit'] + [str(x[1]) for x in out_df.columns[5:]]
@@ -147,4 +148,6 @@ def run_electricity(scenario_name):
       os.mkdir(os.path.join('..', 'output', scenario_name))
 
     # write to file
-    out_df.to_excel(os.path.join('..', 'output', scenario_name, 'iamc_template_gcam_electricity.xlsx'), index=False)
+    out_df.to_excel(os.path.join('..', 'output', scenario_name, 'iamc_template_gcam_fuels.xlsx'), index=False)
+
+run_fuel('ssp24p5tol5')
