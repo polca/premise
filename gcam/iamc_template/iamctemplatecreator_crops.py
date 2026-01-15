@@ -105,7 +105,5 @@ def run_crop(scenario_name):
     if not os.path.exists(os.path.join('..', 'output', scenario_name)):
         os.mkdir(os.path.join('..', 'output', scenario_name))
 
-    print(out_df)
-
     # write to file
     out_df.to_excel(os.path.join('..', 'output', scenario_name, 'iamc_template_gcam_crops.xlsx'), index=False)

@@ -1,79 +1,150 @@
 
 import pandas as pd
-import numpy as np
-# import yaml
+import yaml
+from pathlib import Path
+import os
 
-### refined liquids production from GCAM
+def run_electricity(scenario_name):
+    DATA_DIR = Path(os.path.join('..', 'queries', 'queryresults', scenario_name))
 
-def run_fuel(scenario):
-        # load data file
-        refined_liquids_generation = pd.read_csv('../GCAM_queryresults_'+scenario+'/refined liquids production by tech.csv')
-        refined_liquids_generation['generation'] = refined_liquids_generation['value']
-
-
-        ### process refined liquids generation data
-        refined_liquids_generation = refined_liquids_generation[['Units', 'scenario', 'region', 'sector', 'subsector', 'technology', 'output', 'Year','generation']]
-
-        matching_bridge = pd.read_csv('gcam_technology_to_fuel_name_bridge.csv')
-
-        refined_liquids_generation2 = refined_liquids_generation.merge(matching_bridge, on = 'technology')
-        refined_liquids_generation2['Scenario'] = scenario
-
-        refined_liquids_generation2['Region'] = refined_liquids_generation2['region']
-        refined_liquids_generation2['Model'] = "GCAM"
-        refined_liquids_generation2['Unit'] = "EJ"
-        refined_liquids_generation2['Variable'] = 'Secondary Energy|Production|' + refined_liquids_generation2['fuels renamed']
-
-        refined_liquids_generation3 = refined_liquids_generation2.groupby(['Scenario','Region','Model','Variable','Unit','Year'])['generation'].agg('sum')
-        refined_liquids_generation3 = refined_liquids_generation3.reset_index()
-
-        # Add world region by aggregating all generation data
-        refined_liquids_generation4 = refined_liquids_generation3.groupby(['Scenario','Model','Variable','Unit','Year'])['generation'].agg('sum').reset_index()
-        refined_liquids_generation4['Region'] = 'World'
-        refined_liquids_generation4 = refined_liquids_generation4[['Scenario','Region','Model','Variable','Unit','Year','generation']]
-        # print(df)
-        refined_liquids_generation3 = pd.concat([refined_liquids_generation3,refined_liquids_generation4])
-
-        iamc = refined_liquids_generation3[['Scenario', 'Region','Model','Variable','Unit','Year','generation']]
-        iamc3 = iamc.pivot(values = 'generation', index = ['Scenario','Region', 'Model', 'Variable','Unit'], columns = 'Year').reset_index()
-        # iamc3.to_excel('iamc_template_gcam_fuel.xlsx', index = False)
+    # load LCI data for fuels. four files
+    liquids_production = pd.read_csv(DATA_DIR / 'refined liquids production by tech.csv')
+    liquids_input = pd.read_csv(DATA_DIR / 'refined liquids inputs by tech.csv')
+    elec_gen = pd.read_csv(DATA_DIR /'elec gen by gen tech.csv')
+    elec_input = pd.read_csv(DATA_DIR /'elec energy input by elec gen tech.csv')
 
 
-        # load data file
-        refined_liquids_efficiency = pd.read_csv('../GCAM_queryresults_'+scenario+'/refinery inputs by tech (energy and feedstocks).csv')
-        refined_liquids_efficiency = refined_liquids_efficiency.groupby(['scenario', 'region', 'technology', 'Year'])['value'].agg('sum')
-        refined_liquids_efficiency = refined_liquids_efficiency.reset_index()
+    # we need to reshape all of the data in a format premise can understand
+    # first, reshape elec_gen
+    # store in temp_df
+    temp_df = elec_gen.copy()
+    temp_df['technology'] = temp_df['technology'].replace({
+      'biomass (IGCC CCS)': 'Biomass IGCC CCS',
+      'biomass (IGCC)': 'Biomass IGCC',
+      'biomass (conv CCS)': 'Biomass CHP CCS',
+      'biomass (conv)': 'Biomass CHP',
+      'coal (IGCC CCS)': 'Coal IGCC CCS',
+      'coal (IGCC)': 'Coal IGCC',
+      'coal (conv pul CCS)': 'Coal PC CCS',
+      'coal (conv pul)': 'Coal PC',
+      'gas (CC CCS)': 'Gas CC CCS',
+      'gas (CC)': 'Gas CC',
+      'gas (steam/CT)': 'Gas ST',
+      'geothermal': 'Geothermal',
+      'hydro': 'Hydro',
+      'Gen_III': 'Nuclear EPR',
+      'refined liquids (CC CCS)': 'Oil CC CCS',
+      'refined liquids (CC)': 'Oil CC',
+      'refined liquids (steam/CT)': 'Oil ST',
+      'rooftop_pv': 'Solar PV Residential',
+      'CSP_storage': pd.NA,
+      'PV': 'Solar PV Centralized',
+      'PV_storage': pd.NA,
+      'wind': 'Wind Onshore',
+      'wind_offshore': 'Wind Offshore',
+      'wind_storage': pd.NA,
+      'CSP': 'Solar CSP',
+      'Gen_II_LWR': 'Nuclear'
+    })
 
+    temp_df = temp_df.dropna().groupby(['Units', 'scenario', 'region', 'technology', 'Year'])['value'].agg('sum').reset_index()
+    elec_gen = temp_df.copy()
+    # add world region by aggregating all data
+    temp_df = temp_df.groupby(['Units', 'scenario', 'technology','Year'])['value'].agg('sum').reset_index()
+    temp_df['region'] = 'World'
+    # concatenate dfs
+    elec_gen = pd.concat([elec_gen, temp_df], axis=0)
 
-        refined_liquids_efficiency4 = refined_liquids_efficiency.merge(refined_liquids_generation, on = ['scenario', 'region', 'technology', 'Year'])
-        refined_liquids_efficiency4['efficiency'] = refined_liquids_efficiency4['generation']/refined_liquids_efficiency4['value']
+    # now reshape elec_input
+    temp_df = elec_input.copy()
+    temp_df['technology'] = temp_df['technology'].replace({
+      'biomass (IGCC CCS)': 'Biomass IGCC CCS',
+      'biomass (IGCC)': 'Biomass IGCC',
+      'biomass (conv CCS)': 'Biomass CHP CCS',
+      'biomass (conv)': 'Biomass CHP',
+      'coal (IGCC CCS)': 'Coal IGCC CCS',
+      'coal (IGCC)': 'Coal IGCC',
+      'coal (conv pul CCS)': 'Coal PC CCS',
+      'coal (conv pul)': 'Coal PC',
+      'gas (CC CCS)': 'Gas CC CCS',
+      'gas (CC)': 'Gas CC',
+      'gas (steam/CT)': 'Gas ST',
+      'geothermal': 'Geothermal',
+      'hydro': 'Hydro',
+      'Gen_III': 'Nuclear EPR',
+      'refined liquids (CC CCS)': 'Oil CC CCS',
+      'refined liquids (CC)': 'Oil CC',
+      'refined liquids (steam/CT)': 'Oil ST',
+      'rooftop_pv': 'Solar PV Residential',
+      'CSP_storage': pd.NA,
+      'PV': 'Solar PV Centralized',
+      'PV_storage': pd.NA,
+      'wind': 'Wind Onshore',
+      'wind_offshore': 'Wind Offshore',
+      'wind_storage': pd.NA,
+      'CSP': 'Solar CSP',
+      'Gen_II_LWR': 'Nuclear'
+    })
 
-        matching_bridge = pd.read_csv('gcam_technology_to_fuel_name_bridge.csv')
-        refined_liquids_efficiency2 = refined_liquids_efficiency4.merge(matching_bridge, on = 'technology')
-        refined_liquids_efficiency2['Scenario'] = scenario
+    temp_df = temp_df.groupby(['Units', 'scenario', 'region', 'technology','Year'])['value'].agg('sum').reset_index()
+    elec_input = temp_df.copy()
+    # add world region
+    temp_df = temp_df.groupby(['Units', 'scenario', 'technology','Year'])['value'].agg('sum').reset_index()
+    temp_df['region'] = 'World'
+    elec_input = pd.concat([elec_input, temp_df], axis=0)
 
-        refined_liquids_efficiency2['Region'] = refined_liquids_efficiency2['region']
-        refined_liquids_efficiency2['Model'] = "GCAM"
-        refined_liquids_efficiency2['Unit'] = ""
-        refined_liquids_efficiency2['Variable'] = 'Efficiency|' + refined_liquids_efficiency2['fuels renamed']
+    # calculate electricity efficiency
+    # merge dataframes
+    elec_eff = pd.merge(elec_gen, elec_input, on=['scenario', 'region', 'technology', 'Year'], suffixes=('_gen', '_input'))
+    elec_eff['value'] = elec_eff['value_gen']/elec_eff['value_input']
+    elec_eff = elec_eff.drop(['value_gen', 'value_input'], axis=1)
 
-        refined_liquids_efficiency3 = refined_liquids_efficiency2.groupby(['Scenario','Region','Model','Variable','Unit','Year'])['efficiency'].agg('mean')
-        refined_liquids_efficiency3 = refined_liquids_efficiency3.reset_index()
+    # now we need to format these dfs into IAMC format
+    # first, rename existing columns to columns in IAMC format
+    elec_gen = elec_gen.rename(columns={'region': 'Region', 'scenario': 'Scenario', 'Units': 'Unit'})
+    elec_eff = elec_eff.rename(columns={'region': 'Region', 'scenario': 'Scenario', 'Units': 'Unit'})
 
-        # Add world region by aggregating all input data
-        refined_liquids_efficiency4 = refined_liquids_efficiency3.groupby(['Scenario','Model','Variable','Unit','Year'])['efficiency'].agg('mean').reset_index()
-        refined_liquids_efficiency4['Region'] = 'World'
-        refined_liquids_efficiency4 = refined_liquids_efficiency4[['Scenario','Region','Model','Variable','Unit','Year','efficiency']]
-        refined_liquids_efficiency3 = pd.concat([refined_liquids_efficiency3,refined_liquids_efficiency4])
+    # replace Scenario with scenario_name
+    elec_gen['Scenario'] = scenario_name
+    elec_eff['Scenario'] = scenario_name
+    # add GCAM as Model
+    elec_gen['Model'] = 'GCAM'
+    elec_eff['Model'] = 'GCAM'
 
+    # replace Unit column with expected values (EJ/yr, unitless)
+    elec_gen['Unit'] = 'EJ/yr'
+    elec_eff['Unit'] = 'unitless'
 
-        iamc = refined_liquids_efficiency3[['Scenario', 'Region','Model','Variable','Unit','Year','efficiency']]
-        iamc4 = iamc.pivot(values = 'efficiency', index = ['Scenario','Region', 'Model', 'Variable','Unit'], columns = 'Year').reset_index()
+    # define variable
+    # 
+    elec_gen['Variable'] = 'Secondary Energy|Electricity|' + elec_gen['technology']
+    elec_eff['Variable'] = 'Efficiency|Electricity|' + elec_eff['technology']
 
-        iamc5 = pd.concat([iamc3,iamc4])
+    # reorder columns and remove unnecessary columns (sector, subsector, technology)
+    elec_gen = elec_gen[['Scenario', 'Region', 'Model', 'Variable', 'Unit', 'Year', 'value']]
+    elec_eff = elec_eff[['Scenario', 'Region', 'Model', 'Variable', 'Unit', 'Year', 'value']]
 
-        iamc5.to_excel('./iamc_template/'+scenario+'/iamc_template_gcam_fuel_world.xlsx', index = False)
+    # pivot dfs, creating columns for each year
 
+    elec_gen_pivot = pd.pivot_table(elec_gen,
+                                        values=['value'],
+                                        index=['Scenario', 'Region', 'Model', 'Variable', 'Unit'],
+                                        columns=['Year'],
+                                        aggfunc='sum').reset_index()
+    elec_eff_pivot = pd.pivot_table(elec_eff,
+                                        values=['value'],
+                                        index=['Scenario', 'Region', 'Model', 'Variable', 'Unit'],
+                                        columns=['Year'],
+                                        aggfunc='sum').reset_index()
+    out_df = pd.concat([elec_gen_pivot, elec_eff_pivot]).reset_index(drop=True)
 
-# run('SSP2 Base')
-# run('SSP2 RCP26')
+    # tidy up dataframe (fix multiple index column names in year columns)
+    out_df.columns = ['Scenario', 'Region', 'Model', 'Variable', 'Unit'] + [str(x[1]) for x in out_df.columns[5:]]
+
+    # create output directory if it doesn't exist
+    # 
+    if not os.path.exists(os.path.join('..', 'output', scenario_name)):
+      os.mkdir(os.path.join('..', 'output', scenario_name))
+
+    # write to file
+    out_df.to_excel(os.path.join('..', 'output', scenario_name, 'iamc_template_gcam_electricity.xlsx'), index=False)

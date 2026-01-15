@@ -94,8 +94,6 @@ def run_steel(scenario_name):
     out_df.columns = ['Scenario', 'Region', 'Model', 'Variable', 'Unit'] + [str(x[1]) for x in out_df.columns[5:]]
 
     # write to file
-    out_df.to_excel('./iamc_template/'+scenario_name+'/iamc_template_gcam_steel_world_new.xlsx', index=False)
+    out_df.to_excel('./iamc_template/'+scenario_name+'/iamc_template_gcam_steel.xlsx', index=False)
 
 
-
-run_steel('SSP2 RCP26')

@@ -1,12 +1,3 @@
-# python iamctemplatecreator_elec
-# python iamctemplatecreator_steel
-# python iamctemplatecreator_cement
-# python iamctemplatecreator_fuel
-# python iamctemplatecreator_biofuel
-# python iamctemplatecreator_hydrogen
-# python iamctemplatecreator_gas.py
-# python iamctemplatecreator_cropLUC.py
-
 import pandas as pd
 import numpy as np
 from pathlib import Path

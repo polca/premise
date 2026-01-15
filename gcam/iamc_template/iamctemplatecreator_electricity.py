@@ -148,6 +148,3 @@ def run_electricity(scenario_name):
 
     # write to file
     out_df.to_excel(os.path.join('..', 'output', scenario_name, 'iamc_template_gcam_electricity.xlsx'), index=False)
-
-
-run_electricity('ssp24p5tol5')
