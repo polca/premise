@@ -84,5 +84,3 @@ def run_two_wheeler(scenario_name):
     out_df.to_excel('./iamc_template/'+scenario_name+'/iamc_template_gcam_two_wheelers.xlsx', index=False)
 
 
-
-run_two_wheeler('SSP2 RCP26')

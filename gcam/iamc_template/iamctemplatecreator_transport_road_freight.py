@@ -87,5 +87,3 @@ def run_freight_truck(scenario_name):
     out_df.to_excel('./iamc_template/'+scenario_name+'/iamc_template_gcam_road_freight.xlsx', index=False)
 
 
-
-run_freight_truck('SSP2 RCP26')
