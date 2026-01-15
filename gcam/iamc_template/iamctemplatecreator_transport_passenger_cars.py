@@ -89,5 +89,3 @@ def run_passenger_car(scenario_name):
     # write to file
     out_df.to_excel(os.path.join('..', 'output', scenario_name, 'iamc_template_gcam_transport_passenger_cars.xlsx'), index=False)
 
-
-run_passenger_car('ssp24p5tol5')

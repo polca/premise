@@ -99,5 +99,3 @@ def run_other(scenario_name):
 
     # write to file
     out_df.to_excel(os.path.join('..', 'output', scenario_name, 'iamc_template_gcam_other.xlsx'), index=False)
-
-run_other('ssp24p5tol5')
