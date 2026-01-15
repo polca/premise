@@ -2,86 +2,91 @@
 import pandas as pd
 import numpy as np
 from pathlib import Path
+import os
 # import yaml
 
-def run_freight_truck(scenario_name):
+def run_road_freight(scenario_name):
     # Need to change path for each scenario
-    DATA_DIR = Path(r"../GCAM_queryresults_"+scenario_name)
-    
-    # load LCI data from GCAM for freight truck. two files: one with physical output (activity in ton-km) and one with energy use (in EJ)
-    freight_truck_output = pd.read_csv(DATA_DIR /'freight truck physical output by technology.csv')
-    freight_truck_input = pd.read_csv(DATA_DIR /'freight truck final energy by technology and fuel.csv')
+    DATA_DIR = Path(os.path.join('..', 'queries', 'queryresults', scenario_name))
 
+    # load LCI data from GCAM for bus. two files: one with physical output (activity in passenger-km) and one with energy use (in EJ)
+    road_freight_output = pd.read_csv(DATA_DIR / 'transport service output by tech.csv')
+    road_freight_input = pd.read_csv(DATA_DIR / 'transport final energy by tech and fuel.csv')
+
+    # subset to only bus data
+    road_freight_output = road_freight_output[road_freight_output['subsector'].str.contains('truck')]
+    road_freight_input = road_freight_input[road_freight_input['mode'].str.contains('truck')]
 
     # we need to reshape all of the data in a format premise can understand
-    # first, reshape freight_truck_output
+    # first, reshape road_freight_output
     # store in temp_df
-    temp_df = freight_truck_output.copy()
+    temp_df = road_freight_output.copy()
     temp_df= temp_df.groupby(['Units', 'scenario', 'region', 'sector', 'subsector', 'technology','Year'])['value'].agg('sum').reset_index()
     # create out_df which will be written to file
-    freight_truck_output = temp_df.copy()
+    road_freight_output = temp_df.copy()
     # add world region by aggregating all data
     temp_df = temp_df.groupby(['Units', 'scenario', 'sector', 'subsector', 'technology','Year'])['value'].agg('sum').reset_index()
     temp_df['region'] = 'World'
     # concatenate dfs
-    freight_truck_output = pd.concat([freight_truck_output, temp_df], axis=0)
+    road_freight_output = pd.concat([road_freight_output, temp_df], axis=0)
 
 
-    # now reshape freight_truck_input
-    temp_df = freight_truck_input.copy()
-    temp_df = temp_df.groupby(['Units', 'scenario', 'region', 'sector', 'subsector', 'technology','Year'])['value'].agg('sum').reset_index()
-    freight_truck_input = temp_df.copy()
+    # now reshape road_freight_input
+    temp_df = road_freight_input.copy()
+    temp_df = temp_df.groupby(['Units', 'scenario', 'region', 'sector', 'mode', 'technology','Year'])['value'].agg('sum').reset_index()
+    road_freight_input = temp_df.copy()
     # add world region by aggregating all data
-    temp_df = temp_df.groupby(['Units', 'scenario', 'sector', 'subsector', 'technology','Year'])['value'].agg('sum').reset_index()
+    temp_df = temp_df.groupby(['Units', 'scenario', 'sector', 'mode', 'technology','Year'])['value'].agg('sum').reset_index()
     temp_df['region'] = 'World'
-    freight_truck_input = pd.concat([freight_truck_input, temp_df], axis=0)
+    road_freight_input = pd.concat([road_freight_input, temp_df], axis=0)
 
     # now we need to format these dfs into IAMC format
     # first, rename existing columns to columns in IAMC format
-    freight_truck_input = freight_truck_input.rename(columns={'region': 'Region', 'scenario': 'Scenario', 'Units': 'Unit'})
-    freight_truck_output = freight_truck_output.rename(columns={'region': 'Region', 'scenario': 'Scenario', 'Units': 'Unit'})
+    road_freight_input = road_freight_input.rename(columns={'region': 'Region', 'scenario': 'Scenario', 'Units': 'Unit'})
+    road_freight_output = road_freight_output.rename(columns={'region': 'Region', 'scenario': 'Scenario', 'Units': 'Unit'})
 
     # replace Scenario with scenario_name
-    freight_truck_input['Scenario'] = scenario_name
-    freight_truck_output['Scenario'] = scenario_name
+    road_freight_input['Scenario'] = scenario_name
+    road_freight_output['Scenario'] = scenario_name
 
     # add GCAM as Model
-    freight_truck_input['Model'] = 'GCAM'
-    freight_truck_output['Model'] = 'GCAM'
+    road_freight_input['Model'] = 'GCAM'
+    road_freight_output['Model'] = 'GCAM'
 
     # replace Unit column with expected values (EJ/yr, million tkm/yr)
-    freight_truck_input['Unit'] = 'EJ/yr'
-    freight_truck_output['Unit'] = 'million tkm/yr'
+    road_freight_input['Unit'] = 'EJ/yr'
+    road_freight_output['Unit'] = 'million tkm/yr'
 
     # define Variable
-    # input: Final Energy|Transport|Freight|Road|{subsector}|{technology}
-    # output: Distance|Transport|Freight|Road|{subsector}|{technology}
-    freight_truck_input['Variable'] = 'Final Energy|Transport|Freight|Road|' + freight_truck_input['subsector'] + '|' + freight_truck_input['technology']
-    freight_truck_output['Variable'] = 'Distance|Transport|Freight|Road|' + freight_truck_output['subsector'] + '|' + freight_truck_output['technology'] 
+    # input: Final Energy|Transport|Pass|Road|{subsector}|{technology}
+    # output: Distance|Transport|Pass|Road|{subsector}|{technology}
+    road_freight_input['Variable'] = 'Final Energy|Transport|Freight|Road|' + road_freight_input['mode'] + '|' + road_freight_input['technology']
+    road_freight_output['Variable'] = 'Distance|Transport|Freight|Road|' + road_freight_output['subsector'] + '|' + road_freight_output['technology'] 
 
     # reorder columns and remove unnecessary columns (sector, subsector, technology)
-    freight_truck_input = freight_truck_input[['Scenario', 'Region', 'Model', 'Variable', 'Unit', 'Year', 'value']]
-    freight_truck_output = freight_truck_output[['Scenario', 'Region', 'Model', 'Variable', 'Unit', 'Year', 'value']]
+    road_freight_input = road_freight_input[['Scenario', 'Region', 'Model', 'Variable', 'Unit', 'Year', 'value']]
+    road_freight_output = road_freight_output[['Scenario', 'Region', 'Model', 'Variable', 'Unit', 'Year', 'value']]
 
     # pivot dfs, creating columns for each year
 
-    freight_truck_input_pivot = pd.pivot_table(freight_truck_input,
+    road_freight_input_pivot = pd.pivot_table(road_freight_input,
                                       values=['value'],
                                       index=['Scenario', 'Region', 'Model', 'Variable', 'Unit'],
                                       columns=['Year']).reset_index()
-    freight_truck_output_pivot = pd.pivot_table(freight_truck_output,
+    road_freight_output_pivot = pd.pivot_table(road_freight_output,
                                        values=['value'],
                                        index=['Scenario', 'Region', 'Model', 'Variable', 'Unit'],
                                        columns=['Year']).reset_index()
-    
-    # list all year columns, loop through df columns and make sure column exists
-
-    out_df = pd.concat([freight_truck_input_pivot, freight_truck_output_pivot]).reset_index(drop=True)
+    out_df = pd.concat([road_freight_input_pivot, road_freight_output_pivot]).reset_index(drop=True)
 
     # tidy up dataframe (fix multiple index column names in year columns)
     out_df.columns = ['Scenario', 'Region', 'Model', 'Variable', 'Unit'] + [str(x[1]) for x in out_df.columns[5:]]
 
+    # create output directory if it doesn't exist
+    if not os.path.exists(os.path.join('..', 'output', scenario_name)):
+        os.mkdir(os.path.join('..', 'output', scenario_name))
+
     # write to file
-    out_df.to_excel('./iamc_template/'+scenario_name+'/iamc_template_gcam_road_freight.xlsx', index=False)
+    out_df.to_excel(os.path.join('..', 'output', scenario_name, 'iamc_template_gcam_transport_road_freight.xlsx'), index=False)
 
-
+run_road_freight('ssp24p5tol5')
