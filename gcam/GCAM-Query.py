@@ -1,7 +1,7 @@
 import gcamreader 
 import os, re
 
-dbpath = r'database'
+dbpath = 'database'
 scenario = 'ssp24p5tol5'
 
 conn = gcamreader.LocalDBConn(dbpath=dbpath, dbfile=scenario)
