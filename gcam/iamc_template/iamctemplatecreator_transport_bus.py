@@ -85,7 +85,9 @@ def run_bus(scenario_name):
     # tidy up dataframe (fix multiple index column names in year columns)
     out_df.columns = ['Scenario', 'Region', 'Model', 'Variable', 'Unit'] + [str(x[1]) for x in out_df.columns[5:]]
 
-    # write to file
-    out_df.to_excel(os.path.join('..', 'output', scenario_name, 'iamc_template_gcam_transport_bus.xlsx'), index=False) 
+    # create output directory if it doesn't exist
+    if not os.path.exists(os.path.join('..', 'output', scenario_name)):
+        os.mkdir(os.path.join('..', 'output', scenario_name))
 
-run_bus('ssp24p5tol5')
+    # write to file
+    out_df.to_excel(os.path.join('..', 'output', scenario_name, 'iamc_template_gcam_transport_bus.xlsx'), index=False)
