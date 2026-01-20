@@ -5,9 +5,11 @@
   iam_aliases:
     remind: ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|BEV
     remind-eu: ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|BEV
+    gcam: Distance|Transport|Pass|Road|LDV|Large Car and Truck|BEV
   energy_use_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|BEV
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|BEV
+    gcam: Final Energy|Transport|Pass|Road|LDV|Large Car and Truck|BEV
   ecoinvent_aliases:
     fltr:
       - 'transport, passenger car, battery electric, Large'
@@ -20,9 +22,11 @@
   iam_aliases:
     remind: ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|FCEV
     remind-eu: ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|FCEV
+    gcam: Distance|Transport|Pass|Road|LDV|Large Car and Truck|FCEV
   energy_use_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|FCEV
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|FCEV
+    gcam: Final Energy|Transport|Pass|Road|LDV|Large Car and Truck|FCEV
   ecoinvent_aliases:
     fltr:
       - 'transport, passenger car, fuel cell electric, Large'
@@ -35,9 +39,11 @@
   iam_aliases:
     remind: ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Gases
     remind-eu: ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Gases
+    gcam: Distance|Transport|Pass|Road|LDV|Large Car and Truck|NG
   energy_use_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Gases
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Gases
+    gcam: Final Energy|Transport|Pass|Road|LDV|Large Car and Truck|NG
   ecoinvent_aliases:
     fltr:
       - 'transport, passenger car, compressed gas, Large, EURO-6'
@@ -51,9 +57,11 @@
   iam_aliases:
     remind: ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Hybrid electric
     remind-eu: ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Hybrid electric
+    gcam: Distance|Transport|Pass|Road|LDV|Large Car and Truck|Hybrid Liquids
   energy_use_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Hybrid electric
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Hybrid electric
+    gcam: Final Energy|Transport|Pass|Road|LDV|Large Car and Truck|Hybrid Liquids
   ecoinvent_aliases:
     fltr:
       - 'transport, passenger car, plugin gasoline hybrid, Large'
@@ -68,9 +76,11 @@
   iam_aliases:
     remind: ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Liquids
     remind-eu: ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Liquids
+    gcam: Distance|Transport|Pass|Road|LDV|Large Car and Truck|Liquids
   energy_use_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Liquids
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Liquids
+    gcam: Final Energy|Transport|Pass|Road|LDV|Large Car and Truck|Liquids
   ecoinvent_aliases:
     fltr:
       - 'transport, passenger car, gasoline, Large, EURO-6'
@@ -87,12 +97,14 @@
     tiam-ucl: Distance|Transport|Car|Electric|Electricity
     witch: Energy Service|Transportation|Passenger|Light-Duty Vehicles|Battery-Electric
     image: Energy Service|Transportation|Passenger|Light Duty Vehicle|Electricity
+    gcam: Distance|Transport|Pass|Road|LDV|Car|BEV
   energy_use_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|BEV
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|BEV
     tiam-ucl: Final Energy|Transport|Car|Electric|Electricity
     witch: Final Energy|Transportation|Passenger|Light-Duty Vehicles|Electricity|Battery-Electric
     image: Final Energy|Transportation|Passenger|Light Duty Vehicle|Electricity
+    gcam: Final Energy|Transport|Pass|Road|LDV|Car|BEV
   ecoinvent_aliases:
     fltr:
       - 'transport, passenger car, battery electric, Medium'
@@ -108,6 +120,7 @@
     tiam-ucl: Distance|Transport|Car|Hydrogen Fuel Cell|Car Hydrogen
     witch: Energy Service|Transportation|Passenger|Light-Duty Vehicles|Fuel-Cell-Electric
     image: Energy Service|Transportation|Passenger|Light Duty Vehicle|Hydrogen
+    gcam: Distance|Transport|Pass|Road|LDV|Car|FCEV
   energy_use_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|FCEV
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|FCEV
@@ -116,6 +129,7 @@
       - Final Energy|Transport|Car|Hydrogen Fuel Cell|Electricity
     witch: Final Energy|Transportation|Passenger|Light-Duty Vehicles|Hydrogen|Fuel-Cell-Electric
     image: Final Energy|Transportation|Passenger|Light Duty Vehicle|Hydrogen
+    gcam: Final Energy|Transport|Pass|Road|LDV|Car|FCEV
   ecoinvent_aliases:
     fltr:
       - 'transport, passenger car, fuel cell electric, Medium'
@@ -130,11 +144,13 @@
     remind-eu: ES|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Gases
     tiam-ucl: Distance|Transport|Car|Natural Gas|Natural Gas
     image: Energy Service|Transportation|Passenger|Light Duty Vehicle|Gases
+    gcam: Distance|Transport|Pass|Road|LDV|Car|NG
   energy_use_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Gases
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Gases
     tiam-ucl: Final Energy|Transport|Car|Natural Gas|Natural Gas
     image: Final Energy|Transportation|Passenger|Light Duty Vehicle|Gases
+    gcam: Final Energy|Transport|Pass|Road|LDV|Car|NG
   ecoinvent_aliases:
     fltr:
       - 'transport, passenger car, compressed gas, Medium, EURO-6'
@@ -166,12 +182,14 @@
     tiam-ucl:
       - Distance|Transport|Car|Gasoline Plug-in Hybrid|Electricity
       - Distance|Transport|Car|Gasoline Plug-in Hybrid|Gasoline
+    gcam: Distance|Transport|Pass|Road|LDV|Car|Hybrid Liquids
   energy_use_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Hybrid electric
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Hybrid electric
     tiam-ucl:
       - Final Energy|Transport|Car|Gasoline Plug-in Hybrid|Electricity
       - Final Energy|Transport|Car|Gasoline Plug-in Hybrid|Gasoline
+    gcam: Final Energy|Transport|Pass|Road|LDV|Car|Hybrid Liquids
   ecoinvent_aliases:
     fltr:
       - 'transport, passenger car, plugin gasoline hybrid, Medium'
@@ -243,6 +261,7 @@
     image:
       - Energy Service|Transportation|Passenger|Light Duty Vehicle|Liquids|Biomass
       - Energy Service|Transportation|Passenger|Light Duty Vehicle|Liquids|Fossil
+    gcam: Distance|Transport|Pass|Road|LDV|Car|Liquids
   energy_use_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Liquids
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Liquids
@@ -253,6 +272,7 @@
     image:
       - Final Energy|Transportation|Passenger|Light Duty Vehicle|Liquids|Biomass
       - Final Energy|Transportation|Passenger|Light Duty Vehicle|Liquids|Fossil
+    gcam: Final Energy|Transport|Pass|Road|LDV|Car|Liquids
   ecoinvent_aliases:
     fltr:
       - 'transport, passenger car, gasoline, Medium, EURO-6'
@@ -280,9 +300,11 @@
   iam_aliases:
     remind: ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|BEV
     remind-eu: ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|BEV
+    gcam: Distance|Transport|Pass|Road|LDV|Mini Car|BEV
   energy_use_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|BEV
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|BEV
+    gcam: Final Energy|Transport|Pass|Road|LDV|Mini Car|BEV
   ecoinvent_aliases:
     fltr:
       - 'transport, passenger car, battery electric, Mini'
@@ -293,9 +315,11 @@
   iam_aliases:
     remind: ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|FCEV
     remind-eu: ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|FCEV
+    gcam: Distance|Transport|Pass|Road|LDV|Mini Car|FCEV
   energy_use_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|FCEV
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|FCEV
+    gcam: Final Energy|Transport|Pass|Road|LDV|Mini Car|FCEV
   ecoinvent_aliases:
     fltr:
       - 'transport, passenger car, fuel cell electric, Mini'
@@ -306,9 +330,11 @@
   iam_aliases:
     remind: ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Gases
     remind-eu: ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Gases
+    gcam: Distance|Transport|Pass|Road|LDV|Mini Car|NG
   energy_use_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Gases
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Gases
+    gcam: Final Energy|Transport|Pass|Road|LDV|Mini Car|NG
   ecoinvent_aliases:
     fltr:
       - 'transport, passenger car, compressed gas, Mini, EURO-6'
@@ -321,9 +347,11 @@
   iam_aliases:
     remind: ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Hybrid electric
     remind-eu: ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Hybrid electric
+    gcam: Distance|Transport|Pass|Road|LDV|Mini Car|Hybrid Liquids
   energy_use_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Hybrid electric
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Hybrid electric
+    gcam: Final Energy|Transport|Pass|Road|LDV|Mini Car|Hybrid Liquids
   ecoinvent_aliases:
     fltr:
       - 'transport, passenger car, plugin gasoline hybrid, Mini'
@@ -336,9 +364,11 @@
   iam_aliases:
     remind: ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Liquids
     remind-eu: ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Liquids
+    gcam: Distance|Transport|Pass|Road|LDV|Mini Car|Liquids
   energy_use_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Liquids
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Liquids
+    gcam: Final Energy|Transport|Pass|Road|LDV|Mini Car|Liquids
   ecoinvent_aliases:
     fltr:
       - 'transport, passenger car, gasoline, Mini, EURO-6'
