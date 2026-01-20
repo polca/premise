@@ -1259,7 +1259,7 @@ class ExternalScenario(BaseTransformation):
 
                             # fetch the dataset name/ref corresponding to this item
                             # under `production pathways`
-                            (name, ref_prod, _, _, _, ratio) = (
+                            name, ref_prod, _, _, _, ratio = (
                                 fetch_dataset_description_from_production_pathways(
                                     configuration, pathway
                                 )
