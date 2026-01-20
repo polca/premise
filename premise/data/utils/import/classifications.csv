@@ -3312,3 +3312,4 @@ market for light fuel oil,light fuel oil,1920:Manufacture of refined petroleum p
 "bioethanol, from forest residues, burned in passenger car",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
 "bioethanol, from sugar crops, burned in passenger car",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
 "forest residues, burned in furnace 1000kW","heat","3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"market for kerosene","kerosene",1920:Manufacture of refined petroleum products,33371: Kerosene
