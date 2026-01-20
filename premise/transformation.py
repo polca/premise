@@ -966,66 +966,67 @@ class BaseTransformation:
             self.add_to_index(market_dataset)
             self.write_log(market_dataset, "created")
 
-        if (
-            "World" not in regions
-            and production_volumes.sel(
-                region=[reg for reg in regions if reg != "World"]
-            )
-            .sum(dim="region")
-            .sum()
-            .values.item(0)
-            > 0
-        ):
+        if production_volumes is not None:
+            if (
+                "World" not in regions
+                and production_volumes.sel(
+                    region=[reg for reg in regions if reg != "World"]
+                )
+                .sum(dim="region")
+                .sum()
+                .values.item(0)
+                > 0
+            ):
 
-            # create the World market
-            world_market = {
-                "name": name,
-                "reference product": reference_product,
-                "location": "World",
-                "unit": unit,
-                "regionalized": True,
-                "code": str(uuid.uuid4().hex),
-                "database": "",
-                "comment": f"Market dataset for {name} in World for {self.year}.",
-                "exchanges": [
-                    {
-                        "name": name,
-                        "product": reference_product,
-                        "location": "World",
-                        "amount": 1.0,
-                        "unit": unit,
-                        "uncertainty type": 0,
-                        "type": "production",
-                    }
-                ],
-            }
+                # create the World market
+                world_market = {
+                    "name": name,
+                    "reference product": reference_product,
+                    "location": "World",
+                    "unit": unit,
+                    "regionalized": True,
+                    "code": str(uuid.uuid4().hex),
+                    "database": "",
+                    "comment": f"Market dataset for {name} in World for {self.year}.",
+                    "exchanges": [
+                        {
+                            "name": name,
+                            "product": reference_product,
+                            "location": "World",
+                            "amount": 1.0,
+                            "unit": unit,
+                            "uncertainty type": 0,
+                            "type": "production",
+                        }
+                    ],
+                }
 
-            candidate = {
-                "name": name,
-                "reference product": reference_product,
-                "unit": unit,
-            }
-            for region in regions:
-                share = regional_shares_dict.get(region, 0)
+                candidate = {
+                    "name": name,
+                    "reference product": reference_product,
+                    "unit": unit,
+                }
+                for region in regions:
+                    share = regional_shares_dict.get(region, 0)
 
-                if share > 0:
-                    if self.is_in_index(candidate, region):
-                        # add the regional market shares
-                        world_market["exchanges"].append(
-                            {
-                                "name": name,
-                                "product": reference_product,
-                                "location": region,
-                                "amount": share,
-                                "unit": unit,
-                                "uncertainty type": 0,
-                                "type": "technosphere",
-                            }
-                        )
+                    if share > 0:
+                        if self.is_in_index(candidate, region):
+                            # add the regional market shares
+                            world_market["exchanges"].append(
+                                {
+                                    "name": name,
+                                    "product": reference_product,
+                                    "location": region,
+                                    "amount": share,
+                                    "unit": unit,
+                                    "uncertainty type": 0,
+                                    "type": "technosphere",
+                                }
+                            )
 
-            self.database.append(world_market)
-            self.add_to_index(world_market)
-            self.write_log(world_market, "created")
+                self.database.append(world_market)
+                self.add_to_index(world_market)
+                self.write_log(world_market, "created")
 
         datasets = list(
             ws.get_many(
