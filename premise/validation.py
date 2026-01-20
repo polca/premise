@@ -2573,7 +2573,7 @@ class BiomassValidation(BaseDatasetValidator):
                             "methanol",
                             "hydrogen",
                             " residual ",
-                            "light fuel oil"
+                            "light fuel oil",
                         ]
                     ]
                 )
