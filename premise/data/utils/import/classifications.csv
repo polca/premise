@@ -3217,62 +3217,98 @@ zinc mine operation,zinc concentrate,0729:Mining of other non-ferrous metal ores
 "market for transport, freight, lorry, 3.5 metric ton","transport, freight, lorry",4923:Freight transport by road,6511: Road transport services of freight
 "market for transport, freight, lorry, 7.5 metric ton","transport, freight, lorry",4923:Freight transport by road,6511: Road transport services of freight
 "heat production, biomethane, at boiler condensing modulating <100kW","heat, central or small-scale, biomethane",3530:Steam and air conditioning supply,17300: Steam and hot water
-"hard coal mine operation","hard coal, run-of-mine",0510:Mining of hard coal,11010: Hard coal
-"hard coal mine operation and hard coal preparation","hard coal",0510:Mining of hard coal,11010: Hard coal
+hard coal mine operation,"hard coal, run-of-mine",0510:Mining of hard coal,11010: Hard coal
+hard coal mine operation and hard coal preparation,hard coal,0510:Mining of hard coal,11010: Hard coal
 "hard coal mine operation, underground","hard coal, run-of-mine",0510:Mining of hard coal,11010: Hard coal
 "hard coal mine operation, open cast, truck and shovel","hard coal, run-of-mine",0510:Mining of hard coal,11010: Hard coal
 "hard coal mine operation, open cast, dragline","hard coal, run-of-mine",0510:Mining of hard coal,11010: Hard coal
-"plywood production","plywood",1621:Manufacture of veneer sheets and wood-based panels,"31450: Plywood, veneer panels and similar laminated wood of bamboo"
-"market for light fuel oil","light fuel oil",1920:Manufacture of refined petroleum products,33370: Fuel oils n.e.c.
+plywood production,plywood,1621:Manufacture of veneer sheets and wood-based panels,"31450: Plywood, veneer panels and similar laminated wood of bamboo"
+market for light fuel oil,light fuel oil,1920:Manufacture of refined petroleum products,33370: Fuel oils n.e.c.
 "1,1-difluoroethane production","1,1-difluoroethane",2011:Manufacture of basic chemicals,"34150: Amine-function compounds; oxygen-function amino-compounds, except lysine and its esters and salts thereof and […]"
 "photovoltaics, electric installation for 3kWp module, at building","photovoltaics, electric installation for 3kWp module, at building",3320:Installation of industrial machinery and equipment,87360: Installation services of electrical machinery and apparatus n.e.c.
-"methanol production, from coal gasification","methanol",2011:Manufacture of basic chemicals,"34710: Polymers of ethylene, in primary forms"
-"carbon disulfide production, from natural gas","carbon disulfide",2011:Manufacture of basic chemicals,"34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
+"methanol production, from coal gasification",methanol,2011:Manufacture of basic chemicals,"34710: Polymers of ethylene, in primary forms"
+"carbon disulfide production, from natural gas",carbon disulfide,2011:Manufacture of basic chemicals,"34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
 "market for gallium, high-grade","gallium, high-grade",2420:Manufacture of basic precious and other non-ferrous metals,"41601: Tungsten, molybdenum, tantalum, magnesium, cobalt, cadmium, titanium, zirconium, beryllium, gallium, hafnium, […]"
 "heat production, softwood chips from forest, at furnace 1000kW","heat, district or industrial, other than natural gas",3530:Steam and air conditioning supply,17300: Steam and hot water
 "heat production, softwood chips from forest, at furnace 1000kW, state-of-the-art 2014","heat, district or industrial, other than natural gas",3530:Steam and air conditioning supply,17300: Steam and hot water
 "electricity production, hard coal, supercritical","electricity, high voltage","3510:Electric power generation, transmission and distribution",17100: Electrical energy
-"heat and power co-generation, natural gas, 160kW electrical, lambda=1","electricity, low voltage","3530:Steam and air conditioning supply","17100: Electrical energy"
-"heat and power co-generation, natural gas, 160kW electrical, lambda=1","heat, central or small-scale, natural gas","3530:Steam and air conditioning supply","17300: Steam and hot water"
-"heat production, natural gas, at industrial furnace >100kW","heat, district or industrial, natural gas","3530:Steam and air conditioning supply","17300: Steam and hot water"
-"heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical","heat, district or industrial, natural gas","3510:Electric power generation, transmission and distribution","17300: Steam and hot water"
-"heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical","electricity, high voltage","3510:Electric power generation, transmission and distribution","17100: Electrical energy"
-"heat production, natural gas, at industrial furnace low-NOx >100kW","heat, district or industrial, natural gas","3530:Steam and air conditioning supply","17300: Steam and hot water"
-"heat and power co-generation, natural gas, 1MW electrical, lean burn","electricity, high voltage","3530:Steam and air conditioning supply","17100: Electrical energy"
-"heat and power co-generation, natural gas, 1MW electrical, lean burn","heat, district or industrial, natural gas","3530:Steam and air conditioning supply","17300: Steam and hot water"
-"heat and power co-generation, natural gas, 160kW electrical, Jakobsberg","electricity, low voltage","3530:Steam and air conditioning supply","17100: Electrical energy"
-"heat and power co-generation, natural gas, 160kW electrical, Jakobsberg","heat, central or small-scale, natural gas, Jakobsberg","3530:Steam and air conditioning supply","17300: Steam and hot water"
-"heat production, natural gas, at boiler modulating >100kW","heat, district or industrial, natural gas","3530:Steam and air conditioning supply","17300: Steam and hot water"
-"heat and power co-generation, natural gas, mini-plant 2KW electrical","electricity, low voltage","3530:Steam and air conditioning supply","17100: Electrical energy"
-"heat and power co-generation, natural gas, mini-plant 2KW electrical","heat, central or small-scale, natural gas","3530:Steam and air conditioning supply","17300: Steam and hot water"
-"heat and power co-generation, natural gas, 500kW electrical, lean burn","electricity, high voltage","3530:Steam and air conditioning supply","17100: Electrical energy"
-"heat and power co-generation, natural gas, 500kW electrical, lean burn","heat, district or industrial, natural gas","3530:Steam and air conditioning supply","17300: Steam and hot water"
-"heat production, natural gas, at boiler atmospheric low-NOx non-modulating <100kW","heat, central or small-scale, natural gas","3530:Steam and air conditioning supply","17300: Steam and hot water"
-"heat and power co-generation, natural gas, 50kW electrical, lean burn","electricity, low voltage","3530:Steam and air conditioning supply","17100: Electrical energy"
-"heat and power co-generation, natural gas, 50kW electrical, lean burn","heat, central or small-scale, natural gas","3530:Steam and air conditioning supply","17300: Steam and hot water"
-"heat production, natural gas, at boiler atmospheric non-modulating <100kW","heat, central or small-scale, natural gas","3530:Steam and air conditioning supply","17300: Steam and hot water"
-"heat and power co-generation, natural gas, 200kW electrical, lean burn","electricity, high voltage","3530:Steam and air conditioning supply","17100: Electrical energy"
-"heat and power co-generation, natural gas, 200kW electrical, lean burn","heat, district or industrial, natural gas","3530:Steam and air conditioning supply","17300: Steam and hot water"
-"heat production, natural gas, at boiler modulating <100kW","heat, central or small-scale, natural gas","3530:Steam and air conditioning supply","17300: Steam and hot water"
-"heat production, natural gas, at diffusion absorption heat pump 4kW, future","heat, future","3530:Steam and air conditioning supply","17300: Steam and hot water"
-"heat production, natural gas, at boiler fan burner non-modulating <100kW","heat, central or small-scale, natural gas","3530:Steam and air conditioning supply","17300: Steam and hot water"
-"heat production, natural gas, at boiler atm. low-NOx condensing non-modulating <100kW","heat, central or small-scale, natural gas","3530:Steam and air conditioning supply","17300: Steam and hot water"
-"heat production, natural gas, at boiler fan burner low-NOx non-modulating <100kW","heat, central or small-scale, natural gas","3530:Steam and air conditioning supply","17300: Steam and hot water"
-"heat production, light fuel oil, at boiler 10kW, non-modulating","heat, central or small-scale, other than natural gas","3530:Steam and air conditioning supply","17300: Steam and hot water"
-"heat production, light fuel oil, at boiler 100kW, non-modulating","heat, central or small-scale, other than natural gas","3530:Steam and air conditioning supply","17300: Steam and hot water"
-"heat production, light fuel oil, at boiler 10kW condensing, non-modulating","heat, central or small-scale, other than natural gas","3530:Steam and air conditioning supply","17300: Steam and hot water"
-"heat production, softwood chips from forest, at furnace 5000kW","heat, district or industrial, other than natural gas","3530:Steam and air conditioning supply","17300: Steam and hot water"
-"heat production, hardwood chips from forest, at furnace 1000kW, state-of-the-art 2014","heat, district or industrial, other than natural gas","3530:Steam and air conditioning supply","17300: Steam and hot water"
-"heat production, softwood chips from forest, at furnace 50kW","heat, central or small-scale, other than natural gas","3530:Steam and air conditioning supply","17300: Steam and hot water"
-"heat production, hardwood chips from forest, at furnace 300kW, state-of-the-art 2014","heat, district or industrial, other than natural gas","3530:Steam and air conditioning supply","17300: Steam and hot water"
-"heat production, hardwood chips from forest, at furnace 1000kW","heat, district or industrial, other than natural gas","3530:Steam and air conditioning supply","17300: Steam and hot water"
-"heat production, hardwood chips from forest, at furnace 5000kW","heat, district or industrial, other than natural gas","3530:Steam and air conditioning supply","17300: Steam and hot water"
-"heat production, hardwood chips from forest, at furnace 5000kW, state-of-the-art 2014","heat, district or industrial, other than natural gas","3530:Steam and air conditioning supply","17300: Steam and hot water"
-"heat production, hardwood chips from forest, at furnace 50kW","heat, central or small-scale, other than natural gas","3530:Steam and air conditioning supply","17300: Steam and hot water"
-"heat production, softwood chips from forest, at furnace 300kW, state-of-the-art 2014","heat, district or industrial, other than natural gas","3530:Steam and air conditioning supply","17300: Steam and hot water"
-"heat production, hardwood chips from forest, at furnace 50kW, state-of-the-art 2014","heat, central or small-scale, other than natural gas","3530:Steam and air conditioning supply","17300: Steam and hot water"
-"heat production, hardwood chips from forest, at furnace 300kW","heat, district or industrial, other than natural gas","3530:Steam and air conditioning supply","17300: Steam and hot water"
-"heat production, softwood chips from forest, at furnace 50kW, state-of-the-art 2014","heat, central or small-scale, other than natural gas","3530:Steam and air conditioning supply","17300: Steam and hot water"
-"heat production, softwood chips from forest, at furnace 5000kW, state-of-the-art 2014","heat, district or industrial, other than natural gas","3530:Steam and air conditioning supply","17300: Steam and hot water"
-"heat production, at hard coal industrial furnace 1-10MW","heat, district or industrial, other than natural gas","3530:Steam and air conditioning supply","17300: Steam and hot water"
-"heat production, softwood chips from forest, at furnace 300kW","heat, district or industrial, other than natural gas","3530:Steam and air conditioning supply","17300: Steam and hot water"
+"heat and power co-generation, natural gas, 160kW electrical, lambda=1","electricity, low voltage",3530:Steam and air conditioning supply,17100: Electrical energy
+"heat and power co-generation, natural gas, 160kW electrical, lambda=1","heat, central or small-scale, natural gas",3530:Steam and air conditioning supply,17300: Steam and hot water
+"heat production, natural gas, at industrial furnace >100kW","heat, district or industrial, natural gas",3530:Steam and air conditioning supply,17300: Steam and hot water
+"heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical","heat, district or industrial, natural gas","3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical","electricity, high voltage","3510:Electric power generation, transmission and distribution",17100: Electrical energy
+"heat production, natural gas, at industrial furnace low-NOx >100kW","heat, district or industrial, natural gas",3530:Steam and air conditioning supply,17300: Steam and hot water
+"heat and power co-generation, natural gas, 1MW electrical, lean burn","electricity, high voltage",3530:Steam and air conditioning supply,17100: Electrical energy
+"heat and power co-generation, natural gas, 1MW electrical, lean burn","heat, district or industrial, natural gas",3530:Steam and air conditioning supply,17300: Steam and hot water
+"heat and power co-generation, natural gas, 160kW electrical, Jakobsberg","electricity, low voltage",3530:Steam and air conditioning supply,17100: Electrical energy
+"heat and power co-generation, natural gas, 160kW electrical, Jakobsberg","heat, central or small-scale, natural gas, Jakobsberg",3530:Steam and air conditioning supply,17300: Steam and hot water
+"heat production, natural gas, at boiler modulating >100kW","heat, district or industrial, natural gas",3530:Steam and air conditioning supply,17300: Steam and hot water
+"heat and power co-generation, natural gas, mini-plant 2KW electrical","electricity, low voltage",3530:Steam and air conditioning supply,17100: Electrical energy
+"heat and power co-generation, natural gas, mini-plant 2KW electrical","heat, central or small-scale, natural gas",3530:Steam and air conditioning supply,17300: Steam and hot water
+"heat and power co-generation, natural gas, 500kW electrical, lean burn","electricity, high voltage",3530:Steam and air conditioning supply,17100: Electrical energy
+"heat and power co-generation, natural gas, 500kW electrical, lean burn","heat, district or industrial, natural gas",3530:Steam and air conditioning supply,17300: Steam and hot water
+"heat production, natural gas, at boiler atmospheric low-NOx non-modulating <100kW","heat, central or small-scale, natural gas",3530:Steam and air conditioning supply,17300: Steam and hot water
+"heat and power co-generation, natural gas, 50kW electrical, lean burn","electricity, low voltage",3530:Steam and air conditioning supply,17100: Electrical energy
+"heat and power co-generation, natural gas, 50kW electrical, lean burn","heat, central or small-scale, natural gas",3530:Steam and air conditioning supply,17300: Steam and hot water
+"heat production, natural gas, at boiler atmospheric non-modulating <100kW","heat, central or small-scale, natural gas",3530:Steam and air conditioning supply,17300: Steam and hot water
+"heat and power co-generation, natural gas, 200kW electrical, lean burn","electricity, high voltage",3530:Steam and air conditioning supply,17100: Electrical energy
+"heat and power co-generation, natural gas, 200kW electrical, lean burn","heat, district or industrial, natural gas",3530:Steam and air conditioning supply,17300: Steam and hot water
+"heat production, natural gas, at boiler modulating <100kW","heat, central or small-scale, natural gas",3530:Steam and air conditioning supply,17300: Steam and hot water
+"heat production, natural gas, at diffusion absorption heat pump 4kW, future","heat, future",3530:Steam and air conditioning supply,17300: Steam and hot water
+"heat production, natural gas, at boiler fan burner non-modulating <100kW","heat, central or small-scale, natural gas",3530:Steam and air conditioning supply,17300: Steam and hot water
+"heat production, natural gas, at boiler atm. low-NOx condensing non-modulating <100kW","heat, central or small-scale, natural gas",3530:Steam and air conditioning supply,17300: Steam and hot water
+"heat production, natural gas, at boiler fan burner low-NOx non-modulating <100kW","heat, central or small-scale, natural gas",3530:Steam and air conditioning supply,17300: Steam and hot water
+"heat production, light fuel oil, at boiler 10kW, non-modulating","heat, central or small-scale, other than natural gas",3530:Steam and air conditioning supply,17300: Steam and hot water
+"heat production, light fuel oil, at boiler 100kW, non-modulating","heat, central or small-scale, other than natural gas",3530:Steam and air conditioning supply,17300: Steam and hot water
+"heat production, light fuel oil, at boiler 10kW condensing, non-modulating","heat, central or small-scale, other than natural gas",3530:Steam and air conditioning supply,17300: Steam and hot water
+"heat production, softwood chips from forest, at furnace 5000kW","heat, district or industrial, other than natural gas",3530:Steam and air conditioning supply,17300: Steam and hot water
+"heat production, hardwood chips from forest, at furnace 1000kW, state-of-the-art 2014","heat, district or industrial, other than natural gas",3530:Steam and air conditioning supply,17300: Steam and hot water
+"heat production, softwood chips from forest, at furnace 50kW","heat, central or small-scale, other than natural gas",3530:Steam and air conditioning supply,17300: Steam and hot water
+"heat production, hardwood chips from forest, at furnace 300kW, state-of-the-art 2014","heat, district or industrial, other than natural gas",3530:Steam and air conditioning supply,17300: Steam and hot water
+"heat production, hardwood chips from forest, at furnace 1000kW","heat, district or industrial, other than natural gas",3530:Steam and air conditioning supply,17300: Steam and hot water
+"heat production, hardwood chips from forest, at furnace 5000kW","heat, district or industrial, other than natural gas",3530:Steam and air conditioning supply,17300: Steam and hot water
+"heat production, hardwood chips from forest, at furnace 5000kW, state-of-the-art 2014","heat, district or industrial, other than natural gas",3530:Steam and air conditioning supply,17300: Steam and hot water
+"heat production, hardwood chips from forest, at furnace 50kW","heat, central or small-scale, other than natural gas",3530:Steam and air conditioning supply,17300: Steam and hot water
+"heat production, softwood chips from forest, at furnace 300kW, state-of-the-art 2014","heat, district or industrial, other than natural gas",3530:Steam and air conditioning supply,17300: Steam and hot water
+"heat production, hardwood chips from forest, at furnace 50kW, state-of-the-art 2014","heat, central or small-scale, other than natural gas",3530:Steam and air conditioning supply,17300: Steam and hot water
+"heat production, hardwood chips from forest, at furnace 300kW","heat, district or industrial, other than natural gas",3530:Steam and air conditioning supply,17300: Steam and hot water
+"heat production, softwood chips from forest, at furnace 50kW, state-of-the-art 2014","heat, central or small-scale, other than natural gas",3530:Steam and air conditioning supply,17300: Steam and hot water
+"heat production, softwood chips from forest, at furnace 5000kW, state-of-the-art 2014","heat, district or industrial, other than natural gas",3530:Steam and air conditioning supply,17300: Steam and hot water
+"heat production, at hard coal industrial furnace 1-10MW","heat, district or industrial, other than natural gas",3530:Steam and air conditioning supply,17300: Steam and hot water
+"heat production, softwood chips from forest, at furnace 300kW","heat, district or industrial, other than natural gas",3530:Steam and air conditioning supply,17300: Steam and hot water
+"forest residues, burned in furnace 1000kW ",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"heat production, residues from forest, at furnace 1000kW","heat, district or industrial, other than natural gas","3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"heat, residential, by combustion of light fuel oil, from cellulosic non-residual biomass, using boiler","heat, from residential heating system","3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"light fuel oil, from non-residual cellulosic biomass, burned in residential boiler",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"heat, residential, by combustion of light fuel oil, from cellulosic residual biomass, using boiler","heat, from residential heating system","3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"light fuel oil, from residual cellulosic biomass, burned in residential boiler",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"heat, residential, by combustion of light fuel oil, from oily biomass, using boiler","heat, from residential heating system","3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"light fuel oil, from oily biomass, burned in residential boiler",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"biodiesel, from residual oily biomass, burned in heavy-duty vehicle",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"biodiesel, from non-residual oily biomass, burned in heavy-duty vehicle",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"biodiesel, from non-residual cellulosic biomass, burned in heavy-duty vehicle",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"biodiesel, from residual cellulosic biomass, burned in heavy-duty vehicle",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"biodiesel, from residual oily biomass, burned in single deck coach or urban bus",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"biodiesel, from non-residual oily biomass, burned in single deck coach or urban bus",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"biodiesel, from non-residual cellulosic biomass, burned in single deck coach or urban bus",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"biodiesel, from residual cellulosic biomass, burned in single deck coach or urban bus",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"bioethanol, from eucalyptus, burned in motorcycle",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"bioethanol, from residues, burned in motorcycle",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"bioethanol, from sugar crops, burned in motorcycle",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"kerosene, from cellulosic non-residual biomass, burned in aircraft",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"kerosene, from cellulosic residual biomass, burned in aircraft",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"kerosene, from non-residual oily biomass, burned in aircraft",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"biodiesel, from residual cellulosic biomass, burned in container ship",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"biodiesel, from non-residual cellulosic biomass, burned in container ship",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"biodiesel, from non-residual oily biomass, burned in container ship",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"biodiesel, from residual oily biomass, burned in passenger train",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"biodiesel, from non-residual oily biomass, burned in passenger train",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"biodiesel, from non-residual cellulosic biomass, burned in passenger train",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"biodiesel, from residual cellulosic biomass, burned in passenger train",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"biodiesel, from residual oily biomass, burned in passenger car",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"biodiesel, from non-residual cellulosic biomass, burned in passenger car",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"biodiesel, from residual cellulosic biomass, burned in passenger car",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"bioethanol, from eucalyptus, burned in passenger car",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"bioethanol, from forest residues, burned in passenger car",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"bioethanol, from sugar crops, burned in passenger car",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"forest residues, burned in furnace 1000kW","heat","3510:Electric power generation, transmission and distribution",17300: Steam and hot water

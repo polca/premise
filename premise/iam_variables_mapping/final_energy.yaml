@@ -105,6 +105,7 @@ Buildings - Heating - Liquid coal:
   iam_aliases:
     remind: FE|Buildings|Liquids|Fossil|+|Coal
     remind-eu: FE|Buildings|Liquids|Fossil|+|Coal
+
 Buildings - Heating - LPG:
   ecoinvent_aliases:
     fltr:
@@ -2668,7 +2669,7 @@ Transport - Freight - Rail - Biofuel - Oil crops:
       reference product: heat
   iam_aliases:
     remind: FE|Transport|Freight|Rail|Liquids|Biomass|Allocated Feedstock|Non-Cellulosic|Oil-based
-    remind-eu: FFE|Transport|Freight|Rail|Liquids|Biomass|Allocated Feedstock|Non-Cellulosic|Oil-based
+    remind-eu: FE|Transport|Freight|Rail|Liquids|Biomass|Allocated Feedstock|Non-Cellulosic|Oil-based
 
 Transport - Freight - Rail - Liquid fossil:
   ecoinvent_aliases:

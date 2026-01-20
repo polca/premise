@@ -4179,17 +4179,6 @@
     },
     {
       "source": {
-        "uuid": "460716f9-f5b8-4ee0-8198-545b24822124",
-        "name": "Sodium"
-      },
-      "target": {
-        "uuid": "235b2f02-ff98-4da9-82e2-e4246c7b7990",
-        "name": "Sodium"
-      },
-      "comment": "nan"
-    },
-    {
-      "source": {
         "uuid": "b54ed595-69b7-478b-88d9-a6bd574d46b8",
         "name": "Sodium chlorate"
       },
