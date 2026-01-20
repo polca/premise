@@ -38,7 +38,6 @@ class PathwaysDataPackage:
         use_absolute_efficiency=False,
         biosphere_name="biosphere3",
         generate_reports: bool = True,
-        skip_validation_checks: bool = False,
     ):
         self.years = years
         self.scenarios = []
@@ -73,7 +72,6 @@ class PathwaysDataPackage:
             use_absolute_efficiency=use_absolute_efficiency,
             biosphere_name=biosphere_name,
             generate_reports=generate_reports,
-            skip_validation_checks=skip_validation_checks,
         )
 
         self.scenario_names = []

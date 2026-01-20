@@ -548,7 +548,6 @@ class NewDatabase:
         use_absolute_efficiency=False,
         biosphere_name: str = "biosphere3",
         generate_reports: bool = True,
-        skip_validation_checks: bool = False,
     ) -> None:
         """
         Initialize the NewDatabase class.
@@ -572,7 +571,6 @@ class NewDatabase:
         :param use_absolute_efficiency: whether to use absolute efficiency values. Default is False.
         :param biosphere_name: name of the biosphere database in the current project. Default is "biosphere3".
         :param generate_reports: whether to generate change and summary reports. Default is True.
-        :param skip_validation_checks: whether to skip validation checks. Default is False.
         """
         self.sector_update_methods = None
         self.source = source_db
@@ -585,7 +583,6 @@ class NewDatabase:
         self.keep_source_db_uncertainty = keep_source_db_uncertainty
         self.biosphere_name = check_presence_biosphere_database(biosphere_name)
         self.generate_reports = generate_reports
-        self.skip_validate_checks = skip_validation_checks
 
         # if version is anything other than 3.8 or 3.9
         # and system_model is "consequential"
@@ -1120,20 +1117,19 @@ class NewDatabase:
                 scenario=scenario, original_database=self.database, load_metadata=True
             )
 
-            if not self.skip_validate_checks:
-                try:
-                    _prepare_database(
-                        scenario=scenario,
-                        db_name=name,
-                        original_database=self.database,
-                        biosphere_name=self.biosphere_name,
-                        version=self.version,
-                    )
-                except ValueError:
-                    self.generate_change_report()
-                    raise ValueError(
-                        "The database is not ready for export: MAJOR anomalies found. Check the change report."
-                    )
+            try:
+                _prepare_database(
+                    scenario=scenario,
+                    db_name=name,
+                    original_database=self.database,
+                    biosphere_name=self.biosphere_name,
+                    version=self.version,
+                )
+            except ValueError:
+                self.generate_change_report()
+                raise ValueError(
+                    "The database is not ready for export: MAJOR anomalies found. Check the change report."
+                )
 
         list_scenarios = create_scenario_list(self.scenarios)
 
@@ -1152,14 +1148,13 @@ class NewDatabase:
         tmp_scenario = self.scenarios[0]
         tmp_scenario["database"] = self.database
 
-        if not self.skip_validate_checks:
-            self.database = prepare_db_for_export(
-                scenario=tmp_scenario,
-                name=name,
-                original_database=self.database,
-                biosphere_name=self.biosphere_name,
-                version=self.version,
-            )
+        self.database = prepare_db_for_export(
+            scenario=tmp_scenario,
+            name=name,
+            original_database=self.database,
+            biosphere_name=self.biosphere_name,
+            version=self.version,
+        )
 
         write_brightway_database(
             data=self.database,
@@ -1218,20 +1213,19 @@ class NewDatabase:
                 scenario=scenario, original_database=self.database, load_metadata=True
             )
 
-            if not self.skip_validate_checks:
-                try:
-                    _prepare_database(
-                        scenario=scenario,
-                        db_name=name[s],
-                        original_database=self.database,
-                        biosphere_name=self.biosphere_name,
-                        version=self.version,
-                    )
-                except ValueError:
-                    self.generate_change_report()
-                    raise ValueError(
-                        "The database is not ready for export: MAJOR anomalies found. Check the change report."
-                    )
+            try:
+                _prepare_database(
+                    scenario=scenario,
+                    db_name=name[s],
+                    original_database=self.database,
+                    biosphere_name=self.biosphere_name,
+                    version=self.version,
+                )
+            except ValueError:
+                self.generate_change_report()
+                raise ValueError(
+                    "The database is not ready for export: MAJOR anomalies found. Check the change report."
+                )
 
             scenario["database name"] = name[s]
             write_brightway_database(
@@ -1298,20 +1292,19 @@ class NewDatabase:
                 scenario=scenario, original_database=self.database, load_metadata=True
             )
 
-            if not self.skip_validate_checks:
-                try:
-                    scenario = _prepare_database(
-                        scenario=scenario,
-                        db_name="database",
-                        original_database=self.database,
-                        biosphere_name=self.biosphere_name,
-                        version=self.version,
-                    )
-                except ValueError:
-                    self.generate_change_report()
-                    raise ValueError(
-                        "The database is not ready for export: MAJOR anomalies found. Check the change report."
-                    )
+            try:
+                scenario = _prepare_database(
+                    scenario=scenario,
+                    db_name="database",
+                    original_database=self.database,
+                    biosphere_name=self.biosphere_name,
+                    version=self.version,
+                )
+            except ValueError:
+                self.generate_change_report()
+                raise ValueError(
+                    "The database is not ready for export: MAJOR anomalies found. Check the change report."
+                )
 
             Export(
                 scenario=scenario,
@@ -1347,20 +1340,19 @@ class NewDatabase:
                 scenario=scenario, original_database=self.database, load_metadata=True
             )
 
-            if not self.skip_validate_checks:
-                try:
-                    _prepare_database(
-                        scenario=scenario,
-                        db_name="database",
-                        original_database=self.database,
-                        biosphere_name=self.biosphere_name,
-                        version=self.version,
-                    )
-                except ValueError:
-                    self.generate_change_report()
-                    raise ValueError(
-                        "The database is not ready for export: MAJOR anomalies found. Check the change report."
-                    )
+            try:
+                _prepare_database(
+                    scenario=scenario,
+                    db_name="database",
+                    original_database=self.database,
+                    biosphere_name=self.biosphere_name,
+                    version=self.version,
+                )
+            except ValueError:
+                self.generate_change_report()
+                raise ValueError(
+                    "The database is not ready for export: MAJOR anomalies found. Check the change report."
+                )
 
             export = Export(
                 scenario=scenario,
@@ -1403,20 +1395,19 @@ class NewDatabase:
                 scenario=scenario, original_database=self.database, load_metadata=True
             )
 
-            if not self.skip_validate_checks:
-                try:
-                    _prepare_database(
-                        scenario=scenario,
-                        db_name="database",
-                        original_database=self.database,
-                        biosphere_name=self.biosphere_name,
-                        version=self.version,
-                    )
-                except ValueError:
-                    self.generate_change_report()
-                    raise ValueError(
-                        "The database is not ready for export: MAJOR anomalies found. Check the change report."
-                    )
+            try:
+                _prepare_database(
+                    scenario=scenario,
+                    db_name="database",
+                    original_database=self.database,
+                    biosphere_name=self.biosphere_name,
+                    version=self.version,
+                )
+            except ValueError:
+                self.generate_change_report()
+                raise ValueError(
+                    "The database is not ready for export: MAJOR anomalies found. Check the change report."
+                )
 
             Export(
                 scenario=scenario,
@@ -1452,20 +1443,19 @@ class NewDatabase:
                 scenario=scenario, original_database=self.database, load_metadata=True
             )
 
-            if not self.skip_validate_checks:
-                try:
-                    _prepare_database(
-                        scenario=scenario,
-                        db_name=name,
-                        original_database=self.database,
-                        biosphere_name=self.biosphere_name,
-                        version=self.version,
-                    )
-                except ValueError:
-                    self.generate_change_report()
-                    raise ValueError(
-                        "The database is not ready for export: MAJOR anomalies found. Check the change report."
-                    )
+            try:
+                _prepare_database(
+                    scenario=scenario,
+                    db_name=name,
+                    original_database=self.database,
+                    biosphere_name=self.biosphere_name,
+                    version=self.version,
+                )
+            except ValueError:
+                self.generate_change_report()
+                raise ValueError(
+                    "The database is not ready for export: MAJOR anomalies found. Check the change report."
+                )
 
         list_scenarios = create_scenario_list(self.scenarios)
 
