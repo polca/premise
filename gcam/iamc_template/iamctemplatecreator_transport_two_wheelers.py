@@ -60,8 +60,8 @@ def run_two_wheelers(scenario_name):
     # define Variable
     # input: Final Energy|Transport|Pass|Road|{subsector}|{technology}
     # output: Distance|Transport|Pass|Road|{subsector}|{technology}
-    two_wheelers_input['Variable'] = 'Final Energy|Transport|Freight|Road|' + two_wheelers_input['mode'] + '|' + two_wheelers_input['technology']
-    two_wheelers_output['Variable'] = 'Distance|Transport|Freight|Road|' + two_wheelers_output['subsector'] + '|' + two_wheelers_output['technology'] 
+    two_wheelers_input['Variable'] = 'Final Energy|Transport|Pass|Road|' + two_wheelers_input['mode'] + '|' + two_wheelers_input['technology']
+    two_wheelers_output['Variable'] = 'Distance|Transport|Pass|Road|' + two_wheelers_output['subsector'] + '|' + two_wheelers_output['technology'] 
 
     # reorder columns and remove unnecessary columns (sector, subsector, technology)
     two_wheelers_input = two_wheelers_input[['Scenario', 'Region', 'Model', 'Variable', 'Unit', 'Year', 'value']]

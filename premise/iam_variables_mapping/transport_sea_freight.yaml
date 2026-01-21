@@ -14,6 +14,9 @@ ship, marine oil:
     image:
       - Energy Service|Transportation|Freight|National Shipping|Liquids|Fossil
       - Energy Service|Transportation|Freight|International Shipping|Liquids|Fossil
+    gcam: 
+      - Distance|Transport|Freight|Sea|International Ship|Liquids
+      - Distance|Transport|Freight|Sea|Domestic Ship|Liquids
   energy_use_aliases:
     remind:
       - FE|Transport|Bunkers|Freight|International Shipping|Liquids|Fossil
@@ -29,6 +32,9 @@ ship, marine oil:
       - Final Energy|Transport|Ship|International|Heavy Fuel Oil|Heavy Fuel Oil
       - Final Energy|Transport|Ship|Domestic|Heavy Fuel Oil
       - Final Energy|Transport|Ship|Domestic|Heavy Fuel Oil|Heavy Fuel Oil
+    gcam:
+      - Final Energy|Transport|Freight|Sea|International Ship|Liquids
+      - Final Energy|Transport|Freight|Sea|Domestic Ship|Liquids
   ecoinvent_aliases:
     fltr:
       - transport, freight, sea, container ship
@@ -119,11 +125,17 @@ ship, electric:
     image:
       - Energy Service|Transportation|Freight|National Shipping|Electricity
       - Energy Service|Transportation|Freight|International Shipping|Electricity
+    gcam:
+      - Distance|Transport|Freight|Sea|International Ship|BEV
+      - Distance|Transport|Freight|Sea|Domestic Ship|BEV
   energy_use_aliases:
     image:
       - Final Energy|Transportation|Freight|National Shipping|Electricity
-      - Energy Service|Transportation|Freight|International Shipping|Electricity
+      - Final Energy|Transportation|Freight|International Shipping|Electricity # listed as Energy Service in original premise
     tiam-ucl:
+    gcam:
+      - Final Energy|Transport|Freight|Sea|International Ship|BEV
+      - Final Energy|Transport|Freight|Sea|Domestic Ship|BEV
   ecoinvent_aliases:
     fltr:
       - transport, freight, sea, container ship, powered with electricity
@@ -146,6 +158,9 @@ ship, fuel cell:
     tiam-ucl:
       - Distance|Transport|Ship|Domestic|Hydrogen|Shipping Hydrogen
       - Distance|Transport|Ship|International|Hydrogen|Shipping Hydrogen
+    gcam:
+      - Distance|Transport|Freight|Sea|International Ship|FCEV
+      - Distance|Transport|Freight|Sea|Domestic Ship|FCEV
   energy_use_aliases:
     image:
       - Final Energy|Transportation|Freight|International Shipping|Hydrogen
@@ -153,6 +168,9 @@ ship, fuel cell:
     tiam-ucl:
       - Final Energy|Transport|Ship|Domestic|Hydrogen|Shipping Hydrogen
       - Final Energy|Transport|Ship|International|Hydrogen|Shipping Hydrogen
+    gcam:
+      - Final Energy|Transport|Freight|Sea|International Ship|FCEV
+      - Final Energy|Transport|Freight|Sea|Domestic Ship|FCEV
   ecoinvent_aliases:
     fltr:
       - transport, freight, sea, container ship, powered with hydrogen
