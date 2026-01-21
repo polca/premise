@@ -72,6 +72,7 @@ def get_delimiter(data=None, filepath=None) -> str:
     return delimiter
 
 
+@lru_cache(maxsize=1)
 def get_crops_properties() -> dict:
     """
     Return a dictionary with crop names as keys and IAM labels as values
@@ -84,6 +85,7 @@ def get_crops_properties() -> dict:
     return crop_props
 
 
+@lru_cache(maxsize=8)
 def get_oil_product_volumes(model) -> pd.DataFrame:
     """
     Load the file `oil_product_volumes.csv` that contains recent oil product volumes
@@ -111,6 +113,7 @@ def get_oil_product_volumes(model) -> pd.DataFrame:
     return df
 
 
+@lru_cache(maxsize=1)
 def get_metals_intensity_factors_data() -> xr.DataArray:
     """
     Read the materials intensity factors csv file and return an `xarray` with dimensions:
@@ -144,6 +147,7 @@ def get_metals_intensity_factors_data() -> xr.DataArray:
     return array
 
 
+@lru_cache(maxsize=8)
 def get_gains_IAM_data(model, gains_scenario):
     filepath = Path(
         DATA_DIR / "GAINS_emission_factors" / "iam_data" / gains_scenario
@@ -1150,26 +1154,33 @@ class IAMDataCollection:
     def __get_iam_variable_labels(
         self, filepath: Path, variable: str
     ) -> Dict[str, Union[str, List[str]]]:
-        """
-        Loads a csv file into a dictionary.
-        This dictionary contains common terminology to ``premise``
-        (fuel names, electricity production technologies, etc.) and its
-        equivalent variable name in the IAM file.
-        :return: dictionary that contains fuel production names equivalence
-        """
+        return get_iam_variable_labels(filepath, variable, self.model)
 
-        dict_vars = {}
 
-        with open(filepath, "r", encoding="utf-8") as stream:
-            out = yaml.safe_load(stream)
+@lru_cache(maxsize=64)
+def get_iam_variable_labels(
+    filepath: Path, variable: str, model: str
+) -> Dict[str, Union[str, List[str]]]:
+    """
+    Loads a csv file into a dictionary.
+    This dictionary contains common terminology to ``premise``
+    (fuel names, electricity production technologies, etc.) and its
+    equivalent variable name in the IAM file.
+    :return: dictionary that contains fuel production names equivalence
+    """
 
-        for key, values in out.items():
-            if variable in values:
-                if self.model in values[variable]:
-                    if values[variable][self.model] is not None:
-                        dict_vars[key] = values[variable][self.model]
+    dict_vars = {}
 
-        return dict_vars
+    with open(filepath, "r", encoding="utf-8") as stream:
+        out = yaml.safe_load(stream)
+
+    for key, values in out.items():
+        if variable in values:
+            if model in values[variable]:
+                if values[variable][model] is not None:
+                    dict_vars[key] = values[variable][model]
+
+    return dict_vars
 
     def __get_iam_data(
         self,
