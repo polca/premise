@@ -1182,7 +1182,6 @@ class IAMDataCollection:
     ) -> Dict[str, Union[str, List[str]]]:
         return get_iam_variable_labels(filepath, variable, self.model)
 
-
     def __get_iam_data(
         self,
         key: bytes,

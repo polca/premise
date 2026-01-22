@@ -34,7 +34,6 @@ from .inventory_imports import get_correspondence_bio_flows
 from .utils import reset_all_codes, get_uuids
 from .validation import BaseDatasetValidator
 
-
 FILEPATH_SIMAPRO_UNITS = DATA_DIR / "utils" / "export" / "simapro_units.yml"
 FILEPATH_SIMAPRO_COMPARTMENTS = (
     DATA_DIR / "utils" / "export" / "simapro_compartments.yml"
@@ -999,7 +998,12 @@ def check_geographical_linking(scenario, original_database):
 
 
 def prepare_db_for_export(
-    scenario, name, original_database, version, biosphere_name=None, fast_validation=False
+    scenario,
+    name,
+    original_database,
+    version,
+    biosphere_name=None,
+    fast_validation=False,
 ):
     """
     Prepare a database for export.

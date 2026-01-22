@@ -2149,9 +2149,7 @@ class BaseTransformation:
         # Handle scenarios where the location is 'GLO' or 'RoW'
         if locations_set.intersection({"GLO", "RoW", "World"}):
             kept = [
-                ds
-                for loc in ("GLO", "RoW", "World")
-                for ds in by_location.get(loc, [])
+                ds for loc in ("GLO", "RoW", "World") for ds in by_location.get(loc, [])
             ]
             allocated, share = allocate_inputs(exchange, kept)
             new_exchanges.extend(allocated)

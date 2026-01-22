@@ -83,15 +83,15 @@ def _fast_sqlite_writes(enabled: bool):
 
     try:
         primary_db = unique_dbs[0].db
-        original_settings["synchronous"] = (
-            primary_db.execute_sql("PRAGMA synchronous;").fetchone()[0]
-        )
-        original_settings["journal_mode"] = (
-            primary_db.execute_sql("PRAGMA journal_mode;").fetchone()[0]
-        )
-        original_settings["temp_store"] = (
-            primary_db.execute_sql("PRAGMA temp_store;").fetchone()[0]
-        )
+        original_settings["synchronous"] = primary_db.execute_sql(
+            "PRAGMA synchronous;"
+        ).fetchone()[0]
+        original_settings["journal_mode"] = primary_db.execute_sql(
+            "PRAGMA journal_mode;"
+        ).fetchone()[0]
+        original_settings["temp_store"] = primary_db.execute_sql(
+            "PRAGMA temp_store;"
+        ).fetchone()[0]
     except Exception:
         original_settings = {}
 
@@ -144,15 +144,9 @@ def _fast_sqlite_writes(enabled: bool):
                 bw_sqlite.SubstitutableDatabase.vacuum = original_substitutable_vacuum
 
             for db, settings in db_settings.items():
-                db.db.execute_sql(
-                    f"PRAGMA synchronous = {settings['synchronous']};"
-                )
-                db.db.execute_sql(
-                    f"PRAGMA journal_mode = {settings['journal_mode']};"
-                )
-                db.db.execute_sql(
-                    f"PRAGMA temp_store = {settings['temp_store']};"
-                )
+                db.db.execute_sql(f"PRAGMA synchronous = {settings['synchronous']};")
+                db.db.execute_sql(f"PRAGMA journal_mode = {settings['journal_mode']};")
+                db.db.execute_sql(f"PRAGMA temp_store = {settings['temp_store']};")
             if original_base_checks is not None:
                 bw_base.check_exchange_type = original_base_checks[
                     "check_exchange_type"
