@@ -1095,6 +1095,7 @@ class NewDatabase:
         filepath: str = None,
         file_format: str = "csv",
         preserve_original_column: bool = False,
+        fast: bool = False
     ) -> None:
         """
         Register a super-structure database,
@@ -1123,7 +1124,7 @@ class NewDatabase:
                     db_name=name,
                     original_database=self.database,
                     biosphere_name=self.biosphere_name,
-                    version=self.version,
+                    version=self.version
                 )
             except ValueError:
                 self.generate_change_report()
@@ -1153,12 +1154,13 @@ class NewDatabase:
             name=name,
             original_database=self.database,
             biosphere_name=self.biosphere_name,
-            version=self.version,
+            version=self.version
         )
 
         write_brightway_database(
             data=self.database,
             name=name,
+            fast=fast,
         )
 
         if self.generate_reports:
@@ -1172,13 +1174,19 @@ class NewDatabase:
 
         delete_all_pickles()
 
-    def write_db_to_brightway(self, name: [str, List[str]] = None):
+    def write_db_to_brightway(
+        self,
+        name: [str, List[str]] = None,
+        fast: bool = False,
+    ):
         """
         Register the new database into an open brightway project.
         :param name: to give a (list) of custom name(s) to the database.
         Should either be a string if there's only one database to export.
         Or a list of strings if there are several databases.
         :type name: str
+        :param fast: relax sqlite durability and skip vacuum for faster writes.
+        :type fast: bool
         """
 
         if name:
@@ -1219,7 +1227,7 @@ class NewDatabase:
                     db_name=name[s],
                     original_database=self.database,
                     biosphere_name=self.biosphere_name,
-                    version=self.version,
+                    version=self.version
                 )
             except ValueError:
                 self.generate_change_report()
@@ -1231,6 +1239,7 @@ class NewDatabase:
             write_brightway_database(
                 scenario["database"],
                 name[s],
+                fast=fast,
             )
 
             end_of_process(scenario)
@@ -1298,7 +1307,7 @@ class NewDatabase:
                     db_name="database",
                     original_database=self.database,
                     biosphere_name=self.biosphere_name,
-                    version=self.version,
+                    version=self.version
                 )
             except ValueError:
                 self.generate_change_report()
@@ -1346,7 +1355,7 @@ class NewDatabase:
                     db_name="database",
                     original_database=self.database,
                     biosphere_name=self.biosphere_name,
-                    version=self.version,
+                    version=self.version
                 )
             except ValueError:
                 self.generate_change_report()
@@ -1401,7 +1410,7 @@ class NewDatabase:
                     db_name="database",
                     original_database=self.database,
                     biosphere_name=self.biosphere_name,
-                    version=self.version,
+                    version=self.version
                 )
             except ValueError:
                 self.generate_change_report()
@@ -1427,7 +1436,7 @@ class NewDatabase:
 
     def write_datapackage(
         self,
-        name: str = f"datapackage_{datetime.now().strftime('%d-%m-%Y')} (v.{str(__version__)})",
+        name: str = f"datapackage_{datetime.now().strftime('%d-%m-%Y')} (v.{str(__version__)})"
     ):
         if not isinstance(name, str):
             raise TypeError("`name` should be a string.")
@@ -1449,7 +1458,7 @@ class NewDatabase:
                     db_name=name,
                     original_database=self.database,
                     biosphere_name=self.biosphere_name,
-                    version=self.version,
+                    version=self.version
                 )
             except ValueError:
                 self.generate_change_report()

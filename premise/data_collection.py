@@ -195,6 +195,32 @@ def get_gains_IAM_data(model, gains_scenario):
     return arr
 
 
+@lru_cache(maxsize=64)
+def get_iam_variable_labels(
+    filepath: Path, variable: str, model: str
+) -> Dict[str, Union[str, List[str]]]:
+    """
+    Loads a csv file into a dictionary.
+    This dictionary contains common terminology to ``premise``
+    (fuel names, electricity production technologies, etc.) and its
+    equivalent variable name in the IAM file.
+    :return: dictionary that contains fuel production names equivalence
+    """
+
+    dict_vars = {}
+
+    with open(filepath, "r", encoding="utf-8") as stream:
+        out = yaml.safe_load(stream)
+
+    for key, values in out.items():
+        if variable in values:
+            if model in values[variable]:
+                if values[variable][model] is not None:
+                    dict_vars[key] = values[variable][model]
+
+    return dict_vars
+
+
 def fix_efficiencies(data: xr.DataArray, min_year: int) -> xr.DataArray:
     """
     Fix the efficiency data to ensure plausibility.
@@ -1156,31 +1182,6 @@ class IAMDataCollection:
     ) -> Dict[str, Union[str, List[str]]]:
         return get_iam_variable_labels(filepath, variable, self.model)
 
-
-@lru_cache(maxsize=64)
-def get_iam_variable_labels(
-    filepath: Path, variable: str, model: str
-) -> Dict[str, Union[str, List[str]]]:
-    """
-    Loads a csv file into a dictionary.
-    This dictionary contains common terminology to ``premise``
-    (fuel names, electricity production technologies, etc.) and its
-    equivalent variable name in the IAM file.
-    :return: dictionary that contains fuel production names equivalence
-    """
-
-    dict_vars = {}
-
-    with open(filepath, "r", encoding="utf-8") as stream:
-        out = yaml.safe_load(stream)
-
-    for key, values in out.items():
-        if variable in values:
-            if model in values[variable]:
-                if values[variable][model] is not None:
-                    dict_vars[key] = values[variable][model]
-
-    return dict_vars
 
     def __get_iam_data(
         self,

@@ -686,16 +686,19 @@ class BaseDatasetValidator:
 
             for exc in dataset["exchanges"]:
                 # check that `amount` is of type `float`
-                if np.isnan(exc["amount"]):
-                    ValueError(
-                        f"Amount is NaN in exchange {exc} in dataset {dataset['name'], dataset['location']}"
-                    )
-                if not isinstance(exc["amount"], float):
-                    exc["amount"] = float(exc["amount"])
+                amount = exc.get("amount")
+                if amount is None:
+                    continue
+                if isinstance(amount, (int, float, np.floating)):
+                    if np.isnan(amount):
+                        ValueError(
+                            f"Amount is NaN in exchange {exc} in dataset {dataset['name'], dataset['location']}"
+                        )
 
             # remove fields that are None
-            for key, value in list(dataset.items()):
-                if value is None:
+            dataset_keys = list(dataset.keys())
+            for key in dataset_keys:
+                if dataset[key] is None:
                     del dataset[key]
 
         # we also want to remove any numpy generics
@@ -709,11 +712,11 @@ class BaseDatasetValidator:
 
         for dataset in self.database:
             for exc in dataset["exchanges"]:
-                if not isinstance(exc["amount"], float):
-                    exc["amount"] = float(exc["amount"])
-
-                if isinstance(exc["amount"], (np.float64, np.ndarray)):
-                    exc["amount"] = float(exc["amount"])
+                amount = exc.get("amount")
+                if amount is None:
+                    continue
+                if not isinstance(amount, float):
+                    exc["amount"] = float(amount)
 
             for k, v in dataset.items():
                 if isinstance(v, dict):
@@ -810,26 +813,36 @@ class BaseDatasetValidator:
                 f"{entry['location']}|{entry['severity']}|{entry['reason']}|{entry['message']}"
             )
 
-    def run_all_checks(self):
+    def run_all_checks(self, fast: bool = False):
         # Run all checks
         print("Running all checks...")
-        self.check_datasets_integrity()
-        self.check_matrix_squareness()
-        self.validate_dataset_structure()
-        self.verify_data_consistency()
-        self.check_relinking_logic()
-        self.check_new_location()
-        self.check_for_orphaned_datasets()
-        self.check_for_duplicates()
-        self.check_for_circular_references()
-        self.check_database_name()
-        self.remove_unused_fields()
-        self.correct_fields_format()
-        self.check_amount_format()
-        self.reformat_parameters()
-        self.add_missing_classifications()
-        self.check_uncertainty()
-        self.save_log()
+        if fast:
+            self.validate_dataset_structure()
+            self.check_database_name()
+            self.remove_unused_fields()
+            self.correct_fields_format()
+            self.check_amount_format()
+            self.reformat_parameters()
+            self.check_uncertainty()
+            self.save_log()
+        else:
+            self.check_datasets_integrity()
+            self.check_matrix_squareness()
+            self.validate_dataset_structure()
+            self.verify_data_consistency()
+            self.check_relinking_logic()
+            self.check_new_location()
+            self.check_for_orphaned_datasets()
+            self.check_for_duplicates()
+            self.check_for_circular_references()
+            self.check_database_name()
+            self.remove_unused_fields()
+            self.correct_fields_format()
+            self.check_amount_format()
+            self.reformat_parameters()
+            self.add_missing_classifications()
+            self.check_uncertainty()
+            self.save_log()
         if len(self.minor_issues_log) > 0:
             print("Minor anomalies found: check the change report.")
         if len(self.major_issues_log) > 0:

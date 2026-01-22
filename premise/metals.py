@@ -1016,13 +1016,6 @@ class Metals(BaseTransformation):
         if len(trspt_exc) > 0:
             dataset["exchanges"].extend(trspt_exc)
 
-        # # filter out None
-        dataset["exchanges"] = [
-            exc
-            for exc in dataset["exchanges"]
-            if self.activity_exists(exc) or exc["type"] == "production"
-        ]
-
         # remove old market dataset
         for old_market in ws.get_many(
             self.database,
@@ -1036,22 +1029,6 @@ class Metals(BaseTransformation):
             ), f"Market {(old_market['name'], old_market['reference product'], old_market['location'])} still in index"
 
         return dataset
-
-    def activity_exists(self, exchange: dict) -> bool:
-        """Check if an activity referenced by an exchange exists in the database."""
-        if exchange.get("type") != "technosphere":
-            return True
-
-        activities = list(
-            ws.get_many(
-                self.database,
-                ws.equals("name", exchange["name"]),
-                ws.equals("reference product", exchange["product"]),
-                ws.equals("location", exchange["location"]),
-            )
-        )
-
-        return len(activities) > 0
 
     def substitute_old_markets(self, new_dataset: dict, df_metal: pd.DataFrame) -> None:
         """

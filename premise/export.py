@@ -999,7 +999,7 @@ def check_geographical_linking(scenario, original_database):
 
 
 def prepare_db_for_export(
-    scenario, name, original_database, version, biosphere_name=None
+    scenario, name, original_database, version, biosphere_name=None, fast_validation=False
 ):
     """
     Prepare a database for export.
@@ -1020,12 +1020,14 @@ def prepare_db_for_export(
         biosphere_name=biosphere_name,
         version=version,
     )
-    validator.run_all_checks()
+    validator.run_all_checks(fast=fast_validation)
 
     return validator.database
 
 
-def _prepare_database(scenario, db_name, original_database, biosphere_name, version):
+def _prepare_database(
+    scenario, db_name, original_database, biosphere_name, version, fast_validation=False
+):
 
     scenario["database"] = prepare_db_for_export(
         scenario,
@@ -1033,6 +1035,7 @@ def _prepare_database(scenario, db_name, original_database, biosphere_name, vers
         original_database=original_database,
         biosphere_name=biosphere_name,
         version=version,
+        fast_validation=fast_validation,
     )
 
     return scenario

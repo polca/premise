@@ -169,11 +169,16 @@ class IncrementalDatabase(NewDatabase):
         name: str = f"super_db_{datetime.now().strftime('%d-%m-%Y')}",
         filepath: str = None,
         file_format: str = "excel",
+        fast: bool = False,
     ) -> None:
         """
         Write the superstructure database to a Brightway2 database.
         """
 
         self.write_superstructure_db_to_brightway(
-            name, filepath, file_format, preserve_original_column=True
+            name,
+            filepath,
+            file_format,
+            preserve_original_column=True,
+            fast=fast,
         )
