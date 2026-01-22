@@ -145,7 +145,8 @@ def discover_biosphere_migrations(debug=False):
         print(f"[migration] Looking for biosphere JSONs in: {folder}")
 
     for fp in sorted(folder.glob("*.json")):
-        data = json.load(fp.open())
+        with fp.open(encoding="utf-8") as f:
+            data = json.load(f)
 
         raw_src = data["source_id"].split("-")[1]  # e.g. "3.5-biosphere"
         raw_dst = data["target_id"].split("-")[1]
@@ -172,7 +173,7 @@ def discover_available_migrations(debug: bool = False) -> Dict[tuple, dict]:
         print(f"[migration] Looking for JSONs in: {folder}")
 
     for fp in sorted(folder.glob("*.json")):
-        with fp.open() as f:
+        with fp.open(encoding="utf-8") as f:
             data = json.load(f)
 
         # example source_id: "ecoinvent-3.5-cutoff"
