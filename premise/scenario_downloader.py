@@ -38,7 +38,7 @@ def download_csv(file_name: str, url: str, download_folder: Path) -> Path:
 
         version_str = ".".join(map(str, __version__))
         headers = {
-            'User-Agent': f'premise-lca/{version_str} (https://github.com/polca/premise)'
+            "User-Agent": f"premise-lca/{version_str} (https://github.com/polca/premise)"
         }
         response = requests.get(url, stream=True, timeout=60, headers=headers)
 
