@@ -8,6 +8,8 @@ from pathlib import Path
 import requests
 from tqdm import tqdm
 
+from premise import __version__
+
 
 def download_csv(file_name: str, url: str, download_folder: Path) -> Path:
     """Download a CSV file from Zenodo if it is not present locally.
@@ -34,7 +36,11 @@ def download_csv(file_name: str, url: str, download_folder: Path) -> Path:
     if not file_path.exists():
         print(f"{file_name} not found locally. Downloading...")
 
-        response = requests.get(url, stream=True, timeout=60)
+        version_str = ".".join(map(str, __version__))
+        headers = {
+            'User-Agent': f'premise-lca/{version_str} (https://github.com/polca/premise)'
+        }
+        response = requests.get(url, stream=True, timeout=60, headers=headers)
 
         if response.status_code == 200:
             total_size = int(response.headers.get("Content-Length", 0))
