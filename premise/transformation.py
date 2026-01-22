@@ -1951,10 +1951,19 @@ class BaseTransformation:
             )
 
         else:
+            possible_locations = [ds["location"] for ds in possible_datasets]
+            locations_set = set(possible_locations)
+            by_location = defaultdict(list)
+            for ds in possible_datasets:
+                by_location[ds["location"]].append(ds)
+
             self.handle_multiple_possible_datasets(
                 exchange,
                 dataset,
                 possible_datasets,
+                possible_locations,
+                locations_set,
+                by_location,
                 new_exchanges,
                 exclusive,
                 biggest_first,
@@ -2002,16 +2011,17 @@ class BaseTransformation:
         exchange: dict,
         dataset: dict,
         possible_datasets: list,
+        possible_locations: list,
+        locations_set: set,
+        by_location: dict,
         new_exchanges: list,
         exclusive: bool,
         biggest_first: bool,
         contained: bool,
     ) -> None:
         # First, check if the dataset location itself is a possible match
-        if dataset["location"] in [ds["location"] for ds in possible_datasets]:
-            candidate = [
-                ds for ds in possible_datasets if ds["location"] == dataset["location"]
-            ][0]
+        if dataset["location"] in locations_set:
+            candidate = by_location[dataset["location"]][0]
 
             new_exc = exchange.copy()
             new_exc["location"] = candidate["location"]
@@ -2033,6 +2043,9 @@ class BaseTransformation:
                 exchange,
                 dataset,
                 possible_datasets,
+                possible_locations,
+                locations_set,
+                by_location,
                 new_exchanges,
                 exclusive,
                 biggest_first,
@@ -2044,6 +2057,9 @@ class BaseTransformation:
         exchange: dict,
         dataset: dict,
         possible_datasets: list,
+        possible_locations: list,
+        locations_set: set,
+        by_location: dict,
         new_exchanges: list,
         exclusive: bool,
         biggest_first: bool,
@@ -2051,12 +2067,24 @@ class BaseTransformation:
     ) -> None:
         # Check if the location of the dataset is within IAM regions
         if dataset["location"] in self.geo.iam_regions:
-            self.handle_iam_region(exchange, dataset, possible_datasets, new_exchanges)
+            self.handle_iam_region(
+                exchange,
+                dataset,
+                possible_datasets,
+                locations_set,
+                by_location,
+                new_exchanges,
+            )
 
         elif dataset["location"] in ["GLO", "RoW", "World"]:
             # Handle global or rest-of-world scenarios
             self.handle_global_and_row_scenarios(
-                exchange, dataset, possible_datasets, new_exchanges
+                exchange,
+                dataset,
+                possible_datasets,
+                locations_set,
+                by_location,
+                new_exchanges,
             )
 
         else:
@@ -2065,6 +2093,8 @@ class BaseTransformation:
                 exchange,
                 dataset,
                 possible_datasets,
+                possible_locations,
+                by_location,
                 new_exchanges,
                 exclusive,
                 biggest_first,
@@ -2072,18 +2102,33 @@ class BaseTransformation:
             )
 
         # If there's still no match found, consider the default option
-        self.handle_default_option(exchange, dataset, new_exchanges, possible_datasets)
+        self.handle_default_option(
+            exchange,
+            dataset,
+            new_exchanges,
+            possible_datasets,
+            locations_set,
+            by_location,
+        )
 
-    def handle_iam_region(self, exchange, dataset, possible_datasets, new_exchanges):
+    def handle_iam_region(
+        self,
+        exchange,
+        dataset,
+        possible_datasets,
+        locations_set,
+        by_location,
+        new_exchanges,
+    ):
         # In IAM regions, we need to look for possible local datasets
         locs = [
             iloc
             for iloc in self.iam_to_ecoinvent_loc[dataset["location"]]
-            if iloc in [ds["location"] for ds in possible_datasets]
+            if iloc in locations_set
         ]
 
         if locs:
-            kept = [ds for ds in possible_datasets if ds["location"] in locs]
+            kept = [ds for loc in locs for ds in by_location[loc]]
             if dataset["location"] == "World" and "GLO" in locs:
                 kept = [ds for ds in kept if ds["location"] == "GLO"]
 
@@ -2093,15 +2138,20 @@ class BaseTransformation:
             self.add_new_entry_to_cache(dataset["location"], exchange, allocated, share)
 
     def handle_global_and_row_scenarios(
-        self, exchange, dataset, possible_datasets, new_exchanges
+        self,
+        exchange,
+        dataset,
+        possible_datasets,
+        locations_set,
+        by_location,
+        new_exchanges,
     ):
         # Handle scenarios where the location is 'GLO' or 'RoW'
-        possible_locations = [ds["location"] for ds in possible_datasets]
-        if any(loc in possible_locations for loc in ["GLO", "RoW", "World"]):
+        if locations_set.intersection({"GLO", "RoW", "World"}):
             kept = [
                 ds
-                for ds in possible_datasets
-                if ds["location"] in ["GLO", "RoW", "World"]
+                for loc in ("GLO", "RoW", "World")
+                for ds in by_location.get(loc, [])
             ]
             allocated, share = allocate_inputs(exchange, kept)
             new_exchanges.extend(allocated)
@@ -2112,6 +2162,8 @@ class BaseTransformation:
         exchange: dict,
         dataset: dict,
         possible_datasets: list,
+        possible_locations: list,
+        by_location: dict,
         new_exchanges: list,
         exclusive: bool,
         biggest_first: bool,
@@ -2133,7 +2185,7 @@ class BaseTransformation:
         location = dataset["location"]
         # if regions contained in posisble location
         # we need to turn them into tuples (model, region)
-        possible_locations = tuple([ds["location"] for ds in possible_datasets])
+        possible_locations = tuple(possible_locations)
 
         gis_match = self.get_gis_match(
             location,
@@ -2143,9 +2195,7 @@ class BaseTransformation:
             biggest_first,
         )
 
-        kept = [
-            ds for loc in gis_match for ds in possible_datasets if ds["location"] == loc
-        ]
+        kept = [ds for loc in gis_match for ds in by_location.get(loc, [])]
 
         if kept:
             allocated, share = allocate_inputs(exchange, kept)
@@ -2153,18 +2203,20 @@ class BaseTransformation:
             self.add_new_entry_to_cache(dataset["location"], exchange, allocated, share)
 
     def handle_default_option(
-        self, exchange, dataset, new_exchanges, possible_datasets
+        self,
+        exchange,
+        dataset,
+        new_exchanges,
+        possible_datasets,
+        locations_set,
+        by_location,
     ):
         new_exc = None
         # Handle the default case where no better candidate is found
         if not self.is_exchange_in_cache(exchange, dataset["location"]):
             for default_location in ["RoW", "GLO", "World"]:
-                if default_location in [x["location"] for x in possible_datasets]:
-                    default_dataset = [
-                        x
-                        for x in possible_datasets
-                        if x["location"] == default_location
-                    ][0]
+                if default_location in locations_set:
+                    default_dataset = by_location[default_location][0]
 
                     new_exc = exchange.copy()
                     new_exc["name"] = default_dataset["name"]
@@ -2266,6 +2318,16 @@ class BaseTransformation:
         # and sum the amounts of exchanges with the same name,
         # product, location and unit
 
+        grouped_exchanges = defaultdict(float)
+        for exc in new_exchanges:
+            key = (
+                exc["name"],
+                exc["product"],
+                exc["location"],
+                exc["unit"],
+            )
+            grouped_exchanges[key] += exc["amount"]
+
         new_exchanges = [
             {
                 "name": name,
@@ -2273,30 +2335,9 @@ class BaseTransformation:
                 "location": location,
                 "unit": unit,
                 "type": "technosphere",
-                "amount": sum(exc["amount"] for exc in exchanges),
+                "amount": amount,
             }
-            for (
-                name,
-                prod,
-                location,
-                unit,
-            ), exchanges in groupby(
-                sorted(
-                    new_exchanges,
-                    key=itemgetter(
-                        "name",
-                        "product",
-                        "location",
-                        "unit",
-                    ),
-                ),
-                key=itemgetter(
-                    "name",
-                    "product",
-                    "location",
-                    "unit",
-                ),
-            )
+            for (name, prod, location, unit), amount in grouped_exchanges.items()
         ]
 
         # apply uncertainties, if any
