@@ -1003,6 +1003,20 @@ class BaseInventoryImport:
                         f"Please check the exchange {exchange} in the dataset {dataset['name']}."
                     )
 
+    def remove_zero_amount_exchanges(self) -> None:
+        """
+        Remove non-production exchanges with zero amount to avoid invalid links.
+        """
+        for dataset in self.import_db.data:
+            dataset["exchanges"] = [
+                exc
+                for exc in dataset.get("exchanges", [])
+                if not (
+                    exc.get("type") != "production"
+                    and exc.get("amount") in (0, 0.0)
+                )
+            ]
+
     def fill_data_gaps(self, exc):
         """
         Some datatsets have the exchange amount set to zero because of ecoinvent license restrictions
@@ -1546,6 +1560,7 @@ class VariousVehicles(BaseInventoryImport):
         self.lower_case_technosphere_exchanges()
         self.add_biosphere_links()
         self.add_product_field_to_exchanges()
+        self.remove_zero_amount_exchanges()
         # Check for duplicates
         self.check_for_already_existing_datasets()
         self.check_units()
@@ -1617,8 +1632,10 @@ class AdditionalInventory(BaseInventoryImport):
         if temp_file_path.suffix == ".csv":
             try:
                 return CSVImporter(temp_file_path)
-            except:
-                raise ValueError(f"The file from {self.path} is not a valid CSV file.")
+            except Exception as exc:
+                raise ValueError(
+                    f"The file from {self.path} is not a valid CSV file: {exc}"
+                ) from exc
 
         raise ValueError(
             "Incorrect filetype for inventories. Should be either .xlsx or .csv"
@@ -1638,6 +1655,7 @@ class AdditionalInventory(BaseInventoryImport):
         self.lower_case_technosphere_exchanges()
         self.add_biosphere_links()
         self.add_product_field_to_exchanges()
+        self.remove_zero_amount_exchanges()
 
         # Check for duplicates
         self.check_for_already_existing_datasets()

@@ -2225,6 +2225,15 @@ class BaseTransformation:
             * ``iam_regions``: List, lists IAM regions, if additional ones need to be defined.
         Modifies the dataset in place; returns the modified dataset."""
 
+        dataset["exchanges"] = [
+            exc
+            for exc in dataset.get("exchanges", [])
+            if not (
+                exc.get("type") == "technosphere"
+                and exc.get("amount") in (0, 0.0, None)
+            )
+        ]
+
         sum_before = sum(exc["amount"] for exc in dataset["exchanges"])
 
         # collect the name of exchange and the sum of amounts

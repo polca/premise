@@ -2808,7 +2808,7 @@ class MetalsValidation(BaseDatasetValidator):
                     ws.equals("location", "World"),
                     ws.equals("unit", "kilogram"),
                 )
-            except:
+            except ws.NoResults:
                 continue
 
             # Find year
