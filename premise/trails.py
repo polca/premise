@@ -150,9 +150,7 @@ class TrailsDataPackage:
             self.service_operation_lifetimes,
             self.end_of_life_suppliers,
             self.biomass_growth_params,
-        ) = (
-            self._load_temporal_specs_from_excel(FILEPATH_TEMPORAL_PARAMETERS)
-        )
+        ) = self._load_temporal_specs_from_excel(FILEPATH_TEMPORAL_PARAMETERS)
 
     def create_datapackage(
         self,
@@ -170,9 +168,7 @@ class TrailsDataPackage:
             contributors=contributors,
         )
 
-    def _load_temporal_specs_from_excel(
-        self, path: Path
-    ) -> tuple[
+    def _load_temporal_specs_from_excel(self, path: Path) -> tuple[
         Dict[Tuple[str, str], dict],
         Dict[Tuple[str, str], dict],
         Set[Tuple[str, str]],
@@ -858,7 +854,6 @@ class TrailsDataPackage:
             except Exception:
                 return None
 
-
         for s, scenario in enumerate(self.datapackage.scenarios):
             scenario = load_database(scenario, self.datapackage.database)
             db = scenario["database"]
@@ -909,7 +904,12 @@ class TrailsDataPackage:
                             mn = bg.get("temporal_min")
                             mx = bg.get("temporal_max")
                             # CO2 uptake occurs in the past: ensure negative-time support
-                            if mn is not None and mx is not None and mn >= 0 and mx >= 0:
+                            if (
+                                mn is not None
+                                and mx is not None
+                                and mn >= 0
+                                and mx >= 0
+                            ):
                                 mn, mx = -mx, -mn
                                 if loc is not None:
                                     loc = -loc
