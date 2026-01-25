@@ -54,6 +54,9 @@ def redefine_uncertainty_params(old_exc, new_exc):
     """
 
     try:
+        if old_exc.get("amount") in (0, None):
+            raise ZeroDivisionError("Cannot rescale uncertainty parameters with zero amount.")
+
         if old_exc.get("uncertainty type") in [
             0,
             1,
@@ -108,11 +111,10 @@ def redefine_uncertainty_params(old_exc, new_exc):
 
         else:
             return None, None, None, None, None
-    except:
-        print("ERROR")
-        print(old_exc)
-        print(new_exc)
-        return None, None, None, None, None
+    except Exception as exc:
+        raise ValueError(
+            f"Failed to redefine uncertainty params for {old_exc} -> {new_exc}: {exc}"
+        ) from exc
 
 
 def group_dicts_by_keys(dicts: list, keys: list):
@@ -243,16 +245,11 @@ def remove_exchanges(datasets_dict: Dict[str, dict], list_exc: List) -> Dict[str
     :return: returns `datasets_dict` without the exchanges whose names check with `list_exc`
     """
 
-    def keep(x):
-        return {
-            key: value
-            for key, value in x.items()
-            if not any(ele in x.get("product", []) for ele in list_exc)
-        }
-
     for region in datasets_dict:
         datasets_dict[region]["exchanges"] = [
-            keep(exc) for exc in datasets_dict[region]["exchanges"]
+            exc
+            for exc in datasets_dict[region]["exchanges"]
+            if not any(ele in exc.get("product", []) for ele in list_exc)
         ]
 
     return datasets_dict
@@ -365,9 +362,9 @@ def calculate_input_energy(
                     fuel_name.startswith(x.replace("market for ", ""))
                     for x in fuel_map_reverse.keys()
                 )
-            )
+                )
             print()
-            lhv = 0
+            raise ValueError(f"LHV for {fuel_name} not found in fuel specifications.")
     elif fuel_unit == "kilowatt hour":
         lhv = 3.6
     else:
@@ -474,7 +471,7 @@ def find_fuel_efficiency(
     else:
         current_efficiency = np.nan
 
-    if current_efficiency in (np.nan, np.inf):
+    if np.isnan(current_efficiency) or np.isinf(current_efficiency):
         current_efficiency = 1
 
     if "parameters" in dataset:
@@ -1764,7 +1761,7 @@ class BaseTransformation:
                 .values.item(0)
             )
 
-        if scaling_factor in (np.nan, np.inf):
+        if np.isnan(scaling_factor) or np.isinf(scaling_factor):
             scaling_factor = 1
 
         return scaling_factor
@@ -2383,17 +2380,16 @@ class BaseTransformation:
         try:
             with resolved_row(filtered_possible_locations, self.geo.geo) as g:
                 func = g.contained if contained else g.intersects
-
-                gis_match = func(
+                return func(
                     location,
                     include_self=True,
                     exclusive=exclusive,
                     biggest_first=biggest_first,
                     only=filtered_possible_locations,
                 )
-        except:
-            print("location", location)
-            print("possible_locations", possible_locations)
-            print("filtered_possible_locations", filtered_possible_locations)
-
-        return gis_match
+        except Exception as exc:
+            raise ValueError(
+                "GIS matching failed for "
+                f"location={location}, possible_locations={possible_locations}, "
+                f"filtered_possible_locations={filtered_possible_locations}: {exc}"
+            ) from exc
