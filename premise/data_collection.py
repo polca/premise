@@ -254,7 +254,13 @@ def _read_tabular_from_resource(resource) -> pd.DataFrame:
     """Read a binary resource as CSV, fall back to Excel."""
     raw = resource.raw_read()
     try:
-        return pd.read_csv(BytesIO(raw))
+        try:
+            text = raw.decode("utf-8")
+        except UnicodeDecodeError:
+            text = raw.decode("latin-1")
+        sample = text.splitlines()[0] if text else ""
+        delimiter = csv.Sniffer().sniff(sample).delimiter if sample else ","
+        return pd.read_csv(BytesIO(raw), delimiter=delimiter)
     except Exception:
         return pd.read_excel(BytesIO(raw))
 

@@ -340,16 +340,16 @@ def check_additional_inventories(inventories_list: List[dict]) -> List[dict]:
                 )
 
         if not all(
-            i for i in inventory.keys() if i in ["inventories", "ecoinvent version"]
+            i for i in inventory.keys() if i in ["filepath", "ecoinvent version"]
         ):
             raise TypeError(
-                "Both `inventories` and `ecoinvent version` "
+                "Both `filepath` and `ecoinvent version` "
                 "must be present in the list of inventories to import."
             )
 
         if not Path(inventory["filepath"]).is_file():
             raise FileNotFoundError(
-                f"Cannot find the inventory file: {inventory['inventories']}."
+                f"Cannot find the inventory file: {inventory['filepath']}."
             )
 
         if inventory["ecoinvent version"] not in config["SUPPORTED_EI_VERSIONS"]:
@@ -588,7 +588,7 @@ class NewDatabase:
         # and system_model is "consequential"
         # raise an error
         if (
-            self.version not in ["3.8", "3.9", "3.9.1", "3.10", "3.11", "3.12"]
+            self.version not in ["3.8", "3.9", "3.9.1", "3.10", "3.10.1", "3.11", "3.12"]
             and self.system_model == "consequential"
         ):
             raise ValueError(
@@ -884,7 +884,7 @@ class NewDatabase:
             if filepath[0] in [
                 FILEPATH_OIL_GAS_INVENTORIES,
                 FILEPATH_BATTERIES_NMC_NCA_LFP,
-            ] and self.version in ["3.9", "3.9.1", "3.10", "3.11", "3.12"]:
+            ] and self.version in ["3.9", "3.9.1", "3.10", "3.10.1", "3.11", "3.12"]:
                 continue
 
             if filepath[0] in [

@@ -85,6 +85,7 @@ def get_biosphere_code(version) -> dict:
     :returns: dictionary with biosphere flow names as keys and uuid codes as values
 
     """
+    version = normalize_version(str(version))
     if version == "3.9":
         fp = DATA_DIR / "utils" / "export" / "flows_biosphere_39.csv"
     elif version == "3.10":
@@ -107,7 +108,9 @@ def get_biosphere_code(version) -> dict:
             delimiter=get_delimiter(filepath=fp),
         )
 
-        return {(row[0], row[1], row[2], row[3]): row[4] for row in input_dict}
+        dict = {(row[0], row[1], row[2], row[3]): row[4] for row in input_dict}
+
+        return dict
 
 
 def get_consequential_blacklist():
@@ -1299,7 +1302,7 @@ class BaseInventoryImport:
                         )
                     except KeyError:
                         print(
-                            f"Could not find a biosphere flow for {key} in {self.path.name}. You need to fix this."
+                            f"Could not find a biosphere flow for {key} in {self.path.name}. Flow ignored."
                         )
                         # remove the exchange if it is not linked
                         y["delete"] = True

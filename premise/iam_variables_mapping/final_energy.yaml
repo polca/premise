@@ -2627,13 +2627,7 @@ Transport - Freight - Domestic Aviation - Biofuel:
   iam_aliases:
     image: Final Energy|Transportation|Freight|Air|Liquids|Biomass
     tiam-ucl: Final Energy|Transport|Air|Domestic|Biojet Kerosene
-Transport - Freight - Domestic Aviation - Syn Fuel:
-  ecoinvent_aliases:
-    fltr:
-      name: kerosene, synthetic, burned in aircraft
-      reference product: heat
-  iam_aliases:
-    tiam-ucl: Final Energy|Transport|Air|Domestic|Synthetic Jet Kerosene
+
 Transport - Pass - Int Aviation - Biofuel:
   ecoinvent_aliases:
     fltr:
@@ -2677,7 +2671,6 @@ Transport - Pass - Int Aviation - Syn Fuel:
       reference product: heat
   iam_aliases:
     remind: FE|Transport|Bunkers|Pass|International Aviation|Liquids|Hydrogen
-    tiam-ucl: Final Energy|Transport|Air|International|Synthetic Jet Kerosene
     remind-eu: FE|Transport|Bunkers|Pass|International Aviation|Liquids|Hydrogen
 Transport - Pass - Domestic Aviation - H2:
   ecoinvent_aliases:
