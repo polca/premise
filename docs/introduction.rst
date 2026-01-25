@@ -20,6 +20,30 @@ It does not rebuild the entire database from scratch, and some sectors
 remain unchanged unless explicitly mapped. Results depend on the IAM model,
 scenario, year, and the ecoinvent version used.
 
+External data dependencies
+--------------------------
+
+Beyond IAM scenario files, *premise* relies on curated external datasets and
+additional inventories for several sectors. These are packaged in the repository
+under ``premise/data`` and include:
+
+* **Additional inventories** used to extend ecoinvent (``premise/data/additional_inventories``).
+* **GAINS emission factors** for non-CO2 pollutants (``premise/data/GAINS_emission_factors``).
+* **Renewables performance data** such as PV efficiencies and wind tech parameters
+  (``premise/data/renewables``).
+* **Battery energy density projections** and scenario shares
+  (``premise/data/battery``).
+* **Metals and mining datasets** for material intensities and market shares
+  (``premise/data/metals``, ``premise/data/mining``).
+* **Fuel and hydrogen parameters** such as losses and supply-chain data
+  (``premise/data/fuels``).
+* **Sector-specific inventories** for cement, steel, transport, and CDR updates
+  (mappings under ``premise/iam_variables_mapping`` and inventories under
+  ``premise/data``).
+
+These inputs are versioned with the code to keep results reproducible when using
+the same *premise* release.
+
 .. _ecoinvent: https://ecoinvent.org/
 .. _REMIND: https://www.pik-potsdam.de/en/institute/departments/transformation-pathways/models/remind
 .. _IMAGE: https://models.pbl.nl/image/index.php/Welcome_to_IMAGE_3.2_Documentation
