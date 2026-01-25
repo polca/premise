@@ -83,7 +83,7 @@ Brightway2, within the activated project:
 
 .. code-block:: python
 
-    ndb.write_db_to_brightway(name="my_custom_db_2025", "my_custom_db_2030")
+    ndb.write_db_to_brightway(name=["my_custom_db_2025", "my_custom_db_2030"])
 
 Or as a SuperStructure database, which allows you to export only one database
 to Brightway2, regardless of the number of scenarios:
