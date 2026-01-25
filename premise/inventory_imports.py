@@ -1012,8 +1012,7 @@ class BaseInventoryImport:
                 exc
                 for exc in dataset.get("exchanges", [])
                 if not (
-                    exc.get("type") != "production"
-                    and exc.get("amount") in (0, 0.0)
+                    exc.get("type") != "production" and exc.get("amount") in (0, 0.0)
                 )
             ]
 

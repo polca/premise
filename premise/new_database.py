@@ -588,7 +588,8 @@ class NewDatabase:
         # and system_model is "consequential"
         # raise an error
         if (
-            self.version not in ["3.8", "3.9", "3.9.1", "3.10", "3.10.1", "3.11", "3.12"]
+            self.version
+            not in ["3.8", "3.9", "3.9.1", "3.10", "3.10.1", "3.11", "3.12"]
             and self.system_model == "consequential"
         ):
             raise ValueError(

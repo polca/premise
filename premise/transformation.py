@@ -55,7 +55,9 @@ def redefine_uncertainty_params(old_exc, new_exc):
 
     try:
         if old_exc.get("amount") in (0, None):
-            raise ZeroDivisionError("Cannot rescale uncertainty parameters with zero amount.")
+            raise ZeroDivisionError(
+                "Cannot rescale uncertainty parameters with zero amount."
+            )
 
         if old_exc.get("uncertainty type") in [
             0,
@@ -362,7 +364,7 @@ def calculate_input_energy(
                     fuel_name.startswith(x.replace("market for ", ""))
                     for x in fuel_map_reverse.keys()
                 )
-                )
+            )
             print()
             raise ValueError(f"LHV for {fuel_name} not found in fuel specifications.")
     elif fuel_unit == "kilowatt hour":
