@@ -292,9 +292,7 @@ def _dataarray_to_wide_df(da: xr.DataArray) -> pd.DataFrame:
         var_dim = (
             "variables"
             if "variables" in da.dims
-            else "variable"
-            if "variable" in da.dims
-            else None
+            else "variable" if "variable" in da.dims else None
         )
         if "year" in da.dims and var_dim:
             da = da.transpose("year", var_dim)
@@ -310,9 +308,7 @@ def _dataarray_to_wide_df(da: xr.DataArray) -> pd.DataFrame:
                 or da.attrs.get("variables")
                 or "value"
             )
-            df = pd.DataFrame(
-                {col_name: da.values}, index=da.coords["year"].values
-            )
+            df = pd.DataFrame({col_name: da.values}, index=da.coords["year"].values)
         else:
             return pd.DataFrame()
         df = df.rename_axis(index=None)
@@ -705,9 +701,7 @@ def generate_summary_report(
                 var_dim = (
                     "variables"
                     if "variables" in iam_da.coords
-                    else "variable"
-                    if "variable" in iam_da.coords
-                    else None
+                    else "variable" if "variable" in iam_da.coords else None
                 )
                 has_region = "region" in iam_da.coords
 
