@@ -647,7 +647,7 @@ Industry - Chemicals - Elec:
     mask: period
   iam_aliases:
     message: Final Energy|Industry|Chemicals|Other Sector|Electricity
-    remind: FE|Industry|Chemicals|+|Electricity
+    remind: FE|Industry|Chemicals|+|Electricity # HIGHER LEVEL - I would be double counting
     remind-eu: FE|Industry|Chemicals|+|Electricity
 #    image: Final Energy|Industry|Chemicals|Electricity
 #Industry - Chemicals - Heat:
@@ -1383,7 +1383,7 @@ Industry - Other - Elec:
     mask: period
   iam_aliases:
     message: Final Energy|Industry|Other Sector|Electricity
-    remind: FE|Industry|Other Industry|+|Electricity
+    remind: FE|Industry|Other Industry|+|Electricity # HIGHER LEVEL - I would be double counting
     remind-eu: FE|Industry|Other Industry|+|Electricity
     image: Final Energy|Industry|Other Sector|Electricity
 Industry - Other - Heat:
@@ -2546,7 +2546,7 @@ Transport - Freight - Int. Shipping - Biofuel:
       - Final Energy|Transport|Ship|International|Biodiesel
       - Final Energy|Transport|Ship|International|Heavy Fuel Oil|Biodiesel
     remind-eu: FE|Transport|Bunkers|Freight|International Shipping|Liquids|Biomass
-    message: Final Energy|Bunkers|Liquids|Biomass
+#    message: Final Energy|Bunkers|Liquids|Biomass
 Transport - Freight - Int. Shipping - Liquid fossil:
   ecoinvent_aliases:
     fltr:
@@ -2560,7 +2560,7 @@ Transport - Freight - Int. Shipping - Liquid fossil:
       - Final Energy|Transport|Ship|International|Gasoline
       - Final Energy|Transport|Ship|International|Heavy Fuel Oil|Heavy Fuel Oil
     remind-eu: FE|Transport|Bunkers|Freight|International Shipping|Liquids|Fossil
-    message: Final Energy|Bunkers|Liquids|Oil
+#    message: Final Energy|Bunkers|Liquids|Oil
 Transport - Freight - Int. Shipping - Syn Fuel:
   ecoinvent_aliases:
     fltr:
@@ -2570,9 +2570,9 @@ Transport - Freight - Int. Shipping - Syn Fuel:
     remind: FE|Transport|Bunkers|Freight|International Shipping|Liquids|Hydrogen
     tiam-ucl: Final Energy|Transport|Ship|International|Ammonia|Synthetic Ammonia
     remind-eu: FE|Transport|Bunkers|Freight|International Shipping|Liquids|Hydrogen
-    message:
-      - Final Energy|Bunkers|Hydrogen
-      - Final Energy|Bunkers|Other
+#    message:
+#      - Final Energy|Bunkers|Hydrogen
+#      - Final Energy|Bunkers|Other
 Transport - Freight - Int. Shipping - Elec:
   ecoinvent_aliases:
     fltr:
@@ -2588,7 +2588,7 @@ Transport - Freight - Int. Shipping - H2:
   iam_aliases:
     image: Final Energy|Transportation|Freight|International Shipping|Hydrogen
     tiam-ucl: Final Energy|Transport|Ship|International|Hydrogen|Shipping Hydrogen
-    message: Final Energy|Bunkers|Hydrogen
+#    message: Final Energy|Bunkers|Hydrogen
 Transport - Freight - Int. Shipping - LNG:
   ecoinvent_aliases:
     fltr:
@@ -2597,7 +2597,7 @@ Transport - Freight - Int. Shipping - LNG:
   iam_aliases:
     tiam-ucl: Final Energy|Transport|Ship|International|Liquefied Natural Gas|Liquefied
       Natural Gas
-    message: Final Energy|Bunkers|Gases
+#    message: Final Energy|Bunkers|Gases
 Transport - Freight - Rail - Elec:
   ecoinvent_aliases:
     fltr:
