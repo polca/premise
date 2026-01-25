@@ -5,6 +5,57 @@ A series of transformations are applied to the Life Cycle Inventory (LCI) databa
 process performanceand technology market shares with the outputs from the Integrated Assessment
 Model (IAM) scenario.
 
+Sector updates (overview)
++++++++++++++++++++++++++
+
+The updates below are applied when calling ``ndb.update()`` with the corresponding sector name.
+They change selected parts of ecoinvent; sectors not listed here are left unchanged unless
+explicitly mapped. The exact updates depend on the IAM model, scenario, year, and the ecoinvent
+version used.
+
+* **electricity**: updates electricity generation mixes, technology efficiencies, and regional
+  markets; applies corrections such as hydropower water emissions and PV/wind regionalization
+  where available. Mappings: ``premise/iam_variables_mapping/electricity.yaml``. Data: ``premise/data/renewables/``,
+  ``premise/data/electricity/``.
+* **fuels**: updates fuel supply chains and regional markets, including hydrogen, biofuels,
+  synthetic fuels, and fossil fuels; adjusts efficiencies and losses along the supply chain.
+  Mappings: ``premise/iam_variables_mapping/fuels.yaml``. Data: ``premise/data/fuels/``.
+* **heat**: updates residential/industrial heat markets and technology shares; calibrates heat
+  efficiencies and fuel inputs by region. Mappings: ``premise/iam_variables_mapping/heat.yaml``.
+* **cement**: updates clinker and cement production efficiencies, fuel use, and (where applicable)
+  carbon capture integration; rebuilds regional markets from IAM production volumes.
+  Mappings: ``premise/iam_variables_mapping/cement.yaml``.
+* **steel**: updates primary/secondary steel routes (e.g., BF-BOF, DRI, EAF), efficiencies, and
+  regional market shares from IAM outputs. Mappings: ``premise/iam_variables_mapping/steel.yaml``.
+* **transport**: updates vehicle markets and fleets (cars, buses, trucks, ships, rail), technology
+  shares, and energy carriers; adjusts related emissions factors where relevant. Mappings:
+  ``premise/iam_variables_mapping/transport_*.yaml``. Data: ``premise/data/transport/``.
+* **battery**: scales battery pack mass by projected energy densities; creates technology-specific
+  and scenario-average battery markets (mobile and stationary). Data:
+  ``premise/data/battery/energy_density.yaml``, ``premise/data/battery/mobile_scenarios.csv``,
+  ``premise/data/battery/stationary_scenarios.csv``.
+* **metals**: updates material intensities and adds/updates mining/refining markets; includes
+  post-allocation corrections for co-mined metals and regional supply shares. Data:
+  ``premise/data/metals/`` (e.g., ``activities_mapping.yml``, ``metals_db.csv``, ``mining_shares_mapping.xlsx``).
+* **mining**: updates waste/tailings handling and regional mining markets where mapped. Data:
+  ``premise/data/mining/tailings_activities.yaml``, ``premise/data/mining/tailings_topology.yaml``.
+* **biomass**: updates biomass supply chains and regional forestry activities. Mappings:
+  ``premise/iam_variables_mapping/biomass.yaml``. Data: ``premise/data/biomass/``.
+* **cdr**: introduces and updates carbon dioxide removal routes (DACCS, BECCS, enhanced weathering,
+  ocean liming) and their regional deployment. Mappings:
+  ``premise/iam_variables_mapping/carbon_dioxide_removal.yaml``. Data: ``premise/data/cdr/``.
+* **emissions**: applies IAM- and GAINS-based emission factors to relevant processes. Data:
+  ``premise/data/GAINS_emission_factors/``.
+* **renewable**: updates wind turbine (and related) inventories and regional deployment. Data:
+  ``premise/data/renewables/``.
+* **final energy**: updates final energy carrier mixes used in downstream sectors. Mappings:
+  ``premise/iam_variables_mapping/final_energy.yaml``. Data: ``premise/data/energy/``.
+* **external**: applies user-provided external scenarios to override or extend IAM data.
+
+Each sector has dedicated configuration files under ``premise/data`` and
+``premise/iam_variables_mapping`` which define variable mappings, technology lists,
+and default parameters.
+
 Mobile batteries
 ++++++++++++++++
 
@@ -30,6 +81,13 @@ Run
         key='xxxxxxxxxxxxxxxxxxxxxxxxx'
     )
     ndb.update("battery")
+
+Key outputs
+~~~~~~~~~~~
+
+* Scales battery pack mass based on projected energy density improvements.
+* Creates technology-specific ``market for battery capacity`` datasets (1 kWh).
+* Creates scenario-average battery capacity markets (LFP/NCx/PLiB/MIX) with time-varying shares.
 
 
 The table below shows the **current** specific energy density of
@@ -141,6 +199,13 @@ Inventories for several battery technologies for stationary applications are pro
 * Lead-acid batteries
 * Vanadium redox flow batteries (VRFB)
 
+Key outputs
+~~~~~~~~~~~
+
+* Scales stationary battery pack mass based on projected energy densities.
+* Creates technology-specific stationary ``market for battery capacity`` datasets (1 kWh).
+* Creates scenario-average stationary markets (CONT, TC) with time-varying shares.
+
 As for batteries for mobile applications, *premise* adjusts the mass of battery packs
 throughout the database to reflect progress in specific energy density (kWh/kg cell).
 The current specific energy densities are given in the table below.
@@ -235,6 +300,13 @@ The workflow for updating material intensities in *premise* consists of the foll
 * *Inventories*: Additional inventories for metals production (e.g., Cobalt, Lithium, Vanadium) are added to the database.
 * *Post-allocation correction*: Multifunctional processes (e.g., co-mining) are adjusted to ensure proper mass balance.
 * *Markets creation*: Global supply markets for mined and refined metals are built, reflecting current and future regional contributions.
+
+Key outputs
+~~~~~~~~~~~
+
+* Updates material intensity factors for mapped technologies.
+* Adds/updates mining and refining inventories for critical metals.
+* Applies post-allocation corrections for co-mined metals and rebuilds global markets with regional shares.
 
 To update the material intensities in the database, run the following code:
 
@@ -363,6 +435,12 @@ To update the mining practices in the database, run the following code:
     )
     ndb.update("mining")
 
+Key outputs
+~~~~~~~~~~~
+
+* Adds alternative tailings treatment pathways and regional adoption shares.
+* Updates mining waste inventories and links them to regional markets.
+
 Sulfidic tailings
 -----------------
 
@@ -466,6 +544,12 @@ Run
     )
     ndb.update("biomass")
 
+Key outputs
+~~~~~~~~~~~
+
+* Regionalizes biomass supply and forestry activities by IAM region.
+* Updates biomass markets and relinks consuming activities accordingly.
+
 
 Regional biomass markets
 ------------------------
@@ -544,6 +628,13 @@ Run
         use_absolute_efficiency=False # default
     )
     ndb.update("electricity")
+
+Key outputs
+~~~~~~~~~~~
+
+* Builds regional electricity markets (high/medium/low voltage) and relinks consumers.
+* Updates generation technology shares and efficiencies using IAM outputs.
+* Applies technology-specific corrections (e.g., hydropower water emissions, PV/wind regionalization).
 
 
 Efficiency adjustment
@@ -1145,6 +1236,13 @@ Run
     )
     ndb.update("cement")
 
+Key outputs
+~~~~~~~~~~~
+
+* Duplicates clinker production routes per IAM region and rebuilds markets.
+* Scales fuel inputs and process efficiencies using IAM projections.
+* Integrates CCS options where modeled and adjusts captured CO2 flows.
+
 Dataset proxies
 ---------------
 
@@ -1329,6 +1427,13 @@ Run
     )
     ndb.update("steel")"
 
+Key outputs
+~~~~~~~~~~~
+
+* Creates region-specific proxy datasets for multiple steel production routes.
+* Scales energy inputs and direct CO2 emissions based on IAM efficiency trends.
+* Adds CCS-linked variants where IAM indicates sequestration.
+
 
 
 The modelling of future improvements in the steel sector is now based on
@@ -1495,6 +1600,13 @@ Run
 * buses
 * trains
 
+Key outputs
+~~~~~~~~~~~
+
+* Adds mode- and powertrain-specific transport inventories.
+* Scales vehicle energy use and efficiencies based on IAM projections.
+* Builds regional fleet-average transport datasets where IAM shares are available.
+
 Inventories are available for current vehicles. Future vehicle inventories
 are obtained by scaling down the current inventories based on the
 vehicle efficiency improvements projected by the IAM scenario.
@@ -1537,6 +1649,13 @@ which have become standard in measuring the CO2 emissions of trucks.
 The truck vehicle model is from Sacchi_ et al, 2021.
 
 .. _Sacchi: https://pubs.acs.org/doi/abs/10.1021/acs.est.0c07773
+
+Key outputs
+~~~~~~~~~~~
+
+* Adds size- and powertrain-specific truck inventories by driving cycle.
+* Builds IAM-region fleet-average truck datasets by size class and haul type.
+* Relinks freight transport activities to the fleet-average markets.
 
 .. note::
 
@@ -1705,6 +1824,12 @@ Run
     )
     ndb.update("dac")
 
+Key outputs
+~~~~~~~~~~~
+
+* Creates region-specific DAC datasets from literature inventories.
+* Scales electricity and heat inputs based on IAM efficiency signals.
+
 
 
 *premise* creates different region-specific Direct Air Capture (DAC)
@@ -1736,6 +1861,13 @@ Run
         key='xxxxxxxxxxxxxxxxxxxxxxxxx'
     )
     ndb.update("fuels")
+
+Key outputs
+~~~~~~~~~~~
+
+* Builds regional fuel supply chains and secondary energy markets.
+* Adjusts biofuel conversion efficiencies and land-use-related burdens where IAM provides data.
+* Harmonizes market compositions to fuel LHV and relinks consuming activities.
 
 
 
@@ -1812,6 +1944,13 @@ uses this scaling factor to adjust the amount of feedstock
 input to produce 1 kg of hydrogen (e.g., m3 of natural gas per kg hydrogen).
 
 If not available, external projection data is used to adjust future efficiencies (see Hydrogen section under EXTRACT>Import of additional inventories).
+
+Key outputs
+~~~~~~~~~~~
+
+* Scales hydrogen production inventories to IAM or external efficiency trends.
+* Builds supply chains that vary by transport mode, distance, and state.
+* Applies transport and storage losses to supply routes.
 
 
 Hydrogen supply chains
@@ -2001,6 +2140,13 @@ Run
         key='xxxxxxxxxxxxxxxxxxxxxxxxx'
     )
     ndb.update("heat")
+
+Key outputs
+~~~~~~~~~~~
+
+* Regionalizes heat and steam production datasets by IAM region.
+* Relinks heat producers to regional fuel and biomass markets where available.
+* Splits CO2 emissions into fossil and non-fossil shares based on fuel mixes.
 
 Datasets that supply heat and steam via the combustion of natural gas and diesel
 are regionalized (made available for each region of the IAM model) and relinked

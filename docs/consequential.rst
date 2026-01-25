@@ -22,7 +22,7 @@ Some technologies are excluded from the marginal markets
 due to constraints on their feedstock availability.
 This typically applies to waste-to-energy (e.g., waste-based CHP)
 or waste-to-fuel (e.g., residue-based biofuel) plants.
-For steel markets, only the BF-BOF route is considered.
+For steel markets, secondary steel is excluded from the marginal mix.
 
 Some imported inventories cannot be
 directly linked to the ecoinvent consequential database.
@@ -146,7 +146,7 @@ The number indicates where the short slope starts
 and is given as the fraction of the total time interval.
 
 Weighted slope end
-^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^
 
 Weighted slope end is needed for measurement method 3.
 The number indicates where the short slope ends

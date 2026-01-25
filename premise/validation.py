@@ -459,7 +459,7 @@ class BaseDatasetValidator:
         for dataset in self.database:
             key = (dataset["name"], dataset["reference product"], dataset["location"])
             if key not in consumed_datasets and not any(
-                x not in dataset["name"] for x in ["market for", "market group for"]
+                x in dataset["name"] for x in ["market for", "market group for"]
             ):
                 message = f"Orphaned dataset found: {dataset['name']}"
                 self.log_issue(dataset, "orphaned dataset", message)
@@ -661,7 +661,7 @@ class BaseDatasetValidator:
 
         for dataset in self.database:
             for key in list(dataset.keys()):
-                if not dataset[key]:
+                if dataset[key] is None:
                     del dataset[key]
 
     def correct_fields_format(self):
@@ -680,7 +680,7 @@ class BaseDatasetValidator:
             for exc in dataset["exchanges"]:
                 # check that `amount` is of type `float`
                 if np.isnan(exc["amount"]):
-                    ValueError(
+                    raise ValueError(
                         f"Amount is NaN in exchange {exc} in dataset {dataset['name'], dataset['location']}"
                     )
                 if not isinstance(exc["amount"], float):
@@ -739,7 +739,7 @@ class BaseDatasetValidator:
                         ]
 
             for key, value in list(ds.items()):
-                if not value:
+                if value is None:
                     del ds[key]
 
             ds["exchanges"] = [clean_up(exc) for exc in ds["exchanges"]]
@@ -2808,7 +2808,7 @@ class MetalsValidation(BaseDatasetValidator):
                     ws.equals("location", "World"),
                     ws.equals("unit", "kilogram"),
                 )
-            except:
+            except ws.NoResults:
                 continue
 
             # Find year

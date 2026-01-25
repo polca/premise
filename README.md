@@ -22,6 +22,11 @@ using scenarios from Integrated Assessment Models (IAMs). It does so by
 modifying the ecoinvent database to reflect projected energy policy trajectories, include emerging
 technologies, modify market shares as well as technologies' efficiency.
 
+In practice, ``premise`` updates selected sectors and markets (e.g., energy supply, transport, fuels,
+industrial processes) while leaving other parts of the database unchanged unless explicitly mapped.
+Results are scenario- and model-specific, and depend on the IAM model, scenario, year, and the
+ecoinvent version used.
+
 Among others, it can be used to assess the environmental impacts of future energy systems,
 and to compare different energy policies. It includes a set of IAM scenarios
 and a set of tools to create custom scenarios.
@@ -108,6 +113,12 @@ Requirements
 
 > [!WARNING]
 > If you wish to use standard IAM scenarios, you need to request (by [email](mailto:romain.sacchi@psi.ch)) an encryption key from the developers.
+
+Reproducibility note
+--------------------
+
+Outputs are reproducible when using the same ``premise`` version, IAM scenario files, and ecoinvent
+release. Changing any of these inputs will change the resulting database.
 
 How to install this package?
 ----------------------------

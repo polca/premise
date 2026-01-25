@@ -1341,6 +1341,7 @@ class Electricity(BaseTransformation):
 
             if np.isnan(share):
                 print("Incorrect market share for", dataset["name"], "in", r)
+                share = 0.0
 
             if share > 0:
                 # Add exchange for the region
