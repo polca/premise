@@ -1463,7 +1463,7 @@ Industry - Other - Biofuel:
     message: Final Energy|Industry|Other Sector|Liquids|Biomass
     remind: FE|Industry|Other Industry|Liquids|+|Biomass
     remind-eu: FE|Industry|Other Industry|Liquids|+|Biomass
-    image:
+#    image:
 #      - Final Energy|Industry|Liquids|Biomass
 #      - Final Energy|Transportation|Liquids|Biomass
 Industry - Other - Liquid fossil:
