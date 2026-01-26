@@ -2330,7 +2330,6 @@ Industry - Steel - All steel - Solid coal:
     message:
       - Final Energy|Industry|Iron and Steel|Gases|Coal
       - Final Energy|Industry|Iron and Steel|Solids|Coal
-      - Final Energy|Industry|Iron and Steel|Solids|Fossil
 Industry - Non-energy use - Solid coal:
   ecoinvent_aliases:
     fltr:
