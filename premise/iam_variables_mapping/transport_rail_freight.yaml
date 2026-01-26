@@ -8,11 +8,13 @@ train, electric:
     remind-eu: ES|Transport|Freight|Rail|Electric
     tiam-ucl: Distance|Transport|Rail|Freight|Electricity
     image: Energy Service|Transportation|Freight|Train|Electricity
+    gcam: Distance|Transport|Freight|Rail|Freight Rail|Electric
   energy_use_aliases:
     remind: FE|Transport|Freight|Rail|Electricity
     remind-eu: FE|Transport|Freight|Rail|Electricity
     tiam-ucl: Final Energy|Transport|Rail|Freight|Electricity
     image: Final Energy|Transportation|Freight|Train|Electricity
+    gcam: Final Energy|Transport|Freight|Rail|Freight Rail|Electric
   ecoinvent_aliases:
     fltr:
       - train, electric
@@ -36,6 +38,10 @@ train, diesel-electric:
       - Energy Service|Transportation|Freight|Train|Liquids|Biomass
       - Energy Service|Transportation|Freight|Train|Liquids|Fossil
       - Energy Service|Transportation|Freight|Train|Gas
+    gcam:
+      - Distance|Transport|Freight|Rail|Freight Rail|Liquids
+      - Distance|Transport|Freight|Rail|Freight Rail|Hybrid Liquids
+      - Distance|Transport|Freight|Rail|Freight Rail|Coal
   energy_use_aliases:
     remind: 
       - FE|Transport|Freight|Rail|Liquids|Fossil
@@ -50,6 +56,10 @@ train, diesel-electric:
       - Final Energy|Transportation|Freight|Train|Liquids|Biomass
       - Final Energy|Transportation|Freight|Train|Liquids|Fossil
       - Final Energy|Transportation|Freight|Train|Gas
+    gcam:
+      - Final Energy|Transport|Freight|Rail|Freight Rail|Liquids
+      - Final Energy|Transport|Freight|Rail|Freight Rail|Hybrid Liquids
+      - Final Energy|Transport|Freight|Rail|Freight Rail|Coal
   ecoinvent_aliases:
     fltr:
       - train, diesel
@@ -66,10 +76,12 @@ train, fuel cell:
     remind: ES|Transport|Freight|Rail|Liquids|Hydrogen
     remind-eu: ES|Transport|Freight|Rail|Liquids|Hydrogen
     image: Energy Service|Transportation|Freight|Train|Hydrogen
+    gcam: Distance|Transport|Freight|Rail|Freight Rail|FCEV
   energy_use_aliases:
     remind: FE|Transport|Freight|Rail|Liquids|Hydrogen
     remind-eu: FE|Transport|Freight|Rail|Liquids|Hydrogen
     image: Final Energy|Transportation|Freight|Train|Hydrogen
+    gcam: Final Energy|Transport|Freight|Rail|Freight Rail|FCEV
   ecoinvent_aliases:
     fltr:
       - transport, freight train, fuel cell, hydrogen

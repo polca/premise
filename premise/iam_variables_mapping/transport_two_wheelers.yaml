@@ -35,9 +35,11 @@ motorcycle, 50-250cc, gasoline:
     iam_aliases:
         remind: ES|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(50-250cc)|Liquids
         remind-eu: ES|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(50-250cc)|Liquids
+        gcam: Distance|Transport|Pass|Road|2W and 3W|Liquids
     energy_use_aliases:
         remind: FE|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(50-250cc)|Liquids
         remind-eu: FE|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(50-250cc)|Liquids
+        gcam: Final Energy|Transport|Pass|Road|2W and 3W|Liquids
     ecoinvent_aliases:
         fltr:
             - transport, Motorbike, gasoline, 11-35kW, EURO-5
@@ -49,9 +51,15 @@ motorcycle, 50-250cc, battery electric:
     iam_aliases:
         remind: ES|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(50-250cc)|BEV
         remind-eu: ES|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(50-250cc)|BEV
+        gcam:
+          - Distance|Transport|Pass|Road|2W and 3W|BEV
+          - Distance|Transport|Pass|Road|2W and 3W|LA-BEV
     energy_use_aliases:
         remind: FE|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(50-250cc)|Electricity
         remind-eu: FE|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(50-250cc)|Electricity
+        gcam:
+          - Final Energy|Transport|Pass|Road|2W and 3W|BEV
+          - Final Energy|Transport|Pass|Road|2W and 3W|LA-BEV
     ecoinvent_aliases:
         fltr:
             - transport, Motorbike, battery electric, 11-35kW
