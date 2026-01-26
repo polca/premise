@@ -2572,6 +2572,7 @@ class BiomassValidation(BaseDatasetValidator):
                             "storage",
                             "methanol",
                             "hydrogen",
+                            "fuel oil"
                         ]
                     ]
                 )
