@@ -106,6 +106,6 @@ class FuelMarketsMixin:
             print(
                 f"Warning: incorrect fuel share for {fuel} in {region} (-> set to 0%)."
             )
-            fuel_share = 0
+            fuel_share = 0.0
 
         return float(fuel_share)

@@ -7,6 +7,7 @@ Integrates projections regarding use of metals in the economy from:
 """
 
 import uuid
+import ast
 from functools import lru_cache
 from typing import Optional
 from collections import defaultdict
@@ -861,8 +862,14 @@ class Metals(BaseTransformation):
         df["Reference_product_str"] = df["Reference product"].apply(str)
 
         for (_, _), group in df.groupby(["Process_str", "Reference_product_str"]):
-            proc_filter = eval(group["Process"].iloc[0])
-            ref_prod_filter = eval(group["Reference product"].iloc[0])
+            try:
+                proc_filter = ast.literal_eval(group["Process"].iloc[0])
+                ref_prod_filter = ast.literal_eval(group["Reference product"].iloc[0])
+            except (ValueError, SyntaxError) as exc:
+                logger.error(
+                    f"[Metals] Invalid filter expression for process/reference product: {exc}"
+                )
+                continue
 
             try:
                 filters = build_ws_filter("name", proc_filter) + build_ws_filter(

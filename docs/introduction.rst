@@ -5,11 +5,44 @@ Purpose
 -------
 
 *premise* enables the alignment of life cycle inventories within the ecoinvent_
-3.8-3.12 database, using either a "cut-off" or "consequential"
+3.5-3.12 database, using either a "cut-off" or "consequential"
 system model, to match the output results of Integrated
 Assessment Models (IAMs) such as REMIND_ (and REMIND-EU), IMAGE_, TIAM-UCL_ or GCAM_.
 This allows for the creation of life cycle inventory databases
 under future policy scenarios for any year between 2005 and 2100.
+Consequential system model support is limited to ecoinvent 3.8+.
+
+Scope and boundaries
+--------------------
+
+*premise* updates selected parts of ecoinvent to reflect IAM scenarios.
+It does not rebuild the entire database from scratch, and some sectors
+remain unchanged unless explicitly mapped. Results depend on the IAM model,
+scenario, year, and the ecoinvent version used.
+
+External data dependencies
+--------------------------
+
+Beyond IAM scenario files, *premise* relies on curated external datasets and
+additional inventories for several sectors. These are packaged in the repository
+under ``premise/data`` and include:
+
+* **Additional inventories** used to extend ecoinvent (``premise/data/additional_inventories``).
+* **GAINS emission factors** for non-CO2 pollutants (``premise/data/GAINS_emission_factors``).
+* **Renewables performance data** such as PV efficiencies and wind tech parameters
+  (``premise/data/renewables``).
+* **Battery energy density projections** and scenario shares
+  (``premise/data/battery``).
+* **Metals and mining datasets** for material intensities and market shares
+  (``premise/data/metals``, ``premise/data/mining``).
+* **Fuel and hydrogen parameters** such as losses and supply-chain data
+  (``premise/data/fuels``).
+* **Sector-specific inventories** for cement, steel, transport, and CDR updates
+  (mappings under ``premise/iam_variables_mapping`` and inventories under
+  ``premise/data``).
+
+These inputs are versioned with the code to keep results reproducible when using
+the same *premise* release.
 
 .. _ecoinvent: https://ecoinvent.org/
 .. _REMIND: https://www.pik-potsdam.de/en/institute/departments/transformation-pathways/models/remind
@@ -20,8 +53,14 @@ under future policy scenarios for any year between 2005 and 2100.
 
 .. note::
 
-    The ecoinvent database is not included in this package. You need to have a valid license for ecoinvent 3.8-3.12 to use *premise*.
+    The ecoinvent database is not included in this package. You need to have a valid license for ecoinvent 3.5-3.12 to use *premise*.
     Also, please read carefully ecoinvent's EULA_ before using *premise*.
+
+IAM data access
+---------------
+
+Some IAM scenario files are encrypted. Access requires an encryption key from
+the developers.
 
 .. _EULA: https://ecoinvent.org/app/uploads/2024/01/EULA_new_branding_08_11_2023.pdf
 
@@ -37,6 +76,13 @@ Renewable and Sustainable Energy Reviews, 2022, https://doi.org/10.1016/j.rser.2
 .. note::
 
     If you use *premise* in your research, please cite the above publication.
+
+Reproducibility
+---------------
+
+Outputs are reproducible when using the same *premise* version, IAM scenario
+files, and ecoinvent release. Changing any of these inputs will change the
+resulting database.
 
 Additionally, you may want to cite the ecoinvent v.3 database:
 

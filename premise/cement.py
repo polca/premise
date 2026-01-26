@@ -174,7 +174,7 @@ class Cement(BaseTransformation):
             "initial energy input per ton clinker"
         ] = current_energy_input_per_ton_clinker
 
-        if not np.isnan(scaling_factor):
+        if np.isfinite(scaling_factor):
             # calculate new thermal energy
             # consumption per kg clinker
             new_energy_input_per_ton_clinker = (

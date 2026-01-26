@@ -9,7 +9,7 @@ Ecoinvent
 ---------
 
 What is ecoinvent?
-___________________
+__________________
 
 Ecoinvent is a database of life cycle inventory data, which is used to calculate the environmental impacts of products and services. It is the most widely used LCI database in the world, and is maintained by the ecoinvent association, in Zurich, Switzerland.
 
@@ -19,12 +19,12 @@ __________________________________________________
 ``premise`` can use the following system models:
 
 * cut-off
-* consequential
+* consequential (3.8+ only)
 
-from version 3.6 to 3.10.
+for ecoinvent versions 3.5 through 3.12 (including patch releases like 3.7.1 and 3.9.1).
 
 How does ``premise`` use ecoinvent?
-__________________________________
+___________________________________
 
 ``premise`` adds and modifies inventories of the ecoinvent database,
 to represent the future state of the world, as projected by an Integrated Assessment Model (IAM).
@@ -33,7 +33,7 @@ the future state of the world.
 It also adds new inventories, when necessary.
 
 Can I share the modified ecoinvent database?
-___________________________________________
+____________________________________________
 
 No. The modified ecoinvent database is a derivative work of the ecoinvent database,
 and cannot be shared. However, you can share the IAM scenario and the code used to modify the ecoinvent database.
@@ -140,16 +140,15 @@ Regionalization
 Are datasets regionalized on the basis of the IAM scenario only, or does it come from other sources?
 ____________________________________________________________________________________________________
 
-``premise`` tries to limit the use of external sources of data.
-At the moment, the only sources of data, other than those from the IAM scenario, used for projections are:
-
-- efficiency values for different photovoltaic panels (taken from the Fraunhofer ISE database)
-- emissions factors for local air pollution (taken from the GAINS-EU and GAINS-IAM databases)
-
-Hence, the regionalization of datasets is based on the IAM scenario only.
+``premise`` tries to rely on IAM data where possible, but several sectors use
+external datasets for technology parameters, market shares, or loss factors.
+Examples include PV efficiencies (Fraunhofer ISE), GAINS emission factors, battery
+energy densities, metals mining/refining shares, and hydrogen transport losses.
+Regionalization therefore combines IAM production volumes (when available), existing
+ecoinvent production volumes (for splitting suppliers), and external data where needed.
 
 Does ``premise`` generate more regionalised datasets than in original EI3.x database?
-_________________________________________________________________________________
+_____________________________________________________________________________________
 
 Yes. ``premise`` generates regionalized datasets for all regions in the IAM model, for
 each technology for which a IAM-to-``premise`` correspondence is provided, if not already existing in the Ecoinvent database.
@@ -164,7 +163,7 @@ appropriate inputs suppliers for each duplicated dataset.
 
 
 How does ``premise`` handle the different granularities between the IAM regions and the Ecoinvent regions?
-______________________________________________________________________________________________________
+__________________________________________________________________________________________________________
 
 ``premise`` simply uses the correspondence between IAM regions and Ecoinvent regions (which are, most of the time
 defined by ISO alpha-2 country codes), often provided by the IAM developers.
@@ -208,16 +207,16 @@ into the pLCA database.
 
 This is not the case today, as ``premise`` only integrates a subset of IAM variables, notably those that relate to:
 
-- power production
-- steel production
-- cement production
-- fuel production
+- electricity generation
+- fuels and hydrogen supply chains
+- steel and cement production
 - transport
+- heat markets
+- batteries, metals, mining, and biomass (where mapped)
 
 Hence, important sectors are still left out, such as:
 
 - agriculture
-- heat
 - chemicals
 - paper
 

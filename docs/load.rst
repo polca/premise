@@ -8,7 +8,7 @@ Back to a brightway2 project
 Regular brightway2 database
 ***************************
 
-*premise* uses *bw2io* to load the LCI database back into a *brightway2* project.
+*premise* uses its Brightway2/Brightway25 adapters to load the LCI database back into a *brightway2* project.
 This is done as follows:
 
 .. code-block:: python
@@ -225,7 +225,7 @@ This is done as follows:
 
 .. code-block:: python
 
-    ndb.write_db_to_datapackage()
+    ndb.write_datapackage()
 
 This creates a zip file that contains the all the data necessary for
 other users to replicate the databases, provided they have access
@@ -236,4 +236,3 @@ for sharing LCA databases. ``unfold`` can read these data packages and create
 brightway2 databases (or superstructure databases) from them.
 ``unfold`` can also fold premise databases registered in your brightway2 project
 into data packages, to be shared with and recreated by others.
-
