@@ -750,6 +750,7 @@ class IAMDataCollection:
             system_model=self.system_model,
             sector="cdr",
         )
+
         self.biomass_mix = self.__fetch_market_data(
             data=data,
             input_vars=biomass_prod_vars,
@@ -1443,7 +1444,7 @@ class IAMDataCollection:
         available_vars = list(set(vars) - missing_vars)
 
         if available_vars:
-            market_data = data.loc[:, available_vars, :]
+            market_data = data.sel(variables=available_vars)
         else:
             return None
 
@@ -1460,6 +1461,12 @@ class IAMDataCollection:
         market_data.coords["variables"] = [
             rev_input_vars[v] for v in market_data.variables.values
         ]
+
+        # Ensure region labels are preserved and expand globals if needed.
+        if "region" not in market_data.dims and "region" in data.dims:
+            market_data = market_data.expand_dims(region=data.coords["region"])
+        elif "region" in market_data.dims and "region" not in market_data.coords:
+            market_data = market_data.assign_coords(region=data.coords["region"])
 
         # add units by transferring those from `data`
         unit_by_k = {}
@@ -1503,6 +1510,15 @@ class IAMDataCollection:
         market_data = market_data.bfill(dim="year")
         # fill NaNs with zeros
         market_data = market_data.fillna(0)
+
+        # Restore region labels if later ops dropped them (e.g., groupby/normalize).
+        if "region" in market_data.dims:
+            data_regions = data.coords.get("region")
+            if data_regions is not None:
+                if market_data.sizes.get("region") == data_regions.size:
+                    market_data = market_data.assign_coords(
+                        region=data_regions.values
+                    )
 
         return market_data
 
