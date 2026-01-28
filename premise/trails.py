@@ -839,6 +839,19 @@ class TrailsDataPackage:
         3) For technosphere exchanges that draw from an end_of_life supplier, shift the calling dataset's
            age distribution by its average age (or lifetime fallback) and apply it to the exchange.
         """
+        MAX_REASONABLE_LIFETIME_YEARS = 500.0
+
+        def _sanitized_years(value):
+            if value is None:
+                return None
+            try:
+                v = float(value)
+            except Exception:
+                return None
+            if abs(v) > MAX_REASONABLE_LIFETIME_YEARS:
+                return None
+            return v
+
         stock_assets = getattr(self, "stock_asset_params", {})  # (name, ref) -> params
         service_ops = getattr(
             self, "service_operation_lifetimes", {}
@@ -988,13 +1001,15 @@ class TrailsDataPackage:
 
                 # Fallback to dataset-provided fields, if any
                 if ds_mean_age is None:
-                    ds_mean_age = _num(
-                        ds.get("mean_age")
-                        or ds.get("average age")
-                        or ds.get("average_age")
+                    ds_mean_age = _sanitized_years(
+                        _num(
+                            ds.get("mean_age")
+                            or ds.get("average age")
+                            or ds.get("average_age")
+                        )
                     )
                 if ds_lifetime is None:
-                    ds_lifetime = _num(ds.get("lifetime"))
+                    ds_lifetime = _sanitized_years(_num(ds.get("lifetime")))
 
                 # If not a service_operation dataset, use stock_asset dist params when available
                 if ds_dist_type is None:
@@ -1016,7 +1031,7 @@ class TrailsDataPackage:
                         ds_lifetime,
                     )
                     if mu is not None:
-                        ds_mean_age = float(mu)
+                        ds_mean_age = _sanitized_years(float(mu))
 
                 if ds_mean_age is None and ds_lifetime is not None:
                     ds_mean_age = ds_lifetime / 2.0
