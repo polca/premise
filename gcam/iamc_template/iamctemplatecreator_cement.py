@@ -50,6 +50,33 @@ def run_cement(scenario_name):
     # print(df)
     cement_input = pd.concat([cement_input, temp_df], axis=0)
 
+    # use the distribution of electricity inputs to cement and cement CCS to allocate other energy inputs
+    temp_df = cement_input.copy()
+    temp_df = temp_df[temp_df['technology'].isin(['cement', 'cement CCS'])]
+    temp_df = temp_df.groupby(['region', 'technology', 'Year'])['value'].agg('sum').reset_index()
+    total_by_region_year = temp_df.groupby(['region', 'Year'])['value'].transform('sum')
+    temp_df['percentage'] = temp_df['value'] / total_by_region_year
+    
+    # allocate other energy inputs between cement and cement CCS based on electricity distribution
+    other_inputs = cement_input[~cement_input['technology'].isin(['cement', 'cement CCS'])]
+    other_inputs = other_inputs.merge(temp_df[['region', 'Year', 'technology', 'percentage']], on=['region', 'Year'], how='left')
+    other_inputs['value'] = other_inputs['value'] * other_inputs['percentage']
+
+    # select columns to keep
+
+    other_inputs = other_inputs[['Units', 'scenario', 'region', 'sector', 'subsector', 'technology_y', 'input', 'Year', 'value']]
+    
+    # rename technology_y to technology
+
+    other_inputs = other_inputs.rename(columns={'technology_y': 'technology'})
+
+    cement_input = pd.concat([cement_input[cement_input['technology'].isin(['cement', 'cement CCS'])], other_inputs], axis=0)
+
+    cement_input['technology'] = cement_input['technology'].replace({
+        'cement': 'Cement',
+        'cement CCS': 'Cement CCS'
+    })
+
     # now we need to format these dfs into IAMC format
     # first, rename existing columns to columns in IAMC format
     cement_input = cement_input.rename(columns={'region': 'Region', 'scenario': 'Scenario', 'Units': 'Unit'})
@@ -71,7 +98,7 @@ def run_cement(scenario_name):
     # output: Production|Industry|Cement|{technology}
     # input: Final Energy|Industry|Cement|{technology}|{input}
     cement_output['Variable'] = 'Production|Industry|Cement|' + cement_output['technology']
-    cement_input['Variable'] = 'Final Energy|Industry|Cement|' + cement_input['input']
+    cement_input['Variable'] = 'Final Energy|Industry|Cement|' + cement_input['technology'] + '|' + cement_input['input']
 
 
     # reorder columns and remove unnecessary columns (sector, subsector, technology)
