@@ -739,7 +739,9 @@ class BaseDatasetValidator:
 
                     # Case A: list of dicts like [{"a": 1}, {"b": 2}]
                     # but avoid reprocessing already-normalized [{"name": ..., "amount": ...}]
-                    if isinstance(first, dict) and not {"name", "amount"}.issubset(first):
+                    if isinstance(first, dict) and not {"name", "amount"}.issubset(
+                        first
+                    ):
                         params = [
                             {"name": k, "amount": v}
                             for o in params
