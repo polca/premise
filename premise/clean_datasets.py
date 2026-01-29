@@ -11,6 +11,7 @@ import bw2io
 import numpy as np
 import wurst
 from wurst.brightway.extract_database import extract_brightway2_databases
+
 wurst.extract_brightway2_databases = extract_brightway2_databases
 import yaml
 from bw2data.database import DatabaseChooser
