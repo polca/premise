@@ -477,7 +477,7 @@ Industry - Cement - H2:
     message:
       - Final Energy|Industry|Non-Metallic Minerals|Cement|Hydrogen
       - Final Energy|Industry|Non-Metallic Minerals|Cement|Liquids|Hydrogen
-      - Final Energy|Industry|Non-Metallic Minerals|Cement|Liquids|h2-methanol
+#      - Final Energy|Industry|Non-Metallic Minerals|Cement|Liquids|h2-methanol
     remind: FE|Industry|Cement|+|Hydrogen
     image:
       - Final Energy|Industry|Cement|Dry feed rotary kiln|Hydrogen
@@ -506,7 +506,7 @@ Industry - Cement - Nat Gas:
     message:
       - Final Energy|Industry|Non-Metallic Minerals|Cement|Gases|Gas
       - Final Energy|Industry|Non-Metallic Minerals|Cement|Liquids|Other
-      - Final Energy|Industry|Non-Metallic Minerals|Cement|Liquids|gas-methanol
+#      - Final Energy|Industry|Non-Metallic Minerals|Cement|Liquids|gas-methanol
     remind: FE|Industry|Cement|Gases|+|Fossil
     image:
       - Final Energy|Industry|Cement|Dry feed rotary kiln|Natural Gas
@@ -534,7 +534,7 @@ Industry - Cement - Biofuel:
   iam_aliases:
     message:
       - Final Energy|Industry|Non-Metallic Minerals|Cement|Liquids|Biomass
-      - Final Energy|Industry|Non-Metallic Minerals|Cement|Liquids|bio-methanol
+#      - Final Energy|Industry|Non-Metallic Minerals|Cement|Liquids|bio-methanol
     remind: FE|Industry|Cement|Liquids|+|Biomass
     remind-eu: FE|Industry|Cement|Liquids|+|Biomass
 Industry - Cement - Oil:
@@ -569,7 +569,7 @@ Industry - Cement - Liquid coal:
   iam_aliases:
     message:
       - Final Energy|Industry|Non-Metallic Minerals|Cement|Liquids|Coal
-      - Final Energy|Industry|Non-Metallic Minerals|Cement|Liquids|coal-methanol
+#      - Final Energy|Industry|Non-Metallic Minerals|Cement|Liquids|coal-methanol
 Industry - Cement - LPG:
   ecoinvent_aliases:
     fltr:
@@ -684,7 +684,7 @@ Industry - Chemicals - Chemicals - Liquid coal:
   iam_aliases:
     message:
       - Final Energy|Industry|Chemicals|Other Sector|Liquids|Coal
-      - Final Energy|Industry|Chemicals|Other Sector|Liquids|coal-methanol
+#      - Final Energy|Industry|Chemicals|Other Sector|Liquids|coal-methanol
 Industry - Chemicals - Chemicals - LPG:
   ecoinvent_aliases:
     fltr:
@@ -721,7 +721,7 @@ Industry - Chemicals - Chemicals - Nat Gas:
     message:
       - Final Energy|Industry|Chemicals|Other Sector|Gases|Gas
       - Final Energy|Industry|Chemicals|Other Sector|Liquids|Other
-      - Final Energy|Industry|Chemicals|Other Sector|Liquids|gas-methanol
+#      - Final Energy|Industry|Chemicals|Other Sector|Liquids|gas-methanol
     remind: FE|Industry|Chemicals|Gases|+|Fossil
     remind-eu: FE|Industry|Chemicals|Gases|+|Fossil
 #    image: Final Energy|Industry|Chemicals|Gases|Fossil
@@ -741,7 +741,7 @@ Industry - Chemicals - Chemicals - Biofuel:
   iam_aliases:
     message:
       - Final Energy|Industry|Chemicals|Other Sector|Liquids|Biomass
-      - Final Energy|Industry|Chemicals|Other Sector|Liquids|bio-methanol
+#      - Final Energy|Industry|Chemicals|Other Sector|Liquids|bio-methanol
     remind: FE|Industry|Chemicals|Liquids|+|Biomass
     remind-eu: FE|Industry|Chemicals|Liquids|+|Biomass
 #    image: Final Energy|Industry|Chemicals|Liquids|Biomass
@@ -763,7 +763,7 @@ Industry - Chemicals - Chemicals - Syn Fuel:
   iam_aliases:
     message:
       - Final Energy|Industry|Chemicals|Other Sector|Liquids|Hydrogen
-      - Final Energy|Industry|Chemicals|Other Sector|Liquids|h2-methanol
+#      - Final Energy|Industry|Chemicals|Other Sector|Liquids|h2-methanol
     remind: FE|Industry|Chemicals|Liquids|+|Hydrogen
     remind-eu: FE|Industry|Chemicals|Liquids|+|Hydrogen
 Industry - Chemicals - Chemicals - Solid Biomass:
@@ -811,7 +811,7 @@ Industry - Chemicals - Resins - Nat Gas:
   iam_aliases:
     message:
       - Final Energy|Industry|Chemicals|Resins|Gases|Gas
-      - Final Energy|Industry|Chemicals|Resins|Liquids|gas-methanol
+#      - Final Energy|Industry|Chemicals|Resins|Liquids|gas-methanol
       - Final Energy|Industry|Chemicals|Resins|Liquids|Other
 Industry - Chemicals - Resins - H2:
   ecoinvent_aliases:
@@ -828,7 +828,7 @@ Industry - Chemicals - Resins - Biofuel:
   iam_aliases:
     message:
       - Final Energy|Industry|Chemicals|Resins|Liquids|Biomass
-      - Final Energy|Industry|Chemicals|Resins|Liquids|bio-methanol
+#      - Final Energy|Industry|Chemicals|Resins|Liquids|bio-methanol
 Industry - Chemicals - Resins - Liquid Coal:
   ecoinvent_aliases:
     fltr:
@@ -837,7 +837,7 @@ Industry - Chemicals - Resins - Liquid Coal:
   iam_aliases:
     message:
       - Final Energy|Industry|Chemicals|Resins|Liquids|Coal
-      - Final Energy|Industry|Chemicals|Resins|Liquids|coal-methanol
+#      - Final Energy|Industry|Chemicals|Resins|Liquids|coal-methanol
 Industry - Chemicals - Resins - LPG:
   ecoinvent_aliases:
     fltr:
@@ -853,7 +853,7 @@ Industry - Chemicals - Resins - Syn Fuel:
   iam_aliases:
     message:
       - Final Energy|Industry|Chemicals|Resins|Liquids|Hydrogen
-      - Final Energy|Industry|Chemicals|Resins|Liquids|h2-methanol
+#      - Final Energy|Industry|Chemicals|Resins|Liquids|h2-methanol
 Industry - Chemicals - Resins - Liquid fossil:
   ecoinvent_aliases:
     fltr:
@@ -1000,7 +1000,7 @@ Industry - Chemicals - High-Value Chemicals - Nat Gas:
     message:
       - Final Energy|Industry|Chemicals|High-Value Chemicals|Gases|Gas
       - Final Energy|Industry|Chemicals|High-Value Chemicals|Liquids|Other
-      - Final Energy|Industry|Chemicals|High-Value Chemicals|Liquids|gas-methanol
+#      - Final Energy|Industry|Chemicals|High-Value Chemicals|Liquids|gas-methanol
     image: Final Energy|Industry|Chemicals|High-Value Chemicals|Gases|Fossil
 Industry - Chemicals - High-Value Chemicals - Biofuel:
   ecoinvent_aliases:
@@ -1011,7 +1011,7 @@ Industry - Chemicals - High-Value Chemicals - Biofuel:
     message:
       - Final Energy|Industry|Chemicals|High-Value Chemicals|Liquids|Biomass
       - Final Energy|Industry|Chemicals|High-Value Chemicals|Gases|Biomass
-      - Final Energy|Industry|Chemicals|High-Value Chemicals|Liquids|bio-methanol
+#      - Final Energy|Industry|Chemicals|High-Value Chemicals|Liquids|bio-methanol
     image: Final Energy|Industry|Chemicals|High-Value Chemicals|Liquids|Biomass
 Industry - Chemicals - High-Value Chemicals - H2:
   ecoinvent_aliases:
@@ -1028,7 +1028,7 @@ Industry - Chemicals - High-Value Chemicals - Liquid Coal:
   iam_aliases:
     message:
       - Final Energy|Industry|Chemicals|High-Value Chemicals|Liquids|Coal
-      - Final Energy|Industry|Chemicals|High-Value Chemicals|Liquids|coal-methanol
+#      - Final Energy|Industry|Chemicals|High-Value Chemicals|Liquids|coal-methanol
 Industry - Chemicals - High-Value Chemicals - Syn Fuel:
   ecoinvent_aliases:
     fltr:
@@ -1037,7 +1037,7 @@ Industry - Chemicals - High-Value Chemicals - Syn Fuel:
   iam_aliases:
     message:
       - Final Energy|Industry|Chemicals|High-Value Chemicals|Liquids|Hydrogen
-      - Final Energy|Industry|Chemicals|High-Value Chemicals|Liquids|h2-methanol
+#      - Final Energy|Industry|Chemicals|High-Value Chemicals|Liquids|h2-methanol
 Industry - Chemicals - High-Value Chemicals - LPG:
   ecoinvent_aliases:
     fltr:
@@ -1089,7 +1089,7 @@ Industry - Aluminum - Biofuel:
     message:
       - Final Energy|Industry|Non-Ferrous Metals|Aluminium|Liquids|Biomass
       - Final Energy|Industry|Non-Ferrous Metals|Aluminium|Gases|Biomass
-      - Final Energy|Industry|Non-Ferrous Metals|Aluminium|Liquids|bio-methanol
+#      - Final Energy|Industry|Non-Ferrous Metals|Aluminium|Liquids|bio-methanol
 Industry - Aluminum - Liquid coal:
   Industry - Chemicals - High-Value Chemicals - Liquid Coal:
     ecoinvent_aliases:
@@ -1099,7 +1099,7 @@ Industry - Aluminum - Liquid coal:
     iam_aliases:
       message:
         - Final Energy|Industry|Non-Ferrous Metals|Aluminium|Liquids|Coal
-        - Final Energy|Industry|Non-Ferrous Metals|Aluminium|Liquids|coal-methanol
+#        - Final Energy|Industry|Non-Ferrous Metals|Aluminium|Liquids|coal-methanol
 Industry - Aluminum - LPG:
   ecoinvent_aliases:
     fltr:
@@ -1115,7 +1115,7 @@ Industry - Aluminum - Syn Fuel:
   iam_aliases:
     message:
       - Final Energy|Industry|Non-Ferrous Metals|Aluminium|Liquids|Hydrogen
-      - Final Energy|Industry|Non-Ferrous Metals|Aluminium|Liquids|h2-methanol
+#      - Final Energy|Industry|Non-Ferrous Metals|Aluminium|Liquids|h2-methanol
       - Final Energy|Industry|Non-Ferrous Metals|Aluminium|Hydrogen
 Industry - Aluminum - Liquid fossil:
   ecoinvent_aliases:
@@ -1134,7 +1134,7 @@ Industry - Aluminum - Nat Gas:
     message:
       - Final Energy|Industry|Non-Ferrous Metals|Aluminium|Gases|Gas
       - Final Energy|Industry|Non-Ferrous Metals|Aluminium|Liquids|Other
-      - Final Energy|Industry|Non-Ferrous Metals|Aluminium|Liquids|gas-methanol
+#      - Final Energy|Industry|Non-Ferrous Metals|Aluminium|Liquids|gas-methanol
 Industry - Aluminum - Heat:
   ecoinvent_aliases:
     fltr:
@@ -2345,7 +2345,7 @@ Industry - Non-energy use - Solid coal:
         - Final Energy|Non-Energy Use|Chemicals|Ammonia|Solids|Coal
         - Final Energy|Non-Energy Use|Chemicals|Methanol|Solids|Coal
         - Final Energy|Non-Energy Use|Chemicals|High-Value Chemicals|Liquids|Coal
-        - Final Energy|Non-Energy Use|Chemicals|High-Value Chemicals|Liquids|coal-methanol
+#        - Final Energy|Non-Energy Use|Chemicals|High-Value Chemicals|Liquids|coal-methanol
     remind: FE|Non-energy Use|Industry|Solids|+|Fossil
     remind-eu: FE|Non-energy Use|Industry|Solids|+|Fossil
   lhv:
@@ -2397,7 +2397,7 @@ Industry - Non-energy use - Nat Gas:
       - Final Energy|Non-Energy Use|Chemicals|Methanol|Gases|Gas
       - Final Energy|Non-Energy Use|Chemicals|High-Value Chemicals|Gases|Gas
       - Final Energy|Non-Energy Use|Chemicals|High-Value Chemicals|Liquids|Gas
-      - Final Energy|Non-Energy Use|Chemicals|High-Value Chemicals|Liquids|gas-methanol
+#      - Final Energy|Non-Energy Use|Chemicals|High-Value Chemicals|Liquids|gas-methanol
     remind: FE|Non-energy Use|Industry|Gases|+|Fossil
     remind-eu: FE|Non-energy Use|Industry|Gases|+|Fossil
   lhv:
@@ -2413,7 +2413,7 @@ Industry - Non-energy use - Hydrogen:
     message:
       - Final Energy|Non-Energy Use|Chemicals|Methanol|Hydrogen
       - Final Energy|Non-Energy Use|Chemicals|High-Value Chemicals|Liquids|Hydrogen
-      - Final Energy|Non-Energy Use|Chemicals|High-Value Chemicals|Liquids|h2-methanol
+#      - Final Energy|Non-Energy Use|Chemicals|High-Value Chemicals|Liquids|h2-methanol
     remind: FE|Non-energy Use|Industry|Gases|+|Hydrogen
     remind-eu: FE|Non-energy Use|Industry|Gases|+|Hydrogen
   lhv:
@@ -2430,7 +2430,7 @@ Industry - Non-energy use - Biofuel:
     message:
 #      - Final Energy|Non-Energy Use|Chemicals|Liquids|Biomass
       - Final Energy|Non-Energy Use|Chemicals|High-Value Chemicals|Liquids|Biomass
-      - Final Energy|Non-Energy Use|Chemicals|High-Value Chemicals|Liquids|bio-methanol
+#      - Final Energy|Non-Energy Use|Chemicals|High-Value Chemicals|Liquids|bio-methanol
     remind: FE|Non-energy Use|Industry|Liquids|+|Biomass
     remind-eu: FE|Non-energy Use|Industry|Liquids|+|Biomass
   lhv:
