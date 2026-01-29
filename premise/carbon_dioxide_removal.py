@@ -109,7 +109,6 @@ class CarbonDioxideRemoval(BaseTransformation):
         self.system_model = system_model
         self.mapping = InventorySet(self.database)
 
-
     def regionalize_cdr_activities(self) -> None:
         """
         Generates regional variants of the direct air capture process with varying heat sources.
@@ -126,18 +125,13 @@ class CarbonDioxideRemoval(BaseTransformation):
         self.cdr_support_activities = self.mapping.generate_sets_from_filters(filters)
 
         self.cdr_support_activities = {
-            x["name"]: v
-            for v in self.cdr_support_activities.values()
-            for x in v
+            x["name"]: v for v in self.cdr_support_activities.values() for x in v
         }
 
         if self.cdr_support_activities:
-            self.process_and_add_activities(
-                mapping=self.cdr_support_activities
-            )
+            self.process_and_add_activities(mapping=self.cdr_support_activities)
 
         self.cdr_map = self.mapping.generate_cdr_map(model=self.model)
-
 
         self.process_and_add_activities(
             efficiency_adjustment_fn=self.adjust_cdr_efficiency,

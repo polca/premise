@@ -12,6 +12,7 @@ def load_liquid_fuel_activities():
         liquid_fuel_activities = yaml.safe_load(f)
     return liquid_fuel_activities
 
+
 class SyntheticFuelsMixin:
     def generate_synthetic_fuel_activities(self):
         """
@@ -19,19 +20,16 @@ class SyntheticFuelsMixin:
         """
 
         filters = load_liquid_fuel_activities()
-        self.synthetic_fuel_activities_map = self.mapping.generate_sets_from_filters(filters)
+        self.synthetic_fuel_activities_map = self.mapping.generate_sets_from_filters(
+            filters
+        )
 
         self.synthetic_fuel_activities_map = {
-            x["name"]: v
-            for v in self.synthetic_fuel_activities_map.values()
-            for x in v
+            x["name"]: v for v in self.synthetic_fuel_activities_map.values() for x in v
         }
 
         if self.synthetic_fuel_activities_map:
-            self.process_and_add_activities(
-                mapping=self.synthetic_fuel_activities_map
-            )
-
+            self.process_and_add_activities(mapping=self.synthetic_fuel_activities_map)
 
         synfuel_map = {k: v for k, v in self.fuel_map.items() if "synthetic" in k}
 
