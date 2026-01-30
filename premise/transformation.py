@@ -54,6 +54,11 @@ def redefine_uncertainty_params(old_exc, new_exc):
     """
 
     try:
+        if old_exc.get("amount") in (0, None):
+            raise ZeroDivisionError(
+                "Cannot rescale uncertainty parameters with zero amount."
+            )
+
         if old_exc.get("uncertainty type") in [
             0,
             1,
@@ -108,11 +113,10 @@ def redefine_uncertainty_params(old_exc, new_exc):
 
         else:
             return None, None, None, None, None
-    except:
-        print("ERROR")
-        print(old_exc)
-        print(new_exc)
-        return None, None, None, None, None
+    except Exception as exc:
+        raise ValueError(
+            f"Failed to redefine uncertainty params for {old_exc} -> {new_exc}: {exc}"
+        ) from exc
 
 
 def group_dicts_by_keys(dicts: list, keys: list):
@@ -243,16 +247,11 @@ def remove_exchanges(datasets_dict: Dict[str, dict], list_exc: List) -> Dict[str
     :return: returns `datasets_dict` without the exchanges whose names check with `list_exc`
     """
 
-    def keep(x):
-        return {
-            key: value
-            for key, value in x.items()
-            if not any(ele in x.get("product", []) for ele in list_exc)
-        }
-
     for region in datasets_dict:
         datasets_dict[region]["exchanges"] = [
-            keep(exc) for exc in datasets_dict[region]["exchanges"]
+            exc
+            for exc in datasets_dict[region]["exchanges"]
+            if not any(ele in exc.get("product", []) for ele in list_exc)
         ]
 
     return datasets_dict
@@ -367,7 +366,7 @@ def calculate_input_energy(
                 )
             )
             print()
-            lhv = 0
+            raise ValueError(f"LHV for {fuel_name} not found in fuel specifications.")
     elif fuel_unit == "kilowatt hour":
         lhv = 3.6
     else:
@@ -474,7 +473,7 @@ def find_fuel_efficiency(
     else:
         current_efficiency = np.nan
 
-    if current_efficiency in (np.nan, np.inf):
+    if np.isnan(current_efficiency) or np.isinf(current_efficiency):
         current_efficiency = 1
 
     if "parameters" in dataset:
@@ -966,56 +965,67 @@ class BaseTransformation:
             self.add_to_index(market_dataset)
             self.write_log(market_dataset, "created")
 
-        if "World" not in regions:
-            # create the World market
-            world_market = {
-                "name": name,
-                "reference product": reference_product,
-                "location": "World",
-                "unit": unit,
-                "regionalized": True,
-                "code": str(uuid.uuid4().hex),
-                "database": "",
-                "comment": f"Market dataset for {name} in World for {self.year}.",
-                "exchanges": [
-                    {
-                        "name": name,
-                        "product": reference_product,
-                        "location": "World",
-                        "amount": 1.0,
-                        "unit": unit,
-                        "uncertainty type": 0,
-                        "type": "production",
-                    }
-                ],
-            }
+        if production_volumes is not None:
+            if (
+                "World" not in regions
+                and production_volumes.sel(
+                    region=[reg for reg in regions if reg != "World"]
+                )
+                .sum(dim="region")
+                .sum()
+                .values.item(0)
+                > 0
+            ):
 
-            candidate = {
-                "name": name,
-                "reference product": reference_product,
-                "unit": unit,
-            }
-            for region in regions:
-                share = regional_shares_dict.get(region, 0)
+                # create the World market
+                world_market = {
+                    "name": name,
+                    "reference product": reference_product,
+                    "location": "World",
+                    "unit": unit,
+                    "regionalized": True,
+                    "code": str(uuid.uuid4().hex),
+                    "database": "",
+                    "comment": f"Market dataset for {name} in World for {self.year}.",
+                    "exchanges": [
+                        {
+                            "name": name,
+                            "product": reference_product,
+                            "location": "World",
+                            "amount": 1.0,
+                            "unit": unit,
+                            "uncertainty type": 0,
+                            "type": "production",
+                        }
+                    ],
+                }
 
-                if share > 0:
-                    if self.is_in_index(candidate, region):
-                        # add the regional market shares
-                        world_market["exchanges"].append(
-                            {
-                                "name": name,
-                                "product": reference_product,
-                                "location": region,
-                                "amount": share,
-                                "unit": unit,
-                                "uncertainty type": 0,
-                                "type": "technosphere",
-                            }
-                        )
+                candidate = {
+                    "name": name,
+                    "reference product": reference_product,
+                    "unit": unit,
+                }
+                for region in regions:
+                    share = regional_shares_dict.get(region, 0)
 
-            self.database.append(world_market)
-            self.add_to_index(world_market)
-            self.write_log(world_market, "created")
+                    if share > 0:
+                        if self.is_in_index(candidate, region):
+                            # add the regional market shares
+                            world_market["exchanges"].append(
+                                {
+                                    "name": name,
+                                    "product": reference_product,
+                                    "location": region,
+                                    "amount": share,
+                                    "unit": unit,
+                                    "uncertainty type": 0,
+                                    "type": "technosphere",
+                                }
+                            )
+
+                self.database.append(world_market)
+                self.add_to_index(world_market)
+                self.write_log(world_market, "created")
 
         datasets = list(
             ws.get_many(
@@ -1753,7 +1763,7 @@ class BaseTransformation:
                 .values.item(0)
             )
 
-        if scaling_factor in (np.nan, np.inf):
+        if np.isnan(scaling_factor) or np.isinf(scaling_factor):
             scaling_factor = 1
 
         return scaling_factor
@@ -2217,6 +2227,15 @@ class BaseTransformation:
             * ``iam_regions``: List, lists IAM regions, if additional ones need to be defined.
         Modifies the dataset in place; returns the modified dataset."""
 
+        dataset["exchanges"] = [
+            exc
+            for exc in dataset.get("exchanges", [])
+            if not (
+                exc.get("type") == "technosphere"
+                and exc.get("amount") in (0, 0.0, None)
+            )
+        ]
+
         sum_before = sum(exc["amount"] for exc in dataset["exchanges"])
 
         # collect the name of exchange and the sum of amounts
@@ -2372,17 +2391,16 @@ class BaseTransformation:
         try:
             with resolved_row(filtered_possible_locations, self.geo.geo) as g:
                 func = g.contained if contained else g.intersects
-
-                gis_match = func(
+                return func(
                     location,
                     include_self=True,
                     exclusive=exclusive,
                     biggest_first=biggest_first,
                     only=filtered_possible_locations,
                 )
-        except:
-            print("location", location)
-            print("possible_locations", possible_locations)
-            print("filtered_possible_locations", filtered_possible_locations)
-
-        return gis_match
+        except Exception as exc:
+            raise ValueError(
+                "GIS matching failed for "
+                f"location={location}, possible_locations={possible_locations}, "
+                f"filtered_possible_locations={filtered_possible_locations}: {exc}"
+            ) from exc

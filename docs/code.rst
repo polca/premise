@@ -1,7 +1,7 @@
 New Wurst Database
 ==================
 
-.. autoclass:: premise.ecoinvent_modification.NewDatabase
+.. autoclass:: premise.new_database.NewDatabase
     :members:
 
 Database Cleaner

@@ -336,7 +336,7 @@ def adjust_efficiency(dataset: dict, fuels_specs: dict, fuel_map_reverse: dict) 
                     else:
                         # adjust biosphere flows
                         # all of them if a filter is not provided
-                        dataset["log parameters"][
+                        dataset.setdefault("log parameters", {})[
                             "biosphere scaling factor"
                         ] = scaling_factor
 

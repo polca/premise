@@ -543,11 +543,11 @@ def load_database(
                                 try:
                                     if len(ds[k]) != len(v):
                                         ds[k] = f"{ds[k]}. {v}"
-                                except:
-                                    print("ERROR")
-                                    print(ds["name"])
-                                    print(ds[k], k, v)
-                                    pass
+                                except Exception as exc:
+                                    raise ValueError(
+                                        f"Failed to merge metadata for {ds.get('name')}: "
+                                        f"key={k}, existing={ds[k]!r}, new={v!r}, error={exc}"
+                                    ) from exc
 
                             elif isinstance(ds[k], dict):
                                 ds[k].update(v)

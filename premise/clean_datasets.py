@@ -10,9 +10,11 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 import bw2io
 import numpy as np
 import wurst
+from wurst.brightway.extract_database import extract_brightway2_databases
+
+wurst.extract_brightway2_databases = extract_brightway2_databases
 import yaml
 from bw2data.database import DatabaseChooser
-from bw2io.errors import MultiprocessingError
 from wurst import searching as ws
 
 from .data_collection import get_delimiter

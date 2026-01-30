@@ -6,7 +6,7 @@ ecoinvent_interface
 constructive-geometries>=1.0.0
 cryptography
 datapackage
-pandas
+pandas<3.0.0
 platformdirs
 premise_gwp
 prettytable

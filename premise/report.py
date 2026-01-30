@@ -288,15 +288,39 @@ def _dataarray_to_wide_df(da: xr.DataArray) -> pd.DataFrame:
         return pd.DataFrame()
 
     try:
-        df = da.to_dataframe("val")
-        # Want wide format with variables as columns, years as rows
-        # After unstack, top level 'val' remains; select it and transpose so rows are years
-        df = df.unstack()["val"].T
+        da = da.squeeze(drop=True)
+        var_dim = (
+            "variables"
+            if "variables" in da.dims
+            else "variable" if "variable" in da.dims else None
+        )
+        if "year" in da.dims and var_dim:
+            da = da.transpose("year", var_dim)
+            df = pd.DataFrame(
+                da.values,
+                index=da.coords["year"].values,
+                columns=da.coords[var_dim].values,
+            )
+        elif "year" in da.dims and not var_dim:
+            col_name = (
+                da.name
+                or da.attrs.get("variable")
+                or da.attrs.get("variables")
+                or "value"
+            )
+            df = pd.DataFrame({col_name: da.values}, index=da.coords["year"].values)
+        else:
+            return pd.DataFrame()
         df = df.rename_axis(index=None)
         # Drop columns that are completely NA
         df = df.dropna(axis=1, how="all")
         # Drop rows that are completely NA
         df = df.dropna(axis=0, how="all")
+        if df.empty and getattr(da, "size", 0) > 0:
+            print(
+                "Warning: DataArray has data but produced empty DataFrame. "
+                f"dims={da.dims}, coords={list(da.coords)}, shape={da.shape}"
+            )
         # Ensure index is sortable (years)
         if not df.empty:
             try:
@@ -305,7 +329,14 @@ def _dataarray_to_wide_df(da: xr.DataArray) -> pd.DataFrame:
                 pass
             df = df.sort_index()
         return df
-    except Exception:
+    except Exception as exc:
+        dims = getattr(da, "dims", None)
+        coords = list(getattr(da, "coords", {}).keys())
+        shape = getattr(da, "shape", None)
+        print(
+            "Warning: failed to convert DataArray to DataFrame. "
+            f"dims={dims}, coords={coords}, shape={shape}, error={exc}"
+        )
         return pd.DataFrame()
 
 
@@ -667,23 +698,58 @@ def generate_summary_report(
                     row += n_rows + 2
 
             else:
-                # Iterate per region
-                for region in getattr(scenario["iam data"], "regions", []):
+                var_dim = (
+                    "variables"
+                    if "variables" in iam_da.coords
+                    else "variable" if "variable" in iam_da.coords else None
+                )
+                has_region = "region" in iam_da.coords
+
+                regions = (
+                    list(iam_da.coords["region"].values) if has_region else ["World"]
+                )
+                if not regions:
+                    print(
+                        f"Warning: no regions available for sector {sector} in report."
+                    )
+                for region in regions:
                     if sector in ("GMST", "CO2") and region != "World":
                         continue
 
                     worksheet.cell(column=col, row=row, value=region)
                     row += 3
 
-                    # IMPORTANT: use DataArray coords, not DataArray.variables (Dataset-only)
-                    valid_vars = set(iam_da.coords["variables"].values)
-                    pick_vars = [v for v in variables if v in valid_vars]
+                    if var_dim is None:
+                        print(
+                            f"Warning: no variables dimension for sector {sector} "
+                            f"(dims={iam_da.dims})."
+                        )
+                        continue
 
-                    sub = iam_da.sel(
-                        variables=pick_vars,
-                        region=region,
-                        year=[y for y in iam_da.coords["year"].values if y <= 2100],
-                    )
+                    valid_vars = list(iam_da.coords[var_dim].values)
+                    valid_vars_norm = {str(v).strip().lower(): v for v in valid_vars}
+                    pick_vars = []
+                    for v in variables:
+                        key = str(v).strip().lower()
+                        if key in valid_vars_norm:
+                            pick_vars.append(valid_vars_norm[key])
+
+                    if not pick_vars and sector in ("Population", "GDP", "GMST", "CO2"):
+                        print(
+                            "Warning: no matching variables for "
+                            f"{sector}. Available variables: {sorted(valid_vars)}"
+                        )
+                        continue
+
+                    selector = {var_dim: pick_vars}
+                    if has_region:
+                        selector["region"] = region
+                    if "year" in iam_da.coords:
+                        selector["year"] = [
+                            y for y in iam_da.coords["year"].values if y <= 2100
+                        ]
+
+                    sub = iam_da.sel(**selector)
 
                     df = _dataarray_to_wide_df(sub)
                     if df.empty:
@@ -775,8 +841,8 @@ def generate_change_report(source, version, source_type, system_model):
 
         try:
             df = convert_log_to_excel_file(fp)
-        except Exception as e:
-            # skip this file if unreadable
+        except Exception as exc:
+            print(f"Warning: failed to read log file {fp}: {exc}")
             continue
 
         # Create per-sector sheet

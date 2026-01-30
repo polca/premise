@@ -459,7 +459,7 @@ class BaseDatasetValidator:
         for dataset in self.database:
             key = (dataset["name"], dataset["reference product"], dataset["location"])
             if key not in consumed_datasets and not any(
-                x not in dataset["name"] for x in ["market for", "market group for"]
+                x in dataset["name"] for x in ["market for", "market group for"]
             ):
                 message = f"Orphaned dataset found: {dataset['name']}"
                 self.log_issue(dataset, "orphaned dataset", message)
@@ -661,7 +661,7 @@ class BaseDatasetValidator:
 
         for dataset in self.database:
             for key in list(dataset.keys()):
-                if not dataset[key]:
+                if dataset[key] is None:
                     del dataset[key]
 
     def correct_fields_format(self):
@@ -680,7 +680,7 @@ class BaseDatasetValidator:
             for exc in dataset["exchanges"]:
                 # check that `amount` is of type `float`
                 if np.isnan(exc["amount"]):
-                    ValueError(
+                    raise ValueError(
                         f"Amount is NaN in exchange {exc} in dataset {dataset['name'], dataset['location']}"
                     )
                 if not isinstance(exc["amount"], float):
@@ -721,25 +721,39 @@ class BaseDatasetValidator:
 
     def reformat_parameters(self):
         for ds in self.database:
-            if "parameters" in ds:
-                if not isinstance(ds["parameters"], list):
-                    if isinstance(ds["parameters"], dict):
-                        ds["parameters"] = [
+            params = ds.get("parameters", None)
+
+            if params is not None:
+                # Normalize to a list
+                if isinstance(params, dict):
+                    # dict of {name: amount}
+                    params = [{"name": k, "amount": v} for k, v in params.items()]
+
+                elif not isinstance(params, list):
+                    # single scalar / object -> wrap
+                    params = [params]
+
+                # Now params is a list (maybe empty)
+                if params:
+                    first = params[0]
+
+                    # Case A: list of dicts like [{"a": 1}, {"b": 2}]
+                    # but avoid reprocessing already-normalized [{"name": ..., "amount": ...}]
+                    if isinstance(first, dict) and not {"name", "amount"}.issubset(
+                        first
+                    ):
+                        params = [
                             {"name": k, "amount": v}
-                            for k, v in ds["parameters"].items()
-                        ]
-                    else:
-                        ds["parameters"] = [ds["parameters"]]
-                else:
-                    if isinstance(ds["parameters"][0], dict):
-                        ds["parameters"] = [
-                            {"name": k, "amount": v}
-                            for o in ds["parameters"]
+                            for o in params
+                            if isinstance(o, dict)
                             for k, v in o.items()
                         ]
 
+                ds["parameters"] = params
+
+            # Remove None-valued keys
             for key, value in list(ds.items()):
-                if not value:
+                if value is None:
                     del ds[key]
 
             ds["exchanges"] = [clean_up(exc) for exc in ds["exchanges"]]
@@ -1875,35 +1889,45 @@ class FuelsValidation(BaseDatasetValidator):
             "market for hydrogen, gaseous, low pressure",
         ]
 
-        for ds in self.database:
-            if (
-                any(ds["name"].startswith(x) for x in fuel_market_names)
-                and ds["location"] not in self.regions
-            ):
-                if not all(
-                    e["location"] in self.regions
-                    for e in ds["exchanges"]
-                    if e["type"] == "technosphere"
-                ):
-                    if (
-                        len(
-                            [
-                                d
-                                for d in self.database
-                                if d["name"] == ds["name"]
-                                and d["location"] in self.regions
-                            ]
-                        )
-                        > 0
-                    ):
+        for fuel in fuel_market_names:
 
-                        message = f"Inputs may have incorrect location."
-                        self.log_issue(
-                            ds,
-                            "Non-regionalized inputs",
-                            message,
-                            issue_type="major",
-                        )
+            regionalized_markets = [
+                d
+                for d in self.database
+                if d["name"] == fuel and d["location"] in self.regions
+            ]
+
+            if len(regionalized_markets) > 0:
+
+                for ds in self.database:
+                    if (
+                        ds["name"].startswith(fuel)
+                        and ds["location"] not in self.regions
+                    ):
+                        if not all(
+                            e["location"] in self.regions
+                            for e in ds["exchanges"]
+                            if e["type"] == "technosphere"
+                        ):
+                            if (
+                                len(
+                                    [
+                                        d
+                                        for d in self.database
+                                        if d["name"] == ds["name"]
+                                        and d["location"] in self.regions
+                                    ]
+                                )
+                                > 0
+                            ):
+
+                                message = f"Inputs may have incorrect location."
+                                self.log_issue(
+                                    ds,
+                                    "Non-regionalized inputs",
+                                    message,
+                                    issue_type="major",
+                                )
 
     def check_electrolysis_electricity_input(self):
         # check that the input of electricity for hydrogen production
@@ -1942,6 +1966,15 @@ class FuelsValidation(BaseDatasetValidator):
             "market group for diesel, low-sulfur",
         ]
 
+        regions_with_fuel_markets = set()
+        for market_name in [
+            "market for petrol, low-sulfur",
+            "market for diesel, low-sulfur",
+        ]:
+            for ds in self.database:
+                if ds["name"] == market_name and ds["location"] in self.regions:
+                    regions_with_fuel_markets.add(ds["location"])
+
         for ds in self.database:
             if ds["location"] not in ["RoW", "GLO", "World"]:
                 for e in ds["exchanges"]:
@@ -1951,9 +1984,22 @@ class FuelsValidation(BaseDatasetValidator):
                         # check that the location of the input
                         # matches the location of the dataset
                         # according to the geo-linking rules
-                        if ds["location"] in self.regions:
-                            if e["location"] != ds["location"]:
-                                if e["location"] != "World":
+                        if ds["location"] in regions_with_fuel_markets:
+                            if ds["location"] in self.regions and ds["location"]:
+                                if e["location"] != ds["location"]:
+                                    if e["location"] != "World":
+                                        message = f"Fuel market input {e['name']} in {e['location']} has incorrect location for dataset {ds['name']} in {ds['location']}."
+                                        self.log_issue(
+                                            ds,
+                                            "incorrect fuel market input location",
+                                            message,
+                                            issue_type="major",
+                                        )
+                            else:
+                                # check that the location of the input
+                                if e["location"] != self.geo.ecoinvent_to_iam_location(
+                                    ds["location"]
+                                ):
                                     message = f"Fuel market input {e['name']} in {e['location']} has incorrect location for dataset {ds['name']} in {ds['location']}."
                                     self.log_issue(
                                         ds,
@@ -1961,18 +2007,6 @@ class FuelsValidation(BaseDatasetValidator):
                                         message,
                                         issue_type="major",
                                     )
-                        else:
-                            # check that the location of the input
-                            if e["location"] != self.geo.ecoinvent_to_iam_location(
-                                ds["location"]
-                            ):
-                                message = f"Fuel market input {e['name']} in {e['location']} has incorrect location for dataset {ds['name']} in {ds['location']}."
-                                self.log_issue(
-                                    ds,
-                                    "incorrect fuel market input location",
-                                    message,
-                                    issue_type="major",
-                                )
 
     def run_fuel_checks(self):
         self.check_fuel_market_composition()
@@ -2788,7 +2822,7 @@ class MetalsValidation(BaseDatasetValidator):
                     ws.equals("location", "World"),
                     ws.equals("unit", "kilogram"),
                 )
-            except:
+            except ws.NoResults:
                 continue
 
             # Find year
