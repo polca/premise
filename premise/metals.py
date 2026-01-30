@@ -470,7 +470,7 @@ class Metals(BaseTransformation):
             self.precomputed_medians = self.metals.sel(year=self.year)
         else:
             self.precomputed_medians = self.metals.interp(
-                year=self.year, method="nearest", kwargs={"fill_value": "extrapolate"}
+                year=self.year, method="linear", kwargs={"fill_value": "extrapolate"}
             )
 
         self.activities_mapping = load_activities_mapping()  # 4
