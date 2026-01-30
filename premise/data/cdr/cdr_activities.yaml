@@ -41,17 +41,50 @@ land use:
   - carbon dioxide, captured and stored, by land-use change
 
 biochar:
-  - carbon dioxide, captured and stored, by biochar application on mineral soil
-  - biochar, from spruce wood pyrolysis
+  - feedstock production,
+  - drying,
+  - drying and chipping,
+  - biochar production
+  - biochar application on mineral soil
 
 
-enhanced rock weathering:
+coastal enhanced rock weathering:
   - carbon dioxide, captured and stored, by olivine spreading on coastline
 
 ocean liming:
-  - carbon dioxide, captured and stored, by ocean liming
+  - limestone mining
+  - limestone crushing and washing
+  - quicklime production, with carbon capture and storage
   - hydrated lime production, from quicklime with carbon capture and storage
+  - carbon dioxide, captured and stored, by ocean liming
+
+ocean alkalinization enhancement:
+  - chlor-alkali electrolysis, membrane cell
+  - electrolysis for NaOHs
+  - transportation of alkalinity
+  - carbon dioxide, captured and stored, by ocean alkalinization enhancement
 
 
 bioenergy, with CCS:
   - carbon dioxide, captured and stored, at wood burning power plant, pipeline 200km, storage 1000m
+  - carbon dioxide, captured at wood burning power plant 20 MW post, pipeline 200km, storage 1000m
+  - carbon dioxide storage at wood burning power plant 20 MW post, pipeline 200km, storage 1000m
+  - carbon dioxide storage at wood burning power plant 20 MW post, pipeline 400km, storage 3000m
+  - electricity production, at wood burning power plant
+  - electricity production, at wood burning power plant, post, pipeline 200km, storage 1000m
+  - Wood combustion power plant 20 MW
+  - transport, pipeline, supercritical carbon dioxide, 200km without recompression
+  - pipeline, supercritical carbon dioxide
+  - drilling, deep borehole
+
+synthetic fuels, with CCS:
+  - carbon dioxide, captured and stored, from a hydrogen production plant using steam methane reforming of biomethane
+
+biofuels, with CCS:
+  - carbon dioxide, captured and stored, from a biomass fermentation plant
+
+cement mineralization:
+  - carbon dioxide, captured and stored, in crushed concrete, via cement mineralization
+  - carbon dioxide evaporation, for cement mineralization
+  - carbon dioxide transport, for cement mineralization
+  - carbon dioxide liquefaction, at biogas upgrading plant

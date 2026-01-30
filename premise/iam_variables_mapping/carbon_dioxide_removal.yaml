@@ -52,6 +52,131 @@ direct air capture (solvent) with storage:
       - industrial
       - heat pump
 
+direct air capture2:
+  ecoinvent_aliases:
+    fltr:
+      - carbon dioxide, captured, with a solvent-based direct air capture system, 1MtCO2, with industrial steam heat, and grid electricity
+
+direct air capture3:
+  ecoinvent_aliases:
+    fltr:
+      - carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with industrial steam heat, and grid electricity
+
+direct air capture4:
+  ecoinvent_aliases:
+    fltr:
+      - carbon dioxide, captured, with a solvent-based direct air capture system, 1MtCO2, with heat pump heat, and grid electricity
+
+direct air capture5:
+  ecoinvent_aliases:
+    fltr:
+      - carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with heat pump heat, and grid electricity
+
+direct air capture6:
+  ecoinvent_aliases:
+    fltr:
+      - direct air capture system, solvent-based, 1MtCO2
+
+direct air capture7:
+  ecoinvent_aliases:
+    fltr:
+      - treatment of direct air capture system, solvent-based, 1MtCO2
+
+direct air capture8:
+  ecoinvent_aliases:
+    fltr:
+      - carbon dioxide, captured, with a sorbent-based direct air capture system, 100ktCO2
+
+direct air capture10:
+  ecoinvent_aliases:
+    fltr:
+      - carbon dioxide, captured, with a sorbent-based direct air capture system, 100ktCO2, with waste heat, and grid electricity
+
+direct air capture11:
+  ecoinvent_aliases:
+    fltr:
+      - carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2, with waste heat, and grid electricity
+
+direct air capture12:
+  ecoinvent_aliases:
+    fltr:
+      - carbon dioxide, captured, with a sorbent-based direct air capture system, 100ktCO2, with industrial steam heat, and grid electricity
+
+direct air capture13:
+  ecoinvent_aliases:
+    fltr:
+      - carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2, with industrial steam heat, and grid electricity
+
+direct air capture14:
+  ecoinvent_aliases:
+    fltr:
+      - carbon dioxide, captured, with a sorbent-based direct air capture system, 100ktCO2, with heat pump heat, and grid electricity
+
+direct air capture15:
+  ecoinvent_aliases:
+    fltr:
+      - carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2, with heat pump heat, and grid electricity
+
+direct air capture16:
+  ecoinvent_aliases:
+    fltr:
+      - direct air capture system, sorbent-based, 100ktCO2
+
+direct air capture17:
+  ecoinvent_aliases:
+    fltr:
+      - treatment of direct air capture system, sorbent-based, 100ktCO2
+
+direct air capture18:
+  ecoinvent_aliases:
+    fltr:
+      - amine-based silica production, for sorbent-based direct air capture system
+
+direct air capture19:
+  ecoinvent_aliases:
+    fltr:
+      - polyethyleneimine (PEI) production, for sorbent-based direct air capture system
+
+direct air capture20:
+  ecoinvent_aliases:
+    fltr:
+      - silica gel production, for sorbent-based direct air capture system
+
+direct air capture21:
+  ecoinvent_aliases:
+    fltr:
+      - carbon dioxide compression, transport and storage
+
+direct air capture22:
+  ecoinvent_aliases:
+    fltr:
+      - carbon dioxide, captured, at municipal solid waste incineration plant, for subsequent reuse
+
+direct air capture23:
+  ecoinvent_aliases:
+    fltr:
+      - carbon dioxide, captured, at cement production plant, for subsequent reuse
+
+direct air capture24:
+  ecoinvent_aliases:
+    fltr:
+      - carbon dioxide, captured, at cement production plant, using monoethanolamine
+
+direct air capture25:
+  ecoinvent_aliases:
+    fltr:
+      - carbon dioxide, captured, at cement production plant, using direct separation
+
+direct air capture26:
+  ecoinvent_aliases:
+    fltr:
+      - carbon dioxide, captured, at cement production plant, using oxyfuel
+
+direct air capture27:
+  ecoinvent_aliases:
+    fltr:
+      - carbon dioxide, captured and stored, by land-use change
+
 direct air capture (sorbent) with storage:
   iam_aliases:
     witch: Carbon Sequestration|Direct Air Capture|Sorbent
@@ -83,8 +208,8 @@ direct air capture (calcium oxide) with storage:
     fltr:
       - carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2
 
-
-enhanced rock weathering:
+# COASTAL ENHANCED ROCK WEATHERING
+coastal enhanced rock weathering:
     iam_aliases:
         remind: Emi|CO2|CDR|+|EW
         remind-eu: Emi|CO2|CDR|+|EW
@@ -112,23 +237,103 @@ afforestation:
   iam_aliases:
     message: Carbon Sequestration|Land Use|Afforestation
 
-
-cement mineralization:
+cement1 mineralization1:
   ecoinvent_aliases:
-    fltr: carbon dioxide, captured and stored, in crushed concrete
+    fltr:
+      - carbon dioxide, captured and stored, in crushed concrete, via cement mineralization
 
-ocean liming:
-    iam_aliases:
-        remind: Emi|CO2|CDR|+|OAE
-        remind-eu: Emi|CO2|CDR|+|OAE
-        gcam: Carbon Capture|Storage|Direct Air Capture|direct ocean capture (stand-alone)
-    ecoinvent_aliases:
-        fltr: carbon dioxide, captured and stored, by ocean liming
+cement2 mineralization2:
+  ecoinvent_aliases:
+    fltr:
+      - carbon dioxide evaporation, for cement mineralization
 
-biochar:
-    ecoinvent_aliases:
-        fltr: biochar application on mineral soil
+cement3 mineralization3:
+  ecoinvent_aliases:
+    fltr:
+      - carbon dioxide transport, for cement mineralization
 
+cement4 mineralization4:
+  ecoinvent_aliases:
+    fltr:
+      - carbon dioxide liquefaction, at biogas upgrading plant
+# OCEAN LIMING
+ocean1 liming1:
+  ecoinvent_aliases:
+    fltr:
+      - limestone mining
+
+ocean2 liming2:
+  ecoinvent_aliases:
+    fltr:
+      - limestone crushing and washing
+
+ocean3 liming3:
+  ecoinvent_aliases:
+    fltr:
+      - quicklime production, with carbon capture and storage
+
+ocean4 liming4:
+  ecoinvent_aliases:
+    fltr:
+      - hydrated lime production, from quicklime with carbon capture and storage
+
+ocean5 liming5:
+  iam_aliases:
+    remind: Emi|CO2|CDR|+|OAE
+    remind-eu: Emi|CO2|CDR|+|OAE
+    gcam: Carbon Capture|Storage|Direct Air Capture|direct ocean capture (stand-alone)
+  ecoinvent_aliases:
+    fltr:
+      - carbon dioxide, captured and stored, by ocean liming
+
+# OCEAN ALKALINIZATION ENHANCEMENT - NAOH BASED
+ocean1 alkalinization1 enhancement1:
+  ecoinvent_aliases:
+    fltr:
+      - chlor-alkali electrolysis, membrane cell
+
+ocean2 alkalinization2 enhancement2:
+  ecoinvent_aliases:
+    fltr:
+      - electrolysis for NaOHs
+
+ocean3 alkalinization3 enhancement3:
+  ecoinvent_aliases:
+    fltr:
+      - transportation of alkalinity
+
+ocean4 alkalinization4 enhancement4:
+  ecoinvent_aliases:
+    fltr:
+      - carbon dioxide, captured and stored, by ocean alkalinization enhancement
+
+# BIOCHAR
+biochar1:
+  ecoinvent_aliases:
+    fltr:
+      - feedstock production,
+
+biochar2:
+  ecoinvent_aliases:
+    fltr:
+      - drying,
+
+biochar3:
+  ecoinvent_aliases:
+    fltr:
+      - drying and chipping,
+
+biochar4:
+  ecoinvent_aliases:
+    fltr:
+      - biochar production
+
+biochar5:
+  ecoinvent_aliases:
+    fltr:
+      - biochar application on mineral soil
+
+# BIOENERGY WITH CCS
 biomass power generation, with CCS:
   iam_aliases:
       remind: Emi|CO2|CDR|+|BECCS
@@ -137,6 +342,51 @@ biomass power generation, with CCS:
       message: Carbon Sequestration|CCS|Biomass
   ecoinvent_aliases:
       fltr: carbon dioxide, captured and stored, at wood burning power plant, pipeline 200km, storage 1000m
+
+BECCS1:
+  ecoinvent_aliases:
+    fltr:
+      - carbon dioxide, captured at wood burning power plant 20 MW post, pipeline 200km, storage 1000m
+
+BECCS2:
+  ecoinvent_aliases:
+    fltr:
+      - carbon dioxide storage at wood burning power plant 20 MW post, pipeline 200km, storage 1000m
+
+BECCS3:
+  ecoinvent_aliases:
+    fltr:
+      - carbon dioxide storage at wood burning power plant 20 MW post, pipeline 400km, storage 3000m
+
+BECCS4:
+  ecoinvent_aliases:
+    fltr:
+      - electricity production, at wood burning power plant
+
+BECCS5:
+  ecoinvent_aliases:
+    fltr:
+      - electricity production, at wood burning power plant, post, pipeline 200km, storage 1000m
+
+BECCS6:
+  ecoinvent_aliases:
+    fltr:
+      - Wood combustion power plant 20 MW
+
+BECCS7:
+  ecoinvent_aliases:
+    fltr:
+      - transport, pipeline, supercritical carbon dioxide, 200km without recompression
+
+BECCS8:
+  ecoinvent_aliases:
+    fltr:
+      - pipeline, supercritical carbon dioxide
+
+BECCS9:
+  ecoinvent_aliases:
+    fltr:
+      - drilling, deep borehole
 
 synthetic fuels, with CCS:
   iam_aliases:
