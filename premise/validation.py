@@ -721,23 +721,37 @@ class BaseDatasetValidator:
 
     def reformat_parameters(self):
         for ds in self.database:
-            if "parameters" in ds:
-                if not isinstance(ds["parameters"], list):
-                    if isinstance(ds["parameters"], dict):
-                        ds["parameters"] = [
+            params = ds.get("parameters", None)
+
+            if params is not None:
+                # Normalize to a list
+                if isinstance(params, dict):
+                    # dict of {name: amount}
+                    params = [{"name": k, "amount": v} for k, v in params.items()]
+
+                elif not isinstance(params, list):
+                    # single scalar / object -> wrap
+                    params = [params]
+
+                # Now params is a list (maybe empty)
+                if params:
+                    first = params[0]
+
+                    # Case A: list of dicts like [{"a": 1}, {"b": 2}]
+                    # but avoid reprocessing already-normalized [{"name": ..., "amount": ...}]
+                    if isinstance(first, dict) and not {"name", "amount"}.issubset(
+                        first
+                    ):
+                        params = [
                             {"name": k, "amount": v}
-                            for k, v in ds["parameters"].items()
-                        ]
-                    else:
-                        ds["parameters"] = [ds["parameters"]]
-                else:
-                    if isinstance(ds["parameters"][0], dict):
-                        ds["parameters"] = [
-                            {"name": k, "amount": v}
-                            for o in ds["parameters"]
+                            for o in params
+                            if isinstance(o, dict)
                             for k, v in o.items()
                         ]
 
+                ds["parameters"] = params
+
+            # Remove None-valued keys
             for key, value in list(ds.items()):
                 if value is None:
                     del ds[key]

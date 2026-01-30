@@ -1,6 +1,16 @@
 from collections import defaultdict
+import yaml
 
 from ..transformation import ws
+from .config import LIQUID_FUEL_SOURCES
+from ..activity_maps import InventorySet
+
+
+def load_liquid_fuel_activities():
+    # load yaml file located at LIQUID_FUEL_SOURCES
+    with open(LIQUID_FUEL_SOURCES, "r", encoding="utf-8") as f:
+        liquid_fuel_activities = yaml.safe_load(f)
+    return liquid_fuel_activities
 
 
 class SyntheticFuelsMixin:
@@ -8,6 +18,19 @@ class SyntheticFuelsMixin:
         """
         Generate region-specific synthetic fuel datasets.
         """
+
+        filters = load_liquid_fuel_activities()
+        self.synthetic_fuel_activities_map = self.mapping.generate_sets_from_filters(
+            filters
+        )
+
+        self.synthetic_fuel_activities_map = {
+            x["name"]: v for v in self.synthetic_fuel_activities_map.values() for x in v
+        }
+
+        if self.synthetic_fuel_activities_map:
+            self.process_and_add_activities(mapping=self.synthetic_fuel_activities_map)
+
         synfuel_map = {k: v for k, v in self.fuel_map.items() if "synthetic" in k}
 
         if synfuel_map:
@@ -29,6 +52,7 @@ class SyntheticFuelsMixin:
 
         # Create markets for liquid fuels
         # update the fuel map to include all liquid fuels
+        self.mapping = InventorySet(self.database)
         self.fuel_map = self.mapping.generate_fuel_map(model=self.model)
 
         # gasoline
