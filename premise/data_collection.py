@@ -254,7 +254,13 @@ def _read_tabular_from_resource(resource) -> pd.DataFrame:
     """Read a binary resource as CSV, fall back to Excel."""
     raw = resource.raw_read()
     try:
-        return pd.read_csv(BytesIO(raw))
+        try:
+            text = raw.decode("utf-8")
+        except UnicodeDecodeError:
+            text = raw.decode("latin-1")
+        sample = text.splitlines()[0] if text else ""
+        delimiter = csv.Sniffer().sniff(sample).delimiter if sample else ","
+        return pd.read_csv(BytesIO(raw), delimiter=delimiter)
     except Exception:
         return pd.read_excel(BytesIO(raw))
 
@@ -1217,7 +1223,7 @@ class IAMDataCollection:
             else:
                 # If key is provided, download the file
                 download_folder = filedir
-                url = f"https://zenodo.org/records/17764189/files/{file_name}.csv"
+                url = f"https://zenodo.org/records/18162801/files/{file_name}.csv"
                 file_path = download_csv(file_name + ".csv", url, download_folder)
 
         # Decrypt the file if a key is provided
@@ -1235,23 +1241,73 @@ class IAMDataCollection:
                 encrypted_data = file.read()
                 data = StringIO(str(encrypted_data, "latin-1"))
 
+        def _year_from_col(col):
+            col_str = str(col).strip()
+            if col_str.isdigit():
+                return int(col_str)
+            try:
+                return int(float(col_str))
+            except (ValueError, TypeError):
+                return None
+
         # Now that we have the file (decrypted or not), check extension and process it accordingly
         if file_path.suffix in [".csv", ".mif"]:
             print(f"Reading {file_path.stem} as CSV file")
+            sample = data.readline()
+            delimiter = get_delimiter(data=sample)
+            data.seek(0)
+            header_df = pd.read_csv(
+                data,
+                sep=delimiter,
+                encoding="latin-1",
+                nrows=0,
+            )
+            data.seek(0)
+            header_cols = header_df.columns
+            col_map = {str(c).lower(): c for c in header_cols}
+            region_col = col_map.get("region") or col_map.get("regions") or "Region"
+            variable_col = (
+                col_map.get("variable") or col_map.get("variables") or "Variable"
+            )
+            unit_col = col_map.get("unit", "Unit")
+            year_cols = [
+                c
+                for c in header_cols
+                if (y := _year_from_col(c)) is not None and 2005 <= y <= 2100
+            ]
+            usecols = [region_col, variable_col, unit_col] + year_cols
             dataframe = pd.read_csv(
                 data,
-                sep=get_delimiter(data=copy.copy(data).readline()),
+                sep=delimiter,
                 encoding="latin-1",
+                usecols=usecols,
             )
         elif file_path.suffix in [".xls", ".xlsx"]:
             print(f"Reading {file_path.stem} as Excel file")
-            dataframe = pd.read_excel(file_path)
+            header_df = pd.read_excel(file_path, nrows=0)
+            header_cols = header_df.columns
+            col_map = {str(c).lower(): c for c in header_cols}
+            region_col = col_map.get("region") or col_map.get("regions") or "Region"
+            variable_col = (
+                col_map.get("variable") or col_map.get("variables") or "Variable"
+            )
+            unit_col = col_map.get("unit", "Unit")
+            year_cols = [
+                c
+                for c in header_cols
+                if (y := _year_from_col(c)) is not None and 2005 <= y <= 2100
+            ]
+            usecols = [region_col, variable_col, unit_col] + year_cols
+            dataframe = pd.read_excel(file_path, usecols=usecols)
         else:
             raise ValueError(f"Unsupported file extension: {file_path.suffix}")
 
         # if a column name can be an integer
         # we convert it to an integer
-        new_cols = {c: int(c) if str(c).isdigit() else c for c in dataframe.columns}
+        new_cols = {
+            c: _year_from_col(c) if _year_from_col(c) is not None else c
+            for c in dataframe.columns
+        }
         dataframe = dataframe.rename(columns=new_cols)
 
         # remove any column that is a string
@@ -1293,6 +1349,8 @@ class IAMDataCollection:
         dataframe.columns = [
             x.lower() if isinstance(x, str) else x for x in dataframe.columns
         ]
+        if "variables" in dataframe.columns and "variable" not in dataframe.columns:
+            dataframe = dataframe.rename(columns={"variables": "variable"})
 
         # if split_fossil_liquid_fuels is not None
         # we add the split of gasoline, diesel, LPG and kerosene
