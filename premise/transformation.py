@@ -1159,6 +1159,7 @@ class BaseTransformation:
                 regionalized_datasets = self.fetch_proxies(
                     datasets=activities,
                     production_volumes=prod_vol,
+                    regions=regions,
                 )
 
                 # add geographical coverage definition
