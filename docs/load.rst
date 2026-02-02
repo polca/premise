@@ -151,9 +151,8 @@ This is done as follows:
 As Simapro CSV files for OpenLCA
 --------------------------------
 
-*premise* can export the databases as a modified version of Simapro-CSV files compatible with OpenLCA_.
-
-.. _OpenLCA: https://www.openlca.org/
+*premise* can export the databases as a modified version
+of Simapro-CSV files compatible with OpenLCA.
 
 This is done as follows:
 
@@ -167,25 +166,11 @@ This is done as follows:
     original classification.
 
 
-Then, create a database from scratch (in older versions this is the “create empty database” option).
-
-.. image:: olca_fig0.png
-   :width: 500pt
-   :align: center
-   :alt: OpenLCA create database interface screenshot
-
-.. note::
-
-    In older versions the import steps were different (an empty database had to be used for the import,
-    rather than a complete reference database with the openLCA elementary flows), as this complete reference
-    version will have flows not required by Premise.
-
-Import the file as a SimaPro CSV (import>other>Other LCA formats>SimaPro CSV).
+The Simapro CSV files can be imported in OpenLCA in a new database like so:
 
 .. image:: olca_fig1.png
    :width: 500pt
    :align: center
-   :alt: OpenLCA import SimaPro CSV interface screenshot
 
 
 You will need to select "SimaproCSV_Import.csv" as mapping file to use.
@@ -193,26 +178,29 @@ You will need to select "SimaproCSV_Import.csv" as mapping file to use.
 .. image:: olca_fig2.png
    :width: 500pt
    :align: center
-   :alt: OpenLCA mapping file selection screenshot
 
-Then import the ecoinvent impact assessment methods (available for free on OpenLCA's Nexus_ platform)
-into the Premise database as JSON-LD.
 
-.. _Nexus: https://nexus.openlca.org/
+Finally, once imported, unlinked flows remain. They can be found under these highlighted folders:
 
 .. image:: olca_fig3.png
    :width: 500pt
    :align: center
-   :alt: OpenLCA import impact assessment methods screenshot
 
-Select the option "Overwrite all existing datasets" before importing, because our elementary flows may have
-more descriptions or never update existing data set to keep the descriptions from the CSV export of Premise for
-the elementary flows.
+
+To link them, you need to import an additional mapping flow that you can find at the following path:
+https://github.com/polca/premise/blob/master/premise/data/utils/export/flow_mapping_olca.csv
+
+Then, you can import this file in OpenLCA: ("Tools" > "Flow mapping" > "Open file").
 
 .. image:: olca_fig4.png
    :width: 500pt
    :align: center
-   :alt: OpenLCA overwrite datasets option screenshot
+
+
+And then go to "Flow mapping" > "Apply on database".
+A few dozens of unlinked flows will remain. You may fix that by manually mapping them.
+
+
 
 As a data package
 -----------------

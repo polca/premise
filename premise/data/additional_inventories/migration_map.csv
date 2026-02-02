@@ -1426,9 +1426,7 @@ from,to,name_from,ref_prod_from,location_from,name_to,ref_prod_to,location_to
 310,311,"market for transport, freight train","transport, freight train",Europe without Switzerland,"market for transport, freight, train, fleet average","transport, freight, train, fleet average",Europe without Switzerland
 310,311,"market for transport, freight, lorry 16-32 metric ton, EURO6","transport, freight, lorry 16-32 metric ton, EURO6",RER,"market for transport, freight, lorry, 16-32 metric ton, diesel, EURO 6","transport, freight, lorry, 16-32 metric ton, diesel, EURO 6",RER
 310,311,market for scrap copper,scrap copper,Europe without Switzerland,market for waste copper,waste copper,Europe without Switzerland
-311,310,market for waste copper,waste copper,Europe without Switzerland,market for scrap copper,scrap copper,Europe without Switzerland
 310,311,"lime production, hydrated, packed","lime, hydrated, packed",CH,"hydrated lime production, packed","hydrated lime, packed",CH
-311,310,"hydrated lime production, packed","hydrated lime, packed",CH,"lime production, hydrated, packed","lime, hydrated, packed",CH
 310,311,"market for transport, freight, lorry >32 metric ton, EURO6","transport, freight, lorry >32 metric ton, EURO6",RER,"market for transport, freight, lorry, >32 metric ton, diesel, EURO 6","transport, freight, lorry, >32 metric ton, diesel, EURO 6",RER
 310,311,"polyvinylchloride production, bulk polymerisation","polyvinylchloride, bulk polymerised",RER,"polyvinyl chloride production, unspecified polymerisation, weighted average","polyvinyl chloride, unspecified polymerisation, weighted average",RER
 311,310,"market for polyvinyl chloride, unspecified polymerisation, weighted average","polyvinyl chloride, unspecified polymerisation, weighted average",RoW,"market for polyvinylchloride, bulk polymerised","polyvinylchloride, bulk polymerised",GLO
@@ -1444,7 +1442,6 @@ from,to,name_from,ref_prod_from,location_from,name_to,ref_prod_to,location_to
 310,311,"transport, freight train, electricity","transport, freight train",Europe without Switzerland,"transport, freight, train, electric","transport, freight, train, fleet average",Europe without Switzerland
 310,311,"market for acetic acid, without water, in 98% solution state","acetic acid, without water, in 98% solution state",GLO,market for acetic acid,acetic acid,GLO
 310,311,"market for lime, hydrated, loose weight","lime, hydrated, loose weight",RoW,"market for hydrated lime, loose","hydrated lime, loose",RoW
-311,310,"market for hydrated lime, loose","hydrated lime, loose",CH,"market for lime, hydrated, loose weight","lime, hydrated, loose weight",CH
 310,311,"market for lime, hydrated, packed","lime, hydrated, packed",RER,"market for hydrated lime, packed","hydrated lime, packed",RER
 310,311,"market for battery, Li-ion, LFP, rechargeable, prismatic","battery, Li-ion, LFP, rechargeable, prismatic",GLO,"market for battery, Li-ion, LFP, rechargeable","battery, Li-ion, LFP, rechargeable",GLO
 310,311,"market for battery, Li-ion, NMC111, rechargeable, prismatic","battery, Li-ion, NMC111, rechargeable, prismatic",GLO,"market for battery, Li-ion, NMC111, rechargeable","battery, Li-ion, NMC111, rechargeable",GLO
@@ -1473,7 +1470,6 @@ from,to,name_from,ref_prod_from,location_from,name_to,ref_prod_to,location_to
 310,311,"market for lime, packed","lime, packed",RoW,"market for limestone, milled, packed","limestone, milled, packed",RoW
 310,311,market for scrap steel,scrap steel,Europe without Switzerland,market for waste steel,waste steel,Europe without Switzerland
 310,311,market for scrap aluminium,scrap aluminium,Europe without Switzerland,market for waste aluminium,waste aluminium,Europe without Switzerland
-311,310,market for waste aluminium,waste aluminium,Europe without Switzerland,market for scrap aluminium,scrap aluminium,Europe without Switzerland
 310,311,"market for transport, freight train","transport, freight train",Europe without Switzerland,"market for transport, freight, train, fleet average","transport, freight, train, fleet average",Europe without Switzerland
 310,311,"market for transport, freight, lorry, unspecified","transport, freight, lorry, unspecified",RER,"market for transport, freight, lorry, unspecified","transport, freight, lorry, diesel, unspecified",RER
 310,311,"lime production, milled, packed","lime, packed",RoW,"limestone production, milled, packed","limestone, milled, packed",RoW
@@ -1482,7 +1478,6 @@ from,to,name_from,ref_prod_from,location_from,name_to,ref_prod_to,location_to
 310,311,"transport, helicopter","transport, helicopter",GLO,"transport, helicopter, kerosene","transport, helicopter, kerosene",GLO
 310,311,"transport, helicopter, LTO cycle","transport, helicopter, LTO cycle",GLO,"transport, helicopter, kerosene, LTO cycle","transport, helicopter, kerosene, LTO cycle",GLO
 310,311,market for scrap steel,scrap steel,Europe without Switzerland,market for waste steel,waste steel,Europe without Switzerland
-311,310,market for waste steel,waste steel,Europe without Switzerland,market for scrap steel,scrap steel,Europe without Switzerland
 310,311,market for lime,lime,RER,"market for limestone, milled, loose","limestone, milled, loose",RER
 310,311,"market for transport, freight, inland waterways, barge","transport, freight, inland waterways, barge",RoW,"market for transport, freight, inland waterways, barge, diesel","transport, freight, inland waterways, barge, diesel",RoW
 310,311,"market for transport, freight, lorry, unspecified","transport, freight, lorry, unspecified",RoW,"market for transport, freight, lorry, unspecified","transport, freight, lorry, diesel, unspecified",RoW
@@ -1500,13 +1495,11 @@ from,to,name_from,ref_prod_from,location_from,name_to,ref_prod_to,location_to
 310,311,"market for transport, freight train","transport, freight train",Europe without Switzerland,"market for transport, freight, train, fleet average","transport, freight, train, fleet average",Europe without Switzerland
 310,311,"market for transport, freight, lorry >32 metric ton, EURO4","transport, freight, lorry >32 metric ton, EURO4",RER,"market for transport, freight, lorry, >32 metric ton, diesel, EURO 4","transport, freight, lorry, >32 metric ton, diesel, EURO 4",RER
 310,311,market for scrap steel,scrap steel,CH,market for waste steel,waste steel,CH
-311,310,market for waste steel,waste steel,CH,market for scrap steel,scrap steel,CH
 310,311,market for scrap copper,scrap copper,CH,market for waste copper,waste copper,CH
 310,311,market for scrap aluminium,scrap aluminium,CH,market for waste aluminium,waste aluminium,CH
 310,311,"market for transport, freight, lorry, unspecified","transport, freight, lorry, unspecified",RER,"market for transport, freight, lorry, unspecified","transport, freight, lorry, diesel, unspecified",RER
 310,311,"market for lime, hydrated, packed","lime, hydrated, packed",RoW,"market for hydrated lime, packed","hydrated lime, packed",RoW
 310,311,"market for transport, freight, lorry 16-32 metric ton, EURO3","transport, freight, lorry 16-32 metric ton, EURO3",RER,"market for transport, freight, lorry, 16-32 metric ton, diesel, EURO 3","transport, freight, lorry, 16-32 metric ton, diesel, EURO 3",RER
-311,310,"market for transport, freight, lorry, 16-32 metric ton, diesel, EURO 3","transport, freight, lorry, 16-32 metric ton, diesel, EURO 3",RER,"market for transport, freight, lorry 16-32 metric ton, EURO3","transport, freight, lorry 16-32 metric ton, EURO3",RER
 310,311,"market for transport, freight, lorry 16-32 metric ton, EURO3","transport, freight, lorry 16-32 metric ton, EURO3",BR,"market for transport, freight, lorry, 16-32 metric ton, diesel, EURO 3","transport, freight, lorry, 16-32 metric ton, diesel, EURO 3",BR
 310,311,"market for transport, freight, lorry 16-32 metric ton, EURO3","transport, freight, lorry 16-32 metric ton, EURO3",RoW,"market for transport, freight, lorry, 16-32 metric ton, diesel, EURO 3","transport, freight, lorry, 16-32 metric ton, diesel, EURO 3",RoW
 310,311,"market for transport, freight, sea, bulk carrier for dry goods","transport, freight, sea, bulk carrier for dry goods",GLO,"market for transport, freight, sea, bulk carrier for dry goods, heavy fuel oil","transport, freight, sea, bulk carrier for dry goods, heavy fuel oil",GLO
@@ -1533,7 +1526,6 @@ from,to,name_from,ref_prod_from,location_from,name_to,ref_prod_to,location_to
 310,311,"market for transport, freight, lorry 16-32 metric ton, EURO4","transport, freight, lorry 16-32 metric ton, EURO4",RER,"market for transport, freight, lorry, 16-32 metric ton, diesel, EURO 4","transport, freight, lorry, 16-32 metric ton, diesel, EURO 4",RER
 310,311,"market for transport, freight, sea, bulk carrier for dry goods","transport, freight, sea, bulk carrier for dry goods",GLO,"market for transport, freight, sea, bulk carrier for dry goods, heavy fuel oil","transport, freight, sea, bulk carrier for dry goods, heavy fuel oil",GLO
 310,311,"market for transport, freight, lorry >32 metric ton, EURO3","transport, freight, lorry >32 metric ton, EURO3",RoW,"market for transport, freight, lorry, >32 metric ton, diesel, EURO 3","transport, freight, lorry, >32 metric ton, diesel, EURO 3",RoW
-311,310,"market for transport, freight, lorry, >32 metric ton, diesel, EURO 3","transport, freight, lorry, >32 metric ton, diesel, EURO 3",RER,"market for transport, freight, lorry >32 metric ton, EURO3","transport, freight, lorry >32 metric ton, EURO3",RER
 310,311,"market for transport, freight, lorry >32 metric ton, EURO5","transport, freight, lorry >32 metric ton, EURO5",RER,"market for transport, freight, lorry, >32 metric ton, diesel, EURO 5","transport, freight, lorry, >32 metric ton, diesel, EURO 5",RER
 310,311,"transport, tram","transport, tram",CH,"transport, passenger, tram, electric","transport, passenger, tram, electric",CH
 310,311,market for scrap steel,scrap steel,Europe without Switzerland,market for waste steel,waste steel,Europe without Switzerland
@@ -1565,7 +1557,7 @@ from,to,name_from,ref_prod_from,location_from,name_to,ref_prod_to,location_to
 310,311,"market for battery, Li-ion, LiMn2O4, rechargeable, prismatic","battery, Li-ion, LiMn2O4, rechargeable, prismatic",GLO,"market for battery, Li-ion, LiMn2O4, rechargeable","battery, Li-ion, LiMn2O4, rechargeable",GLO
 310,311,"market for battery, Li-sulfur, Li-S","battery, Li-S",GLO,"market for battery, Li-sulfur, Li-S, rechargeable","battery, Li-S, rechargeable",GLO
 310,311,"market for battery, Li-oxygen, Li-O2","battery, Li-O2",GLO,"market for battery, Li-oxygen, Li-O2, rechargeable","battery, Li-O2, rechargeable",GLO
-310,311,"natural graphite production, coated","natural graphite, coated",CN,"coated natural graphite production","natural graphite, coated",CN
+310,311,"natural graphite production, coated","natural graphite, coated",CN,"coated natural graphite production",natural graphite, coated,CN
 310,311,synthetic graphite production,"synthetic graphite, 99% pure",CN,"synthetic graphite production, battery grade, via Acheson powder route","synthetic graphite, battery grade",CN
 310,38,coke production,coke,DE,market for coke,coke,GLO
 310,39,coke production,coke,DE,market for coke,coke,GLO
@@ -1579,9 +1571,6 @@ from,to,name_from,ref_prod_from,location_from,name_to,ref_prod_to,location_to
 310,311,"market for transport, freight train","transport, freight train",US,"market for transport, freight, train, fleet average","transport, freight, train, fleet average",US
 310,311,"market for transport, freight train","transport, freight train",ZA,"market for transport, freight, train, fleet average","transport, freight, train, fleet average",ZA
 310,311,"market for transport, freight train","transport, freight train",IN,"market for transport, freight, train, fleet average","transport, freight, train, fleet average",IN
-310,311,"market for transport, freight train","transport, freight train",Europe without Switzerland,"market for transport, freight, train, fleet average","transport, freight, train, fleet average",Europe without Switzerland
-311,310,"market for transport, freight, train, fleet average","transport, freight, train, fleet average",Europe without Switzerland,"market for transport, freight train","transport, freight train",Europe without Switzerland
 39,310,"market for electric arc furnace slag","electric arc furnace slag",RER,"market for electric arc furnace slag","electric arc furnace slag",Europe without Switzerland
 310,311,"light fuel oil, import from Europe","light fuel oil",CH,"light fuel oil, import from Europe without Switzerland","light fuel oil",CH
 310,311,"diesel, low-sulfur, import from Europe","diesel, low-sulfur",CH,"diesel, low-sulfur, import from Europe without Switzerland","diesel, low-sulfur",CH
-311,310,"market group for hard coal","hard coal",GLO,"market for hard coal","hard coal","Europe, without Russia and Türkiye"

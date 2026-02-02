@@ -64,14 +64,12 @@ def _update_vehicles(scenario, vehicle_type, version, system_model):
     if fleet_data[vehicle_type] is not None:
         trspt.create_vehicle_markets()
         trspt.relink_transport_datasets()
+        trspt.fix_missing_truck_markets()  # Fix broken references to non-existent truck sizes
+        trspt.fix_missing_train_markets()  # Fix broken references to non-existent train markets
 
     scenario["database"] = trspt.database
     scenario["cache"] = trspt.cache
     scenario["index"] = trspt.index
-
-    if "mapping" not in scenario:
-        scenario["mapping"] = {}
-    scenario["mapping"][vehicle_type] = trspt.vehicle_map
 
     validation_func = {
         "car": CarValidation,
@@ -290,6 +288,114 @@ class Transport(BaseTransformation):
                     exc["product"] = self.mapping[self.vehicle_type]["name"]
                     exc["location"] = new_loc
 
+    def fix_missing_train_markets(self):
+        """
+        Fix references to non-existent train markets by redirecting them to available markets.
+        """
+        if self.vehicle_type != "train":
+            return
+        
+        # Generic market name
+        generic_market = f"market for {self.mapping['train']['name']}"
+        
+        # Build a set of all available train markets for quick lookup
+        available_markets = set()
+        for ds in self.database:
+            if ds.get("name", "").startswith("market for transport, freight, train"):
+                available_markets.add((ds["name"], ds["location"]))
+        
+        # Fix references
+        fixed_count = 0
+        for dataset in self.database:
+            for exc in ws.technosphere(dataset):
+                exc_name = exc.get("name", "")
+                exc_location = exc.get("location", "")
+                
+                # Check if this exchange references a train market
+                if exc_name.startswith("market for transport, freight, train"):
+                    
+                    # Check if the referenced market actually exists
+                    if (exc_name, exc_location) not in available_markets:
+                        # Market doesn't exist - try to find an alternative
+                        
+                        # Option A: Try to map to IAM region
+                        if dataset["location"] in self.regions:
+                            iam_location = dataset["location"]
+                        else:
+                            iam_location = self.geo.ecoinvent_to_iam_location(dataset["location"])
+                        
+                        if (exc_name, iam_location) in available_markets:
+                            exc["location"] = iam_location
+                            fixed_count += 1
+                        # Option B: Try GLO
+                        elif (exc_name, "GLO") in available_markets:
+                            exc["location"] = "GLO"
+                            fixed_count += 1
+                        # Option C: Try World
+                        elif (exc_name, "World") in available_markets:
+                            exc["location"] = "World"
+                            fixed_count += 1
+                        else:
+                            # Only warn if we truly can't find any alternative
+                            print(f"WARNING: Could not find train market for {exc_location} (dataset in {dataset['location']})")
+        
+        if fixed_count > 0:
+            print(f"Fixed {fixed_count} train market location references")
+
+
+    def fix_missing_truck_markets(self):
+        """
+        Fix references to non-existent truck size markets (26-ton, 40-ton)
+        and missing regional markets by redirecting them to available markets.
+        """
+        if self.vehicle_type != "truck":
+            return
+        
+        # List of truck sizes that may not exist in IAM data
+        missing_sizes = ["26 metric ton", "40 metric ton"]
+        
+        # Generic market name
+        generic_market = f"market for {self.mapping['truck']['name']}"
+        
+        # Build a set of all available truck markets for quick lookup
+        available_markets = set()
+        for ds in self.database:
+            if ds.get("name", "").startswith("market for transport, freight, lorry"):
+                available_markets.add((ds["name"], ds["location"]))
+        
+        # Fix references
+        for dataset in self.database:
+            for exc in ws.technosphere(dataset):
+                exc_name = exc.get("name", "")
+                exc_location = exc.get("location", "")
+                
+                # Check if this exchange references a truck market
+                if exc_name.startswith("market for transport, freight, lorry"):
+                    
+                    # Fix 1: Redirect non-existent size-specific markets (26-ton, 40-ton)
+                    redirected = False
+                    for missing_size in missing_sizes:
+                        if missing_size in exc_name:
+                            exc["name"] = generic_market
+                            exc["location"] = self.geo.ecoinvent_to_iam_location(dataset["location"])
+                            print(f"Redirected {missing_size} truck market to generic market in {dataset['location']}")
+                            redirected = True
+                            break
+                    
+                    # Fix 2: Check if the referenced market actually exists
+                    if not redirected and (exc_name, exc_location) not in available_markets:
+                        # Market doesn't exist - try to find an alternative
+                        
+                        # Option A: Try GLO
+                        if (exc_name, "GLO") in available_markets:
+                            exc["location"] = "GLO"
+                            print(f"Redirected {exc_location} market to GLO for {exc_name}")
+                        # Option B: Use generic market with proper IAM location
+                        else:
+                            exc["name"] = generic_market
+                            exc["location"] = self.geo.ecoinvent_to_iam_location(dataset["location"])
+                            print(f"Redirected missing market {exc_name} in {exc_location} to generic market")
+
     def adjust_transport_efficiency(self, dataset, technology=None):
         """
         Adjust transport efficiency of transport datasets based on IAM data.
@@ -404,9 +510,9 @@ class Transport(BaseTransformation):
         for exc in ws.technosphere(ds, ws.contains("name", "market for battery")):
             exc["amount"] = mean_battery_size
             exc["uncertainty type"] = 5
-            exc["loc"] = float(exc["amount"])
-            exc["minimum"] = float(min_battery_size)
-            exc["maximum"] = float(max_battery_size)
+            exc["loc"] = exc["amount"]
+            exc["minimum"] = min_battery_size
+            exc["maximum"] = max_battery_size
 
         ds["comment"] = f" Battery size adjusted to {mean_battery_size} kWh."
 

@@ -45,13 +45,10 @@ def _update_fuels(scenario, version, system_model):
         fuels.generate_synthetic_fuel_activities()
         fuels.generate_biogas_activities()
         fuels.relink_datasets()
+        fuels.fix_fuel_market_locations()  # Fix fuel market location mismatches
         scenario["database"] = fuels.database
         scenario["cache"] = fuels.cache
         scenario["index"] = fuels.index
-
-        if "mapping" not in scenario:
-            scenario["mapping"] = {}
-        scenario["mapping"]["fuels"] = fuels.fuel_map
 
     else:
         print("No fuel scenario data available -- skipping")
@@ -127,6 +124,76 @@ class Fuels(
                 )
 
         self.new_fuel_markets = {}
+
+    def fix_fuel_market_locations(self):
+        """
+        Fix references to fuel markets that have been relocated to IAM regions.
+        
+        After fuel market creation, many ecoinvent datasets still reference fuel markets
+        in their original ecoinvent locations (CH, RER, ZA, etc.) but these markets
+        now exist in IAM regions. This method updates those references.
+        """
+        from ..transformation import ws
+        
+        # List of fuel market names that were relocated
+        fuel_market_names = [
+            "market for diesel",
+            "market for diesel, low-sulfur",
+            "market group for diesel, low-sulfur",
+            "market group for diesel",
+            "market for petrol",
+            "market for petrol, low-sulfur",
+            "market for petrol, unleaded",
+            "market for natural gas, high pressure",
+            "market group for natural gas, high pressure",
+            "market for natural gas, low pressure",
+            "market for hydrogen, gaseous, low pressure",
+            "market for kerosene",
+            "market for liquefied petroleum gas",
+        ]
+        
+        # Build a set of available fuel markets (name, location) for quick lookup
+        available_fuel_markets = set()
+        for ds in self.database:
+            if ds.get("name") in fuel_market_names:
+                available_fuel_markets.add((ds["name"], ds["location"]))
+        
+        # Count of fixes for reporting
+        fix_count = 0
+        
+        # Update all datasets that reference fuel markets
+        for dataset in self.database:
+            for exc in ws.technosphere(dataset):
+                exc_name = exc.get("name", "")
+                exc_location = exc.get("location", "")
+                
+                # Check if this is a fuel market reference
+                if exc_name in fuel_market_names:
+                    # Check if the referenced market exists at that location
+                    if (exc_name, exc_location) not in available_fuel_markets:
+                        # Market doesn't exist at this location - need to redirect
+                        
+                        # Get the IAM region for this dataset
+                        if dataset["location"] in self.regions:
+                            iam_location = dataset["location"]
+                        else:
+                            iam_location = self.geo.ecoinvent_to_iam_location(dataset["location"])
+                        
+                        # Check if market exists in the IAM region
+                        if (exc_name, iam_location) in available_fuel_markets:
+                            exc["location"] = iam_location
+                            fix_count += 1
+                        # Otherwise try GLO
+                        elif (exc_name, "GLO") in available_fuel_markets:
+                            exc["location"] = "GLO"
+                            fix_count += 1
+                        # Last resort: try World
+                        elif (exc_name, "World") in available_fuel_markets:
+                            exc["location"] = "World"
+                            fix_count += 1
+        
+        if fix_count > 0:
+            print(f"Fixed {fix_count} fuel market location references")
 
     def write_log(self, dataset, status="created"):
         """

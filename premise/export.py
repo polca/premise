@@ -1534,12 +1534,6 @@ class Export:
                         if "comment" in ds:
                             string = ds["comment"]
 
-                        if "source" in ds:
-                            if len(string) > 0:
-                                string += f" | Source: {ds['source']}"
-                            else:
-                                string = f"Source: {ds['source']}"
-
                         # Add dataset UUID to comment field
                         if len(string) > 0:
                             string += f" | ID: {ds_uuid}"

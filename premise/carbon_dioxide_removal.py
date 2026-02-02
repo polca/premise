@@ -64,10 +64,6 @@ def _update_cdr(scenario, version, system_model):
     else:
         print("No DAC information found in IAM data. Skipping.")
 
-    if "mapping" not in scenario:
-        scenario["mapping"] = {}
-    scenario["mapping"]["cdr"] = cdr.cdr_map
-
     return scenario
 
 
@@ -123,7 +119,6 @@ class CarbonDioxideRemoval(BaseTransformation):
         self.process_and_add_activities(
             efficiency_adjustment_fn=self.adjust_cdr_efficiency,
             mapping=self.cdr_map,
-            production_volumes=self.iam_data.production_volumes,
         )
 
     def create_cdr_markets(

@@ -24,7 +24,7 @@ classifiers = [
     "Operating System :: OS Independent",
     "Topic :: Scientific/Engineering",
 ]
-requires-python = ">=3.10"
+requires-python = ">=3.10,<3.12"
 
 [project.urls]
 source = "https://github.com/polca/premise"
@@ -89,14 +89,10 @@ bw2 = [
     "unfold",
 ]
 
-
-
 [tool.setuptools]
+license-files = ["LICENSE"]
 include-package-data = true
-
-[tool.setuptools.packages.find]
-where = ["."]
-include = ["premise*"]
+packages = ["premise"]
 
 [tool.setuptools.dynamic]
 dependencies = {file = ["requirements.txt"]}

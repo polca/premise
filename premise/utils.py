@@ -555,7 +555,6 @@ def trim_exchanges(exc):
             "minimum",
             "maximum",
             "categories",
-            "comment",
         ]
         and pd.notna(v)
     }
@@ -609,7 +608,7 @@ def create_cache(database, file_name):
         # trim exchanges
         ds["exchanges"] = [trim_exchanges(exc) for exc in ds["exchanges"]]
 
-    # make sure the directory exists
+    # make sure thw directory exists
     DIR_CACHED_DB.mkdir(parents=True, exist_ok=True)
 
     # create a cache file

@@ -1,7 +1,7 @@
 # ``premise``
 
 <div style="text-align:center">
-<img src="https://github.com/polca/premise/raw/master/docs/large.png" alt="premise logo" height="300"/>
+<img src="https://github.com/polca/premise/raw/master/docs/large.png" height="300"/>
 </div>
 
 # **PR**ospective **E**nviron**M**ental **I**mpact As**SE**ssment
@@ -9,11 +9,11 @@
 
 
 <p align="center">
-  <a href="https://badge.fury.io/py/premise" target="_blank"><img src="https://badge.fury.io/py/premise.svg" alt="PyPI version"></a>
-  <a href="https://anaconda.org/conda-forge/premise" target="_blank"><img src="https://img.shields.io/conda/vn/conda-forge/premise.svg" alt="Conda version"></a>
-  <a href="https://github.com/polca/premise" target="_blank"><img src="https://github.com/polca/premise/actions/workflows/main.yml/badge.svg?branch=master" alt="Build status"></a>
-  <a href="https://coveralls.io/github/polca/premise" target="_blank"><img src="https://coveralls.io/repos/github/polca/premise/badge.svg" alt="Coverage status"></a>
-  <a href="https://premise.readthedocs.io/en/latest/" target="_blank"><img src="https://readthedocs.org/projects/premise/badge/?version=latest" alt="Documentation status"></a>
+  <a href="https://badge.fury.io/py/premise" target="_blank"><img src="https://badge.fury.io/py/premise.svg"></a>
+  <a href="https://anaconda.org/conda-forge/premise" target="_blank"><img src="https://img.shields.io/conda/vn/conda-forge/premise.svg"></a>
+  <a href="https://github.com/polca/premise" target="_blank"><img src="https://github.com/polca/premise/actions/workflows/main.yml/badge.svg?branch=master"></a>
+  <a href="https://coveralls.io/github/polca/premise" target="_blank"><img src="https://coveralls.io/repos/github/polca/premise/badge.svg"></a>
+  <a href="https://premise.readthedocs.io/en/latest/" target="_blank"><img src="https://readthedocs.org/projects/premise/badge/?version=latest"></a>
 </p>
 
 ``premise`` is a Python tool for prospective life cycle assessment. 
@@ -27,7 +27,7 @@ and to compare different energy policies. It includes a set of IAM scenarios
 and a set of tools to create custom scenarios.
 
 The tool was designed to be user-friendly and to allow for reproducible results. 
-While it is built on the [brightway framework](https://docs.brightway.dev/en/latest/), 
+While it is built on the [brightway2 framework](https://docs.brightway.dev/en/latest/), 
 its outputs can naturally be used in [Activity Browser](https://github.com/LCA-ActivityBrowser/activity-browser), 
 but also in other LCA software, such as [SimaPro](https://simapro.com/), [OpenLCA](https://www.openlca.org/), or directly in Python.
 
@@ -36,24 +36,21 @@ If this tool helps you in your research, please consider citing this publication
 
 Also, use the following references to cite the scenarios used with the tool:
 
-- REMIND and REMIND-EU scenarios: Baumstark et al. REMIND2.1: transformation and innovation dynamics of the energy-economic system within climate and sustainability limits, Geoscientific Model Development, 2021.
+- REMIND scenarios: Baumstark et al. REMIND2.1: transformation and innovation dynamics of the energy-economic system within climate and sustainability limits, Geoscientific Model Development, 2021.
 - IMAGE scenarios: Stehfest, Elke, et al. Integrated assessment of global environmental change with IMAGE 3.0: Model description and policy applications. Netherlands Environmental Assessment Agency (PBL), 2014.
 - TIAM-UCL scenarios: Pye, S., et al. The TIAM-UCL Model (Version 4.1.1) Documentation, 2020.
-- GCAM scenarios: Calvin, K., et al. GCAM v5.1: representing the linkages between energy, water, land, climate, and economic systems, Geosci. Model Dev., 12, 677–698, https://doi.org/10.5194/gmd-12-677-2019, 2019.
 
 Models
 ------
 
 The tool currently supports the following IAMs:
 
-| Model           | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-|-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| REMIND v.3.5    | REMIND (Regionalized Model of Investment and Development) is an integrated assessment model that combines macroeconomic growth, energy system, and climate policy analysis. It is designed to analyze long-term energy transition pathways, accounting for technological, economic, and environmental factors. REMIND simulates how regions invest in different technologies and energy resources to balance economic growth and climate targets, while considering factors like energy efficiency, emissions, and resource availability. The model is particularly strong in its detailed representation of energy markets and macroeconomic interactions across regions, making it valuable for global climate policy assessments.                                                          |
-| REMIND-EU v.3.5 | REMIND-EU is a regionalized version of the REMIND model that further subdivides the European region into 8 geographies (France, Germany, Portugal-Spain, etc.). It allows for more detailed analysis of energy transition pathways and climate policies within Europe, considering regional differences in energy resources, technologies, and socio-economic conditions. This model is particularly useful for assessing the impacts of European Union policies on energy systems and climate change mitigation.                                                                                                                                                                                                                                                                             |
-| IMAGE v3.4      | IMAGE (Integrated Model to Assess the Global Environment) is a comprehensive IAM developed to explore the interactions between human development, energy consumption, and environmental systems over the long term. It focuses on assessing how land use, food systems, energy systems, and climate change interact under different policy scenarios. The model integrates biophysical processes, such as land-use change and greenhouse gas emissions, with socio-economic drivers like population growth and economic development. IMAGE is commonly used for analyzing sustainable development strategies, climate impacts, biodiversity loss, and exploring mitigation and adaptation options.                                                                                            |
-| TIAM-UCL v.4.1  | TIAM-UCL (TIMES Integrated Assessment Model by University College London) is a global energy system model based on the TIMES (The Integrated MARKAL-EFOM System) framework, developed to evaluate long-term decarbonization pathways for global energy systems. It provides detailed insights into energy technology options, resource availability, and emission reduction strategies under various climate policy scenarios. The model focuses on the trade-offs and synergies between energy security, economic costs, and environmental outcomes. TIAM-UCL is frequently used to analyze scenarios consistent with the Paris Agreement and examine technological innovation's role in mitigating climate change globally.                                                                 |
-| GCAM v.8.2      | GCAM (Global Change Analysis Model) is an integrated assessment model that simulates the interactions between energy, water, land use, climate, and economic systems on a global scale. It is designed to analyze how different policy scenarios, technological developments, and socio-economic factors influence greenhouse gas emissions, energy production and consumption, land use changes, and climate outcomes. GCAM incorporates detailed representations of energy technologies, agricultural systems, and land-use dynamics, allowing for comprehensive assessments of mitigation strategies and their implications for sustainable development. The model is widely used for exploring pathways to achieve climate targets while considering trade-offs across multiple sectors.  |
-
+| Model           | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+|-----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| REMIND v.3.5    | REMIND (Regionalized Model of Investment and Development) is an integrated assessment model that combines macroeconomic growth, energy system, and climate policy analysis. It is designed to analyze long-term energy transition pathways, accounting for technological, economic, and environmental factors. REMIND simulates how regions invest in different technologies and energy resources to balance economic growth and climate targets, while considering factors like energy efficiency, emissions, and resource availability. The model is particularly strong in its detailed representation of energy markets and macroeconomic interactions across regions, making it valuable for global climate policy assessments. |
+| REMIND-EU v.3.5 | REMIND-EU is a regionalized version of the REMIND model that further subdivides the European region into 8 geographies (France, Germany, Portugal-Spain, etc.). It allows for more detailed analysis of energy transition pathways and climate policies within Europe, considering regional differences in energy resources, technologies, and socio-economic conditions. This model is particularly useful for assessing the impacts of European Union policies on energy systems and climate change mitigation.                                                                                                                                                                                                                    |
+| IMAGE v3.4      | IMAGE (Integrated Model to Assess the Global Environment) is a comprehensive IAM developed to explore the interactions between human development, energy consumption, and environmental systems over the long term. It focuses on assessing how land use, food systems, energy systems, and climate change interact under different policy scenarios. The model integrates biophysical processes, such as land-use change and greenhouse gas emissions, with socio-economic drivers like population growth and economic development. IMAGE is commonly used for analyzing sustainable development strategies, climate impacts, biodiversity loss, and exploring mitigation and adaptation options.                                   |
+| TIAM-UCL v.4.1  | TIAM-UCL (TIMES Integrated Assessment Model by University College London) is a global energy system model based on the TIMES (The Integrated MARKAL-EFOM System) framework, developed to evaluate long-term decarbonization pathways for global energy systems. It provides detailed insights into energy technology options, resource availability, and emission reduction strategies under various climate policy scenarios. The model focuses on the trade-offs and synergies between energy security, economic costs, and environmental outcomes. TIAM-UCL is frequently used to analyze scenarios consistent with the Paris Agreement and examine technological innovation's role in mitigating climate change globally.        |
 
 
 What's new in 2.3.0?
@@ -61,7 +58,6 @@ What's new in 2.3.0?
 
 - Update and addition of REMIND and IMAGE scenarios to the latest versions (REMIND v.3.5, IMAGE v.3.4).
 - Addition of REMIND-EU scenarios: these scenarios are based on the REMIND model and further subdivide the European region into 8 geographies (France, Germany, Portugal-Spain, etc.).
-- Addition of GCAM scenarios.
 - Additional sectoral updates: 
   - transport (shipping, rail, road)
     - shipping: new inventories for different powertrain types (marine oil, ammonia, methanol, hydrogen),
@@ -93,7 +89,7 @@ Requirements
 * License for [ecoinvent 3][1]. Please note that the ecoinvent database is not included in this package. Also, read ecoinvent's [GDPR & EULA](https://ecoinvent.org/gdpr-eula/).
 * Some IAM output files come with the library and are located by default in the subdirectory "/data/iam_output_files". 
  A file path can be specified to fetch IAM output files elsewhere on your computer.
- * [Brightway][2] (optional). If you want to use the results in the Brightway framework (and [Activity Browser](https://github.com/LCA-ActivityBrowser/activity-browser)), you need `bw2data <4.0.0`. To produce Brightway 2.5-compatible databases, you need `bw2data >=4.0.0`. See the installation instructions below for more details.
+ * [brightway2][2] (optional). If you want to use the results in the Brightway 2 framework (and [Activity Browser](https://github.com/LCA-ActivityBrowser/activity-browser)), you need `bw2data <4.0.0`. To produce Brightway 2.5-compatible databases, you need `bw2data >=4.0.0`. See the installation instructions below for more details.
 
 > [!NOTE]
 > Please note that the ecoinvent database is not included in this package. Also, read ecoinvent's [GDPR & EULA](https://ecoinvent.org/gdpr-eula/).
@@ -117,7 +113,7 @@ This means that ``premise`` will output databases that are compatible with Brigh
 
 
 > [!WARNING]
-> If you want to use the results in the Brightway 2 framework, 
+> If you want to use the results in the Brightway 2 framework (e.g., to read them in ``activity-browser``), 
 > you need to specify it in the installation command:
 
 >    pip install "premise[bw2]"
@@ -128,7 +124,7 @@ is available from Anaconda Cloud. Similarly, you should specify that you want to
 
     conda install -c conda-forge premise-bw25
 
-Or rather use Brightway2:
+Or rather use Brightway2 (for Activity Browser-compatibility):
 
     conda install -c conda-forge premise-bw2
 

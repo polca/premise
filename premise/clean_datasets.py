@@ -42,7 +42,7 @@ def remove_uncertainty(database):
     for dataset in database:
         for exchange in dataset["exchanges"]:
             exchange["uncertainty type"] = 0
-            exchange["loc"] = float(exchange["amount"])
+            exchange["loc"] = exchange["amount"]
             for key in uncertainty_keys:
                 exchange[key] = nan_value
 

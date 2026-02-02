@@ -269,10 +269,6 @@ def _update_electricity(
     scenario["index"] = electricity.index
     scenario["cache"] = electricity.cache
 
-    if "mapping" not in scenario:
-        scenario["mapping"] = {}
-    scenario["mapping"]["electricity"] = electricity.powerplant_map
-
     validate = ElectricityValidation(
         model=scenario["model"],
         scenario=scenario["pathway"],
@@ -697,8 +693,8 @@ class Electricity(BaseTransformation):
                         new_exchanges.append(
                             {
                                 "uncertainty type": 0,
-                                "loc": float(amount * share),
-                                "amount": float(amount * share),
+                                "loc": (amount * share),
+                                "amount": (amount * share),
                                 "type": "technosphere",
                                 "product": supplier["reference product"],
                                 "name": supplier["name"],
@@ -1161,8 +1157,8 @@ class Electricity(BaseTransformation):
                         new_exchanges.append(
                             {
                                 "uncertainty type": 0,
-                                "loc": float(amount * share),
-                                "amount": float(amount * share),
+                                "loc": (amount * share),
+                                "amount": (amount * share),
                                 "type": "technosphere",
                                 "product": supplier["reference product"],
                                 "name": supplier["name"],
@@ -1485,13 +1481,9 @@ class Electricity(BaseTransformation):
                         scaling_factor = float(current_eff / new_mean_eff)
                         exc["amount"] *= scaling_factor
                         exc["uncertainty type"] = 5
-                        exc["loc"] = float(exc["amount"])
-                        exc["minimum"] = float(
-                            exc["amount"] * (new_min_eff / new_mean_eff)
-                        )
-                        exc["maximum"] = float(
-                            exc["amount"] * (new_max_eff / new_mean_eff)
-                        )
+                        exc["loc"] = exc["amount"]
+                        exc["minimum"] = exc["amount"] * (new_min_eff / new_mean_eff)
+                        exc["maximum"] = exc["amount"] * (new_max_eff / new_mean_eff)
 
                         dataset["comment"] = (
                             f"`premise` has changed the efficiency "

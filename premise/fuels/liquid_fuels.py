@@ -12,7 +12,7 @@ class SyntheticFuelsMixin:
 
         if synfuel_map:
             self.process_and_add_activities(
-                mapping=synfuel_map, production_volumes=self.iam_data.production_volumes
+                mapping=synfuel_map,
             )
 
         methanol_map = {

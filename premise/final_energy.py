@@ -36,10 +36,6 @@ def _update_final_energy(
     scenario["index"] = final_energy.index
     scenario["cache"] = final_energy.cache
 
-    if "mapping" not in scenario:
-        scenario["mapping"] = {}
-    scenario["mapping"]["final energy"] = final_energy.final_energy_map
-
     return scenario
 
 
@@ -84,5 +80,4 @@ class FinalEnergy(BaseTransformation):
 
         self.process_and_add_activities(
             mapping=self.final_energy_map,
-            production_volumes=self.iam_data.production_volumes,
         )

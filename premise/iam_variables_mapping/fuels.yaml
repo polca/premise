@@ -384,7 +384,6 @@ petrol, synthetic, from electrolysis:
     unit: megajoule
     value: 42.6
   co2: 0.0737
-  eff_aliases:
   iam_aliases:
     remind: SE|Liquids|+|Hydrogen
     remind-eu: SE|Liquids|+|Hydrogen
@@ -400,7 +399,6 @@ petrol, synthetic, from coal:
     value: 42.6
   co2: 0.0737
   biogenic_share: 0
-  eff_aliases:
   iam_aliases:
     remind: SE|Liquids|Fossil|Coal|+|w/o CC
     remind-eu: SE|Liquids|Fossil|Coal|+|w/o CC
@@ -416,7 +414,6 @@ petrol, synthetic, from coal, with CCS:
     value: 42.6
   co2: 0.0737
   biogenic_share: 0
-  eff_aliases:
   iam_aliases:
     remind: SE|Liquids|Fossil|Coal|+|w/ CC
     remind-eu: SE|Liquids|Fossil|Coal|+|w/ CC
@@ -432,7 +429,6 @@ diesel, synthetic, from electrolysis:
     value: 43
   co2: 0.0732
   biogenic_share: 1
-  eff_aliases:
   iam_aliases:
     tiam-ucl: Secondary Energy|Liquids|Hydrogen|Diesel
     remind: SE|Liquids|+|Hydrogen
@@ -732,8 +728,6 @@ hydrogen, from solar:
     value: 120
   co2: 0
   biogenic_share: 1
-  eff_aliases:
-  iam_aliases:
   ecoinvent_aliases:
     fltr:
     - hydrogen production, gaseous, 25 bar, from thermochemical water splitting, at
