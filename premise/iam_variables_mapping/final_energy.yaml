@@ -3681,7 +3681,7 @@ Transport - Pass - Large Car and SUV - H2:
 Transport - Pass - Large Car and SUV - Biofuel - Energy crops:
   ecoinvent_aliases:
     fltr:
-      name: bioethanol, from eucalyptus, burned in passenger car
+      name: bioethanol, from non-residual cellulosic biomass, burned in passenger car
       reference product: heat
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|Liquids|Biomass|Allocated Feedstock|Cellulosic|Energy Crops
@@ -3766,7 +3766,7 @@ Transport - Pass - Large Car - H2:
 Transport - Pass - Large Car - Biofuel - Energy crops:
     ecoinvent_aliases:
         fltr:
-          name: bioethanol, from eucalyptus, burned in passenger car
+          name: bioethanol, from non-residual cellulosic biomass, burned in passenger car
           reference product: heat
     iam_aliases:
         remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Liquids|Biomass|Allocated Feedstock|Cellulosic|Energy Crops
@@ -3860,7 +3860,7 @@ Transport - Pass - Van - Biofuel:
 Transport - Pass - Van - Biofuel - Energy crops:
   ecoinvent_aliases:
     fltr:
-      name: bioethanol, from eucalyptus, burned in passenger car
+      name: bioethanol, from non-residual cellulosic biomass, burned in passenger car
       reference product: heat
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|Liquids|Biomass|Allocated Feedstock|Cellulosic|Energy Crops
@@ -3950,7 +3950,7 @@ Transport - Pass - Compact Car - H2:
 Transport - Pass - Compact Car - Biofuel - Energy crops:
     ecoinvent_aliases:
         fltr:
-            name: bioethanol, from eucalyptus, burned in passenger car
+            name: bioethanol, from non-residual cellulosic biomass, burned in passenger car
             reference product: heat
     iam_aliases:
         remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Compact Car|Liquids|Biomass|Allocated Feedstock|Cellulosic|Energy Crops
@@ -4054,7 +4054,7 @@ Transport - Pass - Midsize Car - Biofuel:
 Transport - Pass - Midsize Car - Biofuel - Energy crops:
     ecoinvent_aliases:
         fltr:
-            name: bioethanol, from eucalyptus, burned in passenger car
+            name: bioethanol, from non-residual cellulosic biomass, burned in passenger car
             reference product: heat
     iam_aliases:
         remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Liquids|Biomass|Allocated Feedstock|Cellulosic|Energy Crops
@@ -4152,7 +4152,7 @@ Transport - Pass - Mini Car - H2:
 Transport - Pass - Mini Car - Biofuel - Energy crops:
     ecoinvent_aliases:
         fltr:
-            name: bioethanol, from eucalyptus, burned in passenger car
+            name: bioethanol, from non-residual cellulosic biomass, burned in passenger car
             reference product: heat
     iam_aliases:
         remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Liquids|Biomass|Allocated Feedstock|Cellulosic|Energy Crops
@@ -4246,7 +4246,7 @@ Transport - Pass - Subcompact Car - H2:
 Transport - Pass - Subcompact Car - Biofuel - Energy crops:
     ecoinvent_aliases:
         fltr:
-            name: bioethanol, from eucalyptus, burned in passenger car
+            name: bioethanol, from non-residual cellulosic biomass, burned in passenger car
             reference product: heat
     iam_aliases:
         remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car|Liquids|Biomass|Allocated Feedstock|Cellulosic|Energy Crops
