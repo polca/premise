@@ -5,6 +5,8 @@ datasets based on IAM output data.
 
 from typing import List
 
+from wurst import searching as ws
+
 from .data_collection import IAMDataCollection
 from .transformation import BaseTransformation, InventorySet
 
@@ -29,6 +31,7 @@ def _update_final_energy(
         system_model=system_model,
     )
 
+    final_energy.regionalize_energy_carrier_inputs()
     final_energy.regionalize_heating_datasets()
 
     final_energy.relink_datasets()
@@ -79,6 +82,7 @@ class FinalEnergy(BaseTransformation):
 
         mapping = InventorySet(database=database, version=version, model=model)
         self.final_energy_map = mapping.generate_final_energy_map()
+        self.fuel_map = mapping.generate_fuel_map(model=self.model)
 
     def regionalize_heating_datasets(self):
 
@@ -86,3 +90,57 @@ class FinalEnergy(BaseTransformation):
             mapping=self.final_energy_map,
             production_volumes=self.iam_data.production_volumes,
         )
+
+    def regionalize_energy_carrier_inputs(self):
+        energy_products = {
+            ds["reference product"]
+            for acts in self.fuel_map.values()
+            for ds in acts
+            if ds.get("reference product")
+        }
+        energy_products.update(
+            {
+                "electricity, low voltage",
+                "electricity, medium voltage",
+                "electricity, high voltage",
+                "heat",
+                "heat, district or industrial",
+                "heat, district or industrial, natural gas",
+            }
+        )
+
+        def is_energy_product(product: str) -> bool:
+            if product in energy_products:
+                return True
+            lowered = product.lower()
+            return lowered.startswith("electricity") or lowered.startswith("heat")
+
+        supplier_keys = set()
+        for acts in self.final_energy_map.values():
+            for dataset in acts:
+                for exc in ws.technosphere(dataset):
+                    if exc.get("amount", 0) == 0:
+                        continue
+                    product = exc.get("product")
+                    if not product:
+                        continue
+                    if is_energy_product(product):
+                        supplier_keys.add((exc["name"], product))
+
+        if not supplier_keys:
+            return
+
+        mapping = {}
+        for name, product in supplier_keys:
+            activities = list(
+                ws.get_many(
+                    self.database,
+                    ws.equals("name", name),
+                    ws.equals("reference product", product),
+                )
+            )
+            if activities:
+                mapping[f"{name}::{product}"] = activities
+
+        if mapping:
+            self.process_and_add_activities(mapping=mapping)
