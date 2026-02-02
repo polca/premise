@@ -1306,7 +1306,6 @@ class IAMDataCollection:
         # we add the split of gasoline, diesel, LPG and kerosene
 
         if split_fossil_liquid_fuels is not None:
-            print(split_fossil_liquid_fuels)
             # get the split of gasoline, diesel, LPG and kerosene
             df = get_oil_product_volumes(self.model)
             variable_liquid_fuel = split_fossil_liquid_fuels["liquid fossil fuels"]
