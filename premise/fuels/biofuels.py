@@ -120,9 +120,7 @@ class BiofuelsMixin:
             for specific_crop, regions in crop_to_regions.items():
                 crop_key = specific_crop
                 if crop_key not in biofuel_activities[crop_type]:
-                    crop_key = fallback_map.get(crop_type, {}).get(
-                        crop_key, crop_key
-                    )
+                    crop_key = fallback_map.get(crop_type, {}).get(crop_key, crop_key)
 
                 activities = biofuel_activities[crop_type][crop_key]
 

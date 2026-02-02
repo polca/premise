@@ -121,10 +121,9 @@ class FinalEnergy(BaseTransformation):
         }
 
         for ds in self.database:
-            if (
-                (ds.get("name"), ds.get("reference product")) in target_keys
-                and ds.get("location") in self.regions
-            ):
+            if (ds.get("name"), ds.get("reference product")) in target_keys and ds.get(
+                "location"
+            ) in self.regions:
                 self.adjust_biodiesel_feedstock_inputs(ds, "")
                 self.adjust_bioethanol_feedstock_inputs(ds, "")
 
@@ -435,11 +434,19 @@ class FinalEnergy(BaseTransformation):
 
         def detect_category_and_feedstock(name: str) -> tuple[str, str]:
             lowered = name.lower()
-            if "sugarbeet" in lowered or "sugar beet" in lowered or "sugarcane" in lowered:
+            if (
+                "sugarbeet" in lowered
+                or "sugar beet" in lowered
+                or "sugarcane" in lowered
+            ):
                 if "sugarbeet" in lowered or "sugar beet" in lowered:
                     return "sugar", "sugarbeet"
                 return "sugar", "sugarcane"
-            if "switchgrass" in lowered or "miscanthus" in lowered or "sorghum" in lowered:
+            if (
+                "switchgrass" in lowered
+                or "miscanthus" in lowered
+                or "sorghum" in lowered
+            ):
                 if "switchgrass" in lowered:
                     return "grass", "switchgrass"
                 if "miscanthus" in lowered:
@@ -449,7 +456,12 @@ class FinalEnergy(BaseTransformation):
                 if "poplar" in lowered:
                     return "wood", "poplar"
                 return "wood", "eucalyptus"
-            if "corn" in lowered or "maize" in lowered or "wheat" in lowered or "rye" in lowered:
+            if (
+                "corn" in lowered
+                or "maize" in lowered
+                or "wheat" in lowered
+                or "rye" in lowered
+            ):
                 if "corn" in lowered or "maize" in lowered:
                     return "grain", "corn"
                 return "grain", "wheat_rye"

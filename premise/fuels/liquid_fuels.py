@@ -315,7 +315,6 @@ class SyntheticFuelsMixin:
                     ],
                 )
 
-
         # jet fuel
         # check that IAM data has "kerosene_blend" attribute
         if hasattr(self.iam_data, "kerosene_blend"):
