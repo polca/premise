@@ -998,7 +998,12 @@ biodiesel, from oil crops:
   ecoinvent_aliases:
     fltr:
       name:
-      - biodiesel production, via transesterification, from rapeseed oil
+        - biodiesel production, via transesterification, from rapeseed oil
+        - esterification of soybean oil
+        - biodiesel production, via transesterification, from palm oil
+      reference product:
+        - biodiesel
+        - fatty acid methyl ester
     mask:
       name:
       - expansion
@@ -1006,7 +1011,6 @@ biodiesel, from oil crops:
       - capture
       - station
       - algae
-      - palm
 biodiesel, from oil crops, with CCS:
   lhv:
     unit: megajoule
@@ -1209,6 +1213,7 @@ bioethanol, from grain, with CCS:
   ecoinvent_aliases:
     fltr:
     - ethanol production, via fermentation, from corn, with carbon capture and storage
+    - ethanol production, via fermentation, from wheat, with carbon capture and storage
     mask:
       name:
       - expansion

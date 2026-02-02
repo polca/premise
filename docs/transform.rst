@@ -1742,6 +1742,11 @@ Run
 *premise* create different region-specific fuel supply chains
 and fuel markets, based on data from the IAM scenario.
 
+.. note::
+   Fuel regionalization is model-specific. If you build multiple IAM scenarios
+   sequentially in the same database, previously regionalized datasets can be
+   reused and prevent new model-specific proxies from being created.
+
 
 Efficiency adjustment
 ---------------------
@@ -1754,6 +1759,24 @@ production datasets is adjusted according to the IAM scenario projections.
 
 Inputs to the biofuel production datasets are multiplied by a *scaling factor*
 that represents the change in efficiency relative to today (2020).
+
+Feedstock regionalization
+-------------------------
+
+For bioethanol and oil-based biodiesel, *premise* selects region-appropriate
+feedstocks before building fuel markets (e.g., "market for petrol" and
+"market for diesel"). This prevents regions from drawing on feedstocks that are
+not representative of their dominant crop choices (for example, sugarbeet
+ethanol in Latin America).
+
+The selection is driven by explicit IAM-region mappings:
+
+* oil-based biodiesel feedstocks: `premise/iam_variables_mapping/iam_region_to_biodiesel_feedstock.yaml`
+* bioethanol feedstocks (sugar, grass, wood, grain): `premise/iam_variables_mapping/iam_region_to_bioethanol_feedstock.yaml`
+
+When a region has no suppliers in its allowed locations for a given feedstock,
+*premise* falls back to any available supplier of that same feedstock to avoid
+empty markets.
 
 Land use and land use change
 ----------------------------

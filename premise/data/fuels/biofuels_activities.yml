@@ -11,6 +11,8 @@ oil:
     - refining of vegetable oil from oil palm
     - biodiesel production, via transesterification, from palm oil, energy allocation
     - biodiesel, from palm oil, at fuelling station
+  soybean:
+    - esterification of soybean oil
   used cooking oil:
     - supply and refining of waste cooking oil
     - biodiesel production, via transesterification, from used cooking oil, energy allocation
@@ -94,6 +96,7 @@ grain:
   wheat:
     - farming and supply of wheat grains
     - ethanol production, via fermentation, from wheat grains, energy allocation
+    - ethanol production, via fermentation, from wheat, with carbon capture and storage
   wheat straw:
     - farming and supply of wheat straw
     - ethanol production, via fermentation, from wheat straw, energy allocation
