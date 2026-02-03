@@ -49,7 +49,14 @@ Buildings - Heating - Gases:
     remind-eu: FE|Buildings|Heating|Gases
     message:
       - Final Energy|Residential and Commercial|Gases|Gas
-      - Final Energy|Residential and Commercial|Other
+
+Buildings - Heating - Other:
+  ecoinvent_aliases:
+    fltr:
+      name: market for heat, district or industrial, other than natural gas
+      reference product: heat, district or industrial, other than natural gas
+  iam_aliases:
+    message: Final Energy|Residential and Commercial|Other
 
 Buildings - Heating - H2:
   ecoinvent_aliases:
@@ -476,7 +483,6 @@ Industry - Cement - H2:
   iam_aliases:
     message:
       - Final Energy|Industry|Non-Metallic Minerals|Cement|Hydrogen
-      - Final Energy|Industry|Non-Metallic Minerals|Cement|Liquids|Hydrogen
 #      - Final Energy|Industry|Non-Metallic Minerals|Cement|Liquids|h2-methanol
     remind: FE|Industry|Cement|+|Hydrogen
     image:
@@ -559,6 +565,7 @@ Industry - Cement - Syn Fuel:
       name: diesel, synthetic, burned in diesel-electric generating set, 10MW
       reference product: heat
   iam_aliases:
+    message: Final Energy|Industry|Non-Metallic Minerals|Cement|Liquids|Hydrogen
     remind: FE|Industry|Cement|Liquids|+|Hydrogen
     remind-eu: FE|Industry|Cement|Liquids|+|Hydrogen
 Industry - Cement - Liquid coal:
@@ -646,7 +653,7 @@ Industry - Chemicals - Elec:
       reference product: electricity, low voltage
     mask: period
   iam_aliases:
-    message: Final Energy|Industry|Chemicals|Other Sector|Electricity
+#    message: Final Energy|Industry|Chemicals|Other Sector|Electricity # "Chemicals|Resins" and "Chemicals|Other Sector" refer to the same flows in MESSAGE
     remind: FE|Industry|Chemicals|+|Electricity # HIGHER LEVEL - I would be double counting
     remind-eu: FE|Industry|Chemicals|+|Electricity
 #    image: Final Energy|Industry|Chemicals|Electricity
@@ -663,7 +670,7 @@ Industry - Chemicals - Chemicals - H2:
       name: hydrogen, burned in gas turbine 1GW
       reference product: heat
   iam_aliases:
-    message: Final Energy|Industry|Chemicals|Other Sector|Hydrogen
+#    message: Final Energy|Industry|Chemicals|Other Sector|Hydrogen
     remind: FE|Industry|Chemicals|+|Hydrogen
     remind-eu: FE|Industry|Chemicals|+|Hydrogen
 #    image: Final Energy|Industry|Chemicals|Hydrogen
@@ -676,22 +683,22 @@ Industry - Chemicals - Chemicals - Elec, high temp:
   iam_aliases:
     remind: FE|Industry|Chemicals|Electricity|+|High-temperature heat
     remind-eu: FE|Industry|Chemicals|Electricity|+|High-temperature heat
-Industry - Chemicals - Chemicals - Liquid coal:
-  ecoinvent_aliases:
-    fltr:
-      name: methanol from coal, burned in residential boiler
-      reference product: heat
-  iam_aliases:
-    message:
-      - Final Energy|Industry|Chemicals|Other Sector|Liquids|Coal
+#Industry - Chemicals - Chemicals - Liquid coal:
+#  ecoinvent_aliases:
+#    fltr:
+#      name: methanol from coal, burned in residential boiler
+#      reference product: heat
+#  iam_aliases:
+#    message:
+#      - Final Energy|Industry|Chemicals|Other Sector|Liquids|Coal
 #      - Final Energy|Industry|Chemicals|Other Sector|Liquids|coal-methanol
-Industry - Chemicals - Chemicals - LPG:
-  ecoinvent_aliases:
-    fltr:
-      name: liquefied petroleum gas, burned in residential natural gas boiler <100kW
-      reference product: heat
-  iam_aliases:
-    message: Final Energy|Industry|Chemicals|Other Sector|Liquids|Gas
+#Industry - Chemicals - Chemicals - LPG:
+#  ecoinvent_aliases:
+#    fltr:
+#      name: liquefied petroleum gas, burned in residential natural gas boiler <100kW
+#      reference product: heat
+#  iam_aliases:
+#    message: Final Energy|Industry|Chemicals|Other Sector|Liquids|Gas
 Industry - Chemicals - Chemicals - Elec, low temp:
   ecoinvent_aliases:
     fltr:
@@ -718,9 +725,9 @@ Industry - Chemicals - Chemicals - Nat Gas:
       reference product: natural gas, burned in gas turbine
     mask: market
   iam_aliases:
-    message:
-      - Final Energy|Industry|Chemicals|Other Sector|Gases|Gas
-      - Final Energy|Industry|Chemicals|Other Sector|Liquids|Other
+#    message:
+#      - Final Energy|Industry|Chemicals|Other Sector|Gases|Gas
+#      - Final Energy|Industry|Chemicals|Other Sector|Liquids|Other
 #      - Final Energy|Industry|Chemicals|Other Sector|Liquids|gas-methanol
     remind: FE|Industry|Chemicals|Gases|+|Fossil
     remind-eu: FE|Industry|Chemicals|Gases|+|Fossil
@@ -739,8 +746,8 @@ Industry - Chemicals - Chemicals - Biofuel:
       name: methanol from biomass, burned in residential boiler
       reference product: heat
   iam_aliases:
-    message:
-      - Final Energy|Industry|Chemicals|Other Sector|Liquids|Biomass
+#    message:
+#      - Final Energy|Industry|Chemicals|Other Sector|Liquids|Biomass
 #      - Final Energy|Industry|Chemicals|Other Sector|Liquids|bio-methanol
     remind: FE|Industry|Chemicals|Liquids|+|Biomass
     remind-eu: FE|Industry|Chemicals|Liquids|+|Biomass
@@ -751,7 +758,7 @@ Industry - Chemicals - Chemicals - Liquid fossil:
       name: light fuel oil, burned in industrial furnace 1MW
       reference product: heat
   iam_aliases:
-    message: Final Energy|Industry|Chemicals|Other Sector|Liquids|Oil
+#    message: Final Energy|Industry|Chemicals|Other Sector|Liquids|Oil
     remind: FE|Industry|Chemicals|Liquids|+|Fossil
     remind-eu: FE|Industry|Chemicals|Liquids|+|Fossil
 #    image: Final Energy|Industry|Chemicals|Liquids|Fossil
@@ -761,8 +768,8 @@ Industry - Chemicals - Chemicals - Syn Fuel:
       name: diesel, synthetic, burned in diesel-electric generating set, 10MW
       reference product: heat
   iam_aliases:
-    message:
-      - Final Energy|Industry|Chemicals|Other Sector|Liquids|Hydrogen
+#    message:
+#      - Final Energy|Industry|Chemicals|Other Sector|Liquids|Hydrogen
 #      - Final Energy|Industry|Chemicals|Other Sector|Liquids|h2-methanol
     remind: FE|Industry|Chemicals|Liquids|+|Hydrogen
     remind-eu: FE|Industry|Chemicals|Liquids|+|Hydrogen
@@ -772,7 +779,7 @@ Industry - Chemicals - Chemicals - Solid Biomass:
       name: heat production, softwood chips from forest, at furnace 1000kW
       reference product: heat
   iam_aliases:
-    message: Final Energy|Industry|Chemicals|Other Sector|Solids|Biomass
+#    message: Final Energy|Industry|Chemicals|Other Sector|Solids|Biomass
     remind: FE|Industry|Chemicals|Solids|+|Biomass
     remind-eu: FE|Industry|Chemicals|Solids|+|Biomass
 Industry - Chemicals - Chemicals - Solid coal:
@@ -781,7 +788,7 @@ Industry - Chemicals - Chemicals - Solid coal:
       name: hard coal, burned in hard coal industrial furnace 1-10MW
       reference product: heat
   iam_aliases:
-    message: Final Energy|Industry|Chemicals|Other Sector|Solids|Coal
+#    message: Final Energy|Industry|Chemicals|Other Sector|Solids|Coal
     remind: FE|Industry|Chemicals|Solids|+|Fossil
     remind-eu: FE|Industry|Chemicals|Solids|+|Fossil
 
