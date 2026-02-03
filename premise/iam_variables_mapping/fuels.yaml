@@ -602,6 +602,8 @@ diesel, synthetic, from natural gas:
   biogenic_share: 0
   iam_aliases:
     tiam-ucl: Secondary Energy|Liquids|Natural Gas|FT|Diesel|w/o CCS
+    remind: SE|Liquids|Fossil|Gas|+|w/o CC
+    remind-eu: SE|Liquids|Fossil|Gas|+|w/o CC
   eff_aliases:
     tiam-ucl: Efficiency|Liquids|Natural gas|FT fuel mix (diesel, kerosene, naptha,
       ELC)|w/o CCS
@@ -618,6 +620,8 @@ diesel, synthetic, from natural gas, with CCS:
   biogenic_share: 0
   iam_aliases:
     tiam-ucl: Secondary Energy|Liquids|Natural Gas|FT|Diesel|w CCS
+    remind: SE|Liquids|Fossil|Gas|+|w/ CC
+    remind-eu: SE|Liquids|Fossil|Gas|+|w/ CC
   eff_aliases:
     tiam-ucl: Efficiency|Liquids|Natural gas|FT fuel mix (diesel, kerosene, naptha,
       ELC)|w CCS
