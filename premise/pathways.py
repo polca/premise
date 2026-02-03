@@ -169,10 +169,12 @@ class PathwaysDataPackage:
                     ds_key = (
                         cdr_ds_info["name"],
                         cdr_ds_info["reference product"],
-                        cdr_ds_info["location"]
+                        cdr_ds_info["location"],
                     )
 
-                    energy_free_name = f"{cdr_ds_info['name']}, energy-free for pathways"
+                    energy_free_name = (
+                        f"{cdr_ds_info['name']}, energy-free for pathways"
+                    )
 
                     # Check if we've already created the energy-free version
                     if ds_key in processed_datasets:
@@ -186,17 +188,24 @@ class PathwaysDataPackage:
                             existing_energy_free = ws.get_one(
                                 scenario["database"],
                                 ws.equals("name", energy_free_name),
-                                ws.equals("reference product", cdr_ds_info["reference product"]),
+                                ws.equals(
+                                    "reference product",
+                                    cdr_ds_info["reference product"],
+                                ),
                                 ws.equals("location", cdr_ds_info["location"]),
                             )
 
                             # Add to current technology's mapping
-                            energy_stripped_mapping[cdr_tech].append({
-                                "name": existing_energy_free["name"],
-                                "reference product": existing_energy_free["reference product"],
-                                "unit": existing_energy_free["unit"],
-                                "location": existing_energy_free["location"],
-                            })
+                            energy_stripped_mapping[cdr_tech].append(
+                                {
+                                    "name": existing_energy_free["name"],
+                                    "reference product": existing_energy_free[
+                                        "reference product"
+                                    ],
+                                    "unit": existing_energy_free["unit"],
+                                    "location": existing_energy_free["location"],
+                                }
+                            )
                         except:
                             print(
                                 f"WARNING: Expected energy-free dataset not found: {energy_free_name} "
@@ -210,12 +219,16 @@ class PathwaysDataPackage:
 
                     # Check if energy-free version somehow already exists in database
                     # (e.g., from a previous run that wasn't cleaned up)
-                    existing_energy_free = list(ws.get_many(
-                        scenario["database"],
-                        ws.equals("name", energy_free_name),
-                        ws.equals("reference product", cdr_ds_info["reference product"]),
-                        ws.equals("location", cdr_ds_info["location"]),
-                    ))
+                    existing_energy_free = list(
+                        ws.get_many(
+                            scenario["database"],
+                            ws.equals("name", energy_free_name),
+                            ws.equals(
+                                "reference product", cdr_ds_info["reference product"]
+                            ),
+                            ws.equals("location", cdr_ds_info["location"]),
+                        )
+                    )
 
                     if existing_energy_free:
                         # Reuse pre-existing energy-free dataset
@@ -223,12 +236,16 @@ class PathwaysDataPackage:
                             f"Found pre-existing energy-free dataset: {energy_free_name} "
                             f"in {cdr_ds_info['location']}"
                         )
-                        energy_stripped_mapping[cdr_tech].append({
-                            "name": existing_energy_free[0]["name"],
-                            "reference product": existing_energy_free[0]["reference product"],
-                            "unit": existing_energy_free[0]["unit"],
-                            "location": existing_energy_free[0]["location"],
-                        })
+                        energy_stripped_mapping[cdr_tech].append(
+                            {
+                                "name": existing_energy_free[0]["name"],
+                                "reference product": existing_energy_free[0][
+                                    "reference product"
+                                ],
+                                "unit": existing_energy_free[0]["unit"],
+                                "location": existing_energy_free[0]["location"],
+                            }
+                        )
                         continue
 
                     # 1. Find the original dataset in the database
@@ -302,8 +319,8 @@ class PathwaysDataPackage:
 
                             # Check for electricity: "electricity" in name AND unit "kilowatt hour"
                             if (
-                                    "electricity" in exc_name_lower
-                                    and exc_unit == "kilowatt hour"
+                                "electricity" in exc_name_lower
+                                and exc_unit == "kilowatt hour"
                             ):
                                 is_energy = True
                                 removed_electricity += exc.get("amount", 0)
