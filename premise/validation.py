@@ -459,7 +459,7 @@ class BaseDatasetValidator:
         for dataset in self.database:
             key = (dataset["name"], dataset["reference product"], dataset["location"])
             if key not in consumed_datasets and not any(
-                x not in dataset["name"] for x in ["market for", "market group for"]
+                x in dataset["name"] for x in ["market for", "market group for"]
             ):
                 message = f"Orphaned dataset found: {dataset['name']}"
                 self.log_issue(dataset, "orphaned dataset", message)
@@ -661,7 +661,7 @@ class BaseDatasetValidator:
 
         for dataset in self.database:
             for key in list(dataset.keys()):
-                if not dataset[key]:
+                if dataset[key] is None:
                     del dataset[key]
 
     def correct_fields_format(self):
@@ -680,7 +680,7 @@ class BaseDatasetValidator:
             for exc in dataset["exchanges"]:
                 # check that `amount` is of type `float`
                 if np.isnan(exc["amount"]):
-                    ValueError(
+                    raise ValueError(
                         f"Amount is NaN in exchange {exc} in dataset {dataset['name'], dataset['location']}"
                     )
                 if not isinstance(exc["amount"], float):
@@ -721,25 +721,39 @@ class BaseDatasetValidator:
 
     def reformat_parameters(self):
         for ds in self.database:
-            if "parameters" in ds:
-                if not isinstance(ds["parameters"], list):
-                    if isinstance(ds["parameters"], dict):
-                        ds["parameters"] = [
+            params = ds.get("parameters", None)
+
+            if params is not None:
+                # Normalize to a list
+                if isinstance(params, dict):
+                    # dict of {name: amount}
+                    params = [{"name": k, "amount": v} for k, v in params.items()]
+
+                elif not isinstance(params, list):
+                    # single scalar / object -> wrap
+                    params = [params]
+
+                # Now params is a list (maybe empty)
+                if params:
+                    first = params[0]
+
+                    # Case A: list of dicts like [{"a": 1}, {"b": 2}]
+                    # but avoid reprocessing already-normalized [{"name": ..., "amount": ...}]
+                    if isinstance(first, dict) and not {"name", "amount"}.issubset(
+                        first
+                    ):
+                        params = [
                             {"name": k, "amount": v}
-                            for k, v in ds["parameters"].items()
-                        ]
-                    else:
-                        ds["parameters"] = [ds["parameters"]]
-                else:
-                    if isinstance(ds["parameters"][0], dict):
-                        ds["parameters"] = [
-                            {"name": k, "amount": v}
-                            for o in ds["parameters"]
+                            for o in params
+                            if isinstance(o, dict)
                             for k, v in o.items()
                         ]
 
+                ds["parameters"] = params
+
+            # Remove None-valued keys
             for key, value in list(ds.items()):
-                if not value:
+                if value is None:
                     del ds[key]
 
             ds["exchanges"] = [clean_up(exc) for exc in ds["exchanges"]]
@@ -2808,7 +2822,7 @@ class MetalsValidation(BaseDatasetValidator):
                     ws.equals("location", "World"),
                     ws.equals("unit", "kilogram"),
                 )
-            except:
+            except ws.NoResults:
                 continue
 
             # Find year

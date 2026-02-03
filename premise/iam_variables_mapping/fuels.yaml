@@ -993,6 +993,7 @@ biodiesel, from oil crops:
     fltr:
       name:
       - biodiesel production, via transesterification, from rapeseed oil
+      - biodiesel production, via transesterification, from palm oil
     mask:
       name:
       - expansion
@@ -1000,7 +1001,6 @@ biodiesel, from oil crops:
       - capture
       - station
       - algae
-      - palm
 biodiesel, from oil crops, with CCS:
   lhv:
     unit: megajoule

@@ -28,10 +28,10 @@ logger = create_logger("dac")
 CDR_ACTIVITIES = DATA_DIR / "cdr" / "cdr_activities.yaml"
 
 
-def fetch_mapping(filepath: str) -> dict:
+def fetch_mapping() -> dict:
     """Returns a dictionary from a YML file"""
 
-    with open(filepath, "r", encoding="utf-8") as stream:
+    with open(CDR_ACTIVITIES, "r", encoding="utf-8") as stream:
         mapping = yaml.safe_load(stream)
     return mapping
 
@@ -119,6 +119,20 @@ class CarbonDioxideRemoval(BaseTransformation):
         modifies the original datasets to include the heat source, and adds the modified datasets to the database.
 
         """
+
+        # regionalize support activities
+        filters = fetch_mapping()
+
+        self.cdr_support_activities = self.mapping.generate_sets_from_filters(filters)
+
+        self.cdr_support_activities = {
+            x["name"]: v for v in self.cdr_support_activities.values() for x in v
+        }
+
+        if self.cdr_support_activities:
+            self.process_and_add_activities(mapping=self.cdr_support_activities)
+
+        self.cdr_map = self.mapping.generate_cdr_map(model=self.model)
 
         self.process_and_add_activities(
             efficiency_adjustment_fn=self.adjust_cdr_efficiency,

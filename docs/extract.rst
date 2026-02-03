@@ -35,9 +35,12 @@ Supported versions of ecoinvent
 
 *premise* currently works with the following ecoinvent database versions:
 
+* **v.3.5, cut-off**
+* **v.3.6, cut-off**
+* **v.3.7 and v.3.7.1, cut-off**
 * **v.3.8, cut-off and consequential**
-* **v.3.9, cut-off and consequential**
-* **v.3.10, cut-off and consequential**
+* **v.3.9 and v.3.9.1, cut-off and consequential**
+* **v.3.10 and v.3.10.1, cut-off and consequential**
 * **v.3.11, cut-off and consequential**
 * **v.3.12, cut-off and consequential**
 
@@ -83,8 +86,8 @@ indicate the database name in `source_db` and its version in `source_version`:
         source_db="ecoinvent 3.7 cutoff", # <-- this is NEW.
         source_version="3.7.1", # <-- this is NEW
         key='xxxxxxxxxxxxxxxxxxxxxxxxx',
-        use_multiprocessing=True, # True by default, set to False if multiprocessing is causing troubles
-        keep_uncertainty_data=False # False by default, set to True if you want to keep ecoinvent's uncertainty data
+        keep_imports_uncertainty=True, # True by default, set to False to drop uncertainty in additional inventories
+        keep_source_db_uncertainty=False # False by default, set to True if you want to keep ecoinvent's uncertainty data
     )
 
 Note that a cache of the database will be created the first time and
@@ -1569,4 +1572,3 @@ in laboratories.
   2020                   11.9        17.9         16.8        14      14     16.8
   2050                   12.5        26.7         24.4        23.4    23.4   21
  ====================== =========== ============ =========== ======= ====== =======
-

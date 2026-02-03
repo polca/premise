@@ -369,6 +369,7 @@ class PathwaysDataPackage:
             return arr.assign_coords(variables=("variables", new_vars))
 
         data_list, extra_units = [], {}
+        outfile = None
 
         for scenario in self.datapackage.scenarios:
             # --- base: production volumes
@@ -415,39 +416,34 @@ class PathwaysDataPackage:
 
             data_list.append(pv)
 
-        # concat all scenarios
-        array = xr.concat(data_list, dim="scenario")
-
         # ensure output dir
         outdir = Path.cwd() / "pathways_temp" / "scenario_data"
         outdir.mkdir(parents=True, exist_ok=True)
 
-        # dataframe export
-        df = array.to_dataframe().reset_index()
+        outfile = outdir / "scenario_data.csv"
+        if outfile.exists():
+            outfile.unlink()
 
-        # units column (lookup matches our prefixed variable names)
-        # prefer array-level units, then fall back to extra_units if you keep that convention
-        unit_map = dict(array.attrs.get("unit", {}))
-        unit_map.update(extra_units)  # in case you want this precedence
-        df["unit"] = df["variables"].map(unit_map)
+        self.scenario_names = []
 
-        # split scenario into model/pathway
-        df[["model", "pathway"]] = df["scenario"].str.split(" - ", n=1, expand=True)
-        df = df.drop(columns=["scenario"])
-
-        self.scenario_names = df["pathway"].unique().tolist()
-
-        df = df.dropna(subset=["value"])
+        # write per-scenario to reduce peak memory
+        for pv in data_list:
+            df = pv.to_dataframe().reset_index()
+            unit_map = dict(pv.attrs.get("unit", {}))
+            unit_map.update(extra_units)
+            df["unit"] = df["variables"].map(unit_map)
+            df[["model", "pathway"]] = df["scenario"].str.split(" - ", n=1, expand=True)
+            df = df.drop(columns=["scenario"])
+            self.scenario_names.extend(df["pathway"].unique().tolist())
+            df = df.dropna(subset=["value"])
+            df.to_csv(outfile, mode="a", header=not outfile.exists(), index=False)
 
         # Normalize CDR signs: They have to be always positive values in pathways
         cdr_mask = df["variables"].str.contains("SE - cdr", case=False, na=False)
         if cdr_mask.any():
             df.loc[cdr_mask, "value"] = df.loc[cdr_mask, "value"].abs()
 
-        outfile = outdir / "scenario_data.csv"
-        if outfile.exists():
-            outfile.unlink()
-        df.to_csv(outfile, index=False)
+        self.scenario_names = sorted(set(self.scenario_names))
 
     def _add_classifications_file(self):
         """

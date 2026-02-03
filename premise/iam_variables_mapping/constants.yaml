@@ -9,6 +9,7 @@ SUPPORTED_EI_VERSIONS:
   - "3.9"
   - "3.9.1"
   - "3.10"
+  - "3.10.1"
   - "3.11"
   - "3.12"
 
@@ -22,7 +23,6 @@ SUPPORTED_MODELS:
   - witch
 
 SUPPORTED_PATHWAYS:
-  - SSP2-Base
   - SSP2-NDC
   - SSP2-NPi
   - SSP2-PkBudg1150

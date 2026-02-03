@@ -47,7 +47,7 @@ def find_iam_efficiency_change(
                 )
             ).values.item(0)
 
-        if scaling_factor in (np.nan, np.inf):
+        if np.isnan(scaling_factor) or np.isinf(scaling_factor):
             scaling_factor = 1
 
     return scaling_factor
