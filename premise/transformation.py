@@ -1154,7 +1154,7 @@ class BaseTransformation:
                     ds["location"] for ds in activities if ds.get("regionalized", False)
                 }
                 if existing_regionalized_locs and all(
-                        region in existing_regionalized_locs for region in regions
+                    region in existing_regionalized_locs for region in regions
                 ):
                     # All requested regions already have regionalized datasets, skip
                     mapping[technology].extend(
