@@ -136,7 +136,7 @@ def get_metals_intensity_factors_data() -> xr.DataArray:
         .to_xarray()
     )
 
-    array = array.interpolate_na(dim="year", method="nearest", fill_value="extrapolate")
+    array = array.interpolate_na(dim="year", method="linear", fill_value="extrapolate")
     array = array.bfill(dim="year")
     array = array.ffill(dim="year")
     array = array.fillna(0)

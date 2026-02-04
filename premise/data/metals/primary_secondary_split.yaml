@@ -543,21 +543,29 @@ palladium:
   reference product: palladium
   shares:
     primary:
-      2020: 0.844514476
-      2050: 0.844514476
+#      2020: 0.844514476
+#      2050: 0.844514476
+      2020: 0.7 # USGS: https://pubs.usgs.gov/periodicals/mcs2025/mcs2025.pdf | RMIS: https://rmis.jrc.ec.europa.eu/rmp/Palladium
+      2050: 0.7 # Around 30% of global palladium supply comes from secondary sources (recycling)
     secondary:
-      2020: 0.155485524
-      2050: 0.155485524
+#      2020: 0.155485524
+#      2050: 0.155485524
+      2020: 0.3
+      2050: 0.3
 platinum:
   name: market for platinum
   reference product: platinum
   shares:
     primary:
-      2020: 0.955399614
-      2050: 0.955399614
+#      2020: 0.955399614
+#      2050: 0.955399614
+      2020: 0.75 # USGS: https://pubs.usgs.gov/periodicals/mcs2025/mcs2025.pdf | RMIS: https://rmis.jrc.ec.europa.eu/rmp/Platinum
+      2050: 0.75 # Around 25% of global platinum supply comes from secondary sources (recycling)
     secondary:
-      2020: 0.044600386
-      2050: 0.044600386
+#      2020: 0.044600386
+#      2050: 0.044600386
+      2020: 0.25
+      2050: 0.25
 platinum group metal concentrate:
   name: market for platinum group metal concentrate
   reference product: platinum group metal concentrate
