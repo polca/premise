@@ -240,6 +240,19 @@ heat, industrial, from hydrogen:
       image: Final Energy|Industry|Other Sector|Hydrogen
       message: Final Energy|Industry|Other Sector|Hydrogen|Combustion
 
+heat, industrial, from hydrogen conversion:
+    ecoinvent_aliases:
+      fltr: heat, residential, by conversion of hydrogen using fuel cell, PEM, allocated by exergy, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid
+    iam_aliases:
+      message: Final Energy|Industry|Other Sector|Hydrogen|Fuel Cells
+
+heat, industrial, from electric heater:
+    ecoinvent_aliases:
+      fltr: heat, residential, electric storage heater, using electricity from grid
+    iam_aliases:
+      message: Final Energy|Industry|Other Sector|Electricity|Thermal|Resistance
+
+
 heat, industrial, from heat pump:
     ecoinvent_aliases:
       fltr: heat production, water-water heat pump, industrial, 100kW
@@ -260,6 +273,15 @@ heat, industrial, from natural gas CHP:
       remind-eu: SE|Heat|Gas|Combined Heat and Power
       image: Final Energy|Industry|Other Sector|Gases|Fossil
       message: Final Energy|Industry|Other Sector|Gases|Gas
+
+heat, industrial, from biogas CHP:
+    ecoinvent_aliases:
+      fltr:
+        name: heat and power co-generation, biogas, gas engine
+        reference product: heat, central or small-scale, other than natural gas
+    iam_aliases:
+      message: Final Energy|Industry|Other Sector|Gases|Biomass
+
 
 heat, industrial, from coal CHP:
     ecoinvent_aliases:
@@ -293,13 +315,20 @@ heat, industrial, from light fuel oil boiler:
       image: Final Energy|Industry|Other Sector|Liquids|Fossil
       message: Final Energy|Industry|Other Sector|Liquids|Oil|Thermal
 
+heat, industrial, from biofuel boiler:
+    ecoinvent_aliases:
+      fltr: heat, residential, by combustion of methanol using boiler, distributed by truck, produced with biomass
+    iam_aliases:
+      message: Final Energy|Industry|Other Sector|Liquids|Biomass|Thermal
+
+
 heat, industrial, from geothermal:
     ecoinvent_aliases:
       fltr: heat production, deep geothermal
     iam_aliases:
       remind: SE|Heat|+|Geothermal
       remind-eu: SE|Heat|+|Geothermal
-      message: Final Energy|Industry|Other Sector
+      # message: Final Energy|Industry|Other Sector
 
 heat, industrial, from solar thermal:
     ecoinvent_aliases:
@@ -308,6 +337,17 @@ heat, industrial, from solar thermal:
       remind: SE|Heat|+|Solar
       remind-eu: SE|Heat|+|Solar
       message: Final Energy|Industry|Other Sector|Solar
+
+
+heat, industrial, from district heating:
+    ecoinvent_aliases:
+        fltr: heat, district or industrial, other than natural gas
+        mask:
+          - group
+          - generic
+    iam_aliases:
+      message: Final Energy|Industry|Other Sector|Heat
+
 
 energy, for DACCS, from hydrogen turbine:
   ecoinvent_aliases:
