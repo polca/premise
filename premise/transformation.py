@@ -1162,7 +1162,9 @@ class BaseTransformation:
                     )
                     continue
 
-                regions_to_process = [r for r in regions if r not in existing_regionalized_locs]
+                regions_to_process = [
+                    r for r in regions if r not in existing_regionalized_locs
+                ]
                 if not regions_to_process:
                     continue
 
@@ -1173,7 +1175,9 @@ class BaseTransformation:
 
                 regionalized_datasets = self.fetch_proxies(
                     # datasets=activities,
-                    datasets=[ds for ds in activities if not ds.get("regionalized", False)],
+                    datasets=[
+                        ds for ds in activities if not ds.get("regionalized", False)
+                    ],
                     production_volumes=prod_vol,
                     regions=regions_to_process,
                 )
