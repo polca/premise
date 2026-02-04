@@ -916,7 +916,7 @@ hydrogen, from natural gas, with CCS:
     remind: SE|Hydrogen|Gas|+|w/ CC
     remind-eu: SE|Hydrogen|Gas|+|w/ CC
     image: Secondary Energy|Hydrogen|Gas|w/ CCS
-    message: Secondary Energy|Hydrogen|Gas|w/o CCS
+    message: Secondary Energy|Hydrogen|Gas|w/ CCS
     witch: Secondary Energy|Hydrogen|Gas|w/ CCS
   eff_aliases:
     gcam: Efficiency|Hydrogen|Gas|w/CCS
