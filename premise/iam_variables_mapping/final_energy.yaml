@@ -166,8 +166,6 @@ Buildings - Heating - Solid biomass traditional:
     image:
       - Final Energy|Commercial|Space Heating|Solids|Biomass|Traditional
       - Final Energy|Residential|Space Heating|Traditional Biomass
-      - Final Energy|Residential|Solids|Biomass|Traditional
-      - Final Energy|Commercial|Solids|Biomass|Traditional
     remind-eu: FE|Buildings|Solids|Biomass|+|Traditional
     message: Final Energy|Residential and Commercial|Solids|Biomass|Traditional
 
@@ -1502,8 +1500,6 @@ Industry - Other - Solid Biomass:
     remind-eu: FE|Industry|Other Industry|Solids|+|Biomass
     image:
       - Final Energy|Industry|Other Sector|Solids|Biomass
-      - Final Energy|Other Sector|Solids|Biomass|Traditional
-      - Final Energy|Industry|Solids|Biomass|Traditional
 Industry - Other - Solid coal:
   ecoinvent_aliases:
     fltr:
@@ -2552,7 +2548,7 @@ Transport - Freight - Int. Shipping - Biofuel:
       - Final Energy|Transport|Ship|International|Biodiesel
       - Final Energy|Transport|Ship|International|Heavy Fuel Oil|Biodiesel
     remind-eu: FE|Transport|Bunkers|Freight|International Shipping|Liquids|Biomass
-#    message: Final Energy|Bunkers|Liquids|Biomass
+    message: Final Energy|Bunkers|Liquids|Biomass
 Transport - Freight - Int. Shipping - Liquid fossil:
   ecoinvent_aliases:
     fltr:
@@ -2566,7 +2562,7 @@ Transport - Freight - Int. Shipping - Liquid fossil:
       - Final Energy|Transport|Ship|International|Gasoline
       - Final Energy|Transport|Ship|International|Heavy Fuel Oil|Heavy Fuel Oil
     remind-eu: FE|Transport|Bunkers|Freight|International Shipping|Liquids|Fossil
-#    message: Final Energy|Bunkers|Liquids|Oil
+    message: Final Energy|Bunkers|Liquids|Oil
 Transport - Freight - Int. Shipping - Syn Fuel:
   ecoinvent_aliases:
     fltr:
@@ -2594,7 +2590,7 @@ Transport - Freight - Int. Shipping - H2:
   iam_aliases:
     image: Final Energy|Transportation|Freight|International Shipping|Hydrogen
     tiam-ucl: Final Energy|Transport|Ship|International|Hydrogen|Shipping Hydrogen
-#    message: Final Energy|Bunkers|Hydrogen
+    message: Final Energy|Bunkers|Hydrogen
 Transport - Freight - Int. Shipping - LNG:
   ecoinvent_aliases:
     fltr:
@@ -2603,7 +2599,7 @@ Transport - Freight - Int. Shipping - LNG:
   iam_aliases:
     tiam-ucl: Final Energy|Transport|Ship|International|Liquefied Natural Gas|Liquefied
       Natural Gas
-#    message: Final Energy|Bunkers|Gases
+    message: Final Energy|Bunkers|Gases
 Transport - Freight - Rail - Elec:
   ecoinvent_aliases:
     fltr:
