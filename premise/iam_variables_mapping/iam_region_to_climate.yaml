@@ -129,8 +129,8 @@ tiam-ucl:
   ODA: tropical
   SKO: temperate
   UK: temperate
-  WEU: temperate
   USA: temperate
+  WEU: temperate
 
 witch:
   usa: temperate

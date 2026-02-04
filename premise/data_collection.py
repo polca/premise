@@ -610,7 +610,15 @@ class IAMDataCollection:
                 {
                     k: v
                     for k, v in fuel_prod_vars.items()
-                    if k in ["gasoline", "diesel", "kerosene", "liquid fossil fuels"]
+                    if k
+                    in [
+                        "gasoline",
+                        "diesel",
+                        "kerosene",
+                        "liquid fossil fuels",
+                        "heavy fuel oil",
+                        "liquefied petroleum gas",
+                    ]
                 }
                 if "liquid fossil fuels" in fuel_prod_vars
                 else None

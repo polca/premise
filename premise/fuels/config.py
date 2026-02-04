@@ -1,6 +1,12 @@
 from ..filesystem_constants import DATA_DIR, VARIABLES_DIR
 
 REGION_CLIMATE_MAP = VARIABLES_DIR / "iam_region_to_climate.yaml"
+REGION_BIODIESEL_FEEDSTOCK_MAP = (
+    VARIABLES_DIR / "iam_region_to_biodiesel_feedstock.yaml"
+)
+REGION_BIOETHANOL_FEEDSTOCK_MAP = (
+    VARIABLES_DIR / "iam_region_to_bioethanol_feedstock.yaml"
+)
 FUEL_LABELS = DATA_DIR / "fuels" / "fuel_labels.csv"
 SUPPLY_CHAIN_SCENARIOS = DATA_DIR / "fuels" / "supply_chain_scenarios.yml"
 HEAT_SOURCES = DATA_DIR / "fuels" / "heat_sources_map.yml"
