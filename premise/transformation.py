@@ -1158,8 +1158,12 @@ class BaseTransformation:
                 ):
                     # All requested regions already have regionalized datasets, skip
                     mapping[technology].extend(
-                        [ds for ds in activities if ds.get("regionalized", True)]
+                        [ds for ds in activities if ds.get("regionalized", False)]
                     )
+                    continue
+
+                regions_to_process = [r for r in regions if r not in existing_regionalized_locs]
+                if not regions_to_process:
                     continue
 
                 prod_vol = None
@@ -1168,9 +1172,10 @@ class BaseTransformation:
                         prod_vol = production_volumes.sel(variables=technology)
 
                 regionalized_datasets = self.fetch_proxies(
-                    datasets=activities,
+                    # datasets=activities,
+                    datasets=[ds for ds in activities if not ds.get("regionalized", False)],
                     production_volumes=prod_vol,
-                    regions=regions,
+                    regions=regions_to_process,
                 )
 
                 # add geographical coverage definition
