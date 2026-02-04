@@ -1144,7 +1144,12 @@ class BaseTransformation:
                 if not activities:
                     continue
 
-                if any(ds for ds in activities if ds.get("regionalized", False)):
+                existing_regionalized_locs = {
+                    ds["location"] for ds in activities if ds.get("regionalized", False)
+                }
+                if existing_regionalized_locs and all(
+                        region in existing_regionalized_locs for region in regions
+                ):
                     # if any of the datasets in the activity is already regionalized, skip it
                     mapping[technology].extend(
                         [ds for ds in activities if ds.get("regionalized", True)]
