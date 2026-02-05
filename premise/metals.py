@@ -473,7 +473,9 @@ class Metals(BaseTransformation):
         if clamped_year in available_years:
             self.precomputed_medians = self.metals.sel(year=clamped_year)
         else:
-            self.precomputed_medians = self.metals.interp(year=clamped_year, method="linear")
+            self.precomputed_medians = self.metals.interp(
+                year=clamped_year, method="linear"
+            )
 
         self.activities_mapping = load_activities_mapping()  # 4
 
