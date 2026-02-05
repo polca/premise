@@ -1,36 +1,192 @@
 from collections import defaultdict
-import yaml
 
 from ..transformation import ws
-from .config import LIQUID_FUEL_SOURCES
-from ..activity_maps import InventorySet
-
-
-def load_liquid_fuel_activities():
-    # load yaml file located at LIQUID_FUEL_SOURCES
-    with open(LIQUID_FUEL_SOURCES, "r", encoding="utf-8") as f:
-        liquid_fuel_activities = yaml.safe_load(f)
-    return liquid_fuel_activities
+from .config import (
+    REGION_BIODIESEL_FEEDSTOCK_MAP,
+    REGION_BIOETHANOL_FEEDSTOCK_MAP,
+    REGION_CLIMATE_MAP,
+)
+from .utils import fetch_mapping, get_crops_properties
 
 
 class SyntheticFuelsMixin:
+    def _filter_biodiesel_feedstocks(self) -> None:
+        if "biodiesel, from oil crops" not in self.fuel_map:
+            return
+
+        region_to_climate = fetch_mapping(REGION_CLIMATE_MAP).get(self.model, {})
+        region_to_feedstock = fetch_mapping(REGION_BIODIESEL_FEEDSTOCK_MAP).get(
+            self.model, {}
+        )
+        crops_props = get_crops_properties()
+        climate_to_default = crops_props["oil"]["crop_type"].get(self.model, {})
+
+        region_to_oil_crop = {}
+        for region, climate in region_to_climate.items():
+            default_crop = climate_to_default.get(climate)
+            region_to_oil_crop[region] = region_to_feedstock.get(region, default_crop)
+
+        feedstock_to_locations = {}
+        feedstock_to_all_locations = {}
+        for region, crop in region_to_oil_crop.items():
+            if not crop:
+                continue
+            locs = feedstock_to_locations.setdefault(crop, set())
+            locs.add(region)
+            for loc in self.iam_to_ecoinvent_loc.get(region, []):
+                locs.add(loc)
+
+        def detect_feedstock(name: str) -> str:
+            lowered = name.lower()
+            if "rapeseed" in lowered:
+                return "rapeseed"
+            if "soybean" in lowered or "soya" in lowered or "soy" in lowered:
+                return "soybean"
+            if "palm oil" in lowered or "palm" in lowered:
+                return "palm oil"
+            return ""
+
+        for ds in self.fuel_map["biodiesel, from oil crops"]:
+            feedstock = detect_feedstock(ds["name"])
+            if not feedstock:
+                continue
+            feedstock_to_all_locations.setdefault(feedstock, set()).add(ds["location"])
+
+        feedstock_has_allowed = {
+            feedstock: bool(feedstock_to_locations.get(feedstock, set()) & all_locs)
+            for feedstock, all_locs in feedstock_to_all_locations.items()
+        }
+
+        filtered = []
+        for ds in self.fuel_map["biodiesel, from oil crops"]:
+            feedstock = detect_feedstock(ds["name"])
+            if not feedstock:
+                filtered.append(ds)
+                continue
+            allowed_locs = feedstock_to_locations.get(feedstock, set())
+            if feedstock_has_allowed.get(feedstock, False):
+                if ds["location"] in allowed_locs:
+                    filtered.append(ds)
+                continue
+            if ds["location"] in feedstock_to_all_locations.get(feedstock, set()):
+                filtered.append(ds)
+
+        self.fuel_map["biodiesel, from oil crops"] = filtered
+
+    def _filter_bioethanol_feedstocks(self) -> None:
+        region_to_climate = fetch_mapping(REGION_CLIMATE_MAP).get(self.model, {})
+        region_to_feedstock = fetch_mapping(REGION_BIOETHANOL_FEEDSTOCK_MAP).get(
+            self.model, {}
+        )
+        crops_props = get_crops_properties()
+
+        crop_type_by_variable = {
+            "bioethanol, from sugar": "sugar",
+            "bioethanol, from sugar, with CCS": "sugar",
+            "bioethanol, from grass": "grass",
+            "bioethanol, from grass, with CCS": "grass",
+            "bioethanol, from wood": "wood",
+            "bioethanol, from wood, with CCS": "wood",
+            "bioethanol, from grain": "grain",
+            "bioethanol, from grain, with CCS": "grain",
+        }
+
+        def detect_feedstock(crop_type: str, name: str) -> str:
+            lowered = name.lower()
+            if crop_type == "sugar":
+                if "sugarbeet" in lowered or "sugar beet" in lowered:
+                    return "sugarbeet"
+                if "sugarcane" in lowered:
+                    return "sugarcane"
+            elif crop_type == "grass":
+                if "switchgrass" in lowered:
+                    return "switchgrass"
+                if "miscanthus" in lowered:
+                    return "miscanthus"
+                if "sorghum" in lowered:
+                    return "sorghum"
+            elif crop_type == "wood":
+                if "poplar" in lowered:
+                    return "poplar"
+                if "eucalyptus" in lowered:
+                    return "eucalyptus"
+            elif crop_type == "grain":
+                if "corn" in lowered or "maize" in lowered:
+                    return "corn"
+                if "wheat" in lowered or "rye" in lowered:
+                    return "wheat_rye"
+            return ""
+
+        for variable, crop_type in crop_type_by_variable.items():
+            if variable not in self.fuel_map:
+                continue
+
+            region_to_crop = {}
+            if crop_type in region_to_feedstock:
+                region_to_crop = region_to_feedstock[crop_type]
+            else:
+                climate_to_default = crops_props[crop_type]["crop_type"].get(
+                    self.model, {}
+                )
+                for region, climate in region_to_climate.items():
+                    region_to_crop[region] = climate_to_default.get(climate)
+
+            feedstock_to_locations = {}
+            feedstock_to_all_locations = {}
+            for region, crop in region_to_crop.items():
+                if not crop:
+                    continue
+                locs = feedstock_to_locations.setdefault(crop, set())
+                locs.add(region)
+                for loc in self.iam_to_ecoinvent_loc.get(region, []):
+                    locs.add(loc)
+
+            for ds in self.fuel_map[variable]:
+                feedstock = detect_feedstock(crop_type, ds["name"])
+                if not feedstock:
+                    continue
+                feedstock_to_all_locations.setdefault(feedstock, set()).add(
+                    ds["location"]
+                )
+
+            feedstock_has_allowed = {
+                feedstock: bool(feedstock_to_locations.get(feedstock, set()) & all_locs)
+                for feedstock, all_locs in feedstock_to_all_locations.items()
+            }
+
+            fallback_feedstock = {}
+            if crop_type == "grass":
+                if "miscanthus" not in feedstock_to_all_locations:
+                    fallback_feedstock["miscanthus"] = "sorghum"
+                if "switchgrass" not in feedstock_to_all_locations:
+                    fallback_feedstock["switchgrass"] = "sorghum"
+
+            filtered = []
+            for ds in self.fuel_map[variable]:
+                feedstock = detect_feedstock(crop_type, ds["name"])
+                if not feedstock:
+                    filtered.append(ds)
+                    continue
+                allowed_locs = feedstock_to_locations.get(feedstock, set())
+                if feedstock_has_allowed.get(feedstock, False):
+                    if ds["location"] in allowed_locs:
+                        filtered.append(ds)
+                    continue
+                if ds["location"] in feedstock_to_all_locations.get(feedstock, set()):
+                    filtered.append(ds)
+                    continue
+                fallback = fallback_feedstock.get(feedstock)
+                if fallback and ds["location"] in feedstock_to_all_locations.get(
+                    fallback, set()
+                ):
+                    filtered.append(ds)
+
+            self.fuel_map[variable] = filtered
+
     def generate_synthetic_fuel_activities(self):
         """
         Generate region-specific synthetic fuel datasets.
         """
-
-        filters = load_liquid_fuel_activities()
-        self.synthetic_fuel_activities_map = self.mapping.generate_sets_from_filters(
-            filters
-        )
-
-        self.synthetic_fuel_activities_map = {
-            x["name"]: v for v in self.synthetic_fuel_activities_map.values() for x in v
-        }
-
-        if self.synthetic_fuel_activities_map:
-            self.process_and_add_activities(mapping=self.synthetic_fuel_activities_map)
-
         synfuel_map = {k: v for k, v in self.fuel_map.items() if "synthetic" in k}
 
         if synfuel_map:
@@ -52,8 +208,9 @@ class SyntheticFuelsMixin:
 
         # Create markets for liquid fuels
         # update the fuel map to include all liquid fuels
-        self.mapping = InventorySet(self.database)
         self.fuel_map = self.mapping.generate_fuel_map(model=self.model)
+        self._filter_biodiesel_feedstocks()
+        self._filter_bioethanol_feedstocks()
 
         # gasoline
         # check that IAM data has "petrol_blend" attribute

@@ -1,0 +1,599 @@
+# mapping between IAM regions and dominant bioethanol feedstocks
+---
+image:
+  sugar:
+    BRA: sugarcane
+    CAN: sugarbeet
+    CEU: sugarbeet
+    CHN: sugarbeet
+    EAF: sugarcane
+    INDIA: sugarcane
+    INDO: sugarcane
+    JAP: sugarbeet
+    KOR: sugarbeet
+    ME: sugarcane
+    MEX: sugarcane
+    NAF: sugarcane
+    OCE: sugarcane
+    RCAM: sugarcane
+    RSAF: sugarbeet
+    RSAM: sugarcane
+    RSAS: sugarcane
+    RUS: sugarbeet
+    SAF: sugarcane
+    SEAS: sugarcane
+    STAN: sugarbeet
+    TUR: sugarbeet
+    USA: sugarbeet
+    UKR: sugarbeet
+    WAF: sugarcane
+    WEU: sugarbeet
+  grass:
+    BRA: miscanthus
+    CAN: switchgrass
+    CEU: switchgrass
+    CHN: switchgrass
+    EAF: miscanthus
+    INDIA: miscanthus
+    INDO: miscanthus
+    JAP: switchgrass
+    KOR: switchgrass
+    ME: miscanthus
+    MEX: switchgrass
+    NAF: miscanthus
+    OCE: miscanthus
+    RCAM: miscanthus
+    RSAF: switchgrass
+    RSAM: miscanthus
+    RSAS: miscanthus
+    RUS: switchgrass
+    SAF: miscanthus
+    SEAS: miscanthus
+    STAN: switchgrass
+    TUR: switchgrass
+    USA: switchgrass
+    UKR: switchgrass
+    WAF: miscanthus
+    WEU: switchgrass
+  wood:
+    BRA: eucalyptus
+    CAN: poplar
+    CEU: poplar
+    CHN: poplar
+    EAF: eucalyptus
+    INDIA: eucalyptus
+    INDO: eucalyptus
+    JAP: poplar
+    KOR: poplar
+    ME: eucalyptus
+    MEX: poplar
+    NAF: eucalyptus
+    OCE: eucalyptus
+    RCAM: eucalyptus
+    RSAF: poplar
+    RSAM: eucalyptus
+    RSAS: eucalyptus
+    RUS: poplar
+    SAF: eucalyptus
+    SEAS: eucalyptus
+    STAN: poplar
+    TUR: poplar
+    USA: poplar
+    UKR: poplar
+    WAF: eucalyptus
+    WEU: poplar
+  grain:
+    BRA: corn
+    CAN: corn
+    CEU: wheat_rye
+    CHN: corn
+    EAF: corn
+    INDIA: corn
+    INDO: corn
+    JAP: wheat_rye
+    KOR: wheat_rye
+    ME: corn
+    MEX: corn
+    NAF: corn
+    OCE: corn
+    RCAM: corn
+    RSAF: corn
+    RSAM: corn
+    RSAS: corn
+    RUS: wheat_rye
+    SAF: corn
+    SEAS: corn
+    STAN: wheat_rye
+    TUR: wheat_rye
+    USA: corn
+    UKR: wheat_rye
+    WAF: corn
+    WEU: wheat_rye
+
+remind:
+  sugar:
+    LAM: sugarcane
+    CAZ: sugarbeet
+    EUR: sugarbeet
+    CHA: sugarbeet
+    SSA: sugarcane
+    IND: sugarcane
+    OAS: sugarcane
+    JPN: sugarbeet
+    MEA: sugarcane
+    NEU: sugarbeet
+    REF: sugarbeet
+    USA: sugarbeet
+  grass:
+    LAM: miscanthus
+    CAZ: switchgrass
+    EUR: switchgrass
+    CHA: switchgrass
+    SSA: miscanthus
+    IND: miscanthus
+    OAS: miscanthus
+    JPN: switchgrass
+    MEA: miscanthus
+    NEU: switchgrass
+    REF: switchgrass
+    USA: switchgrass
+  wood:
+    LAM: eucalyptus
+    CAZ: poplar
+    EUR: poplar
+    CHA: poplar
+    SSA: eucalyptus
+    IND: eucalyptus
+    OAS: eucalyptus
+    JPN: poplar
+    MEA: eucalyptus
+    NEU: poplar
+    REF: poplar
+    USA: poplar
+  grain:
+    LAM: corn
+    CAZ: wheat_rye
+    EUR: wheat_rye
+    CHA: corn
+    SSA: corn
+    IND: corn
+    OAS: corn
+    JPN: wheat_rye
+    MEA: corn
+    NEU: wheat_rye
+    REF: wheat_rye
+    USA: corn
+
+remind-eu:
+  sugar:
+    OAS: sugarcane
+    ENC: sugarbeet
+    NES: sugarbeet
+    MEA: sugarcane
+    SSA: sugarcane
+    LAM: sugarcane
+    REF: sugarbeet
+    CAZ: sugarbeet
+    EWN: sugarbeet
+    ECS: sugarbeet
+    CHA: sugarbeet
+    ESC: sugarbeet
+    ECE: sugarbeet
+    FRA: sugarbeet
+    DEU: sugarbeet
+    UKI: sugarbeet
+    NEN: sugarbeet
+    IND: sugarcane
+    JPN: sugarbeet
+    ESW: sugarbeet
+    USA: sugarbeet
+  grass:
+    OAS: miscanthus
+    ENC: switchgrass
+    NES: switchgrass
+    MEA: miscanthus
+    SSA: miscanthus
+    LAM: miscanthus
+    REF: switchgrass
+    CAZ: switchgrass
+    EWN: switchgrass
+    ECS: switchgrass
+    CHA: switchgrass
+    ESC: switchgrass
+    ECE: switchgrass
+    FRA: switchgrass
+    DEU: switchgrass
+    UKI: switchgrass
+    NEN: switchgrass
+    IND: miscanthus
+    JPN: switchgrass
+    ESW: switchgrass
+    USA: switchgrass
+  wood:
+    OAS: eucalyptus
+    ENC: poplar
+    NES: poplar
+    MEA: eucalyptus
+    SSA: eucalyptus
+    LAM: eucalyptus
+    REF: poplar
+    CAZ: poplar
+    EWN: poplar
+    ECS: poplar
+    CHA: poplar
+    ESC: poplar
+    ECE: poplar
+    FRA: poplar
+    DEU: poplar
+    UKI: poplar
+    NEN: poplar
+    IND: eucalyptus
+    JPN: poplar
+    ESW: poplar
+    USA: poplar
+  grain:
+    OAS: corn
+    ENC: wheat_rye
+    NES: wheat_rye
+    MEA: corn
+    SSA: corn
+    LAM: corn
+    REF: wheat_rye
+    CAZ: wheat_rye
+    EWN: wheat_rye
+    ECS: wheat_rye
+    CHA: corn
+    ESC: wheat_rye
+    ECE: wheat_rye
+    FRA: wheat_rye
+    DEU: wheat_rye
+    UKI: wheat_rye
+    NEN: wheat_rye
+    IND: corn
+    JPN: wheat_rye
+    ESW: wheat_rye
+    USA: corn
+
+message:
+  sugar:
+    AFR: sugarcane
+    CHN: sugarbeet
+    EEU: sugarbeet
+    FSU: sugarbeet
+    LAM: sugarcane
+    MEA: sugarcane
+    NAM: sugarbeet
+    PAO: sugarbeet
+    PAS: sugarcane
+    RCPA: sugarcane
+    SAS: sugarcane
+    WEU: sugarbeet
+  grass:
+    AFR: miscanthus
+    CHN: switchgrass
+    EEU: switchgrass
+    FSU: switchgrass
+    LAM: miscanthus
+    MEA: miscanthus
+    NAM: switchgrass
+    PAO: switchgrass
+    PAS: miscanthus
+    RCPA: miscanthus
+    SAS: miscanthus
+    WEU: switchgrass
+  wood:
+    AFR: eucalyptus
+    CHN: poplar
+    EEU: poplar
+    FSU: poplar
+    LAM: eucalyptus
+    MEA: eucalyptus
+    NAM: poplar
+    PAO: poplar
+    PAS: eucalyptus
+    RCPA: eucalyptus
+    SAS: eucalyptus
+    WEU: poplar
+  grain:
+    AFR: corn
+    CHN: corn
+    EEU: wheat_rye
+    FSU: wheat_rye
+    LAM: corn
+    MEA: corn
+    NAM: corn
+    PAO: corn
+    PAS: corn
+    RCPA: corn
+    SAS: corn
+    WEU: wheat_rye
+
+gcam:
+  sugar:
+    Africa_Northern: sugarbeet
+    Argentina: sugarcane
+    Australia_NZ: sugarbeet
+    Brazil: sugarcane
+    Canada: sugarbeet
+    Central America and Caribbean: sugarcane
+    Central Asia: sugarbeet
+    China: sugarbeet
+    Colombia: sugarcane
+    EU-15: sugarbeet
+    EU-12: sugarbeet
+    India: sugarcane
+    Indonesia: sugarcane
+    Japan: sugarbeet
+    Mexico: sugarcane
+    Middle East: sugarbeet
+    Pakistan: sugarcane
+    Russia: sugarbeet
+    South Africa: sugarcane
+    South America_Southern: sugarbeet
+    South Korea: sugarbeet
+    Southeast Asia: sugarcane
+    Taiwan: sugarcane
+    USA: sugarbeet
+    Africa_Eastern: sugarcane
+    Africa_Southern: sugarcane
+    Africa_Western: sugarcane
+    Europe_Eastern: sugarbeet
+    European Free Trade Association: sugarbeet
+    Europe_Non_EU: sugarbeet
+    South America_Northern: sugarcane
+    South Asia: sugarcane
+  grass:
+    Africa_Northern: switchgrass
+    Argentina: switchgrass
+    Australia_NZ: switchgrass
+    Brazil: miscanthus
+    Canada: switchgrass
+    Central America and Caribbean: miscanthus
+    Central Asia: switchgrass
+    China: switchgrass
+    Colombia: miscanthus
+    EU-15: switchgrass
+    EU-12: switchgrass
+    India: miscanthus
+    Indonesia: miscanthus
+    Japan: switchgrass
+    Mexico: switchgrass
+    Middle East: switchgrass
+    Pakistan: switchgrass
+    Russia: switchgrass
+    South Africa: switchgrass
+    South America_Southern: switchgrass
+    South Korea: switchgrass
+    Southeast Asia: miscanthus
+    Taiwan: miscanthus
+    USA: switchgrass
+    Africa_Eastern: miscanthus
+    Africa_Southern: miscanthus
+    Africa_Western: miscanthus
+    Europe_Eastern: switchgrass
+    European Free Trade Association: switchgrass
+    Europe_Non_EU: switchgrass
+    South America_Northern: miscanthus
+    South Asia: miscanthus
+  wood:
+    Africa_Northern: poplar
+    Argentina: poplar
+    Australia_NZ: poplar
+    Brazil: eucalyptus
+    Canada: poplar
+    Central America and Caribbean: eucalyptus
+    Central Asia: poplar
+    China: poplar
+    Colombia: eucalyptus
+    EU-15: poplar
+    EU-12: poplar
+    India: eucalyptus
+    Indonesia: eucalyptus
+    Japan: poplar
+    Mexico: poplar
+    Middle East: poplar
+    Pakistan: poplar
+    Russia: poplar
+    South Africa: poplar
+    South America_Southern: poplar
+    South Korea: poplar
+    Southeast Asia: eucalyptus
+    Taiwan: eucalyptus
+    USA: poplar
+    Africa_Eastern: eucalyptus
+    Africa_Southern: eucalyptus
+    Africa_Western: eucalyptus
+    Europe_Eastern: poplar
+    European Free Trade Association: poplar
+    Europe_Non_EU: poplar
+    South America_Northern: eucalyptus
+    South Asia: eucalyptus
+  grain:
+    Africa_Northern: corn
+    Argentina: corn
+    Australia_NZ: corn
+    Brazil: corn
+    Canada: corn
+    Central America and Caribbean: corn
+    Central Asia: wheat_rye
+    China: corn
+    Colombia: corn
+    EU-15: wheat_rye
+    EU-12: wheat_rye
+    India: corn
+    Indonesia: corn
+    Japan: wheat_rye
+    Mexico: corn
+    Middle East: corn
+    Pakistan: corn
+    Russia: wheat_rye
+    South Africa: corn
+    South America_Southern: corn
+    South Korea: wheat_rye
+    Southeast Asia: corn
+    Taiwan: corn
+    USA: corn
+    Africa_Eastern: corn
+    Africa_Southern: corn
+    Africa_Western: corn
+    Europe_Eastern: wheat_rye
+    European Free Trade Association: wheat_rye
+    Europe_Non_EU: wheat_rye
+    South America_Northern: corn
+    South Asia: corn
+
+tiam-ucl:
+  sugar:
+    AFR: sugarcane
+    AUS: sugarcane
+    CAN: sugarbeet
+    CSA: sugarcane
+    CHI: sugarbeet
+    EEU: sugarbeet
+    FSU: sugarbeet
+    IND: sugarcane
+    JPN: sugarbeet
+    MEX: sugarcane
+    MEA: sugarcane
+    ODA: sugarcane
+    SKO: sugarbeet
+    UK: sugarbeet
+    WEU: sugarbeet
+    USA: sugarbeet
+  grass:
+    AFR: miscanthus
+    AUS: miscanthus
+    CAN: switchgrass
+    CSA: miscanthus
+    CHI: switchgrass
+    EEU: switchgrass
+    FSU: switchgrass
+    IND: miscanthus
+    JPN: switchgrass
+    MEX: switchgrass
+    MEA: miscanthus
+    ODA: miscanthus
+    SKO: switchgrass
+    UK: switchgrass
+    WEU: switchgrass
+    USA: switchgrass
+  wood:
+    AFR: eucalyptus
+    AUS: eucalyptus
+    CAN: poplar
+    CSA: eucalyptus
+    CHI: poplar
+    EEU: poplar
+    FSU: poplar
+    IND: eucalyptus
+    JPN: poplar
+    MEX: poplar
+    MEA: eucalyptus
+    ODA: eucalyptus
+    SKO: poplar
+    UK: poplar
+    WEU: poplar
+    USA: poplar
+  grain:
+    AFR: corn
+    AUS: corn
+    CAN: corn
+    CSA: corn
+    CHI: corn
+    EEU: wheat_rye
+    FSU: wheat_rye
+    IND: corn
+    JPN: wheat_rye
+    MEX: corn
+    MEA: corn
+    ODA: corn
+    SKO: wheat_rye
+    UK: wheat_rye
+    WEU: wheat_rye
+    USA: corn
+
+witch:
+  sugar:
+    usa: sugarbeet
+    te: sugarbeet
+    ssa: sugarcane
+    southafrica: sugarcane
+    seasia: sugarcane
+    oceania: sugarbeet
+    mexico: sugarcane
+    mena: sugarcane
+    laca: sugarcane
+    japan: sugarbeet
+    korea: sugarbeet
+    indonesia: sugarcane
+    india: sugarcane
+    eu27: sugarbeet
+    othereurope: sugarbeet
+    china: sugarbeet
+    canada: sugarbeet
+    brazil: sugarcane
+    sasia: sugarcane
+    ccasia: sugarbeet
+  grass:
+    usa: switchgrass
+    te: switchgrass
+    ssa: miscanthus
+    southafrica: switchgrass
+    seasia: miscanthus
+    oceania: switchgrass
+    mexico: switchgrass
+    mena: switchgrass
+    laca: miscanthus
+    japan: switchgrass
+    korea: switchgrass
+    indonesia: miscanthus
+    india: miscanthus
+    eu27: switchgrass
+    othereurope: switchgrass
+    china: switchgrass
+    canada: switchgrass
+    brazil: miscanthus
+    sasia: miscanthus
+    ccasia: switchgrass
+  wood:
+    usa: poplar
+    te: poplar
+    ssa: eucalyptus
+    southafrica: poplar
+    seasia: eucalyptus
+    oceania: poplar
+    mexico: poplar
+    mena: poplar
+    laca: eucalyptus
+    japan: poplar
+    korea: poplar
+    indonesia: eucalyptus
+    india: eucalyptus
+    eu27: poplar
+    othereurope: poplar
+    china: poplar
+    canada: poplar
+    brazil: eucalyptus
+    sasia: eucalyptus
+    ccasia: poplar
+  grain:
+    usa: corn
+    te: wheat_rye
+    ssa: corn
+    southafrica: corn
+    seasia: corn
+    oceania: corn
+    mexico: corn
+    mena: corn
+    laca: corn
+    japan: wheat_rye
+    korea: wheat_rye
+    indonesia: corn
+    india: corn
+    eu27: wheat_rye
+    othereurope: wheat_rye
+    china: corn
+    canada: corn
+    brazil: corn
+    sasia: corn
+    ccasia: wheat_rye

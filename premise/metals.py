@@ -467,12 +467,13 @@ class Metals(BaseTransformation):
 
         self.metals = iam_data.metals_intensity_factors  # 1
         # Precompute the median values for each metal and origin_var for the year 2020
-        if self.year in self.metals.coords["year"].values:
-            self.precomputed_medians = self.metals.sel(year=self.year)
+        available_years = sorted(self.metals.coords["year"].values)
+        clamped_year = max(available_years[0], min(self.year, available_years[-1]))
+
+        if clamped_year in available_years:
+            self.precomputed_medians = self.metals.sel(year=clamped_year)
         else:
-            self.precomputed_medians = self.metals.interp(
-                year=self.year, method="linear", kwargs={"fill_value": "extrapolate"}
-            )
+            self.precomputed_medians = self.metals.interp(year=clamped_year, method="linear")
 
         self.activities_mapping = load_activities_mapping()  # 4
 
