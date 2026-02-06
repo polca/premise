@@ -534,12 +534,13 @@ class PathwaysDataPackage:
             df = df.drop(columns=["scenario"])
             self.scenario_names.extend(df["pathway"].unique().tolist())
             df = df.dropna(subset=["value"])
-            df.to_csv(outfile, mode="a", header=not outfile.exists(), index=False)
 
-        # Normalize CDR signs: They have to be always positive values in pathways
-        cdr_mask = df["variables"].str.contains("SE - cdr", case=False, na=False)
-        if cdr_mask.any():
-            df.loc[cdr_mask, "value"] = df.loc[cdr_mask, "value"].abs()
+            # Normalize CDR signs: They have to be always positive values in pathways
+            cdr_mask = df["variables"].str.contains("SE - cdr", case=False, na=False)
+            if cdr_mask.any():
+                df.loc[cdr_mask, "value"] = df.loc[cdr_mask, "value"].abs()
+
+            df.to_csv(outfile, mode="a", header=not outfile.exists(), index=False)
 
         self.scenario_names = sorted(set(self.scenario_names))
 
