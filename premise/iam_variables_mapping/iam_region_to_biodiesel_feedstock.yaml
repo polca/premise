@@ -1,0 +1,108 @@
+# mapping between IAM regions and dominant oil-based biodiesel feedstock
+---
+image:
+  CEU: rapeseed
+  WEU: rapeseed
+  UKR: rapeseed
+  USA: soybean
+  CAN: soybean
+  MEX: soybean
+  BRA: soybean
+  RSAM: soybean
+  RCAM: soybean
+  CHN: soybean
+  SEAS: palm oil
+  INDO: palm oil
+  EAF: palm oil
+  NAF: palm oil
+  WAF: palm oil
+  SAF: palm oil
+  RSAF: palm oil
+
+remind:
+  EUR: rapeseed
+  NEU: rapeseed
+  USA: soybean
+  CAZ: soybean
+  LAM: soybean
+  CHA: soybean
+  OAS: palm oil
+  SSA: palm oil
+
+remind-eu:
+  ENC: rapeseed
+  NES: rapeseed
+  EWN: rapeseed
+  ECS: rapeseed
+  ESC: rapeseed
+  ECE: rapeseed
+  NEN: rapeseed
+  ESW: rapeseed
+  FRA: rapeseed
+  DEU: rapeseed
+  UKI: rapeseed
+  USA: soybean
+  CAZ: soybean
+  LAM: soybean
+  CHA: soybean
+  OAS: palm oil
+  SSA: palm oil
+
+message:
+  WEU: rapeseed
+  EEU: rapeseed
+  NAM: soybean
+  LAM: soybean
+  CHN: soybean
+  AFR: palm oil
+  PAS: palm oil
+  RCPA: palm oil
+
+gcam:
+  EU-15: rapeseed
+  EU-12: rapeseed
+  Europe_Eastern: rapeseed
+  European Free Trade Association: rapeseed
+  Europe_Non_EU: rapeseed
+  USA: soybean
+  Canada: soybean
+  Mexico: soybean
+  Central America and Caribbean: soybean
+  Brazil: soybean
+  Argentina: soybean
+  Colombia: soybean
+  South America_Northern: soybean
+  South America_Southern: soybean
+  China: soybean
+  Southeast Asia: palm oil
+  Indonesia: palm oil
+  Taiwan: palm oil
+  Africa_Northern: palm oil
+  Africa_Eastern: palm oil
+  Africa_Western: palm oil
+  Africa_Southern: palm oil
+  South Africa: palm oil
+
+tiam-ucl:
+  WEU: rapeseed
+  UK: rapeseed
+  EEU: rapeseed
+  USA: soybean
+  CAN: soybean
+  MEX: soybean
+  CSA: soybean
+  CHI: soybean
+  ODA: palm oil
+  AFR: palm oil
+
+witch:
+  eu27: rapeseed
+  othereurope: rapeseed
+  usa: soybean
+  laca: soybean
+  brazil: soybean
+  china: soybean
+  seasia: palm oil
+  indonesia: palm oil
+  ssa: palm oil
+  southafrica: palm oil

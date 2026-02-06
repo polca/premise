@@ -182,6 +182,12 @@ heavy fuel oil:
   co2: 0.0739
   iam_aliases:
     tiam-ucl: Secondary Energy|Liquids|Oil|Heavy Fuel Oil
+    gcam: Secondary Energy|Production|Refined Liquids|Oil|Heavy Fuel Oil
+    remind: SE|Liquids|Fossil|+|Oil|Heavy Fuel Oil
+    remind-eu: SE|Liquids|Fossil|+|Oil|Heavy Fuel Oil
+    image: Secondary Energy|Consumption|Liquids|Fossil|Heavy Fuel Oil
+    message: Secondary Energy|Liquids|Oil|Heavy Fuel Oil
+    witch: Secondary Energy|Liquids|Fossil|Oil|Heavy Fuel Oil
   ecoinvent_aliases:
     fltr:
       reference product:
@@ -598,6 +604,8 @@ diesel, synthetic, from natural gas:
   biogenic_share: 0
   iam_aliases:
     tiam-ucl: Secondary Energy|Liquids|Natural Gas|FT|Diesel|w/o CCS
+    remind: SE|Liquids|Fossil|Gas|+|w/o CC
+    remind-eu: SE|Liquids|Fossil|Gas|+|w/o CC
   eff_aliases:
     tiam-ucl: Efficiency|Liquids|Natural gas|FT fuel mix (diesel, kerosene, naptha,
       ELC)|w/o CCS
@@ -614,6 +622,8 @@ diesel, synthetic, from natural gas, with CCS:
   biogenic_share: 0
   iam_aliases:
     tiam-ucl: Secondary Energy|Liquids|Natural Gas|FT|Diesel|w CCS
+    remind: SE|Liquids|Fossil|Gas|+|w/ CC
+    remind-eu: SE|Liquids|Fossil|Gas|+|w/ CC
   eff_aliases:
     tiam-ucl: Efficiency|Liquids|Natural gas|FT fuel mix (diesel, kerosene, naptha,
       ELC)|w CCS
@@ -908,7 +918,7 @@ hydrogen, from natural gas, with CCS:
     remind: SE|Hydrogen|Gas|+|w/ CC
     remind-eu: SE|Hydrogen|Gas|+|w/ CC
     image: Secondary Energy|Hydrogen|Gas|w/ CCS
-    message: Secondary Energy|Hydrogen|Gas|w/o CCS
+    message: Secondary Energy|Hydrogen|Gas|w/ CCS
     witch: Secondary Energy|Hydrogen|Gas|w/ CCS
   eff_aliases:
     gcam: Efficiency|Hydrogen|Gas|w/CCS
@@ -988,7 +998,12 @@ biodiesel, from oil crops:
   ecoinvent_aliases:
     fltr:
       name:
-      - biodiesel production, via transesterification, from rapeseed oil
+        - biodiesel production, via transesterification, from rapeseed oil
+        - esterification of soybean oil
+        - biodiesel production, via transesterification, from palm oil
+      reference product:
+        - biodiesel
+        - fatty acid methyl ester
     mask:
       name:
       - expansion
@@ -996,7 +1011,6 @@ biodiesel, from oil crops:
       - capture
       - station
       - algae
-      - palm
 biodiesel, from oil crops, with CCS:
   lhv:
     unit: megajoule
@@ -1199,6 +1213,7 @@ bioethanol, from grain, with CCS:
   ecoinvent_aliases:
     fltr:
     - ethanol production, via fermentation, from corn, with carbon capture and storage
+    - ethanol production, via fermentation, from wheat, with carbon capture and storage
     mask:
       name:
       - expansion
@@ -1703,7 +1718,7 @@ Carbon monoxide, from RWGS:
   lhv:
     unit: megajoule
     value: 10.83
-kerosene, from petroleum:
+kerosene:
   lhv:
     unit: megajoule
     value: 43
@@ -1714,6 +1729,12 @@ kerosene, from petroleum:
     - kerosene production, petroleum refinery operation
   iam_aliases:
     tiam-ucl: Secondary Energy|Liquids|Oil|Kerosene
+    gcam: Secondary Energy|Production|Refined Liquids|Oil|Kerosene
+    remind: SE|Liquids|Fossil|+|Oil|Kerosene
+    remind-eu: SE|Liquids|Fossil|+|Oil|Kerosene
+    image: Secondary Energy|Consumption|Liquids|Fossil|Kerosene
+    message: Secondary Energy|Liquids|Oil|Kerosene
+    witch: Secondary Energy|Liquids|Fossil|Oil|Kerosene
 kerosene, synthetic, from electrolysis, energy allocation:
   lhv:
     unit: megajoule

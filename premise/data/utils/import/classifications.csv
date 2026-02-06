@@ -3217,13 +3217,25 @@ zinc mine operation,zinc concentrate,0729:Mining of other non-ferrous metal ores
 "market for transport, freight, lorry, 3.5 metric ton","transport, freight, lorry",4923:Freight transport by road,6511: Road transport services of freight
 "market for transport, freight, lorry, 7.5 metric ton","transport, freight, lorry",4923:Freight transport by road,6511: Road transport services of freight
 "heat production, biomethane, at boiler condensing modulating <100kW","heat, central or small-scale, biomethane",3530:Steam and air conditioning supply,17300: Steam and hot water
-"hard coal mine operation","hard coal, run-of-mine",0510:Mining of hard coal,11010: Hard coal
-"hard coal mine operation and hard coal preparation","hard coal",0510:Mining of hard coal,11010: Hard coal
+hard coal mine operation,"hard coal, run-of-mine",0510:Mining of hard coal,11010: Hard coal
+hard coal mine operation and hard coal preparation,hard coal,0510:Mining of hard coal,11010: Hard coal
 "hard coal mine operation, underground","hard coal, run-of-mine",0510:Mining of hard coal,11010: Hard coal
 "hard coal mine operation, open cast, truck and shovel","hard coal, run-of-mine",0510:Mining of hard coal,11010: Hard coal
 "hard coal mine operation, open cast, dragline","hard coal, run-of-mine",0510:Mining of hard coal,11010: Hard coal
 "plywood production","plywood",1621:Manufacture of veneer sheets and wood-based panels,"31450: Plywood, veneer panels and similar laminated wood of bamboo"
 "market for light fuel oil","light fuel oil",1920:Manufacture of refined petroleum products,33370: Fuel oils n.e.c.
+"carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, energy-free for pathways","carbon dioxide, captured",2011:Manufacture of basic chemicals,"34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
+"carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2, energy-free for pathways","carbon dioxide, captured",2011:Manufacture of basic chemicals,"34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
+"carbon dioxide, captured and stored, by olivine spreading on coastline, energy-free for pathways","carbon dioxide, captured",2011:Manufacture of basic chemicals,"34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
+"carbon dioxide, captured and stored, by ocean liming, energy-free for pathways","carbon dioxide, captured",2011:Manufacture of basic chemicals,"34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
+"carbon dioxide, captured and stored, by biochar application on mineral soil, energy-free for pathways","carbon dioxide, captured",2011:Manufacture of basic chemicals,"34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
+"carbon dioxide, captured and stored, at wood burning power plant, pipeline 200km, storage 1000m, energy-free for pathways","carbon dioxide, captured",2011:Manufacture of basic chemicals,"34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
+"carbon dioxide, captured and stored, from a hydrogen production plant using steam methane reforming of biomethane, energy-free for pathways","carbon dioxide, captured",2011:Manufacture of basic chemicals,"34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
+"carbon dioxide, captured and stored, from a biomass fermentation plant, energy-free for pathways","carbon dioxide, captured",2011:Manufacture of basic chemicals,"34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
+"carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2, with waste heat, and grid electricity, energy-free for pathways","carbon dioxide, captured",2011:Manufacture of basic chemicals,"34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
+"carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2, with industrial steam heat, and grid electricity, energy-free for pathways","carbon dioxide, captured",2011:Manufacture of basic chemicals,"34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
+"carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2, with heat pump heat, and grid electricity, energy-free for pathways","carbon dioxide, captured",2011:Manufacture of basic chemicals,"34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
+"maize starch production","maize starch","1062:Manufacture of starches and starch products","23220: Starches; inulin; wheat gluten; dextrins and other modified starches"
 "1,1-difluoroethane production","1,1-difluoroethane",2011:Manufacture of basic chemicals,"34150: Amine-function compounds; oxygen-function amino-compounds, except lysine and its esters and salts thereof and […]"
 "photovoltaics, electric installation for 3kWp module, at building","photovoltaics, electric installation for 3kWp module, at building",3320:Installation of industrial machinery and equipment,87360: Installation services of electrical machinery and apparatus n.e.c.
 "methanol production, from coal gasification","methanol",2011:Manufacture of basic chemicals,"34710: Polymers of ethylene, in primary forms"
@@ -3276,3 +3288,44 @@ zinc mine operation,zinc concentrate,0729:Mining of other non-ferrous metal ores
 "heat production, softwood chips from forest, at furnace 5000kW, state-of-the-art 2014","heat, district or industrial, other than natural gas","3530:Steam and air conditioning supply","17300: Steam and hot water"
 "heat production, at hard coal industrial furnace 1-10MW","heat, district or industrial, other than natural gas","3530:Steam and air conditioning supply","17300: Steam and hot water"
 "heat production, softwood chips from forest, at furnace 300kW","heat, district or industrial, other than natural gas","3530:Steam and air conditioning supply","17300: Steam and hot water"
+"industrial gases production, cryogenic air separation","argon, crude, liquid","2011:Manufacture of basic chemicals","34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
+"industrial gases production, cryogenic air separation","nitrogen, liquid","2011:Manufacture of basic chemicals","34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
+"industrial gases production, cryogenic air separation","oxygen, liquid","2011:Manufacture of basic chemicals","34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
+"market for oxygen, liquid","oxygen, liquid","2011:Manufacture of basic chemicals","34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
+"forest residues, burned in furnace 1000kW ",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"heat production, residues from forest, at furnace 1000kW","heat, district or industrial, other than natural gas","3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"heat, residential, by combustion of light fuel oil, from cellulosic non-residual biomass, using boiler","heat, from residential heating system","3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"light fuel oil, from non-residual cellulosic biomass, burned in residential boiler",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"heat, residential, by combustion of light fuel oil, from cellulosic residual biomass, using boiler","heat, from residential heating system","3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"light fuel oil, from residual cellulosic biomass, burned in residential boiler",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"heat, residential, by combustion of light fuel oil, from oily biomass, using boiler","heat, from residential heating system","3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"light fuel oil, from oily biomass, burned in residential boiler",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"biodiesel, from residual oily biomass, burned in heavy-duty vehicle",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"biodiesel, from non-residual oily biomass, burned in heavy-duty vehicle",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"biodiesel, from non-residual cellulosic biomass, burned in heavy-duty vehicle",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"biodiesel, from residual cellulosic biomass, burned in heavy-duty vehicle",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"biodiesel, from residual oily biomass, burned in single deck coach or urban bus",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"biodiesel, from non-residual oily biomass, burned in single deck coach or urban bus",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"biodiesel, from non-residual cellulosic biomass, burned in single deck coach or urban bus",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"biodiesel, from residual cellulosic biomass, burned in single deck coach or urban bus",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"bioethanol, from eucalyptus, burned in motorcycle",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"bioethanol, from residues, burned in motorcycle",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"bioethanol, from sugar crops, burned in motorcycle",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"kerosene, from cellulosic non-residual biomass, burned in aircraft",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"kerosene, from cellulosic residual biomass, burned in aircraft",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"kerosene, from non-residual oily biomass, burned in aircraft",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"biodiesel, from residual cellulosic biomass, burned in container ship",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"biodiesel, from non-residual cellulosic biomass, burned in container ship",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"biodiesel, from non-residual oily biomass, burned in container ship",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"biodiesel, from residual oily biomass, burned in passenger train",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"biodiesel, from non-residual oily biomass, burned in passenger train",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"biodiesel, from non-residual cellulosic biomass, burned in passenger train",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"biodiesel, from residual cellulosic biomass, burned in passenger train",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"biodiesel, from residual oily biomass, burned in passenger car",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"biodiesel, from non-residual cellulosic biomass, burned in passenger car",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"biodiesel, from residual cellulosic biomass, burned in passenger car",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"bioethanol, from eucalyptus, burned in passenger car",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"bioethanol, from forest residues, burned in passenger car",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"bioethanol, from sugar crops, burned in passenger car",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"forest residues, burned in furnace 1000kW","heat","3510:Electric power generation, transmission and distribution",17300: Steam and hot water
+"market for kerosene","kerosene",1920:Manufacture of refined petroleum products,33371: Kerosene

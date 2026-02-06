@@ -26,7 +26,7 @@ GMST:
     tiam-ucl: Temperature|Global Mean
     witch: Temperature|WITCH|Global Mean
     gcam: Temperature|Global Mean
-
+    message: AR6 climate diagnostics|Raw Surface Temperature (GMST)|MAGICCv7.5.3|50.0th Percentile
 CO2:
   iam_aliases:
     remind: Emi|CO2
