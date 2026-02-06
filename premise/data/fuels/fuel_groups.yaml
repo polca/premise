@@ -51,7 +51,7 @@ hydrogen:
   - hydrogen, from biogas, with CCS
 
 kerosene:
-  - kerosene, from petroleum
+  - kerosene
   - kerosene, synthetic, from electrolysis, energy allocation
   - kerosene, synthetic, from coal, energy allocation
   - kerosene, synthetic, from coal, energy allocation, with CCS
