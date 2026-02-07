@@ -1,0 +1,112 @@
+# mapping between premise and IAM terminology regarding buses
+# transport volumes (ES, billion pkm/y) and energy use (FE)
+---
+'bus, diesel':
+  iam_aliases:
+    remind: ES|Transport|Pass|Road|Bus|Liquids
+    remind-eu: ES|Transport|Pass|Road|Bus|Liquids
+    tiam-ucl: Distance|Transport|Bus|Diesel|Diesel
+    image:
+      - Energy Service|Transportation|Passenger|Bus|Liquids|Biomass
+      - Energy Service|Transportation|Passenger|Bus|Liquids|Fossil
+  energy_use_aliases:
+    remind: FE|Transport|Pass|Road|Bus|Liquids
+    remind-eu: FE|Transport|Pass|Road|Bus|Liquids
+    tiam-ucl: Final Energy|Transport|Bus|Diesel|Diesel
+    image:
+      - Final Energy|Transportation|Passenger|Bus|Liquids|Biomass
+      - Final Energy|Transportation|Passenger|Bus|Liquids|Fossil
+  ecoinvent_aliases:
+    fltr:
+      - 'transport, passenger bus, diesel, 13m single deck urban bus, EURO-VI'
+  ecoinvent_fuel_aliases:
+    fltr:
+      - diesel
+
+'bus, gasoline':
+  iam_aliases:
+    tiam-ucl: Distance|Transport|Bus|Gasoline|Gasoline
+  energy_use_aliases:
+    tiam-ucl: Final Energy|Transport|Bus|Gasoline|Gasoline
+  ecoinvent_aliases:
+    fltr:
+      - transport, passenger bus, gasoline, 13m single deck urban bus, EURO-VI
+  ecoinvent_fuel_aliases:
+    fltr:
+      - petrol, low-sulfur
+
+'bus, diesel hybrid':
+    iam_aliases:
+        tiam-ucl: Distance|Transport|Bus|Gasoline|Gasoline
+    energy_use_aliases:
+        tiam-ucl: Final Energy|Transport|Bus|Gasoline|Gasoline
+    ecoinvent_aliases:
+      fltr:
+        - transport, passenger bus, diesel hybrid, 13m single deck coach bus, EURO-VI
+    ecoinvent_fuel_aliases:
+      fltr:
+        - diesel
+
+'bus, compressed gas':
+  iam_aliases:
+    remind: ES|Transport|Pass|Road|Bus|Gases
+    remind-eu: ES|Transport|Pass|Road|Bus|Gases
+    tiam-ucl: Distance|Transport|Bus|Natural Gas|Natural Gas
+    image: Energy Service|Transportation|Passenger|Bus|Gases
+  energy_use_aliases:
+    remind: FE|Transport|Pass|Road|Bus|Gases
+    remind-eu: FE|Transport|Pass|Road|Bus|Gases
+    tiam-ucl: Final Energy|Transport|Bus|Natural Gas|Natural Gas
+    image: Final Energy|Transportation|Passenger|Bus|Gases
+  ecoinvent_aliases:
+    fltr:
+      - 'transport, passenger bus, compressed gas, 13m single deck urban bus, EURO-VI'
+  ecoinvent_fuel_aliases:
+    fltr:
+      - natural gas
+
+'bus, liquefied petroleum gas':
+    iam_aliases:
+        tiam-ucl: Distance|Transport|Bus|Liquefied Petroleum Gas|Liquefied Petroleum Gas
+    energy_use_aliases:
+        tiam-ucl: Final Energy|Transport|Bus|Liquefied Petroleum Gas|Liquefied Petroleum Gas
+    ecoinvent_aliases:
+        fltr:
+        - 'transport, passenger bus, liquefied petroleum gas, 13m single deck urban bus, EURO-VI'
+    ecoinvent_fuel_aliases:
+        fltr:
+        - liquefied petroleum gas
+
+'bus, fuel cell':
+  iam_aliases:
+    remind: ES|Transport|Pass|Road|Bus|FCEV
+    remind-eu: ES|Transport|Pass|Road|Bus|FCEV
+    tiam-ucl: Distance|Transport|Bus|Hydrogen Fuel Cell|Bus Hydrogen
+    image: Energy Service|Transportation|Passenger|Bus|Hydrogen
+  energy_use_aliases:
+    remind: FE|Transport|Pass|Road|Bus|FCEV
+    remind-eu: FE|Transport|Pass|Road|Bus|FCEV
+    tiam-ucl: Final Energy|Transport|Bus|Hydrogen Fuel Cell|Bus Hydrogen
+    image: Final Energy|Transportation|Passenger|Bus|Hydrogen
+  ecoinvent_aliases:
+    fltr:
+      - 'transport, passenger bus, fuel cell electric, 13m single deck urban bus'
+  ecoinvent_fuel_aliases:
+    fltr:
+      - hydrogen
+'bus, battery electric':
+  iam_aliases:
+    remind: ES|Transport|Pass|Road|Bus|BEV
+    remind-eu: ES|Transport|Pass|Road|Bus|BEV
+    image: Energy Service|Transportation|Passenger|Bus|Electricity
+  energy_use_aliases:
+    remind: FE|Transport|Pass|Road|Bus|Electricity
+    remind-eu: FE|Transport|Pass|Road|Bus|Electricity
+    image: Final Energy|Transportation|Passenger|Bus|Electricity
+  ecoinvent_aliases:
+    fltr:
+      - 'transport, passenger bus, battery electric - overnight charging, 13m single deck urban bus'
+  ecoinvent_fuel_aliases:
+    fltr:
+      - electricity
+

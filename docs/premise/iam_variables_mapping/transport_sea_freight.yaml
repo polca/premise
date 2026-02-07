@@ -1,0 +1,263 @@
+# mapping between premise and IAM terminology regarding sea transport
+# transport volumes (ES, in billion pkm/y) and energy use (FE)
+---
+
+ship, marine oil:
+  iam_aliases:
+    remind: ES|Transport|Freight|Domestic Shipping|Liquids|Fossil
+    remind-eu: ES|Transport|Freight|Domestic Shipping|Liquids|Fossil
+    tiam-ucl:
+      - Distance|Transport|Ship|Domestic|Heavy Fuel Oil
+      - Distance|Transport|Ship|Domestic|Heavy Fuel Oil|Heavy Fuel Oil
+      - Distance|Transport|Ship|International|Heavy Fuel Oil
+      - Distance|Transport|Ship|International|Heavy Fuel Oil|Heavy Fuel Oil
+    image:
+      - Energy Service|Transportation|Freight|National Shipping|Liquids|Fossil
+      - Energy Service|Transportation|Freight|International Shipping|Liquids|Fossil
+  energy_use_aliases:
+    remind:
+      - FE|Transport|Bunkers|Freight|International Shipping|Liquids|Fossil
+      - FE|Transport|Freight|Domestic Shipping|Liquids|Fossil
+    remind-eu:
+      - FE|Transport|Bunkers|Freight|International Shipping|Liquids|Fossil
+      - FE|Transport|Freight|Domestic Shipping|Liquids|Fossil
+    image:
+      - Final Energy|Transportation|Freight|International Shipping|Liquids|Fossil
+      - Final Energy|Transportation|Freight|National Shipping|Liquids|Fossil
+    tiam-ucl:
+      - Final Energy|Transport|Ship|International|Heavy Fuel Oil
+      - Final Energy|Transport|Ship|International|Heavy Fuel Oil|Heavy Fuel Oil
+      - Final Energy|Transport|Ship|Domestic|Heavy Fuel Oil
+      - Final Energy|Transport|Ship|Domestic|Heavy Fuel Oil|Heavy Fuel Oil
+  ecoinvent_aliases:
+    fltr:
+      - transport, freight, sea, container ship
+    mask:
+      - market
+      - biodiesel
+      - diesel
+      - hydrogen
+      - electricity
+      - ammonia
+      - methanol
+      - methane
+      - liquefied petroleum gas
+      - reefer
+      - average
+  ecoinvent_fuel_aliases:
+    fltr:
+      - heavy fuel oil
+    mask:
+      - burned
+      - heat
+      - import
+
+ship, diesel:
+  iam_aliases:
+    tiam-ucl:
+      - Distance|Transport|Ship|Domestic|Diesel
+      - Distance|Transport|Ship|International|Diesel
+      - Distance|Transport|Ship|Domestic|Gasoline
+      - Distance|Transport|Ship|International|Gasoline
+  energy_use_aliases:
+    tiam-ucl:
+      - Final Energy|Transport|Ship|Domestic|Diesel
+      - Final Energy|Transport|Ship|International|Diesel
+      - Final Energy|Transport|Ship|Domestic|Gasoline
+      - Final Energy|Transport|Ship|International|Gasoline
+  ecoinvent_aliases:
+    fltr:
+      - transport, freight, sea, container ship, powered with diesel
+  ecoinvent_fuel_aliases:
+    fltr:
+      - diesel production
+    mask:
+      - biodiesel
+      - synthetic
+      - burned
+      - from
+
+ship, biodiesel:
+  iam_aliases:
+    remind: ES|Transport|Freight|Domestic Shipping|Liquids|Biomass
+    remind-eu: ES|Transport|Freight|Domestic Shipping|Liquids|Biomass
+    tiam-ucl:
+      - Distance|Transport|Ship|Domestic|Biodiesel
+      - Distance|Transport|Ship|International|Biodiesel
+      - Distance|Transport|Ship|Domestic|Heavy Fuel Oil|Biodiesel
+      - Distance|Transport|Ship|International|Heavy Fuel Oil|Biodiesel
+    image:
+      - Energy Service|Transportation|Freight|International Shipping|Liquids|Biomass
+      - Energy Service|Transportation|Freight|National Shipping|Liquids|Biomass
+  energy_use_aliases:
+    remind:
+      - FE|Transport|Freight|Domestic Shipping|Liquids|Biomass
+      - FE|Transport|Bunkers|Freight|International Shipping|Liquids|Biomass
+    remind-eu:
+      - FE|Transport|Freight|Domestic Shipping|Liquids|Biomass
+      - FE|Transport|Bunkers|Freight|International Shipping|Liquids|Biomass
+    image:
+      - Final Energy|Transportation|Freight|International Shipping|Liquids|Biomass
+      - Final Energy|Transportation|Freight|National Shipping|Liquids|Biomass
+    tiam-ucl:
+      - Final Energy|Transport|Ship|Domestic|Biodiesel
+      - Final Energy|Transport|Ship|International|Biodiesel
+      - Final Energy|Transport|Ship|Domestic|Heavy Fuel Oil|Biodiesel
+      - Final Energy|Transport|Ship|International|Heavy Fuel Oil|Biodiesel
+  ecoinvent_aliases:
+    fltr:
+      - transport, freight, sea, container ship, powered with biodiesel
+  ecoinvent_fuel_aliases:
+    fltr:
+      - biodiesel
+    mask:
+      - burned
+      - transport
+
+ship, electric:
+  iam_aliases:
+    image:
+      - Energy Service|Transportation|Freight|National Shipping|Electricity
+      - Energy Service|Transportation|Freight|International Shipping|Electricity
+  energy_use_aliases:
+    image:
+      - Final Energy|Transportation|Freight|National Shipping|Electricity
+      - Energy Service|Transportation|Freight|International Shipping|Electricity
+    tiam-ucl:
+  ecoinvent_aliases:
+    fltr:
+      - transport, freight, sea, container ship, powered with electricity
+  ecoinvent_fuel_aliases:
+    fltr:
+      - electricity, low voltage
+    mask:
+      - distribution
+      - transmission
+      - renewable
+      - import
+      - attribute
+      - residual
+
+ship, fuel cell:
+  iam_aliases:
+    image:
+      - Energy Service|Transportation|Freight|International Shipping|Hydrogen
+      - Energy Service|Transportation|Freight|National Shipping|Hydrogen
+    tiam-ucl:
+      - Distance|Transport|Ship|Domestic|Hydrogen|Shipping Hydrogen
+      - Distance|Transport|Ship|International|Hydrogen|Shipping Hydrogen
+  energy_use_aliases:
+    image:
+      - Final Energy|Transportation|Freight|International Shipping|Hydrogen
+      - Final Energy|Transportation|Freight|National Shipping|Hydrogen
+    tiam-ucl:
+      - Final Energy|Transport|Ship|Domestic|Hydrogen|Shipping Hydrogen
+      - Final Energy|Transport|Ship|International|Hydrogen|Shipping Hydrogen
+  ecoinvent_aliases:
+    fltr:
+      - transport, freight, sea, container ship, powered with hydrogen
+  ecoinvent_fuel_aliases:
+    fltr:
+      - hydrogen production
+      - market for hydrogen
+    mask:
+      - plant
+      - sulfide
+      - peroxide
+      - cyanide
+      - fluoride
+
+ship, ammonia:
+  iam_aliases:
+    remind: FE|Transport|Bunkers|Freight|International Shipping|Liquids|Hydrogen
+    remind-eu: FE|Transport|Bunkers|Freight|International Shipping|Liquids|Hydrogen
+    tiam-ucl:
+      - Distance|Transport|Ship|Domestic|Ammonia|Synthetic Ammonia
+      - Distance|Transport|Ship|International|Ammonia|Synthetic Ammonia
+  energy_use_aliases:
+    remind:
+      - FE|Transport|Freight|Domestic Shipping|Liquids|Hydrogen
+      - FE|Transport|Bunkers|Freight|International Shipping|Liquids|Hydrogen
+    remind-eu:
+      - FE|Transport|Freight|Domestic Shipping|Liquids|Hydrogen
+      - FE|Transport|Bunkers|Freight|International Shipping|Liquids|Hydrogen
+    tiam-ucl:
+      - Final Energy|Transport|Ship|Domestic|Ammonia|Synthetic Ammonia
+      - Final Energy|Transport|Ship|International|Ammonia|Synthetic Ammonia
+  ecoinvent_aliases:
+    fltr:
+      - transport, freight, sea, container ship, powered with liquid ammonia
+  ecoinvent_fuel_aliases:
+    fltr:
+      - ammonia production
+
+ship, methanol:
+  iam_aliases:
+    remind:
+    remind-eu:
+  energy_use_aliases:
+    remind:
+    remind-eu:
+  ecoinvent_aliases:
+    fltr:
+      - transport, freight, sea, container ship, powered with methanol
+  ecoinvent_fuel_aliases:
+    fltr:
+      - methanol
+    mask:
+      - diesel
+      - gasoline
+      - heat
+      - burned
+      - kerosene
+      - olefins
+      - liquefied
+      - transport
+      - acid
+      - formaldehyde
+      - distillation
+      - facility
+      - factory
+      - market
+      - propylene
+
+ship, synthetic methane:
+  iam_aliases:
+    remind:
+    remind-eu:
+  energy_use_aliases:
+    remind:
+    remind-eu:
+  ecoinvent_aliases:
+    fltr:
+      - transport, freight, sea, container ship, powered with synthetic methane
+  ecoinvent_fuel_aliases:
+    fltr:
+      - methane, from electrochemical methanation
+
+ship, synthetic LPG:
+  iam_aliases:
+    remind:
+    remind-eu:
+    tiam-ucl:
+      - Distance|Transport|Ship|Domestic|Liquefied Natural Gas|Liquefied Natural Gas
+      - Distance|Transport|Ship|International|Liquefied Natural Gas|Liquefied Natural Gas
+  energy_use_aliases:
+    remind:
+    remind-eu:
+    tiam-ucl:
+      - Final Energy|Transport|Ship|Domestic|Liquefied Natural Gas|Liquefied Natural Gas
+      - Final Energy|Transport|Ship|International|Liquefied Natural Gas|Liquefied Natural Gas
+  ecoinvent_aliases:
+    fltr:
+      - transport, freight, sea, container ship, powered with synthetic liquefied petroleum gas
+  ecoinvent_fuel_aliases:
+    fltr:
+      - liquefied petroleum gas
+    mask:
+      - heat
+      - burned
+      - transport
+      - import
+      - biomethane
+      - diesel

@@ -1,0 +1,276 @@
+# lead time between investment decision and capacity installation
+# in years
+---
+Biomass IGCC CCS: 4
+Biomass IGCC: 4
+Biomass CHP: 4
+Biomass CHP (existing): 4
+Biomass CHP CCS: 4
+Biomass ST: 4
+Biomass ST CCS: 4
+Biomass MSW: 4
+Biogas CHP: 4
+Coal IGCC: 4
+Coal IGCC CCS: 5
+Coal PC: 4
+Coal PC CCS: 5
+Coal CHP: 4
+Coal CHP CCS: 5
+Coal USC: 4
+Coal USC CCS: 5
+Coal CF 80-20: 4
+Coal CF 50-50: 4
+Coal SC: 4
+Gas OC: 3
+Gas CC: 3
+Gas CC CCS: 3
+Gas CHP: 3
+Gas CHP CCS: 3
+Gas ST: 3
+Gas GT: 3
+Oil ST: 3
+Oil CC CCS: 3
+Oil CC: 3
+Oil CHP CCS: 3
+Oil CHP: 3
+Foil ST: 3
+Geothermal: 3
+Hydro: 4
+Hydro, run-of-river: 4
+Hydrogen: 3
+Nuclear: 7
+Nuclear_EPR: 7
+Nuclear_SMR: 7
+Solar CSP: 3
+Solar CSP autonomous: 3
+Solar PV Centralized: 2
+Solar PV Residential: 2
+Wind Onshore: 2
+Wind Offshore: 3
+Wave: 3
+Storage, Hydrogen: 3
+Storage, Battery: 3
+diesel: 3
+gasoline: 3
+diesel, synthetic, from wood: 3
+diesel, synthetic, from wood, with CCS: 3
+diesel, synthetic, from grass: 3
+diesel, synthetic, from grass, with CCS: 3
+biodiesel, from oil crops: 3
+biodiesel, from oil crops, with CCS: 3
+bioethanol, from wood: 3
+bioethanol, from wood, with CCS: 3
+bioethanol, from grass: 3
+bioethanol, from grass, with CCS: 3
+bioethanol, from grain: 3
+bioethanol, from grain, with CCS: 3
+bioethanol, from sugar: 3
+bioethanol, from sugar, with CCS: 3
+bioethanol, from residues: 3
+methanol, from wood: 3
+methanol, from wood, with CCS: 3
+methanol, from grass: 3
+methanol, from grass, with CCS: 3
+natural gas: 3
+methane, from biomass: 3
+petrol, synthetic, from electrolysis: 3
+petrol, synthetic, from coal: 3
+petrol, synthetic, from coal, with CCS: 3
+diesel, synthetic, from electrolysis: 3
+diesel, synthetic, from coal: 3
+diesel, synthetic, from coal, with CCS: 3
+diesel, synthetic, from natural gas, with CCS: 3
+diesel, synthetic, from natural gas: 3
+kerosene, synthetic, from natural gas, energy allocation: 3
+kerosene, synthetic, from natural gas, energy allocation, with CCS: 3
+kerosene, synthetic, from coal, energy allocation, with CCS: 3
+kerosene, synthetic, from coal, energy allocation: 3
+kerosene, synthetic, from biomass, energy allocation: 3
+kerosene, synthetic, from biomass, energy allocation, with CCS: 3
+liquefied petroleum gas: 3
+liquefied petroleum gas, synthetic, from coal, with CCS: 3
+liquefied petroleum gas, synthetic, from coal: 3
+liquefied petroleum gas, synthetic, from natural gas, with CCS: 3
+liquefied petroleum gas, synthetic, from natural gas: 3
+liquefied petroleum gas, synthetic, from biomass, with CCS: 3
+liquefied petroleum gas, synthetic, from biomass: 3
+kerosene, from petroleum: 3
+hydrogen, from electrolysis, PEM: 3
+hydrogen, from electrolysis, AEC: 3
+hydrogen, from electrolysis, SOEC: 3
+hydrogen, from biomass: 3
+hydrogen, from biomass, with CCS: 3
+hydrogen, from coal: 3
+hydrogen, from natural gas: 3
+hydrogen, from natural gas, with CCS: 3
+hydrogen, from coal, with CCS: 3
+hydrogen, from solar: 3
+cement, dry feed rotary kiln: 10
+cement, dry feed rotary kiln, efficient, with MEA CCS: 10
+cement, dry feed rotary kiln, efficient: 10
+cement, dry feed rotary kiln, efficient, with oxyfuel CCS: 10
+cement, dry feed rotary kiln, efficient, with on-site CCS: 10
+steel - primary: 10
+steel - secondary: 10
+steel - primary - BF/BOF: 10
+steel - primary - DRI: 10
+steel - primary - DRI CCS: 10
+steel - primary - H-DRI: 10
+steel - primary - BF/BOF CCS: 10
+steel - primary - Electrowinning: 10
+steel - primary - SR/BOF: 10
+steel - primary - SR/BOF CCS: 10
+steel - primary - TGR BF/BOF: 10
+steel - primary - TGR BF/BOF CCS: 10
+daccs_sorbent: 3
+direct air capture (solvent) with storage: 3
+ocean liming: 3
+bioenergy, with CCS: 3
+enhanced rock weathering: 3
+biomass industrial emissions with CCS: 3
+biomass - residual: 3
+synthetic fuels, with CCS: 3
+biofuels, with CCS: 3
+biomass power generation, with CCS: 3
+biomass crops - purpose grown: 3
+biomass wood - purpose grown: 3
+heat, residential, from district heating: 3
+heat, residential, from hydrogen boiler: 3
+heat, residential, from natural gas: 3
+heat, residential, from LPG boiler: 3
+heat, residential, from biomass-based methanol boiler: 3
+heat, residential, from coal-based methanol boiler: 3
+heat, residential, from coal stove: 3
+heat, residential, from wood logs heater: 3
+heat, residential, from wood pellets heater: 3
+heat, residential, from heat pump: 3
+heat, residential, from electric heater: 3
+heat, residential, from light fuel oil boiler: 3
+truck, compressed gas, 18 metric ton: 1
+truck, battery electric, 26 metric ton: 1
+truck, compressed gas, 7.5 metric ton: 1
+truck, diesel, 7.5 metric ton: 1
+truck, diesel, 18 metric ton: 1
+truck, compressed gas, 40 metric ton: 1
+truck, fuel cell electric, 26 metric ton: 1
+truck, battery electric, 18 metric ton: 1
+truck, fuel cell electric, 3.5 metric ton: 1
+truck, diesel, 40 metric ton: 1
+truck, compressed gas, 26 metric ton: 1
+truck, fuel cell electric, 18 metric ton: 1
+truck, battery electric, 40 metric ton: 1
+truck, fuel cell electric, 40 metric ton: 1
+truck, diesel, 26 metric ton: 1
+truck, battery electric, 3.5 metric ton: 1
+truck, fuel cell electric, 7.5 metric ton: 1
+truck, diesel, 3.5 metric ton: 1
+truck, battery electric, 7.5 metric ton: 1
+truck, compressed gas, 3.5 metric ton: 1
+truck, diesel hybrid, 18 metric ton: 1
+truck, diesel hybrid, 40 metric ton: 1
+truck, diesel plugin hybrid, 18 metric ton: 1
+truck, diesel plugin hybrid, 40 metric ton: 1
+truck, gasoline hybrid, 18 metric ton: 1
+truck, gasoline hybrid, 40 metric ton: 1
+truck, gasoline, 18 metric ton: 1
+truck, gasoline, 40 metric ton: 1
+truck, diesel hybrid, 3.5 metric ton: 1
+truck, diesel hybrid, 7.5 metric ton: 1
+truck, gasoline, 3.5 metric ton: 1
+truck, gasoline, 7.5 metric ton: 1
+truck, liquefied petroleum gas, 18 metric ton: 1
+truck, liquefied petroleum gas, 3.5 metric ton: 1
+truck, liquefied petroleum gas, 40 metric ton: 1
+truck, liquefied petroleum gas, 7.5 metric ton: 1
+truck, plugin diesel hybrid, 3.5 metric ton: 1
+truck, plugin diesel hybrid, 7.5 metric ton: 1
+train, fuel cell: 5
+train, electric: 5
+train, diesel-electric: 5
+ship, biodiesel: 10
+ship, ammonia: 10
+ship, marine oil: 10
+ship, electric: 10
+ship, fuel cell: 10
+ship, diesel: 10
+ship, synthetic LPG: 10
+passenger car, plugin gasoline hybrid, large: 1
+passenger car, battery electric, small: 1
+passenger car, compressed gas, van: 1
+passenger car, gasoline, medium SUV: 1
+passenger car, fuel cell electric, medium: 1
+passenger car, compressed gas, medium SUV: 1
+passenger car, gasoline, mini: 1
+passenger car, compressed gas, medium: 1
+passenger car, plugin gasoline hybrid, mini: 1
+passenger car, fuel cell electric, large: 1
+passenger car, gasoline, medium: 1
+passenger car, battery electric, large: 1
+passenger car, fuel cell electric, van: 1
+passenger car, compressed gas, mini: 1
+passenger car, plugin gasoline hybrid, medium SUV: 1
+passenger car, battery electric, medium SUV: 1
+passenger car, fuel cell electric, medium SUV: 1
+passenger car, plugin gasoline hybrid, small: 1
+passenger car, battery electric, medium: 1
+passenger car, compressed gas, large: 1
+passenger car, fuel cell electric, small: 1
+passenger car, gasoline, large: 1
+passenger car, fuel cell electric, mini: 1
+passenger car, battery electric, van: 1
+passenger car, plugin gasoline hybrid, medium: 1
+passenger car, compressed gas, small: 1
+passenger car, plugin gasoline hybrid, van: 1
+passenger car, gasoline, small: 1
+passenger car, gasoline, van: 1
+passenger car, battery electric, mini: 1
+passenger car, diesel hybrid, medium: 1
+passenger car, diesel, medium: 1
+passenger car, hybrid gasoline, medium: 1
+passenger car, liquefied petroleum gas, medium: 1
+passenger car, plugin diesel hybrid, medium: 1
+bus, fuel cell: 1
+bus, compressed gas: 1
+bus, battery electric: 1
+bus, diesel: 1
+bus, diesel hybrid: 1
+bus, liquefied petroleum gas: 1
+moped, battery electric: 1
+motorcycle, >250cc, battery electric: 1
+motorcycle, 50-250cc, battery electric: 1
+motorcycle, 50-250cc, gasoline: 1
+moped, gasoline: 1
+motorcycle, >250cc, gasoline: 1
+heat, buildings, from LPG boiler: 1
+heat, buildings, from natural gas: 1
+heat, buildings, from coal-based methanol boiler: 1
+heat, buildings, from district heating: 1
+heat, buildings, from hydrogen boiler: 1
+heat, buildings, from light fuel oil boiler: 1
+heat, buildings, from heat pump: 1
+heat, buildings, from coal stove: 1
+heat, buildings, from wood logs heater: 1
+heat, buildings, from wood pellets heater: 1
+heat, buildings, from electric heater: 1
+heat, buildings, from biomass-based methanol boiler: 1
+heat, industrial, from coal CHP: 1
+heat, industrial, from natural gas CHP: 1
+heat, industrial, from solar thermal: 1
+heat, industrial, from biomass CHP: 1
+heat, industrial, from heat pump: 1
+heat, industrial, from geothermal: 1
+heat, industrial, from light fuel oil boiler: 1
+heat, industrial, from hydrogen: 1
+energy, for DACCS, from electricity: 1
+energy, for DACCS, from hydrogen turbine: 1
+energy, for DACCS, from other: 1
+energy, for DACCS, from gas boiler: 1
+energy, from EWR, from diesel: 1
+energy, for EWR, from electricity: 1
+hydrogen, from electrolysis, PEM, from CSP: 3
+hydrogen, from electrolysis, PEM, from Solar PV: 3
+hydrogen, from electrolysis, PEM, from geothermal: 3
+hydrogen, from electrolysis, PEM, from offshore wind: 3
+hydrogen, from electrolysis, PEM, from onshore wind: 3
+hydrogen, from oil: 3
+

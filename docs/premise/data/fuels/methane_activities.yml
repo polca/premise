@@ -1,0 +1,27 @@
+methane, from biomass:
+  - name: production of 2 wt-% potassium iodide solution
+    reference product: 2 wt-% potassium iodide solution
+
+  - name: biomethane production, from biogas upgrading, using amine scrubbing
+    reference product: biomethane, from biogas upgrading, using amine scrubbing
+
+  - name: biomethane, gaseous, 5 bar, from sewage sludge fermentation, at fuelling station
+    reference product: biomethane, high pressure
+
+methane, synthetic:
+  - name: methane, from electrochemical methanation, with carbon from atmosphere
+    reference product: methane, from electrochemical methanation
+
+  - name: methane, from electrochemical methanation, with carbon from atmosphere, using heat pump heat
+    reference product: methane, from electrochemical methanation
+
+  - name: methane, from electrochemical methanation, with carbon from atmosphere, using waste heat
+    reference product: methane, from electrochemical methanation
+
+  - name: methane, from biological methanation, with carbon from atmosphere
+    reference product: methane, from biological methanation
+
+  - name: methane, synthetic, gaseous, 5 bar, from coal-based hydrogen, at fuelling station
+    reference product: methane, high pressure
+
+

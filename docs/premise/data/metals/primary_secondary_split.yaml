@@ -1,0 +1,1031 @@
+stibnite concentrate:
+  name: market for stibnite concentrate
+  reference product: stibnite concentrate
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+antimony:
+  name: market for antimony
+  reference product: antimony
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+bauxite:
+  name: market for bauxite
+  reference product: bauxite
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+aluminium hydroxide:
+  name: market for aluminium hydroxide
+  reference product: aluminium hydroxide
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+aluminium oxide, metallurgical:
+  name: market for aluminium oxide, metallurgical
+  reference product: aluminium oxide, metallurgical
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+aluminium, primary, liquid:
+  name: market for aluminium, primary, liquid
+  reference product: aluminium, primary, liquid
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+aluminium, primary, ingot:
+  name: market for aluminium, primary, ingot
+  reference product: aluminium, primary, ingot
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+aluminium, cast alloy:
+  name: market for aluminium, cast alloy
+  reference product: aluminium, cast alloy
+  shares:
+    primary:
+      2020: 0.311755
+      2050: 0.311755
+    secondary:
+      2020: 0.688245
+      2050: 0.688245
+bentonite:
+  name: market for bentonite
+  reference product: bentonite
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+beryllium hydroxide:
+  name: market for beryllium hydroxide
+  reference product: beryllium hydroxide
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+beryllium:
+  name: market for beryllium
+  reference product: beryllium
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+calcium borates:
+  name: market calcium borates
+  reference product: calcium borates
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+sodium borates:
+  name: market for sodium borates
+  reference product: sodium borates
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+boric acid, anhydrous, powder:
+  name: market for boric acid, anhydrous, powder
+  reference product: boric acid, anhydrous, powder
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+boron trifluoride:
+  name: market for boron trifluoride
+  reference product: boron trifluoride
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+boric oxide:
+  name: market boric oxide
+  reference product: boric oxide
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+boron carbide:
+  name: market for boron carbide
+  reference product: boron carbide
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+cadmium:
+  name: market for cadmium
+  reference product: cadmium
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+chromite ore concentrate:
+  name: market for chromite ore concentrate
+  reference product: chromite ore concentrate
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+chromium:
+  name: market for chromium
+  reference product: chromium
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+copper-cobalt ore:
+  name: market for copper-cobalt ore
+  reference product: copper-cobalt ore
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+cobalt hydroxide:
+  name: market for cobalt hydroxide
+  reference product: cobalt hydroxide
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+cobalt sulfate:
+  name: market for cobalt sulfate
+  reference product: cobalt sulfate
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+cobalt:
+  name: market for cobalt
+  reference product: cobalt
+  shares:
+    primary:
+      2020: 0.994283742
+      2050: 0.994283742
+    secondary:
+      2020: 0.005716258
+      2050: 0.005716258
+copper concentrate, sulfide ore:
+  name: market for copper concentrate, sulfide ore
+  reference product: copper concentrate, sulfide ore
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+copper, anode:
+  name: market for copper, anode
+  reference product: copper, anode
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+copper, cathode:
+  name: market for copper, cathode
+  reference product: copper, cathode
+  shares:
+    primary:
+      2020: 0.8
+      2050: 0.8
+    secondary:
+      2020: 0.2
+      2050: 0.2
+gallium, semiconductor-grade:
+  name: market for gallium, semiconductor-grade
+  reference product: gallium, semiconductor-grade
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+germanium, concentrate:
+  name: market for germanium, concentrate
+  reference product: germanium, concentrate
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+gold:
+  name: market for gold
+  reference product: gold
+  shares:
+    primary:
+      2020: 0.995573343
+      2050: 0.995573343
+    secondary:
+      2020: 0.0044266570
+      2050: 0.0044266570
+graphite:
+  name: market for graphite
+  reference product: graphite
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+graphite ore, mined:
+  name: market for graphite ore, mined
+  reference product: graphite ore, mined
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+hafnium tetrachloride:
+  name: market for hafnium tetrachloride
+  reference product: hafnium tetrachloride
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+hafnium sponge:
+  name: market for hafnium sponge
+  reference product: hafnium sponge
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+indium rich leaching residues, from zinc production:
+  name: market for indium rich leaching residues, from zinc production
+  reference product: indium rich leaching residues, from zinc production
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+indium:
+  name: market for indium
+  reference product: indium
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+iridium:
+  name: market for iridium
+  reference product: iridium
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+iron ore concentrate:
+  name: market for iron ore concentrate
+  reference product: iron ore concentrate
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+lead concentrate:
+  name: market for lead concentrate
+  reference product: lead concentrate
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+lead:
+  name: market for lead
+  reference product: lead
+  shares:
+    primary:
+      2020: 0.450837966
+      2050: 0.450837966
+    secondary:
+      2020: 0.549162034
+      2050: 0.549162034
+spodumene:
+  name: market for spodumene
+  reference product: spodumene
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+lithium carbonate, battery grade:
+  name: market for lithium carbonate, battery grade
+  reference product: lithium carbonate, battery grade
+  shares:
+    primary:
+      2020: 0.999159585
+      2050: 0.999159585
+    secondary:
+      2020: 0.000840414604538239
+      2050: 0.000840414604538239
+lithium hydroxide, battery grade:
+  name: market for lithium hydroxide, battery grade
+  reference product: lithium hydroxide, battery grade
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+dolomite:
+  name: market for dolomite
+  reference product: dolomite
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+magnesium:
+  name: market for magnesium
+  reference product: magnesium
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+manganese concentrate:
+  name: market for manganese concentrate
+  reference product: manganese concentrate
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+manganese:
+  name: market for manganese
+  reference product: manganese
+  shares:
+    primary:
+      2020: 0.99999752
+      2050: 0.99999752
+    secondary:
+      2020: 0.00000248
+      2050: 0.00000248
+molybdenite:
+  name: market for molybdenite
+  reference product: molybdenite
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+molybdenum:
+  name: market for molybdenum
+  reference product: molybdenum
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+nickel concentrate, 16% Ni:
+  name: market for nickel concentrate, 16% Ni
+  reference product: nickel concentrate, 16% Ni
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+nickel, class 1:
+  name: market for nickel, class 1
+  reference product: nickel, class 1
+  shares:
+    primary:
+      2020: 0.997971535
+      2050: 0.997971535
+    secondary:
+      2020: 0.002028465
+      2050: 0.002028465
+phosphate rock, beneficiated:
+  name: market for phosphate rock, beneficiated
+  reference product: phosphate rock, beneficiated
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+phosphoric acid, fertiliser grade, without water, in 70% solution state:
+  name: market for phosphoric acid, fertiliser grade, without water, in 70% solution state
+  reference product: phosphoric acid, fertiliser grade, without water, in 70% solution state
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+phosphorus, white, liquid:
+  name: market for phosphorus, white, liquid
+  reference product: phosphorus, white, liquid
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+palladium:
+  name: market for palladium
+  reference product: palladium
+  shares:
+    primary:
+      2020: 0.844514476
+      2050: 0.844514476
+    secondary:
+      2020: 0.155485524
+      2050: 0.155485524
+platinum:
+  name: market for platinum
+  reference product: platinum
+  shares:
+    primary:
+      2020: 0.955399614
+      2050: 0.955399614
+    secondary:
+      2020: 0.044600386
+      2050: 0.044600386
+platinum group metal concentrate:
+  name: market for platinum group metal concentrate
+  reference product: platinum group metal concentrate
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+potash salt:
+  name: market for potash salt
+  reference product: potash salt
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+rare earth carbonate concentrate:
+  name: market for rare earth carbonate concentrate
+  reference product: rare earth carbonate concentrate
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+dysprosium oxide:
+  name: market for dysprosium oxide
+  reference product: dysprosium oxide
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+erbium oxide:
+  name: market for erbium oxide
+  reference product: erbium oxide
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+europium oxide:
+  name: market for europium oxide
+  reference product: europium oxide
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+gadolinium oxide:
+  name: market for gadolinium oxide
+  reference product: gadolinium oxide
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+ytterbium oxide:
+  name: market for ytterbium oxide
+  reference product: ytterbium oxide
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+terbium oxide:
+  name: market for terbium oxide
+  reference product: terbium oxide
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+thulium oxide:
+    name: market for thulium oxide
+    reference product: thulium oxide
+    shares:
+      primary:
+        2020: 1.0
+        2050: 1.0
+      secondary:
+        2020: 0.0
+        2050: 0.0
+yttrium oxide:
+  name: market for yttrium oxide
+  reference product: yttrium oxide
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+samarium oxide:
+  name: market for samarium oxide
+  reference product: samarium oxide
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+scandium oxide:
+  name: market for scandium oxide
+  reference product: scandium oxide
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+lanthanum oxide:
+  name: market for lanthanum oxide
+  reference product: lanthanum oxide
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+praseodymium oxide:
+  name: market for praseodymium oxide
+  reference product: praseodymium oxide
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+neodymium oxide:
+  name: market for neodymium oxide
+  reference product: neodymium oxide
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+lutetium oxide:
+  name: market for lutetium oxide
+  reference product: lutetium oxide
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+holmium oxide:
+  name: market for holmium oxide
+  reference product: holmium oxide
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+cerium oxide:
+  name: market for cerium oxide
+  reference product: cerium oxide
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+lanthanum-cerium oxide:
+  name: market for lanthanum-cerium oxide
+  reference product: lanthanum-cerium oxide
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+rhenium:
+  name: market for rhenium
+  reference product: rhenium
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+ruthenium:
+  name: market for ruthenium
+  reference product: ruthenium
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+selenium:
+  name: market for selenium
+  reference product: selenium
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+sand:
+  name: market for sand
+  reference product: sand
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+silica sand:
+  name: market for silica sand
+  reference product: silica sand
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+silicon, metallurgical grade:
+  name: market for silicon, metallurgical grade
+  reference product: silicon, metallurgical grade
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+silver:
+  name: market for silver
+  reference product: silver
+  shares:
+    primary:
+      2020: 0.915363477
+      2050: 0.915363477
+    secondary:
+      2020: 0.084636523
+      2050: 0.084636523
+strontium sulfate, 90% SrSO4:
+  name: market for strontium sulfate, 90% SrSO4
+  reference product: strontium sulfate, 90% SrSO4
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+sulfur:
+  name: market for sulfur
+  reference product: sulfur
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+pyrochlore concentrate:
+  name: market for pyrochlore concentrate
+  reference product: pyrochlore concentrate
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+ferroniobium, 66% Nb:
+  name: market for ferroniobium, 66% Nb
+  reference product: ferroniobium, 66% Nb
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+tantalum concentrate, 30% Ta2O5:
+  name: market for tantalum concentrate, 30% Ta2O5
+  reference product: tantalum concentrate, 30% Ta2O5
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+tellurium, semiconductor-grade:
+  name: market for tellurium, semiconductor-grade
+  reference product: tellurium, semiconductor-grade
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+tin concentrate:
+  name: market for tin concentrate
+  reference product: tin concentrate
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+tin:
+  name: market for tin
+  reference product: tin
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+ilmenite, 54% titanium dioxide:
+  name: market for ilmenite, 54% titanium dioxide
+  reference product: ilmenite, 54% titanium dioxide
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+rutile, 95% titanium dioxide:
+  name: market for rutile, 95% titanium dioxide
+  reference product: rutile, 95% titanium dioxide
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+titanium tetrachloride:
+  name: market for titanium tetrachloride
+  reference product: titanium tetrachloride
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+titanium sponge:
+  name: market for titanium sponge
+  reference product: titanium sponge
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+titanium:
+  name: market for titanium
+  reference product: titanium
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+tungsten concentrate:
+  name: market for tungsten concentrate
+  reference product: tungsten concentrate
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+uranium ore, as U:
+  name: market for uranium ore, as U
+  reference product: uranium ore, as U
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+vanadium bearing magnetite:
+  name: market for vanadium bearing magnetite
+  reference product: vanadium bearing magnetite
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+vanadium pentoxide:
+  name: market for vanadium pentoxide
+  reference product: vanadium pentoxide
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+zinc concentrate:
+  name: market for zinc concentrate
+  reference product: zinc concentrate
+  shares:
+    primary:
+      2020: 0.99993378
+      2050: 0.99993378
+    secondary:
+      2020: 0.00006622
+      2050: 0.00006622
+zinc:
+  name: market for zinc
+  reference product: zinc
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+zircon:
+  name: market for zircon
+  reference product: zircon
+  shares:
+    primary:
+      2020: 1.0
+      2050: 1.0
+    secondary:
+      2020: 0.0
+      2050: 0.0
+

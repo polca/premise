@@ -1,0 +1,768 @@
+premise_dac:
+  columns:
+    timestamp:
+      name: timestamp
+      description: Timestamp of the log entry
+    module:
+      name: module
+      description: Module name
+    level:
+      name: level
+      description: Log level
+    status:
+      name: status
+      description: Status of the dataset
+    model:
+      name: model
+      description: IAM model name
+    pathway:
+      name: pathway
+      description: Pathway name
+    year:
+      name: year
+      description: Year
+    dataset:
+      name: dataset
+      description: Dataset name
+    region:
+      name: region
+      description: Region name
+    electricity scaling factor:
+      name: Electrical scaling factor
+      description: Scaling factor the initial electricity input
+    heat scaling factor:
+      name: Heat scaling factor
+      description: Scaling factor the initial heat input
+  tab: Direct Air Capture
+
+premise_biomass:
+    columns:
+      timestamp:
+        name: timestamp
+        description: Timestamp of the log entry
+      module:
+        name: module
+        description: Module name
+      level:
+        name: level
+        description: Log level
+      status:
+        name: status
+        description: Status of the dataset
+      model:
+        name: model
+        description: IAM model name
+      pathway:
+        name: pathway
+        description: Pathway name
+      year:
+        name: year
+        description: Year
+      dataset:
+        name: dataset
+        description: Dataset name
+      region:
+        name: region
+        description: Region name
+      biomass share:
+        name: Biomass share
+        description: Share of biomass from forestry residues vs. purpose-grown biomass
+        unit: 0-1
+
+    tab: Biomass
+
+premise_electricity:
+    columns:
+      timestamp:
+        name: timestamp
+        description: Timestamp of the log entry
+      module:
+        name: module
+        description: Module name
+      level:
+        name: level
+        description: Log level
+      status:
+        name: status
+        description: Status of the dataset
+      model:
+        name: model
+        description: IAM model name
+      pathway:
+        name: pathway
+        description: Pathway name
+      year:
+        name: year
+        description: Year
+      dataset:
+        name: dataset
+        description: Dataset name
+      region:
+        name: region
+        description: Region name
+      old electrical efficiency:
+        name: Old electrical efficiency
+        description: Electrical efficiency before adjustment (1 / fuel energy input)
+        unit: 0-1
+      new electrical efficiency:
+        name: New electrical efficiency
+        description: Electrical efficiency after adjustment (1 / fuel energy input)
+        unit: 0-1
+      transformation loss:
+        name: Transformation loss
+        description: Loss in transforming high to medium and low-voltage electricity
+        unit: kWh/kWh
+      distribution loss:
+        name: Distribution loss
+        description: Loss in distribution of electricity
+        unit: kWh/kWh
+      renewable share:
+        name: Renewable share
+        description: Share of renewable electricity (i.e., solar, wind, hydro, wave, geothermal) in the mix
+        unit: 0-1
+      ecoinvent original efficiency:
+        name: Original efficiency
+        description: Original efficiency of electricity generation
+        unit: 0-1
+      Oberschelp et al. efficiency:
+        name: New efficiency
+        description: New efficiency according to Oberschelp et al. (2019)
+        unit: 0-1
+      efficiency change:
+        name: Efficiency change
+        description: Change in efficiency of electricity generation
+        unit: 0-1
+      CO2 scaling factor:
+        name: CO2 scaling factor
+        description: Scaling factor the initial CO2 emissions are multiplied by
+        unit: 0-1
+      SO2 scaling factor:
+        name: SO2 scaling factor
+        description: Scaling factor the initial SO2 emissions are multiplied by
+        unit: 0-1
+      CH4 scaling factor:
+        name: CH4 scaling factor
+        description: Scaling factor the initial CH4 emissions are multiplied by
+        unit: 0-1
+      NOx scaling factor:
+        name: NOx scaling factor
+        description: Scaling factor the initial NOx emissions are multiplied by
+        unit: 0-1
+      PM<2.5 scaling factor:
+        name: PM<2.5 scaling factor
+        description: Scaling factor the initial PM<2.5 emissions are multiplied by
+        unit: 0-1
+      PM 2.5-10 scaling factor:
+        name: PM 2.5-10 scaling factor
+        description: Scaling factor the initial PM 2.510 emissions are multiplied by
+        unit: 0-1
+      PM>10 scaling factor:
+        name: PM>10 scaling factor
+        description: Scaling factor the initial PM>10 emissions are multiplied by
+        unit: 0-1
+
+    tab: Electricity
+
+premise_steel:
+    columns:
+      timestamp:
+        name: timestamp
+        description: Timestamp of the log entry
+      module:
+        name: module
+        description: Module name
+      level:
+        name: level
+        description: Log level
+      status:
+        name: status
+        description: Status of the dataset
+      model:
+        name: model
+        description: IAM model name
+      pathway:
+        name: pathway
+        description: Pathway name
+      year:
+        name: year
+        description: Year
+      dataset:
+        name: dataset
+        description: Dataset name
+      region:
+        name: region
+        description: Region name
+      carbon capture rate:
+        name: Carbon capture rate
+        description: Amount of CO2 over amount of CO2 emitted. Excludes subsequent losses.
+        unit: 0-1
+      thermal efficiency change:
+        name: Thermal and electrical scaling factor
+        description: Scaling factor the initial energy input related to operation is multiplied by.
+        unit: 0-1
+      primary steel share:
+        name: Primary steel share
+        description: Share of primary steel in market vs. secondary steel.
+        unit: 0-1
+      secondary steel share:
+        name: Secondary steel share
+        description: Share of secondary (electric) steel in market vs. primary steel.
+        unit: 0-1
+    tab: Steel
+
+premise_metal:
+    columns:
+      timestamp:
+        name: timestamp
+        description: Timestamp of the log entry
+      module:
+        name: module
+        description: Module name
+      level:
+        name: level
+        description: Log level
+      status:
+        name: status
+        description: Status of the dataset
+      model:
+        name: model
+        description: IAM model name
+      pathway:
+        name: pathway
+        description: Pathway name
+      year:
+        name: year
+        description: Year
+      dataset:
+        name: dataset
+        description: Dataset name
+      product:
+        name: reference product
+        description: Product
+      region:
+        name: region
+        description: Region name
+      post-allocation correction:
+        name: Post-allocation correction
+        description: Correction factor applied to the initial amount of metal produced
+        unit: kilogram
+      old amount:
+        name: Old amount
+        description: Amount of metal used before adjustment
+        unit: kilogram
+      new amount:
+        name: New amount
+        description: Amount of metal used after adjustment
+        unit: kilogram
+
+    tab: Metal
+
+premise_cement:
+    columns:
+      timestamp:
+        name: timestamp
+        description: Timestamp of the log entry
+      module:
+        name: module
+        description: Module name
+      level:
+        name: level
+        description: Log level
+      status:
+        name: status
+        description: Status of the dataset
+      model:
+        name: model
+        description: IAM model name
+      pathway:
+        name: pathway
+        description: Pathway name
+      year:
+        name: year
+        description: Year
+      dataset:
+        name: dataset
+        description: Dataset name
+      region:
+        name: region
+        description: Region name
+      initial energy input per ton clinker:
+        name: Initial energy input per ton clinker
+        description: Energy input per ton clinker before adjustment (kj/kg)
+        unit: kj/kg
+      energy scaling factor:
+        name: Energy scaling factor
+        description: Scaling factor the initial energy input is multiplied by
+        unit: 0-1
+      new energy input per ton clinker:
+        name: New energy input per ton clinker after adjustment
+        description: Energy input per ton clinker after (kj/kg)
+        unit: kj/kg
+      carbon capture rate:
+        name: Carbon capture rate
+        description: Amount of CO2 over amount of CO2 emitted. Excludes subsequent losses.
+        unit: 0-1
+      initial fossil CO2:
+        name: Initial fossil CO2
+        description: Fossil CO2 emissions per kg clinker before adjustment
+        unit: kg CO2/kg clinker
+      initial biogenic CO2:
+        name: Initial biogenic CO2
+        description: Biogenic CO2 emissions per kg clinker before adjustment
+        unit: kg CO2/kg clinker
+      new fossil CO2:
+        name: New fossil CO2
+        description: Fossil CO2 emissions per kg clinker after adjustment and carbon capture
+        unit: kg CO2/kg clinker
+      new biogenic CO2:
+        name: New biogenic CO2
+        description: Biogenic CO2 emissions per kg clinker after adjustment and carbon capture
+        unit: kg CO2/kg clinker
+      electricity generated:
+        name: Electricity generated
+        description: Electricity generated (Kwh) per kg cement
+        unit: kWh/kg
+      electricity consumed:
+        name: Electricity consumed
+        description: Electricity consumed (kWh) per kg cement
+        unit: kWh/kg
+    tab: Cement
+
+premise_fuel:
+    columns:
+      timestamp:
+        name: timestamp
+        description: Timestamp of the log entry
+      module:
+        name: module
+        description: Module name
+      level:
+        name: level
+        description: Log level
+      status:
+        name: status
+        description: Status of the dataset
+      model:
+        name: model
+        description: IAM model name
+      pathway:
+        name: pathway
+        description: Pathway name
+      year:
+        name: year
+        description: Year
+      dataset:
+        name: dataset
+        description: Dataset name
+      region:
+        name: region
+        description: Region name
+      initial amount of fossil CO2:
+        name: Initial amount of fossil CO2
+        description: Amount of fossil CO2 emitted per unit of activity before adjustment
+        unit: kg CO2/reference flow
+      new amount of fossil CO2:
+        name: New amount of fossil CO2
+        description: Amount of fossil CO2 emitted per unit of activity after adjustment
+        unit: kg CO2/reference flow
+      new amount of biogenic CO2:
+        name: New amount of biogenic CO2
+        description: Amount of biogenic CO2 emitted per unit of activity after adjustment
+        unit: kg CO2/reference flow
+      initial energy input for hydrogen production:
+        name: Energy input for hydrogen production before adjustment
+        description: Energy input for hydrogen production (kWh, MJ or kg fuel) per kg hydrogen
+        unit: kWh, MJ or kg fuel /kg
+      new energy input for hydrogen production:
+        name: Energy input for hydrogen production after adjustment
+        description: Energy input for hydrogen production (kWh, MJ or kg fuel) per kg hydrogen
+        unit: kWh, MJ or kg fuel /kg
+      fuel conversion efficiency:
+        name: Change in fuel conversion efficiency
+        description: Change in fuel conversion efficiency (scaling factor)
+        unit: 0-1
+      land footprint:
+        name: Land footprint
+        description: Land footprint (m2) per kg crop
+        unit: m2/kg
+      land use CO2:
+        name: Land use CO2
+        description: Land use CO2 (kg CO2) per kg crop
+        unit: kg CO2/kg
+      fossil CO2 per kg fuel:
+        name: Fossil CO2 per kg fuel combusted
+        description: Amount of fossil CO2 emitted per kg fuel combusted
+        unit: kg CO2/kg
+      non-fossil CO2 per kg fuel:
+        name: Non-fossil CO2 per kg fuel combusted
+        description: Amount of non-fossil CO2 emitted per kg fuel combusted
+        unit: kg CO2/kg
+      lower heating value:
+        name: Lower heating value
+        description: Average lower heating value of the fuel blend (MJ/kg)
+        unit: MJ/kg
+    tab: Fuel
+
+premise_heat:
+    columns:
+      timestamp:
+        name: timestamp
+        description: Timestamp of the log entry
+      module:
+        name: module
+        description: Module name
+      level:
+        name: level
+        description: Log level
+      status:
+        name: status
+        description: Status of the dataset
+      model:
+        name: model
+        description: IAM model name
+      pathway:
+        name: pathway
+        description: Pathway name
+      year:
+        name: year
+        description: Year
+      dataset:
+        name: dataset
+        description: Dataset name
+      region:
+        name: region
+        description: Region name
+      initial amount of fossil CO2:
+        name: Initial amount of fossil CO2
+        description: Amount of fossil CO2 emitted per unit of activity before adjustment
+        unit: kg CO2/reference flow
+      new amount of fossil CO2:
+        name: New amount of fossil CO2
+        description: Amount of fossil CO2 emitted per unit of activity after adjustment
+        unit: kg CO2/reference flow
+      initial amount of biogenic CO2:
+        name: Initial amount of biogenic CO2
+        description: Amount of biogenic CO2 emitted per unit of activity before adjustment
+        unit: kg CO2/reference flow
+      new amount of biogenic CO2:
+        name: New amount of biogenic CO2
+        description: Amount of biogenic CO2 emitted per unit of activity after adjustment
+        unit: kg CO2/reference flow
+    tab: Heat
+
+premise_battery:
+    columns:
+      timestamp:
+        name: timestamp
+        description: Timestamp of the log entry
+      module:
+        name: module
+        description: Module name
+      level:
+        name: level
+        description: Log level
+      status:
+        name: status
+        description: Status of the dataset
+      model:
+        name: model
+        description: IAM model name
+      pathway:
+        name: pathway
+        description: Pathway name
+      year:
+        name: year
+        description: Year
+      dataset:
+        name: dataset
+        description: Dataset name
+      region:
+        name: region
+        description: Region name
+      battery input:
+        name: Battery provider
+        description: Name of the battery provider
+        unit: unitless
+      old battery mass:
+        name: Old battery mass
+        description: Mass of the battery before adjustment
+        unit: kg
+      new battery mass:
+        name: New battery mass
+        description: Mass of the battery after adjustment
+        unit: kg
+      NMC111 market share:
+        name: NMC111 market share
+        description: Market share of NMC111
+        unit: 0-1
+      NMC532 market share:
+        name: NMC532 market share
+        description: Market share of NMC532
+        unit: 0-1
+      NMC622 market share:
+        name: NMC622 market share
+        description: Market share of NMC622
+        unit: 0-1
+      NMC811 market share:
+        name: NMC811 market share
+        description: Market share of NMC811
+        unit: 0-1
+      NMC900-Si market share:
+        name: NMC900-Si market share
+        description: Market share of NMC900-Si
+        unit: 0-1
+      LFP market share:
+        name: LFP market share
+        description: Market share of LFP
+        unit: 0-1
+      NCA market share:
+        name: NCA market share
+        description: Market share of NCA
+        unit: 0-1
+      LAB market share:
+        name: LAB market share
+        description: Market share of LAB
+        unit: 0-1
+      LSB market share:
+        name: LSB market share
+        description: Market share of LSB
+        unit: 0-1
+      SIB market share:
+        name: SIB market share
+        description: Market share of SIB
+        unit: 0-1
+      VRFB market share:
+        name: VRFB market share
+        description: Market share of VRFB
+        unit: 0-1
+      NAS market share:
+        name: NAS market share
+        description: Market share of NAS
+        unit: 0-1
+      LEAD-ACID market share:
+        name: LEAD-ACID market share
+        description: Market share of LEAD-ACID
+        unit: 0-1
+    tab: Battery
+
+premise_transport:
+    columns:
+      timestamp:
+        name: timestamp
+        description: Timestamp of the log entry
+      module:
+        name: module
+        description: Module name
+      level:
+        name: level
+        description: Log level
+      status:
+        name: status
+        description: Status of the dataset
+      model:
+        name: model
+        description: IAM model name
+      pathway:
+        name: pathway
+        description: Pathway name
+      year:
+        name: year
+        description: Year
+      dataset:
+        name: dataset
+        description: Dataset name
+      region:
+        name: region
+        description: Region name
+      energy reduction factor:
+        name: scaling factor
+        description: Scaling factor applied on the initial amount of energy
+        unit: unitless
+
+    tab: Transport
+
+premise_emissions:
+    columns:
+      timestamp:
+        name: timestamp
+        description: Timestamp of the log entry
+      module:
+        name: module
+        description: Module name
+      level:
+        name: level
+        description: Log level
+      status:
+        name: status
+        description: Status of the dataset
+      model:
+        name: model
+        description: IAM model name
+      pathway:
+        name: pathway
+        description: Pathway name
+      year:
+        name: year
+        description: Year
+      dataset:
+        name: dataset
+        description: Dataset name
+      region:
+        name: region
+        description: Region name
+      GAINS sector:
+        name: GAINS sector
+        description: Name of GAINS sector variable
+      CH4 reduction factor:
+        name: CH4 scaling factor
+        description: Scaling factor applied on the initial amount of CH4 emissions
+        unit: unitless
+      N2O reduction factor:
+        name: N2O scaling factor
+        description: Scaling factor applied on the initial amount of N2O emissions
+        unit: unitless
+      NH3 reduction factor:
+        name: NH3 scaling factor
+        description: Scaling factor applied on the initial amount of NH3 emissions
+        unit: unitless
+      NOx reduction factor:
+        name: NOx scaling factor
+        description: Scaling factor applied on the initial amount of NOx emissions
+        unit: unitless
+      PM1 reduction factor:
+        name: PM1 scaling factor
+        description: Scaling factor applied on the initial amount of emissions of fine particles equal or inferior to 1 um.
+        unit: unitless
+      PM10 reduction factor:
+        name: PM10 scaling factor
+        description: Scaling factor applied on the initial amount of fine particles inferior to 10 um but superior to 2.5 um.
+        unit: unitless
+      PM25 reduction factor:
+        name: PM25 scaling factor
+        description: Scaling factor applied on the initial amount of fine particles equal or inferior to 2.5 um.
+        unit: unitless
+      SO2 reduction factor:
+        name: SO2 scaling factor
+        description: Scaling factor applied on the initial amount of SO2 emissions
+        unit: unitless
+      VOC reduction factor:
+        name: VOC scaling factor
+        description: Scaling factor applied on the initial amount of VOC emissions
+        unit: unitless
+    tab: Emissions
+
+premise_external_scenarios:
+    columns:
+      timestamp:
+        name: timestamp
+        description: Timestamp of the log entry
+      module:
+        name: module
+        description: Module name
+      level:
+        name: level
+        description: Log level
+      status:
+        name: status
+        description: Status of the dataset
+      model:
+        name: model
+        description: IAM model name
+      pathway:
+        name: pathway
+        description: Pathway name
+      year:
+        name: year
+        description: Year
+      dataset:
+        name: dataset
+        description: Dataset name
+      region:
+        name: region
+        description: Region name
+      technosphere scaling factor:
+        name: Technosphere scaling factor
+        description: Scaling factor applied on the initial amount of technosphere flow inputs
+        unit: unitless
+      biosphere scaling factor:
+        name: Biosphere scaling factor
+        description: Scaling factor applied on the initial amount of biosphere flow inputs
+        unit: unitless
+      old efficiency:
+        name: Old efficiency
+        description: Efficiency of the dataset before adjustment
+        unit: 0-1
+      new efficiency:
+        name: New efficiency
+        description: Efficiency of the dataset after adjustment
+        unit: 0-1
+    tab: External scenarios
+
+
+premise_mapping:
+    columns:
+      timestamp:
+        name: timestamp
+        description: Timestamp of the log entry
+      module:
+        name: module
+        description: Module name
+      level:
+        name: level
+        description: Log level
+      model:
+          name: model
+          description: IAM model name
+      variable:
+          name: variable
+          description: Variable name
+      name:
+          name: name
+          description: Name of the dataset
+      reference product:
+          name: reference product
+          description: Reference product
+      location:
+          name: location
+          description: Location
+    tab: Mapping
+
+premise_validation:
+    columns:
+      timestamp:
+        name: timestamp
+        description: Timestamp of the log entry
+      module:
+        name: module
+        description: Module name
+      level:
+        name: level
+        description: Log level
+      model:
+          name: model
+          description: IAM model name
+      pathway:
+          name: pathway
+          description: Pathway name
+      year:
+          name: year
+          description: Year
+      name:
+          name: name
+          description: Name of the dataset
+      reference product:
+          name: reference product
+          description: Reference product
+      location:
+          name: location
+          description: Location
+      severity:
+          name: severity
+          description: Severity of anomaly
+      reason:
+          name: reason
+          description: Reason for anomaly
+      message:
+          name: message
+          description: Message
+    tab: Validation

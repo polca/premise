@@ -1,0 +1,497 @@
+# mapping for different vehicles attributes
+---
+train:
+  sizes:
+    - electric
+    - diesel-electric
+    - fuel cell
+  unit: ton kilometer
+  name: transport, freight, train
+  old:
+    market for transport, freight train, fleet average:
+      remind: market for transport, freight, train
+      remind-eu: market for transport, freight, train
+      image: market for transport, freight, train
+      tiam-ucl: market for transport, freight, train
+      witch: market for transport, freight, train
+    market for transport, freight, train, fleet average:
+      remind: market for transport, freight, train
+      remind-eu: market for transport, freight, train
+      image: market for transport, freight, train
+      tiam-ucl: market for transport, freight, train
+      witch: market for transport, freight, train
+
+    market group for transport, freight, train, fleet average:
+      remind: market for transport, freight, train
+      remind-eu: market for transport, freight, train
+      image: market for transport, freight, train
+      tiam-ucl: market for transport, freight, train
+      witch: market for transport, freight, train
+
+    market group for transport, freight train:
+      remind: market for transport, freight, train
+      remind-eu: market for transport, freight, train
+      image: market for transport, freight, train
+      tiam-ucl: market for transport, freight, train
+      witch: market for transport, freight, train
+
+two-wheeler:
+  sizes:
+    - motorbike
+  unit: kilometer
+  name: transport, motorbike
+
+bus:
+  sizes:
+    - 13m single deck urban bus
+  unit: person kilometer
+  name: transport, passenger bus
+
+car:
+  sizes:
+    - Mini
+    - Small
+    - Lower medium
+    - Medium
+    - Medium SUV
+    - Large
+    - Large SUV
+    - Van
+  unit: kilometer
+  name: transport, passenger car
+
+ship:
+  unit: ton kilometer
+  name: transport, freight, sea, container ship
+  old:
+    market for transport, freight, sea, container ship:
+      remind: market for transport, freight, sea, container ship
+      remind-eu: market for transport, freight, sea, container ship
+      image: market for transport, freight, sea, container ship
+      tiam-ucl: market for transport, freight, sea, container ship
+      witch: market for transport, freight, sea, container ship
+    market for transport, freight, sea, container ship, heavy fuel oil:
+      remind: market for transport, freight, sea, container ship
+      remind-eu: market for transport, freight, sea, container ship
+      image: market for transport, freight, sea, container ship
+      tiam-ucl: market for transport, freight, sea, container ship
+      witch: market for transport, freight, sea, container ship
+
+truck:
+  sizes:
+    - 18 metric ton
+    - 26 metric ton
+    - 3.5 metric ton
+    - 7.5 metric ton
+    - 40 metric ton
+  unit: ton kilometer
+  name: transport, freight, lorry
+  old:
+    market for transport, freight, lorry 16-32 metric ton, EURO1:
+      remind: market for transport, freight, lorry, 26 metric ton
+      remind-eu: market for transport, freight, lorry, 26 metric ton
+      image: market for transport, freight, lorry, 18 metric ton
+      tiam-ucl: market for transport, freight, lorry, 18 metric ton
+      witch: market for transport, freight, lorry, 7.5 metric ton
+    market for transport, freight, lorry 3.5-7.5 metric ton, EURO3:
+      remind: market for transport, freight, lorry, 7.5 metric ton
+      remind-eu: market for transport, freight, lorry, 7.5 metric ton
+      image: market for transport, freight, lorry, 18 metric ton
+      tiam-ucl: market for transport, freight, lorry, 7.5 metric ton
+      witch: market for transport, freight, lorry, 7.5 metric ton
+    market for transport, freight, lorry 16-32 metric ton, EURO5:
+      remind: market for transport, freight, lorry, 26 metric ton
+      remind-eu: market for transport, freight, lorry, 26 metric ton
+      image: market for transport, freight, lorry, 18 metric ton
+      tiam-ucl: market for transport, freight, lorry, 18 metric ton
+      witch: market for transport, freight, lorry, 7.5 metric ton
+    market for transport, freight, lorry >32 metric ton, EURO1:
+      remind: market for transport, freight, lorry, 40 metric ton
+      remind-eu: market for transport, freight, lorry, 40 metric ton
+      image: market for transport, freight, lorry, 40 metric ton
+      tiam-ucl: market for transport, freight, lorry, 40 metric ton
+      witch: market for transport, freight, lorry, 7.5 metric ton
+    market for transport, freight, lorry 3.5-7.5 metric ton, EURO4:
+      remind: market for transport, freight, lorry, 7.5 metric ton
+      remind-eu: market for transport, freight, lorry, 7.5 metric ton
+      image: market for transport, freight, lorry, 18 metric ton
+      tiam-ucl: market for transport, freight, lorry, 7.5 metric ton
+      witch: market for transport, freight, lorry, 7.5 metric ton
+    market for transport, freight, lorry, all sizes, EURO1 to generic market for transport, freight, lorry, unspecified:
+      remind: market for transport, freight, lorry
+      remind-eu: market for transport, freight, lorry
+      image: market for transport, freight, lorry
+      tiam-ucl: market for transport, freight, lorry
+      witch: market for transport, freight, lorry
+    market for transport, freight, lorry 7.5-16 metric ton, EURO6:
+      remind: market for transport, freight, lorry, 18 metric ton
+      remind-eu: market for transport, freight, lorry, 18 metric ton
+      image: market for transport, freight, lorry, 18 metric ton
+      tiam-ucl: market for transport, freight, lorry, 18 metric ton
+      witch: market for transport, freight, lorry, 7.5 metric ton
+    market for transport, freight, lorry 7.5-16 metric ton, EURO1:
+      remind: market for transport, freight, lorry, 18 metric ton
+      remind-eu: market for transport, freight, lorry, 18 metric ton
+      image: market for transport, freight, lorry, 18 metric ton
+      tiam-ucl: market for transport, freight, lorry, 18 metric ton
+      witch: market for transport, freight, lorry, 7.5 metric ton
+    market for transport, freight, lorry, all sizes, EURO3 to generic market for transport, freight, lorry, unspecified:
+      remind: market for transport, freight, lorry
+      remind-eu: market for transport, freight, lorry
+      image: market for transport, freight, lorry
+      tiam-ucl: market for transport, freight, lorry
+      witch: market for transport, freight, lorry
+    market for transport, freight, lorry 16-32 metric ton, EURO6:
+      remind: market for transport, freight, lorry, 26 metric ton
+      remind-eu: market for transport, freight, lorry, 26 metric ton
+      image: market for transport, freight, lorry, 18 metric ton
+      tiam-ucl: market for transport, freight, lorry, 18 metric ton
+      witch: market for transport, freight, lorry, 7.5 metric ton
+    market for transport, freight, lorry 7.5-16 metric ton, EURO2:
+      remind: market for transport, freight, lorry, 18 metric ton
+      remind-eu: market for transport, freight, lorry, 18 metric ton
+      image: market for transport, freight, lorry, 18 metric ton
+      tiam-ucl: market for transport, freight, lorry, 18 metric ton
+      witch: market for transport, freight, lorry, 7.5 metric ton
+    market for transport, freight, lorry 7.5-16 metric ton, EURO3:
+      remind: market for transport, freight, lorry, 18 metric ton
+      remind-eu: market for transport, freight, lorry, 18 metric ton
+      image: market for transport, freight, lorry, 18 metric ton
+      tiam-ucl: market for transport, freight, lorry, 18 metric ton
+      witch: market for transport, freight, lorry, 7.5 metric ton
+    market for transport, freight, lorry 7.5-16 metric ton, EURO4:
+      remind: market for transport, freight, lorry, 18 metric ton
+      remind-eu: market for transport, freight, lorry, 18 metric ton
+      image: market for transport, freight, lorry, 18 metric ton
+      tiam-ucl: market for transport, freight, lorry, 18 metric ton
+      witch: market for transport, freight, lorry, 7.5 metric ton
+    market for transport, freight, lorry 16-32 metric ton, EURO2:
+      remind: market for transport, freight, lorry, 26 metric ton
+      remind-eu: market for transport, freight, lorry, 26 metric ton
+      image: market for transport, freight, lorry, 18 metric ton
+      tiam-ucl: market for transport, freight, lorry, 18 metric ton
+      witch: market for transport, freight, lorry, 7.5 metric ton
+    market for transport, freight, lorry >32 metric ton, EURO6:
+      remind: market for transport, freight, lorry, 40 metric ton
+      remind-eu: market for transport, freight, lorry, 40 metric ton
+      image: market for transport, freight, lorry, 40 metric ton
+      tiam-ucl: market for transport, freight, lorry, 40 metric ton
+      witch: market for transport, freight, lorry, 7.5 metric ton
+    market for transport, freight, lorry 3.5-7.5 metric ton, EURO2:
+      remind: market for transport, freight, lorry, 7.5 metric ton
+      remind-eu: market for transport, freight, lorry, 7.5 metric ton
+      image: market for transport, freight, lorry, 18 metric ton
+      tiam-ucl: market for transport, freight, lorry, 7.5 metric ton
+      witch: market for transport, freight, lorry, 7.5 metric ton
+    market for transport, freight, lorry 3.5-7.5 metric ton, EURO1:
+      remind: market for transport, freight, lorry, 7.5 metric ton
+      remind-eu: market for transport, freight, lorry, 7.5 metric ton
+      image: market for transport, freight, lorry, 18 metric ton
+      tiam-ucl: market for transport, freight, lorry, 7.5 metric ton
+      witch: market for transport, freight, lorry, 7.5 metric ton
+    market for transport, freight, lorry, all sizes, EURO2 to generic market for transport, freight, lorry, unspecified:
+      remind: market for transport, freight, lorry
+      remind-eu: market for transport, freight, lorry
+      image: market for transport, freight, lorry
+      tiam-ucl: market for transport, freight, lorry
+      witch: market for transport, freight, lorry
+    market for transport, freight, lorry 16-32 metric ton, unregulated:
+      remind: market for transport, freight, lorry, 26 metric ton
+      remind-eu: market for transport, freight, lorry, 26 metric ton
+      image: market for transport, freight, lorry, 18 metric ton
+      tiam-ucl: market for transport, freight, lorry, 18 metric ton
+      witch: market for transport, freight, lorry, 7.5 metric ton
+    market for transport, freight, lorry >32 metric ton, unregulated:
+      remind: market for transport, freight, lorry, 40 metric ton
+      remind-eu: market for transport, freight, lorry, 40 metric ton
+      image: market for transport, freight, lorry, 40 metric ton
+      tiam-ucl: market for transport, freight, lorry, 40 metric ton
+      witch: market for transport, freight, lorry, 7.5 metric ton
+    market for transport, freight, lorry >32 metric ton, EURO3:
+      remind: market for transport, freight, lorry, 40 metric ton
+      remind-eu: market for transport, freight, lorry, 40 metric ton
+      image: market for transport, freight, lorry, 40 metric ton
+      tiam-ucl: market for transport, freight, lorry, 40 metric ton
+      witch: market for transport, freight, lorry, 7.5 metric ton
+    market for transport, freight, lorry 3.5-7.5 metric ton, unregulated:
+      remind: market for transport, freight, lorry, 7.5 metric ton
+      remind-eu: market for transport, freight, lorry, 7.5 metric ton
+      image: market for transport, freight, lorry, 18 metric ton
+      tiam-ucl: market for transport, freight, lorry, 7.5 metric ton
+      witch: market for transport, freight, lorry, 7.5 metric ton
+    market for transport, freight, lorry 7.5-16 metric ton, EURO5:
+      remind: market for transport, freight, lorry, 18 metric ton
+      remind-eu: market for transport, freight, lorry, 18 metric ton
+      image: market for transport, freight, lorry, 18 metric ton
+      tiam-ucl: market for transport, freight, lorry, 18 metric ton
+      witch: market for transport, freight, lorry, 7.5 metric ton
+    market for transport, freight, lorry 3.5-7.5 metric ton, EURO6:
+      remind: market for transport, freight, lorry, 7.5 metric ton
+      remind-eu: market for transport, freight, lorry, 7.5 metric ton
+      image: market for transport, freight, lorry, 18 metric ton
+      tiam-ucl: market for transport, freight, lorry, 7.5 metric ton
+      witch: market for transport, freight, lorry, 7.5 metric ton
+    market for transport, freight, lorry 7.5-16 metric ton, unregulated:
+      remind: market for transport, freight, lorry, 18 metric ton
+      remind-eu: market for transport, freight, lorry, 18 metric ton
+      image: market for transport, freight, lorry, 18 metric ton
+      tiam-ucl: market for transport, freight, lorry, 18 metric ton
+      witch: market for transport, freight, lorry, 7.5 metric ton
+    market for transport, freight, lorry 3.5-7.5 metric ton, EURO5:
+      remind: market for transport, freight, lorry, 7.5 metric ton
+      remind-eu: market for transport, freight, lorry, 7.5 metric ton
+      image: market for transport, freight, lorry, 18 metric ton
+      tiam-ucl: market for transport, freight, lorry, 7.5 metric ton
+      witch: market for transport, freight, lorry, 7.5 metric ton
+    market for transport, freight, lorry >32 metric ton, EURO2:
+      remind: market for transport, freight, lorry, 40 metric ton
+      remind-eu: market for transport, freight, lorry, 40 metric ton
+      image: market for transport, freight, lorry, 40 metric ton
+      tiam-ucl: market for transport, freight, lorry, 40 metric ton
+      witch: market for transport, freight, lorry, 7.5 metric ton
+    market for transport, freight, lorry 16-32 metric ton, EURO3:
+      remind: market for transport, freight, lorry, 26 metric ton
+      remind-eu: market for transport, freight, lorry, 26 metric ton
+      image: market for transport, freight, lorry, 18 metric ton
+      tiam-ucl: market for transport, freight, lorry, 18 metric ton
+      witch: market for transport, freight, lorry, 7.5 metric ton
+    market for transport, freight, lorry, all sizes, EURO5 to generic market for transport, freight, lorry, unspecified:
+      remind: market for transport, freight, lorry
+      remind-eu: market for transport, freight, lorry
+      image: market for transport, freight, lorry
+      tiam-ucl: market for transport, freight, lorry
+      witch: market for transport, freight, lorry
+    market for transport, freight, lorry, all sizes, EURO6 to generic market for transport, freight, lorry, unspecified:
+      remind: market for transport, freight, lorry
+      remind-eu: market for transport, freight, lorry
+      image: market for transport, freight, lorry
+      tiam-ucl: market for transport, freight, lorry
+      witch: market for transport, freight, lorry
+    market for transport, freight, lorry 16-32 metric ton, EURO4:
+      remind: market for transport, freight, lorry, 26 metric ton
+      remind-eu: market for transport, freight, lorry, 26 metric ton
+      image: market for transport, freight, lorry, 18 metric ton
+      tiam-ucl: market for transport, freight, lorry, 18 metric ton
+      witch: market for transport, freight, lorry, 7.5 metric ton
+    market for transport, freight, lorry >32 metric ton, EURO4:
+      remind: market for transport, freight, lorry, 40 metric ton
+      remind-eu: market for transport, freight, lorry, 40 metric ton
+      image: market for transport, freight, lorry, 40 metric ton
+      tiam-ucl: market for transport, freight, lorry, 40 metric ton
+      witch: market for transport, freight, lorry, 7.5 metric ton
+    market for transport, freight, lorry >32 metric ton, EURO5:
+      remind: market for transport, freight, lorry, 40 metric ton
+      remind-eu: market for transport, freight, lorry, 40 metric ton
+      image: market for transport, freight, lorry, 40 metric ton
+      tiam-ucl: market for transport, freight, lorry, 40 metric ton
+      witch: market for transport, freight, lorry, 7.5 metric ton
+    market for transport, freight, lorry, all sizes, unregulated to generic market for transport, freight, lorry, unspecified:
+      remind: market for transport, freight, lorry
+      remind-eu: market for transport, freight, lorry
+      image: market for transport, freight, lorry
+      tiam-ucl: market for transport, freight, lorry
+      witch: market for transport, freight, lorry
+    
+    market for transport, freight, lorry, 16-32 metric ton, diesel, EURO 1:
+      remind: market for transport, freight, lorry, 26 metric ton
+      remind-eu: market for transport, freight, lorry, 26 metric ton
+      image: market for transport, freight, lorry, 18 metric ton
+      tiam-ucl: market for transport, freight, lorry, 18 metric ton
+      witch: market for transport, freight, lorry, 7.5 metric ton
+    market for transport, freight, lorry, 3.5-7.5 metric ton, diesel, EURO 3:
+      remind: market for transport, freight, lorry, 7.5 metric ton
+      remind-eu: market for transport, freight, lorry, 7.5 metric ton
+      image: market for transport, freight, lorry, 18 metric ton
+      tiam-ucl: market for transport, freight, lorry, 7.5 metric ton
+      witch: market for transport, freight, lorry, 7.5 metric ton
+    market for transport, freight, lorry, 16-32 metric ton, diesel, EURO 5:
+      remind: market for transport, freight, lorry, 26 metric ton
+      remind-eu: market for transport, freight, lorry, 26 metric ton
+      image: market for transport, freight, lorry, 18 metric ton
+      tiam-ucl: market for transport, freight, lorry, 18 metric ton
+      witch: market for transport, freight, lorry, 7.5 metric ton
+    market for transport, freight, lorry, >32 metric ton, diesel, EURO 1:
+      remind: market for transport, freight, lorry, 40 metric ton
+      remind-eu: market for transport, freight, lorry, 40 metric ton
+      image: market for transport, freight, lorry, 40 metric ton
+      tiam-ucl: market for transport, freight, lorry, 40 metric ton
+      witch: market for transport, freight, lorry, 7.5 metric ton
+    market for transport, freight, lorry, 3.5-7.5 metric ton, diesel, EURO 4:
+      remind: market for transport, freight, lorry, 7.5 metric ton
+      remind-eu: market for transport, freight, lorry, 7.5 metric ton
+      image: market for transport, freight, lorry, 18 metric ton
+      tiam-ucl: market for transport, freight, lorry, 7.5 metric ton
+      witch: market for transport, freight, lorry, 7.5 metric ton
+    market for transport, freight, lorry, 7.5-16 metric ton, diesel, EURO 6:
+      remind: market for transport, freight, lorry, 18 metric ton
+      remind-eu: market for transport, freight, lorry, 18 metric ton
+      image: market for transport, freight, lorry, 18 metric ton
+      tiam-ucl: market for transport, freight, lorry, 18 metric ton
+      witch: market for transport, freight, lorry, 7.5 metric ton
+    market for transport, freight, lorry, 7.5-16 metric ton, diesel, EURO 1:
+      remind: market for transport, freight, lorry, 18 metric ton
+      remind-eu: market for transport, freight, lorry, 18 metric ton
+      image: market for transport, freight, lorry, 18 metric ton
+      tiam-ucl: market for transport, freight, lorry, 18 metric ton
+      witch: market for transport, freight, lorry, 7.5 metric ton
+    market for transport, freight, lorry, 16-32 metric ton, diesel, EURO 6:
+      remind: market for transport, freight, lorry, 26 metric ton
+      remind-eu: market for transport, freight, lorry, 26 metric ton
+      image: market for transport, freight, lorry, 18 metric ton
+      tiam-ucl: market for transport, freight, lorry, 18 metric ton
+      witch: market for transport, freight, lorry, 7.5 metric ton
+    market for transport, freight, lorry, 7.5-16 metric ton, diesel, EURO 2:
+      remind: market for transport, freight, lorry, 18 metric ton
+      remind-eu: market for transport, freight, lorry, 18 metric ton
+      image: market for transport, freight, lorry, 18 metric ton
+      tiam-ucl: market for transport, freight, lorry, 18 metric ton
+      witch: market for transport, freight, lorry, 7.5 metric ton
+    market for transport, freight, lorry, 7.5-16 metric ton, diesel, EURO 3:
+      remind: market for transport, freight, lorry, 18 metric ton
+      remind-eu: market for transport, freight, lorry, 18 metric ton
+      image: market for transport, freight, lorry, 18 metric ton
+      tiam-ucl: market for transport, freight, lorry, 18 metric ton
+      witch: market for transport, freight, lorry, 7.5 metric ton
+    market for transport, freight, lorry, 7.5-16 metric ton, diesel, EURO 4:
+      remind: market for transport, freight, lorry, 18 metric ton
+      remind-eu: market for transport, freight, lorry, 18 metric ton
+      image: market for transport, freight, lorry, 18 metric ton
+      tiam-ucl: market for transport, freight, lorry, 18 metric ton
+      witch: market for transport, freight, lorry, 7.5 metric ton
+    market for transport, freight, lorry, 16-32 metric ton, diesel, EURO 2:
+      remind: market for transport, freight, lorry, 26 metric ton
+      remind-eu: market for transport, freight, lorry, 26 metric ton
+      image: market for transport, freight, lorry, 18 metric ton
+      tiam-ucl: market for transport, freight, lorry, 18 metric ton
+      witch: market for transport, freight, lorry, 7.5 metric ton
+    market for transport, freight, lorry, >32 metric ton, diesel, EURO 6:
+      remind: market for transport, freight, lorry, 40 metric ton
+      remind-eu: market for transport, freight, lorry, 40 metric ton
+      image: market for transport, freight, lorry, 40 metric ton
+      tiam-ucl: market for transport, freight, lorry, 40 metric ton
+      witch: market for transport, freight, lorry, 7.5 metric ton
+    market for transport, freight, lorry, 3.5-7.5 metric ton, diesel, EURO 2:
+      remind: market for transport, freight, lorry, 7.5 metric ton
+      remind-eu: market for transport, freight, lorry, 7.5 metric ton
+      image: market for transport, freight, lorry, 18 metric ton
+      tiam-ucl: market for transport, freight, lorry, 7.5 metric ton
+      witch: market for transport, freight, lorry, 7.5 metric ton
+    market for transport, freight, lorry, 3.5-7.5 metric ton, diesel, EURO 1:
+      remind: market for transport, freight, lorry, 7.5 metric ton
+      remind-eu: market for transport, freight, lorry, 7.5 metric ton
+      image: market for transport, freight, lorry, 18 metric ton
+      tiam-ucl: market for transport, freight, lorry, 7.5 metric ton
+      witch: market for transport, freight, lorry, 7.5 metric ton
+    market for transport, freight, lorry, 16-32 metric ton, diesel, unregulated:
+      remind: market for transport, freight, lorry, 26 metric ton
+      remind-eu: market for transport, freight, lorry, 26 metric ton
+      image: market for transport, freight, lorry, 18 metric ton
+      tiam-ucl: market for transport, freight, lorry, 18 metric ton
+      witch: market for transport, freight, lorry, 7.5 metric ton
+    market for transport, freight, lorry, >32 metric ton, diesel, unregulated:
+      remind: market for transport, freight, lorry, 40 metric ton
+      remind-eu: market for transport, freight, lorry, 40 metric ton
+      image: market for transport, freight, lorry, 40 metric ton
+      tiam-ucl: market for transport, freight, lorry, 40 metric ton
+      witch: market for transport, freight, lorry, 7.5 metric ton
+    market for transport, freight, lorry, >32 metric ton, diesel, EURO 3:
+      remind: market for transport, freight, lorry, 40 metric ton
+      remind-eu: market for transport, freight, lorry, 40 metric ton
+      image: market for transport, freight, lorry, 40 metric ton
+      tiam-ucl: market for transport, freight, lorry, 40 metric ton
+      witch: market for transport, freight, lorry, 7.5 metric ton
+    market for transport, freight, lorry, 3.5-7.5 metric ton, diesel, unregulated:
+      remind: market for transport, freight, lorry, 7.5 metric ton
+      remind-eu: market for transport, freight, lorry, 7.5 metric ton
+      image: market for transport, freight, lorry, 18 metric ton
+      tiam-ucl: market for transport, freight, lorry, 7.5 metric ton
+      witch: market for transport, freight, lorry, 7.5 metric ton
+    market for transport, freight, lorry, 7.5-16 metric ton, diesel, EURO 5:
+      remind: market for transport, freight, lorry, 18 metric ton
+      remind-eu: market for transport, freight, lorry, 18 metric ton
+      image: market for transport, freight, lorry, 18 metric ton
+      tiam-ucl: market for transport, freight, lorry, 18 metric ton
+      witch: market for transport, freight, lorry, 7.5 metric ton
+    market for transport, freight, lorry, 3.5-7.5 metric ton, diesel, EURO 6:
+      remind: market for transport, freight, lorry, 7.5 metric ton
+      remind-eu: market for transport, freight, lorry, 7.5 metric ton
+      image: market for transport, freight, lorry, 18 metric ton
+      tiam-ucl: market for transport, freight, lorry, 7.5 metric ton
+      witch: market for transport, freight, lorry, 7.5 metric ton
+    market for transport, freight, lorry, 7.5-16 metric ton, diesel, unregulated:
+      remind: market for transport, freight, lorry, 18 metric ton
+      remind-eu: market for transport, freight, lorry, 18 metric ton
+      image: market for transport, freight, lorry, 18 metric ton
+      tiam-ucl: market for transport, freight, lorry, 18 metric ton
+      witch: market for transport, freight, lorry, 7.5 metric ton
+    market for transport, freight, lorry, 3.5-7.5 metric ton, diesel, EURO 5:
+      remind: market for transport, freight, lorry, 7.5 metric ton
+      remind-eu: market for transport, freight, lorry, 7.5 metric ton
+      image: market for transport, freight, lorry, 18 metric ton
+      tiam-ucl: market for transport, freight, lorry, 7.5 metric ton
+      witch: market for transport, freight, lorry, 7.5 metric ton
+    market for transport, freight, lorry, >32 metric ton, diesel, EURO 2:
+      remind: market for transport, freight, lorry, 40 metric ton
+      remind-eu: market for transport, freight, lorry, 40 metric ton
+      image: market for transport, freight, lorry, 40 metric ton
+      tiam-ucl: market for transport, freight, lorry, 40 metric ton
+      witch: market for transport, freight, lorry, 7.5 metric ton
+    market for transport, freight, lorry, 16-32 metric ton, diesel, EURO 3:
+      remind: market for transport, freight, lorry, 26 metric ton
+      remind-eu: market for transport, freight, lorry, 26 metric ton
+      image: market for transport, freight, lorry, 18 metric ton
+      tiam-ucl: market for transport, freight, lorry, 18 metric ton
+      witch: market for transport, freight, lorry, 7.5 metric ton
+    market for transport, freight, lorry, 16-32 metric ton, diesel, EURO 4:
+      remind: market for transport, freight, lorry, 26 metric ton
+      remind-eu: market for transport, freight, lorry, 26 metric ton
+      image: market for transport, freight, lorry, 18 metric ton
+      tiam-ucl: market for transport, freight, lorry, 18 metric ton
+      witch: market for transport, freight, lorry, 7.5 metric ton
+    market for transport, freight, lorry, >32 metric ton, diesel, EURO 4:
+      remind: market for transport, freight, lorry, 40 metric ton
+      remind-eu: market for transport, freight, lorry, 40 metric ton
+      image: market for transport, freight, lorry, 40 metric ton
+      tiam-ucl: market for transport, freight, lorry, 40 metric ton
+      witch: market for transport, freight, lorry, 7.5 metric ton
+    market for transport, freight, lorry, >32 metric ton, diesel, EURO 5:
+      remind: market for transport, freight, lorry, 40 metric ton
+      remind-eu: market for transport, freight, lorry, 40 metric ton
+      image: market for transport, freight, lorry, 40 metric ton
+      tiam-ucl: market for transport, freight, lorry, 40 metric ton
+      witch: market for transport, freight, lorry, 7.5 metric ton
+
+    market for transport, freight, lorry, unspecified:
+      remind: market for transport, freight, lorry
+      remind-eu: market for transport, freight, lorry
+      image: market for transport, freight, lorry
+      tiam-ucl: market for transport, freight, lorry
+      witch: market for transport, freight, lorry
+
+    market group for transport, freight, lorry, diesel, unspecified:
+      remind: market for transport, freight, lorry
+      remind-eu: market for transport, freight, lorry
+      image: market for transport, freight, lorry
+      tiam-ucl: market for transport, freight, lorry
+      witch: market for transport, freight, lorry
+
+    market group for transport, freight, lorry, unspecified:
+      remind: market for transport, freight, lorry
+      remind-eu: market for transport, freight, lorry
+      image: market for transport, freight, lorry
+      tiam-ucl: market for transport, freight, lorry
+      witch: market for transport, freight, lorry
+
+powertrain:
+  fuel cell electric: FCEV
+  battery electric - opportunity charging: BEV-opp
+  battery electric - overnight charging: BEV-depot
+  battery electric - battery-equipped trolleybus: BEV-motion
+  battery electric: BEV
+  diesel hybrid: HEV-d
+  plugin diesel hybrid: PHEV-d
+  diesel: ICEV-d
+  compressed gas: ICEV-g
+  gasoline: ICEV-p
+  gasoline hybrid: HEV-p
+  plugin gasoline hybrid: PHEV-p

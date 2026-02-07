@@ -1,0 +1,98 @@
+oil:
+  rapeseed:
+    - farming and supply of rapeseed
+    - extraction of vegetable oil from rapeseed
+    - refining of crude vegetable oil from rapeseed
+    - biodiesel production, via transesterification, from rapeseed oil, energy allocation
+    - biodiesel, from rapeseed oil, at fuelling station
+  palm oil:
+    - farming and supply of Fresh Fruit Bunches (FFBs) for palm oil
+    - crude Palm Oil extraction from FFBs at oil mill
+    - refining of vegetable oil from oil palm
+    - biodiesel production, via transesterification, from palm oil, energy allocation
+    - biodiesel, from palm oil, at fuelling station
+  used cooking oil:
+    - supply and refining of waste cooking oil
+    - biodiesel production, via transesterification, from used cooking oil, energy allocation
+    - biodiesel production, via transesterification, from used cooking oil, with carbon capture and storage, energy allocation
+    - biodiesel, from used cooking oil, at fuelling station
+
+grass:
+  switchgrass:
+    - farming and supply of switchgrass
+    - ethanol production, via fermentation, from switchgrass, economic allocation
+    - ethanol production, via fermentation, from switchgrass, energy allocation
+    - ethanol production, via fermentation, from switchgrass, with carbon capture and storage, energy allocation
+  grain sorghum:
+    - farming and supply of Grain Sorghum
+    - ethanol production, via fermentation, from grain sorghum, economic allocation
+    - ethanol production, via fermentation, from grain sorghum, energy allocation
+  sweet sorghum:
+    - farming and supply of Sweet Sorghum
+    - ethanol production, via fermentation, from sweet sorghum, economic allocation
+    - ethanol production, via fermentation, from sweet sorghum, energy allocation
+  forage sorghum:
+    - farming and supply of Forage Sorghum
+    - ethanol production, via fermentation, from forage sorghum, economic allocation
+    - ethanol production, via fermentation, from forage sorghum, energy allocation
+  miscanthus:
+    - farming and supply of miscanthus
+    - ethanol production, via fermentation, from miscanthus, economic allocation
+    - ethanol production, via fermentation, from miscanthus, energy allocation
+    - ethanol production, via fermentation, from miscanthus, with carbon capture and storage, energy allocation
+wood:
+  poplar:
+    - farming and supply of poplar
+    - ethanol production, via fermentation, from poplar, economic allocation
+    - ethanol production, via fermentation, from poplar, energy allocation
+    - ethanol production, via fermentation, from poplar, with carbon capture and storage, energy allocation
+  willow:
+    - farming and supply of willow
+    - ethanol production, via fermentation, from willow, economic allocation
+    - ethanol production, via fermentation, from willow, energy allocation
+  forest residues:
+    - supply of forest residue
+    - ethanol production, via fermentation, from forest residue, economic allocation
+    - ethanol production, via fermentation, from forest residue, energy allocation
+    - ethanol production, via fermentation, from forest, with carbon capture and storage
+    - ethanol production, via fermentation, from forest residues, energy allocation
+
+  eucalyptus:
+    - farming and supply of eucalyptus
+    - ethanol production, via fermentation, from eucalyptus
+    - ethanol production, via fermentation, from eucalyptus, with carbon capture and storage
+
+
+sugar:
+  sugarcane:
+    - farming and supply of sugarcane
+    - ethanol production, via fermentation, from sugarcane, economic allocation
+    - ethanol production, via fermentation, from sugarcane, energy allocation
+    - ethanol production, via fermentation, from sugarcane, with carbon capture and storage, energy allocation
+    - farming and supply of sugarcane straw
+    - ethanol production, via fermentation, from sugarcane straw, economic allocation
+    - ethanol production, via fermentation, from sugarcane straw, energy allocation
+  sugarbeet:
+    - farming and supply of sugarbeet
+    - ethanol production, via fermentation, from sugarbeet, energy allocation
+    - ethanol production, via fermentation, from sugarbeet, with carbon capture and storage, energy allocation
+
+
+grain:
+  corn stover:
+    - farming and supply of corn stover
+    - ethanol production, via fermentation, from corn stover, economic allocation
+    - ethanol production, via fermentation, from corn stover, energy allocation
+  corn:
+    - farming and supply of corn
+    - ethanol production, via fermentation, from corn, economic allocation
+    - ethanol production, via fermentation, from corn, energy allocation
+    - ethanol production, via fermentation, from corn, with carbon capture and storage, energy allocation
+  wheat:
+    - farming and supply of wheat grains
+    - ethanol production, via fermentation, from wheat grains, energy allocation
+  wheat straw:
+    - farming and supply of wheat straw
+    - ethanol production, via fermentation, from wheat straw, energy allocation
+  corn starch:
+    - ethanol production, via fermentation, from corn starch, energy allocation

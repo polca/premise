@@ -1,0 +1,192 @@
+version: 1
+disable_existing_loggers: true
+
+formatters:
+  simple:
+    format: '%(asctime)s|%(module)s|%(levelname)s|%(message)s'
+  error:
+    format: "%(levelname)s|<PID %(process)d:%(processName)s>|%(name)s.%(funcName)s()|%(message)s"
+
+handlers:
+  file_dac:
+    class: logging.FileHandler
+    level: INFO
+    filename: "export/logs/premise_dac.log"
+    encoding: utf8
+    formatter: simple
+    mode: a
+
+  file_biomass:
+    class: logging.FileHandler
+    level: INFO
+    filename: "export/logs/premise_biomass.log"
+    encoding: utf8
+    formatter: simple
+    mode: a
+
+  file_electricity:
+    class: logging.FileHandler
+    level: INFO
+    filename: "export/logs/premise_electricity.log"
+    encoding: utf8
+    formatter: simple
+    mode: a
+
+  file_steel:
+    class: logging.FileHandler
+    level: INFO
+    filename: "export/logs/premise_steel.log"
+    encoding: utf8
+    formatter: simple
+    mode: a
+
+  file_metal:
+    class: logging.FileHandler
+    level: INFO
+    filename: "export/logs/premise_metal.log"
+    encoding: utf8
+    formatter: simple
+    mode: a
+
+  file_cement:
+    class: logging.FileHandler
+    level: INFO
+    filename: "export/logs/premise_cement.log"
+    encoding: utf8
+    formatter: simple
+    mode: a
+
+  file_fuel:
+    class: logging.FileHandler
+    level: INFO
+    filename: "export/logs/premise_fuel.log"
+    encoding: utf8
+    formatter: simple
+    mode: a
+
+  file_heat:
+    class: logging.FileHandler
+    level: INFO
+    filename: "export/logs/premise_heat.log"
+    encoding: utf8
+    formatter: simple
+    mode: a
+
+  file_battery:
+    class: logging.FileHandler
+    level: INFO
+    filename: "export/logs/premise_battery.log"
+    encoding: utf8
+    formatter: simple
+    mode: a
+
+  file_transport:
+    class: logging.FileHandler
+    level: INFO
+    filename: "export/logs/premise_transport.log"
+    encoding: utf8
+    formatter: simple
+    mode: a
+
+  file_emissions:
+    class: logging.FileHandler
+    level: INFO
+    filename: "export/logs/premise_emissions.log"
+    encoding: utf8
+    formatter: simple
+    mode: a
+
+  file_external:
+    class: logging.FileHandler
+    level: INFO
+    filename: "export/logs/premise_external_scenarios.log"
+    encoding: utf8
+    formatter: simple
+    mode: a
+
+  file_mapping:
+    class: logging.FileHandler
+    level: INFO
+    filename: "export/logs/premise_mapping.log"
+    encoding: utf8
+    formatter: simple
+    mode: a
+
+  file_validation:
+    class: logging.FileHandler
+    level: INFO
+    filename: "export/logs/premise_validation.log"
+    encoding: utf8
+    formatter: simple
+    mode: a
+
+loggers:
+  dac:
+    level: INFO
+    handlers: [file_dac]
+    propagate: False
+
+  biomass:
+    level: INFO
+    handlers: [ file_biomass ]
+    propagate: False
+
+  electricity:
+    level: INFO
+    handlers: [ file_electricity ]
+    propagate: False
+
+  steel:
+    level: INFO
+    handlers: [ file_steel ]
+    propagate: False
+
+  metal:
+    level: INFO
+    handlers: [ file_metal ]
+    propagate: False
+
+  cement:
+    level: INFO
+    handlers: [ file_cement ]
+    propagate: False
+
+  fuel:
+    level: INFO
+    handlers: [ file_fuel ]
+    propagate: False
+
+  battery:
+    level: INFO
+    handlers: [ file_battery ]
+    propagate: False
+
+  heat:
+    level: INFO
+    handlers: [ file_heat ]
+    propagate: False
+
+  transport:
+    level: INFO
+    handlers: [ file_transport ]
+    propagate: False
+
+  emissions:
+    level: INFO
+    handlers: [ file_emissions ]
+    propagate: False
+
+  external:
+    level: INFO
+    handlers: [ file_external ]
+    propagate: False
+
+  mapping:
+    level: INFO
+    handlers: [ file_mapping ]
+    propagate: False
+
+  validation:
+    level: INFO
+    handlers: [ file_validation ]
+    propagate: False

@@ -1,0 +1,172 @@
+Population:
+  label: million persons
+  expl_text: Not used by premise. For informative purpose only.
+  offset: 10
+GDP:
+  label: billion US dollars
+  expl_text: Not used by premise. Annual gross domestic product based on purchasing power parity. For informative purpose only.
+  offset: 10
+GMST:
+  label: degrees Celsius
+  expl_text: Not used by premise. Global mean surface temperature anomaly relative to 1850-1900. For informative purpose only.
+  offset: 10
+CO2:
+  label: million tons
+  expl_text: Not used by premise. Annual CO2 emissions (not CO2-eq.). For informative purpose only.
+  offset: 10
+Electricity - generation:
+  label: Exajoules (EJ)
+  expl_text: Generated volumes of electricity, per technology. Used to calculate the electricty supply mix. All technologies supply at high voltage except Residential PV.
+  offset: 3
+Electricity (biom) - generation:
+  label: Exajoules (EJ)
+  expl_text: Volumes of biomass used to generate electrical power (biomass-based CHP, biomass-based IGCC, etc.). Used to calculate supply mix of biomass used as fuel.
+  offset: 8
+Electricity - efficiency:
+  label: Efficiency gains (2020 = 1)
+  expl_text: Energy efficiency gains per (combustion-based) technology relative to 2020. Used to calibrate the efficiency of the electricity-producing datasets. The efficiency of renewables is calibrated separately.
+  offset: 3
+Fuel (gasoline) - generation:
+  label: Exajoules (EJ)
+  expl_text: Generated volumes of gasoline-like fuel, per technology. Used to calculate fuel supply mixes.
+  offset: 5
+Fuel (gasoline) - efficiency:
+  label: Efficiency gains (2020 = 1)
+  expl_text: Energy efficiency gains per technology relative to 2020. Used to calibrate the efficiency of the (bio)fuel-producing datasets.
+  offset: 5
+Fuel (diesel) - generation:
+  label: Exajoules (EJ)
+  expl_text: Generated volumes of diesel-like fuel, per technology. Used to calculate fuel supply mixes.
+  offset: 5
+Fuel (diesel) - efficiency:
+  label: Efficiency gains (2020 = 1)
+  expl_text: Energy efficiency gains per technology relative to 2020. Used to calibrate the efficiency of the (bio)fuel-producing datasets.
+  offset: 5
+Fuel (gas) - generation:
+  label: Exajoules (EJ)
+  expl_text: Generated volumes of gas-like fuel, per technology. Used to calculate fuel supply mixes.
+  offset: 5
+Fuel (gas) - efficiency:
+  label: Efficiency gains (2020 = 1)
+  expl_text: Energy efficiency gains per technology relative to 2020. Used to calibrate the efficiency of the (bio)fuel-producing datasets.
+  offset: 5
+Fuel (hydrogen) - generation:
+  label: Exajoules (EJ)
+  expl_text: Generated volumes of hydrogen fuel, per technology. Used to calculate fuel supply mixes.
+  offset: 5
+Fuel (hydrogen) - efficiency:
+  label: Efficiency gains (2020 = 1)
+  expl_text: Energy efficiency gains per technology relative to 2020. Used to calibrate the efficiency of the (bio)fuel-producing datasets.
+  offset: 5
+Fuel (kerosene) - generation:
+  label: Exajoules (EJ)
+  expl_text: Generated volumes of kerosene fuel, per technology. Used to calculate fuel supply mixes.
+  offset: 5
+Fuel (kerosene) - efficiency:
+  label: Efficiency gains (2020 = 1)
+  expl_text: Energy efficiency gains per technology relative to 2020. Used to calibrate the efficiency of the (bio)fuel-producing datasets.
+  offset: 5
+Fuel (LPG) - generation:
+  label: Exajoules (EJ)
+  expl_text: Generated volumes of kerosene fuel, per technology. Used to calculate fuel supply mixes.
+  offset: 5
+Fuel (LPG) - efficiency:
+  label: Efficiency gains (2020 = 1)
+  expl_text: Energy efficiency gains per technology relative to 2020. Used to calibrate the efficiency of the (bio)fuel-producing datasets.
+  offset: 5
+Cement - generation:
+  label: Millions of tons (MT)
+  expl_text: Generated volumes of cement.
+  offset: 10
+Cement - efficiency:
+  label: Efficiency gains (2020 = 1)
+  expl_text: Energy efficiency gains relative to 2020. Used to calibrate the efficiency of the clinker-producing datasets.
+  offset: 10
+Steel - generation:
+  label: Millions of tons (MT)
+  expl_text: Generated volumes of steel by type (i.e., primary vs. secondary). Used to calculate steel supply mixes.
+  offset: 10
+Steel - efficiency:
+  label: Efficiency gains (2020 = 1)
+  expl_text: Energy efficiency gains per technology relative to 2020. Used to calibrate the efficiency of the steel-producing datasets.
+  offset: 10
+CDR - generation:
+  label: Millions of tons of CO2 (Mt CO2, cumul.) removed
+  expl_text: Cumulated mass of CO2 removed from the atmosphere.
+  offset: 10
+Direct Air Capture - energy mix:
+  label: Exajoules (EJ)
+  expl_text: Generated volumes of energy used by DAC, per technology. Used to calculate the energy supply mix of DAC.
+  offset: 10
+Direct Air Capture - heat eff.:
+  label: Efficiency gains (2020 = 1)
+  expl_text: Heat efficiency gains relative to 2020. Used to calibrate the efficiency of the DAC datasets.
+  offset: 10
+Direct Air Capture - elec eff.:
+  label: Efficiency gains (2020 = 1)
+  expl_text: Electricity efficiency gains relative to 2020. Used to calibrate the efficiency of the DAC datasets.
+  offset: 10
+Heat (buildings) - generation:
+  label: Exajoules (EJ)
+  expl_text: Generated volumes of heating for residential and commercial buildings (space and water heating), per technology. Used to calculate the buildings heating supply mix.
+  offset: 10
+Heat (industrial) - generation:
+  label: Exajoules (EJ)
+  expl_text: Generated volumes of heat for industrial purposes, per technology. Used to calculate the heat supply mix for industrial processes.
+  offset: 10
+Transport (two-wheelers):
+  label: Vehicle-kilometers (million)
+  expl_text: Number of vehicle-kilometers driven by two-wheelers. Used to calculate fleet-average vehicles.
+  offset: 7
+Transport (two-wheelers) - eff:
+  label: Efficiency gains (2020 = 1)
+  expl_text: Energy efficiency gains per technology relative to 2020. Used to calibrate the efficiency of the two-wheeler transport datasets.
+  offset: 7
+Transport (cars):
+  label: Vehicle-kilometers (million)
+  expl_text: Number of vehicle-kilometers driven by passenger cars. Used to calculate fleet-average vehicles.
+  offset: 7
+Transport (cars) - eff:
+  label: Efficiency gains (2020 = 1)
+  expl_text: Energy efficiency gains per technology relative to 2020. Used to calibrate the efficiency of the car-based transport datasets.
+  offset: 7
+Transport (buses):
+  label: Vehicles-kilometers (million)
+  expl_text: Number of vehicle-kilometers driven by buses. Used to calculate fleet-average vehicles.
+  offset: 7
+Transport (buses) - eff:
+    label: Efficiency gains (2020 = 1)
+    expl_text: Energy efficiency gains per technology relative to 2020. Used to calibrate the efficiency of the bus-based transport datasets.
+    offset: 7
+Transport (trucks):
+  label: Ton-kilometers (billion)
+  expl_text: Ton-kilometers (in billions) of transport service operated by trucks. Used to calculate fleet-average vehicles.
+  offset: 7
+Transport (trucks) - eff:
+  label: Efficiency gains (2020 = 1)
+  expl_text: Energy efficiency gains per technology relative to 2020. Used to calibrate the efficiency of the truck-based transport datasets.
+  offset: 7
+Transport (trains):
+  label: Ton-kilometers (billion)
+  expl_text: Ton-kilometers (in billions) of transport service operated by trains. Used to calculate fleet-average vehicles.
+  offset: 7
+Transport (trains) - eff:
+  label: Efficiency gains (2020 = 1)
+  expl_text: Energy efficiency gains per technology relative to 2020. Used to calibrate the efficiency of the train-based transport datasets.
+  offset: 7
+Transport (ships):
+  label: Ton-kilometers (billion)
+  expl_text: Ton-kilometers (in billions) of transport service operated by ships. Used to calculate fleet-average vehicles.
+  offset: 7
+Transport (ships) - eff:
+    label: Efficiency gains (2020 = 1)
+    expl_text: Energy efficiency gains per technology relative to 2020. Used to calibrate the efficiency of the ship-based transport datasets.
+    offset: 7
+Battery (mobile):
+  label: Market share [%], capacity-wise
+  expl_text: Mobile battery technology market shares, in capacity terms. Used to calculate the battery supply mix. Future shares from Degen et al., 2023. Shares prior to 2021 from Orangi et al., 2024.
+  offset: 10
+Battery (stationary):
+  label: Market share [%], capacity-wise
+  expl_text: Stationary battery technology market shares, in capacity terms. Used to calculate the battery supply mix. Future shares from Schlichenmaier & Naegler, 2022.
+  offset: 10

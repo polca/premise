@@ -1,0 +1,38 @@
+truck:
+  vehicle:
+    - name: transport, freight, lorry, unspecified
+      reference product: transport, freight, lorry
+      unit: ton kilometer
+  state:
+    - gaseous
+    - liquid
+  distance:
+    - 500
+
+ship:
+  vehicle:
+    - name: market for transport, freight, sea
+      reference product: liquefied
+      unit: ton kilometer
+  state:
+    - liquid
+  distance:
+    - 2000
+
+H2 pipeline:
+  vehicle:
+    - name: pipeline, hydrogen, low pressure distribution network
+      reference product: pipeline, for hydrogen distribution
+      unit: kilometer
+    - name: pipeline, hydrogen, high pressure transmission network
+      reference product: pipeline, for hydrogen transmission
+      unit: kilometer
+  state:
+    - gaseous
+  distance:
+    - 500
+  regional storage:
+    name: geological hydrogen storage
+    reference product: hydrogen storage
+    unit: kilogram
+  lifetime: 40 * 400000 * 1e3

@@ -1,0 +1,169 @@
+# efficiency values from p. 176 from
+# https://www.now-gmbh.de/wp-content/uploads/2020/09/indwede-studie_v04.1.pdf
+# min from progressive scenario, max from conservative scenario
+hydrogen, from electrolysis, PEM:
+  feedstock name: electricity, low voltage
+  feedstock unit: kilowatt hour
+  efficiency:
+    2020:
+      mean: 54
+      minimum: 52.9
+      maximum: 55.1
+    2050:
+      mean: 48.9
+      minimum: 45.3
+      maximum: 52.5
+  floor value: 45.3
+
+hydrogen, from electrolysis, PEM, from CSP:
+  feedstock name: electricity, low voltage
+  feedstock unit: kilowatt hour
+  efficiency:
+    2020:
+      mean: 54
+      minimum: 52.9
+      maximum: 55.1
+    2050:
+      mean: 48.9
+      minimum: 45.3
+      maximum: 52.5
+  floor value: 45.3
+
+hydrogen, from electrolysis, PEM, from Solar PV:
+  feedstock name: electricity, low voltage
+  feedstock unit: kilowatt hour
+  efficiency:
+    2020:
+      mean: 54
+      minimum: 52.9
+      maximum: 55.1
+    2050:
+      mean: 48.9
+      minimum: 45.3
+      maximum: 52.5
+  floor value: 45.3
+
+hydrogen, from electrolysis, PEM, from onshore wind:
+  feedstock name: electricity, low voltage
+  feedstock unit: kilowatt hour
+  efficiency:
+    2020:
+      mean: 54
+      minimum: 52.9
+      maximum: 55.1
+    2050:
+      mean: 48.9
+      minimum: 45.3
+      maximum: 52.5
+  floor value: 45.3
+
+hydrogen, from electrolysis, PEM, from offshore wind:
+  feedstock name: electricity, low voltage
+  feedstock unit: kilowatt hour
+  efficiency:
+    2020:
+      mean: 54
+      minimum: 52.9
+      maximum: 55.1
+    2050:
+      mean: 48.9
+      minimum: 45.3
+      maximum: 52.5
+  floor value: 45.3
+
+hydrogen, from electrolysis, PEM, from geothermal:
+  feedstock name: electricity, low voltage
+  feedstock unit: kilowatt hour
+  efficiency:
+    2020:
+      mean: 54
+      minimum: 52.9
+      maximum: 55.1
+    2050:
+      mean: 48.9
+      minimum: 45.3
+      maximum: 52.5
+  floor value: 45.3
+
+hydrogen, from electrolysis, AEC:
+  feedstock name: electricity, low voltage
+  feedstock unit: kilowatt hour
+  efficiency:
+    2020:
+      mean: 51.8
+      minimum: 48.7
+      maximum: 54.9
+    2050:
+      mean: 48.5
+      minimum: 47.1
+      maximum: 49.9
+  floor value: 47.1
+
+hydrogen, from electrolysis, SOEC:
+  feedstock name: electricity, low voltage
+  feedstock unit: kilowatt hour
+  efficiency:
+    2020:
+      mean: 42.3
+      minimum: 41.2
+      maximum: 43.4
+    2050:
+      mean: 40.6
+      minimum: 40.0
+      maximum: 41.2
+  floor value: 40.0
+
+hydrogen, from biogas, with CCS:
+  feedstock name: biomethane
+  feedstock unit: kilogram
+  floor value: 3.2
+
+hydrogen, from biogas:
+  feedstock name: biomethane
+  feedstock unit: kilogram
+  floor value: 3.2
+
+hydrogen, from natural gas:
+  feedstock name: natural gas
+  feedstock unit: cubic meter
+  floor value: 3.5
+
+hydrogen, from natural gas, with CCS:
+  feedstock name: natural gas
+  feedstock unit: cubic meter
+  floor value: 3.5
+
+hydrogen, from biomass, with CCS:
+  feedstock name: wood chips
+  feedstock unit: kilogram
+  floor value: 7
+
+hydrogen, from biomass:
+  feedstock name: wood chips
+  feedstock unit: kilogram
+  floor value: 7
+
+hydrogen, from coal:
+  feedstock name: hard coal
+  feedstock unit: kilogram
+  floor value: 5
+
+hydrogen, from coal, with CCS:
+  feedstock name: hard coal
+  feedstock unit: kilogram
+  floor value: 5
+
+hydrogen, from pyrolysis:
+  feedstock name: natural gas
+  feedstock unit: cubic meter
+  floor value: 6.5
+
+hydrogen, from oil:
+  feedstock name: crude oil
+  feedstock unit: kilogram
+  floor value: 3.2
+
+hydrogen, from solar:
+  feedstock name: Energy, solar, converted
+  feedstock unit: megajoule
+  floor value: 180

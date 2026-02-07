@@ -1,0 +1,154 @@
+# mapping between IAM regions and climate types
+---
+image:
+  BRA: tropical
+  CAN: temperate
+  CEU: temperate
+  CHN: temperate
+  EAF: tropical
+  INDIA: tropical
+  INDO: tropical
+  JAP: temperate
+  KOR: temperate
+  ME: tropical
+  MEX: temperate
+  NAF: tropical
+  OCE: tropical
+  RCAM: tropical
+  RSAF: temperate
+  RSAM: tropical
+  RSAS: tropical
+  RUS: temperate
+  SAF: tropical
+  SEAS: tropical
+  STAN: temperate
+  TUR: temperate
+  USA: temperate
+  UKR: temperate
+  WAF: tropical
+  WEU: temperate
+
+remind:
+  LAM: tropical
+  CAZ: temperate
+  EUR: temperate
+  CHA: temperate
+  SSA: tropical
+  IND: tropical
+  OAS: tropical
+  JPN: temperate
+  MEA: tropical
+  NEU: temperate
+  REF: temperate
+  USA: temperate
+
+remind-eu:
+  OAS: tropical
+  ENC: temperate
+  NES: temperate
+  MEA: tropical
+  SSA: tropical
+  LAM: tropical
+  REF: temperate
+  CAZ: temperate
+  EWN: temperate
+  ECS: temperate
+  CHA: temperate
+  ESC: temperate
+  ECE: temperate
+  FRA: temperate
+  DEU: temperate
+  UKI: temperate
+  NEN: temperate
+  IND: tropical
+  JPN: temperate
+  ESW: temperate
+  USA: temperate
+
+message:
+  AFR: tropical
+  CHN: temperate
+  EEU: temperate
+  FSU: temperate
+  LAM: tropical
+  MEA: tropical
+  NAM: temperate
+  PAO: temperate
+  PAS: tropical
+  RCPA: tropical
+  SAS: tropical
+  WEU: temperate
+
+
+gcam:
+  Africa_Northern: temperate
+  Argentina: temperate
+  Australia_NZ: temperate
+  Brazil: tropical
+  Canada: temperate
+  Central America and Caribbean: tropical
+  Central Asia: temperate
+  China: temperate
+  Colombia: tropical
+  EU-15: temperate
+  EU-12: temperate
+  India: tropical
+  Indonesia: tropical
+  Japan: temperate
+  Mexico: temperate
+  Middle East: temperate
+  Pakistan: temperate
+  Russia: temperate
+  South Africa: temperate
+  South America_Southern: temperate
+  South Korea: temperate
+  Southeast Asia: tropical
+  Taiwan: tropical
+  USA: temperate
+  Africa_Eastern: tropical
+  Africa_Southern: tropical
+  Africa_Western: tropical
+  Europe_Eastern: temperate
+  European Free Trade Association: temperate
+  Europe_Non_EU: temperate
+  South America_Northern: tropical
+  South Asia: tropical
+
+tiam-ucl:
+  AFR: tropical
+  AUS: tropical
+  CAN: temperate
+  CSA: tropical
+  CHI: temperate
+  EEU: temperate
+  FSU: temperate
+  IND: tropical
+  JPN: temperate
+  MEX: temperate
+  MEA: tropical
+  ODA: tropical
+  SKO: temperate
+  UK: temperate
+  WEU: temperate
+
+witch:
+  usa: temperate
+  te: temperate
+  ssa: tropical
+  southafrica: temperate
+  seasia: tropical
+  oceania: temperate
+  mexico: temperate
+  mena: temperate
+  laca: tropical
+  japan: temperate
+  korea: temperate
+  indonesia: tropical
+  india: tropical
+  eu27: temperate
+  othereurope: temperate
+  china: temperate
+  canada: temperate
+  brazil: tropical
+  sasia: tropical
+  ccasia: temperate
