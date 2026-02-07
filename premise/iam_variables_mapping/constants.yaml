@@ -23,6 +23,7 @@ SUPPORTED_MODELS:
   - witch
 
 SUPPORTED_PATHWAYS:
+  - SSP2-Base
   - SSP2-NDC
   - SSP2-NPi
   - SSP2-PkBudg1150

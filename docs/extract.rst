@@ -1330,6 +1330,13 @@ The following datasets for passenger cars are imported.
 Inventories are from Sacchi2_ et al. 2022. The vehicles are available
 for different years and emission standards and for each IAM region.
 
+
+Note that NOx and PM 2.5 emissions are further updated based on
+remote-sensing data from Sjodin_ et al. 2018.
+
+.. _Sjodin: https://www.bafu.admin.ch/dam/en/sd-web/lggkMIGXeKNu/real-driving-emissions-from-diesel-passenger-cars-measured-by-remote-sensing-and-as-compared-with-pems-and-chassis-dynamometer-measurements-conox-task-2-report.pdf
+
+
 When doing:
 
 .. code-block:: python

@@ -229,13 +229,30 @@ def get_ecoinvent_metal_factors():
     return ds
 
 
-def load_post_allocation_correction_factors():
+def load_post_allocation_correction_factors(ei_version="3.12"):
     """
     Load yaml file with post-allocation_correction factors
+    for a specific ecoinvent version.
 
     """
 
-    filepath = DATA_DIR / "metals" / "post-allocation_correction" / "corrections.yaml"
+    # Determine which correction file to use
+    if ei_version in ["3.11"]:
+        filename = "corrections_311.yaml"
+    elif ei_version in ["3.12"]:
+        filename = "corrections_312.yaml"
+    else:
+        # 3.10 and earlier
+        filename = "corrections_310.yaml"
+
+    filepath = DATA_DIR / "metals" / "post-allocation_correction" / filename
+
+    if not filepath.exists():
+        print(f"Warning: {filename} not found, using corrections_310.yaml as fallback")
+        filepath = (
+            DATA_DIR / "metals" / "post-allocation_correction" / "corrections_310.yaml"
+        )
+
     with open(filepath, "r", encoding="utf-8") as stream:
         factors = yaml.safe_load(stream)
     return factors
@@ -450,11 +467,14 @@ class Metals(BaseTransformation):
 
         self.metals = iam_data.metals_intensity_factors  # 1
         # Precompute the median values for each metal and origin_var for the year 2020
-        if self.year in self.metals.coords["year"].values:
-            self.precomputed_medians = self.metals.sel(year=self.year)
+        available_years = sorted(self.metals.coords["year"].values)
+        clamped_year = max(available_years[0], min(self.year, available_years[-1]))
+
+        if clamped_year in available_years:
+            self.precomputed_medians = self.metals.sel(year=clamped_year)
         else:
             self.precomputed_medians = self.metals.interp(
-                year=self.year, method="nearest", kwargs={"fill_value": "extrapolate"}
+                year=clamped_year, method="linear"
             )
 
         self.activities_mapping = load_activities_mapping()  # 4
@@ -710,7 +730,7 @@ class Metals(BaseTransformation):
         Correct for post-allocation in the database.
         """
 
-        factors_list = load_post_allocation_correction_factors()
+        factors_list = load_post_allocation_correction_factors(self.version)
 
         for dataset in factors_list:
             filters = [

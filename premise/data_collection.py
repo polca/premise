@@ -136,7 +136,7 @@ def get_metals_intensity_factors_data() -> xr.DataArray:
         .to_xarray()
     )
 
-    array = array.interpolate_na(dim="year", method="nearest", fill_value="extrapolate")
+    array = array.interpolate_na(dim="year", method="linear", fill_value="extrapolate")
     array = array.bfill(dim="year")
     array = array.ffill(dim="year")
     array = array.fillna(0)
@@ -610,7 +610,15 @@ class IAMDataCollection:
                 {
                     k: v
                     for k, v in fuel_prod_vars.items()
-                    if k in ["gasoline", "diesel", "kerosene", "liquid fossil fuels"]
+                    if k
+                    in [
+                        "gasoline",
+                        "diesel",
+                        "kerosene",
+                        "liquid fossil fuels",
+                        "heavy fuel oil",
+                        "liquefied petroleum gas",
+                    ]
                 }
                 if "liquid fossil fuels" in fuel_prod_vars
                 else None
@@ -1378,6 +1386,12 @@ class IAMDataCollection:
         # dataframe = dataframe.loc[dataframe["variable"].isin(variables)]
 
         dataframe = dataframe.rename(columns={"variable": "variables"})
+
+        # if we find variables with the unit "PJ/yr", we convert the values
+        # to EJ/yr, to be consistent with the rest of the data
+        if "PJ/yr" in dataframe["unit"].unique():
+            dataframe.loc[dataframe["unit"] == "PJ/yr", dataframe.columns[3:]] /= 1e3
+            dataframe.loc[dataframe["unit"] == "PJ/yr", "unit"] = "EJ/yr"
 
         # make a list of headers that are integer
         headers = [x for x in dataframe.columns if isinstance(x, int)]

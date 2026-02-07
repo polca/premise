@@ -1,5 +1,10 @@
 from .utils import fetch_mapping, get_crops_properties
-from .config import BIOFUEL_SOURCES, REGION_CLIMATE_MAP
+from .config import (
+    BIOFUEL_SOURCES,
+    REGION_BIODIESEL_FEEDSTOCK_MAP,
+    REGION_BIOETHANOL_FEEDSTOCK_MAP,
+    REGION_CLIMATE_MAP,
+)
 
 import numpy as np
 
@@ -14,6 +19,12 @@ class BiofuelsMixin:
         Update the conversion efficiency.
         """
         region_to_climate = fetch_mapping(REGION_CLIMATE_MAP)[self.model]
+        region_to_oil_feedstock = fetch_mapping(REGION_BIODIESEL_FEEDSTOCK_MAP).get(
+            self.model, {}
+        )
+        region_to_bioethanol_feedstock = fetch_mapping(
+            REGION_BIOETHANOL_FEEDSTOCK_MAP
+        ).get(self.model, {})
         crop_types = list(crops_props.keys())
         climates = set(region_to_climate.values())
 
@@ -58,9 +69,14 @@ class BiofuelsMixin:
             production_volumes=self.iam_data.production_volumes,
         )
 
+        skip_crop_types = {"oil"} | set(region_to_bioethanol_feedstock.keys())
+
         for climate in ["tropical", "temperate"]:
             regions = [k for k, v in region_to_climate.items() if v == climate]
             for crop_type in climate_to_crop_type[climate]:
+                if crop_type in skip_crop_types:
+                    continue
+
                 specific_crop = climate_to_crop_type[climate][crop_type]
 
                 activities = biofuel_activities[crop_type][specific_crop]
@@ -84,6 +100,80 @@ class BiofuelsMixin:
                     ],
                     production_volumes=self.iam_data.production_volumes,
                 )
+
+        for crop_type, region_mapping in region_to_bioethanol_feedstock.items():
+            region_to_crop = {}
+            for region, climate in region_to_climate.items():
+                region_to_crop[region] = region_mapping.get(
+                    region, climate_to_crop_type[climate][crop_type]
+                )
+
+            crop_to_regions = {}
+            for region, crop in region_to_crop.items():
+                crop_to_regions.setdefault(crop, []).append(region)
+
+            fallback_map = {
+                "grain": {"wheat_rye": "wheat"},
+                "grass": {"sorghum": "switchgrass"},
+            }
+
+            for specific_crop, regions in crop_to_regions.items():
+                crop_key = specific_crop
+                if crop_key not in biofuel_activities[crop_type]:
+                    crop_key = fallback_map.get(crop_type, {}).get(crop_key, crop_key)
+
+                activities = biofuel_activities[crop_type][crop_key]
+
+                mapping = {
+                    specific_crop: [
+                        ds
+                        for ds in self.database
+                        if any(
+                            ds["name"].startswith(activity) for activity in activities
+                        )
+                    ]
+                }
+
+                self.process_and_add_activities(
+                    mapping=mapping,
+                    regions=regions,
+                    efficiency_adjustment_fn=[
+                        self.adjust_land_use,
+                        self.adjust_land_use_change_emissions,
+                    ],
+                    production_volumes=self.iam_data.production_volumes,
+                )
+
+        region_to_oil_crop = {}
+        for region, climate in region_to_climate.items():
+            region_to_oil_crop[region] = region_to_oil_feedstock.get(
+                region, climate_to_crop_type[climate]["oil"]
+            )
+
+        oil_crop_to_regions = {}
+        for region, crop in region_to_oil_crop.items():
+            oil_crop_to_regions.setdefault(crop, []).append(region)
+
+        for specific_crop, regions in oil_crop_to_regions.items():
+            activities = biofuel_activities["oil"][specific_crop]
+
+            mapping = {
+                specific_crop: [
+                    ds
+                    for ds in self.database
+                    if any(ds["name"].startswith(activity) for activity in activities)
+                ]
+            }
+
+            self.process_and_add_activities(
+                mapping=mapping,
+                regions=regions,
+                efficiency_adjustment_fn=[
+                    self.adjust_land_use,
+                    self.adjust_land_use_change_emissions,
+                ],
+                production_volumes=self.iam_data.production_volumes,
+            )
 
     def adjust_land_use(self, dataset: dict, crop_type: str) -> dict:
         """
