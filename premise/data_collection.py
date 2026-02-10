@@ -1530,9 +1530,7 @@ class IAMDataCollection:
             data_regions = data.coords.get("region")
             if data_regions is not None:
                 if market_data.sizes.get("region") == data_regions.size:
-                    market_data = market_data.assign_coords(
-                        region=data_regions.values
-                    )
+                    market_data = market_data.assign_coords(region=data_regions.values)
 
         return market_data
 
