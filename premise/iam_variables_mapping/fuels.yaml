@@ -1088,8 +1088,7 @@ bioethanol, from wood, with CCS:
   ecoinvent_aliases:
     fltr:
     - ethanol production, via fermentation, from forest, with carbon capture and storage
-    - ethanol production, via fermentation, from eucalyptus, with carbon capture and
-      storage
+    - ethanol production, via fermentation, from eucalyptus, with carbon capture and storage
     - ethanol production, via fermentation, from poplar, with carbon capture and storage
     mask:
       name:
