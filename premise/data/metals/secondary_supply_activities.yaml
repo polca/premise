@@ -300,7 +300,42 @@ zinc concentrate:
       equals: GLO
     shares:
       2020: 1
-
+neodymium oxide:
+  - name:
+      equals: treatment of used permanent magnet, collection, decoating, hydrogen decrepitation, milling
+    reference product:
+      equals: neodymium oxide
+    location:
+      equals: GLO
+    shares:
+      2020: 1
+terbium oxide:
+  - name:
+      equals: treatment of used permanent magnet, collection, decoating, hydrogen decrepitation, milling
+    reference product:
+      equals: terbium oxide
+    location:
+      equals: GLO
+    shares:
+      2020: 1
+dysprosium oxide:
+  - name:
+      equals: treatment of used permanent magnet, collection, decoating, hydrogen decrepitation, milling
+    reference product:
+      equals: dysprosium oxide
+    location:
+      equals: GLO
+    shares:
+      2020: 1
+praseodymium oxide:
+  - name:
+      equals: treatment of used permanent magnet, collection, decoating, hydrogen decrepitation, milling
+    reference product:
+      equals: praseodymium oxide
+    location:
+      equals: GLO
+    shares:
+      2020: 1
 
 
 ####### examples

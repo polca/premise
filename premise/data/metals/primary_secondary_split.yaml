@@ -234,10 +234,10 @@ cobalt:
   shares:
     primary:
       2020: 0.994283742
-      2050: 0.994283742
+      2050: 0.5
     secondary:
       2020: 0.005716258
-      2050: 0.005716258
+      2050: 0.5
 copper concentrate, sulfide ore:
   name: market for copper concentrate, sulfide ore
   reference product: copper concentrate, sulfide ore
@@ -264,10 +264,10 @@ copper, cathode:
   shares:
     primary:
       2020: 0.8
-      2050: 0.8
+      2050: 0.6
     secondary:
       2020: 0.2
-      2050: 0.2
+      2050: 0.4
 gallium, semiconductor-grade:
   name: market for gallium, semiconductor-grade
   reference product: gallium, semiconductor-grade
@@ -414,10 +414,10 @@ lithium carbonate, battery grade:
   shares:
     primary:
       2020: 0.999159585
-      2050: 0.999159585
+      2050: 0.7
     secondary:
       2020: 0.000840414604538239
-      2050: 0.000840414604538239
+      2050: 0.3
 lithium hydroxide, battery grade:
   name: market for lithium hydroxide, battery grade
   reference product: lithium hydroxide, battery grade
@@ -464,10 +464,10 @@ manganese:
   shares:
     primary:
       2020: 0.99999752
-      2050: 0.99999752
+      2050: 0.9
     secondary:
       2020: 0.00000248
-      2050: 0.00000248
+      2050: 0.1
 molybdenite:
   name: market for molybdenite
   reference product: molybdenite
@@ -504,10 +504,10 @@ nickel, class 1:
   shares:
     primary:
       2020: 0.997971535
-      2050: 0.997971535
+      2050: 0.7
     secondary:
       2020: 0.002028465
-      2050: 0.002028465
+      2050: 0.3
 phosphate rock, beneficiated:
   name: market for phosphate rock, beneficiated
   reference product: phosphate rock, beneficiated
@@ -602,10 +602,10 @@ dysprosium oxide:
   shares:
     primary:
       2020: 1.0
-      2050: 1.0
+      2050: 0.65
     secondary:
       2020: 0.0
-      2050: 0.0
+      2050: 0.35
 erbium oxide:
   name: market for erbium oxide
   reference product: erbium oxide
@@ -652,10 +652,10 @@ terbium oxide:
   shares:
     primary:
       2020: 1.0
-      2050: 1.0
+      2050: 0.65
     secondary:
       2020: 0.0
-      2050: 0.0
+      2050: 0.35
 thulium oxide:
     name: market for thulium oxide
     reference product: thulium oxide
@@ -712,20 +712,20 @@ praseodymium oxide:
   shares:
     primary:
       2020: 1.0
-      2050: 1.0
+      2050: 0.65
     secondary:
       2020: 0.0
-      2050: 0.0
+      2050: 0.35
 neodymium oxide:
   name: market for neodymium oxide
   reference product: neodymium oxide
   shares:
     primary:
       2020: 1.0
-      2050: 1.0
+      2050: 0.65
     secondary:
       2020: 0.0
-      2050: 0.0
+      2050: 0.35
 lutetium oxide:
   name: market for lutetium oxide
   reference product: lutetium oxide
@@ -832,10 +832,10 @@ silver:
   shares:
     primary:
       2020: 0.915363477
-      2050: 0.915363477
+      2050: 0.5
     secondary:
       2020: 0.084636523
-      2050: 0.084636523
+      2050: 0.5
 strontium sulfate, 90% SrSO4:
   name: market for strontium sulfate, 90% SrSO4
   reference product: strontium sulfate, 90% SrSO4
