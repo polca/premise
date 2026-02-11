@@ -457,7 +457,6 @@ diesel, synthetic, from electrolysis:
     value: 43
   co2: 0.0732
   biogenic_share: 1
-  eff_aliases:
   iam_aliases:
     tiam-ucl: Secondary Energy|Liquids|Hydrogen|Diesel
     remind: SE|Liquids|+|Hydrogen

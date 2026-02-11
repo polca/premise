@@ -4,6 +4,7 @@ This module contains classes for validating datasets after they have been transf
 
 import csv
 import math
+from functools import lru_cache
 
 import numpy as np
 import pandas as pd
@@ -20,6 +21,7 @@ import wurst.searching as ws
 logger = create_logger("validation")
 
 
+@lru_cache(maxsize=1)
 def load_electricity_keys():
     # load electricity keys from data/utils/validation/electricity.yaml
 
@@ -29,6 +31,7 @@ def load_electricity_keys():
     return electricity_keys
 
 
+@lru_cache(maxsize=1)
 def load_waste_keys():
     # load waste keys from data/utils/validation/waste flows.yaml
 
@@ -38,6 +41,7 @@ def load_waste_keys():
     return waste_keys
 
 
+@lru_cache(maxsize=1)
 def load_waste_flows_exceptions():
     # load waste flows exceptions.yaml from data/utils/validation/waste flows exceptions.yaml
 
@@ -49,6 +53,7 @@ def load_waste_flows_exceptions():
     return waste_flows_exceptions
 
 
+@lru_cache(maxsize=1)
 def load_circular_exceptions():
     # load circular exceptions.yaml from data/utils/validation/circular exceptions.yaml.yaml
 
@@ -60,6 +65,7 @@ def load_circular_exceptions():
     return circular_exceptions
 
 
+@lru_cache(maxsize=1)
 def load_car_exhaust_pollutants():
     fp = DATA_DIR / "transport" / "car" / "EF_HBEFA42_exhaust.csv"
     nested_dict = {}
@@ -87,6 +93,7 @@ def load_car_exhaust_pollutants():
     return nested_dict
 
 
+@lru_cache(maxsize=1)
 def load_truck_exhaust_pollutants():
     fp = DATA_DIR / "transport" / "truck" / "EF_HBEFA42_exhaust.csv"
     nested_dict = {}

@@ -1168,54 +1168,60 @@ class BaseTransformation:
                     if technology in production_volumes.coords["variables"].values:
                         prod_vol = production_volumes.sel(variables=technology)
 
-                regionalized_datasets = self.fetch_proxies(
-                    # datasets=activities,
-                    datasets=[
-                        ds for ds in activities if not ds.get("regionalized", False)
-                    ],
-                    production_volumes=prod_vol,
-                    regions=regions_to_process,
-                )
-
-                # add geographical coverage definition
-                for ds in regionalized_datasets.values():
-                    self.add_geo_definition_metadata(ds)
-
-                # adjust efficiency of steel production
-                if efficiency_adjustment_fn:
-                    for dataset in regionalized_datasets.values():
-                        if isinstance(efficiency_adjustment_fn, list):
-                            for fn in efficiency_adjustment_fn:
-                                fn(dataset, technology)
-                        else:
-                            efficiency_adjustment_fn(dataset, technology)
-
-                processed_datasets.extend(regionalized_datasets.values())
-                seen_datasets.extend([ds["name"] for ds in activities])
-                mapping[technology].extend(regionalized_datasets.values())
-
-                datasets = list(
-                    ws.get_many(
-                        self.database,
-                        ws.equals("name", activities[0]["name"]),
-                        ws.equals(
-                            "reference product", activities[0]["reference product"]
-                        ),
-                    )
-                )
-                datasets = [
-                    ds for ds in datasets if ds.get("regionalized", False) is False
+                datasets_to_regionalize = [
+                    ds for ds in activities if not ds.get("regionalized", False)
                 ]
 
-                self.empty_original_datasets(
-                    datasets=datasets,
-                    loc_map={
-                        x["location"]: self.geo.ecoinvent_to_iam_location(x["location"])
-                        for x in datasets
-                    },
-                    production_shares=regional_shares_dict,
-                    regions=regions,
-                )
+                if len(datasets_to_regionalize) > 0:
+
+                    regionalized_datasets = self.fetch_proxies(
+                        # datasets=activities,
+                        datasets=[
+                            ds for ds in activities if not ds.get("regionalized", False)
+                        ],
+                        production_volumes=prod_vol,
+                        regions=regions_to_process,
+                    )
+
+                    # add geographical coverage definition
+                    for ds in regionalized_datasets.values():
+                        self.add_geo_definition_metadata(ds)
+
+                    # adjust efficiency of steel production
+                    if efficiency_adjustment_fn:
+                        for dataset in regionalized_datasets.values():
+                            if isinstance(efficiency_adjustment_fn, list):
+                                for fn in efficiency_adjustment_fn:
+                                    fn(dataset, technology)
+                            else:
+                                efficiency_adjustment_fn(dataset, technology)
+
+                    processed_datasets.extend(regionalized_datasets.values())
+                    seen_datasets.extend([ds["name"] for ds in activities])
+                    mapping[technology].extend(regionalized_datasets.values())
+
+                    datasets = list(
+                        ws.get_many(
+                            self.database,
+                            ws.equals("name", activities[0]["name"]),
+                            ws.equals(
+                                "reference product", activities[0]["reference product"]
+                            ),
+                        )
+                    )
+                    datasets = [
+                        ds for ds in datasets if ds.get("regionalized", False) is False
+                    ]
+
+                    self.empty_original_datasets(
+                        datasets=datasets,
+                        loc_map={
+                            x["location"]: self.geo.ecoinvent_to_iam_location(x["location"])
+                            for x in datasets
+                        },
+                        production_shares=regional_shares_dict,
+                        regions=regions,
+                    )
 
         for dataset in processed_datasets:
             self.add_to_index(dataset)
@@ -1966,10 +1972,19 @@ class BaseTransformation:
             )
 
         else:
+            possible_locations = [ds["location"] for ds in possible_datasets]
+            locations_set = set(possible_locations)
+            by_location = defaultdict(list)
+            for ds in possible_datasets:
+                by_location[ds["location"]].append(ds)
+
             self.handle_multiple_possible_datasets(
                 exchange,
                 dataset,
                 possible_datasets,
+                possible_locations,
+                locations_set,
+                by_location,
                 new_exchanges,
                 exclusive,
                 biggest_first,
@@ -2017,16 +2032,17 @@ class BaseTransformation:
         exchange: dict,
         dataset: dict,
         possible_datasets: list,
+        possible_locations: list,
+        locations_set: set,
+        by_location: dict,
         new_exchanges: list,
         exclusive: bool,
         biggest_first: bool,
         contained: bool,
     ) -> None:
         # First, check if the dataset location itself is a possible match
-        if dataset["location"] in [ds["location"] for ds in possible_datasets]:
-            candidate = [
-                ds for ds in possible_datasets if ds["location"] == dataset["location"]
-            ][0]
+        if dataset["location"] in locations_set:
+            candidate = by_location[dataset["location"]][0]
 
             new_exc = exchange.copy()
             new_exc["location"] = candidate["location"]
@@ -2048,6 +2064,9 @@ class BaseTransformation:
                 exchange,
                 dataset,
                 possible_datasets,
+                possible_locations,
+                locations_set,
+                by_location,
                 new_exchanges,
                 exclusive,
                 biggest_first,
@@ -2059,6 +2078,9 @@ class BaseTransformation:
         exchange: dict,
         dataset: dict,
         possible_datasets: list,
+        possible_locations: list,
+        locations_set: set,
+        by_location: dict,
         new_exchanges: list,
         exclusive: bool,
         biggest_first: bool,
@@ -2066,12 +2088,24 @@ class BaseTransformation:
     ) -> None:
         # Check if the location of the dataset is within IAM regions
         if dataset["location"] in self.geo.iam_regions:
-            self.handle_iam_region(exchange, dataset, possible_datasets, new_exchanges)
+            self.handle_iam_region(
+                exchange,
+                dataset,
+                possible_datasets,
+                locations_set,
+                by_location,
+                new_exchanges,
+            )
 
         elif dataset["location"] in ["GLO", "RoW", "World"]:
             # Handle global or rest-of-world scenarios
             self.handle_global_and_row_scenarios(
-                exchange, dataset, possible_datasets, new_exchanges
+                exchange,
+                dataset,
+                possible_datasets,
+                locations_set,
+                by_location,
+                new_exchanges,
             )
 
         else:
@@ -2080,6 +2114,8 @@ class BaseTransformation:
                 exchange,
                 dataset,
                 possible_datasets,
+                possible_locations,
+                by_location,
                 new_exchanges,
                 exclusive,
                 biggest_first,
@@ -2087,18 +2123,33 @@ class BaseTransformation:
             )
 
         # If there's still no match found, consider the default option
-        self.handle_default_option(exchange, dataset, new_exchanges, possible_datasets)
+        self.handle_default_option(
+            exchange,
+            dataset,
+            new_exchanges,
+            possible_datasets,
+            locations_set,
+            by_location,
+        )
 
-    def handle_iam_region(self, exchange, dataset, possible_datasets, new_exchanges):
+    def handle_iam_region(
+        self,
+        exchange,
+        dataset,
+        possible_datasets,
+        locations_set,
+        by_location,
+        new_exchanges,
+    ):
         # In IAM regions, we need to look for possible local datasets
         locs = [
             iloc
             for iloc in self.iam_to_ecoinvent_loc[dataset["location"]]
-            if iloc in [ds["location"] for ds in possible_datasets]
+            if iloc in locations_set
         ]
 
         if locs:
-            kept = [ds for ds in possible_datasets if ds["location"] in locs]
+            kept = [ds for loc in locs for ds in by_location[loc]]
             if dataset["location"] == "World" and "GLO" in locs:
                 kept = [ds for ds in kept if ds["location"] == "GLO"]
 
@@ -2108,15 +2159,18 @@ class BaseTransformation:
             self.add_new_entry_to_cache(dataset["location"], exchange, allocated, share)
 
     def handle_global_and_row_scenarios(
-        self, exchange, dataset, possible_datasets, new_exchanges
+        self,
+        exchange,
+        dataset,
+        possible_datasets,
+        locations_set,
+        by_location,
+        new_exchanges,
     ):
         # Handle scenarios where the location is 'GLO' or 'RoW'
-        possible_locations = [ds["location"] for ds in possible_datasets]
-        if any(loc in possible_locations for loc in ["GLO", "RoW", "World"]):
+        if locations_set.intersection({"GLO", "RoW", "World"}):
             kept = [
-                ds
-                for ds in possible_datasets
-                if ds["location"] in ["GLO", "RoW", "World"]
+                ds for loc in ("GLO", "RoW", "World") for ds in by_location.get(loc, [])
             ]
             allocated, share = allocate_inputs(exchange, kept)
             new_exchanges.extend(allocated)
@@ -2127,6 +2181,8 @@ class BaseTransformation:
         exchange: dict,
         dataset: dict,
         possible_datasets: list,
+        possible_locations: list,
+        by_location: dict,
         new_exchanges: list,
         exclusive: bool,
         biggest_first: bool,
@@ -2148,7 +2204,7 @@ class BaseTransformation:
         location = dataset["location"]
         # if regions contained in posisble location
         # we need to turn them into tuples (model, region)
-        possible_locations = tuple([ds["location"] for ds in possible_datasets])
+        possible_locations = tuple(possible_locations)
 
         gis_match = self.get_gis_match(
             location,
@@ -2158,9 +2214,7 @@ class BaseTransformation:
             biggest_first,
         )
 
-        kept = [
-            ds for loc in gis_match for ds in possible_datasets if ds["location"] == loc
-        ]
+        kept = [ds for loc in gis_match for ds in by_location.get(loc, [])]
 
         if kept:
             allocated, share = allocate_inputs(exchange, kept)
@@ -2168,18 +2222,20 @@ class BaseTransformation:
             self.add_new_entry_to_cache(dataset["location"], exchange, allocated, share)
 
     def handle_default_option(
-        self, exchange, dataset, new_exchanges, possible_datasets
+        self,
+        exchange,
+        dataset,
+        new_exchanges,
+        possible_datasets,
+        locations_set,
+        by_location,
     ):
         new_exc = None
         # Handle the default case where no better candidate is found
         if not self.is_exchange_in_cache(exchange, dataset["location"]):
             for default_location in ["RoW", "GLO", "World"]:
-                if default_location in [x["location"] for x in possible_datasets]:
-                    default_dataset = [
-                        x
-                        for x in possible_datasets
-                        if x["location"] == default_location
-                    ][0]
+                if default_location in locations_set:
+                    default_dataset = by_location[default_location][0]
 
                     new_exc = exchange.copy()
                     new_exc["name"] = default_dataset["name"]
@@ -2290,6 +2346,16 @@ class BaseTransformation:
         # and sum the amounts of exchanges with the same name,
         # product, location and unit
 
+        grouped_exchanges = defaultdict(float)
+        for exc in new_exchanges:
+            key = (
+                exc["name"],
+                exc["product"],
+                exc["location"],
+                exc["unit"],
+            )
+            grouped_exchanges[key] += exc["amount"]
+
         new_exchanges = [
             {
                 "name": name,
@@ -2297,30 +2363,9 @@ class BaseTransformation:
                 "location": location,
                 "unit": unit,
                 "type": "technosphere",
-                "amount": sum(exc["amount"] for exc in exchanges),
+                "amount": amount,
             }
-            for (
-                name,
-                prod,
-                location,
-                unit,
-            ), exchanges in groupby(
-                sorted(
-                    new_exchanges,
-                    key=itemgetter(
-                        "name",
-                        "product",
-                        "location",
-                        "unit",
-                    ),
-                ),
-                key=itemgetter(
-                    "name",
-                    "product",
-                    "location",
-                    "unit",
-                ),
-            )
+            for (name, prod, location, unit), amount in grouped_exchanges.items()
         ]
 
         # apply uncertainties, if any

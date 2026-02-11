@@ -72,6 +72,7 @@ def get_delimiter(data=None, filepath=None) -> str:
     return delimiter
 
 
+@lru_cache(maxsize=1)
 def get_crops_properties() -> dict:
     """
     Return a dictionary with crop names as keys and IAM labels as values
@@ -84,6 +85,7 @@ def get_crops_properties() -> dict:
     return crop_props
 
 
+@lru_cache(maxsize=8)
 def get_oil_product_volumes(model) -> pd.DataFrame:
     """
     Load the file `oil_product_volumes.csv` that contains recent oil product volumes
@@ -111,6 +113,7 @@ def get_oil_product_volumes(model) -> pd.DataFrame:
     return df
 
 
+@lru_cache(maxsize=1)
 def get_metals_intensity_factors_data() -> xr.DataArray:
     """
     Read the materials intensity factors csv file and return an `xarray` with dimensions:
@@ -144,6 +147,7 @@ def get_metals_intensity_factors_data() -> xr.DataArray:
     return array
 
 
+@lru_cache(maxsize=8)
 def get_gains_IAM_data(model, gains_scenario):
     filepath = Path(
         DATA_DIR / "GAINS_emission_factors" / "iam_data" / gains_scenario
@@ -416,6 +420,7 @@ class IAMDataCollection:
         fuel_prod_vars = self.__get_iam_variable_labels(
             IAM_FUELS_VARS, variable="iam_aliases"
         )
+
         fuel_eff_vars = self.__get_iam_variable_labels(
             IAM_FUELS_VARS, variable="eff_aliases"
         )
