@@ -115,6 +115,7 @@ def get_biosphere_code(version) -> dict:
 
         return dict
 
+
 @lru_cache(maxsize=1)
 def get_consequential_blacklist():
     with open(FILEPATH_CONSEQUENTIAL_BLACKLIST, "r", encoding="utf-8") as stream:

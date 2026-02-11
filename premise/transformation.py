@@ -1216,7 +1216,9 @@ class BaseTransformation:
                     self.empty_original_datasets(
                         datasets=datasets,
                         loc_map={
-                            x["location"]: self.geo.ecoinvent_to_iam_location(x["location"])
+                            x["location"]: self.geo.ecoinvent_to_iam_location(
+                                x["location"]
+                            )
                             for x in datasets
                         },
                         production_shares=regional_shares_dict,
