@@ -182,6 +182,12 @@ heavy fuel oil:
   co2: 0.0739
   iam_aliases:
     tiam-ucl: Secondary Energy|Liquids|Oil|Heavy Fuel Oil
+    gcam: Secondary Energy|Production|Refined Liquids|Oil|Heavy Fuel Oil
+    remind: SE|Liquids|Fossil|+|Oil|Heavy Fuel Oil
+    remind-eu: SE|Liquids|Fossil|+|Oil|Heavy Fuel Oil
+    image: Secondary Energy|Consumption|Liquids|Fossil|Heavy Fuel Oil
+    message: Secondary Energy|Liquids|Oil|Heavy Fuel Oil
+    witch: Secondary Energy|Liquids|Fossil|Oil|Heavy Fuel Oil
   ecoinvent_aliases:
     fltr:
       reference product:
@@ -451,13 +457,8 @@ diesel, synthetic, from electrolysis:
     value: 43
   co2: 0.0732
   biogenic_share: 1
-  eff_aliases:
-    gcam: Efficiency|Hydrogen|Electrolysis
-    remind: Tech|Liquids|Fossil|Coal|w/o CC|Efficiency
-    remind-eu: Tech|Liquids|Fossil|Coal|w/o CC|Efficiency
   iam_aliases:
     tiam-ucl: Secondary Energy|Liquids|Hydrogen|Diesel
-    gcam: Secondary Energy|Production|Hydrogen|Electrolysis
     remind: SE|Liquids|+|Hydrogen
     remind-eu: SE|Liquids|+|Hydrogen
     witch: Secondary Energy|Liquids|Hydrogen|Electricity
@@ -602,6 +603,8 @@ diesel, synthetic, from natural gas:
   biogenic_share: 0
   iam_aliases:
     tiam-ucl: Secondary Energy|Liquids|Natural Gas|FT|Diesel|w/o CCS
+    remind: SE|Liquids|Fossil|Gas|+|w/o CC
+    remind-eu: SE|Liquids|Fossil|Gas|+|w/o CC
   eff_aliases:
     tiam-ucl: Efficiency|Liquids|Natural gas|FT fuel mix (diesel, kerosene, naptha,
       ELC)|w/o CCS
@@ -618,6 +621,8 @@ diesel, synthetic, from natural gas, with CCS:
   biogenic_share: 0
   iam_aliases:
     tiam-ucl: Secondary Energy|Liquids|Natural Gas|FT|Diesel|w CCS
+    remind: SE|Liquids|Fossil|Gas|+|w/ CC
+    remind-eu: SE|Liquids|Fossil|Gas|+|w/ CC
   eff_aliases:
     tiam-ucl: Efficiency|Liquids|Natural gas|FT fuel mix (diesel, kerosene, naptha,
       ELC)|w CCS
@@ -798,13 +803,13 @@ hydrogen, from biomass:
   biogenic_share: 1
   iam_aliases:
     tiam-ucl: Secondary Energy|Hydrogen|Biomass|Hydrogen|w/o CCS
-    gcam: Secondary Energy|Production|Hydrogen|Biomass|w/oCCS
+    gcam: Secondary Energy|Production|Hydrogen|Biomass
     remind: SE|Hydrogen|Biomass|+|w/o CC
     remind-eu: SE|Hydrogen|Biomass|+|w/o CC
     image: Secondary Energy|Hydrogen|Biomass|w/o CCS
     message: Secondary Energy|Hydrogen|Biomass|w/o CCS
   eff_aliases:
-    gcam: Efficiency|Hydrogen|Biomass|w/oCCS
+    gcam: Efficiency|Hydrogen|Biomass
     remind: Tech|Hydrogen|Biomass|w/o CC|Efficiency
     remind-eu: Tech|Hydrogen|Biomass|w/o CC|Efficiency
   ecoinvent_aliases:
@@ -819,13 +824,13 @@ hydrogen, from biomass, with CCS:
   biogenic_share: 1
   iam_aliases:
     tiam-ucl: Secondary Energy|Hydrogen|Biomass|Hydrogen|w CCS
-    gcam: Secondary Energy|Production|Hydrogen|Biomass|w/CCS
+    gcam: Secondary Energy|Production|Hydrogen|Biomass CCS
     remind: SE|Hydrogen|Biomass|+|w/ CC
     remind-eu: SE|Hydrogen|Biomass|+|w/ CC
     image: Secondary Energy|Hydrogen|Biomass|w/ CCS
     message: Secondary Energy|Hydrogen|Biomass|w/ CCS
   eff_aliases:
-    gcam: Efficiency|Hydrogen|Biomass|w/CCS
+    gcam: Efficiency|Hydrogen|Biomass CCS
     remind: Tech|Hydrogen|Biomass|w/ CC|Efficiency
     remind-eu: Tech|Hydrogen|Biomass|w/ CC|Efficiency
   ecoinvent_aliases:
@@ -863,13 +868,13 @@ hydrogen, from coal, with CCS:
   biogenic_share: 0
   iam_aliases:
     tiam-ucl: Secondary Energy|Hydrogen|Coal|Hydrogen|w CCS
-    gcam: Secondary Energy|Production|Hydrogen|Coal|w/CCS
+    gcam: Secondary Energy|Production|Hydrogen|Coal CCS
     remind: SE|Hydrogen|Coal|+|w/ CC
     remind-eu: SE|Hydrogen|Coal|+|w/ CC
     image: Secondary Energy|Hydrogen|Coal|w/ CCS
     message: Secondary Energy|Hydrogen|Coal|w/ CCS
   eff_aliases:
-    gcam: Efficiency|Hydrogen|Coal|w/CCS
+    gcam: Efficiency|Hydrogen|Coal CCS
     remind: Tech|Hydrogen|Coal|w/ CC|Efficiency
     remind-eu: Tech|Hydrogen|Coal|w/ CC|Efficiency
   ecoinvent_aliases:
@@ -882,14 +887,14 @@ hydrogen, from natural gas:
   biogenic_share: 0
   iam_aliases:
     tiam-ucl: Secondary Energy|Hydrogen|Natural Gas|Hydrogen|w/o CCS
-    gcam: Secondary Energy|Production|Hydrogen|Gas|w/oCCS
+    gcam: Secondary Energy|Production|Hydrogen|Gas
     remind: SE|Hydrogen|Gas|+|w/o CC
     remind-eu: SE|Hydrogen|Gas|+|w/o CC
     image: Secondary Energy|Hydrogen|Gas|w/o CCS
     message: Secondary Energy|Hydrogen|Gas|w/o CCS
     witch: Secondary Energy|Hydrogen|Gas|w/o CCS
   eff_aliases:
-    gcam: Efficiency|Hydrogen|Gas|w/oCCS
+    gcam: Efficiency|Hydrogen|Gas
     remind: Tech|Hydrogen|Gas|w/o CC|Efficiency
     remind-eu: Tech|Hydrogen|Gas|w/o CC|Efficiency
     witch: Efficiency|Hydrogen|Gas|w/o CCS
@@ -912,7 +917,7 @@ hydrogen, from natural gas, with CCS:
     remind: SE|Hydrogen|Gas|+|w/ CC
     remind-eu: SE|Hydrogen|Gas|+|w/ CC
     image: Secondary Energy|Hydrogen|Gas|w/ CCS
-    message: Secondary Energy|Hydrogen|Gas|w/o CCS
+    message: Secondary Energy|Hydrogen|Gas|w/ CCS
     witch: Secondary Energy|Hydrogen|Gas|w/ CCS
   eff_aliases:
     gcam: Efficiency|Hydrogen|Gas|w/CCS
@@ -992,7 +997,12 @@ biodiesel, from oil crops:
   ecoinvent_aliases:
     fltr:
       name:
-      - biodiesel production, via transesterification, from rapeseed oil
+        - biodiesel production, via transesterification, from rapeseed oil
+        - esterification of soybean oil
+        - biodiesel production, via transesterification, from palm oil
+      reference product:
+        - biodiesel
+        - fatty acid methyl ester
     mask:
       name:
       - expansion
@@ -1000,7 +1010,6 @@ biodiesel, from oil crops:
       - capture
       - station
       - algae
-      - palm
 biodiesel, from oil crops, with CCS:
   lhv:
     unit: megajoule
@@ -1074,8 +1083,7 @@ bioethanol, from wood, with CCS:
   ecoinvent_aliases:
     fltr:
     - ethanol production, via fermentation, from forest, with carbon capture and storage
-    - ethanol production, via fermentation, from eucalyptus, with carbon capture and
-      storage
+    - ethanol production, via fermentation, from eucalyptus, with carbon capture and storage
     - ethanol production, via fermentation, from poplar, with carbon capture and storage
     mask:
       name:
@@ -1203,6 +1211,7 @@ bioethanol, from grain, with CCS:
   ecoinvent_aliases:
     fltr:
     - ethanol production, via fermentation, from corn, with carbon capture and storage
+    - ethanol production, via fermentation, from wheat, with carbon capture and storage
     mask:
       name:
       - expansion
@@ -1707,7 +1716,7 @@ Carbon monoxide, from RWGS:
   lhv:
     unit: megajoule
     value: 10.83
-kerosene, from petroleum:
+kerosene:
   lhv:
     unit: megajoule
     value: 43
@@ -1718,6 +1727,12 @@ kerosene, from petroleum:
     - kerosene production, petroleum refinery operation
   iam_aliases:
     tiam-ucl: Secondary Energy|Liquids|Oil|Kerosene
+    gcam: Secondary Energy|Production|Refined Liquids|Oil|Kerosene
+    remind: SE|Liquids|Fossil|+|Oil|Kerosene
+    remind-eu: SE|Liquids|Fossil|+|Oil|Kerosene
+    image: Secondary Energy|Consumption|Liquids|Fossil|Kerosene
+    message: Secondary Energy|Liquids|Oil|Kerosene
+    witch: Secondary Energy|Liquids|Fossil|Oil|Kerosene
 kerosene, synthetic, from electrolysis, energy allocation:
   lhv:
     unit: megajoule

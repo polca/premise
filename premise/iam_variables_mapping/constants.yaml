@@ -23,6 +23,7 @@ SUPPORTED_MODELS:
   - witch
 
 SUPPORTED_PATHWAYS:
+  - SSP2-Base
   - SSP2-NDC
   - SSP2-NPi
   - SSP2-PkBudg1150
@@ -47,12 +48,16 @@ SUPPORTED_PATHWAYS:
   - SSP5-PkBudg500
   - SSP1-L
   - SSP1-M
+  - SSP1-VL
   - SSP1-VLLO
   - SSP2-L
   - SSP2-M
+  - SSP2-ML
   - SSP2-VLHO
+  - SSP2-LO
   - SSP3-H
   - SSP5-H
+  - SSP5-LO
   - static
 
 LIST_MESSAGE_REGIONS:

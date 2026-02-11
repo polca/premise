@@ -4,6 +4,7 @@ This module contains classes for validating datasets after they have been transf
 
 import csv
 import math
+from functools import lru_cache
 
 import numpy as np
 import pandas as pd
@@ -20,6 +21,7 @@ import wurst.searching as ws
 logger = create_logger("validation")
 
 
+@lru_cache(maxsize=1)
 def load_electricity_keys():
     # load electricity keys from data/utils/validation/electricity.yaml
 
@@ -29,6 +31,7 @@ def load_electricity_keys():
     return electricity_keys
 
 
+@lru_cache(maxsize=1)
 def load_waste_keys():
     # load waste keys from data/utils/validation/waste flows.yaml
 
@@ -38,6 +41,7 @@ def load_waste_keys():
     return waste_keys
 
 
+@lru_cache(maxsize=1)
 def load_waste_flows_exceptions():
     # load waste flows exceptions.yaml from data/utils/validation/waste flows exceptions.yaml
 
@@ -49,6 +53,7 @@ def load_waste_flows_exceptions():
     return waste_flows_exceptions
 
 
+@lru_cache(maxsize=1)
 def load_circular_exceptions():
     # load circular exceptions.yaml from data/utils/validation/circular exceptions.yaml.yaml
 
@@ -60,6 +65,7 @@ def load_circular_exceptions():
     return circular_exceptions
 
 
+@lru_cache(maxsize=1)
 def load_car_exhaust_pollutants():
     fp = DATA_DIR / "transport" / "car" / "EF_HBEFA42_exhaust.csv"
     nested_dict = {}
@@ -87,6 +93,7 @@ def load_car_exhaust_pollutants():
     return nested_dict
 
 
+@lru_cache(maxsize=1)
 def load_truck_exhaust_pollutants():
     fp = DATA_DIR / "transport" / "truck" / "EF_HBEFA42_exhaust.csv"
     nested_dict = {}
@@ -459,7 +466,7 @@ class BaseDatasetValidator:
         for dataset in self.database:
             key = (dataset["name"], dataset["reference product"], dataset["location"])
             if key not in consumed_datasets and not any(
-                x in dataset["name"] for x in ["market for", "market group for"]
+                x not in dataset["name"] for x in ["market for", "market group for"]
             ):
                 message = f"Orphaned dataset found: {dataset['name']}"
                 self.log_issue(dataset, "orphaned dataset", message)
@@ -661,7 +668,7 @@ class BaseDatasetValidator:
 
         for dataset in self.database:
             for key in list(dataset.keys()):
-                if dataset[key] is None:
+                if not dataset[key]:
                     del dataset[key]
 
     def correct_fields_format(self):
@@ -679,16 +686,19 @@ class BaseDatasetValidator:
 
             for exc in dataset["exchanges"]:
                 # check that `amount` is of type `float`
-                if np.isnan(exc["amount"]):
-                    raise ValueError(
-                        f"Amount is NaN in exchange {exc} in dataset {dataset['name'], dataset['location']}"
-                    )
-                if not isinstance(exc["amount"], float):
-                    exc["amount"] = float(exc["amount"])
+                amount = exc.get("amount")
+                if amount is None:
+                    continue
+                if isinstance(amount, (int, float, np.floating)):
+                    if np.isnan(amount):
+                        ValueError(
+                            f"Amount is NaN in exchange {exc} in dataset {dataset['name'], dataset['location']}"
+                        )
 
             # remove fields that are None
-            for key, value in list(dataset.items()):
-                if value is None:
+            dataset_keys = list(dataset.keys())
+            for key in dataset_keys:
+                if dataset[key] is None:
                     del dataset[key]
 
         # we also want to remove any numpy generics
@@ -702,11 +712,11 @@ class BaseDatasetValidator:
 
         for dataset in self.database:
             for exc in dataset["exchanges"]:
-                if not isinstance(exc["amount"], float):
-                    exc["amount"] = float(exc["amount"])
-
-                if isinstance(exc["amount"], (np.float64, np.ndarray)):
-                    exc["amount"] = float(exc["amount"])
+                amount = exc.get("amount")
+                if amount is None:
+                    continue
+                if not isinstance(amount, float):
+                    exc["amount"] = float(amount)
 
             for k, v in dataset.items():
                 if isinstance(v, dict):
@@ -2586,6 +2596,8 @@ class BiomassValidation(BaseDatasetValidator):
                             "storage",
                             "methanol",
                             "hydrogen",
+                            " residual ",
+                            "light fuel oil",
                         ]
                     ]
                 )
