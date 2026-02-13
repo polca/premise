@@ -1233,7 +1233,8 @@ class IAMDataCollection:
             if key is None:
                 raise FileNotFoundError(
                     f"Either 1) the file {file_name} cannot found with any supported extension in {filedir}"
-                    f"or 2) no decryption key provided to download the file from Zenodo. Please provide a decryption key or place the file in the specified directory."
+                    f"or 2) no decryption key provided to download the file from Zenodo. "
+                    f"Please provide a decryption key or place the file in the specified directory."
                 )
             else:
                 # If key is provided, download the file
