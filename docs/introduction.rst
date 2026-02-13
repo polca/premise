@@ -7,7 +7,7 @@ Purpose
 *premise* enables the alignment of life cycle inventories within the ecoinvent_
 3.5-3.12 database, using either a "cut-off" or "consequential"
 system model, to match the output results of Integrated
-Assessment Models (IAMs) such as REMIND_ (and REMIND-EU), IMAGE_, TIAM-UCL_ or GCAM_.
+Assessment Models (IAMs) such as REMIND_ (and REMIND-EU), IMAGE_, TIAM-UCL_, MESSAGE_ or GCAM_.
 This allows for the creation of life cycle inventory databases
 under future policy scenarios for any year between 2005 and 2100.
 Consequential system model support is limited to ecoinvent 3.8+.
@@ -48,6 +48,7 @@ the same *premise* release.
 .. _REMIND: https://www.pik-potsdam.de/en/institute/departments/transformation-pathways/models/remind
 .. _IMAGE: https://models.pbl.nl/image/index.php/Welcome_to_IMAGE_3.2_Documentation
 .. _TIAM-UCL: https://www.ucl.ac.uk/energy-models/models/tiam-ucl
+.. _MESSAGE: https://docs.messageix.org/
 .. _GCAM: https://gcims.pnnl.gov/modeling/gcam-global-change-analysis-model
 
 
@@ -93,6 +94,7 @@ Finally, you should properly refer the IAM model used with *premise*:
 * REMIND: Baumstark et al. REMIND2.1: transformation and innovation dynamics of the energy-economic system within climate and sustainability limits, Geoscientific Model Development, 2021.
 * IMAGE: Stehfest, Elke, et al. Integrated assessment of global environmental change with IMAGE 3.0: Model description and policy applications. Netherlands Environmental Assessment Agency (PBL), 2014.
 * TIAM-UCL: Pye, S., et al. The TIAM-UCL Model (Version 4.1.1) Documentation, 2020.
+* MESSAGEix-GLOBIOM-GAINS: MESSAGEix-GLOBIOM-GAINS 2.1-M-R12 documentation.
 * GCAM: Calvin, K., Patel, P., Clarke, L., Asrar, G., Bond-Lamberty, B., Cui, R. Y., Di Vittorio, A., Dorheim, K., Edmonds, J., Hartin, C., Hejazi, M., Horowitz, R., Iyer, G., Kyle, P., Kim, S., Link, R., McJeon, H., Smith, S. J., Snyder, A., Waldhoff, S., and Wise, M.: GCAM v5.1: representing the linkages between energy, water, land, climate, and economic systems, Geosci. Model Dev., 12, 677–698, https://doi.org/10.5194/gmd-12-677-2019, 2019.
 
 
@@ -113,6 +115,8 @@ Models
      - IMAGE (Integrated Model to Assess the Global Environment) is a comprehensive IAM developed to explore the interactions between human development, energy consumption, and environmental systems over the long term. It focuses on assessing how land use, food systems, energy systems, and climate change interact under different policy scenarios. The model integrates biophysical processes, such as land-use change and greenhouse gas emissions, with socio-economic drivers like population growth and economic development. IMAGE is commonly used for analyzing sustainable development strategies, climate impacts, biodiversity loss, and exploring mitigation and adaptation options.
    * - TIAM-UCL
      - TIAM-UCL (TIMES Integrated Assessment Model by University College London) is a global energy system model based on the TIMES (The Integrated MARKAL-EFOM System) framework, developed to evaluate long-term decarbonization pathways for global energy systems. It provides detailed insights into energy technology options, resource availability, and emission reduction strategies under various climate policy scenarios. The model focuses on the trade-offs and synergies between energy security, economic costs, and environmental outcomes. TIAM-UCL is frequently used to analyze scenarios consistent with the Paris Agreement and examine technological innovation's role in mitigating climate change globally.
+   * - MESSAGE
+     - MESSAGEix-GLOBIOM-GAINS (MESSAGE) couples the MESSAGEix energy system with the GLOBIOM land-use model and GAINS air-pollution module. It is used to explore long-term energy and land-use transitions and their climate and air-quality implications under different policy scenarios.
    * - GCAM
      - GCAM (Global Change Analysis Model) is an integrated assessment model that simulates the interactions between energy, water, land use, climate, and economic systems on a global scale. It is designed to analyze how different policy scenarios, technological developments, and socio-economic factors influence greenhouse gas emissions, energy production and consumption, land use changes, and climate outcomes. GCAM incorporates detailed representations of energy technologies, agricultural systems, and land-use dynamics, allowing for comprehensive assessments of mitigation strategies and their implications for sustainable development. The model is widely used for exploring pathways to achieve climate targets while considering trade-offs across multiple sectors.
 
@@ -122,24 +126,27 @@ Quick Reference
 
 .. list-table::
    :header-rows: 1
-   :widths: 20 15 15 15 15 15
+   :widths: 20 15 15 15 15 15 15
 
    * - Property
      - REMIND
      - REMIND-EU
      - IMAGE
      - TIAM-UCL
+     - MESSAGE
      - GCAM
    * - **Model Type**
      - CGE + Energy
      - CGE + Energy
      - IAM (PEM)
      - Bottom-up
+     - Bottom-up (energy system)
      - IAM (PEM)
    * - **Foresight**
      - ✓ Perfect
      - ✓ Perfect
      - ✗ Myopic
+     - ✓ Perfect
      - ✓ Perfect
      - ✗ Myopic
    * - **Energy System**
@@ -147,16 +154,19 @@ Quick Reference
      - ✓ Detailed
      - ✓ Moderate
      - ✓ Very detailed
+     - ✓ Very detailed
      - ✓ Moderate
    * - **Land Use**
      - ✓ (MAGPIE)
      - ✓ (MAGPIE)
      - ✓ Integrated
      - ✗
+     - ✓ Integrated (GLOBIOM)
      - ✓ Integrated
    * - **Regional Focus**
      - Global
      - EU + Global
+     - Global
      - Global
      - Global
      - Global
@@ -165,6 +175,7 @@ Quick Reference
      - EU policies
      - Land & climate
      - Tech pathways
+     - Energy system + land/air
      - Coupled land–water–energy
 
 **REMIND**
@@ -206,6 +217,15 @@ technology detail and resource-specific analyses (e.g., hydrogen pathways, renew
 deployment). It is particularly suited for Paris Agreement-compliant energy transitions
 and cost-optimal technology portfolios.
 
+**MESSAGE**
+
+MESSAGEix-GLOBIOM-GAINS (MESSAGE) is an energy-system optimization IAM coupled with the GLOBIOM
+land-use model and the GAINS air-pollution module. It provides detailed energy system pathways
+with explicit links to land-use and air-quality outcomes. Compared to REMIND, it is less focused
+on macroeconomic feedbacks but offers stronger coupling to land-use and air-pollution dynamics.
+Compared to GCAM and IMAGE, it emphasizes cost-optimal energy system transformations while still
+capturing land-use interactions through GLOBIOM.
+
 **GCAM**
 
 GCAM (Global Change Analysis Model) is a recursive-dynamic IAM based on partial equilibrium
@@ -228,6 +248,7 @@ Selecting the appropriate IAM for use with *premise* depends on the focus of you
 - **REMIND-EU** is ideal for **EU-focused studies**, particularly those assessing the **European Green Deal** or country-level decarbonization strategies within the EU.
 - **IMAGE** is the preferred choice when **land-use change, agriculture, biodiversity, or climate–ecosystem interactions** are central to the analysis. Its biophysical and environmental modules complement energy-focused IAMs.
 - **TIAM-UCL** is most appropriate for exploring **detailed technology pathways**, resource allocation, and **cost-optimal energy system designs**, particularly for **Paris Agreement-compatible scenarios**.
+- **MESSAGE** is most suitable when you need **cost-optimal energy system pathways** with explicit **land-use** and **air-pollution** linkages.
 - **GCAM** is most suitable when the cross-sectoral links between land, water, energy, and agriculture are crucial. It is especially useful for questions involving bioenergy deployment, water scarcity constraints, or food–land competition under climate policy.
 
 Our recommendation is to assess the sensitivity of your results across different IAMs for a given climate target.
@@ -346,8 +367,8 @@ And here is a plot of the same data:
    :align: center
    :alt: Comparison plot of mapped variables across IAM models
 
-The table and plot show how *premise* connects to IMAGE, REMIND, REMIND-EU, TIAM-UCL and GCAM,
-focusing on energy generation, industry, and transport:
+The table and plot show how *premise* connects to IMAGE, REMIND, REMIND-EU, TIAM-UCL and GCAM
+(MESSAGE not shown here), focusing on energy generation, industry, and transport:
 
 * REMIND and REMIND-EU have the broadest coverage, with strong mappings in electricity (34 variables), fuels (42 variables), and transport, especially passenger cars (60 variables) and road freight (40 variables).
 * IMAGE offers extensive integration (417 variables), particularly in electricity (51 variables), fuels (53 variables), and industrial sectors like cement (10 variables) and steel (22 variables). However, two-wheelers are not covered by IMAGE.
@@ -358,6 +379,7 @@ Sectoral observations:
 
 * Electricity and fuels remain the most consistently mapped sectors across all models.
 * Transport sub-sectors (bus, passenger cars, rail, road, and sea freight) are well represented in REMIND(-EU) and TIAM-UCL, with IMAGE covering all except two-wheelers.
+* MESSAGE scenarios currently do not have transport-sector mappings in *premise*.
 * Industrial sectors, particularly steel and cement, are better represented in IMAGE and REMIND(-EU) than in TIAM-UCL.
 
 
@@ -759,6 +781,116 @@ temperature (GMST) increase by 2100:
      -
      -
      - ✓
+   * - message - SSP1-VL
+     - ✓
+     -
+     -
+     -
+     -
+     -
+     -
+     -
+     -
+   * - message - SSP2-VL
+     - ✓
+     -
+     -
+     -
+     -
+     -
+     -
+     -
+     -
+   * - message - SSP1-L
+     -
+     - ✓
+     -
+     -
+     -
+     -
+     -
+     -
+     -
+   * - message - SSP2-LO
+     -
+     - ✓
+     -
+     -
+     -
+     -
+     -
+     -
+     -
+   * - message - SSP2-L
+     -
+     -
+     - ✓
+     -
+     -
+     -
+     -
+     -
+     -
+   * - message - SSP4-LO
+     -
+     -
+     - ✓
+     -
+     -
+     -
+     -
+     -
+     -
+   * - message - SSP5-LO
+     -
+     -
+     - ✓
+     -
+     -
+     -
+     -
+     -
+     -
+   * - message - SSP2-ML
+     -
+     -
+     -
+     - ✓
+     -
+     -
+     -
+     -
+     -
+   * - message - SSP2-M
+     -
+     -
+     -
+     -
+     -
+     - ✓
+     -
+     -
+     -
+   * - message - SSP3-H
+     -
+     -
+     -
+     -
+     -
+     -
+     -
+     - ✓
+     -
+   * - message - SSP5-H
+     -
+     -
+     -
+     -
+     -
+     -
+     -
+     -
+     - ✓
 
 
 
@@ -781,7 +913,7 @@ and GMST increase by 2100.
 
 .. list-table::
    :header-rows: 1
-   :widths: 20 15 15 15 15 15
+   :widths: 20 15 15 15 15 15 15 15
 
    * - SSP scenario
      - GMST increase by 2100
@@ -790,10 +922,13 @@ and GMST increase by 2100.
      - IMAGE
      - TIAM-UCL
      - GCAM
-     * - **SSP1**
+     - MESSAGE
+   * - **SSP1**
      - 1.3–1.7°C
      - Paris-consistent (peak budget)
      - SSP1-PkBudg650, SSP1-PkBudg1000
+     -
+     -
      -
      -
      -
@@ -804,6 +939,24 @@ and GMST increase by 2100.
      - SSP1-VLLO
      -
      -
+     -
+     -
+   * - **SSP1**
+     - 1.44°C
+     - Very Low Emissions
+     -
+     -
+     -
+     -
+     - SSP1-VL
+   * - **SSP1**
+     - 1.56°C
+     - Low Emissions
+     -
+     -
+     -
+     -
+     - SSP1-L
    * - **SSP1**
      - 1.72°C
      - Low forcing
@@ -811,10 +964,14 @@ and GMST increase by 2100.
      - SSP1-L
      -
      -
+     -
+     -
    * - **SSP1**
      - 2.13°C
      - NPI (nat. policies implemented)
      - SSP1-NPi
+     -
+     -
      -
      -
      -
@@ -825,6 +982,8 @@ and GMST increase by 2100.
      - SSP1-Ma
      -
      -
+     -
+     -
    * - **SSP2**
      - 1.42°C
      - Very low/high forcing (IMAGE VLHO)
@@ -832,10 +991,22 @@ and GMST increase by 2100.
      - SSP2-VLHO
      -
      -
+     -
+     -
+   * - **SSP2**
+     - 1.44°C
+     - Very Low Emissions
+     -
+     -
+     -
+     -
+     - SSP2-VL
    * - **SSP2**
      - 1.50–1.9°C
      - Paris-consistent (peak budget)
      - SSP2-PkBudg650, SSP2-PkBudg1000
+     -
+     -
      -
      -
      -
@@ -846,12 +1017,22 @@ and GMST increase by 2100.
      - SSP2-L
      -
      - SSP2-RCP26
+     - SSP2-L
+   * - **SSP2**
+     - 1.65°C
+     - Low Overshoot
+     -
+     -
+     -
+     -
+     - SSP2-LO
    * - **SSP2–RCP1.9**
      - 1.65°C
      - Paris-consistent
      -
      -
      - SSP2-RCP19
+     -
      -
    * - **SSP2–RCP2.6**
      - 1.83°C
@@ -860,6 +1041,15 @@ and GMST increase by 2100.
      -
      - SSP2-RCP26
      -
+     -
+   * - **SSP2**
+     - 2.32°C
+     - Medium-Low Emissions
+     -
+     -
+     -
+     -
+     - SSP2-ML
    * - **SSP2**
      - 2.36°C
      - NDC (nat. determined contributions)
@@ -867,7 +1057,8 @@ and GMST increase by 2100.
      -
      -
      -
-
+     -
+     -
    * - **SSP2**
      - 2.80°C
      - Medium forcing
@@ -875,10 +1066,21 @@ and GMST increase by 2100.
      - SSP2-M
      - SSP2-RCP45
      -
+     -
+   * - **SSP2**
+     - 2.87°C
+     - Medium Emissions
+     -
+     -
+     -
+     -
+     - SSP2-M
    * - **SSP2**
      - 3.0°C
      - NPI (nat. policies implemented)
      - SSP2-NPi
+     -
+     -
      -
      -
      -
@@ -889,11 +1091,22 @@ and GMST increase by 2100.
      -
      - SSP2-Base
      - SSP2-Base
+     -
+   * - **SSP3**
+     - 3.23°C
+     - High Emissions
+     -
+     -
+     -
+     -
+     - SSP3-H
    * - **SSP3**
      - 3.50°C
      - High forcing
      -
      - SSP3-H
+     -
+     -
      -
      -
    * - **SSP3**
@@ -903,6 +1116,24 @@ and GMST increase by 2100.
      -
      -
      -
+     -
+     -
+   * - **SSP4**
+     - 1.85°C
+     - Low Overshoot
+     -
+     -
+     -
+     -
+     - SSP4-LO
+   * - **SSP5**
+     - 1.93°C
+     - Low Overshoot
+     -
+     -
+     -
+     -
+     - SSP5-LO
    * - **SSP5**
      - 3.51°C
      - High forcing
@@ -910,14 +1141,25 @@ and GMST increase by 2100.
      - SSP5-H
      -
      -
+     -
+     -
+   * - **SSP5**
+     - 3.79°C
+     - High Emissions
+     -
+     -
+     -
+     -
+     - SSP5-H
 
 CarbonBrief_ wrote a good article explaining the meaning of the SSP system.
 
 Note that while scenarios are denominated by their SSP family, they do not follow a uniform
 system to describe the climate objective. For example, *REMIND* uses *NDC*, *NPi* and *carbon peak budgets*
 (650 and 1000 GtCO2e) climate trajectories, while *IMAGE* uses *medium*, *low*, and *very low* forcing scenarios
-(with or without overshoot), and TIAM-UCL and GCAM use *Representative Concentration Pathways* (RCPs)
-to denote the climate target (e.g., RCP 1.9, 2.6, 4.5 and Base).
+(with or without overshoot). MESSAGE uses *emissions* and *overshoot* labels (e.g., Low, Very Low, Low Overshoot),
+and TIAM-UCL and GCAM use *Representative Concentration Pathways* (RCPs) to denote the climate target
+(e.g., RCP 1.9, 2.6, 4.5 and Base).
 
 
 Additionally, we provided a summary of the main characteristics of each scenario `here <https://premisedash-6f5a0259c487.herokuapp.com/>`_.

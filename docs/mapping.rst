@@ -5,7 +5,7 @@ Link to a new IAM model
 -----------------------
 
 Although *premise* comes with a set of scenarios from the REMIND, IMAGE,
-GCAM, and TIAM-UCL IAM models, it is possible to link it to a new IAM model.
+MESSAGE, GCAM, and TIAM-UCL IAM models, it is possible to link it to a new IAM model.
 To do so, you need to populate the .yaml mapping files under the
 folder https://github.com/polca/premise/tree/master/premise/iam_variables_mapping.
 
