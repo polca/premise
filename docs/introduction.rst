@@ -260,7 +260,7 @@ This table below summarize the numbers of variables mapping with *premise* for e
 
 .. list-table::
    :header-rows: 1
-   :widths: 20 15 15 15 15 15
+   :widths: 20 15 15 15 15 15 15
 
    * - Sector
      - image
@@ -268,96 +268,114 @@ This table below summarize the numbers of variables mapping with *premise* for e
      - remind-eu
      - tiam-ucl
      - gcam
+     - message
    * - Biomass
+     - 4
+     - 2
+     - 2
+     - 2
+     - 2
      - 3
-     - 2
-     - 2
-     - 2
-     - 2
    * - Carbon Dioxide Removal
+     - 4
+     - 5
+     - 5
+     - 1
      - 2
-     - 7
-     - 7
-     - 2
-     - 3
+     - 4
    * - Cement
-     - 10
-     - 4
-     - 4
+     - 5
+     - 2
+     - 2
+     - 1
      - 2
      - 2
    * - Crops
-     - 5
      - 0
      - 0
-     - 1
+     - 0
+     - 0
+     - 0
      - 0
    * - Electricity
-     - 51
-     - 34
-     - 34
-     - 61
-     - 27
+     - 28
+     - 21
+     - 21
+     - 36
+     - 24
+     - 26
    * - Fuels
-     - 53
-     - 42
-     - 42
-     - 55
+     - 38
+     - 27
+     - 27
+     - 34
+     - 25
      - 24
    * - Heat
-     - 14
+     - 38
      - 24
      - 24
      - 2
-     - 0
+     - 13
+     - 30
    * - Other
      - 4
      - 4
      - 4
      - 4
      - 4
+     - 4
    * - Steel
-     - 22
+     - 13
+     - 6
+     - 6
      - 12
      - 12
-     - 12
-     - 8
+     - 6
    * - Transport Bus
-     - 8
-     - 8
-     - 8
-     - 12
+     - 5
+     - 4
+     - 4
+     - 6
+     - 5
      - 0
    * - Transport Passenger Cars
-     - 8
-     - 60
-     - 60
-     - 20
+     - 5
+     - 30
+     - 30
+     - 14
+     - 15
      - 0
    * - Transport Rail Freight
-     - 6
-     - 6
-     - 6
-     - 4
+     - 5
+     - 3
+     - 3
+     - 3
+     - 5
      - 0
    * - Transport Road Freight
-     - 14
-     - 40
-     - 40
-     - 50
+     - 38
+     - 20
+     - 20
+     - 45
+     - 15
      - 0
    * - Transport Sea Freight
      - 8
-     - 12
-     - 12
-     - 13
+     - 6
+     - 6
+     - 18
+     - 6
      - 0
    * - Transport Two Wheelers
      - 0
-     - 12
-     - 12
+     - 6
+     - 6
      - 0
+     - 3
      - 0
+
+
 
 
 And here is a plot of the same data:
@@ -370,9 +388,9 @@ And here is a plot of the same data:
 The table and plot show how *premise* connects to IMAGE, REMIND, REMIND-EU, TIAM-UCL and GCAM
 (MESSAGE not shown here), focusing on energy generation, industry, and transport:
 
-* REMIND and REMIND-EU have the broadest coverage, with strong mappings in electricity (34 variables), fuels (42 variables), and transport, especially passenger cars (60 variables) and road freight (40 variables).
-* IMAGE offers extensive integration (417 variables), particularly in electricity (51 variables), fuels (53 variables), and industrial sectors like cement (10 variables) and steel (22 variables). However, two-wheelers are not covered by IMAGE.
-* TIAM-UCL is highly detailed in electricity (61 variables), fuels (55 variables), and road freight (50 variables) but has lower coverage in cement and heat compared to REMIND and IMAGE.
+* REMIND and REMIND-EU have the broadest coverage, with strong mappings in electricity (21 variables), fuels (27 variables), and transport, especially passenger cars (30 variables) and road freight (20 variables).
+* IMAGE offers extensive integration (509 variables), particularly in electricity (28 variables), fuels (38 variables), and industrial sectors like cement (5 variables) and steel (13 variables). However, two-wheelers are not covered by IMAGE.
+* TIAM-UCL is highly detailed in electricity (36 variables), fuels (34 variables), and road freight (45 variables) but has lower coverage in cement and heat compared to REMIND and IMAGE.
 * GCAM provides moderate coverage across energy and industrial sectors but comparatively limited transport sector detail. Its strength lies less in technology-rich transport modeling and more in the integration of land, water, agriculture and energy, which is not fully reflected in this variable count but is central to its role in scenario analysis.
 
 Sectoral observations:
@@ -387,8 +405,8 @@ Sectoral observations:
 
 *Strengths:*
 
-* Strong coverage of electricity (51 variables) and fuels (53 variables).
-* Detailed industrial sectors, especially cement (10) and steel (22).
+* Strong coverage of electricity (28 variables) and fuels (38 variables).
+* Detailed industrial sectors, especially cement (5) and steel (13).
 * Broad mapping across transport sub-sectors, except for two-wheelers.
 
 *Limitation:*
@@ -399,9 +417,9 @@ Sectoral observations:
 
 *Strengths:*
 
-* Broad coverage of electricity (34) and fuels (42).
-* Highly detailed transport, with 60 variables for passenger cars and 40 for road freight.
-* Comprehensive coverage of carbon dioxide removal (7).
+* Broad coverage of electricity (21) and fuels (27).
+* Highly detailed transport, with 30 variables for passenger cars and 20 for road freight.
+* Comprehensive coverage of carbon dioxide removal (5).
 
 *Limitation:*
 
@@ -425,13 +443,13 @@ Sectoral observations:
 
 *Strengths:*
 
-* Strong focus on electricity (61) and fuels (55).
-* Detailed road freight (50) and transport mapping.
-* Good coverage of passenger cars (20 variables).
+* Strong focus on electricity (36) and fuels (34).
+* Detailed road freight (45) and transport mapping.
+* Good coverage of passenger cars (14 variables).
 
 *Limitation:*
 
-* Limited representation of cement (2) and heat (2) sectors.
+* Limited representation of cement (1) and heat (2) sectors.
 
 
 **GCAM**
@@ -439,13 +457,13 @@ Sectoral observations:
 *Strengths:*
 
 * Integrated coverage of land, energy, water, and agriculture systems — GCAM’s key advantage over the other IAMs.
-* Moderate detail in electricity (27) and fuels (24), sufficient for energy–land–water linkages.
+* Moderate detail in electricity (24) and fuels (25), sufficient for energy–land–water linkages.
 * Includes biomass and CDR pathways with explicit land-use competition interactions.
 
 *Limitations:*
 
 * Very limited representation of the transport sector (no dedicated passenger car, freight, or modal breakdowns), which means technology-level transport pathways cannot be explored with premise.
-* Industrial detail (cement 2, steel 8) is lower than in IMAGE and REMIND, reflecting its broader systems focus rather than technology granularity.
+* Industrial detail (cement 2, steel 12) is lower than in IMAGE and REMIND, reflecting its broader systems focus rather than technology granularity.
 
 Choosing the right scenario
 ---------------------------
