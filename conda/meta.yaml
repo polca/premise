@@ -17,15 +17,18 @@ source:
 
 build:
   noarch: python
-  script: "{{ PYTHON }} -m pip install . --no-deps -vv"
+  script: "{{ PYTHON }} -m pip install . --no-deps -vv --no-build-isolation"
 
 test:
   imports:
     - premise
+  commands:
+    - python -c "import premise; print(premise.__version__)"
 
 
 requirements:
   host:
+    - pip
     - python
     - setuptools
   run:
