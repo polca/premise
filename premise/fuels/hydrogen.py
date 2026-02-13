@@ -4,7 +4,7 @@ from .utils import (
     fetch_mapping,
     adjust_electrolysis_electricity_requirement,
 )
-from .config import HYDROGEN_SOURCES, HYDROGEN_SUPPLY_LOSSES, SUPPLY_CHAIN_SCENARIOS
+from .config import HYDROGEN_SOURCES
 from ..transformation import ws, uuid, np
 
 hydrogen_parameters = fetch_mapping(HYDROGEN_SOURCES)

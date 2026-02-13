@@ -9,7 +9,6 @@ from .utils import (
     update_dataset,
     calculate_fuel_properties,
 )
-from .config import FUEL_MARKETS
 from ..transformation import ws, get_shares_from_production_volume
 
 
