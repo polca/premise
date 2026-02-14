@@ -457,13 +457,8 @@ diesel, synthetic, from electrolysis:
     value: 43
   co2: 0.0732
   biogenic_share: 1
-  eff_aliases:
-    gcam: Efficiency|Hydrogen|Electrolysis
-    remind: Tech|Liquids|Fossil|Coal|w/o CC|Efficiency
-    remind-eu: Tech|Liquids|Fossil|Coal|w/o CC|Efficiency
   iam_aliases:
     tiam-ucl: Secondary Energy|Liquids|Hydrogen|Diesel
-    gcam: Secondary Energy|Production|Hydrogen|Electrolysis
     remind: SE|Liquids|+|Hydrogen
     remind-eu: SE|Liquids|+|Hydrogen
     witch: Secondary Energy|Liquids|Hydrogen|Electricity
@@ -808,13 +803,13 @@ hydrogen, from biomass:
   biogenic_share: 1
   iam_aliases:
     tiam-ucl: Secondary Energy|Hydrogen|Biomass|Hydrogen|w/o CCS
-    gcam: Secondary Energy|Production|Hydrogen|Biomass|w/oCCS
+    gcam: Secondary Energy|Production|Hydrogen|Biomass
     remind: SE|Hydrogen|Biomass|+|w/o CC
     remind-eu: SE|Hydrogen|Biomass|+|w/o CC
     image: Secondary Energy|Hydrogen|Biomass|w/o CCS
     message: Secondary Energy|Hydrogen|Biomass|w/o CCS
   eff_aliases:
-    gcam: Efficiency|Hydrogen|Biomass|w/oCCS
+    gcam: Efficiency|Hydrogen|Biomass
     remind: Tech|Hydrogen|Biomass|w/o CC|Efficiency
     remind-eu: Tech|Hydrogen|Biomass|w/o CC|Efficiency
   ecoinvent_aliases:
@@ -829,13 +824,13 @@ hydrogen, from biomass, with CCS:
   biogenic_share: 1
   iam_aliases:
     tiam-ucl: Secondary Energy|Hydrogen|Biomass|Hydrogen|w CCS
-    gcam: Secondary Energy|Production|Hydrogen|Biomass|w/CCS
+    gcam: Secondary Energy|Production|Hydrogen|Biomass CCS
     remind: SE|Hydrogen|Biomass|+|w/ CC
     remind-eu: SE|Hydrogen|Biomass|+|w/ CC
     image: Secondary Energy|Hydrogen|Biomass|w/ CCS
     message: Secondary Energy|Hydrogen|Biomass|w/ CCS
   eff_aliases:
-    gcam: Efficiency|Hydrogen|Biomass|w/CCS
+    gcam: Efficiency|Hydrogen|Biomass CCS
     remind: Tech|Hydrogen|Biomass|w/ CC|Efficiency
     remind-eu: Tech|Hydrogen|Biomass|w/ CC|Efficiency
   ecoinvent_aliases:
@@ -873,13 +868,13 @@ hydrogen, from coal, with CCS:
   biogenic_share: 0
   iam_aliases:
     tiam-ucl: Secondary Energy|Hydrogen|Coal|Hydrogen|w CCS
-    gcam: Secondary Energy|Production|Hydrogen|Coal|w/CCS
+    gcam: Secondary Energy|Production|Hydrogen|Coal CCS
     remind: SE|Hydrogen|Coal|+|w/ CC
     remind-eu: SE|Hydrogen|Coal|+|w/ CC
     image: Secondary Energy|Hydrogen|Coal|w/ CCS
     message: Secondary Energy|Hydrogen|Coal|w/ CCS
   eff_aliases:
-    gcam: Efficiency|Hydrogen|Coal|w/CCS
+    gcam: Efficiency|Hydrogen|Coal CCS
     remind: Tech|Hydrogen|Coal|w/ CC|Efficiency
     remind-eu: Tech|Hydrogen|Coal|w/ CC|Efficiency
   ecoinvent_aliases:
@@ -892,14 +887,14 @@ hydrogen, from natural gas:
   biogenic_share: 0
   iam_aliases:
     tiam-ucl: Secondary Energy|Hydrogen|Natural Gas|Hydrogen|w/o CCS
-    gcam: Secondary Energy|Production|Hydrogen|Gas|w/oCCS
+    gcam: Secondary Energy|Production|Hydrogen|Gas
     remind: SE|Hydrogen|Gas|+|w/o CC
     remind-eu: SE|Hydrogen|Gas|+|w/o CC
     image: Secondary Energy|Hydrogen|Gas|w/o CCS
     message: Secondary Energy|Hydrogen|Gas|w/o CCS
     witch: Secondary Energy|Hydrogen|Gas|w/o CCS
   eff_aliases:
-    gcam: Efficiency|Hydrogen|Gas|w/oCCS
+    gcam: Efficiency|Hydrogen|Gas
     remind: Tech|Hydrogen|Gas|w/o CC|Efficiency
     remind-eu: Tech|Hydrogen|Gas|w/o CC|Efficiency
     witch: Efficiency|Hydrogen|Gas|w/o CCS
