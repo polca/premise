@@ -72,6 +72,7 @@ def get_delimiter(data=None, filepath=None) -> str:
     return delimiter
 
 
+@lru_cache(maxsize=1)
 def get_crops_properties() -> dict:
     """
     Return a dictionary with crop names as keys and IAM labels as values
@@ -84,6 +85,7 @@ def get_crops_properties() -> dict:
     return crop_props
 
 
+@lru_cache(maxsize=8)
 def get_oil_product_volumes(model) -> pd.DataFrame:
     """
     Load the file `oil_product_volumes.csv` that contains recent oil product volumes
@@ -111,6 +113,7 @@ def get_oil_product_volumes(model) -> pd.DataFrame:
     return df
 
 
+@lru_cache(maxsize=1)
 def get_metals_intensity_factors_data() -> xr.DataArray:
     """
     Read the materials intensity factors csv file and return an `xarray` with dimensions:
@@ -144,6 +147,7 @@ def get_metals_intensity_factors_data() -> xr.DataArray:
     return array
 
 
+@lru_cache(maxsize=8)
 def get_gains_IAM_data(model, gains_scenario):
     filepath = Path(
         DATA_DIR / "GAINS_emission_factors" / "iam_data" / gains_scenario
@@ -416,6 +420,7 @@ class IAMDataCollection:
         fuel_prod_vars = self.__get_iam_variable_labels(
             IAM_FUELS_VARS, variable="iam_aliases"
         )
+
         fuel_eff_vars = self.__get_iam_variable_labels(
             IAM_FUELS_VARS, variable="eff_aliases"
         )
@@ -758,6 +763,7 @@ class IAMDataCollection:
             system_model=self.system_model,
             sector="cdr",
         )
+
         self.biomass_mix = self.__fetch_market_data(
             data=data,
             input_vars=biomass_prod_vars,
@@ -1226,7 +1232,9 @@ class IAMDataCollection:
         if file_path is None:
             if key is None:
                 raise FileNotFoundError(
-                    f"File {file_name} not found with any supported extension in {filedir}"
+                    f"Either 1) the file {file_name} cannot found with any supported extension in {filedir}"
+                    f"or 2) no decryption key provided to download the file from Zenodo. "
+                    f"Please provide a decryption key or place the file in the specified directory."
                 )
             else:
                 # If key is provided, download the file
@@ -1457,7 +1465,7 @@ class IAMDataCollection:
         available_vars = list(set(vars) - missing_vars)
 
         if available_vars:
-            market_data = data.loc[:, available_vars, :]
+            market_data = data.sel(variables=available_vars)
         else:
             return None
 
@@ -1474,6 +1482,12 @@ class IAMDataCollection:
         market_data.coords["variables"] = [
             rev_input_vars[v] for v in market_data.variables.values
         ]
+
+        # Ensure region labels are preserved and expand globals if needed.
+        if "region" not in market_data.dims and "region" in data.dims:
+            market_data = market_data.expand_dims(region=data.coords["region"])
+        elif "region" in market_data.dims and "region" not in market_data.coords:
+            market_data = market_data.assign_coords(region=data.coords["region"])
 
         # add units by transferring those from `data`
         unit_by_k = {}
@@ -1517,6 +1531,13 @@ class IAMDataCollection:
         market_data = market_data.bfill(dim="year")
         # fill NaNs with zeros
         market_data = market_data.fillna(0)
+
+        # Restore region labels if later ops dropped them (e.g., groupby/normalize).
+        if "region" in market_data.dims:
+            data_regions = data.coords.get("region")
+            if data_regions is not None:
+                if market_data.sizes.get("region") == data_regions.size:
+                    market_data = market_data.assign_coords(region=data_regions.values)
 
         return market_data
 

@@ -40,6 +40,11 @@ This is done as follows:
 
     ndb.write_superstructure_db_to_brightway()
 
+.. note::
+
+    Superstructure export requires at least two scenarios; otherwise ``write_superstructure_db_to_brightway``
+    raises an error.
+
 You can also specify a file path for the export of the scenario
 difference file:
 
@@ -70,9 +75,11 @@ This is done as follows::
 
 This creates a set of CSV files:
 
-* a CSV file that represents product exchanges between activities, under the form [*a*, *b*, *x*]
-* a CSV file that represent natural flow exchanges between activities and the biosphere, under the form [*a*, *c*, *x*]
-* and another two CSV files contains the mapping between the activity names are the indices in the matrices
+* `A_matrix.csv`: technosphere exchanges with columns
+  `index of activity; index of product; value; uncertainty type; loc; scale; shape; minimum; maximum; negative; flip`.
+* `B_matrix.csv`: biosphere exchanges with columns
+  `index of activity; index of biosphere flow; value; uncertainty type; loc; scale; shape; minimum; maximum; negative; flip`.
+* `A_matrix_index.csv` and `B_matrix_index.csv`: mappings between dataset/flow identifiers and indices.
 
 with *a* being the row index of an activity, *b* being the column index of an activity,
 *c* being a natural flow, and *x* being the value exchanged.

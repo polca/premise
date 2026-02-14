@@ -2,7 +2,7 @@ TRANSFORM
 =========
 
 A series of transformations are applied to the Life Cycle Inventory (LCI) database to align
-process performanceand technology market shares with the outputs from the Integrated Assessment
+process performance and technology market shares with the outputs from the Integrated Assessment
 Model (IAM) scenario.
 
 Sector updates (overview)
@@ -27,8 +27,9 @@ version used.
   Mappings: ``premise/iam_variables_mapping/cement.yaml``.
 * **steel**: updates primary/secondary steel routes (e.g., BF-BOF, DRI, EAF), efficiencies, and
   regional market shares from IAM outputs. Mappings: ``premise/iam_variables_mapping/steel.yaml``.
-* **transport**: updates vehicle markets and fleets (cars, buses, trucks, ships, rail), technology
-  shares, and energy carriers; adjusts related emissions factors where relevant. Mappings:
+* **transport (split by mode in `NewDatabase`)**: updates vehicle markets and fleets (cars, buses, trucks, ships, rail),
+  technology shares, and energy carriers; adjusts related emissions factors where relevant. Use:
+  ``cars``, ``two_wheelers``, ``trucks``, ``buses``, ``trains``, ``ships``. Mappings:
   ``premise/iam_variables_mapping/transport_*.yaml``. Data: ``premise/data/transport/``.
 * **battery**: scales battery pack mass by projected energy densities; creates technology-specific
   and scenario-average battery markets (mobile and stationary). Data:
@@ -70,7 +71,7 @@ Run
     from premise import *
     import brightway2 as bw
 
-    bw.projects.set_current("my_project)
+    bw.projects.set_current("my_project")
 
     ndb = NewDatabase(
         scenarios=[
@@ -315,7 +316,7 @@ To update the material intensities in the database, run the following code:
     from premise import *
     import brightway2 as bw
 
-    bw.projects.set_current("my_project)
+    bw.projects.set_current("my_project")
 
     ndb = NewDatabase(
         scenarios=[
@@ -423,7 +424,7 @@ To update the mining practices in the database, run the following code:
     from premise import *
     import brightway2 as bw
 
-    bw.projects.set_current("my_project)
+    bw.projects.set_current("my_project")
 
     ndb = NewDatabase(
         scenarios=[
@@ -532,7 +533,7 @@ Run
     from premise import *
     import brightway2 as bw
 
-    bw.projects.set_current("my_project)
+    bw.projects.set_current("my_project")
 
     ndb = NewDatabase(
         scenarios=[
@@ -616,7 +617,7 @@ Run
     from premise import *
     import brightway2 as bw
 
-    bw.projects.set_current("my_project)
+    bw.projects.set_current("my_project")
 
     ndb = NewDatabase(
         scenarios=[
@@ -1224,7 +1225,7 @@ Run
     from premise import *
     import brightway2 as bw
 
-    bw.projects.set_current("my_project)
+    bw.projects.set_current("my_project")
 
     ndb = NewDatabase(
         scenarios=[
@@ -1347,7 +1348,7 @@ Run
     from premise import *
     import brightway2 as bw
 
-    bw.projects.set_current("my_project)
+    bw.projects.set_current("my_project")
 
     ndb = NewDatabase(
         scenarios=[
@@ -1415,7 +1416,7 @@ Run
     from premise import *
     import brightway2 as bw
 
-    bw.projects.set_current("my_project)
+    bw.projects.set_current("my_project")
 
     ndb = NewDatabase(
         scenarios=[
@@ -1575,7 +1576,7 @@ Run
     from premise import *
     import brightway2 as bw
 
-    bw.projects.set_current("my_project)
+    bw.projects.set_current("my_project")
 
     ndb = NewDatabase(
         scenarios=[
@@ -1812,7 +1813,7 @@ Run
     from premise import *
     import brightway2 as bw
 
-    bw.projects.set_current("my_project)
+    bw.projects.set_current("my_project")
 
     ndb = NewDatabase(
         scenarios=[
@@ -1822,7 +1823,7 @@ Run
         source_version="3.7.1",
         key='xxxxxxxxxxxxxxxxxxxxxxxxx'
     )
-    ndb.update("dac")
+    ndb.update("cdr")
 
 Key outputs
 ~~~~~~~~~~~
@@ -1850,7 +1851,7 @@ Run
     from premise import *
     import brightway2 as bw
 
-    bw.projects.set_current("my_project)
+    bw.projects.set_current("my_project")
 
     ndb = NewDatabase(
         scenarios=[
@@ -2147,7 +2148,7 @@ Run
     from premise import *
     import brightway2 as bw
 
-    bw.projects.set_current("my_project)
+    bw.projects.set_current("my_project")
 
     ndb = NewDatabase(
         scenarios=[
@@ -2622,7 +2623,7 @@ Run
     from premise import *
     import brightway2 as bw
 
-    bw.projects.set_current("my_project)
+    bw.projects.set_current("my_project")
 
     ndb = NewDatabase(
         scenarios=[

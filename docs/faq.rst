@@ -60,7 +60,7 @@ These datapackages can be shared freely, as they do not contain any ecoinvent da
 IAM models
 ----------
 
-I use a different IAM than REMIND, IMAGE or TIAM-UCL ... Can I still use ``premise``?
+I use a different IAM than REMIND, IMAGE, MESSAGE, GCAM or TIAM-UCL ... Can I still use ``premise``?
 _____________________________________________________________________________________
 
 There is a MAPPING section in the documentation

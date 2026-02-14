@@ -48,6 +48,7 @@ logging.basicConfig(
 )
 
 
+@lru_cache(maxsize=1)
 def get_classifications():
     """
     Retrieve the classification of the datasets to import.
@@ -69,6 +70,7 @@ def get_classifications():
     return classification_dict
 
 
+@lru_cache(maxsize=1)
 def get_correspondence_bio_flows():
     """
     Mapping between ei39 and ei<39 biosphere flows.
@@ -79,6 +81,7 @@ def get_correspondence_bio_flows():
         return flows
 
 
+@lru_cache(maxsize=8)
 def get_biosphere_code(version) -> dict:
     """
     Retrieve a dictionary with biosphere flow names and uuid codes.
@@ -113,6 +116,7 @@ def get_biosphere_code(version) -> dict:
         return dict
 
 
+@lru_cache(maxsize=1)
 def get_consequential_blacklist():
     with open(FILEPATH_CONSEQUENTIAL_BLACKLIST, "r", encoding="utf-8") as stream:
         flows = yaml.safe_load(stream)

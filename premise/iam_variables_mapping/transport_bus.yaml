@@ -9,6 +9,7 @@
     image:
       - Energy Service|Transportation|Passenger|Bus|Liquids|Biomass
       - Energy Service|Transportation|Passenger|Bus|Liquids|Fossil
+    gcam: Distance|Transport|Pass|Road|Bus|Liquids
   energy_use_aliases:
     remind: FE|Transport|Pass|Road|Bus|Liquids
     remind-eu: FE|Transport|Pass|Road|Bus|Liquids
@@ -16,6 +17,7 @@
     image:
       - Final Energy|Transportation|Passenger|Bus|Liquids|Biomass
       - Final Energy|Transportation|Passenger|Bus|Liquids|Fossil
+    gcam: Final Energy|Transport|Pass|Road|Bus|Liquids
   ecoinvent_aliases:
     fltr:
       - 'transport, passenger bus, diesel, 13m single deck urban bus, EURO-VI'
@@ -38,8 +40,10 @@
 'bus, diesel hybrid':
     iam_aliases:
         tiam-ucl: Distance|Transport|Bus|Gasoline|Gasoline
+        gcam: Distance|Transport|Pass|Road|Bus|Hybrid Liquids
     energy_use_aliases:
         tiam-ucl: Final Energy|Transport|Bus|Gasoline|Gasoline
+        gcam: Final Energy|Transport|Pass|Road|Bus|Hybrid Liquids
     ecoinvent_aliases:
       fltr:
         - transport, passenger bus, diesel hybrid, 13m single deck coach bus, EURO-VI
@@ -53,11 +57,13 @@
     remind-eu: ES|Transport|Pass|Road|Bus|Gases
     tiam-ucl: Distance|Transport|Bus|Natural Gas|Natural Gas
     image: Energy Service|Transportation|Passenger|Bus|Gases
+    gcam: Distance|Transport|Pass|Road|Bus|NG
   energy_use_aliases:
     remind: FE|Transport|Pass|Road|Bus|Gases
     remind-eu: FE|Transport|Pass|Road|Bus|Gases
     tiam-ucl: Final Energy|Transport|Bus|Natural Gas|Natural Gas
     image: Final Energy|Transportation|Passenger|Bus|Gases
+    gcam: Final Energy|Transport|Pass|Road|Bus|NG
   ecoinvent_aliases:
     fltr:
       - 'transport, passenger bus, compressed gas, 13m single deck urban bus, EURO-VI'
@@ -83,11 +89,13 @@
     remind-eu: ES|Transport|Pass|Road|Bus|FCEV
     tiam-ucl: Distance|Transport|Bus|Hydrogen Fuel Cell|Bus Hydrogen
     image: Energy Service|Transportation|Passenger|Bus|Hydrogen
+    gcam: Distance|Transport|Pass|Road|Bus|FCEV
   energy_use_aliases:
     remind: FE|Transport|Pass|Road|Bus|FCEV
     remind-eu: FE|Transport|Pass|Road|Bus|FCEV
     tiam-ucl: Final Energy|Transport|Bus|Hydrogen Fuel Cell|Bus Hydrogen
     image: Final Energy|Transportation|Passenger|Bus|Hydrogen
+    gcam: Final Energy|Transport|Pass|Road|Bus|FCEV
   ecoinvent_aliases:
     fltr:
       - 'transport, passenger bus, fuel cell electric, 13m single deck urban bus'
@@ -99,10 +107,12 @@
     remind: ES|Transport|Pass|Road|Bus|BEV
     remind-eu: ES|Transport|Pass|Road|Bus|BEV
     image: Energy Service|Transportation|Passenger|Bus|Electricity
+    gcam: Distance|Transport|Pass|Road|Bus|BEV
   energy_use_aliases:
     remind: FE|Transport|Pass|Road|Bus|Electricity
     remind-eu: FE|Transport|Pass|Road|Bus|Electricity
     image: Final Energy|Transportation|Passenger|Bus|Electricity
+    gcam: Final Energy|Transport|Pass|Road|Bus|BEV
   ecoinvent_aliases:
     fltr:
       - 'transport, passenger bus, battery electric - overnight charging, 13m single deck urban bus'

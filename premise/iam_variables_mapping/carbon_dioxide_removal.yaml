@@ -13,10 +13,7 @@ direct air capture (solvent) with storage:
     image: Carbon Capture|Direct Air Capture
     tiam-ucl: Carbon Capture|Storage|Direct Air Capture
     witch: Carbon Sequestration|Direct Air Capture|Solvent
-    gcam:
-      - Carbon Capture|Storage|Direct Air Capture|hightemp DAC NG
-      - Carbon Capture|Storage|Direct Air Capture|hightemp DAC elec
-    message: Carbon Capture|Direct Air Capture|Solvent
+    gcam: Carbon Sequestration|Direct Air Capture|Solvent
   energy_use_aliases:
     image:
       - Final Energy|Carbon Management|Direct Air Capture
@@ -36,9 +33,7 @@ direct air capture (solvent) with storage:
     witch:
       - Final Energy|Carbon Management|Direct Air Capture|Solvent|Electricity|PV
       - Final Energy|Carbon Management|Direct Air Capture|Solvent|Electricity|CSP
-    gcam:
-      - Energy|Consumption|Direct Air Capture|hightemp DAC NG|Electricity
-      - Energy|Consumption|Direct Air Capture|hightemp DAC elec|Electricity
+    gcam: Final Energy|Carbon Management|Direct Air Capture|Solvent
     message:
       - Final Energy|Carbon Management|Direct Air Capture|Solvent|Electricity
       - Final Energy|Carbon Management|Direct Air Capture|Gases
@@ -55,13 +50,13 @@ direct air capture (solvent) with storage:
 direct air capture (sorbent) with storage:
   iam_aliases:
     witch: Carbon Sequestration|Direct Air Capture|Sorbent
-    gcam: Carbon Capture|Storage|Direct Air Capture|lowtemp DAC heatpump
+    gcam: Carbon Capture|Storage|Direct Air Capture|Sorbent
     message: Carbon Capture|Direct Air Capture|Sorbent
   energy_use_aliases:
     witch:
       - Final Energy|Carbon Management|Direct Air Capture|Sorbent|Heat|Gases
       - Final Energy|Carbon Management|Direct Air Capture|Sorbent|Electricity|CSP
-    gcam: Energy|Consumption|Direct Air Capture|lowtemp DAC heatpump|Electricity
+    gcam: Final Energy|Carbon Management|Direct Air Capture|Sorbent
     message: Final Energy|Carbon Management|Direct Air Capture|Sorbent|Electricity
 
   ecoinvent_aliases:
