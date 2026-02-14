@@ -181,7 +181,7 @@ jobs:
   
 
   testconda:
-    name: (${{ matrix.python-version }}, ${{ matrix.os }})
+    name: (${{ matrix.package }}, py${{ matrix.python-version }}, ${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     needs: conda
 
@@ -190,6 +190,7 @@ jobs:
       matrix:
         os: ["ubuntu-latest"]
         python-version: ["3.11",]
+        package: ["premise-bw2", "premise-bw25"]
         solver: ["classic"]
     steps:
       - uses: actions/checkout@v4
@@ -199,14 +200,14 @@ jobs:
           channels: conda-forge,cmutel,konstantinstadler,haasad,pascallesage,romainsacchi
           allow-softlinks: true
           auto-update-conda: true
+          channel-priority: strict
           activate-environment: test
           conda-solver: ${{ matrix.solver }}
 
       - name: Pull distribution 📦 from Anaconda and test it if master branch
 
         run: |
-          conda install romainsacchi::premise
-          conda update premise
-          conda install bottleneck
+          conda install python=${{ matrix.python-version }} romainsacchi::${{ matrix.package }}
+          python -c "import premise; print(premise.__version__)"
         env:
           IAM_FILES_KEY: ${{ secrets.IAM_FILES_KEY }}
