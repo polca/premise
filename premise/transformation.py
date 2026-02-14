@@ -933,10 +933,14 @@ class BaseTransformation:
             ]
 
             if len(source_location) == 0:
-                source_location = [loc for loc in preserved_exchanges.keys() if loc == "RoW"]
+                source_location = [
+                    loc for loc in preserved_exchanges.keys() if loc == "RoW"
+                ]
 
             if len(source_location) == 0:
-                source_location = [loc for loc in preserved_exchanges.keys() if loc == "GLO"]
+                source_location = [
+                    loc for loc in preserved_exchanges.keys() if loc == "GLO"
+                ]
 
             if len(source_location) > 0:
                 for exc in preserved_exchanges[source_location[0]]:
