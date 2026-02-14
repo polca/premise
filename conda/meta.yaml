@@ -17,9 +17,12 @@ source:
 
 build:
   noarch: python
-  script: "{{ PYTHON }} -m pip install . --no-deps -vv"
+  script: "{{ PYTHON }} -m pip install \"$SRC_DIR\" --no-deps --no-build-isolation -vv"
 
 test:
+  requires:
+    - python
+    - pip
   imports:
     - premise
   commands:
