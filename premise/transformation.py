@@ -707,7 +707,10 @@ class BaseTransformation:
         if self.year > production_volumes.year.values.max():
             year = production_volumes.year.values.max()
 
-        if not any(v in production_volumes.variables.values for v in mapping.keys()):
+        available_variables = set(production_volumes.variables.values.tolist())
+        mapped_variables = [v for v in mapping.keys() if v in available_variables]
+
+        if not mapped_variables:
             return (
                 None,
                 {(var, reg): 0.0 for var in mapping.keys() for reg in regions},
@@ -715,11 +718,7 @@ class BaseTransformation:
             )
 
         try:
-            variables = [
-                v
-                for v in list(mapping.keys())
-                if v in production_volumes.variables.values
-            ]
+            variables = mapped_variables
             if year in production_volumes.year.values:
                 production_volumes = production_volumes.sel(
                     variables=variables, region=regions, year=year
@@ -818,9 +817,10 @@ class BaseTransformation:
             }
             regional_shares_dict = {reg: 1 / len(regions) for reg in regions}
 
-        transport_operations = self.extract_market_logistics(
+        preserved_exchanges = self.extract_market_ancillary_exchanges(
             name=name,
             reference_product=reference_product,
+            market_unit=unit,
         )
 
         for region in regions:
@@ -923,43 +923,27 @@ class BaseTransformation:
             if additional_exchanges_fn:
                 additional_exchanges_fn(market_dataset)
 
-            # add transport operations
-            transport_location = [
+            # Preserve ancillary legacy exchanges:
+            # - all biosphere exchanges
+            # - technosphere exchanges with a unit different from market unit
+            source_location = [
                 loc
-                for loc in transport_operations.keys()
+                for loc in preserved_exchanges.keys()
                 if loc in self.iam_to_ecoinvent_loc[region]
             ]
 
-            if len(transport_location) == 0:
-                # check if RoW is available
-                transport_location = [
-                    loc for loc in transport_operations.keys() if loc == "RoW"
-                ]
+            if len(source_location) == 0:
+                source_location = [loc for loc in preserved_exchanges.keys() if loc == "RoW"]
 
-            if len(transport_location) == 0:
-                # check if GLO is available
-                transport_location = [
-                    loc for loc in transport_operations.keys() if loc == "GLO"
-                ]
+            if len(source_location) == 0:
+                source_location = [loc for loc in preserved_exchanges.keys() if loc == "GLO"]
 
-            if len(transport_location) > 0:
-                transport_location = transport_location[0]
-            else:
-                transport_location = None
-
-            if transport_location:
-                transport_op = transport_operations[transport_location]
-                market_dataset["exchanges"].append(
-                    {
-                        "name": transport_op["name"],
-                        "product": transport_op["reference product"],
-                        "location": transport_op["location"],
-                        "amount": transport_op["amount"],
-                        "unit": transport_op["unit"],
-                        "uncertainty type": 0,
-                        "type": transport_op["type"],
-                    }
-                )
+            if len(source_location) > 0:
+                for exc in preserved_exchanges[source_location[0]]:
+                    new_exc = copy.deepcopy(exc)
+                    # These links are rebuilt at export/relink time.
+                    new_exc.pop("input", None)
+                    market_dataset["exchanges"].append(new_exc)
 
             self.database.append(market_dataset)
             self.add_to_index(market_dataset)
@@ -1046,11 +1030,12 @@ class BaseTransformation:
             regions=regions,
         )
 
-    def extract_market_logistics(
+    def extract_market_ancillary_exchanges(
         self,
         name: str,
         reference_product: str,
-    ) -> Dict[Tuple[str, str, str], dict]:
+        market_unit: str,
+    ) -> Dict[str, List[dict]]:
         datasets = list(
             ws.get_many(
                 self.database,
@@ -1059,20 +1044,19 @@ class BaseTransformation:
             )
         )
 
-        transport_operations = {}
+        preserved_exchanges = defaultdict(list)
 
         for dataset in datasets:
-            for exc in ws.technosphere(dataset, ws.contains("unit", "kilometer")):
-                transport_operations[dataset["location"]] = {
-                    "name": exc["name"],
-                    "reference product": exc["product"],
-                    "location": exc["location"],
-                    "amount": exc["amount"],
-                    "unit": exc["unit"],
-                    "type": exc["type"],
-                }
+            for exc in ws.biosphere(dataset):
+                preserved_exchanges[dataset["location"]].append(exc)
 
-        return transport_operations
+            for exc in ws.technosphere(dataset):
+                # Keep ancillary market inputs (e.g., transport, losses, electricity),
+                # while market-supply links (same unit as market) are rebuilt from IAM shares.
+                if exc.get("unit") != market_unit:
+                    preserved_exchanges[dataset["location"]].append(exc)
+
+        return preserved_exchanges
 
     def process_and_add_activities(
         self,
@@ -1116,7 +1100,7 @@ class BaseTransformation:
             regions = regions or self.regions
             regional_shares_dict = {reg: 1 / len(regions) for reg in regions}
 
-        processed_datasets, seen_datasets = [], []
+        processed_datasets, seen_datasets = [], set()
 
         # resize production volumes to the keys available in mapping
         if production_volumes is not None:
@@ -1130,7 +1114,9 @@ class BaseTransformation:
 
         for technology, grouped_activities in mapping.items():
             grouped_activities = [
-                ds for ds in grouped_activities if ds["name"] not in seen_datasets
+                ds
+                for ds in grouped_activities
+                if (ds["name"], ds["reference product"]) not in seen_datasets
             ]
 
             if not grouped_activities:
@@ -1197,7 +1183,9 @@ class BaseTransformation:
                                 efficiency_adjustment_fn(dataset, technology)
 
                     processed_datasets.extend(regionalized_datasets.values())
-                    seen_datasets.extend([ds["name"] for ds in activities])
+                    seen_datasets.update(
+                        (ds["name"], ds["reference product"]) for ds in activities
+                    )
                     mapping[technology].extend(regionalized_datasets.values())
 
                     datasets = list(

@@ -236,6 +236,7 @@ class SyntheticFuelsMixin:
                 for market_name in [
                     "market for petrol",
                     "market for petrol, low-sulfur",
+                    "market for petrol, unleaded",
                 ]:
                     self.process_and_add_markets(
                         name=market_name,
