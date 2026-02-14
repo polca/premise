@@ -17,7 +17,7 @@ source:
 
 build:
   noarch: python
-  script: "{{ PYTHON }} -m pip install . --no-deps -vv --no-build-isolation"
+  script: "{{ PYTHON }} -m pip install $SRC_DIR --no-deps -vv --no-build-isolation"
 
 test:
   imports:
@@ -31,6 +31,7 @@ requirements:
     - pip
     - python
     - setuptools
+    - wheel
   run:
     - {{ bw2data_versions[bw] }}
     - python
