@@ -3,62 +3,96 @@
 
 
 package:
-  name: {{ name }}-{{ bw }}
+  name: {{ name }}
   version: {{ version }}
 
 source:
   path: ..
 
+outputs:
+  - name: premise-bw2
+    build:
+      noarch: python
+      script: "python -m pip install . --no-deps --no-build-isolation -vv"
+    requirements:
+      host:
+        - pip
+        - python
+        - setuptools
+        - wheel
+      run:
+        - bw2data <4.0.0
+        - python
+        - bottleneck
+        - bw2io
+        - ecoinvent_interface
+        - constructive_geometries>=0.9.5
+        - cryptography
+        - datapackage
+        - numpy <2.0.0
+        - pandas
+        - platformdirs
+        - prettytable
+        - pyarrow
+        - pycountry
+        - pyYaml
+        - requests
+        - schema
+        - scipy<1.14.0
+        - sparse>=0.14.0
+        - wurst>=0.4
+        - xarray<=2024.2.0
+        - tqdm
+        - unfold
+    test:
+      requires:
+        - python
+      imports:
+        - premise
+      commands:
+        - python -c "import premise; print(premise.__version__)"
 
-{% set bw2data_versions = {
-    "bw2": "bw2data <4.0.0",
-    "bw25": "bw2data >=4.0.0"
-} %}
-
-build:
-  noarch: python
-  script: "{{ PYTHON }} -m pip install \"$SRC_DIR\" --no-deps --no-build-isolation -vv"
-
-test:
-  requires:
-    - python
-    - pip
-  imports:
-    - premise
-  commands:
-    - python -c "import premise; print(premise.__version__)"
-
-
-requirements:
-  host:
-    - pip
-    - python
-    - setuptools
-    - wheel
-  run:
-    - {{ bw2data_versions[bw] }}
-    - python
-    - bottleneck
-    - bw2io
-    - ecoinvent_interface
-    - constructive_geometries>=0.9.5
-    - cryptography
-    - datapackage
-    - numpy <2.0.0
-    - pandas
-    - platformdirs
-    - prettytable
-    - pyarrow
-    - pycountry
-    - pyYaml
-    - requests
-    - schema
-    - scipy<1.14.0
-    - sparse>=0.14.0
-    - wurst>=0.4
-    - xarray<=2024.2.0
-    - tqdm
-    - unfold
+  - name: premise-bw25
+    build:
+      noarch: python
+      script: "python -m pip install . --no-deps --no-build-isolation -vv"
+    requirements:
+      host:
+        - pip
+        - python
+        - setuptools
+        - wheel
+      run:
+        - bw2data >=4.0.0
+        - python
+        - bottleneck
+        - bw2io
+        - ecoinvent_interface
+        - constructive_geometries>=0.9.5
+        - cryptography
+        - datapackage
+        - numpy <2.0.0
+        - pandas
+        - platformdirs
+        - prettytable
+        - pyarrow
+        - pycountry
+        - pyYaml
+        - requests
+        - schema
+        - scipy<1.14.0
+        - sparse>=0.14.0
+        - wurst>=0.4
+        - xarray<=2024.2.0
+        - tqdm
+        - unfold
+    test:
+      requires:
+        - python
+      imports:
+        - premise
+      commands:
+        - python -c "import premise; print(premise.__version__)"
 
 channels:
   - conda-forge
