@@ -62,35 +62,9 @@ The tool currently supports the following IAMs:
 | GCAM v.8.2        | GCAM (Global Change Analysis Model) is an integrated assessment model that simulates the interactions between energy, water, land use, climate, and economic systems on a global scale. It is designed to analyze how different policy scenarios, technological developments, and socio-economic factors influence greenhouse gas emissions, energy production and consumption, land use changes, and climate outcomes. GCAM incorporates detailed representations of energy technologies, agricultural systems, and land-use dynamics, allowing for comprehensive assessments of mitigation strategies and their implications for sustainable development. The model is widely used for exploring pathways to achieve climate targets while considering trade-offs across multiple sectors.  |
 
 
-What's new in 2.3.4
-====================
-
-- Ecoinvent 3.12 compatibility
-- Improved migration system, relying now on [ecoinvent_migrate](https://github.com/brightway-lca/ecoinvent_migrate)
-- Update REMIND scenario from 3.5.0 to 3.5.2
-- Fix error in inventories for PV farm transformer: the amount of copper was overestimated by a factor of 10
-- Extended country-specific PV electricity inventories from 33 to 171 countries (see [documentation](https://premise.readthedocs.io/en/latest/extract.html#photovoltaic-panels))
-- Fixed issue related to unspecified production volume in country-specific PV electricity inventories
-
-What's new in 2.3.0?
-====================
-
-- Update and addition of REMIND and IMAGE scenarios to the latest versions (REMIND v.3.5, IMAGE v.3.4).
-- Addition of REMIND-EU scenarios: these scenarios are based on the REMIND model and further subdivide the European region into 8 geographies (France, Germany, Portugal-Spain, etc.).
-- Addition of GCAM scenarios.
-- Additional sectoral updates: 
-  - transport (shipping, rail, road)
-    - shipping: new inventories for different powertrain types (marine oil, ammonia, methanol, hydrogen),
-    - rail: new inventories for different rail technologies (diesel, electric, etc.),
-    - road: new inventories for different road transport technologies (ICEV, BEV, FCEV, etc.),
-  - carbon dioxide removal mixes are introduced (direct air capture, enhanced rock weather, ocean liming, etc.),
-  - metals: metal intensity factors (Pt, Cu, Co, Mn, etc.) in energy technologies (wind turbines, PVs, BEV) are updated to reflect current and projected trends,
-  - mining waste: impoundment of sulfidic tailings is gradually replaced by back-filling,
-  - heat: residential and industrial heat mixes are introduced, with different technologies (heat pumps, district heating, etc.) and energy sources (biomass, electricity, etc.),
-  - and battery: different battery technology mixes are introduced (Lithium, post-Lithium and Mix) and battery energy densities are adjusted over time.
-- Additional technology representation for primary steel production (direct reduced iron, hydrogen-based steelmaking, etc.).
-- Regionalization of biomass-producing forestry activities.
-- PathwaysDataPackage: a new class that allows exporting data packages to [pathways](https://github.com/polca/pathways).
+Changelog
+---------
+Release notes are maintained in [`CHANGELOG.md`](CHANGELOG.md).
 
 
 Documentation
