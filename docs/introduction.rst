@@ -277,39 +277,39 @@ This table below summarize the numbers of variables mapping with *premise* for e
      - 2
      - 3
    * - Carbon Dioxide Removal
-     - 4
      - 5
-     - 5
-     - 1
-     - 2
+     - 11
+     - 11
+     - 3
      - 4
+     - 7
    * - Cement
-     - 5
-     - 2
-     - 2
-     - 1
-     - 2
-     - 2
+     - 45
+     - 4
+     - 4
+     - 7
+     - 12
+     - 26
    * - Crops
+     - 10
      - 0
      - 0
-     - 0
-     - 0
-     - 0
+     - 1
+     - 10
      - 0
    * - Electricity
-     - 28
-     - 21
-     - 21
-     - 36
-     - 24
-     - 26
-   * - Fuels
-     - 38
-     - 27
-     - 27
+     - 51
      - 34
-     - 25
+     - 34
+     - 61
+     - 41
+     - 43
+   * - Fuels
+     - 56
+     - 49
+     - 49
+     - 55
+     - 48
      - 24
    * - Heat
      - 38
@@ -326,53 +326,53 @@ This table below summarize the numbers of variables mapping with *premise* for e
      - 4
      - 4
    * - Steel
-     - 13
-     - 6
-     - 6
-     - 12
-     - 12
-     - 6
+     - 117
+     - 42
+     - 42
+     - 119
+     - 23
+     - 14
    * - Transport Bus
-     - 5
-     - 4
-     - 4
-     - 6
-     - 5
+     - 10
+     - 8
+     - 8
+     - 12
+     - 10
      - 0
    * - Transport Passenger Cars
-     - 5
+     - 10
+     - 60
+     - 60
+     - 29
      - 30
-     - 30
-     - 14
-     - 15
      - 0
    * - Transport Rail Freight
-     - 5
-     - 3
-     - 3
-     - 3
-     - 5
+     - 10
+     - 7
+     - 7
+     - 6
+     - 10
      - 0
    * - Transport Road Freight
      - 38
-     - 20
-     - 20
-     - 45
-     - 15
+     - 40
+     - 40
+     - 90
+     - 29
      - 0
    * - Transport Sea Freight
-     - 8
-     - 6
-     - 6
-     - 18
-     - 6
+     - 16
+     - 15
+     - 15
+     - 37
+     - 12
      - 0
    * - Transport Two Wheelers
      - 0
-     - 6
-     - 6
+     - 12
+     - 12
      - 0
-     - 3
+     - 6
      - 0
 
 
@@ -385,28 +385,29 @@ And here is a plot of the same data:
    :align: center
    :alt: Comparison plot of mapped variables across IAM models
 
-The table and plot show how *premise* connects to IMAGE, REMIND, REMIND-EU, TIAM-UCL and GCAM
-(MESSAGE not shown here), focusing on energy generation, industry, and transport:
+The table and plot show how *premise* connects to IMAGE, REMIND, REMIND-EU, TIAM-UCL, GCAM,
+and MESSAGE, focusing on energy generation, industry, and transport:
 
-* REMIND and REMIND-EU have the broadest coverage, with strong mappings in electricity (21 variables), fuels (27 variables), and transport, especially passenger cars (30 variables) and road freight (20 variables).
-* IMAGE offers extensive integration (509 variables), particularly in electricity (28 variables), fuels (38 variables), and industrial sectors like cement (5 variables) and steel (13 variables). However, two-wheelers are not covered by IMAGE.
-* TIAM-UCL is highly detailed in electricity (36 variables), fuels (34 variables), and road freight (45 variables) but has lower coverage in cement and heat compared to REMIND and IMAGE.
-* GCAM provides moderate coverage across energy and industrial sectors but comparatively limited transport sector detail. Its strength lies less in technology-rich transport modeling and more in the integration of land, water, agriculture and energy, which is not fully reflected in this variable count but is central to its role in scenario analysis.
+* TIAM-UCL has the largest coverage in this table (428 variables), with strong detail in steel (119), electricity (61), fuels (55), and road freight (90).
+* IMAGE also offers broad integration (414 variables), with high counts in steel (117), fuels (56), electricity (51), and cement (45). Two-wheelers are not covered by IMAGE.
+* REMIND and REMIND-EU have identical coverage (312 variables each), with particularly strong detail in passenger cars (60), fuels (49), and road freight (40).
+* GCAM provides moderate coverage (254 variables), with strength in electricity (41), fuels (48), and cross-sector integration of land, water, agriculture, and energy.
+* MESSAGE includes 151 mapped variables and currently does not include transport-sector mappings.
 
 Sectoral observations:
 
-* Electricity and fuels remain the most consistently mapped sectors across all models.
-* Transport sub-sectors (bus, passenger cars, rail, road, and sea freight) are well represented in REMIND(-EU) and TIAM-UCL, with IMAGE covering all except two-wheelers.
+* Electricity and fuels remain among the most consistently mapped sectors across all models.
+* Transport sub-sectors (bus, passenger cars, rail, road, and sea freight) are well represented in REMIND(-EU), TIAM-UCL, and GCAM, with IMAGE covering all except two-wheelers.
 * MESSAGE scenarios currently do not have transport-sector mappings in *premise*.
-* Industrial sectors, particularly steel and cement, are better represented in IMAGE and REMIND(-EU) than in TIAM-UCL.
+* Industrial sectors are strongly represented in IMAGE and TIAM-UCL, especially for steel and cement.
 
 
 **IMAGE**
 
 *Strengths:*
 
-* Strong coverage of electricity (28 variables) and fuels (38 variables).
-* Detailed industrial sectors, especially cement (5) and steel (13).
+* Strong coverage of electricity (51 variables) and fuels (56 variables).
+* Detailed industrial sectors, especially cement (45) and steel (117).
 * Broad mapping across transport sub-sectors, except for two-wheelers.
 
 *Limitation:*
@@ -417,13 +418,13 @@ Sectoral observations:
 
 *Strengths:*
 
-* Broad coverage of electricity (21) and fuels (27).
-* Highly detailed transport, with 30 variables for passenger cars and 20 for road freight.
-* Comprehensive coverage of carbon dioxide removal (5).
+* Broad coverage of electricity (34) and fuels (49).
+* Highly detailed transport, with 60 variables for passenger cars and 40 for road freight.
+* Comprehensive coverage of carbon dioxide removal (11).
 
 *Limitation:*
 
-* Less detailed in cement and steel compared to IMAGE.
+* Less detailed in cement and steel compared to IMAGE and TIAM-UCL.
 
 **REMIND-EU**
 
@@ -431,25 +432,25 @@ Sectoral observations:
 
 * Same broad mapping as REMIND, but with EU-specific detail.
 * Excellent coverage of transport and fuels, aligned with EU decarbonization pathways.
-* Includes CO₂ removal and electricity in high detail.
+* Includes CO₂ removal (11) and electricity (34) in high detail.
 
 
 *Limitations:*
 
-* Industrial coverage (cement, steel) is moderate compared to IMAGE.
+* Industrial coverage (cement 4, steel 42) is moderate compared to IMAGE and TIAM-UCL.
 * Not as many scenarios available as for REMIND.
 
 **TIAM-UCL**
 
 *Strengths:*
 
-* Strong focus on electricity (36) and fuels (34).
-* Detailed road freight (45) and transport mapping.
-* Good coverage of passenger cars (14 variables).
+* Strong focus on electricity (61) and fuels (55).
+* Detailed road freight (90) and transport mapping.
+* Good coverage of passenger cars (29 variables).
 
 *Limitation:*
 
-* Limited representation of cement (1) and heat (2) sectors.
+* Limited representation of heat (2) and carbon dioxide removal (3) sectors.
 
 
 **GCAM**
@@ -457,13 +458,26 @@ Sectoral observations:
 *Strengths:*
 
 * Integrated coverage of land, energy, water, and agriculture systems — GCAM’s key advantage over the other IAMs.
-* Moderate detail in electricity (24) and fuels (25), sufficient for energy–land–water linkages.
+* Moderate detail in electricity (41) and fuels (48), sufficient for energy–land–water linkages.
 * Includes biomass and CDR pathways with explicit land-use competition interactions.
 
 *Limitations:*
 
-* Very limited representation of the transport sector (no dedicated passenger car, freight, or modal breakdowns), which means technology-level transport pathways cannot be explored with premise.
-* Industrial detail (cement 2, steel 12) is lower than in IMAGE and REMIND, reflecting its broader systems focus rather than technology granularity.
+* Transport coverage is lower than REMIND(-EU) and TIAM-UCL for passenger cars and road freight.
+* Industrial detail is uneven across sectors (cement 12, steel 23), reflecting its broader systems focus rather than technology granularity.
+
+**MESSAGE**
+
+*Strengths:*
+
+* Good coverage in electricity (43), fuels (24), and heat (30).
+* Strong representation of cement-related mappings (26), alongside steel (14).
+* Includes biomass (3) and carbon dioxide removal pathways (7).
+
+*Limitations:*
+
+* No transport-sector mappings are currently available (bus, passenger cars, rail, road, sea freight, and two-wheelers).
+* Coverage is lower than IMAGE, REMIND(-EU), and TIAM-UCL in several sectors, with 151 mapped variables in total.
 
 Choosing the right scenario
 ---------------------------
