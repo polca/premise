@@ -2,7 +2,7 @@ TRANSFORM
 =========
 
 A series of transformations are applied to the Life Cycle Inventory (LCI) database to align
-process performanceand technology market shares with the outputs from the Integrated Assessment
+process performance and technology market shares with the outputs from the Integrated Assessment
 Model (IAM) scenario.
 
 Sector updates (overview)
@@ -27,8 +27,9 @@ version used.
   Mappings: ``premise/iam_variables_mapping/cement.yaml``.
 * **steel**: updates primary/secondary steel routes (e.g., BF-BOF, DRI, EAF), efficiencies, and
   regional market shares from IAM outputs. Mappings: ``premise/iam_variables_mapping/steel.yaml``.
-* **transport**: updates vehicle markets and fleets (cars, buses, trucks, ships, rail), technology
-  shares, and energy carriers; adjusts related emissions factors where relevant. Mappings:
+* **transport (split by mode in `NewDatabase`)**: updates vehicle markets and fleets (cars, buses, trucks, ships, rail),
+  technology shares, and energy carriers; adjusts related emissions factors where relevant. Use:
+  ``cars``, ``two_wheelers``, ``trucks``, ``buses``, ``trains``, ``ships``. Mappings:
   ``premise/iam_variables_mapping/transport_*.yaml``. Data: ``premise/data/transport/``.
 * **battery**: scales battery pack mass by projected energy densities; creates technology-specific
   and scenario-average battery markets (mobile and stationary). Data:
@@ -70,7 +71,7 @@ Run
     from premise import *
     import brightway2 as bw
 
-    bw.projects.set_current("my_project)
+    bw.projects.set_current("my_project")
 
     ndb = NewDatabase(
         scenarios=[
@@ -315,7 +316,7 @@ To update the material intensities in the database, run the following code:
     from premise import *
     import brightway2 as bw
 
-    bw.projects.set_current("my_project)
+    bw.projects.set_current("my_project")
 
     ndb = NewDatabase(
         scenarios=[
@@ -423,7 +424,7 @@ To update the mining practices in the database, run the following code:
     from premise import *
     import brightway2 as bw
 
-    bw.projects.set_current("my_project)
+    bw.projects.set_current("my_project")
 
     ndb = NewDatabase(
         scenarios=[
@@ -457,13 +458,16 @@ To better reflect these evolving practices in life cycle modeling, we modified t
 multiple treatment pathways for sulfidic tailings. These include:
 
 * **Surface impoundment**, which remains the default inventory in ecoinvent.
+
 * **Backfilling into underground voids**, based on [1], which builds upon operational data
 from [3]. The life cycle inventory for this process includes the consumption of materials such as
 cement binders, slags, and fuel, and accounting for the associated energy demands. Backfilling is assumed to involve
 cement stabilization of the residues, effectively preventing leaching emissions from the deposited material.
+
 * **Flocculation-flotation**, based on [4], where the sulfur-rich fraction from the tailings
 stream is separated using polyacrylamide and xanthate as flocculants and collector agents to improve pyrite separation.
 The valorized output can potentially be used downstream in the cement and ceramic tiles industries.
+
 * **Roasting and leaching**, also based on [4], involves first removing the sulfur content of tailings
 through drying and roasting. Copper and zinc are then recovered using a combination of ammoniacal leaching, ion
 flotation, and chemical precipitation.
@@ -479,21 +483,86 @@ thus captures the trade-offs between higher resource consumption and the mitigat
 The assumed reduction in impoundments reflects broader trends in the industry toward more sustainable and circular
 tailings management practices, supported by technological innovation and emerging environmental regulation [5].
 
-+--------------+-------------------+-------------------+--------------------+--------------------+---------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+---------------------+
-| Region       | Backfilling 2020  | Backfilling 2050  | Impoundment 2020   | Impoundment 2050   | Ref. (BF/Imp)       | Floc-Flotation 2020        | Floc-Flotation 2050        | Roasting & Leaching 2020    | Roasting & Leaching 2050    | Ref. (Floc/R&L)      |
-+==============+===================+===================+====================+====================+=====================+============================+============================+=============================+=============================+=====================+
-| North America| 15%               | 30%               | 80%                | 60%                | [6], [7]            | 4%                         | 8%                         | 1%                          | 2%                          | [1], [8], [9], [10]  |
-+--------------+-------------------+-------------------+--------------------+--------------------+---------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+---------------------+
-| LATAM        | 5%                | 25%               | 90%                | 65%                | [7], [11]           | 4%                         | 8%                         | 1%                          | 2%                          | [1], [8], [9], [10]  |
-+--------------+-------------------+-------------------+--------------------+--------------------+---------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+---------------------+
-| Europe       | 15%               | 35%               | 80%                | 55%                | [1], [12]           | 4%                         | 8%                         | 1%                          | 2%                          | [1], [8], [9], [10]  |
-+--------------+-------------------+-------------------+--------------------+--------------------+---------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+---------------------+
-| APAC         | 10%               | 20%               | 85%                | 70%                | [13], [14]          | 4%                         | 8%                         | 1%                          | 2%                          | [1], [8], [9], [10]  |
-+--------------+-------------------+-------------------+--------------------+--------------------+---------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+---------------------+
-| Africa       | 5%                | 10%               | 90%                | 70%                | [8], [15], [16]     | 4%                         | 6%                         | 1%                          | 2%                          | [1], [8], [9], [10]  |
-+--------------+-------------------+-------------------+--------------------+--------------------+---------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+---------------------+
-| Global       | 10%               | 25%               | 85%                | 65%                | [7], [8], [16]      | 4%                         | 6%                         | 1%                          | 2%                          | [1], [8], [9], [10]  |
-+--------------+-------------------+-------------------+--------------------+--------------------+---------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+---------------------+
+.. list-table:: Regional estimates for sulfidic tailings treatment uptake
+   :header-rows: 1
+
+   * - Region
+     - Backfilling 2020
+     - Backfilling 2050
+     - Impoundment 2020
+     - Impoundment 2050
+     - Ref. (BF/Imp)
+     - Floc-Flotation 2020
+     - Floc-Flotation 2050
+     - Roasting & Leaching 2020
+     - Roasting & Leaching 2050
+     - Ref. (Floc/R&L)
+   * - North America
+     - 15%
+     - 30%
+     - 80%
+     - 60%
+     - [6], [7]
+     - 4%
+     - 8%
+     - 1%
+     - 2%
+     - [1], [8], [9], [10]
+   * - LATAM
+     - 5%
+     - 25%
+     - 90%
+     - 65%
+     - [7], [11]
+     - 4%
+     - 8%
+     - 1%
+     - 2%
+     - [1], [8], [9], [10]
+   * - Europe
+     - 15%
+     - 35%
+     - 80%
+     - 55%
+     - [1], [12]
+     - 4%
+     - 8%
+     - 1%
+     - 2%
+     - [1], [8], [9], [10]
+   * - APAC
+     - 10%
+     - 20%
+     - 85%
+     - 70%
+     - [13], [14]
+     - 4%
+     - 8%
+     - 1%
+     - 2%
+     - [1], [8], [9], [10]
+   * - Africa
+     - 5%
+     - 10%
+     - 90%
+     - 70%
+     - [8], [15], [16]
+     - 4%
+     - 8%
+     - 1%
+     - 2%
+     - [1], [8], [9], [10]
+   * - Global
+     - 10%
+     - 25%
+     - 85%
+     - 65%
+     - [7], [8], [16]
+     - 4%
+     - 8%
+     - 1%
+     - 2%
+     - [1], [8], [9], [10]
 
 .. [1] https://doi.org/10.1016/j.scitotenv.2023.162038
 .. [2] https://doi.org/10.1016/j.jclepro.2017.03.129
@@ -532,7 +601,7 @@ Run
     from premise import *
     import brightway2 as bw
 
-    bw.projects.set_current("my_project)
+    bw.projects.set_current("my_project")
 
     ndb = NewDatabase(
         scenarios=[
@@ -616,7 +685,7 @@ Run
     from premise import *
     import brightway2 as bw
 
-    bw.projects.set_current("my_project)
+    bw.projects.set_current("my_project")
 
     ndb = NewDatabase(
         scenarios=[
@@ -1224,7 +1293,7 @@ Run
     from premise import *
     import brightway2 as bw
 
-    bw.projects.set_current("my_project)
+    bw.projects.set_current("my_project")
 
     ndb = NewDatabase(
         scenarios=[
@@ -1347,7 +1416,7 @@ Run
     from premise import *
     import brightway2 as bw
 
-    bw.projects.set_current("my_project)
+    bw.projects.set_current("my_project")
 
     ndb = NewDatabase(
         scenarios=[
@@ -1415,7 +1484,7 @@ Run
     from premise import *
     import brightway2 as bw
 
-    bw.projects.set_current("my_project)
+    bw.projects.set_current("my_project")
 
     ndb = NewDatabase(
         scenarios=[
@@ -1575,7 +1644,7 @@ Run
     from premise import *
     import brightway2 as bw
 
-    bw.projects.set_current("my_project)
+    bw.projects.set_current("my_project")
 
     ndb = NewDatabase(
         scenarios=[
@@ -1812,7 +1881,7 @@ Run
     from premise import *
     import brightway2 as bw
 
-    bw.projects.set_current("my_project)
+    bw.projects.set_current("my_project")
 
     ndb = NewDatabase(
         scenarios=[
@@ -1822,7 +1891,7 @@ Run
         source_version="3.7.1",
         key='xxxxxxxxxxxxxxxxxxxxxxxxx'
     )
-    ndb.update("dac")
+    ndb.update("cdr")
 
 Key outputs
 ~~~~~~~~~~~
@@ -1850,7 +1919,7 @@ Run
     from premise import *
     import brightway2 as bw
 
-    bw.projects.set_current("my_project)
+    bw.projects.set_current("my_project")
 
     ndb = NewDatabase(
         scenarios=[
@@ -1886,6 +1955,24 @@ production datasets is adjusted according to the IAM scenario projections.
 
 Inputs to the biofuel production datasets are multiplied by a *scaling factor*
 that represents the change in efficiency relative to today (2020).
+
+Feedstock regionalization
+-------------------------
+
+For bioethanol and oil-based biodiesel, *premise* selects region-appropriate
+feedstocks before building fuel markets (e.g., "market for petrol" and
+"market for diesel"). This prevents regions from drawing on feedstocks that are
+not representative of their dominant crop choices (for example, sugarbeet
+ethanol in Latin America).
+
+The selection is driven by explicit IAM-region mappings:
+
+* oil-based biodiesel feedstocks: `premise/iam_variables_mapping/iam_region_to_biodiesel_feedstock.yaml`
+* bioethanol feedstocks (sugar, grass, wood, grain): `premise/iam_variables_mapping/iam_region_to_bioethanol_feedstock.yaml`
+
+When a region has no suppliers in its allowed locations for a given feedstock,
+*premise* falls back to any available supplier of that same feedstock to avoid
+empty markets.
 
 Land use and land use change
 ----------------------------
@@ -2129,7 +2216,7 @@ Run
     from premise import *
     import brightway2 as bw
 
-    bw.projects.set_current("my_project)
+    bw.projects.set_current("my_project")
 
     ndb = NewDatabase(
         scenarios=[
@@ -2604,7 +2691,7 @@ Run
     from premise import *
     import brightway2 as bw
 
-    bw.projects.set_current("my_project)
+    bw.projects.set_current("my_project")
 
     ndb = NewDatabase(
         scenarios=[

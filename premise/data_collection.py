@@ -1232,12 +1232,14 @@ class IAMDataCollection:
         if file_path is None:
             if key is None:
                 raise FileNotFoundError(
-                    f"File {file_name} not found with any supported extension in {filedir}"
+                    f"Either 1) the file {file_name} cannot found with any supported extension in {filedir}"
+                    f"or 2) no decryption key provided to download the file from Zenodo. "
+                    f"Please provide a decryption key or place the file in the specified directory."
                 )
             else:
                 # If key is provided, download the file
                 download_folder = filedir
-                url = f"https://zenodo.org/records/18162801/files/{file_name}.csv"
+                url = f"https://zenodo.org/records/18642563/files/{file_name}.csv"
                 file_path = download_csv(file_name + ".csv", url, download_folder)
 
         # Decrypt the file if a key is provided

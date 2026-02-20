@@ -129,6 +129,8 @@ for file in glob.glob("*.yaml"):
         "missing_geography_equivalences.yaml",
         "gains_regions.yaml",
         "iam_region_to_climate.yaml",
+        "iam_region_to_biodiesel_feedstock.yaml",
+        "iam_region_to_bioethanol_feedstock.yaml",
     ]:
         continue
     file_name = (

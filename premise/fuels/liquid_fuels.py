@@ -2,6 +2,7 @@ from collections import defaultdict
 
 from ..transformation import ws
 from .config import (
+    LIQUID_FUEL_SOURCES,
     REGION_BIODIESEL_FEEDSTOCK_MAP,
     REGION_BIOETHANOL_FEEDSTOCK_MAP,
     REGION_CLIMATE_MAP,
@@ -203,6 +204,13 @@ class SyntheticFuelsMixin:
                 mapping=methanol_map,
             )
 
+        liquid_fuel_filters = fetch_mapping(LIQUID_FUEL_SOURCES)
+        liquid_fuel_map = self.mapping.generate_sets_from_filters(liquid_fuel_filters)
+        if liquid_fuel_map:
+            self.process_and_add_activities(
+                mapping=liquid_fuel_map,
+            )
+
         # Create other liquid fuels
         self.generate_biofuel_activities()
 
@@ -228,6 +236,7 @@ class SyntheticFuelsMixin:
                 for market_name in [
                     "market for petrol",
                     "market for petrol, low-sulfur",
+                    "market for petrol, unleaded",
                 ]:
                     self.process_and_add_markets(
                         name=market_name,
