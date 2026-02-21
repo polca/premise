@@ -7,6 +7,7 @@ import json
 import csv
 import shutil
 import math
+import re
 from datetime import date
 from pathlib import Path
 from typing import List, Dict, Tuple, Set
@@ -22,7 +23,7 @@ from .filesystem_constants import DATA_DIR
 from .utils import load_database, dump_database
 
 FILEPATH_TEMPORAL_PARAMETERS = (
-    DATA_DIR / "trails" / "classifications_temporal_params_copy.csv"
+    DATA_DIR / "trails" / "temporal_distributions.csv"
 )
 
 
@@ -85,7 +86,7 @@ class TrailsDataPackage:
     def __init__(
         self,
         scenario: dict,
-        years: List[int] = range(2005, 2105, 10),
+        years: List[int] = list(range(2005, 2100, 10)) + [2100],
         source_version: str = "3.12",
         source_type: str = "brightway",
         key: bytes = None,
@@ -148,6 +149,7 @@ class TrailsDataPackage:
             self.stock_asset_params,
             self.end_of_life_suppliers,
             self.biomass_growth_params,
+            self.maintenance_suppliers,
         ) = self._load_temporal_specs_from_csv(FILEPATH_TEMPORAL_PARAMETERS)
 
     def create_datapackage(
@@ -170,12 +172,14 @@ class TrailsDataPackage:
         Dict[Tuple[str, str], dict],
         Set[Tuple[str, str]],
         Dict[Tuple[str, str], dict],
+        Set[Tuple[str, str]],
     ]:
         """
         Returns:
           stock_assets: dict[(name, ref)] -> exchange-level temporal params for stock_asset suppliers
           end_of_life:  set[(name, ref)] of end_of_life supplier datasets
           biomass_growth: dict[(name, ref)] -> temporal params for CO2 uptake in biomass growth datasets
+          maintenance: set[(name, ref)] of maintenance supplier datasets
         """
         with open(path, "r", encoding="utf-8", newline="") as f:
             rows = list(csv.DictReader(f))
@@ -207,6 +211,7 @@ class TrailsDataPackage:
         stock_assets: Dict[Tuple[str, str], dict] = {}
         end_of_life: Set[Tuple[str, str]] = set()
         biomass_growth: Dict[Tuple[str, str], dict] = {}
+        maintenance: Set[Tuple[str, str]] = set()
 
         for row in rows:
             tag = _clean(row.get("temporal_tag"))
@@ -254,7 +259,10 @@ class TrailsDataPackage:
                     "lifetime": _num(row.get("lifetime")),
                 }
 
-        return stock_assets, end_of_life, biomass_growth
+            elif tag in {"maintenance_event", "maintenance"}:
+                maintenance.add((name, ref))
+
+        return stock_assets, end_of_life, biomass_growth, maintenance
 
     def _export_datapackage(
         self,
@@ -304,6 +312,137 @@ class TrailsDataPackage:
         ]
 
         seen = set()
+        missing_classifications_seen = set()
+        inferred_classifications = {}
+
+        def _norm(x: str) -> str:
+            return " ".join((x or "").strip().lower().split())
+
+        def _canon_name(x: str) -> str:
+            s = _norm(x)
+            patterns = [
+                r",\s*with carbon capture and storage\b",
+                r",\s*with carbon capture and reuse\b",
+                r",\s*economic allocation\b",
+                r",\s*energy allocation\b",
+                r",\s*system expansion\b",
+                r",\s*at fuelling station\b",
+                r",\s*no biogenic carbon impacts\b",
+            ]
+            for pat in patterns:
+                s = re.sub(pat, "", s)
+            return " ".join(s.split())
+
+        # Build lookup indices from existing classifications
+        by_name = {}
+        by_product = {}
+        by_canon_name = {}
+        for (n, p), cls in self.classifications.items():
+            isic = cls.get("ISIC rev.4 ecoinvent")
+            cpc = cls.get("CPC")
+            if not isic or not cpc:
+                continue
+            by_name.setdefault(_norm(n), set()).add((isic, cpc))
+            by_product.setdefault(_norm(p), set()).add((isic, cpc))
+            by_canon_name.setdefault(_canon_name(n), set()).add((isic, cpc))
+
+        # Majority class for heat outputs in "burned in passenger car" datasets
+        burned_heat_counts = {}
+        for (n, p), cls in self.classifications.items():
+            if (
+                "burned in passenger car" in _norm(n)
+                and _norm(p) == "heat"
+                and cls.get("ISIC rev.4 ecoinvent")
+                and cls.get("CPC")
+            ):
+                key = (cls["ISIC rev.4 ecoinvent"], cls["CPC"])
+                burned_heat_counts[key] = burned_heat_counts.get(key, 0) + 1
+        burned_heat_default = None
+        if burned_heat_counts:
+            burned_heat_default = max(burned_heat_counts.items(), key=lambda x: x[1])[0]
+
+        def _infer_classification(name: str, ref: str):
+            n = _norm(name)
+            p = _norm(ref)
+            cn = _canon_name(name)
+
+            # Exact-name unique class
+            name_classes = by_name.get(n, set())
+            if len(name_classes) == 1:
+                isic, cpc = next(iter(name_classes))
+                return isic, cpc
+
+            # Exact-product unique class
+            prod_classes = by_product.get(p, set())
+            if len(prod_classes) == 1:
+                isic, cpc = next(iter(prod_classes))
+                return isic, cpc
+
+            # Canonical-name unique class
+            canon_classes = by_canon_name.get(cn, set())
+            if len(canon_classes) == 1:
+                isic, cpc = next(iter(canon_classes))
+                return isic, cpc
+
+            # Heuristic: petrol markets
+            if n.startswith("market for petrol"):
+                base = self.classifications.get(("market for petrol", "petrol"))
+                if base and base.get("ISIC rev.4 ecoinvent") and base.get("CPC"):
+                    return base["ISIC rev.4 ecoinvent"], base["CPC"]
+
+            # Heuristic: passenger car combustion heat datasets
+            if "burned in passenger car" in n and p == "heat" and burned_heat_default:
+                return burned_heat_default
+
+            # Heuristics: wood processing / sawmilling families
+            if n.startswith("market for sawlog and veneer log"):
+                return (
+                    "0220:Logging",
+                    "3110: Wood, sawn or chipped lengthwise, sliced or peeled, of a thickness exceeding 6 mm; railway or tramway sleepers […]",
+                )
+
+            if (
+                n.startswith("sawnwood production")
+                or n.startswith("planing, ")
+                or n.startswith("market for sawnwood")
+                or n.startswith("beam, ")
+                or n.startswith("board, ")
+                or n.startswith("lath, ")
+            ):
+                if "shavings" in p or "wood chips" in p:
+                    return (
+                        "1610:Sawmilling and planing of wood",
+                        "31230: Wood in chips or particles",
+                    )
+                return (
+                    "1610:Sawmilling and planing of wood",
+                    "3110: Wood, sawn or chipped lengthwise, sliced or peeled, of a thickness exceeding 6 mm; railway or tramway sleepers […]",
+                )
+
+            # Heuristics: ethanol / esterification families
+            if "ethanol production" in n and "ethanol" in p:
+                return (
+                    "2011:Manufacture of basic chemicals",
+                    "35491: Biodiesel",
+                )
+            if "ethanol production" in n and p == "electricity, high voltage":
+                return (
+                    "3510:Electric power generation, transmission and distribution",
+                    "17100: Electrical energy",
+                )
+            if n == "esterification of soybean oil":
+                if p == "fatty acid methyl ester":
+                    return (
+                        "2011:Manufacture of basic chemicals",
+                        "35491: Biodiesel",
+                    )
+                if p == "glycerine":
+                    return (
+                        "2011:Manufacture of basic chemicals",
+                        "34620: Organic compounds with nitrogen function",
+                    )
+
+            return None
 
         with open(outfile, "w", newline="", encoding="utf-8") as f:
             writer = csv.DictWriter(f, fieldnames=fieldnames)
@@ -319,26 +458,36 @@ class TrailsDataPackage:
                     classifications = ds.get("classifications") or []
 
                     if not classifications:
-                        print(f"No classifications for {name}")
-                        if (
-                            ds["name"],
-                            ds["reference product"],
-                        ) in self.classifications:
+                        key = (name, ref)
+                        if key in self.classifications:
                             ds["classifications"] = [
                                 (
                                     "ISIC rev.4 ecoinvent",
-                                    self.classifications[
-                                        (ds["name"], ds["reference product"])
-                                    ]["ISIC rev.4 ecoinvent"],
+                                    self.classifications[key]["ISIC rev.4 ecoinvent"],
                                 ),
                                 (
                                     "CPC",
-                                    self.classifications[
-                                        (ds["name"], ds["reference product"])
-                                    ]["CPC"],
+                                    self.classifications[key]["CPC"],
                                 ),
                             ]
                             classifications = ds.get("classifications")
+                        else:
+                            inferred = _infer_classification(name, ref)
+                            if inferred is not None:
+                                isic, cpc = inferred
+                                ds["classifications"] = [
+                                    ("ISIC rev.4 ecoinvent", isic),
+                                    ("CPC", cpc),
+                                ]
+                                self.classifications[key] = {
+                                    "ISIC rev.4 ecoinvent": isic,
+                                    "CPC": cpc,
+                                }
+                                inferred_classifications[key] = (isic, cpc)
+                                classifications = ds.get("classifications")
+                            elif key not in missing_classifications_seen:
+                                print(f"No classifications for {name} ({ref})")
+                                missing_classifications_seen.add(key)
 
                     for system, code in classifications:
                         key = (name, ref, system, code)
@@ -354,6 +503,32 @@ class TrailsDataPackage:
                                 "classification_code": code,
                             }
                         )
+
+        # Persist high-confidence inferred classifications for future runs.
+        if inferred_classifications:
+            cls_path = DATA_DIR / "utils" / "import" / "classifications.csv"
+            file_keys = set()
+            with open(cls_path, "r", newline="", encoding="utf-8-sig") as f:
+                r = csv.DictReader(f)
+                for row in r:
+                    file_keys.add((row.get("name", "").strip(), row.get("product", "").strip()))
+            with open(cls_path, "a", newline="", encoding="utf-8-sig") as f:
+                w = csv.DictWriter(
+                    f,
+                    fieldnames=["name", "product", "ISIC rev.4 ecoinvent", "CPC"],
+                )
+                for (name, ref), (isic, cpc) in inferred_classifications.items():
+                    key = (name.strip(), ref.strip())
+                    if key in file_keys:
+                        continue
+                    w.writerow(
+                        {
+                            "name": name,
+                            "product": ref,
+                            "ISIC rev.4 ecoinvent": isic,
+                            "CPC": cpc,
+                        }
+                    )
 
     def _build_datapackage(self, name: str, contributors: list = None):
         """
@@ -794,7 +969,7 @@ class TrailsDataPackage:
         2) For technosphere exchanges that draw from an end_of_life supplier, shift the calling dataset's
            age distribution by its average age (or lifetime fallback) and apply it to the exchange.
         """
-        MAX_REASONABLE_LIFETIME_YEARS = 500.0
+        MAX_REASONABLE_LIFETIME_YEARS = 100.0
 
         def _sanitized_years(value):
             if value is None:
@@ -810,6 +985,7 @@ class TrailsDataPackage:
         stock_assets = getattr(self, "stock_asset_params", {})  # (name, ref) -> params
         end_of_life = getattr(self, "end_of_life_suppliers", set())
         biomass_growth = getattr(self, "biomass_growth_params", {})
+        maintenance = getattr(self, "maintenance_suppliers", set())
 
         def _num(x):
             if x is None:
@@ -955,6 +1131,23 @@ class TrailsDataPackage:
 
                 if ds_mean_age is None and ds_lifetime is not None:
                     ds_mean_age = ds_lifetime / 2.0
+
+                # ---- (C) maintenance suppliers: use calling dataset lifetime as uniform support [0, L]
+                if ds_lifetime is not None:
+                    for e in ds.get("exchanges", []):
+                        if e.get("type") != "technosphere":
+                            continue
+                        sup_name = (e.get("name") or "").strip()
+                        sup_ref = _exchange_product(e)
+                        if (sup_name, sup_ref) not in maintenance:
+                            continue
+                        if e.get("temporal_distribution") is not None:
+                            continue
+                        e["temporal_distribution"] = 4  # uniform kernel
+                        e["temporal_loc"] = None
+                        e["temporal_scale"] = None
+                        e["temporal_min"] = 0.0
+                        e["temporal_max"] = float(ds_lifetime)
 
                 for e in ds.get("exchanges", []):
                     if e.get("type") != "technosphere":
