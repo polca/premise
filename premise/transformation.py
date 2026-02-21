@@ -2108,6 +2108,8 @@ class BaseTransformation:
                 exchange,
                 dataset,
                 possible_datasets,
+                possible_locations,
+                by_location,
                 new_exchanges,
                 exclusive,
                 biggest_first,
