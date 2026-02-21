@@ -53,6 +53,10 @@ Example
         key='xxxxxxx',
     )
 
+.. note::
+
+    ``source_db`` must match the **name of the database in your Brightway project** (it is not a fixed string).
+
 
 The function **ndb.update("external")** can be called after that
 to implement the user-defined scenario in the database.

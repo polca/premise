@@ -466,7 +466,7 @@ class BaseDatasetValidator:
         for dataset in self.database:
             key = (dataset["name"], dataset["reference product"], dataset["location"])
             if key not in consumed_datasets and not any(
-                x not in dataset["name"] for x in ["market for", "market group for"]
+                x in dataset["name"] for x in ["market for", "market group for"]
             ):
                 message = f"Orphaned dataset found: {dataset['name']}"
                 self.log_issue(dataset, "orphaned dataset", message)
@@ -668,7 +668,7 @@ class BaseDatasetValidator:
 
         for dataset in self.database:
             for key in list(dataset.keys()):
-                if not dataset[key]:
+                if dataset[key] is None:
                     del dataset[key]
 
     def correct_fields_format(self):
@@ -686,19 +686,16 @@ class BaseDatasetValidator:
 
             for exc in dataset["exchanges"]:
                 # check that `amount` is of type `float`
-                amount = exc.get("amount")
-                if amount is None:
-                    continue
-                if isinstance(amount, (int, float, np.floating)):
-                    if np.isnan(amount):
-                        ValueError(
-                            f"Amount is NaN in exchange {exc} in dataset {dataset['name'], dataset['location']}"
-                        )
+                if np.isnan(exc["amount"]):
+                    raise ValueError(
+                        f"Amount is NaN in exchange {exc} in dataset {dataset['name'], dataset['location']}"
+                    )
+                if not isinstance(exc["amount"], float):
+                    exc["amount"] = float(exc["amount"])
 
             # remove fields that are None
-            dataset_keys = list(dataset.keys())
-            for key in dataset_keys:
-                if dataset[key] is None:
+            for key, value in list(dataset.items()):
+                if value is None:
                     del dataset[key]
 
         # we also want to remove any numpy generics
@@ -712,11 +709,11 @@ class BaseDatasetValidator:
 
         for dataset in self.database:
             for exc in dataset["exchanges"]:
-                amount = exc.get("amount")
-                if amount is None:
-                    continue
-                if not isinstance(amount, float):
-                    exc["amount"] = float(amount)
+                if not isinstance(exc["amount"], float):
+                    exc["amount"] = float(exc["amount"])
+
+                if isinstance(exc["amount"], (np.float64, np.ndarray)):
+                    exc["amount"] = float(exc["amount"])
 
             for k, v in dataset.items():
                 if isinstance(v, dict):

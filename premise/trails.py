@@ -12,7 +12,6 @@ from pathlib import Path
 from typing import List, Dict, Tuple, Set
 
 import yaml
-import pandas as pd
 from datapackage import Package
 import bw2data
 
@@ -23,7 +22,7 @@ from .filesystem_constants import DATA_DIR
 from .utils import load_database, dump_database
 
 FILEPATH_TEMPORAL_PARAMETERS = (
-    DATA_DIR / "trails" / "classifications_temporal_params_copy.xlsx"
+    DATA_DIR / "trails" / "classifications_temporal_params_copy.csv"
 )
 
 
@@ -147,11 +146,9 @@ class TrailsDataPackage:
 
         (
             self.stock_asset_params,
-            self.service_operation_lifetimes,
             self.end_of_life_suppliers,
-            self.maintenance_event_suppliers,
             self.biomass_growth_params,
-        ) = self._load_temporal_specs_from_excel(FILEPATH_TEMPORAL_PARAMETERS)
+        ) = self._load_temporal_specs_from_csv(FILEPATH_TEMPORAL_PARAMETERS)
 
     def create_datapackage(
         self,
@@ -169,40 +166,30 @@ class TrailsDataPackage:
             contributors=contributors,
         )
 
-    def _load_temporal_specs_from_excel(self, path: Path) -> tuple[
+    def _load_temporal_specs_from_csv(self, path: Path) -> tuple[
         Dict[Tuple[str, str], dict],
-        Dict[Tuple[str, str], dict],
-        Set[Tuple[str, str]],
         Set[Tuple[str, str]],
         Dict[Tuple[str, str], dict],
     ]:
         """
         Returns:
           stock_assets: dict[(name, ref)] -> exchange-level temporal params for stock_asset suppliers
-          service_ops:  dict[(name, ref)] -> lifetime/mean age/dist params for service_operation datasets
           end_of_life:  set[(name, ref)] of end_of_life supplier datasets
-          maintenance_events: set[(name, ref)] of maintenance_event supplier datasets
           biomass_growth: dict[(name, ref)] -> temporal params for CO2 uptake in biomass growth datasets
         """
-        import pandas as pd
-
-        df = pd.read_excel(path)
+        with open(path, "r", encoding="utf-8", newline="") as f:
+            rows = list(csv.DictReader(f))
 
         required = {"name", "reference product", "temporal_tag"}
-        missing = required - set(df.columns)
+        missing = required - set(rows[0].keys() if rows else [])
         if missing:
             raise ValueError(
-                f"Temporal params Excel file missing columns: {sorted(missing)}"
+                f"Temporal params CSV file missing columns: {sorted(missing)}"
             )
 
         def _clean(x):
             if x is None:
                 return None
-            try:
-                if pd.isna(x):
-                    return None
-            except Exception:
-                pass
             if isinstance(x, str):
                 s = x.strip()
                 return s if s else None
@@ -218,12 +205,10 @@ class TrailsDataPackage:
                 return None
 
         stock_assets: Dict[Tuple[str, str], dict] = {}
-        service_ops: Dict[Tuple[str, str], dict] = {}
         end_of_life: Set[Tuple[str, str]] = set()
-        maintenance_events: Set[Tuple[str, str]] = set()
         biomass_growth: Dict[Tuple[str, str], dict] = {}
 
-        for _, row in df.iterrows():
+        for row in rows:
             tag = _clean(row.get("temporal_tag"))
             name = _clean(row.get("name"))
             ref = _clean(row.get("reference product"))
@@ -249,43 +234,8 @@ class TrailsDataPackage:
                     "temporal_max": _num(row.get("maximum")),
                 }
 
-            elif tag == "service_operation":
-
-                L = _num(row.get("lifetime"))
-
-                if L is None or L <= 0:
-                    continue
-
-                dist_type = _clean(row.get("age distribution type"))
-                if dist_type is not None:
-
-                    try:
-                        dist_type = int(float(dist_type))
-                    except Exception:
-                        dist_type = None
-
-                loc = _num(row.get("loc"))
-                scale = _num(row.get("scale"))
-                mn = _num(row.get("minimum"))
-                mx = _num(row.get("maximum"))
-                mu = _mean_age_from_params(dist_type, loc, scale, mn, mx, float(L))
-                # Clip mu to [0, L] to avoid pathological kernels
-                mu = min(max(0.0, float(mu)), float(L))
-                service_ops[(name, ref)] = {
-                    "lifetime": float(L),
-                    "mean_age": float(mu),
-                    "dist_type": dist_type,
-                    "loc": loc,
-                    "scale": scale,
-                    "minimum": mn,
-                    "maximum": mx,
-                }
-
             elif tag == "end_of_life":
                 end_of_life.add((name, ref))
-
-            elif tag == "maintenance_event":
-                maintenance_events.add((name, ref))
 
             elif tag == "biomass_growth":
                 dist_type = _clean(row.get("age distribution type"))
@@ -304,13 +254,7 @@ class TrailsDataPackage:
                     "lifetime": _num(row.get("lifetime")),
                 }
 
-        return (
-            stock_assets,
-            service_ops,
-            end_of_life,
-            maintenance_events,
-            biomass_growth,
-        )
+        return stock_assets, end_of_life, biomass_growth
 
     def _export_datapackage(
         self,
@@ -847,11 +791,7 @@ class TrailsDataPackage:
     def add_temporal_distributions(self):
         """
         1) For technosphere exchanges that draw from a stock_asset supplier, inject the supplier-specific temporal params.
-        2) If the *dataset itself* is tagged service_operation, then inject a default uniform temporal distribution
-           (type 4) over [-lifetime, -1] onto all technosphere + biosphere exchanges that do not already have one.
-        3) For technosphere exchanges that draw from a maintenance_event supplier, apply the calling dataset's
-           temporal distribution parameters (no shift).
-        4) For technosphere exchanges that draw from an end_of_life supplier, shift the calling dataset's
+        2) For technosphere exchanges that draw from an end_of_life supplier, shift the calling dataset's
            age distribution by its average age (or lifetime fallback) and apply it to the exchange.
         """
         MAX_REASONABLE_LIFETIME_YEARS = 500.0
@@ -868,11 +808,7 @@ class TrailsDataPackage:
             return v
 
         stock_assets = getattr(self, "stock_asset_params", {})  # (name, ref) -> params
-        service_ops = getattr(
-            self, "service_operation_lifetimes", {}
-        )  # (name, ref) -> service operation params
         end_of_life = getattr(self, "end_of_life_suppliers", set())
-        maintenance_events = getattr(self, "maintenance_event_suppliers", set())
         biomass_growth = getattr(self, "biomass_growth_params", {})
 
         def _num(x):
@@ -955,30 +891,7 @@ class TrailsDataPackage:
                             e["temporal_min"] = -float(L)
                             e["temporal_max"] = 0.0
 
-                # ---- (A) service_operation: dataset-level default on all exchanges (unless already present)
-                spec = service_ops.get((ds_name, ds_ref))
-                if spec is not None:
-                    L = float(spec["lifetime"])
-                    mu = float(spec["mean_age"])
-
-                    # Option C kernel support
-                    mn = -mu
-                    mx = L - mu
-
-                    for e in ds.get("exchanges", []):
-                        if e.get("type") not in ("technosphere", "biosphere"):
-                            continue
-                        if e.get("temporal_distribution") is not None:
-                            continue
-
-                        e["temporal_distribution"] = 4  # uniform kernel
-                        e["temporal_loc"] = None
-                        e["temporal_scale"] = None
-                        e["temporal_min"] = mn
-                        e["temporal_max"] = mx
-
-                # ---- (B) stock_asset suppliers: exchange-level override for technosphere (even if service_operation ran)
-                # This is done after (A) so that stock_asset-specific params can overwrite the default uniform, if desired.
+                # ---- (A) stock_asset suppliers: exchange-level params for technosphere exchanges.
                 for e in ds.get("exchanges", []):
                     if e.get("type") != "technosphere":
                         continue
@@ -997,7 +910,7 @@ class TrailsDataPackage:
                     e["temporal_min"] = params.get("temporal_min")
                     e["temporal_max"] = params.get("temporal_max")
 
-                # ---- (C) maintenance_event suppliers: apply calling dataset distribution (no shift)
+                # ---- (B) end_of_life suppliers: shift calling dataset distribution by its average age
                 ds_mean_age = None
                 ds_lifetime = None
                 ds_dist_type = None
@@ -1005,15 +918,6 @@ class TrailsDataPackage:
                 ds_scale = None
                 ds_min = None
                 ds_max = None
-
-                if spec is not None:
-                    ds_mean_age = _num(spec.get("mean_age"))
-                    ds_lifetime = _num(spec.get("lifetime"))
-                    ds_dist_type = spec.get("dist_type")
-                    ds_loc = _num(spec.get("loc"))
-                    ds_scale = _num(spec.get("scale"))
-                    ds_min = _num(spec.get("minimum"))
-                    ds_max = _num(spec.get("maximum"))
 
                 # Fallback to dataset-provided fields, if any
                 if ds_mean_age is None:
@@ -1027,7 +931,7 @@ class TrailsDataPackage:
                 if ds_lifetime is None:
                     ds_lifetime = _sanitized_years(_num(ds.get("lifetime")))
 
-                # If not a service_operation dataset, use stock_asset dist params when available
+                # If dataset-level temporal params are unavailable, use stock_asset dist params when available
                 if ds_dist_type is None:
                     ds_stock = stock_assets.get((ds_name, ds_ref))
                     if ds_stock:
@@ -1052,45 +956,6 @@ class TrailsDataPackage:
                 if ds_mean_age is None and ds_lifetime is not None:
                     ds_mean_age = ds_lifetime / 2.0
 
-                for e in ds.get("exchanges", []):
-                    if e.get("type") != "technosphere":
-                        continue
-
-                    sup_name = (e.get("name") or "").strip()
-                    sup_ref = _exchange_product(e)
-                    if (sup_name, sup_ref) in maintenance_events:
-                        if (
-                            ds_dist_type is None
-                            and ds_lifetime is None
-                            and ds_mean_age is None
-                        ):
-                            continue
-                        if ds_dist_type is not None:
-                            e["temporal_distribution"] = ds_dist_type
-                            e["temporal_loc"] = ds_loc
-                            e["temporal_scale"] = ds_scale
-                            e["temporal_min"] = ds_min
-                            e["temporal_max"] = ds_max
-                        else:
-                            e["temporal_distribution"] = 4  # uniform kernel
-                            e["temporal_loc"] = None
-                            e["temporal_scale"] = None
-                            if ds_lifetime is not None:
-                                # Match service_operation default if available
-                                if spec is not None and ds_mean_age is not None:
-                                    e["temporal_min"] = -float(ds_mean_age)
-                                    e["temporal_max"] = float(ds_lifetime) - float(
-                                        ds_mean_age
-                                    )
-                                else:
-                                    e["temporal_min"] = 0.0
-                                    e["temporal_max"] = float(ds_lifetime)
-                            elif ds_mean_age is not None:
-                                e["temporal_min"] = float(ds_mean_age)
-                                e["temporal_max"] = float(ds_mean_age)
-                        continue
-
-                # ---- (D) end_of_life suppliers: shift calling dataset distribution by its average age
                 for e in ds.get("exchanges", []):
                     if e.get("type") != "technosphere":
                         continue
