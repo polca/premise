@@ -44,7 +44,7 @@ Also, use the following references to cite the scenarios used with the tool:
 - REMIND and REMIND-EU scenarios: Baumstark et al. REMIND2.1: transformation and innovation dynamics of the energy-economic system within climate and sustainability limits, Geoscientific Model Development, 2021.
 - IMAGE scenarios: Stehfest, Elke, et al. Integrated assessment of global environmental change with IMAGE 3.0: Model description and policy applications. Netherlands Environmental Assessment Agency (PBL), 2014.
 - TIAM-UCL scenarios: Pye, S., et al. The TIAM-UCL Model (Version 4.1.1) Documentation, 2020.
-- MESSAGEix-GLOBIOM-GAINS scenarios: MESSAGEix-GLOBIOM-GAINS 2.1-M-R12 documentation.
+- MESSAGEix-GLOBIOM-GAINS scenarios: Daniel Huppmann, Matthew Gidden, Oliver Fricko, Peter Kolp, Clara Orthofer, Michael Pimmer, Nikolay Kushin, Adriano Vinca, Alessio Mastrucci, Keywan Riahi, Volker Krey, The MESSAGEix Integrated Assessment Model and the ix modeling platform (ixmp): An open framework for integrated and cross-cutting analysis of energy, climate, the environment, and sustainable development, Environmental Modelling & Software, 2019, https://doi.org/10.1016/j.envsoft.2018.11.012.
 - GCAM scenarios: Calvin, K., et al. GCAM v5.1: representing the linkages between energy, water, land, climate, and economic systems, Geosci. Model Dev., 12, 677–698, https://doi.org/10.5194/gmd-12-677-2019, 2019.
 
 Models
