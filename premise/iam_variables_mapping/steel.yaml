@@ -16,6 +16,7 @@ steel - primary - BF/BOF:
     gcam:
       - Production|Industry|Steel|Primary|BLASTFUR
       - Production|Industry|Steel|Primary|Biomass-based
+      - Production|Industry|Steel|Primary|BLASTFUR with hydrogen
     tiam-ucl:
       - Production|Steel|Primary|BF and BOF 2
       - Production|Steel|Primary|BF and BOF 4
@@ -67,6 +68,7 @@ steel - primary - BF/BOF:
       - Final Energy|Industry|Steel|Primary|Refined Liquids
       - Final Energy|Industry|Steel|Primary|Gas
       - Final Energy|Industry|Steel|Primary|Biomass
+      - Final Energy|Industry|Steel|Primary|H2 industrial
     tiam-ucl:
       - Final Energy|Production|Steel|Primary|BF and BOF 1|Blast Furnace Gas|w/o CCS
       - Final Energy|Production|Steel|Primary|BF and BOF 1|Coal|w/o CCS
@@ -421,7 +423,11 @@ steel - secondary:
     - Production|Iron and Steel|Steel|Secondary|EAF|Scrap
     - Production|Iron and Steel|Steel|Secondary|BOF|TGR
     - Production|Iron and Steel|Steel|Secondary|BOF|Conventional
-    gcam: Production|Industry|Steel|Secondary|EAF with scrap
+    gcam:
+      - Production|Industry|Steel|Secondary|EAF with scrap
+      - Production|Industry|Steel|Secondary|EAF with DRI
+      - Production|Industry|Steel|Secondary|Hydrogen-based DRI
+      - Production|Industry|Steel|Secondary|EAF with DRI CCS
     tiam-ucl:
       - Production|Steel|Secondary|EAF 1
       - Production|Steel|Secondary|EAF 2
@@ -459,6 +465,7 @@ steel - secondary:
       - Final Energy|Industry|Steel|Secondary|Electricity
       - Final Energy|Industry|Steel|Secondary|Refined Liquids
       - Final Energy|Industry|Steel|Secondary|Gas
+      - Final Energy|Industry|Steel|Secondary|H2 industrial
     tiam-ucl:
       - Final Energy|Production|Steel|Secondary|EAF 1|Coal
       - Final Energy|Production|Steel|Secondary|EAF 1|Electricity

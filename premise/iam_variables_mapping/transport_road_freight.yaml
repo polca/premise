@@ -8,10 +8,12 @@ truck, battery electric, 3.5 metric ton:
     remind: ES|Transport|Freight|Road|Light|Truck(0-3_5t)|BEV
     remind-eu: ES|Transport|Freight|Road|Light|Truck(0-3_5t)|BEV
     tiam-ucl: Distance|Transport|Truck|Light|Electric|Electricity
+    gcam: Distance|Transport|Freight|Road|Light truck|BEV
   energy_use_aliases:
     remind: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Electricity
     remind-eu: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Electricity
     tiam-ucl: Final Energy|Transport|Truck|Light|Electric|Electricity
+    gcam: Final Energy|Transport|Freight|Road|Light truck|BEV
   ecoinvent_aliases:
     fltr:
       - transport, freight, lorry, battery electric, 3.5 metric ton
@@ -23,9 +25,11 @@ truck, fuel cell electric, 3.5 metric ton:
   iam_aliases:
     remind: ES|Transport|Freight|Road|Light|Truck(0-3_5t)|FCEV
     remind-eu: ES|Transport|Freight|Road|Light|Truck(0-3_5t)|FCEV
+    gcam: Distance|Transport|Freight|Road|Light truck|FCEV
   energy_use_aliases:
     remind: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Hydrogen
     remind-eu: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Hydrogen
+    gcam: Final Energy|Transport|Freight|Road|Light truck|FCEV
   ecoinvent_aliases:
     fltr:
       - transport, freight, lorry, fuel cell electric, 3.5 metric ton
@@ -62,10 +66,12 @@ truck, diesel, 3.5 metric ton:
     remind: ES|Transport|Freight|Road|Light|Truck(0-3_5t)|Liquids
     remind-eu: ES|Transport|Freight|Road|Light|Truck(0-3_5t)|Liquids
     tiam-ucl: Distance|Transport|Truck|Light|Diesel|Diesel
+    gcam: Distance|Transport|Freight|Road|Light truck|Liquids
   energy_use_aliases:
     remind: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Liquids
     remind-eu: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Liquids
     tiam-ucl: Final Energy|Transport|Truck|Light|Diesel|Diesel
+    gcam: Final Energy|Transport|Freight|Road|Light truck|Liquids
   ecoinvent_aliases:
     fltr:
       - transport, freight, lorry, diesel, 3.5 metric ton
@@ -76,8 +82,10 @@ truck, diesel, 3.5 metric ton:
 truck, diesel hybrid, 3.5 metric ton:
     iam_aliases:
       tiam-ucl: Distance|Transport|Truck|Light|Diesel Hybrid|Diesel
+      gcam: Distance|Transport|Freight|Road|Light truck|Hybrid Liquids
     energy_use_aliases:
       tiam-ucl: Final Energy|Transport|Truck|Light|Diesel Hybrid|Diesel
+      gcam: Final Energy|Transport|Freight|Road|Light truck|Hybrid Liquids
     ecoinvent_aliases:
         fltr:
         - transport, freight, lorry, diesel hybrid, 3.5 metric ton
@@ -106,10 +114,12 @@ truck, compressed gas, 3.5 metric ton:
     remind: ES|Transport|Freight|Road|Light|Truck(0-3_5t)|Gases
     remind-eu: ES|Transport|Freight|Road|Light|Truck(0-3_5t)|Gases
     tiam-ucl: Distance|Transport|Truck|Light|Natural Gas|Natural Gas
+    gcam: Distance|Transport|Freight|Road|Light truck|NG
   energy_use_aliases:
     remind: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Gases
     remind-eu: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Gases
     tiam-ucl: Final Energy|Transport|Truck|Light|Natural Gas|Natural Gas
+    gcam: Final Energy|Transport|Freight|Road|Light truck|NG
   ecoinvent_aliases:
     fltr:
       - transport, freight, lorry, compressed gas, 3.5 metric ton
@@ -136,11 +146,13 @@ truck, battery electric, 7.5 metric ton:
     remind-eu: ES|Transport|Freight|Road|Light|Truck(7_5t)|BEV
     tiam-ucl: Distance|Transport|Truck|Commercial|Electric|Electricity
     witch: Energy Service|Transportation|Freight|Truck|Battery-Electric
+    gcam: Distance|Transport|Freight|Road|Medium truck|BEV
   energy_use_aliases:
     remind: FE|Transport|Freight|Road|Light|Truck(7_5t)|Electricity
     remind-eu: FE|Transport|Freight|Road|Light|Truck(7_5t)|Electricity
     tiam-ucl: Final Energy|Transport|Truck|Commercial|Electric|Electricity
     witch: Final Energy|Transportation|Freight|Truck|Battery-Electric|Electricity
+    gcam: Final Energy|Transport|Freight|Road|Medium truck|BEV
   ecoinvent_aliases:
     fltr:
       - transport, freight, lorry, battery electric, 7.5 metric ton
@@ -156,6 +168,7 @@ truck, fuel cell electric, 7.5 metric ton:
       - Distance|Transport|Truck|Commercial|Hydrogen Fuel Cell|Electricity
       - Distance|Transport|Truck|Commercial|Hydrogen Fuel Cell|Truck Hydrogen
     witch: Energy Service|Transportation|Freight|Truck|Fuel-Cell-Electric
+    gcam: Distance|Transport|Freight|Road|Medium truck|FCEV
   energy_use_aliases:
     remind: FE|Transport|Freight|Road|Light|Truck(7_5t)|Hydrogen
     remind-eu: FE|Transport|Freight|Road|Light|Truck(7_5t)|Hydrogen
@@ -163,6 +176,7 @@ truck, fuel cell electric, 7.5 metric ton:
       - Final Energy|Transport|Truck|Commercial|Hydrogen Fuel Cell|Electricity
       - Final Energy|Transport|Truck|Commercial|Hydrogen Fuel Cell|Truck Hydrogen
     witch: Final Energy|Transportation|Freight|Truck|Fuel-Cell-Electric|Hydrogen
+    gcam: Final Energy|Transport|Freight|Road|Medium truck|FCEV
   ecoinvent_aliases:
     fltr:
       - transport, freight, lorry, fuel cell electric, 7.5 metric ton
@@ -201,6 +215,7 @@ truck, diesel, 7.5 metric ton:
     remind-eu: ES|Transport|Freight|Road|Light|Truck(7_5t)|Liquids
     tiam-ucl: Distance|Transport|Truck|Commercial|Diesel|Diesel
     witch: Energy Service|Transportation|Freight|Truck|Internal Combustion
+    gcam: Distance|Transport|Freight|Road|Medium truck|Liquids
   energy_use_aliases:
     remind: FE|Transport|Freight|Road|Light|Truck(7_5t)|Liquids
     remind-eu: FE|Transport|Freight|Road|Light|Truck(7_5t)|Liquids
@@ -208,6 +223,7 @@ truck, diesel, 7.5 metric ton:
     witch:
       - Final Energy|Transportation|Freight|Truck|Internal Combustion|Liquids|Oil
       - Final Energy|Transportation|Freight|Truck|Internal Combustion|Liquids|Biomass
+    gcam: Final Energy|Transport|Freight|Road|Medium truck|Liquids
   ecoinvent_aliases:
     fltr:
       - transport, freight, lorry, diesel, 7.5 metric ton
@@ -218,8 +234,10 @@ truck, diesel, 7.5 metric ton:
 truck, diesel hybrid, 7.5 metric ton:
     iam_aliases:
       tiam-ucl: Distance|Transport|Truck|Commercial|Diesel Hybrid|Diesel
+      gcam: Distance|Transport|Freight|Road|Medium truck|Hybrid Liquids
     energy_use_aliases:
       tiam-ucl: Final Energy|Transport|Truck|Commercial|Diesel Hybrid|Diesel
+      gcam: Final Energy|Transport|Freight|Road|Medium truck|Hybrid Liquids
     ecoinvent_aliases:
         fltr:
         - transport, freight, lorry, diesel hybrid, 7.5 metric ton
@@ -248,10 +266,12 @@ truck, compressed gas, 7.5 metric ton:
     remind: ES|Transport|Freight|Road|Light|Truck(7_5t)|Gases
     remind-eu: ES|Transport|Freight|Road|Light|Truck(7_5t)|Gases
     tiam-ucl: Distance|Transport|Truck|Commercial|Natural Gas|Natural Gas
+    gcam: Distance|Transport|Freight|Road|Medium truck|NG
   energy_use_aliases:
     remind: FE|Transport|Freight|Road|Light|Truck(7_5t)|Gases
     remind-eu: FE|Transport|Freight|Road|Light|Truck(7_5t)|Gases
     tiam-ucl: Final Energy|Transport|Truck|Commercial|Natural Gas|Natural Gas
+    gcam: Final Energy|Transport|Freight|Road|Medium truck|NG
   ecoinvent_aliases:
     fltr:
       - transport, freight, lorry, compressed gas, 7.5 metric ton
@@ -275,9 +295,11 @@ truck, battery electric, 18 metric ton:
   iam_aliases:
     remind: ES|Transport|Freight|Road|Heavy|Truck(18t)|BEV
     remind-eu: ES|Transport|Freight|Road|Heavy|Truck(18t)|BEV
+    gcam: Distance|Transport|Freight|Road|Heavy truck|BEV
   energy_use_aliases:
     remind: FE|Transport|Freight|Road|Heavy|Truck(18t)|Electricity
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(18t)|Electricity
+    gcam: Final Energy|Transport|Freight|Road|Heavy truck|BEV
   ecoinvent_aliases:
     fltr:
       - transport, freight, lorry, battery electric, 18 metric ton
@@ -296,10 +318,12 @@ truck, fuel cell electric, 18 metric ton:
       - Energy Service|Transportation|Freight|Medium Truck|Fuel Cell Vehicle|Hydrogen
       - Energy Service|Transportation|Freight|Medium Truck|Internal Combustion Engine|Hydrogen
       - Energy Service|Transportation|Freight|Medium Truck|Hybrid engine|Hydrogen
+    gcam: Distance|Transport|Freight|Road|Heavy truck|FCEV
   energy_use_aliases:
     remind: FE|Transport|Freight|Road|Heavy|Truck(18t)|Hydrogen
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(18t)|Hydrogen
     tiam-ucl: Final Energy|Transport|Truck|Medium|Hydrogen Fuel Cell|Truck Hydrogen
+    gcam: Final Energy|Transport|Freight|Road|Heavy truck|FCEV
   ecoinvent_aliases:
     fltr:
       - transport, freight, lorry, fuel cell electric, 18 metric ton
@@ -341,12 +365,14 @@ truck, diesel, 18 metric ton:
     image:
       - Energy Service|Transportation|Freight|Medium Truck|Internal Combustion Engine|Biofuel
       - Energy Service|Transportation|Freight|Medium Truck|Internal Combustion Engine|Diesel
+    gcam: Distance|Transport|Freight|Road|Heavy truck|Liquids
   energy_use_aliases:
     remind: FE|Transport|Freight|Road|Heavy|Truck(18t)|Liquids
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(18t)|Liquids
     tiam-ucl:
       - Final Energy|Transport|Truck|Medium|Diesel|Biodiesel
       - Final Energy|Transport|Truck|Medium|Diesel|Diesel
+    gcam: Final Energy|Transport|Freight|Road|Heavy truck|Liquids
   ecoinvent_aliases:
     fltr:
       - transport, freight, lorry, diesel, 18 metric ton
@@ -369,6 +395,7 @@ truck, diesel hybrid, 18 metric ton:
       image:
         - Energy Service|Transportation|Freight|Medium Truck|Hybrid engine|Biofuel
         - Energy Service|Transportation|Freight|Medium Truck|Hybrid engine|Diesel
+      gcam: Distance|Transport|Freight|Road|Heavy truck|Hybrid Liquids
     ecoinvent_aliases:
         fltr:
         - transport, freight, lorry, diesel hybrid, 18 metric ton
@@ -382,10 +409,12 @@ truck, compressed gas, 18 metric ton:
     remind-eu: ES|Transport|Freight|Road|Heavy|Truck(18t)|Gases
     image: Energy Service|Transportation|Freight|Medium Truck|Hybrid engine|LNG
     tiam-ucl: Distance|Transport|Truck|Medium|Natural Gas|Natural Gas
+    gcam: Distance|Transport|Freight|Road|Heavy truck|NG
   energy_use_aliases:
     remind: FE|Transport|Freight|Road|Heavy|Truck(18t)|Gases
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(18t)|Gases
     tiam-ucl: Final Energy|Transport|Truck|Medium|Natural Gas|Natural Gas
+    gcam: Final Energy|Transport|Freight|Road|Heavy truck|NG
   ecoinvent_aliases:
     fltr:
       - transport, freight, lorry, compressed gas, 18 metric ton

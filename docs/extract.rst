@@ -77,7 +77,7 @@ indicate the database name in `source_db` and its version in `source_version`:
   from premise import *
   import brightway2 as bw
 
-  bw.projects.set_current("my_project)
+  bw.projects.set_current("my_project")
 
   ndb = NewDatabase(
         scenarios=[
@@ -89,6 +89,10 @@ indicate the database name in `source_db` and its version in `source_version`:
         keep_imports_uncertainty=True, # True by default, set to False to drop uncertainty in additional inventories
         keep_source_db_uncertainty=False # False by default, set to True if you want to keep ecoinvent's uncertainty data
     )
+
+.. note::
+
+    ``source_db`` must match the **name of the database in your Brightway project** (it is not a fixed string).
 
 Note that a cache of the database will be created the first time and
 stored in the library folder. Any subsequent creation of databases
@@ -1027,7 +1031,7 @@ They introduce the following datasets:
   carbon dioxide, captured at cement production plant, for subsequent reuse                                        RER
  =============================================================================================================== ===========
 
-Using the transformation function `update("dac")`, *premise* creates various configurations of these processes,
+Using the transformation function `update("cdr")`, *premise* creates various configurations of these processes,
 using different sources for heat (industrial steam heat, high-temp heat
 pump heat and excess heat), which are found under the following names, for each IAM region:
 
