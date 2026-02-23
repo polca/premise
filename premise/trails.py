@@ -50,12 +50,15 @@ def _mean_age_from_params(dist_type, loc, scale, mn, mx, lifetime):
     except Exception:
         t = None
 
-    # Type 2: lognormal on AGE
+    # Type 2: lognormal on AGE.
+    # Some sources encode vintage convention with negative loc for past age support;
+    # use absolute value so mean age remains physically meaningful.
     if t == 2:
         if loc is None or scale is None or scale <= 0:
             return lifetime / 2.0 if lifetime else None
         try:
-            return float(math.exp(float(loc) + 0.5 * float(scale) ** 2))
+            mu = abs(float(loc))
+            return float(math.exp(mu + 0.5 * float(scale) ** 2))
         except Exception:
             return lifetime / 2.0 if lifetime else None
 
