@@ -1155,6 +1155,8 @@ class Export:
                             exc.get("temporal_scale"),
                             exc.get("temporal_min"),
                             exc.get("temporal_max"),
+                            exc.get("temporal_offsets"),
+                            exc.get("temporal_weights"),
                         ]
                         list_exchanges.append(row)
 
@@ -1205,6 +1207,8 @@ class Export:
                             exc.get("temporal_scale"),
                             exc.get("temporal_min"),
                             exc.get("temporal_max"),
+                            exc.get("temporal_offsets"),
+                            exc.get("temporal_weights"),
                         ]
                     except KeyError:
                         print(
@@ -1257,6 +1261,8 @@ class Export:
                     "temporal_scale",
                     "temporal_min",
                     "temporal_max",
+                    "temporal_offsets",
+                    "temporal_weights",
                 ]
             )
             for row in rows:
@@ -1302,6 +1308,8 @@ class Export:
                     "temporal_scale",
                     "temporal_min",
                     "temporal_max",
+                    "temporal_offsets",
+                    "temporal_weights",
                 ]
             )
             rows = self.create_B_matrix_coordinates()
