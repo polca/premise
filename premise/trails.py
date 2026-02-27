@@ -6,7 +6,6 @@ used to create a data package for scenario analysis.
 import json
 import csv
 import shutil
-import math
 import re
 import ast
 from datetime import date
@@ -37,64 +36,6 @@ def key_constructor(loader, node):
 
 
 KeyLoader.add_constructor("!key", key_constructor)
-
-
-def _mean_age_from_params(
-    dist_type, loc, scale, mn, mx, lifetime, offsets=None, weights=None
-):
-    """
-    Compute mean age (mu) from existing temporal distribution parameters.
-    Falls back to lifetime/2 if not computable.
-    """
-    try:
-        t = int(dist_type) if dist_type is not None else None
-    except Exception:
-        t = None
-
-    # Type 2: lognormal on AGE.
-    # Some sources encode vintage convention with negative loc for past age support;
-    # use absolute value so mean age remains physically meaningful.
-    if t == 2:
-        if loc is None or scale is None or scale <= 0:
-            return lifetime / 2.0 if lifetime else None
-        try:
-            mu = abs(float(loc))
-            return float(math.exp(mu + 0.5 * float(scale) ** 2))
-        except Exception:
-            return lifetime / 2.0 if lifetime else None
-
-    # Vintage-based types: compute E[vintage] then mu = -E[vintage]
-    if t == 4:
-        if mn is None or mx is None:
-            return lifetime / 2.0 if lifetime else None
-        Ev = (float(mn) + float(mx)) / 2.0
-        return -Ev
-
-    if t == 5:
-        if mn is None or mx is None or loc is None:
-            return lifetime / 2.0 if lifetime else None
-        Ev = (float(mn) + float(mx) + float(loc)) / 3.0
-        return -Ev
-
-    if t == 3:
-        # Approximate truncated normal mean with loc
-        if loc is None:
-            return lifetime / 2.0 if lifetime else None
-        return -float(loc)
-
-    if t == 6:
-        if not offsets or not weights:
-            return lifetime / 2.0 if lifetime else None
-        if len(offsets) != len(weights):
-            return lifetime / 2.0 if lifetime else None
-        total_w = sum(float(w) for w in weights)
-        if total_w == 0:
-            return lifetime / 2.0 if lifetime else None
-        Ev = sum(float(o) * float(w) for o, w in zip(offsets, weights)) / total_w
-        return -Ev
-
-    # Unknown / missing type: fallback
-    return lifetime / 2.0 if lifetime else None
 
 
 class TrailsDataPackage:
@@ -288,6 +229,12 @@ class TrailsDataPackage:
                     "temporal_weights": _num_list(row.get("weights")),
                     "temporal_min": _num(row.get("minimum")),
                     "temporal_max": _num(row.get("maximum")),
+                    "lifetime": _num(row.get("lifetime")),
+                    "mean_age": _num(
+                        row.get("mean_age")
+                        or row.get("average_age")
+                        or row.get("average age")
+                    ),
                 }
 
             elif tag == "end_of_life":
@@ -312,7 +259,7 @@ class TrailsDataPackage:
                     "lifetime": _num(row.get("lifetime")),
                 }
 
-            elif tag in {"maintenance_event", "maintenance"}:
+            elif tag == "maintenance":
                 maintenance.add((name, ref))
 
         return stock_assets, end_of_life, biomass_growth, maintenance
@@ -1020,248 +967,129 @@ class TrailsDataPackage:
 
     def add_temporal_distributions(self):
         """
-        1) For technosphere exchanges that draw from a stock_asset supplier, inject the supplier-specific temporal params.
-        2) For technosphere exchanges that draw from an end_of_life supplier, shift the calling dataset's
-           age distribution by its average age (or lifetime fallback) and apply it to the exchange.
+        Apply temporal distributions in a single pass over exchanges:
+        - biomass_growth: apply dataset-level params to CO2 uptake exchange
+        - stock_asset: apply supplier-level params directly
+        - maintenance: uniform distribution over [0, lifetime] using calling dataset lifetime from CSV
+        - end_of_life: one-pulse (type 6) at dataset lifetime from CSV
         """
-        MAX_REASONABLE_LIFETIME_YEARS = 100.0
-
-        def _sanitized_years(value):
-            if value is None:
-                return None
-            try:
-                v = float(value)
-            except Exception:
-                return None
-            if abs(v) > MAX_REASONABLE_LIFETIME_YEARS:
-                return None
-            return v
-
         stock_assets = getattr(self, "stock_asset_params", {})  # (name, ref) -> params
         end_of_life = getattr(self, "end_of_life_suppliers", set())
         biomass_growth = getattr(self, "biomass_growth_params", {})
         maintenance = getattr(self, "maintenance_suppliers", set())
 
-        def _num(x):
-            if x is None:
-                return None
-            try:
-                return float(x)
-            except Exception:
-                return None
-
         for s, scenario in enumerate(self.datapackage.scenarios):
             scenario = load_database(scenario, self.datapackage.database)
             db = scenario["database"]
-            product_lookup: Dict[Tuple[str, str], Set[str]] = {}
-            for ds in db:
-                key = (
-                    (ds.get("name") or "").strip(),
-                    (ds.get("location") or "").strip(),
-                )
-                ref = (ds.get("reference product") or "").strip()
-                if not key[0] or not key[1] or not ref:
-                    continue
-                product_lookup.setdefault(key, set()).add(ref)
-
-            def _exchange_product(exc):
-                ref = (exc.get("product") or exc.get("reference product") or "").strip()
-                if ref:
-                    return ref
-                name = (exc.get("name") or "").strip()
-                loc = (exc.get("location") or "").strip()
-                candidates = product_lookup.get((name, loc)) or set()
-                if len(candidates) == 1:
-                    ref = next(iter(candidates))
-                    exc["product"] = ref
-                    return ref
-                return ""
+            validation_errors = []
 
             for ds in db:
                 ds_name = (ds.get("name") or "").strip()
                 ds_ref = (ds.get("reference product") or "").strip()
+                ds_stock = stock_assets.get((ds_name, ds_ref), {})
+                ds_lifetime = ds_stock.get("lifetime")
 
-                # ---- (0) biomass_growth: apply temporal params to CO2 uptake in biosphere
                 bg = biomass_growth.get((ds_name, ds_ref))
-                if bg is not None:
-                    dist_type = bg.get("temporal_distribution")
-                    for e in ds.get("exchanges", []):
-                        if e.get("type") != "biosphere":
-                            continue
-                        if (e.get("name") or "").strip() != "Carbon dioxide, in air":
-                            continue
-                        if e.get("temporal_distribution") is not None:
-                            continue
-
-                        if dist_type is not None:
-                            e["temporal_distribution"] = dist_type
-                            loc = bg.get("temporal_loc")
-                            e["temporal_scale"] = bg.get("temporal_scale")
-                            e["temporal_offsets"] = bg.get("temporal_offsets")
-                            e["temporal_weights"] = bg.get("temporal_weights")
-                            mn = bg.get("temporal_min")
-                            mx = bg.get("temporal_max")
-                            # CO2 uptake occurs in the past: ensure negative-time support
-                            if (
-                                mn is not None
-                                and mx is not None
-                                and mn >= 0
-                                and mx >= 0
-                            ):
-                                mn, mx = -mx, -mn
-                                if loc is not None:
-                                    loc = -loc
-                            e["temporal_loc"] = loc
-                            e["temporal_min"] = mn
-                            e["temporal_max"] = mx
-                        else:
-                            L = bg.get("lifetime")
-                            if L is None or L <= 0:
-                                continue
-                            e["temporal_distribution"] = 4  # uniform kernel
-                            e["temporal_loc"] = None
-                            e["temporal_scale"] = None
-                            e["temporal_offsets"] = None
-                            e["temporal_weights"] = None
-                            e["temporal_min"] = -float(L)
-                            e["temporal_max"] = 0.0
-
-                # ---- (A) stock_asset suppliers: exchange-level params for technosphere exchanges.
                 for e in ds.get("exchanges", []):
-                    if e.get("type") != "technosphere":
+                    exc_type = e.get("type")
+
+                    if (
+                        exc_type == "biosphere"
+                        and (e.get("name") or "").strip() == "Carbon dioxide, in air"
+                        and bg is not None
+                        and bg.get("temporal_distribution") is not None
+                    ):
+                        e["temporal_distribution"] = bg.get("temporal_distribution")
+                        e["temporal_loc"] = bg.get("temporal_loc")
+                        e["temporal_scale"] = bg.get("temporal_scale")
+                        e["temporal_min"] = bg.get("temporal_min")
+                        e["temporal_max"] = bg.get("temporal_max")
+                        e["temporal_offsets"] = bg.get("temporal_offsets")
+                        e["temporal_weights"] = bg.get("temporal_weights")
+                        continue
+
+                    if exc_type != "technosphere":
                         continue
 
                     sup_name = (e.get("name") or "").strip()
-                    sup_ref = _exchange_product(e)
+                    sup_ref = (e.get("product") or e.get("reference product") or "").strip()
+                    if not sup_ref:
+                        validation_errors.append(
+                            "Missing supplier product on technosphere exchange "
+                            f"in dataset ({ds_name}, {ds_ref}) for exchange '{sup_name}'."
+                        )
+                        continue
                     key = (sup_name, sup_ref)
-
                     params = stock_assets.get(key)
-                    if not params:
+                    is_maintenance = key in maintenance
+                    is_end_of_life = key in end_of_life
+
+                    matched = int(params is not None) + int(is_maintenance) + int(
+                        is_end_of_life
+                    )
+                    if matched > 1:
+                        tags = []
+                        if params is not None:
+                            tags.append("stock_asset")
+                        if is_maintenance:
+                            tags.append("maintenance")
+                        if is_end_of_life:
+                            tags.append("end_of_life")
+                        validation_errors.append(
+                            "Ambiguous temporal tags for supplier "
+                            f"{key}: matched {tags} in dataset "
+                            f"({ds_name}, {ds_ref})."
+                        )
+                        continue
+                    if matched == 0:
                         continue
 
-                    e["temporal_distribution"] = params["temporal_distribution"]
-                    e["temporal_loc"] = params.get("temporal_loc")
-                    e["temporal_scale"] = params.get("temporal_scale")
-                    e["temporal_offsets"] = params.get("temporal_offsets")
-                    e["temporal_weights"] = params.get("temporal_weights")
-                    e["temporal_min"] = params.get("temporal_min")
-                    e["temporal_max"] = params.get("temporal_max")
+                    if params is not None:
+                        e["temporal_distribution"] = params["temporal_distribution"]
+                        e["temporal_loc"] = params.get("temporal_loc")
+                        e["temporal_scale"] = params.get("temporal_scale")
+                        e["temporal_min"] = params.get("temporal_min")
+                        e["temporal_max"] = params.get("temporal_max")
+                        e["temporal_offsets"] = params.get("temporal_offsets")
+                        e["temporal_weights"] = params.get("temporal_weights")
+                        continue
 
-                # ---- (B) end_of_life suppliers: shift calling dataset distribution by its average age
-                ds_mean_age = None
-                ds_lifetime = None
-                ds_dist_type = None
-                ds_loc = None
-                ds_scale = None
-                ds_min = None
-                ds_max = None
-                ds_offsets = None
-                ds_weights = None
-
-                # Fallback to dataset-provided fields, if any
-                if ds_mean_age is None:
-                    ds_mean_age = _sanitized_years(
-                        _num(
-                            ds.get("mean_age")
-                            or ds.get("average age")
-                            or ds.get("average_age")
+                    if (is_maintenance or is_end_of_life) and ds_lifetime is None:
+                        validation_errors.append(
+                            "Missing dataset lifetime in temporal CSV for "
+                            f"({ds_name}, {ds_ref}) required by supplier {key} "
+                            f"(tag: {'maintenance' if is_maintenance else 'end_of_life'})."
                         )
-                    )
-                if ds_lifetime is None:
-                    ds_lifetime = _sanitized_years(_num(ds.get("lifetime")))
+                        continue
 
-                # If dataset-level temporal params are unavailable, use stock_asset dist params when available
-                if ds_dist_type is None:
-                    ds_stock = stock_assets.get((ds_name, ds_ref))
-                    if ds_stock:
-                        ds_dist_type = ds_stock.get("temporal_distribution")
-                        ds_loc = _num(ds_stock.get("temporal_loc"))
-                        ds_scale = _num(ds_stock.get("temporal_scale"))
-                        ds_offsets = ds_stock.get("temporal_offsets")
-                        ds_weights = ds_stock.get("temporal_weights")
-                        ds_min = _num(ds_stock.get("temporal_min"))
-                        ds_max = _num(ds_stock.get("temporal_max"))
-
-                if ds_mean_age is None and ds_dist_type is not None:
-                    mu = _mean_age_from_params(
-                        ds_dist_type,
-                        ds_loc,
-                        ds_scale,
-                        ds_min,
-                        ds_max,
-                        ds_lifetime,
-                        ds_offsets,
-                        ds_weights,
-                    )
-                    if mu is not None:
-                        ds_mean_age = _sanitized_years(float(mu))
-
-                if ds_mean_age is None and ds_lifetime is not None:
-                    ds_mean_age = ds_lifetime / 2.0
-
-                # ---- (C) maintenance suppliers: use calling dataset lifetime as uniform support [0, L]
-                if ds_lifetime is not None:
-                    for e in ds.get("exchanges", []):
-                        if e.get("type") != "technosphere":
-                            continue
-                        sup_name = (e.get("name") or "").strip()
-                        sup_ref = _exchange_product(e)
-                        if (sup_name, sup_ref) not in maintenance:
-                            continue
-                        if e.get("temporal_distribution") is not None:
-                            continue
-                        e["temporal_distribution"] = 4  # uniform kernel
+                    if is_maintenance:
+                        e["temporal_distribution"] = 4
                         e["temporal_loc"] = None
                         e["temporal_scale"] = None
-                        e["temporal_offsets"] = None
-                        e["temporal_weights"] = None
                         e["temporal_min"] = 0.0
                         e["temporal_max"] = float(ds_lifetime)
-
-                for e in ds.get("exchanges", []):
-                    if e.get("type") != "technosphere":
-                        continue
-
-                    sup_name = (e.get("name") or "").strip()
-                    sup_ref = _exchange_product(e)
-                    if (sup_name, sup_ref) not in end_of_life:
-                        continue
-
-                    if ds_mean_age is None and ds_lifetime is None:
-                        continue
-
-                    # Use the calling dataset's distribution params if available; otherwise fallback to uniform.
-                    if ds_dist_type is not None:
-                        shift = 0.0
-                        if (
-                            ds_lifetime is not None
-                            and ds_mean_age is not None
-                            and ds_loc is not None
-                        ):
-                            shift = (ds_lifetime - ds_mean_age) - ds_loc
-                        elif ds_mean_age is not None and ds_loc is not None:
-                            shift = ds_mean_age - ds_loc
-                        e["temporal_distribution"] = ds_dist_type
-                        e["temporal_loc"] = None if ds_loc is None else ds_loc + shift
-                        e["temporal_scale"] = ds_scale
-                        if ds_dist_type == 6 and ds_offsets is not None:
-                            e["temporal_offsets"] = [float(v) + shift for v in ds_offsets]
-                        else:
-                            e["temporal_offsets"] = ds_offsets
-                        e["temporal_weights"] = ds_weights
-                        e["temporal_min"] = None if ds_min is None else ds_min + shift
-                        e["temporal_max"] = None if ds_max is None else ds_max + shift
-                    else:
-                        e["temporal_distribution"] = 4  # uniform kernel
-                        e["temporal_loc"] = None
-                        e["temporal_scale"] = None
                         e["temporal_offsets"] = None
                         e["temporal_weights"] = None
-                        if ds_lifetime is not None:
-                            e["temporal_min"] = 0.0
-                            e["temporal_max"] = float(ds_lifetime)
-                        else:
-                            e["temporal_min"] = float(ds_mean_age)
-                            e["temporal_max"] = float(ds_mean_age)
+                        continue
+
+                    if is_end_of_life:
+                        pulse_time = float(ds_lifetime)
+                        e["temporal_distribution"] = 6
+                        e["temporal_loc"] = None
+                        e["temporal_scale"] = None
+                        e["temporal_min"] = None
+                        e["temporal_max"] = None
+                        e["temporal_offsets"] = [pulse_time]
+                        e["temporal_weights"] = [1.0]
+
+            if validation_errors:
+                sample = "\n".join(f"- {msg}" for msg in validation_errors[:25])
+                remaining = len(validation_errors) - 25
+                if remaining > 0:
+                    sample += f"\n- ... and {remaining} more"
+                raise ValueError(
+                    "Temporal distribution validation failed:\n"
+                    f"{sample}"
+                )
 
             self.datapackage.scenarios[s] = dump_database(scenario)
