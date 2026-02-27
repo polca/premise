@@ -2,7 +2,11 @@
 
 All notable changes to this project are documented in this file.
 
-## [2.3.7] - Unreleased
+## [2.3.8]
+
+- Added new version of IMAGE scenarios.
+
+## [2.3.7]
 
 Changes in this section summarize work since tag `v.2.3.6` (including current local branch updates).
 
