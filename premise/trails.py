@@ -22,9 +22,7 @@ from .inventory_imports import get_classifications
 from .filesystem_constants import DATA_DIR
 from .utils import load_database, dump_database
 
-FILEPATH_TEMPORAL_PARAMETERS = (
-    DATA_DIR / "trails" / "temporal_distributions.csv"
-)
+FILEPATH_TEMPORAL_PARAMETERS = DATA_DIR / "trails" / "temporal_distributions.csv"
 
 
 class KeyLoader(yaml.SafeLoader):
@@ -514,7 +512,9 @@ class TrailsDataPackage:
             with open(cls_path, "r", newline="", encoding="utf-8-sig") as f:
                 r = csv.DictReader(f)
                 for row in r:
-                    file_keys.add((row.get("name", "").strip(), row.get("product", "").strip()))
+                    file_keys.add(
+                        (row.get("name", "").strip(), row.get("product", "").strip())
+                    )
             with open(cls_path, "a", newline="", encoding="utf-8-sig") as f:
                 w = csv.DictWriter(
                     f,
