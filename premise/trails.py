@@ -1245,7 +1245,9 @@ class TrailsDataPackage:
                         e["temporal_loc"] = None if ds_loc is None else ds_loc + shift
                         e["temporal_scale"] = ds_scale
                         if ds_dist_type == 6 and ds_offsets is not None:
-                            e["temporal_offsets"] = [float(v) + shift for v in ds_offsets]
+                            e["temporal_offsets"] = [
+                                float(v) + shift for v in ds_offsets
+                            ]
                         else:
                             e["temporal_offsets"] = ds_offsets
                         e["temporal_weights"] = ds_weights
