@@ -1012,7 +1012,9 @@ class TrailsDataPackage:
                         continue
 
                     sup_name = (e.get("name") or "").strip()
-                    sup_ref = (e.get("product") or e.get("reference product") or "").strip()
+                    sup_ref = (
+                        e.get("product") or e.get("reference product") or ""
+                    ).strip()
                     if not sup_ref:
                         validation_errors.append(
                             "Missing supplier product on technosphere exchange "
@@ -1024,8 +1026,10 @@ class TrailsDataPackage:
                     is_maintenance = key in maintenance
                     is_end_of_life = key in end_of_life
 
-                    matched = int(params is not None) + int(is_maintenance) + int(
-                        is_end_of_life
+                    matched = (
+                        int(params is not None)
+                        + int(is_maintenance)
+                        + int(is_end_of_life)
                     )
                     if matched > 1:
                         tags = []
@@ -1088,8 +1092,7 @@ class TrailsDataPackage:
                 if remaining > 0:
                     sample += f"\n- ... and {remaining} more"
                 raise ValueError(
-                    "Temporal distribution validation failed:\n"
-                    f"{sample}"
+                    "Temporal distribution validation failed:\n" f"{sample}"
                 )
 
             self.datapackage.scenarios[s] = dump_database(scenario)
