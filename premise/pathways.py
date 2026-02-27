@@ -307,7 +307,10 @@ class PathwaysDataPackage:
                     classifications = ds.get("classifications") or []
 
                     if not classifications:
-                        if (ds["name"], ds["reference product"]) in self.classifications:
+                        if (
+                            ds["name"],
+                            ds["reference product"],
+                        ) in self.classifications:
                             ds["classifications"] = [
                                 (
                                     "ISIC rev.4 ecoinvent",
@@ -345,7 +348,10 @@ class PathwaysDataPackage:
             rows = sorted(missing_classifications)
             tsv_buffer = StringIO()
             tsv_writer = csv.writer(
-                tsv_buffer, delimiter="\t", lineterminator="\n", quoting=csv.QUOTE_MINIMAL
+                tsv_buffer,
+                delimiter="\t",
+                lineterminator="\n",
+                quoting=csv.QUOTE_MINIMAL,
             )
             tsv_writer.writerow(["name", "reference product"])
             for name, ref in rows:
