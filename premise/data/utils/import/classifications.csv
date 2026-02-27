@@ -3446,3 +3446,7 @@ hard coal mine operation and hard coal preparation,hard coal,0510:Mining of hard
 "bioethanol, from sugar crops, burned in passenger car",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
 "forest residues, burned in furnace 1000kW","heat","3510:Electric power generation, transmission and distribution",17300: Steam and hot water
 "market for kerosene","kerosene",1920:Manufacture of refined petroleum products,33371: Kerosene
+"ethanol production, via fermentation, from wheat, with carbon capture and storage","ethanol, from wheat grains",2011:Manufacture of basic chemicals,35491: Biodiesel
+"bioethanol, from non-residual cellulosic biomass, burned in passenger car","heat",
+"ethanol, from wheat grains, with carbon capture and storage, energy allocation, at fuelling station","ethanol, without water, in 99.7% solution state, vehicle grade",2011:Manufacture of basic chemicals,35491: Biodiesel
+"bioethanol, from non-residual cellulosic biomass, burned in passenger car","heat",3530:Steam and air conditioning supply,17300: Steam and hot water
