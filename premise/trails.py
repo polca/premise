@@ -8,6 +8,7 @@ import csv
 import shutil
 import math
 import re
+import ast
 from datetime import date
 from pathlib import Path
 from typing import List, Dict, Tuple, Set
@@ -38,7 +39,9 @@ def key_constructor(loader, node):
 KeyLoader.add_constructor("!key", key_constructor)
 
 
-def _mean_age_from_params(dist_type, loc, scale, mn, mx, lifetime):
+def _mean_age_from_params(
+    dist_type, loc, scale, mn, mx, lifetime, offsets=None, weights=None
+):
     """
     Compute mean age (mu) from existing temporal distribution parameters.
     Falls back to lifetime/2 if not computable.
@@ -78,6 +81,17 @@ def _mean_age_from_params(dist_type, loc, scale, mn, mx, lifetime):
         if loc is None:
             return lifetime / 2.0 if lifetime else None
         return -float(loc)
+
+    if t == 6:
+        if not offsets or not weights:
+            return lifetime / 2.0 if lifetime else None
+        if len(offsets) != len(weights):
+            return lifetime / 2.0 if lifetime else None
+        total_w = sum(float(w) for w in weights)
+        if total_w == 0:
+            return lifetime / 2.0 if lifetime else None
+        Ev = sum(float(o) * float(w) for o, w in zip(offsets, weights)) / total_w
+        return -Ev
 
     # Unknown / missing type: fallback
     return lifetime / 2.0 if lifetime else None
@@ -209,6 +223,40 @@ class TrailsDataPackage:
             except Exception:
                 return None
 
+        def _num_list(x):
+            x = _clean(x)
+            if x is None:
+                return None
+            if isinstance(x, (list, tuple)):
+                try:
+                    return [float(v) for v in x]
+                except Exception:
+                    return None
+
+            s = str(x).strip()
+            vals = None
+            if s.startswith("[") and s.endswith("]"):
+                try:
+                    parsed = ast.literal_eval(s)
+                    if isinstance(parsed, (list, tuple)):
+                        vals = [float(v) for v in parsed]
+                except Exception:
+                    vals = None
+            if vals is None:
+                parts = re.split(r"[|;,]", s)
+                if len(parts) == 1:
+                    parts = s.split()
+                vals = []
+                for p in parts:
+                    p = p.strip()
+                    if not p:
+                        continue
+                    try:
+                        vals.append(float(p))
+                    except Exception:
+                        return None
+            return vals if vals else None
+
         stock_assets: Dict[Tuple[str, str], dict] = {}
         end_of_life: Set[Tuple[str, str]] = set()
         biomass_growth: Dict[Tuple[str, str], dict] = {}
@@ -236,6 +284,8 @@ class TrailsDataPackage:
                     "temporal_distribution": dist_type,
                     "temporal_loc": _num(row.get("loc")),
                     "temporal_scale": _num(row.get("scale")),
+                    "temporal_offsets": _num_list(row.get("offsets")),
+                    "temporal_weights": _num_list(row.get("weights")),
                     "temporal_min": _num(row.get("minimum")),
                     "temporal_max": _num(row.get("maximum")),
                 }
@@ -255,6 +305,8 @@ class TrailsDataPackage:
                     "temporal_distribution": dist_type,
                     "temporal_loc": _num(row.get("loc")),
                     "temporal_scale": _num(row.get("scale")),
+                    "temporal_offsets": _num_list(row.get("offsets")),
+                    "temporal_weights": _num_list(row.get("weights")),
                     "temporal_min": _num(row.get("minimum")),
                     "temporal_max": _num(row.get("maximum")),
                     "lifetime": _num(row.get("lifetime")),
@@ -1045,6 +1097,8 @@ class TrailsDataPackage:
                             e["temporal_distribution"] = dist_type
                             loc = bg.get("temporal_loc")
                             e["temporal_scale"] = bg.get("temporal_scale")
+                            e["temporal_offsets"] = bg.get("temporal_offsets")
+                            e["temporal_weights"] = bg.get("temporal_weights")
                             mn = bg.get("temporal_min")
                             mx = bg.get("temporal_max")
                             # CO2 uptake occurs in the past: ensure negative-time support
@@ -1067,6 +1121,8 @@ class TrailsDataPackage:
                             e["temporal_distribution"] = 4  # uniform kernel
                             e["temporal_loc"] = None
                             e["temporal_scale"] = None
+                            e["temporal_offsets"] = None
+                            e["temporal_weights"] = None
                             e["temporal_min"] = -float(L)
                             e["temporal_max"] = 0.0
 
@@ -1086,6 +1142,8 @@ class TrailsDataPackage:
                     e["temporal_distribution"] = params["temporal_distribution"]
                     e["temporal_loc"] = params.get("temporal_loc")
                     e["temporal_scale"] = params.get("temporal_scale")
+                    e["temporal_offsets"] = params.get("temporal_offsets")
+                    e["temporal_weights"] = params.get("temporal_weights")
                     e["temporal_min"] = params.get("temporal_min")
                     e["temporal_max"] = params.get("temporal_max")
 
@@ -1097,6 +1155,8 @@ class TrailsDataPackage:
                 ds_scale = None
                 ds_min = None
                 ds_max = None
+                ds_offsets = None
+                ds_weights = None
 
                 # Fallback to dataset-provided fields, if any
                 if ds_mean_age is None:
@@ -1117,6 +1177,8 @@ class TrailsDataPackage:
                         ds_dist_type = ds_stock.get("temporal_distribution")
                         ds_loc = _num(ds_stock.get("temporal_loc"))
                         ds_scale = _num(ds_stock.get("temporal_scale"))
+                        ds_offsets = ds_stock.get("temporal_offsets")
+                        ds_weights = ds_stock.get("temporal_weights")
                         ds_min = _num(ds_stock.get("temporal_min"))
                         ds_max = _num(ds_stock.get("temporal_max"))
 
@@ -1128,6 +1190,8 @@ class TrailsDataPackage:
                         ds_min,
                         ds_max,
                         ds_lifetime,
+                        ds_offsets,
+                        ds_weights,
                     )
                     if mu is not None:
                         ds_mean_age = _sanitized_years(float(mu))
@@ -1149,6 +1213,8 @@ class TrailsDataPackage:
                         e["temporal_distribution"] = 4  # uniform kernel
                         e["temporal_loc"] = None
                         e["temporal_scale"] = None
+                        e["temporal_offsets"] = None
+                        e["temporal_weights"] = None
                         e["temporal_min"] = 0.0
                         e["temporal_max"] = float(ds_lifetime)
 
@@ -1178,12 +1244,19 @@ class TrailsDataPackage:
                         e["temporal_distribution"] = ds_dist_type
                         e["temporal_loc"] = None if ds_loc is None else ds_loc + shift
                         e["temporal_scale"] = ds_scale
+                        if ds_dist_type == 6 and ds_offsets is not None:
+                            e["temporal_offsets"] = [float(v) + shift for v in ds_offsets]
+                        else:
+                            e["temporal_offsets"] = ds_offsets
+                        e["temporal_weights"] = ds_weights
                         e["temporal_min"] = None if ds_min is None else ds_min + shift
                         e["temporal_max"] = None if ds_max is None else ds_max + shift
                     else:
                         e["temporal_distribution"] = 4  # uniform kernel
                         e["temporal_loc"] = None
                         e["temporal_scale"] = None
+                        e["temporal_offsets"] = None
+                        e["temporal_weights"] = None
                         if ds_lifetime is not None:
                             e["temporal_min"] = 0.0
                             e["temporal_max"] = float(ds_lifetime)
