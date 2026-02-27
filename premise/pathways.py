@@ -6,6 +6,7 @@ used to create a data package for scenario analysis.
 import json
 import csv
 import shutil
+from io import StringIO
 from datetime import date
 from pathlib import Path
 from typing import List
@@ -290,6 +291,7 @@ class PathwaysDataPackage:
         ]
 
         seen = set()
+        missing_classifications = set()
 
         with open(outfile, "w", newline="", encoding="utf-8") as f:
             writer = csv.DictWriter(f, fieldnames=fieldnames)
@@ -305,11 +307,7 @@ class PathwaysDataPackage:
                     classifications = ds.get("classifications") or []
 
                     if not classifications:
-                        print(f"No classifications for {name}")
-                        if (
-                            ds["name"],
-                            ds["reference product"],
-                        ) in self.classifications:
+                        if (ds["name"], ds["reference product"]) in self.classifications:
                             ds["classifications"] = [
                                 (
                                     "ISIC rev.4 ecoinvent",
@@ -325,6 +323,8 @@ class PathwaysDataPackage:
                                 ),
                             ]
                             classifications = ds.get("classifications")
+                        else:
+                            missing_classifications.add((name, ref))
 
                     for system, code in classifications:
                         key = (name, ref, system, code)
@@ -340,6 +340,26 @@ class PathwaysDataPackage:
                                 "classification_code": code,
                             }
                         )
+
+        if missing_classifications:
+            rows = sorted(missing_classifications)
+            tsv_buffer = StringIO()
+            tsv_writer = csv.writer(
+                tsv_buffer, delimiter="\t", lineterminator="\n", quoting=csv.QUOTE_MINIMAL
+            )
+            tsv_writer.writerow(["name", "reference product"])
+            for name, ref in rows:
+                tsv_writer.writerow([name, ref])
+
+            missing_outfile = outdir / "missing_classifications.tsv"
+            with open(missing_outfile, "w", encoding="utf-8", newline="") as f:
+                f.write(tsv_buffer.getvalue())
+
+            print(
+                f"Missing classifications for {len(rows)} unique activities "
+                f"(TSV, also saved to {missing_outfile}):"
+            )
+            print(tsv_buffer.getvalue().rstrip())
 
     def _build_datapackage(self, name: str, contributors: list = None):
         """
