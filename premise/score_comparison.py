@@ -2,8 +2,51 @@ import pandas as pd
 import bw2data, bw2calc
 from tqdm import tqdm
 import sys
+import re
 
 from .new_database import NewDatabase
+
+
+def _parse_version_tuple(version) -> tuple:
+    """Return a comparable 3-int version tuple from str/list/tuple versions."""
+    if isinstance(version, (tuple, list)):
+        parts = [int(x) for x in version[:3]]
+    else:
+        parts = [int(x) for x in re.findall(r"\d+", str(version))[:3]]
+
+    while len(parts) < 3:
+        parts.append(0)
+
+    return tuple(parts)
+
+
+def _is_brightway25_stack() -> bool:
+    """True when using BW2.5 libraries (bw2calc>=2 and bw2data>=4)."""
+    return _parse_version_tuple(getattr(bw2calc, "__version__", "0")) >= (
+        2,
+        0,
+        0,
+    ) and _parse_version_tuple(getattr(bw2data, "__version__", "0")) >= (4, 0, 0)
+
+
+def _get_bw25_demand_key(ds, lca):
+    """Return a product-node integer id usable as BW2.5 LCI demand key."""
+    if ds.id in lca.dicts.product:
+        return ds.id
+
+    for exc in ds.production():
+        candidate = None
+        if getattr(exc, "input", None) is not None:
+            candidate = getattr(exc.input, "id", None)
+        if candidate is None:
+            candidate = exc.get("input")
+        if isinstance(candidate, int) and candidate in lca.dicts.product:
+            return candidate
+
+    raise KeyError(
+        f"Could not find BW2.5 product demand key for dataset '{ds}'. "
+        "Neither ds.id nor production exchange input ids are in lca.dicts.product."
+    )
 
 
 def comparative_analysis(
@@ -71,6 +114,8 @@ def comparative_analysis(
     if len(common_datasets) > limit:
         common_datasets = common_datasets[:limit]
 
+    use_bw25_indexing = _is_brightway25_stack()
+
     for db in databases:
 
         lca = bw2calc.LCA({db.random(): 1}, method=indicators[0])
@@ -92,8 +137,6 @@ def comparative_analysis(
                 ds["reference product"],
                 ds["location"],
             )
-
-            index = lca.activity_dict[ds.key]
 
             if key not in common_datasets:
                 continue
@@ -135,13 +178,20 @@ def comparative_analysis(
             for e in ds.production():
                 amount = e["amount"]
 
-            lca.redo_lci({ds: amount})
+            if use_bw25_indexing:
+                lca.lci(demand={_get_bw25_demand_key(ds, lca): amount})
+            else:
+                lca.redo_lci({ds: amount})
             for j, characterization_matrix in enumerate(method_matrices):
 
                 if indicators[j] not in scores[key]:
                     scores[key][indicators[j]] = {}
 
                 if direct_only:
+                    if use_bw25_indexing:
+                        index = lca.dicts.activity[ds.id]
+                    else:
+                        index = lca.activity_dict[ds.key]
                     scores[key][indicators[j]][db.name] = (
                         characterization_matrix * lca.inventory
                     )[:, index].sum()
