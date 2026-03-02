@@ -106,6 +106,7 @@ class TrailsDataPackage:
             self.end_of_life_suppliers,
             self.biomass_growth_params,
             self.maintenance_suppliers,
+            self.dataset_lifetimes,
         ) = self._load_temporal_specs_from_csv(FILEPATH_TEMPORAL_PARAMETERS)
 
     def create_datapackage(
@@ -129,6 +130,7 @@ class TrailsDataPackage:
         Set[Tuple[str, str]],
         Dict[Tuple[str, str], dict],
         Set[Tuple[str, str]],
+        Dict[Tuple[str, str], float],
     ]:
         """
         Returns:
@@ -136,6 +138,7 @@ class TrailsDataPackage:
           end_of_life:  set[(name, ref)] of end_of_life supplier datasets
           biomass_growth: dict[(name, ref)] -> temporal params for CO2 uptake in biomass growth datasets
           maintenance: set[(name, ref)] of maintenance supplier datasets
+          dataset_lifetimes: dict[(name, ref)] -> dataset lifetime from CSV, regardless of temporal_tag
         """
         with open(path, "r", encoding="utf-8", newline="") as f:
             rows = list(csv.DictReader(f))
@@ -202,6 +205,7 @@ class TrailsDataPackage:
         end_of_life: Set[Tuple[str, str]] = set()
         biomass_growth: Dict[Tuple[str, str], dict] = {}
         maintenance: Set[Tuple[str, str]] = set()
+        dataset_lifetimes: Dict[Tuple[str, str], float] = {}
 
         for row in rows:
             tag = _clean(row.get("temporal_tag"))
@@ -209,6 +213,9 @@ class TrailsDataPackage:
             ref = _clean(row.get("reference product"))
             if not name or not ref or not tag:
                 continue
+            lifetime = _num(row.get("lifetime"))
+            if lifetime is not None:
+                dataset_lifetimes[(name, ref)] = lifetime
 
             if tag == "stock_asset":
                 dist_type = _clean(row.get("age distribution type"))
@@ -262,7 +269,7 @@ class TrailsDataPackage:
             elif tag == "maintenance":
                 maintenance.add((name, ref))
 
-        return stock_assets, end_of_life, biomass_growth, maintenance
+        return stock_assets, end_of_life, biomass_growth, maintenance, dataset_lifetimes
 
     def _export_datapackage(
         self,
@@ -977,17 +984,50 @@ class TrailsDataPackage:
         end_of_life = getattr(self, "end_of_life_suppliers", set())
         biomass_growth = getattr(self, "biomass_growth_params", {})
         maintenance = getattr(self, "maintenance_suppliers", set())
+        dataset_lifetimes = getattr(self, "dataset_lifetimes", {})
+        outdir = Path.cwd() / "trails_temp"
+        outfile = outdir / "temporal_distribution_faulty_exchanges.csv"
+        if outfile.exists():
+            outfile.unlink()
+        faulty_exchanges = []
+
+        def _fmt_categories(value):
+            if value is None:
+                return ""
+            if isinstance(value, (list, tuple)):
+                return "|".join(str(v) for v in value)
+            return str(value)
+
+        def _record_fault(ds, exc, reason):
+            faulty_exchanges.append(
+                {
+                    "scenario": f"{scenario.get('model', '')} | {scenario.get('pathway', '')} | {scenario.get('year', '')}",
+                    "calling_dataset_name": (ds.get("name") or "").strip(),
+                    "calling_dataset_reference_product": (
+                        ds.get("reference product") or ""
+                    ).strip(),
+                    "calling_dataset_location": (ds.get("location") or "").strip(),
+                    "exchange_name": (exc.get("name") or "").strip(),
+                    "exchange_reference_product": (
+                        exc.get("product") or exc.get("reference product") or ""
+                    ).strip(),
+                    "exchange_categories": _fmt_categories(exc.get("categories")),
+                    "exchange_location": (exc.get("location") or "").strip(),
+                    "reason": reason,
+                }
+            )
 
         for s, scenario in enumerate(self.datapackage.scenarios):
             scenario = load_database(scenario, self.datapackage.database)
             db = scenario["database"]
-            validation_errors = []
 
             for ds in db:
                 ds_name = (ds.get("name") or "").strip()
                 ds_ref = (ds.get("reference product") or "").strip()
                 ds_stock = stock_assets.get((ds_name, ds_ref), {})
                 ds_lifetime = ds_stock.get("lifetime")
+                if ds_lifetime is None:
+                    ds_lifetime = dataset_lifetimes.get((ds_name, ds_ref))
 
                 bg = biomass_growth.get((ds_name, ds_ref))
                 for e in ds.get("exchanges", []):
@@ -1014,9 +1054,10 @@ class TrailsDataPackage:
                     sup_name = (e.get("name") or "").strip()
                     sup_ref = (e.get("product") or e.get("reference product") or "").strip()
                     if not sup_ref:
-                        validation_errors.append(
-                            "Missing supplier product on technosphere exchange "
-                            f"in dataset ({ds_name}, {ds_ref}) for exchange '{sup_name}'."
+                        _record_fault(
+                            ds,
+                            e,
+                            "Missing supplier product on technosphere exchange.",
                         )
                         continue
                     key = (sup_name, sup_ref)
@@ -1035,10 +1076,10 @@ class TrailsDataPackage:
                             tags.append("maintenance")
                         if is_end_of_life:
                             tags.append("end_of_life")
-                        validation_errors.append(
-                            "Ambiguous temporal tags for supplier "
-                            f"{key}: matched {tags} in dataset "
-                            f"({ds_name}, {ds_ref})."
+                        _record_fault(
+                            ds,
+                            e,
+                            f"Ambiguous temporal tags for supplier {key}: matched {tags}.",
                         )
                         continue
                     if matched == 0:
@@ -1055,10 +1096,11 @@ class TrailsDataPackage:
                         continue
 
                     if (is_maintenance or is_end_of_life) and ds_lifetime is None:
-                        validation_errors.append(
-                            "Missing dataset lifetime in temporal CSV for "
-                            f"({ds_name}, {ds_ref}) required by supplier {key} "
-                            f"(tag: {'maintenance' if is_maintenance else 'end_of_life'})."
+                        _record_fault(
+                            ds,
+                            e,
+                            "Missing dataset lifetime in temporal CSV "
+                            f"(tag: {'maintenance' if is_maintenance else 'end_of_life'}).",
                         )
                         continue
 
@@ -1082,14 +1124,26 @@ class TrailsDataPackage:
                         e["temporal_offsets"] = [pulse_time]
                         e["temporal_weights"] = [1.0]
 
-            if validation_errors:
-                sample = "\n".join(f"- {msg}" for msg in validation_errors[:25])
-                remaining = len(validation_errors) - 25
-                if remaining > 0:
-                    sample += f"\n- ... and {remaining} more"
-                raise ValueError(
-                    "Temporal distribution validation failed:\n"
-                    f"{sample}"
-                )
-
             self.datapackage.scenarios[s] = dump_database(scenario)
+
+        if faulty_exchanges:
+            outdir.mkdir(parents=True, exist_ok=True)
+            fieldnames = [
+                "scenario",
+                "calling_dataset_name",
+                "calling_dataset_reference_product",
+                "calling_dataset_location",
+                "exchange_name",
+                "exchange_reference_product",
+                "exchange_categories",
+                "exchange_location",
+                "reason",
+            ]
+            with open(outfile, "w", newline="", encoding="utf-8") as f:
+                writer = csv.DictWriter(f, fieldnames=fieldnames)
+                writer.writeheader()
+                writer.writerows(faulty_exchanges)
+            print(
+                f"Found {len(faulty_exchanges)} faulty temporal exchanges. "
+                f"See: {outfile.resolve()}"
+            )
