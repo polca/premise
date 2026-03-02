@@ -2073,26 +2073,35 @@ class SteelValidation(BaseDatasetValidator):
 
                 eaf_steel = 0
                 if "steel - secondary" in self.iam_data.steel_technology_mix.variables:
-                    if (
-                        self.year
-                        in self.iam_data.steel_technology_mix.coords["year"].values
-                    ):
-
-                        eaf_steel = (
-                            self.iam_data.steel_technology_mix.sel(
-                                variables="steel - secondary",
-                                region=ds["location"],
-                                year=self.year,
-                            )
-                        ).values.item(0)
-                    else:
-                        eaf_steel = (
-                            self.iam_data.steel_technology_mix.sel(
-                                variables="steel - secondary", region=ds["location"]
-                            )
-                            .interp(year=self.year)
-                            .values.item(0)
+                    steel_variables = [
+                        v
+                        for v in self.iam_data.production_volumes.variables.values
+                        if str(v).lower().startswith("steel")
+                    ]
+                    if steel_variables:
+                        steel_prod = self.iam_data.production_volumes.sel(
+                            variables=steel_variables,
+                            region=ds["location"],
                         )
+
+                        if (
+                            self.year
+                            in self.iam_data.steel_technology_mix.coords["year"].values
+                        ):
+                            steel_prod = steel_prod.sel(year=self.year)
+                        else:
+                            steel_prod = steel_prod.interp(year=self.year)
+
+                        # Production volumes can occasionally be negative in IAM inputs.
+                        # For a market share check, use non-negative steel volumes.
+                        steel_prod = steel_prod.clip(min=0)
+                        total_steel_prod = steel_prod.sum(dim="variables")
+
+                        if float(total_steel_prod.values.item(0)) > 0:
+                            eaf_steel = (
+                                steel_prod.sel(variables="steel - secondary")
+                                / total_steel_prod
+                            ).values.item(0)
 
                 total = sum(
                     [
@@ -2316,7 +2325,9 @@ class SteelValidation(BaseDatasetValidator):
 
         if len(self.major_issues_log) > 0:
             print(
-                "---> MAJOR anomalies found during steel update: check the change report."
+                "---> MAJOR anomalies found during steel update "
+                f"({self.model} | {self.scenario} | {self.year}): "
+                "check the change report."
             )
 
 
