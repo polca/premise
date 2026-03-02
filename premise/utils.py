@@ -158,6 +158,7 @@ def eidb_label(
     return name
 
 
+@lru_cache(maxsize=1)
 def load_constants() -> Dict[str, Any]:
     """Load global constants from ``constants.yaml``.
 

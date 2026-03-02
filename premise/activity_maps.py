@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from collections import defaultdict
+from functools import lru_cache
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple, Union
 
@@ -39,6 +40,7 @@ MINING_WASTE = DATA_DIR / "mining" / "tailings_activities.yaml"
 CARBON_STORAGE_TECHS = VARIABLES_DIR / "carbon_dioxide_removal.yaml"
 
 
+@lru_cache(maxsize=64)
 def get_mapping(
     filepath: Path, var: str, model: Optional[str] = None
 ) -> Dict[str, dict]:
