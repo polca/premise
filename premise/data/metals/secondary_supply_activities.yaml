@@ -46,6 +46,23 @@ cobalt:
       equals: GLO
     shares:
       2020: 0.360902256
+cobalt sulfate:
+  - name:
+      equals: treatment of used Li-ion battery, hydrometallurgical treatment
+    reference product:
+      equals: cobalt
+    location:
+      equals: GLO
+    shares:
+      2020: 0.639097744
+  - name:
+      equals: treatment of used Li-ion battery, pyrometallurgical treatment
+    reference product:
+      equals: cobalt
+    location:
+      equals: GLO
+    shares:
+      2020: 0.360902256
 copper, cathode:
   - name:
       all:
@@ -174,6 +191,15 @@ lead:
     shares:
       2020: 0.669223803
 lithium carbonate, battery grade:
+  - name:
+      startswith: treatment of
+    reference product:
+      equals: lithium carbonate
+    location:
+      equals: GLO
+    shares:
+      2020: 1
+lithium carbonate:
   - name:
       startswith: treatment of
     reference product:
@@ -332,6 +358,15 @@ praseodymium oxide:
       equals: treatment of used permanent magnet, collection, decoating, hydrogen decrepitation, milling
     reference product:
       equals: praseodymium oxide
+    location:
+      equals: GLO
+    shares:
+      2020: 1
+zinc:
+  - name:
+      equals: market for zinc scrap, post-consumer
+    reference product:
+      equals: zinc scrap, post-consumer
     location:
       equals: GLO
     shares:

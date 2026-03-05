@@ -224,10 +224,10 @@ cobalt sulfate:
   shares:
     primary:
       2020: 1.0
-      2050: 1.0
+      2050: 0.5
     secondary:
       2020: 0.0
-      2050: 0.0
+      2050: 0.5
 cobalt:
   name: market for cobalt
   reference product: cobalt
@@ -411,6 +411,16 @@ spodumene:
 lithium carbonate, battery grade:
   name: market for lithium carbonate, battery grade
   reference product: lithium carbonate, battery grade
+  shares:
+    primary:
+      2020: 0.999159585
+      2050: 0.7
+    secondary:
+      2020: 0.000840414604538239
+      2050: 0.3
+lithium carbonate:
+  name: market for lithium carbonate
+  reference product: lithium carbonate
   shares:
     primary:
       2020: 0.999159585
@@ -1022,10 +1032,10 @@ zinc:
   shares:
     primary:
       2020: 1.0
-      2050: 1.0
+      2050: 0.7
     secondary:
       2020: 0.0
-      2050: 0.0
+      2050: 0.3
 zircon:
   name: market for zircon
   reference product: zircon
