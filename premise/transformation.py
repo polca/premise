@@ -2227,7 +2227,7 @@ class BaseTransformation:
         new_exc = None
         # Handle the default case where no better candidate is found
         if not self.is_exchange_in_cache(exchange, dataset["location"]):
-            for default_location in ["World","RoW", "GLO"]:
+            for default_location in ["World", "RoW", "GLO"]:
                 if default_location in locations_set:
                     default_dataset = by_location[default_location][0]
 
