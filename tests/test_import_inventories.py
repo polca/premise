@@ -4,7 +4,12 @@ from pathlib import Path
 import pytest
 
 from premise.filesystem_constants import INVENTORY_DIR
-from premise.inventory_imports import BaseInventoryImport, DefaultInventory
+from premise.inventory_imports import (
+    BaseInventoryImport,
+    DefaultInventory,
+    get_classification_entry,
+    get_classifications,
+)
 
 FILEPATH_CARMA_INVENTORIES = INVENTORY_DIR / "lci-Carma-CCS.xlsx"
 FILEPATH_BIOFUEL_INVENTORIES = INVENTORY_DIR / "lci-biofuels.xlsx"
@@ -129,3 +134,41 @@ def test_load_biofuel():
         keep_uncertainty_data=False,
     )
     assert len(bio.import_db.data) >= 150
+
+
+def test_get_classifications_repairs_mojibake(tmp_path, monkeypatch):
+    filepath = tmp_path / "classifications.csv"
+    name = (
+        "market for sawlog and veneer log, paran√° pine, "
+        "measured as solid wood under bark"
+    )
+    product = "sawlog and veneer log, paran√° pine, measured as solid wood under bark"
+    filepath.write_text(
+        "\n".join(
+            [
+                "name,product,ISIC rev.4 ecoinvent,CPC",
+                f'"{name}","{product}",0220:Logging,"3110: Wood"',
+            ]
+        ),
+        encoding="utf-8",
+    )
+
+    get_classifications.cache_clear()
+    monkeypatch.setattr("premise.inventory_imports.FILEPATH_CLASSIFICATIONS", filepath)
+
+    classifications = get_classifications()
+    classification = get_classification_entry(
+        classifications,
+        (
+            "market for sawlog and veneer log, parana\u0301 pine, "
+            "measured as solid wood under bark"
+        ),
+        "sawlog and veneer log, paraná pine, measured as solid wood under bark",
+    )
+
+    assert classification == {
+        "ISIC rev.4 ecoinvent": "0220:Logging",
+        "CPC": "3110: Wood",
+    }
+
+    get_classifications.cache_clear()

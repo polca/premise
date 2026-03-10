@@ -313,6 +313,37 @@ def clear_inventory_cache() -> None:
     print("Inventory cache cleared!")
 
 
+def clear_runtime_caches() -> None:
+    """Clear runtime caches that can retain large transformation objects."""
+
+    from .electricity import Electricity
+    from .emissions import Emissions
+    from .export import exc_codes, fetch_exchange_code
+    from .external import ExternalScenario
+    from .inventory_imports import BaseInventoryImport
+    from .metals import Metals
+    from .transformation import BaseTransformation
+
+    cached_functions = (
+        Geomap.iam_to_ecoinvent_location,
+        Geomap.ecoinvent_to_iam_location,
+        BaseInventoryImport.correct_product_field,
+        BaseTransformation.get_gis_match,
+        Electricity.get_production_per_tech_dict,
+        Emissions.find_gains_emissions_change,
+        ExternalScenario.add_additional_exchanges,
+        Metals.get_metal_market_dataset,
+        fetch_exchange_code,
+    )
+
+    for cached_function in cached_functions:
+        cache_clear = getattr(cached_function, "cache_clear", None)
+        if cache_clear is not None:
+            cache_clear()
+
+    exc_codes.clear()
+
+
 def print_version():
     """Display the installed ``premise`` version."""
 
