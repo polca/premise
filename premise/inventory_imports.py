@@ -7,6 +7,7 @@ import csv
 import itertools
 import logging
 import uuid
+import unicodedata
 from functools import lru_cache
 from pathlib import Path
 from typing import Dict, List, Union
@@ -60,7 +61,7 @@ def get_classifications():
 
     # Build the nested dictionary
     classification_dict = {
-        (row["name"], row["product"]): {
+        canonicalize_classification_key(row["name"], row["product"]): {
             "ISIC rev.4 ecoinvent": row["ISIC rev.4 ecoinvent"],
             "CPC": row["CPC"],
         }
@@ -68,6 +69,61 @@ def get_classifications():
     }
 
     return classification_dict
+
+
+_MOJIBAKE_MARKERS = ("Ã", "Â", "√", "\ufffd")
+_MOJIBAKE_ENCODINGS = ("latin-1", "cp1252", "mac_roman")
+
+
+def _count_mojibake_markers(text: str) -> int:
+    return sum(text.count(marker) for marker in _MOJIBAKE_MARKERS)
+
+
+def repair_mojibake(text: str) -> str:
+    if not isinstance(text, str):
+        return text
+
+    repaired = text
+    best_score = _count_mojibake_markers(repaired)
+
+    if best_score == 0:
+        return repaired
+
+    for encoding in _MOJIBAKE_ENCODINGS:
+        try:
+            candidate = text.encode(encoding).decode("utf-8")
+        except (UnicodeEncodeError, UnicodeDecodeError):
+            continue
+
+        candidate = unicodedata.normalize("NFC", candidate)
+        score = _count_mojibake_markers(candidate)
+        if score < best_score:
+            repaired = candidate
+            best_score = score
+
+    return repaired
+
+
+def canonicalize_classification_field(value: str) -> str:
+    if not isinstance(value, str):
+        return value
+
+    value = unicodedata.normalize("NFC", value).replace("\ufeff", "").strip()
+    if any(marker in value for marker in _MOJIBAKE_MARKERS):
+        value = repair_mojibake(value)
+
+    return value
+
+
+def canonicalize_classification_key(name: str, product: str):
+    return (
+        canonicalize_classification_field(name),
+        canonicalize_classification_field(product),
+    )
+
+
+def get_classification_entry(classifications: Dict, name: str, product: str):
+    return classifications.get(canonicalize_classification_key(name, product))
 
 
 @lru_cache(maxsize=1)
@@ -1411,20 +1467,19 @@ class BaseInventoryImport:
     def add_classifications(self):
 
         for ds in self.import_db.data:
-            if (ds["name"], ds["reference product"]) in self.classifications:
+            classification = get_classification_entry(
+                self.classifications, ds["name"], ds["reference product"]
+            )
+            if classification:
 
                 ds["classifications"] = [
                     (
                         "ISIC rev.4 ecoinvent",
-                        self.classifications[(ds["name"], ds["reference product"])][
-                            "ISIC rev.4 ecoinvent"
-                        ],
+                        classification["ISIC rev.4 ecoinvent"],
                     ),
                     (
                         "CPC",
-                        self.classifications[(ds["name"], ds["reference product"])][
-                            "CPC"
-                        ],
+                        classification["CPC"],
                     ),
                 ]
             else:
