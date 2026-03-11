@@ -15,7 +15,6 @@ from typing import List
 import xarray as xr
 import yaml
 from datapackage import Package
-import bw2data
 
 from . import __version__
 from .new_database import NewDatabase
@@ -52,13 +51,6 @@ class PathwaysDataPackage:
         self.source_db = source_db
         self.source_version = source_version
         self.key = key
-
-        # check biosphere database name
-        if biosphere_name not in bw2data.databases:
-            raise ValueError(
-                f"Wrong biosphere name: {biosphere_name}. "
-                f"Should be one of {bw2data.databases}"
-            )
 
         self.datapackage = NewDatabase(
             scenarios=self.scenarios,
