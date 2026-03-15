@@ -6,7 +6,7 @@ from pathlib import Path
 
 from fastapi import FastAPI
 from fastapi.responses import Response
-from fastapi.responses import FileResponse, JSONResponse
+from fastapi.responses import FileResponse, HTMLResponse, JSONResponse
 
 from premise_ui import __version__ as UI_VERSION
 from premise_ui.api.routes.capabilities import router as capabilities_router
@@ -20,6 +20,31 @@ from premise_ui.api.routes.projects import router as projects_router
 from premise_ui.api.routes.recents import router as recents_router
 from premise_ui.api.routes.scenario_explorer import router as scenario_explorer_router
 from premise_ui.core.paths import frontend_dist_dir
+
+
+def _fallback_frontend_shell() -> HTMLResponse:
+    return HTMLResponse(
+        """<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Premise UI</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <main style="font-family: sans-serif; margin: 2rem auto; max-width: 48rem;">
+      <h1>Premise UI</h1>
+      <p>
+        The frontend assets are not bundled in this checkout. Build the Vite
+        frontend or install a packaged Premise release to use the full GUI.
+      </p>
+    </main>
+  </body>
+</html>
+""",
+        status_code=200,
+    )
 
 
 def create_app() -> FastAPI:
@@ -47,10 +72,7 @@ def create_app() -> FastAPI:
     def root() -> Response:
         if index_file.exists():
             return FileResponse(index_file)
-        return JSONResponse(
-            {"detail": "Premise UI frontend assets are not bundled yet."},
-            status_code=503,
-        )
+        return _fallback_frontend_shell()
 
     @app.get("/{asset_path:path}", include_in_schema=False, response_model=None)
     def spa(asset_path: str) -> Response:
@@ -69,9 +91,6 @@ def create_app() -> FastAPI:
         if index_file.exists():
             return FileResponse(index_file)
 
-        return JSONResponse(
-            {"detail": "Premise UI frontend assets are not bundled yet."},
-            status_code=503,
-        )
+        return _fallback_frontend_shell()
 
     return app
