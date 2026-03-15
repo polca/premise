@@ -73,6 +73,19 @@ code {
   padding: 18px 18px 34px;
 }
 
+.app-footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 22px;
+  padding: 10px 14px 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.app-footer p {
+  margin: 0;
+}
+
 .masthead,
 .card,
 .tabbar {

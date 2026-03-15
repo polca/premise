@@ -8586,6 +8586,9 @@ export default function App() {
           </article>
         </aside>
       </section>
+      <footer className="app-footer">
+        <p>Copyright (c) 2026, Paul Scherrer Institute</p>
+      </footer>
     </main>
   );
 }
