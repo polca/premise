@@ -7,7 +7,12 @@ from pathlib import Path
 from typing import Any
 
 from premise_ui.core.manifests import GuiProjectManifest, RunManifest, utc_now_iso
-from premise_ui.core.storage import list_run_artifacts, load_project, read_json, save_project
+from premise_ui.core.storage import (
+    list_run_artifacts,
+    load_project,
+    read_json,
+    save_project,
+)
 
 
 def _project_dir(project_path: str | Path) -> Path:
@@ -30,11 +35,17 @@ def _resolve_run_dir(project_path: str | Path, run_dir_ref: str) -> Path:
     return (_project_dir(project_path) / candidate).resolve()
 
 
-def _project_snapshot(project: GuiProjectManifest | dict[str, Any] | None) -> dict[str, Any] | None:
+def _project_snapshot(
+    project: GuiProjectManifest | dict[str, Any] | None,
+) -> dict[str, Any] | None:
     if project is None:
         return None
 
-    manifest = project if isinstance(project, GuiProjectManifest) else GuiProjectManifest.from_dict(project)
+    manifest = (
+        project
+        if isinstance(project, GuiProjectManifest)
+        else GuiProjectManifest.from_dict(project)
+    )
     return {
         "schema_version": manifest.schema_version,
         "project_name": manifest.project_name,
@@ -77,9 +88,11 @@ def _initial_history_entry(
         "export_type": export.get("type"),
         "scenario_count": len(manifest.scenarios),
         "scenarios": _scenario_summary(manifest),
-        "run_dir": _relative_to_project(manifest.project_path, run_dir)
-        if manifest.project_path
-        else str(Path(run_dir).expanduser().resolve()),
+        "run_dir": (
+            _relative_to_project(manifest.project_path, run_dir)
+            if manifest.project_path
+            else str(Path(run_dir).expanduser().resolve())
+        ),
         "artifacts": [],
         "artifact_count": 0,
         "warnings": list(warnings or []),
@@ -113,7 +126,11 @@ def remember_project_run(
     )
     project.run_history = [
         entry,
-        *[item for item in project.run_history if item.get("run_id") != manifest.run_id],
+        *[
+            item
+            for item in project.run_history
+            if item.get("run_id") != manifest.run_id
+        ],
     ]
     save_project(project_file, project)
     return entry
@@ -138,7 +155,11 @@ def sync_project_run_history(
 
     project = load_project(project_file)
     index = next(
-        (position for position, item in enumerate(project.run_history) if item.get("run_id") == run_id),
+        (
+            position
+            for position, item in enumerate(project.run_history)
+            if item.get("run_id") == run_id
+        ),
         None,
     )
     if index is None:
@@ -162,7 +183,11 @@ def sync_project_run_history(
     elif entry.get("run_dir"):
         resolved_run_dir = _resolve_run_dir(project_file, str(entry["run_dir"]))
 
-    artifacts = list_run_artifacts(resolved_run_dir) if resolved_run_dir else entry.get("artifacts", [])
+    artifacts = (
+        list_run_artifacts(resolved_run_dir)
+        if resolved_run_dir
+        else entry.get("artifacts", [])
+    )
     entry["updated_at"] = utc_now_iso()
     entry["status"] = status
     entry["artifacts"] = artifacts

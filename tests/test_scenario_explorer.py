@@ -98,7 +98,9 @@ def test_compare_scenario_explorer_indexed_mode(monkeypatch):
     assert payload["compare_mode"] == "indexed"
     assert payload["baseline_year"] == 2030
     assert payload["summary"]["label"] == "Index (baseline = 100)"
-    first_points = payload["summary"]["scenarios"][0]["groups"][0]["series"][0]["points"]
+    first_points = payload["summary"]["scenarios"][0]["groups"][0]["series"][0][
+        "points"
+    ]
     assert first_points == [
         {"year": 2020, "value": 50.0},
         {"year": 2030, "value": 100.0},

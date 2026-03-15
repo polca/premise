@@ -27,7 +27,9 @@ def _normalize_state(state: dict[str, Any] | None) -> dict[str, list[dict[str, A
     }
 
 
-def _write_state(state: dict[str, list[dict[str, Any]]]) -> dict[str, list[dict[str, Any]]]:
+def _write_state(
+    state: dict[str, list[dict[str, Any]]],
+) -> dict[str, list[dict[str, Any]]]:
     write_json(RECENTS_FILE, state)
     return state
 
@@ -75,7 +77,9 @@ def _remember_entry(
     return [entry, *filtered][:limit]
 
 
-def remember_recent_project(path: str, *, label: str | None = None) -> dict[str, list[dict[str, Any]]]:
+def remember_recent_project(
+    path: str, *, label: str | None = None
+) -> dict[str, list[dict[str, Any]]]:
     resolved = _resolve_path(path)
     state = load_recent_state()
     entry = {

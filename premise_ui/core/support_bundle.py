@@ -20,7 +20,9 @@ def _read_text(path: Path) -> str:
         return handle.read()
 
 
-def _project_payload(project_path: str | None, run_id: str | None) -> tuple[dict | None, dict | None]:
+def _project_payload(
+    project_path: str | None, run_id: str | None
+) -> tuple[dict | None, dict | None]:
     if not project_path:
         return None, None
 
@@ -63,7 +65,9 @@ def write_support_bundle(
     manifest = diagnostics.get("manifest") or {}
     resolved_run_id = run_id or manifest.get("run_id") or base_dir.name
     resolved_project_path = project_path or manifest.get("project_path")
-    project_config, history_entry = _project_payload(resolved_project_path, resolved_run_id)
+    project_config, history_entry = _project_payload(
+        resolved_project_path, resolved_run_id
+    )
 
     summary = {
         "bundle_version": 1,

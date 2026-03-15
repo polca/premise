@@ -45,7 +45,9 @@ def _resolve_run_dir(request: RunDiagnosticsRequest, api_request: Request) -> Pa
 def run_details(request: RunDiagnosticsRequest, api_request: Request) -> dict:
     run_dir = _resolve_run_dir(request, api_request)
     if not run_dir.exists():
-        raise HTTPException(status_code=404, detail=f"Run directory not found: {run_dir}")
+        raise HTTPException(
+            status_code=404, detail=f"Run directory not found: {run_dir}"
+        )
 
     payload = load_run_diagnostics(run_dir)
     payload["run_id"] = request.run_id or payload.get("manifest", {}).get("run_id")

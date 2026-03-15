@@ -8,7 +8,14 @@ import sys
 from pathlib import Path
 from typing import Any
 
-from fastapi import APIRouter, HTTPException, Query, Request, WebSocket, WebSocketDisconnect
+from fastapi import (
+    APIRouter,
+    HTTPException,
+    Query,
+    Request,
+    WebSocket,
+    WebSocketDisconnect,
+)
 from fastapi.responses import FileResponse
 
 from premise_ui.api.models import (
@@ -57,7 +64,8 @@ def _job_state(run_id: str, api_request: Request) -> dict[str, Any]:
     status = status_from_events(
         events,
         process_returncode=process_returncode,
-        is_active=api_request.app.state.active_run_id == run_id and process_returncode is None,
+        is_active=api_request.app.state.active_run_id == run_id
+        and process_returncode is None,
         queue_position=queued_position,
     )
     return {
@@ -210,10 +218,14 @@ def _resolve_artifact_path(run_dir: Path, artifact_path: str) -> Path:
     try:
         candidate.relative_to(run_dir.resolve())
     except ValueError as exc:
-        raise HTTPException(status_code=400, detail="Artifact path escapes the run directory.") from exc
+        raise HTTPException(
+            status_code=400, detail="Artifact path escapes the run directory."
+        ) from exc
 
     if not candidate.is_file():
-        raise HTTPException(status_code=404, detail=f"Artifact not found: {artifact_path}")
+        raise HTTPException(
+            status_code=404, detail=f"Artifact not found: {artifact_path}"
+        )
 
     return candidate
 
@@ -232,7 +244,9 @@ def validate_job(request: JobValidateRequest) -> dict:
 def enqueue_job(request: JobEnqueueRequest, api_request: Request) -> dict:
     errors, warnings = validate_run_manifest_payload(request.run_manifest)
     if errors:
-        raise HTTPException(status_code=400, detail={"errors": errors, "warnings": warnings})
+        raise HTTPException(
+            status_code=400, detail={"errors": errors, "warnings": warnings}
+        )
 
     manifest = RunManifest.from_dict(request.run_manifest)
     return _queue_or_start(
@@ -249,7 +263,9 @@ def enqueue_project_job(request: ProjectRunRequest, api_request: Request) -> dic
     manifest = build_run_manifest_from_project(project, project_path=request.path)
     errors, warnings = validate_run_manifest_payload(manifest.to_dict())
     if errors:
-        raise HTTPException(status_code=400, detail={"errors": errors, "warnings": warnings})
+        raise HTTPException(
+            status_code=400, detail={"errors": errors, "warnings": warnings}
+        )
 
     return _queue_or_start(
         manifest,

@@ -12,7 +12,9 @@ def queue_position(job_queue: list[dict[str, Any]], run_id: str) -> int | None:
     return None
 
 
-def pop_queued_job(job_queue: list[dict[str, Any]], run_id: str) -> dict[str, Any] | None:
+def pop_queued_job(
+    job_queue: list[dict[str, Any]], run_id: str
+) -> dict[str, Any] | None:
     position = queue_position(job_queue, run_id)
     if position is None:
         return None

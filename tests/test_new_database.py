@@ -108,7 +108,9 @@ def test_check_presence_biosphere_database_is_noninteractive(monkeypatch):
         lambda prompt: (_ for _ in ()).throw(AssertionError("input should not run")),
     )
 
-    with pytest.raises(ValueError, match="Brightway export requires a biosphere database"):
+    with pytest.raises(
+        ValueError, match="Brightway export requires a biosphere database"
+    ):
         check_presence_biosphere_database("missing-biosphere")
 
 
@@ -119,7 +121,9 @@ def test_write_db_to_brightway_requires_registered_biosphere(monkeypatch):
     obj.biosphere_name = "missing-biosphere"
     obj.scenarios = [{"model": "image", "pathway": "SSP2-Base", "year": 2030}]
 
-    with pytest.raises(ValueError, match="Brightway export requires a biosphere database"):
+    with pytest.raises(
+        ValueError, match="Brightway export requires a biosphere database"
+    ):
         obj.write_db_to_brightway(name=["test-db"])
 
 
@@ -133,7 +137,9 @@ def test_write_superstructure_to_brightway_requires_registered_biosphere(monkeyp
         {"model": "image", "pathway": "SSP2-Base", "year": 2035},
     ]
 
-    with pytest.raises(ValueError, match="Brightway export requires a biosphere database"):
+    with pytest.raises(
+        ValueError, match="Brightway export requires a biosphere database"
+    ):
         obj.write_superstructure_db_to_brightway(name="super-db")
 
 

@@ -2,7 +2,10 @@
 
 from __future__ import annotations
 
-from premise_ui.core.premise_metadata import load_premise_constants, load_premise_version
+from premise_ui.core.premise_metadata import (
+    load_premise_constants,
+    load_premise_version,
+)
 from premise_ui.core.scenario_catalog import (
     list_local_iam_scenarios,
     load_iam_scenario_catalog,

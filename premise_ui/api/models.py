@@ -81,9 +81,7 @@ class ScenarioExplorerSummaryRequest(BaseModel):
 class ScenarioExplorerCompareRequest(BaseModel):
     scenario_paths: list[str] = Field(default_factory=list)
     sector: str
-    compare_mode: Literal["overlay", "indexed", "delta", "percent_change"] = (
-        "overlay"
-    )
+    compare_mode: Literal["overlay", "indexed", "delta", "percent_change"] = "overlay"
     baseline_year: int | None = None
     baseline_scenario_id: str | None = None
     group_names: list[str] = Field(default_factory=list)
