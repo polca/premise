@@ -404,6 +404,16 @@ def test_frontend_source_scaffold_exists():
     assert 'outDir: "dist"' in vite_config
 
 
+def test_frontend_dist_bundle_exists():
+    dist_index = Path("premise_ui/frontend/dist/index.html")
+    dist_js_files = sorted(Path("premise_ui/frontend/dist/assets").glob("index-*.js"))
+    dist_css_files = sorted(Path("premise_ui/frontend/dist/assets").glob("index-*.css"))
+
+    assert dist_index.exists()
+    assert dist_js_files
+    assert dist_css_files
+
+
 def test_list_local_iam_scenarios_prefers_supported_suffix_order(tmp_path, monkeypatch):
     from premise_ui.core.scenario_catalog import list_local_iam_scenarios
 

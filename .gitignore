@@ -5,6 +5,8 @@ dev/
 *.egg/
 build/
 dist/
+!premise_ui/frontend/dist/
+!premise_ui/frontend/dist/**
 data/export/
 data/logs/
 *.eggs/
