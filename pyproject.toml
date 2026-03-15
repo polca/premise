@@ -38,6 +38,7 @@ docs = [
 ]
 ui = [
     "fastapi>=0.115,<1",
+    "httpx>=0.27,<1",
     "keyring>=25,<26",
     "uvicorn>=0.30,<1",
 ]
