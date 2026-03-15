@@ -63,6 +63,23 @@ IAM data access
 Some IAM scenario files are encrypted. Access requires an encryption key from
 the developers.
 
+Interface options
+-----------------
+
+*premise* can be used either through the Python API or through the local
+browser-based GUI.
+
+* **Python API**: best suited for notebooks, scripts, automation, and custom
+  integration into larger workflows.
+* **GUI**: best suited for interactive configuration, scenario browsing,
+  export setup, run monitoring, and troubleshooting.
+
+The GUI is launched with ``premise-ui`` after installation and runs locally on
+the same machine. Saved GUI configurations are JSON files and remain separate
+from Brightway projects.
+
+For GUI-specific usage instructions, see :doc:`gui`.
+
 .. _EULA: https://ecoinvent.org/app/uploads/2024/01/EULA_new_branding_08_11_2023.pdf
 
 Publication

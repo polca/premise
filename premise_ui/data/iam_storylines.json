@@ -1,0 +1,1555 @@
+{
+  "schema_version": 2,
+  "updated_at": "2026-03-14",
+  "source": "Derived from iam_run_storylines.md",
+  "storylines": [
+    {
+      "id": "gcam-ssp2-base",
+      "model": "gcam",
+      "pathway": "SSP2-Base",
+      "label": "gcam / SSP2-Base",
+      "source_heading": "01. GCAM | SSP2 base",
+      "description": "SSP2, a middle-of-the-road development pathway, combined with a baseline case without additional tightening beyond the model setup implied by the file name.",
+      "scope_note": "This GCAM extract reports global population, GDP, temperature, CO2, electricity output, DAC, and covered steel/cement final energy, but not a clean economy-wide final-energy or aggregate GHG series.",
+      "sections": [
+        {
+          "title": "Scenario Setup",
+          "content": "SSP2, a middle-of-the-road development pathway, combined with a baseline case without additional tightening beyond the model setup implied by the file name."
+        },
+        {
+          "title": "Interpretive Reading",
+          "content": "This is structurally closer to a weak-policy pathway, so economic and energy growth face less climate constraint. By 2100 this remains a relatively warm pathway, which usually means mitigation is weaker, later, or both. Because CO2 stays positive through 2100 and carbon removal remains limited, the transition stops short of a full net-zero-style outcome."
+        },
+        {
+          "title": "Population and Economy",
+          "content": "Starting from 7.74 billion people in 2020, population reaches 9.13 billion people by 2100; the 2050 value is 9.31 billion people. The biggest absolute population increases to mid-century are in Africa Western, India, and Africa Eastern. Starting from $116.8 trillion in 2020, GDP reaches $597.1 trillion by 2100; the 2050 value is $261.3 trillion. By 2050 the largest GDP blocks in the file are China, India, and United States."
+        },
+        {
+          "title": "Climate and Emissions",
+          "content": "Starting from 1.31C in 2020, global mean temperature reaches 3.53C by 2100; the 2050 value is 2.16C. Starting from 10.70 Gt/yr in 2020, CO2 emissions reach 15.80 Gt/yr by 2100; the 2050 value is 13.16 Gt/yr. The largest regional CO2 sources around 2050 are China, India, and United States."
+        },
+        {
+          "title": "Energy System",
+          "content": "The file does not include a clean economy-wide final-energy total, but it does report steel and cement final energy. Starting from 50.1 EJ/yr in 2020, that covered industrial energy falls to 28.0 EJ/yr by 2100; the 2050 value is 36.9 EJ/yr. Starting from 100.9 EJ/yr in 2020, electricity output reaches 396.5 EJ/yr by 2100; the 2050 value is 241.5 EJ/yr. Electrification is visible in the end-use split: covered steel-and-cement electricity share moves from 10% in 2020 to 18% in 2100."
+        },
+        {
+          "title": "Carbon Management and Biomass",
+          "content": "Starting from 0 Mt/yr in 2020, direct air capture stays broadly flat and is still around 0 Mt/yr by 2100; the 2050 value is 0 Mt/yr."
+        },
+        {
+          "title": "Regional Pattern",
+          "content": "Population growth to mid-century is concentrated in Africa Western, India, and Africa Eastern. Mid-century economic weight is concentrated in China, India, and United States. The heaviest CO2-emitting regions around 2050 are China, India, and United States."
+        },
+        {
+          "title": "Data Note",
+          "content": "This GCAM extract reports global population, GDP, temperature, CO2, electricity output, DAC, and covered steel/cement final energy, but not a clean economy-wide final-energy or aggregate GHG series."
+        }
+      ]
+    },
+    {
+      "id": "gcam-ssp2-rcp26",
+      "model": "gcam",
+      "pathway": "SSP2-RCP26",
+      "label": "gcam / SSP2-RCP26",
+      "source_heading": "02. GCAM | SSP2 RCP26",
+      "description": "SSP2, a middle-of-the-road development pathway, combined with a strong climate-constrained outcome around the classic RCP2.6 family.",
+      "scope_note": "This GCAM extract reports global population, GDP, temperature, CO2, electricity output, DAC, and covered steel/cement final energy, but not a clean economy-wide final-energy or aggregate GHG series.",
+      "sections": [
+        {
+          "title": "Scenario Setup",
+          "content": "SSP2, a middle-of-the-road development pathway, combined with a strong climate-constrained outcome around the classic RCP2.6 family."
+        },
+        {
+          "title": "Interpretive Reading",
+          "content": "This reads as a strong mitigation pathway: policy pressure is high enough to bend emissions down decisively, but not always without transitional strain. This is best read as an overshoot pathway: warming peaks first, and only later does the system work temperatures back down. CO2 turns net negative by late century, which marks this as a genuinely deep decarbonization pathway."
+        },
+        {
+          "title": "Population and Economy",
+          "content": "Starting from 7.74 billion people in 2020, population reaches 9.13 billion people by 2100; the 2050 value is 9.31 billion people. The biggest absolute population increases to mid-century are in Africa Western, India, and Africa Eastern. Starting from $122.6 trillion in 2020, GDP reaches $650.7 trillion by 2100; the 2050 value is $279.6 trillion. By 2050 the largest GDP blocks in the file are China, United States, and India."
+        },
+        {
+          "title": "Climate and Emissions",
+          "content": "Starting from 1.31C in 2020, global mean temperature peaks at 1.98C in 2055 and then eases to 1.78C by 2100; the 2050 value is 1.97C. Starting from 10.71 Gt/yr in 2020, CO2 emissions peak at 12.06 Gt/yr in 2035 and then eases to -3.60 Gt/yr by 2100; the 2050 value is 2.56 Gt/yr. The largest regional CO2 sources around 2050 are China, India, and Middle East."
+        },
+        {
+          "title": "Energy System",
+          "content": "The file does not include a clean economy-wide final-energy total, but it does report steel and cement final energy. Starting from 49.6 EJ/yr in 2020, that covered industrial energy falls to 5.8 EJ/yr by 2100; the 2050 value is 18.9 EJ/yr. Starting from 100.5 EJ/yr in 2020, electricity output reaches 477.1 EJ/yr by 2100; the 2050 value is 262.2 EJ/yr. Electrification is visible in the end-use split: covered steel-and-cement electricity share moves from 11% in 2020 to 60% in 2100."
+        },
+        {
+          "title": "Carbon Management and Biomass",
+          "content": "Starting from 0 Mt/yr in 2020, direct air capture ends at 826 Mt/yr in 2100; the 2050 value is 47 Mt/yr."
+        },
+        {
+          "title": "Regional Pattern",
+          "content": "Population growth to mid-century is concentrated in Africa Western, India, and Africa Eastern. Mid-century economic weight is concentrated in China, United States, and India. The heaviest CO2-emitting regions around 2050 are China, India, and Middle East."
+        },
+        {
+          "title": "Data Note",
+          "content": "This GCAM extract reports global population, GDP, temperature, CO2, electricity output, DAC, and covered steel/cement final energy, but not a clean economy-wide final-energy or aggregate GHG series."
+        }
+      ]
+    },
+    {
+      "id": "tiam-ucl-ssp2-rcp19",
+      "model": "tiam-ucl",
+      "pathway": "SSP2-RCP19",
+      "label": "tiam-ucl / SSP2-RCP19",
+      "source_heading": "04. TIAM-UCL 4.1.2 | SSP2-RCP19",
+      "description": "SSP2, a middle-of-the-road development pathway, combined with a very stringent climate outcome close to a 1.5C-style pathway.",
+      "scope_note": "This TIAM-UCL extract provides strong transport detail and a non-metallic industry slice, but not a full economy-wide final-energy or aggregate GHG total. The file's explicit carbon-capture rows appear very large relative to the stated emissions units, so they are not interpreted quantitatively here.",
+      "sections": [
+        {
+          "title": "Scenario Setup",
+          "content": "SSP2, a middle-of-the-road development pathway, combined with a very stringent climate outcome close to a 1.5C-style pathway."
+        },
+        {
+          "title": "Interpretive Reading",
+          "content": "This is one of the hardest climate-control pathways in the TIAM-UCL group, so the system is pushed toward very early decarbonization. By 2100 this lands in the deepest-mitigation range of the set, which is consistent with a near- or below-2C outcome. Because CO2 stays positive through 2100 and carbon removal remains limited, the transition stops short of a full net-zero-style outcome."
+        },
+        {
+          "title": "Population and Economy",
+          "content": "Starting from 7.73 billion people in 2020, population reaches 9.28 billion people by 2100; the 2050 value is 9.38 billion people. The biggest absolute population increases to mid-century are in Africa, Other Developing Asia, and India. Starting from $103.8 trillion in 2020, GDP reaches $553.7 trillion by 2100; the 2050 value is $235.5 trillion. By 2050 the largest GDP blocks in the file are China, India, and United States."
+        },
+        {
+          "title": "Climate and Emissions",
+          "content": "Starting from 1.20C in 2020, global mean temperature reaches 1.65C by 2100; the 2050 value is 1.55C. Starting from 38.73 Gt/yr in 2020, CO2 emissions peak at 42.17 Gt/yr in 2025 and then eases to 11.00 Gt/yr by 2100; the 2050 value is 9.48 Gt/yr."
+        },
+        {
+          "title": "Energy System",
+          "content": "The reported final-energy detail is partial. Starting from 94.1 EJ/yr in 2020, transport final energy reaches 203.7 EJ/yr by 2100; the 2050 value is 119.9 EJ/yr. Starting from 18.0 EJ/yr in 2020, non-metallic industry final energy falls to 8.3 EJ/yr by 2100; the 2050 value is 11.5 EJ/yr. Starting from 87.3 EJ/yr in 2020, electricity output reaches 733.6 EJ/yr by 2100; the 2050 value is 380.4 EJ/yr. Electrification is visible in the end-use split: transport electricity share moves from 1% in 2020 to 20% in 2100."
+        },
+        {
+          "title": "Carbon Management and Biomass",
+          "content": "Starting from 51.9 EJ/yr in 2020, biomass use bottoms out at 49.2 EJ/yr in 2025 and then recovers to 127.0 EJ/yr by 2100; the 2050 value is 113.4 EJ/yr."
+        },
+        {
+          "title": "Regional Pattern",
+          "content": "Population growth to mid-century is concentrated in Africa, Other Developing Asia, and India. Mid-century economic weight is concentrated in China, India, and United States."
+        },
+        {
+          "title": "Data Note",
+          "content": "This TIAM-UCL extract provides strong transport detail and a non-metallic industry slice, but not a full economy-wide final-energy or aggregate GHG total. The file's explicit carbon-capture rows appear very large relative to the stated emissions units, so they are not interpreted quantitatively here."
+        }
+      ]
+    },
+    {
+      "id": "tiam-ucl-ssp2-rcp26",
+      "model": "tiam-ucl",
+      "pathway": "SSP2-RCP26",
+      "label": "tiam-ucl / SSP2-RCP26",
+      "source_heading": "05. TIAM-UCL 4.1.2 | SSP2-RCP26",
+      "description": "SSP2, a middle-of-the-road development pathway, combined with a strong climate-constrained outcome around the classic RCP2.6 family.",
+      "scope_note": "This TIAM-UCL extract provides strong transport detail and a non-metallic industry slice, but not a full economy-wide final-energy or aggregate GHG total. The file's explicit carbon-capture rows appear very large relative to the stated emissions units, so they are not interpreted quantitatively here.",
+      "sections": [
+        {
+          "title": "Scenario Setup",
+          "content": "SSP2, a middle-of-the-road development pathway, combined with a strong climate-constrained outcome around the classic RCP2.6 family."
+        },
+        {
+          "title": "Interpretive Reading",
+          "content": "This reads as a strong mitigation pathway: policy pressure is high enough to bend emissions down decisively, but not always without transitional strain. By 2100 this is materially cleaner than the weak-policy cases, but it still carries visible residual climate pressure. Because CO2 stays positive through 2100 and carbon removal remains limited, the transition stops short of a full net-zero-style outcome."
+        },
+        {
+          "title": "Population and Economy",
+          "content": "Starting from 7.73 billion people in 2020, population reaches 9.28 billion people by 2100; the 2050 value is 9.38 billion people. The biggest absolute population increases to mid-century are in Africa, Other Developing Asia, and India. Starting from $103.8 trillion in 2020, GDP reaches $553.7 trillion by 2100; the 2050 value is $235.5 trillion. By 2050 the largest GDP blocks in the file are China, India, and United States."
+        },
+        {
+          "title": "Climate and Emissions",
+          "content": "Starting from 1.20C in 2020, global mean temperature reaches 1.83C by 2100; the 2050 value is 1.69C. Starting from 38.73 Gt/yr in 2020, CO2 emissions peak at 42.17 Gt/yr in 2025 and then eases to 10.02 Gt/yr by 2100; the 2050 value is 19.85 Gt/yr."
+        },
+        {
+          "title": "Energy System",
+          "content": "The reported final-energy detail is partial. Starting from 94.1 EJ/yr in 2020, transport final energy reaches 202.2 EJ/yr by 2100; the 2050 value is 131.1 EJ/yr. Starting from 18.0 EJ/yr in 2020, non-metallic industry final energy falls to 8.2 EJ/yr by 2100; the 2050 value is 12.1 EJ/yr. Starting from 87.3 EJ/yr in 2020, electricity output reaches 684.8 EJ/yr by 2100; the 2050 value is 195.3 EJ/yr. Electrification is visible in the end-use split: transport electricity share moves from 1% in 2020 to 20% in 2100."
+        },
+        {
+          "title": "Carbon Management and Biomass",
+          "content": "Starting from 51.9 EJ/yr in 2020, biomass use bottoms out at 49.2 EJ/yr in 2025 and then recovers to 126.8 EJ/yr by 2100; the 2050 value is 97.8 EJ/yr."
+        },
+        {
+          "title": "Regional Pattern",
+          "content": "Population growth to mid-century is concentrated in Africa, Other Developing Asia, and India. Mid-century economic weight is concentrated in China, India, and United States."
+        },
+        {
+          "title": "Data Note",
+          "content": "This TIAM-UCL extract provides strong transport detail and a non-metallic industry slice, but not a full economy-wide final-energy or aggregate GHG total. The file's explicit carbon-capture rows appear very large relative to the stated emissions units, so they are not interpreted quantitatively here."
+        }
+      ]
+    },
+    {
+      "id": "tiam-ucl-ssp2-rcp45",
+      "model": "tiam-ucl",
+      "pathway": "SSP2-RCP45",
+      "label": "tiam-ucl / SSP2-RCP45",
+      "source_heading": "06. TIAM-UCL 4.1.2 | SSP2-RCP45",
+      "description": "SSP2, a middle-of-the-road development pathway, combined with a moderate climate-constrained outcome around the classic RCP4.5 family.",
+      "scope_note": "This TIAM-UCL extract provides strong transport detail and a non-metallic industry slice, but not a full economy-wide final-energy or aggregate GHG total. The file's explicit carbon-capture rows appear very large relative to the stated emissions units, so they are not interpreted quantitatively here.",
+      "sections": [
+        {
+          "title": "Scenario Setup",
+          "content": "SSP2, a middle-of-the-road development pathway, combined with a moderate climate-constrained outcome around the classic RCP4.5 family."
+        },
+        {
+          "title": "Interpretive Reading",
+          "content": "By 2100 this remains a relatively warm pathway, which usually means mitigation is weaker, later, or both. Because CO2 stays positive through 2100 and carbon removal remains limited, the transition stops short of a full net-zero-style outcome. Biomass grows into a more important energy input over time, which usually signals pressure on hard-to-abate sectors and fuel substitution rather than simple demand growth."
+        },
+        {
+          "title": "Population and Economy",
+          "content": "Starting from 7.73 billion people in 2020, population reaches 9.28 billion people by 2100; the 2050 value is 9.38 billion people. The biggest absolute population increases to mid-century are in Africa, Other Developing Asia, and India. Starting from $103.8 trillion in 2020, GDP reaches $553.7 trillion by 2100; the 2050 value is $235.5 trillion. By 2050 the largest GDP blocks in the file are China, India, and United States."
+        },
+        {
+          "title": "Climate and Emissions",
+          "content": "Starting from 1.20C in 2020, global mean temperature reaches 2.78C by 2100; the 2050 value is 1.88C. Starting from 38.73 Gt/yr in 2020, CO2 emissions peak at 42.17 Gt/yr in 2025 and then eases to 35.82 Gt/yr by 2100; the 2050 value is 38.92 Gt/yr."
+        },
+        {
+          "title": "Energy System",
+          "content": "The reported final-energy detail is partial. Starting from 94.1 EJ/yr in 2020, transport final energy reaches 237.3 EJ/yr by 2100; the 2050 value is 177.6 EJ/yr. Starting from 18.0 EJ/yr in 2020, non-metallic industry final energy falls to 10.3 EJ/yr by 2100; the 2050 value is 13.9 EJ/yr. Starting from 87.3 EJ/yr in 2020, electricity output reaches 342.0 EJ/yr by 2100; the 2050 value is 123.7 EJ/yr. Electrification is visible in the end-use split: transport electricity share moves from 1% in 2020 to 15% in 2100."
+        },
+        {
+          "title": "Carbon Management and Biomass",
+          "content": "Starting from 51.9 EJ/yr in 2020, biomass use bottoms out at 49.2 EJ/yr in 2025 and then recovers to 102.5 EJ/yr by 2100; the 2050 value is 57.6 EJ/yr."
+        },
+        {
+          "title": "Regional Pattern",
+          "content": "Population growth to mid-century is concentrated in Africa, Other Developing Asia, and India. Mid-century economic weight is concentrated in China, India, and United States."
+        },
+        {
+          "title": "Data Note",
+          "content": "This TIAM-UCL extract provides strong transport detail and a non-metallic industry slice, but not a full economy-wide final-energy or aggregate GHG total. The file's explicit carbon-capture rows appear very large relative to the stated emissions units, so they are not interpreted quantitatively here."
+        }
+      ]
+    },
+    {
+      "id": "remind-ssp1-npi",
+      "model": "remind",
+      "pathway": "SSP1-NPi",
+      "label": "remind / SSP1-NPi",
+      "source_heading": "08. REMIND | SSP1-NPi2025",
+      "description": "SSP1, a sustainability-oriented development pathway with lower baseline social and technological barriers, combined with a national-policies-implemented case.",
+      "scope_note": "REMIND is the only family here with an explicit aggregate GHG series and broad economy-wide final-energy totals. It does not expose a single direct mitigation-investment total that is comparable across all runs.",
+      "sections": [
+        {
+          "title": "Scenario Setup",
+          "content": "SSP1, a sustainability-oriented development pathway with lower baseline social and technological barriers, combined with a national-policies-implemented case."
+        },
+        {
+          "title": "Interpretive Reading",
+          "content": "This is closer to a continuation-of-current-policies pathway, where the transition is guided more by already-implemented measures than by a fully coordinated global push. By 2100 this is materially cleaner than the weak-policy cases, but it still carries visible residual climate pressure. The energy transition is carried not only by cleaner supply but also by end-use electrification, especially in industry, buildings, and transport."
+        },
+        {
+          "title": "Population and Economy",
+          "content": "Starting from 7.86 billion people in 2020, population peaks at 9.44 billion people in 2060 and then eases to 8.24 billion people by 2100; the 2050 value is 9.34 billion people. The biggest absolute population increases to mid-century are in Sub-Saharan Africa, Other Asia, and Middle East and Africa. Starting from $135.9 trillion in 2020, GDP reaches $677.5 trillion by 2100; the 2050 value is $321.6 trillion. By 2050 the largest GDP blocks in the file are China, Other Asia, and India."
+        },
+        {
+          "title": "Climate and Emissions",
+          "content": "Starting from 1.33C in 2020, global mean temperature reaches 1.96C by 2100; the 2050 value is 1.91C. Starting from 43.54 Gt/yr in 2020, CO2 emissions fall to 12.16 Gt/yr by 2100; the 2050 value is 23.75 Gt/yr. The largest regional CO2 sources around 2050 are India, China, and Other Asia. Starting from 57.92 Gt/yr in 2020, total greenhouse-gas emissions peak at 58.35 Gt/yr in 2025 and then eases to 16.85 Gt/yr by 2100; the 2050 value is 32.00 Gt/yr."
+        },
+        {
+          "title": "Energy System",
+          "content": "Starting from 405.9 EJ/yr in 2020, reported final energy demand peaks at 472.0 EJ/yr in 2060 and then eases to 418.3 EJ/yr by 2100; the 2050 value is 470.0 EJ/yr. Sector detail: Starting from 193.2 EJ/yr in 2020, industry final energy peaks at 244.4 EJ/yr in 2050 and then eases to 170.6 EJ/yr by 2100; the 2050 value is 244.4 EJ/yr. Starting from 122.7 EJ/yr in 2020, buildings final energy peaks at 150.2 EJ/yr in 2040 and then eases to 140.0 EJ/yr by 2100; the 2050 value is 148.3 EJ/yr. Starting from 122.7 EJ/yr in 2020, transport final energy bottoms out at 121.5 EJ/yr in 2050 and then recovers to 136.6 EJ/yr by 2100; the 2050 value is 121.5 EJ/yr. Starting from 103.7 EJ/yr in 2020, electricity output reaches 312.0 EJ/yr by 2100; the 2050 value is 234.9 EJ/yr. Electrification is visible in the end-use split: overall electricity share moves from 20% in 2020 to 53% in 2100; industry electricity share moves from 21% in 2020 to 35% in 2100; buildings electricity share moves from 37% in 2020 to 84% in 2100; transport electricity share moves from 2% in 2020 to 45% in 2100."
+        },
+        {
+          "title": "Carbon Management and Biomass",
+          "content": "Starting from 56.5 EJ/yr in 2020, biomass use reaches 67.9 EJ/yr by 2100; the 2050 value is 60.0 EJ/yr. Starting from 46 Mt/yr in 2020, reported carbon capture reaches 1.60 Gt/yr by 2100; the 2050 value is 304 Mt/yr. Starting from 0 Mt/yr in 2020, direct air capture ends at 0 Mt/yr in 2100; the 2050 value is 0 Mt/yr. Starting from -218 Mt/yr in 2020, carbon dioxide removal falls to -2.24 Gt/yr by 2100; the 2050 value is -1.40 Gt/yr."
+        },
+        {
+          "title": "Regional Pattern",
+          "content": "Population growth to mid-century is concentrated in Sub-Saharan Africa, Other Asia, and Middle East and Africa. Mid-century economic weight is concentrated in China, Other Asia, and India. The heaviest CO2-emitting regions around 2050 are India, China, and Other Asia."
+        },
+        {
+          "title": "Data Note",
+          "content": "REMIND is the only family here with an explicit aggregate GHG series and broad economy-wide final-energy totals. It does not expose a single direct mitigation-investment total that is comparable across all runs."
+        }
+      ]
+    },
+    {
+      "id": "remind-ssp1-pkbudg1000",
+      "model": "remind",
+      "pathway": "SSP1-PkBudg1000",
+      "label": "remind / SSP1-PkBudg1000",
+      "source_heading": "09. REMIND | SSP1-PkBudg1000",
+      "description": "SSP1, a sustainability-oriented development pathway with lower baseline social and technological barriers, combined with a peak-budget case with a 1000 Gt CO2 budget between today and 2100.",
+      "scope_note": "REMIND is the only family here with an explicit aggregate GHG series and broad economy-wide final-energy totals. It does not expose a single direct mitigation-investment total that is comparable across all runs.",
+      "sections": [
+        {
+          "title": "Scenario Setup",
+          "content": "SSP1, a sustainability-oriented development pathway with lower baseline social and technological barriers, combined with a peak-budget case with a 1000 Gt CO2 budget between today and 2100."
+        },
+        {
+          "title": "Interpretive Reading",
+          "content": "This is still a carbon-budget pathway, but with more room to smooth the transition than the tighter budget cases. This is best read as an overshoot pathway: warming peaks first, and only later does the system work temperatures back down. The route to low warming is not purely about lower demand or cleaner electricity: the model leans heavily on carbon management and late-century net-negative emissions."
+        },
+        {
+          "title": "Population and Economy",
+          "content": "Starting from 7.86 billion people in 2020, population peaks at 9.44 billion people in 2060 and then eases to 8.24 billion people by 2100; the 2050 value is 9.34 billion people. The biggest absolute population increases to mid-century are in Sub-Saharan Africa, Other Asia, and Middle East and Africa. Starting from $135.9 trillion in 2020, GDP reaches $674.8 trillion by 2100; the 2050 value is $316.4 trillion. By 2050 the largest GDP blocks in the file are China, Other Asia, and India."
+        },
+        {
+          "title": "Climate and Emissions",
+          "content": "Starting from 1.33C in 2020, global mean temperature peaks at 1.83C in 2050 and then eases to 1.45C by 2100; the 2050 value is 1.83C. Starting from 43.54 Gt/yr in 2020, CO2 emissions fall to -2.03 Gt/yr by 2100; the 2050 value is 9.39 Gt/yr. The largest regional CO2 sources around 2050 are Middle East and Africa, Other Asia, and India. Starting from 57.92 Gt/yr in 2020, total greenhouse-gas emissions peak at 58.35 Gt/yr in 2025 and then eases to 1.35 Gt/yr by 2100; the 2050 value is 16.01 Gt/yr."
+        },
+        {
+          "title": "Energy System",
+          "content": "Starting from 405.9 EJ/yr in 2020, reported final energy demand peaks at 451.9 EJ/yr in 2030 and then eases to 375.1 EJ/yr by 2100; the 2050 value is 400.0 EJ/yr. Sector detail: Starting from 193.2 EJ/yr in 2020, industry final energy peaks at 219.6 EJ/yr in 2030 and then eases to 141.3 EJ/yr by 2100; the 2050 value is 194.1 EJ/yr. Starting from 122.7 EJ/yr in 2020, buildings final energy peaks at 140.2 EJ/yr in 2030 and then eases to 132.7 EJ/yr by 2100; the 2050 value is 130.2 EJ/yr. Starting from 122.7 EJ/yr in 2020, transport final energy peaks at 134.4 EJ/yr in 2025 and then eases to 124.3 EJ/yr by 2100; the 2050 value is 106.6 EJ/yr. Starting from 103.7 EJ/yr in 2020, electricity output reaches 381.2 EJ/yr by 2100; the 2050 value is 259.5 EJ/yr. Electrification is visible in the end-use split: overall electricity share moves from 20% in 2020 to 61% in 2100; industry electricity share moves from 21% in 2020 to 44% in 2100; buildings electricity share moves from 37% in 2020 to 90% in 2100; transport electricity share moves from 2% in 2020 to 50% in 2100."
+        },
+        {
+          "title": "Carbon Management and Biomass",
+          "content": "Starting from 56.5 EJ/yr in 2020, biomass use reaches 91.6 EJ/yr by 2100; the 2050 value is 66.2 EJ/yr. Starting from 46 Mt/yr in 2020, reported carbon capture reaches 5.27 Gt/yr by 2100; the 2050 value is 1.75 Gt/yr. Starting from 0 Mt/yr in 2020, direct air capture ends at 0 Mt/yr in 2100; the 2050 value is 0 Mt/yr. Starting from -218 Mt/yr in 2020, carbon dioxide removal falls to -6.35 Gt/yr by 2100; the 2050 value is -3.17 Gt/yr."
+        },
+        {
+          "title": "Regional Pattern",
+          "content": "Population growth to mid-century is concentrated in Sub-Saharan Africa, Other Asia, and Middle East and Africa. Mid-century economic weight is concentrated in China, Other Asia, and India. The heaviest CO2-emitting regions around 2050 are Middle East and Africa, Other Asia, and India."
+        },
+        {
+          "title": "Data Note",
+          "content": "REMIND is the only family here with an explicit aggregate GHG series and broad economy-wide final-energy totals. It does not expose a single direct mitigation-investment total that is comparable across all runs."
+        }
+      ]
+    },
+    {
+      "id": "remind-ssp1-pkbudg650",
+      "model": "remind",
+      "pathway": "SSP1-PkBudg650",
+      "label": "remind / SSP1-PkBudg650",
+      "source_heading": "10. REMIND | SSP1-PkBudg650",
+      "description": "SSP1, a sustainability-oriented development pathway with lower baseline social and technological barriers, combined with a peak-budget case with a 650 Gt CO2 budget between today and 2100.",
+      "scope_note": "REMIND is the only family here with an explicit aggregate GHG series and broad economy-wide final-energy totals. It does not expose a single direct mitigation-investment total that is comparable across all runs.",
+      "sections": [
+        {
+          "title": "Scenario Setup",
+          "content": "SSP1, a sustainability-oriented development pathway with lower baseline social and technological barriers, combined with a peak-budget case with a 650 Gt CO2 budget between today and 2100."
+        },
+        {
+          "title": "Interpretive Reading",
+          "content": "This behaves like one of the tightest carbon-budget cases in the set, so the transition pressure is front-loaded rather than deferred. This is best read as an overshoot pathway: warming peaks first, and only later does the system work temperatures back down. The route to low warming is not purely about lower demand or cleaner electricity: the model leans heavily on carbon management and late-century net-negative emissions."
+        },
+        {
+          "title": "Population and Economy",
+          "content": "Starting from 7.86 billion people in 2020, population peaks at 9.44 billion people in 2060 and then eases to 8.24 billion people by 2100; the 2050 value is 9.34 billion people. The biggest absolute population increases to mid-century are in Sub-Saharan Africa, Other Asia, and Middle East and Africa. Starting from $135.9 trillion in 2020, GDP reaches $676.9 trillion by 2100; the 2050 value is $312.2 trillion. By 2050 the largest GDP blocks in the file are China, Other Asia, and India."
+        },
+        {
+          "title": "Climate and Emissions",
+          "content": "Starting from 1.33C in 2020, global mean temperature peaks at 1.78C in 2040 and then eases to 1.17C by 2100; the 2050 value is 1.73C. Starting from 43.54 Gt/yr in 2020, CO2 emissions fall to -6.91 Gt/yr by 2100; the 2050 value is -2.67 Gt/yr. The largest regional CO2 sources around 2050 are Middle East and Africa, Other Asia, and India. Starting from 57.92 Gt/yr in 2020, total greenhouse-gas emissions peak at 58.35 Gt/yr in 2025 and then eases to -3.67 Gt/yr by 2100; the 2050 value is 3.38 Gt/yr."
+        },
+        {
+          "title": "Energy System",
+          "content": "Starting from 405.9 EJ/yr in 2020, reported final energy demand peaks at 442.0 EJ/yr in 2025 and then eases to 360.3 EJ/yr by 2100; the 2050 value is 360.4 EJ/yr. Sector detail: Starting from 193.2 EJ/yr in 2020, industry final energy peaks at 216.3 EJ/yr in 2025 and then eases to 138.1 EJ/yr by 2100; the 2050 value is 181.3 EJ/yr. Starting from 122.7 EJ/yr in 2020, buildings final energy bottoms out at 117.4 EJ/yr in 2040 and then recovers to 129.5 EJ/yr by 2100; the 2050 value is 122.4 EJ/yr. Starting from 122.7 EJ/yr in 2020, transport final energy peaks at 134.4 EJ/yr in 2025 and then eases to 114.6 EJ/yr by 2100; the 2050 value is 85.4 EJ/yr. Starting from 103.7 EJ/yr in 2020, electricity output peaks at 435.6 EJ/yr in 2080 and then eases to 406.8 EJ/yr by 2100; the 2050 value is 344.0 EJ/yr. Electrification is visible in the end-use split: overall electricity share moves from 20% in 2020 to 70% in 2100; industry electricity share moves from 21% in 2020 to 57% in 2100; buildings electricity share moves from 37% in 2020 to 95% in 2100; transport electricity share moves from 2% in 2020 to 58% in 2100."
+        },
+        {
+          "title": "Carbon Management and Biomass",
+          "content": "Starting from 56.5 EJ/yr in 2020, biomass use reaches 95.2 EJ/yr by 2100; the 2050 value is 88.9 EJ/yr. Starting from 46 Mt/yr in 2020, reported carbon capture peaks at 6.10 Gt/yr in 2080 and then eases to 5.70 Gt/yr by 2100; the 2050 value is 3.85 Gt/yr. Starting from 0 Mt/yr in 2020, direct air capture ends at 0 Mt/yr in 2100; the 2050 value is 0 Mt/yr. Starting from -218 Mt/yr in 2020, carbon dioxide removal falls to -8.53 Gt/yr by 2100; the 2050 value is -6.78 Gt/yr."
+        },
+        {
+          "title": "Regional Pattern",
+          "content": "Population growth to mid-century is concentrated in Sub-Saharan Africa, Other Asia, and Middle East and Africa. Mid-century economic weight is concentrated in China, Other Asia, and India. The heaviest CO2-emitting regions around 2050 are Middle East and Africa, Other Asia, and India."
+        },
+        {
+          "title": "Data Note",
+          "content": "REMIND is the only family here with an explicit aggregate GHG series and broad economy-wide final-energy totals. It does not expose a single direct mitigation-investment total that is comparable across all runs."
+        }
+      ]
+    },
+    {
+      "id": "remind-eu-ssp2-ndc",
+      "model": "remind-eu",
+      "pathway": "SSP2-NDC",
+      "label": "remind-eu / SSP2-NDC",
+      "source_heading": "11. REMIND | SSP2-EU21-NDC",
+      "description": "SSP2, a middle-of-the-road development pathway, combined with an EU21 variant with explicit modelling of European countries, and a case built around nationally determined climate pledges.",
+      "scope_note": "REMIND is the only family here with an explicit aggregate GHG series and broad economy-wide final-energy totals. It does not expose a single direct mitigation-investment total that is comparable across all runs.",
+      "sections": [
+        {
+          "title": "Scenario Setup",
+          "content": "SSP2, a middle-of-the-road development pathway, combined with an EU21 variant with explicit modelling of European countries, and a case built around nationally determined climate pledges."
+        },
+        {
+          "title": "Interpretive Reading",
+          "content": "This behaves like a middle-strength policy path: stronger than simple continuation of current policies, but usually less aggressive than the tight budget cases. Because this is the EU21 variant, the regional story inside Europe is more explicit than in the coarser regional runs. By 2100 this is materially cleaner than the weak-policy cases, but it still carries visible residual climate pressure."
+        },
+        {
+          "title": "Population and Economy",
+          "content": "Starting from 7.86 billion people in 2020, population reaches 10.03 billion people by 2100; the 2050 value is 9.70 billion people. The biggest absolute population increases to mid-century are in Sub-Saharan Africa, Other Asia, and India. Starting from $135.9 trillion in 2020, GDP reaches $661.8 trillion by 2100; the 2050 value is $287.3 trillion. By 2050 the largest GDP blocks in the file are China, Other Asia, and India."
+        },
+        {
+          "title": "Climate and Emissions",
+          "content": "Starting from 1.33C in 2020, global mean temperature reaches 2.14C by 2100; the 2050 value is 1.89C. Starting from 43.53 Gt/yr in 2020, CO2 emissions bottom out at 12.58 Gt/yr in 2055 and then recovers to 13.67 Gt/yr by 2100; the 2050 value is 14.38 Gt/yr. The largest regional CO2 sources around 2050 are China, Other Asia, and Sub-Saharan Africa. Starting from 57.91 Gt/yr in 2020, total greenhouse-gas emissions peak at 58.24 Gt/yr in 2025 and then eases to 24.76 Gt/yr by 2100; the 2050 value is 26.23 Gt/yr."
+        },
+        {
+          "title": "Energy System",
+          "content": "Starting from 406.2 EJ/yr in 2020, reported final energy demand reaches 559.6 EJ/yr by 2100; the 2050 value is 439.5 EJ/yr. Sector detail: Starting from 193.3 EJ/yr in 2020, industry final energy peaks at 226.5 EJ/yr in 2080 and then eases to 214.8 EJ/yr by 2100; the 2050 value is 209.7 EJ/yr. Starting from 122.9 EJ/yr in 2020, buildings final energy bottoms out at 122.1 EJ/yr in 2035 and then recovers to 189.6 EJ/yr by 2100; the 2050 value is 132.5 EJ/yr. Starting from 122.8 EJ/yr in 2020, transport final energy reaches 191.8 EJ/yr by 2100; the 2050 value is 130.7 EJ/yr. Starting from 103.7 EJ/yr in 2020, electricity output reaches 406.5 EJ/yr by 2100; the 2050 value is 244.9 EJ/yr. Electrification is visible in the end-use split: overall electricity share moves from 20% in 2020 to 52% in 2100; industry electricity share moves from 21% in 2020 to 41% in 2100; buildings electricity share moves from 37% in 2020 to 81% in 2100; transport electricity share moves from 2% in 2020 to 36% in 2100."
+        },
+        {
+          "title": "Carbon Management and Biomass",
+          "content": "Starting from 56.5 EJ/yr in 2020, biomass use peaks at 152.0 EJ/yr in 2060 and then eases to 123.4 EJ/yr by 2100; the 2050 value is 143.0 EJ/yr. Starting from 46 Mt/yr in 2020, reported carbon capture reaches 5.65 Gt/yr by 2100; the 2050 value is 4.24 Gt/yr. Starting from 0 Mt/yr in 2020, direct air capture ends at 0 Mt/yr in 2100; the 2050 value is 4 Mt/yr. Starting from -218 Mt/yr in 2020, carbon dioxide removal bottoms out at -6.98 Gt/yr in 2060 and then recovers to -5.22 Gt/yr by 2100; the 2050 value is -6.20 Gt/yr."
+        },
+        {
+          "title": "Regional Pattern",
+          "content": "Population growth to mid-century is concentrated in Sub-Saharan Africa, Other Asia, and India. Mid-century economic weight is concentrated in China, Other Asia, and India. The heaviest CO2-emitting regions around 2050 are China, Other Asia, and Sub-Saharan Africa."
+        },
+        {
+          "title": "Data Note",
+          "content": "REMIND is the only family here with an explicit aggregate GHG series and broad economy-wide final-energy totals. It does not expose a single direct mitigation-investment total that is comparable across all runs."
+        }
+      ]
+    },
+    {
+      "id": "remind-eu-ssp2-npi",
+      "model": "remind-eu",
+      "pathway": "SSP2-NPi",
+      "label": "remind-eu / SSP2-NPi",
+      "source_heading": "12. REMIND | SSP2-EU21-NPi2025",
+      "description": "SSP2, a middle-of-the-road development pathway, combined with an EU21 variant with explicit modelling of European countries, and a national-policies-implemented case.",
+      "scope_note": "REMIND is the only family here with an explicit aggregate GHG series and broad economy-wide final-energy totals. It does not expose a single direct mitigation-investment total that is comparable across all runs.",
+      "sections": [
+        {
+          "title": "Scenario Setup",
+          "content": "SSP2, a middle-of-the-road development pathway, combined with an EU21 variant with explicit modelling of European countries, and a national-policies-implemented case."
+        },
+        {
+          "title": "Interpretive Reading",
+          "content": "This is closer to a continuation-of-current-policies pathway, where the transition is guided more by already-implemented measures than by a fully coordinated global push. Because this is the EU21 variant, the regional story inside Europe is more explicit than in the coarser regional runs. By 2100 this remains a relatively warm pathway, which usually means mitigation is weaker, later, or both."
+        },
+        {
+          "title": "Population and Economy",
+          "content": "Starting from 7.86 billion people in 2020, population reaches 10.03 billion people by 2100; the 2050 value is 9.70 billion people. The biggest absolute population increases to mid-century are in Sub-Saharan Africa, Other Asia, and India. Starting from $135.9 trillion in 2020, GDP reaches $664.4 trillion by 2100; the 2050 value is $293.0 trillion. By 2050 the largest GDP blocks in the file are China, Other Asia, and India."
+        },
+        {
+          "title": "Climate and Emissions",
+          "content": "Starting from 1.33C in 2020, global mean temperature reaches 2.57C by 2100; the 2050 value is 1.97C. Starting from 43.53 Gt/yr in 2020, CO2 emissions fall to 27.95 Gt/yr by 2100; the 2050 value is 32.19 Gt/yr. The largest regional CO2 sources around 2050 are Other Asia, China, and India. Starting from 57.91 Gt/yr in 2020, total greenhouse-gas emissions peak at 58.24 Gt/yr in 2025 and then eases to 38.75 Gt/yr by 2100; the 2050 value is 44.02 Gt/yr."
+        },
+        {
+          "title": "Energy System",
+          "content": "Starting from 406.2 EJ/yr in 2020, reported final energy demand reaches 599.3 EJ/yr by 2100; the 2050 value is 510.4 EJ/yr. Sector detail: Starting from 193.3 EJ/yr in 2020, industry final energy peaks at 276.0 EJ/yr in 2070 and then eases to 247.1 EJ/yr by 2100; the 2050 value is 262.6 EJ/yr. Starting from 122.9 EJ/yr in 2020, buildings final energy reaches 198.7 EJ/yr by 2100; the 2050 value is 148.6 EJ/yr. Starting from 122.8 EJ/yr in 2020, transport final energy reaches 199.2 EJ/yr by 2100; the 2050 value is 147.3 EJ/yr. Starting from 103.7 EJ/yr in 2020, electricity output reaches 383.9 EJ/yr by 2100; the 2050 value is 222.9 EJ/yr. Electrification is visible in the end-use split: overall electricity share moves from 20% in 2020 to 47% in 2100; industry electricity share moves from 21% in 2020 to 35% in 2100; buildings electricity share moves from 37% in 2020 to 75% in 2100; transport electricity share moves from 2% in 2020 to 35% in 2100."
+        },
+        {
+          "title": "Carbon Management and Biomass",
+          "content": "Starting from 56.5 EJ/yr in 2020, biomass use bottoms out at 53.5 EJ/yr in 2045 and then recovers to 79.9 EJ/yr by 2100; the 2050 value is 53.8 EJ/yr. Starting from 46 Mt/yr in 2020, reported carbon capture reaches 1.81 Gt/yr by 2100; the 2050 value is 573 Mt/yr. Starting from 0 Mt/yr in 2020, direct air capture ends at 0 Mt/yr in 2100; the 2050 value is 0 Mt/yr. Starting from -218 Mt/yr in 2020, carbon dioxide removal bottoms out at -1.57 Gt/yr in 2080 and then recovers to -1.43 Gt/yr by 2100; the 2050 value is -1.29 Gt/yr."
+        },
+        {
+          "title": "Regional Pattern",
+          "content": "Population growth to mid-century is concentrated in Sub-Saharan Africa, Other Asia, and India. Mid-century economic weight is concentrated in China, Other Asia, and India. The heaviest CO2-emitting regions around 2050 are Other Asia, China, and India."
+        },
+        {
+          "title": "Data Note",
+          "content": "REMIND is the only family here with an explicit aggregate GHG series and broad economy-wide final-energy totals. It does not expose a single direct mitigation-investment total that is comparable across all runs."
+        }
+      ]
+    },
+    {
+      "id": "remind-eu-ssp2-pkbudg1000",
+      "model": "remind-eu",
+      "pathway": "SSP2-PkBudg1000",
+      "label": "remind-eu / SSP2-PkBudg1000",
+      "source_heading": "13. REMIND | SSP2-EU21-PkBudg1000",
+      "description": "SSP2, a middle-of-the-road development pathway, combined with an EU21 variant with explicit modelling of European countries, and a peak-budget case with a 1000 Gt CO2 budget between today and 2100.",
+      "scope_note": "REMIND is the only family here with an explicit aggregate GHG series and broad economy-wide final-energy totals. It does not expose a single direct mitigation-investment total that is comparable across all runs.",
+      "sections": [
+        {
+          "title": "Scenario Setup",
+          "content": "SSP2, a middle-of-the-road development pathway, combined with an EU21 variant with explicit modelling of European countries, and a peak-budget case with a 1000 Gt CO2 budget between today and 2100."
+        },
+        {
+          "title": "Interpretive Reading",
+          "content": "This is still a carbon-budget pathway, but with more room to smooth the transition than the tighter budget cases. Because this is the EU21 variant, the regional story inside Europe is more explicit than in the coarser regional runs. By 2100 this lands in the deepest-mitigation range of the set, which is consistent with a near- or below-2C outcome."
+        },
+        {
+          "title": "Population and Economy",
+          "content": "Starting from 7.86 billion people in 2020, population reaches 10.03 billion people by 2100; the 2050 value is 9.70 billion people. The biggest absolute population increases to mid-century are in Sub-Saharan Africa, Other Asia, and India. Starting from $135.9 trillion in 2020, GDP reaches $658.5 trillion by 2100; the 2050 value is $286.9 trillion. By 2050 the largest GDP blocks in the file are China, Other Asia, and India."
+        },
+        {
+          "title": "Climate and Emissions",
+          "content": "Starting from 1.33C in 2020, global mean temperature peaks at 1.87C in 2050 and then eases to 1.76C by 2100; the 2050 value is 1.87C. Starting from 43.53 Gt/yr in 2020, CO2 emissions fall to -770 Mt/yr by 2100; the 2050 value is 9.20 Gt/yr. The largest regional CO2 sources around 2050 are Other Asia, Middle East and Africa, and India. Starting from 57.91 Gt/yr in 2020, total greenhouse-gas emissions peak at 58.24 Gt/yr in 2025 and then eases to 8.26 Gt/yr by 2100; the 2050 value is 19.00 Gt/yr."
+        },
+        {
+          "title": "Energy System",
+          "content": "Starting from 406.2 EJ/yr in 2020, reported final energy demand reaches 514.8 EJ/yr by 2100; the 2050 value is 409.5 EJ/yr. Sector detail: Starting from 193.3 EJ/yr in 2020, industry final energy peaks at 218.4 EJ/yr in 2030 and then eases to 197.1 EJ/yr by 2100; the 2050 value is 191.7 EJ/yr. Starting from 122.9 EJ/yr in 2020, buildings final energy reaches 182.6 EJ/yr by 2100; the 2050 value is 124.1 EJ/yr. Starting from 122.8 EJ/yr in 2020, transport final energy reaches 168.1 EJ/yr by 2100; the 2050 value is 124.3 EJ/yr. Starting from 103.7 EJ/yr in 2020, electricity output reaches 446.6 EJ/yr by 2100; the 2050 value is 243.9 EJ/yr. Electrification is visible in the end-use split: overall electricity share moves from 20% in 2020 to 59% in 2100; industry electricity share moves from 21% in 2020 to 46% in 2100; buildings electricity share moves from 37% in 2020 to 86% in 2100; transport electricity share moves from 2% in 2020 to 45% in 2100."
+        },
+        {
+          "title": "Carbon Management and Biomass",
+          "content": "Starting from 56.5 EJ/yr in 2020, biomass use bottoms out at 55.4 EJ/yr in 2035 and then recovers to 151.4 EJ/yr by 2100; the 2050 value is 74.7 EJ/yr. Starting from 46 Mt/yr in 2020, reported carbon capture reaches 9.56 Gt/yr by 2100; the 2050 value is 3.55 Gt/yr. Starting from 0 Mt/yr in 2020, direct air capture ends at 0 Mt/yr in 2100; the 2050 value is 0 Mt/yr. Starting from -218 Mt/yr in 2020, carbon dioxide removal falls to -8.47 Gt/yr by 2100; the 2050 value is -4.57 Gt/yr."
+        },
+        {
+          "title": "Regional Pattern",
+          "content": "Population growth to mid-century is concentrated in Sub-Saharan Africa, Other Asia, and India. Mid-century economic weight is concentrated in China, Other Asia, and India. The heaviest CO2-emitting regions around 2050 are Other Asia, Middle East and Africa, and India."
+        },
+        {
+          "title": "Data Note",
+          "content": "REMIND is the only family here with an explicit aggregate GHG series and broad economy-wide final-energy totals. It does not expose a single direct mitigation-investment total that is comparable across all runs."
+        }
+      ]
+    },
+    {
+      "id": "remind-eu-ssp2-pkbudg650",
+      "model": "remind-eu",
+      "pathway": "SSP2-PkBudg650",
+      "label": "remind-eu / SSP2-PkBudg650",
+      "source_heading": "14. REMIND | SSP2-EU21-PkBudg650",
+      "description": "SSP2, a middle-of-the-road development pathway, combined with an EU21 variant with explicit modelling of European countries, and a peak-budget case with a 650 Gt CO2 budget between today and 2100.",
+      "scope_note": "REMIND is the only family here with an explicit aggregate GHG series and broad economy-wide final-energy totals. It does not expose a single direct mitigation-investment total that is comparable across all runs.",
+      "sections": [
+        {
+          "title": "Scenario Setup",
+          "content": "SSP2, a middle-of-the-road development pathway, combined with an EU21 variant with explicit modelling of European countries, and a peak-budget case with a 650 Gt CO2 budget between today and 2100."
+        },
+        {
+          "title": "Interpretive Reading",
+          "content": "This behaves like one of the tightest carbon-budget cases in the set, so the transition pressure is front-loaded rather than deferred. Because this is the EU21 variant, the regional story inside Europe is more explicit than in the coarser regional runs. This is best read as an overshoot pathway: warming peaks first, and only later does the system work temperatures back down."
+        },
+        {
+          "title": "Population and Economy",
+          "content": "Starting from 7.86 billion people in 2020, population reaches 10.03 billion people by 2100; the 2050 value is 9.70 billion people. The biggest absolute population increases to mid-century are in Sub-Saharan Africa, Other Asia, and India. Starting from $135.9 trillion in 2020, GDP reaches $661.2 trillion by 2100; the 2050 value is $284.1 trillion. By 2050 the largest GDP blocks in the file are China, Other Asia, and India."
+        },
+        {
+          "title": "Climate and Emissions",
+          "content": "Starting from 1.33C in 2020, global mean temperature peaks at 1.78C in 2040 and then eases to 1.39C by 2100; the 2050 value is 1.75C. Starting from 43.53 Gt/yr in 2020, CO2 emissions bottom out at -9.74 Gt/yr in 2070 and then recovers to -9.18 Gt/yr by 2100; the 2050 value is -6.29 Gt/yr. The largest regional CO2 sources around 2050 are India, Southeastern Europe, and Middle East and Africa. Starting from 57.91 Gt/yr in 2020, total greenhouse-gas emissions peak at 58.24 Gt/yr in 2025 and then eases to -212 Mt/yr by 2100; the 2050 value is 3.26 Gt/yr."
+        },
+        {
+          "title": "Energy System",
+          "content": "Starting from 406.2 EJ/yr in 2020, reported final energy demand bottoms out at 357.3 EJ/yr in 2045 and then recovers to 498.9 EJ/yr by 2100; the 2050 value is 374.1 EJ/yr. Sector detail: Starting from 193.3 EJ/yr in 2020, industry final energy peaks at 216.2 EJ/yr in 2025 and then eases to 196.1 EJ/yr by 2100; the 2050 value is 186.0 EJ/yr. Starting from 122.9 EJ/yr in 2020, buildings final energy bottoms out at 110.4 EJ/yr in 2040 and then recovers to 183.0 EJ/yr by 2100; the 2050 value is 122.1 EJ/yr. Starting from 122.8 EJ/yr in 2020, transport final energy bottoms out at 96.6 EJ/yr in 2045 and then recovers to 153.7 EJ/yr by 2100; the 2050 value is 97.3 EJ/yr. Starting from 103.7 EJ/yr in 2020, electricity output reaches 461.3 EJ/yr by 2100; the 2050 value is 293.6 EJ/yr. Electrification is visible in the end-use split: overall electricity share moves from 20% in 2020 to 66% in 2100; industry electricity share moves from 21% in 2020 to 55% in 2100; buildings electricity share moves from 37% in 2020 to 88% in 2100; transport electricity share moves from 2% in 2020 to 54% in 2100."
+        },
+        {
+          "title": "Carbon Management and Biomass",
+          "content": "Starting from 56.5 EJ/yr in 2020, biomass use reaches 197.9 EJ/yr by 2100; the 2050 value is 156.1 EJ/yr. Starting from 46 Mt/yr in 2020, reported carbon capture reaches 12.24 Gt/yr by 2100; the 2050 value is 8.82 Gt/yr. Starting from 0 Mt/yr in 2020, direct air capture ends at 0 Mt/yr in 2100; the 2050 value is 0 Mt/yr. Starting from -218 Mt/yr in 2020, carbon dioxide removal bottoms out at -13.31 Gt/yr in 2070 and then recovers to -12.67 Gt/yr by 2100; the 2050 value is -11.06 Gt/yr."
+        },
+        {
+          "title": "Regional Pattern",
+          "content": "Population growth to mid-century is concentrated in Sub-Saharan Africa, Other Asia, and India. Mid-century economic weight is concentrated in China, Other Asia, and India. The heaviest CO2-emitting regions around 2050 are India, Southeastern Europe, and Middle East and Africa."
+        },
+        {
+          "title": "Data Note",
+          "content": "REMIND is the only family here with an explicit aggregate GHG series and broad economy-wide final-energy totals. It does not expose a single direct mitigation-investment total that is comparable across all runs."
+        }
+      ]
+    },
+    {
+      "id": "remind-ssp2-ndc",
+      "model": "remind",
+      "pathway": "SSP2-NDC",
+      "label": "remind / SSP2-NDC",
+      "source_heading": "15. REMIND | SSP2-NDC",
+      "description": "SSP2, a middle-of-the-road development pathway, combined with a case built around nationally determined climate pledges.",
+      "scope_note": "REMIND is the only family here with an explicit aggregate GHG series and broad economy-wide final-energy totals. It does not expose a single direct mitigation-investment total that is comparable across all runs.",
+      "sections": [
+        {
+          "title": "Scenario Setup",
+          "content": "SSP2, a middle-of-the-road development pathway, combined with a case built around nationally determined climate pledges."
+        },
+        {
+          "title": "Interpretive Reading",
+          "content": "This behaves like a middle-strength policy path: stronger than simple continuation of current policies, but usually less aggressive than the tight budget cases. By 2100 this is materially cleaner than the weak-policy cases, but it still carries visible residual climate pressure. The energy transition is carried not only by cleaner supply but also by end-use electrification, especially in industry, buildings, and transport."
+        },
+        {
+          "title": "Population and Economy",
+          "content": "Starting from 7.86 billion people in 2020, population reaches 10.03 billion people by 2100; the 2050 value is 9.70 billion people. The biggest absolute population increases to mid-century are in Sub-Saharan Africa, Other Asia, and India. Starting from $135.9 trillion in 2020, GDP reaches $660.7 trillion by 2100; the 2050 value is $286.3 trillion. By 2050 the largest GDP blocks in the file are China, Other Asia, and India."
+        },
+        {
+          "title": "Climate and Emissions",
+          "content": "Starting from 1.33C in 2020, global mean temperature reaches 2.18C by 2100; the 2050 value is 1.91C. Starting from 43.54 Gt/yr in 2020, CO2 emissions fall to 14.63 Gt/yr by 2100; the 2050 value is 16.01 Gt/yr. The largest regional CO2 sources around 2050 are China, Sub-Saharan Africa, and Other Asia. Starting from 57.92 Gt/yr in 2020, total greenhouse-gas emissions peak at 58.35 Gt/yr in 2025 and then eases to 25.81 Gt/yr by 2100; the 2050 value is 27.79 Gt/yr."
+        },
+        {
+          "title": "Energy System",
+          "content": "Starting from 405.9 EJ/yr in 2020, reported final energy demand reaches 555.7 EJ/yr by 2100; the 2050 value is 433.4 EJ/yr. Sector detail: Starting from 193.2 EJ/yr in 2020, industry final energy reaches 213.9 EJ/yr by 2100; the 2050 value is 206.8 EJ/yr. Starting from 122.7 EJ/yr in 2020, buildings final energy bottoms out at 121.5 EJ/yr in 2035 and then recovers to 187.4 EJ/yr by 2100; the 2050 value is 130.0 EJ/yr. Starting from 122.7 EJ/yr in 2020, transport final energy reaches 191.2 EJ/yr by 2100; the 2050 value is 129.9 EJ/yr. Starting from 103.7 EJ/yr in 2020, electricity output reaches 401.3 EJ/yr by 2100; the 2050 value is 235.4 EJ/yr. Electrification is visible in the end-use split: overall electricity share moves from 20% in 2020 to 52% in 2100; industry electricity share moves from 21% in 2020 to 41% in 2100; buildings electricity share moves from 37% in 2020 to 81% in 2100; transport electricity share moves from 2% in 2020 to 36% in 2100."
+        },
+        {
+          "title": "Carbon Management and Biomass",
+          "content": "Starting from 56.5 EJ/yr in 2020, biomass use peaks at 116.8 EJ/yr in 2060 and then eases to 99.1 EJ/yr by 2100; the 2050 value is 104.2 EJ/yr. Starting from 46 Mt/yr in 2020, reported carbon capture peaks at 6.11 Gt/yr in 2070 and then eases to 5.74 Gt/yr by 2100; the 2050 value is 4.13 Gt/yr. Starting from 0 Mt/yr in 2020, direct air capture ends at 0 Mt/yr in 2100; the 2050 value is 0 Mt/yr. Starting from -218 Mt/yr in 2020, carbon dioxide removal bottoms out at -5.54 Gt/yr in 2060 and then recovers to -3.58 Gt/yr by 2100; the 2050 value is -4.55 Gt/yr."
+        },
+        {
+          "title": "Regional Pattern",
+          "content": "Population growth to mid-century is concentrated in Sub-Saharan Africa, Other Asia, and India. Mid-century economic weight is concentrated in China, Other Asia, and India. The heaviest CO2-emitting regions around 2050 are China, Sub-Saharan Africa, and Other Asia."
+        },
+        {
+          "title": "Data Note",
+          "content": "REMIND is the only family here with an explicit aggregate GHG series and broad economy-wide final-energy totals. It does not expose a single direct mitigation-investment total that is comparable across all runs."
+        }
+      ]
+    },
+    {
+      "id": "remind-ssp2-npi",
+      "model": "remind",
+      "pathway": "SSP2-NPi",
+      "label": "remind / SSP2-NPi",
+      "source_heading": "16. REMIND | SSP2-NPi2025",
+      "description": "SSP2, a middle-of-the-road development pathway, combined with a national-policies-implemented case.",
+      "scope_note": "REMIND is the only family here with an explicit aggregate GHG series and broad economy-wide final-energy totals. It does not expose a single direct mitigation-investment total that is comparable across all runs.",
+      "sections": [
+        {
+          "title": "Scenario Setup",
+          "content": "SSP2, a middle-of-the-road development pathway, combined with a national-policies-implemented case."
+        },
+        {
+          "title": "Interpretive Reading",
+          "content": "This is closer to a continuation-of-current-policies pathway, where the transition is guided more by already-implemented measures than by a fully coordinated global push. By 2100 this remains a relatively warm pathway, which usually means mitigation is weaker, later, or both. The energy transition is carried not only by cleaner supply but also by end-use electrification, especially in industry, buildings, and transport."
+        },
+        {
+          "title": "Population and Economy",
+          "content": "Starting from 7.86 billion people in 2020, population reaches 10.03 billion people by 2100; the 2050 value is 9.70 billion people. The biggest absolute population increases to mid-century are in Sub-Saharan Africa, Other Asia, and India. Starting from $135.9 trillion in 2020, GDP reaches $664.5 trillion by 2100; the 2050 value is $293.0 trillion. By 2050 the largest GDP blocks in the file are China, Other Asia, and India."
+        },
+        {
+          "title": "Climate and Emissions",
+          "content": "Starting from 1.33C in 2020, global mean temperature reaches 2.58C by 2100; the 2050 value is 1.97C. Starting from 43.54 Gt/yr in 2020, CO2 emissions fall to 27.82 Gt/yr by 2100; the 2050 value is 32.56 Gt/yr. The largest regional CO2 sources around 2050 are Other Asia, China, and India. Starting from 57.92 Gt/yr in 2020, total greenhouse-gas emissions peak at 58.35 Gt/yr in 2025 and then eases to 38.64 Gt/yr by 2100; the 2050 value is 44.40 Gt/yr."
+        },
+        {
+          "title": "Energy System",
+          "content": "Starting from 405.9 EJ/yr in 2020, reported final energy demand reaches 600.0 EJ/yr by 2100; the 2050 value is 510.7 EJ/yr. Sector detail: Starting from 193.2 EJ/yr in 2020, industry final energy peaks at 276.6 EJ/yr in 2070 and then eases to 247.7 EJ/yr by 2100; the 2050 value is 263.0 EJ/yr. Starting from 122.7 EJ/yr in 2020, buildings final energy reaches 198.8 EJ/yr by 2100; the 2050 value is 148.8 EJ/yr. Starting from 122.7 EJ/yr in 2020, transport final energy reaches 199.4 EJ/yr by 2100; the 2050 value is 147.2 EJ/yr. Starting from 103.7 EJ/yr in 2020, electricity output reaches 383.4 EJ/yr by 2100; the 2050 value is 222.1 EJ/yr. Electrification is visible in the end-use split: overall electricity share moves from 20% in 2020 to 47% in 2100; industry electricity share moves from 21% in 2020 to 35% in 2100; buildings electricity share moves from 37% in 2020 to 75% in 2100; transport electricity share moves from 2% in 2020 to 35% in 2100."
+        },
+        {
+          "title": "Carbon Management and Biomass",
+          "content": "Starting from 56.5 EJ/yr in 2020, biomass use bottoms out at 54.4 EJ/yr in 2055 and then recovers to 79.3 EJ/yr by 2100; the 2050 value is 54.8 EJ/yr. Starting from 46 Mt/yr in 2020, reported carbon capture reaches 1.85 Gt/yr by 2100; the 2050 value is 588 Mt/yr. Starting from 0 Mt/yr in 2020, direct air capture ends at 0 Mt/yr in 2100; the 2050 value is 0 Mt/yr. Starting from -218 Mt/yr in 2020, carbon dioxide removal bottoms out at -1.61 Gt/yr in 2080 and then recovers to -1.43 Gt/yr by 2100; the 2050 value is -1.30 Gt/yr."
+        },
+        {
+          "title": "Regional Pattern",
+          "content": "Population growth to mid-century is concentrated in Sub-Saharan Africa, Other Asia, and India. Mid-century economic weight is concentrated in China, Other Asia, and India. The heaviest CO2-emitting regions around 2050 are Other Asia, China, and India."
+        },
+        {
+          "title": "Data Note",
+          "content": "REMIND is the only family here with an explicit aggregate GHG series and broad economy-wide final-energy totals. It does not expose a single direct mitigation-investment total that is comparable across all runs."
+        }
+      ]
+    },
+    {
+      "id": "remind-ssp2-pkbudg1000",
+      "model": "remind",
+      "pathway": "SSP2-PkBudg1000",
+      "label": "remind / SSP2-PkBudg1000",
+      "source_heading": "17. REMIND | SSP2-PkBudg1000",
+      "description": "SSP2, a middle-of-the-road development pathway, combined with a peak-budget case with a 1000 Gt CO2 budget between today and 2100.",
+      "scope_note": "REMIND is the only family here with an explicit aggregate GHG series and broad economy-wide final-energy totals. It does not expose a single direct mitigation-investment total that is comparable across all runs.",
+      "sections": [
+        {
+          "title": "Scenario Setup",
+          "content": "SSP2, a middle-of-the-road development pathway, combined with a peak-budget case with a 1000 Gt CO2 budget between today and 2100."
+        },
+        {
+          "title": "Interpretive Reading",
+          "content": "This is still a carbon-budget pathway, but with more room to smooth the transition than the tighter budget cases. By 2100 this lands in the deepest-mitigation range of the set, which is consistent with a near- or below-2C outcome. The route to low warming is not purely about lower demand or cleaner electricity: the model leans heavily on carbon management and late-century net-negative emissions."
+        },
+        {
+          "title": "Population and Economy",
+          "content": "Starting from 7.86 billion people in 2020, population reaches 10.03 billion people by 2100; the 2050 value is 9.70 billion people. The biggest absolute population increases to mid-century are in Sub-Saharan Africa, Other Asia, and India. Starting from $135.9 trillion in 2020, GDP reaches $657.9 trillion by 2100; the 2050 value is $286.5 trillion. By 2050 the largest GDP blocks in the file are China, Other Asia, and India."
+        },
+        {
+          "title": "Climate and Emissions",
+          "content": "Starting from 1.33C in 2020, global mean temperature peaks at 1.88C in 2050 and then eases to 1.75C by 2100; the 2050 value is 1.88C. Starting from 43.54 Gt/yr in 2020, CO2 emissions fall to -1.36 Gt/yr by 2100; the 2050 value is 9.06 Gt/yr. The largest regional CO2 sources around 2050 are Middle East and Africa, Other Asia, and India. Starting from 57.92 Gt/yr in 2020, total greenhouse-gas emissions peak at 58.35 Gt/yr in 2025 and then eases to 7.68 Gt/yr by 2100; the 2050 value is 18.88 Gt/yr."
+        },
+        {
+          "title": "Energy System",
+          "content": "Starting from 405.9 EJ/yr in 2020, reported final energy demand reaches 513.1 EJ/yr by 2100; the 2050 value is 406.5 EJ/yr. Sector detail: Starting from 193.2 EJ/yr in 2020, industry final energy peaks at 219.4 EJ/yr in 2030 and then eases to 195.8 EJ/yr by 2100; the 2050 value is 190.3 EJ/yr. Starting from 122.7 EJ/yr in 2020, buildings final energy reaches 181.6 EJ/yr by 2100; the 2050 value is 122.9 EJ/yr. Starting from 122.7 EJ/yr in 2020, transport final energy reaches 168.4 EJ/yr by 2100; the 2050 value is 123.8 EJ/yr. Starting from 103.7 EJ/yr in 2020, electricity output reaches 445.7 EJ/yr by 2100; the 2050 value is 242.0 EJ/yr. Electrification is visible in the end-use split: overall electricity share moves from 20% in 2020 to 59% in 2100; industry electricity share moves from 21% in 2020 to 46% in 2100; buildings electricity share moves from 37% in 2020 to 86% in 2100; transport electricity share moves from 2% in 2020 to 44% in 2100."
+        },
+        {
+          "title": "Carbon Management and Biomass",
+          "content": "Starting from 56.5 EJ/yr in 2020, biomass use bottoms out at 55.4 EJ/yr in 2035 and then recovers to 156.6 EJ/yr by 2100; the 2050 value is 74.1 EJ/yr. Starting from 46 Mt/yr in 2020, reported carbon capture reaches 9.95 Gt/yr by 2100; the 2050 value is 3.64 Gt/yr. Starting from 0 Mt/yr in 2020, direct air capture ends at 0 Mt/yr in 2100; the 2050 value is 0 Mt/yr. Starting from -218 Mt/yr in 2020, carbon dioxide removal falls to -8.79 Gt/yr by 2100; the 2050 value is -4.59 Gt/yr."
+        },
+        {
+          "title": "Regional Pattern",
+          "content": "Population growth to mid-century is concentrated in Sub-Saharan Africa, Other Asia, and India. Mid-century economic weight is concentrated in China, Other Asia, and India. The heaviest CO2-emitting regions around 2050 are Middle East and Africa, Other Asia, and India."
+        },
+        {
+          "title": "Data Note",
+          "content": "REMIND is the only family here with an explicit aggregate GHG series and broad economy-wide final-energy totals. It does not expose a single direct mitigation-investment total that is comparable across all runs."
+        }
+      ]
+    },
+    {
+      "id": "remind-ssp2-pkbudg650",
+      "model": "remind",
+      "pathway": "SSP2-PkBudg650",
+      "label": "remind / SSP2-PkBudg650",
+      "source_heading": "18. REMIND | SSP2-PkBudg650",
+      "description": "SSP2, a middle-of-the-road development pathway, combined with a peak-budget case with a 650 Gt CO2 budget between today and 2100.",
+      "scope_note": "REMIND is the only family here with an explicit aggregate GHG series and broad economy-wide final-energy totals. It does not expose a single direct mitigation-investment total that is comparable across all runs.",
+      "sections": [
+        {
+          "title": "Scenario Setup",
+          "content": "SSP2, a middle-of-the-road development pathway, combined with a peak-budget case with a 650 Gt CO2 budget between today and 2100."
+        },
+        {
+          "title": "Interpretive Reading",
+          "content": "This behaves like one of the tightest carbon-budget cases in the set, so the transition pressure is front-loaded rather than deferred. This is best read as an overshoot pathway: warming peaks first, and only later does the system work temperatures back down. The route to low warming is not purely about lower demand or cleaner electricity: the model leans heavily on carbon management and late-century net-negative emissions."
+        },
+        {
+          "title": "Population and Economy",
+          "content": "Starting from 7.86 billion people in 2020, population reaches 10.03 billion people by 2100; the 2050 value is 9.70 billion people. The biggest absolute population increases to mid-century are in Sub-Saharan Africa, Other Asia, and India. Starting from $135.9 trillion in 2020, GDP reaches $660.7 trillion by 2100; the 2050 value is $283.7 trillion. By 2050 the largest GDP blocks in the file are China, Other Asia, and India."
+        },
+        {
+          "title": "Climate and Emissions",
+          "content": "Starting from 1.33C in 2020, global mean temperature peaks at 1.79C in 2040 and then eases to 1.39C by 2100; the 2050 value is 1.76C. Starting from 43.54 Gt/yr in 2020, CO2 emissions bottom out at -9.92 Gt/yr in 2070 and then recovers to -9.84 Gt/yr by 2100; the 2050 value is -6.62 Gt/yr. The largest regional CO2 sources around 2050 are India, Middle East and Africa, and Other Asia. Starting from 57.92 Gt/yr in 2020, total greenhouse-gas emissions peak at 58.35 Gt/yr in 2025 and then eases to -836 Mt/yr by 2100; the 2050 value is 2.95 Gt/yr."
+        },
+        {
+          "title": "Energy System",
+          "content": "Starting from 405.9 EJ/yr in 2020, reported final energy demand bottoms out at 354.0 EJ/yr in 2040 and then recovers to 499.1 EJ/yr by 2100; the 2050 value is 371.3 EJ/yr. Sector detail: Starting from 193.2 EJ/yr in 2020, industry final energy peaks at 216.3 EJ/yr in 2025 and then eases to 195.4 EJ/yr by 2100; the 2050 value is 184.6 EJ/yr. Starting from 122.7 EJ/yr in 2020, buildings final energy bottoms out at 109.1 EJ/yr in 2040 and then recovers to 182.3 EJ/yr by 2100; the 2050 value is 121.0 EJ/yr. Starting from 122.7 EJ/yr in 2020, transport final energy bottoms out at 96.2 EJ/yr in 2045 and then recovers to 154.5 EJ/yr by 2100; the 2050 value is 96.8 EJ/yr. Starting from 103.7 EJ/yr in 2020, electricity output reaches 457.9 EJ/yr by 2100; the 2050 value is 290.8 EJ/yr. Electrification is visible in the end-use split: overall electricity share moves from 20% in 2020 to 66% in 2100; industry electricity share moves from 21% in 2020 to 55% in 2100; buildings electricity share moves from 37% in 2020 to 88% in 2100; transport electricity share moves from 2% in 2020 to 52% in 2100."
+        },
+        {
+          "title": "Carbon Management and Biomass",
+          "content": "Starting from 56.5 EJ/yr in 2020, biomass use reaches 205.1 EJ/yr by 2100; the 2050 value is 158.4 EJ/yr. Starting from 46 Mt/yr in 2020, reported carbon capture reaches 12.82 Gt/yr by 2100; the 2050 value is 9.04 Gt/yr. Starting from 0 Mt/yr in 2020, direct air capture ends at 108 Mt/yr in 2100; the 2050 value is 0 Mt/yr. Starting from -218 Mt/yr in 2020, carbon dioxide removal bottoms out at -13.35 Gt/yr in 2070 and then recovers to -13.21 Gt/yr by 2100; the 2050 value is -11.22 Gt/yr."
+        },
+        {
+          "title": "Regional Pattern",
+          "content": "Population growth to mid-century is concentrated in Sub-Saharan Africa, Other Asia, and India. Mid-century economic weight is concentrated in China, Other Asia, and India. The heaviest CO2-emitting regions around 2050 are India, Middle East and Africa, and Other Asia."
+        },
+        {
+          "title": "Data Note",
+          "content": "REMIND is the only family here with an explicit aggregate GHG series and broad economy-wide final-energy totals. It does not expose a single direct mitigation-investment total that is comparable across all runs."
+        }
+      ]
+    },
+    {
+      "id": "remind-ssp3-rollback",
+      "model": "remind",
+      "pathway": "SSP3-rollBack",
+      "label": "remind / SSP3-rollBack",
+      "source_heading": "19. REMIND | SSP3-rollBack",
+      "description": "SSP3, a fragmented and more difficult development pathway, combined with a rollback case on climate-mitigation investment.",
+      "scope_note": "REMIND is the only family here with an explicit aggregate GHG series and broad economy-wide final-energy totals. It does not expose a single direct mitigation-investment total that is comparable across all runs.",
+      "sections": [
+        {
+          "title": "Scenario Setup",
+          "content": "SSP3, a fragmented and more difficult development pathway, combined with a rollback case on climate-mitigation investment."
+        },
+        {
+          "title": "Interpretive Reading",
+          "content": "This reads as a delayed-mitigation pathway by design: weaker climate-investment effort leaves more of the adjustment to later decades. By 2100 this remains a relatively warm pathway, which usually means mitigation is weaker, later, or both. Because CO2 stays positive through 2100 and carbon removal remains limited, the transition stops short of a full net-zero-style outcome."
+        },
+        {
+          "title": "Population and Economy",
+          "content": "Starting from 7.86 billion people in 2020, population reaches 13.09 billion people by 2100; the 2050 value is 10.11 billion people. The biggest absolute population increases to mid-century are in Sub-Saharan Africa, Other Asia, and India. Starting from $135.9 trillion in 2020, GDP reaches $369.7 trillion by 2100; the 2050 value is $254.1 trillion. By 2050 the largest GDP blocks in the file are China, Other Asia, and India."
+        },
+        {
+          "title": "Climate and Emissions",
+          "content": "Starting from 1.33C in 2020, global mean temperature reaches 3.50C by 2100; the 2050 value is 2.08C. Starting from 43.54 Gt/yr in 2020, CO2 emissions bottom out at 43.34 Gt/yr in 2025 and then recovers to 68.60 Gt/yr by 2100; the 2050 value is 57.23 Gt/yr. The largest regional CO2 sources around 2050 are China, India, and Other Asia. Starting from 57.92 Gt/yr in 2020, total greenhouse-gas emissions bottom out at 57.76 Gt/yr in 2030 and then recovers to 84.37 Gt/yr by 2100; the 2050 value is 71.91 Gt/yr."
+        },
+        {
+          "title": "Energy System",
+          "content": "Starting from 405.9 EJ/yr in 2020, reported final energy demand reaches 626.7 EJ/yr by 2100; the 2050 value is 615.4 EJ/yr. Sector detail: Starting from 193.2 EJ/yr in 2020, industry final energy peaks at 312.6 EJ/yr in 2050 and then eases to 241.6 EJ/yr by 2100; the 2050 value is 312.6 EJ/yr. Starting from 122.7 EJ/yr in 2020, buildings final energy reaches 225.9 EJ/yr by 2100; the 2050 value is 177.8 EJ/yr. Starting from 122.7 EJ/yr in 2020, transport final energy reaches 205.5 EJ/yr by 2100; the 2050 value is 184.0 EJ/yr. Starting from 103.7 EJ/yr in 2020, electricity output reaches 253.2 EJ/yr by 2100; the 2050 value is 187.5 EJ/yr. Electrification is visible in the end-use split: overall electricity share moves from 20% in 2020 to 34% in 2100; industry electricity share moves from 21% in 2020 to 32% in 2100; buildings electricity share moves from 37% in 2020 to 46% in 2100; transport electricity share moves from 1% in 2020 to 22% in 2100."
+        },
+        {
+          "title": "Carbon Management and Biomass",
+          "content": "Starting from 56.5 EJ/yr in 2020, biomass use bottoms out at 51.9 EJ/yr in 2055 and then recovers to 78.7 EJ/yr by 2100; the 2050 value is 52.4 EJ/yr. Starting from 46 Mt/yr in 2020, reported carbon capture peaks at 298 Mt/yr in 2060 and then eases to 72 Mt/yr by 2100; the 2050 value is 224 Mt/yr. Starting from 0 Mt/yr in 2020, direct air capture ends at 0 Mt/yr in 2100; the 2050 value is 0 Mt/yr. Starting from -218 Mt/yr in 2020, carbon dioxide removal bottoms out at -1.02 Gt/yr in 2070 and then recovers to -623 Mt/yr by 2100; the 2050 value is -983 Mt/yr."
+        },
+        {
+          "title": "Regional Pattern",
+          "content": "Population growth to mid-century is concentrated in Sub-Saharan Africa, Other Asia, and India. Mid-century economic weight is concentrated in China, Other Asia, and India. The heaviest CO2-emitting regions around 2050 are China, India, and Other Asia."
+        },
+        {
+          "title": "Data Note",
+          "content": "REMIND is the only family here with an explicit aggregate GHG series and broad economy-wide final-energy totals. It does not expose a single direct mitigation-investment total that is comparable across all runs."
+        }
+      ]
+    },
+    {
+      "id": "image-ssp1-l",
+      "model": "image",
+      "pathway": "SSP1-L",
+      "label": "image / SSP1-L",
+      "source_heading": "20. IMAGE 3.4 | SSP1_L",
+      "description": "SSP1, a sustainability-oriented development pathway with lower baseline social and technological barriers, combined with a low-emissions variant.",
+      "scope_note": "IMAGE provides rich sectoral final-energy detail but not a single economy-wide final-energy total in these files, so the narrative leans on sector totals and electricity supply.",
+      "sections": [
+        {
+          "title": "Scenario Setup",
+          "content": "SSP1, a sustainability-oriented development pathway with lower baseline social and technological barriers, combined with a low-emissions variant."
+        },
+        {
+          "title": "Interpretive Reading",
+          "content": "This sits on the low-emissions side of its model family, so the storyline is about accelerated transition rather than simple fossil continuation. This is best read as an overshoot pathway: warming peaks first, and only later does the system work temperatures back down. The route to low warming is not purely about lower demand or cleaner electricity: the model leans heavily on carbon management and late-century net-negative emissions."
+        },
+        {
+          "title": "Population and Economy",
+          "content": "Starting from 7.84 billion people in 2020, population peaks at 9.34 billion people in 2060 and then eases to 8.14 billion people by 2100; the 2050 value is 9.25 billion people. The biggest absolute population increases to mid-century are in West Africa, East Africa, and Rest of South Asia. Starting from $115.7 trillion in 2020, GDP reaches $619.5 trillion by 2100; the 2050 value is $288.9 trillion. By 2050 the largest GDP blocks in the file are China, India, and United States."
+        },
+        {
+          "title": "Climate and Emissions",
+          "content": "Starting from 1.19C in 2020, global mean temperature peaks at 1.89C in 2060 and then eases to 1.69C by 2100; the 2050 value is 1.88C. Starting from 36.83 Gt/yr in 2020, CO2 emissions peak at 40.76 Gt/yr in 2025 and then eases to -9.32 Gt/yr by 2100; the 2050 value is 11.85 Gt/yr. The largest regional CO2 sources around 2050 are China, India, and Middle East."
+        },
+        {
+          "title": "Energy System",
+          "content": "The file reports energy sector by sector rather than as a single total; by 2050 industry reaches 198.8 EJ/yr in 2050, commercial buildings reaches 35.5 EJ/yr in 2050, reported residential uses reaches 40.8 EJ/yr in 2050, and passenger and freight transport reaches 98.7 EJ/yr in 2050. Starting from 96.2 EJ/yr in 2020, electricity output reaches 405.3 EJ/yr by 2100; the 2050 value is 238.5 EJ/yr. Electrification is visible in the end-use split: industry electricity share moves from 20% in 2020 to 54% in 2100; transport electricity share moves from 2% in 2020 to 68% in 2100; commercial electricity share moves from 62% in 2020 to 98% in 2100."
+        },
+        {
+          "title": "Carbon Management and Biomass",
+          "content": "Starting from 54.9 EJ/yr in 2020, biomass use reaches 103.6 EJ/yr by 2100; the 2050 value is 64.7 EJ/yr. Starting from 0 Mt/yr in 2020, reported carbon capture ends at 8.84 Gt/yr in 2100; the 2050 value is 1.03 Gt/yr. Starting from 0 Mt/yr in 2020, direct air capture stays broadly flat and is still around 0 Mt/yr by 2100; the 2050 value is 0 Mt/yr."
+        },
+        {
+          "title": "Regional Pattern",
+          "content": "Population growth to mid-century is concentrated in West Africa, East Africa, and Rest of South Asia. Mid-century economic weight is concentrated in China, India, and United States. The heaviest CO2-emitting regions around 2050 are China, India, and Middle East."
+        },
+        {
+          "title": "Data Note",
+          "content": "IMAGE provides rich sectoral final-energy detail but not a single economy-wide final-energy total in these files, so the narrative leans on sector totals and electricity supply."
+        }
+      ]
+    },
+    {
+      "id": "image-ssp1-m",
+      "model": "image",
+      "pathway": "SSP1-M",
+      "label": "image / SSP1-M",
+      "source_heading": "21. IMAGE 3.4 | SSP1_M",
+      "description": "SSP1, a sustainability-oriented development pathway with lower baseline social and technological barriers, combined with a medium-emissions variant.",
+      "scope_note": "IMAGE provides rich sectoral final-energy detail but not a single economy-wide final-energy total in these files, so the narrative leans on sector totals and electricity supply.",
+      "sections": [
+        {
+          "title": "Scenario Setup",
+          "content": "SSP1, a sustainability-oriented development pathway with lower baseline social and technological barriers, combined with a medium-emissions variant."
+        },
+        {
+          "title": "Interpretive Reading",
+          "content": "By 2100 this remains a relatively warm pathway, which usually means mitigation is weaker, later, or both. Because CO2 stays positive through 2100 and carbon removal remains limited, the transition stops short of a full net-zero-style outcome. The energy transition is carried not only by cleaner supply but also by end-use electrification, especially in industry, transport, and commercial buildings."
+        },
+        {
+          "title": "Population and Economy",
+          "content": "Starting from 7.84 billion people in 2020, population peaks at 9.34 billion people in 2060 and then eases to 8.14 billion people by 2100; the 2050 value is 9.25 billion people. The biggest absolute population increases to mid-century are in West Africa, East Africa, and Rest of South Asia. Starting from $115.7 trillion in 2020, GDP reaches $619.5 trillion by 2100; the 2050 value is $288.9 trillion. By 2050 the largest GDP blocks in the file are China, India, and United States."
+        },
+        {
+          "title": "Climate and Emissions",
+          "content": "Starting from 1.19C in 2020, global mean temperature reaches 2.49C by 2100; the 2050 value is 2.04C. Starting from 36.83 Gt/yr in 2020, CO2 emissions peak at 40.42 Gt/yr in 2025 and then eases to 12.18 Gt/yr by 2100; the 2050 value is 21.38 Gt/yr. The largest regional CO2 sources around 2050 are China, India, and Middle East."
+        },
+        {
+          "title": "Energy System",
+          "content": "The file reports energy sector by sector rather than as a single total; by 2050 industry reaches 216.3 EJ/yr in 2050, commercial buildings reaches 37.2 EJ/yr in 2050, reported residential uses reaches 34.3 EJ/yr in 2050, and passenger and freight transport reaches 114.2 EJ/yr in 2050. Starting from 96.2 EJ/yr in 2020, electricity output reaches 381.6 EJ/yr by 2100; the 2050 value is 257.0 EJ/yr. Electrification is visible in the end-use split: industry electricity share moves from 20% in 2020 to 47% in 2100; transport electricity share moves from 2% in 2020 to 63% in 2100; commercial electricity share moves from 62% in 2020 to 96% in 2100."
+        },
+        {
+          "title": "Carbon Management and Biomass",
+          "content": "Starting from 54.9 EJ/yr in 2020, biomass use peaks at 60.2 EJ/yr in 2025 and then eases to 40.6 EJ/yr by 2100; the 2050 value is 45.9 EJ/yr. Starting from 0 Mt/yr in 2020, reported carbon capture stays broadly flat and is still around 0 Mt/yr by 2100; the 2050 value is 0 Mt/yr. Starting from 0 Mt/yr in 2020, direct air capture stays broadly flat and is still around 0 Mt/yr by 2100; the 2050 value is 0 Mt/yr."
+        },
+        {
+          "title": "Regional Pattern",
+          "content": "Population growth to mid-century is concentrated in West Africa, East Africa, and Rest of South Asia. Mid-century economic weight is concentrated in China, India, and United States. The heaviest CO2-emitting regions around 2050 are China, India, and Middle East."
+        },
+        {
+          "title": "Data Note",
+          "content": "IMAGE provides rich sectoral final-energy detail but not a single economy-wide final-energy total in these files, so the narrative leans on sector totals and electricity supply."
+        }
+      ]
+    },
+    {
+      "id": "image-ssp1-vllo",
+      "model": "image",
+      "pathway": "SSP1-VLLO",
+      "label": "image / SSP1-VLLO",
+      "source_heading": "22. IMAGE 3.4 | SSP1_VLLO",
+      "description": "SSP1, a sustainability-oriented development pathway with lower baseline social and technological barriers, combined with a very-low case with low overshoot.",
+      "scope_note": "IMAGE provides rich sectoral final-energy detail but not a single economy-wide final-energy total in these files, so the narrative leans on sector totals and electricity supply.",
+      "sections": [
+        {
+          "title": "Scenario Setup",
+          "content": "SSP1, a sustainability-oriented development pathway with lower baseline social and technological barriers, combined with a very-low case with low overshoot."
+        },
+        {
+          "title": "Interpretive Reading",
+          "content": "This sits on the low-emissions side of its model family, so the storyline is about accelerated transition rather than simple fossil continuation. The temperature path has an overshoot-and-return shape, but the gap between the peak and end-century level stays relatively limited. The route to low warming is not purely about lower demand or cleaner electricity: the model leans heavily on carbon management and late-century net-negative emissions."
+        },
+        {
+          "title": "Population and Economy",
+          "content": "Starting from 7.84 billion people in 2020, population peaks at 9.34 billion people in 2060 and then eases to 8.14 billion people by 2100; the 2050 value is 9.25 billion people. The biggest absolute population increases to mid-century are in West Africa, East Africa, and Rest of South Asia. Starting from $115.7 trillion in 2020, GDP reaches $619.5 trillion by 2100; the 2050 value is $288.9 trillion. By 2050 the largest GDP blocks in the file are China, India, and United States."
+        },
+        {
+          "title": "Climate and Emissions",
+          "content": "Starting from 1.19C in 2020, global mean temperature peaks at 1.73C in 2040 and then eases to 1.38C by 2100; the 2050 value is 1.70C. Starting from 36.83 Gt/yr in 2020, CO2 emissions peak at 40.34 Gt/yr in 2025 and then eases to -4.31 Gt/yr by 2100; the 2050 value is -2.59 Gt/yr. The largest regional CO2 sources around 2050 are Middle East, China, and India."
+        },
+        {
+          "title": "Energy System",
+          "content": "The file reports energy sector by sector rather than as a single total; by 2050 industry reaches 169.7 EJ/yr in 2050, commercial buildings reaches 39.6 EJ/yr in 2050, reported residential uses reaches 28.4 EJ/yr in 2050, and passenger and freight transport reaches 78.2 EJ/yr in 2050. Starting from 96.2 EJ/yr in 2020, electricity output reaches 439.4 EJ/yr by 2100; the 2050 value is 292.0 EJ/yr. Electrification is visible in the end-use split: industry electricity share moves from 20% in 2020 to 69% in 2100; transport electricity share moves from 2% in 2020 to 71% in 2100; commercial electricity share moves from 62% in 2020 to 99% in 2100."
+        },
+        {
+          "title": "Carbon Management and Biomass",
+          "content": "Starting from 54.9 EJ/yr in 2020, biomass use peaks at 101.5 EJ/yr in 2070 and then eases to 87.2 EJ/yr by 2100; the 2050 value is 95.8 EJ/yr. Starting from 0 Mt/yr in 2020, reported carbon capture ends at 4.53 Gt/yr in 2100; the 2050 value is 1.96 Gt/yr. Starting from 0 Mt/yr in 2020, direct air capture stays broadly flat and is still around 0 Mt/yr by 2100; the 2050 value is 0 Mt/yr."
+        },
+        {
+          "title": "Regional Pattern",
+          "content": "Population growth to mid-century is concentrated in West Africa, East Africa, and Rest of South Asia. Mid-century economic weight is concentrated in China, India, and United States. The heaviest CO2-emitting regions around 2050 are Middle East, China, and India."
+        },
+        {
+          "title": "Data Note",
+          "content": "IMAGE provides rich sectoral final-energy detail but not a single economy-wide final-energy total in these files, so the narrative leans on sector totals and electricity supply."
+        }
+      ]
+    },
+    {
+      "id": "image-ssp2-l",
+      "model": "image",
+      "pathway": "SSP2-L",
+      "label": "image / SSP2-L",
+      "source_heading": "23. IMAGE 3.4 | SSP2_L",
+      "description": "SSP2, a middle-of-the-road development pathway, combined with a low-emissions variant.",
+      "scope_note": "IMAGE provides rich sectoral final-energy detail but not a single economy-wide final-energy total in these files, so the narrative leans on sector totals and electricity supply.",
+      "sections": [
+        {
+          "title": "Scenario Setup",
+          "content": "SSP2, a middle-of-the-road development pathway, combined with a low-emissions variant."
+        },
+        {
+          "title": "Interpretive Reading",
+          "content": "This is best read as an overshoot pathway: warming peaks first, and only later does the system work temperatures back down. The route to low warming is not purely about lower demand or cleaner electricity: the model leans heavily on carbon management and late-century net-negative emissions. The energy transition is carried not only by cleaner supply but also by end-use electrification, especially in industry, transport, and commercial buildings."
+        },
+        {
+          "title": "Population and Economy",
+          "content": "Starting from 7.84 billion people in 2020, population reaches 9.96 billion people by 2100; the 2050 value is 9.65 billion people. The biggest absolute population increases to mid-century are in West Africa, East Africa, and India. Starting from $115.7 trillion in 2020, GDP reaches $611.8 trillion by 2100; the 2050 value is $265.5 trillion. By 2050 the largest GDP blocks in the file are China, India, and United States."
+        },
+        {
+          "title": "Climate and Emissions",
+          "content": "Starting from 1.19C in 2020, global mean temperature peaks at 1.82C in 2050 and then eases to 1.61C by 2100; the 2050 value is 1.82C. Starting from 36.83 Gt/yr in 2020, CO2 emissions peak at 40.86 Gt/yr in 2025 and then eases to -8.02 Gt/yr by 2100; the 2050 value is 8.29 Gt/yr. The largest regional CO2 sources around 2050 are Middle East, China, and Russia."
+        },
+        {
+          "title": "Energy System",
+          "content": "The file reports energy sector by sector rather than as a single total; by 2050 industry reaches 208.4 EJ/yr in 2050, commercial buildings reaches 46.7 EJ/yr in 2050, reported residential uses reaches 51.5 EJ/yr in 2050, and passenger and freight transport reaches 105.7 EJ/yr in 2050. Starting from 96.2 EJ/yr in 2020, electricity output reaches 537.9 EJ/yr by 2100; the 2050 value is 233.1 EJ/yr. Electrification is visible in the end-use split: industry electricity share moves from 20% in 2020 to 52% in 2100; transport electricity share moves from 2% in 2020 to 51% in 2100; commercial electricity share moves from 62% in 2020 to 99% in 2100."
+        },
+        {
+          "title": "Carbon Management and Biomass",
+          "content": "Starting from 54.9 EJ/yr in 2020, biomass use reaches 154.4 EJ/yr by 2100; the 2050 value is 113.3 EJ/yr. Starting from 0 Mt/yr in 2020, reported carbon capture ends at 15.90 Gt/yr in 2100; the 2050 value is 7.76 Gt/yr. Starting from 0 Mt/yr in 2020, direct air capture stays broadly flat and is still around 0 Mt/yr by 2100; the 2050 value is 0 Mt/yr."
+        },
+        {
+          "title": "Regional Pattern",
+          "content": "Population growth to mid-century is concentrated in West Africa, East Africa, and India. Mid-century economic weight is concentrated in China, India, and United States. The heaviest CO2-emitting regions around 2050 are Middle East, China, and Russia."
+        },
+        {
+          "title": "Data Note",
+          "content": "IMAGE provides rich sectoral final-energy detail but not a single economy-wide final-energy total in these files, so the narrative leans on sector totals and electricity supply."
+        }
+      ]
+    },
+    {
+      "id": "image-ssp2-m",
+      "model": "image",
+      "pathway": "SSP2-M",
+      "label": "image / SSP2-M",
+      "source_heading": "24. IMAGE 3.4 | SSP2_M_CP",
+      "description": "SSP2, a middle-of-the-road development pathway, combined with a medium-emissions variant, and a model-specific CP variant.",
+      "scope_note": "IMAGE provides rich sectoral final-energy detail but not a single economy-wide final-energy total in these files, so the narrative leans on sector totals and electricity supply.",
+      "sections": [
+        {
+          "title": "Scenario Setup",
+          "content": "SSP2, a middle-of-the-road development pathway, combined with a medium-emissions variant, and a model-specific CP variant."
+        },
+        {
+          "title": "Interpretive Reading",
+          "content": "By 2100 this remains a relatively warm pathway, which usually means mitigation is weaker, later, or both. Because CO2 stays positive through 2100 and carbon removal remains limited, the transition stops short of a full net-zero-style outcome. The energy transition is carried not only by cleaner supply but also by end-use electrification, especially in industry, transport, and commercial buildings."
+        },
+        {
+          "title": "Population and Economy",
+          "content": "Starting from 7.84 billion people in 2020, population reaches 9.96 billion people by 2100; the 2050 value is 9.65 billion people. The biggest absolute population increases to mid-century are in West Africa, East Africa, and India. Starting from $115.7 trillion in 2020, GDP reaches $611.8 trillion by 2100; the 2050 value is $265.5 trillion. By 2050 the largest GDP blocks in the file are China, India, and United States."
+        },
+        {
+          "title": "Climate and Emissions",
+          "content": "Starting from 1.19C in 2020, global mean temperature reaches 2.85C by 2100; the 2050 value is 1.94C. Starting from 36.83 Gt/yr in 2020, CO2 emissions peak at 40.63 Gt/yr in 2025 and then eases to 34.49 Gt/yr by 2100; the 2050 value is 34.71 Gt/yr. The largest regional CO2 sources around 2050 are China, India, and Middle East."
+        },
+        {
+          "title": "Energy System",
+          "content": "The file reports energy sector by sector rather than as a single total; by 2050 industry reaches 240.4 EJ/yr in 2050, commercial buildings reaches 51.4 EJ/yr in 2050, reported residential uses reaches 55.4 EJ/yr in 2050, and passenger and freight transport reaches 138.7 EJ/yr in 2050. Starting from 96.2 EJ/yr in 2020, electricity output reaches 487.6 EJ/yr by 2100; the 2050 value is 235.2 EJ/yr. Electrification is visible in the end-use split: industry electricity share moves from 20% in 2020 to 39% in 2100; transport electricity share moves from 2% in 2020 to 37% in 2100; commercial electricity share moves from 62% in 2020 to 94% in 2100."
+        },
+        {
+          "title": "Carbon Management and Biomass",
+          "content": "Starting from 54.9 EJ/yr in 2020, biomass use reaches 76.4 EJ/yr by 2100; the 2050 value is 67.0 EJ/yr. Starting from 0 Mt/yr in 2020, reported carbon capture ends at 14 Mt/yr in 2100; the 2050 value is 0 Mt/yr. Starting from 0 Mt/yr in 2020, direct air capture stays broadly flat and is still around 0 Mt/yr by 2100; the 2050 value is 0 Mt/yr."
+        },
+        {
+          "title": "Regional Pattern",
+          "content": "Population growth to mid-century is concentrated in West Africa, East Africa, and India. Mid-century economic weight is concentrated in China, India, and United States. The heaviest CO2-emitting regions around 2050 are China, India, and Middle East."
+        },
+        {
+          "title": "Data Note",
+          "content": "IMAGE provides rich sectoral final-energy detail but not a single economy-wide final-energy total in these files, so the narrative leans on sector totals and electricity supply."
+        }
+      ]
+    },
+    {
+      "id": "image-ssp2-vlho",
+      "model": "image",
+      "pathway": "SSP2-VLHO",
+      "label": "image / SSP2-VLHO",
+      "source_heading": "25. IMAGE 3.4 | SSP2_VLHO",
+      "description": "SSP2, a middle-of-the-road development pathway, combined with a very-low case with high overshoot.",
+      "scope_note": "IMAGE provides rich sectoral final-energy detail but not a single economy-wide final-energy total in these files, so the narrative leans on sector totals and electricity supply.",
+      "sections": [
+        {
+          "title": "Scenario Setup",
+          "content": "SSP2, a middle-of-the-road development pathway, combined with a very-low case with high overshoot."
+        },
+        {
+          "title": "Interpretive Reading",
+          "content": "This sits on the low-emissions side of its model family, so the storyline is about accelerated transition rather than simple fossil continuation. The temperature path shows a pronounced overshoot: warming climbs well above the end-century level before later mitigation pulls it back down. The route to low warming is not purely about lower demand or cleaner electricity: the model leans heavily on carbon management and late-century net-negative emissions."
+        },
+        {
+          "title": "Population and Economy",
+          "content": "Starting from 7.84 billion people in 2020, population reaches 9.96 billion people by 2100; the 2050 value is 9.65 billion people. The biggest absolute population increases to mid-century are in West Africa, East Africa, and India. Starting from $115.7 trillion in 2020, GDP reaches $611.8 trillion by 2100; the 2050 value is $265.5 trillion. By 2050 the largest GDP blocks in the file are China, India, and United States."
+        },
+        {
+          "title": "Climate and Emissions",
+          "content": "Starting from 1.19C in 2020, global mean temperature peaks at 2.02C in 2050 and then eases to 1.59C by 2100; the 2050 value is 2.02C. Starting from 36.83 Gt/yr in 2020, CO2 emissions peak at 40.84 Gt/yr in 2025 and then eases to -14.60 Gt/yr by 2100; the 2050 value is 14.62 Gt/yr. The largest regional CO2 sources around 2050 are China, Middle East, and India."
+        },
+        {
+          "title": "Energy System",
+          "content": "The file reports energy sector by sector rather than as a single total; by 2050 industry reaches 208.9 EJ/yr in 2050, commercial buildings reaches 49.3 EJ/yr in 2050, reported residential uses reaches 50.5 EJ/yr in 2050, and passenger and freight transport reaches 113.7 EJ/yr in 2050. Starting from 96.2 EJ/yr in 2020, electricity output reaches 634.8 EJ/yr by 2100; the 2050 value is 250.4 EJ/yr. Electrification is visible in the end-use split: industry electricity share moves from 20% in 2020 to 63% in 2100; transport electricity share moves from 2% in 2020 to 61% in 2100; commercial electricity share moves from 62% in 2020 to 99% in 2100."
+        },
+        {
+          "title": "Carbon Management and Biomass",
+          "content": "Starting from 54.9 EJ/yr in 2020, biomass use reaches 155.2 EJ/yr by 2100; the 2050 value is 78.1 EJ/yr. Starting from 0 Mt/yr in 2020, reported carbon capture ends at 19.33 Gt/yr in 2100; the 2050 value is 4.04 Gt/yr. Starting from 0 Mt/yr in 2020, direct air capture ends at 5.06 Gt/yr in 2100; the 2050 value is 0 Mt/yr."
+        },
+        {
+          "title": "Regional Pattern",
+          "content": "Population growth to mid-century is concentrated in West Africa, East Africa, and India. Mid-century economic weight is concentrated in China, India, and United States. The heaviest CO2-emitting regions around 2050 are China, Middle East, and India."
+        },
+        {
+          "title": "Data Note",
+          "content": "IMAGE provides rich sectoral final-energy detail but not a single economy-wide final-energy total in these files, so the narrative leans on sector totals and electricity supply."
+        }
+      ]
+    },
+    {
+      "id": "image-ssp3-h",
+      "model": "image",
+      "pathway": "SSP3-H",
+      "label": "image / SSP3-H",
+      "source_heading": "26. IMAGE 3.4 | SSP3_H",
+      "description": "SSP3, a fragmented and more difficult development pathway, combined with a high-emissions variant.",
+      "scope_note": "IMAGE provides rich sectoral final-energy detail but not a single economy-wide final-energy total in these files, so the narrative leans on sector totals and electricity supply.",
+      "sections": [
+        {
+          "title": "Scenario Setup",
+          "content": "SSP3, a fragmented and more difficult development pathway, combined with a high-emissions variant."
+        },
+        {
+          "title": "Interpretive Reading",
+          "content": "By 2100 this remains a relatively warm pathway, which usually means mitigation is weaker, later, or both. Because CO2 stays positive through 2100 and carbon removal remains limited, the transition stops short of a full net-zero-style outcome. The energy transition is carried not only by cleaner supply but also by end-use electrification, especially in commercial buildings."
+        },
+        {
+          "title": "Population and Economy",
+          "content": "Starting from 7.84 billion people in 2020, population reaches 13.07 billion people by 2100; the 2050 value is 10.11 billion people. The biggest absolute population increases to mid-century are in West Africa, East Africa, and India. Starting from $115.7 trillion in 2020, GDP reaches $340.6 trillion by 2100; the 2050 value is $230.3 trillion. By 2050 the largest GDP blocks in the file are China, India, and United States."
+        },
+        {
+          "title": "Climate and Emissions",
+          "content": "Starting from 1.19C in 2020, global mean temperature reaches 3.56C by 2100; the 2050 value is 2.10C. Starting from 36.83 Gt/yr in 2020, CO2 emissions peak at 48.93 Gt/yr in 2050 and then eases to 44.44 Gt/yr by 2100; the 2050 value is 48.93 Gt/yr. The largest regional CO2 sources around 2050 are China, India, and United States."
+        },
+        {
+          "title": "Energy System",
+          "content": "The file reports energy sector by sector rather than as a single total; by 2050 industry reaches 265.8 EJ/yr in 2050, commercial buildings reaches 51.8 EJ/yr in 2050, reported residential uses reaches 79.4 EJ/yr in 2050, and passenger and freight transport reaches 156.3 EJ/yr in 2050. Starting from 96.2 EJ/yr in 2020, electricity output reaches 325.4 EJ/yr by 2100; the 2050 value is 200.4 EJ/yr. Electrification is visible in the end-use split: industry electricity share moves from 20% in 2020 to 34% in 2100; transport electricity share moves from 2% in 2020 to 9% in 2100; commercial electricity share moves from 62% in 2020 to 82% in 2100."
+        },
+        {
+          "title": "Carbon Management and Biomass",
+          "content": "Starting from 54.9 EJ/yr in 2020, biomass use reaches 82.6 EJ/yr by 2100; the 2050 value is 73.6 EJ/yr. Starting from 0 Mt/yr in 2020, reported carbon capture stays broadly flat and is still around 0 Mt/yr by 2100; the 2050 value is 0 Mt/yr. Starting from 0 Mt/yr in 2020, direct air capture stays broadly flat and is still around 0 Mt/yr by 2100; the 2050 value is 0 Mt/yr."
+        },
+        {
+          "title": "Regional Pattern",
+          "content": "Population growth to mid-century is concentrated in West Africa, East Africa, and India. Mid-century economic weight is concentrated in China, India, and United States. The heaviest CO2-emitting regions around 2050 are China, India, and United States."
+        },
+        {
+          "title": "Data Note",
+          "content": "IMAGE provides rich sectoral final-energy detail but not a single economy-wide final-energy total in these files, so the narrative leans on sector totals and electricity supply."
+        }
+      ]
+    },
+    {
+      "id": "image-ssp5-h",
+      "model": "image",
+      "pathway": "SSP5-H",
+      "label": "image / SSP5-H",
+      "source_heading": "27. IMAGE 3.4 | SSP5_H",
+      "description": "SSP5, a fossil-fueled development pathway with very strong economic expansion, combined with a high-emissions variant.",
+      "scope_note": "IMAGE provides rich sectoral final-energy detail but not a single economy-wide final-energy total in these files, so the narrative leans on sector totals and electricity supply.",
+      "sections": [
+        {
+          "title": "Scenario Setup",
+          "content": "SSP5, a fossil-fueled development pathway with very strong economic expansion, combined with a high-emissions variant."
+        },
+        {
+          "title": "Interpretive Reading",
+          "content": "By 2100 this remains a relatively warm pathway, which usually means mitigation is weaker, later, or both. Because CO2 stays positive through 2100 and carbon removal remains limited, the transition stops short of a full net-zero-style outcome. The energy transition is carried not only by cleaner supply but also by end-use electrification, especially in industry, transport, and commercial buildings."
+        },
+        {
+          "title": "Population and Economy",
+          "content": "Starting from 7.84 billion people in 2020, population peaks at 9.34 billion people in 2060 and then eases to 8.17 billion people by 2100; the 2050 value is 9.25 billion people. The biggest absolute population increases to mid-century are in West Africa, East Africa, and India. Starting from $115.7 trillion in 2020, GDP reaches $1003.6 trillion by 2100; the 2050 value is $333.6 trillion. By 2050 the largest GDP blocks in the file are China, India, and United States."
+        },
+        {
+          "title": "Climate and Emissions",
+          "content": "Starting from 1.19C in 2020, global mean temperature reaches 3.44C by 2100; the 2050 value is 2.17C. Starting from 36.83 Gt/yr in 2020, CO2 emissions peak at 46.98 Gt/yr in 2050 and then eases to 42.26 Gt/yr by 2100; the 2050 value is 46.98 Gt/yr. The largest regional CO2 sources around 2050 are China, India, and United States."
+        },
+        {
+          "title": "Energy System",
+          "content": "The file reports energy sector by sector rather than as a single total; by 2050 industry reaches 285.8 EJ/yr in 2050, commercial buildings reaches 70.2 EJ/yr in 2050, reported residential uses reaches 68.7 EJ/yr in 2050, and passenger and freight transport reaches 157.2 EJ/yr in 2050. Starting from 96.2 EJ/yr in 2020, electricity output reaches 591.3 EJ/yr by 2100; the 2050 value is 288.9 EJ/yr. Electrification is visible in the end-use split: industry electricity share moves from 20% in 2020 to 44% in 2100; transport electricity share moves from 2% in 2020 to 38% in 2100; commercial electricity share moves from 62% in 2020 to 93% in 2100."
+        },
+        {
+          "title": "Carbon Management and Biomass",
+          "content": "Starting from 54.9 EJ/yr in 2020, biomass use reaches 65.4 EJ/yr by 2100; the 2050 value is 60.7 EJ/yr. Starting from 0 Mt/yr in 2020, reported carbon capture stays broadly flat and is still around 0 Mt/yr by 2100; the 2050 value is 0 Mt/yr. Starting from 0 Mt/yr in 2020, direct air capture stays broadly flat and is still around 0 Mt/yr by 2100; the 2050 value is 0 Mt/yr."
+        },
+        {
+          "title": "Regional Pattern",
+          "content": "Population growth to mid-century is concentrated in West Africa, East Africa, and India. Mid-century economic weight is concentrated in China, India, and United States. The heaviest CO2-emitting regions around 2050 are China, India, and United States."
+        },
+        {
+          "title": "Data Note",
+          "content": "IMAGE provides rich sectoral final-energy detail but not a single economy-wide final-energy total in these files, so the narrative leans on sector totals and electricity supply."
+        }
+      ]
+    },
+    {
+      "id": "message-ssp1-l",
+      "model": "message",
+      "pathway": "SSP1-L",
+      "label": "message / SSP1-L",
+      "source_heading": "28. MESSAGEix-GLOBIOM-GAINS 2.1-M-R12 | SSP1 - Low Emissions",
+      "description": "SSP1, a sustainability-oriented development pathway with lower baseline social and technological barriers, combined with a low-emissions variant.",
+      "scope_note": "MESSAGE gives broad sectoral final-energy and biomass detail, plus explicit DAC geological storage, but not a single aggregate GHG total in these files.",
+      "sections": [
+        {
+          "title": "Scenario Setup",
+          "content": "SSP1, a sustainability-oriented development pathway with lower baseline social and technological barriers, combined with a low-emissions variant."
+        },
+        {
+          "title": "Interpretive Reading",
+          "content": "This sits on the low-emissions side of its model family, so the storyline is about accelerated transition rather than simple fossil continuation. This is best read as an overshoot pathway: warming peaks first, and only later does the system work temperatures back down. CO2 turns net negative by late century, which marks this as a genuinely deep decarbonization pathway."
+        },
+        {
+          "title": "Population and Economy",
+          "content": "Starting from 7.80 billion people in 2020, population peaks at 9.29 billion people in 2060 and then eases to 8.09 billion people by 2100; the 2050 value is 9.19 billion people. The biggest absolute population increases to mid-century are in Africa, South Asia, and Middle East and Africa. Starting from $106.8 trillion in 2020, GDP reaches $568.0 trillion by 2100; the 2050 value is $266.8 trillion. By 2050 the largest GDP blocks in the file are China, South Asia, and North America."
+        },
+        {
+          "title": "Climate and Emissions",
+          "content": "Starting from 1.34C in 2020, global mean temperature peaks at 1.89C in 2050 and then eases to 1.56C by 2100; the 2050 value is 1.89C. Starting from 44.56 Gt/yr in 2020, CO2 emissions bottom out at -5.59 Gt/yr in 2080 and then recovers to -5.15 Gt/yr by 2100; the 2050 value is 8.85 Gt/yr. The largest regional CO2 sources around 2050 are Middle East and Africa, China, and South Asia."
+        },
+        {
+          "title": "Energy System",
+          "content": "Starting from 297.1 EJ/yr in 2020, reported final energy demand reaches 321.1 EJ/yr by 2100; the 2050 value is 313.5 EJ/yr. Starting from 120.6 EJ/yr in 2020, industry final energy bottoms out at 116.0 EJ/yr in 2030 and then recovers to 144.0 EJ/yr by 2100; the 2050 value is 121.5 EJ/yr. Starting from 93.2 EJ/yr in 2020, transport final energy peaks at 112.3 EJ/yr in 2025 and then eases to 69.5 EJ/yr by 2100; the 2050 value is 75.6 EJ/yr. Starting from 82.8 EJ/yr in 2020, residential and commercial final energy peaks at 116.6 EJ/yr in 2070 and then eases to 101.1 EJ/yr by 2100; the 2050 value is 113.7 EJ/yr. Starting from 96.8 EJ/yr in 2020, electricity output reaches 387.6 EJ/yr by 2100; the 2050 value is 227.1 EJ/yr. Electrification is visible in the end-use split: industry electricity share moves from 28% in 2020 to 64% in 2100; buildings electricity share moves from 55% in 2020 to 84% in 2100; transport electricity share moves from 1% in 2020 to 86% in 2100."
+        },
+        {
+          "title": "Carbon Management and Biomass",
+          "content": "Starting from 46.4 EJ/yr in 2020, biomass use peaks at 65.1 EJ/yr in 2080 and then eases to 61.5 EJ/yr by 2100; the 2050 value is 48.5 EJ/yr. Starting from 0 Mt/yr in 2020, direct air capture ends at 367 Mt/yr in 2100; the 2050 value is 7 Mt/yr."
+        },
+        {
+          "title": "Regional Pattern",
+          "content": "Population growth to mid-century is concentrated in Africa, South Asia, and Middle East and Africa. Mid-century economic weight is concentrated in China, South Asia, and North America. The heaviest CO2-emitting regions around 2050 are Middle East and Africa, China, and South Asia."
+        },
+        {
+          "title": "Data Note",
+          "content": "MESSAGE gives broad sectoral final-energy and biomass detail, plus explicit DAC geological storage, but not a single aggregate GHG total in these files."
+        }
+      ]
+    },
+    {
+      "id": "message-ssp1-vl",
+      "model": "message",
+      "pathway": "SSP1-VL",
+      "label": "message / SSP1-VL",
+      "source_heading": "29. MESSAGEix-GLOBIOM-GAINS 2.1-M-R12 | SSP1 - Very Low Emissions",
+      "description": "SSP1, a sustainability-oriented development pathway with lower baseline social and technological barriers, combined with a low-emissions variant.",
+      "scope_note": "MESSAGE gives broad sectoral final-energy and biomass detail, plus explicit DAC geological storage, but not a single aggregate GHG total in these files.",
+      "sections": [
+        {
+          "title": "Scenario Setup",
+          "content": "SSP1, a sustainability-oriented development pathway with lower baseline social and technological barriers, combined with a low-emissions variant."
+        },
+        {
+          "title": "Interpretive Reading",
+          "content": "This sits on the low-emissions side of its model family, so the storyline is about accelerated transition rather than simple fossil continuation. This is best read as an overshoot pathway: warming peaks first, and only later does the system work temperatures back down. The route to low warming is not purely about lower demand or cleaner electricity: the model leans heavily on carbon management and late-century net-negative emissions."
+        },
+        {
+          "title": "Population and Economy",
+          "content": "Starting from 7.80 billion people in 2020, population peaks at 9.29 billion people in 2060 and then eases to 8.09 billion people by 2100; the 2050 value is 9.19 billion people. The biggest absolute population increases to mid-century are in Africa, South Asia, and Middle East and Africa. Starting from $106.8 trillion in 2020, GDP reaches $568.0 trillion by 2100; the 2050 value is $266.8 trillion. By 2050 the largest GDP blocks in the file are China, South Asia, and North America."
+        },
+        {
+          "title": "Climate and Emissions",
+          "content": "Starting from 1.34C in 2020, global mean temperature peaks at 1.82C in 2050 and then eases to 1.44C by 2100; the 2050 value is 1.82C. Starting from 44.56 Gt/yr in 2020, CO2 emissions fall to -8.21 Gt/yr by 2100; the 2050 value is 5.30 Gt/yr. The largest regional CO2 sources around 2050 are Middle East and Africa, China, and North America."
+        },
+        {
+          "title": "Energy System",
+          "content": "Starting from 297.1 EJ/yr in 2020, reported final energy demand reaches 328.2 EJ/yr by 2100; the 2050 value is 304.2 EJ/yr. Starting from 120.6 EJ/yr in 2020, industry final energy bottoms out at 114.7 EJ/yr in 2030 and then recovers to 142.7 EJ/yr by 2100; the 2050 value is 118.1 EJ/yr. Starting from 93.2 EJ/yr in 2020, transport final energy peaks at 112.3 EJ/yr in 2025 and then eases to 74.5 EJ/yr by 2100; the 2050 value is 70.8 EJ/yr. Starting from 82.8 EJ/yr in 2020, residential and commercial final energy peaks at 116.6 EJ/yr in 2070 and then eases to 101.0 EJ/yr by 2100; the 2050 value is 111.6 EJ/yr. Starting from 96.8 EJ/yr in 2020, electricity output reaches 397.9 EJ/yr by 2100; the 2050 value is 241.6 EJ/yr. Electrification is visible in the end-use split: industry electricity share moves from 28% in 2020 to 65% in 2100; buildings electricity share moves from 55% in 2020 to 83% in 2100; transport electricity share moves from 1% in 2020 to 80% in 2100."
+        },
+        {
+          "title": "Carbon Management and Biomass",
+          "content": "Starting from 46.4 EJ/yr in 2020, biomass use bottoms out at 43.8 EJ/yr in 2030 and then recovers to 79.7 EJ/yr by 2100; the 2050 value is 47.6 EJ/yr. Starting from 0 Mt/yr in 2020, direct air capture ends at 1.97 Gt/yr in 2100; the 2050 value is 24 Mt/yr."
+        },
+        {
+          "title": "Regional Pattern",
+          "content": "Population growth to mid-century is concentrated in Africa, South Asia, and Middle East and Africa. Mid-century economic weight is concentrated in China, South Asia, and North America. The heaviest CO2-emitting regions around 2050 are Middle East and Africa, China, and North America."
+        },
+        {
+          "title": "Data Note",
+          "content": "MESSAGE gives broad sectoral final-energy and biomass detail, plus explicit DAC geological storage, but not a single aggregate GHG total in these files."
+        }
+      ]
+    },
+    {
+      "id": "message-ssp2-l",
+      "model": "message",
+      "pathway": "SSP2-L",
+      "label": "message / SSP2-L",
+      "source_heading": "30. MESSAGEix-GLOBIOM-GAINS 2.1-M-R12 | SSP2 - Low Emissions",
+      "description": "SSP2, a middle-of-the-road development pathway, combined with a low-emissions variant.",
+      "scope_note": "MESSAGE gives broad sectoral final-energy and biomass detail, plus explicit DAC geological storage, but not a single aggregate GHG total in these files.",
+      "sections": [
+        {
+          "title": "Scenario Setup",
+          "content": "SSP2, a middle-of-the-road development pathway, combined with a low-emissions variant."
+        },
+        {
+          "title": "Interpretive Reading",
+          "content": "This sits on the low-emissions side of its model family, so the storyline is about accelerated transition rather than simple fossil continuation. This is best read as an overshoot pathway: warming peaks first, and only later does the system work temperatures back down. The route to low warming is not purely about lower demand or cleaner electricity: the model leans heavily on carbon management and late-century net-negative emissions."
+        },
+        {
+          "title": "Population and Economy",
+          "content": "Starting from 7.80 billion people in 2020, population reaches 9.89 billion people by 2100; the 2050 value is 9.59 billion people. The biggest absolute population increases to mid-century are in Africa, South Asia, and Middle East and Africa. Starting from $106.8 trillion in 2020, GDP reaches $560.8 trillion by 2100; the 2050 value is $245.2 trillion. By 2050 the largest GDP blocks in the file are China, South Asia, and North America."
+        },
+        {
+          "title": "Climate and Emissions",
+          "content": "Starting from 1.34C in 2020, global mean temperature peaks at 1.92C in 2060 and then eases to 1.70C by 2100; the 2050 value is 1.89C. Starting from 44.56 Gt/yr in 2020, CO2 emissions fall to -8.32 Gt/yr by 2100; the 2050 value is 16.43 Gt/yr. The largest regional CO2 sources around 2050 are Middle East and Africa, China, and North America."
+        },
+        {
+          "title": "Energy System",
+          "content": "Starting from 297.1 EJ/yr in 2020, reported final energy demand reaches 503.9 EJ/yr by 2100; the 2050 value is 381.1 EJ/yr. Starting from 120.9 EJ/yr in 2020, industry final energy bottoms out at 119.1 EJ/yr in 2030 and then recovers to 177.4 EJ/yr by 2100; the 2050 value is 127.8 EJ/yr. Starting from 93.2 EJ/yr in 2020, transport final energy reaches 138.2 EJ/yr by 2100; the 2050 value is 115.1 EJ/yr. Starting from 82.8 EJ/yr in 2020, residential and commercial final energy reaches 181.9 EJ/yr by 2100; the 2050 value is 134.9 EJ/yr. Starting from 97.0 EJ/yr in 2020, electricity output reaches 574.8 EJ/yr by 2100; the 2050 value is 228.2 EJ/yr. Electrification is visible in the end-use split: industry electricity share moves from 29% in 2020 to 58% in 2100; buildings electricity share moves from 55% in 2020 to 82% in 2100; transport electricity share moves from 1% in 2020 to 58% in 2100."
+        },
+        {
+          "title": "Carbon Management and Biomass",
+          "content": "Starting from 45.7 EJ/yr in 2020, biomass use bottoms out at 45.4 EJ/yr in 2025 and then recovers to 132.6 EJ/yr by 2100; the 2050 value is 54.1 EJ/yr. Starting from 6 Mt/yr in 2020, direct air capture bottoms out at 2 Mt/yr in 2050 and then recovers to 2.16 Gt/yr by 2100; the 2050 value is 2 Mt/yr."
+        },
+        {
+          "title": "Regional Pattern",
+          "content": "Population growth to mid-century is concentrated in Africa, South Asia, and Middle East and Africa. Mid-century economic weight is concentrated in China, South Asia, and North America. The heaviest CO2-emitting regions around 2050 are Middle East and Africa, China, and North America."
+        },
+        {
+          "title": "Data Note",
+          "content": "MESSAGE gives broad sectoral final-energy and biomass detail, plus explicit DAC geological storage, but not a single aggregate GHG total in these files."
+        }
+      ]
+    },
+    {
+      "id": "message-ssp2-lo",
+      "model": "message",
+      "pathway": "SSP2-LO",
+      "label": "message / SSP2-LO",
+      "source_heading": "31. MESSAGEix-GLOBIOM-GAINS 2.1-M-R12 | SSP2 - Low Overshoot",
+      "description": "SSP2, a middle-of-the-road development pathway.",
+      "scope_note": "MESSAGE gives broad sectoral final-energy and biomass detail, plus explicit DAC geological storage, but not a single aggregate GHG total in these files.",
+      "sections": [
+        {
+          "title": "Scenario Setup",
+          "content": "SSP2, a middle-of-the-road development pathway."
+        },
+        {
+          "title": "Interpretive Reading",
+          "content": "This is best read as an overshoot pathway: warming peaks first, and only later does the system work temperatures back down. The route to low warming is not purely about lower demand or cleaner electricity: the model leans heavily on carbon management and late-century net-negative emissions. The energy transition is carried not only by cleaner supply but also by end-use electrification, especially in industry, buildings, and transport."
+        },
+        {
+          "title": "Population and Economy",
+          "content": "Starting from 7.80 billion people in 2020, population reaches 9.89 billion people by 2100; the 2050 value is 9.59 billion people. The biggest absolute population increases to mid-century are in Africa, South Asia, and Middle East and Africa. Starting from $106.8 trillion in 2020, GDP reaches $560.8 trillion by 2100; the 2050 value is $245.2 trillion. By 2050 the largest GDP blocks in the file are China, South Asia, and North America."
+        },
+        {
+          "title": "Climate and Emissions",
+          "content": "Starting from 1.34C in 2020, global mean temperature peaks at 1.94C in 2060 and then eases to 1.65C by 2100; the 2050 value is 1.94C. Starting from 44.56 Gt/yr in 2020, CO2 emissions fall to -19.58 Gt/yr by 2100; the 2050 value is 17.21 Gt/yr. The largest regional CO2 sources around 2050 are Middle East and Africa, Africa, and South Asia."
+        },
+        {
+          "title": "Energy System",
+          "content": "Starting from 297.1 EJ/yr in 2020, reported final energy demand reaches 459.0 EJ/yr by 2100; the 2050 value is 383.1 EJ/yr. Starting from 120.9 EJ/yr in 2020, industry final energy reaches 172.9 EJ/yr by 2100; the 2050 value is 128.0 EJ/yr. Starting from 93.2 EJ/yr in 2020, transport final energy peaks at 133.1 EJ/yr in 2035 and then eases to 99.4 EJ/yr by 2100; the 2050 value is 117.0 EJ/yr. Starting from 82.8 EJ/yr in 2020, residential and commercial final energy reaches 180.5 EJ/yr by 2100; the 2050 value is 134.6 EJ/yr. Starting from 97.0 EJ/yr in 2020, electricity output reaches 719.7 EJ/yr by 2100; the 2050 value is 237.1 EJ/yr. Electrification is visible in the end-use split: industry electricity share moves from 29% in 2020 to 63% in 2100; buildings electricity share moves from 55% in 2020 to 85% in 2100; transport electricity share moves from 1% in 2020 to 75% in 2100."
+        },
+        {
+          "title": "Carbon Management and Biomass",
+          "content": "Starting from 45.7 EJ/yr in 2020, biomass use bottoms out at 45.4 EJ/yr in 2025 and then recovers to 126.1 EJ/yr by 2100; the 2050 value is 54.6 EJ/yr. Starting from 0 Mt/yr in 2020, direct air capture ends at 10.06 Gt/yr in 2100; the 2050 value is 0 Mt/yr."
+        },
+        {
+          "title": "Regional Pattern",
+          "content": "Population growth to mid-century is concentrated in Africa, South Asia, and Middle East and Africa. Mid-century economic weight is concentrated in China, South Asia, and North America. The heaviest CO2-emitting regions around 2050 are Middle East and Africa, Africa, and South Asia."
+        },
+        {
+          "title": "Data Note",
+          "content": "MESSAGE gives broad sectoral final-energy and biomass detail, plus explicit DAC geological storage, but not a single aggregate GHG total in these files."
+        }
+      ]
+    },
+    {
+      "id": "message-ssp2-m",
+      "model": "message",
+      "pathway": "SSP2-M",
+      "label": "message / SSP2-M",
+      "source_heading": "32. MESSAGEix-GLOBIOM-GAINS 2.1-M-R12 | SSP2 - Medium Emissions",
+      "description": "SSP2, a middle-of-the-road development pathway, combined with a medium-emissions variant.",
+      "scope_note": "MESSAGE gives broad sectoral final-energy and biomass detail, plus explicit DAC geological storage, but not a single aggregate GHG total in these files.",
+      "sections": [
+        {
+          "title": "Scenario Setup",
+          "content": "SSP2, a middle-of-the-road development pathway, combined with a medium-emissions variant."
+        },
+        {
+          "title": "Interpretive Reading",
+          "content": "By 2100 this remains a relatively warm pathway, which usually means mitigation is weaker, later, or both. Because CO2 stays positive through 2100 and carbon removal remains limited, the transition stops short of a full net-zero-style outcome. The energy transition is carried not only by cleaner supply but also by end-use electrification, especially in industry, buildings, and transport."
+        },
+        {
+          "title": "Population and Economy",
+          "content": "Starting from 7.80 billion people in 2020, population reaches 9.89 billion people by 2100; the 2050 value is 9.59 billion people. The biggest absolute population increases to mid-century are in Africa, South Asia, and Middle East and Africa. Starting from $106.8 trillion in 2020, GDP reaches $560.8 trillion by 2100; the 2050 value is $245.2 trillion. By 2050 the largest GDP blocks in the file are China, South Asia, and North America."
+        },
+        {
+          "title": "Climate and Emissions",
+          "content": "Starting from 1.34C in 2020, global mean temperature reaches 2.87C by 2100; the 2050 value is 1.99C. Starting from 44.56 Gt/yr in 2020, CO2 emissions fall to 37.51 Gt/yr by 2100; the 2050 value is 37.18 Gt/yr. The largest regional CO2 sources around 2050 are China, Middle East and Africa, and South Asia."
+        },
+        {
+          "title": "Energy System",
+          "content": "Starting from 297.1 EJ/yr in 2020, reported final energy demand reaches 611.7 EJ/yr by 2100; the 2050 value is 436.2 EJ/yr. Starting from 120.9 EJ/yr in 2020, industry final energy reaches 206.0 EJ/yr by 2100; the 2050 value is 143.8 EJ/yr. Starting from 93.2 EJ/yr in 2020, transport final energy reaches 202.1 EJ/yr by 2100; the 2050 value is 144.0 EJ/yr. Starting from 82.8 EJ/yr in 2020, residential and commercial final energy reaches 191.1 EJ/yr by 2100; the 2050 value is 145.0 EJ/yr. Starting from 97.0 EJ/yr in 2020, electricity output reaches 388.5 EJ/yr by 2100; the 2050 value is 188.9 EJ/yr. Electrification is visible in the end-use split: industry electricity share moves from 29% in 2020 to 47% in 2100; buildings electricity share moves from 55% in 2020 to 72% in 2100; transport electricity share moves from 1% in 2020 to 44% in 2100."
+        },
+        {
+          "title": "Carbon Management and Biomass",
+          "content": "Starting from 45.7 EJ/yr in 2020, biomass use peaks at 47.2 EJ/yr in 2035 and then eases to 37.2 EJ/yr by 2100; the 2050 value is 43.8 EJ/yr. Starting from 0 Mt/yr in 2020, direct air capture stays broadly flat and is still around 0 Mt/yr by 2100; the 2050 value is 0 Mt/yr."
+        },
+        {
+          "title": "Regional Pattern",
+          "content": "Population growth to mid-century is concentrated in Africa, South Asia, and Middle East and Africa. Mid-century economic weight is concentrated in China, South Asia, and North America. The heaviest CO2-emitting regions around 2050 are China, Middle East and Africa, and South Asia."
+        },
+        {
+          "title": "Data Note",
+          "content": "MESSAGE gives broad sectoral final-energy and biomass detail, plus explicit DAC geological storage, but not a single aggregate GHG total in these files."
+        }
+      ]
+    },
+    {
+      "id": "message-ssp2-ml",
+      "model": "message",
+      "pathway": "SSP2-ML",
+      "label": "message / SSP2-ML",
+      "source_heading": "33. MESSAGEix-GLOBIOM-GAINS 2.1-M-R12 | SSP2 - Medium-Low Emissions",
+      "description": "SSP2, a middle-of-the-road development pathway, combined with a low-emissions variant.",
+      "scope_note": "MESSAGE gives broad sectoral final-energy and biomass detail, plus explicit DAC geological storage, but not a single aggregate GHG total in these files.",
+      "sections": [
+        {
+          "title": "Scenario Setup",
+          "content": "SSP2, a middle-of-the-road development pathway, combined with a low-emissions variant."
+        },
+        {
+          "title": "Interpretive Reading",
+          "content": "This sits on the low-emissions side of its model family, so the storyline is about accelerated transition rather than simple fossil continuation. By 2100 this is materially cleaner than the weak-policy cases, but it still carries visible residual climate pressure. The route to low warming is not purely about lower demand or cleaner electricity: the model leans heavily on carbon management and late-century net-negative emissions."
+        },
+        {
+          "title": "Population and Economy",
+          "content": "Starting from 7.80 billion people in 2020, population reaches 9.89 billion people by 2100; the 2050 value is 9.59 billion people. The biggest absolute population increases to mid-century are in Africa, South Asia, and Middle East and Africa. Starting from $106.8 trillion in 2020, GDP reaches $560.8 trillion by 2100; the 2050 value is $245.2 trillion. By 2050 the largest GDP blocks in the file are China, South Asia, and North America."
+        },
+        {
+          "title": "Climate and Emissions",
+          "content": "Starting from 1.34C in 2020, global mean temperature reaches 2.32C by 2100; the 2050 value is 1.99C. Starting from 44.56 Gt/yr in 2020, CO2 emissions fall to -1.38 Gt/yr by 2100; the 2050 value is 33.89 Gt/yr. The largest regional CO2 sources around 2050 are Middle East and Africa, China, and South Asia."
+        },
+        {
+          "title": "Energy System",
+          "content": "Starting from 297.1 EJ/yr in 2020, reported final energy demand reaches 548.7 EJ/yr by 2100; the 2050 value is 434.0 EJ/yr. Starting from 120.9 EJ/yr in 2020, industry final energy reaches 183.6 EJ/yr by 2100; the 2050 value is 140.5 EJ/yr. Starting from 93.2 EJ/yr in 2020, transport final energy reaches 172.5 EJ/yr by 2100; the 2050 value is 143.7 EJ/yr. Starting from 82.8 EJ/yr in 2020, residential and commercial final energy reaches 183.2 EJ/yr by 2100; the 2050 value is 146.4 EJ/yr. Starting from 97.0 EJ/yr in 2020, electricity output reaches 534.1 EJ/yr by 2100; the 2050 value is 189.6 EJ/yr. Electrification is visible in the end-use split: industry electricity share moves from 29% in 2020 to 54% in 2100; buildings electricity share moves from 55% in 2020 to 79% in 2100; transport electricity share moves from 1% in 2020 to 48% in 2100."
+        },
+        {
+          "title": "Carbon Management and Biomass",
+          "content": "Starting from 45.7 EJ/yr in 2020, biomass use bottoms out at 42.6 EJ/yr in 2060 and then recovers to 98.4 EJ/yr by 2100; the 2050 value is 43.8 EJ/yr. Starting from 0 Mt/yr in 2020, direct air capture ends at 1.86 Gt/yr in 2100; the 2050 value is 0 Mt/yr."
+        },
+        {
+          "title": "Regional Pattern",
+          "content": "Population growth to mid-century is concentrated in Africa, South Asia, and Middle East and Africa. Mid-century economic weight is concentrated in China, South Asia, and North America. The heaviest CO2-emitting regions around 2050 are Middle East and Africa, China, and South Asia."
+        },
+        {
+          "title": "Data Note",
+          "content": "MESSAGE gives broad sectoral final-energy and biomass detail, plus explicit DAC geological storage, but not a single aggregate GHG total in these files."
+        }
+      ]
+    },
+    {
+      "id": "message-ssp2-vl",
+      "model": "message",
+      "pathway": "SSP2-VL",
+      "label": "message / SSP2-VL",
+      "source_heading": "34. MESSAGEix-GLOBIOM-GAINS 2.1-M-R12 | SSP2 - Very Low Emissions",
+      "description": "SSP2, a middle-of-the-road development pathway, combined with a low-emissions variant.",
+      "scope_note": "MESSAGE gives broad sectoral final-energy and biomass detail, plus explicit DAC geological storage, but not a single aggregate GHG total in these files.",
+      "sections": [
+        {
+          "title": "Scenario Setup",
+          "content": "SSP2, a middle-of-the-road development pathway, combined with a low-emissions variant."
+        },
+        {
+          "title": "Interpretive Reading",
+          "content": "This sits on the low-emissions side of its model family, so the storyline is about accelerated transition rather than simple fossil continuation. This is best read as an overshoot pathway: warming peaks first, and only later does the system work temperatures back down. The route to low warming is not purely about lower demand or cleaner electricity: the model leans heavily on carbon management and late-century net-negative emissions."
+        },
+        {
+          "title": "Population and Economy",
+          "content": "Starting from 7.80 billion people in 2020, population reaches 9.89 billion people by 2100; the 2050 value is 9.59 billion people. The biggest absolute population increases to mid-century are in Africa, South Asia, and Middle East and Africa. Starting from $106.8 trillion in 2020, GDP reaches $560.8 trillion by 2100; the 2050 value is $245.2 trillion. By 2050 the largest GDP blocks in the file are China, South Asia, and North America."
+        },
+        {
+          "title": "Climate and Emissions",
+          "content": "Starting from 1.34C in 2020, global mean temperature peaks at 1.82C in 2050 and then eases to 1.44C by 2100; the 2050 value is 1.82C. Starting from 44.52 Gt/yr in 2020, CO2 emissions fall to -8.61 Gt/yr by 2100; the 2050 value is 4.79 Gt/yr. The largest regional CO2 sources around 2050 are Middle East and Africa, Africa, and South Asia."
+        },
+        {
+          "title": "Energy System",
+          "content": "Starting from 297.0 EJ/yr in 2020, reported final energy demand peaks at 330.9 EJ/yr in 2025 and then eases to 275.0 EJ/yr by 2100; the 2050 value is 294.5 EJ/yr. Starting from 120.6 EJ/yr in 2020, industry final energy peaks at 123.5 EJ/yr in 2025 and then eases to 103.6 EJ/yr by 2100; the 2050 value is 99.9 EJ/yr. Starting from 93.2 EJ/yr in 2020, transport final energy peaks at 112.3 EJ/yr in 2025 and then eases to 63.0 EJ/yr by 2100; the 2050 value is 72.8 EJ/yr. Starting from 82.8 EJ/yr in 2020, residential and commercial final energy peaks at 118.4 EJ/yr in 2060 and then eases to 106.5 EJ/yr by 2100; the 2050 value is 118.2 EJ/yr. Starting from 96.9 EJ/yr in 2020, electricity output reaches 329.0 EJ/yr by 2100; the 2050 value is 211.5 EJ/yr. Electrification is visible in the end-use split: industry electricity share moves from 28% in 2020 to 64% in 2100; buildings electricity share moves from 55% in 2020 to 77% in 2100; transport electricity share moves from 1% in 2020 to 81% in 2100."
+        },
+        {
+          "title": "Carbon Management and Biomass",
+          "content": "Starting from 46.2 EJ/yr in 2020, biomass use bottoms out at 42.4 EJ/yr in 2030 and then recovers to 70.9 EJ/yr by 2100; the 2050 value is 46.3 EJ/yr. Starting from 0 Mt/yr in 2020, direct air capture ends at 2.03 Gt/yr in 2100; the 2050 value is 73 Mt/yr."
+        },
+        {
+          "title": "Regional Pattern",
+          "content": "Population growth to mid-century is concentrated in Africa, South Asia, and Middle East and Africa. Mid-century economic weight is concentrated in China, South Asia, and North America. The heaviest CO2-emitting regions around 2050 are Middle East and Africa, Africa, and South Asia."
+        },
+        {
+          "title": "Data Note",
+          "content": "MESSAGE gives broad sectoral final-energy and biomass detail, plus explicit DAC geological storage, but not a single aggregate GHG total in these files."
+        }
+      ]
+    },
+    {
+      "id": "message-ssp3-h",
+      "model": "message",
+      "pathway": "SSP3-H",
+      "label": "message / SSP3-H",
+      "source_heading": "35. MESSAGEix-GLOBIOM-GAINS 2.1-M-R12 | SSP3 - High Emissions",
+      "description": "SSP3, a fragmented and more difficult development pathway, combined with a high-emissions variant.",
+      "scope_note": "MESSAGE gives broad sectoral final-energy and biomass detail, plus explicit DAC geological storage, but not a single aggregate GHG total in these files.",
+      "sections": [
+        {
+          "title": "Scenario Setup",
+          "content": "SSP3, a fragmented and more difficult development pathway, combined with a high-emissions variant."
+        },
+        {
+          "title": "Interpretive Reading",
+          "content": "This sits on the high-emissions side of its model family, so the transition remains incomplete or delayed relative to lower-emissions variants. By 2100 this remains a relatively warm pathway, which usually means mitigation is weaker, later, or both. Because CO2 stays positive through 2100 and carbon removal remains limited, the transition stops short of a full net-zero-style outcome."
+        },
+        {
+          "title": "Population and Economy",
+          "content": "Starting from 7.80 billion people in 2020, population reaches 12.97 billion people by 2100; the 2050 value is 10.05 billion people. The biggest absolute population increases to mid-century are in Africa, South Asia, and Middle East and Africa. Starting from $106.8 trillion in 2020, GDP reaches $313.0 trillion by 2100; the 2050 value is $212.7 trillion. By 2050 the largest GDP blocks in the file are China, South Asia, and North America."
+        },
+        {
+          "title": "Climate and Emissions",
+          "content": "Starting from 1.34C in 2020, global mean temperature reaches 3.23C by 2100; the 2050 value is 2.05C. Starting from 44.58 Gt/yr in 2020, CO2 emissions bottom out at 41.99 Gt/yr in 2030 and then recovers to 65.55 Gt/yr by 2100; the 2050 value is 45.75 Gt/yr. The largest regional CO2 sources around 2050 are China, South Asia, and Middle East and Africa."
+        },
+        {
+          "title": "Energy System",
+          "content": "Starting from 297.4 EJ/yr in 2020, reported final energy demand reaches 674.1 EJ/yr by 2100; the 2050 value is 434.9 EJ/yr. Starting from 121.1 EJ/yr in 2020, industry final energy reaches 181.8 EJ/yr by 2100; the 2050 value is 145.6 EJ/yr. Starting from 93.2 EJ/yr in 2020, transport final energy reaches 277.3 EJ/yr by 2100; the 2050 value is 159.0 EJ/yr. Starting from 82.8 EJ/yr in 2020, residential and commercial final energy reaches 212.4 EJ/yr by 2100; the 2050 value is 128.3 EJ/yr. Starting from 97.1 EJ/yr in 2020, electricity output reaches 319.2 EJ/yr by 2100; the 2050 value is 171.7 EJ/yr. Electrification is visible in the end-use split: industry electricity share moves from 29% in 2020 to 41% in 2100; buildings electricity share moves from 55% in 2020 to 71% in 2100; transport electricity share moves from 1% in 2020 to 23% in 2100."
+        },
+        {
+          "title": "Carbon Management and Biomass",
+          "content": "Starting from 46.5 EJ/yr in 2020, biomass use peaks at 48.6 EJ/yr in 2035 and then eases to 43.6 EJ/yr by 2100; the 2050 value is 46.2 EJ/yr. Starting from 0 Mt/yr in 2020, direct air capture stays broadly flat and is still around 0 Mt/yr by 2100; the 2050 value is 0 Mt/yr."
+        },
+        {
+          "title": "Regional Pattern",
+          "content": "Population growth to mid-century is concentrated in Africa, South Asia, and Middle East and Africa. Mid-century economic weight is concentrated in China, South Asia, and North America. The heaviest CO2-emitting regions around 2050 are China, South Asia, and Middle East and Africa."
+        },
+        {
+          "title": "Data Note",
+          "content": "MESSAGE gives broad sectoral final-energy and biomass detail, plus explicit DAC geological storage, but not a single aggregate GHG total in these files."
+        }
+      ]
+    },
+    {
+      "id": "message-ssp4-lo",
+      "model": "message",
+      "pathway": "SSP4-LO",
+      "label": "message / SSP4-LO",
+      "source_heading": "36. MESSAGEix-GLOBIOM-GAINS 2.1-M-R12 | SSP4 - Low Overshoot",
+      "description": "SSP4, a pathway marked by strong inequality.",
+      "scope_note": "MESSAGE gives broad sectoral final-energy and biomass detail, plus explicit DAC geological storage, but not a single aggregate GHG total in these files.",
+      "sections": [
+        {
+          "title": "Scenario Setup",
+          "content": "SSP4, a pathway marked by strong inequality."
+        },
+        {
+          "title": "Interpretive Reading",
+          "content": "By 2100 this is materially cleaner than the weak-policy cases, but it still carries visible residual climate pressure. The route to low warming is not purely about lower demand or cleaner electricity: the model leans heavily on carbon management and late-century net-negative emissions. The energy transition is carried not only by cleaner supply but also by end-use electrification, especially in industry, buildings, and transport."
+        },
+        {
+          "title": "Population and Economy",
+          "content": "Starting from 7.80 billion people in 2020, population reaches 11.89 billion people by 2100; the 2050 value is 9.90 billion people. The biggest absolute population increases to mid-century are in Africa, South Asia, and Middle East and Africa. Starting from $106.8 trillion in 2020, GDP reaches $482.6 trillion by 2100; the 2050 value is $242.0 trillion. By 2050 the largest GDP blocks in the file are China, South Asia, and North America."
+        },
+        {
+          "title": "Climate and Emissions",
+          "content": "Starting from 1.34C in 2020, global mean temperature peaks at 1.98C in 2060 and then eases to 1.85C by 2100; the 2050 value is 1.95C. Starting from 44.57 Gt/yr in 2020, CO2 emissions fall to -25.63 Gt/yr by 2100; the 2050 value is 19.35 Gt/yr. The largest regional CO2 sources around 2050 are China, Middle East and Africa, and Africa."
+        },
+        {
+          "title": "Energy System",
+          "content": "Starting from 297.1 EJ/yr in 2020, reported final energy demand reaches 433.8 EJ/yr by 2100; the 2050 value is 361.4 EJ/yr. Starting from 120.8 EJ/yr in 2020, industry final energy bottoms out at 120.1 EJ/yr in 2030 and then recovers to 160.9 EJ/yr by 2100; the 2050 value is 127.0 EJ/yr. Starting from 93.2 EJ/yr in 2020, transport final energy reaches 142.4 EJ/yr by 2100; the 2050 value is 120.3 EJ/yr. Starting from 82.8 EJ/yr in 2020, residential and commercial final energy reaches 124.9 EJ/yr by 2100; the 2050 value is 112.3 EJ/yr. Starting from 96.8 EJ/yr in 2020, electricity output reaches 541.3 EJ/yr by 2100; the 2050 value is 207.3 EJ/yr. Electrification is visible in the end-use split: industry electricity share moves from 29% in 2020 to 57% in 2100; buildings electricity share moves from 55% in 2020 to 84% in 2100; transport electricity share moves from 1% in 2020 to 50% in 2100."
+        },
+        {
+          "title": "Carbon Management and Biomass",
+          "content": "Starting from 46.0 EJ/yr in 2020, biomass use bottoms out at 45.7 EJ/yr in 2025 and then recovers to 93.3 EJ/yr by 2100; the 2050 value is 49.1 EJ/yr. Starting from 0 Mt/yr in 2020, direct air capture ends at 23.44 Gt/yr in 2100; the 2050 value is 3 Mt/yr."
+        },
+        {
+          "title": "Regional Pattern",
+          "content": "Population growth to mid-century is concentrated in Africa, South Asia, and Middle East and Africa. Mid-century economic weight is concentrated in China, South Asia, and North America. The heaviest CO2-emitting regions around 2050 are China, Middle East and Africa, and Africa."
+        },
+        {
+          "title": "Data Note",
+          "content": "MESSAGE gives broad sectoral final-energy and biomass detail, plus explicit DAC geological storage, but not a single aggregate GHG total in these files."
+        }
+      ]
+    },
+    {
+      "id": "message-ssp5-h",
+      "model": "message",
+      "pathway": "SSP5-H",
+      "label": "message / SSP5-H",
+      "source_heading": "37. MESSAGEix-GLOBIOM-GAINS 2.1-M-R12 | SSP5 - High Emissions",
+      "description": "SSP5, a fossil-fueled development pathway with very strong economic expansion, combined with a high-emissions variant.",
+      "scope_note": "MESSAGE gives broad sectoral final-energy and biomass detail, plus explicit DAC geological storage, but not a single aggregate GHG total in these files.",
+      "sections": [
+        {
+          "title": "Scenario Setup",
+          "content": "SSP5, a fossil-fueled development pathway with very strong economic expansion, combined with a high-emissions variant."
+        },
+        {
+          "title": "Interpretive Reading",
+          "content": "This sits on the high-emissions side of its model family, so the transition remains incomplete or delayed relative to lower-emissions variants. By 2100 this remains a relatively warm pathway, which usually means mitigation is weaker, later, or both. Because CO2 stays positive through 2100 and carbon removal remains limited, the transition stops short of a full net-zero-style outcome."
+        },
+        {
+          "title": "Population and Economy",
+          "content": "Starting from 7.80 billion people in 2020, population peaks at 9.29 billion people in 2060 and then eases to 8.12 billion people by 2100; the 2050 value is 9.19 billion people. The biggest absolute population increases to mid-century are in Africa, South Asia, and Middle East and Africa. Starting from $106.8 trillion in 2020, GDP reaches $920.0 trillion by 2100; the 2050 value is $308.0 trillion. By 2050 the largest GDP blocks in the file are China, South Asia, and North America."
+        },
+        {
+          "title": "Climate and Emissions",
+          "content": "Starting from 1.34C in 2020, global mean temperature reaches 3.79C by 2100; the 2050 value is 2.13C. Starting from 44.60 Gt/yr in 2020, CO2 emissions bottom out at 42.35 Gt/yr in 2025 and then recovers to 68.47 Gt/yr by 2100; the 2050 value is 56.54 Gt/yr. The largest regional CO2 sources around 2050 are China, Middle East and Africa, and South Asia."
+        },
+        {
+          "title": "Energy System",
+          "content": "Starting from 297.9 EJ/yr in 2020, reported final energy demand reaches 1007.4 EJ/yr by 2100; the 2050 value is 603.5 EJ/yr. Starting from 121.4 EJ/yr in 2020, industry final energy reaches 318.7 EJ/yr by 2100; the 2050 value is 188.3 EJ/yr. Starting from 93.2 EJ/yr in 2020, transport final energy reaches 430.1 EJ/yr by 2100; the 2050 value is 227.4 EJ/yr. Starting from 82.8 EJ/yr in 2020, residential and commercial final energy reaches 257.7 EJ/yr by 2100; the 2050 value is 184.0 EJ/yr. Starting from 97.1 EJ/yr in 2020, electricity output reaches 598.9 EJ/yr by 2100; the 2050 value is 248.0 EJ/yr. Electrification is visible in the end-use split: industry electricity share moves from 29% in 2020 to 49% in 2100; buildings electricity share moves from 55% in 2020 to 81% in 2100; transport electricity share moves from 1% in 2020 to 29% in 2100."
+        },
+        {
+          "title": "Carbon Management and Biomass",
+          "content": "Starting from 45.7 EJ/yr in 2020, biomass use peaks at 46.7 EJ/yr in 2030 and then eases to 35.2 EJ/yr by 2100; the 2050 value is 40.3 EJ/yr. Starting from 0 Mt/yr in 2020, direct air capture stays broadly flat and is still around 0 Mt/yr by 2100; the 2050 value is 0 Mt/yr."
+        },
+        {
+          "title": "Regional Pattern",
+          "content": "Population growth to mid-century is concentrated in Africa, South Asia, and Middle East and Africa. Mid-century economic weight is concentrated in China, South Asia, and North America. The heaviest CO2-emitting regions around 2050 are China, Middle East and Africa, and South Asia."
+        },
+        {
+          "title": "Data Note",
+          "content": "MESSAGE gives broad sectoral final-energy and biomass detail, plus explicit DAC geological storage, but not a single aggregate GHG total in these files."
+        }
+      ]
+    },
+    {
+      "id": "message-ssp5-lo",
+      "model": "message",
+      "pathway": "SSP5-LO",
+      "label": "message / SSP5-LO",
+      "source_heading": "38. MESSAGEix-GLOBIOM-GAINS 2.1-M-R12 | SSP5 - Low Overshoot",
+      "description": "SSP5, a fossil-fueled development pathway with very strong economic expansion.",
+      "scope_note": "MESSAGE gives broad sectoral final-energy and biomass detail, plus explicit DAC geological storage, but not a single aggregate GHG total in these files.",
+      "sections": [
+        {
+          "title": "Scenario Setup",
+          "content": "SSP5, a fossil-fueled development pathway with very strong economic expansion."
+        },
+        {
+          "title": "Interpretive Reading",
+          "content": "By 2100 this is materially cleaner than the weak-policy cases, but it still carries visible residual climate pressure. The route to low warming is not purely about lower demand or cleaner electricity: the model leans heavily on carbon management and late-century net-negative emissions. The energy transition is carried not only by cleaner supply but also by end-use electrification, especially in industry, buildings, and transport."
+        },
+        {
+          "title": "Population and Economy",
+          "content": "Starting from 7.80 billion people in 2020, population peaks at 9.29 billion people in 2060 and then eases to 8.12 billion people by 2100; the 2050 value is 9.19 billion people. The biggest absolute population increases to mid-century are in Africa, South Asia, and Middle East and Africa. Starting from $106.8 trillion in 2020, GDP reaches $920.0 trillion by 2100; the 2050 value is $308.0 trillion. By 2050 the largest GDP blocks in the file are China, South Asia, and North America."
+        },
+        {
+          "title": "Climate and Emissions",
+          "content": "Starting from 1.34C in 2020, global mean temperature peaks at 2.04C in 2070 and then eases to 1.93C by 2100; the 2050 value is 2.00C. Starting from 44.60 Gt/yr in 2020, CO2 emissions bottom out at -25.16 Gt/yr in 2080 and then recovers to -24.63 Gt/yr by 2100; the 2050 value is 20.00 Gt/yr. The largest regional CO2 sources around 2050 are China, Middle East and Africa, and South Asia."
+        },
+        {
+          "title": "Energy System",
+          "content": "Starting from 297.9 EJ/yr in 2020, reported final energy demand reaches 741.8 EJ/yr by 2100; the 2050 value is 477.8 EJ/yr. Starting from 121.4 EJ/yr in 2020, industry final energy reaches 250.6 EJ/yr by 2100; the 2050 value is 162.6 EJ/yr. Starting from 93.2 EJ/yr in 2020, transport final energy reaches 248.5 EJ/yr by 2100; the 2050 value is 162.1 EJ/yr. Starting from 82.8 EJ/yr in 2020, residential and commercial final energy reaches 233.8 EJ/yr by 2100; the 2050 value is 148.8 EJ/yr. Starting from 97.1 EJ/yr in 2020, electricity output reaches 956.0 EJ/yr by 2100; the 2050 value is 358.5 EJ/yr. Electrification is visible in the end-use split: industry electricity share moves from 29% in 2020 to 65% in 2100; buildings electricity share moves from 55% in 2020 to 90% in 2100; transport electricity share moves from 1% in 2020 to 29% in 2100."
+        },
+        {
+          "title": "Carbon Management and Biomass",
+          "content": "Starting from 45.7 EJ/yr in 2020, biomass use bottoms out at 45.3 EJ/yr in 2025 and then recovers to 175.3 EJ/yr by 2100; the 2050 value is 70.5 EJ/yr. Starting from 0 Mt/yr in 2020, direct air capture ends at 25.53 Gt/yr in 2100; the 2050 value is 8 Mt/yr."
+        },
+        {
+          "title": "Regional Pattern",
+          "content": "Population growth to mid-century is concentrated in Africa, South Asia, and Middle East and Africa. Mid-century economic weight is concentrated in China, South Asia, and North America. The heaviest CO2-emitting regions around 2050 are China, Middle East and Africa, and South Asia."
+        },
+        {
+          "title": "Data Note",
+          "content": "MESSAGE gives broad sectoral final-energy and biomass detail, plus explicit DAC geological storage, but not a single aggregate GHG total in these files."
+        }
+      ]
+    }
+  ]
+}

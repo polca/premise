@@ -2,6 +2,32 @@
 
 All notable changes to this project are documented in this file.
 
+## [2.4.0] - 2026-03-14
+
+### Added
+- Added a bundled local browser-based GUI, launched with `premise-ui`, for the
+  main `premise` workflows.
+- Added interactive configuration for `NewDatabase`, `IncrementalDatabase`, and
+  `PathwaysDataPackage`.
+- Added built-in scenario management, including local IAM scenario discovery,
+  bulk download of known scenarios, and local IAM key storage.
+- Added the Scenario Explorer for embedded IAM scenario visualization and
+  comparison.
+- Added run queueing, run history, diagnostics, support-bundle generation, and
+  artifact browsing from the GUI.
+
+### Changed
+- Base `pip install premise` now includes the runtime needed for the local GUI.
+- Documentation now presents the GUI as a primary way to use `premise`
+  alongside the Python API.
+- Promoted the release version to `2.4.0`.
+
+### Fixed
+- Hardened GUI startup, readiness detection, local dialog fallback behavior,
+  configuration migration, and scenario-explorer performance.
+- Improved handling of IAM scenario discovery, Brightway project/database
+  selection, and output/report path reporting in the GUI workflow.
+
 ## [2.3.8]
 
 - Added new version of IMAGE scenarios.

@@ -36,6 +36,11 @@ tracker = "https://github.com/polca/premise/issues"
 docs = [
     "sphinx-rtd-theme"
 ]
+ui = [
+    "fastapi>=0.115,<1",
+    "keyring>=25,<26",
+    "uvicorn>=0.30,<1",
+]
 bw25 = [
     "bw2calc >=2.0.1",
     "bw2data >=4.3",
@@ -96,7 +101,7 @@ include-package-data = true
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["premise*"]
+include = ["premise*", "premise_ui*"]
 
 [tool.setuptools.dynamic]
 dependencies = {file = ["requirements.txt"]}
@@ -143,3 +148,11 @@ premise = [
     "iam_variables_mapping/topologies/*.json",
     "fuels/*.py",
 ]
+premise_ui = [
+    "data/*.json",
+    "frontend/dist/*",
+    "frontend/dist/**/*",
+]
+
+[project.scripts]
+premise-ui = "premise_ui.cli:main"

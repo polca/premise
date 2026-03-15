@@ -14,6 +14,7 @@ This user guide will help you navigate the inner workings of *premise*.
    :caption: Contents
 
    introduction
+   gui
    extract
    transform
    load

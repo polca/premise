@@ -6,6 +6,8 @@ ecoinvent_interface
 constructive-geometries>=1.0.0
 cryptography
 datapackage
+fastapi>=0.115,<1
+keyring>=25,<26
 pandas<3.0.0
 platformdirs
 premise_gwp
@@ -21,3 +23,4 @@ wurst>=0.4
 xarray<=2024.2.0
 tqdm
 unfold
+uvicorn>=0.30,<1

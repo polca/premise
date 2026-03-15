@@ -36,6 +36,27 @@ While it is built on the [brightway framework](https://docs.brightway.dev/en/lat
 its outputs can naturally be used in [Activity Browser](https://github.com/LCA-ActivityBrowser/activity-browser), 
 but also in other LCA software, such as [SimaPro](https://simapro.com/), [OpenLCA](https://www.openlca.org/), or directly in Python.
 
+## Use Premise from the GUI
+
+As of ``premise`` 2.4.0, the full standard workflow can be completed from the
+bundled local graphical user interface, without writing Python code.
+
+With the GUI, users can:
+
+* choose a Brightway or ecospold source database;
+* download, inspect, and compare IAM scenarios;
+* enter and store the IAM scenario decryption key locally;
+* select transformations and export targets;
+* run dry runs or full runs;
+* monitor progress, logs, diagnostics, and generated artifacts;
+* save and reopen reusable JSON configurations.
+
+Start it from any activated ``premise`` environment with:
+
+    premise-ui
+
+For a guided overview, see the [GUI guide](docs/gui.rst).
+
 The tool is described in the following scientific publication: [Sacchi et al, 2022](https://doi.org/10.1016/j.rser.2022.112311).
 If this tool helps you in your research, please consider citing this publication.
 
@@ -71,6 +92,9 @@ Documentation
 -------------
 [https://premise.readthedocs.io/en/latest/](https://premise.readthedocs.io/en/latest/)
 
+The documentation covers both the Python API and the local browser-based GUI.
+For the GUI specifically, see the [graphical interface guide](docs/gui.rst).
+
 Objective
 ---------
 
@@ -105,7 +129,10 @@ From Pypi:
 
     pip install premise
 
-will install the package and the required dependencies.
+will install the package, the required dependencies, and the bundled local GUI.
+
+After installation, the ``premise-ui`` command is available in the activated
+environment.
 
 ``premise`` comes with the latest version of ``brightway``, which is Brightway 2.5.
 This means that ``premise`` will output databases that are compatible with Brightway 2.5.
@@ -131,7 +158,37 @@ Or rather use Brightway2:
 How to use it?
 --------------
 
-The best way is to follow [the examples from the Jupyter Notebook](https://github.com/polca/premise/blob/master/examples/examples.ipynb). 
+There are two main ways to use ``premise``.
+
+### Graphical interface
+
+Launch the local browser-based interface with:
+
+    premise-ui
+
+This starts a local service and opens the GUI in your browser when it is ready.
+You can also start it without opening a browser automatically:
+
+    premise-ui --no-browser
+
+The GUI does not require you to be inside the repository directory. It can be
+used from any location as long as the Python environment where ``premise`` is
+installed is active.
+
+The GUI supports the full standard ``premise`` workflow end-to-end: source
+selection, scenario selection, transformation options, export configuration,
+run monitoring, troubleshooting, and the Scenario Explorer for IAM scenario
+comparison. GUI configurations are saved as JSON files and are separate from
+Brightway projects.
+
+If you use encrypted IAM scenarios, request the decryption key from the
+developers and enter it in the *IAM Scenario Key* section of the GUI.
+
+For more details, see the [GUI guide](docs/gui.rst).
+
+### Python API and notebooks
+
+The best way to get started with the Python API is to follow [the examples from the Jupyter Notebook](https://github.com/polca/premise/blob/master/examples/examples.ipynb).
 
 ## Disclaimer on the Use of IAM-Based Scenarios in Premise
 

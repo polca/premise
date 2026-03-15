@@ -8,35 +8,22 @@ from pathlib import Path
 
 import openpyxl
 import pandas as pd
-import xarray as xr
 import yaml
 from openpyxl.chart import AreaChart, LineChart, Reference
 from openpyxl.styles import Font
 from openpyxl.utils import get_column_letter
 from openpyxl.utils.dataframe import dataframe_to_rows
 from openpyxl.worksheet.dimensions import ColumnDimension, DimensionHolder
-from pandas.errors import EmptyDataError
 
 from . import __version__
-from .filesystem_constants import DATA_DIR, VARIABLES_DIR
+from .filesystem_constants import DATA_DIR
 from .logger import empty_log_files
-
-IAM_ELEC_VARS = VARIABLES_DIR / "electricity.yaml"
-IAM_FUELS_VARS = VARIABLES_DIR / "fuels.yaml"
-IAM_BIOMASS_VARS = VARIABLES_DIR / "biomass.yaml"
-IAM_CEMENT_VARS = VARIABLES_DIR / "cement.yaml"
-IAM_STEEL_VARS = VARIABLES_DIR / "steel.yaml"
-IAM_CDR_VARS = VARIABLES_DIR / "carbon_dioxide_removal.yaml"
-IAM_HEATING_VARS = VARIABLES_DIR / "heat.yaml"
-IAM_TRSPT_TWO_WHEELERS_VARS = VARIABLES_DIR / "transport_two_wheelers.yaml"
-IAM_TRSPT_CARS_VARS = VARIABLES_DIR / "transport_passenger_cars.yaml"
-IAM_TRSPT_BUSES_VARS = VARIABLES_DIR / "transport_bus.yaml"
-IAM_TRSPT_TRUCKS_VARS = VARIABLES_DIR / "transport_road_freight.yaml"
-IAM_TRSPT_TRAINS_VARS = VARIABLES_DIR / "transport_rail_freight.yaml"
-IAM_TRSPT_SHIPS_VARS = VARIABLES_DIR / "transport_sea_freight.yaml"
-IAM_OTHER_VARS = VARIABLES_DIR / "other.yaml"
-REPORT_METADATA_FILEPATH = DATA_DIR / "utils" / "report" / "report.yaml"
-VEHICLES_MAP = DATA_DIR / "transport" / "vehicles_map.yaml"
+from .scenario_summary import (
+    BATTERY_SECTORS,
+    get_sector_catalog,
+    load_report_metadata,
+    summarize_sector,
+)
 
 LOG_REPORTING_FILEPATH = DATA_DIR / "utils" / "logging" / "reporting.yaml"
 # directory for log files
@@ -49,295 +36,33 @@ if not Path(DIR_LOG_REPORT).exists():
     Path(DIR_LOG_REPORT).mkdir(parents=True, exist_ok=True)
 
 
-def get_variables(
-    filepath,
-):
-    """
-    Get the variables from a yaml file.
-    :param filepath: path to the yaml file
-    """
-    with open(filepath, "r", encoding="utf-8") as stream:
-        out = yaml.safe_load(stream)
+def _series_group_to_wide_df(group: dict) -> pd.DataFrame:
+    """Convert a structured scenario-summary group into a wide DataFrame."""
 
-    return list(out.keys())
+    columns = {}
+    for series in group.get("series", []):
+        points = {
+            point["year"]: point["value"]
+            for point in series.get("points", [])
+            if "year" in point and "value" in point
+        }
+        if points:
+            columns[series["variable"]] = pd.Series(points)
 
-
-def fetch_data(
-    iam_data: xr.DataArray, sector: str, variable: str
-) -> [xr.DataArray, None]:
-    data = {
-        "Population": iam_data.other_vars if hasattr(iam_data, "other_vars") else None,
-        "GDP": iam_data.other_vars if hasattr(iam_data, "other_vars") else None,
-        "CO2": iam_data.other_vars if hasattr(iam_data, "other_vars") else None,
-        "GMST": iam_data.other_vars if hasattr(iam_data, "other_vars") else None,
-        "Electricity - generation": (
-            iam_data.production_volumes
-            if hasattr(iam_data, "electricity_mix")
-            else None
-        ),
-        "Electricity (biom) - generation": (
-            iam_data.production_volumes if hasattr(iam_data, "biomass_mix") else None
-        ),
-        "Electricity - efficiency": (
-            iam_data.electricity_technology_efficiencies
-            if hasattr(iam_data, "electricity_technology_efficiencies")
-            else None
-        ),
-        "Heat (buildings) - generation": (
-            iam_data.production_volumes
-            if hasattr(iam_data, "production_volumes")
-            else None
-        ),
-        "Heat (industrial) - generation": (
-            iam_data.production_volumes
-            if hasattr(iam_data, "production_volumes")
-            else None
-        ),
-        "Fuel (gasoline) - generation": (
-            iam_data.production_volumes
-            if hasattr(iam_data, "production_volumes")
-            else None
-        ),
-        "Fuel (gasoline) - efficiency": (
-            iam_data.petrol_technology_efficiencies
-            if hasattr(iam_data, "petrol_technology_efficiencies")
-            else None
-        ),
-        "Fuel (diesel) - generation": (
-            iam_data.production_volumes
-            if hasattr(iam_data, "production_volumes")
-            else None
-        ),
-        "Fuel (diesel) - efficiency": (
-            iam_data.diesel_technology_efficiencies
-            if hasattr(iam_data, "diesel_technology_efficiencies")
-            else None
-        ),
-        "Fuel (gas) - generation": (
-            iam_data.production_volumes
-            if hasattr(iam_data, "production_volumes")
-            else None
-        ),
-        "Fuel (gas) - efficiency": (
-            iam_data.gas_technology_efficiencies
-            if hasattr(iam_data, "gas_technology_efficiencies")
-            else None
-        ),
-        "Fuel (hydrogen) - generation": (
-            iam_data.production_volumes
-            if hasattr(iam_data, "production_volumes")
-            else None
-        ),
-        "Fuel (hydrogen) - efficiency": (
-            iam_data.hydrogen_technology_efficiencies
-            if hasattr(iam_data, "hydrogen_technology_efficiencies")
-            else None
-        ),
-        "Fuel (kerosene) - generation": (
-            iam_data.production_volumes
-            if hasattr(iam_data, "production_volumes")
-            else None
-        ),
-        "Fuel (kerosene) - efficiency": (
-            iam_data.kerosene_technology_efficiencies
-            if hasattr(iam_data, "kerosene_technology_efficiencies")
-            else None
-        ),
-        "Fuel (LPG) - generation": (
-            iam_data.production_volumes
-            if hasattr(iam_data, "production_volumes")
-            else None
-        ),
-        "Fuel (LPG) - efficiency": (
-            iam_data.lpg_technology_efficiencies
-            if hasattr(iam_data, "lpg_technology_efficiencies")
-            else None
-        ),
-        "Cement - generation": (
-            iam_data.production_volumes
-            if hasattr(iam_data, "production_volumes")
-            else None
-        ),
-        "Cement - efficiency": (
-            iam_data.cement_technology_efficiencies
-            if hasattr(iam_data, "cement_technology_efficiencies")
-            else None
-        ),
-        "Steel - generation": (
-            iam_data.production_volumes
-            if hasattr(iam_data, "production_volumes")
-            else None
-        ),
-        "Steel - efficiency": (
-            iam_data.steel_technology_efficiencies
-            if hasattr(iam_data, "steel_technology_efficiencies")
-            else None
-        ),
-        "CDR - generation": (
-            iam_data.production_volumes
-            if hasattr(iam_data, "production_volumes")
-            else None
-        ),
-        "Direct Air Capture - energy mix": (
-            iam_data.daccs_energy_use if hasattr(iam_data, "daccs_energy_use") else None
-        ),
-        "Direct Air Capture - heat eff.": (
-            iam_data.dac_heat_efficiencies
-            if hasattr(iam_data, "dac_heat_efficiencies")
-            else None
-        ),
-        "Direct Air Capture - elec eff.": (
-            iam_data.dac_electricity_efficiencies
-            if hasattr(iam_data, "dac_electricity_efficiencies")
-            else None
-        ),
-        "Transport (two-wheelers)": (
-            iam_data.production_volumes
-            if hasattr(iam_data, "two_wheelers_fleet")
-            else None
-        ),
-        "Transport (two-wheelers) - eff": (
-            iam_data.two_wheelers_efficiencies
-            if hasattr(iam_data, "two_wheelers_efficiencies")
-            else None
-        ),
-        "Transport (cars)": (
-            iam_data.production_volumes
-            if hasattr(iam_data, "passenger_car_fleet")
-            else None
-        ),
-        "Transport (cars) - eff": (
-            iam_data.passenger_car_efficiencies
-            if hasattr(iam_data, "passenger_car_efficiencies")
-            else None
-        ),
-        "Transport (buses)": (
-            iam_data.production_volumes if hasattr(iam_data, "bus_fleet") else None
-        ),
-        "Transport (buses) - eff": (
-            iam_data.bus_efficiencies if hasattr(iam_data, "bus_efficiencies") else None
-        ),
-        "Transport (trucks)": (
-            iam_data.production_volumes
-            if hasattr(iam_data, "road_freight_fleet")
-            else None
-        ),
-        "Transport (trucks) - eff": (
-            iam_data.road_freight_efficiencies
-            if hasattr(iam_data, "road_freight_efficiencies")
-            else None
-        ),
-        "Transport (trains)": (
-            iam_data.production_volumes
-            if hasattr(iam_data, "rail_freight_fleet")
-            else None
-        ),
-        "Transport (trains) - eff": (
-            iam_data.rail_freight_efficiencies
-            if hasattr(iam_data, "rail_freight_efficiencies")
-            else None
-        ),
-        "Transport (ships)": (
-            iam_data.production_volumes
-            if hasattr(iam_data, "sea_freight_fleet")
-            else None
-        ),
-        "Transport (ships) - eff": (
-            iam_data.sea_freight_efficiencies
-            if hasattr(iam_data, "sea_freight_efficiencies")
-            else None
-        ),
-        "Battery (mobile)": (
-            iam_data.battery_mobile_scenarios
-            if hasattr(iam_data, "battery_mobile_scenarios")
-            else None
-        ),
-        "Battery (stationary)": (
-            iam_data.battery_stationary_scenarios
-            if hasattr(iam_data, "battery_stationary_scenarios")
-            else None
-        ),
-    }
-
-    if data[sector] is not None:
-        iam_data = data[sector]
-        if sector in ("Battery (mobile)", "Battery (stationary)"):
-            iam_data = iam_data.rename({"chemistry": "variables"})
-
-        return iam_data.sel(
-            variables=[v for v in variable if v in iam_data.coords["variables"].values]
-        )
-
-    return None
-
-
-# --- Helpers (new) ------------------------------------------------------------
-
-
-def _dataarray_to_wide_df(da: xr.DataArray) -> pd.DataFrame:
-    """
-    Convert a (variables, year[, ...]) DataArray into a wide DataFrame
-    with variables as columns and year as the index.
-    Returns an empty DataFrame if conversion yields nothing useful.
-    """
-    if da is None:
+    if not columns:
         return pd.DataFrame()
 
-    # Defensive: ensure expected coordinates exist
-    if "variables" not in da.coords or "year" not in da.coords:
-        return pd.DataFrame()
-
-    try:
-        da = da.squeeze(drop=True)
-        var_dim = (
-            "variables"
-            if "variables" in da.dims
-            else "variable" if "variable" in da.dims else None
-        )
-        if "year" in da.dims and var_dim:
-            da = da.transpose("year", var_dim)
-            df = pd.DataFrame(
-                da.values,
-                index=da.coords["year"].values,
-                columns=da.coords[var_dim].values,
-            )
-        elif "year" in da.dims and not var_dim:
-            col_name = (
-                da.name
-                or da.attrs.get("variable")
-                or da.attrs.get("variables")
-                or "value"
-            )
-            df = pd.DataFrame({col_name: da.values}, index=da.coords["year"].values)
-        else:
-            return pd.DataFrame()
-        df = df.rename_axis(index=None)
-        # Drop columns that are completely NA
-        df = df.dropna(axis=1, how="all")
-        # Drop rows that are completely NA
-        df = df.dropna(axis=0, how="all")
-        if df.empty and getattr(da, "size", 0) > 0:
-            print(
-                "Warning: DataArray has data but produced empty DataFrame. "
-                f"dims={da.dims}, coords={list(da.coords)}, shape={da.shape}"
-            )
-        # Ensure index is sortable (years)
-        if not df.empty:
-            try:
-                df.index = pd.to_numeric(df.index)
-            except Exception:
-                pass
-            df = df.sort_index()
-        return df
-    except Exception as exc:
-        dims = getattr(da, "dims", None)
-        coords = list(getattr(da, "coords", {}).keys())
-        shape = getattr(da, "shape", None)
-        print(
-            "Warning: failed to convert DataArray to DataFrame. "
-            f"dims={dims}, coords={coords}, shape={shape}, error={exc}"
-        )
-        return pd.DataFrame()
+    df = pd.DataFrame(columns)
+    df = df.rename_axis(index=None)
+    df = df.dropna(axis=1, how="all")
+    df = df.dropna(axis=0, how="all")
+    if not df.empty:
+        try:
+            df.index = pd.to_numeric(df.index)
+        except Exception:
+            pass
+        df = df.sort_index()
+    return df
 
 
 def _write_wide_df(
@@ -467,309 +192,76 @@ def generate_summary_report(
     with_charts: set to False for huge runs to reduce memory usage.
     """
 
-    SECTORS = {
-        "Population": {"filepath": IAM_OTHER_VARS, "variables": ["population"]},
-        "GDP": {"filepath": IAM_OTHER_VARS, "variables": ["gdp"]},
-        "CO2": {"filepath": IAM_OTHER_VARS, "variables": ["CO2"]},
-        "GMST": {"filepath": IAM_OTHER_VARS, "variables": ["GMST"]},
-        "Electricity - generation": {"filepath": IAM_ELEC_VARS},
-        "Electricity (biom) - generation": {"filepath": IAM_BIOMASS_VARS},
-        "Electricity - efficiency": {"filepath": IAM_ELEC_VARS},
-        "Heat (buildings) - generation": {
-            "filepath": IAM_HEATING_VARS,
-            "filter": ["heat, buildings"],
-        },
-        "Heat (industrial) - generation": {
-            "filepath": IAM_HEATING_VARS,
-            "filter": ["heat, industrial"],
-        },
-        "Fuel (gasoline) - generation": {
-            "filepath": IAM_FUELS_VARS,
-            "filter": ["gasoline", "ethanol", "bioethanol", "methanol"],
-        },
-        "Fuel (gasoline) - efficiency": {
-            "filepath": IAM_FUELS_VARS,
-            "filter": ["gasoline", "ethanol", "bioethanol", "methanol"],
-        },
-        "Fuel (diesel) - generation": {
-            "filepath": IAM_FUELS_VARS,
-            "filter": ["diesel", "biodiesel"],
-        },
-        "Fuel (diesel) - efficiency": {
-            "filepath": IAM_FUELS_VARS,
-            "filter": ["diesel", "biodiesel"],
-        },
-        "Fuel (gas) - generation": {
-            "filepath": IAM_FUELS_VARS,
-            "filter": ["natural gas", "biogas", "methane", "biomethane"],
-        },
-        "Fuel (gas) - efficiency": {
-            "filepath": IAM_FUELS_VARS,
-            "filter": ["natural gas", "biogas", "methane", "biomethane"],
-        },
-        "Fuel (hydrogen) - generation": {
-            "filepath": IAM_FUELS_VARS,
-            "filter": ["hydrogen"],
-        },
-        "Fuel (hydrogen) - efficiency": {
-            "filepath": IAM_FUELS_VARS,
-            "filter": ["hydrogen"],
-        },
-        "Fuel (kerosene) - generation": {
-            "filepath": IAM_FUELS_VARS,
-            "filter": ["kerosene"],
-        },
-        "Fuel (kerosene) - efficiency": {
-            "filepath": IAM_FUELS_VARS,
-            "filter": ["kerosene"],
-        },
-        "Fuel (LPG) - generation": {
-            "filepath": IAM_FUELS_VARS,
-            "filter": ["liquefied petroleum gas"],
-        },
-        "Fuel (LPG) - efficiency": {
-            "filepath": IAM_FUELS_VARS,
-            "filter": ["liquefied petroleum gas"],
-        },
-        "Cement - generation": {"filepath": IAM_CEMENT_VARS},
-        "Cement - efficiency": {"filepath": IAM_CEMENT_VARS},
-        "Steel - generation": {"filepath": IAM_STEEL_VARS},
-        "Steel - efficiency": {"filepath": IAM_STEEL_VARS},
-        "CDR - generation": {"filepath": IAM_CDR_VARS},
-        "Direct Air Capture - energy mix": {
-            "filepath": IAM_HEATING_VARS,
-            "variables": [
-                "energy, for DACCS, from hydrogen turbine",
-                "energy, for DACCS, from gas boiler",
-                "energy, for DACCS, from other",
-                "energy, for DACCS, from electricity",
-            ],
-        },
-        "Direct Air Capture - heat eff.": {
-            "filepath": IAM_CDR_VARS,
-            "variables": ["dac_solvent"],
-        },
-        "Direct Air Capture - elec eff.": {
-            "filepath": IAM_CDR_VARS,
-            "variables": ["dac_solvent"],
-        },
-        "Transport (two-wheelers)": {"filepath": IAM_TRSPT_TWO_WHEELERS_VARS},
-        "Transport (two-wheelers) - eff": {"filepath": IAM_TRSPT_TWO_WHEELERS_VARS},
-        "Transport (cars)": {"filepath": IAM_TRSPT_CARS_VARS},
-        "Transport (cars) - eff": {"filepath": IAM_TRSPT_CARS_VARS},
-        "Transport (buses)": {"filepath": IAM_TRSPT_BUSES_VARS},
-        "Transport (buses) - eff": {"filepath": IAM_TRSPT_BUSES_VARS},
-        "Transport (trucks)": {"filepath": IAM_TRSPT_TRUCKS_VARS},
-        "Transport (trucks) - eff": {"filepath": IAM_TRSPT_TRUCKS_VARS},
-        "Transport (trains)": {"filepath": IAM_TRSPT_TRAINS_VARS},
-        "Transport (trains) - eff": {"filepath": IAM_TRSPT_TRAINS_VARS},
-        "Transport (ships)": {"filepath": IAM_TRSPT_SHIPS_VARS},
-        "Transport (ships) - eff": {"filepath": IAM_TRSPT_SHIPS_VARS},
-        "Battery (mobile)": {
-            "variables": [
-                "NMC111",
-                "NMC532",
-                "NMC622",
-                "NMC811",
-                "NMC900",
-                "NMC900-Si",
-                "LFP",
-                "NCA",
-                "LSB",
-                "SIB",
-                "LAB",
-                "ASSB (oxidic)",
-                "ASSB (polymer)",
-                "ASSB (sulfidic)",
-            ]
-        },
-        "Battery (stationary)": {
-            "variables": [
-                "NMC111",
-                "NMC622",
-                "NMC811",
-                "LFP",
-                "LEAD-ACID",
-                "VRFB",
-                "NAS",
-            ]
-        },
-    }
-
-    with open(REPORT_METADATA_FILEPATH, encoding="utf-8") as stream:
-        metadata = yaml.safe_load(stream)
-
+    metadata = load_report_metadata()
     workbook = openpyxl.Workbook()
     workbook.remove(workbook.active)
 
-    for sector, spec in SECTORS.items():
-        # Build variable list
-        if "variables" in spec:
-            variables = spec["variables"]
-        else:
-            variables = get_variables(spec["filepath"])
-
-        if "filter" in spec:
-            variables = [
-                x for x in variables if any(x.startswith(y) for y in spec["filter"])
-            ]
-
-        # Skip sectors with no available data across all scenarios
-        is_data = False
-        for scenario in scenarios:
-            iam_da = fetch_data(
-                iam_data=scenario["iam data"], sector=sector, variable=variables
-            )
-            if iam_da is not None:
-                is_data = True
-                break
-        if not is_data:
+    for sector_entry in get_sector_catalog(metadata):
+        sector = sector_entry["id"]
+        sector_summary = summarize_sector(scenarios, sector, metadata=metadata)
+        if not sector_summary["scenarios"]:
             continue
 
         worksheet = workbook.create_sheet(sector)
 
         col, row = (1, 1)
-        expl_text = metadata.get(sector, {}).get("expl_text", "")
-        worksheet.cell(column=col, row=row, value=expl_text)
+        worksheet.cell(column=col, row=row, value=sector_summary["explanation"])
 
         scenario_list = set()
         last_col_used = 1
 
-        for scenario_idx, scenario in enumerate(scenarios):
-            key = (scenario["model"], scenario["pathway"])
+        for scenario_data in sector_summary["scenarios"]:
+            key = (scenario_data["model"], scenario_data["pathway"])
             if key in scenario_list:
                 continue
 
-            iam_da = fetch_data(
-                iam_data=scenario["iam data"], sector=sector, variable=variables
-            )
-            if iam_da is None:
-                continue
-
-            # Optional unit conversions (kept from your code; "CCS" sectors not present though)
-            if "CCS" in sector:
-                try:
-                    iam_da = iam_da * 100
-                except Exception:
-                    pass
-
-            if scenario_idx > 0:
-                # Put some horizontal spacing between scenario blocks
-                col = last_col_used + metadata.get(sector, {}).get("offset", 2)
+            if scenario_list:
+                col = last_col_used + sector_summary.get("offset", 2)
 
             row = 3
 
-            # Header
-            header = f"{scenario['model'].upper()} - {scenario['pathway'].upper()}"
+            header = (
+                f"{scenario_data['model'].upper()} - "
+                f"{scenario_data['pathway'].upper()}"
+            )
             worksheet.cell(column=col, row=row, value=header)
             worksheet.cell(column=col, row=row).font = Font(
                 bold=True, size=14, underline="single"
             )
             row += 2
 
-            if sector in ("Battery (mobile)", "Battery (stationary)"):
-                # Iterate per sub-scenario within batteries
-                for scen in iam_da.coords["scenario"].values:
-                    worksheet.cell(column=col, row=row, value=scen)
-                    row += 3
+            for group in scenario_data["groups"]:
+                worksheet.cell(column=col, row=row, value=group["name"])
+                row += 3
 
-                    sub = iam_da.sel(
-                        scenario=scen,
-                        year=[y for y in iam_da.coords["year"].values if y <= 2100],
-                    )
-                    df = _dataarray_to_wide_df(sub)
-                    if df.empty:
-                        continue
+                df = _series_group_to_wide_df(group)
+                if df.empty:
+                    continue
 
-                    n_rows, n_cols = _write_wide_df(worksheet, row, col, df)
-                    _add_chart_if_data(
-                        worksheet=worksheet,
-                        sector=sector,
-                        title=f"{scen} scenario",
-                        start_row=row,
-                        start_col=col,
-                        n_rows=n_rows,
-                        n_cols=n_cols,
-                        y_axis_label=metadata.get(sector, {}).get("label"),
-                        with_charts=with_charts,
-                    )
-
-                    last_col_used = max(last_col_used, col + n_cols - 1)
-                    row += n_rows + 2
-
-            else:
-                var_dim = (
-                    "variables"
-                    if "variables" in iam_da.coords
-                    else "variable" if "variable" in iam_da.coords else None
+                n_rows, n_cols = _write_wide_df(worksheet, row, col, df)
+                title = (
+                    f"{group['name']} scenario"
+                    if sector in BATTERY_SECTORS
+                    else f"{group['name']} - {sector} ({sector_summary.get('label', '')})"
                 )
-                has_region = "region" in iam_da.coords
-
-                regions = (
-                    list(iam_da.coords["region"].values) if has_region else ["World"]
+                _add_chart_if_data(
+                    worksheet=worksheet,
+                    sector=sector,
+                    title=title,
+                    start_row=row,
+                    start_col=col,
+                    n_rows=n_rows,
+                    n_cols=n_cols,
+                    y_axis_label=(
+                        sector_summary.get("label")
+                        if sector in BATTERY_SECTORS
+                        else None
+                    ),
+                    with_charts=with_charts,
                 )
-                if not regions:
-                    print(
-                        f"Warning: no regions available for sector {sector} in report."
-                    )
-                for region in regions:
-                    if sector in ("GMST", "CO2") and region != "World":
-                        continue
 
-                    worksheet.cell(column=col, row=row, value=region)
-                    row += 3
-
-                    if var_dim is None:
-                        print(
-                            f"Warning: no variables dimension for sector {sector} "
-                            f"(dims={iam_da.dims})."
-                        )
-                        continue
-
-                    valid_vars = list(iam_da.coords[var_dim].values)
-                    valid_vars_norm = {str(v).strip().lower(): v for v in valid_vars}
-                    pick_vars = []
-                    for v in variables:
-                        key = str(v).strip().lower()
-                        if key in valid_vars_norm:
-                            pick_vars.append(valid_vars_norm[key])
-
-                    if not pick_vars and sector in ("Population", "GDP", "GMST", "CO2"):
-                        print(
-                            "Warning: no matching variables for "
-                            f"{sector}. Available variables: {sorted(valid_vars)}"
-                        )
-                        continue
-
-                    selector = {var_dim: pick_vars}
-                    if has_region:
-                        selector["region"] = region
-                    if "year" in iam_da.coords:
-                        selector["year"] = [
-                            y for y in iam_da.coords["year"].values if y <= 2100
-                        ]
-
-                    sub = iam_da.sel(**selector)
-
-                    df = _dataarray_to_wide_df(sub)
-                    if df.empty:
-                        continue
-
-                    n_rows, n_cols = _write_wide_df(worksheet, row, col, df)
-                    _add_chart_if_data(
-                        worksheet=worksheet,
-                        sector=sector,
-                        title=f"{region} - {sector} ({metadata.get(sector, {}).get('label', '')})",
-                        start_row=row,
-                        start_col=col,
-                        n_rows=n_rows,
-                        n_cols=n_cols,
-                        y_axis_label=None,  # title already includes label
-                        with_charts=with_charts,
-                    )
-
-                    last_col_used = max(last_col_used, col + n_cols - 1)
-                    row += n_rows + 2
+                last_col_used = max(last_col_used, col + n_cols - 1)
+                row += n_rows + 2
 
             scenario_list.add(key)
 

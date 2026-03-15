@@ -5,6 +5,38 @@ Here are some frequently asked questions about ``premise``.
 If you have a question that is not answered here, please contact us.
 
 
+Interface and configuration
+---------------------------
+
+Is there a graphical user interface?
+____________________________________
+
+Yes. ``premise`` ships with a local browser-based GUI that can be launched with
+``premise-ui`` after installation. It supports the main configuration, export,
+monitoring, troubleshooting, and IAM scenario exploration workflows.
+
+See also :doc:`gui`.
+
+Do I need to be inside the repository folder to run ``premise-ui``?
+___________________________________________________________________
+
+No. The ``premise-ui`` command works from any location as long as the Python
+environment where ``premise`` is installed is active.
+
+Are GUI configurations the same as Brightway projects?
+______________________________________________________
+
+No. GUI configurations are saved as portable JSON files and are separate from
+Brightway projects. A configuration can point to an existing Brightway project,
+but it is not itself a Brightway project.
+
+Where do I enter the IAM scenario decryption key in the GUI?
+____________________________________________________________
+
+Use the *IAM Scenario Key* section in the GUI. The key is stored locally on the
+current machine and is not written into saved configuration files.
+
+
 Ecoinvent
 ---------
 

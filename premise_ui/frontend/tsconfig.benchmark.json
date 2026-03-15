@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "strict": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "outDir": "./dist-benchmark",
+    "rootDir": "./src",
+    "lib": ["ES2020", "DOM"]
+  },
+  "include": [
+    "src/benchmarkExplorer.ts",
+    "src/explorerBenchmarkBaseline.ts",
+    "src/explorerData.ts",
+    "src/types.ts"
+  ]
+}
