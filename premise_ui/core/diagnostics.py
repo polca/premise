@@ -50,11 +50,11 @@ def load_run_diagnostics(run_dir: str | Path) -> dict[str, Any]:
 
     return {
         "run_dir": str(base_dir),
-        "available_files": sorted(
-            path.name for path in base_dir.iterdir() if path.is_file()
-        )
-        if base_dir.exists()
-        else [],
+        "available_files": (
+            sorted(path.name for path in base_dir.iterdir() if path.is_file())
+            if base_dir.exists()
+            else []
+        ),
         "metadata": metadata,
         "manifest": manifest,
         "result": result,

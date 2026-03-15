@@ -9,7 +9,10 @@ from pathlib import Path
 from typing import Any
 
 from premise_ui.core.credentials import iam_key_value
-from premise_ui.core.scenario_catalog import SUPPORTED_SCENARIO_SUFFIXES, list_local_iam_scenarios
+from premise_ui.core.scenario_catalog import (
+    SUPPORTED_SCENARIO_SUFFIXES,
+    list_local_iam_scenarios,
+)
 
 SUMMARY_REFERENCE_YEAR = 2030
 SUPPORTED_COMPARE_MODES = {"overlay", "indexed", "delta", "percent_change"}
@@ -121,7 +124,9 @@ def compare_scenario_explorer_sector(
         "compare_mode": compare_mode,
         "baseline_year": baseline_year,
         "baseline_scenario_id": resolved_baseline_id,
-        "baseline_scenario_label": _baseline_scenario_label(summary, resolved_baseline_id),
+        "baseline_scenario_label": _baseline_scenario_label(
+            summary, resolved_baseline_id
+        ),
         "summary": compared_summary,
     }
 
@@ -148,9 +153,7 @@ def _resolve_scenario_path(path: str) -> Path:
     if not resolved_path.exists():
         raise FileNotFoundError(f"IAM scenario file not found: {resolved_path}")
     if resolved_path.suffix.lower() not in SUPPORTED_SCENARIO_SUFFIXES:
-        raise ValueError(
-            "Unsupported IAM file type. Expected csv, mif, xls, or xlsx."
-        )
+        raise ValueError("Unsupported IAM file type. Expected csv, mif, xls, or xlsx.")
     return resolved_path
 
 
@@ -167,7 +170,9 @@ def _parse_scenario_path(path: Path) -> tuple[str, str]:
     return model, pathway
 
 
-def _reference_point(points: list[dict[str, Any]], baseline_year: int | None) -> dict[str, Any] | None:
+def _reference_point(
+    points: list[dict[str, Any]], baseline_year: int | None
+) -> dict[str, Any] | None:
     if not points:
         return None
 
@@ -189,7 +194,9 @@ def _indexed_summary(
     resolved_years: set[int] = set()
 
     for scenario in indexed.get("scenarios", []):
-        scenario["comparison_label"] = f"{scenario['model'].upper()} / {scenario['pathway']}"
+        scenario["comparison_label"] = (
+            f"{scenario['model'].upper()} / {scenario['pathway']}"
+        )
         for group in scenario.get("groups", []):
             transformed_series = []
             for series in group.get("series", []):
@@ -258,9 +265,7 @@ def _scenario_delta_summary(
                 transformed = deepcopy(series)
                 transformed["points"] = points
                 transformed["unit"] = (
-                    "%"
-                    if compare_mode == "percent_change"
-                    else summary.get("label")
+                    "%" if compare_mode == "percent_change" else summary.get("label")
                 )
                 transformed_series.append(transformed)
 
@@ -273,9 +278,7 @@ def _scenario_delta_summary(
         compared["scenarios"].append(transformed_scenario)
 
     compared["label"] = (
-        "%"
-        if compare_mode == "percent_change"
-        else summary.get("label")
+        "%" if compare_mode == "percent_change" else summary.get("label")
     )
     compared["explanation"] = (
         f"{summary.get('explanation', '')} "
@@ -313,7 +316,9 @@ def _compare_points(
     return points
 
 
-def _group_series_map(scenario: dict[str, Any]) -> dict[str, dict[str, list[dict[str, Any]]]]:
+def _group_series_map(
+    scenario: dict[str, Any],
+) -> dict[str, dict[str, list[dict[str, Any]]]]:
     groups: dict[str, dict[str, list[dict[str, Any]]]] = {}
     for group in scenario.get("groups", []):
         groups[group["name"]] = {
@@ -445,17 +450,15 @@ def _recompute_scenario_fields(scenario: dict[str, Any]) -> bool:
 
 
 def _recompute_group_fields(group: dict[str, Any]) -> bool:
-    group["series"] = [series for series in group.get("series", []) if series.get("points")]
+    group["series"] = [
+        series for series in group.get("series", []) if series.get("points")
+    ]
     if not group["series"]:
         return False
 
     group["variables"] = sorted({series["variable"] for series in group["series"]})
     group["years"] = sorted(
-        {
-            point["year"]
-            for series in group["series"]
-            for point in series["points"]
-        }
+        {point["year"] for series in group["series"] for point in series["points"]}
     )
     return True
 

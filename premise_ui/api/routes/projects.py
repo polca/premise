@@ -10,7 +10,10 @@ from premise_ui.api.models import (
     ProjectRunRequest,
     ProjectSaveRequest,
 )
-from premise_ui.core.manifests import GuiProjectManifest, build_run_manifest_from_project
+from premise_ui.core.manifests import (
+    GuiProjectManifest,
+    build_run_manifest_from_project,
+)
 from premise_ui.core.recents import remember_recent_project
 from premise_ui.core.storage import clone_project, load_project, save_project
 

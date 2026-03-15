@@ -253,7 +253,9 @@ class NewDatabaseAdapter(WorkflowAdapter):
                     "`excel`, `csv`, or `feather`."
                 )
             preserve_original = export_options.get("preserve_original_column")
-            if preserve_original is not None and not isinstance(preserve_original, bool):
+            if preserve_original is not None and not isinstance(
+                preserve_original, bool
+            ):
                 errors.append(
                     "`config.export.options.preserve_original_column` must be a boolean."
                 )
@@ -267,7 +269,9 @@ class NewDatabaseAdapter(WorkflowAdapter):
         )
 
         for index, scenario in enumerate(scenarios):
-            missing = [field for field in ("model", "pathway", "year") if field not in scenario]
+            missing = [
+                field for field in ("model", "pathway", "year") if field not in scenario
+            ]
             if missing:
                 errors.append(
                     f"Scenario {index} is missing required fields: {', '.join(missing)}."
@@ -328,7 +332,9 @@ class NewDatabaseAdapter(WorkflowAdapter):
                         errors.append(f"Brightway project not found: {source_project}")
 
                     source_db = str(config.get("source_db", ""))
-                    databases = {str(database) for database in getattr(bw2data, "databases", [])}
+                    databases = {
+                        str(database) for database in getattr(bw2data, "databases", [])
+                    }
                     if source_db and source_db not in databases:
                         current_project = getattr(bw2data.projects, "current", None)
                         errors.append(
@@ -404,7 +410,9 @@ class NewDatabaseAdapter(WorkflowAdapter):
             "workflow": self.workflow_name,
             "export_type": export_type,
             "transformations": transformations or "all",
-            "output_location": self._output_location_summary(export_type, export_options),
+            "output_location": self._output_location_summary(
+                export_type, export_options
+            ),
         }
 
     def _build_init_kwargs(self) -> dict[str, Any]:
@@ -452,7 +460,10 @@ class NewDatabaseAdapter(WorkflowAdapter):
             if key in self.export_option_keys().get(export_type, set())
         }
 
-        if "filepath" in export_options and export_options["filepath"] not in (None, ""):
+        if "filepath" in export_options and export_options["filepath"] not in (
+            None,
+            "",
+        ):
             export_options["filepath"] = self._resolve_path_value(
                 str(export_options["filepath"])
             )
@@ -501,7 +512,9 @@ class NewDatabaseAdapter(WorkflowAdapter):
 
         if export_type == "brightway":
             project_name = (
-                _normalize_brightway_project_name(self.manifest.config.get("source_project"))
+                _normalize_brightway_project_name(
+                    self.manifest.config.get("source_project")
+                )
                 or "current Brightway project"
             )
             database_name = export_options.get("name")
@@ -519,14 +532,20 @@ class NewDatabaseAdapter(WorkflowAdapter):
             if output_paths:
                 message += f" Files saved under {self._format_locations(output_paths)}."
             if report_paths:
-                message += f" Reports saved under {self._format_locations(report_paths)}."
+                message += (
+                    f" Reports saved under {self._format_locations(report_paths)}."
+                )
             return message
 
         if export_type == "matrices":
             if output_paths:
-                message = f"Matrices saved under {self._format_locations(output_paths)}."
+                message = (
+                    f"Matrices saved under {self._format_locations(output_paths)}."
+                )
                 if report_paths:
-                    message += f" Reports saved under {self._format_locations(report_paths)}."
+                    message += (
+                        f" Reports saved under {self._format_locations(report_paths)}."
+                    )
                 return message
             filepath = export_options.get("filepath")
             if filepath:
@@ -537,9 +556,13 @@ class NewDatabaseAdapter(WorkflowAdapter):
 
         if export_type == "simapro":
             if output_paths:
-                message = f"SimaPro files saved under {self._format_locations(output_paths)}."
+                message = (
+                    f"SimaPro files saved under {self._format_locations(output_paths)}."
+                )
                 if report_paths:
-                    message += f" Reports saved under {self._format_locations(report_paths)}."
+                    message += (
+                        f" Reports saved under {self._format_locations(report_paths)}."
+                    )
                 return message
             filepath = export_options.get("filepath")
             if filepath:
@@ -550,9 +573,13 @@ class NewDatabaseAdapter(WorkflowAdapter):
 
         if export_type == "openlca":
             if output_paths:
-                message = f"OpenLCA files saved under {self._format_locations(output_paths)}."
+                message = (
+                    f"OpenLCA files saved under {self._format_locations(output_paths)}."
+                )
                 if report_paths:
-                    message += f" Reports saved under {self._format_locations(report_paths)}."
+                    message += (
+                        f" Reports saved under {self._format_locations(report_paths)}."
+                    )
                 return message
             filepath = export_options.get("filepath")
             if filepath:
@@ -568,7 +595,9 @@ class NewDatabaseAdapter(WorkflowAdapter):
                     f"{self._format_locations(output_paths)}."
                 )
                 if report_paths:
-                    message += f" Reports saved under {self._format_locations(report_paths)}."
+                    message += (
+                        f" Reports saved under {self._format_locations(report_paths)}."
+                    )
                 return message
             filepath = export_options.get("filepath")
             if filepath:
@@ -579,9 +608,13 @@ class NewDatabaseAdapter(WorkflowAdapter):
 
         if export_type == "datapackage":
             if output_paths:
-                message = f"Datapackage saved under {self._format_locations(output_paths)}."
+                message = (
+                    f"Datapackage saved under {self._format_locations(output_paths)}."
+                )
                 if report_paths:
-                    message += f" Reports saved under {self._format_locations(report_paths)}."
+                    message += (
+                        f" Reports saved under {self._format_locations(report_paths)}."
+                    )
                 return message
             if report_paths:
                 return f"Reports saved under {self._format_locations(report_paths)}."
@@ -605,7 +638,10 @@ class NewDatabaseAdapter(WorkflowAdapter):
                 return [target] if target.exists() else []
 
             scenario_dirs = [
-                export_dir / str(scenario["model"]) / str(scenario["pathway"]) / str(scenario["year"])
+                export_dir
+                / str(scenario["model"])
+                / str(scenario["pathway"])
+                / str(scenario["year"])
                 for scenario in self.manifest.scenarios
                 if all(field in scenario for field in ("model", "pathway", "year"))
             ]
@@ -716,7 +752,9 @@ class NewDatabaseAdapter(WorkflowAdapter):
                 "Brightway runtime dependencies are unavailable in this environment."
             ) from exc
 
-        selected_project = _normalize_brightway_project_name(config.get("source_project"))
+        selected_project = _normalize_brightway_project_name(
+            config.get("source_project")
+        )
         previous_project = getattr(bw2data.projects, "current", None)
         previous_name = _normalize_brightway_project_name(previous_project)
 
@@ -775,8 +813,12 @@ class IncrementalDatabaseAdapter(NewDatabaseAdapter):
     ) -> None:
         sectors = config.get("sectors")
         if sectors not in (None, []):
-            if not isinstance(sectors, list) or not all(isinstance(item, str) for item in sectors):
-                errors.append("`config.sectors` must be a list of incremental sector identifiers.")
+            if not isinstance(sectors, list) or not all(
+                isinstance(item, str) for item in sectors
+            ):
+                errors.append(
+                    "`config.sectors` must be a list of incremental sector identifiers."
+                )
             else:
                 try:
                     supported = set(self._load_incremental_module().SECTORS)
@@ -829,22 +871,30 @@ class IncrementalDatabaseAdapter(NewDatabaseAdapter):
     ) -> str | None:
         if export_type == "brightway":
             project_name = (
-                _normalize_brightway_project_name(self.manifest.config.get("source_project"))
+                _normalize_brightway_project_name(
+                    self.manifest.config.get("source_project")
+                )
                 or "current Brightway project"
             )
-            database_name = export_options.get("name") or "Premise-generated database name"
+            database_name = (
+                export_options.get("name") or "Premise-generated database name"
+            )
             message = (
                 f'Incremental Brightway export target: project "{project_name}" / '
                 f'database "{database_name}".'
             )
-            output_paths = self._dedupe_paths(self._primary_output_paths(export_type, export_options))
+            output_paths = self._dedupe_paths(
+                self._primary_output_paths(export_type, export_options)
+            )
             report_paths = self._dedupe_paths(self._report_output_paths())
             if output_paths:
                 message += f" Files saved under {self._format_locations(output_paths)}."
             elif export_options.get("filepath"):
                 message += f" Comparison files configured to save under {export_options['filepath']}."
             if report_paths:
-                message += f" Reports saved under {self._format_locations(report_paths)}."
+                message += (
+                    f" Reports saved under {self._format_locations(report_paths)}."
+                )
             return message
         return super()._output_location_summary(export_type, export_options)
 
@@ -889,7 +939,9 @@ class PathwaysDataPackageAdapter(NewDatabaseAdapter):
         contributors = config.get("contributors", [])
         if contributors not in (None, []):
             if not isinstance(contributors, list):
-                errors.append("`config.contributors` must be a list of contributor objects.")
+                errors.append(
+                    "`config.contributors` must be a list of contributor objects."
+                )
             else:
                 for index, contributor in enumerate(contributors):
                     if not isinstance(contributor, dict):
@@ -904,7 +956,9 @@ class PathwaysDataPackageAdapter(NewDatabaseAdapter):
 
         name = export_options.get("name")
         if name not in (None, "") and not isinstance(name, str):
-            errors.append("`config.export.options.name` must be a string for datapackage export.")
+            errors.append(
+                "`config.export.options.name` must be a string for datapackage export."
+            )
 
     def execute(self) -> dict[str, Any]:
         validation = self.validate()
@@ -956,7 +1010,9 @@ class PathwaysDataPackageAdapter(NewDatabaseAdapter):
             "export_type": export_type,
             "transformations": transformations or "all",
             "years": config.get("years", []),
-            "output_location": self._output_location_summary(export_type, export_options),
+            "output_location": self._output_location_summary(
+                export_type, export_options
+            ),
         }
 
     def _build_init_kwargs(self) -> dict[str, Any]:

@@ -66,7 +66,15 @@ def test_main_starts_background_browser_waiter(monkeypatch):
             thread_calls["started"] = True
 
     monkeypatch.setattr(cli.threading, "Thread", _Thread)
-    monkeypatch.setitem(__import__("sys").modules, "uvicorn", SimpleNamespace(run=lambda *args, **kwargs: uvicorn_calls.update({"args": args, "kwargs": kwargs})))
+    monkeypatch.setitem(
+        __import__("sys").modules,
+        "uvicorn",
+        SimpleNamespace(
+            run=lambda *args, **kwargs: uvicorn_calls.update(
+                {"args": args, "kwargs": kwargs}
+            )
+        ),
+    )
 
     assert cli.main([]) == 0
     assert thread_calls["target"] is cli._open_browser_when_ready

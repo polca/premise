@@ -181,9 +181,7 @@ def test_project_manifest_migrates_legacy_payload():
     assert project.scenario_sets == [
         {
             "name": "default",
-            "scenarios": [
-                {"model": "remind", "pathway": "SSP2-Base", "year": 2030}
-            ],
+            "scenarios": [{"model": "remind", "pathway": "SSP2-Base", "year": 2030}],
         }
     ]
     assert project.run_history == [{"run_id": "legacy-run"}]
@@ -246,10 +244,7 @@ def test_load_and_resave_project_upgrades_legacy_schema(tmp_path):
         "type": "matrices",
         "options": {"filepath": "legacy-export"},
     }
-    assert (
-        "filepath"
-        not in reloaded_payload["scenario_sets"][0]["scenarios"][0]
-    )
+    assert "filepath" not in reloaded_payload["scenario_sets"][0]["scenarios"][0]
 
 
 def test_frontend_source_scaffold_exists():
@@ -258,16 +253,18 @@ def test_frontend_source_scaffold_exists():
     )
     api_source = Path("premise_ui/frontend/src/api.ts").read_text(encoding="utf-8")
     app_source = Path("premise_ui/frontend/src/App.tsx").read_text(encoding="utf-8")
-    benchmark_source = Path(
-        "premise_ui/frontend/src/benchmarkExplorer.ts"
-    ).read_text(encoding="utf-8")
+    benchmark_source = Path("premise_ui/frontend/src/benchmarkExplorer.ts").read_text(
+        encoding="utf-8"
+    )
     benchmark_baseline_source = Path(
         "premise_ui/frontend/src/explorerBenchmarkBaseline.ts"
     ).read_text(encoding="utf-8")
     explorer_data_source = Path("premise_ui/frontend/src/explorerData.ts").read_text(
         encoding="utf-8"
     )
-    help_source = Path("premise_ui/frontend/src/helpContent.ts").read_text(encoding="utf-8")
+    help_source = Path("premise_ui/frontend/src/helpContent.ts").read_text(
+        encoding="utf-8"
+    )
     explorer_selection_source = Path(
         "premise_ui/frontend/src/explorerSelection.tsx"
     ).read_text(encoding="utf-8")
@@ -381,7 +378,10 @@ def test_frontend_source_scaffold_exists():
     assert "pendingMonitorRunIds" in app_source
     assert 'aria-label="Current run progress"' in app_source
     assert "job-progress-track" in app_source
-    assert "Queueing will preview and validate the current form automatically." in app_source
+    assert (
+        "Queueing will preview and validate the current form automatically."
+        in app_source
+    )
     assert "Enable Desktop Alerts" in app_source
     assert "completed successfully" in app_source
     assert "Guided flow" in app_source
@@ -401,7 +401,7 @@ def test_frontend_source_scaffold_exists():
     assert "field.explorer_baseline_year" in help_source
     assert "field.explorer_baseline_scenario" in help_source
     assert "field.configuration_name" in help_source
-    assert "outDir: \"dist\"" in vite_config
+    assert 'outDir: "dist"' in vite_config
 
 
 def test_list_local_iam_scenarios_prefers_supported_suffix_order(tmp_path, monkeypatch):
@@ -713,8 +713,12 @@ def test_recent_state_remembers_and_deduplicates(tmp_path, monkeypatch):
     remember_recent_project(str(tmp_path / "alpha.json"), label="Alpha")
     remember_recent_project(str(tmp_path / "beta.json"), label="Beta")
     remember_recent_project(str(tmp_path / "alpha.json"), label="Alpha")
-    remember_recent_path("exports", kind="export_directory", base_path=str(tmp_path / "alpha.json"))
-    remember_recent_path("exports", kind="export_directory", base_path=str(tmp_path / "alpha.json"))
+    remember_recent_path(
+        "exports", kind="export_directory", base_path=str(tmp_path / "alpha.json")
+    )
+    remember_recent_path(
+        "exports", kind="export_directory", base_path=str(tmp_path / "alpha.json")
+    )
 
     payload = load_recent_state()
 
@@ -759,14 +763,22 @@ def test_project_run_history_roundtrip(tmp_path):
         project_snapshot=GuiProjectManifest.template().to_dict(),
         warnings=["scaffold warning"],
     )
-    (run_dir / "result.json").write_text('{"export_type": "matrices"}', encoding="utf-8")
+    (run_dir / "result.json").write_text(
+        '{"export_type": "matrices"}', encoding="utf-8"
+    )
     sync_project_run_history(
         str(project_path),
         run_id="run-1",
         manifest=manifest.to_dict(),
         run_dir=run_dir,
         status="completed",
-        events=[{"timestamp": utc_now_iso(), "event_type": "job_completed", "message": "done"}],
+        events=[
+            {
+                "timestamp": utc_now_iso(),
+                "event_type": "job_completed",
+                "message": "done",
+            }
+        ],
         process_returncode=0,
     )
 
@@ -923,10 +935,16 @@ def test_new_database_validation_uses_ui_labels_for_source_errors(monkeypatch):
                 {
                     "check_db_version": staticmethod(lambda version: version),
                     "check_system_model": staticmethod(lambda model: model),
-                    "check_scenarios": staticmethod(lambda scenario, key=None: scenario),
-                    "check_additional_inventories": staticmethod(lambda inventories: inventories),
+                    "check_scenarios": staticmethod(
+                        lambda scenario, key=None: scenario
+                    ),
+                    "check_additional_inventories": staticmethod(
+                        lambda inventories: inventories
+                    ),
                     "check_ei_filepath": staticmethod(lambda path: path),
-                    "check_presence_biosphere_database": staticmethod(lambda biosphere: biosphere),
+                    "check_presence_biosphere_database": staticmethod(
+                        lambda biosphere: biosphere
+                    ),
                 },
             )()
         ),
@@ -965,8 +983,12 @@ def test_new_database_validation_guides_biosphere_database_override(
                 {
                     "check_db_version": staticmethod(lambda version: version),
                     "check_system_model": staticmethod(lambda model: model),
-                    "check_scenarios": staticmethod(lambda scenario, key=None: scenario),
-                    "check_additional_inventories": staticmethod(lambda inventories: inventories),
+                    "check_scenarios": staticmethod(
+                        lambda scenario, key=None: scenario
+                    ),
+                    "check_additional_inventories": staticmethod(
+                        lambda inventories: inventories
+                    ),
                     "check_ei_filepath": staticmethod(lambda path: path),
                     "check_presence_biosphere_database": staticmethod(
                         lambda biosphere: (_ for _ in ()).throw(
@@ -1040,10 +1062,16 @@ def test_new_database_adapter_dispatches_stubbed_workflow(tmp_path, monkeypatch)
                 {
                     "check_db_version": staticmethod(lambda version: version),
                     "check_system_model": staticmethod(lambda model: model),
-                    "check_scenarios": staticmethod(lambda scenario, key=None: scenario),
-                    "check_additional_inventories": staticmethod(lambda inventories: inventories),
+                    "check_scenarios": staticmethod(
+                        lambda scenario, key=None: scenario
+                    ),
+                    "check_additional_inventories": staticmethod(
+                        lambda inventories: inventories
+                    ),
                     "check_ei_filepath": staticmethod(lambda path: path),
-                    "check_presence_biosphere_database": staticmethod(lambda biosphere: biosphere),
+                    "check_presence_biosphere_database": staticmethod(
+                        lambda biosphere: biosphere
+                    ),
                 },
             )()
         ),
@@ -1071,8 +1099,13 @@ def test_new_database_adapter_dispatches_stubbed_workflow(tmp_path, monkeypatch)
         result = NewDatabaseAdapter(manifest).execute()
 
     assert result["export_type"] == "matrices"
-    assert str((tmp_path / "outputs" / "matrices").resolve()) in result["output_location"]
-    assert str((tmp_path / "export" / "change reports").resolve()) in result["output_location"]
+    assert (
+        str((tmp_path / "outputs" / "matrices").resolve()) in result["output_location"]
+    )
+    assert (
+        str((tmp_path / "export" / "change reports").resolve())
+        in result["output_location"]
+    )
     assert calls[1] == ("update", ["electricity"])
     assert calls[2][0] == "matrices"
     assert calls[2][1]["filepath"].endswith("outputs/matrices")
@@ -1115,10 +1148,16 @@ def test_new_database_adapter_reports_existing_default_matrix_output_directory(
                 {
                     "check_db_version": staticmethod(lambda version: version),
                     "check_system_model": staticmethod(lambda model: model),
-                    "check_scenarios": staticmethod(lambda scenario, key=None: scenario),
-                    "check_additional_inventories": staticmethod(lambda inventories: inventories),
+                    "check_scenarios": staticmethod(
+                        lambda scenario, key=None: scenario
+                    ),
+                    "check_additional_inventories": staticmethod(
+                        lambda inventories: inventories
+                    ),
                     "check_ei_filepath": staticmethod(lambda path: path),
-                    "check_presence_biosphere_database": staticmethod(lambda biosphere: biosphere),
+                    "check_presence_biosphere_database": staticmethod(
+                        lambda biosphere: biosphere
+                    ),
                 },
             )()
         ),
@@ -1148,10 +1187,15 @@ def test_new_database_adapter_reports_existing_default_matrix_output_directory(
         str((tmp_path / "export" / "remind" / "SSP2-Base" / "2030").resolve())
         in result["output_location"]
     )
-    assert str((tmp_path / "export" / "change reports").resolve()) in result["output_location"]
+    assert (
+        str((tmp_path / "export" / "change reports").resolve())
+        in result["output_location"]
+    )
 
 
-def test_new_database_adapter_switches_selected_brightway_project(tmp_path, monkeypatch):
+def test_new_database_adapter_switches_selected_brightway_project(
+    tmp_path, monkeypatch
+):
     calls = []
 
     class FakeNewDatabase:
@@ -1180,10 +1224,16 @@ def test_new_database_adapter_switches_selected_brightway_project(tmp_path, monk
                 {
                     "check_db_version": staticmethod(lambda version: version),
                     "check_system_model": staticmethod(lambda model: model),
-                    "check_scenarios": staticmethod(lambda scenario, key=None: scenario),
-                    "check_additional_inventories": staticmethod(lambda inventories: inventories),
+                    "check_scenarios": staticmethod(
+                        lambda scenario, key=None: scenario
+                    ),
+                    "check_additional_inventories": staticmethod(
+                        lambda inventories: inventories
+                    ),
                     "check_ei_filepath": staticmethod(lambda path: path),
-                    "check_presence_biosphere_database": staticmethod(lambda biosphere: biosphere),
+                    "check_presence_biosphere_database": staticmethod(
+                        lambda biosphere: biosphere
+                    ),
                 },
             )()
         ),
@@ -1255,9 +1305,13 @@ def test_new_database_adapter_uses_saved_iam_key_when_manifest_omits_it(
                     "check_db_version": staticmethod(lambda version: version),
                     "check_system_model": staticmethod(lambda model: model),
                     "check_scenarios": staticmethod(check_scenarios),
-                    "check_additional_inventories": staticmethod(lambda inventories: inventories),
+                    "check_additional_inventories": staticmethod(
+                        lambda inventories: inventories
+                    ),
                     "check_ei_filepath": staticmethod(lambda path: path),
-                    "check_presence_biosphere_database": staticmethod(lambda biosphere: biosphere),
+                    "check_presence_biosphere_database": staticmethod(
+                        lambda biosphere: biosphere
+                    ),
                 },
             )()
         ),
@@ -1326,10 +1380,16 @@ def test_new_database_adapter_dispatches_datapackage_name_only(tmp_path, monkeyp
                 {
                     "check_db_version": staticmethod(lambda version: version),
                     "check_system_model": staticmethod(lambda model: model),
-                    "check_scenarios": staticmethod(lambda scenario, key=None: scenario),
-                    "check_additional_inventories": staticmethod(lambda inventories: inventories),
+                    "check_scenarios": staticmethod(
+                        lambda scenario, key=None: scenario
+                    ),
+                    "check_additional_inventories": staticmethod(
+                        lambda inventories: inventories
+                    ),
                     "check_ei_filepath": staticmethod(lambda path: path),
-                    "check_presence_biosphere_database": staticmethod(lambda biosphere: biosphere),
+                    "check_presence_biosphere_database": staticmethod(
+                        lambda biosphere: biosphere
+                    ),
                 },
             )()
         ),
@@ -1391,10 +1451,16 @@ def test_incremental_adapter_dispatches_selected_sectors(tmp_path, monkeypatch):
                 {
                     "check_db_version": staticmethod(lambda version: version),
                     "check_system_model": staticmethod(lambda model: model),
-                    "check_scenarios": staticmethod(lambda scenario, key=None: scenario),
-                    "check_additional_inventories": staticmethod(lambda inventories: inventories),
+                    "check_scenarios": staticmethod(
+                        lambda scenario, key=None: scenario
+                    ),
+                    "check_additional_inventories": staticmethod(
+                        lambda inventories: inventories
+                    ),
                     "check_ei_filepath": staticmethod(lambda path: path),
-                    "check_presence_biosphere_database": staticmethod(lambda biosphere: biosphere),
+                    "check_presence_biosphere_database": staticmethod(
+                        lambda biosphere: biosphere
+                    ),
                 },
             )()
         ),
@@ -1480,10 +1546,16 @@ def test_pathways_adapter_dispatches_datapackage_with_years_and_contributors(
                 {
                     "check_db_version": staticmethod(lambda version: version),
                     "check_system_model": staticmethod(lambda model: model),
-                    "check_scenarios": staticmethod(lambda scenario, key=None: scenario),
-                    "check_additional_inventories": staticmethod(lambda inventories: inventories),
+                    "check_scenarios": staticmethod(
+                        lambda scenario, key=None: scenario
+                    ),
+                    "check_additional_inventories": staticmethod(
+                        lambda inventories: inventories
+                    ),
                     "check_ei_filepath": staticmethod(lambda path: path),
-                    "check_presence_biosphere_database": staticmethod(lambda biosphere: biosphere),
+                    "check_presence_biosphere_database": staticmethod(
+                        lambda biosphere: biosphere
+                    ),
                 },
             )()
         ),
@@ -1520,7 +1592,9 @@ def test_pathways_adapter_dispatches_datapackage_with_years_and_contributors(
         "datapackage",
         {
             "name": "pathways-bundle",
-            "contributors": [{"title": "Lead", "name": "Ada", "email": "ada@example.com"}],
+            "contributors": [
+                {"title": "Lead", "name": "Ada", "email": "ada@example.com"}
+            ],
             "transformations": ["electricity", "fuels"],
         },
     )
@@ -1689,8 +1763,12 @@ def test_job_runtime_promotes_next_run_without_fastapi():
     first_job = {"run_id": "run-1"}
     second_job = {"run_id": "run-2"}
 
-    first_status, first_position = queue_or_start_job(app_state, first_job, spawn_job=spawn_job)
-    second_status, second_position = queue_or_start_job(app_state, second_job, spawn_job=spawn_job)
+    first_status, first_position = queue_or_start_job(
+        app_state, first_job, spawn_job=spawn_job
+    )
+    second_status, second_position = queue_or_start_job(
+        app_state, second_job, spawn_job=spawn_job
+    )
 
     assert first_status == "running"
     assert first_position is None
@@ -1812,7 +1890,9 @@ def test_create_app_still_serves_health_and_environment_when_explorer_backend_fa
     assert "dialogs" in environment.json()
     assert "native_path_dialogs" in environment.json()["dialogs"]
     assert explorer_catalog.status_code == 503
-    assert "Scenario Explorer backend is unavailable" in explorer_catalog.json()["detail"]
+    assert (
+        "Scenario Explorer backend is unavailable" in explorer_catalog.json()["detail"]
+    )
 
 
 def test_environment_route_reports_dialog_capability(monkeypatch):
@@ -2369,7 +2449,7 @@ def test_create_app_serves_frontend_index():
 
     assert response.status_code == 200
     assert "text/html" in response.headers["content-type"]
-    assert "<div id=\"root\"></div>" in response.text
+    assert '<div id="root"></div>' in response.text
     assert "<title>Premise UI</title>" in response.text
     assert "./assets/index-" in response.text
 
@@ -2411,7 +2491,9 @@ def test_dialog_path_route_handles_unavailable_dialog(monkeypatch):
     from premise_ui.core.dialogs import DialogUnavailableError
 
     def _raise_dialog_error(**kwargs):
-        raise DialogUnavailableError("A native file dialog is unavailable in this environment.")
+        raise DialogUnavailableError(
+            "A native file dialog is unavailable in this environment."
+        )
 
     monkeypatch.setattr(
         "premise_ui.api.routes.dialogs.open_path_dialog",
@@ -2449,9 +2531,13 @@ def test_diagnostics_run_details_route(tmp_path):
         ),
         encoding="utf-8",
     )
-    (run_dir / "stderr.log").write_text(f"stderr path {tmp_path / 'stderr.log'}\n", encoding="utf-8")
+    (run_dir / "stderr.log").write_text(
+        f"stderr path {tmp_path / 'stderr.log'}\n", encoding="utf-8"
+    )
     (run_dir / "stdout.log").write_text("stdout ok\n", encoding="utf-8")
-    (run_dir / "metadata.json").write_text(json.dumps({"run_id": "run-1"}), encoding="utf-8")
+    (run_dir / "metadata.json").write_text(
+        json.dumps({"run_id": "run-1"}), encoding="utf-8"
+    )
     (run_dir / "events.jsonl").write_text(
         json.dumps(
             {
@@ -2501,7 +2587,12 @@ def test_support_bundle_route_exports_zip(tmp_path):
             "project_snapshot": {
                 "project_name": "Bundle Project",
                 "workflow": "new_database",
-                "config": {"export": {"type": "matrices", "options": {"filepath": str(tmp_path / "export")}}},
+                "config": {
+                    "export": {
+                        "type": "matrices",
+                        "options": {"filepath": str(tmp_path / "export")},
+                    }
+                },
                 "scenario_sets": [{"name": "default", "scenarios": []}],
             },
         }
@@ -2512,12 +2603,25 @@ def test_support_bundle_route_exports_zip(tmp_path):
     run_dir = tmp_path / ".premise-ui" / "runs" / "run-1"
     run_dir.mkdir(parents=True)
     (run_dir / "diagnostics.json").write_text(
-        json.dumps({"kind": "execution_failed", "traceback": f"Traceback at {tmp_path / 'secret.py'}"}),
+        json.dumps(
+            {
+                "kind": "execution_failed",
+                "traceback": f"Traceback at {tmp_path / 'secret.py'}",
+            }
+        ),
         encoding="utf-8",
     )
-    (run_dir / "metadata.json").write_text(json.dumps({"run_id": "run-1"}), encoding="utf-8")
+    (run_dir / "metadata.json").write_text(
+        json.dumps({"run_id": "run-1"}), encoding="utf-8"
+    )
     (run_dir / "run_manifest.json").write_text(
-        json.dumps({"run_id": "run-1", "project_path": str(project_path), "workflow": "new_database"}),
+        json.dumps(
+            {
+                "run_id": "run-1",
+                "project_path": str(project_path),
+                "workflow": "new_database",
+            }
+        ),
         encoding="utf-8",
     )
     (run_dir / "events.jsonl").write_text(
@@ -2533,8 +2637,12 @@ def test_support_bundle_route_exports_zip(tmp_path):
         + "\n",
         encoding="utf-8",
     )
-    (run_dir / "stdout.log").write_text(f"stdout at {tmp_path / 'stdout.log'}\n", encoding="utf-8")
-    (run_dir / "stderr.log").write_text(f"stderr at {tmp_path / 'stderr.log'}\n", encoding="utf-8")
+    (run_dir / "stdout.log").write_text(
+        f"stdout at {tmp_path / 'stdout.log'}\n", encoding="utf-8"
+    )
+    (run_dir / "stderr.log").write_text(
+        f"stderr at {tmp_path / 'stderr.log'}\n", encoding="utf-8"
+    )
 
     from premise_ui.api.app import create_app
 
@@ -2549,11 +2657,18 @@ def test_support_bundle_route_exports_zip(tmp_path):
     bundle_path = tmp_path / "bundle.zip"
     bundle_path.write_bytes(response.content)
     with ZipFile(bundle_path) as archive:
-        assert sorted(archive.namelist()) == ["stderr.log", "stdout.log", "summary.json"]
+        assert sorted(archive.namelist()) == [
+            "stderr.log",
+            "stdout.log",
+            "summary.json",
+        ]
         summary = json.loads(archive.read("summary.json"))
         assert summary["run_id"] == "run-1"
         assert "<path>" in summary["diagnostics"]["traceback"]
-        assert "<path>" in summary["project_config"]["config"]["export"]["options"]["filepath"]
+        assert (
+            "<path>"
+            in summary["project_config"]["config"]["export"]["options"]["filepath"]
+        )
         assert "<path>" in archive.read("stderr.log").decode("utf-8")
 
 
@@ -2567,7 +2682,13 @@ def test_artifact_route_returns_run_file(tmp_path):
     run_dir = tmp_path / ".premise-ui" / "runs" / "run-1"
     run_dir.mkdir(parents=True)
     (run_dir / "run_manifest.json").write_text(
-        json.dumps({"run_id": "run-1", "project_path": str(project_path), "workflow": "new_database"}),
+        json.dumps(
+            {
+                "run_id": "run-1",
+                "project_path": str(project_path),
+                "workflow": "new_database",
+            }
+        ),
         encoding="utf-8",
     )
     artifact_path = run_dir / "exports" / "matrix.csv"
@@ -2591,7 +2712,9 @@ def test_recents_route_roundtrip(tmp_path, monkeypatch):
     fastapi_testclient = pytest.importorskip("fastapi.testclient")
     assert fastapi
 
-    monkeypatch.setattr("premise_ui.core.recents.RECENTS_FILE", tmp_path / "recents.json")
+    monkeypatch.setattr(
+        "premise_ui.core.recents.RECENTS_FILE", tmp_path / "recents.json"
+    )
 
     from premise_ui.api.app import create_app
 
@@ -2712,7 +2835,9 @@ def test_enqueue_project_route(tmp_path, monkeypatch):
     assert load_project(project_path).run_history[0]["run_id"] == payload["run_id"]
 
 
-def test_enqueue_project_route_queues_second_run_until_first_finishes(tmp_path, monkeypatch):
+def test_enqueue_project_route_queues_second_run_until_first_finishes(
+    tmp_path, monkeypatch
+):
     fastapi = pytest.importorskip("fastapi")
     fastapi_testclient = pytest.importorskip("fastapi.testclient")
     assert fastapi
@@ -2740,8 +2865,14 @@ def test_enqueue_project_route_queues_second_run_until_first_finishes(tmp_path, 
     from premise_ui.api.app import create_app
 
     client = fastapi_testclient.TestClient(create_app())
-    first = client.post("/api/jobs/enqueue-project", json=_enqueue_project_payload(project_path_a, "First"))
-    second = client.post("/api/jobs/enqueue-project", json=_enqueue_project_payload(project_path_b, "Second"))
+    first = client.post(
+        "/api/jobs/enqueue-project",
+        json=_enqueue_project_payload(project_path_a, "First"),
+    )
+    second = client.post(
+        "/api/jobs/enqueue-project",
+        json=_enqueue_project_payload(project_path_b, "Second"),
+    )
 
     assert first.status_code == 200
     assert second.status_code == 200
@@ -2783,8 +2914,14 @@ def test_cancel_route_cancels_queued_run(tmp_path, monkeypatch):
     from premise_ui.api.app import create_app
 
     client = fastapi_testclient.TestClient(create_app())
-    first = client.post("/api/jobs/enqueue-project", json=_enqueue_project_payload(project_path_a, "First"))
-    second = client.post("/api/jobs/enqueue-project", json=_enqueue_project_payload(project_path_b, "Second"))
+    first = client.post(
+        "/api/jobs/enqueue-project",
+        json=_enqueue_project_payload(project_path_a, "First"),
+    )
+    second = client.post(
+        "/api/jobs/enqueue-project",
+        json=_enqueue_project_payload(project_path_b, "Second"),
+    )
 
     assert first.status_code == 200
     assert second.status_code == 200

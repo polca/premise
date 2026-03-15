@@ -33,7 +33,9 @@ def _free_port() -> int:
         return int(sock.getsockname()[1])
 
 
-def _request_json(url: str, *, method: str = "GET", payload: dict | None = None) -> dict:
+def _request_json(
+    url: str, *, method: str = "GET", payload: dict | None = None
+) -> dict:
     data = None
     headers = {"Accept": "application/json"}
     if payload is not None:
@@ -70,7 +72,9 @@ def _wait_for_json(url: str, *, timeout_seconds: float = 30.0) -> dict:
     raise RuntimeError(f"Timed out waiting for {url}")
 
 
-def _wait_for_run_complete(base_url: str, run_id: str, *, timeout_seconds: float = 30.0) -> dict:
+def _wait_for_run_complete(
+    base_url: str, run_id: str, *, timeout_seconds: float = 30.0
+) -> dict:
     deadline = time.monotonic() + timeout_seconds
     last_payload: dict | None = None
 
@@ -196,7 +200,9 @@ def test_premise_ui_installed_launcher_dry_run_smoke(tmp_path):
                 "No local IAM scenario files are available and no IAM_FILES_KEY is configured."
             )
 
-        template_payload = _request_json(f"{base_url}/api/projects/template?workflow=new_database")
+        template_payload = _request_json(
+            f"{base_url}/api/projects/template?workflow=new_database"
+        )
         project = template_payload["project"]
         project["project_name"] = "Installed launcher smoke"
         project["config"]["source_project"] = source_project

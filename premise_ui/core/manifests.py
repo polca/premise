@@ -176,11 +176,7 @@ def _sanitize_workflow_config(
 def _deep_merge(base: dict[str, Any], override: dict[str, Any]) -> dict[str, Any]:
     merged = deepcopy(base)
     for key, value in override.items():
-        if (
-            key in merged
-            and isinstance(merged[key], dict)
-            and isinstance(value, dict)
-        ):
+        if key in merged and isinstance(merged[key], dict) and isinstance(value, dict):
             merged[key] = _deep_merge(merged[key], value)
         else:
             merged[key] = deepcopy(value)
@@ -298,7 +294,9 @@ class RunManifest:
             schema_version=int(data.get("schema_version", 1)),
             run_id=str(data.get("run_id", uuid4().hex)),
             created_at=str(data.get("created_at", utc_now_iso())),
-            project_name=str(data.get("project_name", "Untitled Premise Configuration")),
+            project_name=str(
+                data.get("project_name", "Untitled Premise Configuration")
+            ),
             workflow=str(data.get("workflow", "new_database")),
             project_path=data.get("project_path"),
             working_directory=str(data.get("working_directory", "")),
@@ -327,7 +325,9 @@ def build_run_manifest_from_project(
     *,
     project_path: str | None = None,
 ) -> RunManifest:
-    scenarios, scenario_set_names = _scenario_sets_to_run_scenarios(project.scenario_sets)
+    scenarios, scenario_set_names = _scenario_sets_to_run_scenarios(
+        project.scenario_sets
+    )
 
     working_directory = ""
     resolved_project_path = None
@@ -350,7 +350,9 @@ def build_run_manifest_from_project(
     )
 
 
-def validate_run_manifest_payload(payload: dict[str, Any]) -> tuple[list[str], list[str]]:
+def validate_run_manifest_payload(
+    payload: dict[str, Any],
+) -> tuple[list[str], list[str]]:
     errors: list[str] = []
     warnings: list[str] = []
 
@@ -363,7 +365,9 @@ def validate_run_manifest_payload(payload: dict[str, Any]) -> tuple[list[str], l
         errors.append("Configuration Name is required.")
 
     if not payload.get("scenarios"):
-        warnings.append("No scenarios were provided. Dry-run scaffolding can still proceed.")
+        warnings.append(
+            "No scenarios were provided. Dry-run scaffolding can still proceed."
+        )
 
     if not payload.get("config"):
         warnings.append("No workflow config was provided. Using scaffold defaults.")

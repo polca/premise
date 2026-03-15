@@ -413,7 +413,11 @@ def summarize_sector_for_scenario(
             if group is not None:
                 summary["groups"].append(group)
     else:
-        regions = list(iam_da.coords["region"].values) if "region" in iam_da.coords else ["World"]
+        regions = (
+            list(iam_da.coords["region"].values)
+            if "region" in iam_da.coords
+            else ["World"]
+        )
         for region in regions:
             if sector in WORLD_ONLY_SECTORS and str(region) != "World":
                 continue
@@ -437,7 +441,11 @@ def summarize_sector_for_scenario(
         return None
 
     summary["regions"] = sorted(
-        {group["name"] for group in summary["groups"] if group["group_type"] == "region"}
+        {
+            group["name"]
+            for group in summary["groups"]
+            if group["group_type"] == "region"
+        }
     )
     summary["subscenarios"] = sorted(
         {
@@ -447,7 +455,11 @@ def summarize_sector_for_scenario(
         }
     )
     summary["variables"] = sorted(
-        {series["variable"] for group in summary["groups"] for series in group["series"]}
+        {
+            series["variable"]
+            for group in summary["groups"]
+            for series in group["series"]
+        }
     )
     summary["years"] = sorted(
         {
@@ -563,7 +575,11 @@ def filter_sector_summary(
         for group in scenario.get("groups", []):
             if group_names and group["name"] not in group_names:
                 continue
-            if regions and group.get("group_type") == "region" and group["name"] not in regions:
+            if (
+                regions
+                and group.get("group_type") == "region"
+                and group["name"] not in regions
+            ):
                 continue
 
             filtered_group = {
@@ -695,7 +711,10 @@ def _build_scenario_id(scenario: dict[str, Any], default_index: int | None) -> s
             file_stem = Path(str(scenario[key])).stem
             break
 
-    parts = [str(scenario.get("model", "scenario")), str(scenario.get("pathway", "pathway"))]
+    parts = [
+        str(scenario.get("model", "scenario")),
+        str(scenario.get("pathway", "pathway")),
+    ]
     if file_stem:
         parts.append(file_stem)
     elif default_index is not None:
@@ -703,7 +722,9 @@ def _build_scenario_id(scenario: dict[str, Any], default_index: int | None) -> s
     return "::".join(parts)
 
 
-def _match_requested_labels(available: list[Any], requested: list[Any] | None) -> list[Any]:
+def _match_requested_labels(
+    available: list[Any], requested: list[Any] | None
+) -> list[Any]:
     if not requested:
         return list(available)
 
@@ -724,7 +745,9 @@ def _summarize_group(
     requested_variables: list[str],
     unit: str | None,
 ) -> dict[str, Any] | None:
-    series = _extract_series(data_array, requested_variables=requested_variables, unit=unit)
+    series = _extract_series(
+        data_array, requested_variables=requested_variables, unit=unit
+    )
     if not series:
         return None
 
@@ -773,7 +796,9 @@ def _extract_series(
         return [{"variable": variable_name, "unit": unit, "points": points}]
 
     available_variables = list(data_array.coords[var_dim].values)
-    matched_variables = _match_requested_labels(available_variables, requested_variables)
+    matched_variables = _match_requested_labels(
+        available_variables, requested_variables
+    )
     if requested_variables and not matched_variables:
         return []
     if matched_variables:

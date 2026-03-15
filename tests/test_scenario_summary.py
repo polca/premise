@@ -254,7 +254,9 @@ def test_generate_summary_report_matches_electricity_summary_payload(
         lambda metadata=None: [{"id": "Electricity - generation"}],
     )
 
-    summary = summarize_sector([scenario], "Electricity - generation", metadata=metadata)
+    summary = summarize_sector(
+        [scenario], "Electricity - generation", metadata=metadata
+    )
     output_path = tmp_path / "summary-electricity.xlsx"
     report.generate_summary_report([scenario], output_path, with_charts=False)
 
@@ -273,9 +275,7 @@ def test_generate_summary_report_matches_electricity_summary_payload(
     assert worksheet["C9"].value == group["series"][1]["points"][0]["value"]
 
 
-def test_generate_summary_report_matches_battery_summary_payload(
-    monkeypatch, tmp_path
-):
+def test_generate_summary_report_matches_battery_summary_payload(monkeypatch, tmp_path):
     metadata = {
         "Battery (mobile)": {
             "label": "Share",
