@@ -138,7 +138,6 @@ steel - primary - BF/BOF CCS:
     remind-eu: Production|Industry|Steel|+|BF-BOF-CCS
     gcam:
       - Production|Industry|Steel|Primary|BLASTFUR CCS
-      - Production|Industry|Steel|Primary|BLASTFUR CCS with hydrogen
   energy_use_aliases:
     image:
       - Final Energy|Industry|Iron and Steel|BF/ BOF Standard + CCS|Coal

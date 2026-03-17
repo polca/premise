@@ -113,6 +113,7 @@ gcam:
   Europe_Non_EU: temperate
   South America_Northern: tropical
   South Asia: tropical
+  Ukraine: temperate
 
 tiam-ucl:
   AFR: tropical
