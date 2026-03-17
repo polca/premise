@@ -1,8 +1,10 @@
+# mapping for different vehicles attributes
+---
 train:
   sizes:
-  - electric
-  - diesel-electric
-  - fuel cell
+    - electric
+    - diesel-electric
+    - fuel cell
   unit: ton kilometer
   name: transport, freight, train
   old:
@@ -36,26 +38,27 @@ train:
       gcam: market for transport, freight, train
 two-wheeler:
   sizes:
-  - motorbike
+    - motorbike
   unit: kilometer
   name: transport, motorbike
 bus:
   sizes:
-  - 13m single deck urban bus
+    - 13m single deck urban bus
   unit: person kilometer
   name: transport, passenger bus
 car:
   sizes:
-  - Mini
-  - Small
-  - Lower medium
-  - Medium
-  - Medium SUV
-  - Large
-  - Large SUV
-  - Van
+    - Mini
+    - Small
+    - Lower medium
+    - Medium
+    - Medium SUV
+    - Large
+    - Large SUV
+    - Van
   unit: kilometer
   name: transport, passenger car
+
 ship:
   unit: ton kilometer
   name: transport, freight, sea, container ship
@@ -76,11 +79,11 @@ ship:
       gcam: market for transport, freight, sea, container ship
 truck:
   sizes:
-  - 18 metric ton
-  - 26 metric ton
-  - 3.5 metric ton
-  - 7.5 metric ton
-  - 40 metric ton
+    - 18 metric ton
+    - 26 metric ton
+    - 3.5 metric ton
+    - 7.5 metric ton
+    - 40 metric ton
   unit: ton kilometer
   name: transport, freight, lorry
   old:
