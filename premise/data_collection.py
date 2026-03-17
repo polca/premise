@@ -1045,10 +1045,16 @@ class IAMDataCollection:
             out = yaml.safe_load(stream)
 
         for key, values in out.items():
-            if variable in values:
-                if self.model in values[variable]:
-                    if values[variable][self.model] is not None:
-                        dict_vars[key] = values[variable][self.model]
+                    if variable in values:
+                        if values[variable] is None:
+                            print(
+                                f"WARNING: '{variable}' entry for '{key}' in "
+                                f"{filepath.name} is None (empty YAML key) — skipping."
+                            )
+                            continue
+                        if self.model in values[variable]:
+                            if values[variable][self.model] is not None:
+                                dict_vars[key] = values[variable][self.model]
 
         return dict_vars
 

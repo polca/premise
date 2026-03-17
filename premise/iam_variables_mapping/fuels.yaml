@@ -732,8 +732,6 @@ hydrogen, from solar:
     value: 120
   co2: 0
   biogenic_share: 1
-  eff_aliases:
-  iam_aliases:
   ecoinvent_aliases:
     fltr:
     - hydrogen production, gaseous, 25 bar, from thermochemical water splitting, at

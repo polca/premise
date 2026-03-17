@@ -58,7 +58,14 @@ def get_mapping(filepath: Path, var: str, model: str = None) -> dict:
             if model is None:
                 mapping[key] = val[var]
             else:
-                if model in val.get("iam_aliases", {}):
+                iam_aliases = val.get("iam_aliases")
+                if iam_aliases is None:
+                    print(
+                        f"WARNING: 'iam_aliases' for '{key}' in "
+                        f"{filepath.name} is None (empty YAML key) — skipping."
+                    )
+                    continue
+                if model in iam_aliases:
                     mapping[key] = val[var]
 
     return mapping
