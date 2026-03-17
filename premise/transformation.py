@@ -2443,21 +2443,11 @@ class BaseTransformation:
             loc for loc in filtered_possible_locations if loc in self.geo.geo
         ]
 
-        # Resolve the dataset location to a form constructive_geometries recognises.
-        # IAM regions (e.g. "Europe_Eastern") are not in the constructive_geometries
-        # topology by themselves; they must be looked up as (MODEL, region) tuples.
-        if location in self.regions:
-            resolved_location = (self.model.upper(), location)
-        elif (self.model.upper(), location) in self.geo.geo:
-            resolved_location = (self.model.upper(), location)
-        else:
-            resolved_location = location
-
         try:
             with resolved_row(filtered_possible_locations, self.geo.geo) as g:
                 func = g.contained if contained else g.intersects
                 return func(
-                    resolved_location,
+                    location,
                     include_self=True,
                     exclusive=exclusive,
                     biggest_first=biggest_first,
