@@ -34,6 +34,9 @@ direct air capture (solvent) with storage:
       - Final Energy|Carbon Management|Direct Air Capture|Solvent|Electricity|PV
       - Final Energy|Carbon Management|Direct Air Capture|Solvent|Electricity|CSP
     gcam: Final Energy|Carbon Management|Direct Air Capture|Solvent
+    message:
+      - Final Energy|Carbon Management|Direct Air Capture|Solvent|Electricity
+      - Final Energy|Carbon Management|Direct Air Capture|Gases
 
   ecoinvent_aliases:
     fltr:
@@ -48,11 +51,13 @@ direct air capture (sorbent) with storage:
   iam_aliases:
     witch: Carbon Sequestration|Direct Air Capture|Sorbent
     gcam: Carbon Sequestration|Direct Air Capture|Sorbent
+    message: Carbon Capture|Direct Air Capture|Sorbent
   energy_use_aliases:
     witch:
       - Final Energy|Carbon Management|Direct Air Capture|Sorbent|Heat|Gases
       - Final Energy|Carbon Management|Direct Air Capture|Sorbent|Electricity|CSP
     gcam: Final Energy|Carbon Management|Direct Air Capture|Sorbent
+    message: Final Energy|Carbon Management|Direct Air Capture|Sorbent|Electricity
 
   ecoinvent_aliases:
     fltr:
@@ -88,6 +93,7 @@ biomass power generation, with CCS:
       remind: Emi|CO2|CDR|+|BECCS
       remind-eu: Emi|CO2|CDR|+|BECCS
       image: Carbon Capture|Energy|Supply|Electricity|Biomass
+      message: Carbon Capture|Energy|Supply|Electricity|Biomass
   ecoinvent_aliases:
       fltr: carbon dioxide, captured and stored, at wood burning power plant, pipeline 200km, storage 1000m
 
@@ -96,11 +102,13 @@ synthetic fuels, with CCS:
       remind: Emi|CO2|CDR|+|Synthetic Fuels CCS
       remind-eu: Emi|CO2|CDR|+|Synthetic Fuels CCS
       image: Carbon Capture|Energy|Supply|Hydrogen|Biomass
+      message: Carbon Capture|Energy|Supply|Hydrogen|Biomass
   ecoinvent_aliases:
       fltr: carbon dioxide, captured and stored, from a hydrogen production plant using steam methane reforming of biomethane
 
 biofuels, with CCS:
   iam_aliases:
       image: Carbon Capture|Energy|Supply|Liquids|Biomass
+      message: Carbon Capture|Energy|Supply|Liquids|Biomass
   ecoinvent_aliases:
       fltr: carbon dioxide, captured and stored, from a biomass fermentation plant

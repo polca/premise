@@ -38,7 +38,7 @@ train, diesel-electric:
       - Energy Service|Transportation|Freight|Train|Liquids|Biomass
       - Energy Service|Transportation|Freight|Train|Liquids|Fossil
       - Energy Service|Transportation|Freight|Train|Gas
-    gcam: 
+    gcam:
       - Distance|Transport|Freight|Rail|Freight Rail|Liquids
       - Distance|Transport|Freight|Rail|Freight Rail|Hybrid Liquids
       - Distance|Transport|Freight|Rail|Freight Rail|Coal
@@ -56,7 +56,7 @@ train, diesel-electric:
       - Final Energy|Transportation|Freight|Train|Liquids|Biomass
       - Final Energy|Transportation|Freight|Train|Liquids|Fossil
       - Final Energy|Transportation|Freight|Train|Gas
-    gcam: 
+    gcam:
       - Final Energy|Transport|Freight|Rail|Freight Rail|Liquids
       - Final Energy|Transport|Freight|Rail|Freight Rail|Hybrid Liquids
       - Final Energy|Transport|Freight|Rail|Freight Rail|Coal

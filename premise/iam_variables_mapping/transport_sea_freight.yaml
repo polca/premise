@@ -14,7 +14,7 @@ ship, marine oil:
     image:
       - Energy Service|Transportation|Freight|National Shipping|Liquids|Fossil
       - Energy Service|Transportation|Freight|International Shipping|Liquids|Fossil
-    gcam: 
+    gcam:
       - Distance|Transport|Freight|Sea|International Ship|Liquids
       - Distance|Transport|Freight|Sea|Domestic Ship|Liquids
   energy_use_aliases:
@@ -131,7 +131,7 @@ ship, electric:
   energy_use_aliases:
     image:
       - Final Energy|Transportation|Freight|National Shipping|Electricity
-      - Final Energy|Transportation|Freight|International Shipping|Electricity # listed as Energy Service in original premise
+      - Energy Service|Transportation|Freight|International Shipping|Electricity
     tiam-ucl:
     gcam:
       - Final Energy|Transport|Freight|Sea|International Ship|BEV
