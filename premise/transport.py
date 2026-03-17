@@ -64,6 +64,8 @@ def _update_vehicles(scenario, vehicle_type, version, system_model):
     if fleet_data[vehicle_type] is not None:
         trspt.create_vehicle_markets()
         trspt.relink_transport_datasets()
+        trspt.fix_missing_truck_markets()
+        trspt.fix_missing_train_markets()
 
     scenario["database"] = trspt.database
     scenario["cache"] = trspt.cache
@@ -289,6 +291,88 @@ class Transport(BaseTransformation):
                     exc["name"] = new_name
                     exc["product"] = self.mapping[self.vehicle_type]["name"]
                     exc["location"] = new_loc
+
+    def fix_missing_truck_markets(self):
+        """
+        Fix references to non-existent truck size markets (26-ton, 40-ton)
+        and missing regional markets by redirecting them to available markets.
+        """
+        if self.vehicle_type != "truck":
+            return
+
+        missing_sizes = ["26 metric ton", "40 metric ton"]
+        generic_market = f"market for {self.mapping['truck']['name']}"
+
+        available_markets = set()
+        for ds in self.database:
+            if ds.get("name", "").startswith("market for transport, freight, lorry"):
+                available_markets.add((ds["name"], ds["location"]))
+
+        for dataset in self.database:
+            for exc in ws.technosphere(dataset):
+                exc_name = exc.get("name", "")
+                exc_location = exc.get("location", "")
+
+                if exc_name.startswith("market for transport, freight, lorry"):
+                    redirected = False
+                    for missing_size in missing_sizes:
+                        if missing_size in exc_name:
+                            exc["name"] = generic_market
+                            exc["location"] = self.geo.ecoinvent_to_iam_location(
+                                dataset["location"]
+                            )
+                            redirected = True
+                            break
+
+                    if not redirected and (exc_name, exc_location) not in available_markets:
+                        if (exc_name, "GLO") in available_markets:
+                            exc["location"] = "GLO"
+                        else:
+                            exc["name"] = generic_market
+                            exc["location"] = self.geo.ecoinvent_to_iam_location(
+                                dataset["location"]
+                            )
+
+    def fix_missing_train_markets(self):
+        """
+        Fix references to non-existent train markets by redirecting them
+        to available markets.
+        """
+        if self.vehicle_type != "train":
+            return
+
+        available_markets = set()
+        for ds in self.database:
+            if ds.get("name", "").startswith("market for transport, freight, train"):
+                available_markets.add((ds["name"], ds["location"]))
+
+        fixed_count = 0
+        for dataset in self.database:
+            for exc in ws.technosphere(dataset):
+                exc_name = exc.get("name", "")
+                exc_location = exc.get("location", "")
+
+                if exc_name.startswith("market for transport, freight, train"):
+                    if (exc_name, exc_location) not in available_markets:
+                        if dataset["location"] in self.regions:
+                            iam_location = dataset["location"]
+                        else:
+                            iam_location = self.geo.ecoinvent_to_iam_location(
+                                dataset["location"]
+                            )
+
+                        if (exc_name, iam_location) in available_markets:
+                            exc["location"] = iam_location
+                            fixed_count += 1
+                        elif (exc_name, "GLO") in available_markets:
+                            exc["location"] = "GLO"
+                            fixed_count += 1
+                        elif (exc_name, "World") in available_markets:
+                            exc["location"] = "World"
+                            fixed_count += 1
+
+        if fixed_count > 0:
+            print(f"Fixed {fixed_count} train market location references")
 
     def adjust_transport_efficiency(self, dataset, technology=None):
         """
