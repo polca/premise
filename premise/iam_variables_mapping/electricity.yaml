@@ -790,6 +790,20 @@ Nuclear:
     remind-eu: SE|Electricity|+|Nuclear
     tiam-ucl: Secondary Energy|Electricity|Nuclear
     witch: Secondary Energy|Electricity|Nuclear|1
+Nuclear_EPR:
+  ecoinvent_aliases:
+    fltr:
+    - electricity production, Evolutionary Power Reactor (EPR)
+  ecoinvent_fuel_aliases:
+    fltr:
+    - market for uranium, enriched
+    - market for nuclear fuel element, for pressure water reactor
+    - market for nuclear fuel element, for boiling water reactor
+    - market for uranium hexafluoride
+  eff_aliases:
+    gcam: Efficiency|Electricity|Nuclear EPR
+  iam_aliases:
+    gcam: Secondary Energy|Electricity|Nuclear EPR
 Nuclear_SMR:
   ecoinvent_aliases:
     fltr:
