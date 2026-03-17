@@ -117,7 +117,7 @@ class HydrogenMixin:
         ]
 
         hydrogen_distribution_map = {
-            k: [ws.get_one(self.database, ws.contains("name", k))] for k in keywords
+            k: list(ws.get_many(self.database, ws.contains("name", k))) for k in keywords
         }
 
         self.process_and_add_activities(

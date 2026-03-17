@@ -108,7 +108,6 @@ gcam:
   Africa_Eastern: tropical
   Africa_Southern: tropical
   Africa_Western: tropical
-  Europe_Eastern: temperate
   European Free Trade Association: temperate
   Europe_Non_EU: temperate
   South America_Northern: tropical
@@ -129,7 +128,6 @@ tiam-ucl:
   ODA: tropical
   SKO: temperate
   UK: temperate
-  USA: temperate
   WEU: temperate
 
 witch:
