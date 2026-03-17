@@ -670,7 +670,6 @@ Gas OC:
       - vented
       - vehicle
   eff_aliases:
-    gcam: Efficiency|Electricity|Gas ST
     image: Efficiency|Electricity|Gas|w/o CCS|1
     message: Efficiency|Electricity|Gas|w/o CCS|3
     remind: Tech|Electricity|Gas|Gas Turbine|Efficiency
@@ -678,7 +677,6 @@ Gas OC:
     tiam-ucl: Efficiency|Electricity|Existing gas generation|w/o CCS
     witch: Efficiency|Electricity|Gas|w/o CCS|1
   iam_aliases:
-    gcam: Secondary Energy|Electricity|Gas ST
     image: Secondary Energy|Electricity|Gas|w/o CCS|1
     message: Secondary Energy|Electricity|Gas|w/o CCS|3
     remind: SE|Electricity|Gas|++|Gas Turbine
