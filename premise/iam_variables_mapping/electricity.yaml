@@ -161,13 +161,11 @@ Biomass ST:
     - market for wood chips, wet, measured as dry mass
     - market for biomass, used as fuel
   eff_aliases:
-    gcam: Efficiency|Electricity|biomass (conv)
     image: Efficiency|Electricity|Biomass|w/o CCS|1
     message: Efficiency|Electricity|Biomass|w/o CCS|2
     tiam-ucl: Efficiency|Electricity|Biomass combustion|w/o CCS
 
   iam_aliases:
-    gcam: Secondary Energy|Electricity|biomass (conv)
     image: Secondary Energy|Electricity|Biomass|w/o CCS|1
     message: Secondary Energy|Electricity|Biomass|w/o CCS|2
     tiam-ucl: Secondary Energy|Electricity|Biomass combustion|w/o CCS
@@ -672,7 +670,7 @@ Gas OC:
       - vented
       - vehicle
   eff_aliases:
-    gcam: Efficiency|Electricity|gas (steam/CT)
+    gcam: Efficiency|Electricity|Gas ST
     image: Efficiency|Electricity|Gas|w/o CCS|1
     message: Efficiency|Electricity|Gas|w/o CCS|3
     remind: Tech|Electricity|Gas|Gas Turbine|Efficiency
@@ -680,7 +678,7 @@ Gas OC:
     tiam-ucl: Efficiency|Electricity|Existing gas generation|w/o CCS
     witch: Efficiency|Electricity|Gas|w/o CCS|1
   iam_aliases:
-    gcam: Secondary Energy|Electricity|gas (steam/CT)
+    gcam: Secondary Energy|Electricity|Gas ST
     image: Secondary Energy|Electricity|Gas|w/o CCS|1
     message: Secondary Energy|Electricity|Gas|w/o CCS|3
     remind: SE|Electricity|Gas|++|Gas Turbine
