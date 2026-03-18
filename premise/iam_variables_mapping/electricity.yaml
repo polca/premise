@@ -167,13 +167,11 @@ Biomass ST:
     - market for biomass, used as fuel
     - market for lignocellulosic biomass, used as fuel
   eff_aliases:
-    gcam: Efficiency|Electricity|biomass (conv)
     image: Efficiency|Electricity|Biomass|w/o CCS|1
     message: Efficiency|Electricity|Biomass|Solids|w/o CCS|2
     tiam-ucl: Efficiency|Electricity|Biomass combustion|w/o CCS
 
   iam_aliases:
-    gcam: Secondary Energy|Electricity|biomass (conv)
     image: Secondary Energy|Electricity|Biomass|w/o CCS|1
     message: Secondary Energy|Electricity|Biomass|Solids|w/o CCS|2
     tiam-ucl: Secondary Energy|Electricity|Biomass combustion|w/o CCS
