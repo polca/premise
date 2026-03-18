@@ -1432,3 +1432,11 @@ IN-CH:
   tiam-ucl: ODA
   gcam: India
   witch: india
+Europe_Eastern:
+  remind: REF
+  remind-eu: REF
+  image: CEU
+  message: EEU
+  tiam-ucl: EEU
+  gcam: EU-12
+  witch: te
