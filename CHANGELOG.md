@@ -2,6 +2,10 @@
 
 All notable changes to this project are documented in this file.
 
+## [2.3.9]
+
+- Allows creating a Simapro or OpenLCA-compatible database without needing a Brightway project or Biosphere database.
+ 
 ## [2.3.8]
 
 - Added new version of IMAGE scenarios.
