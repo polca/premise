@@ -577,7 +577,7 @@ electrical equipment,electrical equipment,0161:Support activities for crop produ
 "electricity production, at wood burning power plant","electricity, high voltage","3510:Electric power generation, transmission and distribution",17100: Electrical energy
 "electricity production, at wood burning power plant, post, pipeline 200km, storage 1000m","electricity, high voltage","3510:Electric power generation, transmission and distribution",17100: Electrical energy
 "electricity production, compressed air energy storage","electricity, high voltage","3510:Electric power generation, transmission and distribution",17100: Electrical energy
-"electricity production, Evolutionary Power Reactor (EPR)","electricity, high voltage","3510:Electric power generation, transmission and distribution",17100: Electrical energy
+"electricity production, nuclear, Evolutionary Power Reactor (EPR)","electricity, high voltage","3510:Electric power generation, transmission and distribution",17100: Electrical energy
 "electricity production, from biowaste, municipal incineration, energy allocation","electricity, from biowaste, municipal incineration, energy allocation","3510:Electric power generation, transmission and distribution",17100: Electrical energy
 "electricity production, from biowaste, municipal incineration, energy allocation_waste incineration, non-fossil (industrial)","electricity, from biowaste, municipal incineration, energy allocation","3510:Electric power generation, transmission and distribution",17100: Electrical energy
 "electricity production, from combined cycle plant, synthetic natural gas","electricity, high voltage","3510:Electric power generation, transmission and distribution",17100: Electrical energy

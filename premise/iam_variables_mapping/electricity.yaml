@@ -800,7 +800,7 @@ Nuclear:
 Nuclear_EPR:
   ecoinvent_aliases:
     fltr:
-    - electricity production, Evolutionary Power Reactor (EPR)
+    - electricity production, nuclear, Evolutionary Power Reactor (EPR)
   ecoinvent_fuel_aliases:
     fltr:
     - market for uranium, enriched
@@ -814,7 +814,7 @@ Nuclear_EPR:
 Nuclear_SMR:
   ecoinvent_aliases:
     fltr:
-    - electricity production, Small Modular Reactor (SMR)
+    - electricity production, nuclear, Small Modular Reactor (SMR)
   ecoinvent_fuel_aliases:
     fltr:
     - market for uranium, enriched
