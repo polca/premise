@@ -632,7 +632,7 @@ electrical equipment,electrical equipment,0161:Support activities for crop produ
 "electricity production, photovoltaic, photovoltaic slanted-roof installation, 3 kWp, single-Si, laminated, integrated","electricity, low voltage","3510:Electric power generation, transmission and distribution",17100: Electrical energy
 "electricity production, photovoltaic, photovoltaic slanted-roof installation, 3 kWp, single-Si, panel, mounted","electricity, low voltage","3510:Electric power generation, transmission and distribution",17100: Electrical energy
 "electricity production, photovoltaic, residential","electricity, low voltage","3510:Electric power generation, transmission and distribution",17100: Electrical energy
-"electricity production, Small Modular Reactor (SMR)","electricity, high voltage","3510:Electric power generation, transmission and distribution",17100: Electrical energy
+"electricity production, nuclear, Small Modular Reactor (SMR)","electricity, high voltage","3510:Electric power generation, transmission and distribution",17100: Electrical energy
 "electricity production, wave energy converter","electricity, high voltage","3510:Electric power generation, transmission and distribution",17100: Electrical energy
 "electricity production, wind","electricity, high voltage","3510:Electric power generation, transmission and distribution",17100: Electrical energy
 "electricity production, wind, <1MW turbine, onshore, direct drive","electricity, high voltage","3510:Electric power generation, transmission and distribution",17100: Electrical energy
