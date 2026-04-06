@@ -41,7 +41,7 @@ import shutil
 
 # Configuration
 CONFIG = {
-    "key": "tUePmX_S5B8ieZkkM7WUU2CnO8SmShwmAeWK9x2rTFo=",
+    "key": premise_key, # TO BE REQUESTED
     "years": [2020, 2025, 2030, 2035, 2040, 2045, 2050, 2060, 2070, 2080, 2090, 2100],
     "output_dir": "datapackages",
 }
@@ -131,8 +131,8 @@ def setup_database(project_name):
                 bi.import_ecoinvent_release(
                     version="3.11",
                     system_model="cutoff",
-                    username="Alvaro.Hahn",
-                    password="psi$ecoinvent2023!!",
+                    username=username,
+                    password=password,
                     biosphere_name="biosphere",
                 )
                 log(f"Ecoinvent database imported into {project_name}")
