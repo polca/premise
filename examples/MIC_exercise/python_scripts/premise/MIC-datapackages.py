@@ -153,7 +153,7 @@ def get_working_pathways(model):
                     pathway=pathway,
                     year=[2020],
                     filepath_iam_files=IAM_OUTPUT_DIR,
-                    key="premise_key", # TO BE REQUESTED
+                    key="premise_key",  # TO BE REQUESTED
                     system_model="cutoff",
                 )
                 working_pathways.append(pathway)

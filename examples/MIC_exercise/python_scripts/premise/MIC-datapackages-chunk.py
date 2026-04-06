@@ -41,7 +41,7 @@ import shutil
 
 # Configuration
 CONFIG = {
-    "key": premise_key, # TO BE REQUESTED
+    "key": premise_key,  # TO BE REQUESTED
     "years": [2020, 2025, 2030, 2035, 2040, 2045, 2050, 2060, 2070, 2080, 2090, 2100],
     "output_dir": "datapackages",
 }
