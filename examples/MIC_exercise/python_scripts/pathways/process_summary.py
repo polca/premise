@@ -5,6 +5,7 @@ Usage:
   python process_summary.py file <filename>
   python process_summary.py merge
 """
+
 import pandas as pd
 from pathlib import Path
 import pyarrow.parquet as pq
@@ -12,11 +13,12 @@ import sys
 from datetime import datetime
 
 MESSAGE_WORLD_ONLY_VARS = [
-    'FE - final energy - Transport - Freight - Int. Shipping - Biofuel',
-    'FE - final energy - Transport - Freight - Int. Shipping - Liquid fossil',
-    'FE - final energy - Transport - Freight - Int. Shipping - H2',
-    'FE - final energy - Transport - Freight - Int. Shipping - LNG',
+    "FE - final energy - Transport - Freight - Int. Shipping - Biofuel",
+    "FE - final energy - Transport - Freight - Int. Shipping - Liquid fossil",
+    "FE - final energy - Transport - Freight - Int. Shipping - H2",
+    "FE - final energy - Transport - Freight - Int. Shipping - LNG",
 ]
+
 
 def log(msg):
     print(f"[{datetime.now().strftime('%H:%M:%S')}] {msg}")
@@ -28,21 +30,22 @@ def get_regions_for_file(gzip_file):
     results_dir = Path("pathways_results")
     gzip_files = sorted(list(results_dir.glob("*.gzip")))
 
-    if 'remind' in gzip_file.name.lower():
-        remind_files = [f for f in gzip_files if 'remind' in f.name.lower()]
-        df = pd.read_parquet(remind_files[0], columns=['region'])
-    elif 'image' in gzip_file.name.lower():
-        image_files = [f for f in gzip_files if 'image' in f.name.lower()]
-        df = pd.read_parquet(image_files[0], columns=['region'])
-    elif 'message' in gzip_file.name.lower():
-        message_files = [f for f in gzip_files if 'message' in f.name.lower()]
-        df = pd.read_parquet(message_files[0], columns=['region'])
+    if "remind" in gzip_file.name.lower():
+        remind_files = [f for f in gzip_files if "remind" in f.name.lower()]
+        df = pd.read_parquet(remind_files[0], columns=["region"])
+    elif "image" in gzip_file.name.lower():
+        image_files = [f for f in gzip_files if "image" in f.name.lower()]
+        df = pd.read_parquet(image_files[0], columns=["region"])
+    elif "message" in gzip_file.name.lower():
+        message_files = [f for f in gzip_files if "message" in f.name.lower()]
+        df = pd.read_parquet(message_files[0], columns=["region"])
     else:
         return []
 
-    regions = sorted(set(df['region'].unique()) - {'World'})
+    regions = sorted(set(df["region"].unique()) - {"World"})
     del df
     return regions
+
 
 def extract_variable_category(variable):
     """
@@ -50,22 +53,22 @@ def extract_variable_category(variable):
     - For 'FE - final energy - Buildings - ...': return 'FE - Buildings'
     - For 'SE - cdr - ...': return 'SE - cdr'
     - For 'SE - secondary energy - ...': return 'SE - secondary energy'
-    
+
     Logic: Skip generic second-level terms like 'final energy', otherwise keep first 2 parts
     """
-    parts = variable.split(' - ')
-    
+    parts = variable.split(" - ")
+
     if len(parts) < 2:
         return parts[0]
-    
+
     # For FE, skip 'final energy' and take the next meaningful part (Buildings, Transport, etc.)
-    if parts[0] == 'FE' and len(parts) >= 3 and parts[1].lower() == 'final energy':
+    if parts[0] == "FE" and len(parts) >= 3 and parts[1].lower() == "final energy":
         # return f"{parts[0]} - {parts[2]}"
-        return ' - '.join([parts[0]] + parts[2:min(6, len(parts))])
-    
+        return " - ".join([parts[0]] + parts[2 : min(6, len(parts))])
+
     # For SE and other cases, take first 2 parts
     # return f"{parts[0]} - {parts[1]}"
-    return ' - '.join(parts[:min(5, len(parts))])
+    return " - ".join(parts[: min(5, len(parts))])
 
 
 def process_single_file(filename):
@@ -85,32 +88,45 @@ def process_single_file(filename):
     rows_processed = 0
 
     for batch in parquet_file.iter_batches(
-            batch_size=5_000_000,
-            columns=['model', 'scenario', 'year', 'region', 'variable', 'impact_category', 'value']
+        batch_size=5_000_000,
+        columns=[
+            "model",
+            "scenario",
+            "year",
+            "region",
+            "variable",
+            "impact_category",
+            "value",
+        ],
     ):
         chunk_num += 1
         df = batch.to_pandas()
         rows_processed += len(df)
 
-        is_message = 'message' in gzip_file.name.lower()
+        is_message = "message" in gzip_file.name.lower()
         if is_message:
             # Include World for Int. Shipping variables (no regional resolution in MESSAGE)
             df = df[
-                ((df['region'].isin(regions)) |
-                ((df['region'] == 'World') & (df['variable'].isin(MESSAGE_WORLD_ONLY_VARS))))
-                & (df['value'] != 0)
-                ]
+                (
+                    (df["region"].isin(regions))
+                    | (
+                        (df["region"] == "World")
+                        & (df["variable"].isin(MESSAGE_WORLD_ONLY_VARS))
+                    )
+                )
+                & (df["value"] != 0)
+            ]
         else:
-            df = df[(df['region'].isin(regions)) & (df['value'] != 0)]
+            df = df[(df["region"].isin(regions)) & (df["value"] != 0)]
 
         if len(df) == 0:
             del df
             continue
 
-        df['variable_category'] = df['variable'].apply(extract_variable_category)
-        agg = df.groupby([
-            'model', 'scenario', 'year', 'variable_category', 'impact_category'
-        ])['value'].sum()
+        df["variable_category"] = df["variable"].apply(extract_variable_category)
+        agg = df.groupby(
+            ["model", "scenario", "year", "variable_category", "impact_category"]
+        )["value"].sum()
 
         for idx, val in agg.items():
             results[idx] = results.get(idx, 0) + val
@@ -119,14 +135,24 @@ def process_single_file(filename):
 
         if chunk_num % 5 == 0:
             pct = (rows_processed / total_rows) * 100
-            log(f"  Chunk {chunk_num}: {rows_processed:,}/{total_rows:,} ({pct:.0f}%) | Keys: {len(results):,}")
+            log(
+                f"  Chunk {chunk_num}: {rows_processed:,}/{total_rows:,} ({pct:.0f}%) | Keys: {len(results):,}"
+            )
 
     log(f"Creating DataFrame from {len(results):,} keys...")
-    final_summary = pd.DataFrame([
-        {'model': k[0], 'scenario': k[1], 'year': k[2],
-         'variable_category': k[3], 'impact_category': k[4], 'value': v}
-        for k, v in results.items()
-    ])
+    final_summary = pd.DataFrame(
+        [
+            {
+                "model": k[0],
+                "scenario": k[1],
+                "year": k[2],
+                "variable_category": k[3],
+                "impact_category": k[4],
+                "value": v,
+            }
+            for k, v in results.items()
+        ]
+    )
 
     # Output filename based on input
     output_file = Path("temp_results") / f"{Path(filename).stem}_summary.parquet"
@@ -167,9 +193,15 @@ def merge_results():
     log(f"Combined: {len(combined):,} rows")
 
     log("Final aggregation...")
-    final = combined.groupby([
-        'model', 'scenario', 'year', 'variable_category', 'impact_category'
-    ], as_index=False)['value'].sum().sort_values(['model', 'scenario', 'year']).reset_index(drop=True)
+    final = (
+        combined.groupby(
+            ["model", "scenario", "year", "variable_category", "impact_category"],
+            as_index=False,
+        )["value"]
+        .sum()
+        .sort_values(["model", "scenario", "year"])
+        .reset_index(drop=True)
+    )
 
     log(f"Final summary: {len(final):,} rows")
     log("Writing output...")
@@ -178,6 +210,7 @@ def merge_results():
     # Cleanup temp files
     log("Cleaning up temp files...")
     import shutil
+
     shutil.rmtree(temp_dir)
 
     log("=" * 60)
