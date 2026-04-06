@@ -324,10 +324,18 @@ class Transport(BaseTransformation):
                     ),
                     ws.equals("unit", "ton kilometer"),
                 ):
-
-                    new_name = self.mapping[self.vehicle_type]["old"][exc["name"]][
-                        self.model
+                    model_mapping = self.mapping[self.vehicle_type]["old"][
+                        exc["name"]
                     ]
+                    if self.model not in model_mapping:
+                        logger.warning(
+                            "No transport relinking mapping for model '%s' and vehicle flow '%s'. Skipping.",
+                            self.model,
+                            exc["name"],
+                        )
+                        continue
+
+                    new_name = model_mapping[self.model]
                     resolved_name, resolved_location = (
                         self._find_available_transport_market(
                             dataset=dataset,

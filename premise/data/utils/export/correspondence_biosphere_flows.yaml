@@ -63,6 +63,8 @@ air:
   Xylene: Xylenes, unspecified
   Benzene, ethyl-: Ethyl benzene
   Benzene, hexachloro-: Hexachlorobenzene
+  Benzene, pentachloro-: Pentachlorobenzene
+  Methane, chlorodifluoro-, HCFC-22: Chlorodifluoromethane
   Calcium: Calcium II
   Phenol, pentachloro-: Pentachlorophenol
   Sodium: Sodium I
@@ -83,12 +85,35 @@ air:
   Toluene, 2-chloro: o-Chlorotoluene
   t-Butylamine: t-Butyl amine
   Chlorosilane, trimethyl-: Trimethylchlorosilane
+  2-Methylpentane: Isohexane
   Isohexane: 2-Methylpentane
   Methane, bromo-, Halon 1001: Bromomethane
   Methane, bromochlorodifluoro-, Halon 1211: Bromochlorodifluoromethane
   Methane, bromotrifluoro-, Halon 1301: Bromotrifluoromethane
+  Ethane, 1,1,1-trifluoro-, HFC-143a: 1,1,1-Trifluoroethane
+  Ethane, pentafluoro-, HFC-125: Pentafluoroethane
+  Methane, dichlorodifluoro-, CFC-12: Dichlorodifluoromethane
+  Methane, dichlorofluoro-, HCFC-21: Dichlorofluoromethane
   Pyrethrin: Pyrethrin II
   Pyrethrum: Pyrethrins
+  2,2,4-Trimethyl pentane: 2,2,4-Trimethylpentane
+  Butylcarbamate, iodopropynyl: Iodopropynyl butylcarbamate
+  Chloroethylene: Vinyl chloride
+  Dimethenamid: Dimethenamide
+  Elemental carbon: Carbon
+  Ethane, 1,1,1-trichloro-, HCFC-140: 1,1,1-Trichloroethane
+  Ethane, 1,1,2-trichloro-: 1,1,2-Trichloroethane
+  Ethane, 1,1,2-trichloro-1,2,2-trifluoro-, CFC-113: 1,1,2-Trichloro-1,2,2-trifluoroethane
+  Ethane, 1,2-dichloro-: Ethylene dichloride
+  Ethane, 1,2-dichloro-1,1,2,2-tetrafluoro-, CFC-114: 1,2-Dichloro-1,1,2,2-tetrafluoroethane
+  Ethane, 2-chloro-1,1,1,2-tetrafluoro-, HCFC-124: 2-Chloro-1,1,1,2-tetrafluoroethane
+  Ethane, hexafluoro-, HFC-116: Hexafluoroethane
+  Methane, difluoro-, HFC-32: Difluoromethane
+  Methane, tetrafluoro-, R-14: Tetrafluoromethane
+  Methane, trichlorofluoro-, CFC-11: Trichlorofluoromethane
+  Methane, trifluoro-, HFC-23: Trifluoromethane
+  Methyl borate: Trimethyl borate
+  Propylamine: Propyl amine
 
 natural resource:
   Iridium: Iridium, in ground
@@ -177,10 +202,14 @@ natural resource:
   Calcite: Calcite, in ground
   Olivine: Olivine, in ground
   Carbon, organic, in soil or biomass stock: Carbon, organic, decrease in soil or biomass stock
+  Argon-40: Argon
+  Coal, hard, unspecified: Coal, hard
+  Sodium sulphate, various forms: Sodium sulfate
 
 
 soil:
   Cyfluthrin: Beta-cyfluthrin
+  Chlortoluron: Chlorotoluron
   Cadmium: Cadmium II
   Cadmium II: Cadmium
   Chromium: Chromium III
@@ -210,6 +239,15 @@ soil:
   Sodium: Sodium I
   Iron ion: Iron, ion
   Iron, ion: Iron ion
+  Strontium: Strontium II
+  Strontium II: Strontium
+  Bicyclorpyrone: Bicyclopyrone
+  Cyhalothrin, gamma-: Gamma-cyhalothrin
+  Dimethenamid: Dimethenamide
+  Fosetyl-aluminium: Fosetyl-Al
+  Phenol, pentachloro-: Pentachlorophenol
+  Pyrethrin: Pyrethrin II
+  Pyrethrum: Pyrethrins
 
 
 water:
@@ -246,6 +284,8 @@ water:
   Nickel II: Nickel, ion
   Ammonium, ion: Ammonium
   Ammonium: Ammonium, ion
+  Xylene: Xylenes, unspecified
+  Benzene, pentachloro-: Pentachlorobenzene
   Iron: Iron ion
   Nickel: Nickel II
   Molybdenum: Molybdenum VI
@@ -278,6 +318,21 @@ water:
   t-Butylamine: t-Butyl amine
   Thiocyanate: Thiocyanate, ion
   AOX, Adsorbable Organic Halides: AOX, Adsorbable Organic Halogen as Cl
+  1,3-Dioxolan-2-one: Ethylene carbonate
+  2-Methylpentane: Isohexane
+  2-chlorobenzaldehyde: o-Chlorobenzaldehyde
+  Benzene, ethyl-: Ethyl benzene
+  Benzene, hexachloro-: Hexachlorobenzene
+  Butylcarbamate, iodopropynyl: Iodopropynyl butylcarbamate
+  Chloroethylene: Vinyl chloride
+  Dimethenamid: Dimethenamide
+  Elemental carbon: Carbon
+  Ethane, 1,1,1-trichloro-, HCFC-140: 1,1,1-Trichloroethane
+  Ethane, 1,2-dichloro-: Ethylene dichloride
+  Ethane, hexachloro-: Hexachloroethane
+  Methane, tetrachloro-, R-10: Carbon tetrachloride
+  Monophenyltin: Phenyltin
+  Propylamine: Propyl amine
 
 
 

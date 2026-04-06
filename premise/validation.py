@@ -18,6 +18,7 @@ from .inventory_imports import (
     get_biosphere_code,
     get_classification_entry,
     get_classifications,
+    get_correspondence_bio_flows,
 )
 import country_converter as coco
 import wurst.searching as ws
@@ -286,7 +287,52 @@ class BaseDatasetValidator:
         self.major_issues_log = []
         self.biosphere_name = biosphere_name
         self.biosphere_codes = get_biosphere_code(version)
+        self.correspondence_bio_flows = get_correspondence_bio_flows()
         self.classifications = get_classifications()
+        self.missing_biosphere_flows = []
+
+    def find_biosphere_code(self, exchange):
+        compartment = exchange["categories"][0]
+        subcompartment = (
+            exchange["categories"][1]
+            if len(exchange["categories"]) > 1
+            else "unspecified"
+        )
+
+        candidate_keys = [
+            (exchange["name"], compartment, subcompartment, exchange["unit"]),
+        ]
+
+        mapped_name = self.correspondence_bio_flows.get(compartment, {}).get(
+            exchange["name"]
+        )
+        if mapped_name:
+            candidate_keys.append(
+                (mapped_name, compartment, subcompartment, exchange["unit"])
+            )
+
+        if subcompartment != "unspecified":
+            candidate_keys.append(
+                (exchange["name"], compartment, "unspecified", exchange["unit"])
+            )
+            if mapped_name:
+                candidate_keys.append(
+                    (mapped_name, compartment, "unspecified", exchange["unit"])
+                )
+
+        for key in candidate_keys:
+            if key in self.biosphere_codes:
+                if key[0] != exchange["name"]:
+                    exchange["name"] = key[0]
+
+                if key[2] == "unspecified":
+                    exchange["categories"] = (key[1],)
+                else:
+                    exchange["categories"] = (key[1], key[2])
+
+                return self.biosphere_codes[key]
+
+        raise KeyError(candidate_keys[0])
 
     def check_matrix_squareness(self):
         """
@@ -645,19 +691,17 @@ class BaseDatasetValidator:
                         if exc["input"][0] != self.biosphere_name:
                             exc["input"] = (self.biosphere_name, exc["input"][1])
                     else:
-                        exc["input"] = (
-                            self.biosphere_name,
-                            self.biosphere_codes[
-                                exc["name"],
-                                exc["categories"][0],
-                                (
-                                    exc["categories"][1]
-                                    if len(exc["categories"]) > 1
-                                    else "unspecified"
-                                ),
-                                exc["unit"],
-                            ],
-                        )
+                        try:
+                            bio_code = self.find_biosphere_code(exc)
+                            exc["input"] = (self.biosphere_name, bio_code)
+                        except KeyError as e:
+                            # Collect missing flow for batch reporting
+                            missing_flow = (exc["name"], exc["categories"][0], 
+                                          exc["categories"][1] if len(exc["categories"]) > 1 else "unspecified",
+                                          exc["unit"])
+                            self.missing_biosphere_flows.append(missing_flow)
+                            import logging
+                            logging.warning(f"Missing biosphere flow: {missing_flow}")
 
                 # if exc["type"] == "technosphere":
                 #    exc["input"] = (
@@ -840,6 +884,19 @@ class BaseDatasetValidator:
         self.check_for_duplicates()
         self.check_for_circular_references()
         self.check_database_name()
+        
+        # If there are missing biosphere flows, report them all and stop
+        if self.missing_biosphere_flows:
+            import logging
+            uniqueflows = list(set(self.missing_biosphere_flows))
+            logging.error(f"Found {len(uniqueflows)} unique missing biosphere flow correspondences:")
+            for flow in sorted(uniqueflows):
+                logging.error(f"  {flow}")
+            raise ValueError(
+                f"Missing biosphere flow correspondences: {len(uniqueflows)} unique flows need to be added to "
+                f"correspondence_biosphere_flows.yaml. See logs above for details."
+            )
+        
         self.remove_unused_fields()
         self.correct_fields_format()
         self.check_amount_format()

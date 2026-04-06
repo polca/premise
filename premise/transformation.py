@@ -880,10 +880,13 @@ class BaseTransformation:
                     if len(suppliers) == 0:
                         suppliers = [ds for ds in activities if ds["location"] == "RoW"]
                     if len(suppliers) == 0:
-                        raise ValueError(
-                            f"No activity found for technology {technology} in region {region}. "
-                            f"Available activities: {[(a['name'], a['location']) for a in activities]}."
-                        )
+                        suppliers = [ds for ds in activities if ds["location"] == "GLO"]
+                    if len(suppliers) == 0:
+                        # No matching supplier found for this technology/region combination.
+                        # This can happen when the IAM model (e.g. GCAM) reports production
+                        # for a region that has no corresponding ecoinvent dataset
+                        # (e.g. Ukraine for wood-CCS bioethanol). Skip gracefully.
+                        continue
 
                     if len(suppliers) > 1:
                         suppliers = get_shares_from_production_volume(suppliers)
@@ -1324,9 +1327,10 @@ class BaseTransformation:
                                 production_volumes.sum(dim="region").values.item(0)
                             )
                         else:
-                            raise KeyError(
-                                f"Region {region} not found in production volumes data."
-                            )
+                            # Region not present in IAM data for this technology
+                            # (e.g. GCAM omits a biofuel technology for some regions).
+                            # Treat it as zero production so regionalization can continue.
+                            prod["production volume"] = 0.0
                 else:
                     prod["production volume"] = 0.0
 
@@ -2196,6 +2200,10 @@ class BaseTransformation:
         """
         # Perform GIS-based matching for location
         location = dataset["location"]
+        # If the dataset location is an IAM region (e.g. "European Free Trade Association"),
+        # constructive_geometries won't recognise the bare string — wrap it as a tuple.
+        if location in self.regions:
+            location = (self.model.upper(), location)
         # if regions contained in posisble location
         # we need to turn them into tuples (model, region)
         possible_locations = tuple(possible_locations)
@@ -2420,6 +2428,10 @@ class BaseTransformation:
         exclusive,
         biggest_first,
     ):
+        # Normalize IAM locations to constructive_geometries tuple format.
+        if isinstance(location, str) and location in self.regions:
+            location = (self.model.upper(), location)
+
         # prepare locations in possible_locations
         # all locations in possible_locations that are an IAM region
         # need to be converted to tuples with (model.upper(), location)
