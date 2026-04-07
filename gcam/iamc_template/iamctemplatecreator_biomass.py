@@ -1,82 +1,46 @@
 import pandas as pd
-from pathlib import Path
-import os
 
-## DONE
+from iamc_template_utils import (
+    aggregate_with_world,
+    combine_and_write,
+    format_for_iamc,
+    get_data_dir,
+    pivot_iamc,
+)
 
 def run_biomass(scenario_name):
+    data_dir = get_data_dir(scenario_name)
 
-	DATA_DIR = Path(os.path.join('..', 'queries', 'queryresults', scenario_name))
+    biofuel_output = pd.read_csv(data_dir / "purpose-grown biomass production.csv")
+    residue_output = pd.read_csv(data_dir / "residue biomass production.csv")
 
-	biofuel = pd.read_csv(DATA_DIR / "purpose-grown biomass production.csv")
+    biofuel_output = aggregate_with_world(
+        biofuel_output,
+        ["Units", "scenario", "region", "sector", "Year"],
+        ["Units", "scenario", "sector", "Year"],
+    )
+    residue_output = aggregate_with_world(
+        residue_output,
+        ["Units", "scenario", "region", "sector", "Year"],
+        ["Units", "scenario", "sector", "Year"],
+    )
 
-	temp_df = biofuel.copy()
-	temp_df = temp_df.groupby(['Units', 'scenario', 'region', 'sector', 'Year'])['value'].agg('sum').reset_index()
-	biofuel_output = temp_df.copy()
-	# add world region by aggregating all data
-	temp_df = temp_df.groupby(['Units', 'scenario', 'sector', 'Year'])['value'].agg('sum').reset_index()
-	temp_df['region'] = 'World'
-    # concatenate dfs
-	biofuel_output = pd.concat([biofuel_output, temp_df], axis=0)
+    biofuel_output = format_for_iamc(
+        biofuel_output,
+        scenario_name,
+        "EJ/yr",
+        pd.Series("Production|Energy|Biomass|Energy Crops", index=biofuel_output.index),
+    )
+    residue_output = format_for_iamc(
+        residue_output,
+        scenario_name,
+        "EJ/yr",
+        pd.Series("Production|Energy|Biomass|Residues", index=residue_output.index),
+    )
 
-	residue = pd.read_csv(DATA_DIR / "residue biomass production.csv")
-
-	temp_df = residue.copy()
-	temp_df = temp_df.groupby(['Units', 'scenario', 'region', 'sector', 'Year'])['value'].agg('sum').reset_index()
-	residue_output = temp_df.copy()
-	# add world region by aggregating all data
-	temp_df = temp_df.groupby(['Units', 'scenario', 'sector', 'Year'])['value'].agg('sum').reset_index()
-	temp_df['region'] = 'World'
-	# concatenate dfs
-	residue_output = pd.concat([residue_output, temp_df], axis=0)
-
-	# now we need to format these dfs into IAMC format
-	# first, rename existing columns to columns in IAMC format
-	biofuel_output = biofuel_output.rename(columns={'region': 'Region', 'scenario': 'Scenario', 'Units': 'Unit'})
-	residue_output = residue_output.rename(columns={'region': 'Region', 'scenario': 'Scenario', 'Units': 'Unit'})
-
-	# replace Scenario with scenario_name
-	biofuel_output['Scenario'] = scenario_name
-	residue_output['Scenario'] = scenario_name
-
-	# add GCAM as Model
-	biofuel_output['Model'] = 'GCAM'
-	residue_output['Model'] = 'GCAM'
-
-	# replace Unit column with expected values (EJ/yr)
-	biofuel_output['Unit'] = 'EJ/yr'
-	residue_output['Unit'] = 'EJ/yr'
-
-	# define Variable
-	biofuel_output['Variable'] = 'Production|Energy|Biomass|Energy Crops'
-	residue_output['Variable'] = 'Production|Energy|Biomass|Residues'
-
-    # reorder columns and remove unnecessary columns (sector, subsector, technology)
-	biofuel_output = biofuel_output[['Scenario', 'Region', 'Model', 'Variable', 'Unit', 'Year', 'value']]
-	residue_output = residue_output[['Scenario', 'Region', 'Model', 'Variable', 'Unit', 'Year', 'value']]
-
-	# pivot dfs, creating columns for each year
-
-	biofuel_output_pivot = pd.pivot_table(biofuel_output,
-										values=['value'],
-										index=['Scenario', 'Region', 'Model', 'Variable', 'Unit'],
-										columns=['Year'],
-										aggfunc='sum').reset_index()
-	residue_output_pivot = pd.pivot_table(residue_output,
-										values=['value'],
-										index=['Scenario', 'Region', 'Model', 'Variable', 'Unit'],
-										columns=['Year'],
-										aggfunc='sum').reset_index()
-	out_df = pd.concat([biofuel_output_pivot, residue_output_pivot]).reset_index(drop=True)
-
-	# tidy up dataframe (fix multiple index column names in year columns)
-	out_df.columns = ['Scenario', 'Region', 'Model', 'Variable', 'Unit'] + [str(x[1]) for x in out_df.columns[5:]]
-
-	# create output directory if it doesn't exist
-
-	if not os.path.exists(os.path.join('..', 'output', scenario_name)):
-		os.mkdir(os.path.join('..', 'output', scenario_name))
-
-	# write to file
-	out_df.to_excel(os.path.join('..', 'output', scenario_name, 'iamc_template_gcam_biomass.xlsx'), index=False)
+    combine_and_write(
+        [pivot_iamc(biofuel_output), pivot_iamc(residue_output)],
+        scenario_name,
+        "iamc_template_gcam_biomass.xlsx",
+    )
 

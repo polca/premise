@@ -806,10 +806,6 @@ Nuclear_EPR:
     - market for nuclear fuel element, for pressure water reactor
     - market for nuclear fuel element, for boiling water reactor
     - market for uranium hexafluoride
-  eff_aliases:
-    gcam: Efficiency|Electricity|Nuclear EPR
-  iam_aliases:
-    gcam: Secondary Energy|Electricity|Nuclear EPR
 Nuclear_SMR:
   ecoinvent_aliases:
     fltr:

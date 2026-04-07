@@ -1610,7 +1610,18 @@ class ElectricityValidation(BaseDatasetValidator):
                     ]
                 )
                 if total < 0.99 or total > 1.15:
+                    log_params = dataset.get("log parameters", {})
+                    dropped_share = log_params.get("dropped electricity share", None)
+                    missing_techs = log_params.get(
+                        "missing electricity technologies", ""
+                    )
+
                     message = f"Electricity market inputs sum to {total}."
+                    if dropped_share is not None:
+                        message += f" Dropped technology share: {dropped_share}."
+                    if missing_techs:
+                        message += f" Missing supplier technologies: {missing_techs}."
+
                     self.log_issue(
                         dataset,
                         "electricity market not summing to 1",

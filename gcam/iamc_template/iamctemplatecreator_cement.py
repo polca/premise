@@ -1,130 +1,71 @@
-
 import pandas as pd
-import numpy as np
-from pathlib import Path
-import os
-# import yaml
 
-## DONE
+from iamc_template_mappings import CEMENT_TECH_MAPPING, INDUSTRY_INPUT_MAPPING
+from iamc_template_utils import (
+    aggregate_with_world,
+    combine_and_write,
+    format_for_iamc,
+    get_data_dir,
+    pivot_iamc,
+)
 
 def run_cement(scenario_name):
-    # Need to change path for each scenario
-    DATA_DIR = Path(os.path.join('..', 'queries', 'queryresults', scenario_name))
+    data_dir = get_data_dir(scenario_name)
 
-    # load LCI data from GCAM for cement. two files: 
-    # - one with physical output (activity in Mt) 
-    # - one with energy use (in EJ)
-    cement_output = pd.read_csv(DATA_DIR /'cement production by tech.csv')
-    cement_input = pd.read_csv(DATA_DIR /'cement final energy by tech and fuel.csv')
+    cement_output = pd.read_csv(data_dir / "cement production by tech.csv")
+    cement_input = pd.read_csv(data_dir / "cement final energy by tech and fuel.csv")
 
-    # we need to reshape all of the data in a format premise can understand
-    # first, reshape cement_output
-    # store in temp_df
-    temp_df = cement_output.copy()
-    temp_df['technology'] = temp_df['technology'].replace({
-        'cement': 'Cement',
-        'cement CCS': 'Cement CCS'
-    })
-    temp_df = temp_df.groupby(['Units', 'scenario', 'region', 'sector', 'subsector', 'technology','Year'])['value'].agg('sum').reset_index()
-    cement_output = temp_df.copy()
-    # add world region by aggregating all data
-    temp_df = temp_df.groupby(['Units', 'scenario', 'sector', 'subsector', 'technology','Year'])['value'].agg('sum').reset_index()
-    temp_df['region'] = 'World'
-    # concatenate dfs
-    cement_output = pd.concat([cement_output, temp_df], axis=0)
+    cement_output["technology"] = cement_output["technology"].replace(CEMENT_TECH_MAPPING)
+    cement_output = aggregate_with_world(
+        cement_output,
+        ["Units", "scenario", "region", "sector", "subsector", "technology", "Year"],
+        ["Units", "scenario", "sector", "subsector", "technology", "Year"],
+    )
 
-    # now reshape cement_input
-    temp_df = cement_input.copy()
-    temp_df['input'] = temp_df['input'].replace({
-        'delivered coal': 'Coal',
-        'elect_td_ind': 'Electricity',
-        'refined liquids industrial': 'Refined Liquids',
-        'wholesale gas': 'Gas',
-        'delivered biomass': 'Biomass',
-    })
-    temp_df = temp_df.groupby(['Units', 'scenario', 'region', 'sector', 'subsector', 'technology', 'input', 'Year'])['value'].agg('sum').reset_index()
-    cement_input = temp_df.copy()
-    # add world region by aggregating all data
-    temp_df = temp_df.groupby(['Units', 'scenario', 'sector', 'subsector', 'technology', 'input', 'Year'])['value'].agg('sum').reset_index()
-    temp_df['region'] = 'World'
-    # print(df)
-    cement_input = pd.concat([cement_input, temp_df], axis=0)
+    cement_input["input"] = cement_input["input"].replace(INDUSTRY_INPUT_MAPPING)
+    cement_input = aggregate_with_world(
+        cement_input,
+        ["Units", "scenario", "region", "sector", "subsector", "technology", "input", "Year"],
+        ["Units", "scenario", "sector", "subsector", "technology", "input", "Year"],
+    )
 
-    # use the distribution of electricity inputs to cement and cement CCS to allocate other energy inputs
-    temp_df = cement_input.copy()
-    temp_df = temp_df[temp_df['technology'].isin(['cement', 'cement CCS'])]
-    temp_df = temp_df.groupby(['region', 'technology', 'Year'])['value'].agg('sum').reset_index()
-    total_by_region_year = temp_df.groupby(['region', 'Year'])['value'].transform('sum')
-    temp_df['percentage'] = temp_df['value'] / total_by_region_year
-    
-    # allocate other energy inputs between cement and cement CCS based on electricity distribution
-    other_inputs = cement_input[~cement_input['technology'].isin(['cement', 'cement CCS'])]
-    other_inputs = other_inputs.merge(temp_df[['region', 'Year', 'technology', 'percentage']], on=['region', 'Year'], how='left')
-    other_inputs['value'] = other_inputs['value'] * other_inputs['percentage']
+    allocation = cement_input[cement_input["technology"].isin(["cement", "cement CCS"])].copy()
+    allocation = allocation.groupby(["region", "technology", "Year"])["value"].agg("sum").reset_index()
+    allocation["percentage"] = allocation["value"] / allocation.groupby(["region", "Year"])["value"].transform("sum")
 
-    # select columns to keep
+    other_inputs = cement_input[~cement_input["technology"].isin(["cement", "cement CCS"])].copy()
+    other_inputs = other_inputs.merge(
+        allocation[["region", "Year", "technology", "percentage"]],
+        on=["region", "Year"],
+        how="left",
+    )
+    other_inputs["value"] = other_inputs["value"] * other_inputs["percentage"]
+    other_inputs = other_inputs[
+        ["Units", "scenario", "region", "sector", "subsector", "technology_y", "input", "Year", "value"]
+    ].rename(columns={"technology_y": "technology"})
 
-    other_inputs = other_inputs[['Units', 'scenario', 'region', 'sector', 'subsector', 'technology_y', 'input', 'Year', 'value']]
-    
-    # rename technology_y to technology
+    cement_input = pd.concat(
+        [cement_input[cement_input["technology"].isin(["cement", "cement CCS"])], other_inputs],
+        axis=0,
+        ignore_index=True,
+    )
+    cement_input["technology"] = cement_input["technology"].replace(CEMENT_TECH_MAPPING)
 
-    other_inputs = other_inputs.rename(columns={'technology_y': 'technology'})
+    cement_output = format_for_iamc(
+        cement_output,
+        scenario_name,
+        "Mt/yr",
+        "Production|Industry|Cement|" + cement_output["technology"],
+    )
+    cement_input = format_for_iamc(
+        cement_input,
+        scenario_name,
+        "EJ/yr",
+        "Final Energy|Industry|Cement|" + cement_input["technology"] + "|" + cement_input["input"],
+    )
 
-    cement_input = pd.concat([cement_input[cement_input['technology'].isin(['cement', 'cement CCS'])], other_inputs], axis=0)
-
-    cement_input['technology'] = cement_input['technology'].replace({
-        'cement': 'Cement',
-        'cement CCS': 'Cement CCS'
-    })
-
-    # now we need to format these dfs into IAMC format
-    # first, rename existing columns to columns in IAMC format
-    cement_input = cement_input.rename(columns={'region': 'Region', 'scenario': 'Scenario', 'Units': 'Unit'})
-    cement_output = cement_output.rename(columns={'region': 'Region', 'scenario': 'Scenario', 'Units': 'Unit'})
-
-    # replace Scenario with scenario_name
-    cement_input['Scenario'] = scenario_name
-    cement_output['Scenario'] = scenario_name
-
-    # add GCAM as Model
-    cement_input['Model'] = 'GCAM'
-    cement_output['Model'] = 'GCAM'
-
-    # replace Unit column with expected values (EJ/yr, Mt/yr)
-    cement_input['Unit'] = 'EJ/yr'
-    cement_output['Unit'] = 'Mt/yr'
-
-    # define variable
-    # output: Production|Industry|Cement|{technology}
-    # input: Final Energy|Industry|Cement|{technology}|{input}
-    cement_output['Variable'] = 'Production|Industry|Cement|' + cement_output['technology']
-    cement_input['Variable'] = 'Final Energy|Industry|Cement|' + cement_input['technology'] + '|' + cement_input['input']
-
-
-    # reorder columns and remove unnecessary columns (sector, subsector, technology)
-    cement_input = cement_input[['Scenario', 'Region', 'Model', 'Variable', 'Unit', 'Year', 'value']]
-    cement_output = cement_output[['Scenario', 'Region', 'Model', 'Variable', 'Unit', 'Year', 'value']]
-
-    # pivot dfs, creating columns for each year
-
-    cement_input_pivot = pd.pivot_table(cement_input,
-                                        values=['value'],
-                                        index=['Scenario', 'Region', 'Model', 'Variable', 'Unit'],
-                                        columns=['Year'],
-                                        aggfunc='sum').reset_index()
-    cement_output_pivot = pd.pivot_table(cement_output,
-                                        values=['value'],
-                                        index=['Scenario', 'Region', 'Model', 'Variable', 'Unit'],
-                                        columns=['Year'],
-                                        aggfunc='sum').reset_index()
-    out_df = pd.concat([cement_input_pivot, cement_output_pivot]).reset_index(drop=True)
-
-    # tidy up dataframe (fix multiple index column names in year columns)
-    out_df.columns = ['Scenario', 'Region', 'Model', 'Variable', 'Unit'] + [str(x[1]) for x in out_df.columns[5:]]
-
-    # create output directory if it doesn't exist
-    if not os.path.exists(os.path.join('..', 'output', scenario_name)):
-        os.mkdir(os.path.join('..', 'output', scenario_name))
-
-    # write to file
-    out_df.to_excel(os.path.join('..', 'output', scenario_name, 'iamc_template_gcam_cement.xlsx'), index=False)
+    combine_and_write(
+        [pivot_iamc(cement_input), pivot_iamc(cement_output)],
+        scenario_name,
+        "iamc_template_gcam_cement.xlsx",
+    )

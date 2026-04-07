@@ -1153,6 +1153,8 @@ class Electricity(BaseTransformation):
 
             # calculate the share of renewable energy in the mix
             renewable_share = 0
+            linked_electricity_share = 0.0
+            missing_technologies = []
             renewable_techs = [
                 "solar",
                 "wind",
@@ -1172,7 +1174,11 @@ class Electricity(BaseTransformation):
                     # Contribution in supply
                     amount = electricity_mix[technology]
 
+                    if len(tech_suppliers[technology]) == 0:
+                        missing_technologies.append((technology, float(amount)))
+
                     for supplier, share in tech_suppliers[technology]:
+                        linked_electricity_share += float(amount * share)
                         new_exchanges.append(
                             {
                                 "uncertainty type": 0,
@@ -1188,11 +1194,20 @@ class Electricity(BaseTransformation):
 
             new_dataset["exchanges"] = new_exchanges
 
+            dropped_electricity_share = max(0.0, 1.0 - linked_electricity_share)
+            missing_technologies.sort(key=lambda x: x[1], reverse=True)
+            missing_tech_str = "; ".join(
+                f"{tech} ({share:.6f})" for tech, share in missing_technologies
+            )
+
             new_dataset.setdefault("log parameters", {}).update(
                 {
                     "distribution loss": 0.0,
                     "transformation loss": transf_loss,
                     "renewable share": renewable_share / sum(electricity_mix.values()),
+                    "linked electricity share": linked_electricity_share,
+                    "dropped electricity share": dropped_electricity_share,
+                    "missing electricity technologies": missing_tech_str,
                 }
             )
 

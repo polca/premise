@@ -1,0 +1,172 @@
+Variable
+Final Energy|Buildings|Commercial Cooling|Electricity
+Final Energy|Buildings|Commercial Cooling|Gas
+Final Energy|Buildings|Commercial Heating|Biomass
+Final Energy|Buildings|Commercial Heating|Coal
+Final Energy|Buildings|Commercial Heating|District Heat
+Final Energy|Buildings|Commercial Heating|Electricity
+Final Energy|Buildings|Commercial Heating|Gas
+Final Energy|Buildings|Commercial Heating|Hydrogen
+Final Energy|Buildings|Commercial Heating|Oil
+Final Energy|Buildings|Commercial Other|Biomass
+Final Energy|Buildings|Commercial Other|Coal
+Final Energy|Buildings|Commercial Other|District Heat
+Final Energy|Buildings|Commercial Other|Electricity
+Final Energy|Buildings|Commercial Other|Gas
+Final Energy|Buildings|Commercial Other|Hydrogen
+Final Energy|Buildings|Commercial Other|Oil
+Final Energy|Buildings|Residential Cooling|Electricity
+Final Energy|Buildings|Residential Cooling|Gas
+Final Energy|Buildings|Residential Heating|Biomass
+Final Energy|Buildings|Residential Heating|Coal
+Final Energy|Buildings|Residential Heating|District Heat
+Final Energy|Buildings|Residential Heating|Electricity
+Final Energy|Buildings|Residential Heating|Gas
+Final Energy|Buildings|Residential Heating|Hydrogen
+Final Energy|Buildings|Residential Heating|Oil
+Final Energy|Buildings|Residential Other|Biomass
+Final Energy|Buildings|Residential Other|Coal
+Final Energy|Buildings|Residential Other|District Heat
+Final Energy|Buildings|Residential Other|Electricity
+Final Energy|Buildings|Residential Other|Gas
+Final Energy|Buildings|Residential Other|Hydrogen
+Final Energy|Buildings|Residential Other|Oil
+Final Energy|Industry|Agriculture|Biomass
+Final Energy|Industry|Agriculture|Coal
+Final Energy|Industry|Agriculture|District Heat
+Final Energy|Industry|Agriculture|Electricity
+Final Energy|Industry|Agriculture|Gas
+Final Energy|Industry|Agriculture|Hydrogen
+Final Energy|Industry|Agriculture|Oil
+Final Energy|Industry|Aluminum|Biomass
+Final Energy|Industry|Aluminum|Coal
+Final Energy|Industry|Aluminum|Electricity
+Final Energy|Industry|Aluminum|Gas
+Final Energy|Industry|Aluminum|Oil
+Final Energy|Industry|Ammonia|Coal
+Final Energy|Industry|Ammonia|Gas
+Final Energy|Industry|Ammonia|Hydrogen
+Final Energy|Industry|Ammonia|Oil
+Final Energy|Industry|CDR|Electricity
+Final Energy|Industry|CDR|Gas
+Final Energy|Industry|Cement|Biomass
+Final Energy|Industry|Cement|Coal
+Final Energy|Industry|Cement|Electricity
+Final Energy|Industry|Cement|Gas
+Final Energy|Industry|Cement|Hydrogen
+Final Energy|Industry|Cement|Oil
+Final Energy|Industry|Chemical|Biomass
+Final Energy|Industry|Chemical|Coal
+Final Energy|Industry|Chemical|District Heat
+Final Energy|Industry|Chemical|Electricity
+Final Energy|Industry|Chemical|Gas
+Final Energy|Industry|Chemical|Hydrogen
+Final Energy|Industry|Chemical|Oil
+Final Energy|Industry|Construction|Biomass
+Final Energy|Industry|Construction|Coal
+Final Energy|Industry|Construction|District Heat
+Final Energy|Industry|Construction|Electricity
+Final Energy|Industry|Construction|Gas
+Final Energy|Industry|Construction|Hydrogen
+Final Energy|Industry|Construction|Oil
+Final Energy|Industry|Food Processing|Biomass
+Final Energy|Industry|Food Processing|Coal
+Final Energy|Industry|Food Processing|District Heat
+Final Energy|Industry|Food Processing|Electricity
+Final Energy|Industry|Food Processing|Gas
+Final Energy|Industry|Food Processing|Oil
+Final Energy|Industry|Food Processing|Solar
+Final Energy|Industry|Iron and Steel|BF/BOF|Biomass
+Final Energy|Industry|Iron and Steel|BF/BOF|Coal
+Final Energy|Industry|Iron and Steel|BF/BOF|Electricity
+Final Energy|Industry|Iron and Steel|BF/BOF|Gas
+Final Energy|Industry|Iron and Steel|BF/BOF|Hydrogen
+Final Energy|Industry|Iron and Steel|BF/BOF|Oil
+Final Energy|Industry|Iron and Steel|EAF DRI|Coal
+Final Energy|Industry|Iron and Steel|EAF DRI|Electricity
+Final Energy|Industry|Iron and Steel|EAF DRI|Gas
+Final Energy|Industry|Iron and Steel|EAF DRI|Hydrogen
+Final Energy|Industry|Iron and Steel|EAF DRI|Oil
+Final Energy|Industry|Iron and Steel|EAF Scrap|Electricity
+Final Energy|Industry|Iron and Steel|EAF Scrap|Gas
+Final Energy|Industry|Iron and Steel|EAF Scrap|Oil
+Final Energy|Industry|Mining|Biomass
+Final Energy|Industry|Mining|Coal
+Final Energy|Industry|Mining|District Heat
+Final Energy|Industry|Mining|Electricity
+Final Energy|Industry|Mining|Gas
+Final Energy|Industry|Mining|Hydrogen
+Final Energy|Industry|Mining|Oil
+Final Energy|Industry|Other Industry|Biomass
+Final Energy|Industry|Other Industry|Coal
+Final Energy|Industry|Other Industry|District Heat
+Final Energy|Industry|Other Industry|Electricity
+Final Energy|Industry|Other Industry|Gas
+Final Energy|Industry|Other Industry|Hydrogen
+Final Energy|Industry|Other Industry|Oil
+Final Energy|Industry|Pulp and Paper|Biomass
+Final Energy|Industry|Pulp and Paper|Coal
+Final Energy|Industry|Pulp and Paper|District Heat
+Final Energy|Industry|Pulp and Paper|Electricity
+Final Energy|Industry|Pulp and Paper|Gas
+Final Energy|Industry|Pulp and Paper|Oil
+Final Energy|Transport|Aviation|International Aviation|BEV|Electricity
+Final Energy|Transport|Aviation|International Aviation|Hydrogen|Hydrogen
+Final Energy|Transport|Aviation|International Aviation|Liquids|Oil
+Final Energy|Transport|Freight|Domestic Ship|BEV|Electricity
+Final Energy|Transport|Freight|Domestic Ship|FCEV|Hydrogen
+Final Energy|Transport|Freight|Domestic Ship|Hybrid Liquids|Oil
+Final Energy|Transport|Freight|Domestic Ship|Liquids|Oil
+Final Energy|Transport|Freight|Freight Rail|BEV|Electricity
+Final Energy|Transport|Freight|Freight Rail|Coal|Coal
+Final Energy|Transport|Freight|Freight Rail|Electric|Electricity
+Final Energy|Transport|Freight|Freight Rail|FCEV|Hydrogen
+Final Energy|Transport|Freight|Freight Rail|Hybrid Liquids|Oil
+Final Energy|Transport|Freight|Freight Rail|Liquids|Oil
+Final Energy|Transport|Freight|Heavy truck|BEV|Electricity
+Final Energy|Transport|Freight|Heavy truck|FCEV|Hydrogen
+Final Energy|Transport|Freight|Heavy truck|Hybrid Liquids|Oil
+Final Energy|Transport|Freight|Heavy truck|Liquids|Oil
+Final Energy|Transport|Freight|Light truck|BEV|Electricity
+Final Energy|Transport|Freight|Light truck|FCEV|Hydrogen
+Final Energy|Transport|Freight|Light truck|Hybrid Liquids|Oil
+Final Energy|Transport|Freight|Light truck|Liquids|Oil
+Final Energy|Transport|Freight|Light truck|NG|Gas
+Final Energy|Transport|Freight|Medium truck|BEV|Electricity
+Final Energy|Transport|Freight|Medium truck|FCEV|Hydrogen
+Final Energy|Transport|Freight|Medium truck|Hybrid Liquids|Oil
+Final Energy|Transport|Freight|Medium truck|Liquids|Oil
+Final Energy|Transport|Passenger|2W and 3W|BEV|Electricity
+Final Energy|Transport|Passenger|2W and 3W|LA-BEV|Electricity
+Final Energy|Transport|Passenger|2W and 3W|Liquids|Oil
+Final Energy|Transport|Passenger|2W and 3W|NG|Gas
+Final Energy|Transport|Passenger|Bus|BEV|Electricity
+Final Energy|Transport|Passenger|Bus|FCEV|Hydrogen
+Final Energy|Transport|Passenger|Bus|Hybrid Liquids|Oil
+Final Energy|Transport|Passenger|Bus|Liquids|Oil
+Final Energy|Transport|Passenger|Bus|NG|Gas
+Final Energy|Transport|Passenger|Car|BEV|Electricity
+Final Energy|Transport|Passenger|Car|FCEV|Hydrogen
+Final Energy|Transport|Passenger|Car|Hybrid Liquids|Oil
+Final Energy|Transport|Passenger|Car|Liquids|Oil
+Final Energy|Transport|Passenger|Car|NG|Gas
+Final Energy|Transport|Passenger|Domestic Aviation|BEV|Electricity
+Final Energy|Transport|Passenger|Domestic Aviation|Hydrogen|Hydrogen
+Final Energy|Transport|Passenger|Domestic Aviation|Liquids|Oil
+Final Energy|Transport|Passenger|HSR|Electric|Electricity
+Final Energy|Transport|Passenger|Large Car and Truck|BEV|Electricity
+Final Energy|Transport|Passenger|Large Car and Truck|FCEV|Hydrogen
+Final Energy|Transport|Passenger|Large Car and Truck|Hybrid Liquids|Oil
+Final Energy|Transport|Passenger|Large Car and Truck|Liquids|Oil
+Final Energy|Transport|Passenger|Large Car and Truck|NG|Gas
+Final Energy|Transport|Passenger|Mini Car|BEV|Electricity
+Final Energy|Transport|Passenger|Mini Car|FCEV|Hydrogen
+Final Energy|Transport|Passenger|Mini Car|Hybrid Liquids|Oil
+Final Energy|Transport|Passenger|Mini Car|Liquids|Oil
+Final Energy|Transport|Passenger|Mini Car|NG|Gas
+Final Energy|Transport|Passenger|Passenger Rail|Electric|Electricity
+Final Energy|Transport|Passenger|Passenger Rail|Liquids|Oil
+Final Energy|Transport|Shipping|International Ship|BEV|Electricity
+Final Energy|Transport|Shipping|International Ship|FCEV|Hydrogen
+Final Energy|Transport|Shipping|International Ship|Hybrid Liquids|Oil
+Final Energy|Transport|Shipping|International Ship|Liquids|Oil
