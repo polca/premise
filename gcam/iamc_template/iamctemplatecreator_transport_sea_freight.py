@@ -48,7 +48,3 @@ def run_sea_freight(scenario_name):
         scenario_name,
         "iamc_template_gcam_transport_sea_freight.xlsx",
     )
-
-
-if __name__ == "__main__":
-    run_sea_freight("ssp24p5tol5")

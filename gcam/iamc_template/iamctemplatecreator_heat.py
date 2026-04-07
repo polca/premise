@@ -34,7 +34,3 @@ def run_heat(scenario_name):
     )
 
     combine_and_write([pivot_iamc(heat)], scenario_name, "iamc_template_gcam_heat.xlsx")
-
-
-if __name__ == "__main__":
-    run_heat("ssp24p5tol5")

@@ -49,6 +49,3 @@ def run_two_wheelers(scenario_name):
         "iamc_template_gcam_transport_two_wheelers.xlsx",
     )
 
-
-if __name__ == "__main__":
-    run_two_wheelers("ssp24p5tol5")

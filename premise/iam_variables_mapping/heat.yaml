@@ -379,6 +379,7 @@ energy, for DACCS, from gas boiler:
     remind-eu: FE|CDR|DAC|+|Gases
     witch: Final Energy|Carbon Management|Direct Air Capture|Sorbent|Heat|Gases
     message: Final Energy|Carbon Management|Direct Air Capture|Gases
+    gcam: Final Energy|Industry|CDR|Gas
 
 energy, for DACCS, from other:
   ecoinvent_aliases:
@@ -401,6 +402,7 @@ energy, for DACCS, from electricity:
       - Final Energy|Carbon Management|Direct Air Capture|Solvent|Electricity|CSP
       - Final Energy|Carbon Management|Direct Air Capture|Solvent|Electricity|PV
     message: Final Energy|Carbon Management|Direct Air Capture|Electricity
+    gcam: Final Energy|Industry|CDR|Electricity
 
 energy, for EWR, from electricity:
     ecoinvent_aliases:
