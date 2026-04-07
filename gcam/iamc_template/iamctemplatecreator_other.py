@@ -24,6 +24,15 @@ def run_other(scenario_name):
         ["Units", "scenario", "Year"],
     )
 
+    # GDP per capita is in thousand dollars, need in dollars
+    gdp["value"] = gdp["value"] * 1000
+    gdp = aggregate_with_world(
+        gdp,
+        ["Units", "scenario", "region", "Year"],
+        ["Units", "scenario", "Year"],
+    )
+
+
     gmst["region"] = "World"
     gmst = gmst[gmst["Year"].isin(population["Year"].unique())]
     co2 = aggregate_with_world(
@@ -41,7 +50,7 @@ def run_other(scenario_name):
     gdp = format_for_iamc(
         gdp,
         scenario_name,
-        "thousand 1990 US$ per capita",
+        "1990 US$ per capita",
         pd.Series("GDP|PPP", index=gdp.index),
     )
     gmst = format_for_iamc(
