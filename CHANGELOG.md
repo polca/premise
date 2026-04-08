@@ -2,6 +2,16 @@
 
 All notable changes to this project are documented in this file.
 
+## [2.4.0]
+
+### Changed
+- Refreshed solar PV module efficiency assumptions in `premise/data/renewables/efficiency_solar_PV.csv` using updated literature, recent record-module benchmarks, and tandem-module roadmap projections.
+- Added new PV efficiency anchor years (`2025`, `2027`, `2030`, `2035`) and a dedicated `perovskite-Si tandem` trajectory for advanced future scenarios.
+- Expanded the PV efficiency reference table with traceability metadata (`source`, `metric_level`, `maturity`, `basis`, `use_for_projection`, `review_notes`).
+
+### Documentation
+- Updated the transformation documentation for photovoltaic module efficiency assumptions and added a plot summarizing the trajectories used in `premise`.
+
 ## [2.3.9]
 
 - Allows creating a Simapro or OpenLCA-compatible database without needing a Brightway project or Biosphere database.
