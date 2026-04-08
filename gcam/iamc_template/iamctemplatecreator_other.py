@@ -35,6 +35,8 @@ def run_other(scenario_name):
 
     gmst["region"] = "World"
     gmst = gmst[gmst["Year"].isin(population["Year"].unique())]
+    # CO2 emissions are in MtC, need in MtCO2
+    co2["value"] = co2["value"] * 44 / 12
     co2 = aggregate_with_world(
         co2,
         ["Units", "scenario", "region", "Year"],
@@ -62,7 +64,7 @@ def run_other(scenario_name):
     co2 = format_for_iamc(
         co2,
         scenario_name,
-        "MtC/yr",
+        "MtCO2/yr",
         pd.Series("Emissions|CO2", index=co2.index),
     )
 

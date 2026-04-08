@@ -15,6 +15,9 @@ def run_cdr(scenario_name):
   cdr = pd.read_csv(data_dir / "co2 sequestration.csv")
   cdr_energy = pd.read_csv(data_dir / "cdr final energy.csv")
 
+  # CDR is in MtC, need in MtCO2
+  cdr['value'] = cdr['value'] * 44 / 12
+
   cdr["technology"] = cdr["technology"].replace(CDR_TECH_MAPPING)
   cdr_energy["technology"] = cdr_energy["technology"].replace(CDR_TECH_MAPPING)
 
@@ -32,7 +35,7 @@ def run_cdr(scenario_name):
   cdr = format_for_iamc(
     cdr,
     scenario_name,
-    "MtC/yr",
+    "MtCO2/yr",
     "Carbon Sequestration|Direct Air Capture|" + cdr["technology"],
   )
   cdr_energy = format_for_iamc(
