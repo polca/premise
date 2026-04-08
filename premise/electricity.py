@@ -1398,15 +1398,18 @@ class Electricity(BaseTransformation):
         :return:
         """
 
-        possible_techs = [
-            "micro-Si",
-            "single-Si",
-            "multi-Si",
-            "CIGS",
-            "CIS",
-            "CdTe",
-            "perovskite",
-            "GaAs",
+        tech_aliases = [
+            # Match tandem datasets before generic perovskite so they can use
+            # dedicated efficiency trajectories when available in the CSV.
+            ("perovskite-Si tandem", ["perovskite-on-silicon tandem"]),
+            ("micro-Si", ["micro-si"]),
+            ("single-Si", ["single-si"]),
+            ("multi-Si", ["multi-si"]),
+            ("CIGS", ["cigs"]),
+            ("CIS", ["cis"]),
+            ("CdTe", ["cdte"]),
+            ("perovskite", ["perovskite"]),
+            ("GaAs", ["gaas"]),
         ]
 
         # TODO: check if IAM data provides efficiencies for PV panels and use them instead
@@ -1438,12 +1441,24 @@ class Electricity(BaseTransformation):
             if "mwp" in dataset["name"].lower():
                 power *= 1000
 
-            pv_tech = [
-                i for i in possible_techs if i.lower() in dataset["name"].lower()
-            ]
+            dataset_name = dataset["name"].lower()
+            pv_tech = next(
+                (
+                    technology
+                    for technology, aliases in tech_aliases
+                    if any(alias in dataset_name for alias in aliases)
+                ),
+                None,
+            )
 
-            if len(pv_tech) > 0:
-                pv_tech = pv_tech[0]
+            # Older CSV files don't contain a dedicated tandem entry; in that
+            # case keep the previous behavior and use the generic perovskite
+            # trajectory for tandem datasets.
+            if (
+                pv_tech == "perovskite-Si tandem"
+                and pv_tech not in module_eff.coords["technology"].values
+            ):
+                pv_tech = "perovskite"
 
             if pv_tech:
                 scaling_factor = None
