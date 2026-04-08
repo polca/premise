@@ -633,16 +633,6 @@ temperature (GMST) increase by 2100:
      -
      -
      -
-   * - remind - SSP1-NDC
-     -
-     -
-     - ✓
-     -
-     -
-     -
-     -
-     -
-     -
    * - gcam - SSP2-RCP26
      -
      -

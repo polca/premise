@@ -923,39 +923,111 @@ improving its performance in the past, relative to today.
 Photovoltaics panels
 --------------------
 
-Photovoltaic panels are expected to improve over time. The following module efficiencies (mean, minimum, maximum)
-are considered for the different types of PV panels, applied as a triangular distribution on the panel surface
-required to reach the peak power output of the dataset:
+Photovoltaic installation and construction datasets are updated from the
+module-efficiency trajectories stored in
+``premise/data/renewables/efficiency_solar_PV.csv``. The latest revision of
+that file refreshes the PV assumptions with recent record-based and
+roadmap-based anchors and adds descriptive metadata for traceability.
 
-===================== ==================== ==================== =================== ================== ================== ================= ================== ================== =========================================
-  module efficiency      micro-Si            single-Si           multi-Si            CIGS               CIS                CdTe              GaAs               perovskite         Source
-===================== ==================== ==================== =================== ================== ================== ================= ================== ================== =========================================
-  2010                   10.0 (7.5-12.5)     15.0 (11.3-18.9)    14.0 (10.5-17.5)    11.0 (8.3-13.8)    11.0 (8.3-13.8)    10.0 (8.8-12.0)   28.0 (21.0-35.0)   25.0 (19.0-31.0)   [1], [2], [3], [4], [5], [6], [7], [8]
-  2020                   11.9 (9.0-15.0)     17.9 (13.0-22.0)    16.8 (12.0-21.0)    14.0 (10.5-18.0)   14.0 (10.5-18.0)   16.8 (13.0-21.0)  28.0 (21.0-35.0)   25.0 (19.0-31.0)   [1], [2], [3], [4], [5], [6], [7], [8]
-  2023                   -                   22.0 (17.0-24.0)    -                   15.0 (11.3-19.0)   -                  19.0 (15.0-20.0)  -                  -                  [2], [4], [6]
-  2050                   13.0 (9.0-16.0)     27.0 (20.0-34.0)    24.0 (16.0-30.0)    23.0 (17.3-29.0)   23.0 (17.3-29.0)   22.6 (22.0-25.0)  28.0 (25.0-28.0)   25.2 (22.0-31.3)   [1], [2], [3], [4], [5], [6], [7], [8]
-===================== ==================== ==================== =================== ================== ================== ================= ================== ================== =========================================
+*premise* currently reads only the columns ``technology``, ``year``, ``mean``,
+``min`` and ``max`` when building the efficiency time series. The additional
+columns ``source``, ``metric_level``, ``maturity``, ``basis``,
+``use_for_projection`` and ``review_notes`` are retained in the CSV for
+documentation and scenario curation, but are not yet consumed directly by the
+transformation code.
 
-.. [1] https://www.ise.fraunhofer.de/content/dam/ise/de/documents/publications/studies/Photovoltaics-Report.pdf
-.. [2] https://www.ise.fraunhofer.de/content/dam/ise/de/documents/publications/studies/Photovoltaics-Report.pdf
-.. [3] https://www.ise.fraunhofer.de/content/dam/ise/de/documents/publications/studies/Photovoltaics-Report.pdf
-.. [4] https://www.ise.fraunhofer.de/content/dam/ise/de/documents/publications/studies/Photovoltaics-Report.pdf. For future efficiency: own assumption, -+25%.
-.. [5] Future eff: Fraunhofer ISE Photovoltaics Report 2019; Uncertainty: Own assumption: -+25%.
-.. [6] https://www.sciencedirect.com/science/article/pii/S0927024823001101
-.. [7] https://link.springer.com/article/10.1007/s11367-020-01791-z
-.. [8] https://pubs.rsc.org/en/content/articlelanding/2022/se/d2se00096b; https://www.csem.ch/en/news/photovoltaic-technology-breakthrough-achieving-31.25-efficiency/
+The current anchor years in the CSV are 2010, 2020, 2023, 2025, 2027, 2030,
+2035 and 2050. The latest update notably adds:
 
+.. list-table:: Selected additions in the current PV efficiency file
+   :header-rows: 1
+
+   * - Technology family
+     - Anchor years
+     - Notes
+   * - ``single-Si``
+     - 2025, 2035
+     - 25.4% module record in 2025 (NREL Champion Module Efficiencies,
+       revision 2024-12-18) and a 25.23% mainstream silicon projection in 2035
+       (NREL Spring 2025 Solar Industry Update / ITRPV).
+   * - ``CIGS`` and ``CdTe``
+     - 2025
+     - 2025 record-module anchors of 19.2% and 19.9%, respectively.
+   * - ``GaAs``
+     - 2010, 2020, 2025
+     - Historical anchors were revised to keep a monotonic progression toward
+       the 25.1% 2025 record module value.
+   * - ``perovskite``
+     - 2025
+     - 21.1% single-junction module record in 2025; kept separate from tandem
+       modules.
+   * - ``perovskite-Si tandem``
+     - 2027, 2030, 2035
+     - New dedicated tandem trajectory for advanced scenarios: 27.0%, 30.0%
+       and 30.5%.
+   * - ``multi-Si``
+     - 2025
+     - 20.4% 2025 record retained as a legacy sensitivity case rather than a
+       mainstream future pathway.
+   * - ``micro-Si`` and ``CIS``
+     - existing 2010, 2020, 2050 anchors
+     - Retained as niche or legacy trajectories.
+
+The CSV sources now combine the historical Fraunhofer ISE / literature values
+already used in *premise* with newer NREL champion-module records and tandem
+roadmap projections (ITRPV and Oxford PV) for near- and medium-term updates.
+The main references currently cited in the CSV are:
+
+* Historical thin-film and silicon anchors: IEA PV roadmap
+  (https://iea.blob.core.windows.net/assets/3a99654f-ffff-469f-b83c-bf0386ed8537/pv_roadmap.pdf),
+  Treeze / IEA PVPS Task 12
+  (https://treeze.ch/fileadmin/user_upload/downloads/Publications/Case_Studies/Energy/Future-PV-LCA-IEA-PVPS-Task-12-March-2015.pdf)
+  and Fraunhofer ISE Photovoltaics Report
+  (https://www.ise.fraunhofer.de/content/dam/ise/de/documents/publications/studies/Photovoltaics-Report.pdf).
+* CdTe anchors: Solar Energy Materials and Solar Cells article
+  (https://www.sciencedirect.com/science/article/pii/S0927024823001101).
+* GaAs long-term anchor: The International Journal of Life Cycle Assessment
+  article (https://link.springer.com/article/10.1007/s11367-020-01791-z).
+* Perovskite long-term anchor: RSC Energy & Environmental Science article
+  (https://pubs.rsc.org/en/content/articlelanding/2022/se/d2se00096b) and CSEM
+  note on a 31.25% cell result
+  (https://www.csem.ch/en/news/photovoltaic-technology-breakthrough-achieving-31.25-efficiency/).
+* 2025 record-module anchors for ``single-Si``, ``multi-Si``, ``CIGS``,
+  ``CdTe``, ``GaAs`` and ``perovskite``: NREL Champion Module Efficiencies,
+  revision 2024-12-18
+  (https://www.nrel.gov/docs/libraries/pv/champion-module-efficiencies.pdf).
+* 2035 mainstream silicon and tandem projections: NREL Spring 2025 Solar
+  Industry Update / ITRPV (https://docs.nrel.gov/docs/fy25osti/95135.pdf).
+* 2027 tandem commercialization anchor: ITRPV 15th edition 2024
+  (https://www.qualenergia.it/wp-content/uploads/2024/06/ITRPV-15th-Edition-2024-2.pdf).
+* 2030 tandem midpoint: Oxford PV roadmap page
+  (https://www.oxfordpv.com/mainstream).
+
+For full row-level attribution, refer directly to
+``premise/data/renewables/efficiency_solar_PV.csv``.
+
+.. figure:: pv_module_efficiency_plot.png
+   :alt: Photovoltaic module efficiency trajectories used in premise
+   :width: 100%
+   :align: center
+
+   Overview of the photovoltaic module-efficiency trajectories currently
+   encoded in ``premise/data/renewables/efficiency_solar_PV.csv``, including
+   source labels and min-max uncertainty bands.
 
 The sources for these efficiencies are also given in the inventory file LCI_PV_:
 
 .. _LCI_PV: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-PV.xlsx
 
-And the efficiency values are stored in the file premise/data/renewables/efficiency_solar_PV.csv.
-
 Given a scenario year, *premise* iterates through the different PV panel installation
 datasets to update their efficiency accordingly.
 To do so, the required surface of panel (in m2) per kW of capacity is
-adjusted down (or up, if the efficiency is lower than current).
+adjusted down (or up, if the efficiency is lower than current). Dataset names
+are matched against technology aliases in ``premise/electricity.py``. With the
+latest update, datasets containing ``perovskite-on-silicon tandem`` are mapped
+to the dedicated ``perovskite-Si tandem`` trajectory when it is available in
+the CSV; when older CSV files are used they fall back to the generic
+``perovskite`` trajectory.
 
 To calculate the current efficiency of a PV installation, *premise* assumes a solar
 irradiation of 1000 W/m2. Hence, the current efficiency is calculated as::
@@ -968,26 +1040,32 @@ The *scaling factor* is calculated as::
 
 The required surface of PV panel in the dataset is then adjusted like so::
 
-    new_surface = current_surface * (1 / scaling_factor)
+    new_surface = current_surface * scaling_factor
 
-For scenario years beyond 2050, 2050 efficiency values are used.
+The mean, minimum and maximum module efficiencies are propagated as a
+triangular uncertainty on the panel surface exchange. For years between anchor
+points, *premise* interpolates the efficiency values linearly. For years
+outside the CSV range, it extrapolates them linearly and clips the resulting
+efficiencies to the 10-30% interval. The update is applied only when the
+projected mean efficiency is higher than the efficiency inferred from the
+existing dataset.
 
 
 The table below provides such an example where a 450 kWp flat-roof installation
-sees its current (2020) module efficiency improving from 20% to 26% by 2050.
-THe are of PV panel (and mounting system) has been multiplied by 1 / (0.26/0.20),
-all other inputs remaining unchanged.
+sees its current (2020) module efficiency improving from 20% to 27% by 2050.
+The area of PV panel (and mounting system) and the end-of-life treatment flow
+are multiplied by ``0.20 / 0.27 = 0.74``, all other inputs remaining unchanged.
 
  =================================================================== ========= ======== =======
   450kWp flat roof installation                                       before    after    unit
  =================================================================== ========= ======== =======
   photovoltaic flat-roof installation, 450 kWp, single-SI, on roof    1         1        unit
   inverter production, 500 kW                                         1.5       1.5      unit
-  photovoltaic mounting system, …                                     2300      1731     m2
-  photovoltaic panel, single-SI                                       2500      1881     m2
-  treatment, single-SI PV module                                      30000     30000    kg
+  photovoltaic mounting system, …                                     2300      1704     m2
+  photovoltaic panel, single-SI                                       2500      1852     m2
+  treatment, single-SI PV module                                      30000     22222    kg
   electricity, low voltage                                            25        25       kWh
-  module efficiency                                                   20%       26%      %
+  module efficiency                                                   20%       27%      %
  =================================================================== ========= ======== =======
 
 
