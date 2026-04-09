@@ -1516,9 +1516,11 @@ class Export:
                 main_category, sub_category = resolve_simapro_category(
                     ds["name"], ds["reference product"], dict_cat_simapro
                 )
-                if category_entry is None or not (
-                    category_entry.get("category") or ""
-                ).strip() or not (category_entry.get("sub_category") or "").strip():
+                if (
+                    category_entry is None
+                    or not (category_entry.get("category") or "").strip()
+                    or not (category_entry.get("sub_category") or "").strip()
+                ):
                     self.unmatched_category_flows.append(
                         (ds["name"], ds["reference product"])
                     )
