@@ -1884,7 +1884,9 @@ class IAMDataCollection:
                             # use method='nearest' so that if the exact year is absent
                             # (e.g. GCAM starts at 2021 instead of 2020) we fall back
                             # to the closest available year
-                            denom = eff_arr.loc[{"variables": var}].sel(year=int(ref_y), method="nearest")
+                            denom = eff_arr.loc[{"variables": var}].sel(
+                                year=int(ref_y), method="nearest"
+                            )
                             eff_arr.loc[{"variables": var}] = (
                                 eff_arr.loc[{"variables": var}] / denom
                             )
