@@ -2,6 +2,20 @@
 
 All notable changes to this project are documented in this file.
 
+## [2.4.0]
+
+### Changed
+- Expanded GCAM variable coverage across final energy, fuels, electricity, and heat mappings, including additional building, cement, CDR, transport, and biofuel aliases.
+- Updated GCAM regional mapping assets and topology alignment, including explicit `Ukraine` coverage and revised GCAM biofuel/climate region mappings.
+
+### Fixed
+- Improved IAM normalization for models that do not provide an exact 2020 datapoint by falling back to the nearest available year (notably relevant for GCAM inputs and emissions factors).
+- Moved end-of-pipe emissions updates to the end of the `NewDatabase.update()` workflow to avoid ordering issues (issue `#285`).
+- Improved electricity validation diagnostics by logging dropped electricity shares and missing supplier technologies when market shares do not sum correctly.
+
+### Other
+- Applied formatting cleanup in `premise/export.py`.
+
 ## [2.3.9]
 
 - Allows creating a Simapro or OpenLCA-compatible database without needing a Brightway project or Biosphere database.
