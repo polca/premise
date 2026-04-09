@@ -266,7 +266,6 @@ truck, compressed gas, 7.5 metric ton:
     remind: ES|Transport|Freight|Road|Light|Truck(7_5t)|Gases
     remind-eu: ES|Transport|Freight|Road|Light|Truck(7_5t)|Gases
     tiam-ucl: Distance|Transport|Truck|Commercial|Natural Gas|Natural Gas
-    gcam: Distance|Transport|Freight|Road|Medium truck|NG
   energy_use_aliases:
     remind: FE|Transport|Freight|Road|Light|Truck(7_5t)|Gases
     remind-eu: FE|Transport|Freight|Road|Light|Truck(7_5t)|Gases
@@ -409,7 +408,6 @@ truck, compressed gas, 18 metric ton:
     remind-eu: ES|Transport|Freight|Road|Heavy|Truck(18t)|Gases
     image: Energy Service|Transportation|Freight|Medium Truck|Hybrid engine|LNG
     tiam-ucl: Distance|Transport|Truck|Medium|Natural Gas|Natural Gas
-    gcam: Distance|Transport|Freight|Road|Heavy truck|NG
   energy_use_aliases:
     remind: FE|Transport|Freight|Road|Heavy|Truck(18t)|Gases
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(18t)|Gases

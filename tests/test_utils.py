@@ -1,6 +1,8 @@
 from unittest.mock import call, patch
 
 from premise import __version__
+from premise.export import exc_codes, fetch_exchange_code
+from premise.geomap import Geomap
 from premise.utils import *
 from premise.fuels.utils import get_crops_properties
 
@@ -103,3 +105,22 @@ def test_default_location():
 def test_print_version(mocked_print):
     print_version()
     assert mocked_print.mock_calls == [call(f"premise v.{__version__}")]
+
+
+def test_clear_runtime_caches():
+    geomap = Geomap("image")
+    geomap.iam_to_ecoinvent_location("WEU")
+    geomap.ecoinvent_to_iam_location("FR")
+    fetch_exchange_code("fake activity", "fake product", "FR", "kilogram")
+
+    assert Geomap.iam_to_ecoinvent_location.cache_info().currsize > 0
+    assert Geomap.ecoinvent_to_iam_location.cache_info().currsize > 0
+    assert fetch_exchange_code.cache_info().currsize > 0
+    assert exc_codes
+
+    clear_runtime_caches()
+
+    assert Geomap.iam_to_ecoinvent_location.cache_info().currsize == 0
+    assert Geomap.ecoinvent_to_iam_location.cache_info().currsize == 0
+    assert fetch_exchange_code.cache_info().currsize == 0
+    assert exc_codes == {}

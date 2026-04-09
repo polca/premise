@@ -149,6 +149,11 @@ those files in `source_file_path`, as well as indicate the database format in
         source_version="3.5",
     )
 
+.. note::
+
+    When using ``source_type="ecospold"``, no Brightway project or biosphere
+    database is needed unless you later export the result back to Brightway.
+
 Import of additional inventories
 """"""""""""""""""""""""""""""""
 

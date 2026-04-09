@@ -14,7 +14,11 @@ from .filesystem_constants import DATA_DIR
 from .geomap import Geomap
 from .logger import create_logger
 from .utils import rescale_exchanges, get_uuids
-from .inventory_imports import get_classifications, get_biosphere_code
+from .inventory_imports import (
+    get_biosphere_code,
+    get_classification_entry,
+    get_classifications,
+)
 import country_converter as coco
 import wurst.searching as ws
 
@@ -771,19 +775,18 @@ class BaseDatasetValidator:
 
         for ds in self.database:
             if "classifications" not in ds:
-                if (ds["name"], ds["reference product"]) in self.classifications:
+                classification = get_classification_entry(
+                    self.classifications, ds["name"], ds["reference product"]
+                )
+                if classification:
                     ds["classifications"] = [
                         (
                             "ISIC rev.4 ecoinvent",
-                            self.classifications[(ds["name"], ds["reference product"])][
-                                "ISIC rev.4 ecoinvent"
-                            ],
+                            classification["ISIC rev.4 ecoinvent"],
                         ),
                         (
                             "CPC",
-                            self.classifications[(ds["name"], ds["reference product"])][
-                                "CPC"
-                            ],
+                            classification["CPC"],
                         ),
                     ]
                 else:

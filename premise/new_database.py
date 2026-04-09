@@ -494,15 +494,22 @@ def _export_to_olca(obj):
 def check_presence_biosphere_database(biosphere_name: str) -> str:
     """
     Check that the biosphere database is present in the current project.
+
+    This validation is only required when exporting to Brightway.
     """
 
     if biosphere_name not in bw2data.databases:
-        print("premise requires the name of your biosphere database.")
-        print(
-            "Please enter the name of your biosphere database as it appears in your project."
+        current_project = getattr(bw2data.projects, "current", None)
+        project_message = (
+            f" in the current Brightway project '{current_project}'"
+            if current_project
+            else " in the current Brightway project"
         )
-        print(bw2data.databases)
-        biosphere_name = input("Name of the biosphere database: ")
+        raise ValueError(
+            "Brightway export requires a biosphere database "
+            f"named '{biosphere_name}'{project_message}. "
+            f"Available databases: {list(bw2data.databases)}."
+        )
 
     return biosphere_name
 
@@ -520,7 +527,7 @@ class NewDatabase:
     :vartype system_model_args: dict
     :ivar version: ecoinvent database version.
     :vartype version: str
-    :ivar biosphere_name: name of the biosphere database in the current project.
+    :ivar biosphere_name: name to use for biosphere exchanges during export.
     :vartype biosphere_name: str
     :ivar generate_reports: whether to generate change and summary reports.
     :vartype generate_reports: bool
@@ -569,7 +576,9 @@ class NewDatabase:
         :param keep_source_db_uncertainty: whether to keep uncertainty in the source database. Default is False.
         :param gains_scenario: gains scenario to use. Can be either 'CLE' or 'MFR'. Default is 'CLE'.
         :param use_absolute_efficiency: whether to use absolute efficiency values. Default is False.
-        :param biosphere_name: name of the biosphere database in the current project. Default is "biosphere3".
+        :param biosphere_name: name to use for biosphere exchanges during export.
+            It must match a biosphere database in the current Brightway project
+            only when exporting to Brightway. Default is "biosphere3".
         :param generate_reports: whether to generate change and summary reports. Default is True.
         """
         self.sector_update_methods = None
@@ -581,7 +590,7 @@ class NewDatabase:
         self.use_absolute_efficiency = use_absolute_efficiency
         self.keep_imports_uncertainty = keep_imports_uncertainty
         self.keep_source_db_uncertainty = keep_source_db_uncertainty
-        self.biosphere_name = check_presence_biosphere_database(biosphere_name)
+        self.biosphere_name = biosphere_name
         self.generate_reports = generate_reports
 
         # if version is anything other than 3.8 or 3.9
@@ -1113,6 +1122,8 @@ class NewDatabase:
                 "create a super-structure database."
             )
 
+        check_presence_biosphere_database(self.biosphere_name)
+
         for scenario in self.scenarios:
             scenario = load_database(
                 scenario=scenario, original_database=self.database, load_metadata=True
@@ -1206,6 +1217,8 @@ class NewDatabase:
             raise ValueError(
                 "The number of databases does not match the number of `name` given."
             )
+
+        check_presence_biosphere_database(self.biosphere_name)
 
         print("Write new database(s) to Brightway.")
 

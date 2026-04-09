@@ -194,12 +194,18 @@ def get_shares_from_production_volume(
         production_volume = 0
 
         if "production volume" in act:
-            production_volume = max(float(act["production volume"]), 1e-9)
+            production_volume = float(act["production volume"])
+            if not np.isfinite(production_volume):
+                production_volume = 1e-9
+            production_volume = max(production_volume, 1e-9)
         else:
             for exc in ws.production(act):
                 # even if non-existent, we set a minimum value of 1e-9
                 # because if not, we risk dividing by zero!!!
-                production_volume = max(float(exc.get("production volume", 1e-9)), 1e-9)
+                production_volume = float(exc.get("production volume", 1e-9))
+                if not np.isfinite(production_volume):
+                    production_volume = 1e-9
+                production_volume = max(production_volume, 1e-9)
 
         suppliers.append(
             {
