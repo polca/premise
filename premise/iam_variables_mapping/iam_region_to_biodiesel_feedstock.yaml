@@ -61,21 +61,30 @@ message:
 gcam:
   EU-15: rapeseed
   EU-12: rapeseed
-  Europe_Eastern: rapeseed
   European Free Trade Association: rapeseed
   Europe_Non_EU: rapeseed
+  Ukraine: rapeseed
   USA: soybean
   Canada: soybean
   Mexico: soybean
   Central America and Caribbean: soybean
+  Central Asia: rapeseed
   Brazil: soybean
   Argentina: soybean
+  Australia_NZ: soybean
   Colombia: soybean
   South America_Northern: soybean
   South America_Southern: soybean
   China: soybean
+  India: palm oil
+  Japan: palm oil
+  Middle East: palm oil
+  Pakistan: palm oil
+  Russia: rapeseed
+  South Asia: palm oil
   Southeast Asia: palm oil
   Indonesia: palm oil
+  South Korea: palm oil
   Taiwan: palm oil
   Africa_Northern: palm oil
   Africa_Eastern: palm oil

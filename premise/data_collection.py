@@ -1654,7 +1654,7 @@ class IAMDataCollection:
 
         if use_absolute_efficiency is False:
             # efficiency expressed
-            eff_data /= eff_data.sel(year=2020)
+            eff_data /= eff_data.sel(year=2020, method="nearest")
 
             if len(efficiency_labels) == 0 or any(
                 "specific" in x.lower() for x in efficiency_labels.values()
@@ -1881,7 +1881,10 @@ class IAMDataCollection:
                         ref_y = meta.get("reference year")
                         if ref_y is not None:
                             # normalize by value at reference year
-                            denom = eff_arr.loc[{"variables": var}].sel(year=int(ref_y))
+                            # use method='nearest' so that if the exact year is absent
+                            # (e.g. GCAM starts at 2021 instead of 2020) we fall back
+                            # to the closest available year
+                            denom = eff_arr.loc[{"variables": var}].sel(year=int(ref_y), method="nearest")
                             eff_arr.loc[{"variables": var}] = (
                                 eff_arr.loc[{"variables": var}] / denom
                             )

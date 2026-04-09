@@ -13,8 +13,6 @@
   "Colombia": ["CO"],
   "EU-12": ["BG", "CY", "CZ", "EE", "HU", "LT", "LV", "MT", "PL", "RO", "SK", "SI"],
   "EU-15": ["AD", "AT", "BE", "DK", "FI", "FR", "DE", "GR", "GL", "IE", "IT", "LU", "MC", "NL", "PT", "SE", "ES", "GB", "GI"],
-  "Ukraine": ["UA"],
-  "European Free Trade Association": ["IS", "NO", "CH"],
   "Europe_Non_EU": ["AL", "BY", "BA", "HR", "MK", "MD", "ME", "RS", "TR", "XK"],
   "India": ["IN"],
   "Indonesia": ["ID"],
@@ -31,5 +29,7 @@
   "South Korea": ["KR"],
   "Taiwan": ["TW"],
   "USA": ["US"],
+  "Ukraine":  ["UA"],
+  "European Free Trade Association": ["IS", "NO", "CH"],
   "World": ["GLO", "RoW"]
 }
