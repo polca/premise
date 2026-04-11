@@ -154,6 +154,35 @@ def get_simapro_category_of_exchange():
     return dict_cat
 
 
+def resolve_simapro_category(
+    name: str,
+    product: str,
+    categories: dict,
+    default_main: str = "material",
+    default_sub: str = r"Others\Transformation",
+) -> tuple[str, str]:
+    """
+    Return a valid SimaPro category pair for an exchange or dataset.
+
+    Some rows in ``simapro_categories.csv`` exist but have empty category fields.
+    For export purposes, these must be treated like missing mappings, otherwise
+    the resulting CSV contains an empty ``Category type`` line that SimaPro
+    refuses to import.
+    """
+
+    entry = categories.get((name.lower(), product.lower()))
+    if entry is None:
+        return default_main, default_sub
+
+    main_category = (entry.get("category") or "").strip()
+    sub_category = (entry.get("sub_category") or "").strip()
+
+    if not main_category or not sub_category:
+        return default_main, default_sub
+
+    return main_category, sub_category
+
+
 def get_simapro_biosphere_dictionnary():
     """
     Load a dictionary with biosphere flows to use for Simapro export.
@@ -1481,17 +1510,17 @@ class Export:
 
             for ds in self.db:
                 ds_uuid = uuids[(ds["name"], ds["reference product"], ds["location"])]
-                try:
-                    main_category, sub_category = (
-                        dict_cat_simapro[
-                            (ds["name"].lower(), ds["reference product"].lower())
-                        ]["category"],
-                        dict_cat_simapro[
-                            (ds["name"].lower(), ds["reference product"].lower())
-                        ]["sub_category"],
-                    )
-                except KeyError:
-                    main_category, sub_category = ("material", "Others\Transformation")
+                category_entry = dict_cat_simapro.get(
+                    (ds["name"].lower(), ds["reference product"].lower())
+                )
+                main_category, sub_category = resolve_simapro_category(
+                    ds["name"], ds["reference product"], dict_cat_simapro
+                )
+                if (
+                    category_entry is None
+                    or not (category_entry.get("category") or "").strip()
+                    or not (category_entry.get("sub_category") or "").strip()
+                ):
                     self.unmatched_category_flows.append(
                         (ds["name"], ds["reference product"])
                     )

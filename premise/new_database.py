@@ -1001,10 +1001,6 @@ class NewDatabase:
                 "func": _update_battery,
                 "args": (self.version, self.system_model),
             },
-            "emissions": {
-                "func": _update_emissions,
-                "args": (self.version, self.system_model, self.gains_scenario),
-            },
             "cars": {
                 "func": _update_vehicles,
                 "args": ("car", self.version, self.system_model),
@@ -1039,6 +1035,10 @@ class NewDatabase:
                     self.version,
                     self.system_model,
                 ),
+            },
+            "emissions": {
+                "func": _update_emissions,
+                "args": (self.version, self.system_model, self.gains_scenario),
             },
         }
 

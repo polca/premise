@@ -11,6 +11,9 @@ Buildings - Heating - District Heating:
       - Final Energy|Residential|Space Heating|Heat
     remind-eu: FE|Buildings|Heating|District Heating
     message: Final Energy|Residential and Commercial|Heat
+    gcam:
+      - Final Energy|Buildings|Commercial Heating|District Heat
+      - Final Energy|Buildings|Residential Heating|District Heat
 
 Buildings - Heating - Heat pump:
   ecoinvent_aliases:
@@ -34,6 +37,9 @@ Buildings - Heating - Resistance:
   iam_aliases:
     remind: FE|Buildings|Heating|Electricity|Resistance
     remind-eu: FE|Buildings|Heating|Electricity|Resistance
+    gcam:
+      - Final Energy|Buildings|Commercial Heating|Electricity
+      - Final Energy|Buildings|Residential Heating|Electricity
 #    message: Final Energy|Residential and Commercial|Electricity|Thermal|Resistance
 
 Buildings - Heating - Gases:
@@ -49,6 +55,9 @@ Buildings - Heating - Gases:
     remind-eu: FE|Buildings|Heating|Gases
     message:
       - Final Energy|Residential and Commercial|Gases|Gas
+    gcam:
+      - Final Energy|Buildings|Commercial Heating|Gas
+      - Final Energy|Buildings|Residential Heating|Gas
 
 Buildings - Heating - Other:
   ecoinvent_aliases:
@@ -69,6 +78,9 @@ Buildings - Heating - H2:
       - Final Energy|Commercial|Space Heating|Hydrogen
       - Final Energy|Residential|Space Heating|Hydrogen
     remind-eu: FE|Buildings|Heating|Hydrogen
+    gcam:
+      - Final Energy|Buildings|Commercial Heating|Hydrogen
+      - Final Energy|Buildings|Residential Heating|Hydrogen
     message:
 #      - Final Energy|Residential and Commercial|Hydrogen|Combustion
 #      - Final Energy|Residential and Commercial|Hydrogen|Fuel Cell
@@ -119,6 +131,9 @@ Buildings - Heating - Oil:
       - Final Energy|Commercial|Space Heating|Liquids|Fossil
       - Final Energy|Residential|Space Heating|Liquid (fossil)
     remind-eu: FE|Buildings|Liquids|Fossil|+|Oil
+    gcam:
+      - Final Energy|Buildings|Commercial Heating|Oil
+      - Final Energy|Buildings|Residential Heating|Oil
     message: Final Energy|Residential and Commercial|Liquids|Oil
 
 Buildings - Heating - Syn Fuel:
@@ -141,6 +156,9 @@ Buildings - Heating - Solid Coal:
       - Final Energy|Commercial|Space Heating|Solids|Fossil
       - Final Energy|Residential|Space Heating|Coal
     remind-eu: FE|Buildings|Solids|Coal
+    gcam:
+      - Final Energy|Buildings|Commercial Heating|Coal
+      - Final Energy|Buildings|Residential Heating|Coal
     message: Final Energy|Residential and Commercial|Solids|Coal
 
 Buildings - Heating - Solid biomass modern:
@@ -154,6 +172,9 @@ Buildings - Heating - Solid biomass modern:
       - Final Energy|Commercial|Space Heating|Solids|Biomass|Modern
       - Final Energy|Residential|Space Heating|Modern Biomass
     remind-eu: FE|Buildings|Solids|Biomass|+|Modern
+    gcam:
+      - Final Energy|Buildings|Commercial Heating|Biomass
+      - Final Energy|Buildings|Residential Heating|Biomass
     message: Final Energy|Residential and Commercial|Solids|Biomass|Modern
 
 Buildings - Heating - Solid biomass traditional:
@@ -183,6 +204,9 @@ Buildings - Other - Elec:
       - Final Energy|Residential|Cleaning Appliances|Electricity
       - Final Energy|Residential|Small Appliances|Electricity
     remind-eu: FE|Buildings|non-Heating|Electricity|Conventional
+    gcam:
+      - Final Energy|Buildings|Commercial Other|Electricity
+      - Final Energy|Buildings|Residential Other|Electricity
     message:
 #      - Final Energy|Residential and Commercial|Electricity|Specific
       - Final Energy|Residential and Commercial|Electricity
@@ -272,6 +296,9 @@ Buildings - Cooling - Elec:
       - Final Energy|Commercial|Cooling|Electricity
       - Final Energy|Residential|Cooling Appliance|Electricity
       - Final Energy|Residential|Refrigeration|Electricity
+    gcam:
+      - Final Energy|Buildings|Commercial Cooling|Electricity
+      - Final Energy|Buildings|Residential Cooling|Electricity
 Buildings - Cooking - Elec:
   ecoinvent_aliases:
     fltr:
@@ -340,6 +367,7 @@ CDR - DAC - Elec:
     remind: FE|CDR|DAC|+|Electricity
     remind-eu: FE|CDR|DAC|+|Electricity
     image: Final Energy|Carbon Management|Direct Air Capture
+    gcam: Final Energy|Industry|CDR|Electricity
 CDR - DAC - Gases:
   ecoinvent_aliases:
     fltr:
@@ -350,6 +378,7 @@ CDR - DAC - Gases:
     message: Final Energy|Carbon Management|Direct Air Capture|Gases
     remind: FE|CDR|DAC|+|Gases
     remind-eu: FE|CDR|DAC|+|Gases
+    gcam: Final Energy|Industry|CDR|Gas
 CDR - DAC - Heat:
   ecoinvent_aliases:
     fltr:
@@ -473,6 +502,7 @@ Industry - Cement - Elec:
         CCS|Electricity
       - Final Energy|Industry|Cement|Efficient dry feed rotary kiln|Electricity
     remind-eu: FE|Industry|Cement|+|Electricity
+    gcam: Final Energy|Industry|Cement|Electricity
 Industry - Cement - H2:
   ecoinvent_aliases:
     fltr:
@@ -491,6 +521,7 @@ Industry - Cement - H2:
         CCS|Hydrogen
       - Final Energy|Industry|Cement|Efficient dry feed rotary kiln|Hydrogen
     remind-eu: FE|Industry|Cement|+|Hydrogen
+    gcam: Final Energy|Industry|Cement|Hydrogen
 Industry - Cement - Bio CH4:
   ecoinvent_aliases:
     fltr:
@@ -522,6 +553,7 @@ Industry - Cement - Nat Gas:
         CCS|Natural Gas
       - Final Energy|Industry|Cement|Efficient dry feed rotary kiln|Natural Gas
     remind-eu: FE|Industry|Cement|Gases|+|Fossil
+    gcam: Final Energy|Industry|Cement|Gas
 Industry - Cement - SNG:
   ecoinvent_aliases:
     fltr:
@@ -557,6 +589,7 @@ Industry - Cement - Oil:
         CCS|Oil
       - Final Energy|Industry|Cement|Efficient dry feed rotary kiln|Oil
     remind-eu: FE|Industry|Cement|Liquids|+|Fossil
+    gcam: Final Energy|Industry|Cement|Oil
 Industry - Cement - Syn Fuel:
   ecoinvent_aliases:
     fltr:
@@ -608,6 +641,7 @@ Industry - Cement - Solid biomass:
       - Final Energy|Industry|Cement|Efficient dry feed rotary kiln|Modern Biomass
       - Final Energy|Industry|Cement|Efficient dry feed rotary kiln|Traditional Biomass
     remind-eu: FE|Industry|Cement|Solids|+|Biomass
+    gcam: Final Energy|Industry|Cement|Biomass
 Industry - Cement - Solid coal:
   ecoinvent_aliases:
     fltr:
@@ -626,6 +660,7 @@ Industry - Cement - Solid coal:
         CCS|Coal
       - Final Energy|Industry|Cement|Efficient dry feed rotary kiln|Coal
     remind-eu: FE|Industry|Cement|Solids|+|Fossil
+    gcam: Final Energy|Industry|Cement|Coal
 Industry - Cement - Secondary heat:
   ecoinvent_aliases:
     fltr:
@@ -654,6 +689,7 @@ Industry - Chemicals - Elec:
 #    message: Final Energy|Industry|Chemicals|Other Sector|Electricity # "Chemicals|Resins" and "Chemicals|Other Sector" refer to the same flows in MESSAGE
     remind: FE|Industry|Chemicals|+|Electricity # HIGHER LEVEL - I would be double counting
     remind-eu: FE|Industry|Chemicals|+|Electricity
+    gcam: Final Energy|Industry|Chemicals|Electricity
 #    image: Final Energy|Industry|Chemicals|Electricity
 #Industry - Chemicals - Heat:
 #  ecoinvent_aliases:
@@ -671,6 +707,7 @@ Industry - Chemicals - Chemicals - H2:
 #    message: Final Energy|Industry|Chemicals|Other Sector|Hydrogen
     remind: FE|Industry|Chemicals|+|Hydrogen
     remind-eu: FE|Industry|Chemicals|+|Hydrogen
+    gcam: Final Energy|Industry|Chemicals|Hydrogen
 #    image: Final Energy|Industry|Chemicals|Hydrogen
 Industry - Chemicals - Chemicals - Elec, high temp:
   ecoinvent_aliases:
@@ -681,6 +718,7 @@ Industry - Chemicals - Chemicals - Elec, high temp:
   iam_aliases:
     remind: FE|Industry|Chemicals|Electricity|+|High-temperature heat
     remind-eu: FE|Industry|Chemicals|Electricity|+|High-temperature heat
+    gcam: Final Energy|Industry|Chemicals|Electricity
 #Industry - Chemicals - Chemicals - Liquid coal:
 #  ecoinvent_aliases:
 #    fltr:
@@ -729,6 +767,7 @@ Industry - Chemicals - Chemicals - Nat Gas:
 #      - Final Energy|Industry|Chemicals|Other Sector|Liquids|gas-methanol
     remind: FE|Industry|Chemicals|Gases|+|Fossil
     remind-eu: FE|Industry|Chemicals|Gases|+|Fossil
+    gcam: Final Energy|Industry|Chemicals|Gas
 #    image: Final Energy|Industry|Chemicals|Gases|Fossil
 Industry - Chemicals - Chemicals - SNG:
   ecoinvent_aliases:
@@ -759,6 +798,7 @@ Industry - Chemicals - Chemicals - Liquid fossil:
 #    message: Final Energy|Industry|Chemicals|Other Sector|Liquids|Oil
     remind: FE|Industry|Chemicals|Liquids|+|Fossil
     remind-eu: FE|Industry|Chemicals|Liquids|+|Fossil
+    gcam: Final Energy|Industry|Chemicals|Oil
 #    image: Final Energy|Industry|Chemicals|Liquids|Fossil
 Industry - Chemicals - Chemicals - Syn Fuel:
   ecoinvent_aliases:
@@ -780,6 +820,7 @@ Industry - Chemicals - Chemicals - Solid Biomass:
 #    message: Final Energy|Industry|Chemicals|Other Sector|Solids|Biomass
     remind: FE|Industry|Chemicals|Solids|+|Biomass
     remind-eu: FE|Industry|Chemicals|Solids|+|Biomass
+    gcam: Final Energy|Industry|Chemicals|Biomass
 Industry - Chemicals - Chemicals - Solid coal:
   ecoinvent_aliases:
     fltr:
@@ -789,6 +830,7 @@ Industry - Chemicals - Chemicals - Solid coal:
 #    message: Final Energy|Industry|Chemicals|Other Sector|Solids|Coal
     remind: FE|Industry|Chemicals|Solids|+|Fossil
     remind-eu: FE|Industry|Chemicals|Solids|+|Fossil
+    gcam: Final Energy|Industry|Chemicals|Coal
 
 Industry - Chemicals - Formaldehyde - Elec:
   ecoinvent_aliases:
@@ -900,6 +942,7 @@ Industry - Chemicals - Ammonia - Nat Gas:
   iam_aliases:
     message: Final Energy|Industry|Chemicals|Ammonia|Gases|Gas
     image: Final Energy|Industry|Chemicals|Ammonia|Gases|Fossil
+    gcam: Final Energy|Industry|Ammonia|Gas
 Industry - Chemicals - Ammonia - Biofuel:
   ecoinvent_aliases:
     fltr:
@@ -916,6 +959,7 @@ Industry - Chemicals - Ammonia - Liquid fossil:
   iam_aliases:
     message: Final Energy|Industry|Chemicals|Ammonia|Liquids|Oil
     image: Final Energy|Industry|Chemicals|Ammonia|Liquids|Fossil
+    gcam: Final Energy|Industry|Ammonia|Oil
 Industry - Chemicals - Ammonia - Solid coal:
   ecoinvent_aliases:
     fltr:
@@ -924,6 +968,7 @@ Industry - Chemicals - Ammonia - Solid coal:
   iam_aliases:
     message: Final Energy|Industry|Chemicals|Ammonia|Solids|Coal
     image: Final Energy|Industry|Chemicals|Ammonia|Solids|Fossil
+    gcam: Final Energy|Industry|Ammonia|Coal
 Industry - Chemicals - Ammonia - Solid Biomass:
   ecoinvent_aliases:
     fltr:
@@ -1085,6 +1130,7 @@ Industry - Aluminum - Elec:
     mask: period
   iam_aliases:
     message: Final Energy|Industry|Non-Ferrous Metals|Aluminium|Electricity
+    gcam: Final Energy|Industry|Aluminum|Electricity
 Industry - Aluminum - Biofuel:
   ecoinvent_aliases:
     fltr:
@@ -1129,6 +1175,7 @@ Industry - Aluminum - Liquid fossil:
       reference product: heat
   iam_aliases:
     message: Final Energy|Industry|Non-Ferrous Metals|Aluminium|Liquids|Oil
+    gcam: Final Energy|Industry|Aluminum|Oil
 Industry - Aluminum - Nat Gas:
   ecoinvent_aliases:
     fltr:
@@ -1140,6 +1187,7 @@ Industry - Aluminum - Nat Gas:
       - Final Energy|Industry|Non-Ferrous Metals|Aluminium|Gases|Gas
       - Final Energy|Industry|Non-Ferrous Metals|Aluminium|Liquids|Other
 #      - Final Energy|Industry|Non-Ferrous Metals|Aluminium|Liquids|gas-methanol
+    gcam: Final Energy|Industry|Aluminum|Gas
 Industry - Aluminum - Heat:
   ecoinvent_aliases:
     fltr:
@@ -1154,6 +1202,7 @@ Industry - Aluminum - Solid coal:
       reference product: heat
   iam_aliases:
     message: Final Energy|Industry|Non-Ferrous Metals|Aluminium|Solids|Coal
+    gcam: Final Energy|Industry|Aluminum|Coal
 Industry - Aluminum - Solid Biomass:
   ecoinvent_aliases:
     fltr:
@@ -1161,6 +1210,7 @@ Industry - Aluminum - Solid Biomass:
       reference product: heat
   iam_aliases:
     message: Final Energy|Industry|Non-Ferrous Metals|Aluminium|Solids|Biomass
+    gcam: Final Energy|Industry|Aluminum|Biomass
 
 Industry - Chemicals - Methanol - Elec:
   ecoinvent_aliases:
@@ -1284,6 +1334,7 @@ Industry - Food Processing - Elec:
     mask: period
   iam_aliases:
     image: Final Energy|Industry|Food Processing|Electricity
+    gcam: Final Energy|Industry|Food Processing|Electricity
 Industry - Food Processing - Nat Gas:
   ecoinvent_aliases:
     fltr:
@@ -1292,6 +1343,7 @@ Industry - Food Processing - Nat Gas:
     mask: market
   iam_aliases:
     image: Final Energy|Industry|Food Processing|Gases|Fossil
+    gcam: Final Energy|Industry|Food Processing|Gas
 Industry - Food Processing - Heat:
   ecoinvent_aliases:
     fltr:
@@ -1299,6 +1351,7 @@ Industry - Food Processing - Heat:
       reference product: heat, district or industrial, natural gas
   iam_aliases:
     image: Final Energy|Industry|Food Processing|Heat
+    gcam: Final Energy|Industry|Food Processing|District Heat
 Industry - Food Processing - H2:
   ecoinvent_aliases:
     fltr:
@@ -1313,6 +1366,7 @@ Industry - Food Processing - Liquid fossil:
       reference product: heat
   iam_aliases:
     image: Final Energy|Industry|Food Processing|Liquids|Fossil
+    gcam: Final Energy|Industry|Food Processing|Oil
 Industry - Food Processing - Solid coal:
   ecoinvent_aliases:
     fltr:
@@ -1320,6 +1374,7 @@ Industry - Food Processing - Solid coal:
       reference product: heat
   iam_aliases:
     image: Final Energy|Industry|Food Processing|Solids|Fossil
+    gcam: Final Energy|Industry|Food Processing|Coal
 Industry - Food Processing - Solid Biomass:
   ecoinvent_aliases:
     fltr:
@@ -1327,6 +1382,7 @@ Industry - Food Processing - Solid Biomass:
       reference product: heat
   iam_aliases:
     image: Final Energy|Industry|Food Processing|Solids|Biomass
+    gcam: Final Energy|Industry|Food Processing|Biomass
 
 Industry - Non-Metallic Minerals - Electricity:
   ecoinvent_aliases:
@@ -1391,6 +1447,7 @@ Industry - Other - Elec:
     remind: FE|Industry|Other Industry|+|Electricity # HIGHER LEVEL - I would be double counting
     remind-eu: FE|Industry|Other Industry|+|Electricity
     image: Final Energy|Industry|Other Sector|Electricity
+    gcam: Final Energy|Industry|Other Industry|Electricity
 Industry - Other - Heat:
   ecoinvent_aliases:
     fltr:
@@ -1401,6 +1458,7 @@ Industry - Other - Heat:
     remind: FE|Industry|Other Industry|+|Heat
     remind-eu: FE|Industry|Other Industry|+|Heat
     image: Final Energy|Industry|Other Sector|Heat
+    gcam: Final Energy|Industry|Other Industry|District Heat
 Industry - Other - H2:
   ecoinvent_aliases:
     fltr:
@@ -1411,6 +1469,7 @@ Industry - Other - H2:
     remind: FE|Industry|Other Industry|+|Hydrogen
     remind-eu: FE|Industry|Other Industry|+|Hydrogen
     image: Final Energy|Industry|Other Sector|Hydrogen
+    gcam: Final Energy|Industry|Other Industry|Hydrogen
 Industry - Other - Elec, high temp:
   ecoinvent_aliases:
     fltr:
@@ -1420,6 +1479,7 @@ Industry - Other - Elec, high temp:
   iam_aliases:
     remind: FE|Industry|Other Industry|Electricity|+|High-temperature heat
     remind-eu: FE|Industry|Other Industry|Electricity|+|High-temperature heat
+    gcam: Final Energy|Industry|Other Industry|Electricity
 Industry - Other - Elec, low temp:
   ecoinvent_aliases:
     fltr:
@@ -1451,6 +1511,7 @@ Industry - Other - Nat Gas:
     remind: FE|Industry|Other Industry|Gases|+|Fossil
     remind-eu: FE|Industry|Other Industry|Gases|+|Fossil
     image: Final Energy|Industry|Other Sector|Gases|Fossil
+    gcam: Final Energy|Industry|Other Industry|Gas
 Industry - Other - SNG:
   ecoinvent_aliases:
     fltr:
@@ -1481,6 +1542,7 @@ Industry - Other - Liquid fossil:
     remind: FE|Industry|Other Industry|Liquids|+|Fossil
     remind-eu: FE|Industry|Other Industry|Liquids|+|Fossil
     image: Final Energy|Industry|Other Sector|Liquids|Fossil
+    gcam: Final Energy|Industry|Other Industry|Oil
 Industry - Other - Syn Fuel:
   ecoinvent_aliases:
     fltr:
@@ -1500,6 +1562,7 @@ Industry - Other - Solid Biomass:
     remind-eu: FE|Industry|Other Industry|Solids|+|Biomass
     image:
       - Final Energy|Industry|Other Sector|Solids|Biomass
+    gcam: Final Energy|Industry|Other Industry|Biomass
 Industry - Other - Solid coal:
   ecoinvent_aliases:
     fltr:
@@ -1510,6 +1573,7 @@ Industry - Other - Solid coal:
     remind: FE|Industry|Other Industry|Solids|+|Fossil
     remind-eu: FE|Industry|Other Industry|Solids|+|Fossil
     image: Final Energy|Industry|Other Sector|Solids|Fossil
+    gcam: Final Energy|Industry|Other Industry|Coal
 
 Industry - Paper - Elec:
   ecoinvent_aliases:
@@ -1519,6 +1583,7 @@ Industry - Paper - Elec:
     mask: period
   iam_aliases:
     image: Final Energy|Industry|Pulp and Paper|Electricity
+    gcam: Final Energy|Industry|Pulp and Paper|Electricity
 Industry - Paper - Nat Gas:
   ecoinvent_aliases:
     fltr:
@@ -1527,6 +1592,7 @@ Industry - Paper - Nat Gas:
     mask: market
   iam_aliases:
     image: Final Energy|Industry|Pulp and Paper|Gases|Fossil
+    gcam: Final Energy|Industry|Pulp and Paper|Gas
 Industry - Paper - Heat:
   ecoinvent_aliases:
     fltr:
@@ -1534,6 +1600,7 @@ Industry - Paper - Heat:
       reference product: heat, district or industrial, natural gas
   iam_aliases:
     image: Final Energy|Industry|Pulp and Paper|Heat
+    gcam: Final Energy|Industry|Pulp and Paper|District Heat
 Industry - Paper - H2:
   ecoinvent_aliases:
     fltr:
@@ -1555,6 +1622,7 @@ Industry - Paper - Solid coal:
       reference product: heat
   iam_aliases:
     image: Final Energy|Industry|Pulp and Paper|Solids|Fossil
+    gcam: Final Energy|Industry|Pulp and Paper|Coal
 Industry - Paper - Solid Biomass:
   ecoinvent_aliases:
     fltr:
@@ -1562,6 +1630,7 @@ Industry - Paper - Solid Biomass:
       reference product: heat
   iam_aliases:
     image: Final Energy|Industry|Pulp and Paper|Solids|Biomass
+    gcam: Final Energy|Industry|Pulp and Paper|Biomass
 
 Industry - Steel - BF/BOF - Elec:
   ecoinvent_aliases:
@@ -1574,6 +1643,7 @@ Industry - Steel - BF/BOF - Elec:
     image:
       - Final Energy|Industry|Iron and Steel|BF/BOF Standard|Electricity
       - Final Energy|Industry|Iron and Steel|BF/BOF Modernized|Electricity
+    gcam: Final Energy|Industry|Iron and Steel|BF/BOF|Electricity
 Industry - Steel - BF/BOF + CCS - Elec:
   ecoinvent_aliases:
     fltr:
@@ -1590,6 +1660,7 @@ Industry - Steel - DRI EAF - Elec:
     mask: period
   iam_aliases:
     image: Final Energy|Industry|Iron and Steel|DRI EAF|Electricity
+    gcam: Final Energy|Industry|Iron and Steel|EAF DRI|Electricity
 Industry - Steel - DRI EAF + CCS - Elec:
   ecoinvent_aliases:
     fltr:
@@ -1606,6 +1677,7 @@ Industry - Steel - EAF - Elec:
     mask: period
   iam_aliases:
     image: Final Energy|Industry|Iron and Steel|EAF scrap|Electricity
+    gcam: Final Energy|Industry|Iron and Steel|EAF Scrap|Electricity
 Industry - Steel - Electrowinning - Elec:
   ecoinvent_aliases:
     fltr:
@@ -1665,6 +1737,7 @@ Industry - Steel - BF/BOF - Coal:
     image:
       - Final Energy|Industry|Iron and Steel|BF/BOF Standard|Coal
       - Final Energy|Industry|Iron and Steel|BF/BOF Modernized|Coal
+    gcam: Final Energy|Industry|Iron and Steel|BF/BOF|Coal
 Industry - Steel - BF/BOF + CCS - Coal:
   ecoinvent_aliases:
     fltr:
@@ -1679,6 +1752,7 @@ Industry - Steel - DRI EAF - Coal:
       reference product: heat
   iam_aliases:
     image: Final Energy|Industry|Iron and Steel|DRI EAF|Coal
+    gcam: Final Energy|Industry|Iron and Steel|EAF DRI|Coal
 Industry - Steel - DRI EAF + CCS - Coal:
   ecoinvent_aliases:
     fltr:
@@ -1693,6 +1767,7 @@ Industry - Steel - EAF - Coal:
       reference product: heat
   iam_aliases:
     image: Final Energy|Industry|Iron and Steel|EAF scrap|Coal
+
 Industry - Steel - Electrowinning - Coal:
   ecoinvent_aliases:
     fltr:
@@ -1746,6 +1821,7 @@ Industry - Steel - BF/BOF - H2:
     image:
       - Final Energy|Industry|Iron and Steel|BF/BOF Standard|Hydrogen
       - Final Energy|Industry|Iron and Steel|BF/BOF Modernized|Hydrogen
+    gcam: Final Energy|Industry|Iron and Steel|BF/BOF|Hydrogen
 Industry - Steel - BF/BOF + CCS - H2:
   ecoinvent_aliases:
     fltr:
@@ -1760,6 +1836,7 @@ Industry - Steel - DRI EAF - H2:
       reference product: heat
   iam_aliases:
     image: Final Energy|Industry|Iron and Steel|DRI EAF|Hydrogen
+    gcam: Final Energy|Industry|Iron and Steel|EAF DRI|Hydrogen
 Industry - Steel - DRI EAF + CCS - H2:
   ecoinvent_aliases:
     fltr:
@@ -1829,6 +1906,7 @@ Industry - Steel - BF/BOF - Biomass:
       - Final Energy|Industry|Iron and Steel|BF/BOF Standard|Traditional Biomass
       - Final Energy|Industry|Iron and Steel|BF/BOF Modernized|Modern Biomass
       - Final Energy|Industry|Iron and Steel|BF/BOF Modernized|Traditional Biomass
+    gcam: Final Energy|Industry|Iron and Steel|BF/BOF|Biomass
 Industry - Steel - BF/BOF + CCS - Biomass:
   ecoinvent_aliases:
     fltr:
@@ -1931,6 +2009,7 @@ Industry - Steel - BF/BOF - Nat Gas:
     image:
       - Final Energy|Industry|Iron and Steel|BF/BOF Standard|Natural Gas
       - Final Energy|Industry|Iron and Steel|BF/BOF Modernized|Natural Gas
+    gcam: Final Energy|Industry|Iron and Steel|BF/BOF|Gas
 Industry - Steel - BF/BOF + CCS - Nat Gas:
   ecoinvent_aliases:
     fltr:
@@ -1949,6 +2028,7 @@ Industry - Steel - DRI EAF - Nat Gas:
   iam_aliases:
     image:
       - Final Energy|Industry|Iron and Steel|DRI EAF|Natural Gas
+    gcam: Final Energy|Industry|Iron and Steel|EAF DRI|Gas
 Industry - Steel - DRI EAF + CCS - Nat Gas:
   ecoinvent_aliases:
     fltr:
@@ -1967,6 +2047,7 @@ Industry - Steel - EAF - Nat Gas:
   iam_aliases:
     image:
       - Final Energy|Industry|Iron and Steel|EAF scrap|Natural Gas
+    gcam: Final Energy|Industry|Iron and Steel|EAF Scrap|Gas
 Industry - Steel - Electrowinning - Nat Gas:
   ecoinvent_aliases:
     fltr:
@@ -2031,6 +2112,7 @@ Industry - Steel - BF/BOF - Oil:
     image:
       - Final Energy|Industry|Iron and Steel|BF/BOF Standard|Oil
       - Final Energy|Industry|Iron and Steel|BF/BOF Modernized|Oil
+    gcam: Final Energy|Industry|Iron and Steel|BF/BOF|Oil
 Industry - Steel - BF/BOF + CCS - Oil:
   ecoinvent_aliases:
     fltr:
@@ -2047,6 +2129,7 @@ Industry - Steel - DRI EAF - Oil:
   iam_aliases:
     image:
       - Final Energy|Industry|Iron and Steel|DRI EAF|Oil
+    gcam: Final Energy|Industry|Iron and Steel|EAF DRI|Oil
 Industry - Steel - DRI EAF + CCS - Oil:
   ecoinvent_aliases:
     fltr:
@@ -2063,6 +2146,7 @@ Industry - Steel - EAF - Oil:
   iam_aliases:
     image:
       - Final Energy|Industry|Iron and Steel|EAF scrap|Oil
+    gcam: Final Energy|Industry|Iron and Steel|EAF Scrap|Oil
 Industry - Steel - Electrowinning - Oil:
   ecoinvent_aliases:
     fltr:
@@ -2485,6 +2569,7 @@ Transport - Freight - Domestic Shipping - Elec:
       reference product: electricity, low voltage
   iam_aliases:
     image: Final Energy|Transportation|Freight|National Shipping|Electricity
+    gcam: Final Energy|Transport|Freight|Domestic Ship|BEV|Electricity
 Transport - Freight - Domestic Shipping - H2:
   ecoinvent_aliases:
     fltr:
@@ -2493,6 +2578,7 @@ Transport - Freight - Domestic Shipping - H2:
   iam_aliases:
     image: Final Energy|Transportation|Freight|National Shipping|Hydrogen
     tiam-ucl: Final Energy|Transport|Ship|Domestic|Hydrogen|Shipping Hydrogen
+    gcam: Final Energy|Transport|Freight|Domestic Ship|FCEV|Hydrogen
 Transport - Freight - Domestic Shipping - Biofuel:
   ecoinvent_aliases:
     fltr:
@@ -2518,6 +2604,9 @@ Transport - Freight - Domestic Shipping - Liquid fossil:
       - Final Energy|Transport|Ship|Domestic|Gasoline
       - Final Energy|Transport|Ship|Domestic|Heavy Fuel Oil|Heavy Fuel Oil
     remind-eu: FE|Transport|Freight|Domestic Shipping|Liquids|Fossil
+    gcam:
+      - Final Energy|Transport|Freight|Domestic Ship|Liquids|Oil
+      - Final Energy|Transport|Freight|Domestic Ship|Hybrid Liquids|Oil
 Transport - Freight - Domestic Shipping - Syn Fuel:
   ecoinvent_aliases:
     fltr:
@@ -2563,6 +2652,10 @@ Transport - Freight - Int. Shipping - Liquid fossil:
       - Final Energy|Transport|Ship|International|Heavy Fuel Oil|Heavy Fuel Oil
     remind-eu: FE|Transport|Bunkers|Freight|International Shipping|Liquids|Fossil
     message: Final Energy|Bunkers|Liquids|Oil
+    gcam: 
+      - Final Energy|Transport|Shipping|International Ship|Liquids|Oil
+      - Final Energy|Transport|Shipping|International Ship|Hybrid Liquids|Oil
+
 Transport - Freight - Int. Shipping - Syn Fuel:
   ecoinvent_aliases:
     fltr:
@@ -2582,6 +2675,7 @@ Transport - Freight - Int. Shipping - Elec:
       reference product: electricity, low voltage
   iam_aliases:
     image: Final Energy|Transportation|Freight|International Shipping|Electricity
+    gcam: Final Energy|Transport|Shipping|International Ship|BEV|Electricity
 Transport - Freight - Int. Shipping - H2:
   ecoinvent_aliases:
     fltr:
@@ -2591,6 +2685,7 @@ Transport - Freight - Int. Shipping - H2:
     image: Final Energy|Transportation|Freight|International Shipping|Hydrogen
     tiam-ucl: Final Energy|Transport|Ship|International|Hydrogen|Shipping Hydrogen
     message: Final Energy|Bunkers|Hydrogen
+    gcam: Final Energy|Transport|Shipping|International Ship|FCEV|Hydrogen
 Transport - Freight - Int. Shipping - LNG:
   ecoinvent_aliases:
     fltr:
@@ -2610,6 +2705,7 @@ Transport - Freight - Rail - Elec:
     image: Final Energy|Transportation|Freight|Train|Electricity
     tiam-ucl: Final Energy|Transport|Rail|Freight|Electricity
     remind-eu: FE|Transport|Freight|Rail|Electricity
+    gcam: Final Energy|Transport|Freight|Freight Rail|BEV|Electricity
 Transport - Freight - Rail - Biofuel:
   ecoinvent_aliases:
     fltr:
@@ -2631,6 +2727,9 @@ Transport - Freight - Rail - Liquid fossil:
     image: Final Energy|Transportation|Freight|Train|Liquids|Fossil
     tiam-ucl: Final Energy|Transport|Rail|Freight|Diesel
     remind-eu: FE|Transport|Freight|Rail|Liquids|Fossil
+    gcam:
+      - Final Energy|Transport|Freight|Freight Rail|Liquids|Oil
+      - Final Energy|Transport|Freight|Freight Rail|Hybrid Liquids|Oil
 Transport - Freight - Rail - Syn Fuel:
   ecoinvent_aliases:
     fltr:
@@ -2646,6 +2745,7 @@ Transport - Freight - Rail - H2:
       reference product: heat
   iam_aliases:
     image: Final Energy|Transportation|Freight|Train|Hydrogen
+    gcam: Final Energy|Transport|Freight|Freight Rail|FCEV|Hydrogen
 Transport - Freight - Truck(18t) - Elec:
   ecoinvent_aliases:
     fltr:
@@ -2655,6 +2755,7 @@ Transport - Freight - Truck(18t) - Elec:
     remind: FE|Transport|Freight|Road|Heavy|Truck(18t)|Electricity
     image: Final Energy|Transportation|Freight|Medium Truck|Electricity
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(18t)|Electricity
+    gcam: Final Energy|Transport|Freight|Heavy truck|BEV|Electricity
 Transport - Freight - Truck(18t) - Bio CH4:
   ecoinvent_aliases:
     fltr:
@@ -2694,6 +2795,7 @@ Transport - Freight - Truck(18t) - H2:
     image: Final Energy|Transportation|Freight|Medium Truck|Hydrogen
     tiam-ucl: Final Energy|Transport|Truck|Medium|Hydrogen Fuel Cell|Truck Hydrogen
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(18t)|Hydrogen
+    gcam: Final Energy|Transport|Freight|Heavy truck|FCEV|Hydrogen
 Transport - Freight - Truck(18t) - Biofuel:
   ecoinvent_aliases:
     fltr:
@@ -2721,6 +2823,9 @@ Transport - Freight - Truck(18t) - Liquid fossil:
       - Final Energy|Transport|Truck|Medium|Diesel|Diesel
       - Final Energy|Transport|Truck|Medium|Gasoline|Gasoline
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(18t)|Liquids|Fossil
+    gcam:
+      - Final Energy|Transport|Freight|Heavy truck|Liquids|Oil
+      - Final Energy|Transport|Freight|Heavy truck|Hybrid Liquids|Oil
 Transport - Freight - Truck(18t) - Syn Fuel:
   ecoinvent_aliases:
     fltr:
@@ -2889,6 +2994,7 @@ Transport - Freight - Truck(0-3_5t) - Elec:
       - Final Energy|Transport|Truck|Commercial|Gasoline Plug-in Hybrid|Electricity
       - Final Energy|Transport|Truck|Commercial|Hydrogen Fuel Cell|Electricity
     remind-eu: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Electricity
+    gcam: Final Energy|Transport|Freight|Light truck|BEV|Electricity
 Transport - Freight - Truck(0-3_5t) - Bio CH4:
   ecoinvent_aliases:
     fltr:
@@ -2909,6 +3015,7 @@ Transport - Freight - Truck(0-3_5t) - Nat Gas:
         Gas
       - Final Energy|Transport|Truck|Commercial|Natural Gas|Natural Gas
     remind-eu: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Gases|Fossil
+    gcam: Final Energy|Transport|Freight|Light truck|NG|Gas
 Transport - Freight - Truck(0-3_5t) - SNG:
   ecoinvent_aliases:
     fltr:
@@ -2925,6 +3032,7 @@ Transport - Freight - Truck(0-3_5t) - H2:
   iam_aliases:
     remind: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Hydrogen
     remind-eu: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Hydrogen
+    gcam: Final Energy|Transport|Freight|Light truck|FCEV|Hydrogen
 Transport - Freight - Truck(0-3_5t) - Biofuel:
   ecoinvent_aliases:
     fltr:
@@ -2945,6 +3053,9 @@ Transport - Freight - Truck(0-3_5t) - Liquid fossil:
       - Final Energy|Transport|Truck|Commercial|Diesel Plug-in Hybrid|Diesel
       - Final Energy|Transport|Truck|Commercial|Diesel|Diesel
     remind-eu: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Liquids|Fossil
+    gcam:
+      - Final Energy|Transport|Freight|Light truck|Liquids|Oil
+      - Final Energy|Transport|Freight|Light truck|Hybrid Liquids|Oil
 Transport - Freight - Truck(0-3_5t) - Syn Fuel:
   ecoinvent_aliases:
     fltr:
@@ -2966,6 +3077,7 @@ Transport - Freight - Truck(7_5t) - Elec:
       - Final Energy|Transport|Truck|Light|Diesel Plug-in Hybrid|Electricity
       - Final Energy|Transport|Truck|Light|Hydrogen Fuel Cell|Electricity
     remind-eu: FE|Transport|Freight|Road|Light|Truck(7_5t)|Electricity
+    gcam: Final Energy|Transport|Freight|Medium truck|BEV|Electricity
 Transport - Freight - Truck(7_5t) - Bio CH4:
   ecoinvent_aliases:
     fltr:
@@ -3003,6 +3115,7 @@ Transport - Freight - Truck(7_5t) - H2:
     remind: FE|Transport|Freight|Road|Light|Truck(7_5t)|Hydrogen
     tiam-ucl: Final Energy|Transport|Truck|Light|Hydrogen Fuel Cell|Car Hydrogen
     remind-eu: FE|Transport|Freight|Road|Light|Truck(7_5t)|Hydrogen
+    gcam: Final Energy|Transport|Freight|Medium truck|FCEV|Hydrogen
 Transport - Freight - Truck(7_5t) - Biofuel:
   ecoinvent_aliases:
     fltr:
@@ -3029,6 +3142,9 @@ Transport - Freight - Truck(7_5t) - Liquid fossil:
       - Final Energy|Transport|Truck|Light|Gasoline Plug-in Hybrid|Gasoline
       - Final Energy|Transport|Truck|Light|Gasoline|Gasoline
     remind-eu: FE|Transport|Freight|Road|Light|Truck(7_5t)|Liquids|Fossil
+    gcam:
+      - Final Energy|Transport|Freight|Medium truck|Liquids|Oil
+      - Final Energy|Transport|Freight|Medium truck|Hybrid Liquids|Oil
 Transport - Freight - Truck(7_5t) - Syn Fuel:
   ecoinvent_aliases:
     fltr:
@@ -3098,6 +3214,7 @@ Transport - Pass - Int Aviation - Liquid fossil:
     - Final Energy|Transport|Air|International|Aviation Gasoline
     - Final Energy|Transport|Air|International|Jet Kerosene
     remind-eu: FE|Transport|Bunkers|Pass|International Aviation|Liquids|Fossil
+    gcam: Final Energy|Transport|Aviation|International Aviation|Liquids|Oil
 Transport - Pass - Int Aviation - H2:
   ecoinvent_aliases:
     fltr:
@@ -3105,6 +3222,7 @@ Transport - Pass - Int Aviation - H2:
       reference product: heat
   iam_aliases:
     image: Final Energy|Transportation|Passenger|International Aviation|Hydrogen
+    gcam: Final Energy|Transport|Aviation|International Aviation|Hydrogen|Hydrogen
 Transport - Pass - Int Aviation - Elec:
   ecoinvent_aliases:
     fltr:
@@ -3112,6 +3230,7 @@ Transport - Pass - Int Aviation - Elec:
       reference product: electricity, low voltage
   iam_aliases:
     image: Final Energy|Transportation|Passenger|International Aviation|Electricity
+    gcam: Final Energy|Transport|Aviation|International Aviation|BEV|Electricity
 Transport - Pass - Int Aviation - Syn Fuel:
   ecoinvent_aliases:
     fltr:
@@ -3130,6 +3249,7 @@ Transport - Pass - Domestic Aviation - H2:
     remind: FE|Transport|Pass|Domestic Aviation|Hydrogen
     image: Final Energy|Transportation|Passenger|Domestic Aviation|Hydrogen
     remind-eu: FE|Transport|Pass|Domestic Aviation|Hydrogen
+    gcam: Final Energy|Transport|Passenger|Domestic Aviation|Hydrogen|Hydrogen
 Transport - Pass - Domestic Aviation - Biofuel:
   ecoinvent_aliases:
     fltr:
@@ -3152,6 +3272,7 @@ Transport - Pass - Domestic Aviation - Liquid fossil:
       - Final Energy|Transport|Air|Domestic|Jet Kerosene
       - Final Energy|Transport|Air|Domestic|Aviation Gasoline
     remind-eu: FE|Transport|Pass|Domestic Aviation|Liquids|Fossil
+    gcam: Final Energy|Transport|Passenger|Domestic Aviation|Liquids|Oil
 Transport - Pass - Domestic Aviation - Syn Fuel:
   ecoinvent_aliases:
     fltr:
@@ -3167,6 +3288,7 @@ Transport - Pass - Domestic Aviation - Elec:
       reference product: electricity, low voltage
   iam_aliases:
     image: Final Energy|Transportation|Passenger|Domestic Aviation|Electricity
+    gcam: Final Energy|Transport|Passenger|Domestic Aviation|BEV|Electricity
 Transport - Pass - Rail - Elec:
   ecoinvent_aliases:
     fltr:
@@ -3179,6 +3301,9 @@ Transport - Pass - Rail - Elec:
       - Final Energy|Transportation|Passenger|Rail (low speed)|Electricity
     tiam-ucl: Final Energy|Transport|Rail|Passenger|Electricity
     remind-eu: FE|Transport|Pass|Rail|Electricity
+    gcam:
+      - Final Energy|Transport|Passenger|HSR|Electric|Electricity
+      - Final Energy|Transport|Passenger|Passenger Rail|Electric|Electricity
 Transport - Pass - Rail - Biofuel:
   ecoinvent_aliases:
     fltr:
@@ -3204,6 +3329,7 @@ Transport - Pass - Rail - Liquid fossil:
       - Final Energy|Transportation|Passenger|Rail (low speed)|Liquids|Fossil
     tiam-ucl: Final Energy|Transport|Rail|Passenger|Diesel
     remind-eu: FE|Transport|Pass|Rail|Liquids|Fossil
+    gcam: Final Energy|Transport|Passenger|Passenger Rail|Liquids|Oil
 Transport - Pass - Rail - Syn Fuel:
   ecoinvent_aliases:
     fltr:
@@ -3230,6 +3356,7 @@ Transport - Pass - Bus - Elec:
     remind: FE|Transport|Pass|Road|Bus|Electricity
     image: Final Energy|Transportation|Passenger|Bus|Electricity
     remind-eu: FE|Transport|Pass|Road|Bus|Electricity
+    gcam: Final Energy|Transport|Passenger|Bus|BEV|Electricity
 Transport - Pass - Bus - Bio CH4:
   ecoinvent_aliases:
     fltr:
@@ -3250,6 +3377,7 @@ Transport - Pass - Bus - Nat Gas:
       - Final Energy|Transport|Bus|Liquefied Petroleum Gas|Liquefied Petroleum Gas
       - Final Energy|Transport|Bus|Natural Gas|Natural Gas
     remind-eu: FE|Transport|Pass|Road|Bus|Gases|Fossil
+    gcam: Final Energy|Transport|Passenger|Bus|NG|Gas
 Transport - Pass - Bus - SNG:
   ecoinvent_aliases:
     fltr:
@@ -3268,6 +3396,7 @@ Transport - Pass - Bus - H2:
     image: Final Energy|Transportation|Passenger|Bus|Hydrogen
     tiam-ucl: Final Energy|Transport|Bus|Hydrogen Fuel Cell|Bus Hydrogen
     remind-eu: FE|Transport|Pass|Road|Bus|Hydrogen
+    gcam: Final Energy|Transport|Passenger|Bus|FCEV|Hydrogen
 Transport - Pass - Bus - Biofuel:
   ecoinvent_aliases:
     fltr:
@@ -3292,6 +3421,9 @@ Transport - Pass - Bus - Liquid fossil:
       - Final Energy|Transport|Bus|Diesel|Diesel
       - Final Energy|Transport|Bus|Gasoline|Gasoline
     remind-eu: FE|Transport|Pass|Road|Bus|Liquids|Fossil
+    gcam:
+      - Final Energy|Transport|Passenger|Bus|Liquids|Oil
+      - Final Energy|Transport|Passenger|Bus|Hybrid Liquids|Oil
 Transport - Pass - Bus - Syn Fuel:
   ecoinvent_aliases:
     fltr:
@@ -3372,6 +3504,7 @@ Transport - Pass - Large Car - Elec:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Electricity
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Electricity
+    gcam: Final Energy|Transport|Passenger|Large Car and Truck|BEV|Electricity
 Transport - Pass - Large Car - Bio CH4:
   ecoinvent_aliases:
     fltr:
@@ -3388,6 +3521,7 @@ Transport - Pass - Large Car - Nat Gas:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Gases|Fossil
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Gases|Fossil
+    gcam: Final Energy|Transport|Passenger|Large Car and Truck|NG|Gas
 Transport - Pass - Large Car - SNG:
   ecoinvent_aliases:
     fltr:
@@ -3404,6 +3538,7 @@ Transport - Pass - Large Car - H2:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Hydrogen
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Hydrogen
+    gcam: Final Energy|Transport|Passenger|Large Car and Truck|FCEV|Hydrogen
 Transport - Pass - Large Car - Biofuel:
   ecoinvent_aliases:
     fltr:
@@ -3420,6 +3555,9 @@ Transport - Pass - Large Car - Liquid fossil:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Liquids|Fossil
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Liquids|Fossil
+    gcam:
+      - Final Energy|Transport|Passenger|Large Car and Truck|Liquids|Oil
+      - Final Energy|Transport|Passenger|Large Car and Truck|Hybrid Liquids|Oil
 Transport - Pass - Large Car - Syn Fuel:
   ecoinvent_aliases:
     fltr:
@@ -3576,6 +3714,7 @@ Transport - Pass - Midsize Car - Elec:
       - Final Energy|Transport|Car|Gasoline Plug-in Hybrid|Electricity
       - Final Energy|Transport|Car|Hydrogen Fuel Cell|Electricity
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Electricity
+    gcam: Final Energy|Transport|Passenger|Car|BEV|Electricity
 Transport - Pass - Midsize Car - Bio CH4:
   ecoinvent_aliases:
     fltr:
@@ -3596,6 +3735,7 @@ Transport - Pass - Midsize Car - Nat Gas:
       - Final Energy|Transport|Car|Liquefied Petroleum Gas|Liquefied Petroleum Gas
       - Final Energy|Transport|Car|Natural Gas|Natural Gas
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Gases|Fossil
+    gcam: Final Energy|Transport|Passenger|Car|NG|Gas
 Transport - Pass - Midsize Car - SNG:
   ecoinvent_aliases:
     fltr:
@@ -3614,6 +3754,7 @@ Transport - Pass - Midsize Car - H2:
     image: Final Energy|Transportation|Passenger|Light Duty Vehicle|Hydrogen
     tiam-ucl: Final Energy|Transport|Car|Hydrogen Fuel Cell|Car Hydrogen
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Hydrogen
+    gcam: Final Energy|Transport|Passenger|Car|FCEV|Hydrogen
 Transport - Pass - Midsize Car - Biofuel:
   ecoinvent_aliases:
     fltr:
@@ -3641,6 +3782,9 @@ Transport - Pass - Midsize Car - Liquid fossil:
       - Final Energy|Transport|Car|Gasoline Plug-in Hybrid|Gasoline
       - Final Energy|Transport|Car|Gasoline|Gasoline
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Liquids|Fossil
+    gcam:
+      - Final Energy|Transport|Passenger|Car|Liquids|Oil
+      - Final Energy|Transport|Passenger|Car|Hybrid Liquids|Oil
 Transport - Pass - Midsize Car - Syn Fuel:
   ecoinvent_aliases:
     fltr:
@@ -3657,6 +3801,7 @@ Transport - Pass - Mini Car - Elec:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Electricity
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Electricity
+    gcam: Final Energy|Transport|Passenger|Mini Car|BEV|Electricity
 Transport - Pass - Mini Car - Bio CH4:
   ecoinvent_aliases:
     fltr:
@@ -3673,6 +3818,7 @@ Transport - Pass - Mini Car - Nat Gas:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Gases|Fossil
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Gases|Fossil
+    gcam: Final Energy|Transport|Passenger|Mini Car|NG|Gas
 Transport - Pass - Mini Car - SNG:
   ecoinvent_aliases:
     fltr:
@@ -3689,6 +3835,7 @@ Transport - Pass - Mini Car - H2:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Hydrogen
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Hydrogen
+    gcam: Final Energy|Transport|Passenger|Mini Car|FCEV|Hydrogen
 Transport - Pass - Mini Car - Biofuel:
   ecoinvent_aliases:
     fltr:
@@ -3705,6 +3852,9 @@ Transport - Pass - Mini Car - Liquid fossil:
   iam_aliases:
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Liquids|Fossil
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Liquids|Fossil
+    gcam:
+      - Final Energy|Transport|Passenger|Mini Car|Liquids|Oil
+      - Final Energy|Transport|Passenger|Mini Car|Hybrid Liquids|Oil
 Transport - Pass - Mini Car - Diesel:
   ecoinvent_aliases:
     fltr:

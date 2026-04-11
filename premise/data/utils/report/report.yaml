@@ -91,8 +91,8 @@ Steel - efficiency:
   expl_text: Energy efficiency gains per technology relative to 2020. Used to calibrate the efficiency of the steel-producing datasets.
   offset: 10
 CDR - generation:
-  label: Millions of tons of CO2 (Mt CO2, cumul.) removed
-  expl_text: Cumulated mass of CO2 removed from the atmosphere.
+  label: Millions of tons of CO2 annually removed
+  expl_text: Mass of CO2 removed from the atmosphere annually.
   offset: 10
 Direct Air Capture - energy mix:
   label: Exajoules (EJ)
@@ -115,7 +115,7 @@ Heat (industrial) - generation:
   expl_text: Generated volumes of heat for industrial purposes, per technology. Used to calculate the heat supply mix for industrial processes.
   offset: 10
 Transport (two-wheelers):
-  label: Vehicle-kilometers (million)
+  label: Passenger-kilometers (million)
   expl_text: Number of vehicle-kilometers driven by two-wheelers. Used to calculate fleet-average vehicles.
   offset: 7
 Transport (two-wheelers) - eff:
@@ -123,7 +123,7 @@ Transport (two-wheelers) - eff:
   expl_text: Energy efficiency gains per technology relative to 2020. Used to calibrate the efficiency of the two-wheeler transport datasets.
   offset: 7
 Transport (cars):
-  label: Vehicle-kilometers (million)
+  label: Passenger-kilometers (million)
   expl_text: Number of vehicle-kilometers driven by passenger cars. Used to calculate fleet-average vehicles.
   offset: 7
 Transport (cars) - eff:
@@ -131,7 +131,7 @@ Transport (cars) - eff:
   expl_text: Energy efficiency gains per technology relative to 2020. Used to calibrate the efficiency of the car-based transport datasets.
   offset: 7
 Transport (buses):
-  label: Vehicles-kilometers (million)
+  label: Passenger-kilometers (million)
   expl_text: Number of vehicle-kilometers driven by buses. Used to calculate fleet-average vehicles.
   offset: 7
 Transport (buses) - eff:

@@ -32,14 +32,12 @@ Biomass CHP:
     remind-eu: Tech|Electricity|Biomass|Combined Heat and Power w/o CC|Efficiency
     tiam-ucl: Efficiency|Electricity|Biomass CHP|w/o CCS
     witch: Efficiency|Electricity|Biomass|w/o CCS
-    gcam: Efficiency|Electricity|Biomass CHP
   iam_aliases:
     image: Secondary Energy|Electricity|Biomass|w/o CCS|3
     remind: SE|Electricity|Biomass|++|Combined Heat and Power w/o CC
     remind-eu: SE|Electricity|Biomass|++|Combined Heat and Power w/o CC
     tiam-ucl: Secondary Energy|Electricity|Biomass CHP|w/o CCS
     witch: Secondary Energy|Electricity|Biomass|w/o CCS
-    gcam: Secondary Energy|Electricity|Biomass CHP
   max_efficiency: 0.3
 Biomass CHP (existing):
   ecoinvent_aliases:
@@ -80,10 +78,8 @@ Biomass CHP CCS:
     fltr:
     - heat and power co-generation, wood chips, 6667 kW
   eff_aliases:
-    gcam: Efficiency|Electricity|Biomass CHP CCS
     image: Efficiency|Electricity|Biomass|w/ CCS|2
   iam_aliases:
-    gcam: Secondary Energy|Electricity|Biomass CHP CCS
     image: Secondary Energy|Electricity|Biomass|w/ CCS|2
 
 Biomass IGCC:
@@ -170,11 +166,12 @@ Biomass ST:
     image: Efficiency|Electricity|Biomass|w/o CCS|1
     message: Efficiency|Electricity|Biomass|Solids|w/o CCS|2
     tiam-ucl: Efficiency|Electricity|Biomass combustion|w/o CCS
-
+    gcam: Efficiency|Electricity|Biomass ST
   iam_aliases:
     image: Secondary Energy|Electricity|Biomass|w/o CCS|1
     message: Secondary Energy|Electricity|Biomass|Solids|w/o CCS|2
     tiam-ucl: Secondary Energy|Electricity|Biomass combustion|w/o CCS
+    gcam: Secondary Energy|Electricity|Biomass ST
   max_efficiency: 0.3
 Biomass ST CCS:
   ecoinvent_aliases:
@@ -188,8 +185,10 @@ Biomass ST CCS:
     - market for lignocellulosic biomass, used as fuel
   eff_aliases:
     tiam-ucl: Efficiency|Electricity|Biomass combustion|w CCS
+    gcam: Efficiency|Electricity|Biomass ST CCS
   iam_aliases:
     tiam-ucl: Secondary Energy|Electricity|Biomass combustion|w CCS
+    gcam: Secondary Energy|Electricity|Biomass ST CCS
   max_efficiency: 0.25
 Coal CF 50-50:
   ecoinvent_aliases:
@@ -807,10 +806,6 @@ Nuclear_EPR:
     - market for nuclear fuel element, for pressure water reactor
     - market for nuclear fuel element, for boiling water reactor
     - market for uranium hexafluoride
-  eff_aliases:
-    gcam: Efficiency|Electricity|Nuclear EPR
-  iam_aliases:
-    gcam: Secondary Energy|Electricity|Nuclear EPR
 Nuclear_SMR:
   ecoinvent_aliases:
     fltr:

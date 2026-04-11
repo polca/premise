@@ -103,7 +103,7 @@ class Emissions(BaseTransformation):
         def _safe_divide(x):
             return xr.where((np.isnan(x)) | (x == 0), 1, x)
 
-        base = data.sel(year=2020)
+        base = data.sel(year=2020, method="nearest")
 
         if self.year in data.coords["year"]:
             year_slice = data.sel(year=self.year)

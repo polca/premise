@@ -8,9 +8,19 @@ All notable changes to this project are documented in this file.
 - Refreshed solar PV module efficiency assumptions in `premise/data/renewables/efficiency_solar_PV.csv` using updated literature, recent record-module benchmarks, and tandem-module roadmap projections.
 - Added new PV efficiency anchor years (`2025`, `2027`, `2030`, `2035`) and a dedicated `perovskite-Si tandem` trajectory for advanced future scenarios.
 - Expanded the PV efficiency reference table with traceability metadata (`source`, `metric_level`, `maturity`, `basis`, `use_for_projection`, `review_notes`).
+- Expanded GCAM variable coverage across final energy, fuels, electricity, and heat mappings, including additional building, cement, CDR, transport, and biofuel aliases.
+- Updated GCAM regional mapping assets and topology alignment, including explicit `Ukraine` coverage and revised GCAM biofuel/climate region mappings.
+
+### Fixed
+- Improved IAM normalization for models that do not provide an exact 2020 datapoint by falling back to the nearest available year (notably relevant for GCAM inputs and emissions factors).
+- Moved end-of-pipe emissions updates to the end of the `NewDatabase.update()` workflow to avoid ordering issues (issue `#285`).
+- Improved electricity validation diagnostics by logging dropped electricity shares and missing supplier technologies when market shares do not sum correctly.
 
 ### Documentation
 - Updated the transformation documentation for photovoltaic module efficiency assumptions and added a plot summarizing the trajectories used in `premise`.
+
+- Applied formatting cleanup in `premise/export.py`.
+
 
 ## [2.3.9]
 

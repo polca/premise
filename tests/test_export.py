@@ -21,6 +21,16 @@ def test_simapro_exchange_categories():
     assert agr["sub_category"] == "Chemicals\Organic\Transformation"
 
 
+def test_resolve_simapro_category_falls_back_on_blank_mapping():
+    main_category, sub_category = resolve_simapro_category(
+        "foo",
+        "bar",
+        {("foo", "bar"): {"category": "", "sub_category": ""}},
+    )
+    assert main_category == "material"
+    assert sub_category == "Others\Transformation"
+
+
 def test_simapro_biosphere_dict():
     s_bio = get_simapro_biosphere_dictionnary()
     assert s_bio["Propanol"] == "1-Propanol"

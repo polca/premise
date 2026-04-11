@@ -262,9 +262,11 @@ methane, from biomass:
     remind: SE|Gases|+|Biomass
     remind-eu: SE|Gases|+|Biomass
     message: Secondary Energy|Gases|Biomass
+    gcam: Secondary Energy|Production|Natural Gas|Biomass
   eff_aliases:
     remind: Tech|Gases|Biomass|w/o CC|Efficiency
     remind-eu: Tech|Gases|Biomass|w/o CC|Efficiency
+    gcam: Efficiency|Natural Gas|Biomass
   ecoinvent_aliases:
     fltr:
     - biomethane, gaseous
@@ -289,6 +291,8 @@ methane, from coal:
     value: 47.5
   co2: 0.06
   biogenic_share: 1
+  iam_aliases:
+    gcam: Secondary Energy|Production|Natural Gas|Coal
   ecoinvent_fuels_aliases:
     fltr:
     - methane, synthetic, gaseous, 5 bar, from coal-based hydrogen, at fuelling station
@@ -471,12 +475,14 @@ diesel, synthetic, from coal:
       CCS
     remind: Tech|Liquids|Fossil|Coal|w/o CC|Efficiency
     remind-eu: Tech|Liquids|Fossil|Coal|w/o CC|Efficiency
+    gcam: Efficiency|Refined Liquids|Coal to Liquids
   iam_aliases:
     tiam-ucl: Secondary Energy|Liquids|Coal|FT|Diesel|w/o CCS
     remind: SE|Liquids|Fossil|Coal|+|w/o CC
     remind-eu: SE|Liquids|Fossil|Coal|+|w/o CC
     message: Secondary Energy|Liquids|Coal|FT|w/o CCS
     witch: Secondary Energy|Liquids|Hydrogen|Fossil w/o CCS
+    gcam: Secondary Energy|Production|Refined Liquids|Coal to Liquids
   ecoinvent_aliases:
     fltr:
     - diesel production, synthetic, Fischer Tropsch process, hydrogen from coal gasification,
@@ -493,12 +499,14 @@ diesel, synthetic, from coal, with CCS:
       CCS
     remind: Tech|Liquids|Fossil|Coal|w/ CC|Efficiency
     remind-eu: Tech|Liquids|Fossil|Coal|w/ CC|Efficiency
+    gcam: Efficiency|Refined Liquids|Coal to Liquids CCS
   iam_aliases:
     tiam-ucl: Secondary Energy|Liquids|Coal|FT|Diesel|w CCS
     remind: SE|Liquids|Fossil|Coal|+|w/ CC
     remind-eu: SE|Liquids|Fossil|Coal|+|w/ CC
     message: Secondary Energy|Liquids|Coal|FT|w/ CCS
     witch: Secondary Energy|Liquids|Hydrogen|Fossil w/ CCS
+    gcam: Secondary Energy|Production|Refined Liquids|Coal to Liquids CCS
   ecoinvent_aliases:
     fltr:
     - diesel production, synthetic, Fischer Tropsch process, hydrogen from coal gasification,
@@ -517,12 +525,14 @@ diesel, synthetic, from wood:
     remind-eu: SE|Liquids|Biomass|BioFTR|w/o CC
     image: Secondary Energy|Consumption|Liquids|Biomass|FT Diesel|Woody|w/oCCS
     message: Secondary Energy|Liquids|Biomass|FT|w/o CCS
+    gcam: Secondary Energy|Production|Refined Liquids|FT Biodiesel
   eff_aliases:
     tiam-ucl: Efficiency|Liquids|Biomass|FT fuel mix (diesel, kerosene, naptha, ELC)|w/o
       CCS
     image: Efficiency|Liquids|Biomass|FT Diesel|Woody|w/o CCS
     remind: Tech|Liquids|Biomass|BioFTR|w/o CC|Efficiency
     remind-eu: Tech|Liquids|Biomass|BioFTR|w/o CC|Efficiency
+    gcam: Efficiency|Refined Liquids|FT Biodiesel
   ecoinvent_aliases:
     fltr:
     - diesel production, synthetic, Fischer Tropsch process, hydrogen from wood gasification,
@@ -539,12 +549,14 @@ diesel, synthetic, from wood, with CCS:
     remind-eu: SE|Liquids|Biomass|BioFTR|w/ CC
     image: Secondary Energy|Consumption|Liquids|Biomass|FT Diesel|Woody|w/CCS
     message: Secondary Energy|Liquids|Biomass|FT|w/ CCS
+    gcam: Secondary Energy|Production|Refined Liquids|FT Biodiesel CCS
   eff_aliases:
     tiam-ucl: Efficiency|Liquids|Biomass|FT fuel mix (diesel, kerosene, naptha, ELC)|w
       CCS
     image: Efficiency|Liquids|Biomass|FT Diesel|Woody|w/ CCS
     remind: Tech|Liquids|Biomass|BioFTR|w/ CC|Efficiency
     remind-eu: Tech|Liquids|Biomass|BioFTR|w/ CC|Efficiency
+    gcam: Efficiency|Refined Liquids|FT Biodiesel CCS
   ecoinvent_aliases:
     fltr:
     - diesel production, synthetic, Fischer Tropsch process, hydrogen from wood gasification,
@@ -587,9 +599,11 @@ diesel, synthetic, from natural gas:
     tiam-ucl: Secondary Energy|Liquids|Natural Gas|FT|Diesel|w/o CCS
     remind: SE|Liquids|Fossil|Gas|+|w/o CC
     remind-eu: SE|Liquids|Fossil|Gas|+|w/o CC
+    gcam: Secondary Energy|Production|Refined Liquids|Gas to Liquids
   eff_aliases:
     tiam-ucl: Efficiency|Liquids|Natural gas|FT fuel mix (diesel, kerosene, naptha,
       ELC)|w/o CCS
+    gcam: Efficiency|Refined Liquids|Gas to Liquids
   ecoinvent_aliases:
     fltr:
     - diesel production, synthetic, Fischer Tropsch process, from natural gas, energy
@@ -962,12 +976,14 @@ biodiesel, from oil crops:
     remind: SE|Liquids|Biomass|Non-Cellulosic|+|Oil-based
     remind-eu: SE|Liquids|Biomass|Non-Cellulosic|+|Oil-based
     image: Secondary Energy|Consumption|Liquids|Biomass|Biodiesel|Oilcrops|w/oCCS
+    gcam: Secondary Energy|Production|Refined Liquids|Biodiesel
   eff_aliases:
     tiam-ucl: Efficiency|Liquids|Biomass|FT fuel mix (diesel, kerosene, naptha, ELC)|w/o
       CCS
     remind: Tech|Liquids|Biomass|Biodiesel|Efficiency
     remind-eu: Tech|Liquids|Biomass|Biodiesel|Efficiency
     image: Efficiency|Liquids|Biomass|Biodiesel|Oilcrops|w/o CCS
+    gcam: Efficiency|Refined Liquids|Biodiesel
   ecoinvent_aliases:
     fltr:
       name:
@@ -1019,10 +1035,12 @@ bioethanol, from wood:
     image: Secondary Energy|Consumption|Liquids|Biomass|Ethanol|Woody|w/oCCS
     message: Secondary Energy|Liquids|Biomass|Ethanol|w/o CCS
     witch: Secondary Energy|Liquids|Biomass|Energy Crops
+    gcam: Secondary Energy|Production|Refined Liquids|Cellulosic Ethanol
   eff_aliases:
     remind: Tech|Liquids|Biomass|Lignocellulosic Ethanol|Efficiency
     remind-eu: Tech|Liquids|Biomass|Lignocellulosic Ethanol|Efficiency
     image: Efficiency|Liquids|Biomass|Ethanol|Woody|w/o CCS
+    gcam: Efficiency|Refined Liquids|Cellulosic Ethanol
   ecoinvent_aliases:
     fltr:
       name:
@@ -1048,8 +1066,10 @@ bioethanol, from wood, with CCS:
   iam_aliases:
     image: Secondary Energy|Consumption|Liquids|Biomass|Ethanol|Woody|w/CCS
     message: Secondary Energy|Liquids|Biomass|Ethanol|w/ CCS
+    gcam: Secondary Energy|Production|Refined Liquids|Cellulosic Ethanol CCS
   eff_aliases:
     image: Efficiency|Liquids|Biomass|Ethanol|Woody|w/ CCS
+    gcam: Efficiency|Refined Liquids|Cellulosic Ethanol CCS
   ecoinvent_aliases:
     fltr:
     - ethanol production, via fermentation, from forest, with carbon capture and storage
@@ -1141,8 +1161,10 @@ bioethanol, from grain:
   biogenic_share: 1
   iam_aliases:
     image: Secondary Energy|Consumption|Liquids|Biomass|Ethanol|Maize|w/oCCS
+    gcam: Secondary Energy|Production|Refined Liquids|Corn Ethanol
   eff_aliases:
     image: Efficiency|Liquids|Biomass|Ethanol|Maize|w/o CCS
+    gcam: Efficiency|Refined Liquids|Corn Ethanol
   ecoinvent_aliases:
     fltr:
       name:
@@ -1196,10 +1218,12 @@ bioethanol, from sugar:
     remind-eu: SE|Liquids|Biomass|Non-Cellulosic|+|Sugar and Starch
     image: Secondary Energy|Consumption|Liquids|Biomass|Ethanol|Sugar|w/oCCS
     witch: Secondary Energy|Liquids|Biomass|1st Generation
+    gcam: Secondary Energy|Production|Refined Liquids|Sugar Cane Ethanol
   eff_aliases:
     remind: Tech|Liquids|Biomass|Conventional Ethanol|Efficiency
     remind-eu: Tech|Liquids|Biomass|Conventional Ethanol|Efficiency
     image: Efficiency|Liquids|Biomass|Ethanol|Sugar|w/o CCS
+    gcam: Efficiency|Refined Liquids|Sugar Cane Ethanol
   ecoinvent_aliases:
     fltr:
       name:
