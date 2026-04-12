@@ -10,11 +10,13 @@ All notable changes to this project are documented in this file.
 - Expanded the PV efficiency reference table with traceability metadata (`source`, `metric_level`, `maturity`, `basis`, `use_for_projection`, `review_notes`).
 - Expanded GCAM variable coverage across final energy, fuels, electricity, and heat mappings, including additional building, cement, CDR, transport, and biofuel aliases.
 - Updated GCAM regional mapping assets and topology alignment, including explicit `Ukraine` coverage and revised GCAM biofuel/climate region mappings.
+- Reduced cold-cache memory pressure in `NewDatabase()` by extracting Brightway source databases into a more compact in-memory representation and clearing importer-side cached state after inventory imports.
 
 ### Fixed
 - Improved IAM normalization for models that do not provide an exact 2020 datapoint by falling back to the nearest available year (notably relevant for GCAM inputs and emissions factors).
 - Moved end-of-pipe emissions updates to the end of the `NewDatabase.update()` workflow to avoid ordering issues (issue `#285`).
 - Improved electricity validation diagnostics by logging dropped electricity shares and missing supplier technologies when market shares do not sum correctly.
+- Normalized the cold-cache `NewDatabase.update()` path so the first scenario reloads the cached source-database representation instead of keeping a special cache-miss in-memory form.
 
 ### Documentation
 - Updated the transformation documentation for photovoltaic module efficiency assumptions and added a plot summarizing the trajectories used in `premise`.
