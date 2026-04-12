@@ -808,7 +808,9 @@ def trim_exchanges(exc: Dict[str, Any]) -> Dict[str, Any]:
     }
 
 
-def _chunk_sequence(sequence: Sequence[Any], chunk_size: int) -> Iterable[Sequence[Any]]:
+def _chunk_sequence(
+    sequence: Sequence[Any], chunk_size: int
+) -> Iterable[Sequence[Any]]:
     for start in range(0, len(sequence), chunk_size):
         yield sequence[start : start + chunk_size]
 
@@ -938,7 +940,9 @@ def load_metadata(file_name: Path) -> Dict[str, Any]:
     :return: Metadata dictionary indexed by dataset identifiers.
     :rtype: dict
     """
-    cache_file = resolve_cache_ref(Path(str(file_name).replace(".pickle", " (metadata).pickle")))
+    cache_file = resolve_cache_ref(
+        Path(str(file_name).replace(".pickle", " (metadata).pickle"))
+    )
 
     if not cache_ref_exists(cache_file):
         raise FileNotFoundError(f"Cache file {cache_file} does not exist.")

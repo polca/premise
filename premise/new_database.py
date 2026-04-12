@@ -39,7 +39,11 @@ from .external_data_validation import check_external_scenarios
 from .filesystem_constants import DIR_CACHED_DB, IAM_OUTPUT_DIR, INVENTORY_DIR
 from .fuels.base import _update_fuels
 from .heat import _update_heat
-from .inventory_imports import AdditionalInventory, BaseInventoryImport, DefaultInventory
+from .inventory_imports import (
+    AdditionalInventory,
+    BaseInventoryImport,
+    DefaultInventory,
+)
 from .metals import _update_metals
 from .mining import _update_mining
 from .report import generate_change_report, generate_summary_report
@@ -1021,9 +1025,7 @@ class NewDatabase:
             and self._database_is_complete
             and self._can_reload_original_database()
         ):
-            if getattr(
-                self, "_reload_original_database_from_cache_for_update", False
-            ):
+            if getattr(self, "_reload_original_database_from_cache_for_update", False):
                 self.database = None
                 gc.collect()
                 scenario["database"] = self._load_original_database()
