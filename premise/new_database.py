@@ -39,7 +39,7 @@ from .external_data_validation import check_external_scenarios
 from .filesystem_constants import DIR_CACHED_DB, IAM_OUTPUT_DIR, INVENTORY_DIR
 from .fuels.base import _update_fuels
 from .heat import _update_heat
-from .inventory_imports import AdditionalInventory, DefaultInventory
+from .inventory_imports import AdditionalInventory, BaseInventoryImport, DefaultInventory
 from .metals import _update_metals
 from .mining import _update_mining
 from .report import generate_change_report, generate_summary_report
@@ -678,6 +678,8 @@ class NewDatabase:
         else:
             self.database = self.__clean_database()
 
+        imported_inventory_data = False
+
         print("- Extracting inventories")
         if use_cached_inventories:
             data = self.__find_cached_inventories(source_db)
@@ -687,18 +689,25 @@ class NewDatabase:
                 )
             if data is not None:
                 self.database.extend(data)
+            else:
+                imported_inventory_data = True
             # A cache miss imports inventories directly into ``self.database``
             # before writing the cache files, so the in-memory database is
             # complete in both the hit and miss cases here.
             self._database_is_complete = True
         else:
             self.__import_inventories()
+            imported_inventory_data = True
             self._database_is_complete = True
 
         if self.additional_inventories:
             print("- Importing additional inventories")
             data = self.__import_additional_inventories(self.additional_inventories)
             self.database.extend(data)
+            imported_inventory_data = True
+
+        if imported_inventory_data:
+            self._clear_inventory_importer_state()
 
         print("- Fetching IAM data")
         for scenario in self.scenarios:
@@ -954,6 +963,13 @@ class NewDatabase:
             raise ValueError("Cannot normalize imported inventories in memory.")
 
         self.database[-len(inventories) :] = inventories
+
+    @staticmethod
+    def _clear_inventory_importer_state() -> None:
+        """Release importer instances retained by method-level caches after import."""
+
+        BaseInventoryImport.correct_product_field.cache_clear()
+        gc.collect()
 
     def _can_reload_original_database(self) -> bool:
         return (
