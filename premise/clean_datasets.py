@@ -14,7 +14,10 @@ from wurst.brightway.extract_database import extract_brightway2_databases
 
 wurst.extract_brightway2_databases = extract_brightway2_databases
 import yaml
+from bw2data.backends import ActivityDataset, ExchangeDataset, SQLiteBackend
+from bw2data.configuration import labels
 from bw2data.database import DatabaseChooser
+from tqdm import tqdm
 from wurst import searching as ws
 
 from .data_collection import get_delimiter
@@ -189,6 +192,220 @@ def strip_string_from_spaces(database: List[dict]) -> List[dict]:
     return database
 
 
+def _extract_parameters(parameters: Any) -> Dict[str, Any]:
+    if isinstance(parameters, dict):
+        return {
+            name: value["amount"]
+            for name, value in parameters.items()
+            if isinstance(value, dict) and "amount" in value
+        }
+
+    return {
+        item["name"]: item["amount"]
+        for item in parameters
+        if isinstance(item, dict) and "name" in item and "amount" in item
+    }
+
+
+def _extract_activity_for_premise(
+    proxy: ActivityDataset, add_identifiers: bool = False
+) -> Dict[str, Any]:
+    obj = {
+        "location": proxy.location,
+        "database": proxy.database,
+        "code": proxy.code,
+        "name": proxy.name,
+        "reference product": proxy.product,
+        "unit": proxy.data.get("unit", ""),
+        "exchanges": [],
+        "type": proxy.type,
+    }
+
+    classifications = proxy.data.get("classifications")
+    if classifications:
+        obj["classifications"] = classifications
+
+    comment = proxy.data.get("comment")
+    if comment:
+        obj["comment"] = comment
+
+    categories = proxy.data.get("categories")
+    if categories:
+        obj["categories"] = categories
+
+    parameters = _extract_parameters(proxy.data.get("parameters", []))
+    if parameters:
+        obj["parameters"] = parameters
+
+    if add_identifiers:
+        obj["id"] = proxy.id
+
+    return obj
+
+
+def _extract_exchange_for_premise(
+    proxy: ExchangeDataset, add_properties: bool = False
+) -> Dict[str, Any]:
+    uncertainty_fields = (
+        "uncertainty type",
+        "loc",
+        "scale",
+        "shape",
+        "minimum",
+        "maximum",
+        "amount",
+        "pedigree",
+    )
+    data = {key: proxy.data[key] for key in uncertainty_fields if key in proxy.data}
+    assert "amount" in data, "Exchange has no `amount` field"
+
+    if "uncertainty type" not in data:
+        data["uncertainty type"] = 0
+        data["loc"] = data["amount"]
+
+    data["type"] = proxy.type
+
+    production_volume = proxy.data.get("production volume")
+    if production_volume is not None:
+        data["production volume"] = production_volume
+
+    data["input"] = (proxy.input_database, proxy.input_code)
+    data["output"] = (proxy.output_database, proxy.output_code)
+
+    if add_properties:
+        properties = proxy.data.get("properties")
+        if properties:
+            data["properties"] = properties
+
+    return data
+
+
+def _add_exchanges_to_consumers_for_premise(
+    activities: List[Dict[str, Any]],
+    exchange_qs,
+    add_properties: bool = False,
+) -> List[Dict[str, Any]]:
+    lookup = {(o["database"], o["code"]): o for o in activities}
+
+    with tqdm(total=exchange_qs.count()) as pbar:
+        for exc_proxy in exchange_qs:
+            exc = _extract_exchange_for_premise(
+                exc_proxy, add_properties=add_properties
+            )
+            output = tuple(exc.pop("output"))
+            lookup[output]["exchanges"].append(exc)
+            pbar.update(1)
+
+    return activities
+
+
+def _add_input_info_for_indigenous_exchanges_for_premise(
+    activities: List[Dict[str, Any]],
+    names,
+    add_identifiers: bool = False,
+) -> None:
+    names = set(names)
+    lookup = {(o["database"], o["code"]): o for o in activities}
+
+    for ds in activities:
+        for exc in ds["exchanges"]:
+            if "input" not in exc or exc["input"][0] not in names:
+                continue
+
+            obj = lookup[exc["input"]]
+            exc["product"] = obj.get("reference product")
+            exc["name"] = obj.get("name")
+            exc["unit"] = obj.get("unit")
+            exc["location"] = obj.get("location")
+
+            if add_identifiers:
+                exc["id"] = obj["id"]
+                exc["code"] = obj["code"]
+
+            if exc["type"] in labels.biosphere_edge_types and obj.get("categories"):
+                exc["categories"] = obj["categories"]
+
+            exc.pop("input")
+
+
+def _add_input_info_for_external_exchanges_for_premise(
+    activities: List[Dict[str, Any]],
+    names,
+    add_identifiers: bool = False,
+) -> None:
+    names = set(names)
+    cache = {}
+
+    for ds in tqdm(activities):
+        for exc in ds["exchanges"]:
+            if "input" not in exc or exc["input"][0] in names:
+                continue
+
+            if exc["input"] not in cache:
+                cache[exc["input"]] = ActivityDataset.get(
+                    ActivityDataset.database == exc["input"][0],
+                    ActivityDataset.code == exc["input"][1],
+                )
+
+            obj = cache[exc["input"]]
+            exc["name"] = obj.name
+            exc["product"] = obj.product
+            exc["unit"] = obj.data.get("unit")
+            exc["location"] = obj.location
+
+            if add_identifiers:
+                exc["id"] = obj.id
+                exc["code"] = obj.code
+
+            categories = obj.data.get("categories")
+            if exc["type"] in labels.biosphere_edge_types and categories:
+                exc["categories"] = categories
+
+
+def extract_brightway_databases_for_premise(
+    database_names,
+    add_properties: bool = False,
+    add_identifiers: bool = False,
+) -> List[Dict[str, Any]]:
+    if isinstance(database_names, str):
+        database_names = [database_names]
+
+    error = "Must pass list of database names"
+    assert isinstance(database_names, (list, tuple, set)), error
+
+    databases = [DatabaseChooser(name) for name in database_names]
+    error = "Wrong type of database object (must be SQLiteBackend)"
+    assert all(isinstance(obj, SQLiteBackend) for obj in databases), error
+
+    activity_qs = ActivityDataset.select().where(
+        ActivityDataset.database << database_names
+    )
+    exchange_qs = ExchangeDataset.select().where(
+        ExchangeDataset.output_database << database_names
+    )
+
+    print("Getting activity data")
+    activities = [
+        _extract_activity_for_premise(o, add_identifiers=add_identifiers)
+        for o in tqdm(activity_qs)
+    ]
+
+    print("Adding exchange data to activities")
+    _add_exchanges_to_consumers_for_premise(
+        activities, exchange_qs, add_properties=add_properties
+    )
+
+    print("Filling out exchange data")
+    _add_input_info_for_indigenous_exchanges_for_premise(
+        activities, database_names, add_identifiers=add_identifiers
+    )
+    _add_input_info_for_external_exchanges_for_premise(
+        activities, database_names, add_identifiers=add_identifiers
+    )
+
+    return activities
+
+
 class DatabaseCleaner:
     """Clean datasets contained in inventory databases for further processing."""
 
@@ -218,7 +435,7 @@ class DatabaseCleaner:
                 raise NameError(
                     "The database selected is empty. Make sure the name is correct"
                 )
-            self.database = wurst.extract_brightway2_databases(source_db)
+            self.database = extract_brightway_databases_for_premise(source_db)
             self.database = remove_categories(self.database)
             # strip strings form spaces
             self.database = strip_string_from_spaces(self.database)
