@@ -46,6 +46,7 @@ from .report import generate_change_report, generate_summary_report
 from .steel import _update_steel
 from .transport import _update_vehicles
 from .utils import (
+    cache_ref_exists,
     clear_existing_cache,
     clear_runtime_caches,
     create_scenario_list,
@@ -55,8 +56,10 @@ from .utils import (
     hide_messages,
     info_on_utils_functions,
     load_constants,
+    load_cached_database,
     load_database,
     print_version,
+    resolve_cache_ref,
     warning_about_biogenic_co2,
     end_of_process,
     create_cache,
@@ -725,21 +728,20 @@ class NewDatabase:
         )
 
         # check that file path leads to an existing file
-        if file_name.exists():
+        if cache_ref_exists(file_name):
             # return the cached database
-            with open(file_name, "rb") as f:
-                self.database_cache_filepath = file_name
-                self.database_metadata_cache_filepath = (
-                    f"{Path(str(file_name).replace('.pickle', ' (metadata).pickle'))}"
-                )
-                return pickle.load(f)
+            self.database_cache_filepath = resolve_cache_ref(file_name)
+            self.database_metadata_cache_filepath = resolve_cache_ref(
+                Path(str(file_name).replace(".pickle", " (metadata).pickle"))
+            )
+            return load_cached_database(self.database_cache_filepath)
 
         # extract the database, pickle it for next time and return it
         print("Cannot find cached database. Will create one now for next time...")
         clear_existing_cache()
         database = self.__clean_database()
         database, metadata_cache_filepath = create_cache(database, file_name)
-        self.database_cache_filepath = file_name
+        self.database_cache_filepath = resolve_cache_ref(file_name)
         self.database_metadata_cache_filepath = metadata_cache_filepath
         return database
 
@@ -766,21 +768,20 @@ class NewDatabase:
         )
 
         # check that file path leads to an existing file
-        if file_name.exists():
+        if cache_ref_exists(file_name):
             # return the cached database
-            with open(file_name, "rb") as f:
-                self.inventories_cache_filepath = file_name
-                self.inventories_metadata_cache_filepath = Path(
-                    str(file_name).replace(".pickle", " (metadata).pickle")
-                )
-                return pickle.load(f)
+            self.inventories_cache_filepath = resolve_cache_ref(file_name)
+            self.inventories_metadata_cache_filepath = resolve_cache_ref(
+                Path(str(file_name).replace(".pickle", " (metadata).pickle"))
+            )
+            return load_cached_database(self.inventories_cache_filepath)
 
         # else, extract the database, pickle it for next time and return it
         print("Cannot find cached inventories. Will create them now for next time...")
         data = self.__import_inventories()
         data, inventories_metadata_cache_filepath = create_cache(data, file_name)
         self._replace_imported_inventory_tail(data)
-        self.inventories_cache_filepath = file_name
+        self.inventories_cache_filepath = resolve_cache_ref(file_name)
         self.inventories_metadata_cache_filepath = inventories_metadata_cache_filepath
         print(
             "Data cached. Continuing with the cached inventory representation for\n"
@@ -960,8 +961,7 @@ class NewDatabase:
 
     @staticmethod
     def _load_pickled_database(filepath: Path) -> List[dict]:
-        with open(filepath, "rb") as file:
-            return pickle.load(file)
+        return load_cached_database(filepath)
 
     def _load_original_database(self) -> List[dict]:
         if self.database is not None and self._database_is_complete:

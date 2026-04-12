@@ -1,3 +1,4 @@
+import json
 import sys
 import types
 import pickle
@@ -36,6 +37,7 @@ import premise.new_database as new_database_module
 import premise.pathways as pathways_module
 from premise.new_database import NewDatabase, check_presence_biosphere_database
 from premise.pathways import PathwaysDataPackage
+from premise.utils import get_cache_manifest_path
 
 
 class DummyIAMDataCollection:
@@ -44,6 +46,22 @@ class DummyIAMDataCollection:
 
     def get_external_data(self, external_scenarios):
         return {}
+
+
+def _write_cache_manifest(cache_ref, *shard_files):
+    manifest_path = get_cache_manifest_path(cache_ref)
+
+    with open(manifest_path, "w", encoding="utf-8") as file:
+        json.dump(
+            {
+                "cache_format": 1,
+                "storage": "pickle-shards",
+                "files": [Path(shard_file).name for shard_file in shard_files],
+            },
+            file,
+        )
+
+    return manifest_path
 
 
 def test_ecospold_constructor_does_not_check_biosphere_database(monkeypatch):
@@ -203,6 +221,34 @@ def test_load_original_database_reloads_released_base_database_from_cache(tmp_pa
     loaded = obj._load_original_database()
 
     assert loaded == [{"name": "base"}, {"name": "inventory"}]
+
+
+def test_find_cached_db_supports_manifest_bundle(monkeypatch, tmp_path):
+    cache_ref = tmp_path / "cached_239_source-db_wo_uncertainty.pickle"
+    metadata_ref = Path(str(cache_ref).replace(".pickle", " (metadata).pickle"))
+    shard = tmp_path / "cached-db.part-a.pickle"
+    metadata_shard = tmp_path / "cached-db.metadata.part-a.pickle"
+
+    with open(shard, "wb") as file:
+        pickle.dump([{"name": "base"}], file)
+
+    with open(metadata_shard, "wb") as file:
+        pickle.dump({("base", None, None): {"comment": "metadata"}}, file)
+
+    manifest_path = _write_cache_manifest(cache_ref, shard)
+    metadata_manifest_path = _write_cache_manifest(metadata_ref, metadata_shard)
+
+    obj = object.__new__(NewDatabase)
+    obj.source_type = "brightway"
+    obj.keep_source_db_uncertainty = False
+
+    monkeypatch.setattr(new_database_module, "DIR_CACHED_DB", tmp_path)
+
+    loaded = obj._NewDatabase__find_cached_db("source-db")
+
+    assert loaded == [{"name": "base"}]
+    assert obj.database_cache_filepath == manifest_path
+    assert obj.database_metadata_cache_filepath == metadata_manifest_path
 
 
 def test_constructor_marks_database_complete_after_inventory_cache_miss(monkeypatch):
