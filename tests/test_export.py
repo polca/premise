@@ -183,7 +183,9 @@ def test_aggregate_duplicate_superstructure_rows_nets_production_and_technospher
     assert aggregated.loc[0, "scenario a"] == pytest.approx(1.4)
 
 
-def test_generate_superstructure_db_aggregates_duplicate_key_pairs(monkeypatch, tmp_path):
+def test_generate_superstructure_db_aggregates_duplicate_key_pairs(
+    monkeypatch, tmp_path
+):
     df = pd.DataFrame(
         [
             {
@@ -285,7 +287,9 @@ def test_generate_superstructure_db_aggregates_duplicate_key_pairs(monkeypatch, 
 
     assert len(exported) == 2
 
-    biosphere_row = exported.loc[exported["from activity name"] == "Acetaldehyde"].iloc[0]
+    biosphere_row = exported.loc[exported["from activity name"] == "Acetaldehyde"].iloc[
+        0
+    ]
     assert biosphere_row["scenario a"] == pytest.approx(0.5)
 
     self_loop_row = exported.loc[exported["to activity name"] == "consumer 2"].iloc[0]

@@ -923,18 +923,12 @@ def _aggregate_duplicate_superstructure_rows(
         df.loc[(df["flow type"] == "production") & (df[scenario] == 0), scenario] = 1
 
     group_columns = ["from key", "to key"]
-    duplicate_collisions = len(df) - len(
-        df.drop_duplicates(subset=group_columns)
-    )
+    duplicate_collisions = len(df) - len(df.drop_duplicates(subset=group_columns))
 
     if duplicate_collisions == 0:
         return df, exact_duplicates, 0
 
-    metadata = (
-        df.groupby(group_columns, sort=False, dropna=False)
-        .first()
-        .reset_index()
-    )
+    metadata = df.groupby(group_columns, sort=False, dropna=False).first().reset_index()
     totals = (
         df.groupby(group_columns, sort=False, dropna=False)[scenario_columns]
         .sum()
@@ -1014,9 +1008,11 @@ def generate_superstructure_db(
     if not os.path.exists(filepath):
         os.makedirs(filepath)
 
-    df, exact_duplicates, duplicate_collisions = _aggregate_duplicate_superstructure_rows(
-        df=df,
-        scenario_columns=scenario_list,
+    df, exact_duplicates, duplicate_collisions = (
+        _aggregate_duplicate_superstructure_rows(
+            df=df,
+            scenario_columns=scenario_list,
+        )
     )
 
     if exact_duplicates:
