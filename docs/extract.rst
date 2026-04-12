@@ -107,12 +107,7 @@ If you wish to clear that cache folder (database and *premise* additional invent
 
     clear_cache()
 
-.. note::
 
-    It is recommended to restart your notebook once
-    the data has been cached for the first time, so that
-    the remaining steps can be performed using the
-    cached data (much faster).
 
 To clear only the *premise* additional inventories, do:
 
