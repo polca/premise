@@ -918,7 +918,12 @@ def _net_superstructure_scenario_values(
 
     invalid_flow_type_sets = flow_type_sets[
         ~flow_type_sets["flow type set"].isin(
-            [frozenset({"biosphere"}), frozenset({"technosphere"}), frozenset({"production"}), frozenset({"production", "technosphere"})]
+            [
+                frozenset({"biosphere"}),
+                frozenset({"technosphere"}),
+                frozenset({"production"}),
+                frozenset({"production", "technosphere"}),
+            ]
         )
     ]
     if not invalid_flow_type_sets.empty:
@@ -941,7 +946,9 @@ def _net_superstructure_scenario_values(
         mixed_self_loops & (signed_df["flow type"] == "technosphere"), scenario_columns
     ] = signed_df.loc[
         mixed_self_loops & (signed_df["flow type"] == "technosphere"), scenario_columns
-    ].mul(-1)
+    ].mul(
+        -1
+    )
 
     return (
         signed_df.groupby(group_columns, sort=False, dropna=False)[scenario_columns]
