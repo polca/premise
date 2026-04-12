@@ -162,7 +162,7 @@ def test_aggregate_duplicate_superstructure_rows_nets_production_and_technospher
                 "from activity name": "self supplier",
                 "to activity name": "self supplier",
                 "flow type": "technosphere",
-                "original": 0.2,
+                "original": 0.01,
                 "scenario a": 0.4,
             },
         ]
@@ -179,8 +179,8 @@ def test_aggregate_duplicate_superstructure_rows_nets_production_and_technospher
     assert duplicate_collisions == 1
     assert len(aggregated) == 1
     assert aggregated.loc[0, "flow type"] == "production"
-    assert aggregated.loc[0, "original"] == pytest.approx(1.2)
-    assert aggregated.loc[0, "scenario a"] == pytest.approx(1.4)
+    assert aggregated.loc[0, "original"] == pytest.approx(0.99)
+    assert aggregated.loc[0, "scenario a"] == pytest.approx(0.6)
 
 
 def test_generate_superstructure_db_aggregates_duplicate_key_pairs(
@@ -294,4 +294,4 @@ def test_generate_superstructure_db_aggregates_duplicate_key_pairs(
 
     self_loop_row = exported.loc[exported["to activity name"] == "consumer 2"].iloc[0]
     assert self_loop_row["flow type"] == "production"
-    assert self_loop_row["scenario a"] == pytest.approx(1.4)
+    assert self_loop_row["scenario a"] == pytest.approx(0.6)

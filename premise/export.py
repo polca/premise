@@ -899,6 +899,57 @@ def _resolve_superstructure_flow_type(flow_types: pd.Series) -> str:
     )
 
 
+def _net_superstructure_scenario_values(
+    df: pd.DataFrame, scenario_columns: list[str], group_columns: list[str]
+) -> pd.DataFrame:
+    """
+    Aggregate scenario values for rows that map to the same matrix coordinate.
+
+    Mixed ``production`` + ``technosphere`` self-loops must net the
+    technosphere amount against the production amount so the resulting row stays
+    on the production diagonal with the correct residual value.
+    """
+
+    flow_type_sets = (
+        df.groupby(group_columns, sort=False, dropna=False)["flow type"]
+        .agg(lambda values: frozenset(v for v in values if v is not None))
+        .reset_index(name="flow type set")
+    )
+
+    invalid_flow_type_sets = flow_type_sets[
+        ~flow_type_sets["flow type set"].isin(
+            [frozenset({"biosphere"}), frozenset({"technosphere"}), frozenset({"production"}), frozenset({"production", "technosphere"})]
+        )
+    ]
+    if not invalid_flow_type_sets.empty:
+        invalid_sets = sorted(
+            {
+                tuple(sorted(flow_type_set))
+                for flow_type_set in invalid_flow_type_sets["flow type set"]
+            }
+        )
+        raise ValueError(
+            "Cannot aggregate superstructure rows with incompatible flow types: "
+            f"{invalid_sets}."
+        )
+
+    signed_df = df.merge(flow_type_sets, on=group_columns, how="left")
+    mixed_self_loops = signed_df["flow type set"] == frozenset(
+        {"production", "technosphere"}
+    )
+    signed_df.loc[
+        mixed_self_loops & (signed_df["flow type"] == "technosphere"), scenario_columns
+    ] = signed_df.loc[
+        mixed_self_loops & (signed_df["flow type"] == "technosphere"), scenario_columns
+    ].mul(-1)
+
+    return (
+        signed_df.groupby(group_columns, sort=False, dropna=False)[scenario_columns]
+        .sum()
+        .reset_index()
+    )
+
+
 def _aggregate_duplicate_superstructure_rows(
     df: pd.DataFrame, scenario_columns: list[str]
 ) -> tuple[pd.DataFrame, int, int]:
@@ -906,7 +957,7 @@ def _aggregate_duplicate_superstructure_rows(
     Collapse rows that map to the same matrix coordinate.
 
     Exact duplicate rows are dropped first. Remaining collisions on
-    ``("from key", "to key")`` are aggregated by summing scenario values while
+    ``("from key", "to key")`` are aggregated by netting scenario values while
     keeping the first descriptive metadata row for readability.
     """
 
@@ -929,10 +980,10 @@ def _aggregate_duplicate_superstructure_rows(
         return df, exact_duplicates, 0
 
     metadata = df.groupby(group_columns, sort=False, dropna=False).first().reset_index()
-    totals = (
-        df.groupby(group_columns, sort=False, dropna=False)[scenario_columns]
-        .sum()
-        .reset_index()
+    totals = _net_superstructure_scenario_values(
+        df=df,
+        scenario_columns=scenario_columns,
+        group_columns=group_columns,
     )
     flow_types = (
         df.groupby(group_columns, sort=False, dropna=False)["flow type"]
@@ -1019,7 +1070,7 @@ def generate_superstructure_db(
         print(f"Dropped {exact_duplicates} exact duplicate(s).")
     if duplicate_collisions:
         print(
-            f"Collapsed {duplicate_collisions} overlapping row(s) by summing scenario values."
+            f"Collapsed {duplicate_collisions} overlapping row(s) by netting scenario values."
         )
 
     # if df is longer than the row limit of Excel,
