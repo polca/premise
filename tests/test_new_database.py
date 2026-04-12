@@ -201,6 +201,36 @@ def test_update_uses_in_memory_base_database_for_first_scenario_when_reloadable(
     assert obj.database is None
 
 
+def test_update_reloads_first_scenario_from_cache_after_cache_miss(tmp_path):
+    base_cache = tmp_path / "base.pickle"
+    inventories_cache = tmp_path / "inventories.pickle"
+
+    with open(base_cache, "wb") as file:
+        pickle.dump([{"name": "base-from-cache"}], file)
+
+    with open(inventories_cache, "wb") as file:
+        pickle.dump([{"name": "inventory-from-cache"}], file)
+
+    obj = object.__new__(NewDatabase)
+    original_database = [{"name": "in-memory"}]
+    obj.database = original_database
+    obj.database_cache_filepath = base_cache
+    obj.inventories_cache_filepath = inventories_cache
+    obj.additional_inventories = None
+    obj._database_is_complete = True
+    obj._reload_original_database_from_cache_for_update = True
+
+    loaded = obj._load_scenario_database_for_update({}, scenario_position=0)
+
+    assert loaded["database"] == [
+        {"name": "base-from-cache"},
+        {"name": "inventory-from-cache"},
+    ]
+    assert loaded["database"] is not original_database
+    assert obj.database is None
+    assert obj._reload_original_database_from_cache_for_update is False
+
+
 def test_load_original_database_reloads_released_base_database_from_cache(tmp_path):
     base_cache = tmp_path / "base.pickle"
     inventories_cache = tmp_path / "inventories.pickle"
@@ -339,3 +369,4 @@ def test_inventory_cache_miss_replaces_full_inventory_tail_with_trimmed_cache(
     assert obj.inventories_metadata_cache_filepath == Path(
         "inventories-metadata.pickle"
     )
+    assert obj._reload_original_database_from_cache_for_update is True

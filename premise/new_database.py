@@ -600,6 +600,7 @@ class NewDatabase:
         self.database_cache_filepath = None
         self.inventories_cache_filepath = None
         self._database_is_complete = False
+        self._reload_original_database_from_cache_for_update = False
 
         # if version is anything other than 3.8 or 3.9
         # and system_model is "consequential"
@@ -743,6 +744,7 @@ class NewDatabase:
         database, metadata_cache_filepath = create_cache(database, file_name)
         self.database_cache_filepath = resolve_cache_ref(file_name)
         self.database_metadata_cache_filepath = metadata_cache_filepath
+        self._reload_original_database_from_cache_for_update = True
         return database
 
     def __find_cached_inventories(self, db_name: str) -> Union[None, List[dict]]:
@@ -783,6 +785,7 @@ class NewDatabase:
         self._replace_imported_inventory_tail(data)
         self.inventories_cache_filepath = resolve_cache_ref(file_name)
         self.inventories_metadata_cache_filepath = inventories_metadata_cache_filepath
+        self._reload_original_database_from_cache_for_update = True
         print(
             "Data cached. Continuing with the cached inventory representation for\n"
             "the rest of this workflow."
@@ -1002,6 +1005,15 @@ class NewDatabase:
             and self._database_is_complete
             and self._can_reload_original_database()
         ):
+            if getattr(
+                self, "_reload_original_database_from_cache_for_update", False
+            ):
+                self.database = None
+                gc.collect()
+                scenario["database"] = self._load_original_database()
+                self._reload_original_database_from_cache_for_update = False
+                return scenario
+
             scenario["database"] = self.database
             self.database = None
             return scenario
