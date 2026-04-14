@@ -21,6 +21,7 @@ All notable changes to this project are documented in this file.
 - Improved electricity validation diagnostics by logging dropped electricity shares and missing supplier technologies when market shares do not sum correctly.
 - Normalized the cold-cache `NewDatabase.update()` path so the first scenario reloads the cached source-database representation instead of keeping a special cache-miss in-memory form.
 - Ensured fast Brightway exports set activity process types so exported databases open correctly in downstream Brightway tools such as Activity Browser.
+- Fixed migrated default-inventory placeholders with `replacement ...` metadata so one-to-many ecoinvent migration disaggregations (for example `market for coke` and `market for hard coal` in steel inventories) no longer duplicate the original exchange amount across every split target during gap filling.
 
 ### Documentation
 - Updated the transformation documentation for photovoltaic module efficiency assumptions and added a plot summarizing the trajectories used in `premise`.
