@@ -283,12 +283,13 @@ def _extract_exchange_for_premise(
 def _add_exchanges_to_consumers_for_premise(
     activities: List[Dict[str, Any]],
     exchange_qs,
+    exchange_count: Optional[int] = None,
     add_properties: bool = False,
 ) -> List[Dict[str, Any]]:
     lookup = {(o["database"], o["code"]): o for o in activities}
 
-    with tqdm(total=exchange_qs.count()) as pbar:
-        for exc_proxy in exchange_qs:
+    with tqdm(total=exchange_count) as pbar:
+        for exc_proxy in exchange_qs.iterator():
             exc = _extract_exchange_for_premise(
                 exc_proxy, add_properties=add_properties
             )
@@ -383,16 +384,21 @@ def extract_brightway_databases_for_premise(
     exchange_qs = ExchangeDataset.select().where(
         ExchangeDataset.output_database << database_names
     )
+    activity_count = activity_qs.count()
+    exchange_count = exchange_qs.count()
 
     print("Getting activity data")
     activities = [
         _extract_activity_for_premise(o, add_identifiers=add_identifiers)
-        for o in tqdm(activity_qs)
+        for o in tqdm(activity_qs.iterator(), total=activity_count)
     ]
 
     print("Adding exchange data to activities")
     _add_exchanges_to_consumers_for_premise(
-        activities, exchange_qs, add_properties=add_properties
+        activities,
+        exchange_qs,
+        exchange_count=exchange_count,
+        add_properties=add_properties,
     )
 
     print("Filling out exchange data")
