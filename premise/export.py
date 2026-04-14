@@ -1176,6 +1176,32 @@ def prepare_db_for_export(
     return validator.database
 
 
+def prepare_db_for_fast_export(scenario, name, version, biosphere_name=None):
+    """
+    Prepare a database for Brightway export using only the minimal
+    formatting and linking steps required by the writer.
+    """
+
+    validator = BaseDatasetValidator(
+        model=scenario["model"],
+        scenario=scenario["pathway"],
+        year=scenario["year"],
+        regions=scenario["iam data"].regions,
+        original_database=[],
+        database=scenario["database"],
+        db_name=name,
+        biosphere_name=biosphere_name,
+        version=version,
+    )
+    validator.remove_unused_fields()
+    validator.correct_fields_format()
+    validator.check_amount_format()
+    validator.reformat_parameters()
+    validator.check_database_name()
+
+    return validator.database
+
+
 def _prepare_database(scenario, db_name, original_database, biosphere_name, version):
 
     scenario["database"] = prepare_db_for_export(

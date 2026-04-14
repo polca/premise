@@ -33,6 +33,7 @@ from .export import (
     generate_scenario_factor_file,
     generate_superstructure_db,
     prepare_db_for_export,
+    prepare_db_for_fast_export,
 )
 from .external import _update_external_scenarios
 from .external_data_validation import check_external_scenarios
@@ -793,9 +794,11 @@ class NewDatabase:
 
         # else, extract the database, pickle it for next time and return it
         print("Cannot find cached inventories. Will create them now for next time...")
-        data = self.__import_inventories()
-        data, inventories_metadata_cache_filepath = create_cache(data, file_name)
-        self._replace_imported_inventory_tail(data)
+        inventory_start = len(self.database)
+        self.__import_inventories(collect_data=False)
+        _, inventories_metadata_cache_filepath = create_cache(
+            self.database[inventory_start:], file_name
+        )
         self.inventories_cache_filepath = resolve_cache_ref(file_name)
         self.inventories_metadata_cache_filepath = inventories_metadata_cache_filepath
         self._reload_original_database_from_cache_for_update = True
@@ -815,7 +818,7 @@ class NewDatabase:
             self.source, self.source_type, self.source_file_path, self.version
         ).prepare_datasets(self.keep_source_db_uncertainty)
 
-    def __import_inventories(self) -> List[dict]:
+    def __import_inventories(self, collect_data: bool = True) -> List[dict]:
         """
         This method will trigger the import of a number of pickled inventories
         and merge them into the database dictionary.
@@ -942,7 +945,8 @@ class NewDatabase:
                 keep_uncertainty_data=self.keep_imports_uncertainty,
             )
             datasets = inventory.merge_inventory()
-            data.extend(datasets)
+            if collect_data:
+                data.extend(datasets)
             self.database.extend(datasets)
             unlinked.extend(inventory.list_unlinked)
 
@@ -950,23 +954,6 @@ class NewDatabase:
             raise ValueError("Fix the unlinked exchanges before proceeding")
 
         return data
-
-    def _replace_imported_inventory_tail(self, inventories: List[dict]) -> None:
-        """Rewrite the imported inventory tail using the cached trimmed datasets.
-
-        On a cache miss, ``__import_inventories`` appends full importer output to
-        ``self.database`` so subsequent imports can detect newly added datasets.
-        Once the cache is written, replace that appended tail with the trimmed
-        datasets returned by ``create_cache`` so the miss path matches a cache hit.
-        """
-
-        if not inventories:
-            return
-
-        if len(self.database) < len(inventories):
-            raise ValueError("Cannot normalize imported inventories in memory.")
-
-        self.database[-len(inventories) :] = inventories
 
     @staticmethod
     def _clear_inventory_importer_state() -> None:
@@ -1360,9 +1347,38 @@ class NewDatabase:
         check_presence_biosphere_database(self.biosphere_name)
 
         print("Write new database(s) to Brightway.")
-        original_database = self._load_original_database()
 
         for s, scenario in enumerate(self.scenarios):
+            can_use_fast_export = (
+                scenario.get("database") is not None
+                or "database filepath" in scenario
+            )
+
+            if can_use_fast_export:
+                scenario = load_database(
+                    scenario=scenario,
+                    original_database=[],
+                    load_metadata=True,
+                    warning=False,
+                )
+                scenario["database"] = prepare_db_for_fast_export(
+                    scenario=scenario,
+                    name=name[s],
+                    biosphere_name=self.biosphere_name,
+                    version=self.version,
+                )
+
+                scenario["database name"] = name[s]
+                write_brightway_database(
+                    scenario["database"],
+                    name[s],
+                    fast=True,
+                    check_internal=False,
+                )
+                end_of_process(scenario)
+                continue
+
+            original_database = self._load_original_database()
             scenario = load_database(
                 scenario=scenario,
                 original_database=original_database,
