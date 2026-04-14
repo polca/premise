@@ -1306,6 +1306,8 @@ class NewDatabase:
         write_brightway_database(
             data=self.database,
             name=name,
+            fast=True,
+            check_internal=False,
         )
 
         if self.generate_reports:
