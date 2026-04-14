@@ -4,15 +4,13 @@ This module contains functions to write a Brightway 2.5 database.
 
 from contextlib import contextmanager
 import datetime
-from functools import lru_cache
-import hashlib
 import pickle
-from pathlib import Path
 import shutil
 import warnings
 
 from bw2data import Database, databases
 from bw2io.importers.base_lci import LCIImporter
+from tqdm import tqdm
 from wurst.linking import change_db_name, check_internal_linking, link_internal
 
 FAST_EXCHANGE_REQUIRED_FIELDS = {
@@ -55,86 +53,36 @@ class BW25Importer(LCIImporter):
             act["database"] = self.db_name
 
 
-def _sidecar_bucket(code: str) -> str:
-    return hashlib.blake2b(code.encode("utf-8"), digest_size=1).hexdigest()
+def _progress(iterable=None, *, total=None, desc=None, unit="dataset", leave=False):
+    try:
+        from bw2data.configuration import config
+
+        disable = getattr(config, "is_test", False)
+    except Exception:
+        disable = False
+
+    return tqdm(
+        iterable,
+        total=total,
+        desc=desc,
+        unit=unit,
+        leave=leave,
+        dynamic_ncols=True,
+        disable=disable,
+    )
 
 
-def _ensure_premise_sidecar_exchange_support() -> None:
-    from bw2data.backends import proxies as bw_proxies
+def _cleanup_legacy_fast_export_sidecars(name: str) -> None:
+    """Remove metadata and files left by older experimental sidecar exports."""
 
-    if getattr(bw_proxies, "_premise_sidecar_exchange_support", False):
-        return
+    sidecar_dir = databases[name].get("premise_fast_exchange_sidecar")
+    reverse_sidecar_dir = databases[name].get("premise_fast_reverse_exchange_sidecar")
+    for filepath in (sidecar_dir, reverse_sidecar_dir):
+        if filepath:
+            shutil.rmtree(filepath, ignore_errors=True)
 
-    original_init = bw_proxies.Exchanges.__init__
-    original_iter = bw_proxies.Exchanges.__iter__
-    original_len = bw_proxies.Exchanges.__len__
-    original_filter = bw_proxies.Exchanges.filter
-
-    @lru_cache(maxsize=128)
-    def load_bucket(sidecar_dir: str, bucket: str):
-        bucket_path = Path(sidecar_dir) / f"{bucket}.pickle"
-        if not bucket_path.exists():
-            return {}
-        with open(bucket_path, "rb") as handle:
-            return pickle.load(handle)
-
-    def sidecar_entries(self):
-        if getattr(self, "_premise_has_custom_filters", False):
-            return None
-        metadata = databases.get(self._key[0], {})
-        if getattr(self, "_premise_reverse", False):
-            sidecar_dir = metadata.get("premise_fast_reverse_exchange_sidecar")
-        else:
-            sidecar_dir = metadata.get("premise_fast_exchange_sidecar")
-        if not sidecar_dir:
-            return None
-
-        shard = load_bucket(sidecar_dir, _sidecar_bucket(self._key[1]))
-        entries = shard.get(self._key[1], ())
-        kinds = getattr(self, "_premise_kinds", None)
-        if kinds:
-            entries = [entry for entry in entries if entry.get("type") in kinds]
-        return entries
-
-    def patched_init(self, key, kinds=None, reverse=False):
-        original_init(self, key, kinds=kinds, reverse=reverse)
-        self._premise_reverse = reverse
-        self._premise_kinds = tuple(kinds) if kinds else None
-        self._premise_has_custom_filters = False
-
-    def patched_filter(self, expr):
-        self._premise_has_custom_filters = True
-        return original_filter(self, expr)
-
-    def patched_iter(self):
-        entries = sidecar_entries(self)
-        if entries is None:
-            yield from original_iter(self)
-            return
-
-        for entry in entries:
-            payload = dict(entry)
-            if getattr(self, "_premise_reverse", False):
-                payload["input"] = self._key
-            else:
-                payload["output"] = self._key
-            yield bw_proxies.Exchange(**payload)
-
-    def patched_len(self):
-        entries = sidecar_entries(self)
-        if entries is None:
-            return original_len(self)
-        return len(entries)
-
-    bw_proxies.Exchanges.__init__ = patched_init
-    bw_proxies.Exchanges.filter = patched_filter
-    bw_proxies.Exchanges.__iter__ = patched_iter
-    bw_proxies.Exchanges.__len__ = patched_len
-    bw_proxies.Exchanges._premise_sidecar_exchange_support = True
-    bw_proxies._premise_sidecar_load_bucket = load_bucket
-
-
-_ensure_premise_sidecar_exchange_support()
+    databases[name].pop("premise_fast_exchange_sidecar", None)
+    databases[name].pop("premise_fast_reverse_exchange_sidecar", None)
 
 
 @contextmanager
@@ -143,7 +91,6 @@ def _fast_sqlite_writes(enabled: bool):
         yield
         return
 
-    original_settings = {}
     original_vacuum = {}
     original_make_searchable = {}
     original_base_checks = None
@@ -183,20 +130,6 @@ def _fast_sqlite_writes(enabled: bool):
     if not unique_dbs:
         yield
         return
-
-    try:
-        primary_db = unique_dbs[0].db
-        original_settings["synchronous"] = primary_db.execute_sql(
-            "PRAGMA synchronous;"
-        ).fetchone()[0]
-        original_settings["journal_mode"] = primary_db.execute_sql(
-            "PRAGMA journal_mode;"
-        ).fetchone()[0]
-        original_settings["temp_store"] = primary_db.execute_sql(
-            "PRAGMA temp_store;"
-        ).fetchone()[0]
-    except Exception:
-        original_settings = {}
 
     try:
         for db in unique_dbs:
@@ -373,7 +306,7 @@ def _fast_sqlite_writes(enabled: bool):
             pass
 
 
-def _compact_payload_for_fast_write(data: list) -> list:
+def _compact_payload_for_fast_write(data: list, name: str) -> list:
     from bw2data.utils import set_correct_process_type
 
     def keep_value(value):
@@ -383,85 +316,46 @@ def _compact_payload_for_fast_write(data: list) -> list:
             return False
         return True
 
-    for dataset in data:
-        set_correct_process_type(dataset)
-        exchanges = dataset.get("exchanges", [])
-        compact_dataset = {
-            field: value
-            for field, value in dataset.items()
-            if field != "exchanges" and keep_value(value)
-        }
-
-        compact_exchanges = []
-        for exchange in exchanges:
-            compact_exchange = {
+    progress = _progress(
+        total=len(data),
+        desc=f"Compacting export payload [{name}]",
+        unit="dataset",
+        leave=False,
+    )
+    try:
+        for dataset in data:
+            set_correct_process_type(dataset)
+            exchanges = dataset.get("exchanges", [])
+            compact_dataset = {
                 field: value
-                for field, value in exchange.items()
-                if field in FAST_EXCHANGE_STORED_FIELDS and keep_value(value)
+                for field, value in dataset.items()
+                if field != "exchanges" and keep_value(value)
             }
-            for field in FAST_EXCHANGE_REQUIRED_FIELDS:
-                if field not in compact_exchange and field in exchange:
-                    compact_exchange[field] = exchange[field]
 
-            compact_exchanges.append(compact_exchange)
+            compact_exchanges = []
+            for exchange in exchanges:
+                compact_exchange = {
+                    field: value
+                    for field, value in exchange.items()
+                    if field in FAST_EXCHANGE_STORED_FIELDS and keep_value(value)
+                }
+                for field in FAST_EXCHANGE_REQUIRED_FIELDS:
+                    if field not in compact_exchange and field in exchange:
+                        compact_exchange[field] = exchange[field]
 
-        compact_dataset["exchanges"] = compact_exchanges
-        dataset.clear()
-        dataset.update(compact_dataset)
+                compact_exchanges.append(compact_exchange)
+
+            compact_dataset["exchanges"] = compact_exchanges
+            dataset.clear()
+            dataset.update(compact_dataset)
+            progress.update(1)
+    finally:
+        progress.close()
 
     return data
 
 
-def _write_exchange_sidecar(
-    data: list, forward_sidecar_dir: Path, reverse_sidecar_dir: Path
-) -> None:
-    for sidecar_dir in (forward_sidecar_dir, reverse_sidecar_dir):
-        if sidecar_dir.exists():
-            shutil.rmtree(sidecar_dir)
-        sidecar_dir.mkdir(parents=True, exist_ok=True)
-
-    forward_buckets = {}
-    reverse_buckets = {}
-    for dataset in data:
-        dataset_key = (dataset["database"], dataset["code"])
-        bucket = _sidecar_bucket(dataset["code"])
-        forward_buckets.setdefault(bucket, {})[dataset["code"]] = dataset.get(
-            "exchanges", []
-        )
-
-        for exchange in dataset.get("exchanges", []):
-            input_key = exchange.get("input")
-            if not input_key or input_key[0] != dataset["database"]:
-                continue
-            if input_key == dataset_key:
-                continue
-
-            reverse_bucket = _sidecar_bucket(input_key[1])
-            reverse_buckets.setdefault(reverse_bucket, {}).setdefault(
-                input_key[1], []
-            ).append(
-                {key: value for key, value in exchange.items() if key != "input"}
-                | {
-                    "output": dataset_key,
-                }
-            )
-
-    for sidecar_dir, buckets in (
-        (forward_sidecar_dir, forward_buckets),
-        (reverse_sidecar_dir, reverse_buckets),
-    ):
-        for bucket, payload in buckets.items():
-            with open(sidecar_dir / f"{bucket}.pickle", "wb") as handle:
-                pickle.dump(payload, handle, protocol=4)
-
-    from bw2data.backends import proxies as bw_proxies
-
-    cache = getattr(bw_proxies, "_premise_sidecar_load_bucket", None)
-    if cache is not None:
-        cache.cache_clear()
-
-
-def _write_search_index_fast(database_filename: str, data: list) -> None:
+def _write_search_index_fast(database_filename: str, data: list, name: str) -> None:
     from bw2data.search.indices import IndexManager
     from bw2data.search.schema import BW2Schema
 
@@ -493,13 +387,23 @@ def _write_search_index_fast(database_filename: str, data: list) -> None:
     batch = []
     batch_size = 2_000
     with index.db.bind_ctx((BW2Schema,)):
-        for dataset in data:
-            batch.append(format_dataset(dataset))
-            if len(batch) >= batch_size:
+        progress = _progress(
+            total=len(data),
+            desc=f"Building search index [{name}]",
+            unit="dataset",
+            leave=False,
+        )
+        try:
+            for dataset in data:
+                batch.append(format_dataset(dataset))
+                if len(batch) >= batch_size:
+                    BW2Schema.insert_many(batch).execute()
+                    batch = []
+                progress.update(1)
+            if batch:
                 BW2Schema.insert_many(batch).execute()
-                batch = []
-        if batch:
-            BW2Schema.insert_many(batch).execute()
+        finally:
+            progress.close()
     index.close()
 
 
@@ -515,14 +419,7 @@ def _write_processed_database_fast(data: list, name: str) -> None:
 
     db = Database(name)
     if name in databases:
-        sidecar_dir = databases[name].get("premise_fast_exchange_sidecar")
-        reverse_sidecar_dir = databases[name].get(
-            "premise_fast_reverse_exchange_sidecar"
-        )
-        if sidecar_dir:
-            shutil.rmtree(sidecar_dir, ignore_errors=True)
-        if reverse_sidecar_dir:
-            shutil.rmtree(reverse_sidecar_dir, ignore_errors=True)
+        _cleanup_legacy_fast_export_sidecars(name)
         db.delete(warn=False, vacuum=False)
         del databases[name]
         db = Database(name)
@@ -546,8 +443,7 @@ def _write_processed_database_fast(data: list, name: str) -> None:
         geocollections.discard(None)
     databases[name]["geocollections"] = sorted(geocollections)
     geomapping.add({dataset["location"] for dataset in data if dataset.get("location")})
-    databases[name].pop("premise_fast_exchange_sidecar", None)
-    databases[name].pop("premise_fast_reverse_exchange_sidecar", None)
+    _cleanup_legacy_fast_export_sidecars(name)
 
     activity_sql = (
         f'INSERT INTO "{ActivityDataset._meta.table_name}" '
@@ -565,8 +461,15 @@ def _write_processed_database_fast(data: list, name: str) -> None:
     exchange_row_batch_size = 5_000
     activity_ids = {}
     connection = sqlite3_lci_db.db.connection()
+    total_datasets = len(data)
 
     sqlite3_lci_db.db.autocommit = False
+    row_progress = _progress(
+        total=total_datasets,
+        desc=f"Writing Brightway rows [{name}]",
+        unit="dataset",
+        leave=False,
+    )
     try:
         sqlite3_lci_db.db.begin()
         for dataset in data:
@@ -620,6 +523,7 @@ def _write_processed_database_fast(data: list, name: str) -> None:
             if len(activity_rows) >= activity_row_batch_size:
                 connection.executemany(activity_sql, activity_rows)
                 activity_rows = []
+            row_progress.update(1)
 
         if activity_rows:
             connection.executemany(activity_sql, activity_rows)
@@ -632,6 +536,7 @@ def _write_processed_database_fast(data: list, name: str) -> None:
         raise
     finally:
         sqlite3_lci_db.db.autocommit = True
+        row_progress.close()
 
     activity_ids = {
         (name, code): activity_id
@@ -661,60 +566,119 @@ def _write_processed_database_fast(data: list, name: str) -> None:
             input_id_cache[input_key] = get_id(input_key)
         return input_id_cache[input_key]
 
+    process_dataset_total = sum(
+        1 for dataset in data if dataset.get("type") in labels.process_node_types
+    )
+
+    def iter_geomapping():
+        progress = _progress(
+            total=process_dataset_total,
+            desc=f"Serializing geomapping [{name}]",
+            unit="dataset",
+            leave=False,
+        )
+        try:
+            for dataset in data:
+                if dataset.get("type") not in labels.process_node_types:
+                    continue
+                progress.update(1)
+                yield {
+                    "row": activity_ids[(name, dataset["code"])],
+                    "col": geomapping[
+                        dataset.get("location") or config.global_location
+                    ],
+                    "amount": 1,
+                }
+        finally:
+            progress.close()
+
     datapackage.add_persistent_vector_from_iterator(
         matrix="inv_geomapping_matrix",
         name=clean_datapackage_name(name + " inventory geomapping matrix"),
-        dict_iterator=(
-            {
-                "row": activity_ids[(name, dataset["code"])],
-                "col": geomapping[dataset.get("location") or config.global_location],
-                "amount": 1,
-            }
-            for dataset in data
-            if dataset.get("type") in labels.process_node_types
-        ),
+        dict_iterator=iter_geomapping(),
     )
 
     def iter_biosphere():
-        for dataset in data:
-            col = activity_ids[(name, dataset["code"])]
-            for exchange in dataset.get("exchanges", []):
-                if exchange["type"] not in labels.biosphere_edge_types:
-                    continue
-                input_key = exchange.get("input")
-                if input_key is None:
-                    raise KeyError(
-                        f"Missing biosphere input for exchange in dataset {dataset['name']!r}."
-                    )
-                if input_key[0] != name:
-                    dependents.add(input_key[0])
-                yield {
-                    **as_uncertainty_dict(exchange),
-                    "row": resolve_input_id(input_key),
-                    "col": col,
-                }
+        progress = _progress(
+            total=total_datasets,
+            desc=f"Serializing biosphere matrix [{name}]",
+            unit="dataset",
+            leave=False,
+        )
+        try:
+            for dataset in data:
+                col = activity_ids[(name, dataset["code"])]
+                for exchange in dataset.get("exchanges", []):
+                    if exchange["type"] not in labels.biosphere_edge_types:
+                        continue
+                    input_key = exchange.get("input")
+                    if input_key is None:
+                        raise KeyError(
+                            f"Missing biosphere input for exchange in dataset {dataset['name']!r}."
+                        )
+                    if input_key[0] != name:
+                        dependents.add(input_key[0])
+                    yield {
+                        **as_uncertainty_dict(exchange),
+                        "row": resolve_input_id(input_key),
+                        "col": col,
+                    }
+                progress.update(1)
+        finally:
+            progress.close()
 
-    def iter_technosphere(edge_types, flip=False):
-        for dataset in data:
-            col = activity_ids[(name, dataset["code"])]
-            for exchange in dataset.get("exchanges", []):
-                if exchange["type"] not in edge_types:
-                    continue
-                input_key = exchange.get("input")
-                if input_key is None:
-                    raise KeyError(
-                        f"Missing technosphere input for exchange in dataset {dataset['name']!r}."
-                    )
-                if input_key[0] != name:
-                    dependents.add(input_key[0])
-                payload = {
-                    **as_uncertainty_dict(exchange),
-                    "row": resolve_input_id(input_key),
-                    "col": col,
-                }
-                if flip:
-                    payload["flip"] = True
-                yield payload
+    negative_edge_types = set(labels.technosphere_negative_edge_types)
+    positive_edge_types = set(labels.technosphere_positive_edge_types)
+
+    def iter_technosphere():
+        progress = _progress(
+            total=total_datasets,
+            desc=f"Serializing technosphere matrix [{name}]",
+            unit="dataset",
+            leave=False,
+        )
+        try:
+            for dataset in data:
+                col = activity_ids[(name, dataset["code"])]
+                has_positive_production = False
+                for exchange in dataset.get("exchanges", []):
+                    edge_type = exchange["type"]
+                    if (
+                        edge_type not in negative_edge_types
+                        and edge_type not in positive_edge_types
+                    ):
+                        continue
+                    input_key = exchange.get("input")
+                    if input_key is None:
+                        raise KeyError(
+                            f"Missing technosphere input for exchange in dataset {dataset['name']!r}."
+                        )
+                    if input_key[0] != name:
+                        dependents.add(input_key[0])
+                    payload = {
+                        **as_uncertainty_dict(exchange),
+                        "row": resolve_input_id(input_key),
+                        "col": col,
+                    }
+                    if edge_type in negative_edge_types:
+                        payload["flip"] = True
+                    else:
+                        has_positive_production = True
+                    yield payload
+
+                if (
+                    dataset.get("type") in labels.implicit_production_allowed_node_types
+                    and not has_positive_production
+                ):
+                    yield {
+                        "row": activity_ids[(name, dataset["code"])],
+                        "col": activity_ids[(name, dataset["code"])],
+                        "amount": 1,
+                    }
+
+                progress.update(1)
+        finally:
+            progress.close()
 
     datapackage.add_persistent_vector_from_iterator(
         matrix="biosphere_matrix",
@@ -725,28 +689,7 @@ def _write_processed_database_fast(data: list, name: str) -> None:
     datapackage.add_persistent_vector_from_iterator(
         matrix="technosphere_matrix",
         name=clean_datapackage_name(name + " technosphere matrix"),
-        dict_iterator=(
-            payload
-            for iterator in (
-                iter_technosphere(labels.technosphere_negative_edge_types, flip=True),
-                iter_technosphere(labels.technosphere_positive_edge_types),
-                (
-                    {
-                        "row": activity_ids[(name, dataset["code"])],
-                        "col": activity_ids[(name, dataset["code"])],
-                        "amount": 1,
-                    }
-                    for dataset in data
-                    if dataset.get("type")
-                    in labels.implicit_production_allowed_node_types
-                    and not any(
-                        exchange["type"] in labels.technosphere_positive_edge_types
-                        for exchange in dataset.get("exchanges", [])
-                    )
-                ),
-            )
-            for payload in iterator
-        ),
+        dict_iterator=iter_technosphere(),
     )
 
     datapackage.finalize_serialization()
@@ -755,7 +698,7 @@ def _write_processed_database_fast(data: list, name: str) -> None:
     db._metadata.flush()
     databases[name]["searchable"] = True
     databases.flush(signal=False)
-    _write_search_index_fast(db.filename, data)
+    _write_search_index_fast(db.filename, data, name)
 
 
 def write_brightway_database(
@@ -781,7 +724,7 @@ def write_brightway_database(
     if check_internal:
         check_internal_linking(data)
     if fast:
-        _compact_payload_for_fast_write(data)
+        _compact_payload_for_fast_write(data, name)
         _write_processed_database_fast(data, name)
         return
 
