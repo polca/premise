@@ -1350,8 +1350,7 @@ class NewDatabase:
 
         for s, scenario in enumerate(self.scenarios):
             can_use_fast_export = (
-                scenario.get("database") is not None
-                or "database filepath" in scenario
+                scenario.get("database") is not None or "database filepath" in scenario
             )
 
             if can_use_fast_export:

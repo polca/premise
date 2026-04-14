@@ -15,7 +15,6 @@ from bw2data import Database, databases
 from bw2io.importers.base_lci import LCIImporter
 from wurst.linking import change_db_name, check_internal_linking, link_internal
 
-
 FAST_EXCHANGE_REQUIRED_FIELDS = {
     "input",
     "amount",
@@ -32,7 +31,9 @@ FAST_EXCHANGE_OPTIONAL_FIELDS = {
     "production volume",
 }
 
-FAST_EXCHANGE_STORED_FIELDS = FAST_EXCHANGE_REQUIRED_FIELDS | FAST_EXCHANGE_OPTIONAL_FIELDS
+FAST_EXCHANGE_STORED_FIELDS = (
+    FAST_EXCHANGE_REQUIRED_FIELDS | FAST_EXCHANGE_OPTIONAL_FIELDS
+)
 
 
 class BW25Importer(LCIImporter):
@@ -241,9 +242,13 @@ def _fast_sqlite_writes(enabled: bool):
     bw_base.check_exchange_keys = _noop_check
     bw_base.check_activity_type = _noop_check
     bw_base.check_activity_keys = _noop_check
-    original_efficient_write_many_data = bw_base.SQLiteBackend._efficient_write_many_data
+    original_efficient_write_many_data = (
+        bw_base.SQLiteBackend._efficient_write_many_data
+    )
 
-    def _raw_fast_write_many_data(self, data, indices: bool = True, check_typos: bool = True):
+    def _raw_fast_write_many_data(
+        self, data, indices: bool = True, check_typos: bool = True
+    ):
         be_complicated = len(data) >= 100 and indices
         if be_complicated:
             self._drop_indices()
@@ -435,11 +440,7 @@ def _write_exchange_sidecar(
             reverse_buckets.setdefault(reverse_bucket, {}).setdefault(
                 input_key[1], []
             ).append(
-                {
-                    key: value
-                    for key, value in exchange.items()
-                    if key != "input"
-                }
+                {key: value for key, value in exchange.items() if key != "input"}
                 | {
                     "output": dataset_key,
                 }
@@ -515,7 +516,9 @@ def _write_processed_database_fast(data: list, name: str) -> None:
     db = Database(name)
     if name in databases:
         sidecar_dir = databases[name].get("premise_fast_exchange_sidecar")
-        reverse_sidecar_dir = databases[name].get("premise_fast_reverse_exchange_sidecar")
+        reverse_sidecar_dir = databases[name].get(
+            "premise_fast_reverse_exchange_sidecar"
+        )
         if sidecar_dir:
             shutil.rmtree(sidecar_dir, ignore_errors=True)
         if reverse_sidecar_dir:
@@ -570,7 +573,11 @@ def _write_processed_database_fast(data: list, name: str) -> None:
             activity_rows.append(
                 (
                     pickle.dumps(
-                        {key: value for key, value in dataset.items() if key != "exchanges"},
+                        {
+                            key: value
+                            for key, value in dataset.items()
+                            if key != "exchanges"
+                        },
                         protocol=4,
                     ),
                     dataset["code"],

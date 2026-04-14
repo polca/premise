@@ -9,7 +9,6 @@ from bw2data import databases
 from bw2io.importers.base_lci import LCIImporter
 from wurst.linking import change_db_name, check_internal_linking, link_internal
 
-
 FAST_ACTIVITY_FIELDS = {
     "database",
     "code",
@@ -170,9 +169,13 @@ def _fast_sqlite_writes(enabled: bool):
     bw_base.check_exchange_keys = _noop_check
     bw_base.check_activity_type = _noop_check
     bw_base.check_activity_keys = _noop_check
-    original_efficient_write_many_data = bw_base.SQLiteBackend._efficient_write_many_data
+    original_efficient_write_many_data = (
+        bw_base.SQLiteBackend._efficient_write_many_data
+    )
 
-    def _raw_fast_write_many_data(self, data, indices: bool = True, check_typos: bool = True):
+    def _raw_fast_write_many_data(
+        self, data, indices: bool = True, check_typos: bool = True
+    ):
         be_complicated = len(data) >= 100 and indices
         if be_complicated:
             self._drop_indices()

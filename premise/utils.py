@@ -1009,7 +1009,8 @@ def _trim_scenario_dataset_in_place(ds: Dict[str, Any]) -> Dict[str, Any]:
         if field in _SCENARIO_TRIMMED_DATASET_FIELDS
     }
     trimmed_dataset["exchanges"] = [
-        _trim_scenario_exchange(exchange)[0] for exchange in trimmed_dataset["exchanges"]
+        _trim_scenario_exchange(exchange)[0]
+        for exchange in trimmed_dataset["exchanges"]
     ]
     ds.clear()
     ds.update(trimmed_dataset)
