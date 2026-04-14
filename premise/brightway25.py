@@ -369,6 +369,8 @@ def _fast_sqlite_writes(enabled: bool):
 
 
 def _compact_payload_for_fast_write(data: list) -> list:
+    from bw2data.utils import set_correct_process_type
+
     def keep_value(value):
         if value is None:
             return False
@@ -377,6 +379,7 @@ def _compact_payload_for_fast_write(data: list) -> list:
         return True
 
     for dataset in data:
+        set_correct_process_type(dataset)
         exchanges = dataset.get("exchanges", [])
         compact_dataset = {
             field: value
