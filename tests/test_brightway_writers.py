@@ -66,9 +66,7 @@ def test_write_brightway25_database_fast_prints_completion_message(monkeypatch, 
     assert "Brightway database written: fast-db" in capsys.readouterr().out
 
 
-def test_write_brightway25_database_fast_prints_overwrite_message(
-    monkeypatch, capsys
-):
+def test_write_brightway25_database_fast_prints_overwrite_message(monkeypatch, capsys):
     monkeypatch.setattr(brightway25_module, "databases", {"fast-db": {}})
     monkeypatch.setattr(brightway25_module, "change_db_name", lambda data, name: None)
     monkeypatch.setattr(brightway25_module, "link_internal", lambda data: None)
