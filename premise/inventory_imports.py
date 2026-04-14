@@ -1076,6 +1076,177 @@ class BaseInventoryImport:
                 )
             ]
 
+    @staticmethod
+    def _replacement_metadata(exc: dict) -> tuple[str, str, str]:
+        return (
+            exc["replacement name"],
+            exc["replacement product"],
+            exc["replacement location"],
+        )
+
+    def _find_replacement_dataset(self, exc: dict) -> dict | None:
+        name, ref_prod, loc = self._replacement_metadata(exc)
+
+        for ds in self.database:
+            if (
+                ds["name"] == name
+                and ds["reference product"] == ref_prod
+                and ds["location"] == loc
+            ):
+                return ds
+
+        return None
+
+    @staticmethod
+    def _toggle_market_name(name: str) -> str | None:
+        if "market for" in name:
+            return name.replace("market for", "market group for")
+        if "market group for" in name:
+            return name.replace("market group for", "market for")
+        return None
+
+    @staticmethod
+    def _find_matching_technosphere_exchanges(
+        dataset: dict, exchange_name: str, exc: dict
+    ) -> List[dict]:
+        """
+        Return matching technosphere exchanges from ``dataset`` for ``exc``.
+
+        Prefer exact supplier-location matches when available so we don't
+        accidentally sum several regional suppliers from the replacement dataset.
+        """
+
+        matches = list(
+            ws.technosphere(
+                dataset,
+                ws.equals("name", exchange_name),
+                ws.equals("product", exc["product"]),
+            )
+        )
+
+        if not matches:
+            return matches
+
+        if "location" not in exc:
+            return matches
+
+        exact_location_matches = [
+            match for match in matches if match.get("location") == exc["location"]
+        ]
+
+        if exact_location_matches:
+            return exact_location_matches
+
+        return matches
+
+    def _collect_replacement_technosphere_exchanges(self, exc: dict) -> List[dict]:
+        """
+        Return the full matching supplier structure from the replacement dataset.
+
+        This is important after migration disaggregation: a single original
+        placeholder can become many zero-valued regional placeholders. We must
+        replace that whole group with the actual exchanges present in the
+        replacement ecoinvent dataset, not fill each split placeholder
+        independently.
+        """
+
+        replacement_ds = self._find_replacement_dataset(exc)
+        if replacement_ds is None:
+            return []
+
+        matches = list(
+            ws.technosphere(
+                replacement_ds,
+                ws.equals("name", exc["name"]),
+                ws.equals("product", exc["product"]),
+            )
+        )
+
+        if matches:
+            return matches
+
+        alt_name = self._toggle_market_name(exc["name"])
+        if alt_name is None:
+            return []
+
+        return list(
+            ws.technosphere(
+                replacement_ds,
+                ws.equals("name", alt_name),
+                ws.equals("product", exc["product"]),
+            )
+        )
+
+    def fill_dataset_data_gaps(self, dataset: dict) -> None:
+        """
+        Fill exchanges with replacement metadata for a whole dataset.
+
+        Technosphere exchanges are handled group-wise so migration-created
+        split placeholders are replaced by the actual supplier structure of the
+        replacement ecoinvent dataset.
+        """
+
+        grouped_techno = {}
+        biosphere_to_fill = []
+
+        for exc in dataset.get("exchanges", []):
+            if "replacement name" not in exc:
+                continue
+
+            if exc["type"] == "technosphere":
+                key = (
+                    *self._replacement_metadata(exc),
+                    exc["type"],
+                    exc["name"],
+                    exc["product"],
+                    exc["unit"],
+                )
+                grouped_techno.setdefault(key, []).append(exc)
+            elif exc["type"] == "biosphere":
+                biosphere_to_fill.append(exc)
+
+        if not grouped_techno and not biosphere_to_fill:
+            return
+
+        filtered_exchanges = []
+        grouped_techno_ids = {
+            id(exc) for excs in grouped_techno.values() for exc in excs
+        }
+        biosphere_ids = {id(exc) for exc in biosphere_to_fill}
+
+        for exc in dataset["exchanges"]:
+            if id(exc) in grouped_techno_ids or id(exc) in biosphere_ids:
+                continue
+            filtered_exchanges.append(exc)
+
+        for grouped_exchanges in grouped_techno.values():
+            template = grouped_exchanges[0]
+            replacements = self._collect_replacement_technosphere_exchanges(template)
+
+            if replacements:
+                for replacement in replacements:
+                    new_exc = template.copy()
+                    new_exc["name"] = replacement["name"]
+                    new_exc["product"] = replacement["product"]
+                    new_exc["location"] = replacement["location"]
+                    new_exc["unit"] = replacement["unit"]
+                    new_exc["amount"] = replacement["amount"]
+                    new_exc.pop("replacement name", None)
+                    new_exc.pop("replacement product", None)
+                    new_exc.pop("replacement location", None)
+                    new_exc.pop("input", None)
+                    filtered_exchanges.append(new_exc)
+            else:
+                fallback_exc = template.copy()
+                self.fill_data_gaps(fallback_exc)
+                filtered_exchanges.append(fallback_exc)
+
+        for exc in biosphere_to_fill:
+            self.fill_data_gaps(exc)
+            filtered_exchanges.append(exc)
+
+        dataset["exchanges"] = filtered_exchanges
+
     def fill_data_gaps(self, exc):
         """
         Some datatsets have the exchange amount set to zero because of ecoinvent license restrictions
@@ -1098,12 +1269,8 @@ class BaseInventoryImport:
                 ):
                     sum_amount = 0
                     if exc["type"] == "technosphere":
-
-                        for e in ws.technosphere(
-                            ds,
-                            ws.equals("name", exc["name"]),
-                            ws.equals("product", exc["product"]),
-                            # ws.equals("location", exc["location"]),
+                        for e in self._find_matching_technosphere_exchanges(
+                            ds, exc["name"], exc
                         ):
                             sum_amount += e["amount"]
 
@@ -1133,12 +1300,7 @@ class BaseInventoryImport:
                             )
                             return
 
-                        for e in ws.technosphere(
-                            ds,
-                            ws.equals("name", n),
-                            ws.equals("product", exc["product"]),
-                            # ws.equals("location", exc["location"]),
-                        ):
+                        for e in self._find_matching_technosphere_exchanges(ds, n, exc):
                             sum_amount += e["amount"]
 
                         if sum_amount == 0:
@@ -1215,13 +1377,7 @@ class BaseInventoryImport:
                                 )
                             )
 
-                if exchange["type"] in (
-                    "technosphere",
-                    "biosphere",
-                ):
-                    # check if amount is missing and need to be filled
-                    if "replacement name" in exchange:
-                        self.fill_data_gaps(exchange)
+            self.fill_dataset_data_gaps(dataset)
 
         # Add a `code` field if missing
         for dataset in self.import_db.data:

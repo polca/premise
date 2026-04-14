@@ -3,10 +3,36 @@ Class to write a Brightway2 database from a Wurst database.
 """
 
 from contextlib import contextmanager
+import pickle
 
 from bw2data import databases
 from bw2io.importers.base_lci import LCIImporter
 from wurst.linking import change_db_name, check_internal_linking, link_internal
+
+FAST_ACTIVITY_FIELDS = {
+    "database",
+    "code",
+    "name",
+    "reference product",
+    "unit",
+    "location",
+    "type",
+}
+
+FAST_EXCHANGE_BASE_FIELDS = {
+    "input",
+    "amount",
+    "type",
+}
+
+FAST_EXCHANGE_UNCERTAINTY_FIELDS = {
+    "uncertainty type",
+    "loc",
+    "scale",
+    "shape",
+    "minimum",
+    "maximum",
+}
 
 
 class BW2Importer(LCIImporter):
@@ -38,6 +64,10 @@ class BW2Importer(LCIImporter):
         super().write_database()
 
 
+def _print_database_written(name: str) -> None:
+    print(f"Brightway database written: {name}")
+
+
 @contextmanager
 def _fast_sqlite_writes(enabled: bool):
     if not enabled:
@@ -46,15 +76,19 @@ def _fast_sqlite_writes(enabled: bool):
 
     original_settings = {}
     original_vacuum = {}
+    original_make_searchable = {}
     original_base_checks = None
     original_substitutable_vacuum = None
+    original_efficient_write_many_data = None
     db_settings = {}
 
     try:
         from bw2data.backends import base as bw_base
+        from bw2data.backends.schema import ActivityDataset, ExchangeDataset
         from bw2data.backends import sqlite3_lci_db as bw_sqlite3_lci_db
         from bw2data import sqlite as bw_sqlite
         from bw2data.configuration import config
+        from bw2data.snowflake_ids import snowflake_id_generator
     except Exception:
         yield
         return
@@ -111,9 +145,15 @@ def _fast_sqlite_writes(enabled: bool):
     def _noop_vacuum(*_args, **_kwargs):
         return None
 
+    def _noop_make_searchable(*_args, **_kwargs):
+        return None
+
     for db in unique_dbs:
         original_vacuum[db] = db.vacuum
         db.vacuum = _noop_vacuum
+        original_make_searchable[db] = getattr(db, "make_searchable", None)
+        if hasattr(db, "make_searchable"):
+            db.make_searchable = _noop_make_searchable
 
     if bw_sqlite is not None and hasattr(bw_sqlite, "SubstitutableDatabase"):
         original_substitutable_vacuum = bw_sqlite.SubstitutableDatabase.vacuum
@@ -133,6 +173,99 @@ def _fast_sqlite_writes(enabled: bool):
     bw_base.check_exchange_keys = _noop_check
     bw_base.check_activity_type = _noop_check
     bw_base.check_activity_keys = _noop_check
+    original_efficient_write_many_data = (
+        bw_base.SQLiteBackend._efficient_write_many_data
+    )
+
+    def _raw_fast_write_many_data(
+        self, data, indices: bool = True, check_typos: bool = True
+    ):
+        be_complicated = len(data) >= 100 and indices
+        if be_complicated:
+            self._drop_indices()
+
+        activity_sql = (
+            f'INSERT INTO "{ActivityDataset._meta.table_name}" '
+            "(id, data, code, database, location, name, product, type) "
+            "VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
+        )
+        exchange_sql = (
+            f'INSERT INTO "{ExchangeDataset._meta.table_name}" '
+            "(data, input_code, input_database, output_code, output_database, type) "
+            "VALUES (?, ?, ?, ?, ?, ?)"
+        )
+        activity_batch = []
+        exchange_batch = []
+        activity_batch_size = 250
+        exchange_batch_size = 2_000
+        connection = sqlite3_lci_db.db.connection()
+
+        sqlite3_lci_db.db.autocommit = False
+        try:
+            sqlite3_lci_db.db.begin()
+            self.delete(keep_params=True, warn=False, vacuum=False)
+
+            for ds in bw_base.tqdm_wrapper(data, getattr(config, "is_test", False)):
+                database = ds["database"]
+                code = ds["code"]
+
+                for exchange in ds.get("exchanges", []):
+                    exchange_payload = exchange
+                    if "output" not in exchange_payload:
+                        exchange_payload = {
+                            **exchange,
+                            "output": (database, code),
+                        }
+
+                    exchange_batch.append(
+                        (
+                            pickle.dumps(exchange_payload, protocol=4),
+                            exchange_payload["input"][1],
+                            exchange_payload["input"][0],
+                            exchange_payload["output"][1],
+                            exchange_payload["output"][0],
+                            exchange_payload["type"],
+                        )
+                    )
+
+                    if len(exchange_batch) >= exchange_batch_size:
+                        connection.executemany(exchange_sql, exchange_batch)
+                        exchange_batch = []
+
+                activity_data = {k: v for k, v in ds.items() if k != "exchanges"}
+                activity_batch.append(
+                    (
+                        next(snowflake_id_generator),
+                        pickle.dumps(activity_data, protocol=4),
+                        code,
+                        database,
+                        activity_data.get("location"),
+                        activity_data.get("name"),
+                        activity_data.get("reference product"),
+                        activity_data.get("type"),
+                    )
+                )
+
+                if len(activity_batch) >= activity_batch_size:
+                    connection.executemany(activity_sql, activity_batch)
+                    activity_batch = []
+
+            if activity_batch:
+                connection.executemany(activity_sql, activity_batch)
+            if exchange_batch:
+                connection.executemany(exchange_sql, exchange_batch)
+
+            sqlite3_lci_db.db.commit()
+            sqlite3_lci_db.vacuum()
+        except Exception:
+            sqlite3_lci_db.db.rollback()
+            raise
+        finally:
+            sqlite3_lci_db.db.autocommit = True
+            if be_complicated:
+                self._add_indices()
+
+    bw_base.SQLiteBackend._efficient_write_many_data = _raw_fast_write_many_data
 
     try:
         yield
@@ -140,6 +273,9 @@ def _fast_sqlite_writes(enabled: bool):
         try:
             for db, vacuum_func in original_vacuum.items():
                 db.vacuum = vacuum_func
+            for db, make_searchable_func in original_make_searchable.items():
+                if make_searchable_func is not None:
+                    db.make_searchable = make_searchable_func
             if original_substitutable_vacuum is not None:
                 bw_sqlite.SubstitutableDatabase.vacuum = original_substitutable_vacuum
 
@@ -147,6 +283,10 @@ def _fast_sqlite_writes(enabled: bool):
                 db.db.execute_sql(f"PRAGMA synchronous = {settings['synchronous']};")
                 db.db.execute_sql(f"PRAGMA journal_mode = {settings['journal_mode']};")
                 db.db.execute_sql(f"PRAGMA temp_store = {settings['temp_store']};")
+            if original_efficient_write_many_data is not None:
+                bw_base.SQLiteBackend._efficient_write_many_data = (
+                    original_efficient_write_many_data
+                )
             if original_base_checks is not None:
                 bw_base.check_exchange_type = original_base_checks[
                     "check_exchange_type"
@@ -164,14 +304,67 @@ def _fast_sqlite_writes(enabled: bool):
             pass
 
 
-def write_brightway_database(data: list, name: str, fast: bool = False) -> None:
+def _compact_payload_for_fast_write(data: list) -> list:
+    for dataset in data:
+        exchanges = dataset.get("exchanges", [])
+        compact_dataset = {
+            field: value
+            for field, value in dataset.items()
+            if field in FAST_ACTIVITY_FIELDS and value is not None
+        }
+
+        compact_exchanges = []
+        for exchange in exchanges:
+            compact_exchange = {
+                field: value
+                for field, value in exchange.items()
+                if field in FAST_EXCHANGE_BASE_FIELDS and value is not None
+            }
+
+            uncertainty_type = exchange.get("uncertainty type", 0)
+            if uncertainty_type not in (None, 0):
+                compact_exchange["uncertainty type"] = uncertainty_type
+                for field in FAST_EXCHANGE_UNCERTAINTY_FIELDS - {"uncertainty type"}:
+                    value = exchange.get(field)
+                    if value is not None:
+                        compact_exchange[field] = value
+
+            compact_exchanges.append(compact_exchange)
+
+        compact_dataset["exchanges"] = compact_exchanges
+        dataset.clear()
+        dataset.update(compact_dataset)
+
+    return data
+
+
+def write_brightway_database(
+    data: list,
+    name: str,
+    fast: bool = False,
+    check_internal: bool = True,
+) -> None:
     """
     Write a Brightway2 database from a Wurst database.
     """
+    for act in data:
+        act.setdefault("database", name)
+
+    needs_relink = any(
+        "input" not in exchange
+        for dataset in data
+        for exchange in dataset.get("exchanges", [])
+    )
+
     # Restore parameters to Brightway2 format
     # which allows for uncertainty and comments
     change_db_name(data, name)
-    link_internal(data)
-    check_internal_linking(data)
+    if needs_relink:
+        link_internal(data)
+    if check_internal:
+        check_internal_linking(data)
+    if fast:
+        _compact_payload_for_fast_write(data)
     with _fast_sqlite_writes(fast):
         BW2Importer(name, data).write_database()
+    _print_database_written(name)
