@@ -20,10 +20,13 @@ def test_collect_fast_export_geography_discards_unknown_geocollections():
     assert locations == {"CH", "UNKNOWN", "GLO"}
 
 
-def test_write_brightway25_database_fast_prints_completion_message(
-    monkeypatch, capsys
-):
-    calls = {"change_db_name": None, "check_internal": 0, "compact": None, "write": None}
+def test_write_brightway25_database_fast_prints_completion_message(monkeypatch, capsys):
+    calls = {
+        "change_db_name": None,
+        "check_internal": 0,
+        "compact": None,
+        "write": None,
+    }
 
     monkeypatch.setattr(
         brightway25_module,

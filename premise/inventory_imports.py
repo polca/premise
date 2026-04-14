@@ -1300,9 +1300,7 @@ class BaseInventoryImport:
                             )
                             return
 
-                        for e in self._find_matching_technosphere_exchanges(
-                            ds, n, exc
-                        ):
+                        for e in self._find_matching_technosphere_exchanges(ds, n, exc):
                             sum_amount += e["amount"]
 
                         if sum_amount == 0:
