@@ -5,6 +5,7 @@ as well as export it back.
 """
 
 import gc
+import inspect
 import logging
 import os
 import pickle
@@ -697,8 +698,10 @@ class NewDatabase:
             else:
                 imported_inventory_data = True
             # A cache miss imports inventories directly into ``self.database``
-            # before writing the cache files, so the in-memory database is
-            # complete in both the hit and miss cases here.
+            # before replacing the imported tail with the trimmed cached
+            # representation, so the inventory coverage is complete in both the
+            # hit and miss cases here and the original form can be reloaded from
+            # cache when needed.
             self._database_is_complete = True
         else:
             self.__import_inventories()
@@ -795,10 +798,16 @@ class NewDatabase:
         # else, extract the database, pickle it for next time and return it
         print("Cannot find cached inventories. Will create them now for next time...")
         inventory_start = len(self.database)
-        self.__import_inventories(collect_data=False)
-        _, inventories_metadata_cache_filepath = create_cache(
+        import_inventories = self.__import_inventories
+        if "collect_data" in inspect.signature(import_inventories).parameters:
+            import_inventories(collect_data=False)
+        else:
+            import_inventories()
+
+        trimmed_inventories, inventories_metadata_cache_filepath = create_cache(
             self.database[inventory_start:], file_name
         )
+        self.database[inventory_start:] = trimmed_inventories
         self.inventories_cache_filepath = resolve_cache_ref(file_name)
         self.inventories_metadata_cache_filepath = inventories_metadata_cache_filepath
         self._reload_original_database_from_cache_for_update = True
