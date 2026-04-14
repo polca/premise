@@ -106,6 +106,10 @@ def _print_database_written(name: str) -> None:
     print(f"Brightway database written: {name}")
 
 
+def _print_database_overwrite(name: str) -> None:
+    print(f"Database {name} already exists: it will be overwritten.")
+
+
 @contextmanager
 def _fast_sqlite_writes(enabled: bool):
     if not enabled:
@@ -739,13 +743,15 @@ def write_brightway_database(
     if check_internal:
         check_internal_linking(data)
     if fast:
+        if name in databases:
+            _print_database_overwrite(name)
         _compact_payload_for_fast_write(data, name)
         _write_processed_database_fast(data, name)
         _print_database_written(name)
         return
 
     if name in databases:
-        print(f"Database {name} already exists: it will be overwritten.")
+        _print_database_overwrite(name)
         del databases[name]
 
     with _fast_sqlite_writes(fast):

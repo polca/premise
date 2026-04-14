@@ -66,6 +66,36 @@ def test_write_brightway25_database_fast_prints_completion_message(monkeypatch, 
     assert "Brightway database written: fast-db" in capsys.readouterr().out
 
 
+def test_write_brightway25_database_fast_prints_overwrite_message(
+    monkeypatch, capsys
+):
+    monkeypatch.setattr(brightway25_module, "databases", {"fast-db": {}})
+    monkeypatch.setattr(brightway25_module, "change_db_name", lambda data, name: None)
+    monkeypatch.setattr(brightway25_module, "link_internal", lambda data: None)
+    monkeypatch.setattr(brightway25_module, "check_internal_linking", lambda data: None)
+    monkeypatch.setattr(
+        brightway25_module,
+        "_compact_payload_for_fast_write",
+        lambda data, name: None,
+    )
+    monkeypatch.setattr(
+        brightway25_module,
+        "_write_processed_database_fast",
+        lambda data, name: None,
+    )
+
+    brightway25_module.write_brightway_database(
+        data=[{"code": "a", "exchanges": []}],
+        name="fast-db",
+        fast=True,
+        check_internal=True,
+    )
+
+    output = capsys.readouterr().out
+    assert "Database fast-db already exists: it will be overwritten." in output
+    assert "Brightway database written: fast-db" in output
+
+
 def test_write_brightway2_database_prints_completion_message(monkeypatch, capsys):
     calls = {"change_db_name": None, "check_internal": 0, "write": 0}
 
