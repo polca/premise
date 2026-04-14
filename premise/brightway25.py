@@ -6,7 +6,6 @@ from contextlib import contextmanager
 import datetime
 import pickle
 import shutil
-import warnings
 
 from bw2data import Database, databases
 from bw2io.importers.base_lci import LCIImporter
@@ -83,6 +82,28 @@ def _cleanup_legacy_fast_export_sidecars(name: str) -> None:
 
     databases[name].pop("premise_fast_exchange_sidecar", None)
     databases[name].pop("premise_fast_reverse_exchange_sidecar", None)
+
+
+def _collect_fast_export_geography(
+    data: list, process_node_types: tuple | list | set, get_geocollection
+) -> tuple[list, set]:
+    geocollections = sorted(
+        {
+            geocollection
+            for geocollection in (
+                get_geocollection(dataset.get("location"))
+                for dataset in data
+                if dataset.get("type") in process_node_types
+            )
+            if geocollection is not None
+        }
+    )
+    locations = {dataset["location"] for dataset in data if dataset.get("location")}
+    return geocollections, locations
+
+
+def _print_database_written(name: str) -> None:
+    print(f"Brightway database written: {name}")
 
 
 @contextmanager
@@ -430,19 +451,13 @@ def _write_processed_database_fast(data: list, name: str) -> None:
     databases[name]["number"] = len(data)
     databases.set_modified(name)
 
-    geocollections = {
-        get_geocollection(dataset.get("location"))
-        for dataset in data
-        if dataset.get("type") in labels.process_node_types
-    }
-    if None in geocollections:
-        warnings.warn(
-            "Not able to determine geocollections for all datasets. "
-            "This database is not ready for regionalization."
-        )
-        geocollections.discard(None)
-    databases[name]["geocollections"] = sorted(geocollections)
-    geomapping.add({dataset["location"] for dataset in data if dataset.get("location")})
+    geocollections, locations = _collect_fast_export_geography(
+        data=data,
+        process_node_types=labels.process_node_types,
+        get_geocollection=get_geocollection,
+    )
+    databases[name]["geocollections"] = geocollections
+    geomapping.add(locations)
     _cleanup_legacy_fast_export_sidecars(name)
 
     activity_sql = (
@@ -726,6 +741,7 @@ def write_brightway_database(
     if fast:
         _compact_payload_for_fast_write(data, name)
         _write_processed_database_fast(data, name)
+        _print_database_written(name)
         return
 
     if name in databases:
@@ -734,3 +750,4 @@ def write_brightway_database(
 
     with _fast_sqlite_writes(fast):
         BW25Importer(name, data).write_database()
+    _print_database_written(name)

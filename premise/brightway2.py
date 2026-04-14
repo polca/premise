@@ -64,6 +64,10 @@ class BW2Importer(LCIImporter):
         super().write_database()
 
 
+def _print_database_written(name: str) -> None:
+    print(f"Brightway database written: {name}")
+
+
 @contextmanager
 def _fast_sqlite_writes(enabled: bool):
     if not enabled:
@@ -363,3 +367,4 @@ def write_brightway_database(
         _compact_payload_for_fast_write(data)
     with _fast_sqlite_writes(fast):
         BW2Importer(name, data).write_database()
+    _print_database_written(name)
