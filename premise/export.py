@@ -1179,7 +1179,7 @@ def prepare_db_for_export(
 def prepare_db_for_fast_export(scenario, name, version, biosphere_name=None):
     """
     Prepare a database for Brightway export using only the minimal
-    formatting and linking steps required by the writer.
+    formatting and validation steps required by the fast writer.
     """
 
     validator = BaseDatasetValidator(
@@ -1193,11 +1193,7 @@ def prepare_db_for_fast_export(scenario, name, version, biosphere_name=None):
         biosphere_name=biosphere_name,
         version=version,
     )
-    validator.remove_unused_fields()
-    validator.correct_fields_format()
-    validator.check_amount_format()
-    validator.reformat_parameters()
-    validator.check_database_name()
+    validator.run_fast_export_checks()
 
     return validator.database
 

@@ -846,6 +846,32 @@ class BaseDatasetValidator:
         self.reformat_parameters()
         self.add_missing_classifications()
         self.check_uncertainty()
+        self._finalize_logs()
+
+    def run_fast_export_checks(self):
+        """
+        Run a reduced validation pass for the fast Brightway export path.
+        This keeps cheap structural and consistency checks while avoiding
+        the heavier checks that require the full source database context.
+        """
+
+        print("Running core export checks...")
+        self.check_matrix_squareness()
+        self.validate_dataset_structure()
+        self.verify_data_consistency()
+        self.check_relinking_logic()
+        self.check_for_orphaned_datasets()
+        self.check_for_duplicates()
+        self.check_for_circular_references()
+        self.check_database_name()
+        self.remove_unused_fields()
+        self.correct_fields_format()
+        self.check_amount_format()
+        self.reformat_parameters()
+        self.check_uncertainty()
+        self._finalize_logs()
+
+    def _finalize_logs(self):
         self.save_log()
         if len(self.minor_issues_log) > 0:
             print("Minor anomalies found: check the change report.")

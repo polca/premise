@@ -1,3 +1,5 @@
+from types import SimpleNamespace
+
 import pandas as pd
 import pytest
 
@@ -103,6 +105,71 @@ def test_remove_uncertainty():
         for exc in ds["exchanges"]:
             if "uncertainty_type" in exc:
                 assert exc["uncertainty_type"] == 0
+
+
+def test_prepare_db_for_fast_export_runs_core_checks(monkeypatch):
+    captured = {}
+    prepared_database = [{"name": "prepared"}]
+
+    class DummyValidator:
+        def __init__(
+            self,
+            model,
+            scenario,
+            year,
+            regions,
+            original_database,
+            database,
+            db_name,
+            biosphere_name,
+            version,
+        ):
+            captured["init"] = {
+                "model": model,
+                "scenario": scenario,
+                "year": year,
+                "regions": regions,
+                "original_database": original_database,
+                "database": database,
+                "db_name": db_name,
+                "biosphere_name": biosphere_name,
+                "version": version,
+            }
+            self.database = prepared_database
+
+        def run_fast_export_checks(self):
+            captured["run_fast_export_checks"] = True
+
+    monkeypatch.setattr("premise.export.BaseDatasetValidator", DummyValidator)
+
+    scenario = {
+        "model": "image",
+        "pathway": "SSP2-Base",
+        "year": 2030,
+        "iam data": SimpleNamespace(regions=["EUR"]),
+        "database": [{"name": "raw"}],
+    }
+
+    result = prepare_db_for_fast_export(
+        scenario=scenario,
+        name="test-db",
+        version="3.12",
+        biosphere_name="test-biosphere",
+    )
+
+    assert captured["init"] == {
+        "model": "image",
+        "scenario": "SSP2-Base",
+        "year": 2030,
+        "regions": ["EUR"],
+        "original_database": [],
+        "database": [{"name": "raw"}],
+        "db_name": "test-db",
+        "biosphere_name": "test-biosphere",
+        "version": "3.12",
+    }
+    assert captured["run_fast_export_checks"] is True
+    assert result == prepared_database
 
 
 def test_aggregate_duplicate_superstructure_rows_sums_biosphere_collisions():

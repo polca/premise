@@ -206,6 +206,184 @@ def test_write_db_to_brightway_requires_registered_biosphere(monkeypatch):
         obj.write_db_to_brightway(name=["test-db"])
 
 
+def test_write_db_to_brightway_fast_path_runs_internal_check(monkeypatch):
+    prepared_database = [{"name": "prepared dataset", "exchanges": []}]
+    captured = {
+        "loaded": None,
+        "prepared": None,
+        "written": None,
+        "ended": [],
+        "pickles_deleted": 0,
+    }
+
+    def fake_load_database(scenario, original_database, load_metadata, warning=True):
+        captured["loaded"] = {
+            "scenario": scenario.copy(),
+            "original_database": original_database,
+            "load_metadata": load_metadata,
+            "warning": warning,
+        }
+        loaded = scenario.copy()
+        loaded["database"] = [{"name": "loaded dataset", "exchanges": []}]
+        return loaded
+
+    def fake_prepare_db_for_fast_export(scenario, name, biosphere_name, version):
+        captured["prepared"] = {
+            "scenario": scenario.copy(),
+            "name": name,
+            "biosphere_name": biosphere_name,
+            "version": version,
+        }
+        return prepared_database
+
+    def fake_write_brightway_database(data, name, fast=False, check_internal=True):
+        captured["written"] = {
+            "data": data,
+            "name": name,
+            "fast": fast,
+            "check_internal": check_internal,
+        }
+
+    monkeypatch.setattr(
+        new_database_module,
+        "check_presence_biosphere_database",
+        lambda _: None,
+    )
+    monkeypatch.setattr(new_database_module, "load_database", fake_load_database)
+    monkeypatch.setattr(
+        new_database_module,
+        "prepare_db_for_fast_export",
+        fake_prepare_db_for_fast_export,
+    )
+    monkeypatch.setattr(
+        new_database_module,
+        "write_brightway_database",
+        fake_write_brightway_database,
+    )
+    monkeypatch.setattr(
+        new_database_module,
+        "end_of_process",
+        lambda scenario: captured["ended"].append(scenario.copy()),
+    )
+    monkeypatch.setattr(
+        new_database_module,
+        "delete_all_pickles",
+        lambda: captured.__setitem__("pickles_deleted", captured["pickles_deleted"] + 1),
+    )
+
+    obj = object.__new__(NewDatabase)
+    obj.biosphere_name = "test-biosphere"
+    obj.version = "3.12"
+    obj.generate_reports = False
+    obj.scenarios = [
+        {
+            "model": "image",
+            "pathway": "SSP2-Base",
+            "year": 2030,
+            "database filepath": Path("scenario-cache.pickle"),
+        }
+    ]
+    obj._load_original_database = lambda: (_ for _ in ()).throw(
+        AssertionError("fast export path should not reload the original database")
+    )
+
+    obj.write_db_to_brightway(name="fast-db")
+
+    assert captured["loaded"] == {
+        "scenario": {
+            "model": "image",
+            "pathway": "SSP2-Base",
+            "year": 2030,
+            "database filepath": Path("scenario-cache.pickle"),
+        },
+        "original_database": [],
+        "load_metadata": True,
+        "warning": False,
+    }
+    assert captured["prepared"] == {
+        "scenario": {
+            "model": "image",
+            "pathway": "SSP2-Base",
+            "year": 2030,
+            "database filepath": Path("scenario-cache.pickle"),
+            "database": [{"name": "loaded dataset", "exchanges": []}],
+        },
+        "name": "fast-db",
+        "biosphere_name": "test-biosphere",
+        "version": "3.12",
+    }
+    assert captured["written"] == {
+        "data": prepared_database,
+        "name": "fast-db",
+        "fast": True,
+        "check_internal": True,
+    }
+    assert captured["ended"] == [
+        {
+            "model": "image",
+            "pathway": "SSP2-Base",
+            "year": 2030,
+            "database filepath": Path("scenario-cache.pickle"),
+            "database": prepared_database,
+            "database name": "fast-db",
+        }
+    ]
+    assert captured["pickles_deleted"] == 1
+
+
+def test_write_db_to_brightway_fast_path_reports_major_validation_errors(monkeypatch):
+    captured = {"reports": 0}
+
+    monkeypatch.setattr(
+        new_database_module,
+        "check_presence_biosphere_database",
+        lambda _: None,
+    )
+    monkeypatch.setattr(
+        new_database_module,
+        "load_database",
+        lambda scenario, original_database, load_metadata, warning=True: scenario.copy(),
+    )
+    monkeypatch.setattr(
+        new_database_module,
+        "prepare_db_for_fast_export",
+        lambda **kwargs: (_ for _ in ()).throw(ValueError("major issue")),
+    )
+    monkeypatch.setattr(
+        new_database_module,
+        "write_brightway_database",
+        lambda *args, **kwargs: (_ for _ in ()).throw(
+            AssertionError("writer should not be called after validation failure")
+        ),
+    )
+    monkeypatch.setattr(new_database_module, "end_of_process", lambda scenario: None)
+    monkeypatch.setattr(new_database_module, "delete_all_pickles", lambda: None)
+
+    obj = object.__new__(NewDatabase)
+    obj.biosphere_name = "test-biosphere"
+    obj.version = "3.12"
+    obj.generate_reports = False
+    obj.scenarios = [
+        {
+            "model": "image",
+            "pathway": "SSP2-Base",
+            "year": 2030,
+            "database filepath": Path("scenario-cache.pickle"),
+        }
+    ]
+    obj.generate_change_report = lambda: captured.__setitem__(
+        "reports", captured["reports"] + 1
+    )
+
+    with pytest.raises(
+        ValueError,
+        match="The database is not ready for export: MAJOR anomalies found. Check the change report.",
+    ):
+        obj.write_db_to_brightway(name="fast-db")
+
+    assert captured["reports"] == 1
+
+
 def test_write_superstructure_to_brightway_requires_registered_biosphere(monkeypatch):
     monkeypatch.setattr(new_database_module.bw2data, "databases", {})
 

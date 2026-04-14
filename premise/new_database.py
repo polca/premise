@@ -1371,19 +1371,25 @@ class NewDatabase:
                     load_metadata=True,
                     warning=False,
                 )
-                scenario["database"] = prepare_db_for_fast_export(
-                    scenario=scenario,
-                    name=name[s],
-                    biosphere_name=self.biosphere_name,
-                    version=self.version,
-                )
+                try:
+                    scenario["database"] = prepare_db_for_fast_export(
+                        scenario=scenario,
+                        name=name[s],
+                        biosphere_name=self.biosphere_name,
+                        version=self.version,
+                    )
+                except ValueError:
+                    self.generate_change_report()
+                    raise ValueError(
+                        "The database is not ready for export: MAJOR anomalies found. Check the change report."
+                    )
 
                 scenario["database name"] = name[s]
                 write_brightway_database(
                     scenario["database"],
                     name[s],
                     fast=True,
-                    check_internal=False,
+                    check_internal=True,
                 )
                 end_of_process(scenario)
                 continue
