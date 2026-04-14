@@ -268,7 +268,9 @@ def test_write_db_to_brightway_fast_path_runs_internal_check(monkeypatch):
     monkeypatch.setattr(
         new_database_module,
         "delete_all_pickles",
-        lambda: captured.__setitem__("pickles_deleted", captured["pickles_deleted"] + 1),
+        lambda: captured.__setitem__(
+            "pickles_deleted", captured["pickles_deleted"] + 1
+        ),
     )
 
     obj = object.__new__(NewDatabase)
@@ -534,7 +536,9 @@ def test_write_superstructure_to_brightway_uses_fast_writer_after_full_preparati
     monkeypatch.setattr(
         new_database_module,
         "delete_all_pickles",
-        lambda: captured.__setitem__("pickles_deleted", captured["pickles_deleted"] + 1),
+        lambda: captured.__setitem__(
+            "pickles_deleted", captured["pickles_deleted"] + 1
+        ),
     )
 
     obj = object.__new__(NewDatabase)
