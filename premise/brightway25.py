@@ -4,6 +4,7 @@ This module contains functions to write a Brightway 2.5 database.
 
 from contextlib import contextmanager
 import datetime
+import math
 import pickle
 import shutil
 
@@ -17,20 +18,6 @@ FAST_EXCHANGE_REQUIRED_FIELDS = {
     "amount",
     "type",
 }
-
-FAST_EXCHANGE_OPTIONAL_FIELDS = {
-    "uncertainty type",
-    "loc",
-    "scale",
-    "shape",
-    "minimum",
-    "maximum",
-    "production volume",
-}
-
-FAST_EXCHANGE_STORED_FIELDS = (
-    FAST_EXCHANGE_REQUIRED_FIELDS | FAST_EXCHANGE_OPTIONAL_FIELDS
-)
 
 
 class BW25Importer(LCIImporter):
@@ -331,15 +318,38 @@ def _fast_sqlite_writes(enabled: bool):
             pass
 
 
+def _keep_fast_export_value(value) -> bool:
+    if value is None:
+        return False
+
+    if isinstance(value, str) and value in {"", "None", "nan"}:
+        return False
+
+    if isinstance(value, (list, tuple, dict, set)):
+        return True
+
+    try:
+        return not math.isnan(value)
+    except (TypeError, ValueError):
+        return True
+
+
+def _prepare_fast_exchange_payload(exchange: dict) -> dict:
+    compact_exchange = {
+        field: value
+        for field, value in exchange.items()
+        if _keep_fast_export_value(value)
+    }
+
+    for field in FAST_EXCHANGE_REQUIRED_FIELDS:
+        if field not in compact_exchange and field in exchange:
+            compact_exchange[field] = exchange[field]
+
+    return compact_exchange
+
+
 def _compact_payload_for_fast_write(data: list, name: str) -> list:
     from bw2data.utils import set_correct_process_type
-
-    def keep_value(value):
-        if value is None:
-            return False
-        if isinstance(value, str) and value in {"None", "nan"}:
-            return False
-        return True
 
     progress = _progress(
         total=len(data),
@@ -354,23 +364,12 @@ def _compact_payload_for_fast_write(data: list, name: str) -> list:
             compact_dataset = {
                 field: value
                 for field, value in dataset.items()
-                if field != "exchanges" and keep_value(value)
+                if field != "exchanges" and _keep_fast_export_value(value)
             }
 
-            compact_exchanges = []
-            for exchange in exchanges:
-                compact_exchange = {
-                    field: value
-                    for field, value in exchange.items()
-                    if field in FAST_EXCHANGE_STORED_FIELDS and keep_value(value)
-                }
-                for field in FAST_EXCHANGE_REQUIRED_FIELDS:
-                    if field not in compact_exchange and field in exchange:
-                        compact_exchange[field] = exchange[field]
-
-                compact_exchanges.append(compact_exchange)
-
-            compact_dataset["exchanges"] = compact_exchanges
+            compact_dataset["exchanges"] = [
+                _prepare_fast_exchange_payload(exchange) for exchange in exchanges
+            ]
             dataset.clear()
             dataset.update(compact_dataset)
             progress.update(1)
@@ -521,11 +520,7 @@ def _write_processed_database_fast(data: list, name: str) -> None:
                 exchange_rows.append(
                     (
                         pickle.dumps(
-                            {
-                                key: value
-                                for key, value in exchange.items()
-                                if key in FAST_EXCHANGE_STORED_FIELDS
-                            },
+                            _prepare_fast_exchange_payload(exchange),
                             protocol=4,
                         ),
                         input_key[1],

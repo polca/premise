@@ -2,6 +2,11 @@
 
 All notable changes to this project are documented in this file.
 
+## [2.4.1]
+
+### Fixed
+- Preserved full non-empty activity and exchange metadata on the fast Brightway export path, so exported databases retain the same metadata fields that Premise keeps in its temporary scenario caches instead of dropping exchange browsing information such as `name`, `product`, `location`, `unit`, comments, and other cached metadata.
+
 ## [2.4.0]
 
 ### Changed
