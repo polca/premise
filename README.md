@@ -61,7 +61,6 @@ The tool currently supports the following IAMs:
 | MESSAGEix-GLOBIOM-GAINS 2.1-M-R12 | MESSAGEix-GLOBIOM-GAINS (MESSAGE) is an integrated assessment model that couples the MESSAGEix energy system with the GLOBIOM land-use model and GAINS air-pollution module. It is used to explore long-term energy and land-use transitions and their climate and air-quality implications under different policy scenarios. |
 | GCAM v.8.2        | GCAM (Global Change Analysis Model) is an integrated assessment model that simulates the interactions between energy, water, land use, climate, and economic systems on a global scale. It is designed to analyze how different policy scenarios, technological developments, and socio-economic factors influence greenhouse gas emissions, energy production and consumption, land use changes, and climate outcomes. GCAM incorporates detailed representations of energy technologies, agricultural systems, and land-use dynamics, allowing for comprehensive assessments of mitigation strategies and their implications for sustainable development. The model is widely used for exploring pathways to achieve climate targets while considering trade-offs across multiple sectors.  |
 
-
 Changelog
 ---------
 Release notes are maintained in [`CHANGELOG.md`](CHANGELOG.md).
@@ -219,7 +218,7 @@ plausible, and desirable futures.
 
 Do not hesitate to contact [romain.sacchi@psi.ch](mailto:romain.sacchi@psi.ch).
 
-## Contributors
+## Current and past Contributors
 
 * [Romain Sacchi](https://github.com/romainsacchi)
 * [Alois Dirnaichner](https://github.com/Loisel)
@@ -230,10 +229,61 @@ Do not hesitate to contact [romain.sacchi@psi.ch](mailto:romain.sacchi@psi.ch).
 * [David Bantje](https://github.com/dbantje)
 
 
-## Maintainers
+## Code Maintainers
 
 * [Romain Sacchi](https://github.com/romainsacchi)
 * [Alvaro Hahn Menacho](https://github.com/alvarojhahn)
+
+## IAM Mapping Collaborators
+
+``premise`` benefits from input from researchers in the IAM teams below who have
+helped align model outputs and mappings.
+
+### REMIND and REMIND-EU
+
+- [David Bantje](mailto:david.bantje@pik-potsdam.de), Doctoral Researcher,
+  Energy Transition Lab, Research Department Transformation Pathways, Potsdam
+  Institute for Climate Impact Research (PIK)
+- [Alois Dirnaichner](mailto:aloisdir@pik-potsdam.de), former researcher at
+  PIK (PIK alum, 2018-2022; current
+  institution: freelancer; expertise: transport and life-cycle impact
+  assessment)
+- [Gunnar Luderer](mailto:gunnar.luderer@pik-potsdam.de), Deputy Head,
+  Research Department Transformation Pathways, and Head of the Energy
+  Transition Lab, PIK
+
+### IMAGE
+
+- [Vassilis Daioglou](mailto:vassilis.daioglou@pbl.nl), Department of Global
+  Sustainability, PBL Netherlands Environmental Assessment Agency; IMAGE team
+  coordination on energy
+
+### MESSAGE
+
+- [Florian Maczek](mailto:maczek@iiasa.ac.at), Integrated Assessment and
+  Climate Change Research Group, Energy, Climate, and Environment Program,
+  International Institute for Applied Systems Analysis (IIASA)
+- [Volker Krey](mailto:krey@iiasa.ac.at), Research Group Leader and Principal
+  Research Scholar, Integrated Assessment and Climate Change Research Group,
+  Energy, Climate, and Environment Program, IIASA
+
+### TIAM-UCL
+
+- Joris Šimaitis, contributor to recent TIAM-UCL and ``premise`` integration
+  work; current public affiliation in 2025 publications: University of Bath.
+- [Isabela Butnar](mailto:i.butnar@ucl.ac.uk), Principal Research Fellow, UCL
+  Institute for Sustainable Resources, The Bartlett School of Environment,
+  Energy and Resources
+
+### GCAM
+
+- [Tapajyoti Ghosh](mailto:tapajyoti.ghosh@nrel.gov), Researcher IV,
+  Environmental Engineering, Strategic Energy Analysis Center, National
+  Renewable Energy Laboratory (NREL)
+- Brian Gentry, Strategic Energy Analysis Center, NREL.
+- [Patrick Lamers](mailto:patrick.lamers@nrel.gov), Researcher V, Decision
+  Support Analysis, and Senior Topic and Team Lead, Strategic Energy Analysis
+  Center, NREL
 
 ## Contributing
 
@@ -247,4 +297,4 @@ See [contributing](https://github.com/polca/premise/blob/master/CONTRIBUTING.md)
 ## License
 
 [BSD-3-Clause](https://github.com/polca/premise/blob/master/LICENSE).
-Copyright 2025 Potsdam Institute for Climate Impact Research, Paul Scherrer Institut.
+Copyright 2026 Potsdam Institute for Climate Impact Research, Paul Scherrer Institut.
