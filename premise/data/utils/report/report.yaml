@@ -164,7 +164,7 @@ Transport (ships) - eff:
     offset: 7
 Battery (mobile):
   label: Market share [%], capacity-wise
-  expl_text: Mobile battery technology market shares, in capacity terms. Used to calculate the battery supply mix. Future shares from Degen et al., 2023. Shares prior to 2021 from Orangi et al., 2024.
+  expl_text: Mobile battery technology market shares, in capacity terms. Used to calculate the battery supply mix. Future shares from Schlichenmaier & Naegler, 2022.
   offset: 10
 Battery (stationary):
   label: Market share [%], capacity-wise
