@@ -22,6 +22,20 @@ def test_collect_fast_export_geography_discards_unknown_geocollections():
     assert locations == {"CH", "UNKNOWN", "GLO"}
 
 
+def test_brightway2_collect_fast_export_geography_uses_compat_geocollections():
+    data = [
+        {"type": "process", "location": "CH"},
+        {"type": "process", "location": ("ecoinvent", "RER")},
+        {"type": "process", "location": "CUSTOM"},
+        {"type": "process", "location": None},
+    ]
+
+    geocollections, locations = brightway2_module._collect_fast_export_geography(data)
+
+    assert geocollections == ["ecoinvent", "world"]
+    assert locations == {"CH", ("ecoinvent", "RER"), "CUSTOM"}
+
+
 def test_write_brightway25_database_fast_prints_completion_message(monkeypatch, capsys):
     calls = {
         "change_db_name": None,
@@ -136,6 +150,61 @@ def test_write_brightway2_database_prints_completion_message(monkeypatch, capsys
     assert "Brightway database written: bw2-db" in capsys.readouterr().out
 
 
+def test_write_brightway2_database_sets_geocollections_metadata(monkeypatch):
+    calls = {"compact": 0, "write": 0}
+
+    monkeypatch.setattr(brightway2_module, "change_db_name", lambda data, name: None)
+    monkeypatch.setattr(brightway2_module, "link_internal", lambda data: None)
+    monkeypatch.setattr(brightway2_module, "check_internal_linking", lambda data: None)
+    monkeypatch.setattr(
+        brightway2_module,
+        "_compact_payload_for_fast_write",
+        lambda data: calls.__setitem__("compact", calls["compact"] + 1),
+    )
+
+    class DummyImporter:
+        def __init__(self, name, data):
+            self.name = name
+            self.data = data
+
+        def write_database(self):
+            calls["write"] += 1
+            brightway2_module.databases[self.name] = {}
+
+    monkeypatch.setattr(brightway2_module, "BW2Importer", DummyImporter)
+
+    class DummyDatabases(dict):
+        def flush(self):
+            return None
+
+    monkeypatch.setattr(brightway2_module, "databases", DummyDatabases())
+
+    data = [
+        {"code": "a", "location": "CH", "type": "process", "exchanges": []},
+        {
+            "code": "b",
+            "location": ("ecoinvent", "RER"),
+            "type": "process",
+            "exchanges": [],
+        },
+        {"code": "c", "location": "CUSTOM", "type": "process", "exchanges": []},
+    ]
+
+    brightway2_module.write_brightway_database(
+        data=data,
+        name="bw2-db",
+        fast=True,
+        check_internal=True,
+    )
+
+    assert calls["compact"] == 1
+    assert calls["write"] == 1
+    assert brightway2_module.databases["bw2-db"]["geocollections"] == [
+        "ecoinvent",
+        "world",
+    ]
+
+
 def test_brightway2_fast_compaction_preserves_nonempty_metadata():
     data = [
         {
@@ -197,6 +266,70 @@ def test_brightway2_fast_compaction_preserves_nonempty_metadata():
     assert "empty field" not in exchange
 
 
+def test_brightway2_fast_compaction_keeps_required_descriptive_fields():
+    data = [
+        {
+            "database": "source-db",
+            "code": "act-1",
+            "name": None,
+            "reference product": None,
+            "location": None,
+            "unit": None,
+            "type": None,
+            "exchanges": [
+                {
+                    "name": None,
+                    "product": None,
+                    "unit": None,
+                    "location": None,
+                    "amount": 1.0,
+                    "type": "production",
+                    "input": ("source-db", "act-1"),
+                    "output": ("source-db", "act-1"),
+                }
+            ],
+        }
+    ]
+
+    compacted = deepcopy(data)
+    brightway2_module._compact_payload_for_fast_write(compacted)
+
+    dataset = compacted[0]
+    exchange = dataset["exchanges"][0]
+
+    assert dataset["name"] == ""
+    assert dataset["reference product"] == ""
+    assert dataset["location"] == ""
+    assert dataset["unit"] == ""
+    assert dataset["type"] == "processwithreferenceproduct"
+
+    assert exchange["name"] == ""
+    assert exchange["product"] == ""
+    assert exchange["unit"] == ""
+    assert exchange["location"] == ""
+    assert exchange["output"] == ("source-db", "act-1")
+
+
+def test_brightway2_fast_compaction_normalizes_process_type_without_production():
+    data = [
+        {
+            "database": "source-db",
+            "code": "act-1",
+            "name": "activity",
+            "reference product": "product",
+            "location": "CH",
+            "unit": "kilogram",
+            "type": None,
+            "exchanges": [],
+        }
+    ]
+
+    compacted = deepcopy(data)
+    brightway2_module._compact_payload_for_fast_write(compacted)
+
+    assert compacted[0]["type"] == "processwithreferenceproduct"
+
+
 def test_brightway25_fast_exchange_payload_preserves_nonempty_metadata():
     exchange = {
         "name": "supplier",
@@ -226,6 +359,27 @@ def test_brightway25_fast_exchange_payload_preserves_nonempty_metadata():
     assert compact_exchange["custom metadata"] == {"tag": "kept"}
     assert "blank field" not in compact_exchange
     assert "empty field" not in compact_exchange
+
+
+def test_brightway25_fast_exchange_payload_keeps_required_descriptive_fields():
+    exchange = {
+        "name": None,
+        "product": None,
+        "unit": None,
+        "location": None,
+        "amount": 1.0,
+        "type": "technosphere",
+        "input": ("source-db", "act-2"),
+        "output": ("source-db", "act-1"),
+    }
+
+    compact_exchange = brightway25_module._prepare_fast_exchange_payload(exchange)
+
+    assert compact_exchange["name"] == ""
+    assert compact_exchange["product"] == ""
+    assert compact_exchange["unit"] == ""
+    assert compact_exchange["location"] == ""
+    assert compact_exchange["output"] == ("source-db", "act-1")
 
 
 def test_brightway25_fast_compaction_preserves_nonempty_activity_metadata(
@@ -276,3 +430,35 @@ def test_brightway25_fast_compaction_preserves_nonempty_activity_metadata(
     assert dataset["custom metadata"] == {"region": "alpine"}
     assert "blank field" not in dataset
     assert "empty field" not in dataset
+
+
+def test_brightway25_fast_compaction_keeps_required_descriptive_fields(
+    monkeypatch,
+):
+    monkeypatch.setattr(
+        "bw2data.utils.set_correct_process_type",
+        lambda dataset: dataset.__setitem__("type", dataset.get("type") or "process"),
+    )
+
+    data = [
+        {
+            "database": "source-db",
+            "code": "act-1",
+            "name": None,
+            "reference product": None,
+            "location": None,
+            "unit": None,
+            "exchanges": [],
+        }
+    ]
+
+    compacted = deepcopy(data)
+    brightway25_module._compact_payload_for_fast_write(compacted, "fast-db")
+
+    dataset = compacted[0]
+
+    assert dataset["name"] == ""
+    assert dataset["reference product"] == ""
+    assert dataset["location"] == ""
+    assert dataset["unit"] == ""
+    assert dataset["type"] == "process"

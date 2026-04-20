@@ -14,6 +14,37 @@ FAST_EXCHANGE_REQUIRED_FIELDS = {
     "input",
     "amount",
     "type",
+    "name",
+    "product",
+    "unit",
+    "location",
+    "output",
+}
+
+FAST_DATASET_REQUIRED_FIELDS = {
+    "database",
+    "code",
+    "name",
+    "reference product",
+    "unit",
+    "location",
+    "type",
+}
+
+FAST_STRING_FIELDS = {
+    "name",
+    "reference product",
+    "product",
+    "unit",
+    "location",
+}
+
+PROCESS_NODE_DEFAULT = "process"
+CHIMAERA_NODE_DEFAULT = "processwithreferenceproduct"
+TECHNOSPHERE_POSITIVE_EDGE_TYPES = {
+    "production",
+    "generic production",
+    "substitution",
 }
 
 
@@ -48,6 +79,62 @@ class BW2Importer(LCIImporter):
 
 def _print_database_written(name: str) -> None:
     print(f"Brightway database written: {name}")
+
+
+def _get_geocollection_compat(location):
+    try:
+        from bw2data.utils import get_geocollection
+    except ImportError:
+        if not location:
+            return None
+        if isinstance(location, tuple):
+            return location[0]
+        if isinstance(location, str) and (
+            len(location) == 2 or location.lower() == "glo"
+        ):
+            return "world"
+        return None
+
+    return get_geocollection(location)
+
+
+def _collect_fast_export_geography(data: list) -> tuple[list, set]:
+    geocollections = sorted(
+        {
+            geocollection
+            for geocollection in (
+                _get_geocollection_compat(dataset.get("location")) for dataset in data
+            )
+            if geocollection is not None
+        }
+    )
+    locations = {dataset["location"] for dataset in data if dataset.get("location")}
+    return geocollections, locations
+
+
+def _set_correct_process_type_compat(dataset: dict) -> dict:
+    try:
+        from bw2data.utils import set_correct_process_type
+    except ImportError:
+        this = (dataset["database"], dataset["code"])
+        exchanges = dataset.get("exchanges", [])
+
+        if dataset.get("type") not in (PROCESS_NODE_DEFAULT, None):
+            return dataset
+        if any(exchange.get("input") == this for exchange in exchanges):
+            dataset["type"] = CHIMAERA_NODE_DEFAULT
+        elif any(exchange.get("functional") for exchange in exchanges):
+            dataset["type"] = PROCESS_NODE_DEFAULT
+        elif not any(
+            exchange.get("type") in TECHNOSPHERE_POSITIVE_EDGE_TYPES
+            for exchange in exchanges
+        ):
+            dataset["type"] = CHIMAERA_NODE_DEFAULT
+        elif not dataset.get("type"):
+            dataset["type"] = PROCESS_NODE_DEFAULT
+        return dataset
+
+    return set_correct_process_type(dataset)
 
 
 @contextmanager
@@ -311,19 +398,30 @@ def _prepare_fast_exchange_payload(exchange: dict) -> dict:
 
     for field in FAST_EXCHANGE_REQUIRED_FIELDS:
         if field not in compact_exchange and field in exchange:
-            compact_exchange[field] = exchange[field]
+            if field in FAST_STRING_FIELDS and exchange[field] is None:
+                compact_exchange[field] = ""
+            else:
+                compact_exchange[field] = exchange[field]
 
     return compact_exchange
 
 
 def _compact_payload_for_fast_write(data: list) -> list:
     for dataset in data:
+        _set_correct_process_type_compat(dataset)
         exchanges = dataset.get("exchanges", [])
         compact_dataset = {
             field: value
             for field, value in dataset.items()
             if field != "exchanges" and _keep_fast_export_value(value)
         }
+
+        for field in FAST_DATASET_REQUIRED_FIELDS:
+            if field not in compact_dataset and field in dataset:
+                if field in FAST_STRING_FIELDS and dataset[field] is None:
+                    compact_dataset[field] = ""
+                else:
+                    compact_dataset[field] = dataset[field]
 
         compact_dataset["exchanges"] = [
             _prepare_fast_exchange_payload(exchange) for exchange in exchanges
@@ -363,4 +461,11 @@ def write_brightway_database(
         _compact_payload_for_fast_write(data)
     with _fast_sqlite_writes(fast):
         BW2Importer(name, data).write_database()
+    if name in databases:
+        geocollections, _ = _collect_fast_export_geography(data)
+        if geocollections:
+            databases[name]["geocollections"] = geocollections
+        else:
+            databases[name].pop("geocollections", None)
+        databases.flush()
     _print_database_written(name)

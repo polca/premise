@@ -17,6 +17,29 @@ FAST_EXCHANGE_REQUIRED_FIELDS = {
     "input",
     "amount",
     "type",
+    "name",
+    "product",
+    "unit",
+    "location",
+    "output",
+}
+
+FAST_DATASET_REQUIRED_FIELDS = {
+    "database",
+    "code",
+    "name",
+    "reference product",
+    "unit",
+    "location",
+    "type",
+}
+
+FAST_STRING_FIELDS = {
+    "name",
+    "reference product",
+    "product",
+    "unit",
+    "location",
 }
 
 
@@ -343,7 +366,10 @@ def _prepare_fast_exchange_payload(exchange: dict) -> dict:
 
     for field in FAST_EXCHANGE_REQUIRED_FIELDS:
         if field not in compact_exchange and field in exchange:
-            compact_exchange[field] = exchange[field]
+            if field in FAST_STRING_FIELDS and exchange[field] is None:
+                compact_exchange[field] = ""
+            else:
+                compact_exchange[field] = exchange[field]
 
     return compact_exchange
 
@@ -366,6 +392,13 @@ def _compact_payload_for_fast_write(data: list, name: str) -> list:
                 for field, value in dataset.items()
                 if field != "exchanges" and _keep_fast_export_value(value)
             }
+
+            for field in FAST_DATASET_REQUIRED_FIELDS:
+                if field not in compact_dataset and field in dataset:
+                    if field in FAST_STRING_FIELDS and dataset[field] is None:
+                        compact_dataset[field] = ""
+                    else:
+                        compact_dataset[field] = dataset[field]
 
             compact_dataset["exchanges"] = [
                 _prepare_fast_exchange_payload(exchange) for exchange in exchanges
