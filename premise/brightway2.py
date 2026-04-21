@@ -142,11 +142,14 @@ def _fast_sqlite_writes(enabled: bool):
 
     try:
         from bw2data.backends import base as bw_base
-        from bw2data.backends.schema import ActivityDataset, ExchangeDataset
-        from bw2data.backends import sqlite3_lci_db as bw_sqlite3_lci_db
         from bw2data import sqlite as bw_sqlite
         from bw2data.configuration import config
         from bw2data.snowflake_ids import snowflake_id_generator
+        from ._bw2_backend_compat import (
+            ActivityDataset,
+            ExchangeDataset,
+            sqlite3_lci_db as bw_sqlite3_lci_db,
+        )
     except Exception:
         yield
         return
