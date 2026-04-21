@@ -25,6 +25,7 @@ from .filesystem_constants import DATA_DIR
 try:
     from bw2data.configuration import labels
 except ImportError:
+
     class _LegacyLabels:
         biosphere_edge_types = {"biosphere"}
 
