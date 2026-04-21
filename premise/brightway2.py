@@ -113,17 +113,14 @@ def _collect_fast_export_geography(data: list) -> tuple[list, set]:
 
 
 def _set_correct_process_type_compat(dataset: dict) -> dict:
-    try:
-        from bw2data.utils import set_correct_process_type
-    except ImportError:
-        # bw2data<4 only supports plain ``process`` datasets. Collapse newer
-        # process-like node types to the legacy Brightway2 representation.
-        if dataset.get("type") not in PROCESS_LIKE_NODE_TYPES:
-            return dataset
-        dataset["type"] = PROCESS_NODE_DEFAULT
+    # ``premise.brightway2`` targets the legacy bw2data<4 writer contract,
+    # which only recognizes plain ``process`` datasets. Keep this behavior
+    # independent from whichever bw2data version happens to be installed in
+    # the current environment.
+    if dataset.get("type") not in PROCESS_LIKE_NODE_TYPES:
         return dataset
-
-    return set_correct_process_type(dataset)
+    dataset["type"] = PROCESS_NODE_DEFAULT
+    return dataset
 
 
 @contextmanager
