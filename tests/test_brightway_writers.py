@@ -150,6 +150,49 @@ def test_write_brightway2_database_prints_completion_message(monkeypatch, capsys
     assert "Brightway database written: bw2-db" in capsys.readouterr().out
 
 
+def test_write_brightway2_database_normalizes_process_like_types_before_import(
+    monkeypatch,
+):
+    captured = {}
+
+    monkeypatch.setattr(brightway2_module, "change_db_name", lambda data, name: None)
+    monkeypatch.setattr(brightway2_module, "link_internal", lambda data: None)
+    monkeypatch.setattr(brightway2_module, "check_internal_linking", lambda data: None)
+
+    class DummyImporter:
+        def __init__(self, name, data):
+            captured["name"] = name
+            captured["data"] = data
+
+        def write_database(self):
+            return None
+
+    monkeypatch.setattr(brightway2_module, "BW2Importer", DummyImporter)
+
+    data = [
+        {
+            "database": "source-db",
+            "code": "a",
+            "name": "activity",
+            "reference product": "product",
+            "location": "CH",
+            "unit": "kilogram",
+            "type": "processwithreferenceproduct",
+            "exchanges": [],
+        }
+    ]
+
+    brightway2_module.write_brightway_database(
+        data=data,
+        name="bw2-db",
+        fast=False,
+        check_internal=True,
+    )
+
+    assert captured["name"] == "bw2-db"
+    assert captured["data"][0]["type"] == "process"
+
+
 def test_write_brightway2_database_sets_geocollections_metadata(monkeypatch):
     calls = {"compact": 0, "write": 0}
 
@@ -301,7 +344,7 @@ def test_brightway2_fast_compaction_keeps_required_descriptive_fields():
     assert dataset["reference product"] == ""
     assert dataset["location"] == ""
     assert dataset["unit"] == ""
-    assert dataset["type"] == "processwithreferenceproduct"
+    assert dataset["type"] == "process"
 
     assert exchange["name"] == ""
     assert exchange["product"] == ""
@@ -327,7 +370,27 @@ def test_brightway2_fast_compaction_normalizes_process_type_without_production()
     compacted = deepcopy(data)
     brightway2_module._compact_payload_for_fast_write(compacted)
 
-    assert compacted[0]["type"] == "processwithreferenceproduct"
+    assert compacted[0]["type"] == "process"
+
+
+def test_brightway2_fast_compaction_coerces_chimaera_type_to_process():
+    data = [
+        {
+            "database": "source-db",
+            "code": "act-1",
+            "name": "activity",
+            "reference product": "product",
+            "location": "CH",
+            "unit": "kilogram",
+            "type": "processwithreferenceproduct",
+            "exchanges": [],
+        }
+    ]
+
+    compacted = deepcopy(data)
+    brightway2_module._compact_payload_for_fast_write(compacted)
+
+    assert compacted[0]["type"] == "process"
 
 
 def test_brightway25_fast_exchange_payload_preserves_nonempty_metadata():

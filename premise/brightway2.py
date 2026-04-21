@@ -41,10 +41,10 @@ FAST_STRING_FIELDS = {
 
 PROCESS_NODE_DEFAULT = "process"
 CHIMAERA_NODE_DEFAULT = "processwithreferenceproduct"
-TECHNOSPHERE_POSITIVE_EDGE_TYPES = {
-    "production",
-    "generic production",
-    "substitution",
+PROCESS_LIKE_NODE_TYPES = {
+    PROCESS_NODE_DEFAULT,
+    CHIMAERA_NODE_DEFAULT,
+    None,
 }
 
 
@@ -116,22 +116,11 @@ def _set_correct_process_type_compat(dataset: dict) -> dict:
     try:
         from bw2data.utils import set_correct_process_type
     except ImportError:
-        this = (dataset["database"], dataset["code"])
-        exchanges = dataset.get("exchanges", [])
-
-        if dataset.get("type") not in (PROCESS_NODE_DEFAULT, None):
+        # bw2data<4 only supports plain ``process`` datasets. Collapse newer
+        # process-like node types to the legacy Brightway2 representation.
+        if dataset.get("type") not in PROCESS_LIKE_NODE_TYPES:
             return dataset
-        if any(exchange.get("input") == this for exchange in exchanges):
-            dataset["type"] = CHIMAERA_NODE_DEFAULT
-        elif any(exchange.get("functional") for exchange in exchanges):
-            dataset["type"] = PROCESS_NODE_DEFAULT
-        elif not any(
-            exchange.get("type") in TECHNOSPHERE_POSITIVE_EDGE_TYPES
-            for exchange in exchanges
-        ):
-            dataset["type"] = CHIMAERA_NODE_DEFAULT
-        elif not dataset.get("type"):
-            dataset["type"] = PROCESS_NODE_DEFAULT
+        dataset["type"] = PROCESS_NODE_DEFAULT
         return dataset
 
     return set_correct_process_type(dataset)
@@ -459,6 +448,9 @@ def write_brightway_database(
         check_internal_linking(data)
     if fast:
         _compact_payload_for_fast_write(data)
+    else:
+        for dataset in data:
+            _set_correct_process_type_compat(dataset)
     with _fast_sqlite_writes(fast):
         BW2Importer(name, data).write_database()
     if name in databases:
