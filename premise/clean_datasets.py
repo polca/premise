@@ -14,14 +14,22 @@ from wurst.brightway.extract_database import extract_brightway2_databases
 
 wurst.extract_brightway2_databases = extract_brightway2_databases
 import yaml
-from bw2data.backends import ActivityDataset, ExchangeDataset, SQLiteBackend
-from bw2data.configuration import labels
 from bw2data.database import DatabaseChooser
 from tqdm import tqdm
 from wurst import searching as ws
 
+from ._bw2_backend_compat import ActivityDataset, ExchangeDataset, SQLiteBackend
 from .data_collection import get_delimiter
 from .filesystem_constants import DATA_DIR
+
+try:
+    from bw2data.configuration import labels
+except ImportError:
+
+    class _LegacyLabels:
+        biosphere_edge_types = {"biosphere"}
+
+    labels = _LegacyLabels()
 
 
 def load_methane_correction_list() -> List[str]:

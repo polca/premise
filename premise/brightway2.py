@@ -41,10 +41,10 @@ FAST_STRING_FIELDS = {
 
 PROCESS_NODE_DEFAULT = "process"
 CHIMAERA_NODE_DEFAULT = "processwithreferenceproduct"
-TECHNOSPHERE_POSITIVE_EDGE_TYPES = {
-    "production",
-    "generic production",
-    "substitution",
+PROCESS_LIKE_NODE_TYPES = {
+    PROCESS_NODE_DEFAULT,
+    CHIMAERA_NODE_DEFAULT,
+    None,
 }
 
 
@@ -113,28 +113,14 @@ def _collect_fast_export_geography(data: list) -> tuple[list, set]:
 
 
 def _set_correct_process_type_compat(dataset: dict) -> dict:
-    try:
-        from bw2data.utils import set_correct_process_type
-    except ImportError:
-        this = (dataset["database"], dataset["code"])
-        exchanges = dataset.get("exchanges", [])
-
-        if dataset.get("type") not in (PROCESS_NODE_DEFAULT, None):
-            return dataset
-        if any(exchange.get("input") == this for exchange in exchanges):
-            dataset["type"] = CHIMAERA_NODE_DEFAULT
-        elif any(exchange.get("functional") for exchange in exchanges):
-            dataset["type"] = PROCESS_NODE_DEFAULT
-        elif not any(
-            exchange.get("type") in TECHNOSPHERE_POSITIVE_EDGE_TYPES
-            for exchange in exchanges
-        ):
-            dataset["type"] = CHIMAERA_NODE_DEFAULT
-        elif not dataset.get("type"):
-            dataset["type"] = PROCESS_NODE_DEFAULT
+    # ``premise.brightway2`` targets the legacy bw2data<4 writer contract,
+    # which only recognizes plain ``process`` datasets. Keep this behavior
+    # independent from whichever bw2data version happens to be installed in
+    # the current environment.
+    if dataset.get("type") not in PROCESS_LIKE_NODE_TYPES:
         return dataset
-
-    return set_correct_process_type(dataset)
+    dataset["type"] = PROCESS_NODE_DEFAULT
+    return dataset
 
 
 @contextmanager
@@ -153,11 +139,14 @@ def _fast_sqlite_writes(enabled: bool):
 
     try:
         from bw2data.backends import base as bw_base
-        from bw2data.backends.schema import ActivityDataset, ExchangeDataset
-        from bw2data.backends import sqlite3_lci_db as bw_sqlite3_lci_db
         from bw2data import sqlite as bw_sqlite
         from bw2data.configuration import config
         from bw2data.snowflake_ids import snowflake_id_generator
+        from ._bw2_backend_compat import (
+            ActivityDataset,
+            ExchangeDataset,
+            sqlite3_lci_db as bw_sqlite3_lci_db,
+        )
     except Exception:
         yield
         return
@@ -459,6 +448,9 @@ def write_brightway_database(
         check_internal_linking(data)
     if fast:
         _compact_payload_for_fast_write(data)
+    else:
+        for dataset in data:
+            _set_correct_process_type_compat(dataset)
     with _fast_sqlite_writes(fast):
         BW2Importer(name, data).write_database()
     if name in databases:
