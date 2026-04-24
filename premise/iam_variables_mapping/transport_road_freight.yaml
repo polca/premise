@@ -270,7 +270,6 @@ truck, compressed gas, 7.5 metric ton:
     remind: FE|Transport|Freight|Road|Light|Truck(7_5t)|Gases
     remind-eu: FE|Transport|Freight|Road|Light|Truck(7_5t)|Gases
     tiam-ucl: Final Energy|Transport|Truck|Commercial|Natural Gas|Natural Gas
-    gcam: Final Energy|Transport|Freight|Road|Medium truck|NG
   ecoinvent_aliases:
     fltr:
       - transport, freight, lorry, compressed gas, 7.5 metric ton
@@ -412,7 +411,6 @@ truck, compressed gas, 18 metric ton:
     remind: FE|Transport|Freight|Road|Heavy|Truck(18t)|Gases
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(18t)|Gases
     tiam-ucl: Final Energy|Transport|Truck|Medium|Natural Gas|Natural Gas
-    gcam: Final Energy|Transport|Freight|Road|Heavy truck|NG
   ecoinvent_aliases:
     fltr:
       - transport, freight, lorry, compressed gas, 18 metric ton
