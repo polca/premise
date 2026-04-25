@@ -13,11 +13,13 @@ This inner repository contains a structured workflow to review, diagnose, and up
 ├── 1_stock_asset_review_with_codex.py             # Main review of temporal distributions of infrastructure + Codex integration
 ├── 2_stock_asset_dashboard.py                     # Interactive Dash dashboard
 ├── 3_stock_asset_fill_original.py                 # Writes reviewed values back to original file
+├── 4_validate_differences_files                   # Validates the two temporal distributions files and shows main differences
 │
 ├── stock_asset_grouped_temporal_defaults.xlsx     # Group-based default lifetimes and temporal distributions
 ├── stock_asset_review_bw25_with_iedc.csv          # Reviewed dataset (main output of step 1)
 ├── temporal_distributions.csv                     # Original TRAILS input file
 ├── temporal_distributions_stock_asset_updated.csv # Final updated file (output of step 3)
+├── comparison_output.csv                          # Excel file to show differences between the two temporal distributions files 
 ```
 
 ---
@@ -159,6 +161,9 @@ python 2_stock_asset_dashboard.py --input stock_asset_review_bw25_with_iedc.csv
 
 # Step 3: write back
 python 3_stock_asset_fill_original.py
+
+# Step 4: validate differences
+python 4_validate_differences_files.py
 ```
 
 ---

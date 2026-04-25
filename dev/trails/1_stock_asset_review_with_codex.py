@@ -3,7 +3,7 @@
 # conda activate trails
 # cd C:\Users\terlouw_t\Documents\Projects\premise_trails\dev\trails
 # Codex CLI first, then API fallback:
-#   python 1_stock_asset_review_with_codex.py --use-codex --prefer-codex-cli --codex-review-scope all --codex-batch-size 20 --lt-data-dir "C:\Users\terlouw_t\Documents\Projects\premise_trails\dev\trails\lt_data"
+#   python 1_stock_asset_review_with_codex.py --use-codex --prefer-codex-cli --codex-review-scope all --codex-batch-size 20 --lt-data-dir "C:\Users\terlouw_t\Documents\Projects\premise_trails\dev\trails\lt_data" --codex-fail-fast
 # Before API use in PowerShell:
 # $env:OPENAI_API_KEY=""
 
@@ -2454,7 +2454,9 @@ def run_optional_codex_validation(
                 )
 
         except Exception as e:
-            err = sanitize_text_for_csv(str(e))[:2000]
+            err = sanitize_text_for_csv(
+                        f"Batch rows {batch_indices[0]}–{batch_indices[-1]} failed: {e}"
+                    )[:2000]
             for idx in batch_indices:
                 out_df.at[idx, "codex_batch_error"] = err
 
@@ -2469,7 +2471,22 @@ def run_optional_codex_validation(
                 break
 
             if codex_fail_fast:
-                raise
+                remaining = [
+                    idx for idx in target_indices
+                    if idx not in batch_indices and pd.isna(out_df.at[idx, "codex_batch_error"])
+                ]
+
+                for idx in remaining:
+                    out_df.at[idx, "codex_batch_error"] = (
+                        "Codex review stopped after earlier batch error: " + err
+                    )
+
+                print(
+                    "\nStopping Codex validation after first batch error. "
+                    "Partial results will still be written.",
+                    flush=True,
+                )
+                break
 
         done += len(batch_indices)
         now = time.time()
