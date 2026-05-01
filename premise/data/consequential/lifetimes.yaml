@@ -86,8 +86,13 @@ kerosene, synthetic, from natural gas, energy allocation: 35
 kerosene, synthetic, from natural gas, energy allocation, with CCS: 35
 kerosene, synthetic, from coal, energy allocation, with CCS: 35
 kerosene, synthetic, from coal, energy allocation: 35
+kerosene, synthetic, from coal, economic allocation, with CCS: 35
+kerosene, synthetic, from coal, economic allocation: 35
+kerosene, synthetic, from electrolysis, economic allocation: 35
+kerosene, synthetic, from electrolysis, energy allocation: 35
 kerosene, synthetic, from biomass, energy allocation, with CCS: 35
 kerosene, synthetic, from biomass, energy allocation: 35
+kerosene: 35
 kerosene, from petroleum: 35
 liquefied petroleum gas: 35
 liquefied petroleum gas, synthetic, from coal, with CCS: 35

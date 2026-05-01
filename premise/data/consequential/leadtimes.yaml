@@ -85,6 +85,10 @@ kerosene, synthetic, from natural gas, energy allocation: 3
 kerosene, synthetic, from natural gas, energy allocation, with CCS: 3
 kerosene, synthetic, from coal, energy allocation, with CCS: 3
 kerosene, synthetic, from coal, energy allocation: 3
+kerosene, synthetic, from coal, economic allocation, with CCS: 3
+kerosene, synthetic, from coal, economic allocation: 3
+kerosene, synthetic, from electrolysis, economic allocation: 3
+kerosene, synthetic, from electrolysis, energy allocation: 3
 kerosene, synthetic, from biomass, energy allocation: 3
 kerosene, synthetic, from biomass, energy allocation, with CCS: 3
 liquefied petroleum gas: 3
@@ -94,6 +98,7 @@ liquefied petroleum gas, synthetic, from natural gas, with CCS: 3
 liquefied petroleum gas, synthetic, from natural gas: 3
 liquefied petroleum gas, synthetic, from biomass, with CCS: 3
 liquefied petroleum gas, synthetic, from biomass: 3
+kerosene: 3
 kerosene, from petroleum: 3
 hydrogen, from electrolysis, PEM: 3
 hydrogen, from electrolysis, AEC: 3
@@ -273,4 +278,3 @@ hydrogen, from electrolysis, PEM, from geothermal: 3
 hydrogen, from electrolysis, PEM, from offshore wind: 3
 hydrogen, from electrolysis, PEM, from onshore wind: 3
 hydrogen, from oil: 3
-

@@ -1099,10 +1099,10 @@ class BaseInventoryImport:
 
     @staticmethod
     def _toggle_market_name(name: str) -> str | None:
-        if "market for" in name:
-            return name.replace("market for", "market group for")
-        if "market group for" in name:
-            return name.replace("market group for", "market for")
+        if name.startswith("market for "):
+            return name.replace("market for ", "market group for ", 1)
+        if name.startswith("market group for "):
+            return name.replace("market group for ", "market for ", 1)
         return None
 
     @staticmethod
@@ -1289,12 +1289,8 @@ class BaseInventoryImport:
                         )
                     if sum_amount == 0:
                         # trying with "market group for" or "market for"
-                        if "market for" in exc["name"]:
-                            n = exc["name"].replace("market for", "market group for")
-                        elif "market group for" in exc["name"]:
-                            n = exc["name"].replace("market group for", "market for")
-
-                        else:
+                        n = self._toggle_market_name(exc["name"])
+                        if n is None:
                             print(
                                 f"Could not find a valid amount for exchange {exc['name']} in dataset {ds['name']} with reference product {ref_prod} and location {loc}"
                             )

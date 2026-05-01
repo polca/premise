@@ -237,6 +237,23 @@ def test_fill_data_gaps_prefers_matching_supplier_location(tmp_path):
     assert "replacement location" not in exchange
 
 
+def test_toggle_market_name_only_changes_market_prefix():
+    embedded_market_name = (
+        "heat, from municipal waste incineration to generic market for heat district "
+        "or industrial, other than natural gas"
+    )
+
+    assert (
+        BaseInventoryImport._toggle_market_name("market for hard coal")
+        == "market group for hard coal"
+    )
+    assert (
+        BaseInventoryImport._toggle_market_name("market group for hard coal")
+        == "market for hard coal"
+    )
+    assert BaseInventoryImport._toggle_market_name(embedded_market_name) is None
+
+
 def test_fill_dataset_data_gaps_replaces_migrated_split_markets(tmp_path):
     testpath = tmp_path / "dummy.xlsx"
     testpath.write_text("")
