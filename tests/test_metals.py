@@ -258,7 +258,9 @@ def test_post_allocation_correction_uses_resource_flow_aliases():
         "location": "RoW",
         "unit": "kilogram",
         "exchanges": [
-            biosphere_resource("Metamorphous rock, graphite containing, in ground", 1.7),
+            biosphere_resource(
+                "Metamorphous rock, graphite containing, in ground", 1.7
+            ),
             biosphere_resource("Gold", 0.1),
         ],
     }
@@ -595,14 +597,14 @@ def test_missing_target_detection_ignores_downstream_attributed_carriers():
         "location": "CN",
         "unit": "kilogram",
         "exchanges": [
-                {
-                    "name": "market for tin concentrate",
-                    "product": "tin concentrate",
-                    "location": "World",
-                    "amount": 1 / 0.48379101906039534,
-                    "unit": "kilogram",
-                    "type": "technosphere",
-                }
+            {
+                "name": "market for tin concentrate",
+                "product": "tin concentrate",
+                "location": "World",
+                "amount": 1 / 0.48379101906039534,
+                "unit": "kilogram",
+                "type": "technosphere",
+            }
         ],
     }
     zinc_concentrate = {
@@ -668,7 +670,7 @@ def test_missing_target_detection_ignores_downstream_attributed_carriers():
                 "amount": 0.0001,
                 "unit": "kilogram",
                 "type": "technosphere",
-            }
+            },
         ],
     }
     silver_market = {
