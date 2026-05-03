@@ -46,9 +46,7 @@ def make_transport(index_entries):
             },
         }
     }
-    transport.geo = SimpleNamespace(
-        ecoinvent_to_iam_location=lambda loc: "Middle East"
-    )
+    transport.geo = SimpleNamespace(ecoinvent_to_iam_location=lambda loc: "Middle East")
     transport.index = defaultdict(list, index_entries)
     transport.database = [
         {

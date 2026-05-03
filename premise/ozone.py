@@ -83,8 +83,7 @@ def _contains_alias(text: str, alias: str) -> bool:
 
     size = len(alias_tokens)
     return any(
-        text_tokens[i : i + size] == alias_tokens
-        for i in range(len(text_tokens))
+        text_tokens[i : i + size] == alias_tokens for i in range(len(text_tokens))
     )
 
 
@@ -449,12 +448,9 @@ class OzoneDepletingSubstances(BaseTransformation):
 
         for allowance in group_schedule.get("servicing_allowances", []):
             applies_to_application = application in allowance.get("applications", [])
-            if (
-                applies_to_application
-                and int(allowance["start_year"])
-                <= self.year
-                < int(allowance["end_year"])
-            ):
+            if applies_to_application and int(
+                allowance["start_year"]
+            ) <= self.year < int(allowance["end_year"]):
                 allowed_fraction = max(
                     allowed_fraction, float(allowance["allowed_fraction"])
                 )
