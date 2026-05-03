@@ -1,0 +1,175 @@
+applications:
+  refrigeration:
+    keywords:
+      - refrigerant
+      - refrigeration
+      - freezer
+      - refrigerator
+      - chiller
+      - cooling
+      - cold storage
+    substitutes:
+      cfc_annex_a_i:
+        - name: market for refrigerant R134a
+          reference_product: refrigerant R134a
+          replacement_ratio: 1.0
+          note: transitional HFC substitute
+        - name: market for tetrafluoroethane, R134a
+          reference_product: tetrafluoroethane, R134a
+          replacement_ratio: 1.0
+          note: ecoinvent 3.11 naming
+        - name: market for ammonia, liquid
+          reference_product: ammonia, liquid
+          replacement_ratio: 1.0
+        - name: market for carbon dioxide, liquid
+          reference_product: carbon dioxide, liquid
+          replacement_ratio: 1.0
+        - name: market for propane
+          reference_product: propane
+          replacement_ratio: 1.0
+      hcfcs_annex_c_i:
+        - name: market for ammonia, liquid
+          reference_product: ammonia, liquid
+          replacement_ratio: 1.0
+        - name: market for carbon dioxide, liquid
+          reference_product: carbon dioxide, liquid
+          replacement_ratio: 1.0
+        - name: market for propane
+          reference_product: propane
+          replacement_ratio: 1.0
+        - name: market for refrigerant R134a
+          reference_product: refrigerant R134a
+          replacement_ratio: 1.0
+          note: transitional HFC substitute
+      default:
+        - name: market for ammonia, liquid
+          reference_product: ammonia, liquid
+          replacement_ratio: 1.0
+        - name: market for carbon dioxide, liquid
+          reference_product: carbon dioxide, liquid
+          replacement_ratio: 1.0
+
+  air_conditioning:
+    keywords:
+      - air conditioning
+      - air-conditioning
+      - air conditioner
+      - heat pump
+      - dehumidifier
+    substitutes:
+      default:
+        - name: market for propane
+          reference_product: propane
+          replacement_ratio: 1.0
+        - name: market for carbon dioxide, liquid
+          reference_product: carbon dioxide, liquid
+          replacement_ratio: 1.0
+        - name: market for refrigerant R134a
+          reference_product: refrigerant R134a
+          replacement_ratio: 1.0
+          note: transitional HFC substitute
+
+  heat_pump:
+    keywords:
+      - heat pump
+    substitutes:
+      default:
+        - name: market for propane
+          reference_product: propane
+          replacement_ratio: 1.0
+        - name: market for carbon dioxide, liquid
+          reference_product: carbon dioxide, liquid
+          replacement_ratio: 1.0
+
+  foam_blowing:
+    keywords:
+      - foam
+      - polyurethane
+      - polystyrene
+      - blowing agent
+      - insulation
+      - sandwich panel
+    substitutes:
+      default:
+        - name: market for pentane
+          reference_product: pentane
+          replacement_ratio: 1.0
+        - name: market for cyclopentane
+          reference_product: cyclopentane
+          replacement_ratio: 1.0
+        - name: market for carbon dioxide, liquid
+          reference_product: carbon dioxide, liquid
+          replacement_ratio: 1.0
+
+  solvents:
+    keywords:
+      - solvent
+      - degreasing
+      - cleaning
+      - adhesive
+      - coating
+      - ink
+    substitutes:
+      default:
+        - name: market for solvent, organic
+          reference_product: solvent, organic
+          replacement_ratio: 1.0
+        - name: market for ethanol, without water, in 99.7% solution state, from ethylene
+          reference_product: ethanol, without water, in 99.7% solution state, from ethylene
+          replacement_ratio: 1.0
+        - name: market for isopropanol
+          reference_product: isopropanol
+          replacement_ratio: 1.0
+
+  aerosols:
+    keywords:
+      - aerosol
+      - propellant
+      - spray can
+    substitutes:
+      default:
+        - name: market for propane
+          reference_product: propane
+          replacement_ratio: 1.0
+        - name: market for butane
+          reference_product: butane
+          replacement_ratio: 1.0
+        - name: market for dimethyl ether
+          reference_product: dimethyl ether
+          replacement_ratio: 1.0
+
+  fire_suppression:
+    keywords:
+      - fire suppression
+      - fire extinguisher
+      - extinguishing
+      - explosion protection
+      - halon
+    substitutes:
+      default:
+        - name: market for carbon dioxide, liquid
+          reference_product: carbon dioxide, liquid
+          replacement_ratio: 1.0
+        - name: market for nitrogen, liquid
+          reference_product: nitrogen, liquid
+          replacement_ratio: 1.0
+
+  methyl_bromide_fumigation:
+    keywords:
+      - fumigation
+      - fumigant
+      - soil treatment
+      - pest
+      - stored commodity
+      - commodity
+    substitutes:
+      default:
+        - name: market for phosphine
+          reference_product: phosphine
+          replacement_ratio: 1.0
+        - name: market for chloropicrin
+          reference_product: chloropicrin
+          replacement_ratio: 1.0
+        - name: market for 1,3-dichloropropene
+          reference_product: 1,3-dichloropropene
+          replacement_ratio: 1.0

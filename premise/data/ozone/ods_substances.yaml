@@ -1,0 +1,197 @@
+exemption_keywords:
+  global:
+    - feedstock
+    - process agent
+    - process-agent
+    - laboratory
+    - analytical
+    - essential use
+    - essential-use
+  methyl_bromide:
+    - quarantine
+    - pre-shipment
+    - preshipment
+    - qps
+    - critical use
+    - critical-use
+  halons_annex_a_ii:
+    - halon bank
+    - banked halon
+
+substances:
+  cfc_11:
+    group: cfc_annex_a_i
+    default_application: foam_blowing
+    aliases:
+      - CFC-11
+      - CFC 11
+      - R-11
+      - R11
+      - trichlorofluoromethane
+  cfc_12:
+    group: cfc_annex_a_i
+    default_application: refrigeration
+    aliases:
+      - CFC-12
+      - CFC 12
+      - R-12
+      - R12
+      - dichlorodifluoromethane
+  cfc_113:
+    group: cfc_annex_a_i
+    default_application: solvents
+    aliases:
+      - CFC-113
+      - CFC 113
+      - R-113
+      - R113
+      - 1,1,2-trichloro-1,2,2-trifluoroethane
+      - trichlorotrifluoroethane
+  cfc_114:
+    group: cfc_annex_a_i
+    default_application: refrigeration
+    aliases:
+      - CFC-114
+      - CFC 114
+      - R-114
+      - R114
+      - 1,2-dichloro-1,1,2,2-tetrafluoroethane
+      - dichlorotetrafluoroethane
+  cfc_115:
+    group: cfc_annex_a_i
+    default_application: refrigeration
+    aliases:
+      - CFC-115
+      - CFC 115
+      - R-115
+      - R115
+      - monochloropentafluoroethane
+
+  halon_1211:
+    group: halons_annex_a_ii
+    default_application: fire_suppression
+    aliases:
+      - halon 1211
+      - halon-1211
+      - bromochlorodifluoromethane
+      - methane, bromochlorodifluoro
+  halon_1301:
+    group: halons_annex_a_ii
+    default_application: fire_suppression
+    aliases:
+      - halon 1301
+      - halon-1301
+      - bromotrifluoromethane
+      - methane, bromotrifluoro
+  halon_2402:
+    group: halons_annex_a_ii
+    default_application: fire_suppression
+    aliases:
+      - halon 2402
+      - halon-2402
+      - dibromotetrafluoroethane
+
+  cfc_13:
+    group: cfc_annex_b_i
+    default_application: refrigeration
+    aliases:
+      - CFC-13
+      - CFC 13
+      - R-13
+      - R13
+      - chlorotrifluoromethane
+  other_fully_halogenated_cfcs:
+    group: cfc_annex_b_i
+    default_application: refrigeration
+    aliases:
+      - CFC-111
+      - CFC-112
+      - CFC-211
+      - CFC-212
+      - CFC-213
+      - CFC-214
+      - CFC-215
+      - CFC-216
+      - CFC-217
+
+  carbon_tetrachloride:
+    group: carbon_tetrachloride
+    default_application: solvents
+    aliases:
+      - carbon tetrachloride
+      - tetrachloromethane
+  methyl_chloroform:
+    group: methyl_chloroform
+    default_application: solvents
+    aliases:
+      - methyl chloroform
+      - 1,1,1-trichloroethane
+
+  hcfc_22:
+    group: hcfcs_annex_c_i
+    default_application: refrigeration
+    aliases:
+      - HCFC-22
+      - HCFC 22
+      - R-22
+      - R22
+      - chlorodifluoromethane
+      - methane, chlorodifluoro
+  hcfc_123:
+    group: hcfcs_annex_c_i
+    default_application: air_conditioning
+    aliases:
+      - HCFC-123
+      - HCFC 123
+      - R-123
+      - R123
+      - 2,2-dichloro-1,1,1-trifluoroethane
+  hcfc_124:
+    group: hcfcs_annex_c_i
+    default_application: refrigeration
+    aliases:
+      - HCFC-124
+      - HCFC 124
+      - R-124
+      - R124
+      - 2-chloro-1,1,1,2-tetrafluoroethane
+  hcfc_141b:
+    group: hcfcs_annex_c_i
+    default_application: foam_blowing
+    aliases:
+      - HCFC-141b
+      - HCFC 141b
+      - R-141b
+      - R141b
+      - 1,1-dichloro-1-fluoroethane
+  hcfc_142b:
+    group: hcfcs_annex_c_i
+    default_application: foam_blowing
+    aliases:
+      - HCFC-142b
+      - HCFC 142b
+      - R-142b
+      - R142b
+      - 1-chloro-1,1-difluoroethane
+
+  hbfcs:
+    group: hbfcs_annex_c_ii
+    default_application: fire_suppression
+    aliases:
+      - HBFC
+      - hydrobromofluorocarbon
+  bromochloromethane:
+    group: bromochloromethane
+    default_application: fire_suppression
+    aliases:
+      - bromochloromethane
+      - chlorobromomethane
+
+  methyl_bromide:
+    group: methyl_bromide
+    default_application: methyl_bromide_fumigation
+    aliases:
+      - methyl bromide
+      - bromomethane
+      - methane, bromo
+      - CH3Br

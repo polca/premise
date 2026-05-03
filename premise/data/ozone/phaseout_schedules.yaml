@@ -1,0 +1,163 @@
+groups:
+  cfc_annex_a_i:
+    label: "Annex A Group I CFCs"
+    non_article5:
+      steps:
+        - year: 1994
+          allowed_fraction: 0.25
+        - year: 1996
+          allowed_fraction: 0.0
+    article5:
+      steps:
+        - year: 2005
+          allowed_fraction: 0.50
+        - year: 2007
+          allowed_fraction: 0.15
+        - year: 2010
+          allowed_fraction: 0.0
+
+  halons_annex_a_ii:
+    label: "Annex A Group II halons"
+    non_article5:
+      steps:
+        - year: 1994
+          allowed_fraction: 0.0
+    article5:
+      steps:
+        - year: 2005
+          allowed_fraction: 0.50
+        - year: 2010
+          allowed_fraction: 0.0
+
+  cfc_annex_b_i:
+    label: "Annex B Group I fully halogenated CFCs"
+    non_article5:
+      steps:
+        - year: 1993
+          allowed_fraction: 0.80
+        - year: 1994
+          allowed_fraction: 0.25
+        - year: 1996
+          allowed_fraction: 0.0
+    article5:
+      steps:
+        - year: 2003
+          allowed_fraction: 0.80
+        - year: 2007
+          allowed_fraction: 0.15
+        - year: 2010
+          allowed_fraction: 0.0
+
+  carbon_tetrachloride:
+    label: "Annex B Group II carbon tetrachloride"
+    non_article5:
+      steps:
+        - year: 1995
+          allowed_fraction: 0.15
+        - year: 1996
+          allowed_fraction: 0.0
+    article5:
+      steps:
+        - year: 2005
+          allowed_fraction: 0.15
+        - year: 2010
+          allowed_fraction: 0.0
+
+  methyl_chloroform:
+    label: "Annex B Group III methyl chloroform"
+    non_article5:
+      steps:
+        - year: 1994
+          allowed_fraction: 0.50
+        - year: 1996
+          allowed_fraction: 0.0
+    article5:
+      steps:
+        - year: 2005
+          allowed_fraction: 0.70
+        - year: 2010
+          allowed_fraction: 0.30
+        - year: 2015
+          allowed_fraction: 0.0
+
+  hcfcs_annex_c_i:
+    label: "Annex C Group I HCFCs"
+    non_article5:
+      steps:
+        - year: 2004
+          allowed_fraction: 0.65
+        - year: 2010
+          allowed_fraction: 0.25
+        - year: 2015
+          allowed_fraction: 0.10
+        - year: 2020
+          allowed_fraction: 0.0
+      servicing_allowances:
+        - start_year: 2020
+          end_year: 2030
+          allowed_fraction: 0.005
+          applications:
+            - refrigeration
+            - air_conditioning
+            - heat_pump
+    article5:
+      steps:
+        - year: 2013
+          allowed_fraction: 1.0
+        - year: 2015
+          allowed_fraction: 0.90
+        - year: 2020
+          allowed_fraction: 0.65
+        - year: 2025
+          allowed_fraction: 0.325
+        - year: 2030
+          allowed_fraction: 0.0
+      servicing_allowances:
+        - start_year: 2030
+          end_year: 2040
+          allowed_fraction: 0.025
+          applications:
+            - refrigeration
+            - air_conditioning
+            - heat_pump
+
+  hbfcs_annex_c_ii:
+    label: "Annex C Group II HBFCs"
+    non_article5:
+      steps:
+        - year: 1996
+          allowed_fraction: 0.0
+    article5:
+      steps:
+        - year: 1996
+          allowed_fraction: 0.0
+
+  bromochloromethane:
+    label: "Annex C Group III bromochloromethane"
+    non_article5:
+      steps:
+        - year: 2002
+          allowed_fraction: 0.0
+    article5:
+      steps:
+        - year: 2002
+          allowed_fraction: 0.0
+
+  methyl_bromide:
+    label: "Annex E Group I methyl bromide"
+    non_article5:
+      steps:
+        - year: 1999
+          allowed_fraction: 0.75
+        - year: 2001
+          allowed_fraction: 0.50
+        - year: 2003
+          allowed_fraction: 0.30
+        - year: 2005
+          allowed_fraction: 0.0
+    article5:
+      steps:
+        - year: 2005
+          allowed_fraction: 0.80
+        - year: 2015
+          allowed_fraction: 0.0
