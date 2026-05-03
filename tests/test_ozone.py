@@ -116,6 +116,11 @@ def test_party_group_maps_ecoinvent_region_through_iam_equivalencies():
 def test_cfc_technosphere_exchange_is_substituted():
     database = [
         dataset(
+            "market for carbon dioxide, liquid",
+            "carbon dioxide, liquid",
+            "GLO",
+        ),
+        dataset(
             "market for refrigerant R134a",
             "refrigerant R134a",
             "GLO",
@@ -151,8 +156,8 @@ def test_cfc_technosphere_exchange_is_substituted():
 
     assert technosphere == [
         {
-            "name": "market for refrigerant R134a",
-            "product": "refrigerant R134a",
+            "name": "market for carbon dioxide, liquid",
+            "product": "carbon dioxide, liquid",
             "location": "GLO",
             "unit": "kilogram",
             "amount": 2.0,

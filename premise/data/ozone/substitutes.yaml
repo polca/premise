@@ -10,44 +10,61 @@ applications:
       - cold storage
     substitutes:
       cfc_annex_a_i:
+        - name: market for carbon dioxide, liquid
+          reference_product: carbon dioxide, liquid
+          replacement_ratio: 1.0
+          note: low-GWP natural refrigerant substitute preferred for long-term scenarios
+        - name: market for propane
+          reference_product: propane
+          replacement_ratio: 1.0
+        - name: market for ammonia, anhydrous, liquid
+          reference_product: ammonia, anhydrous, liquid
+          replacement_ratio: 1.0
+        - name: market for ammonia, liquid
+          reference_product: ammonia, liquid
+          replacement_ratio: 1.0
+          note: legacy ecoinvent naming
         - name: market for refrigerant R134a
           reference_product: refrigerant R134a
           replacement_ratio: 1.0
-          note: transitional HFC substitute
+          note: transitional HFC fallback for older databases
         - name: market for tetrafluoroethane, R134a
           reference_product: tetrafluoroethane, R134a
           replacement_ratio: 1.0
-          note: ecoinvent 3.11 naming
-        - name: market for ammonia, liquid
-          reference_product: ammonia, liquid
-          replacement_ratio: 1.0
-        - name: market for carbon dioxide, liquid
-          reference_product: carbon dioxide, liquid
-          replacement_ratio: 1.0
-        - name: market for propane
-          reference_product: propane
-          replacement_ratio: 1.0
+          note: ecoinvent naming for transitional HFC fallback
       hcfcs_annex_c_i:
-        - name: market for ammonia, liquid
-          reference_product: ammonia, liquid
-          replacement_ratio: 1.0
         - name: market for carbon dioxide, liquid
           reference_product: carbon dioxide, liquid
           replacement_ratio: 1.0
+          note: low-GWP natural refrigerant substitute preferred for long-term scenarios
         - name: market for propane
           reference_product: propane
           replacement_ratio: 1.0
+        - name: market for ammonia, anhydrous, liquid
+          reference_product: ammonia, anhydrous, liquid
+          replacement_ratio: 1.0
+        - name: market for ammonia, liquid
+          reference_product: ammonia, liquid
+          replacement_ratio: 1.0
+          note: legacy ecoinvent naming
         - name: market for refrigerant R134a
           reference_product: refrigerant R134a
           replacement_ratio: 1.0
-          note: transitional HFC substitute
+          note: transitional HFC fallback for older databases
       default:
-        - name: market for ammonia, liquid
-          reference_product: ammonia, liquid
-          replacement_ratio: 1.0
         - name: market for carbon dioxide, liquid
           reference_product: carbon dioxide, liquid
           replacement_ratio: 1.0
+        - name: market for propane
+          reference_product: propane
+          replacement_ratio: 1.0
+        - name: market for ammonia, anhydrous, liquid
+          reference_product: ammonia, anhydrous, liquid
+          replacement_ratio: 1.0
+        - name: market for ammonia, liquid
+          reference_product: ammonia, liquid
+          replacement_ratio: 1.0
+          note: legacy ecoinvent naming
 
   air_conditioning:
     keywords:
@@ -58,27 +75,27 @@ applications:
       - dehumidifier
     substitutes:
       default:
-        - name: market for propane
-          reference_product: propane
-          replacement_ratio: 1.0
         - name: market for carbon dioxide, liquid
           reference_product: carbon dioxide, liquid
+          replacement_ratio: 1.0
+        - name: market for propane
+          reference_product: propane
           replacement_ratio: 1.0
         - name: market for refrigerant R134a
           reference_product: refrigerant R134a
           replacement_ratio: 1.0
-          note: transitional HFC substitute
+          note: transitional HFC fallback for older databases
 
   heat_pump:
     keywords:
       - heat pump
     substitutes:
       default:
-        - name: market for propane
-          reference_product: propane
-          replacement_ratio: 1.0
         - name: market for carbon dioxide, liquid
           reference_product: carbon dioxide, liquid
+          replacement_ratio: 1.0
+        - name: market for propane
+          reference_product: propane
           replacement_ratio: 1.0
 
   foam_blowing:
