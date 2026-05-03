@@ -406,14 +406,67 @@ class OzoneDepletingSubstances(BaseTransformation):
         return " ".join(str(field) for field in fields)
 
     def get_party_group(self, location: Optional[str]) -> str:
-        """Return the Montreal Protocol party group for an ecoinvent location."""
+        """Return the Montreal Protocol party group for a location."""
 
         if not location:
             return self.mixed_location_fallback
 
         location = str(location)
-        if location in self.mixed_locations:
+
+        mapped_locations = self.get_party_group_reference_locations(location)
+        mapped_groups = {
+            group
+            for loc in mapped_locations
+            if (group := self.get_direct_party_group(loc)) is not None
+        }
+
+        if len(mapped_groups) == 1:
+            return mapped_groups.pop()
+
+        if len(mapped_groups) > 1:
             return self.mixed_location_fallback
+
+        direct_group = self.get_direct_party_group(location)
+        if direct_group is not None:
+            return direct_group
+
+        return self.mixed_location_fallback
+
+    def get_party_group_reference_locations(self, location: str) -> list[str]:
+        """Return ecoinvent locations covered by a regional location."""
+
+        locations = []
+
+        if location in self.iam_to_ecoinvent_loc:
+            locations.extend(self.iam_to_ecoinvent_loc[location])
+
+        if location in self.geo.iam_regions:
+            locations.extend(self.geo.iam_to_ecoinvent_location(location))
+
+        iam_location = self.ecoinvent_to_iam_loc.get(location)
+        if iam_location and iam_location != location:
+            locations.extend(self.iam_to_ecoinvent_loc.get(iam_location, []))
+            if iam_location in self.geo.iam_regions:
+                locations.extend(self.geo.iam_to_ecoinvent_location(iam_location))
+
+        if not locations and not iam_location:
+            try:
+                iam_location = self.geo.ecoinvent_to_iam_location(location)
+            except (KeyError, ValueError):
+                iam_location = None
+
+            if iam_location and iam_location != location:
+                locations.extend(self.iam_to_ecoinvent_loc.get(iam_location, []))
+                if iam_location in self.geo.iam_regions:
+                    locations.extend(self.geo.iam_to_ecoinvent_location(iam_location))
+
+        return list(dict.fromkeys(loc for loc in locations if loc != location))
+
+    def get_direct_party_group(self, location: str) -> Optional[str]:
+        """Return a party group for direct Article 5 and non-Article 5 codes."""
+
+        if location in self.mixed_locations:
+            return None
 
         prefix = location.split("-")[0]
 
@@ -429,7 +482,7 @@ class OzoneDepletingSubstances(BaseTransformation):
         if len(location) == 2:
             return "non_article5"
 
-        return self.mixed_location_fallback
+        return None
 
     def get_allowed_fraction(
         self, group: str, location: Optional[str], application: Optional[str] = None

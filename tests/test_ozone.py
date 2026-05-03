@@ -94,6 +94,25 @@ def test_hcfc_article5_servicing_allowance_is_applied():
     )
 
 
+def test_party_group_uses_iam_region_ecoinvent_equivalencies():
+    transformer = build_transformer([], year=2030)
+    transformer.iam_to_ecoinvent_loc["A5_TEST"] = ["CN", "IN"]
+    transformer.iam_to_ecoinvent_loc["NON_A5_TEST"] = ["US", "JP"]
+    transformer.iam_to_ecoinvent_loc["MIXED_TEST"] = ["CN", "US"]
+
+    assert transformer.get_party_group("A5_TEST") == "article5"
+    assert transformer.get_party_group("NON_A5_TEST") == "non_article5"
+    assert transformer.get_party_group("MIXED_TEST") == "article5"
+
+
+def test_party_group_maps_ecoinvent_region_through_iam_equivalencies():
+    transformer = build_transformer([], year=2030)
+    transformer.ecoinvent_to_iam_loc["RER"] = "WEU"
+    transformer.iam_to_ecoinvent_loc["WEU"] = ["AT", "BE", "CH", "DE", "FR"]
+
+    assert transformer.get_party_group("RER") == "non_article5"
+
+
 def test_cfc_technosphere_exchange_is_substituted():
     database = [
         dataset(
