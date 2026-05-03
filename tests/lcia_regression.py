@@ -10,7 +10,6 @@ import bw2data
 import pytest
 import yaml
 
-
 REFERENCE_SCORES = Path(__file__).parent / "data" / "lcia_regression_scores.yaml"
 
 
