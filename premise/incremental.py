@@ -13,6 +13,7 @@ from .new_database import (
     _update_emissions,
     _update_vehicles,
     _update_external_scenarios,
+    _update_ozone,
 )
 from .utils import dump_database, load_database
 from copy import copy
@@ -27,7 +28,7 @@ SECTORS = {
     "fuels": ["fuels", "heat"],
     "battery": "battery",
     "transport": ["cars", "two_wheelers", "trucks", "buses", "trains"],
-    "others": ["emissions", "dac"],
+    "others": ["ozone", "emissions", "dac"],
     "external": "external",
 }
 
@@ -98,6 +99,10 @@ class IncrementalDatabase(NewDatabase):
                     self.version,
                     self.system_model,
                 ),
+            },
+            "ozone": {
+                "func": _update_ozone,
+                "args": (self.version, self.system_model),
             },
         }
 

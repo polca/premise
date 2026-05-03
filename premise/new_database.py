@@ -48,6 +48,7 @@ from .inventory_imports import (
 )
 from .metals import _update_metals
 from .mining import _update_mining
+from .ozone import _update_ozone
 from .report import generate_change_report, generate_summary_report
 from .steel import _update_steel
 from .transport import _update_vehicles
@@ -1164,6 +1165,10 @@ class NewDatabase:
                     self.version,
                     self.system_model,
                 ),
+            },
+            "ozone": {
+                "func": _update_ozone,
+                "args": (self.version, self.system_model),
             },
             "emissions": {
                 "func": _update_emissions,

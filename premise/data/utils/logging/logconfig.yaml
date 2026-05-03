@@ -96,6 +96,14 @@ handlers:
     formatter: simple
     mode: a
 
+  file_ozone:
+    class: logging.FileHandler
+    level: INFO
+    filename: "export/logs/premise_ozone.log"
+    encoding: utf8
+    formatter: simple
+    mode: a
+
   file_external:
     class: logging.FileHandler
     level: INFO
@@ -174,6 +182,11 @@ loggers:
   emissions:
     level: INFO
     handlers: [ file_emissions ]
+    propagate: False
+
+  ozone:
+    level: INFO
+    handlers: [ file_ozone ]
     propagate: False
 
   external:
