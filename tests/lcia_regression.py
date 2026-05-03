@@ -5,7 +5,6 @@ import bw2data
 import pytest
 import yaml
 
-
 REFERENCE_SCORES = Path(__file__).parent / "data" / "lcia_regression_scores.yaml"
 
 
@@ -21,7 +20,9 @@ def get_lcia_regression_method(case_key):
     try:
         method = tuple(data["cases"][case_key]["method"])
     except KeyError as exc:
-        raise AssertionError(f"No LCIA regression method configured for {case_key}") from exc
+        raise AssertionError(
+            f"No LCIA regression method configured for {case_key}"
+        ) from exc
 
     if method not in bw2data.methods:
         raise AssertionError(
@@ -63,7 +64,9 @@ def assert_lcia_regression_scores(case_key, database_names):
     try:
         expected_scores = data["cases"][case_key]["scores"]
     except KeyError as exc:
-        raise AssertionError(f"No LCIA regression scores configured for {case_key}") from exc
+        raise AssertionError(
+            f"No LCIA regression scores configured for {case_key}"
+        ) from exc
 
     method = get_lcia_regression_method(case_key)
 
