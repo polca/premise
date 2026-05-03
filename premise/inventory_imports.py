@@ -19,7 +19,7 @@ import numpy as np
 import pandas as pd
 import requests
 import yaml
-from bw2io import CSVImporter, ExcelImporter, Migration
+from bw2io import CSVImporter, ExcelImporter
 from prettytable import PrettyTable
 from wurst import searching as ws
 
@@ -493,6 +493,50 @@ def apply_backward_replace(db: list, replace_rules: list):
                     break
 
 
+def apply_forward_replace(db: list, replace_rules: list):
+    """
+    Apply forward replacement rules to datasets and their exchanges.
+
+    This mirrors the subset of :mod:`bw2io` migration behavior used by the
+    packaged premise migration JSON files, without writing migration mappings to
+    the Brightway project datastore for every imported inventory workbook.
+    """
+    if not replace_rules:
+        return
+
+    mapping = {
+        (
+            rule["source"].get("name"),
+            rule["source"].get("reference product"),
+            rule["source"].get("location"),
+        ): {
+            field: value
+            for field, value in rule["target"].items()
+            if field not in {"unit", "allocation", "comment"}
+        }
+        for rule in replace_rules
+    }
+
+    for ds in db:
+        new_data = mapping.get(
+            (ds.get("name"), ds.get("reference product"), ds.get("location"))
+        )
+        if new_data is not None:
+            ds.update(new_data)
+
+        for exc in ds.get("exchanges", []):
+            new_data = mapping.get(
+                (
+                    exc.get("name"),
+                    exc.get("reference product"),
+                    exc.get("location"),
+                )
+            )
+            if new_data is not None:
+                exc.update(new_data)
+                exc.pop("input", None)
+
+
 def apply_biosphere_migration(db, biosphere_rules):
     if not biosphere_rules:
         return
@@ -540,56 +584,6 @@ def apply_biosphere_migration(db, biosphere_rules):
                     exc[key] = val
 
 
-def register_forward_migration_mapping(src_ver: str, dst_ver: str, data: dict) -> str:
-    """
-    Build and register a bw2io.Migration from JSON 'replace' and 'delete' sections.
-    Returns the migration name.
-    """
-    mig_name = f"migration_{src_ver.replace('.', '')}_{dst_ver.replace('.', '')}"
-
-    mapping = {
-        "fields": ["name", "reference product", "location"],
-        "data": [],
-    }
-
-    for item in data.get("replace", []):
-        src = item["source"]
-        tgt = item["target"]
-
-        # make a copy without unit
-        tgt_clean = {k: v for k, v in tgt.items() if k != "unit"}
-
-        mapping["data"].append(
-            (
-                (
-                    src.get("name"),
-                    src.get("reference product"),
-                    src.get("location"),
-                ),
-                tgt_clean,
-            )
-        )
-
-    for item in data.get("delete", []):
-        s = item["source"]
-        mapping["data"].append(
-            (
-                (
-                    s.get("name"),
-                    s.get("reference product"),
-                    s.get("location"),
-                ),
-                {},
-            )
-        )
-
-    Migration(mig_name).write(
-        mapping,
-        description=f"Change technosphere names due to change from {src_ver} to {dst_ver}",
-    )
-    return mig_name
-
-
 def apply_migration_step(
     importer, src_ver: str, dst_ver: str, direction: str, available: Dict[tuple, dict]
 ):
@@ -612,8 +606,7 @@ def apply_migration_step(
 
     if direction == "forward":
         print(f"Applying forward migration {f_src} -> {f_dst}")
-        mig_name = register_forward_migration_mapping(f_src, f_dst, data)
-        importer.migrate(mig_name)
+        apply_forward_replace(importer.data, data.get("replace", []))
         apply_disaggregation(importer.data, data.get("disaggregate", []))
     else:
         print(f"Applying backward migration {f_src} <- {f_dst}")
@@ -894,6 +887,8 @@ class BaseInventoryImport:
         self.keep_uncertainty_data = keep_uncertainty_data
         self.path = path
         self.classifications = get_classifications()
+        self.database_product_index = self._build_database_product_index()
+        self.import_product_index = {}
 
         print(f"Importing {path}")
         if "http" in str(path):
@@ -908,6 +903,55 @@ class BaseInventoryImport:
 
         self.path = Path(path) if isinstance(path, str) else path
         self.import_db = self.load_inventory()
+
+    def _build_database_product_index(self) -> dict:
+        """Build product lookup tables for the source database."""
+        by_fields = {}
+        by_fields_and_reference_product = {}
+
+        for dataset in self.database:
+            if not all(k in dataset for k in ("name", "location", "unit")):
+                continue
+
+            key = (
+                dataset["name"],
+                dataset["location"],
+                dataset["unit"],
+            )
+            by_fields.setdefault(key, dataset["reference product"])
+            by_fields_and_reference_product.setdefault(
+                (
+                    dataset["name"],
+                    dataset["location"],
+                    dataset["unit"],
+                    dataset["reference product"],
+                ),
+                dataset["reference product"],
+            )
+
+        return {
+            "by_fields": by_fields,
+            "by_fields_and_reference_product": by_fields_and_reference_product,
+        }
+
+    def _build_import_product_index(self) -> dict:
+        """Build product lookup table for the imported inventory."""
+        by_fields = {}
+
+        for dataset in self.import_db.data:
+            if not all(k in dataset for k in ("name", "location", "unit")):
+                continue
+
+            by_fields.setdefault(
+                (
+                    dataset["name"],
+                    dataset["location"],
+                    dataset["unit"],
+                ),
+                dataset["reference product"],
+            )
+
+        return {"by_fields": by_fields}
 
     def load_inventory(self) -> None:
         """Load an inventory from a specified path.
@@ -1336,6 +1380,8 @@ class BaseInventoryImport:
                     if exchange["name"] != dataset["name"]:
                         exchange["name"] = dataset["name"]
 
+        self.import_product_index = self._build_import_product_index()
+
         # Add a `product` field to technosphere exchanges
         for dataset in self.import_db.data:
             for exchange in dataset["exchanges"]:
@@ -1388,43 +1434,22 @@ class BaseInventoryImport:
         :return: name of the product field of the exchange
 
         """
-        # Look first in the imported inventories
-        candidate = next(
-            ws.get_many(
-                self.import_db.data,
-                ws.equals("name", exc[0]),
-                ws.equals("location", exc[1]),
-                ws.equals("unit", exc[2]),
-            ),
-            None,
+        product = self.import_product_index.get("by_fields", {}).get(
+            (exc[0], exc[1], exc[2])
         )
 
-        # If not, look in the ecoinvent inventories
-        if candidate is None:
+        if product is None:
             if exc[-1] is not None:
-                candidate = next(
-                    ws.get_many(
-                        self.database,
-                        ws.equals("name", exc[0]),
-                        ws.equals("location", exc[1]),
-                        ws.equals("unit", exc[2]),
-                        ws.equals("reference product", exc[-1]),
-                    ),
-                    None,
-                )
+                product = self.database_product_index[
+                    "by_fields_and_reference_product"
+                ].get((exc[0], exc[1], exc[2], exc[-1]))
             else:
-                candidate = next(
-                    ws.get_many(
-                        self.database,
-                        ws.equals("name", exc[0]),
-                        ws.equals("location", exc[1]),
-                        ws.equals("unit", exc[2]),
-                    ),
-                    None,
+                product = self.database_product_index["by_fields"].get(
+                    (exc[0], exc[1], exc[2])
                 )
 
-        if candidate is not None:
-            return candidate["reference product"]
+        if product is not None:
+            return product
 
         self.list_unlinked.append(
             (

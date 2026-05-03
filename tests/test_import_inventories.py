@@ -8,6 +8,7 @@ from premise.filesystem_constants import INVENTORY_DIR
 from premise.inventory_imports import (
     BaseInventoryImport,
     DefaultInventory,
+    apply_migration_step,
     get_classification_entry,
     get_classifications,
 )
@@ -375,3 +376,123 @@ def test_fill_dataset_data_gaps_replaces_migrated_split_markets(tmp_path):
             "type": "technosphere",
         },
     ]
+
+
+def test_forward_migration_applies_in_memory_without_bw2io_datastore():
+    class DummyImporter:
+        data = [
+            {
+                "name": "old dataset",
+                "reference product": "old product",
+                "location": "GLO",
+                "unit": "kilogram",
+                "exchanges": [
+                    {
+                        "name": "old exchange",
+                        "reference product": "old exchange product",
+                        "location": "RER",
+                        "unit": "megajoule",
+                        "type": "technosphere",
+                        "input": ("test", "old"),
+                    }
+                ],
+            }
+        ]
+
+        def migrate(self, migration_name):
+            raise AssertionError("bw2io Migration datastore should not be used")
+
+    available = {
+        ("3.11", "3.12"): {
+            "replace": [
+                {
+                    "source": {
+                        "name": "old dataset",
+                        "reference product": "old product",
+                        "location": "GLO",
+                        "unit": "kilogram",
+                    },
+                    "target": {
+                        "name": "new dataset",
+                        "reference product": "new product",
+                        "location": "RER",
+                        "unit": "ton kilometer",
+                    },
+                },
+                {
+                    "source": {
+                        "name": "old exchange",
+                        "reference product": "old exchange product",
+                        "location": "RER",
+                        "unit": "megajoule",
+                    },
+                    "target": {
+                        "name": "new exchange",
+                        "reference product": "new exchange product",
+                        "location": "CH",
+                        "unit": "kilowatt hour",
+                    },
+                },
+            ],
+            "disaggregate": [],
+        }
+    }
+
+    importer = DummyImporter()
+
+    apply_migration_step(importer, "3.11", "3.12", "forward", available)
+
+    assert importer.data[0]["name"] == "new dataset"
+    assert importer.data[0]["reference product"] == "new product"
+    assert importer.data[0]["location"] == "RER"
+    assert importer.data[0]["unit"] == "kilogram"
+
+    exchange = importer.data[0]["exchanges"][0]
+    assert exchange["name"] == "new exchange"
+    assert exchange["reference product"] == "new exchange product"
+    assert exchange["location"] == "CH"
+    assert exchange["unit"] == "megajoule"
+    assert "input" not in exchange
+
+
+def test_correct_product_field_uses_indexed_reference_product(tmp_path):
+    testpath = tmp_path / "dummy.xlsx"
+    testpath.write_text("")
+
+    reference_db = [
+        {
+            "name": "shared supplier",
+            "reference product": "first product",
+            "location": "GLO",
+            "unit": "kilogram",
+            "exchanges": [],
+        },
+        {
+            "name": "shared supplier",
+            "reference product": "second product",
+            "location": "GLO",
+            "unit": "kilogram",
+            "exchanges": [],
+        },
+    ]
+
+    importer = DummyInventoryImport(
+        reference_db,
+        version_in="3.8",
+        version_out="3.8",
+        path=testpath,
+        system_model="cutoff",
+    )
+
+    assert (
+        importer.correct_product_field(
+            ("shared supplier", "GLO", "kilogram", "second product")
+        )
+        == "second product"
+    )
+    assert (
+        importer.correct_product_field(("shared supplier", "GLO", "kilogram", None))
+        == "first product"
+    )
+
+    BaseInventoryImport.correct_product_field.cache_clear()
