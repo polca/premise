@@ -209,9 +209,7 @@ def element_mass_fraction(element: str, formula: dict) -> float:
     return ATOMIC_MASSES[element] * formula[element] / molecular_mass
 
 
-TITANIUM_DIOXIDE_TITANIUM_FRACTION = element_mass_fraction(
-    "Ti", {"Ti": 1, "O": 2}
-)
+TITANIUM_DIOXIDE_TITANIUM_FRACTION = element_mass_fraction("Ti", {"Ti": 1, "O": 2})
 TITANIUM_CHAIN_CONTENT_ADJUSTMENT = 1.002720132146914
 
 METAL_BEARING_PRODUCT_CONTENT_FACTORS = {
@@ -268,27 +266,21 @@ METAL_BEARING_PRODUCT_CONTENT_FACTORS = {
         "titania slag, 94% titanium dioxide",
         "titanium",
     ): (
-        0.94
-        * TITANIUM_DIOXIDE_TITANIUM_FRACTION
-        * TITANIUM_CHAIN_CONTENT_ADJUSTMENT,
+        0.94 * TITANIUM_DIOXIDE_TITANIUM_FRACTION * TITANIUM_CHAIN_CONTENT_ADJUSTMENT,
         "94% TiO2 Ti content adjusted to the titanium production chain",
     ),
     (
         "rutile, 95% titanium dioxide",
         "titanium",
     ): (
-        0.95
-        * TITANIUM_DIOXIDE_TITANIUM_FRACTION
-        * TITANIUM_CHAIN_CONTENT_ADJUSTMENT,
+        0.95 * TITANIUM_DIOXIDE_TITANIUM_FRACTION * TITANIUM_CHAIN_CONTENT_ADJUSTMENT,
         "95% TiO2 Ti content adjusted to the titanium production chain",
     ),
     (
         "ilmenite, 54% titanium dioxide",
         "titanium",
     ): (
-        0.54
-        * TITANIUM_DIOXIDE_TITANIUM_FRACTION
-        * TITANIUM_CHAIN_CONTENT_ADJUSTMENT,
+        0.54 * TITANIUM_DIOXIDE_TITANIUM_FRACTION * TITANIUM_CHAIN_CONTENT_ADJUSTMENT,
         "54% TiO2 Ti content adjusted to the titanium production chain",
     ),
     (
@@ -331,6 +323,7 @@ PURE_PRODUCT_QUALIFIERS = {
     "sponge",
     "unrefined",
 }
+
 
 class PostAllocationCorrectionError(ValueError):
     """Raised when a metal post-allocation correction cannot be applied safely."""
@@ -714,9 +707,10 @@ def get_metal_bearing_product_content_factor(
     product_label = normalize_resource_label(reference_product)
     flow_label = canonical_resource_flow_label(flow_name)
 
-    for (product, flow), (amount, basis) in (
-        METAL_BEARING_PRODUCT_CONTENT_FACTORS.items()
-    ):
+    for (product, flow), (
+        amount,
+        basis,
+    ) in METAL_BEARING_PRODUCT_CONTENT_FACTORS.items():
         factor_product_label = normalize_resource_label(product)
         factor_flow_label = normalize_resource_label(flow)
 
@@ -726,10 +720,9 @@ def get_metal_bearing_product_content_factor(
         product_metal_tokens = (
             set(product_label.split()) & get_metal_resource_flow_labels()
         )
-        if (
-            factor_product_label != product_label
-            and product_metal_tokens - {flow_label}
-        ):
+        if factor_product_label != product_label and product_metal_tokens - {
+            flow_label
+        }:
             continue
 
         return amount, basis
@@ -745,9 +738,7 @@ def is_pure_target_resource_product(reference_product: str, flow_name: str) -> b
     if product_label == flow_label:
         return True
 
-    product_tokens = {
-        token for token in product_label.split() if not token.isdigit()
-    }
+    product_tokens = {token for token in product_label.split() if not token.isdigit()}
     if flow_label not in product_tokens:
         return False
     if product_tokens & PURE_PRODUCT_EXCLUDED_TERMS:
@@ -823,9 +814,7 @@ def is_downstream_attributed_resource_carrier(reference_product: str) -> bool:
 
 def is_downstream_attributed_resource_carrier_dataset(dataset: dict) -> bool:
     """Return True when a dataset's resource flows are assigned downstream."""
-    if is_downstream_attributed_resource_carrier(
-        dataset.get("reference product", "")
-    ):
+    if is_downstream_attributed_resource_carrier(dataset.get("reference product", "")):
         return True
 
     dataset_key = (
@@ -863,7 +852,9 @@ def can_add_missing_target_resource_exchange(dataset: dict) -> bool:
     if not flow_name:
         return False
 
-    return is_pure_target_resource_product(dataset.get("reference product", ""), flow_name)
+    return is_pure_target_resource_product(
+        dataset.get("reference product", ""), flow_name
+    )
 
 
 def make_target_resource_exchange(flow_name: str, amount: float) -> dict:
@@ -1034,10 +1025,7 @@ def has_keyword_in_dataset_label(dataset: dict, keywords: tuple[str, ...]) -> bo
     label = normalize_resource_label(
         f"{dataset.get('name', '')} {dataset.get('reference product', '')}"
     )
-    return any(
-        re.search(rf"\b{re.escape(keyword)}\b", label)
-        for keyword in keywords
-    )
+    return any(re.search(rf"\b{re.escape(keyword)}\b", label) for keyword in keywords)
 
 
 def correct_metal_resource_exchanges(
@@ -1606,10 +1594,9 @@ class Metals(BaseTransformation):
                     continue
                 if is_downstream_attributed_resource_carrier_dataset(provider):
                     continue
-                if (
-                    dataset_may_carry_target_resource(provider, flow_name)
-                    and self.dataset_has_target_resource_exchange(provider, flow_name)
-                ):
+                if dataset_may_carry_target_resource(
+                    provider, flow_name
+                ) and self.dataset_has_target_resource_exchange(provider, flow_name):
                     cache[cache_key] = True
                     return True
                 if self.target_resource_is_supplied_upstream(
