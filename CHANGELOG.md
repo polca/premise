@@ -2,6 +2,29 @@
 
 All notable changes to this project are documented in this file.
 
+## [2.4.3]
+
+### Changed
+- Reworked metals post-allocation correction to use a data-driven procedure instead of static per-version YAML correction tables. The correction now identifies in-ground resource flows from activity reference products, clears co-mined carrier flows, sets pure target metal products to `1 kg`, applies explicit content factors for known intermediates, and handles version-specific biosphere flow names.
+- Removed obsolete metals post-allocation correction YAML files for ecoinvent `3.10`, `3.11`, and `3.12`.
+- Improved default inventory cache rebuild performance by applying packaged migration replacement rules in memory instead of writing temporary Brightway migration objects to the project datastore.
+- Added indexed product lookups for imported and source datasets so default-inventory product-field correction no longer repeatedly scans the full source database.
+- Refreshed the development test notebook.
+
+### Fixed
+- Fixed consequential inventory gap filling so market-name toggles are only applied to actual market-name prefixes, avoiding rewrites of embedded phrases such as `generic market for heat` to nonexistent providers.
+- Fixed consequential municipal-waste-heat blacklist replacements to point to available heat-for-reuse markets, allowing CDR regionalization to run when the cement update is omitted.
+- Added missing consequential leadtime and lifetime aliases for kerosene used by synthetic-fuel mappings.
+
+### Documentation
+- Updated transformation documentation to describe the new metals post-allocation correction logic.
+
+### Tests
+- Added focused metals post-allocation correction tests covering target matching, carrier clearing, missing target-resource insertion, and version-specific flow aliases.
+- Added LCIA regression fixtures and a regression test module.
+- Expanded default-inventory import tests for in-memory migration application and indexed lookup behavior.
+- Updated process tests across supported ecoinvent versions and system models for the revised metals correction behavior.
+
 ## [2.4.1]
 
 ### Fixed
