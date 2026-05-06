@@ -1,3 +1,10 @@
+import os
+
+if os.name == "nt":
+    # openpyxl auto-enables lxml when installed. lxml 6.x can hard-crash
+    # some Windows kernels while reading/writing Premise Excel workbooks.
+    os.environ.setdefault("OPENPYXL_LXML", "False")
+
 __all__ = (
     "NewDatabase",
     "IncrementalDatabase",
