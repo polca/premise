@@ -2,6 +2,12 @@
 
 All notable changes to this project are documented in this file.
 
+## [2.4.4]
+
+### Fixed
+- Fixed hard kernel crashes on some Windows environments when reading Excel inventory workbooks or generating Excel reports by disabling openpyxl's lxml backend by default on Windows.
+- Declared `openpyxl` as an explicit dependency and constrained Windows pip installs and conda package builds to avoid the problematic `lxml` 6.x Excel/XML stack.
+
 ## [2.4.3]
 
 ### Changed
