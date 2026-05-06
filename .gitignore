@@ -13,6 +13,15 @@ data/logs/
 */data/export/*
 */data/cache/*
 
+# Generated premise outputs #
+/export/
+/olca_export.csv/
+/simapro_export.csv/
+/examples/export/
+/premise/data/iam_output_files/
+.ipynb_checkpoints/
+missing_classifications.csv
+
 # ignore .env file in tests
 tests/*.env
 
