@@ -1156,8 +1156,9 @@ class BaseInventoryImport:
         """
         Return matching technosphere exchanges from ``dataset`` for ``exc``.
 
-        Prefer exact supplier-location matches when available so we don't
-        accidentally sum several regional suppliers from the replacement dataset.
+        Match supplier location when the target exchange specifies one so we
+        don't accidentally sum several regional suppliers from the replacement
+        dataset.
         """
 
         matches = list(
@@ -1168,20 +1169,12 @@ class BaseInventoryImport:
             )
         )
 
-        if not matches:
+        if exc.get("location") in (None, ""):
             return matches
 
-        if "location" not in exc:
-            return matches
-
-        exact_location_matches = [
+        return [
             match for match in matches if match.get("location") == exc["location"]
         ]
-
-        if exact_location_matches:
-            return exact_location_matches
-
-        return matches
 
     def _collect_replacement_technosphere_exchanges(self, exc: dict) -> List[dict]:
         """
