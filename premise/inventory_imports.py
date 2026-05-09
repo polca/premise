@@ -1042,12 +1042,16 @@ class BaseInventoryImport:
                 ):
                     sum_amount = 0
                     if exc["type"] == "technosphere":
+                        filters = [
+                            ws.equals("name", exc["name"]),
+                            ws.equals("product", exc["product"]),
+                        ]
+                        if exc.get("location") not in (None, ""):
+                            filters.append(ws.equals("location", exc["location"]))
 
                         for e in ws.technosphere(
                             ds,
-                            ws.equals("name", exc["name"]),
-                            ws.equals("product", exc["product"]),
-                            # ws.equals("location", exc["location"]),
+                            *filters,
                         ):
                             sum_amount += e["amount"]
 
@@ -1081,7 +1085,11 @@ class BaseInventoryImport:
                             ds,
                             ws.equals("name", n),
                             ws.equals("product", exc["product"]),
-                            # ws.equals("location", exc["location"]),
+                            *(
+                                [ws.equals("location", exc["location"])]
+                                if exc.get("location") not in (None, "")
+                                else []
+                            ),
                         ):
                             sum_amount += e["amount"]
 

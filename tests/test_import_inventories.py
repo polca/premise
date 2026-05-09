@@ -49,6 +49,72 @@ def get_db():
     return db, version
 
 
+def get_replacement_source_db():
+    return [
+        {
+            "code": "source",
+            "name": "source process",
+            "reference product": "source product",
+            "location": "RoW",
+            "unit": "kilogram",
+            "exchanges": [
+                {
+                    "name": "source process",
+                    "product": "source product",
+                    "amount": 1,
+                    "type": "production",
+                    "unit": "kilogram",
+                    "location": "RoW",
+                },
+                {
+                    "name": "market for heat",
+                    "product": "heat",
+                    "amount": 3,
+                    "type": "technosphere",
+                    "unit": "megajoule",
+                    "location": "RoW",
+                },
+                {
+                    "name": "market for heat",
+                    "product": "heat",
+                    "amount": 0.5,
+                    "type": "technosphere",
+                    "unit": "megajoule",
+                    "location": "Europe without Switzerland",
+                },
+                {
+                    "name": "market group for electricity",
+                    "product": "electricity, high voltage",
+                    "amount": 2.5,
+                    "type": "technosphere",
+                    "unit": "kilowatt hour",
+                    "location": "RER",
+                },
+                {
+                    "name": "market group for electricity",
+                    "product": "electricity, high voltage",
+                    "amount": 9,
+                    "type": "technosphere",
+                    "unit": "kilowatt hour",
+                    "location": "RoW",
+                },
+            ],
+        }
+    ]
+
+
+def get_base_inventory_import(tmp_path, database):
+    testpath = tmp_path / "testfile"
+    testpath.write_text("")
+    return BaseInventoryImport(
+        database,
+        version_in="3.8",
+        version_out="3.8",
+        path=testpath,
+        system_model="cutoff",
+    )
+
+
 def test_file_exists():
     db, version = get_db()
     with pytest.raises(FileNotFoundError) as wrapped_error:
@@ -103,6 +169,65 @@ def test_biosphere_dict_2():
                 )
 
     testpath.unlink()
+
+
+def test_fill_data_gaps_matches_technosphere_exchange_location(tmp_path):
+    dbc = get_base_inventory_import(tmp_path, get_replacement_source_db())
+    exchange = {
+        "name": "market for heat",
+        "product": "heat",
+        "location": "RoW",
+        "amount": 0,
+        "type": "technosphere",
+        "unit": "megajoule",
+        "replacement name": "source process",
+        "replacement product": "source product",
+        "replacement location": "RoW",
+    }
+
+    dbc.fill_data_gaps(exchange)
+
+    assert exchange["amount"] == 3
+    assert "replacement name" not in exchange
+    assert "replacement product" not in exchange
+    assert "replacement location" not in exchange
+
+
+def test_fill_data_gaps_sums_technosphere_exchanges_without_location(tmp_path):
+    dbc = get_base_inventory_import(tmp_path, get_replacement_source_db())
+    exchange = {
+        "name": "market for heat",
+        "product": "heat",
+        "amount": 0,
+        "type": "technosphere",
+        "unit": "megajoule",
+        "replacement name": "source process",
+        "replacement product": "source product",
+        "replacement location": "RoW",
+    }
+
+    dbc.fill_data_gaps(exchange)
+
+    assert exchange["amount"] == 3.5
+
+
+def test_fill_data_gaps_market_group_fallback_matches_location(tmp_path):
+    dbc = get_base_inventory_import(tmp_path, get_replacement_source_db())
+    exchange = {
+        "name": "market for electricity",
+        "product": "electricity, high voltage",
+        "location": "RER",
+        "amount": 0,
+        "type": "technosphere",
+        "unit": "kilowatt hour",
+        "replacement name": "source process",
+        "replacement product": "source product",
+        "replacement location": "RoW",
+    }
+
+    dbc.fill_data_gaps(exchange)
+
+    assert exchange["amount"] == 2.5
 
 
 def test_load_carma():
