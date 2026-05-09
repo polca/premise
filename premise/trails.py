@@ -140,7 +140,7 @@ class TrailsDataPackage:
           maintenance: set[(name, ref)] of maintenance supplier datasets
           dataset_lifetimes: dict[(name, ref)] -> dataset lifetime from CSV, regardless of temporal_tag
         """
-        with open(path, "r", encoding="utf-8", newline="") as f:
+        with open(path, "r", encoding="utf-8-sig", newline="") as f:
             rows = list(csv.DictReader(f))
 
         required = {"name", "reference product", "temporal_tag"}
