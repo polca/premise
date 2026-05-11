@@ -1172,9 +1172,7 @@ class BaseInventoryImport:
         if exc.get("location") in (None, ""):
             return matches
 
-        return [
-            match for match in matches if match.get("location") == exc["location"]
-        ]
+        return [match for match in matches if match.get("location") == exc["location"]]
 
     def _collect_replacement_technosphere_exchanges(self, exc: dict) -> List[dict]:
         """
