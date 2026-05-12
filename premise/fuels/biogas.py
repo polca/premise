@@ -40,12 +40,15 @@ class BiogasMixin:
 
         # create markets for natural gas and biogas
         # check that IAM data has "natural_gas_blend" attribute
-        if hasattr(self.iam_data, "natural_gas_blend"):
+        natural_gas_blend = getattr(self.iam_data, "natural_gas_blend", None)
+        if natural_gas_blend is not None:
+            blend_variables = set(natural_gas_blend.coords["variables"].values)
             mapping = {
                 k: v
                 for k, v in self.fuel_map.items()
                 if any(k.startswith(x) for x in ["natural gas", "methane"])
-                and self.iam_data.natural_gas_blend.sel(variables=k).sum() > 0
+                and k in blend_variables
+                and natural_gas_blend.sel(variables=k).sum() > 0
             }
             if mapping:
                 for market_name in [

@@ -281,7 +281,10 @@ methane, synthetic:
     value: 47.5
   co2: 0.06
   biogenic_share: 1
-  ecoinvent_fuels_aliases:
+  iam_aliases:
+    remind: SE|Gases|+|Hydrogen
+    remind-eu: SE|Gases|+|Hydrogen
+  ecoinvent_aliases:
     fltr:
     - methane, synthetic, gaseous
     - methane, from electrochemical methanation
@@ -293,7 +296,7 @@ methane, from coal:
   biogenic_share: 1
   iam_aliases:
     gcam: Secondary Energy|Production|Natural Gas|Coal
-  ecoinvent_fuels_aliases:
+  ecoinvent_aliases:
     fltr:
     - methane, synthetic, gaseous, 5 bar, from coal-based hydrogen, at fuelling station
 liquid fossil fuels:
