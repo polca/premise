@@ -13,8 +13,111 @@ def _load_reference_scores():
         return yaml.safe_load(stream)
 
 
+def _ecoinvent_method_prefix(case_key):
+    parts = case_key.split("-")
+    if len(parts) >= 2 and parts[0] == "ecoinvent":
+        return "-".join(parts[:2])
+    return None
+
+
+def _format_methods(methods):
+    return ", ".join(repr(method) for method in sorted(methods))
+
+
+def _candidate_prefix(candidate, method):
+    if not method:
+        return candidate
+    return candidate[: -len(method)]
+
+
+def _matches_case_prefix(candidate, method, case_prefix):
+    for prefix_part in _candidate_prefix(candidate, method):
+        if prefix_part == case_prefix:
+            return True
+        if isinstance(prefix_part, str) and (
+            prefix_part.startswith(f"{case_prefix}-")
+            or prefix_part.startswith(f"{case_prefix} ")
+        ):
+            return True
+    return False
+
+
+def _has_ecoinvent_prefix(candidate, method):
+    return any(
+        isinstance(prefix_part, str) and prefix_part.startswith("ecoinvent-")
+        for prefix_part in _candidate_prefix(candidate, method)
+    )
+
+
+def _resolve_lcia_method(method, case_key, available_methods):
+    """Resolve an LCIA method tuple against registered Brightway methods.
+
+    ecoinvent method names can be registered either as the raw method tuple or
+    with an ecoinvent-version prefix, depending on the importer/version.
+    """
+    available_methods = [tuple(candidate) for candidate in available_methods]
+
+    if method in available_methods:
+        return method
+
+    case_prefix = _ecoinvent_method_prefix(case_key)
+    if case_prefix and method[:1] == (case_prefix,):
+        unprefixed_method = method[1:]
+        if unprefixed_method in available_methods:
+            return unprefixed_method
+
+    matching_suffix = [
+        candidate
+        for candidate in available_methods
+        if len(candidate) > len(method) and candidate[-len(method) :] == method
+    ]
+
+    if case_prefix:
+        prefixed_method = (case_prefix,) + method
+        if prefixed_method in available_methods:
+            return prefixed_method
+
+        case_matches = [
+            candidate
+            for candidate in matching_suffix
+            if _matches_case_prefix(candidate, method, case_prefix)
+        ]
+        if len(case_matches) == 1:
+            return case_matches[0]
+        if len(case_matches) > 1:
+            raise AssertionError(
+                f"Multiple LCIA regression methods match {method!r} for "
+                f"{case_key}: {_format_methods(case_matches)}."
+            )
+
+        other_ecoinvent_matches = [
+            candidate
+            for candidate in matching_suffix
+            if _has_ecoinvent_prefix(candidate, method)
+        ]
+        if other_ecoinvent_matches:
+            raise AssertionError(
+                f"LCIA regression method {method!r} is not registered for "
+                f"{case_prefix!r}; found only methods for another ecoinvent "
+                f"prefix: {_format_methods(other_ecoinvent_matches)}."
+            )
+
+    if len(matching_suffix) == 1:
+        return matching_suffix[0]
+    if len(matching_suffix) > 1:
+        raise AssertionError(
+            f"Multiple LCIA regression methods match {method!r} for "
+            f"{case_key}: {_format_methods(matching_suffix)}."
+        )
+
+    raise AssertionError(
+        f"LCIA regression method {method!r} is not registered in project "
+        f"{bw2data.projects.current!r}."
+    )
+
+
 def get_lcia_regression_method(case_key):
-    """Return the exact LCIA method tuple for an ecoinvent test case."""
+    """Return the registered LCIA method tuple for an ecoinvent test case."""
     data = _load_reference_scores()
 
     try:
@@ -24,13 +127,7 @@ def get_lcia_regression_method(case_key):
             f"No LCIA regression method configured for {case_key}"
         ) from exc
 
-    if method not in bw2data.methods:
-        raise AssertionError(
-            f"LCIA regression method {method!r} is not registered in project "
-            f"{bw2data.projects.current!r}."
-        )
-
-    return method
+    return _resolve_lcia_method(method, case_key, bw2data.methods)
 
 
 def _find_activity(database, activity):
