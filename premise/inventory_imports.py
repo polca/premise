@@ -1140,8 +1140,7 @@ class BaseInventoryImport:
                 if exchange.get("type") != "technosphere":
                     continue
                 if (
-                    exchange.get("name")
-                    == "market for hydrogen, gaseous, low pressure"
+                    exchange.get("name") == "market for hydrogen, gaseous, low pressure"
                     and exchange.get("reference product")
                     == "hydrogen, gaseous, low pressure"
                 ):
