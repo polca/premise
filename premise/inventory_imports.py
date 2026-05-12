@@ -1120,6 +1120,33 @@ class BaseInventoryImport:
                 )
             ]
 
+    def adapt_hydrogen_market_exchanges_for_legacy_versions(self) -> None:
+        """
+        Map ecoinvent 3.10+ low-pressure hydrogen markets back to the
+        pre-3.10 generic gaseous hydrogen market when importing older databases.
+        """
+        if normalize_version_for_migration(self.version_out) not in {"3.8", "3.9"}:
+            return
+
+        legacy_market = {
+            "name": "market for hydrogen, gaseous",
+            "reference product": "hydrogen, gaseous",
+            "product": "hydrogen, gaseous",
+            "location": "GLO",
+        }
+
+        for dataset in self.import_db.data:
+            for exchange in dataset.get("exchanges", []):
+                if exchange.get("type") != "technosphere":
+                    continue
+                if (
+                    exchange.get("name")
+                    == "market for hydrogen, gaseous, low pressure"
+                    and exchange.get("reference product")
+                    == "hydrogen, gaseous, low pressure"
+                ):
+                    exchange.update(legacy_market)
+
     @staticmethod
     def _replacement_metadata(exc: dict) -> tuple[str, str, str]:
         return (
@@ -1703,6 +1730,7 @@ class DefaultInventory(BaseInventoryImport):
 
     def prepare_inventory(self) -> None:
         migrate_import_db(self.import_db, self.version_in, self.version_out)
+        self.adapt_hydrogen_market_exchanges_for_legacy_versions()
 
         if self.system_model == "consequential":
             self.import_db.data = (
@@ -1782,6 +1810,7 @@ class VariousVehicles(BaseInventoryImport):
 
     def prepare_inventory(self):
         migrate_import_db(self.import_db, self.version_in, self.version_out)
+        self.adapt_hydrogen_market_exchanges_for_legacy_versions()
 
         self.lower_case_technosphere_exchanges()
         self.add_biosphere_links()
@@ -1869,6 +1898,7 @@ class AdditionalInventory(BaseInventoryImport):
 
     def prepare_inventory(self):
         migrate_import_db(self.import_db, self.version_in, self.version_out)
+        self.adapt_hydrogen_market_exchanges_for_legacy_versions()
 
         if self.system_model == "consequential":
             self.import_db.data = (

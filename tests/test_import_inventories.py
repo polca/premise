@@ -621,3 +621,34 @@ def test_correct_product_field_uses_indexed_reference_product(tmp_path):
     )
 
     BaseInventoryImport.correct_product_field.cache_clear()
+
+
+def test_legacy_hydrogen_market_exchange_is_restored_for_old_versions(tmp_path):
+    importer = get_base_inventory_import(tmp_path, [])
+    importer.import_db.data = [
+        {
+            "name": "consumer",
+            "reference product": "consumer product",
+            "location": "GLO",
+            "unit": "kilogram",
+            "exchanges": [
+                {
+                    "name": "market for hydrogen, gaseous, low pressure",
+                    "reference product": "hydrogen, gaseous, low pressure",
+                    "product": "hydrogen, gaseous, low pressure",
+                    "location": "RER",
+                    "unit": "kilogram",
+                    "amount": 1,
+                    "type": "technosphere",
+                }
+            ],
+        }
+    ]
+
+    importer.adapt_hydrogen_market_exchanges_for_legacy_versions()
+
+    exchange = importer.import_db.data[0]["exchanges"][0]
+    assert exchange["name"] == "market for hydrogen, gaseous"
+    assert exchange["reference product"] == "hydrogen, gaseous"
+    assert exchange["product"] == "hydrogen, gaseous"
+    assert exchange["location"] == "GLO"

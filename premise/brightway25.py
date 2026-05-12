@@ -97,11 +97,17 @@ def _cleanup_legacy_fast_export_sidecars(name: str) -> None:
 def _collect_fast_export_geography(
     data: list, process_node_types: tuple | list | set, get_geocollection
 ) -> tuple[list, set]:
+    def get_geocollection_compat(location):
+        try:
+            return get_geocollection(location)
+        except KeyError:
+            return None
+
     geocollections = sorted(
         {
             geocollection
             for geocollection in (
-                get_geocollection(dataset.get("location"))
+                get_geocollection_compat(dataset.get("location"))
                 for dataset in data
                 if dataset.get("type") in process_node_types
             )

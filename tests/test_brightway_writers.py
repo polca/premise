@@ -12,10 +12,15 @@ def test_collect_fast_export_geography_discards_unknown_geocollections():
         {"type": "process", "location": None},
     ]
 
+    def get_geocollection(location):
+        if location == "UNKNOWN":
+            raise KeyError("Can't find location: UNKNOWN.")
+        return {"CH": "ecoinvent"}.get(location)
+
     geocollections, locations = brightway25_module._collect_fast_export_geography(
         data=data,
         process_node_types={"process"},
-        get_geocollection=lambda location: {"CH": "ecoinvent"}.get(location),
+        get_geocollection=get_geocollection,
     )
 
     assert geocollections == ["ecoinvent"]
