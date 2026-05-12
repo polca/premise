@@ -116,9 +116,7 @@ FILEPATH_HYDROGEN_COAL_GASIFICATION_CCS_INVENTORIES = (
     INVENTORY_DIR / "lci-hydrogen-coal-gasification_CCS.xlsx"
 )
 FILEPATH_HYDROGEN_OIL = INVENTORY_DIR / "lci-hydrogen-oil.xlsx"
-FILEPATH_SYNFUEL_AVG_INVENTORIES = (
-    INVENTORY_DIR / "lci-synfuels-from-FT.xlsx"
-)
+FILEPATH_SYNFUEL_AVG_INVENTORIES = INVENTORY_DIR / "lci-synfuels-from-FT.xlsx"
 FILEPATH_SYNFUEL_INVENTORIES = (
     INVENTORY_DIR / "lci-synfuels-from-FT-from-electrolysis.xlsx"
 )
