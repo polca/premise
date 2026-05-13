@@ -123,6 +123,7 @@ def test_prepare_db_for_fast_export_runs_core_checks(monkeypatch):
             db_name,
             biosphere_name,
             version,
+            extra_regions,
         ):
             captured["init"] = {
                 "model": model,
@@ -134,6 +135,7 @@ def test_prepare_db_for_fast_export_runs_core_checks(monkeypatch):
                 "db_name": db_name,
                 "biosphere_name": biosphere_name,
                 "version": version,
+                "extra_regions": extra_regions,
             }
             self.database = prepared_database
 
@@ -167,6 +169,7 @@ def test_prepare_db_for_fast_export_runs_core_checks(monkeypatch):
         "db_name": "test-db",
         "biosphere_name": "test-biosphere",
         "version": "3.12",
+        "extra_regions": None,
     }
     assert captured["run_fast_export_checks"] is True
     assert result == prepared_database
