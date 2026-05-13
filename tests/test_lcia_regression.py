@@ -2,7 +2,6 @@ import pytest
 
 import lcia_regression
 
-
 IPCC_2013 = (
     "IPCC 2013",
     "climate change",
