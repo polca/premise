@@ -39,6 +39,10 @@ class TestGeomap(unittest.TestCase):
         with self.assertRaises(KeyError):
             self.geomap.ecoinvent_to_iam_location("foo")
 
+    def test_ecoinvent_to_iam_location_recognizes_image_japan_region(self):
+        self.geomap = Geomap("image")
+        self.assertEqual(self.geomap.ecoinvent_to_iam_location("JAP"), "JAP")
+
     def test_resolve_multiple_iam_regions(self):
         self.geomap = Geomap("remind")
         iam_locations = ["EUR", "NEU"]

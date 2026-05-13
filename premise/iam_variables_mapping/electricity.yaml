@@ -24,6 +24,7 @@ Biomass CHP:
   ecoinvent_fuel_aliases:
     fltr:
     - market for wood chips, wet, measured as dry mass
+    - market for wood chips, green, measured as dry mass
     - market for biomass, used as fuel
     - market for lignocellulosic biomass, used as fuel
   eff_aliases:
@@ -51,6 +52,7 @@ Biomass CHP (existing):
   ecoinvent_fuel_aliases:
     fltr:
     - market for wood chips, wet, measured as dry mass
+    - market for wood chips, green, measured as dry mass
     - market for biomass, used as fuel
     - market for lignocellulosic biomass, used as fuel
   eff_aliases:
@@ -91,6 +93,7 @@ Biomass IGCC:
   ecoinvent_fuel_aliases:
     fltr:
     - market for wood chips, wet, measured as dry mass
+    - market for wood chips, green, measured as dry mass
     - market for biomass, used as fuel
     - market for lignocellulosic biomass, used as fuel
   eff_aliases:
@@ -117,6 +120,7 @@ Biomass IGCC CCS:
   ecoinvent_fuel_aliases:
     fltr:
     - market for wood chips, wet, measured as dry mass
+    - market for wood chips, green, measured as dry mass
     - market for biomass, used as fuel
     - market for lignocellulosic biomass, used as fuel
   eff_aliases:
@@ -144,6 +148,7 @@ Biomass MSW:
   ecoinvent_fuel_aliases:
     fltr:
     - market for wood chips, wet, measured as dry mass
+    - market for wood chips, green, measured as dry mass
     - market for biomass, used as fuel
     - market for lignocellulosic biomass, used as fuel
   eff_aliases:
@@ -160,6 +165,7 @@ Biomass ST:
   ecoinvent_fuel_aliases:
     fltr:
     - market for wood chips, wet, measured as dry mass
+    - market for wood chips, green, measured as dry mass
     - market for biomass, used as fuel
     - market for lignocellulosic biomass, used as fuel
   eff_aliases:
@@ -181,6 +187,7 @@ Biomass ST CCS:
   ecoinvent_fuel_aliases:
     fltr:
     - market for wood chips, wet, measured as dry mass
+    - market for wood chips, green, measured as dry mass
     - market for biomass, used as fuel
     - market for lignocellulosic biomass, used as fuel
   eff_aliases:
@@ -198,6 +205,7 @@ Coal CF 50-50:
     fltr:
     - market for hard coal
     - market for wood chips, wet, measured as dry mass
+    - market for wood chips, green, measured as dry mass
     - market for biomass, used as fuel
     - market for lignocellulosic biomass, used as fuel
     mask:
@@ -219,6 +227,7 @@ Coal CF 80-20:
     fltr:
     - market for hard coal
     - market for wood chips, wet, measured as dry mass
+    - market for wood chips, green, measured as dry mass
     - market for biomass, used as fuel
     - market for lignocellulosic biomass, used as fuel
     mask:

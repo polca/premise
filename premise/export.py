@@ -1170,6 +1170,7 @@ def prepare_db_for_export(
         db_name=name,
         biosphere_name=biosphere_name,
         version=version,
+        extra_regions=scenario.get("additional valid regions"),
     )
     validator.run_all_checks()
 
@@ -1192,6 +1193,7 @@ def prepare_db_for_fast_export(scenario, name, version, biosphere_name=None):
         db_name=name,
         biosphere_name=biosphere_name,
         version=version,
+        extra_regions=scenario.get("additional valid regions"),
     )
     validator.run_fast_export_checks()
 

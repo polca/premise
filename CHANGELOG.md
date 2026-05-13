@@ -7,6 +7,12 @@ All notable changes to this project are documented in this file.
 ### Fixed
 - Fixed hard kernel crashes on some Windows environments when reading Excel inventory workbooks or generating Excel reports by disabling openpyxl's lxml backend by default on Windows.
 - Declared `openpyxl` as an explicit dependency and constrained Windows pip installs and conda package builds to avoid the problematic `lxml` 6.x Excel/XML stack.
+- Treated unregistered transformed dataset locations as major validation issues while allowing superstructure exports to validate IAM regions contributed by all merged scenarios, including IMAGE's `JAP` region.
+- Replaced silent electricity fuel-efficiency warnings with hard failures when fuel filters or fuel inputs cannot be identified, and added missing green wood-chip fuel aliases for biomass and co-firing power technologies.
+
+### Tests
+- Refreshed LCIA regression reference scores for ecoinvent 3.8 and 3.9.1 cutoff test databases.
+- Added focused regression tests for prefixed LCIA method resolution, superstructure region validation, and biomass fuel-filter detection.
 
 ## [2.4.3]
 

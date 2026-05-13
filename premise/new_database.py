@@ -1298,8 +1298,17 @@ class NewDatabase:
             preserve_original_column=preserve_original_column,
         )
 
-        tmp_scenario = self.scenarios[0]
+        tmp_scenario = self.scenarios[0].copy()
         tmp_scenario["database"] = self.database
+        additional_regions = sorted(
+            {
+                region
+                for scenario in self.scenarios
+                for region in getattr(scenario.get("iam data"), "regions", [])
+            }
+        )
+        if additional_regions:
+            tmp_scenario["additional valid regions"] = additional_regions
 
         self.database = prepare_db_for_export(
             scenario=tmp_scenario,
