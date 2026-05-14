@@ -2,6 +2,15 @@
 
 All notable changes to this project are documented in this file.
 
+## [2.4.5]
+
+### Fixed
+- Filled missing activity classifications on the fast Brightway export path used after `NewDatabase.update()`, keeping classification metadata consistent with non-updated exports (`#293`).
+- Corrected the CPC classification for the PEM fuel-cell system assembly inventory from `33370: Fuel oils n.e.c.` to `46410: Primary cells and primary batteries`.
+
+### Tests
+- Added regression coverage for fast Brightway export classification filling.
+
 ## [2.4.4]
 
 ### Fixed

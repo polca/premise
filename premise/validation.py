@@ -781,7 +781,7 @@ class BaseDatasetValidator:
         missing_classifications = []
 
         for ds in self.database:
-            if "classifications" not in ds:
+            if not ds.get("classifications"):
                 classification = get_classification_entry(
                     self.classifications, ds["name"], ds["reference product"]
                 )
@@ -875,6 +875,7 @@ class BaseDatasetValidator:
         self.correct_fields_format()
         self.check_amount_format()
         self.reformat_parameters()
+        self.add_missing_classifications()
         self.check_uncertainty()
         self._finalize_logs()
 
