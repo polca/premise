@@ -98,11 +98,37 @@ class Emissions(BaseTransformation):
             for t in self.gains_map[s]:
                 self.rev_gains_map[t["name"]] = s
 
+    @staticmethod
+    def add_world_region(data: xr.DataArray) -> xr.DataArray:
+        """
+        Add a ``World`` region by summing absolute GAINS emissions.
+
+        The emissions update later converts absolute emissions to scaling factors
+        relative to 2020. Summing before that conversion gives ``World`` datasets
+        an emissions-weighted global correction factor instead of leaving them
+        unchanged or averaging regional ratios.
+        """
+
+        if "region" not in data.dims:
+            return data
+
+        has_world = "World" in data.coords["region"].values
+        regional_data = data.drop_sel(region="World") if has_world else data
+        world_data = regional_data.sum(dim="region", skipna=True).expand_dims(
+            region=["World"]
+        )
+
+        if has_world:
+            data = data.drop_sel(region="World")
+
+        return xr.concat([data, world_data], dim="region")
+
     def prepare_data(self, data):
 
         def _safe_divide(x):
             return xr.where((np.isnan(x)) | (x == 0), 1, x)
 
+        data = self.add_world_region(data)
         base = data.sel(year=2020, method="nearest")
 
         if self.year in data.coords["year"]:
