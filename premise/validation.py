@@ -14,7 +14,11 @@ from .filesystem_constants import DATA_DIR
 from .geomap import Geomap
 from .logger import create_logger
 from .utils import rescale_exchanges, get_uuids
-from .inventory_imports import get_classifications, get_biosphere_code
+from .inventory_imports import (
+    get_biosphere_code,
+    get_classification_entry,
+    get_classifications,
+)
 import country_converter as coco
 import wurst.searching as ws
 
@@ -269,6 +273,7 @@ class BaseDatasetValidator:
         biosphere_name=None,
         version=None,
         system_model="cutoff",
+        extra_regions=None,
     ):
         self.original_database = original_database
         self.database = database
@@ -276,6 +281,7 @@ class BaseDatasetValidator:
         self.scenario = scenario
         self.year = year
         self.regions = regions
+        self.valid_regions = set(regions or []) | set(extra_regions or [])
         self.db_name = db_name
         self.geo = Geomap(model)
         self.minor_issues_log = []
@@ -477,12 +483,17 @@ class BaseDatasetValidator:
 
         for loc in new_locations:
             if loc not in original_locations:
-                if loc not in self.regions:
+                if loc not in self.valid_regions:
                     try:
                         self.geo.ecoinvent_to_iam_location(loc)
-                    except ValueError:
+                    except (KeyError, ValueError):
                         message = f"New unregistered location found: {loc}"
-                        self.log_issue({"location": loc}, "new location", message)
+                        self.log_issue(
+                            {"location": loc},
+                            "new location",
+                            message,
+                            issue_type="major",
+                        )
 
     def validate_dataset_structure(self):
         # Check that all datasets have a list of exchanges and each exchange has a type
@@ -770,20 +781,19 @@ class BaseDatasetValidator:
         missing_classifications = []
 
         for ds in self.database:
-            if "classifications" not in ds:
-                if (ds["name"], ds["reference product"]) in self.classifications:
+            if not ds.get("classifications"):
+                classification = get_classification_entry(
+                    self.classifications, ds["name"], ds["reference product"]
+                )
+                if classification:
                     ds["classifications"] = [
                         (
                             "ISIC rev.4 ecoinvent",
-                            self.classifications[(ds["name"], ds["reference product"])][
-                                "ISIC rev.4 ecoinvent"
-                            ],
+                            classification["ISIC rev.4 ecoinvent"],
                         ),
                         (
                             "CPC",
-                            self.classifications[(ds["name"], ds["reference product"])][
-                                "CPC"
-                            ],
+                            classification["CPC"],
                         ),
                     ]
                 else:
@@ -843,6 +853,33 @@ class BaseDatasetValidator:
         self.reformat_parameters()
         self.add_missing_classifications()
         self.check_uncertainty()
+        self._finalize_logs()
+
+    def run_fast_export_checks(self):
+        """
+        Run a reduced validation pass for the fast Brightway export path.
+        This keeps cheap structural and consistency checks while avoiding
+        the heavier checks that require the full source database context.
+        """
+
+        print("Running core export checks...")
+        self.check_matrix_squareness()
+        self.validate_dataset_structure()
+        self.verify_data_consistency()
+        self.check_relinking_logic()
+        self.check_for_orphaned_datasets()
+        self.check_for_duplicates()
+        self.check_for_circular_references()
+        self.check_database_name()
+        self.remove_unused_fields()
+        self.correct_fields_format()
+        self.check_amount_format()
+        self.reformat_parameters()
+        self.add_missing_classifications()
+        self.check_uncertainty()
+        self._finalize_logs()
+
+    def _finalize_logs(self):
         self.save_log()
         if len(self.minor_issues_log) > 0:
             print("Minor anomalies found: check the change report.")
@@ -1550,7 +1587,18 @@ class ElectricityValidation(BaseDatasetValidator):
                     ]
                 )
                 if total < 0.99 or total > 1.15:
+                    log_params = dataset.get("log parameters", {})
+                    dropped_share = log_params.get("dropped electricity share", None)
+                    missing_techs = log_params.get(
+                        "missing electricity technologies", ""
+                    )
+
                     message = f"Electricity market inputs sum to {total}."
+                    if dropped_share is not None:
+                        message += f" Dropped technology share: {dropped_share}."
+                    if missing_techs:
+                        message += f" Missing supplier technologies: {missing_techs}."
+
                     self.log_issue(
                         dataset,
                         "electricity market not summing to 1",

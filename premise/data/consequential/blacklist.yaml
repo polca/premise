@@ -233,7 +233,7 @@
   unit: megajoule
   location: RoW
   replacement:
-    name: heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas
+    name: market for heat, for reuse in municipal waste incineration only
     reference product: heat, for reuse in municipal waste incineration only
     location: RoW
 
@@ -341,6 +341,6 @@
   location: CH
   unit: megajoule
   replacement:
-    name: heat, from municipal waste incineration to generic market for heat, district or industrial, other than natural gas
+    name: market for heat, for reuse in municipal waste incineration only
     reference product: heat, for reuse in municipal waste incineration only
     location: CH

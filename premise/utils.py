@@ -2,6 +2,7 @@
 Various utils functions.
 """
 
+import json
 import os
 import pickle
 import sys
@@ -33,6 +34,7 @@ from .geomap import Geomap
 
 FUELS_PROPERTIES = VARIABLES_DIR / "fuels.yaml"
 EFFICIENCY_RATIO_SOLAR_PV = DATA_DIR / "renewables" / "efficiency_solar_PV.csv"
+CACHE_MANIFEST_SUFFIX = ".manifest.json"
 
 
 def rescale_exchanges(
@@ -313,6 +315,37 @@ def clear_inventory_cache() -> None:
     print("Inventory cache cleared!")
 
 
+def clear_runtime_caches() -> None:
+    """Clear runtime caches that can retain large transformation objects."""
+
+    from .electricity import Electricity
+    from .emissions import Emissions
+    from .export import exc_codes, fetch_exchange_code
+    from .external import ExternalScenario
+    from .inventory_imports import BaseInventoryImport
+    from .metals import Metals
+    from .transformation import BaseTransformation
+
+    cached_functions = (
+        Geomap.iam_to_ecoinvent_location,
+        Geomap.ecoinvent_to_iam_location,
+        BaseInventoryImport.correct_product_field,
+        BaseTransformation.get_gis_match,
+        Electricity.get_production_per_tech_dict,
+        Emissions.find_gains_emissions_change,
+        ExternalScenario.add_additional_exchanges,
+        Metals.get_metal_market_dataset,
+        fetch_exchange_code,
+    )
+
+    for cached_function in cached_functions:
+        cache_clear = getattr(cached_function, "cache_clear", None)
+        if cache_clear is not None:
+            cache_clear()
+
+    exc_codes.clear()
+
+
 def print_version():
     """Display the installed ``premise`` version."""
 
@@ -447,13 +480,150 @@ def dump_database(scenario: Dict[str, Any]) -> Dict[str, Any]:
 
     # generate random name
     name = f"{uuid.uuid4().hex}.pickle"
-    # dump as pickle
-    with open(DIR_CACHED_FILES / name, "wb") as f:
-        pickle.dump(scenario["database"], f)
-    scenario["database filepath"] = DIR_CACHED_FILES / name
+    database_cache_ref, metadata_cache_ref = create_scenario_cache(
+        scenario["database"], DIR_CACHED_FILES / name
+    )
+    scenario["database filepath"] = database_cache_ref
+    scenario["database metadata filepath"] = metadata_cache_ref
     del scenario["database"]
 
     return scenario
+
+
+def get_cache_manifest_path(file_name: Path) -> Path:
+    """Return the manifest path corresponding to a cache reference."""
+
+    file_name = Path(file_name)
+    if str(file_name).endswith(CACHE_MANIFEST_SUFFIX):
+        return file_name
+
+    return Path(f"{file_name}{CACHE_MANIFEST_SUFFIX}")
+
+
+def resolve_cache_ref(file_name: Path) -> Path:
+    """Resolve a cache reference to either a legacy pickle or a manifest file."""
+
+    file_name = Path(file_name)
+    if file_name.exists():
+        return file_name
+
+    manifest_path = get_cache_manifest_path(file_name)
+    if manifest_path.exists():
+        return manifest_path
+
+    return file_name
+
+
+def cache_ref_exists(file_name: Path) -> bool:
+    """Return ``True`` if a legacy cache file or a manifest-backed cache exists."""
+
+    file_name = Path(file_name)
+    return file_name.exists() or get_cache_manifest_path(file_name).exists()
+
+
+def _is_cache_manifest(file_name: Path) -> bool:
+    return str(file_name).endswith(CACHE_MANIFEST_SUFFIX)
+
+
+def _load_cache_manifest(file_name: Path) -> Dict[str, Any]:
+    with open(file_name, encoding="utf-8") as file:
+        manifest = json.load(file)
+
+    if not isinstance(manifest, dict):
+        raise TypeError(f"Cache manifest {file_name} must contain a JSON object.")
+
+    return manifest
+
+
+def _iter_cache_bundle_paths(file_name: Path) -> Iterable[Path]:
+    manifest = _load_cache_manifest(file_name)
+    entries = manifest.get("files", manifest.get("shards"))
+
+    if not isinstance(entries, list) or len(entries) == 0:
+        raise ValueError(f"Cache manifest {file_name} does not define any shard files.")
+
+    for entry in entries:
+        shard_path = entry.get("path") if isinstance(entry, dict) else entry
+
+        if not isinstance(shard_path, str) or not shard_path:
+            raise ValueError(
+                f"Cache manifest {file_name} contains an invalid shard entry: {entry!r}"
+            )
+
+        shard_file = Path(shard_path)
+        if not shard_file.is_absolute():
+            shard_file = file_name.parent / shard_file
+
+        yield shard_file
+
+
+def delete_cache_ref(cache_ref: Path) -> None:
+    """Delete a legacy cache file or all files referenced by a manifest-backed cache."""
+
+    cache_ref = resolve_cache_ref(cache_ref)
+
+    if _is_cache_manifest(cache_ref):
+        for shard_file in _iter_cache_bundle_paths(cache_ref):
+            if shard_file.exists():
+                shard_file.unlink()
+        if cache_ref.exists():
+            cache_ref.unlink()
+        return
+
+    if cache_ref.exists():
+        cache_ref.unlink()
+
+
+def load_cached_database(cache_ref: Path) -> List[Dict[str, Any]]:
+    """Load a cached database from a legacy pickle or manifest-backed shard set."""
+
+    cache_ref = resolve_cache_ref(cache_ref)
+
+    if _is_cache_manifest(cache_ref):
+        database: List[Dict[str, Any]] = []
+        for shard_file in _iter_cache_bundle_paths(cache_ref):
+            with open(shard_file, "rb") as file:
+                shard = pickle.load(file)
+
+            if not isinstance(shard, list):
+                raise TypeError(
+                    f"Database shard {shard_file} must contain a list of datasets."
+                )
+
+            database.extend(shard)
+
+        return database
+
+    with open(cache_ref, "rb") as file:
+        return pickle.load(file)
+
+
+def iter_cached_metadata(cache_ref: Path) -> Iterable[Dict[tuple, Dict[str, Any]]]:
+    """Yield metadata chunks from a legacy pickle or manifest-backed shard set."""
+
+    cache_ref = resolve_cache_ref(cache_ref)
+
+    if _is_cache_manifest(cache_ref):
+        for shard_file in _iter_cache_bundle_paths(cache_ref):
+            with open(shard_file, "rb") as file:
+                metadata = pickle.load(file)
+
+            if not isinstance(metadata, dict):
+                raise TypeError(
+                    f"Metadata shard {shard_file} must contain a dictionary."
+                )
+
+            yield metadata
+
+        return
+
+    with open(cache_ref, "rb") as file:
+        metadata = pickle.load(file)
+
+    if not isinstance(metadata, dict):
+        raise TypeError(f"Metadata cache {cache_ref} must contain a dictionary.")
+
+    yield metadata
 
 
 def load_database(
@@ -489,35 +659,42 @@ def load_database(
 
     else:
         filepath = scenario["database filepath"]
-
-        # load pickle
-        with open(filepath, "rb") as f:
-            scenario["database"] = pickle.load(f)
+        scenario["database"] = load_cached_database(filepath)
 
         # delete the file
         if delete:
-            filepath.unlink()
+            delete_cache_ref(filepath)
 
     if load_metadata:
-
-        filepaths = [
-            scenario["database metadata cache filepath"],
-            scenario["inventories metadata cache filepath"],
-        ]
+        if "database metadata filepath" in scenario:
+            filepaths = [scenario["database metadata filepath"]]
+        else:
+            filepaths = [
+                scenario["database metadata cache filepath"],
+                scenario["inventories metadata cache filepath"],
+            ]
+        datasets_by_key = {
+            (ds["name"], ds["reference product"], ds["location"]): ds
+            for ds in scenario["database"]
+        }
 
         # check if metadata files exist
         for filepath_metadata in filepaths:
-            if not Path(filepath_metadata).exists():
+            if not cache_ref_exists(filepath_metadata):
                 raise FileNotFoundError(
                     f"Metadata file {filepath_metadata} does not exist."
                 )
-            # load metadata from the cache files
-            with open(filepath_metadata, "rb") as f:
-                metadata = pickle.load(f)
-                # update each dataset with the metadata
-                for ds in scenario["database"]:
-                    key = (ds["name"], ds["reference product"], ds["location"])
-                    for k, v in metadata.get(key, {}).items():
+            for metadata in iter_cached_metadata(filepath_metadata):
+                for key, metadata_values in metadata.items():
+                    ds = datasets_by_key.get(key)
+                    if ds is None:
+                        continue
+
+                    exchange_metadata = metadata_values.get("__exchange_metadata__")
+
+                    for k, v in metadata_values.items():
+                        if k == "__exchange_metadata__":
+                            continue
                         if k in [
                             "code",
                             "worksheet name",
@@ -553,13 +730,36 @@ def load_database(
                             elif isinstance(ds[k], dict):
                                 ds[k].update(v)
 
-    # re-attribute a code to every dataset
-    uuids = get_uuids(scenario["database"])
+                    if exchange_metadata:
+                        for exchange, exchange_values in zip(
+                            ds.get("exchanges", []), exchange_metadata
+                        ):
+                            for k, v in exchange_values.items():
+                                if v is None or v == "None" or v == "nan" or not v:
+                                    continue
+
+                                if k not in exchange:
+                                    exchange[k] = v
+                                elif exchange[k] is None:
+                                    exchange[k] = v
+                                elif isinstance(exchange[k], list):
+                                    exchange[k].extend(v)
+                                elif isinstance(exchange[k], str):
+                                    try:
+                                        if len(exchange[k]) != len(v):
+                                            exchange[k] = f"{exchange[k]}. {v}"
+                                    except Exception as exc:
+                                        raise ValueError(
+                                            f"Failed to merge exchange metadata for {ds.get('name')}: "
+                                            f"key={k}, existing={exchange[k]!r}, new={v!r}, error={exc}"
+                                        ) from exc
+                                elif isinstance(exchange[k], dict):
+                                    exchange[k].update(v)
+
+    # scenario caches can preserve dataset codes directly; fall back to
+    # generating new identifiers only when a dataset has none.
     for ds in scenario["database"]:
-        key = (ds["name"], ds["reference product"], ds["location"])
-        if key in uuids:
-            ds["code"] = uuids[key]
-        else:
+        if not ds.get("code"):
             ds["code"] = str(uuid.uuid4().hex)
 
     if "database filepath" in scenario:
@@ -576,12 +776,22 @@ def delete_all_pickles(filepath: Optional[Path] = None) -> None:
     """
 
     if filepath is not None:
-        for file in DIR_CACHED_FILES.glob("*.pickle"):
-            if file == filepath:
-                print(f"File {file} deleted.")
-                file.unlink()
-    else:
-        for file in DIR_CACHED_FILES.glob("*.pickle"):
+        resolved = resolve_cache_ref(filepath)
+        if resolved.exists():
+            print(f"File {resolved} deleted.")
+        delete_cache_ref(resolved)
+        metadata_ref = resolve_cache_ref(
+            Path(str(filepath).replace(".pickle", " (metadata).pickle"))
+        )
+        if metadata_ref.exists():
+            delete_cache_ref(metadata_ref)
+        return
+
+    for manifest in DIR_CACHED_FILES.glob(f"*{CACHE_MANIFEST_SUFFIX}"):
+        delete_cache_ref(manifest)
+
+    for file in DIR_CACHED_FILES.glob("*.pickle"):
+        if file.exists():
             file.unlink()
 
 
@@ -652,6 +862,215 @@ def trim_exchanges(exc: Dict[str, Any]) -> Dict[str, Any]:
     }
 
 
+_CACHE_TRIMMED_DATASET_FIELDS = {
+    "name",
+    "reference product",
+    "location",
+    "unit",
+    "exchanges",
+    "comment",
+}
+
+_CACHE_METADATA_EXCLUDED_FIELDS = {
+    "name",
+    "reference product",
+    "location",
+    "unit",
+    "exchanges",
+    "type",
+    "comment",
+}
+
+_SCENARIO_TRIMMED_DATASET_FIELDS = {
+    "database",
+    "code",
+    "name",
+    "reference product",
+    "location",
+    "unit",
+    "type",
+    "exchanges",
+}
+
+_SCENARIO_TRIMMED_EXCHANGE_FIELDS = {
+    "input",
+    "amount",
+    "type",
+    "uncertainty type",
+    "loc",
+    "scale",
+    "shape",
+    "minimum",
+    "maximum",
+    "production volume",
+    "product",
+    "name",
+    "unit",
+    "location",
+    "categories",
+}
+
+_SCENARIO_METADATA_EXCLUDED_FIELDS = {
+    "name",
+    "reference product",
+    "location",
+    "unit",
+    "type",
+    "exchanges",
+    "database",
+    "code",
+}
+
+
+def _has_cache_value(value: Any) -> bool:
+    if value is None:
+        return False
+    if isinstance(value, str) and value in {"None", "nan", ""}:
+        return False
+    if isinstance(value, (list, tuple, dict, set)):
+        return True
+
+    try:
+        return bool(pd.notna(value))
+    except Exception:
+        return True
+
+
+def _metadata_for_cache_dataset(ds: Dict[str, Any]) -> Tuple[tuple, Dict[str, Any]]:
+    key = (ds["name"], ds["reference product"], ds["location"])
+    metadata = {
+        field: value
+        for field, value in ds.items()
+        if field not in _CACHE_METADATA_EXCLUDED_FIELDS
+        and value is not None
+        and value != "None"
+        and value != "nan"
+    }
+    return key, metadata
+
+
+def _trim_cache_dataset_in_place(ds: Dict[str, Any]) -> Dict[str, Any]:
+    trimmed_dataset = {
+        field: value
+        for field, value in ds.items()
+        if field in _CACHE_TRIMMED_DATASET_FIELDS
+    }
+    trimmed_dataset["exchanges"] = [
+        trim_exchanges(exchange) for exchange in trimmed_dataset["exchanges"]
+    ]
+    ds.clear()
+    ds.update(trimmed_dataset)
+    return ds
+
+
+def _trim_scenario_exchange(
+    exchange: Dict[str, Any],
+) -> Tuple[Dict[str, Any], Dict[str, Any]]:
+    compact_exchange: Dict[str, Any] = {}
+    exchange_metadata: Dict[str, Any] = {}
+
+    for field, value in exchange.items():
+        if not _has_cache_value(value):
+            continue
+
+        target = (
+            compact_exchange
+            if field in _SCENARIO_TRIMMED_EXCHANGE_FIELDS
+            else exchange_metadata
+        )
+        target[field] = value
+
+    return compact_exchange, exchange_metadata
+
+
+def _metadata_for_scenario_dataset(ds: Dict[str, Any]) -> Tuple[tuple, Dict[str, Any]]:
+    key = (ds["name"], ds["reference product"], ds["location"])
+    metadata = {
+        field: value
+        for field, value in ds.items()
+        if field not in _SCENARIO_METADATA_EXCLUDED_FIELDS and _has_cache_value(value)
+    }
+
+    exchange_metadata = []
+    for exchange in ds.get("exchanges", []):
+        _, compact_exchange_metadata = _trim_scenario_exchange(exchange)
+        exchange_metadata.append(compact_exchange_metadata)
+
+    if any(exchange_metadata):
+        metadata["__exchange_metadata__"] = exchange_metadata
+
+    return key, metadata
+
+
+def _trim_scenario_dataset_in_place(ds: Dict[str, Any]) -> Dict[str, Any]:
+    trimmed_dataset = {
+        field: value
+        for field, value in ds.items()
+        if field in _SCENARIO_TRIMMED_DATASET_FIELDS
+    }
+    trimmed_dataset["exchanges"] = [
+        _trim_scenario_exchange(exchange)[0]
+        for exchange in trimmed_dataset["exchanges"]
+    ]
+    ds.clear()
+    ds.update(trimmed_dataset)
+    return ds
+
+
+def _chunk_sequence(
+    sequence: Sequence[Any], chunk_size: int
+) -> Iterable[Sequence[Any]]:
+    for start in range(0, len(sequence), chunk_size):
+        yield sequence[start : start + chunk_size]
+
+
+def _chunk_mapping(
+    mapping: Dict[Any, Any], chunk_size: int
+) -> Iterable[Dict[Any, Any]]:
+    items = list(mapping.items())
+    for chunk in _chunk_sequence(items, chunk_size):
+        yield dict(chunk)
+
+
+def _write_cache_manifest(
+    cache_ref: Path, shard_paths: Sequence[Path], payload_kind: str
+) -> Path:
+    manifest_path = get_cache_manifest_path(cache_ref)
+
+    with open(manifest_path, "w", encoding="utf-8") as file:
+        json.dump(
+            {
+                "cache_format": 1,
+                "storage": "pickle-shards",
+                "kind": payload_kind,
+                "files": [shard_path.name for shard_path in shard_paths],
+            },
+            file,
+        )
+
+    return manifest_path
+
+
+def _write_cache_shards(
+    cache_ref: Path, chunks: Iterable[Any], payload_kind: str
+) -> Path:
+    shard_paths = []
+
+    for index, chunk in enumerate(chunks):
+        shard_path = cache_ref.with_name(f"{cache_ref.name}.part-{index:04d}.pickle")
+        with open(shard_path, "wb") as file:
+            pickle.dump(chunk, file)
+        shard_paths.append(shard_path)
+
+    if not shard_paths:
+        shard_path = cache_ref.with_name(f"{cache_ref.name}.part-0000.pickle")
+        with open(shard_path, "wb") as file:
+            pickle.dump([] if payload_kind == "database" else {}, file)
+        shard_paths.append(shard_path)
+
+    return _write_cache_manifest(cache_ref, shard_paths, payload_kind)
+
+
 def create_cache(
     database: List[Dict[str, Any]], file_name: Path
 ) -> Tuple[List[Dict[str, Any]], Path]:
@@ -665,62 +1084,106 @@ def create_cache(
     :rtype: tuple
     """
 
-    metadata = {
-        (ds["name"], ds["reference product"], ds["location"]): {
-            k: v
-            for k, v in ds.items()
-            if k
-            not in [
-                "name",
-                "reference product",
-                "location",
-                "unit",
-                "exchanges",
-                "type",
-                "comment",
-            ]
-            and v is not None
-            and v != "None"
-            and v != "nan"
-        }
-        for ds in database
-    }
-
-    database = [
-        {
-            k: v
-            for k, v in ds.items()
-            if k
-            in [
-                "name",
-                "reference product",
-                "location",
-                "unit",
-                "exchanges",
-                "comment",
-            ]
-        }
-        for ds in database
-    ]
-
-    for ds in database:
-        # trim exchanges
-        ds["exchanges"] = [trim_exchanges(exc) for exc in ds["exchanges"]]
-
     # make sure the directory exists
     DIR_CACHED_DB.mkdir(parents=True, exist_ok=True)
 
-    # create a cache file
     metadata_cache_file = Path(str(file_name).replace(".pickle", " (metadata).pickle"))
+    metadata_chunk_size = 5_000
+    metadata_shard_paths = []
+    metadata_chunk: Dict[tuple, Dict[str, Any]] = {}
 
-    with open(metadata_cache_file, "wb") as f:
-        pickle.dump(metadata, f)
+    for dataset in database:
+        key, metadata = _metadata_for_cache_dataset(dataset)
+        if metadata:
+            metadata_chunk[key] = metadata
 
-    # cache the database
-    with open(file_name, "wb") as f:
-        pickle.dump(database, f)
+        _trim_cache_dataset_in_place(dataset)
 
-    return database, metadata_cache_file
+        if len(metadata_chunk) >= metadata_chunk_size:
+            shard_path = metadata_cache_file.with_name(
+                f"{metadata_cache_file.name}.part-{len(metadata_shard_paths):04d}.pickle"
+            )
+            with open(shard_path, "wb") as file:
+                pickle.dump(metadata_chunk, file)
+            metadata_shard_paths.append(shard_path)
+            metadata_chunk = {}
+
+    if metadata_chunk:
+        shard_path = metadata_cache_file.with_name(
+            f"{metadata_cache_file.name}.part-{len(metadata_shard_paths):04d}.pickle"
+        )
+        with open(shard_path, "wb") as file:
+            pickle.dump(metadata_chunk, file)
+        metadata_shard_paths.append(shard_path)
+    elif not metadata_shard_paths:
+        shard_path = metadata_cache_file.with_name(
+            f"{metadata_cache_file.name}.part-0000.pickle"
+        )
+        with open(shard_path, "wb") as file:
+            pickle.dump({}, file)
+        metadata_shard_paths.append(shard_path)
+
+    with open(file_name, "wb") as file:
+        pickle.dump(database, file)
+
+    metadata_cache_ref = _write_cache_manifest(
+        metadata_cache_file, metadata_shard_paths, "metadata"
+    )
+
+    return database, metadata_cache_ref
+
+
+def create_scenario_cache(
+    database: List[Dict[str, Any]], file_name: Path
+) -> Tuple[Path, Path]:
+    """Persist a post-update scenario database in compact shard-backed files."""
+
+    DIR_CACHED_FILES.mkdir(parents=True, exist_ok=True)
+
+    metadata_cache_file = Path(str(file_name).replace(".pickle", " (metadata).pickle"))
+    metadata_chunk_size = 1_000
+    metadata_shard_paths = []
+    metadata_chunk: Dict[tuple, Dict[str, Any]] = {}
+
+    for dataset in database:
+        key, metadata = _metadata_for_scenario_dataset(dataset)
+        if metadata:
+            metadata_chunk[key] = metadata
+
+        _trim_scenario_dataset_in_place(dataset)
+
+        if len(metadata_chunk) >= metadata_chunk_size:
+            shard_path = metadata_cache_file.with_name(
+                f"{metadata_cache_file.name}.part-{len(metadata_shard_paths):04d}.pickle"
+            )
+            with open(shard_path, "wb") as file:
+                pickle.dump(metadata_chunk, file)
+            metadata_shard_paths.append(shard_path)
+            metadata_chunk = {}
+
+    if metadata_chunk:
+        shard_path = metadata_cache_file.with_name(
+            f"{metadata_cache_file.name}.part-{len(metadata_shard_paths):04d}.pickle"
+        )
+        with open(shard_path, "wb") as file:
+            pickle.dump(metadata_chunk, file)
+        metadata_shard_paths.append(shard_path)
+    elif not metadata_shard_paths:
+        shard_path = metadata_cache_file.with_name(
+            f"{metadata_cache_file.name}.part-0000.pickle"
+        )
+        with open(shard_path, "wb") as file:
+            pickle.dump({}, file)
+        metadata_shard_paths.append(shard_path)
+
+    database_cache_ref = _write_cache_shards(
+        file_name, _chunk_sequence(database, 2_500), "database"
+    )
+    metadata_cache_ref = _write_cache_manifest(
+        metadata_cache_file, metadata_shard_paths, "metadata"
+    )
+
+    return database_cache_ref, metadata_cache_ref
 
 
 def load_metadata(file_name: Path) -> Dict[str, Any]:
@@ -731,13 +1194,16 @@ def load_metadata(file_name: Path) -> Dict[str, Any]:
     :return: Metadata dictionary indexed by dataset identifiers.
     :rtype: dict
     """
-    cache_file = Path(f"{file_name} (metadata).cache")
+    cache_file = resolve_cache_ref(
+        Path(str(file_name).replace(".pickle", " (metadata).pickle"))
+    )
 
-    if not cache_file.exists():
+    if not cache_ref_exists(cache_file):
         raise FileNotFoundError(f"Cache file {cache_file} does not exist.")
 
-    with cache_file.open("rb") as f:
-        metadata = pickle.load(f)
+    metadata: Dict[str, Any] = {}
+    for chunk in iter_cached_metadata(cache_file):
+        metadata.update(chunk)
 
     return metadata
 

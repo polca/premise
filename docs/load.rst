@@ -21,6 +21,11 @@ If several databases have been built, the user can give them specific names, lik
 
     ndb.write_db_to_brightway(name=["db_1", "db_2"])
 
+.. note::
+
+    Brightway export requires an active Brightway project with the configured
+    biosphere database already registered.
+
 
 Superstructure database
 ***********************

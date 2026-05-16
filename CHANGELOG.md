@@ -2,6 +2,88 @@
 
 All notable changes to this project are documented in this file.
 
+## [2.4.5]
+
+### Fixed
+- Filled missing activity classifications on the fast Brightway export path used after `NewDatabase.update()`, keeping classification metadata consistent with non-updated exports (`#293`).
+- Corrected the CPC classification for the PEM fuel-cell system assembly inventory from `33370: Fuel oils n.e.c.` to `46410: Primary cells and primary batteries`.
+- Derived `World` GAINS hot-pollutant scaling factors from global absolute emissions so `World` datasets receive an emissions-weighted correction during the emissions update (`#285`).
+
+### Tests
+- Added regression coverage for fast Brightway export classification filling.
+- Added regression coverage for `World` hot-pollutant emission scaling.
+
+## [2.4.4]
+
+### Fixed
+- Fixed hard kernel crashes on some Windows environments when reading Excel inventory workbooks or generating Excel reports by disabling openpyxl's lxml backend by default on Windows.
+- Declared `openpyxl` as an explicit dependency and constrained Windows pip installs and conda package builds to avoid the problematic `lxml` 6.x Excel/XML stack.
+- Treated unregistered transformed dataset locations as major validation issues while allowing superstructure exports to validate IAM regions contributed by all merged scenarios, including IMAGE's `JAP` region.
+- Replaced silent electricity fuel-efficiency warnings with hard failures when fuel filters or fuel inputs cannot be identified, and added missing green wood-chip fuel aliases for biomass and co-firing power technologies.
+
+### Tests
+- Refreshed LCIA regression reference scores for ecoinvent 3.8 and 3.9.1 cutoff test databases.
+- Added focused regression tests for prefixed LCIA method resolution, superstructure region validation, and biomass fuel-filter detection.
+
+## [2.4.3]
+
+### Changed
+- Reworked metals post-allocation correction to use a data-driven procedure instead of static per-version YAML correction tables. The correction now identifies in-ground resource flows from activity reference products, clears co-mined carrier flows, sets pure target metal products to `1 kg`, applies explicit content factors for known intermediates, and handles version-specific biosphere flow names.
+- Removed obsolete metals post-allocation correction YAML files for ecoinvent `3.10`, `3.11`, and `3.12`.
+- Improved default inventory cache rebuild performance by applying packaged migration replacement rules in memory instead of writing temporary Brightway migration objects to the project datastore.
+- Added indexed product lookups for imported and source datasets so default-inventory product-field correction no longer repeatedly scans the full source database.
+- Refreshed the development test notebook.
+
+### Fixed
+- Fixed consequential inventory gap filling so market-name toggles are only applied to actual market-name prefixes, avoiding rewrites of embedded phrases such as `generic market for heat` to nonexistent providers.
+- Fixed consequential municipal-waste-heat blacklist replacements to point to available heat-for-reuse markets, allowing CDR regionalization to run when the cement update is omitted.
+- Added missing consequential leadtime and lifetime aliases for kerosene used by synthetic-fuel mappings.
+
+### Documentation
+- Updated transformation documentation to describe the new metals post-allocation correction logic.
+
+### Tests
+- Added focused metals post-allocation correction tests covering target matching, carrier clearing, missing target-resource insertion, and version-specific flow aliases.
+- Added LCIA regression fixtures and a regression test module.
+- Expanded default-inventory import tests for in-memory migration application and indexed lookup behavior.
+- Updated process tests across supported ecoinvent versions and system models for the revised metals correction behavior.
+
+## [2.4.1]
+
+### Fixed
+- Preserved full non-empty activity and exchange metadata on the fast Brightway export path, so exported databases retain the same metadata fields that Premise keeps in its temporary scenario caches instead of dropping exchange browsing information such as `name`, `product`, `location`, `unit`, comments, and other cached metadata.
+
+## [2.4.0]
+
+### Changed
+- Refreshed solar PV module efficiency assumptions in `premise/data/renewables/efficiency_solar_PV.csv` using updated literature, recent record-module benchmarks, and tandem-module roadmap projections.
+- Added new PV efficiency anchor years (`2025`, `2027`, `2030`, `2035`) and a dedicated `perovskite-Si tandem` trajectory for advanced future scenarios.
+- Expanded the PV efficiency reference table with traceability metadata (`source`, `metric_level`, `maturity`, `basis`, `use_for_projection`, `review_notes`).
+- Expanded GCAM variable coverage across final energy, fuels, electricity, and heat mappings, including additional building, cement, CDR, transport, and biofuel aliases.
+- Updated GCAM regional mapping assets and topology alignment, including explicit `Ukraine` coverage and revised GCAM biofuel/climate region mappings.
+- Reduced cold-cache memory pressure in `NewDatabase()` by extracting Brightway source databases into a more compact in-memory representation and clearing importer-side cached state after inventory imports.
+- Reworked the Brightway 2.5 export path to write processed arrays and database rows directly, substantially reducing `write_db_to_brightway()` runtime and peak memory usage on large scenario exports.
+- Restored standard Brightway database behavior on the fast export path, including searchable activity rows and normal exchange browsing without requiring `import premise` first.
+- Streamed Brightway source-database extraction during cold `NewDatabase()` initialization to avoid queryset caching overhead and reduce cold-start RSS.
+
+### Fixed
+- Improved IAM normalization for models that do not provide an exact 2020 datapoint by falling back to the nearest available year (notably relevant for GCAM inputs and emissions factors).
+- Moved end-of-pipe emissions updates to the end of the `NewDatabase.update()` workflow to avoid ordering issues (issue `#285`).
+- Improved electricity validation diagnostics by logging dropped electricity shares and missing supplier technologies when market shares do not sum correctly.
+- Normalized the cold-cache `NewDatabase.update()` path so the first scenario reloads the cached source-database representation instead of keeping a special cache-miss in-memory form.
+- Ensured fast Brightway exports set activity process types so exported databases open correctly in downstream Brightway tools such as Activity Browser.
+- Fixed migrated default-inventory placeholders with `replacement ...` metadata so one-to-many ecoinvent migration disaggregations (for example `market for coke` and `market for hard coal` in steel inventories) no longer duplicate the original exchange amount across every split target during gap filling.
+
+### Documentation
+- Updated the transformation documentation for photovoltaic module efficiency assumptions and added a plot summarizing the trajectories used in `premise`.
+
+- Applied formatting cleanup in `premise/export.py`.
+
+
+## [2.3.9]
+
+- Allows creating a Simapro or OpenLCA-compatible database without needing a Brightway project or Biosphere database.
+ 
 ## [2.3.8]
 
 - Added new version of IMAGE scenarios.

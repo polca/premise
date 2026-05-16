@@ -3,6 +3,7 @@ This module contains the PathwaysDataPackage class, which is
 used to create a data package for scenario analysis.
 """
 
+import gc
 import json
 import csv
 import shutil
@@ -14,12 +15,11 @@ from typing import List
 import xarray as xr
 import yaml
 from datapackage import Package
-import bw2data
 
 from . import __version__
 from .new_database import NewDatabase
-from .inventory_imports import get_classifications
-from .utils import load_database
+from .inventory_imports import get_classification_entry, get_classifications
+from .utils import clear_runtime_caches, delete_all_pickles, end_of_process
 
 
 class PathwaysDataPackage:
@@ -52,13 +52,6 @@ class PathwaysDataPackage:
         self.source_version = source_version
         self.key = key
 
-        # check biosphere database name
-        if biosphere_name not in bw2data.databases:
-            raise ValueError(
-                f"Wrong biosphere name: {biosphere_name}. "
-                f"Should be one of {bw2data.databases}"
-            )
-
         self.datapackage = NewDatabase(
             scenarios=self.scenarios,
             source_version=source_version,
@@ -84,15 +77,18 @@ class PathwaysDataPackage:
         contributors: list = None,
         transformations: list = None,
     ):
-        if transformations:
-            self.datapackage.update(transformations)
-        else:
-            self.datapackage.update()
+        try:
+            if transformations:
+                self.datapackage.update(transformations)
+            else:
+                self.datapackage.update()
 
-        self._export_datapackage(
-            name=name,
-            contributors=contributors,
-        )
+            self._export_datapackage(
+                name=name,
+                contributors=contributors,
+            )
+        finally:
+            self._cleanup_after_export()
 
     def _export_datapackage(
         self,
@@ -307,22 +303,20 @@ class PathwaysDataPackage:
                     classifications = ds.get("classifications") or []
 
                     if not classifications:
-                        if (
+                        classification = get_classification_entry(
+                            self.classifications,
                             ds["name"],
                             ds["reference product"],
-                        ) in self.classifications:
+                        )
+                        if classification:
                             ds["classifications"] = [
                                 (
                                     "ISIC rev.4 ecoinvent",
-                                    self.classifications[
-                                        (ds["name"], ds["reference product"])
-                                    ]["ISIC rev.4 ecoinvent"],
+                                    classification["ISIC rev.4 ecoinvent"],
                                 ),
                                 (
                                     "CPC",
-                                    self.classifications[
-                                        (ds["name"], ds["reference product"])
-                                    ]["CPC"],
+                                    classification["CPC"],
                                 ),
                             ]
                             classifications = ds.get("classifications")
@@ -457,3 +451,12 @@ class PathwaysDataPackage:
         shutil.make_archive(name, "zip", str(Path.cwd() / "pathways_temp"))
 
         print(f"Data package saved at {str(Path.cwd() / f'{name}.zip')}")
+
+    def _cleanup_after_export(self):
+        for scenario in getattr(self.datapackage, "scenarios", []):
+            if "database" in scenario:
+                end_of_process(scenario)
+
+        delete_all_pickles()
+        clear_runtime_caches()
+        gc.collect()

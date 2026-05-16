@@ -7,6 +7,7 @@ import csv
 import itertools
 import logging
 import uuid
+import unicodedata
 from functools import lru_cache
 from pathlib import Path
 from typing import Dict, List, Union
@@ -18,7 +19,7 @@ import numpy as np
 import pandas as pd
 import requests
 import yaml
-from bw2io import CSVImporter, ExcelImporter, Migration
+from bw2io import CSVImporter, ExcelImporter
 from prettytable import PrettyTable
 from wurst import searching as ws
 
@@ -60,7 +61,7 @@ def get_classifications():
 
     # Build the nested dictionary
     classification_dict = {
-        (row["name"], row["product"]): {
+        canonicalize_classification_key(row["name"], row["product"]): {
             "ISIC rev.4 ecoinvent": row["ISIC rev.4 ecoinvent"],
             "CPC": row["CPC"],
         }
@@ -68,6 +69,61 @@ def get_classifications():
     }
 
     return classification_dict
+
+
+_MOJIBAKE_MARKERS = ("Ã", "Â", "√", "\ufffd")
+_MOJIBAKE_ENCODINGS = ("latin-1", "cp1252", "mac_roman")
+
+
+def _count_mojibake_markers(text: str) -> int:
+    return sum(text.count(marker) for marker in _MOJIBAKE_MARKERS)
+
+
+def repair_mojibake(text: str) -> str:
+    if not isinstance(text, str):
+        return text
+
+    repaired = text
+    best_score = _count_mojibake_markers(repaired)
+
+    if best_score == 0:
+        return repaired
+
+    for encoding in _MOJIBAKE_ENCODINGS:
+        try:
+            candidate = text.encode(encoding).decode("utf-8")
+        except (UnicodeEncodeError, UnicodeDecodeError):
+            continue
+
+        candidate = unicodedata.normalize("NFC", candidate)
+        score = _count_mojibake_markers(candidate)
+        if score < best_score:
+            repaired = candidate
+            best_score = score
+
+    return repaired
+
+
+def canonicalize_classification_field(value: str) -> str:
+    if not isinstance(value, str):
+        return value
+
+    value = unicodedata.normalize("NFC", value).replace("\ufeff", "").strip()
+    if any(marker in value for marker in _MOJIBAKE_MARKERS):
+        value = repair_mojibake(value)
+
+    return value
+
+
+def canonicalize_classification_key(name: str, product: str):
+    return (
+        canonicalize_classification_field(name),
+        canonicalize_classification_field(product),
+    )
+
+
+def get_classification_entry(classifications: Dict, name: str, product: str):
+    return classifications.get(canonicalize_classification_key(name, product))
 
 
 @lru_cache(maxsize=1)
@@ -437,6 +493,50 @@ def apply_backward_replace(db: list, replace_rules: list):
                     break
 
 
+def apply_forward_replace(db: list, replace_rules: list):
+    """
+    Apply forward replacement rules to datasets and their exchanges.
+
+    This mirrors the subset of :mod:`bw2io` migration behavior used by the
+    packaged premise migration JSON files, without writing migration mappings to
+    the Brightway project datastore for every imported inventory workbook.
+    """
+    if not replace_rules:
+        return
+
+    mapping = {
+        (
+            rule["source"].get("name"),
+            rule["source"].get("reference product"),
+            rule["source"].get("location"),
+        ): {
+            field: value
+            for field, value in rule["target"].items()
+            if field not in {"unit", "allocation", "comment"}
+        }
+        for rule in replace_rules
+    }
+
+    for ds in db:
+        new_data = mapping.get(
+            (ds.get("name"), ds.get("reference product"), ds.get("location"))
+        )
+        if new_data is not None:
+            ds.update(new_data)
+
+        for exc in ds.get("exchanges", []):
+            new_data = mapping.get(
+                (
+                    exc.get("name"),
+                    exc.get("reference product"),
+                    exc.get("location"),
+                )
+            )
+            if new_data is not None:
+                exc.update(new_data)
+                exc.pop("input", None)
+
+
 def apply_biosphere_migration(db, biosphere_rules):
     if not biosphere_rules:
         return
@@ -484,56 +584,6 @@ def apply_biosphere_migration(db, biosphere_rules):
                     exc[key] = val
 
 
-def register_forward_migration_mapping(src_ver: str, dst_ver: str, data: dict) -> str:
-    """
-    Build and register a bw2io.Migration from JSON 'replace' and 'delete' sections.
-    Returns the migration name.
-    """
-    mig_name = f"migration_{src_ver.replace('.', '')}_{dst_ver.replace('.', '')}"
-
-    mapping = {
-        "fields": ["name", "reference product", "location"],
-        "data": [],
-    }
-
-    for item in data.get("replace", []):
-        src = item["source"]
-        tgt = item["target"]
-
-        # make a copy without unit
-        tgt_clean = {k: v for k, v in tgt.items() if k != "unit"}
-
-        mapping["data"].append(
-            (
-                (
-                    src.get("name"),
-                    src.get("reference product"),
-                    src.get("location"),
-                ),
-                tgt_clean,
-            )
-        )
-
-    for item in data.get("delete", []):
-        s = item["source"]
-        mapping["data"].append(
-            (
-                (
-                    s.get("name"),
-                    s.get("reference product"),
-                    s.get("location"),
-                ),
-                {},
-            )
-        )
-
-    Migration(mig_name).write(
-        mapping,
-        description=f"Change technosphere names due to change from {src_ver} to {dst_ver}",
-    )
-    return mig_name
-
-
 def apply_migration_step(
     importer, src_ver: str, dst_ver: str, direction: str, available: Dict[tuple, dict]
 ):
@@ -556,8 +606,7 @@ def apply_migration_step(
 
     if direction == "forward":
         print(f"Applying forward migration {f_src} -> {f_dst}")
-        mig_name = register_forward_migration_mapping(f_src, f_dst, data)
-        importer.migrate(mig_name)
+        apply_forward_replace(importer.data, data.get("replace", []))
         apply_disaggregation(importer.data, data.get("disaggregate", []))
     else:
         print(f"Applying backward migration {f_src} <- {f_dst}")
@@ -838,6 +887,8 @@ class BaseInventoryImport:
         self.keep_uncertainty_data = keep_uncertainty_data
         self.path = path
         self.classifications = get_classifications()
+        self.database_product_index = self._build_database_product_index()
+        self.import_product_index = {}
 
         print(f"Importing {path}")
         if "http" in str(path):
@@ -852,6 +903,55 @@ class BaseInventoryImport:
 
         self.path = Path(path) if isinstance(path, str) else path
         self.import_db = self.load_inventory()
+
+    def _build_database_product_index(self) -> dict:
+        """Build product lookup tables for the source database."""
+        by_fields = {}
+        by_fields_and_reference_product = {}
+
+        for dataset in self.database:
+            if not all(k in dataset for k in ("name", "location", "unit")):
+                continue
+
+            key = (
+                dataset["name"],
+                dataset["location"],
+                dataset["unit"],
+            )
+            by_fields.setdefault(key, dataset["reference product"])
+            by_fields_and_reference_product.setdefault(
+                (
+                    dataset["name"],
+                    dataset["location"],
+                    dataset["unit"],
+                    dataset["reference product"],
+                ),
+                dataset["reference product"],
+            )
+
+        return {
+            "by_fields": by_fields,
+            "by_fields_and_reference_product": by_fields_and_reference_product,
+        }
+
+    def _build_import_product_index(self) -> dict:
+        """Build product lookup table for the imported inventory."""
+        by_fields = {}
+
+        for dataset in self.import_db.data:
+            if not all(k in dataset for k in ("name", "location", "unit")):
+                continue
+
+            by_fields.setdefault(
+                (
+                    dataset["name"],
+                    dataset["location"],
+                    dataset["unit"],
+                ),
+                dataset["reference product"],
+            )
+
+        return {"by_fields": by_fields}
 
     def load_inventory(self) -> None:
         """Load an inventory from a specified path.
@@ -1020,6 +1120,194 @@ class BaseInventoryImport:
                 )
             ]
 
+    def adapt_hydrogen_market_exchanges_for_legacy_versions(self) -> None:
+        """
+        Map ecoinvent 3.10+ low-pressure hydrogen markets back to the
+        pre-3.10 generic gaseous hydrogen market when importing older databases.
+        """
+        if normalize_version_for_migration(self.version_out) not in {"3.8", "3.9"}:
+            return
+
+        legacy_market = {
+            "name": "market for hydrogen, gaseous",
+            "reference product": "hydrogen, gaseous",
+            "product": "hydrogen, gaseous",
+            "location": "GLO",
+        }
+
+        for dataset in self.import_db.data:
+            for exchange in dataset.get("exchanges", []):
+                if exchange.get("type") != "technosphere":
+                    continue
+                if (
+                    exchange.get("name") == "market for hydrogen, gaseous, low pressure"
+                    and exchange.get("reference product")
+                    == "hydrogen, gaseous, low pressure"
+                ):
+                    exchange.update(legacy_market)
+
+    @staticmethod
+    def _replacement_metadata(exc: dict) -> tuple[str, str, str]:
+        return (
+            exc["replacement name"],
+            exc["replacement product"],
+            exc["replacement location"],
+        )
+
+    def _find_replacement_dataset(self, exc: dict) -> dict | None:
+        name, ref_prod, loc = self._replacement_metadata(exc)
+
+        for ds in self.database:
+            if (
+                ds["name"] == name
+                and ds["reference product"] == ref_prod
+                and ds["location"] == loc
+            ):
+                return ds
+
+        return None
+
+    @staticmethod
+    def _toggle_market_name(name: str) -> str | None:
+        if name.startswith("market for "):
+            return name.replace("market for ", "market group for ", 1)
+        if name.startswith("market group for "):
+            return name.replace("market group for ", "market for ", 1)
+        return None
+
+    @staticmethod
+    def _find_matching_technosphere_exchanges(
+        dataset: dict, exchange_name: str, exc: dict
+    ) -> List[dict]:
+        """
+        Return matching technosphere exchanges from ``dataset`` for ``exc``.
+
+        Match supplier location when the target exchange specifies one so we
+        don't accidentally sum several regional suppliers from the replacement
+        dataset.
+        """
+
+        matches = list(
+            ws.technosphere(
+                dataset,
+                ws.equals("name", exchange_name),
+                ws.equals("product", exc["product"]),
+            )
+        )
+
+        if exc.get("location") in (None, ""):
+            return matches
+
+        return [match for match in matches if match.get("location") == exc["location"]]
+
+    def _collect_replacement_technosphere_exchanges(self, exc: dict) -> List[dict]:
+        """
+        Return the full matching supplier structure from the replacement dataset.
+
+        This is important after migration disaggregation: a single original
+        placeholder can become many zero-valued regional placeholders. We must
+        replace that whole group with the actual exchanges present in the
+        replacement ecoinvent dataset, not fill each split placeholder
+        independently.
+        """
+
+        replacement_ds = self._find_replacement_dataset(exc)
+        if replacement_ds is None:
+            return []
+
+        matches = list(
+            ws.technosphere(
+                replacement_ds,
+                ws.equals("name", exc["name"]),
+                ws.equals("product", exc["product"]),
+            )
+        )
+
+        if matches:
+            return matches
+
+        alt_name = self._toggle_market_name(exc["name"])
+        if alt_name is None:
+            return []
+
+        return list(
+            ws.technosphere(
+                replacement_ds,
+                ws.equals("name", alt_name),
+                ws.equals("product", exc["product"]),
+            )
+        )
+
+    def fill_dataset_data_gaps(self, dataset: dict) -> None:
+        """
+        Fill exchanges with replacement metadata for a whole dataset.
+
+        Technosphere exchanges are handled group-wise so migration-created
+        split placeholders are replaced by the actual supplier structure of the
+        replacement ecoinvent dataset.
+        """
+
+        grouped_techno = {}
+        biosphere_to_fill = []
+
+        for exc in dataset.get("exchanges", []):
+            if "replacement name" not in exc:
+                continue
+
+            if exc["type"] == "technosphere":
+                key = (
+                    *self._replacement_metadata(exc),
+                    exc["type"],
+                    exc["name"],
+                    exc["product"],
+                    exc["unit"],
+                )
+                grouped_techno.setdefault(key, []).append(exc)
+            elif exc["type"] == "biosphere":
+                biosphere_to_fill.append(exc)
+
+        if not grouped_techno and not biosphere_to_fill:
+            return
+
+        filtered_exchanges = []
+        grouped_techno_ids = {
+            id(exc) for excs in grouped_techno.values() for exc in excs
+        }
+        biosphere_ids = {id(exc) for exc in biosphere_to_fill}
+
+        for exc in dataset["exchanges"]:
+            if id(exc) in grouped_techno_ids or id(exc) in biosphere_ids:
+                continue
+            filtered_exchanges.append(exc)
+
+        for grouped_exchanges in grouped_techno.values():
+            template = grouped_exchanges[0]
+            replacements = self._collect_replacement_technosphere_exchanges(template)
+
+            if replacements:
+                for replacement in replacements:
+                    new_exc = template.copy()
+                    new_exc["name"] = replacement["name"]
+                    new_exc["product"] = replacement["product"]
+                    new_exc["location"] = replacement["location"]
+                    new_exc["unit"] = replacement["unit"]
+                    new_exc["amount"] = replacement["amount"]
+                    new_exc.pop("replacement name", None)
+                    new_exc.pop("replacement product", None)
+                    new_exc.pop("replacement location", None)
+                    new_exc.pop("input", None)
+                    filtered_exchanges.append(new_exc)
+            else:
+                fallback_exc = template.copy()
+                self.fill_data_gaps(fallback_exc)
+                filtered_exchanges.append(fallback_exc)
+
+        for exc in biosphere_to_fill:
+            self.fill_data_gaps(exc)
+            filtered_exchanges.append(exc)
+
+        dataset["exchanges"] = filtered_exchanges
+
     def fill_data_gaps(self, exc):
         """
         Some datatsets have the exchange amount set to zero because of ecoinvent license restrictions
@@ -1042,16 +1330,8 @@ class BaseInventoryImport:
                 ):
                     sum_amount = 0
                     if exc["type"] == "technosphere":
-                        filters = [
-                            ws.equals("name", exc["name"]),
-                            ws.equals("product", exc["product"]),
-                        ]
-                        if exc.get("location") not in (None, ""):
-                            filters.append(ws.equals("location", exc["location"]))
-
-                        for e in ws.technosphere(
-                            ds,
-                            *filters,
+                        for e in self._find_matching_technosphere_exchanges(
+                            ds, exc["name"], exc
                         ):
                             sum_amount += e["amount"]
 
@@ -1070,27 +1350,14 @@ class BaseInventoryImport:
                         )
                     if sum_amount == 0:
                         # trying with "market group for" or "market for"
-                        if "market for" in exc["name"]:
-                            n = exc["name"].replace("market for", "market group for")
-                        elif "market group for" in exc["name"]:
-                            n = exc["name"].replace("market group for", "market for")
-
-                        else:
+                        n = self._toggle_market_name(exc["name"])
+                        if n is None:
                             print(
                                 f"Could not find a valid amount for exchange {exc['name']} in dataset {ds['name']} with reference product {ref_prod} and location {loc}"
                             )
                             return
 
-                        for e in ws.technosphere(
-                            ds,
-                            ws.equals("name", n),
-                            ws.equals("product", exc["product"]),
-                            *(
-                                [ws.equals("location", exc["location"])]
-                                if exc.get("location") not in (None, "")
-                                else []
-                            ),
-                        ):
+                        for e in self._find_matching_technosphere_exchanges(ds, n, exc):
                             sum_amount += e["amount"]
 
                         if sum_amount == 0:
@@ -1130,6 +1397,8 @@ class BaseInventoryImport:
                     if exchange["name"] != dataset["name"]:
                         exchange["name"] = dataset["name"]
 
+        self.import_product_index = self._build_import_product_index()
+
         # Add a `product` field to technosphere exchanges
         for dataset in self.import_db.data:
             for exchange in dataset["exchanges"]:
@@ -1167,13 +1436,7 @@ class BaseInventoryImport:
                                 )
                             )
 
-                if exchange["type"] in (
-                    "technosphere",
-                    "biosphere",
-                ):
-                    # check if amount is missing and need to be filled
-                    if "replacement name" in exchange:
-                        self.fill_data_gaps(exchange)
+            self.fill_dataset_data_gaps(dataset)
 
         # Add a `code` field if missing
         for dataset in self.import_db.data:
@@ -1188,43 +1451,22 @@ class BaseInventoryImport:
         :return: name of the product field of the exchange
 
         """
-        # Look first in the imported inventories
-        candidate = next(
-            ws.get_many(
-                self.import_db.data,
-                ws.equals("name", exc[0]),
-                ws.equals("location", exc[1]),
-                ws.equals("unit", exc[2]),
-            ),
-            None,
+        product = self.import_product_index.get("by_fields", {}).get(
+            (exc[0], exc[1], exc[2])
         )
 
-        # If not, look in the ecoinvent inventories
-        if candidate is None:
+        if product is None:
             if exc[-1] is not None:
-                candidate = next(
-                    ws.get_many(
-                        self.database,
-                        ws.equals("name", exc[0]),
-                        ws.equals("location", exc[1]),
-                        ws.equals("unit", exc[2]),
-                        ws.equals("reference product", exc[-1]),
-                    ),
-                    None,
-                )
+                product = self.database_product_index[
+                    "by_fields_and_reference_product"
+                ].get((exc[0], exc[1], exc[2], exc[-1]))
             else:
-                candidate = next(
-                    ws.get_many(
-                        self.database,
-                        ws.equals("name", exc[0]),
-                        ws.equals("location", exc[1]),
-                        ws.equals("unit", exc[2]),
-                    ),
-                    None,
+                product = self.database_product_index["by_fields"].get(
+                    (exc[0], exc[1], exc[2])
                 )
 
-        if candidate is not None:
-            return candidate["reference product"]
+        if product is not None:
+            return product
 
         self.list_unlinked.append(
             (
@@ -1419,20 +1661,19 @@ class BaseInventoryImport:
     def add_classifications(self):
 
         for ds in self.import_db.data:
-            if (ds["name"], ds["reference product"]) in self.classifications:
+            classification = get_classification_entry(
+                self.classifications, ds["name"], ds["reference product"]
+            )
+            if classification:
 
                 ds["classifications"] = [
                     (
                         "ISIC rev.4 ecoinvent",
-                        self.classifications[(ds["name"], ds["reference product"])][
-                            "ISIC rev.4 ecoinvent"
-                        ],
+                        classification["ISIC rev.4 ecoinvent"],
                     ),
                     (
                         "CPC",
-                        self.classifications[(ds["name"], ds["reference product"])][
-                            "CPC"
-                        ],
+                        classification["CPC"],
                     ),
                 ]
             else:
@@ -1488,6 +1729,7 @@ class DefaultInventory(BaseInventoryImport):
 
     def prepare_inventory(self) -> None:
         migrate_import_db(self.import_db, self.version_in, self.version_out)
+        self.adapt_hydrogen_market_exchanges_for_legacy_versions()
 
         if self.system_model == "consequential":
             self.import_db.data = (
@@ -1567,6 +1809,7 @@ class VariousVehicles(BaseInventoryImport):
 
     def prepare_inventory(self):
         migrate_import_db(self.import_db, self.version_in, self.version_out)
+        self.adapt_hydrogen_market_exchanges_for_legacy_versions()
 
         self.lower_case_technosphere_exchanges()
         self.add_biosphere_links()
@@ -1654,6 +1897,7 @@ class AdditionalInventory(BaseInventoryImport):
 
     def prepare_inventory(self):
         migrate_import_db(self.import_db, self.version_in, self.version_out)
+        self.adapt_hydrogen_market_exchanges_for_legacy_versions()
 
         if self.system_model == "consequential":
             self.import_db.data = (

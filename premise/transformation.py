@@ -194,12 +194,18 @@ def get_shares_from_production_volume(
         production_volume = 0
 
         if "production volume" in act:
-            production_volume = max(float(act["production volume"]), 1e-9)
+            production_volume = float(act["production volume"])
+            if not np.isfinite(production_volume):
+                production_volume = 1e-9
+            production_volume = max(production_volume, 1e-9)
         else:
             for exc in ws.production(act):
                 # even if non-existent, we set a minimum value of 1e-9
                 # because if not, we risk dividing by zero!!!
-                production_volume = max(float(exc.get("production volume", 1e-9)), 1e-9)
+                production_volume = float(exc.get("production volume", 1e-9))
+                if not np.isfinite(production_volume):
+                    production_volume = 1e-9
+                production_volume = max(production_volume, 1e-9)
 
         suppliers.append(
             {
@@ -411,6 +417,11 @@ def find_fuel_efficiency(
         fuel_filters = [_sanitize_fuel_name(x) for x in fuel_filters]
     else:
         fuel_filters = [_sanitize_fuel_name(x) for x in fuel_filters]
+        if not fuel_filters:
+            raise ValueError(
+                "No fuel filters configured for "
+                f"{dataset['name']!r} in {dataset['location']!r}."
+            )
 
     energy_input = np.sum(
         np.sum(
@@ -447,26 +458,20 @@ def find_fuel_efficiency(
                 ]
             )
         )
-        if energy_input == 0:
-            if not any(x in dataset["name"] for x in ("waste", "treatment")):
-                print()
-                print(
-                    [
-                        _sanitize_fuel_name(e["name"])
-                        for e in dataset["exchanges"]
-                        if e["type"] == "technosphere"
-                    ]
-                )
-                print(
-                    f"Warning: {dataset['name'], dataset['location']} has no energy input"
-                )
-                for e in dataset["exchanges"]:
-                    print(e["name"], e["amount"], e["unit"])
-                print("----------------------------------------")
-
-                print("fuel filters")
-                print(fuel_filters)
-                print("----------------------------------------")
+        if energy_input == 0 and not any(
+            x in dataset["name"] for x in ("waste", "treatment")
+        ):
+            technosphere_inputs = [
+                f"{exc['name']} ({exc['amount']} {exc['unit']})"
+                for exc in dataset["exchanges"]
+                if exc["type"] == "technosphere" and exc.get("amount", 0) > 0
+            ]
+            raise ValueError(
+                "No fuel input found for "
+                f"{dataset['name']!r} in {dataset['location']!r}. "
+                f"Fuel filters: {fuel_filters}. "
+                f"Technosphere inputs: {technosphere_inputs}."
+            )
 
     if energy_input != 0 and float(energy_out) != 0:
         current_efficiency = float(energy_out) / energy_input

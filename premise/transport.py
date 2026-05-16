@@ -262,6 +262,49 @@ class Transport(BaseTransformation):
             ):
                 self.adjust_battery_size(ds)
 
+    @staticmethod
+    def _transport_market_names_to_try(market_name: str) -> List[str]:
+        names = [market_name]
+        if market_name.startswith("market for "):
+            names.append(market_name.replace("market for ", "market group for ", 1))
+        elif market_name.startswith("market group for "):
+            names.append(market_name.replace("market group for ", "market for ", 1))
+
+        return names
+
+    def _find_available_transport_market(
+        self, dataset: dict, exchange: dict, market_name: str
+    ):
+        product = self.mapping[self.vehicle_type]["name"]
+        locations = []
+
+        try:
+            locations.append(self.geo.ecoinvent_to_iam_location(dataset["location"]))
+        except (KeyError, ValueError):
+            pass
+
+        for location in [
+            exchange.get("location"),
+            dataset.get("location"),
+            "World",
+            "RoW",
+            "GLO",
+        ]:
+            if location and location not in locations:
+                locations.append(location)
+
+        for name in self._transport_market_names_to_try(market_name):
+            for location in locations:
+                candidate = {
+                    "name": name,
+                    "product": product,
+                    "location": location,
+                }
+                if self.is_in_index(candidate, location=location):
+                    return name, location
+
+        return None, None
+
     def relink_transport_datasets(self):
         # if trucks or ships, need to reconnect everything
         # loop through datasets that use truck transport
@@ -285,10 +328,20 @@ class Transport(BaseTransformation):
                     new_name = self.mapping[self.vehicle_type]["old"][exc["name"]][
                         self.model
                     ]
-                    new_loc = self.geo.ecoinvent_to_iam_location(dataset["location"])
-                    exc["name"] = new_name
+                    resolved_name, resolved_location = (
+                        self._find_available_transport_market(
+                            dataset=dataset,
+                            exchange=exc,
+                            market_name=new_name,
+                        )
+                    )
+
+                    if resolved_name is None:
+                        continue
+
+                    exc["name"] = resolved_name
                     exc["product"] = self.mapping[self.vehicle_type]["name"]
-                    exc["location"] = new_loc
+                    exc["location"] = resolved_location
 
     def adjust_transport_efficiency(self, dataset, technology=None):
         """

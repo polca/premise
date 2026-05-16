@@ -1,3 +1,10 @@
+import os
+
+if os.name == "nt":
+    # openpyxl auto-enables lxml when installed. lxml 6.x can hard-crash
+    # some Windows kernels while reading/writing Premise Excel workbooks.
+    os.environ.setdefault("OPENPYXL_LXML", "False")
+
 __all__ = (
     "NewDatabase",
     "IncrementalDatabase",
@@ -7,7 +14,7 @@ __all__ = (
     "clear_inventory_cache",
     "get_regions_definition",
 )
-__version__ = (2, 3, 7)
+__version__ = (2, 4, 4)
 
 
 from premise.new_database import NewDatabase

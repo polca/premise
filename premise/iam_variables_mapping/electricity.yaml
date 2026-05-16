@@ -24,6 +24,7 @@ Biomass CHP:
   ecoinvent_fuel_aliases:
     fltr:
     - market for wood chips, wet, measured as dry mass
+    - market for wood chips, green, measured as dry mass
     - market for biomass, used as fuel
     - market for lignocellulosic biomass, used as fuel
   eff_aliases:
@@ -32,14 +33,12 @@ Biomass CHP:
     remind-eu: Tech|Electricity|Biomass|Combined Heat and Power w/o CC|Efficiency
     tiam-ucl: Efficiency|Electricity|Biomass CHP|w/o CCS
     witch: Efficiency|Electricity|Biomass|w/o CCS
-    gcam: Efficiency|Electricity|Biomass CHP
   iam_aliases:
     image: Secondary Energy|Electricity|Biomass|w/o CCS|3
     remind: SE|Electricity|Biomass|++|Combined Heat and Power w/o CC
     remind-eu: SE|Electricity|Biomass|++|Combined Heat and Power w/o CC
     tiam-ucl: Secondary Energy|Electricity|Biomass CHP|w/o CCS
     witch: Secondary Energy|Electricity|Biomass|w/o CCS
-    gcam: Secondary Energy|Electricity|Biomass CHP
   max_efficiency: 0.3
 Biomass CHP (existing):
   ecoinvent_aliases:
@@ -53,6 +52,7 @@ Biomass CHP (existing):
   ecoinvent_fuel_aliases:
     fltr:
     - market for wood chips, wet, measured as dry mass
+    - market for wood chips, green, measured as dry mass
     - market for biomass, used as fuel
     - market for lignocellulosic biomass, used as fuel
   eff_aliases:
@@ -80,10 +80,8 @@ Biomass CHP CCS:
     fltr:
     - heat and power co-generation, wood chips, 6667 kW
   eff_aliases:
-    gcam: Efficiency|Electricity|Biomass CHP CCS
     image: Efficiency|Electricity|Biomass|w/ CCS|2
   iam_aliases:
-    gcam: Secondary Energy|Electricity|Biomass CHP CCS
     image: Secondary Energy|Electricity|Biomass|w/ CCS|2
 
 Biomass IGCC:
@@ -95,6 +93,7 @@ Biomass IGCC:
   ecoinvent_fuel_aliases:
     fltr:
     - market for wood chips, wet, measured as dry mass
+    - market for wood chips, green, measured as dry mass
     - market for biomass, used as fuel
     - market for lignocellulosic biomass, used as fuel
   eff_aliases:
@@ -121,6 +120,7 @@ Biomass IGCC CCS:
   ecoinvent_fuel_aliases:
     fltr:
     - market for wood chips, wet, measured as dry mass
+    - market for wood chips, green, measured as dry mass
     - market for biomass, used as fuel
     - market for lignocellulosic biomass, used as fuel
   eff_aliases:
@@ -148,6 +148,7 @@ Biomass MSW:
   ecoinvent_fuel_aliases:
     fltr:
     - market for wood chips, wet, measured as dry mass
+    - market for wood chips, green, measured as dry mass
     - market for biomass, used as fuel
     - market for lignocellulosic biomass, used as fuel
   eff_aliases:
@@ -164,19 +165,19 @@ Biomass ST:
   ecoinvent_fuel_aliases:
     fltr:
     - market for wood chips, wet, measured as dry mass
+    - market for wood chips, green, measured as dry mass
     - market for biomass, used as fuel
     - market for lignocellulosic biomass, used as fuel
   eff_aliases:
-    gcam: Efficiency|Electricity|biomass (conv)
     image: Efficiency|Electricity|Biomass|w/o CCS|1
     message: Efficiency|Electricity|Biomass|Solids|w/o CCS|2
     tiam-ucl: Efficiency|Electricity|Biomass combustion|w/o CCS
-
+    gcam: Efficiency|Electricity|Biomass ST
   iam_aliases:
-    gcam: Secondary Energy|Electricity|biomass (conv)
     image: Secondary Energy|Electricity|Biomass|w/o CCS|1
     message: Secondary Energy|Electricity|Biomass|Solids|w/o CCS|2
     tiam-ucl: Secondary Energy|Electricity|Biomass combustion|w/o CCS
+    gcam: Secondary Energy|Electricity|Biomass ST
   max_efficiency: 0.3
 Biomass ST CCS:
   ecoinvent_aliases:
@@ -186,12 +187,15 @@ Biomass ST CCS:
   ecoinvent_fuel_aliases:
     fltr:
     - market for wood chips, wet, measured as dry mass
+    - market for wood chips, green, measured as dry mass
     - market for biomass, used as fuel
     - market for lignocellulosic biomass, used as fuel
   eff_aliases:
     tiam-ucl: Efficiency|Electricity|Biomass combustion|w CCS
+    gcam: Efficiency|Electricity|Biomass ST CCS
   iam_aliases:
     tiam-ucl: Secondary Energy|Electricity|Biomass combustion|w CCS
+    gcam: Secondary Energy|Electricity|Biomass ST CCS
   max_efficiency: 0.25
 Coal CF 50-50:
   ecoinvent_aliases:
@@ -201,6 +205,7 @@ Coal CF 50-50:
     fltr:
     - market for hard coal
     - market for wood chips, wet, measured as dry mass
+    - market for wood chips, green, measured as dry mass
     - market for biomass, used as fuel
     - market for lignocellulosic biomass, used as fuel
     mask:
@@ -222,6 +227,7 @@ Coal CF 80-20:
     fltr:
     - market for hard coal
     - market for wood chips, wet, measured as dry mass
+    - market for wood chips, green, measured as dry mass
     - market for biomass, used as fuel
     - market for lignocellulosic biomass, used as fuel
     mask:
@@ -681,7 +687,7 @@ Gas OC:
       - vented
       - vehicle
   eff_aliases:
-    gcam: Efficiency|Electricity|gas (steam/CT)
+    gcam: Efficiency|Electricity|Gas ST
     image: Efficiency|Electricity|Gas|w/o CCS|1
     message: Efficiency|Electricity|Gas|w/o CCS|3
     remind: Tech|Electricity|Gas|Gas Turbine|Efficiency
@@ -689,7 +695,7 @@ Gas OC:
     tiam-ucl: Efficiency|Electricity|Existing gas generation|w/o CCS
     witch: Efficiency|Electricity|Gas|w/o CCS|1
   iam_aliases:
-    gcam: Secondary Energy|Electricity|gas (steam/CT)
+    gcam: Secondary Energy|Electricity|Gas ST
     image: Secondary Energy|Electricity|Gas|w/o CCS|1
     message: Secondary Energy|Electricity|Gas|w/o CCS|3
     remind: SE|Electricity|Gas|++|Gas Turbine
@@ -721,11 +727,13 @@ Gas ST:
     message: Efficiency|Electricity|Gas|w/o CCS|2
     remind: Tech|Electricity|Gas|Gas Turbine|Efficiency
     remind-eu: Tech|Electricity|Gas|Gas Turbine|Efficiency
+    gcam: Efficiency|Electricity|Gas ST
   exists in database: false
   iam_aliases:
     message: Secondary Energy|Electricity|Gas|w/o CCS|2
     remind: SE|Electricity|Gas|++|Gas Turbine
     remind-eu: SE|Electricity|Gas|++|Gas Turbine
+    gcam: Secondary Energy|Electricity|Gas ST
   max_efficiency: 0.5
   proxy:
     name: electricity production, natural gas, conventional power plant
@@ -800,21 +808,17 @@ Nuclear:
 Nuclear_EPR:
   ecoinvent_aliases:
     fltr:
-    - electricity production, Evolutionary Power Reactor (EPR)
+    - electricity production, nuclear, Evolutionary Power Reactor (EPR)
   ecoinvent_fuel_aliases:
     fltr:
     - market for uranium, enriched
     - market for nuclear fuel element, for pressure water reactor
     - market for nuclear fuel element, for boiling water reactor
     - market for uranium hexafluoride
-  eff_aliases:
-    gcam: Efficiency|Electricity|Nuclear EPR
-  iam_aliases:
-    gcam: Secondary Energy|Electricity|Nuclear EPR
 Nuclear_SMR:
   ecoinvent_aliases:
     fltr:
-    - electricity production, Small Modular Reactor (SMR)
+    - electricity production, nuclear, Small Modular Reactor (SMR)
   ecoinvent_fuel_aliases:
     fltr:
     - market for uranium, enriched

@@ -154,6 +154,35 @@ def get_simapro_category_of_exchange():
     return dict_cat
 
 
+def resolve_simapro_category(
+    name: str,
+    product: str,
+    categories: dict,
+    default_main: str = "material",
+    default_sub: str = r"Others\Transformation",
+) -> tuple[str, str]:
+    """
+    Return a valid SimaPro category pair for an exchange or dataset.
+
+    Some rows in ``simapro_categories.csv`` exist but have empty category fields.
+    For export purposes, these must be treated like missing mappings, otherwise
+    the resulting CSV contains an empty ``Category type`` line that SimaPro
+    refuses to import.
+    """
+
+    entry = categories.get((name.lower(), product.lower()))
+    if entry is None:
+        return default_main, default_sub
+
+    main_category = (entry.get("category") or "").strip()
+    sub_category = (entry.get("sub_category") or "").strip()
+
+    if not main_category or not sub_category:
+        return default_main, default_sub
+
+    return main_category, sub_category
+
+
 def get_simapro_biosphere_dictionnary():
     """
     Load a dictionary with biosphere flows to use for Simapro export.
@@ -854,6 +883,129 @@ def find_technosphere_keys(db, df):
     return db, df
 
 
+def _resolve_superstructure_flow_type(flow_types: pd.Series) -> str:
+    unique_flow_types = {flow_type for flow_type in flow_types if flow_type is not None}
+
+    if len(unique_flow_types) == 1:
+        return unique_flow_types.pop()
+
+    if unique_flow_types == {"production", "technosphere"}:
+        # A self-loop technosphere exchange nets against the diagonal
+        # production exchange and should stay represented as a production row.
+        return "production"
+
+    raise ValueError(
+        f"Cannot aggregate superstructure rows with incompatible flow types: {sorted(unique_flow_types)}."
+    )
+
+
+def _net_superstructure_scenario_values(
+    df: pd.DataFrame, scenario_columns: list[str], group_columns: list[str]
+) -> pd.DataFrame:
+    """
+    Aggregate scenario values for rows that map to the same matrix coordinate.
+
+    Mixed ``production`` + ``technosphere`` self-loops must net the
+    technosphere amount against the production amount so the resulting row stays
+    on the production diagonal with the correct residual value.
+    """
+
+    flow_type_sets = (
+        df.groupby(group_columns, sort=False, dropna=False)["flow type"]
+        .agg(lambda values: frozenset(v for v in values if v is not None))
+        .reset_index(name="flow type set")
+    )
+
+    invalid_flow_type_sets = flow_type_sets[
+        ~flow_type_sets["flow type set"].isin(
+            [
+                frozenset({"biosphere"}),
+                frozenset({"technosphere"}),
+                frozenset({"production"}),
+                frozenset({"production", "technosphere"}),
+            ]
+        )
+    ]
+    if not invalid_flow_type_sets.empty:
+        invalid_sets = sorted(
+            {
+                tuple(sorted(flow_type_set))
+                for flow_type_set in invalid_flow_type_sets["flow type set"]
+            }
+        )
+        raise ValueError(
+            "Cannot aggregate superstructure rows with incompatible flow types: "
+            f"{invalid_sets}."
+        )
+
+    signed_df = df.merge(flow_type_sets, on=group_columns, how="left")
+    mixed_self_loops = signed_df["flow type set"] == frozenset(
+        {"production", "technosphere"}
+    )
+    signed_df.loc[
+        mixed_self_loops & (signed_df["flow type"] == "technosphere"), scenario_columns
+    ] = signed_df.loc[
+        mixed_self_loops & (signed_df["flow type"] == "technosphere"), scenario_columns
+    ].mul(
+        -1
+    )
+
+    return (
+        signed_df.groupby(group_columns, sort=False, dropna=False)[scenario_columns]
+        .sum()
+        .reset_index()
+    )
+
+
+def _aggregate_duplicate_superstructure_rows(
+    df: pd.DataFrame, scenario_columns: list[str]
+) -> tuple[pd.DataFrame, int, int]:
+    """
+    Collapse rows that map to the same matrix coordinate.
+
+    Exact duplicate rows are dropped first. Remaining collisions on
+    ``("from key", "to key")`` are aggregated by netting scenario values while
+    keeping the first descriptive metadata row for readability.
+    """
+
+    before = len(df)
+    df = df.drop_duplicates()
+    exact_duplicates = before - len(df)
+
+    if df.empty:
+        return df, exact_duplicates, 0
+
+    # Production exchanges must stay on the diagonal with value 1 before any
+    # netting with same-coordinate technosphere exchanges.
+    for scenario in scenario_columns:
+        df.loc[(df["flow type"] == "production") & (df[scenario] == 0), scenario] = 1
+
+    group_columns = ["from key", "to key"]
+    duplicate_collisions = len(df) - len(df.drop_duplicates(subset=group_columns))
+
+    if duplicate_collisions == 0:
+        return df, exact_duplicates, 0
+
+    metadata = df.groupby(group_columns, sort=False, dropna=False).first().reset_index()
+    totals = _net_superstructure_scenario_values(
+        df=df,
+        scenario_columns=scenario_columns,
+        group_columns=group_columns,
+    )
+    flow_types = (
+        df.groupby(group_columns, sort=False, dropna=False)["flow type"]
+        .agg(_resolve_superstructure_flow_type)
+        .reset_index()
+    )
+
+    metadata = metadata.drop(columns=scenario_columns + ["flow type"])
+    aggregated = metadata.merge(flow_types, on=group_columns).merge(
+        totals, on=group_columns
+    )
+
+    return aggregated, exact_duplicates, duplicate_collisions
+
+
 def generate_superstructure_db(
     origin_db,
     scenarios,
@@ -914,18 +1066,19 @@ def generate_superstructure_db(
     if not os.path.exists(filepath):
         os.makedirs(filepath)
 
-    # Drop duplicate rows
-    # should not be any, but just in case
-    before = len(df)
-    df = df.drop_duplicates()
-    # detect duplicate based on `from key` and `to key` and log them
+    df, exact_duplicates, duplicate_collisions = (
+        _aggregate_duplicate_superstructure_rows(
+            df=df,
+            scenario_columns=scenario_list,
+        )
+    )
 
-    df = df.drop_duplicates(subset=["from key", "to key"])
-    after = len(df)
-    print(f"Dropped {before - after} duplicate(s).")
-
-    for scenario in scenario_list:
-        df.loc[(df["flow type"] == "production") & (df[scenario] == 0), scenario] = 1
+    if exact_duplicates:
+        print(f"Dropped {exact_duplicates} exact duplicate(s).")
+    if duplicate_collisions:
+        print(
+            f"Collapsed {duplicate_collisions} overlapping row(s) by netting scenario values."
+        )
 
     # if df is longer than the row limit of Excel,
     # the export to Excel is not an option
@@ -1017,8 +1170,32 @@ def prepare_db_for_export(
         db_name=name,
         biosphere_name=biosphere_name,
         version=version,
+        extra_regions=scenario.get("additional valid regions"),
     )
     validator.run_all_checks()
+
+    return validator.database
+
+
+def prepare_db_for_fast_export(scenario, name, version, biosphere_name=None):
+    """
+    Prepare a database for Brightway export using only the minimal
+    formatting and validation steps required by the fast writer.
+    """
+
+    validator = BaseDatasetValidator(
+        model=scenario["model"],
+        scenario=scenario["pathway"],
+        year=scenario["year"],
+        regions=scenario["iam data"].regions,
+        original_database=[],
+        database=scenario["database"],
+        db_name=name,
+        biosphere_name=biosphere_name,
+        version=version,
+        extra_regions=scenario.get("additional valid regions"),
+    )
+    validator.run_fast_export_checks()
 
     return validator.database
 
@@ -1509,17 +1686,17 @@ class Export:
 
             for ds in self.db:
                 ds_uuid = uuids[(ds["name"], ds["reference product"], ds["location"])]
-                try:
-                    main_category, sub_category = (
-                        dict_cat_simapro[
-                            (ds["name"].lower(), ds["reference product"].lower())
-                        ]["category"],
-                        dict_cat_simapro[
-                            (ds["name"].lower(), ds["reference product"].lower())
-                        ]["sub_category"],
-                    )
-                except KeyError:
-                    main_category, sub_category = ("material", "Others\Transformation")
+                category_entry = dict_cat_simapro.get(
+                    (ds["name"].lower(), ds["reference product"].lower())
+                )
+                main_category, sub_category = resolve_simapro_category(
+                    ds["name"], ds["reference product"], dict_cat_simapro
+                )
+                if (
+                    category_entry is None
+                    or not (category_entry.get("category") or "").strip()
+                    or not (category_entry.get("sub_category") or "").strip()
+                ):
                     self.unmatched_category_flows.append(
                         (ds["name"], ds["reference product"])
                     )

@@ -107,12 +107,7 @@ If you wish to clear that cache folder (database and *premise* additional invent
 
     clear_cache()
 
-.. note::
 
-    It is recommended to restart your notebook once
-    the data has been cached for the first time, so that
-    the remaining steps can be performed using the
-    cached data (much faster).
 
 To clear only the *premise* additional inventories, do:
 
@@ -148,6 +143,11 @@ those files in `source_file_path`, as well as indicate the database format in
         source_file_path=r"C:\file\path\to\ecoinvent 3.5_cutoff_ecoSpold02\datasets", # <-- this is NEW
         source_version="3.5",
     )
+
+.. note::
+
+    When using ``source_type="ecospold"``, no Brightway project or biosphere
+    database is needed unless you later export the result back to Brightway.
 
 Import of additional inventories
 """"""""""""""""""""""""""""""""

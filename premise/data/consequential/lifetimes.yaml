@@ -71,6 +71,8 @@ methanol, from grass: 35
 methanol, from grass, with CCS: 35
 natural gas: 35
 methane, from biomass: 35
+methane, synthetic: 35
+methane, from coal: 35
 hydrogen, from electrolysis, PEM: 30
 hydrogen, from electrolysis, AEC: 30
 hydrogen, from electrolysis, SOEC: 30
@@ -86,8 +88,13 @@ kerosene, synthetic, from natural gas, energy allocation: 35
 kerosene, synthetic, from natural gas, energy allocation, with CCS: 35
 kerosene, synthetic, from coal, energy allocation, with CCS: 35
 kerosene, synthetic, from coal, energy allocation: 35
+kerosene, synthetic, from coal, economic allocation, with CCS: 35
+kerosene, synthetic, from coal, economic allocation: 35
+kerosene, synthetic, from electrolysis, economic allocation: 35
+kerosene, synthetic, from electrolysis, energy allocation: 35
 kerosene, synthetic, from biomass, energy allocation, with CCS: 35
 kerosene, synthetic, from biomass, energy allocation: 35
+kerosene: 35
 kerosene, from petroleum: 35
 liquefied petroleum gas: 35
 liquefied petroleum gas, synthetic, from coal, with CCS: 35

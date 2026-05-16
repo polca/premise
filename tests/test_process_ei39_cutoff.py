@@ -9,6 +9,7 @@ from dotenv import load_dotenv
 
 from premise import NewDatabase, clear_inventory_cache
 from premise.utils import delete_all_pickles
+from lcia_regression import assert_lcia_regression_scores, get_lcia_regression_method
 
 load_dotenv()
 
@@ -64,9 +65,12 @@ def test_brightway():
     if "test3" in bw2data.databases:
         del bw2data.databases["test3"]
 
-    ndb.write_db_to_brightway(["test1", "test2", "test3"])
+    database_names = ["test1", "test2", "test3"]
+    ndb.write_db_to_brightway(database_names)
 
-    method = [m for m in bw2data.methods if "IPCC" in m[0]][0]
+    case_key = f"ecoinvent-{ei_version}-{system_model}"
+    assert_lcia_regression_scores(case_key, database_names)
+    method = get_lcia_regression_method(case_key)
 
     lca = bw2calc.LCA({bw2data.Database("test1").random(): 1}, method)
     lca.lci()

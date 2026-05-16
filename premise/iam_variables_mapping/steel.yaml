@@ -138,7 +138,6 @@ steel - primary - BF/BOF CCS:
     remind-eu: Production|Industry|Steel|+|BF-BOF-CCS
     gcam:
       - Production|Industry|Steel|Primary|BLASTFUR CCS
-      - Production|Industry|Steel|Primary|BLASTFUR CCS with hydrogen
   energy_use_aliases:
     image:
       - Final Energy|Industry|Iron and Steel|BF/ BOF Standard + CCS|Coal
@@ -212,7 +211,6 @@ steel - primary - DRI:
       - Production|Steel|Secondary|DRI and EAF 1
       - Production|Steel|Secondary|DRI and EAF 2|w/o CCS
       - Production|Steel|Secondary|DRI and EAF 3
-    gcam: Production|Industry|Steel|Secondary|EAF with DRI
     message: Production|Iron and Steel|Steel|Primary|EAF|Sponge Iron
   energy_use_aliases:
     image:
@@ -271,7 +269,6 @@ steel - primary - DRI CCS:
     remind: Production|Industry|Steel|+|DRI-NG-EAF-CCS
     remind-eu: Production|Industry|Steel|+|DRI-NG-EAF-CCS
     tiam-ucl: Production|Steel|Secondary|DRI and EAF 2|w CCS
-    gcam: Production|Industry|Steel|Secondary|EAF with DRI CCS
   energy_use_aliases:
     image:
       - Final Energy|Industry|Iron and Steel|DRI EAF + CCS|Coal
@@ -313,7 +310,6 @@ steel - primary - H-DRI:
     tiam-ucl: Production|Steel|Secondary|DRH2 and EAF
     remind: Production|Industry|Steel|+|DRI-H2-EAF
     remind-eu: Production|Industry|Steel|+|DRI-H2-EAF
-    gcam: Production|Industry|Steel|Secondary|Hydrogen-based DRI
   energy_use_aliases:
     image:
       - Final Energy|Industry|Iron and Steel|H-DRI/EAF|Coal

@@ -337,7 +337,7 @@ gcam:
     Africa_Eastern: sugarcane
     Africa_Southern: sugarcane
     Africa_Western: sugarcane
-    Europe_Eastern: sugarbeet
+    Ukraine: sugarbeet
     European Free Trade Association: sugarbeet
     Europe_Non_EU: sugarbeet
     South America_Northern: sugarcane
@@ -370,7 +370,7 @@ gcam:
     Africa_Eastern: miscanthus
     Africa_Southern: miscanthus
     Africa_Western: miscanthus
-    Europe_Eastern: switchgrass
+    Ukraine: switchgrass
     European Free Trade Association: switchgrass
     Europe_Non_EU: switchgrass
     South America_Northern: miscanthus
@@ -403,7 +403,7 @@ gcam:
     Africa_Eastern: eucalyptus
     Africa_Southern: eucalyptus
     Africa_Western: eucalyptus
-    Europe_Eastern: poplar
+    Ukraine: poplar
     European Free Trade Association: poplar
     Europe_Non_EU: poplar
     South America_Northern: eucalyptus
@@ -436,7 +436,7 @@ gcam:
     Africa_Eastern: corn
     Africa_Southern: corn
     Africa_Western: corn
-    Europe_Eastern: wheat_rye
+    Ukraine: wheat_rye
     European Free Trade Association: wheat_rye
     Europe_Non_EU: wheat_rye
     South America_Northern: corn

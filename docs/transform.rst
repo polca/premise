@@ -379,10 +379,38 @@ Berger_ et al. (2023), this approach ensures a correct mass balance.
 
 For example, the amount of platinum resource included in the dataset representing
 the mining of 1 kg of platinum is set to 1 kg, while the amount of other
-metals (e.g., palladium, rhodium) is set to zero. The same approach is applied
-to the datasets representing the mining of the other co-mined metals.
+metals (e.g., palladium, rhodium) is set to zero. For metal-bearing
+intermediates, such as beryllium hydroxide, chromite ore concentrate, or
+titanium dioxide products, the target resource flow is set to the target-metal
+content of 1 kg of the reference product instead of being forced to 1 kg. If
+no explicit content factor is known for an ore, concentrate, or mineral product,
+the original target resource amount in the dataset is retained while the other
+co-mined in-ground resource flows are set to zero.
 
-The file used to apply this correction is `corrections.yaml <https://github.com/polca/premise/blob/master/premise/data/metals/post-allocation_correction/corrections.yaml>`_.
+The correction is data-driven and applied directly from the transformed
+database. *premise* scans non-market datasets from the mining-share mapping and
+additional extraction-like datasets with kilogram-scale
+``natural resource::in ground`` exchanges. It then matches the in-ground
+resource flow to the dataset reference product. Only these elementary resource
+flows are modified: technosphere exchanges and other biosphere exchanges are
+left unchanged.
+
+The matched target flow is set to the target-metal content of the reference
+product, and other co-mined in-ground resource flows are set to zero. For
+mapped pure-metal suppliers that do not contain a target resource flow, the
+missing in-ground metal flow is added at 1 kg per kg of reference product.
+Generic carrier intermediates whose resource attribution is handled by
+downstream metal-specific datasets, such as platinum group metal concentrate,
+have their direct metal resource flows cleared to avoid double counting.
+Explicit product-content factors are used to resolve otherwise ambiguous
+metal-bearing products such as copper-cobalt ore; broader labels such as
+lead-zinc concentrates remain ambiguous unless an explicit factor exists for
+that product.
+
+The correction no longer relies on static YAML correction tables. If the target
+flow is missing or ambiguous for a mapped metal-bearing dataset that cannot be
+inferred safely, *premise* raises an error instead of silently applying a
+partial correction.
 
 The markets are relinked to metals-consuming activities throughout the database.
 

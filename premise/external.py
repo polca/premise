@@ -52,6 +52,26 @@ with open(LOG_CONFIG, encoding="utf-8") as f:
 logger = logging.getLogger("external")
 
 
+def _interpolate_year_with_bounds(data: xr.DataArray, year: int) -> xr.DataArray:
+    """
+    Interpolate over the year dimension while clamping out-of-range years
+    to the nearest available boundary.
+    """
+
+    years = data.coords["year"].values
+    min_year = years.min().item()
+    max_year = years.max().item()
+
+    if year <= min_year:
+        return data.sel(year=min_year)
+    if year >= max_year:
+        return data.sel(year=max_year)
+    if year in years:
+        return data.sel(year=year)
+
+    return data.interp(year=year)
+
+
 def _update_external_scenarios(
     scenario: dict,
     version: str,
@@ -506,29 +526,16 @@ class ExternalScenario(BaseTransformation):
                 if ds.get("production volume variable"):
                     for region, act in new_acts.items():
                         if region in data["production volume"].region.values:
-                            if (
-                                self.year
-                                in data["production volume"].coords["year"].values
-                            ):
-                                act["production volume"] = (
-                                    data["production volume"]
-                                    .sel(
-                                        region=region,
-                                        variables=ds["production volume variable"],
-                                        year=self.year,
-                                    )
-                                    .values
-                                )
-                            else:
-                                act["production volume"] = (
-                                    data["production volume"]
-                                    .sel(
-                                        region=region,
-                                        variables=ds["production volume variable"],
-                                    )
-                                    .interp(year=self.year)
-                                    .values
-                                )
+                            production_volume = _interpolate_year_with_bounds(
+                                data["production volume"].sel(
+                                    region=region,
+                                    variables=ds["production volume variable"],
+                                ),
+                                self.year,
+                            )
+                            act["production volume"] = float(
+                                production_volume.values.item(0)
+                            )
 
                 # add new datasets to database
                 self.database.extend(new_acts.values())

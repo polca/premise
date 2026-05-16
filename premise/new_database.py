@@ -4,6 +4,8 @@ as well as export it back.
 
 """
 
+import gc
+import inspect
 import logging
 import os
 import pickle
@@ -32,20 +34,27 @@ from .export import (
     generate_scenario_factor_file,
     generate_superstructure_db,
     prepare_db_for_export,
+    prepare_db_for_fast_export,
 )
 from .external import _update_external_scenarios
 from .external_data_validation import check_external_scenarios
 from .filesystem_constants import DIR_CACHED_DB, IAM_OUTPUT_DIR, INVENTORY_DIR
 from .fuels.base import _update_fuels
 from .heat import _update_heat
-from .inventory_imports import AdditionalInventory, DefaultInventory
+from .inventory_imports import (
+    AdditionalInventory,
+    BaseInventoryImport,
+    DefaultInventory,
+)
 from .metals import _update_metals
 from .mining import _update_mining
 from .report import generate_change_report, generate_summary_report
 from .steel import _update_steel
 from .transport import _update_vehicles
 from .utils import (
+    cache_ref_exists,
     clear_existing_cache,
+    clear_runtime_caches,
     create_scenario_list,
     delete_all_pickles,
     dump_database,
@@ -53,8 +62,10 @@ from .utils import (
     hide_messages,
     info_on_utils_functions,
     load_constants,
+    load_cached_database,
     load_database,
     print_version,
+    resolve_cache_ref,
     warning_about_biogenic_co2,
     end_of_process,
     create_cache,
@@ -105,6 +116,7 @@ FILEPATH_HYDROGEN_COAL_GASIFICATION_CCS_INVENTORIES = (
     INVENTORY_DIR / "lci-hydrogen-coal-gasification_CCS.xlsx"
 )
 FILEPATH_HYDROGEN_OIL = INVENTORY_DIR / "lci-hydrogen-oil.xlsx"
+FILEPATH_SYNFUEL_AVG_INVENTORIES = INVENTORY_DIR / "lci-synfuels-from-FT.xlsx"
 FILEPATH_SYNFUEL_INVENTORIES = (
     INVENTORY_DIR / "lci-synfuels-from-FT-from-electrolysis.xlsx"
 )
@@ -132,6 +144,9 @@ FILEPATH_SYNFUEL_FROM_BIOMASS_CCS_INVENTORIES = (
 FILEPATH_SYNGAS_INVENTORIES = INVENTORY_DIR / "lci-syngas.xlsx"
 FILEPATH_SYNGAS_FROM_COAL_INVENTORIES = INVENTORY_DIR / "lci-syngas-from-coal.xlsx"
 FILEPATH_GEOTHERMAL_HEAT_INVENTORIES = INVENTORY_DIR / "lci-geothermal.xlsx"
+FILEPATH_METHANOL_AVG_FUELS_INVENTORIES = (
+    INVENTORY_DIR / "lci-synfuels-from-methanol.xlsx"
+)
 FILEPATH_METHANOL_FUELS_INVENTORIES = (
     INVENTORY_DIR / "lci-synfuels-from-methanol-from-electrolysis.xlsx"
 )
@@ -494,15 +509,22 @@ def _export_to_olca(obj):
 def check_presence_biosphere_database(biosphere_name: str) -> str:
     """
     Check that the biosphere database is present in the current project.
+
+    This validation is only required when exporting to Brightway.
     """
 
     if biosphere_name not in bw2data.databases:
-        print("premise requires the name of your biosphere database.")
-        print(
-            "Please enter the name of your biosphere database as it appears in your project."
+        current_project = getattr(bw2data.projects, "current", None)
+        project_message = (
+            f" in the current Brightway project '{current_project}'"
+            if current_project
+            else " in the current Brightway project"
         )
-        print(bw2data.databases)
-        biosphere_name = input("Name of the biosphere database: ")
+        raise ValueError(
+            "Brightway export requires a biosphere database "
+            f"named '{biosphere_name}'{project_message}. "
+            f"Available databases: {list(bw2data.databases)}."
+        )
 
     return biosphere_name
 
@@ -520,7 +542,7 @@ class NewDatabase:
     :vartype system_model_args: dict
     :ivar version: ecoinvent database version.
     :vartype version: str
-    :ivar biosphere_name: name of the biosphere database in the current project.
+    :ivar biosphere_name: name to use for biosphere exchanges during export.
     :vartype biosphere_name: str
     :ivar generate_reports: whether to generate change and summary reports.
     :vartype generate_reports: bool
@@ -569,7 +591,9 @@ class NewDatabase:
         :param keep_source_db_uncertainty: whether to keep uncertainty in the source database. Default is False.
         :param gains_scenario: gains scenario to use. Can be either 'CLE' or 'MFR'. Default is 'CLE'.
         :param use_absolute_efficiency: whether to use absolute efficiency values. Default is False.
-        :param biosphere_name: name of the biosphere database in the current project. Default is "biosphere3".
+        :param biosphere_name: name to use for biosphere exchanges during export.
+            It must match a biosphere database in the current Brightway project
+            only when exporting to Brightway. Default is "biosphere3".
         :param generate_reports: whether to generate change and summary reports. Default is True.
         """
         self.sector_update_methods = None
@@ -581,8 +605,12 @@ class NewDatabase:
         self.use_absolute_efficiency = use_absolute_efficiency
         self.keep_imports_uncertainty = keep_imports_uncertainty
         self.keep_source_db_uncertainty = keep_source_db_uncertainty
-        self.biosphere_name = check_presence_biosphere_database(biosphere_name)
+        self.biosphere_name = biosphere_name
         self.generate_reports = generate_reports
+        self.database_cache_filepath = None
+        self.inventories_cache_filepath = None
+        self._database_is_complete = False
+        self._reload_original_database_from_cache_for_update = False
 
         # if version is anything other than 3.8 or 3.9
         # and system_model is "consequential"
@@ -660,6 +688,8 @@ class NewDatabase:
         else:
             self.database = self.__clean_database()
 
+        imported_inventory_data = False
+
         print("- Extracting inventories")
         if use_cached_inventories:
             data = self.__find_cached_inventories(source_db)
@@ -669,13 +699,27 @@ class NewDatabase:
                 )
             if data is not None:
                 self.database.extend(data)
+            else:
+                imported_inventory_data = True
+            # A cache miss imports inventories directly into ``self.database``
+            # before replacing the imported tail with the trimmed cached
+            # representation, so the inventory coverage is complete in both the
+            # hit and miss cases here and the original form can be reloaded from
+            # cache when needed.
+            self._database_is_complete = True
         else:
             self.__import_inventories()
+            imported_inventory_data = True
+            self._database_is_complete = True
 
         if self.additional_inventories:
             print("- Importing additional inventories")
             data = self.__import_additional_inventories(self.additional_inventories)
             self.database.extend(data)
+            imported_inventory_data = True
+
+        if imported_inventory_data:
+            self._clear_inventory_importer_state()
 
         print("- Fetching IAM data")
         for scenario in self.scenarios:
@@ -706,21 +750,22 @@ class NewDatabase:
         )
 
         # check that file path leads to an existing file
-        if file_name.exists():
+        if cache_ref_exists(file_name):
             # return the cached database
-            with open(file_name, "rb") as f:
-                self.database_metadata_cache_filepath = (
-                    f"{Path(str(file_name).replace('.pickle', ' (metadata).pickle'))}"
-                )
-                return pickle.load(f)
+            self.database_cache_filepath = resolve_cache_ref(file_name)
+            self.database_metadata_cache_filepath = resolve_cache_ref(
+                Path(str(file_name).replace(".pickle", " (metadata).pickle"))
+            )
+            return load_cached_database(self.database_cache_filepath)
 
         # extract the database, pickle it for next time and return it
         print("Cannot find cached database. Will create one now for next time...")
         clear_existing_cache()
         database = self.__clean_database()
         database, metadata_cache_filepath = create_cache(database, file_name)
+        self.database_cache_filepath = resolve_cache_ref(file_name)
         self.database_metadata_cache_filepath = metadata_cache_filepath
-        # pickle.dump(database, open(file_name, "wb"))
+        self._reload_original_database_from_cache_for_update = True
         return database
 
     def __find_cached_inventories(self, db_name: str) -> Union[None, List[dict]]:
@@ -746,23 +791,33 @@ class NewDatabase:
         )
 
         # check that file path leads to an existing file
-        if file_name.exists():
+        if cache_ref_exists(file_name):
             # return the cached database
-            with open(file_name, "rb") as f:
-                self.inventories_metadata_cache_filepath = Path(
-                    str(file_name).replace(".pickle", " (metadata).pickle")
-                )
-                return pickle.load(f)
+            self.inventories_cache_filepath = resolve_cache_ref(file_name)
+            self.inventories_metadata_cache_filepath = resolve_cache_ref(
+                Path(str(file_name).replace(".pickle", " (metadata).pickle"))
+            )
+            return load_cached_database(self.inventories_cache_filepath)
 
         # else, extract the database, pickle it for next time and return it
         print("Cannot find cached inventories. Will create them now for next time...")
-        data = self.__import_inventories()
-        _, inventories_metadata_cache_filepath = create_cache(data, file_name)
+        inventory_start = len(self.database)
+        import_inventories = self.__import_inventories
+        if "collect_data" in inspect.signature(import_inventories).parameters:
+            import_inventories(collect_data=False)
+        else:
+            import_inventories()
+
+        trimmed_inventories, inventories_metadata_cache_filepath = create_cache(
+            self.database[inventory_start:], file_name
+        )
+        self.database[inventory_start:] = trimmed_inventories
+        self.inventories_cache_filepath = resolve_cache_ref(file_name)
         self.inventories_metadata_cache_filepath = inventories_metadata_cache_filepath
+        self._reload_original_database_from_cache_for_update = True
         print(
-            "Data cached. It is advised to restart your workflow at this point.\n"
-            "This allows premise to use the cached data instead, which results in\n"
-            "a faster workflow."
+            "Data cached. Continuing with the cached inventory representation for\n"
+            "the rest of this workflow."
         )
         return None
 
@@ -776,7 +831,7 @@ class NewDatabase:
             self.source, self.source_type, self.source_file_path, self.version
         ).prepare_datasets(self.keep_source_db_uncertainty)
 
-    def __import_inventories(self) -> List[dict]:
+    def __import_inventories(self, collect_data: bool = True) -> List[dict]:
         """
         This method will trigger the import of a number of pickled inventories
         and merge them into the database dictionary.
@@ -818,6 +873,7 @@ class NewDatabase:
             (FILEPATH_HYDROGEN_SOLAR_INVENTORIES, "3.9"),
             (FILEPATH_HYDROGEN_PYROLYSIS_INVENTORIES, "3.9"),
             (FILEPATH_METHANOL_FUELS_INVENTORIES, "3.7"),
+            (FILEPATH_METHANOL_AVG_FUELS_INVENTORIES, "3.7"),
             (FILEPATH_METHANOL_CEMENT_FUELS_INVENTORIES, "3.7"),
             (FILEPATH_HYDROGEN_COAL_GASIFICATION_INVENTORIES, "3.7"),
             (FILEPATH_HYDROGEN_COAL_GASIFICATION_CCS_INVENTORIES, "3.7"),
@@ -835,6 +891,7 @@ class NewDatabase:
             (FILEPATH_SYNGAS_FROM_COAL_INVENTORIES, "3.7"),
             (FILEPATH_BIOFUEL_INVENTORIES, "3.7"),
             (FILEPATH_SYNFUEL_INVENTORIES, "3.7"),
+            (FILEPATH_SYNFUEL_AVG_INVENTORIES, "3.7"),
             (FILEPATH_SYNFUEL_INVENTORIES_FT_FROM_NG, "3.7"),
             (
                 FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_INVENTORIES,
@@ -903,7 +960,8 @@ class NewDatabase:
                 keep_uncertainty_data=self.keep_imports_uncertainty,
             )
             datasets = inventory.merge_inventory()
-            data.extend(datasets)
+            if collect_data:
+                data.extend(datasets)
             self.database.extend(datasets)
             unlinked.extend(inventory.list_unlinked)
 
@@ -911,6 +969,92 @@ class NewDatabase:
             raise ValueError("Fix the unlinked exchanges before proceeding")
 
         return data
+
+    @staticmethod
+    def _clear_inventory_importer_state() -> None:
+        """Release importer instances retained by method-level caches after import."""
+
+        BaseInventoryImport.correct_product_field.cache_clear()
+        gc.collect()
+
+    def _can_reload_original_database(self) -> bool:
+        return (
+            self.database_cache_filepath is not None
+            and self.inventories_cache_filepath is not None
+            and self.additional_inventories is None
+        )
+
+    @staticmethod
+    def _load_pickled_database(filepath: Path) -> List[dict]:
+        return load_cached_database(filepath)
+
+    def _load_original_database(self) -> List[dict]:
+        if self.database is not None and self._database_is_complete:
+            return self.database
+
+        if self._can_reload_original_database():
+            database = self._load_pickled_database(self.database_cache_filepath)
+            database.extend(
+                self._load_pickled_database(self.inventories_cache_filepath)
+            )
+            return database
+
+        if self.database is None:
+            raise ValueError(
+                "The original database is not available in memory and cannot be "
+                "reloaded from cache."
+            )
+
+        return self.database
+
+    def _load_scenario_database_for_update(
+        self, scenario: dict, scenario_position: int
+    ) -> dict:
+        if scenario.get("database") is not None:
+            return scenario
+
+        if "database filepath" in scenario:
+            return load_database(
+                scenario=scenario,
+                original_database=self.database,
+                load_metadata=False,
+                warning=False,
+            )
+
+        if (
+            scenario_position == 0
+            and self.database is not None
+            and self._database_is_complete
+            and self._can_reload_original_database()
+        ):
+            if getattr(self, "_reload_original_database_from_cache_for_update", False):
+                self.database = None
+                gc.collect()
+                scenario["database"] = self._load_original_database()
+                self._reload_original_database_from_cache_for_update = False
+                return scenario
+
+            scenario["database"] = self.database
+            self.database = None
+            return scenario
+
+        if self.database is not None:
+            scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
+            return scenario
+
+        scenario["database"] = self._load_original_database()
+        return scenario
+
+    @staticmethod
+    def _clear_scenario_runtime_state(scenario: dict) -> None:
+        if "cache" in scenario:
+            scenario["cache"] = {}
+
+        if "index" in scenario:
+            scenario["index"] = {}
+
+        clear_runtime_caches()
+        gc.collect()
 
     def __import_additional_inventories(
         self, data_package: [datapackage.DataPackage, list]
@@ -992,10 +1136,6 @@ class NewDatabase:
                 "func": _update_battery,
                 "args": (self.version, self.system_model),
             },
-            "emissions": {
-                "func": _update_emissions,
-                "args": (self.version, self.system_model, self.gains_scenario),
-            },
             "cars": {
                 "func": _update_vehicles,
                 "args": ("car", self.version, self.system_model),
@@ -1031,6 +1171,10 @@ class NewDatabase:
                     self.system_model,
                 ),
             },
+            "emissions": {
+                "func": _update_emissions,
+                "args": (self.version, self.system_model, self.gains_scenario),
+            },
         }
 
         if isinstance(sectors, str):
@@ -1055,19 +1199,11 @@ class NewDatabase:
         )
 
         with tqdm(total=len(self.scenarios), desc=description, ncols=70) as pbar_outer:
-            for scenario in self.scenarios:
-                # add database to scenarios
-                try:
-                    scenario = load_database(
-                        scenario=scenario,
-                        original_database=self.database,
-                        load_metadata=False,
-                        warning=False,
-                    )
-                except KeyError:
-                    scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
-                except FileNotFoundError:
-                    scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
+            for position, scenario in enumerate(self.scenarios):
+                scenario = self._load_scenario_database_for_update(
+                    scenario=scenario, scenario_position=position
+                )
+
                 for sector in sectors:
                     if sector in scenario.get("applied functions", []):
                         print(
@@ -1086,8 +1222,19 @@ class NewDatabase:
 
                 # dump database
                 dump_database(scenario)
+                self._clear_scenario_runtime_state(scenario)
                 # Manually update the outer progress bar after each sector is completed
                 pbar_outer.update()
+
+        if (
+            self.database is not None
+            and self._database_is_complete
+            and self._can_reload_original_database()
+        ):
+            self.database = None
+            clear_runtime_caches()
+            gc.collect()
+
         print("Done!\n")
 
     def write_superstructure_db_to_brightway(
@@ -1113,16 +1260,21 @@ class NewDatabase:
                 "create a super-structure database."
             )
 
+        check_presence_biosphere_database(self.biosphere_name)
+        original_database = self._load_original_database()
+
         for scenario in self.scenarios:
             scenario = load_database(
-                scenario=scenario, original_database=self.database, load_metadata=True
+                scenario=scenario,
+                original_database=original_database,
+                load_metadata=True,
             )
 
             try:
                 _prepare_database(
                     scenario=scenario,
                     db_name=name,
-                    original_database=self.database,
+                    original_database=original_database,
                     biosphere_name=self.biosphere_name,
                     version=self.version,
                 )
@@ -1135,7 +1287,7 @@ class NewDatabase:
         list_scenarios = create_scenario_list(self.scenarios)
 
         self.database = generate_superstructure_db(
-            origin_db=self.database,
+            origin_db=original_database,
             scenarios=self.scenarios,
             db_name=name,
             biosphere_name=self.biosphere_name,
@@ -1146,13 +1298,22 @@ class NewDatabase:
             preserve_original_column=preserve_original_column,
         )
 
-        tmp_scenario = self.scenarios[0]
+        tmp_scenario = self.scenarios[0].copy()
         tmp_scenario["database"] = self.database
+        additional_regions = sorted(
+            {
+                region
+                for scenario in self.scenarios
+                for region in getattr(scenario.get("iam data"), "regions", [])
+            }
+        )
+        if additional_regions:
+            tmp_scenario["additional valid regions"] = additional_regions
 
         self.database = prepare_db_for_export(
             scenario=tmp_scenario,
             name=name,
-            original_database=self.database,
+            original_database=original_database,
             biosphere_name=self.biosphere_name,
             version=self.version,
         )
@@ -1160,6 +1321,8 @@ class NewDatabase:
         write_brightway_database(
             data=self.database,
             name=name,
+            fast=True,
+            check_internal=False,
         )
 
         if self.generate_reports:
@@ -1207,18 +1370,57 @@ class NewDatabase:
                 "The number of databases does not match the number of `name` given."
             )
 
+        check_presence_biosphere_database(self.biosphere_name)
+
         print("Write new database(s) to Brightway.")
 
         for s, scenario in enumerate(self.scenarios):
+            can_use_fast_export = (
+                scenario.get("database") is not None or "database filepath" in scenario
+            )
+
+            if can_use_fast_export:
+                scenario = load_database(
+                    scenario=scenario,
+                    original_database=[],
+                    load_metadata=True,
+                    warning=False,
+                )
+                try:
+                    scenario["database"] = prepare_db_for_fast_export(
+                        scenario=scenario,
+                        name=name[s],
+                        biosphere_name=self.biosphere_name,
+                        version=self.version,
+                    )
+                except ValueError:
+                    self.generate_change_report()
+                    raise ValueError(
+                        "The database is not ready for export: MAJOR anomalies found. Check the change report."
+                    )
+
+                scenario["database name"] = name[s]
+                write_brightway_database(
+                    scenario["database"],
+                    name[s],
+                    fast=True,
+                    check_internal=True,
+                )
+                end_of_process(scenario)
+                continue
+
+            original_database = self._load_original_database()
             scenario = load_database(
-                scenario=scenario, original_database=self.database, load_metadata=True
+                scenario=scenario,
+                original_database=original_database,
+                load_metadata=True,
             )
 
             try:
                 _prepare_database(
                     scenario=scenario,
                     db_name=name[s],
-                    original_database=self.database,
+                    original_database=original_database,
                     biosphere_name=self.biosphere_name,
                     version=self.version,
                 )
@@ -1287,17 +1489,20 @@ class NewDatabase:
             ]
 
         print("Write new database(s) to matrix.")
+        original_database = self._load_original_database()
 
         for s, scenario in enumerate(self.scenarios):
             scenario = load_database(
-                scenario=scenario, original_database=self.database, load_metadata=True
+                scenario=scenario,
+                original_database=original_database,
+                load_metadata=True,
             )
 
             try:
                 scenario = _prepare_database(
                     scenario=scenario,
                     db_name="database",
-                    original_database=self.database,
+                    original_database=original_database,
                     biosphere_name=self.biosphere_name,
                     version=self.version,
                 )
@@ -1313,6 +1518,10 @@ class NewDatabase:
                 version=self.version,
                 system_model=self.system_model,
             ).export_db_to_matrices()
+
+            end_of_process(scenario)
+
+        delete_all_pickles()
 
         if self.generate_reports:
             # generate scenario report
@@ -1335,17 +1544,20 @@ class NewDatabase:
             os.makedirs(filepath)
 
         print("Write Simapro import file(s).")
+        original_database = self._load_original_database()
 
         for scenario in self.scenarios:
             scenario = load_database(
-                scenario=scenario, original_database=self.database, load_metadata=True
+                scenario=scenario,
+                original_database=original_database,
+                load_metadata=True,
             )
 
             try:
                 _prepare_database(
                     scenario=scenario,
                     db_name="database",
-                    original_database=self.database,
+                    original_database=original_database,
                     biosphere_name=self.biosphere_name,
                     version=self.version,
                 )
@@ -1390,17 +1602,20 @@ class NewDatabase:
             os.makedirs(filepath)
 
         print("Write Simapro import file(s) for OpenLCA.")
+        original_database = self._load_original_database()
 
         for scenario in self.scenarios:
             scenario = load_database(
-                scenario=scenario, original_database=self.database, load_metadata=True
+                scenario=scenario,
+                original_database=original_database,
+                load_metadata=True,
             )
 
             try:
                 _prepare_database(
                     scenario=scenario,
                     db_name="database",
-                    original_database=self.database,
+                    original_database=original_database,
                     biosphere_name=self.biosphere_name,
                     version=self.version,
                 )
@@ -1439,16 +1654,20 @@ class NewDatabase:
             cache_fp = DIR_CACHED_DB / f"cached_{self.source}_inventories.pickle"
             raise ValueError(f"No cached inventories found at {cache_fp}.")
 
+        original_database = self._load_original_database()
+
         for scenario in self.scenarios:
             scenario = load_database(
-                scenario=scenario, original_database=self.database, load_metadata=True
+                scenario=scenario,
+                original_database=original_database,
+                load_metadata=True,
             )
 
             try:
                 _prepare_database(
                     scenario=scenario,
                     db_name=name,
-                    original_database=self.database,
+                    original_database=original_database,
                     biosphere_name=self.biosphere_name,
                     version=self.version,
                 )
@@ -1461,7 +1680,7 @@ class NewDatabase:
         list_scenarios = create_scenario_list(self.scenarios)
 
         df, extra_inventories = generate_scenario_factor_file(
-            origin_db=self.database,
+            origin_db=original_database,
             scenarios=self.scenarios,
             db_name=name,
             biosphere_name=self.biosphere_name,
