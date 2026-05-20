@@ -35,6 +35,7 @@ aluminium oxide production,"aluminium oxide, metallurgical",0729:Mining of other
 "ammonia production, steam reforming","ammonia, anhydrous, liquid",2012:Manufacture of fertilizers and nitrogen compounds,"34651: Ammonia, anhydrous"
 "ammonia production, steam reforming with syngas and flue gas CCS","ammonia, anhydrous, liquid",2012:Manufacture of fertilizers and nitrogen compounds,"34651: Ammonia, anhydrous"
 "ammonia production, steam reforming with syngas CCS","ammonia, anhydrous, liquid",2012:Manufacture of fertilizers and nitrogen compounds,"34651: Ammonia, anhydrous"
+"ammonia production, with market-average hydrogen","ammonia, anhydrous, liquid",2011:Manufacture of basic chemicals,"34651: Ammonia, anhydrous"
 ammonia synthesis catalyst production,ammonia synthesis catalyst,2011:Manufacture of basic chemicals,"34651: Ammonia, anhydrous"
 ampere charger production,ampere charger for home storage system,2011:Manufacture of basic chemicals,53269: Other constructions for manufacturing
 "anode current collector, LFP","anode current collector, LFP",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
@@ -292,6 +293,7 @@ carbon disulfide production,carbon disulfide,2011:Manufacture of basic chemicals
 "carbon monoxide, from RWGS, for Fischer Tropsch process, hydrogen from electrolysis","carbon monoxide, from RWGS",2011:Manufacture of basic chemicals,"34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
 "carbon monoxide, from RWGS, for Fischer Tropsch process, hydrogen from wood gasification","carbon monoxide, from RWGS",2011:Manufacture of basic chemicals,"34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
 "carbon monoxide, from RWGS, for Fischer Tropsch process, hydrogen from wood gasification, with CCS","carbon monoxide, from RWGS",2011:Manufacture of basic chemicals,"34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
+"carbon monoxide, from RWGS, for Fischer Tropsch process, market-average hydrogen","carbon monoxide, from RWGS",2011:Manufacture of basic chemicals,"34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
 catalyst production for ammonia synthesis from steam methane reforming,catalysts for ammonia from steam methane reforming,2011:Manufacture of basic chemicals,"34651: Ammonia, anhydrous"
 catenary masts,catenary masts,2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
 catenary system,catenary system,2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
@@ -459,6 +461,8 @@ diesel generator 2MW,diesel generator 2MW,0161:Support activities for crop produ
 "diesel production, from methanol, hydrogen from electrolysis, CO2 from cement plant, energy allocation","diesel, synthetic",1920:Manufacture of refined petroleum products,33360: Gas oil
 "diesel production, from methanol, hydrogen from electrolysis, CO2 from DAC, economic allocation","diesel, synthetic",1920:Manufacture of refined petroleum products,33360: Gas oil
 "diesel production, from methanol, hydrogen from electrolysis, CO2 from DAC, energy allocation","diesel, synthetic",1920:Manufacture of refined petroleum products,33360: Gas oil
+"diesel production, from methanol, market-average hydrogen, CO2 from DAC, economic allocation","diesel, synthetic",1920:Manufacture of refined petroleum products,33360: Gas oil
+"diesel production, from methanol, market-average hydrogen, CO2 from DAC, energy allocation","diesel, synthetic",1920:Manufacture of refined petroleum products,33360: Gas oil
 "diesel production, synthetic, Fischer Tropsch process, from natural gas, energy allocation","diesel, synthetic",1920:Manufacture of refined petroleum products,33360: Gas oil
 "diesel production, synthetic, Fischer Tropsch process, from natural gas, energy allocation, with carbon capture and storage","diesel, synthetic",1920:Manufacture of refined petroleum products,33360: Gas oil
 "diesel production, synthetic, Fischer Tropsch process, hydrogen from coal gasification, economic allocation","diesel, synthetic",1920:Manufacture of refined petroleum products,33360: Gas oil
@@ -467,6 +471,8 @@ diesel generator 2MW,diesel generator 2MW,0161:Support activities for crop produ
 "diesel production, synthetic, Fischer Tropsch process, hydrogen from coal gasification, with CCS, energy allocation","diesel, synthetic",1920:Manufacture of refined petroleum products,33360: Gas oil
 "diesel production, synthetic, Fischer Tropsch process, hydrogen from electrolysis, economic allocation","diesel, synthetic",1920:Manufacture of refined petroleum products,33360: Gas oil
 "diesel production, synthetic, Fischer Tropsch process, hydrogen from electrolysis, energy allocation","diesel, synthetic",1920:Manufacture of refined petroleum products,33360: Gas oil
+"diesel production, synthetic, Fischer Tropsch process, market-average hydrogen, economic allocation","diesel, synthetic",1920:Manufacture of refined petroleum products,33360: Gas oil
+"diesel production, synthetic, Fischer Tropsch process, market-average hydrogen, energy allocation","diesel, synthetic",1920:Manufacture of refined petroleum products,33360: Gas oil
 "diesel production, synthetic, Fischer Tropsch process, hydrogen from wood gasification, economic allocation","diesel, synthetic",1920:Manufacture of refined petroleum products,33360: Gas oil
 "diesel production, synthetic, Fischer Tropsch process, hydrogen from wood gasification, energy allocation","diesel, synthetic",1920:Manufacture of refined petroleum products,33360: Gas oil
 "diesel production, synthetic, Fischer Tropsch process, hydrogen from wood gasification, with CCS, economic allocation","diesel, synthetic",1920:Manufacture of refined petroleum products,33360: Gas oil
@@ -477,6 +483,8 @@ diesel generator 2MW,diesel generator 2MW,0161:Support activities for crop produ
 "diesel production, synthetic, from Fischer Tropsch process, hydrogen from coal gasification, with CCS, energy allocation, at fuelling station","diesel, synthetic, vehicle grade",1920:Manufacture of refined petroleum products,33360: Gas oil
 "diesel production, synthetic, from Fischer Tropsch process, hydrogen from electrolysis, economic allocation, at fuelling station","diesel, synthetic, vehicle grade",1920:Manufacture of refined petroleum products,33360: Gas oil
 "diesel production, synthetic, from Fischer Tropsch process, hydrogen from electrolysis, energy allocation, at fuelling station","diesel, synthetic, vehicle grade",1920:Manufacture of refined petroleum products,33360: Gas oil
+"diesel production, synthetic, from Fischer Tropsch process, market-average hydrogen, economic allocation, at fuelling station","diesel, synthetic, vehicle grade",1920:Manufacture of refined petroleum products,33360: Gas oil
+"diesel production, synthetic, from Fischer Tropsch process, market-average hydrogen, energy allocation, at fuelling station","diesel, synthetic, vehicle grade",1920:Manufacture of refined petroleum products,33360: Gas oil
 "diesel production, synthetic, from Fischer Tropsch process, hydrogen from wood gasification, economic allocation, at fuelling station","diesel, synthetic, vehicle grade",1920:Manufacture of refined petroleum products,33360: Gas oil
 "diesel production, synthetic, from Fischer Tropsch process, hydrogen from wood gasification, energy allocation, at fuelling station","diesel, synthetic, vehicle grade",1920:Manufacture of refined petroleum products,33360: Gas oil
 "diesel production, synthetic, from Fischer Tropsch process, hydrogen from wood gasification, with CCS, economic allocation, at fuelling station","diesel, synthetic, vehicle grade",1920:Manufacture of refined petroleum products,33360: Gas oil
@@ -491,6 +499,8 @@ diesel generator 2MW,diesel generator 2MW,0161:Support activities for crop produ
 "diesel production, synthetic, from methanol, hydrogen from electrolysis, CO2 from cement plant, energy allocation, at fuelling station","diesel, synthetic, vehicle grade",1920:Manufacture of refined petroleum products,33360: Gas oil
 "diesel production, synthetic, from methanol, hydrogen from electrolysis, CO2 from DAC, economic allocation, at fuelling station","diesel, synthetic, vehicle grade",1920:Manufacture of refined petroleum products,33360: Gas oil
 "diesel production, synthetic, from methanol, hydrogen from electrolysis, CO2 from DAC, energy allocation, at fuelling station","diesel, synthetic, vehicle grade",1920:Manufacture of refined petroleum products,33360: Gas oil
+"diesel production, synthetic, from methanol, market-average hydrogen, CO2 from DAC, economic allocation, at fuelling station","diesel, synthetic, vehicle grade",1920:Manufacture of refined petroleum products,33360: Gas oil
+"diesel production, synthetic, from methanol, market-average hydrogen, CO2 from DAC, energy allocation, at fuelling station","diesel, synthetic, vehicle grade",1920:Manufacture of refined petroleum products,33360: Gas oil
 diesel-electric generating set production 10MW,diesel-electric generating set production 10MW,3530:Steam and air conditioning supply,17300: Steam and hot water
 "diesel, burned in diesel-electric generating set","diesel, burned in diesel-electric generating set",3530:Steam and air conditioning supply,17300: Steam and hot water
 "diesel, burned in diesel-electric generating set, 10MW","diesel, burned in diesel-electric generating set, 10MW","3510:Electric power generation, transmission and distribution",17100: Electrical energy
@@ -911,6 +921,8 @@ gas-to-liquid plant construction,gas-to-liquid plant,4290:Construction of other 
 "gasoline production, from methanol, hydrogen from electrolysis, CO2 from cement plant, energy allocation","gasoline, synthetic",2011:Manufacture of basic chemicals,35491: Biodiesel
 "gasoline production, from methanol, hydrogen from electrolysis, CO2 from DAC, economic allocation","gasoline, synthetic",2011:Manufacture of basic chemicals,35491: Biodiesel
 "gasoline production, from methanol, hydrogen from electrolysis, CO2 from DAC, energy allocation","gasoline, synthetic",2011:Manufacture of basic chemicals,35491: Biodiesel
+"gasoline production, from methanol, market-average hydrogen, CO2 from DAC, economic allocation","gasoline, synthetic",2011:Manufacture of basic chemicals,35491: Biodiesel
+"gasoline production, from methanol, market-average hydrogen, CO2 from DAC, energy allocation","gasoline, synthetic",2011:Manufacture of basic chemicals,35491: Biodiesel
 "gasoline production, synthetic, from methanol, from wood, with CCS, economic allocation, at fuelling station","gasoline, synthetic, vehicle grade",2011:Manufacture of basic chemicals,35491: Biodiesel
 "gasoline production, synthetic, from methanol, from wood, with CCS, energy allocation, at fuelling station","gasoline, synthetic, vehicle grade",2011:Manufacture of basic chemicals,35491: Biodiesel
 "gasoline production, synthetic, from methanol, hydrogen from coal gasification, economic allocation, at fuelling station","gasoline, synthetic, vehicle grade",2011:Manufacture of basic chemicals,35491: Biodiesel
@@ -921,6 +933,8 @@ gas-to-liquid plant construction,gas-to-liquid plant,4290:Construction of other 
 "gasoline production, synthetic, from methanol, hydrogen from electrolysis, CO2 from cement plant, energy allocation, at fuelling station","gasoline, synthetic, vehicle grade",2011:Manufacture of basic chemicals,35491: Biodiesel
 "gasoline production, synthetic, from methanol, hydrogen from electrolysis, CO2 from DAC, economic allocation, at fuelling station","gasoline, synthetic, vehicle grade",2011:Manufacture of basic chemicals,35491: Biodiesel
 "gasoline production, synthetic, from methanol, hydrogen from electrolysis, CO2 from DAC, energy allocation, at fuelling station","gasoline, synthetic, vehicle grade",2011:Manufacture of basic chemicals,35491: Biodiesel
+"gasoline production, synthetic, from methanol, market-average hydrogen, CO2 from DAC, economic allocation, at fuelling station","gasoline, synthetic, vehicle grade",2011:Manufacture of basic chemicals,35491: Biodiesel
+"gasoline production, synthetic, from methanol, market-average hydrogen, CO2 from DAC, energy allocation, at fuelling station","gasoline, synthetic, vehicle grade",2011:Manufacture of basic chemicals,35491: Biodiesel
 "gearbox, for lorry","gearbox, for lorry",4923:Freight transport by road,6511: Road transport services of freight
 generator EPR,generator EPR,4290:Construction of other civil engineering projects,53262: Power plants
 geological hydrogen storage,hydrogen storage,"2512:Manufacture of tanks, reservoirs and containers of metal","42210: Reservoirs, tanks, vats and similar containers (other than for compressed or liquefied gas), of iron, steel or[…]"
@@ -1427,6 +1441,8 @@ isolated phase bus,isolated phase bus,0161:Support activities for crop productio
 "kerosene production, from methanol, hydrogen from electrolysis, CO2 from cement plant, energy allocation","kerosene, synthetic",2011:Manufacture of basic chemicals,3334: Kerosenes
 "kerosene production, from methanol, hydrogen from electrolysis, CO2 from DAC, economic allocation","kerosene, synthetic",2011:Manufacture of basic chemicals,3334: Kerosenes
 "kerosene production, from methanol, hydrogen from electrolysis, CO2 from DAC, energy allocation","kerosene, synthetic",2011:Manufacture of basic chemicals,3334: Kerosenes
+"kerosene production, from methanol, market-average hydrogen, CO2 from DAC, economic allocation","kerosene, synthetic",2011:Manufacture of basic chemicals,3334: Kerosenes
+"kerosene production, from methanol, market-average hydrogen, CO2 from DAC, energy allocation","kerosene, synthetic",2011:Manufacture of basic chemicals,3334: Kerosenes
 "kerosene production, synthetic, Fischer Tropsch process, from natural gas, energy allocation","kerosene, synthetic",2011:Manufacture of basic chemicals,3334: Kerosenes
 "kerosene production, synthetic, Fischer Tropsch process, from natural gas, energy allocation, with carbon capture and storage","kerosene, synthetic",2011:Manufacture of basic chemicals,3334: Kerosenes
 "kerosene production, synthetic, Fischer Tropsch process, hydrogen from coal gasification, economic allocation","kerosene, synthetic",2011:Manufacture of basic chemicals,3334: Kerosenes
@@ -1435,6 +1451,8 @@ isolated phase bus,isolated phase bus,0161:Support activities for crop productio
 "kerosene production, synthetic, Fischer Tropsch process, hydrogen from coal gasification, with CCS, energy allocation","kerosene, synthetic",2011:Manufacture of basic chemicals,3334: Kerosenes
 "kerosene production, synthetic, Fischer Tropsch process, hydrogen from electrolysis, economic allocation","kerosene, synthetic",2011:Manufacture of basic chemicals,3334: Kerosenes
 "kerosene production, synthetic, Fischer Tropsch process, hydrogen from electrolysis, energy allocation","kerosene, synthetic",2011:Manufacture of basic chemicals,3334: Kerosenes
+"kerosene production, synthetic, Fischer Tropsch process, market-average hydrogen, economic allocation","kerosene, synthetic",2011:Manufacture of basic chemicals,3334: Kerosenes
+"kerosene production, synthetic, Fischer Tropsch process, market-average hydrogen, energy allocation","kerosene, synthetic",2011:Manufacture of basic chemicals,3334: Kerosenes
 "kerosene production, synthetic, Fischer Tropsch process, hydrogen from wood gasification, economic allocation","kerosene, synthetic",2011:Manufacture of basic chemicals,3334: Kerosenes
 "kerosene production, synthetic, Fischer Tropsch process, hydrogen from wood gasification, energy allocation","kerosene, synthetic",2011:Manufacture of basic chemicals,3334: Kerosenes
 "kerosene production, synthetic, Fischer Tropsch process, hydrogen from wood gasification, with CCS, economic allocation","kerosene, synthetic",2011:Manufacture of basic chemicals,3334: Kerosenes
@@ -1445,6 +1463,8 @@ isolated phase bus,isolated phase bus,0161:Support activities for crop productio
 "kerosene production, synthetic, from Fischer Tropsch process, hydrogen from coal gasification, with CCS, energy allocation, at fuelling station","kerosene, synthetic",2011:Manufacture of basic chemicals,3334: Kerosenes
 "kerosene production, synthetic, from Fischer Tropsch process, hydrogen from electrolysis, economic allocation, at fuelling station","kerosene, synthetic",2011:Manufacture of basic chemicals,3334: Kerosenes
 "kerosene production, synthetic, from Fischer Tropsch process, hydrogen from electrolysis, energy allocation, at fuelling station","kerosene, synthetic",2011:Manufacture of basic chemicals,3334: Kerosenes
+"kerosene production, synthetic, from Fischer Tropsch process, market-average hydrogen, economic allocation, at fuelling station","kerosene, synthetic",2011:Manufacture of basic chemicals,3334: Kerosenes
+"kerosene production, synthetic, from Fischer Tropsch process, market-average hydrogen, energy allocation, at fuelling station","kerosene, synthetic",2011:Manufacture of basic chemicals,3334: Kerosenes
 "kerosene production, synthetic, from Fischer Tropsch process, hydrogen from wood gasification, economic allocation, at fuelling station","kerosene, synthetic",2011:Manufacture of basic chemicals,3334: Kerosenes
 "kerosene production, synthetic, from Fischer Tropsch process, hydrogen from wood gasification, energy allocation, at fuelling station","kerosene, synthetic",2011:Manufacture of basic chemicals,3334: Kerosenes
 "kerosene production, synthetic, from Fischer Tropsch process, hydrogen from wood gasification, with CCS, economic allocation, at fuelling station","kerosene, synthetic",2011:Manufacture of basic chemicals,3334: Kerosenes
@@ -1459,6 +1479,8 @@ isolated phase bus,isolated phase bus,0161:Support activities for crop productio
 "kerosene production, synthetic, from methanol, hydrogen from electrolysis, CO2 from cement plant, energy allocation, at fuelling station","kerosene, synthetic, vehicle grade",2011:Manufacture of basic chemicals,3334: Kerosenes
 "kerosene production, synthetic, from methanol, hydrogen from electrolysis, CO2 from DAC, economic allocation, at fuelling station","kerosene, synthetic, vehicle grade",2011:Manufacture of basic chemicals,3334: Kerosenes
 "kerosene production, synthetic, from methanol, hydrogen from electrolysis, CO2 from DAC, energy allocation, at fuelling station","kerosene, synthetic, vehicle grade",2011:Manufacture of basic chemicals,3334: Kerosenes
+"kerosene production, synthetic, from methanol, market-average hydrogen, CO2 from DAC, economic allocation, at fuelling station","kerosene, synthetic, vehicle grade",2011:Manufacture of basic chemicals,3334: Kerosenes
+"kerosene production, synthetic, from methanol, market-average hydrogen, CO2 from DAC, energy allocation, at fuelling station","kerosene, synthetic, vehicle grade",2011:Manufacture of basic chemicals,3334: Kerosenes
 "kerosene production, via Fischer-Tropsch, from forest product (non-residual), energy allocation","kerosene, from forest residues",2011:Manufacture of basic chemicals,3334: Kerosenes
 "kerosene production, via Fischer-Tropsch, from forest product (non-residual), with carbon capture and storage, energy allocation","kerosene, from forest residues",2011:Manufacture of basic chemicals,3334: Kerosenes
 "kerosene production, via Fischer-Tropsch, from forest residues, energy allocation","kerosene, from forest residues",2011:Manufacture of basic chemicals,3334: Kerosenes
@@ -1527,10 +1549,13 @@ liner containment NI EPR,liner containment NI EPR,4290:Construction of other civ
 "liquefied petroleum gas production, from methanol, hydrogen from electrolysis, CO2 from cement plant, energy allocation","liquefied petroleum gas, synthetic","2394:Manufacture of cement, lime and plaster","334: Petroleum gases and other gaseous hydrocarbons, except natural gas"
 "liquefied petroleum gas production, from methanol, hydrogen from electrolysis, CO2 from DAC, economic allocation","liquefied petroleum gas, synthetic",2011:Manufacture of basic chemicals,"334: Petroleum gases and other gaseous hydrocarbons, except natural gas"
 "liquefied petroleum gas production, from methanol, hydrogen from electrolysis, CO2 from DAC, energy allocation","liquefied petroleum gas, synthetic",2011:Manufacture of basic chemicals,"334: Petroleum gases and other gaseous hydrocarbons, except natural gas"
+"liquefied petroleum gas production, from methanol, market-average hydrogen, CO2 from DAC, economic allocation","liquefied petroleum gas, synthetic",2011:Manufacture of basic chemicals,"334: Petroleum gases and other gaseous hydrocarbons, except natural gas"
+"liquefied petroleum gas production, from methanol, market-average hydrogen, CO2 from DAC, energy allocation","liquefied petroleum gas, synthetic",2011:Manufacture of basic chemicals,"334: Petroleum gases and other gaseous hydrocarbons, except natural gas"
 "liquefied petroleum gas production, synthetic, Fischer Tropsch process, from coal, energy allocation, with carbon capture and storage","liquefied petroleum gas, synthetic",1920:Manufacture of refined petroleum products,"334: Petroleum gases and other gaseous hydrocarbons, except natural gas"
 "liquefied petroleum gas production, synthetic, Fischer Tropsch process, from natural gas, energy allocation","liquefied petroleum gas, synthetic",1920:Manufacture of refined petroleum products,"334: Petroleum gases and other gaseous hydrocarbons, except natural gas"
 "liquefied petroleum gas production, synthetic, Fischer Tropsch process, from natural gas, energy allocation, with carbon capture and storage","liquefied petroleum gas, synthetic",1920:Manufacture of refined petroleum products,"334: Petroleum gases and other gaseous hydrocarbons, except natural gas"
 "liquefied petroleum gas production, synthetic, Fischer Tropsch process, hydrogen from electrolysis, energy allocation","liquefied petroleum gas, synthetic",2011:Manufacture of basic chemicals,"334: Petroleum gases and other gaseous hydrocarbons, except natural gas"
+"liquefied petroleum gas production, synthetic, Fischer Tropsch process, market-average hydrogen, energy allocation","liquefied petroleum gas, synthetic",2011:Manufacture of basic chemicals,"334: Petroleum gases and other gaseous hydrocarbons, except natural gas"
 "liquefied petroleum gas production, synthetic, Fischer Tropsch process, hydrogen from wood gasification, energy allocation","liquefied petroleum gas, synthetic",2011:Manufacture of basic chemicals,"334: Petroleum gases and other gaseous hydrocarbons, except natural gas"
 "liquefied petroleum gas production, synthetic, Fischer Tropsch process, hydrogen from wood gasification, energy allocation, with carbon capture and storage","liquefied petroleum gas, synthetic",2011:Manufacture of basic chemicals,"334: Petroleum gases and other gaseous hydrocarbons, except natural gas"
 "liquefied petroleum gas production, synthetic, from methanol, from wood, with CCS, economic allocation, at fuelling station","liquefied petroleum gas, synthetic, vehicle grade",3520:Manufacture of gas; distribution of gaseous fuels through mains,"334: Petroleum gases and other gaseous hydrocarbons, except natural gas"
@@ -1543,6 +1568,8 @@ liner containment NI EPR,liner containment NI EPR,4290:Construction of other civ
 "liquefied petroleum gas production, synthetic, from methanol, hydrogen from electrolysis, CO2 from cement plant, energy allocation, at fuelling station","liquefied petroleum gas, synthetic, vehicle grade","2394:Manufacture of cement, lime and plaster","17200: Coal gas, water gas, producer gas and similar gases, other than petroleum gases and other gaseous hydrocarbons"
 "liquefied petroleum gas production, synthetic, from methanol, hydrogen from electrolysis, CO2 from DAC, economic allocation, at fuelling station","liquefied petroleum gas, synthetic, vehicle grade",3520:Manufacture of gas; distribution of gaseous fuels through mains,"334: Petroleum gases and other gaseous hydrocarbons, except natural gas"
 "liquefied petroleum gas production, synthetic, from methanol, hydrogen from electrolysis, CO2 from DAC, energy allocation, at fuelling station","liquefied petroleum gas, synthetic, vehicle grade",3520:Manufacture of gas; distribution of gaseous fuels through mains,"334: Petroleum gases and other gaseous hydrocarbons, except natural gas"
+"liquefied petroleum gas production, synthetic, from methanol, market-average hydrogen, CO2 from DAC, economic allocation, at fuelling station","liquefied petroleum gas, synthetic, vehicle grade",3520:Manufacture of gas; distribution of gaseous fuels through mains,"334: Petroleum gases and other gaseous hydrocarbons, except natural gas"
+"liquefied petroleum gas production, synthetic, from methanol, market-average hydrogen, CO2 from DAC, energy allocation, at fuelling station","liquefied petroleum gas, synthetic, vehicle grade",3520:Manufacture of gas; distribution of gaseous fuels through mains,"334: Petroleum gases and other gaseous hydrocarbons, except natural gas"
 "liquefied petroleum gas, burned in residential natural gas boiler <100kW",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
 "liTFSi, (CF3SO2)2NLi, production, for LiS battery","liTFSi, (CF3SO2)2NLi",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
 "lithium brine filtering, via ion exchanger","lithium brine, filtered",2011:Manufacture of basic chemicals,34220: Zinc oxide; zinc peroxide; chromium oxides and hydroxides; manganese oxides; iron oxides and hydroxides; earth[…]
@@ -1632,6 +1659,7 @@ LTO electrode material (Li4Ti5O12),LTO electrode material (Li4Ti5O12),2720:Manuf
 "lubricating oil production, synthetic, Fischer Tropsch process, hydrogen from coal gasification, energy allocation","lubricating oil, synthetic",1920:Manufacture of refined petroleum products,33380: Lubricants
 "lubricating oil production, synthetic, Fischer Tropsch process, hydrogen from coal gasification, with CCS, energy allocation","lubricating oil, synthetic",1920:Manufacture of refined petroleum products,33380: Lubricants
 "lubricating oil production, synthetic, Fischer Tropsch process, hydrogen from electrolysis, energy allocation","lubricating oil, synthetic",2011:Manufacture of basic chemicals,33380: Lubricants
+"lubricating oil production, synthetic, Fischer Tropsch process, market-average hydrogen, energy allocation","lubricating oil, synthetic",2011:Manufacture of basic chemicals,33380: Lubricants
 "lubricating oil production, synthetic, Fischer Tropsch process, hydrogen from wood gasification, energy allocation","lubricating oil, synthetic",1920:Manufacture of refined petroleum products,33380: Lubricants
 "lubricating oil production, synthetic, Fischer Tropsch process, hydrogen from wood gasification, with CCS, energy allocation","lubricating oil, synthetic",1920:Manufacture of refined petroleum products,33380: Lubricants
 magnesium hydroxide production,magnesium hydroxide,2011:Manufacture of basic chemicals,"41601: Tungsten, molybdenum, tantalum, magnesium, cobalt, cadmium, titanium, zirconium, beryllium, gallium, hafnium, […]"
@@ -2039,6 +2067,7 @@ market group for diesel,diesel,1920:Manufacture of refined petroleum products,33
 "methanol distillation, hydrogen from coal gasification","methanol, purified",2011:Manufacture of basic chemicals,"34139: Other alcohols, phenols, phenol-alcohols, and their halogenated, sulphonated, nitrated or nitrosated derivativ[…]"
 "methanol distillation, hydrogen from coal gasification, with CCS","methanol, purified",2011:Manufacture of basic chemicals,"34139: Other alcohols, phenols, phenol-alcohols, and their halogenated, sulphonated, nitrated or nitrosated derivativ[…]"
 "methanol distillation, hydrogen from electrolysis, CO2 from DAC","methanol, purified",2011:Manufacture of basic chemicals,"34139: Other alcohols, phenols, phenol-alcohols, and their halogenated, sulphonated, nitrated or nitrosated derivativ[…]"
+"methanol distillation, market-average hydrogen, CO2 from DAC","methanol, purified",2011:Manufacture of basic chemicals,"34139: Other alcohols, phenols, phenol-alcohols, and their halogenated, sulphonated, nitrated or nitrosated derivativ[…]"
 "methanol from biomass, burned in container ship",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
 "methanol from biomass, burned in residential boiler",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
 "methanol from coal, burned in residential boiler",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
@@ -2055,6 +2084,7 @@ methanol synthesis (Hoppe et al.),"methanol, from CCU",2011:Manufacture of basic
 "methanol synthesis, hydrogen from coal gasification","methanol, unpurified",2011:Manufacture of basic chemicals,"34139: Other alcohols, phenols, phenol-alcohols, and their halogenated, sulphonated, nitrated or nitrosated derivativ[…]"
 "methanol synthesis, hydrogen from coal gasification, with CCS","methanol, unpurified",2011:Manufacture of basic chemicals,"34139: Other alcohols, phenols, phenol-alcohols, and their halogenated, sulphonated, nitrated or nitrosated derivativ[…]"
 "methanol synthesis, hydrogen from electrolysis, CO2 from DAC","methanol, unpurified",2011:Manufacture of basic chemicals,"34139: Other alcohols, phenols, phenol-alcohols, and their halogenated, sulphonated, nitrated or nitrosated derivativ[…]"
+"methanol synthesis, market-average hydrogen, CO2 from DAC","methanol, unpurified",2011:Manufacture of basic chemicals,"34139: Other alcohols, phenols, phenol-alcohols, and their halogenated, sulphonated, nitrated or nitrosated derivativ[…]"
 "methanol, synthetic, burned in residential boiler",heat,"3510:Electric power generation, transmission and distribution",17300: Steam and hot water
 methyl aluminum sesquichloride production,methyl aluminum sesquichloride,2011:Manufacture of basic chemicals,"34140: Carboxylic acids and their anhydrides, halides, peroxides and peroxyacids and their halogenated, sulphonated, […]"
 methyl iodide,methyl iodide,2011:Manufacture of basic chemicals,"34110: Hydrocarbons and their halogenated, sulphonated, nitrated or nitrosated derivatives"
@@ -2183,6 +2213,8 @@ nafion membrane production,nafion membrane,2011:Manufacture of basic chemicals,"
 "naphtha production, synthetic, Fischer Tropsch process, hydrogen from coal gasification, with CCS, energy allocation","naphtha, synthetic",1920:Manufacture of refined petroleum products,33330: Naphtha
 "naphtha production, synthetic, Fischer Tropsch process, hydrogen from electrolysis, economic allocation","naphtha, synthetic",2011:Manufacture of basic chemicals,33330: Naphtha
 "naphtha production, synthetic, Fischer Tropsch process, hydrogen from electrolysis, energy allocation","naphtha, synthetic",2011:Manufacture of basic chemicals,33330: Naphtha
+"naphtha production, synthetic, Fischer Tropsch process, market-average hydrogen, economic allocation","naphtha, synthetic",2011:Manufacture of basic chemicals,33330: Naphtha
+"naphtha production, synthetic, Fischer Tropsch process, market-average hydrogen, energy allocation","naphtha, synthetic",2011:Manufacture of basic chemicals,33330: Naphtha
 "naphtha production, synthetic, Fischer Tropsch process, hydrogen from wood gasification, economic allocation","naphtha, synthetic",2011:Manufacture of basic chemicals,33330: Naphtha
 "naphtha production, synthetic, Fischer Tropsch process, hydrogen from wood gasification, energy allocation","naphtha, synthetic",2011:Manufacture of basic chemicals,33330: Naphtha
 "naphtha production, synthetic, Fischer Tropsch process, hydrogen from wood gasification, with CCS, economic allocation","naphtha, synthetic",2011:Manufacture of basic chemicals,33330: Naphtha
@@ -3071,6 +3103,7 @@ syngas production plant,syngas production plant,2011:Manufacture of basic chemic
 "syngas, RWGS, Production, for Fischer Tropsch process, hydrogen from electrolysis","syngas, RWGS, Production, for Fischer Tropsch process, hydrogen from electrolysis",2011:Manufacture of basic chemicals,"34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
 "syngas, RWGS, Production, for Fischer Tropsch process, hydrogen from wood gasification","syngas, RWGS, Production",2011:Manufacture of basic chemicals,35499: Other chemical products n.e.c.
 "syngas, RWGS, Production, for Fischer Tropsch process, hydrogen from wood gasification, with CCS","syngas, RWGS, Production",2011:Manufacture of basic chemicals,23319: Preparations used in animal feeding n.e.c.
+"syngas, RWGS, Production, for Fischer Tropsch process, market-average hydrogen","syngas, RWGS, Production, for Fischer Tropsch process, market-average hydrogen",2011:Manufacture of basic chemicals,"34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
 synthetic diamond production,synthetic diamond,2420:Manufacture of basic precious and other non-ferrous metals,"34730: Polymers of vinyl chloride or other halogenated olefins, in primary forms"
 "synthetic diesel import, from neighboring countries","diesel, synthetic",1920:Manufacture of refined petroleum products,33360: Gas oil
 synthetic graphite production,"synthetic graphite, 99% pure",2011:Manufacture of basic chemicals,37950: Artificial graphite; colloidal or semi-colloidal graphite; preparations based on graphite or other carbon in t[…]
@@ -3796,4 +3829,4 @@ zinc mine operation,sand,0729:Mining of other non-ferrous metal ores,14290: Othe
 zinc mine operation,zinc concentrate,0729:Mining of other non-ferrous metal ores,14290: Other non-ferrous metal ores and concentrates (other than uranium or thorium ores and concentrates)
 "zirconium and hafnium tetrachloride production, from zircon",hafnium tetrachloride,0729:Mining of other non-ferrous metal ores,14290: Other non-ferrous metal ores and concentrates (other than uranium or thorium ores and concentrates)
 market for heavy fuel oil (SPS),heavy fuel oil,1920:Manufacture of refined petroleum products,33360: Gas oil
-market for light fuel oil (SPS),light fuel oil,1920:Manufacture of
+market for light fuel oil (SPS),light fuel oil,1920:Manufacture of refined petroleum products,33360: Gas oil
