@@ -556,7 +556,7 @@ electrical equipment,electrical equipment,0161:Support activities for crop produ
 "electricity import, from neighboring countries","electricity, high voltage","3510:Electric power generation, transmission and distribution",17100: Electrical energy
 "electricity production, at 110 MW concentrating solar power plant, with thermal energy storage","electricity, high voltage","3510:Electric power generation, transmission and distribution",17100: Electrical energy
 "electricity production, at biomass-fired IGCC power plant","electricity, high voltage","3510:Electric power generation, transmission and distribution",17100: Electrical energy
-"electricity production, at biomass-fired IGCC power plant, pre, pipeline 200km, storage 1000m","electricity, high voltage","3510:Electric power generation, transmission and distribution",17100: Electrical energy
+"electricity production, at biomass-fired IGCC power plant, post, pipeline 200km, storage 1000m","electricity, high voltage","3510:Electric power generation, transmission and distribution",17100: Electrical energy
 "electricity production, at biomethane-fired combined cycle power plant","electricity, high voltage","3510:Electric power generation, transmission and distribution",17100: Electrical energy
 "electricity production, at biomethane-fired power plant, post, pipeline 200km, storage 1000m","electricity, high voltage","3510:Electric power generation, transmission and distribution",17100: Electrical energy
 "electricity production, at co-firing wood and coal power plant, 50-50","electricity, high voltage","3510:Electric power generation, transmission and distribution",17100: Electrical energy

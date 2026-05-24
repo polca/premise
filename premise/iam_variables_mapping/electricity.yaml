@@ -115,7 +115,7 @@ Biomass IGCC:
 Biomass IGCC CCS:
   ecoinvent_aliases:
     fltr:
-    - electricity production, at biomass-fired IGCC power plant, pre, pipeline 200km,
+    - electricity production, at biomass-fired IGCC power plant, post, pipeline 200km,
       storage 1000m
   ecoinvent_fuel_aliases:
     fltr:
