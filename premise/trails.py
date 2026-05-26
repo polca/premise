@@ -978,7 +978,7 @@ class TrailsDataPackage:
         - biomass_growth: apply dataset-level params to CO2 uptake exchange
         - stock_asset: apply supplier-level params directly
         - maintenance: uniform distribution over [0, lifetime] using calling dataset lifetime from CSV
-        - end_of_life: one-pulse (type 6) at dataset lifetime from CSV
+        - end_of_life: one-pulse (type 6) at dataset lifetime + 1 from CSV
         """
         stock_assets = getattr(self, "stock_asset_params", {})  # (name, ref) -> params
         end_of_life = getattr(self, "end_of_life_suppliers", set())
@@ -1119,7 +1119,7 @@ class TrailsDataPackage:
                         continue
 
                     if is_end_of_life:
-                        pulse_time = float(ds_lifetime)
+                        pulse_time = float(ds_lifetime) + 1.0
                         e["temporal_distribution"] = 6
                         e["temporal_loc"] = None
                         e["temporal_scale"] = None
