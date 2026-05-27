@@ -8,6 +8,8 @@ import csv
 import shutil
 import re
 import ast
+import math
+from fnmatch import fnmatchcase
 from datetime import date
 from pathlib import Path
 from typing import List, Dict, Tuple, Set
@@ -39,6 +41,32 @@ KeyLoader.add_constructor("!key", key_constructor)
 
 
 class TrailsDataPackage:
+    LONG_TERM_BIN_EDGES = tuple(
+        float(x)
+        for x in (
+            list(range(100, 201, 10))
+            + list(range(225, 501, 25))
+            + list(range(550, 1001, 50))
+        )
+    )
+    LONG_TERM_PROFILE_NAMES = {
+        "uniform_100_1000",
+        "front_loaded_long_term",
+        "ammonium_plateau",
+        "conservative_washout",
+        "mobile_metal",
+        "sorbed_metal",
+        "persistent_tail",
+    }
+    LONG_TERM_PROFILE_ALIASES = {
+        "uniform": "uniform_100_1000",
+        "front_loaded": "front_loaded_long_term",
+        "conservative": "conservative_washout",
+        "mobile": "mobile_metal",
+        "sorbed": "sorbed_metal",
+        "persistent": "persistent_tail",
+    }
+
     def __init__(
         self,
         scenario: dict,
@@ -106,8 +134,152 @@ class TrailsDataPackage:
             self.end_of_life_suppliers,
             self.biomass_growth_params,
             self.maintenance_suppliers,
+            self.long_term_biosphere_params,
             self.dataset_lifetimes,
         ) = self._load_temporal_specs_from_csv(FILEPATH_TEMPORAL_PARAMETERS)
+
+    @classmethod
+    def _note_token(cls, notes: str, key: str):
+        if notes is None:
+            return None
+
+        match = re.search(
+            rf"(?:^|[\s;,|]){re.escape(key)}:([^\s;,|]+)",
+            str(notes),
+        )
+        return match.group(1).strip() if match else None
+
+    @classmethod
+    def _row_note_token(cls, row: dict, key: str):
+        for column in ("param_notes", "tag_notes"):
+            value = cls._note_token(row.get(column), key)
+            if value:
+                return value
+        return None
+
+    @classmethod
+    def _normalize_long_term_profile(cls, profile: str):
+        profile = (profile or "").strip().lower()
+        profile = cls.LONG_TERM_PROFILE_ALIASES.get(profile, profile)
+        if profile not in cls.LONG_TERM_PROFILE_NAMES:
+            names = ", ".join(sorted(cls.LONG_TERM_PROFILE_NAMES))
+            raise ValueError(
+                f"Unknown long-term temporal profile {profile!r}. "
+                f"Expected one of: {names}."
+            )
+        return profile
+
+    @classmethod
+    def _long_term_profile_density(cls, profile: str, t: float):
+        profile = cls._normalize_long_term_profile(profile)
+        elapsed = max(0.0, t - 100.0)
+
+        if profile == "uniform_100_1000":
+            return 1.0
+
+        if profile == "front_loaded_long_term":
+            return 0.82 * math.exp(-elapsed / 90.0) + 0.18 * math.exp(
+                -elapsed / 450.0
+            )
+
+        if profile == "ammonium_plateau":
+            if elapsed <= 350.0:
+                return 1.0
+            return 0.75 * math.exp(-(elapsed - 350.0) / 500.0) + 0.25 * math.exp(
+                -(elapsed - 350.0) / 1500.0
+            )
+
+        if profile == "conservative_washout":
+            return 0.7 * math.exp(-elapsed / 300.0) + 0.3 * math.exp(
+                -elapsed / 900.0
+            )
+
+        if profile == "mobile_metal":
+            return 0.55 * math.exp(-elapsed / 220.0) + 0.45 * math.exp(
+                -elapsed / 800.0
+            )
+
+        if profile == "sorbed_metal":
+            delayed = 1.0 / (1.0 + math.exp(-(elapsed - 260.0) / 85.0))
+            return 0.7 * delayed * math.exp(-elapsed / 850.0) + 0.3 * math.exp(
+                -elapsed / 1600.0
+            )
+
+        if profile == "persistent_tail":
+            return 0.4 * math.exp(-elapsed / 500.0) + 0.6 * math.exp(
+                -elapsed / 1600.0
+            )
+
+        raise AssertionError(f"Unhandled long-term temporal profile: {profile}")
+
+    @classmethod
+    def _long_term_profile_distribution(cls, profile: str):
+        profile = cls._normalize_long_term_profile(profile)
+        offsets = []
+        masses = []
+
+        for start, end in zip(
+            cls.LONG_TERM_BIN_EDGES[:-1], cls.LONG_TERM_BIN_EDGES[1:]
+        ):
+            midpoint = (start + end) / 2.0
+            width = end - start
+            density = max(cls._long_term_profile_density(profile, midpoint), 0.0)
+            offsets.append(midpoint)
+            masses.append(density * width)
+
+        total = sum(masses)
+        if total <= 0:
+            raise ValueError(
+                f"Long-term temporal profile {profile!r} produced zero mass."
+            )
+
+        weights = [mass / total for mass in masses]
+        weights[-1] += 1.0 - sum(weights)
+        return offsets, weights, profile
+
+    @classmethod
+    def _apply_long_term_profile(cls, params: dict, profile: str):
+        offsets, weights, profile = cls._long_term_profile_distribution(profile)
+        params["temporal_distribution"] = 6
+        params["temporal_loc"] = None
+        params["temporal_scale"] = None
+        params["temporal_offsets"] = offsets
+        params["temporal_weights"] = weights
+        params["temporal_min"] = None
+        params["temporal_max"] = None
+        params["temporal_profile"] = profile
+
+    @staticmethod
+    def _normalize_temporal_weights(params: dict, context: str):
+        if params.get("temporal_distribution") != 6:
+            return
+
+        offsets = params.get("temporal_offsets")
+        weights = params.get("temporal_weights")
+        if not offsets or not weights:
+            raise ValueError(
+                f"Discrete temporal distribution missing offsets or weights "
+                f"for {context}."
+            )
+        if len(offsets) != len(weights):
+            raise ValueError(
+                f"Discrete temporal distribution has {len(offsets)} offsets and "
+                f"{len(weights)} weights for {context}."
+            )
+        if any(float(weight) < 0 for weight in weights):
+            raise ValueError(
+                f"Discrete temporal distribution has negative weights for {context}."
+            )
+
+        total = sum(float(weight) for weight in weights)
+        if total <= 0:
+            raise ValueError(
+                f"Discrete temporal distribution has zero total weight for {context}."
+            )
+
+        params["temporal_offsets"] = [float(offset) for offset in offsets]
+        params["temporal_weights"] = [float(weight) / total for weight in weights]
+        params["temporal_weights"][-1] += 1.0 - sum(params["temporal_weights"])
 
     def create_datapackage(
         self,
@@ -130,6 +302,7 @@ class TrailsDataPackage:
         Set[Tuple[str, str]],
         Dict[Tuple[str, str], dict],
         Set[Tuple[str, str]],
+        List[dict],
         Dict[Tuple[str, str], float],
     ]:
         """
@@ -138,6 +311,7 @@ class TrailsDataPackage:
           end_of_life:  set[(name, ref)] of end_of_life supplier datasets
           biomass_growth: dict[(name, ref)] -> temporal params for CO2 uptake in biomass growth datasets
           maintenance: set[(name, ref)] of maintenance supplier datasets
+          long_term_biosphere: list of long-term biosphere emission selectors and params
           dataset_lifetimes: dict[(name, ref)] -> dataset lifetime from CSV, regardless of temporal_tag
         """
         with open(path, "r", encoding="utf-8-sig", newline="") as f:
@@ -201,75 +375,119 @@ class TrailsDataPackage:
                         return None
             return vals if vals else None
 
+        def _dist_type(row):
+            dist_type = _clean(row.get("age distribution type"))
+            if dist_type is not None:
+                try:
+                    dist_type = int(float(dist_type))
+                except Exception:
+                    dist_type = None
+            return dist_type
+
+        def _temporal_params(row):
+            return {
+                "temporal_distribution": _dist_type(row),
+                "temporal_loc": _num(row.get("loc")),
+                "temporal_scale": _num(row.get("scale")),
+                "temporal_offsets": _num_list(row.get("offsets")),
+                "temporal_weights": _num_list(row.get("weights")),
+                "temporal_min": _num(row.get("minimum")),
+                "temporal_max": _num(row.get("maximum")),
+                "lifetime": _num(row.get("lifetime")),
+            }
+
+        def _parse_biosphere_selector(ref):
+            # For biosphere rows, reference product stores compartment|subcompartment|unit.
+            parts = [p.strip() for p in (ref or "").split("|")]
+            parts = (parts + ["*"] * 3)[:3]
+            return tuple(p or "*" for p in parts)
+
         stock_assets: Dict[Tuple[str, str], dict] = {}
         end_of_life: Set[Tuple[str, str]] = set()
         biomass_growth: Dict[Tuple[str, str], dict] = {}
         maintenance: Set[Tuple[str, str]] = set()
+        long_term_biosphere: List[dict] = []
         dataset_lifetimes: Dict[Tuple[str, str], float] = {}
 
-        for row in rows:
+        for row_number, row in enumerate(rows, start=2):
             tag = _clean(row.get("temporal_tag"))
             name = _clean(row.get("name"))
             ref = _clean(row.get("reference product"))
-            if not name or not ref or not tag:
+            if not name or not tag:
                 continue
             lifetime = _num(row.get("lifetime"))
-            if lifetime is not None:
+            if tag != "long_term_emission" and ref and lifetime is not None:
                 dataset_lifetimes[(name, ref)] = lifetime
 
             if tag == "stock_asset":
-                dist_type = _clean(row.get("age distribution type"))
-                if dist_type is not None:
-                    try:
-                        dist_type = int(float(dist_type))
-                    except Exception:
-                        dist_type = None
+                if not ref:
+                    continue
 
+                params = _temporal_params(row)
+                dist_type = params["temporal_distribution"]
                 if dist_type is None:
                     continue  # cannot apply without a type
 
-                stock_assets[(name, ref)] = {
-                    "temporal_distribution": dist_type,
-                    "temporal_loc": _num(row.get("loc")),
-                    "temporal_scale": _num(row.get("scale")),
-                    "temporal_offsets": _num_list(row.get("offsets")),
-                    "temporal_weights": _num_list(row.get("weights")),
-                    "temporal_min": _num(row.get("minimum")),
-                    "temporal_max": _num(row.get("maximum")),
-                    "lifetime": _num(row.get("lifetime")),
-                    "mean_age": _num(
-                        row.get("mean_age")
-                        or row.get("average_age")
-                        or row.get("average age")
-                    ),
-                }
+                params["mean_age"] = _num(
+                    row.get("mean_age")
+                    or row.get("average_age")
+                    or row.get("average age")
+                )
+                stock_assets[(name, ref)] = params
 
             elif tag == "end_of_life":
+                if not ref:
+                    continue
                 end_of_life.add((name, ref))
 
             elif tag == "biomass_growth":
-                dist_type = _clean(row.get("age distribution type"))
-                if dist_type is not None:
-                    try:
-                        dist_type = int(float(dist_type))
-                    except Exception:
-                        dist_type = None
+                if not ref:
+                    continue
 
-                biomass_growth[(name, ref)] = {
-                    "temporal_distribution": dist_type,
-                    "temporal_loc": _num(row.get("loc")),
-                    "temporal_scale": _num(row.get("scale")),
-                    "temporal_offsets": _num_list(row.get("offsets")),
-                    "temporal_weights": _num_list(row.get("weights")),
-                    "temporal_min": _num(row.get("minimum")),
-                    "temporal_max": _num(row.get("maximum")),
-                    "lifetime": _num(row.get("lifetime")),
-                }
+                biomass_growth[(name, ref)] = _temporal_params(row)
 
             elif tag == "maintenance":
+                if not ref:
+                    continue
                 maintenance.add((name, ref))
 
-        return stock_assets, end_of_life, biomass_growth, maintenance, dataset_lifetimes
+            elif tag == "long_term_emission":
+                if not ref:
+                    continue
+
+                params = _temporal_params(row)
+                profile = self._row_note_token(row, "profile")
+                if profile:
+                    self._apply_long_term_profile(params, profile)
+                if params["temporal_distribution"] is None:
+                    continue
+                self._normalize_temporal_weights(
+                    params,
+                    f"long_term_emission row {row_number} ({name}, {ref})",
+                )
+
+                compartment, subcompartment, unit = _parse_biosphere_selector(ref)
+                priority = _num(self._row_note_token(row, "priority"))
+                params.update(
+                    {
+                        "name": name,
+                        "compartment": compartment,
+                        "subcompartment": subcompartment,
+                        "unit": unit,
+                        "priority": priority or 0.0,
+                        "source_row": row_number,
+                    }
+                )
+                long_term_biosphere.append(params)
+
+        return (
+            stock_assets,
+            end_of_life,
+            biomass_growth,
+            maintenance,
+            long_term_biosphere,
+            dataset_lifetimes,
+        )
 
     def _export_datapackage(
         self,
@@ -976,20 +1194,33 @@ class TrailsDataPackage:
         """
         Apply temporal distributions in a single pass over exchanges:
         - biomass_growth: apply dataset-level params to CO2 uptake exchange
+        - long_term_emission: apply biosphere-flow params by flow selector
         - stock_asset: apply supplier-level params directly
         - maintenance: uniform distribution over [0, lifetime] using calling dataset lifetime from CSV
         - end_of_life: one-pulse (type 6) at dataset lifetime + 1 from CSV
         """
-        stock_assets = getattr(self, "stock_asset_params", {})  # (name, ref) -> params
+        stock_assets = getattr(
+            self, "stock_asset_params", {}
+        )  # (name, ref) -> params
         end_of_life = getattr(self, "end_of_life_suppliers", set())
         biomass_growth = getattr(self, "biomass_growth_params", {})
         maintenance = getattr(self, "maintenance_suppliers", set())
+        long_term_biosphere = getattr(self, "long_term_biosphere_params", [])
         dataset_lifetimes = getattr(self, "dataset_lifetimes", {})
         outdir = Path.cwd() / "trails_temp"
         outfile = outdir / "temporal_distribution_faulty_exchanges.csv"
+        match_outfile = outdir / "long_term_biosphere_matches.csv"
         if outfile.exists():
             outfile.unlink()
+        if match_outfile.exists():
+            match_outfile.unlink()
         faulty_exchanges = []
+        long_term_matches = []
+
+        def _scenario_label(value):
+            return " | ".join(
+                str(value.get(key, "")) for key in ("model", "pathway", "year")
+            )
 
         def _fmt_categories(value):
             if value is None:
@@ -998,10 +1229,98 @@ class TrailsDataPackage:
                 return "|".join(str(v) for v in value)
             return str(value)
 
+        def _fmt_sequence(values):
+            if not values:
+                return ""
+            return "|".join(f"{float(value):.12g}" for value in values)
+
+        def _apply_params(exc, params):
+            exc["temporal_distribution"] = params["temporal_distribution"]
+            exc["temporal_loc"] = params.get("temporal_loc")
+            exc["temporal_scale"] = params.get("temporal_scale")
+            exc["temporal_min"] = params.get("temporal_min")
+            exc["temporal_max"] = params.get("temporal_max")
+            exc["temporal_offsets"] = params.get("temporal_offsets")
+            exc["temporal_weights"] = params.get("temporal_weights")
+
+        def _match_selector(pattern, value):
+            pattern = (pattern or "*").strip()
+            value = (value or "").strip()
+            if pattern == "*":
+                return True
+            if "*" in pattern:
+                return fnmatchcase(value, pattern)
+            return pattern == value
+
+        def _biosphere_categories(exc):
+            categories = exc.get("categories") or ()
+            if isinstance(categories, str):
+                categories = (categories,)
+            compartment = categories[0] if len(categories) > 0 else ""
+            subcompartment = categories[1] if len(categories) > 1 else ""
+            return str(compartment).strip(), str(subcompartment).strip()
+
+        def _selector_specificity(params):
+            score = 0
+            for key in ("name", "compartment", "subcompartment", "unit"):
+                pattern = (params.get(key) or "*").strip()
+                if pattern == "*":
+                    continue
+                score += 1 if "*" in pattern else 2
+            return score
+
+        def _selector_label(params):
+            return " | ".join(
+                [
+                    str(params.get("name") or "*"),
+                    str(params.get("compartment") or "*"),
+                    str(params.get("subcompartment") or "*"),
+                    str(params.get("unit") or "*"),
+                ]
+            )
+
+        def _lookup_biosphere_params(exc):
+            if not long_term_biosphere:
+                return None, []
+
+            name = (exc.get("name") or "").strip()
+            compartment, subcompartment = _biosphere_categories(exc)
+            unit = (exc.get("unit") or "").strip()
+            best = None
+            best_rank = None
+            ambiguous = []
+
+            for params in long_term_biosphere:
+                selectors = (
+                    ("name", name),
+                    ("compartment", compartment),
+                    ("subcompartment", subcompartment),
+                    ("unit", unit),
+                )
+                if not all(
+                    _match_selector(params.get(k), value) for k, value in selectors
+                ):
+                    continue
+
+                rank = (
+                    float(params.get("priority") or 0.0),
+                    _selector_specificity(params),
+                )
+                if best_rank is None or rank > best_rank:
+                    best = params
+                    best_rank = rank
+                    ambiguous = []
+                elif rank == best_rank:
+                    ambiguous.append(params)
+
+            if best is not None and ambiguous:
+                return None, [best] + ambiguous
+            return best, []
+
         def _record_fault(ds, exc, reason):
             faulty_exchanges.append(
                 {
-                    "scenario": f"{scenario.get('model', '')} | {scenario.get('pathway', '')} | {scenario.get('year', '')}",
+                    "scenario": _scenario_label(scenario),
                     "calling_dataset_name": (ds.get("name") or "").strip(),
                     "calling_dataset_reference_product": (
                         ds.get("reference product") or ""
@@ -1014,6 +1333,36 @@ class TrailsDataPackage:
                     "exchange_categories": _fmt_categories(exc.get("categories")),
                     "exchange_location": (exc.get("location") or "").strip(),
                     "reason": reason,
+                }
+            )
+
+        def _record_long_term_match(ds, exc, params):
+            compartment, subcompartment = _biosphere_categories(exc)
+            long_term_matches.append(
+                {
+                    "scenario": _scenario_label(scenario),
+                    "calling_dataset_name": (ds.get("name") or "").strip(),
+                    "calling_dataset_reference_product": (
+                        ds.get("reference product") or ""
+                    ).strip(),
+                    "calling_dataset_location": (ds.get("location") or "").strip(),
+                    "exchange_name": (exc.get("name") or "").strip(),
+                    "exchange_categories": _fmt_categories(exc.get("categories")),
+                    "exchange_compartment": compartment,
+                    "exchange_subcompartment": subcompartment,
+                    "exchange_unit": (exc.get("unit") or "").strip(),
+                    "matched_selector": _selector_label(params),
+                    "matched_priority": params.get("priority", 0.0),
+                    "matched_source_row": params.get("source_row", ""),
+                    "temporal_profile": params.get("temporal_profile", ""),
+                    "temporal_distribution": params.get("temporal_distribution"),
+                    "temporal_bin_count": len(params.get("temporal_offsets") or []),
+                    "temporal_offsets": _fmt_sequence(
+                        params.get("temporal_offsets")
+                    ),
+                    "temporal_weights": _fmt_sequence(
+                        params.get("temporal_weights")
+                    ),
                 }
             )
 
@@ -1039,13 +1388,25 @@ class TrailsDataPackage:
                         and bg is not None
                         and bg.get("temporal_distribution") is not None
                     ):
-                        e["temporal_distribution"] = bg.get("temporal_distribution")
-                        e["temporal_loc"] = bg.get("temporal_loc")
-                        e["temporal_scale"] = bg.get("temporal_scale")
-                        e["temporal_min"] = bg.get("temporal_min")
-                        e["temporal_max"] = bg.get("temporal_max")
-                        e["temporal_offsets"] = bg.get("temporal_offsets")
-                        e["temporal_weights"] = bg.get("temporal_weights")
+                        _apply_params(e, bg)
+                        continue
+
+                    if exc_type == "biosphere":
+                        params, ambiguous = _lookup_biosphere_params(e)
+                        if ambiguous:
+                            _record_fault(
+                                ds,
+                                e,
+                                "Ambiguous long_term_emission selectors: "
+                                + "; ".join(
+                                    _selector_label(params)
+                                    for params in ambiguous
+                                ),
+                            )
+                            continue
+                        if params is not None:
+                            _apply_params(e, params)
+                            _record_long_term_match(ds, e, params)
                         continue
 
                     if exc_type != "technosphere":
@@ -1090,13 +1451,7 @@ class TrailsDataPackage:
                         continue
 
                     if params is not None:
-                        e["temporal_distribution"] = params["temporal_distribution"]
-                        e["temporal_loc"] = params.get("temporal_loc")
-                        e["temporal_scale"] = params.get("temporal_scale")
-                        e["temporal_min"] = params.get("temporal_min")
-                        e["temporal_max"] = params.get("temporal_max")
-                        e["temporal_offsets"] = params.get("temporal_offsets")
-                        e["temporal_weights"] = params.get("temporal_weights")
+                        _apply_params(e, params)
                         continue
 
                     if (is_maintenance or is_end_of_life) and ds_lifetime is None:
@@ -1129,6 +1484,36 @@ class TrailsDataPackage:
                         e["temporal_weights"] = [1.0]
 
             self.datapackage.scenarios[s] = dump_database(scenario)
+
+        if long_term_matches:
+            outdir.mkdir(parents=True, exist_ok=True)
+            fieldnames = [
+                "scenario",
+                "calling_dataset_name",
+                "calling_dataset_reference_product",
+                "calling_dataset_location",
+                "exchange_name",
+                "exchange_categories",
+                "exchange_compartment",
+                "exchange_subcompartment",
+                "exchange_unit",
+                "matched_selector",
+                "matched_priority",
+                "matched_source_row",
+                "temporal_profile",
+                "temporal_distribution",
+                "temporal_bin_count",
+                "temporal_offsets",
+                "temporal_weights",
+            ]
+            with open(match_outfile, "w", newline="", encoding="utf-8") as f:
+                writer = csv.DictWriter(f, fieldnames=fieldnames)
+                writer.writeheader()
+                writer.writerows(long_term_matches)
+            print(
+                f"Applied {len(long_term_matches)} long-term biosphere temporal "
+                f"distributions. See: {match_outfile.resolve()}"
+            )
 
         if faulty_exchanges:
             outdir.mkdir(parents=True, exist_ok=True)
