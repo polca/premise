@@ -178,9 +178,7 @@ class TrailsDataPackage:
             return 1.0
 
         if profile == "front_loaded_long_term":
-            return 0.82 * math.exp(-elapsed / 90.0) + 0.18 * math.exp(
-                -elapsed / 450.0
-            )
+            return 0.82 * math.exp(-elapsed / 90.0) + 0.18 * math.exp(-elapsed / 450.0)
 
         if profile == "ammonium_plateau":
             if elapsed <= 350.0:
@@ -190,14 +188,10 @@ class TrailsDataPackage:
             )
 
         if profile == "conservative_washout":
-            return 0.7 * math.exp(-elapsed / 300.0) + 0.3 * math.exp(
-                -elapsed / 900.0
-            )
+            return 0.7 * math.exp(-elapsed / 300.0) + 0.3 * math.exp(-elapsed / 900.0)
 
         if profile == "mobile_metal":
-            return 0.55 * math.exp(-elapsed / 220.0) + 0.45 * math.exp(
-                -elapsed / 800.0
-            )
+            return 0.55 * math.exp(-elapsed / 220.0) + 0.45 * math.exp(-elapsed / 800.0)
 
         if profile == "sorbed_metal":
             delayed = 1.0 / (1.0 + math.exp(-(elapsed - 260.0) / 85.0))
@@ -206,9 +200,7 @@ class TrailsDataPackage:
             )
 
         if profile == "persistent_tail":
-            return 0.4 * math.exp(-elapsed / 500.0) + 0.6 * math.exp(
-                -elapsed / 1600.0
-            )
+            return 0.4 * math.exp(-elapsed / 500.0) + 0.6 * math.exp(-elapsed / 1600.0)
 
         raise AssertionError(f"Unhandled long-term temporal profile: {profile}")
 
@@ -1199,9 +1191,7 @@ class TrailsDataPackage:
         - maintenance: uniform distribution over [0, lifetime] using calling dataset lifetime from CSV
         - end_of_life: one-pulse (type 6) at dataset lifetime + 1 from CSV
         """
-        stock_assets = getattr(
-            self, "stock_asset_params", {}
-        )  # (name, ref) -> params
+        stock_assets = getattr(self, "stock_asset_params", {})  # (name, ref) -> params
         end_of_life = getattr(self, "end_of_life_suppliers", set())
         biomass_growth = getattr(self, "biomass_growth_params", {})
         maintenance = getattr(self, "maintenance_suppliers", set())
@@ -1357,12 +1347,8 @@ class TrailsDataPackage:
                     "temporal_profile": params.get("temporal_profile", ""),
                     "temporal_distribution": params.get("temporal_distribution"),
                     "temporal_bin_count": len(params.get("temporal_offsets") or []),
-                    "temporal_offsets": _fmt_sequence(
-                        params.get("temporal_offsets")
-                    ),
-                    "temporal_weights": _fmt_sequence(
-                        params.get("temporal_weights")
-                    ),
+                    "temporal_offsets": _fmt_sequence(params.get("temporal_offsets")),
+                    "temporal_weights": _fmt_sequence(params.get("temporal_weights")),
                 }
             )
 
@@ -1399,8 +1385,7 @@ class TrailsDataPackage:
                                 e,
                                 "Ambiguous long_term_emission selectors: "
                                 + "; ".join(
-                                    _selector_label(params)
-                                    for params in ambiguous
+                                    _selector_label(params) for params in ambiguous
                                 ),
                             )
                             continue

@@ -6,7 +6,6 @@ import pytest
 import premise.trails as trails
 from premise.trails import TrailsDataPackage
 
-
 TEMPORAL_HEADER = [
     "name",
     "reference product",
@@ -160,10 +159,7 @@ def test_add_temporal_distributions_applies_long_term_biosphere_params(
     assert exchanges[0]["temporal_offsets"][0] == 105.0
     assert len(exchanges[0]["temporal_offsets"]) == 32
     assert sum(exchanges[0]["temporal_weights"]) == pytest.approx(1.0)
-    assert (
-        exchanges[0]["temporal_weights"][0]
-        > exchanges[1]["temporal_weights"][0]
-    )
+    assert exchanges[0]["temporal_weights"][0] > exchanges[1]["temporal_weights"][0]
     assert exchanges[1]["temporal_distribution"] == 6
     assert "temporal_distribution" not in exchanges[2]
 
