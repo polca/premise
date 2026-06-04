@@ -28,6 +28,77 @@ TEMPORAL_HEADER = [
 ]
 
 
+def test_trails_default_years_follow_selected_iam_file(monkeypatch, tmp_path):
+    iam_file = tmp_path / "image_custom.csv"
+    iam_file.write_text(
+        "Region,Variable,Unit,2020,2035,2110,foo\n"
+        "World,variable,unit,1,2,3,4\n",
+        encoding="utf-8",
+    )
+
+    captured = {}
+
+    class DummyNewDatabase:
+        def __init__(self, **kwargs):
+            captured.update(kwargs)
+
+    monkeypatch.setattr(trails, "NewDatabase", DummyNewDatabase)
+    monkeypatch.setattr(trails.bw2data, "databases", {"biosphere3": object()})
+    monkeypatch.setattr(trails, "get_classifications", lambda: {})
+    monkeypatch.setattr(
+        TrailsDataPackage,
+        "_load_temporal_specs_from_csv",
+        lambda self, path: ({}, set(), {}, set(), [], {}),
+    )
+
+    obj = TrailsDataPackage(
+        scenario={
+            "model": "image",
+            "pathway": "custom",
+            "filepath": str(tmp_path),
+        },
+        source_type="ecospold",
+        source_file_path=".",
+    )
+
+    assert obj.years == [2020, 2035]
+    assert [scenario["year"] for scenario in obj.scenarios] == [2020, 2035]
+    assert captured["scenarios"] == obj.scenarios
+
+
+def test_trails_explicit_years_skip_iam_year_inference(monkeypatch):
+    captured = {}
+
+    class DummyNewDatabase:
+        def __init__(self, **kwargs):
+            captured.update(kwargs)
+
+    def fail_inference(*args, **kwargs):
+        raise AssertionError("explicit years should not inspect IAM files")
+
+    monkeypatch.setattr(trails, "NewDatabase", DummyNewDatabase)
+    monkeypatch.setattr(trails.bw2data, "databases", {"biosphere3": object()})
+    monkeypatch.setattr(trails, "get_classifications", lambda: {})
+    monkeypatch.setattr(
+        TrailsDataPackage, "_infer_years_from_scenario", fail_inference
+    )
+    monkeypatch.setattr(
+        TrailsDataPackage,
+        "_load_temporal_specs_from_csv",
+        lambda self, path: ({}, set(), {}, set(), [], {}),
+    )
+
+    obj = TrailsDataPackage(
+        scenario={"model": "image", "pathway": "custom"},
+        years=[2040],
+        source_type="ecospold",
+        source_file_path=".",
+    )
+
+    assert obj.years == [2040]
+    assert [scenario["year"] for scenario in captured["scenarios"]] == [2040]
+
+
 def test_load_temporal_specs_reads_long_term_biosphere_selectors(tmp_path):
     path = tmp_path / "temporal_distributions.csv"
     with path.open("w", newline="", encoding="utf-8") as f:

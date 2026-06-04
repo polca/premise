@@ -9,18 +9,27 @@ import shutil
 import re
 import ast
 import math
+from io import BytesIO, StringIO
 from fnmatch import fnmatchcase
 from datetime import date
 from pathlib import Path
-from typing import List, Dict, Tuple, Set
+from typing import List, Dict, Tuple, Set, Optional
 
 import yaml
 from datapackage import Package
 import bw2data
 
 from . import __version__
-from .new_database import NewDatabase
+from .data_collection import get_delimiter
+from .new_database import (
+    IAM_OUTPUT_DIR,
+    NewDatabase,
+    check_filepath,
+    check_model_name,
+    check_pathway_name,
+)
 from .inventory_imports import get_classifications
+from .scenario_downloader import download_csv
 from .filesystem_constants import DATA_DIR
 from .utils import load_database, dump_database
 
@@ -70,7 +79,7 @@ class TrailsDataPackage:
     def __init__(
         self,
         scenario: dict,
-        years: List[int] = list(range(2005, 2100, 10)) + [2100],
+        years: Optional[List[int]] = None,
         source_version: str = "3.12",
         source_type: str = "brightway",
         key: bytes = None,
@@ -87,6 +96,9 @@ class TrailsDataPackage:
         assert "model" in scenario, "Missing `model` key in `scenario`."
         assert "pathway" in scenario, "Missing `pathway` key in `scenario`."
         assert "year" not in scenario, "Key `year` not needed in `scenario`."
+
+        if years is None:
+            years = self._infer_years_from_scenario(scenario, key)
 
         self.years = years
 
@@ -137,6 +149,96 @@ class TrailsDataPackage:
             self.long_term_biosphere_params,
             self.dataset_lifetimes,
         ) = self._load_temporal_specs_from_csv(FILEPATH_TEMPORAL_PARAMETERS)
+
+    @staticmethod
+    def _year_from_column(column):
+        column = str(column).strip()
+        if column.isdigit():
+            return int(column)
+        try:
+            return int(float(column))
+        except (TypeError, ValueError):
+            return None
+
+    @staticmethod
+    def _find_iam_file(file_name: str, filedir: Path, key: bytes):
+        for extension in (".csv", ".mif", ".xls", ".xlsx"):
+            file_path = Path(filedir) / f"{file_name}{extension}"
+            if file_path.exists():
+                return file_path
+
+        if key is None:
+            raise FileNotFoundError(
+                f"Either 1) the file {file_name} cannot be found with any "
+                f"supported extension in {filedir} or 2) no decryption key "
+                f"provided to download the file from Zenodo. Please provide a "
+                f"decryption key or place the file in the specified directory."
+            )
+
+        url = f"https://zenodo.org/records/19049274/files/{file_name}.csv"
+        return download_csv(file_name + ".csv", url, filedir)
+
+    @staticmethod
+    def _decrypt_iam_file(file_path: Path, key: bytes) -> bytes:
+        from cryptography.fernet import Fernet
+
+        fernet_obj = Fernet(key)
+        return fernet_obj.decrypt(file_path.read_bytes())
+
+    @classmethod
+    def _read_iam_header(cls, file_path: Path, key: bytes):
+        if file_path.suffix in (".csv", ".mif"):
+            if key is not None:
+                data = StringIO(str(cls._decrypt_iam_file(file_path, key), "latin-1"))
+            else:
+                data = StringIO(file_path.read_text(encoding="latin-1"))
+
+            sample = data.readline()
+            if not sample:
+                raise ValueError(f"IAM file {file_path} is empty.")
+            delimiter = get_delimiter(data=sample)
+            data.seek(0)
+            return next(csv.reader(data, delimiter=delimiter))
+
+        if file_path.suffix in (".xls", ".xlsx"):
+            import pandas as pd
+
+            if key is not None:
+                data = BytesIO(cls._decrypt_iam_file(file_path, key))
+                return list(pd.read_excel(data, nrows=0).columns)
+
+            return list(pd.read_excel(file_path, nrows=0).columns)
+
+        raise ValueError(f"Unsupported IAM file extension: {file_path.suffix}")
+
+    @classmethod
+    def _infer_years_from_scenario(cls, scenario: dict, key: bytes = None) -> List[int]:
+        if "filepath" in scenario:
+            filepath = check_filepath(scenario["filepath"])
+        else:
+            filepath = IAM_OUTPUT_DIR
+
+        model = check_model_name(scenario["model"])
+        pathway = check_pathway_name(scenario["pathway"], filepath, model)
+        file_name = f"{model}_{pathway}"
+        file_path = cls._find_iam_file(file_name, filepath, key)
+        header = cls._read_iam_header(file_path, key)
+
+        years = sorted(
+            {
+                year
+                for column in header
+                if (year := cls._year_from_column(column)) is not None
+                and 2005 <= year <= 2100
+            }
+        )
+
+        if not years:
+            raise ValueError(
+                f"No IAM year columns between 2005 and 2100 found in {file_path}."
+            )
+
+        return years
 
     @classmethod
     def _note_token(cls, notes: str, key: str):
