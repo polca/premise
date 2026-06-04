@@ -31,8 +31,7 @@ TEMPORAL_HEADER = [
 def test_trails_default_years_follow_selected_iam_file(monkeypatch, tmp_path):
     iam_file = tmp_path / "image_custom.csv"
     iam_file.write_text(
-        "Region,Variable,Unit,2020,2035,2110,foo\n"
-        "World,variable,unit,1,2,3,4\n",
+        "Region,Variable,Unit,2020,2035,2110,foo\n" "World,variable,unit,1,2,3,4\n",
         encoding="utf-8",
     )
 
@@ -79,9 +78,7 @@ def test_trails_explicit_years_skip_iam_year_inference(monkeypatch):
     monkeypatch.setattr(trails, "NewDatabase", DummyNewDatabase)
     monkeypatch.setattr(trails.bw2data, "databases", {"biosphere3": object()})
     monkeypatch.setattr(trails, "get_classifications", lambda: {})
-    monkeypatch.setattr(
-        TrailsDataPackage, "_infer_years_from_scenario", fail_inference
-    )
+    monkeypatch.setattr(TrailsDataPackage, "_infer_years_from_scenario", fail_inference)
     monkeypatch.setattr(
         TrailsDataPackage,
         "_load_temporal_specs_from_csv",
