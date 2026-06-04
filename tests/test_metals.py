@@ -262,9 +262,7 @@ def test_create_market_ignores_existing_secondary_market_for_consequential():
     df_metal = pd.DataFrame({"Reference product": ["{'equals': 'copper'}"]})
 
     market = metals.create_market("copper", df_metal)
-    exchanges = [
-        exc for exc in market["exchanges"] if exc["type"] == "technosphere"
-    ]
+    exchanges = [exc for exc in market["exchanges"] if exc["type"] == "technosphere"]
 
     assert exchanges == [
         technosphere_exchange("primary copper production", "copper", "GLO", 1.0)

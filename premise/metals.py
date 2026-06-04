@@ -1942,9 +1942,11 @@ class Metals(BaseTransformation):
 
             if hasattr(self, "db_index_full"):
                 for location in OLD_METAL_MARKET_LOCATIONS:
-                    for dataset in self.db_index_full.get(market_name, {}).get(
-                        reference_product, {}
-                    ).get(location, []):
+                    for dataset in (
+                        self.db_index_full.get(market_name, {})
+                        .get(reference_product, {})
+                        .get(location, [])
+                    ):
                         if id(dataset) not in seen:
                             markets.append(dataset)
                             seen.add(id(dataset))
@@ -1967,11 +1969,11 @@ class Metals(BaseTransformation):
                         seen.add(id(dataset))
 
         markets.sort(
-            key=lambda dataset: OLD_METAL_MARKET_LOCATIONS.index(
-                dataset["location"]
+            key=lambda dataset: (
+                OLD_METAL_MARKET_LOCATIONS.index(dataset["location"])
+                if dataset.get("location") in OLD_METAL_MARKET_LOCATIONS
+                else len(OLD_METAL_MARKET_LOCATIONS)
             )
-            if dataset.get("location") in OLD_METAL_MARKET_LOCATIONS
-            else len(OLD_METAL_MARKET_LOCATIONS)
         )
         return markets
 
@@ -2084,8 +2086,8 @@ class Metals(BaseTransformation):
             "code": str(uuid.uuid4()),
         }
 
-        secondary_exchanges = self.build_secondary_market_exchanges_from_existing_market(
-            df
+        secondary_exchanges = (
+            self.build_secondary_market_exchanges_from_existing_market(df)
         )
         if secondary_exchanges:
             s_share = sum(exc["amount"] for exc in secondary_exchanges)
