@@ -232,17 +232,17 @@ cases:
     - global warming potential (GWP100)
     scores:
       test1:
-        electricity_low_voltage_ch: 0.14723314058731882
-        heat_natural_gas_europe: 0.04393221336391939
-        diesel_europe: 1.1471237344845302
-        cement_portland_europe: 0.8953656755334494
-        steel_low_alloyed_glo: 1.787601586218458
+        electricity_low_voltage_ch: 0.147
+        heat_natural_gas_europe: 0.043
+        diesel_europe: 1.147
+        cement_portland_europe: 0.895
+        steel_low_alloyed_glo: 1.787
       test2:
         electricity_low_voltage_ch: 0.0204
-        heat_natural_gas_europe: 0.05141034028556223
-        diesel_europe: 0.7612975045819429
-        cement_portland_europe: 0.5177569105956932
-        steel_low_alloyed_glo: 1.204655247294832
+        heat_natural_gas_europe: 0.0514
+        diesel_europe: 0.7612
+        cement_portland_europe: 0.517
+        steel_low_alloyed_glo: 1.204
   ecoinvent-3.12-EN15804:
     method:
     - ecoinvent-3.12
