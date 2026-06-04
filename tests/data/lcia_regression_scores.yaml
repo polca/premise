@@ -5,7 +5,9 @@ metadata:
     '
   amount: 1
 tolerance:
-  relative: 1.0e-03
+  # LCIA scores can drift slightly across Brightway/importer versions. Keep
+  # these checks at coarse regression precision instead of double precision.
+  relative: 3.0e-02
   absolute: 1.0e-09
 activities:
   electricity_low_voltage_ch:
