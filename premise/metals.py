@@ -36,6 +36,17 @@ logger = create_logger("metal")
 
 NATURAL_RESOURCE_IN_GROUND = ("natural resource", "in ground")
 MARKET_DATASET_PREFIXES = ("market for ", "market group for ")
+OLD_METAL_MARKET_LOCATIONS = ("GLO", "RoW")
+SECONDARY_METAL_SUPPLY_TERMS = (
+    "treatment of",
+    "used",
+    "recover",
+    "discard",
+    "recycl",
+    "scrap",
+    "waste",
+    "sludge",
+)
 RESOURCE_MATCH_STOPWORDS = {
     "7n",
     "acid",
@@ -454,15 +465,6 @@ def load_primary_secondary_split():
         return yaml.safe_load(stream)
 
 
-def load_secondary_activity_routes():
-    """
-    Load mapping for secondary activity routes.
-    """
-    path = DATA_DIR / "metals" / "secondary_supply_activities.yaml"
-    with open(path, "r", encoding="utf-8") as stream:
-        return yaml.safe_load(stream) or {}
-
-
 def load_activities_mapping():
     """
     Load mapping for the ecoinvent exchanges to be
@@ -674,6 +676,60 @@ def build_ws_filter(field: str, query: dict):
         raise ValueError(f"No valid filters provided for field {field}")
 
     return filters
+
+
+def extract_reference_products_from_filter(value) -> List[str]:
+    """
+    Extract exact reference-product labels from a mining-share filter.
+
+    The Excel mapping stores filters as stringified dictionaries. Most are simple
+    {"equals": "..."} filters, but some use {"either": [...]} for version-specific
+    product labels.
+    """
+    if isinstance(value, str):
+        try:
+            value = ast.literal_eval(value)
+        except (ValueError, SyntaxError):
+            return [value]
+
+    if not isinstance(value, dict):
+        return []
+
+    if "equals" in value:
+        return [value["equals"]]
+
+    if "either" in value:
+        products = []
+        for item in value["either"]:
+            products.extend(extract_reference_products_from_filter(item))
+        return products
+
+    return []
+
+
+def is_secondary_metal_supply_exchange(
+    exchange: dict, reference_product: Optional[str] = None
+) -> bool:
+    """Return True for old-market inputs that represent secondary metal supply."""
+    if exchange.get("type") != "technosphere":
+        return False
+
+    try:
+        amount = float(exchange.get("amount", 0))
+    except (TypeError, ValueError):
+        return False
+
+    if amount <= 0:
+        return False
+
+    if exchange.get("unit") != "kilogram":
+        return False
+
+    if reference_product is not None and exchange.get("product") != reference_product:
+        return False
+
+    text = f"{exchange.get('name', '')} {exchange.get('product', '')}".lower()
+    return any(term in text for term in SECONDARY_METAL_SUPPLY_TERMS)
 
 
 def normalize_resource_label(value: str) -> str:
@@ -1275,7 +1331,6 @@ class Metals(BaseTransformation):
         }
 
         self.prim_sec_split = load_primary_secondary_split()
-        self.secondary_activity_routes = load_secondary_activity_routes()
 
     def update_metals_use_in_database(self):
         """
@@ -1859,6 +1914,121 @@ class Metals(BaseTransformation):
 
         return new_exchanges
 
+    def get_old_market_reference_products(self, df_metal: pd.DataFrame) -> List[str]:
+        """Return exact old-market reference products from mining-share filters."""
+        reference_products = []
+
+        for value in df_metal["Reference product"].dropna().unique():
+            for product in extract_reference_products_from_filter(value):
+                if product and product not in reference_products:
+                    reference_products.append(product)
+
+        return reference_products
+
+    def get_existing_metal_markets(self, df_metal: pd.DataFrame) -> List[dict]:
+        """
+        Return existing ecoinvent markets that can source secondary supply.
+
+        The mining-share mapping may point to a fallback reference product that is
+        different from the new market key, e.g. lithium carbonate for lithium
+        carbonate, battery grade.
+        """
+        markets = []
+        seen = set()
+
+        for reference_product in self.get_old_market_reference_products(df_metal):
+            market_name = f"market for {reference_product}"
+            found_for_product = False
+
+            if hasattr(self, "db_index_full"):
+                for location in OLD_METAL_MARKET_LOCATIONS:
+                    for dataset in self.db_index_full.get(market_name, {}).get(
+                        reference_product, {}
+                    ).get(location, []):
+                        if id(dataset) not in seen:
+                            markets.append(dataset)
+                            seen.add(id(dataset))
+                            found_for_product = True
+
+            if not found_for_product:
+                for dataset in ws.get_many(
+                    self.database,
+                    ws.equals("name", market_name),
+                    ws.equals("reference product", reference_product),
+                    ws.either(
+                        *[
+                            ws.equals("location", location)
+                            for location in OLD_METAL_MARKET_LOCATIONS
+                        ]
+                    ),
+                ):
+                    if id(dataset) not in seen:
+                        markets.append(dataset)
+                        seen.add(id(dataset))
+
+        markets.sort(
+            key=lambda dataset: OLD_METAL_MARKET_LOCATIONS.index(
+                dataset["location"]
+            )
+            if dataset.get("location") in OLD_METAL_MARKET_LOCATIONS
+            else len(OLD_METAL_MARKET_LOCATIONS)
+        )
+        return markets
+
+    def get_existing_metal_market(self, df_metal: pd.DataFrame) -> Optional[dict]:
+        """Return the first existing ecoinvent market candidate."""
+        markets = self.get_existing_metal_markets(df_metal)
+        if not markets:
+            return None
+
+        if len(markets) > 1:
+            logger.warning(
+                "[Metals] Multiple existing markets found for secondary supply "
+                f"source; using {markets[0]['name']} | "
+                f"{markets[0]['reference product']} | {markets[0]['location']}."
+            )
+
+        return markets[0]
+
+    def build_secondary_market_exchanges_from_existing_market(
+        self, df_metal: pd.DataFrame
+    ) -> List[dict]:
+        """Copy secondary-supply exchanges from the existing ecoinvent market."""
+        if self.system_model == "consequential":
+            return []
+
+        for old_market in self.get_existing_metal_markets(df_metal):
+            reference_product = old_market["reference product"]
+            exchanges = [
+                {
+                    "name": exc["name"],
+                    "product": exc["product"],
+                    "location": exc["location"],
+                    "amount": float(exc["amount"]),
+                    "type": "technosphere",
+                    "unit": exc["unit"],
+                }
+                for exc in old_market.get("exchanges", [])
+                if is_secondary_metal_supply_exchange(exc, reference_product)
+            ]
+
+            secondary_share = sum(exc["amount"] for exc in exchanges)
+            if secondary_share <= 0:
+                continue
+
+            if secondary_share > 1 + 1e-6:
+                logger.warning(
+                    "[Metals] Existing market secondary exchanges exceed one "
+                    f"for {old_market['name']} | {reference_product} | "
+                    f"{old_market['location']}: {secondary_share}. "
+                    "Trying the next old market candidate."
+                )
+                continue
+
+            return exchanges
+
+        return []
+
     def create_market(self, metal, df) -> Optional[dict]:
         """
         Create regionalized technosphere exchanges for a metal market based on production shares.
@@ -1914,7 +2084,15 @@ class Metals(BaseTransformation):
             "code": str(uuid.uuid4()),
         }
 
-        _, _, p_share, s_share = self.get_market_split_shares(metal)
+        secondary_exchanges = self.build_secondary_market_exchanges_from_existing_market(
+            df
+        )
+        if secondary_exchanges:
+            s_share = sum(exc["amount"] for exc in secondary_exchanges)
+            p_share = max(0, 1 - s_share)
+        else:
+            p_share = 1.0
+            secondary_exchanges = []
 
         # add mining exchanges
         # dataset["exchanges"].extend(self.create_region_specific_markets(df))
@@ -1922,10 +2100,6 @@ class Metals(BaseTransformation):
             exc["amount"] *= p_share
         dataset["exchanges"].extend(primary_exchanges)
 
-        # Add burden-free secondary market exchange
-        secondary_exchanges = self.build_secondary_market_exchanges(
-            dataset["reference product"], s_share
-        )
         if secondary_exchanges:
             dataset["exchanges"].extend(secondary_exchanges)
 
@@ -2237,92 +2411,6 @@ class Metals(BaseTransformation):
             p / total if total > 0 else 0,  # Avoid division by zero
             s / total if total > 0 else 0,  # Avoid division by zero
         )
-
-    def build_secondary_market_exchanges(self, metal: str, s_share: float) -> list:
-        """
-        Build technosphere exchanges from flexible secondary activity filters in YAML.
-        """
-
-        # Check if secondary supply data is missing when it shouldn't be
-        if metal not in self.secondary_activity_routes:
-            # Only warn if the split actually defines a non-zero secondary share
-            entry = self.prim_sec_split.get(metal.lower())
-            if entry:
-                try:
-                    s = interpolate_by_year(self.year, entry["shares"]["secondary"])
-                    if s > 0:
-                        logger.warning(
-                            f"[Metals] Missing secondary supply activities for '{metal}' "
-                            f"despite non-zero secondary share ({s})."
-                        )
-                except Exception:
-                    logger.warning(
-                        f"[Metals] Could not interpolate secondary share for '{metal}'."
-                    )
-
-            return []
-
-        route_entries = self.secondary_activity_routes[metal]
-
-        # 1. Interpolate shares and cache them
-        entries_with_shares = []
-        total_relative_share = 0
-
-        for entry in route_entries:
-            try:
-                share = interpolate_by_year(self.year, entry["shares"])
-                entries_with_shares.append((entry, share))
-                total_relative_share += share
-            except Exception:
-                logger.warning(
-                    f"[Metals] Failed to interpolate shares for {metal} in entry: {entry}"
-                )
-                continue
-
-        if total_relative_share == 0:
-            logger.warning(
-                f"[Metals] Total relative share for {metal} is zero, no exchanges created."
-            )
-            return []
-
-        exchanges = []
-
-        # 2. Build secondary exchanges with normalized amount
-
-        for entry, share in entries_with_shares:
-            filters = []
-            for field in ["name", "reference product", "location"]:
-                if field in entry:
-                    res = build_ws_filter(field, entry[field])
-                    filters += res
-
-            candidates = list(ws.get_many(self.database, *filters))
-
-            if not candidates:
-                logger.warning(f"[Metals] No candidates found for entry: {entry}")
-                continue
-            if len(candidates) > 1:
-                logger.warning(
-                    f"[Metals] Multiple candidates found for entry: {entry}, using the first one."
-                )
-
-            ds = candidates[0]
-
-            exchanges.append(
-                {
-                    "name": ds["name"],
-                    "product": ds["reference product"],
-                    "location": ds["location"],
-                    "amount": s_share
-                    * (
-                        share / total_relative_share
-                    ),  # Normalize by total relative share
-                    "type": "technosphere",
-                    "unit": ds["unit"],
-                }
-            )
-
-        return exchanges
 
     def write_log(self, dataset, status="created"):
         """

@@ -1,9 +1,12 @@
 import pytest
+import pandas as pd
 
 from premise.metals import (
     Metals,
     PostAllocationCorrectionError,
     correct_metal_resource_exchanges,
+    extract_reference_products_from_filter,
+    is_secondary_metal_supply_exchange,
 )
 
 
@@ -15,6 +18,257 @@ def biosphere_resource(name, amount):
         "type": "biosphere",
         "categories": ("natural resource", "in ground"),
     }
+
+
+def market_dataset(name, product, location, exchanges):
+    return {
+        "name": name,
+        "reference product": product,
+        "location": location,
+        "unit": "kilogram",
+        "exchanges": exchanges,
+    }
+
+
+def technosphere_exchange(name, product, location, amount, unit="kilogram"):
+    return {
+        "name": name,
+        "product": product,
+        "location": location,
+        "amount": amount,
+        "unit": unit,
+        "type": "technosphere",
+    }
+
+
+def test_extract_reference_products_from_filter_handles_either_expression():
+    expression = (
+        "{'either': [{'equals': 'lithium carbonate, battery grade'}, "
+        "{'equals': 'lithium carbonate'}]}"
+    )
+
+    assert extract_reference_products_from_filter(expression) == [
+        "lithium carbonate, battery grade",
+        "lithium carbonate",
+    ]
+
+
+def test_is_secondary_metal_supply_exchange_matches_recovery_terms():
+    assert is_secondary_metal_supply_exchange(
+        technosphere_exchange(
+            "treatment of copper scrap by electrolytic refining",
+            "copper, cathode",
+            "RoW",
+            0.2,
+        ),
+        "copper, cathode",
+    )
+    assert is_secondary_metal_supply_exchange(
+        technosphere_exchange(
+            "metalliferous hydroxide sludge to market for zinc concentrate",
+            "zinc concentrate",
+            "GLO",
+            0.0001,
+        ),
+        "zinc concentrate",
+    )
+    assert not is_secondary_metal_supply_exchange(
+        technosphere_exchange(
+            "market for transport, freight, lorry",
+            "transport, freight, lorry",
+            "GLO",
+            1.0,
+            unit="ton kilometer",
+        )
+    )
+
+
+def test_existing_market_lookup_uses_fallback_reference_product():
+    metals = object.__new__(Metals)
+    lithium_market = market_dataset(
+        "market for lithium carbonate",
+        "lithium carbonate",
+        "GLO",
+        [],
+    )
+    metals.database = [lithium_market]
+
+    df_metal = pd.DataFrame(
+        {
+            "Reference product": [
+                "{'either': [{'equals': 'lithium carbonate, battery grade'}, "
+                "{'equals': 'lithium carbonate'}]}"
+            ]
+        }
+    )
+
+    assert metals.get_existing_metal_market(df_metal) is lithium_market
+
+
+def test_secondary_extraction_tries_next_old_market_candidate():
+    metals = object.__new__(Metals)
+    metals.system_model = "cutoff"
+    lithium_battery_grade_market = market_dataset(
+        "market for lithium carbonate, battery grade",
+        "lithium carbonate, battery grade",
+        "GLO",
+        [
+            technosphere_exchange(
+                "lithium carbonate production, from brine",
+                "lithium carbonate, battery grade",
+                "CL",
+                1.0,
+            )
+        ],
+    )
+    lithium_market = market_dataset(
+        "market for lithium carbonate",
+        "lithium carbonate",
+        "GLO",
+        [
+            technosphere_exchange(
+                "lithium carbonate production, from brine",
+                "lithium carbonate",
+                "CL",
+                0.99,
+            ),
+            technosphere_exchange(
+                "treatment of used Li-ion battery, hydrometallurgical treatment",
+                "lithium carbonate",
+                "GLO",
+                0.01,
+            ),
+        ],
+    )
+    metals.database = [lithium_battery_grade_market, lithium_market]
+
+    df_metal = pd.DataFrame(
+        {
+            "Reference product": [
+                "{'either': [{'equals': 'lithium carbonate, battery grade'}, "
+                "{'equals': 'lithium carbonate'}]}"
+            ]
+        }
+    )
+
+    exchanges = metals.build_secondary_market_exchanges_from_existing_market(df_metal)
+
+    assert exchanges == [
+        technosphere_exchange(
+            "treatment of used Li-ion battery, hydrometallurgical treatment",
+            "lithium carbonate",
+            "GLO",
+            0.01,
+        )
+    ]
+
+
+def test_create_market_uses_secondary_share_from_existing_market_instead_of_yaml():
+    metals = object.__new__(Metals)
+    metals.system_model = "cutoff"
+    metals.prim_sec_split = {
+        "copper": {
+            "name": "market for copper",
+            "reference product": "copper",
+            "shares": {
+                "primary": {2020: 0.1},
+                "secondary": {2020: 0.9},
+            },
+        }
+    }
+    metals.database = [
+        market_dataset(
+            "market for copper",
+            "copper",
+            "GLO",
+            [
+                technosphere_exchange(
+                    "primary copper production",
+                    "copper",
+                    "GLO",
+                    0.75,
+                ),
+                technosphere_exchange(
+                    "treatment of copper scrap by electrolytic refining",
+                    "copper",
+                    "RoW",
+                    0.25,
+                ),
+            ],
+        ),
+        market_dataset("primary copper production", "copper", "GLO", []),
+        market_dataset(
+            "treatment of copper scrap by electrolytic refining",
+            "copper",
+            "RoW",
+            [],
+        ),
+    ]
+    metals.create_region_specific_markets = lambda df: [
+        technosphere_exchange("primary copper production", "copper", "GLO", 1.0)
+    ]
+    metals.add_transport_to_market = lambda dataset, metal: []
+    metals.remove_from_index = lambda dataset: None
+    metals.is_in_index = lambda dataset: False
+
+    df_metal = pd.DataFrame({"Reference product": ["{'equals': 'copper'}"]})
+
+    market = metals.create_market("copper", df_metal)
+    exchanges = {
+        (exc["name"], exc.get("location")): exc["amount"]
+        for exc in market["exchanges"]
+        if exc["type"] == "technosphere"
+    }
+
+    assert exchanges[("primary copper production", "GLO")] == pytest.approx(0.75)
+    assert exchanges[
+        ("treatment of copper scrap by electrolytic refining", "RoW")
+    ] == pytest.approx(0.25)
+
+
+def test_create_market_ignores_existing_secondary_market_for_consequential():
+    metals = object.__new__(Metals)
+    metals.system_model = "consequential"
+    metals.prim_sec_split = {}
+    metals.database = [
+        market_dataset(
+            "market for copper",
+            "copper",
+            "GLO",
+            [
+                technosphere_exchange(
+                    "treatment of copper scrap by electrolytic refining",
+                    "copper",
+                    "RoW",
+                    0.25,
+                )
+            ],
+        ),
+        market_dataset("primary copper production", "copper", "GLO", []),
+        market_dataset(
+            "treatment of copper scrap by electrolytic refining",
+            "copper",
+            "RoW",
+            [],
+        ),
+    ]
+    metals.create_region_specific_markets = lambda df: [
+        technosphere_exchange("primary copper production", "copper", "GLO", 1.0)
+    ]
+    metals.add_transport_to_market = lambda dataset, metal: []
+    metals.remove_from_index = lambda dataset: None
+    metals.is_in_index = lambda dataset: False
+
+    df_metal = pd.DataFrame({"Reference product": ["{'equals': 'copper'}"]})
+
+    market = metals.create_market("copper", df_metal)
+    exchanges = [
+        exc for exc in market["exchanges"] if exc["type"] == "technosphere"
+    ]
+
+    assert exchanges == [
+        technosphere_exchange("primary copper production", "copper", "GLO", 1.0)
+    ]
 
 
 def test_post_allocation_correction_sets_target_to_one_and_others_to_zero():
