@@ -14,10 +14,10 @@ class HydrogenMixin:
         self._generate_supporting_hydrogen_datasets()
         self.set_hydrogen_logistics()
 
-    def set_hydrogen_logistics(self):
-        self.iam_data.final_energy_use  # xarray with final energy volumes
-
-        pass
+    # def set_hydrogen_logistics(self):
+    #    self.iam_data.final_energy_use  # xarray with final energy volumes
+    #
+    #    pass
 
     def _regionalize_hydrogen_activities(self):
 
