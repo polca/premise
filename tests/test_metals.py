@@ -48,9 +48,7 @@ def test_pv_gallium_intensity_is_assigned_to_cigs_not_crystalline_silicon():
 
     assert gallium[gallium["origin_var"] == "c-Si"].empty
 
-    cigs_2020 = gallium[
-        (gallium["origin_var"] == "CIGS") & (gallium["year"] == 2020.0)
-    ]
+    cigs_2020 = gallium[(gallium["origin_var"] == "CIGS") & (gallium["year"] == 2020.0)]
     assert len(cigs_2020) == 1
     assert cigs_2020[["mean", "median", "min", "max"]].iloc[0].to_dict() == (
         pytest.approx(
