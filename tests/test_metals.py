@@ -1,6 +1,7 @@
 import pytest
 import pandas as pd
 
+from premise.filesystem_constants import DATA_DIR
 from premise.metals import (
     Metals,
     PostAllocationCorrectionError,
@@ -39,6 +40,28 @@ def technosphere_exchange(name, product, location, amount, unit="kilogram"):
         "unit": unit,
         "type": "technosphere",
     }
+
+
+def test_pv_gallium_intensity_is_assigned_to_cigs_not_crystalline_silicon():
+    metals_db = pd.read_csv(DATA_DIR / "metals" / "metals_db.csv")
+    gallium = metals_db[metals_db["metal"] == "Gallium"]
+
+    assert gallium[gallium["origin_var"] == "c-Si"].empty
+
+    cigs_2020 = gallium[
+        (gallium["origin_var"] == "CIGS") & (gallium["year"] == 2020.0)
+    ]
+    assert len(cigs_2020) == 1
+    assert cigs_2020[["mean", "median", "min", "max"]].iloc[0].to_dict() == (
+        pytest.approx(
+            {
+                "mean": 16.986969696969695,
+                "median": 6.17,
+                "min": 2.32,
+                "max": 124.0,
+            }
+        )
+    )
 
 
 def test_extract_reference_products_from_filter_handles_either_expression():
