@@ -11,6 +11,7 @@ All notable changes to this project are documented in this file.
 - Added non-degenerate uncertainty ranges to PV efficiency records whose minimum, mean, and maximum values were identical, preventing invalid triangular uncertainty parameters in Monte Carlo calculations.
 - Preserved secondary metal supply shares in newly created metals markets by copying secondary technosphere inputs from the source ecoinvent metal market instead of relying on the static secondary-route mapping file.
 - Corrected the palladium entry in the legacy secondary metal supply activity mapping.
+- Corrected the oxyfuel cement carbon-capture oxygen demand in `lci-carbon-capture.xlsx` using CEMCAP D4.6 Table 6.1, reducing the input from a stoichiometric estimate to `0.313131313 kg O2/kg CO2 captured` and documenting the source in the inventory.
 
 ### Tests
 - Added regression coverage for fast Brightway export classification filling.
