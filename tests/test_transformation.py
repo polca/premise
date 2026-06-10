@@ -159,7 +159,9 @@ def test_process_and_add_activities_indexes_proxies_before_emptying(monkeypatch)
     def fake_add_geo_definition_metadata(self, dataset):
         return dataset
 
-    def fake_empty_original_datasets(self, datasets, production_shares, loc_map, regions):
+    def fake_empty_original_datasets(
+        self, datasets, production_shares, loc_map, regions
+    ):
         calls.append("empty_original_datasets")
         assert self.is_in_index(original, "WEU")
         assert datasets == [original]
