@@ -25,6 +25,14 @@ FREIGHT_VEHICLES_PER_STATION_PER_DAY = 100
 BILLION_KM_TO_KM = 1_000_000_000
 VEHICLE_OCCUPANCY = 1.5
 FREIGHT_LOAD = 10
+HYDROGEN_END_USE_MARKETS = {
+    "Transport": "market for hydrogen, gaseous, low pressure, for transport",
+    "Chemicals": "market for hydrogen, gaseous, low pressure, for chemicals",
+    "Steel": "market for hydrogen, gaseous, low pressure, for steel",
+    "Cement": "market for hydrogen, gaseous, low pressure, for cement",
+    "Heating": "market for hydrogen, gaseous, low pressure, for heating",
+    "Other": "market for hydrogen, gaseous, low pressure, for other end uses",
+}
 
 
 class HydrogenMixin:
@@ -576,6 +584,19 @@ class HydrogenMixin:
             production_volumes=self.iam_data.production_volumes,
             additional_exchanges_fn=self._add_transport_to_hydrogen_datasets,
         )
+
+        self._generate_sector_specific_hydrogen_markets(hydrogen_map)
+
+    def _generate_sector_specific_hydrogen_markets(self, hydrogen_map):
+        for market_name in HYDROGEN_END_USE_MARKETS.values():
+            self.process_and_add_markets(
+                name=market_name,
+                reference_product="hydrogen, gaseous, low pressure",
+                unit="kilogram",
+                mapping=hydrogen_map,
+                system_model=self.system_model,
+                production_volumes=self.iam_data.production_volumes,
+            )
 
     def _adjust_hydrogen_efficiency(self, dataset, technology):
         """

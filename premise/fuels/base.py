@@ -39,6 +39,12 @@ def _update_fuels(scenario, version, system_model):
             scenario["iam data"].hydrogen_blend,
         )
     ):
+        try:
+            fuels.set_hydrogen_logistics()
+            scenario["hydrogen demand nodes"] = fuels.hydrogen_demand_nodes
+        except Exception as exc:
+            print(f"Could not create hydrogen demand nodes analysis: {exc}")
+
         fuels.generate_hydrogen_activities()
         fuels.generate_synthetic_fuel_activities()
         fuels.generate_biogas_activities()
@@ -64,12 +70,6 @@ def _update_fuels(scenario, version, system_model):
     )
 
     validate.run_fuel_checks()
-
-    try:
-        fuels.set_hydrogen_logistics()
-        scenario["hydrogen demand nodes"] = fuels.hydrogen_demand_nodes
-    except Exception as exc:
-        print(f"Could not create hydrogen demand nodes analysis: {exc}")
 
     return scenario
 
