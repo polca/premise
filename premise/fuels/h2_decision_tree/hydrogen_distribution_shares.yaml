@@ -1,0 +1,80 @@
+# Indicative hydrogen distribution-mode shares.
+#
+# Rules are evaluated uniformly:
+# 1. Keep rules whose match fields equal the demand-node row values.
+# 2. Keep rules whose condition is satisfied by the selected basis column.
+# 3. Select the matching rule with the lowest priority value.
+#
+# match: {} applies to every demand node.
+# condition: {} always applies when the match succeeds.
+# Shares should sum to 1.0 within each rule. Values are placeholders until
+# sector-specific threshold assumptions are finalized.
+
+rules:
+  - name: heating_always_pipeline
+    priority: 10
+    match:
+      sector: Residential and commercial buildings
+    basis: hydrogen_demand_t_per_node_per_year
+    condition: {}
+    shares:
+      compressed_gaseous_truck: 0.00
+      liquid_hydrogen_truck: 0.00
+      compressed_gaseous_pipeline: 1.00
+      liquid_ammonia_ship: 0.00
+      liquid_hydrogen_ship: 0.00
+
+  - name: large_steel_ammonia_transport
+    priority: 20
+    match:
+      demand_node_type: steel_plants
+    basis: hydrogen_demand_t_per_node_per_year
+    condition:
+      min: 1000000
+    shares:
+      compressed_gaseous_truck: 0.00
+      liquid_hydrogen_truck: 0.10
+      compressed_gaseous_pipeline: 0.60
+      liquid_ammonia_ship: 0.30
+      liquid_hydrogen_ship: 0.00
+
+
+  - name: default_small_demand
+    priority: 100
+    match: {}
+    basis: hydrogen_demand_t_per_node_per_year
+    condition:
+      max: 5
+    shares:
+      compressed_gaseous_truck: 0.80
+      liquid_hydrogen_truck: 0.20
+      compressed_gaseous_pipeline: 0.00
+      liquid_ammonia_ship: 0.00
+      liquid_hydrogen_ship: 0.00
+
+  - name: default_medium_demand
+    priority: 100
+    match: {}
+    basis: hydrogen_demand_t_per_node_per_year
+    condition:
+      min: 5
+      max: 50
+    shares:
+      compressed_gaseous_truck: 0.20
+      liquid_hydrogen_truck: 0.60
+      compressed_gaseous_pipeline: 0.20
+      liquid_ammonia_ship: 0.00
+      liquid_hydrogen_ship: 0.00
+
+  - name: default_large_demand
+    priority: 100
+    match: {}
+    basis: hydrogen_demand_t_per_node_per_year
+    condition:
+      min: 50
+    shares:
+      compressed_gaseous_truck: 0.00
+      liquid_hydrogen_truck: 0.20
+      compressed_gaseous_pipeline: 0.80
+      liquid_ammonia_ship: 0.00
+      liquid_hydrogen_ship: 0.00
