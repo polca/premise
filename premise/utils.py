@@ -889,6 +889,7 @@ _SCENARIO_TRIMMED_DATASET_FIELDS = {
     "location",
     "unit",
     "type",
+    "regionalized",
     "exchanges",
 }
 
