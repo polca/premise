@@ -727,7 +727,7 @@ class Electricity(BaseTransformation):
             new_exchanges.append(
                 {
                     "uncertainty type": 0,
-                    "loc": 0,
+                    "loc": (1 - solar_amount) * (1 + distr_loss),
                     "amount": (1 - solar_amount) * (1 + distr_loss),
                     "type": "technosphere",
                     "product": "electricity, medium voltage",
@@ -744,7 +744,7 @@ class Electricity(BaseTransformation):
             new_exchanges.append(
                 {
                     "uncertainty type": 0,
-                    "loc": 0,
+                    "loc": transf_loss,
                     "amount": transf_loss,
                     "type": "technosphere",
                     "product": "electricity, low voltage",
@@ -862,7 +862,7 @@ class Electricity(BaseTransformation):
             new_exchanges.append(
                 {
                     "uncertainty type": 0,
-                    "loc": 0,
+                    "loc": 1 + distr_loss,
                     "amount": 1 + distr_loss,
                     "type": "technosphere",
                     "product": "electricity, high voltage",
@@ -879,7 +879,7 @@ class Electricity(BaseTransformation):
             new_exchanges.append(
                 {
                     "uncertainty type": 0,
-                    "loc": 0,
+                    "loc": transf_loss,
                     "amount": transf_loss,
                     "type": "technosphere",
                     "product": "electricity, medium voltage",
@@ -1131,7 +1131,7 @@ class Electricity(BaseTransformation):
             new_exchanges.append(
                 {
                     "uncertainty type": 0,
-                    "loc": 1,
+                    "loc": transf_loss,
                     "amount": transf_loss,
                     "type": "technosphere",
                     "product": "electricity, high voltage",
