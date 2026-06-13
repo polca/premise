@@ -9,12 +9,14 @@ All notable changes to this project are documented in this file.
 - Corrected the CPC classification for the PEM fuel-cell system assembly inventory from `33370: Fuel oils n.e.c.` to `46410: Primary cells and primary batteries`.
 - Derived `World` GAINS hot-pollutant scaling factors from global absolute emissions so `World` datasets receive an emissions-weighted correction during the emissions update (`#285`).
 - Added non-degenerate uncertainty ranges to PV efficiency records whose minimum, mean, and maximum values were identical, preventing invalid triangular uncertainty parameters in Monte Carlo calculations.
+- Normalized no-uncertainty exchange records during Brightway exports so `loc` follows the current `amount` and stale uncertainty bounds are dropped, preventing Brightway Monte Carlo from reading outdated deterministic values in generated scenario databases.
 - Preserved secondary metal supply shares in newly created metals markets by copying secondary technosphere inputs from the source ecoinvent metal market instead of relying on the static secondary-route mapping file.
 - Corrected the palladium entry in the legacy secondary metal supply activity mapping.
 - Corrected the oxyfuel cement carbon-capture oxygen demand in `lci-carbon-capture.xlsx` using CEMCAP D4.6 Table 6.1, reducing the input from a stoichiometric estimate to `0.313131313 kg O2/kg CO2 captured` and documenting the source in the inventory.
 
 ### Tests
 - Added regression coverage for fast Brightway export classification filling.
+- Added regression coverage for no-uncertainty exchange normalization in Brightway 2 and Brightway 2.5 exports.
 - Added regression coverage for `World` hot-pollutant emission scaling.
 - Added metals regression coverage for source-market secondary supply extraction, fallback reference-product lookup, and cutoff/consequential behavior.
 
