@@ -378,6 +378,25 @@ def _keep_fast_export_value(value) -> bool:
         return True
 
 
+def _normalize_no_uncertainty_exchange(exchange: dict) -> dict:
+    uncertainty_type = exchange.get(
+        "uncertainty type", exchange.get("uncertainty_type", 0)
+    )
+    try:
+        uncertainty_type = int(uncertainty_type)
+    except (TypeError, ValueError):
+        return exchange
+
+    if uncertainty_type not in {0, 1} or "amount" not in exchange:
+        return exchange
+
+    exchange["loc"] = exchange["amount"]
+    for field in ("scale", "shape", "minimum", "maximum"):
+        exchange.pop(field, None)
+
+    return exchange
+
+
 def _prepare_fast_exchange_payload(exchange: dict) -> dict:
     compact_exchange = {
         field: value
@@ -391,6 +410,8 @@ def _prepare_fast_exchange_payload(exchange: dict) -> dict:
                 compact_exchange[field] = ""
             else:
                 compact_exchange[field] = exchange[field]
+
+    _normalize_no_uncertainty_exchange(compact_exchange)
 
     return compact_exchange
 
