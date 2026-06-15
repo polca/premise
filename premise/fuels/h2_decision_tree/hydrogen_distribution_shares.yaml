@@ -30,11 +30,11 @@ rules:
       demand_node_type: steel_plants
     basis: hydrogen_demand_t_per_node_per_year
     condition:
-      min: 1000000
+      min: 50000
     shares:
       compressed_gaseous_truck: 0.00
-      liquid_hydrogen_truck: 0.10
-      compressed_gaseous_pipeline: 0.60
+      liquid_hydrogen_truck: 0.00
+      compressed_gaseous_pipeline: 0.70
       liquid_ammonia_ship: 0.30
       liquid_hydrogen_ship: 0.00
 
@@ -44,7 +44,7 @@ rules:
     match: {}
     basis: hydrogen_demand_t_per_node_per_year
     condition:
-      max: 5
+      max: 999
     shares:
       compressed_gaseous_truck: 0.80
       liquid_hydrogen_truck: 0.20
@@ -57,12 +57,12 @@ rules:
     match: {}
     basis: hydrogen_demand_t_per_node_per_year
     condition:
-      min: 5
-      max: 50
+      min: 1000
+      max: 4999
     shares:
-      compressed_gaseous_truck: 0.20
-      liquid_hydrogen_truck: 0.60
-      compressed_gaseous_pipeline: 0.20
+      compressed_gaseous_truck: 0.25
+      liquid_hydrogen_truck: 0.25
+      compressed_gaseous_pipeline: 0.50
       liquid_ammonia_ship: 0.00
       liquid_hydrogen_ship: 0.00
 
@@ -71,10 +71,25 @@ rules:
     match: {}
     basis: hydrogen_demand_t_per_node_per_year
     condition:
-      min: 50
+      min: 5000
+      max: 49999
     shares:
       compressed_gaseous_truck: 0.00
       liquid_hydrogen_truck: 0.20
       compressed_gaseous_pipeline: 0.80
+      liquid_ammonia_ship: 0.00
+      liquid_hydrogen_ship: 0.00
+
+  - name: default_very_large_demand
+    priority: 100
+    match: {}
+    basis: hydrogen_demand_t_per_node_per_year
+    condition:
+      min: 50000
+    
+    shares:
+      compressed_gaseous_truck: 0.00
+      liquid_hydrogen_truck: 0.00
+      compressed_gaseous_pipeline: 0.80 #20 % Onsite production
       liquid_ammonia_ship: 0.00
       liquid_hydrogen_ship: 0.00

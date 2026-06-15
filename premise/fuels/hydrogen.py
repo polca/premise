@@ -5,10 +5,11 @@ import pandas as pd
 
 from ..transformation import np, uuid, ws
 from ..filesystem_constants import VARIABLES_DIR
-from .config import HYDROGEN_SOURCES
+from .config import HYDROGEN_DISTRIBUTION_SHARES, HYDROGEN_SOURCES
 from .utils import adjust_electrolysis_electricity_requirement, fetch_mapping
 
 hydrogen_parameters = fetch_mapping(HYDROGEN_SOURCES)
+hydrogen_distribution_rules = fetch_mapping(HYDROGEN_DISTRIBUTION_SHARES)
 
 H2_LHV_GJ_PER_TONNE = 120.0
 TONNES_H2_PER_EJ = 1e9 / H2_LHV_GJ_PER_TONNE
@@ -33,6 +34,13 @@ HYDROGEN_END_USE_MARKETS = {
     "Heating": "market for hydrogen, gaseous, low pressure, for heating",
     "Other": "market for hydrogen, gaseous, low pressure, for other end uses",
 }
+HYDROGEN_DISTRIBUTION_MODES = sorted(
+    {
+        mode
+        for rule in hydrogen_distribution_rules.get("rules", [])
+        for mode in rule.get("shares", {})
+    }
+)
 
 
 class HydrogenMixin:
@@ -139,6 +147,7 @@ class HydrogenMixin:
                 "demand_node_type",
                 "hydrogen_demand_t_per_node_per_year",
                 "hydrogen_demand_t_per_node_per_day",
+                *HYDROGEN_DISTRIBUTION_MODES,
                 "availability_days_per_year",
                 "activity_proxy_value",
                 "activity_proxy_unit",
@@ -498,6 +507,66 @@ class HydrogenMixin:
         )
         return demand
 
+    @staticmethod
+    def _distribution_rule_matches_row(row, match):
+        for column, expected_value in match.items():
+            if column not in row or pd.isna(row[column]):
+                return False
+            if row[column] != expected_value:
+                return False
+        return True
+
+    @staticmethod
+    def _distribution_condition_matches(value, condition):
+        if not condition:
+            return True
+        if pd.isna(value):
+            return False
+        if "min" in condition and value < condition["min"]:
+            return False
+        if "max" in condition and value > condition["max"]:
+            return False
+        return True
+
+    def _select_hydrogen_distribution_rule(self, row):
+        rules = sorted(
+            hydrogen_distribution_rules.get("rules", []),
+            key=lambda rule: rule.get("priority", 1000),
+        )
+
+        for rule in rules:
+            if not self._distribution_rule_matches_row(
+                row, rule.get("match", {})
+            ):
+                continue
+
+            basis = rule.get("basis")
+            if not basis:
+                continue
+
+            if self._distribution_condition_matches(
+                row.get(basis, np.nan), rule.get("condition", {})
+            ):
+                return rule
+
+        return None
+
+    def _add_hydrogen_distribution_shares(self, demand):
+        demand = demand.copy()
+
+        for mode in HYDROGEN_DISTRIBUTION_MODES:
+            demand[mode] = 0.0
+
+        for index, row in demand.iterrows():
+            rule = self._select_hydrogen_distribution_rule(row)
+            if rule is None:
+                continue
+
+            for mode, share in rule.get("shares", {}).items():
+                demand.loc[index, mode] = share
+
+        return demand
+
     def set_hydrogen_logistics(self):
         demand = self._get_hydrogen_final_energy_by_subsector()
 
@@ -550,6 +619,7 @@ class HydrogenMixin:
 
         demand = demand.replace([np.inf, -np.inf], np.nan)
         demand = self._validate_hydrogen_demand_nodes(demand)
+        demand = self._add_hydrogen_distribution_shares(demand)
 
         columns = self._empty_hydrogen_demand_nodes().columns.tolist()
         self.hydrogen_demand_nodes = (

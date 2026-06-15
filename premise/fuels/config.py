@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from ..filesystem_constants import DATA_DIR, VARIABLES_DIR
 
 REGION_CLIMATE_MAP = VARIABLES_DIR / "iam_region_to_climate.yaml"
@@ -10,6 +12,11 @@ REGION_BIOETHANOL_FEEDSTOCK_MAP = (
 FUEL_LABELS = DATA_DIR / "fuels" / "fuel_labels.csv"
 HEAT_SOURCES = DATA_DIR / "fuels" / "heat_sources_map.yml"
 HYDROGEN_SOURCES = DATA_DIR / "fuels" / "hydrogen_efficiency_parameters.yml"
+HYDROGEN_DISTRIBUTION_SHARES = (
+    Path(__file__).resolve().parent
+    / "h2_decision_tree"
+    / "hydrogen_distribution_shares.yaml"
+)
 METHANE_SOURCES = DATA_DIR / "fuels" / "methane_activities.yml"
 LIQUID_FUEL_SOURCES = DATA_DIR / "fuels" / "liquid_fuel_activities.yml"
 BIOFUEL_SOURCES = DATA_DIR / "fuels" / "biofuels_activities.yml"
