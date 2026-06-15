@@ -685,6 +685,38 @@ The datasets introduced are listed in the table below.
   transmission pipeline for hydrogen, reassigned CNG pipeline        RER
  ================================================================== ===========
 
+Hydrogen transport in sector-specific markets
+*********************************************
+
+The general ``market for hydrogen, gaseous, low pressure`` keeps its existing
+pipeline transport exchange. In addition, the sector-specific hydrogen markets
+(``market for hydrogen, gaseous, low pressure, for ...``) receive hydrogen
+transport exchanges according to the distribution-mode shares calculated during
+the hydrogen logistics step.
+
+The logistics step creates a demand-node table for the model, scenario, year,
+region and end-use sector. Distribution-mode shares are assigned from
+``premise/fuels/h2_decision_tree/hydrogen_distribution_shares.yaml`` and are
+weighted by annual hydrogen demand when several demand-node rows feed the same
+sector market.
+
+The distribution technologies are linked to the following activities already
+present in the database after the additional inventories are imported:
+
+ ====================================================================== ============================
+  Distribution technology                                                Linked activity
+ ====================================================================== ============================
+  ``compressed_gaseous_truck``                                           ``transport, hydrogen, gaseous, lorry, market average propulsion system``
+  ``liquid_hydrogen_truck``                                              ``transport, hydrogen, liquid, lorry, market average propulsion system``
+  ``compressed_gaseous_pipeline``                                        ``hydrogen supply, distributed by pipeline``
+  ``liquid_hydrogen_ship``                                               ``transport, freight, sea, tanker for liquefied hydrogen, heavy fuel oil``
+  ``liquid_ammonia_ship``                                                ``transport, freight, sea, tanker for liquefied ammonia, heavy fuel oil``
+ ====================================================================== ============================
+
+The truck and ship activities come from ``lci-hydrogen-transport.xlsx`` during
+the normal additional-inventory import. The market-building code does not read
+the spreadsheet directly; it resolves the activities from the imported database.
+
 
 .. _Wulf: https://www.sciencedirect.com/science/article/pii/S095965261832170X
 .. _LCI_H2_distr: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-hydrogen-distribution.xlsx

@@ -41,6 +41,57 @@ HYDROGEN_DISTRIBUTION_MODES = sorted(
         for mode in rule.get("shares", {})
     }
 )
+HYDROGEN_TRANSPORT_ACTIVITIES = {
+    "compressed_gaseous_truck": {
+        "name": (
+            "transport, hydrogen, gaseous, lorry, "
+            "market average propulsion system"
+        ),
+        "reference product": (
+            "transport, hydrogen, gaseous, lorry, "
+            "market average propulsion system"
+        ),
+        "unit": "ton kilometer",
+    },
+    "liquid_hydrogen_truck": {
+        "name": (
+            "transport, hydrogen, liquid, lorry, "
+            "market average propulsion system"
+        ),
+        "reference product": (
+            "transport, hydrogen, liquid, lorry, "
+            "market average propulsion system"
+        ),
+        "unit": "ton kilometer",
+    },
+    "compressed_gaseous_pipeline": {
+        "name": "hydrogen supply, distributed by pipeline",
+        "reference product": "hydrogen, gaseous, from pipeline",
+        "unit": "kilogram",
+    },
+    "liquid_ammonia_ship": {
+        "name": (
+            "transport, freight, sea, tanker for liquefied ammonia, "
+            "heavy fuel oil"
+        ),
+        "reference product": (
+            "transport, freight, sea, tanker for liquefied ammonia, "
+            "heavy fuel oil"
+        ),
+        "unit": "ton kilometer",
+    },
+    "liquid_hydrogen_ship": {
+        "name": (
+            "transport, freight, sea, tanker for liquefied hydrogen, "
+            "heavy fuel oil"
+        ),
+        "reference product": (
+            "transport, freight, sea, tanker for liquefied hydrogen, "
+            "heavy fuel oil"
+        ),
+        "unit": "ton kilometer",
+    },
+}
 
 
 class HydrogenMixin:
@@ -666,6 +717,9 @@ class HydrogenMixin:
                 mapping=hydrogen_map,
                 system_model=self.system_model,
                 production_volumes=self.iam_data.production_volumes,
+                additional_exchanges_fn=(
+                    self._add_transport_to_sector_specific_hydrogen_market
+                ),
             )
 
     def _adjust_hydrogen_efficiency(self, dataset, technology):
@@ -778,3 +832,147 @@ class HydrogenMixin:
                 "amount": 1,
             }
         )
+
+    @staticmethod
+    def _normalize_hydrogen_transport_label(value):
+        return " ".join(str(value).replace(" ,", ",").split()).lower()
+
+    def _hydrogen_transport_supplier(self, activity):
+        target_name = self._normalize_hydrogen_transport_label(
+            activity["name"]
+        )
+        target_product = self._normalize_hydrogen_transport_label(
+            activity["reference product"]
+        )
+
+        matches = [
+            dataset
+            for dataset in self.database
+            if self._normalize_hydrogen_transport_label(dataset["name"])
+            == target_name
+            and self._normalize_hydrogen_transport_label(
+                dataset["reference product"]
+            )
+            == target_product
+            and dataset["unit"] == activity["unit"]
+        ]
+
+        if not matches:
+            raise ValueError(
+                "No hydrogen transport activity found for "
+                f"{activity['name']} / {activity['reference product']}."
+            )
+
+        return matches
+
+    def _select_hydrogen_transport_supplier(self, activity, region):
+        suppliers = self._hydrogen_transport_supplier(activity)
+
+        location_preferences = [
+            [region],
+            self.iam_to_ecoinvent_loc.get(region, []),
+            ["RoW"],
+            ["GLO"],
+        ]
+
+        for locations in location_preferences:
+            for supplier in suppliers:
+                if supplier["location"] in locations:
+                    return supplier
+
+        return suppliers[0]
+
+    @staticmethod
+    def _hydrogen_sector_market_key(market_name):
+        for key, sector_market_name in HYDROGEN_END_USE_MARKETS.items():
+            if market_name == sector_market_name:
+                return key
+        return None
+
+    @staticmethod
+    def _hydrogen_sector_market_rows(demand, market_key):
+        if market_key == "Transport":
+            return demand["sector"] == "Transport"
+        if market_key in {"Chemicals", "Steel", "Cement"}:
+            return demand["subsector"] == market_key
+        if market_key == "Heating":
+            return demand["sector"] == "Residential and commercial buildings"
+        if market_key == "Other":
+            return ~(
+                (demand["sector"] == "Transport")
+                | (demand["sector"] == "Residential and commercial buildings")
+                | (demand["subsector"].isin(["Chemicals", "Steel", "Cement"]))
+            )
+        return pd.Series(False, index=demand.index)
+
+    def _hydrogen_transport_shares_for_market(self, dataset):
+        demand = getattr(self, "hydrogen_demand_nodes", pd.DataFrame())
+        if demand.empty:
+            return {}
+
+        market_key = self._hydrogen_sector_market_key(dataset["name"])
+        if market_key is None:
+            return {}
+
+        mask = (
+            (demand["year"] == self.year)
+            & (demand["region"] == dataset["location"])
+            & self._hydrogen_sector_market_rows(demand, market_key)
+        )
+        rows = demand.loc[mask]
+
+        if rows.empty:
+            return {}
+
+        weights = rows["hydrogen_demand_t_per_year"].fillna(0)
+        if weights.sum() <= 0:
+            return {}
+
+        shares = {}
+        for mode in HYDROGEN_TRANSPORT_ACTIVITIES:
+            if mode not in rows:
+                continue
+            shares[mode] = float(
+                (rows[mode].fillna(0) * weights).sum() / weights.sum()
+            )
+
+        return shares
+
+    @staticmethod
+    def _hydrogen_transport_exchange(activity, location, amount):
+        return {
+            "name": activity["name"],
+            "product": activity["reference product"],
+            "location": location,
+            "unit": activity["unit"],
+            "type": "technosphere",
+            "uncertainty type": 0,
+            "amount": amount,
+        }
+
+    def _add_transport_to_sector_specific_hydrogen_market(self, dataset):
+        shares = self._hydrogen_transport_shares_for_market(dataset)
+
+        for mode, share in shares.items():
+            if share <= 0:
+                continue
+
+            activity = HYDROGEN_TRANSPORT_ACTIVITIES[mode]
+            if mode == "compressed_gaseous_pipeline":
+                dataset["exchanges"].append(
+                    self._hydrogen_transport_exchange(
+                        activity, dataset["location"], share
+                    )
+                )
+                continue
+
+            supplier = self._select_hydrogen_transport_supplier(
+                activity, dataset["location"]
+            )
+            dataset["exchanges"].append(
+                self._hydrogen_transport_exchange(
+                    activity=supplier,
+                    location=supplier["location"],
+                    amount=share,
+                )
+            )
