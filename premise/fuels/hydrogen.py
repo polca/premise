@@ -1,10 +1,10 @@
-from collections import defaultdict
 import math
+from collections import defaultdict
 
 import pandas as pd
 
-from ..transformation import np, uuid, ws
 from ..filesystem_constants import VARIABLES_DIR
+from ..transformation import np, uuid, ws
 from .config import HYDROGEN_DISTRIBUTION_SHARES, HYDROGEN_SOURCES
 from .utils import adjust_electrolysis_electricity_requirement, fetch_mapping
 
@@ -108,6 +108,7 @@ class HydrogenMixin:
             return value
         return [value]
 
+    # Create end use groups: Transportation, Buildings, Industry (Steel, Cement, Chemicals, Others)
     @staticmethod
     def _hydrogen_end_use_group(variable):
         parts = str(variable).split(" - ")
@@ -124,9 +125,7 @@ class HydrogenMixin:
         if top_level == "Transport" or str(variable).startswith(
             "Transportation"
         ):
-            return pd.Series(
-                {"sector": "Transport", "subsector": "Transport"}
-            )
+            return pd.Series({"sector": "Transport", "subsector": "Transport"})
 
         if top_level == "Industry":
             if len(parts) >= 3 and parts[1] == "Steel":
@@ -181,6 +180,7 @@ class HydrogenMixin:
             return 0
         return math.ceil(value)
 
+    # Create template for demand_nodes output table
     def _empty_hydrogen_demand_nodes(self):
         return pd.DataFrame(
             columns=[
@@ -297,6 +297,7 @@ class HydrogenMixin:
             .reset_index()
         )
 
+    # Hydrogen demands in steel sector based on production volumes
     def _add_steel_demand_nodes(self, demand):
         steel_production = self._get_production_volume_table(
             ["steel - primary - H-DRI"],
@@ -327,6 +328,7 @@ class HydrogenMixin:
         )
         return demand
 
+    # Hydrogen demand in cement sector based on production volumes
     def _add_cement_demand_nodes(self, demand):
         production_volumes = self.iam_data.production_volumes
         cement_variables = [
@@ -359,12 +361,12 @@ class HydrogenMixin:
             cement_mask, "activity_proxy_value_cement"
         ]
         demand = demand.drop(columns=["activity_proxy_value_cement"])
-        demand.loc[cement_mask, "demand_nodes"] = (
-            demand.loc[cement_mask, "activity_proxy_value"]
-            / (CEMENT_PLANT_SIZE_MT_PER_YEAR * CEMENT_CAPACITY_FACTOR)
-        )
+        demand.loc[cement_mask, "demand_nodes"] = demand.loc[
+            cement_mask, "activity_proxy_value"
+        ] / (CEMENT_PLANT_SIZE_MT_PER_YEAR * CEMENT_CAPACITY_FACTOR)
         return demand
 
+    # Hydrogen demand for Chemical sector based on final energy
     def _add_final_energy_based_demand_nodes(self, demand):
         chemical_mask = demand["subsector"] == "Chemicals"
         demand.loc[chemical_mask, "demand_node_type"] = "chemical_plants"
@@ -375,14 +377,13 @@ class HydrogenMixin:
         )
 
         fixed_node_subsectors = {"Steel", "Cement", "Chemicals"}
-        other_mask = (
-            (demand["sector"] == "Industrial processes")
-            & (~demand["subsector"].isin(fixed_node_subsectors))
+        other_mask = (demand["sector"] == "Industrial processes") & (
+            ~demand["subsector"].isin(fixed_node_subsectors)
         )
         demand.loc[other_mask, "demand_node_type"] = "other_demand_nodes"
-        demand.loc[
-            other_mask, "availability_days_per_year"
-        ] = OTHER_DEMAND_NODE_LOAD_DAYS_PER_YEAR
+        demand.loc[other_mask, "availability_days_per_year"] = (
+            OTHER_DEMAND_NODE_LOAD_DAYS_PER_YEAR
+        )
         demand.loc[other_mask, "demand_nodes"] = (
             demand.loc[other_mask, "hydrogen_demand_t_per_year"]
             / OTHER_DEMAND_NODE_H2_USE_T_PER_YEAR
@@ -390,6 +391,7 @@ class HydrogenMixin:
 
         return demand
 
+    # Hydrogen demand for Transport sector based on Energy Service from Freight and Passenger transport
     def _get_transport_fueling_stations(self):
         transport_mapping_files = {
             "passenger_car": VARIABLES_DIR / "transport_passenger_cars.yaml",
@@ -418,7 +420,9 @@ class HydrogenMixin:
             vehicle_assumptions = assumptions[vehicle_class]
 
             for vehicle_type, mapping in transport_mapping.items():
-                if not self._is_hydrogen_vehicle_mapping(vehicle_type, mapping):
+                if not self._is_hydrogen_vehicle_mapping(
+                    vehicle_type, mapping
+                ):
                     continue
 
                 service_variables = self._as_list(
@@ -427,7 +431,8 @@ class HydrogenMixin:
                 available_variables = [
                     variable
                     for variable in service_variables
-                    if variable in self.iam_data.data.coords["variables"].values
+                    if variable
+                    in self.iam_data.data.coords["variables"].values
                 ]
                 if not available_variables:
                     continue
@@ -558,6 +563,7 @@ class HydrogenMixin:
         )
         return demand
 
+    # Here start the implementation of the hydrogen logistics decision tree
     @staticmethod
     def _distribution_rule_matches_row(row, match):
         for column, expected_value in match.items():
@@ -618,6 +624,7 @@ class HydrogenMixin:
 
         return demand
 
+    # Fill the output table with the analysis
     def set_hydrogen_logistics(self):
         demand = self._get_hydrogen_final_energy_by_subsector()
 
@@ -679,6 +686,7 @@ class HydrogenMixin:
             .reset_index(drop=True)
         )
 
+    # Regionalization according to IAM-regions
     def _regionalize_hydrogen_activities(self):
 
         hydrogen_map = {
@@ -805,6 +813,7 @@ class HydrogenMixin:
             "new energy input for hydrogen production"
         ] = new_energy_use
 
+    # Add transport to the generic, non-sector specific markets
     def _generate_supporting_hydrogen_datasets(self):
         keywords = [
             "hydrogen supply, distributed by pipeline",
@@ -833,6 +842,7 @@ class HydrogenMixin:
             }
         )
 
+    # Add transport activities based on decision tree
     @staticmethod
     def _normalize_hydrogen_transport_label(value):
         return " ".join(str(value).replace(" ,", ",").split()).lower()
