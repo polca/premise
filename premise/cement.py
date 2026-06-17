@@ -158,6 +158,22 @@ class Cement(BaseTransformation):
     def _exchange_text(exchange: dict) -> str:
         return f"{exchange.get('name', '')} {exchange.get('product', '')}".lower()
 
+    @staticmethod
+    def _format_comment_value(value, unit: str = "") -> str:
+        if value in (None, ""):
+            return "not available"
+        return f"{float(value):.6g}{unit}"
+
+    @staticmethod
+    def _append_comment(entity: dict, comment: str) -> None:
+        existing_comment = str(entity.get("comment", "") or "").strip()
+        if comment in existing_comment:
+            return
+
+        entity["comment"] = (
+            f"{existing_comment}\n\n{comment}" if existing_comment else comment
+        )
+
     def _get_clinker_fuel_lhv(self, exchange: dict) -> float | None:
         text = self._exchange_text(exchange)
         unit = exchange.get("unit")
@@ -190,28 +206,32 @@ class Cement(BaseTransformation):
 
         return None
 
+    def _get_clinker_fuel_exchange_energy(self, exchange: dict) -> float | None:
+        if exchange["type"] != "technosphere":
+            return None
+
+        amount = float(exchange.get("amount", 0))
+        unit = exchange.get("unit")
+
+        if unit == "megajoule" and amount > 0:
+            return amount
+
+        if unit not in ("kilogram", "cubic meter"):
+            return None
+
+        lhv = self._get_clinker_fuel_lhv(exchange)
+        if lhv is None:
+            return None
+
+        return abs(amount) * lhv
+
     def _get_clinker_visible_fuel_energy(self, dataset: dict) -> float:
         fuel_energy = 0.0
 
         for exc in dataset["exchanges"]:
-            if exc["type"] != "technosphere":
-                continue
-
-            amount = float(exc.get("amount", 0))
-            unit = exc.get("unit")
-
-            if unit == "megajoule" and amount > 0:
-                fuel_energy += amount
-                continue
-
-            if unit not in ("kilogram", "cubic meter"):
-                continue
-
-            lhv = self._get_clinker_fuel_lhv(exc)
-            if lhv is None:
-                continue
-
-            fuel_energy += abs(amount) * lhv
+            exchange_energy = self._get_clinker_fuel_exchange_energy(exc)
+            if exchange_energy is not None:
+                fuel_energy += exchange_energy
 
         return fuel_energy
 
@@ -225,6 +245,203 @@ class Cement(BaseTransformation):
         coal_energy = sum(float(exc["amount"]) * coal_lhv for exc in coal_exchanges)
 
         return coal_energy, coal_exchanges
+
+    def _document_clinker_fuel_adjustment(
+        self,
+        dataset: dict,
+        technology: str,
+        fuel_exchange_state: dict,
+        coal_exchange_ids: set[int],
+    ) -> None:
+        log_parameters = dataset.get("log parameters", {})
+        scenario_label = " ".join(
+            str(value)
+            for value in (
+                getattr(self, "model", ""),
+                getattr(self, "scenario", ""),
+                getattr(self, "year", ""),
+            )
+            if value not in ("", None)
+        )
+        if scenario_label:
+            scenario_label = f" for {scenario_label}"
+
+        visible_energy = log_parameters.get("visible fuel energy per kg clinker")
+        hidden_energy = log_parameters.get(
+            "hidden secondary fuel energy per kg clinker"
+        )
+        accounted_initial_energy = log_parameters.get(
+            "accounted initial fuel energy per kg clinker"
+        )
+        new_accounted_energy = log_parameters.get(
+            "new accounted fuel energy per kg clinker",
+            accounted_initial_energy,
+        )
+        target_energy = log_parameters.get("new energy input per ton clinker")
+        initial_coal_energy = log_parameters.get(
+            "initial hard coal energy per kg clinker"
+        )
+        new_coal_energy = log_parameters.get("new hard coal energy per kg clinker")
+        applied_coal_change = log_parameters.get(
+            "applied hard coal energy change per kg clinker"
+        )
+        unmet_energy_change = log_parameters.get(
+            "unmet thermal energy change per kg clinker"
+        )
+
+        dataset_comment = (
+            f"premise clinker fuel adjustment{scenario_label} for technology "
+            f"'{technology}': original visible fuel inputs listed as "
+            "technosphere exchanges provide "
+            f"{self._format_comment_value(visible_energy, ' MJ/kg clinker')}. "
+            "An inferred hidden secondary-fuel contribution of "
+            f"{self._format_comment_value(hidden_energy, ' MJ/kg clinker')} "
+            "is kept as bookkeeping because part of the secondary-fuel use is "
+            "represented by emissions but not by burdened fuel exchanges. "
+            "The original accounted kiln fuel demand is "
+            f"{self._format_comment_value(accounted_initial_energy, ' MJ/kg clinker')} "
+            "(3.4 GJ/t clinker baseline). The new accounted kiln fuel demand "
+            "after the applied hard-coal change is "
+            f"{self._format_comment_value(new_accounted_energy, ' MJ/kg clinker')}"
+        )
+
+        if target_energy not in (None, ""):
+            target_energy_gj = self._format_comment_value(
+                target_energy / 1000,
+                " GJ/t clinker",
+            )
+            dataset_comment += (
+                f". The IAM/floor target was {target_energy_gj}"
+            )
+
+        dataset_comment += (
+            ". The required energy change is applied to aggregate hard coal "
+            "inputs only: hard coal changes from "
+            f"{self._format_comment_value(initial_coal_energy, ' MJ/kg clinker')} "
+            f"to {self._format_comment_value(new_coal_energy, ' MJ/kg clinker')}, "
+            "with an applied hard-coal energy change of "
+            f"{self._format_comment_value(applied_coal_change, ' MJ/kg clinker')}."
+        )
+
+        if unmet_energy_change not in (None, "") and abs(unmet_energy_change) > 1e-12:
+            dataset_comment += (
+                " The remaining energy change not absorbed by hard coal is "
+                f"{self._format_comment_value(unmet_energy_change, ' MJ/kg clinker')}."
+            )
+
+        dataset_comment += (
+            " The hidden secondary-fuel energy is not added as a technosphere "
+            "exchange."
+        )
+
+        self._append_comment(dataset, dataset_comment)
+
+        coal_scaling_factor = log_parameters.get("hard coal energy scaling factor")
+        for exc in dataset["exchanges"]:
+            state = fuel_exchange_state.get(id(exc))
+            if state is None:
+                continue
+
+            new_energy = self._get_clinker_fuel_exchange_energy(exc)
+            old_amount = state["amount"]
+            new_amount = float(exc.get("amount", 0))
+            unit = exc.get("unit", state.get("unit", ""))
+            amount_unit = f" {unit}/kg clinker"
+            old_amount_text = self._format_comment_value(old_amount, amount_unit)
+            new_amount_text = self._format_comment_value(new_amount, amount_unit)
+            old_energy_text = self._format_comment_value(
+                state["energy"],
+                " MJ/kg clinker",
+            )
+            new_energy_text = self._format_comment_value(
+                new_energy,
+                " MJ/kg clinker",
+            )
+
+            if id(exc) in coal_exchange_ids:
+                exchange_comment = (
+                    "premise clinker fuel adjustment: this hard coal exchange "
+                    "absorbs part of the aggregate kiln-fuel energy change. "
+                    "Its amount changes from "
+                    f"{old_amount_text} to {new_amount_text}, equivalent to "
+                    f"{old_energy_text} to {new_energy_text}. "
+                    "All hard coal suppliers are scaled proportionally by "
+                    f"{self._format_comment_value(coal_scaling_factor)}."
+                )
+            else:
+                exchange_comment = (
+                    "premise clinker fuel accounting: this exchange is counted "
+                    "as visible kiln fuel energy using its amount and approximate "
+                    "lower heating value, or directly as MJ if already expressed "
+                    "as energy. It is not changed by the cement efficiency "
+                    "adjustment. Its amount remains "
+                    f"{new_amount_text}, equivalent to {old_energy_text}."
+                )
+
+            self._append_comment(exc, exchange_comment)
+
+        fossil_co2_initial = log_parameters.get("initial fossil CO2")
+        fossil_co2_final = log_parameters.get("new fossil CO2")
+        biogenic_co2_initial = log_parameters.get("initial biogenic CO2")
+        biogenic_co2_final = log_parameters.get(
+            "new biogenic CO2",
+            biogenic_co2_initial,
+        )
+        carbon_capture_rate = log_parameters.get("carbon capture rate")
+
+        for exc in ws.biosphere(dataset, ws.contains("name", "Carbon dioxide")):
+            if exc["name"] == "Carbon dioxide, fossil":
+                final_amount = fossil_co2_final
+                if final_amount in (None, ""):
+                    final_amount = exc.get("amount")
+                initial_text = self._format_comment_value(
+                    fossil_co2_initial,
+                    " kg/kg clinker",
+                )
+                final_text = self._format_comment_value(
+                    final_amount,
+                    " kg/kg clinker",
+                )
+                exchange_comment = (
+                    "premise clinker CO2 accounting: amount before the fuel "
+                    "efficiency adjustment was "
+                    f"{initial_text}; final amount after fuel efficiency"
+                )
+                if carbon_capture_rate not in (None, ""):
+                    exchange_comment += " and CCS"
+                exchange_comment += (
+                    f" handling is {final_text}. "
+                    "The fuel-efficiency part follows the applied aggregate "
+                    "hard-coal energy change; calcination CO2 is not scaled by "
+                    "the fuel-efficiency adjustment."
+                )
+                self._append_comment(exc, exchange_comment)
+
+            if exc["name"] == "Carbon dioxide, non-fossil":
+                final_amount = biogenic_co2_final
+                if final_amount in (None, ""):
+                    final_amount = exc.get("amount")
+                initial_text = self._format_comment_value(
+                    biogenic_co2_initial,
+                    " kg/kg clinker",
+                )
+                final_text = self._format_comment_value(
+                    final_amount,
+                    " kg/kg clinker",
+                )
+                exchange_comment = (
+                    "premise clinker CO2 accounting: amount before the fuel "
+                    "efficiency adjustment was "
+                    f"{initial_text}; final amount after fuel efficiency"
+                )
+                if carbon_capture_rate not in (None, ""):
+                    exchange_comment += " and CCS"
+                exchange_comment += (
+                    f" handling is {final_text}. "
+                    "Non-fossil CO2 from secondary fuels is not changed by the "
+                    "non-CCS fuel-efficiency adjustment."
+                )
+                self._append_comment(exc, exchange_comment)
 
     def adjust_process_efficiency(self, dataset, technology):
         """
@@ -287,6 +504,17 @@ class Cement(BaseTransformation):
         log_parameters["accounted initial fuel energy per kg clinker"] = (
             accounted_initial_fuel_energy
         )
+        fuel_exchange_state = {
+            id(exc): {
+                "amount": float(exc.get("amount", 0)),
+                "energy": exchange_energy,
+                "unit": exc.get("unit", ""),
+            }
+            for exc in dataset["exchanges"]
+            if (exchange_energy := self._get_clinker_fuel_exchange_energy(exc))
+            is not None
+        }
+        coal_exchange_ids = set()
 
         if np.isfinite(scaling_factor):
             # Calculate the target accounted thermal energy demand.
@@ -322,6 +550,7 @@ class Cement(BaseTransformation):
             old_coal_input, coal_exchanges = self._get_hard_coal_energy_and_exchanges(
                 dataset
             )
+            coal_exchange_ids = {id(exc) for exc in coal_exchanges}
             target_energy_input = new_energy_input_per_ton_clinker / 1000
             required_energy_change = target_energy_input - accounted_initial_fuel_energy
             applied_energy_change = 0.0
@@ -536,6 +765,13 @@ class Cement(BaseTransformation):
                             ),
                         }
                     )
+
+        self._document_clinker_fuel_adjustment(
+            dataset=dataset,
+            technology=technology,
+            fuel_exchange_state=fuel_exchange_state,
+            coal_exchange_ids=coal_exchange_ids,
+        )
 
         return dataset
 

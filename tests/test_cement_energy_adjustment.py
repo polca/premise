@@ -84,6 +84,10 @@ def fossil_co2(dataset):
     )
 
 
+def exchange(dataset, name):
+    return next(exc for exc in dataset["exchanges"] if exc["name"] == name)
+
+
 def test_clinker_energy_adjustment_scales_split_coal_once():
     cement = get_cement_transform(efficiency_change=10)
     dataset = clinker_dataset(coal_energies=[0.6, 0.4], other_visible_energy=1.0)
@@ -129,3 +133,37 @@ def test_clinker_energy_adjustment_does_not_make_coal_negative():
     assert dataset["log parameters"][
         "unmet thermal energy change per kg clinker"
     ] == pytest.approx(-0.2)
+
+
+def test_clinker_energy_adjustment_documents_dataset_and_exchanges():
+    cement = get_cement_transform(efficiency_change=10)
+    dataset = clinker_dataset(coal_energies=[0.6, 0.4], other_visible_energy=1.0)
+
+    cement.adjust_process_efficiency(dataset, "cement, dry feed rotary kiln")
+
+    assert "original visible fuel inputs" in dataset["comment"]
+    assert "hidden secondary-fuel contribution" in dataset["comment"]
+    assert "new accounted kiln fuel demand" in dataset["comment"]
+    assert "hard coal changes from" in dataset["comment"]
+
+    coal_comments = [
+        exc["comment"]
+        for exc in dataset["exchanges"]
+        if exc["type"] == "technosphere" and "hard coal" in exc["name"]
+    ]
+    assert coal_comments
+    assert all("amount changes from" in comment for comment in coal_comments)
+    assert all("scaled proportionally" in comment for comment in coal_comments)
+
+    diesel_comment = exchange(
+        dataset, "diesel, burned in building machine"
+    )["comment"]
+    assert "visible kiln fuel energy" in diesel_comment
+    assert "not changed by the cement efficiency adjustment" in diesel_comment
+
+    fossil_comment = exchange(dataset, "Carbon dioxide, fossil")["comment"]
+    assert "amount before the fuel efficiency adjustment" in fossil_comment
+    assert "calcination CO2 is not scaled" in fossil_comment
+
+    biogenic_comment = exchange(dataset, "Carbon dioxide, non-fossil")["comment"]
+    assert "Non-fossil CO2 from secondary fuels is not changed" in biogenic_comment
