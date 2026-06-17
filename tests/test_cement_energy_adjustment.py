@@ -155,9 +155,7 @@ def test_clinker_energy_adjustment_documents_dataset_and_exchanges():
     assert all("amount changes from" in comment for comment in coal_comments)
     assert all("scaled proportionally" in comment for comment in coal_comments)
 
-    diesel_comment = exchange(
-        dataset, "diesel, burned in building machine"
-    )["comment"]
+    diesel_comment = exchange(dataset, "diesel, burned in building machine")["comment"]
     assert "visible kiln fuel energy" in diesel_comment
     assert "not changed by the cement efficiency adjustment" in diesel_comment
 
