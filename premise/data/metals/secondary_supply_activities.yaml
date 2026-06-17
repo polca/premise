@@ -238,9 +238,9 @@ palladium:
     reference product:
       equals: palladium
     location:
-      equals: 0.875217233
+      equals: RoW
     shares:
-      2020: RoW
+      2020: 0.875217233
 platinum:
   - name:
       equals: treatment of automobile catalyst

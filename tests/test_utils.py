@@ -184,6 +184,41 @@ def test_iter_cached_metadata_supports_manifest_shards(tmp_path):
     assert list(iter_cached_metadata(metadata_ref)) == [metadata_a, metadata_b]
 
 
+def test_scenario_cache_preserves_regionalized_without_metadata_reload(tmp_path):
+    cache_ref = tmp_path / "scenario-cache.pickle"
+    database = [
+        {
+            "database": "test-db",
+            "code": "market-code",
+            "name": "market group for electricity, low voltage",
+            "reference product": "electricity, low voltage",
+            "location": "BRA",
+            "unit": "kilowatt hour",
+            "regionalized": True,
+            "exchanges": [
+                {
+                    "name": "market group for electricity, low voltage",
+                    "product": "electricity, low voltage",
+                    "amount": 1.0,
+                    "type": "production",
+                    "unit": "kilowatt hour",
+                    "location": "BRA",
+                }
+            ],
+        }
+    ]
+
+    database_ref, metadata_ref = create_scenario_cache(database, cache_ref)
+    scenario = {
+        "database filepath": database_ref,
+        "database metadata filepath": metadata_ref,
+    }
+
+    load_database(scenario, original_database=[], delete=False, load_metadata=False)
+
+    assert scenario["database"][0]["regionalized"] is True
+
+
 def test_create_cache_writes_legacy_database_and_manifest_metadata(tmp_path):
     cache_ref = tmp_path / "db-cache.pickle"
     database = [

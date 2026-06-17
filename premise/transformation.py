@@ -1191,11 +1191,15 @@ class BaseTransformation:
                             else:
                                 efficiency_adjustment_fn(dataset, technology)
 
-                    processed_datasets.extend(regionalized_datasets.values())
+                    regionalized_datasets = list(regionalized_datasets.values())
+                    # Original datasets can only be emptied once their IAM
+                    # replacements are visible to the provider index.
+                    self.add_to_index(regionalized_datasets)
+                    processed_datasets.extend(regionalized_datasets)
                     seen_datasets.update(
                         (ds["name"], ds["reference product"]) for ds in activities
                     )
-                    mapping[technology].extend(regionalized_datasets.values())
+                    mapping[technology].extend(regionalized_datasets)
 
                     datasets = list(
                         ws.get_many(
@@ -1223,7 +1227,6 @@ class BaseTransformation:
                     )
 
         for dataset in processed_datasets:
-            self.add_to_index(dataset)
             self.write_log(dataset, "created")
             self.database.append(dataset)
 
