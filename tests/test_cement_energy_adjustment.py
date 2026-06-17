@@ -106,9 +106,7 @@ def test_clinker_efficient_kiln_uses_3000_kj_floor():
     cement = get_cement_transform(efficiency_change=10)
     dataset = clinker_dataset(coal_energies=[0.6, 0.4], other_visible_energy=1.0)
 
-    cement.adjust_process_efficiency(
-        dataset, "cement, dry feed rotary kiln, efficient"
-    )
+    cement.adjust_process_efficiency(dataset, "cement, dry feed rotary kiln, efficient")
 
     assert dataset["log parameters"]["new energy input per ton clinker"] == 3000
     assert dataset["log parameters"][
@@ -121,9 +119,7 @@ def test_clinker_energy_adjustment_does_not_make_coal_negative():
     cement = get_cement_transform(efficiency_change=10)
     dataset = clinker_dataset(coal_energies=[0.12, 0.08], other_visible_energy=1.0)
 
-    cement.adjust_process_efficiency(
-        dataset, "cement, dry feed rotary kiln, efficient"
-    )
+    cement.adjust_process_efficiency(dataset, "cement, dry feed rotary kiln, efficient")
 
     assert hard_coal_energy(dataset) == pytest.approx(0.0)
     assert all(energy >= 0 for energy in hard_coal_energies(dataset))
