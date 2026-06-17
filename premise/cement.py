@@ -323,9 +323,7 @@ class Cement(BaseTransformation):
                 dataset
             )
             target_energy_input = new_energy_input_per_ton_clinker / 1000
-            required_energy_change = (
-                target_energy_input - accounted_initial_fuel_energy
-            )
+            required_energy_change = target_energy_input - accounted_initial_fuel_energy
             applied_energy_change = 0.0
             coal_scaling_factor = 1.0
 
