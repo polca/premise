@@ -2475,8 +2475,8 @@ class CementValidation(BaseDatasetValidator):
                     ), f"Clinker market input {e['name']} in {e['location']} has incorrect location for dataset {ds['name']} in {ds['location']}."
 
     def check_clinker_energy_use(self):
-        # check that clinker production datasets
-        # use at least 3 MJ/kg clinker
+        # Check that accounted clinker fuel energy respects the practical
+        # lower bound for efficient kiln technologies.
 
         for ds in self.database:
             if (
@@ -2484,85 +2484,95 @@ class CementValidation(BaseDatasetValidator):
                 and ds["location"] in self.regions
                 and "clinker" in ds["reference product"]
             ):
-                energy = sum(
-                    [
-                        exc["amount"]
-                        for exc in ds["exchanges"]
-                        if exc["unit"] == "megajoule" and exc["type"] == "technosphere"
-                    ]
+                energy = ds.get("log parameters", {}).get(
+                    "new accounted fuel energy per kg clinker"
                 )
 
-                # add input of coal
-                energy += sum(
-                    [
-                        exc["amount"] * 26.4
-                        for exc in ds["exchanges"]
-                        if "hard coal" in exc["name"]
-                        and exc["type"] == "technosphere"
-                        and exc["unit"] == "kilogram"
-                        and exc["amount"] > 0
-                    ]
-                )
+                if energy is None:
+                    energy = sum(
+                        [
+                            exc["amount"]
+                            for exc in ds["exchanges"]
+                            if exc["unit"] == "megajoule"
+                            and exc["type"] == "technosphere"
+                        ]
+                    )
 
-                # add input of heavy and light fuel oil
-                energy += sum(
-                    [
-                        exc["amount"] * 41.9
-                        for exc in ds["exchanges"]
-                        if "fuel oil" in exc["name"]
-                        and exc["type"] == "technosphere"
-                        and exc["unit"] == "kilogram"
-                        and exc["amount"] > 0
-                    ]
-                )
+                    # add input of coal
+                    energy += sum(
+                        [
+                            exc["amount"] * 26.4
+                            for exc in ds["exchanges"]
+                            if "hard coal" in exc["name"]
+                            and exc["type"] == "technosphere"
+                            and exc["unit"] == "kilogram"
+                            and exc["amount"] > 0
+                        ]
+                    )
 
-                # add lignite
-                energy += sum(
-                    [
-                        exc["amount"] * 10.5
-                        for exc in ds["exchanges"]
-                        if "lignite" in exc["name"]
-                        and exc["type"] == "technosphere"
-                        and exc["unit"] == "kilogram"
-                        and exc["amount"] > 0
-                    ]
-                )
+                    # add input of heavy and light fuel oil
+                    energy += sum(
+                        [
+                            exc["amount"] * 41.9
+                            for exc in ds["exchanges"]
+                            if "fuel oil" in exc["name"]
+                            and exc["type"] == "technosphere"
+                            and exc["unit"] == "kilogram"
+                            and exc["amount"] > 0
+                        ]
+                    )
 
-                # add petcoke
-                energy += sum(
-                    [
-                        exc["amount"] * 35.2
-                        for exc in ds["exchanges"]
-                        if "petroleum coke" in exc["name"]
-                        and exc["type"] == "technosphere"
-                        and exc["unit"] == "kilogram"
-                        and exc["amount"] > 0
-                    ]
-                )
+                    # add lignite
+                    energy += sum(
+                        [
+                            exc["amount"] * 10.5
+                            for exc in ds["exchanges"]
+                            if "lignite" in exc["name"]
+                            and exc["type"] == "technosphere"
+                            and exc["unit"] == "kilogram"
+                            and exc["amount"] > 0
+                        ]
+                    )
 
-                # add input of natural gas
-                energy += sum(
-                    [
-                        exc["amount"] * 36
-                        for exc in ds["exchanges"]
-                        if "natural gas" in exc["name"]
-                        and exc["type"] == "technosphere"
-                        and exc["unit"] == "cubic meter"
-                        and exc["amount"] > 0
-                    ]
-                )
+                    # add petcoke
+                    energy += sum(
+                        [
+                            exc["amount"] * 35.2
+                            for exc in ds["exchanges"]
+                            if "petroleum coke" in exc["name"]
+                            and exc["type"] == "technosphere"
+                            and exc["unit"] == "kilogram"
+                            and exc["amount"] > 0
+                        ]
+                    )
 
-                # add input of waste plastic, mixture
-                energy += sum(
-                    [
-                        exc["amount"] * 17 * -1
-                        for exc in ds["exchanges"]
-                        if exc.get("product") == "waste plastic, mixture"
-                        and exc["type"] == "technosphere"
-                        and exc["unit"] == "kilogram"
-                        and exc["amount"] < 0
-                    ]
-                )
+                    # add input of natural gas
+                    energy += sum(
+                        [
+                            exc["amount"] * 36
+                            for exc in ds["exchanges"]
+                            if "natural gas" in exc["name"]
+                            and exc["type"] == "technosphere"
+                            and exc["unit"] == "cubic meter"
+                            and exc["amount"] > 0
+                        ]
+                    )
+
+                    # add input of waste plastic, mixture
+                    energy += sum(
+                        [
+                            exc["amount"] * 17 * -1
+                            for exc in ds["exchanges"]
+                            if exc.get("product") == "waste plastic, mixture"
+                            and exc["type"] == "technosphere"
+                            and exc["unit"] == "kilogram"
+                            and exc["amount"] < 0
+                        ]
+                    )
+
+                    energy += ds.get("log parameters", {}).get(
+                        "hidden secondary fuel energy per kg clinker", 0
+                    )
 
                 if energy < 2.99:
                     message = f"Energy use for clinker production is too low: {energy}."

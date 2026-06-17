@@ -1436,11 +1436,16 @@ Efficiency adjustment
 
 *premise* then adjusts the thermal efficiency of the process.
 
-It first calculates the energy input in the current (original) dataset,
-by looking up the fuel inputs and their respective lower heating values.
+It first calculates the visible fuel energy in the current (original)
+dataset, by looking up the fuel inputs and their respective lower heating
+values. Some ecoinvent clinker inventories include emissions from secondary
+fuels that are not listed as burdened technosphere fuel inputs. For these
+datasets, *premise* keeps an internal energy ledger and adds an inferred
+hidden secondary-fuel energy amount so that the accounted starting point
+remains consistent with the original total clinker thermal energy demand.
 
-Once the energy required per ton clinker today (2020) is known, it is
-multiplied by a *scaling factor* that represents a change in efficiency
+Once the accounted energy required per ton clinker today (2020) is known,
+it is multiplied by a *scaling factor* that represents a change in efficiency
 between today and the scenario year.
 
 .. note::
@@ -1455,23 +1460,38 @@ between today and the scenario year.
 
 .. note::
 
-    *premise* enforces a lower limit on the fuel consumption per ton of clinker.
-    This limit is set to 3.1 GJ/t clinker and is close to the minimum
-    theoretical fuel consumption with an moisture content of the raw materials,
-    as considered in the 2018 IEA_ cement roadmap report (i.e., 2.8 GJ/t clinker).
-    Hence, regardless of the scaling factor, the fuel consumption per ton of clinker
-    will never be less than 3.1 GJ/t.
+    *premise* enforces a practical lower limit on accounted fuel consumption
+    per ton of clinker. This is not the thermodynamic minimum: the theoretical
+    heat requirement for the clinker-burning reactions is about 1.7-1.8 GJ/t
+    clinker. Actual rotary kiln systems need additional fuel because of heat
+    losses, raw material moisture, gas handling, cooler losses, bypasses, and
+    other process constraints.
 
-.. _IEA: https://iea.blob.core.windows.net/assets/cbaa3da1-fd61-4c2a-8719-31538f59b54f/TechnologyRoadmapLowCarbonTransitionintheCementIndustry.pdf
+    For ordinary clinker production, the lower limit is set to 3.1 GJ/t
+    clinker. For efficient dry feed rotary kiln technologies, the lower limit
+    is set to 3.0 GJ/t clinker, consistent with the BAT heat balance value for
+    dry process kilns with multi-stage suspension preheating and precalcination
+    reported in the European cement and lime `CLM BREF`_. Hence, regardless of the
+    scaling factor, accounted clinker fuel consumption will not fall below
+    these practical lower limits.
+
+.. _CLM BREF: https://bureau-industrial-transformation.jrc.ec.europa.eu/sites/default/files/2020-03/superseded_clm_bref_1201.pdf
 
 
 
-Once the new energy input is determined, *premise* scales down the fuel,
-and the fossil and biogenic CO2 emissions accordingly, based on the Lower Heating Value
-and CO2 emission factors for these fuels.
+Once the new accounted energy input is determined, *premise* applies the
+required energy change to hard coal inputs first. If hard coal inputs are
+split across several suppliers, the aggregate hard coal change is distributed
+proportionally across all hard coal exchanges. The hidden secondary-fuel
+energy is bookkeeping only and is not added as a burdened technosphere input.
+
+For the non-CCS efficiency adjustment, only fossil CO2 emissions are adjusted,
+based on the aggregate hard coal energy change and the hard coal CO2 emission
+factor. Biogenic CO2 emissions from secondary fuels are not changed by this
+efficiency step.
 
 Note that the change in CO2 emissions only concerns the share
-that originates from the combustion of fuels. It does not
+that originates from the combustion of the adjusted fossil fuel. It does not
 concern the calcination emissions due to the production of
 calcium oxide (CaO) from calcium carbonate (CaCO3), which is set
 at a fix emission rate of 525 kg CO2/t clinker.
