@@ -43,24 +43,16 @@ HYDROGEN_DISTRIBUTION_MODES = sorted(
 )
 HYDROGEN_TRANSPORT_ACTIVITIES = {
     "compressed_gaseous_truck": {
-        "name": (
-            "transport, hydrogen, gaseous, lorry, "
-            "market average propulsion system"
-        ),
+        "name": ("transport, hydrogen, gaseous, lorry, " "unspecified"),
         "reference product": (
-            "transport, hydrogen, gaseous, lorry, "
-            "market average propulsion system"
+            "transport, hydrogen, gaseous, lorry, " "unspecified"
         ),
         "unit": "ton kilometer",
     },
     "liquid_hydrogen_truck": {
-        "name": (
-            "transport, hydrogen, liquid, lorry, "
-            "market average propulsion system"
-        ),
+        "name": ("transport, hydrogen, liquid, lorry, " "unspecified"),
         "reference product": (
-            "transport, hydrogen, liquid, lorry, "
-            "market average propulsion system"
+            "transport, hydrogen, liquid, lorry, " "unspecified"
         ),
         "unit": "ton kilometer",
     },
