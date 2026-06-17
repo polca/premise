@@ -1,19 +1,17 @@
 import xarray as xr
 
-from .hydrogen import HydrogenMixin
-from .biogas import BiogasMixin
-from .biofuels import BiofuelsMixin
-from .liquid_fuels import SyntheticFuelsMixin
-from .markets import FuelMarketsMixin
-from .utils import fetch_mapping
-from .config import FUEL_GROUPS
-from ..transformation import (
-    BaseTransformation,
-)
-from ..validation import FuelsValidation
 from ..activity_maps import InventorySet
 from ..inventory_imports import get_biosphere_code
 from ..logger import create_logger
+from ..transformation import BaseTransformation
+from ..validation import FuelsValidation
+from .biofuels import BiofuelsMixin
+from .biogas import BiogasMixin
+from .config import FUEL_GROUPS
+from .hydrogen import HydrogenMixin
+from .liquid_fuels import SyntheticFuelsMixin
+from .markets import FuelMarketsMixin
+from .utils import fetch_mapping
 
 logger = create_logger("fuel")
 
@@ -41,6 +39,12 @@ def _update_fuels(scenario, version, system_model):
             scenario["iam data"].hydrogen_blend,
         )
     ):
+        try:
+            fuels.set_hydrogen_logistics()
+            scenario["hydrogen demand nodes"] = fuels.hydrogen_demand_nodes
+        except Exception as exc:
+            print(f"Could not create hydrogen demand nodes analysis: {exc}")
+
         fuels.generate_hydrogen_activities()
         fuels.generate_synthetic_fuel_activities()
         fuels.generate_biogas_activities()
@@ -107,7 +111,9 @@ class Fuels(
                     for item in sublist
                 ]
                 if g
-                in self.iam_data.production_volumes.coords["variables"].values.tolist()
+                in self.iam_data.production_volumes.coords[
+                    "variables"
+                ].values.tolist()
             ]
         )
 
