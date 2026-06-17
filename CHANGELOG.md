@@ -2,6 +2,34 @@
 
 All notable changes to this project are documented in this file.
 
+## [2.4.6]
+
+### Fixed
+- Corrected cement clinker fuel-efficiency adjustments so the original
+  accounted kiln fuel demand includes inferred secondary-fuel energy represented
+  by emissions but not by burdened technosphere fuel inputs.
+- Applied cement kiln fuel reductions once to aggregate hard coal inputs and
+  distributed the change proportionally across split hard-coal suppliers,
+  avoiding over-reduction when several hard-coal exchanges are present.
+- Updated fossil CO2 changes from the applied aggregate hard-coal energy change
+  while leaving non-fossil CO2 unchanged outside CCS handling.
+- Enforced practical accounted clinker fuel-demand floors of `3.1 GJ/t` for
+  ordinary clinker production and `3.0 GJ/t` for efficient dry kiln
+  technologies.
+
+### Documentation
+- Added detailed cement transformation documentation clarifying visible fuel
+  inputs, inferred hidden secondary-fuel bookkeeping, practical lower bounds,
+  hard-coal-only scaling, and fossil/non-fossil CO2 handling.
+- Added dataset and exchange comments to transformed clinker inventories so
+  exported databases explain original visible fuel energy, hidden secondary-fuel
+  bookkeeping, new accounted fuel demand, hard-coal scaling, and CO2 handling.
+
+### Tests
+- Added cement regression coverage for split hard-coal inputs, clinker fuel
+  demand floors, non-negative hard-coal scaling, and the new dataset/exchange
+  comment surface.
+
 ## [2.4.5]
 
 ### Fixed
