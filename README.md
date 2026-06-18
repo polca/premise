@@ -216,6 +216,9 @@ plausible, and desirable futures.
 
 ## Support
 
+For questions or issues around the use of ``premise``, join the discussion group at
+[https://premise.groups.io/g/premise](https://premise.groups.io/g/premise).
+
 Do not hesitate to contact [romain.sacchi@psi.ch](mailto:romain.sacchi@psi.ch).
 
 ## Current and past Contributors
