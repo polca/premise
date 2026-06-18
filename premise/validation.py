@@ -1300,7 +1300,7 @@ class TransportValidation(BaseDatasetValidator):
         for act in [
             a
             for a in self.database
-            if a["name"].startswith("transport, ") and ", unspecified" in a["name"]
+            if a["name"].startswith("transport, ") and ", unspecified" in a["name"] and "hydrogen" not in a["name"]
         ]:
             total = sum(
                 exc["amount"]
