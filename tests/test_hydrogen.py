@@ -106,3 +106,120 @@ def test_general_hydrogen_market_name_has_no_sector_transport_shares():
     )
 
     assert shares == {}
+
+
+def test_hydrogen_consumer_is_relinked_to_sector_market():
+    hydrogen = HydrogenMixin()
+    hydrogen.database = [
+        {
+            "name": "ammonia production, with market-average hydrogen",
+            "reference product": "ammonia, anhydrous, liquid",
+            "location": "RER",
+            "unit": "kilogram",
+            "exchanges": [
+                {
+                    "name": "market for hydrogen, gaseous, low pressure",
+                    "product": "hydrogen, gaseous, low pressure",
+                    "location": "RER",
+                    "unit": "kilogram",
+                    "type": "technosphere",
+                    "amount": 0.2,
+                }
+            ],
+        }
+    ]
+
+    relinked = hydrogen.relink_hydrogen_consumers_to_sector_markets()
+
+    assert relinked == 1
+    assert hydrogen.database[0]["exchanges"][0]["name"] == (
+        "market for hydrogen, gaseous, low pressure, for chemicals"
+    )
+    assert hydrogen.unmatched_hydrogen_consumers == []
+    assert hydrogen.skipped_hydrogen_consumers == []
+
+
+def test_unmatched_hydrogen_consumer_is_kept_on_general_market():
+    hydrogen = HydrogenMixin()
+    hydrogen.database = [
+        {
+            "name": "generic production, with market-average hydrogen",
+            "reference product": "generic product",
+            "location": "RER",
+            "unit": "kilogram",
+            "exchanges": [
+                {
+                    "name": "market for hydrogen, gaseous, low pressure",
+                    "product": "hydrogen, gaseous, low pressure",
+                    "location": "RER",
+                    "unit": "kilogram",
+                    "type": "technosphere",
+                    "amount": 0.2,
+                }
+            ],
+        }
+    ]
+
+    relinked = hydrogen.relink_hydrogen_consumers_to_sector_markets()
+
+    assert relinked == 0
+    assert hydrogen.database[0]["exchanges"][0]["name"] == (
+        "market for hydrogen, gaseous, low pressure"
+    )
+    assert hydrogen.unmatched_hydrogen_consumers == [
+        {
+            "name": "generic production, with market-average hydrogen",
+            "reference product": "generic product",
+            "location": "RER",
+            "hydrogen exchange location": "RER",
+            "hydrogen exchange amount": 0.2,
+            "candidate sectors": [],
+        }
+    ]
+    assert hydrogen.skipped_hydrogen_consumers == []
+
+
+def test_synthetic_fuel_hydrogen_consumer_is_kept_on_general_market():
+    hydrogen = HydrogenMixin()
+    hydrogen.database = [
+        {
+            "name": (
+                "diesel production, synthetic, from Fischer Tropsch process, "
+                "market-average hydrogen"
+            ),
+            "reference product": "diesel, synthetic",
+            "location": "RER",
+            "unit": "kilogram",
+            "exchanges": [
+                {
+                    "name": "market for hydrogen, gaseous, low pressure",
+                    "product": "hydrogen, gaseous, low pressure",
+                    "location": "RER",
+                    "unit": "kilogram",
+                    "type": "technosphere",
+                    "amount": 0.2,
+                }
+            ],
+        }
+    ]
+
+    relinked = hydrogen.relink_hydrogen_consumers_to_sector_markets()
+
+    assert relinked == 0
+    assert hydrogen.database[0]["exchanges"][0]["name"] == (
+        "market for hydrogen, gaseous, low pressure"
+    )
+    assert hydrogen.unmatched_hydrogen_consumers == []
+    assert hydrogen.skipped_hydrogen_consumers == [
+        {
+            "name": (
+                "diesel production, synthetic, from Fischer Tropsch process, "
+                "market-average hydrogen"
+            ),
+            "reference product": "diesel, synthetic",
+            "location": "RER",
+            "hydrogen exchange location": "RER",
+            "hydrogen exchange amount": 0.2,
+            "candidate sectors": [],
+        }
+    ]
