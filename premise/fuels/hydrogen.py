@@ -34,6 +34,56 @@ HYDROGEN_END_USE_MARKETS = {
     "Heating": "market for hydrogen, gaseous, low pressure, for heating",
     "Other": "market for hydrogen, gaseous, low pressure, for other end uses",
 }
+HYDROGEN_MARKET = "market for hydrogen, gaseous, low pressure"
+HYDROGEN_PRODUCT = "hydrogen, gaseous, low pressure"
+HYDROGEN_CONSUMER_KEEP_GENERAL_MARKET_KEYWORDS = (
+    "synthetic",
+    "fischer tropsch",
+    "rwgs",
+    "syngas",
+    "methanol synthesis, market-average hydrogen",
+    "methanol distillation, market-average hydrogen",
+)
+HYDROGEN_CONSUMER_SECTOR_KEYWORDS = {
+    "Transport": (
+        "transport",
+        "fueling station",
+        "fuelling station",
+        "service station",
+        "fuel cell vehicle",
+    ),
+    "Steel": (
+        "steel",
+        "direct reduced iron",
+        "sponge iron",
+    ),
+    "Cement": (
+        "cement",
+        "clinker",
+    ),
+    "Chemicals": (
+        "chemical",
+        "ammonia",
+        "methanol",
+        "chlor-alkali",
+        "hydrogen cyanide",
+        "carbon monoxide",
+        "olefin",
+        "propylene",
+        "styrene",
+        "pyridine",
+        "aminopyridine",
+        "butyrolactone",
+        "potassium hydroxide",
+        "methyl ethyl ketone",
+    ),
+    "Heating": (
+        "heat production",
+        "boiler",
+        "furnace",
+        "burned in",
+    ),
+}
 HYDROGEN_DISTRIBUTION_MODES = sorted(
     {
         mode
@@ -91,6 +141,131 @@ class HydrogenMixin:
 
         self._regionalize_hydrogen_activities()
         self._generate_supporting_hydrogen_datasets()
+
+    @staticmethod
+    def _hydrogen_consumer_text(dataset):
+        values = [
+            dataset.get("name", ""),
+            dataset.get("reference product", ""),
+            dataset.get("unit", ""),
+        ]
+        for classification in dataset.get("classifications", []):
+            if isinstance(classification, (list, tuple)):
+                values.extend(str(value) for value in classification)
+            else:
+                values.append(str(classification))
+        return " | ".join(values).lower()
+
+    @staticmethod
+    def _is_plain_hydrogen_market_exchange(exchange):
+        return (
+            exchange.get("type") == "technosphere"
+            and exchange.get("name") == HYDROGEN_MARKET
+            and exchange.get("product") == HYDROGEN_PRODUCT
+        )
+
+    @staticmethod
+    def _is_hydrogen_supplier_dataset(dataset):
+        return (
+            dataset.get("reference product") == HYDROGEN_PRODUCT
+            or dataset.get("name") == HYDROGEN_MARKET
+            or dataset.get("name") in HYDROGEN_END_USE_MARKETS.values()
+        )
+
+    def _keep_general_hydrogen_market(self, dataset):
+        text = self._hydrogen_consumer_text(dataset)
+        return any(
+            keyword in text
+            for keyword in HYDROGEN_CONSUMER_KEEP_GENERAL_MARKET_KEYWORDS
+        )
+
+    def _classify_hydrogen_consumer_sector(self, dataset):
+        text = self._hydrogen_consumer_text(dataset)
+        matches = [
+            sector
+            for sector, keywords in HYDROGEN_CONSUMER_SECTOR_KEYWORDS.items()
+            if any(keyword in text for keyword in keywords)
+        ]
+        if len(matches) == 1:
+            return matches[0], matches
+        return None, matches
+
+    @staticmethod
+    def _hydrogen_consumer_warning(dataset, exchange, matches):
+        return {
+            "name": dataset.get("name"),
+            "reference product": dataset.get("reference product"),
+            "location": dataset.get("location"),
+            "hydrogen exchange location": exchange.get("location"),
+            "hydrogen exchange amount": exchange.get("amount"),
+            "candidate sectors": matches,
+        }
+
+    def relink_hydrogen_consumers_to_sector_markets(self):
+        """
+        Redirect plain hydrogen market inputs to sector-specific hydrogen markets.
+
+        Consumers that cannot be classified unambiguously are kept linked to the
+        plain hydrogen market and recorded in
+        ``self.unmatched_hydrogen_consumers`` for later inspection.
+        """
+
+        self.unmatched_hydrogen_consumers = []
+        self.skipped_hydrogen_consumers = []
+        relinked = 0
+
+        for dataset in self.database:
+            if self._is_hydrogen_supplier_dataset(dataset):
+                continue
+
+            hydrogen_exchanges = [
+                exchange
+                for exchange in dataset.get("exchanges", [])
+                if self._is_plain_hydrogen_market_exchange(exchange)
+            ]
+            if not hydrogen_exchanges:
+                continue
+
+            if self._keep_general_hydrogen_market(dataset):
+                self.skipped_hydrogen_consumers.extend(
+                    self._hydrogen_consumer_warning(dataset, exchange, [])
+                    for exchange in hydrogen_exchanges
+                )
+                continue
+
+            sector, matches = self._classify_hydrogen_consumer_sector(dataset)
+            if sector is None:
+                self.unmatched_hydrogen_consumers.extend(
+                    self._hydrogen_consumer_warning(dataset, exchange, matches)
+                    for exchange in hydrogen_exchanges
+                )
+                continue
+
+            for exchange in hydrogen_exchanges:
+                exchange["name"] = HYDROGEN_END_USE_MARKETS[sector]
+                relinked += 1
+
+            dataset.setdefault("log parameters", {})[
+                "hydrogen market sector"
+            ] = sector
+
+        if self.unmatched_hydrogen_consumers:
+            print(
+                "Could not classify "
+                f"{len(self.unmatched_hydrogen_consumers)} hydrogen-consuming "
+                "exchange(s) for sector-specific hydrogen market relinking."
+            )
+
+        if self.skipped_hydrogen_consumers:
+            print(
+                "Kept "
+                f"{len(self.skipped_hydrogen_consumers)} hydrogen-consuming "
+                "exchange(s) on the general hydrogen market because synfuels "
+                "and direct-production consumers are not included in "
+                "sector-specific hydrogen market relinking."
+            )
+
+        return relinked
 
     @staticmethod
     def _as_list(value):

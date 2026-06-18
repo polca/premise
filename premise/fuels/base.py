@@ -46,12 +46,19 @@ def _update_fuels(scenario, version, system_model):
             print(f"Could not create hydrogen demand nodes analysis: {exc}")
 
         fuels.generate_hydrogen_activities()
+        fuels.relink_hydrogen_consumers_to_sector_markets()
         fuels.generate_synthetic_fuel_activities()
         fuels.generate_biogas_activities()
         fuels.relink_datasets()
         scenario["database"] = fuels.database
         scenario["cache"] = fuels.cache
         scenario["index"] = fuels.index
+        scenario["unmatched hydrogen consumers"] = (
+            fuels.unmatched_hydrogen_consumers
+        )
+        scenario["hydrogen consumers kept on general market"] = (
+            fuels.skipped_hydrogen_consumers
+        )
 
         if "mapping" not in scenario:
             scenario["mapping"] = {}
