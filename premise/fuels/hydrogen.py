@@ -201,6 +201,21 @@ class HydrogenMixin:
             "candidate sectors": matches,
         }
 
+    @staticmethod
+    def _matched_hydrogen_consumer_record(
+        dataset, exchange, sector, new_market
+    ):
+        return {
+            "name": dataset.get("name"),
+            "reference product": dataset.get("reference product"),
+            "location": dataset.get("location"),
+            "hydrogen exchange location": exchange.get("location"),
+            "hydrogen exchange amount": exchange.get("amount"),
+            "sector": sector,
+            "old generic hydrogen market": HYDROGEN_MARKET,
+            "new sector specific hydrogen market": new_market,
+        }
+
     def relink_hydrogen_consumers_to_sector_markets(self):
         """
         Redirect plain hydrogen market inputs to sector-specific hydrogen markets.
@@ -212,6 +227,7 @@ class HydrogenMixin:
 
         self.unmatched_hydrogen_consumers = []
         self.skipped_hydrogen_consumers = []
+        self.matched_hydrogen_consumers = []
         relinked = 0
 
         for dataset in self.database:
@@ -242,7 +258,13 @@ class HydrogenMixin:
                 continue
 
             for exchange in hydrogen_exchanges:
-                exchange["name"] = HYDROGEN_END_USE_MARKETS[sector]
+                new_market = HYDROGEN_END_USE_MARKETS[sector]
+                self.matched_hydrogen_consumers.append(
+                    self._matched_hydrogen_consumer_record(
+                        dataset, exchange, sector, new_market
+                    )
+                )
+                exchange["name"] = new_market
                 relinked += 1
 
             dataset.setdefault("log parameters", {})[
