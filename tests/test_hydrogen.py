@@ -135,6 +135,20 @@ def test_hydrogen_consumer_is_relinked_to_sector_market():
     assert hydrogen.database[0]["exchanges"][0]["name"] == (
         "market for hydrogen, gaseous, low pressure, for chemicals"
     )
+    assert hydrogen.matched_hydrogen_consumers == [
+        {
+            "name": "ammonia production, with market-average hydrogen",
+            "reference product": "ammonia, anhydrous, liquid",
+            "location": "RER",
+            "hydrogen exchange location": "RER",
+            "hydrogen exchange amount": 0.2,
+            "sector": "Chemicals",
+            "generic hydrogen market": "market for hydrogen, gaseous, low pressure",
+            "sector specific hydrogen market": (
+                "market for hydrogen, gaseous, low pressure, for chemicals"
+            ),
+        }
+    ]
     assert hydrogen.unmatched_hydrogen_consumers == []
     assert hydrogen.skipped_hydrogen_consumers == []
 
@@ -176,6 +190,7 @@ def test_unmatched_hydrogen_consumer_is_kept_on_general_market():
             "candidate sectors": [],
         }
     ]
+    assert hydrogen.matched_hydrogen_consumers == []
     assert hydrogen.skipped_hydrogen_consumers == []
 
 
@@ -209,6 +224,7 @@ def test_synthetic_fuel_hydrogen_consumer_is_kept_on_general_market():
     assert hydrogen.database[0]["exchanges"][0]["name"] == (
         "market for hydrogen, gaseous, low pressure"
     )
+    assert hydrogen.matched_hydrogen_consumers == []
     assert hydrogen.unmatched_hydrogen_consumers == []
     assert hydrogen.skipped_hydrogen_consumers == [
         {
