@@ -56,6 +56,9 @@ def _update_fuels(scenario, version, system_model):
         scenario["unmatched hydrogen consumers"] = (
             fuels.unmatched_hydrogen_consumers
         )
+        scenario["hydrogen consumers matched to sector markets"] = (
+            fuels.matched_hydrogen_consumers
+        )
         scenario["hydrogen consumers kept on general market"] = (
             fuels.skipped_hydrogen_consumers
         )
