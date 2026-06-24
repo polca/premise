@@ -134,6 +134,14 @@ HYDROGEN_TRANSPORT_ACTIVITIES = {
         "unit": "ton kilometer",
     },
 }
+HYDROGEN_TRANSPORT_DISTANCES_KM = {
+    "compressed_gaseous_truck": 50,
+    "liquid_hydrogen_truck": 100,
+    "liquid_ammonia_ship": 2500,
+    "liquid_hydrogen_ship": 2500,
+}
+HYDROGEN_PIPELINE_GENERAL_MARKET_AMOUNT = 1
+KG_TO_TONNE = 0.001
 
 
 class HydrogenMixin:
@@ -1149,6 +1157,14 @@ class HydrogenMixin:
             "amount": amount,
         }
 
+    @staticmethod
+    def _hydrogen_transport_amount_for_sector_market(mode, share):
+        if mode == "compressed_gaseous_pipeline":
+            return share * HYDROGEN_PIPELINE_GENERAL_MARKET_AMOUNT
+
+        distance = HYDROGEN_TRANSPORT_DISTANCES_KM[mode]
+        return share * distance * KG_TO_TONNE
+
     def _add_transport_to_sector_specific_hydrogen_market(self, dataset):
         shares = self._hydrogen_transport_shares_for_market(dataset)
 
@@ -1157,10 +1173,14 @@ class HydrogenMixin:
                 continue
 
             activity = HYDROGEN_TRANSPORT_ACTIVITIES[mode]
+            amount = self._hydrogen_transport_amount_for_sector_market(
+                mode, share
+            )
+
             if mode == "compressed_gaseous_pipeline":
                 dataset["exchanges"].append(
                     self._hydrogen_transport_exchange(
-                        activity, dataset["location"], share
+                        activity, dataset["location"], amount
                     )
                 )
                 continue
@@ -1172,6 +1192,6 @@ class HydrogenMixin:
                 self._hydrogen_transport_exchange(
                     activity=supplier,
                     location=supplier["location"],
-                    amount=share,
+                    amount=amount,
                 )
             )
