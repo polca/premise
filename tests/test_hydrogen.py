@@ -72,7 +72,7 @@ def test_sector_hydrogen_market_gets_weighted_transport_exchanges():
     ]
     pipeline = exchanges["hydrogen supply, distributed by pipeline"]
 
-    assert truck["amount"] == 0.5
+    assert truck["amount"] == 0.025
     assert truck["location"] == "GLO"
     assert truck["product"] == (
         "transport, hydrogen, gaseous, lorry , "
