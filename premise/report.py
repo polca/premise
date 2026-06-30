@@ -179,9 +179,7 @@ def fetch_data(
             else None
         ),
         "CDR - energy use": (
-            iam_data.cdr_energy_use
-            if hasattr(iam_data, "cdr_energy_use")
-            else None
+            iam_data.cdr_energy_use if hasattr(iam_data, "cdr_energy_use") else None
         ),
         "CDR - efficiency": (
             iam_data.cdr_technology_efficiencies
@@ -261,9 +259,7 @@ def fetch_data(
         if sector in ("Battery (mobile)", "Battery (stationary)"):
             iam_data = iam_data.rename({"chemistry": "variables"})
 
-        variables = [
-            v for v in variable if v in iam_data.coords["variables"].values
-        ]
+        variables = [v for v in variable if v in iam_data.coords["variables"].values]
         if not variables and sector in ("CDR - energy use", "CDR - efficiency"):
             variables = list(iam_data.coords["variables"].values)
 

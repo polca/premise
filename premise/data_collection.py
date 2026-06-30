@@ -1205,7 +1205,10 @@ class IAMDataCollection:
             for carrier, model_aliases in energy_aliases.items():
                 if not isinstance(model_aliases, dict):
                     continue
-                if self.model in model_aliases and model_aliases[self.model] is not None:
+                if (
+                    self.model in model_aliases
+                    and model_aliases[self.model] is not None
+                ):
                     dict_vars.setdefault(technology, {})[carrier] = model_aliases[
                         self.model
                     ]

@@ -8,7 +8,6 @@ import xarray as xr
 from premise.carbon_dioxide_removal import CarbonDioxideRemoval
 from premise.filesystem_constants import INVENTORY_DIR
 
-
 CDR_INVENTORY = INVENTORY_DIR / "lci-carbon-capture.xlsx"
 
 
@@ -86,12 +85,12 @@ def test_cdr_efficiency_adjustment_scales_electricity_and_heat_separately():
 
     amounts = {exc["name"]: exc["amount"] for exc in dataset["exchanges"]}
     assert amounts["market group for electricity, medium voltage"] == pytest.approx(5.0)
-    assert amounts["market for heat, district or industrial, natural gas"] == pytest.approx(
-        12.0
-    )
-    assert amounts["market for diesel, burned in agricultural machinery"] == pytest.approx(
-        3.0
-    )
+    assert amounts[
+        "market for heat, district or industrial, natural gas"
+    ] == pytest.approx(12.0)
+    assert amounts[
+        "market for diesel, burned in agricultural machinery"
+    ] == pytest.approx(3.0)
     assert amounts["sorbent production"] == pytest.approx(4.0)
     assert amounts["Water"] == pytest.approx(7.0)
     assert amounts["Carbon dioxide, fossil"] == pytest.approx(3.0)
@@ -154,8 +153,7 @@ def test_wood_ccs_inventory_uses_volkart_wood_energy_penalty():
 
     assert not any(exc["name"] == "market for charcoal" for exc in exchanges)
     assert not any(
-        exc["name"] == "market group for electricity, low voltage"
-        for exc in exchanges
+        exc["name"] == "market group for electricity, low voltage" for exc in exchanges
     )
 
     heat = next(
@@ -176,12 +174,15 @@ def test_wood_ccs_inventory_uses_volkart_wood_energy_penalty():
     spent_solvent = next(
         exc
         for exc in exchanges
-        if exc["name"] == "treatment of spent solvent mixture, hazardous waste incineration"
+        if exc["name"]
+        == "treatment of spent solvent mixture, hazardous waste incineration"
     )
     assert spent_solvent["amount"] == pytest.approx(-2.27e-4)
 
     activated_carbon = next(
-        exc for exc in exchanges if exc["name"] == "market for activated carbon, granular"
+        exc
+        for exc in exchanges
+        if exc["name"] == "market for activated carbon, granular"
     )
     assert activated_carbon["amount"] == pytest.approx(8.26e-5)
 
@@ -200,7 +201,8 @@ def test_hydrogen_ccs_inventory_uses_antonini_mdea_and_electricity_penalty():
 
     assert not any(exc["name"] == "market for monoethanolamine" for exc in exchanges)
     assert not any(
-        exc["name"] == "heat production, biomethane, at boiler condensing modulating <100kW"
+        exc["name"]
+        == "heat production, biomethane, at boiler condensing modulating <100kW"
         for exc in exchanges
     )
     assert not any(
@@ -221,8 +223,7 @@ def test_hydrogen_ccs_inventory_uses_antonini_mdea_and_electricity_penalty():
         if exc["name"] == "market group for electricity, low voltage"
     )
     assert electricity["amount"] == pytest.approx(
-        (0.005477565380988522 - (-0.000466178173455711))
-        / 0.05124742496104852
+        (0.005477565380988522 - (-0.000466178173455711)) / 0.05124742496104852
     )
     assert electricity["unit"] == "kilowatt hour"
     assert electricity["reference product"] == "electricity, low voltage"
@@ -237,9 +238,7 @@ def test_fermentation_ccs_inventory_has_no_solvent_or_extra_capture_energy():
     assert "no solvent, sorbent or regeneration heat" in comment
     assert "omitted here to avoid double-counting compression" in comment
 
-    assert not any(
-        "electricity" in exc.get("name", "").lower() for exc in exchanges
-    )
+    assert not any("electricity" in exc.get("name", "").lower() for exc in exchanges)
     assert not any("heat" in exc.get("name", "").lower() for exc in exchanges)
     assert not any("ethanolamine" in exc.get("name", "").lower() for exc in exchanges)
     assert any(
