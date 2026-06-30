@@ -179,9 +179,7 @@ def fetch_data(
             else None
         ),
         "DACCS - energy mix": (
-            iam_data.daccs_energy_use
-            if hasattr(iam_data, "daccs_energy_use")
-            else None
+            iam_data.daccs_energy_use if hasattr(iam_data, "daccs_energy_use") else None
         ),
         "CDR - efficiency": (
             iam_data.cdr_technology_efficiencies
