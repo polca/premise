@@ -966,6 +966,7 @@ carbon black production,carbon black,material,Chemicals\Organic\Transformation
 "carbon dioxide, captured from natural gas, post, 400km pipeline, storage 1000m","carbon dioxide, captured from natural gas, post, 400km pipeline, storage 1000m",material,Chemicals\Gases\Liquified\Transformation
 "carbon dioxide, captured from natural gas, pre, 200km pipeline, storage 1000m","carbon dioxide, captured from natural gas, pre, 200km pipeline, storage 1000m",material,Chemicals\Gases\Liquified\Transformation
 "carbon dioxide, captured, at cement production plant, for subsequent reuse","carbon dioxide, captured",material,Chemicals\Gases\Liquified\Transformation
+"carbon dioxide, captured and stored, at cement production plant, from non-fossil carbon dioxide, using monoethanolamine","carbon dioxide, captured",material,Chemicals\Gases\Liquified\Transformation
 "carbon dioxide, captured, at cement production plant, using direct separation","carbon dioxide, captured",material,Chemicals\Gases\Liquified\Transformation
 "carbon dioxide, captured, at cement production plant, using monoethanolamine","carbon dioxide, captured",material,Chemicals\Gases\Liquified\Transformation
 "carbon dioxide, captured, at cement production plant, using oxyfuel","carbon dioxide, captured",material,Chemicals\Gases\Liquified\Transformation

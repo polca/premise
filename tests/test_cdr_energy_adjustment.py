@@ -187,7 +187,7 @@ def test_wood_ccs_inventory_uses_volkart_wood_energy_penalty():
     assert activated_carbon["amount"] == pytest.approx(8.26e-5)
 
 
-def test_hydrogen_ccs_inventory_uses_antonini_mdea_and_electricity_penalty():
+def test_hydrogen_ccs_inventory_uses_inferred_antonini_heat_and_electricity():
     comment, exchanges = get_inventory_activity(
         "carbon dioxide, captured and stored, from a hydrogen production plant "
         "using steam methane reforming of biomethane"
@@ -196,15 +196,11 @@ def test_hydrogen_ccs_inventory_uses_antonini_mdea_and_electricity_penalty():
     assert "host SMR plant" in comment
     assert "methyldiethanolamine" in comment
     assert "0.11598 kWh per kg CO2 stored" in comment
-    assert "former 4.0556 MJ/kg CO2 biomethane heat placeholder is removed" in comment
+    assert "0.948 MJ per kg CO2" in comment
+    assert "former CEMCAP-derived 4.0556 MJ/kg CO2" in comment
     assert "Final CO2 compression electricity is omitted" in comment
 
     assert not any(exc["name"] == "market for monoethanolamine" for exc in exchanges)
-    assert not any(
-        exc["name"]
-        == "heat production, biomethane, at boiler condensing modulating <100kW"
-        for exc in exchanges
-    )
     assert not any(
         exc["name"] == "market group for electricity, low voltage"
         and "final compression" in exc.get("comment", "").lower()
@@ -227,6 +223,70 @@ def test_hydrogen_ccs_inventory_uses_antonini_mdea_and_electricity_penalty():
     )
     assert electricity["unit"] == "kilowatt hour"
     assert electricity["reference product"] == "electricity, low voltage"
+
+    heat = next(
+        exc
+        for exc in exchanges
+        if exc["name"]
+        == "heat production, biomethane, at boiler condensing modulating <100kW"
+    )
+    assert heat["amount"] == pytest.approx(
+        (0.68 - electricity["amount"] * 3.6) / (1 - 282 / 390)
+    )
+    assert heat["amount"] != pytest.approx((3.76 - 0.11) / 0.9)
+    assert heat["unit"] == "megajoule"
+    assert heat["reference product"] == "heat, central or small-scale, biomethane"
+    assert "Inferred low-pressure MDEA reboiler heat" in heat["comment"]
+
+
+def test_cement_mea_biogenic_cdr_variant_stores_one_kg_non_fossil_co2():
+    comment, exchanges = get_inventory_activity(
+        "carbon dioxide, captured and stored, at cement production plant, "
+        "from non-fossil carbon dioxide, using monoethanolamine"
+    )
+
+    assert "non-fossil CO2 only" in comment
+    assert "fossil CO2 co-captured" in comment
+    assert "intentionally ignored" in comment
+    assert "Carbon dioxide, in air" in comment
+
+    production = next(exc for exc in exchanges if exc["type"] == "production")
+    assert production["name"] == (
+        "carbon dioxide, captured and stored, at cement production plant, "
+        "from non-fossil carbon dioxide, using monoethanolamine"
+    )
+    assert production["amount"] == pytest.approx(1)
+    assert production["reference product"] == "carbon dioxide, captured"
+
+    storage = next(
+        exc
+        for exc in exchanges
+        if exc["name"] == "carbon dioxide compression, transport and storage"
+    )
+    assert storage["amount"] == pytest.approx(1)
+
+    uptake = next(exc for exc in exchanges if exc["name"] == "Carbon dioxide, in air")
+    assert uptake["amount"] == pytest.approx(1)
+    assert uptake["type"] == "biosphere"
+    assert uptake["categories"] == "natural resource::in air"
+
+    heat = next(
+        exc
+        for exc in exchanges
+        if exc["name"] == "market for heat, district or industrial, natural gas"
+    )
+    assert heat["amount"] == pytest.approx(4.055555555555555)
+
+    electricity = [
+        exc
+        for exc in exchanges
+        if exc["name"] == "market group for electricity, low voltage"
+    ]
+    assert sum(exc["amount"] for exc in electricity) == pytest.approx(
+        0.03149802890932983 + 0.020607752956636 + 0.0963370565045992
+    )
+    assert not any(exc["name"] == "Carbon dioxide, fossil" for exc in exchanges)
+    assert not any(exc["name"] == "Carbon dioxide, non-fossil" for exc in exchanges)
 
 
 def test_fermentation_ccs_inventory_has_no_solvent_or_extra_capture_energy():

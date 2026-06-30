@@ -142,6 +142,17 @@ biofuels, with CCS:
   ecoinvent_aliases:
       fltr: carbon dioxide, captured and stored, from a biomass fermentation plant
 
+cement production, non-fossil CO2, with CCS:
+  iam_aliases:
+      image: DUMMY|Carbon Removal|Geological Storage|Industry|Cement|Non-Fossil CO2
+  energy_use_aliases:
+    electricity:
+      image: DUMMY|Final Energy|Carbon Management|Industrial Biogenic CCS|Cement|Electricity
+    heat:
+      image: DUMMY|Final Energy|Carbon Management|Industrial Biogenic CCS|Cement|Heat
+  ecoinvent_aliases:
+      fltr: carbon dioxide, captured and stored, at cement production plant, from non-fossil carbon dioxide, using monoethanolamine
+
 afforestation:
     iam_aliases:
         image: Carbon Removal|Land Use|Re/afforestation|Plantation
