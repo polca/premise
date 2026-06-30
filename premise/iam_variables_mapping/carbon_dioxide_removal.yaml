@@ -15,29 +15,27 @@ direct air capture (solvent) with storage:
     witch: Carbon Sequestration|Direct Air Capture|Solvent
     gcam: Carbon Sequestration|Direct Air Capture|Solvent
   energy_use_aliases:
-    image:
-      - Final Energy|Carbon Management|Direct Air Capture|Liquid Solvent|Electricity
-      - Final Energy|Carbon Management|Direct Air Capture|Liquid Solvent|Gases
-    remind:
-      - FE|CDR|DAC|+|Electricity
-      - FE|CDR|DAC|+|Gases
-      - FE|CDR|DAC|+|Heat
-      - FE|CDR|DAC|+|Hydrogen
-    remind-eu:
-       - FE|CDR|DAC|+|Electricity
-       - FE|CDR|DAC|+|Gases
-       - FE|CDR|DAC|+|Heat
-       - FE|CDR|DAC|+|Hydrogen
-    tiam-ucl:
-      - Secondary Energy|Consumption|Direct Air Capture|Heat
-      - Secondary Energy|Consumption|Direct Air Capture|Electricity
-    witch:
-      - Final Energy|Carbon Management|Direct Air Capture|Solvent|Electricity|PV
-      - Final Energy|Carbon Management|Direct Air Capture|Solvent|Electricity|CSP
-    gcam: Final Energy|Carbon Management|Direct Air Capture|Solvent
-    message:
-      - Final Energy|Carbon Management|Direct Air Capture|Solvent|Electricity
-      - Final Energy|Carbon Management|Direct Air Capture|Gases
+    electricity:
+      image: Final Energy|Carbon Management|Direct Air Capture|Liquid Solvent|Electricity
+      remind: FE|CDR|DAC|+|Electricity
+      remind-eu: FE|CDR|DAC|+|Electricity
+      tiam-ucl: Secondary Energy|Consumption|Direct Air Capture|Electricity
+      witch:
+        - Final Energy|Carbon Management|Direct Air Capture|Solvent|Electricity|PV
+        - Final Energy|Carbon Management|Direct Air Capture|Solvent|Electricity|CSP
+      message: Final Energy|Carbon Management|Direct Air Capture|Solvent|Electricity
+    gases:
+      image: Final Energy|Carbon Management|Direct Air Capture|Liquid Solvent|Gases
+      remind: FE|CDR|DAC|+|Gases
+      remind-eu: FE|CDR|DAC|+|Gases
+      message: Final Energy|Carbon Management|Direct Air Capture|Gases
+    heat:
+      remind: FE|CDR|DAC|+|Heat
+      remind-eu: FE|CDR|DAC|+|Heat
+      tiam-ucl: Secondary Energy|Consumption|Direct Air Capture|Heat
+    hydrogen:
+      remind: FE|CDR|DAC|+|Hydrogen
+      remind-eu: FE|CDR|DAC|+|Hydrogen
 
   ecoinvent_aliases:
     fltr:
@@ -55,42 +53,65 @@ direct air capture (sorbent) with storage:
     message: Carbon Capture|Direct Air Capture|Sorbent
     image: Carbon Removal|Geological Storage|Direct Air Capture|Solid Sorbent
   energy_use_aliases:
-    witch:
-      - Final Energy|Carbon Management|Direct Air Capture|Sorbent|Heat|Gases
-      - Final Energy|Carbon Management|Direct Air Capture|Sorbent|Electricity|CSP
-    gcam: Final Energy|Carbon Management|Direct Air Capture|Sorbent
-    message: Final Energy|Carbon Management|Direct Air Capture|Sorbent|Electricity
-    image:
-      - Final Energy|Carbon Management|Direct Air Capture|Solid Sorbent|Electricity
-      - Final Energy|Carbon Management|Direct Air Capture|Solid Sorbent|Gases
+    electricity:
+      witch: Final Energy|Carbon Management|Direct Air Capture|Sorbent|Electricity|CSP
+      message: Final Energy|Carbon Management|Direct Air Capture|Sorbent|Electricity
+      image: Final Energy|Carbon Management|Direct Air Capture|Solid Sorbent|Electricity
+    gases:
+      witch: Final Energy|Carbon Management|Direct Air Capture|Sorbent|Heat|Gases
+      image: Final Energy|Carbon Management|Direct Air Capture|Solid Sorbent|Gases
 
   ecoinvent_aliases:
     fltr:
       - carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2
 
 enhanced rock weathering:
-    iam_aliases:
-        remind: Emi|CO2|CDR|+|EW
-        remind-eu: Emi|CO2|CDR|+|EW
-        image: Carbon Removal|Enhanced Weathering
-    energy_use_aliases:
-        remind:
-          - FE|CDR|EW|+|Diesel
-          - FE|CDR|EW|+|Electricity
-        remind-eu:
-          - FE|CDR|EW|+|Diesel
-          - FE|CDR|EW|+|Electricity
-        image:
-          - Final Energy|Carbon Management|Enhanced Weathering|Electricity
-    ecoinvent_aliases:
-        fltr: carbon dioxide, captured and stored, by olivine spreading on coastline
+  iam_aliases:
+    remind: Emi|CO2|CDR|+|EW
+    remind-eu: Emi|CO2|CDR|+|EW
+    image: Carbon Removal|Enhanced Weathering
+  energy_use_aliases:
+    electricity:
+      remind: FE|CDR|EW|+|Electricity
+      remind-eu: FE|CDR|EW|+|Electricity
+      image: Final Energy|Carbon Management|Enhanced Weathering|Electricity
+    diesel:
+      remind: FE|CDR|EW|+|Diesel
+      remind-eu: FE|CDR|EW|+|Diesel
+  ecoinvent_aliases:
+    fltr: carbon dioxide, captured and stored, by olivine spreading on coastline
 
 ocean liming:
-    iam_aliases:
-        remind: Emi|CO2|CDR|+|OAE
-        remind-eu: Emi|CO2|CDR|+|OAE
-    ecoinvent_aliases:
-        fltr: carbon dioxide, captured and stored, by ocean liming
+  iam_aliases:
+    remind: Emi|CO2|CDR|+|OAE
+    remind-eu: Emi|CO2|CDR|+|OAE
+  energy_use_aliases:
+    electricity:
+      remind:
+        - FE|CDR|OAE, electric calciner|+|Electricity
+        - FE|CDR|OAE, traditional calciner|+|Electricity
+      remind-eu:
+        - FE|CDR|OAE, electric calciner|+|Electricity
+        - FE|CDR|OAE, traditional calciner|+|Electricity
+    diesel:
+      remind:
+        - FE|CDR|OAE, electric calciner|+|Diesel
+        - FE|CDR|OAE, traditional calciner|+|Diesel
+      remind-eu:
+        - FE|CDR|OAE, electric calciner|+|Diesel
+        - FE|CDR|OAE, traditional calciner|+|Diesel
+    gases:
+      remind: FE|CDR|OAE, traditional calciner|+|Gases
+      remind-eu: FE|CDR|OAE, traditional calciner|+|Gases
+    hydrogen:
+      remind:
+        - FE|CDR|OAE, electric calciner|+|Hydrogen
+        - FE|CDR|OAE, traditional calciner|+|Hydrogen
+      remind-eu:
+        - FE|CDR|OAE, electric calciner|+|Hydrogen
+        - FE|CDR|OAE, traditional calciner|+|Hydrogen
+  ecoinvent_aliases:
+    fltr: carbon dioxide, captured and stored, by ocean liming
 
 biochar:
     ecoinvent_aliases:

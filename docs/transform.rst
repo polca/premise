@@ -2024,7 +2024,7 @@ Key outputs
 
 * Creates region-specific CDR datasets from mapped literature inventories.
 * Builds regional and world CDR markets from IAM production volumes.
-* Scales non-CO2 inputs and emissions based on IAM efficiency signals where available.
+* Scales electricity and heat/fuel energy inputs separately based on IAM efficiency signals where available.
 
 
 
@@ -2033,8 +2033,10 @@ for mapped technologies such as DACCS, BECCS, enhanced weathering and ocean
 liming, where the corresponding IAM variables and inventories are available.
 The DAC inventories are based on Qiu_ et al., 2022.
 
-If provided by the IAM scenario, *premise* scales non-CO2 exchanges in the
-mapped CDR datasets to reflect changes in efficiency.
+If provided by the IAM scenario, *premise* scales electricity and heat/fuel
+energy exchanges in the mapped CDR datasets separately to reflect changes in
+efficiency. Non-energy material inputs and biosphere exchanges are not scaled by
+this efficiency adjustment.
 
 .. _Qiu: https://doi.org/10.1038/s41467-022-31146-1
 

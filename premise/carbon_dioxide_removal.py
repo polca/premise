@@ -147,71 +147,126 @@ class CarbonDioxideRemoval(BaseTransformation):
             system_model=self.system_model,
         )
 
+    def _get_cdr_efficiency(self, technology, region, carrier):
+        efficiencies = getattr(self.iam_data, "cdr_technology_efficiencies", None)
+        if efficiencies is None:
+            return None
+
+        if technology not in efficiencies.coords["variables"].values:
+            return None
+
+        selector = {"variables": technology}
+
+        if "carrier" in efficiencies.coords:
+            if carrier not in efficiencies.coords["carrier"].values:
+                return None
+            selector["carrier"] = carrier
+
+        if "region" in efficiencies.coords:
+            if region not in efficiencies.coords["region"].values:
+                return None
+            selector["region"] = region
+
+        if "year" in efficiencies.coords:
+            if self.year in efficiencies.coords["year"].values:
+                selector["year"] = self.year
+                efficiency = efficiencies.sel(**selector)
+            else:
+                efficiency = efficiencies.sel(**selector).interp(year=self.year)
+        else:
+            efficiency = efficiencies.sel(**selector)
+
+        efficiency = float(efficiency.values.item(0))
+        if not np.isfinite(efficiency) or efficiency == 0:
+            return None
+
+        return efficiency
+
+    @staticmethod
+    def _bounded_scaling_factor(efficiency):
+        if efficiency is None:
+            return 1.0
+        return max(0.5, min(1.5, float(1 / efficiency)))
+
     def adjust_cdr_efficiency(self, dataset, technology):
         """
-        Scale non-CO2 exchanges using IAM CDR efficiency changes.
+        Scale energy exchanges using IAM CDR efficiency changes.
         """
 
         region = dataset["location"]
 
-        efficiencies = None
-        if (
-            technology
-            in self.iam_data.cdr_technology_efficiencies.coords["variables"].values
-        ):
-            if (
-                region
-                in self.iam_data.cdr_technology_efficiencies.coords["region"].values
-            ):
-                if (
-                    self.year
-                    in self.iam_data.cdr_technology_efficiencies.coords["year"].values
-                ):
-                    efficiencies = self.iam_data.cdr_technology_efficiencies.sel(
-                        region=region, year=self.year, variables=technology
-                    )
-                else:
-                    efficiencies = self.iam_data.cdr_technology_efficiencies.sel(
-                        region=region, variables=technology
-                    ).interp(year=self.year)
+        electricity_scaling_factor = self._bounded_scaling_factor(
+            self._get_cdr_efficiency(technology, region, "electricity")
+        )
+        heat_scaling_factor = self._bounded_scaling_factor(
+            self._get_cdr_efficiency(technology, region, "heat")
+        )
 
-        if efficiencies is None:
-            return dataset
+        electricity_filter = ws.either(
+            ws.contains("name", "electricity"),
+            ws.contains("product", "electricity"),
+            ws.equals("unit", "kilowatt hour"),
+        )
+        heat_filter = ws.either(
+            *[
+                ws.contains(field, term)
+                for field in ("name", "product")
+                for term in (
+                    "heat",
+                    "steam",
+                    "diesel",
+                    "natural gas",
+                    "hydrogen",
+                    "fuel",
+                )
+            ]
+        )
+        no_biosphere_filter = [ws.equals("name", "__no_cdr_biosphere_scaling__")]
 
-        scaling_factor = float(1 / efficiencies.values.item(0))
-
-        # bound the scaling factor to 1.5 and 0.5
-        scaling_factor = max(0.5, min(1.5, scaling_factor))
-
-        if scaling_factor != 1:
+        if electricity_scaling_factor != 1:
             rescale_exchanges(
                 ds=dataset,
-                value=scaling_factor,
+                value=electricity_scaling_factor,
                 technosphere_filters=[
-                    ws.exclude(ws.contains("name", "carbon dioxide"))
+                    ws.exclude(ws.contains("name", "carbon dioxide")),
+                    electricity_filter,
                 ],
-                biosphere_filters=[ws.exclude(ws.contains("name", "Carbon dioxide"))],
+                biosphere_filters=no_biosphere_filter,
             )
 
+        if heat_scaling_factor != 1:
+            rescale_exchanges(
+                ds=dataset,
+                value=heat_scaling_factor,
+                technosphere_filters=[
+                    ws.exclude(ws.contains("name", "carbon dioxide")),
+                    ws.exclude(electricity_filter),
+                    heat_filter,
+                ],
+                biosphere_filters=no_biosphere_filter,
+            )
+
+        if electricity_scaling_factor != 1 or heat_scaling_factor != 1:
             # add in comments the scaling factor applied
             if "comment" not in dataset:
                 dataset["comment"] = (
-                    f"The efficiency of the system has been "
-                    f"adjusted to match the efficiency of the "
-                    f"average CDR plant in {self.year}."
+                    f"The electricity and heat/fuel efficiency of the system has been "
+                    f"adjusted to match the efficiency of the average CDR plant in "
+                    f"{self.year}."
                 )
             else:
                 dataset["comment"] += (
-                    f" The efficiency of the system has been "
-                    f"adjusted to match the efficiency of the "
-                    f"average CDR plant in {self.year}."
+                    f" The electricity and heat/fuel efficiency of the system has been "
+                    f"adjusted to match the efficiency of the average CDR plant in "
+                    f"{self.year}."
                 )
 
-            dataset.setdefault("log parameters", {}).update(
-                {
-                    "efficiency scaling factor": scaling_factor,
-                }
-            )
+        dataset.setdefault("log parameters", {}).update(
+            {
+                "electricity efficiency scaling factor": electricity_scaling_factor,
+                "heat efficiency scaling factor": heat_scaling_factor,
+            }
+        )
 
         return dataset
 
@@ -222,5 +277,6 @@ class CarbonDioxideRemoval(BaseTransformation):
         logger.info(
             f"{status}|{self.model}|{self.scenario}|{self.year}|"
             f"{dataset['name']}|{dataset['location']}|"
-            f"{dataset.get('log parameters', {}).get('efficiency scaling factor', '')}"
+            f"{dataset.get('log parameters', {}).get('electricity efficiency scaling factor', '')}|"
+            f"{dataset.get('log parameters', {}).get('heat efficiency scaling factor', '')}"
         )

@@ -268,12 +268,6 @@ heat, industrial, from heat pump: 1
 heat, industrial, from geothermal: 1
 heat, industrial, from light fuel oil boiler: 1
 heat, industrial, from hydrogen: 1
-energy, for DACCS, from electricity: 1
-energy, for DACCS, from hydrogen turbine: 1
-energy, for DACCS, from other: 1
-energy, for DACCS, from gas boiler: 1
-energy, from EWR, from diesel: 1
-energy, for EWR, from electricity: 1
 hydrogen, from electrolysis, PEM, from CSP: 3
 hydrogen, from electrolysis, PEM, from Solar PV: 3
 hydrogen, from electrolysis, PEM, from geothermal: 3

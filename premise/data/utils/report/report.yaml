@@ -94,13 +94,13 @@ CDR - generation:
   label: Millions of tons of CO2 annually removed
   expl_text: Mass of CO2 removed from the atmosphere annually.
   offset: 10
-DACCS - energy mix:
+CDR - energy use:
   label: Exajoules (EJ)
-  expl_text: Generated volumes of energy used by DACCS, per technology. Used to calculate the energy supply mix of DACCS.
+  expl_text: Final energy used by CDR technologies, per technology and carrier.
   offset: 10
 CDR - efficiency:
   label: Efficiency gains (2020 = 1)
-  expl_text: CDR efficiency gains relative to 2020 where IAM energy-use aliases are available. Used to calibrate mapped CDR datasets.
+  expl_text: CDR efficiency gains relative to 2020, split between electricity and heat/fuel carriers where IAM energy-use aliases are available. Used to calibrate mapped CDR datasets.
   offset: 10
 Heat (buildings) - generation:
   label: Exajoules (EJ)

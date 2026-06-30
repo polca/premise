@@ -178,8 +178,10 @@ def fetch_data(
             if hasattr(iam_data, "production_volumes")
             else None
         ),
-        "DACCS - energy mix": (
-            iam_data.daccs_energy_use if hasattr(iam_data, "daccs_energy_use") else None
+        "CDR - energy use": (
+            iam_data.cdr_energy_use
+            if hasattr(iam_data, "cdr_energy_use")
+            else None
         ),
         "CDR - efficiency": (
             iam_data.cdr_technology_efficiencies
@@ -259,9 +261,13 @@ def fetch_data(
         if sector in ("Battery (mobile)", "Battery (stationary)"):
             iam_data = iam_data.rename({"chemistry": "variables"})
 
-        return iam_data.sel(
-            variables=[v for v in variable if v in iam_data.coords["variables"].values]
-        )
+        variables = [
+            v for v in variable if v in iam_data.coords["variables"].values
+        ]
+        if not variables and sector in ("CDR - energy use", "CDR - efficiency"):
+            variables = list(iam_data.coords["variables"].values)
+
+        return iam_data.sel(variables=variables)
 
     return None
 
@@ -290,11 +296,23 @@ def _dataarray_to_wide_df(da: xr.DataArray) -> pd.DataFrame:
             else "variable" if "variable" in da.dims else None
         )
         if "year" in da.dims and var_dim:
-            da = da.transpose("year", var_dim)
+            extra_dims = [dim for dim in da.dims if dim not in ("year", var_dim)]
+            if extra_dims:
+                series_dim = "_series"
+                da = da.stack({series_dim: [var_dim, *extra_dims]})
+                da = da.transpose("year", series_dim)
+                columns = [
+                    " - ".join(str(part) for part in label if str(part))
+                    for label in da.coords[series_dim].values
+                ]
+            else:
+                da = da.transpose("year", var_dim)
+                columns = da.coords[var_dim].values
+
             df = pd.DataFrame(
                 da.values,
                 index=da.coords["year"].values,
-                columns=da.coords[var_dim].values,
+                columns=columns,
             )
         elif "year" in da.dims and not var_dim:
             col_name = (
@@ -531,15 +549,7 @@ def generate_summary_report(
         "Steel - generation": {"filepath": IAM_STEEL_VARS},
         "Steel - efficiency": {"filepath": IAM_STEEL_VARS},
         "CDR - generation": {"filepath": IAM_CDR_VARS},
-        "DACCS - energy mix": {
-            "filepath": IAM_HEATING_VARS,
-            "variables": [
-                "energy, for DACCS, from hydrogen turbine",
-                "energy, for DACCS, from gas boiler",
-                "energy, for DACCS, from other",
-                "energy, for DACCS, from electricity",
-            ],
-        },
+        "CDR - energy use": {"filepath": IAM_CDR_VARS},
         "CDR - efficiency": {"filepath": IAM_CDR_VARS},
         "Transport (two-wheelers)": {"filepath": IAM_TRSPT_TWO_WHEELERS_VARS},
         "Transport (two-wheelers) - eff": {"filepath": IAM_TRSPT_TWO_WHEELERS_VARS},

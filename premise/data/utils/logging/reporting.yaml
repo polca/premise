@@ -27,9 +27,12 @@ premise_cdr:
     region:
       name: region
       description: Region name
-    efficiency scaling factor:
-      name: Efficiency scaling factor
-      description: Scaling factor applied to non-CO2 exchanges from IAM efficiency changes
+    electricity efficiency scaling factor:
+      name: Electricity efficiency scaling factor
+      description: Scaling factor applied to electricity exchanges from IAM efficiency changes
+    heat efficiency scaling factor:
+      name: Heat/fuel efficiency scaling factor
+      description: Scaling factor applied to heat and fuel exchanges from IAM efficiency changes
   tab: Carbon Dioxide Removal
 
 premise_biomass:

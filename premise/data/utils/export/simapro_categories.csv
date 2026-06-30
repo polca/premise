@@ -6542,8 +6542,6 @@ market for energy saving,energy saving,processing,Energy reduction\Market
 "market for energy use, electric bicycle, electricity from renewable energy products","energy use, electric bicycle, electricity from renewable energy products",transport,Road\Market
 market for energy wood harvester,energy wood harvester,transport,Road\Market\Infrastructure
 "market for energy wood, green, from young stand, measured as dry mass","energy wood, green, from young stand, measured as dry mass",,
-"market for energy, for direct air capture and storage","energy, for direct air capture and storage",material,Other
-"market for energy, for enhanced rock weathering","energy, for enhanced rock weathering",material,Electronics\Component\Market
 "market for enriched uranium, 4.2%","enriched uranium, 4.2%",material,Fuels\Uranium\Enriched\Market
 market for enzymes,enzymes,material,Chemicals\Others\Market
 market for epichlorohydrin,epichlorohydrin,material,Chemicals\Organic\Market

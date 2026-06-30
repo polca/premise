@@ -453,12 +453,11 @@ class IAMDataCollection:
             IAM_CDR_VARS, variable="iam_aliases"
         )
 
-        cdr_energy_vars = {
-            k: v
-            for k, v in self.__get_iam_variable_labels(
-                IAM_CDR_VARS, variable="energy_use_aliases"
-            ).items()
-        }
+        cdr_energy_vars = self.__get_cdr_energy_variable_labels(IAM_CDR_VARS)
+        cdr_energy_use_vars = self.__flatten_cdr_energy_variable_labels(cdr_energy_vars)
+        cdr_efficiency_energy_vars = self.__group_cdr_energy_variable_labels(
+            cdr_energy_vars
+        )
 
         biomass_prod_vars = self.__get_iam_variable_labels(
             IAM_BIOMASS_VARS, variable="iam_aliases"
@@ -489,22 +488,6 @@ class IAMDataCollection:
                 IAM_HEATING_VARS, variable="iam_aliases"
             ).items()
             if "industrial" in k
-        }
-
-        daccs_heat_vars = {
-            k: v
-            for k, v in self.__get_iam_variable_labels(
-                IAM_HEATING_VARS, variable="iam_aliases"
-            ).items()
-            if "DACCS" in k
-        }
-
-        ewr_heat_vars = {
-            k: v
-            for k, v in self.__get_iam_variable_labels(
-                IAM_HEATING_VARS, variable="iam_aliases"
-            ).items()
-            if "EWR" in k
         }
 
         final_energy_vars = self.__get_iam_variable_labels(
@@ -834,23 +817,15 @@ class IAMDataCollection:
             sector="industrial heating",
         )
 
-        self.daccs_energy_use = self.__fetch_market_data(
-            data=data,
-            input_vars=daccs_heat_vars,
-            system_model=self.system_model,
-            sector="daccs heating",
-        )
-
-        self.ewr_energy_use = self.__fetch_market_data(
-            data=data,
-            input_vars=ewr_heat_vars,
-            system_model=self.system_model,
-            sector="ewr heating",
-        )
-
         self.final_energy_use = self.__fetch_market_data(
             data=data,
             input_vars=final_energy_vars,
+        )
+
+        self.cdr_energy_use = self.__fetch_market_data(
+            data=data,
+            input_vars=cdr_energy_use_vars,
+            normalize=False,
         )
 
         self.electricity_technology_efficiencies = self.get_iam_efficiencies(
@@ -954,10 +929,10 @@ class IAMDataCollection:
             },
         )
 
-        self.cdr_technology_efficiencies = self.get_iam_efficiencies(
+        self.cdr_technology_efficiencies = self.get_iam_efficiencies_by_carrier(
             data=data,
             production_labels=cdr_prod_vars,
-            energy_labels=cdr_energy_vars,
+            energy_labels_by_carrier=cdr_efficiency_energy_vars,
         )
 
         self.road_freight_efficiencies = self.get_iam_efficiencies(
@@ -1057,8 +1032,6 @@ class IAMDataCollection:
                 **biomass_prod_vars,
                 **buildings_heat_vars,
                 **industrial_heat_vars,
-                **daccs_heat_vars,
-                **ewr_heat_vars,
                 **roadfreight_prod_vars,
                 **railfreight_prod_vars,
                 **seafreight_prod_vars,
@@ -1167,6 +1140,14 @@ class IAMDataCollection:
 
         return xarray_data
 
+    @staticmethod
+    def __as_list(value: Any) -> List[Any]:
+        if value is None:
+            return []
+        if isinstance(value, list):
+            return value
+        return [value]
+
     def __get_iam_variable_labels(
         self, filepath: Path, variable: str
     ) -> Dict[str, Union[str, List[str]]]:
@@ -1190,6 +1171,76 @@ class IAMDataCollection:
                         dict_vars[key] = values[variable][self.model]
 
         return dict_vars
+
+    def __get_cdr_energy_variable_labels(
+        self, filepath: Path
+    ) -> Dict[str, Dict[str, Union[str, List[str]]]]:
+        """
+        Loads CDR energy-use IAM labels grouped by explicit energy carrier.
+
+        ``carbon_dioxide_removal.yaml`` stores energy-use aliases as
+        technology -> carrier -> IAM model -> variable(s), unlike the shared
+        sector mappings where aliases are technology -> IAM model -> variable(s).
+        """
+
+        dict_vars = {}
+
+        with open(filepath, "r", encoding="utf-8") as stream:
+            out = yaml.safe_load(stream)
+
+        for technology, values in out.items():
+            energy_aliases = values.get("energy_use_aliases", {})
+            if not energy_aliases:
+                continue
+
+            # Backward compatibility with the previous flat model -> alias shape.
+            if self.model in energy_aliases and not isinstance(
+                energy_aliases[self.model], dict
+            ):
+                aliases = energy_aliases[self.model]
+                if aliases is not None:
+                    dict_vars[technology] = {"energy": aliases}
+                continue
+
+            for carrier, model_aliases in energy_aliases.items():
+                if not isinstance(model_aliases, dict):
+                    continue
+                if self.model in model_aliases and model_aliases[self.model] is not None:
+                    dict_vars.setdefault(technology, {})[carrier] = model_aliases[
+                        self.model
+                    ]
+
+        return dict_vars
+
+    def __flatten_cdr_energy_variable_labels(
+        self, energy_labels: Dict[str, Dict[str, Union[str, List[str]]]]
+    ) -> Dict[str, Union[str, List[str]]]:
+        return {
+            f"{technology} - {carrier}": aliases
+            for technology, carrier_labels in energy_labels.items()
+            for carrier, aliases in carrier_labels.items()
+        }
+
+    def __group_cdr_energy_variable_labels(
+        self, energy_labels: Dict[str, Dict[str, Union[str, List[str]]]]
+    ) -> Dict[str, Dict[str, List[str]]]:
+        grouped_labels = {"electricity": {}, "heat": {}}
+
+        for technology, carrier_labels in energy_labels.items():
+            electricity_aliases = self.__as_list(carrier_labels.get("electricity"))
+            if electricity_aliases:
+                grouped_labels["electricity"][technology] = electricity_aliases
+
+            heat_aliases = []
+            for carrier, aliases in carrier_labels.items():
+                if carrier == "electricity":
+                    continue
+                heat_aliases.extend(self.__as_list(aliases))
+
+            if heat_aliases:
+                grouped_labels["heat"][technology] = heat_aliases
+
+        return grouped_labels
 
     def __get_iam_data(
         self,
@@ -1541,6 +1592,39 @@ class IAMDataCollection:
 
         return market_data
 
+    def get_iam_efficiencies_by_carrier(
+        self,
+        data: xr.DataArray,
+        production_labels: dict,
+        energy_labels_by_carrier: Dict[str, Dict[str, List[str]]],
+    ) -> [xr.DataArray, None]:
+        """
+        Retrieve CDR efficiency changes separately by final-energy carrier group.
+        """
+
+        carrier_efficiencies = []
+
+        for carrier, energy_labels in energy_labels_by_carrier.items():
+            if not energy_labels:
+                continue
+
+            efficiencies = self.get_iam_efficiencies(
+                data=data,
+                production_labels=production_labels,
+                energy_labels=energy_labels,
+            )
+
+            if efficiencies is None:
+                continue
+
+            efficiencies = efficiencies.expand_dims(dim={"carrier": [carrier]})
+            carrier_efficiencies.append(efficiencies)
+
+        if not carrier_efficiencies:
+            return None
+
+        return xr.concat(carrier_efficiencies, dim="carrier")
+
     def get_iam_efficiencies(
         self,
         data: xr.DataArray,
@@ -1603,26 +1687,20 @@ class IAMDataCollection:
         elif production_labels and energy_labels:
             eff_data = xr.DataArray(dims=["variables"], coords={"variables": []})
             for k, v in production_labels.items():
-                # check that each element of energy.values() is in data.variables.values
-                # knowing that energy.values() is a list of lists
-                # and that each element of prod.values() is in data.variables.values
-                _ = lambda x: (
-                    x
-                    if isinstance(x, list)
-                    else [
-                        x,
-                    ]
-                )
+                # Check that each energy and production variable is available.
+                _ = lambda x: x if isinstance(x, list) else [x]
+                energy_vars = _(energy_labels.get(k, []))
+                production_vars = _(v)
 
-                if all(
-                    var in data.variables.values for var in energy_labels.get(k, [])
-                ) and all(x in data.variables.values for x in _(v)):
+                if (
+                    energy_vars
+                    and all(var in data.variables.values for var in energy_vars)
+                    and all(x in data.variables.values for x in production_vars)
+                ):
                     if isinstance(v, list):
-                        d = abs(
-                            data.loc[:, energy_labels.get(k, []), :].sum(
-                                dim="variables"
-                            )
-                        ) / abs(data.loc[:, list(v), :].sum(dim="variables"))
+                        d = abs(data.loc[:, energy_vars, :].sum(dim="variables")) / abs(
+                            data.loc[:, production_vars, :].sum(dim="variables")
+                        )
                         # add dimension "variables" to d
                         d = d.expand_dims(dim="variables")
                         # add a coordinate "variables" to d
@@ -1630,11 +1708,9 @@ class IAMDataCollection:
                             k,
                         ]
                     else:
-                        d = abs(
-                            data.loc[:, energy_labels.get(k, []), :].sum(
-                                dim="variables"
-                            )
-                        ) / abs(data.loc[:, v, :])
+                        d = abs(data.loc[:, energy_vars, :].sum(dim="variables")) / abs(
+                            data.loc[:, v, :]
+                        )
                     # convert inf to Nan
                     d = d.where(d != np.inf)
                     # back-fill nans
