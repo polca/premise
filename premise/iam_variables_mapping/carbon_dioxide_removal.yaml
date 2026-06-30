@@ -10,13 +10,14 @@ direct air capture (solvent) with storage:
   iam_aliases:
     remind: Emi|CO2|CDR|+|DACCS
     remind-eu: Emi|CO2|CDR|+|DACCS
-    image: Carbon Capture|Direct Air Capture
+    image: Carbon Removal|Geological Storage|Direct Air Capture|Liquid Solvent
     tiam-ucl: Carbon Capture|Storage|Direct Air Capture
     witch: Carbon Sequestration|Direct Air Capture|Solvent
     gcam: Carbon Sequestration|Direct Air Capture|Solvent
   energy_use_aliases:
     image:
-      - Final Energy|Carbon Management|Direct Air Capture
+      - Final Energy|Carbon Management|Direct Air Capture|Liquid Solvent|Electricity
+      - Final Energy|Carbon Management|Direct Air Capture|Liquid Solvent|Gases
     remind:
       - FE|CDR|DAC|+|Electricity
       - FE|CDR|DAC|+|Gases
@@ -52,12 +53,16 @@ direct air capture (sorbent) with storage:
     witch: Carbon Sequestration|Direct Air Capture|Sorbent
     gcam: Carbon Sequestration|Direct Air Capture|Sorbent
     message: Carbon Capture|Direct Air Capture|Sorbent
+    image: Carbon Removal|Geological Storage|Direct Air Capture|Solid Sorbent
   energy_use_aliases:
     witch:
       - Final Energy|Carbon Management|Direct Air Capture|Sorbent|Heat|Gases
       - Final Energy|Carbon Management|Direct Air Capture|Sorbent|Electricity|CSP
     gcam: Final Energy|Carbon Management|Direct Air Capture|Sorbent
     message: Final Energy|Carbon Management|Direct Air Capture|Sorbent|Electricity
+    image:
+      - Final Energy|Carbon Management|Direct Air Capture|Solid Sorbent|Electricity
+      - Final Energy|Carbon Management|Direct Air Capture|Solid Sorbent|Gases
 
   ecoinvent_aliases:
     fltr:
@@ -67,6 +72,7 @@ enhanced rock weathering:
     iam_aliases:
         remind: Emi|CO2|CDR|+|EW
         remind-eu: Emi|CO2|CDR|+|EW
+        image: Carbon Removal|Enhanced Weathering
     energy_use_aliases:
         remind:
           - FE|CDR|EW|+|Diesel
@@ -74,6 +80,8 @@ enhanced rock weathering:
         remind-eu:
           - FE|CDR|EW|+|Diesel
           - FE|CDR|EW|+|Electricity
+        image:
+          - Final Energy|Carbon Management|Enhanced Weathering|Electricity
     ecoinvent_aliases:
         fltr: carbon dioxide, captured and stored, by olivine spreading on coastline
 
@@ -112,3 +120,9 @@ biofuels, with CCS:
       message: Carbon Capture|Energy|Supply|Liquids|Biomass
   ecoinvent_aliases:
       fltr: carbon dioxide, captured and stored, from a biomass fermentation plant
+
+afforestation:
+    iam_aliases:
+        image: Carbon Removal|Land Use|Re/afforestation|Plantation
+    ecoinvent_aliases:
+        fltr: carbon dioxide, captured and stored, by afforestation
