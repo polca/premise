@@ -16,7 +16,7 @@ direct air capture (solvent) with storage:
     gcam: Carbon Sequestration|Direct Air Capture|Solvent
   energy_use_aliases:
     electricity:
-      image: Final Energy|Carbon Management|Direct Air Capture|Liquid Solvent|Electricity
+      image: Final Energy|Carbon Removal|Direct Air Capture|Liquid Solvent|Electricity
       remind: FE|CDR|DAC|+|Electricity
       remind-eu: FE|CDR|DAC|+|Electricity
       tiam-ucl: Secondary Energy|Consumption|Direct Air Capture|Electricity
@@ -25,7 +25,7 @@ direct air capture (solvent) with storage:
         - Final Energy|Carbon Management|Direct Air Capture|Solvent|Electricity|CSP
       message: Final Energy|Carbon Management|Direct Air Capture|Solvent|Electricity
     gases:
-      image: Final Energy|Carbon Management|Direct Air Capture|Liquid Solvent|Gases
+      image: Final Energy|Carbon Removal|Direct Air Capture|Liquid Solvent|Gases
       remind: FE|CDR|DAC|+|Gases
       remind-eu: FE|CDR|DAC|+|Gases
       message: Final Energy|Carbon Management|Direct Air Capture|Gases
@@ -56,10 +56,10 @@ direct air capture (sorbent) with storage:
     electricity:
       witch: Final Energy|Carbon Management|Direct Air Capture|Sorbent|Electricity|CSP
       message: Final Energy|Carbon Management|Direct Air Capture|Sorbent|Electricity
-      image: Final Energy|Carbon Management|Direct Air Capture|Solid Sorbent|Electricity
+      image: Final Energy|Carbon Removal|Direct Air Capture|Solid Sorbent|Electricity
     gases:
       witch: Final Energy|Carbon Management|Direct Air Capture|Sorbent|Heat|Gases
-      image: Final Energy|Carbon Management|Direct Air Capture|Solid Sorbent|Gases
+      image: Final Energy|Carbon Removal|Direct Air Capture|Solid Sorbent|Gases
 
   ecoinvent_aliases:
     fltr:
@@ -74,7 +74,7 @@ enhanced rock weathering:
     electricity:
       remind: FE|CDR|EW|+|Electricity
       remind-eu: FE|CDR|EW|+|Electricity
-      image: Final Energy|Carbon Management|Enhanced Weathering|Electricity
+      image: Final Energy|Carbon Removal|Enhanced Weathering|Electricity
     diesel:
       remind: FE|CDR|EW|+|Diesel
       remind-eu: FE|CDR|EW|+|Diesel
@@ -155,6 +155,6 @@ cement production, non-fossil CO2, with CCS:
 
 afforestation:
     iam_aliases:
-        image: Carbon Removal|Land Use|Re/afforestation|Plantation
+        image: Carbon Removal|Land Use|Re/Afforestation|Plantation
     ecoinvent_aliases:
         fltr: carbon dioxide, captured and stored, by afforestation
