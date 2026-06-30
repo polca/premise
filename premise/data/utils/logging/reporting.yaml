@@ -1,4 +1,4 @@
-premise_dac:
+premise_cdr:
   columns:
     timestamp:
       name: timestamp
@@ -27,13 +27,10 @@ premise_dac:
     region:
       name: region
       description: Region name
-    electricity scaling factor:
-      name: Electrical scaling factor
-      description: Scaling factor the initial electricity input
-    heat scaling factor:
-      name: Heat scaling factor
-      description: Scaling factor the initial heat input
-  tab: Direct Air Capture
+    efficiency scaling factor:
+      name: Efficiency scaling factor
+      description: Scaling factor applied to non-CO2 exchanges from IAM efficiency changes
+  tab: Carbon Dioxide Removal
 
 premise_biomass:
     columns:

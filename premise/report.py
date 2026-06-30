@@ -178,17 +178,14 @@ def fetch_data(
             if hasattr(iam_data, "production_volumes")
             else None
         ),
-        "Direct Air Capture - energy mix": (
-            iam_data.daccs_energy_use if hasattr(iam_data, "daccs_energy_use") else None
-        ),
-        "Direct Air Capture - heat eff.": (
-            iam_data.dac_heat_efficiencies
-            if hasattr(iam_data, "dac_heat_efficiencies")
+        "DACCS - energy mix": (
+            iam_data.daccs_energy_use
+            if hasattr(iam_data, "daccs_energy_use")
             else None
         ),
-        "Direct Air Capture - elec eff.": (
-            iam_data.dac_electricity_efficiencies
-            if hasattr(iam_data, "dac_electricity_efficiencies")
+        "CDR - efficiency": (
+            iam_data.cdr_technology_efficiencies
+            if hasattr(iam_data, "cdr_technology_efficiencies")
             else None
         ),
         "Transport (two-wheelers)": (
@@ -536,7 +533,7 @@ def generate_summary_report(
         "Steel - generation": {"filepath": IAM_STEEL_VARS},
         "Steel - efficiency": {"filepath": IAM_STEEL_VARS},
         "CDR - generation": {"filepath": IAM_CDR_VARS},
-        "Direct Air Capture - energy mix": {
+        "DACCS - energy mix": {
             "filepath": IAM_HEATING_VARS,
             "variables": [
                 "energy, for DACCS, from hydrogen turbine",
@@ -545,14 +542,7 @@ def generate_summary_report(
                 "energy, for DACCS, from electricity",
             ],
         },
-        "Direct Air Capture - heat eff.": {
-            "filepath": IAM_CDR_VARS,
-            "variables": ["dac_solvent"],
-        },
-        "Direct Air Capture - elec eff.": {
-            "filepath": IAM_CDR_VARS,
-            "variables": ["dac_solvent"],
-        },
+        "CDR - efficiency": {"filepath": IAM_CDR_VARS},
         "Transport (two-wheelers)": {"filepath": IAM_TRSPT_TWO_WHEELERS_VARS},
         "Transport (two-wheelers) - eff": {"filepath": IAM_TRSPT_TWO_WHEELERS_VARS},
         "Transport (cars)": {"filepath": IAM_TRSPT_CARS_VARS},
@@ -788,7 +778,7 @@ def generate_change_report(source, version, source_type, system_model):
     workbook.remove(workbook.active)
 
     log_filepaths = [
-        "premise_dac",
+        "premise_cdr",
         "premise_biomass",
         "premise_electricity",
         "premise_fuel",

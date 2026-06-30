@@ -1997,8 +1997,8 @@ truck transport datasets and the new ones replacing them:
 |
 +-----------------------------------------------------------+----------------------+----------------------+----------------------+
 
-Direct Air Capture
-++++++++++++++++++
+Carbon Dioxide Removal
+++++++++++++++++++++++
 
 Run
 
@@ -2022,16 +2022,19 @@ Run
 Key outputs
 ~~~~~~~~~~~
 
-* Creates region-specific DAC datasets from literature inventories.
-* Scales electricity and heat inputs based on IAM efficiency signals.
+* Creates region-specific CDR datasets from mapped literature inventories.
+* Builds regional and world CDR markets from IAM production volumes.
+* Scales non-CO2 inputs and emissions based on IAM efficiency signals where available.
 
 
 
-*premise* creates different region-specific Direct Air Capture (DAC)
-datasets, based on the inventories from Qiu_ et al., 2022.
+*premise* creates different region-specific carbon dioxide removal datasets
+for mapped technologies such as DACCS, BECCS, enhanced weathering and ocean
+liming, where the corresponding IAM variables and inventories are available.
+The DAC inventories are based on Qiu_ et al., 2022.
 
-If provided by the IAM scenario, *premise* scales the inputs of electricity
-and heat of the DAC datasets to reflect changes in efficiency.
+If provided by the IAM scenario, *premise* scales non-CO2 exchanges in the
+mapped CDR datasets to reflect changes in efficiency.
 
 .. _Qiu: https://doi.org/10.1038/s41467-022-31146-1
 

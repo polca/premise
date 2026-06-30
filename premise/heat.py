@@ -129,7 +129,7 @@ def _update_heat(scenario, version, system_model):
             reference_product="energy, for direct air capture and storage",
         )
     else:
-        print("No DAC energy mix data available -- skipping")
+        print("No DACCS energy mix data available -- skipping")
 
     if scenario["iam data"].ewr_energy_use is not None:
         heat.create_heat_markets(

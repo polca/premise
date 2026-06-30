@@ -1,5 +1,5 @@
 """
-Integrates projections regarding direct air capture and storage.
+Integrates projections regarding carbon dioxide removal.
 """
 
 import copy
@@ -23,7 +23,7 @@ from .transformation import (
 from .electricity import filter_technology
 from .utils import rescale_exchanges
 
-logger = create_logger("dac")
+logger = create_logger("cdr")
 
 CDR_ACTIVITIES = DATA_DIR / "cdr" / "cdr_activities.yaml"
 
@@ -62,7 +62,7 @@ def _update_cdr(scenario, version, system_model):
         scenario["cache"] = cdr.cache
         scenario["index"] = cdr.index
     else:
-        print("No DAC information found in IAM data. Skipping.")
+        print("No CDR information found in IAM data. Skipping.")
 
     if "mapping" not in scenario:
         scenario["mapping"] = {}
@@ -73,7 +73,7 @@ def _update_cdr(scenario, version, system_model):
 
 class CarbonDioxideRemoval(BaseTransformation):
     """
-    Class that modifies DAC and DACCS inventories and markets
+    Class that modifies CDR inventories and markets
     in ecoinvent based on IAM output data.
     """
 
@@ -111,12 +111,7 @@ class CarbonDioxideRemoval(BaseTransformation):
 
     def regionalize_cdr_activities(self) -> None:
         """
-        Generates regional variants of the direct air capture process with varying heat sources.
-
-        This function fetches the original datasets for the direct air capture process and creates regional variants
-        with different heat sources. The function loops through the heat sources defined in the `HEAT_SOURCES` mapping,
-        modifies the original datasets to include the heat source, and adds the modified datasets to the database.
-
+        Generates regional variants of mapped carbon dioxide removal activities.
         """
 
         # regionalize support activities
@@ -154,8 +149,7 @@ class CarbonDioxideRemoval(BaseTransformation):
 
     def adjust_cdr_efficiency(self, dataset, technology):
         """
-        Fetch the cumulated deployment of DAC from IAM file.
-        Apply a learning rate -- see Qiu et al., 2022.
+        Scale non-CO2 exchanges using IAM CDR efficiency changes.
         """
 
         region = dataset["location"]
@@ -215,7 +209,7 @@ class CarbonDioxideRemoval(BaseTransformation):
 
             dataset.setdefault("log parameters", {}).update(
                 {
-                    "electricity scaling factor": scaling_factor,
+                    "efficiency scaling factor": scaling_factor,
                 }
             )
 
@@ -228,6 +222,5 @@ class CarbonDioxideRemoval(BaseTransformation):
         logger.info(
             f"{status}|{self.model}|{self.scenario}|{self.year}|"
             f"{dataset['name']}|{dataset['location']}|"
-            f"{dataset.get('log parameters', {}).get('electricity scaling factor', '')}|"
-            f"{dataset.get('log parameters', {}).get('heat scaling factor', '')}"
+            f"{dataset.get('log parameters', {}).get('efficiency scaling factor', '')}"
         )
