@@ -130,6 +130,13 @@ steel - primary - TGR BF/BOF: 40
 steel - primary - TGR BF/BOF CCS: 40
 daccs_sorbent: 20
 direct air capture (solvent) with storage: 20
+direct air capture (solvent, gas heat) with storage: 20
+direct air capture (solvent, industrial steam heat) with storage: 20
+direct air capture (solvent, heat pump) with storage: 20
+direct air capture (solvent, hydrogen heat) with storage: 20
+direct air capture (sorbent) with storage: 20
+direct air capture (sorbent, gas heat) with storage: 20
+direct air capture (sorbent, heat pump) with storage: 20
 ocean liming: 20
 bioenergy, with CCS: 20
 enhanced rock weathering: 20

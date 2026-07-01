@@ -6,13 +6,17 @@ import pytest
 import xarray as xr
 
 from premise.carbon_dioxide_removal import CarbonDioxideRemoval
+from premise.data_collection import IAMDataCollection
 from premise.filesystem_constants import INVENTORY_DIR
 
 CDR_INVENTORY = INVENTORY_DIR / "lci-carbon-capture.xlsx"
 
 
-def get_cdr_transform(electricity_efficiency=2.0, heat_efficiency=0.5):
-    technology = "direct air capture (solvent) with storage"
+def get_cdr_transform(
+    electricity_efficiency=2.0,
+    heat_efficiency=0.5,
+    technology="direct air capture (solvent, gas heat) with storage",
+):
     cdr = object.__new__(CarbonDioxideRemoval)
     cdr.year = 2030
     cdr.iam_data = SimpleNamespace(
@@ -28,6 +32,220 @@ def get_cdr_transform(electricity_efficiency=2.0, heat_efficiency=0.5):
         )
     )
     return cdr, technology
+
+
+def test_afforestation_duplicate_iam_variable_is_split_by_region():
+    cdr = object.__new__(CarbonDioxideRemoval)
+    cdr.model = "image"
+    cdr.cdr_map = {
+        "afforestation, eucalyptus plantation": [],
+        "afforestation, poplar plantation": [],
+        "direct air capture (solvent, gas heat) with storage": [],
+    }
+    production_volumes = xr.DataArray(
+        np.array(
+            [
+                [[10.0], [10.0], [20.0]],
+                [[10.0], [10.0], [20.0]],
+                [[5.0], [7.0], [12.0]],
+            ]
+        ),
+        dims=("variables", "region", "year"),
+        coords={
+            "variables": [
+                "afforestation, eucalyptus plantation",
+                "afforestation, poplar plantation",
+                "direct air capture (solvent, gas heat) with storage",
+            ],
+            "region": ["BRA", "CAN", "World"],
+            "year": [2030],
+        },
+    )
+
+    constrained = cdr._apply_cdr_regional_technology_constraints(production_volumes)
+
+    assert constrained.sel(
+        variables="afforestation, eucalyptus plantation", region="BRA"
+    ).item() == pytest.approx(10.0)
+    assert constrained.sel(
+        variables="afforestation, eucalyptus plantation", region="CAN"
+    ).item() == pytest.approx(0.0)
+    assert constrained.sel(
+        variables="afforestation, eucalyptus plantation", region="World"
+    ).item() == pytest.approx(10.0)
+    assert constrained.sel(
+        variables="afforestation, poplar plantation", region="BRA"
+    ).item() == pytest.approx(0.0)
+    assert constrained.sel(
+        variables="afforestation, poplar plantation", region="CAN"
+    ).item() == pytest.approx(10.0)
+    assert constrained.sel(
+        variables="afforestation, poplar plantation", region="World"
+    ).item() == pytest.approx(10.0)
+    assert constrained.sel(
+        variables="direct air capture (solvent, gas heat) with storage", region="BRA"
+    ).item() == pytest.approx(5.0)
+
+
+def test_cdr_duplicate_production_volume_is_split_by_energy_carrier_share():
+    technologies = [
+        "direct air capture (solvent, gas heat) with storage",
+        "direct air capture (solvent, industrial steam heat) with storage",
+        "direct air capture (solvent, heat pump) with storage",
+        "direct air capture (solvent, hydrogen heat) with storage",
+    ]
+    carriers = ["gases", "heat", "electricity", "hydrogen"]
+
+    cdr = object.__new__(CarbonDioxideRemoval)
+    cdr.model = "remind"
+    cdr.iam_data = SimpleNamespace(
+        cdr_energy_use=xr.DataArray(
+            np.array([[[30.0]], [[10.0]], [[40.0]], [[20.0]]]),
+            dims=("variables", "region", "year"),
+            coords={
+                "variables": [
+                    f"{technology} - {carrier}"
+                    for technology, carrier in zip(technologies, carriers)
+                ],
+                "region": ["EUR"],
+                "year": [2050],
+            },
+        )
+    )
+    production_volumes = xr.DataArray(
+        np.full((4, 1, 1), 100.0),
+        dims=("variables", "region", "year"),
+        coords={"variables": technologies, "region": ["EUR"], "year": [2050]},
+    )
+
+    split = cdr._split_cdr_production_volumes_by_carrier(production_volumes)
+
+    expected = {
+        "direct air capture (solvent, gas heat) with storage": 30.0,
+        "direct air capture (solvent, industrial steam heat) with storage": 10.0,
+        "direct air capture (solvent, heat pump) with storage": 40.0,
+        "direct air capture (solvent, hydrogen heat) with storage": 20.0,
+    }
+    for technology, amount in expected.items():
+        assert split.sel(variables=technology, region="EUR", year=2050).item() == (
+            pytest.approx(amount)
+        )
+
+    assert split.sel(region="EUR", year=2050).sum(dim="variables").item() == (
+        pytest.approx(100.0)
+    )
+
+
+def test_regionalize_cdr_activities_keeps_mapped_activities_for_scaled_pass():
+    primary = {
+        "name": (
+            "carbon dioxide, captured and stored, with a sorbent-based direct air "
+            "capture system, 100ktCO2, with heat pump heat, and grid electricity"
+        ),
+        "reference product": "carbon dioxide, captured",
+    }
+    support = {
+        "name": (
+            "amine-based silica production, for sorbent-based direct air capture "
+            "system"
+        ),
+        "reference product": "amine-based silica",
+    }
+
+    cdr = object.__new__(CarbonDioxideRemoval)
+    cdr.model = "image"
+    cdr.iam_data = SimpleNamespace(production_volumes=None)
+    cdr.mapping = SimpleNamespace(
+        generate_cdr_map=lambda model: {
+            "direct air capture (sorbent, heat pump) with storage": [primary]
+        },
+        generate_sets_from_filters=lambda filters: {
+            "direct air capture": [primary, support]
+        },
+    )
+    cdr._apply_cdr_regional_technology_constraints = lambda production_volumes: (
+        production_volumes
+    )
+
+    calls = []
+    cdr.process_and_add_activities = lambda **kwargs: calls.append(kwargs)
+
+    cdr.regionalize_cdr_activities()
+
+    assert len(calls) == 2
+    support_call, mapped_call = calls
+
+    assert support_call["mapping"] == {
+        "amine-based silica production, for sorbent-based direct air capture system": [
+            support
+        ]
+    }
+    assert mapped_call["mapping"] == cdr.cdr_map
+    assert mapped_call["efficiency_adjustment_fn"] == cdr.adjust_cdr_efficiency
+
+
+def test_support_filter_keeps_shared_unscaled_mapped_activities():
+    dac = {
+        "name": (
+            "carbon dioxide, captured and stored, with a sorbent-based direct air "
+            "capture system, 100ktCO2"
+        ),
+        "reference product": "carbon dioxide, captured",
+    }
+    shared_beccs = {
+        "name": (
+            "carbon dioxide, captured and stored, at wood burning power plant, "
+            "pipeline 200km, storage 1000m"
+        ),
+        "reference product": "carbon dioxide, captured",
+    }
+    support = {
+        "name": (
+            "amine-based silica production, for sorbent-based direct air capture "
+            "system"
+        ),
+        "reference product": "amine-based silica",
+    }
+
+    filtered = CarbonDioxideRemoval._exclude_mapped_cdr_activities_from_support(
+        support_activities={"direct air capture": [dac, shared_beccs, support]},
+        cdr_map={
+            "direct air capture (sorbent, heat pump) with storage": [dac],
+            "biomass heat generation, with CCS": [shared_beccs],
+        },
+        technologies={"direct air capture (sorbent, heat pump) with storage"},
+    )
+
+    assert filtered == {"direct air capture": [shared_beccs, support]}
+
+
+def test_efficiency_aliases_mark_cdr_technologies_for_adjusted_pass():
+    technologies = CarbonDioxideRemoval._get_efficiency_adjusted_technologies(
+        cdr_mapping={
+            "biomass power generation, with CCS": {
+                "efficiency_use_aliases": {
+                    "heat": {"image": "Efficiency|Electricity|Biomass|w/ CCS|1"}
+                }
+            },
+            "biofuels, with CCS": {
+                "energy_use_aliases": {
+                    "heat": {
+                        "image": (
+                            "Secondary Energy|Consumption|Liquids|Biomass|"
+                            "Ethanol|Woody|w/CCS"
+                        )
+                    }
+                }
+            },
+            "biochar": {},
+        },
+        model="image",
+    )
+
+    assert technologies == {
+        "biomass power generation, with CCS",
+        "biofuels, with CCS",
+    }
 
 
 def test_cdr_efficiency_adjustment_scales_electricity_and_heat_separately():
@@ -102,6 +320,298 @@ def test_cdr_efficiency_adjustment_scales_electricity_and_heat_separately():
     )
 
 
+def test_cdr_efficiencies_by_carrier_accept_energy_and_efficiency_indices():
+    iam = object.__new__(IAMDataCollection)
+    iam.year = 2050
+    iam.min_year = 2020
+    iam.filepath_iam_files = "test"
+    data = xr.DataArray(
+        np.array(
+            [
+                [
+                    [0.4, 0.8],
+                    [10.0, 20.0],
+                    [100.0, 100.0],
+                    [5.0, 5.0],
+                ]
+            ]
+        ),
+        dims=("region", "variables", "year"),
+        coords={
+            "region": ["WEU"],
+            "variables": [
+                "Efficiency|Electricity|Biomass|w/ CCS|1",
+                "Carbon Removal|Geological Storage|Biomass|Liquids",
+                "Secondary Energy|Consumption|Liquids|Biomass|Ethanol|Woody|w/CCS",
+                "Carbon Removal|Geological Storage|Biomass|Electricity",
+            ],
+            "year": [2020, 2050],
+        },
+    )
+
+    efficiencies = iam.get_iam_efficiencies_by_carrier(
+        data=data,
+        production_labels={
+            "biomass power generation, with CCS": (
+                "Carbon Removal|Geological Storage|Biomass|Electricity"
+            ),
+            "biofuels, with CCS": (
+                "Carbon Removal|Geological Storage|Biomass|Liquids"
+            ),
+        },
+        energy_labels_by_carrier={
+            "heat": {
+                "biofuels, with CCS": (
+                    "Secondary Energy|Consumption|Liquids|Biomass|Ethanol|Woody|w/CCS"
+                )
+            }
+        },
+        efficiency_labels_by_carrier={
+            "heat": {
+                "biomass power generation, with CCS": (
+                    "Efficiency|Electricity|Biomass|w/ CCS|1"
+                )
+            }
+        },
+    )
+
+    assert efficiencies.sel(
+        variables="biomass power generation, with CCS",
+        carrier="heat",
+        region="WEU",
+        year=2050,
+    ).item() == pytest.approx(2.0)
+    assert efficiencies.sel(
+        variables="biofuels, with CCS",
+        carrier="heat",
+        region="WEU",
+        year=2050,
+    ).item() == pytest.approx(2.0)
+
+
+def test_cdr_efficiency_index_aliases_accept_parser_lists():
+    iam = object.__new__(IAMDataCollection)
+    iam.year = 2050
+    iam.min_year = 2020
+    iam.filepath_iam_files = "test"
+    data = xr.DataArray(
+        np.array([[[0.4, 0.8]]]),
+        dims=("region", "variables", "year"),
+        coords={
+            "region": ["WEU"],
+            "variables": ["Efficiency|Electricity|Biomass|w/ CCS|1"],
+            "year": [2020, 2050],
+        },
+    )
+
+    efficiencies = iam.get_iam_efficiencies_by_carrier(
+        data=data,
+        production_labels={},
+        energy_labels_by_carrier={},
+        efficiency_labels_by_carrier={
+            "heat": {
+                "biomass power generation, with CCS": [
+                    "Efficiency|Electricity|Biomass|w/ CCS|1"
+                ]
+            }
+        },
+    )
+
+    assert efficiencies.sel(
+        variables="biomass power generation, with CCS",
+        carrier="heat",
+        region="WEU",
+        year=2050,
+    ).item() == pytest.approx(2.0)
+
+
+def test_dac_energy_lower_bounds_limit_scaled_solvent_heat_route():
+    cdr, technology = get_cdr_transform(
+        electricity_efficiency=10.0,
+        heat_efficiency=10.0,
+    )
+    dataset = {
+        "name": (
+            "carbon dioxide, captured and stored, with a solvent-based direct air "
+            "capture system, 1MtCO2"
+        ),
+        "reference product": "carbon dioxide, captured and stored",
+        "location": "EUR",
+        "unit": "kilogram",
+        "exchanges": [
+            {
+                "name": "market group for electricity, medium voltage",
+                "product": "electricity, medium voltage",
+                "amount": 0.345,
+                "type": "technosphere",
+                "unit": "kilowatt hour",
+            },
+            {
+                "name": "market for heat, district or industrial, natural gas",
+                "product": "heat, district or industrial, natural gas",
+                "amount": 9.18,
+                "type": "technosphere",
+                "unit": "megajoule",
+            },
+        ],
+    }
+
+    cdr.adjust_cdr_efficiency(dataset, technology)
+
+    amounts = {exc["name"]: exc["amount"] for exc in dataset["exchanges"]}
+    assert amounts["market group for electricity, medium voltage"] == pytest.approx(
+        0.7 / 3.6
+    )
+    assert amounts[
+        "market for heat, district or industrial, natural gas"
+    ] == pytest.approx(5.3)
+    assert dataset["log parameters"][
+        "electricity lower-bound scaling factor"
+    ] == pytest.approx(0.7 / (0.345 * 0.5 * 3.6))
+    assert dataset["log parameters"]["heat lower-bound scaling factor"] == pytest.approx(
+        5.3 / (9.18 * 0.5)
+    )
+
+
+def test_heat_pump_dac_lower_bound_converts_heat_floor_to_electricity():
+    technology = "direct air capture (solvent, heat pump) with storage"
+    cdr, _ = get_cdr_transform(
+        electricity_efficiency=10.0,
+        heat_efficiency=10.0,
+        technology=technology,
+    )
+    dataset = {
+        "name": (
+            "carbon dioxide, captured and stored, with a solvent-based direct air "
+            "capture system, 1MtCO2, with heat pump heat, and grid electricity"
+        ),
+        "reference product": "carbon dioxide, captured and stored",
+        "location": "EUR",
+        "unit": "kilogram",
+        "exchanges": [
+            {
+                "name": "market group for electricity, medium voltage",
+                "product": "electricity, medium voltage",
+                "amount": 0.345,
+                "type": "technosphere",
+                "unit": "kilowatt hour",
+            },
+            {
+                "name": "market group for electricity, medium voltage",
+                "product": "electricity, medium voltage",
+                "amount": 0.85,
+                "type": "technosphere",
+                "unit": "kilowatt hour",
+            },
+        ],
+    }
+
+    cdr.adjust_cdr_efficiency(dataset, technology)
+
+    electricity_total = sum(exc["amount"] for exc in dataset["exchanges"])
+    expected_lower_bound = 6.0 / 3.6
+    assert electricity_total == pytest.approx(expected_lower_bound)
+    assert dataset["log parameters"][
+        "electricity lower bound (MJ/kg CO2)"
+    ] == pytest.approx(0.7 + 5.3 / 3.0)
+    assert dataset["log parameters"]["heat lower bound (MJ/kg CO2)"] is None
+    assert dataset["log parameters"]["heat lower-bound scaling factor"] == pytest.approx(
+        1.0
+    )
+    assert dataset["log parameters"]["total lower bound (MJ/kg CO2)"] == pytest.approx(
+        6.0
+    )
+    assert dataset["log parameters"][
+        "total lower-bound scaling factor"
+    ] == pytest.approx(6.0 / (0.7 + 5.3 / 3.0))
+
+
+def test_sorbent_heat_pump_dac_lower_bound_keeps_total_energy_above_floor():
+    technology = "direct air capture (sorbent, heat pump) with storage"
+    cdr, _ = get_cdr_transform(
+        electricity_efficiency=10.0,
+        heat_efficiency=10.0,
+        technology=technology,
+    )
+    dataset = {
+        "name": (
+            "carbon dioxide, captured and stored, with a sorbent-based direct air "
+            "capture system, 100ktCO2, with heat pump heat, and grid electricity"
+        ),
+        "reference product": "carbon dioxide, captured and stored",
+        "location": "EUR",
+        "unit": "kilogram",
+        "exchanges": [
+            {
+                "name": "market group for electricity, medium voltage",
+                "product": "electricity, medium voltage",
+                "amount": 0.7,
+                "type": "technosphere",
+                "unit": "kilowatt hour",
+            },
+            {
+                "name": "market group for electricity, medium voltage",
+                "product": "electricity, medium voltage",
+                "amount": 11.9 / 3.6 / 3,
+                "type": "technosphere",
+                "unit": "kilowatt hour",
+            },
+        ],
+    }
+
+    cdr.adjust_cdr_efficiency(dataset, technology)
+
+    electricity_total = sum(exc["amount"] for exc in dataset["exchanges"])
+    assert electricity_total == pytest.approx(4.0 / 3.6)
+    assert dataset["log parameters"]["total lower bound (MJ/kg CO2)"] == pytest.approx(
+        4.0
+    )
+
+
+def test_hydrogen_dac_lower_bound_uses_delivered_heat():
+    technology = "direct air capture (solvent, hydrogen heat) with storage"
+    cdr, _ = get_cdr_transform(
+        electricity_efficiency=10.0,
+        heat_efficiency=10.0,
+        technology=technology,
+    )
+    dataset = {
+        "name": (
+            "carbon dioxide, captured and stored, with a solvent-based direct air "
+            "capture system, 1MtCO2, with hydrogen heat, and grid electricity"
+        ),
+        "reference product": "carbon dioxide, captured and stored",
+        "location": "EUR",
+        "unit": "kilogram",
+        "exchanges": [
+            {
+                "name": "market group for electricity, medium voltage",
+                "product": "electricity, medium voltage",
+                "amount": 0.345,
+                "type": "technosphere",
+                "unit": "kilowatt hour",
+            },
+            {
+                "name": "market for hydrogen, gaseous, low pressure",
+                "product": "hydrogen, gaseous, low pressure",
+                "amount": 9.18 / (120 * 0.9),
+                "type": "technosphere",
+                "unit": "kilogram",
+            },
+        ],
+    }
+
+    cdr.adjust_cdr_efficiency(dataset, technology)
+
+    amounts = {exc["name"]: exc["amount"] for exc in dataset["exchanges"]}
+    assert amounts["market for hydrogen, gaseous, low pressure"] == pytest.approx(
+        5.3 / (120 * 0.9)
+    )
+    assert dataset["log parameters"]["heat lower-bound scaling factor"] == pytest.approx(
+        5.3 / (9.18 * 0.5)
+    )
+
+
 def get_inventory_activity(name):
     workbook = load_workbook(CDR_INVENTORY, data_only=True, read_only=True)
     worksheet = workbook["DAC"]
@@ -138,6 +648,72 @@ def get_inventory_activity(name):
         workbook.close()
 
     raise AssertionError(f"Activity not found: {name}")
+
+
+@pytest.mark.parametrize(
+    ("activity_name", "hydrogen_amount"),
+    [
+        (
+            "carbon dioxide, captured and stored, with a solvent-based direct air "
+            "capture system, 1MtCO2, with hydrogen heat, and grid electricity",
+            9.18 / (120 * 0.9),
+        ),
+        (
+            "carbon dioxide, captured and stored, with a sorbent-based direct air "
+            "capture system, 100ktCO2, with hydrogen heat, and grid electricity",
+            11.9 / (120 * 0.9),
+        ),
+    ],
+)
+def test_dac_hydrogen_proxy_inventories_replace_natural_gas_heat(
+    activity_name, hydrogen_amount
+):
+    comment, exchanges = get_inventory_activity(activity_name)
+
+    assert "Hydrogen heat proxy" in comment
+    assert not any(
+        exc["name"] == "market for heat, district or industrial, natural gas"
+        for exc in exchanges
+    )
+
+    hydrogen = next(
+        exc
+        for exc in exchanges
+        if exc["name"] == "market for hydrogen, gaseous, low pressure"
+    )
+    assert hydrogen["amount"] == pytest.approx(hydrogen_amount)
+    assert hydrogen["location"] == "RER"
+    assert hydrogen["unit"] == "kilogram"
+    assert hydrogen["reference product"] == "hydrogen, gaseous, low pressure"
+
+
+@pytest.mark.parametrize(
+    ("activity_name", "input_name", "amount"),
+    [
+        (
+            "carbon dioxide, captured and stored, by re/afforestation, eucalyptus",
+            "hardwood forestry, eucalyptus ssp., planted forest management",
+            1 / 1.35,
+        ),
+        (
+            "carbon dioxide, captured and stored, by re/afforestation, willow",
+            "willow production, short rotation coppice",
+            1 / 1.76,
+        ),
+    ],
+)
+def test_afforestation_inventories_have_importable_forestry_amounts(
+    activity_name, input_name, amount
+):
+    _, exchanges = get_inventory_activity(activity_name)
+
+    production = next(exc for exc in exchanges if exc["type"] == "production")
+    assert production["name"] == activity_name
+    assert production["amount"] == pytest.approx(1)
+
+    forestry = next(exc for exc in exchanges if exc["name"] == input_name)
+    assert forestry["type"] == "technosphere"
+    assert forestry["amount"] == pytest.approx(amount)
 
 
 def test_wood_ccs_inventory_uses_volkart_wood_energy_penalty():
@@ -301,6 +877,43 @@ def test_fermentation_ccs_inventory_has_no_solvent_or_extra_capture_energy():
     assert not any("electricity" in exc.get("name", "").lower() for exc in exchanges)
     assert not any("heat" in exc.get("name", "").lower() for exc in exchanges)
     assert not any("ethanolamine" in exc.get("name", "").lower() for exc in exchanges)
+
+
+@pytest.mark.parametrize(
+    "activity_name",
+    [
+        (
+            "carbon dioxide, captured and stored, at wood burning power plant, "
+            "pipeline 200km, storage 1000m"
+        ),
+        (
+            "carbon dioxide, captured and stored, from a hydrogen production plant "
+            "using steam methane reforming of biomethane"
+        ),
+        "carbon dioxide, captured and stored, from a biomass fermentation plant",
+        (
+            "carbon dioxide, captured and stored, at cement production plant, from "
+            "non-fossil carbon dioxide, using monoethanolamine"
+        ),
+    ],
+)
+def test_image_scaled_cdr_inventories_have_no_direct_combustion_ghg_flows(
+    activity_name,
+):
+    _, exchanges = get_inventory_activity(activity_name)
+    direct_combustion_ghg = {
+        "Carbon dioxide, fossil",
+        "Carbon dioxide, non-fossil",
+        "Methane, fossil",
+        "Methane, non-fossil",
+        "Methane",
+        "Dinitrogen monoxide",
+    }
+
+    assert not any(
+        exc["type"] == "biosphere" and exc["name"] in direct_combustion_ghg
+        for exc in exchanges
+    )
     assert any(
         exc["name"] == "carbon dioxide compression, transport and storage"
         for exc in exchanges

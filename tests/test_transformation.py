@@ -1,6 +1,7 @@
 from collections import defaultdict
 
 import pytest
+import xarray as xr
 
 from premise.activity_maps import InventorySet
 from premise.transformation import BaseTransformation, find_fuel_efficiency
@@ -196,3 +197,270 @@ def test_process_and_add_activities_indexes_proxies_before_emptying(monkeypatch)
         "write_log:created",
     ]
     assert regionalized in transformation.database
+
+
+def test_process_and_add_activities_reuses_shared_regionalized_dataset(monkeypatch):
+    original = {
+        "name": "carbon dioxide, captured and stored, at wood burning power plant",
+        "reference product": "carbon dioxide, captured",
+        "location": "RER",
+        "unit": "kilogram",
+        "exchanges": [
+            {
+                "name": "carbon dioxide, captured and stored, at wood burning power plant",
+                "product": "carbon dioxide, captured",
+                "location": "RER",
+                "amount": 1.0,
+                "unit": "kilogram",
+                "type": "production",
+            }
+        ],
+    }
+    regionalized = {
+        **original,
+        "location": "WEU",
+        "regionalized": True,
+        "exchanges": [
+            {
+                "name": original["name"],
+                "product": original["reference product"],
+                "location": "WEU",
+                "amount": 1.0,
+                "unit": "kilogram",
+                "type": "production",
+            }
+        ],
+    }
+
+    transformation = object.__new__(BaseTransformation)
+    transformation.regions = ["WEU"]
+    transformation.database = [original]
+    transformation.index = defaultdict(list)
+    transformation.add_to_index(original)
+    transformation.geo = type(
+        "FakeGeo",
+        (),
+        {
+            "ecoinvent_to_iam_location": staticmethod(
+                lambda location: {"RER": "WEU"}[location]
+            )
+        },
+    )()
+
+    fetch_calls = []
+
+    def fake_fetch_proxies(self, **kwargs):
+        fetch_calls.append(kwargs)
+        return {"WEU": dict(regionalized)}
+
+    monkeypatch.setattr(BaseTransformation, "fetch_proxies", fake_fetch_proxies)
+    monkeypatch.setattr(
+        BaseTransformation, "add_geo_definition_metadata", lambda self, dataset: dataset
+    )
+    monkeypatch.setattr(
+        BaseTransformation, "empty_original_datasets", lambda *args, **kwargs: None
+    )
+    monkeypatch.setattr(BaseTransformation, "write_log", lambda *args, **kwargs: None)
+
+    mapping = {
+        "biomass power generation, with CCS": [original],
+        "biomass heat generation, with CCS": [dict(original)],
+    }
+
+    transformation.process_and_add_activities(mapping=mapping, regions=["WEU"])
+
+    assert len(fetch_calls) == 1
+    assert any(ds.get("regionalized") for ds in mapping["biomass power generation, with CCS"])
+    assert any(ds.get("regionalized") for ds in mapping["biomass heat generation, with CCS"])
+    assert len(
+        [
+            ds
+            for ds in transformation.database
+            if ds["name"] == original["name"]
+            and ds.get("location") == "WEU"
+            and ds.get("regionalized")
+        ]
+    ) == 1
+
+
+def test_process_and_add_activities_deduplicates_shared_mapping_lists(monkeypatch):
+    original_a = {
+        "name": "amine-based silica production, test",
+        "reference product": "amine-based silica",
+        "location": "GLO",
+        "unit": "kilogram",
+        "exchanges": [
+            {
+                "name": "amine-based silica production, test",
+                "product": "amine-based silica",
+                "location": "GLO",
+                "amount": 1.0,
+                "unit": "kilogram",
+                "type": "production",
+            }
+        ],
+    }
+    original_b = {
+        "name": "polyethyleneimine production, test",
+        "reference product": "polyethyleneimine",
+        "location": "GLO",
+        "unit": "kilogram",
+        "exchanges": [
+            {
+                "name": "polyethyleneimine production, test",
+                "product": "polyethyleneimine",
+                "location": "GLO",
+                "amount": 1.0,
+                "unit": "kilogram",
+                "type": "production",
+            }
+        ],
+    }
+
+    regionalized = {
+        original_a["name"]: {**original_a, "location": "WEU", "regionalized": True},
+        original_b["name"]: {**original_b, "location": "WEU", "regionalized": True},
+    }
+
+    transformation = object.__new__(BaseTransformation)
+    transformation.regions = ["WEU"]
+    transformation.database = [original_a, original_b]
+    transformation.index = defaultdict(list)
+    transformation.add_to_index([original_a, original_b])
+    transformation.geo = type(
+        "FakeGeo",
+        (),
+        {
+            "ecoinvent_to_iam_location": staticmethod(
+                lambda location: {"GLO": "WEU"}[location]
+            )
+        },
+    )()
+
+    fetch_calls = []
+
+    def fake_fetch_proxies(self, **kwargs):
+        fetch_calls.append(tuple(ds["name"] for ds in kwargs["datasets"]))
+        dataset = regionalized[kwargs["datasets"][0]["name"]]
+        return {"WEU": dict(dataset)}
+
+    monkeypatch.setattr(BaseTransformation, "fetch_proxies", fake_fetch_proxies)
+    monkeypatch.setattr(
+        BaseTransformation, "add_geo_definition_metadata", lambda self, dataset: dataset
+    )
+    monkeypatch.setattr(
+        BaseTransformation, "empty_original_datasets", lambda *args, **kwargs: None
+    )
+    monkeypatch.setattr(BaseTransformation, "write_log", lambda *args, **kwargs: None)
+
+    shared_activities = [original_a, original_b]
+    mapping = {
+        "support route a": shared_activities,
+        "support route b": shared_activities,
+    }
+
+    transformation.process_and_add_activities(mapping=mapping, regions=["WEU"])
+
+    assert mapping["support route a"] is not mapping["support route b"]
+    assert fetch_calls == [
+        (original_a["name"],),
+        (original_b["name"],),
+    ]
+
+    for activities in mapping.values():
+        identities = [
+            (ds["name"], ds["reference product"], ds["location"]) for ds in activities
+        ]
+        assert len(identities) == len(set(identities))
+
+    for original in (original_a, original_b):
+        assert (
+            len(
+                [
+                    ds
+                    for ds in transformation.database
+                    if ds["name"] == original["name"]
+                    and ds.get("location") == "WEU"
+                    and ds.get("regionalized")
+                ]
+            )
+            == 1
+        )
+
+
+def test_process_and_add_markets_deduplicates_shared_supplier_exchanges():
+    transformation = object.__new__(BaseTransformation)
+    transformation.regions = ["WEU"]
+    transformation.year = 2050
+    transformation.database = []
+    transformation.iam_to_ecoinvent_loc = {"WEU": ["WEU"]}
+
+    transformation.extract_market_ancillary_exchanges = lambda **kwargs: {}
+    transformation.add_geo_definition_metadata = lambda dataset: dataset
+    transformation.add_to_index = lambda dataset: None
+    transformation.write_log = lambda dataset, status="created": None
+    transformation.empty_original_datasets = lambda **kwargs: None
+    transformation.is_in_index = lambda candidate, region: False
+
+    shared_supplier = {
+        "name": "carbon dioxide, captured and stored, at wood burning power plant",
+        "reference product": "carbon dioxide, captured",
+        "location": "WEU",
+        "unit": "kilogram",
+        "production volume": 10,
+    }
+    other_supplier = {
+        "name": "carbon dioxide, captured and stored, by olivine spreading",
+        "reference product": "carbon dioxide, captured",
+        "location": "WEU",
+        "unit": "kilogram",
+        "production volume": 10,
+    }
+    production_volumes = xr.DataArray(
+        [[[60.0]], [[40.0]]],
+        dims=("variables", "region", "year"),
+        coords={
+            "variables": ["biomass electricity", "biomass heat"],
+            "region": ["WEU"],
+            "year": [2050],
+        },
+    )
+
+    transformation.process_and_add_markets(
+        name="market for carbon dioxide removal",
+        reference_product="carbon dioxide, captured and stored",
+        unit="kilogram",
+        mapping={
+            "biomass electricity": [
+                shared_supplier,
+                dict(shared_supplier),
+                other_supplier,
+            ],
+            "biomass heat": [shared_supplier],
+        },
+        production_volumes=production_volumes,
+    )
+
+    market = next(
+        dataset
+        for dataset in transformation.database
+        if dataset["name"] == "market for carbon dioxide removal"
+        and dataset["location"] == "WEU"
+    )
+    technosphere = [
+        exchange
+        for exchange in market["exchanges"]
+        if exchange["type"] == "technosphere"
+    ]
+
+    assert len(technosphere) == 2
+    amounts = {
+        exchange["name"]: exchange["amount"]
+        for exchange in technosphere
+    }
+    assert amounts[
+        "carbon dioxide, captured and stored, at wood burning power plant"
+    ] == pytest.approx(0.7)
+    assert amounts[
+        "carbon dioxide, captured and stored, by olivine spreading"
+    ] == pytest.approx(0.3)

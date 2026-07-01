@@ -7,6 +7,8 @@ direct air capture:
       - carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with industrial steam heat, and grid electricity
       - carbon dioxide, captured, with a solvent-based direct air capture system, 1MtCO2, with heat pump heat, and grid electricity
       - carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with heat pump heat, and grid electricity
+      - carbon dioxide, captured, with a solvent-based direct air capture system, 1MtCO2, with hydrogen heat, and grid electricity
+      - carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with hydrogen heat, and grid electricity
       - direct air capture system, solvent-based, 1MtCO2
       - treatment of direct air capture system, solvent-based, 1MtCO2
       - carbon dioxide, captured, with a sorbent-based direct air capture system, 100ktCO2
@@ -17,6 +19,8 @@ direct air capture:
       - carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2, with industrial steam heat, and grid electricity
       - carbon dioxide, captured, with a sorbent-based direct air capture system, 100ktCO2, with heat pump heat, and grid electricity
       - carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2, with heat pump heat, and grid electricity
+      - carbon dioxide, captured, with a sorbent-based direct air capture system, 100ktCO2, with hydrogen heat, and grid electricity
+      - carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2, with hydrogen heat, and grid electricity
       - direct air capture system, sorbent-based, 100ktCO2
       - treatment of direct air capture system, sorbent-based, 100ktCO2
       - amine-based silica production, for sorbent-based direct air capture system

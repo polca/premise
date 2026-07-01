@@ -890,6 +890,8 @@ class BaseTransformation:
                             f"Available activities: {[(a['name'], a['location']) for a in activities]}."
                         )
 
+                    suppliers = self.deduplicate_market_suppliers(suppliers)
+
                     if len(suppliers) > 1:
                         suppliers = get_shares_from_production_volume(suppliers)
 
@@ -911,6 +913,10 @@ class BaseTransformation:
                                         "type": "technosphere",
                                     }
                                 )
+
+            market_dataset["exchanges"] = self.summarize_market_exchanges(
+                market_dataset["exchanges"]
+            )
 
             # normalize the shares
             total_share = sum(
@@ -1039,6 +1045,66 @@ class BaseTransformation:
             regions=regions,
         )
 
+    @staticmethod
+    def deduplicate_market_suppliers(suppliers: List[dict]) -> List[dict]:
+        """
+        Return one supplier per linkable market key.
+
+        Some mappings can yield the same regionalized supplier more than once. If
+        those duplicates are kept, production-volume weighting overrepresents that
+        supplier before market shares are written.
+        """
+
+        unique_suppliers = []
+        seen = set()
+
+        for supplier in suppliers:
+            key = (
+                supplier["name"],
+                supplier["reference product"],
+                supplier["location"],
+                supplier["unit"],
+            )
+            if key in seen:
+                continue
+            seen.add(key)
+            unique_suppliers.append(supplier)
+
+        return unique_suppliers
+
+    @staticmethod
+    def summarize_market_exchanges(exchanges: List[dict]) -> List[dict]:
+        """
+        Sum duplicate technosphere exchanges in generated market datasets.
+
+        This keeps the market matrix compact when several IAM technologies map to
+        the same supplier dataset, while preserving production exchanges as
+        separate rows.
+        """
+
+        summarized = []
+        technosphere_by_key = {}
+
+        for exchange in exchanges:
+            if exchange.get("type") != "technosphere":
+                summarized.append(exchange)
+                continue
+
+            key = (
+                exchange.get("name"),
+                exchange.get("product"),
+                exchange.get("location"),
+                exchange.get("unit"),
+            )
+            if key not in technosphere_by_key:
+                technosphere_by_key[key] = copy.deepcopy(exchange)
+                summarized.append(technosphere_by_key[key])
+                continue
+
+            technosphere_by_key[key]["amount"] += exchange["amount"]
+
+        return summarized
+
     def extract_market_ancillary_exchanges(
         self,
         name: str,
@@ -1094,6 +1160,35 @@ class BaseTransformation:
             Whether to add new activities to the index.
         """
 
+        # Some callers build several mapping keys from the same source list. This
+        # method mutates mapping values to expose regionalized datasets to later
+        # market construction, so only duplicated list objects need a defensive copy.
+        mapping_value_ids = defaultdict(int)
+        for activities in mapping.values():
+            mapping_value_ids[id(activities)] += 1
+
+        shared_mapping_value_ids = {
+            value_id for value_id, count in mapping_value_ids.items() if count > 1
+        }
+        for technology, activities in list(mapping.items()):
+            if id(activities) in shared_mapping_value_ids:
+                mapping[technology] = list(activities)
+
+        def dataset_identity(dataset):
+            return (
+                dataset.get("name"),
+                dataset.get("reference product"),
+                dataset.get("location"),
+            )
+
+        def append_unique_datasets(target, additions):
+            existing = {dataset_identity(dataset) for dataset in target}
+            for dataset in additions:
+                identity = dataset_identity(dataset)
+                if identity not in existing:
+                    target.append(dataset)
+                    existing.add(identity)
+
         if production_volumes is not None:
             regions = regions or [
                 region for region in self.regions if region != "World"
@@ -1109,7 +1204,7 @@ class BaseTransformation:
             regions = regions or self.regions
             regional_shares_dict = {reg: 1 / len(regions) for reg in regions}
 
-        processed_datasets, seen_datasets = [], set()
+        processed_datasets, seen_datasets, processed_by_key = [], set(), {}
 
         # resize production volumes to the keys available in mapping
         if production_volumes is not None:
@@ -1122,9 +1217,21 @@ class BaseTransformation:
             )
 
         for technology, grouped_activities in mapping.items():
+            reused_regionalized_datasets = []
+            for ds in grouped_activities:
+                dataset_key = (ds["name"], ds["reference product"])
+                reused_regionalized_datasets.extend(
+                    processed_by_key.get(dataset_key, [])
+            )
+
+            if reused_regionalized_datasets:
+                append_unique_datasets(
+                    mapping[technology], reused_regionalized_datasets
+                )
+
             grouped_activities = [
                 ds
-                for ds in grouped_activities
+                for ds in mapping[technology]
                 if (ds["name"], ds["reference product"]) not in seen_datasets
             ]
 
@@ -1147,7 +1254,8 @@ class BaseTransformation:
                 ):
                     # if any of the datasets in the activity
                     # is already regionalized, skip it
-                    mapping[technology].extend(
+                    append_unique_datasets(
+                        mapping[technology],
                         [ds for ds in activities if ds.get("regionalized", True)]
                     )
                     continue
@@ -1199,7 +1307,11 @@ class BaseTransformation:
                     seen_datasets.update(
                         (ds["name"], ds["reference product"]) for ds in activities
                     )
-                    mapping[technology].extend(regionalized_datasets)
+                    for ds in activities:
+                        processed_by_key[(ds["name"], ds["reference product"])] = (
+                            regionalized_datasets
+                        )
+                    append_unique_datasets(mapping[technology], regionalized_datasets)
 
                     datasets = list(
                         ws.get_many(
