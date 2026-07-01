@@ -113,7 +113,8 @@ def test_image_sorbent_dac_maps_to_heat_pump_inventory():
     cdr_map = maps.generate_cdr_map(model="image")
 
     assert "direct air capture (sorbent, heat pump) with storage" in cdr_map
-    assert cdr_map["direct air capture (sorbent, heat pump) with storage"][0][
-        "name"
-    ] == heat_pump_activity
+    assert (
+        cdr_map["direct air capture (sorbent, heat pump) with storage"][0]["name"]
+        == heat_pump_activity
+    )
     assert "direct air capture (sorbent) with storage" not in cdr_map

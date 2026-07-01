@@ -355,9 +355,7 @@ def test_cdr_efficiencies_by_carrier_accept_energy_and_efficiency_indices():
             "biomass power generation, with CCS": (
                 "Carbon Removal|Geological Storage|Biomass|Electricity"
             ),
-            "biofuels, with CCS": (
-                "Carbon Removal|Geological Storage|Biomass|Liquids"
-            ),
+            "biofuels, with CCS": ("Carbon Removal|Geological Storage|Biomass|Liquids"),
         },
         energy_labels_by_carrier={
             "heat": {
@@ -468,9 +466,9 @@ def test_dac_energy_lower_bounds_limit_scaled_solvent_heat_route():
     assert dataset["log parameters"][
         "electricity lower-bound scaling factor"
     ] == pytest.approx(0.7 / (0.345 * 0.5 * 3.6))
-    assert dataset["log parameters"]["heat lower-bound scaling factor"] == pytest.approx(
-        5.3 / (9.18 * 0.5)
-    )
+    assert dataset["log parameters"][
+        "heat lower-bound scaling factor"
+    ] == pytest.approx(5.3 / (9.18 * 0.5))
 
 
 def test_heat_pump_dac_lower_bound_converts_heat_floor_to_electricity():
@@ -515,9 +513,9 @@ def test_heat_pump_dac_lower_bound_converts_heat_floor_to_electricity():
         "electricity lower bound (MJ/kg CO2)"
     ] == pytest.approx(0.7 + 5.3 / 3.0)
     assert dataset["log parameters"]["heat lower bound (MJ/kg CO2)"] is None
-    assert dataset["log parameters"]["heat lower-bound scaling factor"] == pytest.approx(
-        1.0
-    )
+    assert dataset["log parameters"][
+        "heat lower-bound scaling factor"
+    ] == pytest.approx(1.0)
     assert dataset["log parameters"]["total lower bound (MJ/kg CO2)"] == pytest.approx(
         6.0
     )
@@ -607,9 +605,9 @@ def test_hydrogen_dac_lower_bound_uses_delivered_heat():
     assert amounts["market for hydrogen, gaseous, low pressure"] == pytest.approx(
         5.3 / (120 * 0.9)
     )
-    assert dataset["log parameters"]["heat lower-bound scaling factor"] == pytest.approx(
-        5.3 / (9.18 * 0.5)
-    )
+    assert dataset["log parameters"][
+        "heat lower-bound scaling factor"
+    ] == pytest.approx(5.3 / (9.18 * 0.5))
 
 
 def get_inventory_activity(name):
