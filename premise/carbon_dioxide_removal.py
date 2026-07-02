@@ -236,8 +236,7 @@ class CarbonDioxideRemoval(BaseTransformation):
             ]
             for technology, datasets in support_activities.items()
             if any(
-                cls._dataset_key(dataset) not in mapped_datasets
-                for dataset in datasets
+                cls._dataset_key(dataset) not in mapped_datasets for dataset in datasets
             )
         }
 
@@ -453,9 +452,9 @@ class CarbonDioxideRemoval(BaseTransformation):
             if "World" in regions:
                 non_world_regions = [region for region in regions if region != "World"]
                 constrained.loc[dict(variables=technology, region="World")] = (
-                    constrained.sel(
-                        variables=technology, region=non_world_regions
-                    ).sum(dim="region")
+                    constrained.sel(variables=technology, region=non_world_regions).sum(
+                        dim="region"
+                    )
                 )
 
         return constrained
@@ -546,11 +545,7 @@ class CarbonDioxideRemoval(BaseTransformation):
             [str(exchange.get("name", "")), str(exchange.get("product", ""))]
         ).lower()
         if unit == "kilogram" and "hydrogen" in text:
-            return (
-                amount
-                * HYDROGEN_LOWER_HEATING_VALUE
-                * HYDROGEN_HEAT_EFFICIENCY
-            )
+            return amount * HYDROGEN_LOWER_HEATING_VALUE * HYDROGEN_HEAT_EFFICIENCY
 
         return None
 
@@ -705,9 +700,9 @@ class CarbonDioxideRemoval(BaseTransformation):
                 or heat_lower_bound_scaling_factor != 1
                 or total_lower_bound_scaling_factor != 1
             ):
-                dataset["comment"] += (
-                    " DAC energy inputs have been kept above practical lower bounds."
-                )
+                dataset[
+                    "comment"
+                ] += " DAC energy inputs have been kept above practical lower bounds."
 
         dataset.setdefault("log parameters", {}).update(
             {

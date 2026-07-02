@@ -1222,7 +1222,7 @@ class BaseTransformation:
                 dataset_key = (ds["name"], ds["reference product"])
                 reused_regionalized_datasets.extend(
                     processed_by_key.get(dataset_key, [])
-            )
+                )
 
             if reused_regionalized_datasets:
                 append_unique_datasets(
@@ -1256,7 +1256,7 @@ class BaseTransformation:
                     # is already regionalized, skip it
                     append_unique_datasets(
                         mapping[technology],
-                        [ds for ds in activities if ds.get("regionalized", True)]
+                        [ds for ds in activities if ds.get("regionalized", True)],
                     )
                     continue
 

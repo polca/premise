@@ -270,17 +270,24 @@ def test_process_and_add_activities_reuses_shared_regionalized_dataset(monkeypat
     transformation.process_and_add_activities(mapping=mapping, regions=["WEU"])
 
     assert len(fetch_calls) == 1
-    assert any(ds.get("regionalized") for ds in mapping["biomass power generation, with CCS"])
-    assert any(ds.get("regionalized") for ds in mapping["biomass heat generation, with CCS"])
-    assert len(
-        [
-            ds
-            for ds in transformation.database
-            if ds["name"] == original["name"]
-            and ds.get("location") == "WEU"
-            and ds.get("regionalized")
-        ]
-    ) == 1
+    assert any(
+        ds.get("regionalized") for ds in mapping["biomass power generation, with CCS"]
+    )
+    assert any(
+        ds.get("regionalized") for ds in mapping["biomass heat generation, with CCS"]
+    )
+    assert (
+        len(
+            [
+                ds
+                for ds in transformation.database
+                if ds["name"] == original["name"]
+                and ds.get("location") == "WEU"
+                and ds.get("regionalized")
+            ]
+        )
+        == 1
+    )
 
 
 def test_process_and_add_activities_deduplicates_shared_mapping_lists(monkeypatch):
@@ -454,10 +461,7 @@ def test_process_and_add_markets_deduplicates_shared_supplier_exchanges():
     ]
 
     assert len(technosphere) == 2
-    amounts = {
-        exchange["name"]: exchange["amount"]
-        for exchange in technosphere
-    }
+    amounts = {exchange["name"]: exchange["amount"] for exchange in technosphere}
     assert amounts[
         "carbon dioxide, captured and stored, at wood burning power plant"
     ] == pytest.approx(0.7)
