@@ -566,9 +566,7 @@ def test_sorbent_heat_pump_dac_lower_bound_keeps_total_energy_above_floor():
     cdr.adjust_cdr_efficiency(dataset, technology)
 
     electricity_total = sum(
-        exc["amount"]
-        for exc in dataset["exchanges"]
-        if exc["type"] == "technosphere"
+        exc["amount"] for exc in dataset["exchanges"] if exc["type"] == "technosphere"
     )
     uptake = next(
         exc for exc in dataset["exchanges"] if exc["name"] == "Carbon dioxide, in air"
