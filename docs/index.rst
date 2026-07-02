@@ -16,6 +16,7 @@ This user guide will help you navigate the inner workings of *premise*.
    introduction
    extract
    transform
+   trails_temporal_distributions
    load
    mapping
    user_scenarios
