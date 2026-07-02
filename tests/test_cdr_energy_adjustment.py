@@ -556,13 +556,27 @@ def test_sorbent_heat_pump_dac_lower_bound_keeps_total_energy_above_floor():
                 "type": "technosphere",
                 "unit": "kilowatt hour",
             },
+            {
+                "name": "Carbon dioxide, in air",
+                "amount": 1.0,
+                "type": "biosphere",
+                "unit": "kilogram",
+            },
         ],
     }
 
     cdr.adjust_cdr_efficiency(dataset, technology)
 
-    electricity_total = sum(exc["amount"] for exc in dataset["exchanges"])
+    electricity_total = sum(
+        exc["amount"]
+        for exc in dataset["exchanges"]
+        if exc["type"] == "technosphere"
+    )
+    uptake = next(
+        exc for exc in dataset["exchanges"] if exc["name"] == "Carbon dioxide, in air"
+    )
     assert electricity_total == pytest.approx(4.0 / 3.6)
+    assert uptake["amount"] == pytest.approx(1.0)
     assert dataset["log parameters"]["total lower bound (MJ/kg CO2)"] == pytest.approx(
         4.0
     )

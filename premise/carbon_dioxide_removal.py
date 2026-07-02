@@ -576,6 +576,7 @@ class CarbonDioxideRemoval(BaseTransformation):
             ds=dataset,
             value=scaling_factor,
             technosphere_filters=filters,
+            biosphere_filters=[ws.equals("name", "__no_cdr_biosphere_scaling__")],
         )
         return scaling_factor
 
