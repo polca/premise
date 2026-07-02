@@ -1394,7 +1394,7 @@ class BaseInventoryImport:
                     if "product" not in exchange:
                         exchange["product"] = dataset["reference product"]
 
-                    if exchange["name"] != dataset["name"]:
+                    if exchange.get("name") != dataset["name"]:
                         exchange["name"] = dataset["name"]
 
         self.import_product_index = self._build_import_product_index()
@@ -1403,6 +1403,8 @@ class BaseInventoryImport:
         for dataset in self.import_db.data:
             for exchange in dataset["exchanges"]:
                 if exchange["type"] == "technosphere":
+                    if not exchange.get("name"):
+                        continue
                     # Check if the field 'product' is present
                     if not "product" in exchange:
                         try:
@@ -1606,7 +1608,8 @@ class BaseInventoryImport:
             for exc in ds["exchanges"]:
                 if exc["type"] in ["technosphere", "production"]:
                     if (
-                        not any(x in exc["name"] for x in blakclist)
+                        exc.get("name")
+                        and not any(x in exc["name"] for x in blakclist)
                         and not exc["name"].split(" ")[0].isupper()
                     ):
                         exc["name"] = exc["name"][0].lower() + exc["name"][1:]

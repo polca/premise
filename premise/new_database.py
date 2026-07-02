@@ -23,7 +23,7 @@ from .biomass import _update_biomass
 from .cement import _update_cement
 from .clean_datasets import DatabaseCleaner
 from .data_collection import IAMDataCollection
-from .carbon_dioxide_removal import _update_cdr
+from .carbon_dioxide_removal import _update_cdr, _update_cdr_allocation
 from .electricity import _update_electricity
 from .emissions import _update_emissions
 from .final_energy import _update_final_energy
@@ -570,6 +570,7 @@ class NewDatabase:
         use_absolute_efficiency=False,
         biosphere_name: str = "biosphere3",
         generate_reports: bool = True,
+        cdr_allocation: bool = False,
     ) -> None:
         """
         Initialize the NewDatabase class.
@@ -595,6 +596,8 @@ class NewDatabase:
             It must match a biosphere database in the current Brightway project
             only when exporting to Brightway. Default is "biosphere3".
         :param generate_reports: whether to generate change and summary reports. Default is True.
+        :param cdr_allocation: whether to allocate regional CDR markets to datasets
+            with fossil CO2 biosphere emissions. Default is False.
         """
         self.sector_update_methods = None
         self.source = source_db
@@ -603,6 +606,7 @@ class NewDatabase:
         self.system_model = check_system_model(system_model)
         self.system_model_args = system_args
         self.use_absolute_efficiency = use_absolute_efficiency
+        self.cdr_allocation = cdr_allocation
         self.keep_imports_uncertainty = keep_imports_uncertainty
         self.keep_source_db_uncertainty = keep_source_db_uncertainty
         self.biosphere_name = biosphere_name
@@ -1176,6 +1180,11 @@ class NewDatabase:
                 "args": (self.version, self.system_model, self.gains_scenario),
             },
         }
+        if self.cdr_allocation:
+            self.sector_update_methods["cdr allocation"] = {
+                "func": _update_cdr_allocation,
+                "args": (self.version, self.system_model),
+            }
 
         if isinstance(sectors, str):
             description = f"Processing scenarios for sector '{sectors}'"
@@ -1187,6 +1196,13 @@ class NewDatabase:
         elif sectors is None:
             description = "Processing scenarios for all sectors"
             sectors = [s for s in list(self.sector_update_methods.keys())]
+
+        if (
+            self.cdr_allocation
+            and "cdr" in sectors
+            and "cdr allocation" not in sectors
+        ):
+            sectors.append("cdr allocation")
 
         assert isinstance(sectors, list), "sector_name should be a list of strings"
         assert all(

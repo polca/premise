@@ -12,6 +12,40 @@ from premise.filesystem_constants import INVENTORY_DIR
 CDR_INVENTORY = INVENTORY_DIR / "lci-carbon-capture.xlsx"
 
 
+def get_cdr_allocation_transform(database=None, cdr_volume=-25.0, co2_volume=75.0):
+    cdr = object.__new__(CarbonDioxideRemoval)
+    cdr.database = database or []
+    cdr.model = "image"
+    cdr.scenario = "SSP2"
+    cdr.year = 2030
+    cdr.regions = ["EUR"]
+    cdr.ecoinvent_to_iam_loc = {"CH": "EUR"}
+    cdr.cdr_map = {}
+    cdr.iam_data = SimpleNamespace(
+        cdr_technology_mix=True,
+        cdr_energy_use=None,
+        production_volumes=xr.DataArray(
+            np.array([[[cdr_volume]]]),
+            dims=("variables", "region", "year"),
+            coords={
+                "variables": ["enhanced rock weathering"],
+                "region": ["EUR"],
+                "year": [2030],
+            },
+        ),
+        other_vars=xr.DataArray(
+            np.array([[[co2_volume]]]),
+            dims=("variables", "region", "year"),
+            coords={
+                "variables": ["CO2"],
+                "region": ["EUR"],
+                "year": [2030],
+            },
+        ),
+    )
+    return cdr
+
+
 def get_cdr_transform(
     electricity_efficiency=2.0,
     heat_efficiency=0.5,
@@ -32,6 +66,125 @@ def get_cdr_transform(
         )
     )
     return cdr, technology
+
+
+def test_cdr_allocation_share_uses_absolute_cdr_volume():
+    cdr = get_cdr_allocation_transform(cdr_volume=-25.0, co2_volume=75.0)
+
+    shares = cdr.calculate_cdr_allocation_shares()
+
+    assert shares["EUR"] == pytest.approx(0.25)
+
+
+def test_cdr_allocation_reduces_fossil_co2_and_adds_regional_market_input():
+    cdr_market = {
+        "name": "market for carbon dioxide removal",
+        "reference product": "carbon dioxide, captured and stored",
+        "location": "EUR",
+        "unit": "kilogram",
+        "regionalized": True,
+        "exchanges": [
+            {
+                "name": "market for carbon dioxide removal",
+                "product": "carbon dioxide, captured and stored",
+                "location": "EUR",
+                "amount": 1.0,
+                "unit": "kilogram",
+                "type": "production",
+            }
+        ],
+    }
+    emitting_dataset = {
+        "name": "emitting activity",
+        "reference product": "product",
+        "location": "CH",
+        "unit": "kilogram",
+        "exchanges": [
+            {
+                "name": "emitting activity",
+                "product": "product",
+                "location": "CH",
+                "amount": 1.0,
+                "unit": "kilogram",
+                "type": "production",
+            },
+            {
+                "name": "Carbon dioxide, fossil",
+                "amount": 10.0,
+                "unit": "kilogram",
+                "type": "biosphere",
+            },
+        ],
+    }
+    cdr = get_cdr_allocation_transform(
+        database=[cdr_market, emitting_dataset],
+        cdr_volume=-25.0,
+        co2_volume=75.0,
+    )
+
+    cdr.allocate_cdr_to_fossil_co2()
+
+    fossil_co2 = next(
+        exc
+        for exc in emitting_dataset["exchanges"]
+        if exc["type"] == "biosphere" and exc["name"] == "Carbon dioxide, fossil"
+    )
+    cdr_input = next(
+        exc
+        for exc in emitting_dataset["exchanges"]
+        if exc["type"] == "technosphere"
+        and exc["name"] == "market for carbon dioxide removal"
+    )
+
+    assert fossil_co2["amount"] == pytest.approx(7.5)
+    assert cdr_input["amount"] == pytest.approx(2.5)
+    assert cdr_input["product"] == "carbon dioxide, captured and stored"
+    assert cdr_input["location"] == "EUR"
+
+
+def test_cdr_allocation_can_zero_lognormal_fossil_co2_exchange():
+    cdr_market = {
+        "name": "market for carbon dioxide removal",
+        "reference product": "carbon dioxide, captured and stored",
+        "location": "EUR",
+        "unit": "kilogram",
+        "regionalized": True,
+        "exchanges": [],
+    }
+    emitting_dataset = {
+        "name": "fully mitigated emitting activity",
+        "reference product": "product",
+        "location": "EUR",
+        "unit": "kilogram",
+        "exchanges": [
+            {
+                "name": "Carbon dioxide, fossil",
+                "amount": 10.0,
+                "unit": "kilogram",
+                "type": "biosphere",
+                "uncertainty type": 2,
+                "loc": 2.302585092994046,
+                "scale": 0.1,
+            },
+        ],
+    }
+    cdr = get_cdr_allocation_transform(
+        database=[cdr_market, emitting_dataset],
+        cdr_volume=100.0,
+        co2_volume=0.0,
+    )
+
+    cdr.allocate_cdr_to_fossil_co2()
+
+    fossil_co2 = next(
+        exc
+        for exc in emitting_dataset["exchanges"]
+        if exc["type"] == "biosphere" and exc["name"] == "Carbon dioxide, fossil"
+    )
+    assert fossil_co2["amount"] == 0
+    assert fossil_co2["uncertainty type"] == 0
+    assert "loc" not in fossil_co2
+    assert "scale" not in fossil_co2
 
 
 def test_afforestation_duplicate_iam_variable_is_split_by_region():

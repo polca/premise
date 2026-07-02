@@ -2075,6 +2075,41 @@ market creation happen in ``carbon_dioxide_removal.py``. CDR heat requirements
 are therefore handled through the CDR inventories and their regionalized energy
 suppliers, not through dedicated CDR logic in the heat transformation.
 
+CDR allocation to residual fossil CO2
+-------------------------------------
+
+By default, the CDR transformation only creates and regionalizes CDR supply
+chains and markets. To allocate scenario CDR deployment to residual fossil CO2
+emissions in the database, initialize ``NewDatabase`` with
+``cdr_allocation=True``:
+
+.. code-block:: python
+
+    ndb = NewDatabase(
+        scenarios=[
+                {"model":"remind", "pathway":"SSP2-Base", "year":2060}
+            ],
+        source_db="ecoinvent 3.7 cutoff",
+        source_version="3.7.1",
+        key='xxxxxxxxxxxxxxxxxxxxxxxxx',
+        cdr_allocation=True,
+    )
+    ndb.update()
+
+For each IAM region and year, *premise* calculates the allocation share as the
+absolute amount of CDR deployment divided by the sum of gross CO2 emissions and
+the absolute amount of CDR deployment. Gross CO2 uses the mapped ``CO2`` IAM
+variable, and CDR deployment uses the variables mapped in
+``carbon_dioxide_removal.yaml``. Negative CDR values are treated as physical
+removal volumes.
+
+Datasets with positive fossil CO2 biosphere emissions are eligible. For each
+eligible dataset, *premise* reduces the ``Carbon dioxide, fossil`` biosphere
+emissions by the regional allocation share and adds a technosphere input from
+the same IAM region's ``market for carbon dioxide removal``. If no CDR data are
+available for a region, the allocation share is zero and datasets in that region
+are left unchanged.
+
 .. _Qiu: https://doi.org/10.1038/s41467-022-31146-1
 
 Fuels

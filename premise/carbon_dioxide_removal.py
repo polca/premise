@@ -8,6 +8,7 @@ import yaml
 import numpy as np
 from collections import defaultdict
 import xarray as xr
+from wurst import rescale_exchange
 
 from .filesystem_constants import DATA_DIR, VARIABLES_DIR
 from .logger import create_logger
@@ -87,6 +88,31 @@ def _update_cdr(scenario, version, system_model):
     if "mapping" not in scenario:
         scenario["mapping"] = {}
     scenario["mapping"]["cdr"] = cdr.cdr_map
+
+    return scenario
+
+
+def _update_cdr_allocation(scenario, version, system_model):
+    if scenario["iam data"].cdr_technology_mix is None:
+        print("No CDR scenario data available -- skipping CDR allocation")
+        return scenario
+
+    cdr = CarbonDioxideRemoval(
+        database=scenario["database"],
+        iam_data=scenario["iam data"],
+        model=scenario["model"],
+        pathway=scenario["pathway"],
+        year=scenario["year"],
+        version=version,
+        system_model=system_model,
+        cache=scenario.get("cache"),
+        index=scenario.get("index"),
+    )
+    cdr.cdr_map = scenario.get("mapping", {}).get("cdr", {})
+    cdr.allocate_cdr_to_fossil_co2()
+    scenario["database"] = cdr.database
+    scenario["cache"] = cdr.cache
+    scenario["index"] = cdr.index
 
     return scenario
 
@@ -375,6 +401,189 @@ class CarbonDioxideRemoval(BaseTransformation):
             production_volumes=production_volumes,
             system_model=self.system_model,
         )
+
+    def calculate_cdr_allocation_shares(self):
+        """
+        Return IAM-region CDR allocation shares.
+
+        Shares are calculated as absolute CDR removals divided by gross CO2 plus
+        absolute CDR removals. Missing regional data yields a zero share.
+        """
+
+        shares = {region: 0.0 for region in self.regions if region != "World"}
+
+        production_volumes = getattr(self.iam_data, "production_volumes", None)
+        other_vars = getattr(self.iam_data, "other_vars", None)
+        if production_volumes is None or other_vars is None:
+            return shares
+
+        if "variables" not in production_volumes.coords:
+            return shares
+        if "variables" not in other_vars.coords or "CO2" not in set(
+            other_vars.variables.values.tolist()
+        ):
+            return shares
+
+        cdr_variables = [
+            variable
+            for variable in fetch_mapping(CDR_TECHS)
+            if variable in production_volumes.variables.values
+        ]
+        if not cdr_variables:
+            return shares
+
+        production_volumes = self._apply_cdr_regional_technology_constraints(
+            production_volumes
+        )
+        cdr_volumes = abs(production_volumes.sel(variables=cdr_variables)).sum(
+            dim="variables"
+        )
+        gross_co2 = other_vars.sel(variables="CO2")
+
+        cdr_volumes = self._select_iam_year(cdr_volumes)
+        gross_co2 = self._select_iam_year(gross_co2)
+
+        for region in shares:
+            if (
+                "region" not in cdr_volumes.coords
+                or "region" not in gross_co2.coords
+                or region not in cdr_volumes.region.values
+                or region not in gross_co2.region.values
+            ):
+                continue
+
+            cdr_volume = max(float(cdr_volumes.sel(region=region).values), 0.0)
+            co2_volume = max(float(gross_co2.sel(region=region).values), 0.0)
+            denominator = cdr_volume + co2_volume
+            if denominator > 0:
+                shares[region] = min(cdr_volume / denominator, 1.0)
+
+        return shares
+
+    def allocate_cdr_to_fossil_co2(self):
+        """
+        Reduce fossil CO2 biosphere emissions and add regional CDR market inputs.
+        """
+
+        allocation_shares = self.calculate_cdr_allocation_shares()
+        cdr_markets = self._get_regional_cdr_markets()
+        updated = 0
+
+        for dataset in self.database:
+            region = self._get_dataset_iam_region(dataset)
+            share = allocation_shares.get(region, 0.0)
+            if share <= 0:
+                continue
+
+            market = cdr_markets.get(region)
+            if market is None:
+                raise ValueError(
+                    f"No regional CDR market found for IAM region {region}."
+                )
+
+            if self._is_same_dataset(dataset, market):
+                continue
+
+            fossil_co2_exchanges = self._get_positive_fossil_co2_exchanges(dataset)
+            if not fossil_co2_exchanges:
+                continue
+
+            fossil_co2 = sum(exc["amount"] for exc in fossil_co2_exchanges)
+            cdr_amount = fossil_co2 * share
+
+            for exc in fossil_co2_exchanges:
+                self._rescale_fossil_co2_exchange(exc, 1 - share)
+
+            dataset["exchanges"].append(
+                {
+                    "name": market["name"],
+                    "product": market["reference product"],
+                    "location": market["location"],
+                    "amount": cdr_amount,
+                    "unit": market["unit"],
+                    "uncertainty type": 0,
+                    "type": "technosphere",
+                }
+            )
+            dataset.setdefault("log parameters", {}).update(
+                {
+                    "cdr allocation share": share,
+                    "initial amount of fossil CO2": fossil_co2,
+                    "new amount of fossil CO2": fossil_co2 - cdr_amount,
+                    "amount of CDR input": cdr_amount,
+                }
+            )
+            updated += 1
+            self.write_log(dataset, "updated")
+
+        print(f"Applied CDR allocation to {updated} datasets.")
+
+    def _select_iam_year(self, array):
+        if "year" not in array.coords:
+            return array
+
+        years = array.year.values
+        if len(years) == 0:
+            return array
+
+        if self.year in years:
+            return array.sel(year=self.year)
+
+        year = min(max(self.year, years.min()), years.max())
+        return array.interp(year=year)
+
+    def _get_regional_cdr_markets(self):
+        markets = {}
+        for dataset in self.database:
+            if (
+                dataset.get("name") == "market for carbon dioxide removal"
+                and dataset.get("reference product")
+                == "carbon dioxide, captured and stored"
+                and dataset.get("unit") == "kilogram"
+            ):
+                markets[dataset["location"]] = dataset
+
+        return markets
+
+    def _get_dataset_iam_region(self, dataset):
+        location = dataset.get("location")
+        if location in self.regions:
+            return location
+
+        return self.ecoinvent_to_iam_loc.get(location)
+
+    @staticmethod
+    def _rescale_fossil_co2_exchange(exchange, scaling_factor):
+        if scaling_factor == 0:
+            exchange["amount"] = 0
+            exchange["uncertainty type"] = 0
+            for field in ("loc", "scale", "shape", "minimum", "maximum", "negative"):
+                exchange.pop(field, None)
+            return
+
+        rescale_exchange(exchange, scaling_factor, remove_uncertainty=False)
+
+    @staticmethod
+    def _is_same_dataset(left, right):
+        return (
+            left.get("name"),
+            left.get("reference product"),
+            left.get("location"),
+        ) == (
+            right.get("name"),
+            right.get("reference product"),
+            right.get("location"),
+        )
+
+    @staticmethod
+    def _get_positive_fossil_co2_exchanges(dataset):
+        return [
+            exc
+            for exc in ws.biosphere(
+                dataset, ws.equals("name", "Carbon dioxide, fossil")
+            )
+            if exc.get("amount", 0) > 0
+        ]
 
     @staticmethod
     def _afforestation_feedstock_from_technology(technology):
