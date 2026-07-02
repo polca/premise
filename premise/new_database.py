@@ -1197,11 +1197,7 @@ class NewDatabase:
             description = "Processing scenarios for all sectors"
             sectors = [s for s in list(self.sector_update_methods.keys())]
 
-        if (
-            self.cdr_allocation
-            and "cdr" in sectors
-            and "cdr allocation" not in sectors
-        ):
+        if self.cdr_allocation and "cdr" in sectors and "cdr allocation" not in sectors:
             sectors.append("cdr allocation")
 
         assert isinstance(sectors, list), "sector_name should be a list of strings"
