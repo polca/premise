@@ -76,7 +76,7 @@ def test_cdr_allocation_share_uses_absolute_cdr_volume():
     assert shares["EUR"] == pytest.approx(0.25)
 
 
-def test_cdr_allocation_reduces_fossil_co2_and_adds_regional_market_input():
+def test_cdr_allocation_adds_regional_market_input_for_greenhouse_gases():
     cdr_market = {
         "name": "market for carbon dioxide removal",
         "reference product": "carbon dioxide, captured and stored",
@@ -114,6 +114,12 @@ def test_cdr_allocation_reduces_fossil_co2_and_adds_regional_market_input():
                 "unit": "kilogram",
                 "type": "biosphere",
             },
+            {
+                "name": "Methane, fossil",
+                "amount": 1.0,
+                "unit": "kilogram",
+                "type": "biosphere",
+            },
         ],
     }
     cdr = get_cdr_allocation_transform(
@@ -122,7 +128,7 @@ def test_cdr_allocation_reduces_fossil_co2_and_adds_regional_market_input():
         co2_volume=75.0,
     )
 
-    cdr.allocate_cdr_to_fossil_co2()
+    cdr.allocate_cdr_to_greenhouse_gases()
 
     fossil_co2 = next(
         exc
@@ -136,13 +142,16 @@ def test_cdr_allocation_reduces_fossil_co2_and_adds_regional_market_input():
         and exc["name"] == "market for carbon dioxide removal"
     )
 
-    assert fossil_co2["amount"] == pytest.approx(7.5)
-    assert cdr_input["amount"] == pytest.approx(2.5)
+    assert fossil_co2["amount"] == pytest.approx(10.0)
+    assert cdr_input["amount"] == pytest.approx((10.0 + 28.0) * 0.25)
     assert cdr_input["product"] == "carbon dioxide, captured and stored"
     assert cdr_input["location"] == "EUR"
+    assert emitting_dataset["log parameters"][
+        "gross greenhouse gas emissions, kg CO2e"
+    ] == pytest.approx(38.0)
 
 
-def test_cdr_allocation_can_zero_lognormal_fossil_co2_exchange():
+def test_cdr_allocation_keeps_lognormal_fossil_co2_exchange_visible():
     cdr_market = {
         "name": "market for carbon dioxide removal",
         "reference product": "carbon dioxide, captured and stored",
@@ -174,17 +183,24 @@ def test_cdr_allocation_can_zero_lognormal_fossil_co2_exchange():
         co2_volume=0.0,
     )
 
-    cdr.allocate_cdr_to_fossil_co2()
+    cdr.allocate_cdr_to_greenhouse_gases()
 
     fossil_co2 = next(
         exc
         for exc in emitting_dataset["exchanges"]
         if exc["type"] == "biosphere" and exc["name"] == "Carbon dioxide, fossil"
     )
-    assert fossil_co2["amount"] == 0
-    assert fossil_co2["uncertainty type"] == 0
-    assert "loc" not in fossil_co2
-    assert "scale" not in fossil_co2
+    cdr_input = next(
+        exc
+        for exc in emitting_dataset["exchanges"]
+        if exc["type"] == "technosphere"
+        and exc["name"] == "market for carbon dioxide removal"
+    )
+    assert fossil_co2["amount"] == 10.0
+    assert fossil_co2["uncertainty type"] == 2
+    assert fossil_co2["loc"] == pytest.approx(2.302585092994046)
+    assert fossil_co2["scale"] == pytest.approx(0.1)
+    assert cdr_input["amount"] == pytest.approx(10.0)
 
 
 def test_afforestation_duplicate_iam_variable_is_split_by_region():

@@ -57,15 +57,19 @@ Preliminary local check:
   `image_SSP2-VLHO.csv`.
 - The Zenodo `image_SSP2-VLHO.csv` file is reachable.
 - A quick inspection found a WEU region but no native 2055 column in the file.
-- The currently mapped IMAGE CDR aliases were not found in the downloaded file,
-  so the WEU 2055 CDR ratio cannot yet be confirmed without checking and
-  updating the IMAGE CDR variable mappings.
+- The downloaded file uses newer CDR labels such as
+  `Carbon Capture|Geological Storage|Biomass` and
+  `Carbon Capture|Geological Storage|Direct Air Capture`; the premise mapping
+  should accept these labels in addition to the older `Carbon Removal|...`
+  labels.
+- With biomass geological storage and direct air capture counted as CDR, WEU is
+  not at 100 percent in interpolated 2055 on a CO2-basis. The preliminary values
+  are about 66 percent in 2055 and 100 percent in 2060.
 
 ## CDR allocation logic
 
-The current `cdr_allocation=True` prototype allocates CDR to positive fossil
-CO2 emissions. For this study, extend the logic to compensate all relevant
-greenhouse gases on a CO2-equivalent basis.
+The `cdr_allocation=True` logic should compensate all relevant greenhouse gases
+on a CO2-equivalent basis.
 
 Recommended accounting mode for the paper:
 

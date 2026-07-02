@@ -10,10 +10,14 @@ direct air capture (solvent, gas heat) with storage:
   iam_aliases:
     remind: Emi|CO2|CDR|+|DACCS
     remind-eu: Emi|CO2|CDR|+|DACCS
-    image: Carbon Removal|Geological Storage|Direct Air Capture|Liquid Solvent
+    image:
+      - Carbon Removal|Geological Storage|Direct Air Capture|Liquid Solvent
+      - Carbon Capture|Geological Storage|Direct Air Capture
   energy_use_aliases:
     gases:
-      image: Final Energy|Carbon Management|Direct Air Capture|Liquid Solvent|Gases
+      image:
+        - Final Energy|Carbon Management|Direct Air Capture|Liquid Solvent|Gases
+        - Final Energy|Carbon Management|Direct Air Capture|Gases
       remind: FE|CDR|DAC|+|Gases
       remind-eu: FE|CDR|DAC|+|Gases
   ecoinvent_aliases:
@@ -178,7 +182,9 @@ biomass power generation, with CCS:
   iam_aliases:
       remind: Emi|CO2|CDR|+|BECCS
       remind-eu: Emi|CO2|CDR|+|BECCS
-      image: Carbon Removal|Geological Storage|Biomass|Electricity
+      image:
+        - Carbon Removal|Geological Storage|Biomass|Electricity
+        - Carbon Capture|Geological Storage|Biomass
       message: Carbon Capture|Energy|Supply|Electricity|Biomass
   efficiency_use_aliases:
       heat:

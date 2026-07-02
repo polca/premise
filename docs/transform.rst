@@ -2098,15 +2098,18 @@ emissions in the database, initialize ``NewDatabase`` with
 
 For each IAM region and year, *premise* calculates the allocation share as the
 absolute amount of CDR deployment divided by the sum of gross CO2 emissions and
-the absolute amount of CDR deployment. Gross CO2 uses the mapped ``CO2`` IAM
-variable, and CDR deployment uses the variables mapped in
+the absolute amount of CDR deployment. Gross CO2 currently uses the mapped
+``CO2`` IAM variable, and CDR deployment uses the variables mapped in
 ``carbon_dioxide_removal.yaml``. Negative CDR values are treated as physical
 removal volumes.
 
-Datasets with positive fossil CO2 biosphere emissions are eligible. For each
-eligible dataset, *premise* reduces the ``Carbon dioxide, fossil`` biosphere
-emissions by the regional allocation share and adds a technosphere input from
-the same IAM region's ``market for carbon dioxide removal``. If no CDR data are
+Datasets with positive greenhouse gas biosphere emissions are eligible. For each
+eligible dataset, *premise* converts mapped greenhouse gas emissions to CO2e
+using fixed GWP100 factors and adds a technosphere input from the same IAM
+region's ``market for carbon dioxide removal``. Gross greenhouse gas emissions
+remain visible in the dataset; the CDR market input represents the compensation
+service. The current GWP100 table covers fossil CO2, CO2 from soil or biomass
+stock, methane, nitrous oxide and sulfur hexafluoride. If no CDR data are
 available for a region, the allocation share is zero and datasets in that region
 are left unchanged.
 

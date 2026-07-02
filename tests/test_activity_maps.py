@@ -1,5 +1,8 @@
 # content of test_activity_maps.py
+import yaml
+
 from premise.activity_maps import InventorySet
+from premise.filesystem_constants import VARIABLES_DIR
 
 dummy_minimal_db = [
     {
@@ -118,3 +121,20 @@ def test_image_sorbent_dac_maps_to_heat_pump_inventory():
         == heat_pump_activity
     )
     assert "direct air capture (sorbent) with storage" not in cdr_map
+
+
+def test_image_cdr_aliases_include_current_geological_storage_labels():
+    with open(
+        VARIABLES_DIR / "carbon_dioxide_removal.yaml", "r", encoding="utf-8"
+    ) as stream:
+        mapping = yaml.safe_load(stream)
+
+    dac_aliases = mapping["direct air capture (solvent, gas heat) with storage"][
+        "iam_aliases"
+    ]["image"]
+    biomass_aliases = mapping["biomass power generation, with CCS"]["iam_aliases"][
+        "image"
+    ]
+
+    assert "Carbon Capture|Geological Storage|Direct Air Capture" in dac_aliases
+    assert "Carbon Capture|Geological Storage|Biomass" in biomass_aliases

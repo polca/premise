@@ -8,7 +8,6 @@ import yaml
 import numpy as np
 from collections import defaultdict
 import xarray as xr
-from wurst import rescale_exchange
 
 from .filesystem_constants import DATA_DIR, VARIABLES_DIR
 from .logger import create_logger
@@ -46,6 +45,16 @@ DAC_ENERGY_INPUT_LOWER_BOUNDS = {
         "electricity": 0.7,
         "total": 6.0,
     },
+}
+GREENHOUSE_GAS_GWP100 = {
+    "Carbon dioxide, fossil": 1.0,
+    "Carbon dioxide, from soil or biomass stock": 1.0,
+    "Methane": 28.0,
+    "Methane, fossil": 28.0,
+    "Methane, non-fossil": 28.0,
+    "Methane, from soil or biomass stock": 28.0,
+    "Dinitrogen monoxide": 265.0,
+    "Sulfur hexafluoride": 23500.0,
 }
 
 
@@ -109,7 +118,7 @@ def _update_cdr_allocation(scenario, version, system_model):
         index=scenario.get("index"),
     )
     cdr.cdr_map = scenario.get("mapping", {}).get("cdr", {})
-    cdr.allocate_cdr_to_fossil_co2()
+    cdr.allocate_cdr_to_greenhouse_gases()
     scenario["database"] = cdr.database
     scenario["cache"] = cdr.cache
     scenario["index"] = cdr.index
@@ -460,9 +469,9 @@ class CarbonDioxideRemoval(BaseTransformation):
 
         return shares
 
-    def allocate_cdr_to_fossil_co2(self):
+    def allocate_cdr_to_greenhouse_gases(self):
         """
-        Reduce fossil CO2 biosphere emissions and add regional CDR market inputs.
+        Add regional CDR market inputs to compensate residual GHG emissions.
         """
 
         allocation_shares = self.calculate_cdr_allocation_shares()
@@ -484,15 +493,21 @@ class CarbonDioxideRemoval(BaseTransformation):
             if self._is_same_dataset(dataset, market):
                 continue
 
-            fossil_co2_exchanges = self._get_positive_fossil_co2_exchanges(dataset)
-            if not fossil_co2_exchanges:
+            greenhouse_gas_exchanges = self._get_positive_greenhouse_gas_exchanges(
+                dataset
+            )
+            if not greenhouse_gas_exchanges:
                 continue
 
-            fossil_co2 = sum(exc["amount"] for exc in fossil_co2_exchanges)
-            cdr_amount = fossil_co2 * share
-
-            for exc in fossil_co2_exchanges:
-                self._rescale_fossil_co2_exchange(exc, 1 - share)
+            fossil_co2 = sum(
+                exc["amount"]
+                for exc, factor in greenhouse_gas_exchanges
+                if factor == 1.0 and exc["name"] == "Carbon dioxide, fossil"
+            )
+            gross_ghg = sum(
+                exc["amount"] * factor for exc, factor in greenhouse_gas_exchanges
+            )
+            cdr_amount = gross_ghg * share
 
             dataset["exchanges"].append(
                 {
@@ -509,7 +524,7 @@ class CarbonDioxideRemoval(BaseTransformation):
                 {
                     "cdr allocation share": share,
                     "initial amount of fossil CO2": fossil_co2,
-                    "new amount of fossil CO2": fossil_co2 - cdr_amount,
+                    "gross greenhouse gas emissions, kg CO2e": gross_ghg,
                     "amount of CDR input": cdr_amount,
                 }
             )
@@ -517,6 +532,13 @@ class CarbonDioxideRemoval(BaseTransformation):
             self.write_log(dataset, "updated")
 
         print(f"Applied CDR allocation to {updated} datasets.")
+
+    def allocate_cdr_to_fossil_co2(self):
+        """
+        Backward-compatible alias for the all-GHG CDR allocation routine.
+        """
+
+        self.allocate_cdr_to_greenhouse_gases()
 
     def _select_iam_year(self, array):
         if "year" not in array.coords:
@@ -553,17 +575,6 @@ class CarbonDioxideRemoval(BaseTransformation):
         return self.ecoinvent_to_iam_loc.get(location)
 
     @staticmethod
-    def _rescale_fossil_co2_exchange(exchange, scaling_factor):
-        if scaling_factor == 0:
-            exchange["amount"] = 0
-            exchange["uncertainty type"] = 0
-            for field in ("loc", "scale", "shape", "minimum", "maximum", "negative"):
-                exchange.pop(field, None)
-            return
-
-        rescale_exchange(exchange, scaling_factor, remove_uncertainty=False)
-
-    @staticmethod
     def _is_same_dataset(left, right):
         return (
             left.get("name"),
@@ -576,13 +587,13 @@ class CarbonDioxideRemoval(BaseTransformation):
         )
 
     @staticmethod
-    def _get_positive_fossil_co2_exchanges(dataset):
+    def _get_positive_greenhouse_gas_exchanges(dataset):
         return [
-            exc
-            for exc in ws.biosphere(
-                dataset, ws.equals("name", "Carbon dioxide, fossil")
-            )
+            (exc, GREENHOUSE_GAS_GWP100[exc["name"]])
+            for exc in ws.biosphere(dataset)
             if exc.get("amount", 0) > 0
+            and exc.get("name") in GREENHOUSE_GAS_GWP100
+            and exc.get("unit", "kilogram") == "kilogram"
         ]
 
     @staticmethod
