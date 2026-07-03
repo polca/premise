@@ -8,6 +8,7 @@ import yaml
 import numpy as np
 from collections import defaultdict
 import xarray as xr
+from wurst import rescale_exchange
 
 from .filesystem_constants import DATA_DIR, VARIABLES_DIR
 from .logger import create_logger
@@ -525,6 +526,15 @@ class CarbonDioxideRemoval(BaseTransformation):
                 exc["amount"] * factor for exc, factor in greenhouse_gas_exchanges
             )
             cdr_amount = gross_ghg * share
+            reduced_ghg = self._reduce_greenhouse_gas_exchanges(
+                greenhouse_gas_exchanges=greenhouse_gas_exchanges,
+                reduction_share=share,
+            )
+            new_fossil_co2 = sum(
+                exc["amount"]
+                for exc, factor in greenhouse_gas_exchanges
+                if factor == 1.0 and exc["name"] == "Carbon dioxide, fossil"
+            )
 
             dataset["exchanges"].append(
                 {
@@ -541,7 +551,12 @@ class CarbonDioxideRemoval(BaseTransformation):
                 {
                     "cdr allocation share": share,
                     "initial amount of fossil CO2": fossil_co2,
+                    "new amount of fossil CO2": new_fossil_co2,
                     "gross greenhouse gas emissions, kg CO2e": gross_ghg,
+                    "greenhouse gas emissions reduced by CDR, kg CO2e": reduced_ghg,
+                    "remaining greenhouse gas emissions, kg CO2e": (
+                        max(gross_ghg - reduced_ghg, 0.0)
+                    ),
                     "amount of CDR input": cdr_amount,
                 }
             )
@@ -556,6 +571,32 @@ class CarbonDioxideRemoval(BaseTransformation):
         """
 
         self.allocate_cdr_to_greenhouse_gases()
+
+    @staticmethod
+    def _reduce_greenhouse_gas_exchanges(greenhouse_gas_exchanges, reduction_share):
+        """
+        Reduce positive GHG biosphere exchanges by the CDR allocation share.
+        """
+
+        scaling_factor = max(0.0, 1.0 - reduction_share)
+        reduced_ghg = 0.0
+
+        for exc, factor in greenhouse_gas_exchanges:
+            initial_amount = exc["amount"]
+            reduced_ghg += initial_amount * reduction_share * factor
+
+            if scaling_factor == 0.0:
+                exc["amount"] = 0.0
+                exc["uncertainty type"] = 0
+                if "loc" in exc:
+                    exc["loc"] = 0.0
+                for field in ("scale", "minimum", "maximum"):
+                    exc.pop(field, None)
+                continue
+
+            rescale_exchange(exc, scaling_factor, remove_uncertainty=False)
+
+        return reduced_ghg
 
     def _select_iam_year(self, array):
         if "year" not in array.coords:

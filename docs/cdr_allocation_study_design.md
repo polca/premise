@@ -73,13 +73,17 @@ on a CO2-equivalent basis.
 
 Recommended accounting mode for the paper:
 
-- Keep gross greenhouse gas biosphere emissions in the product system.
-- Add a same-region input from `market for carbon dioxide removal`.
+- Record gross greenhouse gas biosphere emissions before compensation.
+- Reduce covered positive greenhouse gas biosphere exchanges by the regional CDR
+  allocation share.
+- Add a same-region input from `market for carbon dioxide removal` sized from
+  the original gross greenhouse gas CO2e value.
 - For datasets mapped to the global IAM region, including ecoinvent `GLO` and
   `RoW`, use the `World` CDR allocation share and global CDR market.
 - Size the CDR input in kg CO2 removed, using the CO2-equivalent value of the
   residual greenhouse gas emissions.
-- Report both gross climate footprint and net climate footprint after CDR.
+- Report both the recorded gross climate footprint and the net climate footprint
+  after emission reduction and CDR input.
 - Avoid double counting CDR co-products: when CDR allocation is enabled,
   co-product datasets such as BECCS electricity and fuel production with CCS
   should not also carry their own atmospheric CO2 uptake credit or separate CO2
@@ -89,16 +93,17 @@ Recommended accounting mode for the paper:
   fuel variables and fuel co-product datasets whose activity names explicitly
   indicate CCS, while leaving the CDR market uptake and storage chain intact.
 
-This is preferable for the study because methane and nitrous oxide are not
-physically removed from the emitting process. They are compensated by a separate
-CO2 removal service. Keeping the gross emissions visible also makes the
-allocation transparent.
+This is a modelling allocation, not a claim that methane and nitrous oxide are
+physically removed from the emitting process. The original gross emissions
+should remain auditable through log parameters, while the transformed product
+system represents the compensated residual emissions as reduced biosphere flows.
 
 For each eligible dataset:
 
 ```
 gross_GHG_CO2e = sum(exchange_amount_i * GWP_i)
 allocated_CDR = gross_GHG_CO2e * regional_CDR_share
+new_exchange_amount_i = exchange_amount_i * (1 - regional_CDR_share)
 ```
 
 where:
@@ -111,12 +116,15 @@ where:
 - `regional_CDR_share` is the scenario share of residual GHG emissions mitigated
   by CDR in the IAM region and year.
 - `allocated_CDR` is added as kg input from the regional CDR market.
+- `new_exchange_amount_i` is the compensated biosphere emission amount written
+  back to the transformed dataset for covered positive GHG flows.
 
 If the regional CDR share is 100 percent, the product receives enough CDR input
-to compensate the full gross GHG footprint covered by the implementation. For
-example, with the IPCC 2021 GWP100 factor for fossil methane, 1 kg fossil CH4
-receives 29.8 kg of CDR market input when the regional share is
-100 percent.
+to compensate the full gross GHG footprint covered by the implementation and
+the covered positive GHG biosphere exchanges are set to zero. For example, with
+the IPCC 2021 GWP100 factor for fossil methane, 1 kg fossil CH4 receives
+29.8 kg of CDR market input and the methane biosphere exchange is reduced to
+0 kg when the regional share is 100 percent.
 
 ## Regional scenario share
 
@@ -260,9 +268,8 @@ Minimum sensitivities:
 ## Key implementation tasks
 
 1. Extend `cdr_allocation` from fossil CO2-only to all relevant GHG flows.
-2. Decide whether the implementation should keep gross GHG emissions and add CDR
-   inputs, or physically reduce emissions. For this study, use the gross-plus-CDR
-   accounting mode.
+2. Reduce covered positive GHG biosphere exchanges by the regional CDR
+   allocation share while recording the original gross GHG CO2e value.
 3. Add a mapping from biosphere greenhouse gas flows to GWP factors.
 4. Compute regional all-GHG CDR shares from IAM data, preferably using mapped
    total GHG CO2e variables.
@@ -294,8 +301,10 @@ systems in proportion to their residual greenhouse gas emissions. For each
 dataset with positive greenhouse gas emissions, emissions were converted to
 CO2-equivalents using a consistent GWP100 characterization set. The corresponding
 amount of the same-region `market for carbon dioxide removal` was then added as
-a technosphere input, scaled by the IAM regional CDR mitigation share. We
+a technosphere input, scaled by the IAM regional CDR mitigation share, and the
+covered GHG biosphere exchanges were reduced by the same regional share. We
 calculated life-cycle climate, water, land, energy, and mineral-resource
 indicators for a basket of everyday products and compared results with and
-without CDR allocation. This isolates the additional non-climate resource burden
-associated with compensating residual product-system greenhouse gas emissions.
+without CDR allocation. This isolates the additional resource burden and changed
+residual-emission profile associated with compensating product-system greenhouse
+gas emissions.

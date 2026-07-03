@@ -2105,14 +2105,16 @@ removal volumes.
 
 Datasets with positive greenhouse gas biosphere emissions are eligible. For each
 eligible dataset, *premise* converts mapped greenhouse gas emissions to CO2e
-using fixed IPCC 2021 GWP100 factors and adds a technosphere input from the same IAM
-region's ``market for carbon dioxide removal``. Gross greenhouse gas emissions
-remain visible in the dataset; the CDR market input represents the compensation
-service. The current GWP100 table covers fossil CO2, CO2 from soil or biomass
-stock, methane, nitrous oxide, sulfur hexafluoride, tetrafluoromethane,
-hexafluoroethane and 1,1,1,2-tetrafluoroethane. If no CDR data are available
-for a region, the allocation share is zero and datasets in that region are left
-unchanged.
+using fixed IPCC 2021 GWP100 factors and adds a technosphere input from the
+same IAM region's ``market for carbon dioxide removal``. The CDR input is sized
+from the original gross GHG CO2e value, and the covered positive GHG biosphere
+exchanges are then reduced by the same regional allocation share. The original
+gross GHG CO2e value, the reduced amount and the remaining GHG CO2e value are
+recorded in the dataset log parameters. The current GWP100 table covers fossil
+CO2, CO2 from soil or biomass stock, methane, nitrous oxide, sulfur
+hexafluoride, tetrafluoromethane, hexafluoroethane and
+1,1,1,2-tetrafluoroethane. If no CDR data are available for a region, the
+allocation share is zero and datasets in that region are left unchanged.
 
 Datasets mapped to the global IAM region, such as ecoinvent ``GLO`` and ``RoW``
 datasets, use the ``World`` allocation share and the global CDR market when
