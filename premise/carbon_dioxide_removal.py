@@ -49,12 +49,15 @@ DAC_ENERGY_INPUT_LOWER_BOUNDS = {
 GREENHOUSE_GAS_GWP100 = {
     "Carbon dioxide, fossil": 1.0,
     "Carbon dioxide, from soil or biomass stock": 1.0,
-    "Methane": 28.0,
-    "Methane, fossil": 28.0,
-    "Methane, non-fossil": 28.0,
-    "Methane, from soil or biomass stock": 28.0,
-    "Dinitrogen monoxide": 265.0,
-    "Sulfur hexafluoride": 23500.0,
+    "Methane": 29.8,
+    "Methane, fossil": 29.8,
+    "Methane, non-fossil": 29.8,
+    "Methane, from soil or biomass stock": 29.8,
+    "Dinitrogen monoxide": 273.0,
+    "Sulfur hexafluoride": 24300.0,
+    "Tetrafluoromethane": 7380.0,
+    "Hexafluoroethane": 12400.0,
+    "1,1,1,2-Tetrafluoroethane": 1526.0,
 }
 
 
@@ -417,9 +420,12 @@ class CarbonDioxideRemoval(BaseTransformation):
 
         Shares are calculated as absolute CDR removals divided by gross CO2 plus
         absolute CDR removals. Missing regional data yields a zero share.
+        The ``World`` share is included so GLO/RoW datasets mapped to the global
+        IAM region can receive inputs from the global CDR market.
         """
 
-        shares = {region: 0.0 for region in self.regions if region != "World"}
+        regions = list(dict.fromkeys([*self.regions, "World"]))
+        shares = {region: 0.0 for region in regions}
 
         production_volumes = getattr(self.iam_data, "production_volumes", None)
         other_vars = getattr(self.iam_data, "other_vars", None)
@@ -452,12 +458,23 @@ class CarbonDioxideRemoval(BaseTransformation):
         cdr_volumes = self._select_iam_year(cdr_volumes)
         gross_co2 = self._select_iam_year(gross_co2)
 
+        cdr_regions = (
+            set(cdr_volumes.region.values.tolist())
+            if "region" in cdr_volumes.coords
+            else set()
+        )
+        co2_regions = (
+            set(gross_co2.region.values.tolist())
+            if "region" in gross_co2.coords
+            else set()
+        )
+
         for region in shares:
             if (
                 "region" not in cdr_volumes.coords
                 or "region" not in gross_co2.coords
-                or region not in cdr_volumes.region.values
-                or region not in gross_co2.region.values
+                or region not in cdr_regions
+                or region not in co2_regions
             ):
                 continue
 

@@ -2075,12 +2075,12 @@ market creation happen in ``carbon_dioxide_removal.py``. CDR heat requirements
 are therefore handled through the CDR inventories and their regionalized energy
 suppliers, not through dedicated CDR logic in the heat transformation.
 
-CDR allocation to residual fossil CO2
--------------------------------------
+CDR allocation to residual greenhouse gases
+-------------------------------------------
 
 By default, the CDR transformation only creates and regionalizes CDR supply
-chains and markets. To allocate scenario CDR deployment to residual fossil CO2
-emissions in the database, initialize ``NewDatabase`` with
+chains and markets. To allocate scenario CDR deployment to residual greenhouse
+gas emissions in the database, initialize ``NewDatabase`` with
 ``cdr_allocation=True``:
 
 .. code-block:: python
@@ -2105,13 +2105,29 @@ removal volumes.
 
 Datasets with positive greenhouse gas biosphere emissions are eligible. For each
 eligible dataset, *premise* converts mapped greenhouse gas emissions to CO2e
-using fixed GWP100 factors and adds a technosphere input from the same IAM
+using fixed IPCC 2021 GWP100 factors and adds a technosphere input from the same IAM
 region's ``market for carbon dioxide removal``. Gross greenhouse gas emissions
 remain visible in the dataset; the CDR market input represents the compensation
 service. The current GWP100 table covers fossil CO2, CO2 from soil or biomass
-stock, methane, nitrous oxide and sulfur hexafluoride. If no CDR data are
-available for a region, the allocation share is zero and datasets in that region
-are left unchanged.
+stock, methane, nitrous oxide, sulfur hexafluoride, tetrafluoromethane,
+hexafluoroethane and 1,1,1,2-tetrafluoroethane. If no CDR data are available
+for a region, the allocation share is zero and datasets in that region are left
+unchanged.
+
+Datasets mapped to the global IAM region, such as ecoinvent ``GLO`` and ``RoW``
+datasets, use the ``World`` allocation share and the global CDR market when
+available.
+
+When ``cdr_allocation=True``, *premise* also removes direct atmospheric CO2
+uptake credits and CO2 storage-service inputs from CCS co-product datasets whose
+removal service is represented through the CDR market. This currently targets
+biomass CCS electricity technologies, fuel variables mapped as ``with CCS`` and
+fuel co-product datasets whose activity names explicitly indicate CCS. The CDR
+market datasets keep their atmospheric CO2 uptake and storage flows, while
+electricity, biofuel and synthetic-fuel co-products no longer carry an embedded
+removal credit or a separate compression, transport and storage input. This is
+a conservative zero-credit and zero-storage-input adjustment; it does not
+replace the full CCS inventory with a non-CCS equivalent.
 
 .. _Qiu: https://doi.org/10.1038/s41467-022-31146-1
 

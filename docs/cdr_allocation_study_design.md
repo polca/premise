@@ -75,9 +75,18 @@ Recommended accounting mode for the paper:
 
 - Keep gross greenhouse gas biosphere emissions in the product system.
 - Add a same-region input from `market for carbon dioxide removal`.
+- For datasets mapped to the global IAM region, including ecoinvent `GLO` and
+  `RoW`, use the `World` CDR allocation share and global CDR market.
 - Size the CDR input in kg CO2 removed, using the CO2-equivalent value of the
   residual greenhouse gas emissions.
 - Report both gross climate footprint and net climate footprint after CDR.
+- Avoid double counting CDR co-products: when CDR allocation is enabled,
+  co-product datasets such as BECCS electricity and fuel production with CCS
+  should not also carry their own atmospheric CO2 uptake credit or separate CO2
+  storage-service input. The implementation zeroes `Carbon dioxide, in air` and
+  CO2 compression, transport and storage technosphere inputs in mapped CCS fuel
+  variables and fuel co-product datasets whose activity names explicitly
+  indicate CCS, while leaving the CDR market uptake and storage chain intact.
 
 This is preferable for the study because methane and nitrous oxide are not
 physically removed from the emitting process. They are compensated by a separate
@@ -94,15 +103,18 @@ allocated_CDR = gross_GHG_CO2e * regional_CDR_share
 where:
 
 - `exchange_amount_i` is the mass of greenhouse gas emission `i`.
-- `GWP_i` is the characterization factor from the selected climate method.
+- `GWP_i` is the IPCC 2021 GWP100 factor currently covered by the
+  implementation. The covered gases are fossil CO2, CO2 from soil or biomass
+  stock, methane, nitrous oxide, sulfur hexafluoride, tetrafluoromethane,
+  hexafluoroethane and 1,1,1,2-tetrafluoroethane.
 - `regional_CDR_share` is the scenario share of residual GHG emissions mitigated
   by CDR in the IAM region and year.
 - `allocated_CDR` is added as kg input from the regional CDR market.
 
 If the regional CDR share is 100 percent, the product receives enough CDR input
-to compensate the full gross GHG footprint covered by the method. For example,
-if the selected GWP factor for fossil methane is 28 kg CO2e per kg CH4, then
-1 kg fossil CH4 receives 28 kg of CDR market input when the regional share is
+to compensate the full gross GHG footprint covered by the implementation. For
+example, with the IPCC 2021 GWP100 factor for fossil methane, 1 kg fossil CH4
+receives 29.8 kg of CDR market input when the regional share is
 100 percent.
 
 ## Regional scenario share
@@ -257,7 +269,11 @@ Minimum sensitivities:
    `carbon_dioxide_removal.yaml` if needed.
 6. Confirm whether WEU reaches 100 percent mitigation by CDR at or near 2055.
 7. Build paired databases and audit that CDR inputs are same-region.
-8. Run LCIA and contribution analysis with reproducible scripts.
+8. Remove embedded atmospheric CO2 uptake credits and CO2 storage-service inputs
+   from BECCS and CCS fuel co-products when `cdr_allocation=True`, so the
+   removal credit and storage burden are represented only by the CDR market
+   input.
+9. Run LCIA and contribution analysis with reproducible scripts.
 
 ## Claims to avoid
 

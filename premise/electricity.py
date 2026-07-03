@@ -39,6 +39,12 @@ from .validation import ElectricityValidation
 
 POWERPLANT_TECHS = VARIABLES_DIR / "electricity.yaml"
 
+BIOMASS_CCS_POWER_TECHNOLOGIES = {
+    "Biomass CHP CCS",
+    "Biomass ST CCS",
+    "Biomass IGCC CCS",
+}
+
 logger = create_logger("electricity")
 
 
@@ -226,6 +232,7 @@ def _update_electricity(
     version,
     system_model,
     use_absolute_efficiency,
+    cdr_allocation=False,
 ):
 
     if scenario["iam data"].electricity_mix is None:
@@ -241,6 +248,7 @@ def _update_electricity(
         version=version,
         system_model=system_model,
         use_absolute_efficiency=use_absolute_efficiency,
+        cdr_allocation=cdr_allocation,
         cache=scenario.get("cache"),
         index=scenario.get("index"),
     )
@@ -250,6 +258,9 @@ def _update_electricity(
     electricity.update_efficiency_of_solar_pv()
     electricity.correct_hydropower_water_emissions()
     electricity.create_region_specific_power_plants()
+
+    if cdr_allocation:
+        electricity.remove_cdr_credit_from_biomass_ccs_power_plants()
 
     if scenario["year"] >= 2020:
         electricity.adjust_aluminium_electricity_markets()
@@ -389,6 +400,7 @@ class Electricity(BaseTransformation):
         use_absolute_efficiency: bool = False,
         cache: dict = None,
         index: dict = None,
+        cdr_allocation: bool = False,
     ) -> None:
         super().__init__(
             database,
@@ -400,6 +412,7 @@ class Electricity(BaseTransformation):
             system_model,
             cache,
             index,
+            cdr_allocation=cdr_allocation,
         )
         self.mapping, self.fuel_map, self.fuel_map_reverse = create_fuel_map(
             self.database, self.version, self.model
@@ -431,6 +444,36 @@ class Electricity(BaseTransformation):
         self.powerplant_min_efficiency, self.powerplant_max_efficiency = (
             self.mapping.generate_powerplant_efficiency_bounds()
         )
+
+    def remove_cdr_credit_from_biomass_ccs_power_plants(self) -> float:
+        """
+        Remove embedded CDR credits and storage inputs from BECCS electricity.
+
+        With CDR allocation enabled, the permanent removal is represented by
+        the CDR market. Biomass CCS electricity remains an electricity
+        co-product, but should not also carry a direct CO2 removal credit or
+        storage-service input.
+        """
+
+        removed_amount = 0.0
+        reason = (
+            "Embedded atmospheric CO2 uptake and CO2 storage inputs set to zero "
+            "because cdr_allocation=True allocates permanent CDR through the "
+            "regional CDR market."
+        )
+
+        for technology in BIOMASS_CCS_POWER_TECHNOLOGIES:
+            for dataset in self.powerplant_map.get(technology, []):
+                removed_amount += self.zero_atmospheric_co2_uptake(
+                    dataset=dataset,
+                    reason=reason,
+                )
+                removed_amount += self.zero_carbon_dioxide_storage_inputs(
+                    dataset=dataset,
+                    reason=reason,
+                )
+
+        return removed_amount
 
     @lru_cache
     def get_production_per_tech_dict(self) -> Dict[Tuple[str, str], float]:

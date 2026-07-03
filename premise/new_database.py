@@ -1114,14 +1114,22 @@ class NewDatabase:
             },
             "electricity": {
                 "func": _update_electricity,
-                "args": (self.version, self.system_model, self.use_absolute_efficiency),
+                "args": (
+                    self.version,
+                    self.system_model,
+                    self.use_absolute_efficiency,
+                    self.cdr_allocation,
+                ),
             },
             "cement": {
                 "func": _update_cement,
                 "args": (self.version, self.system_model),
             },
             "steel": {"func": _update_steel, "args": (self.version, self.system_model)},
-            "fuels": {"func": _update_fuels, "args": (self.version, self.system_model)},
+            "fuels": {
+                "func": _update_fuels,
+                "args": (self.version, self.system_model, self.cdr_allocation),
+            },
             "renewable": {
                 "func": _update_wind_turbines,
                 "args": (self.version, self.system_model),

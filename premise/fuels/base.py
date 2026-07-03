@@ -17,8 +17,24 @@ from ..logger import create_logger
 
 logger = create_logger("fuel")
 
+FUEL_CCS_COPRODUCT_REFERENCE_PRODUCT_TERMS = (
+    "biodiesel",
+    "diesel",
+    "ethanol",
+    "gasoline",
+    "hydrogen",
+    "kerosene",
+    "liquefied petroleum gas",
+    "lubricating oil",
+    "methane",
+    "methanol",
+    "naphtha",
+    "petrol",
+    "syngas",
+)
 
-def _update_fuels(scenario, version, system_model):
+
+def _update_fuels(scenario, version, system_model, cdr_allocation=False):
 
     fuels = Fuels(
         database=scenario["database"],
@@ -28,6 +44,7 @@ def _update_fuels(scenario, version, system_model):
         year=scenario["year"],
         version=version,
         system_model=system_model,
+        cdr_allocation=cdr_allocation,
         cache=scenario.get("cache"),
         index=scenario.get("index"),
     )
@@ -44,6 +61,10 @@ def _update_fuels(scenario, version, system_model):
         fuels.generate_hydrogen_activities()
         fuels.generate_synthetic_fuel_activities()
         fuels.generate_biogas_activities()
+
+        if cdr_allocation:
+            fuels.remove_cdr_credit_from_ccs_fuel_activities()
+
         fuels.relink_datasets()
         scenario["database"] = fuels.database
         scenario["cache"] = fuels.cache
@@ -127,6 +148,80 @@ class Fuels(
                 )
 
         self.new_fuel_markets = {}
+
+    @staticmethod
+    def is_ccs_fuel_coproduct_dataset(dataset: dict) -> bool:
+        """
+        Return True for fuel co-products with embedded CCS.
+        """
+
+        name = str(dataset.get("name") or "").lower()
+        reference_product = str(dataset.get("reference product") or "").lower()
+
+        if not any(
+            marker in name
+            for marker in ("with ccs", "with carbon capture and storage")
+        ):
+            return False
+
+        return any(
+            term in reference_product
+            for term in FUEL_CCS_COPRODUCT_REFERENCE_PRODUCT_TERMS
+        )
+
+    def remove_cdr_credit_from_ccs_fuel_activities(self):
+        """
+        Remove embedded CDR credits and storage inputs from CCS fuel co-products.
+
+        With CDR allocation enabled, permanent removals are represented by
+        the CDR market. Fuel activities with CCS remain fuel co-products, but
+        should not also carry a direct CO2 removal credit or storage-service
+        input.
+        """
+
+        removed_amount = 0.0
+        seen = set()
+        reason = (
+            "Embedded atmospheric CO2 uptake and CO2 storage inputs set to zero "
+            "because cdr_allocation=True allocates permanent CDR through the "
+            "regional CDR market."
+        )
+
+        candidate_datasets = []
+
+        for variable, datasets in self.fuel_map.items():
+            if "with CCS" not in variable:
+                continue
+
+            candidate_datasets.extend(datasets)
+
+        candidate_datasets.extend(
+            dataset
+            for dataset in getattr(self, "database", [])
+            if self.is_ccs_fuel_coproduct_dataset(dataset)
+        )
+
+        for dataset in candidate_datasets:
+            identity = (
+                dataset.get("name"),
+                dataset.get("reference product"),
+                dataset.get("location"),
+            )
+
+            if identity in seen:
+                continue
+
+            seen.add(identity)
+            removed_amount += self.zero_atmospheric_co2_uptake(
+                dataset=dataset,
+                reason=reason,
+            )
+            removed_amount += self.zero_carbon_dioxide_storage_inputs(
+                dataset=dataset,
+                reason=reason,
+            )
+
+        return removed_amount
 
     def write_log(self, dataset, status="created"):
         """

@@ -510,6 +510,7 @@ class BaseTransformation:
         system_model: str,
         cache: dict = None,
         index: dict = None,
+        cdr_allocation: bool = False,
     ) -> None:
         self.mapping = None
         self.database: List[dict] = database
@@ -523,6 +524,7 @@ class BaseTransformation:
         self.fuels_specs: dict = get_fuel_properties()
 
         self.system_model: str = system_model
+        self.cdr_allocation: bool = cdr_allocation
         self.cache: dict = cache or {}
         self.ecoinvent_to_iam_loc: Dict[str, str] = {
             loc: self.geo.ecoinvent_to_iam_location(loc)
@@ -533,6 +535,128 @@ class BaseTransformation:
             self.iam_to_ecoinvent_loc[value].append(key)
 
         self.index = index or self.create_index()
+
+    def zero_atmospheric_co2_uptake(
+        self, dataset: dict, reason: str = ""
+    ) -> float:
+        """
+        Set direct atmospheric CO2 uptake exchanges to zero.
+
+        When CDR allocation is active, permanent removals are represented by
+        the CDR market. Co-product datasets with CCS should therefore not also
+        carry a direct atmospheric uptake credit.
+        """
+
+        removed_amount = 0.0
+
+        for exc in ws.biosphere(
+            dataset,
+            ws.equals("name", "Carbon dioxide, in air"),
+            ws.equals("unit", "kilogram"),
+        ):
+            amount = float(exc.get("amount") or 0.0)
+
+            if amount <= 0:
+                continue
+
+            removed_amount += amount
+            exc["amount"] = 0.0
+            exc["uncertainty type"] = 0
+
+            if "loc" in exc:
+                exc["loc"] = 0.0
+
+            if reason:
+                if "comment" in exc:
+                    if reason not in exc["comment"]:
+                        exc["comment"] += f" {reason}"
+                else:
+                    exc["comment"] = reason
+
+        if removed_amount:
+            dataset.setdefault("log parameters", {})[
+                "atmospheric CO2 uptake removed for CDR allocation"
+            ] = removed_amount
+
+            if reason:
+                if "comment" in dataset:
+                    if reason not in dataset["comment"]:
+                        dataset["comment"] += f" {reason}"
+                else:
+                    dataset["comment"] = reason
+
+        return removed_amount
+
+    @staticmethod
+    def is_carbon_dioxide_storage_input(exc: dict) -> bool:
+        """
+        Return True for CO2 compression, transport and storage inputs.
+        """
+
+        name = str(exc.get("name") or "").strip().lower()
+        product = str(exc.get("product") or "").strip().lower()
+
+        if name == "carbon dioxide compression, transport and storage":
+            return True
+
+        if name.startswith(("carbon dioxide storage", "co2 storage")):
+            return True
+
+        if product.startswith("carbon dioxide, stored"):
+            return True
+
+        return False
+
+    def zero_carbon_dioxide_storage_inputs(
+        self, dataset: dict, reason: str = ""
+    ) -> float:
+        """
+        Set CO2 compression, transport and storage inputs to zero.
+
+        When CDR allocation is active, permanent removals and the associated
+        storage service are represented by the CDR market. Co-product datasets
+        with CCS should therefore not also include a direct storage-service
+        input for the same removed CO2.
+        """
+
+        removed_amount = 0.0
+
+        for exc in ws.technosphere(dataset):
+            if not self.is_carbon_dioxide_storage_input(exc):
+                continue
+
+            amount = float(exc.get("amount") or 0.0)
+
+            if amount <= 0:
+                continue
+
+            removed_amount += amount
+            exc["amount"] = 0.0
+            exc["uncertainty type"] = 0
+
+            if "loc" in exc:
+                exc["loc"] = 0.0
+
+            if reason:
+                if "comment" in exc:
+                    if reason not in exc["comment"]:
+                        exc["comment"] += f" {reason}"
+                else:
+                    exc["comment"] = reason
+
+        if removed_amount:
+            dataset.setdefault("log parameters", {})[
+                "carbon dioxide storage input removed for CDR allocation"
+            ] = removed_amount
+
+            if reason:
+                if "comment" in dataset:
+                    if reason not in dataset["comment"]:
+                        dataset["comment"] += f" {reason}"
+                else:
+                    dataset["comment"] = reason
+
+        return removed_amount
 
     def create_index(self):
         idx = defaultdict(list)
