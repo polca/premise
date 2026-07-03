@@ -4,6 +4,7 @@ as well as export it back.
 
 """
 
+import copy
 import gc
 import inspect
 import logging
@@ -12,10 +13,12 @@ import pickle
 from datetime import datetime
 from pathlib import Path
 from typing import List, Union
+from uuid import uuid4
 
 import bw2data
 import datapackage
 from tqdm import tqdm
+from wurst import rescale_exchange
 
 from . import __version__
 from .battery import _update_battery
@@ -24,7 +27,11 @@ from .cement import _update_cement
 from .clean_datasets import DatabaseCleaner
 from .data_collection import IAMDataCollection
 from .carbon_dioxide_removal import _update_cdr, _update_cdr_allocation
-from .electricity import _update_electricity
+from .electricity import (
+    CHP_CCS_CAPTURE_RATE,
+    CHP_CCS_POWER_PLANT_SPECS,
+    _update_electricity,
+)
 from .emissions import _update_emissions
 from .final_energy import _update_final_energy
 from .export import (
@@ -65,6 +72,7 @@ from .utils import (
     load_cached_database,
     load_database,
     print_version,
+    rescale_exchanges,
     resolve_cache_ref,
     warning_about_biogenic_co2,
     end_of_process,
@@ -89,6 +97,56 @@ FILEPATH_CC_INVENTORIES = INVENTORY_DIR / "lci-carbon-capture.xlsx"
 FILEPATH_BIOFUEL_INVENTORIES = INVENTORY_DIR / "lci-biofuels.xlsx"
 FILEPATH_BIOGAS_INVENTORIES = INVENTORY_DIR / "lci-biogas.xlsx"
 FILEPATH_WASTE_CHP_INVENTORIES = INVENTORY_DIR / "lci-waste-CHP.xlsx"
+
+CHP_CCS_HEAT_INVENTORY_SPECS = {
+    "Biomass CHP CCS": {
+        "name": (
+            "heat production, at co-generation wood-fired power plant, post, "
+            "pipeline 200km, storage 1000m"
+        ),
+        "reference product": "heat, district or industrial, other than natural gas",
+        "unit": "megajoule",
+        "location": "RER",
+        "source_name": "heat and power co-generation, wood chips, 6667 kW",
+        "source_product": "heat, district or industrial, other than natural gas",
+    },
+    "Coal CHP CCS": {
+        "name": (
+            "heat production, at co-generation hard coal-fired power plant, post, "
+            "pipeline 200km, storage 1000m"
+        ),
+        "reference product": "heat, district or industrial, other than natural gas",
+        "unit": "megajoule",
+        "location": "RER",
+        "source_name": "heat and power co-generation, hard coal",
+        "source_product": "heat, district or industrial, other than natural gas",
+    },
+    "Gas CHP CCS": {
+        "name": (
+            "heat production, at co-generation natural gas-fired power plant, post, "
+            "pipeline 200km, storage 1000m"
+        ),
+        "reference product": "heat, district or industrial, natural gas",
+        "unit": "megajoule",
+        "location": "RER",
+        "source_name": (
+            "heat and power co-generation, natural gas, conventional power plant, "
+            "100MW electrical"
+        ),
+        "source_product": "heat, district or industrial, natural gas",
+    },
+    "Oil CHP CCS": {
+        "name": (
+            "heat production, at co-generation oil-fired power plant, post, "
+            "pipeline 200km, storage 1000m"
+        ),
+        "reference product": "heat, district or industrial, other than natural gas",
+        "unit": "megajoule",
+        "location": "RER",
+        "source_name": "heat and power co-generation, oil",
+        "source_product": "heat, district or industrial, other than natural gas",
+    },
+}
 
 FILEPATH_CARBON_FIBER_INVENTORIES = INVENTORY_DIR / "lci-carbon-fiber.xlsx"
 FILEPATH_HYDROGEN_DISTRI_INVENTORIES = INVENTORY_DIR / "lci-hydrogen-distribution.xlsx"
@@ -834,6 +892,162 @@ class NewDatabase:
             self.source, self.source_type, self.source_file_path, self.version
         ).prepare_datasets(self.keep_source_db_uncertainty)
 
+    def __find_chp_ccs_heat_source_dataset(
+        self, technology: str, spec: dict
+    ) -> dict:
+        electricity_spec = CHP_CCS_POWER_PLANT_SPECS[technology]
+        candidates = [
+            dataset
+            for dataset in self.database
+            if dataset.get("name") == spec["source_name"]
+            and dataset.get("reference product") == spec["source_product"]
+            and dataset.get("unit") == spec["unit"]
+        ]
+
+        if not candidates:
+            raise ValueError(
+                f"Cannot generate {spec['name']!r}: source CHP heat dataset "
+                f"{spec['source_name']!r} | {spec['source_product']!r} not found."
+            )
+
+        preferred_locations = tuple(electricity_spec["source_preferred_locations"])
+        for location in preferred_locations:
+            for dataset in candidates:
+                if dataset.get("location") == location:
+                    return dataset
+
+        for location in ("RER", "RoW", "GLO"):
+            for dataset in candidates:
+                if dataset.get("location") == location:
+                    return dataset
+
+        return candidates[0]
+
+    @staticmethod
+    def __make_chp_ccs_heat_inventory_dataset(
+        source_dataset: dict, technology: str, spec: dict
+    ) -> dict:
+        electricity_spec = CHP_CCS_POWER_PLANT_SPECS[technology]
+        dataset = copy.deepcopy(source_dataset)
+        dataset["name"] = spec["name"]
+        dataset["reference product"] = spec["reference product"]
+        dataset["unit"] = spec["unit"]
+        dataset["location"] = spec["location"]
+        dataset["code"] = str(uuid4().hex)
+
+        for key in ("input", "parameters"):
+            if key in dataset:
+                del dataset[key]
+
+        for exchange in dataset.get("exchanges", []):
+            if exchange.get("type") != "production":
+                continue
+
+            exchange["name"] = spec["name"]
+            exchange["product"] = spec["reference product"]
+            exchange["unit"] = spec["unit"]
+            exchange["location"] = spec["location"]
+            exchange["amount"] = exchange.get("amount", 1.0)
+            exchange["production volume"] = 100.0
+            if "input" in exchange:
+                del exchange["input"]
+
+        rescale_exchanges(
+            dataset,
+            electricity_spec["energy_penalty"],
+            remove_uncertainty=False,
+        )
+
+        direct_co2_exchanges = [
+            exchange
+            for exchange in dataset.get("exchanges", [])
+            if exchange.get("type") == "biosphere"
+            and exchange.get("name") == electricity_spec["co2_flow"]
+            and exchange.get("unit") == "kilogram"
+            and exchange.get("amount", 0) > 0
+        ]
+        direct_co2_before_capture = sum(
+            float(exchange["amount"]) for exchange in direct_co2_exchanges
+        )
+        captured_co2 = direct_co2_before_capture * CHP_CCS_CAPTURE_RATE
+
+        for exchange in direct_co2_exchanges:
+            rescale_exchange(
+                exchange,
+                1 - CHP_CCS_CAPTURE_RATE,
+                remove_uncertainty=False,
+            )
+
+        if captured_co2:
+            dataset["exchanges"].append(
+                {
+                    "name": electricity_spec["capture_name"],
+                    "product": electricity_spec["capture_name"],
+                    "amount": captured_co2,
+                    "loc": captured_co2,
+                    "unit": "kilogram",
+                    "location": spec["location"],
+                    "type": "technosphere",
+                    "uncertainty type": 0,
+                }
+            )
+
+        source = f"{source_dataset['name']} ({source_dataset['location']})"
+        comment = (
+            "This dataset was generated by premise from a conventional CHP heat "
+            "dataset, with a CCS energy penalty, reduced direct CO2 emissions, "
+            "and a carbon-capture technosphere input. It replaces the retired "
+            "lci-combined-heat-power-plant-CCS.xlsx inventory."
+        )
+        if dataset.get("comment"):
+            dataset["comment"] += f" {comment}"
+        else:
+            dataset["comment"] = comment
+
+        dataset.setdefault("log parameters", {}).update(
+            {
+                "source CHP dataset": source,
+                "CHP CCS technology": technology,
+                "CHP CCS energy penalty": electricity_spec["energy_penalty"],
+                "CHP CCS capture rate": CHP_CCS_CAPTURE_RATE,
+                "CHP CCS direct CO2 before capture": direct_co2_before_capture,
+                "CHP CCS captured CO2": captured_co2,
+                "CHP CCS residual direct CO2": direct_co2_before_capture
+                - captured_co2,
+            }
+        )
+
+        return dataset
+
+    def __generate_chp_ccs_heat_inventory_datasets(self) -> List[dict]:
+        generated_datasets = []
+
+        existing = {
+            (
+                dataset.get("name"),
+                dataset.get("reference product"),
+                dataset.get("location"),
+            )
+            for dataset in self.database
+        }
+
+        for technology, spec in CHP_CCS_HEAT_INVENTORY_SPECS.items():
+            key = (spec["name"], spec["reference product"], spec["location"])
+            if key in existing:
+                continue
+
+            source_dataset = self.__find_chp_ccs_heat_source_dataset(technology, spec)
+            dataset = self.__make_chp_ccs_heat_inventory_dataset(
+                source_dataset=source_dataset,
+                technology=technology,
+                spec=spec,
+            )
+            self.database.append(dataset)
+            generated_datasets.append(dataset)
+            existing.add(key)
+
+        return generated_datasets
+
     def __import_inventories(self, collect_data: bool = True) -> List[dict]:
         """
         This method will trigger the import of a number of pickled inventories
@@ -952,6 +1166,11 @@ class NewDatabase:
                 FILEPATH_GRAPHITE,
             ] and self.version in ["3.11", "3.12"]:
                 continue
+
+            if filepath[0] == FILEPATH_AMMONIA:
+                generated = self.__generate_chp_ccs_heat_inventory_datasets()
+                if collect_data:
+                    data.extend(generated)
 
             inventory = DefaultInventory(
                 database=self.database,

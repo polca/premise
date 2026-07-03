@@ -1,3 +1,5 @@
+from collections import defaultdict
+
 import pytest
 
 from premise.electricity import (
@@ -75,6 +77,71 @@ def fuel_input(amount=1.0):
         "type": "technosphere",
         "unit": "megajoule",
     }
+
+
+def test_electricity_removes_only_legacy_chp_ccs_negative_credit_templates():
+    electricity = object.__new__(Electricity)
+    gas_chp_ccs_name = CHP_CCS_POWER_PLANT_SPECS["Gas CHP CCS"]["name"].replace(
+        "electricity production", "heat production"
+    )
+    legacy_template = {
+        "name": gas_chp_ccs_name,
+        "reference product": "heat, district or industrial, natural gas",
+        "location": "RER",
+        "unit": "megajoule",
+        "exchanges": [
+            production_exchange(
+                gas_chp_ccs_name,
+                "heat, district or industrial, natural gas",
+                "megajoule",
+            ),
+            fossil_co2(-0.02),
+        ],
+    }
+    generated_provider = {
+        "name": gas_chp_ccs_name,
+        "reference product": "heat, district or industrial, natural gas",
+        "location": "RER",
+        "unit": "megajoule",
+        "exchanges": [
+            production_exchange(
+                gas_chp_ccs_name,
+                "heat, district or industrial, natural gas",
+                "megajoule",
+            ),
+            fossil_co2(0.002),
+            {
+                "name": CHP_CCS_POWER_PLANT_SPECS["Gas CHP CCS"]["capture_name"],
+                "product": CHP_CCS_POWER_PLANT_SPECS["Gas CHP CCS"]["capture_name"],
+                "amount": 0.018,
+                "loc": 0.018,
+                "type": "technosphere",
+                "unit": "kilogram",
+                "location": "RER",
+            },
+        ],
+    }
+    other_dataset = {
+        "name": "market for heat, district or industrial",
+        "reference product": "heat, district or industrial",
+        "location": "RER",
+        "unit": "megajoule",
+        "exchanges": [
+            production_exchange(
+                "market for heat, district or industrial",
+                "heat, district or industrial",
+                "megajoule",
+            )
+        ],
+    }
+    electricity.database = [legacy_template, generated_provider, other_dataset]
+    electricity.index = defaultdict(list)
+
+    electricity._remove_imported_chp_ccs_power_plant_datasets()
+
+    assert legacy_template not in electricity.database
+    assert generated_provider in electricity.database
+    assert other_dataset in electricity.database
 
 
 def test_zero_atmospheric_co2_uptake_sets_exchange_to_zero():
