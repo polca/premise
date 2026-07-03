@@ -78,9 +78,7 @@ def test_zero_atmospheric_co2_uptake_sets_exchange_to_zero():
 
     assert removed == pytest.approx(2.5)
     uptake = next(
-        exc
-        for exc in dataset["exchanges"]
-        if exc["name"] == "Carbon dioxide, in air"
+        exc for exc in dataset["exchanges"] if exc["name"] == "Carbon dioxide, in air"
     )
     assert uptake["amount"] == 0
     assert uptake["loc"] == 0

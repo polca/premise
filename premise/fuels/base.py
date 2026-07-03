@@ -159,8 +159,7 @@ class Fuels(
         reference_product = str(dataset.get("reference product") or "").lower()
 
         if not any(
-            marker in name
-            for marker in ("with ccs", "with carbon capture and storage")
+            marker in name for marker in ("with ccs", "with carbon capture and storage")
         ):
             return False
 

@@ -23,15 +23,11 @@ def get_cdr_allocation_transform(
     if np.isscalar(cdr_volume):
         cdr_values = np.full((1, len(regions), 1), cdr_volume)
     else:
-        cdr_values = np.asarray(cdr_volume, dtype=float).reshape(
-            1, len(regions), 1
-        )
+        cdr_values = np.asarray(cdr_volume, dtype=float).reshape(1, len(regions), 1)
     if np.isscalar(co2_volume):
         co2_values = np.full((1, len(regions), 1), co2_volume)
     else:
-        co2_values = np.asarray(co2_volume, dtype=float).reshape(
-            1, len(regions), 1
-        )
+        co2_values = np.asarray(co2_volume, dtype=float).reshape(1, len(regions), 1)
 
     cdr = object.__new__(CarbonDioxideRemoval)
     cdr.database = database or []
@@ -237,14 +233,7 @@ def test_cdr_allocation_adds_regional_market_input_for_greenhouse_gases():
 
     assert fossil_co2["amount"] == pytest.approx(10.0)
     assert cdr_input["amount"] == pytest.approx(
-        (
-            10.0
-            + 29.8
-            + 0.001 * 7380.0
-            + 0.001 * 12400.0
-            + 0.001 * 1526.0
-        )
-        * 0.25
+        (10.0 + 29.8 + 0.001 * 7380.0 + 0.001 * 12400.0 + 0.001 * 1526.0) * 0.25
     )
     assert cdr_input["product"] == "carbon dioxide, captured and stored"
     assert cdr_input["location"] == "EUR"

@@ -536,9 +536,7 @@ class BaseTransformation:
 
         self.index = index or self.create_index()
 
-    def zero_atmospheric_co2_uptake(
-        self, dataset: dict, reason: str = ""
-    ) -> float:
+    def zero_atmospheric_co2_uptake(self, dataset: dict, reason: str = "") -> float:
         """
         Set direct atmospheric CO2 uptake exchanges to zero.
 
