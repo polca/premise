@@ -2119,15 +2119,17 @@ datasets, use the ``World`` allocation share and the global CDR market when
 available.
 
 When ``cdr_allocation=True``, *premise* also removes direct atmospheric CO2
-uptake credits and CO2 storage-service inputs from CCS co-product datasets whose
-removal service is represented through the CDR market. This currently targets
+uptake credits, negative non-fossil CO2 emissions and CO2 storage-service inputs
+from CCS co-product datasets whose removal service is represented through the
+CDR market. The atmospheric-uptake and storage-input cleanup currently targets
 biomass CCS electricity technologies, fuel variables mapped as ``with CCS`` and
-fuel co-product datasets whose activity names explicitly indicate CCS. The CDR
-market datasets keep their atmospheric CO2 uptake and storage flows, while
-electricity, biofuel and synthetic-fuel co-products no longer carry an embedded
-removal credit or a separate compression, transport and storage input. This is
-a conservative zero-credit and zero-storage-input adjustment; it does not
-replace the full CCS inventory with a non-CCS equivalent.
+fuel co-product datasets whose activity names explicitly indicate CCS. Negative
+``Carbon dioxide, non-fossil`` emissions are also zeroed in CCS electricity
+datasets. The CDR market datasets keep their atmospheric CO2 uptake and storage
+flows, while electricity, biofuel and synthetic-fuel co-products no longer carry
+an embedded removal credit or a separate compression, transport and storage
+input. This is a conservative zero-credit and zero-storage-input adjustment; it
+does not replace the full CCS inventory with a non-CCS equivalent.
 
 .. _Qiu: https://doi.org/10.1038/s41467-022-31146-1
 

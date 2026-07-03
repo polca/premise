@@ -658,6 +658,58 @@ class BaseTransformation:
 
         return removed_amount
 
+    def zero_negative_non_fossil_co2_emissions(
+        self, dataset: dict, reason: str = ""
+    ) -> float:
+        """
+        Set negative direct non-fossil CO2 emissions to zero.
+
+        Some CCS co-product inventories carry a negative
+        ``Carbon dioxide, non-fossil`` emission. When CDR allocation is active,
+        this residual removal credit should be represented by the CDR market.
+        Positive non-fossil CO2 emissions are left unchanged.
+        """
+
+        removed_amount = 0.0
+
+        for exc in ws.biosphere(
+            dataset,
+            ws.equals("name", "Carbon dioxide, non-fossil"),
+            ws.equals("unit", "kilogram"),
+        ):
+            amount = float(exc.get("amount") or 0.0)
+
+            if amount >= 0:
+                continue
+
+            removed_amount += abs(amount)
+            exc["amount"] = 0.0
+            exc["uncertainty type"] = 0
+
+            if "loc" in exc:
+                exc["loc"] = 0.0
+
+            if reason:
+                if "comment" in exc:
+                    if reason not in exc["comment"]:
+                        exc["comment"] += f" {reason}"
+                else:
+                    exc["comment"] = reason
+
+        if removed_amount:
+            dataset.setdefault("log parameters", {})[
+                "negative non-fossil CO2 emission removed for CDR allocation"
+            ] = removed_amount
+
+            if reason:
+                if "comment" in dataset:
+                    if reason not in dataset["comment"]:
+                        dataset["comment"] += f" {reason}"
+                else:
+                    dataset["comment"] = reason
+
+        return removed_amount
+
     def create_index(self):
         idx = defaultdict(list)
         for ds in self.database:

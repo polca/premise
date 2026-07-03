@@ -83,9 +83,10 @@ Recommended accounting mode for the paper:
 - Avoid double counting CDR co-products: when CDR allocation is enabled,
   co-product datasets such as BECCS electricity and fuel production with CCS
   should not also carry their own atmospheric CO2 uptake credit or separate CO2
-  storage-service input. The implementation zeroes `Carbon dioxide, in air` and
-  CO2 compression, transport and storage technosphere inputs in mapped CCS fuel
-  variables and fuel co-product datasets whose activity names explicitly
+  storage-service input. The implementation zeroes `Carbon dioxide, in air`,
+  negative `Carbon dioxide, non-fossil` emissions in CCS electricity datasets
+  and CO2 compression, transport and storage technosphere inputs in mapped CCS
+  fuel variables and fuel co-product datasets whose activity names explicitly
   indicate CCS, while leaving the CDR market uptake and storage chain intact.
 
 This is preferable for the study because methane and nitrous oxide are not

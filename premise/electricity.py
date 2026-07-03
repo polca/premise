@@ -261,6 +261,7 @@ def _update_electricity(
 
     if cdr_allocation:
         electricity.remove_cdr_credit_from_biomass_ccs_power_plants()
+        electricity.zero_negative_non_fossil_co2_from_ccs_power_plants()
 
     if scenario["year"] >= 2020:
         electricity.adjust_aluminium_electricity_markets()
@@ -469,6 +470,34 @@ class Electricity(BaseTransformation):
                     reason=reason,
                 )
                 removed_amount += self.zero_carbon_dioxide_storage_inputs(
+                    dataset=dataset,
+                    reason=reason,
+                )
+
+        return removed_amount
+
+    def zero_negative_non_fossil_co2_from_ccs_power_plants(self) -> float:
+        """
+        Remove negative non-fossil CO2 emissions from CCS electricity datasets.
+
+        Negative ``Carbon dioxide, non-fossil`` exchanges in CCS electricity
+        inventories behave as an embedded removal credit. With CDR allocation
+        enabled, that credit is represented by the CDR market instead.
+        """
+
+        removed_amount = 0.0
+        reason = (
+            "Negative non-fossil CO2 emissions set to zero because "
+            "cdr_allocation=True allocates permanent CDR through the regional "
+            "CDR market."
+        )
+
+        for technology, datasets in self.powerplant_map.items():
+            if "CCS" not in technology:
+                continue
+
+            for dataset in datasets:
+                removed_amount += self.zero_negative_non_fossil_co2_emissions(
                     dataset=dataset,
                     reason=reason,
                 )
