@@ -521,7 +521,7 @@ class Electricity(BaseTransformation):
         datasets_to_remove = [
             dataset
             for dataset in self.database
-            if self._is_imported_chp_ccs_template(dataset)
+            if dataset.get("name") in CHP_CCS_IMPORTED_DATASET_NAMES
         ]
 
         if not datasets_to_remove:
@@ -537,20 +537,6 @@ class Electricity(BaseTransformation):
         self.database[:] = [
             dataset for dataset in self.database if id(dataset) not in ids_to_remove
         ]
-
-    @staticmethod
-    def _is_imported_chp_ccs_template(dataset: dict) -> bool:
-        """Identify retired workbook CHP+CCS templates with negative CO2 credits."""
-
-        if dataset.get("name") not in CHP_CCS_IMPORTED_DATASET_NAMES:
-            return False
-
-        return any(
-            exchange.get("type") == "biosphere"
-            and exchange.get("name", "").startswith("Carbon dioxide")
-            and exchange.get("amount", 0) < 0
-            for exchange in dataset.get("exchanges", [])
-        )
 
     @staticmethod
     def _chp_ccs_source_rank(dataset: dict, preferred_locations: tuple[str, ...]) -> int:
@@ -2052,13 +2038,6 @@ class Electricity(BaseTransformation):
 
             for dataset in self.powerplant_map[technology]:
                 if not self.is_in_index(dataset):
-                    continue
-
-                if (
-                    technology in CHP_CCS_POWER_PLANT_SPECS
-                    and "CHP CCS direct CO2 before capture"
-                    in dataset.get("log parameters", {})
-                ):
                     continue
 
                 # Find current efficiency

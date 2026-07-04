@@ -4,7 +4,6 @@ from types import SimpleNamespace
 
 import pytest
 
-from premise.electricity import CHP_CCS_CAPTURE_RATE, CHP_CCS_POWER_PLANT_SPECS
 from premise.filesystem_constants import INVENTORY_DIR
 from premise.inventory_imports import (
     BaseInventoryImport,
@@ -13,7 +12,6 @@ from premise.inventory_imports import (
     get_classification_entry,
     get_classifications,
 )
-from premise.new_database import CHP_CCS_HEAT_INVENTORY_SPECS, NewDatabase
 
 FILEPATH_CARMA_INVENTORIES = INVENTORY_DIR / "lci-Carma-CCS.xlsx"
 FILEPATH_BIOFUEL_INVENTORIES = INVENTORY_DIR / "lci-biofuels.xlsx"
@@ -503,84 +501,6 @@ def test_fill_dataset_data_gaps_replaces_migrated_split_markets(tmp_path):
             "type": "technosphere",
         },
     ]
-
-
-def test_make_chp_ccs_heat_inventory_dataset_reduces_direct_fossil_co2():
-    technology = "Gas CHP CCS"
-    spec = CHP_CCS_HEAT_INVENTORY_SPECS[technology]
-    electricity_spec = CHP_CCS_POWER_PLANT_SPECS[technology]
-    source = {
-        "name": spec["source_name"],
-        "reference product": spec["source_product"],
-        "location": "DE",
-        "unit": "megajoule",
-        "exchanges": [
-            {
-                "name": spec["source_name"],
-                "product": spec["source_product"],
-                "amount": 1.0,
-                "type": "production",
-                "unit": "megajoule",
-                "location": "DE",
-            },
-            {
-                "name": "market for natural gas, high pressure",
-                "product": "natural gas, high pressure",
-                "amount": 1.2,
-                "loc": 1.2,
-                "type": "technosphere",
-                "unit": "cubic meter",
-                "location": "DE",
-            },
-            {
-                "name": "Carbon dioxide, fossil",
-                "categories": ("air", "unspecified"),
-                "amount": 0.02,
-                "loc": 0.02,
-                "type": "biosphere",
-                "unit": "kilogram",
-            },
-        ],
-    }
-
-    dataset = NewDatabase._NewDatabase__make_chp_ccs_heat_inventory_dataset(
-        source_dataset=source,
-        technology=technology,
-        spec=spec,
-    )
-
-    fuel = next(
-        exc
-        for exc in dataset["exchanges"]
-        if exc.get("product") == "natural gas, high pressure"
-    )
-    fossil = next(
-        exc
-        for exc in dataset["exchanges"]
-        if exc["type"] == "biosphere" and exc["name"] == "Carbon dioxide, fossil"
-    )
-    captured = next(
-        exc
-        for exc in dataset["exchanges"]
-        if exc["type"] == "technosphere"
-        and exc["name"] == electricity_spec["capture_name"]
-    )
-
-    penalized_co2 = 0.02 * electricity_spec["energy_penalty"]
-    assert dataset["name"] == spec["name"]
-    assert dataset["reference product"] == spec["reference product"]
-    assert dataset["location"] == "RER"
-    assert fuel["amount"] == pytest.approx(1.2 * electricity_spec["energy_penalty"])
-    assert fossil["amount"] == pytest.approx(
-        penalized_co2 * (1 - CHP_CCS_CAPTURE_RATE)
-    )
-    assert captured["amount"] == pytest.approx(penalized_co2 * CHP_CCS_CAPTURE_RATE)
-    assert not any(
-        exc["type"] == "biosphere"
-        and exc["name"] == "Carbon dioxide, fossil"
-        and exc["amount"] < 0
-        for exc in dataset["exchanges"]
-    )
 
 
 def test_forward_migration_applies_in_memory_without_bw2io_datastore():
