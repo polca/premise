@@ -60,6 +60,8 @@ GREENHOUSE_GAS_GWP100 = {
     "Hexafluoroethane": 12400.0,
     "1,1,1,2-Tetrafluoroethane": 1526.0,
 }
+CO2_VARIABLE = "CO2"
+KYOTO_GASES_VARIABLE = "Kyoto Gases"
 
 
 def fetch_mapping(filepath=CDR_ACTIVITIES) -> dict:
@@ -417,16 +419,34 @@ class CarbonDioxideRemoval(BaseTransformation):
 
     def calculate_cdr_allocation_shares(self):
         """
-        Return IAM-region CDR allocation shares.
+        Return backward-compatible IAM-region CDR allocation shares for CO2.
+        """
 
-        Shares are calculated as absolute CDR removals divided by gross CO2 plus
-        absolute CDR removals. Missing regional data yields a zero share.
-        The ``World`` share is included so GLO/RoW datasets mapped to the global
-        IAM region can receive inputs from the global CDR market.
+        return {
+            region: shares["co2"]
+            for region, shares in self.calculate_cdr_allocation_coverage_shares().items()
+        }
+
+    def calculate_cdr_allocation_coverage_shares(self):
+        """
+        Return IAM-region CDR allocation shares for CO2 and non-CO2 gases.
+
+        CO2 shares are calculated as absolute CDR removals divided by gross CO2,
+        where gross CO2 is IAM net CO2 plus absolute CDR removals. When IAM
+        ``Kyoto Gases`` data are available, any CDR remaining after gross CO2 is
+        covered is allocated to the non-CO2 Kyoto-gas pool, defined as
+        ``Kyoto Gases - CO2``. Without ``Kyoto Gases`` data, the non-CO2 share
+        falls back to the CO2 share to preserve legacy behavior.
         """
 
         regions = list(dict.fromkeys([*self.regions, "World"]))
-        shares = {region: 0.0 for region in regions}
+        shares = {
+            region: {
+                "co2": 0.0,
+                "non_co2": 0.0,
+            }
+            for region in regions
+        }
 
         production_volumes = getattr(self.iam_data, "production_volumes", None)
         other_vars = getattr(self.iam_data, "other_vars", None)
@@ -435,9 +455,11 @@ class CarbonDioxideRemoval(BaseTransformation):
 
         if "variables" not in production_volumes.coords:
             return shares
-        if "variables" not in other_vars.coords or "CO2" not in set(
-            other_vars.variables.values.tolist()
-        ):
+        if "variables" not in other_vars.coords:
+            return shares
+
+        other_variables = set(other_vars.variables.values.tolist())
+        if CO2_VARIABLE not in other_variables:
             return shares
 
         cdr_variables = [
@@ -454,10 +476,17 @@ class CarbonDioxideRemoval(BaseTransformation):
         cdr_volumes = abs(production_volumes.sel(variables=cdr_variables)).sum(
             dim="variables"
         )
-        gross_co2 = other_vars.sel(variables="CO2")
+        co2 = other_vars.sel(variables=CO2_VARIABLE)
+        kyoto_gases = (
+            other_vars.sel(variables=KYOTO_GASES_VARIABLE)
+            if KYOTO_GASES_VARIABLE in other_variables
+            else None
+        )
 
         cdr_volumes = self._select_iam_year(cdr_volumes)
-        gross_co2 = self._select_iam_year(gross_co2)
+        co2 = self._select_iam_year(co2)
+        if kyoto_gases is not None:
+            kyoto_gases = self._select_iam_year(kyoto_gases)
 
         cdr_regions = (
             set(cdr_volumes.region.values.tolist())
@@ -465,25 +494,48 @@ class CarbonDioxideRemoval(BaseTransformation):
             else set()
         )
         co2_regions = (
-            set(gross_co2.region.values.tolist())
-            if "region" in gross_co2.coords
+            set(co2.region.values.tolist())
+            if "region" in co2.coords
+            else set()
+        )
+        kyoto_regions = (
+            set(kyoto_gases.region.values.tolist())
+            if kyoto_gases is not None and "region" in kyoto_gases.coords
             else set()
         )
 
         for region in shares:
             if (
                 "region" not in cdr_volumes.coords
-                or "region" not in gross_co2.coords
+                or "region" not in co2.coords
                 or region not in cdr_regions
                 or region not in co2_regions
             ):
                 continue
 
             cdr_volume = max(float(cdr_volumes.sel(region=region).values), 0.0)
-            co2_volume = max(float(gross_co2.sel(region=region).values), 0.0)
-            denominator = cdr_volume + co2_volume
-            if denominator > 0:
-                shares[region] = min(cdr_volume / denominator, 1.0)
+            net_co2_volume = float(co2.sel(region=region).values)
+            gross_co2_volume = max(net_co2_volume + cdr_volume, 0.0)
+
+            cdr_covered_co2 = min(cdr_volume, gross_co2_volume)
+            if gross_co2_volume > 0:
+                shares[region]["co2"] = min(cdr_covered_co2 / gross_co2_volume, 1.0)
+
+            remaining_cdr = max(cdr_volume - cdr_covered_co2, 0.0)
+            if (
+                kyoto_gases is None
+                or "region" not in kyoto_gases.coords
+                or region not in kyoto_regions
+            ):
+                shares[region]["non_co2"] = shares[region]["co2"]
+                continue
+
+            kyoto_gases_volume = float(kyoto_gases.sel(region=region).values)
+            non_co2_kyoto_gases = max(kyoto_gases_volume - net_co2_volume, 0.0)
+            if non_co2_kyoto_gases > 0:
+                shares[region]["non_co2"] = min(
+                    remaining_cdr / non_co2_kyoto_gases, 1.0
+                )
 
         return shares
 
@@ -492,14 +544,16 @@ class CarbonDioxideRemoval(BaseTransformation):
         Add regional CDR market inputs to compensate residual GHG emissions.
         """
 
-        allocation_shares = self.calculate_cdr_allocation_shares()
+        allocation_shares = self.calculate_cdr_allocation_coverage_shares()
         cdr_markets = self._get_regional_cdr_markets()
         updated = 0
 
         for dataset in self.database:
             region = self._get_dataset_iam_region(dataset)
-            share = allocation_shares.get(region, 0.0)
-            if share <= 0:
+            shares = allocation_shares.get(region, {"co2": 0.0, "non_co2": 0.0})
+            co2_share = shares["co2"]
+            non_co2_share = shares["non_co2"]
+            if co2_share <= 0 and non_co2_share <= 0:
                 continue
 
             market = cdr_markets.get(region)
@@ -517,19 +571,41 @@ class CarbonDioxideRemoval(BaseTransformation):
             if not greenhouse_gas_exchanges:
                 continue
 
+            co2_exchanges = [
+                (exc, factor)
+                for exc, factor in greenhouse_gas_exchanges
+                if self._is_co2_greenhouse_gas_exchange(exc, factor)
+            ]
+            non_co2_exchanges = [
+                (exc, factor)
+                for exc, factor in greenhouse_gas_exchanges
+                if not self._is_co2_greenhouse_gas_exchange(exc, factor)
+            ]
             fossil_co2 = sum(
                 exc["amount"]
                 for exc, factor in greenhouse_gas_exchanges
                 if factor == 1.0 and exc["name"] == "Carbon dioxide, fossil"
             )
-            gross_ghg = sum(
-                exc["amount"] * factor for exc, factor in greenhouse_gas_exchanges
+            gross_co2 = sum(exc["amount"] * factor for exc, factor in co2_exchanges)
+            gross_non_co2 = sum(
+                exc["amount"] * factor for exc, factor in non_co2_exchanges
             )
-            cdr_amount = gross_ghg * share
-            reduced_ghg = self._reduce_greenhouse_gas_exchanges(
-                greenhouse_gas_exchanges=greenhouse_gas_exchanges,
-                reduction_share=share,
+            gross_ghg = gross_co2 + gross_non_co2
+            cdr_amount = (gross_co2 * co2_share) + (
+                gross_non_co2 * non_co2_share
             )
+            if cdr_amount <= 0:
+                continue
+
+            reduced_co2 = self._reduce_greenhouse_gas_exchanges(
+                greenhouse_gas_exchanges=co2_exchanges,
+                reduction_share=co2_share,
+            )
+            reduced_non_co2 = self._reduce_greenhouse_gas_exchanges(
+                greenhouse_gas_exchanges=non_co2_exchanges,
+                reduction_share=non_co2_share,
+            )
+            reduced_ghg = reduced_co2 + reduced_non_co2
             new_fossil_co2 = sum(
                 exc["amount"]
                 for exc, factor in greenhouse_gas_exchanges
@@ -549,9 +625,17 @@ class CarbonDioxideRemoval(BaseTransformation):
             )
             dataset.setdefault("log parameters", {}).update(
                 {
-                    "cdr allocation share": share,
+                    "cdr allocation share": max(co2_share, non_co2_share),
+                    "cdr allocation share, CO2": co2_share,
+                    "cdr allocation share, non-CO2 Kyoto gases": non_co2_share,
                     "initial amount of fossil CO2": fossil_co2,
                     "new amount of fossil CO2": new_fossil_co2,
+                    "gross CO2 emissions, kg CO2e": gross_co2,
+                    "CO2 emissions reduced by CDR, kg CO2e": reduced_co2,
+                    "gross non-CO2 Kyoto gas emissions, kg CO2e": gross_non_co2,
+                    "non-CO2 Kyoto gas emissions reduced by CDR, kg CO2e": (
+                        reduced_non_co2
+                    ),
                     "gross greenhouse gas emissions, kg CO2e": gross_ghg,
                     "greenhouse gas emissions reduced by CDR, kg CO2e": reduced_ghg,
                     "remaining greenhouse gas emissions, kg CO2e": (
@@ -571,6 +655,10 @@ class CarbonDioxideRemoval(BaseTransformation):
         """
 
         self.allocate_cdr_to_greenhouse_gases()
+
+    @staticmethod
+    def _is_co2_greenhouse_gas_exchange(exc, factor):
+        return factor == 1.0 and str(exc.get("name", "")).startswith("Carbon dioxide")
 
     @staticmethod
     def _reduce_greenhouse_gas_exchanges(greenhouse_gas_exchanges, reduction_share):

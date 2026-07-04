@@ -16,6 +16,7 @@ def get_cdr_allocation_transform(
     database=None,
     cdr_volume=-25.0,
     co2_volume=75.0,
+    kyoto_gases_volume=None,
     regions=("EUR",),
     ecoinvent_to_iam_loc=None,
 ):
@@ -28,6 +29,17 @@ def get_cdr_allocation_transform(
         co2_values = np.full((1, len(regions), 1), co2_volume)
     else:
         co2_values = np.asarray(co2_volume, dtype=float).reshape(1, len(regions), 1)
+    other_values = [co2_values]
+    other_variables = ["CO2"]
+    if kyoto_gases_volume is not None:
+        if np.isscalar(kyoto_gases_volume):
+            kyoto_gases_values = np.full((1, len(regions), 1), kyoto_gases_volume)
+        else:
+            kyoto_gases_values = np.asarray(kyoto_gases_volume, dtype=float).reshape(
+                1, len(regions), 1
+            )
+        other_values.append(kyoto_gases_values)
+        other_variables.append("Kyoto Gases")
 
     cdr = object.__new__(CarbonDioxideRemoval)
     cdr.database = database or []
@@ -50,10 +62,10 @@ def get_cdr_allocation_transform(
             },
         ),
         other_vars=xr.DataArray(
-            co2_values,
+            np.concatenate(other_values, axis=0),
             dims=("variables", "region", "year"),
             coords={
-                "variables": ["CO2"],
+                "variables": other_variables,
                 "region": regions,
                 "year": [2030],
             },
@@ -88,9 +100,26 @@ def test_cdr_allocation_share_uses_absolute_cdr_volume():
     cdr = get_cdr_allocation_transform(cdr_volume=-25.0, co2_volume=75.0)
 
     shares = cdr.calculate_cdr_allocation_shares()
+    coverage_shares = cdr.calculate_cdr_allocation_coverage_shares()
 
     assert shares["EUR"] == pytest.approx(0.25)
     assert shares["World"] == pytest.approx(0.0)
+    assert coverage_shares["EUR"]["co2"] == pytest.approx(0.25)
+    assert coverage_shares["EUR"]["non_co2"] == pytest.approx(0.25)
+
+
+def test_cdr_allocation_share_uses_remaining_cdr_for_non_co2_kyoto_gases():
+    cdr = get_cdr_allocation_transform(
+        cdr_volume=-100.0,
+        co2_volume=-20.0,
+        kyoto_gases_volume=30.0,
+    )
+
+    shares = cdr.calculate_cdr_allocation_coverage_shares()
+
+    assert shares["EUR"]["co2"] == pytest.approx(1.0)
+    assert shares["EUR"]["non_co2"] == pytest.approx(0.4)
+    assert cdr.calculate_cdr_allocation_shares()["EUR"] == pytest.approx(1.0)
 
 
 def test_cdr_allocation_share_uses_world_region_for_global_datasets():
@@ -252,6 +281,78 @@ def test_cdr_allocation_adds_regional_market_input_for_greenhouse_gases():
     assert emitting_dataset["log parameters"][
         "remaining greenhouse gas emissions, kg CO2e"
     ] == pytest.approx(61.106 * 0.75)
+
+
+def test_cdr_allocation_uses_separate_co2_and_non_co2_kyoto_gas_shares():
+    cdr_market = {
+        "name": "market for carbon dioxide removal",
+        "reference product": "carbon dioxide, captured and stored",
+        "location": "EUR",
+        "unit": "kilogram",
+        "regionalized": True,
+        "exchanges": [],
+    }
+    emitting_dataset = {
+        "name": "emitting activity with net-negative regional CO2",
+        "reference product": "product",
+        "location": "CH",
+        "unit": "kilogram",
+        "exchanges": [
+            {
+                "name": "Carbon dioxide, fossil",
+                "amount": 10.0,
+                "unit": "kilogram",
+                "type": "biosphere",
+            },
+            {
+                "name": "Methane, fossil",
+                "amount": 1.0,
+                "unit": "kilogram",
+                "type": "biosphere",
+            },
+        ],
+    }
+    cdr = get_cdr_allocation_transform(
+        database=[cdr_market, emitting_dataset],
+        cdr_volume=-100.0,
+        co2_volume=-20.0,
+        kyoto_gases_volume=30.0,
+    )
+
+    cdr.allocate_cdr_to_greenhouse_gases()
+
+    fossil_co2 = next(
+        exc
+        for exc in emitting_dataset["exchanges"]
+        if exc["type"] == "biosphere" and exc["name"] == "Carbon dioxide, fossil"
+    )
+    methane = next(
+        exc
+        for exc in emitting_dataset["exchanges"]
+        if exc["type"] == "biosphere" and exc["name"] == "Methane, fossil"
+    )
+    cdr_input = next(
+        exc
+        for exc in emitting_dataset["exchanges"]
+        if exc["type"] == "technosphere"
+        and exc["name"] == "market for carbon dioxide removal"
+    )
+
+    assert fossil_co2["amount"] == pytest.approx(0.0)
+    assert methane["amount"] == pytest.approx(0.6)
+    assert cdr_input["amount"] == pytest.approx(10.0 + 29.8 * 0.4)
+    assert emitting_dataset["log parameters"]["cdr allocation share, CO2"] == (
+        pytest.approx(1.0)
+    )
+    assert emitting_dataset["log parameters"][
+        "cdr allocation share, non-CO2 Kyoto gases"
+    ] == pytest.approx(0.4)
+    assert emitting_dataset["log parameters"][
+        "CO2 emissions reduced by CDR, kg CO2e"
+    ] == pytest.approx(10.0)
+    assert emitting_dataset["log parameters"][
+        "non-CO2 Kyoto gas emissions reduced by CDR, kg CO2e"
+    ] == pytest.approx(29.8 * 0.4)
 
 
 def test_cdr_allocation_reduces_lognormal_fossil_co2_exchange_to_zero():
