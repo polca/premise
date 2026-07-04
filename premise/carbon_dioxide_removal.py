@@ -597,20 +597,9 @@ class CarbonDioxideRemoval(BaseTransformation):
             if cdr_amount <= 0:
                 continue
 
-            reduced_co2 = self._reduce_greenhouse_gas_exchanges(
-                greenhouse_gas_exchanges=co2_exchanges,
-                reduction_share=co2_share,
-            )
-            reduced_non_co2 = self._reduce_greenhouse_gas_exchanges(
-                greenhouse_gas_exchanges=non_co2_exchanges,
-                reduction_share=non_co2_share,
-            )
-            reduced_ghg = reduced_co2 + reduced_non_co2
-            new_fossil_co2 = sum(
-                exc["amount"]
-                for exc, factor in greenhouse_gas_exchanges
-                if factor == 1.0 and exc["name"] == "Carbon dioxide, fossil"
-            )
+            covered_co2 = gross_co2 * co2_share
+            covered_non_co2 = gross_non_co2 * non_co2_share
+            covered_ghg = covered_co2 + covered_non_co2
 
             dataset["exchanges"].append(
                 {
@@ -629,17 +618,22 @@ class CarbonDioxideRemoval(BaseTransformation):
                     "cdr allocation share, CO2": co2_share,
                     "cdr allocation share, non-CO2 Kyoto gases": non_co2_share,
                     "initial amount of fossil CO2": fossil_co2,
-                    "new amount of fossil CO2": new_fossil_co2,
+                    "new amount of fossil CO2": fossil_co2,
                     "gross CO2 emissions, kg CO2e": gross_co2,
-                    "CO2 emissions reduced by CDR, kg CO2e": reduced_co2,
+                    "CO2 emissions covered by CDR, kg CO2e": covered_co2,
+                    "CO2 emissions reduced by CDR, kg CO2e": covered_co2,
                     "gross non-CO2 Kyoto gas emissions, kg CO2e": gross_non_co2,
+                    "non-CO2 Kyoto gas emissions covered by CDR, kg CO2e": (
+                        covered_non_co2
+                    ),
                     "non-CO2 Kyoto gas emissions reduced by CDR, kg CO2e": (
-                        reduced_non_co2
+                        covered_non_co2
                     ),
                     "gross greenhouse gas emissions, kg CO2e": gross_ghg,
-                    "greenhouse gas emissions reduced by CDR, kg CO2e": reduced_ghg,
+                    "greenhouse gas emissions covered by CDR, kg CO2e": covered_ghg,
+                    "greenhouse gas emissions reduced by CDR, kg CO2e": covered_ghg,
                     "remaining greenhouse gas emissions, kg CO2e": (
-                        max(gross_ghg - reduced_ghg, 0.0)
+                        max(gross_ghg - covered_ghg, 0.0)
                     ),
                     "amount of CDR input": cdr_amount,
                 }
