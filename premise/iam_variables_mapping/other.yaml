@@ -36,3 +36,7 @@ CO2:
     witch: Emissions|CO2
     image: Emissions|CO2
     gcam: Emissions|CO2
+
+Kyoto Gases:
+  iam_aliases:
+    image: Emissions|Kyoto Gases
