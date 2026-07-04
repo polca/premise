@@ -1154,6 +1154,65 @@ class BaseInventoryImport:
             exc["replacement location"],
         )
 
+    @staticmethod
+    def _optional_replacement_value(exc: dict, field: str, default=None):
+        value = exc.get(field, default)
+        if value == "":
+            return default
+        return value
+
+    @staticmethod
+    def _replacement_amount_multiplier(exc: dict) -> float:
+        multiplier = exc.get("replacement amount multiplier", 1)
+        if multiplier in (None, ""):
+            return 1
+        return float(multiplier)
+
+    @classmethod
+    def _replacement_exchange_type(cls, exc: dict) -> str:
+        return cls._optional_replacement_value(
+            exc, "replacement exchange type", exc["type"]
+        )
+
+    @classmethod
+    def _replacement_exchange_name(cls, exc: dict) -> str:
+        return cls._optional_replacement_value(
+            exc, "replacement exchange name", exc["name"]
+        )
+
+    @classmethod
+    def _replacement_exchange_product(cls, exc: dict) -> str | None:
+        return cls._optional_replacement_value(
+            exc, "replacement exchange product", exc.get("product")
+        )
+
+    @classmethod
+    def _replacement_exchange_categories(cls, exc: dict):
+        return cls._optional_replacement_value(
+            exc, "replacement exchange categories", exc.get("categories")
+        )
+
+    @classmethod
+    def _replacement_exchange_unit(cls, exc: dict) -> str:
+        return cls._optional_replacement_value(
+            exc, "replacement exchange unit", exc["unit"]
+        )
+
+    @staticmethod
+    def _remove_replacement_metadata(exc: dict) -> None:
+        for field in (
+            "replacement name",
+            "replacement product",
+            "replacement location",
+            "replacement amount multiplier",
+            "replacement exchange type",
+            "replacement exchange name",
+            "replacement exchange product",
+            "replacement exchange categories",
+            "replacement exchange unit",
+        ):
+            exc.pop(field, None)
+
     def _find_replacement_dataset(self, exc: dict) -> dict | None:
         name, ref_prod, loc = self._replacement_metadata(exc)
 
@@ -1177,7 +1236,7 @@ class BaseInventoryImport:
 
     @staticmethod
     def _find_matching_technosphere_exchanges(
-        dataset: dict, exchange_name: str, exc: dict
+        dataset: dict, exchange_name: str, exchange_product: str, exc: dict
     ) -> List[dict]:
         """
         Return matching technosphere exchanges from ``dataset`` for ``exc``.
@@ -1191,7 +1250,7 @@ class BaseInventoryImport:
             ws.technosphere(
                 dataset,
                 ws.equals("name", exchange_name),
-                ws.equals("product", exc["product"]),
+                ws.equals("product", exchange_product),
             )
         )
 
@@ -1211,22 +1270,28 @@ class BaseInventoryImport:
         independently.
         """
 
+        if self._replacement_exchange_type(exc) != "technosphere":
+            return []
+
         replacement_ds = self._find_replacement_dataset(exc)
         if replacement_ds is None:
             return []
 
+        exchange_name = self._replacement_exchange_name(exc)
+        exchange_product = self._replacement_exchange_product(exc)
+
         matches = list(
             ws.technosphere(
                 replacement_ds,
-                ws.equals("name", exc["name"]),
-                ws.equals("product", exc["product"]),
+                ws.equals("name", exchange_name),
+                ws.equals("product", exchange_product),
             )
         )
 
         if matches:
             return matches
 
-        alt_name = self._toggle_market_name(exc["name"])
+        alt_name = self._toggle_market_name(exchange_name)
         if alt_name is None:
             return []
 
@@ -1234,7 +1299,7 @@ class BaseInventoryImport:
             ws.technosphere(
                 replacement_ds,
                 ws.equals("name", alt_name),
-                ws.equals("product", exc["product"]),
+                ws.equals("product", exchange_product),
             )
         )
 
@@ -1258,9 +1323,12 @@ class BaseInventoryImport:
                 key = (
                     *self._replacement_metadata(exc),
                     exc["type"],
-                    exc["name"],
-                    exc["product"],
-                    exc["unit"],
+                    self._replacement_exchange_type(exc),
+                    self._replacement_exchange_name(exc),
+                    self._replacement_exchange_product(exc),
+                    self._replacement_exchange_unit(exc),
+                    self._replacement_exchange_categories(exc),
+                    self._replacement_amount_multiplier(exc),
                 )
                 grouped_techno.setdefault(key, []).append(exc)
             elif exc["type"] == "biosphere":
@@ -1291,10 +1359,11 @@ class BaseInventoryImport:
                     new_exc["product"] = replacement["product"]
                     new_exc["location"] = replacement["location"]
                     new_exc["unit"] = replacement["unit"]
-                    new_exc["amount"] = replacement["amount"]
-                    new_exc.pop("replacement name", None)
-                    new_exc.pop("replacement product", None)
-                    new_exc.pop("replacement location", None)
+                    new_exc["amount"] = (
+                        replacement["amount"]
+                        * self._replacement_amount_multiplier(template)
+                    )
+                    self._remove_replacement_metadata(new_exc)
                     new_exc.pop("input", None)
                     filtered_exchanges.append(new_exc)
             else:
@@ -1319,6 +1388,11 @@ class BaseInventoryImport:
             exc["replacement product"],
             exc["replacement location"],
         )
+        source_type = self._replacement_exchange_type(exc)
+        source_name = self._replacement_exchange_name(exc)
+        source_product = self._replacement_exchange_product(exc)
+        source_categories = self._replacement_exchange_categories(exc)
+        source_unit = self._replacement_exchange_unit(exc)
 
         try:
 
@@ -1329,51 +1403,59 @@ class BaseInventoryImport:
                     and ds["location"] == loc
                 ):
                     sum_amount = 0
-                    if exc["type"] == "technosphere":
+                    if source_type == "technosphere":
                         for e in self._find_matching_technosphere_exchanges(
-                            ds, exc["name"], exc
+                            ds, source_name, source_product, exc
                         ):
                             sum_amount += e["amount"]
 
-                    elif exc["type"] == "biosphere":
-                        for e in ws.biosphere(
-                            ds,
-                            ws.equals("name", exc["name"]),
-                            ws.equals("categories", exc["categories"]),
-                            ws.equals("unit", exc["unit"]),
-                        ):
+                    elif source_type == "biosphere":
+                        filters = [
+                            ws.equals("name", source_name),
+                            ws.equals("unit", source_unit),
+                        ]
+                        if source_categories not in (None, ""):
+                            filters.append(ws.equals("categories", source_categories))
+
+                        for e in ws.biosphere(ds, *filters):
                             sum_amount += e["amount"]
 
                     else:
                         raise ValueError(
-                            f"Exchange type {exc['type']} not supported for filling data gaps."
+                            f"Exchange type {source_type} not supported for filling data gaps."
                         )
                     if sum_amount == 0:
                         # trying with "market group for" or "market for"
-                        n = self._toggle_market_name(exc["name"])
-                        if n is None:
+                        if source_type != "technosphere":
                             print(
-                                f"Could not find a valid amount for exchange {exc['name']} in dataset {ds['name']} with reference product {ref_prod} and location {loc}"
+                                f"Could not find a valid amount for exchange {source_name} in dataset {ds['name']} with reference product {ref_prod} and location {loc}"
                             )
                             return
 
-                        for e in self._find_matching_technosphere_exchanges(ds, n, exc):
+                        n = self._toggle_market_name(source_name)
+                        if n is None:
+                            print(
+                                f"Could not find a valid amount for exchange {source_name} in dataset {ds['name']} with reference product {ref_prod} and location {loc}"
+                            )
+                            return
+
+                        for e in self._find_matching_technosphere_exchanges(
+                            ds, n, source_product, exc
+                        ):
                             sum_amount += e["amount"]
 
                         if sum_amount == 0:
                             print(
-                                f"Could not find a valid amount for exchange {exc['name']} | {exc['product']} in dataset {ds['name']} with reference product {ref_prod} and location {loc}"
+                                f"Could not find a valid amount for exchange {source_name} | {source_product} in dataset {ds['name']} with reference product {ref_prod} and location {loc}"
                             )
                             return
 
-                    exc["amount"] = sum_amount
-                    exc.pop("replacement name", None)
-                    exc.pop("replacement product", None)
-                    exc.pop("replacement location", None)
+                    exc["amount"] = sum_amount * self._replacement_amount_multiplier(exc)
+                    self._remove_replacement_metadata(exc)
 
         except ws.NoResults:
             print(
-                f"Could not find a valid amount for exchange {exc['name']} in dataset {name} with reference product {ref_prod} and location {loc}"
+                f"Could not find a valid amount for exchange {source_name} in dataset {name} with reference product {ref_prod} and location {loc}"
             )
             raise
 

@@ -3,6 +3,7 @@ from pathlib import Path
 from types import SimpleNamespace
 
 import pytest
+from openpyxl import load_workbook
 
 from premise.filesystem_constants import INVENTORY_DIR
 from premise.inventory_imports import (
@@ -14,6 +15,7 @@ from premise.inventory_imports import (
 )
 
 FILEPATH_CARMA_INVENTORIES = INVENTORY_DIR / "lci-Carma-CCS.xlsx"
+FILEPATH_CHP_INVENTORIES = INVENTORY_DIR / "lci-combined-heat-power-plant-CCS.xlsx"
 FILEPATH_BIOFUEL_INVENTORIES = INVENTORY_DIR / "lci-biofuels.xlsx"
 FILEPATH_BIOGAS_INVENTORIES = INVENTORY_DIR / "lci-biogas.xlsx"
 FILEPATH_HYDROGEN_INVENTORIES = INVENTORY_DIR / "lci-hydrogen.xlsx"
@@ -242,6 +244,88 @@ def test_fill_data_gaps_market_group_fallback_matches_location(tmp_path):
     assert exchange["amount"] == 2.5
 
 
+def test_fill_data_gaps_applies_replacement_amount_multiplier(tmp_path):
+    dbc = get_base_inventory_import(tmp_path, get_replacement_source_db())
+    exchange = {
+        "name": "market for heat",
+        "product": "heat",
+        "location": "RoW",
+        "amount": 0,
+        "type": "technosphere",
+        "unit": "megajoule",
+        "replacement name": "source process",
+        "replacement product": "source product",
+        "replacement location": "RoW",
+        "replacement amount multiplier": 1.2,
+    }
+
+    dbc.fill_data_gaps(exchange)
+
+    assert exchange["amount"] == pytest.approx(3.6)
+    assert "replacement name" not in exchange
+    assert "replacement product" not in exchange
+    assert "replacement location" not in exchange
+    assert "replacement amount multiplier" not in exchange
+
+
+def test_fill_data_gaps_can_use_replacement_biosphere_source(tmp_path):
+    testpath = tmp_path / "dummy.xlsx"
+    testpath.write_text("")
+
+    reference_db = [
+        {
+            "name": "source process",
+            "reference product": "source product",
+            "location": "RoW",
+            "unit": "kilogram",
+            "exchanges": [
+                {
+                    "name": "Carbon dioxide, fossil",
+                    "categories": ("air", "high population density"),
+                    "amount": 3,
+                    "type": "biosphere",
+                    "unit": "kilogram",
+                },
+                {
+                    "name": "Carbon dioxide, fossil",
+                    "categories": ("air", "lower stratosphere + upper troposphere"),
+                    "amount": 2,
+                    "type": "biosphere",
+                    "unit": "kilogram",
+                },
+            ],
+        }
+    ]
+    importer = DummyInventoryImport(
+        reference_db,
+        version_in="3.8",
+        version_out="3.8",
+        path=testpath,
+        system_model="cutoff",
+    )
+    exchange = {
+        "name": "carbon dioxide, captured at source",
+        "product": "carbon dioxide, captured at source",
+        "amount": 0,
+        "type": "technosphere",
+        "unit": "kilogram",
+        "replacement name": "source process",
+        "replacement product": "source product",
+        "replacement location": "RoW",
+        "replacement exchange type": "biosphere",
+        "replacement exchange name": "Carbon dioxide, fossil",
+        "replacement exchange unit": "kilogram",
+        "replacement amount multiplier": 0.9,
+    }
+
+    importer.fill_data_gaps(exchange)
+
+    assert exchange["amount"] == pytest.approx(4.5)
+    assert "replacement name" not in exchange
+    assert "replacement exchange type" not in exchange
+    assert "replacement amount multiplier" not in exchange
+
+
 def test_load_carma():
     db, version = get_db()
     carma = DefaultInventory(
@@ -253,6 +337,80 @@ def test_load_carma():
         keep_uncertainty_data=False,
     )
     assert len(carma.import_db.data) >= 81
+
+
+def test_chp_ccs_inventory_embeds_upstream_chp_exchanges():
+    workbook = load_workbook(FILEPATH_CHP_INVENTORIES, data_only=False)
+    sheet = workbook.active
+    activity_rows = [
+        row
+        for row in range(1, sheet.max_row + 1)
+        if sheet.cell(row, 1).value == "Activity"
+    ]
+
+    assert len(activity_rows) == 8
+
+    for index, start in enumerate(activity_rows):
+        end = (
+            activity_rows[index + 1]
+            if index + 1 < len(activity_rows)
+            else sheet.max_row + 1
+        )
+        header_row = next(
+            row
+            for row in range(start, end)
+            if sheet.cell(row, 1).value == "name"
+            and sheet.cell(row - 1, 1).value == "Exchanges"
+        )
+        headers = {
+            sheet.cell(header_row, column).value: column
+            for column in range(1, sheet.max_column + 1)
+            if sheet.cell(header_row, column).value is not None
+        }
+        exchanges = [
+            {
+                key: sheet.cell(row, column).value
+                for key, column in headers.items()
+            }
+            for row in range(header_row + 1, end)
+            if sheet.cell(row, headers["type"]).value
+            in {"production", "technosphere", "biosphere"}
+        ]
+        source_exchanges = [
+            exchange
+            for exchange in exchanges
+            if exchange["type"] in {"technosphere", "biosphere"}
+        ]
+        capture_exchanges = [
+            exchange
+            for exchange in source_exchanges
+            if exchange["type"] == "technosphere"
+            and exchange["name"].startswith("carbon dioxide, captured")
+        ]
+
+        assert len(exchanges) > 30
+        assert len(capture_exchanges) == 1
+        assert all(exchange["amount"] == 0 for exchange in source_exchanges)
+        assert all(exchange["replacement name"] for exchange in source_exchanges)
+        assert capture_exchanges[0]["replacement exchange type"] == "biosphere"
+        assert capture_exchanges[0]["replacement exchange name"] in {
+            "Carbon dioxide, fossil",
+            "Carbon dioxide, non-fossil",
+        }
+        assert not [
+            exchange
+            for exchange in source_exchanges
+            if exchange["type"] == "technosphere"
+            and exchange["name"].startswith("heat and power co-generation")
+        ]
+        assert not [
+            exchange
+            for exchange in source_exchanges
+            if exchange["type"] == "biosphere"
+            and exchange["name"]
+            in {"Carbon dioxide, fossil", "Carbon dioxide, non-fossil"}
+            and exchange["amount"] < 0
+        ]
 
 
 def test_load_biofuel():
