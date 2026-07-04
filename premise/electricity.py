@@ -13,7 +13,6 @@ from collections import defaultdict
 from functools import lru_cache
 
 import yaml
-from wurst import rescale_exchange
 
 from .export import biosphere_flows_dictionary
 from .filesystem_constants import VARIABLES_DIR
@@ -44,68 +43,6 @@ BIOMASS_CCS_POWER_TECHNOLOGIES = {
     "Biomass CHP CCS",
     "Biomass ST CCS",
     "Biomass IGCC CCS",
-}
-
-CHP_CCS_CAPTURE_RATE = 0.9
-CHP_CCS_POWER_PLANT_SPECS = {
-    "Biomass CHP CCS": {
-        "name": (
-            "electricity production, at co-generation wood-fired power plant, post, "
-            "pipeline 200km, storage 1000m"
-        ),
-        "source_preferred_locations": ("CH", "RER", "RoW", "GLO"),
-        "energy_penalty": 1.10,
-        "co2_flow": "Carbon dioxide, non-fossil",
-        "capture_name": (
-            "carbon dioxide, captured at wood burning power plant 20 MW post, "
-            "pipeline 200km, storage 1000m"
-        ),
-    },
-    "Coal CHP CCS": {
-        "name": (
-            "electricity production, at co-generation hard coal-fired power plant, "
-            "post, pipeline 200km, storage 1000m"
-        ),
-        "source_preferred_locations": ("DE", "RER", "RoW", "GLO"),
-        "energy_penalty": 1.09,
-        "co2_flow": "Carbon dioxide, fossil",
-        "capture_name": (
-            "carbon dioxide, captured from hard coal-fired power plant, oxy, "
-            "pipeline 200km, storage 1000m"
-        ),
-    },
-    "Gas CHP CCS": {
-        "name": (
-            "electricity production, at co-generation natural gas-fired power plant, "
-            "post, pipeline 200km, storage 1000m"
-        ),
-        "source_preferred_locations": ("DE", "RER", "RoW", "GLO"),
-        "energy_penalty": 1.08,
-        "co2_flow": "Carbon dioxide, fossil",
-        "capture_name": (
-            "carbon dioxide, captured from natural gas, post, 200km pipeline, "
-            "storage 1000m"
-        ),
-    },
-    "Oil CHP CCS": {
-        "name": (
-            "electricity production, at co-generation oil-fired power plant, post, "
-            "pipeline 200km, storage 1000m"
-        ),
-        "source_preferred_locations": ("DE", "RER", "RoW", "GLO"),
-        "energy_penalty": 1.09,
-        "co2_flow": "Carbon dioxide, fossil",
-        "capture_name": (
-            "carbon dioxide, captured from hard coal-fired power plant, post, "
-            "pipeline 200km, storage 1000m"
-        ),
-    },
-}
-CHP_CCS_IMPORTED_DATASET_NAMES = {
-    spec["name"] for spec in CHP_CCS_POWER_PLANT_SPECS.values()
-} | {
-    spec["name"].replace("electricity production", "heat production")
-    for spec in CHP_CCS_POWER_PLANT_SPECS.values()
 }
 
 logger = create_logger("electricity")
@@ -481,7 +418,6 @@ class Electricity(BaseTransformation):
         self.mapping, self.fuel_map, self.fuel_map_reverse = create_fuel_map(
             self.database, self.version, self.model
         )
-        self.create_chp_ccs_power_plant_datasets()
         self.powerplant_map = self.mapping.generate_powerplant_map()
         # reverse dictionary of self.powerplant_map
         self.powerplant_map_rev = {}
@@ -509,262 +445,6 @@ class Electricity(BaseTransformation):
         self.powerplant_min_efficiency, self.powerplant_max_efficiency = (
             self.mapping.generate_powerplant_efficiency_bounds()
         )
-
-    def _remove_imported_chp_ccs_power_plant_datasets(self) -> None:
-        """
-        Remove CHP+CCS templates imported from the retired Excel workbook.
-
-        Databases can be loaded from premise caches, so deleting the workbook is
-        not enough to guarantee that the old negative-credit templates are gone.
-        """
-
-        datasets_to_remove = [
-            dataset
-            for dataset in self.database
-            if dataset.get("name") in CHP_CCS_IMPORTED_DATASET_NAMES
-        ]
-
-        if not datasets_to_remove:
-            return
-
-        for dataset in datasets_to_remove:
-            try:
-                self.remove_from_index(dataset)
-            except KeyError:
-                pass
-
-        ids_to_remove = {id(dataset) for dataset in datasets_to_remove}
-        self.database[:] = [
-            dataset for dataset in self.database if id(dataset) not in ids_to_remove
-        ]
-
-    @staticmethod
-    def _chp_ccs_source_rank(dataset: dict, preferred_locations: tuple[str, ...]) -> int:
-        """Rank conventional CHP source datasets for generated CHP+CCS copies."""
-
-        location = dataset.get("location")
-
-        if location in preferred_locations:
-            return preferred_locations.index(location)
-
-        if location == "RoW":
-            return len(preferred_locations)
-
-        if location == "GLO":
-            return len(preferred_locations) + 1
-
-        return len(preferred_locations) + 2
-
-    def _select_chp_ccs_sources_by_region(
-        self, source_datasets: list[dict], spec: dict
-    ) -> dict[str, dict]:
-        """Select one conventional CHP source dataset for each IAM region."""
-
-        preferred_locations = tuple(spec["source_preferred_locations"])
-        fallback_dataset = min(
-            source_datasets,
-            key=lambda dataset: self._chp_ccs_source_rank(
-                dataset, preferred_locations
-            ),
-        )
-        source_by_region = {}
-
-        for region in self.regions:
-            candidates = [
-                dataset
-                for dataset in source_datasets
-                if dataset.get("location") == region
-            ]
-
-            if not candidates:
-                candidates = [
-                    dataset
-                    for dataset in source_datasets
-                    if dataset.get("location") not in self.regions
-                    and self.ecoinvent_to_iam_loc.get(dataset.get("location"))
-                    == region
-                ]
-
-            if candidates:
-                source_by_region[region] = min(
-                    candidates,
-                    key=lambda dataset: self._chp_ccs_source_rank(
-                        dataset, preferred_locations
-                    ),
-                )
-            else:
-                source_by_region[region] = fallback_dataset
-
-        return source_by_region
-
-    @staticmethod
-    def _is_chp_ccs_capture_input(exchange: dict) -> bool:
-        return (
-            exchange.get("type") == "technosphere"
-            and exchange.get("unit") == "kilogram"
-            and exchange.get("name", "").startswith("carbon dioxide, captured")
-        )
-
-    @staticmethod
-    def _make_chp_ccs_power_plant_dataset(
-        source_dataset: dict, region: str, technology: str, spec: dict
-    ) -> dict:
-        """
-        Create one regional CHP+CCS electricity dataset from a conventional CHP.
-
-        The copied plant is energy-penalized, its direct stack CO2 is reduced by
-        the capture rate, and a carbon-capture technosphere input is added for
-        the captured CO2. No negative CO2 biosphere credit is added.
-        """
-
-        dataset = copy.deepcopy(source_dataset)
-        dataset["name"] = spec["name"]
-        dataset["reference product"] = "electricity, high voltage"
-        dataset["unit"] = "kilowatt hour"
-        dataset["location"] = region
-        dataset["code"] = str(uuid.uuid4().hex)
-        dataset["regionalized"] = True
-
-        for key in ("input", "parameters"):
-            if key in dataset:
-                del dataset[key]
-
-        for exchange in ws.production(dataset):
-            exchange["name"] = spec["name"]
-            exchange["product"] = "electricity, high voltage"
-            exchange["unit"] = "kilowatt hour"
-            exchange["location"] = region
-            exchange["amount"] = exchange.get("amount", 1.0)
-            exchange["production volume"] = 0.0
-            if "input" in exchange:
-                del exchange["input"]
-
-        rescale_exchanges(
-            dataset,
-            spec["energy_penalty"],
-            remove_uncertainty=False,
-        )
-
-        direct_co2_exchanges = [
-            exchange
-            for exchange in ws.biosphere(
-                dataset,
-                ws.equals("name", spec["co2_flow"]),
-                ws.equals("unit", "kilogram"),
-            )
-            if exchange.get("amount", 0) > 0
-        ]
-        direct_co2_before_capture = sum(
-            float(exchange["amount"]) for exchange in direct_co2_exchanges
-        )
-        captured_co2 = direct_co2_before_capture * CHP_CCS_CAPTURE_RATE
-
-        for exchange in direct_co2_exchanges:
-            rescale_exchange(
-                exchange,
-                1 - CHP_CCS_CAPTURE_RATE,
-                remove_uncertainty=False,
-            )
-
-        if captured_co2:
-            dataset["exchanges"].append(
-                {
-                    "name": spec["capture_name"],
-                    "product": spec["capture_name"],
-                    "amount": captured_co2,
-                    "loc": captured_co2,
-                    "unit": "kilogram",
-                    "location": region,
-                    "type": "technosphere",
-                    "uncertainty type": 0,
-                }
-            )
-
-        source = f"{source_dataset['name']} ({source_dataset['location']})"
-        comment = (
-            "This dataset was generated by premise from a conventional CHP "
-            "electricity dataset, with a CCS energy penalty, reduced direct CO2 "
-            "emissions, and a carbon-capture technosphere input. It replaces "
-            "the retired lci-combined-heat-power-plant-CCS.xlsx inventory."
-        )
-        if dataset.get("comment"):
-            dataset["comment"] += f" {comment}"
-        else:
-            dataset["comment"] = comment
-
-        dataset.setdefault("log parameters", {}).update(
-            {
-                "source CHP dataset": source,
-                "CHP CCS technology": technology,
-                "CHP CCS energy penalty": spec["energy_penalty"],
-                "CHP CCS capture rate": CHP_CCS_CAPTURE_RATE,
-                "CHP CCS direct CO2 before capture": direct_co2_before_capture,
-                "CHP CCS captured CO2": captured_co2,
-                "CHP CCS residual direct CO2": direct_co2_before_capture
-                - captured_co2,
-            }
-        )
-
-        return dataset
-
-    def create_chp_ccs_power_plant_datasets(self) -> None:
-        """
-        Generate regional CHP+CCS electricity datasets from conventional CHP.
-
-        The old Excel workbook represented CHP+CCS as a wrapper around a
-        conventional CHP electricity input plus a negative CO2 biosphere flow.
-        This method instead changes the plant's own direct CO2 exchanges.
-        """
-
-        self._remove_imported_chp_ccs_power_plant_datasets()
-        generated_datasets = []
-        powerplant_fuels_map = self.mapping.generate_powerplant_fuels_map()
-
-        for technology, spec in CHP_CCS_POWER_PLANT_SPECS.items():
-            source_datasets = [
-                dataset
-                for dataset in powerplant_fuels_map.get(technology, [])
-                if dataset.get("reference product") == "electricity, high voltage"
-                and dataset.get("unit") == "kilowatt hour"
-            ]
-
-            if not source_datasets:
-                continue
-
-            for region, source_dataset in self._select_chp_ccs_sources_by_region(
-                source_datasets, spec
-            ).items():
-                dataset = self._make_chp_ccs_power_plant_dataset(
-                    source_dataset=source_dataset,
-                    region=region,
-                    technology=technology,
-                    spec=spec,
-                )
-
-                capture_inputs = [
-                    exchange
-                    for exchange in dataset["exchanges"]
-                    if self._is_chp_ccs_capture_input(exchange)
-                ]
-                capture_input_ids = {id(exchange) for exchange in capture_inputs}
-                dataset["exchanges"] = [
-                    exchange
-                    for exchange in dataset["exchanges"]
-                    if id(exchange) not in capture_input_ids
-                ]
-                dataset = self.relink_technosphere_exchanges(dataset)
-                dataset["exchanges"].extend(capture_inputs)
-                self.add_geo_definition_metadata(dataset)
-                generated_datasets.append(dataset)
-
-        if not generated_datasets:
-            return
-
-        self.database.extend(generated_datasets)
-
-        for dataset in generated_datasets:
-            self.add_to_index(dataset)
-            self.write_log(dataset)
 
     def remove_cdr_credit_from_biomass_ccs_power_plants(self) -> float:
         """
@@ -1943,14 +1623,17 @@ class Electricity(BaseTransformation):
         all_plants = []
 
         techs = [
+            "Biomass CHP CCS",
             "Biomass ST",
             "Biomass ST CCS",
             "Biomass IGCC CCS",
             "Biomass IGCC",
             "Coal IGCC",
             "Coal PC CCS",
+            "Coal CHP CCS",
             "Coal IGCC CCS",
             "Coal SC",
+            "Gas CHP CCS",
             "Gas CC CCS",
             "Oil CC CCS",
             # "Oil ST",
@@ -2003,6 +1686,52 @@ class Electricity(BaseTransformation):
 
             for new_plant in new_plants.values():
                 self.add_to_index(new_plant)
+
+            # we need to adjust the need for CO2 capture and storage
+            # based on the electricity provider in the dataset
+            # hence, we want to know how much CO2 is released
+            # by each provider, and capture 90% of the amount
+
+            if "CHP CCS" in self.powerplant_map_rev.get(dataset["name"], ""):
+                for plant in new_plants.values():
+                    co2_amount = 0
+
+                    providers = [
+                        e
+                        for e in plant["exchanges"]
+                        if e["type"] == "technosphere" and e["unit"] == "kilowatt hour"
+                    ]
+
+                    for provider in providers:
+                        provider_ds = ws.get_one(
+                            self.database,
+                            ws.equals("name", provider["name"]),
+                            ws.equals("location", provider["location"]),
+                            ws.equals("reference product", provider["product"]),
+                            ws.equals("unit", provider["unit"]),
+                        )
+                        co2_amount += sum(
+                            f["amount"] * provider["amount"]
+                            for f in ws.biosphere(
+                                provider_ds,
+                                ws.contains("name", "Carbon dioxide, "),
+                            )
+                        )
+
+                    for exc in plant["exchanges"]:
+                        if (
+                            exc["type"] == "technosphere"
+                            and exc["unit"] == "kilogram"
+                            and exc["name"].startswith("carbon dioxide, captured")
+                        ):
+                            exc["amount"] = co2_amount * 0.9
+
+                        if (
+                            exc["type"] == "biosphere"
+                            and exc["unit"] == "kilogram"
+                            and exc["name"].startswith("Carbon dioxide, fossil")
+                        ):
+                            exc["amount"] = co2_amount * 0.9 * -1
 
             all_plants.extend(new_plants.values())
 
