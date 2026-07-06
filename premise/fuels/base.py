@@ -33,6 +33,16 @@ FUEL_CCS_COPRODUCT_REFERENCE_PRODUCT_TERMS = (
     "syngas",
 )
 
+BIOGENIC_CCS_FUEL_TERMS = (
+    "bio",
+    "biogas",
+    "biomass",
+    "biomethane",
+    "fermentation",
+    "switchgrass",
+    "wood",
+)
+
 
 def _update_fuels(scenario, version, system_model, cdr_allocation=False):
 
@@ -168,6 +178,24 @@ class Fuels(
             for term in FUEL_CCS_COPRODUCT_REFERENCE_PRODUCT_TERMS
         )
 
+    @staticmethod
+    def is_biogenic_ccs_fuel_variable(variable: str) -> bool:
+        variable = str(variable or "").lower()
+        return "with ccs" in variable and any(
+            term in variable for term in BIOGENIC_CCS_FUEL_TERMS
+        )
+
+    @classmethod
+    def is_biogenic_ccs_fuel_coproduct_dataset(cls, dataset: dict) -> bool:
+        if not cls.is_ccs_fuel_coproduct_dataset(dataset):
+            return False
+
+        text = " ".join(
+            str(dataset.get(field) or "").lower()
+            for field in ("name", "reference product")
+        )
+        return any(term in text for term in BIOGENIC_CCS_FUEL_TERMS)
+
     def remove_cdr_credit_from_ccs_fuel_activities(self):
         """
         Remove embedded CDR credits and storage inputs from CCS fuel co-products.
@@ -187,18 +215,35 @@ class Fuels(
         )
 
         candidate_datasets = []
+        biogenic_capture_datasets = []
 
         for variable, datasets in self.fuel_map.items():
             if "with CCS" not in variable:
                 continue
 
             candidate_datasets.extend(datasets)
+            if self.is_biogenic_ccs_fuel_variable(variable):
+                biogenic_capture_datasets.extend(datasets)
 
         candidate_datasets.extend(
             dataset
             for dataset in getattr(self, "database", [])
             if self.is_ccs_fuel_coproduct_dataset(dataset)
         )
+        biogenic_capture_datasets.extend(
+            dataset
+            for dataset in getattr(self, "database", [])
+            if self.is_biogenic_ccs_fuel_coproduct_dataset(dataset)
+        )
+
+        biogenic_capture_identities = {
+            (
+                dataset.get("name"),
+                dataset.get("reference product"),
+                dataset.get("location"),
+            )
+            for dataset in biogenic_capture_datasets
+        }
 
         for dataset in candidate_datasets:
             identity = (
@@ -219,6 +264,11 @@ class Fuels(
                 dataset=dataset,
                 reason=reason,
             )
+            if identity in biogenic_capture_identities:
+                removed_amount += self.zero_captured_biogenic_co2_inputs(
+                    dataset=dataset,
+                    reason=reason,
+                )
 
         return removed_amount
 

@@ -2,7 +2,10 @@ import pytest
 
 from premise.electricity import Electricity
 from premise.fuels.base import Fuels
-from premise.transformation import BaseTransformation
+from premise.transformation import (
+    CAPTURED_BIOGENIC_CO2_CONVERSION_LOG_KEY,
+    BaseTransformation,
+)
 
 
 def co2_uptake(amount=1.0):
@@ -33,6 +36,27 @@ def co2_storage_input(
     return {
         "name": name,
         "product": "carbon dioxide, stored",
+        "amount": amount,
+        "loc": amount,
+        "type": "technosphere",
+        "unit": "kilogram",
+    }
+
+
+def captured_co2_input(
+    amount=1.0,
+    name=(
+        "carbon dioxide, captured at wood burning power plant 20 MW post, "
+        "pipeline 200km, storage 1000m"
+    ),
+    product=(
+        "carbon dioxide, captured at wood burning power plant 20 MW post, "
+        "pipeline 200km, storage 1000m"
+    ),
+):
+    return {
+        "name": name,
+        "product": product,
         "amount": amount,
         "loc": amount,
         "type": "technosphere",
@@ -177,6 +201,46 @@ def test_zero_carbon_dioxide_storage_inputs_sets_storage_exchange_to_zero():
     )["amount"] == pytest.approx(2.0)
 
 
+def test_zero_captured_biogenic_co2_inputs_adds_non_fossil_co2_emission():
+    transform = object.__new__(BaseTransformation)
+    dataset = {
+        "name": "activity with captured biogenic CO2",
+        "reference product": "product",
+        "location": "WEU",
+        "unit": "kilogram",
+        "exchanges": [
+            production_exchange(
+                "activity with captured biogenic CO2", "product", "kilogram"
+            ),
+            captured_co2_input(1.4),
+            {
+                "name": "market for carbon dioxide removal",
+                "product": "carbon dioxide, captured and stored",
+                "amount": 9.9,
+                "type": "technosphere",
+                "unit": "kilogram",
+            },
+        ],
+    }
+
+    converted = transform.zero_captured_biogenic_co2_inputs(
+        dataset, reason="Removed for CDR allocation."
+    )
+
+    assert converted == pytest.approx(1.4)
+    assert dataset["exchanges"][1]["amount"] == 0
+    assert dataset["exchanges"][1]["loc"] == 0
+    assert "Removed for CDR allocation." in dataset["exchanges"][1]["comment"]
+    assert dataset["exchanges"][2]["amount"] == pytest.approx(9.9)
+    emission = dataset["exchanges"][-1]
+    assert emission["name"] == "Carbon dioxide, non-fossil"
+    assert emission["amount"] == pytest.approx(1.4)
+    assert emission["type"] == "biosphere"
+    assert dataset["log parameters"][
+        CAPTURED_BIOGENIC_CO2_CONVERSION_LOG_KEY
+    ] == pytest.approx(1.4)
+
+
 def test_electricity_removes_cdr_credit_only_from_biomass_ccs_power():
     electricity = object.__new__(Electricity)
     biomass_ccs = {
@@ -202,6 +266,7 @@ def test_electricity_removes_cdr_credit_only_from_biomass_ccs_power():
                     "post, pipeline 200km, storage 1000m"
                 ),
             ),
+            captured_co2_input(1.3),
         ],
     }
     coal_ccs = {
@@ -227,6 +292,11 @@ def test_electricity_removes_cdr_credit_only_from_biomass_ccs_power():
                     "storage 3000m"
                 ),
             ),
+            captured_co2_input(
+                8.8,
+                name="carbon dioxide, captured from hard coal power plant",
+                product="carbon dioxide, captured from hard coal power plant",
+            ),
         ],
     }
     electricity.powerplant_map = {
@@ -236,11 +306,15 @@ def test_electricity_removes_cdr_credit_only_from_biomass_ccs_power():
 
     removed = electricity.remove_cdr_credit_from_biomass_ccs_power_plants()
 
-    assert removed == pytest.approx(2.2)
+    assert removed == pytest.approx(3.5)
     assert biomass_ccs["exchanges"][1]["amount"] == 0
     assert biomass_ccs["exchanges"][2]["amount"] == 0
+    assert biomass_ccs["exchanges"][3]["amount"] == 0
+    assert biomass_ccs["exchanges"][-1]["name"] == "Carbon dioxide, non-fossil"
+    assert biomass_ccs["exchanges"][-1]["amount"] == pytest.approx(1.3)
     assert coal_ccs["exchanges"][1]["amount"] == pytest.approx(9.9)
     assert coal_ccs["exchanges"][2]["amount"] == pytest.approx(9.9)
+    assert coal_ccs["exchanges"][3]["amount"] == pytest.approx(8.8)
 
 
 def test_electricity_removes_negative_non_fossil_co2_from_ccs_power():
@@ -326,6 +400,7 @@ def test_fuels_remove_cdr_credit_only_from_ccs_fuel_variables():
             ),
             co2_uptake(0.8),
             co2_storage_input(0.6),
+            captured_co2_input(1.1),
         ],
     }
     unmapped_ccs_fuel = {
@@ -349,6 +424,25 @@ def test_fuels_remove_cdr_credit_only_from_ccs_fuel_variables():
                     "carbon dioxide storage at wood burning power plant 20 MW "
                     "post, pipeline 200km, storage 1000m"
                 ),
+            ),
+            captured_co2_input(0.9),
+        ],
+    }
+    fossil_ccs_fuel = {
+        "name": "hydrogen production, from natural gas, with carbon capture and storage",
+        "reference product": "hydrogen",
+        "location": "WEU",
+        "unit": "kilogram",
+        "exchanges": [
+            production_exchange(
+                "hydrogen production, from natural gas, with carbon capture and storage",
+                "hydrogen",
+                "kilogram",
+            ),
+            captured_co2_input(
+                2.2,
+                name="carbon dioxide, captured from natural gas hydrogen production",
+                product="carbon dioxide, captured from natural gas hydrogen production",
             ),
         ],
     }
@@ -383,14 +477,27 @@ def test_fuels_remove_cdr_credit_only_from_ccs_fuel_variables():
         "bioethanol, from wood, with CCS": [ccs_fuel],
         "bioethanol, from wood": [non_ccs_fuel],
     }
-    fuels.database = [ccs_fuel, unmapped_ccs_fuel, non_ccs_fuel, non_fuel_ccs]
+    fuels.database = [
+        ccs_fuel,
+        unmapped_ccs_fuel,
+        fossil_ccs_fuel,
+        non_ccs_fuel,
+        non_fuel_ccs,
+    ]
 
     removed = fuels.remove_cdr_credit_from_ccs_fuel_activities()
 
-    assert removed == pytest.approx(5.4)
+    assert removed == pytest.approx(7.4)
     assert ccs_fuel["exchanges"][1]["amount"] == 0
     assert ccs_fuel["exchanges"][2]["amount"] == 0
+    assert ccs_fuel["exchanges"][3]["amount"] == 0
+    assert ccs_fuel["exchanges"][-1]["name"] == "Carbon dioxide, non-fossil"
+    assert ccs_fuel["exchanges"][-1]["amount"] == pytest.approx(1.1)
     assert unmapped_ccs_fuel["exchanges"][1]["amount"] == 0
+    assert unmapped_ccs_fuel["exchanges"][2]["amount"] == 0
+    assert unmapped_ccs_fuel["exchanges"][-1]["name"] == "Carbon dioxide, non-fossil"
+    assert unmapped_ccs_fuel["exchanges"][-1]["amount"] == pytest.approx(0.9)
+    assert fossil_ccs_fuel["exchanges"][1]["amount"] == pytest.approx(2.2)
     assert non_ccs_fuel["exchanges"][1]["amount"] == pytest.approx(0.8)
     assert non_ccs_fuel["exchanges"][2]["amount"] == pytest.approx(0.6)
     assert non_fuel_ccs["exchanges"][1]["amount"] == pytest.approx(3.0)

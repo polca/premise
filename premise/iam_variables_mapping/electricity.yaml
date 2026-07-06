@@ -78,7 +78,10 @@ Biomass CHP CCS:
       200km, storage 1000m
   ecoinvent_fuel_aliases:
     fltr:
-    - heat and power co-generation, wood chips, 6667 kW
+    - market for wood chips, wet, measured as dry mass
+    - market for wood chips, green, measured as dry mass
+    - market for biomass, used as fuel
+    - market for lignocellulosic biomass, used as fuel
   eff_aliases:
     image: Efficiency|Electricity|Biomass|w/ CCS|2
   iam_aliases:
@@ -276,7 +279,7 @@ Coal CHP CCS:
       pipeline 200km, storage 1000m
   ecoinvent_fuel_aliases:
     fltr:
-    - heat and power co-generation, hard coal
+    - market for hard coal
   eff_aliases:
     image: Efficiency|Electricity|Coal|w/ CCS|2
   max_efficiency: 0.4
@@ -628,7 +631,11 @@ Gas CHP CCS:
       pipeline 200km, storage 1000m
   ecoinvent_fuel_aliases:
     fltr:
-    - heat and power co-generation, natural gas, conventional power plant, 100MW electrical
+    - market for natural gas, high pressure
+    - market for natural gas, medium pressure
+    - market for natural gas, low pressure
+    - market group for natural gas
+    - natural gas, high pressure, at consumer
   eff_aliases:
     image: Efficiency|Electricity|Gas|w/ CCS|2
   iam_aliases:
@@ -896,7 +903,9 @@ Oil CHP CCS:
       name: aluminium
   ecoinvent_fuel_aliases:
     fltr:
-    - heat and power co-generation, oil
+    - market for heavy fuel oil
+    - market group for heavy fuel oil
+    - market for diesel
     mask:
       name: burned
   eff_aliases:

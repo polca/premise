@@ -47,6 +47,11 @@ with open(LOG_CONFIG, encoding="utf-8") as f:
 
 logger = logging.getLogger("module")
 
+CAPTURED_BIOGENIC_CO2_CONVERSION_LOG_KEY = (
+    "captured biogenic CO2 input converted to non-fossil CO2 emission "
+    "for CDR allocation"
+)
+
 
 def redefine_uncertainty_params(old_exc, new_exc):
     """
@@ -655,6 +660,106 @@ class BaseTransformation:
                     dataset["comment"] = reason
 
         return removed_amount
+
+    @staticmethod
+    def is_captured_carbon_dioxide_input(exc: dict) -> bool:
+        """
+        Return True for technosphere inputs of captured CO2.
+        """
+
+        name = str(exc.get("name") or "").strip().lower()
+        product = str(exc.get("product") or "").strip().lower()
+
+        if name == "market for carbon dioxide removal":
+            return False
+
+        return name.startswith("carbon dioxide, captured") or product.startswith(
+            "carbon dioxide, captured"
+        )
+
+    def _get_biosphere_flow_input(self, key: tuple):
+        biosphere_flows = getattr(self, "biosphere_dict", None) or getattr(
+            self, "biosphere_flows", None
+        )
+        if not biosphere_flows or key not in biosphere_flows:
+            return None
+
+        return ("biosphere3", biosphere_flows[key])
+
+    def zero_captured_biogenic_co2_inputs(
+        self, dataset: dict, reason: str = ""
+    ) -> float:
+        """
+        Replace captured biogenic CO2 inputs with non-fossil CO2 emissions.
+
+        Biomass CCS co-products should not retain captured-CO2 inputs when CDR
+        allocation is active. Adding the same amount as positive non-fossil CO2
+        keeps the biomass carbon balance on the co-product while the removal is
+        represented by the CDR market.
+        """
+
+        converted_amount = 0.0
+
+        for exc in ws.technosphere(dataset):
+            if not self.is_captured_carbon_dioxide_input(exc):
+                continue
+
+            amount = float(exc.get("amount") or 0.0)
+
+            if amount <= 0:
+                continue
+
+            converted_amount += amount
+            exc["amount"] = 0.0
+            exc["uncertainty type"] = 0
+
+            if "loc" in exc:
+                exc["loc"] = 0.0
+
+            if reason:
+                if "comment" in exc:
+                    if reason not in exc["comment"]:
+                        exc["comment"] += f" {reason}"
+                else:
+                    exc["comment"] = reason
+
+        if not converted_amount:
+            return 0.0
+
+        emission = {
+            "uncertainty type": 0,
+            "loc": converted_amount,
+            "amount": converted_amount,
+            "type": "biosphere",
+            "name": "Carbon dioxide, non-fossil",
+            "unit": "kilogram",
+            "categories": ("air",),
+        }
+        input_key = (
+            "Carbon dioxide, non-fossil",
+            "air",
+            "unspecified",
+            "kilogram",
+        )
+        input_value = self._get_biosphere_flow_input(input_key)
+        if input_value:
+            emission["input"] = input_value
+        if reason:
+            emission["comment"] = reason
+
+        dataset["exchanges"].append(emission)
+        dataset.setdefault("log parameters", {})[
+            CAPTURED_BIOGENIC_CO2_CONVERSION_LOG_KEY
+        ] = converted_amount
+
+        if reason:
+            if "comment" in dataset:
+                if reason not in dataset["comment"]:
+                    dataset["comment"] += f" {reason}"
+            else:
+                dataset["comment"] = reason
+
+        return converted_amount
 
     def zero_negative_non_fossil_co2_emissions(
         self, dataset: dict, reason: str = ""

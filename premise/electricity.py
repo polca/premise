@@ -473,6 +473,10 @@ class Electricity(BaseTransformation):
                     dataset=dataset,
                     reason=reason,
                 )
+                removed_amount += self.zero_captured_biogenic_co2_inputs(
+                    dataset=dataset,
+                    reason=reason,
+                )
 
         return removed_amount
 
