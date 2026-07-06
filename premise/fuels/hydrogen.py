@@ -114,11 +114,11 @@ HYDROGEN_TRANSPORT_ACTIVITIES = {
     "liquid_ammonia_ship": {
         "name": (
             "transport, freight, sea, tanker for liquefied ammonia, "
-            "heavy fuel oil"
+            "ammonia and mgo"
         ),
         "reference product": (
             "transport, freight, sea, tanker for liquefied ammonia, "
-            "heavy fuel oil"
+            "ammonia and mgo"
         ),
         "unit": "ton kilometer",
     },
