@@ -494,9 +494,7 @@ class CarbonDioxideRemoval(BaseTransformation):
             else set()
         )
         co2_regions = (
-            set(co2.region.values.tolist())
-            if "region" in co2.coords
-            else set()
+            set(co2.region.values.tolist()) if "region" in co2.coords else set()
         )
         kyoto_regions = (
             set(kyoto_gases.region.values.tolist())
@@ -591,9 +589,7 @@ class CarbonDioxideRemoval(BaseTransformation):
                 exc["amount"] * factor for exc, factor in non_co2_exchanges
             )
             gross_ghg = gross_co2 + gross_non_co2
-            cdr_amount = (gross_co2 * co2_share) + (
-                gross_non_co2 * non_co2_share
-            )
+            cdr_amount = (gross_co2 * co2_share) + (gross_non_co2 * non_co2_share)
             if cdr_amount <= 0:
                 continue
 

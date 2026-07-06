@@ -368,10 +368,7 @@ def test_chp_ccs_inventory_embeds_upstream_chp_exchanges():
             if sheet.cell(header_row, column).value is not None
         }
         exchanges = [
-            {
-                key: sheet.cell(row, column).value
-                for key, column in headers.items()
-            }
+            {key: sheet.cell(row, column).value for key, column in headers.items()}
             for row in range(header_row + 1, end)
             if sheet.cell(row, headers["type"]).value
             in {"production", "technosphere", "biosphere"}

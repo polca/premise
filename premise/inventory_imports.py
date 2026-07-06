@@ -1359,10 +1359,9 @@ class BaseInventoryImport:
                     new_exc["product"] = replacement["product"]
                     new_exc["location"] = replacement["location"]
                     new_exc["unit"] = replacement["unit"]
-                    new_exc["amount"] = (
-                        replacement["amount"]
-                        * self._replacement_amount_multiplier(template)
-                    )
+                    new_exc["amount"] = replacement[
+                        "amount"
+                    ] * self._replacement_amount_multiplier(template)
                     self._remove_replacement_metadata(new_exc)
                     new_exc.pop("input", None)
                     filtered_exchanges.append(new_exc)
@@ -1450,7 +1449,9 @@ class BaseInventoryImport:
                             )
                             return
 
-                    exc["amount"] = sum_amount * self._replacement_amount_multiplier(exc)
+                    exc["amount"] = sum_amount * self._replacement_amount_multiplier(
+                        exc
+                    )
                     self._remove_replacement_metadata(exc)
 
         except ws.NoResults:
