@@ -8,10 +8,10 @@ formatters:
     format: "%(levelname)s|<PID %(process)d:%(processName)s>|%(name)s.%(funcName)s()|%(message)s"
 
 handlers:
-  file_dac:
+  file_cdr:
     class: logging.FileHandler
     level: INFO
-    filename: "export/logs/premise_dac.log"
+    filename: "export/logs/premise_cdr.log"
     encoding: utf8
     formatter: simple
     mode: a
@@ -121,9 +121,14 @@ handlers:
     mode: a
 
 loggers:
+  cdr:
+    level: INFO
+    handlers: [file_cdr]
+    propagate: False
+
   dac:
     level: INFO
-    handlers: [file_dac]
+    handlers: [file_cdr]
     propagate: False
 
   biomass:

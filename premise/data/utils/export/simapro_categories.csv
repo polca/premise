@@ -917,13 +917,17 @@ carbon black production,carbon black,material,Chemicals\Organic\Transformation
 "carbon dioxide, captured and stored, by land-use change","carbon dioxide, captured",processing,Chemicals\Gases\Liquified\Transformation
 "carbon dioxide, captured and stored, by ocean liming","carbon dioxide, captured",material,Chemicals\Gases\Liquified\Transformation
 "carbon dioxide, captured and stored, by olivine spreading on coastline","carbon dioxide, captured",material,Chemicals\Gases\Liquified\Transformation
+"carbon dioxide, captured and stored, by re/afforestation, eucalyptus","carbon dioxide, captured",material,Chemicals\Gases\Liquified\Transformation
+"carbon dioxide, captured and stored, by re/afforestation, willow","carbon dioxide, captured",material,Chemicals\Gases\Liquified\Transformation
 "carbon dioxide, captured and stored, from a biomass fermentation plant","carbon dioxide, captured",material,Chemicals\Gases\Liquified\Transformation
 "carbon dioxide, captured and stored, from a hydrogen production plant using steam methane reforming of biomethane","carbon dioxide, captured",material,Chemicals\Gases\Liquified\Transformation
 "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2","carbon dioxide, captured",material,Chemicals\Gases\Liquified\Transformation
 "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with heat pump heat, and grid electricity","carbon dioxide, captured",material,Chemicals\Gases\Liquified\Transformation
+"carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with hydrogen heat, and grid electricity","carbon dioxide, captured",material,Chemicals\Gases\Liquified\Transformation
 "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with industrial steam heat, and grid electricity","carbon dioxide, captured",material,Chemicals\Gases\Liquified\Transformation
 "carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2","carbon dioxide, captured",material,Chemicals\Gases\Liquified\Transformation
 "carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2, with heat pump heat, and grid electricity","carbon dioxide, captured",material,Chemicals\Gases\Liquified\Transformation
+"carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2, with hydrogen heat, and grid electricity","carbon dioxide, captured",material,Chemicals\Gases\Liquified\Transformation
 "carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2, with industrial steam heat, and grid electricity","carbon dioxide, captured",material,Chemicals\Gases\Liquified\Transformation
 "carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2, with waste heat, and grid electricity","carbon dioxide, captured",material,Chemicals\Gases\Liquified\Transformation
 "carbon dioxide, captured at cement production plant, for subsequent reuse","carbon dioxide, captured and reused",material,Chemicals\Gases\Liquified\Transformation
@@ -966,15 +970,18 @@ carbon black production,carbon black,material,Chemicals\Organic\Transformation
 "carbon dioxide, captured from natural gas, post, 400km pipeline, storage 1000m","carbon dioxide, captured from natural gas, post, 400km pipeline, storage 1000m",material,Chemicals\Gases\Liquified\Transformation
 "carbon dioxide, captured from natural gas, pre, 200km pipeline, storage 1000m","carbon dioxide, captured from natural gas, pre, 200km pipeline, storage 1000m",material,Chemicals\Gases\Liquified\Transformation
 "carbon dioxide, captured, at cement production plant, for subsequent reuse","carbon dioxide, captured",material,Chemicals\Gases\Liquified\Transformation
+"carbon dioxide, captured and stored, at cement production plant, from non-fossil carbon dioxide, using monoethanolamine","carbon dioxide, captured",material,Chemicals\Gases\Liquified\Transformation
 "carbon dioxide, captured, at cement production plant, using direct separation","carbon dioxide, captured",material,Chemicals\Gases\Liquified\Transformation
 "carbon dioxide, captured, at cement production plant, using monoethanolamine","carbon dioxide, captured",material,Chemicals\Gases\Liquified\Transformation
 "carbon dioxide, captured, at cement production plant, using oxyfuel","carbon dioxide, captured",material,Chemicals\Gases\Liquified\Transformation
 "carbon dioxide, captured, at municipal solid waste incineration plant, for subsequent reuse","carbon dioxide, captured",material,Chemicals\Gases\Liquified\Transformation
 "carbon dioxide, captured, with a solvent-based direct air capture system, 1MtCO2","carbon dioxide, captured",material,Chemicals\Gases\Liquified\Transformation
 "carbon dioxide, captured, with a solvent-based direct air capture system, 1MtCO2, with heat pump heat, and grid electricity","carbon dioxide, captured",material,Chemicals\Gases\Liquified\Transformation
+"carbon dioxide, captured, with a solvent-based direct air capture system, 1MtCO2, with hydrogen heat, and grid electricity","carbon dioxide, captured",material,Chemicals\Gases\Liquified\Transformation
 "carbon dioxide, captured, with a solvent-based direct air capture system, 1MtCO2, with industrial steam heat, and grid electricity","carbon dioxide, captured",material,Chemicals\Gases\Liquified\Transformation
 "carbon dioxide, captured, with a sorbent-based direct air capture system, 100ktCO2","carbon dioxide, captured",material,Chemicals\Gases\Liquified\Transformation
 "carbon dioxide, captured, with a sorbent-based direct air capture system, 100ktCO2, with heat pump heat, and grid electricity","carbon dioxide, captured",material,Chemicals\Gases\Liquified\Transformation
+"carbon dioxide, captured, with a sorbent-based direct air capture system, 100ktCO2, with hydrogen heat, and grid electricity","carbon dioxide, captured",material,Chemicals\Gases\Liquified\Transformation
 "carbon dioxide, captured, with a sorbent-based direct air capture system, 100ktCO2, with industrial steam heat, and grid electricity","carbon dioxide, captured",material,Chemicals\Gases\Liquified\Transformation
 "carbon dioxide, captured, with a sorbent-based direct air capture system, 100ktCO2, with waste heat, and grid electricity","carbon dioxide, captured",material,Chemicals\Gases\Liquified\Transformation
 carbon disulfide production,carbon disulfide,material,Chemicals\Organic\Transformation
@@ -6542,8 +6549,6 @@ market for energy saving,energy saving,processing,Energy reduction\Market
 "market for energy use, electric bicycle, electricity from renewable energy products","energy use, electric bicycle, electricity from renewable energy products",transport,Road\Market
 market for energy wood harvester,energy wood harvester,transport,Road\Market\Infrastructure
 "market for energy wood, green, from young stand, measured as dry mass","energy wood, green, from young stand, measured as dry mass",,
-"market for energy, for direct air capture and storage","energy, for direct air capture and storage",material,Other
-"market for energy, for enhanced rock weathering","energy, for enhanced rock weathering",material,Electronics\Component\Market
 "market for enriched uranium, 4.2%","enriched uranium, 4.2%",material,Fuels\Uranium\Enriched\Market
 market for enzymes,enzymes,material,Chemicals\Others\Market
 market for epichlorohydrin,epichlorohydrin,material,Chemicals\Organic\Market

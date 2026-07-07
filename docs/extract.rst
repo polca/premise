@@ -770,9 +770,10 @@ production plants using three prospective technologies:
 * Direct separation
 * Oxyfuel combustion
 
-These inventories represent the gate-to-gate capture of 1 kg of CO₂ and
+These inventories represent the gate-to-gate capture of 1 kg of CO2 and
 include upstream material and energy inputs as well as transport and storage
-of the captured CO₂. They are from Muller_ et al. (2024). They can be found here: LCI_cement_.
+of the captured CO2. They are from Muller_ et al. (2024). They can be found
+here: LCI_cement_.
 
 ==============================================================================  ==========
 Carbon capture at cement production plants                                       location
@@ -782,14 +783,24 @@ carbon dioxide, captured, at cement production plant, using direct separation   
 carbon dioxide, captured, at cement production plant, using oxyfuel              RER
 ==============================================================================  ==========
 
+A fourth cement-related activity is available for CDR accounting rather than
+ordinary cement transformation:
+``carbon dioxide, captured and stored, at cement production plant, from
+non-fossil carbon dioxide, using monoethanolamine``. It is scaled to 1 kg of
+non-fossil CO2 stored, includes a 1 kg ``Carbon dioxide, in air`` input, uses
+the MEA cement capture inputs and the common CO2 compression, transport and
+storage module, and intentionally ignores fossil CO2 co-captured from the
+cement flue gas.
+
 Monoethanolamine (MEA)
 **********************
 
 Represents conventional post-combustion carbon capture using MEA solvents,
 based on the CEMCAP study (Voldsund, 2019). The dataset includes heat and
 electricity demand for regeneration and compression, solvent losses, chemical
-pretreatment (NaOH), and incineration of spent solvents. Heat is assumed to be
-provided by the same fuel mix as the cement kiln.
+pretreatment (NaOH), and incineration of spent solvents. The source inventory
+uses 4.0556 MJ/kg CO2 of industrial heat for solvent regeneration and
+low-voltage electricity for fans, cooling and CO2 processing.
 
 Direct separation
 *****************
@@ -808,7 +819,7 @@ needs. Liquid oxygen is supplied via an air separation unit (ASU), and waste
 heat is recovered to offset some electricity needs. Emissions of SOₓ, NOₓ, CO,
 and Hg are significantly reduced.
 
-All three capture routes include subsequent CO₂ compression, transport, and
+All three capture routes include subsequent CO2 compression, transport, and
 storage via the carbon dioxide compression, transport and storage dataset
 from *premise*.
 
@@ -1000,20 +1011,20 @@ similar.
 Carbon Capture
 --------------
 
-Two sets of inventories for Direct Air Capture (DAC) are available in *premise*.
-One for a solvent-based system, and one for a sorbent-based system. The inventories
-were developed by Qiu_ and are available in the LCI_DAC_ spreadsheet. For each,
-a variant including the subsequent compression, transport and storage of the
-captured CO2 is also available.
+Two sets of inventories for Direct Air Capture (DAC) are available in *premise*:
+one for a solvent-based system and one for a sorbent-based system. The
+inventories were developed by Qiu_ and are available in the LCI_DAC_
+spreadsheet. For each, a variant including the subsequent compression,
+transport and storage of the captured CO2 is also available.
 
 They can be consulted here: LCI_DAC_.
 
 .. _Qiu: https://doi.org/10.1038/s41467-022-31146-1
-.. _LCI_DAC: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-direct-air-capture.xlsx
+.. _LCI_DAC: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-carbon-capture.xlsx
 
-Additional, two datasets for carbon capture at point sources are available:
-one at cement plant from Meunier_ et al, 2020, and another one at municipal solid waste incineration plant (MSWI)
-from Bisinella_ et al, 2021.
+Additionally, two datasets for carbon capture at point sources are available:
+one at a cement plant from Meunier_ et al, 2020, and another one at a
+municipal solid waste incineration plant (MSWI) from Bisinella_ et al, 2021.
 
 .. _Meunier: https://doi.org/10.1016/j.renene.2019.07.010
 .. _Bisinella: https://doi.org/10.1016/j.wasman.2021.04.046
@@ -1023,30 +1034,55 @@ They introduce the following datasets:
  =============================================================================================================== ===========
   Activity                                                                                                         Location
  =============================================================================================================== ===========
-  carbon dioxide, captured from atmosphere, with a sorbent-based direct air capture system, 100ktCO2               RER
-  carbon dioxide, captured from atmosphere and stored, with a sorbent-based direct air capture system, 100ktCO2    RER
-  carbon dioxide, captured from atmosphere, with a solvent-based direct air capture system, 1MtCO2                 RER
-  carbon dioxide, captured from atmosphere and stored, with a solvent-based direct air capture system, 1MtCO2      RER
+  carbon dioxide, captured, with a sorbent-based direct air capture system, 100ktCO2                               RER
+  carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2                    RER
+  carbon dioxide, captured, with a solvent-based direct air capture system, 1MtCO2                                 RER
+  carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2                      RER
   carbon dioxide, captured at municipal solid waste incineration plant, for subsequent reuse                       RER
   carbon dioxide, captured at cement production plant, for subsequent reuse                                        RER
  =============================================================================================================== ===========
 
-Using the transformation function `update("cdr")`, *premise* creates various configurations of these processes,
-using different sources for heat (industrial steam heat, high-temp heat
-pump heat and excess heat), which are found under the following names, for each IAM region:
+The same workbook also contains harmonized capture-only modules for biogenic
+and industrial CDR routes:
+
+* ``carbon dioxide, captured and stored, at wood burning power plant, pipeline
+  200km, storage 1000m`` excludes the host power plant and represents the
+  additional capture and storage system. The energy penalty is modelled as
+  3.565 MJ/kg CO2 of wood-derived industrial heat from
+  ``heat and power co-generation, wood chips, 6667 kW``.
+* ``carbon dioxide, captured and stored, from a hydrogen production plant using
+  steam methane reforming of biomethane`` excludes the host SMR plant. It uses
+  methyldiethanolamine (MDEA), 0.11598 kWh/kg CO2 of low-voltage electricity
+  and 0.948 MJ/kg CO2 of biomethane-based heat inferred from Antonini_ et al.
+  The final CO2 compression electricity is omitted to avoid double counting
+  with the common storage module.
+* ``carbon dioxide, captured and stored, from a biomass fermentation plant``
+  excludes the host fermentation plant. Because the fermentation stream is
+  already high-purity CO2, no solvent, sorbent, regeneration heat or additional
+  capture electricity is included; the dataset uses the common compression,
+  transport and storage module.
+
+Using the transformation function ``update("cdr")``, *premise* regionalizes the
+CDR support activities listed in ``premise/data/cdr/cdr_activities.yaml`` and
+then regionalizes the CDR technologies mapped in
+``carbon_dioxide_removal.yaml``. Regionalized DAC support variants include
+industrial steam heat, high-temperature heat-pump heat and waste heat where the
+source inventory supports them:
 
  ======================================================================================================================================================= ==================
   name                                                                                                                                                      location
  ======================================================================================================================================================= ==================
-  carbon dioxide, captured from atmosphere, with a solvent-based direct air capture system, 1MtCO2, with industrial steam heat, and grid electricity       all IAM regions
-  carbon dioxide, captured from atmosphere, with a solvent-based direct air capture system, 1MtCO2, with heat pump heat, and grid electricity              all IAM regions
-  carbon dioxide, captured from atmosphere, with a sorbent-based direct air capture system, 100ktCO2, with waste heat, and grid electricity                all IAM regions
-  carbon dioxide, captured from atmosphere, with a sorbent-based direct air capture system, 100ktCO2, with industrial steam heat, and grid electricity     all IAM regions
-  carbon dioxide, captured from atmosphere, with a sorbent-based direct air capture system, 100ktCO2, with heat pump heat, and grid electricity            all IAM regions
+  carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with industrial steam heat, and grid electricity            all IAM regions
+  carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with heat pump heat, and grid electricity                   all IAM regions
+  carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2, with waste heat, and grid electricity                     all IAM regions
+  carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2, with industrial steam heat, and grid electricity          all IAM regions
+  carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2, with heat pump heat, and grid electricity                 all IAM regions
  ======================================================================================================================================================= ==================
 
-Note that only solid sorbent DAC can use waste heat, as the heat requirement for liquid solvent DAC
-is too high (~900 C)
+Note that only solid sorbent DAC can use waste heat, as the heat requirement
+for liquid solvent DAC is too high (~900 C). CDR efficiency adjustments, when
+provided by the IAM scenario, scale electricity exchanges separately from heat
+and fuel exchanges; material inputs and biosphere flows are not scaled.
 
 Li-ion batteries
 ----------------

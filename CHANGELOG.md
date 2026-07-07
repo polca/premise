@@ -4,7 +4,28 @@ All notable changes to this project are documented in this file.
 
 ## [2.4.6]
 
+### Added
+- Added a CDR-mapped cement MEA capture-and-storage activity for 1 kg of
+  non-fossil CO2 stored, including a `Carbon dioxide, in air` uptake and
+  temporary IMAGE dummy production, electricity, and heat aliases.
+
+### Changed
+- Split CDR efficiency adjustment between electricity exchanges and heat/fuel
+  exchanges using carrier-specific `energy_use_aliases` in
+  `carbon_dioxide_removal.yaml`; material inputs and biosphere flows remain
+  unchanged by this adjustment.
+- Harmonized the wood BECCS, biomethane SMR+CCS, biomass fermentation CCS, and
+  cement non-fossil CO2 capture inventories as host-excluding capture and
+  storage modules with documented energy and modelling assumptions.
+
 ### Fixed
+- Restored IMAGE CDR mapping compatibility with bundled SSP2-VLHO files by
+  accepting legacy `Carbon Capture|...` aliases alongside the newer
+  `Carbon Removal|...` aliases.
+- Normalized the coastal enhanced-weathering inventory production exchange
+  fields so fresh Excel imports no longer depend on cached formula values.
+- Added missing import classifications and SimaPro categories for the new
+  afforestation and hydrogen-heat DAC CDR activities.
 - Corrected cement clinker fuel-efficiency adjustments so the original
   accounted kiln fuel demand includes inferred secondary-fuel energy represented
   by emissions but not by burdened technosphere fuel inputs.
@@ -18,6 +39,9 @@ All notable changes to this project are documented in this file.
   technologies.
 
 ### Documentation
+- Updated CDR, carbon-capture inventory, mapping, and FAQ documentation to
+  reflect carrier-specific CDR energy scaling, host-excluding CDR capture
+  modules, and the cement non-fossil CO2 CDR variant.
 - Added detailed cement transformation documentation clarifying visible fuel
   inputs, inferred hidden secondary-fuel bookkeeping, practical lower bounds,
   hard-coal-only scaling, and fossil/non-fossil CO2 handling.
@@ -26,6 +50,12 @@ All notable changes to this project are documented in this file.
   bookkeeping, new accounted fuel demand, hard-coal scaling, and CO2 handling.
 
 ### Tests
+- Validated the CDR update against IMAGE SSP2-VLHO, REMIND SSP3-rollBack,
+  TIAM-UCL SSP2-RCP19, and MESSAGE SSP2-L scenarios, including CDR market
+  shares and carrier-specific energy-adjustment lower bounds.
+- Added regression coverage for CDR electricity vs heat/fuel efficiency
+  adjustment, harmonized CDR inventory assumptions, and the IMAGE cement
+  non-fossil CDR activity mapping.
 - Added cement regression coverage for split hard-coal inputs, clinker fuel
   demand floors, non-negative hard-coal scaling, and the new dataset/exchange
   comment surface.

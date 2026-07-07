@@ -96,6 +96,34 @@ corresponding IAM variable name as follows:
 If efficiency-related variables are not available, the corresponding
 technologies will simply not have their efficiency adjusted.
 
+CDR energy-use aliases
+^^^^^^^^^^^^^^^^^^^^^^
+
+Most sector mapping files store ``energy_use_aliases`` directly by IAM model.
+Carbon dioxide removal is different because *premise* can scale electricity and
+heat/fuel exchanges separately in the CDR inventories. In
+``carbon_dioxide_removal.yaml``, keep energy-use aliases explicit by carrier:
+
+.. code-block:: yaml
+
+    cement production, non-fossil CO2, with CCS:
+      iam_aliases:
+        image: DUMMY|Carbon Removal|Geological Storage|Industry|Cement|Non-Fossil CO2
+      energy_use_aliases:
+        electricity:
+          image: DUMMY|Final Energy|Carbon Management|Industrial Biogenic CCS|Cement|Electricity
+        heat:
+          image: DUMMY|Final Energy|Carbon Management|Industrial Biogenic CCS|Cement|Heat
+      ecoinvent_aliases:
+        fltr: carbon dioxide, captured and stored, at cement production plant, from non-fossil carbon dioxide, using monoethanolamine
+
+During IAM data collection, electricity aliases remain in an electricity group.
+All other CDR final-energy carriers, such as heat, gases, diesel, hydrogen or
+other fuels, are grouped as heat/fuel for the CDR efficiency adjustment. The
+adjustment then scales matching electricity exchanges and matching heat/fuel
+exchanges independently; material inputs and biosphere exchanges are left
+unchanged.
+
 Additionally, add your model name to the models list as well as
 the list of geographical regions as LIST_xxx_REGIONS, with xxx
 being the IAM model name, in the file iam_variables_mapping/constants.yaml.
