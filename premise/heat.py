@@ -120,28 +120,6 @@ def _update_heat(scenario, version, system_model):
     else:
         print("No industrial heat scenario data available -- skipping")
 
-    if scenario["iam data"].daccs_energy_use is not None:
-        heat.create_heat_markets(
-            technologies=[
-                tech for tech in heat.iam_data.daccs_energy_use.variables.values
-            ],
-            name="market for energy, for direct air capture and storage",
-            reference_product="energy, for direct air capture and storage",
-        )
-    else:
-        print("No DAC energy mix data available -- skipping")
-
-    if scenario["iam data"].ewr_energy_use is not None:
-        heat.create_heat_markets(
-            technologies=[
-                tech for tech in heat.iam_data.ewr_energy_use.variables.values
-            ],
-            name="market for energy, for enhanced rock weathering",
-            reference_product="energy, for enhanced rock weathering",
-        )
-    else:
-        print("No EWR energy mix data available -- skipping")
-
     heat.relink_datasets()
 
     validate = HeatValidation(

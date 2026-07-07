@@ -56,3 +56,65 @@ def test_length_dict():
     assert len(maps.generate_powerplant_map()) > 0
     assert len(maps.generate_fuel_map()) > 0
     assert len(maps.generate_cement_map()) > 0
+
+
+def test_image_cdr_map_includes_cement_biogenic_ccs_variant():
+    activity_name = (
+        "carbon dioxide, captured and stored, at cement production plant, "
+        "from non-fossil carbon dioxide, using monoethanolamine"
+    )
+    maps = InventorySet(
+        [
+            {
+                "name": activity_name,
+                "reference product": "carbon dioxide, captured",
+                "location": "RER",
+                "unit": "kilogram",
+            }
+        ],
+        model="image",
+    )
+
+    cdr_map = maps.generate_cdr_map(model="image")
+
+    assert "cement production, non-fossil CO2, with CCS" in cdr_map
+    assert cdr_map["cement production, non-fossil CO2, with CCS"][0]["name"] == (
+        activity_name
+    )
+
+
+def test_image_sorbent_dac_maps_to_heat_pump_inventory():
+    heat_pump_activity = (
+        "carbon dioxide, captured and stored, with a sorbent-based direct air "
+        "capture system, 100ktCO2, with heat pump heat, and grid electricity"
+    )
+    base_activity = (
+        "carbon dioxide, captured and stored, with a sorbent-based direct air "
+        "capture system, 100ktCO2"
+    )
+    maps = InventorySet(
+        [
+            {
+                "name": heat_pump_activity,
+                "reference product": "carbon dioxide, captured",
+                "location": "RER",
+                "unit": "kilogram",
+            },
+            {
+                "name": base_activity,
+                "reference product": "carbon dioxide, captured",
+                "location": "RER",
+                "unit": "kilogram",
+            },
+        ],
+        model="image",
+    )
+
+    cdr_map = maps.generate_cdr_map(model="image")
+
+    assert "direct air capture (sorbent, heat pump) with storage" in cdr_map
+    assert (
+        cdr_map["direct air capture (sorbent, heat pump) with storage"][0]["name"]
+        == heat_pump_activity
+    )
+    assert "direct air capture (sorbent) with storage" not in cdr_map

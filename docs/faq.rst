@@ -269,6 +269,11 @@ all inputs are scaled up or down. For processes that convert energy and material
 only the inputs that relate to energy (e.g., fuel, electricity) inputs are scaled up or down, the input of material
 remaining unchanged.
 
+For carbon dioxide removal, electricity exchanges and heat/fuel exchanges can
+be scaled separately when the IAM mapping provides carrier-specific final-energy
+variables. Non-energy material inputs and biosphere exchanges are not scaled by
+the CDR efficiency adjustment.
+
 What happens if the IAM does not provide efficiencies for certain processes?
 ____________________________________________________________________________
 
