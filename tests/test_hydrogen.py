@@ -2,12 +2,40 @@ import importlib.util
 
 import pandas as pd
 import pytest
+import xarray as xr
 
 if importlib.util.find_spec("bw2data") is None:
     HydrogenMixin = None
     pytestmark = pytest.mark.skip(reason="bw2data is not installed")
 else:
     from premise.fuels.hydrogen import HydrogenMixin
+
+
+class GeoStub:
+    def __init__(self, mapping=None):
+        self.mapping = mapping or {}
+
+    def ecoinvent_to_iam_location(self, location):
+        return self.mapping.get(location, location)
+
+
+def make_iam_data(variables, regions, values, years=None):
+    years = years or [2030]
+    return type(
+        "IamData",
+        (),
+        {
+            "production_volumes": xr.DataArray(
+                values,
+                dims=["variables", "region", "year"],
+                coords={
+                    "variables": variables,
+                    "region": regions,
+                    "year": years,
+                },
+            )
+        },
+    )()
 
 
 def test_sector_hydrogen_market_gets_weighted_transport_exchanges():
@@ -110,27 +138,30 @@ def test_general_hydrogen_market_name_has_no_sector_transport_shares():
 
 def test_sector_hydrogen_market_is_not_generated_without_demand():
     hydrogen = HydrogenMixin()
+    hydrogen.model = "test-model"
+    hydrogen.scenario = "test-scenario"
     hydrogen.year = 2030
     hydrogen.system_model = "cut-off"
-    hydrogen.iam_data = type(
-        "IamData", (), {"production_volumes": "production volumes"}
-    )()
-    hydrogen.hydrogen_demand_nodes = pd.DataFrame(
-        [
-            {
-                "year": 2030,
-                "region": "EUR",
-                "sector": "Industrial processes",
-                "subsector": "Steel",
-                "hydrogen_final_energy_ej_per_year": 1,
-                "hydrogen_demand_t_per_year": 1,
-            }
-        ]
+    hydrogen.regions = ["EUR", "USA", "World"]
+    hydrogen.iam_data = make_iam_data(
+        variables=[
+            "hydrogen electrolysis",
+            "hydrogen smr",
+            "Industry - Steel - H2",
+        ],
+        regions=["EUR", "USA"],
+        values=[
+            [[1], [1]],
+            [[1], [1]],
+            [[1], [0]],
+        ],
     )
     called_markets = []
+    called_production_volumes = []
 
     def fake_process_and_add_markets(**kwargs):
         called_markets.append(kwargs["name"])
+        called_production_volumes.append(kwargs["production_volumes"])
 
     hydrogen.process_and_add_markets = fake_process_and_add_markets
 
@@ -139,12 +170,37 @@ def test_sector_hydrogen_market_is_not_generated_without_demand():
     assert called_markets == [
         "market for hydrogen, gaseous, low pressure, for steel"
     ]
+    assert (
+        called_production_volumes[0]
+        .sel(variables="hydrogen electrolysis", region="EUR")
+        .values.item()
+        == 1
+    )
+    assert (
+        called_production_volumes[0]
+        .sel(variables="hydrogen electrolysis", region="USA")
+        .values.item()
+        == 0
+    )
     assert hydrogen.generated_hydrogen_sector_markets == ["Steel"]
+    assert hydrogen.generated_hydrogen_sector_market_regions == {
+        "Steel": ["EUR"]
+    }
     assert "Cement" in hydrogen.skipped_hydrogen_sector_markets
 
 
 def test_hydrogen_consumer_is_relinked_to_sector_market():
     hydrogen = HydrogenMixin()
+    hydrogen.model = "test-model"
+    hydrogen.scenario = "test-scenario"
+    hydrogen.year = 2030
+    hydrogen.regions = ["EUR", "World"]
+    hydrogen.geo = GeoStub({"RER": "EUR"})
+    hydrogen.iam_data = make_iam_data(
+        variables=["Industry - Chemicals - H2"],
+        regions=["EUR"],
+        values=[[[1]]],
+    )
     hydrogen.database = [
         {
             "name": "ammonia production, with market-average hydrogen",
@@ -192,16 +248,15 @@ def test_hydrogen_consumer_is_relinked_to_sector_market():
 
 def test_consumer_stays_on_general_market_when_sector_market_unavailable():
     hydrogen = HydrogenMixin()
+    hydrogen.model = "test-model"
+    hydrogen.scenario = "test-scenario"
     hydrogen.year = 2030
-    hydrogen.hydrogen_demand_nodes = pd.DataFrame(
-        columns=[
-            "year",
-            "region",
-            "sector",
-            "subsector",
-            "hydrogen_final_energy_ej_per_year",
-            "hydrogen_demand_t_per_year",
-        ]
+    hydrogen.regions = ["EUR", "World"]
+    hydrogen.geo = GeoStub({"RER": "EUR"})
+    hydrogen.iam_data = make_iam_data(
+        variables=["hydrogen electrolysis"],
+        regions=["EUR"],
+        values=[[[1]]],
     )
     hydrogen.database = [
         {

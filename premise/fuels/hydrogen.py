@@ -224,48 +224,69 @@ class HydrogenMixin:
             "new sector specific hydrogen market": new_market,
         }
 
-    def _available_hydrogen_sector_market_keys(self):
-        demand = getattr(self, "hydrogen_demand_nodes", None)
-        if demand is None:
-            return set(HYDROGEN_END_USE_MARKETS)
+    def _available_hydrogen_sector_market_regions(self):
+        final_energy = self._get_hydrogen_final_energy_by_subsector(
+            year=self.year
+        )
+        if final_energy.empty:
+            return {market_key: set() for market_key in HYDROGEN_END_USE_MARKETS}
 
-        if demand.empty:
-            return set()
+        required_columns = {"region", "sector", "subsector"}
+        if not required_columns.issubset(final_energy.columns):
+            return {market_key: set() for market_key in HYDROGEN_END_USE_MARKETS}
 
-        required_columns = {"sector", "subsector"}
-        if not required_columns.issubset(demand.columns):
-            return set()
-
-        if "year" in demand.columns:
-            demand = demand.loc[demand["year"] == self.year]
-
-        available_markets = set()
+        candidate_regions = {
+            region
+            for region in getattr(
+                self, "regions", final_energy["region"].dropna().unique()
+            )
+            if region != "World"
+        }
+        available_markets = {}
         for market_key in HYDROGEN_END_USE_MARKETS:
-            rows = demand.loc[
-                self._hydrogen_sector_market_rows(demand, market_key)
+            rows = final_energy.loc[
+                self._hydrogen_sector_market_rows(final_energy, market_key)
             ]
             if rows.empty:
+                available_markets[market_key] = set()
                 continue
 
-            positive_columns = [
-                column
-                for column in [
-                    "hydrogen_final_energy_ej_per_year",
-                    "hydrogen_demand_t_per_year",
-                ]
-                if column in rows.columns
-            ]
-            if not positive_columns:
-                available_markets.add(market_key)
-                continue
-
-            if (rows[positive_columns].fillna(0).sum(axis=1) > 0).any():
-                available_markets.add(market_key)
+            available_markets[market_key] = {
+                region
+                for region in rows["region"].dropna().unique()
+                if region in candidate_regions
+            }
 
         return available_markets
 
-    def _hydrogen_sector_market_is_available(self, sector):
-        return sector in self._available_hydrogen_sector_market_keys()
+    def _available_hydrogen_sector_market_keys(self):
+        return {
+            market_key
+            for market_key, regions in (
+                self._available_hydrogen_sector_market_regions().items()
+            )
+            if regions
+        }
+
+    def _hydrogen_sector_market_is_available(self, sector, location=None):
+        regions = self._available_hydrogen_sector_market_regions().get(
+            sector, set()
+        )
+        if not regions:
+            return False
+
+        if location is None:
+            return True
+
+        if location in regions:
+            return True
+
+        try:
+            iam_location = self.geo.ecoinvent_to_iam_location(location)
+        except (AttributeError, ValueError):
+            iam_location = location
+
+        return iam_location in regions
 
     def relink_hydrogen_consumers_to_sector_markets(self):
         """
@@ -308,16 +329,17 @@ class HydrogenMixin:
                 )
                 continue
 
-            if not self._hydrogen_sector_market_is_available(sector):
-                self.skipped_hydrogen_consumers.extend(
-                    self._hydrogen_consumer_warning(
-                        dataset, exchange, [sector]
-                    )
-                    for exchange in hydrogen_exchanges
-                )
-                continue
-
             for exchange in hydrogen_exchanges:
+                if not self._hydrogen_sector_market_is_available(
+                    sector, exchange.get("location", dataset.get("location"))
+                ):
+                    self.skipped_hydrogen_consumers.append(
+                        self._hydrogen_consumer_warning(
+                            dataset, exchange, [sector]
+                        )
+                    )
+                    continue
+
                 new_market = HYDROGEN_END_USE_MARKETS[sector]
                 self.matched_hydrogen_consumers.append(
                     self._matched_hydrogen_consumer_record(
@@ -327,9 +349,13 @@ class HydrogenMixin:
                 exchange["name"] = new_market
                 relinked += 1
 
-            dataset.setdefault("log parameters", {})[
-                "hydrogen market sector"
-            ] = sector
+            if any(
+                exchange.get("name") == HYDROGEN_END_USE_MARKETS[sector]
+                for exchange in hydrogen_exchanges
+            ):
+                dataset.setdefault("log parameters", {})[
+                    "hydrogen market sector"
+                ] = sector
 
         if self.unmatched_hydrogen_consumers:
             print(
@@ -458,7 +484,7 @@ class HydrogenMixin:
             ]
         )
 
-    def _get_hydrogen_final_energy_by_subsector(self):
+    def _get_hydrogen_final_energy_by_subsector(self, year=None):
         final_energy = self.iam_data.production_volumes
         variables = [
             str(variable)
@@ -469,9 +495,23 @@ class HydrogenMixin:
         if not variables:
             return self._empty_hydrogen_demand_nodes()
 
+        final_energy = final_energy.sel(variables=variables)
+        if year is not None and "year" in final_energy.coords:
+            target_year = year
+            if target_year < final_energy.year.values.min():
+                target_year = final_energy.year.values.min()
+            if target_year > final_energy.year.values.max():
+                target_year = final_energy.year.values.max()
+
+            if target_year in final_energy.year.values:
+                final_energy = final_energy.sel(year=[target_year])
+            else:
+                final_energy = final_energy.interp(year=[target_year])
+
         table = (
-            final_energy.sel(variables=variables)
-            .to_dataframe(name="hydrogen_final_energy_ej_per_year")
+            final_energy.to_dataframe(
+                name="hydrogen_final_energy_ej_per_year"
+            )
             .reset_index()
         )
         table = table.loc[table["hydrogen_final_energy_ej_per_year"] > 0]
@@ -966,8 +1006,20 @@ class HydrogenMixin:
         self._generate_sector_specific_hydrogen_markets(hydrogen_map)
 
     def _generate_sector_specific_hydrogen_markets(self, hydrogen_map):
-        available_markets = self._available_hydrogen_sector_market_keys()
+        available_market_regions = (
+            self._available_hydrogen_sector_market_regions()
+        )
+        available_markets = {
+            market
+            for market, regions in available_market_regions.items()
+            if regions
+        }
         self.generated_hydrogen_sector_markets = []
+        self.generated_hydrogen_sector_market_regions = {
+            market: sorted(regions)
+            for market, regions in available_market_regions.items()
+            if regions
+        }
         self.skipped_hydrogen_sector_markets = [
             market
             for market in HYDROGEN_END_USE_MARKETS
@@ -978,18 +1030,38 @@ class HydrogenMixin:
             if market not in available_markets:
                 continue
 
+            production_volumes = self._filter_production_volumes_to_regions(
+                self.iam_data.production_volumes,
+                available_market_regions[market],
+            )
             self.process_and_add_markets(
                 name=market_name,
                 reference_product="hydrogen, gaseous, low pressure",
                 unit="kilogram",
                 mapping=hydrogen_map,
                 system_model=self.system_model,
-                production_volumes=self.iam_data.production_volumes,
+                production_volumes=production_volumes,
                 additional_exchanges_fn=(
                     self._add_transport_to_sector_specific_hydrogen_market
                 ),
             )
             self.generated_hydrogen_sector_markets.append(market)
+
+    @staticmethod
+    def _filter_production_volumes_to_regions(production_volumes, regions):
+        production_volumes = production_volumes.copy(deep=True)
+        if "region" not in production_volumes.coords:
+            return production_volumes
+
+        regions_to_zero = [
+            region
+            for region in production_volumes.coords["region"].values
+            if region not in regions
+        ]
+        if regions_to_zero:
+            production_volumes.loc[{"region": regions_to_zero}] = 0
+
+        return production_volumes
 
     def _adjust_hydrogen_efficiency(self, dataset, technology):
         """
