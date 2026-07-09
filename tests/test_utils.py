@@ -195,6 +195,7 @@ def test_scenario_cache_preserves_regionalized_without_metadata_reload(tmp_path)
             "location": "BRA",
             "unit": "kilowatt hour",
             "regionalized": True,
+            "classifications": [("CPC", "17100")],
             "exchanges": [
                 {
                     "name": "market group for electricity, low voltage",
@@ -217,6 +218,7 @@ def test_scenario_cache_preserves_regionalized_without_metadata_reload(tmp_path)
     load_database(scenario, original_database=[], delete=False, load_metadata=False)
 
     assert scenario["database"][0]["regionalized"] is True
+    assert scenario["database"][0]["classifications"] == [("CPC", "17100")]
 
 
 def test_create_cache_writes_legacy_database_and_manifest_metadata(tmp_path):
@@ -229,6 +231,7 @@ def test_create_cache_writes_legacy_database_and_manifest_metadata(tmp_path):
             "unit": "kilogram",
             "comment": "hello",
             "foo": "bar",
+            "classifications": [("CPC", "12345")],
             "exchanges": [
                 {
                     "name": "market for test",
@@ -251,9 +254,53 @@ def test_create_cache_writes_legacy_database_and_manifest_metadata(tmp_path):
         Path(str(cache_ref).replace(".pickle", " (metadata).pickle"))
     )
     assert load_cached_database(cache_ref) == trimmed
+    assert trimmed[0]["classifications"] == [("CPC", "12345")]
     assert list(iter_cached_metadata(metadata_ref))[0] == {
         ("market for test", "test product", "GLO"): {"foo": "bar"}
     }
+
+
+def test_load_database_restores_classifications_from_legacy_metadata(tmp_path):
+    scenario_db = tmp_path / "scenario-db.pickle"
+    metadata_ref = tmp_path / "scenario-db (metadata).pickle"
+    metadata_shard = tmp_path / "scenario-db.metadata.part-a.pickle"
+    dataset = {
+        "name": "market for test",
+        "reference product": "test product",
+        "location": "GLO",
+        "unit": "kilogram",
+        "exchanges": [],
+    }
+
+    with open(scenario_db, "wb") as file:
+        pickle.dump([dataset], file)
+
+    with open(metadata_shard, "wb") as file:
+        pickle.dump(
+            {
+                ("market for test", "test product", "GLO"): {
+                    "classifications": [("CPC", "12345")],
+                    "comment": "kept in metadata only",
+                }
+            },
+            file,
+        )
+
+    metadata_manifest = _write_cache_manifest(metadata_ref, metadata_shard)
+    scenario = {
+        "database filepath": scenario_db,
+        "database metadata filepath": metadata_manifest,
+    }
+
+    loaded = load_database(
+        scenario=scenario,
+        original_database=[],
+        delete=False,
+        load_metadata=False,
+    )
+
+    assert loaded["database"][0]["classifications"] == [("CPC", "12345")]
+    assert "comment" not in loaded["database"][0]
 
 
 def test_load_database_rehydrates_metadata_from_manifest_shards(tmp_path):

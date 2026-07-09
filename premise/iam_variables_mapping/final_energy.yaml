@@ -752,8 +752,8 @@ Industry - Chemicals - Chemicals - Bio CH4:
       name: biomethane, burned in residential natural gas boiler <100kW
       reference product: heat
   iam_aliases:
-    remind: FE|Industry|Chemicals|Gases|+|Biomass
-    remind-eu: FE|Industry|Chemicals|Gases|+|Biomass
+    remind: FE|w/o Non-energy Use|Industry|Chemicals|Gases|+|Biomass
+    remind-eu: FE|w/o Non-energy Use|Industry|Chemicals|Gases|+|Biomass
 Industry - Chemicals - Chemicals - Nat Gas:
   ecoinvent_aliases:
     fltr:
@@ -765,8 +765,8 @@ Industry - Chemicals - Chemicals - Nat Gas:
 #      - Final Energy|Industry|Chemicals|Other Sector|Gases|Gas
 #      - Final Energy|Industry|Chemicals|Other Sector|Liquids|Other
 #      - Final Energy|Industry|Chemicals|Other Sector|Liquids|gas-methanol
-    remind: FE|Industry|Chemicals|Gases|+|Fossil
-    remind-eu: FE|Industry|Chemicals|Gases|+|Fossil
+    remind: FE|w/o Non-energy Use|Industry|Chemicals|Gases|+|Fossil
+    remind-eu: FE|w/o Non-energy Use|Industry|Chemicals|Gases|+|Fossil
     gcam: Final Energy|Industry|Chemicals|Gas
 #    image: Final Energy|Industry|Chemicals|Gases|Fossil
 Industry - Chemicals - Chemicals - SNG:
@@ -775,8 +775,8 @@ Industry - Chemicals - Chemicals - SNG:
       name: natural gas, synthetic, burned in gas turbine
       reference product: heat
   iam_aliases:
-    remind: FE|Industry|Chemicals|Gases|+|Hydrogen
-    remind-eu: FE|Industry|Chemicals|Gases|+|Hydrogen
+    remind: FE|w/o Non-energy Use|Industry|Chemicals|Gases|+|Hydrogen
+    remind-eu: FE|w/o Non-energy Use|Industry|Chemicals|Gases|+|Hydrogen
 Industry - Chemicals - Chemicals - Biofuel:
   ecoinvent_aliases:
     fltr:
@@ -786,8 +786,8 @@ Industry - Chemicals - Chemicals - Biofuel:
 #    message:
 #      - Final Energy|Industry|Chemicals|Other Sector|Liquids|Biomass
 #      - Final Energy|Industry|Chemicals|Other Sector|Liquids|bio-methanol
-    remind: FE|Industry|Chemicals|Liquids|+|Biomass
-    remind-eu: FE|Industry|Chemicals|Liquids|+|Biomass
+    remind: FE|w/o Non-energy Use|Industry|Chemicals|Liquids|+|Biomass
+    remind-eu: FE|w/o Non-energy Use|Industry|Chemicals|Liquids|+|Biomass
 #    image: Final Energy|Industry|Chemicals|Liquids|Biomass
 Industry - Chemicals - Chemicals - Liquid fossil:
   ecoinvent_aliases:
@@ -796,8 +796,8 @@ Industry - Chemicals - Chemicals - Liquid fossil:
       reference product: heat
   iam_aliases:
 #    message: Final Energy|Industry|Chemicals|Other Sector|Liquids|Oil
-    remind: FE|Industry|Chemicals|Liquids|+|Fossil
-    remind-eu: FE|Industry|Chemicals|Liquids|+|Fossil
+    remind: FE|w/o Non-energy Use|Industry|Chemicals|Liquids|+|Fossil
+    remind-eu: FE|w/o Non-energy Use|Industry|Chemicals|Liquids|+|Fossil
     gcam: Final Energy|Industry|Chemicals|Oil
 #    image: Final Energy|Industry|Chemicals|Liquids|Fossil
 Industry - Chemicals - Chemicals - Syn Fuel:
@@ -809,8 +809,8 @@ Industry - Chemicals - Chemicals - Syn Fuel:
 #    message:
 #      - Final Energy|Industry|Chemicals|Other Sector|Liquids|Hydrogen
 #      - Final Energy|Industry|Chemicals|Other Sector|Liquids|h2-methanol
-    remind: FE|Industry|Chemicals|Liquids|+|Hydrogen
-    remind-eu: FE|Industry|Chemicals|Liquids|+|Hydrogen
+    remind: FE|w/o Non-energy Use|Industry|Chemicals|Liquids|+|Hydrogen
+    remind-eu: FE|w/o Non-energy Use|Industry|Chemicals|Liquids|+|Hydrogen
 Industry - Chemicals - Chemicals - Solid Biomass:
   ecoinvent_aliases:
     fltr:
@@ -818,8 +818,8 @@ Industry - Chemicals - Chemicals - Solid Biomass:
       reference product: heat
   iam_aliases:
 #    message: Final Energy|Industry|Chemicals|Other Sector|Solids|Biomass
-    remind: FE|Industry|Chemicals|Solids|+|Biomass
-    remind-eu: FE|Industry|Chemicals|Solids|+|Biomass
+    remind: FE|w/o Non-energy Use|Industry|Chemicals|Solids|+|Biomass
+    remind-eu: FE|w/o Non-energy Use|Industry|Chemicals|Solids|+|Biomass
     gcam: Final Energy|Industry|Chemicals|Biomass
 Industry - Chemicals - Chemicals - Solid coal:
   ecoinvent_aliases:
@@ -828,8 +828,8 @@ Industry - Chemicals - Chemicals - Solid coal:
       reference product: heat
   iam_aliases:
 #    message: Final Energy|Industry|Chemicals|Other Sector|Solids|Coal
-    remind: FE|Industry|Chemicals|Solids|+|Fossil
-    remind-eu: FE|Industry|Chemicals|Solids|+|Fossil
+    remind: FE|w/o Non-energy Use|Industry|Chemicals|Solids|+|Fossil
+    remind-eu: FE|w/o Non-energy Use|Industry|Chemicals|Solids|+|Fossil
     gcam: Final Energy|Industry|Chemicals|Coal
 
 Industry - Chemicals - Formaldehyde - Elec:

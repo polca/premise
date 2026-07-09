@@ -69,6 +69,7 @@ from .utils import (
     load_database,
     print_version,
     resolve_cache_ref,
+    restore_cached_classifications,
     warning_about_biogenic_co2,
 )
 
@@ -788,7 +789,10 @@ class NewDatabase:
             self.database_metadata_cache_filepath = resolve_cache_ref(
                 Path(str(file_name).replace(".pickle", " (metadata).pickle"))
             )
-            return load_cached_database(self.database_cache_filepath)
+            database = load_cached_database(self.database_cache_filepath)
+            return restore_cached_classifications(
+                database, self.database_metadata_cache_filepath
+            )
 
         # extract the database, pickle it for next time and return it
         print(
@@ -833,7 +837,10 @@ class NewDatabase:
             self.inventories_metadata_cache_filepath = resolve_cache_ref(
                 Path(str(file_name).replace(".pickle", " (metadata).pickle"))
             )
-            return load_cached_database(self.inventories_cache_filepath)
+            data = load_cached_database(self.inventories_cache_filepath)
+            return restore_cached_classifications(
+                data, self.inventories_metadata_cache_filepath
+            )
 
         # else, extract the database, pickle it for next time and return it
         print(
