@@ -224,6 +224,49 @@ class HydrogenMixin:
             "new sector specific hydrogen market": new_market,
         }
 
+    def _available_hydrogen_sector_market_keys(self):
+        demand = getattr(self, "hydrogen_demand_nodes", None)
+        if demand is None:
+            return set(HYDROGEN_END_USE_MARKETS)
+
+        if demand.empty:
+            return set()
+
+        required_columns = {"sector", "subsector"}
+        if not required_columns.issubset(demand.columns):
+            return set()
+
+        if "year" in demand.columns:
+            demand = demand.loc[demand["year"] == self.year]
+
+        available_markets = set()
+        for market_key in HYDROGEN_END_USE_MARKETS:
+            rows = demand.loc[
+                self._hydrogen_sector_market_rows(demand, market_key)
+            ]
+            if rows.empty:
+                continue
+
+            positive_columns = [
+                column
+                for column in [
+                    "hydrogen_final_energy_ej_per_year",
+                    "hydrogen_demand_t_per_year",
+                ]
+                if column in rows.columns
+            ]
+            if not positive_columns:
+                available_markets.add(market_key)
+                continue
+
+            if (rows[positive_columns].fillna(0).sum(axis=1) > 0).any():
+                available_markets.add(market_key)
+
+        return available_markets
+
+    def _hydrogen_sector_market_is_available(self, sector):
+        return sector in self._available_hydrogen_sector_market_keys()
+
     def relink_hydrogen_consumers_to_sector_markets(self):
         """
         Redirect plain hydrogen market inputs to sector-specific hydrogen markets.
@@ -265,6 +308,15 @@ class HydrogenMixin:
                 )
                 continue
 
+            if not self._hydrogen_sector_market_is_available(sector):
+                self.skipped_hydrogen_consumers.extend(
+                    self._hydrogen_consumer_warning(
+                        dataset, exchange, [sector]
+                    )
+                    for exchange in hydrogen_exchanges
+                )
+                continue
+
             for exchange in hydrogen_exchanges:
                 new_market = HYDROGEN_END_USE_MARKETS[sector]
                 self.matched_hydrogen_consumers.append(
@@ -290,9 +342,9 @@ class HydrogenMixin:
             print(
                 "Kept "
                 f"{len(self.skipped_hydrogen_consumers)} hydrogen-consuming "
-                "exchange(s) on the general hydrogen market because synfuels "
-                "and direct-production consumers are not included in "
-                "sector-specific hydrogen market relinking."
+                "exchange(s) on the general hydrogen market because they are "
+                "not included in sector-specific hydrogen market relinking or "
+                "because the target sector has no positive hydrogen demand."
             )
 
         return relinked
@@ -914,7 +966,18 @@ class HydrogenMixin:
         self._generate_sector_specific_hydrogen_markets(hydrogen_map)
 
     def _generate_sector_specific_hydrogen_markets(self, hydrogen_map):
-        for market_name in HYDROGEN_END_USE_MARKETS.values():
+        available_markets = self._available_hydrogen_sector_market_keys()
+        self.generated_hydrogen_sector_markets = []
+        self.skipped_hydrogen_sector_markets = [
+            market
+            for market in HYDROGEN_END_USE_MARKETS
+            if market not in available_markets
+        ]
+
+        for market, market_name in HYDROGEN_END_USE_MARKETS.items():
+            if market not in available_markets:
+                continue
+
             self.process_and_add_markets(
                 name=market_name,
                 reference_product="hydrogen, gaseous, low pressure",
@@ -926,6 +989,7 @@ class HydrogenMixin:
                     self._add_transport_to_sector_specific_hydrogen_market
                 ),
             )
+            self.generated_hydrogen_sector_markets.append(market)
 
     def _adjust_hydrogen_efficiency(self, dataset, technology):
         """

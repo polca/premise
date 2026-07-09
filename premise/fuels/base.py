@@ -62,6 +62,12 @@ def _update_fuels(scenario, version, system_model):
         scenario["hydrogen consumers kept on general market"] = (
             fuels.skipped_hydrogen_consumers
         )
+        scenario["generated hydrogen sector markets"] = getattr(
+            fuels, "generated_hydrogen_sector_markets", []
+        )
+        scenario["skipped hydrogen sector markets"] = getattr(
+            fuels, "skipped_hydrogen_sector_markets", []
+        )
 
         if "mapping" not in scenario:
             scenario["mapping"] = {}

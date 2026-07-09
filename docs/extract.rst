@@ -700,6 +700,15 @@ region and end-use sector. Distribution-mode shares are assigned from
 weighted by annual hydrogen demand when several demand-node rows feed the same
 sector market.
 
+Sector-specific markets are only created for sectors with positive hydrogen
+final-energy demand in the demand-node table for the target year. If an IAM
+model does not represent a sector, or the sector has zero hydrogen final-energy
+consumption, the corresponding ``market for hydrogen, gaseous, low pressure,
+for ...`` dataset is skipped. Consumers that would otherwise be classified to
+that unavailable sector remain linked to the general hydrogen market, so no
+sector-specific hydrogen transport is allocated and the hydrogen production mix
+stays the general one.
+
 The distribution technologies are linked to the following activities already
 present in the database after the additional inventories are imported:
 

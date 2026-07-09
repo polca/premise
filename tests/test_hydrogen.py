@@ -18,11 +18,11 @@ def test_sector_hydrogen_market_gets_weighted_transport_exchanges():
         {
             "name": (
                 "transport, hydrogen, gaseous, lorry, "
-                "market average propulsion system"
+                "unspecified"
             ),
             "reference product": (
-                "transport, hydrogen, gaseous, lorry , "
-                "market average propulsion system"
+                "transport, hydrogen, gaseous, lorry, "
+                "unspecified"
             ),
             "location": "GLO",
             "unit": "ton kilometer",
@@ -68,15 +68,15 @@ def test_sector_hydrogen_market_gets_weighted_transport_exchanges():
         exchange["name"]: exchange for exchange in market["exchanges"]
     }
     truck = exchanges[
-        "transport, hydrogen, gaseous, lorry, market average propulsion system"
+        "transport, hydrogen, gaseous, lorry, unspecified"
     ]
     pipeline = exchanges["hydrogen supply, distributed by pipeline"]
 
     assert truck["amount"] == 0.025
     assert truck["location"] == "GLO"
     assert truck["product"] == (
-        "transport, hydrogen, gaseous, lorry , "
-        "market average propulsion system"
+        "transport, hydrogen, gaseous, lorry, "
+        "unspecified"
     )
     assert pipeline["amount"] == 0.5
     assert pipeline["location"] == "EUR"
@@ -106,6 +106,41 @@ def test_general_hydrogen_market_name_has_no_sector_transport_shares():
     )
 
     assert shares == {}
+
+
+def test_sector_hydrogen_market_is_not_generated_without_demand():
+    hydrogen = HydrogenMixin()
+    hydrogen.year = 2030
+    hydrogen.system_model = "cut-off"
+    hydrogen.iam_data = type(
+        "IamData", (), {"production_volumes": "production volumes"}
+    )()
+    hydrogen.hydrogen_demand_nodes = pd.DataFrame(
+        [
+            {
+                "year": 2030,
+                "region": "EUR",
+                "sector": "Industrial processes",
+                "subsector": "Steel",
+                "hydrogen_final_energy_ej_per_year": 1,
+                "hydrogen_demand_t_per_year": 1,
+            }
+        ]
+    )
+    called_markets = []
+
+    def fake_process_and_add_markets(**kwargs):
+        called_markets.append(kwargs["name"])
+
+    hydrogen.process_and_add_markets = fake_process_and_add_markets
+
+    hydrogen._generate_sector_specific_hydrogen_markets({})
+
+    assert called_markets == [
+        "market for hydrogen, gaseous, low pressure, for steel"
+    ]
+    assert hydrogen.generated_hydrogen_sector_markets == ["Steel"]
+    assert "Cement" in hydrogen.skipped_hydrogen_sector_markets
 
 
 def test_hydrogen_consumer_is_relinked_to_sector_market():
@@ -143,14 +178,68 @@ def test_hydrogen_consumer_is_relinked_to_sector_market():
             "hydrogen exchange location": "RER",
             "hydrogen exchange amount": 0.2,
             "sector": "Chemicals",
-            "generic hydrogen market": "market for hydrogen, gaseous, low pressure",
-            "sector specific hydrogen market": (
+            "old generic hydrogen market": (
+                "market for hydrogen, gaseous, low pressure"
+            ),
+            "new sector specific hydrogen market": (
                 "market for hydrogen, gaseous, low pressure, for chemicals"
             ),
         }
     ]
     assert hydrogen.unmatched_hydrogen_consumers == []
     assert hydrogen.skipped_hydrogen_consumers == []
+
+
+def test_consumer_stays_on_general_market_when_sector_market_unavailable():
+    hydrogen = HydrogenMixin()
+    hydrogen.year = 2030
+    hydrogen.hydrogen_demand_nodes = pd.DataFrame(
+        columns=[
+            "year",
+            "region",
+            "sector",
+            "subsector",
+            "hydrogen_final_energy_ej_per_year",
+            "hydrogen_demand_t_per_year",
+        ]
+    )
+    hydrogen.database = [
+        {
+            "name": "cement production, with market-average hydrogen",
+            "reference product": "cement",
+            "location": "RER",
+            "unit": "kilogram",
+            "exchanges": [
+                {
+                    "name": "market for hydrogen, gaseous, low pressure",
+                    "product": "hydrogen, gaseous, low pressure",
+                    "location": "RER",
+                    "unit": "kilogram",
+                    "type": "technosphere",
+                    "amount": 0.2,
+                }
+            ],
+        }
+    ]
+
+    relinked = hydrogen.relink_hydrogen_consumers_to_sector_markets()
+
+    assert relinked == 0
+    assert hydrogen.database[0]["exchanges"][0]["name"] == (
+        "market for hydrogen, gaseous, low pressure"
+    )
+    assert hydrogen.matched_hydrogen_consumers == []
+    assert hydrogen.unmatched_hydrogen_consumers == []
+    assert hydrogen.skipped_hydrogen_consumers == [
+        {
+            "name": "cement production, with market-average hydrogen",
+            "reference product": "cement",
+            "location": "RER",
+            "hydrogen exchange location": "RER",
+            "hydrogen exchange amount": 0.2,
+            "candidate sectors": ["Cement"],
+        }
+    ]
 
 
 def test_unmatched_hydrogen_consumer_is_kept_on_general_market():
