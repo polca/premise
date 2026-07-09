@@ -310,9 +310,7 @@ class Cement(BaseTransformation):
                 target_energy / 1000,
                 " GJ/t clinker",
             )
-            dataset_comment += (
-                f". The IAM/floor target was {target_energy_gj}"
-            )
+            dataset_comment += f". The IAM/floor target was {target_energy_gj}"
 
         dataset_comment += (
             ". The required energy change is applied to aggregate hard coal "

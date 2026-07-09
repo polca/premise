@@ -22,15 +22,31 @@ def process_yaml(file_path):
         else:
             df_data.append([key, model, variable, variable_type])
 
+    def iter_energy_aliases(aliases):
+        for key, variable in aliases.items():
+            if isinstance(variable, dict):
+                carrier = key
+                for model, carrier_variable in variable.items():
+                    yield model, carrier_variable, carrier
+            else:
+                yield key, variable, None
+
     for main_key, value in data.items():
         if isinstance(value, dict):
             if "iam_aliases" in value:
                 for model, variable in value["iam_aliases"].items():
                     append_data(main_key, model, variable, "Production volume")
             if "energy_use_aliases" in value:
-                for model, variable in value["energy_use_aliases"].items():
+                for model, variable, carrier in iter_energy_aliases(
+                    value["energy_use_aliases"]
+                ):
+                    key = (
+                        f"{main_key} ({carrier} energy use)"
+                        if carrier
+                        else f"{main_key} (energy use)"
+                    )
                     append_data(
-                        f"{main_key} (energy use)",
+                        key,
                         model,
                         variable,
                         "Specific Energy Use",
@@ -69,9 +85,16 @@ def process_yaml(file_path):
                                 "Production volume",
                             )
                     if "energy_use_aliases" in sub_value:
-                        for model, variable in sub_value["energy_use_aliases"].items():
+                        for model, variable, carrier in iter_energy_aliases(
+                            sub_value["energy_use_aliases"]
+                        ):
+                            key = (
+                                f"{main_key} - {sub_key} ({carrier} energy use)"
+                                if carrier
+                                else f"{main_key} - {sub_key} (energy use)"
+                            )
                             append_data(
-                                f"{main_key} - {sub_key} (energy use)",
+                                key,
                                 model,
                                 variable,
                                 "Specific Energy Use",

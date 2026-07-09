@@ -626,6 +626,48 @@ def iter_cached_metadata(cache_ref: Path) -> Iterable[Dict[tuple, Dict[str, Any]
     yield metadata
 
 
+def restore_cached_classifications(
+    database: List[Dict[str, Any]], metadata_cache_filepath: Path
+) -> List[Dict[str, Any]]:
+    """Hydrate classifications from old metadata sidecars into cached datasets.
+
+    New caches retain ``classifications`` in the runtime payload. This helper
+    keeps older caches compatible without restoring all bulky metadata fields.
+    """
+
+    if not metadata_cache_filepath or not cache_ref_exists(metadata_cache_filepath):
+        return database
+
+    datasets_by_key: Dict[tuple, List[Dict[str, Any]]] = {}
+    for dataset in database:
+        if dataset.get("classifications"):
+            continue
+
+        key = (
+            dataset.get("name"),
+            dataset.get("reference product"),
+            dataset.get("location"),
+        )
+        datasets_by_key.setdefault(key, []).append(dataset)
+
+    if not datasets_by_key:
+        return database
+
+    for metadata in iter_cached_metadata(metadata_cache_filepath):
+        for key, metadata_values in metadata.items():
+            if key not in datasets_by_key or "classifications" not in metadata_values:
+                continue
+
+            classifications = metadata_values["classifications"]
+            for dataset in datasets_by_key[key]:
+                if not dataset.get("classifications"):
+                    dataset["classifications"] = pickle.loads(
+                        pickle.dumps(classifications, -1)
+                    )
+
+    return database
+
+
 def load_database(
     scenario: Dict[str, Any],
     original_database: List[Dict[str, Any]],
@@ -660,6 +702,10 @@ def load_database(
     else:
         filepath = scenario["database filepath"]
         scenario["database"] = load_cached_database(filepath)
+        if not load_metadata and "database metadata filepath" in scenario:
+            restore_cached_classifications(
+                scenario["database"], scenario["database metadata filepath"]
+            )
 
         # delete the file
         if delete:
@@ -869,6 +915,7 @@ _CACHE_TRIMMED_DATASET_FIELDS = {
     "unit",
     "exchanges",
     "comment",
+    "classifications",
 }
 
 _CACHE_METADATA_EXCLUDED_FIELDS = {
@@ -879,6 +926,7 @@ _CACHE_METADATA_EXCLUDED_FIELDS = {
     "exchanges",
     "type",
     "comment",
+    "classifications",
 }
 
 _SCENARIO_TRIMMED_DATASET_FIELDS = {
@@ -891,6 +939,7 @@ _SCENARIO_TRIMMED_DATASET_FIELDS = {
     "type",
     "regionalized",
     "exchanges",
+    "classifications",
 }
 
 _SCENARIO_TRIMMED_EXCHANGE_FIELDS = {
@@ -920,6 +969,7 @@ _SCENARIO_METADATA_EXCLUDED_FIELDS = {
     "exchanges",
     "database",
     "code",
+    "classifications",
 }
 
 

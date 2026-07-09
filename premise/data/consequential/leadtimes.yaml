@@ -131,6 +131,13 @@ steel - primary - TGR BF/BOF: 10
 steel - primary - TGR BF/BOF CCS: 10
 daccs_sorbent: 3
 direct air capture (solvent) with storage: 3
+direct air capture (solvent, gas heat) with storage: 3
+direct air capture (solvent, industrial steam heat) with storage: 3
+direct air capture (solvent, heat pump) with storage: 3
+direct air capture (solvent, hydrogen heat) with storage: 3
+direct air capture (sorbent) with storage: 3
+direct air capture (sorbent, gas heat) with storage: 3
+direct air capture (sorbent, heat pump) with storage: 3
 ocean liming: 3
 bioenergy, with CCS: 3
 enhanced rock weathering: 3
@@ -268,12 +275,6 @@ heat, industrial, from heat pump: 1
 heat, industrial, from geothermal: 1
 heat, industrial, from light fuel oil boiler: 1
 heat, industrial, from hydrogen: 1
-energy, for DACCS, from electricity: 1
-energy, for DACCS, from hydrogen turbine: 1
-energy, for DACCS, from other: 1
-energy, for DACCS, from gas boiler: 1
-energy, from EWR, from diesel: 1
-energy, for EWR, from electricity: 1
 hydrogen, from electrolysis, PEM, from CSP: 3
 hydrogen, from electrolysis, PEM, from Solar PV: 3
 hydrogen, from electrolysis, PEM, from geothermal: 3

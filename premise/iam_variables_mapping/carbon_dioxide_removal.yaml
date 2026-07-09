@@ -1,88 +1,178 @@
 # mapping between premise and IAM terminology
 # regarding direct air capture use
 
-# potential future improvement: distinguish between solvent-based
-# and sorbent-based direct air capture systems
+# Direct air capture mappings are carrier-specific where IAM final-energy
+# variables distinguish electricity, gases, heat, or hydrogen use.
 
 ---
 
-direct air capture (solvent) with storage:
+direct air capture (solvent, gas heat) with storage:
   iam_aliases:
     remind: Emi|CO2|CDR|+|DACCS
     remind-eu: Emi|CO2|CDR|+|DACCS
-    image: Carbon Capture|Direct Air Capture
-    tiam-ucl: Carbon Capture|Storage|Direct Air Capture
-    witch: Carbon Sequestration|Direct Air Capture|Solvent
-    gcam: Carbon Sequestration|Direct Air Capture|Solvent
-  energy_use_aliases:
     image:
-      - Final Energy|Carbon Management|Direct Air Capture
-    remind:
-      - FE|CDR|DAC|+|Electricity
-      - FE|CDR|DAC|+|Gases
-      - FE|CDR|DAC|+|Heat
-      - FE|CDR|DAC|+|Hydrogen
-    remind-eu:
-       - FE|CDR|DAC|+|Electricity
-       - FE|CDR|DAC|+|Gases
-       - FE|CDR|DAC|+|Heat
-       - FE|CDR|DAC|+|Hydrogen
-    tiam-ucl:
-      - Secondary Energy|Consumption|Direct Air Capture|Heat
-      - Secondary Energy|Consumption|Direct Air Capture|Electricity
-    witch:
-      - Final Energy|Carbon Management|Direct Air Capture|Solvent|Electricity|PV
-      - Final Energy|Carbon Management|Direct Air Capture|Solvent|Electricity|CSP
-    gcam: Final Energy|Carbon Management|Direct Air Capture|Solvent
-    message:
-      - Final Energy|Carbon Management|Direct Air Capture|Solvent|Electricity
-      - Final Energy|Carbon Management|Direct Air Capture|Gases
-
+      - Carbon Removal|Geological Storage|Direct Air Capture|Liquid Solvent
+      - Carbon Capture|Geological Storage|Direct Air Capture
+  energy_use_aliases:
+    gases:
+      image:
+        - Final Energy|Carbon Management|Direct Air Capture|Liquid Solvent|Gases
+        - Final Energy|Carbon Management|Direct Air Capture|Gases
+      remind: FE|CDR|DAC|+|Gases
+      remind-eu: FE|CDR|DAC|+|Gases
   ecoinvent_aliases:
     fltr:
       - carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2
-
     mask:
       - waste
       - industrial
       - heat pump
+      - hydrogen
 
-direct air capture (sorbent) with storage:
+direct air capture (solvent, industrial steam heat) with storage:
+  iam_aliases:
+    remind: Emi|CO2|CDR|+|DACCS
+    remind-eu: Emi|CO2|CDR|+|DACCS
+    tiam-ucl: Carbon Capture|Storage|Direct Air Capture
+  energy_use_aliases:
+    heat:
+      remind: FE|CDR|DAC|+|Heat
+      remind-eu: FE|CDR|DAC|+|Heat
+      tiam-ucl: Secondary Energy|Consumption|Direct Air Capture|Heat
+  ecoinvent_aliases:
+    fltr:
+      - carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with industrial steam heat, and grid electricity
+
+direct air capture (solvent, heat pump) with storage:
+  iam_aliases:
+    remind: Emi|CO2|CDR|+|DACCS
+    remind-eu: Emi|CO2|CDR|+|DACCS
+    tiam-ucl: Carbon Capture|Storage|Direct Air Capture
+    witch: Carbon Sequestration|Direct Air Capture|Solvent
+  energy_use_aliases:
+    electricity:
+      remind: FE|CDR|DAC|+|Electricity
+      remind-eu: FE|CDR|DAC|+|Electricity
+      tiam-ucl: Secondary Energy|Consumption|Direct Air Capture|Electricity
+      witch:
+        - Final Energy|Carbon Management|Direct Air Capture|Solvent|Electricity|PV
+        - Final Energy|Carbon Management|Direct Air Capture|Solvent|Electricity|CSP
+  ecoinvent_aliases:
+    fltr:
+      - carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with heat pump heat, and grid electricity
+
+direct air capture (solvent, hydrogen heat) with storage:
+  iam_aliases:
+    remind: Emi|CO2|CDR|+|DACCS
+    remind-eu: Emi|CO2|CDR|+|DACCS
+  energy_use_aliases:
+    hydrogen:
+      remind: FE|CDR|DAC|+|Hydrogen
+      remind-eu: FE|CDR|DAC|+|Hydrogen
+  ecoinvent_aliases:
+    fltr:
+      - carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with hydrogen heat, and grid electricity
+
+direct air capture (solvent) with storage:
+  iam_aliases:
+    gcam: Carbon Sequestration|Direct Air Capture|Solvent
+  ecoinvent_aliases:
+    fltr:
+      - carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2
+    mask:
+      - waste
+      - industrial
+      - heat pump
+      - hydrogen
+
+direct air capture (sorbent, heat pump) with storage:
   iam_aliases:
     witch: Carbon Sequestration|Direct Air Capture|Sorbent
-    gcam: Carbon Sequestration|Direct Air Capture|Sorbent
     message: Carbon Capture|Direct Air Capture|Sorbent
+    image: Carbon Removal|Geological Storage|Direct Air Capture|Solid Sorbent
   energy_use_aliases:
-    witch:
-      - Final Energy|Carbon Management|Direct Air Capture|Sorbent|Heat|Gases
-      - Final Energy|Carbon Management|Direct Air Capture|Sorbent|Electricity|CSP
-    gcam: Final Energy|Carbon Management|Direct Air Capture|Sorbent
-    message: Final Energy|Carbon Management|Direct Air Capture|Sorbent|Electricity
+    electricity:
+      witch: Final Energy|Carbon Management|Direct Air Capture|Sorbent|Electricity|CSP
+      message: Final Energy|Carbon Management|Direct Air Capture|Sorbent|Electricity
+      image: Final Energy|Carbon Management|Direct Air Capture|Solid Sorbent|Electricity
+  ecoinvent_aliases:
+    fltr:
+      - carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2, with heat pump heat, and grid electricity
 
+direct air capture (sorbent, gas heat) with storage:
+  iam_aliases:
+    witch: Carbon Sequestration|Direct Air Capture|Sorbent
+  energy_use_aliases:
+    gases:
+      witch: Final Energy|Carbon Management|Direct Air Capture|Sorbent|Heat|Gases
   ecoinvent_aliases:
     fltr:
       - carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2
+    mask:
+      - waste
+      - industrial
+      - heat pump
+      - hydrogen
+
+direct air capture (sorbent) with storage:
+  iam_aliases:
+    gcam: Carbon Sequestration|Direct Air Capture|Sorbent
+  ecoinvent_aliases:
+    fltr:
+      - carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2
+    mask:
+      - waste
+      - industrial
+      - heat pump
+      - hydrogen
 
 enhanced rock weathering:
-    iam_aliases:
-        remind: Emi|CO2|CDR|+|EW
-        remind-eu: Emi|CO2|CDR|+|EW
-    energy_use_aliases:
-        remind:
-          - FE|CDR|EW|+|Diesel
-          - FE|CDR|EW|+|Electricity
-        remind-eu:
-          - FE|CDR|EW|+|Diesel
-          - FE|CDR|EW|+|Electricity
-    ecoinvent_aliases:
-        fltr: carbon dioxide, captured and stored, by olivine spreading on coastline
+  iam_aliases:
+    remind: Emi|CO2|CDR|+|EW
+    remind-eu: Emi|CO2|CDR|+|EW
+    image: Carbon Removal|Enhanced Weathering
+  energy_use_aliases:
+    electricity:
+      remind: FE|CDR|EW|+|Electricity
+      remind-eu: FE|CDR|EW|+|Electricity
+      image: Final Energy|Carbon Management|Enhanced Weathering|Electricity
+    diesel:
+      remind: FE|CDR|EW|+|Diesel
+      remind-eu: FE|CDR|EW|+|Diesel
+  ecoinvent_aliases:
+    fltr: carbon dioxide, captured and stored, by olivine spreading on coastline
 
 ocean liming:
-    iam_aliases:
-        remind: Emi|CO2|CDR|+|OAE
-        remind-eu: Emi|CO2|CDR|+|OAE
-    ecoinvent_aliases:
-        fltr: carbon dioxide, captured and stored, by ocean liming
+  iam_aliases:
+    remind: Emi|CO2|CDR|+|OAE
+    remind-eu: Emi|CO2|CDR|+|OAE
+  energy_use_aliases:
+    electricity:
+      remind:
+        - FE|CDR|OAE, electric calciner|+|Electricity
+        - FE|CDR|OAE, traditional calciner|+|Electricity
+      remind-eu:
+        - FE|CDR|OAE, electric calciner|+|Electricity
+        - FE|CDR|OAE, traditional calciner|+|Electricity
+    diesel:
+      remind:
+        - FE|CDR|OAE, electric calciner|+|Diesel
+        - FE|CDR|OAE, traditional calciner|+|Diesel
+      remind-eu:
+        - FE|CDR|OAE, electric calciner|+|Diesel
+        - FE|CDR|OAE, traditional calciner|+|Diesel
+    gases:
+      remind: FE|CDR|OAE, traditional calciner|+|Gases
+      remind-eu: FE|CDR|OAE, traditional calciner|+|Gases
+    hydrogen:
+      remind:
+        - FE|CDR|OAE, electric calciner|+|Hydrogen
+        - FE|CDR|OAE, traditional calciner|+|Hydrogen
+      remind-eu:
+        - FE|CDR|OAE, electric calciner|+|Hydrogen
+        - FE|CDR|OAE, traditional calciner|+|Hydrogen
+  ecoinvent_aliases:
+    fltr: carbon dioxide, captured and stored, by ocean liming
 
 biochar:
     ecoinvent_aliases:
@@ -92,8 +182,22 @@ biomass power generation, with CCS:
   iam_aliases:
       remind: Emi|CO2|CDR|+|BECCS
       remind-eu: Emi|CO2|CDR|+|BECCS
-      image: Carbon Capture|Energy|Supply|Electricity|Biomass
+      image:
+          - Carbon Removal|Geological Storage|Biomass|Electricity
+          - Carbon Capture|Energy|Supply|Electricity|Biomass
       message: Carbon Capture|Energy|Supply|Electricity|Biomass
+  efficiency_use_aliases:
+      heat:
+          image: Efficiency|Electricity|Biomass|w/ CCS|1
+  ecoinvent_aliases:
+      fltr: carbon dioxide, captured and stored, at wood burning power plant, pipeline 200km, storage 1000m
+
+biomass heat generation, with CCS:
+  iam_aliases:
+      image: Carbon Removal|Geological Storage|Biomass|Heat
+  efficiency_use_aliases:
+      heat:
+          image: Efficiency|Electricity|Biomass|w/ CCS|1
   ecoinvent_aliases:
       fltr: carbon dioxide, captured and stored, at wood burning power plant, pipeline 200km, storage 1000m
 
@@ -101,14 +205,54 @@ synthetic fuels, with CCS:
   iam_aliases:
       remind: Emi|CO2|CDR|+|Synthetic Fuels CCS
       remind-eu: Emi|CO2|CDR|+|Synthetic Fuels CCS
-      image: Carbon Capture|Energy|Supply|Hydrogen|Biomass
+      image:
+          - Carbon Removal|Geological Storage|Biomass|Hydrogen
+          - Carbon Capture|Energy|Supply|Hydrogen|Biomass
       message: Carbon Capture|Energy|Supply|Hydrogen|Biomass
+  energy_use_aliases:
+      heat:
+          image: Secondary Energy|Consumption|Liquids|Biomass|FT Diesel|Woody|w/CCS
   ecoinvent_aliases:
       fltr: carbon dioxide, captured and stored, from a hydrogen production plant using steam methane reforming of biomethane
 
 biofuels, with CCS:
   iam_aliases:
-      image: Carbon Capture|Energy|Supply|Liquids|Biomass
+      image:
+          - Carbon Removal|Geological Storage|Biomass|Liquids
+          - Carbon Capture|Energy|Supply|Liquids|Biomass
       message: Carbon Capture|Energy|Supply|Liquids|Biomass
+  energy_use_aliases:
+      heat:
+          image: Secondary Energy|Consumption|Liquids|Biomass|Ethanol|Woody|w/CCS
   ecoinvent_aliases:
       fltr: carbon dioxide, captured and stored, from a biomass fermentation plant
+
+cement production, non-fossil CO2, with CCS:
+  iam_aliases:
+      image: Carbon Removal|Geological Storage|Biomass|Industry
+  energy_use_aliases:
+      electricity:
+          image: Final Energy|Industry|Cement|Efficient dry feed rotary kiln + MEA CCS|Electricity
+      heat:
+          image:
+              - Final Energy|Industry|Cement|Efficient dry feed rotary kiln + MEA CCS|Coal
+              - Final Energy|Industry|Cement|Efficient dry feed rotary kiln + MEA CCS|Hydrogen
+              - Final Energy|Industry|Cement|Efficient dry feed rotary kiln + MEA CCS|Modern Biomass
+              - Final Energy|Industry|Cement|Efficient dry feed rotary kiln + MEA CCS|Natural Gas
+              - Final Energy|Industry|Cement|Efficient dry feed rotary kiln + MEA CCS|Oil
+              - Final Energy|Industry|Cement|Efficient dry feed rotary kiln + MEA CCS|Secondary Heat
+              - Final Energy|Industry|Cement|Efficient dry feed rotary kiln + MEA CCS|Traditional Biomass
+  ecoinvent_aliases:
+      fltr: carbon dioxide, captured and stored, at cement production plant, from non-fossil carbon dioxide, using monoethanolamine
+
+afforestation, eucalyptus plantation:
+    iam_aliases:
+        image: Carbon Removal|Land Use|Re/Afforestation|Plantation
+    ecoinvent_aliases:
+        fltr: carbon dioxide, captured and stored, by re/afforestation, eucalyptus
+
+afforestation, poplar plantation:
+    iam_aliases:
+        image: Carbon Removal|Land Use|Re/Afforestation|Plantation
+    ecoinvent_aliases:
+        fltr: carbon dioxide, captured and stored, by re/afforestation, willow
