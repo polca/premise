@@ -204,10 +204,16 @@ def test_hydrogen_consumer_is_relinked_to_sector_market():
     )
     hydrogen.database = [
         {
-            "name": "ammonia production, with market-average hydrogen",
-            "reference product": "ammonia, anhydrous, liquid",
+            "name": "process consuming market-average hydrogen",
+            "reference product": "intermediate product",
             "location": "RER",
             "unit": "kilogram",
+            "classifications": [
+                (
+                    "ISIC rev.4 ecoinvent",
+                    "2011:Manufacture of basic chemicals",
+                )
+            ],
             "exchanges": [
                 {
                     "name": "market for hydrogen, gaseous, low pressure",
@@ -229,8 +235,8 @@ def test_hydrogen_consumer_is_relinked_to_sector_market():
     )
     assert hydrogen.matched_hydrogen_consumers == [
         {
-            "name": "ammonia production, with market-average hydrogen",
-            "reference product": "ammonia, anhydrous, liquid",
+            "name": "process consuming market-average hydrogen",
+            "reference product": "intermediate product",
             "location": "RER",
             "hydrogen exchange location": "RER",
             "hydrogen exchange amount": 0.2,
@@ -261,10 +267,19 @@ def test_consumer_stays_on_general_market_when_sector_market_unavailable():
     )
     hydrogen.database = [
         {
-            "name": "cement production, with market-average hydrogen",
-            "reference product": "cement",
+            "name": "process consuming market-average hydrogen",
+            "reference product": "construction product",
             "location": "RER",
             "unit": "kilogram",
+            "classifications": [
+                (
+                    "ISIC rev.4 ecoinvent",
+                    (
+                        "2395:Manufacture of articles of concrete, cement "
+                        "and plaster"
+                    ),
+                )
+            ],
             "exchanges": [
                 {
                     "name": "market for hydrogen, gaseous, low pressure",
@@ -288,8 +303,8 @@ def test_consumer_stays_on_general_market_when_sector_market_unavailable():
     assert hydrogen.unmatched_hydrogen_consumers == []
     assert hydrogen.skipped_hydrogen_consumers == [
         {
-            "name": "cement production, with market-average hydrogen",
-            "reference product": "cement",
+            "name": "process consuming market-average hydrogen",
+            "reference product": "construction product",
             "location": "RER",
             "hydrogen exchange location": "RER",
             "hydrogen exchange amount": 0.2,
@@ -339,6 +354,57 @@ def test_unmatched_hydrogen_consumer_is_kept_on_general_market():
     assert hydrogen.skipped_hydrogen_consumers == []
 
 
+def test_other_hydrogen_consumer_is_relinked_by_isic_prefix_exclusion():
+    hydrogen = HydrogenMixin()
+    hydrogen.model = "test-model"
+    hydrogen.scenario = "test-scenario"
+    hydrogen.year = 2030
+    hydrogen.regions = ["EUR", "World"]
+    hydrogen.geo = GeoStub({"RER": "EUR"})
+    hydrogen.iam_data = make_iam_data(
+        variables=["Industry - Other - H2"],
+        regions=["EUR"],
+        values=[[[1]]],
+    )
+    hydrogen.database = [
+        {
+            "name": "process consuming market-average hydrogen",
+            "reference product": "metal product",
+            "location": "RER",
+            "unit": "kilogram",
+            "classifications": [
+                (
+                    "ISIC rev.4 ecoinvent",
+                    (
+                        "2420:Manufacture of basic precious and other "
+                        "non-ferrous metals"
+                    ),
+                )
+            ],
+            "exchanges": [
+                {
+                    "name": "market for hydrogen, gaseous, low pressure",
+                    "product": "hydrogen, gaseous, low pressure",
+                    "location": "RER",
+                    "unit": "kilogram",
+                    "type": "technosphere",
+                    "amount": 0.2,
+                }
+            ],
+        }
+    ]
+
+    relinked = hydrogen.relink_hydrogen_consumers_to_sector_markets()
+
+    assert relinked == 1
+    assert hydrogen.database[0]["exchanges"][0]["name"] == (
+        "market for hydrogen, gaseous, low pressure, for other end uses"
+    )
+    assert hydrogen.matched_hydrogen_consumers[0]["sector"] == "Other"
+    assert hydrogen.unmatched_hydrogen_consumers == []
+    assert hydrogen.skipped_hydrogen_consumers == []
+
+
 def test_synthetic_fuel_hydrogen_consumer_is_kept_on_general_market():
     hydrogen = HydrogenMixin()
     hydrogen.database = [
@@ -378,6 +444,56 @@ def test_synthetic_fuel_hydrogen_consumer_is_kept_on_general_market():
                 "market-average hydrogen"
             ),
             "reference product": "diesel, synthetic",
+            "location": "RER",
+            "hydrogen exchange location": "RER",
+            "hydrogen exchange amount": 0.2,
+            "candidate sectors": [],
+        }
+    ]
+
+
+def test_electricity_hydrogen_consumer_is_kept_on_general_market():
+    hydrogen = HydrogenMixin()
+    hydrogen.database = [
+        {
+            "name": "electricity production, at hydrogen-fired power plant",
+            "reference product": "electricity, high voltage",
+            "location": "RER",
+            "unit": "kilowatt hour",
+            "classifications": [
+                (
+                    "ISIC rev.4 ecoinvent",
+                    (
+                        "3510:Electric power generation, transmission "
+                        "and distribution"
+                    ),
+                )
+            ],
+            "exchanges": [
+                {
+                    "name": "market for hydrogen, gaseous, low pressure",
+                    "product": "hydrogen, gaseous, low pressure",
+                    "location": "RER",
+                    "unit": "kilogram",
+                    "type": "technosphere",
+                    "amount": 0.2,
+                }
+            ],
+        }
+    ]
+
+    relinked = hydrogen.relink_hydrogen_consumers_to_sector_markets()
+
+    assert relinked == 0
+    assert hydrogen.database[0]["exchanges"][0]["name"] == (
+        "market for hydrogen, gaseous, low pressure"
+    )
+    assert hydrogen.matched_hydrogen_consumers == []
+    assert hydrogen.unmatched_hydrogen_consumers == []
+    assert hydrogen.skipped_hydrogen_consumers == [
+        {
+            "name": "electricity production, at hydrogen-fired power plant",
+            "reference product": "electricity, high voltage",
             "location": "RER",
             "hydrogen exchange location": "RER",
             "hydrogen exchange amount": 0.2,
