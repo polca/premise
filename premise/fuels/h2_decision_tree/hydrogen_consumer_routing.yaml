@@ -1,0 +1,105 @@
+# Routing rules for activities that consume the generic low-pressure
+# hydrogen market. These rules decide which sector-specific hydrogen market
+# should replace "market for hydrogen, gaseous, low pressure".
+#
+# Rules are evaluated by the Python relinker as:
+# 1. keep_general_market name rules
+# 2. sector name_contains rules
+# 3. sector ISIC rules
+#
+# "Other" is intentionally narrow. It is not a catch-all: it represents
+# paper products, non-metallic minerals excluding cement, and basic metals
+# excluding iron and steel.
+
+keep_general_market:
+  name_contains:
+    - synthetic
+    - fischer tropsch
+    - rwgs
+    - syngas
+    - methanol synthesis, market-average hydrogen
+    - methanol distillation, market-average hydrogen
+  isic_exact:
+    - "3510" # Electric power generation, transmission and distribution.
+
+sectors:
+  Transport:
+    market: market for hydrogen, gaseous, low pressure, for transport
+    name_contains:
+      - transport
+      - fueling station
+      - fuelling station
+      - service station
+      - fuel cell vehicle
+    isic_prefix:
+      - "49" # Land transport and transport via pipelines.
+      - "50" # Water transport.
+      - "51" # Air transport.
+      - "52" # Warehousing and support activities for transportation.
+
+  Chemicals:
+    market: market for hydrogen, gaseous, low pressure, for chemicals
+    name_contains:
+      - chemical
+      - ammonia
+      - methanol
+      - chlor-alkali
+      - hydrogen cyanide
+      - carbon monoxide
+      - olefin
+      - propylene
+      - styrene
+      - pyridine
+      - aminopyridine
+      - butyrolactone
+      - potassium hydroxide
+      - methyl ethyl ketone
+    isic_exact:
+      - "2011" # Manufacture of basic chemicals.
+      - "2012" # Manufacture of fertilizers and nitrogen compounds.
+      - "2013" # Manufacture of plastics and synthetic rubber in primary forms.
+      - "2021" # Manufacture of pesticides and other agrochemical products.
+      - "2022" # Manufacture of paints, varnishes and similar coatings.
+      - "2023" # Manufacture of soap, detergents and cleaning preparations.
+      - "2029" # Manufacture of other chemical products n.e.c.
+      - "2030" # Manufacture of man-made fibres.
+
+  Steel:
+    market: market for hydrogen, gaseous, low pressure, for steel
+    name_contains:
+      - steel
+      - direct reduced iron
+      - sponge iron
+    isic_prefix:
+      - "241" # Manufacture of basic iron and steel.
+
+  Cement:
+    market: market for hydrogen, gaseous, low pressure, for cement
+    name_contains:
+      - cement
+      - clinker
+    isic_exact:
+      - "2394" # Manufacture of cement, lime and plaster.
+      - "2395" # Manufacture of articles of concrete, cement and plaster.
+
+  Heating:
+    market: market for hydrogen, gaseous, low pressure, for heating
+    name_contains:
+      - heat production
+      - boiler
+      - furnace
+      - burned in
+    isic_exact:
+      - "3530" # Steam and air conditioning supply.
+
+  Other:
+    market: market for hydrogen, gaseous, low pressure, for other end uses
+    isic_prefix:
+      - "17" # Manufacture of paper and paper products.
+    isic_prefix_excluding_exact:
+      "23": # Manufacture of other non-metallic mineral products.
+        - "2394" # Cement, lime and plaster -> Cement.
+        - "2395" # Concrete/cement/plaster articles -> Cement.
+    isic_prefix_excluding_prefix:
+      "24": # Manufacture of basic metals.
+        - "241" # Iron and steel -> Steel.
