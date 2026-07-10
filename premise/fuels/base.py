@@ -15,6 +15,25 @@ from .utils import fetch_mapping
 
 logger = create_logger("fuel")
 
+HYDROGEN_LOG_COLUMNS = [
+    "hydrogen report type",
+    "hydrogen sector",
+    "hydrogen subsector",
+    "hydrogen demand node type",
+    "hydrogen demand nodes",
+    "hydrogen demand nodes rounded up",
+    "hydrogen demand t per year",
+    "hydrogen demand t per node per year",
+    "hydrogen demand t per node per day",
+    "hydrogen distribution compressed gaseous truck",
+    "hydrogen distribution compressed gaseous pipeline",
+    "hydrogen distribution liquid truck",
+    "hydrogen exchange location",
+    "hydrogen exchange amount",
+    "old generic hydrogen market",
+    "new sector specific hydrogen market",
+]
+
 
 def _update_fuels(scenario, version, system_model):
 
@@ -42,11 +61,13 @@ def _update_fuels(scenario, version, system_model):
         try:
             fuels.set_hydrogen_logistics()
             scenario["hydrogen demand nodes"] = fuels.hydrogen_demand_nodes
+            fuels.write_hydrogen_demand_node_logs()
         except Exception as exc:
             print(f"Could not create hydrogen demand nodes analysis: {exc}")
 
         fuels.generate_hydrogen_activities()
         fuels.relink_hydrogen_consumers_to_sector_markets()
+        fuels.write_hydrogen_sector_market_relink_logs()
         fuels.generate_synthetic_fuel_activities()
         fuels.generate_biogas_activities()
         fuels.relink_datasets()
@@ -157,6 +178,7 @@ class Fuels(
         """
         Write log file.
         """
+        hydrogen_log_parameters = dataset.get("log parameters", {})
 
         logger.info(
             f"{status}|{self.model}|{self.scenario}|{self.year}|"
@@ -171,5 +193,109 @@ class Fuels(
             f"{dataset.get('log parameters', {}).get('land use CO2', '')}|"
             f"{dataset.get('log parameters', {}).get('fossil CO2 per kg fuel', '')}|"
             f"{dataset.get('log parameters', {}).get('non-fossil CO2 per kg fuel', '')}|"
-            f"{dataset.get('log parameters', {}).get('lower heating value', '')}"
+            f"{dataset.get('log parameters', {}).get('lower heating value', '')}|"
+            f"{self._format_hydrogen_log_parameters(hydrogen_log_parameters)}"
         )
+
+    @staticmethod
+    def _format_log_value(value):
+        if value is None:
+            return ""
+        try:
+            if value != value:
+                return ""
+        except (TypeError, ValueError):
+            pass
+        if isinstance(value, (list, tuple, set)):
+            return ", ".join(str(item) for item in value)
+        return str(value).replace("|", "/")
+
+    @classmethod
+    def _format_hydrogen_log_parameters(cls, parameters):
+        return "|".join(
+            cls._format_log_value(parameters.get(column))
+            for column in HYDROGEN_LOG_COLUMNS
+        )
+
+    def _write_hydrogen_log(self, status, dataset, parameters):
+        dataset = {
+            "name": dataset.get("name", ""),
+            "location": dataset.get("location", ""),
+            "log parameters": parameters,
+        }
+        self.write_log(dataset, status=status)
+
+    def write_hydrogen_demand_node_logs(self):
+        demand_nodes = getattr(self, "hydrogen_demand_nodes", None)
+        if demand_nodes is None or getattr(demand_nodes, "empty", True):
+            return
+
+        for row in demand_nodes.to_dict(orient="records"):
+            parameters = {
+                "hydrogen report type": "demand node",
+                "hydrogen sector": row.get("sector"),
+                "hydrogen subsector": row.get("subsector"),
+                "hydrogen demand node type": row.get("demand_node_type"),
+                "hydrogen demand nodes": row.get("demand_nodes"),
+                "hydrogen demand nodes rounded up": row.get(
+                    "demand_nodes_rounded_up"
+                ),
+                "hydrogen demand t per year": row.get(
+                    "hydrogen_demand_t_per_year"
+                ),
+                "hydrogen demand t per node per year": row.get(
+                    "hydrogen_demand_t_per_node_per_year"
+                ),
+                "hydrogen demand t per node per day": row.get(
+                    "hydrogen_demand_t_per_node_per_day"
+                ),
+                "hydrogen distribution compressed gaseous truck": row.get(
+                    "compressed_gaseous_truck"
+                ),
+                "hydrogen distribution compressed gaseous pipeline": row.get(
+                    "compressed_gaseous_pipeline"
+                ),
+                "hydrogen distribution liquid truck": row.get(
+                    "liquid_hydrogen_truck"
+                ),
+            }
+            dataset = {
+                "name": "hydrogen demand nodes",
+                "location": row.get("region", ""),
+            }
+            self._write_hydrogen_log(
+                status="created (hydrogen demand node)",
+                dataset=dataset,
+                parameters=parameters,
+            )
+
+    def write_hydrogen_sector_market_relink_logs(self):
+        matched_consumers = getattr(
+            self, "matched_hydrogen_consumers", []
+        )
+        for consumer in matched_consumers:
+            parameters = {
+                "hydrogen report type": "sector market relink",
+                "hydrogen sector": consumer.get("sector"),
+                "hydrogen exchange location": consumer.get(
+                    "hydrogen exchange location"
+                ),
+                "hydrogen exchange amount": consumer.get(
+                    "hydrogen exchange amount"
+                ),
+                "old generic hydrogen market": consumer.get(
+                    "old generic hydrogen market"
+                ),
+                "new sector specific hydrogen market": consumer.get(
+                    "new sector specific hydrogen market"
+                ),
+            }
+            dataset = {
+                "name": consumer.get("name", ""),
+                "location": consumer.get("location", ""),
+            }
+            self._write_hydrogen_log(
+                status="updated (hydrogen sector market relink)",
+                dataset=dataset,
+                parameters=parameters,
+            )

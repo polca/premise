@@ -401,6 +401,60 @@ premise_fuel:
         name: Lower heating value
         description: Average lower heating value of the fuel blend (MJ/kg)
         unit: MJ/kg
+      hydrogen report type:
+        name: Hydrogen report type
+        description: Type of hydrogen sector-market implementation log entry
+      hydrogen sector:
+        name: Hydrogen sector
+        description: End-use sector used for hydrogen demand nodes or sector-specific market relinking
+      hydrogen subsector:
+        name: Hydrogen subsector
+        description: Hydrogen demand subsector represented by the demand node row
+      hydrogen demand node type:
+        name: Hydrogen demand node type
+        description: Type of demand node used for hydrogen logistics
+      hydrogen demand nodes:
+        name: Hydrogen demand nodes
+        description: Number of hydrogen demand nodes before rounding
+      hydrogen demand nodes rounded up:
+        name: Hydrogen demand nodes rounded up
+        description: Number of hydrogen demand nodes rounded up to the next integer
+      hydrogen demand t per year:
+        name: Hydrogen demand
+        description: Annual hydrogen demand represented by the demand node row
+        unit: tonne/year
+      hydrogen demand t per node per year:
+        name: Hydrogen demand per node
+        description: Annual hydrogen demand per demand node
+        unit: tonne/node/year
+      hydrogen demand t per node per day:
+        name: Hydrogen demand per node per day
+        description: Daily hydrogen demand per demand node
+        unit: tonne/node/day
+      hydrogen distribution compressed gaseous truck:
+        name: Compressed gaseous truck distribution share
+        description: Share of hydrogen distributed by compressed gaseous truck
+        unit: 0-1
+      hydrogen distribution compressed gaseous pipeline:
+        name: Compressed gaseous pipeline distribution share
+        description: Share of hydrogen distributed by compressed gaseous pipeline
+        unit: 0-1
+      hydrogen distribution liquid truck:
+        name: Liquid hydrogen truck distribution share
+        description: Share of hydrogen distributed by liquid hydrogen truck
+        unit: 0-1
+      hydrogen exchange location:
+        name: Hydrogen exchange location
+        description: Location of the hydrogen market exchange before sector-specific relinking
+      hydrogen exchange amount:
+        name: Hydrogen exchange amount
+        description: Amount of the relinked hydrogen market exchange
+      old generic hydrogen market:
+        name: Old generic hydrogen market
+        description: Generic hydrogen market used before sector-specific relinking
+      new sector specific hydrogen market:
+        name: New sector-specific hydrogen market
+        description: Sector-specific hydrogen market used after relinking
     tab: Fuel
 
 premise_heat:
