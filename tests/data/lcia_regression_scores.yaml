@@ -237,7 +237,7 @@ cases:
         electricity_low_voltage_ch: 0.147
         heat_natural_gas_europe: 0.043
         diesel_europe: 1.147
-        cement_portland_europe: 0.895
+        cement_portland_europe: 0.864
         steel_low_alloyed_glo: 1.787
       test2:
         electricity_low_voltage_ch: 0.0204
