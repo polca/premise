@@ -69,7 +69,7 @@ from .utils import (
     warning_about_biogenic_co2,
     end_of_process,
     create_cache,
-    restore_cached_classifications
+    restore_cached_classifications,
 )
 from .renewables import _update_wind_turbines
 
