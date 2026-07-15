@@ -243,7 +243,7 @@ cases:
         electricity_low_voltage_ch: 0.0204
         heat_natural_gas_europe: 0.0514
         diesel_europe: 0.7612
-        cement_portland_europe: 0.517
+        cement_portland_europe: 0.673
         steel_low_alloyed_glo: 1.204
   ecoinvent-3.12-EN15804:
     method:
