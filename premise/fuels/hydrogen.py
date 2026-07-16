@@ -26,11 +26,11 @@ OTHER_DEMAND_NODE_H2_USE_T_PER_YEAR = 1_000
 OTHER_DEMAND_NODE_LOAD_DAYS_PER_YEAR = 333
 PASSENGER_CAR_AVERAGE_DISTANCE_KM_PER_YEAR = 10_900
 FREIGHT_VEHICLE_AVERAGE_DISTANCE_KM_PER_YEAR = 23_900
-PASSENGER_CARS_PER_STATION_PER_DAY = 1_000
-FREIGHT_VEHICLES_PER_STATION_PER_DAY = 100
+PASSENGER_CARS_PER_STATION_PER_DAY = 1_500
+FREIGHT_VEHICLES_PER_STATION_PER_DAY = 400
 BILLION_KM_TO_KM = 1_000_000_000
 VEHICLE_OCCUPANCY = 1.5
-FREIGHT_LOAD = 10
+FREIGHT_LOAD = 15
 HYDROGEN_END_USE_MARKETS = {
     sector: rules["market"]
     for sector, rules in hydrogen_consumer_routing["sectors"].items()
@@ -136,10 +136,7 @@ class HydrogenMixin:
     def _keep_general_hydrogen_market(self, dataset):
         rules = hydrogen_consumer_routing.get("keep_general_market", {})
         text = self._hydrogen_consumer_text(dataset)
-        if any(
-            keyword in text
-            for keyword in rules.get("name_contains", [])
-        ):
+        if any(keyword in text for keyword in rules.get("name_contains", [])):
             return True
 
         return any(
@@ -267,11 +264,15 @@ class HydrogenMixin:
             year=self.year
         )
         if final_energy.empty:
-            return {market_key: set() for market_key in HYDROGEN_END_USE_MARKETS}
+            return {
+                market_key: set() for market_key in HYDROGEN_END_USE_MARKETS
+            }
 
         required_columns = {"region", "sector", "subsector"}
         if not required_columns.issubset(final_energy.columns):
-            return {market_key: set() for market_key in HYDROGEN_END_USE_MARKETS}
+            return {
+                market_key: set() for market_key in HYDROGEN_END_USE_MARKETS
+            }
 
         candidate_regions = {
             region
@@ -480,6 +481,11 @@ class HydrogenMixin:
         fuel_filters = " ".join(
             HydrogenMixin._as_list(fuel_aliases.get("fltr"))
         ).lower()
+        if HydrogenMixin._contains_other_transport_fuel(
+            f"{vehicle_name} {fuel_filters}"
+        ):
+            return False
+
         variable_text = " ".join(
             [
                 str(vehicle_name),
@@ -491,6 +497,48 @@ class HydrogenMixin:
         return any(
             token in variable_text
             for token in ["hydrogen", "fcev", "fuel cell"]
+        )
+
+    # Demand-node workflow: reject transport variables that refer to non-hydrogen fuels.
+    @staticmethod
+    def _contains_other_transport_fuel(value):
+        value = str(value).lower()
+        other_fuels = [
+            "biofuel",
+            "biofuels",
+            "biomass",
+            "biodiesel",
+            "diesel",
+            "ethanol",
+            "fossil",
+            "gasoline",
+            "gases",
+            "hybrid liquids",
+            "liquids",
+            "methanol",
+            "natural gas",
+            "|ng",
+            "oil",
+            "petrol",
+        ]
+        return any(fuel in value for fuel in other_fuels)
+
+    # Demand-node workflow: keep only direct hydrogen transport service variables.
+    @staticmethod
+    def _is_direct_hydrogen_transport_service_variable(variable):
+        variable = str(variable).lower()
+        is_hydrogen = any(
+            token in variable
+            for token in [
+                "hydrogen",
+                "fcev",
+                "fuel-cell-electric",
+                "fuel cell electric",
+                "fuel cell vehicle",
+            ]
+        )
+        return is_hydrogen and not HydrogenMixin._contains_other_transport_fuel(
+            variable
         )
 
     # Demand-node workflow: round positive node counts up while preserving empty/zero demand.
@@ -554,12 +602,9 @@ class HydrogenMixin:
             else:
                 final_energy = final_energy.interp(year=[target_year])
 
-        table = (
-            final_energy.to_dataframe(
-                name="hydrogen_final_energy_ej_per_year"
-            )
-            .reset_index()
-        )
+        table = final_energy.to_dataframe(
+            name="hydrogen_final_energy_ej_per_year"
+        ).reset_index()
         table = table.loc[table["hydrogen_final_energy_ej_per_year"] > 0]
 
         if table.empty:
@@ -769,6 +814,9 @@ class HydrogenMixin:
                     for variable in service_variables
                     if variable
                     in self.iam_data.data.coords["variables"].values
+                    and self._is_direct_hydrogen_transport_service_variable(
+                        variable
+                    )
                 ]
                 if not available_variables:
                     continue
@@ -811,14 +859,28 @@ class HydrogenMixin:
                 ]
             )
 
-        return (
+        fueling_stations_by_region_and_vehicle_class = (
             pd.concat(rows, ignore_index=True)
-            .groupby(["region", "year"], as_index=False)
+            .groupby(["region", "year", "vehicle_class"], as_index=False)
             .agg(
                 demand_nodes=("demand_nodes", "sum"),
                 activity_proxy_value=("transport_vehicle_count", "sum"),
                 source_variables=(
                     "transport_service_variables",
+                    lambda values: "; ".join(sorted(set(values))),
+                ),
+            )
+        )
+
+        return (
+            fueling_stations_by_region_and_vehicle_class.groupby(
+                ["region", "year"], as_index=False
+            )
+            .agg(
+                demand_nodes=("demand_nodes", "sum"),
+                activity_proxy_value=("activity_proxy_value", "sum"),
+                source_variables=(
+                    "source_variables",
                     lambda values: "; ".join(sorted(set(values))),
                 ),
             )
