@@ -19,6 +19,8 @@ import numpy as np
 import pandas as pd
 import requests
 import yaml
+from packaging.specifiers import SpecifierSet
+from packaging.version import Version
 from bw2io import CSVImporter, ExcelImporter
 from prettytable import PrettyTable
 from wurst import searching as ws
@@ -677,8 +679,33 @@ def check_for_duplicate_datasets(data: List[dict]) -> List[dict]:
     return data
 
 
+def _resolve_versioned_replacement(replacement: dict, version: str) -> dict:
+    """Resolve a blacklist replacement location for an ecoinvent version.
+
+    A replacement location can be a string, or a mapping of PEP 440 version
+    specifiers to locations. The latter keeps blacklist entries valid when
+    ecoinvent renames a geography between releases.
+    """
+    location = replacement.get("location")
+    if not isinstance(location, dict):
+        return replacement
+
+    selected_locations = [
+        candidate
+        for specifier, candidate in location.items()
+        if Version(version) in SpecifierSet(specifier)
+    ]
+    if len(selected_locations) != 1:
+        raise ValueError(
+            "Expected exactly one replacement location for ecoinvent version "
+            f"{version}; found {len(selected_locations)}."
+        )
+
+    return {**replacement, "location": selected_locations[0]}
+
+
 def check_for_datasets_compliance_with_consequential_database(
-    datasets: List[dict], blacklist: List[dict]
+    datasets: List[dict], blacklist: List[dict], version: str
 ):
     """
     Check whether the datasets to import are compliant with the consequential database.
@@ -719,14 +746,17 @@ def check_for_datasets_compliance_with_consequential_database(
                     for d in blacklist:
                         if exc_id == (d["name"], d.get("reference product"), d["unit"]):
                             if "replacement" in d:
-                                exchange["name"] = d["replacement"]["name"]
-                                exchange["reference product"] = d["replacement"][
+                                replacement = _resolve_versioned_replacement(
+                                    d["replacement"], version
+                                )
+                                exchange["name"] = replacement["name"]
+                                exchange["reference product"] = replacement[
                                     "reference product"
                                 ]
-                                exchange["product"] = d["replacement"][
+                                exchange["product"] = replacement[
                                     "reference product"
                                 ]
-                                exchange["location"] = d["replacement"]["location"]
+                                exchange["location"] = replacement["location"]
 
     return datasets
 
@@ -1734,7 +1764,7 @@ class DefaultInventory(BaseInventoryImport):
         if self.system_model == "consequential":
             self.import_db.data = (
                 check_for_datasets_compliance_with_consequential_database(
-                    self.import_db.data, self.consequential_blacklist
+                    self.import_db.data, self.consequential_blacklist, self.version_out
                 )
             )
 
@@ -1902,7 +1932,7 @@ class AdditionalInventory(BaseInventoryImport):
         if self.system_model == "consequential":
             self.import_db.data = (
                 check_for_datasets_compliance_with_consequential_database(
-                    self.import_db.data, self.consequential_blacklist
+                    self.import_db.data, self.consequential_blacklist, self.version_out
                 )
             )
 
