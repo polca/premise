@@ -753,9 +753,7 @@ def check_for_datasets_compliance_with_consequential_database(
                                 exchange["reference product"] = replacement[
                                     "reference product"
                                 ]
-                                exchange["product"] = replacement[
-                                    "reference product"
-                                ]
+                                exchange["product"] = replacement["reference product"]
                                 exchange["location"] = replacement["location"]
 
     return datasets
