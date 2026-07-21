@@ -166,6 +166,7 @@ def assert_lcia_regression_scores(case_key, database_names):
         ) from exc
 
     method = get_lcia_regression_method(case_key)
+    divergences = []
 
     for database_name in database_names:
         if database_name not in bw2data.databases:
@@ -195,8 +196,14 @@ def assert_lcia_regression_scores(case_key, database_names):
                 lca.redo_lcia({node.id: 1})
 
             expected = database_scores[activity_key]
-            assert lca.score == pytest.approx(expected, rel=rel, abs=abs_), (
-                f"LCIA regression score changed for "
-                f"{case_key}/{database_name}/{activity_key}: "
-                f"expected {expected}, got {lca.score}, method={method!r}"
-            )
+            if lca.score != pytest.approx(expected, rel=rel, abs=abs_):
+                divergences.append(
+                    f"{case_key}/{database_name}/{activity_key}: "
+                    f"expected {expected}, got {lca.score}, method={method!r}"
+                )
+
+    if divergences:
+        details = "\n".join(f"- {divergence}" for divergence in divergences)
+        raise AssertionError(
+            f"{len(divergences)} LCIA regression score(s) changed:\n{details}"
+        )
