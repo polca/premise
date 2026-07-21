@@ -76,3 +76,73 @@ def test_resolve_lcia_method_does_not_use_wrong_ecoinvent_version():
             "ecoinvent-3.12-cutoff",
             [("ecoinvent-3.11",) + IPCC_2013],
         )
+
+
+def test_assert_lcia_regression_scores_reports_all_divergences(monkeypatch):
+    class Node(dict):
+        def __init__(self, node_id, **kwargs):
+            super().__init__(**kwargs)
+            self.id = node_id
+
+    activities = {
+        "activity-a": {
+            "name": "Activity A",
+            "reference product": "A",
+            "location": "GLO",
+            "unit": "kilogram",
+        },
+        "activity-b": {
+            "name": "Activity B",
+            "reference product": "B",
+            "location": "GLO",
+            "unit": "kilogram",
+        },
+    }
+    nodes = [
+        Node(index, **activity)
+        for index, activity in enumerate(activities.values())
+    ]
+
+    class FakeLCA:
+        def __init__(self, demand, method):
+            self.score = next(iter(demand)) * 10.0
+
+        def lci(self):
+            pass
+
+        def lcia(self):
+            pass
+
+        def redo_lcia(self, demand):
+            self.score = next(iter(demand)) * 10.0
+
+    monkeypatch.setattr(
+        lcia_regression,
+        "_load_reference_scores",
+        lambda: {
+            "activities": activities,
+            "cases": {
+                "test-case": {
+                    "scores": {
+                        "test-database": {"activity-a": 1.0, "activity-b": 2.0}
+                    }
+                }
+            },
+        },
+    )
+    monkeypatch.setattr(
+        lcia_regression, "get_lcia_regression_method", lambda case_key: IPCC_2013
+    )
+    monkeypatch.setattr(lcia_regression.bw2data, "databases", {"test-database": {}})
+    monkeypatch.setattr(lcia_regression.bw2data, "Database", lambda name: nodes)
+    monkeypatch.setattr(lcia_regression.bw2calc, "LCA", FakeLCA)
+
+    with pytest.raises(AssertionError) as error:
+        lcia_regression.assert_lcia_regression_scores(
+            "test-case", ["test-database"]
+        )
+
+    message = str(error.value)
+    assert "2 LCIA regression score(s) changed" in message
+    assert "test-case/test-database/activity-a" in message
+    assert "test-case/test-database/activity-b" in message
