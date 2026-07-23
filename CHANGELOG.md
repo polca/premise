@@ -2,6 +2,24 @@
 
 All notable changes to this project are documented in this file.
 
+## [2.4.7] - Upcoming
+
+### Fixed
+- Excluded used-cooking-oil biodiesel with CCS from consequential diesel
+  blends through the existing constrained-supplier marginal-mix mechanism,
+  including consistent IAM variable, lead-time, and lifetime labels.
+- Wrote cutoff fuel-market exchanges to waste-treatment suppliers with the
+  waste-convention sign after share normalization, preventing unintended
+  negative fuel burdens in liquid-fuel, gas, and hydrogen markets.
+
+### Documentation
+- Documented consequential constrained-fuel handling and cutoff treatment
+  supplier sign conventions.
+
+### Tests
+- Added regression coverage for the used-cooking-oil consequential constraint
+  and cutoff treatment-supplier sign handling.
+
 ## [2.4.6]
 
 ### Added
