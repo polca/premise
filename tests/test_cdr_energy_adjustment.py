@@ -787,18 +787,18 @@ def test_hydrogen_ccs_inventory_uses_inferred_antonini_heat_and_electricity():
     assert "former CEMCAP-derived 4.0556 MJ/kg CO2" in comment
     assert "Final CO2 compression electricity is omitted" in comment
 
-    assert not any(exc["name"] == "market for monoethanolamine" for exc in exchanges)
     assert not any(
         exc["name"] == "market group for electricity, low voltage"
         and "final compression" in exc.get("comment", "").lower()
         for exc in exchanges
     )
 
-    mdea = next(
-        exc for exc in exchanges if exc["name"] == "market for methyldiethanolamine"
+    mea = next(exc for exc in exchanges if exc["name"] == "market for monoethanolamine")
+    assert mea["amount"] == pytest.approx(3.4e-5)
+    assert mea["reference product"] == "monoethanolamine"
+    assert not any(
+        exc["name"] == "market for methyldiethanolamine" for exc in exchanges
     )
-    assert mdea["amount"] == pytest.approx(3.4e-5)
-    assert mdea["reference product"] == "methyldiethanolamine"
 
     electricity = next(
         exc

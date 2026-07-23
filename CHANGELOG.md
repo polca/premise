@@ -19,6 +19,10 @@ All notable changes to this project are documented in this file.
 ### Tests
 - Added regression coverage for the used-cooking-oil consequential constraint
   and cutoff treatment-supplier sign handling.
+- Refreshed deterministic GWP regression baselines across supported ecoinvent
+  versions for the resulting fuel-supply-chain changes.
+- Corrected the biomethane SMR+CCS inventory test to require its
+  monoethanolamine input instead of methyldiethanolamine.
 
 ## [2.4.6]
 

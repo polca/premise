@@ -36,3 +36,13 @@ negative fuel burden.
 
 The sign rule is enabled for generated liquid-fuel, gas, and hydrogen markets. It is
 not applied to consequential markets or to non-treatment suppliers.
+
+LCIA regression baselines
+-------------------------
+
+The deterministic GWP regression scores are refreshed when either rule intentionally
+changes generated supply chains. In particular, excluding used-cooking-oil biodiesel
+raises the consequential diesel scores because the remaining marginal suppliers are
+renormalized, while treatment-exchange sign changes affect cutoff results in versions
+where those suppliers are selected. Changes also propagate to tested electricity,
+heat, cement, and steel activities that consume the affected fuels upstream.
