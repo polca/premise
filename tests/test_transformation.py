@@ -1,9 +1,59 @@
 from collections import defaultdict
 
 import pytest
+import xarray as xr
 
 from premise.activity_maps import InventorySet
+from premise.marginal_mixes import get_list_contrained_suppliers
 from premise.transformation import BaseTransformation, find_fuel_efficiency
+
+
+def make_market_transformation(monkeypatch, technology_shares):
+    transformation = object.__new__(BaseTransformation)
+    transformation.regions = ["WEU"]
+    transformation.database = []
+    transformation.year = 2050
+    transformation.iam_to_ecoinvent_loc = {"WEU": ["RER"]}
+
+    production_volumes = xr.DataArray(
+        [[1.0] for _ in technology_shares],
+        dims=("variables", "region"),
+        coords={"variables": list(technology_shares), "region": ["WEU"]},
+    )
+
+    monkeypatch.setattr(
+        transformation,
+        "get_technology_and_regional_production_shares",
+        lambda **kwargs: (
+            production_volumes,
+            {
+                (technology, "WEU"): share
+                for technology, share in technology_shares.items()
+            },
+            {"WEU": 1.0},
+        ),
+    )
+    monkeypatch.setattr(
+        transformation, "extract_market_ancillary_exchanges", lambda **kwargs: {}
+    )
+    monkeypatch.setattr(
+        transformation, "add_geo_definition_metadata", lambda dataset: dataset
+    )
+    monkeypatch.setattr(transformation, "add_to_index", lambda dataset: None)
+    monkeypatch.setattr(transformation, "write_log", lambda *args: None)
+    monkeypatch.setattr(transformation, "is_in_index", lambda dataset, location: True)
+
+    return transformation, production_volumes
+
+
+def make_supplier(name, product="fuel"):
+    return {
+        "name": name,
+        "reference product": product,
+        "location": "WEU",
+        "unit": "kilogram",
+        "exchanges": [],
+    }
 
 
 def test_find_fuel_efficiency_uses_default_fuels_when_filter_is_none(capsys):
@@ -196,3 +246,51 @@ def test_process_and_add_activities_indexes_proxies_before_emptying(monkeypatch)
         "write_log:created",
     ]
     assert regionalized in transformation.database
+
+
+def test_used_cooking_oil_biodiesel_is_constrained_in_marginal_mixes():
+    assert (
+        "biodiesel, from used cooking oil, with CCS"
+        in get_list_contrained_suppliers()
+    )
+
+
+def test_cutoff_fuel_market_flips_treatment_supplier_sign_after_normalization(
+    monkeypatch,
+):
+    transformation, production_volumes = make_market_transformation(
+        monkeypatch,
+        {"waste biodiesel": 0.8, "fossil diesel": 0.2},
+    )
+    mapping = {
+        "waste biodiesel": [
+            make_supplier(
+                "treatment of used vegetable cooking oil",
+                product="used vegetable cooking oil",
+            )
+        ],
+        "fossil diesel": [make_supplier("diesel production, petroleum refinery")],
+    }
+
+    transformation.process_and_add_markets(
+        name="market for diesel",
+        reference_product="diesel",
+        unit="kilogram",
+        mapping=mapping,
+        production_volumes=production_volumes,
+        system_model="cutoff",
+        flip_treatment_supplier_sign=True,
+    )
+
+    regional_market = next(
+        dataset
+        for dataset in transformation.database
+        if dataset["location"] == "WEU"
+    )
+    suppliers = {
+        exchange["name"]: exchange["amount"]
+        for exchange in regional_market["exchanges"]
+        if exchange["type"] == "technosphere"
+    }
+    assert suppliers["treatment of used vegetable cooking oil"] == pytest.approx(-0.8)
+    assert suppliers["diesel production, petroleum refinery"] == pytest.approx(0.2)
