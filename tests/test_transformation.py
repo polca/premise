@@ -250,8 +250,7 @@ def test_process_and_add_activities_indexes_proxies_before_emptying(monkeypatch)
 
 def test_used_cooking_oil_biodiesel_is_constrained_in_marginal_mixes():
     assert (
-        "biodiesel, from used cooking oil, with CCS"
-        in get_list_contrained_suppliers()
+        "biodiesel, from used cooking oil, with CCS" in get_list_contrained_suppliers()
     )
 
 
@@ -283,9 +282,7 @@ def test_cutoff_fuel_market_flips_treatment_supplier_sign_after_normalization(
     )
 
     regional_market = next(
-        dataset
-        for dataset in transformation.database
-        if dataset["location"] == "WEU"
+        dataset for dataset in transformation.database if dataset["location"] == "WEU"
     )
     suppliers = {
         exchange["name"]: exchange["amount"]

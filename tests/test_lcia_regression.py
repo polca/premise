@@ -99,8 +99,7 @@ def test_assert_lcia_regression_scores_reports_all_divergences(monkeypatch):
         },
     }
     nodes = [
-        Node(index, **activity)
-        for index, activity in enumerate(activities.values())
+        Node(index, **activity) for index, activity in enumerate(activities.values())
     ]
 
     class FakeLCA:
@@ -123,9 +122,7 @@ def test_assert_lcia_regression_scores_reports_all_divergences(monkeypatch):
             "activities": activities,
             "cases": {
                 "test-case": {
-                    "scores": {
-                        "test-database": {"activity-a": 1.0, "activity-b": 2.0}
-                    }
+                    "scores": {"test-database": {"activity-a": 1.0, "activity-b": 2.0}}
                 }
             },
         },
@@ -138,9 +135,7 @@ def test_assert_lcia_regression_scores_reports_all_divergences(monkeypatch):
     monkeypatch.setattr(lcia_regression.bw2calc, "LCA", FakeLCA)
 
     with pytest.raises(AssertionError) as error:
-        lcia_regression.assert_lcia_regression_scores(
-            "test-case", ["test-database"]
-        )
+        lcia_regression.assert_lcia_regression_scores("test-case", ["test-database"])
 
     message = str(error.value)
     assert "2 LCIA regression score(s) changed" in message
