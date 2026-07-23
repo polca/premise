@@ -24,7 +24,7 @@ copyright = (
 author = "Romain Sacchi, Alois Dirnaichner, Chris Mutel"
 
 # The full version, including alpha/beta/rc tags
-release = "2.3.7"
+release = "2.4.7"
 
 # -- General configuration ---------------------------------------------------
 

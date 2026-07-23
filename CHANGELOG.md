@@ -2,7 +2,7 @@
 
 All notable changes to this project are documented in this file.
 
-## [2.4.7] - Upcoming
+## [2.4.7]
 
 ### Fixed
 - Excluded used-cooking-oil biodiesel with CCS from consequential diesel
