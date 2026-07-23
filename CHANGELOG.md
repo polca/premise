@@ -23,6 +23,8 @@ All notable changes to this project are documented in this file.
   versions for the resulting fuel-supply-chain changes.
 - Corrected the biomethane SMR+CCS inventory test to require its
   monoethanolamine input instead of methyldiethanolamine.
+- Made the ecoinvent 3.12 cutoff superstructure smoke test select a registered
+  GWP method across version-prefixed Brightway method tuples.
 
 ## [2.4.6]
 
