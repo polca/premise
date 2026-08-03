@@ -13,6 +13,7 @@ from collections import defaultdict
 from functools import lru_cache
 
 import yaml
+from wurst import rescale_exchange
 
 from .export import biosphere_flows_dictionary
 from .filesystem_constants import VARIABLES_DIR
@@ -1387,7 +1388,25 @@ class Electricity(BaseTransformation):
                             ws.equals("unit", flow["unit"]),
                             ws.equals("categories", (flow["categories"],)),
                         ):
-                            exc["amount"] = flow["amount"]
+                            if exc["amount"] == 0:
+                                # A relative uncertainty cannot be rescaled from zero.
+                                exc["amount"] = flow["amount"]
+                                exc["uncertainty type"] = 0
+                                exc["loc"] = exc["amount"]
+                                for field in (
+                                    "scale",
+                                    "shape",
+                                    "minimum",
+                                    "maximum",
+                                    "negative",
+                                ):
+                                    exc.pop(field, None)
+                            else:
+                                rescale_exchange(
+                                    exc,
+                                    flow["amount"] / exc["amount"],
+                                    remove_uncertainty=False,
+                                )
 
     def update_efficiency_of_solar_pv(self) -> None:
         """
