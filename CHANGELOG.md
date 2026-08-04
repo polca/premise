@@ -2,6 +2,22 @@
 
 All notable changes to this project are documented in this file.
 
+## [2.4.8]
+
+### Added
+- Mapped the IMAGE medium- and heavy-duty battery-electric truck energy-service
+  and electricity variables to the 18 t and 40 t premise truck inventories.
+
+### Changed
+- Updated the bundled IAM scenario download source to Zenodo record 21790981.
+- Translated premise's hyphenated IMAGE pathway names to the underscore-based
+  filenames used by the new archive while retaining the existing public
+  pathway names and local cache filenames.
+
+### Tests
+- Added regression coverage for the new scenario download URLs and IMAGE
+  battery-electric truck mappings.
+
 ## [2.4.7]
 
 ### Fixed

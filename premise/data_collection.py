@@ -23,7 +23,7 @@ from prettytable import PrettyTable
 from .filesystem_constants import DATA_DIR, VARIABLES_DIR
 from .geomap import Geomap
 from .marginal_mixes import consequential_method
-from .scenario_downloader import download_csv
+from .scenario_downloader import download_csv, get_scenario_url
 
 IAM_ELEC_VARS = VARIABLES_DIR / "electricity.yaml"
 IAM_FUELS_VARS = VARIABLES_DIR / "fuels.yaml"
@@ -1302,7 +1302,7 @@ class IAMDataCollection:
             else:
                 # If key is provided, download the file
                 download_folder = filedir
-                url = f"https://zenodo.org/records/19049274/files/{file_name}.csv"
+                url = get_scenario_url(self.model, self.pathway)
                 file_path = download_csv(file_name + ".csv", url, download_folder)
 
         # Decrypt the file if a key is provided
