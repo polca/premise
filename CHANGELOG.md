@@ -12,7 +12,8 @@ All notable changes to this project are documented in this file.
 - Updated the bundled IAM scenario download source to Zenodo record 21790981.
 - Translated premise's hyphenated IMAGE pathway names to the underscore-based
   filenames used by the new archive while retaining the existing public
-  pathway names and local cache filenames.
+  pathway names and local cache filenames, and accepted both naming conventions
+  when loading local scenario files.
 
 ### Tests
 - Added regression coverage for the new scenario download URLs and IMAGE

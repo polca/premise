@@ -16,6 +16,30 @@ ZENODO_IAM_SCENARIO_BASE_URL = (
 )
 
 
+def get_scenario_file_stems(model: str, pathway: str) -> tuple[str, ...]:
+    """Return accepted local file stems, with the canonical name first.
+
+    premise exposes IMAGE pathways with hyphens, whereas the current Zenodo
+    archive uses underscores. Supporting both forms lets users reuse downloaded
+    archive files without renaming them while retaining the existing canonical
+    cache filename.
+
+    :param model: IAM model name used by premise.
+    :param pathway: IAM pathway name used by premise.
+    :return: Accepted file stems in lookup order.
+    """
+
+    canonical_stem = f"{model}_{pathway}"
+    if model != "image":
+        return (canonical_stem,)
+
+    archive_stem = f"{model}_{pathway.replace('-', '_')}"
+    if archive_stem == canonical_stem:
+        return (canonical_stem,)
+
+    return canonical_stem, archive_stem
+
+
 def get_scenario_url(model: str, pathway: str) -> str:
     """Return the Zenodo download URL for an IAM scenario.
 
@@ -29,8 +53,8 @@ def get_scenario_url(model: str, pathway: str) -> str:
     :return: Direct Zenodo URL for the encrypted scenario CSV file.
     """
 
-    archive_pathway = pathway.replace("-", "_") if model == "image" else pathway
-    return f"{ZENODO_IAM_SCENARIO_BASE_URL}/{model}_{archive_pathway}.csv"
+    archive_stem = get_scenario_file_stems(model, pathway)[-1]
+    return f"{ZENODO_IAM_SCENARIO_BASE_URL}/{archive_stem}.csv"
 
 
 def download_csv(file_name: str, url: str, download_folder: Path) -> Path:
