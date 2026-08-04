@@ -15,17 +15,21 @@ All notable changes to this project are documented in this file.
   pathway names and local cache filenames, and accepted both naming conventions
   when loading local scenario files.
 
+### Fixed
+- Rescaled uncertainty parameters alongside corrected Swiss reservoir-water
+  exchanges, preventing retained source-database lognormal distributions from
+  sampling around the pre-correction water amount when
+  `keep_source_db_uncertainty=True`.
+
 ### Tests
+- Added regression coverage for uncertainty-aware hydropower water corrections,
+  deterministic fallback from zero amounts, and activity/exchange filtering.
 - Added regression coverage for the new scenario download URLs and IMAGE
   battery-electric truck mappings.
 
 ## [2.4.7]
 
 ### Fixed
-- Rescaled uncertainty parameters alongside corrected Swiss reservoir-water
-  exchanges, preventing retained source-database lognormal distributions from
-  sampling around the pre-correction water amount when
-  `keep_source_db_uncertainty=True`.
 - Excluded used-cooking-oil biodiesel with CCS from consequential diesel
   blends through the existing constrained-supplier marginal-mix mechanism,
   including consistent IAM variable, lead-time, and lifetime labels.
@@ -38,8 +42,6 @@ All notable changes to this project are documented in this file.
   supplier sign conventions.
 
 ### Tests
-- Added regression coverage for uncertainty-aware hydropower water corrections,
-  deterministic fallback from zero amounts, and activity/exchange filtering.
 - Added regression coverage for the used-cooking-oil consequential constraint
   and cutoff treatment-supplier sign handling.
 - Refreshed deterministic GWP regression baselines across supported ecoinvent
