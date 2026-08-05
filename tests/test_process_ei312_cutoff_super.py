@@ -59,7 +59,15 @@ def test_brightway():
 
     ndb.write_superstructure_db_to_brightway("superstructure")
 
-    method = [m for m in bw2data.methods if "IPCC" in m[0]][0]
+    method = next(
+        (
+            method
+            for method in bw2data.methods
+            if any("GWP" in str(part).upper() for part in method)
+        ),
+        None,
+    )
+    assert method is not None, "No GWP LCIA method is registered in this project."
 
     lca = bw2calc.LCA({bw2data.Database("superstructure").random(): 1}, method)
     lca.lci()

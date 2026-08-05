@@ -30,6 +30,8 @@ outputs:
         - cryptography
         - datapackage
         - numpy <2.0.0
+        - openpyxl >=3.1.0,<3.2.0
+        - lxml <6.0.0
         - pandas
         - platformdirs
         - prettytable
@@ -72,6 +74,8 @@ outputs:
         - cryptography
         - datapackage
         - numpy <2.0.0
+        - openpyxl >=3.1.0,<3.2.0
+        - lxml <6.0.0
         - pandas
         - platformdirs
         - prettytable

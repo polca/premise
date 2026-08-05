@@ -39,6 +39,7 @@ class HydrogenMixin:
             system_model=self.system_model,
             production_volumes=self.iam_data.production_volumes,
             additional_exchanges_fn=self._add_transport_to_hydrogen_datasets,
+            flip_treatment_supplier_sign=True,
         )
 
     def _adjust_hydrogen_efficiency(self, dataset, technology):

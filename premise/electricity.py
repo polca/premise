@@ -13,6 +13,7 @@ from collections import defaultdict
 from functools import lru_cache
 
 import yaml
+from wurst import rescale_exchange
 
 from .export import biosphere_flows_dictionary
 from .filesystem_constants import VARIABLES_DIR
@@ -727,7 +728,7 @@ class Electricity(BaseTransformation):
             new_exchanges.append(
                 {
                     "uncertainty type": 0,
-                    "loc": 0,
+                    "loc": (1 - solar_amount) * (1 + distr_loss),
                     "amount": (1 - solar_amount) * (1 + distr_loss),
                     "type": "technosphere",
                     "product": "electricity, medium voltage",
@@ -744,7 +745,7 @@ class Electricity(BaseTransformation):
             new_exchanges.append(
                 {
                     "uncertainty type": 0,
-                    "loc": 0,
+                    "loc": transf_loss,
                     "amount": transf_loss,
                     "type": "technosphere",
                     "product": "electricity, low voltage",
@@ -862,7 +863,7 @@ class Electricity(BaseTransformation):
             new_exchanges.append(
                 {
                     "uncertainty type": 0,
-                    "loc": 0,
+                    "loc": 1 + distr_loss,
                     "amount": 1 + distr_loss,
                     "type": "technosphere",
                     "product": "electricity, high voltage",
@@ -879,7 +880,7 @@ class Electricity(BaseTransformation):
             new_exchanges.append(
                 {
                     "uncertainty type": 0,
-                    "loc": 0,
+                    "loc": transf_loss,
                     "amount": transf_loss,
                     "type": "technosphere",
                     "product": "electricity, medium voltage",
@@ -1131,7 +1132,7 @@ class Electricity(BaseTransformation):
             new_exchanges.append(
                 {
                     "uncertainty type": 0,
-                    "loc": 1,
+                    "loc": transf_loss,
                     "amount": transf_loss,
                     "type": "technosphere",
                     "product": "electricity, high voltage",
@@ -1387,7 +1388,25 @@ class Electricity(BaseTransformation):
                             ws.equals("unit", flow["unit"]),
                             ws.equals("categories", (flow["categories"],)),
                         ):
-                            exc["amount"] = flow["amount"]
+                            if exc["amount"] == 0:
+                                # A relative uncertainty cannot be rescaled from zero.
+                                exc["amount"] = flow["amount"]
+                                exc["uncertainty type"] = 0
+                                exc["loc"] = exc["amount"]
+                                for field in (
+                                    "scale",
+                                    "shape",
+                                    "minimum",
+                                    "maximum",
+                                    "negative",
+                                ):
+                                    exc.pop(field, None)
+                            else:
+                                rescale_exchange(
+                                    exc,
+                                    flow["amount"] / exc["amount"],
+                                    remove_uncertainty=False,
+                                )
 
     def update_efficiency_of_solar_pv(self) -> None:
         """

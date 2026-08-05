@@ -450,6 +450,52 @@ def test_brightway25_fast_exchange_payload_keeps_required_descriptive_fields():
     assert compact_exchange["output"] == ("source-db", "act-1")
 
 
+def test_brightway25_fast_exchange_payload_normalizes_no_uncertainty_loc():
+    exchange = {
+        "name": "supplier",
+        "product": "product",
+        "unit": "kilogram",
+        "location": "CH",
+        "amount": 1.23,
+        "type": "technosphere",
+        "input": ("source-db", "act-2"),
+        "output": ("source-db", "act-1"),
+        "uncertainty type": 0,
+        "loc": 0,
+        "scale": 2,
+        "minimum": 0,
+        "maximum": 10,
+    }
+
+    compact_exchange = brightway25_module._prepare_fast_exchange_payload(exchange)
+
+    assert compact_exchange["loc"] == 1.23
+    assert "scale" not in compact_exchange
+    assert "minimum" not in compact_exchange
+    assert "maximum" not in compact_exchange
+
+
+def test_brightway2_fast_exchange_payload_normalizes_no_uncertainty_loc():
+    exchange = {
+        "name": "supplier",
+        "product": "product",
+        "unit": "kilogram",
+        "location": "CH",
+        "amount": 2.5,
+        "type": "technosphere",
+        "input": ("source-db", "act-2"),
+        "output": ("source-db", "act-1"),
+        "uncertainty type": 1,
+        "loc": 0,
+        "shape": 1,
+    }
+
+    compact_exchange = brightway2_module._prepare_fast_exchange_payload(exchange)
+
+    assert compact_exchange["loc"] == 2.5
+    assert "shape" not in compact_exchange
+
+
 def test_brightway25_fast_compaction_preserves_nonempty_activity_metadata(
     monkeypatch,
 ):

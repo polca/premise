@@ -2,16 +2,130 @@
 
 All notable changes to this project are documented in this file.
 
+## [2.4.8]
+
+### Added
+- Mapped the IMAGE medium- and heavy-duty battery-electric truck energy-service
+  and electricity variables to the 18 t and 40 t premise truck inventories.
+
+### Changed
+- Updated the bundled IAM scenario download source to Zenodo record 21790981.
+- Translated premise's hyphenated IMAGE pathway names to the underscore-based
+  filenames used by the new archive while retaining the existing public
+  pathway names and local cache filenames, and accepted both naming conventions
+  when loading local scenario files.
+
+### Fixed
+- Rescaled uncertainty parameters alongside corrected Swiss reservoir-water
+  exchanges, preventing retained source-database lognormal distributions from
+  sampling around the pre-correction water amount when
+  `keep_source_db_uncertainty=True`.
+
+### Tests
+- Added regression coverage for uncertainty-aware hydropower water corrections,
+  deterministic fallback from zero amounts, and activity/exchange filtering.
+- Added regression coverage for the new scenario download URLs and IMAGE
+  battery-electric truck mappings.
+
+## [2.4.7]
+
+### Fixed
+- Excluded used-cooking-oil biodiesel with CCS from consequential diesel
+  blends through the existing constrained-supplier marginal-mix mechanism,
+  including consistent IAM variable, lead-time, and lifetime labels.
+- Wrote cutoff fuel-market exchanges to waste-treatment suppliers with the
+  waste-convention sign after share normalization, preventing unintended
+  negative fuel burdens in liquid-fuel, gas, and hydrogen markets.
+
+### Documentation
+- Documented consequential constrained-fuel handling and cutoff treatment
+  supplier sign conventions.
+
+### Tests
+- Added regression coverage for the used-cooking-oil consequential constraint
+  and cutoff treatment-supplier sign handling.
+- Refreshed deterministic GWP regression baselines across supported ecoinvent
+  versions for the resulting fuel-supply-chain changes.
+- Corrected the biomethane SMR+CCS inventory test to require its
+  monoethanolamine input instead of methyldiethanolamine.
+- Made the ecoinvent 3.12 cutoff superstructure smoke test select a registered
+  GWP method across version-prefixed Brightway method tuples.
+
+## [2.4.6]
+
+### Added
+- Added a CDR-mapped cement MEA capture-and-storage activity for 1 kg of
+  non-fossil CO2 stored, including a `Carbon dioxide, in air` uptake and
+  temporary IMAGE dummy production, electricity, and heat aliases.
+
+### Changed
+- Split CDR efficiency adjustment between electricity exchanges and heat/fuel
+  exchanges using carrier-specific `energy_use_aliases` in
+  `carbon_dioxide_removal.yaml`; material inputs and biosphere flows remain
+  unchanged by this adjustment.
+- Harmonized the wood BECCS, biomethane SMR+CCS, biomass fermentation CCS, and
+  cement non-fossil CO2 capture inventories as host-excluding capture and
+  storage modules with documented energy and modelling assumptions.
+
+### Fixed
+- Restored IMAGE CDR mapping compatibility with bundled SSP2-VLHO files by
+  accepting legacy `Carbon Capture|...` aliases alongside the newer
+  `Carbon Removal|...` aliases.
+- Normalized the coastal enhanced-weathering inventory production exchange
+  fields so fresh Excel imports no longer depend on cached formula values.
+- Added missing import classifications and SimaPro categories for the new
+  afforestation and hydrogen-heat DAC CDR activities.
+- Corrected cement clinker fuel-efficiency adjustments so the original
+  accounted kiln fuel demand includes inferred secondary-fuel energy represented
+  by emissions but not by burdened technosphere fuel inputs.
+- Applied cement kiln fuel reductions once to aggregate hard coal inputs and
+  distributed the change proportionally across split hard-coal suppliers,
+  avoiding over-reduction when several hard-coal exchanges are present.
+- Updated fossil CO2 changes from the applied aggregate hard-coal energy change
+  while leaving non-fossil CO2 unchanged outside CCS handling.
+- Enforced practical accounted clinker fuel-demand floors of `3.1 GJ/t` for
+  ordinary clinker production and `3.0 GJ/t` for efficient dry kiln
+  technologies.
+
+### Documentation
+- Updated CDR, carbon-capture inventory, mapping, and FAQ documentation to
+  reflect carrier-specific CDR energy scaling, host-excluding CDR capture
+  modules, and the cement non-fossil CO2 CDR variant.
+- Added detailed cement transformation documentation clarifying visible fuel
+  inputs, inferred hidden secondary-fuel bookkeeping, practical lower bounds,
+  hard-coal-only scaling, and fossil/non-fossil CO2 handling.
+- Added dataset and exchange comments to transformed clinker inventories so
+  exported databases explain original visible fuel energy, hidden secondary-fuel
+  bookkeeping, new accounted fuel demand, hard-coal scaling, and CO2 handling.
+
+### Tests
+- Validated the CDR update against IMAGE SSP2-VLHO, REMIND SSP3-rollBack,
+  TIAM-UCL SSP2-RCP19, and MESSAGE SSP2-L scenarios, including CDR market
+  shares and carrier-specific energy-adjustment lower bounds.
+- Added regression coverage for CDR electricity vs heat/fuel efficiency
+  adjustment, harmonized CDR inventory assumptions, and the IMAGE cement
+  non-fossil CDR activity mapping.
+- Added cement regression coverage for split hard-coal inputs, clinker fuel
+  demand floors, non-negative hard-coal scaling, and the new dataset/exchange
+  comment surface.
+
 ## [2.4.5]
 
 ### Fixed
 - Filled missing activity classifications on the fast Brightway export path used after `NewDatabase.update()`, keeping classification metadata consistent with non-updated exports (`#293`).
 - Corrected the CPC classification for the PEM fuel-cell system assembly inventory from `33370: Fuel oils n.e.c.` to `46410: Primary cells and primary batteries`.
 - Derived `World` GAINS hot-pollutant scaling factors from global absolute emissions so `World` datasets receive an emissions-weighted correction during the emissions update (`#285`).
+- Added non-degenerate uncertainty ranges to PV efficiency records whose minimum, mean, and maximum values were identical, preventing invalid triangular uncertainty parameters in Monte Carlo calculations.
+- Normalized no-uncertainty exchange records during Brightway exports so `loc` follows the current `amount` and stale uncertainty bounds are dropped, preventing Brightway Monte Carlo from reading outdated deterministic values in generated scenario databases.
+- Preserved secondary metal supply shares in newly created metals markets by copying secondary technosphere inputs from the source ecoinvent metal market instead of relying on the static secondary-route mapping file.
+- Corrected the palladium entry in the legacy secondary metal supply activity mapping.
+- Corrected the oxyfuel cement carbon-capture oxygen demand in `lci-carbon-capture.xlsx` using CEMCAP D4.6 Table 6.1, reducing the input from a stoichiometric estimate to `0.313131313 kg O2/kg CO2 captured` and documenting the source in the inventory.
 
 ### Tests
 - Added regression coverage for fast Brightway export classification filling.
+- Added regression coverage for no-uncertainty exchange normalization in Brightway 2 and Brightway 2.5 exports.
 - Added regression coverage for `World` hot-pollutant emission scaling.
+- Added metals regression coverage for source-market secondary supply extraction, fallback reference-product lookup, and cutoff/consequential behavior.
 
 ## [2.4.4]
 

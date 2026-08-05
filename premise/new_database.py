@@ -15,6 +15,7 @@ from typing import List, Union
 
 import bw2data
 import datapackage
+from packaging.version import Version
 from tqdm import tqdm
 
 from . import __version__
@@ -69,6 +70,7 @@ from .utils import (
     warning_about_biogenic_co2,
     end_of_process,
     create_cache,
+    restore_cached_classifications,
 )
 from .renewables import _update_wind_turbines
 
@@ -87,6 +89,7 @@ FILEPATH_CARMA_INVENTORIES = INVENTORY_DIR / "lci-Carma-CCS.xlsx"
 FILEPATH_CO_FIRING_INVENTORIES = INVENTORY_DIR / "lci-co-firing-power-plants.xlsx"
 FILEPATH_CHP_INVENTORIES = INVENTORY_DIR / "lci-combined-heat-power-plant-CCS.xlsx"
 FILEPATH_CC_INVENTORIES = INVENTORY_DIR / "lci-carbon-capture.xlsx"
+FILEPATH_AFFORESTATION_INVENTORIES = INVENTORY_DIR / "lci-afforestation.xlsx"
 FILEPATH_BIOFUEL_INVENTORIES = INVENTORY_DIR / "lci-biofuels.xlsx"
 FILEPATH_BIOGAS_INVENTORIES = INVENTORY_DIR / "lci-biogas.xlsx"
 FILEPATH_WASTE_CHP_INVENTORIES = INVENTORY_DIR / "lci-waste-CHP.xlsx"
@@ -756,7 +759,10 @@ class NewDatabase:
             self.database_metadata_cache_filepath = resolve_cache_ref(
                 Path(str(file_name).replace(".pickle", " (metadata).pickle"))
             )
-            return load_cached_database(self.database_cache_filepath)
+            database = load_cached_database(self.database_cache_filepath)
+            return restore_cached_classifications(
+                database, self.database_metadata_cache_filepath
+            )
 
         # extract the database, pickle it for next time and return it
         print("Cannot find cached database. Will create one now for next time...")
@@ -797,7 +803,10 @@ class NewDatabase:
             self.inventories_metadata_cache_filepath = resolve_cache_ref(
                 Path(str(file_name).replace(".pickle", " (metadata).pickle"))
             )
-            return load_cached_database(self.inventories_cache_filepath)
+            data = load_cached_database(self.inventories_cache_filepath)
+            return restore_cached_classifications(
+                data, self.inventories_metadata_cache_filepath
+            )
 
         # else, extract the database, pickle it for next time and return it
         print("Cannot find cached inventories. Will create them now for next time...")
@@ -936,6 +945,12 @@ class NewDatabase:
             (FILEPATH_SHIPS, "3.10"),
             (FILEPATH_STEEL, "3.9"),
         ]
+        if Version(self.version) >= Version("3.11"):
+            # These two re/afforestation datasets use suppliers first available
+            # in ecoinvent 3.11. Their workbook contains 3.12 identifiers so
+            # that premise can migrate them backwards when building with 3.11.
+            filepaths.append((FILEPATH_AFFORESTATION_INVENTORIES, "3.12"))
+
         for filepath in filepaths:
             # make an exception for FILEPATH_OIL_GAS_INVENTORIES
             # ecoinvent version is 3.9

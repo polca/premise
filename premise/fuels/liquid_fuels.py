@@ -245,6 +245,7 @@ class SyntheticFuelsMixin:
                         mapping=mapping,
                         system_model=self.system_model,
                         production_volumes=self.iam_data.production_volumes,
+                        flip_treatment_supplier_sign=True,
                     )
 
                     self.update_fuel_carbon_dioxide_emissions(
@@ -300,6 +301,7 @@ class SyntheticFuelsMixin:
                         mapping=mapping,
                         system_model=self.system_model,
                         production_volumes=self.iam_data.production_volumes,
+                        flip_treatment_supplier_sign=True,
                     )
 
                 self.update_fuel_carbon_dioxide_emissions(
@@ -341,6 +343,7 @@ class SyntheticFuelsMixin:
                     mapping=mapping,
                     system_model=self.system_model,
                     production_volumes=self.iam_data.production_volumes,
+                    flip_treatment_supplier_sign=True,
                 )
 
                 self.update_fuel_carbon_dioxide_emissions(
@@ -378,6 +381,7 @@ class SyntheticFuelsMixin:
                     mapping=mapping,
                     system_model=self.system_model,
                     production_volumes=self.iam_data.production_volumes,
+                    flip_treatment_supplier_sign=True,
                 )
 
                 self.update_fuel_carbon_dioxide_emissions(
