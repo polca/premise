@@ -6,7 +6,7 @@
 
 ---
 
-direct air capture (solvent, gas heat) with storage:
+direct air capture (solvent, high-temp, gas heat) with storage:
   iam_aliases:
     remind: Emi|CO2|CDR|+|DACCS
     remind-eu: Emi|CO2|CDR|+|DACCS
@@ -29,7 +29,7 @@ direct air capture (solvent, gas heat) with storage:
       - heat pump
       - hydrogen
 
-direct air capture (solvent, industrial steam heat) with storage:
+direct air capture (solvent, high-temp, industrial steam heat) with storage:
   iam_aliases:
     remind: Emi|CO2|CDR|+|DACCS
     remind-eu: Emi|CO2|CDR|+|DACCS
@@ -43,17 +43,11 @@ direct air capture (solvent, industrial steam heat) with storage:
     fltr:
       - carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with industrial steam heat, and grid electricity
 
-direct air capture (solvent, heat pump) with storage:
+direct air capture (solvent, high-temp, heat pump) with storage:
   iam_aliases:
-    remind: Emi|CO2|CDR|+|DACCS
-    remind-eu: Emi|CO2|CDR|+|DACCS
-    tiam-ucl: Carbon Capture|Storage|Direct Air Capture
     witch: Carbon Sequestration|Direct Air Capture|Solvent
   energy_use_aliases:
     electricity:
-      remind: FE|CDR|DAC|+|Electricity
-      remind-eu: FE|CDR|DAC|+|Electricity
-      tiam-ucl: Secondary Energy|Consumption|Direct Air Capture|Electricity
       witch:
         - Final Energy|Carbon Management|Direct Air Capture|Solvent|Electricity|PV
         - Final Energy|Carbon Management|Direct Air Capture|Solvent|Electricity|CSP
@@ -61,7 +55,7 @@ direct air capture (solvent, heat pump) with storage:
     fltr:
       - carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with heat pump heat, and grid electricity
 
-direct air capture (solvent, hydrogen heat) with storage:
+direct air capture (solvent, high-temp, hydrogen heat) with storage:
   iam_aliases:
     remind: Emi|CO2|CDR|+|DACCS
     remind-eu: Emi|CO2|CDR|+|DACCS
@@ -73,7 +67,7 @@ direct air capture (solvent, hydrogen heat) with storage:
     fltr:
       - carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with hydrogen heat, and grid electricity
 
-direct air capture (solvent) with storage:
+direct air capture (solvent, high-temp) with storage:
   iam_aliases:
     gcam: Carbon Sequestration|Direct Air Capture|Solvent
   ecoinvent_aliases:
@@ -85,13 +79,19 @@ direct air capture (solvent) with storage:
       - heat pump
       - hydrogen
 
-direct air capture (sorbent, heat pump) with storage:
+direct air capture (sorbent, low-temp, heat pump) with storage:
   iam_aliases:
+    remind: Emi|CO2|CDR|+|DACCS
+    remind-eu: Emi|CO2|CDR|+|DACCS
+    tiam-ucl: Carbon Capture|Storage|Direct Air Capture
     witch: Carbon Sequestration|Direct Air Capture|Sorbent
     message: Carbon Capture|Direct Air Capture|Sorbent
     image: Carbon Removal|Geological Storage|Direct Air Capture|Solid Sorbent
   energy_use_aliases:
     electricity:
+      remind: FE|CDR|DAC|+|Electricity
+      remind-eu: FE|CDR|DAC|+|Electricity
+      tiam-ucl: Secondary Energy|Consumption|Direct Air Capture|Electricity
       witch: Final Energy|Carbon Management|Direct Air Capture|Sorbent|Electricity|CSP
       message: Final Energy|Carbon Management|Direct Air Capture|Sorbent|Electricity
       image: Final Energy|Carbon Management|Direct Air Capture|Solid Sorbent|Electricity
@@ -99,7 +99,7 @@ direct air capture (sorbent, heat pump) with storage:
     fltr:
       - carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2, with heat pump heat, and grid electricity
 
-direct air capture (sorbent, gas heat) with storage:
+direct air capture (sorbent, low-temp, gas heat) with storage:
   iam_aliases:
     witch: Carbon Sequestration|Direct Air Capture|Sorbent
   energy_use_aliases:
@@ -114,7 +114,7 @@ direct air capture (sorbent, gas heat) with storage:
       - heat pump
       - hydrogen
 
-direct air capture (sorbent) with storage:
+direct air capture (sorbent, low-temp) with storage:
   iam_aliases:
     gcam: Carbon Sequestration|Direct Air Capture|Sorbent
   ecoinvent_aliases:
