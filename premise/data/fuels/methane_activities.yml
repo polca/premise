@@ -24,4 +24,7 @@ methane, synthetic:
   - name: methane, synthetic, gaseous, 5 bar, from coal-based hydrogen, at fuelling station
     reference product: methane, high pressure
 
+methane, from coal:
+  - name: methane, synthetic, gaseous, 5 bar, from coal-based hydrogen, at fuelling station
+    reference product: methane, high pressure
 
