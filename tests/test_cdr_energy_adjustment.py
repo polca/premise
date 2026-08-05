@@ -10,6 +10,7 @@ from premise.data_collection import IAMDataCollection
 from premise.filesystem_constants import INVENTORY_DIR
 
 CDR_INVENTORY = INVENTORY_DIR / "lci-carbon-capture.xlsx"
+AFFORESTATION_INVENTORY = INVENTORY_DIR / "lci-afforestation.xlsx"
 
 
 def get_cdr_transform(
@@ -622,8 +623,8 @@ def test_hydrogen_dac_lower_bound_uses_delivered_heat():
     ] == pytest.approx(5.3 / (9.18 * 0.5))
 
 
-def get_inventory_activity(name):
-    workbook = load_workbook(CDR_INVENTORY, data_only=True, read_only=True)
+def get_inventory_activity(name, inventory=CDR_INVENTORY):
+    workbook = load_workbook(inventory, data_only=True, read_only=True)
     worksheet = workbook["DAC"]
     try:
         rows = list(worksheet.iter_rows(values_only=True))
@@ -715,7 +716,7 @@ def test_dac_hydrogen_proxy_inventories_replace_natural_gas_heat(
 def test_afforestation_inventories_have_importable_forestry_amounts(
     activity_name, input_name, amount
 ):
-    _, exchanges = get_inventory_activity(activity_name)
+    _, exchanges = get_inventory_activity(activity_name, AFFORESTATION_INVENTORY)
 
     production = next(exc for exc in exchanges if exc["type"] == "production")
     assert production["name"] == activity_name
@@ -786,18 +787,18 @@ def test_hydrogen_ccs_inventory_uses_inferred_antonini_heat_and_electricity():
     assert "former CEMCAP-derived 4.0556 MJ/kg CO2" in comment
     assert "Final CO2 compression electricity is omitted" in comment
 
-    assert not any(exc["name"] == "market for monoethanolamine" for exc in exchanges)
     assert not any(
         exc["name"] == "market group for electricity, low voltage"
         and "final compression" in exc.get("comment", "").lower()
         for exc in exchanges
     )
 
-    mdea = next(
-        exc for exc in exchanges if exc["name"] == "market for methyldiethanolamine"
+    mea = next(exc for exc in exchanges if exc["name"] == "market for monoethanolamine")
+    assert mea["amount"] == pytest.approx(3.4e-5)
+    assert mea["reference product"] == "monoethanolamine"
+    assert not any(
+        exc["name"] == "market for methyldiethanolamine" for exc in exchanges
     )
-    assert mdea["amount"] == pytest.approx(3.4e-5)
-    assert mdea["reference product"] == "methyldiethanolamine"
 
     electricity = next(
         exc

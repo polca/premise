@@ -2,6 +2,55 @@
 
 All notable changes to this project are documented in this file.
 
+## [2.4.8]
+
+### Added
+- Mapped the IMAGE medium- and heavy-duty battery-electric truck energy-service
+  and electricity variables to the 18 t and 40 t premise truck inventories.
+
+### Changed
+- Updated the bundled IAM scenario download source to Zenodo record 21790981.
+- Translated premise's hyphenated IMAGE pathway names to the underscore-based
+  filenames used by the new archive while retaining the existing public
+  pathway names and local cache filenames, and accepted both naming conventions
+  when loading local scenario files.
+
+### Fixed
+- Rescaled uncertainty parameters alongside corrected Swiss reservoir-water
+  exchanges, preventing retained source-database lognormal distributions from
+  sampling around the pre-correction water amount when
+  `keep_source_db_uncertainty=True`.
+
+### Tests
+- Added regression coverage for uncertainty-aware hydropower water corrections,
+  deterministic fallback from zero amounts, and activity/exchange filtering.
+- Added regression coverage for the new scenario download URLs and IMAGE
+  battery-electric truck mappings.
+
+## [2.4.7]
+
+### Fixed
+- Excluded used-cooking-oil biodiesel with CCS from consequential diesel
+  blends through the existing constrained-supplier marginal-mix mechanism,
+  including consistent IAM variable, lead-time, and lifetime labels.
+- Wrote cutoff fuel-market exchanges to waste-treatment suppliers with the
+  waste-convention sign after share normalization, preventing unintended
+  negative fuel burdens in liquid-fuel, gas, and hydrogen markets.
+
+### Documentation
+- Documented consequential constrained-fuel handling and cutoff treatment
+  supplier sign conventions.
+
+### Tests
+- Added regression coverage for the used-cooking-oil consequential constraint
+  and cutoff treatment-supplier sign handling.
+- Refreshed deterministic GWP regression baselines across supported ecoinvent
+  versions for the resulting fuel-supply-chain changes.
+- Corrected the biomethane SMR+CCS inventory test to require its
+  monoethanolamine input instead of methyldiethanolamine.
+- Made the ecoinvent 3.12 cutoff superstructure smoke test select a registered
+  GWP method across version-prefixed Brightway method tuples.
+
 ## [2.4.6]
 
 ### Added

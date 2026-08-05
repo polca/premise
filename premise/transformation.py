@@ -772,6 +772,11 @@ class BaseTransformation:
 
         return dataset
 
+    @staticmethod
+    def is_treatment_supplier(dataset: dict) -> bool:
+        """Return whether a supplier represents a waste-treatment activity."""
+        return dataset.get("name", "").strip().lower().startswith("treatment")
+
     def process_and_add_markets(
         self,
         name,
@@ -783,6 +788,7 @@ class BaseTransformation:
         system_model="cut-off",
         blacklist=None,
         conversion_factor=None,
+        flip_treatment_supplier_sign=False,
     ):
         """
         Generalized method to create and add regionalized market datasets.
@@ -930,6 +936,13 @@ class BaseTransformation:
                         exc["amount"] /= total_share
             else:
                 continue
+
+            if flip_treatment_supplier_sign and system_model == "cutoff":
+                for exc in market_dataset["exchanges"]:
+                    if exc["type"] == "technosphere" and self.is_treatment_supplier(
+                        exc
+                    ):
+                        exc["amount"] = -abs(exc["amount"])
 
             if additional_exchanges_fn:
                 additional_exchanges_fn(market_dataset)
