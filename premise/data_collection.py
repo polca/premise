@@ -23,7 +23,11 @@ from prettytable import PrettyTable
 from .filesystem_constants import DATA_DIR, VARIABLES_DIR
 from .geomap import Geomap
 from .marginal_mixes import consequential_method
-from .scenario_downloader import download_csv
+from .scenario_downloader import (
+    download_csv,
+    get_scenario_file_stems,
+    get_scenario_url,
+)
 
 IAM_ELEC_VARS = VARIABLES_DIR / "electricity.yaml"
 IAM_FUELS_VARS = VARIABLES_DIR / "fuels.yaml"
@@ -1276,8 +1280,10 @@ class IAMDataCollection:
 
         """
 
-        # Build file name based on self.model and self.pathway
-        file_name = f"{self.model}_{self.pathway}"
+        # Build accepted file names based on self.model and self.pathway. IMAGE
+        # files can use either premise's hyphens or the archive's underscores.
+        file_stems = get_scenario_file_stems(self.model, self.pathway)
+        file_name = file_stems[0]
 
         # Possible file extensions
         extensions = [".csv", ".mif", ".xls", ".xlsx"]
@@ -1285,11 +1291,14 @@ class IAMDataCollection:
         file_path = None
 
         # Check for file with any of the possible extensions
-        for ext in extensions:
-            potential_file_path = Path(filedir) / (file_name + ext)
-            if potential_file_path.exists():
-                file_path = potential_file_path
-                print(f"Found file: {file_path.stem}")
+        for file_stem in file_stems:
+            for ext in extensions:
+                potential_file_path = Path(filedir) / (file_stem + ext)
+                if potential_file_path.exists():
+                    file_path = potential_file_path
+                    print(f"Found file: {file_path.stem}")
+                    break
+            if file_path is not None:
                 break
 
         if file_path is None:
@@ -1302,7 +1311,7 @@ class IAMDataCollection:
             else:
                 # If key is provided, download the file
                 download_folder = filedir
-                url = f"https://zenodo.org/records/19049274/files/{file_name}.csv"
+                url = get_scenario_url(self.model, self.pathway)
                 file_path = download_csv(file_name + ".csv", url, download_folder)
 
         # Decrypt the file if a key is provided

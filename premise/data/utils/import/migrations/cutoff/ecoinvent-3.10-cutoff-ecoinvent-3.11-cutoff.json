@@ -12192,6 +12192,20 @@
         "reference product": "battery, Li-ion, NMC622, rechargeable",
         "location": "GLO"
       }
+    },
+    {
+      "source": {
+        "unit": "kg",
+        "name": "market for monoethanolamine",
+        "reference product": "monoethanolamine",
+        "location": "GLO"
+      },
+      "target": {
+        "unit": "kg",
+        "name": "market for methyldiethanolamine",
+        "reference product": "methyldiethanolamine",
+        "location": "RER"
+      }
     }
   ],
   "disaggregate": [

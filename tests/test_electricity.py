@@ -1,4 +1,5 @@
 # content of test_electricity.py
+import math
 import os
 from pathlib import Path
 
@@ -41,6 +42,99 @@ def get_db():
     ]
     version = 3.5
     return dummy_db, version
+
+
+def test_correct_hydropower_water_emissions_rescales_uncertainty():
+    original_amount = 0.029221678
+    water_to_air = {
+        "name": "Water",
+        "categories": ("air",),
+        "amount": original_amount,
+        "type": "biosphere",
+        "unit": "cubic meter",
+        "uncertainty type": 2,
+        "loc": math.log(original_amount),
+        "scale": 0.4,
+    }
+    unmatched_exchange = {
+        "name": "Water",
+        "categories": ("soil",),
+        "amount": 2.0,
+        "type": "biosphere",
+        "unit": "cubic meter",
+        "uncertainty type": 2,
+        "loc": math.log(2.0),
+        "scale": 0.2,
+    }
+    non_swiss_water = {
+        "name": "Water",
+        "categories": ("air",),
+        "amount": 0.5,
+        "type": "biosphere",
+        "unit": "cubic meter",
+        "uncertainty type": 2,
+        "loc": math.log(0.5),
+        "scale": 0.3,
+    }
+    electricity = Electricity.__new__(Electricity)
+    electricity.database = [
+        {
+            "name": "electricity production, hydro, reservoir, alpine region",
+            "location": "CH",
+            "unit": "kilowatt hour",
+            "exchanges": [water_to_air, unmatched_exchange],
+        },
+        {
+            "name": "electricity production, hydro, reservoir, alpine region",
+            "location": "FR",
+            "unit": "kilowatt hour",
+            "exchanges": [non_swiss_water],
+        },
+    ]
+
+    electricity.correct_hydropower_water_emissions()
+
+    assert water_to_air["amount"] == pytest.approx(0.00175)
+    assert math.exp(water_to_air["loc"]) == pytest.approx(water_to_air["amount"])
+    assert water_to_air["scale"] == pytest.approx(0.4)
+    assert water_to_air["uncertainty type"] == 2
+    assert unmatched_exchange["amount"] == pytest.approx(2.0)
+    assert unmatched_exchange["loc"] == pytest.approx(math.log(2.0))
+    assert non_swiss_water["amount"] == pytest.approx(0.5)
+    assert non_swiss_water["loc"] == pytest.approx(math.log(0.5))
+
+
+def test_correct_hydropower_water_emissions_handles_zero_amount():
+    water_to_reservoir = {
+        "name": "Water",
+        "categories": ("water",),
+        "amount": 0.0,
+        "type": "biosphere",
+        "unit": "cubic meter",
+        "uncertainty type": 2,
+        "loc": 0.0,
+        "scale": 0.4,
+        "minimum": 0.0,
+        "maximum": 1.0,
+        "negative": False,
+    }
+    electricity = Electricity.__new__(Electricity)
+    electricity.database = [
+        {
+            "name": "electricity production, hydro, reservoir, alpine region",
+            "location": "CH",
+            "unit": "kilowatt hour",
+            "exchanges": [water_to_reservoir],
+        }
+    ]
+
+    electricity.correct_hydropower_water_emissions()
+
+    assert water_to_reservoir["amount"] == pytest.approx(0.80825)
+    assert water_to_reservoir["loc"] == pytest.approx(0.80825)
+    assert water_to_reservoir["uncertainty type"] == 0
+    for field in ("scale", "shape", "minimum", "maximum", "negative"):
+        assert field not in water_to_reservoir
 
 
 # This won't work with PRs because PRs from outside contributors don't have

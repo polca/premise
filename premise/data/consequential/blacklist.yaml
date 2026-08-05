@@ -46,7 +46,9 @@
   replacement:
     name: market for aluminium oxide, non-metallurgical
     reference product: aluminium oxide, non-metallurgical
-    location: IAI Area, EU27 & EFTA
+    location:
+      "<3.12": IAI Area, EU27 & EFTA
+      ">=3.12": IAI Area, Western and Central Europe
 
 - name: treatment of aluminium scrap, post-consumer, prepared for recycling, at refiner
   reference product: aluminium, cast alloy
