@@ -74,6 +74,9 @@ heat, buildings, from district heating:
           - group
           - generic
     iam_aliases:
+      open-prom:
+        - Final Energy|Residential|Steam
+        - Final Energy|Commercial|Services|Steam
       remind: FE|Buildings|Heating|District Heating
       remind-eu: FE|Buildings|Heating|District Heating
       gcam: Final Energy|Heat|Buildings|District Heat
@@ -88,6 +91,9 @@ heat, buildings, from hydrogen boiler:
   ecoinvent_aliases:
     fltr: heat, residential, by combustion of hydrogen using boiler, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid
   iam_aliases:
+    open-prom:
+      - Final Energy|Residential|Hydrogen
+      - Final Energy|Commercial|Services|Hydrogen
     remind: FE|Buildings|Heating|Hydrogen
     remind-eu: FE|Buildings|Heating|Hydrogen
     gcam: Final Energy|Heat|Buildings|Hydrogen
@@ -120,6 +126,9 @@ heat, buildings, from natural gas:
     ecoinvent_aliases:
         fltr: heat production, natural gas, at boiler condensing modulating <100kW
     iam_aliases:
+      open-prom:
+        - Final Energy|Residential|Natural Gas
+        - Final Energy|Commercial|Services|Natural Gas
       remind: FE|Buildings|Heating|Gases
       remind-eu: FE|Buildings|Heating|Gases
       gcam: Final Energy|Heat|Buildings|Gas
@@ -161,6 +170,11 @@ heat, buildings, from coal stove:
     ecoinvent_aliases:
         fltr: heat production, hard coal briquette, stove 5-15kW
     iam_aliases:
+      open-prom:
+        - Final Energy|Residential|Hard Coal, Coke and Other Solids
+        - Final Energy|Residential|Lignite
+        - Final Energy|Commercial|Services|Hard Coal, Coke and Other Solids
+        - Final Energy|Commercial|Services|Lignite
       remind: FE|Buildings|Solids|Coal
       remind-eu: FE|Buildings|Solids|Coal
       gcam: Final Energy|Heat|Buildings|Coal
@@ -176,6 +190,9 @@ heat, buildings, from wood logs heater:
       fltr: heat production, mixed logs, at wood heater 6kW
       mask: state-of-the-art 2014
     iam_aliases:
+      open-prom:
+        - Final Energy|Residential|Biomass and Waste
+        - Final Energy|Commercial|Services|Biomass and Waste
       remind: FE|Buildings|Solids|Biomass|+|Traditional
       remind-eu: FE|Buildings|Solids|Biomass|+|Traditional
       gcam: Final Energy|Heat|Buildings|Biomass
@@ -226,6 +243,9 @@ heat, buildings, from light fuel oil boiler:
     ecoinvent_aliases:
       fltr: heat production, light fuel oil, at boiler 100kW condensing, non-modulating
     iam_aliases:
+      open-prom:
+        - Final Energy|Residential|Residual Fuel Oil
+        - Final Energy|Commercial|Services|Residual Fuel Oil
       remind: FE|Buildings|Liquids|Fossil|+|Oil
       remind-eu: FE|Buildings|Liquids|Fossil|+|Oil
       image:
@@ -244,6 +264,17 @@ heat, industrial, from hydrogen:
     ecoinvent_aliases:
       fltr: hydrogen, burned in gas turbine 1GW
     iam_aliases:
+      open-prom:
+        - Final Energy|Industry|Chemicals|Hydrogen
+        - Final Energy|Industry|Engineering|Hydrogen
+        - Final Energy|Industry|Food Drink and Tobacco|Hydrogen
+        - Final Energy|Industry|Iron and Steel|Hydrogen
+        - Final Energy|Industry|Non Ferrous Metals|Hydrogen
+        - Final Energy|Industry|Non Metallic Minerals|Hydrogen
+        - Final Energy|Industry|Ore Extraction|Hydrogen
+        - Final Energy|Industry|Other Industrial sectors|Hydrogen
+        - Final Energy|Industry|Paper and Pulp|Hydrogen
+        - Final Energy|Industry|Textiles|Hydrogen
       image: Final Energy|Industry|Other Sector|Hydrogen
       gcam: Final Energy|Heat|Industry|Hydrogen
       message: Final Energy|Industry|Other Sector|Hydrogen|Combustion
@@ -266,6 +297,17 @@ heat, industrial, from heat pump:
       fltr: heat production, water-water heat pump, industrial, 100kW
       mask: steam
     iam_aliases:
+      open-prom:
+        - Final Energy|Industry|Chemicals|Electricity
+        - Final Energy|Industry|Engineering|Electricity
+        - Final Energy|Industry|Food Drink and Tobacco|Electricity
+        - Final Energy|Industry|Iron and Steel|Electricity
+        - Final Energy|Industry|Non Ferrous Metals|Electricity
+        - Final Energy|Industry|Non Metallic Minerals|Electricity
+        - Final Energy|Industry|Ore Extraction|Electricity
+        - Final Energy|Industry|Other Industrial sectors|Electricity
+        - Final Energy|Industry|Paper and Pulp|Electricity
+        - Final Energy|Industry|Textiles|Electricity
       remind: SE|Heat|Electricity|Heat Pump
       remind-eu: SE|Heat|Electricity|Heat Pump
       image: Final Energy|Industry|Other Sector|Electricity
@@ -277,6 +319,17 @@ heat, industrial, from natural gas CHP:
         name: heat and power co-generation, natural gas, conventional power plant, 100MW electrical
         reference product: heat
     iam_aliases:
+      open-prom:
+        - Final Energy|Industry|Chemicals|Natural Gas
+        - Final Energy|Industry|Engineering|Natural Gas
+        - Final Energy|Industry|Food Drink and Tobacco|Natural Gas
+        - Final Energy|Industry|Iron and Steel|Natural Gas
+        - Final Energy|Industry|Non Ferrous Metals|Natural Gas
+        - Final Energy|Industry|Non Metallic Minerals|Natural Gas
+        - Final Energy|Industry|Ore Extraction|Natural Gas
+        - Final Energy|Industry|Other Industrial sectors|Natural Gas
+        - Final Energy|Industry|Paper and Pulp|Natural Gas
+        - Final Energy|Industry|Textiles|Natural Gas
       remind: SE|Heat|Gas|Combined Heat and Power
       remind-eu: SE|Heat|Gas|Combined Heat and Power
       image: Final Energy|Industry|Other Sector|Gases|Fossil
@@ -298,6 +351,27 @@ heat, industrial, from coal CHP:
         name: heat and power co-generation, hard coal
         reference product: heat
     iam_aliases:
+      open-prom:
+        - Final Energy|Industry|Chemicals|Hard Coal, Coke and Other Solids
+        - Final Energy|Industry|Engineering|Hard Coal, Coke and Other Solids
+        - Final Energy|Industry|Food Drink and Tobacco|Hard Coal, Coke and Other Solids
+        - Final Energy|Industry|Iron and Steel|Hard Coal, Coke and Other Solids
+        - Final Energy|Industry|Non Ferrous Metals|Hard Coal, Coke and Other Solids
+        - Final Energy|Industry|Non Metallic Minerals|Hard Coal, Coke and Other Solids
+        - Final Energy|Industry|Ore Extraction|Hard Coal, Coke and Other Solids
+        - Final Energy|Industry|Other Industrial sectors|Hard Coal, Coke and Other Solids
+        - Final Energy|Industry|Paper and Pulp|Hard Coal, Coke and Other Solids
+        - Final Energy|Industry|Textiles|Hard Coal, Coke and Other Solids
+        - Final Energy|Industry|Chemicals|Lignite
+        - Final Energy|Industry|Engineering|Lignite
+        - Final Energy|Industry|Food Drink and Tobacco|Lignite
+        - Final Energy|Industry|Iron and Steel|Lignite
+        - Final Energy|Industry|Non Ferrous Metals|Lignite
+        - Final Energy|Industry|Non Metallic Minerals|Lignite
+        - Final Energy|Industry|Ore Extraction|Lignite
+        - Final Energy|Industry|Other Industrial sectors|Lignite
+        - Final Energy|Industry|Paper and Pulp|Lignite
+        - Final Energy|Industry|Textiles|Lignite
       remind: SE|Heat|Coal|Combined Heat and Power
       remind-eu: SE|Heat|Coal|Combined Heat and Power
       image: Final Energy|Industry|Other Sector|Solids|Fossil
@@ -313,6 +387,17 @@ heat, industrial, from biomass CHP:
         - renewable
         - state
     iam_aliases:
+      open-prom:
+        - Final Energy|Industry|Chemicals|Biomass and Waste
+        - Final Energy|Industry|Engineering|Biomass and Waste
+        - Final Energy|Industry|Food Drink and Tobacco|Biomass and Waste
+        - Final Energy|Industry|Iron and Steel|Biomass and Waste
+        - Final Energy|Industry|Non Ferrous Metals|Biomass and Waste
+        - Final Energy|Industry|Non Metallic Minerals|Biomass and Waste
+        - Final Energy|Industry|Ore Extraction|Biomass and Waste
+        - Final Energy|Industry|Other Industrial sectors|Biomass and Waste
+        - Final Energy|Industry|Paper and Pulp|Biomass and Waste
+        - Final Energy|Industry|Textiles|Biomass and Waste
       remind: SE|Heat|Biomass|+|Combined Heat and Power
       remind-eu: SE|Heat|Biomass|+|Combined Heat and Power
       image: Final Energy|Industry|Other Sector|Solids|Biomass
@@ -323,6 +408,17 @@ heat, industrial, from light fuel oil boiler:
     ecoinvent_aliases:
       fltr: heat production, light fuel oil, at industrial furnace 1MW
     iam_aliases:
+      open-prom:
+        - Final Energy|Industry|Chemicals|Residual Fuel Oil
+        - Final Energy|Industry|Engineering|Residual Fuel Oil
+        - Final Energy|Industry|Food Drink and Tobacco|Residual Fuel Oil
+        - Final Energy|Industry|Iron and Steel|Residual Fuel Oil
+        - Final Energy|Industry|Non Ferrous Metals|Residual Fuel Oil
+        - Final Energy|Industry|Non Metallic Minerals|Residual Fuel Oil
+        - Final Energy|Industry|Ore Extraction|Residual Fuel Oil
+        - Final Energy|Industry|Other Industrial sectors|Residual Fuel Oil
+        - Final Energy|Industry|Paper and Pulp|Residual Fuel Oil
+        - Final Energy|Industry|Textiles|Residual Fuel Oil
       image: Final Energy|Industry|Other Sector|Liquids|Fossil
       gcam: Final Energy|Heat|Industry|Oil
       message: Final Energy|Industry|Other Sector|Liquids|Oil|Thermal
@@ -338,6 +434,17 @@ heat, industrial, from geothermal:
     ecoinvent_aliases:
       fltr: heat production, deep geothermal
     iam_aliases:
+      open-prom:
+        - Final Energy|Industry|Chemicals|Geothermal and other renewable sources
+        - Final Energy|Industry|Engineering|Geothermal and other renewable sources
+        - Final Energy|Industry|Food Drink and Tobacco|Geothermal and other renewable sources
+        - Final Energy|Industry|Iron and Steel|Geothermal and other renewable sources
+        - Final Energy|Industry|Non Ferrous Metals|Geothermal and other renewable sources
+        - Final Energy|Industry|Non Metallic Minerals|Geothermal and other renewable sources
+        - Final Energy|Industry|Ore Extraction|Geothermal and other renewable sources
+        - Final Energy|Industry|Other Industrial sectors|Geothermal and other renewable sources
+        - Final Energy|Industry|Paper and Pulp|Geothermal and other renewable sources
+        - Final Energy|Industry|Textiles|Geothermal and other renewable sources
       remind: SE|Heat|+|Geothermal
       remind-eu: SE|Heat|+|Geothermal
       # message: Final Energy|Industry|Other Sector
@@ -346,6 +453,17 @@ heat, industrial, from solar thermal:
     ecoinvent_aliases:
       fltr: heat production, at 110 MW concentrating solar power plant, with thermal energy storage
     iam_aliases:
+      open-prom:
+        - Final Energy|Industry|Chemicals|Solar
+        - Final Energy|Industry|Engineering|Solar
+        - Final Energy|Industry|Food Drink and Tobacco|Solar
+        - Final Energy|Industry|Iron and Steel|Solar
+        - Final Energy|Industry|Non Ferrous Metals|Solar
+        - Final Energy|Industry|Non Metallic Minerals|Solar
+        - Final Energy|Industry|Ore Extraction|Solar
+        - Final Energy|Industry|Other Industrial sectors|Solar
+        - Final Energy|Industry|Paper and Pulp|Solar
+        - Final Energy|Industry|Textiles|Solar
       remind: SE|Heat|+|Solar
       remind-eu: SE|Heat|+|Solar
       gcam: Final Energy|Heat|Industry|Solar

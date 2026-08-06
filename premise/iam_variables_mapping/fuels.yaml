@@ -125,6 +125,7 @@ natural gas:
   biogenic_share: 0
   iam_aliases:
     gcam: Secondary Energy|Production|Natural Gas|Gas
+    open-prom: Final Energy|Natural Gas
     remind: SE|Gases|Fossil|+|Natural Gas
     remind-eu: SE|Gases|Fossil|+|Natural Gas
     tiam-ucl: Secondary Energy|Liquids|Oil|Natural Gas Liquids
@@ -183,6 +184,7 @@ heavy fuel oil:
   iam_aliases:
     tiam-ucl: Secondary Energy|Liquids|Oil|Heavy Fuel Oil
     gcam: Secondary Energy|Production|Refined Liquids|Oil|Heavy Fuel Oil
+    open-prom: Final Energy|Residual Fuel Oil
     remind: SE|Liquids|Fossil|+|Oil|Heavy Fuel Oil
     remind-eu: SE|Liquids|Fossil|+|Oil|Heavy Fuel Oil
     image: Secondary Energy|Consumption|Liquids|Fossil|Heavy Fuel Oil
@@ -321,6 +323,7 @@ diesel:
   iam_aliases:
     tiam-ucl: Secondary Energy|Liquids|Oil|Diesel
     gcam: Secondary Energy|Production|Refined Liquids|Oil|Diesel
+    open-prom: Final Energy|Fossil Diesel Oil
     remind: SE|Liquids|Fossil|+|Oil|Diesel
     remind-eu: SE|Liquids|Fossil|+|Oil|Diesel
     image: Secondary Energy|Consumption|Liquids|Fossil|Diesel
@@ -358,6 +361,7 @@ gasoline:
   iam_aliases:
     tiam-ucl: Secondary Energy|Liquids|Oil|Gasoline
     gcam: Secondary Energy|Production|Refined Liquids|Oil|Gasoline
+    open-prom: Final Energy|Fossil Gasoline
     remind: SE|Liquids|Fossil|+|Oil|Gasoline
     remind-eu: SE|Liquids|Fossil|+|Oil|Gasoline
     image: Secondary Energy|Consumption|Liquids|Fossil|Gasoline
@@ -652,6 +656,7 @@ hydrogen, from electrolysis, PEM:
   iam_aliases:
     tiam-ucl: Secondary Energy|Hydrogen|Electrolysis|Hydrogen
     gcam: Secondary Energy|Production|Hydrogen|Electrolysis
+    open-prom: Secondary Energy|Hydrogen|Electricity
     remind: SE|Hydrogen|+|Electricity
     remind-eu: SE|Hydrogen|+|Electricity
     image:
@@ -690,6 +695,7 @@ hydrogen, from electrolysis, PEM, from Solar PV:
   biogenic_share: 1
   iam_aliases:
     image: Secondary Energy|Hydrogen|Electricity|PEM Electrolyzer w/ PV
+    open-prom: Secondary Energy|Hydrogen|Solar
   ecoinvent_aliases:
     fltr: hydrogen production, gaseous, 30 bar, from PEM electrolysis, from open ground solar
       photovoltaic electricity
@@ -703,6 +709,7 @@ hydrogen, from electrolysis, PEM, from onshore wind:
   biogenic_share: 1
   iam_aliases:
     image: Secondary Energy|Hydrogen|Electricity|PEM Electrolyzer w/ Onshore Wind
+    open-prom: Secondary Energy|Hydrogen|Wind
   ecoinvent_aliases:
     fltr: hydrogen production, gaseous, 30 bar, from PEM electrolysis, from onshore
       wind electricity
@@ -799,6 +806,7 @@ hydrogen, from biomass:
   iam_aliases:
     tiam-ucl: Secondary Energy|Hydrogen|Biomass|Hydrogen|w/o CCS
     gcam: Secondary Energy|Production|Hydrogen|Biomass
+    open-prom: Secondary Energy|Hydrogen|Biofuels|w/o CCS
     remind: SE|Hydrogen|Biomass|+|w/o CC
     remind-eu: SE|Hydrogen|Biomass|+|w/o CC
     image: Secondary Energy|Hydrogen|Biomass|w/o CCS
@@ -820,6 +828,7 @@ hydrogen, from biomass, with CCS:
   iam_aliases:
     tiam-ucl: Secondary Energy|Hydrogen|Biomass|Hydrogen|w CCS
     gcam: Secondary Energy|Production|Hydrogen|Biomass CCS
+    open-prom: Secondary Energy|Hydrogen|Biofuels|w/ CCS
     remind: SE|Hydrogen|Biomass|+|w/ CC
     remind-eu: SE|Hydrogen|Biomass|+|w/ CC
     image: Secondary Energy|Hydrogen|Biomass|w/ CCS
@@ -840,6 +849,7 @@ hydrogen, from coal:
   biogenic_share: 0
   iam_aliases:
     tiam-ucl: Secondary Energy|Hydrogen|Coal|Hydrogen|w/o CCS
+    open-prom: Secondary Energy|Hydrogen|Coal|w/o CCS
     remind: SE|Hydrogen|Coal|+|w/o CC
     remind-eu: SE|Hydrogen|Coal|+|w/o CC
     image: Secondary Energy|Hydrogen|Coal|w/o CCS
@@ -864,6 +874,7 @@ hydrogen, from coal, with CCS:
   iam_aliases:
     tiam-ucl: Secondary Energy|Hydrogen|Coal|Hydrogen|w CCS
     gcam: Secondary Energy|Production|Hydrogen|Coal CCS
+    open-prom: Secondary Energy|Hydrogen|Coal|w/ CCS
     remind: SE|Hydrogen|Coal|+|w/ CC
     remind-eu: SE|Hydrogen|Coal|+|w/ CC
     image: Secondary Energy|Hydrogen|Coal|w/ CCS
@@ -883,6 +894,7 @@ hydrogen, from natural gas:
   iam_aliases:
     tiam-ucl: Secondary Energy|Hydrogen|Natural Gas|Hydrogen|w/o CCS
     gcam: Secondary Energy|Production|Hydrogen|Gas
+    open-prom: Secondary Energy|Hydrogen|Gas|w/o CCS
     remind: SE|Hydrogen|Gas|+|w/o CC
     remind-eu: SE|Hydrogen|Gas|+|w/o CC
     image: Secondary Energy|Hydrogen|Gas|w/o CCS
@@ -908,6 +920,7 @@ hydrogen, from natural gas, with CCS:
   co2: 0
   biogenic_share: 0
   iam_aliases:
+    open-prom: Secondary Energy|Hydrogen|Gas|w/ CCS
     remind: SE|Hydrogen|Gas|+|w/ CC
     remind-eu: SE|Hydrogen|Gas|+|w/ CC
     image: Secondary Energy|Hydrogen|Gas|w/ CCS
@@ -1355,6 +1368,7 @@ liquefied petroleum gas:
     - liquefied petroleum gas production, petroleum refinery operation
     - market for liquefied petroleum gas
   iam_aliases:
+    open-prom: Final Energy|Liquefied Petroleum Gas
     tiam-ucl: Secondary Energy|Liquids|Oil|Liquid Petroleum Gas
 liquefied petroleum gas, synthetic, from natural gas:
   lhv:
@@ -1720,6 +1734,7 @@ kerosene:
     - kerosene production, petroleum refinery operation
   iam_aliases:
     tiam-ucl: Secondary Energy|Liquids|Oil|Kerosene
+    open-prom: Final Energy|Fossil Kerosene
     remind: SE|Liquids|Fossil|+|Oil|Kerosene
     remind-eu: SE|Liquids|Fossil|+|Oil|Kerosene
     image: Secondary Energy|Consumption|Liquids|Fossil|Kerosene
