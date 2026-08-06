@@ -2423,7 +2423,7 @@ Key outputs
 
 See :doc:`heat` for the complete market architecture, per-model coverage,
 mapping semantics, residual and fallback rules, legacy relinking scope,
-reporting, validation, and Brightway audit examples.
+and technology representation assumptions.
 
 
 CO2 emissions update

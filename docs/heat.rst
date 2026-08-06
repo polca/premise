@@ -15,9 +15,7 @@ The transformation:
 * regionalizes the mapped heat-production activities and relinks their energy
   inputs;
 * redirects consumers of selected legacy ecoinvent heat markets to the new
-  markets; and
-* validates market shares, IAM values, conversion efficiencies, carbon dioxide
-  emissions, purchased-heat links, and generated-market cycles.
+  markets.
 
 Running the update
 ------------------
@@ -367,117 +365,6 @@ are passed through the *premise* marginal-mix calculation before the market is
 written. The three-layer architecture, legacy consumer routing, residual rules,
 and cycle checks are otherwise shared by both system models.
 
-Scenario report and diagnostics
--------------------------------
-
-The Excel scenario report has three independent heat worksheets:
-
-* ``Heat (buildings) - generation``;
-* ``Heat (industrial) - generation``; and
-* ``Heat (secondary) - generation``.
-
-Generate it explicitly with:
-
-.. code-block:: python
-
-    ndb.generate_scenario_report(
-        filepath="export/scenario_report",
-        name="heat_scenarios.xlsx",
-    )
-
-The report contains the evaluated IAM series, by scenario, region, technology,
-and year. A missing layer is omitted for that scenario; the report does not turn
-a frozen fallback into IAM data.
-
-Detailed transformation diagnostics are stored in each scenario under
-``"heat diagnostics"``. They record layer availability, assumptions, residuals,
-small-negative clips, raw IAM volumes, inventory-derived conversion factors,
-delivered volumes, and normalized shares. For example:
-
-.. code-block:: python
-
-    diagnostics = ndb.scenarios[0]["heat diagnostics"]
-    building_volumes = diagnostics["buildings_end_use"]["volumes"]
-
-The regular change report includes created and modified heat datasets and any
-validation anomalies logged by the transformation.
-
-Validation and failure modes
-----------------------------
-
-The heat update performs the following checks before it returns the scenario:
-
-* raw heat arrays must contain only finite, non-negative values;
-* each generated regional heat market must contain exactly one megajoule of
-  heat inputs per megajoule of output, within numerical tolerance;
-* an end-use market must not contain duplicate links to the secondary market;
-* combustion and electric conversion efficiencies must remain physically
-  plausible;
-* direct fossil and non-fossil carbon dioxide emissions must be consistent with
-  linked fuels; and
-* no direct or indirect cycle may exist among generated heat datasets.
-
-A positive IAM technology volume with no usable inventory supplier raises an
-error. A materially negative residual, a partially available IAM layer, or a
-generated-market cycle also stops the build. Major efficiency, emissions, or
-market-share anomalies are written to the validation log and announced at the
-end of the heat update.
-
-Inspecting a generated Brightway database
------------------------------------------
-
-Always identify a heat market by name, reference product, and location. The
-buildings and secondary/industrial products are intentionally different where
-needed, and names alone are not sufficient for a reliable audit.
-
-.. code-block:: python
-
-    import bw2data as bd
-
-    bd.projects.set_current("my_project")
-    db = bd.Database("remind-ssp2-2050")
-
-    region = "EUR"  # Use a region from the selected IAM.
-    secondary = next(
-        activity
-        for activity in db
-        if activity["name"]
-        == "market for heat, secondary, district or industrial"
-        and activity["reference product"] == "heat, district or industrial"
-        and activity["location"] == region
-    )
-
-    secondary_mix = [
-        {
-            "supplier": exchange.input["name"],
-            "location": exchange.input["location"],
-            "share": exchange["amount"],
-        }
-        for exchange in secondary.technosphere()
-        if exchange["amount"] != 0
-    ]
-
-To find every direct consumer of that regional market:
-
-.. code-block:: python
-
-    consumers = []
-    for activity in db:
-        for exchange in activity.technosphere():
-            if exchange.input == secondary and exchange["amount"] != 0:
-                consumers.append(
-                    {
-                        "consumer": activity["name"],
-                        "location": activity["location"],
-                        "amount": exchange["amount"],
-                    }
-                )
-
-In a full three-layer scenario, this list should normally contain the regional
-buildings and industrial end-use markets rather than ordinary final consumers.
-In a supply-only TIAM-UCL scenario, ordinary consumers of purchased industrial or
-district heat can link directly to the secondary market.
-
 Maintaining or extending the mapping
 ------------------------------------
 
@@ -496,6 +383,4 @@ The source files most relevant to this workflow are:
 
 * ``premise/iam_variables_mapping/heat.yaml`` for IAM and inventory mappings;
 * ``premise/heat_data.py`` for expression evaluation and layer availability;
-* ``premise/heat.py`` for conversion, market creation, and relinking;
-* ``premise/validation.py`` for heat checks; and
-* ``premise/report.py`` for the three scenario-report worksheets.
+* ``premise/heat.py`` for conversion, market creation, and relinking.
