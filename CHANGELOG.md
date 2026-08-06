@@ -36,7 +36,7 @@ All notable changes to this project are documented in this file.
 ### Documentation
 - Added a comprehensive heat transformation guide covering market architecture,
   per-model IAM coverage, conversion and residual rules, legacy relinking,
-  reports, validation, and Brightway audits.
+  and technology representation assumptions.
 
 ### Tests
 - Added regression coverage for uncertainty-aware hydropower water corrections,
