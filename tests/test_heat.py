@@ -6,7 +6,12 @@ import xarray as xr
 from openpyxl import load_workbook
 
 from premise.activity_maps import InventorySet
-from premise.heat import Heat, _update_heat
+from premise.heat import (
+    BUILDING_LEGACY_INPUTS,
+    BUILDINGS_MARKET,
+    Heat,
+    _update_heat,
+)
 from premise.inventory_imports import DefaultInventory
 
 
@@ -295,6 +300,60 @@ def test_relink_excludes_new_dataset_codes(monkeypatch):
     assert rewritten["location"] == "WEU"
     assert "input" not in rewritten
     assert generated["exchanges"][0] == legacy_exchange
+
+
+@pytest.mark.parametrize(
+    "legacy_name,legacy_product",
+    [
+        (
+            "market group for heat, central or small-scale, biomethane",
+            "heat, central or small-scale, biomethane",
+        ),
+        (
+            "market group for heat, central or small-scale, natural gas",
+            "heat, central or small-scale, natural gas",
+        ),
+        (
+            "market group for heat, central or small-scale, other than natural gas",
+            "heat, central or small-scale, other than natural gas",
+        ),
+    ],
+)
+def test_building_legacy_market_groups_are_relinked(
+    monkeypatch, legacy_name, legacy_product
+):
+    exchange = {
+        "name": legacy_name,
+        "product": legacy_product,
+        "location": "RER",
+        "unit": "megajoule",
+        "amount": 0.5,
+        "type": "technosphere",
+        "input": ("db", "legacy"),
+    }
+    consumer = {
+        "name": "building heat consumer",
+        "reference product": "service",
+        "location": "CH",
+        "unit": "unit",
+        "code": "consumer",
+        "exchanges": [exchange],
+    }
+    heat = object.__new__(Heat)
+    heat.database = [consumer]
+    heat.created_dataset_codes = set()
+    heat.regions = ["NEU"]
+    heat.ecoinvent_to_iam_loc = {"CH": "NEU"}
+    monkeypatch.setattr(heat, "is_in_index", lambda candidate, location: True)
+
+    heat.relink_heat_markets(BUILDING_LEGACY_INPUTS, BUILDINGS_MARKET)
+
+    rewritten = consumer["exchanges"][0]
+    assert rewritten["name"] == BUILDINGS_MARKET["name"]
+    assert rewritten["product"] == BUILDINGS_MARKET["reference product"]
+    assert rewritten["location"] == "NEU"
+    assert rewritten["amount"] == 0.5
+    assert "input" not in rewritten
 
 
 def test_generated_heat_cycle_is_rejected():
