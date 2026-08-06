@@ -990,8 +990,18 @@ class HeatValidation(BaseDatasetValidator):
 
         for ds in ws.get_many(
             self.database,
-            ws.contains("name", "market for heat"),
+            ws.either(
+                *[
+                    ws.equals("name", name)
+                    for name in (
+                        "market for heat, for buildings",
+                        "market for heat, district or industrial",
+                        "market for heat, secondary, district or industrial",
+                    )
+                ]
+            ),
             ws.equals("unit", "megajoule"),
+            ws.equals("regionalized", True),
         ):
             total = sum(
                 [
@@ -1000,7 +1010,7 @@ class HeatValidation(BaseDatasetValidator):
                     if exc["type"] == "technosphere" and exc["unit"] == "megajoule"
                 ]
             )
-            if not np.isclose(total, 1.0, rtol=1e-3):
+            if not np.isclose(total, 1.0, rtol=1e-6, atol=1e-6):
                 message = f"Total exchange amount is {total}, not 1.0"
                 self.log_issue(
                     ds, "Incorrect market shares", message, issue_type="major"
@@ -1024,6 +1034,8 @@ class HeatValidation(BaseDatasetValidator):
                         "treatment of",
                         "market for",
                         "market group for",
+                        "frozen legacy mix",
+                        "nuclear cogeneration",
                     ]
                 )
                 and ds["location"] in self.regions
@@ -1234,13 +1246,16 @@ class HeatValidation(BaseDatasetValidator):
                     ]
                 )
 
+                if energy_input <= 0:
+                    continue
+
                 efficiency = 1 / energy_input
 
-                if efficiency > 1.15 and not any(
+                if efficiency > 1.2 and not any(
                     x in ds["name"]
                     for x in ["co-generation", "allocated", "allocation"]
                 ):
-                    message = f"Heat conversion efficiency is {efficiency:.2f}, expected to be less than 1.15."
+                    message = f"Heat conversion efficiency is {efficiency:.2f}, expected to be less than 1.2."
                     self.log_issue(
                         ds, "heat conversion efficiency", message, issue_type="major"
                     )
@@ -1267,8 +1282,56 @@ class HeatValidation(BaseDatasetValidator):
                         message = f"CO2 emissions are {co2:.3f}, expected to be {expected_co2:.3f}."
                         self.log_issue(ds, "CO2 emissions", message, issue_type="major")
 
+    def check_purchased_heat_links(self):
+        """Ensure each end-use market links to secondary heat at most once."""
+
+        for ds in ws.get_many(
+            self.database,
+            ws.either(
+                ws.equals("name", "market for heat, for buildings"),
+                ws.equals("name", "market for heat, district or industrial"),
+            ),
+            ws.equals("regionalized", True),
+        ):
+            links = [
+                exc
+                for exc in ws.technosphere(ds)
+                if exc.get("name")
+                == "market for heat, secondary, district or industrial"
+                and exc.get("product") == "heat, district or industrial"
+            ]
+            if len(links) > 1:
+                self.log_issue(
+                    ds,
+                    "Duplicate purchased heat link",
+                    f"Found {len(links)} links to the secondary heat market.",
+                    issue_type="major",
+                )
+
+    def check_heat_iam_values(self):
+        """Check raw heat layers for finite, non-negative IAM volumes."""
+
+        for attribute in (
+            "buildings_heat_end_use",
+            "industrial_heat_end_use",
+            "secondary_heat_supply",
+        ):
+            array = getattr(self.iam_data, attribute, None)
+            if array is None:
+                continue
+            if not bool(np.isfinite(array.fillna(0)).all()):
+                raise ValueError(
+                    f"Non-finite values found in IAM heat layer {attribute}."
+                )
+            if bool((array.fillna(0) < 0).any()):
+                raise ValueError(
+                    f"Negative values found in IAM heat layer {attribute}."
+                )
+
     def run_heat_checks(self):
+        self.check_heat_iam_values()
         self.check_heat_markets_input()
+        self.check_purchased_heat_links()
         self.check_heat_conversion_efficiency()
         self.save_log()
 

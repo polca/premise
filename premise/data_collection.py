@@ -22,6 +22,11 @@ from prettytable import PrettyTable
 
 from .filesystem_constants import DATA_DIR, VARIABLES_DIR
 from .geomap import Geomap
+from .heat_data import (
+    evaluate_heat_layers,
+    heat_expression_variables,
+    load_heat_mapping,
+)
 from .marginal_mixes import consequential_method
 from .scenario_downloader import (
     download_csv,
@@ -487,21 +492,8 @@ class IAMDataCollection:
             IAM_CROPS_VARS, variable="land_use_change"
         )
 
-        buildings_heat_vars = {
-            k: v
-            for k, v in self.__get_iam_variable_labels(
-                IAM_HEATING_VARS, variable="iam_aliases"
-            ).items()
-            if "buildings" in k
-        }
-
-        industrial_heat_vars = {
-            k: v
-            for k, v in self.__get_iam_variable_labels(
-                IAM_HEATING_VARS, variable="iam_aliases"
-            ).items()
-            if "industrial" in k
-        }
+        heat_mapping = load_heat_mapping(IAM_HEATING_VARS, self.model)
+        heat_raw_vars = heat_expression_variables(heat_mapping)
 
         final_energy_vars = self.__get_iam_variable_labels(
             IAM_FINAL_ENERGY_VARS, variable="iam_aliases"
@@ -578,8 +570,7 @@ class IAMDataCollection:
             + list(biomass_eff_vars.values())
             + list(land_use_vars.values())
             + list(land_use_change_vars.values())
-            + list(buildings_heat_vars.values())
-            + list(industrial_heat_vars.values())
+            + heat_raw_vars
             + list(other_vars.values())
             + list(roadfreight_prod_vars.values())
             + list(roadfreight_energy_vars.values())
@@ -815,19 +806,16 @@ class IAMDataCollection:
             sector="two-wheeler",
         )
 
-        self.buildings_heating_mix = self.__fetch_market_data(
-            data=data,
-            input_vars=buildings_heat_vars,
-            system_model=self.system_model,
-            sector="buildings heating",
-        )
+        heat_layers, self.heat_diagnostics = evaluate_heat_layers(data, heat_mapping)
+        self.buildings_heat_end_use = heat_layers["buildings_end_use"]
+        self.industrial_heat_end_use = heat_layers["industrial_end_use"]
+        self.secondary_heat_supply = heat_layers["secondary_supply"]
 
-        self.industrial_heat_mix = self.__fetch_market_data(
-            data=data,
-            input_vars=industrial_heat_vars,
-            system_model=self.system_model,
-            sector="industrial heating",
-        )
+        # Third-party integrations historically accessed these two attributes.
+        # Keep the names as aliases while the premise heat transformation uses
+        # the explicit layer names above.
+        self.buildings_heating_mix = self.buildings_heat_end_use
+        self.industrial_heat_mix = self.industrial_heat_end_use
 
         self.final_energy_use = self.__fetch_market_data(
             data=data,
@@ -1043,8 +1031,6 @@ class IAMDataCollection:
                 **steel_prod_vars,
                 **cdr_prod_vars,
                 **biomass_prod_vars,
-                **buildings_heat_vars,
-                **industrial_heat_vars,
                 **roadfreight_prod_vars,
                 **railfreight_prod_vars,
                 **seafreight_prod_vars,
@@ -1054,6 +1040,23 @@ class IAMDataCollection:
                 **final_energy_vars,
             },
         )
+
+        heat_production_volumes = [
+            array
+            for array in (
+                self.buildings_heat_end_use,
+                self.industrial_heat_end_use,
+                self.secondary_heat_supply,
+            )
+            if array is not None
+        ]
+        if heat_production_volumes:
+            arrays = (
+                [self.production_volumes] if self.production_volumes is not None else []
+            )
+            self.production_volumes = xr.concat(
+                [*arrays, *heat_production_volumes], dim="variables"
+            )
 
         self.coal_power_plants = self.fetch_external_data_coal_power_plants()
 
@@ -1385,8 +1388,16 @@ class IAMDataCollection:
                 for c in header_cols
                 if (y := _year_from_col(c)) is not None and 2005 <= y <= 2100
             ]
-            usecols = [region_col, variable_col, unit_col] + year_cols
-            dataframe = pd.read_excel(file_path, usecols=usecols)
+            # Excel IAM files can mix string metadata headers with integer year
+            # headers (TIAM-UCL does this). Pandas rejects a mixed-type usecols
+            # list, while a callable preserves the original column labels.
+            metadata_cols = {region_col, variable_col, unit_col}
+            year_cols_set = set(year_cols)
+            dataframe = pd.read_excel(
+                file_path,
+                usecols=lambda column: column in metadata_cols
+                or column in year_cols_set,
+            )
         else:
             raise ValueError(f"Unsupported file extension: {file_path.suffix}")
 
