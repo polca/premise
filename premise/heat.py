@@ -49,7 +49,15 @@ BUILDING_LEGACY_INPUTS = [
             "heat, central or small-scale, other than natural gas",
         ),
         (
+            "market group for heat, central or small-scale, other than natural gas",
+            "heat, central or small-scale, other than natural gas",
+        ),
+        (
             "market for heat, central or small-scale, biomethane",
+            "heat, central or small-scale, biomethane",
+        ),
+        (
+            "market group for heat, central or small-scale, biomethane",
             "heat, central or small-scale, biomethane",
         ),
         (
@@ -58,6 +66,10 @@ BUILDING_LEGACY_INPUTS = [
         ),
         (
             "market for heat, central or small-scale, natural gas",
+            "heat, central or small-scale, natural gas",
+        ),
+        (
+            "market group for heat, central or small-scale, natural gas",
             "heat, central or small-scale, natural gas",
         ),
         (
