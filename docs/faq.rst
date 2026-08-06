@@ -195,6 +195,53 @@ a limitation, where current production volumes are used to calculate
 supply mix for a given technology within a given IAM region.
 
 
+Heat transformation
+-------------------
+
+Does the secondary heat market supply both buildings and industry?
+__________________________________________________________________
+
+Yes, when the IAM provides complete end-use layers. The buildings and industrial
+markets each include the secondary market according to their own reported
+district-heat share. The remaining shares are supplied by on-site technologies
+such as boilers, resistance heaters, and heat pumps. Ordinary consumers then
+link to the appropriate end-use market rather than directly to secondary heat.
+
+TIAM-UCL is the exception because it provides only secondary-supply detail.
+Purchased district or industrial heat consumers are therefore linked directly
+to its secondary market, while on-site end-use fuel use remains unchanged. See
+:doc:`heat` for the complete model-coverage table.
+
+Why are legacy ecoinvent heat markets still present after the update?
+______________________________________________________________________
+
+The heat transformation redirects matching consumer exchanges; it does not
+delete source activities. The old markets can therefore remain as unused
+datasets or in isolated legacy subgraphs even though ordinary consumers now use
+the new regional markets. Their mere presence is not evidence that they still
+supply the transformed product system. Audit incoming technosphere exchanges to
+determine whether a legacy market is still used.
+
+Why can several exchanges point to the same new heat market?
+____________________________________________________________
+
+Relinking preserves the amount and row of every original exchange. If a consumer
+previously used several legacy heat markets, those rows can converge on the same
+new regional market. Brightway aggregates them into one technosphere matrix
+element. They can be consolidated later if a single human-readable exchange row
+is preferred.
+
+Are all datasets named ``market for heat`` replaced?
+____________________________________________________
+
+No. Relinking uses an explicit list of activity-name and reference-product pairs
+for generic building, district, industrial, and chemical-steam heat. Specialized
+markets keep their purpose. In particular,
+``market for heat, for reuse in municipal waste incineration only`` is not
+treated as a generic heat supplier. The exact scope is documented in
+:doc:`heat`.
+
+
 Consistency with climate targets
 --------------------------------
 

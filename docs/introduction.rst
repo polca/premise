@@ -312,12 +312,12 @@ This table below summarize the numbers of variables mapping with *premise* for e
      - 48
      - 24
    * - Heat
-     - 38
-     - 24
-     - 24
-     - 2
-     - 13
-     - 30
+     - 44
+     - 32
+     - 32
+     - 11
+     - 14
+     - 34
    * - Other
      - 4
      - 4
@@ -388,11 +388,11 @@ And here is a plot of the same data:
 The table and plot show how *premise* connects to IMAGE, REMIND, REMIND-EU, TIAM-UCL, GCAM,
 and MESSAGE, focusing on energy generation, industry, and transport:
 
-* TIAM-UCL has the largest coverage in this table (428 variables), with strong detail in steel (119), electricity (61), fuels (55), and road freight (90).
-* IMAGE also offers broad integration (414 variables), with high counts in steel (117), fuels (56), electricity (51), and cement (45). Two-wheelers are not covered by IMAGE.
-* REMIND and REMIND-EU have identical coverage (312 variables each), with particularly strong detail in passenger cars (60), fuels (49), and road freight (40).
-* GCAM provides moderate coverage (254 variables), with strength in electricity (41), fuels (48), and cross-sector integration of land, water, agriculture, and energy.
-* MESSAGE includes 151 mapped variables and currently does not include transport-sector mappings.
+* TIAM-UCL has the largest coverage in this table (437 variables), with strong detail in steel (119), electricity (61), fuels (55), and road freight (90).
+* IMAGE also offers broad integration (420 variables), with high counts in steel (117), fuels (56), electricity (51), and cement (45). Two-wheelers are not covered by IMAGE.
+* REMIND and REMIND-EU have identical coverage (320 variables each), with particularly strong detail in passenger cars (60), fuels (49), and road freight (40).
+* GCAM provides moderate coverage (255 variables), with strength in electricity (41), fuels (48), and cross-sector integration of land, water, agriculture, and energy.
+* MESSAGE includes 155 mapped variables and currently does not include transport-sector mappings.
 
 Sectoral observations:
 
@@ -450,7 +450,9 @@ Sectoral observations:
 
 *Limitation:*
 
-* Limited representation of heat (2) and carbon dioxide removal (3) sectors.
+* Heat detail is limited to secondary supply (11 variables); buildings and
+  industrial end-use technology mixes are not available.
+* Limited representation of the carbon dioxide removal sector (3 variables).
 
 
 **GCAM**
@@ -470,14 +472,19 @@ Sectoral observations:
 
 *Strengths:*
 
-* Good coverage in electricity (43), fuels (24), and heat (30).
+* Good coverage in electricity (43), fuels (24), and heat (34).
 * Strong representation of cement-related mappings (26), alongside steel (14).
 * Includes biomass (3) and carbon dioxide removal pathways (7).
 
 *Limitations:*
 
 * No transport-sector mappings are currently available (bus, passenger cars, rail, road, sea freight, and two-wheelers).
-* Coverage is lower than IMAGE, REMIND(-EU), and TIAM-UCL in several sectors, with 151 mapped variables in total.
+* Coverage is lower than IMAGE, REMIND(-EU), and TIAM-UCL in several sectors, with 155 mapped variables in total.
+
+Heat variable counts include the raw IAM variables used by sums and residual
+expressions. They do not imply equal layer coverage: see :doc:`heat` for the
+buildings, industrial, and secondary-supply breakdown and the behavior used when
+a layer is absent.
 
 Choosing the right scenario
 ---------------------------

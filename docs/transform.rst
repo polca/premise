@@ -2377,54 +2377,53 @@ are modelled with the calorific value of conventional gasoline.
 Heat
 ++++
 
-Run
+The heat transformation builds separate regional markets for secondary heat,
+building heat, and industrial heat. This avoids mixing heat-production
+technologies with on-site end-use technologies and makes purchased district heat
+an explicit input to the buildings and industrial markets.
+
+Run all sector updates when possible so that the heat suppliers can use
+prospective biomass, electricity, and fuel markets:
 
 .. code-block:: python
 
-    from premise import *
-    import brightway2 as bw
+    import bw2data as bd
+    from premise import NewDatabase
 
-    bw.projects.set_current("my_project")
+    bd.projects.set_current("my_project")
 
     ndb = NewDatabase(
         scenarios=[
-                {"model":"remind", "pathway":"SSP2-Base", "year":2028}
-            ],
-        source_db="ecoinvent 3.7 cutoff",
-        source_version="3.7.1",
-        key='xxxxxxxxxxxxxxxxxxxxxxxxx'
+            {"model": "remind", "pathway": "SSP2-PkBudg650", "year": 2050}
+        ],
+        source_db="ecoinvent-3.12-cutoff",
+        source_version="3.12",
     )
-    ndb.update("heat")
+    ndb.update()
 
 Key outputs
 ~~~~~~~~~~~
 
-* Regionalizes heat and steam production datasets by IAM region.
-* Relinks heat producers to regional fuel and biomass markets where available.
-* Splits CO2 emissions into fossil and non-fossil shares based on fuel mixes.
+* Creates ``market for heat, secondary, district or industrial`` from IAM
+  secondary-supply technologies.
+* Creates ``market for heat, for buildings`` and
+  ``market for heat, district or industrial`` from delivered end-use heat
+  projections.
+* Converts final-energy variables to delivered heat with inventory-derived
+  combustion efficiency, electric-boiler efficiency, or heat-pump performance
+  before normalizing shares.
+* Relinks selected legacy ecoinvent building and industrial heat inputs to the
+  corresponding new market while protecting generated markets and frozen
+  residual proxies from cycles.
+* Regionalizes technology suppliers, reconnects their upstream energy inputs,
+  and updates direct fossil and non-fossil CO2 emissions from regional fuel
+  composition.
+* Supports full three-layer, end-use-only, and secondary-supply-only IAM data
+  without inventing missing end-use technology detail.
 
-Datasets that supply heat and steam via the combustion of natural gas and diesel
-are regionalized (made available for each region of the IAM model) and relinked
-to regional fuel markets. If the fuel market contains a share of non-fossil fuels,
-the CO2 emissions of the heat and steam production are split between fossil and
-non-fossil emissions. Once regionalized, the heat and steam production datasets
-relink to activities that require heat within the same region.
-
-Here is a list of the heat and steam production datasets that are regionalized:
-
-- diesel, burned in ...
-- steam production, as energy carrier, in chemical industry
-- heat production, natural gas, ...
-- heat and power co-generation, natural gas, ...
-- heat production, light fuel oil, ...
-- heat production, softwood chips from forest, ...
-- heat production, hardwood chips from forest, ...
-
-These datasets are relinked to the corresponding regionalized fuel market only
-if `.update("fuels")` has been run.
-Also, heat production datasets that use biomass as fuel input (e.g., softwood and
-hardwood chips) relink to the dataset `market for biomass, used as fuel` if
-`update("biomass")` has been run previously.
+See :doc:`heat` for the complete market architecture, per-model coverage,
+mapping semantics, residual and fallback rules, legacy relinking scope,
+reporting, validation, and Brightway audit examples.
 
 
 CO2 emissions update
