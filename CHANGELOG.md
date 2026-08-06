@@ -7,6 +7,10 @@ All notable changes to this project are documented in this file.
 ### Added
 - Mapped the IMAGE medium- and heavy-duty battery-electric truck energy-service
   and electricity variables to the 18 t and 40 t premise truck inventories.
+- Added three-layer IAM heat modelling for secondary supply, buildings end use,
+  and industrial end use, including model-specific residuals and frozen legacy
+  fallbacks.
+- Added a dedicated secondary-heat worksheet to the Excel scenario report.
 
 ### Changed
 - Updated the bundled IAM scenario download source to Zenodo record 21790981.
@@ -14,12 +18,25 @@ All notable changes to this project are documented in this file.
   filenames used by the new archive while retaining the existing public
   pathway names and local cache filenames, and accepted both naming conventions
   when loading local scenario files.
+- Expanded heat mappings for REMIND, REMIND-EU, IMAGE, GCAM, MESSAGE, and
+  TIAM-UCL; final-energy series are converted to delivered heat before market
+  shares are normalized.
+- Redirected generic legacy building and industrial heat consumers to the new
+  regional end-use markets while keeping generated markets, frozen residual
+  proxies, and specialized municipal-waste heat outside the generic rewrite.
 
 ### Fixed
 - Rescaled uncertainty parameters alongside corrected Swiss reservoir-water
   exchanges, preventing retained source-database lognormal distributions from
   sampling around the pre-correction water amount when
   `keep_source_db_uncertainty=True`.
+- Included legacy building-heat market groups and natural-gas variants in the
+  targeted heat relinking scope.
+
+### Documentation
+- Added a comprehensive heat transformation guide covering market architecture,
+  per-model IAM coverage, conversion and residual rules, legacy relinking,
+  reports, validation, and Brightway audits.
 
 ### Tests
 - Added regression coverage for uncertainty-aware hydropower water corrections,
