@@ -14,6 +14,9 @@ from premise.heat_data import (
 HEAT_MAPPING = (
     Path(__file__).parents[1] / "premise" / "iam_variables_mapping" / "heat.yaml"
 )
+CONSEQUENTIAL_DATA = (
+    Path(__file__).parents[1] / "premise" / "data" / "consequential"
+)
 
 
 def make_data(values, variables):
@@ -47,6 +50,22 @@ def test_heat_mapping_schema_is_explicit_for_all_iam_entries():
             "heat_pump",
             "none",
         }
+
+
+def test_consequential_parameters_cover_all_mapped_heat_technologies():
+    mapping = yaml.safe_load(HEAT_MAPPING.read_text(encoding="utf-8"))
+    mapped_technologies = {
+        technology
+        for technology, metadata in mapping.items()
+        if metadata.get("iam_aliases")
+    }
+    mapped_technologies.add("heat, secondary, frozen legacy mix")
+
+    for filename in ("leadtimes.yaml", "lifetimes.yaml"):
+        parameters = yaml.safe_load(
+            (CONSEQUENTIAL_DATA / filename).read_text(encoding="utf-8")
+        )
+        assert mapped_technologies <= parameters.keys(), filename
 
 
 def test_plain_aliases_are_normalized_to_linear_terms():

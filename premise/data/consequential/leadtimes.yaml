@@ -275,6 +275,45 @@ heat, industrial, from heat pump: 1
 heat, industrial, from geothermal: 1
 heat, industrial, from light fuel oil boiler: 1
 heat, industrial, from hydrogen: 1
+# Layered heat-market technologies. Keep these labels synchronized with
+# iam_variables_mapping/heat.yaml; heat technologies use the existing
+# one-year construction lead-time convention.
+heat, buildings, from biomethane boiler: 1
+heat, buildings, from hydrogen fuel cell: 1
+heat, buildings, from natural gas boiler: 1
+heat, buildings, residual: 1
+heat, industrial, from biofuel boiler: 1
+heat, industrial, from biomass boiler: 1
+heat, industrial, from biomethane boiler: 1
+heat, industrial, from coal furnace: 1
+heat, industrial, from district heating: 1
+heat, industrial, from electric boiler: 1
+heat, industrial, from hydrogen boiler: 1
+heat, industrial, from hydrogen fuel cell: 1
+heat, industrial, from natural gas boiler: 1
+heat, secondary, from biomass: 1
+heat, secondary, from biomass CHP: 1
+heat, secondary, from biomass residual: 1
+heat, secondary, from biomass with CCS: 1
+heat, secondary, from coal: 1
+heat, secondary, from coal CHP: 1
+heat, secondary, from coal residual: 1
+heat, secondary, from coal with CCS: 1
+heat, secondary, from coke: 1
+heat, secondary, from coke with CCS: 1
+heat, secondary, from electricity: 1
+heat, secondary, from geothermal: 1
+heat, secondary, from heat pump: 1
+heat, secondary, from natural gas: 1
+heat, secondary, from natural gas CHP: 1
+heat, secondary, from natural gas residual: 1
+heat, secondary, from natural gas with CCS: 1
+heat, secondary, from nuclear: 1
+heat, secondary, from oil: 1
+heat, secondary, from oil with CCS: 1
+heat, secondary, from solar thermal: 1
+heat, secondary, residual: 1
+heat, secondary, frozen legacy mix: 1
 hydrogen, from electrolysis, PEM, from CSP: 3
 hydrogen, from electrolysis, PEM, from Solar PV: 3
 hydrogen, from electrolysis, PEM, from geothermal: 3
