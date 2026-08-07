@@ -2,15 +2,113 @@
 
 All notable changes to this project are documented in this file.
 
+## [2.4.9]
+
+### Added
+- Added an explicit three-layer heat-market architecture that distinguishes
+  secondary/district heat supply from delivered heat for buildings and
+  industry. The transformation now creates regional and World markets named
+  `market for heat, secondary, district or industrial`,
+  `market for heat, for buildings`, and
+  `market for heat, district or industrial`.
+- Added an expression-aware IAM heat-data loader. Heat mappings now declare
+  their physical layer, energy basis, conversion rule, inventory proxy, and
+  model-specific IAM aliases; aliases can be individual variables, sums, or
+  signed linear expressions used to calculate residual supply.
+- Added frozen, regionalized copies of legacy building and industrial heat
+  supply compositions for explicitly unmapped residuals and for models without
+  a secondary-supply split. These proxies preserve their pre-transformation
+  composition and cannot be recursively relinked to the new markets.
+- Added the additional inventories `heat production, electric boiler,
+  industrial` and `heat production, nuclear cogeneration`. The latter links to
+  the EPR inventory and represents 140-degree-Celsius cogenerated heat using
+  exergy allocation.
+- Added scenario heat diagnostics recording raw IAM volumes, conversion
+  factors, delivered-heat volumes and shares, residual status, supplier
+  fallbacks, and model-specific representation assumptions.
+- Added heat-specific validation for finite and non-negative IAM values,
+  normalized market inputs, duplicate secondary-heat links, conversion
+  efficiencies, and direct or indirect cycles among generated heat datasets.
+- Added a dedicated secondary-heat worksheet to the Excel scenario report.
+- Added complete consequential lead-time and lifetime parameters for every
+  mapped layered-heat technology and the frozen secondary-heat fallback.
+
+### Changed
+- Replaced the former mixed-purpose heat mapping with 49 explicit building,
+  industrial, and secondary-supply technology categories for REMIND,
+  REMIND-EU, IMAGE, GCAM, MESSAGE, and TIAM-UCL.
+- Separated REMIND and REMIND-EU industrial end-use heat from secondary heat
+  production. Industrial markets now use `FE|Industry|...` carrier demand,
+  while `SE|Heat|...` variables form the secondary-supply market; biomass,
+  coal, and gas non-CHP supply is calculated as the carrier total minus its
+  explicitly reported CHP production.
+- Aggregated IMAGE residential and commercial space- and water-heating series
+  into the buildings layer and represented its unspecified secondary heat with
+  a frozen legacy residual. GCAM now uses explicit building and industrial
+  end-use series with a frozen secondary-supply fallback. MESSAGE uses its
+  detailed end-use and secondary technologies, including electricity,
+  geothermal, and nuclear heat. TIAM-UCL remains supply-only, including its
+  CCS heat pathways, so only purchased district/industrial heat is redirected
+  and on-site end-use fuel use remains unchanged.
+- Kept mapped IAM heat volumes unnormalized until all final-energy carriers are
+  converted to delivered heat. Combustion efficiencies, electric-boiler
+  efficiencies, and heat-pump coefficients of performance are derived from the
+  selected regional inventory suppliers before market shares are calculated.
+- Regionalized mapped heat technologies and made supplier selection explicit:
+  premise first uses the IAM region, then contained ecoinvent locations weighted
+  by production volume, followed by `RoW` and global fallbacks. Regional fuel
+  relinking and fossil/non-fossil carbon-dioxide recalculation continue to apply
+  to the resulting heat-production activities.
+- Applied average delivered-heat shares in cutoff databases and the existing
+  marginal-mix calculation to each heat layer in consequential databases.
+- Redirected exact legacy building heat families—including natural gas,
+  biomethane, other-than-natural-gas, market-group, and Jakobsberg variants—to
+  the regional buildings market. Exact district/industrial natural-gas,
+  other-than-natural-gas, market-group, and chemical-steam inputs are redirected
+  to the industrial end-use market, or directly to secondary heat for
+  supply-only IAMs.
+- Preserved exchange amounts during targeted heat relinking and retained legacy
+  ecoinvent market datasets as inactive or specialized activities. Generated
+  markets, frozen proxies, and specialized municipal-waste heat are excluded
+  from the generic rewrite so the new hierarchy cannot rewrite itself.
+- Made the heat update skip unavailable or all-zero layers cleanly and leave the
+  database unchanged when an IAM scenario provides no mapped heat data.
+
+### Fixed
+- Included legacy building-heat market groups and natural-gas variants in the
+  targeted heat relinking scope.
+- Prevented generated end-use and secondary heat markets from being rewritten
+  during legacy relinking, and excluded frozen legacy proxies from subsequent
+  general relinking, eliminating recursive heat-market dependencies.
+- Added strict handling of partial IAM heat layers and materially negative
+  residual expressions instead of silently normalizing incomplete or invalid
+  mixes; only negligible closure artefacts are clipped to zero.
+- Improved delivered-heat conversion lookup for regional supplier aliases,
+  including biomethane product names, cleft timber, and methanol pathways, and
+  rejected missing or implausible conversion factors.
+
+### Documentation
+- Added a comprehensive heat transformation guide covering market architecture,
+  per-model IAM coverage, conversion and residual rules, legacy relinking,
+  and technology representation assumptions.
+
+### Tests
+- Added heat regression coverage for mapping schema and model selection, signed
+  residual expressions, structural blanks and negative-value handling,
+  delivered-heat conversions, regional supplier weighting and fallbacks,
+  cutoff and consequential market construction, missing layers, frozen legacy
+  composition, exact legacy-market relinking, and generated-market cycle
+  detection.
+- Added import and mapping tests for the industrial electric-boiler and nuclear
+  cogeneration inventories, report tests for the secondary-heat worksheet, and
+  a completeness test keeping consequential lead-time and lifetime labels
+  synchronized with every mapped heat technology.
+
 ## [2.4.8]
 
 ### Added
 - Mapped the IMAGE medium- and heavy-duty battery-electric truck energy-service
   and electricity variables to the 18 t and 40 t premise truck inventories.
-- Added three-layer IAM heat modelling for secondary supply, buildings end use,
-  and industrial end use, including model-specific residuals and frozen legacy
-  fallbacks.
-- Added a dedicated secondary-heat worksheet to the Excel scenario report.
 
 ### Changed
 - Updated the bundled IAM scenario download source to Zenodo record 21790981.
@@ -18,25 +116,12 @@ All notable changes to this project are documented in this file.
   filenames used by the new archive while retaining the existing public
   pathway names and local cache filenames, and accepted both naming conventions
   when loading local scenario files.
-- Expanded heat mappings for REMIND, REMIND-EU, IMAGE, GCAM, MESSAGE, and
-  TIAM-UCL; final-energy series are converted to delivered heat before market
-  shares are normalized.
-- Redirected generic legacy building and industrial heat consumers to the new
-  regional end-use markets while keeping generated markets, frozen residual
-  proxies, and specialized municipal-waste heat outside the generic rewrite.
 
 ### Fixed
 - Rescaled uncertainty parameters alongside corrected Swiss reservoir-water
   exchanges, preventing retained source-database lognormal distributions from
   sampling around the pre-correction water amount when
   `keep_source_db_uncertainty=True`.
-- Included legacy building-heat market groups and natural-gas variants in the
-  targeted heat relinking scope.
-
-### Documentation
-- Added a comprehensive heat transformation guide covering market architecture,
-  per-model IAM coverage, conversion and residual rules, legacy relinking,
-  and technology representation assumptions.
 
 ### Tests
 - Added regression coverage for uncertainty-aware hydropower water corrections,
