@@ -128,6 +128,8 @@ jobs:
     name: (${{ matrix.python-version }}, ubuntu-latest)
     runs-on: ubuntu-latest
     needs: build
+    outputs:
+      package_version: ${{ steps.package_version.outputs.version }}
 
     strategy:
       fail-fast: false
@@ -145,6 +147,11 @@ jobs:
           auto-update-conda: true
           activate-environment: test
 
+      - name: Set Conda package version
+        id: package_version
+        shell: bash
+        run: echo "version=$(date -u +%Y.%m.%d)" >> "$GITHUB_OUTPUT"
+
       - name: Conda info
         shell: bash -l {0}
         run: conda info
@@ -160,7 +167,7 @@ jobs:
           mkdir ~/conda-bld
           conda config --set anaconda_upload no
           export CONDA_BLD_PATH=~/conda-bld
-          export VERSION=`date +%Y.%m.%d`
+          export VERSION="${{ steps.package_version.outputs.version }}"
 
           # Build the package with all variants
           conda-build conda/ --old-build-string
@@ -190,7 +197,7 @@ jobs:
         os: ["ubuntu-latest"]
         python-version: ["3.11",]
         package: ["premise-bw2", "premise-bw25"]
-        solver: ["classic"]
+        solver: ["libmamba"]
     steps:
       - uses: actions/checkout@v4
       - uses: conda-incubator/setup-miniconda@v3
@@ -200,13 +207,32 @@ jobs:
           allow-softlinks: true
           auto-update-conda: true
           channel-priority: strict
+          conda-remove-defaults: true
           activate-environment: test
           conda-solver: ${{ matrix.solver }}
 
       - name: Pull distribution 📦 from Anaconda and test it if master branch
-
+        if: startsWith(github.ref, 'refs/heads/master')
+        shell: bash -el {0}
         run: |
-          conda install python=${{ matrix.python-version }} romainsacchi::${{ matrix.package }}
-          python -c "import premise; print(premise.__version__)"
+          package_spec="romainsacchi::${{ matrix.package }}=${{ needs.conda.outputs.package_version }}"
+
+          for attempt in 1 2 3 4 5; do
+            if conda install --yes --solver libmamba \
+              "python=${{ matrix.python-version }}" \
+              "$package_spec"; then
+              python -c "import premise; print(premise.__version__)"
+              exit 0
+            fi
+
+            if [[ "$attempt" == "5" ]]; then
+              echo "Failed to install $package_spec after $attempt attempts."
+              exit 1
+            fi
+
+            echo "Install attempt $attempt failed; refreshing the channel index before retrying."
+            conda clean --index-cache --yes
+            sleep 30
+          done
         env:
           IAM_FILES_KEY: ${{ secrets.IAM_FILES_KEY }}
