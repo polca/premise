@@ -14,9 +14,7 @@ from premise.heat_data import (
 HEAT_MAPPING = (
     Path(__file__).parents[1] / "premise" / "iam_variables_mapping" / "heat.yaml"
 )
-CONSEQUENTIAL_DATA = (
-    Path(__file__).parents[1] / "premise" / "data" / "consequential"
-)
+CONSEQUENTIAL_DATA = Path(__file__).parents[1] / "premise" / "data" / "consequential"
 
 
 def make_data(values, variables):
