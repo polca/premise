@@ -195,8 +195,8 @@ a limitation, where current production volumes are used to calculate
 supply mix for a given technology within a given IAM region.
 
 
-Heat transformation
--------------------
+Heat
+----
 
 Does the secondary heat market supply both buildings and industry?
 __________________________________________________________________
@@ -210,7 +210,7 @@ link to the appropriate end-use market rather than directly to secondary heat.
 TIAM-UCL is the exception because it provides only secondary-supply detail.
 Purchased district or industrial heat consumers are therefore linked directly
 to its secondary market, while on-site end-use fuel use remains unchanged. See
-:doc:`heat` for the complete model-coverage table.
+:ref:`heat-transformation` for the complete model-coverage table.
 
 Why are legacy ecoinvent heat markets still present after the update?
 ______________________________________________________________________
@@ -239,7 +239,7 @@ for generic building, district, industrial, and chemical-steam heat. Specialized
 markets keep their purpose. In particular,
 ``market for heat, for reuse in municipal waste incineration only`` is not
 treated as a generic heat supplier. The exact scope is documented in
-:doc:`heat`.
+:ref:`heat-transformation`.
 
 
 Consistency with climate targets
