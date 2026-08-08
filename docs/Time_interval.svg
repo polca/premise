@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">IAM supplier-observation intervals</title>
+  <desc id="desc">Four timelines compare short and long demand changes under perfect foresight and myopic behaviour. Blue bars indicate IAM intervals used to identify marginal suppliers.</desc>
+  <defs>
+    <style>
+      .title { font: 700 30px Arial, sans-serif; fill: #172033; }
+      .subtitle { font: 18px Arial, sans-serif; fill: #4b5565; }
+      .panel-title { font: 700 21px Arial, sans-serif; fill: #172033; }
+      .label { font: 17px Arial, sans-serif; fill: #30394a; }
+      .small { font: 15px Arial, sans-serif; fill: #596579; }
+      .time { font: 700 16px Arial, sans-serif; fill: #172033; }
+      .axis { stroke: #778196; stroke-width: 2; }
+      .tick { stroke: #778196; stroke-width: 2; }
+      .window { fill: #2474b5; }
+      .window-text { font: 700 15px Arial, sans-serif; fill: #ffffff; }
+      .demand { stroke: #e07932; stroke-width: 4; }
+      .lead { stroke: #a0a8b7; stroke-width: 2; stroke-dasharray: 7 6; }
+      .panel { fill: #f7f9fc; stroke: #dce2eb; stroke-width: 1.5; rx: 10; }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 z" fill="#778196"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="720" fill="#ffffff"/>
+  <text x="60" y="52" class="title">IAM intervals used to identify marginal suppliers</text>
+  <text x="60" y="82" class="subtitle">The blue interval measures supplier production trends; it does not locate environmental impacts in time.</text>
+
+  <rect x="50" y="112" width="540" height="245" class="panel"/>
+  <text x="75" y="148" class="panel-title">Short change · perfect foresight</text>
+  <line x1="100" y1="244" x2="545" y2="244" class="axis" marker-end="url(#arrow)"/>
+  <rect x="210" y="204" width="230" height="30" rx="5" class="window"/>
+  <text x="325" y="225" text-anchor="middle" class="window-text">IAM trend interval</text>
+  <line x1="210" y1="234" x2="210" y2="254" class="tick"/>
+  <line x1="325" y1="188" x2="325" y2="265" class="demand"/>
+  <line x1="440" y1="234" x2="440" y2="254" class="tick"/>
+  <text x="210" y="281" text-anchor="middle" class="time">y-r</text>
+  <text x="325" y="281" text-anchor="middle" class="time">y</text>
+  <text x="440" y="281" text-anchor="middle" class="time">y+r</text>
+  <text x="325" y="309" text-anchor="middle" class="label">marginal demand starts</text>
+  <text x="75" y="339" class="small">Interval: y-r to y+r</text>
+
+  <rect x="610" y="112" width="540" height="245" class="panel"/>
+  <text x="635" y="148" class="panel-title">Short change · myopic behaviour</text>
+  <line x1="660" y1="244" x2="1105" y2="244" class="axis" marker-end="url(#arrow)"/>
+  <line x1="745" y1="188" x2="745" y2="265" class="demand"/>
+  <line x1="745" y1="180" x2="950" y2="180" class="lead"/>
+  <text x="847" y="170" text-anchor="middle" class="small">average lead time L_avg</text>
+  <rect x="835" y="204" width="230" height="30" rx="5" class="window"/>
+  <text x="950" y="225" text-anchor="middle" class="window-text">IAM trend interval</text>
+  <line x1="835" y1="234" x2="835" y2="254" class="tick"/>
+  <line x1="950" y1="234" x2="950" y2="254" class="tick"/>
+  <line x1="1065" y1="234" x2="1065" y2="254" class="tick"/>
+  <text x="745" y="281" text-anchor="middle" class="time">y</text>
+  <text x="835" y="281" text-anchor="middle" class="time">y+L_avg-r</text>
+  <text x="950" y="304" text-anchor="middle" class="time">y+L_avg</text>
+  <text x="1065" y="281" text-anchor="middle" class="time">y+L_avg+r</text>
+  <text x="635" y="339" class="small">Interval: y+L_avg-r to y+L_avg+r</text>
+
+  <rect x="50" y="380" width="540" height="245" class="panel"/>
+  <text x="75" y="416" class="panel-title">Long change · perfect foresight</text>
+  <line x1="100" y1="512" x2="545" y2="512" class="axis" marker-end="url(#arrow)"/>
+  <rect x="205" y="472" width="250" height="30" rx="5" class="window"/>
+  <text x="330" y="493" text-anchor="middle" class="window-text">IAM trend interval</text>
+  <line x1="205" y1="456" x2="205" y2="533" class="demand"/>
+  <line x1="455" y1="502" x2="455" y2="522" class="tick"/>
+  <text x="205" y="549" text-anchor="middle" class="time">y</text>
+  <text x="455" y="549" text-anchor="middle" class="time">y+d</text>
+  <text x="330" y="578" text-anchor="middle" class="label">demand change persists for duration d</text>
+  <text x="75" y="608" class="small">Interval: y to y+d</text>
+
+  <rect x="610" y="380" width="540" height="245" class="panel"/>
+  <text x="635" y="416" class="panel-title">Long change · myopic behaviour</text>
+  <line x1="660" y1="512" x2="1105" y2="512" class="axis" marker-end="url(#arrow)"/>
+  <line x1="730" y1="456" x2="730" y2="533" class="demand"/>
+  <line x1="730" y1="448" x2="850" y2="448" class="lead"/>
+  <text x="790" y="438" text-anchor="middle" class="small">L_avg</text>
+  <rect x="850" y="472" width="225" height="30" rx="5" class="window"/>
+  <text x="962" y="493" text-anchor="middle" class="window-text">IAM trend interval</text>
+  <line x1="850" y1="502" x2="850" y2="522" class="tick"/>
+  <line x1="1075" y1="502" x2="1075" y2="522" class="tick"/>
+  <text x="730" y="549" text-anchor="middle" class="time">y</text>
+  <text x="850" y="549" text-anchor="middle" class="time">y+L_avg</text>
+  <text x="1075" y="549" text-anchor="middle" class="time">y+L_avg+d</text>
+  <text x="962" y="578" text-anchor="middle" class="label">duration d</text>
+  <text x="635" y="608" class="small">Interval: y+L_avg to y+L_avg+d</text>
+
+  <line x1="65" y1="672" x2="105" y2="672" class="demand"/>
+  <text x="118" y="678" class="label">start of marginal demand change</text>
+  <rect x="470" y="657" width="72" height="24" rx="4" class="window"/>
+  <text x="555" y="677" class="label">supplier-observation interval</text>
+</svg>
