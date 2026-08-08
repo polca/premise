@@ -5,6 +5,7 @@ https://chemrxiv.org/engage/chemrxiv/article-details/63ee10cdfcfb27a31fe227df
 
 """
 
+import warnings
 from functools import lru_cache
 from typing import Tuple
 
@@ -124,6 +125,175 @@ def fetch_volume_change(data: xr.DataArray, start_year: int, end_year: int) -> n
     ).values
 
 
+def _as_nonnegative_integer(name: str, value) -> int:
+    """Return a consequential time argument as a non-negative integer."""
+
+    if isinstance(value, (bool, np.bool_)):
+        return int(value)
+    if not isinstance(value, (int, np.integer)):
+        raise TypeError(f"`{name}` must be an integer number of years.")
+    if value < 0:
+        raise ValueError(f"`{name}` cannot be negative.")
+    return int(value)
+
+
+def _as_boolean(name: str, value) -> bool:
+    """Validate a consequential Boolean argument."""
+
+    if not isinstance(value, (bool, np.bool_)):
+        raise TypeError(f"`{name}` must be True or False.")
+    return bool(value)
+
+
+def _validate_consequential_args(args: dict) -> tuple:
+    """Validate and normalize consequential modelling arguments."""
+
+    range_time = _as_nonnegative_integer("range time", args.get("range time", 2))
+    duration = _as_nonnegative_integer("duration", args.get("duration", 0))
+    foresight = _as_boolean("foresight", args.get("foresight", False))
+    individual_lead_times = _as_boolean("lead time", args.get("lead time", False))
+    capital_repl_rate = _as_boolean(
+        "capital replacement rate", args.get("capital replacement rate", True)
+    )
+    measurement = _as_nonnegative_integer("measurement", args.get("measurement", 0))
+    weighted_slope_start = args.get("weighted slope start", 0.75)
+    weighted_slope_end = args.get("weighted slope end", 1.0)
+
+    if range_time and duration:
+        raise ValueError(
+            "`range time` and `duration` cannot both be non-zero. Use `range time` "
+            "for a short demand change or `duration` for a long demand change."
+        )
+    if duration in (1, 2):
+        raise ValueError(
+            "`duration` must be 0 or at least 3 years. Use `range time` for a "
+            "change lasting less than 3 years."
+        )
+    if measurement not in range(6):
+        raise ValueError("`measurement` must be an integer from 0 to 5.")
+    if measurement == 4 and individual_lead_times:
+        raise ValueError(
+            "Measurement method 4 requires a common market interval and cannot "
+            "be combined with technology-specific lead times. Set `lead time` "
+            "to False."
+        )
+    if not isinstance(weighted_slope_start, (int, float, np.number)) or not isinstance(
+        weighted_slope_end, (int, float, np.number)
+    ):
+        raise TypeError("Weighted-slope bounds must be numeric fractions.")
+
+    weighted_slope_start = float(weighted_slope_start)
+    weighted_slope_end = float(weighted_slope_end)
+    if not 0 <= weighted_slope_start < weighted_slope_end <= 1:
+        raise ValueError("Weighted-slope bounds must satisfy 0 <= start < end <= 1.")
+
+    return (
+        range_time,
+        duration,
+        foresight,
+        individual_lead_times,
+        capital_repl_rate,
+        measurement,
+        weighted_slope_start,
+        weighted_slope_end,
+    )
+
+
+def _get_time_parameters(
+    year: int,
+    range_time: int,
+    duration: int,
+    foresight: bool,
+    individual_lead_times: bool,
+    lead_times: np.ndarray,
+    shares: xr.DataArray,
+) -> dict:
+    """Return supplier-specific and market-average observation intervals."""
+
+    avg_lead_time = fetch_avg_leadtime(lead_times, shares)
+
+    if range_time:
+        average_centre = year if foresight else year + avg_lead_time
+        if individual_lead_times and not foresight:
+            centre = year + lead_times
+        else:
+            centre = average_centre
+        start = centre - range_time
+        end = centre + range_time
+        avg_start = average_centre - range_time
+        avg_end = average_centre + range_time
+    elif duration:
+        average_start = year if foresight else year + avg_lead_time
+        if individual_lead_times and not foresight:
+            start = year + lead_times
+            end = start + duration
+        else:
+            start = average_start
+            end = average_start + duration
+        avg_start = average_start
+        avg_end = average_start + duration
+    else:
+        # Legacy ecoinvent-style fallback: use lead time itself as the interval.
+        if foresight:
+            start = year - lead_times if individual_lead_times else year - avg_lead_time
+            end = np.full_like(lead_times, year) if individual_lead_times else year
+            avg_start = year - avg_lead_time
+            avg_end = year
+        else:
+            start = np.full_like(lead_times, year) if individual_lead_times else year
+            end = year + lead_times if individual_lead_times else year + avg_lead_time
+            avg_start = year
+            avg_end = year + avg_lead_time
+
+    return {
+        "start": start,
+        "end": end,
+        "start_avg": avg_start,
+        "end_avg": avg_end,
+        "average lead time": avg_lead_time,
+    }
+
+
+def _nearest_available_year(
+    value, available_years: np.ndarray, parameter_name: str = "year"
+):
+    """Map one or more requested years to the nearest available IAM year."""
+
+    available_years = np.asarray(available_years)
+    requested = np.asarray(value)
+    indices = np.abs(requested[..., None] - available_years).argmin(axis=-1)
+    nearest = available_years[indices]
+    if not np.array_equal(requested, nearest):
+        warnings.warn(
+            f"Requested {parameter_name} {requested.tolist()} is outside the "
+            f"available IAM years and was mapped to {np.asarray(nearest).tolist()}.",
+            RuntimeWarning,
+            stacklevel=2,
+        )
+    return nearest.item() if requested.ndim == 0 else nearest
+
+
+def _select_technology_values(data: xr.DataArray, years) -> np.ndarray:
+    """Select or interpolate one value per technology for scalar or array years."""
+
+    requested = np.asarray(years, dtype=float)
+    available_years = np.asarray(data.coords["year"].values, dtype=float)
+    values = np.asarray(data.values, dtype=float)
+
+    if requested.ndim == 0:
+        return np.asarray(
+            [np.interp(float(requested), available_years, row) for row in values]
+        )
+    if requested.shape != (values.shape[0],):
+        raise ValueError("Expected one observation year per technology.")
+    return np.asarray(
+        [
+            np.interp(requested_year, available_years, row)
+            for requested_year, row in zip(requested, values)
+        ]
+    )
+
+
 def consequential_method(
     data: xr.DataArray, year: int, args: dict, sector: str
 ) -> xr.DataArray:
@@ -132,19 +302,14 @@ def consequential_method(
     Returns marginal market mixes
     according to the chosen method.
 
-    If range_time and duration are None, then the lead time is taken as
-    the time interval (just as with ecoinvent v.3.4).
-    foresight: 0 = myopic, 1 = perfect foresight
-    lead time: 0 = market average lead time is taken for all technologies,
-    lead time: 1 = individual lead time for each technology.
-    capital_repl_rate: 0 = horizontal baseline is used,
-    capital_repl_rate: 1 = capital replacement rate is used as baseline.
-    measurement: 0 = slope, 1 = linear regression,
-    measurement: 2 = area under the curve, 3 = weighted slope,
-    measurement: 4 = time interval is split in individual years and measured
-    weighted_slope_start and end: is needed for measurement method 3,
-    the number indicates where the short slope starts
-    and ends and is given as the fraction of the total time interval.
+    If range time and duration are both zero, lead time itself is used as the
+    interval, as in the ecoinvent v3.4 electricity method.
+
+    ``foresight=False`` selects myopic behaviour and ``True`` selects perfect
+    foresight. ``lead time=False`` uses a production-weighted market-average
+    lead time; ``True`` uses an individual interval for each technology.
+    Measurement method 4 requires a common interval and therefore only supports
+    the market-average lead-time mode.
 
     :param data: IAM data
     :param year: year to calculate the mix for
@@ -156,14 +321,16 @@ def consequential_method(
 
     args = args or {}
 
-    range_time: int = args.get("range time", 2)
-    duration: int = args.get("duration", False)
-    foresight: bool = args.get("foresight", False)
-    lead_time: int = args.get("lead time", False)
-    capital_repl_rate: bool = args.get("capital replacement rate", True)
-    measurement: int = args.get("measurement", 0)
-    weighted_slope_start: float = args.get("weighted slope start", 0.75)
-    weighted_slope_end: float = args.get("weighted slope end", 1.0)
+    (
+        range_time,
+        duration,
+        foresight,
+        individual_lead_times,
+        capital_repl_rate,
+        measurement,
+        weighted_slope_start,
+        weighted_slope_end,
+    ) = _validate_consequential_args(args)
 
     market_shares = xr.zeros_like(
         data.interp(year=[year]),
@@ -217,125 +384,30 @@ def consequential_method(
         if shares.isnull().all():
             continue
 
-        time_parameters = {
-            (False, False, False, False): {
-                "start": year,
-                "end": year + fetch_avg_leadtime(leadtime, shares),
-                "start_avg": year,
-                "end_avg": year + fetch_avg_lifetime(lifetime=lifetime, shares=shares),
-            },
-            (False, False, True, False): {
-                "start": year - fetch_avg_leadtime(leadtime, shares),
-                "end": year,
-                "start_avg": year - fetch_avg_leadtime(leadtime, shares),
-                "end_avg": year,
-            },
-            (False, False, False, True): {
-                "start": year,
-                "end": year + fetch_avg_leadtime(leadtime, shares),
-                "start_avg": year,
-                "end_avg": year + fetch_avg_lifetime(lifetime=lifetime, shares=shares),
-            },
-            (False, False, True, True): {
-                "start": year - fetch_avg_leadtime(leadtime, shares),
-                "end": year,
-                "start_avg": year
-                - fetch_avg_lifetime(lifetime=lifetime, shares=shares),
-                "end_avg": year,
-            },
-            (True, False, False, False): {
-                "start": year + fetch_avg_leadtime(leadtime, shares) - range_time,
-                "end": year + fetch_avg_leadtime(leadtime, shares) + range_time,
-                "start_avg": year + fetch_avg_leadtime(leadtime, shares) - range_time,
-                "end_avg": year + fetch_avg_leadtime(leadtime, shares) + range_time,
-            },
-            (True, False, True, False): {
-                "start": year - range_time,
-                "end": year + range_time,
-                "start_avg": year - range_time,
-                "end_avg": year + range_time,
-            },
-            (True, False, False, True): {
-                "start": year + fetch_avg_leadtime(leadtime, shares) - range_time,
-                "end": year + fetch_avg_leadtime(leadtime, shares) + range_time,
-                "start_avg": year + fetch_avg_leadtime(leadtime, shares) - range_time,
-                "end_avg": year + fetch_avg_leadtime(leadtime, shares) + range_time,
-            },
-            (True, False, True, True): {
-                "start": year - range_time,
-                "end": year + range_time,
-                "start_avg": year - range_time,
-                "end_avg": year + range_time,
-            },
-            (False, True, False, False): {
-                "start": year + fetch_avg_leadtime(leadtime, shares),
-                "end": year + fetch_avg_leadtime(leadtime, shares) + duration,
-                "start_avg": year + fetch_avg_leadtime(leadtime, shares),
-                "end_avg": year + fetch_avg_leadtime(leadtime, shares) + duration,
-            },
-            (False, True, True, False): {
-                "start": year,
-                "end": year + duration,
-                "start_avg": year,
-                "end_avg": year + duration,
-            },
-            (False, True, False, True): {
-                "start": year + fetch_avg_leadtime(leadtime, shares),
-                "end": year + fetch_avg_leadtime(leadtime, shares) + duration,
-                "start_avg": year + fetch_avg_leadtime(leadtime, shares),
-                "end_avg": year + fetch_avg_leadtime(leadtime, shares) + duration,
-            },
-            (False, True, True, True): {
-                "start": year,
-                "end": year + duration,
-                "start_avg": year,
-                "end_avg": year + duration,
-            },
-        }
-
-        try:
-            params = time_parameters[
-                (bool(range_time), bool(duration), foresight, lead_time)
-            ]
-            start = params["start"]
-            end = params["end"]
-
-            avg_start = params["start_avg"]
-            avg_end = params["end_avg"]
-
-        except KeyError:
-            print(
-                f"The combination of range_time, duration, foresight, and lead_time {range_time, duration, foresight, lead_time} "
-                "is not possible. Please check your input. Specifically, if `range_time` is non-null, `duration` must be null, "
-                "and vice versa."
-            )
-            continue
+        params = _get_time_parameters(
+            year=year,
+            range_time=range_time,
+            duration=duration,
+            foresight=foresight,
+            individual_lead_times=individual_lead_times,
+            lead_times=leadtime,
+            shares=shares,
+        )
+        start = params["start"]
+        end = params["end"]
+        avg_start = params["start_avg"]
+        avg_end = params["end_avg"]
 
         # Now that we do know the start year of the time interval,
         # we can use this to "more accurately" calculate the current shares
 
-        if avg_start not in data_full.coords["year"].values:
-            # pick nearest value
-            avg_start = data_full.coords["year"].values[
-                np.abs(data_full.coords["year"].values - avg_start).argmin()
-            ]
-        if avg_end not in data_full.coords["year"].values:
-            # pick nearest value
-            avg_end = data_full.coords["year"].values[
-                np.abs(data_full.coords["year"].values - avg_end).argmin()
-            ]
-
-        if start not in data_full.coords["year"].values:
-            # pick nearest value
-            start = data_full.coords["year"].values[
-                np.abs(data_full.coords["year"].values - start).argmin()
-            ]
-
-        if end not in data_full.coords["year"].values:
-            # pick nearest value
-            end = data_full.coords["year"].values[
-                np.abs(data_full.coords["year"].values - end).argmin()
-            ]
+        available_years = data_full.coords["year"].values
+        avg_start = _nearest_available_year(
+            avg_start, available_years, "average start year"
+        )
+        avg_end = _nearest_available_year(avg_end, available_years, "average end year")
+        start = _nearest_available_year(start, available_years, "start year")
+        end = _nearest_available_year(end, available_years, "end year")
 
         shares = data_full.sel(region=region, year=avg_start) / data_full.sel(
             region=region, year=avg_start
@@ -361,37 +433,12 @@ def consequential_method(
         # for each technology
         # using the selected measuring method and baseline
         if measurement == 0:
-            # if the capital replacement rate is not used,
-            if isinstance(start, np.ndarray):
-                data_start = (
-                    data_full.sel(
-                        region=region,
-                        year=start,
-                    )
-                    * np.identity(start.shape[0])
-                ).sum(dim="variables")
-            else:
-                data_start = data_full.sel(
-                    region=region,
-                    year=start,
-                )
-
-            if isinstance(end, np.ndarray):
-                data_end = (
-                    data_full.sel(
-                        region=region,
-                        year=end,
-                    )
-                    * np.identity(end.shape[0])
-                ).sum(dim="variables")
-            else:
-                data_end = data_full.sel(
-                    region=region,
-                    year=end,
-                )
+            region_data = data_full.sel(region=region)
+            data_start = _select_technology_values(region_data, start)
+            data_end = _select_technology_values(region_data, end)
 
             market_shares.loc[{"region": region}] = (
-                (data_end.values - data_start.values) / (end - start)
+                (data_end - data_start) / (end - start)
             )[:, None]
 
             if capital_repl_rate:
@@ -443,72 +490,36 @@ def consequential_method(
                 market_shares.loc[{"region": region}] -= cap_repl_rate[:, None]
 
         if measurement == 2:
-            if isinstance(end, np.ndarray):
-                data_end = (
-                    data_full.sel(
-                        region=region,
-                        year=end,
-                    )
-                    * np.identity(end.shape[0])
-                ).sum(dim="variables")
+            region_data = data_full.sel(region=region)
+            number_technologies = region_data.sizes["variables"]
+            start_by_technology = (
+                start
+                if isinstance(start, np.ndarray)
+                else np.full(number_technologies, start)
+            )
+            end_by_technology = (
+                end
+                if isinstance(end, np.ndarray)
+                else np.full(number_technologies, end)
+            )
+            data_start = _select_technology_values(region_data, start_by_technology)
+            data_end = _select_technology_values(region_data, end_by_technology)
 
-                new_end = np.zeros_like(data_full.sel(region=region))
-                new_end[:, :] = end[:, None]
-                end = new_end
-            else:
-                data_end = data_full.sel(
-                    region=region,
-                    year=end,
-                )
-
-            if isinstance(start, np.ndarray):
-                data_start = (
-                    data_full.sel(
-                        region=region,
-                        year=start,
-                    )
-                    * np.identity(start.shape[0])
-                ).sum(dim="variables")
-
-                new_start = np.zeros_like(data_full.sel(region=region))
-                new_start[:, :] = start[:, None]
-                start = new_start
-            else:
-                data_start = data_full.sel(
-                    region=region,
-                    year=start,
-                )
-
-            mask_end = data_full.sel(region=region).year.values[None, :] <= end
-            mask_start = data_full.sel(region=region).year.values[None, :] >= start
+            mask_end = region_data.year.values[None, :] <= end_by_technology[:, None]
+            mask_start = (
+                region_data.year.values[None, :] >= start_by_technology[:, None]
+            )
             mask = mask_end & mask_start
+            coeff = np.where(mask, region_data.values, 0).sum(axis=1)
+            n = end_by_technology - start_by_technology
 
-            maskxr = xr.zeros_like(data_full.sel(region=region))
-            maskxr += mask
-
-            masked_data = data_full.sel(region=region).where(maskxr, drop=True)
-
-            coeff = masked_data.sum(dim="year").values
-
-            if isinstance(end, np.ndarray):
-                end = np.mean(end, 1)
-
-            if isinstance(start, np.ndarray):
-                start = np.mean(start, 1)
-
-            n = end - start
-
-            total_area = 0.5 * (2 * coeff - data_end.values - data_start.values)
-
-            if isinstance(n, np.ndarray):
-                if n.shape != data_start.shape:
-                    n = n.mean(axis=1)
+            total_area = 0.5 * (2 * coeff - data_end - data_start)
 
             baseline_area = data_start * n
 
-            market_shares.loc[{"region": region}] = (
-                (total_area - baseline_area) / n
-            ).values[:, None]
+            market_shares.loc[{"region": region}] = ((total_area - baseline_area) / n)[
+                :, None
+            ]
 
             if capital_repl_rate:
                 # this bit differs from above
@@ -518,7 +529,7 @@ def consequential_method(
                     fetch_capital_replacement_rates(
                         lifetime, data_full.sel(region=region, year=avg_start)
                     )
-                    * ((avg_end - avg_start) ^ 2)
+                    * (n**2)
                     * 0.5
                 )
 
@@ -527,74 +538,24 @@ def consequential_method(
                 market_shares.loc[{"region": region}] -= cap_repl_rate[:, None]
 
         if measurement == 3:
-            if isinstance(end, np.ndarray):
-                data_end = (
-                    data_full.sel(
-                        region=region,
-                        year=end,
-                    )
-                    * np.identity(end.shape[0])
-                ).sum(dim="variables")
+            region_data = data_full.sel(region=region)
+            data_start = _select_technology_values(region_data, start)
+            data_end = _select_technology_values(region_data, end)
 
-            else:
-                data_end = data_full.sel(
-                    region=region,
-                    year=end,
-                )
-
-            if isinstance(start, np.ndarray):
-                data_start = (
-                    data_full.sel(
-                        region=region,
-                        year=start,
-                    )
-                    * np.identity(start.shape[0])
-                ).sum(dim="variables")
-
-            else:
-                data_start = data_full.sel(
-                    region=region,
-                    year=start,
-                )
-
-            slope = (data_end.values - data_start.values) / (end - start)
+            slope = (data_end - data_start) / (end - start)
 
             short_slope_start = start + (end - start) * weighted_slope_start
             short_slope_end = start + (end - start) * weighted_slope_end
+            data_short_slope_start = _select_technology_values(
+                region_data, short_slope_start
+            )
+            data_short_slope_end = _select_technology_values(
+                region_data, short_slope_end
+            )
 
-            if isinstance(short_slope_start, np.ndarray):
-                data_short_slope_start = (
-                    data_full.sel(
-                        region=region,
-                        year=short_slope_start,
-                    )
-                    * np.identity(short_slope_start.shape[0])
-                ).sum(dim="variables")
-
-            else:
-                data_short_slope_start = data_full.sel(
-                    region=region,
-                    year=short_slope_start,
-                )
-
-            if isinstance(short_slope_end, np.ndarray):
-                data_short_slope_end = (
-                    data_full.sel(
-                        region=region,
-                        year=short_slope_end,
-                    )
-                    * np.identity(short_slope_end.shape[0])
-                ).sum(dim="variables")
-
-            else:
-                data_short_slope_end = data_full.sel(
-                    region=region,
-                    year=short_slope_end,
-                )
-
-            short_slope = (
-                data_short_slope_end.values - data_short_slope_start.values
-            ) / (short_slope_end - short_slope_start)
+            short_slope = (data_short_slope_end - data_short_slope_start) / (
+                short_slope_end - short_slope_start
+            )
 
             if short_slope.shape != slope.shape:
                 short_slope = np.repeat(short_slope, slope.shape[0])
@@ -684,37 +645,12 @@ def consequential_method(
 
         if measurement == 5:
             # if the capital replacement rate is not used,
-
-            if isinstance(start, np.ndarray):
-                data_start = (
-                    data_full.sel(
-                        region=region,
-                        year=start,
-                    )
-                    * np.identity(start.shape[0])
-                ).sum(dim="variables")
-            else:
-                data_start = data_full.sel(
-                    region=region,
-                    year=start,
-                )
-
-            if isinstance(end, np.ndarray):
-                data_end = (
-                    data_full.sel(
-                        region=region,
-                        year=end,
-                    )
-                    * np.identity(end.shape[0])
-                ).sum(dim="variables")
-            else:
-                data_end = data_full.sel(
-                    region=region,
-                    year=end,
-                )
+            region_data = data_full.sel(region=region)
+            data_start = _select_technology_values(region_data, start)
+            data_end = _select_technology_values(region_data, end)
 
             market_shares.loc[{"region": region}] = (
-                (data_end.values - data_start.values) / (end - start)
+                (data_end - data_start) / (end - start)
             )[:, None]
 
             if capital_repl_rate:
@@ -741,7 +677,7 @@ def consequential_method(
                     market_shares.loc[{"region": region}].values < 0
                 ] = -1
                 # and use their production volume as their indicator
-                market_shares.loc[{"region": region}] *= data_start.values[:, None]
+                market_shares.loc[{"region": region}] *= data_start[:, None]
             # increasing market or
             # market decreasing slower than the
             # capital renewal rate
@@ -755,7 +691,7 @@ def consequential_method(
                     market_shares.loc[{"region": region}].values > 0
                 ] = 1
                 # and use their production volume as their indicator
-                market_shares.loc[{"region": region}] *= data_start.values[:, None]
+                market_shares.loc[{"region": region}] *= data_start[:, None]
 
         market_shares.loc[{"region": region}] = market_shares.loc[
             {"region": region}
@@ -774,6 +710,9 @@ def consequential_method(
                 region,
                 measurement,
                 foresight,
+                "individual" if individual_lead_times else "average",
+                params["average lead time"],
+                range_time,
                 duration,
                 avg_start,
                 avg_end,
@@ -827,9 +766,12 @@ def consequential_method(
             "Region",
             "Method",
             "Foresight",
+            "Lead time",
+            "L avg",
+            "Range",
             "Duration",
-            "Start",
-            "End",
+            "Avg start",
+            "Avg end",
             "Cap repl.",
             "Vol ch.",
         ]
@@ -841,9 +783,12 @@ def consequential_method(
         "Region": 10,
         "Method": 10,
         "Foresight": 10,
+        "Lead time": 10,
+        "L avg": 10,
+        "Range": 10,
         "Duration": 10,
-        "Start": 10,
-        "End": 10,
+        "Avg start": 10,
+        "Avg end": 10,
         "Cap repl.": 10,
         "Vol ch.": 10,
     }
