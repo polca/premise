@@ -5,12 +5,6 @@ A series of transformations are applied to the Life Cycle Inventory (LCI) databa
 process performance and technology market shares with the outputs from the Integrated Assessment
 Model (IAM) scenario.
 
-.. toctree::
-   :maxdepth: 2
-   :hidden:
-
-   heat
-
 Sector updates (overview)
 +++++++++++++++++++++++++
 
@@ -1355,6 +1349,13 @@ Once the new markets are created, *premise* re-links all electricity-consuming
 activities to the new regional markets. The regional market it re-links to
 depends on the location of the consumer.
 
+.. _heat-transformation:
+
+Heat
+++++
+
+.. include:: heat.inc
+
 Cement production
 +++++++++++++++++
 
@@ -2379,58 +2380,6 @@ are modelled with the calorific value of conventional gasoline.
   Ethanol production, via fermentation, from poplar, with CCS         0.041     kilogram    WEU
   Ethanol production, via fermentation, from poplar                   0.041     kilogram    WEU
  =================================================================== ========= =========== ===========
-
-Heat
-++++
-
-The heat transformation builds separate regional markets for secondary heat,
-building heat, and industrial heat. This avoids mixing heat-production
-technologies with on-site end-use technologies and makes purchased district heat
-an explicit input to the buildings and industrial markets.
-
-Run all sector updates when possible so that the heat suppliers can use
-prospective biomass, electricity, and fuel markets:
-
-.. code-block:: python
-
-    import bw2data as bd
-    from premise import NewDatabase
-
-    bd.projects.set_current("my_project")
-
-    ndb = NewDatabase(
-        scenarios=[
-            {"model": "remind", "pathway": "SSP2-PkBudg650", "year": 2050}
-        ],
-        source_db="ecoinvent-3.12-cutoff",
-        source_version="3.12",
-    )
-    ndb.update()
-
-Key outputs
-~~~~~~~~~~~
-
-* Creates ``market for heat, secondary, district or industrial`` from IAM
-  secondary-supply technologies.
-* Creates ``market for heat, for buildings`` and
-  ``market for heat, district or industrial`` from delivered end-use heat
-  projections.
-* Converts final-energy variables to delivered heat with inventory-derived
-  combustion efficiency, electric-boiler efficiency, or heat-pump performance
-  before normalizing shares.
-* Relinks selected legacy ecoinvent building and industrial heat inputs to the
-  corresponding new market while protecting generated markets and frozen
-  residual proxies from cycles.
-* Regionalizes technology suppliers, reconnects their upstream energy inputs,
-  and updates direct fossil and non-fossil CO2 emissions from regional fuel
-  composition.
-* Supports full three-layer, end-use-only, and secondary-supply-only IAM data
-  without inventing missing end-use technology detail.
-
-See :doc:`heat` for the complete market architecture, per-model coverage,
-mapping semantics, residual and fallback rules, legacy relinking scope,
-and technology representation assumptions.
-
 
 CO2 emissions update
 --------------------

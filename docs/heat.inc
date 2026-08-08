@@ -1,6 +1,3 @@
-Heat transformation
-===================
-
 The heat transformation converts IAM heat projections into three distinct,
 regionalized markets. This separation prevents heat production technologies,
 purchased district heat, and on-site end-use technologies from being counted in
@@ -18,7 +15,7 @@ The transformation:
   markets.
 
 Running the update
-------------------
+~~~~~~~~~~~~~~~~~~
 
 Running all sector transformations is recommended because heat suppliers can
 consume regional electricity, biomass, and fuel markets created by earlier
@@ -57,7 +54,7 @@ electricity, biomass, or fuel markets. In that case, heat activities use the bes
 suppliers already present in the source database.
 
 Market architecture
--------------------
+~~~~~~~~~~~~~~~~~~~
 
 The three layers represent different physical quantities and have different
 consumers::
@@ -119,7 +116,7 @@ market is also created and contains production-volume-weighted links to the
 regional markets.
 
 IAM data and market shares
---------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The heat mapping has 49 technology entries split between
 ``buildings_end_use``, ``industrial_end_use``, and ``secondary_supply``. Each
@@ -169,7 +166,7 @@ layer is present, the build raises an error instead of normalizing an incomplete
 technology mix. Non-finite values and material negative values are also rejected.
 
 Model coverage
---------------
+~~~~~~~~~~~~~~
 
 Coverage reflects the variables available in the current IAM scenario files and
 the mappings in ``heat.yaml``. The numbers below are mapped technology categories,
@@ -225,7 +222,7 @@ No market is created for a layer without positive scenario data. If all three
 layers are absent, the heat transformation leaves the database unchanged.
 
 Technology representation and assumptions
------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The buildings layer can represent district heat, hydrogen and natural-gas
 boilers, LPG and methanol boilers, coal stoves, wood-log and pellet heaters, heat
@@ -256,7 +253,7 @@ and ``heat production, nuclear cogeneration``. Like other additional
 inventories, they are imported and linked during ``NewDatabase`` initialization.
 
 Regionalization and supplier selection
---------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Mapped heat-production activities are copied to IAM regions before markets are
 created. Supplier selection prefers, in order:
@@ -278,7 +275,7 @@ fuel markets. This is why applying the upstream sector updates before ``heat``
 is preferable.
 
 Residuals and frozen legacy proxies
------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Residuals are used only when an IAM total contains a component that cannot be
 identified directly. Two different mechanisms are present:
@@ -306,7 +303,7 @@ composition. The fallback provides a consistent purchased-heat supplier without
 inventing an IAM technology split.
 
 Legacy ecoinvent market relinking
----------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The transformation redirects exact legacy activity-name and reference-product
 pairs. It does not use a broad ``"market for heat"`` string replacement.
@@ -343,7 +340,7 @@ hierarchy from rewriting itself. Frozen proxies are also excluded from the
 subsequent general relinking pass.
 
 Legacy datasets are retained
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------
 
 The old ecoinvent market activities are not deleted. Their presence in a
 Brightway database does not mean that they still supply ordinary activities.
@@ -357,7 +354,7 @@ keeps its specialized function and is not treated as a general buildings or
 industrial heat supplier.
 
 Cutoff and consequential databases
-----------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 For cutoff databases, the normalized delivered-heat volumes form average
 technology shares. For consequential databases, the same delivered-heat arrays
@@ -366,7 +363,7 @@ written. The three-layer architecture, legacy consumer routing, residual rules,
 and cycle checks are otherwise shared by both system models.
 
 Maintaining or extending the mapping
-------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ``premise/iam_variables_mapping/heat.yaml`` is the authoritative mapping. When
 adding an IAM or technology:
