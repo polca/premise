@@ -37,14 +37,12 @@ import xarray as xr
 import yaml
 from scipy.interpolate import Akima1DInterpolator
 
-
 REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT))
 
 from premise.data_collection import IAMDataCollection  # noqa: E402
 from premise.filesystem_constants import DATA_DIR, VARIABLES_DIR  # noqa: E402
 from premise.marginal_mixes import consequential_method  # noqa: E402
-
 
 LEAD_TIMES = DATA_DIR / "consequential" / "leadtimes.yaml"
 LIFETIMES = DATA_DIR / "consequential" / "lifetimes.yaml"
