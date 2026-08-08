@@ -1,6 +1,6 @@
 # Consequential marginal-mix validation
 
-Generated 2026-08-08T15:21:41+02:00 from Git state `f76905b0 + uncommitted changes`.
+Generated 2026-08-08T15:25:56+02:00 from Git state `65903406 + uncommitted changes`.
 
 ## Scope
 
@@ -35,13 +35,13 @@ The production result comes from `premise.marginal_mixes.consequential_method`. 
 | Check | Result | Evidence |
 |---|---|---|
 | Production vs independent oracle | PASS | 11/11 cases within 1e-12; maximum 0.00e+00 |
-| IAM-to-electricity wiring | PASS | Raw mapped volumes normalise to the `IAMDataCollection.electricity_mix` result; max absolute delta = 0.00e+00 |
+| IAM-to-electricity wiring | PASS | Raw mapped volumes normalise to the `IAMDataCollection.electricity_mix` result; max absolute delta = 5.55e-17 |
 | Mixes sum to one | PASS | Range 1–1 |
 | No negative or non-finite shares | PASS | Minimum share -0; all values finite = True |
 | Constrained suppliers excluded | PASS | Largest total constrained share 0.00e+00 |
 | Invalid argument combinations rejected | PASS | 3/3 expected errors raised |
 | Real-data market-direction branches | PASS | Expanding/replacing and declining branches both covered = True |
-| Constrained-supplier parameter schema | WARN | YAML runtime type is `str`; unintended substring matches: `diesel`, `liquefied petroleum gas` |
+| Constrained-supplier parameter schema | PASS | YAML runtime type is `list`; unintended substring matches: none |
 
 Guardrails exercised:
 
@@ -53,7 +53,7 @@ Guardrails exercised:
 
 This run confirms that the implemented numerical code follows the stated algorithm for this real IAM market across every consequential argument family, all measurement methods, and both market-direction branches. The lead-time switch changes the supplier-specific windows (rather than disabling lead time), while perfect foresight centres the window on the demand year.
 
-One separate robustness issue was found: `constrained_suppliers.yaml` is not a YAML list. It currently parses as one folded string, so production uses substring membership. This does not change the electricity results above, but it also classifies `diesel` and `liquefied petroleum gas` as constrained even though neither is an exact entry. The file or loader should be corrected before treating fuel-sector marginal mixes as validated.
+The constrained-supplier file parses as a YAML list, so supplier exclusions use exact names. In particular, `diesel` and `liquefied petroleum gas` are not accidentally excluded through substring matching.
 
 It is a strong implementation and regression check, but not a proof that the behavioural assumptions are empirically correct for every market. Confidence should also come from the synthetic unit tests, additional scenario/region fixtures, and review of the lead-time, lifetime, and constrained-supplier parameter files.
 

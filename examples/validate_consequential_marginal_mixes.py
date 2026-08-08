@@ -96,15 +96,18 @@ def read_yaml(path: Path) -> Any:
 
 
 def load_exact_constrained_suppliers() -> set[str]:
-    """Read the intended newline-delimited supplier names exactly.
+    """Read the intended supplier names using exact membership.
 
-    The current file is written as bare lines, so a YAML parser folds it into
-    one scalar string.  Reading the entries explicitly prevents the independent
-    oracle from copying production's substring-membership behaviour.
+    The fallback preserves the validator's ability to diagnose the historical
+    bare-line format without copying its substring-membership behaviour.
     """
 
+    parsed = read_yaml(CONSTRAINED)
+    if isinstance(parsed, list):
+        return set(parsed)
+
     return {
-        line.strip()
+        line.strip().removeprefix("- ").strip()
         for line in CONSTRAINED.read_text(encoding="utf-8").splitlines()
         if line.strip() and line.strip() != "---" and not line.lstrip().startswith("#")
     }
@@ -646,6 +649,22 @@ def write_report(
     declining_branch_covered = any(
         result["oracle"].direction == "declining" for result in results
     )
+    if constrained_yaml_type == "list":
+        constrained_schema_note = (
+            "The constrained-supplier file parses as a YAML list, so supplier "
+            "exclusions use exact names. In particular, `diesel` and `liquefied "
+            "petroleum gas` are not accidentally excluded through substring matching."
+        )
+    else:
+        constrained_schema_note = (
+            "One separate robustness issue was found: "
+            "`constrained_suppliers.yaml` is not a YAML list. It currently parses as "
+            "one folded string, so production uses substring membership. This does not "
+            "change the electricity results above, but it also classifies `diesel` and "
+            "`liquefied petroleum gas` as constrained even though neither is an exact "
+            "entry. The file or loader should be corrected before treating fuel-sector "
+            "marginal mixes as validated."
+        )
 
     lines = [
         "# Consequential marginal-mix validation",
@@ -737,15 +756,7 @@ def write_report(
                 "demand year."
             ),
             "",
-            (
-                "One separate robustness issue was found: "
-                "`constrained_suppliers.yaml` is not a YAML list. It currently parses as "
-                "one folded string, so production uses substring membership. This does not "
-                "change the electricity results above, but it also classifies `diesel` and "
-                "`liquefied petroleum gas` as constrained even though neither is an exact "
-                "entry. The file or loader should be corrected before treating fuel-sector "
-                "marginal mixes as validated."
-            ),
+            constrained_schema_note,
             "",
             (
                 "It is a strong implementation and regression check, but not a proof that "

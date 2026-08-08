@@ -70,14 +70,23 @@ def get_leadtime(list_tech: Tuple) -> np.ndarray:
     return np.array(val, dtype=float)
 
 
-def get_list_contrained_suppliers():
+def get_list_contrained_suppliers() -> list[str]:
     """
-    Get a list of constrained suppliers from the leadtimes.yaml file.
+    Get the exact supplier names excluded from consequential marginal mixes.
     :return: a list of constrained suppliers
     :rtype: list
     """
     with open(CONSTRAINED_SUPPLIERS, "r", encoding="utf-8") as stream:
-        return yaml.safe_load(stream)
+        suppliers = yaml.safe_load(stream)
+
+    if not isinstance(suppliers, list) or not all(
+        isinstance(supplier, str) for supplier in suppliers
+    ):
+        raise TypeError(
+            "constrained_suppliers.yaml must contain a YAML list of supplier names."
+        )
+
+    return suppliers
 
 
 def fetch_avg_leadtime(leadtime: np.ndarray, shares: [np.ndarray, xr.DataArray]) -> int:
