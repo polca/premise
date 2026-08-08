@@ -249,9 +249,13 @@ def test_process_and_add_activities_indexes_proxies_before_emptying(monkeypatch)
 
 
 def test_used_cooking_oil_biodiesel_is_constrained_in_marginal_mixes():
-    assert (
-        "biodiesel, from used cooking oil, with CCS" in get_list_contrained_suppliers()
-    )
+    suppliers = get_list_contrained_suppliers()
+
+    assert isinstance(suppliers, list)
+    assert "biodiesel, from used cooking oil, with CCS" in suppliers
+    assert "liquefied petroleum gas, synthetic, from coal" in suppliers
+    assert "diesel" not in suppliers
+    assert "liquefied petroleum gas" not in suppliers
 
 
 def test_cutoff_fuel_market_flips_treatment_supplier_sign_after_normalization(
