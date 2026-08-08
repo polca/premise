@@ -477,7 +477,6 @@ steel - secondary:
       - Final Energy|Production|Steel|Secondary|EAF 3|Electricity
       - Final Energy|Production|Steel|Secondary|EAF 3|Natural Gas
       - Final Energy|Production|Steel|Secondary|EAF 1|Coal
-
   ecoinvent_aliases:
     fltr:
       - steel production, electric
