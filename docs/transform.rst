@@ -5,6 +5,12 @@ A series of transformations are applied to the Life Cycle Inventory (LCI) databa
 process performance and technology market shares with the outputs from the Integrated Assessment
 Model (IAM) scenario.
 
+.. toctree::
+   :maxdepth: 2
+   :hidden:
+
+   heat
+
 Sector updates (overview)
 +++++++++++++++++++++++++
 
