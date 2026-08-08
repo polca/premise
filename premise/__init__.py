@@ -14,7 +14,7 @@ __all__ = (
     "clear_inventory_cache",
     "get_regions_definition",
 )
-__version__ = (2, 4, 8)
+__version__ = (2, 4, 9, 1)
 
 
 from premise.new_database import NewDatabase

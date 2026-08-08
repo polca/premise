@@ -72,12 +72,14 @@ of the global IAM model, you can run the function **ndb.update()**.
 
     ndb.update()
 
-Or if you just want the IAM projections relating to, for example, electricity and steel:
+Or if you just want the IAM projections relating to, for example, electricity,
+heat, and steel:
 
 .. code-block:: python
 
     ndb.update([
         "electricity",
+        "heat",
         "steel",
         "external"
     ])

@@ -881,6 +881,10 @@ class BaseTransformation:
 
             for technology, activities in mapping.items():
                 if (technology, region) in technology_shares_dict:
+                    share = technology_shares_dict.get((technology, region), 0)
+                    if share <= 0:
+                        continue
+
                     suppliers = [ds for ds in activities if ds["location"] == region]
                     if len(suppliers) == 0:
                         suppliers = [
@@ -901,24 +905,25 @@ class BaseTransformation:
                     if len(suppliers) > 1:
                         suppliers = get_shares_from_production_volume(suppliers)
 
-                    share = technology_shares_dict.get((technology, region), 0)
-
-                    if share > 0:
-                        if technology not in blacklist.get(system_model, []):
-                            for supplier in suppliers:
-                                market_dataset["exchanges"].append(
-                                    {
-                                        "name": supplier["name"],
-                                        "product": supplier["reference product"],
-                                        "location": supplier["location"],
-                                        "amount": share
-                                        * conversion_factor.get(technology, 1.0)
-                                        * supplier.get("share", 1.0),
-                                        "unit": supplier["unit"],
-                                        "uncertainty type": 0,
-                                        "type": "technosphere",
-                                    }
-                                )
+                    if technology not in blacklist.get(system_model, []):
+                        factor = conversion_factor.get(
+                            (technology, region),
+                            conversion_factor.get(technology, 1.0),
+                        )
+                        for supplier in suppliers:
+                            market_dataset["exchanges"].append(
+                                {
+                                    "name": supplier["name"],
+                                    "product": supplier["reference product"],
+                                    "location": supplier["location"],
+                                    "amount": share
+                                    * factor
+                                    * supplier.get("share", 1.0),
+                                    "unit": supplier["unit"],
+                                    "uncertainty type": 0,
+                                    "type": "technosphere",
+                                }
+                            )
 
             market_dataset["exchanges"] = self.summarize_market_exchanges(
                 market_dataset["exchanges"]

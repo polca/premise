@@ -222,6 +222,8 @@ FILEPATH_SULFIDIC_TAILINGS = INVENTORY_DIR / "lci-sulfidic-tailings.xlsx"
 FILEPATH_SHIPS = INVENTORY_DIR / "lci-ships.xlsx"
 FILEPATH_STEEL = INVENTORY_DIR / "lci-steel.xlsx"
 FILEPATH_IND_HEAT_PUMP = INVENTORY_DIR / "lci-heat-pump-high-temp.xlsx"
+FILEPATH_IND_ELECTRIC_BOILER = INVENTORY_DIR / "lci-electric-boiler-industrial.xlsx"
+FILEPATH_NUCLEAR_HEAT = INVENTORY_DIR / "lci-nuclear-heat.xlsx"
 
 config = load_constants()
 
@@ -876,6 +878,7 @@ class NewDatabase:
             (FILEPATH_BATTERY_CAPACITY, "3.10"),
             (FILEPATH_HOME_STORAGE_BATTERIES, "3.9"),
             (FILEPATH_IND_HEAT_PUMP, "3.11"),
+            (FILEPATH_IND_ELECTRIC_BOILER, "3.10"),
             (FILEPATH_PHOTOVOLTAICS, "3.7"),
             (FILEPATH_PGM, "3.8"),
             (FILEPATH_HYDROGEN_INVENTORIES, "3.9"),
@@ -921,6 +924,8 @@ class NewDatabase:
             (FILEPATH_GEOTHERMAL_HEAT_INVENTORIES, "3.6"),
             (FILEPATH_BIGCC, "3.8"),
             (FILEPATH_NUCLEAR_EPR, "3.8"),
+            # Nuclear heat links to the EPR activity imported immediately above.
+            (FILEPATH_NUCLEAR_HEAT, "3.10"),
             (FILEPATH_NUCLEAR_SMR, "3.8"),
             (FILEPATH_WAVE, "3.8"),
             (FILEPATH_FUEL_CELL, "3.10"),

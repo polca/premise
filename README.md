@@ -22,8 +22,9 @@ using scenarios from Integrated Assessment Models (IAMs). It does so by
 modifying the ecoinvent database to reflect projected energy policy trajectories, include emerging
 technologies, modify market shares as well as technologies' efficiency.
 
-In practice, ``premise`` updates selected sectors and markets (e.g., energy supply, transport, fuels,
-industrial processes) while leaving other parts of the database unchanged unless explicitly mapped.
+In practice, ``premise`` updates selected sectors and markets (e.g., electricity, heat, fuels,
+transport, and industrial processes) while leaving other parts of the database unchanged unless
+explicitly mapped.
 Results are scenario- and model-specific, and depend on the IAM model, scenario, year, and the
 ecoinvent version used.
 
