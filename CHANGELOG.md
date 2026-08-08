@@ -2,6 +2,50 @@
 
 All notable changes to this project are documented in this file.
 
+## [2.4.9.1]
+
+### Added
+- Added a reproducible real-IAM validation example and supplier-level report
+  for consequential marginal mixes. The reference calculation independently
+  checks observation intervals, all six measurement methods, expanding and
+  declining markets, normalization, and constrained-supplier exclusion.
+
+### Changed
+- Applied the `lead time` consequential argument as a mode selector:
+  `False` uses the production-weighted market-average lead time, while `True`
+  uses technology-specific observation intervals for myopic modelling.
+- Expanded the consequential summary table with the lead-time mode, average
+  lead time, range or duration, and effective market-average interval.
+
+### Fixed
+- Corrected short- and long-change observation windows for average and
+  technology-specific lead times, kept perfect-foresight windows anchored to
+  the demand year, and mapped out-of-range supplier years individually to the
+  nearest available IAM year with an explicit warning.
+- Added strict validation for consequential time, foresight, lead-time,
+  replacement-rate, measurement-method, and weighted-slope arguments,
+  including rejection of split-annual measurement with individual lead times.
+- Corrected the squared interval term in the area-based capital-replacement
+  calculation and removed the lifetime artefact from the legacy zero-range,
+  zero-duration interval.
+- Converted the constrained-supplier configuration to a proper YAML list and
+  enforced exact-name loading, preventing `diesel` and `liquefied petroleum
+  gas` from being excluded through substring matches.
+
+### Documentation
+- Clarified the distinction between lead time, duration, range, and foresight;
+  documented the average and technology-specific interval equations, legacy
+  fallback, measurement methods 0--5, validation rules, and effective-interval
+  diagnostics.
+
+### Tests
+- Added focused regression coverage for lead-time modes, interval construction,
+  perfect foresight, boundary handling, invalid configurations, all compatible
+  measurement methods, area-based replacement, and exact constrained-supplier
+  membership.
+- Verified 11 IMAGE SSP1-M/WEU electricity mixes against an independent
+  calculation, including both expanding and declining market branches.
+
 ## [2.4.9]
 
 ### Added
