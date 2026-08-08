@@ -25,7 +25,7 @@
 
   <rect width="1200" height="720" fill="#ffffff"/>
   <text x="60" y="52" class="title">IAM intervals used to identify marginal suppliers</text>
-  <text x="60" y="82" class="subtitle">The blue interval measures supplier production trends; it does not locate environmental impacts in time.</text>
+  <text x="60" y="82" class="subtitle">Blue intervals measure supplier trends, not impacts. Average mode is shown; individual mode replaces L_avg with each L_i.</text>
 
   <rect x="50" y="112" width="540" height="245" class="panel"/>
   <text x="75" y="148" class="panel-title">Short change · perfect foresight</text>

@@ -80,62 +80,86 @@ How the supplier-observation interval is calculated
 ---------------------------------------------------
 
 Let ``y`` be the database year and start of the demand change, ``r`` the
-``range time``, ``d`` the ``duration``, and ``L_avg`` the production-weighted
-average lead time of suppliers in the market.
+``range time``, ``d`` the ``duration``, ``L_i`` the lead time of technology
+``i``, and ``L_avg`` the production-weighted average lead time of suppliers in
+the market.
 
 .. list-table:: Supplier-observation intervals
    :header-rows: 1
-   :widths: 24 38 38
+   :widths: 20 25 27 28
 
    * - Demand change
      - Perfect foresight
-     - Myopic behaviour
+     - Myopic, average lead time
+     - Myopic, individual lead times
    * - Short: ``range time=r``
      - ``y-r`` to ``y+r``
      - ``y+L_avg-r`` to ``y+L_avg+r``
+     - For each technology: ``y+L_i-r`` to ``y+L_i+r``
    * - Long: ``duration=d``
      - ``y`` to ``y+d``
      - ``y+L_avg`` to ``y+L_avg+d``
-   * - Both set to zero
-     - ``y-L_avg`` to ``y``
-     - ``y`` to ``y+L_avg``
+     - For each technology: ``y+L_i`` to ``y+L_i+d``
+
+Perfect foresight gives both lead-time modes the same observation interval:
+suppliers are assumed to start investing early enough for capacity to be
+available at ``y``.
+
+Setting both ``range time`` and ``duration`` to zero selects a legacy
+ecoinvent-style fallback in which lead time itself becomes the interval. With
+average lead time, this is ``y`` to ``y+L_avg`` for myopic behaviour and
+``y-L_avg`` to ``y`` for perfect foresight. Individual mode uses the
+corresponding ``L_i`` for each technology. Prefer an explicit value for
+``range time`` or ``duration`` in new studies.
 
 The endpoints describe an elapsed interval. Annual IAM values, including both
 endpoints, may be used during the calculation. If a calculated endpoint falls
 outside the available IAM time series, Premise uses the nearest available IAM
-year. This shortens or shifts the effective interval, so inspect the summary
-printed during database generation.
+year and emits a runtime warning. This shortens or shifts the effective
+interval, so inspect the summary printed during database generation.
 
 .. figure:: Time_interval.svg
    :alt: Four timelines showing the IAM supplier-observation intervals for short and long demand changes with perfect foresight and myopic behaviour.
 
-   IAM intervals used to identify marginal suppliers. The blue bars show the
-   interval over which supplier production trends are measured; they do not
-   show when environmental impacts occur.
+   IAM intervals used to identify marginal suppliers in average-lead-time
+   mode. The blue bars show the interval over which supplier production trends
+   are measured; they do not show when environmental impacts occur. In
+   individual mode, ``L_avg`` is replaced by ``L_i`` for each technology.
 
 Foresight and lead time
 -----------------------
 
-With myopic behaviour (``foresight=False``, the default), suppliers react only
-after the change in demand becomes observable. Premise therefore shifts the
-supplier-observation interval forward by the market's average lead time.
-
-With perfect foresight (``foresight=True``), suppliers anticipate the change.
-The interval is not shifted forward: a short interval is centred on ``year``,
-and a long interval begins at ``year``.
-
-Premise calculates ``L_avg`` from technology-specific lead times and the
-technologies' production shares in the market. The lead-time data are stored in
-`leadtimes.yaml
+Lead time is the number of years between an investment decision and the
+installation of new production capacity. Premise reads a lead time ``L_i`` for
+each technology from `leadtimes.yaml
 <https://github.com/polca/premise/blob/master/premise/data/consequential/leadtimes.yaml>`_.
 
-.. warning::
+With myopic behaviour (``foresight=False``, the default), suppliers decide to
+invest only after the change in demand becomes observable. Their response is
+therefore shifted forward by lead time.
 
-   The ``"lead time"`` argument remains part of the API. In the current
-   implementation, setting it to ``True`` does not produce technology-specific
-   observation intervals for ordinary short- or long-lasting changes; both
-   settings use ``L_avg``. Keep the default ``False`` unless reproducing a
-   configuration that explicitly used this argument.
+With perfect foresight (``foresight=True``), suppliers anticipate the change.
+They are assumed to begin investment early enough for the new capacity to be
+available at ``year``. A short interval is therefore centred on ``year``, and a
+long interval begins at ``year``, irrespective of the lead-time mode.
+
+The ``"lead time"`` argument selects how the lead-time data are applied; it
+does not turn lead time on or off:
+
+* ``False`` (default) uses one market-average lead time, ``L_avg``, calculated
+  from the technology lead times and their production shares.
+* ``True`` uses a separate observation interval based on ``L_i`` for every
+  technology. This is more detailed and is recommended by Maes et al. for
+  myopic modelling.
+
+Measurement method 4 splits one common market interval into annual sections.
+It therefore cannot be combined with technology-specific lead times; Premise
+raises an error for ``measurement=4`` together with ``lead time=True``.
+
+.. important::
+
+   ``"lead time": False`` means *use the market-average lead time*. It does not
+   mean that lead time is zero or ignored.
 
 Lead time describes the response of background suppliers. It is not the time
 between a foreground investment decision and use of the foreground product,
@@ -224,7 +248,13 @@ within the supplier-observation interval:
   the defaults, this shorter slope covers the last quarter of the interval and
   emphasizes developments near its end.
 * ``4`` -- annual measurement. It splits the interval into individual years
-  and gives short-, medium-, and long-term developments equal importance.
+  and gives short-, medium-, and long-term developments equal importance. It
+  requires ``lead time=False`` because all suppliers must share one interval.
+* ``5`` -- legacy production-volume weighting. It selects suppliers according
+  to the direction of their production trend and weights the selected
+  suppliers by their production volume at the start of the interval. It is
+  retained for reproducing legacy consequential configurations; methods 0 to 4
+  are preferred for new IAM trend analyses.
 
 Methods 2 to 4 are intended for non-linear production trajectories, which are
 more likely over long intervals. The choice of interval can have a larger
@@ -265,14 +295,14 @@ The supported ``system_args`` and their implementation defaults are:
    * - ``lead time``
      - boolean
      - ``False``
-     - Does not enable technology-specific intervals in the current
-       implementation; see the limitation above.
+     - Selects market-average (``False``) or technology-specific (``True``)
+       lead-time intervals. ``False`` does not disable lead time.
    * - ``capital replacement rate``
      - boolean
      - ``True``
      - Uses technology replacement requirements as the baseline.
    * - ``measurement``
-     - integer, 0--4
+     - integer, 0--5
      - ``0``
      - Selects the production-trend measurement method.
    * - ``weighted slope start``
@@ -314,10 +344,13 @@ reproducible:
     ndb.update("electricity")
     ndb.write_db_to_brightway()
 
-During transformation, Premise prints a summary for each marginal market. In
-particular, check ``Start`` and ``End`` to verify the effective IAM interval,
-and inspect ``Foresight``, ``Duration``, ``Cap repl.``, and ``Vol ch.``. This is
-especially important when an interval approaches the first or last IAM year.
+During transformation, Premise prints a summary for each marginal market.
+Check ``Lead time`` and ``L avg`` to verify the selected mode and market-average
+lead time. ``Avg start`` and ``Avg end`` show the common interval or, in
+individual mode, the average interval used for market-level diagnostics. Also
+inspect ``Range``, ``Duration``, ``Foresight``, ``Cap repl.``, and ``Vol ch.``.
+This is especially important when an interval approaches the first or last IAM
+year.
 
 Scope and limitations
 ---------------------
@@ -334,6 +367,9 @@ Scope and limitations
 * The generated database is static. The supplier-observation interval does not
   create temporally distributed exchanges or a dynamic impact assessment.
 * A long or permanent change still requires a finite, documented duration.
+* Premise rejects negative intervals, simultaneous non-zero ``range time`` and
+  ``duration``, and durations of one or two years. Use ``range time`` for a
+  change lasting less than three years.
 
 Some technologies are excluded from marginal markets because their feedstock
 availability constrains their response. This typically applies to
