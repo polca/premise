@@ -213,16 +213,21 @@ jobs:
 
       - name: Pull distribution 📦 from Anaconda and test it if master branch
         if: startsWith(github.ref, 'refs/heads/master')
-        shell: bash -el {0}
+        shell: bash
         run: |
           package_spec="romainsacchi::${{ matrix.package }}=${{ needs.conda.outputs.package_version }}"
 
           for attempt in 1 2 3 4 5; do
-            if conda install --yes --solver libmamba \
+            if conda install --name test --yes --solver libmamba \
               "python=${{ matrix.python-version }}" \
               "$package_spec"; then
-              python -c "import premise; print(premise.__version__)"
-              exit 0
+              if conda run --name test \
+                python -c "import premise; print(premise.__version__)"; then
+                exit 0
+              fi
+
+              echo "Installed $package_spec, but importing premise failed."
+              exit 1
             fi
 
             if [[ "$attempt" == "5" ]]; then
