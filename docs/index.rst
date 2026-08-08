@@ -16,7 +16,6 @@ This user guide will help you navigate the inner workings of *premise*.
    introduction
    extract
    transform
-   heat
    load
    mapping
    user_scenarios
