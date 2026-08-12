@@ -93,7 +93,8 @@ FILEPATH_CHP_INVENTORIES = (
     INVENTORY_DIR / "lci-combined-heat-power-plant-CCS.xlsx"
 )
 FILEPATH_CC_INVENTORIES = INVENTORY_DIR / "lci-carbon-capture.xlsx"
-FILEPATH_AFFORESTATION_INVENTORIES = INVENTORY_DIR / "lci-afforestation.xlsx"
+### Commented out 12th of August due to unlinked error
+# FILEPATH_AFFORESTATION_INVENTORIES = INVENTORY_DIR / "lci-afforestation.xlsx"
 FILEPATH_BIOFUEL_INVENTORIES = INVENTORY_DIR / "lci-biofuels.xlsx"
 FILEPATH_BIOGAS_INVENTORIES = INVENTORY_DIR / "lci-biogas.xlsx"
 FILEPATH_WASTE_CHP_INVENTORIES = INVENTORY_DIR / "lci-waste-CHP.xlsx"
@@ -986,11 +987,13 @@ class NewDatabase:
             (FILEPATH_SHIPS, "3.10"),
             (FILEPATH_STEEL, "3.9"),
         ]
-        if Version(self.version) >= Version("3.11"):
-            # These two re/afforestation datasets use suppliers first available
-            # in ecoinvent 3.11. Their workbook contains 3.12 identifiers so
-            # that premise can migrate them backwards when building with 3.11.
-            filepaths.append((FILEPATH_AFFORESTATION_INVENTORIES, "3.12"))
+
+        ###Comented out 12th of August due to unlinked exchange error!
+        # if Version(self.version) >= Version("3.11"):
+        # These two re/afforestation datasets use suppliers first available
+        # in ecoinvent 3.11. Their workbook contains 3.12 identifiers so
+        # that premise can migrate them backwards when building with 3.11.
+        # filepaths.append((FILEPATH_AFFORESTATION_INVENTORIES, "3.12"))
 
         for filepath in filepaths:
             # make an exception for FILEPATH_OIL_GAS_INVENTORIES
