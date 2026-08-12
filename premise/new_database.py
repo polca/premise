@@ -27,52 +27,30 @@ from .clean_datasets import DatabaseCleaner
 from .data_collection import IAMDataCollection
 from .electricity import _update_electricity
 from .emissions import _update_emissions
-from .export import (
-    Export,
-    _prepare_database,
-    build_datapackage,
-    generate_scenario_factor_file,
-    generate_superstructure_db,
-    prepare_db_for_export,
-    prepare_db_for_fast_export,
-)
+from .export import (Export, _prepare_database, build_datapackage,
+                     generate_scenario_factor_file, generate_superstructure_db,
+                     prepare_db_for_export, prepare_db_for_fast_export)
 from .external import _update_external_scenarios
 from .external_data_validation import check_external_scenarios
 from .filesystem_constants import DIR_CACHED_DB, IAM_OUTPUT_DIR, INVENTORY_DIR
 from .final_energy import _update_final_energy
 from .fuels.base import _update_fuels
 from .heat import _update_heat
-from .inventory_imports import (
-    AdditionalInventory,
-    BaseInventoryImport,
-    DefaultInventory,
-)
+from .inventory_imports import (AdditionalInventory, BaseInventoryImport,
+                                DefaultInventory)
 from .metals import _update_metals
 from .mining import _update_mining
 from .renewables import _update_wind_turbines
 from .report import generate_change_report, generate_summary_report
 from .steel import _update_steel
 from .transport import _update_vehicles
-from .utils import (
-    cache_ref_exists,
-    clear_existing_cache,
-    clear_runtime_caches,
-    create_cache,
-    create_scenario_list,
-    delete_all_pickles,
-    dump_database,
-    eidb_label,
-    end_of_process,
-    hide_messages,
-    info_on_utils_functions,
-    load_cached_database,
-    load_constants,
-    load_database,
-    print_version,
-    resolve_cache_ref,
-    restore_cached_classifications,
-    warning_about_biogenic_co2,
-)
+from .utils import (cache_ref_exists, clear_existing_cache,
+                    clear_runtime_caches, create_cache, create_scenario_list,
+                    delete_all_pickles, dump_database, eidb_label,
+                    end_of_process, hide_messages, info_on_utils_functions,
+                    load_cached_database, load_constants, load_database,
+                    print_version, resolve_cache_ref,
+                    restore_cached_classifications, warning_about_biogenic_co2)
 
 logger = logging.getLogger("module")
 
@@ -93,8 +71,7 @@ FILEPATH_CHP_INVENTORIES = (
     INVENTORY_DIR / "lci-combined-heat-power-plant-CCS.xlsx"
 )
 FILEPATH_CC_INVENTORIES = INVENTORY_DIR / "lci-carbon-capture.xlsx"
-### Commented out 12th of August due to unlinked error
-# FILEPATH_AFFORESTATION_INVENTORIES = INVENTORY_DIR / "lci-afforestation.xlsx"
+FILEPATH_AFFORESTATION_INVENTORIES = INVENTORY_DIR / "lci-afforestation.xlsx"
 FILEPATH_BIOFUEL_INVENTORIES = INVENTORY_DIR / "lci-biofuels.xlsx"
 FILEPATH_BIOGAS_INVENTORIES = INVENTORY_DIR / "lci-biogas.xlsx"
 FILEPATH_WASTE_CHP_INVENTORIES = INVENTORY_DIR / "lci-waste-CHP.xlsx"
@@ -988,12 +965,11 @@ class NewDatabase:
             (FILEPATH_STEEL, "3.9"),
         ]
 
-        ###Comented out 12th of August due to unlinked exchange error!
-        # if Version(self.version) >= Version("3.11"):
+        if Version(self.version) >= Version("3.11"):
         # These two re/afforestation datasets use suppliers first available
         # in ecoinvent 3.11. Their workbook contains 3.12 identifiers so
         # that premise can migrate them backwards when building with 3.11.
-        # filepaths.append((FILEPATH_AFFORESTATION_INVENTORIES, "3.12"))
+        filepaths.append((FILEPATH_AFFORESTATION_INVENTORIES, "3.12"))
 
         for filepath in filepaths:
             # make an exception for FILEPATH_OIL_GAS_INVENTORIES
