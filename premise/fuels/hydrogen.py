@@ -87,6 +87,21 @@ HYDROGEN_TRANSPORT_ACTIVITIES = {
         "unit": "ton kilometer",
     },
 }
+HYDROGEN_CONVERSION_ACTIVITIES = {
+    "gaseous": {
+        "name": "gaseous hydrogen production",
+        "reference product": "gaseous hydrogen production",
+    },
+    "liquid": {
+        "name": "liquid hydrogen production",
+        "reference product": "liquid hydrogen production",
+    },
+}
+HYDROGEN_TRANSPORT_CONVERSION_MAP = {
+    "compressed_gaseous_truck": "gaseous",
+    "liquid_hydrogen_truck": "liquid",
+    "liquid_hydrogen_ship": "liquid",
+}
 HYDROGEN_TRANSPORT_DISTANCES_KM = {
     "compressed_gaseous_truck": 50,
     "liquid_hydrogen_truck": 100,
@@ -1118,6 +1133,7 @@ class HydrogenMixin:
             flip_treatment_supplier_sign=True,
         )
 
+        self._generate_hydrogen_conversion_datasets()
         self._generate_sector_specific_hydrogen_markets(hydrogen_map)
 
     # Sector-market workflow: create end-use-specific hydrogen markets where demand exists.
@@ -1279,6 +1295,26 @@ class HydrogenMixin:
             mapping=hydrogen_distribution_map,
         )
 
+    # Supporting-dataset workflow: regionalize hydrogen conversion activities.
+    def _generate_hydrogen_conversion_datasets(self):
+        conversion_map = {
+            conversion: [
+                ws.get_one(
+                    self.database,
+                    ws.equals("name", activity["name"]),
+                    ws.equals(
+                        "reference product", activity["reference product"]
+                    ),
+                )
+            ]
+            for conversion, activity in HYDROGEN_CONVERSION_ACTIVITIES.items()
+        }
+
+        self.process_and_add_activities(
+            mapping=conversion_map,
+            regions=[region for region in self.regions if region != "World"],
+        )
+
     # Generic-market workflow: add pipeline distribution to non-sector hydrogen markets.
     def _add_transport_to_hydrogen_datasets(self, dataset):
 
@@ -1339,6 +1375,35 @@ class HydrogenMixin:
             ["GLO"],
         ]
 
+        for locations in location_preferences:
+            for supplier in suppliers:
+                if supplier["location"] in locations:
+                    return supplier
+
+        return suppliers[0]
+
+    # Sector-market conversion workflow: choose the regional conversion supplier.
+    def _select_hydrogen_conversion_supplier(self, conversion, region):
+        activity = HYDROGEN_CONVERSION_ACTIVITIES[conversion]
+        suppliers = [
+            dataset
+            for dataset in self.database
+            if dataset["name"] == activity["name"]
+            and dataset["reference product"] == activity["reference product"]
+        ]
+
+        if not suppliers:
+            raise ValueError(
+                "No hydrogen conversion activity found for "
+                f"{activity['name']} / {activity['reference product']}."
+            )
+
+        location_preferences = [
+            [region],
+            self.iam_to_ecoinvent_loc.get(region, []),
+            ["RoW"],
+            ["GLO"],
+        ]
         for locations in location_preferences:
             for supplier in suppliers:
                 if supplier["location"] in locations:
@@ -1427,6 +1492,16 @@ class HydrogenMixin:
         distance = HYDROGEN_TRANSPORT_DISTANCES_KM[mode]
         return share * distance * KG_TO_TONNE
 
+    # Sector-market conversion workflow: aggregate transport shares by conversion type.
+    @staticmethod
+    def _hydrogen_conversion_shares_for_sector_market(shares):
+        conversion_shares = defaultdict(float)
+        for mode, conversion in HYDROGEN_TRANSPORT_CONVERSION_MAP.items():
+            share = shares.get(mode, 0)
+            if share > 0:
+                conversion_shares[conversion] += share
+        return dict(conversion_shares)
+
     # Sector-market transport workflow: attach configured transport inputs to sector markets.
     def _add_transport_to_sector_specific_hydrogen_market(self, dataset):
         shares = self._hydrogen_transport_shares_for_market(dataset)
@@ -1456,5 +1531,20 @@ class HydrogenMixin:
                     activity=supplier,
                     location=supplier["location"],
                     amount=amount,
+                )
+            )
+
+        conversion_shares = self._hydrogen_conversion_shares_for_sector_market(
+            shares
+        )
+        for conversion, share in conversion_shares.items():
+            supplier = self._select_hydrogen_conversion_supplier(
+                conversion, dataset["location"]
+            )
+            dataset["exchanges"].append(
+                self._hydrogen_transport_exchange(
+                    activity=supplier,
+                    location=supplier["location"],
+                    amount=share,
                 )
             )

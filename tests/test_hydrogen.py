@@ -62,6 +62,26 @@ def test_sector_hydrogen_market_gets_weighted_transport_exchanges():
             "location": "EUR",
             "unit": "kilogram",
         },
+        {
+            "name": "transport, hydrogen, liquid, lorry, unspecified",
+            "reference product": (
+                "transport, hydrogen, liquid, lorry, unspecified"
+            ),
+            "location": "GLO",
+            "unit": "ton kilometer",
+        },
+        {
+            "name": "gaseous hydrogen production",
+            "reference product": "gaseous hydrogen production",
+            "location": "EUR",
+            "unit": "kilogram",
+        },
+        {
+            "name": "liquid hydrogen production",
+            "reference product": "liquid hydrogen production",
+            "location": "EUR",
+            "unit": "kilogram",
+        },
     ]
     hydrogen.hydrogen_demand_nodes = pd.DataFrame(
         [
@@ -71,7 +91,8 @@ def test_sector_hydrogen_market_gets_weighted_transport_exchanges():
                 "sector": "Transport",
                 "subsector": "Transport",
                 "hydrogen_demand_t_per_year": 100,
-                "compressed_gaseous_truck": 0.8,
+                "compressed_gaseous_truck": 0.6,
+                "liquid_hydrogen_truck": 0.2,
                 "compressed_gaseous_pipeline": 0.2,
             },
             {
@@ -80,7 +101,8 @@ def test_sector_hydrogen_market_gets_weighted_transport_exchanges():
                 "sector": "Transport",
                 "subsector": "Transport",
                 "hydrogen_demand_t_per_year": 300,
-                "compressed_gaseous_truck": 0.4,
+                "compressed_gaseous_truck": 0.3,
+                "liquid_hydrogen_truck": 0.1,
                 "compressed_gaseous_pipeline": 0.6,
             },
         ]
@@ -100,8 +122,10 @@ def test_sector_hydrogen_market_gets_weighted_transport_exchanges():
         "transport, hydrogen, gaseous, lorry, unspecified"
     ]
     pipeline = exchanges["hydrogen supply, distributed by pipeline"]
+    gaseous_conversion = exchanges["gaseous hydrogen production"]
+    liquid_conversion = exchanges["liquid hydrogen production"]
 
-    assert truck["amount"] == 0.025
+    assert truck["amount"] == 0.01875
     assert truck["location"] == "GLO"
     assert truck["product"] == (
         "transport, hydrogen, gaseous, lorry, "
@@ -109,6 +133,8 @@ def test_sector_hydrogen_market_gets_weighted_transport_exchanges():
     )
     assert pipeline["amount"] == 0.5
     assert pipeline["location"] == "EUR"
+    assert gaseous_conversion["amount"] == 0.375
+    assert liquid_conversion["amount"] == 0.125
 
 
 def test_general_hydrogen_market_name_has_no_sector_transport_shares():

@@ -729,6 +729,13 @@ The truck and ship activities come from ``lci-hydrogen-transport.xlsx`` during
 the normal additional-inventory import. The market-building code does not read
 the spreadsheet directly; it resolves the activities from the imported database.
 
+Gaseous-truck transport also adds the regionalized ``gaseous hydrogen
+production`` conversion activity according to its distribution share. Liquid
+hydrogen transport by truck or ship similarly adds ``liquid hydrogen
+production`` according to the combined share of those modes. The conversion
+datasets and their technosphere inputs are relinked to the corresponding IAM
+region before the sector-specific markets are created.
+
 
 .. _Wulf: https://www.sciencedirect.com/science/article/pii/S095965261832170X
 .. _LCI_H2_distr: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-hydrogen-distribution.xlsx
