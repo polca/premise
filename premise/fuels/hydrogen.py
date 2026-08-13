@@ -96,11 +96,20 @@ HYDROGEN_CONVERSION_ACTIVITIES = {
         "name": "liquid hydrogen production",
         "reference product": "liquid hydrogen production",
     },
+    "liquid_ammonia": {
+        "name": "liquid ammonia production",
+        "reference product": "liquid ammonia production",
+    },
+    "ammonia_cracking": {
+        "name": "ammonia cracking",
+        "reference product": "ammonia cracking",
+    },
 }
 HYDROGEN_TRANSPORT_CONVERSION_MAP = {
-    "compressed_gaseous_truck": "gaseous",
-    "liquid_hydrogen_truck": "liquid",
-    "liquid_hydrogen_ship": "liquid",
+    "compressed_gaseous_truck": ("gaseous",),
+    "liquid_hydrogen_truck": ("liquid",),
+    "liquid_hydrogen_ship": ("liquid",),
+    "liquid_ammonia_ship": ("liquid_ammonia", "ammonia_cracking"),
 }
 HYDROGEN_TRANSPORT_DISTANCES_KM = {
     "compressed_gaseous_truck": 50,
@@ -1496,10 +1505,11 @@ class HydrogenMixin:
     @staticmethod
     def _hydrogen_conversion_shares_for_sector_market(shares):
         conversion_shares = defaultdict(float)
-        for mode, conversion in HYDROGEN_TRANSPORT_CONVERSION_MAP.items():
+        for mode, conversions in HYDROGEN_TRANSPORT_CONVERSION_MAP.items():
             share = shares.get(mode, 0)
             if share > 0:
-                conversion_shares[conversion] += share
+                for conversion in conversions:
+                    conversion_shares[conversion] += share
         return dict(conversion_shares)
 
     # Sector-market transport workflow: attach configured transport inputs to sector markets.
