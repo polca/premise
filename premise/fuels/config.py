@@ -17,6 +17,11 @@ HYDROGEN_DISTRIBUTION_SHARES = (
     / "h2_decision_tree"
     / "hydrogen_distribution_shares.yaml"
 )
+HYDROGEN_CONSUMER_ROUTING = (
+    Path(__file__).resolve().parent
+    / "h2_decision_tree"
+    / "hydrogen_consumer_routing.yaml"
+)
 METHANE_SOURCES = DATA_DIR / "fuels" / "methane_activities.yml"
 LIQUID_FUEL_SOURCES = DATA_DIR / "fuels" / "liquid_fuel_activities.yml"
 BIOFUEL_SOURCES = DATA_DIR / "fuels" / "biofuels_activities.yml"

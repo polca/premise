@@ -993,6 +993,7 @@ class NewDatabase:
             (FILEPATH_SHIPS, "3.10"),
             (FILEPATH_STEEL, "3.9"),
         ]
+
         if Version(self.version) >= Version("3.11"):
             # These two re/afforestation datasets use suppliers first available
             # in ecoinvent 3.11. Their workbook contains 3.12 identifiers so
