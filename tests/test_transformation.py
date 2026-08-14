@@ -249,9 +249,13 @@ def test_process_and_add_activities_indexes_proxies_before_emptying(monkeypatch)
 
 
 def test_used_cooking_oil_biodiesel_is_constrained_in_marginal_mixes():
-    assert (
-        "biodiesel, from used cooking oil, with CCS" in get_list_contrained_suppliers()
-    )
+    suppliers = get_list_contrained_suppliers()
+
+    assert isinstance(suppliers, list)
+    assert "biodiesel, from used cooking oil, with CCS" in suppliers
+    assert "liquefied petroleum gas, synthetic, from coal" in suppliers
+    assert "diesel" not in suppliers
+    assert "liquefied petroleum gas" not in suppliers
 
 
 def test_cutoff_fuel_market_flips_treatment_supplier_sign_after_normalization(
@@ -291,3 +295,50 @@ def test_cutoff_fuel_market_flips_treatment_supplier_sign_after_normalization(
     }
     assert suppliers["treatment of used vegetable cooking oil"] == pytest.approx(-0.8)
     assert suppliers["diesel production, petroleum refinery"] == pytest.approx(0.2)
+
+
+def test_market_conversion_factors_can_be_region_specific(monkeypatch):
+    transformation, production_volumes = make_market_transformation(
+        monkeypatch, {"technology one": 0.5, "technology two": 0.5}
+    )
+    transformation.process_and_add_markets(
+        name="market for test product",
+        reference_product="test product",
+        unit="kilogram",
+        mapping={
+            "technology one": [make_supplier("supplier one")],
+            "technology two": [make_supplier("supplier two")],
+        },
+        production_volumes=production_volumes,
+        conversion_factor={
+            ("technology one", "WEU"): 0.5,
+            ("technology two", "WEU"): 1.0,
+        },
+    )
+    market = next(ds for ds in transformation.database if ds["location"] == "WEU")
+    amounts = {
+        exc["name"]: exc["amount"]
+        for exc in market["exchanges"]
+        if exc["type"] == "technosphere"
+    }
+    assert amounts == {
+        "supplier one": pytest.approx(1 / 3),
+        "supplier two": pytest.approx(2 / 3),
+    }
+
+
+def test_market_does_not_require_supplier_for_zero_share(monkeypatch):
+    transformation, production_volumes = make_market_transformation(
+        monkeypatch, {"available": 1.0, "unused": 0.0}
+    )
+    transformation.process_and_add_markets(
+        name="market for test product",
+        reference_product="test product",
+        unit="kilogram",
+        mapping={"available": [make_supplier("supplier")], "unused": []},
+        production_volumes=production_volumes,
+    )
+    market = next(ds for ds in transformation.database if ds["location"] == "WEU")
+    assert [
+        exc["name"] for exc in market["exchanges"] if exc["type"] == "technosphere"
+    ] == ["supplier"]

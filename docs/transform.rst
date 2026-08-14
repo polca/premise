@@ -1349,6 +1349,13 @@ Once the new markets are created, *premise* re-links all electricity-consuming
 activities to the new regional markets. The regional market it re-links to
 depends on the location of the consumer.
 
+.. _heat-transformation:
+
+Heat
+++++
+
+.. include:: heat.inc
+
 Cement production
 +++++++++++++++++
 
@@ -2373,59 +2380,6 @@ are modelled with the calorific value of conventional gasoline.
   Ethanol production, via fermentation, from poplar, with CCS         0.041     kilogram    WEU
   Ethanol production, via fermentation, from poplar                   0.041     kilogram    WEU
  =================================================================== ========= =========== ===========
-
-Heat
-++++
-
-Run
-
-.. code-block:: python
-
-    from premise import *
-    import brightway2 as bw
-
-    bw.projects.set_current("my_project")
-
-    ndb = NewDatabase(
-        scenarios=[
-                {"model":"remind", "pathway":"SSP2-Base", "year":2028}
-            ],
-        source_db="ecoinvent 3.7 cutoff",
-        source_version="3.7.1",
-        key='xxxxxxxxxxxxxxxxxxxxxxxxx'
-    )
-    ndb.update("heat")
-
-Key outputs
-~~~~~~~~~~~
-
-* Regionalizes heat and steam production datasets by IAM region.
-* Relinks heat producers to regional fuel and biomass markets where available.
-* Splits CO2 emissions into fossil and non-fossil shares based on fuel mixes.
-
-Datasets that supply heat and steam via the combustion of natural gas and diesel
-are regionalized (made available for each region of the IAM model) and relinked
-to regional fuel markets. If the fuel market contains a share of non-fossil fuels,
-the CO2 emissions of the heat and steam production are split between fossil and
-non-fossil emissions. Once regionalized, the heat and steam production datasets
-relink to activities that require heat within the same region.
-
-Here is a list of the heat and steam production datasets that are regionalized:
-
-- diesel, burned in ...
-- steam production, as energy carrier, in chemical industry
-- heat production, natural gas, ...
-- heat and power co-generation, natural gas, ...
-- heat production, light fuel oil, ...
-- heat production, softwood chips from forest, ...
-- heat production, hardwood chips from forest, ...
-
-These datasets are relinked to the corresponding regionalized fuel market only
-if `.update("fuels")` has been run.
-Also, heat production datasets that use biomass as fuel input (e.g., softwood and
-hardwood chips) relink to the dataset `market for biomass, used as fuel` if
-`update("biomass")` has been run previously.
-
 
 CO2 emissions update
 --------------------

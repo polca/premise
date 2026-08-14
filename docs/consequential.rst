@@ -1,187 +1,383 @@
 Consequential modelling
 =======================
 
-The premise module allows users to import and adjust
-the consequential system model of the ecoinvent database
-v.3.8, v.3.9, v.3.10, v.3.11 and v.3.12.
-This work is based on a publication available
-at https://doi.org/10.1016/j.rser.2023.113830
+Premise can import and transform the consequential system model of ecoinvent
+versions 3.8 to 3.12. It uses production trajectories from an integrated
+assessment model (IAM) to identify the suppliers that are likely to respond to
+a marginal change in demand. The method is described by `Maes et al. (2023)
+<https://doi.org/10.1016/j.rser.2023.113830>`_.
 
-If you use this module, please cite the publication:
+If you use this module, please cite:
 
-*Ben Maes, Romain Sacchi, Bernhard Steubing, Massimo Pizzol, Amaryllis Audenaert, Bart Craeye, Matthias Buyle,*
-**Prospective consequential life cycle assessment: Identifying the future marginal suppliers using integrated assessment models,**
-Renewable and Sustainable Energy Reviews,
-Volume 188, 2023, doi: 10.1016/j.rser.2023.113830
+    Maes, B., Sacchi, R., Steubing, B., Pizzol, M., Audenaert, A., Craeye, B.,
+    and Buyle, M. (2023). *Prospective consequential life cycle assessment:
+    Identifying the future marginal suppliers using integrated assessment
+    models*. Renewable and Sustainable Energy Reviews, 188, 113830.
+    https://doi.org/10.1016/j.rser.2023.113830
 
-Based on user preferences (or the default ones), Premise
-builds marginal mixes for the different commodities for which
-production volumes are provided in the IAM scenario.
+What the consequential parameters describe
+--------------------------------------------
 
-Some technologies are excluded from the marginal markets
-due to constraints on their feedstock availability.
-This typically applies to waste-to-energy (e.g., waste-based CHP)
-or waste-to-fuel (e.g., residue-based biofuel) plants.
-For steel markets, secondary steel is excluded from the marginal mix.
+The ``system_args`` parameters do not describe when environmental impacts
+occur. They determine the IAM time interval Premise uses to identify the
+background suppliers that respond to a marginal change in demand.
 
-Some imported inventories cannot be
-directly linked to the ecoinvent consequential database.
-To address this, a mapping file is provided under
-https://github.com/polca/premise/blob/master/premise/data/consequential/blacklist.yaml
-which proposes alternative candidates to link to the ecoinvent consequential database.
+``year`` is both the scenario year of the generated database and the year in
+which the modelled change in demand begins. ``duration`` describes how long
+that change persists forward from ``year``. ``range time`` defines an
+observation window for a short-lived change.
 
+It is useful to distinguish three clocks:
 
-How does it work?
------------------
+.. list-table::
+   :header-rows: 1
+   :widths: 24 76
 
-From the user viewpoint, the process is as follows:
+   * - Clock
+     - Meaning
+   * - Database year
+     - The year of the prospective background database and the initial year of
+       the marginal demand change.
+   * - Demand-change period
+     - The period for which the additional or reduced demand persists.
+   * - Supplier-observation interval
+     - The IAM years over which production trends are measured to identify the
+       marginal suppliers.
 
-* prepare a set of parameters that condition the identification of the marginal electricity suppliers
-* supply the parameters to `NewDatabase()`
-* point to the your local ecoinvent consequential database
+.. important::
 
-The parameters used to identify marginal suppliers that make up
-a market are:
+   ``duration`` is not automatically the lifetime of the assessed product,
+   and it does not integrate emissions or impacts over several years. Lead
+   time does not move the foreground activity or its emissions to another
+   year. Premise produces a static database containing one marginal supplier
+   mix for each transformed market.
 
-* range time (years, default = 2)
-* duration (years, default = 0)
-* foresight (True or False, default = False)
-* lead time (True or False, default = False)
-* capital replacement rate (True or False, default = False)
-* measurement (0 to 4, default = 0)
-* weighted slope start (default = 0.75)
-* weighted slope end (default = 1.00)
+Premise builds marginal mixes for commodities for which the selected IAM
+scenario provides production volumes. A technology's contribution is derived
+from its production trend over the selected supplier-observation interval.
 
-.. figure:: Time_interval.png
+Choosing the demand-change period
+---------------------------------
 
-    Techniques to determine the time interval of a study considering the supplier’s foresight and the duration of the change.
+First define the marginal demand change represented by the study:
 
-Range time
-^^^^^^^^^^
+* For a single occurrence or a change lasting less than three years, use
+  ``duration=0`` and a non-zero ``range time``. The default ``range time=2``
+  measures the trend over two years before and two years after the expected
+  installation of additional capacity.
+* For a change lasting three years or more, use ``range time=0`` and set
+  ``duration`` to the number of years for which the change persists.
+* Do not set both ``range time`` and ``duration`` to non-zero values. This
+  combination is unsupported.
+* For a permanent or indefinite change, select and justify a finite duration
+  that fits the goal and scope. An infinite IAM trend cannot be measured.
 
-Integer. Years. Used for single occurrences or short-lasting changes in demand (less than 3 years).
-Since the duration of the change is too short to measure a trend, 
-the trend is instead measured around the point where the additional
-capital will be installed. A range of n years before and after the point
-is taken as the time interval. Note that if set to a value other than 0,
-the duration argument must be set to 0. 
-A default range of 2 years is chosen. 
-This value closely mirrors the recommended time interval in ecoinvent’s consequential database, which is 3-4 years.
+``range time`` is a half-width, not a total interval length. For example,
+``range time=4`` selects four years before and four years after the centre of
+the interval, giving an eight-year difference between its endpoints.
 
-Duration
-^^^^^^^^
+How the supplier-observation interval is calculated
+---------------------------------------------------
 
-Integer. Years. Used for long-lasting changes in demand (3 years or more).
-Duration over which the change in demand occurs should be measured.
-Note that if set to a value other than 0, the range time argument must be set to 0.
+Let ``y`` be the database year and start of the demand change, ``r`` the
+``range time``, ``d`` the ``duration``, ``L_i`` the lead time of technology
+``i``, and ``L_avg`` the production-weighted average lead time of suppliers in
+the market.
 
-Foresight
-^^^^^^^^^
+.. list-table:: Supplier-observation intervals
+   :header-rows: 1
+   :widths: 20 25 27 28
 
-True or False. In the myopic approach (False), also called a recursive dynamic
-approach, the agents have no foresight on relevant parameters (e.g., energy demand,
-policy changes and prices) and will only act based on the information they can observe.
-In this case, the suppliers can answer to a change in demand only after it has occurred.
-In the perfect foresight approach, the future (within the studied time period) is fully
-known to all agents. In this case, the decision to invest can be made ahead of the change
-in demand. For suppliers with no foresight, capital will show up a lead time later.
+   * - Demand change
+     - Perfect foresight
+     - Myopic, average lead time
+     - Myopic, individual lead times
+   * - Short: ``range time=r``
+     - ``y-r`` to ``y+r``
+     - ``y+L_avg-r`` to ``y+L_avg+r``
+     - For each technology: ``y+L_i-r`` to ``y+L_i+r``
+   * - Long: ``duration=d``
+     - ``y`` to ``y+d``
+     - ``y+L_avg`` to ``y+L_avg+d``
+     - For each technology: ``y+L_i`` to ``y+L_i+d``
 
-Lead time
-^^^^^^^^^
+Perfect foresight gives both lead-time modes the same observation interval:
+suppliers are assumed to start investing early enough for capacity to be
+available at ``y``.
 
-True or False. If False, the market average lead time is taken for all technologies.
-If True, technology-specific lead times are used.
-If Range and Duration are both set to False, then the lead time is taken as the
-time interval (just as with ecoinvent v.3.4).
+Setting both ``range time`` and ``duration`` to zero selects a legacy
+ecoinvent-style fallback in which lead time itself becomes the interval. With
+average lead time, this is ``y`` to ``y+L_avg`` for myopic behaviour and
+``y-L_avg`` to ``y`` for perfect foresight. Individual mode uses the
+corresponding ``L_i`` for each technology. Prefer an explicit value for
+``range time`` or ``duration`` in new studies.
 
-If you wish to modify the default lead time values used for the different
-technologies, you can do so by modifying the file:
+The endpoints describe an elapsed interval. Annual IAM values, including both
+endpoints, may be used during the calculation. If a calculated endpoint falls
+outside the available IAM time series, Premise uses the nearest available IAM
+year and emits a runtime warning. This shortens or shifts the effective
+interval, so inspect the summary printed during database generation.
 
-https://github.com/polca/premise/blob/master/premise/data/consequential/leadtimes.yaml
+.. figure:: Time_interval.svg
+   :alt: Four timelines showing the IAM supplier-observation intervals for short and long demand changes with perfect foresight and myopic behaviour.
 
-Capital replacement rate
-^^^^^^^^^^^^^^^^^^^^^^^^
+   IAM intervals used to identify marginal suppliers in average-lead-time
+   mode. The blue bars show the interval over which supplier production trends
+   are measured; they do not show when environmental impacts occur. In
+   individual mode, ``L_avg`` is replaced by ``L_i`` for each technology.
 
-True or False. If False, a horizontal baseline is used.
-If True, the capital replacement rate is used as baseline.
-The capital replacement rate is equal to -1 divided by
-the lifetime (in years) of the technology. It represents the rate
-at which the capital stock depreciates and must be replaced.
-Hence, it will be subtracted from the "growth" rate of the technology,
-to distinguish between the growth rate due to the change in demand
-and the growth rate due to the replacement of capital stock.
+Foresight and lead time
+-----------------------
+
+Lead time is the number of years between an investment decision and the
+installation of new production capacity. Premise reads a lead time ``L_i`` for
+each technology from `leadtimes.yaml
+<https://github.com/polca/premise/blob/master/premise/data/consequential/leadtimes.yaml>`_.
+
+With myopic behaviour (``foresight=False``, the default), suppliers decide to
+invest only after the change in demand becomes observable. Their response is
+therefore shifted forward by lead time.
+
+With perfect foresight (``foresight=True``), suppliers anticipate the change.
+They are assumed to begin investment early enough for the new capacity to be
+available at ``year``. A short interval is therefore centred on ``year``, and a
+long interval begins at ``year``, irrespective of the lead-time mode.
+
+The ``"lead time"`` argument selects how the lead-time data are applied; it
+does not turn lead time on or off:
+
+* ``False`` (default) uses one market-average lead time, ``L_avg``, calculated
+  from the technology lead times and their production shares.
+* ``True`` uses a separate observation interval based on ``L_i`` for every
+  technology. This is more detailed and is recommended by Maes et al. for
+  myopic modelling.
+
+Measurement method 4 splits one common market interval into annual sections.
+It therefore cannot be combined with technology-specific lead times; Premise
+raises an error for ``measurement=4`` together with ``lead time=True``.
+
+.. important::
+
+   ``"lead time": False`` means *use the market-average lead time*. It does not
+   mean that lead time is zero or ignored.
+
+Lead time describes the response of background suppliers. It is not the time
+between a foreground investment decision and use of the foreground product,
+and it does not change the year represented by the generated database.
+
+Worked examples
+---------------
+
+.. list-table::
+   :header-rows: 1
+   :widths: 42 12 18 14 14
+
+   * - Modelled marginal demand change
+     - ``year``
+     - ``range time``
+     - ``duration``
+     - Change type
+   * - One additional bicycle is demanded in 2050
+     - 2050
+     - 2
+     - 0
+     - Short
+   * - Additional bicycle production starts in 2046 and lasts four years
+     - 2046
+     - 0
+     - 4
+     - Long
+   * - A factory starts production in 2050 and adds demand for twenty years
+     - 2050
+     - 0
+     - 20
+     - Long
+
+The second example starts in 2046: ``duration=4`` looks forward from that year.
+Using ``year=2050`` and ``range time=4`` would instead describe a short change
+centred on 2050, which is a different question.
+
+.. note::
+
+   A single set of ``system_args`` cannot schedule construction of a foreground
+   factory in 2026 and its operation in 2050. That question requires a
+   time-specific foreground model, separate databases for the relevant years,
+   or a dynamic LCA method. The consequential parameters only determine how
+   Premise selects marginal suppliers in the background markets it transforms.
+
+Capital replacement
+-------------------
+
+When ``capital replacement rate=True`` (the default), Premise accounts for the
+replacement of depreciated production capacity. For a supplier with production
+``P`` and lifetime ``L``, the replacement baseline is ``-P/L``. The baseline is
+subtracted from the observed production slope.
+
+For example, a technology with stable production has a raw slope of zero. Its
+adjusted indicator is ``0 - (-P/L) = P/L``. It may therefore be part of the
+marginal mix because investment is needed to replace retiring capacity even
+though its total production does not grow.
+
+Capital replacement affects supplier eligibility and marginal shares. It is
+not a lead time and does not add the embodied environmental burden of replacing
+equipment to the foreground model.
 
 .. figure:: Baseline.png
+   :alt: Production trends evaluated with a horizontal baseline and with a capital replacement baseline.
 
-    (left). The capital replacement rate is not considered. (right) The capital replacement rate is subtracted from the growth rate to distinguish between the growth rate due to the change in demand and the growth rate due to the replacement of capital stock.
+   Left: a horizontal baseline. Right: the capital replacement baseline is
+   subtracted from the production trend.
 
+Technology lifetimes are stored in `lifetimes.yaml
+<https://github.com/polca/premise/blob/master/premise/data/consequential/lifetimes.yaml>`_.
 
-If you wish to modify the default lifetime values used for the different
-technologies, you can do so by modifying the file:
+Measuring production trends
+---------------------------
 
-https://github.com/polca/premise/blob/master/premise/data/consequential/lifetimes.yaml
+The ``measurement`` argument controls how production changes are quantified
+within the supplier-observation interval:
 
-Measurement method
-^^^^^^^^^^^^^^^^^^
+* ``0`` -- endpoint slope. This is the default and is also used by ecoinvent.
+  It is generally suitable for short intervals and approximately linear trends.
+* ``1`` -- linear regression. It reduces the influence of individual annual
+  values compared with an endpoint slope.
+* ``2`` -- area under the curve. It gives more emphasis to developments early
+  in the interval and can be useful when near-term consequences matter most.
+* ``3`` -- weighted slope. It adjusts the full-interval slope using a shorter
+  slope defined by ``weighted slope start`` and ``weighted slope end``. With
+  the defaults, this shorter slope covers the last quarter of the interval and
+  emphasizes developments near its end.
+* ``4`` -- annual measurement. It splits the interval into individual years
+  and gives short-, medium-, and long-term developments equal importance. It
+  requires ``lead time=False`` because all suppliers must share one interval.
+* ``5`` -- legacy production-volume weighting. It selects suppliers according
+  to the direction of their production trend and weights the selected
+  suppliers by their production volume at the start of the interval. It is
+  retained for reproducing legacy consequential configurations; methods 0 to 4
+  are preferred for new IAM trend analyses.
 
-Methods 0 and 1 are used if the production volume follows an almost linear pattern.
-Methods 2, 3 and 4 are used if the production volume follows a non-linear pattern.
-Short-lasting changes tend to follow a linear pattern, whereas long-lasting changes often do not.
-
-* 0 = slope: Default method, also used by ecoinvent.
-* 1 = linear regression: Outliers have less of an effect on the results than with Method 0.
-* 2 = area under the curve: Used if there is an emphasis on the consequences in the short term, e.g., if knowing “when” to best introduce the change is important.
-* 3 = weighted slope: Curvature is determined using two slopes. First, the same slope as used in Method 0. Second, a shorter slope, which by default is placed at the end of the time interval. The ratio of the short and long slope is used to adjust the calculated values of Method 0. By placing the shorter slope at the end, exponential growth curves are favored. Used if there is an emphasis on the consequences in the long term, e.g., if the focus of the study is on reaching net zero emissions by 2050.
-* 4 = time interval is split in individual years and measured: The more balanced approach out of the three non-linear methods (i.e., 2, 3, and 4). Short-, mid- and long-term developments are equally important.
+Methods 2 to 4 are intended for non-linear production trajectories, which are
+more likely over long intervals. The choice of interval can have a larger
+effect than the choice of measurement method, so consequential studies should
+test plausible durations and measurement methods when these choices are
+material to the conclusions.
 
 .. figure:: Measure_methods.png
+   :alt: Comparison of methods for measuring non-linear production trends.
 
-    Non-linear methods (2, 3 and 4) are used if the production volume follows a non-linear pattern. Short-lasting changes tend to follow a linear pattern, whereas long-lasting changes often do not.
+   Comparison of methods 2, 3, and 4 for non-linear production trajectories.
 
-Weighted slope start
-^^^^^^^^^^^^^^^^^^^^
+Configuration reference
+-----------------------
 
-Weighted slope start is needed for measurement method 3.
-The number indicates where the short slope starts
-and is given as the fraction of the total time interval.
+The supported ``system_args`` and their implementation defaults are:
 
-Weighted slope end
-^^^^^^^^^^^^^^^^^^
+.. list-table::
+   :header-rows: 1
+   :widths: 31 15 14 40
 
-Weighted slope end is needed for measurement method 3.
-The number indicates where the short slope ends
-and is given as the fraction of the total time interval.
+   * - Argument
+     - Type
+     - Default
+     - Purpose
+   * - ``range time``
+     - integer years
+     - ``2``
+     - Half-width of the interval for a short demand change.
+   * - ``duration``
+     - integer years
+     - ``0``
+     - Persistence of a long demand change, forward from ``year``.
+   * - ``foresight``
+     - boolean
+     - ``False``
+     - Selects myopic or perfect-foresight timing.
+   * - ``lead time``
+     - boolean
+     - ``False``
+     - Selects market-average (``False``) or technology-specific (``True``)
+       lead-time intervals. ``False`` does not disable lead time.
+   * - ``capital replacement rate``
+     - boolean
+     - ``True``
+     - Uses technology replacement requirements as the baseline.
+   * - ``measurement``
+     - integer, 0--5
+     - ``0``
+     - Selects the production-trend measurement method.
+   * - ``weighted slope start``
+     - fraction
+     - ``0.75``
+     - Start of the short slope used by method 3.
+   * - ``weighted slope end``
+     - fraction
+     - ``1.00``
+     - End of the short slope used by method 3.
 
-Database creation
-^^^^^^^^^^^^^^^^^
-
-The user needs to specify the arguments presented above.
-If not, the following default arguments value are used:
+Pass the arguments explicitly so that the modelling choices remain visible and
+reproducible:
 
 .. code-block:: python
 
-    args = {
-        "range time":2,
-        "duration":0,
-        "foresight":False,
-        "lead time":False,
-        "capital replacement rate":False,
+    from premise import NewDatabase
+
+    system_args = {
+        "range time": 2,
+        "duration": 0,
+        "foresight": False,
+        "lead time": False,
+        "capital replacement rate": True,
         "measurement": 0,
         "weighted slope start": 0.75,
-        "weighted slope end": 1.00
+        "weighted slope end": 1.00,
     }
 
-.. code-block:: python
-
     ndb = NewDatabase(
-        scenarios = scenarios,
-        source_db="ecoinvent 3.8 consequential",
-        source_version="3.8",
-        key='xxxxxxxxx',
+        scenarios=scenarios,
+        source_db="ecoinvent 3.12 consequential",
+        source_version="3.12",
+        key="xxxxxxxxx",
         system_model="consequential",
-        system_args=args
+        system_args=system_args,
     )
 
     ndb.update("electricity")
-
     ndb.write_db_to_brightway()
+
+During transformation, Premise prints a summary for each marginal market.
+Check ``Lead time`` and ``L avg`` to verify the selected mode and market-average
+lead time. ``Avg start`` and ``Avg end`` show the common interval or, in
+individual mode, the average interval used for market-level diagnostics. Also
+inspect ``Range``, ``Duration``, ``Foresight``, ``Cap repl.``, and ``Vol ch.``.
+This is especially important when an interval approaches the first or last IAM
+year.
+
+Scope and limitations
+---------------------
+
+* The method assumes a small marginal change. A project large enough to alter
+  market structure or the IAM pathway itself requires additional scenario
+  modelling.
+* One ``system_args`` dictionary is applied to the transformed consequential
+  markets. Different demand changes may justify different time intervals and,
+  consequently, separate database builds.
+* IAM production values are interpolated to annual resolution. Requested
+  interval endpoints outside the available IAM years are replaced with the
+  nearest available year.
+* The generated database is static. The supplier-observation interval does not
+  create temporally distributed exchanges or a dynamic impact assessment.
+* A long or permanent change still requires a finite, documented duration.
+* Premise rejects negative intervals, simultaneous non-zero ``range time`` and
+  ``duration``, and durations of one or two years. Use ``range time`` for a
+  change lasting less than three years.
+
+Some technologies are excluded from marginal markets because their feedstock
+availability constrains their response. This typically applies to
+waste-to-energy and waste-to-fuel technologies. Secondary steel is excluded
+from marginal steel mixes. The exclusions are defined in the consequential
+data files shipped with Premise.
+
+Some imported inventories cannot be linked directly to the ecoinvent
+consequential database. `blacklist.yaml
+<https://github.com/polca/premise/blob/master/premise/data/consequential/blacklist.yaml>`_
+provides alternative linking candidates.

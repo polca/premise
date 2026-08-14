@@ -84,14 +84,31 @@ def fetch_data(
             else None
         ),
         "Heat (buildings) - generation": (
-            iam_data.production_volumes
-            if hasattr(iam_data, "production_volumes")
-            else None
+            iam_data.buildings_heat_end_use
+            if hasattr(iam_data, "buildings_heat_end_use")
+            else (
+                iam_data.production_volumes
+                if hasattr(iam_data, "production_volumes")
+                else None
+            )
         ),
         "Heat (industrial) - generation": (
-            iam_data.production_volumes
-            if hasattr(iam_data, "production_volumes")
-            else None
+            iam_data.industrial_heat_end_use
+            if hasattr(iam_data, "industrial_heat_end_use")
+            else (
+                iam_data.production_volumes
+                if hasattr(iam_data, "production_volumes")
+                else None
+            )
+        ),
+        "Heat (secondary) - generation": (
+            iam_data.secondary_heat_supply
+            if hasattr(iam_data, "secondary_heat_supply")
+            else (
+                iam_data.production_volumes
+                if hasattr(iam_data, "production_volumes")
+                else None
+            )
         ),
         "Fuel (gasoline) - generation": (
             iam_data.production_volumes
@@ -491,6 +508,10 @@ def generate_summary_report(
         "Heat (industrial) - generation": {
             "filepath": IAM_HEATING_VARS,
             "filter": ["heat, industrial"],
+        },
+        "Heat (secondary) - generation": {
+            "filepath": IAM_HEATING_VARS,
+            "filter": ["heat, secondary"],
         },
         "Fuel (gasoline) - generation": {
             "filepath": IAM_FUELS_VARS,
