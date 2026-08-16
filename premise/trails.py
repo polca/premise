@@ -1476,9 +1476,7 @@ class TrailsDataPackage:
                 ds_lifetime = ds_stock.get("lifetime")
                 if ds_lifetime is None:
                     ds_lifetime = dataset_lifetimes.get((ds_name, ds_ref))
-                is_lifecycle_service = (
-                    ds_key in maintenance or ds_key in end_of_life
-                )
+                is_lifecycle_service = ds_key in maintenance or ds_key in end_of_life
 
                 bg = biomass_growth.get((ds_name, ds_ref))
                 for e in ds.get("exchanges", []):
