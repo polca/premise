@@ -27,6 +27,116 @@ TEMPORAL_HEADER = [
     "param_notes",
 ]
 
+HYDROGEN_HEAT_DAC_ACTIVITIES = [
+    (
+        "carbon dioxide, captured, with a solvent-based direct air capture "
+        "system, 1MtCO2, with hydrogen heat, and grid electricity"
+    ),
+    (
+        "carbon dioxide, captured and stored, with a solvent-based direct air "
+        "capture system, 1MtCO2, with hydrogen heat, and grid electricity"
+    ),
+    (
+        "carbon dioxide, captured, with a sorbent-based direct air capture "
+        "system, 100ktCO2, with hydrogen heat, and grid electricity"
+    ),
+    (
+        "carbon dioxide, captured and stored, with a sorbent-based direct air "
+        "capture system, 100ktCO2, with hydrogen heat, and grid electricity"
+    ),
+]
+
+
+def test_hydrogen_heat_dac_activities_have_twenty_year_lifetimes():
+    obj = TrailsDataPackage.__new__(TrailsDataPackage)
+    *_, dataset_lifetimes = obj._load_temporal_specs_from_csv(
+        trails.FILEPATH_TEMPORAL_PARAMETERS
+    )
+
+    for name in HYDROGEN_HEAT_DAC_ACTIVITIES:
+        assert dataset_lifetimes[(name, "carbon dioxide, captured")] == 20
+
+
+def test_nested_lifecycle_services_are_scheduled_in_the_caller_year(
+    monkeypatch, tmp_path
+):
+    scenario = {
+        "model": "model",
+        "pathway": "pathway",
+        "year": 2030,
+        "database": [
+            {
+                "name": "asset operation",
+                "reference product": "service",
+                "exchanges": [
+                    {
+                        "type": "technosphere",
+                        "name": "asset treatment",
+                        "product": "used asset",
+                    }
+                ],
+            },
+            {
+                "name": "asset treatment",
+                "reference product": "used asset",
+                "exchanges": [
+                    {
+                        "type": "technosphere",
+                        "name": "component treatment",
+                        "product": "used component",
+                    }
+                ],
+            },
+            {
+                "name": "maintenance service",
+                "reference product": "maintenance",
+                "exchanges": [
+                    {
+                        "type": "technosphere",
+                        "name": "component maintenance",
+                        "product": "component maintenance",
+                    }
+                ],
+            },
+        ],
+    }
+
+    obj = TrailsDataPackage.__new__(TrailsDataPackage)
+    obj.stock_asset_params = {}
+    obj.end_of_life_suppliers = {
+        ("asset treatment", "used asset"),
+        ("component treatment", "used component"),
+    }
+    obj.biomass_growth_params = {}
+    obj.maintenance_suppliers = {
+        ("maintenance service", "maintenance"),
+        ("component maintenance", "component maintenance"),
+    }
+    obj.dataset_lifetimes = {("asset operation", "service"): 20}
+    obj.long_term_biosphere_params = []
+    obj.datapackage = SimpleNamespace(scenarios=[scenario], database="db")
+
+    monkeypatch.chdir(tmp_path)
+    monkeypatch.setattr(trails, "load_database", lambda scenario, _: scenario)
+    monkeypatch.setattr(trails, "dump_database", lambda scenario: scenario)
+
+    obj.add_temporal_distributions()
+
+    asset_treatment = scenario["database"][0]["exchanges"][0]
+    nested_treatment = scenario["database"][1]["exchanges"][0]
+    nested_maintenance = scenario["database"][2]["exchanges"][0]
+
+    assert asset_treatment["temporal_distribution"] == 6
+    assert asset_treatment["temporal_offsets"] == [21.0]
+    assert nested_treatment["temporal_distribution"] == 6
+    assert nested_treatment["temporal_offsets"] == [0.0]
+    assert nested_maintenance["temporal_distribution"] == 6
+    assert nested_maintenance["temporal_offsets"] == [0.0]
+    faulty_file = (
+        tmp_path / "trails_temp" / "temporal_distribution_faulty_exchanges.csv"
+    )
+    assert not faulty_file.exists()
+
 
 def test_trails_default_years_follow_selected_iam_file(monkeypatch, tmp_path):
     iam_file = tmp_path / "image_custom.csv"

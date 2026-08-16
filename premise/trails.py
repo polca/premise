@@ -1292,6 +1292,7 @@ class TrailsDataPackage:
         - stock_asset: apply supplier-level params directly
         - maintenance: uniform distribution over [0, lifetime] using calling dataset lifetime from CSV
         - end_of_life: one-pulse (type 6) at dataset lifetime + 1 from CSV
+        - nested lifecycle services: one-pulse (type 6) at the caller year
         """
         stock_assets = getattr(self, "stock_asset_params", {})  # (name, ref) -> params
         end_of_life = getattr(self, "end_of_life_suppliers", set())
@@ -1334,6 +1335,15 @@ class TrailsDataPackage:
             exc["temporal_max"] = params.get("temporal_max")
             exc["temporal_offsets"] = params.get("temporal_offsets")
             exc["temporal_weights"] = params.get("temporal_weights")
+
+        def _apply_discrete_pulse(exc, offset):
+            exc["temporal_distribution"] = 6
+            exc["temporal_loc"] = None
+            exc["temporal_scale"] = None
+            exc["temporal_min"] = None
+            exc["temporal_max"] = None
+            exc["temporal_offsets"] = [float(offset)]
+            exc["temporal_weights"] = [1.0]
 
         def _match_selector(pattern, value):
             pattern = (pattern or "*").strip()
@@ -1461,10 +1471,14 @@ class TrailsDataPackage:
             for ds in db:
                 ds_name = (ds.get("name") or "").strip()
                 ds_ref = (ds.get("reference product") or "").strip()
+                ds_key = (ds_name, ds_ref)
                 ds_stock = stock_assets.get((ds_name, ds_ref), {})
                 ds_lifetime = ds_stock.get("lifetime")
                 if ds_lifetime is None:
                     ds_lifetime = dataset_lifetimes.get((ds_name, ds_ref))
+                is_lifecycle_service = (
+                    ds_key in maintenance or ds_key in end_of_life
+                )
 
                 bg = biomass_growth.get((ds_name, ds_ref))
                 for e in ds.get("exchanges", []):
@@ -1541,6 +1555,13 @@ class TrailsDataPackage:
                         _apply_params(e, params)
                         continue
 
+                    # Maintenance and end-of-life datasets represent lifecycle
+                    # events, not assets with another service life. Their nested
+                    # lifecycle suppliers are substeps of the same event.
+                    if is_lifecycle_service and (is_maintenance or is_end_of_life):
+                        _apply_discrete_pulse(e, 0.0)
+                        continue
+
                     if (is_maintenance or is_end_of_life) and ds_lifetime is None:
                         _record_fault(
                             ds,
@@ -1562,13 +1583,7 @@ class TrailsDataPackage:
 
                     if is_end_of_life:
                         pulse_time = float(ds_lifetime) + 1.0
-                        e["temporal_distribution"] = 6
-                        e["temporal_loc"] = None
-                        e["temporal_scale"] = None
-                        e["temporal_min"] = None
-                        e["temporal_max"] = None
-                        e["temporal_offsets"] = [pulse_time]
-                        e["temporal_weights"] = [1.0]
+                        _apply_discrete_pulse(e, pulse_time)
 
             self.datapackage.scenarios[s] = dump_database(scenario)
 
