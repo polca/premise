@@ -119,11 +119,13 @@ This means that ``premise`` will output databases that are compatible with Brigh
 
 
 A development version with the latest advancements (but with the risks of unseen bugs),
-is available from Anaconda Cloud. Similarly, you should specify that you want to use Brightway 2.5:
+is available from Anaconda Cloud. 
+
+Similarly, you should specify that you want to use Brightway 2.5 (with `activity-browser>=3.x.x`-compatibility):
 
     conda install -c conda-forge premise-bw25
 
-Or rather use Brightway2:
+Or rather use Brightway2 (with `activity-browser<3.0.0`-compatibility):
 
     conda install -c conda-forge premise-bw2
 
