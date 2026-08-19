@@ -135,6 +135,30 @@ How to use it?
 
 The best way is to follow [the examples from the Jupyter Notebook](https://github.com/polca/premise/blob/master/examples/examples.ipynb). 
 
+Sequential scenario arrays in Brightway 2.5
+--------------------------------------------
+
+With modern Brightway (`bw2data >= 4`), one export call can write a union
+database plus a compressed, deterministic scenario-array ZIP:
+
+```python
+array_path = ndb.write_scenario_array_db_to_brightway(
+    name="scenario-ensemble",
+)
+```
+
+The initial array state is `original`; successive `next(lca)` calls select each
+generated scenario in `ndb.scenarios` order and then wrap to `original`.
+Append `array_path` after the database datapackages passed to `bc.LCA` so that
+the joint technosphere and biosphere arrays override the base database. The ZIP
+is project-specific and provides deterministic scenario enumeration, not
+probability-weighted Monte Carlo sampling.
+
+See the [complete three-IMAGE-scenario notebook example](https://github.com/polca/premise/blob/master/examples/examples.ipynb)
+and the [Brightway loading guide](https://premise.readthedocs.io/en/latest/load.html#sequential-scenario-arrays-modern-brightway)
+for database creation, exact activity matching, multi-activity LCIA, and
+wraparound/base-database checks.
+
 ## Disclaimer on the Use of IAM-Based Scenarios in Premise
 
 It is essential to recognize the nature and 
