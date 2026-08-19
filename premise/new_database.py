@@ -30,6 +30,7 @@ from .emissions import _update_emissions
 from .final_energy import _update_final_energy
 from .export import (
     Export,
+    _build_superstructure_db,
     _prepare_database,
     build_datapackage,
     generate_scenario_factor_file,
@@ -50,6 +51,10 @@ from .inventory_imports import (
 from .metals import _update_metals
 from .mining import _update_mining
 from .report import generate_change_report, generate_summary_report
+from .scenario_array import (
+    _load_scenario_array_dependencies,
+    _write_scenario_array_datapackage,
+)
 from .steel import _update_steel
 from .transport import _update_vehicles
 from .utils import (
@@ -1274,13 +1279,126 @@ class NewDatabase:
         :return: filepath of the "scenarios difference file"
         """
 
-        if len(self.scenarios) < 2:
-            raise ValueError(
-                "At least two scenarios are needed to"
-                "create a super-structure database."
+        self._prepare_superstructure_export(
+            name=name,
+            filepath=filepath,
+            file_format=file_format,
+            preserve_original_column=preserve_original_column,
+        )
+
+        write_brightway_database(
+            data=self.database,
+            name=name,
+            fast=True,
+            check_internal=False,
+        )
+
+        self._finalize_superstructure_export()
+
+    def write_scenario_array_db_to_brightway(
+        self,
+        name: str = f"scenario_array_db_{datetime.now():%d-%m-%Y}",
+        filepath: str | Path | None = None,
+    ) -> Path:
+        """Write a union database and deterministic Brightway scenario arrays.
+
+        ``filepath`` is the complete destination ZIP path. The returned package
+        is project-specific because its matrix indices refer to IDs assigned
+        when ``name`` is written in the active Brightway project.
+        """
+
+        version = bw2data.__version__
+        major_version = (
+            int(version[0])
+            if isinstance(version, (tuple, list))
+            else Version(str(version)).major
+        )
+        if major_version < 4:
+            raise NotImplementedError(
+                "Scenario-array export requires modern Brightway (bw2data >= 4)."
             )
 
-        check_presence_biosphere_database(self.biosphere_name)
+        self._validate_superstructure_export_prerequisites()
+
+        destination = Path(filepath).expanduser() if filepath is not None else None
+        if destination is not None and destination.suffix.lower() != ".zip":
+            raise ValueError(
+                "Scenario-array filepath must be the complete destination path "
+                "with a '.zip' suffix."
+            )
+
+        scenario_labels = create_scenario_list(self.scenarios)
+        duplicates = sorted(
+            {label for label in scenario_labels if scenario_labels.count(label) > 1}
+        )
+        if duplicates:
+            raise ValueError(
+                "Scenario labels must be unique for scenario-array export. "
+                f"Duplicate label(s): {duplicates}."
+            )
+
+        dependencies = _load_scenario_array_dependencies()
+        bw_processing = dependencies[0]
+        if destination is None:
+            sanitized_name = bw_processing.clean_datapackage_name(name) or "database"
+            destination = (
+                Path.cwd()
+                / "export"
+                / "scenario arrays"
+                / f"scenario_array_{sanitized_name}.zip"
+            )
+
+        scenario_labels, dataframe = self._prepare_superstructure_export(
+            name=name,
+            scenario_array=True,
+            prerequisites_validated=True,
+        )
+
+        write_brightway_database(
+            data=self.database,
+            name=name,
+            fast=True,
+            check_internal=False,
+        )
+
+        ordered_labels = ["original", *scenario_labels]
+        project_name = getattr(bw2data.projects, "current", None)
+        metadata = {
+            "database_name": name,
+            "brightway_project": project_name,
+            "source_database": getattr(self, "source", None),
+            "ecoinvent_version": self.version,
+            "premise_version": ".".join(map(str, __version__)),
+            "scenario_count": len(ordered_labels),
+            "scenario_labels": ordered_labels,
+        }
+        destination = _write_scenario_array_datapackage(
+            dataframe=dataframe,
+            scenario_labels=ordered_labels,
+            filepath=destination,
+            name=name,
+            metadata=metadata,
+            dependencies=dependencies,
+        )
+
+        self._finalize_superstructure_export()
+        return destination
+
+    def _prepare_superstructure_export(
+        self,
+        *,
+        name: str,
+        filepath: str | Path | None = None,
+        file_format: str = "csv",
+        preserve_original_column: bool = False,
+        scenario_array: bool = False,
+        prerequisites_validated: bool = False,
+    ) -> tuple[list[str], object]:
+        """Run the common preparation path for both superstructure exporters."""
+
+        if not prerequisites_validated:
+            self._validate_superstructure_export_prerequisites()
+
         original_database = self._load_original_database()
 
         for scenario in self.scenarios:
@@ -1304,19 +1422,29 @@ class NewDatabase:
                     "The database is not ready for export: MAJOR anomalies found. Check the change report."
                 )
 
-        list_scenarios = create_scenario_list(self.scenarios)
-
-        self.database = generate_superstructure_db(
-            origin_db=original_database,
-            scenarios=self.scenarios,
-            db_name=name,
-            biosphere_name=self.biosphere_name,
-            filepath=filepath,
-            version=self.version,
-            file_format=file_format,
-            scenario_list=list_scenarios,
-            preserve_original_column=preserve_original_column,
-        )
+        scenario_labels = create_scenario_list(self.scenarios)
+        dataframe = None
+        if scenario_array:
+            self.database, dataframe = _build_superstructure_db(
+                origin_db=original_database,
+                scenarios=self.scenarios,
+                db_name=name,
+                biosphere_name=self.biosphere_name,
+                version=self.version,
+                scenario_list=scenario_labels,
+            )
+        else:
+            self.database = generate_superstructure_db(
+                origin_db=original_database,
+                scenarios=self.scenarios,
+                db_name=name,
+                biosphere_name=self.biosphere_name,
+                filepath=filepath,
+                version=self.version,
+                file_format=file_format,
+                scenario_list=scenario_labels,
+                preserve_original_column=preserve_original_column,
+            )
 
         tmp_scenario = self.scenarios[0].copy()
         tmp_scenario["database"] = self.database
@@ -1338,12 +1466,21 @@ class NewDatabase:
             version=self.version,
         )
 
-        write_brightway_database(
-            data=self.database,
-            name=name,
-            fast=True,
-            check_internal=False,
-        )
+        return scenario_labels, dataframe
+
+    def _validate_superstructure_export_prerequisites(self) -> None:
+        """Validate prerequisites shared by both superstructure exporters."""
+
+        if len(self.scenarios) < 2:
+            raise ValueError(
+                "At least two scenarios are needed to "
+                "create a super-structure database."
+            )
+
+        check_presence_biosphere_database(self.biosphere_name)
+
+    def _finalize_superstructure_export(self) -> None:
+        """Generate reports and release scenario export state once."""
 
         if self.generate_reports:
             # generate scenario report
