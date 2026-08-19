@@ -2,6 +2,43 @@
 
 All notable changes to this project are documented in this file.
 
+## [2.4.9.2]
+
+### Added
+- Added `NewDatabase.write_scenario_array_db_to_brightway` for modern
+  Brightway. It writes one union database and one compressed `bw_processing`
+  ZIP containing synchronized technosphere and biosphere arrays, ordered as
+  `original` followed by the generated scenarios.
+- Added `bw_processing >= 1.0` to the Brightway 2.5 optional dependencies.
+
+### Changed
+- Reused the superstructure preparation pipeline for scenario-array export,
+  preserving existing superstructure CSV, Excel, and Feather behavior while
+  applying the same loading, validation, duplicate aggregation, reporting, and
+  cleanup to both export paths.
+- Stored only changing matrix coordinates in deterministic sequential arrays;
+  the written base database retains the `original` state when the ZIP is not
+  loaded.
+
+### Fixed
+- Included matching production rows when changed self-consumption exchanges
+  are netted into technosphere diagonals, preventing invalid or singular
+  scenario matrices.
+
+### Documentation
+- Added a complete three-pathway IMAGE 2050 example for the
+  `ecoinvent-3.12-cutoff` project to the examples notebook, loading guide,
+  and README, including multi-activity scoring, base-database validation,
+  synchronized scenario selection, and wraparound behavior.
+
+### Tests
+- Added unit and orchestration coverage for scenario ordering, values, indices,
+  technosphere flips, biosphere placement, structural zeros, validation errors,
+  atomic ZIP output, and production/self-consumption netting.
+- Validated the export end to end with IMAGE SSP1-L, SSP2-M, and SSP3-H for
+  2050, checking three activities against the original database and confirming
+  deterministic scenario selection and wraparound.
+
 ## [2.4.9.1]
 
 ### Added

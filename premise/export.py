@@ -748,6 +748,10 @@ def generate_scenario_difference_file(
         )
 
     inds_std = sparse.argwhere((m[..., 1:] == m[..., 0, None]).all(axis=-1).T == False)
+    inds_std = _include_production_rows_for_changing_self_consumption(
+        indices=inds_std,
+        acts_ind=acts_ind,
+    )
 
     for i in inds_std:
         c_name, c_ref, c_cat, c_loc, c_unit, _ = acts_ind[i[0]]
@@ -889,7 +893,7 @@ def _resolve_superstructure_flow_type(flow_types: pd.Series) -> str:
     if len(unique_flow_types) == 1:
         return unique_flow_types.pop()
 
-    if unique_flow_types == {"production", "technosphere"}:
+    if _is_production_consumption_flow_type_set(unique_flow_types):
         # A self-loop technosphere exchange nets against the diagonal
         # production exchange and should stay represented as a production row.
         return "production"
@@ -897,6 +901,44 @@ def _resolve_superstructure_flow_type(flow_types: pd.Series) -> str:
     raise ValueError(
         f"Cannot aggregate superstructure rows with incompatible flow types: {sorted(unique_flow_types)}."
     )
+
+
+def _is_production_consumption_flow_type_set(flow_types) -> bool:
+    """Return whether flow types describe production plus one negative input."""
+
+    flow_types = set(flow_types)
+    return (
+        len(flow_types) == 2
+        and "production" in flow_types
+        and bool(flow_types & {"technosphere", "generic consumption"})
+    )
+
+
+def _include_production_rows_for_changing_self_consumption(
+    indices, acts_ind: dict
+) -> list[tuple[int, int]]:
+    """Include unchanged production rows needed to net changing diagonal inputs."""
+
+    coordinates = [tuple(map(int, index)) for index in indices]
+    coordinate_set = set(coordinates)
+    negative_edge_types = {"technosphere", "generic consumption"}
+
+    for consumer_index, supplier_index in coordinates:
+        consumer = acts_ind[consumer_index]
+        supplier = acts_ind[supplier_index]
+        same_activity = all(
+            supplier[position] == consumer[position] for position in (0, 1, 3, 4)
+        )
+        production_coordinate = (consumer_index, consumer_index)
+        if (
+            supplier[-1] in negative_edge_types
+            and same_activity
+            and production_coordinate not in coordinate_set
+        ):
+            coordinates.append(production_coordinate)
+            coordinate_set.add(production_coordinate)
+
+    return coordinates
 
 
 def _net_superstructure_scenario_values(
@@ -917,13 +959,9 @@ def _net_superstructure_scenario_values(
     )
 
     invalid_flow_type_sets = flow_type_sets[
-        ~flow_type_sets["flow type set"].isin(
-            [
-                frozenset({"biosphere"}),
-                frozenset({"technosphere"}),
-                frozenset({"production"}),
-                frozenset({"production", "technosphere"}),
-            ]
+        ~flow_type_sets["flow type set"].map(
+            lambda flow_type_set: len(flow_type_set) == 1
+            or _is_production_consumption_flow_type_set(flow_type_set)
         )
     ]
     if not invalid_flow_type_sets.empty:
@@ -939,13 +977,17 @@ def _net_superstructure_scenario_values(
         )
 
     signed_df = df.merge(flow_type_sets, on=group_columns, how="left")
-    mixed_self_loops = signed_df["flow type set"] == frozenset(
-        {"production", "technosphere"}
+    mixed_self_loops = signed_df["flow type set"].map(
+        _is_production_consumption_flow_type_set
     )
     signed_df.loc[
-        mixed_self_loops & (signed_df["flow type"] == "technosphere"), scenario_columns
+        mixed_self_loops
+        & signed_df["flow type"].isin({"technosphere", "generic consumption"}),
+        scenario_columns,
     ] = signed_df.loc[
-        mixed_self_loops & (signed_df["flow type"] == "technosphere"), scenario_columns
+        mixed_self_loops
+        & signed_df["flow type"].isin({"technosphere", "generic consumption"}),
+        scenario_columns,
     ].mul(
         -1
     )
@@ -1031,32 +1073,15 @@ def generate_superstructure_db(
     :return: a superstructure database
     """
 
-    print("Building superstructure database...")
-
-    # create the dataframe
-    df, new_db, _ = generate_scenario_difference_file(
+    new_db, df = _build_superstructure_db(
         origin_db=origin_db,
         scenarios=scenarios,
         db_name=db_name,
         biosphere_name=biosphere_name,
-        version=version,
         scenario_list=scenario_list,
+        version=version,
+        preserve_original_column=preserve_original_column,
     )
-
-    # remove unneeded columns "to unit"
-    df = df.drop(columns=["to unit"])
-
-    # rename column "from unit" to "unit"
-    df = df.rename(columns={"from unit": "unit"})
-
-    # remove the column `original`
-    if not preserve_original_column:
-        df = df.drop(columns=["original"])
-    else:
-        scenario_list = ["original"] + scenario_list
-
-    if "unit" in df.columns:
-        df = df.drop(columns=["unit"])
 
     if filepath is not None:
         filepath = Path(filepath)
@@ -1065,20 +1090,6 @@ def generate_superstructure_db(
 
     if not os.path.exists(filepath):
         os.makedirs(filepath)
-
-    df, exact_duplicates, duplicate_collisions = (
-        _aggregate_duplicate_superstructure_rows(
-            df=df,
-            scenario_columns=scenario_list,
-        )
-    )
-
-    if exact_duplicates:
-        print(f"Dropped {exact_duplicates} exact duplicate(s).")
-    if duplicate_collisions:
-        print(
-            f"Collapsed {duplicate_collisions} overlapping row(s) by netting scenario values."
-        )
 
     # if df is longer than the row limit of Excel,
     # the export to Excel is not an option
@@ -1103,6 +1114,56 @@ def generate_superstructure_db(
     print(f"Scenario difference file exported to {filepath}!")
 
     return new_db
+
+
+def _build_superstructure_db(
+    origin_db,
+    scenarios,
+    db_name,
+    biosphere_name,
+    version,
+    scenario_list,
+    preserve_original_column: bool = True,
+) -> tuple[List[dict], pd.DataFrame]:
+    """Build a union database and finalized scenario dataframe without writing files."""
+
+    print("Building superstructure database...")
+
+    df, new_db, _ = generate_scenario_difference_file(
+        origin_db=origin_db,
+        scenarios=scenarios,
+        db_name=db_name,
+        biosphere_name=biosphere_name,
+        version=version,
+        scenario_list=scenario_list,
+    )
+
+    df = df.drop(columns=["to unit"])
+    df = df.rename(columns={"from unit": "unit"})
+    if "unit" in df.columns:
+        df = df.drop(columns=["unit"])
+
+    if preserve_original_column:
+        scenario_columns = ["original", *scenario_list]
+    else:
+        df = df.drop(columns=["original"])
+        scenario_columns = scenario_list
+
+    df, exact_duplicates, duplicate_collisions = (
+        _aggregate_duplicate_superstructure_rows(
+            df=df,
+            scenario_columns=scenario_columns,
+        )
+    )
+
+    if exact_duplicates:
+        print(f"Dropped {exact_duplicates} exact duplicate(s).")
+    if duplicate_collisions:
+        print(
+            f"Collapsed {duplicate_collisions} overlapping row(s) by netting scenario values."
+        )
+
+    return new_db, df
 
 
 def check_geographical_linking(scenario, original_database):
