@@ -39,6 +39,211 @@ def make_iam_data(variables, regions, values, years=None):
     )()
 
 
+def test_image_hydrogen_final_energy_uses_model_specific_hierarchy():
+    hydrogen = HydrogenMixin()
+    hydrogen.model = "image"
+    hydrogen.scenario = "test-scenario"
+    hydrogen.iam_data = make_iam_data(
+        variables=[
+            "Industry - Steel - All steel - H2",
+            "Industry - Steel - BF/BOF - H2",
+            "Industry - Cement - H2",
+            "Industry - Non-Metallic Minerals - H2",
+            "Industry - Chemicals - Fertilizer - H2",
+            "Industry - Chemicals - High-Value Chemicals - H2",
+            "Industry - Paper - H2",
+            "Transport - Road - H2",
+            "Buildings - Residential - H2",
+        ],
+        regions=["EUR"],
+        values=[
+            [[10]],
+            [[4]],
+            [[2]],
+            [[5]],
+            [[3]],
+            [[7]],
+            [[2]],
+            [[1]],
+            [[1]],
+        ],
+    )
+
+    result = hydrogen._get_hydrogen_final_energy_by_subsector()
+    demand = {
+        row.subsector: row.hydrogen_final_energy_ej_per_year
+        for row in result.itertuples()
+    }
+
+    assert demand == {
+        "Cement": 2,
+        "Chemicals": 3,
+        "Heating": 1,
+        "Other": 12,
+        "Steel": 10,
+        "Transport": 1,
+    }
+    steel_sources = result.loc[
+        result["subsector"] == "Steel", "source_variables"
+    ].item()
+    assert steel_sources == "Industry - Steel - All steel - H2"
+    other_sources = result.loc[
+        result["subsector"] == "Other", "source_variables"
+    ].item()
+    assert "Industry - Steel - BF/BOF - H2" not in other_sources
+    assert "minus:Industry - Cement - H2" in other_sources
+
+
+def test_image_hydrogen_final_energy_uses_steel_detail_as_fallback():
+    hydrogen = HydrogenMixin()
+    hydrogen.model = "image"
+    hydrogen.scenario = "test-scenario"
+    hydrogen.iam_data = make_iam_data(
+        variables=[
+            "Industry - Steel - BF/BOF - H2",
+            "Industry - Steel - DRI EAF - H2",
+        ],
+        regions=["EUR"],
+        values=[[[4]], [[6]]],
+    )
+
+    result = hydrogen._get_hydrogen_final_energy_by_subsector()
+
+    assert result["subsector"].tolist() == ["Steel"]
+    assert result["hydrogen_final_energy_ej_per_year"].item() == 10
+
+
+def test_image_market_availability_uses_preferred_steel_level():
+    hydrogen = HydrogenMixin()
+    hydrogen.model = "image"
+    hydrogen.scenario = "test-scenario"
+    hydrogen.year = 2030
+    hydrogen.regions = ["EUR", "USA", "World"]
+    hydrogen.iam_data = make_iam_data(
+        variables=[
+            "Industry - Steel - All steel - H2",
+            "Industry - Steel - BF/BOF - H2",
+        ],
+        regions=["EUR", "USA"],
+        values=[
+            [[1], [0]],
+            [[0], [5]],
+        ],
+    )
+
+    available = hydrogen._available_hydrogen_sector_market_regions()
+
+    assert available["Steel"] == {"EUR"}
+    assert available["Other"] == set()
+
+
+def test_custom_model_combines_heating_and_assigns_cdr_to_other():
+    hydrogen = HydrogenMixin()
+    hydrogen.model = "custom-model"
+    hydrogen.scenario = "test-scenario"
+    hydrogen.iam_data = make_iam_data(
+        variables=[
+            "Buildings - Heating - H2",
+            "Buildings - Water heating - H2",
+            "CDR - DAC - H2",
+            "Industry - Other - H2",
+        ],
+        regions=["EUR"],
+        values=[[[1]], [[2]], [[3]], [[4]]],
+    )
+
+    result = hydrogen._get_hydrogen_final_energy_by_subsector()
+    demand = {
+        row.subsector: row.hydrogen_final_energy_ej_per_year
+        for row in result.itertuples()
+    }
+
+    assert demand == {"Heating": 3, "Other": 7}
+
+
+def test_hydrogen_logistics_uses_target_year_and_excludes_world():
+    hydrogen = HydrogenMixin()
+    hydrogen.model = "remind"
+    hydrogen.scenario = "test-scenario"
+    hydrogen.year = 2030
+    hydrogen.iam_data = make_iam_data(
+        variables=["Buildings - Heating - H2"],
+        regions=["EUR", "World"],
+        years=[2030, 2050],
+        values=[[[1, 2], [1, 2]]],
+    )
+    hydrogen._add_transport_demand_nodes = lambda demand: demand
+
+    hydrogen.set_hydrogen_logistics()
+
+    assert hydrogen.hydrogen_demand_nodes["year"].tolist() == [2030]
+    assert hydrogen.hydrogen_demand_nodes["region"].tolist() == ["EUR"]
+    assert (
+        hydrogen.hydrogen_demand_nodes[
+            "hydrogen_final_energy_ej_per_year"
+        ].item()
+        == 1
+    )
+    assert hydrogen.hydrogen_demand_nodes["validation_status"].item() == "ok"
+
+
+def test_sector_market_regions_exclude_all_world_spelling_variants():
+    hydrogen = HydrogenMixin()
+    hydrogen.model = "remind"
+    hydrogen.scenario = "test-scenario"
+    hydrogen.year = 2030
+    hydrogen.regions = ["EUR", "World", "WORLD", "world"]
+    hydrogen.iam_data = make_iam_data(
+        variables=["Industry - Cement - H2"],
+        regions=["EUR", "World", "WORLD", "world"],
+        values=[[[1], [1], [1], [1]]],
+    )
+
+    available = hydrogen._available_hydrogen_sector_market_regions()
+
+    assert available["Cement"] == {"EUR"}
+
+
+def test_message_hydrogen_final_energy_sums_selected_chemical_details():
+    hydrogen = HydrogenMixin()
+    hydrogen.model = "message"
+    hydrogen.scenario = "test-scenario"
+    hydrogen.iam_data = make_iam_data(
+        variables=[
+            "Industry - Chemicals - Resins - H2",
+            "Industry - Chemicals - High-Value Chemicals - H2",
+            "Industry - Chemicals - Methanol - H2",
+        ],
+        regions=["EUR"],
+        values=[[[1]], [[2]], [[3]]],
+    )
+
+    result = hydrogen._get_hydrogen_final_energy_by_subsector()
+
+    assert result["subsector"].tolist() == ["Chemicals"]
+    assert result["hydrogen_final_energy_ej_per_year"].item() == 6
+
+
+def test_tiam_hydrogen_final_energy_excludes_steel():
+    hydrogen = HydrogenMixin()
+    hydrogen.model = "tiam-ucl"
+    hydrogen.scenario = "SSP2-RCP19"
+    hydrogen.iam_data = make_iam_data(
+        variables=[
+            "Industry - Steel - H-DRI/EAF - H2",
+            "Transport - Road - H2",
+        ],
+        regions=["WEU"],
+        values=[[[10]], [[2]]],
+    )
+
+    result = hydrogen._get_hydrogen_final_energy_by_subsector()
+
+    assert result["subsector"].tolist() == ["Transport"]
+    assert result["hydrogen_final_energy_ej_per_year"].item() == 2
+    assert "Industry - Steel" not in result["source_variables"].item()
+
+
 def test_sector_hydrogen_market_gets_weighted_transport_exchanges():
     hydrogen = HydrogenMixin()
     hydrogen.year = 2030

@@ -18,6 +18,80 @@ hydrogen_consumer_routing = fetch_mapping(HYDROGEN_CONSUMER_ROUTING)
 
 H2_LHV_GJ_PER_TONNE = 120.0
 TONNES_H2_PER_EJ = 1e9 / H2_LHV_GJ_PER_TONNE
+
+IMAGE_STEEL_HYDROGEN_DETAILS = (
+    "Industry - Steel - BF/BOF - H2",
+    "Industry - Steel - BF/BOF + CCS - H2",
+    "Industry - Steel - DRI EAF - H2",
+    "Industry - Steel - DRI EAF + CCS - H2",
+    "Industry - Steel - EAF - H2",
+    "Industry - Steel - Electrowinning - H2",
+    "Industry - Steel - H-DRI/EAF - H2",
+    "Industry - Steel - SR/BOF - H2",
+    "Industry - Steel - SR/BOF + CCS - H2",
+    "Industry - Steel - TGR BF/BOF - H2",
+    "Industry - Steel - TGR BF/BOF + CCS - H2",
+)
+
+# Candidate groups are ordered by preference. All candidates, including
+# fallbacks, are reserved so an unused aggregate/detail level cannot leak into
+# the Other end-use market. TIAM-UCL intentionally excludes steel: its RCP19
+# output contains DRH2-and-EAF steel production, but no corresponding hydrogen
+# final-energy series from which sector demand could be calculated.
+HYDROGEN_FINAL_ENERGY_RULES = {
+    "remind": {
+        "Steel": (("Industry - Steel - All steel - H2",),),
+        "Cement": (("Industry - Cement - H2",),),
+        "Chemicals": (("Industry - Chemicals - Chemicals - H2",),),
+    },
+    "remind-eu": {
+        "Steel": (("Industry - Steel - All steel - H2",),),
+        "Cement": (("Industry - Cement - H2",),),
+        "Chemicals": (("Industry - Chemicals - Chemicals - H2",),),
+    },
+    "image": {
+        "Steel": (
+            ("Industry - Steel - All steel - H2",),
+            IMAGE_STEEL_HYDROGEN_DETAILS,
+        ),
+        "Cement": (("Industry - Cement - H2",),),
+        "Chemicals": (("Industry - Chemicals - Fertilizer - H2",),),
+        "residuals": (
+            {
+                "parent": "Industry - Non-Metallic Minerals - H2",
+                "children": ("Industry - Cement - H2",),
+            },
+        ),
+    },
+    "message": {
+        "Steel": (("Industry - Steel - All steel - H2",),),
+        "Cement": (("Industry - Cement - H2",),),
+        "Chemicals": (
+            (
+                "Industry - Chemicals - Resins - H2",
+                "Industry - Chemicals - High-Value Chemicals - H2",
+                "Industry - Chemicals - Methanol - H2",
+            ),
+        ),
+    },
+    "gcam": {
+        "Steel": (
+            (
+                "Industry - Steel - BF/BOF - H2",
+                "Industry - Steel - DRI EAF - H2",
+            ),
+        ),
+        "Cement": (("Industry - Cement - H2",),),
+        "Chemicals": (("Industry - Chemicals - Chemicals - H2",),),
+    },
+    "tiam-ucl": {
+        "Steel": (),
+        "Cement": (),
+        "Chemicals": (),
+        "excluded_prefixes": ("Industry - Steel - ",),
+    },
+}
+
 STEEL_PLANT_SIZE_MT_PER_YEAR = 0.5
 CEMENT_PLANT_SIZE_MT_PER_YEAR = 2.4
 CEMENT_CAPACITY_FACTOR = 0.55
@@ -282,6 +356,11 @@ class HydrogenMixin:
             "new sector specific hydrogen market": new_market,
         }
 
+    # Sector-market workflow: identify the global IAM aggregate region.
+    @staticmethod
+    def _is_world_hydrogen_region(region):
+        return str(region).strip().lower() == "world"
+
     # Sector-market workflow: find IAM regions with positive hydrogen demand by market type.
     def _available_hydrogen_sector_market_regions(self):
         final_energy = self._get_hydrogen_final_energy_by_subsector(
@@ -303,7 +382,7 @@ class HydrogenMixin:
             for region in getattr(
                 self, "regions", final_energy["region"].dropna().unique()
             )
-            if region != "World"
+            if not self._is_world_hydrogen_region(region)
         }
         available_markets = {}
         for market_key in HYDROGEN_END_USE_MARKETS:
@@ -318,6 +397,7 @@ class HydrogenMixin:
                 region
                 for region in rows["region"].dropna().unique()
                 if region in candidate_regions
+                and not self._is_world_hydrogen_region(region)
             }
 
         return available_markets
@@ -460,7 +540,7 @@ class HydrogenMixin:
             return pd.Series(
                 {
                     "sector": "Residential and commercial buildings",
-                    "subsector": parts[1] if len(parts) > 2 else "Buildings",
+                    "subsector": "Heating",
                 }
             )
 
@@ -486,7 +566,7 @@ class HydrogenMixin:
             return pd.Series(
                 {
                     "sector": "Industrial processes",
-                    "subsector": "Carbon dioxide removal",
+                    "subsector": "Other",
                 }
             )
 
@@ -497,6 +577,38 @@ class HydrogenMixin:
     def _is_direct_hydrogen_end_use(variable):
         variable = str(variable)
         return variable.endswith(" - H2") or variable.endswith(" - Hydrogen")
+
+    # Demand-node workflow: sum the available coordinates in one hierarchy level.
+    @staticmethod
+    def _sum_hydrogen_final_energy_coordinates(final_energy, variables):
+        available = {
+            str(variable)
+            for variable in final_energy.coords["variables"].values
+        }
+        present = [variable for variable in variables if variable in available]
+        if not present:
+            return None, []
+
+        return (
+            final_energy.sel(variables=present).sum(dim="variables"),
+            present,
+        )
+
+    # Demand-node workflow: append a selected end-use array as classified rows.
+    @staticmethod
+    def _append_hydrogen_final_energy_rows(
+        tables, array, sector, subsector, source_variables
+    ):
+        if array is None:
+            return
+
+        table = array.to_dataframe(
+            name="hydrogen_final_energy_ej_per_year"
+        ).reset_index()
+        table["sector"] = sector
+        table["subsector"] = subsector
+        table["source_variables"] = "; ".join(source_variables)
+        tables.append(table)
 
     # Demand-node workflow: detect hydrogen vehicle mappings in transport configuration files.
     @staticmethod
@@ -626,17 +738,153 @@ class HydrogenMixin:
             else:
                 final_energy = final_energy.interp(year=[target_year])
 
-        table = final_energy.to_dataframe(
-            name="hydrogen_final_energy_ej_per_year"
-        ).reset_index()
-        table = table.loc[table["hydrogen_final_energy_ej_per_year"] > 0]
+        model = str(self.model).lower()
+        rules = HYDROGEN_FINAL_ENERGY_RULES.get(model)
 
-        if table.empty:
-            return self._empty_hydrogen_demand_nodes()
+        if rules is None:
+            # Preserve structural classification for custom IAM integrations.
+            # Built-in IAMs use the explicit hierarchy below.
+            table = final_energy.to_dataframe(
+                name="hydrogen_final_energy_ej_per_year"
+            ).reset_index()
+            table = table.loc[table["hydrogen_final_energy_ej_per_year"] > 0]
+            if table.empty:
+                return self._empty_hydrogen_demand_nodes()
+            table = table.join(
+                table["variables"].apply(self._hydrogen_end_use_group)
+            )
+            table["source_variables"] = table["variables"].astype(str)
+        else:
+            direct_hydrogen_variables = set(variables)
+            reserved = set()
+            tables = []
 
-        table = table.join(
-            table["variables"].apply(self._hydrogen_end_use_group)
-        )
+            for subsector in ("Steel", "Cement", "Chemicals"):
+                candidate_groups = rules.get(subsector, ())
+                reserved.update(
+                    variable
+                    for candidate_group in candidate_groups
+                    for variable in candidate_group
+                )
+
+                selected_array = None
+                selected_variables = []
+                for candidate_group in candidate_groups:
+                    selected_array, selected_variables = (
+                        self._sum_hydrogen_final_energy_coordinates(
+                            final_energy, candidate_group
+                        )
+                    )
+                    if selected_variables:
+                        break
+
+                self._append_hydrogen_final_energy_rows(
+                    tables,
+                    selected_array,
+                    "Industrial processes",
+                    subsector,
+                    selected_variables,
+                )
+
+            transport_variables = sorted(
+                variable
+                for variable in direct_hydrogen_variables
+                if variable.startswith("Transport - ")
+                or variable.startswith("Transportation ")
+            )
+            reserved.update(transport_variables)
+            transport_array, transport_present = (
+                self._sum_hydrogen_final_energy_coordinates(
+                    final_energy, transport_variables
+                )
+            )
+            self._append_hydrogen_final_energy_rows(
+                tables,
+                transport_array,
+                "Transport",
+                "Transport",
+                transport_present,
+            )
+
+            heating_variables = sorted(
+                variable
+                for variable in direct_hydrogen_variables
+                if variable.startswith("Buildings - ")
+            )
+            reserved.update(heating_variables)
+            heating_array, heating_present = (
+                self._sum_hydrogen_final_energy_coordinates(
+                    final_energy, heating_variables
+                )
+            )
+            self._append_hydrogen_final_energy_rows(
+                tables,
+                heating_array,
+                "Residential and commercial buildings",
+                "Heating",
+                heating_present,
+            )
+
+            for residual_rule in rules.get("residuals", ()):
+                parent = residual_rule["parent"]
+                children = residual_rule["children"]
+                reserved.add(parent)
+
+                parent_array, parent_present = (
+                    self._sum_hydrogen_final_energy_coordinates(
+                        final_energy, (parent,)
+                    )
+                )
+                child_array, child_present = (
+                    self._sum_hydrogen_final_energy_coordinates(
+                        final_energy, children
+                    )
+                )
+                if parent_array is None:
+                    continue
+
+                residual_array = parent_array
+                if child_array is not None:
+                    residual_array = (parent_array - child_array).clip(min=0)
+                residual_sources = parent_present + [
+                    f"minus:{variable}" for variable in child_present
+                ]
+                self._append_hydrogen_final_energy_rows(
+                    tables,
+                    residual_array,
+                    "Industrial processes",
+                    "Other",
+                    residual_sources,
+                )
+
+            excluded_prefixes = rules.get("excluded_prefixes", ())
+            reserved.update(
+                variable
+                for variable in direct_hydrogen_variables
+                if variable.startswith(excluded_prefixes)
+            )
+
+            other_variables = sorted(direct_hydrogen_variables - reserved)
+            other_array, other_present = (
+                self._sum_hydrogen_final_energy_coordinates(
+                    final_energy, other_variables
+                )
+            )
+            self._append_hydrogen_final_energy_rows(
+                tables,
+                other_array,
+                "Industrial processes",
+                "Other",
+                other_present,
+            )
+
+            if not tables:
+                return self._empty_hydrogen_demand_nodes()
+            table = pd.concat(tables, ignore_index=True)
+            table = table.loc[table["hydrogen_final_energy_ej_per_year"] > 0]
+            if table.empty:
+                return self._empty_hydrogen_demand_nodes()
+
         table = (
             table.groupby(
                 ["year", "region", "sector", "subsector"],
@@ -648,8 +896,12 @@ class HydrogenMixin:
                     "sum",
                 ),
                 source_variables=(
-                    "variables",
-                    lambda values: "; ".join(sorted(set(map(str, values)))),
+                    "source_variables",
+                    lambda values: "; ".join(
+                        value
+                        for value in sorted(set(map(str, values)))
+                        if value
+                    ),
                 ),
             )
             .assign(
@@ -901,13 +1153,13 @@ class HydrogenMixin:
                 ["region", "year"], as_index=False
             )
             .agg(
-                demand_nodes=("demand_nodes", "sum"),
-                activity_proxy_value=("activity_proxy_value", "sum"),
-                source_variables=(
-                    "source_variables",
-                    lambda values: "; ".join(sorted(set(values))),
-                ),
-            )
+            demand_nodes=("demand_nodes", "sum"),
+            activity_proxy_value=("activity_proxy_value", "sum"),
+            source_variables=(
+                "source_variables",
+                lambda values: "; ".join(sorted(set(values))),
+            ),
+        )
         )
 
     # Demand-node workflow: merge transport fueling station estimates into demand rows.
@@ -952,14 +1204,16 @@ class HydrogenMixin:
             return demand
 
         demand = demand.copy()
-        world_labels = {"World", "WORLD"}
+        world_mask = demand["region"].apply(
+            self._is_world_hydrogen_region
+        )
         regional_totals = (
-            demand.loc[~demand["region"].isin(world_labels)]
+            demand.loc[~world_mask]
             .groupby("year")["hydrogen_final_energy_ej_per_year"]
             .sum()
         )
         world_totals = (
-            demand.loc[demand["region"].isin(world_labels)]
+            demand.loc[world_mask]
             .groupby("year")["hydrogen_final_energy_ej_per_year"]
             .sum()
         )
@@ -1053,7 +1307,7 @@ class HydrogenMixin:
 
     # Demand-node workflow: build the full hydrogen logistics analysis output table.
     def set_hydrogen_logistics(self):
-        demand = self._get_hydrogen_final_energy_by_subsector()
+        demand = self._get_hydrogen_final_energy_by_subsector(year=self.year)
 
         if demand.empty:
             self.hydrogen_demand_nodes = demand
@@ -1104,6 +1358,9 @@ class HydrogenMixin:
 
         demand = demand.replace([np.inf, -np.inf], np.nan)
         demand = self._validate_hydrogen_demand_nodes(demand)
+        demand = demand.loc[
+            ~demand["region"].apply(self._is_world_hydrogen_region)
+        ].copy()
         demand = self._add_hydrogen_distribution_shares(demand)
 
         columns = self._empty_hydrogen_demand_nodes().columns.tolist()

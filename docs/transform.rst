@@ -2214,6 +2214,81 @@ Key outputs
 * Builds supply chains that vary by transport mode, distance, and state.
 * Applies transport and storage losses to supply routes.
 
+Sector-specific hydrogen demand
+-------------------------------
+
+Sector-specific hydrogen markets are created only in IAM regions with positive
+direct-hydrogen final-energy demand. Direct hydrogen is identified from the
+normalized ``final_energy.yaml`` coordinates whose names end in ``- H2`` or
+``- Hydrogen``. Values are read directly from the normalized xarray without
+another PJ-to-EJ conversion. The EJ/year demand is converted to hydrogen mass
+using a lower heating value of 120 GJ per tonne and is also used to estimate
+demand nodes and select distribution modes.
+
+Hydrogen logistics and sector-market availability both select the database
+target year. When that year is not an explicit IAM coordinate, the existing
+logic interpolates between IAM years or selects the nearest boundary. The IAM
+``World`` aggregate is retained temporarily to validate the sum of regional
+demand, but it is excluded from stored demand nodes and from sector-specific
+market creation. Global totals must therefore be calculated from the regional
+rows without adding the IAM aggregate.
+
+Steel, cement, and chemicals use model-specific coordinate rules. Candidate
+groups are ordered by preference, and only the first group represented in the
+normalized IAM data is used. All candidate groups are reserved from the
+``Other`` category, including unused fallback groups. This prevents aggregate
+and detailed coordinates from being counted together. Custom IAM integrations
+without an explicit rule retain the structural grouping based on their
+normalized coordinate names.
+
+.. list-table:: Model-specific direct-hydrogen mapping
+   :header-rows: 1
+   :widths: 15 29 23 33
+
+   * - IAM
+     - Steel
+     - Cement
+     - Chemicals
+   * - REMIND / REMIND-EU
+     - All-steel aggregate
+     - Cement aggregate
+     - Chemicals aggregate
+   * - IMAGE
+     - All-steel aggregate; steel-route detail is the fallback
+     - Cement aggregate
+     - Fertilizer
+   * - MESSAGE
+     - All-steel aggregate
+     - Cement aggregate
+     - Resins, high-value chemicals, and methanol
+   * - GCAM
+     - BF/BOF plus DRI-EAF route detail
+     - Cement aggregate
+     - Chemicals aggregate
+   * - TIAM-UCL
+     - Excluded: RCP19 provides H-DRI steel production but no hydrogen use
+     - Not currently mapped
+     - Not currently mapped
+
+Transport combines all mapped direct-hydrogen transport coordinates. All
+mapped building coordinates are summed into one ``Heating`` subsector. Carbon
+dioxide removal and all other remaining mapped direct-hydrogen coordinates are
+assigned to ``Other``. For IMAGE,
+``Industry - Non-Metallic Minerals - H2`` includes cement, so the amount
+assigned to ``Other`` is calculated as non-metallic minerals minus the
+already-assigned cement demand, clipped at zero.
+
+.. note::
+
+   TIAM-UCL RCP19 contains
+   ``Production|Steel|Secondary|DRH2 and EAF`` in Mt steel/year. It does not
+   contain the corresponding hydrogen final-energy series needed to calculate
+   hydrogen demand. The production series remains mapped to
+   ``steel - primary - H-DRI`` in ``steel.yaml`` for the steel transformation,
+   but it is not treated as hydrogen consumption. TIAM-UCL steel coordinates
+   are therefore excluded from sector-specific hydrogen market creation rather
+   than estimated using an assumed hydrogen intensity.
+
 
 Hydrogen supply chains
 ----------------------
