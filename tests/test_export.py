@@ -1,11 +1,16 @@
 from types import SimpleNamespace
 
+import numpy as np
 import pandas as pd
 import pytest
 
 from premise.clean_datasets import remove_uncertainty
 from premise.export import *
-from premise.export import _aggregate_duplicate_superstructure_rows
+from premise.export import (
+    _aggregate_duplicate_superstructure_rows,
+    _build_superstructure_db,
+    _include_production_rows_for_changing_self_consumption,
+)
 
 
 def test_simapro_units():
@@ -123,6 +128,7 @@ def test_prepare_db_for_fast_export_runs_core_checks(monkeypatch):
             db_name,
             biosphere_name,
             version,
+            extra_regions,
         ):
             captured["init"] = {
                 "model": model,
@@ -134,6 +140,7 @@ def test_prepare_db_for_fast_export_runs_core_checks(monkeypatch):
                 "db_name": db_name,
                 "biosphere_name": biosphere_name,
                 "version": version,
+                "extra_regions": extra_regions,
             }
             self.database = prepared_database
 
@@ -167,6 +174,7 @@ def test_prepare_db_for_fast_export_runs_core_checks(monkeypatch):
         "db_name": "test-db",
         "biosphere_name": "test-biosphere",
         "version": "3.12",
+        "extra_regions": None,
     }
     assert captured["run_fast_export_checks"] is True
     assert result == prepared_database
@@ -211,7 +219,10 @@ def test_aggregate_duplicate_superstructure_rows_sums_biosphere_collisions():
     assert aggregated.loc[0, "scenario a"] == pytest.approx(0.6)
 
 
-def test_aggregate_duplicate_superstructure_rows_nets_production_and_technosphere():
+@pytest.mark.parametrize("consumption_type", ["technosphere", "generic consumption"])
+def test_aggregate_duplicate_superstructure_rows_nets_production_and_technosphere(
+    consumption_type,
+):
     df = pd.DataFrame(
         [
             {
@@ -228,7 +239,7 @@ def test_aggregate_duplicate_superstructure_rows_nets_production_and_technospher
                 "to key": ("super-db", "act-1"),
                 "from activity name": "self supplier",
                 "to activity name": "self supplier",
-                "flow type": "technosphere",
+                "flow type": consumption_type,
                 "original": 0.01,
                 "scenario a": 0.4,
             },
@@ -248,6 +259,73 @@ def test_aggregate_duplicate_superstructure_rows_nets_production_and_technospher
     assert aggregated.loc[0, "flow type"] == "production"
     assert aggregated.loc[0, "original"] == pytest.approx(0.99)
     assert aggregated.loc[0, "scenario a"] == pytest.approx(0.6)
+
+
+def test_changing_self_consumption_includes_unchanged_production_coordinate():
+    acts_ind = {
+        0: ("market", "product", None, "GLO", "kilogram", "production"),
+        1: ("market", "product", None, "GLO", "kilogram", "technosphere"),
+        2: ("supplier", "product", None, "GLO", "kilogram", "technosphere"),
+    }
+
+    result = _include_production_rows_for_changing_self_consumption(
+        indices=np.array([[0, 1], [0, 2]]),
+        acts_ind=acts_ind,
+    )
+
+    assert result == [(0, 1), (0, 2), (0, 0)]
+
+
+def test_superstructure_builder_preserves_legacy_drop_before_aggregation(monkeypatch):
+    dataframe = pd.DataFrame(
+        [
+            {
+                "from key": ("biosphere3", "bio-1"),
+                "to key": ("super-db", "act-1"),
+                "flow type": "biosphere",
+                "from unit": "kilogram",
+                "to unit": "kilogram",
+                "original": 1.0,
+                "scenario a": 5.0,
+            },
+            {
+                "from key": ("biosphere3", "bio-1"),
+                "to key": ("super-db", "act-1"),
+                "flow type": "biosphere",
+                "from unit": "kilogram",
+                "to unit": "kilogram",
+                "original": 2.0,
+                "scenario a": 5.0,
+            },
+        ]
+    )
+    monkeypatch.setattr(
+        "premise.export.generate_scenario_difference_file",
+        lambda **kwargs: (dataframe.copy(), [{"name": "dummy"}], []),
+    )
+
+    _, legacy_dataframe = _build_superstructure_db(
+        origin_db=[],
+        scenarios=[],
+        db_name="super-db",
+        biosphere_name="biosphere3",
+        version="3.12",
+        scenario_list=["scenario a"],
+        preserve_original_column=False,
+    )
+    _, array_dataframe = _build_superstructure_db(
+        origin_db=[],
+        scenarios=[],
+        db_name="super-db",
+        biosphere_name="biosphere3",
+        version="3.12",
+        scenario_list=["scenario a"],
+    )
+
+    assert "original" not in legacy_dataframe
+    assert legacy_dataframe.loc[0, "scenario a"] == pytest.approx(5)
+    assert array_dataframe.loc[0, "original"] == pytest.approx(3)
+    assert array_dataframe.loc[0, "scenario a"] == pytest.approx(10)
 
 
 def test_generate_superstructure_db_aggregates_duplicate_key_pairs(
@@ -338,6 +416,23 @@ def test_generate_superstructure_db_aggregates_duplicate_key_pairs(
         "premise.export.generate_scenario_difference_file",
         lambda **kwargs: (df.copy(), [{"name": "dummy"}], []),
     )
+
+    union_database, scenario_dataframe = _build_superstructure_db(
+        origin_db=[],
+        scenarios=[],
+        db_name="super-db",
+        biosphere_name="biosphere3",
+        version="3.12",
+        scenario_list=["scenario a"],
+    )
+
+    assert union_database == [{"name": "dummy"}]
+    assert ["original", "scenario a"] == [
+        column
+        for column in scenario_dataframe.columns
+        if column in {"original", "scenario a"}
+    ]
+    assert len(scenario_dataframe) == 2
 
     generate_superstructure_db(
         origin_db=[],

@@ -8,6 +8,7 @@ from premise.filesystem_constants import INVENTORY_DIR
 from premise.inventory_imports import (
     BaseInventoryImport,
     DefaultInventory,
+    apply_migration_step,
     get_classification_entry,
     get_classifications,
 )
@@ -58,6 +59,72 @@ def get_db():
 class DummyInventoryImport(BaseInventoryImport):
     def load_inventory(self):
         return SimpleNamespace(data=[])
+
+
+def get_replacement_source_db():
+    return [
+        {
+            "code": "source",
+            "name": "source process",
+            "reference product": "source product",
+            "location": "RoW",
+            "unit": "kilogram",
+            "exchanges": [
+                {
+                    "name": "source process",
+                    "product": "source product",
+                    "amount": 1,
+                    "type": "production",
+                    "unit": "kilogram",
+                    "location": "RoW",
+                },
+                {
+                    "name": "market for heat",
+                    "product": "heat",
+                    "amount": 3,
+                    "type": "technosphere",
+                    "unit": "megajoule",
+                    "location": "RoW",
+                },
+                {
+                    "name": "market for heat",
+                    "product": "heat",
+                    "amount": 0.5,
+                    "type": "technosphere",
+                    "unit": "megajoule",
+                    "location": "Europe without Switzerland",
+                },
+                {
+                    "name": "market group for electricity",
+                    "product": "electricity, high voltage",
+                    "amount": 2.5,
+                    "type": "technosphere",
+                    "unit": "kilowatt hour",
+                    "location": "RER",
+                },
+                {
+                    "name": "market group for electricity",
+                    "product": "electricity, high voltage",
+                    "amount": 9,
+                    "type": "technosphere",
+                    "unit": "kilowatt hour",
+                    "location": "RoW",
+                },
+            ],
+        }
+    ]
+
+
+def get_base_inventory_import(tmp_path, database):
+    testpath = tmp_path / "testfile"
+    testpath.write_text("")
+    return DummyInventoryImport(
+        database,
+        version_in="3.8",
+        version_out="3.8",
+        path=testpath,
+        system_model="cutoff",
+    )
 
 
 def test_file_exists():
@@ -114,6 +181,65 @@ def test_biosphere_dict_2():
                 )
 
     testpath.unlink()
+
+
+def test_fill_data_gaps_matches_technosphere_exchange_location(tmp_path):
+    dbc = get_base_inventory_import(tmp_path, get_replacement_source_db())
+    exchange = {
+        "name": "market for heat",
+        "product": "heat",
+        "location": "RoW",
+        "amount": 0,
+        "type": "technosphere",
+        "unit": "megajoule",
+        "replacement name": "source process",
+        "replacement product": "source product",
+        "replacement location": "RoW",
+    }
+
+    dbc.fill_data_gaps(exchange)
+
+    assert exchange["amount"] == 3
+    assert "replacement name" not in exchange
+    assert "replacement product" not in exchange
+    assert "replacement location" not in exchange
+
+
+def test_fill_data_gaps_sums_technosphere_exchanges_without_location(tmp_path):
+    dbc = get_base_inventory_import(tmp_path, get_replacement_source_db())
+    exchange = {
+        "name": "market for heat",
+        "product": "heat",
+        "amount": 0,
+        "type": "technosphere",
+        "unit": "megajoule",
+        "replacement name": "source process",
+        "replacement product": "source product",
+        "replacement location": "RoW",
+    }
+
+    dbc.fill_data_gaps(exchange)
+
+    assert exchange["amount"] == 3.5
+
+
+def test_fill_data_gaps_market_group_fallback_matches_location(tmp_path):
+    dbc = get_base_inventory_import(tmp_path, get_replacement_source_db())
+    exchange = {
+        "name": "market for electricity",
+        "product": "electricity, high voltage",
+        "location": "RER",
+        "amount": 0,
+        "type": "technosphere",
+        "unit": "kilowatt hour",
+        "replacement name": "source process",
+        "replacement product": "source product",
+        "replacement location": "RoW",
+    }
+
+    dbc.fill_data_gaps(exchange)
+
+    assert exchange["amount"] == 2.5
 
 
 def test_load_carma():
@@ -375,3 +501,154 @@ def test_fill_dataset_data_gaps_replaces_migrated_split_markets(tmp_path):
             "type": "technosphere",
         },
     ]
+
+
+def test_forward_migration_applies_in_memory_without_bw2io_datastore():
+    class DummyImporter:
+        data = [
+            {
+                "name": "old dataset",
+                "reference product": "old product",
+                "location": "GLO",
+                "unit": "kilogram",
+                "exchanges": [
+                    {
+                        "name": "old exchange",
+                        "reference product": "old exchange product",
+                        "location": "RER",
+                        "unit": "megajoule",
+                        "type": "technosphere",
+                        "input": ("test", "old"),
+                    }
+                ],
+            }
+        ]
+
+        def migrate(self, migration_name):
+            raise AssertionError("bw2io Migration datastore should not be used")
+
+    available = {
+        ("3.11", "3.12"): {
+            "replace": [
+                {
+                    "source": {
+                        "name": "old dataset",
+                        "reference product": "old product",
+                        "location": "GLO",
+                        "unit": "kilogram",
+                    },
+                    "target": {
+                        "name": "new dataset",
+                        "reference product": "new product",
+                        "location": "RER",
+                        "unit": "ton kilometer",
+                    },
+                },
+                {
+                    "source": {
+                        "name": "old exchange",
+                        "reference product": "old exchange product",
+                        "location": "RER",
+                        "unit": "megajoule",
+                    },
+                    "target": {
+                        "name": "new exchange",
+                        "reference product": "new exchange product",
+                        "location": "CH",
+                        "unit": "kilowatt hour",
+                    },
+                },
+            ],
+            "disaggregate": [],
+        }
+    }
+
+    importer = DummyImporter()
+
+    apply_migration_step(importer, "3.11", "3.12", "forward", available)
+
+    assert importer.data[0]["name"] == "new dataset"
+    assert importer.data[0]["reference product"] == "new product"
+    assert importer.data[0]["location"] == "RER"
+    assert importer.data[0]["unit"] == "kilogram"
+
+    exchange = importer.data[0]["exchanges"][0]
+    assert exchange["name"] == "new exchange"
+    assert exchange["reference product"] == "new exchange product"
+    assert exchange["location"] == "CH"
+    assert exchange["unit"] == "megajoule"
+    assert "input" not in exchange
+
+
+def test_correct_product_field_uses_indexed_reference_product(tmp_path):
+    testpath = tmp_path / "dummy.xlsx"
+    testpath.write_text("")
+
+    reference_db = [
+        {
+            "name": "shared supplier",
+            "reference product": "first product",
+            "location": "GLO",
+            "unit": "kilogram",
+            "exchanges": [],
+        },
+        {
+            "name": "shared supplier",
+            "reference product": "second product",
+            "location": "GLO",
+            "unit": "kilogram",
+            "exchanges": [],
+        },
+    ]
+
+    importer = DummyInventoryImport(
+        reference_db,
+        version_in="3.8",
+        version_out="3.8",
+        path=testpath,
+        system_model="cutoff",
+    )
+
+    assert (
+        importer.correct_product_field(
+            ("shared supplier", "GLO", "kilogram", "second product")
+        )
+        == "second product"
+    )
+    assert (
+        importer.correct_product_field(("shared supplier", "GLO", "kilogram", None))
+        == "first product"
+    )
+
+    BaseInventoryImport.correct_product_field.cache_clear()
+
+
+def test_legacy_hydrogen_market_exchange_is_restored_for_old_versions(tmp_path):
+    importer = get_base_inventory_import(tmp_path, [])
+    importer.import_db.data = [
+        {
+            "name": "consumer",
+            "reference product": "consumer product",
+            "location": "GLO",
+            "unit": "kilogram",
+            "exchanges": [
+                {
+                    "name": "market for hydrogen, gaseous, low pressure",
+                    "reference product": "hydrogen, gaseous, low pressure",
+                    "product": "hydrogen, gaseous, low pressure",
+                    "location": "RER",
+                    "unit": "kilogram",
+                    "amount": 1,
+                    "type": "technosphere",
+                }
+            ],
+        }
+    ]
+
+    importer.adapt_hydrogen_market_exchanges_for_legacy_versions()
+
+    exchange = importer.import_db.data[0]["exchanges"][0]
+    assert exchange["name"] == "market for hydrogen, gaseous"
+    assert exchange["reference product"] == "hydrogen, gaseous"
+    assert exchange["product"] == "hydrogen, gaseous"
+    assert exchange["location"] == "GLO"

@@ -1,4 +1,6 @@
 # content of test_activity_maps.py
+import pytest
+
 from premise.activity_maps import InventorySet
 
 dummy_minimal_db = [
@@ -56,3 +58,104 @@ def test_length_dict():
     assert len(maps.generate_powerplant_map()) > 0
     assert len(maps.generate_fuel_map()) > 0
     assert len(maps.generate_cement_map()) > 0
+
+
+def test_image_cdr_map_includes_cement_biogenic_ccs_variant():
+    activity_name = (
+        "carbon dioxide, captured and stored, at cement production plant, "
+        "from non-fossil carbon dioxide, using monoethanolamine"
+    )
+    maps = InventorySet(
+        [
+            {
+                "name": activity_name,
+                "reference product": "carbon dioxide, captured",
+                "location": "RER",
+                "unit": "kilogram",
+            }
+        ],
+        model="image",
+    )
+
+    cdr_map = maps.generate_cdr_map(model="image")
+
+    assert "cement production, non-fossil CO2, with CCS" in cdr_map
+    assert cdr_map["cement production, non-fossil CO2, with CCS"][0]["name"] == (
+        activity_name
+    )
+
+
+def test_image_sorbent_dac_maps_to_heat_pump_inventory():
+    heat_pump_activity = (
+        "carbon dioxide, captured and stored, with a sorbent-based direct air "
+        "capture system, 100ktCO2, with heat pump heat, and grid electricity"
+    )
+    base_activity = (
+        "carbon dioxide, captured and stored, with a sorbent-based direct air "
+        "capture system, 100ktCO2"
+    )
+    maps = InventorySet(
+        [
+            {
+                "name": heat_pump_activity,
+                "reference product": "carbon dioxide, captured",
+                "location": "RER",
+                "unit": "kilogram",
+            },
+            {
+                "name": base_activity,
+                "reference product": "carbon dioxide, captured",
+                "location": "RER",
+                "unit": "kilogram",
+            },
+        ],
+        model="image",
+    )
+
+    cdr_map = maps.generate_cdr_map(model="image")
+
+    assert "direct air capture (sorbent, low-temp, heat pump) with storage" in cdr_map
+    assert (
+        cdr_map["direct air capture (sorbent, low-temp, heat pump) with storage"][0][
+            "name"
+        ]
+        == heat_pump_activity
+    )
+    assert "direct air capture (sorbent, low-temp) with storage" not in cdr_map
+
+
+@pytest.mark.parametrize("model", ["remind", "remind-eu", "tiam-ucl"])
+def test_heat_pump_dac_maps_to_sorbent_inventory_for_selected_models(model):
+    solvent_activity = (
+        "carbon dioxide, captured and stored, with a solvent-based direct air "
+        "capture system, 1MtCO2, with heat pump heat, and grid electricity"
+    )
+    sorbent_activity = (
+        "carbon dioxide, captured and stored, with a sorbent-based direct air "
+        "capture system, 100ktCO2, with heat pump heat, and grid electricity"
+    )
+    maps = InventorySet(
+        [
+            {
+                "name": solvent_activity,
+                "reference product": "carbon dioxide, captured",
+                "location": "RER",
+                "unit": "kilogram",
+            },
+            {
+                "name": sorbent_activity,
+                "reference product": "carbon dioxide, captured",
+                "location": "RER",
+                "unit": "kilogram",
+            },
+        ],
+        model=model,
+    )
+
+    cdr_map = maps.generate_cdr_map(model=model)
+
+    technology = "direct air capture (sorbent, low-temp, heat pump) with storage"
+    assert cdr_map[technology][0]["name"] == sorbent_activity
+    assert (
+        "direct air capture (solvent, high-temp, heat pump) with storage" not in cdr_map
+    )

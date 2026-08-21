@@ -28,7 +28,7 @@ SECTORS = {
     "fuels": ["fuels", "heat"],
     "battery": "battery",
     "transport": ["cars", "two_wheelers", "trucks", "buses", "trains"],
-    "others": ["ozone", "emissions", "dac"],
+    "others": ["ozone", "emissions", "cdr"],
     "external": "external",
 }
 
@@ -57,6 +57,8 @@ class IncrementalDatabase(NewDatabase):
                 "func": _update_electricity,
                 "args": (self.version, self.system_model, self.use_absolute_efficiency),
             },
+            "cdr": {"func": _update_cdr, "args": (self.version, self.system_model)},
+            # Backward-compatible alias for older incremental workflows.
             "dac": {"func": _update_cdr, "args": (self.version, self.system_model)},
             "cement": {
                 "func": _update_cement,

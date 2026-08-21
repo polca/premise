@@ -160,6 +160,104 @@ def eidb_label(
     return name
 
 
+def scenario_metadata(
+    scenario: Dict[str, Any],
+    version: str = None,
+    system_model: str = None,
+) -> Dict[str, Any]:
+    """Describe the scenario a database represents.
+
+    The returned mapping is meant to be attached to the metadata of an exported
+    database (e.g., ``bw2data.databases[name]``), so that the point in time and
+    the IAM scenario it represents can be retrieved later on.
+
+    :param scenario: Scenario dictionary, with `model`, `pathway` and `year` keys.
+    :type scenario: dict
+    :param version: Ecoinvent version the database is based on.
+    :type version: str
+    :param system_model: Ecoinvent system model ("cutoff" or "consequential").
+    :type system_model: str
+    :return: JSON-serializable scenario metadata.
+    :rtype: dict
+    """
+
+    year = int(scenario["year"])
+
+    metadata = {
+        "premise_version": ".".join(str(item) for item in __version__),
+        "iam_model": scenario["model"],
+        "pathway": scenario["pathway"],
+        # ISO 8601 point in time the database is representative of
+        "representative_time": datetime(year, 1, 1).isoformat(),
+    }
+
+    if version is not None:
+        metadata["ecoinvent_version"] = str(version)
+
+    if system_model is not None:
+        metadata["system_model"] = system_model
+
+    external_scenarios = scenario.get("external scenarios")
+    if external_scenarios:
+        metadata["external_scenarios"] = [
+            ext["scenario"] for ext in external_scenarios if "scenario" in ext
+        ]
+
+    return metadata
+
+
+def database_metadata(
+    scenarios: List[Dict[str, Any]],
+    version: str = None,
+    system_model: str = None,
+) -> Dict[str, Any]:
+    """Describe the scenario(s) a database represents.
+
+    Databases holding a single scenario get a flat description
+    (see :func:`scenario_metadata`). Databases holding several scenarios
+    (super-structure or scenario-array databases) get the list of scenarios
+    under `scenarios`, plus the point in time they all share, if any.
+
+    :param scenarios: List of scenario dictionaries.
+    :type scenarios: list
+    :param version: Ecoinvent version the database is based on.
+    :type version: str
+    :param system_model: Ecoinvent system model ("cutoff" or "consequential").
+    :type system_model: str
+    :return: JSON-serializable database metadata.
+    :rtype: dict
+    """
+
+    entries = [
+        scenario_metadata(scenario, version=version, system_model=system_model)
+        for scenario in scenarios
+    ]
+
+    if len(entries) == 1:
+        return entries[0]
+
+    for entry in entries:
+        # reported once, at the database level
+        entry.pop("premise_version", None)
+
+    metadata = {
+        "premise_version": ".".join(str(item) for item in __version__),
+        "scenarios": entries,
+    }
+
+    if version is not None:
+        metadata["ecoinvent_version"] = str(version)
+
+    if system_model is not None:
+        metadata["system_model"] = system_model
+
+    times = {entry["representative_time"] for entry in entries}
+    if len(times) == 1:
+        metadata["representative_time"] = times.pop()
+
+    return metadata
+
+
 @lru_cache(maxsize=1)
 def load_constants() -> Dict[str, Any]:
     """Load global constants from ``constants.yaml``.
@@ -626,6 +724,48 @@ def iter_cached_metadata(cache_ref: Path) -> Iterable[Dict[tuple, Dict[str, Any]
     yield metadata
 
 
+def restore_cached_classifications(
+    database: List[Dict[str, Any]], metadata_cache_filepath: Path
+) -> List[Dict[str, Any]]:
+    """Hydrate classifications from old metadata sidecars into cached datasets.
+
+    New caches retain ``classifications`` in the runtime payload. This helper
+    keeps older caches compatible without restoring all bulky metadata fields.
+    """
+
+    if not metadata_cache_filepath or not cache_ref_exists(metadata_cache_filepath):
+        return database
+
+    datasets_by_key: Dict[tuple, List[Dict[str, Any]]] = {}
+    for dataset in database:
+        if dataset.get("classifications"):
+            continue
+
+        key = (
+            dataset.get("name"),
+            dataset.get("reference product"),
+            dataset.get("location"),
+        )
+        datasets_by_key.setdefault(key, []).append(dataset)
+
+    if not datasets_by_key:
+        return database
+
+    for metadata in iter_cached_metadata(metadata_cache_filepath):
+        for key, metadata_values in metadata.items():
+            if key not in datasets_by_key or "classifications" not in metadata_values:
+                continue
+
+            classifications = metadata_values["classifications"]
+            for dataset in datasets_by_key[key]:
+                if not dataset.get("classifications"):
+                    dataset["classifications"] = pickle.loads(
+                        pickle.dumps(classifications, -1)
+                    )
+
+    return database
+
+
 def load_database(
     scenario: Dict[str, Any],
     original_database: List[Dict[str, Any]],
@@ -660,6 +800,10 @@ def load_database(
     else:
         filepath = scenario["database filepath"]
         scenario["database"] = load_cached_database(filepath)
+        if not load_metadata and "database metadata filepath" in scenario:
+            restore_cached_classifications(
+                scenario["database"], scenario["database metadata filepath"]
+            )
 
         # delete the file
         if delete:
@@ -869,6 +1013,7 @@ _CACHE_TRIMMED_DATASET_FIELDS = {
     "unit",
     "exchanges",
     "comment",
+    "classifications",
 }
 
 _CACHE_METADATA_EXCLUDED_FIELDS = {
@@ -879,6 +1024,7 @@ _CACHE_METADATA_EXCLUDED_FIELDS = {
     "exchanges",
     "type",
     "comment",
+    "classifications",
 }
 
 _SCENARIO_TRIMMED_DATASET_FIELDS = {
@@ -889,7 +1035,9 @@ _SCENARIO_TRIMMED_DATASET_FIELDS = {
     "location",
     "unit",
     "type",
+    "regionalized",
     "exchanges",
+    "classifications",
 }
 
 _SCENARIO_TRIMMED_EXCHANGE_FIELDS = {
@@ -919,6 +1067,7 @@ _SCENARIO_METADATA_EXCLUDED_FIELDS = {
     "exchanges",
     "database",
     "code",
+    "classifications",
 }
 
 

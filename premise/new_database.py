@@ -15,6 +15,7 @@ from typing import List, Union
 
 import bw2data
 import datapackage
+from packaging.version import Version
 from tqdm import tqdm
 
 from . import __version__
@@ -29,6 +30,7 @@ from .emissions import _update_emissions
 from .final_energy import _update_final_energy
 from .export import (
     Export,
+    _build_superstructure_db,
     _prepare_database,
     build_datapackage,
     generate_scenario_factor_file,
@@ -50,10 +52,15 @@ from .metals import _update_metals
 from .mining import _update_mining
 from .ozone import _update_ozone
 from .report import generate_change_report, generate_summary_report
+from .scenario_array import (
+    _load_scenario_array_dependencies,
+    _write_scenario_array_datapackage,
+)
 from .steel import _update_steel
 from .transport import _update_vehicles
 from .utils import (
     cache_ref_exists,
+    database_metadata,
     clear_existing_cache,
     clear_runtime_caches,
     create_scenario_list,
@@ -70,6 +77,8 @@ from .utils import (
     warning_about_biogenic_co2,
     end_of_process,
     create_cache,
+    restore_cached_classifications,
+    scenario_metadata,
 )
 from .renewables import _update_wind_turbines
 
@@ -88,6 +97,7 @@ FILEPATH_CARMA_INVENTORIES = INVENTORY_DIR / "lci-Carma-CCS.xlsx"
 FILEPATH_CO_FIRING_INVENTORIES = INVENTORY_DIR / "lci-co-firing-power-plants.xlsx"
 FILEPATH_CHP_INVENTORIES = INVENTORY_DIR / "lci-combined-heat-power-plant-CCS.xlsx"
 FILEPATH_CC_INVENTORIES = INVENTORY_DIR / "lci-carbon-capture.xlsx"
+FILEPATH_AFFORESTATION_INVENTORIES = INVENTORY_DIR / "lci-afforestation.xlsx"
 FILEPATH_BIOFUEL_INVENTORIES = INVENTORY_DIR / "lci-biofuels.xlsx"
 FILEPATH_BIOGAS_INVENTORIES = INVENTORY_DIR / "lci-biogas.xlsx"
 FILEPATH_WASTE_CHP_INVENTORIES = INVENTORY_DIR / "lci-waste-CHP.xlsx"
@@ -117,6 +127,7 @@ FILEPATH_HYDROGEN_COAL_GASIFICATION_CCS_INVENTORIES = (
     INVENTORY_DIR / "lci-hydrogen-coal-gasification_CCS.xlsx"
 )
 FILEPATH_HYDROGEN_OIL = INVENTORY_DIR / "lci-hydrogen-oil.xlsx"
+FILEPATH_SYNFUEL_AVG_INVENTORIES = INVENTORY_DIR / "lci-synfuels-from-FT.xlsx"
 FILEPATH_SYNFUEL_INVENTORIES = (
     INVENTORY_DIR / "lci-synfuels-from-FT-from-electrolysis.xlsx"
 )
@@ -144,6 +155,9 @@ FILEPATH_SYNFUEL_FROM_BIOMASS_CCS_INVENTORIES = (
 FILEPATH_SYNGAS_INVENTORIES = INVENTORY_DIR / "lci-syngas.xlsx"
 FILEPATH_SYNGAS_FROM_COAL_INVENTORIES = INVENTORY_DIR / "lci-syngas-from-coal.xlsx"
 FILEPATH_GEOTHERMAL_HEAT_INVENTORIES = INVENTORY_DIR / "lci-geothermal.xlsx"
+FILEPATH_METHANOL_AVG_FUELS_INVENTORIES = (
+    INVENTORY_DIR / "lci-synfuels-from-methanol.xlsx"
+)
 FILEPATH_METHANOL_FUELS_INVENTORIES = (
     INVENTORY_DIR / "lci-synfuels-from-methanol-from-electrolysis.xlsx"
 )
@@ -216,6 +230,8 @@ FILEPATH_SULFIDIC_TAILINGS = INVENTORY_DIR / "lci-sulfidic-tailings.xlsx"
 FILEPATH_SHIPS = INVENTORY_DIR / "lci-ships.xlsx"
 FILEPATH_STEEL = INVENTORY_DIR / "lci-steel.xlsx"
 FILEPATH_IND_HEAT_PUMP = INVENTORY_DIR / "lci-heat-pump-high-temp.xlsx"
+FILEPATH_IND_ELECTRIC_BOILER = INVENTORY_DIR / "lci-electric-boiler-industrial.xlsx"
+FILEPATH_NUCLEAR_HEAT = INVENTORY_DIR / "lci-nuclear-heat.xlsx"
 
 config = load_constants()
 
@@ -753,7 +769,10 @@ class NewDatabase:
             self.database_metadata_cache_filepath = resolve_cache_ref(
                 Path(str(file_name).replace(".pickle", " (metadata).pickle"))
             )
-            return load_cached_database(self.database_cache_filepath)
+            database = load_cached_database(self.database_cache_filepath)
+            return restore_cached_classifications(
+                database, self.database_metadata_cache_filepath
+            )
 
         # extract the database, pickle it for next time and return it
         print("Cannot find cached database. Will create one now for next time...")
@@ -794,7 +813,10 @@ class NewDatabase:
             self.inventories_metadata_cache_filepath = resolve_cache_ref(
                 Path(str(file_name).replace(".pickle", " (metadata).pickle"))
             )
-            return load_cached_database(self.inventories_cache_filepath)
+            data = load_cached_database(self.inventories_cache_filepath)
+            return restore_cached_classifications(
+                data, self.inventories_metadata_cache_filepath
+            )
 
         # else, extract the database, pickle it for next time and return it
         print("Cannot find cached inventories. Will create them now for next time...")
@@ -864,12 +886,14 @@ class NewDatabase:
             (FILEPATH_BATTERY_CAPACITY, "3.10"),
             (FILEPATH_HOME_STORAGE_BATTERIES, "3.9"),
             (FILEPATH_IND_HEAT_PUMP, "3.11"),
+            (FILEPATH_IND_ELECTRIC_BOILER, "3.10"),
             (FILEPATH_PHOTOVOLTAICS, "3.7"),
             (FILEPATH_PGM, "3.8"),
             (FILEPATH_HYDROGEN_INVENTORIES, "3.9"),
             (FILEPATH_HYDROGEN_SOLAR_INVENTORIES, "3.9"),
             (FILEPATH_HYDROGEN_PYROLYSIS_INVENTORIES, "3.9"),
             (FILEPATH_METHANOL_FUELS_INVENTORIES, "3.7"),
+            (FILEPATH_METHANOL_AVG_FUELS_INVENTORIES, "3.7"),
             (FILEPATH_METHANOL_CEMENT_FUELS_INVENTORIES, "3.7"),
             (FILEPATH_HYDROGEN_COAL_GASIFICATION_INVENTORIES, "3.7"),
             (FILEPATH_HYDROGEN_COAL_GASIFICATION_CCS_INVENTORIES, "3.7"),
@@ -887,6 +911,7 @@ class NewDatabase:
             (FILEPATH_SYNGAS_FROM_COAL_INVENTORIES, "3.7"),
             (FILEPATH_BIOFUEL_INVENTORIES, "3.7"),
             (FILEPATH_SYNFUEL_INVENTORIES, "3.7"),
+            (FILEPATH_SYNFUEL_AVG_INVENTORIES, "3.7"),
             (FILEPATH_SYNFUEL_INVENTORIES_FT_FROM_NG, "3.7"),
             (
                 FILEPATH_SYNFUEL_FROM_FT_FROM_WOOD_GASIFICATION_INVENTORIES,
@@ -907,6 +932,8 @@ class NewDatabase:
             (FILEPATH_GEOTHERMAL_HEAT_INVENTORIES, "3.6"),
             (FILEPATH_BIGCC, "3.8"),
             (FILEPATH_NUCLEAR_EPR, "3.8"),
+            # Nuclear heat links to the EPR activity imported immediately above.
+            (FILEPATH_NUCLEAR_HEAT, "3.10"),
             (FILEPATH_NUCLEAR_SMR, "3.8"),
             (FILEPATH_WAVE, "3.8"),
             (FILEPATH_FUEL_CELL, "3.10"),
@@ -931,6 +958,12 @@ class NewDatabase:
             (FILEPATH_SHIPS, "3.10"),
             (FILEPATH_STEEL, "3.9"),
         ]
+        if Version(self.version) >= Version("3.11"):
+            # These two re/afforestation datasets use suppliers first available
+            # in ecoinvent 3.11. Their workbook contains 3.12 identifiers so
+            # that premise can migrate them backwards when building with 3.11.
+            filepaths.append((FILEPATH_AFFORESTATION_INVENTORIES, "3.12"))
+
         for filepath in filepaths:
             # make an exception for FILEPATH_OIL_GAS_INVENTORIES
             # ecoinvent version is 3.9
@@ -1253,13 +1286,136 @@ class NewDatabase:
         :return: filepath of the "scenarios difference file"
         """
 
-        if len(self.scenarios) < 2:
-            raise ValueError(
-                "At least two scenarios are needed to"
-                "create a super-structure database."
+        self._prepare_superstructure_export(
+            name=name,
+            filepath=filepath,
+            file_format=file_format,
+            preserve_original_column=preserve_original_column,
+        )
+
+        write_brightway_database(
+            data=self.database,
+            name=name,
+            fast=True,
+            check_internal=False,
+            metadata=database_metadata(
+                self.scenarios,
+                version=getattr(self, "version", None),
+                system_model=getattr(self, "system_model", None),
+            ),
+        )
+
+        self._finalize_superstructure_export()
+
+    def write_scenario_array_db_to_brightway(
+        self,
+        name: str = f"scenario_array_db_{datetime.now():%d-%m-%Y}",
+        filepath: str | Path | None = None,
+    ) -> Path:
+        """Write a union database and deterministic Brightway scenario arrays.
+
+        ``filepath`` is the complete destination ZIP path. The returned package
+        is project-specific because its matrix indices refer to IDs assigned
+        when ``name`` is written in the active Brightway project.
+        """
+
+        version = bw2data.__version__
+        major_version = (
+            int(version[0])
+            if isinstance(version, (tuple, list))
+            else Version(str(version)).major
+        )
+        if major_version < 4:
+            raise NotImplementedError(
+                "Scenario-array export requires modern Brightway (bw2data >= 4)."
             )
 
-        check_presence_biosphere_database(self.biosphere_name)
+        self._validate_superstructure_export_prerequisites()
+
+        destination = Path(filepath).expanduser() if filepath is not None else None
+        if destination is not None and destination.suffix.lower() != ".zip":
+            raise ValueError(
+                "Scenario-array filepath must be the complete destination path "
+                "with a '.zip' suffix."
+            )
+
+        scenario_labels = create_scenario_list(self.scenarios)
+        duplicates = sorted(
+            {label for label in scenario_labels if scenario_labels.count(label) > 1}
+        )
+        if duplicates:
+            raise ValueError(
+                "Scenario labels must be unique for scenario-array export. "
+                f"Duplicate label(s): {duplicates}."
+            )
+
+        dependencies = _load_scenario_array_dependencies()
+        bw_processing = dependencies[0]
+        if destination is None:
+            sanitized_name = bw_processing.clean_datapackage_name(name) or "database"
+            destination = (
+                Path.cwd()
+                / "export"
+                / "scenario arrays"
+                / f"scenario_array_{sanitized_name}.zip"
+            )
+
+        scenario_labels, dataframe = self._prepare_superstructure_export(
+            name=name,
+            scenario_array=True,
+            prerequisites_validated=True,
+        )
+
+        write_brightway_database(
+            data=self.database,
+            name=name,
+            fast=True,
+            check_internal=False,
+            metadata=database_metadata(
+                self.scenarios,
+                version=getattr(self, "version", None),
+                system_model=getattr(self, "system_model", None),
+            ),
+        )
+
+        ordered_labels = ["original", *scenario_labels]
+        project_name = getattr(bw2data.projects, "current", None)
+        metadata = {
+            "database_name": name,
+            "brightway_project": project_name,
+            "source_database": getattr(self, "source", None),
+            "ecoinvent_version": self.version,
+            "premise_version": ".".join(map(str, __version__)),
+            "scenario_count": len(ordered_labels),
+            "scenario_labels": ordered_labels,
+        }
+        destination = _write_scenario_array_datapackage(
+            dataframe=dataframe,
+            scenario_labels=ordered_labels,
+            filepath=destination,
+            name=name,
+            metadata=metadata,
+            dependencies=dependencies,
+        )
+
+        self._finalize_superstructure_export()
+        return destination
+
+    def _prepare_superstructure_export(
+        self,
+        *,
+        name: str,
+        filepath: str | Path | None = None,
+        file_format: str = "csv",
+        preserve_original_column: bool = False,
+        scenario_array: bool = False,
+        prerequisites_validated: bool = False,
+    ) -> tuple[list[str], object]:
+        """Run the common preparation path for both superstructure exporters."""
+
+        if not prerequisites_validated:
+            self._validate_superstructure_export_prerequisites()
+
         original_database = self._load_original_database()
 
         for scenario in self.scenarios:
@@ -1283,22 +1439,41 @@ class NewDatabase:
                     "The database is not ready for export: MAJOR anomalies found. Check the change report."
                 )
 
-        list_scenarios = create_scenario_list(self.scenarios)
+        scenario_labels = create_scenario_list(self.scenarios)
+        dataframe = None
+        if scenario_array:
+            self.database, dataframe = _build_superstructure_db(
+                origin_db=original_database,
+                scenarios=self.scenarios,
+                db_name=name,
+                biosphere_name=self.biosphere_name,
+                version=self.version,
+                scenario_list=scenario_labels,
+            )
+        else:
+            self.database = generate_superstructure_db(
+                origin_db=original_database,
+                scenarios=self.scenarios,
+                db_name=name,
+                biosphere_name=self.biosphere_name,
+                filepath=filepath,
+                version=self.version,
+                file_format=file_format,
+                scenario_list=scenario_labels,
+                preserve_original_column=preserve_original_column,
+            )
 
-        self.database = generate_superstructure_db(
-            origin_db=original_database,
-            scenarios=self.scenarios,
-            db_name=name,
-            biosphere_name=self.biosphere_name,
-            filepath=filepath,
-            version=self.version,
-            file_format=file_format,
-            scenario_list=list_scenarios,
-            preserve_original_column=preserve_original_column,
-        )
-
-        tmp_scenario = self.scenarios[0]
+        tmp_scenario = self.scenarios[0].copy()
         tmp_scenario["database"] = self.database
+        additional_regions = sorted(
+            {
+                region
+                for scenario in self.scenarios
+                for region in getattr(scenario.get("iam data"), "regions", [])
+            }
+        )
+        if additional_regions:
+            tmp_scenario["additional valid regions"] = additional_regions
 
         self.database = prepare_db_for_export(
             scenario=tmp_scenario,
@@ -1308,12 +1483,21 @@ class NewDatabase:
             version=self.version,
         )
 
-        write_brightway_database(
-            data=self.database,
-            name=name,
-            fast=True,
-            check_internal=False,
-        )
+        return scenario_labels, dataframe
+
+    def _validate_superstructure_export_prerequisites(self) -> None:
+        """Validate prerequisites shared by both superstructure exporters."""
+
+        if len(self.scenarios) < 2:
+            raise ValueError(
+                "At least two scenarios are needed to "
+                "create a super-structure database."
+            )
+
+        check_presence_biosphere_database(self.biosphere_name)
+
+    def _finalize_superstructure_export(self) -> None:
+        """Generate reports and release scenario export state once."""
 
         if self.generate_reports:
             # generate scenario report
@@ -1395,6 +1579,11 @@ class NewDatabase:
                     name[s],
                     fast=True,
                     check_internal=True,
+                    metadata=scenario_metadata(
+                        scenario,
+                        version=getattr(self, "version", None),
+                        system_model=getattr(self, "system_model", None),
+                    ),
                 )
                 end_of_process(scenario)
                 continue
@@ -1424,6 +1613,11 @@ class NewDatabase:
             write_brightway_database(
                 scenario["database"],
                 name[s],
+                metadata=scenario_metadata(
+                    scenario,
+                    version=getattr(self, "version", None),
+                    system_model=getattr(self, "system_model", None),
+                ),
             )
 
             end_of_process(scenario)

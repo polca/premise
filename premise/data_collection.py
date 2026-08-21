@@ -22,8 +22,17 @@ from prettytable import PrettyTable
 
 from .filesystem_constants import DATA_DIR, VARIABLES_DIR
 from .geomap import Geomap
+from .heat_data import (
+    evaluate_heat_layers,
+    heat_expression_variables,
+    load_heat_mapping,
+)
 from .marginal_mixes import consequential_method
-from .scenario_downloader import download_csv
+from .scenario_downloader import (
+    download_csv,
+    get_scenario_file_stems,
+    get_scenario_url,
+)
 
 IAM_ELEC_VARS = VARIABLES_DIR / "electricity.yaml"
 IAM_FUELS_VARS = VARIABLES_DIR / "fuels.yaml"
@@ -453,12 +462,20 @@ class IAMDataCollection:
             IAM_CDR_VARS, variable="iam_aliases"
         )
 
-        cdr_energy_vars = {
-            k: v
-            for k, v in self.__get_iam_variable_labels(
-                IAM_CDR_VARS, variable="energy_use_aliases"
-            ).items()
-        }
+        cdr_energy_vars = self.__get_cdr_energy_variable_labels(IAM_CDR_VARS)
+        cdr_efficiency_vars = self.__get_cdr_energy_variable_labels(
+            IAM_CDR_VARS, variable="efficiency_use_aliases"
+        )
+        cdr_energy_use_vars = self.__flatten_cdr_energy_variable_labels(cdr_energy_vars)
+        cdr_efficiency_use_vars = self.__flatten_cdr_energy_variable_labels(
+            cdr_efficiency_vars
+        )
+        cdr_efficiency_energy_vars = self.__group_cdr_energy_variable_labels(
+            cdr_energy_vars
+        )
+        cdr_efficiency_index_vars = self.__group_cdr_energy_variable_labels(
+            cdr_efficiency_vars
+        )
 
         biomass_prod_vars = self.__get_iam_variable_labels(
             IAM_BIOMASS_VARS, variable="iam_aliases"
@@ -475,37 +492,8 @@ class IAMDataCollection:
             IAM_CROPS_VARS, variable="land_use_change"
         )
 
-        buildings_heat_vars = {
-            k: v
-            for k, v in self.__get_iam_variable_labels(
-                IAM_HEATING_VARS, variable="iam_aliases"
-            ).items()
-            if "buildings" in k
-        }
-
-        industrial_heat_vars = {
-            k: v
-            for k, v in self.__get_iam_variable_labels(
-                IAM_HEATING_VARS, variable="iam_aliases"
-            ).items()
-            if "industrial" in k
-        }
-
-        daccs_heat_vars = {
-            k: v
-            for k, v in self.__get_iam_variable_labels(
-                IAM_HEATING_VARS, variable="iam_aliases"
-            ).items()
-            if "DACCS" in k
-        }
-
-        ewr_heat_vars = {
-            k: v
-            for k, v in self.__get_iam_variable_labels(
-                IAM_HEATING_VARS, variable="iam_aliases"
-            ).items()
-            if "EWR" in k
-        }
+        heat_mapping = load_heat_mapping(IAM_HEATING_VARS, self.model)
+        heat_raw_vars = heat_expression_variables(heat_mapping)
 
         final_energy_vars = self.__get_iam_variable_labels(
             IAM_FINAL_ENERGY_VARS, variable="iam_aliases"
@@ -576,15 +564,13 @@ class IAMDataCollection:
             + list(steel_prod_vars.values())
             + list(steel_energy_vars.values())
             + list(cdr_prod_vars.values())
-            + list(cdr_energy_vars.values())
+            + list(cdr_energy_use_vars.values())
+            + list(cdr_efficiency_use_vars.values())
             + list(biomass_prod_vars.values())
             + list(biomass_eff_vars.values())
             + list(land_use_vars.values())
             + list(land_use_change_vars.values())
-            + list(buildings_heat_vars.values())
-            + list(industrial_heat_vars.values())
-            + list(daccs_heat_vars.values())
-            + list(ewr_heat_vars.values())
+            + heat_raw_vars
             + list(other_vars.values())
             + list(roadfreight_prod_vars.values())
             + list(roadfreight_energy_vars.values())
@@ -820,37 +806,26 @@ class IAMDataCollection:
             sector="two-wheeler",
         )
 
-        self.buildings_heating_mix = self.__fetch_market_data(
-            data=data,
-            input_vars=buildings_heat_vars,
-            system_model=self.system_model,
-            sector="buildings heating",
-        )
+        heat_layers, self.heat_diagnostics = evaluate_heat_layers(data, heat_mapping)
+        self.buildings_heat_end_use = heat_layers["buildings_end_use"]
+        self.industrial_heat_end_use = heat_layers["industrial_end_use"]
+        self.secondary_heat_supply = heat_layers["secondary_supply"]
 
-        self.industrial_heat_mix = self.__fetch_market_data(
-            data=data,
-            input_vars=industrial_heat_vars,
-            system_model=self.system_model,
-            sector="industrial heating",
-        )
-
-        self.daccs_energy_use = self.__fetch_market_data(
-            data=data,
-            input_vars=daccs_heat_vars,
-            system_model=self.system_model,
-            sector="daccs heating",
-        )
-
-        self.ewr_energy_use = self.__fetch_market_data(
-            data=data,
-            input_vars=ewr_heat_vars,
-            system_model=self.system_model,
-            sector="ewr heating",
-        )
+        # Third-party integrations historically accessed these two attributes.
+        # Keep the names as aliases while the premise heat transformation uses
+        # the explicit layer names above.
+        self.buildings_heating_mix = self.buildings_heat_end_use
+        self.industrial_heat_mix = self.industrial_heat_end_use
 
         self.final_energy_use = self.__fetch_market_data(
             data=data,
             input_vars=final_energy_vars,
+        )
+
+        self.cdr_energy_use = self.__fetch_market_data(
+            data=data,
+            input_vars=cdr_energy_use_vars,
+            normalize=False,
         )
 
         self.electricity_technology_efficiencies = self.get_iam_efficiencies(
@@ -954,10 +929,11 @@ class IAMDataCollection:
             },
         )
 
-        self.cdr_technology_efficiencies = self.get_iam_efficiencies(
+        self.cdr_technology_efficiencies = self.get_iam_efficiencies_by_carrier(
             data=data,
             production_labels=cdr_prod_vars,
-            energy_labels=cdr_energy_vars,
+            energy_labels_by_carrier=cdr_efficiency_energy_vars,
+            efficiency_labels_by_carrier=cdr_efficiency_index_vars,
         )
 
         self.road_freight_efficiencies = self.get_iam_efficiencies(
@@ -1055,10 +1031,6 @@ class IAMDataCollection:
                 **steel_prod_vars,
                 **cdr_prod_vars,
                 **biomass_prod_vars,
-                **buildings_heat_vars,
-                **industrial_heat_vars,
-                **daccs_heat_vars,
-                **ewr_heat_vars,
                 **roadfreight_prod_vars,
                 **railfreight_prod_vars,
                 **seafreight_prod_vars,
@@ -1068,6 +1040,23 @@ class IAMDataCollection:
                 **final_energy_vars,
             },
         )
+
+        heat_production_volumes = [
+            array
+            for array in (
+                self.buildings_heat_end_use,
+                self.industrial_heat_end_use,
+                self.secondary_heat_supply,
+            )
+            if array is not None
+        ]
+        if heat_production_volumes:
+            arrays = (
+                [self.production_volumes] if self.production_volumes is not None else []
+            )
+            self.production_volumes = xr.concat(
+                [*arrays, *heat_production_volumes], dim="variables"
+            )
 
         self.coal_power_plants = self.fetch_external_data_coal_power_plants()
 
@@ -1167,6 +1156,14 @@ class IAMDataCollection:
 
         return xarray_data
 
+    @staticmethod
+    def __as_list(value: Any) -> List[Any]:
+        if value is None:
+            return []
+        if isinstance(value, list):
+            return value
+        return [value]
+
     def __get_iam_variable_labels(
         self, filepath: Path, variable: str
     ) -> Dict[str, Union[str, List[str]]]:
@@ -1191,6 +1188,79 @@ class IAMDataCollection:
 
         return dict_vars
 
+    def __get_cdr_energy_variable_labels(
+        self, filepath: Path, variable: str = "energy_use_aliases"
+    ) -> Dict[str, Dict[str, Union[str, List[str]]]]:
+        """
+        Loads CDR IAM labels grouped by explicit energy carrier.
+
+        ``carbon_dioxide_removal.yaml`` stores CDR efficiency-scaling aliases as
+        technology -> carrier -> IAM model -> variable(s), unlike the shared
+        sector mappings where aliases are technology -> IAM model -> variable(s).
+        """
+
+        dict_vars = {}
+
+        with open(filepath, "r", encoding="utf-8") as stream:
+            out = yaml.safe_load(stream)
+
+        for technology, values in out.items():
+            energy_aliases = values.get(variable, {})
+            if not energy_aliases:
+                continue
+
+            # Backward compatibility with the previous flat model -> alias shape.
+            if self.model in energy_aliases and not isinstance(
+                energy_aliases[self.model], dict
+            ):
+                aliases = energy_aliases[self.model]
+                if aliases is not None:
+                    dict_vars[technology] = {"energy": aliases}
+                continue
+
+            for carrier, model_aliases in energy_aliases.items():
+                if not isinstance(model_aliases, dict):
+                    continue
+                if (
+                    self.model in model_aliases
+                    and model_aliases[self.model] is not None
+                ):
+                    dict_vars.setdefault(technology, {})[carrier] = model_aliases[
+                        self.model
+                    ]
+
+        return dict_vars
+
+    def __flatten_cdr_energy_variable_labels(
+        self, energy_labels: Dict[str, Dict[str, Union[str, List[str]]]]
+    ) -> Dict[str, Union[str, List[str]]]:
+        return {
+            f"{technology} - {carrier}": aliases
+            for technology, carrier_labels in energy_labels.items()
+            for carrier, aliases in carrier_labels.items()
+        }
+
+    def __group_cdr_energy_variable_labels(
+        self, energy_labels: Dict[str, Dict[str, Union[str, List[str]]]]
+    ) -> Dict[str, Dict[str, List[str]]]:
+        grouped_labels = {"electricity": {}, "heat": {}}
+
+        for technology, carrier_labels in energy_labels.items():
+            electricity_aliases = self.__as_list(carrier_labels.get("electricity"))
+            if electricity_aliases:
+                grouped_labels["electricity"][technology] = electricity_aliases
+
+            heat_aliases = []
+            for carrier, aliases in carrier_labels.items():
+                if carrier == "electricity":
+                    continue
+                heat_aliases.extend(self.__as_list(aliases))
+
+            if heat_aliases:
+                grouped_labels["heat"][technology] = heat_aliases
+
+        return grouped_labels
+
     def __get_iam_data(
         self,
         key: bytes,
@@ -1213,8 +1283,10 @@ class IAMDataCollection:
 
         """
 
-        # Build file name based on self.model and self.pathway
-        file_name = f"{self.model}_{self.pathway}"
+        # Build accepted file names based on self.model and self.pathway. IMAGE
+        # files can use either premise's hyphens or the archive's underscores.
+        file_stems = get_scenario_file_stems(self.model, self.pathway)
+        file_name = file_stems[0]
 
         # Possible file extensions
         extensions = [".csv", ".mif", ".xls", ".xlsx"]
@@ -1222,11 +1294,14 @@ class IAMDataCollection:
         file_path = None
 
         # Check for file with any of the possible extensions
-        for ext in extensions:
-            potential_file_path = Path(filedir) / (file_name + ext)
-            if potential_file_path.exists():
-                file_path = potential_file_path
-                print(f"Found file: {file_path.stem}")
+        for file_stem in file_stems:
+            for ext in extensions:
+                potential_file_path = Path(filedir) / (file_stem + ext)
+                if potential_file_path.exists():
+                    file_path = potential_file_path
+                    print(f"Found file: {file_path.stem}")
+                    break
+            if file_path is not None:
                 break
 
         if file_path is None:
@@ -1239,7 +1314,7 @@ class IAMDataCollection:
             else:
                 # If key is provided, download the file
                 download_folder = filedir
-                url = f"https://zenodo.org/records/19049274/files/{file_name}.csv"
+                url = get_scenario_url(self.model, self.pathway)
                 file_path = download_csv(file_name + ".csv", url, download_folder)
 
         # Decrypt the file if a key is provided
@@ -1313,8 +1388,16 @@ class IAMDataCollection:
                 for c in header_cols
                 if (y := _year_from_col(c)) is not None and 2005 <= y <= 2100
             ]
-            usecols = [region_col, variable_col, unit_col] + year_cols
-            dataframe = pd.read_excel(file_path, usecols=usecols)
+            # Excel IAM files can mix string metadata headers with integer year
+            # headers (TIAM-UCL does this). Pandas rejects a mixed-type usecols
+            # list, while a callable preserves the original column labels.
+            metadata_cols = {region_col, variable_col, unit_col}
+            year_cols_set = set(year_cols)
+            dataframe = pd.read_excel(
+                file_path,
+                usecols=lambda column: column in metadata_cols
+                or column in year_cols_set,
+            )
         else:
             raise ValueError(f"Unsupported file extension: {file_path.suffix}")
 
@@ -1541,6 +1624,71 @@ class IAMDataCollection:
 
         return market_data
 
+    def get_iam_efficiencies_by_carrier(
+        self,
+        data: xr.DataArray,
+        production_labels: dict,
+        energy_labels_by_carrier: Dict[str, Dict[str, List[str]]],
+        efficiency_labels_by_carrier: Dict[str, Dict[str, str]] = None,
+    ) -> [xr.DataArray, None]:
+        """
+        Retrieve CDR efficiency changes separately by carrier group.
+
+        ``energy_labels_by_carrier`` entries are converted to relative
+        final-energy-per-CDR changes. ``efficiency_labels_by_carrier`` entries
+        are IAM efficiency indices and are used directly as relative
+        efficiencies.
+        """
+
+        carrier_efficiencies = []
+        efficiency_labels_by_carrier = efficiency_labels_by_carrier or {}
+
+        for carrier in sorted(
+            set(energy_labels_by_carrier) | set(efficiency_labels_by_carrier)
+        ):
+            energy_labels = energy_labels_by_carrier.get(carrier, {})
+            efficiency_labels = efficiency_labels_by_carrier.get(carrier, {})
+            if not energy_labels and not efficiency_labels:
+                continue
+
+            efficiencies = None
+            if energy_labels:
+                efficiencies = self.get_iam_efficiencies(
+                    data=data,
+                    production_labels=production_labels,
+                    energy_labels=energy_labels,
+                )
+
+            if efficiency_labels:
+                index_efficiencies = self.get_iam_efficiencies(
+                    data=data,
+                    efficiency_labels=efficiency_labels,
+                )
+                if index_efficiencies is not None:
+                    if efficiencies is None:
+                        efficiencies = index_efficiencies
+                    else:
+                        common_variables = [
+                            variable
+                            for variable in index_efficiencies.variables.values
+                            if variable in efficiencies.variables.values
+                        ]
+                        if common_variables:
+                            efficiencies.loc[dict(variables=common_variables)] = (
+                                index_efficiencies.sel(variables=common_variables)
+                            )
+
+            if efficiencies is None:
+                continue
+
+            efficiencies = efficiencies.expand_dims(dim={"carrier": [carrier]})
+            carrier_efficiencies.append(efficiencies)
+
+        if not carrier_efficiencies:
+            return None
+
+        return xr.concat(carrier_efficiencies, dim="carrier")
+
     def get_iam_efficiencies(
         self,
         data: xr.DataArray,
@@ -1579,18 +1727,40 @@ class IAMDataCollection:
         # Finally, if the specified year falls in between two periods provided by the IAM
         # Interpolation between two periods
         if efficiency_labels:
-            missing_vars = set(efficiency_labels.values()) - set(data.variables.values)
+            normalized_efficiency_labels = {
+                key: self.__as_list(value) for key, value in efficiency_labels.items()
+            }
+            efficiency_label_values = [
+                label
+                for labels in normalized_efficiency_labels.values()
+                for label in labels
+            ]
+            missing_vars = set(efficiency_label_values) - set(data.variables.values)
             if missing_vars:
                 print_missing_variables(missing_vars, str(self.filepath_iam_files))
 
-            available_vars = list(set(efficiency_labels.values()) - missing_vars)
-            rev_eff_labels = {v: k for k, v in efficiency_labels.items()}
-
-            if available_vars:
-                eff_data = data.loc[dict(variables=available_vars)]
-                eff_data.coords["variables"] = [
-                    rev_eff_labels[x] for x in eff_data.variables.values
+            efficiency_data = []
+            for premise_variable, iam_variables in normalized_efficiency_labels.items():
+                available_vars = [
+                    variable
+                    for variable in iam_variables
+                    if variable not in missing_vars
                 ]
+                if not available_vars:
+                    continue
+
+                d = data.loc[dict(variables=available_vars)]
+                if len(available_vars) > 1:
+                    d = d.sum(dim="variables").expand_dims(
+                        dim={"variables": [premise_variable]}
+                    )
+                else:
+                    d.coords["variables"] = [premise_variable]
+
+                efficiency_data.append(d)
+
+            if efficiency_data:
+                eff_data = xr.concat(efficiency_data, dim="variables")
                 # convert zero values to nan
                 # and back-fill and forward-fill missing values with nearest available
                 eff_data = eff_data.where(eff_data != 0)
@@ -1603,26 +1773,20 @@ class IAMDataCollection:
         elif production_labels and energy_labels:
             eff_data = xr.DataArray(dims=["variables"], coords={"variables": []})
             for k, v in production_labels.items():
-                # check that each element of energy.values() is in data.variables.values
-                # knowing that energy.values() is a list of lists
-                # and that each element of prod.values() is in data.variables.values
-                _ = lambda x: (
-                    x
-                    if isinstance(x, list)
-                    else [
-                        x,
-                    ]
-                )
+                # Check that each energy and production variable is available.
+                _ = lambda x: x if isinstance(x, list) else [x]
+                energy_vars = _(energy_labels.get(k, []))
+                production_vars = _(v)
 
-                if all(
-                    var in data.variables.values for var in energy_labels.get(k, [])
-                ) and all(x in data.variables.values for x in _(v)):
+                if (
+                    energy_vars
+                    and all(var in data.variables.values for var in energy_vars)
+                    and all(x in data.variables.values for x in production_vars)
+                ):
                     if isinstance(v, list):
-                        d = abs(
-                            data.loc[:, energy_labels.get(k, []), :].sum(
-                                dim="variables"
-                            )
-                        ) / abs(data.loc[:, list(v), :].sum(dim="variables"))
+                        d = abs(data.loc[:, energy_vars, :].sum(dim="variables")) / abs(
+                            data.loc[:, production_vars, :].sum(dim="variables")
+                        )
                         # add dimension "variables" to d
                         d = d.expand_dims(dim="variables")
                         # add a coordinate "variables" to d
@@ -1630,11 +1794,9 @@ class IAMDataCollection:
                             k,
                         ]
                     else:
-                        d = abs(
-                            data.loc[:, energy_labels.get(k, []), :].sum(
-                                dim="variables"
-                            )
-                        ) / abs(data.loc[:, v, :])
+                        d = abs(data.loc[:, energy_vars, :].sum(dim="variables")) / abs(
+                            data.loc[:, v, :]
+                        )
                     # convert inf to Nan
                     d = d.where(d != np.inf)
                     # back-fill nans
@@ -1657,7 +1819,14 @@ class IAMDataCollection:
             eff_data /= eff_data.sel(year=2020, method="nearest")
 
             if len(efficiency_labels) == 0 or any(
-                "specific" in x.lower() for x in efficiency_labels.values()
+                "specific" in x.lower()
+                for x in [
+                    label
+                    for labels in (
+                        self.__as_list(value) for value in efficiency_labels.values()
+                    )
+                    for label in labels
+                ]
             ):
                 # we are dealing with specific energy consumption, not efficiencies
                 # we need to convert them to efficiencies

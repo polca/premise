@@ -1349,6 +1349,13 @@ Once the new markets are created, *premise* re-links all electricity-consuming
 activities to the new regional markets. The regional market it re-links to
 depends on the location of the consumer.
 
+.. _heat-transformation:
+
+Heat
+++++
+
+.. include:: heat.inc
+
 Cement production
 +++++++++++++++++
 
@@ -1361,28 +1368,41 @@ as kilns fitted with three types of carbon capture technologies:
 * using oxyfuel combustion,
 * using Direct Separation (Leilac process).
 
-The implementation of the corresponding datasets for these new kiln technologies are based on the work of
-Muller_ et al., 2024.
+The implementation of the corresponding datasets for these new kiln
+technologies is based on the work of Muller_ et al., 2024.
 
 .. _Muller: https://doi.org/10.1016/j.jclepro.2024.141884
 
+The capture inventories are treated as add-on modules to the transformed
+clinker datasets. The clinker dataset keeps the host kiln, its fuel use and its
+direct emissions. The capture module represents the additional capture,
+conditioning, compression, transport and storage requirements per kilogram of
+CO2 captured.
+
 We differ slightly from the implementation of Muller_ et al., 2024, in that:
 
-* the heat necessary for the regeneration of the MEA solvent is assumed to be provided by a natural gas boiler (instead of a fuel mix resembling that of the kiln itself), with up to 30% coming from recovered heat from the kiln by 2050,
-* the amount of heat needed for the regeneration of the MEA solvent goes from 3.76 GJ/ton CO2 in 2020, to 2.6 GJ/ton CO2 in 2050,
-* the provision of oxygen for the Direct Separation option comes from an existing air separation dataset from ecoinvent,
-* the fuel mix for the kiln is that of ecoinvent, further scaled down by the change of efficiency of the kiln (in Müller et al., 2024, they use directly the fuel mix provided by the IMAGE scenario, which we do not find representative, as it also includes the fuel used by other activities in the non-metallic minerals, notably a large share of natural gas).
+* the kiln fuel mix remains the one from ecoinvent and is adjusted through the
+  clinker efficiency update, rather than being replaced by the IMAGE
+  non-metallic-minerals final-energy mix;
+* MEA capture uses the source inventory heat requirement of 4.0556 MJ/kg CO2
+  captured, represented as an industrial heat input, together with low-voltage
+  electricity, MEA make-up, NaOH, tap water and spent-solvent treatment;
+* the oxyfuel inventory uses an oxygen input of 0.313 kg O2/kg CO2 captured,
+  based on the CEMCAP oxygen demand after correction for the CO2 capture rate;
+* all three capture routes use the same downstream CO2 compression, transport
+  and storage module.
 
 In a nutshell, *premise*:
 
-* makes copies of the `clinker production` dataset,
+* makes copies of the ``clinker production`` dataset,
 * adjusts the fuel consumption and related CO2 emissions,
 * adjusts specific hot pollutant emissions removed by the carbon capture process (Mercury, NOx, SOx),
 * adds an input from the carbon capture process, based on a capture efficiency share,
 * and removes a corresponding amount from the outgoing CO2 emissions.
 
-The Direct Separation process only captures calcination emissions, while the other two technologies capture
-both combustion and calcination emissions.
+The Direct Separation process captures process/calcination emissions only,
+using a 95% capture share. The MEA and oxyfuel routes capture process and fuel
+CO2, using a 90% capture share.
 
 When choosing another IAM (e.g., REMIND, TIAM-UCL), the current implementation is relatively
 simpler at the moment, and does not involve the emergence of new
@@ -1436,11 +1456,16 @@ Efficiency adjustment
 
 *premise* then adjusts the thermal efficiency of the process.
 
-It first calculates the energy input in the current (original) dataset,
-by looking up the fuel inputs and their respective lower heating values.
+It first calculates the visible fuel energy in the current (original)
+dataset, by looking up the fuel inputs and their respective lower heating
+values. Some ecoinvent clinker inventories include emissions from secondary
+fuels that are not listed as burdened technosphere fuel inputs. For these
+datasets, *premise* keeps an internal energy ledger and adds an inferred
+hidden secondary-fuel energy amount so that the accounted starting point
+remains consistent with the original total clinker thermal energy demand.
 
-Once the energy required per ton clinker today (2020) is known, it is
-multiplied by a *scaling factor* that represents a change in efficiency
+Once the accounted energy required per ton clinker today (2020) is known,
+it is multiplied by a *scaling factor* that represents a change in efficiency
 between today and the scenario year.
 
 .. note::
@@ -1455,23 +1480,38 @@ between today and the scenario year.
 
 .. note::
 
-    *premise* enforces a lower limit on the fuel consumption per ton of clinker.
-    This limit is set to 3.1 GJ/t clinker and is close to the minimum
-    theoretical fuel consumption with an moisture content of the raw materials,
-    as considered in the 2018 IEA_ cement roadmap report (i.e., 2.8 GJ/t clinker).
-    Hence, regardless of the scaling factor, the fuel consumption per ton of clinker
-    will never be less than 3.1 GJ/t.
+    *premise* enforces a practical lower limit on accounted fuel consumption
+    per ton of clinker. This is not the thermodynamic minimum: the theoretical
+    heat requirement for the clinker-burning reactions is about 1.7-1.8 GJ/t
+    clinker. Actual rotary kiln systems need additional fuel because of heat
+    losses, raw material moisture, gas handling, cooler losses, bypasses, and
+    other process constraints.
 
-.. _IEA: https://iea.blob.core.windows.net/assets/cbaa3da1-fd61-4c2a-8719-31538f59b54f/TechnologyRoadmapLowCarbonTransitionintheCementIndustry.pdf
+    For ordinary clinker production, the lower limit is set to 3.1 GJ/t
+    clinker. For efficient dry feed rotary kiln technologies, the lower limit
+    is set to 3.0 GJ/t clinker, consistent with the BAT heat balance value for
+    dry process kilns with multi-stage suspension preheating and precalcination
+    reported in the European cement and lime `CLM BREF`_. Hence, regardless of the
+    scaling factor, accounted clinker fuel consumption will not fall below
+    these practical lower limits.
+
+.. _CLM BREF: https://bureau-industrial-transformation.jrc.ec.europa.eu/sites/default/files/2020-03/superseded_clm_bref_1201.pdf
 
 
 
-Once the new energy input is determined, *premise* scales down the fuel,
-and the fossil and biogenic CO2 emissions accordingly, based on the Lower Heating Value
-and CO2 emission factors for these fuels.
+Once the new accounted energy input is determined, *premise* applies the
+required energy change to hard coal inputs first. If hard coal inputs are
+split across several suppliers, the aggregate hard coal change is distributed
+proportionally across all hard coal exchanges. The hidden secondary-fuel
+energy is bookkeeping only and is not added as a burdened technosphere input.
+
+For the non-CCS efficiency adjustment, only fossil CO2 emissions are adjusted,
+based on the aggregate hard coal energy change and the hard coal CO2 emission
+factor. Biogenic CO2 emissions from secondary fuels are not changed by this
+efficiency step.
 
 Note that the change in CO2 emissions only concerns the share
-that originates from the combustion of fuels. It does not
+that originates from the combustion of the adjusted fossil fuel. It does not
 concern the calcination emissions due to the production of
 calcium oxide (CaO) from calcium carbonate (CaCO3), which is set
 at a fix emission rate of 525 kg CO2/t clinker.
@@ -1480,27 +1520,31 @@ at a fix emission rate of 525 kg CO2/t clinker.
 Carbon Capture and Storage
 --------------------------
 
-If the IAM scenario indicates that a share of the CO2 emissions
-for the cement sector in a given region and year is sequestered and stored,
-*premise* adds CCS to the corresponding clinker production dataset.
+If the IAM scenario indicates that a share of the CO2 emissions for the cement
+sector in a given region and year is sequestered and stored, *premise* adds CCS
+to the corresponding clinker production dataset.
 
-The CCS dataset used to that effect is from Muller_ et al., 2024.
-The dataset described the capture of CO2 from a cement plant,
-using a monoethanolamine-based sorbent.
-To that dataset, *premise* adds another dataset that models the storage
-of the CO2 underground, from Volkart_ et al, 2013.
+The CCS modules used to that effect are from Muller_ et al., 2024. They describe
+the capture of CO2 from a cement plant using MEA, direct separation or oxyfuel
+combustion. Each module includes the common underground storage chain from
+Volkart_ et al, 2013 through the ``carbon dioxide compression, transport and
+storage`` activity.
 
+For fossil/process CO2, *premise* reduces the clinker dataset's direct CO2
+emissions according to the capture route and capture share. For stored
+non-fossil CO2 from the clinker dataset, *premise* adds a ``Carbon dioxide, in
+air`` resource input. The ordinary cement CCS transformation therefore remains
+an add-on to clinker production; it is not a standalone carbon dioxide removal
+activity.
 
-Besides electricity, the CCS process requires heat, water and others inputs
-to regenerate the amine-based sorbent. We use two data points to approximate the heat
-requirement: 3.76 MJ/kg CO2 captured in 2020 (minus 30% coming from the kiln as recovered heat),
-and 2.6 MJ/kg in 2050. The first number is from Muller_ et al., 2024, while the second number is described
-as the best-performing pilot project today, according to the 2022 review of pilot
-projects by the Global CCS Institute_. It is further assumed that the heat requirement
-is fulfilled to an extent of 30% by the recovery of excess heat, as found in numerous studies.
+For CDR accounting, a separate mapped activity is available:
+``carbon dioxide, captured and stored, at cement production plant, from
+non-fossil carbon dioxide, using monoethanolamine``. It represents 1 kg of
+non-fossil CO2 stored, includes a 1 kg ``Carbon dioxide, in air`` input, uses
+the MEA cement capture module and the common storage chain, and intentionally
+ignores any fossil CO2 that would be co-captured from the cement flue gas.
 
 .. _Volkart: https://doi.org/10.1016/j.ijggc.2013.03.003
-.. _Institute: https://www.globalccsinstitute.com/wp-content/uploads/2022/05/State-of-the-Art-CCS-Technologies-2022.pdf
 
 
 .. note::
@@ -1977,8 +2021,8 @@ truck transport datasets and the new ones replacing them:
 |
 +-----------------------------------------------------------+----------------------+----------------------+----------------------+
 
-Direct Air Capture
-++++++++++++++++++
+Carbon Dioxide Removal
+++++++++++++++++++++++
 
 Run
 
@@ -2002,16 +2046,41 @@ Run
 Key outputs
 ~~~~~~~~~~~
 
-* Creates region-specific DAC datasets from literature inventories.
-* Scales electricity and heat inputs based on IAM efficiency signals.
+* Regionalizes CDR support activities such as DAC heat variants, CO2 storage
+  chains, point-source capture modules and intermediate suppliers.
+* Creates region-specific CDR datasets from the technologies mapped in
+  ``carbon_dioxide_removal.yaml``.
+* Builds regional and world ``market for carbon dioxide removal`` datasets from
+  IAM production volumes.
+* Scales electricity and heat/fuel energy inputs separately based on IAM
+  efficiency signals where available.
 
+*premise* creates different region-specific carbon dioxide removal datasets for
+mapped technologies such as DACCS, BECCS, biochar, enhanced weathering, ocean
+liming, biomass fermentation CCS, synthetic-fuel CCS and industrial non-fossil
+cement CO2 capture, where the corresponding IAM variables and inventories are
+available. The DAC inventories are based on Qiu_ et al., 2022.
 
+The CDR inventories are modelled as removal or capture modules, not as full host
+processes. For example, the wood-power BECCS, biomethane-SMR CCS, biomass
+fermentation CCS and cement non-fossil CO2 capture datasets exclude the host
+power plant, hydrogen plant, fermentation plant or cement kiln. They contain the
+additional capture, compression, transport and storage requirements needed to
+store 1 kg of biogenic or atmospheric CO2.
 
-*premise* creates different region-specific Direct Air Capture (DAC)
-datasets, based on the inventories from Qiu_ et al., 2022.
+When ``carbon_dioxide_removal.yaml`` provides ``energy_use_aliases`` for a CDR
+technology, the aliases are kept explicit by carrier. Electricity aliases are
+used to scale electricity exchanges. All other mapped final-energy carriers,
+such as heat, gases, diesel, hydrogen or other fuels, are grouped as heat/fuel
+for the CDR efficiency adjustment. *premise* applies separate bounded scaling
+factors to electricity and heat/fuel exchanges in the mapped CDR datasets.
+Materials, sorbents, solvents, water, waste treatment exchanges and biosphere
+flows are not scaled by this efficiency adjustment.
 
-If provided by the IAM scenario, *premise* scales the inputs of electricity
-and heat of the DAC datasets to reflect changes in efficiency.
+All CDR-specific support activities, regionalization, efficiency adjustment and
+market creation happen in ``carbon_dioxide_removal.py``. CDR heat requirements
+are therefore handled through the CDR inventories and their regionalized energy
+suppliers, not through dedicated CDR logic in the heat transformation.
 
 .. _Qiu: https://doi.org/10.1038/s41467-022-31146-1
 
@@ -2311,59 +2380,6 @@ are modelled with the calorific value of conventional gasoline.
   Ethanol production, via fermentation, from poplar, with CCS         0.041     kilogram    WEU
   Ethanol production, via fermentation, from poplar                   0.041     kilogram    WEU
  =================================================================== ========= =========== ===========
-
-Heat
-++++
-
-Run
-
-.. code-block:: python
-
-    from premise import *
-    import brightway2 as bw
-
-    bw.projects.set_current("my_project")
-
-    ndb = NewDatabase(
-        scenarios=[
-                {"model":"remind", "pathway":"SSP2-Base", "year":2028}
-            ],
-        source_db="ecoinvent 3.7 cutoff",
-        source_version="3.7.1",
-        key='xxxxxxxxxxxxxxxxxxxxxxxxx'
-    )
-    ndb.update("heat")
-
-Key outputs
-~~~~~~~~~~~
-
-* Regionalizes heat and steam production datasets by IAM region.
-* Relinks heat producers to regional fuel and biomass markets where available.
-* Splits CO2 emissions into fossil and non-fossil shares based on fuel mixes.
-
-Datasets that supply heat and steam via the combustion of natural gas and diesel
-are regionalized (made available for each region of the IAM model) and relinked
-to regional fuel markets. If the fuel market contains a share of non-fossil fuels,
-the CO2 emissions of the heat and steam production are split between fossil and
-non-fossil emissions. Once regionalized, the heat and steam production datasets
-relink to activities that require heat within the same region.
-
-Here is a list of the heat and steam production datasets that are regionalized:
-
-- diesel, burned in ...
-- steam production, as energy carrier, in chemical industry
-- heat production, natural gas, ...
-- heat and power co-generation, natural gas, ...
-- heat production, light fuel oil, ...
-- heat production, softwood chips from forest, ...
-- heat production, hardwood chips from forest, ...
-
-These datasets are relinked to the corresponding regionalized fuel market only
-if `.update("fuels")` has been run.
-Also, heat production datasets that use biomass as fuel input (e.g., softwood and
-hardwood chips) relink to the dataset `market for biomass, used as fuel` if
-`update("biomass")` has been run previously.
-
 
 CO2 emissions update
 --------------------

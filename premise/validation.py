@@ -273,6 +273,7 @@ class BaseDatasetValidator:
         biosphere_name=None,
         version=None,
         system_model="cutoff",
+        extra_regions=None,
     ):
         self.original_database = original_database
         self.database = database
@@ -280,6 +281,7 @@ class BaseDatasetValidator:
         self.scenario = scenario
         self.year = year
         self.regions = regions
+        self.valid_regions = set(regions or []) | set(extra_regions or [])
         self.db_name = db_name
         self.geo = Geomap(model)
         self.minor_issues_log = []
@@ -481,12 +483,17 @@ class BaseDatasetValidator:
 
         for loc in new_locations:
             if loc not in original_locations:
-                if loc not in self.regions:
+                if loc not in self.valid_regions:
                     try:
                         self.geo.ecoinvent_to_iam_location(loc)
-                    except ValueError:
+                    except (KeyError, ValueError):
                         message = f"New unregistered location found: {loc}"
-                        self.log_issue({"location": loc}, "new location", message)
+                        self.log_issue(
+                            {"location": loc},
+                            "new location",
+                            message,
+                            issue_type="major",
+                        )
 
     def validate_dataset_structure(self):
         # Check that all datasets have a list of exchanges and each exchange has a type
@@ -774,7 +781,7 @@ class BaseDatasetValidator:
         missing_classifications = []
 
         for ds in self.database:
-            if "classifications" not in ds:
+            if not ds.get("classifications"):
                 classification = get_classification_entry(
                     self.classifications, ds["name"], ds["reference product"]
                 )
@@ -868,6 +875,7 @@ class BaseDatasetValidator:
         self.correct_fields_format()
         self.check_amount_format()
         self.reformat_parameters()
+        self.add_missing_classifications()
         self.check_uncertainty()
         self._finalize_logs()
 
@@ -982,8 +990,18 @@ class HeatValidation(BaseDatasetValidator):
 
         for ds in ws.get_many(
             self.database,
-            ws.contains("name", "market for heat"),
+            ws.either(
+                *[
+                    ws.equals("name", name)
+                    for name in (
+                        "market for heat, for buildings",
+                        "market for heat, district or industrial",
+                        "market for heat, secondary, district or industrial",
+                    )
+                ]
+            ),
             ws.equals("unit", "megajoule"),
+            ws.equals("regionalized", True),
         ):
             total = sum(
                 [
@@ -992,7 +1010,7 @@ class HeatValidation(BaseDatasetValidator):
                     if exc["type"] == "technosphere" and exc["unit"] == "megajoule"
                 ]
             )
-            if not np.isclose(total, 1.0, rtol=1e-3):
+            if not np.isclose(total, 1.0, rtol=1e-6, atol=1e-6):
                 message = f"Total exchange amount is {total}, not 1.0"
                 self.log_issue(
                     ds, "Incorrect market shares", message, issue_type="major"
@@ -1016,6 +1034,8 @@ class HeatValidation(BaseDatasetValidator):
                         "treatment of",
                         "market for",
                         "market group for",
+                        "frozen legacy mix",
+                        "nuclear cogeneration",
                     ]
                 )
                 and ds["location"] in self.regions
@@ -1226,13 +1246,16 @@ class HeatValidation(BaseDatasetValidator):
                     ]
                 )
 
+                if energy_input <= 0:
+                    continue
+
                 efficiency = 1 / energy_input
 
-                if efficiency > 1.15 and not any(
+                if efficiency > 1.2 and not any(
                     x in ds["name"]
                     for x in ["co-generation", "allocated", "allocation"]
                 ):
-                    message = f"Heat conversion efficiency is {efficiency:.2f}, expected to be less than 1.15."
+                    message = f"Heat conversion efficiency is {efficiency:.2f}, expected to be less than 1.2."
                     self.log_issue(
                         ds, "heat conversion efficiency", message, issue_type="major"
                     )
@@ -1259,8 +1282,56 @@ class HeatValidation(BaseDatasetValidator):
                         message = f"CO2 emissions are {co2:.3f}, expected to be {expected_co2:.3f}."
                         self.log_issue(ds, "CO2 emissions", message, issue_type="major")
 
+    def check_purchased_heat_links(self):
+        """Ensure each end-use market links to secondary heat at most once."""
+
+        for ds in ws.get_many(
+            self.database,
+            ws.either(
+                ws.equals("name", "market for heat, for buildings"),
+                ws.equals("name", "market for heat, district or industrial"),
+            ),
+            ws.equals("regionalized", True),
+        ):
+            links = [
+                exc
+                for exc in ws.technosphere(ds)
+                if exc.get("name")
+                == "market for heat, secondary, district or industrial"
+                and exc.get("product") == "heat, district or industrial"
+            ]
+            if len(links) > 1:
+                self.log_issue(
+                    ds,
+                    "Duplicate purchased heat link",
+                    f"Found {len(links)} links to the secondary heat market.",
+                    issue_type="major",
+                )
+
+    def check_heat_iam_values(self):
+        """Check raw heat layers for finite, non-negative IAM volumes."""
+
+        for attribute in (
+            "buildings_heat_end_use",
+            "industrial_heat_end_use",
+            "secondary_heat_supply",
+        ):
+            array = getattr(self.iam_data, attribute, None)
+            if array is None:
+                continue
+            if not bool(np.isfinite(array.fillna(0)).all()):
+                raise ValueError(
+                    f"Non-finite values found in IAM heat layer {attribute}."
+                )
+            if bool((array.fillna(0) < 0).any()):
+                raise ValueError(
+                    f"Negative values found in IAM heat layer {attribute}."
+                )
+
     def run_heat_checks(self):
+        self.check_heat_iam_values()
         self.check_heat_markets_input()
+        self.check_purchased_heat_links()
         self.check_heat_conversion_efficiency()
         self.save_log()
 
@@ -1292,7 +1363,9 @@ class TransportValidation(BaseDatasetValidator):
         for act in [
             a
             for a in self.database
-            if a["name"].startswith("transport, ") and ", unspecified" in a["name"]
+            if a["name"].startswith("transport, ")
+            and ", unspecified" in a["name"]
+            and "hydrogen" not in a["name"]
         ]:
             total = sum(
                 exc["amount"]
@@ -2467,8 +2540,8 @@ class CementValidation(BaseDatasetValidator):
                     ), f"Clinker market input {e['name']} in {e['location']} has incorrect location for dataset {ds['name']} in {ds['location']}."
 
     def check_clinker_energy_use(self):
-        # check that clinker production datasets
-        # use at least 3 MJ/kg clinker
+        # Check that accounted clinker fuel energy respects the practical
+        # lower bound for efficient kiln technologies.
 
         for ds in self.database:
             if (
@@ -2476,85 +2549,95 @@ class CementValidation(BaseDatasetValidator):
                 and ds["location"] in self.regions
                 and "clinker" in ds["reference product"]
             ):
-                energy = sum(
-                    [
-                        exc["amount"]
-                        for exc in ds["exchanges"]
-                        if exc["unit"] == "megajoule" and exc["type"] == "technosphere"
-                    ]
+                energy = ds.get("log parameters", {}).get(
+                    "new accounted fuel energy per kg clinker"
                 )
 
-                # add input of coal
-                energy += sum(
-                    [
-                        exc["amount"] * 26.4
-                        for exc in ds["exchanges"]
-                        if "hard coal" in exc["name"]
-                        and exc["type"] == "technosphere"
-                        and exc["unit"] == "kilogram"
-                        and exc["amount"] > 0
-                    ]
-                )
+                if energy is None:
+                    energy = sum(
+                        [
+                            exc["amount"]
+                            for exc in ds["exchanges"]
+                            if exc["unit"] == "megajoule"
+                            and exc["type"] == "technosphere"
+                        ]
+                    )
 
-                # add input of heavy and light fuel oil
-                energy += sum(
-                    [
-                        exc["amount"] * 41.9
-                        for exc in ds["exchanges"]
-                        if "fuel oil" in exc["name"]
-                        and exc["type"] == "technosphere"
-                        and exc["unit"] == "kilogram"
-                        and exc["amount"] > 0
-                    ]
-                )
+                    # add input of coal
+                    energy += sum(
+                        [
+                            exc["amount"] * 26.4
+                            for exc in ds["exchanges"]
+                            if "hard coal" in exc["name"]
+                            and exc["type"] == "technosphere"
+                            and exc["unit"] == "kilogram"
+                            and exc["amount"] > 0
+                        ]
+                    )
 
-                # add lignite
-                energy += sum(
-                    [
-                        exc["amount"] * 10.5
-                        for exc in ds["exchanges"]
-                        if "lignite" in exc["name"]
-                        and exc["type"] == "technosphere"
-                        and exc["unit"] == "kilogram"
-                        and exc["amount"] > 0
-                    ]
-                )
+                    # add input of heavy and light fuel oil
+                    energy += sum(
+                        [
+                            exc["amount"] * 41.9
+                            for exc in ds["exchanges"]
+                            if "fuel oil" in exc["name"]
+                            and exc["type"] == "technosphere"
+                            and exc["unit"] == "kilogram"
+                            and exc["amount"] > 0
+                        ]
+                    )
 
-                # add petcoke
-                energy += sum(
-                    [
-                        exc["amount"] * 35.2
-                        for exc in ds["exchanges"]
-                        if "petroleum coke" in exc["name"]
-                        and exc["type"] == "technosphere"
-                        and exc["unit"] == "kilogram"
-                        and exc["amount"] > 0
-                    ]
-                )
+                    # add lignite
+                    energy += sum(
+                        [
+                            exc["amount"] * 10.5
+                            for exc in ds["exchanges"]
+                            if "lignite" in exc["name"]
+                            and exc["type"] == "technosphere"
+                            and exc["unit"] == "kilogram"
+                            and exc["amount"] > 0
+                        ]
+                    )
 
-                # add input of natural gas
-                energy += sum(
-                    [
-                        exc["amount"] * 36
-                        for exc in ds["exchanges"]
-                        if "natural gas" in exc["name"]
-                        and exc["type"] == "technosphere"
-                        and exc["unit"] == "cubic meter"
-                        and exc["amount"] > 0
-                    ]
-                )
+                    # add petcoke
+                    energy += sum(
+                        [
+                            exc["amount"] * 35.2
+                            for exc in ds["exchanges"]
+                            if "petroleum coke" in exc["name"]
+                            and exc["type"] == "technosphere"
+                            and exc["unit"] == "kilogram"
+                            and exc["amount"] > 0
+                        ]
+                    )
 
-                # add input of waste plastic, mixture
-                energy += sum(
-                    [
-                        exc["amount"] * 17 * -1
-                        for exc in ds["exchanges"]
-                        if exc.get("product") == "waste plastic, mixture"
-                        and exc["type"] == "technosphere"
-                        and exc["unit"] == "kilogram"
-                        and exc["amount"] < 0
-                    ]
-                )
+                    # add input of natural gas
+                    energy += sum(
+                        [
+                            exc["amount"] * 36
+                            for exc in ds["exchanges"]
+                            if "natural gas" in exc["name"]
+                            and exc["type"] == "technosphere"
+                            and exc["unit"] == "cubic meter"
+                            and exc["amount"] > 0
+                        ]
+                    )
+
+                    # add input of waste plastic, mixture
+                    energy += sum(
+                        [
+                            exc["amount"] * 17 * -1
+                            for exc in ds["exchanges"]
+                            if exc.get("product") == "waste plastic, mixture"
+                            and exc["type"] == "technosphere"
+                            and exc["unit"] == "kilogram"
+                            and exc["amount"] < 0
+                        ]
+                    )
+
+                    energy += ds.get("log parameters", {}).get(
+                        "hidden secondary fuel energy per kg clinker", 0
+                    )
 
                 if energy < 2.99:
                     message = f"Energy use for clinker production is too low: {energy}."

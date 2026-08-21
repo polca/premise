@@ -22,8 +22,9 @@ using scenarios from Integrated Assessment Models (IAMs). It does so by
 modifying the ecoinvent database to reflect projected energy policy trajectories, include emerging
 technologies, modify market shares as well as technologies' efficiency.
 
-In practice, ``premise`` updates selected sectors and markets (e.g., energy supply, transport, fuels,
-industrial processes) while leaving other parts of the database unchanged unless explicitly mapped.
+In practice, ``premise`` updates selected sectors and markets (e.g., electricity, heat, fuels,
+transport, and industrial processes) while leaving other parts of the database unchanged unless
+explicitly mapped.
 Results are scenario- and model-specific, and depend on the IAM model, scenario, year, and the
 ecoinvent version used.
 
@@ -118,11 +119,13 @@ This means that ``premise`` will output databases that are compatible with Brigh
 
 
 A development version with the latest advancements (but with the risks of unseen bugs),
-is available from Anaconda Cloud. Similarly, you should specify that you want to use Brightway 2.5:
+is available from Anaconda Cloud. 
+
+Similarly, you should specify that you want to use Brightway 2.5 (with `activity-browser>=3.x.x`-compatibility):
 
     conda install -c conda-forge premise-bw25
 
-Or rather use Brightway2:
+Or rather use Brightway2 (with `activity-browser<3.0.0`-compatibility):
 
     conda install -c conda-forge premise-bw2
 
@@ -131,6 +134,32 @@ How to use it?
 --------------
 
 The best way is to follow [the examples from the Jupyter Notebook](https://github.com/polca/premise/blob/master/examples/examples.ipynb). 
+
+Sequential scenario arrays in Brightway 2.5
+--------------------------------------------
+
+Available from ``premise`` 2.4.9.2, one export call with modern Brightway
+(`bw2data >= 4`) can write a union database plus a compressed, deterministic
+scenario-array ZIP. Install ``premise[bw25]`` to include the required
+``bw_processing >= 1.0`` dependency.
+
+```python
+array_path = ndb.write_scenario_array_db_to_brightway(
+    name="scenario-ensemble",
+)
+```
+
+The initial array state is `original`; successive `next(lca)` calls select each
+generated scenario in `ndb.scenarios` order and then wrap to `original`.
+Append `array_path` after the database datapackages passed to `bc.LCA` so that
+the joint technosphere and biosphere arrays override the base database. The ZIP
+is project-specific and provides deterministic scenario enumeration, not
+probability-weighted Monte Carlo sampling.
+
+See the [complete three-IMAGE-scenario notebook example](https://github.com/polca/premise/blob/master/examples/examples.ipynb)
+and the [Brightway loading guide](https://premise.readthedocs.io/en/latest/load.html#sequential-scenario-arrays-modern-brightway)
+for database creation, exact activity matching, multi-activity LCIA, and
+wraparound/base-database checks.
 
 ## Disclaimer on the Use of IAM-Based Scenarios in Premise
 

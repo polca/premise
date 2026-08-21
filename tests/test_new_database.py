@@ -236,12 +236,15 @@ def test_write_db_to_brightway_fast_path_runs_internal_check(monkeypatch):
         }
         return prepared_database
 
-    def fake_write_brightway_database(data, name, fast=False, check_internal=True):
+    def fake_write_brightway_database(
+        data, name, fast=False, check_internal=True, metadata=None
+    ):
         captured["written"] = {
             "data": data,
             "name": name,
             "fast": fast,
             "check_internal": check_internal,
+            "metadata": metadata,
         }
 
     monkeypatch.setattr(
@@ -314,12 +317,15 @@ def test_write_db_to_brightway_fast_path_runs_internal_check(monkeypatch):
         "biosphere_name": "test-biosphere",
         "version": "3.12",
     }
-    assert captured["written"] == {
-        "data": prepared_database,
-        "name": "fast-db",
-        "fast": True,
-        "check_internal": True,
-    }
+    assert captured["written"]["data"] == prepared_database
+    assert captured["written"]["name"] == "fast-db"
+    assert captured["written"]["fast"] is True
+    assert captured["written"]["check_internal"] is True
+    assert captured["written"]["metadata"]["iam_model"] == "image"
+    assert captured["written"]["metadata"]["pathway"] == "SSP2-Base"
+    assert (
+        captured["written"]["metadata"]["representative_time"] == "2030-01-01T00:00:00"
+    )
     assert captured["ended"] == [
         {
             "model": "image",
@@ -488,12 +494,15 @@ def test_write_superstructure_to_brightway_uses_fast_writer_after_full_preparati
         }
         return prepared_database
 
-    def fake_write_brightway_database(data, name, fast=False, check_internal=True):
+    def fake_write_brightway_database(
+        data, name, fast=False, check_internal=True, metadata=None
+    ):
         captured["written"] = {
             "data": data,
             "name": name,
             "fast": fast,
             "check_internal": check_internal,
+            "metadata": metadata,
         }
 
     monkeypatch.setattr(
@@ -569,14 +578,206 @@ def test_write_superstructure_to_brightway_uses_fast_writer_after_full_preparati
         "biosphere_name": "test-biosphere",
         "version": "3.12",
     }
-    assert captured["written"] == {
-        "data": prepared_database,
-        "name": "super-db",
-        "fast": True,
-        "check_internal": False,
-    }
+    assert captured["written"]["data"] == prepared_database
+    assert captured["written"]["name"] == "super-db"
+    assert captured["written"]["fast"] is True
+    assert captured["written"]["check_internal"] is False
+    assert [
+        s["representative_time"] for s in captured["written"]["metadata"]["scenarios"]
+    ] == [f"{scenario['year']}-01-01T00:00:00" for scenario in obj.scenarios]
     assert captured["ended"] == obj.scenarios
     assert captured["pickles_deleted"] == 1
+
+
+def _scenario_array_test_object():
+    obj = object.__new__(NewDatabase)
+    obj.biosphere_name = "test-biosphere"
+    obj.version = "3.12"
+    obj.source = "source-db"
+    obj.generate_reports = False
+    obj.scenarios = [
+        {"model": "image", "pathway": "SSP2-Base", "year": 2030},
+        {"model": "image", "pathway": "SSP2-Base", "year": 2040},
+    ]
+    return obj
+
+
+def test_write_scenario_array_rejects_legacy_brightway_before_writing(monkeypatch):
+    obj = _scenario_array_test_object()
+    monkeypatch.setattr(new_database_module.bw2data, "__version__", (3, 6, 6))
+    monkeypatch.setattr(
+        new_database_module,
+        "write_brightway_database",
+        lambda **kwargs: (_ for _ in ()).throw(
+            AssertionError("legacy validation must happen before writing")
+        ),
+    )
+    monkeypatch.setattr(
+        new_database_module,
+        "_load_scenario_array_dependencies",
+        lambda: (_ for _ in ()).throw(
+            AssertionError("legacy validation must happen before dependency loading")
+        ),
+    )
+
+    with pytest.raises(NotImplementedError, match="bw2data >= 4"):
+        obj.write_scenario_array_db_to_brightway()
+
+
+def test_write_scenario_array_requires_two_generated_scenarios(monkeypatch):
+    obj = _scenario_array_test_object()
+    obj.scenarios = obj.scenarios[:1]
+    monkeypatch.setattr(new_database_module.bw2data, "__version__", "4.5.3")
+
+    with pytest.raises(ValueError, match="At least two scenarios"):
+        obj.write_scenario_array_db_to_brightway()
+
+
+def test_write_scenario_array_requires_registered_biosphere(monkeypatch):
+    obj = _scenario_array_test_object()
+    monkeypatch.setattr(new_database_module.bw2data, "__version__", "4.5.3")
+    monkeypatch.setattr(new_database_module.bw2data, "databases", {})
+
+    with pytest.raises(
+        ValueError, match="Brightway export requires a biosphere database"
+    ):
+        obj.write_scenario_array_db_to_brightway()
+
+
+def test_write_scenario_array_requires_unique_labels(monkeypatch):
+    obj = _scenario_array_test_object()
+    obj.scenarios[1]["year"] = 2030
+    monkeypatch.setattr(new_database_module.bw2data, "__version__", "4.5.3")
+    monkeypatch.setattr(
+        new_database_module,
+        "check_presence_biosphere_database",
+        lambda _: None,
+    )
+
+    with pytest.raises(ValueError, match="Duplicate label"):
+        obj.write_scenario_array_db_to_brightway()
+
+
+def test_write_scenario_array_requires_zip_destination(monkeypatch):
+    obj = _scenario_array_test_object()
+    monkeypatch.setattr(new_database_module.bw2data, "__version__", "4.5.3")
+    monkeypatch.setattr(
+        new_database_module,
+        "check_presence_biosphere_database",
+        lambda _: None,
+    )
+
+    with pytest.raises(ValueError, match="'.zip' suffix"):
+        obj.write_scenario_array_db_to_brightway(filepath="arrays.csv")
+
+
+def test_write_scenario_array_writes_database_then_package_and_finalizes_once(
+    monkeypatch, tmp_path
+):
+    obj = _scenario_array_test_object()
+    obj.generate_reports = True
+    prepared_database = [{"name": "prepared database"}]
+    dataframe = object()
+    events = []
+
+    class DummyBwProcessing:
+        @staticmethod
+        def clean_datapackage_name(name):
+            return name.replace(" ", "_")
+
+    def fake_prepare(**kwargs):
+        events.append(("prepare", kwargs))
+        obj.database = prepared_database
+        return ["scenario-a", "scenario-b"], dataframe
+
+    def fake_write_database(**kwargs):
+        events.append(("database", kwargs))
+
+    def fake_write_package(**kwargs):
+        events.append(("package", kwargs))
+        assert events[-2][0] == "database"
+        return kwargs["filepath"].resolve()
+
+    monkeypatch.setattr(new_database_module.bw2data, "__version__", "4.5.3")
+    monkeypatch.setattr(
+        new_database_module.bw2data,
+        "projects",
+        types.SimpleNamespace(current="scenario-project"),
+    )
+    monkeypatch.setattr(
+        new_database_module,
+        "check_presence_biosphere_database",
+        lambda _: None,
+    )
+    monkeypatch.setattr(
+        new_database_module,
+        "_load_scenario_array_dependencies",
+        lambda: (DummyBwProcessing, object(), object(), object()),
+    )
+    monkeypatch.setattr(
+        new_database_module,
+        "write_brightway_database",
+        fake_write_database,
+    )
+    monkeypatch.setattr(
+        new_database_module,
+        "_write_scenario_array_datapackage",
+        fake_write_package,
+    )
+    monkeypatch.setattr(
+        new_database_module,
+        "end_of_process",
+        lambda scenario: events.append(("end", scenario)),
+    )
+    monkeypatch.setattr(
+        new_database_module,
+        "delete_all_pickles",
+        lambda: events.append(("delete", None)),
+    )
+    obj._prepare_superstructure_export = fake_prepare
+    obj.generate_scenario_report = lambda: events.append(("scenario report", None))
+    obj.generate_change_report = lambda: events.append(("change report", None))
+
+    destination = tmp_path / "scenario arrays.zip"
+    result = obj.write_scenario_array_db_to_brightway(
+        name="scenario-db", filepath=destination
+    )
+
+    assert result == destination.resolve()
+    assert [event[0] for event in events] == [
+        "prepare",
+        "database",
+        "package",
+        "scenario report",
+        "change report",
+        "end",
+        "end",
+        "delete",
+    ]
+    database_call = events[1][1]
+    assert database_call["data"] == prepared_database
+    assert database_call["name"] == "scenario-db"
+    assert database_call["fast"] is True
+    assert database_call["check_internal"] is False
+    assert [
+        s["representative_time"] for s in database_call["metadata"]["scenarios"]
+    ] == [f"{scenario['year']}-01-01T00:00:00" for scenario in obj.scenarios]
+    package_call = events[2][1]
+    assert package_call["dataframe"] is dataframe
+    assert package_call["scenario_labels"] == [
+        "original",
+        "scenario-a",
+        "scenario-b",
+    ]
+    assert package_call["metadata"] == {
+        "database_name": "scenario-db",
+        "brightway_project": "scenario-project",
+        "source_database": "source-db",
+        "ecoinvent_version": "3.12",
+        "premise_version": "2.4.9.2",
+        "scenario_count": 3,
+        "scenario_labels": ["original", "scenario-a", "scenario-b"],
+    }
 
 
 def test_pathways_datapackage_does_not_prevalidate_biosphere_database(monkeypatch):

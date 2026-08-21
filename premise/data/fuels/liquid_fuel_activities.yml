@@ -3,6 +3,13 @@ methanol:
     name:
       - methanol distillation, hydrogen from electrolysis
       - methanol synthesis, hydrogen from electrolysis
+      - methanol distillation, market-average hydrogen, CO2 from DAC
+      - methanol synthesis, market-average hydrogen, CO2 from DAC
+
+ammonia:
+  fltr:
+    name:
+      - ammonia production, with market-average hydrogen
 
 methanol, from coal, with CCS:
   fltr:
@@ -29,3 +36,9 @@ methanol-to-liquids:
     name:
       - gasoline production, from methanol
       - gasoline production, synthetic, from methanol
+      - diesel production, from methanol, market-average hydrogen, CO2 from DAC
+      - diesel production, synthetic, from methanol, market-average hydrogen, CO2 from DAC
+      - kerosene production, from methanol, market-average hydrogen, CO2 from DAC
+      - kerosene production, synthetic, from methanol, market-average hydrogen, CO2 from DAC
+      - liquefied petroleum gas production, from methanol, market-average hydrogen, CO2 from DAC
+      - liquefied petroleum gas production, synthetic, from methanol, market-average hydrogen, CO2 from DAC
