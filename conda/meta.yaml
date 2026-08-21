@@ -66,6 +66,7 @@ outputs:
         - wheel
       run:
         - bw2data >=4.0.0
+        - bw_processing >=1.0
         - python
         - bottleneck
         - bw2io
