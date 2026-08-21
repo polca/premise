@@ -19,12 +19,12 @@ sys.path.insert(0, os.path.abspath(".."))
 
 project = "premise"
 copyright = (
-    "2025, Paul Scherrer Institut, Potsdam Institute for Climate Impact Research"
+    "2026, Paul Scherrer Institut, Potsdam Institute for Climate Impact Research"
 )
 author = "Romain Sacchi, Alois Dirnaichner, Chris Mutel"
 
 # The full version, including alpha/beta/rc tags
-release = "2.4.9.1"
+release = "2.4.9.2"
 
 # -- General configuration ---------------------------------------------------
 

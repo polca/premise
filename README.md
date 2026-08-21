@@ -138,8 +138,10 @@ The best way is to follow [the examples from the Jupyter Notebook](https://githu
 Sequential scenario arrays in Brightway 2.5
 --------------------------------------------
 
-With modern Brightway (`bw2data >= 4`), one export call can write a union
-database plus a compressed, deterministic scenario-array ZIP:
+Available from ``premise`` 2.4.9.2, one export call with modern Brightway
+(`bw2data >= 4`) can write a union database plus a compressed, deterministic
+scenario-array ZIP. Install ``premise[bw25]`` to include the required
+``bw_processing >= 1.0`` dependency.
 
 ```python
 array_path = ndb.write_scenario_array_db_to_brightway(

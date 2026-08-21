@@ -774,7 +774,7 @@ def test_write_scenario_array_writes_database_then_package_and_finalizes_once(
         "brightway_project": "scenario-project",
         "source_database": "source-db",
         "ecoinvent_version": "3.12",
-        "premise_version": "2.4.9.1",
+        "premise_version": "2.4.9.2",
         "scenario_count": 3,
         "scenario_labels": ["original", "scenario-a", "scenario-b"],
     }
