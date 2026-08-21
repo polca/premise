@@ -13,9 +13,7 @@ SCENARIO = {
 
 
 def test_scenario_metadata_describes_scenario_and_time():
-    metadata = scenario_metadata(
-        SCENARIO, version="3.10.1", system_model="cutoff"
-    )
+    metadata = scenario_metadata(SCENARIO, version="3.10.1", system_model="cutoff")
 
     assert metadata["iam_model"] == "remind"
     assert metadata["pathway"] == "SSP2-PkBudg500"
