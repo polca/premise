@@ -236,12 +236,15 @@ def test_write_db_to_brightway_fast_path_runs_internal_check(monkeypatch):
         }
         return prepared_database
 
-    def fake_write_brightway_database(data, name, fast=False, check_internal=True):
+    def fake_write_brightway_database(
+        data, name, fast=False, check_internal=True, metadata=None
+    ):
         captured["written"] = {
             "data": data,
             "name": name,
             "fast": fast,
             "check_internal": check_internal,
+            "metadata": metadata,
         }
 
     monkeypatch.setattr(
@@ -314,12 +317,15 @@ def test_write_db_to_brightway_fast_path_runs_internal_check(monkeypatch):
         "biosphere_name": "test-biosphere",
         "version": "3.12",
     }
-    assert captured["written"] == {
-        "data": prepared_database,
-        "name": "fast-db",
-        "fast": True,
-        "check_internal": True,
-    }
+    assert captured["written"]["data"] == prepared_database
+    assert captured["written"]["name"] == "fast-db"
+    assert captured["written"]["fast"] is True
+    assert captured["written"]["check_internal"] is True
+    assert captured["written"]["metadata"]["iam_model"] == "image"
+    assert captured["written"]["metadata"]["pathway"] == "SSP2-Base"
+    assert (
+        captured["written"]["metadata"]["representative_time"] == "2030-01-01T00:00:00"
+    )
     assert captured["ended"] == [
         {
             "model": "image",
@@ -488,12 +494,15 @@ def test_write_superstructure_to_brightway_uses_fast_writer_after_full_preparati
         }
         return prepared_database
 
-    def fake_write_brightway_database(data, name, fast=False, check_internal=True):
+    def fake_write_brightway_database(
+        data, name, fast=False, check_internal=True, metadata=None
+    ):
         captured["written"] = {
             "data": data,
             "name": name,
             "fast": fast,
             "check_internal": check_internal,
+            "metadata": metadata,
         }
 
     monkeypatch.setattr(
@@ -569,12 +578,13 @@ def test_write_superstructure_to_brightway_uses_fast_writer_after_full_preparati
         "biosphere_name": "test-biosphere",
         "version": "3.12",
     }
-    assert captured["written"] == {
-        "data": prepared_database,
-        "name": "super-db",
-        "fast": True,
-        "check_internal": False,
-    }
+    assert captured["written"]["data"] == prepared_database
+    assert captured["written"]["name"] == "super-db"
+    assert captured["written"]["fast"] is True
+    assert captured["written"]["check_internal"] is False
+    assert [
+        s["representative_time"] for s in captured["written"]["metadata"]["scenarios"]
+    ] == [f"{scenario['year']}-01-01T00:00:00" for scenario in obj.scenarios]
     assert captured["ended"] == obj.scenarios
     assert captured["pickles_deleted"] == 1
 
@@ -745,12 +755,13 @@ def test_write_scenario_array_writes_database_then_package_and_finalizes_once(
         "delete",
     ]
     database_call = events[1][1]
-    assert database_call == {
-        "data": prepared_database,
-        "name": "scenario-db",
-        "fast": True,
-        "check_internal": False,
-    }
+    assert database_call["data"] == prepared_database
+    assert database_call["name"] == "scenario-db"
+    assert database_call["fast"] is True
+    assert database_call["check_internal"] is False
+    assert [
+        s["representative_time"] for s in database_call["metadata"]["scenarios"]
+    ] == [f"{scenario['year']}-01-01T00:00:00" for scenario in obj.scenarios]
     package_call = events[2][1]
     assert package_call["dataframe"] is dataframe
     assert package_call["scenario_labels"] == [

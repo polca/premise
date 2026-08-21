@@ -2,6 +2,15 @@
 
 All notable changes to this project are documented in this file.
 
+## [Unreleased]
+
+### Added
+- Databases exported to Brightway now carry scenario metadata in
+  `bw2data.databases[name]`: `iam_model`, `pathway`, `representative_time`
+  (ISO 8601), `ecoinvent_version`, `system_model`, `premise_version` and,
+  if any, `external_scenarios`. Superstructure and scenario-array databases
+  list their scenarios under `scenarios`.
+
 ## [2.4.9.2]
 
 ### Added
