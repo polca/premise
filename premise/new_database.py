@@ -59,6 +59,7 @@ from .steel import _update_steel
 from .transport import _update_vehicles
 from .utils import (
     cache_ref_exists,
+    database_metadata,
     clear_existing_cache,
     clear_runtime_caches,
     create_scenario_list,
@@ -76,6 +77,7 @@ from .utils import (
     end_of_process,
     create_cache,
     restore_cached_classifications,
+    scenario_metadata,
 )
 from .renewables import _update_wind_turbines
 
@@ -1291,6 +1293,11 @@ class NewDatabase:
             name=name,
             fast=True,
             check_internal=False,
+            metadata=database_metadata(
+                self.scenarios,
+                version=getattr(self, "version", None),
+                system_model=getattr(self, "system_model", None),
+            ),
         )
 
         self._finalize_superstructure_export()
@@ -1359,6 +1366,11 @@ class NewDatabase:
             name=name,
             fast=True,
             check_internal=False,
+            metadata=database_metadata(
+                self.scenarios,
+                version=getattr(self, "version", None),
+                system_model=getattr(self, "system_model", None),
+            ),
         )
 
         ordered_labels = ["original", *scenario_labels]
@@ -1562,6 +1574,11 @@ class NewDatabase:
                     name[s],
                     fast=True,
                     check_internal=True,
+                    metadata=scenario_metadata(
+                        scenario,
+                        version=getattr(self, "version", None),
+                        system_model=getattr(self, "system_model", None),
+                    ),
                 )
                 end_of_process(scenario)
                 continue
@@ -1591,6 +1608,11 @@ class NewDatabase:
             write_brightway_database(
                 scenario["database"],
                 name[s],
+                metadata=scenario_metadata(
+                    scenario,
+                    version=getattr(self, "version", None),
+                    system_model=getattr(self, "system_model", None),
+                ),
             )
 
             end_of_process(scenario)
