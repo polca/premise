@@ -1,5 +1,15 @@
 name: Github Action
-on: [push, pull_request]
+on:
+  push:
+    paths:
+      - "**.py"
+      - "premise/data/**"
+      - "premise/iam_variables_mapping/**"
+  pull_request:
+    paths:
+      - "**.py"
+      - "premise/data/**"
+      - "premise/iam_variables_mapping/**"
 
 jobs:
   clean:

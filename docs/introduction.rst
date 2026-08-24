@@ -1277,11 +1277,11 @@ Or rather use Brightway2 (for Activity Browser-compatibility):
 How to use it?
 --------------
 
-Examples notebook
+Example notebooks
 *****************
 
-`This notebook <https://github.com/polca/premise/blob/master/examples/examples.ipynb>`_ will show
-you everything you need to know to use *premise*.
+The `numbered notebook series <https://github.com/polca/premise/tree/master/examples>`_
+covers quickstarts, scenario inputs, exports, and analysis workflows for *premise*.
 
 ScenarioLink plugin
 *******************

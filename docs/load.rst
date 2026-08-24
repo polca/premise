@@ -302,10 +302,10 @@ parameter uncertainty, weights, seeds, or random sampling.
     that database. These arrays enumerate scenarios deterministically; they are
     not probability-weighted Monte Carlo samples.
 
-The repository's `examples notebook`_ includes the complete three-activity
+The repository's `scenario-array notebook`_ includes the complete three-activity
 workflow and reference scores from an ecoinvent 3.12 validation run.
 
-.. _examples notebook: https://github.com/polca/premise/blob/master/examples/examples.ipynb
+.. _scenario-array notebook: https://github.com/polca/premise/blob/master/examples/07_sequential_scenario_arrays.ipynb
 
 As sparse matrices
 ------------------

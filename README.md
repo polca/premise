@@ -133,7 +133,7 @@ Or rather use Brightway2 (with `activity-browser<3.0.0`-compatibility):
 How to use it?
 --------------
 
-The best way is to follow [the examples from the Jupyter Notebook](https://github.com/polca/premise/blob/master/examples/examples.ipynb). 
+The best way is to follow the [numbered example notebooks](https://github.com/polca/premise/tree/master/examples).
 
 Sequential scenario arrays in Brightway 2.5
 --------------------------------------------
@@ -156,7 +156,7 @@ the joint technosphere and biosphere arrays override the base database. The ZIP
 is project-specific and provides deterministic scenario enumeration, not
 probability-weighted Monte Carlo sampling.
 
-See the [complete three-IMAGE-scenario notebook example](https://github.com/polca/premise/blob/master/examples/examples.ipynb)
+See the [complete three-IMAGE-scenario notebook example](https://github.com/polca/premise/blob/master/examples/07_sequential_scenario_arrays.ipynb)
 and the [Brightway loading guide](https://premise.readthedocs.io/en/latest/load.html#sequential-scenario-arrays-modern-brightway)
 for database creation, exact activity matching, multi-activity LCIA, and
 wraparound/base-database checks.
