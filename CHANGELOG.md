@@ -30,6 +30,9 @@ All notable changes to this project are documented in this file.
 - Included matching production rows when changed self-consumption exchanges
   are netted into technosphere diagonals, preventing invalid or singular
   scenario matrices.
+- Excluded shared hydrogen transport and conversion support activities from
+  end-user market relinking, preventing circular and cross-sector hydrogen
+  supply chains.
 
 ### Documentation
 - Added a complete three-pathway IMAGE 2050 example for the
@@ -41,6 +44,8 @@ All notable changes to this project are documented in this file.
 - Added unit and orchestration coverage for scenario ordering, values, indices,
   technosphere flips, biosphere placement, structural zeros, validation errors,
   atomic ZIP output, and production/self-consumption netting.
+- Added regression coverage ensuring hydrogen logistics activities retain their
+  generic make-up hydrogen inputs.
 - Validated the export end to end with IMAGE SSP1-L, SSP2-M, and SSP3-H for
   2050, checking three activities against the original database and confirming
   deterministic scenario selection and wraparound.

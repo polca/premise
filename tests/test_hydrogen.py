@@ -515,6 +515,83 @@ def test_hydrogen_consumer_is_relinked_to_sector_market():
     assert hydrogen.skipped_hydrogen_consumers == []
 
 
+@pytest.mark.parametrize(
+    ("name", "reference_product"),
+    [
+        (
+            "transport, hydrogen, gaseous, lorry, unspecified",
+            "transport, hydrogen, gaseous, lorry, unspecified",
+        ),
+        (
+            "transport, hydrogen, liquid, lorry, unspecified",
+            "transport, hydrogen, liquid, lorry, unspecified",
+        ),
+        (
+            "hydrogen supply, distributed by pipeline",
+            "hydrogen, gaseous, from pipeline",
+        ),
+        (
+            "transport, freight, sea, tanker for liquefied ammonia, "
+            "ammonia and mgo",
+            "transport, freight, sea, tanker for liquefied ammonia, "
+            "ammonia and mgo",
+        ),
+        (
+            "transport, freight, sea, tanker for liquefied hydrogen, "
+            "heavy fuel oil",
+            "transport, freight, sea, tanker for liquefied hydrogen, "
+            "heavy fuel oil",
+        ),
+        ("gaseous hydrogen production", "gaseous hydrogen production"),
+        ("liquid hydrogen production", "liquid hydrogen production"),
+        (
+            "liquid hydrogen regasification",
+            "liquid hydrogen regasification",
+        ),
+        ("liquid ammonia production", "liquid ammonia production"),
+        ("ammonia cracking", "ammonia cracking"),
+    ],
+)
+def test_hydrogen_logistics_activities_are_not_end_user_relinked(
+    name, reference_product
+):
+    hydrogen = HydrogenMixin()
+    hydrogen.database = [
+        {
+            "name": name,
+            "reference product": reference_product,
+            "location": "RER",
+            "unit": "kilogram",
+            "classifications": [
+                (
+                    "ISIC rev.4 ecoinvent",
+                    "2410:Manufacture of basic iron and steel",
+                )
+            ],
+            "exchanges": [
+                {
+                    "name": "market for hydrogen, gaseous, low pressure",
+                    "product": "hydrogen, gaseous, low pressure",
+                    "location": "RER",
+                    "unit": "kilogram",
+                    "type": "technosphere",
+                    "amount": 0.2,
+                }
+            ],
+        }
+    ]
+
+    relinked = hydrogen.relink_hydrogen_consumers_to_sector_markets()
+
+    assert relinked == 0
+    assert hydrogen.database[0]["exchanges"][0]["name"] == (
+        "market for hydrogen, gaseous, low pressure"
+    )
+    assert hydrogen.matched_hydrogen_consumers == []
+    assert hydrogen.unmatched_hydrogen_consumers == []
+    assert hydrogen.skipped_hydrogen_consumers[0]["candidate sectors"] == []
+
+
 def test_consumer_stays_on_general_market_when_sector_market_unavailable():
     hydrogen = HydrogenMixin()
     hydrogen.model = "test-model"

@@ -162,15 +162,15 @@ HYDROGEN_TRANSPORT_ACTIVITIES = {
     },
 }
 HYDROGEN_CONVERSION_ACTIVITIES = {
-    "gaseous": {
+    "gaseous": {  # Compression for gaseous transport.
         "name": "gaseous hydrogen production",
         "reference product": "gaseous hydrogen production",
     },
-    "liquid": {
+    "liquid": {  # Liquefaction.
         "name": "liquid hydrogen production",
         "reference product": "liquid hydrogen production",
     },
-    "liquid_regasification": {
+    "liquid_regasification": {  # Reconversion to gaseous hydrogen.
         "name": "liquid hydrogen regasification",
         "reference product": "liquid hydrogen regasification",
     },
@@ -238,6 +238,30 @@ class HydrogenMixin:
             dataset.get("reference product") == HYDROGEN_PRODUCT
             or dataset.get("name") == HYDROGEN_MARKET
             or dataset.get("name") in HYDROGEN_END_USE_MARKETS.values()
+        )
+
+    # Consumer relinking workflow: keep shared logistics support datasets
+    # sector-neutral.
+    @staticmethod
+    def _is_hydrogen_end_user_relinking_exception(dataset):
+        """Return whether a dataset supports, rather than consumes, an end use.
+
+        Hydrogen transport and conversion activities are shared inputs to
+        sector-specific markets. Relinking their make-up hydrogen to a sector
+        market would assign the shared activity to whichever sector its name or
+        classification happens to match and can create circular supply chains.
+        """
+
+        name = dataset.get("name")
+        reference_product = dataset.get("reference product")
+        support_activities = (
+            *HYDROGEN_TRANSPORT_ACTIVITIES.values(),
+            *HYDROGEN_CONVERSION_ACTIVITIES.values(),
+        )
+        return any(
+            name == activity["name"]
+            and reference_product == activity["reference product"]
+            for activity in support_activities
         )
 
     # Consumer relinking workflow: check whether a consumer should stay on the generic market.
@@ -470,7 +494,9 @@ class HydrogenMixin:
             if not hydrogen_exchanges:
                 continue
 
-            if self._keep_general_hydrogen_market(dataset):
+            if self._is_hydrogen_end_user_relinking_exception(
+                dataset
+            ) or self._keep_general_hydrogen_market(dataset):
                 self.skipped_hydrogen_consumers.extend(
                     self._hydrogen_consumer_warning(dataset, exchange, [])
                     for exchange in hydrogen_exchanges
