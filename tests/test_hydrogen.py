@@ -187,6 +187,29 @@ def test_hydrogen_logistics_uses_target_year_and_excludes_world():
     assert hydrogen.hydrogen_demand_nodes["validation_status"].item() == "ok"
 
 
+@pytest.mark.parametrize(
+    ("demand", "expected_rule"),
+    [
+        (0, "default_small_demand"),
+        (999.5, "default_small_demand"),
+        (1000, "default_medium_demand"),
+        (4999.5, "default_medium_demand"),
+        (5000, "default_large_demand"),
+        (49999.5, "default_large_demand"),
+        (50000, "default_very_large_demand"),
+    ],
+)
+def test_hydrogen_distribution_demand_intervals(demand, expected_rule):
+    hydrogen = HydrogenMixin()
+    row = pd.Series(
+        {"hydrogen_demand_t_per_node_per_year": demand}
+    )
+
+    rule = hydrogen._select_hydrogen_distribution_rule(row)
+
+    assert rule["name"] == expected_rule
+
+
 def test_sector_market_regions_exclude_all_world_spelling_variants():
     hydrogen = HydrogenMixin()
     hydrogen.model = "remind"

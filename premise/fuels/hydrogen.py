@@ -1294,9 +1294,15 @@ class HydrogenMixin:
             return True
         if pd.isna(value):
             return False
-        if "min" in condition and value < condition["min"]:
+        if (
+            "min_demand" in condition
+            and value < condition["min_demand"]
+        ):
             return False
-        if "max" in condition and value > condition["max"]:
+        if (
+            "max_demand" in condition
+            and value >= condition["max_demand"]
+        ):
             return False
         return True
 
