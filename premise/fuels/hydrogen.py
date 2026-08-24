@@ -170,6 +170,10 @@ HYDROGEN_CONVERSION_ACTIVITIES = {
         "name": "liquid hydrogen production",
         "reference product": "liquid hydrogen production",
     },
+    "liquid_regasification": {
+        "name": "liquid hydrogen regasification",
+        "reference product": "liquid hydrogen regasification",
+    },
     "liquid_ammonia": {
         "name": "liquid ammonia production",
         "reference product": "liquid ammonia production",
@@ -181,9 +185,15 @@ HYDROGEN_CONVERSION_ACTIVITIES = {
 }
 HYDROGEN_TRANSPORT_CONVERSION_MAP = {
     "compressed_gaseous_truck": ("gaseous",),
-    "liquid_hydrogen_truck": ("liquid",),
-    "liquid_hydrogen_ship": ("liquid",),
+    "liquid_hydrogen_truck": ("liquid", "liquid_regasification"),
+    "liquid_hydrogen_ship": ("liquid", "liquid_regasification"),
     "liquid_ammonia_ship": ("liquid_ammonia", "ammonia_cracking"),
+}
+KG_AMMONIA_PRODUCED_PER_KG_HYDROGEN = 1 / 0.175
+KG_AMMONIA_CRACKED_PER_KG_HYDROGEN = 7.67
+HYDROGEN_CONVERSION_AMOUNTS_PER_KG_HYDROGEN = {
+    "liquid_ammonia": KG_AMMONIA_PRODUCED_PER_KG_HYDROGEN,
+    "ammonia_cracking": KG_AMMONIA_CRACKED_PER_KG_HYDROGEN,
 }
 HYDROGEN_TRANSPORT_DISTANCES_KM = {
     "compressed_gaseous_truck": 50,
@@ -1758,16 +1768,23 @@ class HydrogenMixin:
         distance = HYDROGEN_TRANSPORT_DISTANCES_KM[mode]
         return share * distance * KG_TO_TONNE
 
-    # Sector-market conversion workflow: aggregate transport shares by conversion type.
+    # Sector-market conversion workflow: convert mode shares to conversion activity amounts.
     @staticmethod
-    def _hydrogen_conversion_shares_for_sector_market(shares):
-        conversion_shares = defaultdict(float)
+    def _hydrogen_conversion_amounts_for_sector_market(shares):
+        conversion_amounts = defaultdict(float)
         for mode, conversions in HYDROGEN_TRANSPORT_CONVERSION_MAP.items():
             share = shares.get(mode, 0)
             if share > 0:
                 for conversion in conversions:
-                    conversion_shares[conversion] += share
-        return dict(conversion_shares)
+                    amount_per_kg_hydrogen = (
+                        HYDROGEN_CONVERSION_AMOUNTS_PER_KG_HYDROGEN.get(
+                            conversion, 1
+                        )
+                    )
+                    conversion_amounts[conversion] += (
+                        share * amount_per_kg_hydrogen
+                    )
+        return dict(conversion_amounts)
 
     # Sector-market transport workflow: attach configured transport inputs to sector markets.
     def _add_transport_to_sector_specific_hydrogen_market(self, dataset):
@@ -1801,10 +1818,10 @@ class HydrogenMixin:
                 )
             )
 
-        conversion_shares = self._hydrogen_conversion_shares_for_sector_market(
+        conversion_amounts = self._hydrogen_conversion_amounts_for_sector_market(
             shares
         )
-        for conversion, share in conversion_shares.items():
+        for conversion, amount in conversion_amounts.items():
             supplier = self._select_hydrogen_conversion_supplier(
                 conversion, dataset["location"]
             )
@@ -1812,6 +1829,6 @@ class HydrogenMixin:
                 self._hydrogen_transport_exchange(
                     activity=supplier,
                     location=supplier["location"],
-                    amount=share,
+                    amount=amount,
                 )
             )

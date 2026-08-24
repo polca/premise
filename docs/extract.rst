@@ -731,10 +731,13 @@ the spreadsheet directly; it resolves the activities from the imported database.
 
 Gaseous-truck transport also adds the regionalized ``gaseous hydrogen
 production`` conversion activity according to its distribution share. Liquid
-hydrogen transport by truck or ship similarly adds ``liquid hydrogen
-production`` according to the combined share of those modes. The conversion
-datasets and their technosphere inputs are relinked to the corresponding IAM
-region before the sector-specific markets are created.
+hydrogen transport by truck or ship similarly adds both ``liquid hydrogen
+production`` and ``liquid hydrogen regasification`` according to the combined
+share of those modes. The conversion datasets and their technosphere inputs are
+relinked to the corresponding IAM region before the sector-specific markets are
+created. Liquid-ammonia transport adds ``1 / 0.175`` kilograms of ``liquid
+ammonia production`` and ``7.67`` kilograms of ``ammonia cracking`` per
+kilogram of hydrogen assigned to that distribution mode.
 
 
 .. _Wulf: https://www.sciencedirect.com/science/article/pii/S095965261832170X

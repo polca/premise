@@ -287,6 +287,12 @@ def test_sector_hydrogen_market_gets_weighted_transport_exchanges():
             "location": "EUR",
             "unit": "kilogram",
         },
+        {
+            "name": "liquid hydrogen regasification",
+            "reference product": "liquid hydrogen regasification",
+            "location": "EUR",
+            "unit": "kilogram",
+        },
     ]
     hydrogen.hydrogen_demand_nodes = pd.DataFrame(
         [
@@ -329,6 +335,7 @@ def test_sector_hydrogen_market_gets_weighted_transport_exchanges():
     pipeline = exchanges["hydrogen supply, distributed by pipeline"]
     gaseous_conversion = exchanges["gaseous hydrogen production"]
     liquid_conversion = exchanges["liquid hydrogen production"]
+    liquid_regasification = exchanges["liquid hydrogen regasification"]
 
     assert truck["amount"] == 0.01875
     assert truck["location"] == "GLO"
@@ -340,6 +347,30 @@ def test_sector_hydrogen_market_gets_weighted_transport_exchanges():
     assert pipeline["location"] == "EUR"
     assert gaseous_conversion["amount"] == 0.375
     assert liquid_conversion["amount"] == 0.125
+    assert liquid_regasification["amount"] == 0.125
+
+
+def test_liquid_hydrogen_transport_modes_add_regasification():
+    amounts = HydrogenMixin._hydrogen_conversion_amounts_for_sector_market(
+        {
+            "liquid_hydrogen_truck": 0.2,
+            "liquid_hydrogen_ship": 0.3,
+        }
+    )
+
+    assert amounts == {
+        "liquid": 0.5,
+        "liquid_regasification": 0.5,
+    }
+
+
+def test_ammonia_conversion_and_reconversion_use_distinct_mass_factors():
+    amounts = HydrogenMixin._hydrogen_conversion_amounts_for_sector_market(
+        {"liquid_ammonia_ship": 0.4}
+    )
+
+    assert amounts["liquid_ammonia"] == pytest.approx(0.4 / 0.175)
+    assert amounts["ammonia_cracking"] == pytest.approx(0.4 * 7.67)
 
 
 def test_general_hydrogen_market_name_has_no_sector_transport_shares():
