@@ -37,7 +37,7 @@ import premise.new_database as new_database_module
 import premise.pathways as pathways_module
 from premise.new_database import NewDatabase, check_presence_biosphere_database
 from premise.pathways import PathwaysDataPackage
-from premise.utils import get_cache_manifest_path
+from premise.utils import get_cache_manifest_path, warning_about_biogenic_co2
 
 
 class DummyIAMDataCollection:
@@ -46,6 +46,13 @@ class DummyIAMDataCollection:
 
     def get_external_data(self, external_scenarios):
         return {}
+
+
+def test_nonquiet_constructor_warning_is_imported():
+    assert (
+        new_database_module.warning_about_biogenic_co2
+        is warning_about_biogenic_co2
+    )
 
 
 def _write_cache_manifest(cache_ref, *shard_files):

@@ -78,6 +78,7 @@ from .utils import (
     resolve_cache_ref,
     restore_cached_classifications,
     scenario_metadata,
+    warning_about_biogenic_co2,
 )
 
 logger = logging.getLogger("module")
