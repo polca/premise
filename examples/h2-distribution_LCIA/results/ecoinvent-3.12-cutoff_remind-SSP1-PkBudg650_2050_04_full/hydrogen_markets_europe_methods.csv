@@ -1,0 +1,29 @@
+method,impact category,indicator,unit
+"('EF v3.1', 'acidification', 'accumulated exceedance (AE)')",acidification,accumulated exceedance (AE),mol H+-Eq
+"('EF v3.1', 'climate change', 'global warming potential (GWP100)')",climate change,global warming potential (GWP100),kg CO2-Eq
+"('EF v3.1', 'climate change: biogenic', 'global warming potential (GWP100)')",climate change: biogenic,global warming potential (GWP100),kg CO2-Eq
+"('EF v3.1', 'climate change: fossil', 'global warming potential (GWP100)')",climate change: fossil,global warming potential (GWP100),kg CO2-Eq
+"('EF v3.1', 'climate change: land use and land use change', 'global warming potential (GWP100)')",climate change: land use and land use change,global warming potential (GWP100),kg CO2-Eq
+"('EF v3.1', 'ecotoxicity: freshwater', 'comparative toxic unit for ecosystems (CTUe)')",ecotoxicity: freshwater,comparative toxic unit for ecosystems (CTUe),CTUe
+"('EF v3.1', 'ecotoxicity: freshwater, inorganics', 'comparative toxic unit for ecosystems (CTUe)')","ecotoxicity: freshwater, inorganics",comparative toxic unit for ecosystems (CTUe),CTUe
+"('EF v3.1', 'ecotoxicity: freshwater, organics', 'comparative toxic unit for ecosystems (CTUe)')","ecotoxicity: freshwater, organics",comparative toxic unit for ecosystems (CTUe),CTUe
+"('EF v3.1', 'energy resources: non-renewable', 'abiotic depletion potential (ADP): fossil fuels')",energy resources: non-renewable,abiotic depletion potential (ADP): fossil fuels,"MJ, net calorific value"
+"('EF v3.1', 'eutrophication: freshwater', 'fraction of nutrients reaching freshwater end compartment (P)')",eutrophication: freshwater,fraction of nutrients reaching freshwater end compartment (P),kg P-Eq
+"('EF v3.1', 'eutrophication: marine', 'fraction of nutrients reaching marine end compartment (N)')",eutrophication: marine,fraction of nutrients reaching marine end compartment (N),kg N-Eq
+"('EF v3.1', 'eutrophication: terrestrial', 'accumulated exceedance (AE)')",eutrophication: terrestrial,accumulated exceedance (AE),mol N-Eq
+"('EF v3.1', 'human toxicity: carcinogenic', 'comparative toxic unit for human (CTUh)')",human toxicity: carcinogenic,comparative toxic unit for human (CTUh),CTUh
+"('EF v3.1', 'human toxicity: carcinogenic, inorganics', 'comparative toxic unit for human (CTUh)')","human toxicity: carcinogenic, inorganics",comparative toxic unit for human (CTUh),CTUh
+"('EF v3.1', 'human toxicity: carcinogenic, organics', 'comparative toxic unit for human (CTUh)')","human toxicity: carcinogenic, organics",comparative toxic unit for human (CTUh),CTUh
+"('EF v3.1', 'human toxicity: non-carcinogenic', 'comparative toxic unit for human (CTUh)')",human toxicity: non-carcinogenic,comparative toxic unit for human (CTUh),CTUh
+"('EF v3.1', 'human toxicity: non-carcinogenic, inorganics', 'comparative toxic unit for human (CTUh)')","human toxicity: non-carcinogenic, inorganics",comparative toxic unit for human (CTUh),CTUh
+"('EF v3.1', 'human toxicity: non-carcinogenic, organics', 'comparative toxic unit for human (CTUh)')","human toxicity: non-carcinogenic, organics",comparative toxic unit for human (CTUh),CTUh
+"('EF v3.1', 'ionising radiation: human health', 'human exposure efficiency relative to u235')",ionising radiation: human health,human exposure efficiency relative to u235,kBq U235-Eq
+"('EF v3.1', 'land use', 'soil quality index')",land use,soil quality index,dimensionless
+"('EF v3.1', 'material resources: metals/minerals', 'abiotic depletion potential (ADP): elements (ultimate reserves)')",material resources: metals/minerals,abiotic depletion potential (ADP): elements (ultimate reserves),kg Sb-Eq
+"('EF v3.1', 'ozone depletion', 'ozone depletion potential (ODP)')",ozone depletion,ozone depletion potential (ODP),kg CFC-11-Eq
+"('EF v3.1', 'particulate matter formation', 'impact on human health')",particulate matter formation,impact on human health,disease incidence
+"('EF v3.1', 'photochemical oxidant formation: human health', 'tropospheric ozone concentration increase')",photochemical oxidant formation: human health,tropospheric ozone concentration increase,kg NMVOC-Eq
+"('EF v3.1', 'water use', 'user deprivation potential (deprivation-weighted water consumption)')",water use,user deprivation potential (deprivation-weighted water consumption),m3 world Eq deprived
+"('IPCC 2021', 'climate change', 'GWP 100a, incl. H')","climate change — GWP 100a, incl. H (premise_gwp)","GWP 100a, incl. H",kg CO2-Eq
+"('Cumulative Energy Demand (CED)', 'energy resources: non-renewable', 'energy content (HHV)')",cumulative energy demand: non-renewable resources,energy content (HHV),MJ-Eq
+"('Cumulative Energy Demand (CED)', 'energy resources: renewable', 'energy content (HHV)')",cumulative energy demand: renewable sources,energy content (HHV),MJ-Eq

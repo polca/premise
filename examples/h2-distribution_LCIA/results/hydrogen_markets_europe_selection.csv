@@ -1,0 +1,7 @@
+comparison label,name,reference product,location,unit,database key
+Generic,"market for hydrogen, gaseous, low pressure","hydrogen, gaseous, low pressure",RER,kilogram,"('ecoinvent-3.12-cutoff_remind-SSP1-PkBudg650_2050_04_full', 'cfb1e2f766b7439583b88158234cc559')"
+Transport,"market for hydrogen, gaseous, low pressure, for transport","hydrogen, gaseous, low pressure",EUR,kilogram,"('ecoinvent-3.12-cutoff_remind-SSP1-PkBudg650_2050_04_full', '701afb5021dd4e04ab623bd1676e7cec')"
+Chemicals,"market for hydrogen, gaseous, low pressure, for chemicals","hydrogen, gaseous, low pressure",EUR,kilogram,"('ecoinvent-3.12-cutoff_remind-SSP1-PkBudg650_2050_04_full', '861ff0cc677442ed8f2a15dc177116aa')"
+Steel,"market for hydrogen, gaseous, low pressure, for steel","hydrogen, gaseous, low pressure",EUR,kilogram,"('ecoinvent-3.12-cutoff_remind-SSP1-PkBudg650_2050_04_full', 'c1d6e983bcbe42d8a57bec69b85ebfb9')"
+Cement,"market for hydrogen, gaseous, low pressure, for cement","hydrogen, gaseous, low pressure",EUR,kilogram,"('ecoinvent-3.12-cutoff_remind-SSP1-PkBudg650_2050_04_full', 'd4276388184540c2adc386d92e02657f')"
+Other end uses,"market for hydrogen, gaseous, low pressure, for other end uses","hydrogen, gaseous, low pressure",EUR,kilogram,"('ecoinvent-3.12-cutoff_remind-SSP1-PkBudg650_2050_04_full', '369bb524c9f848c28bec2bb0cf6e6326')"

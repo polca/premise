@@ -1,0 +1,7 @@
+market,method,impact category,unit,total score,Layer 1 reconstructed score,Layer 1 difference,Layer 2 reconstructed score,Layer 2 difference
+Generic,"('IPCC 2021', 'climate change', 'GWP 100a, incl. H')","climate change — GWP 100a, incl. H (premise_gwp)",kg CO2-Eq,0.5896335360036256,0.5896335360059546,2.3290258610586534e-12,0.5896335400578857,4.054260149821687e-09
+Transport,"('IPCC 2021', 'climate change', 'GWP 100a, incl. H')","climate change — GWP 100a, incl. H (premise_gwp)",kg CO2-Eq,0.6179114282145076,0.6179114272287991,-9.857085148112787e-10,0.6179114312807302,3.0662226091493494e-09
+Chemicals,"('IPCC 2021', 'climate change', 'GWP 100a, incl. H')","climate change — GWP 100a, incl. H (premise_gwp)",kg CO2-Eq,0.5674272928922389,0.567427291570992,-1.3212468896739438e-09,0.5674272956229232,2.7306842342866844e-09
+Steel,"('IPCC 2021', 'climate change', 'GWP 100a, incl. H')","climate change — GWP 100a, incl. H (premise_gwp)",kg CO2-Eq,0.6477818763424286,0.6477818742520034,-2.090425166301202e-09,0.6477818783039346,1.9615060686817287e-09
+Cement,"('IPCC 2021', 'climate change', 'GWP 100a, incl. H')","climate change — GWP 100a, incl. H (premise_gwp)",kg CO2-Eq,0.6477818763424286,0.6477818742520034,-2.090425166301202e-09,0.6477818783039346,1.9615060686817287e-09
+Other end uses,"('IPCC 2021', 'climate change', 'GWP 100a, incl. H')","climate change — GWP 100a, incl. H (premise_gwp)",kg CO2-Eq,0.6529844444129502,0.6529844441187643,-2.941858978644518e-10,0.6529844481706955,3.757745226096176e-09
