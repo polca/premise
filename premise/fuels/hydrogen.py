@@ -102,6 +102,8 @@ PASSENGER_CAR_AVERAGE_DISTANCE_KM_PER_YEAR = 10_900
 FREIGHT_VEHICLE_AVERAGE_DISTANCE_KM_PER_YEAR = 23_900
 PASSENGER_CARS_PER_STATION_PER_DAY = 1_500
 FREIGHT_VEHICLES_PER_STATION_PER_DAY = 400
+PASSENGER_CAR_REFUELING_INTERVAL_DAYS = 7
+FREIGHT_VEHICLE_REFUELING_INTERVAL_DAYS = 3.5
 BILLION_KM_TO_KM = 1_000_000_000
 VEHICLE_OCCUPANCY = 1.5
 FREIGHT_LOAD = 15
@@ -1095,14 +1097,24 @@ class HydrogenMixin:
                 "average_distance_km_per_year": (
                     PASSENGER_CAR_AVERAGE_DISTANCE_KM_PER_YEAR
                 ),
-                "vehicles_per_station": PASSENGER_CARS_PER_STATION_PER_DAY,
+                "station_throughput_vehicles_per_day": (
+                    PASSENGER_CARS_PER_STATION_PER_DAY
+                ),
+                "refueling_interval_days": (
+                    PASSENGER_CAR_REFUELING_INTERVAL_DAYS
+                ),
                 "service_divisor": VEHICLE_OCCUPANCY,
             },
             "road_freight": {
                 "average_distance_km_per_year": (
                     FREIGHT_VEHICLE_AVERAGE_DISTANCE_KM_PER_YEAR
                 ),
-                "vehicles_per_station": FREIGHT_VEHICLES_PER_STATION_PER_DAY,
+                "station_throughput_vehicles_per_day": (
+                    FREIGHT_VEHICLES_PER_STATION_PER_DAY
+                ),
+                "refueling_interval_days": (
+                    FREIGHT_VEHICLE_REFUELING_INTERVAL_DAYS
+                ),
                 "service_divisor": FREIGHT_LOAD,
             },
         }
@@ -1154,9 +1166,15 @@ class HydrogenMixin:
                     service["hydrogen_transport_service_km_per_year"]
                     / vehicle_assumptions["average_distance_km_per_year"]
                 )
-                service["demand_nodes"] = (
+                service["refuelings_per_day"] = (
                     service["transport_vehicle_count"]
-                    / vehicle_assumptions["vehicles_per_station"]
+                    / vehicle_assumptions["refueling_interval_days"]
+                )
+                service["demand_nodes"] = (
+                    service["refuelings_per_day"]
+                    / vehicle_assumptions[
+                        "station_throughput_vehicles_per_day"
+                    ]
                 )
                 rows.append(service)
 

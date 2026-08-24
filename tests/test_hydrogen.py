@@ -187,6 +187,57 @@ def test_hydrogen_logistics_uses_target_year_and_excludes_world():
     assert hydrogen.hydrogen_demand_nodes["validation_status"].item() == "ok"
 
 
+def test_transport_fueling_stations_include_refueling_frequency(monkeypatch):
+    hydrogen = HydrogenMixin()
+    hydrogen.model = "test-model"
+
+    passenger_variable = "Passenger FCEV hydrogen service"
+    freight_variable = "Freight FCEV hydrogen service"
+    hydrogen.iam_data = type(
+        "IamData",
+        (),
+        {
+            "data": xr.DataArray(
+                [
+                    [[2.4525]],  # 150,000 passenger cars
+                    [[14.34]],  # 40,000 freight vehicles
+                ],
+                dims=["variables", "region", "year"],
+                coords={
+                    "variables": [passenger_variable, freight_variable],
+                    "region": ["EUR"],
+                    "year": [2030],
+                },
+            )
+        },
+    )()
+
+    mappings = {
+        "transport_passenger_cars.yaml": {
+            "passenger car, fuel cell electric": {
+                "iam_aliases": {"test-model": passenger_variable},
+                "ecoinvent_fuel_aliases": {"fltr": "hydrogen"},
+            }
+        },
+        "transport_road_freight.yaml": {
+            "truck, fuel cell electric": {
+                "iam_aliases": {"test-model": freight_variable},
+                "ecoinvent_fuel_aliases": {"fltr": "hydrogen"},
+            }
+        },
+    }
+    monkeypatch.setattr(
+        "premise.fuels.hydrogen.fetch_mapping",
+        lambda path: mappings[path.name],
+    )
+
+    result = hydrogen._get_transport_fueling_stations()
+
+    # Passenger: 150,000 / 7 / 1,500; freight: 40,000 / 3.5 / 400.
+    assert result["activity_proxy_value"].item() == pytest.approx(190_000)
+    assert result["demand_nodes"].item() == pytest.approx(300 / 7)
+
+
 @pytest.mark.parametrize(
     ("demand", "expected_rule"),
     [
