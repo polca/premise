@@ -36,6 +36,14 @@ HYDROGEN_LOG_COLUMNS = [
 
 
 def _update_fuels(scenario, version, system_model):
+    """Apply the fuel transformation to one scenario.
+
+    Hydrogen logistics and its audit log are prerequisites for hydrogen market
+    generation.  Exceptions from either step deliberately propagate so that a
+    scenario cannot be returned with sector-specific hydrogen markets or
+    relinked consumers but without the corresponding transport burdens and
+    diagnostics.
+    """
 
     fuels = Fuels(
         database=scenario["database"],
@@ -58,12 +66,12 @@ def _update_fuels(scenario, version, system_model):
             scenario["iam data"].hydrogen_blend,
         )
     ):
-        try:
-            fuels.set_hydrogen_logistics()
-            scenario["hydrogen demand nodes"] = fuels.hydrogen_demand_nodes
-            fuels.write_hydrogen_demand_node_logs()
-        except Exception as exc:
-            print(f"Could not create hydrogen demand nodes analysis: {exc}")
+        # These operations are mandatory and intentionally fail fast.  Market
+        # creation and consumer relinking must never continue with missing
+        # logistics data or without its audit log.
+        fuels.set_hydrogen_logistics()
+        scenario["hydrogen demand nodes"] = fuels.hydrogen_demand_nodes
+        fuels.write_hydrogen_demand_node_logs()
 
         fuels.generate_hydrogen_activities()
         fuels.relink_hydrogen_consumers_to_sector_markets()

@@ -33,12 +33,17 @@ All notable changes to this project are documented in this file.
 - Excluded shared hydrogen transport and conversion support activities from
   end-user market relinking, preventing circular and cross-sector hydrogen
   supply chains.
+- Made hydrogen logistics calculation and audit logging fail fast. Fuel updates
+  no longer continue to sector-market creation or consumer relinking after
+  either prerequisite fails, preventing apparently successful partial results
+  without the intended transport burdens or diagnostics.
 
 ### Documentation
 - Added a complete three-pathway IMAGE 2050 example for the
   `ecoinvent-3.12-cutoff` project to the examples notebook, loading guide,
   and README, including multi-activity scoring, base-database validation,
   synchronized scenario selection, and wraparound behavior.
+- Documented mandatory hydrogen logistics and audit-log failure handling.
 
 ### Tests
 - Added unit and orchestration coverage for scenario ordering, values, indices,
@@ -46,6 +51,8 @@ All notable changes to this project are documented in this file.
   atomic ZIP output, and production/self-consumption netting.
 - Added regression coverage ensuring hydrogen logistics activities retain their
   generic make-up hydrogen inputs.
+- Added regression coverage proving that logistics, audit-log, and hydrogen
+  market-creation failures propagate before later consumer relinking.
 - Validated the export end to end with IMAGE SSP1-L, SSP2-M, and SSP3-H for
   2050, checking three activities against the original database and confirming
   deterministic scenario selection and wraparound.

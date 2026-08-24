@@ -37,6 +37,17 @@ negative fuel burden.
 The sign rule is enabled for generated liquid-fuel, gas, and hydrogen markets. It is
 not applied to consequential markets or to non-treatment suppliers.
 
+Hydrogen logistics failure handling
+-----------------------------------
+
+Hydrogen demand-node calculation and its audit log are mandatory prerequisites for
+creating hydrogen markets. If demand-node calculation, log writing, or hydrogen
+market creation fails, the exception is propagated and the fuel update stops. In
+particular, sector-specific hydrogen markets are not created and consumers are not
+relinked after a logistics or logging failure. This fail-fast behavior prevents a
+partially transformed scenario from appearing successful while omitting its intended
+hydrogen transport burdens or required diagnostics.
+
 LCIA regression baselines
 -------------------------
 
