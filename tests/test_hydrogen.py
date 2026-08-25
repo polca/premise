@@ -130,6 +130,18 @@ def test_image_market_availability_uses_preferred_steel_level():
             [[0], [5]],
         ],
     )
+    hydrogen.hydrogen_demand_nodes = pd.DataFrame(
+        [
+            {
+                "year": 2030,
+                "region": "EUR",
+                "subsector": "Steel",
+                "demand_node_type": "steel_plants",
+                "demand_nodes": 2,
+                "hydrogen_demand_t_per_node_per_year": 1000,
+            }
+        ]
+    )
 
     available = hydrogen._available_hydrogen_sector_market_regions()
 
@@ -272,6 +284,18 @@ def test_sector_market_regions_exclude_all_world_spelling_variants():
         regions=["EUR", "World", "WORLD", "world"],
         values=[[[1], [1], [1], [1]]],
     )
+    hydrogen.hydrogen_demand_nodes = pd.DataFrame(
+        [
+            {
+                "year": 2030,
+                "region": "EUR",
+                "subsector": "Cement",
+                "demand_node_type": "cement_plants",
+                "demand_nodes": 2,
+                "hydrogen_demand_t_per_node_per_year": 1000,
+            }
+        ]
+    )
 
     available = hydrogen._available_hydrogen_sector_market_regions()
 
@@ -296,6 +320,96 @@ def test_message_hydrogen_final_energy_sums_selected_chemical_details():
 
     assert result["subsector"].tolist() == ["Chemicals"]
     assert result["hydrogen_final_energy_ej_per_year"].item() == 6
+
+
+@pytest.mark.parametrize(
+    ("model", "subsector", "final_energy_variable"),
+    [
+        ("remind", "Steel", "Industry - Steel - All steel - H2"),
+        ("remind-eu", "Steel", "Industry - Steel - All steel - H2"),
+        ("image", "Steel", "Industry - Steel - All steel - H2"),
+        ("message", "Steel", "Industry - Steel - All steel - H2"),
+        ("gcam", "Steel", "Industry - Steel - BF/BOF - H2"),
+        ("remind", "Cement", "Industry - Cement - H2"),
+        ("remind-eu", "Cement", "Industry - Cement - H2"),
+        ("image", "Cement", "Industry - Cement - H2"),
+        ("message", "Cement", "Industry - Cement - H2"),
+        ("gcam", "Cement", "Industry - Cement - H2"),
+    ],
+)
+def test_plant_based_market_is_skipped_without_production_proxy(
+    model, subsector, final_energy_variable
+):
+    hydrogen = HydrogenMixin()
+    hydrogen.model = model
+    hydrogen.scenario = "test-scenario"
+    hydrogen.year = 2030
+    hydrogen.system_model = "cut-off"
+    hydrogen.regions = ["EUR", "World"]
+    hydrogen.iam_data = make_iam_data(
+        variables=[
+            "hydrogen electrolysis",
+            final_energy_variable,
+        ],
+        regions=["EUR"],
+        values=[[[1]], [[1]]],
+    )
+    hydrogen.iam_data.data = hydrogen.iam_data.production_volumes
+    hydrogen.set_hydrogen_logistics()
+
+    sector_rows = hydrogen.hydrogen_demand_nodes.loc[
+        hydrogen.hydrogen_demand_nodes["subsector"] == subsector
+    ]
+    assert not sector_rows.empty
+    assert sector_rows["demand_node_type"].isna().all()
+    assert sector_rows["demand_nodes"].isna().all()
+
+    called_markets = []
+    hydrogen.process_and_add_markets = lambda **kwargs: called_markets.append(
+        kwargs["name"]
+    )
+
+    hydrogen._generate_sector_specific_hydrogen_markets({})
+
+    market_name = {
+        "Steel": "market for hydrogen, gaseous, low pressure, for steel",
+        "Cement": "market for hydrogen, gaseous, low pressure, for cement",
+    }[subsector]
+    assert market_name not in called_markets
+    assert subsector not in hydrogen.generated_hydrogen_sector_markets
+    assert subsector in hydrogen.skipped_hydrogen_sector_markets
+
+
+def test_final_energy_based_chemical_market_needs_no_production_proxy():
+    hydrogen = HydrogenMixin()
+    hydrogen.model = "message"
+    hydrogen.scenario = "test-scenario"
+    hydrogen.year = 2030
+    hydrogen.system_model = "cut-off"
+    hydrogen.regions = ["EUR", "World"]
+    hydrogen.iam_data = make_iam_data(
+        variables=[
+            "hydrogen electrolysis",
+            "Industry - Chemicals - High-Value Chemicals - H2",
+        ],
+        regions=["EUR"],
+        values=[[[1]], [[1]]],
+    )
+    hydrogen.iam_data.data = hydrogen.iam_data.production_volumes
+    hydrogen.set_hydrogen_logistics()
+
+    called_markets = []
+    hydrogen.process_and_add_markets = lambda **kwargs: called_markets.append(
+        kwargs["name"]
+    )
+
+    hydrogen._generate_sector_specific_hydrogen_markets({})
+
+    assert (
+        "market for hydrogen, gaseous, low pressure, for chemicals"
+        in called_markets
+    )
+    assert "Chemicals" in hydrogen.generated_hydrogen_sector_markets
 
 
 def test_tiam_hydrogen_final_energy_excludes_steel():
@@ -492,6 +606,18 @@ def test_sector_hydrogen_market_is_not_generated_without_demand():
             [[1], [1]],
             [[1], [0]],
         ],
+    )
+    hydrogen.hydrogen_demand_nodes = pd.DataFrame(
+        [
+            {
+                "year": 2030,
+                "region": "EUR",
+                "subsector": "Steel",
+                "demand_node_type": "steel_plants",
+                "demand_nodes": 2,
+                "hydrogen_demand_t_per_node_per_year": 1000,
+            }
+        ]
     )
     called_markets = []
     called_production_volumes = []

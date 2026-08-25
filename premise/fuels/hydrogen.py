@@ -397,6 +397,41 @@ class HydrogenMixin:
     def _is_world_hydrogen_region(region):
         return str(region).strip().lower() == "world"
 
+    # Sector-market workflow: only expose plant-based sector markets where
+    # logistics could be calculated. Their distribution rules depend on
+    # hydrogen demand per plant, so final-energy demand alone is insufficient.
+    def _plant_based_hydrogen_market_regions_with_logistics(
+        self, market_key
+    ):
+        node_types = {
+            "Steel": "steel_plants",
+            "Cement": "cement_plants",
+        }
+        node_type = node_types.get(market_key)
+        if node_type is None:
+            return set()
+
+        demand = getattr(self, "hydrogen_demand_nodes", pd.DataFrame())
+        required_columns = {
+            "year",
+            "region",
+            "subsector",
+            "demand_node_type",
+            "demand_nodes",
+            "hydrogen_demand_t_per_node_per_year",
+        }
+        if demand.empty or not required_columns.issubset(demand.columns):
+            return set()
+
+        rows = demand.loc[
+            (demand["year"] == self.year)
+            & (demand["subsector"] == market_key)
+            & (demand["demand_node_type"] == node_type)
+            & (demand["demand_nodes"] > 0)
+            & (demand["hydrogen_demand_t_per_node_per_year"] > 0)
+        ]
+        return set(rows["region"].dropna().unique())
+
     # Sector-market workflow: find IAM regions with positive hydrogen demand by market type.
     def _available_hydrogen_sector_market_regions(self):
         final_energy = self._get_hydrogen_final_energy_by_subsector(
@@ -435,6 +470,13 @@ class HydrogenMixin:
                 if region in candidate_regions
                 and not self._is_world_hydrogen_region(region)
             }
+
+            if market_key in {"Steel", "Cement"}:
+                available_markets[market_key] &= (
+                    self._plant_based_hydrogen_market_regions_with_logistics(
+                        market_key
+                    )
+                )
 
         return available_markets
 
