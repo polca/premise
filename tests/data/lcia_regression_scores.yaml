@@ -70,20 +70,20 @@ cases:
     scores:
       test1:
         electricity_low_voltage_ch: 0.06789346157785918
-        heat_natural_gas_europe: 0.032957913323816077
-        diesel_europe: 4.110425476156406
+        heat_natural_gas_europe: 0.034249175171682564
+        diesel_europe: 1.1552681717494937
         cement_portland_europe: 0.9264437193653909
         steel_low_alloyed_glo: 3.1837583117852053
       test2:
         electricity_low_voltage_ch: 0.01944769737903355
         heat_natural_gas_europe: 0.21575575819903212
-        diesel_europe: 0.23158493949446318
+        diesel_europe: 0.4123891716608644
         cement_portland_europe: 0.6040040684720804
         steel_low_alloyed_glo: 1.45499532521257
       test3:
-        electricity_low_voltage_ch: 0.016996954664765078
+        electricity_low_voltage_ch: 0.016472757466370842
         heat_natural_gas_europe: 0.19732621417037288
-        diesel_europe: 4.6104646220455265
+        diesel_europe: 0.4101649319708649
         cement_portland_europe: 0.7883401802852628
         steel_low_alloyed_glo: 0.9132813032592019
   ecoinvent-3.9.1-cutoff:
@@ -119,20 +119,20 @@ cases:
     scores:
       test1:
         electricity_low_voltage_ch: 0.07889547156894731
-        heat_natural_gas_europe: 0.013014043637394649
-        diesel_europe: 4.099713171656972
+        heat_natural_gas_europe: 0.01343980521662191
+        diesel_europe: 1.4590107680144373
         cement_portland_europe: 0.9254032409941224
         steel_low_alloyed_glo: 2.853992603297721
       test2:
         electricity_low_voltage_ch: 0.021169534028393396
         heat_natural_gas_europe: 0.14506152027566527
-        diesel_europe: 0.2519219629003388
+        diesel_europe: 0.7988583100088307
         cement_portland_europe: 0.6331241043992458
         steel_low_alloyed_glo: 1.4063718990912464
       test3:
         electricity_low_voltage_ch: 0.019498174978474683
         heat_natural_gas_europe: 0.1883873814547067
-        diesel_europe: 3.641672200597361
+        diesel_europe: 0.7947342199530028
         cement_portland_europe: 0.875931709736148
         steel_low_alloyed_glo: 1.1348838385785132
   ecoinvent-3.10-cutoff:
@@ -169,19 +169,19 @@ cases:
       test1:
         electricity_low_voltage_ch: 0.08012565911172206
         heat_natural_gas_europe: 0.013509479597669842
-        diesel_europe: 4.1108129831815745
+        diesel_europe: 1.5440427872157458
         cement_portland_europe: 0.9218965425844377
         steel_low_alloyed_glo: 2.924622812534279
       test2:
         electricity_low_voltage_ch: 0.021489016395017387
         heat_natural_gas_europe: 0.149064584799598
-        diesel_europe: 0.2555391587676018
+        diesel_europe: 0.8637426638553036
         cement_portland_europe: 0.604911492287244
         steel_low_alloyed_glo: 1.4117125999558828
       test3:
         electricity_low_voltage_ch: 0.019392378921795028
         heat_natural_gas_europe: 0.187327107829121
-        diesel_europe: 3.6525433780598076
+        diesel_europe: 0.8596794507639591
         cement_portland_europe: 0.780928962385481
         steel_low_alloyed_glo: 1.1059679428591604
   ecoinvent-3.11-cutoff:
@@ -212,19 +212,19 @@ cases:
       test1:
         electricity_low_voltage_ch: 0.08045863601292053
         heat_natural_gas_europe: 0.024308142181410558
-        diesel_europe: 4.118393205985764
+        diesel_europe: 1.4943418935040884
         cement_portland_europe: 0.9463175361926881
         steel_low_alloyed_glo: 3.1400827699063107
       test2:
         electricity_low_voltage_ch: 0.02147163104477367
         heat_natural_gas_europe: 0.14601593725394652
-        diesel_europe: 0.24662746506700137
+        diesel_europe: 0.8157479256485303
         cement_portland_europe: 0.6871622781494576
         steel_low_alloyed_glo: 1.4976886040335189
       test3:
         electricity_low_voltage_ch: 0.019241975901967513
         heat_natural_gas_europe: 0.18792071766453797
-        diesel_europe: 3.6687405767694994
+        diesel_europe: 0.8101872623993243
         cement_portland_europe: 0.8749963425607943
         steel_low_alloyed_glo: 1.0243984650468794
   ecoinvent-3.12-cutoff:
@@ -280,18 +280,18 @@ cases:
       test1:
         electricity_low_voltage_ch: 0.07921880706404547
         heat_natural_gas_europe: 0.02480559396582531
-        diesel_europe: 4.097219918677704
+        diesel_europe: 1.4928560304805707
         cement_portland_europe: 0.9463894202385067
         steel_low_alloyed_glo: 3.125365941917742
       test2:
         electricity_low_voltage_ch: 0.021022108245084017
         heat_natural_gas_europe: 0.20708311914629446
-        diesel_europe: 0.24161246911183265
+        diesel_europe: 0.8238212742986492
         cement_portland_europe: 0.6833189316997096
         steel_low_alloyed_glo: 1.4889184712699288
       test3:
         electricity_low_voltage_ch: 0.018892817308612753
         heat_natural_gas_europe: 0.18575024143750546
-        diesel_europe: 3.6194480938024682
+        diesel_europe: 0.8185846695889004
         cement_portland_europe: 0.8731092422926864
         steel_low_alloyed_glo: 1.0191927157445606
