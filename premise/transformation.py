@@ -784,6 +784,7 @@ class BaseTransformation:
         unit,
         mapping,
         production_volumes=None,
+        technology_shares=None,
         additional_exchanges_fn=None,
         system_model="cut-off",
         blacklist=None,
@@ -795,16 +796,14 @@ class BaseTransformation:
 
         Parameters
         ----------
-        production_datasets : list of dict
-            Datasets representing regionalized production activities.
-        market_name : str
-            Name of the market activity (e.g., "market for steel").
-        reference_product : str
-            The reference product of the market.
-        production_shares : dict
-            Dictionary with region as key and production share as value.
-        region_list : list of str
-            List of regions for which to create markets.
+        production_volumes : xarray.DataArray, optional
+            Absolute production volumes. These determine production-volume
+            metadata and regional weights, and supply the technology shares
+            unless ``technology_shares`` is provided.
+        technology_shares : xarray.DataArray, optional
+            Separate technology mix used for the market's supplier shares.
+            Consequential markets use this to retain marginal mixes while
+            keeping absolute production volumes for regional weighting.
         additional_exchanges_fn : callable, optional
             Function to add extra exchanges to the market dataset (e.g., transport, losses).
         """
@@ -820,6 +819,13 @@ class BaseTransformation:
                     mapping=mapping,
                 )
             )
+            if technology_shares is not None:
+                _, technology_shares_dict, _ = (
+                    self.get_technology_and_regional_production_shares(
+                        production_volumes=technology_shares,
+                        mapping=mapping,
+                    )
+                )
 
         else:
             regions = self.regions

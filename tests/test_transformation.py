@@ -342,3 +342,61 @@ def test_market_does_not_require_supplier_for_zero_share(monkeypatch):
     assert [
         exc["name"] for exc in market["exchanges"] if exc["type"] == "technosphere"
     ] == ["supplier"]
+
+
+def test_market_uses_explicit_technology_shares_and_keeps_absolute_volume(
+    monkeypatch,
+):
+    transformation, _ = make_market_transformation(
+        monkeypatch, {"diesel": 0.9, "synthetic diesel": 0.1}
+    )
+    production_volumes = xr.DataArray(
+        [[[9.0]], [[1.0]]],
+        dims=("variables", "region", "year"),
+        coords={
+            "variables": ["diesel", "synthetic diesel"],
+            "region": ["WEU"],
+            "year": [2050],
+        },
+    )
+    marginal_mix = xr.DataArray(
+        [[[1.0]], [[0.0]]],
+        dims=("variables", "region", "year"),
+        coords={
+            "variables": ["diesel", "synthetic diesel"],
+            "region": ["WEU"],
+            "year": [2050],
+        },
+    )
+    monkeypatch.setattr(
+        transformation,
+        "get_technology_and_regional_production_shares",
+        lambda **kwargs: BaseTransformation.get_technology_and_regional_production_shares(
+            transformation,
+            production_volumes=kwargs["production_volumes"],
+            mapping=kwargs["mapping"],
+        ),
+    )
+
+    transformation.process_and_add_markets(
+        name="market for diesel",
+        reference_product="diesel",
+        unit="kilogram",
+        mapping={
+            "diesel": [make_supplier("diesel production")],
+            "synthetic diesel": [make_supplier("synthetic diesel production")],
+        },
+        production_volumes=production_volumes,
+        technology_shares=marginal_mix,
+    )
+
+    market = next(ds for ds in transformation.database if ds["location"] == "WEU")
+    production = next(exc for exc in market["exchanges"] if exc["type"] == "production")
+    suppliers = {
+        exc["name"]: exc["amount"]
+        for exc in market["exchanges"]
+        if exc["type"] == "technosphere"
+    }
+
+    assert production["production volume"] == 10.0
+    assert suppliers == {"diesel production": 1.0}
