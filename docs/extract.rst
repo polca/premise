@@ -718,11 +718,11 @@ present in the database after the additional inventories are imported:
  ====================================================================== ============================
   Distribution technology                                                Linked activity
  ====================================================================== ============================
-  ``compressed_gaseous_truck``                                           ``transport, hydrogen, gaseous, lorry, market average propulsion system``
-  ``liquid_hydrogen_truck``                                              ``transport, hydrogen, liquid, lorry, market average propulsion system``
+  ``compressed_gaseous_truck``                                           ``transport, hydrogen, gaseous, lorry, unspecified``
+  ``liquid_hydrogen_truck``                                              ``transport, hydrogen, liquid, lorry, unspecified``
   ``compressed_gaseous_pipeline``                                        ``hydrogen supply, distributed by pipeline``
   ``liquid_hydrogen_ship``                                               ``transport, freight, sea, tanker for liquefied hydrogen, heavy fuel oil``
-  ``liquid_ammonia_ship``                                                ``transport, freight, sea, tanker for liquefied ammonia, heavy fuel oil``
+  ``liquid_ammonia_ship``                                                ``transport, freight, sea, tanker for liquefied ammonia, ammonia and mgo``
  ====================================================================== ============================
 
 The truck and ship activities come from ``lci-hydrogen-transport.xlsx`` during
@@ -738,6 +738,10 @@ relinked to the corresponding IAM region before the sector-specific markets are
 created. Liquid-ammonia transport adds ``1 / 0.175`` kilograms of ``liquid
 ammonia production`` and ``7.67`` kilograms of ``ammonia cracking`` per
 kilogram of hydrogen assigned to that distribution mode.
+
+See :ref:`sector-specific-hydrogen-markets` for the complete workflow from IAM
+demand and demand-node estimation through the decision tree, market construction,
+and consumer relinking.
 
 
 .. _Wulf: https://www.sciencedirect.com/science/article/pii/S095965261832170X

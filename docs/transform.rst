@@ -2214,43 +2214,71 @@ Key outputs
 * Builds supply chains that vary by transport mode, distance, and state.
 * Applies transport and storage losses to supply routes.
 
-Sector-specific hydrogen demand
--------------------------------
+.. _sector-specific-hydrogen-markets:
 
-Sector-specific hydrogen markets are created only in IAM regions with positive
-direct-hydrogen final-energy demand. Direct hydrogen is identified from the
-normalized ``final_energy.yaml`` coordinates whose names end in ``- H2`` or
-``- Hydrogen``. Values are read directly from the normalized xarray without
-another PJ-to-EJ conversion. The EJ/year demand is converted to hydrogen mass
-using a lower heating value of 120 GJ per tonne and is also used to estimate
-demand nodes and select distribution modes.
+Sector-specific hydrogen markets
+--------------------------------
+
+The fuel transformation creates end-use-specific hydrogen markets so that the
+logistics burden of supplying hydrogen can differ between steel, cement,
+chemicals, transport, heating, and other uses. The calculation is performed in
+the following order:
+
+.. code-block:: text
+
+   normalized direct-hydrogen final energy
+                 |
+                 v
+   regional sector demand and demand-node estimates
+                 |
+                 v
+   distribution decision tree for every demand row
+                 |
+                 v
+   demand-weighted transport shares in each sector market
+                 |
+                 v
+   relinking of eligible hydrogen consumers
+
+This order is mandatory. Demand-node calculation and its audit log run before
+hydrogen activities are generated. Sector markets are then created, and only
+markets that were actually added to the database can receive consumers. An
+exception in logistics calculation, audit logging, or market creation stops the
+fuel transformation before consumer relinking.
+
+Direct-hydrogen demand
+~~~~~~~~~~~~~~~~~~~~~~
+
+Sector-specific hydrogen markets are considered only in IAM regions with
+positive direct-hydrogen final-energy demand. Direct hydrogen is identified
+from the normalized ``final_energy.yaml`` coordinates whose names end in
+``- H2`` or ``- Hydrogen``. These coordinates are available in the normalized
+``production_volumes`` xarray and are already expressed in EJ/year; no further
+PJ-to-EJ conversion is applied. Annual hydrogen mass demand is calculated as:
+
+.. math::
+
+   Q_{H_2}\ [\mathrm{t/yr}] =
+   FE_{H_2}\ [\mathrm{EJ/yr}] \times \frac{10^9}{120}
+
+where 120 GJ/t is the lower heating value of hydrogen.
 
 Hydrogen logistics and sector-market availability both select the database
-target year. When that year is not an explicit IAM coordinate, the existing
-logic interpolates between IAM years or selects the nearest boundary. The IAM
-``World`` aggregate is retained temporarily to validate the sum of regional
-demand, but it is excluded from stored demand nodes and from sector-specific
-market creation. The generic market builder's automatic ``World`` aggregation
-is explicitly disabled for these sector markets. Global totals must therefore
-be calculated from the regional rows without adding the IAM aggregate.
+target year. If it is not an explicit IAM coordinate, values are interpolated
+between IAM years or clamped to the nearest boundary year. The IAM ``World``
+aggregate is temporarily retained to compare the global value with the sum of
+the regional values. It is then removed from the demand-node table and from
+sector-market creation. Automatic creation of a ``World`` market is disabled;
+global totals must therefore be calculated from the regional rows without
+adding the IAM aggregate.
 
-A sector-region is eligible for market construction only when its positive
-direct-hydrogen demand also has a complete distribution result. Missing demand
-node inputs are reported and make the sector-region ineligible. A finite
-positive demand row that is not covered by the distribution decision tree, or
-whose transport shares plus documented on-site remainder do not sum to one,
-stops the transformation instead of creating a market without logistics.
-Eligibility and construction are tracked separately: consumers are relinked
-only to sector markets that were subsequently created and added to the
-transformation index.
-
-Steel, cement, and chemicals use model-specific coordinate rules. Candidate
-groups are ordered by preference, and only the first group represented in the
-normalized IAM data is used. All candidate groups are reserved from the
-``Other`` category, including unused fallback groups. This prevents aggregate
-and detailed coordinates from being counted together. Custom IAM integrations
-without an explicit rule retain the structural grouping based on their
-normalized coordinate names.
+Steel, cement, and chemicals use model-specific coordinate hierarchies.
+Candidate groups are ordered by preference, and only the first group represented
+in the normalized IAM data is used. All candidates, including unused fallback
+groups, are reserved from the ``Other`` category. This prevents aggregate and
+detailed coordinates from being counted together. Custom IAM integrations
+without an explicit rule retain structural grouping based on their normalized
+coordinate names.
 
 .. list-table:: Model-specific direct-hydrogen mapping
    :header-rows: 1
@@ -2299,6 +2327,271 @@ already-assigned cement demand, clipped at zero.
    but it is not treated as hydrogen consumption. TIAM-UCL steel coordinates
    are therefore excluded from sector-specific hydrogen market creation rather
    than estimated using an assumed hydrogen intensity.
+
+Demand-node creation
+~~~~~~~~~~~~~~~~~~~~
+
+Each positive regional demand row is assigned a demand-node type. The node
+count represents the number of plants, refuelling stations, or generic demand
+sites over which regional hydrogen demand is distributed.
+
+.. list-table:: Demand-node assumptions
+   :header-rows: 1
+   :widths: 18 20 42 20
+
+   * - End use
+     - Node type
+     - Node-count calculation
+     - Operating days
+   * - Steel
+     - ``steel_plants``
+     - IAM ``steel - primary - H-DRI`` production divided by 0.5 Mt
+       steel/year per plant
+     - 333 days/year
+   * - Cement
+     - ``cement_plants``
+     - Sum of IAM variables beginning with ``cement,`` divided by
+       2.4 Mt cement/year and a capacity factor of 0.55
+     - ``365 * 0.55`` days/year
+   * - Chemicals
+     - ``chemical_plants``
+     - Regional hydrogen demand divided by 60,300 t H2/year per plant
+     - 365 days/year
+   * - Other industrial uses
+     - ``other_demand_nodes``
+     - Regional hydrogen demand divided by 1,000 t H2/year per node
+     - 333 days/year
+   * - Transport
+     - ``fueling_stations``
+     - Passenger-car and road-freight service is converted to vehicle counts,
+       daily refuellings, and finally station counts
+     - 365 days/year
+   * - Heating
+     - No physical node proxy
+     - The unconditional heating rule assigns pipeline distribution without
+       requiring a per-node demand value
+     - Not applicable
+
+For transport, passenger-car service is divided by an occupancy of 1.5 and
+10,900 km/vehicle/year. Each vehicle refuels every seven days, and a station
+serves 1,500 vehicles/day. Road-freight service is divided by a 15 t load and
+23,900 km/vehicle/year. Each freight vehicle refuels every 3.5 days, and a
+station serves 400 vehicles/day. Passenger and freight stations are summed by
+region and year.
+
+The calculated node count can be fractional. ``demand_nodes_rounded_up`` stores
+its ceiling for reporting, but demand per node is calculated with the
+unrounded value. The demand-node table also records annual and daily hydrogen
+demand per node, source IAM variables, the calculation method, and the result
+of the regional-versus-``World`` validation.
+
+Distribution decision tree
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The rules in
+``premise/fuels/h2_decision_tree/hydrogen_distribution_shares.yaml`` are
+evaluated for every demand row. A rule first matches exact row attributes such
+as sector or node type, then evaluates its numeric ``basis``. Bounds use
+``min_demand <= value < max_demand``. If several rules match, the lowest
+numeric priority wins.
+
+The current rules use annual hydrogen demand per node as their basis:
+
+.. list-table:: Current hydrogen-distribution rules
+   :header-rows: 1
+   :widths: 20 19 43 18
+
+   * - Match
+     - Demand per node
+     - Distribution shares
+     - On-site share
+   * - Heating
+     - Any value
+     - 100% compressed gaseous pipeline
+     - 0%
+   * - Steel plant
+     - At least 50,000 t/year
+     - 70% compressed gaseous pipeline, 30% liquid ammonia by ship
+     - 0%
+   * - Any node
+     - 0 to <1,000 t/year
+     - 80% compressed gaseous truck, 20% liquid hydrogen truck
+     - 0%
+   * - Any node
+     - 1,000 to <5,000 t/year
+     - 25% compressed gaseous truck, 25% liquid hydrogen truck,
+       50% compressed gaseous pipeline
+     - 0%
+   * - Any node
+     - 5,000 to <50,000 t/year
+     - 20% liquid hydrogen truck, 80% compressed gaseous pipeline
+     - 0%
+   * - Any node
+     - At least 50,000 t/year
+     - 80% compressed gaseous pipeline
+     - 20%
+
+Transport shares plus an explicitly configured on-site share must sum to one.
+Unknown modes, non-numeric shares, shares outside the interval from zero to one,
+or an incomplete total raise an error. A finite positive per-node demand that
+does not match a rule also raises an error. Rows without a usable node estimate
+remain marked ``missing_demand_nodes`` and do not make a sector-region market
+eligible, except where an unconditional rule such as the heating rule supplies
+a complete distribution result.
+
+.. warning::
+
+   The shares and thresholds in the current decision tree are indicative
+   assumptions. The YAML file identifies them as placeholders until
+   sector-specific threshold assumptions are finalized.
+
+Sector-market creation and transport shares
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The transformation can create the following markets, each supplying one
+kilogram of low-pressure gaseous hydrogen:
+
+.. list-table:: Hydrogen end-use markets
+   :header-rows: 1
+   :widths: 20 80
+
+   * - End use
+     - Dataset name
+   * - Transport
+     - ``market for hydrogen, gaseous, low pressure, for transport``
+   * - Chemicals
+     - ``market for hydrogen, gaseous, low pressure, for chemicals``
+   * - Steel
+     - ``market for hydrogen, gaseous, low pressure, for steel``
+   * - Cement
+     - ``market for hydrogen, gaseous, low pressure, for cement``
+   * - Heating
+     - ``market for hydrogen, gaseous, low pressure, for heating``
+   * - Other
+     - ``market for hydrogen, gaseous, low pressure, for other end uses``
+
+A sector-region is eligible only when it has positive direct-hydrogen demand
+and at least one matching demand row with ``distribution_status = ok``. Steel
+and cement consequently also require their plant-production proxies to produce
+valid logistics. Eligibility and successful construction are tracked
+separately. If the market builder does not create an eligible regional market,
+that region is recorded as uncreated and is not used for relinking.
+
+When several demand rows contribute to the same sector-region market, the share
+of distribution mode :math:`m` is weighted by annual hydrogen demand:
+
+.. math::
+
+   s_m = \frac{\sum_i Q_i s_{i,m}}{\sum_i Q_i}
+
+The weighted shares are converted to technosphere exchanges as follows:
+
+.. list-table:: Distribution exchanges per kilogram of market output
+   :header-rows: 1
+   :widths: 20 35 20 25
+
+   * - Mode
+     - Transport activity
+     - Exchange amount
+     - Conversion activities
+   * - Compressed gas by truck
+     - ``transport, hydrogen, gaseous, lorry, unspecified``
+     - ``share * 50 * 0.001`` tkm
+     - ``share`` kg gaseous hydrogen production
+   * - Liquid hydrogen by truck
+     - ``transport, hydrogen, liquid, lorry, unspecified``
+     - ``share * 100 * 0.001`` tkm
+     - ``share`` kg liquefaction and ``share`` kg regasification
+   * - Compressed gas by pipeline
+     - ``hydrogen supply, distributed by pipeline``
+     - ``share`` kg
+     - None
+   * - Liquid ammonia by ship
+     - ``transport, freight, sea, tanker for liquefied ammonia, ammonia and
+       mgo``
+     - ``share * 2500 * 0.001`` tkm
+     - ``share / 0.175`` kg ammonia production and ``share * 7.67`` kg
+       ammonia cracking
+   * - Liquid hydrogen by ship
+     - ``transport, freight, sea, tanker for liquefied hydrogen, heavy fuel
+       oil``
+     - ``share * 2500 * 0.001`` tkm
+     - ``share`` kg liquefaction and ``share`` kg regasification
+
+Liquid-hydrogen conversion amounts are based on the combined truck and ship
+share. The on-site portion receives no transport or conversion exchange; it is
+the explicitly documented remainder of the market's hydrogen supply. Transport
+and conversion suppliers are selected first in the IAM region, then in mapped
+ecoinvent locations, ``RoW``, and ``GLO``. If none of those locations is
+available, the first matching supplier is used.
+
+Customer relinking
+~~~~~~~~~~~~~~~~~~
+
+After sector markets have been created, the transformation inspects activities
+with a technosphere input whose name and product are exactly ``market for
+hydrogen, gaseous, low pressure`` and ``hydrogen, gaseous, low pressure``.
+Generated hydrogen suppliers and sector markets are not candidates for
+relinking. Shared transport and conversion activities are also kept
+sector-neutral to prevent circular or cross-sector supply chains.
+
+Routing is configured in
+``premise/fuels/h2_decision_tree/hydrogen_consumer_routing.yaml``. Rules that
+keep an activity on the general market are evaluated first. These cover
+synthetic-fuel and syngas contexts, RWGS, selected methanol synthesis and
+distillation activities, and electricity supply classified as ISIC 3510.
+Remaining consumers are matched by activity name before ISIC classification:
+
+.. list-table:: Consumer-routing summary
+   :header-rows: 1
+   :widths: 18 44 38
+
+   * - Target market
+     - Name context
+     - ISIC rev.4 ecoinvent classification
+   * - Transport
+     - Transport, stations, fuel-cell vehicles, and hydrogen vehicle use
+     - Prefixes 49, 50, 51, and 52
+   * - Chemicals
+     - Chemicals, ammonia, methanol, chlor-alkali, and configured chemical
+       processes
+     - 2011--2013, 2021--2023, 2029, and 2030
+   * - Steel
+     - Steel, direct-reduced iron, and sponge iron
+     - Prefix 241
+   * - Cement
+     - Cement and clinker
+     - 2394 and 2395
+   * - Heating
+     - Heat production, boilers, and furnaces
+     - 3530
+   * - Other
+     - No name-based catch-all
+     - Prefix 17; prefix 23 except 2394/2395; prefix 24 except 241
+
+Name matching is intentionally evaluated before ISIC matching. This allows
+hydrogen vehicle-use activities classified as heat/ISIC 3530 to be routed to
+transport from their activity context. ``Other`` is deliberately narrow and is
+not a fallback for every unmatched activity.
+
+A consumer is relinked only when exactly one sector matches and the
+corresponding sector market was actually created for the exchange location or
+its mapped IAM region. Ambiguous and unclassified consumers remain on the
+general market and are reported as unmatched. Configured general-market cases,
+shared logistics activities, and consumers whose target market is unavailable
+also stay on the general market and are reported as skipped. Successful links
+are recorded with the consumer, exchange amount and location, old market, new
+market, and assigned sector.
+
+Diagnostics
+~~~~~~~~~~~
+
+The fuel change report contains one row for every demand node and one row for
+every successful sector-market relink. In addition, the transformed scenario
+stores the demand-node table; eligible, generated, uncreated, and skipped
+sector markets; and matched, unmatched, and skipped hydrogen consumers. These
+records distinguish a legitimately absent market from a routing or construction
+problem and make the full demand-to-consumer chain auditable.
 
 
 Hydrogen supply chains
