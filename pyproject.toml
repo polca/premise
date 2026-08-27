@@ -143,4 +143,5 @@ premise = [
     "iam_variables_mapping/*.xlsx",
     "iam_variables_mapping/topologies/*.json",
     "fuels/*.py",
+    "fuels/h2_decision_tree/*.yaml",
 ]
