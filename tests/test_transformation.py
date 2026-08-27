@@ -275,7 +275,7 @@ def test_cutoff_fuel_market_flips_treatment_supplier_sign_after_normalization(
         "fossil diesel": [make_supplier("diesel production, petroleum refinery")],
     }
 
-    transformation.process_and_add_markets(
+    created_locations = transformation.process_and_add_markets(
         name="market for diesel",
         reference_product="diesel",
         unit="kilogram",
@@ -284,6 +284,8 @@ def test_cutoff_fuel_market_flips_treatment_supplier_sign_after_normalization(
         system_model="cutoff",
         flip_treatment_supplier_sign=True,
     )
+
+    assert created_locations == {"WEU", "World"}
 
     regional_market = next(
         dataset for dataset in transformation.database if dataset["location"] == "WEU"

@@ -807,10 +807,17 @@ class BaseTransformation:
             List of regions for which to create markets.
         additional_exchanges_fn : callable, optional
             Function to add extra exchanges to the market dataset (e.g., transport, losses).
+
+        Returns
+        -------
+        set
+            Locations for which a market dataset was actually created and
+            added to the database and transformation index.
         """
 
         conversion_factor = conversion_factor or {}
         blacklist = blacklist or {}
+        created_market_locations = set()
 
         if production_volumes is not None:
             regions = [region for region in self.regions if region != "World"]
@@ -981,6 +988,7 @@ class BaseTransformation:
             self.database.append(market_dataset)
             self.add_to_index(market_dataset)
             self.write_log(market_dataset, "created")
+            created_market_locations.add(region)
 
         if production_volumes is not None:
             if (
@@ -1043,6 +1051,7 @@ class BaseTransformation:
                 self.database.append(world_market)
                 self.add_to_index(world_market)
                 self.write_log(world_market, "created")
+                created_market_locations.add("World")
 
         datasets = list(
             ws.get_many(
@@ -1062,6 +1071,8 @@ class BaseTransformation:
             production_shares=regional_shares_dict,
             regions=regions,
         )
+
+        return created_market_locations
 
     @staticmethod
     def deduplicate_market_suppliers(suppliers: List[dict]) -> List[dict]:

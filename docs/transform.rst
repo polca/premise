@@ -2233,6 +2233,16 @@ demand, but it is excluded from stored demand nodes and from sector-specific
 market creation. Global totals must therefore be calculated from the regional
 rows without adding the IAM aggregate.
 
+A sector-region is eligible for market construction only when its positive
+direct-hydrogen demand also has a complete distribution result. Missing demand
+node inputs are reported and make the sector-region ineligible. A finite
+positive demand row that is not covered by the distribution decision tree, or
+whose transport shares plus documented on-site remainder do not sum to one,
+stops the transformation instead of creating a market without logistics.
+Eligibility and construction are tracked separately: consumers are relinked
+only to sector markets that were subsequently created and added to the
+transformation index.
+
 Steel, cement, and chemicals use model-specific coordinate rules. Candidate
 groups are ordered by preference, and only the first group represented in the
 normalized IAM data is used. All candidate groups are reserved from the

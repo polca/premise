@@ -467,6 +467,19 @@ premise_fuel:
         name: On-site production
         description: Share of hydrogen produced on site without a transport activity
         unit: 0-1
+      hydrogen distribution rule:
+        name: Hydrogen distribution rule
+        description: Decision-tree rule selected for the hydrogen demand row
+      hydrogen distribution status:
+        name: Hydrogen distribution status
+        description: Whether complete and valid logistics were assigned to the hydrogen demand row
+      hydrogen distribution share total:
+        name: Accounted hydrogen distribution share
+        description: Sum of transport-mode shares and the documented on-site production remainder
+        unit: 0-1
+      hydrogen distribution reason:
+        name: Hydrogen distribution reason
+        description: Explanation when complete hydrogen logistics could not be assigned
     tab: Fuel
 
 premise_heat:

@@ -397,43 +397,40 @@ class HydrogenMixin:
     def _is_world_hydrogen_region(region):
         return str(region).strip().lower() == "world"
 
-    # Sector-market workflow: only expose plant-based sector markets where
-    # logistics could be calculated. Their distribution rules depend on
-    # hydrogen demand per plant, so final-energy demand alone is insufficient.
-    def _plant_based_hydrogen_market_regions_with_logistics(
-        self, market_key
-    ):
-        node_types = {
-            "Steel": "steel_plants",
-            "Cement": "cement_plants",
-        }
-        node_type = node_types.get(market_key)
-        if node_type is None:
-            return set()
-
+    # Sector-market workflow: only expose sector markets where the logistics
+    # decision tree produced a complete, valid result. Positive final-energy
+    # demand alone is insufficient because otherwise a market could be created
+    # without its distribution burdens.
+    def _hydrogen_market_regions_with_valid_logistics(self, market_key):
         demand = getattr(self, "hydrogen_demand_nodes", pd.DataFrame())
         required_columns = {
             "year",
             "region",
-            "subsector",
-            "demand_node_type",
-            "demand_nodes",
-            "hydrogen_demand_t_per_node_per_year",
+            "distribution_status",
         }
         if demand.empty or not required_columns.issubset(demand.columns):
+            return set()
+        if market_key in {"Chemicals", "Steel", "Cement"} and (
+            "subsector" not in demand.columns
+        ):
+            return set()
+        if market_key in {"Transport", "Heating", "Other"} and (
+            "sector" not in demand.columns
+        ):
+            return set()
+        if market_key == "Other" and "subsector" not in demand.columns:
             return set()
 
         rows = demand.loc[
             (demand["year"] == self.year)
-            & (demand["subsector"] == market_key)
-            & (demand["demand_node_type"] == node_type)
-            & (demand["demand_nodes"] > 0)
-            & (demand["hydrogen_demand_t_per_node_per_year"] > 0)
+            & self._hydrogen_sector_market_rows(demand, market_key)
+            & (demand["distribution_status"] == "ok")
         ]
         return set(rows["region"].dropna().unique())
 
-    # Sector-market workflow: find IAM regions with positive hydrogen demand by market type.
-    def _available_hydrogen_sector_market_regions(self):
+    # Sector-market workflow: find IAM regions that satisfy the demand and
+    # logistics prerequisites for market construction.
+    def _eligible_hydrogen_sector_market_regions(self):
         final_energy = self._get_hydrogen_final_energy_by_subsector(
             year=self.year
         )
@@ -471,29 +468,41 @@ class HydrogenMixin:
                 and not self._is_world_hydrogen_region(region)
             }
 
-            if market_key in {"Steel", "Cement"}:
-                available_markets[market_key] &= (
-                    self._plant_based_hydrogen_market_regions_with_logistics(
-                        market_key
-                    )
-                )
+            available_markets[market_key] &= (
+                self._hydrogen_market_regions_with_valid_logistics(market_key)
+            )
 
         return available_markets
 
-    # Sector-market workflow: list sector markets that have at least one eligible region.
-    def _available_hydrogen_sector_market_keys(self):
+    # Backwards-compatible name for callers that inspect pre-construction
+    # eligibility. Relinking deliberately does not use this method.
+    def _available_hydrogen_sector_market_regions(self):
+        return self._eligible_hydrogen_sector_market_regions()
+
+    # Sector-market workflow: list sector markets that have at least one
+    # eligible region before construction.
+    def _eligible_hydrogen_sector_market_keys(self):
         return {
             market_key
             for market_key, regions in (
-                self._available_hydrogen_sector_market_regions().items()
+                self._eligible_hydrogen_sector_market_regions().items()
             )
             if regions
         }
 
-    # Sector-market workflow: check whether a sector market exists for an exchange location.
+    # Backwards-compatible alias for pre-construction eligibility inspection.
+    def _available_hydrogen_sector_market_keys(self):
+        return self._eligible_hydrogen_sector_market_keys()
+
+    # Sector-market workflow: check whether a sector market was actually
+    # created for an exchange location. Eligibility alone is not enough.
     def _hydrogen_sector_market_is_available(self, sector, location=None):
-        regions = self._available_hydrogen_sector_market_regions().get(
-            sector, set()
+        regions = set(
+            getattr(
+                self,
+                "generated_hydrogen_sector_market_regions",
+                {},
+            ).get(sector, [])
         )
         if not regions:
             return False
@@ -784,6 +793,10 @@ class HydrogenMixin:
                 "hydrogen_demand_t_per_node_per_day",
                 *HYDROGEN_DISTRIBUTION_MODES,
                 "on_site_production_share",
+                "distribution_rule",
+                "distribution_status",
+                "distribution_share_total",
+                "distribution_reason",
                 "availability_days_per_year",
                 "activity_proxy_value",
                 "activity_proxy_unit",
@@ -1398,17 +1411,86 @@ class HydrogenMixin:
         for mode in HYDROGEN_DISTRIBUTION_MODES:
             demand[mode] = 0.0
         demand["on_site_production_share"] = 0.0
+        demand["distribution_rule"] = pd.NA
+        demand["distribution_status"] = "missing_demand_nodes"
+        demand["distribution_share_total"] = 0.0
+        demand["distribution_reason"] = (
+            "No finite positive hydrogen demand per node is available."
+        )
 
         for index, row in demand.iterrows():
             rule = self._select_hydrogen_distribution_rule(row)
             if rule is None:
-                continue
+                demand_per_node = row.get(
+                    "hydrogen_demand_t_per_node_per_year", np.nan
+                )
+                if pd.isna(demand_per_node) or demand_per_node <= 0:
+                    continue
 
-            for mode, share in rule.get("shares", {}).items():
-                demand.loc[index, mode] = share
-            demand.loc[index, "on_site_production_share"] = rule.get(
-                "on_site_production_share", 0.0
+                raise ValueError(
+                    "No hydrogen distribution rule matched a finite positive "
+                    "demand row for "
+                    f"{row.get('region', 'unknown region')} / "
+                    f"{row.get('subsector', row.get('sector', 'unknown sector'))} "
+                    f"({demand_per_node} t H2/node/year)."
+                )
+
+            rule_name = rule.get("name", "unnamed")
+            configured_shares = rule.get("shares", {})
+            unknown_modes = set(configured_shares) - set(
+                HYDROGEN_TRANSPORT_ACTIVITIES
             )
+            if unknown_modes:
+                raise ValueError(
+                    f"Hydrogen distribution rule '{rule_name}' references "
+                    f"unknown transport mode(s): {sorted(unknown_modes)}."
+                )
+
+            validated_shares = {}
+            for mode, share in configured_shares.items():
+                try:
+                    share = float(share)
+                except (TypeError, ValueError) as error:
+                    raise ValueError(
+                        f"Hydrogen distribution rule '{rule_name}' has a "
+                        f"non-numeric share for '{mode}': {share!r}."
+                    ) from error
+                if not np.isfinite(share) or not 0 <= share <= 1:
+                    raise ValueError(
+                        f"Hydrogen distribution rule '{rule_name}' has an "
+                        f"invalid share for '{mode}': {share!r}."
+                    )
+                validated_shares[mode] = share
+
+            on_site_share = rule.get("on_site_production_share", 0.0)
+            try:
+                on_site_share = float(on_site_share)
+            except (TypeError, ValueError) as error:
+                raise ValueError(
+                    f"Hydrogen distribution rule '{rule_name}' has a "
+                    f"non-numeric on-site production share: {on_site_share!r}."
+                ) from error
+            if not np.isfinite(on_site_share) or not 0 <= on_site_share <= 1:
+                raise ValueError(
+                    f"Hydrogen distribution rule '{rule_name}' has an invalid "
+                    f"on-site production share: {on_site_share!r}."
+                )
+
+            share_total = sum(validated_shares.values()) + on_site_share
+            if not math.isclose(share_total, 1.0, abs_tol=1e-9):
+                raise ValueError(
+                    f"Hydrogen distribution rule '{rule_name}' accounts for "
+                    f"{share_total} of demand; transport shares plus the "
+                    "documented on-site remainder must sum to 1."
+                )
+
+            for mode, share in validated_shares.items():
+                demand.loc[index, mode] = share
+            demand.loc[index, "on_site_production_share"] = on_site_share
+            demand.loc[index, "distribution_rule"] = rule_name
+            demand.loc[index, "distribution_status"] = "ok"
+            demand.loc[index, "distribution_share_total"] = share_total
+            demand.loc[index, "distribution_reason"] = ""
 
         return demand
 
@@ -1511,35 +1593,32 @@ class HydrogenMixin:
 
     # Sector-market workflow: create end-use-specific hydrogen markets where demand exists.
     def _generate_sector_specific_hydrogen_markets(self, hydrogen_map):
-        available_market_regions = (
-            self._available_hydrogen_sector_market_regions()
+        eligible_market_regions = (
+            self._eligible_hydrogen_sector_market_regions()
         )
-        available_markets = {
+        eligible_markets = {
             market
-            for market, regions in available_market_regions.items()
+            for market, regions in eligible_market_regions.items()
+            if regions
+        }
+        self.eligible_hydrogen_sector_market_regions = {
+            market: sorted(regions)
+            for market, regions in eligible_market_regions.items()
             if regions
         }
         self.generated_hydrogen_sector_markets = []
-        self.generated_hydrogen_sector_market_regions = {
-            market: sorted(regions)
-            for market, regions in available_market_regions.items()
-            if regions
-        }
-        self.skipped_hydrogen_sector_markets = [
-            market
-            for market in HYDROGEN_END_USE_MARKETS
-            if market not in available_markets
-        ]
+        self.generated_hydrogen_sector_market_regions = {}
+        self.uncreated_eligible_hydrogen_sector_market_regions = {}
 
         for market, market_name in HYDROGEN_END_USE_MARKETS.items():
-            if market not in available_markets:
+            if market not in eligible_markets:
                 continue
 
             production_volumes = self._filter_production_volumes_to_regions(
                 self.iam_data.production_volumes,
-                available_market_regions[market],
+                eligible_market_regions[market],
             )
-            self.process_and_add_markets(
+            created_locations = self.process_and_add_markets(
                 name=market_name,
                 reference_product="hydrogen, gaseous, low pressure",
                 unit="kilogram",
@@ -1550,7 +1629,28 @@ class HydrogenMixin:
                     self._add_transport_to_sector_specific_hydrogen_market
                 ),
             )
-            self.generated_hydrogen_sector_markets.append(market)
+            created_regions = set(created_locations or ()) & set(
+                eligible_market_regions[market]
+            )
+            missing_regions = set(eligible_market_regions[market]) - (
+                created_regions
+            )
+
+            if created_regions:
+                self.generated_hydrogen_sector_markets.append(market)
+                self.generated_hydrogen_sector_market_regions[market] = sorted(
+                    created_regions
+                )
+            if missing_regions:
+                self.uncreated_eligible_hydrogen_sector_market_regions[
+                    market
+                ] = sorted(missing_regions)
+
+        self.skipped_hydrogen_sector_markets = [
+            market
+            for market in HYDROGEN_END_USE_MARKETS
+            if market not in self.generated_hydrogen_sector_markets
+        ]
 
     # Sector-market workflow: zero IAM production outside regions served by a sector market.
     @staticmethod

@@ -139,6 +139,7 @@ def test_image_market_availability_uses_preferred_steel_level():
                 "demand_node_type": "steel_plants",
                 "demand_nodes": 2,
                 "hydrogen_demand_t_per_node_per_year": 1000,
+                "distribution_status": "ok",
             }
         ]
     )
@@ -197,6 +198,11 @@ def test_hydrogen_logistics_uses_target_year_and_excludes_world():
         == 1
     )
     assert hydrogen.hydrogen_demand_nodes["validation_status"].item() == "ok"
+    assert hydrogen.hydrogen_demand_nodes["distribution_status"].item() == "ok"
+    assert (
+        hydrogen.hydrogen_demand_nodes["distribution_rule"].item()
+        == "heating_always_pipeline"
+    )
 
 
 def test_transport_fueling_stations_include_refueling_frequency(monkeypatch):
@@ -293,6 +299,110 @@ def test_very_large_demand_reports_on_site_production_separately():
             "liquid_hydrogen_ship",
         )
     ) == pytest.approx(0.8)
+    assert result["distribution_rule"] == "default_very_large_demand"
+    assert result["distribution_status"] == "ok"
+    assert result["distribution_share_total"] == pytest.approx(1)
+    assert result["distribution_reason"] == ""
+
+
+def test_missing_demand_nodes_are_reported_as_incomplete_logistics():
+    hydrogen = HydrogenMixin()
+    demand = pd.DataFrame(
+        [
+            {
+                "region": "EUR",
+                "sector": "Transport",
+                "subsector": "Transport",
+                "hydrogen_demand_t_per_node_per_year": float("nan"),
+            }
+        ]
+    )
+
+    result = hydrogen._add_hydrogen_distribution_shares(demand).iloc[0]
+
+    assert result["distribution_status"] == "missing_demand_nodes"
+    assert pd.isna(result["distribution_rule"])
+    assert result["distribution_share_total"] == 0
+    assert "No finite positive" in result["distribution_reason"]
+
+
+def test_finite_demand_without_distribution_rule_fails(monkeypatch):
+    hydrogen = HydrogenMixin()
+    monkeypatch.setattr(
+        "premise.fuels.hydrogen.hydrogen_distribution_rules",
+        {
+            "rules": [
+                {
+                    "name": "incomplete_domain",
+                    "priority": 1,
+                    "match": {},
+                    "basis": "hydrogen_demand_t_per_node_per_year",
+                    "condition": {"max_demand": 1000},
+                    "shares": {"compressed_gaseous_truck": 1},
+                }
+            ]
+        },
+    )
+    demand = pd.DataFrame(
+        [{"hydrogen_demand_t_per_node_per_year": 1000}]
+    )
+
+    with pytest.raises(ValueError, match="No hydrogen distribution rule"):
+        hydrogen._add_hydrogen_distribution_shares(demand)
+
+
+def test_distribution_rule_with_unaccounted_share_fails(monkeypatch):
+    hydrogen = HydrogenMixin()
+    monkeypatch.setattr(
+        "premise.fuels.hydrogen.hydrogen_distribution_rules",
+        {
+            "rules": [
+                {
+                    "name": "invalid_total",
+                    "priority": 1,
+                    "match": {},
+                    "basis": "hydrogen_demand_t_per_node_per_year",
+                    "condition": {},
+                    "shares": {"compressed_gaseous_truck": 0.9},
+                }
+            ]
+        },
+    )
+    demand = pd.DataFrame(
+        [{"hydrogen_demand_t_per_node_per_year": 1000}]
+    )
+
+    with pytest.raises(ValueError, match="must sum to 1"):
+        hydrogen._add_hydrogen_distribution_shares(demand)
+
+
+def test_transport_market_is_ineligible_without_demand_nodes():
+    hydrogen = HydrogenMixin()
+    hydrogen.model = "test-model"
+    hydrogen.scenario = "test-scenario"
+    hydrogen.year = 2030
+    hydrogen.system_model = "cut-off"
+    hydrogen.regions = ["EUR", "World"]
+    hydrogen.iam_data = make_iam_data(
+        variables=["Transport - Road - H2"],
+        regions=["EUR"],
+        values=[[[1]]],
+    )
+    hydrogen._add_transport_demand_nodes = lambda demand: demand
+
+    hydrogen.set_hydrogen_logistics()
+    eligible = hydrogen._eligible_hydrogen_sector_market_regions()
+    called_markets = []
+    hydrogen.process_and_add_markets = lambda **kwargs: called_markets.append(
+        kwargs["name"]
+    )
+    hydrogen._generate_sector_specific_hydrogen_markets({})
+
+    row = hydrogen.hydrogen_demand_nodes.iloc[0]
+    assert row["distribution_status"] == "missing_demand_nodes"
+    assert eligible["Transport"] == set()
+    assert called_markets == []
+    assert "Transport" in hydrogen.skipped_hydrogen_sector_markets
 
 
 def test_sector_market_regions_exclude_all_world_spelling_variants():
@@ -315,6 +425,7 @@ def test_sector_market_regions_exclude_all_world_spelling_variants():
                 "demand_node_type": "cement_plants",
                 "demand_nodes": 2,
                 "hydrogen_demand_t_per_node_per_year": 1000,
+                "distribution_status": "ok",
             }
         ]
     )
@@ -387,9 +498,12 @@ def test_plant_based_market_is_skipped_without_production_proxy(
     assert sector_rows["demand_nodes"].isna().all()
 
     called_markets = []
-    hydrogen.process_and_add_markets = lambda **kwargs: called_markets.append(
-        kwargs["name"]
-    )
+
+    def fake_process_and_add_markets(**kwargs):
+        called_markets.append(kwargs["name"])
+        return {"EUR"}
+
+    hydrogen.process_and_add_markets = fake_process_and_add_markets
 
     hydrogen._generate_sector_specific_hydrogen_markets({})
 
@@ -421,9 +535,12 @@ def test_final_energy_based_chemical_market_needs_no_production_proxy():
     hydrogen.set_hydrogen_logistics()
 
     called_markets = []
-    hydrogen.process_and_add_markets = lambda **kwargs: called_markets.append(
-        kwargs["name"]
-    )
+
+    def fake_process_and_add_markets(**kwargs):
+        called_markets.append(kwargs["name"])
+        return {"EUR"}
+
+    hydrogen.process_and_add_markets = fake_process_and_add_markets
 
     hydrogen._generate_sector_specific_hydrogen_markets({})
 
@@ -667,6 +784,7 @@ def test_sector_hydrogen_market_is_not_generated_without_demand():
                 "demand_node_type": "steel_plants",
                 "demand_nodes": 2,
                 "hydrogen_demand_t_per_node_per_year": 1000,
+                "distribution_status": "ok",
             }
         ]
     )
@@ -676,6 +794,7 @@ def test_sector_hydrogen_market_is_not_generated_without_demand():
     def fake_process_and_add_markets(**kwargs):
         called_markets.append(kwargs["name"])
         called_production_volumes.append(kwargs["production_volumes"])
+        return {"EUR"}
 
     hydrogen.process_and_add_markets = fake_process_and_add_markets
 
@@ -700,7 +819,83 @@ def test_sector_hydrogen_market_is_not_generated_without_demand():
     assert hydrogen.generated_hydrogen_sector_market_regions == {
         "Steel": ["EUR"]
     }
+    assert hydrogen.eligible_hydrogen_sector_market_regions == {
+        "Steel": ["EUR"]
+    }
+    assert hydrogen.uncreated_eligible_hydrogen_sector_market_regions == {}
     assert "Cement" in hydrogen.skipped_hydrogen_sector_markets
+
+
+def test_eligible_market_is_not_reported_or_used_when_creation_skips_it():
+    hydrogen = HydrogenMixin()
+    hydrogen.model = "test-model"
+    hydrogen.scenario = "test-scenario"
+    hydrogen.year = 2030
+    hydrogen.system_model = "cut-off"
+    hydrogen.regions = ["EUR", "World"]
+    hydrogen.geo = GeoStub({"RER": "EUR"})
+    hydrogen.iam_data = make_iam_data(
+        variables=["hydrogen electrolysis", "Industry - Chemicals - H2"],
+        regions=["EUR"],
+        values=[[[1]], [[1]]],
+    )
+    hydrogen.hydrogen_demand_nodes = pd.DataFrame(
+        [
+            {
+                "year": 2030,
+                "region": "EUR",
+                "sector": "Industrial processes",
+                "subsector": "Chemicals",
+                "distribution_status": "ok",
+            }
+        ]
+    )
+    hydrogen.process_and_add_markets = lambda **_kwargs: set()
+
+    hydrogen._generate_sector_specific_hydrogen_markets({})
+
+    assert hydrogen.eligible_hydrogen_sector_market_regions == {
+        "Chemicals": ["EUR"]
+    }
+    assert hydrogen.generated_hydrogen_sector_market_regions == {}
+    assert hydrogen.uncreated_eligible_hydrogen_sector_market_regions == {
+        "Chemicals": ["EUR"]
+    }
+    assert "Chemicals" in hydrogen.skipped_hydrogen_sector_markets
+    assert not hydrogen._hydrogen_sector_market_is_available(
+        "Chemicals", "RER"
+    )
+    hydrogen.database = [
+        {
+            "name": "chemical process consuming market-average hydrogen",
+            "reference product": "chemical product",
+            "location": "RER",
+            "unit": "kilogram",
+            "classifications": [
+                (
+                    "ISIC rev.4 ecoinvent",
+                    "2011:Manufacture of basic chemicals",
+                )
+            ],
+            "exchanges": [
+                {
+                    "name": "market for hydrogen, gaseous, low pressure",
+                    "product": "hydrogen, gaseous, low pressure",
+                    "location": "RER",
+                    "unit": "kilogram",
+                    "type": "technosphere",
+                    "amount": 0.2,
+                }
+            ],
+        }
+    ]
+
+    relinked = hydrogen.relink_hydrogen_consumers_to_sector_markets()
+
+    assert relinked == 0
+    assert hydrogen.database[0]["exchanges"][0]["name"] == (
+        "market for hydrogen, gaseous, low pressure"
+    )
 
 
 def test_hydrogen_consumer_is_relinked_to_sector_market():
@@ -710,6 +905,9 @@ def test_hydrogen_consumer_is_relinked_to_sector_market():
     hydrogen.year = 2030
     hydrogen.regions = ["EUR", "World"]
     hydrogen.geo = GeoStub({"RER": "EUR"})
+    hydrogen.generated_hydrogen_sector_market_regions = {
+        "Chemicals": ["EUR"]
+    }
     hydrogen.iam_data = make_iam_data(
         variables=["Industry - Chemicals - H2"],
         regions=["EUR"],
@@ -951,6 +1149,7 @@ def test_other_hydrogen_consumer_is_relinked_by_isic_prefix_exclusion():
     hydrogen.year = 2030
     hydrogen.regions = ["EUR", "World"]
     hydrogen.geo = GeoStub({"RER": "EUR"})
+    hydrogen.generated_hydrogen_sector_market_regions = {"Other": ["EUR"]}
     hydrogen.iam_data = make_iam_data(
         variables=["Industry - Other - H2"],
         regions=["EUR"],
@@ -1115,6 +1314,10 @@ def test_hydrogen_demand_nodes_are_written_to_fuel_log(monkeypatch):
                 "liquid_ammonia_ship": 0.25,
                 "liquid_hydrogen_ship": 0.05,
                 "on_site_production_share": 0.2,
+                "distribution_rule": "test_rule",
+                "distribution_status": "ok",
+                "distribution_share_total": 1.0,
+                "distribution_reason": "",
             }
         ]
     )
@@ -1129,7 +1332,7 @@ def test_hydrogen_demand_nodes_are_written_to_fuel_log(monkeypatch):
     assert "created (hydrogen demand node)" in logs[0]
     assert "hydrogen demand nodes|EUR" in logs[0]
     assert "demand node|Steel|Steel|steel_plants|1.2|2|100" in logs[0]
-    assert logs[0].endswith("|0.25|0.05|0.2")
+    assert logs[0].endswith("|0.25|0.05|0.2|test_rule|ok|1.0|")
 
 
 def test_relinked_hydrogen_consumers_are_written_to_fuel_log(monkeypatch):

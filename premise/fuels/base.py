@@ -36,6 +36,10 @@ HYDROGEN_LOG_COLUMNS = [
     "hydrogen distribution liquid ammonia ship",
     "hydrogen distribution liquid hydrogen ship",
     "hydrogen on-site production",
+    "hydrogen distribution rule",
+    "hydrogen distribution status",
+    "hydrogen distribution share total",
+    "hydrogen distribution reason",
 ]
 
 
@@ -98,8 +102,16 @@ def _update_fuels(scenario, version, system_model):
         scenario["generated hydrogen sector markets"] = getattr(
             fuels, "generated_hydrogen_sector_markets", []
         )
+        scenario["eligible hydrogen sector market regions"] = getattr(
+            fuels, "eligible_hydrogen_sector_market_regions", {}
+        )
         scenario["generated hydrogen sector market regions"] = getattr(
             fuels, "generated_hydrogen_sector_market_regions", {}
+        )
+        scenario["uncreated eligible hydrogen sector market regions"] = getattr(
+            fuels,
+            "uncreated_eligible_hydrogen_sector_market_regions",
+            {},
         )
         scenario["skipped hydrogen sector markets"] = getattr(
             fuels, "skipped_hydrogen_sector_markets", []
@@ -278,6 +290,16 @@ class Fuels(
                 ),
                 "hydrogen on-site production": row.get(
                     "on_site_production_share"
+                ),
+                "hydrogen distribution rule": row.get("distribution_rule"),
+                "hydrogen distribution status": row.get(
+                    "distribution_status"
+                ),
+                "hydrogen distribution share total": row.get(
+                    "distribution_share_total"
+                ),
+                "hydrogen distribution reason": row.get(
+                    "distribution_reason"
                 ),
             }
             dataset = {
