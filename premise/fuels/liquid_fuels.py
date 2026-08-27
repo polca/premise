@@ -301,6 +301,7 @@ class SyntheticFuelsMixin:
                         mapping=mapping,
                         system_model=self.system_model,
                         production_volumes=self.iam_data.production_volumes,
+                        technology_shares=self.iam_data.diesel_blend,
                         flip_treatment_supplier_sign=True,
                     )
 
@@ -324,6 +325,7 @@ class SyntheticFuelsMixin:
                         "diesel, synthetic, from coal",
                         "diesel, synthetic, from coal, with CCS",
                     ],
+                    technology_shares=self.iam_data.diesel_blend,
                 )
 
         # jet fuel
@@ -404,7 +406,12 @@ class SyntheticFuelsMixin:
                 )
 
     def update_fuel_carbon_dioxide_emissions(
-        self, variables, market_names, co2_intensity, fossil_variables
+        self,
+        variables,
+        market_names,
+        co2_intensity,
+        fossil_variables,
+        technology_shares=None,
     ):
         """
         Update carbon dioxide emissions for biogas datasets.
@@ -418,6 +425,11 @@ class SyntheticFuelsMixin:
                 mapping=filtered_mapping,
             )
         )
+        if technology_shares is not None:
+            _, tech_shares, _ = self.get_technology_and_regional_production_shares(
+                production_volumes=technology_shares,
+                mapping=filtered_mapping,
+            )
 
         # Build nested fuel share dictionary
         fuel_shares = defaultdict(dict)
