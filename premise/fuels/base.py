@@ -32,6 +32,10 @@ HYDROGEN_LOG_COLUMNS = [
     "hydrogen exchange amount",
     "old generic hydrogen market",
     "new sector specific hydrogen market",
+    # Appended to preserve the positional meaning of existing fuel log rows.
+    "hydrogen distribution liquid ammonia ship",
+    "hydrogen distribution liquid hydrogen ship",
+    "hydrogen on-site production",
 ]
 
 
@@ -265,6 +269,15 @@ class Fuels(
                 ),
                 "hydrogen distribution liquid truck": row.get(
                     "liquid_hydrogen_truck"
+                ),
+                "hydrogen distribution liquid ammonia ship": row.get(
+                    "liquid_ammonia_ship"
+                ),
+                "hydrogen distribution liquid hydrogen ship": row.get(
+                    "liquid_hydrogen_ship"
+                ),
+                "hydrogen on-site production": row.get(
+                    "on_site_production_share"
                 ),
             }
             dataset = {

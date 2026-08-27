@@ -783,6 +783,7 @@ class HydrogenMixin:
                 "hydrogen_demand_t_per_node_per_year",
                 "hydrogen_demand_t_per_node_per_day",
                 *HYDROGEN_DISTRIBUTION_MODES,
+                "on_site_production_share",
                 "availability_days_per_year",
                 "activity_proxy_value",
                 "activity_proxy_unit",
@@ -1396,6 +1397,7 @@ class HydrogenMixin:
 
         for mode in HYDROGEN_DISTRIBUTION_MODES:
             demand[mode] = 0.0
+        demand["on_site_production_share"] = 0.0
 
         for index, row in demand.iterrows():
             rule = self._select_hydrogen_distribution_rule(row)
@@ -1404,6 +1406,9 @@ class HydrogenMixin:
 
             for mode, share in rule.get("shares", {}).items():
                 demand.loc[index, mode] = share
+            demand.loc[index, "on_site_production_share"] = rule.get(
+                "on_site_production_share", 0.0
+            )
 
         return demand
 

@@ -273,6 +273,28 @@ def test_hydrogen_distribution_demand_intervals(demand, expected_rule):
     assert rule["name"] == expected_rule
 
 
+def test_very_large_demand_reports_on_site_production_separately():
+    hydrogen = HydrogenMixin()
+    demand = pd.DataFrame(
+        [{"hydrogen_demand_t_per_node_per_year": 50_000}]
+    )
+
+    result = hydrogen._add_hydrogen_distribution_shares(demand).iloc[0]
+
+    assert result["compressed_gaseous_pipeline"] == pytest.approx(0.8)
+    assert result["on_site_production_share"] == pytest.approx(0.2)
+    assert sum(
+        result[mode]
+        for mode in (
+            "compressed_gaseous_truck",
+            "compressed_gaseous_pipeline",
+            "liquid_hydrogen_truck",
+            "liquid_ammonia_ship",
+            "liquid_hydrogen_ship",
+        )
+    ) == pytest.approx(0.8)
+
+
 def test_sector_market_regions_exclude_all_world_spelling_variants():
     hydrogen = HydrogenMixin()
     hydrogen.model = "remind"
@@ -585,6 +607,35 @@ def test_general_hydrogen_market_name_has_no_sector_transport_shares():
     )
 
     assert shares == {}
+
+
+def test_on_site_production_share_is_not_a_transport_activity():
+    hydrogen = HydrogenMixin()
+    hydrogen.year = 2030
+    hydrogen.hydrogen_demand_nodes = pd.DataFrame(
+        [
+            {
+                "year": 2030,
+                "region": "EUR",
+                "sector": "Transport",
+                "subsector": "Transport",
+                "hydrogen_demand_t_per_year": 100,
+                "compressed_gaseous_pipeline": 0.8,
+                "on_site_production_share": 0.2,
+            }
+        ]
+    )
+
+    shares = hydrogen._hydrogen_transport_shares_for_market(
+        {
+            "name": (
+                "market for hydrogen, gaseous, low pressure, for transport"
+            ),
+            "location": "EUR",
+        }
+    )
+
+    assert shares == {"compressed_gaseous_pipeline": pytest.approx(0.8)}
 
 
 def test_sector_hydrogen_market_is_not_generated_without_demand():
@@ -1061,6 +1112,9 @@ def test_hydrogen_demand_nodes_are_written_to_fuel_log(monkeypatch):
                 "compressed_gaseous_truck": 0.7,
                 "compressed_gaseous_pipeline": 0.3,
                 "liquid_hydrogen_truck": 0,
+                "liquid_ammonia_ship": 0.25,
+                "liquid_hydrogen_ship": 0.05,
+                "on_site_production_share": 0.2,
             }
         ]
     )
@@ -1075,6 +1129,7 @@ def test_hydrogen_demand_nodes_are_written_to_fuel_log(monkeypatch):
     assert "created (hydrogen demand node)" in logs[0]
     assert "hydrogen demand nodes|EUR" in logs[0]
     assert "demand node|Steel|Steel|steel_plants|1.2|2|100" in logs[0]
+    assert logs[0].endswith("|0.25|0.05|0.2")
 
 
 def test_relinked_hydrogen_consumers_are_written_to_fuel_log(monkeypatch):

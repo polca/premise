@@ -455,6 +455,18 @@ premise_fuel:
       new sector specific hydrogen market:
         name: New sector-specific hydrogen market
         description: Sector-specific hydrogen market used after relinking
+      hydrogen distribution liquid ammonia ship:
+        name: Liquid ammonia ship distribution share
+        description: Share of hydrogen transported by ship as liquid ammonia
+        unit: 0-1
+      hydrogen distribution liquid hydrogen ship:
+        name: Liquid hydrogen ship distribution share
+        description: Share of hydrogen transported by ship as liquid hydrogen
+        unit: 0-1
+      hydrogen on-site production:
+        name: On-site production
+        description: Share of hydrogen produced on site without a transport activity
+        unit: 0-1
     tab: Fuel
 
 premise_heat:

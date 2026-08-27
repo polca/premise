@@ -89,8 +89,8 @@ rules:
     basis: hydrogen_demand_t_per_node_per_year
     condition:
       min_demand: 50000
-    # The remaining 20% represents onsite hydrogen production, for which no
-    # transport is necessary.
+    # On-site production adds no transport activity to the sector market.
+    on_site_production_share: 0.20
     shares:
       compressed_gaseous_truck: 0.00
       liquid_hydrogen_truck: 0.00
