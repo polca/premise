@@ -31,6 +31,18 @@ sectors:
       - fuelling station
       - service station
       - fuel cell vehicle
+      # Ecoinvent hydrogen-use activities are classified as heat/ISIC 3530,
+      # so match their transport context before falling back to ISIC.
+      - fuel cell in a passenger car
+      - fuel cell in a heavy duty vehicle
+      - fuel cell in a passenger train
+      - fuel cell in a single deck coach or urban bus
+      - fuel cell in container ship
+      - hydrogen motorcycle
+      - hydrogen, used in heavy duty vehicle
+      - hydrogen, used in passenger car vehicle
+      - hydrogen, used in single deck coach or urban bus
+      - hydrogen, burned in aircraft
     isic_prefix:
       - "49" # Land transport and transport via pipelines.
       - "50" # Water transport.
@@ -88,7 +100,6 @@ sectors:
       - heat production
       - boiler
       - furnace
-      - burned in
     isic_exact:
       - "3530" # Steam and air conditioning supply.
 
