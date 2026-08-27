@@ -1,0 +1,4 @@
+interface:
+  display_name: "Premise H2 Distribution"
+  short_description: "Engineer and audit H2 distribution logic"
+  default_prompt: "Use $premise-h2-distribution to trace, implement, and validate a hydrogen-distribution change in this repository."
