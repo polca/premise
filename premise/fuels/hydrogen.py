@@ -1628,6 +1628,7 @@ class HydrogenMixin:
                 additional_exchanges_fn=(
                     self._add_transport_to_sector_specific_hydrogen_market
                 ),
+                create_world_market=False,
             )
             created_regions = set(created_locations or ()) & set(
                 eligible_market_regions[market]

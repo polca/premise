@@ -299,6 +299,26 @@ def test_cutoff_fuel_market_flips_treatment_supplier_sign_after_normalization(
     assert suppliers["diesel production, petroleum refinery"] == pytest.approx(0.2)
 
 
+def test_market_can_suppress_automatic_world_market(monkeypatch):
+    transformation, production_volumes = make_market_transformation(
+        monkeypatch, {"technology": 1.0}
+    )
+
+    created_locations = transformation.process_and_add_markets(
+        name="market for regional product",
+        reference_product="regional product",
+        unit="kilogram",
+        mapping={"technology": [make_supplier("regional supplier")]},
+        production_volumes=production_volumes,
+        create_world_market=False,
+    )
+
+    assert created_locations == {"WEU"}
+    assert {dataset["location"] for dataset in transformation.database} == {
+        "WEU"
+    }
+
+
 def test_market_conversion_factors_can_be_region_specific(monkeypatch):
     transformation, production_volumes = make_market_transformation(
         monkeypatch, {"technology one": 0.5, "technology two": 0.5}

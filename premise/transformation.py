@@ -789,6 +789,7 @@ class BaseTransformation:
         blacklist=None,
         conversion_factor=None,
         flip_treatment_supplier_sign=False,
+        create_world_market=True,
     ):
         """
         Generalized method to create and add regionalized market datasets.
@@ -807,6 +808,9 @@ class BaseTransformation:
             List of regions for which to create markets.
         additional_exchanges_fn : callable, optional
             Function to add extra exchanges to the market dataset (e.g., transport, losses).
+        create_world_market : bool, optional
+            Whether to create the aggregate World market after the regional
+            markets. Defaults to True for backwards compatibility.
 
         Returns
         -------
@@ -990,7 +994,7 @@ class BaseTransformation:
             self.write_log(market_dataset, "created")
             created_market_locations.add(region)
 
-        if production_volumes is not None:
+        if production_volumes is not None and create_world_market:
             if (
                 "World" not in regions
                 and production_volumes.sel(

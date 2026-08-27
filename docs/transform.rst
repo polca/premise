@@ -2230,8 +2230,9 @@ target year. When that year is not an explicit IAM coordinate, the existing
 logic interpolates between IAM years or selects the nearest boundary. The IAM
 ``World`` aggregate is retained temporarily to validate the sum of regional
 demand, but it is excluded from stored demand nodes and from sector-specific
-market creation. Global totals must therefore be calculated from the regional
-rows without adding the IAM aggregate.
+market creation. The generic market builder's automatic ``World`` aggregation
+is explicitly disabled for these sector markets. Global totals must therefore
+be calculated from the regional rows without adding the IAM aggregate.
 
 A sector-region is eligible for market construction only when its positive
 direct-hydrogen demand also has a complete distribution result. Missing demand

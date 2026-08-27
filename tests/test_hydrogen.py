@@ -790,10 +790,12 @@ def test_sector_hydrogen_market_is_not_generated_without_demand():
     )
     called_markets = []
     called_production_volumes = []
+    create_world_market_settings = []
 
     def fake_process_and_add_markets(**kwargs):
         called_markets.append(kwargs["name"])
         called_production_volumes.append(kwargs["production_volumes"])
+        create_world_market_settings.append(kwargs["create_world_market"])
         return {"EUR"}
 
     hydrogen.process_and_add_markets = fake_process_and_add_markets
@@ -803,6 +805,7 @@ def test_sector_hydrogen_market_is_not_generated_without_demand():
     assert called_markets == [
         "market for hydrogen, gaseous, low pressure, for steel"
     ]
+    assert create_world_market_settings == [False]
     assert (
         called_production_volumes[0]
         .sel(variables="hydrogen electrolysis", region="EUR")
