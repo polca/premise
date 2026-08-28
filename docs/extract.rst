@@ -722,7 +722,7 @@ present in the database after the additional inventories are imported:
   ``liquid_hydrogen_truck``                                              ``transport, hydrogen, liquid, lorry, unspecified``
   ``compressed_gaseous_pipeline``                                        ``hydrogen supply, distributed by pipeline``
   ``liquid_hydrogen_ship``                                               ``transport, freight, sea, tanker for liquefied hydrogen, heavy fuel oil``
-  ``liquid_ammonia_ship``                                                ``transport, freight, sea, tanker for liquefied ammonia, ammonia and mgo``
+  ``liquid_ammonia_ship``                                                ``transport, freight, sea, tanker for liquefied ammonia, ammonia and mdo``
  ====================================================================== ============================
 
 The truck and ship activities come from ``lci-hydrogen-transport.xlsx`` during

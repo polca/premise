@@ -2508,7 +2508,7 @@ The weighted shares are converted to technosphere exchanges as follows:
      - None
    * - Liquid ammonia by ship
      - ``transport, freight, sea, tanker for liquefied ammonia, ammonia and
-       mgo``
+       mdo``
      - ``share * 2500 * 0.001`` tkm
      - ``share / 0.175`` kg ammonia production and ``share * 7.67`` kg
        ammonia cracking

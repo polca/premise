@@ -14,7 +14,7 @@ TRANSPORT_NAMES = {
     "transport, hydrogen, gaseous, lorry, unspecified": "Gaseous H2 truck",
     "transport, hydrogen, liquid, lorry, unspecified": "Liquid H2 truck",
     "hydrogen supply, distributed by pipeline": "Pipeline distribution",
-    "transport, freight, sea, tanker for liquefied ammonia, ammonia and mgo": "Ammonia tanker",
+    "transport, freight, sea, tanker for liquefied ammonia, ammonia and mdo": "Ammonia tanker",
     "transport, freight, sea, tanker for liquefied hydrogen, heavy fuel oil": "Liquid H2 tanker",
 }
 CONVERSION_NAMES = {

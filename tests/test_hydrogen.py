@@ -1019,9 +1019,9 @@ def test_usa_residential_boiler_relinks_rer_exchange_to_usa_heating_market():
         ),
         (
             "transport, freight, sea, tanker for liquefied ammonia, "
-            "ammonia and mgo",
+            "ammonia and mdo",
             "transport, freight, sea, tanker for liquefied ammonia, "
-            "ammonia and mgo",
+            "ammonia and mdo",
         ),
         (
             "transport, freight, sea, tanker for liquefied hydrogen, "
