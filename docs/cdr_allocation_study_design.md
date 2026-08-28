@@ -194,6 +194,33 @@ Both databases should use:
 The difference between the two databases should isolate the effect of assigning
 scenario CDR to residual product-system GHG emissions.
 
+## C400 incremental database ladder
+
+For the IMAGE `SSP2_C400` reproduction, use a cumulative update ladder rather
+than only the paired comparison above. The ladder attributes changes to ordered
+premise sector groups before adding CDR compensation. It uses a fully updated
+2025 database as the reference, cumulative partial updates in 2060, and two
+final 2060 databases with all sector updates, respectively without and with CDR
+allocation.
+
+| Order | Database suffix | Year | Sector updates | CDR allocation |
+| ---: | --- | ---: | --- | --- |
+| 1 | `2025_baseline` | 2025 | All premise sector updates | No |
+| 2 | `2060_biomass_electricity` | 2060 | Biomass, electricity | No |
+| 3 | `2060_biomass_electricity_heat` | 2060 | Previous + heat | No |
+| 4 | `2060_biomass_electricity_heat_steel` | 2060 | Previous + steel | No |
+| 5 | `2060_biomass_electricity_heat_steel_cement` | 2060 | Previous + cement | No |
+| 6 | `2060_biomass_electricity_heat_steel_cement_transport` | 2060 | Previous + cars, two-wheelers, trucks, ships, buses, trains, fuels, batteries | No |
+| 7 | `2060_all` | 2060 | All premise sector updates | No |
+| 8 | `2060_all_cdr_market` | 2060 | All premise sector updates | Yes, normal IMAGE CDR market |
+
+With the standard prefix, the databases are named
+`ei_cutoff_3.12_image_SSP2_C400_<suffix>`. The final comparison between stages
+7 and 8 isolates the additional burden of assigning the scenario-weighted CDR
+market to residual product-system greenhouse gas emissions. Forced
+single-CDR-technology databases are optional technology-mix sensitivities and
+are not part of the core eight-database ladder.
+
 ## Impact indicators
 
 Primary indicators:

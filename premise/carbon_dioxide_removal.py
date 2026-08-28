@@ -115,7 +115,7 @@ def _update_cdr_allocation(scenario, version, system_model):
         return scenario
 
     cdr = CarbonDioxideRemoval(
-        database=scenario["database"],
+        database=get_scenario_inventory(scenario),
         iam_data=scenario["iam data"],
         model=scenario["model"],
         pathway=scenario["pathway"],
@@ -127,7 +127,7 @@ def _update_cdr_allocation(scenario, version, system_model):
     )
     cdr.cdr_map = scenario.get("mapping", {}).get("cdr", {})
     cdr.allocate_cdr_to_greenhouse_gases()
-    scenario["database"] = cdr.database
+    replace_scenario_inventory(scenario, cdr.database)
     scenario["cache"] = cdr.cache
     scenario["index"] = cdr.index
 

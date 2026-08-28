@@ -5,12 +5,55 @@ from openpyxl import load_workbook
 import pytest
 import xarray as xr
 
-from premise.carbon_dioxide_removal import CarbonDioxideRemoval
+import premise.carbon_dioxide_removal as cdr_module
+from premise.carbon_dioxide_removal import (
+    CarbonDioxideRemoval,
+    _update_cdr_allocation,
+)
 from premise.data_collection import IAMDataCollection
 from premise.filesystem_constants import INVENTORY_DIR
+from premise.inventory_store import CompactInventoryStore, get_scenario_inventory
 
 CDR_INVENTORY = INVENTORY_DIR / "lci-carbon-capture.xlsx"
 AFFORESTATION_INVENTORY = INVENTORY_DIR / "lci-afforestation.xlsx"
+
+
+def test_cdr_allocation_wrapper_supports_compact_inventory_store(monkeypatch):
+    database = [
+        {
+            "name": "activity",
+            "reference product": "product",
+            "location": "CH",
+            "unit": "kilogram",
+            "exchanges": [],
+        }
+    ]
+    scenario = {
+        "_inventory_store": CompactInventoryStore(database),
+        "iam data": SimpleNamespace(cdr_technology_mix=True),
+        "model": "image",
+        "pathway": "SSP2_C400",
+        "year": 2050,
+        "mapping": {"cdr": {}},
+        "cache": {},
+        "index": {},
+    }
+
+    class FakeCarbonDioxideRemoval:
+        def __init__(self, database, cache, index, **kwargs):
+            self.database = database
+            self.cache = cache
+            self.index = index
+
+        def allocate_cdr_to_greenhouse_gases(self):
+            self.database[0]["cdr allocation wrapper called"] = True
+
+    monkeypatch.setattr(cdr_module, "CarbonDioxideRemoval", FakeCarbonDioxideRemoval)
+
+    updated = _update_cdr_allocation(scenario, version="3.12", system_model="cutoff")
+
+    assert "database" not in updated
+    assert get_scenario_inventory(updated)[0]["cdr allocation wrapper called"] is True
 
 
 def get_cdr_allocation_transform(
