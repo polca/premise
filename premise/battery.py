@@ -222,6 +222,21 @@ class Battery(BaseTransformation):
                         f"{datasets_mapping[exc['name']]} market share"
                     ] = exc["amount"]
 
+            supplier_exchanges = [
+                exc
+                for exc in ws.technosphere(ds)
+                if exc.get("unit") == ds.get("unit")
+                and np.isfinite(exc.get("amount", np.nan))
+            ]
+            total_share = sum(exc["amount"] for exc in supplier_exchanges)
+            if total_share > 0:
+                for exc in supplier_exchanges:
+                    exc["amount"] /= total_share
+                    if exc["name"] in datasets_mapping:
+                        ds["log parameters"][
+                            f"{datasets_mapping[exc['name']]} market share"
+                        ] = exc["amount"]
+
             self.write_log(ds, status=f"modified ({market_type})")
 
     def adjust_battery_mass(self) -> None:
