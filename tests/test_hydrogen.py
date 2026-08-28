@@ -967,6 +967,41 @@ def test_hydrogen_consumer_is_relinked_to_sector_market():
     assert hydrogen.skipped_hydrogen_consumers == []
 
 
+def test_usa_residential_boiler_relinks_rer_exchange_to_usa_heating_market():
+    hydrogen = HydrogenMixin()
+    hydrogen.geo = GeoStub({"RER": "EUR"})
+    hydrogen.generated_hydrogen_sector_market_regions = {"Heating": ["USA"]}
+    hydrogen.database = [
+        {
+            "name": "hydrogen, burned in residential boiler",
+            "reference product": "heat",
+            "location": "USA",
+            "unit": "megajoule",
+            "exchanges": [
+                {
+                    "name": "market for hydrogen, gaseous, low pressure",
+                    "product": "hydrogen, gaseous, low pressure",
+                    "location": "RER",
+                    "unit": "kilogram",
+                    "type": "technosphere",
+                    "amount": 1 / 120,
+                    "input": ("ecoinvent", "old-generic-hydrogen-market"),
+                }
+            ],
+        }
+    ]
+
+    relinked = hydrogen.relink_hydrogen_consumers_to_sector_markets()
+
+    exchange = hydrogen.database[0]["exchanges"][0]
+    assert relinked == 1
+    assert exchange["name"] == (
+        "market for hydrogen, gaseous, low pressure, for heating"
+    )
+    assert exchange["location"] == "USA"
+    assert "input" not in exchange
+
+
 @pytest.mark.parametrize(
     ("name", "reference_product"),
     [

@@ -494,9 +494,9 @@ class HydrogenMixin:
     def _available_hydrogen_sector_market_keys(self):
         return self._eligible_hydrogen_sector_market_keys()
 
-    # Sector-market workflow: check whether a sector market was actually
-    # created for an exchange location. Eligibility alone is not enough.
-    def _hydrogen_sector_market_is_available(self, sector, location=None):
+    # Sector-market workflow: resolve a consumer location to a sector market
+    # that was actually created. Eligibility alone is not enough.
+    def _resolve_hydrogen_sector_market_location(self, sector, location):
         regions = set(
             getattr(
                 self,
@@ -504,21 +504,38 @@ class HydrogenMixin:
                 {},
             ).get(sector, [])
         )
-        if not regions:
-            return False
-
-        if location is None:
-            return True
+        if not regions or location is None:
+            return None
 
         if location in regions:
-            return True
+            return location
 
         try:
             iam_location = self.geo.ecoinvent_to_iam_location(location)
         except (AttributeError, ValueError):
-            iam_location = location
+            return None
 
-        return iam_location in regions
+        if iam_location in regions:
+            return iam_location
+
+        return None
+
+    # Backwards-compatible availability check for callers that only need a
+    # boolean result.
+    def _hydrogen_sector_market_is_available(self, sector, location=None):
+        if location is None:
+            return bool(
+                getattr(
+                    self,
+                    "generated_hydrogen_sector_market_regions",
+                    {},
+                ).get(sector, [])
+            )
+
+        return (
+            self._resolve_hydrogen_sector_market_location(sector, location)
+            is not None
+        )
 
     # Consumer relinking workflow: redirect generic hydrogen inputs to available sector markets.
     def relink_hydrogen_consumers_to_sector_markets(self):
@@ -565,9 +582,10 @@ class HydrogenMixin:
                 continue
 
             for exchange in hydrogen_exchanges:
-                if not self._hydrogen_sector_market_is_available(
-                    sector, exchange.get("location", dataset.get("location"))
-                ):
+                target_location = self._resolve_hydrogen_sector_market_location(
+                    sector, dataset.get("location")
+                )
+                if target_location is None:
                     self.skipped_hydrogen_consumers.append(
                         self._hydrogen_consumer_warning(
                             dataset, exchange, [sector]
@@ -582,6 +600,8 @@ class HydrogenMixin:
                     )
                 )
                 exchange["name"] = new_market
+                exchange["location"] = target_location
+                exchange.pop("input", None)
                 relinked += 1
 
             if any(
