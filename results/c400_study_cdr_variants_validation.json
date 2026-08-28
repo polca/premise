@@ -1,0 +1,79 @@
+{
+  "project": "ecoinvent-3.12-cutoff",
+  "reference_database": "ei_cutoff_3.12_image_SSP2_C400_2060_all_cdr_market",
+  "all_activity_identity_counts_match_reference": true,
+  "variants": [
+    {
+      "database": "ei_cutoff_3.12_image_SSP2_C400_2060_cdr_direct_air_capture_solvent_gas_heat_with_storage",
+      "activity_count": 50858,
+      "allocated_dataset_count": 14079,
+      "regional_market_count": 26,
+      "world_market_count": 1,
+      "supplier_name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2",
+      "supplier_exchanges_per_regional_market": [
+        1
+      ],
+      "representative_time": "2060-01-01T00:00:00"
+    },
+    {
+      "database": "ei_cutoff_3.12_image_SSP2_C400_2060_cdr_direct_air_capture_sorbent_heat_pump_with_storage",
+      "activity_count": 50858,
+      "allocated_dataset_count": 14079,
+      "regional_market_count": 26,
+      "world_market_count": 1,
+      "supplier_name": "carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2, with heat pump heat, and grid electricity",
+      "supplier_exchanges_per_regional_market": [
+        1
+      ],
+      "representative_time": "2060-01-01T00:00:00"
+    },
+    {
+      "database": "ei_cutoff_3.12_image_SSP2_C400_2060_cdr_enhanced_rock_weathering",
+      "activity_count": 50858,
+      "allocated_dataset_count": 14079,
+      "regional_market_count": 26,
+      "world_market_count": 1,
+      "supplier_name": "carbon dioxide, captured and stored, by olivine spreading on coastline",
+      "supplier_exchanges_per_regional_market": [
+        1
+      ],
+      "representative_time": "2060-01-01T00:00:00"
+    },
+    {
+      "database": "ei_cutoff_3.12_image_SSP2_C400_2060_cdr_cement_production_non_fossil_co2_with_ccs",
+      "activity_count": 50858,
+      "allocated_dataset_count": 14079,
+      "regional_market_count": 26,
+      "world_market_count": 1,
+      "supplier_name": "carbon dioxide, captured and stored, at cement production plant, from non-fossil carbon dioxide, using monoethanolamine",
+      "supplier_exchanges_per_regional_market": [
+        1
+      ],
+      "representative_time": "2060-01-01T00:00:00"
+    },
+    {
+      "database": "ei_cutoff_3.12_image_SSP2_C400_2060_cdr_afforestation_eucalyptus_plantation",
+      "activity_count": 50858,
+      "allocated_dataset_count": 14079,
+      "regional_market_count": 26,
+      "world_market_count": 1,
+      "supplier_name": "carbon dioxide, captured and stored, by re/afforestation, eucalyptus",
+      "supplier_exchanges_per_regional_market": [
+        1
+      ],
+      "representative_time": "2060-01-01T00:00:00"
+    },
+    {
+      "database": "ei_cutoff_3.12_image_SSP2_C400_2060_cdr_afforestation_poplar_plantation",
+      "activity_count": 50858,
+      "allocated_dataset_count": 14079,
+      "regional_market_count": 26,
+      "world_market_count": 1,
+      "supplier_name": "carbon dioxide, captured and stored, by re/afforestation, willow",
+      "supplier_exchanges_per_regional_market": [
+        1
+      ],
+      "representative_time": "2060-01-01T00:00:00"
+    }
+  ]
+}

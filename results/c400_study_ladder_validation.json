@@ -1,0 +1,122 @@
+{
+  "project": "ecoinvent-3.12-cutoff",
+  "databases": [
+    {
+      "stage": "2025_baseline",
+      "database": "ei_cutoff_3.12_image_SSP2_C400_2025_baseline",
+      "activity_count": 50840,
+      "representative_time": "2025-01-01T00:00:00"
+    },
+    {
+      "stage": "2060_biomass_electricity",
+      "database": "ei_cutoff_3.12_image_SSP2_C400_2060_biomass_electricity",
+      "activity_count": 35313,
+      "representative_time": "2060-01-01T00:00:00"
+    },
+    {
+      "stage": "2060_biomass_electricity_heat",
+      "database": "ei_cutoff_3.12_image_SSP2_C400_2060_biomass_electricity_heat",
+      "activity_count": 35810,
+      "representative_time": "2060-01-01T00:00:00"
+    },
+    {
+      "stage": "2060_biomass_electricity_heat_steel",
+      "database": "ei_cutoff_3.12_image_SSP2_C400_2060_biomass_electricity_heat_steel",
+      "activity_count": 37136,
+      "representative_time": "2060-01-01T00:00:00"
+    },
+    {
+      "stage": "2060_biomass_electricity_heat_steel_cement",
+      "database": "ei_cutoff_3.12_image_SSP2_C400_2060_biomass_electricity_heat_steel_cement",
+      "activity_count": 38457,
+      "representative_time": "2060-01-01T00:00:00"
+    },
+    {
+      "stage": "2060_biomass_electricity_heat_steel_cement_transport",
+      "database": "ei_cutoff_3.12_image_SSP2_C400_2060_biomass_electricity_heat_steel_cement_transport",
+      "activity_count": 44909,
+      "representative_time": "2060-01-01T00:00:00"
+    },
+    {
+      "stage": "2060_all",
+      "database": "ei_cutoff_3.12_image_SSP2_C400_2060_all",
+      "activity_count": 50858,
+      "representative_time": "2060-01-01T00:00:00"
+    },
+    {
+      "stage": "2060_all_cdr_market",
+      "database": "ei_cutoff_3.12_image_SSP2_C400_2060_all_cdr_market",
+      "activity_count": 50858,
+      "representative_time": "2060-01-01T00:00:00"
+    }
+  ],
+  "final_pair_identity_counts_match": true,
+  "allocated_dataset_count": 14079,
+  "invalid_allocation_count": 0,
+  "cdr_market_count": 27,
+  "cdr_market_locations": [
+    "BRA",
+    "CAN",
+    "CEU",
+    "CHN",
+    "EAF",
+    "INDIA",
+    "INDO",
+    "JAP",
+    "KOR",
+    "ME",
+    "MEX",
+    "NAF",
+    "OCE",
+    "RCAM",
+    "RSAF",
+    "RSAM",
+    "RSAS",
+    "RUS",
+    "SAF",
+    "SEAS",
+    "STAN",
+    "TUR",
+    "UKR",
+    "USA",
+    "WAF",
+    "WEU",
+    "World"
+  ],
+  "lcia_smoke_product": {
+    "name": "transport, passenger car, battery electric, Medium",
+    "reference product": "transport, passenger car",
+    "location": "WEU",
+    "unit": "kilometer"
+  },
+  "lcia_smoke_scores": {
+    "GWP100 incl. biogenic CO2": {
+      "unit": "kg CO2-Eq",
+      "uncompensated": 0.023644539136788097,
+      "cdr_compensated": -0.0006829146177528694,
+      "absolute_change": -0.024327453754540967,
+      "relative_change_percent": -102.88825514340577
+    },
+    "Freshwater extraction": {
+      "unit": "m3",
+      "uncompensated": 0.0005103333999761946,
+      "cdr_compensated": 0.0006083885987450321,
+      "absolute_change": 9.805519876883754e-05,
+      "relative_change_percent": 19.2139489152408
+    },
+    "Cumulative energy demand": {
+      "unit": "MJ-Eq",
+      "uncompensated": 2.6654457441925667,
+      "cdr_compensated": 2.9674911375110127,
+      "absolute_change": 0.30204539331844593,
+      "relative_change_percent": 11.33189050936557
+    },
+    "Metals/minerals depletion": {
+      "unit": "kg Sb-Eq",
+      "uncompensated": 8.929730150251274e-06,
+      "cdr_compensated": 8.981604538918976e-06,
+      "absolute_change": 5.187438866770266e-08,
+      "relative_change_percent": 0.5809177634135223
+    }
+  }
+}
