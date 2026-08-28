@@ -1,7 +1,74 @@
 from copy import deepcopy
+import sqlite3
+
+import numpy as np
+import pytest
 
 import premise.brightway2 as brightway2_module
 import premise.brightway25 as brightway25_module
+from premise._fast_sqlite import fast_sqlite_settings
+from premise.inventory_store import CompactInventoryStore, InventoryStore
+
+
+class _SQLiteAdapter:
+    def __init__(self, connection):
+        self.connection = connection
+
+    def execute_sql(self, statement):
+        return self.connection.execute(statement)
+
+
+def test_fast_sqlite_settings_apply_and_restore_all_pragmas(tmp_path):
+    connection = sqlite3.connect(tmp_path / "fast-settings.sqlite")
+    database = _SQLiteAdapter(connection)
+    original = {
+        name: connection.execute(f"PRAGMA {name};").fetchone()[0]
+        for name in (
+            "journal_mode",
+            "synchronous",
+            "temp_store",
+            "cache_size",
+            "foreign_keys",
+        )
+    }
+
+    with fast_sqlite_settings(database, cache_mib=16):
+        assert connection.execute("PRAGMA journal_mode;").fetchone()[0] == "memory"
+        assert connection.execute("PRAGMA synchronous;").fetchone()[0] == 0
+        assert connection.execute("PRAGMA temp_store;").fetchone()[0] == 2
+        assert connection.execute("PRAGMA cache_size;").fetchone()[0] == -(16 * 1024)
+        assert connection.execute("PRAGMA foreign_keys;").fetchone()[0] == 0
+
+    restored = {
+        name: connection.execute(f"PRAGMA {name};").fetchone()[0] for name in original
+    }
+    connection.close()
+    assert restored == original
+
+
+def test_fast_writer_preserves_primary_exception_when_cleanup_fails(monkeypatch):
+    primary = RuntimeError("row insertion failed")
+
+    monkeypatch.setattr(
+        brightway25_module,
+        "fast_sqlite_settings",
+        lambda database: __import__("contextlib").nullcontext(),
+    )
+    monkeypatch.setattr(
+        brightway25_module,
+        "_write_processed_database_fast_impl",
+        lambda *args, **kwargs: (_ for _ in ()).throw(primary),
+    )
+    monkeypatch.setattr(
+        brightway25_module,
+        "_cleanup_failed_fast_database",
+        lambda name: (_ for _ in ()).throw(RuntimeError("cleanup failed")),
+    )
+
+    with pytest.raises(RuntimeError, match="row insertion failed") as error:
+        brightway25_module._write_processed_database_fast([], "failed-db")
+
+    assert error.value is primary
 
 
 def test_collect_fast_export_geography_discards_unknown_geocollections():
@@ -68,7 +135,7 @@ def test_write_brightway25_database_fast_prints_completion_message(monkeypatch, 
     monkeypatch.setattr(
         brightway25_module,
         "_write_processed_database_fast",
-        lambda data, name: calls.__setitem__("write", (data, name)),
+        lambda data, name, **kwargs: calls.__setitem__("write", (data, name, kwargs)),
     )
 
     data = [{"code": "a", "exchanges": []}]
@@ -80,10 +147,14 @@ def test_write_brightway25_database_fast_prints_completion_message(monkeypatch, 
         check_internal=True,
     )
 
-    assert calls["change_db_name"] == (data, "fast-db")
+    assert calls["change_db_name"] is None
     assert calls["check_internal"] == 1
     assert calls["compact"] == (data, "fast-db")
-    assert calls["write"] == (data, "fast-db")
+    assert calls["write"] == (
+        data,
+        "fast-db",
+        {"exchange_payloads_prepared": True},
+    )
     assert "Brightway database written: fast-db" in capsys.readouterr().out
 
 
@@ -100,7 +171,7 @@ def test_write_brightway25_database_fast_prints_overwrite_message(monkeypatch, c
     monkeypatch.setattr(
         brightway25_module,
         "_write_processed_database_fast",
-        lambda data, name: None,
+        lambda data, name, **kwargs: None,
     )
 
     brightway25_module.write_brightway_database(
@@ -475,6 +546,88 @@ def test_brightway25_fast_exchange_payload_normalizes_no_uncertainty_loc():
     assert "maximum" not in compact_exchange
 
 
+def test_brightway25_fast_exchange_payload_applies_exchange_schema_cleanup():
+    technosphere = {
+        "name": "supplier",
+        "product": "product",
+        "unit": "kilogram",
+        "location": "CH",
+        "categories": ("unused",),
+        "amount": np.float64(1.0),
+        "type": "technosphere",
+        "input": ("source-db", "act-2"),
+        "output": ("source-db", "act-1"),
+    }
+    biosphere = {
+        "name": "Carbon dioxide, fossil",
+        "product": "unused",
+        "unit": "kilogram",
+        "location": "unused",
+        "categories": ("air", "urban air close to ground"),
+        "amount": np.float64(2.0),
+        "type": "biosphere",
+        "input": ("biosphere3", "flow-1"),
+        "output": ("source-db", "act-1"),
+    }
+
+    compact_technosphere = brightway25_module._prepare_fast_exchange_payload(
+        technosphere
+    )
+    compact_biosphere = brightway25_module._prepare_fast_exchange_payload(biosphere)
+
+    assert "categories" not in compact_technosphere
+    assert compact_technosphere["amount"] == 1.0
+    assert type(compact_technosphere["amount"]) is float
+    assert "product" not in compact_biosphere
+    assert "location" not in compact_biosphere
+    assert compact_biosphere["categories"] == (
+        "air",
+        "urban air close to ground",
+    )
+    assert compact_biosphere["amount"] == 2.0
+    assert type(compact_biosphere["amount"]) is float
+
+
+def test_brightway2_fast_exchange_payload_applies_exchange_schema_cleanup():
+    technosphere = {
+        "name": "supplier",
+        "product": "product",
+        "unit": "kilogram",
+        "location": "CH",
+        "categories": ("unused",),
+        "amount": np.float64(1.0),
+        "type": "technosphere",
+        "input": ("source-db", "act-2"),
+        "output": ("source-db", "act-1"),
+    }
+    biosphere = {
+        "name": "Carbon dioxide, fossil",
+        "product": "unused",
+        "unit": "kilogram",
+        "location": "unused",
+        "categories": ("air", "urban air close to ground"),
+        "amount": np.float64(2.0),
+        "type": "biosphere",
+        "input": ("biosphere3", "flow-1"),
+        "output": ("source-db", "act-1"),
+    }
+
+    compact_technosphere = brightway2_module._prepare_fast_exchange_payload(
+        technosphere
+    )
+    compact_biosphere = brightway2_module._prepare_fast_exchange_payload(biosphere)
+
+    assert "categories" not in compact_technosphere
+    assert type(compact_technosphere["amount"]) is float
+    assert "product" not in compact_biosphere
+    assert "location" not in compact_biosphere
+    assert compact_biosphere["categories"] == (
+        "air",
+        "urban air close to ground",
+    )
+    assert type(compact_biosphere["amount"]) is float
+
+
 def test_brightway2_fast_exchange_payload_normalizes_no_uncertainty_loc():
     exchange = {
         "name": "supplier",
@@ -576,3 +729,67 @@ def test_brightway25_fast_compaction_keeps_required_descriptive_fields(
     assert dataset["location"] == ""
     assert dataset["unit"] == ""
     assert dataset["type"] == "process"
+
+
+def test_brightway25_fast_compaction_streams_columnar_exchange_views(tmp_path):
+    data = [
+        {
+            "database": "source-db",
+            "code": "act-1",
+            "name": "activity",
+            "reference product": "product",
+            "location": "CH",
+            "unit": "kilogram",
+            "comment": "remains lazy during payload preparation",
+            "exchanges": [
+                {
+                    "name": "activity",
+                    "product": "product",
+                    "unit": "kilogram",
+                    "location": "CH",
+                    "amount": 1.0,
+                    "type": "production",
+                    "input": ("source-db", "act-1"),
+                    "output": ("source-db", "act-1"),
+                }
+            ],
+        }
+    ]
+    checkpoint = CompactInventoryStore(data).checkpoint(
+        tmp_path / "scenario.inventory-store"
+    )
+    columnar = InventoryStore.open(checkpoint)._checkout_materialized()
+    exchange = columnar[0]["exchanges"][0]
+    storage = columnar[0]._storage
+
+    brightway25_module._compact_payload_for_fast_write(columnar, "fast-db")
+
+    assert columnar[0]["exchanges"][0] is exchange
+    assert type(exchange).__name__ == "_ColumnarExchangeMapping"
+    assert columnar[0]["type"] == "processwithreferenceproduct"
+    assert len(storage._activity_cache) == 0
+    assert brightway25_module._prepare_fast_exchange_payload(
+        exchange
+    ) == brightway25_module._prepare_fast_exchange_payload(data[0]["exchanges"][0])
+
+
+def test_brightway25_fast_exchange_payload_uses_materialization_protocol():
+    class LazyExchange(dict):
+        def _premise_fast_export_payload(self):
+            return {
+                "name": "supplier",
+                "product": "product",
+                "unit": "kilogram",
+                "location": "CH",
+                "amount": 1.0,
+                "type": "technosphere",
+                "input": ("fast-db", "supplier"),
+            }
+
+        def items(self):
+            raise AssertionError("generic mapping iteration should not be used")
+
+    payload = brightway25_module._prepare_fast_exchange_payload(LazyExchange())
+
+    assert payload["input"] == ("fast-db", "supplier")
+    assert payload["amount"] == 1.0

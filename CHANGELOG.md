@@ -2,6 +2,244 @@
 
 All notable changes to this project are documented in this file.
 
+## [2.4.9.2]
+
+### Added
+- Databases exported to Brightway now carry scenario metadata in
+  `bw2data.databases[name]`: `iam_model`, `pathway`, `representative_time`
+  (ISO 8601), `ecoinvent_version`, `system_model`, `premise_version` and,
+  if any, `external_scenarios`. Superstructure and scenario-array databases
+  list their scenarios under `scenarios`.
+- Added `NewDatabase.write_scenario_array_db_to_brightway` for modern
+  Brightway. It writes one union database and one compressed `bw_processing`
+  ZIP containing synchronized technosphere and biosphere arrays, ordered as
+  `original` followed by the generated scenarios.
+- Added `bw_processing >= 1.0` to the Brightway 2.5 Python and Conda
+  dependencies.
+
+### Changed
+- Reused the superstructure preparation pipeline for scenario-array export,
+  preserving existing superstructure CSV, Excel, and Feather behavior while
+  applying the same loading, validation, duplicate aggregation, reporting, and
+  cleanup to both export paths.
+- Stored only changing matrix coordinates in deterministic sequential arrays;
+  the written base database retains the `original` state when the ZIP is not
+  loaded.
+
+### Fixed
+- Included matching production rows when changed self-consumption exchanges
+  are netted into technosphere diagonals, preventing invalid or singular
+  scenario matrices.
+
+### Documentation
+- Added a complete three-pathway IMAGE 2050 example for the
+  `ecoinvent-3.12-cutoff` project to the examples notebook, loading guide,
+  and README, including multi-activity scoring, base-database validation,
+  synchronized scenario selection, and wraparound behavior.
+
+### Tests
+- Added unit and orchestration coverage for scenario ordering, values, indices,
+  technosphere flips, biosphere placement, structural zeros, validation errors,
+  atomic ZIP output, and production/self-consumption netting.
+- Validated the export end to end with IMAGE SSP1-L, SSP2-M, and SSP3-H for
+  2050, checking three activities against the original database and confirming
+  deterministic scenario selection and wraparound.
+
+## [2.4.9.1]
+
+### Added
+- Added a reproducible real-IAM validation example and supplier-level report
+  for consequential marginal mixes. The reference calculation independently
+  checks observation intervals, all six measurement methods, expanding and
+  declining markets, normalization, and constrained-supplier exclusion.
+
+### Changed
+- Applied the `lead time` consequential argument as a mode selector:
+  `False` uses the production-weighted market-average lead time, while `True`
+  uses technology-specific observation intervals for myopic modelling.
+- Expanded the consequential summary table with the lead-time mode, average
+  lead time, range or duration, and effective market-average interval.
+
+### Fixed
+- Corrected short- and long-change observation windows for average and
+  technology-specific lead times, kept perfect-foresight windows anchored to
+  the demand year, and mapped out-of-range supplier years individually to the
+  nearest available IAM year with an explicit warning.
+- Added strict validation for consequential time, foresight, lead-time,
+  replacement-rate, measurement-method, and weighted-slope arguments,
+  including rejection of split-annual measurement with individual lead times.
+- Corrected the squared interval term in the area-based capital-replacement
+  calculation and removed the lifetime artefact from the legacy zero-range,
+  zero-duration interval.
+- Converted the constrained-supplier configuration to a proper YAML list and
+  enforced exact-name loading, preventing `diesel` and `liquefied petroleum
+  gas` from being excluded through substring matches.
+
+### Documentation
+- Clarified the distinction between lead time, duration, range, and foresight;
+  documented the average and technology-specific interval equations, legacy
+  fallback, measurement methods 0--5, validation rules, and effective-interval
+  diagnostics.
+
+### Tests
+- Added focused regression coverage for lead-time modes, interval construction,
+  perfect foresight, boundary handling, invalid configurations, all compatible
+  measurement methods, area-based replacement, and exact constrained-supplier
+  membership.
+- Verified 11 IMAGE SSP1-M/WEU electricity mixes against an independent
+  calculation, including both expanding and declining market branches.
+
+## [2.4.9]
+
+### Added
+- Added an explicit three-layer heat-market architecture that distinguishes
+  secondary/district heat supply from delivered heat for buildings and
+  industry. The transformation now creates regional and World markets named
+  `market for heat, secondary, district or industrial`,
+  `market for heat, for buildings`, and
+  `market for heat, district or industrial`.
+- Added an expression-aware IAM heat-data loader. Heat mappings now declare
+  their physical layer, energy basis, conversion rule, inventory proxy, and
+  model-specific IAM aliases; aliases can be individual variables, sums, or
+  signed linear expressions used to calculate residual supply.
+- Added frozen, regionalized copies of legacy building and industrial heat
+  supply compositions for explicitly unmapped residuals and for models without
+  a secondary-supply split. These proxies preserve their pre-transformation
+  composition and cannot be recursively relinked to the new markets.
+- Added the additional inventories `heat production, electric boiler,
+  industrial` and `heat production, nuclear cogeneration`. The latter links to
+  the EPR inventory and represents 140-degree-Celsius cogenerated heat using
+  exergy allocation.
+- Added scenario heat diagnostics recording raw IAM volumes, conversion
+  factors, delivered-heat volumes and shares, residual status, supplier
+  fallbacks, and model-specific representation assumptions.
+- Added heat-specific validation for finite and non-negative IAM values,
+  normalized market inputs, duplicate secondary-heat links, conversion
+  efficiencies, and direct or indirect cycles among generated heat datasets.
+- Added a dedicated secondary-heat worksheet to the Excel scenario report.
+- Added complete consequential lead-time and lifetime parameters for every
+  mapped layered-heat technology and the frozen secondary-heat fallback.
+
+### Changed
+- Replaced the former mixed-purpose heat mapping with 49 explicit building,
+  industrial, and secondary-supply technology categories for REMIND,
+  REMIND-EU, IMAGE, GCAM, MESSAGE, and TIAM-UCL.
+- Separated REMIND and REMIND-EU industrial end-use heat from secondary heat
+  production. Industrial markets now use `FE|Industry|...` carrier demand,
+  while `SE|Heat|...` variables form the secondary-supply market; biomass,
+  coal, and gas non-CHP supply is calculated as the carrier total minus its
+  explicitly reported CHP production.
+- Aggregated IMAGE residential and commercial space- and water-heating series
+  into the buildings layer and represented its unspecified secondary heat with
+  a frozen legacy residual. GCAM now uses explicit building and industrial
+  end-use series with a frozen secondary-supply fallback. MESSAGE uses its
+  detailed end-use and secondary technologies, including electricity,
+  geothermal, and nuclear heat. TIAM-UCL remains supply-only, including its
+  CCS heat pathways, so only purchased district/industrial heat is redirected
+  and on-site end-use fuel use remains unchanged.
+- Kept mapped IAM heat volumes unnormalized until all final-energy carriers are
+  converted to delivered heat. Combustion efficiencies, electric-boiler
+  efficiencies, and heat-pump coefficients of performance are derived from the
+  selected regional inventory suppliers before market shares are calculated.
+- Regionalized mapped heat technologies and made supplier selection explicit:
+  premise first uses the IAM region, then contained ecoinvent locations weighted
+  by production volume, followed by `RoW` and global fallbacks. Regional fuel
+  relinking and fossil/non-fossil carbon-dioxide recalculation continue to apply
+  to the resulting heat-production activities.
+- Applied average delivered-heat shares in cutoff databases and the existing
+  marginal-mix calculation to each heat layer in consequential databases.
+- Redirected exact legacy building heat families—including natural gas,
+  biomethane, other-than-natural-gas, market-group, and Jakobsberg variants—to
+  the regional buildings market. Exact district/industrial natural-gas,
+  other-than-natural-gas, market-group, and chemical-steam inputs are redirected
+  to the industrial end-use market, or directly to secondary heat for
+  supply-only IAMs.
+- Preserved exchange amounts during targeted heat relinking and retained legacy
+  ecoinvent market datasets as inactive or specialized activities. Generated
+  markets, frozen proxies, and specialized municipal-waste heat are excluded
+  from the generic rewrite so the new hierarchy cannot rewrite itself.
+- Made the heat update skip unavailable or all-zero layers cleanly and leave the
+  database unchanged when an IAM scenario provides no mapped heat data.
+
+### Fixed
+- Included legacy building-heat market groups and natural-gas variants in the
+  targeted heat relinking scope.
+- Prevented generated end-use and secondary heat markets from being rewritten
+  during legacy relinking, and excluded frozen legacy proxies from subsequent
+  general relinking, eliminating recursive heat-market dependencies.
+- Added strict handling of partial IAM heat layers and materially negative
+  residual expressions instead of silently normalizing incomplete or invalid
+  mixes; only negligible closure artefacts are clipped to zero.
+- Improved delivered-heat conversion lookup for regional supplier aliases,
+  including biomethane product names, cleft timber, and methanol pathways, and
+  rejected missing or implausible conversion factors.
+
+### Documentation
+- Added a comprehensive heat transformation guide covering market architecture,
+  per-model IAM coverage, conversion and residual rules, legacy relinking,
+  and technology representation assumptions.
+
+### Tests
+- Added heat regression coverage for mapping schema and model selection, signed
+  residual expressions, structural blanks and negative-value handling,
+  delivered-heat conversions, regional supplier weighting and fallbacks,
+  cutoff and consequential market construction, missing layers, frozen legacy
+  composition, exact legacy-market relinking, and generated-market cycle
+  detection.
+- Added import and mapping tests for the industrial electric-boiler and nuclear
+  cogeneration inventories, report tests for the secondary-heat worksheet, and
+  a completeness test keeping consequential lead-time and lifetime labels
+  synchronized with every mapped heat technology.
+
+## [2.4.8]
+
+### Added
+- Mapped the IMAGE medium- and heavy-duty battery-electric truck energy-service
+  and electricity variables to the 18 t and 40 t premise truck inventories.
+
+### Changed
+- Updated the bundled IAM scenario download source to Zenodo record 21790981.
+- Translated premise's hyphenated IMAGE pathway names to the underscore-based
+  filenames used by the new archive while retaining the existing public
+  pathway names and local cache filenames, and accepted both naming conventions
+  when loading local scenario files.
+
+### Fixed
+- Rescaled uncertainty parameters alongside corrected Swiss reservoir-water
+  exchanges, preventing retained source-database lognormal distributions from
+  sampling around the pre-correction water amount when
+  `keep_source_db_uncertainty=True`.
+
+### Tests
+- Added regression coverage for uncertainty-aware hydropower water corrections,
+  deterministic fallback from zero amounts, and activity/exchange filtering.
+- Added regression coverage for the new scenario download URLs and IMAGE
+  battery-electric truck mappings.
+
+## [2.4.7]
+
+### Fixed
+- Excluded used-cooking-oil biodiesel with CCS from consequential diesel
+  blends through the existing constrained-supplier marginal-mix mechanism,
+  including consistent IAM variable, lead-time, and lifetime labels.
+- Wrote cutoff fuel-market exchanges to waste-treatment suppliers with the
+  waste-convention sign after share normalization, preventing unintended
+  negative fuel burdens in liquid-fuel, gas, and hydrogen markets.
+
+### Documentation
+- Documented consequential constrained-fuel handling and cutoff treatment
+  supplier sign conventions.
+
+### Tests
+- Added regression coverage for the used-cooking-oil consequential constraint
+  and cutoff treatment-supplier sign handling.
+- Refreshed deterministic GWP regression baselines across supported ecoinvent
+  versions for the resulting fuel-supply-chain changes.
+- Corrected the biomethane SMR+CCS inventory test to require its
+  monoethanolamine input instead of methyldiethanolamine.
+- Made the ecoinvent 3.12 cutoff superstructure smoke test select a registered
+  GWP method across version-prefixed Brightway method tuples.
+
 ## [2.4.6]
 
 ### Added
@@ -19,6 +257,13 @@ All notable changes to this project are documented in this file.
   storage modules with documented energy and modelling assumptions.
 
 ### Fixed
+- Restored IMAGE CDR mapping compatibility with bundled SSP2-VLHO files by
+  accepting legacy `Carbon Capture|...` aliases alongside the newer
+  `Carbon Removal|...` aliases.
+- Normalized the coastal enhanced-weathering inventory production exchange
+  fields so fresh Excel imports no longer depend on cached formula values.
+- Added missing import classifications and SimaPro categories for the new
+  afforestation and hydrogen-heat DAC CDR activities.
 - Corrected cement clinker fuel-efficiency adjustments so the original
   accounted kiln fuel demand includes inferred secondary-fuel energy represented
   by emissions but not by burdened technosphere fuel inputs.
@@ -43,6 +288,9 @@ All notable changes to this project are documented in this file.
   bookkeeping, new accounted fuel demand, hard-coal scaling, and CO2 handling.
 
 ### Tests
+- Validated the CDR update against IMAGE SSP2-VLHO, REMIND SSP3-rollBack,
+  TIAM-UCL SSP2-RCP19, and MESSAGE SSP2-L scenarios, including CDR market
+  shares and carrier-specific energy-adjustment lower bounds.
 - Added regression coverage for CDR electricity vs heat/fuel efficiency
   adjustment, harmonized CDR inventory assumptions, and the IMAGE cement
   non-fossil CDR activity mapping.

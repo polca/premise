@@ -22,8 +22,25 @@ from prettytable import PrettyTable
 
 from .filesystem_constants import DATA_DIR, VARIABLES_DIR
 from .geomap import Geomap
+from .heat_data import (
+    evaluate_heat_layers,
+    heat_expression_variables,
+    load_heat_mapping,
+)
 from .marginal_mixes import consequential_method
-from .scenario_downloader import download_csv
+from .scenario_downloader import (
+    download_csv,
+    get_scenario_file_stems,
+    get_scenario_url,
+)
+from .runtime_cache import (
+    cache_iam_resource,
+    file_signature,
+    get_cached_iam_resource,
+    load_yaml_cached,
+    secret_fingerprint,
+    stable_fingerprint,
+)
 
 IAM_ELEC_VARS = VARIABLES_DIR / "electricity.yaml"
 IAM_FUELS_VARS = VARIABLES_DIR / "fuels.yaml"
@@ -79,10 +96,7 @@ def get_crops_properties() -> dict:
     relating to land use change CO2 per crop type
     :return: dict
     """
-    with open(CROPS_PROPERTIES, "r", encoding="utf-8") as stream:
-        crop_props = yaml.safe_load(stream)
-
-    return crop_props
+    return load_yaml_cached(CROPS_PROPERTIES)
 
 
 @lru_cache(maxsize=8)
@@ -186,8 +200,7 @@ def get_gains_IAM_data(model, gains_scenario):
 
     arr = xr.concat(list_arrays, dim="pollutant")
 
-    with open(GAINS_GEO_MAP, "r", encoding="utf-8") as stream:
-        geo_map = yaml.safe_load(stream)
+    geo_map = load_yaml_cached(GAINS_GEO_MAP)
 
     arr.coords["region"] = [geo_map[v][model] for v in arr.region.values]
     arr = arr.drop_duplicates(dim="region")
@@ -405,6 +418,8 @@ class IAMDataCollection:
         self.external_scenarios = external_scenarios
         self.system_model_args = system_model_args
         self.use_absolute_efficiency = use_absolute_efficiency
+        self.gains_scenario = gains_scenario
+        self.system_model = system_model
         self.min_year = 2005
         self.max_year = 2100
         self.filepath_iam_files = filepath_iam_files
@@ -483,21 +498,8 @@ class IAMDataCollection:
             IAM_CROPS_VARS, variable="land_use_change"
         )
 
-        buildings_heat_vars = {
-            k: v
-            for k, v in self.__get_iam_variable_labels(
-                IAM_HEATING_VARS, variable="iam_aliases"
-            ).items()
-            if "buildings" in k
-        }
-
-        industrial_heat_vars = {
-            k: v
-            for k, v in self.__get_iam_variable_labels(
-                IAM_HEATING_VARS, variable="iam_aliases"
-            ).items()
-            if "industrial" in k
-        }
+        heat_mapping = load_heat_mapping(IAM_HEATING_VARS, self.model)
+        heat_raw_vars = heat_expression_variables(heat_mapping)
 
         final_energy_vars = self.__get_iam_variable_labels(
             IAM_FINAL_ENERGY_VARS, variable="iam_aliases"
@@ -574,8 +576,7 @@ class IAMDataCollection:
             + list(biomass_eff_vars.values())
             + list(land_use_vars.values())
             + list(land_use_change_vars.values())
-            + list(buildings_heat_vars.values())
-            + list(industrial_heat_vars.values())
+            + heat_raw_vars
             + list(other_vars.values())
             + list(roadfreight_prod_vars.values())
             + list(roadfreight_energy_vars.values())
@@ -625,6 +626,11 @@ class IAMDataCollection:
 
         self.regions = data.region.values.tolist()
         self.system_model = system_model
+        # Inputs retained before normalization/marginalization allow validation
+        # to recompute consequential mixes independently from the arrays used
+        # by transformations.
+        self._validation_market_inputs = {}
+        self._validation_market_oracles = {}
 
         self.gains_data_IAM = get_gains_IAM_data(
             self.model, gains_scenario=gains_scenario
@@ -811,19 +817,16 @@ class IAMDataCollection:
             sector="two-wheeler",
         )
 
-        self.buildings_heating_mix = self.__fetch_market_data(
-            data=data,
-            input_vars=buildings_heat_vars,
-            system_model=self.system_model,
-            sector="buildings heating",
-        )
+        heat_layers, self.heat_diagnostics = evaluate_heat_layers(data, heat_mapping)
+        self.buildings_heat_end_use = heat_layers["buildings_end_use"]
+        self.industrial_heat_end_use = heat_layers["industrial_end_use"]
+        self.secondary_heat_supply = heat_layers["secondary_supply"]
 
-        self.industrial_heat_mix = self.__fetch_market_data(
-            data=data,
-            input_vars=industrial_heat_vars,
-            system_model=self.system_model,
-            sector="industrial heating",
-        )
+        # Third-party integrations historically accessed these two attributes.
+        # Keep the names as aliases while the premise heat transformation uses
+        # the explicit layer names above.
+        self.buildings_heating_mix = self.buildings_heat_end_use
+        self.industrial_heat_mix = self.industrial_heat_end_use
 
         self.final_energy_use = self.__fetch_market_data(
             data=data,
@@ -1039,8 +1042,6 @@ class IAMDataCollection:
                 **steel_prod_vars,
                 **cdr_prod_vars,
                 **biomass_prod_vars,
-                **buildings_heat_vars,
-                **industrial_heat_vars,
                 **roadfreight_prod_vars,
                 **railfreight_prod_vars,
                 **seafreight_prod_vars,
@@ -1050,6 +1051,23 @@ class IAMDataCollection:
                 **final_energy_vars,
             },
         )
+
+        heat_production_volumes = [
+            array
+            for array in (
+                self.buildings_heat_end_use,
+                self.industrial_heat_end_use,
+                self.secondary_heat_supply,
+            )
+            if array is not None
+        ]
+        if heat_production_volumes:
+            arrays = (
+                [self.production_volumes] if self.production_volumes is not None else []
+            )
+            self.production_volumes = xr.concat(
+                [*arrays, *heat_production_volumes], dim="variables"
+            )
 
         self.coal_power_plants = self.fetch_external_data_coal_power_plants()
 
@@ -1170,8 +1188,7 @@ class IAMDataCollection:
 
         dict_vars = {}
 
-        with open(filepath, "r", encoding="utf-8") as stream:
-            out = yaml.safe_load(stream)
+        out = load_yaml_cached(filepath)
 
         for key, values in out.items():
             if variable in values:
@@ -1194,8 +1211,7 @@ class IAMDataCollection:
 
         dict_vars = {}
 
-        with open(filepath, "r", encoding="utf-8") as stream:
-            out = yaml.safe_load(stream)
+        out = load_yaml_cached(filepath)
 
         for technology, values in out.items():
             energy_aliases = values.get(variable, {})
@@ -1276,8 +1292,10 @@ class IAMDataCollection:
 
         """
 
-        # Build file name based on self.model and self.pathway
-        file_name = f"{self.model}_{self.pathway}"
+        # Build accepted file names based on self.model and self.pathway. IMAGE
+        # files can use either premise's hyphens or the archive's underscores.
+        file_stems = get_scenario_file_stems(self.model, self.pathway)
+        file_name = file_stems[0]
 
         # Possible file extensions
         extensions = [".csv", ".mif", ".xls", ".xlsx"]
@@ -1285,11 +1303,14 @@ class IAMDataCollection:
         file_path = None
 
         # Check for file with any of the possible extensions
-        for ext in extensions:
-            potential_file_path = Path(filedir) / (file_name + ext)
-            if potential_file_path.exists():
-                file_path = potential_file_path
-                print(f"Found file: {file_path.stem}")
+        for file_stem in file_stems:
+            for ext in extensions:
+                potential_file_path = Path(filedir) / (file_stem + ext)
+                if potential_file_path.exists():
+                    file_path = potential_file_path
+                    print(f"Found file: {file_path.stem}")
+                    break
+            if file_path is not None:
                 break
 
         if file_path is None:
@@ -1302,8 +1323,39 @@ class IAMDataCollection:
             else:
                 # If key is provided, download the file
                 download_folder = filedir
-                url = f"https://zenodo.org/records/19049274/files/{file_name}.csv"
+                url = get_scenario_url(self.model, self.pathway)
                 file_path = download_csv(file_name + ".csv", url, download_folder)
+
+        external_fingerprint = stable_fingerprint(
+            getattr(self, "external_scenarios", None)
+        )
+        system_args_fingerprint = stable_fingerprint(
+            getattr(self, "system_model_args", None)
+        )
+        split_fingerprint = stable_fingerprint(split_fossil_liquid_fuels)
+        cache_key = None
+        if (
+            external_fingerprint is not None
+            and system_args_fingerprint is not None
+            and split_fingerprint is not None
+        ):
+            cache_key = (
+                self.model,
+                self.pathway,
+                file_signature(file_path),
+                external_fingerprint,
+                getattr(self, "gains_scenario", "CLE"),
+                getattr(self, "system_model", "cutoff"),
+                system_args_fingerprint,
+                getattr(self, "use_absolute_efficiency", False),
+                split_fingerprint,
+                secret_fingerprint(key),
+            )
+            cached = get_cached_iam_resource(cache_key)
+            if cached is not None:
+                self.min_year = max(2005, int(cached.year.values.min()))
+                self.max_year = min(2100, int(cached.year.values.max()))
+                return cached
 
         # Decrypt the file if a key is provided
         if key is not None:
@@ -1376,8 +1428,16 @@ class IAMDataCollection:
                 for c in header_cols
                 if (y := _year_from_col(c)) is not None and 2005 <= y <= 2100
             ]
-            usecols = [region_col, variable_col, unit_col] + year_cols
-            dataframe = pd.read_excel(file_path, usecols=usecols)
+            # Excel IAM files can mix string metadata headers with integer year
+            # headers (TIAM-UCL does this). Pandas rejects a mixed-type usecols
+            # list, while a callable preserves the original column labels.
+            metadata_cols = {region_col, variable_col, unit_col}
+            year_cols_set = set(year_cols)
+            dataframe = pd.read_excel(
+                file_path,
+                usecols=lambda column: column in metadata_cols
+                or column in year_cols_set,
+            )
         else:
             raise ValueError(f"Unsupported file extension: {file_path.suffix}")
 
@@ -1486,6 +1546,9 @@ class IAMDataCollection:
             dataframe.groupby("variables")["unit"].first().to_dict().items()
         )
 
+        if cache_key is not None:
+            cache_iam_resource(cache_key, array)
+
         return array
 
     def __fetch_market_data(
@@ -1581,6 +1644,9 @@ class IAMDataCollection:
             set(market_data.coords["variables"].values.tolist())
         ):
             market_data = market_data.groupby("variables").sum(dim="variables")
+
+        if sector is not None:
+            self._validation_market_inputs[sector] = market_data.copy(deep=True)
 
         if system_model == "consequential":
             market_data = consequential_method(

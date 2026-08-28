@@ -9,7 +9,9 @@ formatters:
 
 handlers:
   file_cdr:
-    class: logging.FileHandler
+    class: logging.handlers.RotatingFileHandler
+    maxBytes: 10485760
+    backupCount: 3
     level: INFO
     filename: "export/logs/premise_cdr.log"
     encoding: utf8
@@ -17,7 +19,9 @@ handlers:
     mode: a
 
   file_biomass:
-    class: logging.FileHandler
+    class: logging.handlers.RotatingFileHandler
+    maxBytes: 10485760
+    backupCount: 3
     level: INFO
     filename: "export/logs/premise_biomass.log"
     encoding: utf8
@@ -25,7 +29,9 @@ handlers:
     mode: a
 
   file_electricity:
-    class: logging.FileHandler
+    class: logging.handlers.RotatingFileHandler
+    maxBytes: 10485760
+    backupCount: 3
     level: INFO
     filename: "export/logs/premise_electricity.log"
     encoding: utf8
@@ -33,7 +39,9 @@ handlers:
     mode: a
 
   file_steel:
-    class: logging.FileHandler
+    class: logging.handlers.RotatingFileHandler
+    maxBytes: 10485760
+    backupCount: 3
     level: INFO
     filename: "export/logs/premise_steel.log"
     encoding: utf8
@@ -41,7 +49,9 @@ handlers:
     mode: a
 
   file_metal:
-    class: logging.FileHandler
+    class: logging.handlers.RotatingFileHandler
+    maxBytes: 10485760
+    backupCount: 3
     level: INFO
     filename: "export/logs/premise_metal.log"
     encoding: utf8
@@ -49,7 +59,9 @@ handlers:
     mode: a
 
   file_cement:
-    class: logging.FileHandler
+    class: logging.handlers.RotatingFileHandler
+    maxBytes: 10485760
+    backupCount: 3
     level: INFO
     filename: "export/logs/premise_cement.log"
     encoding: utf8
@@ -57,7 +69,9 @@ handlers:
     mode: a
 
   file_fuel:
-    class: logging.FileHandler
+    class: logging.handlers.RotatingFileHandler
+    maxBytes: 10485760
+    backupCount: 3
     level: INFO
     filename: "export/logs/premise_fuel.log"
     encoding: utf8
@@ -65,7 +79,9 @@ handlers:
     mode: a
 
   file_heat:
-    class: logging.FileHandler
+    class: logging.handlers.RotatingFileHandler
+    maxBytes: 10485760
+    backupCount: 3
     level: INFO
     filename: "export/logs/premise_heat.log"
     encoding: utf8
@@ -73,7 +89,9 @@ handlers:
     mode: a
 
   file_battery:
-    class: logging.FileHandler
+    class: logging.handlers.RotatingFileHandler
+    maxBytes: 10485760
+    backupCount: 3
     level: INFO
     filename: "export/logs/premise_battery.log"
     encoding: utf8
@@ -81,7 +99,9 @@ handlers:
     mode: a
 
   file_transport:
-    class: logging.FileHandler
+    class: logging.handlers.RotatingFileHandler
+    maxBytes: 10485760
+    backupCount: 3
     level: INFO
     filename: "export/logs/premise_transport.log"
     encoding: utf8
@@ -89,7 +109,9 @@ handlers:
     mode: a
 
   file_emissions:
-    class: logging.FileHandler
+    class: logging.handlers.RotatingFileHandler
+    maxBytes: 10485760
+    backupCount: 3
     level: INFO
     filename: "export/logs/premise_emissions.log"
     encoding: utf8
@@ -97,7 +119,9 @@ handlers:
     mode: a
 
   file_external:
-    class: logging.FileHandler
+    class: logging.handlers.RotatingFileHandler
+    maxBytes: 10485760
+    backupCount: 3
     level: INFO
     filename: "export/logs/premise_external_scenarios.log"
     encoding: utf8
@@ -105,7 +129,9 @@ handlers:
     mode: a
 
   file_mapping:
-    class: logging.FileHandler
+    class: logging.handlers.RotatingFileHandler
+    maxBytes: 10485760
+    backupCount: 3
     level: INFO
     filename: "export/logs/premise_mapping.log"
     encoding: utf8
@@ -113,7 +139,9 @@ handlers:
     mode: a
 
   file_validation:
-    class: logging.FileHandler
+    class: logging.handlers.RotatingFileHandler
+    maxBytes: 10485760
+    backupCount: 3
     level: INFO
     filename: "export/logs/premise_validation.log"
     encoding: utf8

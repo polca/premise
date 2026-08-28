@@ -65,6 +65,7 @@ class BiogasMixin:
                         mapping=mapping,
                         system_model=self.system_model,
                         production_volumes=self.iam_data.production_volumes,
+                        flip_treatment_supplier_sign=True,
                         blacklist={
                             "consequential": [
                                 "methane, from biomass",

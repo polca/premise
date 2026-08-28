@@ -40,6 +40,7 @@ bw25 = [
     "bw2calc >=2.0.1",
     "bw2data >=4.3",
     "bw2io >=0.9.4",
+    "bw_processing>=1.0",
     "bottleneck",
     "ecoinvent_interface",
     "constructive-geometries>=0.9.5",

@@ -4,6 +4,7 @@ for a number of different vehicle types, and create fleet average vehicles based
 IAM data, and integrate them into the database.
 """
 
+import math
 import uuid
 from typing import Any, Dict, List, Union
 
@@ -15,9 +16,17 @@ from wurst import searching as ws
 from .activity_maps import InventorySet
 from .filesystem_constants import DATA_DIR, IAM_OUTPUT_DIR
 from .logger import create_logger
+from .provenance import record_change_event
+from .inventory_store import get_scenario_inventory, replace_scenario_inventory
 from .transformation import BaseTransformation, IAMDataCollection
 from .utils import eidb_label, rescale_exchanges
-from .validation import CarValidation, TruckValidation
+from .validation import (
+    CarValidation,
+    TruckValidation,
+    load_car_exhaust_pollutants,
+    load_truck_exhaust_pollutants,
+)
+from .validation_framework import record_validation_phase
 
 logger = create_logger("transport")
 
@@ -46,7 +55,7 @@ def _update_vehicles(scenario, vehicle_type, version, system_model):
         has_fleet = False
 
     trspt = Transport(
-        database=scenario["database"],
+        database=get_scenario_inventory(scenario),
         year=scenario["year"],
         model=scenario["model"],
         pathway=scenario["pathway"],
@@ -57,6 +66,7 @@ def _update_vehicles(scenario, vehicle_type, version, system_model):
         relink=False,
         has_fleet=has_fleet,
         index=scenario.get("index"),
+        reuse_index=scenario.get("_transport_index_ready", False),
     )
 
     trspt.regionalize_transport_datasets()
@@ -65,9 +75,19 @@ def _update_vehicles(scenario, vehicle_type, version, system_model):
         trspt.create_vehicle_markets()
         trspt.relink_transport_datasets()
 
-    scenario["database"] = trspt.database
+    if vehicle_type == "car":
+        trspt.normalize_pollutant_emissions(
+            "transport, passenger car", load_car_exhaust_pollutants()
+        )
+    elif vehicle_type == "truck":
+        trspt.normalize_pollutant_emissions(
+            "transport, freight, lorry", load_truck_exhaust_pollutants()
+        )
+
+    replace_scenario_inventory(scenario, trspt.database)
     scenario["cache"] = trspt.cache
     scenario["index"] = trspt.index
+    scenario["_transport_index_ready"] = True
 
     if "mapping" not in scenario:
         scenario["mapping"] = {}
@@ -87,7 +107,7 @@ def _update_vehicles(scenario, vehicle_type, version, system_model):
             database=trspt.database,
             iam_data=scenario["iam data"],
         )
-        validate.run_checks()
+        record_validation_phase(scenario, validate.run_checks())
 
     return scenario
 
@@ -157,6 +177,7 @@ class Transport(BaseTransformation):
         vehicle_type: str,
         has_fleet: bool,
         index: dict = None,
+        reuse_index: bool = False,
     ):
         super().__init__(
             database,
@@ -166,7 +187,11 @@ class Transport(BaseTransformation):
             year,
             version,
             system_model,
-            index,
+            cache=None,
+            # The first transport rebuilds because previous sectors can mutate
+            # indexed fields directly. Consecutive transport transformations
+            # maintain this index incrementally and can share it safely.
+            index=index if reuse_index else None,
         )
         self.version = version
         self.relink = relink
@@ -196,6 +221,79 @@ class Transport(BaseTransformation):
         for v in self.vehicle_map.values():
             if not v:
                 print(f"Vehicle map is empty for {self.vehicle_type}.")
+
+    def normalize_pollutant_emissions(self, vehicle_name: str, exhaust: dict) -> None:
+        """Repair historical HBEFA factors before read-only validation."""
+
+        euro_class_map = {
+            "EURO-III": 3,
+            "EURO-IV": 4,
+            "EURO-V": 5,
+            "EURO-VI": 6,
+            "EURO-2": 2,
+            "EURO-3": 3,
+            "EURO-4": 4,
+            "EURO-5": 5,
+            "EURO-6": 6.2,
+            "EURO-6ab": 6.0,
+        }
+        relevant = [
+            dataset
+            for dataset in self.database
+            if dataset["name"].startswith(vehicle_name)
+            and dataset["location"] in self.regions
+            and any(
+                fuel in dataset["name"]
+                for fuel in ("gasoline", "diesel", "compressed gas")
+            )
+        ]
+        for dataset in relevant:
+            powertrain = dataset["name"].split(", ")[-3]
+            euro_class = next(
+                (item for item in euro_class_map if item in dataset["name"]), None
+            )
+            if powertrain not in exhaust or euro_class is None:
+                continue
+            factors = exhaust[powertrain].get(str(euro_class_map[euro_class]))
+            if factors is None:
+                continue
+            if vehicle_name == "transport, freight, lorry":
+                size = dataset["name"].split(", ")[4].replace(" gross weight", "")
+                factors = factors.get(size)
+                if factors is None:
+                    continue
+
+            fuel_consumption = sum(
+                exchange["amount"] * 43
+                for exchange in dataset["exchanges"]
+                if exchange["name"].startswith(
+                    ("market for diesel", "market for petrol")
+                )
+                and exchange["unit"] == "kilogram"
+            )
+            if fuel_consumption == 0:
+                fuel_consumption = sum(
+                    exchange["amount"] * 47.5
+                    for exchange in dataset["exchanges"]
+                    if "natural gas" in exchange["name"]
+                    and exchange["unit"] == "kilogram"
+                )
+
+            for pollutant, factor in factors.items():
+                expected = factor / 1000 * fuel_consumption
+                actual = sum(
+                    exchange["amount"]
+                    for exchange in dataset["exchanges"]
+                    if pollutant.lower() in exchange["name"].lower()
+                    and exchange["type"] == "biosphere"
+                    and exchange.get("categories", [None])[0] == "air"
+                )
+                if actual == 0 or math.isclose(actual, expected, rel_tol=0.5):
+                    continue
+                normalized = float(np.clip(actual, 0.9 * expected, 1.1 * expected))
+                for exchange in dataset["exchanges"]:
+                    if pollutant.lower() in exchange["name"].lower():
+                        exchange["amount"] *= normalized / actual
 
     def regionalize_transport_datasets(self):
         """
@@ -310,24 +408,19 @@ class Transport(BaseTransformation):
         # loop through datasets that use truck transport
 
         if "old" in self.mapping[self.vehicle_type]:
-            for dataset in ws.get_many(
-                self.database,
-                ws.exclude(ws.contains("unit", "kilometer")),
-            ):
-                for exc in ws.technosphere(
-                    dataset,
-                    ws.either(
-                        *[
-                            ws.equals("name", v)
-                            for v in self.mapping[self.vehicle_type]["old"]
-                        ]
-                    ),
-                    ws.equals("unit", "ton kilometer"),
-                ):
+            legacy_markets = self.mapping[self.vehicle_type]["old"]
+            for dataset in self.database:
+                if "kilometer" in dataset["unit"]:
+                    continue
+                for exc in dataset["exchanges"]:
+                    if (
+                        exc.get("type") != "technosphere"
+                        or exc.get("name") not in legacy_markets
+                        or exc.get("unit") != "ton kilometer"
+                    ):
+                        continue
 
-                    new_name = self.mapping[self.vehicle_type]["old"][exc["name"]][
-                        self.model
-                    ]
+                    new_name = legacy_markets[exc["name"]][self.model]
                     resolved_name, resolved_location = (
                         self._find_available_transport_market(
                             dataset=dataset,
@@ -467,12 +560,6 @@ class Transport(BaseTransformation):
         ds["comment"] += f" Battery size adjusted to {mean_battery_size} kWh."
 
     def write_log(self, dataset, status="created"):
-        """
-        Write log file.
-        """
+        """Record a structured transport provenance event."""
 
-        logger.info(
-            f"{status}|{self.model}|{self.scenario}|{self.year}|"
-            f"{dataset['name']}|{dataset['location']}|"
-            f"{dataset.get('log parameters', {}).get('efficiency change', '')}"
-        )
+        record_change_event(self, dataset, status, sector="transport")

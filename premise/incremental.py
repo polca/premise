@@ -14,11 +14,8 @@ from .new_database import (
     _update_vehicles,
     _update_external_scenarios,
 )
-from .utils import dump_database, load_database
 from copy import copy
 from tqdm import tqdm
-
-import pickle
 
 SECTORS = {
     "electricity": "electricity",
@@ -126,24 +123,19 @@ class IncrementalDatabase(NewDatabase):
         self.scenarios = new_scenarios
 
         with tqdm(total=len(self.scenarios), ncols=70) as pbar_outer:
-            database_filepath, scenario_id = None, None
+            previous_store = None
+            scenario_id = None
             for s, scenario in enumerate(self.scenarios):
-
-                if s == 0:
-                    scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
+                runtime_scenario = scenario.copy()
+                current_scenario_id = (
+                    f"{scenario['model']} - "
+                    f"{scenario['pathway'].split('...')[0]} - {scenario['year']}"
+                )
+                if s > 0 and current_scenario_id == scenario_id:
+                    database = previous_store.materialize(restore_metadata=True)
                 else:
-                    if (
-                        f"{scenario['model']} - {scenario['pathway'].split('...')[0]} - {scenario['year']}"
-                        == scenario_id
-                    ):
-                        scenario["database filepath"] = database_filepath
-                        scenario = load_database(
-                            scenario, delete=False, original_database=self.database
-                        )
-                    else:
-                        scenario["database"] = pickle.loads(
-                            pickle.dumps(self.database, -1)
-                        )
+                    database = self._load_original_database()
+                runtime_scenario["_inventory_working_copy"] = database
 
                 updates = updates_to_apply[s][-1]
 
@@ -154,13 +146,14 @@ class IncrementalDatabase(NewDatabase):
                     # Prepare the function and arguments
                     update_func = sector_update_methods[update]["func"]
                     fixed_args = sector_update_methods[update]["args"]
-                    scenario = update_func(scenario, *fixed_args)
+                    runtime_scenario = update_func(runtime_scenario, *fixed_args)
 
-                dump_database(scenario)
-                if "database filepath" in scenario:
-                    database_filepath = scenario["database filepath"]
-
-                scenario_id = f"{scenario['model']} - {scenario['pathway'].split('...')[0]} - {scenario['year']}"
+                previous_store = self._store_updated_scenario(
+                    scenario,
+                    runtime_scenario,
+                    persist=True,
+                )
+                scenario_id = current_scenario_id
 
                 pbar_outer.update()
 

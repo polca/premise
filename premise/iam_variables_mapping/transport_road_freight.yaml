@@ -294,10 +294,12 @@ truck, battery electric, 18 metric ton:
   iam_aliases:
     remind: ES|Transport|Freight|Road|Heavy|Truck(18t)|BEV
     remind-eu: ES|Transport|Freight|Road|Heavy|Truck(18t)|BEV
+    image: Energy Service|Transportation|Freight|Medium Truck|Battery Electric
     gcam: Distance|Transport|Freight|Road|Heavy truck|BEV
   energy_use_aliases:
     remind: FE|Transport|Freight|Road|Heavy|Truck(18t)|Electricity
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(18t)|Electricity
+    image: Final Energy|Transportation|Freight|Medium Truck|Battery Electric|Electricity
     gcam: Final Energy|Transport|Freight|Road|Heavy truck|BEV
   ecoinvent_aliases:
     fltr:
@@ -508,9 +510,11 @@ truck, battery electric, 40 metric ton:
   iam_aliases:
     remind: ES|Transport|Freight|Road|Heavy|Truck(40t)|BEV
     remind-eu: ES|Transport|Freight|Road|Heavy|Truck(40t)|BEV
+    image: Energy Service|Transportation|Freight|Heavy Truck|Battery Electric
   energy_use_aliases:
     remind: FE|Transport|Freight|Road|Heavy|Truck(40t)|Electricity
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(40t)|Electricity
+    image: Final Energy|Transportation|Freight|Heavy Truck|Battery Electric|Electricity
   ecoinvent_aliases:
     fltr:
       - transport, freight, lorry, battery electric, 40 metric ton

@@ -11,9 +11,12 @@ import pandas as pd
 import yaml
 
 from .filesystem_constants import DATA_DIR
+from .export_payload import (
+    mark_prepared_export_inventory,
+    prepare_fast_exchange_payload,
+)
 from .geomap import Geomap
 from .logger import create_logger
-from .utils import rescale_exchanges, get_uuids
 from .inventory_imports import (
     get_biosphere_code,
     get_classification_entry,
@@ -21,8 +24,99 @@ from .inventory_imports import (
 )
 import country_converter as coco
 import wurst.searching as ws
+from .marginal_mixes import consequential_method
+
+from .validation_framework import (
+    VALIDATION_RULESET_VERSION,
+    ActivitySelector,
+    InventoryGraphValidator,
+    PremiseValidationError,
+    ValidationCertificate,
+    ValidationIntent,
+    ValidationIssue,
+    ValidationPhaseResult,
+    ValidationReport,
+    ValidationRuleResult,
+    ValidationSuppression,
+    inventory_activity_fingerprints,
+    inventory_cycle_signatures,
+    inventory_store_fingerprint,
+)
+
+__all__ = [
+    "VALIDATION_RULESET_VERSION",
+    "ActivitySelector",
+    "InventoryGraphValidator",
+    "PremiseValidationError",
+    "ValidationCertificate",
+    "ValidationIntent",
+    "ValidationIssue",
+    "ValidationPhaseResult",
+    "ValidationReport",
+    "ValidationRuleResult",
+    "ValidationSuppression",
+    "inventory_activity_fingerprints",
+    "inventory_cycle_signatures",
+    "inventory_store_fingerprint",
+]
 
 logger = create_logger("validation")
+
+
+def _export_numeric_scalar(value):
+    """Return the scalar the fast writer can serialize, or ``None``."""
+
+    if isinstance(value, (bool, np.bool_)):
+        return None
+    if isinstance(value, np.ndarray):
+        if value.size != 1:
+            return None
+        value = value.reshape(-1)[0]
+    if isinstance(value, np.generic):
+        value = value.item()
+    if not isinstance(value, (int, float)):
+        return None
+    return value
+
+
+def _exchange_export_fields(exchange):
+    """Return the fields shared by export preparation and schema checks."""
+
+    accessor = getattr(exchange, "_premise_export_fields", None)
+    if accessor is not None:
+        return accessor()
+    return (
+        exchange.get("type"),
+        exchange.get("name"),
+        exchange.get("product"),
+        exchange.get("location"),
+        exchange.get("unit"),
+        exchange.get("amount"),
+        exchange.get("categories"),
+        exchange.get("input"),
+    )
+
+
+def independent_consequential_mix(iam_data, sector, year):
+    """Recompute a marginal vector from the pre-transformation IAM market data."""
+
+    inputs = getattr(iam_data, "_validation_market_inputs", {})
+    raw = inputs.get(sector)
+    if raw is None:
+        return None
+    cache = getattr(iam_data, "_validation_market_oracles", None)
+    if cache is None:
+        cache = iam_data._validation_market_oracles = {}
+    key = (sector, int(year), repr(getattr(iam_data, "system_model_args", None)))
+    if key not in cache:
+        oracle = consequential_method(
+            raw.copy(deep=True),
+            int(year),
+            getattr(iam_data, "system_model_args", None),
+            sector,
+        )
+        cache[key] = oracle.bfill(dim="year").fillna(0)
+    return cache[key]
 
 
 @lru_cache(maxsize=1)
@@ -256,6 +350,414 @@ def convert_numpy_generics_to_float(
     return _sanitize(records)
 
 
+def normalize_inventory_numeric_types(database, on_change=None):
+    """Apply the historical scalar numeric conversions before validation.
+
+    IAM calculations often produce zero-dimensional or one-element NumPy
+    arrays.  Export preparation has always converted these values with
+    ``float``.  Keeping that conversion in an explicit normalization function
+    lets semantic validation reject genuinely non-scalar arrays without
+    mutating the graph it checks.
+    """
+
+    def normalize_scalar(value):
+        if isinstance(value, np.ndarray):
+            if value.size == 1:
+                return float(value.reshape(-1)[0])
+            return value
+        if isinstance(value, np.generic):
+            return float(value)
+        return value
+
+    def assign_if_converted(mapping, key, value):
+        normalized = normalize_scalar(value)
+        if normalized is not value:
+            mapping[key] = normalized
+            return True
+        return False
+
+    for dataset in database:
+        changed = False
+        for value in dataset.values():
+            if isinstance(value, dict):
+                for key, item in value.items():
+                    changed = assign_if_converted(value, key, item) or changed
+        for exchange in dataset.get("exchanges", ()):
+            amount = exchange.get("amount")
+            if (
+                isinstance(amount, (int, float, np.number, np.ndarray))
+                and not isinstance(amount, (bool, np.bool_))
+                and (not isinstance(amount, np.ndarray) or amount.size == 1)
+            ):
+                normalized_amount = float(np.asarray(amount).reshape(-1)[0])
+                if type(amount) is not float:
+                    exchange["amount"] = normalized_amount
+                    changed = True
+            for key, value in tuple(exchange.items()):
+                changed = assign_if_converted(exchange, key, value) or changed
+        if changed and on_change is not None:
+            on_change(dataset, "numeric_types")
+    return database
+
+
+def normalize_inventory_uncertainty(database, on_change=None):
+    """Apply the historical uncertainty repairs before read-only checks."""
+
+    for dataset in database:
+        changed = False
+        for exchange in dataset.get("exchanges", ()):
+            try:
+                uncertainty_type = int(exchange.get("uncertainty type", 0))
+            except (TypeError, ValueError, OverflowError):
+                continue
+            amount = exchange.get("amount")
+            numeric_amount = (
+                isinstance(amount, (int, float, np.number))
+                and not isinstance(amount, (bool, np.bool_))
+                and np.isfinite(amount)
+            )
+            if uncertainty_type == 2 and numeric_amount:
+                if amount == 0:
+                    # A lognormal distribution cannot represent zero. Some
+                    # transformations legitimately scale an exchange to zero;
+                    # make that result deterministic before read-only
+                    # certification instead of leaving stale distribution
+                    # metadata attached to it.
+                    exchange["uncertainty type"] = 0
+                    exchange["loc"] = 0.0
+                    if "negative" in exchange:
+                        exchange.pop("negative")
+                    for field in ("scale", "minimum", "maximum", "shape"):
+                        exchange.pop(field, None)
+                    changed = True
+                else:
+                    if "loc" not in exchange:
+                        exchange["loc"] = float(math.log(abs(float(amount))))
+                        changed = True
+                    negative = bool(amount < 0)
+                    if exchange.get("negative") is not negative:
+                        exchange["negative"] = negative
+                        changed = True
+            elif uncertainty_type == 3 and numeric_amount and "loc" not in exchange:
+                exchange["loc"] = float(amount)
+                changed = True
+            elif uncertainty_type == 5 and numeric_amount:
+                if "loc" not in exchange:
+                    exchange["loc"] = float(amount)
+                    changed = True
+                if "minimum" in exchange and exchange["minimum"] > exchange["loc"]:
+                    exchange["minimum"] = exchange["loc"]
+                    changed = True
+                if "maximum" in exchange and exchange["maximum"] < exchange["loc"]:
+                    exchange["maximum"] = exchange["loc"]
+                    changed = True
+        if changed and on_change is not None:
+            on_change(dataset, "uncertainty")
+    return database
+
+
+def normalize_exact_deterministic_exchange_duplicates(database, on_change=None):
+    """Consolidate only byte-equivalent deterministic technosphere rows.
+
+    The summed amount preserves the deterministic inventory total. Exchanges
+    with uncertainty, differing metadata, or merely equal supplier keys are
+    deliberately left for validation because combining their distributions or
+    semantics would require methodological judgment.
+    """
+
+    for dataset in database:
+        normalized = []
+        exact_rows = {}
+        duplicate_found = False
+        for exchange in dataset.get("exchanges", ()):
+            if exchange.get("type") != "technosphere" or int(
+                exchange.get("uncertainty type", 0) or 0
+            ) not in {0, 1}:
+                normalized.append(exchange)
+                continue
+            signature = repr(
+                sorted((str(key), repr(value)) for key, value in exchange.items())
+            )
+            existing = exact_rows.get(signature)
+            if existing is None:
+                exact_rows[signature] = exchange
+                normalized.append(exchange)
+            else:
+                existing["amount"] += exchange["amount"]
+                duplicate_found = True
+        if duplicate_found:
+            dataset["exchanges"] = normalized
+            if on_change is not None:
+                on_change(dataset, "exact_duplicates")
+    return database
+
+
+class FastExportSession:
+    """Normalize and validate one exporter graph with one shared index/pass."""
+
+    _VALID_EXCHANGE_TYPES = frozenset({"production", "technosphere", "biosphere"})
+    _ACTIVITY_FIELDS = (
+        "name",
+        "reference product",
+        "location",
+        "unit",
+        "code",
+        "database",
+        "exchanges",
+    )
+
+    def __init__(self, validator):
+        self.validator = validator
+        self.database = validator.database
+        self.db_name = validator.db_name
+        self.biosphere_name = validator.biosphere_name
+
+    def _provider_index(self):
+        counts = {}
+        codes = {}
+        for dataset in self.database:
+            key = (
+                dataset.get("name"),
+                dataset.get("reference product"),
+                dataset.get("location"),
+                dataset.get("unit"),
+            )
+            counts[key] = counts.get(key, 0) + 1
+            codes.setdefault(key, set()).add(dataset.get("code"))
+        return counts, codes
+
+    @staticmethod
+    def _valid_input(exchange_input, database_name, provider_codes):
+        return (
+            isinstance(exchange_input, (tuple, list))
+            and len(exchange_input) == 2
+            and exchange_input[0] == database_name
+            and exchange_input[1] in provider_codes
+        )
+
+    def _normalize_provider_input(
+        self,
+        exchange,
+        exchange_input,
+        provider_count,
+        provider_codes,
+    ):
+        normalized_input = None
+        linkable_codes = {code for code in provider_codes if code is not None}
+        if provider_count == 1:
+            provider_code = next(iter(provider_codes))
+            if provider_code is not None:
+                normalized_input = self.db_name, provider_code
+        elif (
+            provider_count > 1
+            and isinstance(exchange_input, (tuple, list))
+            and len(exchange_input) == 2
+            and exchange_input[1] in linkable_codes
+        ):
+            normalized_input = self.db_name, exchange_input[1]
+
+        if normalized_input is None:
+            exchange.pop("input", None)
+        elif exchange_input != normalized_input:
+            exchange["input"] = normalized_input
+        return normalized_input
+
+    def _normalize_biosphere_input(
+        self, exchange, exchange_input, name, unit, categories
+    ):
+        if isinstance(exchange_input, (tuple, list)) and len(exchange_input) == 2:
+            normalized_input = (
+                self.biosphere_name,
+                exchange_input[1],
+            )
+        else:
+            categories = categories or ()
+            compartment = categories[0]
+            subcompartment = categories[1] if len(categories) > 1 else "unspecified"
+            normalized_input = (
+                self.biosphere_name,
+                self.validator.biosphere_codes[
+                    name,
+                    compartment,
+                    subcompartment,
+                    unit,
+                ],
+            )
+        if exchange_input != normalized_input:
+            exchange["input"] = normalized_input
+        return normalized_input
+
+    def run(self):
+        provider_counts, provider_codes = self._provider_index()
+        validator = self.validator
+
+        for dataset in self.database:
+            if dataset.get("database") != self.db_name:
+                dataset["database"] = self.db_name
+
+            missing = [
+                field
+                for field in self._ACTIVITY_FIELDS
+                if field not in dataset or dataset[field] in (None, "")
+            ]
+            if missing:
+                validator.log_issue(
+                    dataset,
+                    "export schema missing activity fields",
+                    f"Activity is missing exporter fields: {missing}.",
+                    issue_type="major",
+                )
+            if dataset.get("database") != self.db_name:
+                validator.log_issue(
+                    dataset,
+                    "export schema database mismatch",
+                    f"Activity database is {dataset.get('database')!r}; expected {self.db_name!r}.",
+                    issue_type="major",
+                )
+
+            prepared_exchanges = []
+            for exchange in dataset.get("exchanges", []):
+                (
+                    exchange_type,
+                    exchange_name,
+                    exchange_product,
+                    exchange_location,
+                    exchange_unit,
+                    amount,
+                    categories,
+                    exchange_input,
+                ) = _exchange_export_fields(exchange)
+
+                provider_key = None
+                provider_count = 0
+                candidate_codes = set()
+                if exchange_type in {"production", "technosphere"}:
+                    provider_key = (
+                        exchange_name,
+                        exchange_product,
+                        exchange_location,
+                        exchange_unit,
+                    )
+                    provider_count = provider_counts.get(provider_key, 0)
+                    candidate_codes = provider_codes.get(provider_key, set())
+                    exchange_input = self._normalize_provider_input(
+                        exchange,
+                        exchange_input,
+                        provider_count,
+                        candidate_codes,
+                    )
+                elif exchange_type == "biosphere":
+                    exchange_input = self._normalize_biosphere_input(
+                        exchange,
+                        exchange_input,
+                        exchange_name,
+                        exchange_unit,
+                        categories,
+                    )
+
+                prepared_exchange = prepare_fast_exchange_payload(
+                    exchange,
+                    input_override=exchange_input,
+                )
+                prepared_exchanges.append(prepared_exchange)
+                exchange_type = prepared_exchange.get("type")
+                exchange_name = prepared_exchange.get("name")
+                exchange_product = prepared_exchange.get("product")
+                exchange_location = prepared_exchange.get("location")
+                exchange_unit = prepared_exchange.get("unit")
+                amount = prepared_exchange.get("amount")
+                categories = prepared_exchange.get("categories")
+                exchange_input = prepared_exchange.get("input")
+
+                if exchange_type not in self._VALID_EXCHANGE_TYPES:
+                    validator.log_issue(
+                        dataset,
+                        "export schema exchange type",
+                        f"Exchange {exchange_name} has invalid type {exchange_type!r}.",
+                        issue_type="major",
+                    )
+                scalar_amount = _export_numeric_scalar(amount)
+                if scalar_amount is None:
+                    validator.log_issue(
+                        dataset,
+                        "export schema amount",
+                        f"Exchange {exchange_name} has non-numeric amount {amount!r}.",
+                        issue_type="major",
+                    )
+                elif not math.isfinite(scalar_amount):
+                    validator.log_issue(
+                        dataset,
+                        "export schema amount",
+                        f"Exchange {exchange_name} has non-finite amount {amount!r}.",
+                        issue_type="major",
+                    )
+
+                required = {"name", "unit", "type", "amount"}
+                if exchange_type in {"production", "technosphere"}:
+                    required.update({"product", "location", "input"})
+                elif exchange_type == "biosphere":
+                    required.update({"categories", "input"})
+                values = {
+                    "name": exchange_name,
+                    "product": exchange_product,
+                    "location": exchange_location,
+                    "unit": exchange_unit,
+                    "type": exchange_type,
+                    "amount": amount,
+                    "categories": categories,
+                    "input": exchange_input,
+                }
+                missing_exchange = [
+                    field for field in required if values.get(field) is None
+                ]
+                if missing_exchange:
+                    validator.log_issue(
+                        dataset,
+                        "export schema missing exchange fields",
+                        f"Exchange {exchange_name} is missing fields: {missing_exchange}.",
+                        issue_type="major",
+                    )
+
+                if exchange_type in {"production", "technosphere"}:
+                    resolves_provider = self._valid_input(
+                        exchange_input,
+                        self.db_name,
+                        candidate_codes,
+                    )
+                    if provider_count != 1 and not resolves_provider:
+                        validator.log_issue(
+                            dataset,
+                            "export schema provider cardinality",
+                            f"{exchange_type.title()} exchange {provider_key} resolves to {provider_count} providers.",
+                            issue_type="major",
+                        )
+                    elif not resolves_provider:
+                        validator.log_issue(
+                            dataset,
+                            "export schema provider input",
+                            f"{exchange_type.title()} exchange {provider_key} has an invalid input identifier.",
+                            issue_type="major",
+                        )
+                if exchange_type == "biosphere" and self.biosphere_name is not None:
+                    if not (
+                        isinstance(exchange_input, (tuple, list))
+                        and len(exchange_input) == 2
+                        and exchange_input[0] == self.biosphere_name
+                    ):
+                        validator.log_issue(
+                            dataset,
+                            "export schema biosphere input",
+                            f"Biosphere exchange {exchange_name} has an invalid input identifier.",
+                            issue_type="major",
+                        )
+
+            dataset["exchanges"] = prepared_exchanges
+
+        self.database = mark_prepared_export_inventory(self.database)
+        validator.database = self.database
+        return validator._finalize_logs()
+
+
 class BaseDatasetValidator:
     """
     Base class for validating datasets after they have been transformed.
@@ -286,9 +788,19 @@ class BaseDatasetValidator:
         self.geo = Geomap(model)
         self.minor_issues_log = []
         self.major_issues_log = []
+        self.validation_issues = []
         self.biosphere_name = biosphere_name
+        self.version = version
+        self.system_model = system_model
         self.biosphere_codes = get_biosphere_code(version)
         self.classifications = get_classifications()
+
+    def expected_iam_location(self, location):
+        """Return an IAM location without remapping an existing IAM region."""
+
+        if location in self.regions:
+            return location
+        return self.geo.ecoinvent_to_iam_location(location)
 
     def check_matrix_squareness(self):
         """
@@ -306,8 +818,11 @@ class BaseDatasetValidator:
                     products.append((e["name"], e["product"], e["unit"], e["location"]))
 
         if len(list(set(activities))) != len(list(set(products))):
-            print(
-                f"WARNING: matrix is not square: {len(list(set(activities)))} activities, {len(list(set(products)))} products."
+            self.log_issue(
+                {},
+                "non-square matrix",
+                f"Matrix is not square: {len(set(activities))} activities, {len(set(products))} products.",
+                issue_type="major",
             )
 
     def check_uncertainty(self):
@@ -327,74 +842,77 @@ class BaseDatasetValidator:
 
         for ds in self.database:
             for exc in ds["exchanges"]:
-                if int(exc.get("uncertainty type", 0)) not in [0, 1]:
-
-                    if not all(
-                        f in exc
-                        for f in MANDATORY_UNCERTAINTY_FIELDS[
-                            int(exc["uncertainty type"])
-                        ]
-                    ):
-                        message = (
-                            f"Exchange {exc['name']} has incomplete uncertainty data."
+                try:
+                    uncertainty_type = int(exc.get("uncertainty type", 0))
+                except (TypeError, ValueError, OverflowError):
+                    self.log_issue(
+                        ds,
+                        "invalid uncertainty type",
+                        f"Exchange {exc.get('name')} has an invalid uncertainty type.",
+                        issue_type="major",
+                    )
+                    continue
+                if uncertainty_type not in range(13):
+                    self.log_issue(
+                        ds,
+                        "invalid uncertainty type",
+                        f"Exchange {exc.get('name')} has unsupported uncertainty type {uncertainty_type}.",
+                        issue_type="major",
+                    )
+                    continue
+                if uncertainty_type in [0, 1]:
+                    continue
+                required = MANDATORY_UNCERTAINTY_FIELDS[uncertainty_type]
+                if not all(field in exc for field in required):
+                    self.log_issue(
+                        ds,
+                        "incomplete uncertainty data",
+                        f"Exchange {exc.get('name')} has incomplete uncertainty data.",
+                        issue_type="major",
+                    )
+                    continue
+                parameters = [exc[field] for field in required]
+                if not all(
+                    isinstance(value, (int, float, np.number)) and np.isfinite(value)
+                    for value in parameters
+                ):
+                    self.log_issue(
+                        ds,
+                        "invalid uncertainty data",
+                        f"Exchange {exc.get('name')} has non-finite uncertainty data.",
+                        issue_type="major",
+                    )
+                    continue
+                if "scale" in required and exc["scale"] < 0:
+                    self.log_issue(
+                        ds,
+                        "negative uncertainty scale",
+                        f"Exchange {exc.get('name')} has a negative uncertainty scale.",
+                        issue_type="major",
+                    )
+                if "minimum" in required and "maximum" in required:
+                    if exc["minimum"] > exc["maximum"]:
+                        self.log_issue(
+                            ds,
+                            "invalid uncertainty bounds",
+                            f"Exchange {exc.get('name')} has minimum above maximum.",
+                            issue_type="major",
                         )
-                        self.log_issue(ds, "incomplete uncertainty data", message)
-
-                    try:
-                        if exc.get("uncertainty type", 0) == 2 and "loc" not in exc:
-                            if exc["amount"] < 0:
-                                exc["loc"] = float(math.log(exc["amount"] * -1))
-                                exc["negative"] = True
-                            else:
-                                exc["loc"] = float(math.log(exc["amount"]))
-
-                        if exc.get("uncertainty type", 0) == 3 and "loc" not in exc:
-                            exc["loc"] = float(exc["amount"])
-
-                        if exc.get("uncertainty type", 0) == 5:
-                            if "loc" not in exc:
-                                print(
-                                    f"'loc' not found in exchange {exc['name']} in dataset {ds['name']}{ds['location']}"
-                                )
-                                exc["loc"] = float(exc["amount"])
-                            if exc["minimum"] > exc["loc"]:
-                                message = (
-                                    f"Exchange {exc['name']} - {exc['location']} has a minimum value greater than the loc value."
-                                    f"Min: {exc['minimum']}, Max: {exc['maximum']}, Loc: {exc['loc']}"
-                                )
-                                self.log_issue(
-                                    ds,
-                                    "uncertainty minimum greater than loc",
-                                    message,
-                                    issue_type="minor",
-                                )
-
-                                # fix it
-                                exc["minimum"] = exc["loc"]
-                            if exc["maximum"] < exc["loc"]:
-                                message = (
-                                    f"Exchange {exc['name']} - {exc['location']} has a maximum value lower than the loc value."
-                                    f"Min: {exc['minimum']}, Max: {exc['maximum']}, Loc: {exc['loc']}"
-                                )
-                                self.log_issue(
-                                    ds,
-                                    "uncertainty maximum less than loc",
-                                    message,
-                                    issue_type="minor",
-                                )
-
-                                # fix it
-                                exc["maximum"] = exc["loc"]
-
-                    except KeyError:
-                        print(f"Issue with exchange {exc}")
-                        raise
+                    if "loc" in required and not (
+                        exc["minimum"] <= exc["loc"] <= exc["maximum"]
+                    ):
+                        self.log_issue(
+                            ds,
+                            "uncertainty loc outside bounds",
+                            f"Exchange {exc.get('name')} has loc outside its bounds.",
+                            issue_type="major",
+                        )
 
     def check_datasets_integrity(self):
         # Verify no unintended loss of datasets
         original_activities = [
             (ds["name"], ds["reference product"], ds["location"])
-            for ds in self.original_database
+            for ds in (self.original_database or [])
         ]
 
         new_activities = [
@@ -428,17 +946,13 @@ class BaseDatasetValidator:
 
             # Making sure that every technosphere exchange has a `product` field
             for exc in dataset.get("exchanges", []):
-                if exc["type"] == "technosphere" and exc.get("product") is None:
-                    # find it in new_activities based on the name and location
-                    # of the exchange
+                if exc.get("type") == "technosphere" and exc.get("product") is None:
                     candidate = [
                         x
                         for x in new_activities
                         if x[0] == exc["name"] and x[2] == exc["location"]
                     ]
-                    if len(candidate) == 1:
-                        exc["product"] = candidate[0][1]
-                    elif len(candidate) > 1:
+                    if len(candidate) > 1:
                         message = f"Exchange {exc['name']} in {dataset['name']} has multiple possible products: {candidate}."
                         self.log_issue(
                             dataset,
@@ -454,12 +968,6 @@ class BaseDatasetValidator:
                             message,
                             issue_type="major",
                         )
-
-        # remove empty fields
-        self.database = [
-            {k: v for k, v in dataset.items() if v is not None}
-            for dataset in self.database
-        ]
 
     def check_for_orphaned_datasets(self):
         # check the presence of orphan datasets
@@ -513,8 +1021,27 @@ class BaseDatasetValidator:
                         dataset, "missing exchange type", message, issue_type="major"
                     )
 
-                if not isinstance(exchange["amount"], float):
-                    exchange["amount"] = float(exchange["amount"])
+                if "amount" not in exchange:
+                    self.log_issue(
+                        dataset,
+                        "missing exchange amount",
+                        f"Exchange in dataset {dataset['name']} is missing the 'amount' key.",
+                        issue_type="major",
+                    )
+                elif not isinstance(exchange["amount"], (int, float, np.number)):
+                    self.log_issue(
+                        dataset,
+                        "invalid exchange amount",
+                        f"Exchange in dataset {dataset['name']} has a non-numeric amount.",
+                        issue_type="major",
+                    )
+                elif not np.isfinite(exchange["amount"]):
+                    self.log_issue(
+                        dataset,
+                        "non-finite exchange amount",
+                        f"Exchange in dataset {dataset['name']} has a non-finite amount.",
+                        issue_type="major",
+                    )
 
             # if list of exchanges is 2, and the two exchanges are identical
             if len(dataset.get("exchanges", [])) == 2:
@@ -583,35 +1110,25 @@ class BaseDatasetValidator:
                     )
 
     def check_for_duplicates(self):
-        """Check for the presence of duplicates"""
+        """Reject exact duplicate records without deleting semantic duplicates."""
 
-        activities = [
-            (x["name"].lower(), x["reference product"].lower(), x["location"])
-            for x in self.database
-        ]
-
-        if len(activities) != len(set(activities)):
-            seen = set()
-            self.database = [
-                x
-                for x in self.database
-                if (x["name"].lower(), x["reference product"].lower(), x["location"])
-                not in seen
-                and not seen.add(
-                    (x["name"].lower(), x["reference product"].lower(), x["location"])
+        seen: dict[str, dict] = {}
+        for dataset in self.database:
+            fingerprint = repr(dataset)
+            if fingerprint in seen:
+                key = (
+                    dataset.get("name"),
+                    dataset.get("reference product"),
+                    dataset.get("location"),
                 )
-            ]
-
-            # log duplicates
-            for x in set(activities):
-                if activities.count(x) > 1:
-                    message = f"Duplicate found (and removed): {x}"
-                    self.log_issue(
-                        {"name": x[0], "reference product": x[1], "location": x[2]},
-                        "duplicate",
-                        message,
-                        issue_type="major",
-                    )
+                self.log_issue(
+                    dataset,
+                    "exact duplicate activity",
+                    f"Exact accidental duplicate activity record found: {key}.",
+                    issue_type="major",
+                )
+            else:
+                seen[fingerprint] = dataset
 
     def check_for_circular_references(self):
         circular_exceptions = load_circular_exceptions()
@@ -635,42 +1152,29 @@ class BaseDatasetValidator:
                         self.log_issue(dataset, "circular reference", message)
 
     def check_database_name(self):
-
-        uuids = get_uuids(self.database)
-
+        """Check export identifiers without changing activity or exchange fields."""
         for ds in self.database:
-            ds["database"] = self.db_name
-            # ds["code"] = uuids[(ds["name"], ds["reference product"], ds["location"])]
+            if self.db_name is not None and ds.get("database") != self.db_name:
+                self.log_issue(
+                    ds,
+                    "incorrect database name",
+                    f"Activity database is {ds.get('database')!r}, expected {self.db_name!r}.",
+                    issue_type="major",
+                )
             for exc in ds["exchanges"]:
-                if exc["type"] in ["production", "technosphere"]:
-                    if "input" in exc:
-                        del exc["input"]
                 if exc["type"] == "biosphere":
-                    # check that the first item of the code field
-                    # corresponds to biosphere_name
-                    if "input" in exc:
-                        if exc["input"][0] != self.biosphere_name:
-                            exc["input"] = (self.biosphere_name, exc["input"][1])
-                    else:
-                        exc["input"] = (
-                            self.biosphere_name,
-                            self.biosphere_codes[
-                                exc["name"],
-                                exc["categories"][0],
-                                (
-                                    exc["categories"][1]
-                                    if len(exc["categories"]) > 1
-                                    else "unspecified"
-                                ),
-                                exc["unit"],
-                            ],
+                    exchange_input = exc.get("input")
+                    if self.biosphere_name is not None and (
+                        not isinstance(exchange_input, (tuple, list))
+                        or len(exchange_input) != 2
+                        or exchange_input[0] != self.biosphere_name
+                    ):
+                        self.log_issue(
+                            ds,
+                            "incorrect biosphere database",
+                            f"Biosphere exchange {exc.get('name')} has an invalid input identifier.",
+                            issue_type="major",
                         )
-
-                # if exc["type"] == "technosphere":
-                #    exc["input"] = (
-                #        self.db_name,
-                #        uuids[exc["name"], exc["product"], exc["location"]],
-                #    )
 
     def remove_unused_fields(self):
         """
@@ -695,47 +1199,65 @@ class BaseDatasetValidator:
                 if not isinstance(dataset["categories"], tuple):
                     dataset["categories"] = tuple(dataset["categories"])
 
-            for exc in dataset["exchanges"]:
-                # check that `amount` is of type `float`
-                if np.isnan(exc["amount"]):
-                    raise ValueError(
-                        f"Amount is NaN in exchange {exc} in dataset {dataset['name'], dataset['location']}"
-                    )
-                if not isinstance(exc["amount"], float):
-                    exc["amount"] = float(exc["amount"])
-
             # remove fields that are None
             for key, value in list(dataset.items()):
                 if value is None:
                     del dataset[key]
 
+        normalize_inventory_numeric_types(self.database)
+
         # we also want to remove any numpy generics
         # that would prevent json serialization
-        self.database = convert_numpy_generics_to_float(self.database)
+        self.database = convert_numpy_generics_to_float(
+            self.database,
+            in_place=getattr(self, "_correct_fields_in_place", False),
+        )
 
     def check_amount_format(self):
         """
-        Check that the `amount` field is of type `float`.
+        Check that numeric fields are finite and exporter-compatible.
         """
 
         for dataset in self.database:
             for exc in dataset["exchanges"]:
-                if not isinstance(exc["amount"], float):
-                    exc["amount"] = float(exc["amount"])
-
-                if isinstance(exc["amount"], (np.float64, np.ndarray)):
-                    exc["amount"] = float(exc["amount"])
+                amount = exc.get("amount")
+                if not isinstance(amount, (int, float, np.number)) or isinstance(
+                    amount, (bool, np.ndarray)
+                ):
+                    self.log_issue(
+                        dataset,
+                        "invalid amount format",
+                        f"Exchange {exc.get('name')} has invalid amount {amount!r}.",
+                        issue_type="major",
+                    )
+                elif not np.isfinite(amount):
+                    self.log_issue(
+                        dataset,
+                        "non-finite amount",
+                        f"Exchange {exc.get('name')} has non-finite amount {amount!r}.",
+                        issue_type="major",
+                    )
 
             for k, v in dataset.items():
                 if isinstance(v, dict):
-                    for i, j in v.items():
-                        if isinstance(j, (np.float64, np.ndarray)):
-                            v[i] = float(v[i])
+                    for _, value in v.items():
+                        if isinstance(value, np.ndarray):
+                            self.log_issue(
+                                dataset,
+                                "invalid dataset numeric format",
+                                "Dataset metadata contains a NumPy array.",
+                                issue_type="major",
+                            )
 
             for e in dataset["exchanges"]:
-                for k, v in e.items():
-                    if isinstance(v, (np.float64, np.ndarray)):
-                        e[k] = float(e[k])
+                for _, value in e.items():
+                    if isinstance(value, np.ndarray):
+                        self.log_issue(
+                            dataset,
+                            "invalid exchange numeric format",
+                            f"Exchange {e.get('name')} contains a NumPy array.",
+                            issue_type="major",
+                        )
 
     def reformat_parameters(self):
         for ds in self.database:
@@ -774,7 +1296,8 @@ class BaseDatasetValidator:
                 if value is None:
                     del ds[key]
 
-            ds["exchanges"] = [clean_up(exc) for exc in ds["exchanges"]]
+            if not getattr(self, "_defer_exchange_cleanup", False):
+                ds["exchanges"] = [clean_up(exc) for exc in ds["exchanges"]]
 
     def add_missing_classifications(self):
 
@@ -814,15 +1337,33 @@ class BaseDatasetValidator:
         else:
             log = self.major_issues_log
 
-        log.append(
-            {
-                "name": dataset.get("name"),
-                "reference product": dataset.get("reference product"),
-                "location": dataset.get("location"),
-                "severity": issue_type,
-                "reason": reason,
-                "message": message,
-            }
+        entry = {
+            "name": dataset.get("name"),
+            "reference product": dataset.get("reference product"),
+            "location": dataset.get("location"),
+            "severity": issue_type,
+            "reason": reason,
+            "message": message,
+        }
+        log.append(entry)
+        stable_reason = "".join(
+            character if character.isalnum() else "_" for character in reason.upper()
+        ).strip("_")
+        validation_issues = getattr(self, "validation_issues", None)
+        if validation_issues is None:
+            validation_issues = self.validation_issues = []
+        validation_issues.append(
+            ValidationIssue(
+                rule_id=f"LEGACY.{stable_reason}",
+                severity="warning" if issue_type == "minor" else "error",
+                message=message,
+                checked_object_count=1,
+                activity_key=(
+                    dataset.get("name"),
+                    dataset.get("reference product"),
+                    dataset.get("location"),
+                ),
+            )
         )
 
     def save_log(self):
@@ -835,8 +1376,8 @@ class BaseDatasetValidator:
             )
 
     def run_all_checks(self):
-        # Run all checks
-        print("Running all checks...")
+        """Run a strictly read-only complete export validation pass."""
+
         self.check_datasets_integrity()
         self.check_matrix_squareness()
         self.validate_dataset_structure()
@@ -847,45 +1388,342 @@ class BaseDatasetValidator:
         self.check_for_duplicates()
         self.check_for_circular_references()
         self.check_database_name()
-        self.remove_unused_fields()
-        self.correct_fields_format()
         self.check_amount_format()
-        self.reformat_parameters()
-        self.add_missing_classifications()
         self.check_uncertainty()
-        self._finalize_logs()
+        return self._finalize_logs()
 
     def run_fast_export_checks(self):
         """
-        Run a reduced validation pass for the fast Brightway export path.
-        This keeps cheap structural and consistency checks while avoiding
-        the heavier checks that require the full source database context.
+        Backwards-compatible name for the exporter-specific schema pass.
         """
 
-        print("Running core export checks...")
-        self.check_matrix_squareness()
-        self.validate_dataset_structure()
-        self.verify_data_consistency()
-        self.check_relinking_logic()
-        self.check_for_orphaned_datasets()
-        self.check_for_duplicates()
-        self.check_for_circular_references()
-        self.check_database_name()
+        return self.run_export_schema_checks()
+
+    def run_fast_export_session(self):
+        """Prepare and validate Brightway fields in one indexed traversal."""
+
+        report = FastExportSession(self).run()
+        return self.database, report
+
+    def run_export_schema_checks(self):
+        """Validate normalized exporter fields in one read-only streaming pass."""
+
+        valid_types = {"production", "technosphere", "biosphere"}
+        providers = {}
+        provider_codes = {}
+        for dataset in self.database:
+            key = (
+                dataset.get("name"),
+                dataset.get("reference product"),
+                dataset.get("location"),
+                dataset.get("unit"),
+            )
+            providers[key] = providers.get(key, 0) + 1
+            provider_codes.setdefault(key, set()).add(dataset.get("code"))
+        for dataset in self.database:
+            missing = [
+                field
+                for field in (
+                    "name",
+                    "reference product",
+                    "location",
+                    "unit",
+                    "code",
+                    "database",
+                    "exchanges",
+                )
+                if field not in dataset or dataset[field] in (None, "")
+            ]
+            if missing:
+                self.log_issue(
+                    dataset,
+                    "export schema missing activity fields",
+                    f"Activity is missing exporter fields: {missing}.",
+                    issue_type="major",
+                )
+            if self.db_name is not None and dataset.get("database") != self.db_name:
+                self.log_issue(
+                    dataset,
+                    "export schema database mismatch",
+                    f"Activity database is {dataset.get('database')!r}; expected {self.db_name!r}.",
+                    issue_type="major",
+                )
+            for exchange in dataset.get("exchanges", []):
+                exchange_type = exchange.get("type")
+                if exchange_type not in valid_types:
+                    self.log_issue(
+                        dataset,
+                        "export schema exchange type",
+                        f"Exchange {exchange.get('name')} has invalid type {exchange_type!r}.",
+                        issue_type="major",
+                    )
+                amount = exchange.get("amount")
+                scalar_amount = _export_numeric_scalar(amount)
+                if scalar_amount is None:
+                    self.log_issue(
+                        dataset,
+                        "export schema amount",
+                        f"Exchange {exchange.get('name')} has non-numeric amount {amount!r}.",
+                        issue_type="major",
+                    )
+                elif not math.isfinite(scalar_amount):
+                    self.log_issue(
+                        dataset,
+                        "export schema amount",
+                        f"Exchange {exchange.get('name')} has non-finite amount {amount!r}.",
+                        issue_type="major",
+                    )
+                required = {"name", "unit", "type", "amount"}
+                if exchange_type in {"production", "technosphere"}:
+                    required.update({"product", "location", "input"})
+                elif exchange_type == "biosphere":
+                    required.update({"categories", "input"})
+                missing_exchange = [
+                    field for field in required if exchange.get(field) is None
+                ]
+                if missing_exchange:
+                    self.log_issue(
+                        dataset,
+                        "export schema missing exchange fields",
+                        f"Exchange {exchange.get('name')} is missing fields: {missing_exchange}.",
+                        issue_type="major",
+                    )
+                if exchange_type in {"production", "technosphere"}:
+                    provider_key = (
+                        exchange.get("name"),
+                        exchange.get("product"),
+                        exchange.get("location"),
+                        exchange.get("unit"),
+                    )
+                    provider_count = providers.get(provider_key, 0)
+                    exchange_input = exchange.get("input")
+                    resolves_provider = (
+                        provider_count > 0
+                        and isinstance(exchange_input, (tuple, list))
+                        and len(exchange_input) == 2
+                        and exchange_input[0] == self.db_name
+                        and exchange_input[1] in provider_codes[provider_key]
+                    )
+                    if provider_count != 1 and not resolves_provider:
+                        self.log_issue(
+                            dataset,
+                            "export schema provider cardinality",
+                            f"{exchange_type.title()} exchange {provider_key} resolves to {provider_count} providers.",
+                            issue_type="major",
+                        )
+                    elif not resolves_provider:
+                        self.log_issue(
+                            dataset,
+                            "export schema provider input",
+                            f"{exchange_type.title()} exchange {provider_key} has an invalid input identifier.",
+                            issue_type="major",
+                        )
+                if exchange_type == "biosphere" and self.biosphere_name is not None:
+                    exchange_input = exchange.get("input")
+                    if not (
+                        isinstance(exchange_input, (tuple, list))
+                        and len(exchange_input) == 2
+                        and exchange_input[0] == self.biosphere_name
+                    ):
+                        self.log_issue(
+                            dataset,
+                            "export schema biosphere input",
+                            f"Biosphere exchange {exchange.get('name')} has an invalid input identifier.",
+                            issue_type="major",
+                        )
+        return self._finalize_logs()
+
+    def make_normalizer(self):
+        """Return an explicit normalizer carrying the same export context."""
+
+        return DatasetNormalizer.from_validator(self)
+
+    def _finalize_logs(self, *, phase_id=None, phase_kind=None):
+        self.save_log()
+        issues_by_rule = {}
+        for issue in getattr(self, "validation_issues", ()):
+            issues_by_rule.setdefault(issue.rule_id, []).append(issue)
+        results = tuple(
+            ValidationRuleResult(
+                rule_id=rule_id,
+                severity=issues[0].severity,
+                applicability="applicable",
+                checked_object_count=len(issues),
+                actual={"issue_count": len(issues)},
+                issues=tuple(issues),
+            )
+            for rule_id, issues in sorted(issues_by_rule.items())
+        )
+        is_export = self.__class__ is BaseDatasetValidator and self.db_name is not None
+        phase = ValidationPhaseResult(
+            phase_id=phase_id
+            or (
+                f"export:schema:{self.db_name}"
+                if is_export
+                else f"sector:{self.__class__.__name__.removesuffix('Validation').lower()}"
+            ),
+            kind=phase_kind or ("export" if is_export else "sector"),
+            rule_results=results,
+        )
+        report = ValidationReport(
+            scenario_identity=(
+                getattr(self, "model", None),
+                getattr(self, "scenario", None),
+                getattr(self, "year", None),
+            ),
+            store_generation=0,
+            ruleset_version=VALIDATION_RULESET_VERSION,
+            certificate_key="legacy-export-validation",
+            rule_results=results,
+            phase_results=(phase,),
+        )
+        self.report = report
+        report.raise_for_errors()
+        return report
+
+
+class DatasetNormalizer(BaseDatasetValidator):
+    """Explicit, mutating export preparation kept separate from validation."""
+
+    @classmethod
+    def from_validator(cls, validator: BaseDatasetValidator):
+        normalizer = object.__new__(cls)
+        normalizer.__dict__.update(validator.__dict__)
+        normalizer.minor_issues_log = []
+        normalizer.major_issues_log = []
+        normalizer.validation_issues = []
+        return normalizer
+
+    def normalize_dataset_integrity(self) -> None:
+        """Restore inferable product fields and remove null activity metadata."""
+
+        activities = [
+            (ds.get("name"), ds.get("reference product"), ds.get("location"))
+            for ds in self.database
+        ]
+        for dataset in self.database:
+            for exchange in dataset.get("exchanges", []):
+                if (
+                    exchange.get("type") == "technosphere"
+                    and exchange.get("product") is None
+                ):
+                    candidates = [
+                        key
+                        for key in activities
+                        if key[0] == exchange.get("name")
+                        and key[2] == exchange.get("location")
+                    ]
+                    if len(candidates) == 1:
+                        exchange["product"] = candidates[0][1]
+        self.database = [
+            {key: value for key, value in dataset.items() if value is not None}
+            for dataset in self.database
+        ]
+
+    def assign_database_and_inputs(self) -> None:
+        """Assign exporter database names and canonical biosphere identifiers."""
+
+        providers = {}
+        for dataset in self.database:
+            key = (
+                dataset.get("name"),
+                dataset.get("reference product"),
+                dataset.get("location"),
+                dataset.get("unit"),
+            )
+            providers.setdefault(key, []).append(dataset)
+        for dataset in self.database:
+            dataset["database"] = self.db_name
+            for exchange in dataset.get("exchanges", []):
+                exchange_type = exchange.get("type")
+                if exchange_type in {"production", "technosphere"}:
+                    provider_key = (
+                        exchange.get("name"),
+                        exchange.get("product"),
+                        exchange.get("location"),
+                        exchange.get("unit"),
+                    )
+                    candidates = providers.get(provider_key, ())
+                    exchange_input = exchange.get("input")
+                    candidate_codes = {
+                        candidate.get("code")
+                        for candidate in candidates
+                        if candidate.get("code") is not None
+                    }
+                    if len(candidates) == 1 and candidates[0].get("code") is not None:
+                        exchange["input"] = (
+                            self.db_name,
+                            candidates[0]["code"],
+                        )
+                    elif (
+                        len(candidates) > 1
+                        and isinstance(exchange_input, (tuple, list))
+                        and len(exchange_input) == 2
+                        and exchange_input[1] in candidate_codes
+                    ):
+                        exchange["input"] = (self.db_name, exchange_input[1])
+                    else:
+                        exchange.pop("input", None)
+                elif exchange_type == "biosphere":
+                    exchange_input = exchange.get("input")
+                    if (
+                        isinstance(exchange_input, (tuple, list))
+                        and len(exchange_input) == 2
+                    ):
+                        if exchange_input[0] != self.biosphere_name:
+                            exchange["input"] = (
+                                self.biosphere_name,
+                                exchange_input[1],
+                            )
+                    else:
+                        categories = exchange.get("categories", ())
+                        compartment = categories[0]
+                        subcompartment = (
+                            categories[1] if len(categories) > 1 else "unspecified"
+                        )
+                        exchange["input"] = (
+                            self.biosphere_name,
+                            self.biosphere_codes[
+                                exchange["name"],
+                                compartment,
+                                subcompartment,
+                                exchange["unit"],
+                            ],
+                        )
+
+    def normalize_uncertainty(self) -> None:
+        """Preserve the historical uncertainty-repair order before checking."""
+
+        normalize_inventory_uncertainty(self.database)
+
+    def prepare_fast_export_fields(self):
+        """Apply only the identifiers required by the fast Brightway writer."""
+
+        self.assign_database_and_inputs()
+        return self.database
+
+    def normalize_database(self):
+        """Apply historical export normalization without semantic validation."""
+
+        self.normalize_dataset_integrity()
+        self.assign_database_and_inputs()
         self.remove_unused_fields()
-        self.correct_fields_format()
-        self.check_amount_format()
+        self._correct_fields_in_place = True
+        try:
+            self.correct_fields_format()
+        finally:
+            self._correct_fields_in_place = False
+        self.check_amount_format_for_export()
+        self._defer_exchange_cleanup = False
         self.reformat_parameters()
         self.add_missing_classifications()
-        self.check_uncertainty()
-        self._finalize_logs()
+        self.normalize_uncertainty()
+        return self.database
 
-    def _finalize_logs(self):
-        self.save_log()
-        if len(self.minor_issues_log) > 0:
-            print("Minor anomalies found: check the change report.")
-        if len(self.major_issues_log) > 0:
-            print("---> MAJOR anomalies found: check the change report.")
-            raise ValueError
+    def check_amount_format_for_export(self) -> None:
+        """Convert NumPy scalar fields exactly once for exporter compatibility."""
+
+        normalize_inventory_numeric_types(self.database)
 
 
 class BatteryValidation(BaseDatasetValidator):
@@ -970,12 +1808,7 @@ class BatteryValidation(BaseDatasetValidator):
 
     def run_battery_checks(self):
         self.check_battery_capacity()
-        self.save_log()
-
-        if len(self.major_issues_log) > 0:
-            print(
-                "---> MAJOR anomalies found during battery update: check the change report."
-            )
+        return self._finalize_logs()
 
 
 class HeatValidation(BaseDatasetValidator):
@@ -990,8 +1823,18 @@ class HeatValidation(BaseDatasetValidator):
 
         for ds in ws.get_many(
             self.database,
-            ws.contains("name", "market for heat"),
+            ws.either(
+                *[
+                    ws.equals("name", name)
+                    for name in (
+                        "market for heat, for buildings",
+                        "market for heat, district or industrial",
+                        "market for heat, secondary, district or industrial",
+                    )
+                ]
+            ),
             ws.equals("unit", "megajoule"),
+            ws.equals("regionalized", True),
         ):
             total = sum(
                 [
@@ -1000,7 +1843,7 @@ class HeatValidation(BaseDatasetValidator):
                     if exc["type"] == "technosphere" and exc["unit"] == "megajoule"
                 ]
             )
-            if not np.isclose(total, 1.0, rtol=1e-3):
+            if not np.isclose(total, 1.0, rtol=1e-6, atol=1e-6):
                 message = f"Total exchange amount is {total}, not 1.0"
                 self.log_issue(
                     ds, "Incorrect market shares", message, issue_type="major"
@@ -1024,6 +1867,8 @@ class HeatValidation(BaseDatasetValidator):
                         "treatment of",
                         "market for",
                         "market group for",
+                        "frozen legacy mix",
+                        "nuclear cogeneration",
                     ]
                 )
                 and ds["location"] in self.regions
@@ -1234,24 +2079,28 @@ class HeatValidation(BaseDatasetValidator):
                     ]
                 )
 
+                if energy_input <= 0:
+                    continue
+
                 efficiency = 1 / energy_input
 
-                if efficiency > 1.15 and not any(
+                if efficiency > 1.2 and not any(
                     x in ds["name"]
                     for x in ["co-generation", "allocated", "allocation"]
                 ):
-                    message = f"Heat conversion efficiency is {efficiency:.2f}, expected to be less than 1.15."
+                    message = f"Heat conversion efficiency is {efficiency:.2f}, expected to be less than 1.2."
                     self.log_issue(
                         ds, "heat conversion efficiency", message, issue_type="major"
                     )
 
                 if efficiency > 3.0 and "co-generation" in ds["name"]:
-                    message = f"Heat conversion efficiency is {efficiency:.2f}, expected to be less than 3.0. Corrected to 3.0."
-                    self.log_issue(ds, "heat conversion efficiency", message)
-
-                    scaling_factor = efficiency / 3.0
-                    rescale_exchanges(ds, scaling_factor)
-                    expected_co2 *= scaling_factor
+                    message = f"Heat conversion efficiency is {efficiency:.2f}, expected to be less than 3.0."
+                    self.log_issue(
+                        ds,
+                        "heat conversion efficiency",
+                        message,
+                        issue_type="major",
+                    )
 
                 co2 = sum(
                     [
@@ -1267,15 +2116,64 @@ class HeatValidation(BaseDatasetValidator):
                         message = f"CO2 emissions are {co2:.3f}, expected to be {expected_co2:.3f}."
                         self.log_issue(ds, "CO2 emissions", message, issue_type="major")
 
-    def run_heat_checks(self):
-        self.check_heat_markets_input()
-        self.check_heat_conversion_efficiency()
-        self.save_log()
+    def check_purchased_heat_links(self):
+        """Ensure each end-use market links to secondary heat at most once."""
 
-        if len(self.major_issues_log) > 0:
-            print(
-                "---> MAJOR anomalies found during heat update: check the change report."
-            )
+        for ds in ws.get_many(
+            self.database,
+            ws.either(
+                ws.equals("name", "market for heat, for buildings"),
+                ws.equals("name", "market for heat, district or industrial"),
+            ),
+            ws.equals("regionalized", True),
+        ):
+            links = [
+                exc
+                for exc in ws.technosphere(ds)
+                if exc.get("name")
+                == "market for heat, secondary, district or industrial"
+                and exc.get("product") == "heat, district or industrial"
+            ]
+            if len(links) > 1:
+                self.log_issue(
+                    ds,
+                    "Duplicate purchased heat link",
+                    f"Found {len(links)} links to the secondary heat market.",
+                    issue_type="major",
+                )
+
+    def check_heat_iam_values(self):
+        """Check raw heat layers for finite, non-negative IAM volumes."""
+
+        for attribute in (
+            "buildings_heat_end_use",
+            "industrial_heat_end_use",
+            "secondary_heat_supply",
+        ):
+            array = getattr(self.iam_data, attribute, None)
+            if array is None:
+                continue
+            if not bool(np.isfinite(array.fillna(0)).all()):
+                self.log_issue(
+                    {},
+                    "non-finite IAM heat values",
+                    f"Non-finite values found in IAM heat layer {attribute}.",
+                    issue_type="major",
+                )
+            if bool((array.fillna(0) < 0).any()):
+                self.log_issue(
+                    {},
+                    "negative IAM heat values",
+                    f"Negative values found in IAM heat layer {attribute}.",
+                    issue_type="major",
+                )
+
+    def run_heat_checks(self):
+        self.check_heat_iam_values()
+        self.check_heat_markets_input()
+        self.check_purchased_heat_links()
+        self.check_heat_conversion_efficiency()
+        return self._finalize_logs()
 
 
 class TransportValidation(BaseDatasetValidator):
@@ -1300,7 +2198,9 @@ class TransportValidation(BaseDatasetValidator):
         for act in [
             a
             for a in self.database
-            if a["name"].startswith("transport, ") and ", unspecified" in a["name"]
+            if a["name"].startswith("transport, ")
+            and ", unspecified" in a["name"]
+            and "hydrogen" not in a["name"]
         ]:
             total = sum(
                 exc["amount"]
@@ -1360,14 +2260,11 @@ class TransportValidation(BaseDatasetValidator):
             return
 
         if not math.isclose(actual, expected, rel_tol=0.5):
-            new_actual = np.clip(actual, 0.9 * expected, 1.1 * expected)
-            if not 0.5 < new_actual / actual < 2:
-                message = f"Emission factor for {pollutant} has been corrected from {actual} to {new_actual}."
-                self.log_issue(ds, f"incorrect emission factor", message)
-
-            for exc in ds["exchanges"]:
-                if pollutant.lower() in exc["name"].lower():
-                    exc["amount"] *= new_actual / actual
+            message = (
+                f"Emission factor for {pollutant} is {actual}; expected approximately "
+                f"{expected}."
+            )
+            self.log_issue(ds, "incorrect emission factor", message, issue_type="major")
 
     def check_pollutant_emissions(self, vehicle_name):
 
@@ -1435,8 +2332,10 @@ class TransportValidation(BaseDatasetValidator):
                     [
                         x["amount"]
                         for x in ds["exchanges"]
-                        if x["name"].startswith("market group for electricity")
-                        or x["name"].startswith("market for electricity")
+                        if (
+                            x["name"].startswith("market group for electricity")
+                            or x["name"].startswith("market for electricity")
+                        )
                         and x["type"] == "technosphere"
                     ]
                 )
@@ -1457,8 +2356,10 @@ class TransportValidation(BaseDatasetValidator):
                     [
                         x["amount"]
                         for x in ds["exchanges"]
-                        if x["name"].startswith("market for diesel")
-                        or x["name"].startswith("market for petrol")
+                        if (
+                            x["name"].startswith("market for diesel")
+                            or x["name"].startswith("market for petrol")
+                        )
                         and x["type"] == "technosphere"
                     ]
                 )
@@ -1471,8 +2372,10 @@ class TransportValidation(BaseDatasetValidator):
                             * (47.5 if x["unit"] == "kilogram" else 36)
                             / 42.6
                             for x in ds["exchanges"]
-                            if x["name"].startswith("market for natural gas")
-                            or x["name"].startswith("market group for natural gas")
+                            if (
+                                x["name"].startswith("market for natural gas")
+                                or x["name"].startswith("market group for natural gas")
+                            )
                             and x["type"] == "technosphere"
                         ]
                     )
@@ -1513,12 +2416,6 @@ class TransportValidation(BaseDatasetValidator):
     def run_vehicle_checks(self):
         self.validate_and_normalize_exchanges()
         self.check_vehicles()
-        self.save_log()
-
-        if len(self.major_issues_log) > 0:
-            print(
-                "---> MAJOR anomalies found during transport update: check the change report."
-            )
 
 
 class TruckValidation(TransportValidation):
@@ -1537,7 +2434,7 @@ class TruckValidation(TransportValidation):
             elec_maximum=0.9,
         )
         self.check_pollutant_emissions(vehicle_name="transport, freight, lorry")
-        self.save_log()
+        return self._finalize_logs()
 
 
 class CarValidation(TransportValidation):
@@ -1556,13 +2453,145 @@ class CarValidation(TransportValidation):
             elec_minimum=0.1,
             elec_maximum=0.35,
         )
-        self.save_log()
+        return self._finalize_logs()
 
 
 class ElectricityValidation(BaseDatasetValidator):
-    def __init__(self, model, scenario, year, regions, database, iam_data):
-        super().__init__(model, scenario, year, regions, database)
+    def __init__(
+        self,
+        model,
+        scenario,
+        year,
+        regions,
+        database,
+        iam_data,
+        technology_map=None,
+        system_model="cutoff",
+    ):
+        super().__init__(
+            model,
+            scenario,
+            year,
+            regions,
+            database,
+            system_model=system_model,
+        )
         self.iam_data = iam_data
+        self.technology_map = technology_map or {}
+
+    def check_complete_electricity_supplier_vectors(self):
+        """Compare every high-voltage supplier share with the IAM mix."""
+
+        target_mix = self.iam_data.electricity_mix
+        if self.system_model == "consequential":
+            target_mix = independent_consequential_mix(
+                self.iam_data, "electricity", self.year
+            )
+        if target_mix is None or not self.technology_map:
+            self.log_issue(
+                {},
+                "missing electricity validation targets",
+                "Electricity supplier-vector validation has no IAM mix or technology mapping.",
+                issue_type="major",
+            )
+            return
+
+        provider_to_technology = {}
+        for technology, providers in self.technology_map.items():
+            for provider in providers:
+                provider_to_technology.setdefault(
+                    (
+                        provider.get("name"),
+                        provider.get("reference product"),
+                        provider.get("location"),
+                    ),
+                    technology,
+                )
+
+        markets = [
+            dataset
+            for dataset in self.database
+            if dataset.get("name") == "market group for electricity, high voltage"
+            and dataset.get("location") in self.regions
+            and dataset.get("location") != "World"
+        ]
+        if not markets:
+            self.log_issue(
+                {},
+                "missing electricity market targets",
+                "No regional high-voltage electricity market was found for validation.",
+                issue_type="major",
+            )
+            return
+
+        for market in markets:
+            mix = target_mix.sel(region=market["location"])
+            if "year" in mix.dims:
+                if self.year in mix.coords["year"].values:
+                    mix = mix.sel(year=self.year)
+                else:
+                    mix = mix.interp(year=self.year)
+            expected = {
+                str(technology): max(float(value), 0.0)
+                for technology, value in zip(mix.coords["variables"].values, mix.values)
+                if str(technology).lower() != "solar pv residential"
+            }
+            total = sum(expected.values())
+            if not np.isfinite(total) or total <= 0:
+                self.log_issue(
+                    market,
+                    "invalid electricity target vector",
+                    "IAM electricity supplier vector is empty or non-finite.",
+                    issue_type="major",
+                )
+                continue
+            expected = {
+                technology: share / total for technology, share in expected.items()
+            }
+
+            actual = {technology: 0.0 for technology in expected}
+            unmatched = []
+            for exchange in market["exchanges"]:
+                if exchange.get("type") != "technosphere":
+                    continue
+                if (
+                    exchange.get("name") == market["name"]
+                    and exchange.get("location") == market["location"]
+                ):
+                    continue
+                key = (
+                    exchange.get("name"),
+                    exchange.get("product"),
+                    exchange.get("location"),
+                )
+                technology = exchange.get(
+                    "premise electricity technology"
+                ) or provider_to_technology.get(key)
+                if technology is None:
+                    unmatched.append(key)
+                else:
+                    actual[technology] = actual.get(technology, 0.0) + float(
+                        exchange["amount"]
+                    )
+
+            for technology, expected_share in expected.items():
+                actual_share = actual.get(technology, 0.0)
+                if not math.isclose(
+                    actual_share, expected_share, rel_tol=1e-5, abs_tol=1e-8
+                ):
+                    self.log_issue(
+                        market,
+                        "incorrect electricity supplier vector",
+                        f"Electricity technology {technology} has share {actual_share}; expected {expected_share}.",
+                        issue_type="major",
+                    )
+            if unmatched:
+                self.log_issue(
+                    market,
+                    "unmapped electricity suppliers",
+                    f"Electricity market contains {len(unmatched)} supplier(s) outside the declared technology mapping.",
+                    issue_type="major",
+                )
 
     def check_electricity_market_composition(self):
         def _is_electricity(exc, dataset):
@@ -1866,23 +2895,171 @@ class ElectricityValidation(BaseDatasetValidator):
                         message,
                     )
 
-    def run_electricity_checks(self):
+    def run_supplier_vector_checks(self):
+        self.check_complete_electricity_supplier_vectors()
+        return self._finalize_logs(phase_id="sector:electricity:supplier-vector")
+
+    def run_electricity_checks(self, *, check_supplier_vectors=True):
+        if check_supplier_vectors:
+            self.check_complete_electricity_supplier_vectors()
         self.check_electricity_market_composition()
         self.check_old_datasets()
         self.check_electricity_mix()
         self.check_efficiency()
-        self.save_log()
-
-        if len(self.major_issues_log) > 0:
-            print(
-                "---> MAJOR anomalies found during electricity update: check the change report."
-            )
+        return self._finalize_logs()
 
 
 class FuelsValidation(BaseDatasetValidator):
-    def __init__(self, model, scenario, year, regions, database, iam_data):
-        super().__init__(model, scenario, year, regions, database)
+    def __init__(
+        self,
+        model,
+        scenario,
+        year,
+        regions,
+        database,
+        iam_data,
+        technology_map=None,
+        system_model="cutoff",
+    ):
+        super().__init__(
+            model,
+            scenario,
+            year,
+            regions,
+            database,
+            system_model=system_model,
+        )
         self.iam_data = iam_data
+        self.technology_map = technology_map or {}
+
+    def check_consequential_fuel_supplier_vectors(self):
+        """Reject average or incomplete vectors in consequential fuel markets."""
+
+        if self.system_model != "consequential":
+            return
+        families = (
+            ("market for petrol", "petrol_blend"),
+            ("market for diesel", "diesel_blend"),
+            ("market group for diesel", "diesel_blend"),
+            ("market for kerosene", "kerosene_blend"),
+            ("market for liquefied petroleum gas", "lpg_blend"),
+        )
+        checked = 0
+        for market_prefix, attribute in families:
+            sector = {
+                "petrol_blend": "petrol",
+                "diesel_blend": "diesel",
+                "kerosene_blend": "kerosene",
+                "lpg_blend": "lpg",
+            }[attribute]
+            blend = independent_consequential_mix(self.iam_data, sector, self.year)
+            if blend is None:
+                continue
+            variables = [
+                str(variable)
+                for variable in blend.coords["variables"].values
+                if str(variable) in self.technology_map
+            ]
+            if not variables:
+                continue
+            provider_to_technology = {}
+            for technology in variables:
+                for provider in self.technology_map[technology]:
+                    provider_to_technology.setdefault(
+                        (
+                            provider.get("name"),
+                            provider.get("reference product"),
+                            provider.get("location"),
+                        ),
+                        technology,
+                    )
+            markets = [
+                dataset
+                for dataset in self.database
+                if dataset.get("name", "").startswith(market_prefix)
+                and dataset.get("location") in self.regions
+                and dataset.get("location") != "World"
+                and dataset.get("regionalized", False)
+            ]
+            if not markets:
+                self.log_issue(
+                    {},
+                    "missing consequential fuel market targets",
+                    f"No regional {market_prefix} market was found for consequential validation.",
+                    issue_type="major",
+                )
+                continue
+            for market in markets:
+                checked += 1
+                target = blend.sel(region=market["location"], variables=variables)
+                if "year" in target.dims:
+                    if self.year in target.coords["year"].values:
+                        target = target.sel(year=self.year)
+                    else:
+                        target = target.interp(year=self.year)
+                expected = {
+                    technology: max(float(value), 0.0)
+                    for technology, value in zip(variables, target.values)
+                }
+                total = sum(expected.values())
+                if not np.isfinite(total) or total <= 0:
+                    self.log_issue(
+                        market,
+                        "invalid consequential fuel target vector",
+                        f"Consequential target vector for {market['name']} is empty or non-finite.",
+                        issue_type="major",
+                    )
+                    continue
+                expected = {
+                    technology: amount / total
+                    for technology, amount in expected.items()
+                }
+                actual = {technology: 0.0 for technology in variables}
+                unmatched = []
+                for exchange in market["exchanges"]:
+                    if exchange.get("type") != "technosphere" or exchange.get(
+                        "unit"
+                    ) != market.get("unit"):
+                        continue
+                    key = (
+                        exchange.get("name"),
+                        exchange.get("product"),
+                        exchange.get("location"),
+                    )
+                    technology = exchange.get(
+                        "premise market technology"
+                    ) or provider_to_technology.get(key)
+                    if technology is None:
+                        unmatched.append(key)
+                    else:
+                        actual[technology] += float(exchange["amount"])
+                for technology, expected_share in expected.items():
+                    if not math.isclose(
+                        actual.get(technology, 0.0),
+                        expected_share,
+                        rel_tol=1e-5,
+                        abs_tol=1e-8,
+                    ):
+                        self.log_issue(
+                            market,
+                            "incorrect consequential fuel supplier vector",
+                            f"Fuel technology {technology} has share {actual.get(technology, 0.0)}; expected marginal share {expected_share}.",
+                            issue_type="major",
+                        )
+                if unmatched:
+                    self.log_issue(
+                        market,
+                        "unmapped consequential fuel suppliers",
+                        f"Consequential fuel market contains {len(unmatched)} unmapped supplier(s).",
+                        issue_type="major",
+                    )
+        if checked == 0:
+            self.log_issue(
+                {},
+                "zero consequential fuel targets",
+                "No consequential fuel supplier vector was checked.",
+                issue_type="major",
+            )
 
     def check_fuel_market_composition(self):
         # check that the fuel markets inputs
@@ -2052,7 +3229,7 @@ class FuelsValidation(BaseDatasetValidator):
                                         )
                             else:
                                 # check that the location of the input
-                                if e["location"] != self.geo.ecoinvent_to_iam_location(
+                                if e["location"] != self.expected_iam_location(
                                     ds["location"]
                                 ):
                                     message = f"Fuel market input {e['name']} in {e['location']} has incorrect location for dataset {ds['name']} in {ds['location']}."
@@ -2063,17 +3240,18 @@ class FuelsValidation(BaseDatasetValidator):
                                         issue_type="major",
                                     )
 
-    def run_fuel_checks(self):
+    def run_consequential_supplier_vector_checks(self):
+        self.check_consequential_fuel_supplier_vectors()
+        return self._finalize_logs(phase_id="sector:fuels:supplier-vector")
+
+    def run_fuel_checks(self, *, check_supplier_vectors=True):
+        if check_supplier_vectors:
+            self.check_consequential_fuel_supplier_vectors()
         self.check_fuel_market_composition()
         self.check_empty_fuel_markets()
         self.check_electrolysis_electricity_input()
         self.checking_linking()
-        self.save_log()
-
-        if len(self.major_issues_log) > 0:
-            print(
-                "---> MAJOR anomalies found during fuels update: check the change report."
-            )
+        return self._finalize_logs()
 
 
 class SteelValidation(BaseDatasetValidator):
@@ -2190,16 +3368,29 @@ class SteelValidation(BaseDatasetValidator):
             "market for steel, unalloyed",
         ]
 
+        regionalized_market_names = {
+            ds["name"]
+            for ds in self.database
+            if ds.get("regionalized", False)
+            and any(ds["name"].startswith(name) for name in market_names)
+        }
+
         for ds in self.database:
             if (
-                any(ds["name"].startswith(x) for x in market_names)
+                ds["name"] in regionalized_market_names
                 and ds["location"] not in self.regions
             ):
-                assert all(
+                if not all(
                     e["location"] in self.regions
                     for e in ds["exchanges"]
                     if e["type"] == "technosphere"
-                ), f"Steel market {ds['name']} in {ds['location']} has exchanges with locations not in the IAM regions list."
+                ):
+                    self.log_issue(
+                        ds,
+                        "steel market supplier outside IAM regions",
+                        f"Steel market {ds['name']} in {ds['location']} has exchanges with locations outside the IAM regions list.",
+                        issue_type="major",
+                    )
 
     def checking_linking(self):
 
@@ -2208,17 +3399,30 @@ class SteelValidation(BaseDatasetValidator):
             "market for steel, unalloyed",
         ]
 
+        regionalized_market_names = {
+            ds["name"]
+            for ds in self.database
+            if ds.get("regionalized", False)
+            and any(ds["name"].startswith(name) for name in fuel_market_names)
+        }
+
         for ds in self.database:
+            if ds["name"] in regionalized_market_names:
+                continue
             for e in ds["exchanges"]:
                 if e["type"] == "technosphere" and any(
-                    e["name"].startswith(x) for x in fuel_market_names
+                    e["name"] == name for name in regionalized_market_names
                 ):
                     # check that the location of the input
                     # matches the location of the dataset
                     # according to the geo-linking rules
-                    assert e["location"] == self.geo.ecoinvent_to_iam_location(
-                        ds["location"]
-                    ), f"Steel market input {e['name']} in {e['location']} has incorrect location for dataset {ds['name']} in {ds['location']}."
+                    if e["location"] != self.expected_iam_location(ds["location"]):
+                        self.log_issue(
+                            ds,
+                            "incorrect steel market input location",
+                            f"Steel market input {e['name']} in {e['location']} has incorrect location for dataset {ds['name']} in {ds['location']}.",
+                            issue_type="major",
+                        )
 
     def check_pig_iron_input(self):
         """
@@ -2367,16 +3571,10 @@ class SteelValidation(BaseDatasetValidator):
     def run_steel_checks(self):
         self.check_steel_markets()
         self.check_empty_markets()
+        self.checking_linking()
         self.check_steel_energy_use()
         self.check_pig_iron_input()
-        self.save_log()
-
-        if len(self.major_issues_log) > 0:
-            print(
-                "---> MAJOR anomalies found during steel update "
-                f"({self.model} | {self.scenario} | {self.year}): "
-                "check the change report."
-            )
+        return self._finalize_logs()
 
 
 class CementValidation(BaseDatasetValidator):
@@ -2447,14 +3645,17 @@ class CementValidation(BaseDatasetValidator):
                 any(ds["name"].startswith(x) for x in market_names)
                 and ds["location"] not in self.regions
             ):
-                assert all(
+                if not all(
                     e["location"] in self.regions
                     for e in ds["exchanges"]
                     if e["type"] == "technosphere"
-                ), (
-                    f"Clinker market {ds['name']} in {ds['location']} has exchanges with "
-                    f"locations not in the IAM regions list."
-                )
+                ):
+                    self.log_issue(
+                        ds,
+                        "clinker market supplier outside IAM regions",
+                        f"Clinker market {ds['name']} in {ds['location']} has exchanges with locations outside the IAM regions list.",
+                        issue_type="major",
+                    )
 
     def checking_linking(self):
 
@@ -2463,6 +3664,12 @@ class CementValidation(BaseDatasetValidator):
         ]
 
         for ds in self.database:
+            # Non-IAM market datasets deliberately contain a vector of IAM-region
+            # clinker suppliers. Their coverage is validated by
+            # ``check_empty_markets``; this rule applies only to activities which
+            # consume a clinker market and therefore expect one geographic match.
+            if ds["name"].startswith("market for clinker"):
+                continue
             for e in ds["exchanges"]:
                 if e["type"] == "technosphere" and any(
                     e["name"].startswith(x) for x in fuel_market_names
@@ -2470,9 +3677,13 @@ class CementValidation(BaseDatasetValidator):
                     # check that the location of the input
                     # matches the location of the dataset
                     # according to the geo-linking rules
-                    assert e["location"] == self.geo.ecoinvent_to_iam_location(
-                        ds["location"]
-                    ), f"Clinker market input {e['name']} in {e['location']} has incorrect location for dataset {ds['name']} in {ds['location']}."
+                    if e["location"] != self.expected_iam_location(ds["location"]):
+                        self.log_issue(
+                            ds,
+                            "incorrect clinker market input location",
+                            f"Clinker market input {e['name']} in {e['location']} has incorrect location for dataset {ds['name']} in {ds['location']}.",
+                            issue_type="major",
+                        )
 
     def check_clinker_energy_use(self):
         # Check that accounted clinker fuel energy respects the practical
@@ -2586,13 +3797,9 @@ class CementValidation(BaseDatasetValidator):
     def run_cement_checks(self):
         self.check_cement_markets()
         self.check_empty_markets()
+        self.checking_linking()
         self.check_clinker_energy_use()
-        self.save_log()
-
-        if len(self.major_issues_log) > 0:
-            print(
-                "---> MAJOR anomalies found during cement update: check the change report."
-            )
+        return self._finalize_logs()
 
 
 class BiomassValidation(BaseDatasetValidator):
@@ -2680,23 +3887,20 @@ class BiomassValidation(BaseDatasetValidator):
                     else self.geo.ecoinvent_to_iam_location(dataset["location"])
                 )
                 if self.iam_data.biomass_mix.sel(region=loc).sum() > 0:
-                    assert (
-                        len(
-                            [
-                                e
-                                for e in dataset["exchanges"]
-                                if e["type"] == "technosphere"
-                                and e["name"]
-                                == "market for lignocellulosic biomass, used as fuel"
-                            ]
+                    links = [
+                        exchange
+                        for exchange in dataset["exchanges"]
+                        if exchange["type"] == "technosphere"
+                        and exchange["name"]
+                        == "market for lignocellulosic biomass, used as fuel"
+                    ]
+                    if not links:
+                        self.log_issue(
+                            dataset,
+                            "missing biomass market link",
+                            f"Dataset {dataset['name']} in {dataset['location']} has no link to the lignocellulosic biomass fuel market.",
+                            issue_type="major",
                         )
-                        >= 1
-                    ), (
-                        f"Dataset {dataset['name']} in {dataset['location']} "
-                        f"should have one or more exchanges to "
-                        f"'market for lignocellulosic biomass, used as fuel'. "
-                        f"Currently has {len([e for e in dataset['exchanges'] if e['type'] == 'technosphere' and e['name'] == 'market for lignocellulosic biomass, used as fuel'])}."
-                    )
 
     def check_residual_biomass_share(self):
         # check that the share of residual biomass
@@ -2765,12 +3969,7 @@ class BiomassValidation(BaseDatasetValidator):
         self.check_biomass_markets()
         self.checking_linking()
         self.check_residual_biomass_share()
-        self.save_log()
-
-        if len(self.major_issues_log) > 0:
-            print(
-                "---> MAJOR anomalies found during biomass update: check the change report."
-            )
+        return self._finalize_logs()
 
 
 class MetalsValidation(BaseDatasetValidator):
@@ -2778,7 +3977,13 @@ class MetalsValidation(BaseDatasetValidator):
         self, model, scenario, year, regions, database, iam_data, system_model, version
     ):
         super().__init__(
-            model, scenario, year, regions, database, system_model, version
+            model=model,
+            scenario=scenario,
+            year=year,
+            regions=regions,
+            database=database,
+            version=version,
+            system_model=system_model,
         )
         self.iam_data = iam_data
         self.system_model = system_model
@@ -2789,12 +3994,7 @@ class MetalsValidation(BaseDatasetValidator):
         self.check_split_yaml_consistency()
         self.check_interpolation()
         self.check_excel_shares_preserved()
-        self.save_log()
-
-        if self.major_issues_log:
-            print(
-                "---> MAJOR anomalies found during metals update: check the change report."
-            )
+        return self._finalize_logs()
 
     def check_market_balance(self):
         """
@@ -2878,7 +4078,9 @@ class MetalsValidation(BaseDatasetValidator):
         This should catch normalization bugs
         """
 
-        mining_shares_df = _load_mining_shares_mapping_for_validation(self.version)
+        mining_shares_df = getattr(self, "mining_shares_mapping", None)
+        if mining_shares_df is None:
+            mining_shares_df = _load_mining_shares_mapping_for_validation(self.version)
 
         country_codes = dict(
             zip(
@@ -2906,7 +4108,12 @@ class MetalsValidation(BaseDatasetValidator):
             # Find year
             year_cols = sorted([int(col) for col in metal_df.columns if col.isdigit()])
             if not year_cols:
-                print(f"WARNING: No year columns found for {metal}")
+                self.log_issue(
+                    market,
+                    "missing metals year columns",
+                    f"No year columns found for {metal}.",
+                    issue_type="major",
+                )
                 continue
             min_year, max_year = year_cols[0], year_cols[-1]
             year_to_use = max(min_year, min(self.year, max_year))

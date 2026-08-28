@@ -12,6 +12,8 @@ from wurst import rescale_exchange
 
 from .filesystem_constants import DATA_DIR, VARIABLES_DIR
 from .logger import create_logger
+from .provenance import record_change_event
+from .inventory_store import get_scenario_inventory, replace_scenario_inventory
 from .transformation import (
     BaseTransformation,
     IAMDataCollection,
@@ -79,7 +81,7 @@ def _update_cdr(scenario, version, system_model):
         return scenario
 
     cdr = CarbonDioxideRemoval(
-        database=scenario["database"],
+        database=get_scenario_inventory(scenario),
         iam_data=scenario["iam data"],
         model=scenario["model"],
         pathway=scenario["pathway"],
@@ -94,7 +96,7 @@ def _update_cdr(scenario, version, system_model):
         cdr.regionalize_cdr_activities()
         cdr.create_cdr_markets()
         cdr.relink_datasets()
-        scenario["database"] = cdr.database
+        replace_scenario_inventory(scenario, cdr.database)
         scenario["cache"] = cdr.cache
         scenario["index"] = cdr.index
     else:
@@ -1078,12 +1080,6 @@ class CarbonDioxideRemoval(BaseTransformation):
         return dataset
 
     def write_log(self, dataset, status="created"):
-        """
-        Write log file.
-        """
-        logger.info(
-            f"{status}|{self.model}|{self.scenario}|{self.year}|"
-            f"{dataset['name']}|{dataset['location']}|"
-            f"{dataset.get('log parameters', {}).get('electricity efficiency scaling factor', '')}|"
-            f"{dataset.get('log parameters', {}).get('heat efficiency scaling factor', '')}"
-        )
+        """Record a structured carbon-removal provenance event."""
+
+        record_change_event(self, dataset, status, sector="cdr")

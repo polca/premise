@@ -16,8 +16,10 @@ This user guide will help you navigate the inner workings of *premise*.
    introduction
    extract
    transform
+   structured_change_report
    load
    mapping
    user_scenarios
    consequential
+   fuel_market_system_models
    faq

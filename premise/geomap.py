@@ -3,6 +3,7 @@ geomap.py contains the Geomap class that allows to find equivalents between
 the IAM locations and ecoinvent locations.
 """
 
+import copy
 import json
 from collections import defaultdict
 from pathlib import Path
@@ -17,6 +18,30 @@ from .filesystem_constants import VARIABLES_DIR
 ECO_IAM_MAPPING_FILE = VARIABLES_DIR / "missing_geography_equivalences.yaml"
 TOPOLOGIES_DIR = VARIABLES_DIR / "topologies"
 CONSTANTS_FILE = VARIABLES_DIR / "constants.yaml"
+
+
+@lru_cache(maxsize=1)
+def _load_constants() -> Dict[str, Any]:
+    with open(CONSTANTS_FILE, "r", encoding="utf-8") as stream:
+        return yaml.safe_load(stream)
+
+
+@lru_cache(maxsize=4)
+def _load_topology(model: str) -> Dict:
+    topology_path = TOPOLOGIES_DIR / f"{model.lower()}-topology.json"
+    if topology_path.exists():
+        with open(topology_path, "r", encoding="utf-8") as stream:
+            return json.load(stream)
+
+    raise FileNotFoundError(
+        f"Geographical definition file for the model '{model.upper()}' not found."
+    )
+
+
+@lru_cache(maxsize=1)
+def _load_additional_mapping() -> Dict[str, dict]:
+    with open(ECO_IAM_MAPPING_FILE, "r", encoding="utf-8") as stream:
+        return yaml.safe_load(stream)
 
 
 class Geomap:
@@ -42,8 +67,7 @@ class Geomap:
         """
         Load constants from the constants.yaml file.
         """
-        with open(CONSTANTS_FILE, "r", encoding="utf-8") as stream:
-            return yaml.safe_load(stream)
+        return copy.deepcopy(_load_constants())
 
     @staticmethod
     def load_json(filepath: Path) -> Dict:
@@ -58,21 +82,14 @@ class Geomap:
         """
         Find the JSON file containing the topologies of the provided model.
         """
-        topology_path = TOPOLOGIES_DIR / f"{model.lower()}-topology.json"
-        if topology_path.exists():
-            return cls.load_json(topology_path)
-
-        raise FileNotFoundError(
-            f"Geographical definition file for the model '{model.upper()}' not found."
-        )
+        return copy.deepcopy(_load_topology(model))
 
     @classmethod
     def get_additional_mapping(cls) -> Dict[str, dict]:
         """
         Return a dictionary with additional ecoinvent to IAM mappings.
         """
-        with open(ECO_IAM_MAPPING_FILE, "r", encoding="utf-8") as stream:
-            return yaml.safe_load(stream)
+        return copy.deepcopy(_load_additional_mapping())
 
     def setup_geography(self) -> None:
         """

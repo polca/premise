@@ -9,20 +9,22 @@ import copy
 import logging.config
 import math
 import uuid
+from bisect import bisect_left
 from collections import defaultdict
-from collections.abc import ValuesView
+from collections.abc import Mapping, ValuesView
 from copy import deepcopy
+from dataclasses import dataclass
 from functools import lru_cache
 from itertools import groupby, product
 from pathlib import Path
-from typing import Any, Dict, List, Set, Tuple, Union
+from typing import Any, Dict, List, NamedTuple, Sequence, Set, Tuple, Union
 
 import numpy as np
 import xarray as xr
 import yaml
 from _operator import itemgetter
 from constructive_geometries import resolved_row
-from wurst import reference_product, rescale_exchange
+from wurst import reference_product
 from wurst import searching as ws
 from wurst import transformations as wt
 from xarray import DataArray
@@ -31,7 +33,9 @@ from .activity_maps import InventorySet
 from .data_collection import IAMDataCollection
 from .filesystem_constants import DATA_DIR
 from .geomap import Geomap
-from .utils import get_fuel_properties
+from .inventory_store import IndexedInventoryList, compact_exchange_payload
+from .provenance import record_change_event
+from .utils import get_fuel_properties, rescale_exchange
 
 LOG_CONFIG = DATA_DIR / "utils" / "logging" / "logconfig.yaml"
 # directory for log files
@@ -47,11 +51,210 @@ with open(LOG_CONFIG, encoding="utf-8") as f:
 
 logger = logging.getLogger("module")
 
+_SCENARIO_GIS_CACHE_KEY = "__premise_gis_match_v1__"
+_SCENARIO_ROW_CACHE_KEY = "__premise_resolved_row_v1__"
+_VALIDATION_RELINKED_TARGETS_KEY = "__premise_validation_relinked_targets_v1__"
+_VALIDATION_ADDED_TARGETS_KEY = "__premise_validation_added_targets_v1__"
+
+
+class RelinkingInvariantError(RuntimeError):
+    """Raised when relinking does not preserve a product's demanded amount."""
+
+
+def _exclude_exchange_objects(exchanges, excluded):
+    """Return exchanges whose object identities are not selected."""
+
+    excluded_ids = {id(exchange) for exchange in excluded}
+    return [exchange for exchange in exchanges if id(exchange) not in excluded_ids]
+
+
+def _exchange_type_for_relinking(exchange):
+    """Read only the exchange type before decoding other relinking fields."""
+
+    accessor = getattr(exchange, "_premise_exchange_type", None)
+    return accessor() if accessor is not None else exchange["type"]
+
+
+def _technosphere_relink_fields(exchange):
+    """Return name, effective product, location, unit, and amount once."""
+
+    accessor = getattr(exchange, "_premise_relink_technosphere_fields", None)
+    if accessor is not None:
+        return accessor()
+    product = (
+        exchange["reference product"]
+        if "reference product" in exchange
+        else exchange["product"]
+    )
+    return (
+        exchange["name"],
+        product,
+        exchange["location"],
+        exchange["unit"],
+        exchange["amount"],
+    )
+
+
+def _iter_generic_relink_candidates(exchanges, provider_semantics):
+    """Yield generic candidates while decoding technosphere fields once."""
+
+    for exchange in exchanges:
+        if _exchange_type_for_relinking(exchange) != "technosphere":
+            continue
+        fields = _technosphere_relink_fields(exchange)
+        name, effective_product, location, unit, amount = fields
+        if (
+            name,
+            effective_product,
+            location,
+        ) not in provider_semantics and amount != 0:
+            # Match the established two-step semantics: reference-product
+            # precedence decides eligibility, while relinking itself groups by
+            # the concrete product field.
+            yield exchange, (
+                name,
+                exchange["product"],
+                location,
+                unit,
+                amount,
+            )
+
+
+@dataclass(frozen=True, slots=True, eq=False)
+class _ProviderRecord(Mapping[str, Any]):
+    """Compact mapping-compatible provider snapshot used by activity indexes."""
+
+    name: str
+    reference_product: str
+    location: str
+    unit: str
+    production_volume: Any
+
+    _FIELDS = (
+        "name",
+        "reference product",
+        "location",
+        "unit",
+        "production volume",
+    )
+
+    def __getitem__(self, key: str) -> Any:
+        if key == "name":
+            return self.name
+        if key == "reference product":
+            return self.reference_product
+        if key == "location":
+            return self.location
+        if key == "unit":
+            return self.unit
+        if key == "production volume":
+            return self.production_volume
+        raise KeyError(key)
+
+    def __iter__(self):
+        return iter(self._FIELDS)
+
+    def __len__(self) -> int:
+        return len(self._FIELDS)
+
+
+def _provider_record(dataset: Mapping[str, Any]) -> _ProviderRecord:
+    production = None
+    for exchange in dataset["exchanges"]:
+        if exchange["type"] == "production":
+            production = exchange
+            break
+    if production is None:
+        # Preserve the historical failure from ``list(ws.production(...))[0]``.
+        raise IndexError("list index out of range") from None
+    return _ProviderRecord(
+        name=dataset["name"],
+        reference_product=dataset["reference product"],
+        location=dataset["location"],
+        unit=dataset["unit"],
+        production_volume=production.get("production volume", 0),
+    )
+
+
+_INVENTORY_ATOMIC_TYPES = frozenset(
+    (
+        type(None),
+        bool,
+        int,
+        float,
+        complex,
+        str,
+        bytes,
+    )
+)
+
+
+def clone_inventory_dataset(dataset: dict) -> dict:
+    """Clone a mutable inventory dataset without copying immutable scalars.
+
+    Proxy creation clones thousands of metadata-rich datasets. Generic
+    :func:`copy.deepcopy` repeatedly dispatches over every string, number, and
+    NumPy scalar even though these values are immutable. This specialised
+    copier handles the two dominant mutable containers directly, retains
+    shared-reference relationships through a memo, and delegates uncommon
+    Python objects to ``deepcopy`` for exact type semantics.
+    """
+
+    memo: dict[int, Any] = {}
+
+    def clone(value):
+        value_type = type(value)
+        if value_type in _INVENTORY_ATOMIC_TYPES or isinstance(value, np.generic):
+            return value
+
+        value_id = id(value)
+        if value_id in memo:
+            return memo[value_id]
+
+        compact_clone = getattr(value, "_premise_clone", None)
+        if compact_clone is not None:
+            return compact_clone(memo)
+
+        if value_type is dict or hasattr(value, "_premise_materialize"):
+            duplicate = {}
+            memo[value_id] = duplicate
+            for key, item in value.items():
+                duplicate_key = (
+                    key if type(key) in _INVENTORY_ATOMIC_TYPES else clone(key)
+                )
+                item_type = type(item)
+                duplicate[duplicate_key] = (
+                    item
+                    if item_type in _INVENTORY_ATOMIC_TYPES
+                    or isinstance(item, np.generic)
+                    else clone(item)
+                )
+            return duplicate
+
+        if value_type is list:
+            duplicate = value.copy()
+            memo[value_id] = duplicate
+            for position, item in enumerate(value):
+                item_type = type(item)
+                if item_type not in _INVENTORY_ATOMIC_TYPES and not isinstance(
+                    item, np.generic
+                ):
+                    duplicate[position] = clone(item)
+            return duplicate
+
+        if value_type is np.ndarray:
+            duplicate = value.copy()
+            memo[value_id] = duplicate
+            return duplicate
+
+        return copy.deepcopy(value, memo)
+
+    return clone(dataset)
+
 CAPTURED_BIOGENIC_CO2_CONVERSION_LOG_KEY = (
     "captured biogenic CO2 input converted to non-fossil CO2 emission "
     "for CDR allocation"
 )
-
 
 def redefine_uncertainty_params(old_exc, new_exc):
     """
@@ -274,7 +477,20 @@ def new_exchange(exc, location, factor):
     return rescale_exchange(copied_exc, factor, remove_uncertainty=False)
 
 
-def allocate_inputs(exc, lst):
+def _relinked_exchange(exc, location, factor=1.0, *, name=None, product=None):
+    """Return only fields consumed by the relinking aggregation pass."""
+
+    return {
+        "name": exc["name"] if name is None else name,
+        "product": exc["product"] if product is None else product,
+        "unit": exc["unit"],
+        "location": location,
+        "type": "technosphere",
+        "amount": exc["amount"] * factor,
+    }
+
+
+def allocate_inputs(exc, lst, exchange_factory=new_exchange):
     """
     Allocate the input exchanges in ``lst`` to ``exc``,
     using production volumes where possible, and equal splitting otherwise.
@@ -295,7 +511,7 @@ def allocate_inputs(exc, lst):
 
     return (
         [
-            new_exchange(exc, obj["location"], factor / total)
+            exchange_factory(exc, obj["location"], factor / total)
             for obj, factor in zip(lst, pvs)
             if factor > 0
         ],
@@ -387,12 +603,58 @@ def calculate_input_energy(
     return fuel_amount * lhv
 
 
+_FUEL_NAME_PARTS_TO_REMOVE = (
+    "market for ",
+    "market group for ",
+    ", high pressure",
+    ", low pressure",
+    ", used as fuel",
+)
+
+
+@lru_cache(maxsize=8192)
+def _sanitize_fuel_filter_name(name: str) -> str:
+    """Return the canonical name used to identify fuel exchanges."""
+    for item in _FUEL_NAME_PARTS_TO_REMOVE:
+        name = name.replace(item, "")
+    return name
+
+
+class FuelFilterIndex(NamedTuple):
+    """Immutable prefix index for the fuel filters used by transformations."""
+
+    filters: Tuple[str, ...]
+    sorted_filters: Tuple[str, ...]
+
+    def matches(self, exchange_name: str) -> bool:
+        """Return whether a filter starts with the sanitized exchange name."""
+        exchange_name = _sanitize_fuel_filter_name(exchange_name)
+        position = bisect_left(self.sorted_filters, exchange_name)
+        return position < len(self.sorted_filters) and self.sorted_filters[
+            position
+        ].startswith(exchange_name)
+
+
+@lru_cache(maxsize=64)
+def _prepare_fuel_filter_tuple(fuel_filters: Tuple[str, ...]) -> FuelFilterIndex:
+    sanitized = tuple(_sanitize_fuel_filter_name(name) for name in fuel_filters)
+    return FuelFilterIndex(
+        filters=sanitized,
+        sorted_filters=tuple(sorted(set(sanitized))),
+    )
+
+
+def prepare_fuel_filters(fuel_filters: Sequence[str]) -> FuelFilterIndex:
+    """Compile fuel filters once for repeated efficiency calculations."""
+    return _prepare_fuel_filter_tuple(tuple(fuel_filters))
+
+
 def find_fuel_efficiency(
     dataset: dict,
     energy_out: float,
     fuel_specs: dict,
     fuel_map_reverse: dict,
-    fuel_filters: List[str] = None,
+    fuel_filters: Union[Sequence[str], FuelFilterIndex] = None,
 ) -> float:
     """
     This method calculates the efficiency value set initially, in case it is not specified in the parameter
@@ -404,29 +666,24 @@ def find_fuel_efficiency(
     :return: the efficiency value set initially
     """
 
-    def _sanitize_fuel_name(name: str) -> str:
-        """Sanitize fuel name by removing market prefixes."""
-        items_to_remove = [
-            "market for ",
-            "market group for ",
-            ", high pressure",
-            ", low pressure",
-            ", used as fuel",
-        ]
-        for item in items_to_remove:
-            name = name.replace(item, "")
-        return name
-
     if fuel_filters is None:
-        fuel_filters = list(fuel_map_reverse.keys())
-        fuel_filters = [_sanitize_fuel_name(x) for x in fuel_filters]
+        fuel_filter_index = prepare_fuel_filters(tuple(fuel_map_reverse))
+    elif isinstance(fuel_filters, FuelFilterIndex):
+        if not fuel_filters.filters:
+            raise ValueError(
+                "No fuel filters configured for "
+                f"{dataset['name']!r} in {dataset['location']!r}."
+            )
+        fuel_filter_index = fuel_filters
     else:
-        fuel_filters = [_sanitize_fuel_name(x) for x in fuel_filters]
         if not fuel_filters:
             raise ValueError(
                 "No fuel filters configured for "
                 f"{dataset['name']!r} in {dataset['location']!r}."
             )
+        fuel_filter_index = prepare_fuel_filters(fuel_filters)
+
+    sanitized_fuel_filters = fuel_filter_index.filters
 
     energy_input = np.sum(
         np.sum(
@@ -440,10 +697,7 @@ def find_fuel_efficiency(
                         fuel_map_reverse,
                     )
                     for exc in dataset["exchanges"]
-                    if any(
-                        fuel.startswith(_sanitize_fuel_name(exc["name"]))
-                        for fuel in fuel_filters
-                    )
+                    if fuel_filter_index.matches(exc["name"])
                     and exc["type"] == "technosphere"
                     and exc["amount"] > 0.0
                 ]
@@ -474,7 +728,7 @@ def find_fuel_efficiency(
             raise ValueError(
                 "No fuel input found for "
                 f"{dataset['name']!r} in {dataset['location']!r}. "
-                f"Fuel filters: {fuel_filters}. "
+                f"Fuel filters: {list(sanitized_fuel_filters)}. "
                 f"Technosphere inputs: {technosphere_inputs}."
             )
 
@@ -530,7 +784,29 @@ class BaseTransformation:
 
         self.system_model: str = system_model
         self.cdr_allocation: bool = cdr_allocation
-        self.cache: dict = cache or {}
+        self.cache: dict = cache if cache is not None else {}
+        self._gis_match_cache: dict[tuple, tuple] = self.cache.setdefault(
+            _SCENARIO_GIS_CACHE_KEY, {}
+        )
+        self._resolved_row_faces_cache: dict[tuple, set] = self.cache.setdefault(
+            _SCENARIO_ROW_CACHE_KEY, {}
+        )
+        self._validation_relinked_targets: dict[int, dict] = {}
+        self.cache[_VALIDATION_RELINKED_TARGETS_KEY] = self._validation_relinked_targets
+        storage = getattr(self.database, "_validation_columnar_storage", None)
+        if storage is None and self.database:
+            storage = getattr(self.database[0], "_storage", None)
+        if storage is not None:
+            storage._validation_modified_targets = self._validation_relinked_targets
+        self._validation_added_targets: dict[int, dict] = {}
+        self.cache[_VALIDATION_ADDED_TARGETS_KEY] = self._validation_added_targets
+        if isinstance(self.database, IndexedInventoryList):
+            self.database.track_validation_additions(self._validation_added_targets)
+        # Some sector checks need a short-lived exchange label to distinguish
+        # IAM technologies which resolve to the same provider.  Keep the exact
+        # owning activities so cleanup is proportional to the generated
+        # markets, not to the complete ecoinvent graph.
+        self._validation_provenance_targets: dict[str, dict[int, dict]] = {}
         self.ecoinvent_to_iam_loc: Dict[str, str] = {
             loc: self.geo.ecoinvent_to_iam_location(loc)
             for loc in self.get_ecoinvent_locs()
@@ -539,7 +815,16 @@ class BaseTransformation:
         for key, value in self.ecoinvent_to_iam_loc.items():
             self.iam_to_ecoinvent_loc[value].append(key)
 
-        self.index = index or self.create_index()
+        if index is None:
+            self.index = self.create_index()
+        elif isinstance(index, defaultdict):
+            self.index = index
+        else:
+            self.index = defaultdict(list, index)
+        self._provider_index_generation = 0
+        self._provider_group_cache: dict[tuple[int, tuple[str, str]], tuple] = {}
+        self._provider_location_cache: dict[tuple[int, tuple[str, str]], set[str]] = {}
+        self._provider_semantic_index: dict[tuple[str, str, str], int] | None = None
 
     def zero_atmospheric_co2_uptake(self, dataset: dict, reason: str = "") -> float:
         """
@@ -816,18 +1101,8 @@ class BaseTransformation:
     def create_index(self):
         idx = defaultdict(list)
         for ds in self.database:
-            key = (copy.deepcopy(ds["name"]), copy.deepcopy(ds["reference product"]))
-            idx[key].append(
-                {
-                    "name": ds["name"],
-                    "reference product": ds["reference product"],
-                    "location": ds["location"],
-                    "unit": ds["unit"],
-                    "production volume": list(ws.production(ds))[0].get(
-                        "production volume", 0
-                    ),
-                }
-            )
+            key = (ds["name"], ds["reference product"])
+            idx[key].append(_provider_record(ds))
         return idx
 
     def add_to_index(self, ds: [dict, list, ValuesView]):
@@ -837,21 +1112,27 @@ class BaseTransformation:
         if isinstance(ds, dict):
             ds = [ds]
 
+        provider_semantics = self._get_provider_semantic_index()
         for d in ds:
             key = (copy.deepcopy(d["name"]), copy.deepcopy(d["reference product"]))
-            self.index[key].append(
-                {
-                    "name": d["name"],
-                    "reference product": d["reference product"],
-                    "location": d["location"],
-                    "unit": d["unit"],
-                    "production volume": list(ws.production(d))[0].get(
-                        "production volume", 0
-                    ),
-                }
+            semantic_key = key[0], key[1], d["location"]
+            if semantic_key not in provider_semantics and hasattr(
+                self, "_validation_added_targets"
+            ):
+                # ``add_to_index`` is the common creation boundary used by sector
+                # transformations.  Recording the exact object here gives scope
+                # validation an independent declaration of intended additions;
+                # arbitrary list appends which bypass the creation boundary remain
+                # visible as undeclared collateral changes.
+                self._validation_added_targets[id(d)] = d
+            self.index[key].append(_provider_record(d))
+            provider_semantics[semantic_key] = (
+                provider_semantics.get(semantic_key, 0) + 1
             )
+        self._invalidate_provider_group_cache(preserve_semantic_index=True)
 
     def remove_from_index(self, ds):
+        provider_semantics = self._get_provider_semantic_index()
         key = (copy.deepcopy(ds["name"]), copy.deepcopy(ds["reference product"]))
         available_locations = [k["location"] for k in self.index[key]]
         if ds["location"] in available_locations:
@@ -859,21 +1140,141 @@ class BaseTransformation:
                 d for d in self.index[key] if d["location"] == ds["location"]
             ][0]
             self.index[key].remove(ds_to_remove)
+            semantic_key = key[0], key[1], ds_to_remove["location"]
+            if provider_semantics[semantic_key] == 1:
+                del provider_semantics[semantic_key]
+            else:
+                provider_semantics[semantic_key] -= 1
+            self._invalidate_provider_group_cache(preserve_semantic_index=True)
+
+    def track_validation_provenance(self, dataset: dict, field_name: str) -> None:
+        """Register an activity carrying a transient validation-only field."""
+
+        targets = getattr(self, "_validation_provenance_targets", None)
+        if targets is None:
+            targets = self._validation_provenance_targets = {}
+        targets.setdefault(field_name, {})[id(dataset)] = dataset
+
+    def clear_validation_provenance_field(self, field_name: str) -> None:
+        """Remove one transient field from its registered activities only."""
+
+        registry = getattr(self, "_validation_provenance_targets", {})
+        targets = registry.pop(field_name, {})
+        for dataset in targets.values():
+            for exchange in dataset.get("exchanges", ()):
+                exchange.pop(field_name, None)
+
+    def _invalidate_provider_group_cache(
+        self, *, preserve_semantic_index: bool = False
+    ) -> None:
+        """Invalidate provider groupings after a mutation to ``self.index``."""
+
+        self._provider_index_generation = (
+            getattr(self, "_provider_index_generation", 0) + 1
+        )
+        self._provider_group_cache = {}
+        self._provider_location_cache = {}
+        if not preserve_semantic_index:
+            self._provider_semantic_index = None
+
+    def _get_provider_semantic_index(self) -> dict[tuple[str, str, str], int]:
+        """Return reference-counted provider name, product, and location keys."""
+
+        cached = getattr(self, "_provider_semantic_index", None)
+        if cached is not None:
+            return cached
+
+        providers: dict[tuple[str, str, str], int] = {}
+        for key, datasets in self.index.items():
+            for dataset in datasets:
+                semantic_key = key[0], key[1], dataset["location"]
+                providers[semantic_key] = providers.get(semantic_key, 0) + 1
+        self._provider_semantic_index = providers
+        return providers
+
+    def _get_provider_locations(
+        self,
+        key: tuple[str, str],
+        possible_datasets: list[dict] | None = None,
+    ) -> set[str]:
+        """Return provider locations for an exact index key and generation."""
+
+        generation = getattr(self, "_provider_index_generation", 0)
+        cache = getattr(self, "_provider_location_cache", None)
+        if cache is None:
+            cache = self._provider_location_cache = {}
+        cache_key = (generation, key)
+        cached = cache.get(cache_key)
+        if cached is not None:
+            return cached
+
+        if possible_datasets is None:
+            possible_datasets = self.index[key]
+        locations = {dataset["location"] for dataset in possible_datasets}
+        cache[cache_key] = locations
+        return locations
+
+    def _get_provider_groups(self, exchange: dict) -> tuple:
+        """Return ordered provider candidates and their location groupings.
+
+        Group construction is independent of the consumer location but used for
+        every exchange resolution. Cache entries are tied to the provider-index
+        generation so proxy additions and removals cannot leave stale supplier
+        sets behind. The returned list and location order exactly follow the
+        legacy index.
+        """
+
+        key = (exchange["name"], exchange["product"])
+        possible_datasets = self.index[key]
+        if len(possible_datasets) == 0 and "market for" in exchange["name"]:
+            key = (
+                exchange["name"].replace("market for", "market group for"),
+                exchange["product"],
+            )
+            possible_datasets = self.index[key]
+
+        generation = getattr(self, "_provider_index_generation", 0)
+        cache = getattr(self, "_provider_group_cache", None)
+        if cache is None:
+            cache = self._provider_group_cache = {}
+        cache_key = (generation, key)
+        cached = cache.get(cache_key)
+        if cached is not None:
+            return cached
+
+        possible_locations = [dataset["location"] for dataset in possible_datasets]
+        locations_set = self._get_provider_locations(key, possible_datasets)
+        by_location = defaultdict(list)
+        for dataset in possible_datasets:
+            by_location[dataset["location"]].append(dataset)
+        grouped = (
+            key,
+            possible_datasets,
+            possible_locations,
+            locations_set,
+            by_location,
+        )
+        cache[cache_key] = grouped
+        return grouped
 
     def is_in_index(self, ds, location=None):
-        if not any(key in ds for key in ["reference product", "product"]):
+        if "reference product" in ds:
+            product = ds["reference product"]
+        elif "product" in ds:
+            product = ds["product"]
+        else:
             raise KeyError(
                 f"Dataset {ds['name']} does not have neither 'reference product' nor 'product' keys."
             )
-        if "reference product" in ds:
-            key = (ds["name"], ds["reference product"])
-        else:
-            key = (ds["name"], ds["product"])
 
-        if location is None:
-            return ds["location"] in [k["location"] for k in self.index[key]]
-
-        return location in [k["location"] for k in self.index[key]]
+        target_location = ds["location"] if location is None else location
+        cached = getattr(self, "_provider_semantic_index", None)
+        providers = self._get_provider_semantic_index() if cached is None else cached
+        return (
+            ds["name"],
+            product,
+            target_location,
+        ) in providers
 
     def get_ecoinvent_locs(self) -> List[str]:
         """
@@ -1022,15 +1423,24 @@ class BaseTransformation:
         regional_shares = (production_volumes / regional_totals).fillna(0)
         world_shares = (regional_totals / regional_totals.sum()).fillna(0)
 
+        # The reductions above define the numerical semantics. Extract their
+        # already-computed values in coordinate order rather than issuing one
+        # scalar xarray selection per variable and region (thousands of calls
+        # for final-energy mappings).
+        variables = regional_shares.variables.values
+        share_regions = regional_shares.region.values
+        share_values = regional_shares.transpose("variables", "region").values
         technology_shares_dict = {
-            (var, reg): regional_shares.sel(variables=var, region=reg).values.item(0)
-            for var in regional_shares.variables.values
-            for reg in regional_shares.region.values
+            (var, reg): share_values[var_idx, region_idx].item()
+            for var_idx, var in enumerate(variables)
+            for region_idx, reg in enumerate(share_regions)
         }
 
+        world_regions = world_shares.region.values
+        world_values = world_shares.transpose("region").values
         regional_shares_dict = {
-            reg: world_shares.sel(region=reg).item()
-            for reg in world_shares.region.values
+            reg: world_values[region_idx].item()
+            for region_idx, reg in enumerate(world_regions)
         }
 
         return production_volumes, technology_shares_dict, regional_shares_dict
@@ -1051,6 +1461,11 @@ class BaseTransformation:
 
         return dataset
 
+    @staticmethod
+    def is_treatment_supplier(dataset: dict) -> bool:
+        """Return whether a supplier represents a waste-treatment activity."""
+        return dataset.get("name", "").strip().lower().startswith("treatment")
+
     def process_and_add_markets(
         self,
         name,
@@ -1058,26 +1473,31 @@ class BaseTransformation:
         unit,
         mapping,
         production_volumes=None,
+        technology_shares=None,
         additional_exchanges_fn=None,
         system_model="cut-off",
         blacklist=None,
         conversion_factor=None,
+        flip_treatment_supplier_sign=False,
+        retain_validation_technology=False,
     ):
         """
         Generalized method to create and add regionalized market datasets.
 
         Parameters
         ----------
-        production_datasets : list of dict
-            Datasets representing regionalized production activities.
-        market_name : str
-            Name of the market activity (e.g., "market for steel").
-        reference_product : str
-            The reference product of the market.
-        production_shares : dict
-            Dictionary with region as key and production share as value.
-        region_list : list of str
-            List of regions for which to create markets.
+        production_volumes : xarray.DataArray, optional
+            Absolute production volumes. These determine production-volume
+            metadata and regional weights, and supply the technology shares
+            unless ``technology_shares`` is provided.
+        technology_shares : xarray.DataArray, optional
+            Separate technology mix used for the market's supplier shares.
+            Consequential markets use this to retain marginal mixes while
+            keeping absolute production volumes for regional weighting.
+        retain_validation_technology : bool, optional
+            Retain a transient IAM-technology label on supplier exchanges so
+            an incremental validator can distinguish technologies sharing the
+            same provider. Callers must remove these labels after validation.
         additional_exchanges_fn : callable, optional
             Function to add extra exchanges to the market dataset (e.g., transport, losses).
         """
@@ -1093,6 +1513,13 @@ class BaseTransformation:
                     mapping=mapping,
                 )
             )
+            if technology_shares is not None:
+                _, technology_shares_dict, _ = (
+                    self.get_technology_and_regional_production_shares(
+                        production_volumes=technology_shares,
+                        mapping=mapping,
+                    )
+                )
 
         else:
             regions = self.regions
@@ -1154,6 +1581,10 @@ class BaseTransformation:
 
             for technology, activities in mapping.items():
                 if (technology, region) in technology_shares_dict:
+                    share = technology_shares_dict.get((technology, region), 0)
+                    if share <= 0:
+                        continue
+
                     suppliers = [ds for ds in activities if ds["location"] == region]
                     if len(suppliers) == 0:
                         suppliers = [
@@ -1174,24 +1605,24 @@ class BaseTransformation:
                     if len(suppliers) > 1:
                         suppliers = get_shares_from_production_volume(suppliers)
 
-                    share = technology_shares_dict.get((technology, region), 0)
-
-                    if share > 0:
-                        if technology not in blacklist.get(system_model, []):
-                            for supplier in suppliers:
-                                market_dataset["exchanges"].append(
-                                    {
-                                        "name": supplier["name"],
-                                        "product": supplier["reference product"],
-                                        "location": supplier["location"],
-                                        "amount": share
-                                        * conversion_factor.get(technology, 1.0)
-                                        * supplier.get("share", 1.0),
-                                        "unit": supplier["unit"],
-                                        "uncertainty type": 0,
-                                        "type": "technosphere",
-                                    }
-                                )
+                    if technology not in blacklist.get(system_model, []):
+                        factor = conversion_factor.get(
+                            (technology, region),
+                            conversion_factor.get(technology, 1.0),
+                        )
+                        for supplier in suppliers:
+                            exchange = {
+                                "name": supplier["name"],
+                                "product": supplier["reference product"],
+                                "location": supplier["location"],
+                                "amount": share * factor * supplier.get("share", 1.0),
+                                "unit": supplier["unit"],
+                                "uncertainty type": 0,
+                                "type": "technosphere",
+                            }
+                            if retain_validation_technology:
+                                exchange["premise market technology"] = technology
+                            market_dataset["exchanges"].append(exchange)
 
             market_dataset["exchanges"] = self.summarize_market_exchanges(
                 market_dataset["exchanges"]
@@ -1209,6 +1640,13 @@ class BaseTransformation:
                         exc["amount"] /= total_share
             else:
                 continue
+
+            if flip_treatment_supplier_sign and system_model == "cutoff":
+                for exc in market_dataset["exchanges"]:
+                    if exc["type"] == "technosphere" and self.is_treatment_supplier(
+                        exc
+                    ):
+                        exc["amount"] = -abs(exc["amount"])
 
             if additional_exchanges_fn:
                 additional_exchanges_fn(market_dataset)
@@ -1238,6 +1676,11 @@ class BaseTransformation:
                     # These links are rebuilt at export/relink time.
                     new_exc.pop("input", None)
                     market_dataset["exchanges"].append(new_exc)
+
+            if retain_validation_technology:
+                self.track_validation_provenance(
+                    market_dataset, "premise market technology"
+                )
 
             self.database.append(market_dataset)
             self.add_to_index(market_dataset)
@@ -1374,6 +1817,7 @@ class BaseTransformation:
                 exchange.get("product"),
                 exchange.get("location"),
                 exchange.get("unit"),
+                exchange.get("premise market technology"),
             )
             if key not in technosphere_by_key:
                 technosphere_by_key[key] = copy.deepcopy(exchange)
@@ -1679,20 +2123,35 @@ class BaseTransformation:
             datasets=datasets, regions=regions
         )
 
-        d_act = {}
+        production_volume_by_region = {}
+        world_production_volume = None
+        if production_volumes is not None:
+            production_regions = production_volumes.region.values
+            region_axis = production_volumes.get_axis_num("region")
+            production_values = np.moveaxis(
+                production_volumes.values, region_axis, 0
+            ).reshape(len(production_regions), -1)
+            production_volume_by_region = {
+                region: production_values[position].item(0)
+                for position, region in enumerate(production_regions)
+            }
+            world_production_volume = production_volumes.sum(dim="region").values.item(
+                0
+            )
 
+        d_act = {}
         for region, dataset in d_iam_to_eco.items():
 
             if self.is_in_index(dataset, region):
                 # delete original dataset from the database
-                self.database = [
+                self.database[:] = [
                     d
                     for d in self.database
                     if (d["name"], d["reference product"], d["location"])
                     != (dataset["name"], dataset["reference product"], region)
                 ]
 
-            dataset = copy.deepcopy(dataset)
+            dataset = clone_inventory_dataset(dataset)
             dataset["location"] = region
             dataset["code"] = str(uuid.uuid4().hex)
             dataset["regionalized"] = True
@@ -1710,18 +2169,14 @@ class BaseTransformation:
                 prod["location"] = region
                 if production_volumes is not None:
                     # Add `production volume` field
-                    if region in production_volumes.region.values:
+                    if region in production_volume_by_region:
                         prod["production volume"] = float(
-                            production_volumes.sel(region=prod["location"]).values.item(
-                                0
-                            )
+                            production_volume_by_region[region]
                         )
                     else:
                         if region == "World":
                             # If the region is "World", use the total production volume
-                            prod["production volume"] = float(
-                                production_volumes.sum(dim="region").values.item(0)
-                            )
+                            prod["production volume"] = float(world_production_volume)
                         else:
                             raise KeyError(
                                 f"Region {region} not found in production volumes data."
@@ -1738,7 +2193,7 @@ class BaseTransformation:
 
         if delete_original_datasets is True:
             # remove the dataset from `self.database`
-            self.database = [ds for ds in self.database if ds not in datasets]
+            self.database[:] = [ds for ds in self.database if ds not in datasets]
 
         return d_act
 
@@ -1836,65 +2291,77 @@ class BaseTransformation:
         alt_names = alt_names or []
         excludes_datasets = excludes_datasets or []
 
+        provider_semantics = self._get_provider_semantic_index()
         for act in ws.get_many(
             self.database, ws.doesnt_contain_any("name", excludes_datasets)
         ):
-            # Filter out exchanges to relink
-            excs_to_relink = [
-                e
-                for e in ws.technosphere(act)
-                if (not self.is_in_index(e) and e["amount"] != 0)
-            ]
+            # Filter out exchanges to relink. Compact inventories can decode
+            # unchanged typed columns and sparse overlays without generic
+            # mapping dispatch; generic/third-party inventories retain the
+            # established ordered loop.
+            candidate_iterator = getattr(
+                self.database, "_premise_relink_candidates", None
+            )
+            candidates = (
+                candidate_iterator(act, provider_semantics)
+                if candidate_iterator is not None
+                else None
+            )
+            if candidates is None:
+                candidates = _iter_generic_relink_candidates(
+                    act["exchanges"], provider_semantics
+                )
+            selected_candidates = list(candidates)
+            excs_to_relink = [exchange for exchange, _ in selected_candidates]
 
             if len(excs_to_relink) == 0:
                 continue
 
             old_uncertainty = {}
 
-            for exc in excs_to_relink:
-                if exc["type"] == "technosphere":
-                    if exc.get("uncertainty type", 0) != 0:
-                        old_uncertainty[
-                            (exc["name"], exc.get("product"), exc["unit"])
-                        ] = {
-                            "uncertainty type": exc.get("uncertainty type", 0),
-                            "amount": exc["amount"],
-                            "loc": exc.get("loc"),
-                            "scale": exc.get("scale"),
-                            "minimum": exc.get("minimum", 0),
-                            "maximum": exc.get("maximum", 0),
-                        }
+            for exc, fields in selected_candidates:
+                name, effective_product, _location, unit, amount = fields
+                if exc.get("uncertainty type", 0) != 0:
+                    old_uncertainty[(name, effective_product, unit)] = {
+                        "uncertainty type": exc.get("uncertainty type", 0),
+                        "amount": amount,
+                        "loc": exc.get("loc"),
+                        "scale": exc.get("scale"),
+                        "minimum": exc.get("minimum", 0),
+                        "maximum": exc.get("maximum", 0),
+                    }
 
             # make a dictionary with the names and amounts
             # of the technosphere exchanges to relink
             # to compare with the new exchanges
             excs_to_relink_dict = defaultdict(float)
-            for exc in excs_to_relink:
-                try:
-                    excs_to_relink_dict[exc["product"]] += exc["amount"]
-                except:
-                    print(exc)
-                    raise
+            relink_amounts = defaultdict(float)
+            for _, fields in selected_candidates:
+                name, effective_product, location, unit, amount = fields
+                excs_to_relink_dict[effective_product] += amount
+                relink_amounts[(name, effective_product, location, unit)] += amount
 
             # Create a set of unique exchanges to relink
             # turn this into a list of dictionaries
             unique_excs_to_relink = [
-                {
-                    "name": exc["name"],
-                    "product": exc["product"],
-                    "location": exc["location"],
-                    "unit": exc["unit"],
+                dict(items)
+                for items in {
+                    (
+                        ("name", fields[0]),
+                        ("product", fields[1]),
+                        ("location", fields[2]),
+                        ("unit", fields[3]),
+                    )
+                    for _, fields in selected_candidates
                 }
-                for exc in excs_to_relink
-            ]
-            # remove duplicates items in the list
-            unique_excs_to_relink = [
-                dict(t) for t in {tuple(d.items()) for d in unique_excs_to_relink}
             ]
 
             # Process exchanges to relink
             new_exchanges = self.process_exchanges_to_relink(
-                act, unique_excs_to_relink, alt_names
+                act,
+                unique_excs_to_relink,
+                alt_names,
+                relink_amounts=relink_amounts,
             )
 
             # apply uncertainties, if any
@@ -1924,10 +2391,17 @@ class BaseTransformation:
                         if negative:
                             exc["negative"] = float(negative)
 
-            # Update act["exchanges"] by removing the exchanges to relink
-            act["exchanges"] = [e for e in act["exchanges"] if e not in excs_to_relink]
+            # ``excs_to_relink`` contains the exact objects selected from this
+            # exchange list. Identity membership avoids quadratic full-mapping
+            # equality checks, which are especially expensive for lazy compact
+            # exchange views. The selection predicate is content-based, so
+            # equal duplicate exchanges are selected together.
+            act["exchanges"] = _exclude_exchange_objects(
+                act["exchanges"], excs_to_relink
+            )
             # Update act["exchanges"] by adding new exchanges
             act["exchanges"].extend(new_exchanges)
+            self._validation_relinked_targets[id(act)] = act
 
             new_exchanges_dict = defaultdict(float)
             for exc in new_exchanges:
@@ -1936,22 +2410,47 @@ class BaseTransformation:
             # compare with the original exchanges
             # if the amount is different, add a log
             for key in excs_to_relink_dict:
-                assert (
-                    key in new_exchanges_dict
-                ), f"{key} not in {new_exchanges_dict} in dataset {act['name']}, {act['location']}"
-                assert np.isclose(
+                if key not in new_exchanges_dict:
+                    raise RelinkingInvariantError(
+                        f"Product {key!r} disappeared while relinking "
+                        f"{act['name']!r} in {act['location']!r}."
+                    )
+                if not np.isclose(
                     excs_to_relink_dict[key],
                     new_exchanges_dict[key],
                     rtol=0.001,
-                ), (
-                    f"{excs_to_relink_dict[key]} != {new_exchanges_dict[key]} in dataset {act['name']}, {act['location']}."
-                    f" Exchanges to relink: {excs_to_relink_dict}, new exchanges: {new_exchanges_dict}"
-                )
+                ):
+                    raise RelinkingInvariantError(
+                        f"Relinking {act['name']!r} in {act['location']!r} "
+                        f"changed {key!r} from {excs_to_relink_dict[key]!r} to "
+                        f"{new_exchanges_dict[key]!r}."
+                    )
 
-    def process_exchanges_to_relink(self, act, unique_excs_to_relink, alt_names):
+    def process_exchanges_to_relink(
+        self,
+        act,
+        unique_excs_to_relink,
+        alt_names,
+        relink_amounts=None,
+    ):
         new_exchanges = []
         for exc in unique_excs_to_relink:
-            entries, amount = self.find_new_exchange_entries(act, exc, alt_names)
+            amount = None
+            if relink_amounts is not None:
+                amount = relink_amounts[
+                    (
+                        exc["name"],
+                        exc["product"],
+                        exc["location"],
+                        exc["unit"],
+                    )
+                ]
+            entries, amount = self.find_new_exchange_entries(
+                act,
+                exc,
+                alt_names,
+                amount=amount,
+            )
             if amount != 0:
                 new_exchanges.extend(self.create_new_exchanges(entries, amount))
         # Make exchanges unique and sum amounts for duplicates
@@ -2098,7 +2597,7 @@ class BaseTransformation:
         # Second search with modified names
         return search_for_new_exchanges(names_to_look_for)
 
-    def find_new_exchange_entries(self, act, exc, alt_names):
+    def find_new_exchange_entries(self, act, exc, alt_names, amount=None):
         entries = None
 
         if self.is_exchange_in_cache(exc, act["location"]):
@@ -2112,12 +2611,13 @@ class BaseTransformation:
                 (exc["name"], exc["product"], exc["location"], exc["unit"]) + (1.0,)
             ]
 
-        amount = sum(
-            e["amount"]
-            for e in ws.technosphere(act)
-            if (e["name"], e["product"], e["location"], e["unit"])
-            == (exc["name"], exc["product"], exc["location"], exc["unit"])
-        )
+        if amount is None:
+            amount = sum(
+                e["amount"]
+                for e in ws.technosphere(act)
+                if (e["name"], e["product"], e["location"], e["unit"])
+                == (exc["name"], exc["product"], exc["location"], exc["unit"])
+            )
 
         return entries, amount
 
@@ -2141,7 +2641,7 @@ class BaseTransformation:
             ),
             key=itemgetter("name", "product", "location", "unit"),
         )
-        return [
+        summarized = (
             {
                 "name": name,
                 "product": prod,
@@ -2151,7 +2651,8 @@ class BaseTransformation:
                 "amount": sum(e["amount"] for e in excs),
             }
             for (name, prod, loc, unit), excs in grouped_exchanges
-        ]
+        )
+        return [compact_exchange_payload(exchange) for exchange in summarized]
 
     def find_iam_efficiency_change(
         self,
@@ -2184,14 +2685,9 @@ class BaseTransformation:
         return scaling_factor
 
     def write_log(self, dataset, status="created"):
-        """
-        Write log file.
-        """
+        """Record a structured transformation provenance event."""
 
-        logger.info(
-            f"{status}|{self.model}|{self.scenario}|{self.year}|"
-            f"{dataset['name']}|{dataset['location']}|"
-        )
+        record_change_event(self, dataset, status)
 
     def add_new_entry_to_cache(
         self,
@@ -2313,16 +2809,13 @@ class BaseTransformation:
 
         # This function needs to handle the logic when
         # an exchange is not in the cache.
-        key = (exchange["name"], exchange["product"])
-        possible_datasets = self.index[key]
-
-        if len(possible_datasets) == 0:
-            if "market for" in exchange["name"]:
-                key = (
-                    exchange["name"].replace("market for", "market group for"),
-                    exchange["product"],
-                )
-                possible_datasets = self.index[key]
+        (
+            key,
+            possible_datasets,
+            possible_locations,
+            locations_set,
+            by_location,
+        ) = self._get_provider_groups(exchange)
 
         if len(possible_datasets) == 0:
             # search self.database for possible datasets
@@ -2365,11 +2858,15 @@ class BaseTransformation:
             )
 
         else:
-            possible_locations = [ds["location"] for ds in possible_datasets]
-            locations_set = set(possible_locations)
-            by_location = defaultdict(list)
-            for ds in possible_datasets:
-                by_location[ds["location"]].append(ds)
+            # A fallback database scan returns full datasets rather than the
+            # lightweight index records cached above. Preserve that first-call
+            # behavior while later calls use the freshly populated index.
+            if not possible_locations:
+                possible_locations = [ds["location"] for ds in possible_datasets]
+                locations_set = set(possible_locations)
+                by_location = defaultdict(list)
+                for ds in possible_datasets:
+                    by_location[ds["location"]].append(ds)
 
             self.handle_multiple_possible_datasets(
                 exchange,
@@ -2394,10 +2891,12 @@ class BaseTransformation:
             single_dataset.get("reference product") == exchange["product"]
         ), f"Candidate: {single_dataset}, exchange: {exchange}"
 
-        new_exc = exchange.copy()
-        new_exc["location"] = single_dataset["location"]
-        new_exc["name"] = single_dataset["name"]
-        new_exc["product"] = single_dataset["reference product"]
+        new_exc = _relinked_exchange(
+            exchange,
+            single_dataset["location"],
+            name=single_dataset["name"],
+            product=single_dataset["reference product"],
+        )
 
         new_exchanges.append(new_exc)
 
@@ -2437,10 +2936,12 @@ class BaseTransformation:
         if dataset["location"] in locations_set:
             candidate = by_location[dataset["location"]][0]
 
-            new_exc = exchange.copy()
-            new_exc["location"] = candidate["location"]
-            new_exc["name"] = candidate["name"]
-            new_exc["product"] = candidate["reference product"]
+            new_exc = _relinked_exchange(
+                exchange,
+                candidate["location"],
+                name=candidate["name"],
+                product=candidate["reference product"],
+            )
 
             self.add_new_entry_to_cache(
                 dataset["location"],
@@ -2546,7 +3047,9 @@ class BaseTransformation:
             if dataset["location"] == "World" and "GLO" in locs:
                 kept = [ds for ds in kept if ds["location"] == "GLO"]
 
-            allocated, share = allocate_inputs(exchange, kept)
+            allocated, share = allocate_inputs(
+                exchange, kept, exchange_factory=_relinked_exchange
+            )
 
             new_exchanges.extend(allocated)
             self.add_new_entry_to_cache(dataset["location"], exchange, allocated, share)
@@ -2565,7 +3068,9 @@ class BaseTransformation:
             kept = [
                 ds for loc in ("GLO", "RoW", "World") for ds in by_location.get(loc, [])
             ]
-            allocated, share = allocate_inputs(exchange, kept)
+            allocated, share = allocate_inputs(
+                exchange, kept, exchange_factory=_relinked_exchange
+            )
             new_exchanges.extend(allocated)
             self.add_new_entry_to_cache(dataset["location"], exchange, allocated, share)
 
@@ -2610,7 +3115,9 @@ class BaseTransformation:
         kept = [ds for loc in gis_match for ds in by_location.get(loc, [])]
 
         if kept:
-            allocated, share = allocate_inputs(exchange, kept)
+            allocated, share = allocate_inputs(
+                exchange, kept, exchange_factory=_relinked_exchange
+            )
             new_exchanges.extend(allocated)
             self.add_new_entry_to_cache(dataset["location"], exchange, allocated, share)
 
@@ -2630,10 +3137,12 @@ class BaseTransformation:
                 if default_location in locations_set:
                     default_dataset = by_location[default_location][0]
 
-                    new_exc = exchange.copy()
-                    new_exc["name"] = default_dataset["name"]
-                    new_exc["product"] = default_dataset["reference product"]
-                    new_exc["location"] = default_dataset["location"]
+                    new_exc = _relinked_exchange(
+                        exchange,
+                        default_dataset["location"],
+                        name=default_dataset["name"],
+                        product=default_dataset["reference product"],
+                    )
                     new_exchanges.append(new_exc)
 
                     break
@@ -2649,10 +3158,16 @@ class BaseTransformation:
         exclusive=True,
         biggest_first=False,
         contained=False,
+        technosphere_exchanges=None,
     ):
         new_exchanges = []
 
-        for exchange in filter_technosphere_exchanges(dataset["exchanges"]):
+        exchanges = (
+            filter_technosphere_exchanges(dataset["exchanges"])
+            if technosphere_exchanges is None
+            else technosphere_exchanges
+        )
+        for exchange in exchanges:
             if self.is_exchange_in_cache(exchange, dataset["location"]):
                 self.process_cached_exchange(exchange, dataset, new_exchanges)
             else:
@@ -2692,47 +3207,52 @@ class BaseTransformation:
             * ``iam_regions``: List, lists IAM regions, if additional ones need to be defined.
         Modifies the dataset in place; returns the modified dataset."""
 
-        dataset["exchanges"] = [
-            exc
-            for exc in dataset.get("exchanges", [])
-            if not (
-                exc.get("type") == "technosphere"
-                and exc.get("amount") in (0, 0.0, None)
-            )
-        ]
-
-        sum_before = sum(exc["amount"] for exc in dataset["exchanges"])
-
-        # collect the name of exchange and the sum of amounts
-        # as a dictionary, for all technosphere exchanges
-        # in the dataset
-
+        exchanges = []
+        exchange_amounts = []
+        technosphere_exchanges = []
+        non_technosphere_exchanges = []
         exchanges_before = defaultdict(float)
-        for exc in dataset["exchanges"]:
-            if exc["type"] == "technosphere":
-                exchanges_before[exc["product"]] += exc["amount"]
-
         old_uncertainty = {}
+        missing_exchange_type = object()
+        for exc in dataset.get("exchanges", []):
+            exchange_type = exc.get("type", missing_exchange_type)
+            if exchange_type == "technosphere":
+                amount = exc.get("amount")
+                if amount in (0, 0.0, None):
+                    continue
+                technosphere_exchanges.append(exc)
+                product = exc["product"]
+                exchanges_before[product] += amount
 
-        for exc in dataset["exchanges"]:
-            if exc["type"] == "technosphere":
-                if exc.get("uncertainty type", 0) != 0:
-                    old_uncertainty[(exc["name"], exc.get("product"), exc["unit"])] = {
-                        "uncertainty type": exc.get("uncertainty type", 0),
-                        "amount": exc["amount"],
+                uncertainty_type = exc.get("uncertainty type", 0)
+                if uncertainty_type != 0:
+                    uncertainty_key = (exc["name"], product, exc["unit"])
+                    uncertainty = {
+                        "uncertainty type": uncertainty_type,
+                        "amount": amount,
                     }
-
                     for key in ["loc", "scale", "negative", "minimum", "maximum"]:
                         if key in exc:
-                            old_uncertainty[
-                                (exc["name"], exc.get("product"), exc["unit"])
-                            ][key] = exc[key]
+                            uncertainty[key] = exc[key]
+                    old_uncertainty[uncertainty_key] = uncertainty
+            else:
+                if exchange_type is missing_exchange_type:
+                    # Preserve the legacy KeyError for malformed exchanges.
+                    _ = exc["type"]
+                amount = exc["amount"]
+                non_technosphere_exchanges.append(exc)
+            exchanges.append(exc)
+            exchange_amounts.append(amount)
+
+        dataset["exchanges"] = exchanges
+        sum_before = sum(exchange_amounts)
 
         new_exchanges = self.find_candidates(
             dataset,
             exclusive=exclusive,
             biggest_first=biggest_first,
             contained=contained,
+            technosphere_exchanges=technosphere_exchanges,
         )
 
         # make unique list of exchanges from new_exchanges
@@ -2786,9 +3306,7 @@ class BaseTransformation:
                     if maximum:
                         exc["maximum"] = float(maximum)
 
-        dataset["exchanges"] = [
-            exc for exc in dataset["exchanges"] if exc["type"] != "technosphere"
-        ] + new_exchanges
+        dataset["exchanges"] = non_technosphere_exchanges + new_exchanges
 
         sum_after = sum(exc["amount"] for exc in dataset["exchanges"])
 
@@ -2810,7 +3328,6 @@ class BaseTransformation:
 
         return dataset
 
-    @lru_cache()
     def get_gis_match(
         self,
         location,
@@ -2819,6 +3336,19 @@ class BaseTransformation:
         exclusive,
         biggest_first,
     ):
+        cache_key = (
+            location,
+            possible_locations,
+            contained,
+            exclusive,
+            biggest_first,
+        )
+        cache = getattr(self, "_gis_match_cache", None)
+        if cache is None:
+            cache = self._gis_match_cache = {}
+        if cache_key in cache:
+            return cache[cache_key]
+
         # prepare locations in possible_locations
         # all locations in possible_locations that are an IAM region
         # need to be converted to tuples with (model.upper(), location)
@@ -2842,16 +3372,34 @@ class BaseTransformation:
             loc for loc in filtered_possible_locations if loc in self.geo.geo
         ]
 
+        def match(geomatcher):
+            func = geomatcher.contained if contained else geomatcher.intersects
+            return func(
+                location,
+                include_self=True,
+                exclusive=exclusive,
+                biggest_first=biggest_first,
+                only=filtered_possible_locations,
+            )
+
+        row_cache = getattr(self, "_resolved_row_faces_cache", None)
+        if row_cache is None:
+            row_cache = self._resolved_row_faces_cache = {}
+        row_cache_key = (self.model, tuple(filtered_possible_locations))
+
         try:
-            with resolved_row(filtered_possible_locations, self.geo.geo) as g:
-                func = g.contained if contained else g.intersects
-                return func(
-                    location,
-                    include_self=True,
-                    exclusive=exclusive,
-                    biggest_first=biggest_first,
-                    only=filtered_possible_locations,
-                )
+            if row_cache_key not in row_cache:
+                with resolved_row(filtered_possible_locations, self.geo.geo) as g:
+                    row_cache[row_cache_key] = g["RoW"]
+                    result = match(g)
+            else:
+                self.geo.geo["RoW"] = row_cache[row_cache_key]
+                try:
+                    result = match(self.geo.geo)
+                finally:
+                    del self.geo.geo["RoW"]
+            cache[cache_key] = result
+            return result
         except Exception as exc:
             raise ValueError(
                 "GIS matching failed for "

@@ -17,6 +17,8 @@ import yaml
 from .export import biosphere_flows_dictionary
 from .filesystem_constants import VARIABLES_DIR
 from .logger import create_logger
+from .provenance import record_change_event
+from .inventory_store import get_scenario_inventory, replace_scenario_inventory
 from .transformation import (
     BaseTransformation,
     Dict,
@@ -27,15 +29,18 @@ from .transformation import (
     find_fuel_efficiency,
     get_suppliers_of_a_region,
     np,
+    prepare_fuel_filters,
     uuid,
     ws,
 )
 from .utils import (
     get_efficiency_solar_photovoltaics,
     get_water_consumption_factors,
+    rescale_exchange,
     rescale_exchanges,
 )
 from .validation import ElectricityValidation
+from .validation_framework import record_validation_phase
 
 POWERPLANT_TECHS = VARIABLES_DIR / "electricity.yaml"
 
@@ -46,6 +51,42 @@ BIOMASS_CCS_POWER_TECHNOLOGIES = {
 }
 
 logger = create_logger("electricity")
+
+
+class _CoalPowerPlantData:
+    """Cache scalar selections and emission factors from coal-plant IAM data."""
+
+    def __init__(self, data):
+        self.data = data
+        self.countries = frozenset(data.country.values)
+        self._values = {}
+        self._emission_factors = {}
+
+    def contains_country(self, country: str) -> bool:
+        return country in self.countries
+
+    def _select(self, country: str, fuel: str, chp: bool, variable: str):
+        key = country, fuel, chp, variable
+        if key not in self._values:
+            values = self.data.sel(
+                country=country,
+                fuel=fuel,
+                CHP=chp,
+                variable=variable,
+            ).values
+            self._values[key] = values.reshape(-1)[0]
+        return self._values[key]
+
+    def value(self, country: str, fuel: str, chp: bool, variable: str):
+        return self._select(country, fuel, chp, variable).item()
+
+    def emission_factor(self, country: str, fuel: str, chp: bool, species: str):
+        key = country, fuel, chp, species
+        if key not in self._emission_factors:
+            emissions = self._select(country, fuel, chp, species)
+            generation = self._select(country, fuel, chp, "generation")
+            self._emission_factors[key] = (emissions / (generation * 1e3)).item()
+        return self._emission_factors[key]
 
 
 def load_electricity_variables() -> dict:
@@ -240,7 +281,7 @@ def _update_electricity(
         return scenario
 
     electricity = Electricity(
-        database=scenario["database"],
+        database=get_scenario_inventory(scenario),
         iam_data=scenario["iam data"],
         model=scenario["model"],
         pathway=scenario["pathway"],
@@ -268,6 +309,25 @@ def _update_electricity(
 
     if scenario["iam data"].electricity_mix is not None:
         electricity.update_electricity_markets()
+
+        # Validate the IAM-to-provider composition while the transient
+        # technology provenance is still available. Generic relinking may
+        # legitimately merge rows when multiple IAM technologies share one
+        # ecoinvent supplier.
+        vector_validation = ElectricityValidation(
+            model=scenario["model"],
+            scenario=scenario["pathway"],
+            year=scenario["year"],
+            regions=scenario["iam data"].regions,
+            database=electricity.database,
+            iam_data=scenario["iam data"],
+            technology_map=electricity.powerplant_map,
+            system_model=system_model,
+        )
+        record_validation_phase(
+            scenario, vector_validation.run_supplier_vector_checks()
+        )
+        electricity.clear_validation_provenance()
     else:
         print("No electricity information found in IAM data. Skipping.")
 
@@ -277,7 +337,7 @@ def _update_electricity(
         print("No electricity efficiencies found in IAM data. Skipping.")
 
     electricity.relink_datasets()
-    scenario["database"] = electricity.database
+    replace_scenario_inventory(scenario, electricity.database)
     scenario["index"] = electricity.index
     scenario["cache"] = electricity.cache
 
@@ -292,9 +352,13 @@ def _update_electricity(
         regions=scenario["iam data"].regions,
         database=electricity.database,
         iam_data=scenario["iam data"],
+        technology_map=electricity.powerplant_map,
+        system_model=system_model,
     )
 
-    validate.run_electricity_checks()
+    record_validation_phase(
+        scenario, validate.run_electricity_checks(check_supplier_vectors=False)
+    )
 
     return scenario
 
@@ -419,6 +483,7 @@ class Electricity(BaseTransformation):
             self.database, self.version, self.model
         )
         self.powerplant_map = self.mapping.generate_powerplant_map()
+        self.complete_consequential_powerplant_map()
         # reverse dictionary of self.powerplant_map
         self.powerplant_map_rev = {}
         for k, v in self.powerplant_map.items():
@@ -446,6 +511,47 @@ class Electricity(BaseTransformation):
             self.mapping.generate_powerplant_efficiency_bounds()
         )
 
+    def complete_consequential_powerplant_map(self) -> None:
+        """Add valid MSW electricity providers when allocation removes them.
+
+        Consequential ecoinvent models municipal-waste electricity with
+        dedicated conversion activities. The cut-off mapping instead targets
+        allocated waste-treatment activities, whose reference product is no
+        longer electricity in the consequential system model.
+        """
+
+        if self.system_model != "consequential":
+            return
+        candidates = [
+            dataset
+            for dataset in self.database
+            if dataset.get("name")
+            == (
+                "electricity, from municipal waste incineration to generic "
+                "market for electricity, medium voltage"
+            )
+            and "electricity" in dataset.get("reference product", "").lower()
+            and dataset.get("unit") == "kilowatt hour"
+        ]
+        existing = self.powerplant_map.get("Biomass MSW", [])
+        seen = {
+            (
+                dataset.get("name"),
+                dataset.get("reference product"),
+                dataset.get("location"),
+            )
+            for dataset in existing
+        }
+        self.powerplant_map["Biomass MSW"] = existing + [
+            dataset
+            for dataset in candidates
+            if (
+                dataset.get("name"),
+                dataset.get("reference product"),
+                dataset.get("location"),
+            )
+            not in seen
+        ]
     def remove_cdr_credit_from_biomass_ccs_power_plants(self) -> float:
         """
         Remove embedded CDR credits and storage inputs from BECCS electricity.
@@ -507,7 +613,6 @@ class Electricity(BaseTransformation):
                 )
 
         return removed_amount
-
     @lru_cache
     def get_production_per_tech_dict(self) -> Dict[Tuple[str, str], float]:
         """
@@ -567,6 +672,28 @@ class Electricity(BaseTransformation):
         # If not, we allocate an equal share of supply
         return 1 / len(suppliers)
 
+    @staticmethod
+    def prune_and_normalize_suppliers(
+        suppliers: list[tuple[dict, float]], cutoff: float = 0.001
+    ) -> list[tuple[dict, float]]:
+        """Prune tiny provider shares without dropping an IAM technology."""
+
+        if not suppliers:
+            return []
+        retained = [supplier for supplier in suppliers if supplier[1] > cutoff]
+        if not retained:
+            retained = [max(suppliers, key=lambda supplier: supplier[1])]
+        total = sum(share for _, share in retained)
+        if total <= 0:
+            equal_share = 1 / len(retained)
+            return [(supplier, equal_share) for supplier, _ in retained]
+        return [(supplier, share / total) for supplier, share in retained]
+
+    def clear_validation_provenance(self) -> None:
+        """Remove transient IAM labels after incremental vector validation."""
+
+        self.clear_validation_provenance_field("premise electricity technology")
+
     def create_new_markets_low_voltage(self) -> None:
         """
         Create low voltage market groups for electricity, by receiving medium voltage market groups as input
@@ -597,6 +724,8 @@ class Electricity(BaseTransformation):
             f"using the pathway {self.scenario} for the year {self.year}.",
         )
 
+        tech_suppliers_by_region = {}
+
         def generate_regional_markets(region: str, period: int) -> dict:
             new_dataset = copy.deepcopy(generic_dataset)
             new_dataset["location"] = region
@@ -605,59 +734,54 @@ class Electricity(BaseTransformation):
             transf_loss = self.network_loss[region]["low"]["transf_loss"]
             distr_loss = self.network_loss[region]["low"]["distr_loss"]
 
-            # Fetch ecoinvent regions contained in the IAM region
-            ecoinvent_regions = self.geo.iam_to_ecoinvent_location(region)
+            tech_suppliers = tech_suppliers_by_region.get(region)
+            if tech_suppliers is None:
+                # Supplier selection depends on the region, not the averaging
+                # period. Reuse it for the other period-specific markets.
+                ecoinvent_regions = self.geo.iam_to_ecoinvent_location(region)
+                possible_locations = [
+                    [region],
+                    ecoinvent_regions,
+                    ["RER"],
+                    ["RoW"],
+                    ["CH"],
+                ]
+                tech_suppliers = defaultdict(list)
 
-            possible_locations = [
-                [region],
-                ecoinvent_regions,
-                ["RER"],
-                ["RoW"],
-                ["CH"],
-            ]
+                for technology, datasets in ecoinvent_technologies.items():
+                    suppliers, counter = [], 0
 
-            tech_suppliers = defaultdict(list)
+                    try:
+                        while len(suppliers) == 0:
+                            suppliers = [
+                                ds
+                                for ds in datasets
+                                if any(
+                                    ds["location"] == x
+                                    for x in possible_locations[counter]
+                                )
+                            ]
 
-            for technology, datasets in ecoinvent_technologies.items():
-                suppliers, counter = [], 0
+                            counter += 1
 
-                try:
-                    while len(suppliers) == 0:
-                        suppliers = [
-                            ds
-                            for ds in datasets
-                            if any(
-                                ds["location"] == x for x in possible_locations[counter]
+                        for supplier in suppliers:
+                            share = self.get_production_weighted_share(
+                                supplier, suppliers
                             )
-                        ]
+                            tech_suppliers[technology].append((supplier, share))
 
-                        counter += 1
+                        tech_suppliers[technology] = self.prune_and_normalize_suppliers(
+                            tech_suppliers[technology]
+                        )
 
-                    for supplier in suppliers:
-                        share = self.get_production_weighted_share(supplier, suppliers)
-                        tech_suppliers[technology].append((supplier, share))
+                    except IndexError as exc:
+                        if self.system_model == "consequential":
+                            continue
+                        raise IndexError(
+                            f"Couldn't find suppliers for {technology} when looking for {ecoinvent_technologies[technology]}."
+                        ) from exc
 
-                    # remove suppliers that have a supply share inferior to 0.1%
-                    tech_suppliers[technology] = [
-                        supplier
-                        for supplier in tech_suppliers[technology]
-                        if supplier[1] > 0.001
-                    ]
-                    # rescale the shares so that they sum to 1
-                    total_share = sum(
-                        supplier[1] for supplier in tech_suppliers[technology]
-                    )
-                    tech_suppliers[technology] = [
-                        (supplier[0], supplier[1] / total_share)
-                        for supplier in tech_suppliers[technology]
-                    ]
-
-                except IndexError as exc:
-                    if self.system_model == "consequential":
-                        continue
-                    raise IndexError(
-                        f"Couldn't find suppliers for {technology} when looking for {ecoinvent_technologies[technology]}."
-                    ) from exc
+                tech_suppliers_by_region[region] = tech_suppliers
 
             # Create a time-weighted average mix
             if self.system_model == "consequential":
@@ -793,6 +917,7 @@ class Electricity(BaseTransformation):
                                 "name": supplier["name"],
                                 "unit": supplier["unit"],
                                 "location": supplier["location"],
+                                "premise electricity technology": technology,
                             }
                         )
 
@@ -858,6 +983,9 @@ class Electricity(BaseTransformation):
             for period in periods
             if region != "World"
         ]
+
+        for dataset in new_datasets:
+            self.track_validation_provenance(dataset, "premise electricity technology")
 
         self.database.extend(new_datasets)
 
@@ -1099,63 +1227,57 @@ class Electricity(BaseTransformation):
             f"using the pathway {self.scenario} for the year {self.year}.",
         )
 
+        tech_suppliers_by_region = {}
+
         def generate_regional_markets(region: str, period: int) -> dict:
 
             new_dataset = copy.deepcopy(generic_dataset)
             new_dataset["location"] = region
             new_dataset["code"] = str(uuid.uuid4().hex)
 
-            # Fetch ecoinvent regions contained in the IAM region
-            ecoinvent_regions = self.geo.iam_to_ecoinvent_location(region)
             # Second, add transformation loss
             transf_loss = self.network_loss[region]["high"]["transf_loss"]
 
-            # Fetch electricity-producing technologies contained in the IAM region
-            # if they cannot be found for the ecoinvent locations concerned
-            # we widen the scope to EU-based datasets, and RoW, and finally Switzerland
-
-            possible_locations = [
-                [region],
-                ecoinvent_regions,
-                ["RER"],
-                ["RoW"],
-                ["CH"],
-                list(self.ecoinvent_to_iam_loc.keys()),
-            ]
-
-            tech_suppliers = defaultdict(list)
-
-            for technology, datasets in ecoinvent_technologies.items():
-                suppliers = []
-
-                for counter in range(len(possible_locations)):
-                    suppliers = [
-                        ds
-                        for ds in datasets
-                        if any(ds["location"] == x for x in possible_locations[counter])
-                    ]
-
-                    if len(suppliers) > 0:
-                        break
-
-                for supplier in suppliers:
-                    share = self.get_production_weighted_share(supplier, suppliers)
-                    tech_suppliers[technology].append((supplier, share))
-
-                # remove suppliers that have a supply share inferior to 0.1%
-                tech_suppliers[technology] = [
-                    supplier
-                    for supplier in tech_suppliers[technology]
-                    if supplier[1] > 0.001
+            tech_suppliers = tech_suppliers_by_region.get(region)
+            if tech_suppliers is None:
+                # Fetch electricity-producing technologies contained in the IAM region.
+                # If they cannot be found for the ecoinvent locations concerned,
+                # widen the scope to EU-based datasets, RoW, and finally Switzerland.
+                ecoinvent_regions = self.geo.iam_to_ecoinvent_location(region)
+                possible_locations = [
+                    [region],
+                    ecoinvent_regions,
+                    ["RER"],
+                    ["RoW"],
+                    ["CH"],
+                    list(self.ecoinvent_to_iam_loc.keys()),
                 ]
-                # rescale the shares so that they sum to 1
-                total_share = sum(
-                    supplier[1] for supplier in tech_suppliers[technology]
-                )
-                tech_suppliers[technology] = [
-                    (supplier[0], supplier[1] / total_share)
-                    for supplier in tech_suppliers[technology]
-                ]
+                tech_suppliers = defaultdict(list)
+
+                for technology, datasets in ecoinvent_technologies.items():
+                    suppliers = []
+
+                    for counter in range(len(possible_locations)):
+                        suppliers = [
+                            ds
+                            for ds in datasets
+                            if any(
+                                ds["location"] == x for x in possible_locations[counter]
+                            )
+                        ]
+
+                        if len(suppliers) > 0:
+                            break
+
+                    for supplier in suppliers:
+                        share = self.get_production_weighted_share(supplier, suppliers)
+                        tech_suppliers[technology].append((supplier, share))
+
+                    tech_suppliers[technology] = self.prune_and_normalize_suppliers(
+                        tech_suppliers[technology]
+                    )
+
+                tech_suppliers_by_region[region] = tech_suppliers
 
             if self.system_model == "consequential":
                 electricity_mix = dict(
@@ -1259,6 +1381,7 @@ class Electricity(BaseTransformation):
                                 "name": supplier["name"],
                                 "unit": supplier["unit"],
                                 "location": supplier["location"],
+                                "premise electricity technology": technology,
                             }
                         )
 
@@ -1287,6 +1410,9 @@ class Electricity(BaseTransformation):
             for region in self.regions
             if region != "World"
         ]
+
+        for dataset in new_datasets:
+            self.track_validation_provenance(dataset, "premise electricity technology")
 
         self.database.extend(new_datasets)
 
@@ -1463,7 +1589,25 @@ class Electricity(BaseTransformation):
                             ws.equals("unit", flow["unit"]),
                             ws.equals("categories", (flow["categories"],)),
                         ):
-                            exc["amount"] = flow["amount"]
+                            if exc["amount"] == 0:
+                                # A relative uncertainty cannot be rescaled from zero.
+                                exc["amount"] = flow["amount"]
+                                exc["uncertainty type"] = 0
+                                exc["loc"] = exc["amount"]
+                                for field in (
+                                    "scale",
+                                    "shape",
+                                    "minimum",
+                                    "maximum",
+                                    "negative",
+                                ):
+                                    exc.pop(field, None)
+                            else:
+                                rescale_exchange(
+                                    exc,
+                                    flow["amount"] / exc["amount"],
+                                    remove_uncertainty=False,
+                                )
 
     def update_efficiency_of_solar_pv(self) -> None:
         """
@@ -1746,6 +1890,7 @@ class Electricity(BaseTransformation):
 
         # update self.powerplant_map
         self.powerplant_map = self.mapping.generate_powerplant_map()
+        self.complete_consequential_powerplant_map()
 
     def update_electricity_efficiency(self) -> None:
         """
@@ -1765,9 +1910,21 @@ class Electricity(BaseTransformation):
             fuels_map=self.powerplant_fuels_map,
             technologies=list(set(eff_labels).intersection(all_techs)),
         )
+        efficiency_change_cache = {}
+
+        def get_efficiency_change(technology, iam_location):
+            key = technology, iam_location
+            if key not in efficiency_change_cache:
+                efficiency_change_cache[key] = self.find_iam_efficiency_change(
+                    data=self.iam_data.electricity_technology_efficiencies,
+                    variable=technology,
+                    location=iam_location,
+                )
+            return efficiency_change_cache[key]
 
         for technology in technologies_map:
             dict_technology = technologies_map[technology]
+            fuel_filter_index = prepare_fuel_filters(dict_technology["fuel filters"])
 
             for dataset in self.powerplant_map[technology]:
                 if not self.is_in_index(dataset):
@@ -1776,17 +1933,15 @@ class Electricity(BaseTransformation):
                 # Find current efficiency
                 ei_eff = find_fuel_efficiency(
                     dataset=dataset,
-                    fuel_filters=dict_technology["fuel filters"],
+                    fuel_filters=fuel_filter_index,
                     energy_out=3.6,
                     fuel_specs=self.fuels_specs,
                     fuel_map_reverse=self.fuel_map_reverse,
                 )
                 new_efficiency = 0
+                iam_location = self.geo.ecoinvent_to_iam_location(dataset["location"])
 
                 if not self.use_absolute_efficiency:
-                    iam_location = self.geo.ecoinvent_to_iam_location(
-                        dataset["location"]
-                    )
                     if (
                         iam_location
                         in self.iam_data.electricity_technology_efficiencies.coords[
@@ -1794,10 +1949,8 @@ class Electricity(BaseTransformation):
                         ].values
                     ):
                         # Find relative efficiency change indicated by the IAM
-                        scaling_factor = 1 / self.find_iam_efficiency_change(
-                            data=self.iam_data.electricity_technology_efficiencies,
-                            variable=technology,
-                            location=iam_location,
+                        scaling_factor = 1 / get_efficiency_change(
+                            technology, iam_location
                         )
 
                         new_efficiency = float(
@@ -1812,13 +1965,7 @@ class Electricity(BaseTransformation):
                     else:
                         scaling_factor = 1
                 else:
-                    new_efficiency = self.find_iam_efficiency_change(
-                        data=self.iam_data.electricity_technology_efficiencies,
-                        variable=technology,
-                        location=self.geo.ecoinvent_to_iam_location(
-                            dataset["location"]
-                        ),
-                    )
+                    new_efficiency = get_efficiency_change(technology, iam_location)
 
                     # if ei_eff is different from 1 and if the new efficiency
                     # is not NaN or zero, we can rescale the exchanges
@@ -1878,36 +2025,43 @@ class Electricity(BaseTransformation):
             ("PM 10 - 2.5", "Particulate Matter, > 2.5 um and < 10um"),
             ("PM > 10", "Particulate Matter, > 10 um"),
         ]
+        coal_power_plant_data = _CoalPowerPlantData(self.iam_data.coal_power_plants)
 
         for tech in coal_techs:
             if tech in self.powerplant_map:
                 datasets = self.powerplant_map[tech]
+                fuel_filter_index = prepare_fuel_filters(
+                    self.powerplant_fuels_map[tech]
+                )
                 for dataset in datasets:
                     loc = dataset["location"][:2]
-                    if loc in self.iam_data.coal_power_plants.country.values:
+                    if coal_power_plant_data.contains_country(loc):
+                        fuel = (
+                            "Anthracite coal"
+                            if "hard coal" in dataset["name"]
+                            else "Lignite coal"
+                        )
+                        is_chp = "co-generation" in dataset["name"]
+
                         # Find current efficiency
                         ei_eff = find_fuel_efficiency(
                             dataset=dataset,
-                            fuel_filters=self.powerplant_fuels_map[tech],
+                            fuel_filters=fuel_filter_index,
                             energy_out=3.6,
                             fuel_specs=self.fuels_specs,
                             fuel_map_reverse=self.fuel_map_reverse,
                         )
 
-                        new_eff = self.iam_data.coal_power_plants.sel(
+                        new_eff = coal_power_plant_data.value(
                             country=loc,
-                            fuel=(
-                                "Anthracite coal"
-                                if "hard coal" in dataset["name"]
-                                else "Lignite coal"
-                            ),
-                            CHP="co-generation" in dataset["name"],
+                            fuel=fuel,
+                            chp=is_chp,
                             variable="efficiency",
                         )
 
-                        if not np.isnan(new_eff.values.item(0)):
+                        if not np.isnan(new_eff):
                             # Rescale all the exchanges except for a few biosphere exchanges
-                            scaling_factor = ei_eff / new_eff.values.item(0)
+                            scaling_factor = ei_eff / new_eff
 
                             # limit scaling factor to 1.5
                             scaling_factor = min(scaling_factor, 1.5)
@@ -1927,58 +2081,39 @@ class Electricity(BaseTransformation):
                             dataset.setdefault("log parameters", {}).update(
                                 {
                                     "ecoinvent original efficiency": ei_eff,
-                                    "Oberschelp et al. efficiency": new_eff.values.item(
-                                        0
-                                    ),
-                                    "efficiency change": ei_eff
-                                    / new_eff.values.item(0),
+                                    "Oberschelp et al. efficiency": new_eff,
+                                    "efficiency change": ei_eff / new_eff,
                                 }
                             )
 
                             if "comment" in dataset:
                                 dataset["comment"] += (
                                     f" Efficiency updated from {ei_eff:.2f} to "
-                                    f"{new_eff.values.item(0):.2f} "
+                                    f"{new_eff:.2f} "
                                     f"based on Oberschelp et al. (2019)."
                                 )
                             else:
                                 dataset["comment"] = (
                                     f"Efficiency updated from {ei_eff:.2f} to "
-                                    f"{new_eff.values.item(0):.2f} "
+                                    f"{new_eff:.2f} "
                                     f"based on Oberschelp et al. (2019)."
                                 )
 
                             self.update_ecoinvent_efficiency_parameter(
-                                dataset, ei_eff, new_eff.values.item(0)
+                                dataset, ei_eff, new_eff
                             )
 
                         for substance in substances:
                             species, flow = substance
 
-                            emission_factor = self.iam_data.coal_power_plants.sel(
+                            emission_factor = coal_power_plant_data.emission_factor(
                                 country=loc,
-                                fuel=(
-                                    "Anthracite coal"
-                                    if "hard coal" in dataset["name"]
-                                    else "Lignite coal"
-                                ),
-                                CHP="co-generation" in dataset["name"],
-                                variable=species,
-                            ) / (
-                                self.iam_data.coal_power_plants.sel(
-                                    country=loc,
-                                    fuel=(
-                                        "Anthracite coal"
-                                        if "hard coal" in dataset["name"]
-                                        else "Lignite coal"
-                                    ),
-                                    CHP="co-generation" in dataset["name"],
-                                    variable="generation",
-                                )
-                                * 1e3
+                                fuel=fuel,
+                                chp=is_chp,
+                                species=species,
                             )
 
-                            if not np.isnan(emission_factor.values.item(0)):
+                            if not np.isnan(emission_factor):
                                 for exc in ws.biosphere(dataset):
                                     if (
                                         exc["name"] == flow
@@ -1990,10 +2125,7 @@ class Electricity(BaseTransformation):
                                         )[0]
                                         == "air"
                                     ):
-                                        scaling_factor = (
-                                            emission_factor.values.item(0)
-                                            / exc["amount"]
-                                        )
+                                        scaling_factor = emission_factor / exc["amount"]
                                         # limit scaling factor to 5
                                         scaling_factor = min(scaling_factor, 5)
                                         exc["amount"] *= scaling_factor
@@ -2097,6 +2229,7 @@ class Electricity(BaseTransformation):
 
         mapping = InventorySet(self.database, model=self.model)
         self.powerplant_map = mapping.generate_powerplant_map()
+        self.complete_consequential_powerplant_map()
 
         # reverse dictionary of self.powerplant_map
         self.powerplant_map_rev = {}
@@ -2266,26 +2399,6 @@ class Electricity(BaseTransformation):
         self.create_new_markets_low_voltage()
 
     def write_log(self, dataset, status="created"):
-        """
-        Write log file.
-        """
+        """Record a structured electricity provenance event."""
 
-        logger.info(
-            f"{status}|{self.model}|{self.scenario}|{self.year}|"
-            f"{dataset['name']}|{dataset['location']}|"
-            f"{dataset.get('log parameters', {}).get('old efficiency', '')}|"
-            f"{dataset.get('log parameters', {}).get('new efficiency', '')}|"
-            f"{dataset.get('log parameters', {}).get('transformation loss', '')}|"
-            f"{dataset.get('log parameters', {}).get('distribution loss', '')}|"
-            f"{dataset.get('log parameters', {}).get('renewable share', '')}|"
-            f"{dataset.get('log parameters', {}).get('ecoinvent original efficiency', '')}|"
-            f"{dataset.get('log parameters', {}).get('Oberschelp et al. efficiency', '')}|"
-            f"{dataset.get('log parameters', {}).get('efficiency change', '')}|"
-            f"{dataset.get('log parameters', {}).get('CO2 scaling factor', '')}|"
-            f"{dataset.get('log parameters', {}).get('SO2 scaling factor', '')}|"
-            f"{dataset.get('log parameters', {}).get('CH4 scaling factor', '')}|"
-            f"{dataset.get('log parameters', {}).get('NOx scaling factor', '')}|"
-            f"{dataset.get('log parameters', {}).get('PM <2.5 scaling factor', '')}|"
-            f"{dataset.get('log parameters', {}).get('PM 10 - 2.5 scaling factor', '')}|"
-            f"{dataset.get('log parameters', {}).get('PM > 10 scaling factor', '')}"
-        )
+        record_change_event(self, dataset, status, sector="electricity")

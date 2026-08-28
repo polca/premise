@@ -110,6 +110,10 @@ Heat (industrial) - generation:
   label: Exajoules (EJ)
   expl_text: Generated volumes of heat for industrial purposes, per technology. Used to calculate the heat supply mix for industrial processes.
   offset: 10
+Heat (secondary) - generation:
+  label: Exajoules (EJ)
+  expl_text: Generated volumes of secondary heat, per supply technology. Used to calculate the district and industrial secondary heat market.
+  offset: 10
 Transport (two-wheelers):
   label: Passenger-kilometers (million)
   expl_text: Number of vehicle-kilometers driven by two-wheelers. Used to calculate fleet-average vehicles.

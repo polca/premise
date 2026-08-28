@@ -245,6 +245,9 @@ class SyntheticFuelsMixin:
                         mapping=mapping,
                         system_model=self.system_model,
                         production_volumes=self.iam_data.production_volumes,
+                        technology_shares=self.iam_data.petrol_blend,
+                        flip_treatment_supplier_sign=True,
+                        retain_validation_technology=True,
                     )
 
                     self.update_fuel_carbon_dioxide_emissions(
@@ -273,6 +276,7 @@ class SyntheticFuelsMixin:
                             "petrol, synthetic, from coal",
                             "petrol, synthetic, from coal, with CCS",
                         ],
+                        technology_shares=self.iam_data.petrol_blend,
                     )
 
         # diesel
@@ -300,6 +304,9 @@ class SyntheticFuelsMixin:
                         mapping=mapping,
                         system_model=self.system_model,
                         production_volumes=self.iam_data.production_volumes,
+                        technology_shares=self.iam_data.diesel_blend,
+                        flip_treatment_supplier_sign=True,
+                        retain_validation_technology=True,
                     )
 
                 self.update_fuel_carbon_dioxide_emissions(
@@ -322,6 +329,7 @@ class SyntheticFuelsMixin:
                         "diesel, synthetic, from coal",
                         "diesel, synthetic, from coal, with CCS",
                     ],
+                    technology_shares=self.iam_data.diesel_blend,
                 )
 
         # jet fuel
@@ -341,6 +349,9 @@ class SyntheticFuelsMixin:
                     mapping=mapping,
                     system_model=self.system_model,
                     production_volumes=self.iam_data.production_volumes,
+                    technology_shares=self.iam_data.kerosene_blend,
+                    flip_treatment_supplier_sign=True,
+                    retain_validation_technology=True,
                 )
 
                 self.update_fuel_carbon_dioxide_emissions(
@@ -359,6 +370,7 @@ class SyntheticFuelsMixin:
                         "kerosene, synthetic, from coal, energy allocation",
                         "kerosene, synthetic, from coal, energy allocation, with CCS",
                     ],
+                    technology_shares=self.iam_data.kerosene_blend,
                 )
 
         # lpg
@@ -378,6 +390,9 @@ class SyntheticFuelsMixin:
                     mapping=mapping,
                     system_model=self.system_model,
                     production_volumes=self.iam_data.production_volumes,
+                    technology_shares=self.iam_data.lpg_blend,
+                    flip_treatment_supplier_sign=True,
+                    retain_validation_technology=True,
                 )
 
                 self.update_fuel_carbon_dioxide_emissions(
@@ -397,10 +412,16 @@ class SyntheticFuelsMixin:
                         "liquefied petroleum gas",
                         "liquefied petroleum gas, synthetic, from coal, with CCS",
                     ],
+                    technology_shares=self.iam_data.lpg_blend,
                 )
 
     def update_fuel_carbon_dioxide_emissions(
-        self, variables, market_names, co2_intensity, fossil_variables
+        self,
+        variables,
+        market_names,
+        co2_intensity,
+        fossil_variables,
+        technology_shares=None,
     ):
         """
         Update carbon dioxide emissions for biogas datasets.
@@ -414,6 +435,11 @@ class SyntheticFuelsMixin:
                 mapping=filtered_mapping,
             )
         )
+        if technology_shares is not None:
+            _, tech_shares, _ = self.get_technology_and_regional_production_shares(
+                production_volumes=technology_shares,
+                mapping=filtered_mapping,
+            )
 
         # Build nested fuel share dictionary
         fuel_shares = defaultdict(dict)
@@ -437,20 +463,22 @@ class SyntheticFuelsMixin:
             fuel: round(value / total_weight, 2) for fuel, value in world_mix.items()
         }
 
-        # Find and process datasets
-        datasets = ws.get_many(
-            self.database,
-            ws.exclude(ws.either(*[ws.equals("name", name) for name in market_names])),
-        )
-
-        for ds in datasets:
+        # Find and process datasets. This ordered scan is equivalent to the
+        # historical Wurst predicates but avoids dispatching a callable for
+        # every market name against every exchange.
+        market_names = frozenset(market_names)
+        for ds in self.database:
+            if ds["name"] in market_names:
+                continue
             # Sum relevant technosphere exchanges and remap locations
             sum_fuel = 0
-            for exc in ws.technosphere(
-                ds,
-                ws.either(*[ws.equals("name", name) for name in market_names]),
-                ws.equals("unit", "kilogram"),
-            ):
+            for exc in ds["exchanges"]:
+                if (
+                    exc.get("type") != "technosphere"
+                    or exc.get("name") not in market_names
+                    or exc.get("unit") != "kilogram"
+                ):
+                    continue
 
                 if ds["location"] in self.regions:
                     new_loc = ds["location"]
@@ -466,11 +494,10 @@ class SyntheticFuelsMixin:
 
             fossil_co2 = sum(
                 exc["amount"]
-                for exc in ws.biosphere(
-                    ds,
-                    ws.contains("name", "Carbon dioxide, fossil"),
-                    ws.equals("unit", "kilogram"),
-                )
+                for exc in ds["exchanges"]
+                if exc.get("type") == "biosphere"
+                and "Carbon dioxide, fossil" in exc.get("name", "")
+                and exc.get("unit") == "kilogram"
             )
             if fossil_co2 == 0:
                 continue
@@ -487,9 +514,13 @@ class SyntheticFuelsMixin:
             if share_non_fossil > 0:
                 non_fossil_CO2 = sum_fuel * share_non_fossil * co2_intensity
 
-                for e in ws.biosphere(ds, ws.equals("name", "Carbon dioxide, fossil")):
-                    e["amount"] = max(0, e["amount"] - non_fossil_CO2)
-                    break  # only adjust one exchange
+                for e in ds["exchanges"]:
+                    if (
+                        e.get("type") == "biosphere"
+                        and e.get("name") == "Carbon dioxide, fossil"
+                    ):
+                        e["amount"] = max(0, e["amount"] - non_fossil_CO2)
+                        break  # only adjust one exchange
 
                 # Add the non-fossil CO2 exchange
                 ds["exchanges"].append(

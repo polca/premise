@@ -3,10 +3,13 @@ Various utils functions.
 """
 
 import json
+import hashlib
+import math
 import os
 import pickle
 import sys
 import uuid
+from collections.abc import MutableMapping
 from datetime import datetime
 from functools import lru_cache
 from numbers import Number
@@ -18,7 +21,6 @@ import xarray as xr
 import yaml
 from country_converter import CountryConverter
 from prettytable import PrettyTable
-from wurst import rescale_exchange
 from wurst.searching import biosphere, equals, get_many, technosphere
 import numpy as np
 
@@ -35,6 +37,47 @@ from .geomap import Geomap
 FUELS_PROPERTIES = VARIABLES_DIR / "fuels.yaml"
 EFFICIENCY_RATIO_SOLAR_PV = DATA_DIR / "renewables" / "efficiency_solar_PV.csv"
 CACHE_MANIFEST_SUFFIX = ".manifest.json"
+CACHE_SCHEMA_VERSION = 5
+
+
+def rescale_exchange(
+    exchange: MutableMapping[str, Any],
+    value: Number,
+    remove_uncertainty: bool = True,
+) -> MutableMapping[str, Any]:
+    """Rescale a dictionary-compatible exchange and its uncertainty fields.
+
+    This preserves Wurst's numerical behavior while accepting compact
+    copy-on-write exchange mappings in addition to concrete dictionaries.
+    """
+
+    assert isinstance(exchange, MutableMapping), "Must pass exchange mapping"
+    assert isinstance(value, Number), "Constant factor ``value`` must be a number"
+
+    exchange["amount"] *= value
+
+    if not remove_uncertainty and "uncertainty type" in exchange:
+        uncertainty_type = exchange["uncertainty type"]
+        if uncertainty_type in {1, 2, 3, 4, 5}:
+            if "loc" in exchange and uncertainty_type == 2:
+                exchange["loc"] += math.log(value)
+            elif "loc" in exchange:
+                exchange["loc"] *= value
+
+            if "scale" in exchange and uncertainty_type != 2:
+                exchange["scale"] *= abs(value)
+
+            for bound in ("minimum", "maximum"):
+                if bound in exchange:
+                    exchange[bound] *= value
+    elif remove_uncertainty:
+        exchange["uncertainty type"] = 0
+        exchange["loc"] = exchange["amount"]
+        for field in ("scale", "minimum", "maximum"):
+            if field in exchange:
+                del exchange[field]
+
+    return exchange
 
 
 def rescale_exchanges(
@@ -158,6 +201,104 @@ def eidb_label(
     name += f" {datetime.now().strftime('%Y-%m-%d')}"
 
     return name
+
+
+def scenario_metadata(
+    scenario: Dict[str, Any],
+    version: str = None,
+    system_model: str = None,
+) -> Dict[str, Any]:
+    """Describe the scenario a database represents.
+
+    The returned mapping is meant to be attached to the metadata of an exported
+    database (e.g., ``bw2data.databases[name]``), so that the point in time and
+    the IAM scenario it represents can be retrieved later on.
+
+    :param scenario: Scenario dictionary, with `model`, `pathway` and `year` keys.
+    :type scenario: dict
+    :param version: Ecoinvent version the database is based on.
+    :type version: str
+    :param system_model: Ecoinvent system model ("cutoff" or "consequential").
+    :type system_model: str
+    :return: JSON-serializable scenario metadata.
+    :rtype: dict
+    """
+
+    year = int(scenario["year"])
+
+    metadata = {
+        "premise_version": ".".join(str(item) for item in __version__),
+        "iam_model": scenario["model"],
+        "pathway": scenario["pathway"],
+        # ISO 8601 point in time the database is representative of
+        "representative_time": datetime(year, 1, 1).isoformat(),
+    }
+
+    if version is not None:
+        metadata["ecoinvent_version"] = str(version)
+
+    if system_model is not None:
+        metadata["system_model"] = system_model
+
+    external_scenarios = scenario.get("external scenarios")
+    if external_scenarios:
+        metadata["external_scenarios"] = [
+            ext["scenario"] for ext in external_scenarios if "scenario" in ext
+        ]
+
+    return metadata
+
+
+def database_metadata(
+    scenarios: List[Dict[str, Any]],
+    version: str = None,
+    system_model: str = None,
+) -> Dict[str, Any]:
+    """Describe the scenario(s) a database represents.
+
+    Databases holding a single scenario get a flat description
+    (see :func:`scenario_metadata`). Databases holding several scenarios
+    (super-structure or scenario-array databases) get the list of scenarios
+    under `scenarios`, plus the point in time they all share, if any.
+
+    :param scenarios: List of scenario dictionaries.
+    :type scenarios: list
+    :param version: Ecoinvent version the database is based on.
+    :type version: str
+    :param system_model: Ecoinvent system model ("cutoff" or "consequential").
+    :type system_model: str
+    :return: JSON-serializable database metadata.
+    :rtype: dict
+    """
+
+    entries = [
+        scenario_metadata(scenario, version=version, system_model=system_model)
+        for scenario in scenarios
+    ]
+
+    if len(entries) == 1:
+        return entries[0]
+
+    for entry in entries:
+        # reported once, at the database level
+        entry.pop("premise_version", None)
+
+    metadata = {
+        "premise_version": ".".join(str(item) for item in __version__),
+        "scenarios": entries,
+    }
+
+    if version is not None:
+        metadata["ecoinvent_version"] = str(version)
+
+    if system_model is not None:
+        metadata["system_model"] = system_model
+
+    times = {entry["representative_time"] for entry in entries}
+    if len(times) == 1:
+        metadata["representative_time"] = times.pop()
+
+    return metadata
 
 
 @lru_cache(maxsize=1)
@@ -324,6 +465,7 @@ def clear_runtime_caches() -> None:
     from .external import ExternalScenario
     from .inventory_imports import BaseInventoryImport
     from .metals import Metals
+    from .runtime_cache import clear_constructor_caches
     from .transformation import BaseTransformation
 
     cached_functions = (
@@ -344,6 +486,7 @@ def clear_runtime_caches() -> None:
             cache_clear()
 
     exc_codes.clear()
+    clear_constructor_caches()
 
 
 def print_version():
@@ -521,6 +664,21 @@ def cache_ref_exists(file_name: Path) -> bool:
     return file_name.exists() or get_cache_manifest_path(file_name).exists()
 
 
+def cache_ref_fingerprint(file_name: Path) -> str:
+    """Return a cheap invalidation fingerprint for a cache and its shards."""
+
+    cache_ref = resolve_cache_ref(Path(file_name))
+    paths = [cache_ref]
+    if _is_cache_manifest(cache_ref):
+        paths.extend(_iter_cache_bundle_paths(cache_ref))
+    records = []
+    for path in paths:
+        stat = path.stat()
+        records.append((str(path.resolve()), int(stat.st_size), int(stat.st_mtime_ns)))
+    encoded = json.dumps(records, sort_keys=True).encode("utf-8")
+    return hashlib.sha256(encoded).hexdigest()
+
+
 def _is_cache_manifest(file_name: Path) -> bool:
     return str(file_name).endswith(CACHE_MANIFEST_SUFFIX)
 
@@ -626,12 +784,55 @@ def iter_cached_metadata(cache_ref: Path) -> Iterable[Dict[tuple, Dict[str, Any]
     yield metadata
 
 
+def restore_cached_classifications(
+    database: List[Dict[str, Any]], metadata_cache_filepath: Path
+) -> List[Dict[str, Any]]:
+    """Hydrate classifications from old metadata sidecars into cached datasets.
+
+    New caches retain ``classifications`` in the runtime payload. This helper
+    keeps older caches compatible without restoring all bulky metadata fields.
+    """
+
+    if not metadata_cache_filepath or not cache_ref_exists(metadata_cache_filepath):
+        return database
+
+    datasets_by_key: Dict[tuple, List[Dict[str, Any]]] = {}
+    for dataset in database:
+        if dataset.get("classifications"):
+            continue
+
+        key = (
+            dataset.get("name"),
+            dataset.get("reference product"),
+            dataset.get("location"),
+        )
+        datasets_by_key.setdefault(key, []).append(dataset)
+
+    if not datasets_by_key:
+        return database
+
+    for metadata in iter_cached_metadata(metadata_cache_filepath):
+        for key, metadata_values in metadata.items():
+            if key not in datasets_by_key or "classifications" not in metadata_values:
+                continue
+
+            classifications = metadata_values["classifications"]
+            for dataset in datasets_by_key[key]:
+                if not dataset.get("classifications"):
+                    dataset["classifications"] = pickle.loads(
+                        pickle.dumps(classifications, -1)
+                    )
+
+    return database
+
+
 def load_database(
     scenario: Dict[str, Any],
     original_database: List[Dict[str, Any]],
     delete: bool = True,
     load_metadata: bool = True,
     warning: bool = True,
+    consume_compact: bool = False,
 ) -> Dict[str, Any]:
     """Load a cached database back into memory.
 
@@ -645,12 +846,72 @@ def load_database(
     :type load_metadata: bool
     :param warning: Display a warning when reusing the unmodified original database.
     :type warning: bool
+    :param consume_compact: Transfer ownership of compact columnar mappings to a
+        short-lived exporter instead of building a complete list of dictionaries.
+        The source store is emptied when this is enabled.
+    :type consume_compact: bool
     :return: Scenario dictionary with the ``"database"`` entry populated in memory.
     :rtype: dict
     """
 
     if scenario.get("database") is not None:
         return scenario
+
+    # InventoryStore-backed scenarios never expose a mutable database payload.
+    # Exporters receive a short-lived copy so the active scenario definition
+    # continues to contain only private store/checkpoint references.
+    store = scenario.get("_inventory_store")
+    export_handoff = scenario.get("_inventory_export_handoff")
+    using_export_handoff = (
+        store is None and consume_compact and export_handoff is not None
+    )
+    if using_export_handoff:
+        store = export_handoff
+    checkpoint = scenario.get("_inventory_checkpoint")
+    if store is not None or checkpoint is not None:
+        if store is None:
+            from .inventory_store import InventoryStore
+
+            store = InventoryStore.open(checkpoint)
+        materialized = scenario.copy()
+        from .inventory_store import CompactInventoryStore
+
+        if isinstance(store, CompactInventoryStore) and consume_compact:
+            materialized["database"] = store._checkout_materialized(
+                discard_shared_state=True
+            )
+            if using_export_handoff:
+                # A retained checkpoint handoff still contains lazy columnar
+                # activities. Brightway's streaming writer would otherwise
+                # prepare every exchange once for SQL and again for vectors.
+                # Converting only the lightweight activity shells keeps the
+                # exchange mappings private and lets the existing one-pass
+                # compact writer reuse its prepared payload.
+                for position, dataset in enumerate(materialized["database"]):
+                    materialize_dataset = getattr(dataset, "_premise_materialize", None)
+                    if materialize_dataset is None:
+                        continue
+                    payload = materialize_dataset()
+                    exchanges = dataset["exchanges"]
+                    payload["exchanges"] = exchanges
+                    for exchange in exchanges:
+                        if hasattr(exchange, "_validation_owner"):
+                            exchange._validation_owner = payload
+                    list.__setitem__(materialized["database"], position, payload)
+        else:
+            materialized["database"] = store.materialize(restore_metadata=load_metadata)
+        # Match the legacy cache-loading path: source activities can omit
+        # storage identifiers, but every exporter requires one.
+        for dataset in materialized["database"]:
+            common_value = getattr(dataset, "_premise_common_value", None)
+            code = (
+                common_value("code")
+                if common_value is not None
+                else dataset.get("code")
+            )
+            if not code:
+                dataset["code"] = uuid.uuid4().hex
+        return materialized
 
     if "database filepath" not in scenario:
         if warning:
@@ -660,6 +921,10 @@ def load_database(
     else:
         filepath = scenario["database filepath"]
         scenario["database"] = load_cached_database(filepath)
+        if not load_metadata and "database metadata filepath" in scenario:
+            restore_cached_classifications(
+                scenario["database"], scenario["database metadata filepath"]
+            )
 
         # delete the file
         if delete:
@@ -795,19 +1060,26 @@ def delete_all_pickles(filepath: Optional[Path] = None) -> None:
             file.unlink()
 
 
-def end_of_process(scenario: Dict[str, Any]) -> Dict[str, Any]:
+def end_of_process(
+    scenario: Dict[str, Any],
+    *,
+    preserve_applied_functions: bool = False,
+) -> Dict[str, Any]:
     """Release cached information stored in a scenario definition.
 
     :param scenario: Scenario dictionary to clean up.
     :type scenario: dict
+    :param preserve_applied_functions: Keep transformation metadata when the
+        scenario checkpoint will be reused by another exporter.
+    :type preserve_applied_functions: bool
     :return: Scenario stripped of database information and caches.
     :rtype: dict
     """
 
     # delete the database from the scenario
-    del scenario["database"]
+    scenario.pop("database", None)
 
-    if "applied functions" in scenario:
+    if not preserve_applied_functions and "applied functions" in scenario:
         del scenario["applied functions"]
 
     if "cache" in scenario:
@@ -869,6 +1141,7 @@ _CACHE_TRIMMED_DATASET_FIELDS = {
     "unit",
     "exchanges",
     "comment",
+    "classifications",
 }
 
 _CACHE_METADATA_EXCLUDED_FIELDS = {
@@ -879,6 +1152,7 @@ _CACHE_METADATA_EXCLUDED_FIELDS = {
     "exchanges",
     "type",
     "comment",
+    "classifications",
 }
 
 _SCENARIO_TRIMMED_DATASET_FIELDS = {
@@ -891,6 +1165,7 @@ _SCENARIO_TRIMMED_DATASET_FIELDS = {
     "type",
     "regionalized",
     "exchanges",
+    "classifications",
 }
 
 _SCENARIO_TRIMMED_EXCHANGE_FIELDS = {
@@ -920,21 +1195,92 @@ _SCENARIO_METADATA_EXCLUDED_FIELDS = {
     "exchanges",
     "database",
     "code",
+    "classifications",
 }
 
 
 def _has_cache_value(value: Any) -> bool:
     if value is None:
         return False
-    if isinstance(value, str) and value in {"None", "nan", ""}:
-        return False
+    if isinstance(value, np.floating):
+        return not np.isnan(value)
+
+    value_type = type(value)
+    if value_type is str:
+        return value not in {"None", "nan", ""}
+    if value_type in {list, tuple, dict, set}:
+        return True
+    if value_type in {bool, int}:
+        return True
+    if value_type is float:
+        return not np.isnan(value)
+
+    # Preserve support for subclasses and the complete NumPy integer family
+    # after the exact built-in hot paths above.
+    if isinstance(value, str):
+        return value not in {"None", "nan", ""}
     if isinstance(value, (list, tuple, dict, set)):
         return True
-
+    if isinstance(value, (bool, int, np.integer)):
+        return True
     try:
         return bool(pd.notna(value))
     except Exception:
         return True
+
+
+def _scenario_metadata_value_is_restored(value: Any) -> bool:
+    """Return whether the legacy scenario-cache loader restores ``value``.
+
+    Scenario payloads historically passed through ``create_scenario_cache``
+    followed by ``load_database`` before callers could inspect or export them.
+    The writer drops null-like values, while the loader additionally skips
+    false and empty metadata values.  Compact scenario stores must reproduce
+    that observable boundary without weakening the lossless generic store
+    contract.
+    """
+
+    if not _has_cache_value(value):
+        return False
+    try:
+        return bool(value)
+    except (TypeError, ValueError):
+        # The legacy loader cannot truth-test arbitrary vector values. Keep
+        # them here so scenario sealing remains lossless for custom metadata.
+        return True
+
+
+def _normalize_scenario_cache_activity(
+    dataset: MutableMapping[str, Any],
+) -> MutableMapping[str, Any]:
+    """Apply legacy post-cache field-presence semantics to one activity."""
+
+    for field, value in list(dataset.items()):
+        if (
+            field not in _SCENARIO_TRIMMED_DATASET_FIELDS
+            and not _scenario_metadata_value_is_restored(value)
+        ):
+            del dataset[field]
+    return dataset
+
+
+def _scenario_cache_exchange_field_is_restored(field: str, value: Any) -> bool:
+    """Return whether one exchange field survives a legacy cache round trip."""
+
+    if field in _SCENARIO_TRIMMED_EXCHANGE_FIELDS:
+        return _has_cache_value(value)
+    return _scenario_metadata_value_is_restored(value)
+
+
+def _normalize_scenario_cache_exchange(
+    exchange: MutableMapping[str, Any],
+) -> MutableMapping[str, Any]:
+    """Apply legacy post-cache field-presence semantics to one exchange."""
+
+    for field, value in list(exchange.items()):
+        if not _scenario_cache_exchange_field_is_restored(field, value):
+            del exchange[field]
+    return exchange
 
 
 def _metadata_for_cache_dataset(ds: Dict[str, Any]) -> Tuple[tuple, Dict[str, Any]]:
@@ -1016,6 +1362,39 @@ def _trim_scenario_dataset_in_place(ds: Dict[str, Any]) -> Dict[str, Any]:
     ds.clear()
     ds.update(trimmed_dataset)
     return ds
+
+
+def _compact_scenario_dataset_in_place(
+    ds: Dict[str, Any],
+) -> Tuple[tuple, Dict[str, Any]]:
+    """Compact one scenario dataset and collect sidecar metadata in one pass."""
+
+    key = (ds["name"], ds["reference product"], ds["location"])
+    metadata = {
+        field: value
+        for field, value in ds.items()
+        if field not in _SCENARIO_METADATA_EXCLUDED_FIELDS and _has_cache_value(value)
+    }
+
+    compact_exchanges = []
+    exchange_metadata = []
+    for exchange in ds.get("exchanges", []):
+        compact_exchange, compact_exchange_metadata = _trim_scenario_exchange(exchange)
+        compact_exchanges.append(compact_exchange)
+        exchange_metadata.append(compact_exchange_metadata)
+
+    if any(exchange_metadata):
+        metadata["__exchange_metadata__"] = exchange_metadata
+
+    compact_dataset = {
+        field: value
+        for field, value in ds.items()
+        if field in _SCENARIO_TRIMMED_DATASET_FIELDS
+    }
+    compact_dataset["exchanges"] = compact_exchanges
+    ds.clear()
+    ds.update(compact_dataset)
+    return key, metadata
 
 
 def _chunk_sequence(
@@ -1147,11 +1526,9 @@ def create_scenario_cache(
     metadata_chunk: Dict[tuple, Dict[str, Any]] = {}
 
     for dataset in database:
-        key, metadata = _metadata_for_scenario_dataset(dataset)
+        key, metadata = _compact_scenario_dataset_in_place(dataset)
         if metadata:
             metadata_chunk[key] = metadata
-
-        _trim_scenario_dataset_in_place(dataset)
 
         if len(metadata_chunk) >= metadata_chunk_size:
             shard_path = metadata_cache_file.with_name(

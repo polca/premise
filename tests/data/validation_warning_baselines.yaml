@@ -1,0 +1,12 @@
+metadata:
+  description: >-
+    Reviewed unsuppressed validation-warning counts. A new rule or a count above
+    the recorded value fails certification unless the exception is documented
+    by a narrow version/system-model suppression.
+  validation_ruleset_version: 5
+cases:
+  ecoinvent-3.12-cutoff-image-SSP2-M-2050:
+    warning_rule_counts:
+      LEGACY.CO2_EMISSIONS_POSSIBLY_INCORRECT: 90
+      LEGACY.ELECTRICITY_EFFICIENCY_POSSIBLY_INCORRECT: 13
+      LEGACY.NO_EMISSION_FACTOR_FOR_LEAD: 27

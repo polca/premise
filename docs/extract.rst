@@ -1571,7 +1571,7 @@ Data sources external to the IAM
 
 *premise* tries to adhere to the IAM scenario data as much as possible. There are
 however a number of cases where external data sources are used. This is notably the case
-for non-CO2 pollutants emissions for different sectors (electricity, steel and cement),
+for non-CO2 pollutants emissions for different sectors (electricity, heat, steel, and cement),
 as well as expected efficiency gains for photovoltaic panels and batteries.
 
 Air emissions

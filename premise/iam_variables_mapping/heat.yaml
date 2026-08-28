@@ -1,92 +1,37 @@
-heat, from diesel:
-  ecoinvent_aliases:
-    fltr: diesel, burned in
-    mask:
-      - market
-      - biodiesel
-      - car
-      - train
-      - bus
-      - heavy-duty
+# Heat mappings are deliberately split into three layers. IAM aliases can be a
+# string, a list of strings (summed), or an explicit linear expression. Values
+# are kept as raw energy volumes until inventory-derived conversion factors have
+# converted final energy to delivered heat.
 
-heat, from diesel (market):
-  ecoinvent_aliases:
-    fltr: market for diesel, burned in
-
-heat, from steam:
-  ecoinvent_aliases:
-    fltr: steam production, as energy carrier
-    mask: market
-
-heat, from steam (market):
-  ecoinvent_aliases:
-    fltr: market for heat, from steam
-
-heat, from natural gas:
-  ecoinvent_aliases:
-    fltr:
-      name:
-        - heat production, natural gas
-        - heat and power co-generation, natural gas
-      reference product: heat
-    mask: market
-  iam_aliases:
-    message: Secondary Energy|Heat|Gas
-
-heat, from natural gas (market):
-  ecoinvent_aliases:
-    fltr:
-      - market for heat, central or small-scale, natural gas
-      - market for heat, district or industrial, natural gas
-    mask: Jakobsberg
-
-heat, from light fuel oil:
-  ecoinvent_aliases:
-    fltr: heat production, light fuel oil
-    mask: market
-  iam_aliases:
-    message: Secondary Energy|Heat|Oil
-
-heat, from wood chips:
-  ecoinvent_aliases:
-    fltr:
-      - heat production, softwood chips
-      - heat production, hardwood chips
-    mask: market
-  iam_aliases:
-    message: Secondary Energy|Heat|Biomass
-
-heat, from coal furnace:
-    ecoinvent_aliases:
-        fltr: heat production, at hard coal industrial furnace 1-10MW
-    iam_aliases:
-      message: Secondary Energy|Heat|Coal
-
-heat, from hydrogen turbine:
-  ecoinvent_aliases:
-    fltr: heat production, from hydrogen-fired one gigawatt gas turbine
-    mask: balancing
+# ---------------------------------------------------------------------------
+# Buildings: delivered end-use heat
+# ---------------------------------------------------------------------------
 
 heat, buildings, from district heating:
-    ecoinvent_aliases:
-        fltr: heat, district or industrial, other than natural gas
-        mask:
-          - group
-          - generic
-    iam_aliases:
-      remind: FE|Buildings|Heating|District Heating
-      remind-eu: FE|Buildings|Heating|District Heating
-      gcam: Final Energy|Heat|Buildings|District Heat
-      image:
-        - Final Energy|Residential|Space Heating|Heat
-        - Final Energy|Residential|Water Heating|Heat
-        - Final Energy|Commercial|Space Heating|Heat
-        - Final Energy|Commercial|Water Heating|Heat
-      message: Final Energy|Residential and Commercial|Heat
+  layer: buildings_end_use
+  energy_basis: heat_output
+  conversion: none
+  ecoinvent_aliases:
+    fltr: heat, district or industrial, other than natural gas
+    mask: [group, generic]
+  iam_aliases:
+    remind: FE|Buildings|Heating|District Heating
+    remind-eu: FE|Buildings|Heating|District Heating
+    gcam: Final Energy|Heat|Buildings|District Heat
+    image:
+      - Final Energy|Residential|Space Heating|Heat
+      - Final Energy|Residential|Water Heating|Heat
+      - Final Energy|Commercial|Space Heating|Heat
+      - Final Energy|Commercial|Water Heating|Heat
+    message: Final Energy|Residential and Commercial|Heat
+  supplier_type: secondary_market
 
 heat, buildings, from hydrogen boiler:
+  layer: buildings_end_use
+  energy_basis: final_energy
+  conversion: combustion
   ecoinvent_aliases:
-    fltr: heat, residential, by combustion of hydrogen using boiler, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid
+    fltr: heat, residential, by combustion of hydrogen using boiler
   iam_aliases:
     remind: FE|Buildings|Heating|Hydrogen
     remind-eu: FE|Buildings|Heating|Hydrogen
@@ -98,265 +43,614 @@ heat, buildings, from hydrogen boiler:
       - Final Energy|Commercial|Water Heating|Hydrogen
     message: Final Energy|Residential and Commercial|Hydrogen|Combustion
 
-heat, buildings, from hydrogen CHP:
-    ecoinvent_aliases:
-        fltr: heat, residential, by combustion of hydrogen using CHP, allocated by exergy, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid
-
 heat, buildings, from hydrogen fuel cell:
-    ecoinvent_aliases:
-        fltr: heat, residential, by conversion of hydrogen using fuel cell, PEM, allocated by exergy, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid
-    iam_aliases:
-      message: Final Energy|Residential and Commercial|Hydrogen|Fuel Cell
+  layer: buildings_end_use
+  energy_basis: final_energy
+  conversion: combustion
+  ecoinvent_aliases:
+    fltr: heat, residential, by conversion of hydrogen using fuel cell
+  iam_aliases:
+    message: Final Energy|Residential and Commercial|Hydrogen|Fuel Cell
 
-heat, buildings, from synthetic natural gas boiler:
-    ecoinvent_aliases:
-        fltr: heat, residential, by combustion of synthetic natural gas from catalytic methanation using boiler, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid and carbon sourced from DAC
-
-heat, buildings, from coal-based natural gas boiler:
-    ecoinvent_aliases:
-        fltr: heat, residential, by combustion of coal-based natural gas using boiler, distributed by pipeline
-
-heat, buildings, from natural gas:
-    ecoinvent_aliases:
-        fltr: heat production, natural gas, at boiler condensing modulating <100kW
-    iam_aliases:
-      remind: FE|Buildings|Heating|Gases
-      remind-eu: FE|Buildings|Heating|Gases
-      gcam: Final Energy|Heat|Buildings|Gas
-      image:
-        - Final Energy|Residential|Space Heating|Natural Gas
-        - Final Energy|Residential|Water Heating|Natural Gas
-        - Final Energy|Commercial|Space Heating|Gases|Fossil
-        - Final Energy|Commercial|Water Heating|Gases|Fossil
-      message: Final Energy|Residential and Commercial|Gases
+heat, buildings, from natural gas boiler:
+  layer: buildings_end_use
+  energy_basis: final_energy
+  conversion: combustion
+  ecoinvent_aliases:
+    fltr: heat production, natural gas, at boiler condensing modulating <100kW
+  iam_aliases:
+    remind: FE|Buildings|Heating|Gases
+    remind-eu: FE|Buildings|Heating|Gases
+    gcam: Final Energy|Heat|Buildings|Gas
+    image:
+      - Final Energy|Residential|Space Heating|Natural Gas
+      - Final Energy|Residential|Water Heating|Natural Gas
+      - Final Energy|Commercial|Space Heating|Gases|Fossil
+      - Final Energy|Commercial|Water Heating|Gases|Fossil
+    message: Final Energy|Residential and Commercial|Gases|Gas
 
 heat, buildings, from biomethane boiler:
-    ecoinvent_aliases:
-        fltr: heat, residential, by combustion of biomethane using boiler, distributed by pipeline
-    iam_aliases:
-      message: Final Energy|Residential and Commercial|Gases|Biomass
+  layer: buildings_end_use
+  energy_basis: final_energy
+  conversion: combustion
+  ecoinvent_aliases:
+    fltr: heat, residential, by combustion of biomethane using boiler
+  iam_aliases:
+    message: Final Energy|Residential and Commercial|Gases|Biomass
 
 heat, buildings, from LPG boiler:
-    ecoinvent_aliases:
-        fltr: heat, residential, by combustion of liquefied petroleum gas using boiler, distributed by pipeline
-    iam_aliases:
-      remind: FE|Buildings|Liquids|Fossil|+|Gas
-      remind-eu: FE|Buildings|Liquids|Fossil|+|Gas
+  layer: buildings_end_use
+  energy_basis: final_energy
+  conversion: combustion
+  ecoinvent_aliases:
+    fltr: heat, residential, by combustion of liquefied petroleum gas using boiler
+  iam_aliases:
+    remind: FE|Buildings|Liquids|Fossil|+|Gas
+    remind-eu: FE|Buildings|Liquids|Fossil|+|Gas
+    message: Final Energy|Residential and Commercial|Liquids|Gas
+  assumption: Ambiguous gas-derived liquids retain the existing LPG boiler proxy.
 
 heat, buildings, from biomass-based methanol boiler:
-    ecoinvent_aliases:
-        fltr: heat, residential, by combustion of methanol using boiler, distributed by truck, produced with biomass
-    iam_aliases:
-      remind: FE|Buildings|Liquids|+|Biomass
-      remind-eu: FE|Buildings|Liquids|+|Biomass
+  layer: buildings_end_use
+  energy_basis: final_energy
+  conversion: combustion
+  ecoinvent_aliases:
+    fltr: heat, residential, by combustion of methanol using boiler, distributed by truck, produced with biomass
+  iam_aliases:
+    remind: FE|Buildings|Liquids|+|Biomass
+    remind-eu: FE|Buildings|Liquids|+|Biomass
+    message: Final Energy|Residential and Commercial|Liquids|Biomass
+  assumption: Biomass-derived liquids use the existing biomass methanol boiler proxy.
 
 heat, buildings, from coal-based methanol boiler:
-    ecoinvent_aliases:
-        fltr: heat, residential, by combustion of methanol using boiler, distributed by truck, produced with coal
-    iam_aliases:
-      remind: FE|Buildings|Liquids|Fossil|+|Coal
-      remind-eu: FE|Buildings|Liquids|Fossil|+|Coal
+  layer: buildings_end_use
+  energy_basis: final_energy
+  conversion: combustion
+  ecoinvent_aliases:
+    fltr: heat, residential, by combustion of methanol using boiler, distributed by truck, produced with coal
+  iam_aliases:
+    remind: FE|Buildings|Liquids|Fossil|+|Coal
+    remind-eu: FE|Buildings|Liquids|Fossil|+|Coal
+    message: Final Energy|Residential and Commercial|Liquids|Coal
+  assumption: Coal-derived liquids use the existing coal methanol boiler proxy.
 
 heat, buildings, from coal stove:
-    ecoinvent_aliases:
-        fltr: heat production, hard coal briquette, stove 5-15kW
-    iam_aliases:
-      remind: FE|Buildings|Solids|Coal
-      remind-eu: FE|Buildings|Solids|Coal
-      gcam: Final Energy|Heat|Buildings|Coal
-      image:
-        - Final Energy|Residential|Space Heating|Coal
-        - Final Energy|Residential|Water Heating|Coal
-        - Final Energy|Commercial|Space Heating|Solids|Fossil
-        - Final Energy|Commercial|Water Heating|Solids|Fossil
-      message: Final Energy|Residential and Commercial|Solids|Coal
+  layer: buildings_end_use
+  energy_basis: final_energy
+  conversion: combustion
+  ecoinvent_aliases:
+    fltr: heat production, hard coal briquette, stove 5-15kW
+  iam_aliases:
+    remind: FE|Buildings|Solids|Coal
+    remind-eu: FE|Buildings|Solids|Coal
+    gcam: Final Energy|Heat|Buildings|Coal
+    image:
+      - Final Energy|Residential|Space Heating|Coal
+      - Final Energy|Residential|Water Heating|Coal
+      - Final Energy|Commercial|Space Heating|Solids|Fossil
+      - Final Energy|Commercial|Water Heating|Solids|Fossil
+    message: Final Energy|Residential and Commercial|Solids|Coal
 
 heat, buildings, from wood logs heater:
-    ecoinvent_aliases:
-      fltr: heat production, mixed logs, at wood heater 6kW
-      mask: state-of-the-art 2014
-    iam_aliases:
-      remind: FE|Buildings|Solids|Biomass|+|Traditional
-      remind-eu: FE|Buildings|Solids|Biomass|+|Traditional
-      gcam: Final Energy|Heat|Buildings|Biomass
-      image:
-       - Final Energy|Residential|Space Heating|Traditional Biomass
-       - Final Energy|Residential|Water Heating|Traditional Biomass
-       - Final Energy|Commercial|Space Heating|Solids|Biomass|Traditional
-       - Final Energy|Commercial|Water Heating|Solids|Biomass|Traditional
-      message: Final Energy|Residential and Commercial|Solids|Biomass|Traditional
+  layer: buildings_end_use
+  energy_basis: final_energy
+  conversion: combustion
+  ecoinvent_aliases:
+    fltr: heat production, mixed logs, at wood heater 6kW
+    mask: state-of-the-art 2014
+  iam_aliases:
+    remind: FE|Buildings|Solids|Biomass|+|Traditional
+    remind-eu: FE|Buildings|Solids|Biomass|+|Traditional
+    gcam: Final Energy|Heat|Buildings|Biomass
+    image:
+      - Final Energy|Residential|Space Heating|Traditional Biomass
+      - Final Energy|Residential|Water Heating|Traditional Biomass
+      - Final Energy|Commercial|Space Heating|Solids|Biomass|Traditional
+      - Final Energy|Commercial|Water Heating|Solids|Biomass|Traditional
+    message: Final Energy|Residential and Commercial|Solids|Biomass|Traditional
 
 heat, buildings, from wood pellets heater:
-    ecoinvent_aliases:
-      fltr: heat production, wood pellet, at furnace 9kW
-      mask: state-of-the-art 2014
-    iam_aliases:
-      remind: FE|Buildings|Solids|Biomass|+|Modern
-      remind-eu: FE|Buildings|Solids|Biomass|+|Modern
-      image:
-        - Final Energy|Residential|Space Heating|Modern Biomass
-        - Final Energy|Residential|Water Heating|Modern Biomass
-        - Final Energy|Commercial|Space Heating|Solids|Biomass|Modern
-        - Final Energy|Commercial|Water Heating|Solids|Biomass|Modern
-      message: Final Energy|Residential and Commercial|Solids|Biomass|Modern
+  layer: buildings_end_use
+  energy_basis: final_energy
+  conversion: combustion
+  ecoinvent_aliases:
+    fltr: heat production, wood pellet, at furnace 9kW
+    mask: state-of-the-art 2014
+  iam_aliases:
+    remind: FE|Buildings|Solids|Biomass|+|Modern
+    remind-eu: FE|Buildings|Solids|Biomass|+|Modern
+    image:
+      - Final Energy|Residential|Space Heating|Modern Biomass
+      - Final Energy|Residential|Water Heating|Modern Biomass
+      - Final Energy|Commercial|Space Heating|Solids|Biomass|Modern
+      - Final Energy|Commercial|Water Heating|Solids|Biomass|Modern
+    message: Final Energy|Residential and Commercial|Solids|Biomass|Modern
 
 heat, buildings, from heat pump:
-    ecoinvent_aliases:
-      fltr: heat production, air-water heat pump 10kW
-    iam_aliases:
-      remind: FE|Buildings|Heating|Electricity|Heat pump
-      remind-eu: FE|Buildings|Heating|Electricity|Heat pump
-      message: Final Energy|Residential and Commercial|Electricity|Thermal|Heat Pumps
+  layer: buildings_end_use
+  energy_basis: final_energy
+  conversion: heat_pump
+  ecoinvent_aliases:
+    fltr: heat production, air-water heat pump 10kW
+  iam_aliases:
+    remind: FE|Buildings|Heating|Electricity|Heat pump
+    remind-eu: FE|Buildings|Heating|Electricity|Heat pump
+    message: Final Energy|Residential and Commercial|Electricity|Thermal|Heat Pumps
 
 heat, buildings, from electric heater:
-    ecoinvent_aliases:
-      fltr: heat, residential, electric storage heater, using electricity from grid
-    iam_aliases:
-      remind: FE|Buildings|Heating|Electricity|Resistance
-      remind-eu: FE|Buildings|Heating|Electricity|Resistance
-      gcam: Final Energy|Heat|Buildings|Electricity
-      image:
-        - Final Energy|Residential|Space Heating|Electricity
-        - Final Energy|Residential|Water Heating|Electricity
-        - Final Energy|Commercial|Space Heating|Electricity
-        - Final Energy|Commercial|Water Heating|Electricity
-      message: Final Energy|Residential and Commercial|Electricity|Thermal|Resistance
+  layer: buildings_end_use
+  energy_basis: final_energy
+  conversion: electric_boiler
+  ecoinvent_aliases:
+    fltr: heat, residential, electric storage heater, using electricity from grid
+  iam_aliases:
+    remind: FE|Buildings|Heating|Electricity|Resistance
+    remind-eu: FE|Buildings|Heating|Electricity|Resistance
+    gcam: Final Energy|Heat|Buildings|Electricity
+    image:
+      - Final Energy|Residential|Space Heating|Electricity
+      - Final Energy|Residential|Water Heating|Electricity
+      - Final Energy|Commercial|Space Heating|Electricity
+      - Final Energy|Commercial|Water Heating|Electricity
+    message: Final Energy|Residential and Commercial|Electricity|Thermal|Resistance
+  assumption: IMAGE and GCAM unsplit building electricity retain resistance heating.
 
 heat, buildings, from light fuel oil boiler:
-    ecoinvent_aliases:
-      fltr: heat production, light fuel oil, at boiler 100kW condensing, non-modulating
-    iam_aliases:
-      remind: FE|Buildings|Liquids|Fossil|+|Oil
-      remind-eu: FE|Buildings|Liquids|Fossil|+|Oil
-      image:
-        - Final Energy|Residential|Space Heating|Liquid (fossil)
-        - Final Energy|Residential|Water Heating|Liquid (fossil)
-        - Final Energy|Commercial|Space Heating|Liquids|Fossil
-        - Final Energy|Commercial|Water Heating|Liquids|Fossil
-      gcam: Final Energy|Heat|Buildings|Oil
-      message: Final Energy|Residential and Commercial|Liquids|Oil
+  layer: buildings_end_use
+  energy_basis: final_energy
+  conversion: combustion
+  ecoinvent_aliases:
+    fltr: heat production, light fuel oil, at boiler 100kW condensing, non-modulating
+  iam_aliases:
+    remind: FE|Buildings|Liquids|Fossil|+|Oil
+    remind-eu: FE|Buildings|Liquids|Fossil|+|Oil
+    image:
+      - Final Energy|Residential|Space Heating|Liquid (fossil)
+      - Final Energy|Residential|Water Heating|Liquid (fossil)
+      - Final Energy|Commercial|Space Heating|Liquids|Fossil
+      - Final Energy|Commercial|Water Heating|Liquids|Fossil
+    gcam: Final Energy|Heat|Buildings|Oil
+    message: Final Energy|Residential and Commercial|Liquids|Oil
 
-heat, industrial, from biomass:
-    ecoinvent_aliases:
-      fltr: heat production, softwood chips from forest, at furnace 1000kW
+heat, buildings, residual:
+  layer: buildings_end_use
+  energy_basis: heat_output
+  conversion: none
+  residual: true
+  supplier_type: frozen_legacy
+  ecoinvent_aliases:
+    fltr: market for heat, central or small-scale, other than natural gas
+  iam_aliases:
+    message: Final Energy|Residential and Commercial|Other
+  assumption: MESSAGE Other is represented by a frozen legacy building-heat mix.
 
-heat, industrial, from hydrogen:
-    ecoinvent_aliases:
-      fltr: hydrogen, burned in gas turbine 1GW
-    iam_aliases:
-      image: Final Energy|Industry|Other Sector|Hydrogen
-      gcam: Final Energy|Heat|Industry|Hydrogen
-      message: Final Energy|Industry|Other Sector|Hydrogen|Combustion
+# ---------------------------------------------------------------------------
+# Industry: delivered end-use heat
+# ---------------------------------------------------------------------------
 
-heat, industrial, from hydrogen conversion:
-    ecoinvent_aliases:
-      fltr: heat, residential, by conversion of hydrogen using fuel cell, PEM, allocated by exergy, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid
-    iam_aliases:
-      message: Final Energy|Industry|Other Sector|Hydrogen|Fuel Cells
+heat, industrial, from biomass boiler:
+  layer: industrial_end_use
+  energy_basis: final_energy
+  conversion: combustion
+  ecoinvent_aliases:
+    fltr: heat production, softwood chips from forest, at furnace 1000kW
+  iam_aliases:
+    image: Final Energy|Industry|Other Sector|Solids|Biomass
+    gcam: Final Energy|Heat|Industry|Biomass
+    message: Final Energy|Industry|Other Sector|Solids|Biomass
+    remind: FE|Industry|Solids|+|Biomass
+    remind-eu: FE|Industry|Solids|+|Biomass
 
-heat, industrial, from electric heater:
-    ecoinvent_aliases:
-      fltr: heat, residential, electric storage heater, using electricity from grid
-    iam_aliases:
-      message: Final Energy|Industry|Other Sector|Electricity|Thermal|Resistance
+heat, industrial, from hydrogen boiler:
+  layer: industrial_end_use
+  energy_basis: final_energy
+  conversion: combustion
+  ecoinvent_aliases:
+    fltr: heat production, from hydrogen-fired one gigawatt gas turbine
+    mask: balancing
+  iam_aliases:
+    image: Final Energy|Industry|Other Sector|Hydrogen
+    gcam: Final Energy|Heat|Industry|Hydrogen
+    message: Final Energy|Industry|Other Sector|Hydrogen|Combustion
+    remind: FE|Industry|+|Hydrogen
+    remind-eu: FE|Industry|+|Hydrogen
 
+heat, industrial, from hydrogen fuel cell:
+  layer: industrial_end_use
+  energy_basis: final_energy
+  conversion: combustion
+  ecoinvent_aliases:
+    fltr: heat, residential, by conversion of hydrogen using fuel cell
+  iam_aliases:
+    message: Final Energy|Industry|Other Sector|Hydrogen|Fuel Cells
+  assumption: Industrial hydrogen fuel cells use the residential exergy-allocated proxy.
+
+heat, industrial, from electric boiler:
+  layer: industrial_end_use
+  energy_basis: final_energy
+  conversion: electric_boiler
+  ecoinvent_aliases:
+    fltr: heat production, electric boiler, industrial
+  iam_aliases:
+    message: Final Energy|Industry|Other Sector|Electricity|Thermal|Resistance
+    remind:
+      - FE|Industry|Chemicals|Electricity|+|High-temperature heat
+      - FE|Industry|Chemicals|Electricity|+|Mechanical work and low-temperature heat
+      - FE|Industry|Other Industry|Electricity|+|High-temperature heat
+      - FE|Industry|Other Industry|Electricity|+|Mechanical work and low-temperature heat
+    remind-eu:
+      - FE|Industry|Chemicals|Electricity|+|High-temperature heat
+      - FE|Industry|Chemicals|Electricity|+|Mechanical work and low-temperature heat
+      - FE|Industry|Other Industry|Electricity|+|High-temperature heat
+      - FE|Industry|Other Industry|Electricity|+|Mechanical work and low-temperature heat
+  assumption: REMIND mechanical-work and low-temperature electricity is treated fully as resistance heat.
 
 heat, industrial, from heat pump:
-    ecoinvent_aliases:
-      fltr: heat production, water-water heat pump, industrial, 100kW
-      mask: steam
-    iam_aliases:
-      remind: SE|Heat|Electricity|Heat Pump
-      remind-eu: SE|Heat|Electricity|Heat Pump
-      image: Final Energy|Industry|Other Sector|Electricity
-      message: Final Energy|Industry|Other Sector|Electricity|Thermal|Heat Pumps
+  layer: industrial_end_use
+  energy_basis: final_energy
+  conversion: heat_pump
+  ecoinvent_aliases:
+    fltr: heat production, water-water heat pump, industrial, 100kW
+    mask: steam
+  iam_aliases:
+    image: Final Energy|Industry|Other Sector|Electricity
+    message: Final Energy|Industry|Other Sector|Electricity|Thermal|Heat Pumps
+  assumption: IMAGE unsplit industrial electricity retains the existing heat-pump assumption.
 
-heat, industrial, from natural gas CHP:
-    ecoinvent_aliases:
-      fltr:
-        name: heat and power co-generation, natural gas, conventional power plant, 100MW electrical
-        reference product: heat
-    iam_aliases:
-      remind: SE|Heat|Gas|Combined Heat and Power
-      remind-eu: SE|Heat|Gas|Combined Heat and Power
-      image: Final Energy|Industry|Other Sector|Gases|Fossil
-      gcam: Final Energy|Heat|Industry|Gas
-      message: Final Energy|Industry|Other Sector|Gases|Gas
+heat, industrial, from natural gas boiler:
+  layer: industrial_end_use
+  energy_basis: final_energy
+  conversion: combustion
+  ecoinvent_aliases:
+    fltr: heat production, natural gas, at industrial furnace
+  iam_aliases:
+    image: Final Energy|Industry|Other Sector|Gases|Fossil
+    gcam: Final Energy|Heat|Industry|Gas
+    message: Final Energy|Industry|Other Sector|Gases|Gas
+    remind: FE|Industry|Gases|+|Fossil
+    remind-eu: FE|Industry|Gases|+|Fossil
 
-heat, industrial, from biogas CHP:
-    ecoinvent_aliases:
-      fltr:
-        name: heat and power co-generation, biogas, gas engine
-        reference product: heat, central or small-scale, other than natural gas
-    iam_aliases:
-      message: Final Energy|Industry|Other Sector|Gases|Biomass
+heat, industrial, from biomethane boiler:
+  layer: industrial_end_use
+  energy_basis: final_energy
+  conversion: combustion
+  ecoinvent_aliases:
+    fltr: heat, residential, by combustion of biomethane using boiler
+  iam_aliases:
+    message: Final Energy|Industry|Other Sector|Gases|Biomass
+    remind: FE|Industry|Gases|+|Biomass
+    remind-eu: FE|Industry|Gases|+|Biomass
+  assumption: Industrial biomethane uses the available biomethane boiler proxy.
 
-
-heat, industrial, from coal CHP:
-    ecoinvent_aliases:
-      fltr:
-        name: heat and power co-generation, hard coal
-        reference product: heat
-    iam_aliases:
-      remind: SE|Heat|Coal|Combined Heat and Power
-      remind-eu: SE|Heat|Coal|Combined Heat and Power
-      image: Final Energy|Industry|Other Sector|Solids|Fossil
-      gcam: Final Energy|Heat|Industry|Coal
-      message: Final Energy|Industry|Other Sector|Solids|Coal
-
-heat, industrial, from biomass CHP:
-    ecoinvent_aliases:
-      fltr:
-        name: heat and power co-generation, wood chips, 6667 kW
-        reference product: heat
-      mask:
-        - renewable
-        - state
-    iam_aliases:
-      remind: SE|Heat|Biomass|+|Combined Heat and Power
-      remind-eu: SE|Heat|Biomass|+|Combined Heat and Power
-      image: Final Energy|Industry|Other Sector|Solids|Biomass
-      gcam: Final Energy|Heat|Industry|Biomass
-      message: Final Energy|Industry|Other Sector|Solids|Biomass
+heat, industrial, from coal furnace:
+  layer: industrial_end_use
+  energy_basis: final_energy
+  conversion: combustion
+  ecoinvent_aliases:
+    fltr: heat production, at hard coal industrial furnace 1-10MW
+  iam_aliases:
+    image: Final Energy|Industry|Other Sector|Solids|Fossil
+    gcam: Final Energy|Heat|Industry|Coal
+    message: Final Energy|Industry|Other Sector|Solids|Coal
+    remind: FE|Industry|Solids|+|Fossil
+    remind-eu: FE|Industry|Solids|+|Fossil
 
 heat, industrial, from light fuel oil boiler:
-    ecoinvent_aliases:
-      fltr: heat production, light fuel oil, at industrial furnace 1MW
-    iam_aliases:
-      image: Final Energy|Industry|Other Sector|Liquids|Fossil
-      gcam: Final Energy|Heat|Industry|Oil
-      message: Final Energy|Industry|Other Sector|Liquids|Oil|Thermal
+  layer: industrial_end_use
+  energy_basis: final_energy
+  conversion: combustion
+  ecoinvent_aliases:
+    fltr: heat production, light fuel oil, at industrial furnace 1MW
+  iam_aliases:
+    image: Final Energy|Industry|Other Sector|Liquids|Fossil
+    gcam: Final Energy|Heat|Industry|Oil
+    message: Final Energy|Industry|Other Sector|Liquids|Oil|Thermal
+    remind: FE|Industry|Liquids|+|Fossil
+    remind-eu: FE|Industry|Liquids|+|Fossil
 
 heat, industrial, from biofuel boiler:
-    ecoinvent_aliases:
-      fltr: heat, residential, by combustion of methanol using boiler, distributed by truck, produced with biomass
-    iam_aliases:
-      message: Final Energy|Industry|Other Sector|Liquids|Biomass|Thermal
-
-
-heat, industrial, from geothermal:
-    ecoinvent_aliases:
-      fltr: heat production, deep geothermal
-    iam_aliases:
-      remind: SE|Heat|+|Geothermal
-      remind-eu: SE|Heat|+|Geothermal
-      # message: Final Energy|Industry|Other Sector
+  layer: industrial_end_use
+  energy_basis: final_energy
+  conversion: combustion
+  ecoinvent_aliases:
+    fltr: heat, residential, by combustion of methanol using boiler, distributed by truck, produced with biomass
+  iam_aliases:
+    message: Final Energy|Industry|Other Sector|Liquids|Biomass|Thermal
+    remind: FE|Industry|Liquids|+|Biomass
+    remind-eu: FE|Industry|Liquids|+|Biomass
+  assumption: Industrial bio-liquids use the existing biomass methanol boiler proxy.
 
 heat, industrial, from solar thermal:
-    ecoinvent_aliases:
-      fltr: heat production, at 110 MW concentrating solar power plant, with thermal energy storage
-    iam_aliases:
-      remind: SE|Heat|+|Solar
-      remind-eu: SE|Heat|+|Solar
-      gcam: Final Energy|Heat|Industry|Solar
-      message: Final Energy|Industry|Other Sector|Solar
-
+  layer: industrial_end_use
+  energy_basis: heat_output
+  conversion: none
+  ecoinvent_aliases:
+    fltr: heat production, at 110 MW concentrating solar power plant, with thermal energy storage
+  iam_aliases:
+    gcam: Final Energy|Heat|Industry|Solar
+    message: Final Energy|Industry|Other Sector|Solar
 
 heat, industrial, from district heating:
-    ecoinvent_aliases:
-        fltr: heat, district or industrial, other than natural gas
-        mask:
-          - group
-          - generic
-    iam_aliases:
-      message: Final Energy|Industry|Other Sector|Heat
+  layer: industrial_end_use
+  energy_basis: heat_output
+  conversion: none
+  supplier_type: secondary_market
+  ecoinvent_aliases:
+    fltr: market for heat, secondary, district or industrial
+  iam_aliases:
+    image: Final Energy|Industry|Other Sector|Heat
+    gcam: Final Energy|Heat|Industry|District Heat
+    message: Final Energy|Industry|Other Sector|Heat
+    remind: FE|Industry|+|Heat
+    remind-eu: FE|Industry|+|Heat
+
+# ---------------------------------------------------------------------------
+# Secondary/district heat supply
+# ---------------------------------------------------------------------------
+
+heat, secondary, from biomass:
+  layer: secondary_supply
+  energy_basis: heat_output
+  conversion: none
+  ecoinvent_aliases:
+    fltr: heat production, softwood chips from forest, at furnace 1000kW
+  iam_aliases:
+    message: Secondary Energy|Heat|Biomass
+    image: Secondary Energy|Heat|Biomass
+    tiam-ucl: Secondary Energy|Heat|Biomass|Heat|w/o CCS
+
+heat, secondary, from biomass CHP:
+  layer: secondary_supply
+  energy_basis: heat_output
+  conversion: none
+  ecoinvent_aliases:
+    fltr:
+      name: heat and power co-generation, wood chips, 6667 kW
+      reference product: heat
+    mask: [renewable, state]
+  iam_aliases:
+    remind: SE|Heat|Biomass|+|Combined Heat and Power
+    remind-eu: SE|Heat|Biomass|+|Combined Heat and Power
+
+heat, secondary, from biomass residual:
+  layer: secondary_supply
+  energy_basis: heat_output
+  conversion: none
+  residual: true
+  ecoinvent_aliases:
+    fltr: heat production, softwood chips from forest, at furnace 1000kW
+  iam_aliases:
+    remind:
+      terms:
+        - variable: SE|Heat|+|Biomass
+        - variable: SE|Heat|Biomass|+|Combined Heat and Power
+          coefficient: -1
+    remind-eu:
+      terms:
+        - variable: SE|Heat|+|Biomass
+        - variable: SE|Heat|Biomass|+|Combined Heat and Power
+          coefficient: -1
+
+heat, secondary, from biomass with CCS:
+  layer: secondary_supply
+  energy_basis: heat_output
+  conversion: none
+  ecoinvent_aliases:
+    fltr: heat production, at co-generation wood-fired power plant, post, pipeline 200km, storage 1000m
+  iam_aliases:
+    tiam-ucl: Secondary Energy|Heat|Biomass|Heat|w CCS
+
+heat, secondary, from coal:
+  layer: secondary_supply
+  energy_basis: heat_output
+  conversion: none
+  ecoinvent_aliases:
+    fltr: heat production, at hard coal industrial furnace 1-10MW
+  iam_aliases:
+    message: Secondary Energy|Heat|Coal
+    image: Secondary Energy|Heat|Coal
+    tiam-ucl: Secondary Energy|Heat|Coal|Heat|w/o CCS
+
+heat, secondary, from coal CHP:
+  layer: secondary_supply
+  energy_basis: heat_output
+  conversion: none
+  ecoinvent_aliases:
+    fltr:
+      name: heat and power co-generation, hard coal
+      reference product: heat
+  iam_aliases:
+    remind: SE|Heat|Coal|Combined Heat and Power
+    remind-eu: SE|Heat|Coal|Combined Heat and Power
+
+heat, secondary, from coal residual:
+  layer: secondary_supply
+  energy_basis: heat_output
+  conversion: none
+  residual: true
+  ecoinvent_aliases:
+    fltr: heat production, at hard coal industrial furnace 1-10MW
+  iam_aliases:
+    remind:
+      terms:
+        - variable: SE|Heat|+|Coal
+        - variable: SE|Heat|Coal|Combined Heat and Power
+          coefficient: -1
+    remind-eu:
+      terms:
+        - variable: SE|Heat|+|Coal
+        - variable: SE|Heat|Coal|Combined Heat and Power
+          coefficient: -1
+
+heat, secondary, from coal with CCS:
+  layer: secondary_supply
+  energy_basis: heat_output
+  conversion: none
+  ecoinvent_aliases:
+    fltr: heat production, at co-generation hard coal-fired power plant, post, pipeline 200km, storage 1000m
+  iam_aliases:
+    tiam-ucl: Secondary Energy|Heat|Coal|Heat|w CCS
+
+heat, secondary, from coke:
+  layer: secondary_supply
+  energy_basis: heat_output
+  conversion: none
+  ecoinvent_aliases:
+    fltr: heat production, at hard coal industrial furnace 1-10MW
+  iam_aliases:
+    tiam-ucl: Secondary Energy|Heat|Coke|Heat|w/o CCS
+  assumption: TIAM-UCL coke heat uses the hard-coal furnace proxy.
+
+heat, secondary, from coke with CCS:
+  layer: secondary_supply
+  energy_basis: heat_output
+  conversion: none
+  ecoinvent_aliases:
+    fltr: heat production, at co-generation hard coal-fired power plant, post, pipeline 200km, storage 1000m
+  iam_aliases:
+    tiam-ucl: Secondary Energy|Heat|Coke|Heat|w CCS
+  assumption: TIAM-UCL coke with CCS uses the coal CHP with CCS proxy.
+
+heat, secondary, from natural gas:
+  layer: secondary_supply
+  energy_basis: heat_output
+  conversion: none
+  ecoinvent_aliases:
+    fltr: heat production, natural gas, at industrial furnace
+  iam_aliases:
+    message: Secondary Energy|Heat|Gas
+    image: Secondary Energy|Heat|Gas
+    tiam-ucl: Secondary Energy|Heat|Natural Gas|Heat|w/o CCS
+
+heat, secondary, from natural gas CHP:
+  layer: secondary_supply
+  energy_basis: heat_output
+  conversion: none
+  ecoinvent_aliases:
+    fltr:
+      name: heat and power co-generation, natural gas, conventional power plant, 100MW electrical
+      reference product: heat
+  iam_aliases:
+    remind: SE|Heat|Gas|Combined Heat and Power
+    remind-eu: SE|Heat|Gas|Combined Heat and Power
+
+heat, secondary, from natural gas residual:
+  layer: secondary_supply
+  energy_basis: heat_output
+  conversion: none
+  residual: true
+  ecoinvent_aliases:
+    fltr: heat production, natural gas, at industrial furnace
+  iam_aliases:
+    remind:
+      terms:
+        - variable: SE|Heat|+|Gas
+        - variable: SE|Heat|Gas|Combined Heat and Power
+          coefficient: -1
+    remind-eu:
+      terms:
+        - variable: SE|Heat|+|Gas
+        - variable: SE|Heat|Gas|Combined Heat and Power
+          coefficient: -1
+
+heat, secondary, from natural gas with CCS:
+  layer: secondary_supply
+  energy_basis: heat_output
+  conversion: none
+  ecoinvent_aliases:
+    fltr: heat production, at co-generation natural gas-fired power plant, post, pipeline 200km, storage 1000m
+  iam_aliases:
+    tiam-ucl: Secondary Energy|Heat|Natural Gas|Heat|w CCS
+
+heat, secondary, from oil:
+  layer: secondary_supply
+  energy_basis: heat_output
+  conversion: none
+  ecoinvent_aliases:
+    fltr: heat production, light fuel oil, at industrial furnace 1MW
+  iam_aliases:
+    message: Secondary Energy|Heat|Oil
+    image: Secondary Energy|Heat|Oil
+    tiam-ucl: Secondary Energy|Heat|Oil|Heat|w/o CCS
+
+heat, secondary, from oil with CCS:
+  layer: secondary_supply
+  energy_basis: heat_output
+  conversion: none
+  ecoinvent_aliases:
+    fltr: heat production, at co-generation oil-fired power plant, post, pipeline 200km, storage 1000m
+  iam_aliases:
+    tiam-ucl: Secondary Energy|Heat|Oil|Heat|w CCS
+
+heat, secondary, from electricity:
+  layer: secondary_supply
+  energy_basis: heat_output
+  conversion: none
+  ecoinvent_aliases:
+    fltr: heat production, electric boiler, industrial
+  iam_aliases:
+    message: Secondary Energy|Heat|Electricity
+
+heat, secondary, from heat pump:
+  layer: secondary_supply
+  energy_basis: heat_output
+  conversion: none
+  ecoinvent_aliases:
+    fltr: heat production, water-water heat pump, industrial, 100kW
+    mask: steam
+  iam_aliases:
+    remind: SE|Heat|Electricity|Heat Pump
+    remind-eu: SE|Heat|Electricity|Heat Pump
+  assumption: REMIND's equal geothermal bookkeeping alias is intentionally not added a second time.
+
+heat, secondary, from geothermal:
+  layer: secondary_supply
+  energy_basis: heat_output
+  conversion: none
+  ecoinvent_aliases:
+    fltr: heat production, deep geothermal
+  iam_aliases:
+    message: Secondary Energy|Heat|Geothermal
+    tiam-ucl: Secondary Energy|Heat|Geothermal|Heat
+
+heat, secondary, from nuclear:
+  layer: secondary_supply
+  energy_basis: heat_output
+  conversion: none
+  ecoinvent_aliases:
+    fltr: heat production, nuclear cogeneration
+  iam_aliases:
+    message: Secondary Energy|Heat|Nuclear
+  assumption: Nuclear cogeneration burdens use exergy allocation at 140 C heat delivery.
+
+heat, secondary, from solar thermal:
+  layer: secondary_supply
+  energy_basis: heat_output
+  conversion: none
+  ecoinvent_aliases:
+    fltr: heat production, at 110 MW concentrating solar power plant, with thermal energy storage
+  iam_aliases:
+    remind: SE|Heat|+|Solar
+    remind-eu: SE|Heat|+|Solar
+
+heat, secondary, residual:
+  layer: secondary_supply
+  energy_basis: heat_output
+  conversion: none
+  residual: true
+  supplier_type: frozen_legacy
+  ecoinvent_aliases:
+    fltr: market for heat, district or industrial, other than natural gas
+  iam_aliases:
+    image:
+      terms:
+        - variable: Secondary Energy|Heat
+        - variable: Secondary Energy|Heat|Biomass
+          coefficient: -1
+        - variable: Secondary Energy|Heat|Coal
+          coefficient: -1
+        - variable: Secondary Energy|Heat|Gas
+          coefficient: -1
+        - variable: Secondary Energy|Heat|Oil
+          coefficient: -1
+  assumption: Unspecified IMAGE secondary heat retains a frozen legacy district-heat composition.

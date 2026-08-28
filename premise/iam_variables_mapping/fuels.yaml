@@ -1003,7 +1003,7 @@ biodiesel, from oil crops:
       - capture
       - station
       - algae
-biodiesel, from oil crops, with CCS:
+biodiesel, from used cooking oil, with CCS:
   lhv:
     unit: megajoule
     value: 38

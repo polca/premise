@@ -1349,6 +1349,13 @@ Once the new markets are created, *premise* re-links all electricity-consuming
 activities to the new regional markets. The regional market it re-links to
 depends on the location of the consumer.
 
+.. _heat-transformation:
+
+Heat
+++++
+
+.. include:: heat.inc
+
 Cement production
 +++++++++++++++++
 
@@ -2432,59 +2439,6 @@ are modelled with the calorific value of conventional gasoline.
   Ethanol production, via fermentation, from poplar                   0.041     kilogram    WEU
  =================================================================== ========= =========== ===========
 
-Heat
-++++
-
-Run
-
-.. code-block:: python
-
-    from premise import *
-    import brightway2 as bw
-
-    bw.projects.set_current("my_project")
-
-    ndb = NewDatabase(
-        scenarios=[
-                {"model":"remind", "pathway":"SSP2-Base", "year":2028}
-            ],
-        source_db="ecoinvent 3.7 cutoff",
-        source_version="3.7.1",
-        key='xxxxxxxxxxxxxxxxxxxxxxxxx'
-    )
-    ndb.update("heat")
-
-Key outputs
-~~~~~~~~~~~
-
-* Regionalizes heat and steam production datasets by IAM region.
-* Relinks heat producers to regional fuel and biomass markets where available.
-* Splits CO2 emissions into fossil and non-fossil shares based on fuel mixes.
-
-Datasets that supply heat and steam via the combustion of natural gas and diesel
-are regionalized (made available for each region of the IAM model) and relinked
-to regional fuel markets. If the fuel market contains a share of non-fossil fuels,
-the CO2 emissions of the heat and steam production are split between fossil and
-non-fossil emissions. Once regionalized, the heat and steam production datasets
-relink to activities that require heat within the same region.
-
-Here is a list of the heat and steam production datasets that are regionalized:
-
-- diesel, burned in ...
-- steam production, as energy carrier, in chemical industry
-- heat production, natural gas, ...
-- heat and power co-generation, natural gas, ...
-- heat production, light fuel oil, ...
-- heat production, softwood chips from forest, ...
-- heat production, hardwood chips from forest, ...
-
-These datasets are relinked to the corresponding regionalized fuel market only
-if `.update("fuels")` has been run.
-Also, heat production datasets that use biomass as fuel input (e.g., softwood and
-hardwood chips) relink to the dataset `market for biomass, used as fuel` if
-`update("biomass")` has been run previously.
-
-
 CO2 emissions update
 --------------------
 
@@ -3025,19 +2979,33 @@ For questions related to GAINS modelling, please contact the respective GAINS te
 * GAINS-EU: https://gains.iiasa.ac.at/gains/EUN/index.login
 * GAINS-IAM: https://gains.iiasa.ac.at/gains/IAM/index.login
 
-Logs
-++++
+Structured change reports
++++++++++++++++++++++++++
 
-*premise* generates a spreadsheet report detailing changes made to the database
-for each scenario. The report is saved in the current working directory and
-is automatically generated after database export.
+*premise* compares the normalized source inventory with each certified,
+pre-export scenario. Database exports automatically create a compact Excel
+workbook and an exhaustive Parquet audit when ``generate_reports=True``.
+The workbook contains review-oriented summaries, key numeric changes, market
+and proxy information, and validation findings; raw exchange vectors remain in
+Parquet.
 
-The report lists the datasets added, updated and emptied.
-It also gives a number of indicators relating to efficiency,
-emissions, etc. for each scenario.
+Reports can also be generated immediately after ``update()``, including when
+automatic reports were disabled:
 
-Finally, it also contains a "Validation" tab that lists datasets
-which potentially present erroneous values. These datasets are
-to be checked by the user.
+.. code-block:: python
 
-This report can also be generated manually using the `generate_change_report()` method.
+    ndb = NewDatabase(..., generate_reports=False)
+    ndb.update()
+    artifacts = ndb.generate_change_report(
+        filepath="review/reports",
+        name="ssp2-review.xlsx",
+    )
+    print(artifacts.workbook_path)
+    print(artifacts.details_path)
+
+``generate_change_report()`` returns an immutable ``ChangeReportArtifacts``
+object. Filenames contain a UTC timestamp and the build ID and existing report
+files are never overwritten. The report schema version is ``2``. The former
+pipe-delimited log workbook was removed; historical log files are neither
+imported nor backfilled. See :doc:`structured_change_report` for the workbook
+and Parquet schemas.

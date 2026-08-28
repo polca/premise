@@ -10,6 +10,7 @@ from premise.data_collection import IAMDataCollection
 from premise.filesystem_constants import INVENTORY_DIR
 
 CDR_INVENTORY = INVENTORY_DIR / "lci-carbon-capture.xlsx"
+AFFORESTATION_INVENTORY = INVENTORY_DIR / "lci-afforestation.xlsx"
 
 
 def get_cdr_allocation_transform(
@@ -77,7 +78,7 @@ def get_cdr_allocation_transform(
 def get_cdr_transform(
     electricity_efficiency=2.0,
     heat_efficiency=0.5,
-    technology="direct air capture (solvent, gas heat) with storage",
+    technology="direct air capture (solvent, high-temp, gas heat) with storage",
 ):
     cdr = object.__new__(CarbonDioxideRemoval)
     cdr.year = 2030
@@ -425,7 +426,7 @@ def test_afforestation_duplicate_iam_variable_is_split_by_region():
     cdr.cdr_map = {
         "afforestation, eucalyptus plantation": [],
         "afforestation, poplar plantation": [],
-        "direct air capture (solvent, gas heat) with storage": [],
+        "direct air capture (solvent, high-temp, gas heat) with storage": [],
     }
     production_volumes = xr.DataArray(
         np.array(
@@ -440,7 +441,7 @@ def test_afforestation_duplicate_iam_variable_is_split_by_region():
             "variables": [
                 "afforestation, eucalyptus plantation",
                 "afforestation, poplar plantation",
-                "direct air capture (solvent, gas heat) with storage",
+                "direct air capture (solvent, high-temp, gas heat) with storage",
             ],
             "region": ["BRA", "CAN", "World"],
             "year": [2030],
@@ -468,16 +469,17 @@ def test_afforestation_duplicate_iam_variable_is_split_by_region():
         variables="afforestation, poplar plantation", region="World"
     ).item() == pytest.approx(10.0)
     assert constrained.sel(
-        variables="direct air capture (solvent, gas heat) with storage", region="BRA"
+        variables="direct air capture (solvent, high-temp, gas heat) with storage",
+        region="BRA",
     ).item() == pytest.approx(5.0)
 
 
 def test_cdr_duplicate_production_volume_is_split_by_energy_carrier_share():
     technologies = [
-        "direct air capture (solvent, gas heat) with storage",
-        "direct air capture (solvent, industrial steam heat) with storage",
-        "direct air capture (solvent, heat pump) with storage",
-        "direct air capture (solvent, hydrogen heat) with storage",
+        "direct air capture (solvent, high-temp, gas heat) with storage",
+        "direct air capture (solvent, high-temp, industrial steam heat) with storage",
+        "direct air capture (sorbent, low-temp, heat pump) with storage",
+        "direct air capture (solvent, high-temp, hydrogen heat) with storage",
     ]
     carriers = ["gases", "heat", "electricity", "hydrogen"]
 
@@ -506,10 +508,10 @@ def test_cdr_duplicate_production_volume_is_split_by_energy_carrier_share():
     split = cdr._split_cdr_production_volumes_by_carrier(production_volumes)
 
     expected = {
-        "direct air capture (solvent, gas heat) with storage": 30.0,
-        "direct air capture (solvent, industrial steam heat) with storage": 10.0,
-        "direct air capture (solvent, heat pump) with storage": 40.0,
-        "direct air capture (solvent, hydrogen heat) with storage": 20.0,
+        "direct air capture (solvent, high-temp, gas heat) with storage": 30.0,
+        "direct air capture (solvent, high-temp, industrial steam heat) with storage": 10.0,
+        "direct air capture (sorbent, low-temp, heat pump) with storage": 40.0,
+        "direct air capture (solvent, high-temp, hydrogen heat) with storage": 20.0,
     }
     for technology, amount in expected.items():
         assert split.sel(variables=technology, region="EUR", year=2050).item() == (
@@ -542,7 +544,7 @@ def test_regionalize_cdr_activities_keeps_mapped_activities_for_scaled_pass():
     cdr.iam_data = SimpleNamespace(production_volumes=None)
     cdr.mapping = SimpleNamespace(
         generate_cdr_map=lambda model: {
-            "direct air capture (sorbent, heat pump) with storage": [primary]
+            "direct air capture (sorbent, low-temp, heat pump) with storage": [primary]
         },
         generate_sets_from_filters=lambda filters: {
             "direct air capture": [primary, support]
@@ -595,10 +597,10 @@ def test_support_filter_keeps_shared_unscaled_mapped_activities():
     filtered = CarbonDioxideRemoval._exclude_mapped_cdr_activities_from_support(
         support_activities={"direct air capture": [dac, shared_beccs, support]},
         cdr_map={
-            "direct air capture (sorbent, heat pump) with storage": [dac],
+            "direct air capture (sorbent, low-temp, heat pump) with storage": [dac],
             "biomass heat generation, with CCS": [shared_beccs],
         },
-        technologies={"direct air capture (sorbent, heat pump) with storage"},
+        technologies={"direct air capture (sorbent, low-temp, heat pump) with storage"},
     )
 
     assert filtered == {"direct air capture": [shared_beccs, support]}
@@ -857,7 +859,7 @@ def test_dac_energy_lower_bounds_limit_scaled_solvent_heat_route():
 
 
 def test_heat_pump_dac_lower_bound_converts_heat_floor_to_electricity():
-    technology = "direct air capture (solvent, heat pump) with storage"
+    technology = "direct air capture (solvent, high-temp, heat pump) with storage"
     cdr, _ = get_cdr_transform(
         electricity_efficiency=10.0,
         heat_efficiency=10.0,
@@ -910,7 +912,7 @@ def test_heat_pump_dac_lower_bound_converts_heat_floor_to_electricity():
 
 
 def test_sorbent_heat_pump_dac_lower_bound_keeps_total_energy_above_floor():
-    technology = "direct air capture (sorbent, heat pump) with storage"
+    technology = "direct air capture (sorbent, low-temp, heat pump) with storage"
     cdr, _ = get_cdr_transform(
         electricity_efficiency=10.0,
         heat_efficiency=10.0,
@@ -964,7 +966,7 @@ def test_sorbent_heat_pump_dac_lower_bound_keeps_total_energy_above_floor():
 
 
 def test_hydrogen_dac_lower_bound_uses_delivered_heat():
-    technology = "direct air capture (solvent, hydrogen heat) with storage"
+    technology = "direct air capture (solvent, high-temp, hydrogen heat) with storage"
     cdr, _ = get_cdr_transform(
         electricity_efficiency=10.0,
         heat_efficiency=10.0,
@@ -1007,8 +1009,8 @@ def test_hydrogen_dac_lower_bound_uses_delivered_heat():
     ] == pytest.approx(5.3 / (9.18 * 0.5))
 
 
-def get_inventory_activity(name):
-    workbook = load_workbook(CDR_INVENTORY, data_only=True, read_only=True)
+def get_inventory_activity(name, inventory=CDR_INVENTORY):
+    workbook = load_workbook(inventory, data_only=True, read_only=True)
     worksheet = workbook["DAC"]
     try:
         rows = list(worksheet.iter_rows(values_only=True))
@@ -1100,7 +1102,7 @@ def test_dac_hydrogen_proxy_inventories_replace_natural_gas_heat(
 def test_afforestation_inventories_have_importable_forestry_amounts(
     activity_name, input_name, amount
 ):
-    _, exchanges = get_inventory_activity(activity_name)
+    _, exchanges = get_inventory_activity(activity_name, AFFORESTATION_INVENTORY)
 
     production = next(exc for exc in exchanges if exc["type"] == "production")
     assert production["name"] == activity_name
@@ -1171,18 +1173,18 @@ def test_hydrogen_ccs_inventory_uses_inferred_antonini_heat_and_electricity():
     assert "former CEMCAP-derived 4.0556 MJ/kg CO2" in comment
     assert "Final CO2 compression electricity is omitted" in comment
 
-    assert not any(exc["name"] == "market for monoethanolamine" for exc in exchanges)
     assert not any(
         exc["name"] == "market group for electricity, low voltage"
         and "final compression" in exc.get("comment", "").lower()
         for exc in exchanges
     )
 
-    mdea = next(
-        exc for exc in exchanges if exc["name"] == "market for methyldiethanolamine"
+    mea = next(exc for exc in exchanges if exc["name"] == "market for monoethanolamine")
+    assert mea["amount"] == pytest.approx(3.4e-5)
+    assert mea["reference product"] == "monoethanolamine"
+    assert not any(
+        exc["name"] == "market for methyldiethanolamine" for exc in exchanges
     )
-    assert mdea["amount"] == pytest.approx(3.4e-5)
-    assert mdea["reference product"] == "methyldiethanolamine"
 
     electricity = next(
         exc

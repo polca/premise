@@ -1,14 +1,72 @@
 import pytest
 import pandas as pd
 
+import premise.metals as metals_module
+import premise.validation as validation_module
 from premise.filesystem_constants import DATA_DIR
 from premise.metals import (
     Metals,
     PostAllocationCorrectionError,
+    _load_mining_shares_mapping,
+    build_transport_lookup,
     correct_metal_resource_exchanges,
+    extract_exact_filter_values,
     extract_reference_products_from_filter,
     is_secondary_metal_supply_exchange,
+    matches_filter_query,
 )
+
+
+def test_mining_share_loader_returns_unfiltered_source_values(monkeypatch):
+    source = pd.DataFrame(
+        {
+            "Metal": ["Copper", "Copper"],
+            "Year 2020": [0.005, 0.995],
+            "Year 2030": [0.004, 0.996],
+        }
+    )
+    monkeypatch.setattr(pd, "read_excel", lambda *args, **kwargs: source.copy())
+    _load_mining_shares_mapping.cache_clear()
+    try:
+        loaded = _load_mining_shares_mapping("3.12")
+    finally:
+        _load_mining_shares_mapping.cache_clear()
+
+    assert loaded.columns.tolist() == ["Metal", "2020", "2030"]
+    assert loaded["2020"].tolist() == [0.005, 0.995]
+    assert loaded["2030"].tolist() == [0.004, 0.996]
+
+
+def test_transport_lookup_preserves_last_duplicate_row_and_frame_metadata():
+    dataframe = pd.DataFrame(
+        {
+            "country": ["CH", "CH", "DE"],
+            "Metal": ["Copper", "Copper", "Copper"],
+            "TransportMode Label": ["Railway", "Road", "Sea"],
+        },
+        index=[10, 20, 30],
+    )
+    metals = object.__new__(Metals)
+    metals.metals_transport = dataframe
+    metals.transport_lookup = build_transport_lookup(dataframe)
+    metals.alt_names = {"copper": "Copper"}
+
+    result = metals.get_weighted_average_distance("CH", "copper")
+
+    pd.testing.assert_frame_equal(result, dataframe.iloc[[1]])
+
+
+def test_metals_validation_reuses_supplied_mining_shares(monkeypatch):
+    validator = object.__new__(validation_module.MetalsValidation)
+    validator.mining_shares_mapping = pd.DataFrame({"Metal": [], "Country": []})
+
+    monkeypatch.setattr(
+        validation_module,
+        "_load_mining_shares_mapping_for_validation",
+        lambda _version: pytest.fail("validation reopened the mining-share workbook"),
+    )
+
+    validator.check_excel_shares_preserved()
 
 
 def biosphere_resource(name, amount):
@@ -72,6 +130,161 @@ def test_extract_reference_products_from_filter_handles_either_expression():
         "lithium carbonate, battery grade",
         "lithium carbonate",
     ]
+
+
+@pytest.mark.parametrize(
+    ("value", "query", "expected"),
+    [
+        ("copper mine operation", {"contains": "mine"}, True),
+        ("copper mine operation", {"equals": "copper mine operation"}, True),
+        ("copper mine operation", {"startswith": "copper"}, True),
+        (
+            "copper mine operation",
+            {"all": [{"contains": "copper"}, {"contains": "mine"}]},
+            True,
+        ),
+        (
+            "copper mine operation",
+            {"either": [{"equals": "other"}, {"contains": "mine"}]},
+            True,
+        ),
+        ("copper mine operation", {"contains": "market"}, False),
+    ],
+)
+def test_matches_filter_query(value, query, expected):
+    assert matches_filter_query(value, query) is expected
+
+
+def test_extract_exact_filter_values_handles_boolean_expressions():
+    assert extract_exact_filter_values(
+        {"either": [{"equals": "copper"}, {"equals": "zinc"}]}
+    ) == {"copper", "zinc"}
+    assert extract_exact_filter_values({"contains": "copper"}) is None
+
+
+def test_metal_filter_lookup_uses_exact_activity_index():
+    copper = market_dataset("copper mine", "copper", "GLO", [])
+    zinc = market_dataset("zinc mine", "zinc", "GLO", [])
+    metals = object.__new__(Metals)
+    metals.database = [zinc, copper]
+    metals.build_db_indexes()
+
+    assert metals.get_datasets_matching_filters(
+        {"equals": "copper mine"}, {"equals": "copper"}
+    ) == [copper]
+    assert metals.get_datasets_matching_filters(
+        {"contains": "copper"}, {"equals": "copper"}
+    ) == [copper]
+    assert metals.get_datasets_matching_filters(
+        {"either": [{"equals": "copper mine"}, {"equals": "zinc mine"}]},
+        {"either": [{"equals": "copper"}, {"equals": "zinc"}]},
+    ) == [zinc, copper]
+
+
+def test_create_metal_markets_refreshes_exact_index_before_correction(monkeypatch):
+    original = market_dataset("vanadium mine", "vanadium ore", "GLO", [])
+    regional_proxy = market_dataset("vanadium mine", "vanadium ore", "BR", [])
+    metals = object.__new__(Metals)
+    metals.database = [original]
+    metals.country_codes = {}
+    metals.version = "3.12"
+    metals.build_db_indexes()
+
+    dataframe = pd.DataFrame(
+        {
+            "Work done": ["Yes"],
+            "Country": ["Brazil"],
+            "Metal": ["Vanadium"],
+        }
+    )
+    monkeypatch.setattr(
+        "premise.metals.load_mining_shares_mapping", lambda _: dataframe.copy()
+    )
+
+    def create_market(_metal, _dataframe):
+        metals.database.append(regional_proxy)
+        return None
+
+    metals.create_market = create_market
+    matched = []
+
+    def post_allocation_correction():
+        matched.extend(
+            metals.get_datasets_matching_filters(
+                {"equals": "vanadium mine"}, {"equals": "vanadium ore"}
+            )
+        )
+
+    metals.post_allocation_correction = post_allocation_correction
+    metals.create_metal_markets()
+
+    assert matched == [original, regional_proxy]
+
+
+def test_mining_share_dataset_membership_is_cached_but_returned_as_a_copy(
+    monkeypatch,
+):
+    dataset = {
+        "name": "copper mine operation",
+        "reference product": "copper",
+        "location": "GLO",
+        "unit": "kilogram",
+        "exchanges": [biosphere_resource("Copper", 1.0)],
+    }
+    dataframe = pd.DataFrame(
+        {
+            "Work done": ["Yes"],
+            "Process": ["{'contains': 'copper mine'}"],
+            "Reference product": ["{'equals': 'copper'}"],
+        }
+    )
+    calls = 0
+
+    def load_mapping(_):
+        nonlocal calls
+        calls += 1
+        return dataframe.copy()
+
+    monkeypatch.setattr("premise.metals.load_mining_shares_mapping", load_mapping)
+    metals = object.__new__(Metals)
+    metals.database = [dataset]
+    metals.version = "3.12"
+
+    first = metals.get_mining_share_dataset_ids()
+    first.clear()
+    second = metals.get_mining_share_dataset_ids()
+
+    assert second == {id(dataset)}
+    assert calls == 1
+
+
+def test_in_ground_resource_exchange_index_scans_each_dataset_once(monkeypatch):
+    resource_exchange = biosphere_resource("Copper", 1.0)
+    copper = market_dataset(
+        "copper mine operation", "copper", "GLO", [resource_exchange]
+    )
+    empty = market_dataset("market for copper", "copper", "GLO", [])
+    original = metals_module.get_in_ground_resource_exchanges
+    scanned = []
+
+    def record_scan(dataset):
+        scanned.append(id(dataset))
+        return original(dataset)
+
+    monkeypatch.setattr(metals_module, "get_in_ground_resource_exchanges", record_scan)
+    metals = object.__new__(Metals)
+    metals.database = [copper, empty]
+
+    metals.build_in_ground_resource_exchange_index()
+
+    first = metals._get_in_ground_resource_exchanges(copper)
+    repeated = metals._get_in_ground_resource_exchanges(copper)
+    no_resources = metals._get_in_ground_resource_exchanges(empty)
+
+    assert scanned == [id(copper), id(empty)]
+    assert first is repeated
+    assert first == [resource_exchange]
+    assert no_resources == []
 
 
 def test_is_secondary_metal_supply_exchange_matches_recovery_terms():

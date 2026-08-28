@@ -29,12 +29,19 @@ from .inventory_imports import (
     get_biosphere_code,
     get_correspondence_bio_flows,
 )
+from .inventory_store import get_scenario_inventory, replace_scenario_inventory
+from .provenance import record_change_event
 from .transformation import (
     BaseTransformation,
     find_fuel_efficiency,
     get_shares_from_production_volume,
 )
-from .utils import HiddenPrints, get_fuel_properties, rescale_exchanges
+from .utils import (
+    HiddenPrints,
+    get_fuel_properties,
+    rescale_exchange,
+    rescale_exchanges,
+)
 
 LOG_CONFIG = DATA_DIR / "utils" / "logging" / "logconfig.yaml"
 
@@ -94,7 +101,7 @@ def _update_external_scenarios(
             if "inventories" in [r.name for r in data_package.resources]:
                 if data_package.get_resource("inventories"):
                     additional = AdditionalInventory(
-                        database=scenario["database"],
+                        database=get_scenario_inventory(scenario),
                         version_in=data_package.descriptor["ecoinvent"]["version"],
                         version_out=version,
                         path=data_package.get_resource("inventories").source,
@@ -110,14 +117,14 @@ def _update_external_scenarios(
                     configuration=config_file,
                     inventory_data=inventories,
                     scenario_data=scenario["external data"][d],
-                    database=scenario["database"],
+                    database=get_scenario_inventory(scenario),
                     year=scenario["year"],
                     model=scenario["model"],
                 )
             )
 
-            scenario["database"] = checked_database
-            scenario["database"].extend(checked_inventories)
+            checked_database.extend(checked_inventories)
+            replace_scenario_inventory(scenario, checked_database)
 
             if "mapping" not in scenario:
                 scenario["mapping"] = {}
@@ -126,7 +133,7 @@ def _update_external_scenarios(
             configurations[d] = configuration
 
         external_scenario = ExternalScenario(
-            database=scenario["database"],
+            database=get_scenario_inventory(scenario),
             model=scenario["model"],
             pathway=scenario["pathway"],
             iam_data=scenario["iam data"],
@@ -139,7 +146,7 @@ def _update_external_scenarios(
         )
         external_scenario.create_markets()
         external_scenario.relink_datasets()
-        scenario["database"] = external_scenario.database
+        replace_scenario_inventory(scenario, external_scenario.database)
         scenario["index"] = external_scenario.index
         scenario["cache"] = external_scenario.cache
         scenario["configurations"] = configurations
@@ -343,14 +350,14 @@ def adjust_efficiency(dataset: dict, fuels_specs: dict, fuel_map_reverse: dict) 
                                 dataset,
                                 *filters,
                             ):
-                                wurst.rescale_exchange(
+                                rescale_exchange(
                                     exc, scaling_factor, remove_uncertainty=False
                                 )
                         else:
                             for exc in ws.technosphere(
                                 dataset,
                             ):
-                                wurst.rescale_exchange(
+                                rescale_exchange(
                                     exc, scaling_factor, remove_uncertainty=False
                                 )
                     else:
@@ -365,14 +372,14 @@ def adjust_efficiency(dataset: dict, fuels_specs: dict, fuel_map_reverse: dict) 
                                 dataset,
                                 *filters,
                             ):
-                                wurst.rescale_exchange(
+                                rescale_exchange(
                                     exc, scaling_factor, remove_uncertainty=False
                                 )
                         else:
                             for exc in ws.biosphere(
                                 dataset,
                             ):
-                                wurst.rescale_exchange(
+                                rescale_exchange(
                                     exc, scaling_factor, remove_uncertainty=False
                                 )
     return dataset
@@ -1111,9 +1118,7 @@ class ExternalScenario(BaseTransformation):
                             fltr.append(wurst.contains(k, v))
 
                     for exc in ws.technosphere(datatset, *(fltr or [])):
-                        wurst.rescale_exchange(
-                            exc, scaling_factor, remove_uncertainty=False
-                        )
+                        rescale_exchange(exc, scaling_factor, remove_uncertainty=False)
 
                 if "biosphere" in ineff["includes"]:
                     fltr = []
@@ -1122,9 +1127,7 @@ class ExternalScenario(BaseTransformation):
                             fltr.append(wurst.contains(k, v))
 
                     for exc in ws.biosphere(datatset, *(fltr or [])):
-                        wurst.rescale_exchange(
-                            exc, scaling_factor, remove_uncertainty=False
-                        )
+                        rescale_exchange(exc, scaling_factor, remove_uncertainty=False)
         return datatset
 
     def get_region_for_non_null_production_volume(self, i, variables):
@@ -1867,15 +1870,6 @@ class ExternalScenario(BaseTransformation):
             return []
 
     def write_log(self, dataset, status="created"):
-        """
-        Write log file.
-        """
+        """Record a structured external-scenario provenance event."""
 
-        logger.info(
-            f"{status}|{self.model}|{self.scenario}|{self.year}|"
-            f"{dataset['name']}|{dataset['location']}|"
-            f"{dataset.get('log parameters', {}).get('technosphere scaling factor')}|"
-            f"{dataset.get('log parameters', {}).get('biosphere scaling factor')}|"
-            f"{dataset.get('log parameters', {}).get('old efficiency')}|"
-            f"{dataset.get('log parameters', {}).get('new efficiency')}"
-        )
+        record_change_event(self, dataset, status, sector="external")
