@@ -552,6 +552,7 @@ class Electricity(BaseTransformation):
             )
             not in seen
         ]
+
     def remove_cdr_credit_from_biomass_ccs_power_plants(self) -> float:
         """
         Remove embedded CDR credits and storage inputs from BECCS electricity.
@@ -613,6 +614,7 @@ class Electricity(BaseTransformation):
                 )
 
         return removed_amount
+
     @lru_cache
     def get_production_per_tech_dict(self) -> Dict[Tuple[str, str], float]:
         """

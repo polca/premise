@@ -251,10 +251,12 @@ def clone_inventory_dataset(dataset: dict) -> dict:
 
     return clone(dataset)
 
+
 CAPTURED_BIOGENIC_CO2_CONVERSION_LOG_KEY = (
     "captured biogenic CO2 input converted to non-fossil CO2 emission "
     "for CDR allocation"
 )
+
 
 def redefine_uncertainty_params(old_exc, new_exc):
     """
