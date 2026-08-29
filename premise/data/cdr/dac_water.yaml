@@ -1,0 +1,60 @@
+schema_version: 1
+water_density_kg_per_m3: 1000
+
+solvent_based:
+  operation:
+    makeup_water_kg_per_kg_co2: 3.4
+    evaporation_to_air_m3_per_kg_co2: 0.0034
+    minimum_makeup_water_kg_per_kg_co2: 2.7
+    interpretation: >-
+      Gross make-up water replacing cooling-tower evaporation at the Qiu et al.
+      reference conditions (20 degrees C, 60% relative humidity and 90% annual
+      operation). The same mass is emitted to air as water. No routine wastewater
+      flow is reported for the recirculating cooling system.
+    sensitivity_cases_kg_per_kg_co2:
+      lower_climate_case: 2.7
+      reference: 3.4
+      keith_process_estimate: 4.7
+      upper_climate_case: 19.8
+    sources:
+      - https://doi.org/10.1038/s41467-022-31146-1
+      - https://doi.org/10.17226/25259
+  construction:
+    initial_charge_kg_per_plant: 744000000
+    plant_capacity_kg_co2_per_year: 1000000000
+    plant_lifetime_years: 20
+    plant_input_per_kg_co2: 5.0e-11
+    annualized_initial_charge_kg_per_kg_co2: 0.0372
+    end_of_life_fate: unresolved
+    interpretation: >-
+      The 744,000-tonne start-up charge is capital stock, not annual make-up.
+      Qiu et al. do not report the residual solution inventory or treatment at
+      decommissioning, so no unsupported release or treatment exchange is added.
+
+sorbent_based:
+  operation:
+    external_makeup_water_kg_per_kg_co2: 0
+    recovered_atmospheric_water_credit_kg_per_kg_co2: 0
+    interpretation: >-
+      The Deutz and Bardow inventory reports no external operational water input.
+      Atmospheric water can co-adsorb and be recovered, but the base inventory
+      assigns neither a water input nor a co-product credit because site-dependent
+      recovery and product quality are not specified.
+    atmospheric_water_sensitivity_kg_per_kg_co2:
+      low: 0.8
+      high: 2.0
+    source: https://doi.org/10.1038/s41560-020-00771-9
+  sorbent_manufacture:
+    silica_mass_fraction: 0.64
+    polyethyleneimine_mass_fraction: 0.36
+    silica_recycling_fraction: 0.95
+    virgin_silica_kg_per_kg_sorbent: 0.032
+    spent_resin_treatment_kg_per_kg_sorbent: 0.36
+    unresolved_water_balances:
+      silica_gel_kg_per_kg_silica:
+        input: 40
+        wastewater: 35
+        unresolved: 5
+      polyethyleneimine: >-
+        Deutz and Bardow report the deionised-water input but do not provide a
+        complete output-water split. This remains explicitly unresolved.

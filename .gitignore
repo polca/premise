@@ -2,6 +2,10 @@
 *.egg-info/
 logs/
 dev/
+!dev/
+dev/*
+!dev/audit_dac_water_inventories.py
+!dev/update_dac_water_inventories.py
 *.egg/
 build/
 dist/

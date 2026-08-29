@@ -29,6 +29,7 @@ from .utils import rescale_exchanges
 logger = create_logger("cdr")
 
 CDR_ACTIVITIES = DATA_DIR / "cdr" / "cdr_activities.yaml"
+DAC_WATER_ASSUMPTIONS = DATA_DIR / "cdr" / "dac_water.yaml"
 CDR_TECHS = VARIABLES_DIR / "carbon_dioxide_removal.yaml"
 REGION_BIOETHANOL_FEEDSTOCK_MAP = (
     VARIABLES_DIR / "iam_region_to_bioethanol_feedstock.yaml"
@@ -949,6 +950,107 @@ class CarbonDioxideRemoval(BaseTransformation):
 
         return electricity_lower_bound, heat_lower_bound, total_lower_bound
 
+    @staticmethod
+    def _is_solvent_dac_capture_activity(dataset):
+        """Return whether *dataset* is an operational solvent-DAC activity."""
+
+        return "solvent-based direct air capture system" in str(
+            dataset.get("name", "")
+        ).lower() and str(dataset.get("reference product", "")).lower().startswith(
+            "carbon dioxide, captured"
+        )
+
+    @staticmethod
+    def _dac_operational_water_exchanges(dataset):
+        """Return the paired make-up-water input and evaporation-to-air output."""
+
+        def is_air_category(exchange):
+            categories = exchange.get("categories")
+            if isinstance(categories, (tuple, list)):
+                return tuple(categories) == ("air",)
+            return str(categories).lower() == "air"
+
+        water_inputs = [
+            exchange
+            for exchange in ws.technosphere(dataset)
+            if exchange.get("name") == "market for tap water"
+            and exchange.get("unit") == "kilogram"
+            and "operational make-up" in str(exchange.get("comment", "")).lower()
+        ]
+        evaporation_outputs = [
+            exchange
+            for exchange in ws.biosphere(dataset)
+            if exchange.get("name") == "Water"
+            and exchange.get("unit") == "cubic meter"
+            and is_air_category(exchange)
+            and "operational evaporation" in str(exchange.get("comment", "")).lower()
+        ]
+        return water_inputs, evaporation_outputs
+
+    def adjust_dac_water(self, dataset, technology, scaling_factor=None):
+        """
+        Scale solvent-DAC make-up water and evaporation as a closed pair.
+
+        Water is deliberately independent from the IAM energy-efficiency scaling.
+        ``scaling_factor`` is relative to the reference climate/plant assumption in
+        ``data/cdr/dac_water.yaml``. Repeated calls set the requested factor instead
+        of compounding it. The conservative lower bound from the configuration is
+        enforced. Sorbent DAC and solvent-DAC construction water are not altered.
+        """
+
+        if self._get_dac_family(technology, dataset) != "solvent":
+            return dataset
+        if not self._is_solvent_dac_capture_activity(dataset):
+            return dataset
+
+        water_inputs, evaporation_outputs = self._dac_operational_water_exchanges(
+            dataset
+        )
+        if not water_inputs and not evaporation_outputs:
+            # Older/user-supplied inventories may not yet contain the paired flows.
+            return dataset
+        if len(water_inputs) != 1 or len(evaporation_outputs) != 1:
+            raise ValueError(
+                "Solvent DAC operational water must contain exactly one tagged "
+                "make-up-water input and one tagged evaporation-to-air output."
+            )
+
+        config = fetch_mapping(DAC_WATER_ASSUMPTIONS)["solvent_based"]["operation"]
+        reference_water = float(config["makeup_water_kg_per_kg_co2"])
+        minimum_water = float(config["minimum_makeup_water_kg_per_kg_co2"])
+
+        log_parameters = dataset.setdefault("log parameters", {})
+        previous_factor = float(
+            log_parameters.get("DAC operational water scaling factor", 1.0)
+        )
+        requested_factor = (
+            previous_factor if scaling_factor is None else float(scaling_factor)
+        )
+        if not np.isfinite(requested_factor) or requested_factor <= 0:
+            raise ValueError("DAC water scaling factor must be finite and positive.")
+        target_factor = max(minimum_water / reference_water, requested_factor)
+
+        incremental_factor = target_factor / previous_factor
+        if incremental_factor != 1:
+            for exchange in water_inputs + evaporation_outputs:
+                rescale_exchange(exchange, incremental_factor, remove_uncertainty=False)
+
+        water_input = water_inputs[0]["amount"]
+        evaporated_water = evaporation_outputs[0]["amount"] * 1000
+        if not np.isclose(water_input, evaporated_water, rtol=1e-9, atol=1e-12):
+            raise ValueError(
+                "Solvent DAC operational make-up water and evaporation do not close."
+            )
+
+        log_parameters.update(
+            {
+                "DAC operational water requested scaling factor": requested_factor,
+                "DAC operational water scaling factor": target_factor,
+                "DAC operational water lower bound (kg/kg CO2)": minimum_water,
+            }
+        )
+        return dataset
+
     def adjust_cdr_efficiency(self, dataset, technology):
         """
         Scale energy exchanges using IAM CDR efficiency changes.
@@ -1076,6 +1178,11 @@ class CarbonDioxideRemoval(BaseTransformation):
                 "total lower bound (MJ/kg CO2)": total_lower_bound,
             }
         )
+
+        # Water has its own physical and climatic drivers. Keep it separate from
+        # IAM energy-efficiency changes while validating that the input/output pair
+        # remains closed in every regionalized solvent-DAC activity.
+        self.adjust_dac_water(dataset, technology)
 
         return dataset
 
