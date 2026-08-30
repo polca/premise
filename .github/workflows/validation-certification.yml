@@ -42,7 +42,7 @@ jobs:
           python -m pip install pytest pytest-instafail
           python -m pip install -e .
           python -m pip check
-      - name: Certify ecoinvent 3.12 and every exporter
+      - name: Certify ecoinvent 3.12, IAM interpolation, and every exporter
         env:
           IAM_FILES_KEY: ${{ secrets.IAM_FILES_KEY }}
           EI_USERNAME: ${{ secrets.EI_USERNAME }}
@@ -52,6 +52,7 @@ jobs:
           pytest -q --instafail
           tests/test_process_ei312_cutoff.py
           tests/test_process_ei312_conseq.py
+          tests/test_process_interpolated_year.py
       - name: Profile certification warnings
         env:
           IAM_FILES_KEY: ${{ secrets.IAM_FILES_KEY }}
@@ -96,6 +97,7 @@ jobs:
           - tests/test_process_ei312_cutoff.py
           - tests/test_process_ei312_conseq.py
           - tests/test_process_ei312_EN15804.py
+          - tests/test_process_interpolated_year.py
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
