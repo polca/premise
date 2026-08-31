@@ -3,7 +3,12 @@ from types import SimpleNamespace
 import openpyxl
 import xarray as xr
 
-from premise.report import fetch_data, generate_summary_report
+from premise.report import (
+    convert_log_to_excel_file,
+    fetch_columns,
+    fetch_data,
+    generate_summary_report,
+)
 
 
 def make_heat_layer(variable, values):
@@ -66,3 +71,35 @@ def test_summary_report_contains_all_three_heat_sheets(tmp_path):
         "Heat (industrial) - generation",
         "Heat (secondary) - generation",
     }.issubset(workbook.sheetnames)
+
+
+def test_fuel_change_report_preserves_ammonia_and_onsite_shares(tmp_path):
+    columns = fetch_columns("premise_fuel")
+    contiguous_share_columns = [
+        "hydrogen distribution compressed gaseous truck",
+        "hydrogen distribution compressed gaseous pipeline",
+        "hydrogen distribution liquid truck",
+        "hydrogen distribution liquid ammonia ship",
+        "hydrogen distribution liquid hydrogen ship",
+        "hydrogen on-site production",
+    ]
+    first_share_column = columns.index(contiguous_share_columns[0])
+    assert columns[
+        first_share_column : first_share_column + len(contiguous_share_columns)
+    ] == contiguous_share_columns
+
+    log_values = [""] * len(columns)
+    log_values[
+        columns.index("hydrogen distribution liquid ammonia ship")
+    ] = "0.3"
+    log_values[columns.index("hydrogen on-site production")] = "0.2"
+
+    log_filepath = tmp_path / "premise_fuel.log"
+    log_filepath.write_text("|".join(log_values), encoding="utf-8")
+
+    report = convert_log_to_excel_file(log_filepath)
+
+    assert report.loc[
+        0, "hydrogen distribution liquid ammonia ship"
+    ] == 0.3
+    assert report.loc[0, "hydrogen on-site production"] == 0.2

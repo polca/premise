@@ -8,7 +8,7 @@ if importlib.util.find_spec("bw2data") is None:
     HydrogenMixin = None
     pytestmark = pytest.mark.skip(reason="bw2data is not installed")
 else:
-    from premise.fuels.base import Fuels
+    from premise.fuels.base import Fuels, HYDROGEN_LOG_COLUMNS
     from premise.fuels.hydrogen import HydrogenMixin
 
 
@@ -1370,7 +1370,14 @@ def test_hydrogen_demand_nodes_are_written_to_fuel_log(monkeypatch):
     assert "created (hydrogen demand node)" in logs[0]
     assert "hydrogen demand nodes|EUR" in logs[0]
     assert "demand node|Steel|Steel|steel_plants|1.2|2|100" in logs[0]
-    assert logs[0].endswith("|0.25|0.05|0.2|test_rule|ok|1.0|")
+    hydrogen_values = logs[0].split("|")[-len(HYDROGEN_LOG_COLUMNS) :]
+    hydrogen_log = dict(zip(HYDROGEN_LOG_COLUMNS, hydrogen_values))
+    assert hydrogen_log["hydrogen distribution liquid ammonia ship"] == "0.25"
+    assert hydrogen_log["hydrogen distribution liquid hydrogen ship"] == "0.05"
+    assert hydrogen_log["hydrogen on-site production"] == "0.2"
+    assert hydrogen_log["hydrogen distribution rule"] == "test_rule"
+    assert hydrogen_log["hydrogen distribution status"] == "ok"
+    assert hydrogen_log["hydrogen distribution share total"] == "1.0"
 
 
 def test_relinked_hydrogen_consumers_are_written_to_fuel_log(monkeypatch):
