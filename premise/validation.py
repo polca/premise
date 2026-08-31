@@ -13,6 +13,20 @@ import wurst.searching as ws
 import yaml
 
 from .filesystem_constants import DATA_DIR
+from .fuels.hydrogen_routing import (
+    classify_hydrogen_consumer_sector,
+    hydrogen_consumer_isic_codes,
+    hydrogen_consumer_text,
+    hydrogen_isic_matches_rule,
+    hydrogen_market_exchange_sector,
+    hydrogen_sector_markets,
+    is_generic_hydrogen_market_exchange,
+    is_hydrogen_market_exchange,
+    is_hydrogen_supplier_dataset,
+    is_hydrogen_support_dataset,
+    keep_general_hydrogen_market,
+    load_hydrogen_consumer_routing,
+)
 from .geomap import Geomap
 from .inventory_imports import (
     get_biosphere_code,
@@ -905,6 +919,342 @@ class BaseDatasetValidator:
             }
         )
 
+    @staticmethod
+    def _hydrogen_consumer_text(dataset):
+        """Return the searchable text used by hydrogen-consumer routing."""
+        return hydrogen_consumer_text(dataset)
+
+    @staticmethod
+    def _hydrogen_consumer_isic_codes(dataset):
+        """Return normalized ISIC rev.4 codes attached to a dataset."""
+        return hydrogen_consumer_isic_codes(dataset)
+
+    @staticmethod
+    def _hydrogen_isic_matches_rule(code, rule):
+        """Return whether an ISIC code satisfies one routing rule."""
+        return hydrogen_isic_matches_rule(code, rule)
+
+    @classmethod
+    def _classify_hydrogen_consumer_sector(cls, dataset):
+        """Classify a hydrogen consumer with the production routing rules."""
+        return classify_hydrogen_consumer_sector(
+            dataset, load_hydrogen_consumer_routing()
+        )
+
+    @classmethod
+    def _keep_general_hydrogen_market(cls, dataset):
+        """Return whether routing deliberately retains the generic market."""
+        return keep_general_hydrogen_market(
+            dataset, load_hydrogen_consumer_routing()
+        )
+
+    @staticmethod
+    def _is_hydrogen_support_dataset(dataset):
+        """Return whether a dataset is shared hydrogen logistics support."""
+        return is_hydrogen_support_dataset(dataset)
+
+    @staticmethod
+    def _is_plain_hydrogen_market_exchange(exchange):
+        return is_generic_hydrogen_market_exchange(exchange)
+
+    def _resolve_hydrogen_market_location(self, location, market_locations):
+        """Resolve an activity location against actually created markets."""
+
+        if location in market_locations:
+            return location
+        try:
+            iam_location = self.geo.ecoinvent_to_iam_location(location)
+        except (AttributeError, KeyError, TypeError, ValueError):
+            return None
+        if iam_location in market_locations:
+            return iam_location
+        return None
+
+    def check_hydrogen_sector_market_relinking(self):
+        """Check that hydrogen consumers use the right sector and region.
+
+        This is intentionally a final-database check: heat and transport
+        activities can be created after the fuels transformation has relinked
+        the consumers that existed at that time.
+        """
+
+        market_by_sector = hydrogen_sector_markets(
+            load_hydrogen_consumer_routing()
+        )
+        market_locations = {
+            sector: {
+                dataset.get("location")
+                for dataset in self.database
+                if dataset.get("name") == market
+                and dataset.get("reference product")
+                == "hydrogen, gaseous, low pressure"
+            }
+            for sector, market in market_by_sector.items()
+        }
+        for dataset in self.database:
+            if (
+                is_hydrogen_supplier_dataset(
+                    dataset, load_hydrogen_consumer_routing()
+                )
+                or self._is_hydrogen_support_dataset(dataset)
+            ):
+                continue
+
+            sector, matches = self._classify_hydrogen_consumer_sector(dataset)
+            keep_general = self._keep_general_hydrogen_market(dataset)
+            expected_location = (
+                None
+                if keep_general or sector is None
+                else self._resolve_hydrogen_market_location(
+                    dataset.get("location"), market_locations.get(sector, set())
+                )
+            )
+
+            for exchange in dataset.get("exchanges", []):
+                if not is_hydrogen_market_exchange(
+                    exchange, load_hydrogen_consumer_routing()
+                ):
+                    continue
+                linked_sector = hydrogen_market_exchange_sector(
+                    exchange, load_hydrogen_consumer_routing()
+                )
+
+                if keep_general or sector is None or expected_location is None:
+                    if linked_sector == "generic":
+                        continue
+                    explanation = (
+                        "routing rules retain the generic hydrogen market"
+                        if keep_general
+                        else "the consumer is ambiguous or unmatched"
+                        if sector is None
+                        else "no matching sector market exists in its IAM region"
+                    )
+                    self.log_issue(
+                        dataset,
+                        "hydrogen consumer should use generic market",
+                        f"Consumer uses the {linked_sector} hydrogen market although "
+                        f"{explanation}. Candidate sectors: {matches}.",
+                        issue_type="major",
+                    )
+                    continue
+
+                if linked_sector == "generic":
+                    if expected_location is None:
+                        continue
+                    message = (
+                        f"Hydrogen consumer classified as {sector} still uses "
+                        "the generic hydrogen market although "
+                        f"{market_by_sector[sector]} exists in "
+                        f"{expected_location}."
+                    )
+                    self.log_issue(
+                        dataset,
+                        "hydrogen consumer not relinked to sector market",
+                        message,
+                        issue_type="major",
+                    )
+                    continue
+
+                if linked_sector != sector:
+                    message = (
+                        f"Hydrogen consumer classified as {sector} uses the "
+                        f"{linked_sector} hydrogen market. Candidate sectors: "
+                        f"{matches}."
+                    )
+                    self.log_issue(
+                        dataset,
+                        "hydrogen consumer linked to incorrect sector market",
+                        message,
+                        issue_type="major",
+                    )
+                    continue
+
+                if exchange.get("location") != expected_location:
+                    message = (
+                        f"Hydrogen consumer in {dataset.get('location')} uses "
+                        f"the {sector} market in {exchange.get('location')} "
+                        f"instead of {expected_location}."
+                    )
+                    self.log_issue(
+                        dataset,
+                        "incorrect hydrogen sector market location",
+                        message,
+                        issue_type="major",
+                    )
+
+    def check_hydrogen_sector_market_consumers(self):
+        """Check for orphan sector markets and implausible cement consumers."""
+
+        sector_markets = {
+            market: sector
+            for sector, market in hydrogen_sector_markets(
+                load_hydrogen_consumer_routing()
+            ).items()
+        }
+        markets = {
+            (
+                dataset.get("name"),
+                dataset.get("reference product"),
+                dataset.get("unit"),
+                dataset.get("location"),
+            ): dataset
+            for dataset in self.database
+            if dataset.get("name") in sector_markets
+        }
+        if not markets:
+            return
+
+        incoming = {key: [] for key in markets}
+        for consumer in self.database:
+            for exchange in consumer.get("exchanges", []):
+                if exchange.get("type") != "technosphere":
+                    continue
+                key = (
+                    exchange.get("name"),
+                    exchange.get("product"),
+                    exchange.get("unit"),
+                    exchange.get("location"),
+                )
+                if key not in incoming:
+                    continue
+                incoming[key].append(consumer)
+
+                if sector_markets[key[0]] != "Cement":
+                    continue
+                product_text = str(consumer.get("reference product", "")).lower()
+                consumer_text = self._hydrogen_consumer_text(consumer)
+                if "from cement plant" in consumer_text and not any(
+                    term in product_text
+                    for term in (
+                        "cement",
+                        "clinker",
+                        "lime",
+                        "concrete",
+                        "plaster",
+                    )
+                ):
+                    message = (
+                        "The activity was routed to the cement hydrogen "
+                        "market only because its name refers to material or "
+                        "carbon from a cement plant; its reference product is "
+                        f"{consumer.get('reference product')!r}."
+                    )
+                    self.log_issue(
+                        consumer,
+                        "non-cement consumer linked to cement hydrogen market",
+                        message,
+                        issue_type="major",
+                    )
+
+        for key, consumers in incoming.items():
+            if consumers:
+                continue
+            market = markets[key]
+            self.log_issue(
+                market,
+                "hydrogen sector market has no consumers",
+                "No technosphere exchange in the final database consumes "
+                "this sector-specific hydrogen market.",
+                issue_type="major",
+            )
+
+    def check_hydrogen_regasification_balance(self):
+        """Check that regasification leakage has a make-up hydrogen input."""
+
+        for dataset in self.database:
+            if not (
+                dataset.get("name") == "liquid hydrogen regasification"
+                and dataset.get("reference product") == "liquid hydrogen regasification"
+            ):
+                continue
+
+            hydrogen_input = sum(
+                float(exchange.get("amount", 0))
+                for exchange in dataset.get("exchanges", [])
+                if exchange.get("type") == "technosphere"
+                and exchange.get("unit") == "kilogram"
+                and str(exchange.get("product", "")).startswith("hydrogen")
+            )
+            hydrogen_emission = sum(
+                float(exchange.get("amount", 0))
+                for exchange in dataset.get("exchanges", [])
+                if exchange.get("type") == "biosphere"
+                and exchange.get("unit") == "kilogram"
+                and str(exchange.get("name", "")).lower() == "hydrogen"
+                and tuple(exchange.get("categories") or (None,))[0] == "air"
+                and float(exchange.get("amount", 0)) > 0
+            )
+            if hydrogen_emission > hydrogen_input + 1e-12:
+                message = (
+                    f"Regasification emits {hydrogen_emission} kg of hydrogen "
+                    f"but has only {hydrogen_input} kg of make-up hydrogen "
+                    "input per activity unit."
+                )
+                self.log_issue(
+                    dataset,
+                    "regasification hydrogen loss is not balanced",
+                    message,
+                    issue_type="major",
+                )
+
+    def check_hydrogen_makeup_geography(self):
+        """Check the geography of make-up H2 used by logistics activities."""
+
+        make_up_activity_names = {
+            "transport, hydrogen, gaseous, lorry, unspecified",
+            "transport, hydrogen, liquid, lorry, unspecified",
+            "hydrogen supply, distributed by pipeline",
+            "gaseous hydrogen production",
+            "liquid hydrogen production",
+            "liquid hydrogen regasification",
+            "liquid ammonia production",
+            "ammonia cracking",
+        }
+        generic_market_locations = {
+            dataset.get("location")
+            for dataset in self.database
+            if dataset.get("name")
+            == "market for hydrogen, gaseous, low pressure"
+            and dataset.get("reference product")
+            == "hydrogen, gaseous, low pressure"
+        }
+        for dataset in self.database:
+            if dataset.get("name") not in make_up_activity_names:
+                continue
+            for exchange in dataset.get("exchanges", []):
+                if not self._is_plain_hydrogen_market_exchange(exchange):
+                    continue
+                dataset_location = dataset.get("location")
+                if dataset_location == exchange.get("location"):
+                    continue
+                if dataset_location == "World":
+                    continue
+                if (
+                    dataset_location != "GLO"
+                    and dataset_location not in generic_market_locations
+                ):
+                    continue
+                message = (
+                    f"Hydrogen logistics activity in "
+                    f"{dataset_location} sources make-up hydrogen from "
+                    f"{exchange.get('location')}. This bypasses the regional "
+                    "hydrogen production mix."
+                )
+                self.log_issue(
+                    dataset,
+                    "non-regional hydrogen make-up input",
+                    message,
+                    issue_type="major",
+                )
+
+    def check_hydrogen_distribution_integrity(self):
+        """Run all final hydrogen-distribution integrity checks."""
+
+        self.check_hydrogen_sector_market_relinking()
+        self.check_hydrogen_sector_market_consumers()
+        self.check_hydrogen_regasification_balance()
+        self.check_hydrogen_makeup_geography()
+
     def save_log(self):
         # Save the validation log
         for entry in self.minor_issues_log + self.major_issues_log:
@@ -922,6 +1272,7 @@ class BaseDatasetValidator:
         self.validate_dataset_structure()
         self.verify_data_consistency()
         self.check_relinking_logic()
+        self.check_hydrogen_distribution_integrity()
         self.check_new_location()
         self.check_for_orphaned_datasets()
         self.check_for_duplicates()
@@ -947,6 +1298,7 @@ class BaseDatasetValidator:
         self.validate_dataset_structure()
         self.verify_data_consistency()
         self.check_relinking_logic()
+        self.check_hydrogen_distribution_integrity()
         self.check_for_orphaned_datasets()
         self.check_for_duplicates()
         self.check_for_circular_references()
@@ -2347,6 +2699,7 @@ class FuelsValidation(BaseDatasetValidator):
         self.check_empty_fuel_markets()
         self.check_electrolysis_electricity_input()
         self.checking_linking()
+        self.check_hydrogen_distribution_integrity()
         self.save_log()
 
         if len(self.major_issues_log) > 0:
