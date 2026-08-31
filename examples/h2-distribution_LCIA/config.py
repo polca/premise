@@ -82,8 +82,7 @@ EXPORT_FILENAMES = {
     "Steel-region reconciliation": "hydrogen_steel_regions_reconciliation.csv",
 }
 EXPORT_PATHS = {
-    label: RESULTS_DIR / filename
-    for label, filename in EXPORT_FILENAMES.items()
+    label: RESULTS_DIR / filename for label, filename in EXPORT_FILENAMES.items()
 }
 
 PLOT_FILENAMES = {

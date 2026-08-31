@@ -84,14 +84,13 @@ def test_fuel_change_report_preserves_ammonia_and_onsite_shares(tmp_path):
         "hydrogen on-site production",
     ]
     first_share_column = columns.index(contiguous_share_columns[0])
-    assert columns[
-        first_share_column : first_share_column + len(contiguous_share_columns)
-    ] == contiguous_share_columns
+    assert (
+        columns[first_share_column : first_share_column + len(contiguous_share_columns)]
+        == contiguous_share_columns
+    )
 
     log_values = [""] * len(columns)
-    log_values[
-        columns.index("hydrogen distribution liquid ammonia ship")
-    ] = "0.3"
+    log_values[columns.index("hydrogen distribution liquid ammonia ship")] = "0.3"
     log_values[columns.index("hydrogen on-site production")] = "0.2"
 
     log_filepath = tmp_path / "premise_fuel.log"
@@ -99,7 +98,5 @@ def test_fuel_change_report_preserves_ammonia_and_onsite_shares(tmp_path):
 
     report = convert_log_to_excel_file(log_filepath)
 
-    assert report.loc[
-        0, "hydrogen distribution liquid ammonia ship"
-    ] == 0.3
+    assert report.loc[0, "hydrogen distribution liquid ammonia ship"] == 0.3
     assert report.loc[0, "hydrogen on-site production"] == 0.2

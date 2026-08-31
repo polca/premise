@@ -204,19 +204,15 @@ def test_diesel_markets_receive_the_marginal_blend():
     fuels._filter_bioethanol_feedstocks = lambda: None
     market_calls = []
     carbon_calls = []
-    fuels.process_and_add_markets = lambda **kwargs: market_calls.append(
+    fuels.process_and_add_markets = lambda **kwargs: market_calls.append(kwargs)
+    fuels.update_fuel_carbon_dioxide_emissions = lambda **kwargs: carbon_calls.append(
         kwargs
-    )
-    fuels.update_fuel_carbon_dioxide_emissions = (
-        lambda **kwargs: carbon_calls.append(kwargs)
     )
 
     fuels.generate_synthetic_fuel_activities()
 
     assert len(market_calls) == 4
-    assert all(
-        call["technology_shares"] is diesel_blend for call in market_calls
-    )
+    assert all(call["technology_shares"] is diesel_blend for call in market_calls)
     assert len(carbon_calls) == 1
     assert carbon_calls[0]["technology_shares"] is diesel_blend
 

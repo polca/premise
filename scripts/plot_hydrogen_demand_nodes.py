@@ -16,7 +16,6 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import pandas as pd
 
-
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_INPUT = PROJECT_ROOT / "dev" / "hydrogen_demand_nodes_shares.csv"
 DEFAULT_OUTPUT_DIR = PROJECT_ROOT / "dev" / "hydrogen_demand_node_charts"
@@ -89,12 +88,9 @@ def aggregate_by_region_and_type(df: pd.DataFrame) -> pd.DataFrame:
         .sort_values(["demand_node_type", "region", "year"])
     )
 
-    grouped["hydrogen_demand_t_per_node_per_year"] = (
-        grouped["hydrogen_demand_t_per_year"]
-        / grouped["demand_nodes_rounded_up"].where(
-            grouped["demand_nodes_rounded_up"] > 0
-        )
-    )
+    grouped["hydrogen_demand_t_per_node_per_year"] = grouped[
+        "hydrogen_demand_t_per_year"
+    ] / grouped["demand_nodes_rounded_up"].where(grouped["demand_nodes_rounded_up"] > 0)
 
     return grouped
 

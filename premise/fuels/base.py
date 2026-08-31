@@ -137,12 +137,14 @@ def _finalize_hydrogen_distribution(scenario, version, system_model):
     validator.check_hydrogen_distribution_integrity()
     if validator.major_issues_log:
         reasons = sorted(
-            {issue.get("reason", "unknown issue") for issue in validator.major_issues_log}
+            {
+                issue.get("reason", "unknown issue")
+                for issue in validator.major_issues_log
+            }
         )
         raise ValueError(
             "Hydrogen distribution finalization left "
-            f"{len(validator.major_issues_log)} major issue(s): "
-            + "; ".join(reasons)
+            f"{len(validator.major_issues_log)} major issue(s): " + "; ".join(reasons)
         )
     return scenario
 
@@ -244,9 +246,7 @@ class Fuels(
                     for item in sublist
                 ]
                 if g
-                in self.iam_data.production_volumes.coords[
-                    "variables"
-                ].values.tolist()
+                in self.iam_data.production_volumes.coords["variables"].values.tolist()
             ]
         )
 
@@ -330,12 +330,8 @@ class Fuels(
                 "hydrogen subsector": row.get("subsector"),
                 "hydrogen demand node type": row.get("demand_node_type"),
                 "hydrogen demand nodes": row.get("demand_nodes"),
-                "hydrogen demand nodes rounded up": row.get(
-                    "demand_nodes_rounded_up"
-                ),
-                "hydrogen demand t per year": row.get(
-                    "hydrogen_demand_t_per_year"
-                ),
+                "hydrogen demand nodes rounded up": row.get("demand_nodes_rounded_up"),
+                "hydrogen demand t per year": row.get("hydrogen_demand_t_per_year"),
                 "hydrogen demand t per node per year": row.get(
                     "hydrogen_demand_t_per_node_per_year"
                 ),
@@ -348,28 +344,20 @@ class Fuels(
                 "hydrogen distribution compressed gaseous pipeline": row.get(
                     "compressed_gaseous_pipeline"
                 ),
-                "hydrogen distribution liquid truck": row.get(
-                    "liquid_hydrogen_truck"
-                ),
+                "hydrogen distribution liquid truck": row.get("liquid_hydrogen_truck"),
                 "hydrogen distribution liquid ammonia ship": row.get(
                     "liquid_ammonia_ship"
                 ),
                 "hydrogen distribution liquid hydrogen ship": row.get(
                     "liquid_hydrogen_ship"
                 ),
-                "hydrogen on-site production": row.get(
-                    "on_site_production_share"
-                ),
+                "hydrogen on-site production": row.get("on_site_production_share"),
                 "hydrogen distribution rule": row.get("distribution_rule"),
-                "hydrogen distribution status": row.get(
-                    "distribution_status"
-                ),
+                "hydrogen distribution status": row.get("distribution_status"),
                 "hydrogen distribution share total": row.get(
                     "distribution_share_total"
                 ),
-                "hydrogen distribution reason": row.get(
-                    "distribution_reason"
-                ),
+                "hydrogen distribution reason": row.get("distribution_reason"),
             }
             dataset = {
                 "name": "hydrogen demand nodes",
@@ -382,9 +370,7 @@ class Fuels(
             )
 
     def write_hydrogen_sector_market_relink_logs(self):
-        matched_consumers = getattr(
-            self, "matched_hydrogen_consumers", []
-        )
+        matched_consumers = getattr(self, "matched_hydrogen_consumers", [])
         for consumer in matched_consumers:
             parameters = {
                 "hydrogen report type": "sector market relink",
@@ -392,9 +378,7 @@ class Fuels(
                 "hydrogen exchange location": consumer.get(
                     "hydrogen exchange location"
                 ),
-                "hydrogen exchange amount": consumer.get(
-                    "hydrogen exchange amount"
-                ),
+                "hydrogen exchange amount": consumer.get("hydrogen exchange amount"),
                 "old hydrogen market": consumer.get("old hydrogen market"),
                 "old hydrogen market location": consumer.get(
                     "old hydrogen market location"
@@ -403,9 +387,7 @@ class Fuels(
                 "new hydrogen market location": consumer.get(
                     "new hydrogen market location"
                 ),
-                "hydrogen relinking reason": consumer.get(
-                    "hydrogen relinking reason"
-                ),
+                "hydrogen relinking reason": consumer.get("hydrogen relinking reason"),
                 "old generic hydrogen market": consumer.get(
                     "old generic hydrogen market"
                 ),

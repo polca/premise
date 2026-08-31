@@ -65,10 +65,24 @@ def classify_market_branch(provider):
     """Return stage, substage, display name, and matched classification rule."""
     name = normalized(provider.get("name"))
     if name in TRANSPORT_NAMES:
-        return "Distribution", "Transport", TRANSPORT_NAMES[name], "exact transport activity"
+        return (
+            "Distribution",
+            "Transport",
+            TRANSPORT_NAMES[name],
+            "exact transport activity",
+        )
     if name in CONVERSION_NAMES:
-        return "Distribution", "Conversion", CONVERSION_NAMES[name], "exact conversion activity"
-    if name in RECONVERSION_NAMES or "ammonia cracking" in name or "regasification" in name:
+        return (
+            "Distribution",
+            "Conversion",
+            CONVERSION_NAMES[name],
+            "exact conversion activity",
+        )
+    if (
+        name in RECONVERSION_NAMES
+        or "ammonia cracking" in name
+        or "regasification" in name
+    ):
         return (
             "Distribution",
             "Reconversion",
