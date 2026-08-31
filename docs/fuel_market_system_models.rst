@@ -60,6 +60,22 @@ an auxiliary activity uses a kilogram reference unit. Make-up hydrogen required 
 losses remains part of the relevant logistics or conversion inventory and must not be
 confused with an additional market supplier.
 
+Hydrogen distribution finalization
+-----------------------------------
+
+Hydrogen truck and conversion inventories are regionalized before sector markets
+select suppliers. Their make-up hydrogen uses the generic market in the same IAM
+region where available, and regasification receives make-up equal to its direct
+hydrogen leakage. Sector markets are created only where IAM/logistics eligibility
+and an actual classified consumer coincide.
+
+After every update call on a scenario where fuels were already applied, *premise*
+runs an idempotent synchronization before caching: it repairs generic, wrong-sector,
+and cross-region links; returns unavailable or excluded consumers to the generic
+market; removes orphan sector markets; and runs the hydrogen integrity checks. A
+remaining major hydrogen issue raises an exception instead of allowing the invalid
+scenario to be cached or exported.
+
 LCIA regression baselines
 -------------------------
 

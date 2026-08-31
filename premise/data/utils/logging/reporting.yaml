@@ -461,6 +461,21 @@ premise_fuel:
       hydrogen exchange amount:
         name: Hydrogen exchange amount
         description: Amount of the relinked hydrogen market exchange
+      old hydrogen market:
+        name: Old hydrogen market
+        description: Hydrogen market name before synchronization
+      old hydrogen market location:
+        name: Old hydrogen market location
+        description: Hydrogen market location before synchronization
+      new hydrogen market:
+        name: New hydrogen market
+        description: Hydrogen market name after synchronization
+      new hydrogen market location:
+        name: New hydrogen market location
+        description: Hydrogen market location after synchronization
+      hydrogen relinking reason:
+        name: Hydrogen relinking reason
+        description: Reason for generic-to-sector, sector, regional, or generic fallback correction
       old generic hydrogen market:
         name: Old generic hydrogen market
         description: Generic hydrogen market used before sector-specific relinking

@@ -702,10 +702,12 @@ sector market.
 
 Sector-specific markets are only created for sector-region combinations where
 the in-memory IAM ``production_volumes`` xarray contains positive hydrogen
-final-energy use for the target year. This is the same xarray source used by the
-hydrogen demand-node analysis; no raw IAM output files are read during market
-creation. If an IAM model does not represent a sector in a region, or the sector
-has zero hydrogen final-energy consumption there, the corresponding
+final-energy use for the target year, logistics are complete, and an
+unambiguously classified final consumer exists. This is the same xarray source
+used by the hydrogen demand-node analysis; no raw IAM output files are read
+during market creation. If an IAM model does not represent a sector in a region,
+the sector has zero hydrogen final-energy consumption there, or no consumer is
+present, the corresponding
 ``market for hydrogen, gaseous, low pressure, for ...`` dataset is skipped for
 that region. Consumers that would otherwise be classified to that unavailable
 sector-region market remain linked to the general hydrogen market, so no
@@ -728,6 +730,9 @@ present in the database after the additional inventories are imported:
 The truck and ship activities come from ``lci-hydrogen-transport.xlsx`` during
 the normal additional-inventory import. The market-building code does not read
 the spreadsheet directly; it resolves the activities from the imported database.
+The two truck activities are cloned to each non-World IAM region and the
+original global activities are emptied into those proxies. Ship activities
+remain global.
 
 Gaseous-truck transport also adds the regionalized ``gaseous hydrogen
 production`` conversion activity according to its distribution share. Liquid
@@ -735,9 +740,14 @@ hydrogen transport by truck or ship similarly adds both ``liquid hydrogen
 production`` and ``liquid hydrogen regasification`` according to the combined
 share of those modes. The conversion datasets and their technosphere inputs are
 relinked to the corresponding IAM region before the sector-specific markets are
-created. Liquid-ammonia transport adds ``1 / 0.175`` kilograms of ``liquid
+created. Generic hydrogen inputs used to replenish logistics or conversion
+losses are normalized to the exact IAM-region generic market where available.
+Regasification leakage receives an equal regional generic-market make-up input,
+without duplication on rerun. Liquid-ammonia transport adds ``1 / 0.175`` kilograms of ``liquid
 ammonia production`` and ``7.67`` kilograms of ``ammonia cracking`` per
-kilogram of hydrogen assigned to that distribution mode.
+kilogram of hydrogen assigned to that distribution mode. These auxiliary loss
+and conversion inputs leave the one-kilogram hydrogen production-mix input to
+each market unchanged.
 
 See :ref:`sector-specific-hydrogen-markets` for the complete workflow from IAM
 demand and demand-node estimation through the decision tree, market construction,
