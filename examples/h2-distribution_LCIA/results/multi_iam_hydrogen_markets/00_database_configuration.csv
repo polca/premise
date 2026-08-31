@@ -1,0 +1,4 @@
+database,iam_model,scenario,year,model label,scenario label,warming bin,scenario key
+ecoinvent-3.12-cutoff_remind-SSP1-PkBudg650_2030_06-2_full,remind,SSP1-PkBudg650,2030,REMIND,REMIND — SSP1-PkBudg650,<2.0 °C,remind | SSP1-PkBudg650
+ecoinvent-3.12-cutoff_remind-SSP1-PkBudg650_2040_06-2_full,remind,SSP1-PkBudg650,2040,REMIND,REMIND — SSP1-PkBudg650,<2.0 °C,remind | SSP1-PkBudg650
+ecoinvent-3.12-cutoff_remind-SSP1-PkBudg650_2050_06-2_full,remind,SSP1-PkBudg650,2050,REMIND,REMIND — SSP1-PkBudg650,<2.0 °C,remind | SSP1-PkBudg650

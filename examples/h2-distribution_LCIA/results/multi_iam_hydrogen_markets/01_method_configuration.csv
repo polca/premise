@@ -1,0 +1,18 @@
+method,impact label,unit,run contribution analysis
+"('EF v3.1', 'acidification', 'accumulated exceedance (AE)')",Acidification,mol H+-Eq,False
+"('EF v3.1', 'climate change', 'global warming potential (GWP100)')",Climate change — EF 3.1,kg CO2-Eq,False
+"('EF v3.1', 'ecotoxicity: freshwater', 'comparative toxic unit for ecosystems (CTUe)')",Ecotoxicity — freshwater,CTUe,False
+"('EF v3.1', 'energy resources: non-renewable', 'abiotic depletion potential (ADP): fossil fuels')",Resource use — energy carriers,"MJ, net calorific value",False
+"('EF v3.1', 'eutrophication: freshwater', 'fraction of nutrients reaching freshwater end compartment (P)')",Eutrophication — freshwater,kg P-Eq,False
+"('EF v3.1', 'eutrophication: marine', 'fraction of nutrients reaching marine end compartment (N)')",Eutrophication — marine,kg N-Eq,False
+"('EF v3.1', 'eutrophication: terrestrial', 'accumulated exceedance (AE)')",Eutrophication — terrestrial,mol N-Eq,False
+"('EF v3.1', 'human toxicity: carcinogenic', 'comparative toxic unit for human (CTUh)')",Human toxicity — cancer,CTUh,False
+"('EF v3.1', 'human toxicity: non-carcinogenic', 'comparative toxic unit for human (CTUh)')",Human toxicity — non-cancer,CTUh,False
+"('EF v3.1', 'ionising radiation: human health', 'human exposure efficiency relative to u235')",Ionising radiation — human health,kBq U235-Eq,False
+"('EF v3.1', 'land use', 'soil quality index')",Land use,dimensionless,False
+"('EF v3.1', 'material resources: metals/minerals', 'abiotic depletion potential (ADP): elements (ultimate reserves)')",Resource use — minerals and metals,kg Sb-Eq,False
+"('EF v3.1', 'ozone depletion', 'ozone depletion potential (ODP)')",Ozone depletion,kg CFC-11-Eq,False
+"('EF v3.1', 'particulate matter formation', 'impact on human health')",Particulate matter,disease incidence,False
+"('EF v3.1', 'photochemical oxidant formation: human health', 'tropospheric ozone concentration increase')",Photochemical ozone formation,kg NMVOC-Eq,False
+"('EF v3.1', 'water use', 'user deprivation potential (deprivation-weighted water consumption)')",Water use,m3 world Eq deprived,False
+"('IPCC 2021', 'climate change', 'GWP 100a, incl. H')",Climate change — premise GWP incl. H₂,kg CO2-Eq,True

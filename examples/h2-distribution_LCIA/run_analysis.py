@@ -192,13 +192,13 @@ class _DemandScorer:
 
     def __init__(self, seed_activity, method):
         self.lca = bc.LCA({seed_activity: 1.0}, method)
-        self.lca.lci()
+        self.lca.lci(factorize=True)
         self.lca.lcia()
         self.cache = {}
 
     def unit_score(self, activity):
         if activity.key not in self.cache:
-            self.lca.redo_lcia({int(activity.id): 1.0})
+            self.lca.lcia(demand={int(activity.id): 1.0})
             self.cache[activity.key] = float(self.lca.score)
         return self.cache[activity.key]
 

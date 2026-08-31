@@ -443,18 +443,6 @@ premise_fuel:
         name: Liquid hydrogen truck distribution share
         description: Share of hydrogen distributed by liquid hydrogen truck
         unit: 0-1
-      hydrogen exchange location:
-        name: Hydrogen exchange location
-        description: Location of the hydrogen market exchange before sector-specific relinking
-      hydrogen exchange amount:
-        name: Hydrogen exchange amount
-        description: Amount of the relinked hydrogen market exchange
-      old generic hydrogen market:
-        name: Old generic hydrogen market
-        description: Generic hydrogen market used before sector-specific relinking
-      new sector specific hydrogen market:
-        name: New sector-specific hydrogen market
-        description: Sector-specific hydrogen market used after relinking
       hydrogen distribution liquid ammonia ship:
         name: Liquid ammonia ship distribution share
         description: Share of hydrogen transported by ship as liquid ammonia
@@ -467,6 +455,18 @@ premise_fuel:
         name: On-site production
         description: Share of hydrogen produced on site without a transport activity
         unit: 0-1
+      hydrogen exchange location:
+        name: Hydrogen exchange location
+        description: Location of the hydrogen market exchange before sector-specific relinking
+      hydrogen exchange amount:
+        name: Hydrogen exchange amount
+        description: Amount of the relinked hydrogen market exchange
+      old generic hydrogen market:
+        name: Old generic hydrogen market
+        description: Generic hydrogen market used before sector-specific relinking
+      new sector specific hydrogen market:
+        name: New sector-specific hydrogen market
+        description: Sector-specific hydrogen market used after relinking
       hydrogen distribution rule:
         name: Hydrogen distribution rule
         description: Decision-tree rule selected for the hydrogen demand row
