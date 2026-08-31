@@ -41,7 +41,7 @@ from .external import _update_external_scenarios
 from .external_data_validation import check_external_scenarios
 from .filesystem_constants import DIR_CACHED_DB, IAM_OUTPUT_DIR, INVENTORY_DIR
 from .final_energy import _update_final_energy
-from .fuels.base import _update_fuels
+from .fuels.base import _finalize_hydrogen_distribution, _update_fuels
 from .heat import _update_heat
 from .inventory_imports import (
     AdditionalInventory,
@@ -1329,6 +1329,10 @@ class NewDatabase:
                     if "applied functions" not in scenario:
                         scenario["applied functions"] = []
                     scenario["applied functions"].append(sector)
+
+                scenario = _finalize_hydrogen_distribution(
+                    scenario, self.version, self.system_model
+                )
 
                 # dump database
                 dump_database(scenario)

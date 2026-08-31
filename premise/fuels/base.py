@@ -33,6 +33,11 @@ HYDROGEN_LOG_COLUMNS = [
     "hydrogen on-site production",
     "hydrogen exchange location",
     "hydrogen exchange amount",
+    "old hydrogen market",
+    "old hydrogen market location",
+    "new hydrogen market",
+    "new hydrogen market location",
+    "hydrogen relinking reason",
     "old generic hydrogen market",
     "new sector specific hydrogen market",
     "hydrogen distribution rule",
@@ -40,6 +45,106 @@ HYDROGEN_LOG_COLUMNS = [
     "hydrogen distribution share total",
     "hydrogen distribution reason",
 ]
+
+
+def _store_hydrogen_distribution_state(scenario, fuels):
+    """Copy H2 diagnostics and transformation state back to a scenario."""
+
+    scenario["database"] = fuels.database
+    scenario["cache"] = fuels.cache
+    scenario["index"] = fuels.index
+    scenario["unmatched hydrogen consumers"] = fuels.unmatched_hydrogen_consumers
+    scenario["hydrogen consumers matched to sector markets"] = (
+        fuels.matched_hydrogen_consumers
+    )
+    scenario["hydrogen consumers kept on general market"] = (
+        fuels.skipped_hydrogen_consumers
+    )
+    for scenario_key, attribute, default in (
+        (
+            "generated hydrogen sector markets",
+            "generated_hydrogen_sector_markets",
+            [],
+        ),
+        (
+            "eligible hydrogen sector market regions",
+            "eligible_hydrogen_sector_market_regions",
+            {},
+        ),
+        (
+            "consumer-backed hydrogen sector market regions",
+            "consumer_backed_hydrogen_sector_market_regions",
+            {},
+        ),
+        (
+            "excluded eligible hydrogen sector market regions without consumers",
+            "excluded_eligible_hydrogen_sector_market_regions_without_consumers",
+            {},
+        ),
+        (
+            "generated hydrogen sector market regions",
+            "generated_hydrogen_sector_market_regions",
+            {},
+        ),
+        (
+            "uncreated eligible hydrogen sector market regions",
+            "uncreated_eligible_hydrogen_sector_market_regions",
+            {},
+        ),
+        (
+            "skipped hydrogen sector markets",
+            "skipped_hydrogen_sector_markets",
+            [],
+        ),
+    ):
+        scenario[scenario_key] = getattr(fuels, attribute, default)
+
+
+def _hydrogen_distribution_validator(scenario):
+    return FuelsValidation(
+        model=scenario["model"],
+        scenario=scenario["pathway"],
+        year=scenario["year"],
+        regions=scenario["iam data"].regions,
+        database=scenario["database"],
+        iam_data=scenario["iam data"],
+    )
+
+
+def _finalize_hydrogen_distribution(scenario, version, system_model):
+    """Run the final idempotent H2 synchronization before scenario caching."""
+
+    if "hydrogen demand nodes" not in scenario:
+        return scenario
+
+    fuels = Fuels(
+        database=scenario["database"],
+        iam_data=scenario["iam data"],
+        model=scenario["model"],
+        pathway=scenario["pathway"],
+        year=scenario["year"],
+        version=version,
+        system_model=system_model,
+        cache={},
+        index=None,
+    )
+    fuels.hydrogen_demand_nodes = scenario["hydrogen demand nodes"]
+    fuels.synchronize_hydrogen_distribution()
+    fuels.write_hydrogen_sector_market_relink_logs()
+    _store_hydrogen_distribution_state(scenario, fuels)
+
+    validator = _hydrogen_distribution_validator(scenario)
+    validator.check_hydrogen_distribution_integrity()
+    if validator.major_issues_log:
+        reasons = sorted(
+            {issue.get("reason", "unknown issue") for issue in validator.major_issues_log}
+        )
+        raise ValueError(
+            "Hydrogen distribution finalization left "
+            f"{len(validator.major_issues_log)} major issue(s): "
+            + "; ".join(reasons)
+        )
+    return scenario
 
 
 def _update_fuels(scenario, version, system_model):
@@ -81,40 +186,12 @@ def _update_fuels(scenario, version, system_model):
         fuels.write_hydrogen_demand_node_logs()
 
         fuels.generate_hydrogen_activities()
-        fuels.relink_hydrogen_consumers_to_sector_markets()
-        fuels.write_hydrogen_sector_market_relink_logs()
         fuels.generate_synthetic_fuel_activities()
         fuels.generate_biogas_activities()
         fuels.relink_datasets()
-        scenario["database"] = fuels.database
-        scenario["cache"] = fuels.cache
-        scenario["index"] = fuels.index
-        scenario["unmatched hydrogen consumers"] = (
-            fuels.unmatched_hydrogen_consumers
-        )
-        scenario["hydrogen consumers matched to sector markets"] = (
-            fuels.matched_hydrogen_consumers
-        )
-        scenario["hydrogen consumers kept on general market"] = (
-            fuels.skipped_hydrogen_consumers
-        )
-        scenario["generated hydrogen sector markets"] = getattr(
-            fuels, "generated_hydrogen_sector_markets", []
-        )
-        scenario["eligible hydrogen sector market regions"] = getattr(
-            fuels, "eligible_hydrogen_sector_market_regions", {}
-        )
-        scenario["generated hydrogen sector market regions"] = getattr(
-            fuels, "generated_hydrogen_sector_market_regions", {}
-        )
-        scenario["uncreated eligible hydrogen sector market regions"] = getattr(
-            fuels,
-            "uncreated_eligible_hydrogen_sector_market_regions",
-            {},
-        )
-        scenario["skipped hydrogen sector markets"] = getattr(
-            fuels, "skipped_hydrogen_sector_markets", []
-        )
+        fuels.synchronize_hydrogen_distribution()
+        fuels.write_hydrogen_sector_market_relink_logs()
+        _store_hydrogen_distribution_state(scenario, fuels)
 
         if "mapping" not in scenario:
             scenario["mapping"] = {}
@@ -123,14 +200,7 @@ def _update_fuels(scenario, version, system_model):
     else:
         print("No fuel scenario data available -- skipping")
 
-    validate = FuelsValidation(
-        model=scenario["model"],
-        scenario=scenario["pathway"],
-        year=scenario["year"],
-        regions=scenario["iam data"].regions,
-        database=fuels.database,
-        iam_data=scenario["iam data"],
-    )
+    validate = _hydrogen_distribution_validator(scenario)
 
     validate.run_fuel_checks()
 
@@ -324,6 +394,17 @@ class Fuels(
                 ),
                 "hydrogen exchange amount": consumer.get(
                     "hydrogen exchange amount"
+                ),
+                "old hydrogen market": consumer.get("old hydrogen market"),
+                "old hydrogen market location": consumer.get(
+                    "old hydrogen market location"
+                ),
+                "new hydrogen market": consumer.get("new hydrogen market"),
+                "new hydrogen market location": consumer.get(
+                    "new hydrogen market location"
+                ),
+                "hydrogen relinking reason": consumer.get(
+                    "hydrogen relinking reason"
                 ),
                 "old generic hydrogen market": consumer.get(
                     "old generic hydrogen market"

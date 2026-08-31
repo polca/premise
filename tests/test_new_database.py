@@ -55,6 +55,48 @@ def test_nonquiet_constructor_warning_is_imported():
     )
 
 
+def test_update_runs_hydrogen_finalizer_before_database_dump(monkeypatch):
+    events = []
+    scenario = {
+        "database": [{"name": "source"}],
+        "iam data": DummyIAMDataCollection(),
+        "model": "image",
+        "pathway": "SSP2-M",
+        "year": 2050,
+    }
+    obj = object.__new__(NewDatabase)
+    obj.version = "3.12"
+    obj.system_model = "cutoff"
+    obj.use_absolute_efficiency = False
+    obj.gains_scenario = "CLE"
+    obj.scenarios = [scenario]
+    obj.database = None
+    obj._database_is_complete = False
+    obj._load_scenario_database_for_update = (
+        lambda scenario, scenario_position: scenario
+    )
+    monkeypatch.setattr(
+        new_database_module,
+        "_update_heat",
+        lambda scenario, *_args: events.append("transform") or scenario,
+    )
+    monkeypatch.setattr(
+        new_database_module,
+        "_finalize_hydrogen_distribution",
+        lambda scenario, *_args: events.append("finalize") or scenario,
+    )
+    monkeypatch.setattr(
+        new_database_module,
+        "dump_database",
+        lambda scenario: events.append("dump") or scenario,
+    )
+    monkeypatch.setattr(obj, "_clear_scenario_runtime_state", lambda scenario: None)
+
+    obj.update(["heat"])
+
+    assert events == ["transform", "finalize", "dump"]
+
+
 def _write_cache_manifest(cache_ref, *shard_files):
     manifest_path = get_cache_manifest_path(cache_ref)
 

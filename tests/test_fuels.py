@@ -103,6 +103,70 @@ def test_fuel_update_fails_before_partial_hydrogen_processing(
     assert scenario["database"] is original_database
 
 
+def test_hydrogen_finalizer_raises_when_integrity_issue_survives(monkeypatch):
+    captured = {}
+
+    class SynchronizingFuels:
+        def __init__(self, **kwargs):
+            captured.update(kwargs)
+            self.database = kwargs["database"]
+            self.cache = {}
+            self.index = {"rebuilt": True}
+
+        def synchronize_hydrogen_distribution(self):
+            self.unmatched_hydrogen_consumers = []
+            self.matched_hydrogen_consumers = []
+            self.skipped_hydrogen_consumers = []
+            self.generated_hydrogen_sector_markets = []
+            self.eligible_hydrogen_sector_market_regions = {}
+            self.consumer_backed_hydrogen_sector_market_regions = {}
+            self.excluded_eligible_hydrogen_sector_market_regions_without_consumers = {}
+            self.generated_hydrogen_sector_market_regions = {}
+            self.uncreated_eligible_hydrogen_sector_market_regions = {}
+            self.skipped_hydrogen_sector_markets = []
+
+        def write_hydrogen_sector_market_relink_logs(self):
+            pass
+
+    validator = SimpleNamespace(
+        major_issues_log=[],
+        check_hydrogen_distribution_integrity=lambda: validator.major_issues_log.append(
+            {"reason": "orphan hydrogen market"}
+        ),
+    )
+    monkeypatch.setattr(fuels_base, "Fuels", SynchronizingFuels)
+    monkeypatch.setattr(
+        fuels_base, "_hydrogen_distribution_validator", lambda scenario: validator
+    )
+    scenario = {
+        "database": [{"name": "database"}],
+        "iam data": SimpleNamespace(regions=["EUR"]),
+        "model": "image",
+        "pathway": "SSP2-M",
+        "year": 2050,
+        "hydrogen demand nodes": "stored demand nodes",
+    }
+
+    with pytest.raises(ValueError, match="orphan hydrogen market"):
+        fuels_base._finalize_hydrogen_distribution(
+            scenario, version="3.12", system_model="cutoff"
+        )
+
+    assert captured["cache"] == {}
+    assert captured["index"] is None
+
+
+def test_hydrogen_finalizer_is_noop_before_fuels_are_applied():
+    scenario = {"database": []}
+
+    assert (
+        fuels_base._finalize_hydrogen_distribution(
+            scenario, version="3.12", system_model="cutoff"
+        )
+        is scenario
+    )
+
+
 def test_diesel_markets_receive_the_marginal_blend():
     diesel_supplier = {
         "name": "diesel production",

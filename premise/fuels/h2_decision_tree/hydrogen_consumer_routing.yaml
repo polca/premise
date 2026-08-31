@@ -19,6 +19,7 @@ keep_general_market:
     - syngas
     - methanol synthesis, market-average hydrogen
     - methanol distillation, market-average hydrogen
+    - methanation
   isic_exact:
     - "3510" # Electric power generation, transmission and distribution.
 
