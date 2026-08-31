@@ -48,6 +48,18 @@ relinked after a logistics or logging failure. This fail-fast behavior prevents 
 partially transformed scenario from appearing successful while omitting its intended
 hydrogen transport burdens or required diagnostics.
 
+Hydrogen market mass validation
+-------------------------------
+
+Hydrogen-market validation distinguishes the physical hydrogen production mix from
+logistics and conversion burdens. Production-supplier exchanges must provide one
+kilogram of gaseous hydrogen per kilogram of market output. Pipeline distribution,
+transport services, liquefaction, regasification, ammonia conversion, and cracking
+are auxiliary exchanges and are not added to that production-supply total, even when
+an auxiliary activity uses a kilogram reference unit. Make-up hydrogen required for
+losses remains part of the relevant logistics or conversion inventory and must not be
+confused with an additional market supplier.
+
 LCIA regression baselines
 -------------------------
 

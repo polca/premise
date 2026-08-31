@@ -37,6 +37,10 @@ All notable changes to this project are documented in this file.
   no longer continue to sector-market creation or consumer relinking after
   either prerequisite fails, preventing apparently successful partial results
   without the intended transport burdens or diagnostics.
+- Validated hydrogen-market production supply independently from auxiliary
+  logistics exchanges, so kilogram-based pipeline burdens no longer appear as
+  additional hydrogen while genuine under- or over-supply remains a major
+  validation issue.
 
 ### Documentation
 - Added a complete three-pathway IMAGE 2050 example for the
@@ -44,6 +48,7 @@ All notable changes to this project are documented in this file.
   and README, including multi-activity scoring, base-database validation,
   synchronized scenario selection, and wraparound behavior.
 - Documented mandatory hydrogen logistics and audit-log failure handling.
+- Documented the hydrogen production-supply boundary used by fuel validation.
 
 ### Tests
 - Added unit and orchestration coverage for scenario ordering, values, indices,
@@ -53,6 +58,8 @@ All notable changes to this project are documented in this file.
   generic make-up hydrogen inputs.
 - Added regression coverage proving that logistics, audit-log, and hydrogen
   market-creation failures propagate before later consumer relinking.
+- Added hydrogen-market validation coverage for auxiliary logistics,
+  under-supply, over-supply, and unchanged non-hydrogen fuel behavior.
 - Validated the export end to end with IMAGE SSP1-L, SSP2-M, and SSP3-H for
   2050, checking three activities against the original database and confirming
   deterministic scenario selection and wraparound.

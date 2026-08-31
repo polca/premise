@@ -2107,6 +2107,36 @@ class FuelsValidation(BaseDatasetValidator):
         super().__init__(model, scenario, year, regions, database)
         self.iam_data = iam_data
 
+    @staticmethod
+    def _is_hydrogen_production_input(exchange):
+        """Return whether an exchange supplies hydrogen to a hydrogen market.
+
+        Hydrogen logistics activities can also have a kilogram reference unit.
+        In particular, ``hydrogen supply, distributed by pipeline`` represents
+        burdens per kilogram routed; it is not a second kilogram of hydrogen
+        supplied in addition to the market's production mix.  Identify the
+        physical production mix by product and keep logistics burdens outside
+        this total.
+        """
+
+        product = exchange.get("product") or exchange.get("reference product", "")
+        return (
+            exchange.get("type") == "technosphere"
+            and exchange.get("unit") == "kilogram"
+            and str(product).startswith("hydrogen, gaseous")
+            and product != "hydrogen, gaseous, from pipeline"
+        )
+
+    @classmethod
+    def _hydrogen_production_input_total(cls, dataset):
+        """Return kilograms of hydrogen supplied by the market's production mix."""
+
+        return sum(
+            exchange["amount"]
+            for exchange in dataset.get("exchanges", [])
+            if cls._is_hydrogen_production_input(exchange)
+        )
+
     def check_fuel_market_composition(self):
         # check that the fuel markets inputs
         # equal to 1
@@ -2126,6 +2156,23 @@ class FuelsValidation(BaseDatasetValidator):
                 and ds["location"] in self.regions
                 and ds["location"] != "World"
             ):
+                if ds["name"].startswith("market for hydrogen, gaseous"):
+                    total = self._hydrogen_production_input_total(ds)
+                    if not 0.99 <= total <= 1.01:
+                        message = (
+                            "Hydrogen production inputs sum to "
+                            f"{total} kg instead of 1 kg. Logistics and "
+                            "conversion exchanges are auxiliary burdens and "
+                            "are not part of this production-supply total."
+                        )
+                        self.log_issue(
+                            ds,
+                            "hydrogen production inputs do not sum to 1",
+                            message,
+                            issue_type="major",
+                        )
+                    continue
+
                 if ds["unit"] == "cubic meter":
 
                     total = sum(
