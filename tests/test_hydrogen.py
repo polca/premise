@@ -193,10 +193,7 @@ def test_hydrogen_logistics_uses_target_year_and_excludes_world():
     assert hydrogen.hydrogen_demand_nodes["year"].tolist() == [2030]
     assert hydrogen.hydrogen_demand_nodes["region"].tolist() == ["EUR"]
     assert (
-        hydrogen.hydrogen_demand_nodes[
-            "hydrogen_final_energy_ej_per_year"
-        ].item()
-        == 1
+        hydrogen.hydrogen_demand_nodes["hydrogen_final_energy_ej_per_year"].item() == 1
     )
     assert hydrogen.hydrogen_demand_nodes["validation_status"].item() == "ok"
     assert hydrogen.hydrogen_demand_nodes["distribution_status"].item() == "ok"
@@ -271,9 +268,7 @@ def test_transport_fueling_stations_include_refueling_frequency(monkeypatch):
 )
 def test_hydrogen_distribution_demand_intervals(demand, expected_rule):
     hydrogen = HydrogenMixin()
-    row = pd.Series(
-        {"hydrogen_demand_t_per_node_per_year": demand}
-    )
+    row = pd.Series({"hydrogen_demand_t_per_node_per_year": demand})
 
     rule = hydrogen._select_hydrogen_distribution_rule(row)
 
@@ -282,9 +277,7 @@ def test_hydrogen_distribution_demand_intervals(demand, expected_rule):
 
 def test_very_large_demand_reports_on_site_production_separately():
     hydrogen = HydrogenMixin()
-    demand = pd.DataFrame(
-        [{"hydrogen_demand_t_per_node_per_year": 50_000}]
-    )
+    demand = pd.DataFrame([{"hydrogen_demand_t_per_node_per_year": 50_000}])
 
     result = hydrogen._add_hydrogen_distribution_shares(demand).iloc[0]
 
@@ -344,9 +337,7 @@ def test_finite_demand_without_distribution_rule_fails(monkeypatch):
             ]
         },
     )
-    demand = pd.DataFrame(
-        [{"hydrogen_demand_t_per_node_per_year": 1000}]
-    )
+    demand = pd.DataFrame([{"hydrogen_demand_t_per_node_per_year": 1000}])
 
     with pytest.raises(ValueError, match="No hydrogen distribution rule"):
         hydrogen._add_hydrogen_distribution_shares(demand)
@@ -369,9 +360,7 @@ def test_distribution_rule_with_unaccounted_share_fails(monkeypatch):
             ]
         },
     )
-    demand = pd.DataFrame(
-        [{"hydrogen_demand_t_per_node_per_year": 1000}]
-    )
+    demand = pd.DataFrame([{"hydrogen_demand_t_per_node_per_year": 1000}])
 
     with pytest.raises(ValueError, match="must sum to 1"):
         hydrogen._add_hydrogen_distribution_shares(demand)
@@ -578,10 +567,7 @@ def test_final_energy_based_chemical_market_needs_no_production_proxy():
 
     hydrogen._generate_sector_specific_hydrogen_markets({})
 
-    assert (
-        "market for hydrogen, gaseous, low pressure, for chemicals"
-        in called_markets
-    )
+    assert "market for hydrogen, gaseous, low pressure, for chemicals" in called_markets
     assert "Chemicals" in hydrogen.generated_hydrogen_sector_markets
 
 
@@ -611,13 +597,9 @@ def test_sector_hydrogen_market_gets_weighted_transport_exchanges():
     hydrogen.iam_to_ecoinvent_loc = {"EUR": ["RER"]}
     hydrogen.database = [
         {
-            "name": (
-                "transport, hydrogen, gaseous, lorry, "
-                "unspecified"
-            ),
+            "name": ("transport, hydrogen, gaseous, lorry, " "unspecified"),
             "reference product": (
-                "transport, hydrogen, gaseous, lorry, "
-                "unspecified"
+                "transport, hydrogen, gaseous, lorry, " "unspecified"
             ),
             "location": "GLO",
             "unit": "ton kilometer",
@@ -630,9 +612,7 @@ def test_sector_hydrogen_market_gets_weighted_transport_exchanges():
         },
         {
             "name": "transport, hydrogen, liquid, lorry, unspecified",
-            "reference product": (
-                "transport, hydrogen, liquid, lorry, unspecified"
-            ),
+            "reference product": ("transport, hydrogen, liquid, lorry, unspecified"),
             "location": "GLO",
             "unit": "ton kilometer",
         },
@@ -687,12 +667,8 @@ def test_sector_hydrogen_market_gets_weighted_transport_exchanges():
 
     hydrogen._add_transport_to_sector_specific_hydrogen_market(market)
 
-    exchanges = {
-        exchange["name"]: exchange for exchange in market["exchanges"]
-    }
-    truck = exchanges[
-        "transport, hydrogen, gaseous, lorry, unspecified"
-    ]
+    exchanges = {exchange["name"]: exchange for exchange in market["exchanges"]}
+    truck = exchanges["transport, hydrogen, gaseous, lorry, unspecified"]
     pipeline = exchanges["hydrogen supply, distributed by pipeline"]
     gaseous_conversion = exchanges["gaseous hydrogen production"]
     liquid_conversion = exchanges["liquid hydrogen production"]
@@ -700,10 +676,7 @@ def test_sector_hydrogen_market_gets_weighted_transport_exchanges():
 
     assert truck["amount"] == 0.01875
     assert truck["location"] == "GLO"
-    assert truck["product"] == (
-        "transport, hydrogen, gaseous, lorry, "
-        "unspecified"
-    )
+    assert truck["product"] == ("transport, hydrogen, gaseous, lorry, " "unspecified")
     assert pipeline["amount"] == 0.5
     assert pipeline["location"] == "EUR"
     assert gaseous_conversion["amount"] == 0.375
@@ -779,9 +752,7 @@ def test_on_site_production_share_is_not_a_transport_activity():
 
     shares = hydrogen._hydrogen_transport_shares_for_market(
         {
-            "name": (
-                "market for hydrogen, gaseous, low pressure, for transport"
-            ),
+            "name": ("market for hydrogen, gaseous, low pressure, for transport"),
             "location": "EUR",
         }
     )
@@ -867,9 +838,7 @@ def test_sector_hydrogen_market_is_not_generated_without_demand():
 
     hydrogen._generate_sector_specific_hydrogen_markets({})
 
-    assert called_markets == [
-        "market for hydrogen, gaseous, low pressure, for steel"
-    ]
+    assert called_markets == ["market for hydrogen, gaseous, low pressure, for steel"]
     assert create_world_market_settings == [False]
     assert (
         called_production_volumes[0]
@@ -884,12 +853,8 @@ def test_sector_hydrogen_market_is_not_generated_without_demand():
         == 0
     )
     assert hydrogen.generated_hydrogen_sector_markets == ["Steel"]
-    assert hydrogen.generated_hydrogen_sector_market_regions == {
-        "Steel": ["EUR"]
-    }
-    assert hydrogen.eligible_hydrogen_sector_market_regions == {
-        "Steel": ["EUR"]
-    }
+    assert hydrogen.generated_hydrogen_sector_market_regions == {"Steel": ["EUR"]}
+    assert hydrogen.eligible_hydrogen_sector_market_regions == {"Steel": ["EUR"]}
     assert hydrogen.uncreated_eligible_hydrogen_sector_market_regions == {}
     assert "Cement" in hydrogen.skipped_hydrogen_sector_markets
 
@@ -943,17 +908,13 @@ def test_eligible_market_is_not_reported_or_used_when_creation_skips_it():
 
     hydrogen._generate_sector_specific_hydrogen_markets({})
 
-    assert hydrogen.eligible_hydrogen_sector_market_regions == {
-        "Chemicals": ["EUR"]
-    }
+    assert hydrogen.eligible_hydrogen_sector_market_regions == {"Chemicals": ["EUR"]}
     assert hydrogen.generated_hydrogen_sector_market_regions == {}
     assert hydrogen.uncreated_eligible_hydrogen_sector_market_regions == {
         "Chemicals": ["EUR"]
     }
     assert "Chemicals" in hydrogen.skipped_hydrogen_sector_markets
-    assert not hydrogen._hydrogen_sector_market_is_available(
-        "Chemicals", "RER"
-    )
+    assert not hydrogen._hydrogen_sector_market_is_available("Chemicals", "RER")
     hydrogen.database = [
         {
             "name": "chemical process consuming market-average hydrogen",
@@ -994,9 +955,7 @@ def test_hydrogen_consumer_is_relinked_to_sector_market():
     hydrogen.year = 2030
     hydrogen.regions = ["EUR", "World"]
     hydrogen.geo = GeoStub({"RER": "EUR"})
-    hydrogen.generated_hydrogen_sector_market_regions = {
-        "Chemicals": ["EUR"]
-    }
+    hydrogen.generated_hydrogen_sector_market_regions = {"Chemicals": ["EUR"]}
     hydrogen.iam_data = make_iam_data(
         variables=["Industry - Chemicals - H2"],
         regions=["EUR"],
@@ -1098,16 +1057,12 @@ def test_usa_residential_boiler_relinks_rer_exchange_to_usa_heating_market():
             "hydrogen, gaseous, from pipeline",
         ),
         (
-            "transport, freight, sea, tanker for liquefied ammonia, "
-            "ammonia and mdo",
-            "transport, freight, sea, tanker for liquefied ammonia, "
-            "ammonia and mdo",
+            "transport, freight, sea, tanker for liquefied ammonia, " "ammonia and mdo",
+            "transport, freight, sea, tanker for liquefied ammonia, " "ammonia and mdo",
         ),
         (
-            "transport, freight, sea, tanker for liquefied hydrogen, "
-            "heavy fuel oil",
-            "transport, freight, sea, tanker for liquefied hydrogen, "
-            "heavy fuel oil",
+            "transport, freight, sea, tanker for liquefied hydrogen, " "heavy fuel oil",
+            "transport, freight, sea, tanker for liquefied hydrogen, " "heavy fuel oil",
         ),
         ("gaseous hydrogen production", "gaseous hydrogen production"),
         ("liquid hydrogen production", "liquid hydrogen production"),
@@ -1180,10 +1135,7 @@ def test_consumer_stays_on_general_market_when_sector_market_unavailable():
             "classifications": [
                 (
                     "ISIC rev.4 ecoinvent",
-                    (
-                        "2395:Manufacture of articles of concrete, cement "
-                        "and plaster"
-                    ),
+                    ("2395:Manufacture of articles of concrete, cement " "and plaster"),
                 )
             ],
             "exchanges": [
@@ -1475,19 +1427,17 @@ def test_relinked_hydrogen_consumers_are_written_to_fuel_log(monkeypatch):
             "old generic hydrogen market": (
                 "market for hydrogen, gaseous, low pressure"
             ),
-                "new sector specific hydrogen market": (
-                    "market for hydrogen, gaseous, low pressure, for chemicals"
-                ),
-                "old hydrogen market": (
-                    "market for hydrogen, gaseous, low pressure"
-                ),
-                "old hydrogen market location": "RER",
-                "new hydrogen market": (
-                    "market for hydrogen, gaseous, low pressure, for chemicals"
-                ),
-                "new hydrogen market location": "EUR",
-                "hydrogen relinking reason": "generic-to-sector relinking",
-            }
+            "new sector specific hydrogen market": (
+                "market for hydrogen, gaseous, low pressure, for chemicals"
+            ),
+            "old hydrogen market": ("market for hydrogen, gaseous, low pressure"),
+            "old hydrogen market location": "RER",
+            "new hydrogen market": (
+                "market for hydrogen, gaseous, low pressure, for chemicals"
+            ),
+            "new hydrogen market location": "EUR",
+            "hydrogen relinking reason": "generic-to-sector relinking",
+        }
     ]
     logs = []
     monkeypatch.setattr(
@@ -1504,9 +1454,7 @@ def test_relinked_hydrogen_consumers_are_written_to_fuel_log(monkeypatch):
         "market for hydrogen, gaseous, low pressure, for chemicals|EUR|"
         "generic-to-sector relinking|" in logs[0]
     )
-    assert (
-        "market for hydrogen, gaseous, low pressure, for chemicals" in logs[0]
-    )
+    assert "market for hydrogen, gaseous, low pressure, for chemicals" in logs[0]
 
 
 def test_positive_iam_demand_without_consumer_creates_no_sector_market(monkeypatch):
@@ -1518,9 +1466,17 @@ def test_positive_iam_demand_without_consumer_creates_no_sector_market(monkeypat
     monkeypatch.setattr(
         hydrogen,
         "_eligible_hydrogen_sector_market_regions",
-        lambda: {sector: ({"EUR"} if sector == "Steel" else set()) for sector in (
-            "Transport", "Chemicals", "Steel", "Cement", "Heating", "Other"
-        )},
+        lambda: {
+            sector: ({"EUR"} if sector == "Steel" else set())
+            for sector in (
+                "Transport",
+                "Chemicals",
+                "Steel",
+                "Cement",
+                "Heating",
+                "Other",
+            )
+        },
     )
     calls = []
     hydrogen.process_and_add_markets = lambda **kwargs: calls.append(kwargs)
@@ -1528,9 +1484,10 @@ def test_positive_iam_demand_without_consumer_creates_no_sector_market(monkeypat
     hydrogen._generate_sector_specific_hydrogen_markets({})
 
     assert calls == []
-    assert hydrogen.excluded_eligible_hydrogen_sector_market_regions_without_consumers == {
-        "Steel": ["EUR"]
-    }
+    assert (
+        hydrogen.excluded_eligible_hydrogen_sector_market_regions_without_consumers
+        == {"Steel": ["EUR"]}
+    )
 
 
 def test_consumer_backing_creates_market_once_and_records_distinct_diagnostics(
@@ -1567,9 +1524,17 @@ def test_consumer_backing_creates_market_once_and_records_distinct_diagnostics(
     monkeypatch.setattr(
         hydrogen,
         "_eligible_hydrogen_sector_market_regions",
-        lambda: {sector: ({"EUR"} if sector == "Steel" else set()) for sector in (
-            "Transport", "Chemicals", "Steel", "Cement", "Heating", "Other"
-        )},
+        lambda: {
+            sector: ({"EUR"} if sector == "Steel" else set())
+            for sector in (
+                "Transport",
+                "Chemicals",
+                "Steel",
+                "Cement",
+                "Heating",
+                "Other",
+            )
+        },
     )
     calls = []
 
@@ -1592,12 +1557,8 @@ def test_consumer_backing_creates_market_once_and_records_distinct_diagnostics(
     hydrogen._generate_sector_specific_hydrogen_markets({})
 
     assert calls == ["market for hydrogen, gaseous, low pressure, for steel"]
-    assert hydrogen.consumer_backed_hydrogen_sector_market_regions == {
-        "Steel": ["EUR"]
-    }
-    assert hydrogen.generated_hydrogen_sector_market_regions == {
-        "Steel": ["EUR"]
-    }
+    assert hydrogen.consumer_backed_hydrogen_sector_market_regions == {"Steel": ["EUR"]}
+    assert hydrogen.generated_hydrogen_sector_market_regions == {"Steel": ["EUR"]}
 
 
 def test_orphan_sector_market_is_pruned_after_last_consumer_is_removed():
@@ -1744,7 +1705,11 @@ def test_makeup_hydrogen_uses_exact_regional_market_and_removes_stale_input():
     ]
     supports = []
     for region, name, product in (
-        ("CHN", "hydrogen supply, distributed by pipeline", "hydrogen, gaseous, from pipeline"),
+        (
+            "CHN",
+            "hydrogen supply, distributed by pipeline",
+            "hydrogen, gaseous, from pipeline",
+        ),
         ("USA", "gaseous hydrogen production", "gaseous hydrogen production"),
         ("WEU", "liquid hydrogen production", "liquid hydrogen production"),
     ):
@@ -1815,7 +1780,9 @@ def test_regasification_leakage_makeup_is_added_only_once():
     assert makeup[0]["location"] == "EUR"
 
 
-def test_hydrogen_generation_regionalizes_support_before_makeup_normalization(monkeypatch):
+def test_hydrogen_generation_regionalizes_support_before_makeup_normalization(
+    monkeypatch,
+):
     hydrogen = HydrogenMixin()
     calls = []
     for method_name in (

@@ -93,12 +93,8 @@ else:
 
 FILEPATH_OIL_GAS_INVENTORIES = INVENTORY_DIR / "lci-ESU-oil-and-gas.xlsx"
 FILEPATH_CARMA_INVENTORIES = INVENTORY_DIR / "lci-Carma-CCS.xlsx"
-FILEPATH_CO_FIRING_INVENTORIES = (
-    INVENTORY_DIR / "lci-co-firing-power-plants.xlsx"
-)
-FILEPATH_CHP_INVENTORIES = (
-    INVENTORY_DIR / "lci-combined-heat-power-plant-CCS.xlsx"
-)
+FILEPATH_CO_FIRING_INVENTORIES = INVENTORY_DIR / "lci-co-firing-power-plants.xlsx"
+FILEPATH_CHP_INVENTORIES = INVENTORY_DIR / "lci-combined-heat-power-plant-CCS.xlsx"
 FILEPATH_CC_INVENTORIES = INVENTORY_DIR / "lci-carbon-capture.xlsx"
 FILEPATH_AFFORESTATION_INVENTORIES = INVENTORY_DIR / "lci-afforestation.xlsx"
 FILEPATH_BIOFUEL_INVENTORIES = INVENTORY_DIR / "lci-biofuels.xlsx"
@@ -106,19 +102,13 @@ FILEPATH_BIOGAS_INVENTORIES = INVENTORY_DIR / "lci-biogas.xlsx"
 FILEPATH_WASTE_CHP_INVENTORIES = INVENTORY_DIR / "lci-waste-CHP.xlsx"
 
 FILEPATH_CARBON_FIBER_INVENTORIES = INVENTORY_DIR / "lci-carbon-fiber.xlsx"
-FILEPATH_HYDROGEN_DISTRI_INVENTORIES = (
-    INVENTORY_DIR / "lci-hydrogen-distribution.xlsx"
-)
+FILEPATH_HYDROGEN_DISTRI_INVENTORIES = INVENTORY_DIR / "lci-hydrogen-distribution.xlsx"
 
-FILEPATH_HYDROGEN_INVENTORIES = (
-    INVENTORY_DIR / "lci-hydrogen-electrolysis.xlsx"
-)
+FILEPATH_HYDROGEN_INVENTORIES = INVENTORY_DIR / "lci-hydrogen-electrolysis.xlsx"
 FILEPATH_HYDROGEN_SOLAR_INVENTORIES = (
     INVENTORY_DIR / "lci-hydrogen-thermochemical-water-splitting.xlsx"
 )
-FILEPATH_HYDROGEN_PYROLYSIS_INVENTORIES = (
-    INVENTORY_DIR / "lci-hydrogen-pyrolysis.xlsx"
-)
+FILEPATH_HYDROGEN_PYROLYSIS_INVENTORIES = INVENTORY_DIR / "lci-hydrogen-pyrolysis.xlsx"
 
 FILEPATH_HYDROGEN_BIOGAS_INVENTORIES = (
     INVENTORY_DIR / "lci-hydrogen-smr-atr-biogas.xlsx"
@@ -162,9 +152,7 @@ FILEPATH_SYNFUEL_FROM_BIOMASS_CCS_INVENTORIES = (
     INVENTORY_DIR / "lci-synfuels-from-FT-from-biomass-CCS.xlsx"
 )
 FILEPATH_SYNGAS_INVENTORIES = INVENTORY_DIR / "lci-syngas.xlsx"
-FILEPATH_SYNGAS_FROM_COAL_INVENTORIES = (
-    INVENTORY_DIR / "lci-syngas-from-coal.xlsx"
-)
+FILEPATH_SYNGAS_FROM_COAL_INVENTORIES = INVENTORY_DIR / "lci-syngas-from-coal.xlsx"
 FILEPATH_GEOTHERMAL_HEAT_INVENTORIES = INVENTORY_DIR / "lci-geothermal.xlsx"
 FILEPATH_METHANOL_AVG_FUELS_INVENTORIES = (
     INVENTORY_DIR / "lci-synfuels-from-methanol.xlsx"
@@ -197,12 +185,8 @@ FILEPATH_AMMONIA = INVENTORY_DIR / "lci-ammonia.xlsx"
 FILEPATH_LITHIUM = INVENTORY_DIR / "lci-lithium.xlsx"
 FILEPATH_COBALT = INVENTORY_DIR / "lci-cobalt.xlsx"
 FILEPATH_GRAPHITE = INVENTORY_DIR / "lci-graphite.xlsx"
-FILEPATH_BATTERIES_NMC_NCA_LFP = (
-    INVENTORY_DIR / "lci-batteries-NMC111-811-NCA-LFP.xlsx"
-)
-FILEPATH_BATTERIES_NMC622_532 = (
-    INVENTORY_DIR / "lci-batteries-NMC622-NMC532.xlsx"
-)
+FILEPATH_BATTERIES_NMC_NCA_LFP = INVENTORY_DIR / "lci-batteries-NMC111-811-NCA-LFP.xlsx"
+FILEPATH_BATTERIES_NMC622_532 = INVENTORY_DIR / "lci-batteries-NMC622-NMC532.xlsx"
 FILEPATH_BATTERIES_NMC955_LTO = INVENTORY_DIR / "lci-batteries-NMC955-LTO.xlsx"
 FILEPATH_LIO2_BATTERY = INVENTORY_DIR / "lci-batteries-LiO2.xlsx"
 FILEPATH_LIS_BATTERY = INVENTORY_DIR / "lci-batteries-LiS.xlsx"
@@ -238,18 +222,14 @@ FILEPATH_PV_GAAS = INVENTORY_DIR / "lci-PV-GaAs.xlsx"
 FILEPATH_PV_PEROVSKITE = INVENTORY_DIR / "lci-PV-perovskite.xlsx"
 FILEPATH_BATTERY_CAPACITY = INVENTORY_DIR / "lci-battery-capacity.xlsx"
 FILEPATH_BIOCHAR = INVENTORY_DIR / "lci-biochar-spruce.xlsx"
-FILEPATH_ENHANCED_WEATHERING = (
-    INVENTORY_DIR / "lci-coastal-enhanced-weathering.xlsx"
-)
+FILEPATH_ENHANCED_WEATHERING = INVENTORY_DIR / "lci-coastal-enhanced-weathering.xlsx"
 FILEPATH_OCEAN_LIMING = INVENTORY_DIR / "lci-ocean-liming.xlsx"
 FILEPATH_FINAL_ENERGY = INVENTORY_DIR / "lci-final-energy.xlsx"
 FILEPATH_SULFIDIC_TAILINGS = INVENTORY_DIR / "lci-sulfidic-tailings.xlsx"
 FILEPATH_SHIPS = INVENTORY_DIR / "lci-ships.xlsx"
 FILEPATH_STEEL = INVENTORY_DIR / "lci-steel.xlsx"
 FILEPATH_IND_HEAT_PUMP = INVENTORY_DIR / "lci-heat-pump-high-temp.xlsx"
-FILEPATH_IND_ELECTRIC_BOILER = (
-    INVENTORY_DIR / "lci-electric-boiler-industrial.xlsx"
-)
+FILEPATH_IND_ELECTRIC_BOILER = INVENTORY_DIR / "lci-electric-boiler-industrial.xlsx"
 FILEPATH_NUCLEAR_HEAT = INVENTORY_DIR / "lci-nuclear-heat.xlsx"
 FILEPATH_HYDROGEN_TRANSPORT = INVENTORY_DIR / "lci-hydrogen-transport.xlsx"
 
@@ -327,9 +307,7 @@ def check_year(year: [int, float]) -> int:
     try:
         assert 2005 <= year <= 2100
     except AssertionError as err:
-        raise Exception(
-            f"{year} must be comprised between 2005 and 2100."
-        ) from err
+        raise Exception(f"{year} must be comprised between 2005 and 2100.") from err
 
     return year
 
@@ -390,9 +368,7 @@ def check_additional_inventories(inventories_list: List[dict]) -> List[dict]:
                 )
 
         if not all(
-            i
-            for i in inventory.keys()
-            if i in ["filepath", "ecoinvent version"]
+            i for i in inventory.keys() if i in ["filepath", "ecoinvent version"]
         ):
             raise TypeError(
                 "Both `filepath` and `ecoinvent version` "
@@ -404,10 +380,7 @@ def check_additional_inventories(inventories_list: List[dict]) -> List[dict]:
                 f"Cannot find the inventory file: {inventory['filepath']}."
             )
 
-        if (
-            inventory["ecoinvent version"]
-            not in config["SUPPORTED_EI_VERSIONS"]
-        ):
+        if inventory["ecoinvent version"] not in config["SUPPORTED_EI_VERSIONS"]:
             raise ValueError(
                 "A lot of trouble will be avoided if the additional "
                 f"inventories to import are ecoinvent 3.6, 3.7, 3-8 or 3.9-compliant, not {inventory['ecoinvent version']}."
@@ -476,9 +449,7 @@ def check_scenarios(scenario: dict, key: bytes) -> dict:
 
         # ensure both keys `data` and `scenario` are present
         for external_scenario in scenario["external scenarios"]:
-            assert all(
-                key in external_scenario for key in ["data", "scenario"]
-            )
+            assert all(key in external_scenario for key in ["data", "scenario"])
 
         scenario["external scenarios"] = check_external_scenarios(
             scenario["external scenarios"]
@@ -675,9 +646,7 @@ class NewDatabase:
         else:
             self.source_file_path = None
 
-        self.scenarios = [
-            check_scenarios(scenario, key) for scenario in scenarios
-        ]
+        self.scenarios = [check_scenarios(scenario, key) for scenario in scenarios]
 
         # print some info
         if not quiet:
@@ -758,9 +727,7 @@ class NewDatabase:
 
         if self.additional_inventories:
             print("- Importing additional inventories")
-            data = self.__import_additional_inventories(
-                self.additional_inventories
-            )
+            data = self.__import_additional_inventories(self.additional_inventories)
             self.database.extend(data)
             imported_inventory_data = True
 
@@ -808,9 +775,7 @@ class NewDatabase:
             )
 
         # extract the database, pickle it for next time and return it
-        print(
-            "Cannot find cached database. Will create one now for next time..."
-        )
+        print("Cannot find cached database. Will create one now for next time...")
         clear_existing_cache()
         database = self.__clean_database()
         database, metadata_cache_filepath = create_cache(database, file_name)
@@ -819,9 +784,7 @@ class NewDatabase:
         self._reload_original_database_from_cache_for_update = True
         return database
 
-    def __find_cached_inventories(
-        self, db_name: str
-    ) -> Union[None, List[dict]]:
+    def __find_cached_inventories(self, db_name: str) -> Union[None, List[dict]]:
         """
         If `use_cached_inventories` = True, then we look for a cached inventories.
         If cannot be found, we create a cache for next time.
@@ -856,9 +819,7 @@ class NewDatabase:
             )
 
         # else, extract the database, pickle it for next time and return it
-        print(
-            "Cannot find cached inventories. Will create them now for next time..."
-        )
+        print("Cannot find cached inventories. Will create them now for next time...")
         inventory_start = len(self.database)
         import_inventories = self.__import_inventories
         if "collect_data" in inspect.signature(import_inventories).parameters:
@@ -866,14 +827,12 @@ class NewDatabase:
         else:
             import_inventories()
 
-        trimmed_inventories, inventories_metadata_cache_filepath = (
-            create_cache(self.database[inventory_start:], file_name)
+        trimmed_inventories, inventories_metadata_cache_filepath = create_cache(
+            self.database[inventory_start:], file_name
         )
         self.database[inventory_start:] = trimmed_inventories
         self.inventories_cache_filepath = resolve_cache_ref(file_name)
-        self.inventories_metadata_cache_filepath = (
-            inventories_metadata_cache_filepath
-        )
+        self.inventories_metadata_cache_filepath = inventories_metadata_cache_filepath
         self._reload_original_database_from_cache_for_update = True
         print(
             "Data cached. Continuing with the cached inventory representation for\n"
@@ -1071,9 +1030,7 @@ class NewDatabase:
             return self.database
 
         if self._can_reload_original_database():
-            database = self._load_pickled_database(
-                self.database_cache_filepath
-            )
+            database = self._load_pickled_database(self.database_cache_filepath)
             database.extend(
                 self._load_pickled_database(self.inventories_cache_filepath)
             )
@@ -1107,9 +1064,7 @@ class NewDatabase:
             and self._database_is_complete
             and self._can_reload_original_database()
         ):
-            if getattr(
-                self, "_reload_original_database_from_cache_for_update", False
-            ):
+            if getattr(self, "_reload_original_database_from_cache_for_update", False):
                 self.database = None
                 gc.collect()
                 scenario["database"] = self._load_original_database()
@@ -1121,9 +1076,7 @@ class NewDatabase:
             return scenario
 
         if self.database is not None:
-            scenario["database"] = pickle.loads(
-                pickle.dumps(self.database, -1)
-            )
+            scenario["database"] = pickle.loads(pickle.dumps(self.database, -1))
             return scenario
 
         scenario["database"] = self._load_original_database()
@@ -1151,9 +1104,7 @@ class NewDatabase:
         :return: list of dictionaries
 
         """
-        print(
-            "\n//////////////// IMPORTING USER-DEFINED INVENTORIES ////////////////"
-        )
+        print("\n//////////////// IMPORTING USER-DEFINED INVENTORIES ////////////////")
 
         data = []
 
@@ -1290,25 +1241,17 @@ class NewDatabase:
             description = "Processing scenarios for all sectors"
             sectors = [s for s in list(self.sector_update_methods.keys())]
 
-        assert isinstance(
-            sectors, list
-        ), "sector_name should be a list of strings"
+        assert isinstance(sectors, list), "sector_name should be a list of strings"
         assert all(
             isinstance(item, str) for item in sectors
         ), "sector_name should be a list of strings"
         assert all(
             item in self.sector_update_methods for item in sectors
         ), "Unknown resource name(s): {}".format(
-            [
-                item
-                for item in sectors
-                if item not in self.sector_update_methods
-            ]
+            [item for item in sectors if item not in self.sector_update_methods]
         )
 
-        with tqdm(
-            total=len(self.scenarios), desc=description, ncols=70
-        ) as pbar_outer:
+        with tqdm(total=len(self.scenarios), desc=description, ncols=70) as pbar_outer:
             for position, scenario in enumerate(self.scenarios):
                 scenario = self._load_scenario_database_for_update(
                     scenario=scenario, scenario_position=position
@@ -1414,9 +1357,7 @@ class NewDatabase:
 
         self._validate_superstructure_export_prerequisites()
 
-        destination = (
-            Path(filepath).expanduser() if filepath is not None else None
-        )
+        destination = Path(filepath).expanduser() if filepath is not None else None
         if destination is not None and destination.suffix.lower() != ".zip":
             raise ValueError(
                 "Scenario-array filepath must be the complete destination path "
@@ -1425,11 +1366,7 @@ class NewDatabase:
 
         scenario_labels = create_scenario_list(self.scenarios)
         duplicates = sorted(
-            {
-                label
-                for label in scenario_labels
-                if scenario_labels.count(label) > 1
-            }
+            {label for label in scenario_labels if scenario_labels.count(label) > 1}
         )
         if duplicates:
             raise ValueError(
@@ -1440,9 +1377,7 @@ class NewDatabase:
         dependencies = _load_scenario_array_dependencies()
         bw_processing = dependencies[0]
         if destination is None:
-            sanitized_name = (
-                bw_processing.clean_datapackage_name(name) or "database"
-            )
+            sanitized_name = bw_processing.clean_datapackage_name(name) or "database"
             destination = (
                 Path.cwd()
                 / "export"
@@ -1618,9 +1553,7 @@ class NewDatabase:
                         "`name` should be a string or a sequence of strings."
                     )
             else:
-                raise TypeError(
-                    "`name` should be a string or a sequence of strings."
-                )
+                raise TypeError("`name` should be a string or a sequence of strings.")
         else:
             name = [
                 eidb_label(
@@ -1642,8 +1575,7 @@ class NewDatabase:
 
         for s, scenario in enumerate(self.scenarios):
             can_use_fast_export = (
-                scenario.get("database") is not None
-                or "database filepath" in scenario
+                scenario.get("database") is not None or "database filepath" in scenario
             )
 
             if can_use_fast_export:
@@ -1749,12 +1681,7 @@ class NewDatabase:
         if filepath is not None:
             if isinstance(filepath, str):
                 filepath = [
-                    (
-                        Path(filepath)
-                        / s["model"]
-                        / scenario_name(s)
-                        / str(s["year"])
-                    )
+                    (Path(filepath) / s["model"] / scenario_name(s) / str(s["year"]))
                     for s in self.scenarios
                 ]
             elif isinstance(filepath, list):
@@ -1766,13 +1693,7 @@ class NewDatabase:
                 )
         else:
             filepath = [
-                (
-                    Path.cwd()
-                    / "export"
-                    / s["model"]
-                    / s["pathway"]
-                    / str(s["year"])
-                )
+                (Path.cwd() / "export" / s["model"] / s["pathway"] / str(s["year"]))
                 for s in self.scenarios
             ]
 
@@ -1864,9 +1785,7 @@ class NewDatabase:
             export.export_db_to_simapro()
 
             if len(export.unmatched_category_flows) > 0:
-                scenario["unmatched category flows"] = (
-                    export.unmatched_category_flows
-                )
+                scenario["unmatched category flows"] = export.unmatched_category_flows
 
             end_of_process(scenario)
 
@@ -1941,9 +1860,7 @@ class NewDatabase:
         cached_inventories = self.__find_cached_inventories(self.source)
 
         if not cached_inventories:
-            cache_fp = (
-                DIR_CACHED_DB / f"cached_{self.source}_inventories.pickle"
-            )
+            cache_fp = DIR_CACHED_DB / f"cached_{self.source}_inventories.pickle"
             raise ValueError(f"No cached inventories found at {cache_fp}.")
 
         original_database = self._load_original_database()

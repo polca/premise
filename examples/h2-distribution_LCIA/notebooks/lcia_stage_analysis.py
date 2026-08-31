@@ -61,9 +61,7 @@ def _normalized(value):
 
 
 def _reference_output_amount(activity):
-    production = [
-        exc for exc in activity.production() if exc.input.key == activity.key
-    ]
+    production = [exc for exc in activity.production() if exc.input.key == activity.key]
     if len(production) != 1:
         raise ValueError(
             f"Expected one reference production exchange for {activity.key}; found {len(production)}."
@@ -256,9 +254,7 @@ def _classify_production_input(provider):
 
 
 def _method_cf_lookup(method):
-    return {
-        int(flow_id): float(cf) for flow_id, cf in bd.Method(method).load()
-    }
+    return {int(flow_id): float(cf) for flow_id, cf in bd.Method(method).load()}
 
 
 def _direct_biosphere_rows(
@@ -342,10 +338,7 @@ def _color_map_by_family(items, family_by_item):
         positions = np.linspace(low, high, len(family_items))
         cmap = plt.get_cmap(cmap_name)
         colors.update(
-            {
-                item: cmap(position)
-                for item, position in zip(family_items, positions)
-            }
+            {item: cmap(position) for item, position in zip(family_items, positions)}
         )
     return colors
 
@@ -403,9 +396,7 @@ def analyze_hydrogen_life_cycle_stages(
     for market_label in market_order:
         market = selected[market_label]
         market_total = float(score_lookup[market_label])
-        branches, market_biosphere = _collect_market_branches(
-            market, functional_unit
-        )
+        branches, market_biosphere = _collect_market_branches(market, functional_unit)
 
         distribution_nonleakage = 0.0
         distribution_leakage = defaultdict(float)
@@ -415,9 +406,7 @@ def analyze_hydrogen_life_cycle_stages(
         for branch in branches:
             provider = branch["provider"]
             demand_amount = branch["demand amount"]
-            stage, substage, short_name, rule = _classify_market_branch(
-                provider
-            )
+            stage, substage, short_name, rule = _classify_market_branch(provider)
             total_branch_score = scorer.score(provider, demand_amount)
             direct_rows = _direct_biosphere_rows(
                 provider,
@@ -428,8 +417,7 @@ def analyze_hydrogen_life_cycle_stages(
             leakage_score = sum(
                 row["score"]
                 for row in direct_rows
-                if row["contribution type"]
-                in {"Hydrogen leakage", "Ammonia leakage"}
+                if row["contribution type"] in {"Hydrogen leakage", "Ammonia leakage"}
             )
 
             audit_rows.append(
@@ -476,14 +464,10 @@ def analyze_hydrogen_life_cycle_stages(
                                     input_provider
                                 ),
                                 "input process": input_provider.get("name"),
-                                "input location": input_provider.get(
-                                    "location"
-                                ),
+                                "input location": input_provider.get("location"),
                                 "input key": input_provider.key,
                                 "contribution type": "Upstream input",
-                                "score": scorer.score(
-                                    input_provider, input_demand
-                                ),
+                                "score": scorer.score(input_provider, input_demand),
                             },
                             market_total,
                         )
@@ -511,13 +495,9 @@ def analyze_hydrogen_life_cycle_stages(
             else:
                 if substage == "Transport":
                     distribution_transport_components.append(short_name)
-                conversion_inputs = _pipeline_conversion_inputs(
-                    provider, demand_amount
-                )
+                conversion_inputs = _pipeline_conversion_inputs(provider, demand_amount)
                 conversion_score = sum(
-                    scorer.score(
-                        item["provider"], item["demand amount"]
-                    )
+                    scorer.score(item["provider"], item["demand amount"])
                     for item in conversion_inputs
                 )
                 process_nonleakage = (
@@ -540,9 +520,7 @@ def analyze_hydrogen_life_cycle_stages(
                 )
                 for item in conversion_inputs:
                     input_provider = item["provider"]
-                    input_score = scorer.score(
-                        input_provider, item["demand amount"]
-                    )
+                    input_score = scorer.score(input_provider, item["demand amount"])
                     distribution_rows.append(
                         _append_score_fields(
                             {
@@ -561,13 +539,9 @@ def analyze_hydrogen_life_cycle_stages(
                             "market": market_label,
                             "market location": market.get("location"),
                             "provider": input_provider.get("name"),
-                            "provider product": input_provider.get(
-                                "reference product"
-                            ),
+                            "provider product": input_provider.get("reference product"),
                             "provider unit": input_provider.get("unit"),
-                            "provider location": input_provider.get(
-                                "location"
-                            ),
+                            "provider location": input_provider.get("location"),
                             "provider key": input_provider.key,
                             "demand amount": item["demand amount"],
                             "stage": "Distribution",
@@ -578,19 +552,13 @@ def analyze_hydrogen_life_cycle_stages(
                     )
                 for leakage_type in ("Hydrogen leakage", "Ammonia leakage"):
                     leakage = [
-                        r
-                        for r in direct_rows
-                        if r["contribution type"] == leakage_type
+                        r for r in direct_rows if r["contribution type"] == leakage_type
                     ]
                     if leakage:
                         leakage_value = sum(r["score"] for r in leakage)
-                        physical_amount = sum(
-                            r["physical amount"] for r in leakage
-                        )
+                        physical_amount = sum(r["physical amount"] for r in leakage)
                         distribution_leakage[leakage_type] += leakage_value
-                        distribution_leakage_amount[
-                            leakage_type
-                        ] += physical_amount
+                        distribution_leakage_amount[leakage_type] += physical_amount
                         distribution_rows.append(
                             _append_score_fields(
                                 {
@@ -620,18 +588,12 @@ def analyze_hydrogen_life_cycle_stages(
                 if flow_name.lower() == "hydrogen"
                 else "Ammonia leakage"
             )
-            leakage_score = item["scaled amount"] * cf_lookup.get(
-                int(flow.id), 0.0
-            )
+            leakage_score = item["scaled amount"] * cf_lookup.get(int(flow.id), 0.0)
             distribution_leakage[leakage_type] += leakage_score
             distribution_leakage_amount[leakage_type] += item["scaled amount"]
-            route_components = list(
-                dict.fromkeys(distribution_transport_components)
-            )
+            route_components = list(dict.fromkeys(distribution_transport_components))
             route_component = (
-                route_components[0]
-                if len(route_components) == 1
-                else "market"
+                route_components[0] if len(route_components) == 1 else "market"
             )
             distribution_rows.append(
                 _append_score_fields(
@@ -669,9 +631,7 @@ def analyze_hydrogen_life_cycle_stages(
                         "layer 1 group": "Hydrogen distribution",
                         "component": f"{leakage_type} — distribution",
                         "contribution type": leakage_type,
-                        "physical amount": distribution_leakage_amount[
-                            leakage_type
-                        ],
+                        "physical amount": distribution_leakage_amount[leakage_type],
                         "physical unit": "kilogram",
                         "score": leakage_score,
                     },
@@ -691,9 +651,7 @@ def analyze_hydrogen_life_cycle_stages(
         dropna=False,
     )["score"].sum()
     production_input_groups_df = production_input_groups_df.merge(
-        scores_df[scores_df["method"].isin([method])][
-            ["market", "score per kg H2"]
-        ],
+        scores_df[scores_df["method"].isin([method])][["market", "score per kg H2"]],
         on="market",
         validate="many_to_one",
     )
@@ -853,22 +811,12 @@ def plot_stage_layer1(layer1_df, market_order, label_threshold=3.0):
     plt.show()
 
 
-def plot_production_layer2(
-    production_groups_df, market_order, label_threshold=None
-):
-    technologies = (
-        production_groups_df["technology"].drop_duplicates().tolist()
-    )
-    input_groups = (
-        production_groups_df["input group"].drop_duplicates().tolist()
-    )
+def plot_production_layer2(production_groups_df, market_order, label_threshold=None):
+    technologies = production_groups_df["technology"].drop_duplicates().tolist()
+    input_groups = production_groups_df["input group"].drop_duplicates().tolist()
     palette = plt.get_cmap("tab20")
-    colors = {
-        group: palette(i % palette.N) for i, group in enumerate(input_groups)
-    }
-    colors.update(
-        {"Hydrogen leakage": "#d62728", "Ammonia leakage": "#9467bd"}
-    )
+    colors = {group: palette(i % palette.N) for i, group in enumerate(input_groups)}
+    colors.update({"Hydrogen leakage": "#d62728", "Ammonia leakage": "#9467bd"})
 
     fig, axes = plt.subplots(
         len(technologies),
@@ -881,9 +829,7 @@ def plot_production_layer2(
     )
     unit = production_groups_df["unit"].iloc[0]
     for ax, technology in zip(axes.ravel(), technologies):
-        subset = production_groups_df[
-            production_groups_df["technology"] == technology
-        ]
+        subset = production_groups_df[production_groups_df["technology"] == technology]
         _plot_signed_stacks(
             ax,
             subset,
@@ -918,9 +864,7 @@ def plot_distribution_layer2(distribution_df, market_order, label_threshold=None
     processes = distribution_df["process"].drop_duplicates().tolist()
     colors = distribution_process_color_map(processes)
 
-    fig, ax = plt.subplots(
-        figsize=(10, max(6, 0.75 * len(market_order) + 2))
-    )
+    fig, ax = plt.subplots(figsize=(10, max(6, 0.75 * len(market_order) + 2)))
     unit = distribution_df["unit"].iloc[0]
     _plot_signed_stacks(
         ax,

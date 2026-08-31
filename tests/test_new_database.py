@@ -49,10 +49,7 @@ class DummyIAMDataCollection:
 
 
 def test_nonquiet_constructor_warning_is_imported():
-    assert (
-        new_database_module.warning_about_biogenic_co2
-        is warning_about_biogenic_co2
-    )
+    assert new_database_module.warning_about_biogenic_co2 is warning_about_biogenic_co2
 
 
 def test_update_runs_hydrogen_finalizer_before_database_dump(monkeypatch):

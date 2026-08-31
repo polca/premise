@@ -9,7 +9,6 @@ import bw2calc as bc
 import numpy as np
 import pandas as pd
 
-
 KG_TO_TONNE = 0.001
 
 
@@ -104,7 +103,9 @@ def mode_audit(reporting_markets: Mapping[str, object], modes: Iterable[Distance
                     "market location": market.get("location"),
                     "baseline distance (km)": mode.baseline_km,
                     "direct exchange amount": amount,
-                    "exchange unit": "kilogram" if mode.kind == "pipeline" else "ton kilometer",
+                    "exchange unit": (
+                        "kilogram" if mode.kind == "pipeline" else "ton kilometer"
+                    ),
                     "direct transport share": share,
                 }
             )
@@ -218,7 +219,9 @@ class InMemoryDistanceModel:
                 )
         pipeline_activities = {provider.key: provider for provider in providers}
         if not pipeline_activities:
-            raise LookupError("No pipeline distribution activity was found in the selected markets.")
+            raise LookupError(
+                "No pipeline distribution activity was found in the selected markets."
+            )
 
         for pipeline in pipeline_activities.values():
             column = self._activity_column(pipeline)
@@ -246,7 +249,9 @@ class InMemoryDistanceModel:
                         base_loss - self.PIPELINE_BASE_TRANSMISSION_LEAK_KG
                     )
                     if fixed_storage_loss < 0:
-                        raise ValueError("The pipeline transmission-loss split is invalid.")
+                        raise ValueError(
+                            "The pipeline transmission-loss split is invalid."
+                        )
                     new_loss = (
                         fixed_storage_loss
                         + self.PIPELINE_BASE_TRANSMISSION_LEAK_KG * factor
@@ -268,15 +273,11 @@ class InMemoryDistanceModel:
             hydrogen_exchange = hydrogen_flows[0]
             position = (self._biosphere_row(hydrogen_exchange.input), column)
             base_loss = float(self.base_biosphere[position])
-            fixed_storage_loss = (
-                base_loss - self.PIPELINE_BASE_TRANSMISSION_LEAK_KG
-            )
+            fixed_storage_loss = base_loss - self.PIPELINE_BASE_TRANSMISSION_LEAK_KG
             new_loss = (
                 fixed_storage_loss + self.PIPELINE_BASE_TRANSMISSION_LEAK_KG * factor
             )
-            biosphere[position] = self.base_biosphere[position] * (
-                new_loss / base_loss
-            )
+            biosphere[position] = self.base_biosphere[position] * (new_loss / base_loss)
 
         return technosphere, biosphere
 
@@ -307,16 +308,17 @@ class InMemoryDistanceModel:
                             {
                                 "transport mode": mode.label,
                                 "market": market_label,
-                                "market location": self.reporting_markets[market_label].get(
-                                    "location"
-                                ),
+                                "market location": self.reporting_markets[
+                                    market_label
+                                ].get("location"),
                                 "scenario": (
                                     "Baseline"
                                     if np.isclose(distance, mode.baseline_km)
                                     else f"{distance:g} km"
                                 ),
                                 "distance (km)": float(distance),
-                                "distance multiplier": float(distance) / mode.baseline_km,
+                                "distance multiplier": float(distance)
+                                / mode.baseline_km,
                                 "direct transport share": share_lookup.get(
                                     (mode.label, market_label), 0.0
                                 ),
@@ -345,7 +347,9 @@ class InMemoryDistanceModel:
             (
                 baseline_rows["score per kg H2"]
                 - baseline_rows["baseline score per kg H2"]
-            ).abs().max()
+            )
+            .abs()
+            .max()
         )
         if maximum_baseline_error > 1e-9:
             raise AssertionError(
@@ -375,14 +379,17 @@ def plot_distance_curves(results: pd.DataFrame):
             )
         ax.set_title(mode, loc="left")
         ax.set_xlabel("Transport distance (km)")
-        ax.set_ylabel(
-            f"premise-GWP ({subset['unit'].iloc[0]} / kg H2)"
-        )
+        ax.set_ylabel(f"premise-GWP ({subset['unit'].iloc[0]} / kg H2)")
         ax.axvline(
-            subset["distance (km)"].min(), color="#777777", linestyle="--", linewidth=0.9
+            subset["distance (km)"].min(),
+            color="#777777",
+            linestyle="--",
+            linewidth=0.9,
         )
         ax.legend(bbox_to_anchor=(1.01, 1), loc="upper left", frameon=False)
-    fig.suptitle("Transport-distance sensitivity of hydrogen-market premise-GWP", y=1.002)
+    fig.suptitle(
+        "Transport-distance sensitivity of hydrogen-market premise-GWP", y=1.002
+    )
     fig.tight_layout()
     plt.show()
 
@@ -406,7 +413,9 @@ def plot_high_distance_changes(results: pd.DataFrame):
         figsize=(max(9, 2.1 * len(matrix.columns)), max(5, 0.7 * len(matrix.index) + 2))
     )
     image = ax.imshow(values, cmap="RdBu_r", vmin=-limit, vmax=limit, aspect="auto")
-    ax.set_xticks(np.arange(len(matrix.columns)), matrix.columns, rotation=30, ha="right")
+    ax.set_xticks(
+        np.arange(len(matrix.columns)), matrix.columns, rotation=30, ha="right"
+    )
     ax.set_yticks(np.arange(len(matrix.index)), matrix.index)
     for row in range(values.shape[0]):
         for column in range(values.shape[1]):

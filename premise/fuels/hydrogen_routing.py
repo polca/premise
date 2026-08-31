@@ -67,8 +67,7 @@ def hydrogen_market_sectors(routing=None):
     """Return the configured mapping from market name to sector key."""
 
     return {
-        market: sector
-        for sector, market in hydrogen_sector_markets(routing).items()
+        market: sector for sector, market in hydrogen_sector_markets(routing).items()
     }
 
 
@@ -76,8 +75,7 @@ def hydrogen_consumer_text(dataset):
     """Return normalized text used by name-based consumer routing."""
 
     return " | ".join(
-        str(dataset.get(field, ""))
-        for field in ("name", "reference product", "unit")
+        str(dataset.get(field, "")) for field in ("name", "reference product", "unit")
     ).lower()
 
 
@@ -104,9 +102,7 @@ def hydrogen_isic_matches_rule(code, rule):
     if any(code.startswith(str(prefix)) for prefix in rule.get("isic_prefix", [])):
         return True
 
-    for prefix, excluded_codes in rule.get(
-        "isic_prefix_excluding_exact", {}
-    ).items():
+    for prefix, excluded_codes in rule.get("isic_prefix_excluding_exact", {}).items():
         if code.startswith(str(prefix)) and code not in {
             str(value) for value in excluded_codes
         }:
@@ -135,8 +131,7 @@ def classify_hydrogen_consumer_sector(dataset, routing=None):
         sector
         for sector, rules in sectors.items()
         if any(
-            str(keyword).lower() in text
-            for keyword in rules.get("name_contains", [])
+            str(keyword).lower() in text for keyword in rules.get("name_contains", [])
         )
     ]
     if len(matches) == 1:
@@ -161,9 +156,7 @@ def keep_general_hydrogen_market(dataset, routing=None):
     routing = routing or load_hydrogen_consumer_routing()
     rules = routing.get("keep_general_market", {})
     text = hydrogen_consumer_text(dataset)
-    if any(
-        str(keyword).lower() in text for keyword in rules.get("name_contains", [])
-    ):
+    if any(str(keyword).lower() in text for keyword in rules.get("name_contains", [])):
         return True
     return any(
         hydrogen_isic_matches_rule(code, rules)

@@ -314,9 +314,7 @@ def test_market_can_suppress_automatic_world_market(monkeypatch):
     )
 
     assert created_locations == {"WEU"}
-    assert {dataset["location"] for dataset in transformation.database} == {
-        "WEU"
-    }
+    assert {dataset["location"] for dataset in transformation.database} == {"WEU"}
 
 
 def test_market_conversion_factors_can_be_region_specific(monkeypatch):
