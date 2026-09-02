@@ -36,7 +36,11 @@ except ModuleNotFoundError:
 import premise.new_database as new_database_module
 import premise.pathways as pathways_module
 from premise.inventory_store import CompactInventoryStore
-from premise.new_database import NewDatabase, check_presence_biosphere_database
+from premise.new_database import (
+    NewDatabase,
+    check_presence_biosphere_database,
+    check_scenarios,
+)
 from premise.pathways import PathwaysDataPackage
 from premise.utils import get_cache_manifest_path
 
@@ -47,6 +51,40 @@ class DummyIAMDataCollection:
 
     def get_external_data(self, external_scenarios):
         return {}
+
+
+def test_builtin_tiam_rcp60_uses_record_specific_cache():
+    scenario = check_scenarios(
+        {"model": "tiam-ucl", "pathway": "SSP2-RCP60", "year": 2050},
+        key=b"x" * 44,
+    )
+
+    assert scenario["pathway"] == "SSP2-RCP60"
+    assert scenario["filepath"].name == "zenodo-22227290"
+
+
+def test_builtin_tiam_base_reports_rcp60_replacement():
+    with pytest.raises(ValueError, match="Use 'SSP2-RCP60' instead"):
+        check_scenarios(
+            {"model": "tiam-ucl", "pathway": "SSP2-Base", "year": 2050},
+            key=b"x" * 44,
+        )
+
+
+def test_explicit_local_tiam_base_file_remains_supported(tmp_path):
+    (tmp_path / "tiam-ucl_SSP2-Base.csv").write_text("local", encoding="utf-8")
+    scenario = check_scenarios(
+        {
+            "model": "tiam-ucl",
+            "pathway": "SSP2-Base",
+            "year": 2050,
+            "filepath": tmp_path,
+        },
+        key=None,
+    )
+
+    assert scenario["pathway"] == "SSP2-Base"
+    assert scenario["filepath"] == tmp_path
 
 
 def _write_cache_manifest(cache_ref, *shard_files):

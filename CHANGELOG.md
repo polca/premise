@@ -2,6 +2,28 @@
 
 All notable changes to this project are documented in this file.
 
+## [Unreleased]
+
+### Changed
+- Updated built-in IAM scenario downloads to Zenodo record 22227290 and
+  isolated downloaded files in a record-specific cache directory.
+- Replaced built-in TIAM-UCL ``SSP2-Base`` with ``SSP2-RCP60``. Explicit
+  local TIAM-UCL Base files remain supported through the ``filepath`` option.
+- Mapped MESSAGE steel production to distinct NG-DRI, NG-DRI with CCS, and
+  H-DRI routes, without assigning aggregate DRI energy use to one route.
+
+### Fixed
+- Validated the physical hydrogen-production mix independently from auxiliary
+  kilogram-based pipeline burdens, retaining a one-kilogram supply invariant.
+- Added the missing MESSAGE ``Coal PCU`` lifetime and construction lead time
+  used to calculate consequential electricity mixes.
+
+### Tests
+- Added downloader-cache, IAM-catalog, MESSAGE steel-mapping, and hydrogen
+  market validation regressions.
+- Extended the ecoinvent 3.12 integration scenarios with TIAM-UCL
+  ``SSP2-RCP60`` and MESSAGE ``SSP2-M``.
+
 ## [2.5.0]
 
 ### Breaking changes

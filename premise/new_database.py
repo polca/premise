@@ -88,6 +88,11 @@ from .scenario_array import (
     _load_scenario_array_dependencies,
     _write_scenario_array_datapackage,
 )
+from .scenario_downloader import (
+    ZENODO_IAM_SCENARIOS,
+    get_scenario_cache_directory,
+    is_builtin_scenario,
+)
 from .sector_validation import validate_sector_contract
 from .steel import _update_steel
 from .transformation import _SCENARIO_GIS_CACHE_KEY, _SCENARIO_ROW_CACHE_KEY
@@ -330,8 +335,23 @@ def check_model_name(name: str) -> str:
     return name.lower()
 
 
-def check_pathway_name(name: str, filepath: Path, model: str) -> str:
+def check_pathway_name(
+    name: str, filepath: Path, model: str, use_builtin_catalog: bool = False
+) -> str:
     """Check the pathway name"""
+
+    if use_builtin_catalog and not is_builtin_scenario(model, name):
+        available = sorted(ZENODO_IAM_SCENARIOS.get(model.lower(), ()))
+        replacement = (
+            " Use 'SSP2-RCP60' instead; built-in TIAM-UCL SSP2-Base was "
+            "retired with the v2.5.0 archive."
+            if model.lower() == "tiam-ucl" and name == "SSP2-Base"
+            else ""
+        )
+        raise ValueError(
+            f"No built-in IAM scenario is published for {model}/{name}. "
+            f"Available pathways for {model}: {available}.{replacement}"
+        )
 
     if name not in config["SUPPORTED_PATHWAYS"]:
         # If the pathway name is not a default one,
@@ -496,12 +516,13 @@ def check_scenarios(scenario: dict, key: bytes) -> dict:
             f"`pathway` and `year`."
         )
 
-    if "filepath" in scenario:
+    use_builtin_catalog = "filepath" not in scenario
+    if not use_builtin_catalog:
         filepath = scenario["filepath"]
         scenario["filepath"] = check_filepath(filepath)
     else:
         # Note: A directory path, not a file path
-        scenario["filepath"] = IAM_OUTPUT_DIR
+        scenario["filepath"] = get_scenario_cache_directory(IAM_OUTPUT_DIR)
         if key is None:
             print("Reading unencrypted IAM output files.")
         else:
@@ -513,7 +534,10 @@ def check_scenarios(scenario: dict, key: bytes) -> dict:
 
     scenario["model"] = check_model_name(scenario["model"])
     scenario["pathway"] = check_pathway_name(
-        scenario["pathway"], scenario["filepath"], scenario["model"]
+        scenario["pathway"],
+        scenario["filepath"],
+        scenario["model"],
+        use_builtin_catalog=use_builtin_catalog,
     )
     scenario["year"] = check_year(scenario["year"])
 

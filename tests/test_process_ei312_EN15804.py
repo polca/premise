@@ -30,7 +30,8 @@ system_model = "EN15804"
 scenarios = [
     {"model": "remind", "pathway": "SSP3-rollBack", "year": 2050},
     {"model": "image", "pathway": "SSP2-VLHO", "year": 2050},
-    {"model": "tiam-ucl", "pathway": "SSP2-RCP19", "year": 2050},
+    {"model": "tiam-ucl", "pathway": "SSP2-RCP60", "year": 2050},
+    {"model": "message", "pathway": "SSP2-M", "year": 2050},
 ]
 
 
@@ -62,7 +63,7 @@ def test_brightway():
 
     ndb.update()
 
-    database_names = ["test1", "test2", "test3"]
+    database_names = ["test1", "test2", "test3", "test4"]
     ndb.write_db_to_brightway(database_names)
 
     case_key = f"ecoinvent-{ei_version}-{system_model}"

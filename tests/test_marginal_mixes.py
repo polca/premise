@@ -5,6 +5,13 @@ import xarray as xr
 import premise.marginal_mixes as marginal_mixes
 
 
+def test_message_coal_pcu_has_consequential_metadata():
+    technologies = ("Coal PCU",)
+
+    assert marginal_mixes.get_leadtime(technologies).tolist() == [4.0]
+    assert marginal_mixes.get_lifetime(technologies).tolist() == [40.0]
+
+
 def make_shares(values=(0.75, 0.25)):
     return xr.DataArray(
         np.asarray(values),

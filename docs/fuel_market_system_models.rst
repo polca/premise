@@ -37,6 +37,15 @@ negative fuel burden.
 The sign rule is enabled for generated liquid-fuel, gas, and hydrogen markets. It is
 not applied to consequential markets or to non-treatment suppliers.
 
+Hydrogen market mass validation
+-------------------------------
+
+Hydrogen-market validation distinguishes the physical hydrogen production mix from
+auxiliary distribution burdens. Production-supplier exchanges must provide one
+kilogram of gaseous hydrogen per kilogram of market output. The kilogram-based
+pipeline-distribution exchange is excluded from that production total because it
+represents burdens per kilogram routed, not an additional kilogram of hydrogen.
+
 LCIA regression baselines
 -------------------------
 

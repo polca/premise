@@ -211,7 +211,7 @@ steel - primary - DRI:
       - Production|Steel|Secondary|DRI and EAF 1
       - Production|Steel|Secondary|DRI and EAF 2|w/o CCS
       - Production|Steel|Secondary|DRI and EAF 3
-    message: Production|Iron and Steel|Steel|Primary|EAF|Sponge Iron
+    message: Production|Industry|Iron and Steel|NG-DRI/EAF
   energy_use_aliases:
     image:
       - Final Energy|Industry|Iron and Steel|DRI EAF|Coal
@@ -253,10 +253,10 @@ steel - primary - DRI:
       - FE|Industry|Steel|DRI-NG-EAF|+|Hydrogen
       - FE|Industry|Steel|DRI-NG-EAF|+|Liquids
       - FE|Industry|Steel|DRI-NG-EAF|+|Solids
-    message:
-      - Final Energy|Industry|Iron and Steel|EAF|Sponge Iron|Electricity
-      - Final Energy|Industry|Iron and Steel|EAF|Sponge Iron|Gases|Biomass
-      - Final Energy|Industry|Iron and Steel|EAF|Sponge Iron|Gases|Gas
+    # MESSAGE only reports aggregate DRI/EAF energy use. Once production is
+    # split by reduction route, assigning the aggregate to NG-DRI would
+    # overstate its specific energy use as H-DRI grows. Keep baseline inventory
+    # efficiencies until route-specific MESSAGE energy-use data are available.
   ecoinvent_aliases:
     fltr:
       - steel production, natural gas-based direct reduction iron-electric arc furnace
@@ -269,6 +269,7 @@ steel - primary - DRI CCS:
     remind: Production|Industry|Steel|+|DRI-NG-EAF-CCS
     remind-eu: Production|Industry|Steel|+|DRI-NG-EAF-CCS
     tiam-ucl: Production|Steel|Secondary|DRI and EAF 2|w CCS
+    message: Production|Industry|Iron and Steel|NG-DRI/EAF + CCS
   energy_use_aliases:
     image:
       - Final Energy|Industry|Iron and Steel|DRI EAF + CCS|Coal
@@ -310,6 +311,7 @@ steel - primary - H-DRI:
     tiam-ucl: Production|Steel|Secondary|DRH2 and EAF
     remind: Production|Industry|Steel|+|DRI-H2-EAF
     remind-eu: Production|Industry|Steel|+|DRI-H2-EAF
+    message: Production|Industry|Iron and Steel|H-DRI/EAF
   energy_use_aliases:
     image:
       - Final Energy|Industry|Iron and Steel|H-DRI/EAF|Coal

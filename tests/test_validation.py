@@ -11,12 +11,157 @@ from premise.inventory_imports import canonicalize_classification_key
 from premise.validation import (
     BaseDatasetValidator,
     DatasetNormalizer,
+    FuelsValidation,
     PremiseValidationError,
     TransportValidation,
     normalize_exact_deterministic_exchange_duplicates,
     normalize_inventory_numeric_types,
     normalize_inventory_uncertainty,
 )
+
+
+def _fuels_validator(database):
+    validator = object.__new__(FuelsValidation)
+    validator.database = database
+    validator.regions = ["EUR"]
+    validator.model = "remind"
+    validator.scenario = "SSP2-NPi"
+    validator.year = 2050
+    validator.system_model = "cutoff"
+    validator.iam_data = None
+    validator.technology_map = {}
+    validator.major_issues_log = []
+    validator.minor_issues_log = []
+    validator.validation_issues = []
+    return validator
+
+
+def _technosphere_exchange(name, product, amount, unit="kilogram"):
+    return {
+        "name": name,
+        "product": product,
+        "amount": amount,
+        "unit": unit,
+        "type": "technosphere",
+    }
+
+
+def _fuel_market(name, reference_product, exchanges, unit="kilogram"):
+    return {
+        "name": name,
+        "reference product": reference_product,
+        "location": "EUR",
+        "unit": unit,
+        "exchanges": exchanges,
+    }
+
+
+def test_hydrogen_market_mass_check_excludes_logistics_exchanges():
+    market = _fuel_market(
+        "market for hydrogen, gaseous, low pressure",
+        "hydrogen, gaseous, low pressure",
+        [
+            _technosphere_exchange(
+                "hydrogen production, electrolysis",
+                "hydrogen, gaseous, low pressure",
+                0.6,
+            ),
+            _technosphere_exchange(
+                "hydrogen production, steam methane reforming",
+                "hydrogen, gaseous, 30 bar",
+                0.4,
+            ),
+            _technosphere_exchange(
+                "hydrogen supply, distributed by pipeline",
+                "hydrogen, gaseous, from pipeline",
+                1.0,
+            ),
+            _technosphere_exchange(
+                "transport, freight, lorry",
+                "transport, freight, lorry",
+                0.5,
+                unit="ton kilometer",
+            ),
+        ],
+    )
+    validator = _fuels_validator([market])
+
+    validator.check_fuel_market_composition()
+
+    assert validator.major_issues_log == []
+
+
+@pytest.mark.parametrize("amount", [0.8, 1.2])
+def test_hydrogen_market_mass_check_reports_incorrect_supply(amount):
+    market = _fuel_market(
+        "market for hydrogen, gaseous, low pressure",
+        "hydrogen, gaseous, low pressure",
+        [
+            _technosphere_exchange(
+                "hydrogen production, electrolysis",
+                "hydrogen, gaseous, low pressure",
+                amount,
+            ),
+            _technosphere_exchange(
+                "hydrogen supply, distributed by pipeline",
+                "hydrogen, gaseous, from pipeline",
+                1.0,
+            ),
+        ],
+    )
+    validator = _fuels_validator([market])
+
+    validator.check_fuel_market_composition()
+
+    assert len(validator.major_issues_log) == 1
+    assert validator.major_issues_log[0]["reason"] == (
+        "hydrogen production inputs do not sum to 1"
+    )
+    assert f"{amount} kg instead of 1 kg" in validator.major_issues_log[0]["message"]
+
+
+def test_non_hydrogen_fuel_market_keeps_existing_composition_tolerance():
+    market = _fuel_market(
+        "market for diesel, low-sulfur",
+        "diesel, low-sulfur",
+        [
+            _technosphere_exchange(
+                "diesel production",
+                "diesel, low-sulfur",
+                1.5,
+            )
+        ],
+    )
+    validator = _fuels_validator([market])
+
+    validator.check_fuel_market_composition()
+
+    assert validator.major_issues_log == []
+
+
+def test_hydrogen_mass_check_runs_in_structured_fuels_phase():
+    market = _fuel_market(
+        "market for hydrogen, gaseous, low pressure",
+        "hydrogen, gaseous, low pressure",
+        [
+            _technosphere_exchange(
+                "hydrogen production, electrolysis",
+                "hydrogen, gaseous, low pressure",
+                1.0,
+            ),
+            _technosphere_exchange(
+                "hydrogen supply, distributed by pipeline",
+                "hydrogen, gaseous, from pipeline",
+                1.0,
+            ),
+        ],
+    )
+    validator = _fuels_validator([market])
+
+    report = validator.run_fuel_checks(check_supplier_vectors=False)
+
+    assert report.valid
+    assert report.phase_results[0].phase_id == "sector:fuels"
 
 
 def test_combined_fast_export_session_matches_sequential_preparation():

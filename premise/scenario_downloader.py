@@ -10,10 +10,80 @@ from tqdm import tqdm
 
 from premise import __version__
 
-ZENODO_IAM_SCENARIO_RECORD_ID = "21790981"
+ZENODO_IAM_SCENARIO_RECORD_ID = "22227290"
 ZENODO_IAM_SCENARIO_BASE_URL = (
     f"https://zenodo.org/records/{ZENODO_IAM_SCENARIO_RECORD_ID}/files"
 )
+
+ZENODO_IAM_SCENARIOS = {
+    "remind": frozenset(
+        {
+            "SSP1-NPi",
+            "SSP1-PkBudg650",
+            "SSP1-PkBudg1000",
+            "SSP2-NDC",
+            "SSP2-NPi",
+            "SSP2-PkBudg650",
+            "SSP2-PkBudg1000",
+            "SSP3-rollBack",
+        }
+    ),
+    "remind-eu": frozenset(
+        {
+            "SSP2-NDC",
+            "SSP2-NPi",
+            "SSP2-PkBudg650",
+            "SSP2-PkBudg1000",
+        }
+    ),
+    "image": frozenset(
+        {
+            "SSP1-L",
+            "SSP1-M",
+            "SSP1-VLLO",
+            "SSP2-L",
+            "SSP2-M",
+            "SSP2-VLHO",
+            "SSP3-H",
+            "SSP5-H",
+        }
+    ),
+    "message": frozenset(
+        {
+            "SSP1-L",
+            "SSP1-VL",
+            "SSP2-L",
+            "SSP2-LO",
+            "SSP2-M",
+            "SSP2-ML",
+            "SSP2-VL",
+            "SSP3-H",
+            "SSP4-LO",
+            "SSP5-H",
+            "SSP5-LO",
+        }
+    ),
+    "tiam-ucl": frozenset(
+        {
+            "SSP2-RCP19",
+            "SSP2-RCP26",
+            "SSP2-RCP45",
+            "SSP2-RCP60",
+        }
+    ),
+}
+
+
+def get_scenario_cache_directory(root: Path) -> Path:
+    """Return the record-specific directory for built-in IAM downloads."""
+
+    return Path(root) / f"zenodo-{ZENODO_IAM_SCENARIO_RECORD_ID}"
+
+
+def is_builtin_scenario(model: str, pathway: str) -> bool:
+    """Return whether a model/pathway pair is published in the current record."""
+
+    return pathway in ZENODO_IAM_SCENARIOS.get(model.lower(), ())
 
 
 def get_scenario_file_stems(model: str, pathway: str) -> tuple[str, ...]:
@@ -53,6 +123,19 @@ def get_scenario_url(model: str, pathway: str) -> str:
     :return: Direct Zenodo URL for the encrypted scenario CSV file.
     """
 
+    if not is_builtin_scenario(model, pathway):
+        available = sorted(ZENODO_IAM_SCENARIOS.get(model.lower(), ()))
+        replacement = (
+            " Use 'SSP2-RCP60' instead; built-in TIAM-UCL SSP2-Base was "
+            "retired with the v2.5.0 archive."
+            if model.lower() == "tiam-ucl" and pathway == "SSP2-Base"
+            else ""
+        )
+        raise ValueError(
+            f"No built-in IAM scenario is published for {model}/{pathway}. "
+            f"Available pathways for {model}: {available}.{replacement}"
+        )
+
     archive_stem = get_scenario_file_stems(model, pathway)[-1]
     return f"{ZENODO_IAM_SCENARIO_BASE_URL}/{archive_stem}.csv"
 
@@ -86,12 +169,15 @@ def download_csv(file_name: str, url: str, download_folder: Path) -> Path:
         headers = {
             "User-Agent": f"premise-lca/{version_str} (https://github.com/polca/premise)"
         }
+        partial_path = file_path.with_suffix(file_path.suffix + ".part")
+        partial_path.unlink(missing_ok=True)
         response = requests.get(url, stream=True, timeout=60, headers=headers)
 
-        if response.status_code == 200:
+        try:
+            response.raise_for_status()
             total_size = int(response.headers.get("Content-Length", 0))
             with (
-                open(file_path, "wb") as file_handle,
+                open(partial_path, "wb") as file_handle,
                 tqdm(
                     total=total_size, unit="B", unit_scale=True, desc=file_name
                 ) as progress,
@@ -100,11 +186,13 @@ def download_csv(file_name: str, url: str, download_folder: Path) -> Path:
                     if chunk:
                         file_handle.write(chunk)
                         progress.update(len(chunk))
+            os.replace(partial_path, file_path)
             print(f"{file_name} downloaded successfully.")
-        else:
-            print(
-                f"Failed to download {file_name}. Status code: {response.status_code}"
-            )
+        except Exception:
+            partial_path.unlink(missing_ok=True)
+            raise
+        finally:
+            response.close()
     else:
         print(f"{file_name} already exists locally.")
 

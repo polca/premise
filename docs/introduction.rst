@@ -742,7 +742,7 @@ temperature (GMST) increase by 2100:
      - ✓
      -
      -
-   * - tiam-ucl - SSP2-Base
+   * - tiam-ucl - SSP2-RCP60
      -
      -
      -
@@ -1108,10 +1108,10 @@ and GMST increase by 2100.
      -
    * - **SSP2**
      - 3.1-3.5°C
-     - Base (no explicit policy, TIAM reference)
+     - RCP 6.0 (TIAM-UCL)
      -
      -
-     - SSP2-Base
+     - SSP2-RCP60
      - SSP2-Base
      -
    * - **SSP3**

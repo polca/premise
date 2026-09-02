@@ -32,7 +32,8 @@ project_name = f"ecoinvent-{ei_version}-{system_model}"
 scenarios = [
     {"model": "remind", "pathway": "SSP3-rollBack", "year": 2050},
     {"model": "image", "pathway": "SSP2-VLHO", "year": 2050},
-    {"model": "tiam-ucl", "pathway": "SSP2-RCP19", "year": 2050},
+    {"model": "tiam-ucl", "pathway": "SSP2-RCP60", "year": 2050},
+    {"model": "message", "pathway": "SSP2-M", "year": 2050},
 ]
 
 
@@ -101,7 +102,7 @@ def assert_persisted_scenarios_unchanged(ndb, checkpoint_snapshots):
 def test_brightway(updated_ei312_cutoff):
     ndb, checkpoint_snapshots = updated_ei312_cutoff
 
-    database_names = ["test1", "test2", "test3"]
+    database_names = ["test1", "test2", "test3", "test4"]
     ndb.write_db_to_brightway(database_names)
     assert_persisted_scenarios_unchanged(ndb, checkpoint_snapshots)
 
@@ -112,7 +113,7 @@ def test_brightway(updated_ei312_cutoff):
     print(f"Length of databases: {len(bw2data.Database('test1'))}")
 
     case_key = project_name
-    assert_lcia_regression_scores(case_key, database_names[:2])
+    assert_lcia_regression_scores(case_key, database_names)
     method = get_lcia_regression_method(case_key)
 
     lca = bw2calc.LCA({bw2data.Database("test1").random(): 1}, method)
