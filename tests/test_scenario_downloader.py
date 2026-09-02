@@ -117,9 +117,9 @@ def test_download_csv_writes_atomically_and_reuses_completed_file(
     assert not result.with_suffix(".csv.part").exists()
     assert response.closed
 
-    assert download_csv(
-        "message_SSP2-M.csv", "https://example.test", cache_dir
-    ) == result
+    assert (
+        download_csv("message_SSP2-M.csv", "https://example.test", cache_dir) == result
+    )
     assert len(calls) == 1
 
 

@@ -2,13 +2,7 @@ from pathlib import Path
 
 import yaml
 
-
-MAPPING = (
-    Path(__file__).parents[1]
-    / "premise"
-    / "iam_variables_mapping"
-    / "steel.yaml"
-)
+MAPPING = Path(__file__).parents[1] / "premise" / "iam_variables_mapping" / "steel.yaml"
 
 
 def test_message_dri_routes_use_mutually_exclusive_processed_variables():
