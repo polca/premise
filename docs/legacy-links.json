@@ -1,0 +1,3616 @@
+[
+  {
+    "old": "structured_change_report.html#structured-change-report-v2",
+    "new": "reference/change-report-schema.html",
+    "title": "Structured change report V2"
+  },
+  {
+    "old": "structured_change_report.html#lifecycle-and-failures",
+    "new": "reference/change-report-schema.html",
+    "title": "Lifecycle and failures"
+  },
+  {
+    "old": "structured_change_report.html#excel-workbook",
+    "new": "reference/change-report-schema.html",
+    "title": "Excel workbook"
+  },
+  {
+    "old": "structured_change_report.html#parquet-schema",
+    "new": "reference/change-report-schema.html",
+    "title": "Parquet schema"
+  },
+  {
+    "old": "extract.html#extract",
+    "new": "reference/inventories.html",
+    "title": "EXTRACT"
+  },
+  {
+    "old": "extract.html#current-iam-scenarios",
+    "new": "reference/inventories.html",
+    "title": "Current IAM scenarios"
+  },
+  {
+    "old": "extract.html#supported-versions-of-ecoinvent",
+    "new": "reference/compatibility.html",
+    "title": "Supported versions of ecoinvent"
+  },
+  {
+    "old": "extract.html#supported-sources-of-ecoinvent",
+    "new": "user_guide/source-databases.html",
+    "title": "Supported sources of ecoinvent"
+  },
+  {
+    "old": "extract.html#from-a-brightway2-project",
+    "new": "user_guide/source-databases.html",
+    "title": "From a brightway2 project"
+  },
+  {
+    "old": "extract.html#from-ecospold2-files",
+    "new": "user_guide/source-databases.html",
+    "title": "From ecospold2 files"
+  },
+  {
+    "old": "extract.html#import-of-additional-inventories",
+    "new": "reference/inventories.html",
+    "title": "Import of additional inventories"
+  },
+  {
+    "old": "extract.html#power-generation",
+    "new": "reference/inventories.html",
+    "title": "Power generation"
+  },
+  {
+    "old": "extract.html#power-plants-with-ccs",
+    "new": "methodology/electricity/generation.html",
+    "title": "Power plants with CCS"
+  },
+  {
+    "old": "extract.html#natural-gas",
+    "new": "methodology/electricity/generation.html",
+    "title": "Natural gas"
+  },
+  {
+    "old": "extract.html#photovoltaic-panels",
+    "new": "methodology/electricity/photovoltaics.html",
+    "title": "Photovoltaic panels"
+  },
+  {
+    "old": "extract.html#technologies-and-reference-systems",
+    "new": "methodology/electricity/photovoltaics.html",
+    "title": "Technologies and reference systems"
+  },
+  {
+    "old": "extract.html#country-mixes-yields-and-lifetime",
+    "new": "methodology/electricity/photovoltaics.html",
+    "title": "Country mixes, yields and lifetime"
+  },
+  {
+    "old": "extract.html#supplier-linking-and-modelling-adaptations",
+    "new": "methodology/electricity/photovoltaics.html",
+    "title": "Supplier linking and modelling adaptations"
+  },
+  {
+    "old": "extract.html#scenario-updates-and-validation",
+    "new": "methodology/electricity/photovoltaics.html",
+    "title": "Scenario updates and validation"
+  },
+  {
+    "old": "extract.html#separate-emerging-technology-supplements",
+    "new": "methodology/electricity/photovoltaics.html",
+    "title": "Separate emerging-technology supplements"
+  },
+  {
+    "old": "extract.html#geothermal",
+    "new": "methodology/electricity/generation.html",
+    "title": "Geothermal"
+  },
+  {
+    "old": "extract.html#hydrogen",
+    "new": "methodology/fuels/hydrogen.html",
+    "title": "Hydrogen"
+  },
+  {
+    "old": "extract.html#hydrogen-production",
+    "new": "methodology/fuels/hydrogen.html",
+    "title": "Hydrogen production"
+  },
+  {
+    "old": "extract.html#hydrogen-storage-and-distribution",
+    "new": "methodology/fuels/hydrogen.html",
+    "title": "Hydrogen storage and distribution"
+  },
+  {
+    "old": "extract.html#hydrogen-turbine",
+    "new": "methodology/fuels/hydrogen.html",
+    "title": "Hydrogen turbine"
+  },
+  {
+    "old": "extract.html#steel",
+    "new": "methodology/steel.html",
+    "title": "Steel"
+  },
+  {
+    "old": "extract.html#cement",
+    "new": "methodology/cement.html",
+    "title": "Cement"
+  },
+  {
+    "old": "extract.html#monoethanolamine-mea",
+    "new": "methodology/cement.html",
+    "title": "Monoethanolamine (MEA)"
+  },
+  {
+    "old": "extract.html#direct-separation",
+    "new": "methodology/cement.html",
+    "title": "Direct separation"
+  },
+  {
+    "old": "extract.html#oxyfuel-combustion",
+    "new": "methodology/cement.html",
+    "title": "Oxyfuel combustion"
+  },
+  {
+    "old": "extract.html#ammonia",
+    "new": "methodology/fuels/ammonia.html",
+    "title": "Ammonia"
+  },
+  {
+    "old": "extract.html#biofuels",
+    "new": "methodology/fuels/biofuels.html",
+    "title": "Biofuels"
+  },
+  {
+    "old": "extract.html#synthetic-fuels",
+    "new": "methodology/fuels/synthetic.html",
+    "title": "Synthetic fuels"
+  },
+  {
+    "old": "extract.html#carbon-capture",
+    "new": "methodology/cdr.html",
+    "title": "Carbon Capture"
+  },
+  {
+    "old": "extract.html#li-ion-batteries",
+    "new": "methodology/battery-mobile.html",
+    "title": "Li-ion batteries"
+  },
+  {
+    "old": "extract.html#graphite",
+    "new": "methodology/metals.html",
+    "title": "Graphite"
+  },
+  {
+    "old": "extract.html#cobalt",
+    "new": "methodology/metals.html",
+    "title": "Cobalt"
+  },
+  {
+    "old": "extract.html#lithium",
+    "new": "methodology/metals.html",
+    "title": "Lithium"
+  },
+  {
+    "old": "extract.html#vanadium-redox-flow-batteries",
+    "new": "methodology/battery-stationary.html",
+    "title": "Vanadium Redox Flow Batteries"
+  },
+  {
+    "old": "extract.html#road-vehicles",
+    "new": "methodology/transport/overview.html",
+    "title": "Road vehicles"
+  },
+  {
+    "old": "extract.html#two-wheelers",
+    "new": "methodology/transport/overview.html",
+    "title": "Two-wheelers"
+  },
+  {
+    "old": "extract.html#passenger-cars",
+    "new": "methodology/transport/overview.html",
+    "title": "Passenger cars"
+  },
+  {
+    "old": "extract.html#medium-and-heavy-duty-trucks",
+    "new": "methodology/transport/overview.html",
+    "title": "Medium and heavy duty trucks"
+  },
+  {
+    "old": "extract.html#buses",
+    "new": "methodology/transport/overview.html",
+    "title": "Buses"
+  },
+  {
+    "old": "extract.html#migration-between-ecoinvent-versions",
+    "new": "reference/inventory-migration.html",
+    "title": "Migration between ecoinvent versions"
+  },
+  {
+    "old": "extract.html#iam-data-collection",
+    "new": "reference/iam-variables.html",
+    "title": "IAM data collection"
+  },
+  {
+    "old": "extract.html#production-volumes-and-efficiencies",
+    "new": "reference/iam-variables.html",
+    "title": "Production volumes and efficiencies"
+  },
+  {
+    "old": "extract.html#land-use-and-land-use-change",
+    "new": "reference/iam-variables.html",
+    "title": "Land use and land use change"
+  },
+  {
+    "old": "extract.html#carbon-capture-and-storage",
+    "new": "reference/iam-variables.html",
+    "title": "Carbon Capture and Storage"
+  },
+  {
+    "old": "extract.html#data-sources-external-to-the-iam",
+    "new": "reference/inventories.html",
+    "title": "Data sources external to the IAM"
+  },
+  {
+    "old": "extract.html#air-emissions",
+    "new": "reference/inventories.html",
+    "title": "Air emissions"
+  },
+  {
+    "old": "extract.html#id1",
+    "new": "methodology/electricity/photovoltaics.html",
+    "title": "Photovoltaic panels"
+  },
+  {
+    "old": "metals_validation.html#metals-rules-and-validation",
+    "new": "methodology/metals.html",
+    "title": "Metals rules and validation"
+  },
+  {
+    "old": "metals_validation.html#runtime-configuration",
+    "new": "methodology/metals.html",
+    "title": "Runtime configuration"
+  },
+  {
+    "old": "metals_validation.html#epr-construction",
+    "new": "methodology/metals.html",
+    "title": "EPR construction"
+  },
+  {
+    "old": "metals_validation.html#dataset-wise-comparison",
+    "new": "methodology/metals.html",
+    "title": "Dataset-wise comparison"
+  },
+  {
+    "old": "code.html#new-wurst-database",
+    "new": "reference/api.html",
+    "title": "New Wurst Database"
+  },
+  {
+    "old": "code.html#database-cleaner",
+    "new": "reference/api.html",
+    "title": "Database Cleaner"
+  },
+  {
+    "old": "code.html#inventory-imports",
+    "new": "reference/api.html",
+    "title": "Inventory Imports"
+  },
+  {
+    "old": "code.html#remind-data-collection",
+    "new": "reference/api.html",
+    "title": "Remind Data Collection"
+  },
+  {
+    "old": "code.html#remind-to-ecoinvent-mapping",
+    "new": "reference/api.html",
+    "title": "Remind to Ecoinvent mapping"
+  },
+  {
+    "old": "code.html#electricity-markets-modelling",
+    "new": "reference/api.html",
+    "title": "Electricity markets modelling"
+  },
+  {
+    "old": "load.html#load",
+    "new": "user_guide/export/index.html",
+    "title": "LOAD"
+  },
+  {
+    "old": "load.html#back-to-a-brightway2-project",
+    "new": "user_guide/export/brightway.html",
+    "title": "Back to a brightway2 project"
+  },
+  {
+    "old": "load.html#regular-brightway2-database",
+    "new": "user_guide/export/brightway.html",
+    "title": "Regular brightway2 database"
+  },
+  {
+    "old": "load.html#scenario-metadata",
+    "new": "user_guide/export/brightway.html",
+    "title": "Scenario metadata"
+  },
+  {
+    "old": "load.html#superstructure-database",
+    "new": "user_guide/export/superstructure.html",
+    "title": "Superstructure database"
+  },
+  {
+    "old": "load.html#sequential-scenario-arrays-modern-brightway",
+    "new": "user_guide/export/scenario-arrays.html",
+    "title": "Sequential scenario arrays (modern Brightway)"
+  },
+  {
+    "old": "load.html#requirements-and-output",
+    "new": "user_guide/export/scenario-arrays.html",
+    "title": "Requirements and output"
+  },
+  {
+    "old": "load.html#complete-three-scenario-image-example",
+    "new": "user_guide/export/scenario-arrays.html",
+    "title": "Complete three-scenario IMAGE example"
+  },
+  {
+    "old": "load.html#calculate-and-enumerate-scores",
+    "new": "user_guide/export/scenario-arrays.html",
+    "title": "Calculate and enumerate scores"
+  },
+  {
+    "old": "load.html#as-sparse-matrices",
+    "new": "user_guide/export/matrices.html",
+    "title": "As sparse matrices"
+  },
+  {
+    "old": "load.html#as-simapro-csv-files",
+    "new": "user_guide/export/simapro.html",
+    "title": "As Simapro CSV files"
+  },
+  {
+    "old": "load.html#as-simapro-csv-files-for-openlca",
+    "new": "user_guide/export/openlca.html",
+    "title": "As Simapro CSV files for OpenLCA"
+  },
+  {
+    "old": "load.html#as-a-data-package",
+    "new": "user_guide/export/datapackage.html",
+    "title": "As a data package"
+  },
+  {
+    "old": "fuel_market_system_models.html#fuel-market-system-model-rules",
+    "new": "methodology/fuels/markets.html",
+    "title": "Fuel-market system-model rules"
+  },
+  {
+    "old": "fuel_market_system_models.html#consequential-fuel-markets",
+    "new": "methodology/fuels/markets.html",
+    "title": "Consequential fuel markets"
+  },
+  {
+    "old": "fuel_market_system_models.html#cutoff-fuel-markets",
+    "new": "methodology/fuels/markets.html",
+    "title": "Cutoff fuel markets"
+  },
+  {
+    "old": "fuel_market_system_models.html#lcia-regression-baselines",
+    "new": "methodology/fuels/markets.html",
+    "title": "LCIA regression baselines"
+  },
+  {
+    "old": "transform.html#transform",
+    "new": "user_guide/updates.html",
+    "title": "TRANSFORM"
+  },
+  {
+    "old": "transform.html#sector-updates-overview",
+    "new": "user_guide/updates.html",
+    "title": "Sector updates (overview)"
+  },
+  {
+    "old": "transform.html#mobile-batteries",
+    "new": "methodology/battery-mobile.html",
+    "title": "Mobile batteries"
+  },
+  {
+    "old": "transform.html#key-outputs",
+    "new": "methodology/battery-mobile.html",
+    "title": "Key outputs"
+  },
+  {
+    "old": "transform.html#stationary-batteries",
+    "new": "methodology/battery-stationary.html",
+    "title": "Stationary batteries"
+  },
+  {
+    "old": "transform.html#id1",
+    "new": "methodology/battery-stationary.html",
+    "title": "Key outputs"
+  },
+  {
+    "old": "transform.html#metals",
+    "new": "methodology/metals.html",
+    "title": "Metals"
+  },
+  {
+    "old": "transform.html#id2",
+    "new": "methodology/metals.html",
+    "title": "Key outputs"
+  },
+  {
+    "old": "transform.html#data-collection-and-processing",
+    "new": "methodology/metals.html",
+    "title": "Data collection and processing"
+  },
+  {
+    "old": "transform.html#inventories",
+    "new": "methodology/metals.html",
+    "title": "Inventories"
+  },
+  {
+    "old": "transform.html#post-allocation-correction",
+    "new": "methodology/metals.html",
+    "title": "Post-allocation correction"
+  },
+  {
+    "old": "transform.html#mining-and-refining-markets-creation",
+    "new": "methodology/metals.html",
+    "title": "Mining and refining markets creation"
+  },
+  {
+    "old": "transform.html#mining",
+    "new": "methodology/mining.html",
+    "title": "Mining"
+  },
+  {
+    "old": "transform.html#id4",
+    "new": "methodology/mining.html",
+    "title": "Key outputs"
+  },
+  {
+    "old": "transform.html#sulfidic-tailings",
+    "new": "methodology/mining.html",
+    "title": "Sulfidic tailings"
+  },
+  {
+    "old": "transform.html#id21",
+    "new": "methodology/mining.html",
+    "title": "Inventories"
+  },
+  {
+    "old": "transform.html#biomass",
+    "new": "methodology/biomass.html",
+    "title": "Biomass"
+  },
+  {
+    "old": "transform.html#id23",
+    "new": "methodology/biomass.html",
+    "title": "Key outputs"
+  },
+  {
+    "old": "transform.html#regional-biomass-markets",
+    "new": "methodology/biomass.html",
+    "title": "Regional biomass markets"
+  },
+  {
+    "old": "transform.html#power-generation",
+    "new": "methodology/electricity/generation.html",
+    "title": "Power generation"
+  },
+  {
+    "old": "transform.html#id24",
+    "new": "methodology/electricity/generation.html",
+    "title": "Key outputs"
+  },
+  {
+    "old": "transform.html#efficiency-adjustment",
+    "new": "methodology/electricity/generation.html",
+    "title": "Efficiency adjustment"
+  },
+  {
+    "old": "transform.html#combustion-based-powerplants",
+    "new": "methodology/electricity/generation.html",
+    "title": "Combustion-based powerplants"
+  },
+  {
+    "old": "transform.html#photovoltaics-panels",
+    "new": "methodology/electricity/photovoltaics.html",
+    "title": "Photovoltaics panels"
+  },
+  {
+    "old": "transform.html#pv-efficiency-transformation",
+    "new": "methodology/electricity/photovoltaics.html",
+    "title": "Photovoltaics panels"
+  },
+  {
+    "old": "transform.html#markets",
+    "new": "methodology/electricity/markets.html",
+    "title": "Markets"
+  },
+  {
+    "old": "transform.html#regional-electricity-markets",
+    "new": "methodology/electricity/markets.html",
+    "title": "Regional electricity markets"
+  },
+  {
+    "old": "transform.html#high-voltage-regional-markets",
+    "new": "methodology/electricity/markets.html",
+    "title": "High voltage regional markets"
+  },
+  {
+    "old": "transform.html#high-voltage-regional-markets-for-aluminium-smelters",
+    "new": "methodology/electricity/markets.html",
+    "title": "High voltage regional markets for aluminium smelters"
+  },
+  {
+    "old": "transform.html#storage",
+    "new": "methodology/electricity/markets.html",
+    "title": "Storage"
+  },
+  {
+    "old": "transform.html#medium-voltage-regional-markets",
+    "new": "methodology/electricity/markets.html",
+    "title": "Medium voltage regional markets"
+  },
+  {
+    "old": "transform.html#low-voltage-regional-markets",
+    "new": "methodology/electricity/markets.html",
+    "title": "Low voltage regional markets"
+  },
+  {
+    "old": "transform.html#long-term-regional-electricity-markets",
+    "new": "methodology/electricity/markets.html",
+    "title": "Long-term regional electricity markets"
+  },
+  {
+    "old": "transform.html#original-market-datasets",
+    "new": "methodology/electricity/markets.html",
+    "title": "Original market datasets"
+  },
+  {
+    "old": "transform.html#relinking",
+    "new": "methodology/electricity/markets.html",
+    "title": "Relinking"
+  },
+  {
+    "old": "transform.html#heat",
+    "new": "methodology/heat.html",
+    "title": "Heat"
+  },
+  {
+    "old": "transform.html#heat-transformation",
+    "new": "methodology/heat.html",
+    "title": "Heat"
+  },
+  {
+    "old": "transform.html#running-the-update",
+    "new": "methodology/heat.html",
+    "title": "Running the update"
+  },
+  {
+    "old": "transform.html#market-architecture",
+    "new": "methodology/heat.html",
+    "title": "Market architecture"
+  },
+  {
+    "old": "transform.html#iam-data-and-market-shares",
+    "new": "methodology/heat.html",
+    "title": "IAM data and market shares"
+  },
+  {
+    "old": "transform.html#model-coverage",
+    "new": "methodology/heat.html",
+    "title": "Model coverage"
+  },
+  {
+    "old": "transform.html#technology-representation-and-assumptions",
+    "new": "methodology/heat.html",
+    "title": "Technology representation and assumptions"
+  },
+  {
+    "old": "transform.html#regionalization-and-supplier-selection",
+    "new": "methodology/heat.html",
+    "title": "Regionalization and supplier selection"
+  },
+  {
+    "old": "transform.html#residuals-and-frozen-legacy-proxies",
+    "new": "methodology/heat.html",
+    "title": "Residuals and frozen legacy proxies"
+  },
+  {
+    "old": "transform.html#legacy-ecoinvent-market-relinking",
+    "new": "methodology/heat.html",
+    "title": "Legacy ecoinvent market relinking"
+  },
+  {
+    "old": "transform.html#legacy-datasets-are-retained",
+    "new": "methodology/heat.html",
+    "title": "Legacy datasets are retained"
+  },
+  {
+    "old": "transform.html#cutoff-and-consequential-databases",
+    "new": "methodology/heat.html",
+    "title": "Cutoff and consequential databases"
+  },
+  {
+    "old": "transform.html#maintaining-or-extending-the-mapping",
+    "new": "methodology/heat.html",
+    "title": "Maintaining or extending the mapping"
+  },
+  {
+    "old": "transform.html#cement-production",
+    "new": "methodology/cement.html",
+    "title": "Cement production"
+  },
+  {
+    "old": "transform.html#id25",
+    "new": "methodology/cement.html",
+    "title": "Key outputs"
+  },
+  {
+    "old": "transform.html#dataset-proxies",
+    "new": "methodology/cement.html",
+    "title": "Dataset proxies"
+  },
+  {
+    "old": "transform.html#id26",
+    "new": "methodology/cement.html",
+    "title": "Efficiency adjustment"
+  },
+  {
+    "old": "transform.html#carbon-capture-and-storage",
+    "new": "methodology/cement.html",
+    "title": "Carbon Capture and Storage"
+  },
+  {
+    "old": "transform.html#cement-markets",
+    "new": "methodology/cement.html",
+    "title": "Cement markets"
+  },
+  {
+    "old": "transform.html#clinker-to-cement-ratio",
+    "new": "methodology/cement.html",
+    "title": "Clinker-to-cement ratio"
+  },
+  {
+    "old": "transform.html#id27",
+    "new": "methodology/cement.html",
+    "title": "Original market datasets"
+  },
+  {
+    "old": "transform.html#id28",
+    "new": "methodology/cement.html",
+    "title": "Relinking"
+  },
+  {
+    "old": "transform.html#steel-production",
+    "new": "methodology/steel.html",
+    "title": "Steel production"
+  },
+  {
+    "old": "transform.html#id29",
+    "new": "methodology/steel.html",
+    "title": "Key outputs"
+  },
+  {
+    "old": "transform.html#id30",
+    "new": "methodology/steel.html",
+    "title": "Dataset proxies"
+  },
+  {
+    "old": "transform.html#id31",
+    "new": "methodology/steel.html",
+    "title": "Efficiency adjustment"
+  },
+  {
+    "old": "transform.html#id32",
+    "new": "methodology/steel.html",
+    "title": "Carbon Capture and Storage"
+  },
+  {
+    "old": "transform.html#steel-markets",
+    "new": "methodology/steel.html",
+    "title": "Steel markets"
+  },
+  {
+    "old": "transform.html#id33",
+    "new": "methodology/steel.html",
+    "title": "Original market datasets"
+  },
+  {
+    "old": "transform.html#id34",
+    "new": "methodology/steel.html",
+    "title": "Relinking"
+  },
+  {
+    "old": "transform.html#transport",
+    "new": "methodology/transport/overview.html",
+    "title": "Transport"
+  },
+  {
+    "old": "transform.html#id35",
+    "new": "methodology/transport/overview.html",
+    "title": "Key outputs"
+  },
+  {
+    "old": "transform.html#trucks",
+    "new": "methodology/transport/trucks.html",
+    "title": "Trucks"
+  },
+  {
+    "old": "transform.html#id36",
+    "new": "methodology/transport/trucks.html",
+    "title": "Key outputs"
+  },
+  {
+    "old": "transform.html#fleet-average-trucks",
+    "new": "methodology/transport/trucks.html",
+    "title": "Fleet average trucks"
+  },
+  {
+    "old": "transform.html#id37",
+    "new": "methodology/transport/trucks.html",
+    "title": "Relinking"
+  },
+  {
+    "old": "transform.html#carbon-dioxide-removal",
+    "new": "methodology/cdr.html",
+    "title": "Carbon Dioxide Removal"
+  },
+  {
+    "old": "transform.html#id38",
+    "new": "methodology/cdr.html",
+    "title": "Key outputs"
+  },
+  {
+    "old": "transform.html#fuels",
+    "new": "methodology/fuels/biofuels.html",
+    "title": "Fuels"
+  },
+  {
+    "old": "transform.html#id39",
+    "new": "methodology/fuels/biofuels.html",
+    "title": "Key outputs"
+  },
+  {
+    "old": "transform.html#id40",
+    "new": "methodology/fuels/biofuels.html",
+    "title": "Efficiency adjustment"
+  },
+  {
+    "old": "transform.html#biofuels",
+    "new": "methodology/fuels/biofuels.html",
+    "title": "Biofuels"
+  },
+  {
+    "old": "transform.html#feedstock-regionalization",
+    "new": "methodology/fuels/biofuels.html",
+    "title": "Feedstock regionalization"
+  },
+  {
+    "old": "transform.html#land-use-and-land-use-change",
+    "new": "methodology/fuels/biofuels.html",
+    "title": "Land use and land use change"
+  },
+  {
+    "old": "transform.html#regional-supply-chains",
+    "new": "methodology/fuels/biofuels.html",
+    "title": "Regional supply chains"
+  },
+  {
+    "old": "transform.html#hydrogen",
+    "new": "methodology/fuels/hydrogen.html",
+    "title": "Hydrogen"
+  },
+  {
+    "old": "transform.html#id41",
+    "new": "methodology/fuels/hydrogen.html",
+    "title": "Key outputs"
+  },
+  {
+    "old": "transform.html#hydrogen-supply-chains",
+    "new": "methodology/fuels/hydrogen.html",
+    "title": "Hydrogen supply chains"
+  },
+  {
+    "old": "transform.html#fuel-markets",
+    "new": "methodology/fuels/markets.html",
+    "title": "Fuel markets"
+  },
+  {
+    "old": "transform.html#influence-of-differing-lhv-on-fuel-market-composition",
+    "new": "methodology/fuels/markets.html",
+    "title": "Influence of differing LHV on fuel market composition"
+  },
+  {
+    "old": "transform.html#co2-emissions-update",
+    "new": "methodology/fuels/markets.html",
+    "title": "CO2 emissions update"
+  },
+  {
+    "old": "transform.html#geographical-mapping",
+    "new": "reference/geography.html",
+    "title": "Geographical mapping"
+  },
+  {
+    "old": "transform.html#regionalization",
+    "new": "methodology/regionalization.html",
+    "title": "Regionalization"
+  },
+  {
+    "old": "transform.html#decision-is-the-exchange-in-cache",
+    "new": "methodology/regionalization.html",
+    "title": "Decision: Is the Exchange in Cache?"
+  },
+  {
+    "old": "transform.html#final-steps",
+    "new": "methodology/regionalization.html",
+    "title": "Final Steps"
+  },
+  {
+    "old": "transform.html#gains-emission-factors",
+    "new": "methodology/emissions.html",
+    "title": "GAINS emission factors"
+  },
+  {
+    "old": "transform.html#structured-change-reports",
+    "new": "user_guide/reports.html",
+    "title": "Structured change reports"
+  },
+  {
+    "old": "release_2_5.html#premise-2-5-release-and-migration-guide",
+    "new": "development/releases-2-5.html",
+    "title": "Premise 2.5 release and migration guide"
+  },
+  {
+    "old": "release_2_5.html#inventory-access",
+    "new": "development/releases-2-5.html",
+    "title": "Inventory access"
+  },
+  {
+    "old": "release_2_5.html#validation-certificates",
+    "new": "development/releases-2-5.html",
+    "title": "Validation certificates"
+  },
+  {
+    "old": "release_2_5.html#structured-change-reports",
+    "new": "development/releases-2-5.html",
+    "title": "Structured change reports"
+  },
+  {
+    "old": "release_2_5.html#update-and-export-workflow",
+    "new": "development/releases-2-5.html",
+    "title": "Update and export workflow"
+  },
+  {
+    "old": "release_2_5.html#further-details",
+    "new": "development/releases-2-5.html",
+    "title": "Further details"
+  },
+  {
+    "old": "mapping.html#mapping",
+    "new": "reference/iam-variables.html",
+    "title": "Mapping"
+  },
+  {
+    "old": "mapping.html#iam-mapping-collaborators",
+    "new": "development/contributing.html",
+    "title": "IAM Mapping Collaborators"
+  },
+  {
+    "old": "mapping.html#remind-and-remind-eu",
+    "new": "development/contributing.html",
+    "title": "REMIND and REMIND-EU"
+  },
+  {
+    "old": "mapping.html#image",
+    "new": "development/contributing.html",
+    "title": "IMAGE"
+  },
+  {
+    "old": "mapping.html#message",
+    "new": "development/contributing.html",
+    "title": "MESSAGE"
+  },
+  {
+    "old": "mapping.html#tiam-ucl",
+    "new": "development/contributing.html",
+    "title": "TIAM-UCL"
+  },
+  {
+    "old": "mapping.html#gcam",
+    "new": "development/contributing.html",
+    "title": "GCAM"
+  },
+  {
+    "old": "mapping.html#link-to-a-new-iam-model",
+    "new": "development/iam-mapping.html",
+    "title": "Link to a new IAM model"
+  },
+  {
+    "old": "mapping.html#cdr-energy-use-aliases",
+    "new": "development/iam-mapping.html",
+    "title": "CDR energy-use aliases"
+  },
+  {
+    "old": "mapping.html#iam-scenario-file",
+    "new": "reference/iam-variables.html",
+    "title": "IAM scenario file"
+  },
+  {
+    "old": "consequential.html#consequential-modelling",
+    "new": "methodology/system-models.html",
+    "title": "Consequential modelling"
+  },
+  {
+    "old": "consequential.html#what-the-consequential-parameters-describe",
+    "new": "methodology/system-models.html",
+    "title": "What the consequential parameters describe"
+  },
+  {
+    "old": "consequential.html#choosing-the-demand-change-period",
+    "new": "methodology/system-models.html",
+    "title": "Choosing the demand-change period"
+  },
+  {
+    "old": "consequential.html#how-the-supplier-observation-interval-is-calculated",
+    "new": "methodology/system-models.html",
+    "title": "How the supplier-observation interval is calculated"
+  },
+  {
+    "old": "consequential.html#foresight-and-lead-time",
+    "new": "methodology/system-models.html",
+    "title": "Foresight and lead time"
+  },
+  {
+    "old": "consequential.html#worked-examples",
+    "new": "methodology/system-models.html",
+    "title": "Worked examples"
+  },
+  {
+    "old": "consequential.html#capital-replacement",
+    "new": "methodology/system-models.html",
+    "title": "Capital replacement"
+  },
+  {
+    "old": "consequential.html#measuring-production-trends",
+    "new": "methodology/system-models.html",
+    "title": "Measuring production trends"
+  },
+  {
+    "old": "consequential.html#configuration-reference",
+    "new": "methodology/system-models.html",
+    "title": "Configuration reference"
+  },
+  {
+    "old": "consequential.html#scope-and-limitations",
+    "new": "methodology/system-models.html",
+    "title": "Scope and limitations"
+  },
+  {
+    "old": "introduction.html#in-a-nutshell",
+    "new": "getting_started/overview.html",
+    "title": "In a nutshell"
+  },
+  {
+    "old": "introduction.html#purpose",
+    "new": "getting_started/overview.html",
+    "title": "Purpose"
+  },
+  {
+    "old": "introduction.html#scope-and-boundaries",
+    "new": "getting_started/overview.html",
+    "title": "Scope and boundaries"
+  },
+  {
+    "old": "introduction.html#external-data-dependencies",
+    "new": "getting_started/overview.html",
+    "title": "External data dependencies"
+  },
+  {
+    "old": "introduction.html#iam-data-access",
+    "new": "getting_started/overview.html",
+    "title": "IAM data access"
+  },
+  {
+    "old": "introduction.html#publication",
+    "new": "getting_started/overview.html",
+    "title": "Publication"
+  },
+  {
+    "old": "introduction.html#reproducibility",
+    "new": "getting_started/overview.html",
+    "title": "Reproducibility"
+  },
+  {
+    "old": "introduction.html#models",
+    "new": "reference/models.html",
+    "title": "Models"
+  },
+  {
+    "old": "introduction.html#quick-reference",
+    "new": "reference/models.html",
+    "title": "Quick Reference"
+  },
+  {
+    "old": "introduction.html#choosing-the-right-iam",
+    "new": "reference/models.html",
+    "title": "Choosing the Right IAM"
+  },
+  {
+    "old": "introduction.html#choosing-the-right-scenario",
+    "new": "reference/scenarios.html",
+    "title": "Choosing the right scenario"
+  },
+  {
+    "old": "introduction.html#workflow",
+    "new": "methodology/workflow.html",
+    "title": "Workflow"
+  },
+  {
+    "old": "introduction.html#requirements",
+    "new": "getting_started/installation.html",
+    "title": "Requirements"
+  },
+  {
+    "old": "introduction.html#how-to-install-this-package",
+    "new": "getting_started/installation.html",
+    "title": "How to install this package?"
+  },
+  {
+    "old": "introduction.html#how-to-use-it",
+    "new": "user_guide/examples.html",
+    "title": "How to use it?"
+  },
+  {
+    "old": "introduction.html#example-notebooks",
+    "new": "user_guide/examples.html",
+    "title": "Example notebooks"
+  },
+  {
+    "old": "introduction.html#scenariolink-plugin",
+    "new": "user_guide/examples.html",
+    "title": "ScenarioLink plugin"
+  },
+  {
+    "old": "introduction.html#active-contributors",
+    "new": "development/contributing.html",
+    "title": "Active contributors"
+  },
+  {
+    "old": "introduction.html#historical-contributors",
+    "new": "development/contributing.html",
+    "title": "Historical contributors"
+  },
+  {
+    "old": "faq.html#frequently-asked-questions",
+    "new": "user_guide/troubleshooting.html",
+    "title": "Frequently Asked Questions"
+  },
+  {
+    "old": "faq.html#ecoinvent",
+    "new": "user_guide/troubleshooting.html",
+    "title": "Ecoinvent"
+  },
+  {
+    "old": "faq.html#what-is-ecoinvent",
+    "new": "user_guide/troubleshooting.html",
+    "title": "What is ecoinvent?"
+  },
+  {
+    "old": "faq.html#what-is-the-ecoinvent-version-used-in-premise",
+    "new": "user_guide/troubleshooting.html",
+    "title": "What is the ecoinvent version used in premise?"
+  },
+  {
+    "old": "faq.html#how-does-premise-use-ecoinvent",
+    "new": "user_guide/troubleshooting.html",
+    "title": "How does premise use ecoinvent?"
+  },
+  {
+    "old": "faq.html#can-i-share-the-modified-ecoinvent-database",
+    "new": "user_guide/troubleshooting.html",
+    "title": "Can I share the modified ecoinvent database?"
+  },
+  {
+    "old": "faq.html#can-i-share-results-obtained-with-the-modified-ecoinvent-database",
+    "new": "user_guide/troubleshooting.html",
+    "title": "Can I share results obtained with the modified ecoinvent database?"
+  },
+  {
+    "old": "faq.html#can-i-use-the-modified-ecoinvent-database-for-commercial-purposes",
+    "new": "user_guide/troubleshooting.html",
+    "title": "Can I use the modified ecoinvent database for commercial purposes?"
+  },
+  {
+    "old": "faq.html#how-can-i-share-modified-ecoinvent-databases",
+    "new": "user_guide/troubleshooting.html",
+    "title": "How can I share modified ecoinvent databases?"
+  },
+  {
+    "old": "faq.html#iam-models",
+    "new": "user_guide/troubleshooting.html",
+    "title": "IAM models"
+  },
+  {
+    "old": "faq.html#i-use-a-different-iam-than-remind-image-message-gcam-or-tiam-ucl-can-i-still-use-premise",
+    "new": "user_guide/troubleshooting.html",
+    "title": "I use a different IAM than REMIND, IMAGE, MESSAGE, GCAM or TIAM-UCL \u2026 Can I still use premise?"
+  },
+  {
+    "old": "faq.html#what-columns-are-necessary-in-the-iam-files",
+    "new": "user_guide/troubleshooting.html",
+    "title": "What columns are necessary in the IAM files?"
+  },
+  {
+    "old": "faq.html#how-big-an-effort-would-it-be-to-link-to-a-new-iam-as-simple-as-an-extension-of-the-mapping-files-what-difficulties-can-be-anticipated",
+    "new": "user_guide/troubleshooting.html",
+    "title": "How big an effort would it be to link to a new IAM? As simple as an extension of the mapping files? What difficulties can be anticipated?"
+  },
+  {
+    "old": "faq.html#iam-data-collection",
+    "new": "user_guide/troubleshooting.html",
+    "title": "IAM data collection"
+  },
+  {
+    "old": "faq.html#how-was-the-list-of-variables-in-the-mapping-files-established",
+    "new": "user_guide/troubleshooting.html",
+    "title": "How was the list of variables in the mapping files established?"
+  },
+  {
+    "old": "faq.html#is-it-possible-to-expand-this-list-e-g-agriculture-crops-for-energy",
+    "new": "user_guide/troubleshooting.html",
+    "title": "Is it possible to expand this list? (e.g. agriculture crops for energy)"
+  },
+  {
+    "old": "faq.html#is-the-unit-and-the-description-of-these-parameters-documented-or-are-they-necessarily-the-same-as-the-ones-of-the-ecoinvent-datasets-they-refer-to",
+    "new": "user_guide/troubleshooting.html",
+    "title": "Is the unit and the description of these parameters documented? Or are they necessarily the same as the ones of the ecoinvent datasets they refer to?"
+  },
+  {
+    "old": "faq.html#what-if-a-variable-in-premise-corresponds-to-several-variables-in-the-iam",
+    "new": "user_guide/troubleshooting.html",
+    "title": "What if a variable in premise corresponds to several variables in the IAM?"
+  },
+  {
+    "old": "faq.html#regionalization",
+    "new": "user_guide/troubleshooting.html",
+    "title": "Regionalization"
+  },
+  {
+    "old": "faq.html#are-datasets-regionalized-on-the-basis-of-the-iam-scenario-only-or-does-it-come-from-other-sources",
+    "new": "user_guide/troubleshooting.html",
+    "title": "Are datasets regionalized on the basis of the IAM scenario only, or does it come from other sources?"
+  },
+  {
+    "old": "faq.html#does-premise-generate-more-regionalised-datasets-than-in-original-ei3-x-database",
+    "new": "user_guide/troubleshooting.html",
+    "title": "Does premise generate more regionalised datasets than in original EI3.x database?"
+  },
+  {
+    "old": "faq.html#how-does-premise-handle-the-different-granularities-between-the-iam-regions-and-the-ecoinvent-regions",
+    "new": "user_guide/troubleshooting.html",
+    "title": "How does premise handle the different granularities between the IAM regions and the Ecoinvent regions?"
+  },
+  {
+    "old": "faq.html#heat",
+    "new": "user_guide/troubleshooting.html",
+    "title": "Heat"
+  },
+  {
+    "old": "faq.html#does-the-secondary-heat-market-supply-both-buildings-and-industry",
+    "new": "user_guide/troubleshooting.html",
+    "title": "Does the secondary heat market supply both buildings and industry?"
+  },
+  {
+    "old": "faq.html#why-are-legacy-ecoinvent-heat-markets-still-present-after-the-update",
+    "new": "user_guide/troubleshooting.html",
+    "title": "Why are legacy ecoinvent heat markets still present after the update?"
+  },
+  {
+    "old": "faq.html#why-can-several-exchanges-point-to-the-same-new-heat-market",
+    "new": "user_guide/troubleshooting.html",
+    "title": "Why can several exchanges point to the same new heat market?"
+  },
+  {
+    "old": "faq.html#are-all-datasets-named-market-for-heat-replaced",
+    "new": "user_guide/troubleshooting.html",
+    "title": "Are all datasets named market for heat replaced?"
+  },
+  {
+    "old": "faq.html#consistency-with-climate-targets",
+    "new": "user_guide/troubleshooting.html",
+    "title": "Consistency with climate targets"
+  },
+  {
+    "old": "faq.html#how-do-we-ensure-consistency-between-iam-scenario-and-plca-results-in-terms-of-global-warming-temperature-increase",
+    "new": "user_guide/troubleshooting.html",
+    "title": "How do we ensure consistency between IAM scenario and pLCA results (in terms of global warming / temperature increase)?"
+  },
+  {
+    "old": "faq.html#additional-inventories",
+    "new": "user_guide/troubleshooting.html",
+    "title": "Additional inventories"
+  },
+  {
+    "old": "faq.html#can-additional-inventories-be-modelled-with-parameters-if-so-how-are-they-used",
+    "new": "user_guide/troubleshooting.html",
+    "title": "Can additional inventories be modelled with parameters? If so, how are they used?"
+  },
+  {
+    "old": "faq.html#can-some-parameters-of-the-additional-inventories-be-made-scenario-and-time-dependant",
+    "new": "user_guide/troubleshooting.html",
+    "title": "Can some parameters of the additional inventories be made scenario- and time-dependant?"
+  },
+  {
+    "old": "faq.html#can-premise-manage-an-efficiency-evolution-for-the-additional-inventories",
+    "new": "user_guide/troubleshooting.html",
+    "title": "Can premise manage an efficiency evolution for the additional inventories?"
+  },
+  {
+    "old": "faq.html#efficiency-adjustments",
+    "new": "user_guide/troubleshooting.html",
+    "title": "Efficiency adjustments"
+  },
+  {
+    "old": "faq.html#is-the-calculated-scaling-factor-ratio-of-efficiencies-in-year-20xx-vs-2020-applied-to-all-inputs-of-the-transformed-dataset-or-only-to-the-energy-feedstock-input",
+    "new": "user_guide/troubleshooting.html",
+    "title": "Is the calculated scaling factor (ratio of efficiencies in year 20XX vs 2020) applied to all inputs of the transformed dataset, or only to the energy feedstock input?"
+  },
+  {
+    "old": "faq.html#what-happens-if-the-iam-does-not-provide-efficiencies-for-certain-processes",
+    "new": "user_guide/troubleshooting.html",
+    "title": "What happens if the IAM does not provide efficiencies for certain processes?"
+  },
+  {
+    "old": "faq.html#why-use-external-data-sources-for-pv-efficiency-rather-than-the-output-of-iam",
+    "new": "user_guide/troubleshooting.html",
+    "title": "Why use external data sources for PV efficiency, rather than the output of IAM?"
+  },
+  {
+    "old": "user_scenarios.html#user-defined-scenarios",
+    "new": "user_guide/external-scenarios.html",
+    "title": "User-defined scenarios"
+  },
+  {
+    "old": "user_scenarios.html#purpose",
+    "new": "user_guide/external-scenarios.html",
+    "title": "Purpose"
+  },
+  {
+    "old": "user_scenarios.html#available-user-defined-scenarios",
+    "new": "user_guide/external-scenarios.html",
+    "title": "Available user-defined scenarios"
+  },
+  {
+    "old": "user_scenarios.html#using-user-generated-scenarios",
+    "new": "user_guide/external-scenarios.html",
+    "title": "Using user-generated scenarios"
+  },
+  {
+    "old": "user_scenarios.html#producing-your-own-scenario",
+    "new": "user_guide/create-external-scenario.html",
+    "title": "Producing your own scenario"
+  },
+  {
+    "old": "user_scenarios.html#example-with-ammonia-scenarios",
+    "new": "user_guide/create-external-scenario.html",
+    "title": "Example with Ammonia scenarios"
+  },
+  {
+    "old": "user_scenarios.html#datapackage-json",
+    "new": "reference/external-scenario-format.html",
+    "title": "datapackage.json"
+  },
+  {
+    "old": "user_scenarios.html#scenario-data",
+    "new": "reference/external-scenario-format.html",
+    "title": "Scenario data"
+  },
+  {
+    "old": "user_scenarios.html#inventories",
+    "new": "reference/external-scenario-format.html",
+    "title": "Inventories"
+  },
+  {
+    "old": "user_scenarios.html#config-yaml",
+    "new": "reference/external-scenario-format.html",
+    "title": "config.yaml"
+  },
+  {
+    "old": "user_scenarios.html#main-contributors",
+    "new": "development/contributing.html",
+    "title": "Main contributors"
+  },
+  {
+    "old": "index.html#user-guide",
+    "new": "getting_started/index.html",
+    "title": "User guide"
+  },
+  {
+    "old": "development/performance-history.html#runtime-and-resident-memory-optimization",
+    "new": "development/performance-history.html#runtime-and-resident-memory-optimization",
+    "title": "Runtime and resident-memory optimization",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "development/performance-history.html#reproducible-benchmark",
+    "new": "development/performance-history.html#reproducible-benchmark",
+    "title": "Reproducible benchmark",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "development/performance-history.html#validation-certification-acceptance",
+    "new": "development/performance-history.html#validation-certification-acceptance",
+    "title": "Validation certification acceptance",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "development/performance-history.html#results",
+    "new": "development/performance-history.html#results",
+    "title": "Results",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "development/performance-history.html#compact-inventorystore-pass",
+    "new": "development/performance-history.html#compact-inventorystore-pass",
+    "title": "Compact InventoryStore pass",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "development/performance-history.html#earlier-mutable-inventory-optimization-pass",
+    "new": "development/performance-history.html#earlier-mutable-inventory-optimization-pass",
+    "title": "Earlier mutable-inventory optimization pass",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "development/performance-history.html#output-equivalence-certification",
+    "new": "development/performance-history.html#output-equivalence-certification",
+    "title": "Output-equivalence certification",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "development/performance-history.html#profile-findings",
+    "new": "development/performance-history.html#profile-findings",
+    "title": "Profile findings",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "development/performance-history.html#implemented-changes",
+    "new": "development/performance-history.html#implemented-changes",
+    "title": "Implemented changes",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "development/performance-history.html#versioned-source-cache",
+    "new": "development/performance-history.html#versioned-source-cache",
+    "title": "Versioned source cache",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "development/performance-history.html#one-pass-scenario-compaction",
+    "new": "development/performance-history.html#one-pass-scenario-compaction",
+    "title": "One-pass scenario compaction",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "development/performance-history.html#indexed-metals-matching",
+    "new": "development/performance-history.html#indexed-metals-matching",
+    "title": "Indexed metals matching",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "development/performance-history.html#safer-activity-map-prefiltering",
+    "new": "development/performance-history.html#safer-activity-map-prefiltering",
+    "title": "Safer activity-map prefiltering",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "development/performance-history.html#experiments-deliberately-not-retained",
+    "new": "development/performance-history.html#experiments-deliberately-not-retained",
+    "title": "Experiments deliberately not retained",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "development/performance-history.html#next-architectural-steps",
+    "new": "development/performance-history.html#next-architectural-steps",
+    "title": "Next architectural steps",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "development/architecture.html#inventory-and-scenario-architecture",
+    "new": "development/architecture.html#inventory-and-scenario-architecture",
+    "title": "Inventory and scenario architecture",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "development/documentation-audit.html#documentation-migration-and-technical-audit",
+    "new": "development/documentation-audit.html#documentation-migration-and-technical-audit",
+    "title": "Documentation migration and technical audit",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "development/documentation-audit.html#content-migration",
+    "new": "development/documentation-audit.html#content-migration",
+    "title": "Content migration",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "development/documentation-audit.html#confirmed-and-corrected",
+    "new": "development/documentation-audit.html#confirmed-and-corrected",
+    "title": "Confirmed and corrected",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "development/documentation-audit.html#unresolved-implementation-and-source-questions",
+    "new": "development/documentation-audit.html#unresolved-implementation-and-source-questions",
+    "title": "Unresolved implementation and source questions",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "development/documentation-audit.html#verification",
+    "new": "development/documentation-audit.html#verification",
+    "title": "Verification",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "development/documentation-audit.html#example-execution-status",
+    "new": "development/documentation-audit.html#example-execution-status",
+    "title": "Example execution status",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "development/documentation-audit.html#external-link-scan",
+    "new": "development/documentation-audit.html#external-link-scan",
+    "title": "External-link scan",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "development/documentation-audit.html#acceptance-checks-completed",
+    "new": "development/documentation-audit.html#acceptance-checks-completed",
+    "title": "Acceptance checks completed",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "development/releases-2-5.html#premise-2-5-release-and-migration-guide",
+    "new": "development/releases-2-5.html#premise-2-5-release-and-migration-guide",
+    "title": "Premise 2.5 release and migration guide",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "development/releases-2-5.html#migrating-inventory-access",
+    "new": "development/releases-2-5.html#migrating-inventory-access",
+    "title": "Migrating inventory access",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "development/releases-2-5.html#validation-and-reports",
+    "new": "development/releases-2-5.html#validation-and-reports",
+    "title": "Validation and reports",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "development/releases-2-5.html#update-and-export-workflow",
+    "new": "development/releases-2-5.html#update-and-export-workflow",
+    "title": "Update and export workflow",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "development/releases-2-5.html#further-details",
+    "new": "development/releases-2-5.html#further-details",
+    "title": "Further details",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "development/internals.html#internal-implementation-reference",
+    "new": "development/internals.html#internal-implementation-reference",
+    "title": "Internal implementation reference",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "development/contributing.html#contributing",
+    "new": "development/contributing.html#contributing",
+    "title": "Contributing",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "development/contributing.html#active-contributors",
+    "new": "development/contributing.html#active-contributors",
+    "title": "Active contributors",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "development/contributing.html#historical-contributors",
+    "new": "development/contributing.html#historical-contributors",
+    "title": "Historical contributors",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "development/contributing.html#iam-mapping-contributors",
+    "new": "development/contributing.html#iam-mapping-contributors",
+    "title": "IAM mapping contributors",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "development/contributing.html#remind-and-remind-eu",
+    "new": "development/contributing.html#remind-and-remind-eu",
+    "title": "REMIND and REMIND-EU",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "development/contributing.html#image",
+    "new": "development/contributing.html#image",
+    "title": "IMAGE",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "development/contributing.html#message",
+    "new": "development/contributing.html#message",
+    "title": "MESSAGE",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "development/contributing.html#tiam-ucl",
+    "new": "development/contributing.html#tiam-ucl",
+    "title": "TIAM-UCL",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "development/contributing.html#gcam",
+    "new": "development/contributing.html#gcam",
+    "title": "GCAM",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "development/contributing.html#external-scenario-contributors",
+    "new": "development/contributing.html#external-scenario-contributors",
+    "title": "External-scenario contributors",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "development/index.html#development-and-releases",
+    "new": "development/index.html#development-and-releases",
+    "title": "Development and releases",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "development/documentation.html#documentation-conventions-and-checks",
+    "new": "development/documentation.html#documentation-conventions-and-checks",
+    "title": "Documentation conventions and checks",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "development/documentation.html#audience-and-placement",
+    "new": "development/documentation.html#audience-and-placement",
+    "title": "Audience and placement",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "development/documentation.html#headings-and-links",
+    "new": "development/documentation.html#headings-and-links",
+    "title": "Headings and links",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "development/documentation.html#examples-and-assumptions",
+    "new": "development/documentation.html#examples-and-assumptions",
+    "title": "Examples and assumptions",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "development/documentation.html#build-and-check",
+    "new": "development/documentation.html#build-and-check",
+    "title": "Build and check",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "development/consequential-validation-history.html#consequential-marginal-mix-validation",
+    "new": "development/consequential-validation-history.html#consequential-marginal-mix-validation",
+    "title": "Consequential marginal-mix validation",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "development/consequential-validation-history.html#scope",
+    "new": "development/consequential-validation-history.html#scope",
+    "title": "Scope",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "development/consequential-validation-history.html#results",
+    "new": "development/consequential-validation-history.html#results",
+    "title": "Results",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "development/consequential-validation-history.html#checks",
+    "new": "development/consequential-validation-history.html#checks",
+    "title": "Checks",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "development/consequential-validation-history.html#interpretation",
+    "new": "development/consequential-validation-history.html#interpretation",
+    "title": "Interpretation",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "development/consequential-validation-history.html#reproduce",
+    "new": "development/consequential-validation-history.html#reproduce",
+    "title": "Reproduce",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "development/iam-mapping.html#supporting-another-iam-model",
+    "new": "development/iam-mapping.html#supporting-another-iam-model",
+    "title": "Supporting another IAM model",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "development/iam-mapping.html#cdr-energy-use-aliases",
+    "new": "development/iam-mapping.html#cdr-energy-use-aliases",
+    "title": "CDR energy-use aliases",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/steel.html#steel-production",
+    "new": "methodology/steel.html#steel-production",
+    "title": "Steel production",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/steel.html#key-outputs",
+    "new": "methodology/steel.html#key-outputs",
+    "title": "Key outputs",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/steel.html#dataset-proxies",
+    "new": "methodology/steel.html#dataset-proxies",
+    "title": "Dataset proxies",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/steel.html#efficiency-adjustment",
+    "new": "methodology/steel.html#efficiency-adjustment",
+    "title": "Efficiency adjustment",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/steel.html#carbon-capture-and-storage",
+    "new": "methodology/steel.html#carbon-capture-and-storage",
+    "title": "Carbon Capture and Storage",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/steel.html#steel-markets",
+    "new": "methodology/steel.html#steel-markets",
+    "title": "Steel markets",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/steel.html#original-market-datasets",
+    "new": "methodology/steel.html#original-market-datasets",
+    "title": "Original market datasets",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/steel.html#relinking",
+    "new": "methodology/steel.html#relinking",
+    "title": "Relinking",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/steel.html#source-inventories-steel",
+    "new": "methodology/steel.html#source-inventories-steel",
+    "title": "Source inventories: steel",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/validation.html#validation-approach-and-limitations",
+    "new": "methodology/validation.html",
+    "title": "Validation approach and limitations",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/validation.html#uncertainty",
+    "new": "methodology/validation.html#uncertainty",
+    "title": "Uncertainty",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/battery-stationary.html#stationary-batteries",
+    "new": "methodology/battery-stationary.html#stationary-batteries",
+    "title": "Stationary batteries",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/battery-stationary.html#key-outputs",
+    "new": "methodology/battery-stationary.html#key-outputs",
+    "title": "Key outputs",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/battery-stationary.html#source-inventories-vanadium-redox-flow-batteries",
+    "new": "methodology/battery-stationary.html#source-inventories-vanadium-redox-flow-batteries",
+    "title": "Source inventories: vanadium redox flow batteries",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/workflow.html#workflow-and-system-boundaries",
+    "new": "methodology/workflow.html#workflow-and-system-boundaries",
+    "title": "Workflow and system boundaries",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/workflow.html#extraction-and-preparation",
+    "new": "methodology/workflow.html#extraction-and-preparation",
+    "title": "Extraction and preparation",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/workflow.html#transformation-and-certification",
+    "new": "methodology/workflow.html#transformation-and-certification",
+    "title": "Transformation and certification",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/workflow.html#export-and-interpretation",
+    "new": "methodology/workflow.html#export-and-interpretation",
+    "title": "Export and interpretation",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/cdr.html#carbon-dioxide-removal",
+    "new": "methodology/cdr.html",
+    "title": "Carbon Dioxide Removal",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/cdr.html#key-outputs",
+    "new": "methodology/cdr.html#key-outputs",
+    "title": "Key outputs",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/cdr.html#source-inventories-carbon-capture",
+    "new": "methodology/cdr.html#source-inventories-carbon-capture",
+    "title": "Source inventories: carbon capture",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/emissions.html#air-emissions",
+    "new": "methodology/emissions.html",
+    "title": "Air emissions",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/mining.html#mining",
+    "new": "methodology/mining.html",
+    "title": "Mining",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/mining.html#key-outputs",
+    "new": "methodology/mining.html#key-outputs",
+    "title": "Key outputs",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/mining.html#sulfidic-tailings",
+    "new": "methodology/mining.html#sulfidic-tailings",
+    "title": "Sulfidic tailings",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/mining.html#inventories",
+    "new": "methodology/mining.html#inventories",
+    "title": "Inventories",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/battery-mobile.html#mobile-batteries",
+    "new": "methodology/battery-mobile.html#mobile-batteries",
+    "title": "Mobile batteries",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/battery-mobile.html#key-outputs",
+    "new": "methodology/battery-mobile.html#key-outputs",
+    "title": "Key outputs",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/battery-mobile.html#source-inventories-li-ion-batteries",
+    "new": "methodology/battery-mobile.html#source-inventories-li-ion-batteries",
+    "title": "Source inventories: li-ion batteries",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/biomass.html#biomass",
+    "new": "methodology/biomass.html#biomass",
+    "title": "Biomass",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/biomass.html#key-outputs",
+    "new": "methodology/biomass.html#key-outputs",
+    "title": "Key outputs",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/biomass.html#regional-biomass-markets",
+    "new": "methodology/biomass.html#regional-biomass-markets",
+    "title": "Regional biomass markets",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/system-models.html#cut-off-and-consequential-modelling",
+    "new": "methodology/system-models.html",
+    "title": "Cut-off and consequential modelling",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/system-models.html#what-the-consequential-parameters-describe",
+    "new": "methodology/system-models.html#what-the-consequential-parameters-describe",
+    "title": "What the consequential parameters describe",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/system-models.html#choosing-the-demand-change-period",
+    "new": "methodology/system-models.html#choosing-the-demand-change-period",
+    "title": "Choosing the demand-change period",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/system-models.html#how-the-supplier-observation-interval-is-calculated",
+    "new": "methodology/system-models.html#how-the-supplier-observation-interval-is-calculated",
+    "title": "How the supplier-observation interval is calculated",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/system-models.html#foresight-and-lead-time",
+    "new": "methodology/system-models.html#foresight-and-lead-time",
+    "title": "Foresight and lead time",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/system-models.html#worked-examples",
+    "new": "methodology/system-models.html#worked-examples",
+    "title": "Worked examples",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/system-models.html#capital-replacement",
+    "new": "methodology/system-models.html#capital-replacement",
+    "title": "Capital replacement",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/system-models.html#measuring-production-trends",
+    "new": "methodology/system-models.html#measuring-production-trends",
+    "title": "Measuring production trends",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/system-models.html#configuration-reference",
+    "new": "methodology/system-models.html#configuration-reference",
+    "title": "Configuration reference",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/system-models.html#scope-and-limitations",
+    "new": "methodology/system-models.html#scope-and-limitations",
+    "title": "Scope and limitations",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/final-energy.html#final-energy-adjustments",
+    "new": "methodology/final-energy.html",
+    "title": "Final-energy adjustments",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/heat.html#heat",
+    "new": "methodology/heat.html#heat",
+    "title": "Heat",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/heat.html#heat-transformation",
+    "new": "methodology/heat.html#heat-transformation",
+    "title": "Heat",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/heat.html#running-the-update",
+    "new": "methodology/heat.html",
+    "title": "Running the update",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/heat.html#market-architecture",
+    "new": "methodology/heat.html#market-architecture",
+    "title": "Market architecture",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/heat.html#iam-data-and-market-shares",
+    "new": "methodology/heat.html#iam-data-and-market-shares",
+    "title": "IAM data and market shares",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/heat.html#model-coverage",
+    "new": "methodology/heat.html#model-coverage",
+    "title": "Model coverage",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/heat.html#technology-representation-and-assumptions",
+    "new": "methodology/heat.html#technology-representation-and-assumptions",
+    "title": "Technology representation and assumptions",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/heat.html#regionalization-and-supplier-selection",
+    "new": "methodology/heat.html#regionalization-and-supplier-selection",
+    "title": "Regionalization and supplier selection",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/heat.html#residuals-and-frozen-legacy-proxies",
+    "new": "methodology/heat.html#residuals-and-frozen-legacy-proxies",
+    "title": "Residuals and frozen legacy proxies",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/heat.html#legacy-ecoinvent-market-relinking",
+    "new": "methodology/heat.html#legacy-ecoinvent-market-relinking",
+    "title": "Legacy ecoinvent market relinking",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/heat.html#legacy-datasets-are-retained",
+    "new": "methodology/heat.html#legacy-datasets-are-retained",
+    "title": "Legacy datasets are retained",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/heat.html#cutoff-and-consequential-databases",
+    "new": "methodology/heat.html#cutoff-and-consequential-databases",
+    "title": "Cutoff and consequential databases",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/heat.html#maintaining-or-extending-the-mapping",
+    "new": "methodology/heat.html#maintaining-or-extending-the-mapping",
+    "title": "Maintaining or extending the mapping",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/cement.html#cement-production",
+    "new": "methodology/cement.html#cement-production",
+    "title": "Cement production",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/cement.html#key-outputs",
+    "new": "methodology/cement.html#key-outputs",
+    "title": "Key outputs",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/cement.html#dataset-proxies",
+    "new": "methodology/cement.html#dataset-proxies",
+    "title": "Dataset proxies",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/cement.html#efficiency-adjustment",
+    "new": "methodology/cement.html#efficiency-adjustment",
+    "title": "Efficiency adjustment",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/cement.html#carbon-capture-and-storage",
+    "new": "methodology/cement.html#carbon-capture-and-storage",
+    "title": "Carbon Capture and Storage",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/cement.html#cement-markets",
+    "new": "methodology/cement.html#cement-markets",
+    "title": "Cement markets",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/cement.html#clinker-to-cement-ratio",
+    "new": "methodology/cement.html#clinker-to-cement-ratio",
+    "title": "Clinker-to-cement ratio",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/cement.html#original-market-datasets",
+    "new": "methodology/cement.html#original-market-datasets",
+    "title": "Original market datasets",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/cement.html#relinking",
+    "new": "methodology/cement.html#relinking",
+    "title": "Relinking",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/cement.html#source-inventories-cement",
+    "new": "methodology/cement.html#source-inventories-cement",
+    "title": "Source inventories: cement",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/cement.html#monoethanolamine-mea",
+    "new": "methodology/cement.html#monoethanolamine-mea",
+    "title": "Monoethanolamine (MEA)",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/cement.html#direct-separation",
+    "new": "methodology/cement.html#direct-separation",
+    "title": "Direct separation",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/cement.html#oxyfuel-combustion",
+    "new": "methodology/cement.html#oxyfuel-combustion",
+    "title": "Oxyfuel combustion",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/index.html#methodology",
+    "new": "methodology/index.html#methodology",
+    "title": "Methodology",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/batteries.html#batteries",
+    "new": "methodology/batteries.html",
+    "title": "Batteries",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/regionalization.html#regionalization-and-supplier-linking",
+    "new": "methodology/regionalization.html",
+    "title": "Regionalization and supplier linking",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/regionalization.html#decision-is-the-exchange-in-cache",
+    "new": "development/supplier-selection.html",
+    "title": "Decision: Is the Exchange in Cache?",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/regionalization.html#final-steps",
+    "new": "development/supplier-selection.html",
+    "title": "Final Steps",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/metals.html#metals",
+    "new": "methodology/metals.html#metals",
+    "title": "Metals",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/metals.html#key-outputs",
+    "new": "methodology/metals.html#key-outputs",
+    "title": "Key outputs",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/metals.html#data-collection-and-processing",
+    "new": "methodology/metals.html#data-collection-and-processing",
+    "title": "Data collection and processing",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/metals.html#material-preservation-and-conversion",
+    "new": "methodology/metals.html#material-preservation-and-conversion",
+    "title": "Material preservation and conversion",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/metals.html#inventories",
+    "new": "methodology/metals.html#inventories",
+    "title": "Inventories",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/metals.html#post-allocation-correction",
+    "new": "methodology/metals.html#post-allocation-correction",
+    "title": "Post-allocation correction",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/metals.html#mining-and-refining-markets-creation",
+    "new": "methodology/metals.html#mining-and-refining-markets-creation",
+    "title": "Mining and refining markets creation",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/metals.html#source-inventories-graphite",
+    "new": "methodology/metals.html#source-inventories-graphite",
+    "title": "Source inventories: graphite",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/metals.html#id2",
+    "new": "methodology/metals.html#id2",
+    "title": "Graphite",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/metals.html#id3",
+    "new": "methodology/metals.html#id3",
+    "title": "Cobalt",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/metals.html#id4",
+    "new": "methodology/metals.html#id4",
+    "title": "Lithium",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/metals.html#material-rules-and-validation",
+    "new": "methodology/metals.html#material-rules-and-validation",
+    "title": "Material rules and validation",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/metals.html#runtime-configuration",
+    "new": "methodology/metals.html#runtime-configuration",
+    "title": "Runtime configuration",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/metals.html#epr-construction",
+    "new": "methodology/metals.html#epr-construction",
+    "title": "EPR construction",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/metals.html#dataset-wise-comparison",
+    "new": "methodology/metals.html#dataset-wise-comparison",
+    "title": "Dataset-wise comparison",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/transport/trucks.html#trucks",
+    "new": "methodology/transport/trucks.html#trucks",
+    "title": "Trucks",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/transport/trucks.html#key-outputs",
+    "new": "methodology/transport/trucks.html#key-outputs",
+    "title": "Key outputs",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/transport/trucks.html#fleet-average-trucks",
+    "new": "methodology/transport/trucks.html#fleet-average-trucks",
+    "title": "Fleet average trucks",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/transport/trucks.html#relinking",
+    "new": "methodology/transport/trucks.html#relinking",
+    "title": "Relinking",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/transport/index.html#transport",
+    "new": "methodology/transport/index.html#transport",
+    "title": "Transport",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/transport/overview.html#transport",
+    "new": "methodology/transport/overview.html",
+    "title": "Transport",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/transport/overview.html#key-outputs",
+    "new": "methodology/transport/overview.html",
+    "title": "Key outputs",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/transport/overview.html#source-inventories-road-vehicles",
+    "new": "methodology/transport/overview.html",
+    "title": "Source inventories: road vehicles",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/transport/overview.html#road-vehicles",
+    "new": "methodology/transport/overview.html",
+    "title": "Road vehicles",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/transport/overview.html#two-wheelers",
+    "new": "methodology/transport/two-wheelers.html",
+    "title": "Two-wheelers",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/transport/overview.html#passenger-cars",
+    "new": "methodology/transport/passenger-cars.html",
+    "title": "Passenger cars",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/transport/overview.html#medium-and-heavy-duty-trucks",
+    "new": "methodology/transport/trucks.html",
+    "title": "Medium and heavy duty trucks",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/transport/overview.html#buses",
+    "new": "methodology/transport/buses.html",
+    "title": "Buses",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/electricity/generation.html#power-generation",
+    "new": "methodology/electricity/generation.html",
+    "title": "Power generation",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/electricity/generation.html#key-outputs",
+    "new": "methodology/electricity/generation.html#key-outputs",
+    "title": "Key outputs",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/electricity/generation.html#efficiency-adjustment",
+    "new": "methodology/electricity/generation.html#efficiency-adjustment",
+    "title": "Efficiency adjustment",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/electricity/generation.html#combustion-based-powerplants",
+    "new": "methodology/electricity/generation.html#combustion-based-powerplants",
+    "title": "Combustion-based powerplants",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/electricity/generation.html#source-inventories-power-plants-with-ccs",
+    "new": "methodology/electricity/generation.html#source-inventories-power-plants-with-ccs",
+    "title": "Source inventories: power plants with ccs",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/electricity/generation.html#power-plants-with-ccs",
+    "new": "methodology/electricity/generation.html#power-plants-with-ccs",
+    "title": "Power plants with CCS",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/electricity/generation.html#natural-gas",
+    "new": "methodology/electricity/generation.html#natural-gas",
+    "title": "Natural gas",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/electricity/generation.html#source-inventories-geothermal",
+    "new": "methodology/electricity/generation.html#source-inventories-geothermal",
+    "title": "Source inventories: geothermal",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/electricity/generation.html#geothermal",
+    "new": "methodology/electricity/generation.html#geothermal",
+    "title": "Geothermal",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/electricity/markets.html#markets",
+    "new": "methodology/electricity/markets.html#markets",
+    "title": "Markets",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/electricity/markets.html#regional-electricity-markets",
+    "new": "methodology/electricity/markets.html#regional-electricity-markets",
+    "title": "Regional electricity markets",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/electricity/markets.html#high-voltage-regional-markets",
+    "new": "methodology/electricity/markets.html#high-voltage-regional-markets",
+    "title": "High voltage regional markets",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/electricity/markets.html#high-voltage-regional-markets-for-aluminium-smelters",
+    "new": "methodology/electricity/markets.html#high-voltage-regional-markets-for-aluminium-smelters",
+    "title": "High voltage regional markets for aluminium smelters",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/electricity/markets.html#storage",
+    "new": "methodology/electricity/markets.html#storage",
+    "title": "Storage",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/electricity/markets.html#medium-voltage-regional-markets",
+    "new": "methodology/electricity/markets.html#medium-voltage-regional-markets",
+    "title": "Medium voltage regional markets",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/electricity/markets.html#low-voltage-regional-markets",
+    "new": "methodology/electricity/markets.html#low-voltage-regional-markets",
+    "title": "Low voltage regional markets",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/electricity/markets.html#long-term-regional-electricity-markets",
+    "new": "methodology/electricity/markets.html#long-term-regional-electricity-markets",
+    "title": "Long-term regional electricity markets",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/electricity/markets.html#original-market-datasets",
+    "new": "methodology/electricity/markets.html#original-market-datasets",
+    "title": "Original market datasets",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/electricity/markets.html#relinking",
+    "new": "methodology/electricity/markets.html#relinking",
+    "title": "Relinking",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/electricity/index.html#electricity",
+    "new": "methodology/electricity/index.html#electricity",
+    "title": "Electricity",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/electricity/photovoltaics.html#photovoltaics",
+    "new": "methodology/electricity/photovoltaics.html#photovoltaics",
+    "title": "Photovoltaics",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/electricity/photovoltaics.html#technologies-and-reference-systems",
+    "new": "methodology/electricity/photovoltaics.html#technologies-and-reference-systems",
+    "title": "Technologies and reference systems",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/electricity/photovoltaics.html#country-mixes-yields-and-lifetime",
+    "new": "methodology/electricity/photovoltaics.html#country-mixes-yields-and-lifetime",
+    "title": "Country mixes, yields and lifetime",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/electricity/photovoltaics.html#supplier-linking-and-modelling-adaptations",
+    "new": "methodology/electricity/photovoltaics.html#supplier-linking-and-modelling-adaptations",
+    "title": "Supplier linking and modelling adaptations",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/electricity/photovoltaics.html#scenario-updates-and-validation",
+    "new": "methodology/electricity/photovoltaics.html#scenario-updates-and-validation",
+    "title": "Scenario updates and validation",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/electricity/photovoltaics.html#separate-emerging-technology-supplements",
+    "new": "methodology/electricity/photovoltaics.html#separate-emerging-technology-supplements",
+    "title": "Separate emerging-technology supplements",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/electricity/photovoltaics.html#module-efficiency-trajectories-and-scaling",
+    "new": "methodology/electricity/photovoltaics.html#module-efficiency-trajectories-and-scaling",
+    "title": "Module-efficiency trajectories and scaling",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/electricity/photovoltaics.html#pv-efficiency-transformation",
+    "new": "methodology/electricity/photovoltaics.html#pv-efficiency-transformation",
+    "title": "Module-efficiency trajectories and scaling",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/fuels/hydrogen.html#hydrogen",
+    "new": "methodology/fuels/hydrogen.html#hydrogen",
+    "title": "Hydrogen",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/fuels/hydrogen.html#key-outputs",
+    "new": "methodology/fuels/hydrogen.html#key-outputs",
+    "title": "Key outputs",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/fuels/hydrogen.html#hydrogen-supply-chains",
+    "new": "methodology/fuels/hydrogen.html#hydrogen-supply-chains",
+    "title": "Hydrogen supply chains",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/fuels/hydrogen.html#source-inventories-hydrogen",
+    "new": "methodology/fuels/hydrogen.html#source-inventories-hydrogen",
+    "title": "Source inventories: hydrogen",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/fuels/hydrogen.html#hydrogen-production",
+    "new": "methodology/fuels/hydrogen.html#hydrogen-production",
+    "title": "Hydrogen production",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/fuels/hydrogen.html#hydrogen-storage-and-distribution",
+    "new": "methodology/fuels/hydrogen.html#hydrogen-storage-and-distribution",
+    "title": "Hydrogen storage and distribution",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/fuels/hydrogen.html#hydrogen-turbine",
+    "new": "methodology/fuels/hydrogen.html#hydrogen-turbine",
+    "title": "Hydrogen turbine",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/fuels/synthetic.html#source-inventories-synthetic-fuels",
+    "new": "methodology/fuels/synthetic.html#source-inventories-synthetic-fuels",
+    "title": "Source inventories: synthetic fuels",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/fuels/biofuels.html#fuels",
+    "new": "methodology/fuels/biofuels.html",
+    "title": "Fuels",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/fuels/biofuels.html#key-outputs",
+    "new": "methodology/fuels/biofuels.html#key-outputs",
+    "title": "Key outputs",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/fuels/biofuels.html#efficiency-adjustment",
+    "new": "methodology/fuels/biofuels.html#efficiency-adjustment",
+    "title": "Efficiency adjustment",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/fuels/biofuels.html#biofuels",
+    "new": "methodology/fuels/biofuels.html#biofuels",
+    "title": "Biofuels",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/fuels/biofuels.html#feedstock-regionalization",
+    "new": "methodology/fuels/biofuels.html#feedstock-regionalization",
+    "title": "Feedstock regionalization",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/fuels/biofuels.html#land-use-and-land-use-change",
+    "new": "methodology/fuels/biofuels.html#land-use-and-land-use-change",
+    "title": "Land use and land use change",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/fuels/biofuels.html#regional-supply-chains",
+    "new": "methodology/fuels/biofuels.html#regional-supply-chains",
+    "title": "Regional supply chains",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/fuels/biofuels.html#source-inventories-biofuels",
+    "new": "methodology/fuels/biofuels.html#source-inventories-biofuels",
+    "title": "Source inventories: biofuels",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/fuels/markets.html#fuel-markets",
+    "new": "methodology/fuels/markets.html#fuel-markets",
+    "title": "Fuel markets",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/fuels/markets.html#influence-of-differing-lhv-on-fuel-market-composition",
+    "new": "methodology/fuels/markets.html#influence-of-differing-lhv-on-fuel-market-composition",
+    "title": "Influence of differing LHV on fuel market composition",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/fuels/markets.html#co2-emissions-update",
+    "new": "methodology/fuels/markets.html#co2-emissions-update",
+    "title": "CO2 emissions update",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/fuels/markets.html#system-model-rules",
+    "new": "methodology/fuels/markets.html#system-model-rules",
+    "title": "System-model rules",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/fuels/markets.html#consequential-fuel-markets",
+    "new": "methodology/fuels/markets.html#consequential-fuel-markets",
+    "title": "Consequential fuel markets",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/fuels/markets.html#cutoff-fuel-markets",
+    "new": "methodology/fuels/markets.html#cutoff-fuel-markets",
+    "title": "Cutoff fuel markets",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/fuels/markets.html#lcia-regression-baselines",
+    "new": "methodology/fuels/markets.html#lcia-regression-baselines",
+    "title": "LCIA regression baselines",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/fuels/ammonia.html#source-inventories-ammonia",
+    "new": "methodology/fuels/ammonia.html#source-inventories-ammonia",
+    "title": "Source inventories: ammonia",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/fuels/index.html#fuels",
+    "new": "methodology/fuels/index.html",
+    "title": "Fuels",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/validation.html#validation-reports",
+    "new": "user_guide/validation.html#validation-reports",
+    "title": "Validation reports",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/updates.html#configuring-sector-updates",
+    "new": "user_guide/updates.html#configuring-sector-updates",
+    "title": "Configuring sector updates",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/troubleshooting.html#troubleshooting-and-faq",
+    "new": "user_guide/troubleshooting.html#troubleshooting-and-faq",
+    "title": "Troubleshooting and FAQ",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/troubleshooting.html#ecoinvent",
+    "new": "user_guide/troubleshooting.html#ecoinvent",
+    "title": "Ecoinvent",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/troubleshooting.html#what-is-ecoinvent",
+    "new": "user_guide/troubleshooting.html#what-is-ecoinvent",
+    "title": "What is ecoinvent?",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/troubleshooting.html#what-is-the-ecoinvent-version-used-in-premise",
+    "new": "user_guide/troubleshooting.html#what-is-the-ecoinvent-version-used-in-premise",
+    "title": "What is the ecoinvent version used in premise?",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/troubleshooting.html#how-does-premise-use-ecoinvent",
+    "new": "user_guide/troubleshooting.html#how-does-premise-use-ecoinvent",
+    "title": "How does premise use ecoinvent?",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/troubleshooting.html#can-i-share-the-modified-ecoinvent-database",
+    "new": "user_guide/troubleshooting.html#can-i-share-the-modified-ecoinvent-database",
+    "title": "Can I share the modified ecoinvent database?",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/troubleshooting.html#can-i-share-results-obtained-with-the-modified-ecoinvent-database",
+    "new": "user_guide/troubleshooting.html#can-i-share-results-obtained-with-the-modified-ecoinvent-database",
+    "title": "Can I share results obtained with the modified ecoinvent database?",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/troubleshooting.html#can-i-use-the-modified-ecoinvent-database-for-commercial-purposes",
+    "new": "user_guide/troubleshooting.html#can-i-use-the-modified-ecoinvent-database-for-commercial-purposes",
+    "title": "Can I use the modified ecoinvent database for commercial purposes?",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/troubleshooting.html#how-can-i-share-modified-ecoinvent-databases",
+    "new": "user_guide/troubleshooting.html#how-can-i-share-modified-ecoinvent-databases",
+    "title": "How can I share modified ecoinvent databases?",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/troubleshooting.html#iam-models",
+    "new": "user_guide/troubleshooting.html#iam-models",
+    "title": "IAM models",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/troubleshooting.html#i-use-a-different-iam-than-remind-image-message-gcam-or-tiam-ucl-can-i-still-use-premise",
+    "new": "user_guide/troubleshooting.html#i-use-a-different-iam-than-remind-image-message-gcam-or-tiam-ucl-can-i-still-use-premise",
+    "title": "I use a different IAM than REMIND, IMAGE, MESSAGE, GCAM or TIAM-UCL \u2026 Can I still use premise?",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/troubleshooting.html#what-columns-are-necessary-in-the-iam-files",
+    "new": "user_guide/troubleshooting.html#what-columns-are-necessary-in-the-iam-files",
+    "title": "What columns are necessary in the IAM files?",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/troubleshooting.html#how-big-an-effort-would-it-be-to-link-to-a-new-iam-as-simple-as-an-extension-of-the-mapping-files-what-difficulties-can-be-anticipated",
+    "new": "user_guide/troubleshooting.html#how-big-an-effort-would-it-be-to-link-to-a-new-iam-as-simple-as-an-extension-of-the-mapping-files-what-difficulties-can-be-anticipated",
+    "title": "How big an effort would it be to link to a new IAM? As simple as an extension of the mapping files? What difficulties can be anticipated?",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/troubleshooting.html#iam-data-collection",
+    "new": "user_guide/troubleshooting.html#iam-data-collection",
+    "title": "IAM data collection",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/troubleshooting.html#how-was-the-list-of-variables-in-the-mapping-files-established",
+    "new": "user_guide/troubleshooting.html#how-was-the-list-of-variables-in-the-mapping-files-established",
+    "title": "How was the list of variables in the mapping files established?",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/troubleshooting.html#is-it-possible-to-expand-this-list-e-g-agriculture-crops-for-energy",
+    "new": "user_guide/troubleshooting.html#is-it-possible-to-expand-this-list-e-g-agriculture-crops-for-energy",
+    "title": "Is it possible to expand this list? (e.g. agriculture crops for energy)",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/troubleshooting.html#is-the-unit-and-the-description-of-these-parameters-documented-or-are-they-necessarily-the-same-as-the-ones-of-the-ecoinvent-datasets-they-refer-to",
+    "new": "user_guide/troubleshooting.html#is-the-unit-and-the-description-of-these-parameters-documented-or-are-they-necessarily-the-same-as-the-ones-of-the-ecoinvent-datasets-they-refer-to",
+    "title": "Is the unit and the description of these parameters documented? Or are they necessarily the same as the ones of the ecoinvent datasets they refer to?",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/troubleshooting.html#what-if-a-variable-in-premise-corresponds-to-several-variables-in-the-iam",
+    "new": "user_guide/troubleshooting.html#what-if-a-variable-in-premise-corresponds-to-several-variables-in-the-iam",
+    "title": "What if a variable in premise corresponds to several variables in the IAM?",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/troubleshooting.html#regionalization",
+    "new": "user_guide/troubleshooting.html#regionalization",
+    "title": "Regionalization",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/troubleshooting.html#are-datasets-regionalized-on-the-basis-of-the-iam-scenario-only-or-does-it-come-from-other-sources",
+    "new": "user_guide/troubleshooting.html#are-datasets-regionalized-on-the-basis-of-the-iam-scenario-only-or-does-it-come-from-other-sources",
+    "title": "Are datasets regionalized on the basis of the IAM scenario only, or does it come from other sources?",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/troubleshooting.html#does-premise-generate-more-regionalised-datasets-than-in-original-ei3-x-database",
+    "new": "user_guide/troubleshooting.html#does-premise-generate-more-regionalised-datasets-than-in-original-ei3-x-database",
+    "title": "Does premise generate more regionalised datasets than in original EI3.x database?",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/troubleshooting.html#how-does-premise-handle-the-different-granularities-between-the-iam-regions-and-the-ecoinvent-regions",
+    "new": "user_guide/troubleshooting.html#how-does-premise-handle-the-different-granularities-between-the-iam-regions-and-the-ecoinvent-regions",
+    "title": "How does premise handle the different granularities between the IAM regions and the Ecoinvent regions?",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/troubleshooting.html#heat",
+    "new": "user_guide/troubleshooting.html#heat",
+    "title": "Heat",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/troubleshooting.html#does-the-secondary-heat-market-supply-both-buildings-and-industry",
+    "new": "user_guide/troubleshooting.html#does-the-secondary-heat-market-supply-both-buildings-and-industry",
+    "title": "Does the secondary heat market supply both buildings and industry?",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/troubleshooting.html#why-are-legacy-ecoinvent-heat-markets-still-present-after-the-update",
+    "new": "user_guide/troubleshooting.html#why-are-legacy-ecoinvent-heat-markets-still-present-after-the-update",
+    "title": "Why are legacy ecoinvent heat markets still present after the update?",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/troubleshooting.html#why-can-several-exchanges-point-to-the-same-new-heat-market",
+    "new": "user_guide/troubleshooting.html#why-can-several-exchanges-point-to-the-same-new-heat-market",
+    "title": "Why can several exchanges point to the same new heat market?",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/troubleshooting.html#are-all-datasets-named-market-for-heat-replaced",
+    "new": "user_guide/troubleshooting.html#are-all-datasets-named-market-for-heat-replaced",
+    "title": "Are all datasets named market for heat replaced?",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/troubleshooting.html#consistency-with-climate-targets",
+    "new": "user_guide/troubleshooting.html#consistency-with-climate-targets",
+    "title": "Consistency with climate targets",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/troubleshooting.html#how-do-we-ensure-consistency-between-iam-scenario-and-plca-results-in-terms-of-global-warming-temperature-increase",
+    "new": "user_guide/troubleshooting.html#how-do-we-ensure-consistency-between-iam-scenario-and-plca-results-in-terms-of-global-warming-temperature-increase",
+    "title": "How do we ensure consistency between IAM scenario and pLCA results (in terms of global warming / temperature increase)?",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/troubleshooting.html#additional-inventories",
+    "new": "user_guide/troubleshooting.html#additional-inventories",
+    "title": "Additional inventories",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/troubleshooting.html#can-additional-inventories-be-modelled-with-parameters-if-so-how-are-they-used",
+    "new": "user_guide/troubleshooting.html#can-additional-inventories-be-modelled-with-parameters-if-so-how-are-they-used",
+    "title": "Can additional inventories be modelled with parameters? If so, how are they used?",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/troubleshooting.html#can-some-parameters-of-the-additional-inventories-be-made-scenario-and-time-dependant",
+    "new": "user_guide/troubleshooting.html#can-some-parameters-of-the-additional-inventories-be-made-scenario-and-time-dependant",
+    "title": "Can some parameters of the additional inventories be made scenario- and time-dependant?",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/troubleshooting.html#can-premise-manage-an-efficiency-evolution-for-the-additional-inventories",
+    "new": "user_guide/troubleshooting.html#can-premise-manage-an-efficiency-evolution-for-the-additional-inventories",
+    "title": "Can premise manage an efficiency evolution for the additional inventories?",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/troubleshooting.html#efficiency-adjustments",
+    "new": "user_guide/troubleshooting.html#efficiency-adjustments",
+    "title": "Efficiency adjustments",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/troubleshooting.html#is-the-calculated-scaling-factor-ratio-of-efficiencies-in-year-20xx-vs-2020-applied-to-all-inputs-of-the-transformed-dataset-or-only-to-the-energy-feedstock-input",
+    "new": "user_guide/troubleshooting.html#is-the-calculated-scaling-factor-ratio-of-efficiencies-in-year-20xx-vs-2020-applied-to-all-inputs-of-the-transformed-dataset-or-only-to-the-energy-feedstock-input",
+    "title": "Is the calculated scaling factor (ratio of efficiencies in year 20XX vs 2020) applied to all inputs of the transformed dataset, or only to the energy feedstock input?",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/troubleshooting.html#what-happens-if-the-iam-does-not-provide-efficiencies-for-certain-processes",
+    "new": "user_guide/troubleshooting.html#what-happens-if-the-iam-does-not-provide-efficiencies-for-certain-processes",
+    "title": "What happens if the IAM does not provide efficiencies for certain processes?",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/troubleshooting.html#why-use-external-data-sources-for-pv-efficiency-rather-than-the-output-of-iam",
+    "new": "user_guide/troubleshooting.html#why-use-external-data-sources-for-pv-efficiency-rather-than-the-output-of-iam",
+    "title": "Why use external data sources for PV efficiency, rather than the output of IAM?",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/source-databases.html#source-databases",
+    "new": "user_guide/source-databases.html#source-databases",
+    "title": "Source databases",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/source-databases.html#from-a-brightway2-project",
+    "new": "user_guide/source-databases.html#from-a-brightway2-project",
+    "title": "From a brightway2 project",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/source-databases.html#from-ecospold2-files",
+    "new": "user_guide/source-databases.html#from-ecospold2-files",
+    "title": "From ecospold2 files",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/choose-scenario.html#choosing-models-scenarios-and-years",
+    "new": "user_guide/choose-scenario.html#choosing-models-scenarios-and-years",
+    "title": "Choosing models, scenarios and years",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/inventories.html#inspecting-and-modifying-inventories",
+    "new": "user_guide/inventories.html#inspecting-and-modifying-inventories",
+    "title": "Inspecting and modifying inventories",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/inventories.html#compact-storage-and-checkpoints",
+    "new": "user_guide/inventories.html#compact-storage-and-checkpoints",
+    "title": "Compact storage and checkpoints",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/inventories.html#automatic-scenario-cache-expiry",
+    "new": "user_guide/inventories.html#automatic-scenario-cache-expiry",
+    "title": "Automatic scenario cache expiry",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/inventories.html#self-contained-api-example",
+    "new": "user_guide/inventories.html#self-contained-api-example",
+    "title": "Self-contained API example",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/examples.html#example-notebooks-and-integrations",
+    "new": "user_guide/examples.html#example-notebooks-and-integrations",
+    "title": "Example notebooks and integrations",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/examples.html#example-notebooks",
+    "new": "user_guide/examples.html#example-notebooks",
+    "title": "Example notebooks",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/examples.html#scenariolink-plugin",
+    "new": "user_guide/examples.html#scenariolink-plugin",
+    "title": "ScenarioLink plugin",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/create-external-scenario.html#creating-an-external-scenario",
+    "new": "user_guide/create-external-scenario.html#creating-an-external-scenario",
+    "title": "Creating an external scenario",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/create-external-scenario.html#example-with-ammonia-scenarios",
+    "new": "user_guide/create-external-scenario.html#example-with-ammonia-scenarios",
+    "title": "Example with Ammonia scenarios",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/external-scenarios.html#using-external-scenarios",
+    "new": "user_guide/external-scenarios.html#using-external-scenarios",
+    "title": "Using external scenarios",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/external-scenarios.html#purpose",
+    "new": "user_guide/external-scenarios.html#purpose",
+    "title": "Purpose",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/external-scenarios.html#available-user-defined-scenarios",
+    "new": "user_guide/external-scenarios.html#available-user-defined-scenarios",
+    "title": "Available user-defined scenarios",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/external-scenarios.html#using-user-generated-scenarios",
+    "new": "user_guide/external-scenarios.html#using-user-generated-scenarios",
+    "title": "Using user-generated scenarios",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/index.html#user-guide",
+    "new": "user_guide/index.html#user-guide",
+    "title": "User guide",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/reports.html#generating-change-reports",
+    "new": "user_guide/reports.html#generating-change-reports",
+    "title": "Generating change reports",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/reports.html#scenario-variable-summary",
+    "new": "user_guide/reports.html#scenario-variable-summary",
+    "title": "Scenario-variable summary",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/export/superstructure.html#superstructure-databases",
+    "new": "user_guide/export/superstructure.html#superstructure-databases",
+    "title": "Superstructure databases",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/export/brightway.html#exporting-to-brightway",
+    "new": "user_guide/export/brightway.html#exporting-to-brightway",
+    "title": "Exporting to Brightway",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/export/brightway.html#regular-brightway2-database",
+    "new": "user_guide/export/brightway.html#regular-brightway2-database",
+    "title": "Regular brightway2 database",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/export/brightway.html#scenario-metadata",
+    "new": "user_guide/export/brightway.html#scenario-metadata",
+    "title": "Scenario metadata",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/export/scenario-arrays.html#sequential-scenario-arrays",
+    "new": "user_guide/export/scenario-arrays.html#sequential-scenario-arrays",
+    "title": "Sequential scenario arrays",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/export/scenario-arrays.html#requirements-and-output",
+    "new": "user_guide/export/scenario-arrays.html#requirements-and-output",
+    "title": "Requirements and output",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/export/scenario-arrays.html#complete-three-scenario-image-example",
+    "new": "user_guide/export/scenario-arrays.html#complete-three-scenario-image-example",
+    "title": "Complete three-scenario IMAGE example",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/export/scenario-arrays.html#calculate-and-enumerate-scores",
+    "new": "user_guide/export/scenario-arrays.html#calculate-and-enumerate-scores",
+    "title": "Calculate and enumerate scores",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/export/datapackage.html#exporting-a-datapackage",
+    "new": "user_guide/export/datapackage.html#exporting-a-datapackage",
+    "title": "Exporting a datapackage",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/export/simapro.html#exporting-to-simapro",
+    "new": "user_guide/export/simapro.html#exporting-to-simapro",
+    "title": "Exporting to SimaPro",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/export/openlca.html#exporting-to-openlca",
+    "new": "user_guide/export/openlca.html#exporting-to-openlca",
+    "title": "Exporting to openLCA",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/export/index.html#exporting-results",
+    "new": "user_guide/export/index.html#exporting-results",
+    "title": "Exporting results",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/export/matrices.html#exporting-sparse-matrices",
+    "new": "user_guide/export/matrices.html#exporting-sparse-matrices",
+    "title": "Exporting sparse matrices",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "reference/api.html#public-python-api",
+    "new": "reference/api.html#public-python-api",
+    "title": "Public Python API",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "reference/api.html#database-workflows",
+    "new": "reference/api.html#database-workflows",
+    "title": "Database workflows",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "reference/api.html#inventory-stores",
+    "new": "reference/api.html#inventory-stores",
+    "title": "Inventory stores",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "reference/api.html#validation-and-reports",
+    "new": "reference/api.html#validation-and-reports",
+    "title": "Validation and reports",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "reference/api.html#utilities",
+    "new": "reference/api.html#utilities",
+    "title": "Utilities",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "reference/iam-variables.html#iam-data-and-variables",
+    "new": "reference/iam-variables.html#iam-data-and-variables",
+    "title": "IAM data and variables",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "reference/iam-variables.html#production-volumes-and-efficiencies",
+    "new": "reference/iam-variables.html#production-volumes-and-efficiencies",
+    "title": "Production volumes and efficiencies",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "reference/iam-variables.html#land-use-and-land-use-change",
+    "new": "reference/iam-variables.html#land-use-and-land-use-change",
+    "title": "Land use and land use change",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "reference/iam-variables.html#carbon-capture-and-storage",
+    "new": "reference/iam-variables.html#carbon-capture-and-storage",
+    "title": "Carbon Capture and Storage",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "reference/iam-variables.html#iam-scenario-file-format",
+    "new": "reference/iam-variables.html#iam-scenario-file-format",
+    "title": "IAM scenario file format",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "reference/external-scenario-format.html#external-scenario-format",
+    "new": "reference/external-scenario-format.html#external-scenario-format",
+    "title": "External-scenario format",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "reference/external-scenario-format.html#datapackage-json",
+    "new": "reference/external-scenario-format.html#datapackage-json",
+    "title": "datapackage.json",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "reference/external-scenario-format.html#scenario-data",
+    "new": "reference/external-scenario-format.html#scenario-data",
+    "title": "Scenario data",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "reference/external-scenario-format.html#inventories",
+    "new": "reference/external-scenario-format.html#inventories",
+    "title": "Inventories",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "reference/external-scenario-format.html#config-yaml",
+    "new": "reference/external-scenario-format.html#config-yaml",
+    "title": "config.yaml",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "reference/inventory-migration.html#inventory-migration-between-ecoinvent-versions",
+    "new": "reference/inventory-migration.html#inventory-migration-between-ecoinvent-versions",
+    "title": "Inventory migration between ecoinvent versions",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "reference/scenarios.html#iam-scenario-catalogue",
+    "new": "reference/scenarios.html#iam-scenario-catalogue",
+    "title": "IAM scenario catalogue",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "reference/compatibility.html#supported-configurations",
+    "new": "reference/compatibility.html#supported-configurations",
+    "title": "Supported configurations",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "reference/compatibility.html#compatibility-boundaries",
+    "new": "reference/compatibility.html#compatibility-boundaries",
+    "title": "Compatibility boundaries",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "reference/inventories.html#inventory-catalogue-and-sources",
+    "new": "reference/inventories.html#inventory-catalogue-and-sources",
+    "title": "Inventory catalogue and sources",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "reference/inventories.html#inventory-sources-by-sector",
+    "new": "reference/inventories.html#inventory-sources-by-sector",
+    "title": "Inventory sources by sector",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "reference/geography.html#country-to-iam-region-mapping",
+    "new": "reference/geography.html#country-to-iam-region-mapping",
+    "title": "Country-to-IAM region mapping",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "reference/models.html#iam-model-comparison",
+    "new": "reference/models.html#iam-model-comparison",
+    "title": "IAM model comparison",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "reference/models.html#quick-reference",
+    "new": "reference/models.html#quick-reference",
+    "title": "Quick Reference",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "reference/models.html#choosing-the-right-iam",
+    "new": "reference/models.html#choosing-the-right-iam",
+    "title": "Choosing the Right IAM",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "reference/index.html#reference",
+    "new": "reference/index.html#reference",
+    "title": "Reference",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "reference/change-report-schema.html#change-report-schema-and-lifecycle",
+    "new": "reference/change-report-schema.html#change-report-schema-and-lifecycle",
+    "title": "Change-report schema and lifecycle",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "reference/change-report-schema.html#lifecycle-and-failures",
+    "new": "reference/change-report-schema.html#lifecycle-and-failures",
+    "title": "Lifecycle and failures",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "reference/change-report-schema.html#excel-workbook",
+    "new": "reference/change-report-schema.html#excel-workbook",
+    "title": "Excel workbook",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "reference/change-report-schema.html#parquet-schema",
+    "new": "reference/change-report-schema.html#parquet-schema",
+    "title": "Parquet schema",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "getting_started/first-scenario.html#build-validate-and-export-your-first-scenario",
+    "new": "getting_started/first-scenario.html#build-validate-and-export-your-first-scenario",
+    "title": "Build, validate and export your first scenario",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "getting_started/first-scenario.html#before-running",
+    "new": "getting_started/first-scenario.html#before-running",
+    "title": "Before running",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "getting_started/first-scenario.html#complete-example",
+    "new": "getting_started/first-scenario.html#complete-example",
+    "title": "Complete example",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "getting_started/first-scenario.html#understanding-the-result",
+    "new": "getting_started/first-scenario.html#understanding-the-result",
+    "title": "Understanding the result",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "getting_started/installation.html#installation-and-requirements",
+    "new": "getting_started/installation.html#installation-and-requirements",
+    "title": "Installation and requirements",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "getting_started/installation.html#modern-brightway",
+    "new": "getting_started/installation.html#modern-brightway",
+    "title": "Modern Brightway",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "getting_started/installation.html#legacy-brightway",
+    "new": "getting_started/installation.html#legacy-brightway",
+    "title": "Legacy Brightway",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "getting_started/installation.html#data-and-access",
+    "new": "getting_started/installation.html#data-and-access",
+    "title": "Data and access",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "getting_started/index.html#getting-started",
+    "new": "getting_started/index.html#getting-started",
+    "title": "Getting started",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "getting_started/overview.html#overview-and-boundaries",
+    "new": "getting_started/overview.html#overview-and-boundaries",
+    "title": "Overview and boundaries",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "getting_started/overview.html#purpose",
+    "new": "getting_started/overview.html#purpose",
+    "title": "Purpose",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "getting_started/overview.html#scope-and-boundaries",
+    "new": "getting_started/overview.html#scope-and-boundaries",
+    "title": "Scope and boundaries",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "getting_started/overview.html#external-data-dependencies",
+    "new": "getting_started/overview.html#external-data-dependencies",
+    "title": "External data dependencies",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "getting_started/overview.html#iam-data-access",
+    "new": "getting_started/overview.html#iam-data-access",
+    "title": "IAM data access",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "getting_started/overview.html#publication",
+    "new": "getting_started/overview.html#publication",
+    "title": "Publication",
+    "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "getting_started/overview.html#reproducibility",
+    "new": "getting_started/overview.html#reproducibility",
+    "title": "Reproducibility",
+    "generation": 2,
+    "compatibility_page": false
+  }
+]

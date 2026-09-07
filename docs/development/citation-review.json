@@ -1,0 +1,884 @@
+[
+  {
+    "url": "http://dx.doi.org/10.1016/j.jclepro.2008.08.014",
+    "pages": [
+      "methodology/mining.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "http://dx.doi.org/10.1016/j.jclepro.2019.01.312",
+    "pages": [
+      "methodology/mining.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "http://greet.es.anl.gov/publication-2lli584z",
+    "pages": [
+      "methodology/fuels/biofuels.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "http://task39.sites.olt.ubc.ca/files/2019/04/Task-39-GHS-models-Final-Report-Phase-1.pdf",
+    "pages": [
+      "methodology/fuels/biofuels.rst"
+    ],
+    "review_status": "Retrieved source screened; quantitative reproduction not performed",
+    "access": "Retrieved; full-text verification not implied",
+    "reviewed_on": "2026-09-07",
+    "finding": "Report dated February 2017, not 2019. Harmonization covers allocation, agriculture and transport; date corrected in docs."
+  },
+  {
+    "url": "http://www.esu-services.ch/fileadmin/download/publicLCI/meili-2021-LCI%20for%20the%20oil%20and%20gas%20extraction.pdf",
+    "pages": [
+      "methodology/electricity/generation.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://about.bnef.com/",
+    "pages": [
+      "methodology/metals.rst"
+    ],
+    "review_status": "Retrieved source screened; quantitative reproduction not performed",
+    "access": "Retrieved; full-text verification not implied",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://brightway.dev/",
+    "pages": [
+      "methodology/workflow.rst"
+    ],
+    "review_status": "Retrieved source screened; quantitative reproduction not performed",
+    "access": "Retrieved; full-text verification not implied",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://bureau-industrial-transformation.jrc.ec.europa.eu/sites/default/files/2020-03/superseded_clm_bref_1201.pdf",
+    "pages": [
+      "methodology/cement.rst"
+    ],
+    "review_status": "Retrieved source screened; quantitative reproduction not performed",
+    "access": "Retrieved; full-text verification not implied",
+    "reviewed_on": "2026-09-07",
+    "finding": "Archived superseded cement/lime BREF; document as historical assumption, not current BAT."
+  },
+  {
+    "url": "https://docs.nrel.gov/docs/fy25osti/95135.pdf",
+    "pages": [
+      "methodology/electricity/photovoltaics.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://doi.org/10.1002/bbb.2395",
+    "pages": [
+      "methodology/fuels/biofuels.rst"
+    ],
+    "review_status": "Sector review: see source register"
+  },
+  {
+    "url": "https://doi.org/10.1007/s11367-020-01737-5",
+    "pages": [
+      "methodology/metals.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://doi.org/10.1007/s11367-020-01791-z",
+    "pages": [
+      "methodology/electricity/photovoltaics.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://doi.org/10.1016/j.apenergy.2020.115958",
+    "pages": [
+      "methodology/fuels/hydrogen.rst"
+    ],
+    "review_status": "Retrieved source screened; quantitative reproduction not performed",
+    "access": "Retrieved; full-text verification not implied",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://doi.org/10.1016/j.clet.2022.100499",
+    "pages": [
+      "methodology/mining.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://doi.org/10.1016/j.egyr.2022.11.025",
+    "pages": [
+      "methodology/battery-stationary.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://doi.org/10.1016/j.est.2021.102759",
+    "pages": [
+      "methodology/fuels/hydrogen.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://doi.org/10.1016/j.heliyon.2024.e27547",
+    "pages": [
+      "methodology/fuels/ammonia.rst"
+    ],
+    "review_status": "Sector review: see source register"
+  },
+  {
+    "url": "https://doi.org/10.1016/j.ijggc.2013.03.003",
+    "pages": [
+      "methodology/cement.rst",
+      "methodology/electricity/generation.rst",
+      "methodology/steel.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://doi.org/10.1016/j.ijhydene.2016.09.167",
+    "pages": [
+      "methodology/fuels/hydrogen.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://doi.org/10.1016/j.ijhydene.2019.02.230",
+    "pages": [
+      "methodology/electricity/markets.rst",
+      "methodology/fuels/hydrogen.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://doi.org/10.1016/j.ijhydene.2020.02.121",
+    "pages": [
+      "methodology/fuels/hydrogen.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://doi.org/10.1016/j.ijhydene.2022.02.150",
+    "pages": [
+      "methodology/fuels/hydrogen.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://doi.org/10.1016/j.jclepro.2017.03.129",
+    "pages": [
+      "methodology/mining.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://doi.org/10.1016/j.jclepro.2020.121339",
+    "pages": [
+      "methodology/battery-mobile.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://doi.org/10.1016/j.jclepro.2020.125680",
+    "pages": [
+      "methodology/electricity/generation.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://doi.org/10.1016/j.jclepro.2022.130474",
+    "pages": [
+      "methodology/metals.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://doi.org/10.1016/j.jclepro.2022.132514",
+    "pages": [
+      "methodology/fuels/hydrogen.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://doi.org/10.1016/j.jclepro.2024.141884",
+    "pages": [
+      "methodology/cement.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://doi.org/10.1016/j.renene.2019.07.010",
+    "pages": [
+      "methodology/cdr.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://doi.org/10.1016/j.resconrec.2021.105619",
+    "pages": [
+      "methodology/battery-mobile.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://doi.org/10.1016/j.resconrec.2022.106567",
+    "pages": [
+      "methodology/mining.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://doi.org/10.1016/j.resconrec.2022.106586",
+    "pages": [
+      "methodology/metals.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://doi.org/10.1016/j.resconrec.2022.106611",
+    "pages": [
+      "methodology/metals.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://doi.org/10.1016/j.resconrec.2023.107362",
+    "pages": [
+      "methodology/battery-mobile.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://doi.org/10.1016/j.rser.2023.113830",
+    "pages": [
+      "methodology/system-models.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://doi.org/10.1016/j.scitotenv.2012.07.044",
+    "pages": [
+      "methodology/fuels/biofuels.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://doi.org/10.1016/j.scitotenv.2023.162038",
+    "pages": [
+      "methodology/mining.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://doi.org/10.1016/j.wasman.2021.04.046",
+    "pages": [
+      "methodology/cdr.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://doi.org/10.1021/acs.est.8b02073",
+    "pages": [
+      "methodology/battery-stationary.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://doi.org/10.1021/acs.est.8b05313",
+    "pages": [
+      "methodology/battery-mobile.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://doi.org/10.1021/acssuschemeng.1c01915",
+    "pages": [
+      "methodology/fuels/ammonia.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://doi.org/10.1021/acssuschemeng.3c00141",
+    "pages": [
+      "methodology/battery-mobile.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://doi.org/10.1038/s41467-022-31146-1",
+    "pages": [
+      "methodology/cdr.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://doi.org/10.1039/C9SE00658C",
+    "pages": [
+      "methodology/fuels/synthetic.rst"
+    ],
+    "review_status": "Sector review: see source register"
+  },
+  {
+    "url": "https://doi.org/10.1039/C9SE00986H",
+    "pages": [
+      "methodology/fuels/synthetic.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://doi.org/10.1039/D2SE90051C",
+    "pages": [
+      "methodology/electricity/photovoltaics.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://doi.org/10.1039/D5EE01356A",
+    "pages": [
+      "methodology/steel.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://doi.org/10.1111/jiec.13234",
+    "pages": [
+      "methodology/metals.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://doi.org/10.3133/mcs2023",
+    "pages": [
+      "methodology/metals.rst"
+    ],
+    "review_status": "Sector review: see source register"
+  },
+  {
+    "url": "https://doi.org/10.3389/feart.2021.726336",
+    "pages": [
+      "methodology/mining.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://doi.org/10.3390/rs13040743",
+    "pages": [
+      "methodology/mining.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://doi.org/10.3390/su141710901",
+    "pages": [
+      "methodology/mining.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://doi.org/10.69766/WJTE1771",
+    "pages": [
+      "methodology/electricity/photovoltaics.rst"
+    ],
+    "review_status": "Retrieved source screened; quantitative reproduction not performed",
+    "access": "Retrieved; full-text verification not implied",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://ec.europa.eu/clima/eu-action/transport-emissions/road-transport-reducing-co2-emissions-vehicles/vehicle-energy-consumption-calculation-tool-vecto_en",
+    "pages": [
+      "methodology/transport/trucks.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://ec.europa.eu/environment/pdf/waste/mining/MWEI%20BREF.pdf",
+    "pages": [
+      "methodology/mining.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://ecoinvent.org/the-ecoinvent-database/data-formats/ecospold2/",
+    "pages": [
+      "methodology/workflow.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://gains.iiasa.ac.at/gains/EUN/index.login",
+    "pages": [
+      "methodology/emissions.rst"
+    ],
+    "review_status": "Retrieved source screened; quantitative reproduction not performed",
+    "access": "Login page only",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://gains.iiasa.ac.at/gains/IAM/index.login",
+    "pages": [
+      "methodology/emissions.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://globaltailingsreview.org/wp-content/uploads/2020/08/global-industry-standard-on-tailings-management.pdf",
+    "pages": [
+      "methodology/mining.rst"
+    ],
+    "review_status": "Retrieved source screened; quantitative reproduction not performed",
+    "access": "Retrieved; full-text verification not implied",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://globaltailingsreview.org/wp-content/uploads/2020/09/Ch-II-Mine-Tailings-Facilities_Overview-and-Industry-Trends.pdf",
+    "pages": [
+      "methodology/mining.rst"
+    ],
+    "review_status": "Retrieved source screened; quantitative reproduction not performed",
+    "access": "Retrieved; full-text verification not implied",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://globaltailingsreview.org/wpcontent/uploads/2020/09",
+    "pages": [
+      "methodology/mining.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://greet.es.anl.gov/publication-update_cobalt",
+    "pages": [
+      "methodology/metals.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://iea.blob.core.windows.net/assets/3a99654f-ffff-469f-b83c-bf0386ed8537/pv_roadmap.pdf",
+    "pages": [
+      "methodology/electricity/photovoltaics.rst"
+    ],
+    "review_status": "Retrieved source screened; quantitative reproduction not performed",
+    "access": "Retrieved; full-text verification not implied",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://international-aluminium.org/resource/aluminium-sector-greenhouse-gas-pathways-to-2050-2021/",
+    "pages": [
+      "methodology/electricity/markets.rst"
+    ],
+    "review_status": "Retrieved source screened; quantitative reproduction not performed",
+    "access": "Retrieved; full-text verification not implied",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://link.springer.com/article/10.1007/s11367-020-01791-z",
+    "pages": [
+      "methodology/electricity/photovoltaics.rst"
+    ],
+    "review_status": "Retrieved source screened; quantitative reproduction not performed",
+    "access": "Retrieved; full-text verification not implied",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://pubs.acs.org/doi/abs/10.1021/acs.est.0c07773",
+    "pages": [
+      "methodology/transport/trucks.rst"
+    ],
+    "review_status": "Sector review: see source register"
+  },
+  {
+    "url": "https://pubs.acs.org/doi/abs/10.1021/es500191g",
+    "pages": [
+      "methodology/fuels/synthetic.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://pubs.rsc.org/en/Content/ArticleLanding/2021/SE/D0SE01637C",
+    "pages": [
+      "methodology/fuels/hydrogen.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://pubs.rsc.org/en/content/articlelanding/2020/se/d0se00067a",
+    "pages": [
+      "methodology/fuels/hydrogen.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://pubs.rsc.org/en/content/articlelanding/2020/se/d0se00222d",
+    "pages": [
+      "methodology/cdr.rst",
+      "methodology/fuels/hydrogen.rst"
+    ],
+    "review_status": "Sector review: see source register"
+  },
+  {
+    "url": "https://pubs.rsc.org/en/content/articlelanding/2022/se/d2se00096b",
+    "pages": [
+      "methodology/electricity/photovoltaics.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://sancold.org.za/wp-content/uploads/2024/05/SANCOLD-Your-Tailings-Dam-2020.pdf",
+    "pages": [
+      "methodology/mining.rst"
+    ],
+    "review_status": "Retrieved source screened; quantitative reproduction not performed",
+    "access": "Retrieved; full-text verification not implied",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://treeze.ch/fileadmin/user_upload/downloads/PublicLCI/Schori_2012_NaturalGas.pdf",
+    "pages": [
+      "methodology/fuels/hydrogen.rst"
+    ],
+    "review_status": "Retrieved source screened; quantitative reproduction not performed",
+    "access": "Retrieved; full-text verification not implied",
+    "reviewed_on": "2026-09-07",
+    "finding": "2012 revision selectively updates supply, LNG, Russia/Norway and network losses; not every production route was re-inventoried."
+  },
+  {
+    "url": "https://treeze.ch/fileadmin/user_upload/downloads/Publications/Case_Studies/Energy/Future-PV-LCA-IEA-PVPS-Task-12-March-2015.pdf",
+    "pages": [
+      "methodology/electricity/photovoltaics.rst"
+    ],
+    "review_status": "Retrieved source screened; quantitative reproduction not performed",
+    "access": "Retrieved; full-text verification not implied",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://unctad.org/system/files/official-document/ser-rp-2022d5_en.pdf",
+    "pages": [
+      "methodology/metals.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://www.bafu.admin.ch/dam/en/sd-web/lggkMIGXeKNu/real-driving-emissions-from-diesel-passenger-cars-measured-by-remote-sensing-and-as-compared-with-pems-and-chassis-dynamometer-measurements-conox-task-2-report.pdf",
+    "pages": [
+      "methodology/transport/passenger-cars.rst"
+    ],
+    "review_status": "Retrieved source screened; quantitative reproduction not performed",
+    "access": "Retrieved; full-text verification not implied",
+    "reviewed_on": "2026-09-07",
+    "finding": "CONOX analysis pools measurements from 2011\u20132017 and focuses on Euro 5/6 diesel NOx; not a universal present-day fleet factor."
+  },
+  {
+    "url": "https://www.cambridge.org/core/books/transition-to-hydrogen/43144AF26ED80E7106B675A6E83B1579",
+    "pages": [
+      "methodology/fuels/hydrogen.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://www.csem.ch/en/news/photovoltaic-technology-breakthrough-achieving-31.25-efficiency/",
+    "pages": [
+      "methodology/electricity/photovoltaics.rst"
+    ],
+    "review_status": "Retrieved source screened; quantitative reproduction not performed",
+    "access": "Retrieved; full-text verification not implied",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://www.fvv-net.de/fileadmin/user_upload/medien/materialien/FVV-Kraftstoffstudie_LBST_2013-10-30.pdf",
+    "pages": [
+      "methodology/fuels/synthetic.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://www.guru99.com/etl-extract-load-process.html#:~:text=ETL%20is%20a%20process%20that,is%20Extract%2C%20Transform%20and%20Load",
+    "pages": [
+      "methodology/workflow.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://www.hecla.com/wp-content/uploads/Hecla-2021-TailingsMgmt_FactSheet.pdf",
+    "pages": [
+      "methodology/mining.rst"
+    ],
+    "review_status": "Retrieved source screened; quantitative reproduction not performed",
+    "access": "Retrieved; full-text verification not implied",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://www.irena.org/Publications/2025/Jul/Renewable-energy-statistics-2025",
+    "pages": [
+      "methodology/electricity/photovoltaics.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://www.ise.fraunhofer.de/content/dam/ise/de/documents/publications/studies/Photovoltaics-Report.pdf",
+    "pages": [
+      "methodology/electricity/photovoltaics.rst"
+    ],
+    "review_status": "Retrieved source screened; quantitative reproduction not performed",
+    "access": "Retrieved; full-text verification not implied",
+    "reviewed_on": "2026-09-07",
+    "finding": "Mutable report URL now serves 14 July 2026 update; publication date is not a checksum of the originally used source."
+  },
+  {
+    "url": "https://www.mdpi.com/2313-0105/5/2/48",
+    "pages": [
+      "methodology/battery-mobile.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://www.nature.com/articles/s41560-023-01355-z",
+    "pages": [
+      "methodology/battery-mobile.rst"
+    ],
+    "review_status": "Retrieved source screened; quantitative reproduction not performed",
+    "access": "Retrieved; full-text verification not implied",
+    "reviewed_on": "2026-09-07",
+    "finding": "Degen et al. 2023 distinguishes cell-production energy and technology projections through 2040; not a complete battery-pack inventory."
+  },
+  {
+    "url": "https://www.nature.com/articles/s41598-021-84897-0",
+    "pages": [
+      "methodology/mining.rst"
+    ],
+    "review_status": "Retrieved source screened; quantitative reproduction not performed",
+    "access": "Retrieved; full-text verification not implied",
+    "reviewed_on": "2026-09-07",
+    "finding": "Facility-disclosure study has an author correction dated 3 June 2021; review corrected data before changing regional uptake shares."
+  },
+  {
+    "url": "https://www.nature.com/articles/s41893-019-0221-6",
+    "pages": [
+      "methodology/electricity/generation.rst"
+    ],
+    "review_status": "Sector review: see source register"
+  },
+  {
+    "url": "https://www.now-gmbh.de/wp-content/uploads/2020/09/indwede-studie_v04.1.pdf",
+    "pages": [
+      "methodology/fuels/hydrogen.rst"
+    ],
+    "review_status": "Retrieved source screened; quantitative reproduction not performed",
+    "access": "Retrieved; full-text verification not implied",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://www.nrel.gov/docs/libraries/pv/champion-module-efficiencies.pdf",
+    "pages": [
+      "methodology/electricity/photovoltaics.rst"
+    ],
+    "review_status": "Retrieved source screened; quantitative reproduction not performed",
+    "access": "Retrieved; full-text verification not implied",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://www.oxfordpv.com/mainstream",
+    "pages": [
+      "methodology/electricity/photovoltaics.rst"
+    ],
+    "review_status": "Retrieved source screened; quantitative reproduction not performed",
+    "access": "Retrieved; full-text verification not implied",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://www.psi.ch/en/media/72391/download",
+    "pages": [
+      "methodology/transport/passenger-cars.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://www.psi.ch/sites/default/files/2019-09/Cozzolino_377125_%20Research%20Project%20Report.pdf",
+    "pages": [
+      "methodology/fuels/biofuels.rst"
+    ],
+    "review_status": "Retrieved source screened; quantitative reproduction not performed",
+    "access": "Retrieved; full-text verification not implied",
+    "reviewed_on": "2026-09-07",
+    "finding": "Linked PDF is a two-page project description; it cannot substantiate all inventory coefficients."
+  },
+  {
+    "url": "https://www.psi.ch/sites/default/files/import/ta/PublicationTab/BSc_Mattia_Maeder_2016.pdf",
+    "pages": [
+      "methodology/electricity/generation.rst"
+    ],
+    "review_status": "Retrieved source screened; quantitative reproduction not performed",
+    "access": "Retrieved; full-text verification not implied",
+    "reviewed_on": "2026-09-07",
+    "finding": "Linked PDF is only three pages; full thesis/inventory appendix is not supplied by this link."
+  },
+  {
+    "url": "https://www.qualenergia.it/wp-content/uploads/2024/06/ITRPV-15th-Edition-2024-2.pdf",
+    "pages": [
+      "methodology/electricity/photovoltaics.rst"
+    ],
+    "review_status": "Retrieved source screened; quantitative reproduction not performed",
+    "access": "Retrieved; full-text verification not implied",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://www.sciencedirect.com/science/article/pii/S0927024823001101",
+    "pages": [
+      "methodology/electricity/photovoltaics.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://www.sciencedirect.com/science/article/pii/S095965261832170X",
+    "pages": [
+      "methodology/fuels/hydrogen.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://www2.bgs.ac.uk/mineralsuk/statistics/worldStatistics.html",
+    "pages": [
+      "methodology/metals.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  },
+  {
+    "url": "https://zenodo.org/records/5720779",
+    "pages": [
+      "methodology/transport/buses.rst",
+      "methodology/transport/two-wheelers.rst"
+    ],
+    "review_status": "Access-limited; full-text verification unresolved",
+    "access": "Fetch failed",
+    "reviewed_on": "2026-09-07"
+  }
+]

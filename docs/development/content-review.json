@@ -1,0 +1,530 @@
+[
+  {
+    "page": "getting_started/index.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "getting_started/overview.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "getting_started/installation.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "getting_started/first-scenario.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Licensed REMIND SSP2-NPi 2025 example completed: 42,754 activities written, validation passed and reports generated; see examples/status.json.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "getting_started/preparation.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "user_guide/index.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "user_guide/reports.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "user_guide/choose-scenario.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "user_guide/source-databases.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "user_guide/examples.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "user_guide/external-scenarios.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "user_guide/interpreting-results.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "user_guide/troubleshooting.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "user_guide/inventories.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "user_guide/updates.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Corrected final-energy scope; update order retained.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "user_guide/validation.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Rewritten around findings and remedies; certificate internals moved.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "user_guide/create-external-scenario.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "user_guide/export/scenario-arrays.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "user_guide/export/index.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "user_guide/export/datapackage.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "user_guide/export/matrices.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "user_guide/export/simapro.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "user_guide/export/openlca.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "user_guide/export/superstructure.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "user_guide/export/brightway.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "methodology/index.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "methodology/system-models.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "methodology/metals.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Compared current implementation and shared helpers; corrected exchange scope, conditions and route accounting; removed migration/internal narratives; added a scope process diagram.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "methodology/cdr.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Compared current implementation and shared helpers; corrected exchange scope, conditions and route accounting; removed migration/internal narratives; added a scope process diagram.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "methodology/battery-stationary.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Compared current implementation and shared helpers; corrected exchange scope, conditions and route accounting; removed migration/internal narratives; added a scope process diagram.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "methodology/biomass.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Compared current implementation and shared helpers; corrected exchange scope, conditions and route accounting; removed migration/internal narratives; added a scope process diagram.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "methodology/regionalization.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "methodology/emissions.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Compared current implementation and shared helpers; corrected exchange scope, conditions and route accounting; removed migration/internal narratives; added a scope process diagram.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "methodology/final-energy.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Compared current implementation and shared helpers; corrected exchange scope, conditions and route accounting; removed migration/internal narratives; added a scope process diagram.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "methodology/heat.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Compared current implementation and shared helpers; corrected exchange scope, conditions and route accounting; removed migration/internal narratives; added a scope process diagram.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "methodology/cement.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Compared current implementation and shared helpers; corrected exchange scope, conditions and route accounting; removed migration/internal narratives; added a scope process diagram.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "methodology/workflow.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "methodology/battery-mobile.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Compared current implementation and shared helpers; corrected exchange scope, conditions and route accounting; removed migration/internal narratives; added a scope process diagram.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "methodology/steel.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Compared current implementation and shared helpers; corrected exchange scope, conditions and route accounting; removed migration/internal narratives; added a scope process diagram.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "methodology/mining.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Compared current implementation and shared helpers; corrected exchange scope, conditions and route accounting; removed migration/internal narratives; added a scope process diagram.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "methodology/validation.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "methodology/batteries.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "methodology/shared-principles.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "methodology/transport/index.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "methodology/transport/overview.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "methodology/transport/passenger-cars.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Compared current implementation and shared helpers; corrected exchange scope, conditions and route accounting; removed migration/internal narratives; added a scope process diagram.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "methodology/transport/two-wheelers.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Compared current implementation and shared helpers; corrected exchange scope, conditions and route accounting; removed migration/internal narratives; added a scope process diagram.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "methodology/transport/trucks.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Compared current implementation and shared helpers; corrected exchange scope, conditions and route accounting; removed migration/internal narratives; added a scope process diagram.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "methodology/transport/buses.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Compared current implementation and shared helpers; corrected exchange scope, conditions and route accounting; removed migration/internal narratives; added a scope process diagram.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "methodology/electricity/index.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "methodology/electricity/generation.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Compared current implementation and shared helpers; corrected exchange scope, conditions and route accounting; removed migration/internal narratives; added a scope process diagram.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "methodology/electricity/markets.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Compared current implementation and shared helpers; corrected exchange scope, conditions and route accounting; removed migration/internal narratives; added a scope process diagram.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "methodology/electricity/photovoltaics.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Compared current implementation and shared helpers; corrected exchange scope, conditions and route accounting; removed migration/internal narratives; added a scope process diagram.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "methodology/fuels/hydrogen.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Compared current implementation and shared helpers; corrected exchange scope, conditions and route accounting; removed migration/internal narratives; added a scope process diagram.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "methodology/fuels/index.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "methodology/fuels/synthetic.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Compared current implementation and shared helpers; corrected exchange scope, conditions and route accounting; removed migration/internal narratives; added a scope process diagram.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "methodology/fuels/markets.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Compared current implementation and shared helpers; corrected exchange scope, conditions and route accounting; removed migration/internal narratives; added a scope process diagram.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "methodology/fuels/ammonia.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Compared current implementation and shared helpers; corrected exchange scope, conditions and route accounting; removed migration/internal narratives; added a scope process diagram.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "methodology/fuels/biofuels.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Compared current implementation and shared helpers; corrected exchange scope, conditions and route accounting; removed migration/internal narratives; added a scope process diagram.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "reference/external-scenario-format.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "reference/index.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "reference/change-report-schema.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "reference/inventory-migration.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "reference/models.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "reference/source-review.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "reference/geography.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "reference/scenarios.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Inherited temperature categories explicitly unverified pending exact release matching.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "reference/iam-variables.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "reference/inventories.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "reference/compatibility.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "reference/coverage.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "reference/api.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "development/iam-mapping.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "development/index.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "development/documentation.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "development/performance-history.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "development/contributing.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "development/consequential-validation-history.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "development/releases-2-5.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "development/validation-internals.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "development/documentation-audit.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "development/supplier-selection.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "development/architecture.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "development/internals.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "development/scientific-update-backlog.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_level": "Documentation screening, not independent scientific validation"
+  },
+  {
+    "page": "development/heat-mapping.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Moved mapping-maintenance instructions from Methodology; sector explanation links here.",
+    "review_level": "Documentation and implementation consistency review"
+  },
+  {
+    "page": "methodology/transport/rail.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Compared current implementation and shared helpers; corrected exchange scope, conditions and route accounting; removed migration/internal narratives; added a scope process diagram.",
+    "review_level": "Implementation consistency; not independent inventory validation"
+  },
+  {
+    "page": "methodology/transport/shipping.rst",
+    "review_date": "2026-09-07",
+    "disposition": "Compared current implementation and shared helpers; corrected exchange scope, conditions and route accounting; removed migration/internal narratives; added a scope process diagram.",
+    "review_level": "Implementation consistency; not independent inventory validation"
+  }
+]

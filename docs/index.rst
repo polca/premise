@@ -1,28 +1,26 @@
-.. image:: large.png
+Premise documentation
+=======================
+
+.. image:: /large.png
    :width: 200pt
    :align: center
-   :alt: premise logo
+   :alt: Premise logo
 
+.. raw:: html
 
-User guide
-==========
+   <span id="user-guide"></span>
 
-This user guide will help you navigate the inner workings of *premise*.
+*Premise* creates prospective life-cycle inventory databases from ecoinvent
+and scenario data. Start with :doc:`getting_started/installation` and
+:doc:`getting_started/first-scenario`, or browse a sector's assumptions in
+:doc:`methodology/index`.
 
 .. toctree::
-   :maxdepth: 4
-   :caption: Contents
+   :maxdepth: 2
+   :caption: Documentation
 
-   introduction
-   release_2_5
-   extract
-   transform
-   metals_validation
-   structured_change_report
-   load
-   mapping
-   user_scenarios
-   consequential
-   fuel_market_system_models
-   faq
-   code
+   getting_started/index
+   user_guide/index
+   methodology/index
+   reference/index
+   development/index

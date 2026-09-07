@@ -640,9 +640,9 @@ def _extract_default_inventory_importers(filepaths):
 
 class NewDatabase:
     """
-    Class that represents a new wurst inventory database, modified according to IAM data.
+    Build prospective life-cycle inventories from source databases and scenario data.
 
-    :ivar source_type: the source of the ecoinvent database. Can be `brigthway` or `ecospold`.
+    :ivar source_type: the source of the ecoinvent database. Can be `brightway` or `ecospold`.
     :vartype source_type: str
     :vartype source_db: str
     :ivar system_model: Can be `cutoff` (default) or `consequential`.
@@ -2925,12 +2925,12 @@ class NewDatabase:
         Exports the new database as a sparse matrix representation in csv files.
 
         :param filepath: path provided by the user to store the exported matrices.
-        If it is a string, the path is used as main directory from which
-        "iam model" / "pathway" / "year" subdirectories will be created.
-        If it is a sequence of strings, each string becomes the directory
-        under which the set of matrices is saved. If `filepath` is not provided,
-        "iam model" / "pathway" / "year" subdirectories are created under
-        the working directory.
+            If it is a string, the path is used as main directory from which
+            "iam model" / "pathway" / "year" subdirectories will be created.
+            If it is a sequence of strings, each string becomes the directory
+            under which the set of matrices is saved. If `filepath` is not provided,
+            "iam model" / "pathway" / "year" subdirectories are created under
+            the working directory.
         :type filepath: str or list
 
         """
