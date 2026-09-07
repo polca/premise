@@ -26,6 +26,7 @@ from packaging.version import Version
 from tqdm import tqdm
 
 from . import __version__
+from .photovoltaic import use_pv_2026
 from .cache_cleanup import with_cache_session
 from .battery import _update_battery
 from .biomass import _update_biomass
@@ -268,6 +269,9 @@ FILEPATH_BATTERIES_NMC955_LTO = INVENTORY_DIR / "lci-batteries-NMC955-LTO.xlsx"
 FILEPATH_LIO2_BATTERY = INVENTORY_DIR / "lci-batteries-LiO2.xlsx"
 FILEPATH_LIS_BATTERY = INVENTORY_DIR / "lci-batteries-LiS.xlsx"
 FILEPATH_PHOTOVOLTAICS = INVENTORY_DIR / "lci-PV.xlsx"
+FILEPATH_PHOTOVOLTAICS_2026 = INVENTORY_DIR / "lci-PV-2026.xlsx"
+FILEPATH_PHOTOVOLTAICS_2026_ELECTRICITY = INVENTORY_DIR / "lci-PV-2026-electricity.xlsx"
+FILEPATH_PHOTOVOLTAICS_CIGS = INVENTORY_DIR / "lci-PV-CIGS.xlsx"
 FILEPATH_BIGCC = INVENTORY_DIR / "lci-BIGCC.xlsx"
 FILEPATH_NUCLEAR_EPR = INVENTORY_DIR / "lci-nuclear_EPR.xlsx"
 FILEPATH_NUCLEAR_SMR = INVENTORY_DIR / "lci-nuclear_SMR.xlsx"
@@ -985,6 +989,18 @@ class NewDatabase:
         )
         uncertainty_label = "w_uncertainty" if uncertainty else "wo_uncertainty"
         inventory_label = "_inventories" if inventories else ""
+        if inventories and use_pv_2026(
+            getattr(self, "version", None), getattr(self, "system_model", None)
+        ):
+            digest = hashlib.sha256()
+            for path in (
+                FILEPATH_PHOTOVOLTAICS_2026,
+                FILEPATH_PHOTOVOLTAICS_2026_ELECTRICITY,
+                FILEPATH_PHOTOVOLTAICS_CIGS,
+            ):
+                digest.update(path.name.encode())
+                digest.update(path.read_bytes())
+            inventory_label += f"_pv2026_{digest.hexdigest()[:16]}"
         return (
             DIR_CACHED_DB
             / f"cached_{''.join(tuple(map(str, __version__)))}_v{CACHE_SCHEMA_VERSION}_"
@@ -1271,6 +1287,17 @@ class NewDatabase:
 
         selected_filepaths = []
         for filepath in filepaths:
+            if filepath[0] == FILEPATH_PHOTOVOLTAICS and use_pv_2026(
+                self.version, self.system_model
+            ):
+                selected_filepaths.extend(
+                    [
+                        (FILEPATH_PHOTOVOLTAICS_2026, "3.12"),
+                        (FILEPATH_PHOTOVOLTAICS_2026_ELECTRICITY, "3.12"),
+                        (FILEPATH_PHOTOVOLTAICS_CIGS, "3.7"),
+                    ]
+                )
+                continue
             # make an exception for FILEPATH_OIL_GAS_INVENTORIES
             # ecoinvent version is 3.9
             if filepath[0] in [

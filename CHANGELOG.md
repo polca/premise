@@ -5,6 +5,14 @@ All notable changes to this project are documented in this file.
 ## [2.5.1]
 
 ### Changed
+- Replaced the legacy IEA PVPS core for ecoinvent 3.12 cut-off with the 2026
+  inventories and residential/commercial PV recipes for 250 country locations.
+  Corrected the IRENA generation weights, documented solar-yield fallbacks,
+  and preserved the distinct CIGS, perovskite and GaAs supplements. Other
+  database configurations retain the legacy core pending validation.
+- Updated PV efficiency handling for mixed module inputs and 10 MW systems,
+  preserving capacity metadata through caches and scaling module-dependent
+  mounting, recycling and cleaning consistently.
 - Moved the runtime material-product rules and technology conversion factors
   from Excel to versioned, validated YAML files.
 - Compiled material updates by exact activity and rule, removing repeated
