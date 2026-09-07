@@ -436,3 +436,31 @@ conversions:
   ecoinvent_unit: unit
   intensity_unit: kg/MW
   factor: 1.0
+- id: wind-direct-drive-0-006mw
+  activity:
+    name: wind turbine construction, small-scale, 6kW, onshore, direct drive
+  ecoinvent_unit: unit
+  intensity_unit: kg/MW
+  factor: 0.006
+  comment: Rated capacity in MW per turbine, unchanged when premise creates the direct-drive variant.
+- id: wind-direct-drive-2-3mw
+  activity:
+    name: wind turbine construction, 2.3MW, precast concrete tower, onshore, direct drive
+  ecoinvent_unit: unit
+  intensity_unit: kg/MW
+  factor: 2.3
+  comment: Rated capacity in MW per turbine, unchanged when premise creates the direct-drive variant.
+- id: wind-direct-drive-0-75mw
+  activity:
+    name: wind turbine construction, 750kW, onshore, direct drive
+  ecoinvent_unit: unit
+  intensity_unit: kg/MW
+  factor: 0.75
+  comment: Rated capacity in MW per turbine, unchanged when premise creates the direct-drive variant.
+- id: lorry-frame-per-kilogram
+  activity:
+    name: frame, blanks and saddle, for lorry
+  ecoinvent_unit: kilogram
+  intensity_unit: kg metal/kg vehicle
+  factor: 1.0
+  comment: Explicit identity conversion retaining the existing ICEV mass-based material-intensity proxy for one kilogram of lorry frame.

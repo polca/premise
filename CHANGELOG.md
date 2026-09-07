@@ -22,6 +22,15 @@ All notable changes to this project are documented in this file.
   overlap with EPR components.
 
 ### Fixed
+- Preserved the IEA PVPS 2026 silicon-cell material inventories during metals
+  updates, avoiding capacity-based additions on top of metallization pastes.
+  Material overrides now require an explicit conversion with the expected
+  activity unit; missing conversions no longer default to one.
+- Added capacity conversions for three generated direct-drive wind variants,
+  declared the existing mass-based lorry-frame conversion, and excluded redox
+  flow battery stacks from the solid-oxide fuel-cell material mapping.
+- Restored columnar activity identity fields when a cleared mapping is updated,
+  fixing native Brightway export of prepared compact inventories.
 - Limited future scenario-inventory cache buildup with a startup sweep for
   managed checkpoints and incomplete writes unused for more than 24 hours.
   Cleanup is skipped while another `NewDatabase` instance is alive and preserves

@@ -2503,6 +2503,14 @@ class _ColumnarActivityMapping(dict[str, Any]):
             self[key] = default
             return default
 
+    def update(self, *args, **kwargs) -> None:
+        """Update through the overlay setter, including cleared hot fields.
+
+        ``dict.update`` bypasses ``__setitem__`` on dict subclasses and leaves
+        the columnar deletion mask and resident identity fields stale.
+        """
+        MutableMapping.update(self, *args, **kwargs)
+
     def clear(self) -> None:
         self._deleted.update(self)
         self._database = _COLUMNAR_ACTIVITY_MISSING

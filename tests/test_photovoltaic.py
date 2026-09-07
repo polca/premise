@@ -348,3 +348,41 @@ def test_pv_workbook_edits_invalidate_inventory_cache_only(monkeypatch, tmp_path
     )
     assert database._database_cache_path("source", inventories=True) != original
     assert database._database_cache_path("source") == source
+
+
+def test_all_new_silicon_cells_preserve_material_inventory_and_uncertainty(inventories):
+    from premise.activity_maps import InventorySet
+    from premise.metals import Metals
+    from premise.metals_rules import load_material_rules
+
+    core, _ = inventories
+    cells = InventorySet(core, "3.12").generate_metals_activities_map()["c-Si"]
+    assert len(cells) == 20
+    before = [deepcopy(d) for d in cells]
+    metals = object.__new__(Metals)
+    metals.material_policies = load_material_rules().policies
+    metals.material_rules_by_technology = {
+        "c-Si": [
+            r for r in load_material_rules().enabled_rules if r.technology == "c-Si"
+        ]
+    }
+    metals.activities_metals_map = {"c-Si": cells}
+    # Preserved source inventories need neither a conversion nor a metal provider.
+    metals.technology_conversions_by_name = {}
+    metals.db_index = {}
+    metals.material_decisions = []
+    metals._validation_targets = {}
+    plan = metals._compile_material_update_plan()
+    assert len(plan) == 140
+    for item in plan:
+        metals._apply_material_rule(
+            dataset=item["dataset"],
+            technology=item["technology"],
+            rule=item["rule"],
+            conversion_factor=item["conversion_factor"],
+        )
+    assert cells == before
+    assert len(metals.material_decisions) == 140
+    assert {d["reason code"] for d in metals.material_decisions} == {
+        "metals.material_rule.preserved_source"
+    }

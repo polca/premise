@@ -4192,3 +4192,57 @@ activity_policies:
   - '*'
   action: preserve_source
   reason: EPR already contains material-intensive components. Applying plant-level direct material exchanges may overlap with those components.
+- id: preserve-iea-pvps-2026-silicon-cell-1
+  technology: c-Si
+  activity:
+    name: photovoltaic cell production, multicrystalline silicon
+    reference_product: photovoltaic cell, multicrystalline silicon
+  locations:
+  - '*'
+  action: preserve_source
+  reason: IEA PVPS 2026 cell inventories already represent metals through metallization pastes and other components. Generic capacity-based direct metal inputs would overlap with this material structure.
+- id: preserve-iea-pvps-2026-silicon-cell-2
+  technology: c-Si
+  activity:
+    name: photovoltaic cell production, single-crystalline silicon, perc
+    reference_product: photovoltaic cell, single-crystalline silicon, perc
+  locations:
+  - '*'
+  action: preserve_source
+  reason: IEA PVPS 2026 cell inventories already represent metals through metallization pastes and other components. Generic capacity-based direct metal inputs would overlap with this material structure.
+- id: preserve-iea-pvps-2026-silicon-cell-3
+  technology: c-Si
+  activity:
+    name: photovoltaic cell production, single-crystalline silicon, perc, simulated data
+    reference_product: photovoltaic cell, single-crystalline silicon, perc, simulated data
+  locations:
+  - '*'
+  action: preserve_source
+  reason: IEA PVPS 2026 cell inventories already represent metals through metallization pastes and other components. Generic capacity-based direct metal inputs would overlap with this material structure.
+- id: preserve-iea-pvps-2026-silicon-cell-4
+  technology: c-Si
+  activity:
+    name: photovoltaic cell production, single-crystalline silicon, topcon, low-pressure chemical vapour deposition
+    reference_product: photovoltaic cell, single-crystalline silicon, topcon, low-pressure chemical vapour deposition
+  locations:
+  - '*'
+  action: preserve_source
+  reason: IEA PVPS 2026 cell inventories already represent metals through metallization pastes and other components. Generic capacity-based direct metal inputs would overlap with this material structure.
+- id: preserve-iea-pvps-2026-silicon-cell-5
+  technology: c-Si
+  activity:
+    name: photovoltaic cell production, single-crystalline silicon, topcon, plasma-enhanced chemical vapour deposition
+    reference_product: photovoltaic cell, single-crystalline silicon, topcon, plasma-enhanced chemical vapour deposition
+  locations:
+  - '*'
+  action: preserve_source
+  reason: IEA PVPS 2026 cell inventories already represent metals through metallization pastes and other components. Generic capacity-based direct metal inputs would overlap with this material structure.
+- id: preserve-iea-pvps-2026-silicon-cell-6
+  technology: c-Si
+  activity:
+    name: photovoltaic cell production, single-crystalline silicon, topcon, simulated data
+    reference_product: photovoltaic cell, single-crystalline silicon, topcon, simulated data
+  locations:
+  - '*'
+  action: preserve_source
+  reason: IEA PVPS 2026 cell inventories already represent metals through metallization pastes and other components. Generic capacity-based direct metal inputs would overlap with this material structure.

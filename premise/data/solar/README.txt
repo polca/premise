@@ -101,6 +101,16 @@ cleaning coefficients when efficiency is unchanged. Existing higher module
 efficiencies are not reduced.
 Operational PV metadata survives inventory and scenario caches.
 
+The six IEA PVPS 2026 silicon-cell activity names (20 geographic variants) have
+explicit preserve_source material policies. Their metallization pastes and
+other components already contain metals; generic kg/MW material overlays must
+not be added per square metre of cell. Preservation applies to these direct
+material overrides, while background supply-chain scenario updates remain
+active. It is checked before looking up a technology conversion. Unpreserved
+material updates require an explicit conversion and matching activity unit;
+missing conversions stop the material update plan before it is applied.
+
+
 Reproduction and validation
 ---------------------------
 Run `python scripts/build_pv_2026.py` from the repository root to rebuild the
@@ -113,7 +123,8 @@ recalculation or external workbook links are required.
 Run `python scripts/validate_pv_2026.py` in a configured Brightway environment
 with project ecoinvent-3.12-cutoff and PREMISE_KEY in the environment. This checks
 the complete default graph, recalculates the 45 GWP benchmarks, and builds an
-IMAGE SSP2-M 2050 electricity scenario without writing a Brightway database.
+IMAGE SSP2-M 2050 scenario with all default sector updates, including metals,
+without writing a Brightway database.
 Unit regressions are in tests/test_photovoltaic.py.
 
 Sources and attribution

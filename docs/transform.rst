@@ -954,6 +954,8 @@ improving its performance in the past, relative to today.
     ndb.generate_scenario_report()
     ndb.generate_change_report()
 
+.. _pv-efficiency-transformation:
+
 Photovoltaics panels
 --------------------
 
@@ -1049,14 +1051,15 @@ For full row-level attribution, refer directly to
    encoded in ``premise/data/renewables/efficiency_solar_PV.csv``, including
    source labels and min-max uncertainty bands.
 
-The sources for these efficiencies are also given in the inventory file LCI_PV_:
-
-.. _LCI_PV: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-PV.xlsx
+For the imported inventories and the scope of the IEA PVPS 2026 update, see
+:doc:`extract`, section "Photovoltaic panels". Efficiency-trajectory sources
+are recorded in ``premise/data/renewables/efficiency_solar_PV.csv``.
 
 Given a scenario year, *premise* iterates through the different PV panel installation
 datasets to update their efficiency accordingly.
 To do so, the required surface of panel (in m2) per kW of capacity is
-adjusted down (or up, if the efficiency is lower than current). Dataset names
+adjusted down when the projected efficiency exceeds the current efficiency.
+Existing higher efficiencies are preserved. Dataset names
 are matched against technology aliases in ``premise/electricity.py``. With the
 latest update, datasets containing ``perovskite-on-silicon tandem`` are mapped
 to the dedicated ``perovskite-Si tandem`` trajectory when it is available in

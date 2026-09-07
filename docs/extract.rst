@@ -278,246 +278,229 @@ The table below lists the names of the new activities (only high pressure datase
 Photovoltaic panels
 *******************
 
-Photovoltaic panel inventories originate the IEA's Task 12 project IEA_PV_. They have been adapted
-into a brightway2-friendly format. They can be consulted here: LCI_PV_.
+For **ecoinvent 3.12 cut-off**, *premise* imports the inventories from
+`IEA PVPS Task 12, report T12-33:2026 <https://doi.org/10.69766/WJTE1771>`_
+and its accompanying life-cycle inventory workbook. These replace the legacy
+IEA PVPS core inventory previously imported from ``lci-PV.xlsx``.
+Other ecoinvent versions and the consequential system model continue to use
+the legacy inventory, pending separate migration and validation.
+
+The packaged inventories are:
+
+.. list-table:: PV inventory files
+   :header-rows: 1
+   :widths: 35 65
+
+   * - File
+     - Contents
+   * - ``lci-PV-2026.xlsx``
+     - 324 activities covering manufacturing, installations, operation and
+       end-of-life, including the 45 original electricity functional units.
+   * - ``lci-PV-2026-electricity.xlsx``
+     - Residential, commercial and combined electricity datasets for 250
+       countries and territories, plus one compatibility activity for the
+       existing hydrogen model.
+   * - ``lci-PV-CIGS.xlsx``
+     - Nine activities preserving the distinct legacy CIS/CIGS supplement
+       and its foreground dependencies.
+
+The workbooks are in ``premise/data/additional_inventories/``. Dataset names
+and reference products follow ecoinvent conventions. The ``source`` field
+identifies the publication; comments describe the dataset and any linking
+or modelling assumptions. Source-material licence terms remain separate
+from the *premise* software licence: the report specifies CC BY-NC-SA 4.0,
+subject to the exceptions in its licence notice.
+
+Technologies and reference systems
+++++++++++++++++++++++++++++++++++++++
+
+The core includes single-crystalline silicon (single-Si), multicrystalline
+silicon (multi-Si), and cadmium telluride (CdTe) supply chains. The single-Si
+reference systems combine TOPCon and PERC modules: approximately 85.6% TOPCon
+and 14.4% PERC by module area. They should therefore not be interpreted as
+pure TOPCon systems.
+
+The 45 original electricity functional units comprise 33 national production
+mixes and 12 reference-system datasets. The latter represent six single-Si
+and CdTe system configurations, each available at **1000 or 1300
+kWh/kWp/year**. These yields are alternative site assumptions, not weights
+in a technology mix. The reference-system label ``REF`` is retained as
+metadata, while the packaged datasets use the valid location ``GLO``.
+
+For the country extension, installations are grouped as follows:
+
+.. list-table:: Country electricity datasets (each producing 1 kWh)
+   :header-rows: 1
+   :widths: 45 30 25
+
+   * - Dataset name
+     - Installation types
+     - Reference product
+   * - ``electricity production, photovoltaic, residential``
+     - 10 kWp rooftop and facade systems
+     - ``electricity, low voltage``
+   * - ``electricity production, photovoltaic, commercial``
+     - 250 kWp rooftop and 10 MW ground-mounted systems
+     - ``electricity, medium voltage``
+   * - ``electricity production, photovoltaic, production mix``
+     - Combined residential and commercial generation
+     - ``electricity, photovoltaic, at plant``
+
+These voltage assignments define the generation boundary. No additional
+transformer inventory or unreported distribution loss is introduced.
+The existing IAM aliases select the residential and commercial datasets.
+
+Country mixes, yields and lifetime
+++++++++++++++++++++++++++++++++++++++
+
+The extension covers **250 locations: 249 ISO countries and territories,
+plus Kosovo**. For the 33 countries represented in the report, installation
+inputs are converted back to electricity shares by multiplying each input
+amount by installation capacity, annual yield and a 30-year lifetime.
+Shares are normalised to remove source rounding and separately normalised
+within the residential and commercial segments.
+
+For other countries, the technology and installation recipe is the mean
+of the 33 report-country recipes, weighted by their **2023 PV electricity
+generation** from `IRENA Renewable Energy Statistics 2025
+<https://www.irena.org/Publications/2025/Jul/Renewable-energy-statistics-2025>`_.
+This is a proxy composition, not a measured national technology mix.
+Manufacturing suppliers retain their source geographies; extending an
+electricity dataset to a country does not imply domestic module production.
+
+Annual yields are assigned in this order:
+
+* Report-country yields take precedence where available.
+* Elsewhere, ground-mounted yields are inherited from the Global Solar Atlas
+  values stored in the legacy workbook. Rooftop and facade yields are,
+  respectively, 0.94 and 0.66 times the ground-mounted yield.
+* Missing or zero Atlas values use the generation-weighted mean report yield.
+  Dataset comments explicitly identify this fallback.
+
+The Atlas values are retained numerical inputs, not a newly downloaded
+release. The parameters and their provenance are recorded in
+``premise/data/solar/pv_2026_parameters.json``; the IRENA generation data are
+in ``premise/data/solar/pv_generation_2023.csv``.
+
+For an installation type :math:`i` in country :math:`c`, its input per kWh is:
+
+.. math::
+
+   a_{i,c} = \frac{s_{i,c}}{P_i \, Y_{i,c} \, L}
+
+where :math:`s_{i,c}` is its normalised **electricity share** in the selected
+mix, :math:`P_i` is capacity in kWp, :math:`Y_{i,c}` is annual yield in
+kWh/kWp/year, and :math:`L = 30` years. For example, a 10 kWp installation
+with a 20% electricity share and a yield of 1000 kWh/kWp/year contributes
+:math:`0.2 / (10 \times 1000 \times 30) = 6.67 \times 10^{-7}`
+installation units per kWh.
+
+.. note::
+
+   The source coefficients use lifetime multiplied by annual yield.
+   Although source comments mention 0.7% annual degradation, no additional
+   degradation multiplier is applied. This preserves the workbook's
+   numerical convention; whether the reported yield already includes
+   lifetime degradation remains to be clarified with the authors.
+
+Cleaning in the extensions uses 20 litres of water per square metre of
+module over its lifetime: 90% becomes wastewater and 10% evaporates.
+Extensions beyond the report countries use Swiss water and wastewater
+suppliers as explicit proxies.
+
+Production volumes used for regional aggregation are 2023 generation in
+GWh, multiplied by one million and by the relevant segment's electricity
+share. Missing or rounded-zero generation observations retain zero volume
+and do not contribute to the donor weights. A segment with zero historical
+share receives a mean segment recipe so that it remains available as a
+prospective supplier, while its historical production volume stays zero.
+
+Supplier linking and modelling adaptations
+++++++++++++++++++++++++++++++++++++++++++++++
+
+The source inventories use UVEK/BAFU background suppliers. Their exchanges
+are linked to ecoinvent 3.12 cut-off through existing crosswalks and reviewed
+supplier choices. These include geographic proxies and explicit unit
+conversions, not only dataset renaming. Examples include:
+
+.. list-table:: Examples of background supplier adaptations
+   :header-rows: 1
+   :widths: 35 45 20
+
+   * - Source supplier
+     - ecoinvent supplier or proxy
+     - Amount adjustment
+   * - Medium-voltage grid electricity, CN
+     - ``market group for electricity, medium voltage``, CN
+     - Unchanged
+   * - Ammonia, liquid, at regional storehouse, CH
+     - ``market for ammonia, anhydrous, liquid``, RER
+     - Unchanged
+   * - Silicon tetrachloride, DE
+     - ``silicon tetrachloride production``, GLO
+     - Unchanged
+   * - Hard fibreboard, CH, in kg
+     - Fibreboard production, in cubic metres
+     - Divide by 900 kg/m³
+   * - Gypsum board, CH, in square metres
+     - Plasterboard production, in kg
+     - Multiply by 10 kg/m²
+
+Waste-treatment exchanges also receive the sign required by the target
+waste-product convention. Where no direct aggregate supplier is available,
+explicit helper activities combine background production routes. Liquid
+hydrogen, for example, is approximated by 1 kg of steam-methane-reforming
+hydrogen plus 12 kWh of electricity for liquefaction, without additional
+liquefaction infrastructure or boil-off. These choices can affect impacts
+and should be considered when comparing against results obtained with the
+original background database.
+
+The empty US multi-Si wafer market is supplied by the report's **domestic
+US wafer production**, retaining transport. Unused historical battery
+inventories, avoided-burden processes, the report's CIGS branch, and its
+perovskite-silicon tandem branch and exclusive dependencies are removed
+from the reviewed core. Cut-off allocated recycling remains. The separate
+legacy CIGS, perovskite and GaAs supplements remain available.
+
+Scenario updates and validation
++++++++++++++++++++++++++++++++++++
+
+Country technology and installation shares remain fixed over time because
+IAM scenarios do not specify these detailed sub-technology mixes. Background
+supply chains and module efficiencies are updated for the scenario year.
+See :ref:`pv-efficiency-transformation` for efficiency trajectories.
+
+Installation efficiency is calculated from explicit capacity and total module
+area across all module inputs. When efficiency increases, module area,
+associated mounting, module recycling and lifetime cleaning scale together;
+capacity-dependent equipment remains unchanged. Cleaning scales relative
+to its original coefficient. Existing efficiencies above the scenario
+assumption are not reduced.
+
+The 20 silicon-cell activities in the new core preserve their source material
+inputs during the metals update. Metallization pastes and other components
+already contain metals; applying generic kg/MW material intensities directly
+to a square metre of cell would add incorrect amounts and double-count
+materials. This preservation does not disable background scenario updates.
+
+The 45 original electricity functional units have calculated ecoinvent 3.12
+cut-off GWP100 regression benchmarks in
+``premise/data/solar/pv_2026_gwp100_reference.csv``. These are *premise*
+validation results, **not characterized scores published in the report**.
+``scripts/validate_pv_2026.py`` checks the imported inventory graph, these
+benchmarks, and an all-sector IMAGE SSP2-M 2050 scenario. Rebuilding the
+country inventories uses ``scripts/build_pv_2026.py``; further reproduction
+notes are in ``premise/data/solar/README.txt``.
+
+Compared with the legacy inventory, GWP changes can reflect manufacturing
+inventories, supplier geography, inverters, technology shares and yields,
+as well as module efficiency. They should not be attributed to efficiency
+improvements alone.
 
 .. _IEA_PV: https://iea-pvps.org/wp-content/uploads/2020/12/IEA-PVPS-LCI-report-2020.pdf
-.. _LCI_PV: https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-PV.xlsx
 
-The methodology follows the IEA-PVPS Task 12 approach to construct country-specific photovoltaic
-electricity mixes in life cycle assessment by starting from technology- and installation-specific
-capacity archetypes and translating them into per-kWh inventory coefficients. For each country,
-photovoltaic capacity is disaggregated by installation type (rooftop, façade, ground-mounted),
-module technology (e.g. mono-Si, multi-Si, thin-film variants), and mounting/integration option.
-These capacity shares are combined with country-specific annual electricity yields (kWh/kWp·yr),
-derived from irradiation-based PV productivity data and corrected according to PVPS Task 12 guidelines,
-and with a fixed system lifetime (30 years), to convert installed capacity into lifetime electricity
-output. We further split the installed capacity in each country between residential (<= 3kWp) and commercial (>3 kWp) installations.
-The resulting lifetime-normalized contributions are then scaled so that their sum delivers
-exactly 1 kWh of photovoltaic electricity, yielding electricity-weighted shares for each archetype.
-These shares are implemented in the LCI as exchanges to specific PV system construction activities,
-producing a country-specific, technology-resolved PV electricity mix that is consistent with
-observed productivity differences while remaining transparent and extensible to additional countries.
-
-
-The PV installation datasets provided by the report are listed in the table below.
-
- ============================================================================================ ===========
-  PV installation                                                                              location
- ============================================================================================ ===========
-  photovoltaic slanted-roof installation, 1.3 MWp, multi-Si, panel, mounted, on roof           CH
-  photovoltaic flat-roof installation, 156 kWp, multi-Si, on roof                              CH
-  photovoltaic flat-roof installation, 156 kWp, single-Si, on roof                             CH
-  photovoltaic flat-roof installation, 280 kWp, multi-Si, on roof                              CH
-  photovoltaic flat-roof installation, 280 kWp, single-Si, on roof                             CH
-  photovoltaic flat-roof installation, 324 kWp, multi-Si, on roof                              DE
-  photovoltaic slanted-roof installation, 3 kWp, CIS, laminated, integrated, on roof           CH
-  photovoltaic slanted-roof installation, 3 kWp, CIS, laminated, integrated, on roof           RER
-  photovoltaic slanted-roof installation, 3 kWp, CdTe, panel, mounted, on roof                 CH
-  photovoltaic slanted-roof installation, 3 kWp, CdTe, panel, mounted, on roof                 RER
-  photovoltaic slanted-roof installation, 3 kWp, micro-Si, laminated, integrated, on roof      RER
-  photovoltaic slanted-roof installation, 3 kWp, micro-Si, panel, mounted, on roof             RER
-  photovoltaic flat-roof installation, 450 kWp, single-Si, on roof                             DE
-  photovoltaic open ground installation, 560 kWp, single-Si, on open ground                    CH
-  photovoltaic open ground installation, 569 kWp, multi-Si, on open ground                     ES
-  photovoltaic open ground installation, 570 kWp, CIS, on open ground                          RER
-  photovoltaic open ground installation, 570 kWp, CdTe, on open ground                         RER
-  photovoltaic open ground installation, 570 kWp, micro-Si, on open ground                     RER
-  photovoltaic open ground installation, 570 kWp, multi-Si, on open ground                     ES
-  photovoltaic open ground installation, 570 kWp, multi-Si, on open ground                     RER
-  photovoltaic open ground installation, 570 kWp, single-Si, on open ground                    RER
-  photovoltaic slanted-roof installation, 93 kWp, multi-Si, laminated, integrated, on roof     CH
-  photovoltaic slanted-roof installation, 93 kWp, multi-Si, panel, mounted, on roof            CH
-  photovoltaic slanted-roof installation, 93 kWp, single-Si, laminated, integrated, on roof    CH
-  photovoltaic slanted-roof installation, 93 kWp, single-Si, panel, mounted, on roof           CH
- ============================================================================================ ===========
-
-
-Although these datasets have a limited number of locations (CH, RER, DE, ES), the IEA report provides
-country-specific productivity (in annual kWh produced per kWp) for 33 countries, which are used to build
-country-specific PV electricity mixes:
-
- ======================= =========== ========= ==========
-  production [kWh/kWp]    roof-top    façade    central
- ======================= =========== ========= ==========
-  PT                      1427        999       1513
-  IL                      1695        1187      1798
-  SE                      919         643       974
-  FR                      968         678       1026
-  TR                      1388        971       1471
-  NZ                      1240        868       1315
-  MY                      1332        933       1413
-  CN                      971         679       1029
-  TH                      1436        1005      1522
-  ZA                      1634        1144      1733
-  JP                      1024        717       1086
-  CH                      976         683       1040
-  DE                      922         645       978
-  KR                      1129        790       1197
-  AT                      1044        731       1111
-  GR                      1323        926       1402
-  IE                      796         557       844
-  AU                      1240        868       1314
-  IT                      1298        908       1376
-  MX                      1612        1128      1709
-  NL                      937         656       994
-  GB                      848         593       899
-  ES                      1423        996       1509
-  CL                      1603        1122      1699
-  HU                      1090        763       1156
-  CZ                      944         661       1101
-  CA                      1173        821       1243
-  US                      1401        981       1485
-  NO                      832         583       882
-  FI                      891         624       945
-  BE                      908         635       962
-  DK                      971         680       1030
-  LU                      908         635       962
- ======================= =========== ========= ==========
-
-To extend the set of country-specific photovoltaic electricity datasets beyond those originally covered
-in IEA-PVPS Task 12, we followed a structured, PVPS-consistent extrapolation approach.
-First, country-specific annual PV electricity yields for a reference, free-standing system were
-derived from the GlobalSolarAtlas_ by aggregating monthly PVOUT rasters into annual values and
-computing country averages. These reference yields were then disaggregated into rooftop, façade, and
-centralized yields using empirical yield ratios inferred from the Task 12 country dataset,
-thereby preserving the relative productivity differences between installation types.
-In parallel, national PV deployment structures were approximated by assigning residential,
-commercial, and centralized capacity shares using available international statistics (where possible)
-and transparent proxy assumptions otherwise. Within each market segment, capacity was further
-distributed across PV technology and installation archetypes following the same hierarchical
-logic as in Task 12. Finally, these capacity shares were converted into per-kWh inventory coefficients
-using country-specific yields and a fixed system lifetime, and embedded into duplicated LCI templates
-to generate fully specified, country-resolved photovoltaic electricity datasets. This procedure
-ensures methodological continuity with the original PVPS datasets while enabling consistent,
-scalable extension to additional countries.
-
-.. _GlobalSolarAtlas: https://globalsolaratlas.info/download/world
-
-Finally, we collected electricity generation volumes through photovoltaic installations from the 2025 IRENA_ Renewable
-Energy Statistics to provide country-specific mix shares when building regional electricity mixes.
-
-.. _IRENA: https://www.irena.org/Publications/2025/Jul/Renewable-energy-statistics-2025
-
-
-In the report, the generation potential per installation type is multiplied by the number of installations
-in each country, to produce country-specific PV power mix datasets normalized to 1 kWh.
-The report specifies the production-weighted PV mix for each country, but we further split it
-between residential (<=3kWp) and commercial (>3kWp) installations
-(as most IAMs make such distinction):
-
- ==================================================== ===========
-  Production-weighted PV mix                           location
- ==================================================== ===========
-  electricity production, photovoltaic, residential    PT
-  electricity production, photovoltaic, residential    IL
-  electricity production, photovoltaic, residential    SE
-  electricity production, photovoltaic, residential    FR
-  electricity production, photovoltaic, residential    TR
-  electricity production, photovoltaic, residential    NZ
-  electricity production, photovoltaic, residential    MY
-  electricity production, photovoltaic, residential    CN
-  electricity production, photovoltaic, residential    TH
-  electricity production, photovoltaic, residential    ZA
-  electricity production, photovoltaic, residential    JP
-  electricity production, photovoltaic, residential    CH
-  electricity production, photovoltaic, residential    DE
-  electricity production, photovoltaic, residential    KR
-  electricity production, photovoltaic, residential    AT
-  electricity production, photovoltaic, residential    GR
-  electricity production, photovoltaic, residential    IE
-  electricity production, photovoltaic, residential    AU
-  electricity production, photovoltaic, residential    IT
-  electricity production, photovoltaic, residential    MX
-  electricity production, photovoltaic, residential    NL
-  electricity production, photovoltaic, residential    GB
-  electricity production, photovoltaic, residential    ES
-  electricity production, photovoltaic, residential    CL
-  electricity production, photovoltaic, residential    HU
-  electricity production, photovoltaic, residential    CZ
-  electricity production, photovoltaic, residential    CA
-  electricity production, photovoltaic, residential    US
-  electricity production, photovoltaic, residential    NO
-  electricity production, photovoltaic, residential    FI
-  electricity production, photovoltaic, residential    BE
-  electricity production, photovoltaic, residential    DK
-  electricity production, photovoltaic, residential    LU
-  electricity production, photovoltaic, commercial     PT
-  electricity production, photovoltaic, commercial     IL
-  electricity production, photovoltaic, commercial     SE
-  electricity production, photovoltaic, commercial     FR
-  electricity production, photovoltaic, commercial     TR
-  electricity production, photovoltaic, commercial     NZ
-  electricity production, photovoltaic, commercial     MY
-  electricity production, photovoltaic, commercial     CN
-  electricity production, photovoltaic, commercial     TH
-  electricity production, photovoltaic, commercial     ZA
-  electricity production, photovoltaic, commercial     JP
-  electricity production, photovoltaic, commercial     CH
-  electricity production, photovoltaic, commercial     DE
-  electricity production, photovoltaic, commercial     KR
-  electricity production, photovoltaic, commercial     AT
-  electricity production, photovoltaic, commercial     GR
-  electricity production, photovoltaic, commercial     IE
-  electricity production, photovoltaic, commercial     AU
-  electricity production, photovoltaic, commercial     IT
-  electricity production, photovoltaic, commercial     MX
-  electricity production, photovoltaic, commercial     NL
-  electricity production, photovoltaic, commercial     GB
-  electricity production, photovoltaic, commercial     ES
-  electricity production, photovoltaic, commercial     CL
-  electricity production, photovoltaic, commercial     HU
-  electricity production, photovoltaic, commercial     CZ
-  electricity production, photovoltaic, commercial     CA
-  electricity production, photovoltaic, commercial     US
-  electricity production, photovoltaic, commercial     NO
-  electricity production, photovoltaic, commercial     FI
-  electricity production, photovoltaic, commercial     BE
-  electricity production, photovoltaic, commercial     DK
-  electricity production, photovoltaic, commercial     LU
- ==================================================== ===========
-
-Hence, inside the *residential* PV mix of Spain ("electricity production, photovoltaic, residential"),
-one will find the following inputs for the production of 1kWh:
-
- ========================================================================================== ============== =========== ============
-  name                                                                                       amount         location    unit
- ========================================================================================== ============== =========== ============
-  Energy, solar, converted                                                                   3.8503                     megajoule
-  Heat, waste                                                                                0.25027                    megajoule
-  photovoltaic slanted-roof installation, 3 kWp, CIS, laminated, integrated, on roof         2.48441E-08    CH          unit
-  photovoltaic slanted-roof installation, 3 kWp, CdTe, panel, mounted, on roof               4.99911E-07    CH          unit
-  photovoltaic slanted-roof installation, 3 kWp, micro-Si, laminated, integrated, on roof    3.93869E-09    RER         unit
-  photovoltaic slanted-roof installation, 3 kWp, micro-Si, panel, mounted, on roof           6.55186E-08    RER         unit
-  photovoltaic facade installation, 3kWp, multi-Si, laminated, integrated, at building       2.10481E-07    RER         unit
-  photovoltaic facade installation, 3kWp, multi-Si, panel, mounted, at building              2.10481E-07    RER         unit
-  photovoltaic facade installation, 3kWp, single-Si, laminated, integrated, at building      1.11463E-07    RER         unit
-  photovoltaic facade installation, 3kWp, single-Si, panel, mounted, at building             1.11463E-07    RER         unit
-  photovoltaic flat-roof installation, 3kWp, multi-Si, on roof                               2.20794E-06    RER         unit
-  photovoltaic flat-roof installation, 3kWp, single-Si, on roof                              1.17025E-06    RER         unit
-  photovoltaic slanted-roof installation, 3kWp, CIS, panel, mounted, on roof                 4.12805E-07    CH          unit
-  photovoltaic slanted-roof installation, 3kWp, CdTe, laminated, integrated, on roof         3.00704E-08    CH          unit
-  photovoltaic slanted-roof installation, 3kWp, multi-Si, laminated, integrated, on roof     1.08693E-07    RER         unit
-  photovoltaic slanted-roof installation, 3kWp, multi-Si, panel, mounted, on roof            1.81407E-06    RER         unit
-  photovoltaic slanted-roof installation, 3kWp, single-Si, laminated, integrated, on roof    5.75655E-08    RER         unit
-  photovoltaic slanted-roof installation, 3kWp, single-Si, panel, mounted, on roof           9.6195E-07     RER         unit
- ========================================================================================== ============== =========== ============
-
-with, for example, 2.48E-8 units of "photovoltaic slanted-roof installation, 3 kWp, CIS, laminated, integrated, on roof"
-being calculated as:
-
-.. code-block::
-
-    1 / (30 [years] * 1423 [kWh/kWp] * 0.32% [share of PV capacity of such type installed in Spain])
-
-Note that commercial PV mix datasets provide electricity at high voltage, unlike residential
-PV mix datasets, which supply at low voltage only.
-
-.. note:: 
-
-    These *current* production mixes are not modified over time.
-    This simplification is made because the data is not available for the future.
-    However, the efficiency of the panels is adjusted to reflect expected improvements (see Photovoltaics panels under Transform).
+Separate emerging-technology supplements
+++++++++++++++++++++++++++++++++++++++++++++
 
 Emerging technologies for photovoltaic panels are also imported, namely:
 

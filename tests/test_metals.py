@@ -35,7 +35,7 @@ def test_yaml_material_configuration_is_complete_and_valid():
 
     assert len(config.rules) == 308
     assert len(config.enabled_rules) == 281
-    assert len(conversions) == 58
+    assert len(conversions) == 62
 
     aluminium = [
         rule
@@ -215,7 +215,7 @@ def test_epr_material_policy_preserves_source_exchanges():
     assert metals.material_decisions[0]["reason code"] == (
         "metals.material_rule.preserved_source"
     )
-    assert metals.material_decisions[0]["target direct amount"] == 60_000
+    assert "target direct amount" not in metals.material_decisions[0]
 
 
 def test_both_nuclear_aluminium_rules_are_applied_once():
@@ -281,7 +281,10 @@ def test_material_plan_deduplicates_dataset_rule_pairs():
     metals = object.__new__(Metals)
     metals.activities_metals_map = {"Nuclear": [dataset, dataset]}
     metals.material_rules_by_technology = {"Nuclear": rules}
-    metals.conversion_factors_dict = {dataset["name"]: 1000}
+    metals.material_policies = load_material_rules().policies
+    metals.technology_conversions_by_name = {
+        c.activity_name: c for c in load_technology_conversions()
+    }
     metals.db_index = {}
 
     plan = metals._compile_material_update_plan()
@@ -1732,3 +1735,83 @@ def test_missing_target_detection_ignores_downstream_attributed_carriers():
     assert id(lithium_production) in missing_target_ids
     assert id(cobalt_production) in missing_target_ids
     assert id(economic_cobalt_production) in missing_target_ids
+
+
+@pytest.mark.parametrize("unit", ["kilogram", "unit"])
+def test_material_plan_rejects_missing_or_incompatible_conversion_before_updates(unit):
+    from copy import deepcopy
+
+    valid = {
+        "name": "photovoltaic cell production, single-Si wafer",
+        "reference product": "photovoltaic cell",
+        "location": "CN",
+        "unit": "square meter",
+        "exchanges": [],
+    }
+    invalid = {**valid, "unit": unit}
+    if unit == "unit":
+        invalid["name"] = "new unconfigured photovoltaic cell production"
+    metals = object.__new__(Metals)
+    metals.material_policies = load_material_rules().policies
+    metals.technology_conversions_by_name = {
+        c.activity_name: c for c in load_technology_conversions()
+    }
+    metals.activities_metals_map = {"c-Si": [valid, invalid]}
+    metals.material_rules_by_technology = {
+        "c-Si": [
+            r for r in load_material_rules().enabled_rules if r.technology == "c-Si"
+        ]
+    }
+    metals.db_index = {}
+    before = deepcopy([valid, invalid])
+    with pytest.raises(MetalsConfigError, match="conversion"):
+        metals._compile_material_update_plan()
+    assert [valid, invalid] == before
+
+
+@pytest.mark.parametrize(
+    "name,unit,expected",
+    [
+        ("photovoltaic cell production, single-Si wafer", "square meter", 0.000224),
+        (
+            "wind turbine construction, small-scale, 6kW, onshore, direct drive",
+            "unit",
+            0.006,
+        ),
+        (
+            "wind turbine construction, 2.3MW, precast concrete tower, onshore, direct drive",
+            "unit",
+            2.3,
+        ),
+        ("wind turbine construction, 750kW, onshore, direct drive", "unit", 0.75),
+        ("frame, blanks and saddle, for lorry", "kilogram", 1.0),
+    ],
+)
+def test_material_conversion_is_explicit_and_unit_checked(name, unit, expected):
+    metals = object.__new__(Metals)
+    metals.technology_conversions_by_name = {
+        c.activity_name: c for c in load_technology_conversions()
+    }
+    assert (
+        metals._technology_conversion_factor({"name": name, "unit": unit}) == expected
+    )
+
+
+def test_redox_flow_battery_stacks_do_not_match_sofc_material_rules():
+    from premise.activity_maps import InventorySet
+
+    names = [
+        "power subsystem production, cell stack, for hybrid redox flow battery (HFB), 5kW/ 40kWh",
+        "power subsystem production, cell stack, for organic redox flow battery (OFB), 5kW/ 40kWh",
+    ]
+    db = [
+        {
+            "name": n,
+            "reference product": n,
+            "location": "GLO",
+            "unit": "unit",
+            "exchanges": [],
+        }
+        for n in names
+    ]
+    assert not InventorySet(db, "3.12").generate_metals_activities_map().get("SOFC - Y")

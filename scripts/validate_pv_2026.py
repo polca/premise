@@ -2,7 +2,8 @@
 
 No Brightway database is written. The optional --inventory-pickle accepts a
 trusted, locally materialised premise inventory, including its full background.
-Without it, build IMAGE SSP2-M 2050 using the installed source and PREMISE_KEY.
+Without it, build IMAGE SSP2-M 2050 with all default sector updates using the
+installed source and PREMISE_KEY.
 """
 
 import argparse
@@ -241,10 +242,12 @@ def main():
     assert report["references_pass"], "The 45 reference scores changed."
     if build:
         del data
-        build.update(["electricity"])
+        build.update()
         data = build.materialize_inventory()
         report["scenario"] = validate_graph(data)
-        report["scenario"].update(model="image", pathway="SSP2-M", year=2050)
+        report["scenario"].update(
+            model="image", pathway="SSP2-M", year=2050, sectors="all default sectors"
+        )
         if args.save_inventories:
             with (args.save_inventories / "scenario.pickle").open("wb") as stream:
                 pickle.dump(data, stream)
