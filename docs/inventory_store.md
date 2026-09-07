@@ -68,6 +68,32 @@ independent from the historical pickle cache schema. Existing
 accepted; certification has identical semantics on both backends, while all
 acceptance and integration runs use `"compact"` explicitly.
 
+## Automatic scenario cache expiry
+
+`NewDatabase` checks for managed scenario checkpoints unused for more than 24
+hours at startup. It also removes expired incomplete checkpoint writes. Cleanup
+runs only when no other `NewDatabase` instance is alive: a process-held shared
+lock protects inventories throughout updates, repeated exports, and reports.
+The lock is released when the instance is garbage-collected or its process exits.
+A long-lived notebook instance therefore defers cleanup until a later startup.
+
+Pass `cleanup_expired_caches=False` to skip the startup sweep. This instance still
+holds the shared lock. Restart existing premise processes when adopting this
+feature so all builds participate in locking. Standalone use of the low-level
+`InventoryStore` API is not registered as an active build; keep checkpoints for
+such use outside premise's internal `cached_files` directory.
+
+Only newly written, UUID-named checkpoints in `cached_files` carry expiry
+metadata. Successful checkpoint reopening refreshes their last-use timestamp;
+expiry metadata is separate from the checksummed inventory payload. Base
+checkpoints needed by retained checkpoints are preserved. Existing unmarked
+checkpoints are never automatically adopted or removed; clean them separately
+after stopping active builds. Source/import caches in `cache`, validation
+caches, and extracted datapackages are outside this expiry policy.
+
+Cleanup logs a count and estimated reclaimed space at INFO level (unless
+`quiet=True`); filesystem errors are warnings and do not abort a build.
+
 ## Validation reports
 
 Every completed scenario update receives one cached semantic certificate.

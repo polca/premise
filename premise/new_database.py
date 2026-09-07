@@ -26,6 +26,7 @@ from packaging.version import Version
 from tqdm import tqdm
 
 from . import __version__
+from .cache_cleanup import with_cache_session
 from .battery import _update_battery
 from .biomass import _update_biomass
 from .cement import _update_cement
@@ -653,6 +654,7 @@ class NewDatabase:
 
     """
 
+    @with_cache_session
     def __init__(
         self,
         scenarios: List[dict],
@@ -675,6 +677,7 @@ class NewDatabase:
         biosphere_name: str = "biosphere3",
         generate_reports: bool = True,
         inventory_backend: Literal["compact", "legacy"] = "legacy",
+        cleanup_expired_caches: bool = True,
     ) -> None:
         """
         Initialize the NewDatabase class.
@@ -703,6 +706,9 @@ class NewDatabase:
         :param inventory_backend: inventory storage implementation. ``"compact"``
             is the production and certification-performance path; ``"legacy"``
             remains available as a compatibility and differential-testing oracle.
+        :param cleanup_expired_caches: Remove managed scenario checkpoints unused
+            for more than 24 hours at startup, only when no other NewDatabase
+            instance is alive. Unmarked legacy caches are never expired.
         """
         self._inventory_api_active = False
         self.sector_update_methods = None

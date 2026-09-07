@@ -14,6 +14,12 @@ All notable changes to this project are documented in this file.
   overlap with EPR components.
 
 ### Fixed
+- Limited future scenario-inventory cache buildup with a startup sweep for
+  managed checkpoints and incomplete writes unused for more than 24 hours.
+  Cleanup is skipped while another `NewDatabase` instance is alive and preserves
+  referenced base checkpoints. Existing unmarked checkpoints and reusable source
+  caches remain untouched. Set `cleanup_expired_caches=False` to skip the sweep;
+  restart existing premise processes so all builds participate in locking.
 - Resolved the renamed high-grade gallium market for material updates in
   ecoinvent 3.11 and 3.12, fixing six missing-provider warnings in nightly
   certification while retaining the supplier name used by older versions.
@@ -25,6 +31,9 @@ All notable changes to this project are documented in this file.
   decisions and for post-allocation metal-resource corrections.
 
 ### Validation
+- Added cache-expiry tests covering the 24-hour boundary, checkpoint reuse,
+  concurrent startups, process termination, and dependency protection. All 91
+  cache-cleanup, inventory-store, and database unit tests passed.
 - Added a dataset-wise direct-metal comparison and an upstream path-screening
   tool. The IMAGE SSP2-L 2020 ecoinvent 3.11 cutoff comparison contains no
   unexplained before/after metal-input differences.

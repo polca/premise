@@ -27,6 +27,8 @@ from typing import Any, Callable, Literal, TypeAlias
 
 import numpy as np
 
+from .cache_cleanup import mark_checkpoint
+
 try:  # PyArrow is a premise dependency, but keep source-only installs usable.
     import pyarrow as pa
     import pyarrow.ipc as pa_ipc
@@ -2921,7 +2923,9 @@ class InventoryStore(ABC):
     def open(cls, path: str | Path) -> "InventoryStore":
         """Open and validate a versioned inventory checkpoint."""
 
-        return _open_checkpoint(Path(path))
+        store = _open_checkpoint(Path(path))
+        mark_checkpoint(Path(path))
+        return store
 
 
 class _InMemoryInventoryStore(InventoryStore):
@@ -4641,6 +4645,7 @@ def _write_scenario_delta_checkpoint_v1(
         raise ValueError("Refusing to use a filesystem root as a checkpoint path.")
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = Path(tempfile.mkdtemp(prefix=f".{path.name}.tmp-", dir=path.parent))
+    mark_checkpoint(temporary, create=True)
     backup: Path | None = None
     delta_stream = None
     try:
@@ -4839,6 +4844,7 @@ def _write_scenario_delta_checkpoint_v1(
                 else:
                     backup.unlink()
             os.replace(path, backup)
+        mark_checkpoint(temporary)
         os.replace(temporary, path)
         if backup is not None:
             if backup.is_dir():
@@ -5124,6 +5130,7 @@ def _write_scenario_delta_checkpoint(
         raise ValueError("Refusing to use a filesystem root as a checkpoint path.")
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = Path(tempfile.mkdtemp(prefix=f".{path.name}.tmp-", dir=path.parent))
+    mark_checkpoint(temporary, create=True)
     backup: Path | None = None
     try:
         _write_scenario_delta_v2_tables(store, temporary, storage)
@@ -5192,6 +5199,7 @@ def _write_scenario_delta_checkpoint(
                 else:
                     backup.unlink()
             os.replace(path, backup)
+        mark_checkpoint(temporary)
         os.replace(temporary, path)
         if backup is not None:
             if backup.is_dir():
@@ -5218,6 +5226,7 @@ def _write_checkpoint(store: _InMemoryInventoryStore, path: Path) -> Path:
         raise ValueError("Refusing to use a filesystem root as a checkpoint path.")
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = Path(tempfile.mkdtemp(prefix=f".{path.name}.tmp-", dir=path.parent))
+    mark_checkpoint(temporary, create=True)
     backup: Path | None = None
     try:
         offsets, activities, strings = _write_checkpoint_payloads(store, temporary)
@@ -5293,6 +5302,7 @@ def _write_checkpoint(store: _InMemoryInventoryStore, path: Path) -> Path:
                 else:
                     backup.unlink()
             os.replace(path, backup)
+        mark_checkpoint(temporary)
         os.replace(temporary, path)
         if backup is not None:
             if backup.is_dir():
