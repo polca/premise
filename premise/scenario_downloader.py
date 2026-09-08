@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import os
+import tempfile
+import time
 from pathlib import Path
 
 import requests
@@ -62,7 +64,9 @@ def download_csv(file_name: str, url: str, download_folder: Path) -> Path:
 
     A progress bar is displayed using :mod:`tqdm` while the file is being
     downloaded. When the destination directory does not yet exist it is created
-    automatically.
+    automatically. Temporary network failures are retried up to three times.
+    The destination is published only after a complete download; failures raise
+    a requests exception without leaving a partial cached scenario.
 
     :param file_name: Name of the file to save the downloaded content as.
     :type file_name: str
@@ -86,25 +90,48 @@ def download_csv(file_name: str, url: str, download_folder: Path) -> Path:
         headers = {
             "User-Agent": f"premise-lca/{version_str} (https://github.com/polca/premise)"
         }
-        response = requests.get(url, stream=True, timeout=60, headers=headers)
-
-        if response.status_code == 200:
-            total_size = int(response.headers.get("Content-Length", 0))
-            with (
-                open(file_path, "wb") as file_handle,
-                tqdm(
-                    total=total_size, unit="B", unit_scale=True, desc=file_name
-                ) as progress,
-            ):
-                for chunk in response.iter_content(chunk_size=1024):
-                    if chunk:
-                        file_handle.write(chunk)
-                        progress.update(len(chunk))
-            print(f"{file_name} downloaded successfully.")
-        else:
-            print(
-                f"Failed to download {file_name}. Status code: {response.status_code}"
-            )
+        for attempt in range(4):
+            temporary_path = None
+            try:
+                with requests.get(
+                    url, stream=True, timeout=60, headers=headers
+                ) as response:
+                    response.raise_for_status()
+                    total_size = int(response.headers.get("Content-Length", 0))
+                    with (
+                        tempfile.NamedTemporaryFile(
+                            dir=download_folder, suffix=".part", delete=False
+                        ) as file_handle,
+                        tqdm(
+                            total=total_size, unit="B", unit_scale=True, desc=file_name
+                        ) as progress,
+                    ):
+                        temporary_path = Path(file_handle.name)
+                        for chunk in response.iter_content(chunk_size=1024):
+                            if chunk:
+                                file_handle.write(chunk)
+                                progress.update(len(chunk))
+                    os.replace(temporary_path, file_path)
+                print(f"{file_name} downloaded successfully.")
+                break
+            except requests.RequestException as error:
+                status = (
+                    error.response.status_code if error.response is not None else None
+                )
+                retryable = isinstance(
+                    error,
+                    (
+                        requests.ConnectionError,
+                        requests.Timeout,
+                        requests.exceptions.ChunkedEncodingError,
+                    ),
+                ) or status in {429, 500, 502, 503, 504}
+                if not retryable or attempt == 3:
+                    raise
+                time.sleep(2**attempt)
+            finally:
+                if temporary_path is not None:
+                    temporary_path.unlink(missing_ok=True)
     else:
         print(f"{file_name} already exists locally.")
 

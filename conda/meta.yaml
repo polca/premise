@@ -17,24 +17,25 @@ outputs:
     requirements:
       host:
         - pip
-        - python
+        - python >=3.10
         - setuptools
         - wheel
       run:
         - bw2data <4.0.0
-        - python
+        - python >=3.10
         - bottleneck
         - bw2io
         - ecoinvent_interface
-        - constructive_geometries>=0.9.5
+        - constructive_geometries>=1.0.0
         - cryptography
         - datapackage
         - numpy <2.0.0
         - openpyxl >=3.1.0,<3.2.0
         - lxml <6.0.0
-        - pandas
+        - pandas <3.0.0
         - platformdirs
         - portalocker >=2.8
+        - premise_gwp
         - prettytable
         - pyarrow
         - pycountry
@@ -49,7 +50,7 @@ outputs:
         - unfold
     test:
       requires:
-        - python
+        - python >=3.10
       imports:
         - premise
       commands:
@@ -62,25 +63,26 @@ outputs:
     requirements:
       host:
         - pip
-        - python
+        - python >=3.10
         - setuptools
         - wheel
       run:
         - bw2data >=4.0.0
         - bw_processing >=1.0
-        - python
+        - python >=3.10
         - bottleneck
         - bw2io
         - ecoinvent_interface
-        - constructive_geometries>=0.9.5
+        - constructive_geometries>=1.0.0
         - cryptography
         - datapackage
         - numpy <2.0.0
         - openpyxl >=3.1.0,<3.2.0
         - lxml <6.0.0
-        - pandas
+        - pandas <3.0.0
         - platformdirs
         - portalocker >=2.8
+        - premise_gwp
         - prettytable
         - pyarrow
         - pycountry
@@ -95,7 +97,7 @@ outputs:
         - unfold
     test:
       requires:
-        - python
+        - python >=3.10
       imports:
         - premise
       commands:

@@ -50,6 +50,11 @@ All notable changes to this project are documented in this file.
   overlap with EPR components.
 
 ### Fixed
+- Retried temporary IAM scenario download failures and prevented incomplete
+  downloads from becoming cached scenario files. Failed downloads now raise
+  the original network or HTTP error.
+- Aligned Conda runtime dependencies with the package requirements, including
+  the missing cache-locking dependency, and enabled CI for packaging changes.
 - Restored Wurst-compatible activity parameter records in both Brightway writers,
   fixing the `TypeError` when extracting databases exported by premise 2.5.0
   ([#306](https://github.com/polca/premise/issues/306)). Existing parameter
