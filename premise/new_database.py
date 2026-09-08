@@ -26,6 +26,8 @@ from packaging.version import Version
 from tqdm import tqdm
 
 from . import __version__
+from .photovoltaic import use_pv_2026
+from .cache_cleanup import with_cache_session
 from .battery import _update_battery
 from .biomass import _update_biomass
 from .cement import _update_cement
@@ -267,6 +269,9 @@ FILEPATH_BATTERIES_NMC955_LTO = INVENTORY_DIR / "lci-batteries-NMC955-LTO.xlsx"
 FILEPATH_LIO2_BATTERY = INVENTORY_DIR / "lci-batteries-LiO2.xlsx"
 FILEPATH_LIS_BATTERY = INVENTORY_DIR / "lci-batteries-LiS.xlsx"
 FILEPATH_PHOTOVOLTAICS = INVENTORY_DIR / "lci-PV.xlsx"
+FILEPATH_PHOTOVOLTAICS_2026 = INVENTORY_DIR / "lci-PV-2026.xlsx"
+FILEPATH_PHOTOVOLTAICS_2026_ELECTRICITY = INVENTORY_DIR / "lci-PV-2026-electricity.xlsx"
+FILEPATH_PHOTOVOLTAICS_CIGS = INVENTORY_DIR / "lci-PV-CIGS.xlsx"
 FILEPATH_BIGCC = INVENTORY_DIR / "lci-BIGCC.xlsx"
 FILEPATH_NUCLEAR_EPR = INVENTORY_DIR / "lci-nuclear_EPR.xlsx"
 FILEPATH_NUCLEAR_SMR = INVENTORY_DIR / "lci-nuclear_SMR.xlsx"
@@ -635,9 +640,9 @@ def _extract_default_inventory_importers(filepaths):
 
 class NewDatabase:
     """
-    Class that represents a new wurst inventory database, modified according to IAM data.
+    Build prospective life-cycle inventories from source databases and scenario data.
 
-    :ivar source_type: the source of the ecoinvent database. Can be `brigthway` or `ecospold`.
+    :ivar source_type: the source of the ecoinvent database. Can be `brightway` or `ecospold`.
     :vartype source_type: str
     :vartype source_db: str
     :ivar system_model: Can be `cutoff` (default) or `consequential`.
@@ -653,6 +658,7 @@ class NewDatabase:
 
     """
 
+    @with_cache_session
     def __init__(
         self,
         scenarios: List[dict],
@@ -675,6 +681,7 @@ class NewDatabase:
         biosphere_name: str = "biosphere3",
         generate_reports: bool = True,
         inventory_backend: Literal["compact", "legacy"] = "legacy",
+        cleanup_expired_caches: bool = True,
     ) -> None:
         """
         Initialize the NewDatabase class.
@@ -703,6 +710,9 @@ class NewDatabase:
         :param inventory_backend: inventory storage implementation. ``"compact"``
             is the production and certification-performance path; ``"legacy"``
             remains available as a compatibility and differential-testing oracle.
+        :param cleanup_expired_caches: Remove managed scenario checkpoints unused
+            for more than 24 hours at startup, only when no other NewDatabase
+            instance is alive. Unmarked legacy caches are never expired.
         """
         self._inventory_api_active = False
         self.sector_update_methods = None
@@ -979,6 +989,18 @@ class NewDatabase:
         )
         uncertainty_label = "w_uncertainty" if uncertainty else "wo_uncertainty"
         inventory_label = "_inventories" if inventories else ""
+        if inventories and use_pv_2026(
+            getattr(self, "version", None), getattr(self, "system_model", None)
+        ):
+            digest = hashlib.sha256()
+            for path in (
+                FILEPATH_PHOTOVOLTAICS_2026,
+                FILEPATH_PHOTOVOLTAICS_2026_ELECTRICITY,
+                FILEPATH_PHOTOVOLTAICS_CIGS,
+            ):
+                digest.update(path.name.encode())
+                digest.update(path.read_bytes())
+            inventory_label += f"_pv2026_{digest.hexdigest()[:16]}"
         return (
             DIR_CACHED_DB
             / f"cached_{''.join(tuple(map(str, __version__)))}_v{CACHE_SCHEMA_VERSION}_"
@@ -1265,6 +1287,17 @@ class NewDatabase:
 
         selected_filepaths = []
         for filepath in filepaths:
+            if filepath[0] == FILEPATH_PHOTOVOLTAICS and use_pv_2026(
+                self.version, self.system_model
+            ):
+                selected_filepaths.extend(
+                    [
+                        (FILEPATH_PHOTOVOLTAICS_2026, "3.12"),
+                        (FILEPATH_PHOTOVOLTAICS_2026_ELECTRICITY, "3.12"),
+                        (FILEPATH_PHOTOVOLTAICS_CIGS, "3.7"),
+                    ]
+                )
+                continue
             # make an exception for FILEPATH_OIL_GAS_INVENTORIES
             # ecoinvent version is 3.9
             if filepath[0] in [
@@ -2892,12 +2925,12 @@ class NewDatabase:
         Exports the new database as a sparse matrix representation in csv files.
 
         :param filepath: path provided by the user to store the exported matrices.
-        If it is a string, the path is used as main directory from which
-        "iam model" / "pathway" / "year" subdirectories will be created.
-        If it is a sequence of strings, each string becomes the directory
-        under which the set of matrices is saved. If `filepath` is not provided,
-        "iam model" / "pathway" / "year" subdirectories are created under
-        the working directory.
+            If it is a string, the path is used as main directory from which
+            "iam model" / "pathway" / "year" subdirectories will be created.
+            If it is a sequence of strings, each string becomes the directory
+            under which the set of matrices is saved. If `filepath` is not provided,
+            "iam model" / "pathway" / "year" subdirectories are created under
+            the working directory.
         :type filepath: str or list
 
         """

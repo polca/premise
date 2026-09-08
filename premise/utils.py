@@ -37,7 +37,7 @@ from .geomap import Geomap
 FUELS_PROPERTIES = VARIABLES_DIR / "fuels.yaml"
 EFFICIENCY_RATIO_SOLAR_PV = DATA_DIR / "renewables" / "efficiency_solar_PV.csv"
 CACHE_MANIFEST_SUFFIX = ".manifest.json"
-CACHE_SCHEMA_VERSION = 5
+CACHE_SCHEMA_VERSION = 6
 
 
 def rescale_exchange(
@@ -1135,6 +1135,8 @@ def trim_exchanges(exc: Dict[str, Any]) -> Dict[str, Any]:
 
 
 _CACHE_TRIMMED_DATASET_FIELDS = {
+    "pv capacity kwp",
+    "pv technology",
     "name",
     "reference product",
     "location",
@@ -1145,6 +1147,8 @@ _CACHE_TRIMMED_DATASET_FIELDS = {
 }
 
 _CACHE_METADATA_EXCLUDED_FIELDS = {
+    "pv capacity kwp",
+    "pv technology",
     "name",
     "reference product",
     "location",
@@ -1156,6 +1160,8 @@ _CACHE_METADATA_EXCLUDED_FIELDS = {
 }
 
 _SCENARIO_TRIMMED_DATASET_FIELDS = {
+    "pv capacity kwp",
+    "pv technology",
     "database",
     "code",
     "name",
@@ -1187,6 +1193,8 @@ _SCENARIO_TRIMMED_EXCHANGE_FIELDS = {
 }
 
 _SCENARIO_METADATA_EXCLUDED_FIELDS = {
+    "pv capacity kwp",
+    "pv technology",
     "name",
     "reference product",
     "location",

@@ -10,6 +10,8 @@ pandas<3.0.0
 openpyxl>=3.1.0,<3.2.0
 lxml<6.0.0; platform_system == "Windows"
 platformdirs
+portalocker>=2.8
+pywin32; platform_system == "Windows"
 premise_gwp
 prettytable
 pyarrow

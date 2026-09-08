@@ -1,0 +1,376 @@
+review_date: '2026-09-07'
+sectors:
+- id: pv
+  title: Photovoltaics
+  page: methodology/electricity/photovoltaics
+  implementation: premise/photovoltaic.py
+  data_years: 2022–2025 factory observations for the 2026 report; other inputs vary
+  boundary: Single-Si TOPCon/PERC, multi-Si and CdTe; manufacturing through electricity
+    and end of life; country extensions use inherited yield assumptions.
+  applicability: '2026 core: ecoinvent 3.12 cut-off only; lci-PV.xlsx core otherwise.'
+  source: https://iea-pvps.org/key-topics/t12-lci-pv-systems-2026/
+  candidate: https://iea-pvps.org/key-topics/t12-lci-pv-systems-2026/
+  reviewed_on: '2026-09-07'
+  status: Reviewed and retained; some data sources still need confirmation
+  finding: The official July 2026 release confirms the new TOPCon/PERC and CdTe coverage.
+    The bundled report and inventory integration remain the authoritative coefficients.
+    Country yields and the degradation convention still need clearer source information.
+  backlog: 'P1: establish Atlas retrieval date and whether the source yields already
+    include degradation; rerun yield/lifetime sensitivities before changing coefficients.'
+  limitations: Scope review is not a coefficient-by-coefficient reproduction. Unavailable
+    supplements and exact source years remain unverified where noted.
+  source_role: Source context for the implemented inventories/method
+- id: electricity
+  title: Other electricity generation and storage
+  page: methodology/electricity/generation
+  implementation: premise/electricity.py
+  data_years: Sources include 2013 CCS, 2016 geothermal and 2019 plant corrections;
+    underlying observations vary
+  boundary: Generation per kWh; CCS adds capture/storage; storage service differs
+    from battery manufacturing.
+  applicability: Supported configurations; additional workbook selection is version
+    dependent.
+  source: https://www.nature.com/articles/s41893-019-0221-6
+  candidate: https://doi.org/10.1111/JIEC.70114
+  reviewed_on: '2026-09-07'
+  status: Newer alternative identified
+  finding: Existing plant-efficiency corrections must retain their source year. WindTrace
+    provides a newer parametric onshore inventory with supporting workbooks; Swiss/European
+    wind inventory updates offer another regional candidate. Neither is a drop-in
+    update for all generators.
+  backlog: 'P1: compare wind size, material, lifetime, capacity-factor and end-of-life
+    boundaries against the current renewable update; assess CCS/geothermal source
+    age separately.'
+  limitations: Scope review is not a coefficient-by-coefficient reproduction. Unavailable
+    supplements and exact source years remain unverified where noted.
+  source_role: Source context for the implemented inventories/method
+- id: heat
+  title: Heat and end-use heating
+  page: methodology/heat
+  implementation: premise/heat.py
+  data_years: Ecoinvent source years vary; IAM years and reporting conventions are
+    model dependent
+  boundary: Delivered heat, with secondary supply, buildings and industry kept separate;
+    final-energy conversion is not a new measured boiler or heat-pump inventory.
+  applicability: Model-specific layer coverage; final energy only regionalizes heating
+    activities.
+  source: https://doi.org/10.1016/j.buildenv.2025.113931
+  candidate: https://doi.org/10.1016/j.buildenv.2025.113931
+  reviewed_on: '2026-09-07'
+  status: Modelling review needed; candidate full text unverified
+  finding: A 2025 residential-heating assessment is a comparison candidate, not evidence
+    that the current industrial proxies are invalid. Refrigerant, seasonal performance
+    and heat-temperature boundaries need explicit matching before transferring results.
+  backlog: 'P1: compare heat-pump refrigerants, leakage and useful-heat functional
+    units; distinguish residential and industrial temperatures. Do not replace IAM
+    conversion rules with a single literature COP.'
+  limitations: Scope review is not a coefficient-by-coefficient reproduction. Unavailable
+    supplements and exact source years remain unverified where noted.
+  source_role: Methodological context or comparison, not an imported inventory source
+- id: biomass
+  title: Biomass
+  page: methodology/biomass
+  implementation: premise/biomass.py
+  data_years: Inherited forestry/residue inventories; reference years vary and are
+    not all recorded
+  boundary: Biomass fuel supply; residue treatment excludes some forestry burdens
+    but retains collection/processing/transport. Allocation does not establish carbon
+    neutrality.
+  applicability: IAM mapped purpose-grown/residual shares; attributional and consequential
+    interpretations differ.
+  source: https://www.energy.gov/sites/default/files/2025-01/BiCRS%20Best%20Practices%20for%20LCA.pdf
+  candidate: https://research.fs.usda.gov/treesearch/69595
+  reviewed_on: '2026-09-07'
+  status: Modelling review needed; DOE PDF fetch blocked
+  finding: The DOE 2025 guidance cautions against automatically classifying forest
+    residues as waste. A US Forest Service 2025 study compares energy and product
+    uses. Counterfactual use, timing and allocation must be assessed separately from
+    the supply coefficients.
+  backlog: 'P1: document residue counterfactuals and test allocation and biogenic-carbon
+    timing; do not add substitution credits to cut-off datasets.'
+  limitations: Scope review is not a coefficient-by-coefficient reproduction. Unavailable
+    supplements and exact source years remain unverified where noted.
+  source_role: Methodological context or comparison, not an imported inventory source
+- id: hydrogen
+  title: Hydrogen
+  page: methodology/fuels/hydrogen
+  implementation: premise/fuels/hydrogen.py
+  data_years: Source publications mainly 2011–2022; reference/projection years vary
+    by route
+  boundary: kg hydrogen with production, conditioning, transport and losses; plant-gate
+    and delivered hydrogen are different functional units.
+  applicability: IAM hydrogen efficiency where mapped; external electrolysis assumptions otherwise; other feedstocks unchanged.
+  source: https://pubs.rsc.org/en/content/articlelanding/2020/se/d0se00222d
+  candidate: https://greet.anl.gov/
+  reviewed_on: '2026-09-07'
+  status: Newer alternative identified
+  finding: R&D GREET 2025 Rev.1 is a newer comparison source. Regulatory 45VH2-GREET
+    uses a specified well-to-gate boundary and is not an interchangeable full LCI.
+    Compare methane leakage, electricity sourcing and compression boundaries before
+    using its GWP as validation.
+  backlog: 'P1: compare production and delivered-hydrogen inventories route by route,
+    with leakage, compression and background electricity held consistent.'
+  limitations: Scope review is not a coefficient-by-coefficient reproduction. Unavailable
+    supplements and exact source years remain unverified where noted. IAM-driven energy-floor
+    calculation is not enforced by the applied exchange factor; see the modelling
+    backlog.
+  source_role: Source context for the implemented inventories/method
+- id: biofuels
+  title: Biofuels
+  page: methodology/fuels/biofuels
+  implementation: premise/fuels/biofuels.py
+  data_years: 2006–2022 cited sources, including a 2020 GREET update
+  boundary: Crop/residue cultivation and conversion; land-use assumptions, co-products
+    and biogenic carbon can dominate comparisons.
+  applicability: Mapped fuels with region-specific feedstocks; inherited agricultural
+    inventory limitations remain.
+  source: https://doi.org/10.1002/bbb.2395
+  candidate: https://joint-research-centre.ec.europa.eu/welcome-jec-website/jec-publications/jec-version-5-2020_en
+  reviewed_on: '2026-09-07'
+  status: Newer alternative identified; original full text inaccessible
+  finding: The cited Cavalett/Cherubini DOI fetch returned 403. JEC v5 provides primary
+    European pathway workbooks; R&D GREET has subsequent updates. These sources require
+    harmonized allocation and land-use boundaries, not just comparison of reported
+    GWP values.
+  backlog: 'P1: audit land-use change and co-product conventions, then compare crop
+    and residue pathways separately against current GREET/JEC inputs.'
+  limitations: Scope review is not a coefficient-by-coefficient reproduction. Unavailable
+    supplements and exact source years remain unverified where noted.
+  source_role: Source context for the implemented inventories/method
+- id: synthetic
+  title: Synthetic fuels
+  page: methodology/fuels/synthetic
+  implementation: premise/fuels/liquid_fuels.py
+  data_years: 2013–2019 route sources; future efficiency projections are separate
+  boundary: Fischer–Tropsch and methanol routes; CO2 supply, hydrogen, heat integration
+    and allocation are part of the boundary.
+  applicability: Fuel family and system-model constraints apply.
+  source: https://doi.org/10.1039/C9SE00658C
+  candidate: https://doi.org/10.1016/j.jclepro.2025.145713
+  reviewed_on: '2026-09-07'
+  status: Newer alternative identified; detailed LCI comparison pending
+  finding: JEC v5 supplies pathway-level energy data; later Power-to-X studies cover
+    different plant integration. A newer integrated system result cannot replace a
+    unit-process coefficient without separating heat credits and co-products.
+  backlog: 'P1: compare electricity-to-fuel efficiency, CO2 origin and co-product
+    allocation using harmonized reference output and plant boundaries.'
+  limitations: Scope review is not a coefficient-by-coefficient reproduction. Unavailable
+    supplements and exact source years remain unverified where noted.
+  source_role: Source context for the implemented inventories/method
+- id: ammonia
+  title: Ammonia
+  page: methodology/fuels/ammonia
+  implementation: premise/fuels/liquid_fuels.py
+  data_years: 2021 and 2024 cited studies; source observations vary
+  boundary: Ammonia production routes; hydrogen production, nitrogen supply and Haber–Bosch
+    synthesis.
+  applicability: Imported inventories and mapped fuel-market use are distinct.
+  source: https://doi.org/10.1016/j.heliyon.2024.e27547
+  candidate: https://journal.hep.com.cn/fie/EN/10.1007/s11708-025-1013-5
+  reviewed_on: '2026-09-07'
+  status: Reviewed at abstract level; newer regional alternative identified
+  finding: The existing 2024 prospective study covers global ammonia across 26 regions.
+    A 2025 South African facility study distinguishes vented versus sold oxygen, illustrating
+    why its allocation cannot be assumed equivalent to cut-off modelling. The PMC
+    full-text endpoint required CAPTCHA.
+  backlog: 'P2: compare electrolyser type, oxygen treatment and electricity sourcing
+    before considering regional ammonia proxies.'
+  limitations: Scope review is not a coefficient-by-coefficient reproduction. Unavailable
+    supplements and exact source years remain unverified where noted.
+  source_role: Source context for the implemented inventories/method
+- id: batteries
+  title: Mobile and stationary batteries
+  page: methodology/batteries
+  implementation: premise/battery.py
+  data_years: Lithium-ion sources include 2019/2021; emerging chemistries include
+    2023/2024 studies
+  boundary: Battery mass/capacity manufacture is separate from lifetime electricity
+    throughput, losses and replacements.
+  applicability: Supplemental imports depend on ecoinvent version; chemistry and energy-density
+    projections have separate sources.
+  source: https://research.slu.se/en/publications/future-climate-impacts-of-sodium-ion-batteries/
+  candidate: https://greet.anl.gov/list.php
+  reviewed_on: '2026-09-07'
+  status: Newer alternative identified
+  finding: The SLU source confirms Zhang et al. 2024 as a prospective sodium-ion study,
+    not a mature global-market average. Argonne documents 2025 changes to assembly
+    energy, material composition, graphite and recycling. Treat these as distinct
+    candidate updates.
+  backlog: 'P1: compare current ecoinvent battery data before adding GREET updates;
+    test assembly energy, chemistry shares, cycle life and capacity/throughput functional
+    units separately.'
+  limitations: Scope review is not a coefficient-by-coefficient reproduction. Unavailable
+    supplements and exact source years remain unverified where noted.
+  source_role: Source context for the implemented inventories/method
+- id: transport
+  title: Transport
+  page: methodology/transport/overview
+  implementation: premise/transport.py
+  data_years: Vehicle source generations vary; several inventories originate around
+    2020–2021
+  boundary: Passenger-km and tonne-km, vehicle manufacture, use and end of life; occupancy/payload
+    and fleet weights matter.
+  applicability: Six update modes exist; mapped fleet availability differs by model
+    and file.
+  source: https://pubs.acs.org/doi/abs/10.1021/acs.est.0c07773
+  candidate: https://carculator.psi.ch/
+  reviewed_on: '2026-09-07'
+  status: Newer alternative identified; workbook generation details incomplete
+  finding: The carculator release page documents later inventories and an ecoinvent
+    3.10 migration. This does not identify the generation used to export every packaged
+    workbook. R&D GREET offers payload-specific truck comparisons with different geographical
+    assumptions.
+  backlog: 'P1: record exporter/model versions for each vehicle workbook; compare
+    payload, range, powertrain and exhaust corrections. Review rail and shipping independently
+    of road vehicles.'
+  limitations: Scope review is not a coefficient-by-coefficient reproduction. Unavailable
+    supplements and exact source years remain unverified where noted.
+  source_role: Source context for the implemented inventories/method
+- id: steel
+  title: Steel
+  page: methodology/steel
+  implementation: premise/steel.py
+  data_years: Harpprecht et al. 2025; some CCS support assumptions originate in 2013
+  boundary: Primary and secondary steel routes, hydrogen/electrification and host-process
+    CCS; slag and co-product boundaries matter.
+  applicability: Available technologies depend on IAM and mappings.
+  source: https://elib.dlr.de/219882/
+  candidate: https://elib.dlr.de/219882/
+  reviewed_on: '2026-09-07'
+  status: Reviewed at repository abstract level; retained provisionally
+  finding: The author repository confirms the 2025 study covers emerging steel technologies
+    and non-climate burden shifts. Its recent publication does not update every supporting
+    CCS unit process automatically. Publisher full-text fetch failed; repository metadata
+    supports scope, not all coefficients.
+  backlog: 'P2: inspect supplementary route coefficients and the shared compression/transport/storage
+    chain before claiming complete scientific validation.'
+  limitations: Scope review is not a coefficient-by-coefficient reproduction. Unavailable
+    supplements and exact source years remain unverified where noted.
+  source_role: Source context for the implemented inventories/method
+- id: cement
+  title: Cement
+  page: methodology/cement
+  implementation: premise/cement.py
+  data_years: Müller et al. 2024; older BREF/CCS sources remain
+  boundary: Clinker versus cement, calcination versus fuel CO2, capture modules versus
+    host kiln.
+  applicability: IMAGE technology-specific routes differ from aggregate capture-share
+    representations.
+  source: https://repository.tudelft.nl/record/uuid%3Abb754595-882f-484e-9099-621205785b7c
+  candidate: https://repository.tudelft.nl/record/uuid%3Abb754595-882f-484e-9099-621205785b7c
+  reviewed_on: '2026-09-07'
+  status: Reviewed at repository abstract level; retained provisionally
+  finding: The author repository confirms the IMAGE-based prospective clinker study.
+    Premise documents deliberate adaptations to its fuel mix and capture inputs. These
+    differences must remain explicit; matching the paper title does not establish
+    identical inventories.
+  backlog: 'P1: trace each capture coefficient to the supplement and document the
+    legacy BREF reference year; compare process-only and combined capture consistently.'
+  limitations: Scope review is not a coefficient-by-coefficient reproduction. Unavailable
+    supplements and exact source years remain unverified where noted.
+  source_role: Source context for the implemented inventories/method
+- id: metals
+  title: Metals
+  page: methodology/metals
+  implementation: premise/metals.py
+  data_years: Mixed production inventories; mineral statistics include a 2023 edition
+  boundary: Material intensity and regional mining/refining markets; ore, concentrate
+    and refined-metal units differ.
+  applicability: Co-mining allocation and version-specific background links remain
+    important.
+  source: https://doi.org/10.3133/mcs2023
+  candidate: https://pubs.usgs.gov/publication/mcs2026
+  reviewed_on: '2026-09-07'
+  status: Newer alternative identified
+  finding: 'USGS MCS 2026 and BGS World Mineral Production 2020–2024 provide newer
+    production statistics. Statistics are not life-cycle inventories: changing country
+    shares does not update ore grade, energy use or allocation.'
+  backlog: 'P1: update statistics only after reconciling commodity definitions and
+    mining versus refining production; separately review processing inventories and
+    co-mining allocation.'
+  limitations: Scope review is not a coefficient-by-coefficient reproduction. Unavailable
+    supplements and exact source years remain unverified where noted.
+  source_role: Source context for the implemented inventories/method
+- id: mining
+  title: Mining and tailings
+  page: methodology/mining
+  implementation: premise/mining.py
+  data_years: Studies span 2008–2023; regional uptake assumptions are mixed estimates
+  boundary: Tailings treatment, reprocessing and recovered materials; leaching prevention
+    and substitution are modelling assumptions.
+  applicability: Treatment topology and adoption shares vary by region.
+  source: https://www.research-collection.ethz.ch/bitstream/20.500.11850/598085/4/1-s2.0-S004896972300654X-main.pdf
+  candidate: https://odr.chalmers.se/items/d2953f0d-f05d-42ce-a1c1-760d3beb410c/full
+  reviewed_on: '2026-09-07'
+  status: Modelling review needed; newer case study identified
+  finding: The author-hosted 2023 study explicitly treats prospective reprocessing
+    of sulfidic copper tailings; energy and resource inputs can offset recovery benefits.
+    A 2025 iron-tailings thesis is a different ore/site and is not a global replacement.
+  backlog: 'P1: review no-leaching assumptions, regional uptake evidence and recovered-product
+    allocation; test cut-off compatibility before transferring substitution benefits.'
+  limitations: Scope review is not a coefficient-by-coefficient reproduction. Unavailable
+    supplements and exact source years remain unverified where noted.
+  source_role: Source context for the implemented inventories/method
+- id: cdr
+  title: Carbon capture and removal
+  page: methodology/cdr
+  implementation: premise/carbon_dioxide_removal.py
+  data_years: Qiu et al. 2022 plus route-specific sources
+  boundary: Captured CO2, stored CO2 and net removal are distinct; energy supply and
+    permanence determine net outcomes.
+  applicability: DAC, biomass and mineral routes have different carbon-accounting
+    boundaries.
+  source: https://www.nature.com/articles/s41467-022-31146-1
+  candidate: https://www.nature.com/articles/s41467-025-67977-x
+  reviewed_on: '2026-09-07'
+  status: Reviewed and retained; new route is not a direct replacement
+  finding: Qiu et al. models solvent/sorbent DAC with IMAGE 3.2, learning and heat-supply
+    alternatives. New solar-driven DAC-to-fuel work is utilization, not equivalent
+    permanent removal. Preserve the distinction when comparing scores.
+  backlog: 'P1: audit net-removal balance, heat source, sorbent life, storage permanence
+    and biomass counterfactuals; compare newer DAC routes with matched capture/storage
+    boundaries.'
+  limitations: Scope review is not a coefficient-by-coefficient reproduction. Unavailable
+    supplements and exact source years remain unverified where noted.
+  source_role: Source context for the implemented inventories/method
+- id: emissions
+  title: Air emissions
+  page: methodology/emissions
+  implementation: premise/emissions.py
+  data_years: 2020 normalization; the bundled GAINS release still needs to be identified
+  boundary: Selected non-CO2 biosphere flows scaled using activity/region factors.
+  applicability: CLE/MFR options; Premise application is reduction-only.
+  source: https://gains.docs.iiasa.ac.at/model/scenario/scenario_type.html
+  candidate: https://gains.docs.iiasa.ac.at/model/scenario/components.html
+  reviewed_on: '2026-09-07'
+  status: Documentation corrected; release not yet identified
+  finding: Official GAINS documentation defines CLE and maximum technically feasible
+    reduction scenarios. The scenario name alone does not identify the legislative
+    cutoff or factor release. Documentation now distinguishes GAINS modelling from
+    Premise reduction-only application.
+  backlog: 'P1: record factor release and policy cutoff, audit pollutant mapping,
+    and assess historical/increasing-factor behaviour as a separate modelling decision.'
+  limitations: Scope review is not a coefficient-by-coefficient reproduction. Unavailable
+    supplements and exact source years remain unverified where noted.
+  source_role: Methodological context or comparison, not an imported inventory source
+- id: consequential
+  title: Consequential modelling
+  page: methodology/system-models
+  implementation: premise/marginal_mixes.py
+  data_years: Maes et al. 2023; scenario trajectories are release specific
+  boundary: Marginal suppliers from production trends and constraints; market boundaries
+    differ from attributional averages.
+  applicability: Consequential ecoinvent 3.8+; sector-specific exclusions apply.
+  source: https://www.sciencedirect.com/science/article/pii/S1364032123006871
+  candidate: https://link.springer.com/article/10.1007/s11367-026-02683-4
+  reviewed_on: '2026-09-07'
+  status: Reviewed at abstract level; method retained
+  finding: The original paper supports IAM-based marginal-supplier identification.
+    A 2026 seaweed competitiveness study illustrates a different market-specific method;
+    it does not supersede the energy-market algorithm. Sensitivity to interval, foresight
+    and supplier constraints remains necessary.
+  backlog: 'P1: compare interval and constraint sensitivities by sector; never substitute
+    average mixes as an unlabelled validation reference.'
+  limitations: Scope review is not a coefficient-by-coefficient reproduction. Unavailable
+    supplements and exact source years remain unverified where noted.
+  source_role: Source context for the implemented inventories/method

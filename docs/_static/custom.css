@@ -1,3 +1,12 @@
+/* Keep a consistent 24 px step between sidebar levels, including active links.
+   Override the theme's more specific current-item padding rules. */
+.wy-menu-vertical li.toctree-l1 > a { padding-left: 24px !important; }
+.wy-menu-vertical li.toctree-l2 > a { padding-left: 48px !important; }
+.wy-menu-vertical li.toctree-l3 > a { padding-left: 72px !important; }
+.wy-menu-vertical li.toctree-l4 > a { padding-left: 96px !important; }
+.wy-menu-vertical li.toctree-l5 > a { padding-left: 120px !important; }
+.wy-menu-vertical li.toctree-l6 > a { padding-left: 144px !important; }
+
 /* Force table cell content to wrap and fit within the window */
 .wy-table-responsive table,
 .wy-table-responsive table td,
@@ -54,4 +63,41 @@ td, th {
 
 .rst-content .figure .caption {  /* optional: give captions some breathing room */
   margin-top: 0.5rem;
+}
+
+/* Keep long public API identifiers within the reading column on small screens. */
+.rst-content dl.py dt,
+.rst-content dl.py .sig-name,
+.rst-content dl.py .sig-prename,
+.rst-content dl.py .sig-param,
+.rst-content dl.py .pre {
+    max-width: 100%;
+    white-space: normal;
+    overflow-wrap: anywhere;
+}
+
+@media screen and (max-width: 600px) {
+    .rst-content dl.py dd {
+        margin-left: 0.75rem;
+    }
+    .rst-content dl.field-list {
+        display: block;
+    }
+    .rst-content dl.field-list dt,
+    .rst-content dl.field-list dd {
+        max-width: 100%;
+        margin-left: 0;
+        overflow-wrap: anywhere;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .rst-content dl.field-list > dt,
+    .rst-content dl.field-list > dd {
+        display: block;
+        float: none;
+        width: auto;
+        min-width: 0;
+        padding-left: 0;
+    }
 }

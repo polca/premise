@@ -1,338 +1,229 @@
-Frequently Asked Questions
-""""""""""""""""""""""""""
+:orphan:
 
-Here are some frequently asked questions about ``premise``.
-If you have a question that is not answered here, please contact us.
+Frequently Asked Questions (previous location)
+================================================
 
+This page preserves links from earlier documentation. Follow a topic below
+to its maintained guide or reference.
 
-Ecoinvent
----------
+.. raw:: html
 
-What is ecoinvent?
-__________________
+   <span id="frequently-asked-questions"></span>
 
-Ecoinvent is a database of life cycle inventory data, which is used to calculate the environmental impacts of products and services. It is the most widely used LCI database in the world, and is maintained by the ecoinvent association, in Zurich, Switzerland.
+**Frequently Asked Questions** — :doc:`/user_guide/troubleshooting`
 
-What is the ecoinvent version used in ``premise``?
-__________________________________________________
+.. raw:: html
 
-``premise`` can use the following system models:
+   <span id="ecoinvent"></span>
 
-* cut-off
-* consequential (3.8+ only)
+**Ecoinvent** — :doc:`/user_guide/troubleshooting`
 
-for ecoinvent versions 3.5 through 3.12 (including patch releases like 3.7.1 and 3.9.1).
+.. raw:: html
 
-How does ``premise`` use ecoinvent?
-___________________________________
+   <span id="what-is-ecoinvent"></span>
 
-``premise`` adds and modifies inventories of the ecoinvent database,
-to represent the future state of the world, as projected by an Integrated Assessment Model (IAM).
-It does so by duplicating existing inventories and modifying them to represent
-the future state of the world.
-It also adds new inventories, when necessary.
+**What is ecoinvent?** — :doc:`/user_guide/troubleshooting`
 
-Can I share the modified ecoinvent database?
-____________________________________________
+.. raw:: html
 
-No. The modified ecoinvent database is a derivative work of the ecoinvent database,
-and cannot be shared. However, you can share the IAM scenario and the code used to modify the ecoinvent database.
+   <span id="what-is-the-ecoinvent-version-used-in-premise"></span>
 
-Can I share results obtained with the modified ecoinvent database?
-__________________________________________________________________
+**What is the ecoinvent version used in premise?** — :doc:`/user_guide/troubleshooting`
 
-Yes. You can share the results obtained with the modified ecoinvent database.
+.. raw:: html
 
-Can I use the modified ecoinvent database for commercial purposes?
-__________________________________________________________________
+   <span id="how-does-premise-use-ecoinvent"></span>
 
-While premise's license allows its use for commercial purposes, you need to check the ecoinvent license to see
-if it allows the use of the modified ecoinvent database for commercial purposes.
+**How does premise use ecoinvent?** — :doc:`/user_guide/troubleshooting`
 
-How can I share modified ecoinvent databases?
-_____________________________________________
+.. raw:: html
 
-*premise* allows producing "datapackages" that contains the required multiplication factors
-to be applied to the ecoinvent database, for other users to reproduce the modified ecoinvent database.
-These datapackages can be shared freely, as they do not contain any ecoinvent data.
+   <span id="can-i-share-the-modified-ecoinvent-database"></span>
 
+**Can I share the modified ecoinvent database?** — :doc:`/user_guide/troubleshooting`
 
-IAM models
-----------
+.. raw:: html
 
-I use a different IAM than REMIND, IMAGE, MESSAGE, GCAM or TIAM-UCL ... Can I still use ``premise``?
-_________________________________________________________________________________________________________
+   <span id="can-i-share-results-obtained-with-the-modified-ecoinvent-database"></span>
 
-There is a MAPPING section in the documentation
-that explains how to link to a new IAM. The YAML files under ````premise``/iam_variables_mapping``
-are the main body of files that needs to
-be changed, to properly establish a correspondence between your IAM variables
-and the variables used in ``premise``. It is also necessary to provide ``premise``
-with the geographical definitions of the regions used in your IAM. This is done
-by providing a .json file with the regions and their corresponding ecoinvent regions.
-The rest of the code is generic and should work with any IAM.
+**Can I share results obtained with the modified ecoinvent database?** — :doc:`/user_guide/troubleshooting`
 
-What columns are necessary in the IAM files?
-____________________________________________
+.. raw:: html
 
-The code has been refactored since.
-Any column other than:
+   <span id="can-i-use-the-modified-ecoinvent-database-for-commercial-purposes"></span>
 
-* Region
-* Variable
-* Unit
-* and the variable values for each time step
+**Can I use the modified ecoinvent database for commercial purposes?** — :doc:`/user_guide/troubleshooting`
 
-is ignored.
+.. raw:: html
 
-How big an effort would it be to link to a new IAM? As simple as an extension of the mapping files? What difficulties can be anticipated?
-_________________________________________________________________________________________________________________________________________
+   <span id="how-can-i-share-modified-ecoinvent-databases"></span>
 
-In principle, it is easy. Linking to a new IAM model is a matter of:
+**How can I share modified ecoinvent databases?** — :doc:`/user_guide/troubleshooting`
 
-* providing the IAM variable for each ``premise`` variable listed in the .yaml mapping files
-* and the geographical definitions of the regions used in the IAM.
+.. raw:: html
 
-In practice, it may not always be that simple.
-The IAM variables are not always available in the IAM output files (e.g., efficiency or land use-related variables).
-In that case, they need to be calculated from other variables or skipped.
-Also, some IAM models may represent a technology not yet considered in ``premise`` (e.g., nuclear fusion).
-In some cases, ``premise``'s code needs to be extended.
+   <span id="iam-models"></span>
 
-IAM data collection
--------------------
-
-How was the list of variables in the mapping files established?
-_______________________________________________________________
-
-The list of IAM variables and mapping with ``premise`` variables has been established
-through collaboration with developers of IAM models, to ensure that the meaning between
-each IAM variable corresponds with that of ``premise``.
-
-Is it possible to expand this list? (e.g. agriculture crops for energy)
-_______________________________________________________________________
-
-It is certainly possible to extend this list. You would however need to extend
-``premise``'s code to tell it what to do with these additional variables. For example, if you want to
-use the IAM output for integrating projections that relate to agriculture crops for energy,
-you would need to write a module in ``premise`` (e.g., energy_crops.py) that would perform a series
-of modifications on the LCA datasets, just like other modules do.
-
-Is the unit and the description of these parameters documented? Or are they necessarily the same as the ones of the ecoinvent datasets they refer to?
-_____________________________________________________________________________________________________________________________________________________
-
-They are now documented, under the MAPPING section.
-There are essentially two types of variables:
-
-* variables that relate to production volumes of technologies, which units must represent a production volume over time (e.g., GWh/year)
-* variables that relate to the efficiency of technologies, which is unitless, or represented by an efficiency ratio (e.g., %)
-
-What if a variable in ``premise`` corresponds to several variables in the IAM?
-______________________________________________________________________________
-
-We have not really seen that case yet. In any case, mapping one IAM variable
-to two ``premise`` variables is possible (whether it is methodologically correct
-is a question left to your appreciation).
-
-Regionalization
----------------
-
-Are datasets regionalized on the basis of the IAM scenario only, or does it come from other sources?
-____________________________________________________________________________________________________
-
-``premise`` tries to rely on IAM data where possible, but several sectors use
-external datasets for technology parameters, market shares, or loss factors.
-Examples include PV efficiencies (Fraunhofer ISE), GAINS emission factors, battery
-energy densities, metals mining/refining shares, and hydrogen transport losses.
-Regionalization therefore combines IAM production volumes (when available), existing
-ecoinvent production volumes (for splitting suppliers), and external data where needed.
-
-Does ``premise`` generate more regionalised datasets than in original EI3.x database?
-_____________________________________________________________________________________
-
-Yes. ``premise`` generates regionalized datasets for all regions in the IAM model, for
-each technology for which a IAM-to-``premise`` correspondence is provided, if not already existing in the Ecoinvent database.
-For example, if the IAM model
-considers technology A over 10 regions, ``premise`` collects datasets in the ecoinvent database
-(or imported inventories) that represent technology A and duplicates it for each region. Sometimes,
-only one dataset is available in the ecoinvent database, in which case ``premise`` duplicates it 10 times.
-Other times, several datasets are available (ie.g., in FR, CN and RoW), in which case ``premise`` uses the French
-dataset for the European region, the Chinese dataset for the Chinese region, and the RoW dataset for the other IAM regions.
-Then, ``premise`` proceeds to regionalize these datasets by finding the most
-appropriate inputs suppliers for each duplicated dataset.
-
-
-How does ``premise`` handle the different granularities between the IAM regions and the Ecoinvent regions?
-__________________________________________________________________________________________________________
-
-``premise`` simply uses the correspondence between IAM regions and Ecoinvent regions (which are, most of the time
-defined by ISO alpha-2 country codes), often provided by the IAM developers.
-
-For example, the REMIND ``REF`` region is associated with the following ecoinvent regions:
-
-- AM
-- AZ
-- BY
-- GE
-- KZ
-- KG
-- MD
-- RU
-- TJ
-- TM
-- UA
-- UZ
-
-If a technology needs to be included within a market for that region (e.g., coal-based electricity),
-``premise`` looks for datasets for that technology (e.g., ``electricity production, hard coal``)
-in the ecoinvent database that are located in any
-of these above-listed locations, and calculates supply shares based on the
-production volumes information provided in each of these datasets (i.e., under the ``production volumes`` field).
-Hence, coal-based electricity in the ``REF`` electricity market is supplied
-by several coal-based electricity datasets, each of which is located in a different country (see list above)
-according to their current production volumes. This approach highlights
-a limitation, where current production volumes are used to calculate
-supply mix for a given technology within a given IAM region.
+**IAM models** — :doc:`/user_guide/troubleshooting`
 
+.. raw:: html
 
-Heat
-----
-
-Does the secondary heat market supply both buildings and industry?
-__________________________________________________________________
-
-Yes, when the IAM provides complete end-use layers. The buildings and industrial
-markets each include the secondary market according to their own reported
-district-heat share. The remaining shares are supplied by on-site technologies
-such as boilers, resistance heaters, and heat pumps. Ordinary consumers then
-link to the appropriate end-use market rather than directly to secondary heat.
+   <span id="i-use-a-different-iam-than-remind-image-message-gcam-or-tiam-ucl-can-i-still-use-premise"></span>
 
-TIAM-UCL is the exception because it provides only secondary-supply detail.
-Purchased district or industrial heat consumers are therefore linked directly
-to its secondary market, while on-site end-use fuel use remains unchanged. See
-:ref:`heat-transformation` for the complete model-coverage table.
+**I use a different IAM than REMIND, IMAGE, MESSAGE, GCAM or TIAM-UCL … Can I still use premise?** — :doc:`/user_guide/troubleshooting`
 
-Why are legacy ecoinvent heat markets still present after the update?
-______________________________________________________________________
+.. raw:: html
 
-The heat transformation redirects matching consumer exchanges; it does not
-delete source activities. The old markets can therefore remain as unused
-datasets or in isolated legacy subgraphs even though ordinary consumers now use
-the new regional markets. Their mere presence is not evidence that they still
-supply the transformed product system. Audit incoming technosphere exchanges to
-determine whether a legacy market is still used.
+   <span id="what-columns-are-necessary-in-the-iam-files"></span>
 
-Why can several exchanges point to the same new heat market?
-____________________________________________________________
+**What columns are necessary in the IAM files?** — :doc:`/user_guide/troubleshooting`
 
-Relinking preserves the amount and row of every original exchange. If a consumer
-previously used several legacy heat markets, those rows can converge on the same
-new regional market. Brightway aggregates them into one technosphere matrix
-element. They can be consolidated later if a single human-readable exchange row
-is preferred.
+.. raw:: html
 
-Are all datasets named ``market for heat`` replaced?
-____________________________________________________
+   <span id="how-big-an-effort-would-it-be-to-link-to-a-new-iam-as-simple-as-an-extension-of-the-mapping-files-what-difficulties-can-be-anticipated"></span>
 
-No. Relinking uses an explicit list of activity-name and reference-product pairs
-for generic building, district, industrial, and chemical-steam heat. Specialized
-markets keep their purpose. In particular,
-``market for heat, for reuse in municipal waste incineration only`` is not
-treated as a generic heat supplier. The exact scope is documented in
-:ref:`heat-transformation`.
-
-
-Consistency with climate targets
---------------------------------
-
-How do we ensure consistency between IAM scenario and pLCA results (in terms of global warming / temperature increase)?
-_______________________________________________________________________________________________________________________
-
-In theory, there is consistency between the IAM scenario and pLCA database
-when 100% of the IAM variables and related projections are integrated
-into the pLCA database.
-
-This is not the case today, as ``premise`` only integrates a subset of IAM variables, notably those that relate to:
-
-- electricity generation
-- fuels and hydrogen supply chains
-- steel and cement production
-- transport
-- heat markets
-- batteries, metals, mining, and biomass (where mapped)
-
-Hence, important sectors are still left out, such as:
-
-- agriculture
-- chemicals
-- paper
-
-Also, sectors that are considered by ``premise`` are not fully
-or perfectly integrated, as:
-
-- some IAM variables are sometimes not available (e.g., efficiency).
-- some IAM variables are sometimes not considered by ``premise`` (e.g., fuel mix for cement production)
-
-Hence, ``premise``-generated databases are not fully consistent with the IAM scenario, including
-its climate target. If an ambitious climate target is considered, the use of ``premise``-generated
-databases probably leads to an overestimate of GHG emissions, since sectors
-that are expected to under mitigation measures are left unchanged. It will however
-mostly depend on the product system you analyze.
-
-
-Additional inventories
-----------------------
-
-Can additional inventories be modelled with parameters? If so, how are they used?
-_________________________________________________________________________________
-
-Additional inventories (imported as such or via data packages) can be modelled with
-(brightway2) parameters, but those will not be considered by ``premise``.
-
-Can some parameters of the additional inventories be made scenario- and time-dependant?
-_______________________________________________________________________________________
-
-Yes, via the use of data packages. Data packages allow to package additional scenarios
-to be considered in addition to the global IAM scenario. With data packages,
-it is possible to map the efficiency of processes to a variable. That variable
-can vary over time and across scenarios. Besides efficiency, it is also possible
-to change a market mix, distribution losses or any other aspects, of a
-product's supply chain, via the use of variables in data packages.
-
-Can ``premise`` manage an efficiency evolution for the additional inventories?
-______________________________________________________________________________
-
-Yes, via the use of data packages (see User-defined scenarios section). It is possible to map
-the efficiency of processes to a variable. That variable can vary over time and across scenarios.
-
-Efficiency adjustments
-----------------------
-
-Is the calculated scaling factor (ratio of efficiencies in year 20XX vs 2020) applied to all inputs of the transformed dataset, or only to the energy feedstock input?
-______________________________________________________________________________________________________________________________________________________________________
-
-It depends on the nature of the process. For energy conversion processes (e.g., power generation),
-all inputs are scaled up or down. For processes that convert energy and material (e.g., cement or steel production),
-only the inputs that relate to energy (e.g., fuel, electricity) inputs are scaled up or down, the input of material
-remaining unchanged.
-
-For carbon dioxide removal, electricity exchanges and heat/fuel exchanges can
-be scaled separately when the IAM mapping provides carrier-specific final-energy
-variables. Non-energy material inputs and biosphere exchanges are not scaled by
-the CDR efficiency adjustment.
-
-What happens if the IAM does not provide efficiencies for certain processes?
-____________________________________________________________________________
-
-They will be ignored and the efficiency of said process wil not be adjusted.
-
-Why use external data sources for PV efficiency, rather than the output of IAM?
-_______________________________________________________________________________
-
-Efficiency values for photovoltaic panels are not always provided by IAM scenarios.
-When they are, they are often constant (i.e., the efficiency does not increase over time).
-This can become an issue when they represent a significant share
-of the electricity mix. Hence, at the moment, we use external sources
-to document the projected efficiency of photovoltaic modules.
-A venue of improvement may be to use IAM efficiency variables for
-photovoltaic panels when available, and fall back on external sources if not.
+**How big an effort would it be to link to a new IAM? As simple as an extension of the mapping files? What difficulties can be anticipated?** — :doc:`/user_guide/troubleshooting`
+
+.. raw:: html
+
+   <span id="iam-data-collection"></span>
+
+**IAM data collection** — :doc:`/user_guide/troubleshooting`
+
+.. raw:: html
+
+   <span id="how-was-the-list-of-variables-in-the-mapping-files-established"></span>
+
+**How was the list of variables in the mapping files established?** — :doc:`/user_guide/troubleshooting`
+
+.. raw:: html
+
+   <span id="is-it-possible-to-expand-this-list-e-g-agriculture-crops-for-energy"></span>
+
+**Is it possible to expand this list? (e.g. agriculture crops for energy)** — :doc:`/user_guide/troubleshooting`
+
+.. raw:: html
+
+   <span id="is-the-unit-and-the-description-of-these-parameters-documented-or-are-they-necessarily-the-same-as-the-ones-of-the-ecoinvent-datasets-they-refer-to"></span>
+
+**Is the unit and the description of these parameters documented? Or are they necessarily the same as the ones of the ecoinvent datasets they refer to?** — :doc:`/user_guide/troubleshooting`
+
+.. raw:: html
+
+   <span id="what-if-a-variable-in-premise-corresponds-to-several-variables-in-the-iam"></span>
+
+**What if a variable in premise corresponds to several variables in the IAM?** — :doc:`/user_guide/troubleshooting`
+
+.. raw:: html
+
+   <span id="regionalization"></span>
+
+**Regionalization** — :doc:`/user_guide/troubleshooting`
+
+.. raw:: html
+
+   <span id="are-datasets-regionalized-on-the-basis-of-the-iam-scenario-only-or-does-it-come-from-other-sources"></span>
+
+**Are datasets regionalized on the basis of the IAM scenario only, or does it come from other sources?** — :doc:`/user_guide/troubleshooting`
+
+.. raw:: html
+
+   <span id="does-premise-generate-more-regionalised-datasets-than-in-original-ei3-x-database"></span>
+
+**Does premise generate more regionalised datasets than in original EI3.x database?** — :doc:`/user_guide/troubleshooting`
+
+.. raw:: html
+
+   <span id="how-does-premise-handle-the-different-granularities-between-the-iam-regions-and-the-ecoinvent-regions"></span>
+
+**How does premise handle differences between IAM and ecoinvent regions?** — :doc:`/user_guide/troubleshooting`
+
+.. raw:: html
+
+   <span id="heat"></span>
+
+**Heat** — :doc:`/user_guide/troubleshooting`
+
+.. raw:: html
+
+   <span id="does-the-secondary-heat-market-supply-both-buildings-and-industry"></span>
+
+**Does the secondary heat market supply both buildings and industry?** — :doc:`/user_guide/troubleshooting`
+
+.. raw:: html
+
+   <span id="why-are-legacy-ecoinvent-heat-markets-still-present-after-the-update"></span>
+
+**Why are legacy ecoinvent heat markets still present after the update?** — :doc:`/user_guide/troubleshooting`
+
+.. raw:: html
+
+   <span id="why-can-several-exchanges-point-to-the-same-new-heat-market"></span>
+
+**Why can several exchanges point to the same new heat market?** — :doc:`/user_guide/troubleshooting`
+
+.. raw:: html
+
+   <span id="are-all-datasets-named-market-for-heat-replaced"></span>
+
+**Are all datasets named market for heat replaced?** — :doc:`/user_guide/troubleshooting`
+
+.. raw:: html
+
+   <span id="consistency-with-climate-targets"></span>
+
+**Consistency with climate targets** — :doc:`/user_guide/troubleshooting`
+
+.. raw:: html
+
+   <span id="how-do-we-ensure-consistency-between-iam-scenario-and-plca-results-in-terms-of-global-warming-temperature-increase"></span>
+
+**How do we ensure consistency between IAM scenario and pLCA results (in terms of global warming / temperature increase)?** — :doc:`/user_guide/troubleshooting`
+
+.. raw:: html
+
+   <span id="additional-inventories"></span>
+
+**Additional inventories** — :doc:`/user_guide/troubleshooting`
+
+.. raw:: html
+
+   <span id="can-additional-inventories-be-modelled-with-parameters-if-so-how-are-they-used"></span>
+
+**Can additional inventories be modelled with parameters? If so, how are they used?** — :doc:`/user_guide/troubleshooting`
+
+.. raw:: html
+
+   <span id="can-some-parameters-of-the-additional-inventories-be-made-scenario-and-time-dependant"></span>
+
+**Can some parameters of the additional inventories be made scenario- and time-dependant?** — :doc:`/user_guide/troubleshooting`
+
+.. raw:: html
+
+   <span id="can-premise-manage-an-efficiency-evolution-for-the-additional-inventories"></span>
+
+**Can premise manage an efficiency evolution for the additional inventories?** — :doc:`/user_guide/troubleshooting`
+
+.. raw:: html
+
+   <span id="efficiency-adjustments"></span>
+
+**Efficiency adjustments** — :doc:`/user_guide/troubleshooting`
+
+.. raw:: html
+
+   <span id="is-the-calculated-scaling-factor-ratio-of-efficiencies-in-year-20xx-vs-2020-applied-to-all-inputs-of-the-transformed-dataset-or-only-to-the-energy-feedstock-input"></span>
+
+**Is the calculated scaling factor (ratio of efficiencies in year 20XX vs 2020) applied to all inputs of the transformed dataset, or only to the energy feedstock input?** — :doc:`/user_guide/troubleshooting`
+
+.. raw:: html
+
+   <span id="what-happens-if-the-iam-does-not-provide-efficiencies-for-certain-processes"></span>
+
+**What happens if the IAM does not provide efficiencies for certain processes?** — :doc:`/user_guide/troubleshooting`
+
+.. raw:: html
+
+   <span id="why-use-external-data-sources-for-pv-efficiency-rather-than-the-output-of-iam"></span>
+
+**Why use external data sources for PV efficiency, rather than the output of IAM?** — :doc:`/user_guide/troubleshooting`

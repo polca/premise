@@ -943,10 +943,10 @@ class BaseInventoryImport:
     Base class for inventories that are to be merged with the wurst database.
 
     :ivar database: the target database for the import (the ecoinvent database),
-    unpacked to a list of dicts
+        unpacked to a list of dicts
     :ivar version_in: the ecoinvent database version of the inventory to import
     :ivar version_out: the ecoinvent database version the imported inventories
-    should comply with
+        should comply with
     :ivar path: the filepath of the inventories to import
 
     """

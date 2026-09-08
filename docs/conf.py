@@ -13,7 +13,7 @@
 import os
 import sys
 
-sys.path.insert(0, os.path.abspath(".."))
+sys.path.insert(0, str(__import__("pathlib").Path(__file__).resolve().parents[1]))
 
 # -- Project information -----------------------------------------------------
 
@@ -37,37 +37,14 @@ extensions = [
     "sphinx_rtd_theme",
 ]
 autosummary_generate = True  # Turn on sphinx.ext.autosummary
-suppress_warnings = [
-    # Dependencies are intentionally mocked so the user guide can build in a
-    # lightweight documentation environment.
-    "autodoc",
-    # The tailings reference list is also printed verbatim in a data table.
-    "ref.footnote",
-]
+# Repeated tailings bibliography entries are also printed in a data table.
+suppress_warnings = ["ref.footnote"]
+autodoc_typehints = "none"
 
 master_doc = "index"
 
-autodoc_mock_imports = [
-    "numpy",
-    "pandas",
-    "bw2io >=0.8.10",
-    "bw2data",
-    "wurst",
-    "xarray",
-    "prettytable",
-    "pycountry",
-    "cryptography",
-    "premise_gwp",
-    "pyYaml",
-    "sparse>=0.14.0",
-    "schema",
-    "datapackage",
-    "requests",
-    "bottleneck",
-    "constructive_geometries>=0.8.2",
-    "pyarrow",
-    "premise",
-]
+# Import the real package so obsolete API paths fail the build.
+autodoc_mock_imports = []
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]
@@ -88,7 +65,39 @@ html_theme = "sphinx_rtd_theme"
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ["_static"]
-html_css_files = ["custom.css"]
+html_favicon = "_static/favicon.ico"
+html_css_files = ["custom.css", "hub.css"]
 
 
 # html_sidebars = { '**': ['globaltoc.html', 'relations.html', 'sourcelink.html', 'searchbox.html'] }
+
+html_theme_options = {"navigation_depth": 3, "collapse_navigation": True}
+
+
+def setup(app):
+    # Premise configures application logging during import. Restore Sphinx's
+    # handlers afterwards so autodoc warnings cannot silently disappear.
+    import logging
+    from pathlib import Path
+
+    # API builds need no user databases. Isolate Brightway's import-time files.
+    bw_dir = Path(app.outdir).parent / ".brightway-docs"
+    bw_dir.mkdir(parents=True, exist_ok=True)
+    os.environ.setdefault("BRIGHTWAY2_DIR", str(bw_dir))
+    import premise  # noqa: F401
+    from sphinx.util import logging as sphinx_logging
+
+    for name, logger in logging.Logger.manager.loggerDict.items():
+        if name == "sphinx" or name.startswith("sphinx."):
+            if isinstance(logger, logging.Logger):
+                logger.disabled = False
+    sphinx_logging.setup(app, app._status, app._warning)
+
+
+# External URL checks are a separate, non-blocking workflow. Fragments on
+# third-party sites often require JavaScript or authentication.
+linkcheck_anchors = False
+linkcheck_timeout = 10
+linkcheck_retries = 1
+linkcheck_workers = 10
+linkcheck_rate_limit_timeout = 30

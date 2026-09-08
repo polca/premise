@@ -1,48 +1,31 @@
-Fuel-market system-model rules
-==============================
+:orphan:
 
-Consequential fuel markets
---------------------------
+Fuel-market system-model rules (previous location)
+====================================================
 
-Consequential markets use marginal production mixes calculated in
-``premise/marginal_mixes.py``. Technologies registered as constrained suppliers,
-including pathways dependent on residual or waste feedstocks, are set to zero before
-the remaining marginal shares are normalized.
+This page preserves links from earlier documentation. Follow a topic below
+to its maintained guide or reference.
 
-The constrained fuel pathways are maintained in
-``premise/data/consequential/constrained_suppliers.yaml``. They currently include:
+.. raw:: html
 
-* ``bioethanol, from residues``;
-* ``biodiesel, from used cooking oil, with CCS``;
-* ``methane, from biomass``;
-* ``biomass - residual``;
-* ``liquefied petroleum gas, synthetic, from coal``; and
-* ``liquefied petroleum gas, synthetic, from coal, with CCS``.
+   <span id="fuel-market-system-model-rules"></span>
 
-The used-cooking-oil biodiesel pathway was previously labelled
-``biodiesel, from oil crops, with CCS`` even though its ecoinvent mapping selected
-used-cooking-oil inventories. Its IAM variable, lead time, lifetime, and constrained
-supplier entry now use the same explicit used-cooking-oil label.
+**Fuel-market system-model rules** — :doc:`/methodology/fuels/markets`
 
-Cutoff fuel markets
--------------------
+.. raw:: html
 
-Cutoff markets may legitimately use a waste-treatment activity as a fuel supplier.
-Such activities are identified by an activity name beginning with ``treatment``.
-After positive fuel shares have been normalized, the technosphere exchange to the
-treatment supplier is written as a negative amount. This follows the ecoinvent waste
-exchange convention and prevents the treatment activity from producing an unintended
-negative fuel burden.
+   <span id="consequential-fuel-markets"></span>
 
-The sign rule is enabled for generated liquid-fuel, gas, and hydrogen markets. It is
-not applied to consequential markets or to non-treatment suppliers.
+**Consequential fuel markets** — :doc:`/methodology/fuels/markets`
 
-LCIA regression baselines
--------------------------
+.. raw:: html
 
-The deterministic GWP regression scores are refreshed when either rule intentionally
-changes generated supply chains. In particular, excluding used-cooking-oil biodiesel
-raises the consequential diesel scores because the remaining marginal suppliers are
-renormalized, while treatment-exchange sign changes affect cutoff results in versions
-where those suppliers are selected. Changes also propagate to tested electricity,
-heat, cement, and steel activities that consume the affected fuels upstream.
+   <span id="cutoff-fuel-markets"></span>
+
+**Cutoff fuel markets** — :doc:`/methodology/fuels/markets`
+
+.. raw:: html
+
+   <span id="lcia-regression-baselines"></span>
+
+**LCIA regression baselines** — :doc:`/methodology/fuels/markets`

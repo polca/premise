@@ -149,6 +149,11 @@ handlers:
     mode: a
 
 loggers:
+  premise.cache_cleanup:
+    level: INFO
+    handlers: []
+    propagate: True
+
   cdr:
     level: INFO
     handlers: [file_cdr]

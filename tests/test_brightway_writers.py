@@ -803,7 +803,10 @@ def test_brightway25_fast_compaction_keeps_required_descriptive_fields(
     assert dataset["type"] == "process"
 
 
-def test_brightway25_fast_compaction_streams_columnar_exchange_views(tmp_path):
+@pytest.mark.parametrize("prepared", [False, True])
+def test_brightway25_fast_compaction_streams_columnar_exchange_views(
+    tmp_path, prepared
+):
     data = [
         {
             "database": "source-db",
@@ -831,6 +834,10 @@ def test_brightway25_fast_compaction_streams_columnar_exchange_views(tmp_path):
         tmp_path / "scenario.inventory-store"
     )
     columnar = InventoryStore.open(checkpoint)._checkout_materialized()
+    if prepared:
+        from premise.export_payload import mark_prepared_export_inventory
+
+        columnar = mark_prepared_export_inventory(columnar)
     exchange = columnar[0]["exchanges"][0]
     storage = columnar[0]._storage
 
@@ -839,7 +846,10 @@ def test_brightway25_fast_compaction_streams_columnar_exchange_views(tmp_path):
     assert columnar[0]["exchanges"][0] is exchange
     assert type(exchange).__name__ == "_ColumnarExchangeMapping"
     assert columnar[0]["type"] == "processwithreferenceproduct"
-    assert len(storage._activity_cache) == 0
+    assert columnar[0]["code"] == "act-1"
+    assert columnar[0]["database"] == "source-db"
+    if not prepared:
+        assert len(storage._activity_cache) == 0
     assert brightway25_module._prepare_fast_exchange_payload(
         exchange
     ) == brightway25_module._prepare_fast_exchange_payload(data[0]["exchanges"][0])

@@ -1,37 +1,43 @@
-New Wurst Database
-==================
+:orphan:
 
-.. autoclass:: premise.ecoinvent_modification.NewDatabase
-    :members:
+API reference (previous location)
+===================================
 
-Database Cleaner
-================
+This page preserves links from earlier documentation. Follow a topic below
+to its maintained guide or reference.
 
-.. autoclass:: premise.clean_datasets.DatabaseCleaner
-    :members:
+.. raw:: html
 
-Inventory Imports
-=================
+   <span id="new-wurst-database"></span>
 
-.. autoclass:: premise.inventory_imports.BaseInventoryImport
-   :members:
+**New Wurst Database** — :doc:`/reference/api`
 
-   .. automethod:: __init__
+.. raw:: html
 
-Remind Data Collection
-======================
+   <span id="database-cleaner"></span>
 
-.. autoclass:: premise.data_collection.IAMDataCollection
-    :members:
+**Database Cleaner** — :doc:`/reference/api`
 
-Remind to Ecoinvent mapping
-===========================
+.. raw:: html
 
-.. autoclass:: premise.activity_maps.InventorySet
-    :members:
+   <span id="inventory-imports"></span>
 
-Electricity markets modelling
-=============================
+**Inventory Imports** — :doc:`/reference/api`
 
-.. autoclass:: premise.electricity.Electricity
-    :members:
+.. raw:: html
+
+   <span id="remind-data-collection"></span>
+
+**Remind Data Collection** — :doc:`/reference/api`
+
+.. raw:: html
+
+   <span id="remind-to-ecoinvent-mapping"></span>
+
+**Remind to Ecoinvent mapping** — :doc:`/reference/api`
+
+.. raw:: html
+
+   <span id="electricity-markets-modelling"></span>
+
+**Electricity markets modelling** — :doc:`/reference/api`

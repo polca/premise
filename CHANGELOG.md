@@ -5,6 +5,42 @@ All notable changes to this project are documented in this file.
 ## [2.5.1]
 
 ### Changed
+- Replaced the IEA PVPS 2021 core for ecoinvent 3.12 cut-off with inventories
+  from IEA PVPS Task 12 report T12-33:2026. The new supply chains cover
+  single-Si (a TOPCon/PERC mix), multi-Si and CdTe technologies, including
+  manufacturing, installation and electricity production.
+- Extended residential, commercial and combined PV electricity mixes to 250
+  locations: 249 ISO countries and territories plus Kosovo. The extension uses
+  the report's 33 national recipes, 2023 IRENA PV generation weights and the
+  country solar yields retained from `lci-PV.xlsx`, with documented substitutes
+  where country data are missing. The 12 reference-system electricity datasets
+  retain their alternative annual yields of 1000 and 1300 kWh/kWp.
+- Linked UVEK/BAFU background inputs to ecoinvent suppliers, with documented
+  geographical substitutions and unit conversions. Completed the US multi-Si
+  wafer market by assuming domestic US production. Removed unused batteries,
+  avoided-burden datasets and redundant CIGS and perovskite-silicon tandem
+  inventories from the new core. Existing CIGS, perovskite and GaAs supplements
+  remain available separately; other ecoinvent versions and consequential
+  modelling continue to use the previous PV core.
+- Updated PV efficiency handling for mixed module inputs and 10 MW systems,
+  preserving capacity metadata through caches and scaling module-dependent
+  mounting, recycling and cleaning consistently.
+- Reorganized the documentation into Getting started, User guide, Methodology,
+  Reference and Development sections, retaining existing page and section links.
+  Standardized explanations across 25 sector chapters and added process diagrams
+  showing their inputs, transformations and outputs. Checked descriptions against
+  current code and removed outdated behaviour and internal maintenance narratives
+  from the methodology.
+- Matched the documentation design to Premise Hub, with a lighter navigation
+  sidebar, clearer nested sections, responsive layouts, homepage cards and a
+  favicon. Simplified technical wording and distinguished Python environments
+  from Brightway projects throughout the guides.
+- Put change reports before validation reports in the User guide, explained
+  validation results through the workbook, and moved detailed validation code
+  examples to Development. Expanded guidance on tracing impact-score changes
+  and distinguishing exchange, scenario and structural uncertainty. Added the
+  Scenario Explorer link and clarified ScenarioLink's Activity Browser 2.x-only
+  compatibility.
 - Moved the runtime material-product rules and technology conversion factors
   from Excel to versioned, validated YAML files.
 - Compiled material updates by exact activity and rule, removing repeated
@@ -14,6 +50,21 @@ All notable changes to this project are documented in this file.
   overlap with EPR components.
 
 ### Fixed
+- Preserved the IEA PVPS 2026 silicon-cell material inventories during metals
+  updates, avoiding capacity-based additions on top of metallization pastes.
+  Material overrides now require an explicit conversion with the expected
+  activity unit; missing conversions no longer default to one.
+- Added capacity conversions for three generated direct-drive wind variants,
+  declared the existing mass-based lorry-frame conversion, and excluded redox
+  flow battery stacks from the solid-oxide fuel-cell material mapping.
+- Restored columnar activity identity fields when a cleared mapping is updated,
+  fixing native Brightway export of prepared compact inventories.
+- Limited future scenario-inventory cache buildup with a startup sweep for
+  managed checkpoints and incomplete writes unused for more than 24 hours.
+  Cleanup is skipped while another `NewDatabase` instance is alive and preserves
+  referenced base checkpoints. Existing unmarked checkpoints and reusable source
+  caches remain untouched. Set `cleanup_expired_caches=False` to skip the sweep;
+  restart existing premise processes so all builds participate in locking.
 - Resolved the renamed high-grade gallium market for material updates in
   ecoinvent 3.11 and 3.12, fixing six missing-provider warnings in nightly
   certification while retaining the supplier name used by older versions.
@@ -25,6 +76,14 @@ All notable changes to this project are documented in this file.
   decisions and for post-allocation metal-resource corrections.
 
 ### Validation
+- Added automated documentation checks for internal links, historical anchors,
+  navigation order, Python example syntax, sector structure, generated reference
+  tables and process diagrams. The updated documentation builds with Sphinx
+  warnings treated as errors; representative pages were checked at desktop,
+  tablet and phone widths.
+- Added cache-expiry tests covering the 24-hour boundary, checkpoint reuse,
+  concurrent startups, process termination, and dependency protection. All 91
+  cache-cleanup, inventory-store, and database unit tests passed.
 - Added a dataset-wise direct-metal comparison and an upstream path-screening
   tool. The IMAGE SSP2-L 2020 ecoinvent 3.11 cutoff comparison contains no
   unexplained before/after metal-input differences.
