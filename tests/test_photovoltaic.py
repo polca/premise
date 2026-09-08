@@ -15,7 +15,6 @@ from premise.photovoltaic import (
     installation_metadata,
     module_area,
     module_exchange,
-    use_pv_2026,
 )
 from premise.electricity import Electricity
 
@@ -34,12 +33,6 @@ def inventories():
         builder.read_workbook(directory / "lci-PV-2026.xlsx"),
         builder.read_workbook(directory / "lci-PV-2026-electricity.xlsx"),
     )
-
-
-def test_rollout_is_explicit():
-    assert use_pv_2026("3.12", "cutoff")
-    assert not use_pv_2026("3.12", "consequential")
-    assert not use_pv_2026("3.11", "cutoff")
 
 
 def test_country_coverage_normalisation_and_water_balance(inventories):
@@ -291,16 +284,30 @@ def test_reference_cleaning_is_preserved_without_efficiency_change(inventories):
 
 
 @pytest.mark.parametrize(
-    "version,system_model,new_core",
+    "version,system_model",
     [
-        ("3.12", "cutoff", True),
-        ("3.12", "consequential", False),
-        ("3.11", "cutoff", False),
-    ],
+        (v, "cutoff")
+        for v in (
+            "3.5",
+            "3.6",
+            "3.7",
+            "3.7.1",
+            "3.8",
+            "3.9",
+            "3.9.1",
+            "3.10",
+            "3.10.1",
+            "3.11",
+            "3.12",
+        )
+    ]
+    + [
+        (v, "consequential")
+        for v in ("3.8", "3.9", "3.9.1", "3.10", "3.10.1", "3.11", "3.12")
+    ]
+    + [("3.12", "EN15804")],
 )
-def test_default_import_selects_exactly_one_pv_core(
-    monkeypatch, version, system_model, new_core
-):
+def test_default_import_selects_exactly_one_pv_core(monkeypatch, version, system_model):
     import premise.new_database as module
 
     selected = []
@@ -314,17 +321,22 @@ def test_default_import_selects_exactly_one_pv_core(
     database.system_model = system_model
     database._NewDatabase__import_inventories()
     paths = {path.name: source_version for path, source_version in selected}
-    assert ("lci-PV.xlsx" in paths) != new_core
-    assert ("lci-PV-2026.xlsx" in paths) == new_core
-    assert ("lci-PV-2026-electricity.xlsx" in paths) == new_core
-    assert ("lci-PV-CIGS.xlsx" in paths) == new_core
+    assert "lci-PV.xlsx" not in paths
+    assert "lci-PV-2026.xlsx" in paths
+    assert "lci-PV-2026-electricity.xlsx" in paths
+    assert "lci-PV-CIGS.xlsx" in paths
     assert "lci-PV-GaAs.xlsx" in paths and "lci-PV-perovskite.xlsx" in paths
-    if new_core:
-        assert paths["lci-PV-2026.xlsx"] == "3.12"
-        assert paths["lci-PV-CIGS.xlsx"] == "3.7"
+    assert paths["lci-PV-2026.xlsx"] == "3.12"
+    assert paths["lci-PV-CIGS.xlsx"] == "3.7"
 
 
-def test_pv_workbook_edits_invalidate_inventory_cache_only(monkeypatch, tmp_path):
+@pytest.mark.parametrize(
+    "version,system_model",
+    [("3.12", "cutoff"), ("3.11", "cutoff"), ("3.12", "consequential")],
+)
+def test_pv_workbook_edits_invalidate_inventory_cache_only(
+    monkeypatch, tmp_path, version, system_model
+):
     import premise.new_database as module
 
     for field in (
@@ -337,8 +349,8 @@ def test_pv_workbook_edits_invalidate_inventory_cache_only(monkeypatch, tmp_path
         monkeypatch.setattr(module, field, path)
     database = module.NewDatabase.__new__(module.NewDatabase)
     database.source_type = "brightway"
-    database.version = "3.12"
-    database.system_model = "cutoff"
+    database.version = version
+    database.system_model = system_model
     database.keep_source_db_uncertainty = False
     database.keep_imports_uncertainty = True
     original = database._database_cache_path("source", inventories=True)

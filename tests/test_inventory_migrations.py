@@ -15,6 +15,167 @@ def activity_with(*exchanges):
     return [{"name": "consumer", "exchanges": list(exchanges)}]
 
 
+def test_organic_chemical_market_backward_alias_preserves_forward_mapping():
+    rules = discover_available_migrations()[("3.11", "3.12")]["replace"]
+    products = (
+        "chemical, organic, unspecified",
+        "chemical, organic, basic precursors and materials",
+    )
+    database = activity_with(
+        *[
+            {
+                "name": f"market for {product}",
+                "reference product": product,
+                "product": product,
+                "location": "GLO",
+                "unit": "kilogram",
+                "type": "technosphere",
+                "amount": 2.5,
+            }
+            for product in products
+        ]
+    )
+    apply_backward_replace(database, rules)
+    for exchange in database[0]["exchanges"]:
+        assert exchange["name"] == "market for chemical, organic"
+        assert exchange["product"] == "chemical, organic"
+        assert exchange["reference product"] == "chemical, organic"
+        assert exchange["amount"] == 2.5
+        assert exchange["unit"] == "kilogram"
+
+    inventory_imports.apply_forward_replace(database, rules)
+    for exchange in database[0]["exchanges"]:
+        assert exchange["name"] == f"market for {products[1]}"
+        assert exchange["reference product"] == products[1]
+        assert exchange["amount"] == 2.5
+
+
+def test_tissue_paper_product_migrates_between_310_and_311():
+    rules = discover_available_migrations()[("3.10", "3.11")]["replace"]
+    old = {
+        "name": "tissue paper production",
+        "reference product": "tissue paper",
+        "product": "tissue paper",
+        "location": "RER",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "amount": 2.5,
+        "uncertainty type": 2,
+        "loc": 0.9162907318741551,
+        "scale": 0.1,
+    }
+    database = activity_with(copy.deepcopy(old))
+    inventory_imports.apply_forward_replace(database, rules)
+    assert database == activity_with(
+        {**old, "name": "tissue paper production, recycled"}
+    )
+    apply_backward_replace(database, rules)
+    assert database == activity_with(old)
+
+
+def test_pv_39_supplier_mappings_preserve_amounts_and_forward_market_shares():
+    rules = discover_available_migrations()[("3.9", "3.10")]
+    sodium = "sodium hydroxide, without water, in 50% solution state"
+    cases = [
+        (
+            "1,1-difluoroethane production, hfc-152a",
+            "1,1-difluoroethane, hfc-152a",
+            "US",
+            "1,1-difluoroethane production, HFC-152a",
+            "1,1-difluoroethane, HFC-152a",
+            "US",
+        ),
+        (
+            "chlor-alkali electrolysis, mercury cell",
+            sodium,
+            "GLO",
+            "chlor-alkali electrolysis, mercury cell",
+            sodium,
+            "RoW",
+        ),
+        (
+            "chlor-alkali electrolysis, average production",
+            sodium,
+            "RER",
+            f"market for {sodium}",
+            sodium,
+            "GLO",
+        ),
+    ]
+    for energy in ("electricity", "heat"):
+        product = f"{energy}, for reuse in municipal waste incineration only"
+        cases.append(
+            (
+                "treatment of municipal solid waste, municipal incineration FAE",
+                product,
+                "CH",
+                "treatment of municipal solid waste, incineration",
+                product,
+                "CH",
+            )
+        )
+    for (
+        name,
+        product,
+        location,
+        expected_name,
+        expected_product,
+        expected_location,
+    ) in cases:
+        original = {
+            "name": name,
+            "reference product": product,
+            "product": product,
+            "location": location,
+            "type": "technosphere",
+            "amount": 2.5,
+            "uncertainty type": 2,
+            "loc": 0.9162907318741551,
+            "scale": 0.1,
+        }
+        database = activity_with(copy.deepcopy(original))
+        apply_backward_replace(database, rules["replace"])
+        apply_aggregation(database, rules["disaggregate"])
+        assert database == activity_with(
+            {
+                **original,
+                "name": expected_name,
+                "reference product": expected_product,
+                "product": expected_product,
+                "location": expected_location,
+            }
+        )
+
+    market = {
+        "name": f"market for {sodium}",
+        "reference product": sodium,
+        "product": sodium,
+        "location": "GLO",
+        "type": "technosphere",
+        "amount": 10.0,
+    }
+    database = activity_with(copy.deepcopy(market))
+    inventory_imports.apply_forward_replace(database, rules["replace"])
+    apply_disaggregation(database, rules["disaggregate"])
+    assert [
+        (e["name"], e["location"], e["amount"]) for e in database[0]["exchanges"]
+    ] == [
+        (market["name"], "RoW", 10.0 * 0.9110384953195285),
+        (market["name"], "RER", 10.0 * 0.08896150468047141),
+    ]
+    hfc = {
+        "name": "1,1-difluoroethane production, HFC-152a",
+        "reference product": "1,1-difluoroethane, HFC-152a",
+        "location": "US",
+        "type": "technosphere",
+        "amount": 2.5,
+    }
+    database = activity_with(hfc)
+    inventory_imports.apply_forward_replace(database, rules["replace"])
+    assert hfc["name"] == "1,1-difluoroethane production"
+    assert hfc["reference product"] == "1,1-difluoroethane"
+
+
 def test_compiled_migration_rules_preserve_order_and_ignored_units():
     rules = [
         {
@@ -221,3 +382,25 @@ def test_compiled_migration_rule_caches_are_bounded(monkeypatch):
 
     assert len(inventory_imports._COMPILED_RULE_INDEX_CACHE) == 2
     assert len(inventory_imports._COMPILED_BIOSPHERE_RULE_CACHE) == 2
+
+
+def test_pv_38_concrete_proxy_preserves_volume_and_forward_market():
+    rules = discover_available_migrations()[("3.8", "3.9")]["replace"]
+    original = {
+        "name": "lean concrete production, for building construction, with cement ZN/D, with 100% RC-M aggregates",
+        "reference product": "lean concrete",
+        "product": "lean concrete",
+        "unit": "cubic meter",
+        "location": "CH",
+        "type": "technosphere",
+        "amount": 2.5,
+        "uncertainty type": 2,
+        "loc": 0.9162907318741551,
+        "scale": 0.1,
+    }
+    database = activity_with(copy.deepcopy(original))
+    apply_backward_replace(database, rules)
+    expected = activity_with({**original, "name": "market for lean concrete"})
+    assert database == expected
+    inventory_imports.apply_forward_replace(database, rules)
+    assert database == expected

@@ -5,7 +5,7 @@ All notable changes to this project are documented in this file.
 ## [2.5.1]
 
 ### Changed
-- Replaced the IEA PVPS 2021 core for ecoinvent 3.12 cut-off with inventories
+- Replaced the IEA PVPS 2021 core with inventories
   from IEA PVPS Task 12 report T12-33:2026. The new supply chains cover
   single-Si (a TOPCon/PERC mix), multi-Si and CdTe technologies, including
   manufacturing, installation and electricity production.
@@ -20,8 +20,17 @@ All notable changes to this project are documented in this file.
   wafer market by assuming domestic US production. Removed unused batteries,
   avoided-burden datasets and redundant CIGS and perovskite-silicon tandem
   inventories from the new core. Existing CIGS, perovskite and GaAs supplements
-  remain available separately; other ecoinvent versions and consequential
-  modelling continue to use the previous PV core.
+  remain available separately. The new core also applies to older ecoinvent
+  versions and consequential modelling through Premise's migration system.
+- Added PV supplier migrations, consequential co-product mappings and biosphere
+  aliases. Import audits pass without unlinked exchanges or ignored biosphere
+  flows for ecoinvent 3.9–3.11 cut-off and consequential, and 3.12 consequential.
+  Both 3.8 models import without unlinked technosphere exchanges, but omit nine
+  nitric-acid air emissions per import because the flow is absent from the 3.8
+  biosphere. Older-version supplier proxies include the Swiss lean-concrete
+  market and global sodium-hydroxide market; these do not retain all original
+  production specifications. PV workbook changes invalidate inventory caches
+  for all versions and system models.
 - Updated PV efficiency handling for mixed module inputs and 10 MW systems,
   preserving capacity metadata through caches and scaling module-dependent
   mounting, recycling and cleaning consistently.

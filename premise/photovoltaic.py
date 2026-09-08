@@ -16,11 +16,6 @@ PV_TECHNOLOGIES = {
 }
 
 
-def use_pv_2026(version, system_model):
-    """Only select configurations validated against the new cut-off inventory."""
-    return version == "3.12" and system_model == "cutoff"
-
-
 def identity(dataset):
     return (
         dataset.get("name"),

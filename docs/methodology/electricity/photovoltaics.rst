@@ -13,7 +13,16 @@ Premise represents PV manufacturing, installation and electricity production
 with distinct datasets. Country electricity datasets supply 1 kWh; the
 scenario transformation adjusts module area for installation efficiency while
 retaining the documented country technology recipes and yields.
-The 2026 core is selected only for ecoinvent 3.12 cut-off.
+The 2026 core is selected for all supported ecoinvent versions and system
+models. Premise applies its migration and consequential mapping data to link
+the inventories to the target database.
+
+Import audits cover ecoinvent 3.8–3.11 cut-off and consequential, and 3.12
+consequential. The 3.8 imports have no unlinked technosphere exchanges but omit
+nine nitric-acid air emissions per import because the flow is unavailable in
+the 3.8 biosphere. The audited 3.9–3.11 and 3.12 consequential imports have no
+unlinked exchanges or ignored biosphere flows. Automatic inventory selection
+for older versions does not imply that their imports have been validated.
 
 .. figure:: /_static/process-diagrams/electricity-photovoltaics.svg
    :class: process-diagram

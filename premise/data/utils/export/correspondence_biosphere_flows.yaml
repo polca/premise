@@ -44,11 +44,14 @@ air:
   Particulate Matter, > 10 um: Particulates, > 10 um
   Particulates, > 2.5 um, and < 10um: Particulate Matter, > 2.5 um and < 10um
   Potassium: Potassium I
+  Potassium I: Potassium
   Ethene: Ethylene
   Aluminium: Aluminium III
+  Aluminium III: Aluminium
   Silver: Silver I
   Silver I: Silver
   Tin: Tin ion
+  Tin ion: Tin
   Iron: Iron ion
   Iron ion: Iron
   Cesium-137: Caesium-137
@@ -64,14 +67,19 @@ air:
   Benzene, ethyl-: Ethyl benzene
   Benzene, hexachloro-: Hexachlorobenzene
   Calcium: Calcium II
+  Calcium II: Calcium
   Phenol, pentachloro-: Pentachlorophenol
   Sodium: Sodium I
+  Sodium I: Sodium
   Argon-40: Argon
   Methane, monochloro-, R-40: Methylchloride
   Ethane, 1,1-difluoro-, HFC-152a: 1,1-Difluoroethane
+  1,1-Difluoroethane: Ethane, 1,1-difluoro-, HFC-152a
+  Trifluoromethane: Methane, trifluoro-, HFC-23
   Ethane, 1,1,1,2-tetrafluoro-, HFC-134a: 1,1,1,2-Tetrafluoroethane
   1,1,1,2-Tetrafluoroethane:   Ethane, 1,1,1,2-tetrafluoro-, HFC-134a
   2-Propanol: Isopropanol
+  Isopropanol: 2-Propanol
   Methane, dichloro-, HCC-30: Dichloromethane
   Methane, tetrachloro-, R-10: Carbon tetrachloride
   Hydrogen-3, Tritium: Tritium
@@ -205,6 +213,7 @@ soil:
   Manganese: Manganese II
   Manganese II: Manganese
   Calcium: Calcium II
+  Calcium II: Calcium
   Dimethenamid: Dimethenamide
   Prohexadione-calcium: Prohexadione calcium
   Sodium: Sodium I
@@ -213,6 +222,7 @@ soil:
 
 
 water:
+  Copper: Copper ion
   AOX, Adsorbable Organic Halogen as Cl: AOX, Adsorbable Organic Halogen
   Aluminium: Aluminium III
   Aluminium III: Aluminium
@@ -278,6 +288,3 @@ water:
   t-Butylamine: t-Butyl amine
   Thiocyanate: Thiocyanate, ion
   AOX, Adsorbable Organic Halides: AOX, Adsorbable Organic Halogen as Cl
-
-
-

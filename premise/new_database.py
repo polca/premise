@@ -26,7 +26,6 @@ from packaging.version import Version
 from tqdm import tqdm
 
 from . import __version__
-from .photovoltaic import use_pv_2026
 from .cache_cleanup import with_cache_session
 from .battery import _update_battery
 from .biomass import _update_biomass
@@ -989,9 +988,7 @@ class NewDatabase:
         )
         uncertainty_label = "w_uncertainty" if uncertainty else "wo_uncertainty"
         inventory_label = "_inventories" if inventories else ""
-        if inventories and use_pv_2026(
-            getattr(self, "version", None), getattr(self, "system_model", None)
-        ):
+        if inventories:
             digest = hashlib.sha256()
             for path in (
                 FILEPATH_PHOTOVOLTAICS_2026,
@@ -1287,9 +1284,7 @@ class NewDatabase:
 
         selected_filepaths = []
         for filepath in filepaths:
-            if filepath[0] == FILEPATH_PHOTOVOLTAICS and use_pv_2026(
-                self.version, self.system_model
-            ):
+            if filepath[0] == FILEPATH_PHOTOVOLTAICS:
                 selected_filepaths.extend(
                     [
                         (FILEPATH_PHOTOVOLTAICS_2026, "3.12"),

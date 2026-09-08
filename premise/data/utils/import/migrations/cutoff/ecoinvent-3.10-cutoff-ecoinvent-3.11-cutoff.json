@@ -7017,6 +7017,20 @@
       "source": {
         "unit": "kg",
         "name": "tissue paper production",
+        "reference product": "tissue paper",
+        "location": "RER"
+      },
+      "target": {
+        "unit": "kg",
+        "name": "tissue paper production, recycled",
+        "reference product": "tissue paper",
+        "location": "RER"
+      }
+    },
+    {
+      "source": {
+        "unit": "kg",
+        "name": "tissue paper production",
         "reference product": "waste paper, sorted",
         "location": "GLO"
       },
