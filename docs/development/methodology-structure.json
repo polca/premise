@@ -1,0 +1,38 @@
+{
+  "headings": [
+    "Scope and outputs",
+    "Inputs and applicability",
+    "Transformation",
+    "Markets and downstream links",
+    "Assumptions and limitations",
+    "Worked example and checks",
+    "Sources and inventory details"
+  ],
+  "pages": [
+    "methodology/steel.rst",
+    "methodology/cement.rst",
+    "methodology/heat.rst",
+    "methodology/electricity/generation.rst",
+    "methodology/electricity/markets.rst",
+    "methodology/electricity/photovoltaics.rst",
+    "methodology/biomass.rst",
+    "methodology/fuels/hydrogen.rst",
+    "methodology/fuels/biofuels.rst",
+    "methodology/fuels/synthetic.rst",
+    "methodology/fuels/ammonia.rst",
+    "methodology/metals.rst",
+    "methodology/mining.rst",
+    "methodology/cdr.rst",
+    "methodology/emissions.rst",
+    "methodology/final-energy.rst",
+    "methodology/fuels/markets.rst",
+    "methodology/transport/passenger-cars.rst",
+    "methodology/transport/buses.rst",
+    "methodology/transport/two-wheelers.rst",
+    "methodology/transport/trucks.rst",
+    "methodology/battery-mobile.rst",
+    "methodology/battery-stationary.rst",
+    "methodology/transport/rail.rst",
+    "methodology/transport/shipping.rst"
+  ]
+}

@@ -43,7 +43,7 @@ The production result comes from `premise.marginal_mixes.consequential_method`. 
 | Real-data market-direction branches | PASS | Expanding/replacing and declining branches both covered = True |
 | Constrained-supplier parameter schema | PASS | YAML runtime type is `list`; unintended substring matches: none |
 
-Guardrails exercised:
+Checks performed:
 
 - PASS — range and duration cannot both be non-zero
 - PASS — a 2-year duration must use range time

@@ -1395,8 +1395,8 @@ class Metals(BaseTransformation):
             self.material_rules_by_technology[rule.technology].append(rule)
 
         self.technology_conversions = load_technology_conversions()
-        self.conversion_factors_dict = {
-            item.activity_name: item.factor for item in self.technology_conversions
+        self.technology_conversions_by_name = {
+            item.activity_name: item for item in self.technology_conversions
         }
 
         inv = InventorySet(self.database, self.version)
@@ -1479,16 +1479,13 @@ class Metals(BaseTransformation):
         """Compile unique dataset/rule work items before mutating the database."""
 
         plan: List[dict] = []
-        seen: Dict[tuple[int, str], float] = {}
+        seen: Dict[tuple[int, str], float | None] = {}
         for technology, mapped_datasets in self.activities_metals_map.items():
             rules = self.material_rules_by_technology.get(technology, ())
             if not rules:
                 continue
             for rule in rules:
                 for mapped_dataset in mapped_datasets:
-                    conversion_factor = self.conversion_factors_dict.get(
-                        mapped_dataset.get("name"), 1.0
-                    )
                     if rule.target.kind == "mapped_activity":
                         targets = (mapped_dataset,)
                     else:
@@ -1498,15 +1495,14 @@ class Metals(BaseTransformation):
                             )
                         )
                     for target in targets:
+                        conversion_factor = (
+                            None
+                            if self._material_policy_for(target, technology)
+                            else self._technology_conversion_factor(mapped_dataset)
+                        )
                         key = (id(target), rule.id)
-                        previous_factor = seen.get(key)
-                        if previous_factor is not None:
-                            if not np.isclose(
-                                previous_factor,
-                                conversion_factor,
-                                rtol=0.0,
-                                atol=0.0,
-                            ):
+                        if key in seen:
+                            if seen[key] != conversion_factor:
                                 raise MetalsConfigError(
                                     f"Rule {rule.id!r} reaches "
                                     f"{target.get('name')!r} through mapped activities "
@@ -1575,7 +1571,11 @@ class Metals(BaseTransformation):
         :return: Does not return anything. Modified in place.
         """
 
-        conversion_factor = self.conversion_factors_dict.get(dataset["name"], 1.0)
+        conversion_factor = (
+            None
+            if self._material_policy_for(dataset, technology)
+            else self._technology_conversion_factor(dataset)
+        )
         for rule in self.material_rules_by_technology.get(technology, ()):
             if rule.target.kind == "mapped_activity":
                 self._apply_material_rule(
@@ -1603,8 +1603,27 @@ class Metals(BaseTransformation):
                 dataset=dataset,
                 technology=technology,
                 rule=rule,
-                conversion_factor=conversion_factor or 1.0,
+                conversion_factor=conversion_factor,
             )
+
+    def _technology_conversion_factor(self, dataset: dict) -> float:
+        """Require a declared conversion before applying a material intensity."""
+
+        conversion = self.technology_conversions_by_name.get(dataset.get("name"))
+        if conversion is None:
+            raise MetalsConfigError(
+                f"Missing material-intensity conversion for {dataset.get('name')!r} "
+                f"({dataset.get('unit')!r}, {dataset.get('location')!r}). "
+                "Declare a unit-compatible technology conversion or an explicit "
+                "preserve_source policy; no material overrides have been applied."
+            )
+        if dataset.get("unit") != conversion.ecoinvent_unit:
+            raise MetalsConfigError(
+                f"Material-intensity conversion unit mismatch for "
+                f"{dataset.get('name')!r}: expected {conversion.ecoinvent_unit!r}, "
+                f"got {dataset.get('unit')!r}."
+            )
+        return conversion.factor
 
     def _material_policy_for(
         self, dataset: dict, technology: str
@@ -1670,9 +1689,38 @@ class Metals(BaseTransformation):
         dataset: dict,
         technology: str,
         rule: MaterialRule,
-        conversion_factor: float,
+        conversion_factor: float | None,
     ) -> None:
         """Calculate and apply, preserve, or diagnose one material rule."""
+
+        policy = self._material_policy_for(dataset, technology)
+        if policy is not None:
+            self._record_material_decision(
+                dataset,
+                rule,
+                status="skipped",
+                reason_code="metals.material_rule.preserved_source",
+                explanation=(
+                    f"Preserved {dataset['name']!r} for material rule {rule.id!r}: "
+                    f"{policy.reason}"
+                ),
+                values={
+                    "material rule id": rule.id,
+                    "technology": technology,
+                    "element": rule.element,
+                    "activity policy id": policy.id,
+                },
+            )
+            return
+        if (
+            conversion_factor is None
+            or not np.isfinite(conversion_factor)
+            or conversion_factor <= 0
+        ):
+            raise MetalsConfigError(
+                f"Invalid material-intensity conversion for {dataset.get('name')!r}: "
+                f"{conversion_factor!r}."
+            )
 
         if rule.provider is None or rule.element is None:
             return
@@ -1716,22 +1764,6 @@ class Metals(BaseTransformation):
             "old direct amount": old_amount,
             "target direct amount": median_value,
         }
-
-        policy = self._material_policy_for(dataset, technology)
-        if policy is not None:
-            values["activity policy id"] = policy.id
-            self._record_material_decision(
-                dataset,
-                rule,
-                status="skipped",
-                reason_code="metals.material_rule.preserved_source",
-                explanation=(
-                    f"Preserved {dataset['name']!r} for material rule {rule.id!r}: "
-                    f"{policy.reason}"
-                ),
-                values=values,
-            )
-            return
 
         try:
             provider = self.get_metal_market_dataset(

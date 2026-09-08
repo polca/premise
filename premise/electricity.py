@@ -40,6 +40,7 @@ from .utils import (
     rescale_exchanges,
 )
 from .validation import ElectricityValidation
+from .photovoltaic import identity as pv_identity, module_area, module_exchange
 from .validation_framework import record_validation_phase
 
 POWERPLANT_TECHS = VARIABLES_DIR / "electricity.yaml"
@@ -1559,6 +1560,11 @@ class Electricity(BaseTransformation):
 
         # efficiency of modules in the future
         module_eff = get_efficiency_solar_photovoltaics()
+        original_pv_areas = {
+            pv_identity(d): module_area(d)
+            for d in self.database
+            if "pv capacity kwp" in d
+        }
 
         datasets = ws.get_many(
             self.database,
@@ -1574,6 +1580,9 @@ class Electricity(BaseTransformation):
         )
 
         for dataset in datasets:
+            if "pv capacity kwp" in dataset:
+                self._update_pv_2026_efficiency(dataset, module_eff)
+                continue
             numbers = re.findall(r"[-+]?\d*\.\d+|\d+", dataset["name"])
             if not numbers:
                 print(f"No numerical value found in dataset name: {dataset['name']}")
@@ -1683,6 +1692,107 @@ class Electricity(BaseTransformation):
                         ws.equals("unit", "kilogram"),
                     ):
                         exc["amount"] *= scaling_factor
+
+        self._update_pv_cleaning_water(original_pv_areas)
+
+    def _update_pv_cleaning_water(self, original_areas):
+        """Keep lifetime module cleaning consistent with the updated module area."""
+        plants = {
+            pv_identity(d): module_area(d)
+            for d in self.database
+            if "pv capacity kwp" in d
+        }
+        if not plants:
+            return
+        for dataset in self.database:
+            if dataset["unit"] != "kilowatt hour":
+                continue
+            area = sum(
+                e["amount"] * plants[pv_identity(e)]
+                for e in dataset["exchanges"]
+                if e["type"] == "technosphere" and pv_identity(e) in plants
+            )
+            if area <= 0:
+                continue
+            original_area = sum(
+                e["amount"] * original_areas[pv_identity(e)]
+                for e in dataset["exchanges"]
+                if e["type"] == "technosphere" and pv_identity(e) in original_areas
+            )
+            if original_area <= 0 or area == original_area:
+                continue
+            for exchange in dataset["exchanges"]:
+                name = exchange["name"].lower()
+                if (
+                    name == "market for tap water"
+                    or "treatment of wastewater" in name
+                    or (name == "water" and exchange["type"] == "biosphere")
+                ):
+                    rescale_exchange(
+                        exchange, area / original_area, remove_uncertainty=False
+                    )
+
+    def _update_pv_2026_efficiency(self, dataset, module_eff):
+        """Scale module-dependent inputs from total module area and rated power.
+
+        A system can contain several module technologies and a different mounting
+        area. Neither an individual module input nor mounting area represents its
+        total generating surface. Fixed wiring, inverters and buildings retain
+        their capacity-based quantities.
+        """
+        current = float(dataset["pv capacity kwp"]) / module_area(dataset)
+        projection = module_eff.sel(technology=dataset["pv technology"])
+        if self.year in projection.coords["year"].values:
+            projection = projection.sel(year=self.year)
+        else:
+            projection = projection.interp(
+                year=self.year, kwargs={"fill_value": "extrapolate"}
+            )
+        mean = float(np.clip(projection.sel(efficiency_type="mean"), 0.1, 0.30))
+        if mean <= current:
+            return
+        low = max(
+            current,
+            min(mean, float(np.clip(projection.sel(efficiency_type="min"), 0.1, 0.30))),
+        )
+        high = max(
+            mean, float(np.clip(projection.sel(efficiency_type="max"), 0.1, 0.30))
+        )
+        factor = current / mean
+        for exchange in dataset["exchanges"]:
+            if module_exchange(exchange):
+                original = exchange["amount"]
+                rescale_exchange(exchange, factor)
+                exchange.update(
+                    {
+                        "uncertainty type": 5,
+                        "minimum": original * current / high,
+                        "maximum": original * current / low,
+                    }
+                )
+            elif exchange["type"] == "technosphere" and (
+                (
+                    exchange["unit"] == "square meter"
+                    and "photovoltaic mounting" in exchange["name"]
+                )
+                or (
+                    exchange["unit"] == "kilogram"
+                    and "treatment" in exchange["name"]
+                    and "photovoltaic module" in exchange["name"]
+                )
+            ):
+                rescale_exchange(exchange, factor, remove_uncertainty=False)
+        dataset["comment"] = dataset.get("comment", "") + (
+            f" premise increased module efficiency from {current:.2%} to {mean:.2%}; "
+            "module area, associated mounting and module end-of-life inputs were scaled together."
+        )
+        dataset.setdefault("log parameters", {}).update(
+            {
+                "old efficiency": current,
+                "new efficiency": mean,
+            }
+        )
+        self.write_log(dataset=dataset, status="updated")
 
     def create_region_specific_power_plants(self):
         """
