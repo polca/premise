@@ -34,6 +34,7 @@ outputs:
         - lxml <6.0.0
         - pandas
         - platformdirs
+        - portalocker >=2.8
         - prettytable
         - pyarrow
         - pycountry
@@ -79,6 +80,7 @@ outputs:
         - lxml <6.0.0
         - pandas
         - platformdirs
+        - portalocker >=2.8
         - prettytable
         - pyarrow
         - pycountry
