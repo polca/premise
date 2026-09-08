@@ -50,6 +50,11 @@ All notable changes to this project are documented in this file.
   overlap with EPR components.
 
 ### Fixed
+- Restored Wurst-compatible activity parameter records in both Brightway writers,
+  fixing the `TypeError` when extracting databases exported by premise 2.5.0
+  ([#306](https://github.com/polca/premise/issues/306)). Existing parameter
+  comments and uncertainty metadata are preserved. Premise's extractor also
+  retains scalar parameter values from affected databases.
 - Preserved the IEA PVPS 2026 silicon-cell material inventories during metals
   updates, avoiding capacity-based additions on top of metallization pastes.
   Material overrides now require an explicit conversion with the expected
@@ -76,6 +81,9 @@ All notable changes to this project are documented in this file.
   decisions and for post-allocation metal-resource corrections.
 
 ### Validation
+- Added parameter export regression tests for both Brightway writers in fast
+  and standard modes, plus extraction tests for scalar and record formats.
+  All 54 writer and extraction tests passed.
 - Added automated documentation checks for internal links, historical anchors,
   navigation order, Python example syntax, sector structure, generated reference
   tables and process diagrams. The updated documentation builds with Sphinx
