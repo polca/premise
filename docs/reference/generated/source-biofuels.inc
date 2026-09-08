@@ -1,8 +1,8 @@
 .. list-table::
    :header-rows: 1
 
-   * - Provenance
-     - Scope
+   * - Source information
+     - Details
    * - Source/data years
      - 2006–2022 cited sources, including a 2020 GREET update
    * - Boundary

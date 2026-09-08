@@ -1,8 +1,8 @@
 .. list-table::
    :header-rows: 1
 
-   * - Provenance
-     - Scope
+   * - Source information
+     - Details
    * - Source/data years
      - Inherited forestry/residue inventories; reference years vary and are not all recorded
    * - Boundary

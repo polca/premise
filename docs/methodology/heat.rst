@@ -5,7 +5,7 @@
 .. _heat-transformation:
 
 Heat
-======
+========
 
 
 .. contents:: On this page
@@ -408,7 +408,7 @@ Cutoff and consequential databases
 For cutoff databases, the normalized delivered-heat volumes form average
 technology shares. For consequential databases, the same delivered-heat arrays
 are passed through the *premise* marginal-mix calculation before the market is
-written. The three-layer architecture, existing consumer routing, residual rules,
+written. The three-layer architecture, existing links to consuming activities, residual rules,
 and cycle checks are otherwise shared by both system models.
 
 Worked example and checks
@@ -428,7 +428,11 @@ layer and that purchased heat does not create a market cycle.
 Sources and inventory details
 -------------------------------
 
-Source provenance and currency
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. raw:: html
+
+   <span id="source-provenance-and-currency"></span>
+
+Sources and data dates
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. include:: /reference/generated/source-heat.inc

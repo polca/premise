@@ -1,6 +1,11 @@
 IAM model comparison
 ======================
 
+.. raw:: html
+
+   <span id="choosing-the-right-iam"></span>
+
+
 .. contents:: On this page
    :local:
    :depth: 1
@@ -12,17 +17,17 @@ IAM model comparison
    * - Model
      - Description
    * - REMIND
-     - REMIND (Regionalized Model of Investment and Development) is an integrated assessment model that combines macroeconomic growth, energy system, and climate policy analysis. It is designed to analyze long-term energy transition pathways, accounting for technological, economic, and environmental factors. REMIND simulates how regions invest in different technologies and energy resources to balance economic growth and climate targets, while considering factors like energy efficiency, emissions, and resource availability. The model is particularly strong in its detailed representation of energy markets and macroeconomic interactions across regions, making it valuable for global climate policy assessments.
+     - REMIND (Regionalized Model of Investment and Development) links economic growth, energy investment and climate policy. It models how regions invest in technologies and energy resources under climate constraints.
    * - REMIND-EU
-     - REMIND-EU is a regionalized version of the REMIND model, specifically tailored to analyze energy systems and climate policies within the European Union. It incorporates detailed representations of EU member states' energy markets, technological options, and policy frameworks. It allows for a more granular analysis of how EU-specific policies, such as the European Green Deal, affect energy transition pathways, emissions reductions, and economic development within the EU context.
+     - REMIND-EU represents European energy systems and policies in more regional detail than the global REMIND model.
    * - IMAGE
-     - IMAGE (Integrated Model to Assess the Global Environment) is a comprehensive IAM developed to explore the interactions between human development, energy consumption, and environmental systems over the long term. It focuses on assessing how land use, food systems, energy systems, and climate change interact under different policy scenarios. The model integrates biophysical processes, such as land-use change and greenhouse gas emissions, with socio-economic drivers like population growth and economic development. IMAGE is commonly used for analyzing sustainable development strategies, climate impacts, biodiversity loss, and exploring mitigation and adaptation options.
+     - IMAGE (Integrated Model to Assess the Global Environment) links energy, land use, agriculture and climate. It represents environmental processes alongside changes in population and economic activity.
    * - TIAM-UCL
-     - TIAM-UCL (TIMES Integrated Assessment Model by University College London) is a global energy system model based on the TIMES (The Integrated MARKAL-EFOM System) framework, developed to evaluate long-term decarbonization pathways for global energy systems. It provides detailed insights into energy technology options, resource availability, and emission reduction strategies under various climate policy scenarios. The model focuses on the trade-offs and synergies between energy security, economic costs, and environmental outcomes. TIAM-UCL is frequently used to analyze scenarios consistent with the Paris Agreement and examine technological innovation's role in mitigating climate change globally.
+     - TIAM-UCL (TIMES Integrated Assessment Model by University College London) models energy technologies, resources and supply chains. It uses the TIMES framework to examine the costs and technology choices of decarbonization pathways.
    * - MESSAGE
      - MESSAGEix-GLOBIOM-GAINS (MESSAGE) couples the MESSAGEix energy system with the GLOBIOM land-use model and GAINS air-pollution module. It is used to explore long-term energy and land-use transitions and their climate and air-quality implications under different policy scenarios.
    * - GCAM
-     - GCAM (Global Change Analysis Model) is an integrated assessment model that simulates the interactions between energy, water, land use, climate, and economic systems on a global scale. It is designed to analyze how different policy scenarios, technological developments, and socio-economic factors influence greenhouse gas emissions, energy production and consumption, land use changes, and climate outcomes. GCAM incorporates detailed representations of energy technologies, agricultural systems, and land-use dynamics, allowing for comprehensive assessments of mitigation strategies and their implications for sustainable development. The model is widely used for exploring pathways to achieve climate targets while considering trade-offs across multiple sectors.
+     - GCAM (Global Change Analysis Model) links energy, water, land use, climate and economic systems. It represents their responses to policies, technology changes and socioeconomic assumptions.
 
 
 Quick Reference
@@ -82,85 +87,20 @@ Quick Reference
      - Energy system + land/air
      - Coupled land–water–energy
 
-**REMIND**
+Choosing an IAM
+-----------------
 
-REMIND (Regionalized Model of Investment and Development) is a CGE-based energy-economy IAM with perfect
-foresight. Its main strength lies in capturing interactions between macroeconomic growth and energy
-transitions across 12–13 global regions. Compared to IMAGE, REMIND provides more detailed energy market
-and investment dynamics, but it lacks IMAGE's rich land-use and biodiversity modules. Compared to
-TIAM-UCL, REMIND emphasizes macroeconomic feedbacks over technological granularity, making it
-better for studying long-term global climate policies rather than detailed technology pathways.
-REMIND-EU builds directly on REMIND but adds EU-specific regionalization.
+Choose models whose reported variables cover the processes and regions needed
+for your study. The descriptions above explain each model's focus; they do not
+show which outputs are available in a particular scenario file or used by
+Premise. See :doc:`coverage` for the configured sector mappings.
 
-**REMIND-EU**
+Compare results across models for a similar climate target where possible.
+Different models can meet that target with different technologies and resources,
+producing different inventories. Check scenario assumptions and sector coverage
+before attributing a result to the choice of model alone.
 
-REMIND-EU is a regionalized version of REMIND, designed to analyze the European Union’s energy
-transition with country-level resolution (at least, for France, Germany, and the UK). It retains
-REMIND’s CGE approach and perfect foresight but includes EU-specific policies and technologies,
-which are less detailed in the global REMIND model. Compared to IMAGE, REMIND-EU still lacks a
-strong land-use component, but its granularity for  EU energy systems makes it preferable for
-studying European Green Deal scenarios. Compared to TIAM-UCL, REMIND-EU has less technology detail
-but better macroeconomic and cross-sectoral insights for EU policymaking.
-
-**IMAGE**
-
-IMAGE (Integrated Model to Assess the Global Environment) is a simulation-based IAM with a
-recursive-dynamic structure (myopic foresight). It excels in land-use, agriculture, and
-biodiversity modeling, making it the best choice for scenarios that involve climate–ecosystem
-interactions. Compared to REMIND and TIAM-UCL, IMAGE has less detailed energy system modeling and
-no explicit macroeconomic CGE framework. However, its biophysical integration and land-use modeling
-(unlike TIAM-UCL, which lacks this entirely) makes it complementary to energy-focused models.
-
-**TIAM-UCL**
-
-TIAM-UCL is a bottom-up, technology-rich energy system model based on linear optimization
-with perfect foresight. It focuses on detailed technology pathways, energy supply chains,
-and long-term decarbonization strategies. Compared to REMIND and IMAGE, TIAM-UCL lacks
-macroeconomic modeling and has no integrated land-use module, but it provides superior
-technology detail and resource-specific analyses (e.g., hydrogen pathways, renewables
-deployment). It is particularly suited for Paris Agreement-compliant energy transitions
-and cost-optimal technology portfolios.
-
-**MESSAGE**
-
-MESSAGEix-GLOBIOM-GAINS (MESSAGE) is an energy-system optimization IAM coupled with the GLOBIOM
-land-use model and the GAINS air-pollution module. It provides detailed energy system pathways
-with explicit links to land-use and air-quality outcomes. Compared to REMIND, it is less focused
-on macroeconomic feedbacks but offers stronger coupling to land-use and air-pollution dynamics.
-Compared to GCAM and IMAGE, it emphasizes cost-optimal energy system transformations while still
-capturing land-use interactions through GLOBIOM.
-
-**GCAM**
-
-GCAM (Global Change Analysis Model) is a recursive-dynamic IAM based on partial equilibrium
-with myopic foresight. Its distinguishing feature is the tight coupling of energy, land,
-water, and agriculture systems within a single framework. Compared to REMIND, GCAM lacks
-intertemporal optimization and macroeconomic feedbacks but offers richer integration of
-land and water systems. Compared to IMAGE, GCAM places stronger emphasis on regional
-bioenergy–land-use trade-offs and water constraints, although its energy system detail
-is slightly more stylized. Unlike TIAM-UCL, GCAM is not technology-optimization–driven,
-but it captures market-driven transitions in land and energy under policy constraints.
-This makes it especially suitable for analyzing cross-sectoral impacts of climate, land,
-and water policies in a globally consistent framework.
-
-Choosing the Right IAM
-------------------------
-
-Selecting the appropriate IAM for use with *premise* depends on the focus of your study:
-
-- **REMIND** is best suited for **global energy–economy transition analyses** where the interplay between macroeconomic growth, energy markets, and climate policies is key.
-- **REMIND-EU** is ideal for **EU-focused studies**, particularly those assessing the **European Green Deal** or country-level decarbonization strategies within the EU.
-- **IMAGE** is the preferred choice when **land-use change, agriculture, biodiversity, or climate–ecosystem interactions** are central to the analysis. Its biophysical and environmental modules complement energy-focused IAMs.
-- **TIAM-UCL** is most appropriate for exploring **detailed technology pathways**, resource allocation, and **cost-optimal energy system designs**, particularly for **Paris Agreement-compatible scenarios**.
-- **MESSAGE** is most suitable when you need **cost-optimal energy system pathways** with explicit **land-use** and **air-pollution** linkages.
-- **GCAM** is most suitable when the cross-sectoral links between land, water, energy, and agriculture are crucial. It is especially useful for questions involving bioenergy deployment, water scarcity constraints, or food–land competition under climate policy.
-
-Our recommendation is to assess the sensitivity of your results across different IAMs for a given climate target.
-IAMs will deploy different technologies and resources to achieve the same climate target, which will lead to different life cycle inventories.
-
-Additionally, the level of sectoral integration in *premise* varies across IAMs, which can affect the results.
-
-This table below summarize the numbers of variables mapping with *premise* for each IAM and sector:
+The table below lists the number of variables mapped in Premise for each IAM and sector:
 
 .. list-table::
    :header-rows: 1
@@ -325,7 +265,7 @@ Sectoral observations:
 
 * Broad coverage of electricity (34), fuels (49), and heat (32).
 * Highly detailed transport, with 60 variables for passenger cars and 40 for road freight.
-* Comprehensive coverage of carbon dioxide removal (11).
+* Coverage of carbon dioxide removal (11).
 
 *Limitation:*
 
@@ -371,7 +311,7 @@ Sectoral observations:
 *Limitations:*
 
 * Transport coverage is lower than REMIND(-EU) and TIAM-UCL for passenger cars and road freight.
-* Industrial detail is uneven across sectors (cement 12, steel 23), reflecting its broader systems focus rather than technology granularity.
+* Industrial detail is uneven across sectors (cement 12, steel 23), reflecting its broader systems focus rather than technology detail.
 
 **MESSAGE**
 

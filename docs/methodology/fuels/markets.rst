@@ -78,12 +78,12 @@ Influence of differing LHV on fuel market composition
 Because not all competing fuels of a same type have similar calorific values,
 some adjustments are made. The table below shows the example of the market for
 gasoline, for the IMAGE region of Western Europe in 2050.
-The sum of fuel inputs is superior to 1 (i.e., 1.4 kg).
+The fuel inputs total more than 1 kg (1.4 kg in this example).
 This is because the market dataset as "1 kg" as reference unit, and
 methanol and bioethanol have low
 calorific values comparatively to petrol
 (i.e., 19.9 and 26.5 MJ/kg respectively, vs. 42.6 MJ/kg for gasoline).
-Hence, their inputs are scaled up to reach an average calorific value
+Their inputs are scaled up to reach an average calorific value
 of 42.6 MJ/kg of fuel supplied by the market.
 
 This is necessary as gasoline-consuming activities in the lCI database

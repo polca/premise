@@ -15,7 +15,17 @@ Runtime and resident-memory optimization
 
 
 
-**Premise 2.5 InventoryStore status (27 August 2026):** The store contract,
+The measurements below use several implementation terms:
+
+* **RSS** is the memory held in RAM by the process.
+* **Canonical hash** is a checksum calculated after putting inventory data
+  into a consistent order and format, so equivalent outputs can be compared.
+* **Copy-on-write** means scenarios share unchanged data and copy it when edited.
+* **Checkpoint** is a saved inventory that can be reopened.
+* **Materialization** means constructing a full list of activity dictionaries.
+* **Acceptance gate** is a check that a change must pass before it is accepted.
+
+**Premise 2.5 InventoryStore status (27 August 2026):** The store interface,
 immutable records, atomic transactions, copy-on-write forks, ordered indexes,
 Arrow checkpoints, private scenario ownership, and explicit materialization
 API are implemented. Compact storage is the production and performance path;
@@ -41,8 +51,8 @@ Reproducible benchmark
 ------------------------
 
 
-Run the benchmark with the project environment and an existing Brightway
-project. Encrypted IAM files require ``PREMISE_KEY`` or ``IAM_FILES_KEY``; a local
+Run the benchmark in the Python environment used for Premise, selecting an existing
+Brightway project. Encrypted IAM files require ``PREMISE_KEY`` or ``IAM_FILES_KEY``; a local
 plaintext IAM file does not.
 
 
@@ -57,7 +67,7 @@ versus 278.26 seconds immediately before validation. The regression came from
 exhaustive end-of-update certification, whole-inventory normalization, and a
 second normalization and cleanup sequence before fast Brightway export.
 
-Production certification now combines the contracts evaluated while each
+Validation now combines the checks performed while each
 sector still owns its target activities. Exhaustive graph validation remains
 available with ``get_validation_report(exhaustive=True)`` and is forced after
 any post-certificate store mutation or when an update has no sector coverage.
@@ -149,7 +159,7 @@ preparation itself fell from 17.23 to 12.63 seconds.
 The follow-up implements five bounded changes:
 
 1. Validation cleanup uses transformation-owned activity registries instead of
-   rescanning the complete graph for temporary provenance fields.
+   rescanning the complete graph for temporary fields recording where data came from.
 2. Brightway input assignment and exporter schema validation share one provider
    index and one exchange traversal, while retaining the compatibility path for
    third-party validator subclasses.
@@ -165,7 +175,7 @@ The follow-up implements five bounded changes:
    established scenario-cache normalization boundary and avoids retaining
    several complete inventories.
 
-Within the revised update profile, sector contracts plus incremental
+Within the revised update profile, sector checks plus incremental
 certificate construction take 1.79 seconds, or 2.32% of the matched
 77.30-second pre-validation update. The three-scenario result reduces total
 cProfile time by 53.4% and peak RSS from 2.90 to 2.49 GB. The later five-path

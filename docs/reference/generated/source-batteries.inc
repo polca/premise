@@ -1,8 +1,8 @@
 .. list-table::
    :header-rows: 1
 
-   * - Provenance
-     - Scope
+   * - Source information
+     - Details
    * - Source/data years
      - Lithium-ion sources include 2019/2021; emerging chemistries include 2023/2024 studies
    * - Boundary

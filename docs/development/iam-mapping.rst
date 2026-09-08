@@ -34,7 +34,7 @@ corresponding IAM variable name as follows:
           - market for wood chips, wet, measured as dry mass
 
 If efficiency-related variables are not available, the corresponding
-technologies will simply not have their efficiency adjusted.
+the efficiency of those technologies will remain unchanged.
 
 CDR energy-use aliases
 ------------------------
@@ -87,4 +87,4 @@ premise/iam_variables_mapping/topologies, under the name: iamname-topology.json.
         "World": ["GLO", "RoW"]
     }
 
-Note that the IAM region names must be identical to the ones used in the IAM scenario files.
+IAM region names must be identical to the ones used in the IAM scenario files.

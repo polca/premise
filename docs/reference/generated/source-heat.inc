@@ -1,8 +1,8 @@
 .. list-table::
    :header-rows: 1
 
-   * - Provenance
-     - Scope
+   * - Source information
+     - Details
    * - Source/data years
      - Ecoinvent source years vary; IAM years and reporting conventions are model dependent
    * - Boundary

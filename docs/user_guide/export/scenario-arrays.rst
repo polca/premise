@@ -40,8 +40,8 @@ Complete three-scenario IMAGE example
 ---------------------------------------
 
 The following example uses the ``ecoinvent-3.12-cutoff`` project and applies
-all sector updates to three IMAGE pathways for 2050. Set ``PREMISE_KEY`` in the
-environment before running it. The source and biosphere database names must
+all sector updates to three IMAGE pathways for 2050. Set the ``PREMISE_KEY``
+environment variable before running it. The source and biosphere database names must
 match the names registered in your project.
 
 .. code-block:: python

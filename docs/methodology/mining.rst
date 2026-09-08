@@ -220,7 +220,11 @@ Inventories
 
 The inventories are provided under `premise/data/additional_inventories <https://github.com/polca/premise/tree/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/additional_inventories>`_
 
-Source provenance and currency
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. raw:: html
+
+   <span id="source-provenance-and-currency"></span>
+
+Sources and data dates
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. include:: /reference/generated/source-mining.inc

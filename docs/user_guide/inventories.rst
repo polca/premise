@@ -5,11 +5,10 @@ Inspecting and modifying inventories
    :local:
    :depth: 1
 
-The examples below select ``inventory_backend="compact"`` explicitly when
-constructing ``NewDatabase``. See :doc:`/development/documentation-audit` for
-a legacy-backend transaction limitation found during this review.
+The examples below use ``inventory_backend="compact"`` when creating
+``NewDatabase``. Use this backend for the transaction example.
 
-Premise 2.5 owns inventories through ``InventoryStore``. Mutable inventory lists
+Premise 2.5 stores inventories in ``InventoryStore``. Mutable inventory lists
 are no longer exposed on ``NewDatabase`` or retained in active scenario
 dictionaries.
 
@@ -29,11 +28,10 @@ and exchange replacement must occur inside a transaction. A transaction commits
 data and index changes together and restores its complete prior state if an
 exception leaves the context.
 
-Compact transactions keep a rollback-safe structural snapshot and copy only
-rows they touch. The emissions transformation uses this path directly; sectors
-not yet migrated continue through the private list-compatible bridge.
+Compact transactions copy only the rows they change and retain enough
+information to undo those changes if the transaction fails.
 
-Integrations that cannot consume the store may explicitly materialize it:
+To obtain an independent list of activity dictionaries, use:
 
 
 .. code-block:: python
@@ -41,22 +39,20 @@ Integrations that cannot consume the store may explicitly materialize it:
    database = ndb.materialize_inventory(restore_metadata=True)
 
 
-This duplicates the complete graph as Python dictionaries and can require
-several gigabytes for a full ecoinvent scenario. It is therefore an integration
-boundary, not the normal inspection API.
+This copies all activities and exchanges into Python dictionaries and can
+require several gigabytes for a full ecoinvent scenario. Use the store's
+query methods when you only need to inspect activities.
 
 
 Compact storage and checkpoints
 ---------------------------------
 
 
-``CompactInventoryStore`` is the production and certification-performance
-backend. It provides copy-on-write scenario forks, ordered indexes, and
-versioned Arrow IPC checkpoints with a lossless metadata sidecar. The
-dictionary-backed ``LegacyInventoryStore`` remains available as a compatibility
-and differential-testing oracle. Common exchange strings and numeric values use
-typed, batched Arrow columns; arbitrary fields are stored in one sidecar bundle
-per activity. Reopening preserves Python and NumPy numeric scalar types exactly.
+``CompactInventoryStore`` shares unchanged data between scenarios and copies
+data when it changes. It saves inventories in Arrow IPC files and keeps
+additional activity metadata in separate files. Reopening a saved inventory
+preserves its Python and NumPy numeric types. ``LegacyInventoryStore`` stores
+activities as dictionaries.
 The bundle contains:
 
 
@@ -76,8 +72,7 @@ Checkpoint writes use a sibling temporary directory and replacement; every
 file is verified before a bundle is opened. Store schema versions are
 independent from the historical pickle cache schema. Existing
 ``inventory_backend="legacy"`` and ``inventory_backend="compact"`` calls remain
-accepted; certification has identical semantics on both backends, while all
-acceptance and integration runs use ``"compact"`` explicitly.
+accepted. Both backends apply the same validation rules.
 
 
 Automatic scenario cache expiry
@@ -99,7 +94,7 @@ such use outside premise's internal ``cached_files`` directory.
 
 Only newly written, UUID-named checkpoints in ``cached_files`` carry expiry
 metadata. Successful checkpoint reopening refreshes their last-use timestamp;
-expiry metadata is separate from the checksummed inventory payload. Base
+expiry metadata is separate from the inventory files protected by checksums. Base
 checkpoints needed by retained checkpoints are preserved. Existing unmarked
 checkpoints are never automatically adopted or removed; clean them separately
 after stopping active builds. Source/import caches in ``cache``, validation
@@ -111,7 +106,7 @@ Cleanup logs a count and estimated reclaimed space at INFO level (unless
 Self-contained API example
 ----------------------------
 
-This small example exercises querying and atomic editing without licensed
+This small example exercises queries and edits that are saved or undone together without licensed
 source data or IAM files:
 
 .. literalinclude:: /examples/inspect_inventory.py

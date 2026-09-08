@@ -1,8 +1,8 @@
 .. list-table::
    :header-rows: 1
 
-   * - Provenance
-     - Scope
+   * - Source information
+     - Details
    * - Source/data years
      - 2022–2025 factory observations for the 2026 report; other inputs vary
    * - Boundary

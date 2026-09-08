@@ -3,7 +3,7 @@ Scientific update backlog
 
 These proposals are not implemented changes. They require separate numerical
 validation and review before modifying inventories or transformation rules.
-P1 means a methodological or provenance risk; P2 means a narrower follow-up.
+P1 means a risk to the modelling method or the traceability of its data; P2 means a narrower follow-up.
 No ranking here implies that the current dataset is unusable for every study.
 
 Photovoltaics

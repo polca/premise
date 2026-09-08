@@ -34,9 +34,9 @@ Photovoltaics
    * - Applicable configurations
      - 2026 core: ecoinvent 3.12 cut-off only; legacy core otherwise.
    * - Review outcome
-     - Reviewed and retained; provenance gaps remain
+     - Reviewed and retained; some data sources still need confirmation
 
-The official July 2026 release confirms the new TOPCon/PERC and CdTe coverage. The bundled report and inventory integration remain the authoritative coefficients. Country yields and the degradation convention still need provenance clarification.
+The official July 2026 release confirms the new TOPCon/PERC and CdTe coverage. The bundled report and inventory integration remain the authoritative coefficients. Country yields and the degradation convention still need clearer source information.
 
 Sources: `source context <https://iea-pvps.org/key-topics/t12-lci-pv-systems-2026/>`__; `comparison candidate <https://iea-pvps.org/key-topics/t12-lci-pv-systems-2026/>`__.
 
@@ -241,7 +241,7 @@ Transport
    * - Applicable configurations
      - Six update modes exist; mapped fleet availability differs by model and file.
    * - Review outcome
-     - Newer alternative identified; workbook generation provenance incomplete
+     - Newer alternative identified; workbook generation details incomplete
 
 The carculator release page documents later inventories and an ecoinvent 3.10 migration. This does not identify the generation used to export every packaged workbook. R&D GREET offers payload-specific truck comparisons with different geographical assumptions.
 
@@ -375,11 +375,11 @@ Air emissions
    * - Implemented scope
      - Selected non-CO2 biosphere flows scaled using activity/region factors.
    * - Data years
-     - 2020 normalization; precise bundled GAINS release needs additional provenance
+     - 2020 normalization; the bundled GAINS release still needs to be identified
    * - Applicable configurations
      - CLE/MFR options; Premise application is reduction-only.
    * - Review outcome
-     - Documentation corrected; release provenance unresolved
+     - Documentation corrected; release not yet identified
 
 Official GAINS documentation defines CLE and maximum technically feasible reduction scenarios. The scenario name alone does not identify the legislative cutoff or factor release. Documentation now distinguishes GAINS modelling from Premise reduction-only application.
 

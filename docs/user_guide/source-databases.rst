@@ -19,7 +19,7 @@ Source databases
 From a brightway2 project
 ---------------------------
 
-To extract from an ecoinvent database located in a brightway2 project, simply
+To extract an ecoinvent database from a Brightway project,
 indicate the database name in `source_db` and its version in `source_version`:
 
 .. code-block:: python

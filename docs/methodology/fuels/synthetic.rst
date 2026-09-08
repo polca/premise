@@ -143,7 +143,11 @@ If the CO2 originates from:
   fuel rather than released at that stage. This is not equivalent to permanent
   geological storage: subsequent fuel combustion must remain in the accounting.
 
-Source provenance and currency
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. raw:: html
+
+   <span id="source-provenance-and-currency"></span>
+
+Sources and data dates
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. include:: /reference/generated/source-synthetic.inc

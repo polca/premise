@@ -9,8 +9,10 @@ covers quickstarts, scenario inputs, exports, and analysis workflows for *premis
 
 ScenarioLink plugin
 ---------------------
-There now exists a plugin for Activity Browser, called ScenarioLink, which allows you to
-directly download IAM scenario-based premise databases from the browser, without the use of premise.
+ScenarioLink lets you download databases generated with Premise for IAM
+scenarios directly from Activity Browser, without running Premise yourself.
+It works only with **Activity Browser 2.x**. No version compatible with
+**Activity Browser 3.x** is currently planned.
 You can find it in the `ScenarioLink repository <https://github.com/polca/ScenarioLink>`_.
 
 Example status and prerequisites

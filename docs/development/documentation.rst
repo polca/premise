@@ -26,12 +26,12 @@ Substantive sector chapters follow this order:
 #. **Inputs and applicability**: source inventories, scenario variables, external
    assumptions, update entry point and missing-data conditions.
 #. **Transformation**: operations, equations, selected exchanges and limits.
-#. **Markets and downstream links**: weighting, suppliers and consumer routing;
+#. **Markets and downstream links**: weighting, suppliers and links to consuming activities;
    explicitly state when no market or replacement operation exists.
 #. **Assumptions and limitations**: proxies, preserved coefficients and boundaries.
 #. **Worked example and checks**: a labelled illustration and what to inspect in
    the resulting inventory or report.
-#. **Sources and inventory details**: provenance and detailed inventory catalogues.
+#. **Sources and inventory details**: data sources and detailed inventory lists.
 
 The length of each section should reflect the transformation. Landing pages,
 shared concepts and consequential modelling use their own explanatory structure.
@@ -77,7 +77,12 @@ Examples and assumptions
 Use explicit imports and the modern Brightway interface in current examples.
 The first-scenario example uses ecoinvent 3.12 cut-off, REMIND SSP2-NPi and
 2025. Explain prerequisites and mark partial examples or illustrative schemas.
-Keep secrets in the environment, never in source or rendered examples.
+Keep secrets in environment variables, never in source or rendered examples.
+
+Use **Python environment** for installed packages (for example, a conda
+environment), and **Brightway project** for the collection containing databases.
+Write **environment variable** when referring to shell settings such as
+``PREMISE_KEY``; avoid using "environment" alone for these settings.
 
 Check behaviour against the current implementation and packaged configuration.
 Distinguish regression results from independent scientific validation and
@@ -113,7 +118,7 @@ or scenario validation.
 
 The build imports the real package to validate API targets. No ecoinvent data
 or IAM credentials are needed for the build. Third-party imports may create
-local logs; use an isolated environment and user-data directory in CI.
+local logs; use an isolated Python environment and user-data directory in CI.
 
 External URLs are checked separately because access controls and transient
 server failures must not make every documentation change fail:

@@ -105,12 +105,12 @@ use change, respectively.
  =========================================================== ========= ==================== ===========
 
 The land use value is given from the IAM scenario in Ha/GJ of primary crop energy.
-Hence, the land occupation per kg of crop farmed is calculated as::
+The land occupation per kg of crop farmed is calculated as::
 
     land_use = land_use [Ha/GJ] * 10000 [m2/Ha] / 1000 [MJ/GJ] * LHV [MJ/kg]
 
 Regarding land use change CO2 emissions, the principle is similar. The variable
-is expressed in kg CO2/GJ of primary crop energy. Hence, the land use change
+is expressed in kg CO2/GJ of primary crop energy. The land use change
 CO2 emissions per kg of crop farmed are calculated as::
 
     land_use_co2 = land_use_co2 [kg CO2/GJ] / 1000 [MJ/GJ] * LHV [MJ/kg]
@@ -231,7 +231,11 @@ The following datasets are introduced:
   Kerosene production, via Fischer-Tropsch, from forest product (non-residual)       RER         Cavalett & Cherubini 2022
  ================================================================================== =========== =============================
 
-Source provenance and currency
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. raw:: html
+
+   <span id="source-provenance-and-currency"></span>
+
+Sources and data dates
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. include:: /reference/generated/source-biofuels.inc

@@ -89,7 +89,11 @@ The supply of hydrogen in the ammonia production process
 (coal gasification, electrolysis, etc.) is represented by the
 hydrogen inventories described in :doc:`hydrogen`.
 
-Source provenance and currency
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. raw:: html
+
+   <span id="source-provenance-and-currency"></span>
+
+Sources and data dates
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. include:: /reference/generated/source-ammonia.inc

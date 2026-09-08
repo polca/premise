@@ -102,7 +102,11 @@ electricity supply and fuel markets have their own losses and boundaries.
    <span id="buses"></span>
 
 
-Source provenance and currency
---------------------------------
+.. raw:: html
+
+   <span id="source-provenance-and-currency"></span>
+
+Sources and data dates
+------------------------
 
 .. include:: /reference/generated/source-transport.inc

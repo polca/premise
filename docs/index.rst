@@ -1,21 +1,48 @@
 Premise documentation
 =======================
 
-.. image:: /large.png
-   :width: 200pt
-   :align: center
-   :alt: Premise logo
-
 .. raw:: html
 
    <span id="user-guide"></span>
 
-*Premise* creates prospective life-cycle inventory databases from ecoinvent
-and scenario data. Start with :doc:`getting_started/installation` and
-:doc:`getting_started/first-scenario`, or browse a sector's assumptions in
-:doc:`methodology/index`.
+.. container:: hub-intro
+
+   **From scenarios to life-cycle inventories.**
+
+   Premise combines ecoinvent inventories with scenario data to describe
+   future production systems. Learn how to build a database, understand
+   its transformations and interpret the results.
+
+.. container:: hub-cards
+
+   .. container:: hub-card
+
+      .. rubric:: :doc:`Get started <getting_started/index>`
+
+      Install Premise and create your first scenario database.
+
+   .. container:: hub-card
+
+      .. rubric:: :doc:`User guide <user_guide/index>`
+
+      Choose scenarios, add inventories, validate and export your results.
+
+   .. container:: hub-card
+
+      .. rubric:: :doc:`Methodology <methodology/index>`
+
+      Follow each sector's inputs, transformations and modelling assumptions.
+
+   .. container:: hub-card
+
+      .. rubric:: :doc:`Reference <reference/index>`
+
+      Find supported models, inventory sources, mappings and the Python API.
+
+For contributions and implementation details, see :doc:`development/index`.
 
 .. toctree::
+   :hidden:
    :maxdepth: 2
    :caption: Documentation
 

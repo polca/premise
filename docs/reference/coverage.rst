@@ -2,14 +2,14 @@ Scenario coverage and interpretation
 ======================================
 
 Three questions must be answered separately: can the IAM represent a process,
-does your scenario file report it, and can Premise consume those variables?
+does your scenario file report it, and can Premise use those variables?
 Model descriptions answer the first question only.
 
 Configured sector mappings
 ----------------------------
 
 The table below is generated from non-empty model aliases in the sector
-mapping files. It is a mapping inventory, not a successful-build matrix.
+mapping files. It lists configured mappings; it does not show which database builds have passed.
 Aliases may cover only part of a sector. Missing aliases do not rule out
 fallbacks, derived quantities or externally supplied data.
 
@@ -30,8 +30,8 @@ sector validation coverage. A missing fleet series, for example, is not a
 zero-sized fleet. A zero production volume is not a missing variable.
 
 WITCH is a configured model identifier. Its presence in the configuration does
-not establish parity with REMIND or IMAGE. This documentation pass has not run
-every model/pathway combination. See :doc:`/methodology/heat` for an example
+not imply the same sector coverage as REMIND or IMAGE. Check the mappings
+and available variables for the model and pathway you select. See :doc:`/methodology/heat` for an example
 of model-specific data representation and :doc:`/user_guide/reports` for
 inspecting the actual data used.
 

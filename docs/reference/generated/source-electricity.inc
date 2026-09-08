@@ -1,8 +1,8 @@
 .. list-table::
    :header-rows: 1
 
-   * - Provenance
-     - Scope
+   * - Source information
+     - Details
    * - Source/data years
      - Sources include 2013 CCS, 2016 geothermal and 2019 plant corrections; underlying observations vary
    * - Boundary

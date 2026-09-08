@@ -4,9 +4,9 @@ Overview and boundaries
 Purpose
 ---------
 
-*premise* enables the alignment of life cycle inventories within the `ecoinvent <https://ecoinvent.org/>`__
+*premise* updates life cycle inventories in the `ecoinvent <https://ecoinvent.org/>`__
 3.5-3.12 database, using either a "cut-off" or "consequential"
-system model, to match the output results of Integrated
+system model, using results from Integrated
 Assessment Models (IAMs) such as `REMIND <https://www.pik-potsdam.de/en/institute/departments/transformation-pathways/models/remind>`__ (and REMIND-EU), `IMAGE <https://models.pbl.nl/image/index.php/Welcome_to_IMAGE_3.2_Documentation>`__, `TIAM-UCL <https://www.ucl.ac.uk/energy-models/models/tiam-ucl>`__, `MESSAGE <https://docs.messageix.org/>`__ or `GCAM <https://gcims.pnnl.gov/modeling/gcam-global-change-analysis-model>`__.
 This allows for the creation of life cycle inventory databases
 under future policy scenarios for any year between 2005 and 2100.
@@ -23,7 +23,7 @@ scenario, year, and the ecoinvent version used.
 External data dependencies
 ----------------------------
 
-Beyond IAM scenario files, *premise* relies on curated external datasets and
+Beyond IAM scenario files, *premise* uses external datasets and
 additional inventories for several sectors. These are packaged in the repository
 under ``premise/data`` and include:
 
@@ -76,8 +76,8 @@ For reproducibility, record the Premise version or commit, source database
 identity and modifications, ecoinvent system model, IAM file checksum and
 release, constructor options, update order, external scenarios and inventory
 files, and relevant dependency versions. Retain report fingerprints and the
-LCIA method used. Matching release labels alone does not establish numerical
-identity, and changing an input need not change every activity.
+LCIA method used. Matching release labels alone does not guarantee identical
+results, and changing an input need not change every activity.
 
 Additionally, you may want to cite the ecoinvent v.3 database:
 

@@ -1,6 +1,11 @@
 Workflow and system boundaries
 ================================
 
+.. raw:: html
+
+   <span id="transformation-and-certification"></span>
+
+
 .. image:: /main_workflow.png
    :alt: Main workflow diagram of premise ETL process
 
@@ -29,13 +34,13 @@ applicable additional inventories, loads scenario data and prepares reusable
 caches. See :doc:`/user_guide/source-databases` and
 :doc:`/reference/inventories` for the inputs.
 
-Transformation and certification
-----------------------------------
+Transformation and validation
+-------------------------------
 
 ``ndb.update()`` applies the mapped sector transformations in dependency order.
 Source inventories, geography, efficiencies and market composition can all
 influence results. See :doc:`/user_guide/updates` for selective updates and
-:doc:`validation` for the meaning and limits of certification.
+:doc:`validation` for what validation checks and what it cannot establish.
 
 Export and interpretation
 ---------------------------

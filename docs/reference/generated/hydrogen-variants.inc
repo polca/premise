@@ -1,4 +1,4 @@
-Hence, for each IAM region, the following supply chains for hydrogen are built:
+For each IAM region, the following supply chains for hydrogen are built:
 
 - hydrogen supply, from electrolysis, by ship, as liquid, over 2000 km
 - hydrogen supply, from gasification of biomass by heatpipe reformer, by H2 pipeline, as gaseous, over 500 km

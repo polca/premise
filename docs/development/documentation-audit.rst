@@ -24,10 +24,10 @@ Confirmed and corrected
 * Python requires 3.10 or newer in ``pyproject.toml``; the former 3.9 statement
   has been corrected. Brightway extras are documented using their declared
   dependency constraints.
-* Public database orchestration is implemented in ``premise/new_database.py``.
+* Public database creation is implemented in ``premise/new_database.py``.
   The obsolete ``premise.ecoinvent_modification.NewDatabase`` autodoc target
   has been replaced. The build imports the real package.
-* Inventory inspection, transactions and explicit materialization were checked
+* Inventory inspection, transactions and copying inventories into dictionaries were checked
   against ``premise/inventory_store.py`` and the public NewDatabase methods.
 * The sector update order and accepted method names were checked against
   ``NewDatabase.update``. Single-sector calls do not imply a full scenario
@@ -86,7 +86,7 @@ described on their page.
 
 The complete REMIND SSP2-NPi 2025 example has **not been rerun** for this
 documentation migration: neither ``PREMISE_KEY`` nor ``IAM_FILES_KEY`` was
-available in the execution environment. This is separate from the earlier
+set as an environment variable for that run. This is separate from the earlier
 PV scenario validation and is not counted as a passing end-to-end test.
 
 External-link scan
@@ -156,12 +156,12 @@ The existing local preview serves the rebuilt documentation. The credentialed
 scenario and external-source limitations recorded above still apply.
 
 Third pass: content, examples and scientific sources
------------------------------------------------------
+------------------------------------------------------
 
 Completed on 7 September 2026. The content review records dispositions for
 85 canonical pages. This pass adds input preflight checks, reader-oriented
 validation and report guidance, worked interpretation examples, generated
-configuration tables and explicit source provenance for 17 sectors.
+configuration tables and documented data sources for 17 sectors.
 
 Verification for this pass:
 
@@ -201,7 +201,7 @@ updates and the discovered hydrogen energy-floor scaling issue are recorded
 separately in :doc:`scientific-update-backlog`.
 
 Fourth pass: consistent sector explanations
---------------------------------------------
+---------------------------------------------
 
 The 25 substantive sector chapters now follow the same seven-part structure:
 scope and outputs, inputs and applicability, transformation, markets and
@@ -236,7 +236,7 @@ no inventory coefficients or transformation code were changed. The previous
 literature-access limitations remain.
 
 Fifth pass: current implementation and process diagrams
---------------------------------------------------------------
+---------------------------------------------------------
 
 Each of the 25 sector chapters now includes a generated SVG process diagram
 in its scope section. Diagram definitions and generated files are checked

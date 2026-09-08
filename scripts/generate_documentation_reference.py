@@ -239,7 +239,7 @@ def generate():
             ["Applicability", record["applicability"]],
         ]
         result[f"source-{record['id']}.inc"] = (
-            table(["Provenance", "Scope"], rows)
+            table(["Source information", "Details"], rows)
             + f"\nSource context: `publication or data provider <{record['source']}>`__.\n"
         )
     return result

@@ -326,6 +326,6 @@ Indicating this will adjust the indicated flows in any activity that uses the ma
       - reference product: urea
       - location: DE
 
-Hence, in this example, the ammonia supplier will be replaced in all
+In this example, the ammonia supplier will be replaced in all
 activities whose reference product contains the string **urea**
 and location in **DE**.

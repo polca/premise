@@ -1,73 +1,59 @@
 Validation reports
 ====================
 
-Validation checks whether the generated inventory meets the implemented
-structural and methodological rules. A passing report does not independently
-validate source measurements, the IAM scenario or every scientific assumption.
+Premise checks inventories automatically when it updates and exports a
+database. The :doc:`change-report workbook <reports>` includes the results
+in its **Validation Findings** and **Validation Coverage** sheets. Start
+there; a separate Python command is only needed to inspect the results
+programmatically or request additional checks.
 
 Check a completed update
 --------------------------
 
-After the setup and update in :doc:`/getting_started/first-scenario`:
+Read **Validation Findings** for the explanation of each issue and the
+affected activity. **Validation Coverage** shows which checks were applied.
 
-.. code-block:: python
+* **Errors** stop an update or export unless a documented exception applies.
+  Correct the cause before using the database.
+* **Warnings** allow the operation to finish. Review whether the assumption
+  or data limitation matters for your study.
+* **Suppressed findings** are issues covered by a documented exception.
+  They remain visible with an explanation so you can assess that exception.
 
-   report = ndb.get_validation_report(scenario=0)
-   report.raise_for_errors()
-   for issue in report.warnings:
-       print(issue.rule_id, issue.message, issue.activity_key)
-
-An unsuppressed error stops the update before checkpointing or export.
-Warnings allow completion but require interpretation. Suppressed findings
-remain visible with their explanation; suppression is not evidence that the
-underlying assumption has been scientifically validated.
+A passing result means the inventory passed the checks that applied. It
+does not confirm every source measurement or scientific assumption, or
+establish that an IAM scenario will occur.
 
 Find and interpret an issue
 -----------------------------
 
-.. code-block:: python
-
-   for phase in report.phase_results:
-       for rule in phase.rule_results:
-           for issue in rule.issues:
-               print(issue.severity, issue.rule_id, issue.message)
-               print(issue.activity_key, issue.exchange_id)
-               print("Expected:", issue.expected, "Actual:", issue.actual)
-
-Use the activity identity and exchange identifier to locate the record through
-:doc:`inventories`. Review its reference product, unit, supplier and amount.
-If an imported exchange has the wrong unit or no provider, fix the originating
-inventory or mapping and rebuild; do not merely silence the finding.
+1. Read the message and identify the affected activity and scenario.
+2. Check its product, unit, supplier and input or emission amount. Where
+   relevant, compare the change with the **Key Changes** or **Market Changes**
+   sheet.
+3. If the problem comes from an inventory or mapping you supplied, correct
+   that input and rebuild. For an unexplained issue, keep the report and
+   build settings when asking for help; see :doc:`troubleshooting`.
 
 Worked finding examples
 -------------------------
 
-The executable :download:`validation_findings.py </examples/validation_findings.py>`
-constructs illustrative findings using the public report types. Its rule IDs
-are prefixed ``example.``; they are teaching examples, not generated sector
-rule IDs or evidence of a defect in your database.
+A warning about using a supplier from another region asks you to assess
+whether that supplier represents your study location. It does not necessarily
+mean the calculation is invalid.
 
-.. literalinclude:: /examples/validation_findings.py
-   :language: python
-
-The warning asks the reader to assess geographical representativeness. The
-error indicates an invalid amount that must be corrected before calculation.
-Use the actual rule ID in your report when investigating a production failure.
+An error about an invalid exchange amount requires correction before
+calculation. Inspect the activity and the input data that supplied that amount.
+These are illustrative examples; use the message in your own report to
+decide what to investigate.
 
 When to request exhaustive checks
 -----------------------------------
 
-.. code-block:: python
+Additional checks of every activity and exchange can help after custom
+inventory edits or when the usual checks do not explain a suspicious result.
+They do not replace an assessment of whether the datasets represent your study.
 
-   exhaustive = ndb.get_validation_report(scenario=0, exhaustive=True)
-   exhaustive.raise_for_errors()
-
-The exhaustive diagnostic traverses the complete activity/exchange graph. It
-is useful after custom inventory edits or when targeted checks do not explain
-a suspicious result. Passing it still cannot establish that a supplier is
-the best scientific proxy.
-
-Read :doc:`reports` to review numerical changes,
-:doc:`/methodology/validation` for uncertainty, and
-:doc:`/development/validation-internals` for certificate persistence and
-exporter internals.
+See :doc:`/development/validation-internals` for Python commands and detailed
+validation examples. For uncertainty and the limits of these checks, read
+:doc:`/methodology/validation`.

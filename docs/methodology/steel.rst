@@ -242,7 +242,11 @@ ultrafine grinding of iron ore                                                  
 
 These inventories provide a modular basis for modeling steel systems under various future-oriented scenarios and technological configurations.
 
-Source provenance and currency
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. raw:: html
+
+   <span id="source-provenance-and-currency"></span>
+
+Sources and data dates
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. include:: /reference/generated/source-steel.inc

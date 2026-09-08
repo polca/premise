@@ -1,12 +1,21 @@
 Generating change reports
 ===========================
 
-*premise* compares the normalized source inventory with each certified,
-pre-export scenario. Database exports automatically create a compact Excel
-workbook and an exhaustive Parquet audit when ``generate_reports=True``.
-The workbook contains review-oriented summaries, key numeric changes, market
-and proxy information, and validation findings; raw exchange vectors remain in
+.. raw:: html
+
+   <span id="generate-a-report-explicitly"></span>
+
+
+*premise* compares the normalized source inventory with each validated scenario
+before export. Database exports automatically create a compact Excel
+workbook and a complete record of changes in Parquet format when ``generate_reports=True``.
+The workbook contains summaries, key numeric changes, market
+and proxy information, and validation findings; complete exchange lists remain in
 Parquet.
+
+Start with this workbook to review both inventory changes and validation
+results. You do not need to request a separate validation report for this
+review.
 
 Read the workbook in this order
 ---------------------------------
@@ -24,21 +33,27 @@ Read the workbook in this order
      - Which reported coefficients changed most?
      - Inspect the activity and unit; a large relative change from a small baseline can be misleading.
    * - Market Changes
-     - Did the supplier vector change as expected?
+     - Did the supplier shares change as expected?
      - Trace technology shares separately from changes inside each supplier.
    * - Fallbacks & Proxies
      - Where were substitute inventories used?
      - Assess geographical and technological representativeness.
+   * - Validation Findings
+     - Were any errors or warnings reported?
+     - Read the explanation and inspect the affected activity. See :doc:`validation` for guidance.
+   * - Validation Coverage
+     - Which checks applied to this scenario?
+     - Check what was tested before interpreting a passing result.
 
 For example, a lower material input per kWh in a PV activity may result from
 higher yield or efficiency, not a lower material requirement per square metre.
 Match activity identity and scenario before following its exchange details in
 Parquet. Workbook rankings are review aids, not rankings of LCIA contributions.
-See :doc:`interpreting-results` for an archived PV example and a numerical
-sensitivity exercise. Exact fields and remaining sheets are described in
+See :doc:`interpreting-results` for guidance on tracing score changes and
+assessing uncertainty. Exact fields and remaining sheets are described in
 :doc:`/reference/change-report-schema`.
 
-Generate a report explicitly
+Generate a report on request
 ------------------------------
 
 Reports can also be generated immediately after ``update()``, including when
@@ -57,9 +72,7 @@ automatic reports were disabled:
 
 ``generate_change_report()`` returns an immutable ``ChangeReportArtifacts``
 object. Filenames contain a UTC timestamp and the build ID and existing report
-files are never overwritten. The report schema version is ``2``. The former
-pipe-delimited log workbook was removed; historical log files are neither
-imported nor backfilled. See :doc:`/reference/change-report-schema` for the workbook
+files are never overwritten. The report schema version is ``2``. See :doc:`/reference/change-report-schema` for the workbook
 and Parquet schemas.
 
 Scenario-variable summary

@@ -4,13 +4,18 @@ Prepare and check your inputs
 This walkthrough uses an existing ecoinvent 3.12 cut-off import in modern
 Brightway. Obtain ecoinvent separately and retain its matching biosphere.
 For the standard encrypted IAM scenarios, request the key from
-`the Premise developers <mailto:romain.sacchi@psi.ch>`_. Confirm which scenario
-files accompany the key; an access key is not a scenario file.
+`the Premise developers <mailto:romain.sacchi@psi.ch>`_. The key gives access
+to all standard scenarios in the Premise catalogue.
 
 Identify your local names
 ---------------------------
 
-Run this in the environment where you imported ecoinvent:
+A **Python environment** (for example, a conda environment) contains installed
+packages. A **Brightway project** contains databases, including ecoinvent and
+its biosphere database.
+
+With your Python environment activated, list the available Brightway projects,
+select the project containing your ecoinvent database, and list its databases:
 
 .. code-block:: python
 
@@ -20,7 +25,7 @@ Run this in the environment where you imported ecoinvent:
    bd.projects.set_current("ecoinvent-3.12-cutoff")
    print(list(bd.databases))
 
-Choose an existing project. Brightway can create a new empty project when
+Choose an existing Brightway project. Brightway can create a new empty project when
 given an unfamiliar name. Database names are local identifiers: copying a
 name from an example does not import ecoinvent.
 
@@ -53,7 +58,7 @@ displayed. For PowerShell, use:
 These variables configure the examples; the constructor does not automatically
 read them. Optionally set ``PREMISE_IAM_DIR`` to the directory containing your
 scenario files. Restart notebook kernels from this terminal to inherit its
-environment, or configure their environment explicitly.
+environment variables, or set those variables in the notebook's launch configuration.
 
 Run the preflight
 -------------------

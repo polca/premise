@@ -36,8 +36,7 @@ technology updates.
 Data collection and processing
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Distributions for material intensities, derived from a comprehensive literature
-collection, are provided in `SI_2_Material_requirements.xlsx <https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/metals/SI_2_Material_requirements.xlsx>`_.
+Distributions for material intensities, derived from published literature, are provided in `SI_2_Material_requirements.xlsx <https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/metals/SI_2_Material_requirements.xlsx>`_.
 From this database, `metals_db.csv <https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/metals/metals_db.csv>`_ is created,
 which *premise* uses to update the material intensities for each technology.
 
@@ -146,7 +145,7 @@ material amounts are applied.
 exchanges are never selected by this operation. Providers are matched by exact
 name and reference product, with the location preference ``World``, ``GLO``,
 then ``RoW``. If no configured provider exists, the rule is skipped and a
-validation warning and provenance decision are recorded.
+validation warning and the reason for the choice are recorded.
 
 For ecoinvent 3.11 and 3.12, the gallium rule selects
 ``gallium, high-grade`` for the configured semiconductor-grade application.
@@ -299,7 +298,11 @@ market for lithium hydroxide, battery grade                                     
 
 These inventories can be found here: `LCI_lithium <https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/additional_inventories/lci-lithium.xlsx>`__.
 
-Source provenance and currency
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. raw:: html
+
+   <span id="source-provenance-and-currency"></span>
+
+Sources and data dates
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. include:: /reference/generated/source-metals.inc

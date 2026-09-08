@@ -1,8 +1,8 @@
 .. list-table::
    :header-rows: 1
 
-   * - Provenance
-     - Scope
+   * - Source information
+     - Details
    * - Source/data years
      - Studies span 2008–2023; regional uptake assumptions are mixed estimates
    * - Boundary

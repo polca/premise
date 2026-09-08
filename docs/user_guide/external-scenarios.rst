@@ -8,10 +8,9 @@ Using external scenarios
 Purpose
 ---------
 
-*premise* enables users to seamlessly integrate custom scenarios,
-in addition to (or as an alternative to) existing IAM scenarios. This feature
-is particularly useful when users wish to incorporate projections for a sector,
-product, or technology that may not be adequately addressed by standard IAM scenarios.
+Premise can use custom scenarios alongside, or instead of, IAM scenarios.
+Use them to add projections for sectors, products or technologies missing
+from the supplied IAM data.
 
 Available user-defined scenarios
 ----------------------------------
@@ -24,11 +23,10 @@ https://github.com/premise-community-scenarios
 Using user-generated scenarios
 --------------------------------
 
-To put it simply, users must first obtain the URL of the datapackage.json file corresponding
-to the desired scenario. By utilizing the datapackage library, users can load the scenario package,
-which includes a scenario file, inventories, and a configuration file. This package can then be added
-as an argument to the *premise* instance. Users have the flexibility to include any number of custom
-scenarios in this list. However, compatibility between user-defined scenarios is not guaranteed.
+Load the scenario's ``datapackage.json`` URL with the ``datapackage`` library.
+The package contains scenario data, inventories and a configuration file.
+Pass it to ``NewDatabase`` as shown below. You can include several custom
+scenarios, but must check that they are compatible with one another.
 
 Example
 
@@ -73,8 +71,8 @@ to implement the user-defined scenario in the database.
 
     ndb.update("external")
 
-Of course, if you wish your database to also integrate the projections
-of the global IAM model, you can run the function **ndb.update()**.
+To apply all default updates, including the IAM projections and external
+scenarios, call **ndb.update()**.
 
 .. code-block:: python
 
@@ -92,7 +90,7 @@ heat, and steel:
         "external"
     ])
 
-Once the integrations are complete, you can export your databases to
+Once the updates are complete, you can export your databases to
 Brightway2, within the activated project:
 
 .. code-block:: python

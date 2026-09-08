@@ -6,13 +6,13 @@ Uncertainty and validation
    <span id="validation-approach-and-limitations"></span>
 
 
-Validation certifies implemented inventory contracts, including production,
+Validation checks inventory rules, including production,
 finite values, supplier links, market composition and sector-specific bounds.
 It does not establish that an IAM scenario is correct or independently verify
 all source inventories. Regression scores detect changes relative to a
 baseline; they are not external scientific validation.
 
-Read :doc:`/user_guide/validation` for the API and certificate lifecycle,
+Read :doc:`/user_guide/validation` for how to request and interpret validation reports,
 :doc:`/user_guide/reports` for reviewing changes, and the sector pages for
 technology-specific checks and limitations.
 

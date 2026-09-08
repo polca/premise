@@ -436,7 +436,11 @@ They introduce the following datasets (only heat production datasets shown):
   heat production, deep geothermal    RER
  =================================== ===========
 
-Source provenance and currency
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. raw:: html
+
+   <span id="source-provenance-and-currency"></span>
+
+Sources and data dates
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. include:: /reference/generated/source-electricity.inc

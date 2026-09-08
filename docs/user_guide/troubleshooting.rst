@@ -1,6 +1,11 @@
 Troubleshooting and FAQ
 =========================
 
+.. raw:: html
+
+   <span id="how-does-premise-handle-the-different-granularities-between-the-iam-regions-and-the-ecoinvent-regions"></span>
+
+
 .. contents:: On this page
    :local:
    :depth: 1
@@ -36,7 +41,7 @@ Start with the symptom
      - Functional unit, LCIA method, market shares and upstream contributions
      - Follow :doc:`interpreting-results` before changing an inventory.
    * - Inspecting the whole database exhausts memory
-     - Whether full materialization was requested
+     - Whether the entire inventory was copied into dictionaries
      - Query the store through :doc:`inventories` and select only needed activities.
 
 
@@ -71,7 +76,7 @@ Results and databases are different deliverables. Consult the applicable source 
 Can I use the modified ecoinvent database for commercial purposes?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The software licence and source-data licences are separate. Review the terms applying to your ecoinvent database and additional inventories; see :doc:`/reference/inventories` for provenance.
+The software licence and source-data licences are separate. Review the terms applying to your ecoinvent database and additional inventories; see :doc:`/reference/inventories` for data sources.
 
 How can I share modified ecoinvent databases?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -135,14 +140,14 @@ Does ``premise`` generate more regionalised datasets than in original EI3.x data
 
 Mapped processes can receive additional regional variants. Coverage depends on the IAM data and available inventories; see :doc:`/methodology/regionalization`.
 
-How does ``premise`` handle the different granularities between the IAM regions and the Ecoinvent regions?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+How does ``premise`` handle differences between IAM and ecoinvent regions?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The geographical mapping connects countries and ecoinvent locations to IAM regions. See :doc:`/reference/geography` for the correspondence table and :doc:`/methodology/regionalization` for supplier selection.
 
 
 Heat
-------
+--------
 
 Does the secondary heat market supply both buildings and industry?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -209,4 +214,4 @@ The result depends on the sector: an update may be skipped or use an explicitly 
 Why use external data sources for PV efficiency, rather than the output of IAM?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Detailed PV module trajectories are taken from the packaged external-data file. See :ref:`pv-efficiency-transformation` for the current values, provenance and scaling rules.
+Detailed PV module trajectories are taken from the packaged external-data file. See :ref:`pv-efficiency-transformation` for the current values, sources and scaling rules.

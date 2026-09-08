@@ -19,7 +19,7 @@ Generated 2026-08-08T15:25:56+02:00 from Git state ``65903406 + uncommitted chan
 
 
 Scope
--------
+--------
 
 
 Fixed case: **IMAGE / SSP1-M, WEU, 2050, electricity**. The complete technology-by-technology results are in :download:`consequential_marginal_mix_validation.csv </consequential_marginal_mix_validation.csv>`.
@@ -153,7 +153,7 @@ Checks
      - YAML runtime type is ``list``; unintended substring matches: none
 
 
-Guardrails exercised:
+Checks performed:
 
 - PASS — range and duration cannot both be non-zero
 - PASS — a 2-year duration must use range time

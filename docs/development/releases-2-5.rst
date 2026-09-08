@@ -21,16 +21,16 @@ Migrating inventory access
 ----------------------------
 
 Integrations that accessed mutable ``NewDatabase.database`` lists must use the
-store API or request independent materialization. See
+store API or request an independent copy of the inventory. See
 :doc:`/user_guide/inventories` for the maintained query, transaction and
-materialization examples. The runtime backend distinction and a transaction
+examples of copying inventories into dictionaries. The runtime backend distinction and a transaction
 limitation found during documentation review are recorded in
 :doc:`documentation-audit`.
 
 Validation and reports
 ------------------------
 
-The 2.5 series introduced semantic validation certificates and structured
+The 2.5 series introduced saved inventory validation results and structured
 Excel/Parquet change reports. Read :doc:`/user_guide/validation` for certificate
 behaviour, :doc:`/user_guide/reports` for report generation, and
 :doc:`/reference/change-report-schema` for the current schema. These pages

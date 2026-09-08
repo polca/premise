@@ -20,7 +20,11 @@ under :doc:`transport/index`.
    /methodology/battery-mobile
    /methodology/battery-stationary
 
-Source provenance and currency
---------------------------------
+.. raw:: html
+
+   <span id="source-provenance-and-currency"></span>
+
+Sources and data dates
+------------------------
 
 .. include:: /reference/generated/source-batteries.inc

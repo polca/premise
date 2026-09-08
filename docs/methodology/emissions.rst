@@ -140,7 +140,11 @@ The table below shows the mapping between ecoinvent and GAINS emission flows.
 | Particulates, < 2.5 um                                            |  PM1           |
 +-------------------------------------------------------------------+----------------+
 
-Source provenance and currency
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. raw:: html
+
+   <span id="source-provenance-and-currency"></span>
+
+Sources and data dates
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. include:: /reference/generated/source-emissions.inc

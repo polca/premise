@@ -136,7 +136,7 @@ to its maintained guide or reference.
 
    <span id="how-does-premise-handle-the-different-granularities-between-the-iam-regions-and-the-ecoinvent-regions"></span>
 
-**How does premise handle the different granularities between the IAM regions and the Ecoinvent regions?** — :doc:`/user_guide/troubleshooting`
+**How does premise handle differences between IAM and ecoinvent regions?** — :doc:`/user_guide/troubleshooting`
 
 .. raw:: html
 

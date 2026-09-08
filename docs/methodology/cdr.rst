@@ -186,12 +186,16 @@ source inventory supports them:
   carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2, with heat pump heat, and grid electricity                 all IAM regions
  ======================================================================================================================================================= ==================
 
-Note that only solid sorbent DAC can use waste heat, as the heat requirement
+Only solid sorbent DAC can use waste heat, as the heat requirement
 for liquid solvent DAC is too high (~900 C). CDR efficiency adjustments, when
 provided by the IAM scenario, scale electricity exchanges separately from heat
 and fuel exchanges; material inputs and biosphere flows are not scaled.
 
-Source provenance and currency
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. raw:: html
+
+   <span id="source-provenance-and-currency"></span>
+
+Sources and data dates
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. include:: /reference/generated/source-cdr.inc

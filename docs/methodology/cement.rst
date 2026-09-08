@@ -281,7 +281,11 @@ All three capture routes include subsequent CO2 compression, transport, and
 storage via the carbon dioxide compression, transport and storage dataset
 from *premise*.
 
-Source provenance and currency
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. raw:: html
+
+   <span id="source-provenance-and-currency"></span>
+
+Sources and data dates
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. include:: /reference/generated/source-cement.inc

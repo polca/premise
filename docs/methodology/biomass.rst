@@ -80,7 +80,7 @@ this inventory convention. It does not mean zero collection/transport impacts
 or automatic climate neutrality. Counterfactual residue use, decay and carbon
 timing are separate assumptions; see :doc:`/user_guide/interpreting-results`.
 
-Hence, *premise* creates average regional markets for biomass, which represents the
+Premise creates average regional markets for biomass, which represents the
 average shares of "purpose grown" and "residual" biomass being fed to biomass-fired powerplants.
 
 The following market is created for each IAM region:
@@ -135,7 +135,11 @@ regional biomass market.
 Sources and inventory details
 -------------------------------
 
-Source provenance and currency
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. raw:: html
+
+   <span id="source-provenance-and-currency"></span>
+
+Sources and data dates
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. include:: /reference/generated/source-biomass.inc

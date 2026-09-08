@@ -11,10 +11,10 @@ sectors:
   source: https://iea-pvps.org/key-topics/t12-lci-pv-systems-2026/
   candidate: https://iea-pvps.org/key-topics/t12-lci-pv-systems-2026/
   reviewed_on: '2026-09-07'
-  status: Reviewed and retained; provenance gaps remain
+  status: Reviewed and retained; some data sources still need confirmation
   finding: The official July 2026 release confirms the new TOPCon/PERC and CdTe coverage.
     The bundled report and inventory integration remain the authoritative coefficients.
-    Country yields and the degradation convention still need provenance clarification.
+    Country yields and the degradation convention still need clearer source information.
   backlog: 'P1: establish Atlas retrieval date and whether the source yields already
     include degradation; rerun yield/lifetime sensitivities before changing coefficients.'
   limitations: Scope review is not a coefficient-by-coefficient reproduction. Unavailable
@@ -215,7 +215,7 @@ sectors:
   source: https://pubs.acs.org/doi/abs/10.1021/acs.est.0c07773
   candidate: https://carculator.psi.ch/
   reviewed_on: '2026-09-07'
-  status: Newer alternative identified; workbook generation provenance incomplete
+  status: Newer alternative identified; workbook generation details incomplete
   finding: The carculator release page documents later inventories and an ecoinvent
     3.10 migration. This does not identify the generation used to export every packaged
     workbook. R&D GREET offers payload-specific truck comparisons with different geographical
@@ -337,13 +337,13 @@ sectors:
   title: Air emissions
   page: methodology/emissions
   implementation: premise/emissions.py
-  data_years: 2020 normalization; precise bundled GAINS release needs additional provenance
+  data_years: 2020 normalization; the bundled GAINS release still needs to be identified
   boundary: Selected non-CO2 biosphere flows scaled using activity/region factors.
   applicability: CLE/MFR options; Premise application is reduction-only.
   source: https://gains.docs.iiasa.ac.at/model/scenario/scenario_type.html
   candidate: https://gains.docs.iiasa.ac.at/model/scenario/components.html
   reviewed_on: '2026-09-07'
-  status: Documentation corrected; release provenance unresolved
+  status: Documentation corrected; release not yet identified
   finding: Official GAINS documentation defines CLE and maximum technically feasible
     reduction scenarios. The scenario name alone does not identify the legislative
     cutoff or factor release. Documentation now distinguishes GAINS modelling from

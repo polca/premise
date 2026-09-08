@@ -427,7 +427,11 @@ If you use this module, please cite:
     models*. Renewable and Sustainable Energy Reviews, 188, 113830.
     https://doi.org/10.1016/j.rser.2023.113830
 
-Source provenance and currency
---------------------------------
+.. raw:: html
+
+   <span id="source-provenance-and-currency"></span>
+
+Sources and data dates
+------------------------
 
 .. include:: /reference/generated/source-consequential.inc

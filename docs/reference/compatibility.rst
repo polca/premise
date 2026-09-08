@@ -25,7 +25,7 @@ Selected constructor defaults
 -------------------------------
 
 These values are generated from the constructor signature. The first-scenario
-example deliberately selects the compact backend explicitly.
+example uses the compact backend.
 
 .. include:: generated/defaults.inc
 

@@ -99,7 +99,7 @@ Annual yields are assigned in this order:
   Dataset comments explicitly identify this fallback.
 
 The Atlas values are retained numerical inputs, not a newly downloaded
-release. The parameters and their provenance are recorded in
+release. The parameters and their sources are recorded in
 ``premise/data/solar/pv_2026_parameters.json``; the IRENA generation data are
 in ``premise/data/solar/pv_generation_2023.csv``.
 
@@ -294,7 +294,7 @@ are recorded in ``premise/data/renewables/efficiency_solar_PV.csv``.
 
 Given a scenario year, *premise* iterates through the different PV panel installation
 datasets to update their efficiency accordingly.
-To do so, the required surface of panel (in m2) per kW of capacity is
+To do so, the required panel area (in m2) per kW of capacity is
 adjusted down when the projected efficiency exceeds the current efficiency.
 Existing higher efficiencies are preserved. Dataset names
 are matched against technology aliases in ``premise/electricity.py``. Datasets containing ``perovskite-on-silicon tandem`` are mapped
@@ -303,7 +303,7 @@ the CSV; when that trajectory is absent they fall back to the generic
 ``perovskite`` trajectory.
 
 To calculate the current efficiency of a PV installation, *premise* assumes a solar
-irradiation of 1000 W/m2. Hence, the current efficiency is calculated as::
+irradiation of 1000 W/m2. The current efficiency is calculated as::
 
     current_eff [fraction] = installation_power [W] / (panel_surface [m2] * 1000 [W/m2])
 
@@ -311,12 +311,12 @@ The *scaling factor* is calculated as::
 
     scaling_factor = current_eff / new_eff
 
-The required surface of PV panel in the dataset is then adjusted like so::
+The required PV panel area in the dataset is then adjusted as follows::
 
     new_surface = current_surface * scaling_factor
 
 The mean, minimum and maximum module efficiencies are propagated as a
-triangular uncertainty on the panel surface exchange. For years between anchor
+triangular uncertainty on the panel area exchange. For years between anchor
 points, *premise* interpolates the efficiency values linearly. For years
 outside the CSV range, it extrapolates them linearly and clips the resulting
 efficiencies to the 10-30% interval. The update is applied only when the
@@ -428,9 +428,13 @@ They are available in the following locations:
 
     These two technologies are not included in the current country-specific production mix datasets, as IAM scenarios do not specify sub-technology mixes.
 
+.. raw:: html
+
+   <span id="source-provenance-and-currency"></span>
+
 .. _pv-efficiency-transformation:
 
-Source provenance and currency
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Sources and data dates
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. include:: /reference/generated/source-pv.inc

@@ -178,7 +178,7 @@ Inventories are from `Sacchi2 <https://www.psi.ch/en/media/72391/download>`__ et
 for different years and emission standards and for each IAM region.
 
 
-Note that NOx and PM 2.5 emissions are further updated based on
+NOx and PM 2.5 emissions are further updated based on
 remote-sensing data from `Sjodin <https://www.bafu.admin.ch/dam/en/sd-web/lggkMIGXeKNu/real-driving-emissions-from-diesel-passenger-cars-measured-by-remote-sensing-and-as-compared-with-pems-and-chassis-dynamometer-measurements-conox-task-2-report.pdf>`__ et al. 2018.
 
 *premise* creates fleet markets where the required scenario data are available. The inventories can be consulted

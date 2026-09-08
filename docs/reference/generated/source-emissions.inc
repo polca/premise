@@ -1,10 +1,10 @@
 .. list-table::
    :header-rows: 1
 
-   * - Provenance
-     - Scope
+   * - Source information
+     - Details
    * - Source/data years
-     - 2020 normalization; precise bundled GAINS release needs additional provenance
+     - 2020 normalization; the bundled GAINS release still needs to be identified
    * - Boundary
      - Selected non-CO2 biosphere flows scaled using activity/region factors.
    * - Applicability

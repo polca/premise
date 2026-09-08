@@ -8,5 +8,5 @@ supports compatibility and differential checks. Public users should use
 
 See :doc:`performance-history` for dated measurements and
 :doc:`/reference/api` for the supported interface. Runtime storage behaviour
-is defined in ``premise/inventory_store.py``; source/scenario orchestration is
+is defined in ``premise/inventory_store.py``; source loading and scenario generation is
 in ``premise/new_database.py``.
