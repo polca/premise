@@ -10,6 +10,78 @@ from premise._fast_sqlite import fast_sqlite_settings
 from premise.inventory_store import CompactInventoryStore, InventoryStore
 
 
+@pytest.mark.parametrize("writer", [brightway2_module, brightway25_module])
+@pytest.mark.parametrize("fast", [False, True])
+@pytest.mark.parametrize(
+    "parameters, expected",
+    [
+        ({"alpha": np.float64(0.42)}, [{"name": "alpha", "amount": 0.42}]),
+        ({"alpha": 0.42}, [{"name": "alpha", "amount": 0.42}]),
+        (
+            {"alpha": {"amount": 0.42, "comment": "keep", "uncertainty type": 3}},
+            [
+                {
+                    "name": "alpha",
+                    "amount": 0.42,
+                    "comment": "keep",
+                    "uncertainty type": 3,
+                }
+            ],
+        ),
+        (
+            [{"name": "alpha", "amount": 0.42, "comment": "keep"}],
+            [{"name": "alpha", "amount": 0.42, "comment": "keep"}],
+        ),
+        ({}, []),
+        ([], []),
+    ],
+)
+def test_writers_export_parameters_readable_by_wurst(
+    monkeypatch, writer, fast, parameters, expected
+):
+    from wurst.brightway.extract_database import _list_or_dict
+
+    captured = []
+    original_parameters = deepcopy(parameters)
+
+    class Importer:
+        def __init__(self, name, data):
+            self.data = data
+
+        def write_database(self):
+            captured.extend(deepcopy(self.data))
+
+    monkeypatch.setattr(writer, "databases", {})
+    monkeypatch.setattr(
+        writer,
+        "BW2Importer" if writer is brightway2_module else "BW25Importer",
+        Importer,
+    )
+    if writer is brightway25_module:
+        monkeypatch.setattr(
+            writer,
+            "_write_processed_database_fast",
+            lambda data, name, **kwargs: captured.extend(deepcopy(data)),
+        )
+
+    data = [
+        {
+            "database": "target-db",
+            "code": "a",
+            "name": "activity",
+            "reference product": "product",
+            "location": "GLO",
+            "unit": "kilogram",
+            "parameters": deepcopy(parameters),
+            "exchanges": [],
+        }
+    ]
+    writer.write_brightway_database(data, "target-db", fast=fast, check_internal=False)
+
+    assert list(_list_or_dict(captured[0]["parameters"])) == expected
+    assert parameters == original_parameters
+
+
 class _SQLiteAdapter:
     def __init__(self, connection):
         self.connection = connection

@@ -10,6 +10,7 @@ from bw2io.importers.base_lci import LCIImporter
 from wurst.linking import change_db_name, check_internal_linking, link_internal
 
 from .export_payload import (
+    normalize_activity_parameters,
     FAST_EXCHANGE_FORBIDDEN_FIELDS,
     FAST_EXCHANGE_REQUIRED_FIELDS,
     FAST_STRING_FIELDS,
@@ -375,6 +376,7 @@ def write_brightway_database(
     """
     for act in data:
         act.setdefault("database", name)
+        normalize_activity_parameters(act)
 
     needs_relink = any(
         "input" not in exchange
@@ -382,8 +384,6 @@ def write_brightway_database(
         for exchange in dataset.get("exchanges", [])
     )
 
-    # Restore parameters to Brightway2 format
-    # which allows for uncertainty and comments
     change_db_name(data, name)
     if needs_relink:
         link_internal(data)

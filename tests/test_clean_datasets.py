@@ -4,7 +4,19 @@ from pathlib import Path
 import pytest
 from bw2data.database import DatabaseChooser
 
-from premise.clean_datasets import DatabaseCleaner
+from premise.clean_datasets import DatabaseCleaner, _extract_parameters
+
+
+@pytest.mark.parametrize(
+    "parameters",
+    [
+        {"alpha": 0.42},
+        {"alpha": {"amount": 0.42, "comment": "metadata"}},
+        [{"name": "alpha", "amount": 0.42}],
+    ],
+)
+def test_extract_parameters_preserves_amounts(parameters):
+    assert _extract_parameters(parameters) == {"alpha": 0.42}
 
 
 def get_dict():

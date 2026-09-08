@@ -14,6 +14,7 @@ from tqdm import tqdm
 from wurst.linking import change_db_name, check_internal_linking, link_internal
 
 from .export_payload import (
+    normalize_activity_parameters,
     FAST_EXCHANGE_FORBIDDEN_FIELDS,
     FAST_EXCHANGE_REQUIRED_FIELDS,
     FAST_STRING_FIELDS,
@@ -784,6 +785,7 @@ def write_brightway_database(
 ) -> None:
     for act in data:
         act.setdefault("database", name)
+        normalize_activity_parameters(act)
 
     needs_relink = any(
         "input" not in exchange

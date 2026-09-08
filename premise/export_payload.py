@@ -31,6 +31,24 @@ FAST_EXCHANGE_FORBIDDEN_FIELDS = {
 _UNCHANGED = object()
 
 
+def normalize_activity_parameters(dataset: dict) -> None:
+    """Restore Wurst's scalar parameter mapping to Brightway records.
+
+    Keep existing records (including uncertainty and comments) intact. Mapping
+    keys are authoritative parameter names, as in Wurst's extractor.
+    """
+    parameters = dataset.get("parameters")
+    if isinstance(parameters, Mapping):
+        dataset["parameters"] = [
+            (
+                dict(value, name=name)
+                if isinstance(value, Mapping)
+                else {"name": name, "amount": value}
+            )
+            for name, value in parameters.items()
+        ]
+
+
 class PreparedExportInventory(IndexedInventoryList):
     """Private marker for inventories whose exchange rows are writer-ready."""
 
