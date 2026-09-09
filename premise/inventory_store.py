@@ -2927,6 +2927,11 @@ class InventoryStore(ABC):
 
         return list(self.iter_materialized(restore_metadata=restore_metadata))
 
+    def _report_activity_payload(self, activity_id: ActivityId) -> dict[str, Any]:
+        """Read one reporting payload; fallback for third-party backends."""
+
+        return self.activity(activity_id).to_dict()
+
     @classmethod
     def open(cls, path: str | Path) -> "InventoryStore":
         """Open and validate a versioned inventory checkpoint."""
@@ -3179,6 +3184,30 @@ class _InMemoryInventoryStore(InventoryStore):
             if exchange_id in self._state.exchanges
         ]
         return record
+
+    def _report_activity_payload(self, activity_id: ActivityId) -> dict[str, Any]:
+        """Borrow effective values for the strictly read-only report kernel.
+
+        Top-level dictionaries are independent; nested metadata is borrowed and
+        must never be mutated. Decode columnar rows once instead of building a
+        frozen public snapshot. In particular, do not call mapping.copy(), which
+        can install mutable metadata in a columnar overlay.
+        """
+
+        activity = self._state.activities[activity_id]
+        activity_reader = getattr(activity, "_premise_scenario_cache_payload", None)
+        # Generic dict(activity) invokes the columnar __getitem__, installing
+        # private copies of nested metadata in the resident activity overlay.
+        payload = activity_reader() if activity_reader is not None else dict(activity)
+        exchanges = []
+        for exchange_id in self._state.activity_exchanges[activity_id]:
+            if exchange_id not in self._state.exchanges:
+                continue
+            exchange = self._state.exchanges[exchange_id]
+            reader = getattr(exchange, "_premise_fast_export_payload", None)
+            exchanges.append(reader() if reader is not None else dict(exchange))
+        payload["exchanges"] = exchanges
+        return payload
 
     def _iter_storage_activities(
         self,
@@ -3825,6 +3854,12 @@ class ReadOnlyInventoryStore(InventoryStore):
 
     def activity(self, activity_id: ActivityId) -> ActivityRecord:
         return self._store.activity(activity_id)
+
+    def _report_activity_payload(self, activity_id: ActivityId) -> dict[str, Any]:
+        reader = getattr(self._store, "_report_activity_payload", None)
+        if reader is not None:
+            return reader(activity_id)
+        return self.activity(activity_id).to_dict()
 
     def exchange(self, exchange_id: ExchangeId) -> ExchangeRecord:
         return self._store.exchange(exchange_id)

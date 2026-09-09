@@ -12,14 +12,14 @@ import heapq
 import json
 import math
 import os
-import re
 import threading
 import uuid
 from collections import Counter, defaultdict, deque
+from collections.abc import Mapping
 from dataclasses import dataclass, field
 from datetime import date, datetime, timezone
 from pathlib import Path
-from typing import Any, Iterable, Iterator, Literal, Mapping, Sequence
+from typing import Any, Iterable, Literal, Sequence
 
 import openpyxl
 import pyarrow as pa
@@ -124,6 +124,7 @@ class _ActivityLocator:
     semantic_key: tuple[str, str, str, str]
     visible_hash: str
     occurrence: int = 0
+    hash_skip_safe: bool = False
 
 
 @dataclass(slots=True)
@@ -311,6 +312,12 @@ DETAIL_SCHEMA = pa.schema(
 
 
 def _plain(value: Any) -> Any:
+    # Exact types preserve subclass and numpy .item() handling below.
+    value_type = type(value)
+    if value is None or value_type in (str, int, bool):
+        return value
+    if value_type is float and math.isfinite(value):
+        return value
     if isinstance(value, Mapping):
         return {
             str(key): _plain(item)
@@ -369,6 +376,8 @@ def _visible_activity(payload: Mapping[str, Any]) -> dict[str, Any]:
 
 
 def _visible_exchange(payload: Mapping[str, Any]) -> dict[str, Any]:
+    if isinstance(payload, _PreparedExchange):
+        return payload.visible
     return _visible_mapping(payload)
 
 
@@ -413,6 +422,33 @@ def _numeric_change(old: Any, new: Any) -> tuple[float | None, ...]:
     return old_number, new_number, delta, relative
 
 
+def _hash_skip_safe(value: Any) -> bool:
+    """Hash equality is sufficient only for ordinary finite JSON values.
+
+    Special-value normalization can lose information on its second pass, so
+    those activities must still use the full field comparison.
+    """
+    kind = type(value)
+    if value is None or kind in (str, int, bool):
+        return True
+    if kind is float:
+        return math.isfinite(value)
+    if kind in (list, tuple):
+        return all(_hash_skip_safe(item) for item in value)
+    if kind is dict:
+        return all(
+            type(key) is str and _hash_skip_safe(item) for key, item in value.items()
+        )
+    return False
+
+
+def _report_payload(store: InventoryStore, activity_id: int) -> dict[str, Any]:
+    reader = getattr(store, "_report_activity_payload", None)
+    if reader is not None:
+        return reader(activity_id)
+    return store.activity(activity_id).to_dict()
+
+
 def _activity_index(
     store: InventoryStore,
 ) -> tuple[list[_ActivityLocator], int, str]:
@@ -420,7 +456,7 @@ def _activity_index(
     exchange_count = 0
     digest = hashlib.sha256()
     for activity_id in store.iter_activity_ids():
-        payload = store.activity(activity_id).to_dict()
+        payload = _report_payload(store, activity_id)
         exchanges = payload.get("exchanges", ())
         exchange_count += len(exchanges)
         visible = {
@@ -436,6 +472,7 @@ def _activity_index(
                 code=None if code in (None, "") else str(code),
                 semantic_key=_semantic_key(payload),
                 visible_hash=visible_hash,
+                hash_skip_safe=_hash_skip_safe(payload),
             )
         )
     by_semantic: dict[tuple[str, str, str, str], list[_ActivityLocator]] = defaultdict(
@@ -529,6 +566,12 @@ def _pair_activities(
 
 
 def _provider_identity(exchange: Mapping[str, Any]) -> dict[str, Any] | None:
+    if isinstance(exchange, _PreparedExchange):
+        return exchange.provider
+    return _raw_provider_identity(exchange)
+
+
+def _raw_provider_identity(exchange: Mapping[str, Any]) -> dict[str, Any] | None:
     if exchange.get("type") != "technosphere":
         return None
     exchange_input = exchange.get("input")
@@ -553,9 +596,15 @@ def _exchange_group_key(exchange: Mapping[str, Any]) -> tuple[str, str, str, str
 
 
 def _exchange_metadata(exchange: Mapping[str, Any]) -> dict[str, Any]:
+    if isinstance(exchange, _PreparedExchange):
+        return exchange.metadata
+    return _metadata_from_visible(_visible_exchange(exchange))
+
+
+def _metadata_from_visible(visible: Mapping[str, Any]) -> dict[str, Any]:
     return {
         key: value
-        for key, value in _visible_exchange(exchange).items()
+        for key, value in visible.items()
         if key
         not in EXCHANGE_IDENTITY_FIELDS
         | EXCHANGE_PROVIDER_FIELDS
@@ -564,19 +613,104 @@ def _exchange_metadata(exchange: Mapping[str, Any]) -> dict[str, Any]:
     }
 
 
+_UNPREPARED = object()
+
+
+class _PreparedExchange(dict):
+    """Pair-local values; slots bound cache overhead for large activities."""
+
+    __slots__ = (
+        "_visible",
+        "_signature",
+        "_provider",
+        "_provider_signature",
+        "_metadata",
+        "_metadata_hash",
+    )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._visible = self._signature = self._provider = _UNPREPARED
+        self._provider_signature = self._metadata = self._metadata_hash = _UNPREPARED
+
+    def release_comparison(self):
+        """Release values which exact cancellation no longer needs."""
+        self._visible = self._signature = _UNPREPARED
+
+    @property
+    def visible(self):
+        if self._visible is _UNPREPARED:
+            self._visible = _visible_mapping(self)
+        return self._visible
+
+    @property
+    def signature(self):
+        # Preserve the second normalization pass, including special markers.
+        if self._signature is _UNPREPARED:
+            self._signature = _canonical_json(self.visible)
+        return self._signature
+
+    @property
+    def provider(self):
+        if self._provider is _UNPREPARED:
+            self._provider = _raw_provider_identity(self)
+        return self._provider
+
+    @property
+    def provider_signature(self):
+        if self._provider_signature is _UNPREPARED:
+            self._provider_signature = _canonical_json(self.provider)
+        return self._provider_signature
+
+    @property
+    def metadata(self):
+        if self._metadata is _UNPREPARED:
+            self._metadata = _metadata_from_visible(self.visible)
+        return self._metadata
+
+    @property
+    def metadata_hash(self):
+        if self._metadata_hash is _UNPREPARED:
+            self._metadata_hash = _stable_hash(self.metadata)
+        return self._metadata_hash
+
+
+def _exchange_signature(exchange):
+    if isinstance(exchange, _PreparedExchange):
+        return exchange.signature
+    return _canonical_json(_visible_exchange(exchange))
+
+
+def _provider_signature(exchange):
+    if isinstance(exchange, _PreparedExchange):
+        return exchange.provider_signature
+    return _canonical_json(_provider_identity(exchange))
+
+
+def _metadata_hash(exchange):
+    if isinstance(exchange, _PreparedExchange):
+        return exchange.metadata_hash
+    return _stable_hash(_exchange_metadata(exchange))
+
+
 def _cancel_exact(
     old: list[Mapping[str, Any]], new: list[Mapping[str, Any]]
 ) -> tuple[list[Mapping[str, Any]], list[Mapping[str, Any]]]:
     new_by_signature: dict[str, deque[int]] = defaultdict(deque)
     for index, exchange in enumerate(new):
-        new_by_signature[_canonical_json(_visible_exchange(exchange))].append(index)
+        new_by_signature[_exchange_signature(exchange)].append(index)
     used_new = set()
     old_remaining = []
     for exchange in old:
-        signature = _canonical_json(_visible_exchange(exchange))
+        signature = _exchange_signature(exchange)
         candidates = new_by_signature.get(signature)
         if candidates:
-            used_new.add(candidates.popleft())
+            matched = candidates.popleft()
+            used_new.add(matched)
+            if isinstance(exchange, _PreparedExchange):
+                exchange.release_comparison()
+            if isinstance(new[matched], _PreparedExchange):
+                new[matched].release_comparison()
         else:
             old_remaining.append(exchange)
     return old_remaining, [
@@ -591,16 +725,22 @@ def _pair_exchange_group(
     list[tuple[Mapping[str, Any], int]],
     list[tuple[Mapping[str, Any], int]],
 ]:
-    old_sorted = sorted(old, key=lambda item: _canonical_json(_visible_exchange(item)))
-    new_sorted = sorted(new, key=lambda item: _canonical_json(_visible_exchange(item)))
+    old_sorted = sorted(old, key=_exchange_signature)
+    new_sorted = sorted(new, key=_exchange_signature)
+    for exchange in (*old_sorted, *new_sorted):
+        if isinstance(exchange, _PreparedExchange):
+            exchange._signature = _UNPREPARED
     edges = []
+    new_values = [
+        (_provider_signature(item), _number(item.get("amount")), _metadata_hash(item))
+        for item in new_sorted
+    ]
     for old_index, old_exchange in enumerate(old_sorted):
-        old_provider = _canonical_json(_provider_identity(old_exchange))
+        old_provider = _provider_signature(old_exchange)
         old_amount = _number(old_exchange.get("amount"))
-        old_metadata = _stable_hash(_exchange_metadata(old_exchange))
+        old_metadata = _metadata_hash(old_exchange)
         for new_index, new_exchange in enumerate(new_sorted):
-            new_provider = _canonical_json(_provider_identity(new_exchange))
-            new_amount = _number(new_exchange.get("amount"))
+            new_provider, new_amount, new_metadata = new_values[new_index]
             if (
                 old_amount is None
                 or new_amount is None
@@ -615,9 +755,9 @@ def _pair_exchange_group(
                     old_provider != new_provider,
                     old_exchange.get("location") != new_exchange.get("location"),
                     distance,
-                    old_metadata != _stable_hash(_exchange_metadata(new_exchange)),
+                    old_metadata != new_metadata,
                     old_metadata,
-                    _stable_hash(_exchange_metadata(new_exchange)),
+                    new_metadata,
                     old_index,
                     new_index,
                 )
@@ -871,6 +1011,17 @@ def _exchange_base(
     return record
 
 
+def _sorted_report_exchanges(exchanges):
+    ordered = sorted(
+        exchanges,
+        key=lambda item: (_exchange_group_key(item), _exchange_signature(item)),
+    )
+    for exchange in ordered:
+        if isinstance(exchange, _PreparedExchange):
+            exchange._signature = _UNPREPARED
+    return ordered
+
+
 def _activity_records(
     source_store: InventoryStore,
     final_store: InventoryStore,
@@ -887,16 +1038,30 @@ def _activity_records(
     summary: _Summary,
 ) -> list[dict[str, Any]]:
     old_locator, new_locator = pair
+    if (
+        old_locator is not None
+        and new_locator is not None
+        and old_locator.hash_skip_safe
+        and new_locator.hash_skip_safe
+        and old_locator.visible_hash == new_locator.visible_hash
+    ):
+        return []
     old_activity = (
-        source_store.activity(old_locator.activity_id).to_dict()
+        _report_payload(source_store, old_locator.activity_id)
         if old_locator is not None
         else None
     )
     new_activity = (
-        final_store.activity(new_locator.activity_id).to_dict()
+        _report_payload(final_store, new_locator.activity_id)
         if new_locator is not None
         else None
     )
+    for activity in (old_activity, new_activity):
+        if activity is not None:
+            activity["exchanges"] = [
+                _PreparedExchange(exchange)
+                for exchange in activity.get("exchanges", ())
+            ]
     identity_activity = new_activity or old_activity
     occurrence = (new_locator or old_locator).occurrence
     attributions = attribution_index.lookup(identity_activity)
@@ -925,13 +1090,7 @@ def _activity_records(
             )
         )
         for exchange_occurrence, exchange in enumerate(
-            sorted(
-                new_activity.get("exchanges", ()),
-                key=lambda item: (
-                    _exchange_group_key(item),
-                    _canonical_json(_visible_exchange(item)),
-                ),
-            )
+            _sorted_report_exchanges(new_activity.get("exchanges", ()))
         ):
             exchange_record = _exchange_base(base, exchange, exchange_occurrence)
             records.append(
@@ -945,6 +1104,8 @@ def _activity_records(
                     unit=exchange.get("unit"),
                 )
             )
+            if isinstance(exchange, _PreparedExchange):
+                exchange.release_comparison()
         return records
     if new_activity is None:
         records.append(
@@ -958,13 +1119,7 @@ def _activity_records(
             )
         )
         for exchange_occurrence, exchange in enumerate(
-            sorted(
-                old_activity.get("exchanges", ()),
-                key=lambda item: (
-                    _exchange_group_key(item),
-                    _canonical_json(_visible_exchange(item)),
-                ),
-            )
+            _sorted_report_exchanges(old_activity.get("exchanges", ()))
         ):
             exchange_record = _exchange_base(base, exchange, exchange_occurrence)
             records.append(
@@ -978,6 +1133,8 @@ def _activity_records(
                     unit=exchange.get("unit"),
                 )
             )
+            if isinstance(exchange, _PreparedExchange):
+                exchange.release_comparison()
         return records
 
     old_visible = _visible_activity(old_activity)
@@ -1020,7 +1177,7 @@ def _activity_records(
             exchange_record = _exchange_base(base, new_exchange, exchange_occurrence)
             old_provider = _provider_identity(old_exchange)
             new_provider = _provider_identity(new_exchange)
-            if _canonical_json(old_provider) != _canonical_json(new_provider):
+            if _provider_signature(old_exchange) != _provider_signature(new_exchange):
                 relink = _value_record(
                     exchange_record,
                     object_type="exchange",
@@ -1030,8 +1187,8 @@ def _activity_records(
                     new=new_provider,
                     unit=new_exchange.get("unit"),
                 )
-                relink["old_provider_identity"] = _canonical_json(old_provider)
-                relink["new_provider_identity"] = _canonical_json(new_provider)
+                relink["old_provider_identity"] = _provider_signature(old_exchange)
+                relink["new_provider_identity"] = _provider_signature(new_exchange)
                 records.append(relink)
                 if old_exchange.get("location") != new_exchange.get(
                     "location"
