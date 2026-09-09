@@ -5,6 +5,9 @@ All notable changes to this project are documented in this file.
 ## [2.5.1]
 
 ### Changed
+
+- Updated the bundled IAM scenario download source to the published Zenodo
+  v2.5.0 record 22227290.
 - Replaced the IEA PVPS 2021 core with inventories
   from IEA PVPS Task 12 report T12-33:2026. The new supply chains cover
   single-Si (a TOPCon/PERC mix), multi-Si and CdTe technologies, including

@@ -12,7 +12,7 @@ from tqdm import tqdm
 
 from premise import __version__
 
-ZENODO_IAM_SCENARIO_RECORD_ID = "21790981"
+ZENODO_IAM_SCENARIO_RECORD_ID = "22227290"
 ZENODO_IAM_SCENARIO_BASE_URL = (
     f"https://zenodo.org/records/{ZENODO_IAM_SCENARIO_RECORD_ID}/files"
 )
