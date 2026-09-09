@@ -18,22 +18,19 @@
      - All supported configurations
    * - ``lci-PV-2026-electricity.xlsx``
      - 3.12
-     - 3.12 cutoff
+     - All supported configurations
    * - ``lci-PV-2026.xlsx``
      - 3.12
-     - 3.12 cutoff
+     - All supported configurations
    * - ``lci-PV-CIGS.xlsx``
      - 3.7
-     - 3.12 cutoff
+     - All supported configurations
    * - ``lci-PV-GaAs.xlsx``
      - 3.10
      - All supported configurations
    * - ``lci-PV-perovskite.xlsx``
      - 3.10
      - All supported configurations
-   * - ``lci-PV.xlsx``
-     - 3.7
-     - 3.5 cutoff; 3.6 cutoff; 3.7 cutoff; 3.7.1 cutoff; 3.8 cutoff; 3.8 consequential; 3.9 cutoff; 3.9 consequential; 3.9.1 cutoff; 3.9.1 consequential; 3.10 cutoff; 3.10 consequential; 3.10.1 cutoff; 3.10.1 consequential; 3.11 cutoff; 3.11 consequential; 3.12 consequential
    * - ``lci-afforestation.xlsx``
      - 3.12
      - 3.11 cutoff; 3.11 consequential; 3.12 cutoff; 3.12 consequential

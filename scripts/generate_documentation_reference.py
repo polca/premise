@@ -68,16 +68,6 @@ def inventory_selection(tree, version, system_model):
                     ]
                     if strings:
                         env[t.id] = strings[-1]
-    pv_tree = ast.parse((ROOT / "premise/photovoltaic.py").read_text())
-    fn = next(
-        n
-        for n in pv_tree.body
-        if isinstance(n, ast.FunctionDef) and n.name == "use_pv_2026"
-    )
-    # Function annotations use only builtins; its logic is self-contained.
-    exec(
-        compile(ast.Module(body=[fn], type_ignores=[]), "photovoltaic.py", "exec"), env
-    )
     exec(
         compile(
             ast.Module(body=statements[start:end], type_ignores=[]),

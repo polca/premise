@@ -1130,6 +1130,7 @@ def test_inventory_cache_miss_replaces_full_inventory_tail_with_trimmed_cache(
     base_dataset = {"name": "base"}
     imported_inventory = {"name": "inventory", "extra": "full"}
     trimmed_inventory = {"name": "inventory"}
+    cache_paths = []
 
     obj = object.__new__(NewDatabase)
     obj.database = [base_dataset]
@@ -1141,6 +1142,7 @@ def test_inventory_cache_miss_replaces_full_inventory_tail_with_trimmed_cache(
         return [imported_inventory]
 
     def fake_create_cache(data, file_name):
+        cache_paths.append(file_name)
         return [trimmed_inventory], Path("inventories-metadata.pickle")
 
     monkeypatch.setattr(
@@ -1154,7 +1156,7 @@ def test_inventory_cache_miss_replaces_full_inventory_tail_with_trimmed_cache(
 
     assert result is None
     assert obj.database == [base_dataset, trimmed_inventory]
-    assert obj.inventories_cache_filepath.name.endswith("_inventories.pickle")
+    assert cache_paths == [obj.inventories_cache_filepath]
     assert obj.inventories_metadata_cache_filepath == Path(
         "inventories-metadata.pickle"
     )
