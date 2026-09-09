@@ -6,6 +6,12 @@ All notable changes to this project are documented in this file.
 
 ### Changed
 
+- Accelerated structured change-report generation by avoiding repeated inventory
+  snapshots and exchange normalization, and skipping unchanged activities when
+  safe. A three-run benchmark on `ecoinvent-3.12-cutoff` reduced median report
+  runtime from 317 to 95 seconds (3.33× faster), preserving all 981,910 audit rows
+  and workbook contents. Added reproducible profiling and comparison tools;
+  see [benchmark details](benchmarks/change-report.md) for memory measurements.
 - Updated the bundled IAM scenario download source to the published Zenodo
   v2.5.0 record 22227290.
 - Replaced the IEA PVPS 2021 core with inventories
