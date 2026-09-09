@@ -184,6 +184,26 @@ def test_efficiency_uses_total_module_area_and_mw_capacity(inventories):
     )
 
 
+def test_efficiency_skips_electrical_installation(inventories, capsys):
+    core, _ = inventories
+    dataset = deepcopy(
+        next(
+            d
+            for d in core
+            if d["name"] == "electric installation production, photovoltaic plant"
+        )
+    )
+    before = deepcopy(dataset)
+    efficiency = Electricity.__new__(Electricity)
+    efficiency.database = [dataset]
+    efficiency.year = 2020
+
+    efficiency.update_efficiency_of_solar_pv()
+
+    assert dataset == before
+    assert "No numerical value found" not in capsys.readouterr().out
+
+
 def test_efficiency_never_reduces_the_baseline(inventories):
     core, _ = inventories
     dataset = deepcopy(

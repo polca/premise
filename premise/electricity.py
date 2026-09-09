@@ -1574,7 +1574,11 @@ class Electricity(BaseTransformation):
                     ws.contains("name", "installation"),
                     ws.contains("name", "construction"),
                 ),
-                ws.doesnt_contain_any("name", ["market", "factory", "module"]),
+                # Electrical installation is wiring/BOS, not a PV plant with
+                # an installed capacity and module area to adjust.
+                ws.doesnt_contain_any(
+                    "name", ["market", "factory", "module", "electric installation"]
+                ),
                 ws.equals("unit", "unit"),
             ],
         )
