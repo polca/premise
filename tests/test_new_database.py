@@ -36,7 +36,11 @@ except ModuleNotFoundError:
 import premise.new_database as new_database_module
 import premise.pathways as pathways_module
 from premise.inventory_store import CompactInventoryStore
-from premise.new_database import NewDatabase, check_presence_biosphere_database
+from premise.new_database import (
+    NewDatabase,
+    check_pathway_name,
+    check_presence_biosphere_database,
+)
 from premise.pathways import PathwaysDataPackage
 from premise.utils import get_cache_manifest_path
 
@@ -47,6 +51,37 @@ class DummyIAMDataCollection:
 
     def get_external_data(self, external_scenarios):
         return {}
+
+
+@pytest.mark.parametrize(
+    "pathway",
+    [
+        "SSP1-PkBudg1150",
+        "SSP1-PkBudg500",
+        "SSP2-PkBudg1150",
+        "SSP2-PkBudg500",
+        "SSP5-PkBudg1150",
+        "SSP5-PkBudg500",
+    ],
+)
+def test_unavailable_peak_budget_pathways_fail_before_download(pathway, tmp_path):
+    assert pathway not in new_database_module.config["SUPPORTED_PATHWAYS"]
+
+    with pytest.raises(ValueError) as error:
+        check_pathway_name(pathway, tmp_path, "remind")
+
+    message = str(error.value)
+    assert f"remind - {pathway}" in message
+    assert "not available for automatic download" in message
+    assert "Zenodo IAM archive" in message
+    assert f"remind_{pathway}.csv" in message
+
+
+def test_unavailable_peak_budget_pathway_accepts_local_scenario(tmp_path):
+    pathway = "SSP2-PkBudg1150"
+    (tmp_path / f"remind_{pathway}.csv").write_text("scenario", encoding="utf-8")
+
+    assert check_pathway_name(pathway, tmp_path, "remind") == pathway
 
 
 def _write_cache_manifest(cache_ref, *shard_files):

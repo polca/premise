@@ -62,6 +62,9 @@ All notable changes to this project are documented in this file.
   overlap with EPR components.
 
 ### Fixed
+- Stopped advertising retired REMIND `PkBudg1150` and `PkBudg500` pathways
+  that are absent from the current Zenodo IAM archive. Requests now fail before
+  download with the missing filename and local-file alternatives.
 - Retried temporary IAM scenario download failures and prevented incomplete
   downloads from becoming cached scenario files. Failed downloads now raise
   the original network or HTTP error.

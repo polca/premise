@@ -26,8 +26,6 @@ SUPPORTED_PATHWAYS:
   - SSP2-Base
   - SSP2-NDC
   - SSP2-NPi
-  - SSP2-PkBudg1150
-  - SSP2-PkBudg500
   - SSP2-PkBudg1000
   - SSP2-PkBudg650
   - SSP2-RCP26
@@ -36,16 +34,12 @@ SUPPORTED_PATHWAYS:
   - SSP1-Base
   - SSP1-rollBack
   - SSP1-NPi
-  - SSP1-PkBudg1150
-  - SSP1-PkBudg500
   - SSP1-PkBudg1000
   - SSP1-PkBudg650
   - SSP3-rollBack
   - SSP5-Base
   - SSP5-NDC
   - SSP5-NPi
-  - SSP5-PkBudg1150
-  - SSP5-PkBudg500
   - SSP1-L
   - SSP1-M
   - SSP1-VL
@@ -60,6 +54,14 @@ SUPPORTED_PATHWAYS:
   - SSP5-H
   - SSP5-LO
   - static
+
+UNAVAILABLE_PATHWAYS:
+  - SSP1-PkBudg1150
+  - SSP1-PkBudg500
+  - SSP2-PkBudg1150
+  - SSP2-PkBudg500
+  - SSP5-PkBudg1150
+  - SSP5-PkBudg500
 
 LIST_MESSAGE_REGIONS:
   - AFR

@@ -337,37 +337,32 @@ def check_model_name(name: str) -> str:
 def check_pathway_name(name: str, filepath: Path, model: str) -> str:
     """Check the pathway name"""
 
-    if name not in config["SUPPORTED_PATHWAYS"]:
-        # If the pathway name is not a default one,
-        # check that the filepath + pathway name
-        # leads to an actual file
-
-        if model.lower() not in name:
-            name_check = "_".join((model.lower(), name))
-        else:
-            name_check = name
-
-        if (filepath / name_check).with_suffix(".mif").is_file():
-            return name
-        if (filepath / name_check).with_suffix(".xlsx").is_file():
-            return name
-        if (filepath / name_check).with_suffix(".csv").is_file():
-            return name
-        raise ValueError(
-            f"Only {config['SUPPORTED_PATHWAYS']} are currently supported, not {name}."
-        )
-
     if model.lower() not in name:
         name_check = "_".join((model.lower(), name))
     else:
         name_check = name
 
-    if (filepath / name_check).with_suffix(".mif").is_file():
+    local_paths = [
+        (filepath / name_check).with_suffix(extension)
+        for extension in (".mif", ".xlsx", ".csv")
+    ]
+    if any(path.is_file() for path in local_paths):
         return name
-    if (filepath / name_check).with_suffix(".xlsx").is_file():
-        return name
-    if (filepath / name_check).with_suffix(".csv").is_file():
-        return name
+
+    if name in config.get("UNAVAILABLE_PATHWAYS", ()):
+        raise ValueError(
+            f"IAM pathway '{model.lower()} - {name}' is not available for "
+            "automatic download: the current Zenodo IAM archive does not "
+            f"contain '{name_check}.csv'. Choose a pathway listed in "
+            "SUPPORTED_PATHWAYS or provide the scenario locally as "
+            f"'{name_check}.csv', '{name_check}.xlsx', or '{name_check}.mif' "
+            f"in '{filepath}'."
+        )
+
+    if name not in config["SUPPORTED_PATHWAYS"]:
+        raise ValueError(
+            f"Only {config['SUPPORTED_PATHWAYS']} are currently supported, not {name}."
+        )
 
     print(
         f"Cannot find the IAM scenario file at {filepath / name_check}. "
