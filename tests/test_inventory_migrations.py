@@ -412,25 +412,40 @@ def test_pv_38_concrete_proxy_preserves_volume_and_forward_market():
 @pytest.mark.parametrize(
     "uncertainty, expected",
     [
-        ({"uncertainty type": 2, "loc": math.log(8), "scale": 0.3},
-         {"loc": math.log(2), "scale": 0.3}),
-        ({"uncertainty type": 3, "loc": 8.0, "scale": 2.0},
-         {"loc": 2.0, "scale": 0.5}),
-        ({"uncertainty type": 4, "minimum": 4.0, "maximum": 12.0},
-         {"minimum": 1.0, "maximum": 3.0}),
-        ({"uncertainty type": 5, "loc": 8.0, "minimum": 4.0, "maximum": 12.0},
-         {"loc": 2.0, "minimum": 1.0, "maximum": 3.0}),
+        (
+            {"uncertainty type": 2, "loc": math.log(8), "scale": 0.3},
+            {"loc": math.log(2), "scale": 0.3},
+        ),
+        ({"uncertainty type": 3, "loc": 8.0, "scale": 2.0}, {"loc": 2.0, "scale": 0.5}),
+        (
+            {"uncertainty type": 4, "minimum": 4.0, "maximum": 12.0},
+            {"minimum": 1.0, "maximum": 3.0},
+        ),
+        (
+            {"uncertainty type": 5, "loc": 8.0, "minimum": 4.0, "maximum": 12.0},
+            {"loc": 2.0, "minimum": 1.0, "maximum": 3.0},
+        ),
     ],
 )
 def test_disaggregation_scales_uncertainty_with_supplier_amount(uncertainty, expected):
-    original = {"name": "source", "type": "technosphere", "amount": 8.0,
-                "input": ("old", "code"), **uncertainty}
+    original = {
+        "name": "source",
+        "type": "technosphere",
+        "amount": 8.0,
+        "input": ("old", "code"),
+        **uncertainty,
+    }
     unchanged = copy.deepcopy(original)
     database = activity_with(original)
-    rules = [{"source": {"name": "source"}, "targets": [
-        {"name": "allocated", "allocation": 0.25},
-        {"name": "remainder", "allocation": 0.75},
-    ]}]
+    rules = [
+        {
+            "source": {"name": "source"},
+            "targets": [
+                {"name": "allocated", "allocation": 0.25},
+                {"name": "remainder", "allocation": 0.75},
+            ],
+        }
+    ]
 
     apply_disaggregation(database, rules)
 
@@ -453,9 +468,14 @@ def test_polyethylene_migration_preserves_triangular_bounds_after_relinking():
         "name": "market for polyethylene, low density, granulate",
         "reference product": "polyethylene, low density, granulate",
         "product": "polyethylene, low density, granulate",
-        "location": "GLO", "unit": "kilogram", "type": "technosphere",
-        "amount": amount, "uncertainty type": 5, "loc": amount,
-        "minimum": 0.8 * amount, "maximum": 1.2 * amount,
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "amount": amount,
+        "uncertainty type": 5,
+        "loc": amount,
+        "minimum": 0.8 * amount,
+        "maximum": 1.2 * amount,
     }
     database = activity_with(copy.deepcopy(original))
 
