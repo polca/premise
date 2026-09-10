@@ -19,7 +19,8 @@ from .logger import create_logger
 from .provenance import record_change_event
 from .inventory_store import get_scenario_inventory, replace_scenario_inventory
 from .transformation import BaseTransformation, IAMDataCollection
-from .utils import eidb_label, rescale_exchanges
+from .utils import eidb_label, rescale_exchanges, rescale_exchange
+from .car_energy import apply_floor, car_class, fuel_balance
 from .validation import (
     CarValidation,
     TruckValidation,
@@ -279,6 +280,11 @@ class Transport(BaseTransformation):
                     and exchange["unit"] == "kilogram"
                 )
 
+            if self.vehicle_type == "car" and car_class(dataset["name"]) is not None:
+                # Same energy accounting as the floor and read-only validation.
+                energy, _, _, production = fuel_balance(dataset)
+                fuel_consumption = energy * production
+
             for pollutant, factor in factors.items():
                 expected = factor / 1000 * fuel_consumption
                 actual = sum(
@@ -474,19 +480,34 @@ class Transport(BaseTransformation):
             # if not found, we assume that the efficiency is 1
             scaling_factor = 1
 
+        if self.vehicle_type == "car" and (not math.isfinite(scaling_factor) or scaling_factor <= 0):
+            raise ValueError("Passenger-car IAM scaling factor must be positive and finite")
+
         if scaling_factor != 1:
-            dataset = rescale_exchanges(
-                dataset,
-                scaling_factor,
-                technosphere_filters=[
-                    ws.either(
-                        *[
-                            ws.contains("name", v["name"])
-                            for v in self.vehicle_fuel_map[variable]
-                        ]
-                    )
-                ],
-            )
+            if self.vehicle_type == "car" and car_class(dataset["name"]) is not None:
+                # Fuel aliases for gasoline can miss actual 'market for petrol'
+                # exchanges. Use the same explicit fuel selection as validation.
+                _, _, fuels, _ = fuel_balance(dataset)
+                for exchange in fuels:
+                    rescale_exchange(exchange, scaling_factor, remove_uncertainty=False)
+                # Preserve the existing IAM biosphere-scaling convention here.
+                # The additional floor below selects combustion flows only.
+                for exchange in dataset["exchanges"]:
+                    if exchange.get("type") == "biosphere":
+                        rescale_exchange(exchange, scaling_factor, remove_uncertainty=False)
+            else:
+                dataset = rescale_exchanges(
+                    dataset,
+                    scaling_factor,
+                    technosphere_filters=[
+                        ws.either(
+                            *[
+                                ws.contains("name", v["name"])
+                                for v in self.vehicle_fuel_map[variable]
+                            ]
+                        )
+                    ],
+                )
 
             dataset.setdefault("log parameters", {}).update(
                 {"efficiency change": scaling_factor}
@@ -497,6 +518,14 @@ class Transport(BaseTransformation):
                 dataset["comment"] = txt
             else:
                 dataset["comment"] += txt
+
+        if self.vehicle_type == "car" and variable in data.coords["variables"].values:
+            event = apply_floor(dataset)
+            if event is not None:
+                event.update({"year": self.year, "region": dataset["location"],
+                              "model": self.model, "pathway": self.scenario,
+                              "iam scaling factor": scaling_factor,
+                              "source energy MJ/km": event["projected energy MJ/km"] / scaling_factor})
 
         self.write_log(dataset)
 

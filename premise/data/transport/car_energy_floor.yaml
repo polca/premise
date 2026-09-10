@@ -1,0 +1,9 @@
+# Provisional compatibility guardrail, NOT a validated physical minimum.
+# Existing validator: 0.02 kg diesel-equivalent/km * 42.6 MJ/kg.
+# Applied only to mapped conventional combustion cars with an IAM efficiency signal.
+enabled: true
+minimum_mj_per_vehicle_km: 0.852
+unit: MJ/vehicle-km (LHV)
+justification: Existing car validator lower bound, pending powertrain/size-specific evidence
+# Example override structure: {compressed gas: {small: 0.852}}
+overrides: {}

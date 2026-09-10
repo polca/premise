@@ -62,6 +62,66 @@ normalization for matched fuel, size and emissions-class cases. This is
 separate from IAM efficiency changes and the GAINS emissions update.
 
 
+Provisional combustion-car energy floor
+-----------------------------------------
+
+Mapped conventional diesel, gasoline and compressed-gas cars with an available
+IAM efficiency signal receive a configurable minimum fuel-energy demand after
+the IAM adjustment and before exhaust normalization. Battery-electric, fuel-cell,
+plug-in hybrid and non-car transport datasets are outside this floor's scope.
+Missing efficiency data do not trigger a source-inventory correction.
+
+The configuration is in ``data/transport/car_energy_floor.yaml``. Its default
+is **0.852 MJ LHV per vehicle-kilometre**, inherited from the previous validator's
+2 kg diesel-equivalent/100 km and 42.6 MJ/kg convention. This is a provisional
+compatibility guardrail, **not a demonstrated physical minimum**. Powertrain and
+size overrides and an ``enabled`` switch are supported. Configuration and fuel
+properties are cached per process; restart after changing them.
+
+For projected energy demand ``E`` and minimum ``E_min``, the final demand is
+``max(E, E_min)``. When binding, fuel inputs are multiplied by ``E_min/E``.
+Their proportions and existing fossil/non-fossil CO2 shares are preserved;
+vehicle manufacture, road infrastructure and non-exhaust burdens are not
+scaled by this additional correction. Ambiguous particulate flows are not
+assumed to be exhaust. The existing subsequent exhaust-factor normalization
+remains in place. The older IAM adjustment's all-biosphere scaling convention
+is unchanged by this additional floor.
+
+Fuel selection explicitly recognizes petrol as well as gasoline markets,
+including market groups. This fixes cases where IAM scaling previously changed
+emissions but missed petrol inputs. The same old alias could wrongly select
+``Passenger car, gasoline, ...`` manufacture inputs; these are now left at
+their source recipe amounts instead of following fuel-efficiency changes.
+Gas is supported in kg (47.5 MJ/kg, existing
+transport convention) or m3 (packaged fuel properties); liquid fuels use their
+packaged MJ/kg values. Unsupported units, invalid reference production, missing
+supported fuel inputs and non-finite or negative quantities fail explicitly.
+
+The car CO2 validator now runs independently of the efficiency-range check.
+It compares total direct fossil plus biogenic CO2 with fuel-specific packaged
+complete-combustion factors, retaining a 10% tolerance. It no longer applies a
+diesel carbon factor to energy-equivalent natural gas. Generic fuel-market
+labels do not establish blend composition, so this check does **not** validate
+the fossil/biogenic split or resolve synthetic-fuel carbon attribution.
+Validation is read-only and does not force emissions to match its expectation.
+
+Each binding floor is recorded in ``log parameters / car energy floor`` and
+transport provenance: projected and final energy demand, threshold, correction,
+affected exchanges, year, region, pathway and original IAM scaling. Such a car
+no longer exactly reproduces the unconstrained IAM efficiency; demand and fleet
+shares are not changed to compensate. Reapplying the floor alone is idempotent.
+
+Runtime acceptance
+~~~~~~~~~~~~~~~~~~~~
+
+The project acceptance limit is a maximum 0.1% increase in complete scenario-build
+runtime. Fuel lookups are cached, and the implementation adds no database-wide
+scan. Acceptance requires repeated interleaved baseline/patched builds with the
+same inputs, cache policy, export mode and warning handling. A one-sided 95%
+upper confidence bound on the paired runtime ratio must not exceed 1.001.
+An inconclusive benchmark is not a pass; microbenchmarks alone cannot establish
+compliance with the whole-build limit.
+
 Markets and downstream links
 ------------------------------
 

@@ -10,6 +10,7 @@ from functools import lru_cache
 import numpy as np
 import pandas as pd
 import yaml
+from .car_energy import car_class, fuel_balance, minimum_energy
 
 from .filesystem_constants import DATA_DIR
 from .export_payload import (
@@ -2231,6 +2232,9 @@ class TransportValidation(BaseDatasetValidator):
                 )
 
     def calculate_fuel_consumption(self, ds):
+        if car_class(ds["name"]) is not None:
+            energy, _, _, production = fuel_balance(ds)
+            return energy * production
         fuel_consumption = sum(
             x["amount"] * 43
             for x in ds["exchanges"]
@@ -2329,6 +2333,9 @@ class TransportValidation(BaseDatasetValidator):
                 continue
 
             if ds["name"].startswith(vehicle_name) and ds["location"] in self.regions:
+                if vehicle_name == "transport, passenger car" and car_class(ds["name"]) is not None:
+                    self.check_car_fuel_energy(ds)
+                    continue
                 electricity_consumption = sum(
                     [
                         x["amount"]
@@ -2413,6 +2420,32 @@ class TransportValidation(BaseDatasetValidator):
                                 message,
                                 issue_type="major",
                             )
+
+    def check_car_fuel_energy(self, ds):
+        """Read-only, fuel-specific checks independent of the floor binding."""
+        try:
+            energy, expected_co2, _, production = fuel_balance(ds)
+            minimum = minimum_energy(ds)
+        except (ValueError, KeyError, TypeError) as error:
+            self.log_issue(ds, "invalid car fuel accounting", str(error), issue_type="major")
+            return
+        # Preserve the previous upper plausibility bound in energy units.
+        if (minimum is not None and energy < minimum and
+                not math.isclose(energy, minimum, rel_tol=1e-12)) or energy > 4.26:
+            self.log_issue(ds, "fuel consumption incorrect",
+                           f"Fuel energy is {energy} MJ/vehicle-km; minimum={minimum}, maximum=4.26.",
+                           issue_type="major")
+        actual_co2 = sum(
+            exc["amount"] for exc in ds["exchanges"]
+            if exc.get("type") == "biosphere" and
+            exc.get("name", "").startswith("Carbon dioxide") and
+            exc.get("categories", [None])[0] == "air"
+        ) / production
+        if not math.isfinite(actual_co2) or not math.isclose(actual_co2, expected_co2, rel_tol=0.1):
+            self.log_issue(ds, "CO2 emissions incorrect",
+                           f"Direct CO2 is {actual_co2} kg/km; fuel-specific expectation={expected_co2}. "
+                           "Total fossil + biogenic CO2 checked; generic market carbon split is not inferred.",
+                           issue_type="major")
 
     def run_vehicle_checks(self):
         self.validate_and_normalize_exchanges()
