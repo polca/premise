@@ -66,17 +66,17 @@ Changelog
 ---------
 Release notes are maintained in [`CHANGELOG.md`](CHANGELOG.md).
 
-What's new in 2.5.1
+What's new in 2.5.2
 -------------------
 
-Version 2.5.1 makes metal-intensity updates deterministic and traceable. It:
+Version 2.5.2 improves transport, inventory imports, and scenario updates. It:
 
-- moves runtime material and conversion rules from Excel to validated YAML;
-- applies every configured material-product rule exactly once;
-- preserves the component-based material structure of `EPR construction`;
-- records applied, preserved, and unavailable-provider decisions in structured
-  change reports; and
-- adds dataset-level comparison and upstream-overlap validation tools.
+- fixes passenger-car fuel selection and adds a configurable, provisional
+  combustion-car energy floor;
+- preserves exchange uncertainty during inventory disaggregation;
+- improves photovoltaic inventory compatibility and efficiency updates;
+- corrects REMIND chemical energy mappings and unavailable-pathway handling; and
+- speeds up structured change-report generation.
 
 It builds on the main changes introduced in 2.5.0:
 
@@ -101,7 +101,7 @@ database = ndb.materialize_inventory()
 ```
 
 See the [2.5 migration and release guide](https://premise.readthedocs.io/en/latest/release_2_5.html)
-and the [full 2.5.1 changelog](CHANGELOG.md#251) for details.
+and the [full 2.5.2 changelog](CHANGELOG.md#252---2026-09-10) for details.
 
 
 Documentation

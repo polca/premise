@@ -5,6 +5,13 @@ Premise 2.5 release and migration guide
    :local:
    :depth: 1
 
+Version 2.5.2 corrects passenger-car fuel selection, adds a configurable
+provisional combustion-car energy floor, and preserves exchange uncertainty
+during inventory disaggregation. It also improves photovoltaic updates, IAM
+scenario handling, and change-report performance. See
+:doc:`/methodology/transport/passenger-cars` for the floor's scope, assumptions,
+and configuration. The inventory API introduced in 2.5.0 is unchanged.
+
 Version 2.5.1 moves runtime metals rules to validated YAML, applies each
 dataset/rule pair once, preserves the component-based material structure of
 ``EPR construction``, and records rule-specific decisions and target values in

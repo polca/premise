@@ -2,6 +2,38 @@
 
 All notable changes to this project are documented in this file.
 
+## [2.5.2] - 2026-09-10
+
+### Added
+
+- Added a configurable fuel-energy floor for mapped conventional combustion
+  passenger cars with an IAM efficiency signal. The default is 0.852 MJ LHV per
+  vehicle-kilometre, a provisional compatibility guardrail inherited from the
+  existing validator, not a validated physical minimum. The configuration in
+  `premise/data/transport/car_energy_floor.yaml` supports disabling the floor
+  and powertrain/size overrides.
+
+### Changed
+
+- Accelerated structured change-report generation while preserving audit rows
+  and workbook contents; see [benchmark details](benchmarks/change-report.md).
+- Extended IEA PVPS 2026 inventory compatibility across supported ecoinvent
+  versions and system models, with supplier migrations and classifications.
+- Updated the bundled IAM scenario source to Zenodo record 22227290 and reject
+  retired REMIND pathways that are absent from the archive before downloading.
+
+### Fixed
+
+- Corrected passenger-car fuel selection so petrol and gasoline market inputs
+  receive IAM efficiency adjustments without scaling vehicle-manufacturing
+  inputs. The additional energy-floor correction preserves fuel proportions
+  and fossil/non-fossil CO2 shares without scaling infrastructure or non-exhaust
+  burdens.
+- Preserved and rescaled exchange uncertainty when disaggregating imported
+  inventories instead of changing amounts alone.
+- Excluded electrical-installation inputs from photovoltaic efficiency updates.
+- Aligned REMIND chemical final-energy variable aliases with the scenario files.
+
 ## [2.5.1]
 
 ### Changed
