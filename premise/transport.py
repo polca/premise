@@ -480,8 +480,12 @@ class Transport(BaseTransformation):
             # if not found, we assume that the efficiency is 1
             scaling_factor = 1
 
-        if self.vehicle_type == "car" and (not math.isfinite(scaling_factor) or scaling_factor <= 0):
-            raise ValueError("Passenger-car IAM scaling factor must be positive and finite")
+        if self.vehicle_type == "car" and (
+            not math.isfinite(scaling_factor) or scaling_factor <= 0
+        ):
+            raise ValueError(
+                "Passenger-car IAM scaling factor must be positive and finite"
+            )
 
         if scaling_factor != 1:
             if self.vehicle_type == "car" and car_class(dataset["name"]) is not None:
@@ -494,7 +498,9 @@ class Transport(BaseTransformation):
                 # The additional floor below selects combustion flows only.
                 for exchange in dataset["exchanges"]:
                     if exchange.get("type") == "biosphere":
-                        rescale_exchange(exchange, scaling_factor, remove_uncertainty=False)
+                        rescale_exchange(
+                            exchange, scaling_factor, remove_uncertainty=False
+                        )
             else:
                 dataset = rescale_exchanges(
                     dataset,
@@ -522,10 +528,17 @@ class Transport(BaseTransformation):
         if self.vehicle_type == "car" and variable in data.coords["variables"].values:
             event = apply_floor(dataset)
             if event is not None:
-                event.update({"year": self.year, "region": dataset["location"],
-                              "model": self.model, "pathway": self.scenario,
-                              "iam scaling factor": scaling_factor,
-                              "source energy MJ/km": event["projected energy MJ/km"] / scaling_factor})
+                event.update(
+                    {
+                        "year": self.year,
+                        "region": dataset["location"],
+                        "model": self.model,
+                        "pathway": self.scenario,
+                        "iam scaling factor": scaling_factor,
+                        "source energy MJ/km": event["projected energy MJ/km"]
+                        / scaling_factor,
+                    }
+                )
 
         self.write_log(dataset)
 

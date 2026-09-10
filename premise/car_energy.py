@@ -4,6 +4,7 @@ No database-wide index or scan: callers reuse their existing vehicle traversal.
 Fuel properties and name resolution are cached. Generic fuel markets do not
 establish a fossil/biogenic split; preserve existing combustion-flow shares.
 """
+
 import math
 from functools import lru_cache
 
@@ -39,9 +40,19 @@ def fuel_spec(name, unit):
     if not name.startswith(("market for ", "market group for ")):
         return None
     stem = name.removeprefix("market for ").removeprefix("market group for ")
-    family = next((f for prefix, f in (("diesel", "diesel"), ("petrol", "gasoline"),
-                                      ("gasoline", "gasoline"), ("natural gas", "natural gas"))
-                   if stem == prefix or stem.startswith(prefix + ",")), None)
+    family = next(
+        (
+            f
+            for prefix, f in (
+                ("diesel", "diesel"),
+                ("petrol", "gasoline"),
+                ("gasoline", "gasoline"),
+                ("natural gas", "natural gas"),
+            )
+            if stem == prefix or stem.startswith(prefix + ",")
+        ),
+        None,
+    )
     if family is None:
         return None
     props = fuel_properties()[family]
@@ -102,7 +113,11 @@ def minimum_energy(dataset, config=None):
         return None
     powertrain, size = car_class(dataset["name"])
     overrides = config.get("overrides", {}).get(powertrain, {})
-    value = float(overrides.get(size, overrides.get("default", config["minimum_mj_per_vehicle_km"])))
+    value = float(
+        overrides.get(
+            size, overrides.get("default", config["minimum_mj_per_vehicle_km"])
+        )
+    )
     if not math.isfinite(value) or value <= 0:
         raise ValueError("Car energy floor must be positive and finite")
     return value
@@ -117,23 +132,39 @@ def apply_floor(dataset, config=None):
     if energy >= minimum or math.isclose(energy, minimum, rel_tol=1e-12):
         return None
     from .utils import rescale_exchange
+
     ratio = minimum / energy
     changed = []
     for exc in fuels:
         rescale_exchange(exc, ratio, remove_uncertainty=False)
         changed.append(exc["name"])
     # Only exhaust air flows, not tyre/brake wear, road dust, noise or resources.
-    exhaust = ("Carbon dioxide", "Carbon monoxide", "Methane", "Nitrogen oxides",
-               "Dinitrogen monoxide", "Sulfur dioxide", "Ammonia", "NMVOC")
+    exhaust = (
+        "Carbon dioxide",
+        "Carbon monoxide",
+        "Methane",
+        "Nitrogen oxides",
+        "Dinitrogen monoxide",
+        "Sulfur dioxide",
+        "Ammonia",
+        "NMVOC",
+    )
     for exc in dataset["exchanges"]:
-        if (exc.get("type") == "biosphere" and exc.get("categories", [None])[0] == "air"
-                and exc.get("name", "").startswith(exhaust)):
+        if (
+            exc.get("type") == "biosphere"
+            and exc.get("categories", [None])[0] == "air"
+            and exc.get("name", "").startswith(exhaust)
+        ):
             rescale_exchange(exc, ratio, remove_uncertainty=False)
             changed.append(exc["name"])
-    event = {"projected energy MJ/km": energy, "minimum energy MJ/km": minimum,
-             "final energy MJ/km": minimum, "floor correction factor": ratio,
-             "affected exchanges": changed,
-             "carbon split": "retained; generic fuel-market composition not inferred"}
+    event = {
+        "projected energy MJ/km": energy,
+        "minimum energy MJ/km": minimum,
+        "final energy MJ/km": minimum,
+        "floor correction factor": ratio,
+        "affected exchanges": changed,
+        "carbon split": "retained; generic fuel-market composition not inferred",
+    }
     dataset.setdefault("log parameters", {})["car energy floor"] = event
     dataset["comment"] = dataset.get("comment", "") + (
         f" Provisional car energy floor applied: {energy:.8g} -> {minimum:.8g} MJ/vehicle-km."
