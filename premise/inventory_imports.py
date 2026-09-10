@@ -29,6 +29,7 @@ from .clean_datasets import remove_categories, remove_uncertainty
 from .data_collection import get_delimiter
 from .filesystem_constants import DATA_DIR, DIR_CACHED_DB, INVENTORY_DIR
 from .geomap import Geomap
+from .utils import rescale_exchange
 
 FILEPATH_CONSEQUENTIAL_BLACKLIST = DATA_DIR / "consequential" / "blacklist.yaml"
 CORRESPONDENCE_BIO_FLOWS = (
@@ -427,8 +428,6 @@ def apply_disaggregation(db: list, disaggregate_rules: list):
                 new_exchanges.append(exc)
                 continue
 
-            original_amount = exc["amount"]
-
             for tgt in rule["targets"]:
                 new_exc = exc.copy()
 
@@ -440,7 +439,7 @@ def apply_disaggregation(db: list, disaggregate_rules: list):
                     new_exc["product"] = tgt["reference product"]
 
                 alloc = tgt.get("allocation", 1.0)
-                new_exc["amount"] = original_amount * alloc
+                rescale_exchange(new_exc, alloc, remove_uncertainty=False)
 
                 new_exc.pop("input", None)
 

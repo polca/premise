@@ -1,5 +1,8 @@
 import copy
 import json
+import math
+
+import pytest
 
 import premise.inventory_imports as inventory_imports
 from premise.inventory_imports import (
@@ -404,3 +407,89 @@ def test_pv_38_concrete_proxy_preserves_volume_and_forward_market():
     assert database == expected
     inventory_imports.apply_forward_replace(database, rules)
     assert database == expected
+
+
+@pytest.mark.parametrize(
+    "uncertainty, expected",
+    [
+        (
+            {"uncertainty type": 2, "loc": math.log(8), "scale": 0.3},
+            {"loc": math.log(2), "scale": 0.3},
+        ),
+        ({"uncertainty type": 3, "loc": 8.0, "scale": 2.0}, {"loc": 2.0, "scale": 0.5}),
+        (
+            {"uncertainty type": 4, "minimum": 4.0, "maximum": 12.0},
+            {"minimum": 1.0, "maximum": 3.0},
+        ),
+        (
+            {"uncertainty type": 5, "loc": 8.0, "minimum": 4.0, "maximum": 12.0},
+            {"loc": 2.0, "minimum": 1.0, "maximum": 3.0},
+        ),
+    ],
+)
+def test_disaggregation_scales_uncertainty_with_supplier_amount(uncertainty, expected):
+    original = {
+        "name": "source",
+        "type": "technosphere",
+        "amount": 8.0,
+        "input": ("old", "code"),
+        **uncertainty,
+    }
+    unchanged = copy.deepcopy(original)
+    database = activity_with(original)
+    rules = [
+        {
+            "source": {"name": "source"},
+            "targets": [
+                {"name": "allocated", "allocation": 0.25},
+                {"name": "remainder", "allocation": 0.75},
+            ],
+        }
+    ]
+
+    apply_disaggregation(database, rules)
+
+    allocated, remainder = database[0]["exchanges"]
+    assert allocated["amount"] == 2.0
+    assert allocated["amount"] + remainder["amount"] == 8.0
+    assert allocated["uncertainty type"] == uncertainty["uncertainty type"]
+    for field, value in expected.items():
+        assert allocated[field] == pytest.approx(value)
+    assert "input" not in allocated and "input" not in remainder
+    assert original == unchanged
+
+
+def test_polyethylene_migration_preserves_triangular_bounds_after_relinking():
+    from premise.transformation import redefine_uncertainty_params
+
+    rules = discover_available_migrations()[("3.11", "3.12")]["disaggregate"]
+    amount = 0.00010300429184549356
+    original = {
+        "name": "market for polyethylene, low density, granulate",
+        "reference product": "polyethylene, low density, granulate",
+        "product": "polyethylene, low density, granulate",
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "amount": amount,
+        "uncertainty type": 5,
+        "loc": amount,
+        "minimum": 0.8 * amount,
+        "maximum": 1.2 * amount,
+    }
+    database = activity_with(copy.deepcopy(original))
+
+    apply_disaggregation(database, rules)
+
+    exchanges = database[0]["exchanges"]
+    assert len(exchanges) == 5
+    assert sum(e["amount"] for e in exchanges) == pytest.approx(amount)
+    for exchange in exchanges:
+        assert exchange["minimum"] <= exchange["loc"] <= exchange["maximum"]
+        assert exchange["loc"] == pytest.approx(exchange["amount"])
+        loc, _, minimum, maximum, _ = redefine_uncertainty_params(
+            exchange, {"amount": amount}
+        )
+        assert loc == pytest.approx(amount)
+        assert minimum == pytest.approx(original["minimum"])
+        assert maximum == pytest.approx(original["maximum"])
