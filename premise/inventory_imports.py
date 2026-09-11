@@ -9,8 +9,9 @@ import logging
 import uuid
 import unicodedata
 from functools import lru_cache
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 from typing import Dict, List, Union
+from urllib.parse import urlsplit
 import json
 from collections import deque
 
@@ -946,7 +947,7 @@ class BaseInventoryImport:
     :ivar version_in: the ecoinvent database version of the inventory to import
     :ivar version_out: the ecoinvent database version the imported inventories
         should comply with
-    :ivar path: the filepath of the inventories to import
+    :ivar path: the local filepath or HTTP(S) URL of the inventories to import
 
     """
 
@@ -981,22 +982,31 @@ class BaseInventoryImport:
         self.import_product_index = {}
 
         print(f"Importing {path}")
-        if "http" in str(path):
+        if isinstance(path, str) and urlsplit(path).scheme in ("http", "https"):
+            # A URL is not a filesystem path: Path changes its separators and
+            # can corrupt both the scheme and the query string.
             r = requests.head(path)
             if r.status_code != 200:
                 raise ValueError("The file at {} could not be found.".format(path))
         else:
-            if not Path(path).exists():
+            self.path = Path(path)
+            if not self.path.exists():
                 raise FileNotFoundError(
                     f"The inventory file {path} could not be found."
                 )
 
-        self.path = Path(path) if isinstance(path, str) else path
         self.import_db = (
             preloaded_importer
             if preloaded_importer is not None
             else self.load_inventory()
         )
+
+    @property
+    def inventory_filename(self) -> str:
+        """Get a diagnostic filename without treating a URL as a local path."""
+        if isinstance(self.path, str):
+            return PurePosixPath(urlsplit(self.path).path).name
+        return self.path.name
 
     def _build_database_product_index(self) -> dict:
         """Build product lookup tables for the source database."""
@@ -1086,10 +1096,7 @@ class BaseInventoryImport:
             )
             table = PrettyTable(["Name", "Reference product", "Location", "File"])
 
-            if isinstance(self.path, str):
-                name = self.path
-            else:
-                name = self.path.name
+            name = self.inventory_filename
 
             for dataset in already_exist:
                 table.add_row(
@@ -1570,7 +1577,7 @@ class BaseInventoryImport:
                 None,
                 exc[2],
                 "technosphere",
-                self.path.name,
+                self.inventory_filename,
             )
         )
 
@@ -1633,13 +1640,13 @@ class BaseInventoryImport:
 
                                     if key not in self.biosphere_dict:
                                         print(
-                                            f"Could not find a biosphere flow for {key} in {self.path.name}. Exchange deleted."
+                                            f"Could not find a biosphere flow for {key} in {self.inventory_filename}. Exchange deleted."
                                         )
                                         y["delete"] = True
 
                                 except KeyError:
                                     print(
-                                        f"Could not find a biosphere flow for {key} in {self.path.name}. Exchange deleted."
+                                        f"Could not find a biosphere flow for {key} in {self.inventory_filename}. Exchange deleted."
                                     )
                                     y["delete"] = True
                             y["name"] = new_key[0]
@@ -1652,7 +1659,7 @@ class BaseInventoryImport:
                             y["categories"] = (key[1], "unspecified")
                         else:
                             print(
-                                f"Could not find a biosphere flow for {key} or {fallback_key} in {self.path.name}. Exchange deleted."
+                                f"Could not find a biosphere flow for {key} or {fallback_key} in {self.inventory_filename}. Exchange deleted."
                             )
                             y["delete"] = True
 
@@ -1663,7 +1670,7 @@ class BaseInventoryImport:
                         )
                     except KeyError:
                         print(
-                            f"Could not find a biosphere flow for {key} in {self.path.name}. Flow ignored."
+                            f"Could not find a biosphere flow for {key} in {self.inventory_filename}. Flow ignored."
                         )
                         # remove the exchange if it is not linked
                         y["delete"] = True
@@ -1853,7 +1860,10 @@ class DefaultInventory(BaseInventoryImport):
             print("Remove uncertainty data.")
             self.import_db.data = remove_uncertainty(self.import_db.data)
         else:
-            check_uncertainty_data(self.import_db.data, filename=Path(self.path).stem)
+            check_uncertainty_data(
+                self.import_db.data,
+                filename=PurePosixPath(self.inventory_filename).stem,
+            )
 
         # Check for duplicates
         self.check_for_already_existing_datasets()
@@ -1967,18 +1977,10 @@ class AdditionalInventory(BaseInventoryImport):
             raise ConnectionError(f"Error downloading the file: {e}") from e
 
     def load_inventory(self):
-        path_str = str(self.path)
-
-        if "http" in path_str:
-            if ":/" in path_str and "://" not in path_str:
-                path_str = path_str.replace(":/", "://")
-            self.download_file(
-                path_str,
-                TEMP_CSV_FILE if path_str.endswith(".csv") else TEMP_EXCEL_FILE,
-            )
-            temp_file_path = (
-                TEMP_CSV_FILE if path_str.endswith(".csv") else TEMP_EXCEL_FILE
-            )
+        if isinstance(self.path, str):
+            suffix = PurePosixPath(urlsplit(self.path).path).suffix
+            temp_file_path = TEMP_CSV_FILE if suffix == ".csv" else TEMP_EXCEL_FILE
+            self.download_file(self.path, temp_file_path)
         else:
             temp_file_path = self.path
 
