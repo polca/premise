@@ -1,8 +1,74 @@
 from types import SimpleNamespace
 
+import pytest
 import xarray as xr
 
 from premise.fuels.base import Fuels
+
+
+def test_petrol_variants_reclassify_consumer_carbon_only_once():
+    """A high biofuel share must not append the same combustion CO2 twice."""
+    fuel = {
+        "name": "market for petrol, low-sulfur",
+        "product": "petrol, low-sulfur",
+        "location": "RER",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "amount": 0.1,
+    }
+    fossil = {
+        "name": "Carbon dioxide, fossil",
+        "unit": "kilogram",
+        "categories": ("air",),
+        "type": "biosphere",
+        "amount": 0.315,
+    }
+    consumer = {
+        "name": "petrol consumer",
+        "location": "R1",
+        "exchanges": [fuel, fossil],
+    }
+    blend = xr.DataArray(
+        [[[0.4]], [[0.6]]],
+        dims=("variables", "region", "year"),
+        coords={
+            "variables": ["gasoline", "bioethanol"],
+            "region": ["R1"],
+            "year": [2050],
+        },
+    )
+    fuels = object.__new__(Fuels)
+    fuels.database = [consumer]
+    fuels.fuel_map = {"gasoline": [], "bioethanol": []}
+    fuels.model, fuels.system_model, fuels.year = "image", "cutoff", 2050
+    fuels.regions = ["R1"]
+    fuels.ecoinvent_to_iam_loc = {}
+    fuels.iam_data = SimpleNamespace(production_volumes=blend, petrol_blend=blend)
+    fuels.mapping = SimpleNamespace(
+        generate_sets_from_filters=lambda _: {},
+        generate_fuel_map=lambda **_: fuels.fuel_map,
+    )
+    fuels.generate_biofuel_activities = lambda: None
+    fuels._filter_biodiesel_feedstocks = lambda: None
+    fuels._filter_bioethanol_feedstocks = lambda: None
+    created = []
+    fuels.process_and_add_markets = lambda **kwargs: created.append(kwargs["name"])
+    fuels.is_in_index = lambda exchange, location: exchange["name"] in created
+    fuels.biosphere_flows = {
+        ("Carbon dioxide, non-fossil", "air", "unspecified", "kilogram"): "bio-co2"
+    }
+
+    fuels.generate_synthetic_fuel_activities()
+
+    assert len(created) == 3
+    assert fuel["location"] == "R1"
+    assert fossil["amount"] == pytest.approx(0.126)
+    biogenic = [
+        e for e in consumer["exchanges"] if e["name"] == "Carbon dioxide, non-fossil"
+    ]
+    assert len(biogenic) == 1
+    assert biogenic[0]["amount"] == pytest.approx(0.189)
+    assert fossil["amount"] + biogenic[0]["amount"] == pytest.approx(0.315)
 
 
 def test_gcam_coal_methane_inventory_is_regionalized():

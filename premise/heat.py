@@ -9,7 +9,7 @@ import xarray as xr
 
 from .activity_maps import InventorySet
 from .filesystem_constants import VARIABLES_DIR
-from .heat_data import load_heat_mapping
+from .heat_data import ABSOLUTE_TOLERANCE, RELATIVE_TOLERANCE, load_heat_mapping
 from .inventory_imports import get_biosphere_code
 from .logger import create_logger
 from .provenance import record_change_event
@@ -882,6 +882,64 @@ class Heat(BaseTransformation):
             self.heat_techs[technology] = mapping[technology]
         return mapping
 
+    def _exclude_negligible_unserved_heat(self, array, layer, mapping):
+        """Reconcile negligible purchased heat without inventing a supplier.
+
+        IAMs can report tiny end-use heat quantities where secondary supply is
+        zero. Use the heat closure tolerance only for missing purchased-heat
+        suppliers; retain supported quantities and reject material gaps.
+        """
+        year = min(max(self.year, array.year.values.min()), array.year.values.max())
+        selected = self._select_year(array, year)
+        totals = selected.sum(dim="variables")
+        excluded = []
+        for technology, activities in mapping.items():
+            if (
+                self.heat_metadata.get(technology, {}).get("supplier_type")
+                != "secondary_market"
+            ):
+                continue
+            locations = {activity["location"] for activity in activities}
+            for region in (region for region in self.regions if region != "World"):
+                if locations.intersection(
+                    {region, "RoW", *self.iam_to_ecoinvent_loc[region]}
+                ):
+                    continue
+                volume = float(selected.sel(variables=technology, region=region))
+                if volume <= 0:
+                    continue
+                total = float(totals.sel(region=region))
+                tolerance = max(ABSOLUTE_TOLERANCE, RELATIVE_TOLERANCE * total)
+                if volume > tolerance:
+                    raise ValueError(
+                        f"Positive purchased heat for {technology!r} in {region!r}: "
+                        f"{volume} exceeds closure tolerance {tolerance}, "
+                        "but no regional secondary heat supplier is available."
+                    )
+                excluded.append(
+                    {
+                        "technology": technology,
+                        "region": region,
+                        "year": int(self.year),
+                        "market volume": volume,
+                        "regional total": total,
+                        "tolerance": tolerance,
+                    }
+                )
+        if not excluded:
+            return array
+        selected = selected.copy(deep=True)
+        for record in excluded:
+            selected.loc[
+                dict(variables=record["technology"], region=record["region"])
+            ] = 0.0
+        self.diagnostics.setdefault(layer, {})[
+            "negligible unserved purchased heat"
+        ] = excluded
+        # Market creation uses only the requested year; preserve interpolation
+        # and clipping semantics while leaving the IAM time series untouched.
+        return selected.expand_dims(year=[self.year])
+
     def create_heat_market(self, array: xr.DataArray, layer: str, market: dict) -> None:
         delivered = self.convert_to_delivered_heat(array, layer)
         market_volumes = delivered
@@ -893,12 +951,16 @@ class Heat(BaseTransformation):
                 f"heat {layer}",
             )
 
+        mapping = self._mapping_for_layer(market_volumes, layer)
+        market_volumes = self._exclude_negligible_unserved_heat(
+            market_volumes, layer, mapping
+        )
         before = {dataset.get("code") for dataset in self.database}
         self.process_and_add_markets(
             name=market["name"],
             reference_product=market["reference product"],
             unit="megajoule",
-            mapping=self._mapping_for_layer(market_volumes, layer),
+            mapping=mapping,
             production_volumes=market_volumes,
             system_model=self.system_model,
         )

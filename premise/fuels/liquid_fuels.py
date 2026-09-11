@@ -250,34 +250,35 @@ class SyntheticFuelsMixin:
                         retain_validation_technology=True,
                     )
 
-                    self.update_fuel_carbon_dioxide_emissions(
-                        variables=[
-                            k
-                            for k in self.fuel_map.keys()
-                            if any(
-                                k.startswith(x)
-                                for x in (
-                                    "gasoline",
-                                    "bioethanol",
-                                    "ethanol",
-                                    "petrol",
-                                    "methanol",
-                                )
+                # Reclassify combustion carbon once, after all petrol variants exist.
+                self.update_fuel_carbon_dioxide_emissions(
+                    variables=[
+                        k
+                        for k in self.fuel_map.keys()
+                        if any(
+                            k.startswith(x)
+                            for x in (
+                                "gasoline",
+                                "bioethanol",
+                                "ethanol",
+                                "petrol",
+                                "methanol",
                             )
-                        ],
-                        market_names=[
-                            "market for petrol, low-sulfur",
-                            "market for petrol, unleaded",
-                        ],
-                        co2_intensity=3.15,
-                        fossil_variables=[
-                            "gasoline",
-                            "petrol",
-                            "petrol, synthetic, from coal",
-                            "petrol, synthetic, from coal, with CCS",
-                        ],
-                        technology_shares=self.iam_data.petrol_blend,
-                    )
+                        )
+                    ],
+                    market_names=[
+                        "market for petrol, low-sulfur",
+                        "market for petrol, unleaded",
+                    ],
+                    co2_intensity=3.15,
+                    fossil_variables=[
+                        "gasoline",
+                        "petrol",
+                        "petrol, synthetic, from coal",
+                        "petrol, synthetic, from coal, with CCS",
+                    ],
+                    technology_shares=self.iam_data.petrol_blend,
+                )
 
         # diesel
         # check that IAM data has "diesel_blend" attribute
