@@ -592,7 +592,198 @@ def _performance_regression_stores(backend=CompactInventoryStore):
     return backend(old), backend(new)
 
 
-@pytest.mark.parametrize("backend_name", ["compact", "legacy", "checkpoint"])
+@pytest.mark.parametrize("checkpoint", [False, True])
+@pytest.mark.parametrize("source_fingerprint", ["synthetic-source", ""])
+def test_parallel_report_matches_serial(
+    tmp_path, monkeypatch, checkpoint, source_fingerprint
+):
+    import copy
+    import premise.change_report as report
+    from premise._report_parallel import generate_details_parallel
+    from premise.inventory_store import InventoryStore
+
+    source, final = _performance_regression_stores()
+    old, new = source.materialize(), final.materialize()
+    # More than 20 equal-score changes exercise heap truncation and stable ties
+    # across several worker partitions and scenarios.
+    for index in range(40):
+        for inventory in (old, new):
+            activity = copy.deepcopy(inventory[0])
+            activity["name"] = f"market example {index:02}"
+            activity["code"] = f"rank-{index}"
+            inventory.append(activity)
+    source, final = CompactInventoryStore(old), CompactInventoryStore(new)
+    if checkpoint:
+        source = InventoryStore.open_for_reporting(
+            source.checkpoint(tmp_path / "source")
+        )
+        final = InventoryStore.open_for_reporting(final.checkpoint(tmp_path / "final"))
+    scenarios = []
+    collector = ProvenanceCollector("parallel-test")
+    transformation = type("Transformation", (), {"system_model": "cutoff"})()
+    for year in (2030, 2040, 2050, 2060):
+        identity = ("image", "p", year)
+        with collector.session(identity, "electricity"):
+            for activity in new:
+                record_change_event(
+                    transformation,
+                    activity,
+                    sector="electricity",
+                    reason_code="electricity.test",
+                    algorithm="test algorithm",
+                    proxy="RER",
+                    fallback_rank=1,
+                )
+        scenarios.append(
+            ReportScenario(
+                identity=identity,
+                store=final,
+                provenance_payload=collector.payload_for(identity),
+                definition={
+                    "_validation_intents": {
+                        "test": {
+                            "transformation": "test sector",
+                            "affected_activity_keys": [
+                                report._semantic_key(activity)[:3] for activity in new
+                            ],
+                        }
+                    }
+                },
+            )
+        )
+    arguments = dict(
+        source_store=source,
+        scenarios=scenarios,
+        build_id="parallel-test",
+        source_fingerprint=source_fingerprint,
+    )
+    serial = report.generate_structured_change_report(
+        filepath=tmp_path / "serial", **arguments
+    )
+    monkeypatch.setattr(
+        report,
+        "_generate_details",
+        lambda **kwargs: generate_details_parallel(workers=3, **kwargs),
+    )
+    parallel = report.generate_structured_change_report(
+        filepath=tmp_path / "parallel", **arguments
+    )
+    old_rows = pq.read_table(serial.artifacts.details_path).drop(["report_id"])
+    new_rows = pq.read_table(parallel.artifacts.details_path).drop(["report_id"])
+    assert old_rows.equals(new_rows)
+    old_summary = serial.cache_entry.summary
+    new_summary = parallel.cache_entry.summary
+    assert old_summary.scenario_counts == new_summary.scenario_counts
+    assert old_summary.sector_counts == new_summary.sector_counts
+    assert old_summary.key_change_rows() == new_summary.key_change_rows()
+    assert old_summary.market_rows == new_summary.market_rows
+    assert old_summary.fallback_rows() == new_summary.fallback_rows()
+    assert old_summary.final_fingerprints == new_summary.final_fingerprints
+    assert old_summary.final_counts == new_summary.final_counts
+    assert old_summary.methodology_rows == new_summary.methodology_rows
+    assert not list((tmp_path / "parallel").glob(".premise-report-*"))
+
+
+def test_parallel_worker_failure_preserves_existing_audit(tmp_path):
+    from premise._report_parallel import generate_details_parallel
+
+    source = CompactInventoryStore([])
+    final = CompactInventoryStore([_activity("broken", ["invalid name"], "GLO", [])])
+    audit = tmp_path / "existing.parquet"
+    audit.write_bytes(b"previous report")
+    with pytest.raises(RuntimeError, match="worker failed"):
+        generate_details_parallel(
+            source_store=source,
+            scenarios=(ReportScenario(("test",), final),),
+            details_path=audit,
+            report_id="test",
+            build_id="test",
+            source_fingerprint="test",
+            workers=2,
+        )
+    assert audit.read_bytes() == b"previous report"
+    assert not list(tmp_path.glob(".premise-report-*"))
+
+
+def test_deferred_source_matches_eager_normalization(tmp_path, monkeypatch):
+    import copy
+    import numpy as np
+    import premise.change_report as report
+    from premise._report_inputs import DeferredReportSource
+    from premise._report_parallel import generate_details_parallel
+    from premise.new_database import _normalize_inventory_before_certification
+    from premise.inventory_store import LegacyInventoryStore
+
+    source, final = _performance_regression_stores()
+    raw = source.materialize()
+    raw[0]["exchanges"].extend(
+        [
+            {
+                "type": "technosphere",
+                "name": "duplicate",
+                "product": "p",
+                "amount": np.array([2]),
+                "uncertainty type": 0,
+            },
+            {
+                "type": "technosphere",
+                "name": "duplicate",
+                "product": "p",
+                "amount": np.array([2]),
+                "uncertainty type": 0,
+            },
+            {
+                "type": "biosphere",
+                "name": "zero",
+                "amount": np.float64(0),
+                "uncertainty type": 2,
+                "scale": 1.5,
+            },
+        ]
+    )
+    normalized = _normalize_inventory_before_certification(copy.deepcopy(raw))
+    eager = LegacyInventoryStore(normalized)
+    deferred = DeferredReportSource(copy.deepcopy(raw), "legacy")
+    arguments = dict(
+        scenarios=(ReportScenario(("image", "p", 2050), final),),
+        build_id="deferred",
+        source_fingerprint="",
+    )
+    serial = report.generate_structured_change_report(
+        source_store=eager, filepath=tmp_path / "serial", **arguments
+    )
+    monkeypatch.setattr(
+        report,
+        "_generate_details",
+        lambda **kwargs: generate_details_parallel(workers=3, **kwargs),
+    )
+    parallel = report.generate_structured_change_report(
+        source_store=deferred, filepath=tmp_path / "parallel", **arguments
+    )
+    assert (
+        pq.read_table(serial.artifacts.details_path)
+        .drop(["report_id"])
+        .equals(pq.read_table(parallel.artifacts.details_path).drop(["report_id"]))
+    )
+    assert (
+        serial.cache_entry.summary.source_exchange_count
+        == parallel.cache_entry.summary.source_exchange_count
+    )
+    assert (
+        serial.cache_entry.summary.key_change_rows()
+        == parallel.cache_entry.summary.key_change_rows()
+    )
+    assert deferred._resolved_store is None
+    # Non-report consumers, including fixture checkpoint capture, see the same
+    # fully normalized source through the ordinary read-only facade.
+    assert report._canonical_json(deferred.materialize()) == report._canonical_json(
+        eager.materialize()
+    )
+
+
+@pytest.mark.parametrize(
+    "backend_name", ["compact", "legacy", "checkpoint", "legacy-report-checkpoint"]
+)
 def test_optimized_report_matches_baseline_golden(tmp_path, backend_name):
     from premise.inventory_store import (
         InventoryStore,
@@ -601,16 +792,19 @@ def test_optimized_report_matches_baseline_golden(tmp_path, backend_name):
     )
 
     backend = (
-        LegacyInventoryStore if backend_name == "legacy" else CompactInventoryStore
+        LegacyInventoryStore
+        if backend_name.startswith("legacy")
+        else CompactInventoryStore
     )
     source, final = _performance_regression_stores(backend)
-    if backend_name == "checkpoint":
-        source = InventoryStore.open(
-            source.checkpoint(tmp_path / "source.inventory-store")
+    if backend_name in {"checkpoint", "legacy-report-checkpoint"}:
+        open_checkpoint = (
+            InventoryStore.open_for_reporting
+            if backend_name == "legacy-report-checkpoint"
+            else InventoryStore.open
         )
-        final = InventoryStore.open(
-            final.checkpoint(tmp_path / "final.inventory-store")
-        )
+        source = open_checkpoint(source.checkpoint(tmp_path / "source.inventory-store"))
+        final = open_checkpoint(final.checkpoint(tmp_path / "final.inventory-store"))
     generated = generate_structured_change_report(
         source_store=ReadOnlyInventoryStore(source),
         scenarios=(
@@ -863,7 +1057,7 @@ def test_special_values_do_not_take_hash_shortcut(tmp_path, monkeypatch):
         source_fingerprint="source",
         filepath=tmp_path,
     )
-    assert len(reads) == 4  # two indexing reads, then both sides of the pair
+    assert len(reads) == 2  # both sides reuse their indexed payload during comparison
 
 
 def test_reporting_does_not_residentize_lazy_activity_metadata(tmp_path):

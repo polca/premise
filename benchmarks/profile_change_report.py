@@ -20,9 +20,11 @@ import pstats
 import resource
 import sys
 import time
+from concurrent.futures import ThreadPoolExecutor
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
+from benchmarks._process_tree_memory import ProcessTreeMemory
 
 
 def main():
@@ -32,6 +34,12 @@ def main():
     parser.add_argument("--output", type=Path)
     parser.add_argument("--baseline-module", type=Path)
     parser.add_argument("--profile", action="store_true")
+    parser.add_argument("--read-only-checkpoints", action="store_true")
+    parser.add_argument("--scenarios-file", type=Path)
+    parser.add_argument("--biosphere", default="ecoinvent-3.12-biosphere")
+    parser.add_argument(
+        "--inventory-backend", choices=("legacy", "compact"), default="compact"
+    )
     args = parser.parse_args()
     import premise
     from premise.inventory_store import InventoryStore, ReadOnlyInventoryStore
@@ -49,12 +57,16 @@ def main():
             raise FileExistsError(args.fixture)
         bd.projects.set_current("ecoinvent-3.12-cutoff")
         ndb = premise.NewDatabase(
-            scenarios=[{"model": "image", "pathway": "SSP2-M", "year": 2050}],
+            scenarios=(
+                json.loads(args.scenarios_file.read_text())
+                if args.scenarios_file
+                else [{"model": "image", "pathway": "SSP2-M", "year": 2050}]
+            ),
             source_db="ecoinvent-3.12-cutoff",
             source_version="3.12",
-            biosphere_name="biosphere",
+            biosphere_name=args.biosphere,
             key=key.encode(),
-            inventory_backend="compact",
+            inventory_backend=args.inventory_backend,
             generate_reports=False,
             quiet=True,
         )
@@ -104,27 +116,43 @@ def main():
         spec.loader.exec_module(report)
     with (args.fixture / "metadata.pickle").open("rb") as f:
         metadata = pickle.load(f)
+    load_started = time.perf_counter()
+    memory = ProcessTreeMemory().start()
+    open_store = (
+        InventoryStore.open_for_reporting
+        if args.read_only_checkpoints
+        else InventoryStore.open
+    )
+    scenario_data = metadata.pop("scenarios")
+    checkpoints = [
+        args.fixture / f"final-{i}.inventory-store" for i in range(len(scenario_data))
+    ]
+    if args.read_only_checkpoints:
+        with ThreadPoolExecutor(max_workers=4) as readers:
+            stores = list(readers.map(open_store, checkpoints))
+    else:
+        stores = list(map(open_store, checkpoints))
     scenarios = []
-    for i, data in enumerate(metadata.pop("scenarios")):
+    for store, data in zip(stores, scenario_data):
         data["validation_report"] = ValidationReport.from_dict(
             data["validation_report"]
         )
         scenarios.append(
             report.ReportScenario(
-                store=ReadOnlyInventoryStore(
-                    InventoryStore.open(args.fixture / f"final-{i}.inventory-store")
-                ),
+                store=ReadOnlyInventoryStore(store),
                 **data,
             )
         )
-    source = ReadOnlyInventoryStore(
-        InventoryStore.open(args.fixture / "source.inventory-store")
-    )
+    source = ReadOnlyInventoryStore(open_store(args.fixture / "source.inventory-store"))
+    input_seconds = time.perf_counter() - load_started
     args.output.mkdir(parents=True, exist_ok=True)
     gc.collect()
     profiler = cProfile.Profile() if args.profile else None
     started = time.perf_counter()
     if profiler:
+        worker_profiles = (args.output / "workers").resolve()
+        worker_profiles.mkdir(exist_ok=True)
+        os.environ["PREMISE_REPORT_PROFILE_DIR"] = str(worker_profiles)
         profiler.enable()
     result = report.generate_structured_change_report(
         source_store=source,
@@ -133,6 +161,7 @@ def main():
         **metadata,
     )
     seconds = time.perf_counter() - started
+    tree_rss = memory.stop()
     if profiler:
         profiler.disable()
         profiler.dump_stats(str(args.output / "report.pstats"))
@@ -143,8 +172,12 @@ def main():
     rss = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
     metrics = dict(
         seconds=seconds,
+        input_seconds=input_seconds,
+        total_seconds=input_seconds + seconds,
         peak_rss_bytes=rss if sys.platform == "darwin" else rss * 1024,
+        peak_process_tree_rss_bytes=tree_rss,
         profiled=args.profile,
+        python_hash_seed=os.environ.get("PYTHONHASHSEED"),
         workbook=str(result.artifacts.workbook_path),
         details=str(result.artifacts.details_path),
     )
@@ -162,4 +195,7 @@ def main():
 
 
 if __name__ == "__main__":
+    if "PYTHONHASHSEED" not in os.environ:
+        os.environ["PYTHONHASHSEED"] = "0"
+        os.execv(sys.executable, [sys.executable, *sys.argv])
     main()

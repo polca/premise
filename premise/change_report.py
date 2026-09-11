@@ -16,9 +16,12 @@ import threading
 import uuid
 from collections import Counter, defaultdict, deque
 from collections.abc import Mapping
+from copy import copy
 from dataclasses import dataclass, field
 from datetime import date, datetime, timezone
+from functools import lru_cache
 from pathlib import Path
+from types import MappingProxyType
 from typing import Any, Iterable, Literal, Sequence
 
 import openpyxl
@@ -64,6 +67,13 @@ EXCHANGE_IDENTITY_FIELDS = frozenset(
     {"type", "name", "product", "reference product", "unit"}
 )
 EXCHANGE_PROVIDER_FIELDS = frozenset({"input", "location", "code", "database"})
+EXCHANGE_METADATA_IGNORED = (
+    IGNORED_FIELDS
+    | EXCHANGE_IDENTITY_FIELDS
+    | EXCHANGE_PROVIDER_FIELDS
+    | UNCERTAINTY_FIELDS
+    | {"amount"}
+)
 
 
 @dataclass(frozen=True, slots=True)
@@ -124,11 +134,13 @@ class _ActivityLocator:
     semantic_key: tuple[str, str, str, str]
     visible_hash: str
     occurrence: int = 0
-    hash_skip_safe: bool = False
+    hash_skip_safe: bool | None = None
+    payload: dict[str, Any] | None = field(default=None, repr=False)
 
 
 @dataclass(slots=True)
 class _Summary:
+    _defer_market_shares: bool = False
     source_activity_count: int = 0
     source_exchange_count: int = 0
     final_counts: dict[str, tuple[int, int]] = field(default_factory=dict)
@@ -171,6 +183,19 @@ class _Summary:
         return rows
 
     def consume_activity(self, records: list[dict[str, Any]]) -> None:
+        if isinstance(records, _WholeActivityChange):
+            scenario = records.base["scenario_identity"]
+            action = "added" if records.change_type == "addition" else "removed"
+            counts = {
+                f"activity {action}": 1,
+                f"exchange {action}": len(records.exchanges),
+            }
+            self.scenario_counts[scenario].update(counts)
+            for sector, transformation in records.base.get(
+                "_sector_transformations", (("unattributed", "unattributed"),)
+            ):
+                self.sector_counts[(scenario, sector, transformation)].update(counts)
+            return
         if not records:
             return
         scenario = records[0]["scenario_identity"]
@@ -321,7 +346,7 @@ def _plain(value: Any) -> Any:
     if isinstance(value, Mapping):
         return {
             str(key): _plain(item)
-            for key, item in sorted(value.items(), key=lambda item: str(item[0]))
+            for key, item in value.items()
             if not str(key).startswith("_") and key not in IGNORED_FIELDS
         }
     if isinstance(value, (list, tuple)):
@@ -350,7 +375,73 @@ def _plain(value: Any) -> Any:
     return {"__type__": type(value).__name__, "value": str(value)}
 
 
+@lru_cache(maxsize=16384)
+def _json_string(value: str) -> str:
+    return json.encoder.encode_basestring(value)
+
+
+@lru_cache(maxsize=2048)
+def _json_fields(keys: tuple[str, ...]) -> tuple[tuple[str, str], ...]:
+    return tuple(
+        (key, _json_string(key) + ":")
+        for key in sorted(keys)
+        if not key.startswith("_") and key not in IGNORED_FIELDS
+    )
+
+
+def _json_object(value: Mapping[str, Any]) -> str:
+    """Encode a mapping whose keys have already been normalized to strings."""
+    return (
+        "{"
+        + ",".join(
+            prefix + _canonical_json(value[key])
+            for key, prefix in _json_fields(tuple(value))
+        )
+        + "}"
+    )
+
+
+def _twice_json(value: Any) -> str:
+    """Fuse the report's two normalization passes for ordinary JSON values."""
+    kind = type(value)
+    if (
+        value is None
+        or kind in (str, int, bool)
+        or (kind is float and math.isfinite(value))
+    ):
+        return _canonical_json(value)
+    if kind in (list, tuple):
+        return "[" + ",".join(map(_twice_json, value)) + "]"
+    if kind is dict and all(type(key) is str for key in value):
+        return (
+            "{"
+            + ",".join(
+                prefix + _twice_json(value[key])
+                for key, prefix in _json_fields(tuple(value))
+            )
+            + "}"
+        )
+    return _canonical_json(_plain(value))
+
+
 def _canonical_json(value: Any) -> str:
+    kind = type(value)
+    if value is None:
+        return "null"
+    if kind is str:
+        return _json_string(value)
+    if kind is bool:
+        return "true" if value else "false"
+    if kind is int:
+        return str(value)
+    if kind is float and math.isfinite(value):
+        return repr(value)
+    if isinstance(value, _PreparedExchange):
+        return value.signature
+    if kind is dict and all(type(key) is str for key in value):
+        return _json_object(value)
+    if kind in (list, tuple):
+        return "[" + ",".join(map(_canonical_json, value)) + "]"
     return json.dumps(
         _plain(value), sort_keys=True, separators=(",", ":"), ensure_ascii=False
     )
@@ -363,7 +454,7 @@ def _stable_hash(value: Any) -> str:
 def _visible_mapping(
     payload: Mapping[str, Any], *, ignored: Iterable[str] = ()
 ) -> dict[str, Any]:
-    ignored_fields = set(ignored) | set(IGNORED_FIELDS)
+    ignored_fields = IGNORED_FIELDS.union(ignored) if ignored else IGNORED_FIELDS
     return {
         str(key): _plain(value)
         for key, value in payload.items()
@@ -435,7 +526,7 @@ def _hash_skip_safe(value: Any) -> bool:
         return math.isfinite(value)
     if kind in (list, tuple):
         return all(_hash_skip_safe(item) for item in value)
-    if kind is dict:
+    if kind in (dict, _PreparedExchange):
         return all(
             type(key) is str and _hash_skip_safe(item) for key, item in value.items()
         )
@@ -449,6 +540,33 @@ def _report_payload(store: InventoryStore, activity_id: int) -> dict[str, Any]:
     return store.activity(activity_id).to_dict()
 
 
+def _prepare_locator(store, locator, payload=None):
+    if locator.payload is not None:
+        return
+    if payload is None:
+        payload = _report_payload(store, locator.activity_id)
+    exchanges = [
+        (
+            exchange
+            if isinstance(exchange, _PreparedExchange)
+            else _PreparedExchange(exchange)
+        )
+        for exchange in payload.get("exchanges", ())
+    ]
+    for exchange in exchanges:
+        exchange._indexed = True
+    payload["exchanges"] = exchanges
+    visible_json = (
+        '{"activity":'
+        + _canonical_json(_visible_activity(payload))
+        + ',"exchanges":['
+        + ",".join(exchange.signature for exchange in exchanges)
+        + "]}"
+    )
+    locator.visible_hash = hashlib.sha256(visible_json.encode("utf-8")).hexdigest()
+    locator.payload = payload
+
+
 def _activity_index(
     store: InventoryStore,
 ) -> tuple[list[_ActivityLocator], int, str]:
@@ -457,24 +575,17 @@ def _activity_index(
     digest = hashlib.sha256()
     for activity_id in store.iter_activity_ids():
         payload = _report_payload(store, activity_id)
-        exchanges = payload.get("exchanges", ())
-        exchange_count += len(exchanges)
-        visible = {
-            "activity": _visible_activity(payload),
-            "exchanges": [_visible_exchange(exchange) for exchange in exchanges],
-        }
-        visible_hash = _stable_hash(visible)
-        digest.update(visible_hash.encode("ascii"))
         code = payload.get("code")
-        locators.append(
-            _ActivityLocator(
-                activity_id=int(activity_id),
-                code=None if code in (None, "") else str(code),
-                semantic_key=_semantic_key(payload),
-                visible_hash=visible_hash,
-                hash_skip_safe=_hash_skip_safe(payload),
-            )
+        locator = _ActivityLocator(
+            activity_id=int(activity_id),
+            code=None if code in (None, "") else str(code),
+            semantic_key=_semantic_key(payload),
+            visible_hash="",
         )
+        _prepare_locator(store, locator, payload)
+        exchange_count += len(payload["exchanges"])
+        digest.update(locator.visible_hash.encode("ascii"))
+        locators.append(locator)
     by_semantic: dict[tuple[str, str, str, str], list[_ActivityLocator]] = defaultdict(
         list
     )
@@ -605,21 +716,39 @@ def _metadata_from_visible(visible: Mapping[str, Any]) -> dict[str, Any]:
     return {
         key: value
         for key, value in visible.items()
-        if key
-        not in EXCHANGE_IDENTITY_FIELDS
-        | EXCHANGE_PROVIDER_FIELDS
-        | UNCERTAINTY_FIELDS
-        | {"amount"}
+        if key not in EXCHANGE_METADATA_IGNORED
     }
 
 
 _UNPREPARED = object()
+_FLAT_JSON_ENCODER = json.JSONEncoder(
+    ensure_ascii=False, allow_nan=False, separators=(",", ":")
+)
+_JSON_SCALAR_TYPES = (str, int, bool, type(None))
+
+
+def _flat_exchange_json(exchange):
+    """Use the C encoder when two normalization passes are exact no-ops."""
+    visible = {}
+    for key, _ in _json_fields(tuple(exchange)):
+        value = exchange[key]
+        kind = type(value)
+        if kind not in _JSON_SCALAR_TYPES and not (
+            kind is float and math.isfinite(value)
+        ):
+            if kind not in (list, tuple) or not all(
+                type(item) in _JSON_SCALAR_TYPES for item in value
+            ):
+                return None
+        visible[key] = value
+    return _FLAT_JSON_ENCODER.encode(visible)
 
 
 class _PreparedExchange(dict):
     """Pair-local values; slots bound cache overhead for large activities."""
 
     __slots__ = (
+        "_indexed",
         "_visible",
         "_signature",
         "_provider",
@@ -630,11 +759,14 @@ class _PreparedExchange(dict):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self._indexed = False
         self._visible = self._signature = self._provider = _UNPREPARED
         self._provider_signature = self._metadata = self._metadata_hash = _UNPREPARED
 
     def release_comparison(self):
         """Release values which exact cancellation no longer needs."""
+        if self._indexed:
+            return
         self._visible = self._signature = _UNPREPARED
 
     @property
@@ -647,7 +779,21 @@ class _PreparedExchange(dict):
     def signature(self):
         # Preserve the second normalization pass, including special markers.
         if self._signature is _UNPREPARED:
-            self._signature = _canonical_json(self.visible)
+            if all(type(key) is str for key in self):
+                self._signature = _flat_exchange_json(self)
+                if self._signature is None:
+                    self._signature = (
+                        "{"
+                        + ",".join(
+                            prefix + _twice_json(self[key])
+                            for key, prefix in _json_fields(tuple(self))
+                        )
+                        + "}"
+                    )
+            else:
+                self._signature = _json_object(self.visible)
+            if self._indexed:
+                self._visible = _UNPREPARED
         return self._signature
 
     @property
@@ -665,7 +811,13 @@ class _PreparedExchange(dict):
     @property
     def metadata(self):
         if self._metadata is _UNPREPARED:
-            self._metadata = _metadata_from_visible(self.visible)
+            self._metadata = {
+                str(key): _plain(value)
+                for key, value in self.items()
+                if not str(key).startswith("_")
+                and key not in IGNORED_FIELDS
+                and str(key) not in EXCHANGE_METADATA_IGNORED
+            }
         return self._metadata
 
     @property
@@ -728,7 +880,7 @@ def _pair_exchange_group(
     old_sorted = sorted(old, key=_exchange_signature)
     new_sorted = sorted(new, key=_exchange_signature)
     for exchange in (*old_sorted, *new_sorted):
-        if isinstance(exchange, _PreparedExchange):
+        if isinstance(exchange, _PreparedExchange) and not exchange._indexed:
             exchange._signature = _UNPREPARED
     edges = []
     new_values = [
@@ -786,6 +938,25 @@ def _pair_exchange_group(
     return sorted(pairs, key=lambda item: item[2]), removals, additions
 
 
+class _ReportProvenanceEvent(ProvenanceEvent):
+    """Borrow nested values inside the strictly read-only report session.
+
+    The inherited constructor retains field validation and from_dict defaults.
+    Activity identifiers and computed values are only read by this module;
+    copying their full nested graphs for every event is unnecessary.
+    """
+
+    __slots__ = ()
+
+    def __post_init__(self):
+        object.__setattr__(self, "activity", MappingProxyType(dict(self.activity)))
+        object.__setattr__(
+            self,
+            "computed_target_values",
+            MappingProxyType(dict(self.computed_target_values)),
+        )
+
+
 class _AttributionIndex:
     def __init__(self, scenario: ReportScenario) -> None:
         self.by_code: dict[str, list[Attribution]] = defaultdict(list)
@@ -796,7 +967,7 @@ class _AttributionIndex:
         payload = scenario.provenance_payload or {}
         for item in payload.get("events", ()) if isinstance(payload, Mapping) else ():
             try:
-                event = ProvenanceEvent.from_dict(item)
+                event = _ReportProvenanceEvent.from_dict(item)
             except (KeyError, TypeError, ValueError):
                 continue
             self.events.append(event)
@@ -1012,14 +1183,55 @@ def _exchange_base(
 
 
 def _sorted_report_exchanges(exchanges):
-    ordered = sorted(
+    return sorted(
         exchanges,
         key=lambda item: (_exchange_group_key(item), _exchange_signature(item)),
     )
-    for exchange in ordered:
-        if isinstance(exchange, _PreparedExchange):
-            exchange._signature = _UNPREPARED
-    return ordered
+
+
+@dataclass(slots=True)
+class _WholeActivityChange:
+    """An addition/removal block with shared activity columns."""
+
+    base: dict[str, Any]
+    activity: Mapping[str, Any]
+    exchanges: list[Mapping[str, Any]]
+    change_type: str
+    _columns: dict[str, list[Any]] | None = None
+
+    def __len__(self):
+        return len(self.exchanges) + 1
+
+    @property
+    def columns(self):
+        if self._columns is None:
+            exchanges = self.exchanges
+            value_column = (
+                "new_value_json" if self.change_type == "addition" else "old_value_json"
+            )
+            self._columns = {
+                "object_type": ["activity"] + ["exchange"] * len(exchanges),
+                "exchange_type": [None] + [e.get("type") for e in exchanges],
+                "exchange_name": [None] + [e.get("name") for e in exchanges],
+                "exchange_product": [None]
+                + [e.get("product", e.get("reference product")) for e in exchanges],
+                "exchange_location": [None] + [e.get("location") for e in exchanges],
+                "exchange_occurrence": [None] + list(range(len(exchanges))),
+                "unit": [self.base.get("unit")] + [e.get("unit") for e in exchanges],
+                value_column: [_canonical_json(_visible_activity(self.activity))]
+                + [_exchange_signature(e) for e in exchanges],
+            }
+        return self._columns
+
+    def __iter__(self):
+        # Preserve the ordinary row interface for diagnostic consumers.
+        columns = self.columns
+        for position in range(len(self)):
+            row = dict(self.base)
+            row["change_type"] = self.change_type
+            for name, values in columns.items():
+                row[name] = values[position]
+            yield row
 
 
 def _activity_records(
@@ -1036,30 +1248,38 @@ def _activity_records(
     certificate_key: str | None,
     attribution_index: _AttributionIndex,
     summary: _Summary,
-) -> list[dict[str, Any]]:
+) -> list[dict[str, Any]] | _WholeActivityChange:
     old_locator, new_locator = pair
     if (
         old_locator is not None
         and new_locator is not None
-        and old_locator.hash_skip_safe
-        and new_locator.hash_skip_safe
         and old_locator.visible_hash == new_locator.visible_hash
     ):
-        return []
-    old_activity = (
-        _report_payload(source_store, old_locator.activity_id)
-        if old_locator is not None
-        else None
-    )
-    new_activity = (
-        _report_payload(final_store, new_locator.activity_id)
-        if new_locator is not None
-        else None
-    )
+        for locator in (old_locator, new_locator):
+            if locator.hash_skip_safe is None:
+                locator.hash_skip_safe = (
+                    locator.payload is not None and _hash_skip_safe(locator.payload)
+                )
+        if old_locator.hash_skip_safe and new_locator.hash_skip_safe:
+            return []
+
+    def activity_payload(locator, store):
+        if locator is None:
+            return None
+        if locator.payload is not None:
+            return dict(locator.payload)
+        return _report_payload(store, locator.activity_id)
+
+    old_activity = activity_payload(old_locator, source_store)
+    new_activity = activity_payload(new_locator, final_store)
     for activity in (old_activity, new_activity):
         if activity is not None:
             activity["exchanges"] = [
-                _PreparedExchange(exchange)
+                (
+                    exchange
+                    if isinstance(exchange, _PreparedExchange)
+                    else _PreparedExchange(exchange)
+                )
                 for exchange in activity.get("exchanges", ())
             ]
     identity_activity = new_activity or old_activity
@@ -1078,64 +1298,14 @@ def _activity_records(
         attributions=attributions,
     )
     records: list[dict[str, Any]] = []
-    if old_activity is None:
-        records.append(
-            _value_record(
-                base,
-                object_type="activity",
-                change_type="addition",
-                changed_field=None,
-                old=None,
-                new=_visible_activity(new_activity),
-            )
+    if old_activity is None or new_activity is None:
+        activity = new_activity if old_activity is None else old_activity
+        return _WholeActivityChange(
+            base=base,
+            activity=activity,
+            exchanges=_sorted_report_exchanges(activity.get("exchanges", ())),
+            change_type="addition" if old_activity is None else "removal",
         )
-        for exchange_occurrence, exchange in enumerate(
-            _sorted_report_exchanges(new_activity.get("exchanges", ()))
-        ):
-            exchange_record = _exchange_base(base, exchange, exchange_occurrence)
-            records.append(
-                _value_record(
-                    exchange_record,
-                    object_type="exchange",
-                    change_type="addition",
-                    changed_field=None,
-                    old=None,
-                    new=_visible_exchange(exchange),
-                    unit=exchange.get("unit"),
-                )
-            )
-            if isinstance(exchange, _PreparedExchange):
-                exchange.release_comparison()
-        return records
-    if new_activity is None:
-        records.append(
-            _value_record(
-                base,
-                object_type="activity",
-                change_type="removal",
-                changed_field=None,
-                old=_visible_activity(old_activity),
-                new=None,
-            )
-        )
-        for exchange_occurrence, exchange in enumerate(
-            _sorted_report_exchanges(old_activity.get("exchanges", ()))
-        ):
-            exchange_record = _exchange_base(base, exchange, exchange_occurrence)
-            records.append(
-                _value_record(
-                    exchange_record,
-                    object_type="exchange",
-                    change_type="removal",
-                    changed_field=None,
-                    old=_visible_exchange(exchange),
-                    new=None,
-                    unit=exchange.get("unit"),
-                )
-            )
-            if isinstance(exchange, _PreparedExchange):
-                exchange.release_comparison()
-        return records
 
     old_visible = _visible_activity(old_activity)
     new_visible = _visible_activity(new_activity)
@@ -1260,7 +1430,7 @@ def _activity_records(
                     object_type="exchange",
                     change_type="removal",
                     changed_field=None,
-                    old=_visible_exchange(old_exchange),
+                    old=old_exchange,
                     new=None,
                     unit=old_exchange.get("unit"),
                 )
@@ -1274,7 +1444,7 @@ def _activity_records(
                     change_type="addition",
                     changed_field=None,
                     old=None,
-                    new=_visible_exchange(new_exchange),
+                    new=new_exchange,
                     unit=new_exchange.get("unit"),
                 )
             )
@@ -1358,6 +1528,8 @@ def _collect_market_row(
             ),
         }
     )
+    if summary._defer_market_shares:
+        summary.market_rows[-1]["_dropped_shares"] = old_shares, tuple(new_shares)
 
 
 def _summary_category(record: Mapping[str, Any]) -> str:
@@ -1404,22 +1576,38 @@ class _ParquetSink:
             use_dictionary=True,
             write_statistics=True,
         )
-        self.rows: list[dict[str, Any]] = []
+        self.parts = []
+        self.row_count = 0
 
-    def write(self, rows: Iterable[Mapping[str, Any]]) -> None:
-        for row in rows:
-            self.rows.append(
-                {field.name: row.get(field.name) for field in DETAIL_SCHEMA}
-            )
-            if len(self.rows) >= DETAIL_BATCH_SIZE:
-                self.flush()
+    def write(self, rows) -> None:
+        if not rows:
+            return
+        self.parts.append(rows)
+        self.row_count += len(rows)
+        if self.row_count >= DETAIL_BATCH_SIZE:
+            self.flush()
 
     def flush(self) -> None:
-        if not self.rows:
+        if not self.row_count:
             return
-        table = pa.Table.from_pylist(self.rows, schema=DETAIL_SCHEMA)
+        arrays = []
+        for field in DETAIL_SCHEMA:
+            values = []
+            for part in self.parts:
+                if isinstance(part, _WholeActivityChange):
+                    if field.name == "change_type":
+                        values.extend([part.change_type] * len(part))
+                    elif field.name in part.columns:
+                        values.extend(part.columns[field.name])
+                    else:
+                        values.extend([part.base.get(field.name)] * len(part))
+                else:
+                    values.extend(row.get(field.name) for row in part)
+            arrays.append(pa.array(values, type=field.type))
+        table = pa.Table.from_arrays(arrays, schema=DETAIL_SCHEMA)
         self.writer.write_table(table, row_group_size=DETAIL_BATCH_SIZE)
-        self.rows.clear()
+        self.parts.clear()
+        self.row_count = 0
 
     def close(self) -> None:
         self.flush()
@@ -1485,17 +1673,20 @@ def _resolve_paths(
 
 
 def _collect_event_summaries(
-    summary: _Summary, scenario: ReportScenario, scenario_label: str
+    summary: _Summary, scenario: ReportScenario, scenario_label: str, *, events=None
 ) -> None:
     payload = scenario.provenance_payload or {}
     fallback_counts: Counter = Counter()
     fallback_payloads = {}
     methodology: dict[tuple[Any, ...], tuple[str, str | None]] = {}
-    for item in payload.get("events", ()) if isinstance(payload, Mapping) else ():
-        try:
-            event = ProvenanceEvent.from_dict(item)
-        except (KeyError, TypeError, ValueError):
-            continue
+    if events is None:
+        events = []
+        for item in payload.get("events", ()) if isinstance(payload, Mapping) else ():
+            try:
+                events.append(_ReportProvenanceEvent.from_dict(item))
+            except (KeyError, TypeError, ValueError):
+                continue
+    for event in events:
         if event.proxy is not None or event.fallback_rank is not None:
             key = (
                 event.activity.get("location"),
@@ -1560,6 +1751,19 @@ def _generate_details(
     build_id: str,
     source_fingerprint: str,
 ) -> _Summary:
+    workers = min(12, os.cpu_count() or 1)
+    if workers > 1 and sum(len(scenario.store) for scenario in scenarios) >= 10000:
+        from ._report_parallel import generate_details_parallel
+
+        return generate_details_parallel(
+            source_store=source_store,
+            scenarios=scenarios,
+            details_path=details_path,
+            report_id=report_id,
+            build_id=build_id,
+            source_fingerprint=source_fingerprint,
+            workers=workers,
+        )
     source_index, source_exchange_count, source_visible_fingerprint = _activity_index(
         source_store
     )
@@ -1581,8 +1785,10 @@ def _generate_details(
                 final_exchange_count,
             )
             summary.final_fingerprints[scenario_label] = final_fingerprint
-            _collect_event_summaries(summary, scenario, scenario_label)
             attribution_index = _AttributionIndex(scenario)
+            _collect_event_summaries(
+                summary, scenario, scenario_label, events=attribution_index.events
+            )
             for pair in _pair_activities(source_index, final_index):
                 records = _activity_records(
                     source_store,
@@ -1600,6 +1806,9 @@ def _generate_details(
                 )
                 summary.consume_activity(records)
                 sink.write(records)
+            # Source descriptors are shared across scenarios; final descriptors
+            # are needed only for this scenario's ordered comparison.
+            del final_index
         sink.close()
         os.replace(temporary, details_path)
     except Exception:
@@ -1680,6 +1889,7 @@ HEADER_FONT = Font(color="FFFFFF", bold=True)
 ERROR_FILL = PatternFill("solid", fgColor="F4CCCC")
 WARNING_FILL = PatternFill("solid", fgColor="FFF2CC")
 PASSED_FILL = PatternFill("solid", fgColor="D9EAD3")
+REPORT_ALIGNMENT = Alignment(wrap_text=True, vertical="top")
 
 
 def _write_table_sheet(
@@ -1699,7 +1909,7 @@ def _write_table_sheet(
     for cell in worksheet[1]:
         cell.fill = HEADER_FILL
         cell.font = HEADER_FONT
-        cell.alignment = Alignment(wrap_text=True, vertical="top")
+        cell.alignment = REPORT_ALIGNMENT
     worksheet.freeze_panes = "A2"
     table = Table(
         displayName=f"ReportTable{table_index}",
@@ -1713,6 +1923,11 @@ def _write_table_sheet(
         showColumnStripes=False,
     )
     worksheet.add_table(table)
+    template = openpyxl.cell.cell.Cell(worksheet)
+    template.alignment = REPORT_ALIGNMENT
+    body_style = copy(template._style)
+    template.number_format = "0.000000E+00"
+    numeric_style = copy(template._style)
     for column, header in enumerate(headers, 1):
         maximum = max(
             len(str(header)),
@@ -1724,14 +1939,17 @@ def _write_table_sheet(
         worksheet.column_dimensions[get_column_letter(column)].width = min(
             max(maximum + 2, 10), 55
         )
+        numeric_column = any(
+            token in header.lower()
+            for token in ("delta", "share", "tolerance", "value")
+        )
         for row in range(2, worksheet.max_row + 1):
             cell = worksheet.cell(row=row, column=column)
-            cell.alignment = Alignment(wrap_text=True, vertical="top")
-            if any(
-                token in header.lower()
-                for token in ("delta", "share", "tolerance", "value")
-            ) and isinstance(cell.value, (int, float)):
-                cell.number_format = "0.000000E+00"
+            cell._style = copy(
+                numeric_style
+                if numeric_column and isinstance(cell.value, (int, float))
+                else body_style
+            )
     return worksheet
 
 

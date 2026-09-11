@@ -3056,7 +3056,24 @@ class NewDatabase:
                 scenario["unmatched category flows"] = export.unmatched_category_flows
 
             end_of_process(scenario)
+            # Export keeps a reference to the complete prepared inventory.
+            # Release it before loading the next scenario or building reports.
+            del export
 
+        if (
+            getattr(self, "generate_reports", False)
+            and getattr(self, "_source_inventory_store", None) is None
+            and getattr(self, "_compact_source_checkpoint", None) is None
+            and getattr(self, "_report_source_view", None) is None
+        ):
+            from ._report_inputs import DeferredReportSource
+
+            # Export preparation reads the original inventory as a reference;
+            # the same source can be normalized by the report's readers.
+            self._report_source_view = DeferredReportSource(
+                original_database, backend=getattr(self, "inventory_backend", "compact")
+            )
+        del original_database
         self._run_automatic_reports()
         delete_all_pickles()
 
@@ -3228,24 +3245,23 @@ class NewDatabase:
         if store is None:
             checkpoint = getattr(self, "_compact_source_checkpoint", None)
             if checkpoint is not None:
-                store = InventoryStore.open(checkpoint)
+                store = InventoryStore.open_for_reporting(checkpoint)
         if store is None:
+            cached_view = getattr(self, "_report_source_view", None)
+            if cached_view is not None:
+                return cached_view
             try:
-                database = _normalize_inventory_before_certification(
-                    self._load_original_database()
-                )
+                database = self._load_original_database()
             except (AttributeError, OSError, ValueError) as error:
                 raise RuntimeError(
                     "The normalized source inventory is unavailable."
                 ) from error
-            store = create_inventory_store(
-                database,
-                backend=getattr(self, "inventory_backend", "compact"),
-                scenario_identity="source",
-                take_ownership=True,
-                compute_fingerprints=True,
+            from ._report_inputs import DeferredReportSource
+
+            self._report_source_view = DeferredReportSource(
+                database, backend=getattr(self, "inventory_backend", "compact")
             )
-            self._source_inventory_store = store
+            return self._report_source_view
         return ReadOnlyInventoryStore(store)
 
     def _report_scenarios(
@@ -3256,12 +3272,41 @@ class NewDatabase:
             self._scenario_identity(override[0]) if override is not None else None
         )
         report_scenarios = []
-        for definition in self.scenarios:
-            identity = self._scenario_identity(definition)
-            if override is not None and identity == override_identity:
-                runtime, store, report = override
+        pending = []
+        with ThreadPoolExecutor(
+            max_workers=min(4, max(1, len(self.scenarios)))
+        ) as readers:
+            for definition in self.scenarios:
+                identity = self._scenario_identity(definition)
+                if override is not None and identity == override_identity:
+                    runtime, store, report = override
+                    pending.append((identity, runtime, report, store, None))
+                    continue
+                if not definition.get("applied functions"):
+                    continue
+                # Certification and resident-store ownership remain ordered on
+                # the calling thread; immutable checkpoint reads can overlap.
+                report = self._ensure_semantic_certification(definition)
+                cached = getattr(self, "_validation_reports", {}).get(identity)
+                if cached is not None:
+                    report = cached
+                checkpoint = definition.get("_inventory_checkpoint")
+                if (
+                    definition.get("_inventory_store") is None
+                    and checkpoint is not None
+                ):
+                    future = readers.submit(
+                        InventoryStore.open_for_reporting, checkpoint
+                    )
+                    pending.append((identity, definition, report, None, future))
+                else:
+                    store = self._ensure_scenario_store(definition)
+                    pending.append((identity, definition, report, store, None))
+            for identity, definition, report, store, future in pending:
+                if future is not None:
+                    store = future.result()
                 underlying = getattr(store, "_store", store)
-                provenance = runtime.get("_provenance") or getattr(
+                provenance = definition.get("_provenance") or getattr(
                     underlying, "_provenance_payload", None
                 )
                 report_scenarios.append(
@@ -3270,30 +3315,9 @@ class NewDatabase:
                         store=ReadOnlyInventoryStore(store),
                         validation_report=report,
                         provenance_payload=provenance,
-                        definition=runtime,
+                        definition=definition,
                     )
                 )
-                continue
-            if not definition.get("applied functions"):
-                continue
-            report = self._ensure_semantic_certification(definition)
-            cached = getattr(self, "_validation_reports", {}).get(identity)
-            if cached is not None:
-                report = cached
-            store = self._ensure_scenario_store(definition)
-            underlying = getattr(store, "_store", store)
-            provenance = definition.get("_provenance") or getattr(
-                underlying, "_provenance_payload", None
-            )
-            report_scenarios.append(
-                ReportScenario(
-                    identity=identity,
-                    store=ReadOnlyInventoryStore(store),
-                    validation_report=report,
-                    provenance_payload=provenance,
-                    definition=definition,
-                )
-            )
         return tuple(report_scenarios)
 
     def _generate_change_report(

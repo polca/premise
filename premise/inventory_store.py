@@ -243,6 +243,7 @@ class IndexedInventoryList(list):
     )
 
     def __init__(self, iterable=(), *, inventory_backend: str | None = None):
+        install_wurst_query_engine()
         super().__init__(iterable)
         self._inventory_backend = inventory_backend or getattr(
             iterable, "_inventory_backend", None
@@ -611,12 +612,10 @@ def install_wurst_query_engine() -> bool:
     return True
 
 
-install_wurst_query_engine()
-
-
 def get_wurst_query_diagnostics(*, reset: bool = False) -> dict[str, int]:
     """Return counts of indexed and ordered-fallback Wurst scans."""
 
+    install_wurst_query_engine()
     from wurst import searching as ws
 
     diagnostics = dict(
@@ -1144,6 +1143,53 @@ class _ColumnarExchangeStorage:
             if value is not None and field_name not in payload:
                 payload[field_name] = value
         return payload
+
+    def report_exchange_payloads(
+        self, activity_id: ActivityId, factory=dict
+    ) -> list[dict[str, Any]]:
+        """Decode one immutable activity block without allocating row wrappers."""
+        position = self._activity_position(activity_id)
+        start = int(self.exchange_starts[position])
+        stop = int(self.exchange_ends[position])
+        payloads = [factory() for _ in range(stop - start)]
+        strings = self._string_values
+        for field_name in _EXCHANGE_STRING_FIELDS:
+            for payload, code in zip(
+                payloads, self._string_columns[field_name][start:stop].tolist()
+            ):
+                if code >= 0:
+                    payload[field_name] = strings[code]
+        first = self._string_columns["categories__0"][start:stop].tolist()
+        second = self._string_columns["categories__1"][start:stop].tolist()
+        for payload, a, b in zip(payloads, first, second):
+            if a >= 0 and b >= 0:
+                payload["categories"] = strings[a], strings[b]
+        for field_name in _EXCHANGE_NUMERIC_FIELDS:
+            for payload, kind, number, integer in zip(
+                payloads,
+                self._numeric_kinds[field_name][start:stop].tolist(),
+                self._numeric_floats[field_name][start:stop].tolist(),
+                self._numeric_ints[field_name][start:stop].tolist(),
+            ):
+                if kind != _NUMERIC_MISSING:
+                    payload[field_name] = _decode_numeric_column(kind, number, integer)
+        for field_name in _EXCHANGE_BOOLEAN_FIELDS:
+            for payload, value in zip(
+                payloads, self._boolean_columns[field_name][start:stop].tolist()
+            ):
+                if value >= 0:
+                    payload[field_name] = bool(value)
+        if activity_id in self.exchange_metadata_offsets:
+            metadata = self._decode_sidecar_record(
+                activity_id, self.exchange_metadata_offsets, "exchange metadata"
+            )
+            for ordinal, values in dict(metadata).items():
+                if not 0 <= ordinal < len(payloads):
+                    raise InventoryStoreCorruptionError(
+                        "Exchange metadata ordinal exceeds its activity block."
+                    )
+                payloads[ordinal].update(values)
+        return payloads
 
     def scenario_cache_base_activity_payload(
         self, activity_id: ActivityId
@@ -2940,6 +2986,18 @@ class InventoryStore(ABC):
         mark_checkpoint(Path(path))
         return store
 
+    @classmethod
+    def open_for_reporting(cls, path: str | Path) -> "ReadOnlyInventoryStore":
+        """Read a checked checkpoint lazily without constructing a mutable graph.
+
+        Legacy and compact Arrow checkpoints share the same on-disk columns.
+        Reports can borrow those columns regardless of the writer's backend.
+        """
+        store = _open_checkpoint(Path(path), prefer_columnar=True)
+        store._reporting_generation = store.generation
+        mark_checkpoint(Path(path))
+        return ReadOnlyInventoryStore(store)
+
 
 class _InMemoryInventoryStore(InventoryStore):
     backend_name = "compact"
@@ -3194,6 +3252,14 @@ class _InMemoryInventoryStore(InventoryStore):
         can install mutable metadata in a columnar overlay.
         """
 
+        table = self._state.exchanges
+        if getattr(
+            self, "_reporting_generation", None
+        ) == self.generation and isinstance(table, _ColumnarExchangeTable):
+            storage = table._storage
+            payload = storage.scenario_cache_base_activity_payload(activity_id)
+            payload["exchanges"] = storage.report_exchange_payloads(activity_id)
+            return payload
         activity = self._state.activities[activity_id]
         activity_reader = getattr(activity, "_premise_scenario_cache_payload", None)
         # Generic dict(activity) invokes the columnar __getitem__, installing
@@ -5699,7 +5765,7 @@ def _open_scenario_delta_checkpoint(
     return store
 
 
-def _open_checkpoint(path: Path) -> InventoryStore:
+def _open_checkpoint(path: Path, *, prefer_columnar: bool = False) -> InventoryStore:
     path = path.expanduser().resolve()
     manifest_path = path / "manifest.json"
     checksums_path = path / "checksums.json"
@@ -5756,7 +5822,7 @@ def _open_checkpoint(path: Path) -> InventoryStore:
             f"Unsupported inventory-store backend {backend!r}."
         )
     if (
-        backend == "compact"
+        (backend == "compact" or prefer_columnar)
         and pa is not None
         and manifest.get("columnar_format") == "arrow-ipc"
     ):
