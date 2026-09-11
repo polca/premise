@@ -352,6 +352,25 @@ def test_compact_indexes_are_lazy_and_invalidated_atomically(inventory):
     assert isinstance(store._state.activity_exchanges[0], list)
 
 
+def test_checkpoint_only_legacy_store_avoids_discarded_indexes(
+    inventory, tmp_path, monkeypatch
+):
+    store = LegacyInventoryStore(inventory, build_indexes=False)
+    assert not store._state.indexes_ready
+    with monkeypatch.context() as patch:
+
+        def unexpected_index():
+            raise AssertionError("Checkpoint writing must not need lookup indexes")
+
+        patch.setattr(store, "_rebuild_indexes", unexpected_index)
+        checkpoint = store.checkpoint(tmp_path / "checkpoint-only.inventory-store")
+    assert not store._state.indexes_ready
+    reopened = InventoryStore.open(checkpoint)
+    assert reopened.materialize() == inventory
+    assert reopened.consumers(0) == store.consumers(0) == (2,)
+    assert store._state.indexes_ready
+
+
 def test_find_one_provider_order_and_reverse_consumers(inventory):
     store = CompactInventoryStore(inventory)
     provider_key = ProviderKey(
@@ -369,6 +388,20 @@ def test_find_one_provider_order_and_reverse_consumers(inventory):
     with pytest.raises(ValueError, match="found 2"):
         store.find_one({"location": "CH", "unit": "kilowatt hour"})
     assert store.find_one({"code": "consumer"}).id == 2
+
+
+@pytest.mark.parametrize("backend", [LegacyInventoryStore, CompactInventoryStore])
+def test_reverse_consumers_keep_first_occurrence_order_with_duplicate_links(
+    inventory, backend
+):
+    database = copy.deepcopy(inventory)
+    for index in range(5):
+        consumer = copy.deepcopy(database[2])
+        consumer["code"] = f"consumer-{index}"
+        consumer["exchanges"] *= 3
+        database.append(consumer)
+    store = backend(database)
+    assert store.consumers(0) == (2, 4, 5, 6, 7, 8)
 
 
 def test_transaction_commands_commit_and_rollback(inventory):
@@ -1146,6 +1179,58 @@ def test_new_database_compact_scenario_checks_out_reloadable_source(inventory):
     assert runtime["_inventory_working_copy"] == inventory
     assert obj._source_inventory_store is None
     assert "_inventory_store" not in obj.scenarios[0]
+
+
+def test_legacy_update_materializes_source_once_without_forking(inventory, monkeypatch):
+    obj = object.__new__(NewDatabase)
+    obj.inventory_backend = "legacy"
+    obj._inventory_api_active = True
+    source = obj._source_inventory_store = LegacyInventoryStore(inventory)
+    obj.scenarios = [
+        {"model": "image", "pathway": "SSP2-Base", "year": year}
+        for year in (2030, 2050)
+    ]
+
+    def unexpected_fork(*args, **kwargs):
+        raise AssertionError("An immediate materialization already isolates the graph")
+
+    monkeypatch.setattr(source, "fork", unexpected_fork)
+    first = obj._load_scenario_database_for_update(obj.scenarios[0], 0)
+    second = obj._load_scenario_database_for_update(obj.scenarios[1], 1)
+    first["_inventory_working_copy"][0]["exchanges"][0]["amount"] = 123
+    assert second["_inventory_working_copy"] == inventory
+    assert source.materialize() == inventory
+
+
+def test_update_source_reuse_is_isolated_and_released_on_error(inventory, monkeypatch):
+    obj = object.__new__(NewDatabase)
+    obj.inventory_backend = "legacy"
+    obj._inventory_api_active = True
+    source = obj._source_inventory_store = LegacyInventoryStore(inventory)
+    obj.database_cache_filepath = "source-cache"
+    obj.inventories_cache_filepath = "inventory-cache"
+    obj.additional_inventories = None
+    obj.scenarios = [
+        {"model": "image", "pathway": "SSP2-Base", "year": year}
+        for year in (2030, 2050)
+    ]
+
+    def unexpected_load():
+        raise AssertionError("The pristine source should be reused")
+
+    monkeypatch.setattr(obj, "_load_original_database", unexpected_load)
+    with pytest.raises(RuntimeError, match="test failure"):
+        with obj._reuse_update_source():
+            first = obj._load_scenario_database_for_update(obj.scenarios[0], 0)
+            first["_inventory_working_copy"][0]["location"] = "modified"
+            assert obj._source_inventory_store is None
+            assert obj._update_source_store is source
+            second = obj._load_scenario_database_for_update(obj.scenarios[1], 1)
+            assert second["_inventory_working_copy"] == inventory
+            assert source.materialize() == inventory
+            raise RuntimeError("test failure")
+    assert not hasattr(obj, "_update_source_store")
+    assert obj._source_inventory_store is None
 
 
 def test_compact_scenarios_reload_source_instead_of_deep_copying_it(inventory):

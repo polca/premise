@@ -14,6 +14,7 @@ import pickle
 import time
 import uuid
 from concurrent.futures import ThreadPoolExecutor
+from contextlib import contextmanager
 from dataclasses import replace
 from datetime import datetime
 from pathlib import Path
@@ -1407,7 +1408,9 @@ class NewDatabase:
             scenario["_provenance"] = payload
             self._get_provenance_collector().restore(identity, payload)
 
-    def _ensure_scenario_store(self, scenario: dict) -> InventoryStore:
+    def _ensure_scenario_store(
+        self, scenario: dict, *, materialize_source: bool = False
+    ) -> InventoryStore:
         store = scenario.get("_inventory_store")
         if store is not None:
             self._restore_scenario_provenance(scenario, store)
@@ -1437,6 +1440,8 @@ class NewDatabase:
 
         if store is None:
             source_store = getattr(self, "_source_inventory_store", None)
+            if source_store is None and materialize_source:
+                source_store = getattr(self, "_update_source_store", None)
             if source_store is None:
                 compact_checkpoint = getattr(self, "_compact_source_checkpoint", None)
                 if (
@@ -1464,6 +1469,13 @@ class NewDatabase:
                 except InventoryStoreError:
                     store = source_store.fork(scenario_identity)
             else:
+                if materialize_source:
+                    # The caller immediately makes an isolated mutable copy.
+                    # Forking first would copy the same graph twice.
+                    if hasattr(self, "_update_source_store"):
+                        self._update_source_store = source_store
+                    self._restore_scenario_provenance(scenario, source_store)
+                    return source_store
                 store = source_store.fork(scenario_identity)
         scenario["_inventory_store"] = store
         self._restore_scenario_provenance(scenario, store)
@@ -2103,6 +2115,20 @@ class NewDatabase:
         if shared_geography_caches is not None:
             shared_geography_caches.pop(topology_key, None)
 
+    @contextmanager
+    def _reuse_update_source(self):
+        """Retain one pristine legacy source only for the duration of update.
+
+        Each scenario still receives an isolated working graph. Keeping this
+        private reference avoids rebuilding the source from caches for every
+        scenario-year, and releases it before update returns or raises.
+        """
+        self._update_source_store = None
+        try:
+            yield
+        finally:
+            del self._update_source_store
+
     def _load_scenario_database_for_update(
         self, scenario: dict, scenario_position: int
     ) -> dict:
@@ -2133,7 +2159,7 @@ class NewDatabase:
         runtime_scenario.pop("_inventory_export_handoff", None)
         runtime_scenario.pop("_inventory_checkpoint", None)
         self._attach_shared_geography_cache(runtime_scenario)
-        store = self._ensure_scenario_store(scenario)
+        store = self._ensure_scenario_store(scenario, materialize_source=True)
         can_transfer_source = self._can_reload_original_database()
         has_mapping = bool(runtime_scenario.get("mapping"))
         activity_ids = tuple(store.iter_activity_ids()) if has_mapping else ()
@@ -2179,6 +2205,7 @@ class NewDatabase:
                 scenario_identity=self._scenario_identity(runtime_scenario),
                 take_ownership=True,
                 scenario_cache_compatibility=not persist,
+                build_indexes=not persist,
             )
         else:
             runtime_scenario.pop("_inventory_working_copy", None)
@@ -2199,6 +2226,7 @@ class NewDatabase:
             self._generate_validation_diagnostic(error, runtime_scenario, store)
             raise
         runtime_scenario.pop("_inventory_backend", None)
+        runtime_scenario.pop("_inventory_defer_indexes", None)
         runtime_scenario.pop("_validation_baseline_fingerprints", None)
         runtime_scenario.pop("_validation_baseline_cycles", None)
         scenario_definition.clear()
@@ -2394,7 +2422,10 @@ class NewDatabase:
         if unknown_sectors:
             raise ValueError(f"Unknown resource name(s): {unknown_sectors}")
 
-        with tqdm(total=len(self.scenarios), desc=description, ncols=70) as pbar_outer:
+        with (
+            self._reuse_update_source(),
+            tqdm(total=len(self.scenarios), desc=description, ncols=70) as pbar_outer,
+        ):
             for position, scenario_definition in enumerate(self.scenarios):
                 # Once another scenario starts updating, the previous scenario
                 # remains checkpoint-backed and must not keep a second complete
@@ -2430,6 +2461,10 @@ class NewDatabase:
                     fixed_args = self.sector_update_methods[sector]["args"]
                     if sector == "emissions" and "_inventory_store" not in scenario:
                         database = scenario.pop("_inventory_working_copy")
+                        # These indexes are neither serialized nor used by
+                        # emissions. Persisted stores are reopened with their
+                        # own indexes; diagnostics still build them on demand.
+                        scenario["_inventory_defer_indexes"] = persist
                         scenario["_inventory_store"] = create_inventory_store(
                             database,
                             backend=scenario.get("_inventory_backend")
@@ -2437,6 +2472,7 @@ class NewDatabase:
                             scenario_identity=self._scenario_identity(scenario),
                             take_ownership=True,
                             scenario_cache_compatibility=not persist,
+                            build_indexes=not persist,
                         )
                     with collector.session(self._scenario_identity(scenario), sector):
                         scenario = update_func(scenario, *fixed_args)

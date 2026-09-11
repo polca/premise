@@ -21,9 +21,11 @@ from .logger import create_logger
 from .provenance import record_change_event
 from .inventory_store import (
     CompactInventoryStore,
+    LegacyInventoryStore,
     get_scenario_inventory,
     replace_scenario_inventory,
 )
+from .inventory_copy import clone_inventory_dataset
 from .utils import rescale_exchange
 from .transformation import (
     BaseTransformation,
@@ -52,7 +54,7 @@ def _update_emissions(scenario, version, system_model, gains_scenario):
         return scenario
 
     store = scenario.get("_inventory_store")
-    if isinstance(store, CompactInventoryStore):
+    if isinstance(store, (CompactInventoryStore, LegacyInventoryStore)):
         emissions = Emissions.from_inventory_store(
             store=store,
             year=scenario["year"],
@@ -63,10 +65,17 @@ def _update_emissions(scenario, version, system_model, gains_scenario):
             system_model=system_model,
             gains_scenario=gains_scenario,
         )
-        affected_activity_keys = emissions.update_emissions_in_store(store)
-        scenario.setdefault("_validation_direct_targets", {})["emissions"] = {
-            "activity_keys": sorted(affected_activity_keys, key=repr)
-        }
+        if isinstance(store, CompactInventoryStore):
+            affected_activity_keys = emissions.update_emissions_in_store(store)
+            scenario.setdefault("_validation_direct_targets", {})["emissions"] = {
+                "activity_keys": sorted(affected_activity_keys, key=repr)
+            }
+        else:
+            replace_scenario_inventory(
+                scenario,
+                emissions.iter_updated_legacy_inventory(store),
+                take_ownership=True,
+            )
         return scenario
 
     emissions = Emissions(
@@ -132,7 +141,7 @@ class Emissions(BaseTransformation):
     def from_inventory_store(
         cls,
         *,
-        store: CompactInventoryStore,
+        store: CompactInventoryStore | LegacyInventoryStore,
         iam_data: IAMDataCollection,
         model: str,
         pathway: str,
@@ -141,7 +150,7 @@ class Emissions(BaseTransformation):
         system_model: str,
         gains_scenario: str,
     ) -> "Emissions":
-        """Create an updater without materialising the compact graph."""
+        """Create an updater from store metadata without materializing exchanges."""
 
         updater = object.__new__(cls)
         updater.database = None
@@ -181,7 +190,7 @@ class Emissions(BaseTransformation):
 
     @staticmethod
     def _compile_store_gains_mapping(
-        store: CompactInventoryStore,
+        store: CompactInventoryStore | LegacyInventoryStore,
     ) -> dict[str, str]:
         """Compile legacy GAINS contains/mask filters against store metadata."""
 
@@ -340,6 +349,42 @@ class Emissions(BaseTransformation):
                         regions=self.gains_IAM.region.values,
                     )
                     self.write_log(ds, status="updated")
+
+    def iter_updated_legacy_inventory(self, store: LegacyInventoryStore):
+        """Build a replacement graph, copying only exchanges emissions can edit.
+
+        Store transactions replace payloads instead of mutating them, so
+        unchanged exchange dictionaries can be shared between the two stores.
+        Activity metadata and every potentially modified biosphere exchange
+        are isolated before invoking the same dictionary transformation.
+        """
+        relevant = set(self.ei_pollutants)
+        regions = self.gains_IAM.region.values
+        state = store._state
+        for activity_id in store.iter_activity_ids():
+            dataset = clone_inventory_dataset(state.activities[activity_id])
+            sector = self.rev_gains_map.get(dataset["name"])
+            iam_location = self.ecoinvent_to_iam_loc.get(dataset["location"])
+            selected = (
+                dataset["name"] in self.rev_gains_map
+                and iam_location
+                and iam_location in self.gains_IAM.coords["region"]
+            )
+            exchanges = []
+            for exchange_id in state.activity_exchanges[activity_id]:
+                exchange = state.exchanges[exchange_id]
+                if (
+                    selected
+                    and exchange["type"] == "biosphere"
+                    and exchange["name"] in relevant
+                ):
+                    exchange = clone_inventory_dataset(exchange)
+                exchanges.append(exchange)
+            dataset["exchanges"] = exchanges
+            if selected:
+                self.update_pollutant_emissions(dataset, sector, regions)
+                self.write_log(dataset, status="updated")
+            yield dataset
 
     def update_emissions_in_store(
         self, store: CompactInventoryStore

@@ -28,6 +28,7 @@ from typing import Any, Callable, Literal, TypeAlias
 import numpy as np
 
 from .cache_cleanup import mark_checkpoint
+from .inventory_copy import clone_inventory_dataset
 
 try:  # PyArrow is a premise dependency, but keep source-only installs usable.
     import pyarrow as pa
@@ -3013,6 +3014,7 @@ class _InMemoryInventoryStore(InventoryStore):
         take_ownership: bool = False,
         scenario_cache_compatibility: bool = False,
         compute_fingerprints: bool = False,
+        build_indexes: bool = True,
     ) -> None:
         self._state = self._new_state()
         self._scenario_identity = scenario_identity
@@ -3025,6 +3027,7 @@ class _InMemoryInventoryStore(InventoryStore):
             take_ownership=take_ownership,
             scenario_cache_compatibility=scenario_cache_compatibility,
             compute_fingerprints=compute_fingerprints,
+            build_indexes=build_indexes,
         )
 
     def _new_state(self) -> _StoreState:
@@ -3088,6 +3091,7 @@ class _InMemoryInventoryStore(InventoryStore):
         take_ownership: bool,
         scenario_cache_compatibility: bool,
         compute_fingerprints: bool,
+        build_indexes: bool,
     ) -> None:
         normalize_activity = None
         normalize_exchange = None
@@ -3105,7 +3109,7 @@ class _InMemoryInventoryStore(InventoryStore):
             payload = (
                 dataset
                 if take_ownership and isinstance(dataset, dict)
-                else copy.deepcopy(dict(dataset))
+                else clone_inventory_dataset(dict(dataset))
             )
             if normalize_activity is not None:
                 normalize_activity(payload)
@@ -3126,7 +3130,7 @@ class _InMemoryInventoryStore(InventoryStore):
                     stored_exchange = (
                         exchange
                         if take_ownership and isinstance(exchange, Mapping)
-                        else copy.deepcopy(dict(exchange))
+                        else clone_inventory_dataset(dict(exchange))
                     )
                     if normalize_exchange is not None:
                         normalize_exchange(stored_exchange)
@@ -3139,17 +3143,22 @@ class _InMemoryInventoryStore(InventoryStore):
                     exchange_start, self._state.next_exchange_id
                 )
             else:
-                self._state.activity_exchanges[activity_id] = []
+                exchange_ids = []
                 for exchange in exchanges:
-                    if normalize_exchange is not None:
-                        exchange = normalize_exchange(
-                            exchange
-                            if take_ownership and isinstance(exchange, MutableMapping)
-                            else copy.deepcopy(dict(exchange))
-                        )
-                    self._add_exchange_unchecked(
-                        activity_id, exchange, take_ownership=take_ownership
+                    stored_exchange = (
+                        exchange
+                        if take_ownership and type(exchange) is dict
+                        else clone_inventory_dataset(dict(exchange))
                     )
+                    if normalize_exchange is not None:
+                        normalize_exchange(stored_exchange)
+                    exchange_id = self._state.next_exchange_id
+                    self._state.next_exchange_id += 1
+                    self._state.exchanges[exchange_id] = stored_exchange
+                    if self.eager_exchange_owners:
+                        self._state.exchange_owner[exchange_id] = activity_id
+                    exchange_ids.append(exchange_id)
+                self._state.activity_exchanges[activity_id] = exchange_ids
             if compute_fingerprints:
                 self._state.activity_fingerprints[activity_id] = (
                     _activity_structural_fingerprint(
@@ -3163,7 +3172,7 @@ class _InMemoryInventoryStore(InventoryStore):
                         canonical_order=payload_is_plain and exchanges_are_plain,
                     )
                 )
-        if self.eager_indexes:
+        if self.eager_indexes and build_indexes:
             self._rebuild_indexes()
 
     def _ensure_owned_state(self) -> None:
@@ -3178,7 +3187,11 @@ class _InMemoryInventoryStore(InventoryStore):
         duplicate = copy.copy(state)
         duplicate.activities = state.activities.copy()
         duplicate.activity_order = state.activity_order.copy()
-        duplicate.exchanges = state.exchanges.shallow_copy()
+        duplicate.exchanges = (
+            state.exchanges.copy()
+            if isinstance(state.exchanges, dict)
+            else state.exchanges.shallow_copy()
+        )
         duplicate.exchange_owner = state.exchange_owner.copy()
         duplicate.activity_exchanges = state.activity_exchanges.copy()
         duplicate.activity_fingerprints = state.activity_fingerprints.copy()
@@ -3235,9 +3248,9 @@ class _InMemoryInventoryStore(InventoryStore):
             payload = self._state.activities[activity_id]
         except KeyError as error:
             raise KeyError(f"Unknown activity id: {activity_id}") from error
-        record = copy.deepcopy(payload)
+        record = clone_inventory_dataset(payload)
         record["exchanges"] = [
-            copy.deepcopy(self._state.exchanges[exchange_id])
+            clone_inventory_dataset(self._state.exchanges[exchange_id])
             for exchange_id in self._state.activity_exchanges[activity_id]
             if exchange_id in self._state.exchanges
         ]
@@ -3442,7 +3455,10 @@ class _InMemoryInventoryStore(InventoryStore):
 
     def fork(self, scenario_identity: Any = None) -> "InventoryStore":
         child = object.__new__(type(self))
-        child._state = copy.deepcopy(self._state)
+        child._state = _StoreState()
+        memo = {id(self._state): child._state}
+        for key, value in vars(self._state).items():
+            setattr(child._state, key, clone_inventory_dataset(value, memo))
         child._scenario_identity = scenario_identity
         child._lock = threading.RLock()
         child._active_transaction = False
@@ -3488,7 +3504,7 @@ class _InMemoryInventoryStore(InventoryStore):
         self._state.exchanges[exchange_id] = (
             payload
             if take_ownership and type(payload) is dict
-            else copy.deepcopy(dict(payload))
+            else clone_inventory_dataset(dict(payload))
         )
         self._normalize_scenario_exchange(self._state.exchanges[exchange_id])
         if self.eager_exchange_owners:
@@ -3556,11 +3572,12 @@ class _InMemoryInventoryStore(InventoryStore):
                     matches = activity_keys.get(key, ())
                     if len(matches) == 1:
                         provider_id = matches[0]
-                if (
-                    provider_id is not None
-                    and consumer_id not in consumers[provider_id]
-                ):
-                    consumers[provider_id].append(consumer_id)
+                if provider_id is not None:
+                    provider_consumers = consumers[provider_id]
+                    # Each consumer is visited once, with all its exchanges
+                    # together, so only the last entry can be a duplicate.
+                    if not provider_consumers or provider_consumers[-1] != consumer_id:
+                        provider_consumers.append(consumer_id)
 
         self._state.field_index = {
             field_name: {value: tuple(ids) for value, ids in values.items()}
@@ -4169,6 +4186,7 @@ def create_inventory_store(
     take_ownership: bool = False,
     scenario_cache_compatibility: bool = False,
     compute_fingerprints: bool = False,
+    build_indexes: bool = True,
 ) -> InventoryStore:
     store_class = {
         "compact": CompactInventoryStore,
@@ -4182,6 +4200,7 @@ def create_inventory_store(
         take_ownership=take_ownership,
         scenario_cache_compatibility=scenario_cache_compatibility,
         compute_fingerprints=compute_fingerprints,
+        build_indexes=build_indexes,
     )
 
 
@@ -4227,9 +4246,16 @@ def get_scenario_inventory(scenario: dict[str, Any]) -> list[dict[str, Any]]:
 
 
 def replace_scenario_inventory(
-    scenario: dict[str, Any], database: Iterable[Mapping[str, Any]]
+    scenario: dict[str, Any],
+    database: Iterable[Mapping[str, Any]],
+    *,
+    take_ownership: bool = False,
 ) -> None:
-    """Commit a sector wrapper's resulting inventory without a public payload."""
+    """Commit a sector wrapper's resulting inventory without a public payload.
+
+    A wrapper can transfer an exclusively owned working graph once it no
+    longer needs its dictionaries. Other callers retain copying semantics.
+    """
 
     if "database" in scenario:
         scenario["database"] = database
@@ -4252,6 +4278,8 @@ def replace_scenario_inventory(
         database,
         backend=store.backend_name,
         scenario_identity=getattr(store, "scenario_identity", None),
+        take_ownership=take_ownership,
+        build_indexes=not scenario.get("_inventory_defer_indexes", False),
     )
     scenario.pop("_inventory_working_copy", None)
     scenario.pop("_inventory_checkpoint", None)

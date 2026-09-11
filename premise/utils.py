@@ -1207,20 +1207,23 @@ _SCENARIO_METADATA_EXCLUDED_FIELDS = {
 }
 
 
+_CACHE_VALUE_CONTAINER_TYPES = frozenset((list, tuple, dict, set))
+_CACHE_VALUE_INTEGER_TYPES = frozenset((bool, int))
+
+
 def _has_cache_value(value: Any) -> bool:
     if value is None:
         return False
-    if isinstance(value, np.floating):
-        return not np.isnan(value)
-
     value_type = type(value)
     if value_type is str:
         return value not in {"None", "nan", ""}
-    if value_type in {list, tuple, dict, set}:
+    if value_type in _CACHE_VALUE_CONTAINER_TYPES:
         return True
-    if value_type in {bool, int}:
+    if value_type in _CACHE_VALUE_INTEGER_TYPES:
         return True
     if value_type is float:
+        return value == value
+    if isinstance(value, np.floating):
         return not np.isnan(value)
 
     # Preserve support for subclasses and the complete NumPy integer family

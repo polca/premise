@@ -33,6 +33,7 @@ from .activity_maps import InventorySet
 from .data_collection import IAMDataCollection
 from .filesystem_constants import DATA_DIR
 from .geomap import Geomap
+from .inventory_copy import clone_inventory_dataset
 from .inventory_store import IndexedInventoryList, compact_exchange_payload
 from .provenance import record_change_event
 from .utils import get_fuel_properties, rescale_exchange
@@ -174,82 +175,6 @@ def _provider_record(dataset: Mapping[str, Any]) -> _ProviderRecord:
         unit=dataset["unit"],
         production_volume=production.get("production volume", 0),
     )
-
-
-_INVENTORY_ATOMIC_TYPES = frozenset(
-    (
-        type(None),
-        bool,
-        int,
-        float,
-        complex,
-        str,
-        bytes,
-    )
-)
-
-
-def clone_inventory_dataset(dataset: dict) -> dict:
-    """Clone a mutable inventory dataset without copying immutable scalars.
-
-    Proxy creation clones thousands of metadata-rich datasets. Generic
-    :func:`copy.deepcopy` repeatedly dispatches over every string, number, and
-    NumPy scalar even though these values are immutable. This specialised
-    copier handles the two dominant mutable containers directly, retains
-    shared-reference relationships through a memo, and delegates uncommon
-    Python objects to ``deepcopy`` for exact type semantics.
-    """
-
-    memo: dict[int, Any] = {}
-
-    def clone(value):
-        value_type = type(value)
-        if value_type in _INVENTORY_ATOMIC_TYPES or isinstance(value, np.generic):
-            return value
-
-        value_id = id(value)
-        if value_id in memo:
-            return memo[value_id]
-
-        compact_clone = getattr(value, "_premise_clone", None)
-        if compact_clone is not None:
-            return compact_clone(memo)
-
-        if value_type is dict or hasattr(value, "_premise_materialize"):
-            duplicate = {}
-            memo[value_id] = duplicate
-            for key, item in value.items():
-                duplicate_key = (
-                    key if type(key) in _INVENTORY_ATOMIC_TYPES else clone(key)
-                )
-                item_type = type(item)
-                duplicate[duplicate_key] = (
-                    item
-                    if item_type in _INVENTORY_ATOMIC_TYPES
-                    or isinstance(item, np.generic)
-                    else clone(item)
-                )
-            return duplicate
-
-        if value_type is list:
-            duplicate = value.copy()
-            memo[value_id] = duplicate
-            for position, item in enumerate(value):
-                item_type = type(item)
-                if item_type not in _INVENTORY_ATOMIC_TYPES and not isinstance(
-                    item, np.generic
-                ):
-                    duplicate[position] = clone(item)
-            return duplicate
-
-        if value_type is np.ndarray:
-            duplicate = value.copy()
-            memo[value_id] = duplicate
-            return duplicate
-
-        return copy.deepcopy(value, memo)
-
-    return clone(dataset)
 
 
 def redefine_uncertainty_params(old_exc, new_exc):

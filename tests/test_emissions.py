@@ -7,7 +7,68 @@ xr = pytest.importorskip("xarray")
 
 from premise.activity_maps import InventorySet
 from premise.emissions import Emissions
-from premise.inventory_store import CompactInventoryStore
+from premise.inventory_store import CompactInventoryStore, LegacyInventoryStore
+
+
+def test_legacy_emissions_replacement_preserves_source_and_nested_metadata(monkeypatch):
+    from types import SimpleNamespace
+    import premise.emissions as module
+
+    original = [
+        {
+            "name": "emitter",
+            "reference product": "service",
+            "location": "World",
+            "unit": "unit",
+            "metadata": {"nested": [1]},
+            "exchanges": [
+                {"type": "biosphere", "name": "Nitrogen oxides", "amount": 10.0},
+                {
+                    "type": "technosphere",
+                    "name": "unchanged provider",
+                    "product": "thing",
+                    "location": "World",
+                    "unit": "unit",
+                    "amount": 3.0,
+                    "metadata": {"notes": [1]},
+                },
+            ],
+        }
+    ]
+    source = LegacyInventoryStore(original)
+
+    updater = object.__new__(Emissions)
+    updater.year = 2030
+    updater.ecoinvent_to_iam_loc = {"World": "World"}
+    updater.gains_IAM = updater.prepare_data(
+        _gains_data(np.array([[[[100.0], [50.0]]], [[[100.0], [50.0]]]]))
+    )
+    updater.rev_gains_map = {"emitter": "SEC"}
+    updater.ei_pollutants = {"Nitrogen oxides": "NOx"}
+    updater.write_log = lambda dataset, status="created": None
+    monkeypatch.setattr(Emissions, "from_inventory_store", lambda **kwargs: updater)
+    scenario = {
+        "model": "image",
+        "pathway": "SSP2-M",
+        "year": 2030,
+        "iam data": SimpleNamespace(gains_data_IAM=True),
+        "_inventory_store": source,
+    }
+    module._update_emissions(scenario, "3.12", "cutoff", "CLE")
+    updated = scenario["_inventory_store"].materialize()
+    assert updated[0]["exchanges"][0]["amount"] == 5.0
+    assert updated[0]["metadata"]["nested"] == [1]
+    assert source.materialize() == original
+    assert "_inventory_working_copy" not in scenario
+    updated[0]["metadata"]["nested"].append(3)
+    assert scenario["_inventory_store"].materialize()[0]["metadata"]["nested"] == [1]
+    replacement = scenario["_inventory_store"]
+    with replacement.transaction("change replacement") as transaction:
+        transaction.patch_exchange(1, {"amount": 9.0, "metadata": {"notes": [2]}})
+    assert source.materialize()[0]["exchanges"][1] == original[0]["exchanges"][1]
+    with source.transaction("change source") as transaction:
+        transaction.patch_exchange(1, {"amount": 7.0})
+    assert replacement.materialize()[0]["exchanges"][1]["amount"] == 9.0
 
 
 def _gains_data(values):
@@ -79,7 +140,8 @@ def test_update_emissions_updates_world_dataset_with_world_scaling():
     assert dataset["log parameters"]["NOx"] == pytest.approx(110 / 400)
 
 
-def test_store_native_emissions_matches_dictionary_path_exactly():
+@pytest.mark.parametrize("backend", [CompactInventoryStore, LegacyInventoryStore])
+def test_store_native_emissions_matches_dictionary_path_exactly(backend):
     values = np.array(
         [
             [[[100.0], [50.0]]],
@@ -123,12 +185,18 @@ def test_store_native_emissions_matches_dictionary_path_exactly():
     legacy.database = [expected]
     legacy.update_emissions_in_database()
 
-    store = CompactInventoryStore([dataset])
+    source = store = backend([dataset])
     native = updater()
-    native.update_emissions_in_store(store)
+    if backend is LegacyInventoryStore:
+        store = LegacyInventoryStore(
+            native.iter_updated_legacy_inventory(source), take_ownership=True
+        )
+        assert source.materialize() == [dataset]
+    else:
+        native.update_emissions_in_store(store)
 
     assert store.materialize() == [expected]
-    assert store.generation == 1
+    assert store.generation == (1 if backend is CompactInventoryStore else 0)
     # Legacy semantics update only the first exchange for a repeated pollutant.
     assert store.materialize()[0]["exchanges"][1]["amount"] == 5.0
 

@@ -31,12 +31,6 @@ from typing import Any, Iterable
 REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT))
 
-import bw2calc as bc  # noqa: E402
-import bw2data as bd  # noqa: E402
-
-import premise  # noqa: E402
-from premise import NewDatabase  # noqa: E402
-
 IGNORED_DATASET_FIELDS = frozenset({"code", "database", "input"})
 IGNORED_EXCHANGE_FIELDS = frozenset({"input", "output"})
 
@@ -335,6 +329,8 @@ def extract_brightway_database(database_name: str) -> list[dict[str, Any]]:
 
 
 def stable_database_metadata(database_name: str) -> dict[str, Any]:
+    import bw2data as bd
+
     metadata = dict(bd.databases[database_name])
     for key in ("name", "created", "modified", "processed"):
         metadata.pop(key, None)
@@ -356,6 +352,9 @@ def find_activity(database: Any, specification: dict[str, str]) -> Any:
 
 
 def calculate_lcia_scores(database_name: str) -> dict[str, Any]:
+    import bw2calc as bc
+    import bw2data as bd
+
     database = bd.Database(database_name)
     activities = {
         label: find_activity(database, specification)
@@ -413,6 +412,10 @@ def fixed_python_hash_seed() -> str:
 
 def build_snapshot(args: argparse.Namespace) -> None:
     hash_seed = fixed_python_hash_seed()
+    import bw2data as bd
+    import premise
+    from premise import NewDatabase
+
     args.output_dir.mkdir(parents=True, exist_ok=True)
     bd.projects.set_current(args.project)
     missing = [
