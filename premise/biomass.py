@@ -12,6 +12,8 @@ import yaml
 from .export import biosphere_flows_dictionary
 from .filesystem_constants import VARIABLES_DIR, DATA_DIR
 from .logger import create_logger
+from .provenance import record_change_event
+from .inventory_store import get_scenario_inventory, replace_scenario_inventory
 from .transformation import (
     BaseTransformation,
     IAMDataCollection,
@@ -23,6 +25,7 @@ from .transformation import (
 )
 from .activity_maps import InventorySet, act_fltr, get_mapping
 from .validation import BiomassValidation
+from .validation_framework import record_validation_phase
 
 IAM_BIOMASS_VARS = VARIABLES_DIR / "biomass.yaml"
 BIOMASS_ACTIVITIES = DATA_DIR / "biomass" / "biomass_activities.yaml"
@@ -37,7 +40,7 @@ def _update_biomass(scenario, version, system_model):
         return scenario
 
     biomass = Biomass(
-        database=scenario["database"],
+        database=get_scenario_inventory(scenario),
         iam_data=scenario["iam data"],
         model=scenario["model"],
         pathway=scenario["pathway"],
@@ -65,9 +68,9 @@ def _update_biomass(scenario, version, system_model):
         system_model=system_model,
     )
 
-    validate.run_biomass_checks()
+    record_validation_phase(scenario, validate.run_biomass_checks())
 
-    scenario["database"] = biomass.database
+    replace_scenario_inventory(scenario, biomass.database)
     scenario["index"] = biomass.index
     scenario["cache"] = biomass.cache
     if "mapping" not in scenario:
@@ -281,12 +284,6 @@ class Biomass(BaseTransformation):
                     exc["location"] = location
 
     def write_log(self, dataset, status="created"):
-        """
-        Write log file.
-        """
+        """Record a structured biomass provenance event."""
 
-        logger.info(
-            f"{status}|{self.model}|{self.scenario}|{self.year}|"
-            f"{dataset['name']}|{dataset['location']}|"
-            f"{dataset.get('log parameters', {}).get('biomass share', '')}"
-        )
+        record_change_event(self, dataset, status, sector="biomass")

@@ -9,11 +9,13 @@ import shutil
 import re
 import ast
 import math
+from contextlib import ExitStack
 from io import BytesIO, StringIO
 from fnmatch import fnmatchcase
 from datetime import date
 from pathlib import Path
 from typing import List, Dict, Tuple, Set, Optional
+from uuid import uuid4
 
 import yaml
 from datapackage import Package
@@ -29,7 +31,11 @@ from .new_database import (
     check_pathway_name,
 )
 from .inventory_imports import get_classifications
-from .scenario_downloader import download_csv
+from .scenario_downloader import (
+    download_csv,
+    get_scenario_file_stems,
+    get_scenario_url,
+)
 from .filesystem_constants import DATA_DIR
 from .utils import load_database, dump_database
 
@@ -161,11 +167,14 @@ class TrailsDataPackage:
             return None
 
     @staticmethod
-    def _find_iam_file(file_name: str, filedir: Path, key: bytes):
-        for extension in (".csv", ".mif", ".xls", ".xlsx"):
-            file_path = Path(filedir) / f"{file_name}{extension}"
-            if file_path.exists():
-                return file_path
+    def _find_iam_file(model: str, pathway: str, filedir: Path, key: bytes):
+        file_stems = get_scenario_file_stems(model, pathway)
+        file_name = file_stems[0]
+        for file_stem in file_stems:
+            for extension in (".csv", ".mif", ".xls", ".xlsx"):
+                file_path = Path(filedir) / f"{file_stem}{extension}"
+                if file_path.exists():
+                    return file_path
 
         if key is None:
             raise FileNotFoundError(
@@ -175,7 +184,7 @@ class TrailsDataPackage:
                 f"decryption key or place the file in the specified directory."
             )
 
-        url = f"https://zenodo.org/records/19049274/files/{file_name}.csv"
+        url = get_scenario_url(model, pathway)
         return download_csv(file_name + ".csv", url, filedir)
 
     @staticmethod
@@ -220,8 +229,7 @@ class TrailsDataPackage:
 
         model = check_model_name(scenario["model"])
         pathway = check_pathway_name(scenario["pathway"], filepath, model)
-        file_name = f"{model}_{pathway}"
-        file_path = cls._find_iam_file(file_name, filepath, key)
+        file_path = cls._find_iam_file(model, pathway, filepath, key)
         header = cls._read_iam_header(file_path, key)
 
         years = sorted(
@@ -1464,126 +1472,183 @@ class TrailsDataPackage:
                 }
             )
 
+        temporal_fields = (
+            "temporal_distribution",
+            "temporal_loc",
+            "temporal_scale",
+            "temporal_min",
+            "temporal_max",
+            "temporal_offsets",
+            "temporal_weights",
+        )
         for s, scenario in enumerate(self.datapackage.scenarios):
-            scenario = load_database(scenario, self.datapackage.database)
-            db = scenario["database"]
+            get_store = getattr(self.datapackage, "get_inventory_store", None)
+            persist = (
+                scenario.get("_inventory_checkpoint") is not None
+                and scenario.get("_inventory_store") is None
+            )
+            with ExitStack() as stack:
+                if get_store is not None:
+                    store = get_store(s, writable=True)
+                    transaction = stack.enter_context(
+                        store.transaction("trails:temporal_distributions")
+                    )
+                    activities = (
+                        (record, record.to_dict()) for record in store.iter_activities()
+                    )
+                else:
+                    # Compatibility for standalone legacy scenario containers.
+                    scenario = load_database(scenario, self.datapackage.database)
+                    transaction = None
+                    activities = ((None, ds) for ds in scenario["database"])
 
-            for ds in db:
-                ds_name = (ds.get("name") or "").strip()
-                ds_ref = (ds.get("reference product") or "").strip()
-                ds_key = (ds_name, ds_ref)
-                ds_stock = stock_assets.get((ds_name, ds_ref), {})
-                ds_lifetime = ds_stock.get("lifetime")
-                if ds_lifetime is None:
-                    ds_lifetime = dataset_lifetimes.get((ds_name, ds_ref))
-                is_lifecycle_service = ds_key in maintenance or ds_key in end_of_life
+                for activity, ds in activities:
+                    ds_name = (ds.get("name") or "").strip()
+                    ds_ref = (ds.get("reference product") or "").strip()
+                    ds_key = (ds_name, ds_ref)
+                    ds_stock = stock_assets.get((ds_name, ds_ref), {})
+                    ds_lifetime = ds_stock.get("lifetime")
+                    if ds_lifetime is None:
+                        ds_lifetime = dataset_lifetimes.get((ds_name, ds_ref))
+                    is_lifecycle_service = (
+                        ds_key in maintenance or ds_key in end_of_life
+                    )
 
-                bg = biomass_growth.get((ds_name, ds_ref))
-                for e in ds.get("exchanges", []):
-                    exc_type = e.get("type")
+                    bg = biomass_growth.get((ds_name, ds_ref))
+                    for e in ds.get("exchanges", []):
+                        exc_type = e.get("type")
 
-                    if (
-                        exc_type == "biosphere"
-                        and (e.get("name") or "").strip() == "Carbon dioxide, in air"
-                        and bg is not None
-                        and bg.get("temporal_distribution") is not None
-                    ):
-                        _apply_params(e, bg)
-                        continue
+                        if (
+                            exc_type == "biosphere"
+                            and (e.get("name") or "").strip()
+                            == "Carbon dioxide, in air"
+                            and bg is not None
+                            and bg.get("temporal_distribution") is not None
+                        ):
+                            _apply_params(e, bg)
+                            continue
 
-                    if exc_type == "biosphere":
-                        params, ambiguous = _lookup_biosphere_params(e)
-                        if ambiguous:
+                        if exc_type == "biosphere":
+                            params, ambiguous = _lookup_biosphere_params(e)
+                            if ambiguous:
+                                _record_fault(
+                                    ds,
+                                    e,
+                                    "Ambiguous long_term_emission selectors: "
+                                    + "; ".join(
+                                        _selector_label(params) for params in ambiguous
+                                    ),
+                                )
+                                continue
+                            if params is not None:
+                                _apply_params(e, params)
+                                _record_long_term_match(ds, e, params)
+                            continue
+
+                        if exc_type != "technosphere":
+                            continue
+
+                        sup_name = (e.get("name") or "").strip()
+                        sup_ref = (
+                            e.get("product") or e.get("reference product") or ""
+                        ).strip()
+                        if not sup_ref:
                             _record_fault(
                                 ds,
                                 e,
-                                "Ambiguous long_term_emission selectors: "
-                                + "; ".join(
-                                    _selector_label(params) for params in ambiguous
-                                ),
+                                "Missing supplier product on technosphere exchange.",
                             )
                             continue
+                        key = (sup_name, sup_ref)
+                        params = stock_assets.get(key)
+                        is_maintenance = key in maintenance
+                        is_end_of_life = key in end_of_life
+
+                        matched = (
+                            int(params is not None)
+                            + int(is_maintenance)
+                            + int(is_end_of_life)
+                        )
+                        if matched > 1:
+                            tags = []
+                            if params is not None:
+                                tags.append("stock_asset")
+                            if is_maintenance:
+                                tags.append("maintenance")
+                            if is_end_of_life:
+                                tags.append("end_of_life")
+                            _record_fault(
+                                ds,
+                                e,
+                                f"Ambiguous temporal tags for supplier {key}: matched {tags}.",
+                            )
+                            continue
+                        if matched == 0:
+                            continue
+
                         if params is not None:
                             _apply_params(e, params)
-                            _record_long_term_match(ds, e, params)
-                        continue
+                            continue
 
-                    if exc_type != "technosphere":
-                        continue
+                        # Maintenance and end-of-life datasets represent lifecycle
+                        # events, not assets with another service life. Their nested
+                        # lifecycle suppliers are substeps of the same event.
+                        if is_lifecycle_service and (is_maintenance or is_end_of_life):
+                            _apply_discrete_pulse(e, 0.0)
+                            continue
 
-                    sup_name = (e.get("name") or "").strip()
-                    sup_ref = (
-                        e.get("product") or e.get("reference product") or ""
-                    ).strip()
-                    if not sup_ref:
-                        _record_fault(
-                            ds,
-                            e,
-                            "Missing supplier product on technosphere exchange.",
-                        )
-                        continue
-                    key = (sup_name, sup_ref)
-                    params = stock_assets.get(key)
-                    is_maintenance = key in maintenance
-                    is_end_of_life = key in end_of_life
+                        if (is_maintenance or is_end_of_life) and ds_lifetime is None:
+                            _record_fault(
+                                ds,
+                                e,
+                                "Missing dataset lifetime in temporal CSV "
+                                f"(tag: {'maintenance' if is_maintenance else 'end_of_life'}).",
+                            )
+                            continue
 
-                    matched = (
-                        int(params is not None)
-                        + int(is_maintenance)
-                        + int(is_end_of_life)
-                    )
-                    if matched > 1:
-                        tags = []
-                        if params is not None:
-                            tags.append("stock_asset")
                         if is_maintenance:
-                            tags.append("maintenance")
+                            e["temporal_distribution"] = 4
+                            e["temporal_loc"] = None
+                            e["temporal_scale"] = None
+                            e["temporal_min"] = 0.0
+                            e["temporal_max"] = float(ds_lifetime)
+                            e["temporal_offsets"] = None
+                            e["temporal_weights"] = None
+                            continue
+
                         if is_end_of_life:
-                            tags.append("end_of_life")
-                        _record_fault(
-                            ds,
-                            e,
-                            f"Ambiguous temporal tags for supplier {key}: matched {tags}.",
-                        )
-                        continue
-                    if matched == 0:
-                        continue
+                            pulse_time = float(ds_lifetime) + 1.0
+                            _apply_discrete_pulse(e, pulse_time)
 
-                    if params is not None:
-                        _apply_params(e, params)
-                        continue
+                    if transaction is not None:
+                        for exchange_id, exchange in zip(
+                            activity.exchange_ids, ds.get("exchanges", [])
+                        ):
+                            updates = {
+                                field: exchange[field]
+                                for field in temporal_fields
+                                if field in exchange
+                            }
+                            if updates:
+                                transaction.patch_exchange(
+                                    exchange_id, updates, activity_id=activity.id
+                                )
 
-                    # Maintenance and end-of-life datasets represent lifecycle
-                    # events, not assets with another service life. Their nested
-                    # lifecycle suppliers are substeps of the same event.
-                    if is_lifecycle_service and (is_maintenance or is_end_of_life):
-                        _apply_discrete_pulse(e, 0.0)
-                        continue
-
-                    if (is_maintenance or is_end_of_life) and ds_lifetime is None:
-                        _record_fault(
-                            ds,
-                            e,
-                            "Missing dataset lifetime in temporal CSV "
-                            f"(tag: {'maintenance' if is_maintenance else 'end_of_life'}).",
-                        )
-                        continue
-
-                    if is_maintenance:
-                        e["temporal_distribution"] = 4
-                        e["temporal_loc"] = None
-                        e["temporal_scale"] = None
-                        e["temporal_min"] = 0.0
-                        e["temporal_max"] = float(ds_lifetime)
-                        e["temporal_offsets"] = None
-                        e["temporal_weights"] = None
-                        continue
-
-                    if is_end_of_life:
-                        pulse_time = float(ds_lifetime) + 1.0
-                        _apply_discrete_pulse(e, pulse_time)
-
-            self.datapackage.scenarios[s] = dump_database(scenario)
+            if get_store is None:
+                self.datapackage.scenarios[s] = dump_database(scenario)
+            else:
+                scenario.pop("_inventory_export_handoff", None)
+                if persist:
+                    # Keep disk-backed scenarios disk-backed, with the temporal
+                    # metadata in the checkpoint used by matrix export.
+                    checkpoint = Path(scenario["_inventory_checkpoint"]).with_name(
+                        f"{uuid4().hex}.inventory-store"
+                    )
+                    scenario["_inventory_checkpoint"] = store.checkpoint(checkpoint)
+                    scenario.pop("_inventory_store", None)
+                    # A checkpoint-only scenario cannot compare the new store
+                    # generation with its previous semantic certificate.
+                    scenario.pop("_validation_report", None)
 
         if long_term_matches:
             outdir.mkdir(parents=True, exist_ok=True)

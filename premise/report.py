@@ -2,8 +2,6 @@
 This module export a summary of scenario to an Excel file.
 """
 
-import os
-from datetime import datetime
 from pathlib import Path
 
 import openpyxl
@@ -14,12 +12,8 @@ from openpyxl.chart import AreaChart, LineChart, Reference
 from openpyxl.styles import Font
 from openpyxl.utils import get_column_letter
 from openpyxl.utils.dataframe import dataframe_to_rows
-from openpyxl.worksheet.dimensions import ColumnDimension, DimensionHolder
-from pandas.errors import EmptyDataError
 
-from . import __version__
 from .filesystem_constants import DATA_DIR, VARIABLES_DIR
-from .logger import empty_log_files
 
 IAM_ELEC_VARS = VARIABLES_DIR / "electricity.yaml"
 IAM_FUELS_VARS = VARIABLES_DIR / "fuels.yaml"
@@ -37,16 +31,6 @@ IAM_TRSPT_SHIPS_VARS = VARIABLES_DIR / "transport_sea_freight.yaml"
 IAM_OTHER_VARS = VARIABLES_DIR / "other.yaml"
 REPORT_METADATA_FILEPATH = DATA_DIR / "utils" / "report" / "report.yaml"
 VEHICLES_MAP = DATA_DIR / "transport" / "vehicles_map.yaml"
-
-LOG_REPORTING_FILEPATH = DATA_DIR / "utils" / "logging" / "reporting.yaml"
-# directory for log files
-DIR_LOGS = Path.cwd() / "export" / "logs"
-DIR_LOG_REPORT = Path.cwd() / "export" / "change reports"
-
-# if DIR_LOG_REPORT folder does not exist
-# we create it
-if not Path(DIR_LOG_REPORT).exists():
-    Path(DIR_LOG_REPORT).mkdir(parents=True, exist_ok=True)
 
 
 def get_variables(
@@ -789,158 +773,3 @@ def generate_summary_report(
             scenario_list.add(key)
 
     workbook.save(filename)
-
-
-# --- generate_change_report (updated, hardened) -------------------------------
-
-
-def generate_change_report(source, version, source_type, system_model):
-    """
-    Generate a change report of the scenarios from the log files.
-    """
-
-    workbook = openpyxl.Workbook()
-    workbook.remove(workbook.active)
-
-    log_filepaths = [
-        "premise_cdr",
-        "premise_biomass",
-        "premise_electricity",
-        "premise_fuel",
-        "premise_heat",
-        "premise_battery",
-        "premise_wind_turbine",
-        "premise_transport",
-        "premise_steel",
-        "premise_metal",
-        "premise_cement",
-        "premise_emissions",
-        "premise_external_scenarios",
-        "premise_mapping",
-        "premise_validation",
-    ]
-
-    # fetch reporting metadata
-    with open(LOG_REPORTING_FILEPATH, encoding="utf-8") as f:
-        metadata = yaml.load(f, Loader=yaml.FullLoader)
-
-    worksheet = workbook.create_sheet("Change report")
-    worksheet.cell(row=1, column=1, value="Library name")
-    worksheet.cell(row=1, column=2, value="Library version")
-    worksheet.cell(row=1, column=3, value="Report date")
-    worksheet.cell(row=1, column=4, value="Source database")
-    worksheet.cell(row=1, column=5, value="Source database format")
-    worksheet.cell(row=1, column=6, value="Database version")
-    worksheet.cell(row=1, column=7, value="Database system model")
-    worksheet.cell(row=2, column=1, value="premise")
-    worksheet.cell(row=2, column=2, value=".".join(map(str, __version__)))
-    worksheet.cell(row=2, column=3, value=datetime.now())
-    worksheet.cell(row=2, column=4, value=source)
-    worksheet.cell(row=2, column=5, value=source_type)
-    worksheet.cell(row=2, column=6, value=version)
-    worksheet.cell(row=2, column=7, value=system_model)
-
-    dim_holder = DimensionHolder(worksheet=worksheet)
-    for col in range(worksheet.min_column, worksheet.max_column + 1):
-        dim_holder[get_column_letter(col)] = ColumnDimension(
-            worksheet, min=col, max=col, width=20
-        )
-    worksheet.column_dimensions = dim_holder
-
-    for name in log_filepaths:
-        fp = Path(DIR_LOGS / name).with_suffix(".log")
-        if not fp.is_file():
-            continue
-        if os.stat(fp).st_size == 0:
-            continue
-
-        try:
-            df = convert_log_to_excel_file(fp)
-        except Exception as exc:
-            print(f"Warning: failed to read log file {fp}: {exc}")
-            continue
-
-        # Create per-sector sheet
-        tab_meta = metadata.get(name, {})
-        tab_name = tab_meta.get(
-            "tab", fetch_tab_name(name) if isinstance(name, str) else name
-        )
-        # Ensure a valid, unique sheet name (Excel max 31 chars)
-        tab_name = (tab_name or name)[:31]
-        worksheet = workbook.create_sheet(tab_name)
-
-        # Add column descriptions/units
-        cols = fetch_columns(fp)
-        colmeta = tab_meta.get("columns", {})
-        for c_idx, column in enumerate(cols, 1):
-            desc = colmeta.get(column, {}).get("description", column)
-            unit = colmeta.get(column, {}).get("unit", "")
-            worksheet.cell(row=1, column=c_idx, value=desc)
-            worksheet.cell(row=2, column=c_idx, value=unit)
-
-        # Append data rows
-        for r in dataframe_to_rows(df, index=False):
-            # dataframe_to_rows yields header first; we already wrote descriptions/units,
-            # so skip the header row it produces.
-            if r and r[0] == df.columns[0]:
-                continue
-            worksheet.append(r)
-
-    # Save workbook
-    fp_out = Path(
-        DIR_LOG_REPORT / f"change_report {datetime.now().strftime('%Y-%m-%d')}.xlsx"
-    )
-    workbook.save(fp_out)
-    empty_log_files()
-
-
-# --- fetch_columns / fetch_tab_name (safe) ------------------------------------
-
-
-def fetch_columns(variable):
-    """
-    Read reporting.yaml and return the columns for the variable.
-    `variable` may be a Path or a string stem.
-    """
-    stem = variable.stem if hasattr(variable, "stem") else Path(variable).stem
-    with open(LOG_REPORTING_FILEPATH, "r", encoding="utf-8") as stream:
-        reporting = yaml.safe_load(stream)
-
-    # Defensive: return listed columns or empty list
-    cols = reporting.get(stem, {}).get("columns", {})
-    return list(cols.keys())
-
-
-def fetch_tab_name(variable):
-    """
-    Read reporting.yaml and return the tab name for the variable key (string).
-    """
-    key = variable if isinstance(variable, str) else str(variable)
-    with open(LOG_REPORTING_FILEPATH, "r", encoding="utf-8") as stream:
-        reporting = yaml.safe_load(stream)
-    return reporting.get(key, {}).get("tab", key)
-
-
-# --- convert_log_to_excel_file (hardened) -------------------------------------
-
-
-def convert_log_to_excel_file(filepath):
-    df = pd.read_csv(
-        filepath, sep="|", header=None, on_bad_lines="skip", engine="python"
-    )
-    cols = fetch_columns(filepath)
-
-    # Align column counts
-    if df.shape[1] > len(cols):
-        df = df.iloc[:, : len(cols)]
-    elif df.shape[1] < len(cols):
-        # pad with empty columns instead of pd.NA
-        for _ in range(len(cols) - df.shape[1]):
-            df[df.shape[1]] = None
-
-    df.columns = cols
-
-    # Make sure there is no pandas.NA left anywhere
-    df = df.astype("object").where(df.notna(), None)
-
-    return df

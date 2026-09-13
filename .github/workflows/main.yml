@@ -1,5 +1,25 @@
 name: Github Action
-on: [push, pull_request]
+on:
+  push:
+    paths:
+      - "**.py"
+      - "premise/data/**"
+      - "premise/iam_variables_mapping/**"
+      - "conda/**"
+      - "requirements.txt"
+      - "pyproject.toml"
+      - "MANIFEST.in"
+      - ".github/workflows/main.yml"
+  pull_request:
+    paths:
+      - "**.py"
+      - "premise/data/**"
+      - "premise/iam_variables_mapping/**"
+      - "conda/**"
+      - "requirements.txt"
+      - "pyproject.toml"
+      - "MANIFEST.in"
+      - ".github/workflows/main.yml"
 
 jobs:
   clean:

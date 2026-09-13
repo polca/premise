@@ -15,10 +15,10 @@ maintainers = [
 ]
 description = "Coupling IAM output to ecoinvent LCA database ecoinvent for prospective LCA"
 readme = "README.md"
+license = "BSD-3-Clause"
 dynamic = ["dependencies", "version"]
 classifiers = [
     "Intended Audience :: Science/Research",
-    "License :: OSI Approved :: BSD License",
     "Natural Language :: English",
     "Programming Language :: Python :: 3",
     "Operating System :: OS Independent",
@@ -34,12 +34,14 @@ tracker = "https://github.com/polca/premise/issues"
 [project.optional-dependencies]
 
 docs = [
-    "sphinx-rtd-theme"
+    "sphinx>=8,<9",
+    "sphinx-rtd-theme>=3,<4",
 ]
 bw25 = [
     "bw2calc >=2.0.1",
     "bw2data >=4.3",
     "bw2io >=0.9.4",
+    "bw_processing>=1.0",
     "bottleneck",
     "ecoinvent_interface",
     "constructive-geometries>=0.9.5",

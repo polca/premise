@@ -11,6 +11,8 @@ from premise.inventory_imports import (
     apply_migration_step,
     get_classification_entry,
     get_classifications,
+    get_biosphere_code,
+    get_correspondence_bio_flows,
 )
 
 FILEPATH_CARMA_INVENTORIES = INVENTORY_DIR / "lci-Carma-CCS.xlsx"
@@ -22,6 +24,134 @@ FILEPATH_SYNGAS_INVENTORIES = INVENTORY_DIR / "lci-syngas.xlsx"
 FILEPATH_HYDROGEN_COAL_GASIFICATION_INVENTORIES = (
     INVENTORY_DIR / "lci-hydrogen-coal-gasification.xlsx"
 )
+
+
+@pytest.mark.parametrize(
+    ("version", "expected_name"),
+    [("3.10", "Copper ion"), ("3.11", "Copper"), ("3.12", "Copper")],
+)
+@pytest.mark.parametrize("subcategory", ["surface water", "unspecified"])
+def test_water_copper_alias_preserves_existing_flows(
+    version, expected_name, subcategory
+):
+    original = {
+        "name": "Copper",
+        "type": "biosphere",
+        "categories": ("water", subcategory),
+        "unit": "kilogram",
+        "amount": 0.002,
+        "uncertainty type": 2,
+        "loc": -6.214608098422191,
+        "scale": 0.1,
+    }
+    importer = object.__new__(BaseInventoryImport)
+    importer.path = Path("test.xlsx")
+    importer.biosphere_dict = get_biosphere_code(version)
+    importer.correspondence_bio_flows = get_correspondence_bio_flows()
+    importer.import_db = SimpleNamespace(data=[{"exchanges": [original.copy()]}])
+    importer.add_biosphere_links()
+    expected_code = importer.biosphere_dict[
+        (expected_name, "water", subcategory, "kilogram")
+    ]
+    assert importer.import_db.data[0]["exchanges"] == [
+        {**original, "name": expected_name, "input": ("biosphere3", expected_code)}
+    ]
+
+
+@pytest.mark.parametrize("version", ["3.9", "3.10", "3.11", "3.12"])
+@pytest.mark.parametrize(
+    ("name", "old_name", "compartment", "subcategory"),
+    [
+        ("Isopropanol", "2-Propanol", "air", "urban air close to ground"),
+        ("Calcium II", "Calcium", "air", "non-urban air or from high stacks"),
+        ("Calcium II", "Calcium", "air", "urban air close to ground"),
+        ("Calcium II", "Calcium", "soil", "agricultural"),
+        ("Sodium I", "Sodium", "air", "non-urban air or from high stacks"),
+        (
+            "1,1-Difluoroethane",
+            "Ethane, 1,1-difluoro-, HFC-152a",
+            "air",
+            "urban air close to ground",
+        ),
+        (
+            "Trifluoromethane",
+            "Methane, trifluoro-, HFC-23",
+            "air",
+            "urban air close to ground",
+        ),
+    ],
+)
+def test_pv_biosphere_aliases_preserve_flow_identity(
+    version, name, old_name, compartment, subcategory
+):
+    original = {
+        "name": name,
+        "type": "biosphere",
+        "categories": (compartment, subcategory),
+        "unit": "kilogram",
+        "amount": 0.002,
+        "uncertainty type": 2,
+        "loc": -6.214608098422191,
+        "scale": 0.1,
+    }
+    importer = object.__new__(BaseInventoryImport)
+    importer.path = Path("test.xlsx")
+    importer.biosphere_dict = get_biosphere_code(version)
+    importer.correspondence_bio_flows = get_correspondence_bio_flows()
+    importer.import_db = SimpleNamespace(data=[{"exchanges": [original.copy()]}])
+    importer.add_biosphere_links()
+    expected_code = get_biosphere_code("3.9")[
+        (old_name, compartment, subcategory, "kilogram")
+    ]
+    assert importer.import_db.data[0]["exchanges"] == [
+        {
+            **original,
+            "name": old_name if version == "3.9" else name,
+            "input": ("biosphere3", expected_code),
+        }
+    ]
+
+
+@pytest.mark.parametrize("version", ["3.8", "3.9", "3.10", "3.11", "3.12"])
+@pytest.mark.parametrize(
+    ("name", "old_name", "subcategory"),
+    [
+        ("Tin ion", "Tin", "urban air close to ground"),
+        ("Tin ion", "Tin", "unspecified"),
+        ("Aluminium III", "Aluminium", "urban air close to ground"),
+        ("Aluminium III", "Aluminium", "non-urban air or from high stacks"),
+        ("Potassium I", "Potassium", "non-urban air or from high stacks"),
+    ],
+)
+def test_pv_38_biosphere_aliases_preserve_flow_identity(
+    version, name, old_name, subcategory
+):
+    original = {
+        "name": name,
+        "type": "biosphere",
+        "categories": ("air", subcategory),
+        "unit": "kilogram",
+        "amount": 0.002,
+        "uncertainty type": 2,
+        "loc": -6.214608098422191,
+        "scale": 0.1,
+    }
+    importer = object.__new__(BaseInventoryImport)
+    importer.path = Path("test.xlsx")
+    importer.biosphere_dict = get_biosphere_code(version)
+    importer.correspondence_bio_flows = get_correspondence_bio_flows()
+    importer.import_db = SimpleNamespace(data=[{"exchanges": [original.copy()]}])
+    importer.add_biosphere_links()
+    expected_code = get_biosphere_code("3.8")[
+        (old_name, "air", subcategory, "kilogram")
+    ]
+    assert importer.import_db.data[0]["exchanges"] == [
+        {
+            **original,
+            "name": old_name if version == "3.8" else name,
+            "input": ("biosphere3", expected_code),
+        }
+    ]
 
 
 def get_db():

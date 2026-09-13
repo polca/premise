@@ -1702,6 +1702,20 @@
       },
       "target": {
         "unit": "kg",
+        "name": "market for chemical, organic, unspecified",
+        "reference product": "chemical, organic, unspecified",
+        "location": "GLO"
+      }
+    },
+    {
+      "source": {
+        "unit": "kg",
+        "name": "market for chemical, organic",
+        "reference product": "chemical, organic",
+        "location": "GLO"
+      },
+      "target": {
+        "unit": "kg",
         "name": "market for chemical, organic, basic precursors and materials",
         "reference product": "chemical, organic, basic precursors and materials",
         "location": "GLO"

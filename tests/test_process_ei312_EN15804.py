@@ -14,9 +14,12 @@ from lcia_regression import assert_lcia_regression_scores, get_lcia_regression_m
 load_dotenv()
 
 
-ei_user = os.environ["EI_USERNAME"]
-ei_pass = os.environ["EI_PASSWORD"]
-key = os.environ["IAM_FILES_KEY"]
+ei_user = os.environ.get("EI_USERNAME")
+ei_pass = os.environ.get("EI_PASSWORD")
+key = os.environ.get("IAM_FILES_KEY", "")
+pytestmark = pytest.mark.skipif(
+    not (ei_user and ei_pass and key), reason="ecoinvent credentials are unavailable"
+)
 # convert to bytes
 key = key.encode()
 
@@ -54,16 +57,10 @@ def test_brightway():
         key=key,
         system_model="cutoff",
         biosphere_name=bio_db,
+        inventory_backend="compact",
     )
 
     ndb.update()
-
-    if "test1" in bw2data.databases:
-        del bw2data.databases["test1"]
-    if "test2" in bw2data.databases:
-        del bw2data.databases["test2"]
-    if "test3" in bw2data.databases:
-        del bw2data.databases["test3"]
 
     database_names = ["test1", "test2", "test3"]
     ndb.write_db_to_brightway(database_names)

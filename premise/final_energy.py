@@ -6,6 +6,7 @@ datasets based on IAM output data.
 from typing import List
 
 from .data_collection import IAMDataCollection
+from .inventory_store import get_scenario_inventory, replace_scenario_inventory
 from .transformation import BaseTransformation, InventorySet
 
 
@@ -20,7 +21,7 @@ def _update_final_energy(
         return scenario
 
     final_energy = FinalEnergy(
-        database=scenario["database"],
+        database=get_scenario_inventory(scenario),
         iam_data=scenario["iam data"],
         model=scenario["model"],
         pathway=scenario["pathway"],
@@ -32,7 +33,7 @@ def _update_final_energy(
     final_energy.regionalize_heating_datasets()
 
     final_energy.relink_datasets()
-    scenario["database"] = final_energy.database
+    replace_scenario_inventory(scenario, final_energy.database)
     scenario["index"] = final_energy.index
     scenario["cache"] = final_energy.cache
 

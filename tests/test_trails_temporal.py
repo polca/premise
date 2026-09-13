@@ -4,6 +4,10 @@ from types import SimpleNamespace
 import pytest
 
 import premise.trails as trails
+from premise.export import Export, biosphere_flows_dictionary
+from premise.inventory_store import CompactInventoryStore, LegacyInventoryStore
+from premise.new_database import NewDatabase
+from premise.scenario_downloader import get_scenario_url
 from premise.trails import TrailsDataPackage
 
 TEMPORAL_HEADER = [
@@ -204,6 +208,135 @@ def test_trails_explicit_years_skip_iam_year_inference(monkeypatch):
 
     assert obj.years == [2040]
     assert [scenario["year"] for scenario in captured["scenarios"]] == [2040]
+
+
+def test_trails_year_inference_accepts_image_archive_filename(tmp_path):
+    (tmp_path / "image_SSP2_M.csv").write_text(
+        "Region,Variable,Unit,2020,2035,2050\nWorld,variable,unit,1,2,3\n",
+        encoding="utf-8",
+    )
+
+    assert TrailsDataPackage._infer_years_from_scenario(
+        {"model": "image", "pathway": "SSP2-M", "filepath": str(tmp_path)}
+    ) == [2020, 2035, 2050]
+
+
+def test_trails_year_inference_downloads_current_encrypted_scenario(
+    monkeypatch, tmp_path
+):
+    from cryptography.fernet import Fernet
+
+    key = Fernet.generate_key()
+    captured = {}
+
+    def download(file_name, url, filedir):
+        captured.update(file_name=file_name, url=url)
+        path = filedir / file_name
+        path.write_bytes(Fernet(key).encrypt(b"Region,Variable,Unit,2020,2035,2050\n"))
+        return path
+
+    monkeypatch.setattr(trails, "download_csv", download)
+
+    assert TrailsDataPackage._infer_years_from_scenario(
+        {"model": "image", "pathway": "SSP2-M", "filepath": str(tmp_path)}, key
+    ) == [2020, 2035, 2050]
+    assert captured == {
+        "file_name": "image_SSP2-M.csv",
+        "url": get_scenario_url("image", "SSP2-M"),
+    }
+
+
+@pytest.mark.parametrize("store_class", [CompactInventoryStore, LegacyInventoryStore])
+@pytest.mark.parametrize("persisted", [False, True])
+def test_temporal_profiles_survive_inventory_store_and_matrix_export(
+    store_class, persisted, monkeypatch, tmp_path
+):
+    bio_key, bio_code = next(iter(biosphere_flows_dictionary("3.12").items()))
+    dataset = {
+        "name": "asset operation",
+        "reference product": "service",
+        "unit": "unit",
+        "location": "GLO",
+        "exchanges": [
+            {
+                "name": "asset operation",
+                "product": "service",
+                "unit": "unit",
+                "location": "GLO",
+                "type": "production",
+                "amount": 1.0,
+            },
+            {
+                "name": "asset operation",
+                "product": "service",
+                "unit": "unit",
+                "location": "GLO",
+                "type": "technosphere",
+                "amount": 0.25,
+            },
+            {
+                "name": bio_key[0],
+                "categories": bio_key[1:3],
+                "unit": bio_key[3],
+                "input": ("biosphere3", bio_code),
+                "type": "biosphere",
+                "amount": 2.0,
+            },
+        ],
+    }
+    store = store_class([dataset])
+    scenario = {"model": "image", "pathway": "SSP2-M", "year": 2030}
+    if persisted:
+        scenario["_inventory_checkpoint"] = store.checkpoint(
+            tmp_path / "original.inventory-store"
+        )
+    else:
+        scenario["_inventory_store"] = store
+
+    database = NewDatabase.__new__(NewDatabase)
+    database._inventory_api_active = True
+    database.scenarios = [scenario]
+    obj = TrailsDataPackage.__new__(TrailsDataPackage)
+    obj.datapackage = database
+    obj.stock_asset_params = {
+        ("asset operation", "service"): {
+            "temporal_distribution": 6,
+            "temporal_offsets": [-2.0, -1.0],
+            "temporal_weights": [0.4, 0.6],
+        }
+    }
+    obj.long_term_biosphere_params = [
+        _long_term_params(
+            name=bio_key[0], compartment=bio_key[1], subcompartment=bio_key[2]
+        )
+    ]
+    monkeypatch.chdir(tmp_path)
+
+    obj.add_temporal_distributions()
+
+    # A persisted scenario must keep its temporal edits after reopening.
+    if persisted:
+        assert "_inventory_store" not in scenario
+    loaded = trails.load_database(database.scenarios[0], [])
+    exchanges = loaded["database"][0]["exchanges"]
+    assert [e["amount"] for e in exchanges] == [1.0, 0.25, 2.0]
+    assert "temporal_distribution" not in exchanges[0]
+    assert exchanges[1]["temporal_offsets"] == [-2.0, -1.0]
+    assert exchanges[1]["temporal_weights"] == [0.4, 0.6]
+    assert len(exchanges[2]["temporal_offsets"]) == 32
+
+    Export(
+        scenario=loaded, filepath=tmp_path / "matrices", version="3.12"
+    ).export_db_to_matrices()
+    with (tmp_path / "matrices" / "A_matrix.csv").open(newline="") as stream:
+        a_rows = list(csv.DictReader(stream, delimiter=";"))
+    with (tmp_path / "matrices" / "B_matrix.csv").open(newline="") as stream:
+        b_rows = list(csv.DictReader(stream, delimiter=";"))
+    assert a_rows[1]["temporal_distribution"] == "6"
+    assert a_rows[1]["temporal_offsets"] == "[-2.0, -1.0]"
+    assert a_rows[1]["temporal_weights"] == "[0.4, 0.6]"
+    assert b_rows[0]["temporal_distribution"] == "6"
+    assert b_rows[0]["temporal_offsets"]
 
 
 def test_load_temporal_specs_reads_long_term_biosphere_selectors(tmp_path):

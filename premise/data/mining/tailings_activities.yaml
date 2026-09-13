@@ -121,7 +121,7 @@ sulfidic tailings - impoundment:
       2050:
         min: 0.45
         max: 0.65
-        mean: 0.55
+        mean: 0.60
     APAC:
       2020:
         min: 0.75
@@ -139,7 +139,7 @@ sulfidic tailings - impoundment:
       2050:
         min: 0.60
         max: 0.80
-        mean: 0.70
+        mean: 0.80
 sulfidic tailings - flocculation:
   ecoinvent_aliases:
     fltr:

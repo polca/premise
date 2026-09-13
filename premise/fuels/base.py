@@ -11,9 +11,12 @@ from ..transformation import (
     BaseTransformation,
 )
 from ..validation import FuelsValidation
+from ..validation_framework import record_validation_phase
 from ..activity_maps import InventorySet
 from ..inventory_imports import get_biosphere_code
 from ..logger import create_logger
+from ..provenance import record_change_event
+from ..inventory_store import get_scenario_inventory, replace_scenario_inventory
 
 logger = create_logger("fuel")
 
@@ -21,7 +24,7 @@ logger = create_logger("fuel")
 def _update_fuels(scenario, version, system_model):
 
     fuels = Fuels(
-        database=scenario["database"],
+        database=get_scenario_inventory(scenario),
         iam_data=scenario["iam data"],
         model=scenario["model"],
         pathway=scenario["pathway"],
@@ -44,8 +47,25 @@ def _update_fuels(scenario, version, system_model):
         fuels.generate_hydrogen_activities()
         fuels.generate_synthetic_fuel_activities()
         fuels.generate_biogas_activities()
+
+        if system_model == "consequential":
+            vector_validation = FuelsValidation(
+                model=scenario["model"],
+                scenario=scenario["pathway"],
+                year=scenario["year"],
+                regions=scenario["iam data"].regions,
+                database=fuels.database,
+                iam_data=scenario["iam data"],
+                technology_map=fuels.fuel_map,
+                system_model=system_model,
+            )
+            record_validation_phase(
+                scenario,
+                vector_validation.run_consequential_supplier_vector_checks(),
+            )
+        fuels.clear_validation_provenance()
         fuels.relink_datasets()
-        scenario["database"] = fuels.database
+        replace_scenario_inventory(scenario, fuels.database)
         scenario["cache"] = fuels.cache
         scenario["index"] = fuels.index
 
@@ -63,9 +83,13 @@ def _update_fuels(scenario, version, system_model):
         regions=scenario["iam data"].regions,
         database=fuels.database,
         iam_data=scenario["iam data"],
+        technology_map=fuels.fuel_map,
+        system_model=system_model,
     )
 
-    validate.run_fuel_checks()
+    record_validation_phase(
+        scenario, validate.run_fuel_checks(check_supplier_vectors=False)
+    )
 
     return scenario
 
@@ -128,23 +152,12 @@ class Fuels(
 
         self.new_fuel_markets = {}
 
-    def write_log(self, dataset, status="created"):
-        """
-        Write log file.
-        """
+    def clear_validation_provenance(self) -> None:
+        """Remove transient technology labels after incremental validation."""
 
-        logger.info(
-            f"{status}|{self.model}|{self.scenario}|{self.year}|"
-            f"{dataset['name']}|{dataset['location']}|"
-            f"{dataset.get('log parameters', {}).get('initial amount of fossil CO2', '')}|"
-            f"{dataset.get('log parameters', {}).get('new amount of fossil CO2', '')}|"
-            f"{dataset.get('log parameters', {}).get('new amount of biogenic CO2', '')}|"
-            f"{dataset.get('log parameters', {}).get('initial energy input for hydrogen production', '')}|"
-            f"{dataset.get('log parameters', {}).get('new energy input for hydrogen production', '')}|"
-            f"{dataset.get('log parameters', {}).get('fuel conversion efficiency', '')}|"
-            f"{dataset.get('log parameters', {}).get('land footprint', '')}|"
-            f"{dataset.get('log parameters', {}).get('land use CO2', '')}|"
-            f"{dataset.get('log parameters', {}).get('fossil CO2 per kg fuel', '')}|"
-            f"{dataset.get('log parameters', {}).get('non-fossil CO2 per kg fuel', '')}|"
-            f"{dataset.get('log parameters', {}).get('lower heating value', '')}"
-        )
+        self.clear_validation_provenance_field("premise market technology")
+
+    def write_log(self, dataset, status="created"):
+        """Record a structured fuel provenance event."""
+
+        record_change_event(self, dataset, status, sector="fuels")

@@ -8356,6 +8356,36 @@
         "reference product": "unreinforced concrete, 15MPa",
         "location": "CH"
       }
+    },
+    {
+      "source": {
+        "unit": "m3",
+        "name": "market for lean concrete",
+        "reference product": "lean concrete",
+        "location": "CH",
+        "comment": "Backward proxy for unavailable ZN/D concrete with recycled aggregates: use the Swiss lean-concrete market mix; cement and recycled-content specifications are not retained."
+      },
+      "target": {
+        "unit": "m3",
+        "name": "lean concrete production, for building construction, with cement ZN/D, with 100% RC-M aggregates",
+        "reference product": "lean concrete",
+        "location": "CH"
+      }
+    },
+    {
+      "source": {
+        "unit": "m3",
+        "name": "market for lean concrete",
+        "reference product": "lean concrete",
+        "location": "CH"
+      },
+      "target": {
+        "unit": "m3",
+        "name": "market for lean concrete",
+        "reference product": "lean concrete",
+        "location": "CH",
+        "comment": "Retain the unchanged forward market identity after the backward concrete proxy alias."
+      }
     }
   ],
   "disaggregate": [

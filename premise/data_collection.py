@@ -33,6 +33,14 @@ from .scenario_downloader import (
     get_scenario_file_stems,
     get_scenario_url,
 )
+from .runtime_cache import (
+    cache_iam_resource,
+    file_signature,
+    get_cached_iam_resource,
+    load_yaml_cached,
+    secret_fingerprint,
+    stable_fingerprint,
+)
 
 IAM_ELEC_VARS = VARIABLES_DIR / "electricity.yaml"
 IAM_FUELS_VARS = VARIABLES_DIR / "fuels.yaml"
@@ -88,10 +96,7 @@ def get_crops_properties() -> dict:
     relating to land use change CO2 per crop type
     :return: dict
     """
-    with open(CROPS_PROPERTIES, "r", encoding="utf-8") as stream:
-        crop_props = yaml.safe_load(stream)
-
-    return crop_props
+    return load_yaml_cached(CROPS_PROPERTIES)
 
 
 @lru_cache(maxsize=8)
@@ -195,8 +200,7 @@ def get_gains_IAM_data(model, gains_scenario):
 
     arr = xr.concat(list_arrays, dim="pollutant")
 
-    with open(GAINS_GEO_MAP, "r", encoding="utf-8") as stream:
-        geo_map = yaml.safe_load(stream)
+    geo_map = load_yaml_cached(GAINS_GEO_MAP)
 
     arr.coords["region"] = [geo_map[v][model] for v in arr.region.values]
     arr = arr.drop_duplicates(dim="region")
@@ -414,6 +418,8 @@ class IAMDataCollection:
         self.external_scenarios = external_scenarios
         self.system_model_args = system_model_args
         self.use_absolute_efficiency = use_absolute_efficiency
+        self.gains_scenario = gains_scenario
+        self.system_model = system_model
         self.min_year = 2005
         self.max_year = 2100
         self.filepath_iam_files = filepath_iam_files
@@ -620,6 +626,11 @@ class IAMDataCollection:
 
         self.regions = data.region.values.tolist()
         self.system_model = system_model
+        # Inputs retained before normalization/marginalization allow validation
+        # to recompute consequential mixes independently from the arrays used
+        # by transformations.
+        self._validation_market_inputs = {}
+        self._validation_market_oracles = {}
 
         self.gains_data_IAM = get_gains_IAM_data(
             self.model, gains_scenario=gains_scenario
@@ -1177,8 +1188,7 @@ class IAMDataCollection:
 
         dict_vars = {}
 
-        with open(filepath, "r", encoding="utf-8") as stream:
-            out = yaml.safe_load(stream)
+        out = load_yaml_cached(filepath)
 
         for key, values in out.items():
             if variable in values:
@@ -1201,8 +1211,7 @@ class IAMDataCollection:
 
         dict_vars = {}
 
-        with open(filepath, "r", encoding="utf-8") as stream:
-            out = yaml.safe_load(stream)
+        out = load_yaml_cached(filepath)
 
         for technology, values in out.items():
             energy_aliases = values.get(variable, {})
@@ -1316,6 +1325,37 @@ class IAMDataCollection:
                 download_folder = filedir
                 url = get_scenario_url(self.model, self.pathway)
                 file_path = download_csv(file_name + ".csv", url, download_folder)
+
+        external_fingerprint = stable_fingerprint(
+            getattr(self, "external_scenarios", None)
+        )
+        system_args_fingerprint = stable_fingerprint(
+            getattr(self, "system_model_args", None)
+        )
+        split_fingerprint = stable_fingerprint(split_fossil_liquid_fuels)
+        cache_key = None
+        if (
+            external_fingerprint is not None
+            and system_args_fingerprint is not None
+            and split_fingerprint is not None
+        ):
+            cache_key = (
+                self.model,
+                self.pathway,
+                file_signature(file_path),
+                external_fingerprint,
+                getattr(self, "gains_scenario", "CLE"),
+                getattr(self, "system_model", "cutoff"),
+                system_args_fingerprint,
+                getattr(self, "use_absolute_efficiency", False),
+                split_fingerprint,
+                secret_fingerprint(key),
+            )
+            cached = get_cached_iam_resource(cache_key)
+            if cached is not None:
+                self.min_year = max(2005, int(cached.year.values.min()))
+                self.max_year = min(2100, int(cached.year.values.max()))
+                return cached
 
         # Decrypt the file if a key is provided
         if key is not None:
@@ -1506,6 +1546,9 @@ class IAMDataCollection:
             dataframe.groupby("variables")["unit"].first().to_dict().items()
         )
 
+        if cache_key is not None:
+            cache_iam_resource(cache_key, array)
+
         return array
 
     def __fetch_market_data(
@@ -1601,6 +1644,9 @@ class IAMDataCollection:
             set(market_data.coords["variables"].values.tolist())
         ):
             market_data = market_data.groupby("variables").sum(dim="variables")
+
+        if sector is not None:
+            self._validation_market_inputs[sector] = market_data.copy(deep=True)
 
         if system_model == "consequential":
             market_data = consequential_method(

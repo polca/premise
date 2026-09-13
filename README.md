@@ -66,6 +66,43 @@ Changelog
 ---------
 Release notes are maintained in [`CHANGELOG.md`](CHANGELOG.md).
 
+What's new in 2.5.2
+-------------------
+
+Version 2.5.2 improves transport, inventory imports, and scenario updates. It:
+
+- fixes passenger-car fuel selection and adds a configurable, provisional
+  combustion-car energy floor;
+- preserves exchange uncertainty during inventory disaggregation;
+- improves photovoltaic inventory compatibility and efficiency updates;
+- corrects REMIND chemical energy mappings and unavailable-pathway handling; and
+- speeds up structured change-report generation.
+
+It builds on the main changes introduced in 2.5.0:
+
+- immutable inventory inspection and atomic mutations through
+  `NewDatabase.get_inventory_store()`;
+- compact, checkpoint-backed scenario storage and faster Brightway export;
+- validation certificates for scenario updates and every supported exporter;
+- structured Excel summaries plus exhaustive Parquet change records; and
+- 12 self-contained example notebooks organized as a learning path.
+
+The mutable `NewDatabase.database` attribute is no longer available after
+initialization. Most users do not need to replace it. Integrations that inspect
+inventories should use the store, while code that strictly requires a
+`list[dict]` can materialize one explicitly:
+
+```python
+store = ndb.get_inventory_store()  # read-only view
+activities = store.find({"location": "CH"})
+
+# Use only at integration boundaries; this duplicates the inventory in memory.
+database = ndb.materialize_inventory()
+```
+
+See the [2.5 migration and release guide](https://premise.readthedocs.io/en/latest/release_2_5.html)
+and the [full 2.5.2 changelog](CHANGELOG.md#252---2026-09-10) for details.
+
 
 Documentation
 -------------
@@ -119,11 +156,13 @@ This means that ``premise`` will output databases that are compatible with Brigh
 
 
 A development version with the latest advancements (but with the risks of unseen bugs),
-is available from Anaconda Cloud. Similarly, you should specify that you want to use Brightway 2.5:
+is available from Anaconda Cloud. 
+
+Similarly, you should specify that you want to use Brightway 2.5 (with `activity-browser>=3.x.x`-compatibility):
 
     conda install -c conda-forge premise-bw25
 
-Or rather use Brightway2:
+Or rather use Brightway2 (with `activity-browser<3.0.0`-compatibility):
 
     conda install -c conda-forge premise-bw2
 
@@ -131,7 +170,33 @@ Or rather use Brightway2:
 How to use it?
 --------------
 
-The best way is to follow [the examples from the Jupyter Notebook](https://github.com/polca/premise/blob/master/examples/examples.ipynb). 
+The best way is to follow the [numbered example notebooks](https://github.com/polca/premise/tree/master/examples).
+
+Sequential scenario arrays in Brightway 2.5
+--------------------------------------------
+
+Available from ``premise`` 2.4.9.2, one export call with modern Brightway
+(`bw2data >= 4`) can write a union database plus a compressed, deterministic
+scenario-array ZIP. Install ``premise[bw25]`` to include the required
+``bw_processing >= 1.0`` dependency.
+
+```python
+array_path = ndb.write_scenario_array_db_to_brightway(
+    name="scenario-ensemble",
+)
+```
+
+The initial array state is `original`; successive `next(lca)` calls select each
+generated scenario in `ndb.scenarios` order and then wrap to `original`.
+Append `array_path` after the database datapackages passed to `bc.LCA` so that
+the joint technosphere and biosphere arrays override the base database. The ZIP
+is project-specific and provides deterministic scenario enumeration, not
+probability-weighted Monte Carlo sampling.
+
+See the [complete three-IMAGE-scenario notebook example](https://github.com/polca/premise/blob/master/examples/07_sequential_scenario_arrays.ipynb)
+and the [Brightway loading guide](https://premise.readthedocs.io/en/latest/load.html#sequential-scenario-arrays-modern-brightway)
+for database creation, exact activity matching, multi-activity LCIA, and
+wraparound/base-database checks.
 
 ## Disclaimer on the Use of IAM-Based Scenarios in Premise
 

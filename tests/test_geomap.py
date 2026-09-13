@@ -1,6 +1,11 @@
 import unittest
 
-from premise.geomap import Geomap
+from premise.geomap import (
+    Geomap,
+    _load_additional_mapping,
+    _load_constants,
+    _load_topology,
+)
 
 
 class TestGeomap(unittest.TestCase):
@@ -22,6 +27,28 @@ class TestGeomap(unittest.TestCase):
         # Assumes 'invalid_model' does not have a corresponding topology file.
         with self.assertRaises(FileNotFoundError):
             self.geomap.fetch_topology("invalid_model")
+
+    def test_geography_sources_are_cached_with_isolated_instance_copies(self):
+        _load_constants.cache_clear()
+        _load_topology.cache_clear()
+        _load_additional_mapping.cache_clear()
+
+        first = Geomap("image")
+        second = Geomap("image")
+
+        self.assertEqual(_load_constants.cache_info().misses, 1)
+        self.assertEqual(_load_topology.cache_info().misses, 2)
+        self.assertEqual(_load_additional_mapping.cache_info().misses, 1)
+        self.assertIsNot(first.constants, second.constants)
+        self.assertIsNot(first.topology, second.topology)
+        self.assertIsNot(first.additional_mappings, second.additional_mappings)
+
+        first.constants["test-only"] = True
+        first.topology["test-only"] = []
+        first.additional_mappings["test-only"] = {}
+        self.assertNotIn("test-only", second.constants)
+        self.assertNotIn("test-only", second.topology)
+        self.assertNotIn("test-only", second.additional_mappings)
 
     def test_iam_to_ecoinvent_location_valid(self):
         locations = self.geomap.iam_to_ecoinvent_location("WEU")

@@ -10,9 +10,78 @@ from premise.heat import (
     BUILDING_LEGACY_INPUTS,
     BUILDINGS_MARKET,
     Heat,
+    INDUSTRIAL_MARKET,
     _update_heat,
 )
 from premise.inventory_imports import DefaultInventory
+
+
+@pytest.mark.parametrize("year", [2020, 2025])
+def test_negligible_purchased_heat_without_supply_is_excluded_and_recorded(year):
+    technology = "heat, buildings, from district heating"
+    heat = object.__new__(Heat)
+    heat.year = year
+    heat.regions = ["BRA", "EAF", "WEU", "World"]
+    heat.iam_to_ecoinvent_loc = {"BRA": ["BR"], "EAF": ["KE"], "WEU": ["CH"]}
+    heat.heat_metadata = {technology: {"supplier_type": "secondary_market"}}
+    heat.diagnostics = {}
+    values = xr.DataArray(
+        [
+            [[3.295e-14, 3.295e-14], [2.639e-7, 2.639e-7], [1e-12, 1e-12]],
+            [[0.2609, 0.2609], [0.4923, 0.4923], [0.5, 0.5]],
+        ],
+        dims=("variables", "region", "year"),
+        coords={
+            "variables": [technology, "other heat"],
+            "region": ["BRA", "EAF", "WEU"],
+            "year": [2020, 2030],
+        },
+    )
+    original = values.copy(deep=True)
+    mapping = {technology: [{"location": "WEU"}, {"location": "World"}]}
+    result = heat._exclude_negligible_unserved_heat(
+        values, "buildings_end_use", mapping
+    )
+
+    assert float(result.sel(variables=technology, region="BRA")) == 0
+    assert float(result.sel(variables=technology, region="EAF")) == 0
+    assert float(result.sel(variables=technology, region="WEU")) == 1e-12
+    assert values.identical(original)
+    assert result.year.values.tolist() == [year]
+    records = heat.diagnostics["buildings_end_use"][
+        "negligible unserved purchased heat"
+    ]
+    assert {row["region"] for row in records} == {"BRA", "EAF"}
+    assert all(row["market volume"] <= row["tolerance"] for row in records)
+
+
+@pytest.mark.parametrize("supplier_location", [None, "BRA", "BR", "RoW"])
+def test_material_purchased_heat_requires_a_supported_supplier(supplier_location):
+    technology = "heat, industrial, from district heating"
+    heat = object.__new__(Heat)
+    heat.year, heat.regions = 2020, ["BRA"]
+    heat.iam_to_ecoinvent_loc = {"BRA": ["BR"]}
+    heat.heat_metadata = {technology: {"supplier_type": "secondary_market"}}
+    heat.diagnostics = {}
+    values = xr.DataArray(
+        [[[0.1]]],
+        dims=("variables", "region", "year"),
+        coords={"variables": [technology], "region": ["BRA"], "year": [2020]},
+    )
+    mapping = {technology: [{"location": supplier_location or "World"}]}
+    if supplier_location is None:
+        with pytest.raises(ValueError, match="exceeds closure tolerance"):
+            heat._exclude_negligible_unserved_heat(
+                values, "industrial_end_use", mapping
+            )
+    else:
+        assert (
+            heat._exclude_negligible_unserved_heat(
+                values, "industrial_end_use", mapping
+            )
+            is values
+        )
+    assert heat.diagnostics == {}
 
 
 def make_electric_supplier(amount, name="heat production, test"):
@@ -300,6 +369,55 @@ def test_relink_excludes_new_dataset_codes(monkeypatch):
     assert rewritten["location"] == "WEU"
     assert "input" not in rewritten
     assert generated["exchanges"][0] == legacy_exchange
+
+
+def test_relink_sums_legacy_inputs_that_collapse_to_one_heat_market(monkeypatch):
+    consumer = {
+        "name": "consumer",
+        "reference product": "service",
+        "location": "CH",
+        "unit": "unit",
+        "code": "consumer",
+        "exchanges": [
+            {
+                "name": "legacy natural gas heat",
+                "product": "natural gas heat",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 2.0,
+                "type": "technosphere",
+            },
+            {
+                "name": "legacy other heat",
+                "product": "other heat",
+                "location": "CH",
+                "unit": "megajoule",
+                "amount": 3.0,
+                "type": "technosphere",
+            },
+        ],
+    }
+    heat = object.__new__(Heat)
+    heat.database = [consumer]
+    heat.created_dataset_codes = set()
+    heat.regions = ["WEU"]
+    heat.ecoinvent_to_iam_loc = {"CH": "WEU"}
+    monkeypatch.setattr(heat, "is_in_index", lambda candidate, location: True)
+
+    heat.relink_heat_markets(
+        [
+            {
+                "name": "legacy natural gas heat",
+                "reference product": "natural gas heat",
+            },
+            {"name": "legacy other heat", "reference product": "other heat"},
+        ],
+        INDUSTRIAL_MARKET,
+    )
+
+    assert len(consumer["exchanges"]) == 1
+    assert consumer["exchanges"][0]["name"] == INDUSTRIAL_MARKET["name"]
+    assert consumer["exchanges"][0]["amount"] == 5.0
 
 
 @pytest.mark.parametrize(

@@ -1,0 +1,466 @@
+schema_version: 1
+conversions:
+- id: passenger-car-production-diesel
+  activity:
+    name: passenger car production, diesel
+  ecoinvent_unit: kilogram
+  intensity_unit: kg metal/kg vehicle
+  factor: 1.0
+- id: passenger-car-production-petrol-natural-gas
+  activity:
+    name: passenger car production, petrol/natural gas
+  ecoinvent_unit: kilogram
+  intensity_unit: kg metal/kg vehicle
+  factor: 1.0
+- id: electric-motor-production-for-electric-scooter
+  activity:
+    name: electric motor production, for electric scooter
+  ecoinvent_unit: kilogram
+  intensity_unit: kg/MW
+  factor: 0.0018867924528301887
+  description: This dataset describes the production of an electric motor suitable for an electric scooter. The entries are given on a function of kg of device. The original data was collected for a device of approximately 5.8kg. The dataset is based on direct inspection of existing commercial devices of current technology.
+  comment: Same as electric car
+- id: electric-motor-production-vehicle
+  activity:
+    name: electric motor production, vehicle
+  ecoinvent_unit: kilogram
+  intensity_unit: kg/MW
+  factor: 0.0018867924528301887
+  description: 'The module reflects an average electric motor used in BEV or HEV
+
+    Geography:  Data valid for average electric motor
+
+    Technology:  Production of electric motor for BEV or HEV'
+  comment: Same as electric car
+- id: electric-motor-production-vehicle-electric-powertrain
+  activity:
+    name: electric motor production, vehicle (electric powertrain)
+  ecoinvent_unit: kilogram
+  intensity_unit: kg/MW
+  factor: 0.0018867924528301887
+  description: 'This dataset describes an electric motor used for an electric passenger car. It is based on direct information from the Swiss manufacturer Brusa. The electric motor has a maximal output power of about 100kW The entries are given as a function of kg device. The specific motor which was used for this dataset weights 53 kg.
+
+    Technology:  This dataset is based on current, high-level standard.'
+  comment: We divide the motor power by its weight. We obtain MWp/(kg of motor). This unit allows us to use the (kg of materials)/MW, as the reference flow unit is in kg
+- id: wind-power-plant-construction-800kw-moving-parts
+  activity:
+    name: wind power plant construction, 800kW, moving parts
+  ecoinvent_unit: unit
+  intensity_unit: kg/MW
+  factor: 0.8
+  description: "Lifetime is assumed to be 20 years. Annual electricity production is assumed to be about 1.4 GWh. Data are from a Nordex N50/800 plant.\n\nGeography:  Data for a specific 800kW wind power plant. Represents European installation conditions. \nTechnology:  Average European technology for a 800 kW wind power plant."
+  comment: To calculate the mass of this unit, I sum the technosphere inputs stated in Ecoinvent
+- id: wind-power-plant-construction-800kw-moving-parts-direct-drive
+  activity:
+    name: wind power plant construction, 800kW, moving parts, direct drive
+  ecoinvent_unit: unit
+  intensity_unit: kg/MW
+  factor: 0.8
+- id: wind-turbine-construction-2mw-onshore
+  activity:
+    name: wind turbine construction, 2MW, onshore
+  ecoinvent_unit: unit
+  intensity_unit: kg/MW
+  factor: 2.0
+  description: "This dataset represents the construction of a wind turbine with a capacity of 2MW for onshore use. The term \"wind turbine\" inludes moving parts such as nacelle, rotor, rotor blades, transition piece as well as fixed parts such as the tower and the foundation.\n\nThe LCI model is based on the environmental assessment of this turbine in (Elsam 2004a), in which the Danish wind park Tjaerborg with eight turbines of differing capacities is analysed, among them the Vestas V80/2 MW. This type can be taken as reference technology for wind turbines with a capacity between 1 and 3 MW. \nParts of the wind turbine are the following: \n - Rotor: Rotor blades, rotor hub, extender\n - Nacelle: The nacelle consists of the nacelle cover, which includes generator, gear, main shaft, yaw system, flanges etc. \n- Electronics\n - Tower (steel)\n - Foundation \nTechnology:  The Vestas V80/2 MW turbine is chosen as reference technology.\nCharacteristics: \n - Capacity: 2000 kW \n- Diameter of\
+    \ the rotor: 80 m\n - Number of rotor blades: 3\n - rotor weight: 37000 kg\n - rotor blade weight: 6500 kg\n - nacelle weight: 61000 kg\n \n - tower type: tubular steel tower\n- tower weight: 165000 kg\n - material of the tower: Steel\n - tower hub height: 78 m\n - tower diameter: 4m\n - foundation weight: 805000\n - cable for network connection (per turbine): 1000 m\n - Lifetime: 20 years\n\nSource: Elsam (2004a) Life Cycle Assessment of offshore and onshore sited wind farms. Elsam Engineering A/S, Fredericia, Denmark \n\nFurther characteristics:\n\nOperational data\nRated power: 2,000 kW\nCut-in wind speed: 4 m/s\nRated wind speed: 16 m/s\nCut-out wind speed: 25 m/s\nWind class: IEC IA and IEC IIA\nOperating temperature range: standard turbine -20°C to 40°C, low temperature turbine -30°C to 40°C\n\nRotor\nRotor diameter: 80 m\nSwept area: 5,027 m2\nNominal revolutions: 16.7 rpm\nOperational interval: 10.8-19.1 rpm\nAir brake: Full blade feathering with three-pitch cylinders\n\nElectrical\n\
+    Frequency: 50 Hz/60 Hz\nGenerator type: 4-pole doubly fed generator, slip rings\n\nGearbox\nType: three-stage planetary/helical\n\nPower regulation\nPitch regulated with variable speed\n\nSource: Vestas. 2010. V80-2.0MW. Vestas. Wind. It means the world to us.TM"
+  comment: '-'
+- id: wind-turbine-construction-2mw-onshore-direct-drive
+  activity:
+    name: wind turbine construction, 2MW, onshore, direct drive
+  ecoinvent_unit: unit
+  intensity_unit: kg/MW
+  factor: 2.0
+- id: wind-turbine-construction-4-5mw-onshore
+  activity:
+    name: wind turbine construction, 4.5MW, onshore
+  ecoinvent_unit: unit
+  intensity_unit: kg/MW
+  factor: 4.5
+  description: "This dataset represents the construction of a wind turbine with a capacity of 4.5MW for onshore use. The term \"wind turbine\" inludes moving parts such as nacelle, rotor, rotor blades, transition piece as well as fixed parts such as the tower and the foundation. \nReference technology for this wind turbine is an Enercon E-112 turbine. The tower is made of reinforced concrete, a relatively new technology. LCI data are based on (Chataignere & Le Boulch 2003), supplemented with some own assumptions and adapted to the ecoinvent background database for this study. Parts of the wind turbine are the following: \n - Rotor: Rotor blades (fibre-glass reinforced plastics), rotor hub, extender\n - Nacelle (gearbox, generator, shaft and others)\n - Electronics\n - Tower\n - Foundation \n\nData are very rough since no real data were available for the tower and foundations mass balance, and since the detailed composition of the nacelle, blades and connection to the grid is derived from\
+    \ an Enercon E-66 1.5MW wind turbine. \nTechnology:  Technology: Enercon E-112 4.5MW wind turbine. This special type of wind turbine is not on the market any more, but the technology can still be taken as a good reference for wind turbines with a capacity of >3 MW built today.\n Characteristics: \n - Capacity: 4500 kW\n\n- Diameter of the rotor: 113 m\n - Length of the rotor blades: 52 m\n - Number of rotor blades: 3\n - rotor blade weight: 20000 kg\n\n- nacelle weight: ca.355000 kg\n\n - material of the tubular tower: concrete (+reinforcing steel)\n - tower height: 120 m\n - foundation thickness: 2m\n - cable for network connection (per turbine): 1000 m\n - Lifetime: 20 years \nSource: Chataignere A. and Le Boulch D. (2003) Wind Turbine Systems. Final report ECLIPSE. EDF R&D, Clamart Cedex, France"
+  comment: '-'
+- id: wind-turbine-construction-4-5mw-onshore-direct-drive
+  activity:
+    name: wind turbine construction, 4.5MW, onshore, direct drive
+  ecoinvent_unit: unit
+  intensity_unit: kg/MW
+  factor: 4.5
+- id: wind-turbine-construction-750kw-onshore
+  activity:
+    name: wind turbine construction, 750kW, onshore
+  ecoinvent_unit: unit
+  intensity_unit: kg/MW
+  factor: 0.75
+  description: "This dataset represents the construction of a wind turbine with a capacity of 750kW for onshore use. The term \"wind turbine\" inludes moving parts such as nacelle, rotor, rotor blades, transition piece as well as fixed parts such as the tower and the foundation.\n\nThe LCI model is based on collected data from the Wind Energy Technocentre in Quebec, that estimated the bill of materials in the different parts ot the turbine. The NEG Micon 750kW/48 has been taken as reference technology for wind turbines with a capacity lower than 1MW. \nSome missing data were completed by extrapolation from 2MW turbine dataset.\n\nParts of the wind turbine are the following: \n - Rotor: Rotor blades, rotor hub, extender\n - Nacelle: The nacelle consists of the nacelle cover, which includes generator, gear, main shaft, yaw system, flanges etc. \n- Electronics\n - Tower (steel)\n - Foundation \nTechnology:  Operational parameters:\nNominal output 750 kW\nPower regulation Stall\nNominal wind\
+    \ speed 16 m/s\nCut-in 4 m/s\nCut-out 25 m/s\nRotor:\nRotor diameter 48.2 m\nRotor swept area 1824 m2\nNumber of blades 3\nRotor revolutions 22/15 rpm\nRotor placing Upwind rotor\nBrake system:\nBlade tip air brake Hydraulic, fail-safe\nDisk brake Hydraulic, fail-safe\nDrive train\nGear type Planetary - parallel axle\nRatio 1:67.5\nMain shaft Forged shaft and flange\nMain bearing Spherical roller bearing\nCooling Heat exchanger with pump\nGenerator:\nType Asynchronous, 4/6 pole\nNominal voltage 690 V\nNominal frequence 50 Hz\nName plate rating 750/200 kW\nCooling Liquid-cooled with pump\nYaw system:\nType Ball bearing\nYaw brake 3 Friction brake/motor brake\nDrive mechanism 4 electrical planetary gears\nTower:\nType Conical, steel, painted\nHub height In accordance with approval\nController:\nType Computer controlling\nComputer controlling Soft by thyristors\nCapacitor bank No-load compensated\nRemote control By modem\nWeight:Tower weight 60t\nRotor+Nacelle weight: 30.5 tSource: \nTime\
+    \ period:  Turbines present in 2008 in Quebec wind power park. Lifespan of 20 years"
+  comment: '-'
+- id: wind-power-plant-construction-2mw-offshore-moving-parts
+  activity:
+    name: wind power plant construction, 2MW, offshore, moving parts
+  ecoinvent_unit: unit
+  intensity_unit: kg/MW
+  factor: 2.0
+- id: wind-power-plant-construction-2mw-offshore-moving-parts-direct-drive
+  activity:
+    name: wind power plant construction, 2MW, offshore, moving parts, direct drive
+  ecoinvent_unit: unit
+  intensity_unit: kg/MW
+  factor: 2.0
+- id: cathode-production-limn2o4-for-li-ion-battery
+  activity:
+    name: cathode production, LiMn2O4, for Li-ion battery
+  ecoinvent_unit: kilogram
+  intensity_unit: kg/kWh
+  factor: 0.3487731750596586
+  comment: 'It ends up being used in "battery production, Li-ion, rechargeable, prismatic", where "The battery pack (containing 14 singel cells) provides an electric power of 2.1 kWh and a voltage of 48V". This prismatic battery uses 0.79937kg of battery cell. The battery cell uses 0.32686kg of cathode
+
+
+    Ecoinvent bases this inventory in "Notter D. A., Gauch M., Widmer R., Wäger P., Stamp A., Zah R. and Althaus H.-J. (2010) Contribution of Li-ion batteries to the environmental impact of electric vehicles. In: Environmental Science & Technology". There, a battery of 0.114 kWh/kg is described'
+- id: battery-cell-nmc-111
+  activity:
+    name: Battery cell, NMC-111
+  ecoinvent_unit: kilogram
+  intensity_unit: kg/kWh
+  factor: 0.197
+  description: '-'
+  comment: Equal to that from Ecoinvent
+- id: battery-cell-production-li-ion-nmc111
+  activity:
+    name: battery cell production, Li-ion, NMC111
+  ecoinvent_unit: kilogram
+  intensity_unit: kg/kWh
+  factor: 0.197
+  description: "Reference:\nDai, Q., Kelly, J. C., Gaines, L., & Wang, M. (2019). Life cycle analysis of lithium-ion batteries for automotive applications. Batteries, 5(2), 48.\nThis dataset represents the production of 1 kg of Li-ion battery cell with nickel-manganese-cobalt 111 (NMC111) cathode and graphite-based anode. The specific energy capacity of a cell is 0.197 kWh/kg cell, as reported in Dai et al. (2019). The inventory is modelled according to the publication of Dai et al. (2019) and expert judgement. Infrastructure is included as well. \nGeography:  This dataset covers the geography China, which is the leader country of Li-ion battery cell  production. Data have been partly collected form a Chinese company.\nTechnology:  This dataset includes a method of producing Li-ion cell. Lithium ions move from the cathode (NMC111) into the electrolyte through the micropores of the separator into the graphite anode during the charging phase. During the discharge of the battery, the Li+-ions\
+    \ move back into the cathode. \nTime period:  The time period is from 2017 (year of the collection of data) and 2020 (year of the dataset)"
+  comment: '-'
+- id: battery-cell-nmc-622
+  activity:
+    name: battery cell, NMC-622
+  ecoinvent_unit: kilogram
+  intensity_unit: kg/kWh
+  factor: 0.203
+  comment: Average of NMC111 and NMC811
+- id: battery-cell-nmc-811
+  activity:
+    name: Battery cell, NMC-811
+  ecoinvent_unit: kilogram
+  intensity_unit: kg/kWh
+  factor: 0.209
+  comment: Equal to that from Ecoinvent
+- id: battery-cell-production-li-ion-nmc811
+  activity:
+    name: battery cell production, Li-ion, NMC811
+  ecoinvent_unit: kilogram
+  intensity_unit: kg/kWh
+  factor: 0.209
+  description: This dataset represents the production of 1 kg of Li-ion battery cell with nickel-manganese-cobalt 811 (NMC811) cathode and silicon coated graphite based anode. The specific energy capacity of a cell is 0.209 kWh/kg cell, calculated based on the information reported in Dai et al. (2017, 2018, 2019). The inventory is modelled according to the publication of Dai et al. (2017) and expert judgement. Infrastructure is included as well.
+  comment: '-'
+- id: battery-cell-nca
+  activity:
+    name: Battery cell, NCA
+  ecoinvent_unit: kilogram
+  intensity_unit: kg/kWh
+  factor: 0.224
+  comment: Equal to that from Ecoinvent
+- id: battery-cell-production-li-ion-nca
+  activity:
+    name: battery cell production, Li-ion, NCA
+  ecoinvent_unit: kilogram
+  intensity_unit: kg/kWh
+  factor: 0.224
+  description: This dataset represents the production of 1 kg of Li-ion battery cell with nickel manganese aluminium (NCA) cathode and silicon coated graphite based anode. The specific energy capacity of a cell is 0.224 kWh/kg cell, calculated based on the information reported in Dai et al. (2017, 2018, 2019). The inventory is modelled according to the publication of Dai et al. (2017) and expert judgement. Infrastructure is included as well. This dataset is a copy of the corresponding regional dataset. Production volume was adjusted.
+  comment: '-'
+- id: battery-cell-lfp
+  activity:
+    name: Battery cell, LFP
+  ecoinvent_unit: kilogram
+  intensity_unit: kg/kWh
+  factor: 0.159
+  description: 'This dataset represents the production of 1 kg of Li-ion battery cell with lithium iron phosphate (LFP)
+
+    cathode and graphite-based anode.The specific energy capacity of a cell is 0.159 kWh/kg cell,
+
+    calculated from Dai et al. (2018).'
+  comment: From Ecoinvent 3.9.1
+- id: battery-cell-production-li-ion-lfp
+  activity:
+    name: battery cell production, Li-ion, LFP
+  ecoinvent_unit: kilogram
+  intensity_unit: kg/kWh
+  factor: 0.159
+  description: This dataset represents the production of 1 kg of Li-ion battery cell with lithium iron phosphate (LFP) cathode and graphite-based anode.The specific energy capacity of a cell is 0.159 kWh/kg cell, calculated from Dai et al. (2018). The inventory is modelled according to the publication of Dai et al. (2018) and in line with other literature, e.g. Simon et al. (2016, Table 3).
+- id: battery-production-lead-acid-rechargeable-stationary
+  activity:
+    name: battery production, lead acid, rechargeable, stationary
+  ecoinvent_unit: kilogram
+  intensity_unit: kg/kWh
+  factor: 0.0295
+  description: 'No emissions to air or water are taken into account.
+
+    Specific parameters according to model Exide Absolyte (R) GX V-0
+
+    Energy density: 27 Wh/kg (at 8 h discharge), 32 Wh/kg (at 24 h discharge rate)
+
+    DC/DC round trip efficiency: 0.8 cycles to failure: 1200 (at a 8 h discharge rate and DoD of 100 %); 800 (at a 2 h discharge rate and DoD of 71.9 %)
+
+    The inventory was modelled according to: Spanos, Constantine, Turney, Damon E., Fthenakis, Vasilis (2015): Life-cycle analysis of flow-assisted nickel zinc-, manganese dioxide-, and valve-regulated lead-acid batteries designed for demand-charge reduction. Renewable and Sustainable Energy Reviews 43: 478–494. doi:10.1016/j.rser.2014.10.072.
+
+    This dataset represents the production of 1 kg of a valve regulated lead acid (VRLA) battery (absorbed glass matt - AGM) for stationary use. Material composition relates to a specific battery model. Specific parameters according to model Exide Absolyte (R) GX V-0 Energy density: 27 Wh/kg (at 8 h discharge), 32 Wh/kg (at 24 h discharge rate) DC/DC round trip efficiency: 0.8 cycles to failure: 1200 (at a 8 h discharge rate and DoD of 100 %); 800 (at a 2 h discharge rate and DoD of 71.9 %). Energy requirements of electricity, gas and oil comprise the manufacturing of grid, paste, and plate, plastic moulding and assembly/formation. No further direct emissions to air or water are taken into account. The inventory was modelled according to: Spanos, Constantine, Turney, Damon E., Fthenakis, Vasilis (2015): Life-cycle analysis of flow-assisted nickel zinc-, manganese dioxide-, and valve-regulated lead-acid batteries designed for demand-charge reduction. Renewable and Sustainable Energy Reviews
+    43: 478–494. doi:10.1016/j.rser.2014.10.072.
+
+    Geography:  Literature source refers to US conditions concerning battery production and parameters.
+
+    Technology:  Includes manufacturing of grid, paste, and plate, plastic moulding, assembly/formation
+
+    Time period:  according to the sources Spanos et al. (2015) cited'
+- id: battery-production-nimh-rechargeable-prismatic
+  activity:
+    name: battery production, NiMH, rechargeable, prismatic
+  ecoinvent_unit: kilogram
+  intensity_unit: kg/kWh
+  factor: 0.1
+  description: We assume a energy density of 0.1 kWh/kg
+  comment: Quick search online for laptop battery providers
+- id: battery-cell-assembly-for-lis-battery
+  activity:
+    name: battery cell assembly, for LiS battery
+  ecoinvent_unit: kilogram
+  intensity_unit: kg/kWh
+  factor: 0.15
+  description: 'Specific energy density: 150 Wh/kg. Projected up to 500 Wh/kg in an optimistic future'
+- id: battery-cell-production-li-o2
+  activity:
+    name: battery cell production, Li-O2
+  ecoinvent_unit: kilogram
+  intensity_unit: kg/kWh
+  factor: 0.238
+  description: 'Battery energy density: 238 Wh/kg'
+- id: fuel-cell-stack-production-1-kwe-proton-exchange-membrane-pem
+  activity:
+    name: fuel cell stack production, 1 kWe, proton exchange membrane (PEM)
+  ecoinvent_unit: unit
+  intensity_unit: kg/MW
+  factor: 0.001
+- id: fuel-cell-production-stack-solid-oxide-125kw-electrical-future
+  activity:
+    name: fuel cell production, stack solid oxide, 125kW electrical, future
+  ecoinvent_unit: unit
+  intensity_unit: kg/MW
+  factor: 0.125
+- id: electrolyzer-production-1mwe-pem-stack
+  activity:
+    name: electrolyzer production, 1MWe, PEM, Stack
+  ecoinvent_unit: unit
+  intensity_unit: kg/MW
+  factor: 1.0
+- id: electrolyzer-production-1mwe-aec-stack
+  activity:
+    name: electrolyzer production, 1MWe, AEC, Stack
+  ecoinvent_unit: unit
+  intensity_unit: kg/MW
+  factor: 1.0
+- id: electrolyzer-production-1mwe-soec-stack
+  activity:
+    name: electrolyzer production, 1MWe, SOEC, Stack
+  ecoinvent_unit: unit
+  intensity_unit: kg/MW
+  factor: 1.0
+- id: photovoltaic-cell-production-multi-si-wafer
+  activity:
+    name: photovoltaic cell production, multi-Si wafer
+  ecoinvent_unit: square meter
+  intensity_unit: kg/MW
+  factor: 0.00021
+  comment: 'It ends up in "photovoltaic laminate production, multi-Si wafer": Unit process raw data for 1 m2 of PV panel. Investigated for the production of solar panels and laminates with 60 solar cells a 156*156cm2 with a capacity of 210Wp. Cell size and amount and capacity might differ between different producers. We adjust the power to the amount of photovoltaic cell used.'
+- id: photovoltaic-cell-production-ribbon-si
+  activity:
+    name: photovoltaic cell production, ribbon-Si
+  ecoinvent_unit: square meter
+  intensity_unit: kg/MW
+  factor: 0.000192
+  comment: 'It ends up in "photovoltaic laminate production, ribbon-Si": Unit process raw data for 1 m2 of PV panel. Unit process raw data for 1 m2 of PV panel. Investigated for the production of solar panels and laminates with 60 solar cells a 156*156cm2 with a capacity of 192 Wp.'
+- id: photovoltaic-cell-production-single-si-wafer
+  activity:
+    name: photovoltaic cell production, single-Si wafer
+  ecoinvent_unit: square meter
+  intensity_unit: kg/MW
+  factor: 0.000224
+  comment: 'It ends up in "photovoltaic panel production, single-Si wafer": Unit process raw data for 1 m2 of PV panel. Investigated for the production of solar panels and laminates with 60 solar cells a 156*156cm2 with a capacity of 224 Wp.'
+- id: photovoltaic-cell-multi-si-at-plant
+  activity:
+    name: photovoltaic cell, multi-Si, at plant
+  ecoinvent_unit: square meter
+  intensity_unit: kg/MW
+  factor: 0.00021
+  comment: I assume the same as the previous multi-Si
+- id: photovoltaic-cell-single-si-at-plant
+  activity:
+    name: photovoltaic cell, single-Si, at plant
+  ecoinvent_unit: square meter
+  intensity_unit: kg/MW
+  factor: 0.000224
+  comment: I assume the same as the previous single-Si
+- id: photovoltaic-laminate-production-a-si
+  activity:
+    name: photovoltaic laminate production, a-Si
+  ecoinvent_unit: square meter
+  intensity_unit: kg/MW
+  factor: 0.000128
+  description: The weight is 2.7 kg per m2. The rated nominal power is about 128Wp per laminate.
+- id: photovoltaic-laminate-micro-si-at-plant
+  activity:
+    name: photovoltaic laminate, micro-Si, at plant
+  ecoinvent_unit: square meter
+  intensity_unit: kg/MW
+  factor: 7.142857142857143e-05
+  description: 'Characteristics of the module: area: 1.4m2, expected lifespan: 30 years, capacity: 100Wp, efficiency 10%'
+- id: photovoltaic-panel-micro-si-at-plant
+  activity:
+    name: photovoltaic panel, micro-Si, at plant
+  ecoinvent_unit: square meter
+  intensity_unit: kg/MW
+  factor: 7.142857142857143e-05
+  description: 'Characteristics of the module: area: 1.4m2, expected lifespan: 30 years, capacity: 100Wp, efficiency 10%'
+- id: photovoltaic-laminate-production-cis
+  activity:
+    name: photovoltaic laminate production, CIS
+  ecoinvent_unit: square meter
+  intensity_unit: kg/MW
+  factor: 0.00011111111111111113
+  description: The modules produced at Würth Solar have a size of 1.2m by 0.6m. The weight is 12.6kg. The efficiency is 10%. The rated nominal power is about 75-80Wp per module.
+- id: photovoltaic-laminate-cis-at-plant
+  activity:
+    name: photovoltaic laminate, CIS, at plant
+  ecoinvent_unit: square meter
+  intensity_unit: kg/MW
+  factor: 0.00010833333333333334
+  description: The modules produced at Würth Solar have a size of 1.2m by 0.6m. The weight is 12.6kg. The efficiency is 10.8%. The rated nominal power is about 78Wp per module.
+- id: photovoltaic-laminate-production-cdte
+  activity:
+    name: photovoltaic laminate production, CdTe
+  ecoinvent_unit: square meter
+  intensity_unit: kg/MW
+  factor: 9.027777777777777e-05
+  description: The modules produced at First Solar have a size of 1.2m by 0.6 m. The weight is 12.0kg. The efficiency is 9%. The rated nominal power is about 65Wp per module.
+- id: photovoltaic-laminate-cdte-first-solar-series-4-at-plant
+  activity:
+    name: photovoltaic laminate, CdTe, First Solar Series 4, at plant
+  ecoinvent_unit: square meter
+  intensity_unit: kg/MW
+  factor: 0.000115
+  comment: https://www.firstsolar.com/en-Emea/-/media/First-Solar/Technical-Documents/Series-4-Datasheets/Series-4V3-Module-Datasheet.ashx
+- id: photovoltaic-laminate-cdte-first-solar-series-6-at-plant
+  activity:
+    name: photovoltaic laminate, CdTe, First Solar Series 6, at plant
+  ecoinvent_unit: square meter
+  intensity_unit: kg/MW
+  factor: 0.445
+  comment: https://www.firstsolar.com/-/media/First-Solar/Technical-Documents/Series-6-Datasheets/Series-6-Datasheet.ashx?la=en
+- id: photovoltaic-panel-perovskite-si-tandem-at-plant
+  activity:
+    name: photovoltaic panel, perovskite-Si-tandem, at plant
+  ecoinvent_unit: square meter
+  intensity_unit: kg/MW
+  factor: 0.000224
+  description: 'LCI of CHEOPS perovskite silicon tandem modules to be produced by OXPV in Germany. LCI published in de Wild-Scholten, M. 2017: Deliverable 3.1 Life Cycle Analysis of CHEOPS technologies and benchmarking: Screening. Published LCI embeddeed in UVEK LCI data DQRv2:2018. Changes to LCI: Transport calculated based on given distances in Tabel 2 of Wild-Scholten (2017). Panel area is 1.6m2.'
+  comment: Wild-Schotten (2017) available from https://ec.europa.eu/research/participants/documents/downloadPublic?documentIds=080166e5b5615c43&appId=PPGMS. I did not find the power, so I considered equal to the single-Si wafer one, as they include it as input of the LCI
+- id: collector-field-area-construction-solar-thermal-parabolic-trough-50-mw
+  activity:
+    name: collector field area construction, solar thermal parabolic trough, 50 MW
+  ecoinvent_unit: unit
+  intensity_unit: kg/MW
+  factor: 50.0
+- id: power-block-installation-solar-thermal-parabolic-trough-50-mw
+  activity:
+    name: power block installation, solar thermal parabolic trough, 50 MW
+  ecoinvent_unit: unit
+  intensity_unit: kg/MW
+  factor: 50.0
+- id: collector-field-area-construction-solar-tower-power-plant-20-mw
+  activity:
+    name: collector field area construction, solar tower power plant, 20 MW
+  ecoinvent_unit: unit
+  intensity_unit: kg/MW
+  factor: 20.0
+- id: power-block-installation-solar-tower-power-plant-20-mw
+  activity:
+    name: power block installation, solar tower power plant, 20 MW
+  ecoinvent_unit: unit
+  intensity_unit: kg/MW
+  factor: 20.0
+- id: epr-construction
+  activity:
+    name: EPR construction
+  ecoinvent_unit: unit
+  intensity_unit: kg/MW
+  factor: 1500.0
+  description: 'Simons A, Bauer C. Life cycle assessment of the Evolutionary Power Reactor (EPR) and the influence of different fuel cycle strategies. Proceedings of the Institution of Mechanical Engineers, Part A: Journal of Power and Energy. 2012;226(3):427-444. doi:10.1177/0957650912440549'
+  comment: Taken from the paper
+- id: nuclear-power-plant-construction-boiling-water-reactor-1000mw
+  activity:
+    name: nuclear power plant construction, boiling water reactor 1000MW
+  ecoinvent_unit: unit
+  intensity_unit: kg/MW
+  factor: 1000.0
+- id: nuclear-power-plant-construction-pressure-water-reactor-650mw
+  activity:
+    name: nuclear power plant construction, pressure water reactor 650MW
+  ecoinvent_unit: unit
+  intensity_unit: kg/MW
+  factor: 650.0
+- id: nuclear-power-plant-construction-pressure-water-reactor-1000mw
+  activity:
+    name: nuclear power plant construction, pressure water reactor, 1000MW
+  ecoinvent_unit: unit
+  intensity_unit: kg/MW
+  factor: 1000.0
+- id: sputter-process-1-perovskite-cell
+  activity:
+    name: sputter process 1, perovskite cell
+  ecoinvent_unit: unit
+  intensity_unit: kg/MW
+  factor: 1.0
+  description: Conversion factor is one because I am taking an intensity of 0 for 2050, and want to use current values for the uncertainty
+- id: sputter-process-2-perovskite-cell
+  activity:
+    name: sputter process 2, perovskite cell
+  ecoinvent_unit: unit
+  intensity_unit: kg/MW
+  factor: 1.0
+- id: sputter-process-3-perovskite-cell
+  activity:
+    name: sputter process 3, perovskite cell
+  ecoinvent_unit: unit
+  intensity_unit: kg/MW
+  factor: 1.0
+- id: wind-direct-drive-0-006mw
+  activity:
+    name: wind turbine construction, small-scale, 6kW, onshore, direct drive
+  ecoinvent_unit: unit
+  intensity_unit: kg/MW
+  factor: 0.006
+  comment: Rated capacity in MW per turbine, unchanged when premise creates the direct-drive variant.
+- id: wind-direct-drive-2-3mw
+  activity:
+    name: wind turbine construction, 2.3MW, precast concrete tower, onshore, direct drive
+  ecoinvent_unit: unit
+  intensity_unit: kg/MW
+  factor: 2.3
+  comment: Rated capacity in MW per turbine, unchanged when premise creates the direct-drive variant.
+- id: wind-direct-drive-0-75mw
+  activity:
+    name: wind turbine construction, 750kW, onshore, direct drive
+  ecoinvent_unit: unit
+  intensity_unit: kg/MW
+  factor: 0.75
+  comment: Rated capacity in MW per turbine, unchanged when premise creates the direct-drive variant.
+- id: lorry-frame-per-kilogram
+  activity:
+    name: frame, blanks and saddle, for lorry
+  ecoinvent_unit: kilogram
+  intensity_unit: kg metal/kg vehicle
+  factor: 1.0
+  comment: Explicit identity conversion retaining the existing ICEV mass-based material-intensity proxy for one kilogram of lorry frame.

@@ -127,6 +127,7 @@ SOFC - Y:
       - natural gas
       - fuel cell production, solid oxide
       - treatment
+      - redox flow battery
 #SOFC_scandium:
 ##  ecoinvent_aliases:
 ##    fltr:

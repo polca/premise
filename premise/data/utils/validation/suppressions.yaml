@@ -1,0 +1,58 @@
+# Methodological validation suppressions must be narrow and reviewable.
+#
+# Each entry requires:
+# - rule_id: stable validation rule identifier
+# - dataset: a non-empty selector (name/product/location/code/name_pattern)
+# - versions: applicable ecoinvent versions (or "*")
+# - system_models: applicable system models (or "*")
+# - explanation: why this is a legitimate exception
+- rule_id: GRAPH.NEW_FORBIDDEN_CYCLE
+  dataset:
+    name_pattern: '^market group for electricity, (low|medium|high) voltage(, [0-9]+-year period)?$'
+  versions: ["3.8", "3.9", "3.10", "3.11", "3.12"]
+  system_models: [cutoff, consequential]
+  explanation: >-
+    Electricity market groups intentionally consume their own voltage level to
+    represent transformation losses; time-horizon variants retain that modeled
+    self-consumption.
+- rule_id: GRAPH.NEW_FORBIDDEN_CYCLE
+  dataset:
+    name_pattern: '^(market for )?(barley|fava bean|rye|wheat).*'
+  versions: ["3.8", "3.9", "3.10", "3.11", "3.12"]
+  system_models: [cutoff, consequential]
+  explanation: >-
+    Ecoinvent organic seed production consumes its corresponding crop while
+    crop production consumes seed. Regional relinking changes the provider
+    geography but retains this documented seed-crop feedback structure.
+- rule_id: GRAPH.NEW_FORBIDDEN_CYCLE
+  dataset:
+    name: market for electricity, medium voltage, aluminium industry
+  versions: ["3.8", "3.9", "3.10", "3.11", "3.12"]
+  system_models: [cutoff, consequential]
+  explanation: >-
+    The ecoinvent aluminium medium-voltage market contains explicit self-inputs
+    for its voltage-loss accounting. Relinking restores the activity name on
+    those source-code-resolved exchanges and makes the existing loop visible.
+- rule_id: GRAPH.NEW_FORBIDDEN_CYCLE
+  dataset:
+    name: market for electricity, high voltage, renewable energy products
+    product: electricity, high voltage, renewable energy products
+    location: CH
+  versions: ["3.8", "3.9", "3.10", "3.11", "3.12"]
+  system_models: [cutoff, consequential]
+  explanation: >-
+    The Swiss ecoinvent renewable-products market explicitly supplies part of
+    its own high-voltage reference product. This is the source inventory's
+    modeled renewable-electricity balancing exchange, not a premise-created
+    feedback path.
+- rule_id: GRAPH.NEW_FORBIDDEN_CYCLE
+  dataset:
+    name_pattern: "^Distiller's Dried Grains with Solubles to generic market for (energy|protein) feed$"
+    location: GLO
+  versions: ["3.8", "3.9", "3.10", "3.11", "3.12"]
+  system_models: [cutoff, consequential]
+  explanation: >-
+    The ecoinvent DDGS substitution chain intentionally links
+    the global DDGS market and generic feed markets back through the DDGS
+    conversion activity. Relinking resolves the source-code exchanges into the
+    documented substitution loop without changing its modeled amounts.

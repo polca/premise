@@ -13,7 +13,8 @@ from typing import Any, Dict, Iterable, List, Mapping
 
 import numpy as np
 import xarray as xr
-import yaml
+
+from .runtime_cache import load_yaml_cached
 
 HEAT_LAYERS = (
     "buildings_end_use",
@@ -49,8 +50,7 @@ def _as_terms(expression: Any) -> List[Dict[str, Any]]:
 def load_heat_mapping(filepath: Path, model: str) -> Dict[str, Dict[str, Any]]:
     """Load heat mapping metadata relevant to ``model``."""
 
-    with open(filepath, "r", encoding="utf-8") as stream:
-        mapping = yaml.safe_load(stream)
+    mapping = load_yaml_cached(filepath)
 
     selected = {}
     for technology, metadata in mapping.items():

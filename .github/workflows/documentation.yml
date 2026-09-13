@@ -1,0 +1,74 @@
+name: Documentation
+
+on:
+  pull_request:
+    paths:
+      - "docs/**"
+      - "premise/**"
+      - "scripts/check_documentation.py"
+      - "scripts/check_documentation_examples.py"
+      - "scripts/check_documentation_content.py"
+      - "scripts/generate_documentation_reference.py"
+      - "scripts/generate_methodology_diagrams.py"
+      - "pyproject.toml"
+      - "requirements.txt"
+      - "readthedocs.yml"
+      - ".github/workflows/documentation.yml"
+  push:
+    branches: [master]
+    paths:
+      - "docs/**"
+      - "premise/**"
+      - "scripts/check_documentation*.py"
+      - "scripts/generate_documentation_reference.py"
+      - "scripts/generate_methodology_diagrams.py"
+      - "pyproject.toml"
+      - "requirements.txt"
+      - "readthedocs.yml"
+      - ".github/workflows/documentation.yml"
+  workflow_dispatch:
+    inputs:
+      check_external_links:
+        description: "Also report external URL failures (non-blocking)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  html:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: python -m pip install -e ".[docs]"
+      - name: Build the real-theme site and API
+        run: python -m sphinx -b html -W --keep-going docs docs/_build/html
+      - name: Check source-derived documentation tables
+        run: python scripts/generate_documentation_reference.py --check
+      - name: Check sector process diagrams
+        run: python scripts/generate_methodology_diagrams.py --check
+      - name: Check content-review coverage and example classifications
+        run: python scripts/check_documentation_content.py
+      - name: Check navigation, links, API output and example syntax
+        run: python scripts/check_documentation.py docs/_build/html
+      - name: Execute examples that do not require licensed data
+        run: python scripts/check_documentation_examples.py
+      - name: Report external link failures
+        timeout-minutes: 5
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.check_external_links }}
+        continue-on-error: true
+        run: python -m sphinx -b linkcheck docs docs/_build/linkcheck
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: documentation
+          path: |
+            docs/_build/html
+            docs/_build/linkcheck
+          if-no-files-found: ignore

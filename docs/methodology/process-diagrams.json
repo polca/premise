@@ -1,0 +1,560 @@
+{
+  "steel": {
+    "title": "Steel production and supply",
+    "steps": [
+      {
+        "title": "Prepare regional routes",
+        "detail": "Pig iron and supporting processes, then mapped steel production"
+      },
+      {
+        "title": "Adjust mapped steel activities",
+        "detail": "Energy-name filters and fossil CO2; route-specific bounds"
+      },
+      {
+        "title": "Build steel markets",
+        "detail": "IAM route volumes; exclude secondary steel in consequential mixes"
+      },
+      {
+        "title": "Relink consumers and check",
+        "detail": "Regional steel supply with route-specific CCS inventories"
+      }
+    ],
+    "guard": "No steel mix: leave the sector unchanged"
+  },
+  "cement": {
+    "title": "Clinker and cement supply",
+    "steps": [
+      {
+        "title": "Prepare clinker and capture routes",
+        "detail": "Regional source activities and mapped CCS modules"
+      },
+      {
+        "title": "Set energy target and adjust coal",
+        "detail": "3.4 MJ/kg basis; bounds or fixed efficient-kiln target"
+      },
+      {
+        "title": "Set pollutants and capture flows",
+        "detail": "Route-specific ammonia, NOx, mercury, sulfur and CO2"
+      },
+      {
+        "title": "Build clinker and cement markets",
+        "detail": "Regional clinker supplies cement production"
+      },
+      {
+        "title": "Relink consumers and check",
+        "detail": "Retain source cement composition"
+      }
+    ],
+    "guard": "No cement mix: leave the sector unchanged"
+  },
+  "heat": {
+    "title": "Delivered-heat markets",
+    "steps": [
+      {
+        "title": "Read heat layers",
+        "detail": "Buildings, industry and secondary supply"
+      },
+      {
+        "title": "Prepare suppliers and convert volumes",
+        "detail": "Regionalize; adjust fuel CO2; convert final energy to delivered heat"
+      },
+      {
+        "title": "Build available heat markets",
+        "detail": "Normalize shares; use explicit residuals or source-mix fallbacks"
+      },
+      {
+        "title": "Redirect heat consumers",
+        "detail": "Route buildings and industry to the corresponding layers"
+      },
+      {
+        "title": "Relink energy inputs and check",
+        "detail": "Relink suppliers, check cycles and bound matched cogeneration efficiency"
+      }
+    ],
+    "guard": "No heat layers: unchanged; a partially reported mapped layer is an error"
+  },
+  "electricity/generation": {
+    "title": "Electricity transformation",
+    "steps": [
+      {
+        "title": "Prepare source activities",
+        "detail": "Missing routes, coal factors, PV area and reservoir-water flows"
+      },
+      {
+        "title": "Regionalize generation and build markets",
+        "detail": "Create regional suppliers and the three voltage layers"
+      },
+      {
+        "title": "Apply available IAM efficiencies",
+        "detail": "All technosphere and biosphere exchanges; production stays fixed"
+      },
+      {
+        "title": "Relink consumers and check",
+        "detail": "Specialized technologies retain their own adjustment rules"
+      }
+    ],
+    "guard": "No electricity mix: leave the sector unchanged"
+  },
+  "electricity/markets": {
+    "title": "Electricity market construction",
+    "steps": [
+      {
+        "title": "Read generation shares and source losses",
+        "detail": "Average or marginal technology mix for the IAM region"
+      },
+      {
+        "title": "Construct high-voltage supply",
+        "detail": "Mapped generation and storage; exclude residential PV"
+      },
+      {
+        "title": "Construct medium- and low-voltage supply",
+        "detail": "Connect voltage layers, losses and residential PV"
+      },
+      {
+        "title": "Redirect eligible electricity consumers",
+        "detail": "Retain excluded specialized supply families"
+      }
+    ],
+    "guard": "No electricity mix: no new voltage markets"
+  },
+  "electricity/photovoltaics": {
+    "title": "Photovoltaic inventory and scenario changes",
+    "steps": [
+      {
+        "title": "Import the selected PV inventory",
+        "detail": "2026 core for 3.12 cut-off; version-specific alternatives otherwise"
+      },
+      {
+        "title": "Read external module-efficiency trajectory",
+        "detail": "Infer existing installation efficiency from capacity and area"
+      },
+      {
+        "title": "Reduce area when efficiency increases",
+        "detail": "Panels and applicable area-dependent mounting, cleaning and recycling"
+      },
+      {
+        "title": "Use country suppliers in electricity markets",
+        "detail": "Fixed country recipes and yields; prospective background suppliers"
+      }
+    ],
+    "guard": "No electricity mix: the scenario electricity/PV update is skipped"
+  },
+  "biomass": {
+    "title": "Biomass supply",
+    "steps": [
+      {
+        "title": "Regionalize biomass activities",
+        "detail": "Prepare mapped wood and residue supply chains"
+      },
+      {
+        "title": "Build lignocellulosic biomass markets",
+        "detail": "IAM shares; exclude residual biomass in consequential markets"
+      },
+      {
+        "title": "Replace eligible wood inputs",
+        "detail": "Selected chip/pellet consumers; retain exchange amounts"
+      },
+      {
+        "title": "Relink suppliers and check",
+        "detail": "Apply the regional market only where available"
+      }
+    ],
+    "guard": "No biomass mix: leave the sector unchanged"
+  },
+  "fuels/hydrogen": {
+    "title": "Hydrogen production and delivery",
+    "steps": [
+      {
+        "title": "Regionalize hydrogen production",
+        "detail": "Mapped route inventories and production volumes"
+      },
+      {
+        "title": "Adjust selected feedstock inputs",
+        "detail": "IAM inverse efficiency; external electrolysis fallback"
+      },
+      {
+        "title": "Build regional hydrogen markets",
+        "detail": "Average or marginal production shares"
+      },
+      {
+        "title": "Add pipeline delivery service and relink",
+        "detail": "One kg of distribution service per kg of market output"
+      }
+    ],
+    "guard": "No fuel blend data: skip the fuels transformation"
+  },
+  "fuels/biofuels": {
+    "title": "Biofuel supply chains",
+    "steps": [
+      {
+        "title": "Prepare residue and crop routes",
+        "detail": "Regional climate and allowed feedstock mappings"
+      },
+      {
+        "title": "Adjust eligible crop exchanges",
+        "detail": "Land occupation and land-use-change CO2 where available"
+      },
+      {
+        "title": "Filter suppliers and construct fuel blends",
+        "detail": "Heating-value conversion of mapped production shares"
+      },
+      {
+        "title": "Relink and update consumer carbon flows",
+        "detail": "No blanket biofuel conversion-efficiency scaling"
+      }
+    ],
+    "guard": "No fuel blend data: skip the fuels transformation"
+  },
+  "fuels/synthetic": {
+    "title": "Synthetic-fuel supply chains",
+    "steps": [
+      {
+        "title": "Regionalize mapped synthesis routes",
+        "detail": "Synthetic products, methanol and supporting activities"
+      },
+      {
+        "title": "Connect hydrogen and CO2 supplies",
+        "detail": "Use the selected inventory routes and regional suppliers"
+      },
+      {
+        "title": "Construct mapped liquid or gas markets",
+        "detail": "Production shares and heating-value conversion"
+      },
+      {
+        "title": "Relink consuming activities",
+        "detail": "Keep synthesis coefficients unless a separate operation changes them"
+      }
+    ],
+    "guard": "No fuel blend data: skip the fuels transformation"
+  },
+  "fuels/ammonia": {
+    "title": "Ammonia within the fuels update",
+    "steps": [
+      {
+        "title": "Import ammonia route inventories",
+        "detail": "Routes available according to the inventory selection"
+      },
+      {
+        "title": "Select the market-average-hydrogen route",
+        "detail": "Supporting-activity mapping in the fuels transformation"
+      },
+      {
+        "title": "Create regional variants and relink",
+        "detail": "Hydrogen and other available upstream suppliers"
+      },
+      {
+        "title": "Supply activities that request this route",
+        "detail": "No separate IAM ammonia-mix construction"
+      }
+    ],
+    "guard": "No fuel blend data: skip scenario regionalization"
+  },
+  "fuels/markets": {
+    "title": "Regional fuel markets",
+    "steps": [
+      {
+        "title": "Prepare hydrogen, liquid and gas routes",
+        "detail": "Use available inventories and model mappings"
+      },
+      {
+        "title": "Select suppliers from production volumes",
+        "detail": "Average or marginal shares and constrained suppliers"
+      },
+      {
+        "title": "Convert energy shares to exchange amounts",
+        "detail": "Heating values, gas conversions and waste-treatment signs"
+      },
+      {
+        "title": "Relink consumers and update CO2",
+        "detail": "Account for the composition of the linked fuel supply"
+      }
+    ],
+    "guard": "No fuel blend data: skip the fuels transformation"
+  },
+  "metals": {
+    "title": "Metal supply and direct material inputs",
+    "steps": [
+      {
+        "title": "Create metal supply markets",
+        "detail": "Primary production geography; eligible source secondary supply"
+      },
+      {
+        "title": "Apply in-ground resource allocation rules",
+        "detail": "Element content and upstream extraction boundaries"
+      },
+      {
+        "title": "Set mapped direct material inputs",
+        "detail": "Interpolated intensities, unit conversions and exclusions"
+      },
+      {
+        "title": "Relink consumers and check",
+        "detail": "Keep source component structures for excluded activities"
+      }
+    ]
+  },
+  "mining": {
+    "title": "Sulfidic-tailings treatment",
+    "steps": [
+      {
+        "title": "Read treatment shares and regional mapping",
+        "detail": "External year-dependent uptake assumptions"
+      },
+      {
+        "title": "Regionalize treatment activities",
+        "detail": "Keep regions covered by the remapped share data"
+      },
+      {
+        "title": "Rebuild tailings treatment markets",
+        "detail": "Interpolated shares and negative treatment exchanges"
+      },
+      {
+        "title": "Relink treatment suppliers",
+        "detail": "Check supplier completeness and share magnitudes"
+      }
+    ]
+  },
+  "cdr": {
+    "title": "Carbon dioxide removal",
+    "steps": [
+      {
+        "title": "Prepare support activities and route volumes",
+        "detail": "Split shared IAM totals; restrict afforestation by feedstock region"
+      },
+      {
+        "title": "Regionalize removal activities",
+        "detail": "Keep host-production and capture/storage boundaries separate"
+      },
+      {
+        "title": "Adjust electricity and heat/fuel inputs",
+        "detail": "Inverse factors, carrier bounds and DAC energy floors"
+      },
+      {
+        "title": "Build removal markets and relink",
+        "detail": "Regional and world supply from constrained production volumes"
+      }
+    ],
+    "guard": "No CDR mix: leave the sector unchanged"
+  },
+  "emissions": {
+    "title": "Non-CO2 emission adjustments",
+    "steps": [
+      {
+        "title": "Map activities, fuels and pollutant flows",
+        "detail": "Regional GAINS-IAM series and the activity/pollutant mappings"
+      },
+      {
+        "title": "Calculate scenario/reference factor",
+        "detail": "Sum regional emissions for World; form scenario/reference ratios"
+      },
+      {
+        "title": "Apply factors strictly between zero and one",
+        "detail": "First eligible row per activity and GAINS species; preserve other rows"
+      },
+      {
+        "title": "Retain the existing supply chain",
+        "detail": "Only the mapped biosphere exchanges are changed"
+      }
+    ],
+    "guard": "No GAINS-IAM data: leave emissions unchanged"
+  },
+  "final-energy": {
+    "title": "End-use heating regionalization",
+    "steps": [
+      {
+        "title": "Select mapped heating activities",
+        "detail": "Use available final-energy data and activity selectors"
+      },
+      {
+        "title": "Create regional variants",
+        "detail": "Assign mapped production volumes"
+      },
+      {
+        "title": "Relink suppliers",
+        "detail": "Use available prospective energy supply"
+      },
+      {
+        "title": "Retain the activity reference unit",
+        "detail": "No general recalculation of all end-use demand"
+      }
+    ],
+    "guard": "No final-energy data: leave the sector unchanged"
+  },
+  "transport/passenger-cars": {
+    "title": "Cars transformation",
+    "steps": [
+      {
+        "title": "Regionalize mapped transport activities",
+        "detail": "Use mode-specific inventories, even without fleet data"
+      },
+      {
+        "title": "Apply available efficiency factors",
+        "detail": "Selected energy inputs and all biosphere exchanges"
+      },
+      {
+        "title": "If fleet data exist: build service markets",
+        "detail": "Mapped production volumes and system-model weighting"
+      },
+      {
+        "title": "Retain consumer selection",
+        "detail": "No mode-specific automatic consumer replacement map"
+      },
+      {
+        "title": "Apply matched exhaust factors",
+        "detail": "Adjust outlying pollutant totals using calculated fuel use"
+      }
+    ]
+  },
+  "transport/buses": {
+    "title": "Buses transformation",
+    "steps": [
+      {
+        "title": "Regionalize mapped transport activities",
+        "detail": "Use mode-specific inventories, even without fleet data"
+      },
+      {
+        "title": "Apply available efficiency factors",
+        "detail": "Selected energy inputs and all biosphere exchanges"
+      },
+      {
+        "title": "If fleet data exist: build service markets",
+        "detail": "Mapped production volumes and system-model weighting"
+      },
+      {
+        "title": "Retain consumer selection",
+        "detail": "No mode-specific automatic consumer replacement map"
+      }
+    ]
+  },
+  "transport/two-wheelers": {
+    "title": "Two-wheelers transformation",
+    "steps": [
+      {
+        "title": "Regionalize mapped transport activities",
+        "detail": "Use mode-specific inventories, even without fleet data"
+      },
+      {
+        "title": "Apply available efficiency factors",
+        "detail": "Selected energy inputs and all biosphere exchanges"
+      },
+      {
+        "title": "If fleet data exist: build service markets",
+        "detail": "Mapped production volumes and system-model weighting"
+      },
+      {
+        "title": "Retain consumer selection",
+        "detail": "No mode-specific automatic consumer replacement map"
+      }
+    ]
+  },
+  "transport/trucks": {
+    "title": "Trucks transformation",
+    "steps": [
+      {
+        "title": "Regionalize mapped transport activities",
+        "detail": "Use mode-specific inventories, even without fleet data"
+      },
+      {
+        "title": "Apply available efficiency factors",
+        "detail": "Selected energy inputs and all biosphere exchanges"
+      },
+      {
+        "title": "If fleet data exist: build markets and set batteries",
+        "detail": "General and size-specific freight supply; projected truck capacity"
+      },
+      {
+        "title": "Redirect eligible freight consumers",
+        "detail": "Exact activity and tonne-kilometre matches; retain unresolved inputs"
+      },
+      {
+        "title": "Apply matched exhaust factors",
+        "detail": "Adjust outlying pollutant totals using calculated fuel use"
+      }
+    ]
+  },
+  "transport/rail": {
+    "title": "Rail freight transformation",
+    "steps": [
+      {
+        "title": "Regionalize mapped transport activities",
+        "detail": "Use mode-specific inventories, even without fleet data"
+      },
+      {
+        "title": "Apply available efficiency factors",
+        "detail": "Selected energy inputs and all biosphere exchanges"
+      },
+      {
+        "title": "If fleet data exist: build service markets",
+        "detail": "Mapped production volumes and system-model weighting"
+      },
+      {
+        "title": "Redirect eligible freight consumers",
+        "detail": "Exact activity and tonne-kilometre matches; retain unresolved inputs"
+      }
+    ]
+  },
+  "transport/shipping": {
+    "title": "Shipping transformation",
+    "steps": [
+      {
+        "title": "Regionalize mapped transport activities",
+        "detail": "Use mode-specific inventories, even without fleet data"
+      },
+      {
+        "title": "Apply available efficiency factors",
+        "detail": "Selected energy inputs and all biosphere exchanges"
+      },
+      {
+        "title": "If fleet data exist: build service markets",
+        "detail": "Mapped production volumes and system-model weighting"
+      },
+      {
+        "title": "Redirect eligible freight consumers",
+        "detail": "Exact activity and tonne-kilometre matches; retain unresolved inputs"
+      }
+    ]
+  },
+  "battery-mobile": {
+    "title": "Mobile battery capacity",
+    "steps": [
+      {
+        "title": "Read cell-density targets",
+        "detail": "External mean and uncertainty trajectories; hold endpoint years"
+      },
+      {
+        "title": "Scale kilogram inputs in capacity markets",
+        "detail": "2020 density / scenario-year density"
+      },
+      {
+        "title": "Update available chemistry mixes",
+        "detail": "Interpolate shares; normalize positive supplier totals"
+      },
+      {
+        "title": "Supply explicit capacity consumers",
+        "detail": "Installed capacity is distinct from lifetime electricity throughput"
+      }
+    ],
+    "guard": "Neither battery scenario is available: leave batteries unchanged"
+  },
+  "battery-stationary": {
+    "title": "Stationary battery capacity",
+    "steps": [
+      {
+        "title": "Read cell-density targets",
+        "detail": "External mean and uncertainty trajectories; hold endpoint years"
+      },
+      {
+        "title": "Scale kilogram inputs in capacity markets",
+        "detail": "2020 density / scenario-year density"
+      },
+      {
+        "title": "Update available chemistry mixes",
+        "detail": "Interpolate shares; normalize positive supplier totals"
+      },
+      {
+        "title": "Supply explicit capacity consumers",
+        "detail": "Installed capacity is distinct from lifetime electricity throughput"
+      }
+    ],
+    "guard": "Neither battery scenario is available: leave batteries unchanged"
+  }
+}

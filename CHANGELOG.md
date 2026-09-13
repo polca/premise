@@ -2,6 +2,287 @@
 
 All notable changes to this project are documented in this file.
 
+## [2.5.2] - 2026-09-10
+
+### Added
+
+- Added a configurable fuel-energy floor for mapped conventional combustion
+  passenger cars with an IAM efficiency signal. The default is 0.852 MJ LHV per
+  vehicle-kilometre, a provisional compatibility guardrail inherited from the
+  existing validator, not a validated physical minimum. The configuration in
+  `premise/data/transport/car_energy_floor.yaml` supports disabling the floor
+  and powertrain/size overrides.
+
+### Changed
+
+- Accelerated structured change-report generation while preserving audit rows
+  and workbook contents; see [benchmark details](benchmarks/change-report.md).
+- Extended IEA PVPS 2026 inventory compatibility across supported ecoinvent
+  versions and system models, with supplier migrations and classifications.
+- Updated the bundled IAM scenario source to Zenodo record 22227290 and reject
+  retired REMIND pathways that are absent from the archive before downloading.
+
+### Fixed
+
+- Corrected passenger-car fuel selection so petrol and gasoline market inputs
+  receive IAM efficiency adjustments without scaling vehicle-manufacturing
+  inputs. The additional energy-floor correction preserves fuel proportions
+  and fossil/non-fossil CO2 shares without scaling infrastructure or non-exhaust
+  burdens.
+- Preserved and rescaled exchange uncertainty when disaggregating imported
+  inventories instead of changing amounts alone.
+- Excluded electrical-installation inputs from photovoltaic efficiency updates.
+- Aligned REMIND chemical final-energy variable aliases with the scenario files.
+
+## [2.5.1]
+
+### Changed
+
+- Accelerated structured change-report generation by avoiding repeated inventory
+  snapshots and exchange normalization, and skipping unchanged activities when
+  safe. A three-run benchmark on `ecoinvent-3.12-cutoff` reduced median report
+  runtime from 317 to 95 seconds (3.33× faster), preserving all 981,910 audit rows
+  and workbook contents. Added reproducible profiling and comparison tools;
+  see [benchmark details](benchmarks/change-report.md) for memory measurements.
+- Updated the bundled IAM scenario download source to the published Zenodo
+  v2.5.0 record 22227290.
+- Replaced the IEA PVPS 2021 core with inventories
+  from IEA PVPS Task 12 report T12-33:2026. The new supply chains cover
+  single-Si (a TOPCon/PERC mix), multi-Si and CdTe technologies, including
+  manufacturing, installation and electricity production.
+- Extended residential, commercial and combined PV electricity mixes to 250
+  locations: 249 ISO countries and territories plus Kosovo. The extension uses
+  the report's 33 national recipes, 2023 IRENA PV generation weights and the
+  country solar yields retained from `lci-PV.xlsx`, with documented substitutes
+  where country data are missing. The 12 reference-system electricity datasets
+  retain their alternative annual yields of 1000 and 1300 kWh/kWp.
+- Linked UVEK/BAFU background inputs to ecoinvent suppliers, with documented
+  geographical substitutions and unit conversions. Completed the US multi-Si
+  wafer market by assuming domestic US production. Removed unused batteries,
+  avoided-burden datasets and redundant CIGS and perovskite-silicon tandem
+  inventories from the new core. Existing CIGS, perovskite and GaAs supplements
+  remain available separately. The new core also applies to older ecoinvent
+  versions and consequential modelling through Premise's migration system.
+- Added PV supplier migrations, consequential co-product mappings and biosphere
+  aliases. Import audits pass without unlinked exchanges or ignored biosphere
+  flows for ecoinvent 3.9–3.11 cut-off and consequential, and 3.12 consequential.
+  Both 3.8 models import without unlinked technosphere exchanges, but omit nine
+  nitric-acid air emissions per import because the flow is absent from the 3.8
+  biosphere. Older-version supplier proxies include the Swiss lean-concrete
+  market and global sodium-hydroxide market; these do not retain all original
+  production specifications. PV workbook changes invalidate inventory caches
+  for all versions and system models.
+- Updated PV efficiency handling for mixed module inputs and 10 MW systems,
+  preserving capacity metadata through caches and scaling module-dependent
+  mounting, recycling and cleaning consistently.
+- Reorganized the documentation into Getting started, User guide, Methodology,
+  Reference and Development sections, retaining existing page and section links.
+  Standardized explanations across 25 sector chapters and added process diagrams
+  showing their inputs, transformations and outputs. Checked descriptions against
+  current code and removed outdated behaviour and internal maintenance narratives
+  from the methodology.
+- Matched the documentation design to Premise Hub, with a lighter navigation
+  sidebar, clearer nested sections, responsive layouts, homepage cards and a
+  favicon. Simplified technical wording and distinguished Python environments
+  from Brightway projects throughout the guides.
+- Put change reports before validation reports in the User guide, explained
+  validation results through the workbook, and moved detailed validation code
+  examples to Development. Expanded guidance on tracing impact-score changes
+  and distinguishing exchange, scenario and structural uncertainty. Added the
+  Scenario Explorer link and clarified ScenarioLink's Activity Browser 2.x-only
+  compatibility.
+- Moved the runtime material-product rules and technology conversion factors
+  from Excel to versioned, validated YAML files.
+- Compiled material updates by exact activity and rule, removing repeated
+  regional processing and making provider selection deterministic.
+- Preserved the component-based material structure of `EPR construction`
+  instead of adding plant-level material overlays whose system boundary can
+  overlap with EPR components.
+
+### Fixed
+- Stopped advertising retired REMIND `PkBudg1150` and `PkBudg500` pathways
+  that are absent from the current Zenodo IAM archive. Requests now fail before
+  download with the missing filename and local-file alternatives.
+- Retried temporary IAM scenario download failures and prevented incomplete
+  downloads from becoming cached scenario files. Failed downloads now raise
+  the original network or HTTP error.
+- Aligned Conda runtime dependencies with the package requirements, including
+  the missing cache-locking dependency, and enabled CI for packaging changes.
+- Restored Wurst-compatible activity parameter records in both Brightway writers,
+  fixing the `TypeError` when extracting databases exported by premise 2.5.0
+  ([#306](https://github.com/polca/premise/issues/306)). Existing parameter
+  comments and uncertainty metadata are preserved. Premise's extractor also
+  retains scalar parameter values from affected databases.
+- Preserved the IEA PVPS 2026 silicon-cell material inventories during metals
+  updates, avoiding capacity-based additions on top of metallization pastes.
+  Material overrides now require an explicit conversion with the expected
+  activity unit; missing conversions no longer default to one.
+- Added capacity conversions for three generated direct-drive wind variants,
+  declared the existing mass-based lorry-frame conversion, and excluded redox
+  flow battery stacks from the solid-oxide fuel-cell material mapping.
+- Restored columnar activity identity fields when a cleared mapping is updated,
+  fixing native Brightway export of prepared compact inventories.
+- Limited future scenario-inventory cache buildup with a startup sweep for
+  managed checkpoints and incomplete writes unused for more than 24 hours.
+  Cleanup is skipped while another `NewDatabase` instance is alive and preserves
+  referenced base checkpoints. Existing unmarked checkpoints and reusable source
+  caches remain untouched. Set `cleanup_expired_caches=False` to skip the sweep;
+  restart existing premise processes so all builds participate in locking.
+- Resolved the renamed high-grade gallium market for material updates in
+  ecoinvent 3.11 and 3.12, fixing six missing-provider warnings in nightly
+  certification while retaining the supplier name used by older versions.
+- Applied all configured product rules for a material, including both cast and
+  wrought aluminium for eligible nuclear-power datasets.
+- Restricted material replacement to technosphere exchanges so similarly named
+  biosphere exchanges are not removed.
+- Added rule-specific provenance for applied, skipped, and unavailable-provider
+  decisions and for post-allocation metal-resource corrections.
+
+### Validation
+- Added parameter export regression tests for both Brightway writers in fast
+  and standard modes, plus extraction tests for scalar and record formats.
+  All 54 writer and extraction tests passed.
+- Added automated documentation checks for internal links, historical anchors,
+  navigation order, Python example syntax, sector structure, generated reference
+  tables and process diagrams. The updated documentation builds with Sphinx
+  warnings treated as errors; representative pages were checked at desktop,
+  tablet and phone widths.
+- Added cache-expiry tests covering the 24-hour boundary, checkpoint reuse,
+  concurrent startups, process termination, and dependency protection. All 91
+  cache-cleanup, inventory-store, and database unit tests passed.
+- Added a dataset-wise direct-metal comparison and an upstream path-screening
+  tool. The IMAGE SSP2-L 2020 ecoinvent 3.11 cutoff comparison contains no
+  unexplained before/after metal-input differences.
+- The compiled update reduces the measured median metals-sector runtime versus
+  the pre-fix implementation.
+
+## [2.5.0]
+
+### Breaking changes
+- Removed direct access to the mutable `NewDatabase.database` list after
+  initialization. Use `get_inventory_store()` for read-only inspection,
+  `get_inventory_store(writable=True).transaction(...)` for controlled
+  mutations, or `materialize_inventory()` at integration boundaries that
+  require a real `list[dict]`.
+- Replaced the historical pipe-delimited change-log workbook with structured
+  change reports. `generate_change_report()` now returns
+  `ChangeReportArtifacts` and writes a review-oriented Excel workbook plus an
+  exhaustive Parquet audit file.
+
+### Added
+- Added the `InventoryStore` abstraction with immutable activity and exchange
+  snapshots, atomic transactions, indexed queries, copy-on-write scenario
+  forks, and explicit materialization. Both the compact production backend and
+  the dictionary-backed legacy compatibility backend implement the same
+  contract.
+- Added versioned compact inventory checkpoints backed by typed Arrow data and
+  checksummed metadata. Scenario stores can be reopened and streamed into
+  exporters without retaining a complete Python object graph in memory.
+- Added mandatory, read-only methodological validation during scenario updates
+  and exports. Incremental sector contracts cover transformation scope,
+  physical values, market composition, supplier links, and sector-specific
+  expectations; exhaustive graph validation remains available through
+  `NewDatabase.get_validation_report(exhaustive=True)`.
+- Exposed immutable validation results and errors through
+  `ValidationIssue`, `ValidationRuleResult`, `ValidationPhaseResult`,
+  `ValidationReport`, and `PremiseValidationError`.
+- Added structured V2 change reports with scenario and sector summaries,
+  important numeric changes, market/proxy decisions, validation findings,
+  methodology and provenance in Excel, with complete row-level differences in
+  Parquet.
+- Added `NewDatabase.update_and_write()` to update scenarios and immediately
+  export them to Brightway without the former intermediate dump/reload cycle.
+- Added reproducible profiling, output-equivalence, validation-performance,
+  and validation-warning tools under `benchmarks/`, together with a dedicated
+  validation-certification workflow.
+- Reorganized the examples into 12 self-contained, numbered notebooks covering
+  quickstarts, consequential scenarios, custom inputs, external scenarios,
+  export formats, scenario arrays, matrix LCAs, incremental databases,
+  reports, and score comparison.
+
+### Changed
+- Reworked scenario ownership, caching, proxy cloning, provider resolution,
+  relinking, emissions scaling, checkpointing, and export preparation to reduce
+  runtime and peak memory while preserving certified output equivalence.
+- Streamed compact inventories directly to Brightway exporters and combined
+  provider assignment with exporter validation to avoid redundant full-graph
+  processing.
+- Reused persisted scenario state across exports and retained a bounded
+  in-memory handoff for single-scenario update-and-write workflows.
+- Built diesel markets and their carbon-dioxide intensities from the dedicated
+  IAM diesel-blend shares, including the consequential marginal blend, rather
+  than generic production-volume shares.
+- Added deterministic provenance for transformation scope, algorithms, IAM
+  variables, configuration references, proxy choices, and geographic
+  fallbacks.
+
+### Fixed
+- Normalized mobile and stationary battery-market supplier shares after IAM
+  interpolation, preventing small rounding or interpolation residuals from
+  producing markets whose inputs do not sum to one.
+- Kept consequential diesel market suppliers and their calculated fossil
+  carbon-dioxide intensity aligned with the same marginal diesel blend.
+- Preserved strict semantic and exporter output equivalence across compact and
+  legacy inventory backends while optimizing mutation and serialization paths.
+
+### Documentation
+- Added guides for the InventoryStore API, structured change reports, runtime
+  and memory benchmarking, validation behavior, and the numbered example
+  notebooks.
+- Documented the migration from `NewDatabase.database`, explicit inventory
+  materialization, validation-report inspection, and report artifact handling.
+
+### Tests
+- Added unit, differential, and integration coverage for inventory stores,
+  transactions, checkpoints, migrations, provenance, validation contracts,
+  change reports, fast exports, battery markets, marginal diesel mixes, and
+  output equivalence.
+- Added release certification for IAM years that require interpolation between
+  available model time slices.
+
+## [2.4.9.2]
+
+### Added
+- Databases exported to Brightway now carry scenario metadata in
+  `bw2data.databases[name]`: `iam_model`, `pathway`, `representative_time`
+  (ISO 8601), `ecoinvent_version`, `system_model`, `premise_version` and,
+  if any, `external_scenarios`. Superstructure and scenario-array databases
+  list their scenarios under `scenarios`.
+- Added `NewDatabase.write_scenario_array_db_to_brightway` for modern
+  Brightway. It writes one union database and one compressed `bw_processing`
+  ZIP containing synchronized technosphere and biosphere arrays, ordered as
+  `original` followed by the generated scenarios.
+- Added `bw_processing >= 1.0` to the Brightway 2.5 Python and Conda
+  dependencies.
+
+### Changed
+- Reused the superstructure preparation pipeline for scenario-array export,
+  preserving existing superstructure CSV, Excel, and Feather behavior while
+  applying the same loading, validation, duplicate aggregation, reporting, and
+  cleanup to both export paths.
+- Stored only changing matrix coordinates in deterministic sequential arrays;
+  the written base database retains the `original` state when the ZIP is not
+  loaded.
+
+### Fixed
+- Included matching production rows when changed self-consumption exchanges
+  are netted into technosphere diagonals, preventing invalid or singular
+  scenario matrices.
+
+### Documentation
+- Added a complete three-pathway IMAGE 2050 example for the
+  `ecoinvent-3.12-cutoff` project to the examples notebook, loading guide,
+  and README, including multi-activity scoring, base-database validation,
+  synchronized scenario selection, and wraparound behavior.
+
+### Tests
+- Added unit and orchestration coverage for scenario ordering, values, indices,
+  technosphere flips, biosphere placement, structural zeros, validation errors,
+  atomic ZIP output, and production/self-consumption netting.
+- Validated the export end to end with IMAGE SSP1-L, SSP2-M, and SSP3-H for
+  2050, checking three activities against the original database and confirming
+  deterministic scenario selection and wraparound.
+
 ## [2.4.9.1]
 
 ### Added

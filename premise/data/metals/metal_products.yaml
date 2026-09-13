@@ -1,0 +1,4248 @@
+schema_version: 1
+rules:
+- id: icev-aluminium-aluminium-cast-alloy
+  enabled: true
+  technology: ICEV
+  target:
+    kind: mapped_activity
+  element: Aluminium
+  provider:
+    name: market for aluminium, cast alloy
+    reference_product: aluminium, cast alloy
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: aluminium
+  intensity_form: aluminium
+- id: ev-aluminium-aluminium-cast-alloy
+  enabled: true
+  technology: EV
+  target:
+    kind: mapped_activity
+  element: Aluminium
+  provider:
+    name: market for aluminium, cast alloy
+    reference_product: aluminium, cast alloy
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: aluminium
+  intensity_form: aluminium
+- id: wind-ddpm-aluminium-aluminium-cast-alloy
+  enabled: true
+  technology: Wind-DDPM
+  target:
+    kind: mapped_activity
+  element: Aluminium
+  provider:
+    name: market for aluminium, cast alloy
+    reference_product: aluminium, cast alloy
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: aluminium
+  intensity_form: aluminium
+- id: wind-ddee-aluminium-aluminium-cast-alloy
+  enabled: true
+  technology: Wind-DDEE
+  target:
+    kind: mapped_activity
+  element: Aluminium
+  provider:
+    name: market for aluminium, cast alloy
+    reference_product: aluminium, cast alloy
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: aluminium
+  intensity_form: aluminium
+- id: wind-gearbox-aluminium-aluminium-cast-alloy
+  enabled: true
+  technology: Wind-Gearbox
+  target:
+    kind: mapped_activity
+  element: Aluminium
+  provider:
+    name: market for aluminium, cast alloy
+    reference_product: aluminium, cast alloy
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: aluminium
+  intensity_form: aluminium
+- id: c-si-aluminium-aluminium-cast-alloy
+  enabled: true
+  technology: c-Si
+  target:
+    kind: mapped_activity
+  element: Aluminium
+  provider:
+    name: market for aluminium, cast alloy
+    reference_product: aluminium, cast alloy
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: aluminium
+  intensity_form: aluminium
+- id: cdte-aluminium-aluminium-cast-alloy
+  enabled: true
+  technology: CdTe
+  target:
+    kind: mapped_activity
+  element: Aluminium
+  provider:
+    name: market for aluminium, cast alloy
+    reference_product: aluminium, cast alloy
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: aluminium
+  intensity_form: aluminium
+- id: cigs-aluminium-aluminium-cast-alloy
+  enabled: true
+  technology: CIGS
+  target:
+    kind: mapped_activity
+  element: Aluminium
+  provider:
+    name: market for aluminium, cast alloy
+    reference_product: aluminium, cast alloy
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: aluminium
+  intensity_form: aluminium
+- id: a-si-aluminium-aluminium-cast-alloy
+  enabled: true
+  technology: a-Si
+  target:
+    kind: mapped_activity
+  element: Aluminium
+  provider:
+    name: market for aluminium, cast alloy
+    reference_product: aluminium, cast alloy
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: aluminium
+  intensity_form: aluminium
+- id: parabolic-trough-pb-aluminium-aluminium-cast-alloy
+  enabled: true
+  technology: Parabolic Trough - PB
+  target:
+    kind: mapped_activity
+  element: Aluminium
+  provider:
+    name: market for aluminium, cast alloy
+    reference_product: aluminium, cast alloy
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: aluminium
+  intensity_form: aluminium
+- id: csp-tower-pb-aluminium-aluminium-cast-alloy
+  enabled: true
+  technology: CSP Tower - PB
+  target:
+    kind: mapped_activity
+  element: Aluminium
+  provider:
+    name: market for aluminium, cast alloy
+    reference_product: aluminium, cast alloy
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: aluminium
+  intensity_form: aluminium
+- id: nuclear-aluminium-aluminium-wrought-alloy
+  enabled: true
+  technology: Nuclear
+  target:
+    kind: mapped_activity
+  element: Aluminium
+  provider:
+    name: market for aluminium, wrought alloy
+    reference_product: aluminium, wrought alloy
+  exchange_amount_factor: 0.32
+  application: set_direct_amount
+  ecoinvent_form: aluminium
+  intensity_form: aluminium
+  allocation_group: nuclear-aluminium
+  comment: Check. Keeping the ratios from Ecoinvent
+- id: nuclear-aluminium-aluminium-cast-alloy
+  enabled: true
+  technology: Nuclear
+  target:
+    kind: mapped_activity
+  element: Aluminium
+  provider:
+    name: market for aluminium, cast alloy
+    reference_product: aluminium, cast alloy
+  exchange_amount_factor: 0.68
+  application: set_direct_amount
+  ecoinvent_form: aluminium
+  intensity_form: aluminium
+  allocation_group: nuclear-aluminium
+- id: lmo-aluminium-aluminium-cast-alloy
+  enabled: true
+  technology: LMO
+  target:
+    kind: mapped_activity
+  element: Aluminium
+  provider:
+    name: market for aluminium, cast alloy
+    reference_product: aluminium, cast alloy
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: aluminium
+  intensity_form: aluminium
+- id: nmc111-aluminium-aluminium-cast-alloy
+  enabled: true
+  technology: NMC111
+  target:
+    kind: mapped_activity
+  element: Aluminium
+  provider:
+    name: market for aluminium, cast alloy
+    reference_product: aluminium, cast alloy
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: aluminium
+  intensity_form: aluminium
+- id: nmc622-aluminium-aluminium-cast-alloy
+  enabled: true
+  technology: NMC622
+  target:
+    kind: mapped_activity
+  element: Aluminium
+  provider:
+    name: market for aluminium, cast alloy
+    reference_product: aluminium, cast alloy
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: aluminium
+  intensity_form: aluminium
+- id: nca-aluminium-aluminium-cast-alloy
+  enabled: true
+  technology: NCA
+  target:
+    kind: mapped_activity
+  element: Aluminium
+  provider:
+    name: market for aluminium, cast alloy
+    reference_product: aluminium, cast alloy
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: aluminium
+  intensity_form: aluminium
+- id: lfp-aluminium-aluminium-cast-alloy
+  enabled: true
+  technology: LFP
+  target:
+    kind: mapped_activity
+  element: Aluminium
+  provider:
+    name: market for aluminium, cast alloy
+    reference_product: aluminium, cast alloy
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: aluminium
+  intensity_form: aluminium
+- id: lto-aluminium-aluminium-cast-alloy
+  enabled: true
+  technology: LTO
+  target:
+    kind: mapped_activity
+  element: Aluminium
+  provider:
+    name: market for aluminium, cast alloy
+    reference_product: aluminium, cast alloy
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: aluminium
+  intensity_form: aluminium
+- id: lis-aluminium-aluminium-cast-alloy
+  enabled: true
+  technology: LiS
+  target:
+    kind: mapped_activity
+  element: Aluminium
+  provider:
+    name: market for aluminium, cast alloy
+    reference_product: aluminium, cast alloy
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: aluminium
+  intensity_form: aluminium
+- id: lio2-aluminium-aluminium-cast-alloy
+  enabled: true
+  technology: LiO2
+  target:
+    kind: mapped_activity
+  element: Aluminium
+  provider:
+    name: market for aluminium, cast alloy
+    reference_product: aluminium, cast alloy
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: aluminium
+  intensity_form: aluminium
+- id: sofc-y-aluminium-aluminium-cast-alloy
+  enabled: true
+  technology: SOFC - Y
+  target:
+    kind: mapped_activity
+  element: Aluminium
+  provider:
+    name: market for aluminium, cast alloy
+    reference_product: aluminium, cast alloy
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: aluminium
+  intensity_form: aluminium
+- id: sofc-sc-aluminium-aluminium-cast-alloy
+  enabled: true
+  technology: SOFC - Sc
+  target:
+    kind: mapped_activity
+  element: Aluminium
+  provider:
+    name: market for aluminium, cast alloy
+    reference_product: aluminium, cast alloy
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: aluminium
+  intensity_form: aluminium
+- id: pafc-aluminium-aluminium-cast-alloy
+  enabled: true
+  technology: PAFC
+  target:
+    kind: mapped_activity
+  element: Aluminium
+  provider:
+    name: market for aluminium, cast alloy
+    reference_product: aluminium, cast alloy
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: aluminium
+  intensity_form: aluminium
+- id: ael-aluminium-aluminium-cast-alloy
+  enabled: true
+  technology: AEL
+  target:
+    kind: mapped_activity
+  element: Aluminium
+  provider:
+    name: market for aluminium, cast alloy
+    reference_product: aluminium, cast alloy
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: aluminium
+  intensity_form: aluminium
+- id: icev-antimony-antimony
+  enabled: true
+  technology: ICEV
+  target:
+    kind: mapped_activity
+  element: Antimony
+  provider:
+    name: market for antimony
+    reference_product: antimony
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: antimony
+  intensity_form: antimony
+- id: ev-antimony-antimony
+  enabled: true
+  technology: EV
+  target:
+    kind: mapped_activity
+  element: Antimony
+  provider:
+    name: market for antimony
+    reference_product: antimony
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: antimony
+  intensity_form: antimony
+- id: icev-beryllium-beryllium
+  enabled: true
+  technology: ICEV
+  target:
+    kind: mapped_activity
+  element: Beryllium
+  provider:
+    name: market for beryllium
+    reference_product: beryllium
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: beryllium
+  intensity_form: beryllium
+  comment: No process in ecoinvent demands beryllium
+- id: ev-beryllium-beryllium
+  enabled: true
+  technology: EV
+  target:
+    kind: mapped_activity
+  element: Beryllium
+  provider:
+    name: market for beryllium
+    reference_product: beryllium
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: beryllium
+  intensity_form: beryllium
+- id: ev-boron-permanent-magnet-production-for-electric-motor-boric-oxide
+  enabled: true
+  technology: EV
+  target:
+    kind: exact_activity
+    name: permanent magnet production, for electric motor
+    reference_product: permanent magnet, for electric motor
+  element: Boron
+  provider:
+    name: market for boric oxide
+    reference_product: boric oxide
+  exchange_amount_factor: 86.18716533571782
+  application: set_direct_amount
+  ecoinvent_form: boric oxide
+  intensity_form: boron
+  comment: B2O3 // This exchange is already present
+- id: wind-ddpm-boron-boric-oxide
+  enabled: true
+  technology: Wind-DDPM
+  target:
+    kind: mapped_activity
+  element: Boron
+  provider:
+    name: market for boric oxide
+    reference_product: boric oxide
+  exchange_amount_factor: 3.2198224031079454
+  application: set_direct_amount
+  ecoinvent_form: boric oxide
+  intensity_form: boron
+- id: wind-ddee-boron-boric-oxide
+  enabled: true
+  technology: Wind-DDEE
+  target:
+    kind: mapped_activity
+  element: Boron
+  provider:
+    name: market for boric oxide
+    reference_product: boric oxide
+  exchange_amount_factor: 3.2198224031079454
+  application: set_direct_amount
+  ecoinvent_form: boric oxide
+  intensity_form: boron
+- id: wind-gearbox-boron-boric-oxide
+  enabled: true
+  technology: Wind-Gearbox
+  target:
+    kind: mapped_activity
+  element: Boron
+  provider:
+    name: market for boric oxide
+    reference_product: boric oxide
+  exchange_amount_factor: 3.2198224031079454
+  application: set_direct_amount
+  ecoinvent_form: boric oxide
+  intensity_form: boron
+- id: a-si-boron-diborane
+  enabled: true
+  technology: a-Si
+  target:
+    kind: mapped_activity
+  element: Boron
+  provider:
+    name: sodium tetrafluoroborate production, sodium tetrahydridoborate fluorination
+    reference_product: diborane
+  exchange_amount_factor: 1.2797151049856628
+  application: set_direct_amount
+  ecoinvent_form: diborane
+  intensity_form: boron
+  comment: B2H6 //  // This exchange is already present (not in all the options)
+- id: nuclear-boron-boron-carbide
+  enabled: true
+  technology: Nuclear
+  target:
+    kind: mapped_activity
+  element: Boron
+  provider:
+    name: market for boron carbide
+    reference_product: boron carbide
+  exchange_amount_factor: 1.2777495143834983
+  application: set_direct_amount
+  ecoinvent_form: boron carbide
+  intensity_form: boron
+  comment: B4C
+- id: nuclear-brass-brass
+  enabled: true
+  technology: Nuclear
+  target:
+    kind: mapped_activity
+  element: Brass
+  provider:
+    name: market for brass
+    reference_product: brass
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: brass
+  intensity_form: brass
+  comment: 'It is an alloy: copper + zinc'
+- id: nuclear-cadmium-cadmium
+  enabled: true
+  technology: Nuclear
+  target:
+    kind: mapped_activity
+  element: Cadmium
+  provider:
+    name: market for cadmium
+    reference_product: cadmium
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: cadmium
+  intensity_form: cadmium
+- id: cdte-cadmium-cadmium-telluride-semiconductor-grade
+  enabled: true
+  technology: CdTe
+  target:
+    kind: mapped_activity
+  element: Cadmium
+  provider:
+    name: market for cadmium telluride, semiconductor-grade
+    reference_product: cadmium telluride, semiconductor-grade
+  exchange_amount_factor: 2.135120228447394
+  application: set_direct_amount
+  ecoinvent_form: cadmium telluride, semiconductor-grade
+  intensity_form: cadmium
+  comment: CdTe  // This exchange is already present
+- id: cigs-cadmium-cadmium-sulfide-semiconductor-grade
+  enabled: true
+  technology: CIGS
+  target:
+    kind: mapped_activity
+  element: Cadmium
+  provider:
+    name: market for cadmium sulfide, semiconductor-grade
+    reference_product: cadmium sulfide, semiconductor-grade
+  exchange_amount_factor: 1.2852478849934614
+  application: set_direct_amount
+  ecoinvent_form: cadmium sulfide, semiconductor-grade
+  intensity_form: cadmium
+  comment: CdS  // This exchange is already present
+- id: a-si-cadmium-cadmium-telluride-semiconductor-grade
+  enabled: true
+  technology: a-Si
+  target:
+    kind: mapped_activity
+  element: Cadmium
+  provider:
+    name: market for cadmium telluride, semiconductor-grade
+    reference_product: cadmium telluride, semiconductor-grade
+  exchange_amount_factor: 2.135120228447394
+  application: set_direct_amount
+  ecoinvent_form: cadmium telluride, semiconductor-grade
+  intensity_form: cadmium
+  comment: CdTe  // This exchange is already present
+- id: icev-cerium-cerium-oxide
+  enabled: true
+  technology: ICEV
+  target:
+    kind: mapped_activity
+  element: Cerium
+  provider:
+    name: market for cerium oxide
+    reference_product: cerium oxide
+  exchange_amount_factor: 1.228367923720346
+  application: set_direct_amount
+  ecoinvent_form: cerium oxide
+  intensity_form: cerium
+  comment: CeO2
+- id: ev-cerium-cerium-oxide
+  enabled: true
+  technology: EV
+  target:
+    kind: mapped_activity
+  element: Cerium
+  provider:
+    name: market for cerium oxide
+    reference_product: cerium oxide
+  exchange_amount_factor: 1.228367923720346
+  application: set_direct_amount
+  ecoinvent_form: cerium oxide
+  intensity_form: cerium
+  comment: CeO2
+- id: sofc-y-cerium-cerium-oxide
+  enabled: true
+  technology: SOFC - Y
+  target:
+    kind: mapped_activity
+  element: Cerium
+  provider:
+    name: market for cerium oxide
+    reference_product: cerium oxide
+  exchange_amount_factor: 1.228367923720346
+  application: set_direct_amount
+  ecoinvent_form: cerium oxide
+  intensity_form: cerium
+  comment: CeO2
+- id: sofc-sc-cerium-cerium-oxide
+  enabled: true
+  technology: SOFC - Sc
+  target:
+    kind: mapped_activity
+  element: Cerium
+  provider:
+    name: market for cerium oxide
+    reference_product: cerium oxide
+  exchange_amount_factor: 1.228367923720346
+  application: set_direct_amount
+  ecoinvent_form: cerium oxide
+  intensity_form: cerium
+  comment: CeO2
+- id: htel-yttrium-cerium-cerium-oxide
+  enabled: true
+  technology: HTEL - Yttrium
+  target:
+    kind: mapped_activity
+  element: Cerium
+  provider:
+    name: market for cerium oxide
+    reference_product: cerium oxide
+  exchange_amount_factor: 1.228367923720346
+  application: set_direct_amount
+  ecoinvent_form: cerium oxide
+  intensity_form: cerium
+  comment: CeO2  // This exchange is already present
+- id: wind-ddpm-chromium-steel-chromium-steel-18-8
+  enabled: true
+  technology: Wind-DDPM
+  target:
+    kind: mapped_activity
+  element: Chromium
+  provider:
+    name: market for steel, chromium steel 18/8
+    reference_product: steel, chromium steel 18/8
+  exchange_amount_factor: 5.555555555555555
+  application: set_direct_amount
+  ecoinvent_form: chromium steel 18/8
+  intensity_form: chromium
+  comment: This exchange is already present
+- id: wind-ddee-chromium-steel-chromium-steel-18-8
+  enabled: true
+  technology: Wind-DDEE
+  target:
+    kind: mapped_activity
+  element: Chromium
+  provider:
+    name: market for steel, chromium steel 18/8
+    reference_product: steel, chromium steel 18/8
+  exchange_amount_factor: 5.555555555555555
+  application: set_direct_amount
+  ecoinvent_form: chromium steel 18/8
+  intensity_form: chromium
+  comment: This exchange is already present
+- id: wind-gearbox-chromium-steel-chromium-steel-18-8
+  enabled: true
+  technology: Wind-Gearbox
+  target:
+    kind: mapped_activity
+  element: Chromium
+  provider:
+    name: market for steel, chromium steel 18/8
+    reference_product: steel, chromium steel 18/8
+  exchange_amount_factor: 5.555555555555555
+  application: set_direct_amount
+  ecoinvent_form: chromium steel 18/8
+  intensity_form: chromium
+  comment: This exchange is already present
+- id: cdte-chromium-chromium
+  enabled: true
+  technology: CdTe
+  target:
+    kind: mapped_activity
+  element: Chromium
+  provider:
+    name: market for chromium
+    reference_product: chromium
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: chromium
+  intensity_form: chromium
+  comment: This exchange is already present
+- id: a-si-chromium-chromium
+  enabled: true
+  technology: a-Si
+  target:
+    kind: mapped_activity
+  element: Chromium
+  provider:
+    name: market for chromium
+    reference_product: chromium
+  exchange_amount_factor: 2.0
+  application: set_direct_amount
+  ecoinvent_form: chromium
+  intensity_form: chromium
+- id: parabolic-trough-pb-chromium-steel-chromium-steel-18-8-hot-rolled
+  enabled: true
+  technology: Parabolic Trough - PB
+  target:
+    kind: mapped_activity
+  element: Chromium
+  provider:
+    name: market for steel, chromium steel 18/8, hot rolled
+    reference_product: steel, chromium steel 18/8, hot rolled
+  exchange_amount_factor: 5.555555555555555
+  application: set_direct_amount
+  ecoinvent_form: chromium steel 18/8
+  intensity_form: chromium
+  comment: This exchange is already present
+- id: csp-tower-pb-chromium-steel-chromium-steel-18-8-hot-rolled
+  enabled: true
+  technology: CSP Tower - PB
+  target:
+    kind: mapped_activity
+  element: Chromium
+  provider:
+    name: market for steel, chromium steel 18/8, hot rolled
+    reference_product: steel, chromium steel 18/8, hot rolled
+  exchange_amount_factor: 5.555555555555555
+  application: set_direct_amount
+  ecoinvent_form: chromium steel 18/8
+  intensity_form: chromium
+  comment: This exchange is already present
+- id: nuclear-chromium-steel-chromium-steel-18-8-hot-rolled
+  enabled: true
+  technology: Nuclear
+  target:
+    kind: mapped_activity
+  element: Chromium
+  provider:
+    name: market for steel, chromium steel 18/8, hot rolled
+    reference_product: steel, chromium steel 18/8, hot rolled
+  exchange_amount_factor: 5.555555555555555
+  application: set_direct_amount
+  ecoinvent_form: chromium steel 18/8
+- id: pemfc-chromium-steel-chromium-steel-18-8-hot-rolled
+  enabled: true
+  technology: PEMFC
+  target:
+    kind: mapped_activity
+  element: Chromium
+  provider:
+    name: market for steel, chromium steel 18/8, hot rolled
+    reference_product: steel, chromium steel 18/8, hot rolled
+  exchange_amount_factor: 5.555555555555555
+  application: set_direct_amount
+  ecoinvent_form: chromium steel 18/8
+- id: sofc-y-chromium-steel-chromium-steel-18-8-hot-rolled
+  enabled: true
+  technology: SOFC - Y
+  target:
+    kind: mapped_activity
+  element: Chromium
+  provider:
+    name: market for steel, chromium steel 18/8, hot rolled
+    reference_product: steel, chromium steel 18/8, hot rolled
+  exchange_amount_factor: 5.555555555555555
+  application: set_direct_amount
+  ecoinvent_form: chromium steel 18/8
+- id: sofc-sc-chromium-steel-chromium-steel-18-8-hot-rolled
+  enabled: true
+  technology: SOFC - Sc
+  target:
+    kind: mapped_activity
+  element: Chromium
+  provider:
+    name: market for steel, chromium steel 18/8, hot rolled
+    reference_product: steel, chromium steel 18/8, hot rolled
+  exchange_amount_factor: 5.555555555555555
+  application: set_direct_amount
+  ecoinvent_form: chromium steel 18/8
+- id: pafc-chromium
+  enabled: false
+  technology: PAFC
+  target:
+    kind: mapped_activity
+  element: Chromium
+  provider:
+    name: null
+    reference_product: null
+  exchange_amount_factor: null
+  application: set_direct_amount
+- id: icev-cobalt-cobalt
+  enabled: true
+  technology: ICEV
+  target:
+    kind: mapped_activity
+  element: Cobalt
+  provider:
+    name: market for cobalt
+    reference_product: cobalt
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: cobalt
+  intensity_form: cobalt
+  comment: EV, ICEV, fuel cell and electrolyzers
+- id: ev-cobalt-cobalt
+  enabled: true
+  technology: EV
+  target:
+    kind: mapped_activity
+  element: Cobalt
+  provider:
+    name: market for cobalt
+    reference_product: cobalt
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: cobalt
+  intensity_form: cobalt
+  comment: Batteries
+- id: lco-cobalt-cobalt-sulfate
+  enabled: true
+  technology: LCO
+  target:
+    kind: mapped_activity
+  element: Cobalt
+  provider:
+    name: market for cobalt sulfate
+    reference_product: cobalt sulfate
+  exchange_amount_factor: 2.630003563368571
+  application: set_direct_amount
+  ecoinvent_form: cobalt sulfate
+  intensity_form: cobalt
+  comment: CoSO4
+- id: lmo-cobalt-cobalt-sulfate
+  enabled: true
+  technology: LMO
+  target:
+    kind: mapped_activity
+  element: Cobalt
+  provider:
+    name: market for cobalt sulfate
+    reference_product: cobalt sulfate
+  exchange_amount_factor: 2.630003563368571
+  application: set_direct_amount
+  ecoinvent_form: cobalt sulfate
+  intensity_form: cobalt
+  comment: CoSO4
+- id: nmc111-cobalt-nmc-111-hydroxide-cobalt-sulfate
+  enabled: true
+  technology: NMC111
+  target:
+    kind: exact_activity
+    name: NMC-111 hydroxide
+    reference_product: NMC-111 hydroxide
+  element: Cobalt
+  provider:
+    name: market for cobalt sulfate
+    reference_product: cobalt sulfate
+  exchange_amount_factor: 7.115127100531664
+  application: set_direct_amount
+  ecoinvent_form: cobalt sulfate
+  intensity_form: cobalt
+  comment: CoSO4  // This exchange is already present // These battery technology have two options in Ecoinvent, but none of them have downstream consumers. Finally, I will have to link one of them to the IAM projections
+- id: nmc622-cobalt-nmc-622-hydroxide-cobalt-sulfate
+  enabled: true
+  technology: NMC622
+  target:
+    kind: exact_activity
+    name: NMC-622 hydroxide
+    reference_product: NMC-622 hydroxide
+  element: Cobalt
+  provider:
+    name: market for cobalt sulfate
+    reference_product: cobalt sulfate
+  exchange_amount_factor: 7.115127100531664
+  application: set_direct_amount
+  ecoinvent_form: cobalt sulfate
+  intensity_form: cobalt
+  comment: CoSO4  // This exchange is already present
+- id: nmc811-cobalt-nmc-811-hydroxide-cobalt-sulfate
+  enabled: true
+  technology: NMC811
+  target:
+    kind: exact_activity
+    name: NMC-811 hydroxide
+    reference_product: NMC-811 hydroxide
+  element: Cobalt
+  provider:
+    name: market for cobalt sulfate
+    reference_product: cobalt sulfate
+  exchange_amount_factor: 7.731784021250946
+  application: set_direct_amount
+  ecoinvent_form: cobalt sulfate
+  intensity_form: cobalt
+  comment: CoSO4  // This exchange is already present
+- id: nca-cobalt-nca-hydroxide-production-for-li-ion-battery-cobalt-sulfate
+  enabled: true
+  technology: NCA
+  target:
+    kind: exact_activity
+    name: NCA hydroxide production, for Li-ion battery
+    reference_product: NCA hydroxide
+  element: Cobalt
+  provider:
+    name: market for cobalt sulfate
+    reference_product: cobalt sulfate
+  exchange_amount_factor: 7.795964077457309
+  application: set_direct_amount
+  ecoinvent_form: cobalt sulfate
+  intensity_form: cobalt
+  comment: CoSO4  // This exchange is already present
+- id: lfp-cobalt-cobalt-sulfate
+  enabled: true
+  technology: LFP
+  target:
+    kind: mapped_activity
+  element: Cobalt
+  provider:
+    name: market for cobalt sulfate
+    reference_product: cobalt sulfate
+  exchange_amount_factor: 2.630003563368571
+  application: set_direct_amount
+  ecoinvent_form: cobalt sulfate
+  intensity_form: cobalt
+  comment: CoSO4
+- id: nimh-cobalt-electrode-production-negative-ni-cobalt
+  enabled: true
+  technology: NiMH
+  target:
+    kind: exact_activity
+    name: electrode production, negative, Ni
+    reference_product: electrode, negative, Ni
+  element: Cobalt
+  provider:
+    name: market for cobalt
+    reference_product: cobalt
+  exchange_amount_factor: 2.7859033291544786
+  application: set_direct_amount
+  ecoinvent_form: cobalt
+  intensity_form: cobalt
+  comment: CoSO4  // This exchange is already present
+- id: sofc-y-cobalt-cobalt
+  enabled: true
+  technology: SOFC - Y
+  target:
+    kind: mapped_activity
+  element: Cobalt
+  provider:
+    name: market for cobalt
+    reference_product: cobalt
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: cobalt
+  intensity_form: cobalt
+- id: ael-cobalt-cobalt
+  enabled: true
+  technology: AEL
+  target:
+    kind: mapped_activity
+  element: Cobalt
+  provider:
+    name: market for cobalt
+    reference_product: cobalt
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: cobalt
+  intensity_form: cobalt
+- id: htel-yttrium-cobalt-cobalt
+  enabled: true
+  technology: HTEL - Yttrium
+  target:
+    kind: mapped_activity
+  element: Cobalt
+  provider:
+    name: market for cobalt
+    reference_product: cobalt
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: cobalt
+  intensity_form: cobalt
+- id: copper
+  enabled: false
+  technology: null
+  target:
+    kind: mapped_activity
+  element: Copper
+  provider:
+    name: null
+    reference_product: null
+  exchange_amount_factor: null
+  application: set_direct_amount
+  comment: I would leave the intensities from Ecoinvent
+- id: icev-dysprosium-dysprosium-oxide
+  enabled: true
+  technology: ICEV
+  target:
+    kind: mapped_activity
+  element: Dysprosium
+  provider:
+    name: market for dysprosium oxide
+    reference_product: dysprosium oxide
+  exchange_amount_factor: 1.147683076923077
+  application: set_direct_amount
+  ecoinvent_form: dysprosium oxide
+  intensity_form: dysprosium
+  comment: Dy2O3
+- id: ev-dysprosium-dysprosium-oxide
+  enabled: true
+  technology: EV
+  target:
+    kind: mapped_activity
+  element: Dysprosium
+  provider:
+    name: market for dysprosium oxide
+    reference_product: dysprosium oxide
+  exchange_amount_factor: 1.147683076923077
+  application: set_direct_amount
+  ecoinvent_form: dysprosium oxide
+  intensity_form: dysprosium
+  comment: Dy2O3
+- id: wind-ddpm-dysprosium-dysprosium-oxide
+  enabled: true
+  technology: Wind-DDPM
+  target:
+    kind: mapped_activity
+  element: Dysprosium
+  provider:
+    name: market for dysprosium oxide
+    reference_product: dysprosium oxide
+  exchange_amount_factor: 1.147683076923077
+  application: set_direct_amount
+  ecoinvent_form: dysprosium oxide
+  intensity_form: dysprosium
+  comment: Dy2O3
+- id: wind-ddee-dysprosium-dysprosium-oxide
+  enabled: true
+  technology: Wind-DDEE
+  target:
+    kind: mapped_activity
+  element: Dysprosium
+  provider:
+    name: market for dysprosium oxide
+    reference_product: dysprosium oxide
+  exchange_amount_factor: 1.147683076923077
+  application: set_direct_amount
+  ecoinvent_form: dysprosium oxide
+  intensity_form: dysprosium
+  comment: Dy2O3
+- id: wind-gearbox-dysprosium-dysprosium-oxide
+  enabled: true
+  technology: Wind-Gearbox
+  target:
+    kind: mapped_activity
+  element: Dysprosium
+  provider:
+    name: market for dysprosium oxide
+    reference_product: dysprosium oxide
+  exchange_amount_factor: 1.147683076923077
+  application: set_direct_amount
+  ecoinvent_form: dysprosium oxide
+  intensity_form: dysprosium
+  comment: Dy2O3
+- id: icev-erbium-erbium-oxide
+  enabled: true
+  technology: ICEV
+  target:
+    kind: mapped_activity
+  element: Erbium
+  provider:
+    name: market for erbium oxide
+    reference_product: erbium oxide
+  exchange_amount_factor: 1.1434810682833212
+  application: set_direct_amount
+  ecoinvent_form: erbium oxide
+  intensity_form: erbium
+  comment: Er2O3
+- id: ev-erbium-erbium-oxide
+  enabled: true
+  technology: EV
+  target:
+    kind: mapped_activity
+  element: Erbium
+  provider:
+    name: market for erbium oxide
+    reference_product: erbium oxide
+  exchange_amount_factor: 1.1434810682833212
+  application: set_direct_amount
+  ecoinvent_form: erbium oxide
+  intensity_form: erbium
+  comment: Er2O3
+- id: icev-europium-europium-oxide
+  enabled: true
+  technology: ICEV
+  target:
+    kind: mapped_activity
+  element: Europium
+  provider:
+    name: market for europium oxide
+    reference_product: europium oxide
+  exchange_amount_factor: 1.1579222710641994
+  application: set_direct_amount
+  ecoinvent_form: europium oxide
+  intensity_form: europium
+  comment: Eu2O3
+- id: ev-europium-europium-oxide
+  enabled: true
+  technology: EV
+  target:
+    kind: mapped_activity
+  element: Europium
+  provider:
+    name: market for europium oxide
+    reference_product: europium oxide
+  exchange_amount_factor: 1.1579222710641994
+  application: set_direct_amount
+  ecoinvent_form: europium oxide
+  intensity_form: europium
+  comment: Eu2O3
+- id: icev-gadolinium-gadolinium-oxide
+  enabled: true
+  technology: ICEV
+  target:
+    kind: mapped_activity
+  element: Gadolinium
+  provider:
+    name: market for gadolinium oxide
+    reference_product: gadolinium oxide
+  exchange_amount_factor: 1.1526136724960254
+  application: set_direct_amount
+  ecoinvent_form: gadolinium oxide
+  intensity_form: gadolinium
+  comment: Gd2O3
+- id: ev-gadolinium-gadolinium-oxide
+  enabled: true
+  technology: EV
+  target:
+    kind: mapped_activity
+  element: Gadolinium
+  provider:
+    name: market for gadolinium oxide
+    reference_product: gadolinium oxide
+  exchange_amount_factor: 1.1526136724960254
+  application: set_direct_amount
+  ecoinvent_form: gadolinium oxide
+  intensity_form: gadolinium
+- id: sofc-y-gadolinium-gadolinium-oxide
+  enabled: true
+  technology: SOFC - Y
+  target:
+    kind: mapped_activity
+  element: Gadolinium
+  provider:
+    name: market for gadolinium oxide
+    reference_product: gadolinium oxide
+  exchange_amount_factor: 1.1526136724960254
+  application: set_direct_amount
+  ecoinvent_form: gadolinium oxide
+  intensity_form: gadolinium
+- id: sofc-sc-gadolinium-gadolinium-oxide
+  enabled: true
+  technology: SOFC - Sc
+  target:
+    kind: mapped_activity
+  element: Gadolinium
+  provider:
+    name: market for gadolinium oxide
+    reference_product: gadolinium oxide
+  exchange_amount_factor: 1.1526136724960254
+  application: set_direct_amount
+  ecoinvent_form: gadolinium oxide
+  intensity_form: gadolinium
+- id: icev-gallium-gallium-semiconductor-grade
+  enabled: true
+  technology: ICEV
+  target:
+    kind: mapped_activity
+  element: Gallium
+  provider:
+    name: market for gallium, semiconductor-grade
+    reference_product: gallium, semiconductor-grade
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: gallium
+  intensity_form: gallium
+- id: c-si-gallium-gallium-semiconductor-grade
+  enabled: true
+  technology: c-Si
+  target:
+    kind: mapped_activity
+  element: Gallium
+  provider:
+    name: market for gallium, semiconductor-grade
+    reference_product: gallium, semiconductor-grade
+  exchange_amount_factor: 2.0
+  application: set_direct_amount
+  ecoinvent_form: gallium
+  intensity_form: gallium
+- id: cigs-gallium-gallium-semiconductor-grade
+  enabled: true
+  technology: CIGS
+  target:
+    kind: mapped_activity
+  element: Gallium
+  provider:
+    name: market for gallium, semiconductor-grade
+    reference_product: gallium, semiconductor-grade
+  exchange_amount_factor: 3.0
+  application: set_direct_amount
+  ecoinvent_form: gallium
+  intensity_form: gallium
+  comment: This exchange is already present
+- id: icev-germanium-germanium-concentrate
+  enabled: true
+  technology: ICEV
+  target:
+    kind: mapped_activity
+  element: Germanium
+  provider:
+    name: market for germanium, concentrate
+    reference_product: germanium, concentrate
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: germanium
+  intensity_form: germanium
+  comment: Double check my LCI
+- id: a-si-germanium-germanium-concentrate
+  enabled: true
+  technology: a-Si
+  target:
+    kind: mapped_activity
+  element: Germanium
+  provider:
+    name: market for germanium, concentrate
+    reference_product: germanium, concentrate
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: germanium
+  intensity_form: germanium
+- id: icev-gold-gold
+  enabled: true
+  technology: ICEV
+  target:
+    kind: mapped_activity
+  element: Gold
+  provider:
+    name: market for gold
+    reference_product: gold
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: gold
+  intensity_form: gold
+- id: ev-gold-gold
+  enabled: true
+  technology: EV
+  target:
+    kind: mapped_activity
+  element: Gold
+  provider:
+    name: market for gold
+    reference_product: gold
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: gold
+  intensity_form: gold
+- id: nmc111-graphite-anode-production-graphite-for-li-ion-battery-synthetic-graphite-battery-grade
+  enabled: true
+  technology: NMC111
+  target:
+    kind: exact_activity
+    name: anode production, graphite, for Li-ion battery
+    reference_product: anode, graphite, for Li-ion battery
+  element: Graphite
+  provider:
+    name: market for synthetic graphite, battery grade
+    reference_product: synthetic graphite, battery grade
+  exchange_amount_factor: 5.0
+  application: set_direct_amount
+  ecoinvent_form: graphite
+  intensity_form: graphite
+  comment: 'Location: CN //// Double check with Romain that we are pointing to the right product'
+- id: nmc622-graphite-anode-production-graphite-for-li-ion-battery-synthetic-graphite-battery-grade
+  enabled: true
+  technology: NMC622
+  target:
+    kind: exact_activity
+    name: anode production, graphite, for Li-ion battery
+    reference_product: anode, graphite, for Li-ion battery
+  element: Graphite
+  provider:
+    name: market for synthetic graphite, battery grade
+    reference_product: synthetic graphite, battery grade
+  exchange_amount_factor: 5.0
+  application: set_direct_amount
+  ecoinvent_form: graphite
+  intensity_form: graphite
+- id: nca-graphite-anode-production-graphite-for-li-ion-battery-synthetic-graphite-battery-grade
+  enabled: true
+  technology: NCA
+  target:
+    kind: exact_activity
+    name: anode production, graphite, for Li-ion battery
+    reference_product: anode, graphite, for Li-ion battery
+  element: Graphite
+  provider:
+    name: market for synthetic graphite, battery grade
+    reference_product: synthetic graphite, battery grade
+  exchange_amount_factor: 4.336513443191674
+  application: set_direct_amount
+  ecoinvent_form: graphite
+  intensity_form: graphite
+- id: lfp-graphite-anode-production-graphite-for-li-ion-battery-synthetic-graphite-battery-grade
+  enabled: true
+  technology: LFP
+  target:
+    kind: exact_activity
+    name: anode production, graphite, for Li-ion battery
+    reference_product: anode, graphite, for Li-ion battery
+  element: Graphite
+  provider:
+    name: market for synthetic graphite, battery grade
+    reference_product: synthetic graphite, battery grade
+  exchange_amount_factor: 1.1111111111111112
+  application: set_direct_amount
+  ecoinvent_form: graphite
+  intensity_form: graphite
+- id: ael-graphite-graphite
+  enabled: true
+  technology: AEL
+  target:
+    kind: mapped_activity
+  element: Graphite
+  provider:
+    name: market for graphite
+    reference_product: graphite
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: graphite
+  intensity_form: graphite
+- id: nuclear-hafnium-hafnium-sponge
+  enabled: true
+  technology: Nuclear
+  target:
+    kind: mapped_activity
+  element: Hafnium
+  provider:
+    name: market for hafnium sponge
+    reference_product: hafnium sponge
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: hafnium sponge
+  intensity_form: hafnium
+- id: icev-indium-indium
+  enabled: true
+  technology: ICEV
+  target:
+    kind: mapped_activity
+  element: Indium
+  provider:
+    name: market for indium
+    reference_product: indium
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: indium
+  intensity_form: indium
+- id: ev-indium-indium
+  enabled: true
+  technology: EV
+  target:
+    kind: mapped_activity
+  element: Indium
+  provider:
+    name: market for indium
+    reference_product: indium
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: indium
+  intensity_form: indium
+- id: cdte-indium-indium
+  enabled: true
+  technology: CdTe
+  target:
+    kind: mapped_activity
+  element: Indium
+  provider:
+    name: market for indium
+    reference_product: indium
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: indium
+  intensity_form: indium
+- id: cigs-indium-indium
+  enabled: true
+  technology: CIGS
+  target:
+    kind: mapped_activity
+  element: Indium
+  provider:
+    name: market for indium
+    reference_product: indium
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: indium
+  intensity_form: indium
+- id: a-si-indium-indium
+  enabled: true
+  technology: a-Si
+  target:
+    kind: mapped_activity
+  element: Indium
+  provider:
+    name: market for indium
+    reference_product: indium
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: indium
+  intensity_form: indium
+- id: perovskite-indium-indium-tin-oxide-powder-nanoscale-for-sputtering-target
+  enabled: true
+  technology: perovskite
+  target:
+    kind: mapped_activity
+  element: Indium
+  provider:
+    name: market for indium tin oxide powder, nanoscale, for sputtering target
+    reference_product: indium tin oxide powder, nanoscale, for sputtering target
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: indium
+  intensity_form: indium
+  comment: Unit convertor set to 1 because we want to keep the current intensity for the uncertainty when considering a value of 0 in 2050.
+- id: nuclear-indium-indium
+  enabled: true
+  technology: Nuclear
+  target:
+    kind: mapped_activity
+  element: Indium
+  provider:
+    name: market for indium
+    reference_product: indium
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: indium
+  intensity_form: indium
+- id: pemel-iridium-iridium
+  enabled: true
+  technology: PEMEL
+  target:
+    kind: mapped_activity
+  element: Iridium
+  provider:
+    name: market for iridium
+    reference_product: iridium
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: iridium
+  intensity_form: iridium
+- id: icev-lanthanum-lanthanum-oxide
+  enabled: true
+  technology: ICEV
+  target:
+    kind: mapped_activity
+  element: Lanthanum
+  provider:
+    name: market for lanthanum oxide
+    reference_product: lanthanum oxide
+  exchange_amount_factor: 1.172769158777582
+  application: set_direct_amount
+  ecoinvent_form: lanthanum oxide
+  intensity_form: lanthanum
+  comment: La2O3
+- id: ev-lanthanum-lanthanum-oxide
+  enabled: true
+  technology: EV
+  target:
+    kind: mapped_activity
+  element: Lanthanum
+  provider:
+    name: market for lanthanum oxide
+    reference_product: lanthanum oxide
+  exchange_amount_factor: 1.172769158777582
+  application: set_direct_amount
+  ecoinvent_form: lanthanum oxide
+  intensity_form: lanthanum
+  comment: La2O3
+- id: sofc-y-lanthanum-lanthanum-oxide
+  enabled: true
+  technology: SOFC - Y
+  target:
+    kind: mapped_activity
+  element: Lanthanum
+  provider:
+    name: market for lanthanum oxide
+    reference_product: lanthanum oxide
+  exchange_amount_factor: 1.172769158777582
+  application: set_direct_amount
+  ecoinvent_form: lanthanum oxide
+  intensity_form: lanthanum
+  comment: La2O3
+- id: sofc-sc-lanthanum-lanthanum-oxide
+  enabled: true
+  technology: SOFC - Sc
+  target:
+    kind: mapped_activity
+  element: Lanthanum
+  provider:
+    name: market for lanthanum oxide
+    reference_product: lanthanum oxide
+  exchange_amount_factor: 1.172769158777582
+  application: set_direct_amount
+  ecoinvent_form: lanthanum oxide
+  intensity_form: lanthanum
+  comment: La2O3
+- id: pafc-lanthanum-lanthanum-oxide
+  enabled: true
+  technology: PAFC
+  target:
+    kind: mapped_activity
+  element: Lanthanum
+  provider:
+    name: market for lanthanum oxide
+    reference_product: lanthanum oxide
+  exchange_amount_factor: 1.172769158777582
+  application: set_direct_amount
+  ecoinvent_form: lanthanum oxide
+  intensity_form: lanthanum
+  comment: La2O3
+- id: htel-yttrium-lanthanum-lanthanum-oxide
+  enabled: true
+  technology: HTEL - Yttrium
+  target:
+    kind: mapped_activity
+  element: Lanthanum
+  provider:
+    name: market for lanthanum oxide
+    reference_product: lanthanum oxide
+  exchange_amount_factor: 1.172769158777582
+  application: set_direct_amount
+  ecoinvent_form: lanthanum oxide
+  intensity_form: lanthanum
+  comment: La2O3
+- id: wind-ddpm-lead-lead
+  enabled: true
+  technology: Wind-DDPM
+  target:
+    kind: mapped_activity
+  element: Lead
+  provider:
+    name: market for lead
+    reference_product: lead
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: lead
+  intensity_form: lead
+- id: c-si-lead-lead
+  enabled: true
+  technology: c-Si
+  target:
+    kind: mapped_activity
+  element: Lead
+  provider:
+    name: market for lead
+    reference_product: lead
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: lead
+  intensity_form: lead
+- id: cdte-lead-lead
+  enabled: true
+  technology: CdTe
+  target:
+    kind: mapped_activity
+  element: Lead
+  provider:
+    name: market for lead
+    reference_product: lead
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: lead
+  intensity_form: lead
+- id: lead-acid-lead-lead
+  enabled: true
+  technology: Lead_Acid
+  target:
+    kind: mapped_activity
+  element: Lead
+  provider:
+    name: market for lead
+    reference_product: lead
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: lead
+  intensity_form: lead
+- id: nuclear-lead-lead
+  enabled: true
+  technology: Nuclear
+  target:
+    kind: mapped_activity
+  element: Lead
+  provider:
+    name: market for lead
+    reference_product: lead
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: lead
+  intensity_form: lead
+- id: icev-lithium-lithium-carbonate-battery-grade
+  enabled: true
+  technology: ICEV
+  target:
+    kind: mapped_activity
+  element: Lithium
+  provider:
+    name: market for lithium carbonate, battery grade
+    reference_product: lithium carbonate, battery grade
+  exchange_amount_factor: 5.322792104884022
+  application: set_direct_amount
+  ecoinvent_form: lithium carbonate, battery grade
+  intensity_form: lithium
+  comment: Li2CO3
+- id: ev-lithium-lithium-carbonate-battery-grade
+  enabled: true
+  technology: EV
+  target:
+    kind: mapped_activity
+  element: Lithium
+  provider:
+    name: market for lithium carbonate, battery grade
+    reference_product: lithium carbonate, battery grade
+  exchange_amount_factor: 5.322792104884022
+  application: set_direct_amount
+  ecoinvent_form: lithium carbonate, battery grade
+  intensity_form: lithium
+  comment: Li2CO3
+- id: lco-lithium
+  enabled: false
+  technology: LCO
+  target:
+    kind: mapped_activity
+  element: Lithium
+  provider:
+    name: null
+    reference_product: null
+  exchange_amount_factor: null
+  application: set_direct_amount
+  comment: Not found in Ecoinvent
+- id: lmo-lithium-lithium-manganese-oxide
+  enabled: true
+  technology: LMO
+  target:
+    kind: mapped_activity
+  element: Lithium
+  provider:
+    name: market for lithium manganese oxide
+    reference_product: lithium manganese oxide
+  exchange_amount_factor: 26.04999279642703
+  application: set_direct_amount
+  ecoinvent_form: lithium manganese oxide
+  intensity_form: lithium
+  comment: LiMn2O4
+- id: nmc111-lithium-nmc-111-oxide-lithium-carbonate-battery-grade
+  enabled: true
+  technology: NMC111
+  target:
+    kind: exact_activity
+    name: NMC-111 oxide
+    reference_product: NMC-111 oxide
+  element: Lithium
+  provider:
+    name: market for lithium carbonate, battery grade
+    reference_product: lithium carbonate, battery grade
+  exchange_amount_factor: 13.665705018957697
+  application: set_direct_amount
+  ecoinvent_form: lithium carbonate, battery grade
+  intensity_form: lithium
+  comment: Li2CO3
+- id: nmc622-lithium-nmc-622-oxide-lithium-carbonate-battery-grade
+  enabled: true
+  technology: NMC622
+  target:
+    kind: exact_activity
+    name: NMC-622 oxide
+    reference_product: NMC-622 oxide
+  element: Lithium
+  provider:
+    name: market for lithium carbonate, battery grade
+    reference_product: lithium carbonate, battery grade
+  exchange_amount_factor: 13.665705018957697
+  application: set_direct_amount
+  ecoinvent_form: lithium carbonate, battery grade
+  intensity_form: lithium
+  comment: Li2CO3
+- id: nmc811-lithium-nmc-811-oxide-lithium-hydroxide-battery-grade
+  enabled: true
+  technology: NMC811
+  target:
+    kind: exact_activity
+    name: NMC-811 oxide
+    reference_product: NMC-811 oxide
+  element: Lithium
+  provider:
+    name: market for lithium hydroxide, battery grade
+    reference_product: lithium hydroxide, battery grade
+  exchange_amount_factor: 9.625799128885678
+  application: set_direct_amount
+  ecoinvent_form: lithium hydroxide, battery grade
+  intensity_form: lithium
+  comment: LiOH
+- id: nca-lithium-nca-oxide-lithium-hydroxide-battery-grade
+  enabled: true
+  technology: NCA
+  target:
+    kind: exact_activity
+    name: NCA oxide
+    reference_product: NCA oxide
+  element: Lithium
+  provider:
+    name: market for lithium hydroxide, battery grade
+    reference_product: lithium hydroxide, battery grade
+  exchange_amount_factor: 9.715928334212323
+  application: set_direct_amount
+  ecoinvent_form: lithium hydroxide, battery grade
+  intensity_form: lithium
+- id: lfp-lithium-cathode-paste-lfp-lithium-iron-phosphate
+  enabled: true
+  technology: LFP
+  target:
+    kind: exact_activity
+    name: cathode paste, LFP
+    reference_product: cathode paste, LFP
+  element: Lithium
+  provider:
+    name: market for lithium iron phosphate
+    reference_product: lithium iron phosphate
+  exchange_amount_factor: 22.72842529894828
+  application: set_direct_amount
+  ecoinvent_form: lithium iron phosphate
+  intensity_form: lithium
+  comment: LiFePO4
+- id: lto-lithium
+  enabled: false
+  technology: LTO
+  target:
+    kind: mapped_activity
+  element: Lithium
+  provider:
+    name: null
+    reference_product: null
+  exchange_amount_factor: null
+  application: set_direct_amount
+  comment: It uses NCA cathode
+- id: lis-lithium
+  enabled: false
+  technology: LiS
+  target:
+    kind: mapped_activity
+  element: Lithium
+  provider:
+    name: null
+    reference_product: null
+  exchange_amount_factor: null
+  application: set_direct_amount
+  comment: Not in Ecoinvent
+- id: lio2-lithium
+  enabled: false
+  technology: LiO2
+  target:
+    kind: mapped_activity
+  element: Lithium
+  provider:
+    name: null
+    reference_product: null
+  exchange_amount_factor: null
+  application: set_direct_amount
+  comment: Not in Ecoinvent
+- id: parabolic-trough-pb-magnesium-magnesium
+  enabled: true
+  technology: Parabolic Trough - PB
+  target:
+    kind: mapped_activity
+  element: Magnesium
+  provider:
+    name: market for magnesium
+    reference_product: magnesium
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: magnesium
+  intensity_form: magnesium
+  comment: Used for glass production (Phil et al. 2012)
+- id: csp-tower-pb-magnesium-magnesium
+  enabled: true
+  technology: CSP Tower - PB
+  target:
+    kind: mapped_activity
+  element: Magnesium
+  provider:
+    name: market for magnesium
+    reference_product: magnesium
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: magnesium
+  intensity_form: magnesium
+- id: icev-manganese-manganese
+  enabled: true
+  technology: ICEV
+  target:
+    kind: mapped_activity
+  element: Manganese
+  provider:
+    name: market for manganese
+    reference_product: manganese
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: manganese
+  intensity_form: manganese
+- id: wind-ddpm-manganese-manganese
+  enabled: true
+  technology: Wind-DDPM
+  target:
+    kind: mapped_activity
+  element: Manganese
+  provider:
+    name: market for manganese
+    reference_product: manganese
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: manganese
+  intensity_form: manganese
+- id: wind-ddee-manganese-manganese
+  enabled: true
+  technology: Wind-DDEE
+  target:
+    kind: mapped_activity
+  element: Manganese
+  provider:
+    name: market for manganese
+    reference_product: manganese
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: manganese
+  intensity_form: manganese
+- id: wind-gearbox-manganese-manganese
+  enabled: true
+  technology: Wind-Gearbox
+  target:
+    kind: mapped_activity
+  element: Manganese
+  provider:
+    name: market for manganese
+    reference_product: manganese
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: manganese
+  intensity_form: manganese
+- id: parabolic-trough-pb-manganese-collector-field-area-construction-solar-thermal-parabolic-trough-50-mw-manganese
+  enabled: true
+  technology: Parabolic Trough - PB
+  target:
+    kind: exact_activity
+    name: collector field area construction, solar thermal parabolic trough, 50 MW
+    reference_product: collector field area, solar thermal parabolic trough, 50 MW
+  element: Manganese
+  provider:
+    name: market for manganese
+    reference_product: manganese
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: manganese
+  intensity_form: manganese
+  comment: MnSO4 // This exchange is already present
+- id: csp-tower-pb-manganese-collector-field-area-construction-solar-tower-power-plant-20-mw-manganese
+  enabled: true
+  technology: CSP Tower - PB
+  target:
+    kind: exact_activity
+    name: collector field area construction, solar tower power plant, 20 MW
+    reference_product: collector field area, solar tower power plant, 20 MW
+  element: Manganese
+  provider:
+    name: market for manganese
+    reference_product: manganese
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: manganese
+  intensity_form: manganese
+  comment: MnSO4 // This exchange is already present
+- id: lmo-manganese
+  enabled: false
+  technology: LMO
+  target:
+    kind: mapped_activity
+  element: Manganese
+  provider:
+    name: null
+    reference_product: null
+  exchange_amount_factor: null
+  application: set_direct_amount
+  comment: Already considered in LiMn2O4
+- id: nmc111-manganese-nmc-111-hydroxide-manganese-sulfate
+  enabled: true
+  technology: NMC111
+  target:
+    kind: exact_activity
+    name: NMC-111 hydroxide
+    reference_product: NMC-111 hydroxide
+  element: Manganese
+  provider:
+    name: market for manganese sulfate
+    reference_product: manganese sulfate
+  exchange_amount_factor: 7.435797459543259
+  application: set_direct_amount
+  ecoinvent_form: manganese sulfate
+  intensity_form: manganese
+  comment: This exchange is already present
+- id: nmc622-manganese-nmc-622-hydroxide-manganese-sulfate
+  enabled: true
+  technology: NMC622
+  target:
+    kind: exact_activity
+    name: NMC-622 hydroxide
+    reference_product: NMC-622 hydroxide
+  element: Manganese
+  provider:
+    name: market for manganese sulfate
+    reference_product: manganese sulfate
+  exchange_amount_factor: 7.435797459543259
+  application: set_direct_amount
+  ecoinvent_form: manganese sulfate
+  intensity_form: manganese
+  comment: This exchange is already present
+- id: nmc811-manganese-nmc-811-hydroxide-manganese-sulfate
+  enabled: true
+  technology: NMC811
+  target:
+    kind: exact_activity
+    name: NMC-811 hydroxide
+    reference_product: NMC-811 hydroxide
+  element: Manganese
+  provider:
+    name: market for manganese sulfate
+    reference_product: manganese sulfate
+  exchange_amount_factor: 8.080246377982338
+  application: set_direct_amount
+  ecoinvent_form: manganese sulfate
+  intensity_form: manganese
+  comment: This exchange is already present
+- id: nca-manganese-manganese
+  enabled: true
+  technology: NCA
+  target:
+    kind: mapped_activity
+  element: Manganese
+  provider:
+    name: market for manganese
+    reference_product: manganese
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: manganese
+  intensity_form: manganese
+- id: lfp-manganese-manganese
+  enabled: true
+  technology: LFP
+  target:
+    kind: mapped_activity
+  element: Manganese
+  provider:
+    name: market for manganese
+    reference_product: manganese
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: manganese
+  intensity_form: manganese
+- id: sofc-y-manganese-manganese
+  enabled: true
+  technology: SOFC - Y
+  target:
+    kind: mapped_activity
+  element: Manganese
+  provider:
+    name: market for manganese
+    reference_product: manganese
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: manganese
+  intensity_form: manganese
+  comment: This exchange is already present
+- id: pafc-manganese-manganese
+  enabled: true
+  technology: PAFC
+  target:
+    kind: mapped_activity
+  element: Manganese
+  provider:
+    name: market for manganese
+    reference_product: manganese
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: manganese
+  intensity_form: manganese
+- id: htel-yttrium-manganese-manganese
+  enabled: true
+  technology: HTEL - Yttrium
+  target:
+    kind: mapped_activity
+  element: Manganese
+  provider:
+    name: market for manganese
+    reference_product: manganese
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: manganese
+  intensity_form: manganese
+- id: nuclear-manganese-manganese
+  enabled: true
+  technology: Nuclear
+  target:
+    kind: mapped_activity
+  element: Manganese
+  provider:
+    name: market for manganese
+    reference_product: manganese
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: manganese
+  intensity_form: manganese
+- id: icev-molybdenum-molybdenum
+  enabled: true
+  technology: ICEV
+  target:
+    kind: mapped_activity
+  element: Molybdenum
+  provider:
+    name: market for molybdenum
+    reference_product: molybdenum
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: molybdenum
+  intensity_form: molybdenum
+- id: ev-molybdenum-molybdenum
+  enabled: true
+  technology: EV
+  target:
+    kind: mapped_activity
+  element: Molybdenum
+  provider:
+    name: market for molybdenum
+    reference_product: molybdenum
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: molybdenum
+  intensity_form: molybdenum
+- id: wind-ddpm-molybdenum-molybdenum
+  enabled: true
+  technology: Wind-DDPM
+  target:
+    kind: mapped_activity
+  element: Molybdenum
+  provider:
+    name: market for molybdenum
+    reference_product: molybdenum
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: molybdenum
+  intensity_form: molybdenum
+- id: wind-ddee-molybdenum-molybdenum
+  enabled: true
+  technology: Wind-DDEE
+  target:
+    kind: mapped_activity
+  element: Molybdenum
+  provider:
+    name: market for molybdenum
+    reference_product: molybdenum
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: molybdenum
+  intensity_form: molybdenum
+- id: wind-gearbox-molybdenum-molybdenum
+  enabled: true
+  technology: Wind-Gearbox
+  target:
+    kind: mapped_activity
+  element: Molybdenum
+  provider:
+    name: market for molybdenum
+    reference_product: molybdenum
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: molybdenum
+  intensity_form: molybdenum
+- id: cdte-molybdenum-molybdenum
+  enabled: true
+  technology: CdTe
+  target:
+    kind: mapped_activity
+  element: Molybdenum
+  provider:
+    name: market for molybdenum
+    reference_product: molybdenum
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: molybdenum
+  intensity_form: molybdenum
+- id: cigs-molybdenum-molybdenum
+  enabled: true
+  technology: CIGS
+  target:
+    kind: mapped_activity
+  element: Molybdenum
+  provider:
+    name: market for molybdenum
+    reference_product: molybdenum
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: molybdenum
+  intensity_form: molybdenum
+- id: a-si-molybdenum-molybdenum
+  enabled: true
+  technology: a-Si
+  target:
+    kind: mapped_activity
+  element: Molybdenum
+  provider:
+    name: market for molybdenum
+    reference_product: molybdenum
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: molybdenum
+  intensity_form: molybdenum
+- id: parabolic-trough-pb-molybdenum-molybdenum
+  enabled: true
+  technology: Parabolic Trough - PB
+  target:
+    kind: mapped_activity
+  element: Molybdenum
+  provider:
+    name: market for molybdenum
+    reference_product: molybdenum
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: molybdenum
+  intensity_form: molybdenum
+- id: csp-tower-pb-molybdenum-molybdenum
+  enabled: true
+  technology: CSP Tower - PB
+  target:
+    kind: mapped_activity
+  element: Molybdenum
+  provider:
+    name: market for molybdenum
+    reference_product: molybdenum
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: molybdenum
+  intensity_form: molybdenum
+- id: sofc-y-molybdenum-molybdenum
+  enabled: true
+  technology: SOFC - Y
+  target:
+    kind: mapped_activity
+  element: Molybdenum
+  provider:
+    name: market for molybdenum
+    reference_product: molybdenum
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: molybdenum
+  intensity_form: molybdenum
+- id: pafc-molybdenum-molybdenum
+  enabled: true
+  technology: PAFC
+  target:
+    kind: mapped_activity
+  element: Molybdenum
+  provider:
+    name: market for molybdenum
+    reference_product: molybdenum
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: molybdenum
+  intensity_form: molybdenum
+- id: nuclear-molybdenum-molybdenum
+  enabled: true
+  technology: Nuclear
+  target:
+    kind: mapped_activity
+  element: Molybdenum
+  provider:
+    name: market for molybdenum
+    reference_product: molybdenum
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: molybdenum
+  intensity_form: molybdenum
+- id: icev-neodymium-neodymium-oxide
+  enabled: true
+  technology: ICEV
+  target:
+    kind: mapped_activity
+  element: Neodymium
+  provider:
+    name: market for neodymium oxide
+    reference_product: neodymium oxide
+  exchange_amount_factor: 1.166376644805258
+  application: set_direct_amount
+  ecoinvent_form: neodymium oxide
+  intensity_form: neodymium
+  comment: Nd2O3
+- id: ev-neodymium-permanent-magnet-production-for-electric-motor-neodymium-oxide
+  enabled: true
+  technology: EV
+  target:
+    kind: exact_activity
+    name: permanent magnet production, for electric motor
+    reference_product: permanent magnet, for electric motor
+  element: Neodymium
+  provider:
+    name: market for neodymium oxide
+    reference_product: neodymium oxide
+  exchange_amount_factor: 31.221193017514512
+  application: set_direct_amount
+  ecoinvent_form: neodymium oxide
+  intensity_form: neodymium
+  comment: Nd2O3
+- id: wind-ddpm-neodymium-neodymium-oxide
+  enabled: true
+  technology: Wind-DDPM
+  target:
+    kind: mapped_activity
+  element: Neodymium
+  provider:
+    name: market for neodymium oxide
+    reference_product: neodymium oxide
+  exchange_amount_factor: 1.166376644805258
+  application: set_direct_amount
+  ecoinvent_form: neodymium oxide
+  intensity_form: neodymium
+  comment: Nd2O3
+- id: wind-ddee-neodymium-neodymium-oxide
+  enabled: true
+  technology: Wind-DDEE
+  target:
+    kind: mapped_activity
+  element: Neodymium
+  provider:
+    name: market for neodymium oxide
+    reference_product: neodymium oxide
+  exchange_amount_factor: 1.166376644805258
+  application: set_direct_amount
+  ecoinvent_form: neodymium oxide
+  intensity_form: neodymium
+  comment: Nd2O3
+- id: wind-gearbox-neodymium-neodymium-oxide
+  enabled: true
+  technology: Wind-Gearbox
+  target:
+    kind: mapped_activity
+  element: Neodymium
+  provider:
+    name: market for neodymium oxide
+    reference_product: neodymium oxide
+  exchange_amount_factor: 1.166376644805258
+  application: set_direct_amount
+  ecoinvent_form: neodymium oxide
+  intensity_form: neodymium
+  comment: Nd2O3
+- id: wind-ddpm-nickel
+  enabled: false
+  technology: Wind-DDPM
+  target:
+    kind: mapped_activity
+  element: Nickel
+  provider:
+    name: null
+    reference_product: null
+  exchange_amount_factor: null
+  application: set_direct_amount
+  comment: In steel chromium steel 18/8, It was modified by chromium already
+- id: wind-ddee-nickel
+  enabled: false
+  technology: Wind-DDEE
+  target:
+    kind: mapped_activity
+  element: Nickel
+  provider:
+    name: null
+    reference_product: null
+  exchange_amount_factor: null
+  application: set_direct_amount
+  comment: In steel chromium steel 18/8, It was modified by chromium already
+- id: wind-gearbox-nickel
+  enabled: false
+  technology: Wind-Gearbox
+  target:
+    kind: mapped_activity
+  element: Nickel
+  provider:
+    name: null
+    reference_product: null
+  exchange_amount_factor: null
+  application: set_direct_amount
+  comment: In steel chromium steel 18/8, It was modified by chromium already
+- id: c-si-nickel-nickel-class-1
+  enabled: true
+  technology: c-Si
+  target:
+    kind: mapped_activity
+  element: Nickel
+  provider:
+    name: market for nickel, class 1
+    reference_product: nickel, class 1
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: nickel, class 1
+  intensity_form: nickel
+  comment: This exchange is already present
+- id: cdte-nickel-nickel-class-1
+  enabled: true
+  technology: CdTe
+  target:
+    kind: mapped_activity
+  element: Nickel
+  provider:
+    name: market for nickel, class 1
+    reference_product: nickel, class 1
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: nickel, class 1
+  intensity_form: nickel
+  comment: In steel chromium steel 18/8, It was modified by chromium already
+- id: a-si-nickel-nickel-class-1
+  enabled: true
+  technology: a-Si
+  target:
+    kind: mapped_activity
+  element: Nickel
+  provider:
+    name: market for nickel, class 1
+    reference_product: nickel, class 1
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: nickel, class 1
+  intensity_form: nickel
+  comment: In steel, low-alloyed, hot rolled
+- id: parabolic-trough-pb-nickel-collector-field-area-construction-solar-thermal-parabolic-trough-50-mw-nickel-class-1
+  enabled: true
+  technology: Parabolic Trough - PB
+  target:
+    kind: exact_activity
+    name: collector field area construction, solar thermal parabolic trough, 50 MW
+    reference_product: collector field area, solar thermal parabolic trough, 50 MW
+  element: Nickel
+  provider:
+    name: market for nickel, class 1
+    reference_product: nickel, class 1
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: nickel, class 1
+  intensity_form: nickel
+  comment: This exchange is already present
+- id: csp-tower-pb-nickel-collector-field-area-construction-solar-tower-power-plant-20-mw-nickel-class-1
+  enabled: true
+  technology: CSP Tower - PB
+  target:
+    kind: exact_activity
+    name: collector field area construction, solar tower power plant, 20 MW
+    reference_product: collector field area, solar tower power plant, 20 MW
+  element: Nickel
+  provider:
+    name: market for nickel, class 1
+    reference_product: nickel, class 1
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: nickel, class 1
+  intensity_form: nickel
+  comment: This exchange is already present
+- id: lco-nickel-nickel-class-1
+  enabled: true
+  technology: LCO
+  target:
+    kind: mapped_activity
+  element: Nickel
+  provider:
+    name: market for nickel, class 1
+    reference_product: nickel, class 1
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: nickel, class 1
+  intensity_form: nickel
+- id: lmo-nickel-nickel-class-1
+  enabled: true
+  technology: LMO
+  target:
+    kind: mapped_activity
+  element: Nickel
+  provider:
+    name: market for nickel, class 1
+    reference_product: nickel, class 1
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: nickel, class 1
+  intensity_form: nickel
+- id: nmc111-nickel-nmc-111-hydroxide-nickel-sulfate
+  enabled: true
+  technology: NMC111
+  target:
+    kind: exact_activity
+    name: NMC-111 hydroxide
+    reference_product: NMC-111 hydroxide
+  element: Nickel
+  provider:
+    name: market for nickel sulfate
+    reference_product: nickel sulfate
+  exchange_amount_factor: 6.769367825407404
+  application: set_direct_amount
+  ecoinvent_form: nickel sulfate
+  intensity_form: nickel
+  comment: NiSO4
+- id: nmc622-nickel-nmc-622-hydroxide-nickel-sulfate
+  enabled: true
+  technology: NMC622
+  target:
+    kind: exact_activity
+    name: NMC-622 hydroxide
+    reference_product: NMC-622 hydroxide
+  element: Nickel
+  provider:
+    name: market for nickel sulfate
+    reference_product: nickel sulfate
+  exchange_amount_factor: 6.769367825407404
+  application: set_direct_amount
+  ecoinvent_form: nickel sulfate
+  intensity_form: nickel
+- id: nmc811-nickel-nmc-811-hydroxide-nickel-sulfate
+  enabled: true
+  technology: NMC811
+  target:
+    kind: exact_activity
+    name: NMC-811 hydroxide
+    reference_product: NMC-811 hydroxide
+  element: Nickel
+  provider:
+    name: market for nickel sulfate
+    reference_product: nickel sulfate
+  exchange_amount_factor: 7.356058331346501
+  application: set_direct_amount
+  ecoinvent_form: nickel sulfate
+  intensity_form: nickel
+- id: nca-nickel-nca-hydroxide-nickel-sulfate
+  enabled: true
+  technology: NCA
+  target:
+    kind: exact_activity
+    name: NCA hydroxide
+    reference_product: NCA hydroxide
+  element: Nickel
+  provider:
+    name: market for nickel sulfate
+    reference_product: nickel sulfate
+  exchange_amount_factor: 7.815721349488989
+  application: set_direct_amount
+  ecoinvent_form: nickel sulfate
+  intensity_form: nickel
+- id: lfp-nickel-nickel-class-1
+  enabled: true
+  technology: LFP
+  target:
+    kind: mapped_activity
+  element: Nickel
+  provider:
+    name: market for nickel, class 1
+    reference_product: nickel, class 1
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: nickel, class 1
+  intensity_form: nickel
+- id: lto-nickel-nickel-class-1
+  enabled: true
+  technology: LTO
+  target:
+    kind: mapped_activity
+  element: Nickel
+  provider:
+    name: market for nickel, class 1
+    reference_product: nickel, class 1
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: nickel, class 1
+  intensity_form: nickel
+- id: nimh-nickel-nickel-class-1
+  enabled: true
+  technology: NiMH
+  target:
+    kind: mapped_activity
+  element: Nickel
+  provider:
+    name: market for nickel, class 1
+    reference_product: nickel, class 1
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: nickel, class 1
+  intensity_form: nickel
+- id: lis-nickel
+  enabled: false
+  technology: LiS
+  target:
+    kind: mapped_activity
+  element: Nickel
+  provider:
+    name: null
+    reference_product: null
+  exchange_amount_factor: null
+  application: set_direct_amount
+  comment: Not found in Ecoinvent
+- id: lio2-nickel
+  enabled: false
+  technology: LiO2
+  target:
+    kind: mapped_activity
+  element: Nickel
+  provider:
+    name: null
+    reference_product: null
+  exchange_amount_factor: null
+  application: set_direct_amount
+  comment: Not found in Ecoinvent
+- id: sofc-y-nickel-nickel-class-1
+  enabled: true
+  technology: SOFC - Y
+  target:
+    kind: mapped_activity
+  element: Nickel
+  provider:
+    name: market for nickel, class 1
+    reference_product: nickel, class 1
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: nickel, class 1
+  intensity_form: nickel
+  comment: This exchange is already present
+- id: pafc-nickel
+  enabled: false
+  technology: PAFC
+  target:
+    kind: mapped_activity
+  element: Nickel
+  provider:
+    name: null
+    reference_product: null
+  exchange_amount_factor: null
+  application: set_direct_amount
+  comment: Not found in Ecoinvent
+- id: ael-nickel-nickel-class-1
+  enabled: true
+  technology: AEL
+  target:
+    kind: mapped_activity
+  element: Nickel
+  provider:
+    name: market for nickel, class 1
+    reference_product: nickel, class 1
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: nickel, class 1
+  intensity_form: nickel
+  comment: This exchange is already present
+- id: htel-yttrium-nickel-nickel-class-1
+  enabled: true
+  technology: HTEL - Yttrium
+  target:
+    kind: mapped_activity
+  element: Nickel
+  provider:
+    name: market for nickel, class 1
+    reference_product: nickel, class 1
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: nickel, class 1
+  intensity_form: nickel
+  comment: This exchange is already present
+- id: nuclear-nickel-nickel-class-1
+  enabled: true
+  technology: Nuclear
+  target:
+    kind: mapped_activity
+  element: Nickel
+  provider:
+    name: market for nickel, class 1
+    reference_product: nickel, class 1
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: nickel, class 1
+  intensity_form: nickel
+- id: icev-niobium-ferroniobium-66-nb
+  enabled: true
+  technology: ICEV
+  target:
+    kind: mapped_activity
+  element: Niobium
+  provider:
+    name: market for ferroniobium, 66% Nb
+    reference_product: ferroniobium, 66% Nb
+  exchange_amount_factor: 1.5151515151515151
+  application: set_direct_amount
+  ecoinvent_form: ferroniobium, 66% Nb
+  intensity_form: ferroniobium
+- id: ev-niobium-ferroniobium-66-nb
+  enabled: true
+  technology: EV
+  target:
+    kind: mapped_activity
+  element: Niobium
+  provider:
+    name: market for ferroniobium, 66% Nb
+    reference_product: ferroniobium, 66% Nb
+  exchange_amount_factor: 1.5151515151515151
+  application: set_direct_amount
+  ecoinvent_form: ferroniobium, 66% Nb
+  intensity_form: ferroniobium
+- id: wind-ddpm-niobium-ferroniobium-66-nb
+  enabled: true
+  technology: Wind-DDPM
+  target:
+    kind: mapped_activity
+  element: Niobium
+  provider:
+    name: market for ferroniobium, 66% Nb
+    reference_product: ferroniobium, 66% Nb
+  exchange_amount_factor: 1.5151515151515151
+  application: set_direct_amount
+  ecoinvent_form: ferroniobium, 66% Nb
+  intensity_form: ferroniobium
+- id: wind-ddee-niobium-ferroniobium-66-nb
+  enabled: true
+  technology: Wind-DDEE
+  target:
+    kind: mapped_activity
+  element: Niobium
+  provider:
+    name: market for ferroniobium, 66% Nb
+    reference_product: ferroniobium, 66% Nb
+  exchange_amount_factor: 1.5151515151515151
+  application: set_direct_amount
+  ecoinvent_form: ferroniobium, 66% Nb
+  intensity_form: ferroniobium
+- id: wind-gearbox-niobium-ferroniobium-66-nb
+  enabled: true
+  technology: Wind-Gearbox
+  target:
+    kind: mapped_activity
+  element: Niobium
+  provider:
+    name: market for ferroniobium, 66% Nb
+    reference_product: ferroniobium, 66% Nb
+  exchange_amount_factor: 1.5151515151515151
+  application: set_direct_amount
+  ecoinvent_form: ferroniobium, 66% Nb
+  intensity_form: ferroniobium
+- id: parabolic-trough-pb-niobium-ferroniobium-66-nb
+  enabled: true
+  technology: Parabolic Trough - PB
+  target:
+    kind: mapped_activity
+  element: Niobium
+  provider:
+    name: market for ferroniobium, 66% Nb
+    reference_product: ferroniobium, 66% Nb
+  exchange_amount_factor: 1.5151515151515151
+  application: set_direct_amount
+  ecoinvent_form: ferroniobium, 66% Nb
+  intensity_form: ferroniobium
+- id: csp-tower-pb-niobium-ferroniobium-66-nb
+  enabled: true
+  technology: CSP Tower - PB
+  target:
+    kind: mapped_activity
+  element: Niobium
+  provider:
+    name: market for ferroniobium, 66% Nb
+    reference_product: ferroniobium, 66% Nb
+  exchange_amount_factor: 1.5151515151515151
+  application: set_direct_amount
+  ecoinvent_form: ferroniobium, 66% Nb
+  intensity_form: ferroniobium
+- id: nuclear-niobium-ferroniobium-66-nb
+  enabled: true
+  technology: Nuclear
+  target:
+    kind: mapped_activity
+  element: Niobium
+  provider:
+    name: market for ferroniobium, 66% Nb
+    reference_product: ferroniobium, 66% Nb
+  exchange_amount_factor: 1.5151515151515151
+  application: set_direct_amount
+  ecoinvent_form: ferroniobium, 66% Nb
+  intensity_form: ferroniobium
+- id: icev-palladium-internal-combustion-engine-production-passenger-car-palladium
+  enabled: true
+  technology: ICEV
+  target:
+    kind: exact_activity
+    name: internal combustion engine production, passenger car
+    reference_product: internal combustion engine, passenger car
+  element: Palladium
+  provider:
+    name: market for palladium
+    reference_product: palladium
+  exchange_amount_factor: 3.844231730288702
+  application: set_direct_amount
+  ecoinvent_form: palladium
+  intensity_form: palladium
+  comment: petrol/natural gas
+- id: icev-palladium-internal-combustion-engine-production-passenger-car-palladium-2
+  enabled: true
+  technology: ICEV
+  target:
+    kind: exact_activity
+    name: internal combustion engine production, passenger car
+    reference_product: internal combustion engine, passenger car
+  element: Palladium
+  provider:
+    name: market for palladium
+    reference_product: palladium
+  exchange_amount_factor: 3.2767547021429975
+  application: set_direct_amount
+  ecoinvent_form: palladium
+  intensity_form: palladium
+  comment: diesel
+- id: ev-palladium-palladium
+  enabled: true
+  technology: EV
+  target:
+    kind: mapped_activity
+  element: Palladium
+  provider:
+    name: market for palladium
+    reference_product: palladium
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: palladium
+  intensity_form: palladium
+- id: sofc-y-palladium-palladium
+  enabled: true
+  technology: SOFC - Y
+  target:
+    kind: mapped_activity
+  element: Palladium
+  provider:
+    name: market for palladium
+    reference_product: palladium
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: palladium
+  intensity_form: palladium
+- id: pafc-palladium-palladium
+  enabled: true
+  technology: PAFC
+  target:
+    kind: mapped_activity
+  element: Palladium
+  provider:
+    name: market for palladium
+    reference_product: palladium
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: palladium
+  intensity_form: palladium
+- id: nmc111-phosphorous-electrolyte-for-li-ion-battery-lithium-hexafluorophosphate
+  enabled: false
+  technology: NMC111
+  target:
+    kind: exact_activity
+    name: electrolyte, for Li-ion battery
+    reference_product: electrolyte, for Li-ion battery
+  element: Phosphorous
+  provider:
+    name: market for lithium hexafluorophosphate
+    reference_product: lithium hexafluorophosphate
+  exchange_amount_factor: 149.89648564318037
+  application: set_direct_amount
+  ecoinvent_form: lithium hexafluorophosphate
+  intensity_form: lithium
+  comment: LiPF6
+- id: nmc622-phosphorous-electrolyte-for-li-ion-battery-lithium-hexafluorophosphate
+  enabled: false
+  technology: NMC622
+  target:
+    kind: exact_activity
+    name: electrolyte, for Li-ion battery
+    reference_product: electrolyte, for Li-ion battery
+  element: Phosphorous
+  provider:
+    name: market for lithium hexafluorophosphate
+    reference_product: lithium hexafluorophosphate
+  exchange_amount_factor: 149.89648564318037
+  application: set_direct_amount
+  ecoinvent_form: lithium hexafluorophosphate
+  intensity_form: lithium
+- id: nca-phosphorous-electrolyte-for-li-ion-battery-lithium-hexafluorophosphate
+  enabled: false
+  technology: NCA
+  target:
+    kind: exact_activity
+    name: electrolyte, for Li-ion battery
+    reference_product: electrolyte, for Li-ion battery
+  element: Phosphorous
+  provider:
+    name: market for lithium hexafluorophosphate
+    reference_product: lithium hexafluorophosphate
+  exchange_amount_factor: 147.4722837190319
+  application: set_direct_amount
+  ecoinvent_form: lithium hexafluorophosphate
+  intensity_form: lithium
+- id: lfp-phosphorous-electrolyte-lfp-lithium-hexafluorophosphate
+  enabled: false
+  technology: LFP
+  target:
+    kind: exact_activity
+    name: electrolyte, LFP
+    reference_product: electrolyte, LFP
+  element: Phosphorous
+  provider:
+    name: market for lithium hexafluorophosphate
+    reference_product: lithium hexafluorophosphate
+  exchange_amount_factor: 21.884886903904334
+  application: set_direct_amount
+  ecoinvent_form: lithium hexafluorophosphate
+  intensity_form: lithium
+- id: lto-phosphorous-electrolyte-lto-lithium-hexafluorophosphate
+  enabled: false
+  technology: LTO
+  target:
+    kind: exact_activity
+    name: electrolyte, LTO
+    reference_product: electrolyte, LTO
+  element: Phosphorous
+  provider:
+    name: market for lithium hexafluorophosphate
+    reference_product: lithium hexafluorophosphate
+  exchange_amount_factor: 255.32453162732267
+  application: set_direct_amount
+  ecoinvent_form: lithium hexafluorophosphate
+  intensity_form: lithium
+- id: icev-platinum-internal-combustion-engine-production-passenger-car-platinum
+  enabled: true
+  technology: ICEV
+  target:
+    kind: exact_activity
+    name: internal combustion engine production, passenger car
+    reference_product: internal combustion engine, passenger car
+  element: Platinum
+  provider:
+    name: market for platinum
+    reference_product: platinum
+  exchange_amount_factor: 3.844231730288702
+  application: set_direct_amount
+  ecoinvent_form: platinum
+  intensity_form: platinum
+  comment: This exchange is already present
+- id: icev-platinum-internal-combustion-engine-production-passenger-car-platinum-2
+  enabled: true
+  technology: ICEV
+  target:
+    kind: exact_activity
+    name: internal combustion engine production, passenger car
+    reference_product: internal combustion engine, passenger car
+  element: Platinum
+  provider:
+    name: market for platinum
+    reference_product: platinum
+  exchange_amount_factor: 3.2767547021429975
+  application: set_direct_amount
+  ecoinvent_form: platinum
+  intensity_form: platinum
+  comment: This exchange is already present
+- id: ev-platinum-platinum
+  enabled: true
+  technology: EV
+  target:
+    kind: mapped_activity
+  element: Platinum
+  provider:
+    name: market for platinum
+    reference_product: platinum
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: platinum
+  intensity_form: platinum
+- id: pemfc-platinum-platinum
+  enabled: true
+  technology: PEMFC
+  target:
+    kind: mapped_activity
+  element: Platinum
+  provider:
+    name: market for platinum
+    reference_product: platinum
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: platinum
+  intensity_form: platinum
+  comment: This exchange is already present
+- id: sofc-y-platinum-platinum
+  enabled: true
+  technology: SOFC - Y
+  target:
+    kind: mapped_activity
+  element: Platinum
+  provider:
+    name: market for platinum
+    reference_product: platinum
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: platinum
+  intensity_form: platinum
+  comment: This exchange is already present
+- id: pafc-platinum-platinum
+  enabled: true
+  technology: PAFC
+  target:
+    kind: mapped_activity
+  element: Platinum
+  provider:
+    name: market for platinum
+    reference_product: platinum
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: platinum
+  intensity_form: platinum
+  comment: This exchange is already present
+- id: pemel-platinum-platinum
+  enabled: true
+  technology: PEMEL
+  target:
+    kind: mapped_activity
+  element: Platinum
+  provider:
+    name: market for platinum
+    reference_product: platinum
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: platinum
+  intensity_form: platinum
+  comment: This exchange is already present
+- id: ael-platinum-platinum
+  enabled: true
+  technology: AEL
+  target:
+    kind: mapped_activity
+  element: Platinum
+  provider:
+    name: market for platinum
+    reference_product: platinum
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: platinum
+  intensity_form: platinum
+  comment: This exchange is already present
+- id: pemel-potassium-potassium-hydroxide
+  enabled: true
+  technology: PEMEL
+  target:
+    kind: mapped_activity
+  element: Potassium
+  provider:
+    name: market for potassium hydroxide
+    reference_product: potassium hydroxide
+  exchange_amount_factor: 1.434983886643818
+  application: set_direct_amount
+  ecoinvent_form: potassium hydroxide
+  intensity_form: potassium
+  comment: KOH
+- id: ael-potassium-potassium-hydroxide
+  enabled: true
+  technology: AEL
+  target:
+    kind: mapped_activity
+  element: Potassium
+  provider:
+    name: market for potassium hydroxide
+    reference_product: potassium hydroxide
+  exchange_amount_factor: 1.434983886643818
+  application: set_direct_amount
+  ecoinvent_form: potassium hydroxide
+  intensity_form: potassium
+  comment: '"hydrogen production, gaseous, 20 bar, from AEC electrolysis, from grid electricity" demands potassium hydroxide'
+- id: icev-praseodymium-praseodymium-oxide
+  enabled: true
+  technology: ICEV
+  target:
+    kind: mapped_activity
+  element: Praseodymium
+  provider:
+    name: market for praseodymium oxide
+    reference_product: praseodymium oxide
+  exchange_amount_factor: 1.1703132540380958
+  application: set_direct_amount
+  ecoinvent_form: praseodymium oxide
+  intensity_form: praseodymium
+  comment: Pr2O3
+- id: ev-praseodymium-praseodymium-oxide
+  enabled: true
+  technology: EV
+  target:
+    kind: mapped_activity
+  element: Praseodymium
+  provider:
+    name: market for praseodymium oxide
+    reference_product: praseodymium oxide
+  exchange_amount_factor: 1.1703132540380958
+  application: set_direct_amount
+  ecoinvent_form: praseodymium oxide
+  intensity_form: praseodymium
+  comment: Pr2O4
+- id: wind-ddpm-praseodymium-praseodymium-oxide
+  enabled: true
+  technology: Wind-DDPM
+  target:
+    kind: mapped_activity
+  element: Praseodymium
+  provider:
+    name: market for praseodymium oxide
+    reference_product: praseodymium oxide
+  exchange_amount_factor: 1.1703132540380958
+  application: set_direct_amount
+  ecoinvent_form: praseodymium oxide
+  intensity_form: praseodymium
+  comment: Pr2O5
+- id: wind-gearbox-praseodymium-praseodymium-oxide
+  enabled: true
+  technology: Wind-Gearbox
+  target:
+    kind: mapped_activity
+  element: Praseodymium
+  provider:
+    name: market for praseodymium oxide
+    reference_product: praseodymium oxide
+  exchange_amount_factor: 1.1703132540380958
+  application: set_direct_amount
+  ecoinvent_form: praseodymium oxide
+  intensity_form: praseodymium
+  comment: Pr2O6
+- id: htel-yttrium-praseodymium-praseodymium-oxide
+  enabled: true
+  technology: HTEL - Yttrium
+  target:
+    kind: mapped_activity
+  element: Praseodymium
+  provider:
+    name: market for praseodymium oxide
+    reference_product: praseodymium oxide
+  exchange_amount_factor: 1.1703132540380958
+  application: set_direct_amount
+  ecoinvent_form: praseodymium oxide
+  intensity_form: praseodymium
+  comment: Pr2O7
+- id: icev-rhenium-rhenium
+  enabled: true
+  technology: ICEV
+  target:
+    kind: mapped_activity
+  element: Rhenium
+  provider:
+    name: market for rhenium
+    reference_product: rhenium
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: rhenium
+  intensity_form: rhenium
+- id: icev-rhodium-rhodium
+  enabled: true
+  technology: ICEV
+  target:
+    kind: mapped_activity
+  element: Rhodium
+  provider:
+    name: market for rhodium
+    reference_product: rhodium
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: rhodium
+  intensity_form: rhodium
+- id: ev-rhodium-rhodium
+  enabled: true
+  technology: EV
+  target:
+    kind: mapped_activity
+  element: Rhodium
+  provider:
+    name: market for rhodium
+    reference_product: rhodium
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: rhodium
+  intensity_form: rhodium
+- id: icev-ruthenium-ruthenium
+  enabled: true
+  technology: ICEV
+  target:
+    kind: mapped_activity
+  element: Ruthenium
+  provider:
+    name: market for ruthenium
+    reference_product: ruthenium
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: ruthenium
+  intensity_form: ruthenium
+- id: pemel-ruthenium-ruthenium
+  enabled: true
+  technology: PEMEL
+  target:
+    kind: mapped_activity
+  element: Ruthenium
+  provider:
+    name: market for ruthenium
+    reference_product: ruthenium
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: ruthenium
+  intensity_form: ruthenium
+- id: icev-samarium-samarium-oxide
+  enabled: true
+  technology: ICEV
+  target:
+    kind: mapped_activity
+  element: Samarium
+  provider:
+    name: market for samarium oxide
+    reference_product: samarium oxide
+  exchange_amount_factor: 1.1596069433359937
+  application: set_direct_amount
+  ecoinvent_form: samarium oxide
+  intensity_form: samarium
+  comment: Sm2O3
+- id: ev-samarium-samarium-oxide
+  enabled: true
+  technology: EV
+  target:
+    kind: mapped_activity
+  element: Samarium
+  provider:
+    name: market for samarium oxide
+    reference_product: samarium oxide
+  exchange_amount_factor: 1.1596069433359937
+  application: set_direct_amount
+  ecoinvent_form: samarium oxide
+  intensity_form: samarium
+- id: icev-scandium-scandium-oxide
+  enabled: true
+  technology: ICEV
+  target:
+    kind: mapped_activity
+  element: Scandium
+  provider:
+    name: market for scandium oxide
+    reference_product: scandium oxide
+  exchange_amount_factor: 1.5338219592490434
+  application: set_direct_amount
+  ecoinvent_form: scandium oxide
+  intensity_form: scandium
+  comment: Sc2O3
+- id: ev-scandium-scandium-oxide
+  enabled: true
+  technology: EV
+  target:
+    kind: mapped_activity
+  element: Scandium
+  provider:
+    name: market for scandium oxide
+    reference_product: scandium oxide
+  exchange_amount_factor: 1.5338219592490434
+  application: set_direct_amount
+  ecoinvent_form: scandium oxide
+  intensity_form: scandium
+- id: sofc-sc-scandium-scandium-oxide
+  enabled: true
+  technology: SOFC - Sc
+  target:
+    kind: mapped_activity
+  element: Scandium
+  provider:
+    name: market for scandium oxide
+    reference_product: scandium oxide
+  exchange_amount_factor: 1.5338219592490434
+  application: set_direct_amount
+  ecoinvent_form: scandium oxide
+  intensity_form: scandium
+- id: htel-sc-scandium-scandium-oxide
+  enabled: true
+  technology: HTEL - Sc
+  target:
+    kind: mapped_activity
+  element: Scandium
+  provider:
+    name: market for scandium oxide
+    reference_product: scandium oxide
+  exchange_amount_factor: 1.5338219592490434
+  application: set_direct_amount
+  ecoinvent_form: scandium oxide
+  intensity_form: scandium
+- id: cigs-selenium-selenium
+  enabled: true
+  technology: CIGS
+  target:
+    kind: mapped_activity
+  element: Selenium
+  provider:
+    name: market for selenium
+    reference_product: selenium
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: selenium
+  intensity_form: selenium
+- id: c-si-silicon
+  enabled: false
+  technology: c-Si
+  target:
+    kind: mapped_activity
+  element: Silicon
+  provider:
+    name: null
+    reference_product: null
+  exchange_amount_factor: null
+  application: set_direct_amount
+  comment: It is coming from many sources
+- id: a-si-silicon
+  enabled: false
+  technology: a-Si
+  target:
+    kind: mapped_activity
+  element: Silicon
+  provider:
+    name: null
+    reference_product: null
+  exchange_amount_factor: null
+  application: set_direct_amount
+  comment: I would trust the ecoinvent values over the literature review
+- id: parabolic-trough-pb-silicon
+  enabled: false
+  technology: Parabolic Trough - PB
+  target:
+    kind: mapped_activity
+  element: Silicon
+  provider:
+    name: null
+    reference_product: null
+  exchange_amount_factor: null
+  application: set_direct_amount
+- id: csp-tower-pb-silicon
+  enabled: false
+  technology: CSP Tower - PB
+  target:
+    kind: mapped_activity
+  element: Silicon
+  provider:
+    name: null
+    reference_product: null
+  exchange_amount_factor: null
+  application: set_direct_amount
+- id: icev-silver-silver
+  enabled: true
+  technology: ICEV
+  target:
+    kind: mapped_activity
+  element: Silver
+  provider:
+    name: market for silver
+    reference_product: silver
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: silver
+  intensity_form: silver
+- id: c-si-silver-silver
+  enabled: true
+  technology: c-Si
+  target:
+    kind: mapped_activity
+  element: Silver
+  provider:
+    name: market for silver
+    reference_product: silver
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: silver
+  intensity_form: silver
+- id: cdte-silver-silver
+  enabled: true
+  technology: CdTe
+  target:
+    kind: mapped_activity
+  element: Silver
+  provider:
+    name: market for silver
+    reference_product: silver
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: silver
+  intensity_form: silver
+- id: cigs-silver-silver
+  enabled: true
+  technology: CIGS
+  target:
+    kind: mapped_activity
+  element: Silver
+  provider:
+    name: market for silver
+    reference_product: silver
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: silver
+  intensity_form: silver
+- id: parabolic-trough-pb-silver-silver
+  enabled: true
+  technology: Parabolic Trough - PB
+  target:
+    kind: mapped_activity
+  element: Silver
+  provider:
+    name: market for silver
+    reference_product: silver
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: silver
+  intensity_form: silver
+- id: csp-tower-pb-silver-silver
+  enabled: true
+  technology: CSP Tower - PB
+  target:
+    kind: mapped_activity
+  element: Silver
+  provider:
+    name: market for silver
+    reference_product: silver
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: silver
+  intensity_form: silver
+- id: ael-silver-silver
+  enabled: true
+  technology: AEL
+  target:
+    kind: mapped_activity
+  element: Silver
+  provider:
+    name: market for silver
+    reference_product: silver
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: silver
+  intensity_form: silver
+- id: nuclear-silver-silver
+  enabled: true
+  technology: Nuclear
+  target:
+    kind: mapped_activity
+  element: Silver
+  provider:
+    name: market for silver
+    reference_product: silver
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: silver
+  intensity_form: silver
+- id: nmc111-sulfur
+  enabled: false
+  technology: NMC111
+  target:
+    kind: mapped_activity
+  element: Sulfur
+  provider:
+    name: null
+    reference_product: null
+  exchange_amount_factor: null
+  application: set_direct_amount
+  comment: In nickel and manganese sulfate // Already considered when modifying the other exchanges
+- id: icev-strontium-strontium-carbonate
+  enabled: true
+  technology: ICEV
+  target:
+    kind: mapped_activity
+  element: Strontium
+  provider:
+    name: market for strontium carbonate
+    reference_product: strontium carbonate
+  exchange_amount_factor: 1.6848664688427297
+  application: set_direct_amount
+  ecoinvent_form: strontium carbonate
+  intensity_form: strontium
+  comment: SrCO3
+- id: htel-yttrium-strontium-strontium-carbonate
+  enabled: true
+  technology: HTEL - Yttrium
+  target:
+    kind: mapped_activity
+  element: Strontium
+  provider:
+    name: market for strontium carbonate
+    reference_product: strontium carbonate
+  exchange_amount_factor: 1.6848664688427297
+  application: set_direct_amount
+  ecoinvent_form: strontium carbonate
+  intensity_form: strontium
+  comment: This exchange is already present
+- id: icev-tantalum-tantalum-powder-capacitor-grade
+  enabled: true
+  technology: ICEV
+  target:
+    kind: mapped_activity
+  element: Tantalum
+  provider:
+    name: market for tantalum powder, capacitor-grade
+    reference_product: tantalum powder, capacitor-grade
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: tantalum powder, capacitor-grade
+  intensity_form: tantalum
+- id: ev-tantalum-tantalum-powder-capacitor-grade
+  enabled: true
+  technology: EV
+  target:
+    kind: mapped_activity
+  element: Tantalum
+  provider:
+    name: market for tantalum powder, capacitor-grade
+    reference_product: tantalum powder, capacitor-grade
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: tantalum powder, capacitor-grade
+  intensity_form: tantalum
+- id: icev-tellurium-tellurium-semiconductor-grade
+  enabled: true
+  technology: ICEV
+  target:
+    kind: mapped_activity
+  element: Tellurium
+  provider:
+    name: market for tellurium, semiconductor-grade
+    reference_product: tellurium, semiconductor-grade
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: tellurium, semiconductor-grade
+  intensity_form: tellurium
+- id: icev-terbium-terbium-oxide
+  enabled: true
+  technology: ICEV
+  target:
+    kind: mapped_activity
+  element: Terbium
+  provider:
+    name: market for terbium oxide
+    reference_product: terbium oxide
+  exchange_amount_factor: 1.2013402548371872
+  application: set_direct_amount
+  ecoinvent_form: terbium oxide
+  intensity_form: terbium
+  comment: TbO2
+- id: ev-terbium-terbium-oxide
+  enabled: true
+  technology: EV
+  target:
+    kind: mapped_activity
+  element: Terbium
+  provider:
+    name: market for terbium oxide
+    reference_product: terbium oxide
+  exchange_amount_factor: 1.2013402548371872
+  application: set_direct_amount
+  ecoinvent_form: terbium oxide
+  intensity_form: terbium
+- id: wind-ddpm-terbium-terbium-oxide
+  enabled: true
+  technology: Wind-DDPM
+  target:
+    kind: mapped_activity
+  element: Terbium
+  provider:
+    name: market for terbium oxide
+    reference_product: terbium oxide
+  exchange_amount_factor: 1.2013402548371872
+  application: set_direct_amount
+  ecoinvent_form: terbium oxide
+  intensity_form: terbium
+- id: wind-ddee-terbium-terbium-oxide
+  enabled: true
+  technology: Wind-DDEE
+  target:
+    kind: mapped_activity
+  element: Terbium
+  provider:
+    name: market for terbium oxide
+    reference_product: terbium oxide
+  exchange_amount_factor: 1.2013402548371872
+  application: set_direct_amount
+  ecoinvent_form: terbium oxide
+  intensity_form: terbium
+- id: wind-gearbox-terbium-terbium-oxide
+  enabled: true
+  technology: Wind-Gearbox
+  target:
+    kind: mapped_activity
+  element: Terbium
+  provider:
+    name: market for terbium oxide
+    reference_product: terbium oxide
+  exchange_amount_factor: 1.2013402548371872
+  application: set_direct_amount
+  ecoinvent_form: terbium oxide
+  intensity_form: terbium
+- id: icev-tin-tin
+  enabled: true
+  technology: ICEV
+  target:
+    kind: mapped_activity
+  element: Tin
+  provider:
+    name: market for tin
+    reference_product: tin
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: tin
+  intensity_form: tin
+- id: c-si-tin-tin
+  enabled: true
+  technology: c-Si
+  target:
+    kind: mapped_activity
+  element: Tin
+  provider:
+    name: market for tin
+    reference_product: tin
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: tin
+  intensity_form: tin
+  comment: There is already some in the silicone products, but difficult to assess
+- id: cdte-tin-tin
+  enabled: true
+  technology: CdTe
+  target:
+    kind: mapped_activity
+  element: Tin
+  provider:
+    name: market for tin
+    reference_product: tin
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: tin
+  intensity_form: tin
+  comment: There is already some in the silicone products, but difficult to assess
+- id: cigs-tin-tin
+  enabled: true
+  technology: CIGS
+  target:
+    kind: mapped_activity
+  element: Tin
+  provider:
+    name: market for tin
+    reference_product: tin
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: tin
+  intensity_form: tin
+  comment: This exchange is already present
+- id: a-si-tin-tin
+  enabled: true
+  technology: a-Si
+  target:
+    kind: mapped_activity
+  element: Tin
+  provider:
+    name: market for tin
+    reference_product: tin
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: tin
+  intensity_form: tin
+  comment: There is already some in the silicone products, but difficult to assess
+- id: nuclear-tin-tin
+  enabled: true
+  technology: Nuclear
+  target:
+    kind: mapped_activity
+  element: Tin
+  provider:
+    name: market for tin
+    reference_product: tin
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: tin
+  intensity_form: tin
+- id: parabolic-trough-pb-titanium-titanium
+  enabled: true
+  technology: Parabolic Trough - PB
+  target:
+    kind: mapped_activity
+  element: Titanium
+  provider:
+    name: market for titanium
+    reference_product: titanium
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: titanium
+  intensity_form: titanium
+- id: csp-tower-pb-titanium-titanium
+  enabled: true
+  technology: CSP Tower - PB
+  target:
+    kind: mapped_activity
+  element: Titanium
+  provider:
+    name: market for titanium
+    reference_product: titanium
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: titanium
+  intensity_form: titanium
+- id: lfp-titanium-titanium
+  enabled: true
+  technology: LFP
+  target:
+    kind: mapped_activity
+  element: Titanium
+  provider:
+    name: market for titanium
+    reference_product: titanium
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: titanium
+  intensity_form: alluminium
+  comment: There is already some in the alluminium alloy
+- id: lto-titanium-titanium
+  enabled: true
+  technology: LTO
+  target:
+    kind: mapped_activity
+  element: Titanium
+  provider:
+    name: market for titanium
+    reference_product: titanium
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: titanium
+  intensity_form: titanium
+- id: pemel-titanium-titanium
+  enabled: true
+  technology: PEMEL
+  target:
+    kind: mapped_activity
+  element: Titanium
+  provider:
+    name: market for titanium
+    reference_product: titanium
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: titanium
+  intensity_form: titanium
+  comment: This exchange is already present
+- id: icev-tungsten-tungsten-carbide-powder
+  enabled: true
+  technology: ICEV
+  target:
+    kind: mapped_activity
+  element: Tungsten
+  provider:
+    name: market for tungsten carbide powder
+    reference_product: tungsten carbide powder
+  exchange_amount_factor: 1.0653394255874673
+  application: set_direct_amount
+  ecoinvent_form: tungsten carbide powder
+  intensity_form: tungsten
+  comment: WC
+- id: nuclear-tungsten-tungsten-carbide-powder
+  enabled: true
+  technology: Nuclear
+  target:
+    kind: mapped_activity
+  element: Tungsten
+  provider:
+    name: market for tungsten carbide powder
+    reference_product: tungsten carbide powder
+  exchange_amount_factor: 1.0653394255874673
+  application: set_direct_amount
+  ecoinvent_form: tungsten carbide powder
+  intensity_form: tungsten
+  comment: WC
+- id: wind-ddpm-vanadium-vanadium-pentoxide
+  enabled: true
+  technology: Wind-DDPM
+  target:
+    kind: mapped_activity
+  element: Vanadium
+  provider:
+    name: market for vanadium pentoxide
+    reference_product: vanadium pentoxide
+  exchange_amount_factor: 1.7851576302461625
+  application: set_direct_amount
+  ecoinvent_form: vanadium pentoxide
+  intensity_form: vanadium
+  comment: V2O5
+- id: wind-gearbox-vanadium-vanadium-pentoxide
+  enabled: true
+  technology: Wind-Gearbox
+  target:
+    kind: mapped_activity
+  element: Vanadium
+  provider:
+    name: market for vanadium pentoxide
+    reference_product: vanadium pentoxide
+  exchange_amount_factor: 1.7851576302461625
+  application: set_direct_amount
+  ecoinvent_form: vanadium pentoxide
+  intensity_form: vanadium
+  comment: V2O5
+- id: parabolic-trough-pb-vanadium-vanadium-pentoxide
+  enabled: true
+  technology: Parabolic Trough - PB
+  target:
+    kind: mapped_activity
+  element: Vanadium
+  provider:
+    name: market for vanadium pentoxide
+    reference_product: vanadium pentoxide
+  exchange_amount_factor: 1.7851576302461625
+  application: set_direct_amount
+  ecoinvent_form: vanadium pentoxide
+  intensity_form: vanadium
+  comment: V2O5
+- id: csp-tower-pb-vanadium-vanadium-pentoxide
+  enabled: true
+  technology: CSP Tower - PB
+  target:
+    kind: mapped_activity
+  element: Vanadium
+  provider:
+    name: market for vanadium pentoxide
+    reference_product: vanadium pentoxide
+  exchange_amount_factor: 1.7851576302461625
+  application: set_direct_amount
+  ecoinvent_form: vanadium pentoxide
+  intensity_form: vanadium
+  comment: V2O5
+- id: nimh-vanadium-vanadium-pentoxide
+  enabled: true
+  technology: NiMH
+  target:
+    kind: mapped_activity
+  element: Vanadium
+  provider:
+    name: market for vanadium pentoxide
+    reference_product: vanadium pentoxide
+  exchange_amount_factor: 1.7851576302461625
+  application: set_direct_amount
+  ecoinvent_form: vanadium pentoxide
+  intensity_form: vanadium
+  comment: V2O5
+- id: nuclear-vanadium-vanadium-pentoxide
+  enabled: true
+  technology: Nuclear
+  target:
+    kind: mapped_activity
+  element: Vanadium
+  provider:
+    name: market for vanadium pentoxide
+    reference_product: vanadium pentoxide
+  exchange_amount_factor: 1.7851576302461625
+  application: set_direct_amount
+  ecoinvent_form: vanadium pentoxide
+  intensity_form: vanadium
+  comment: V2O5
+- id: icev-ytterbium-ytterbium-oxide
+  enabled: true
+  technology: ICEV
+  target:
+    kind: mapped_activity
+  element: Ytterbium
+  provider:
+    name: market for ytterbium oxide
+    reference_product: ytterbium oxide
+  exchange_amount_factor: 1.1386875866851596
+  application: set_direct_amount
+  ecoinvent_form: ytterbium oxide
+  intensity_form: ytterbium
+  comment: Yb2O3
+- id: ev-ytterbium-ytterbium-oxide
+  enabled: true
+  technology: EV
+  target:
+    kind: mapped_activity
+  element: Ytterbium
+  provider:
+    name: market for ytterbium oxide
+    reference_product: ytterbium oxide
+  exchange_amount_factor: 1.1386875866851596
+  application: set_direct_amount
+  ecoinvent_form: ytterbium oxide
+  intensity_form: ytterbium
+  comment: Yb2O3
+- id: icev-yttrium-yttrium-oxide
+  enabled: true
+  technology: ICEV
+  target:
+    kind: mapped_activity
+  element: Yttrium
+  provider:
+    name: market for yttrium oxide
+    reference_product: yttrium oxide
+  exchange_amount_factor: 1.2699311632510744
+  application: set_direct_amount
+  ecoinvent_form: yttrium oxide
+  intensity_form: yttrium
+  comment: Y2O3
+- id: ev-yttrium-yttrium-oxide
+  enabled: true
+  technology: EV
+  target:
+    kind: mapped_activity
+  element: Yttrium
+  provider:
+    name: market for yttrium oxide
+    reference_product: yttrium oxide
+  exchange_amount_factor: 1.2699311632510744
+  application: set_direct_amount
+  ecoinvent_form: yttrium oxide
+  intensity_form: yttrium
+- id: htsp-yttrium-yttrium-oxide
+  enabled: true
+  technology: HTSP
+  target:
+    kind: mapped_activity
+  element: Yttrium
+  provider:
+    name: market for yttrium oxide
+    reference_product: yttrium oxide
+  exchange_amount_factor: 1.2699311632510744
+  application: set_direct_amount
+  ecoinvent_form: yttrium oxide
+  intensity_form: yttrium
+- id: pafc-yttrium-yttrium-oxide
+  enabled: true
+  technology: PAFC
+  target:
+    kind: mapped_activity
+  element: Yttrium
+  provider:
+    name: market for yttrium oxide
+    reference_product: yttrium oxide
+  exchange_amount_factor: 1.2699311632510744
+  application: set_direct_amount
+  ecoinvent_form: yttrium oxide
+  intensity_form: yttrium
+- id: sofc-y-yttrium-yttrium-oxide
+  enabled: true
+  technology: SOFC - Y
+  target:
+    kind: mapped_activity
+  element: Yttrium
+  provider:
+    name: market for yttrium oxide
+    reference_product: yttrium oxide
+  exchange_amount_factor: 1.2699311632510744
+  application: set_direct_amount
+  ecoinvent_form: yttrium oxide
+  intensity_form: yttrium
+- id: nuclear-yttrium-yttrium-oxide
+  enabled: true
+  technology: Nuclear
+  target:
+    kind: mapped_activity
+  element: Yttrium
+  provider:
+    name: market for yttrium oxide
+    reference_product: yttrium oxide
+  exchange_amount_factor: 1.2699311632510744
+  application: set_direct_amount
+  ecoinvent_form: yttrium oxide
+  intensity_form: yttrium
+- id: htel-yttrium-yttrium-yttrium-oxide
+  enabled: true
+  technology: HTEL - Yttrium
+  target:
+    kind: mapped_activity
+  element: Yttrium
+  provider:
+    name: market for yttrium oxide
+    reference_product: yttrium oxide
+  exchange_amount_factor: 1.2699311632510744
+  application: set_direct_amount
+  ecoinvent_form: yttrium oxide
+  intensity_form: yttrium
+- id: wind-ddee-zinc-zinc
+  enabled: true
+  technology: Wind-DDEE
+  target:
+    kind: mapped_activity
+  element: Zinc
+  provider:
+    name: market for zinc
+    reference_product: zinc
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: zinc
+  intensity_form: zinc
+  comment: This exchange is already present
+- id: wind-gearbox-zinc-zinc
+  enabled: true
+  technology: Wind-Gearbox
+  target:
+    kind: mapped_activity
+  element: Zinc
+  provider:
+    name: market for zinc
+    reference_product: zinc
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: zinc
+  intensity_form: zinc
+  comment: This exchange is already present
+- id: c-si-zinc-zinc
+  enabled: true
+  technology: c-Si
+  target:
+    kind: mapped_activity
+  element: Zinc
+  provider:
+    name: market for zinc
+    reference_product: zinc
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: zinc
+  intensity_form: zinc
+- id: cigs-zinc-zinc
+  enabled: true
+  technology: CIGS
+  target:
+    kind: mapped_activity
+  element: Zinc
+  provider:
+    name: market for zinc
+    reference_product: zinc
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: zinc
+  intensity_form: zinc
+  comment: This exchange is already present
+- id: parabolic-trough-pb-zinc-zinc
+  enabled: true
+  technology: Parabolic Trough - PB
+  target:
+    kind: mapped_activity
+  element: Zinc
+  provider:
+    name: market for zinc
+    reference_product: zinc
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: zinc
+  intensity_form: zinc
+  comment: This exchange is already present
+- id: csp-tower-pb-zinc-zinc
+  enabled: true
+  technology: CSP Tower - PB
+  target:
+    kind: mapped_activity
+  element: Zinc
+  provider:
+    name: market for zinc
+    reference_product: zinc
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: zinc
+  intensity_form: zinc
+  comment: This exchange is already present
+- id: pafc-zinc-zinc
+  enabled: true
+  technology: PAFC
+  target:
+    kind: mapped_activity
+  element: Zinc
+  provider:
+    name: market for zinc
+    reference_product: zinc
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: zinc
+  intensity_form: zinc
+- id: icev-zirconium-zirconium-oxide
+  enabled: true
+  technology: ICEV
+  target:
+    kind: mapped_activity
+  element: Zirconium
+  provider:
+    name: market for zirconium oxide
+    reference_product: zirconium oxide
+  exchange_amount_factor: 1.3507629571165483
+  application: set_direct_amount
+  ecoinvent_form: zirconium oxide
+  intensity_form: zirconium
+  comment: ZrO2
+- id: sofc-sc-zirconium-zirconium-oxide
+  enabled: true
+  technology: SOFC - Sc
+  target:
+    kind: mapped_activity
+  element: Zirconium
+  provider:
+    name: market for zirconium oxide
+    reference_product: zirconium oxide
+  exchange_amount_factor: 1.3507629571165483
+  application: set_direct_amount
+  ecoinvent_form: zirconium oxide
+  intensity_form: zirconium
+- id: pafc-zirconium-zirconium-oxide
+  enabled: true
+  technology: PAFC
+  target:
+    kind: mapped_activity
+  element: Zirconium
+  provider:
+    name: market for zirconium oxide
+    reference_product: zirconium oxide
+  exchange_amount_factor: 1.3507629571165483
+  application: set_direct_amount
+  ecoinvent_form: zirconium oxide
+  intensity_form: zirconium
+  comment: This exchange is already present
+- id: ael-zirconium-zirconium-oxide
+  enabled: true
+  technology: AEL
+  target:
+    kind: mapped_activity
+  element: Zirconium
+  provider:
+    name: market for zirconium oxide
+    reference_product: zirconium oxide
+  exchange_amount_factor: 1.3507629571165483
+  application: set_direct_amount
+  ecoinvent_form: zirconium oxide
+  intensity_form: zirconium
+  comment: This exchange is already present
+- id: htel-yttrium-zirconium-zirconium-oxide
+  enabled: true
+  technology: HTEL - Yttrium
+  target:
+    kind: mapped_activity
+  element: Zirconium
+  provider:
+    name: market for zirconium oxide
+    reference_product: zirconium oxide
+  exchange_amount_factor: 1.3507629571165483
+  application: set_direct_amount
+  ecoinvent_form: zirconium oxide
+  intensity_form: zirconium
+  comment: This exchange is already present
+- id: nuclear-zirconium-zirconium-oxide
+  enabled: true
+  technology: Nuclear
+  target:
+    kind: mapped_activity
+  element: Zirconium
+  provider:
+    name: market for zirconium oxide
+    reference_product: zirconium oxide
+  exchange_amount_factor: 1.3507629571165483
+  application: set_direct_amount
+  ecoinvent_form: zirconium oxide
+  intensity_form: zirconium
+- id: lis-lithium-litfsi-cf3so2-2nli-production-for-lis-battery-lithium-carbonate-battery-grade
+  enabled: true
+  technology: LiS
+  target:
+    kind: exact_activity
+    name: LiTFSi, (CF3SO2)2NLi, production, for LiS battery
+    reference_product: LiTFSi, (CF3SO2)2NLi
+  element: Lithium
+  provider:
+    name: market for lithium carbonate, battery grade
+    reference_product: lithium carbonate, battery grade
+  exchange_amount_factor: 4.73728497334678
+  application: set_direct_amount
+  ecoinvent_form: lithium carbonate
+  intensity_form: lithium
+  comment: I will keep the ratios between the different types of lithium in the battery. 89% is lithium carbonate from the LiTFSi, 10% is lithium carbonate in the LiNO3 and 1% is lithium hydroxide from LiNO3
+- id: lis-lithium-lino3-production-for-lis-battery-lithium-carbonate-battery-grade
+  enabled: true
+  technology: LiS
+  target:
+    kind: exact_activity
+    name: LiNO3 production, for LiS battery
+    reference_product: LiNO3
+  element: Lithium
+  provider:
+    name: market for lithium carbonate, battery grade
+    reference_product: lithium carbonate, battery grade
+  exchange_amount_factor: 0.5322792104884022
+  application: set_direct_amount
+  ecoinvent_form: lithium carbonate
+  intensity_form: lithium
+  comment: I will keep the ratios between the different types of lithium in the battery. 89% is lithium carbonate from the LiTFSi, 10% is lithium carbonate in the LiNO3 and 1% is lithium hydroxide from LiNO4
+- id: lis-lithium-lino3-production-for-lis-battery-lithium-hydroxide-battery-grade
+  enabled: true
+  technology: LiS
+  target:
+    kind: exact_activity
+    name: LiNO3 production, for LiS battery
+    reference_product: LiNO3
+  element: Lithium
+  provider:
+    name: market for lithium hydroxide, battery grade
+    reference_product: lithium hydroxide, battery grade
+  exchange_amount_factor: 0.034502233107621384
+  application: set_direct_amount
+  ecoinvent_form: lithium hydroxide, battery grade
+  intensity_form: lithium
+  comment: I will keep the ratios between the different types of lithium in the battery. 89% is lithium carbonate from the LiTFSi, 10% is lithium carbonate in the LiNO3 and 1% is lithium hydroxide from LiNO5
+- id: lis-aluminium
+  enabled: false
+  technology: LiS
+  target:
+    kind: mapped_activity
+  element: Aluminium
+  provider:
+    name: null
+    reference_product: null
+  exchange_amount_factor: null
+  application: set_direct_amount
+  comment: We will keep the values from the original LCI, as (1) aluminium and copper are coming from many different activities, (2) ecoinvent has a fair representation of these metals and (3) these quantities will not be important for the overall (they are bulk materials)
+- id: lis-copper
+  enabled: false
+  technology: LiS
+  target:
+    kind: mapped_activity
+  element: Copper
+  provider:
+    name: null
+    reference_product: null
+  exchange_amount_factor: null
+  application: set_direct_amount
+- id: lis-nickel-nickel-class-1
+  enabled: true
+  technology: LiS
+  target:
+    kind: mapped_activity
+  element: Nickel
+  provider:
+    name: market for nickel, class 1
+    reference_product: nickel, class 1
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: nickel, class 1
+  intensity_form: nickel
+- id: lio2-lithium-lithium
+  enabled: true
+  technology: LiO2
+  target:
+    kind: mapped_activity
+  element: Lithium
+  provider:
+    name: market for lithium
+    reference_product: lithium
+  exchange_amount_factor: 0.99
+  application: set_direct_amount
+  ecoinvent_form: lithium
+  intensity_form: lithium
+  comment: I will keep the ratios between the different types of lithium in the battery. 99% is the lithium metal and 1% the lithium chloride in the electrolyte
+- id: lio2-lithium-lithium-chloride
+  enabled: true
+  technology: LiO2
+  target:
+    kind: mapped_activity
+  element: Lithium
+  provider:
+    name: market for lithium chloride
+    reference_product: lithium chloride
+  exchange_amount_factor: 0.06107765451664026
+  application: set_direct_amount
+  ecoinvent_form: lithium chloride
+  intensity_form: lithium
+- id: lio2-aluminium
+  enabled: false
+  technology: LiO2
+  target:
+    kind: mapped_activity
+  element: Aluminium
+  provider:
+    name: null
+    reference_product: null
+  exchange_amount_factor: null
+  application: set_direct_amount
+- id: lio2-copper
+  enabled: false
+  technology: LiO2
+  target:
+    kind: mapped_activity
+  element: Copper
+  provider:
+    name: null
+    reference_product: null
+  exchange_amount_factor: null
+  application: set_direct_amount
+- id: lio2-nickel-nickel-class-1
+  enabled: true
+  technology: LiO2
+  target:
+    kind: mapped_activity
+  element: Nickel
+  provider:
+    name: market for nickel, class 1
+    reference_product: nickel, class 1
+  exchange_amount_factor: 1.0
+  application: set_direct_amount
+  ecoinvent_form: nickel, class 1
+  intensity_form: nickel
+activity_policies:
+- id: preserve-epr-material-structure
+  technology: Nuclear
+  activity:
+    name: EPR construction
+    reference_product: EPR construction
+  locations:
+  - '*'
+  action: preserve_source
+  reason: EPR already contains material-intensive components. Applying plant-level direct material exchanges may overlap with those components.
+- id: preserve-iea-pvps-2026-silicon-cell-1
+  technology: c-Si
+  activity:
+    name: photovoltaic cell production, multicrystalline silicon
+    reference_product: photovoltaic cell, multicrystalline silicon
+  locations:
+  - '*'
+  action: preserve_source
+  reason: IEA PVPS 2026 cell inventories already represent metals through metallization pastes and other components. Generic capacity-based direct metal inputs would overlap with this material structure.
+- id: preserve-iea-pvps-2026-silicon-cell-2
+  technology: c-Si
+  activity:
+    name: photovoltaic cell production, single-crystalline silicon, perc
+    reference_product: photovoltaic cell, single-crystalline silicon, perc
+  locations:
+  - '*'
+  action: preserve_source
+  reason: IEA PVPS 2026 cell inventories already represent metals through metallization pastes and other components. Generic capacity-based direct metal inputs would overlap with this material structure.
+- id: preserve-iea-pvps-2026-silicon-cell-3
+  technology: c-Si
+  activity:
+    name: photovoltaic cell production, single-crystalline silicon, perc, simulated data
+    reference_product: photovoltaic cell, single-crystalline silicon, perc, simulated data
+  locations:
+  - '*'
+  action: preserve_source
+  reason: IEA PVPS 2026 cell inventories already represent metals through metallization pastes and other components. Generic capacity-based direct metal inputs would overlap with this material structure.
+- id: preserve-iea-pvps-2026-silicon-cell-4
+  technology: c-Si
+  activity:
+    name: photovoltaic cell production, single-crystalline silicon, topcon, low-pressure chemical vapour deposition
+    reference_product: photovoltaic cell, single-crystalline silicon, topcon, low-pressure chemical vapour deposition
+  locations:
+  - '*'
+  action: preserve_source
+  reason: IEA PVPS 2026 cell inventories already represent metals through metallization pastes and other components. Generic capacity-based direct metal inputs would overlap with this material structure.
+- id: preserve-iea-pvps-2026-silicon-cell-5
+  technology: c-Si
+  activity:
+    name: photovoltaic cell production, single-crystalline silicon, topcon, plasma-enhanced chemical vapour deposition
+    reference_product: photovoltaic cell, single-crystalline silicon, topcon, plasma-enhanced chemical vapour deposition
+  locations:
+  - '*'
+  action: preserve_source
+  reason: IEA PVPS 2026 cell inventories already represent metals through metallization pastes and other components. Generic capacity-based direct metal inputs would overlap with this material structure.
+- id: preserve-iea-pvps-2026-silicon-cell-6
+  technology: c-Si
+  activity:
+    name: photovoltaic cell production, single-crystalline silicon, topcon, simulated data
+    reference_product: photovoltaic cell, single-crystalline silicon, topcon, simulated data
+  locations:
+  - '*'
+  action: preserve_source
+  reason: IEA PVPS 2026 cell inventories already represent metals through metallization pastes and other components. Generic capacity-based direct metal inputs would overlap with this material structure.
