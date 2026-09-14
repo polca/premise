@@ -1,4 +1,5 @@
 """Reclassify emitted fuel carbon without changing the inventory's CO2 balance."""
+
 from collections import defaultdict
 import math
 
@@ -39,11 +40,13 @@ def reclassify_fuel_co2(dataset, fuel_co2, non_fossil_share, biosphere_flows, fu
         raise ValueError("Non-fossil fuel share must be between zero and one")
     fossil = []
     for exc in dataset["exchanges"]:
-        if (exc.get("type") == "biosphere"
-                and exc.get("name") == "Carbon dioxide, fossil"
-                and exc.get("unit") == "kilogram"
-                and tuple(exc.get("categories", ("air",)))[0] == "air"
-                and exc["amount"] >= 0):
+        if (
+            exc.get("type") == "biosphere"
+            and exc.get("name") == "Carbon dioxide, fossil"
+            and exc.get("unit") == "kilogram"
+            and tuple(exc.get("categories", ("air",)))[0] == "air"
+            and exc["amount"] >= 0
+        ):
             old = exc.get(_TRANSFER_KEY, {}).get(fuel_key, 0.0)
             fossil.append((exc, old, exc["amount"] + old))
     total = sum(base for _, _, base in fossil)
@@ -63,23 +66,39 @@ def reclassify_fuel_co2(dataset, fuel_co2, non_fossil_share, biosphere_flows, fu
     for categories, delta in changes.items():
         if delta == 0:
             continue
-        existing = [e for e in dataset["exchanges"]
-                    if e.get("type") == "biosphere"
-                    and e.get("name") == "Carbon dioxide, non-fossil"
-                    and e.get("unit") == "kilogram"
-                    and tuple(e.get("categories", ("air",))) == categories
-                    and e["amount"] >= 0]
+        existing = [
+            e
+            for e in dataset["exchanges"]
+            if e.get("type") == "biosphere"
+            and e.get("name") == "Carbon dioxide, non-fossil"
+            and e.get("unit") == "kilogram"
+            and tuple(e.get("categories", ("air",))) == categories
+            and e["amount"] >= 0
+        ]
         current = sum(e["amount"] for e in existing)
         if current + delta < -1e-12:
             raise ValueError("Previously reclassified non-fossil CO2 is missing")
         created = not existing
         if created:
-            code = biosphere_flows[("Carbon dioxide, non-fossil", "air",
-                                    categories[1] if len(categories) > 1 else "unspecified",
-                                    "kilogram")]
-            existing = [dict(name="Carbon dioxide, non-fossil", categories=categories,
-                             amount=0.0, unit="kilogram", type="biosphere",
-                             input=("biosphere3", code), **{"uncertainty type": 0})]
+            code = biosphere_flows[
+                (
+                    "Carbon dioxide, non-fossil",
+                    "air",
+                    categories[1] if len(categories) > 1 else "unspecified",
+                    "kilogram",
+                )
+            ]
+            existing = [
+                dict(
+                    name="Carbon dioxide, non-fossil",
+                    categories=categories,
+                    amount=0.0,
+                    unit="kilogram",
+                    type="biosphere",
+                    input=("biosphere3", code),
+                    **{"uncertainty type": 0},
+                )
+            ]
         targets.append((existing, current, max(0.0, current + delta), created))
     for existing, current, updated, created in targets:
         for i, exc in enumerate(existing):

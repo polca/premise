@@ -118,7 +118,8 @@ class BiogasMixin:
 
         # Normalize global mix
         fuel_shares["World"] = {
-            fuel: value / total_weight for fuel, value in world_mix.items()
+            fuel: value / total_weight
+            for fuel, value in world_mix.items()
             if total_weight > 0
         }
 
@@ -153,11 +154,17 @@ class BiogasMixin:
                     if exc.get("unit") != "cubic meter" or exc["amount"] <= 0:
                         continue
                     mix_loc = exc["location"]
-                    mix_loc = mix_loc if mix_loc in fuel_shares else self.ecoinvent_to_iam_loc.get(mix_loc, "World")
+                    mix_loc = (
+                        mix_loc
+                        if mix_loc in fuel_shares
+                        else self.ecoinvent_to_iam_loc.get(mix_loc, "World")
+                    )
                     mix = fuel_shares.get(mix_loc, {})
                     if not mix:
                         continue
-                    share = 1 - sum(mix.get(k, 0.0) for k in ("natural gas", "methane, from coal")) / sum(mix.values())
+                    share = 1 - sum(
+                        mix.get(k, 0.0) for k in ("natural gas", "methane, from coal")
+                    ) / sum(mix.values())
                     sum_ng += exc["amount"]
                     non_fossil_ng += exc["amount"] * min(1.0, max(0.0, share))
 
@@ -165,6 +172,9 @@ class BiogasMixin:
                 continue
 
             reclassify_fuel_co2(
-                ds, sum_ng * 2.12, non_fossil_ng / sum_ng,
-                self.biosphere_flows, "natural gas",
+                ds,
+                sum_ng * 2.12,
+                non_fossil_ng / sum_ng,
+                self.biosphere_flows,
+                "natural gas",
             )

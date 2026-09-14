@@ -462,7 +462,8 @@ class SyntheticFuelsMixin:
 
         # Normalize global mix
         fuel_shares["World"] = {
-            fuel: value / total_weight for fuel, value in world_mix.items()
+            fuel: value / total_weight
+            for fuel, value in world_mix.items()
             if total_weight > 0
         }
 
@@ -494,11 +495,17 @@ class SyntheticFuelsMixin:
                     if exc["amount"] <= 0:
                         continue
                     mix_loc = exc["location"]
-                    mix_loc = mix_loc if mix_loc in fuel_shares else self.ecoinvent_to_iam_loc.get(mix_loc, "World")
+                    mix_loc = (
+                        mix_loc
+                        if mix_loc in fuel_shares
+                        else self.ecoinvent_to_iam_loc.get(mix_loc, "World")
+                    )
                     mix = fuel_shares.get(mix_loc, {})
                     if not mix:
                         continue
-                    share = 1 - sum(mix.get(k, 0.0) for k in fossil_variables) / sum(mix.values())
+                    share = 1 - sum(mix.get(k, 0.0) for k in fossil_variables) / sum(
+                        mix.values()
+                    )
                     sum_fuel += exc["amount"]
                     non_fossil_fuel += exc["amount"] * min(1.0, max(0.0, share))
 
@@ -506,6 +513,9 @@ class SyntheticFuelsMixin:
                 continue
 
             reclassify_fuel_co2(
-                ds, sum_fuel * co2_intensity, non_fossil_fuel / sum_fuel,
-                getattr(self, "biosphere_flows", {}), "|".join(sorted(market_names)),
+                ds,
+                sum_fuel * co2_intensity,
+                non_fossil_fuel / sum_fuel,
+                getattr(self, "biosphere_flows", {}),
+                "|".join(sorted(market_names)),
             )
