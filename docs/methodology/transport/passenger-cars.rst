@@ -63,7 +63,7 @@ separate from IAM efficiency changes and the GAINS emissions update.
 
 
 Provisional combustion-car energy floor
------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Mapped conventional diesel, gasoline and compressed-gas cars with an available
 IAM efficiency signal receive a configurable minimum fuel-energy demand after
@@ -112,7 +112,7 @@ no longer exactly reproduces the unconstrained IAM efficiency; demand and fleet
 shares are not changed to compensate. Reapplying the floor alone is idempotent.
 
 Runtime acceptance
-~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^
 
 The project acceptance limit is a maximum 0.1% increase in complete scenario-build
 runtime. Fuel lookups are cached, and the implementation adds no database-wide
