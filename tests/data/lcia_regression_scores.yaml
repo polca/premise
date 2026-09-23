@@ -240,7 +240,8 @@ cases:
         cement_portland_europe: 0.864
         steel_low_alloyed_glo: 1.8816609917041642
       test2:
-        electricity_low_voltage_ch: 0.0204
+        # IMAGE SSP2-VLHO 2050 with the updated IEA PVPS 2026 inventories.
+        electricity_low_voltage_ch: 0.01897114198748734
         heat_natural_gas_europe: 0.0514
         diesel_europe: 0.7612
         cement_portland_europe: 0.673
@@ -278,20 +279,20 @@ cases:
     - global warming potential (GWP100)
     scores:
       test1:
-        electricity_low_voltage_ch: 0.07921880706404547
-        heat_natural_gas_europe: 0.02480559396582531
+        electricity_low_voltage_ch: 0.07487881148924852
+        heat_natural_gas_europe: 0.02613526455396159
         diesel_europe: 1.4928560304805707
         cement_portland_europe: 0.9463894202385067
         steel_low_alloyed_glo: 3.125365941917742
       test2:
-        electricity_low_voltage_ch: 0.021022108245084017
+        electricity_low_voltage_ch: 0.019131780546495454
         heat_natural_gas_europe: 0.20708311914629446
         diesel_europe: 0.8238212742986492
         cement_portland_europe: 0.6833189316997096
         steel_low_alloyed_glo: 1.4889184712699288
       test3:
-        electricity_low_voltage_ch: 0.018892817308612753
+        electricity_low_voltage_ch: 0.01639855668127192
         heat_natural_gas_europe: 0.18575024143750546
         diesel_europe: 0.8185846695889004
         cement_portland_europe: 0.8731092422926864
-        steel_low_alloyed_glo: 1.0191927157445606
+        steel_low_alloyed_glo: 0.9151738406362014
