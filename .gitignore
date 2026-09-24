@@ -1,4 +1,5 @@
 # Data directories #
+.idea/
 *.egg-info/
 logs/
 dev/
