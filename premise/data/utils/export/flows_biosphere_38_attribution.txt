@@ -1,0 +1,28 @@
+Ecoinvent 3.8 biosphere UUID corrections (2026-09-24)
+
+Eight conflicting duplicate UUID rows were removed from flows_biosphere_38.csv.
+The retained identities were checked against the locally imported Ecoinvent XML
+biosphere database ecoinvent-3.8-biosphere in project ecoinvent-3.8-cutoff
+(4,421 source flows). All 4,421 UUIDs occur in the table. Six existing additional
+Premise flow definitions remain unchanged; the corrected table has 4,427 unique
+UUIDs. No characterization factors or licensed inventories are bundled here.
+
+Retained UUID identities:
+- e8bc4c9e-c34f-4983-aea0-2433f3397a3a: Chlortoluron, soil/agricultural
+- d22719d0-8afd-45d3-b9eb-222112f84cc7: Fish, pelagic, in ocean,
+  natural resource/biotic
+- dd786e61-d387-4dc4-8314-2a5f958e7168: Beta-cyfluthrin, soil/agricultural
+  The air/low-population-density flow has a different UUID:
+  ffaaffd3-5deb-4508-9e5f-e47f551ac2b8.
+- a0544534-e298-46a9-bbd2-949902ac1487: Fluorochloridone, soil/agricultural
+- 55219a64-a6ed-4675-9210-7ed14c82a05f: Fish, demersal, in ocean,
+  natural resource/biotic
+- c5c25aa6-d630-40bd-bed7-4e718c877ef4: [Deleted]Tri-allate, soil/agricultural
+- 423112a9-b4c4-4041-8854-57bffde7b9cc: Thiophanate-methyl, soil/agricultural
+- d07867e3-66a8-4454-babd-78dc7f9a21f8: [Deleted]Carfentrazone ethyl ester,
+  soil/agricultural
+
+The local ecoinvent_38_LCIA_methods_30112021.zip package contains independently
+renamed flows. Those package labels do not replace source biosphere definitions.
+The JSON-LD exporter preserves conflicting definitions under separate UUIDs and
+reports their missing characterization; names alone never establish equivalence.

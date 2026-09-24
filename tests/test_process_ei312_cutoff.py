@@ -153,7 +153,7 @@ def test_openlca_export(updated_ei312_cutoff, tmp_path, monkeypatch):
     output_dir = tmp_path / "openlca"
     monkeypatch.chdir(tmp_path)
 
-    ndb.write_db_to_olca(filepath=str(output_dir))
+    ndb.write_db_to_olca(filepath=str(output_dir), format="simapro")
 
     assert len(tuple(output_dir.glob("simapro_export_*.csv"))) == len(scenarios)
     assert_persisted_scenarios_unchanged(ndb, checkpoint_snapshots)

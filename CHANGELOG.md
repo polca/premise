@@ -2,6 +2,26 @@
 
 All notable changes to this project are documented in this file.
 
+## Unreleased
+
+### Changed
+
+- Enable ecoinvent 3.8 JSON-LD exports with the matching local method package.
+  Remove eight conflicting biosphere UUID aliases using the imported 3.8 XML
+  definitions. Preserve method-package metadata conflicts as separate,
+  uncharacterized flows with explicit coverage diagnostics.
+
+- Place openLCA processes in nested ISIC division/group/class folders with
+  official UN titles and numeric ordering, with unambiguous product/unit
+  matching and CPC fallbacks; omit scenario wrappers.
+
+- `write_db_to_olca` now writes scenario-specific Brightpath JSON-LD ZIP packages
+  and biosphere coverage reports. This route requires Python 3.12+, a Brightpath
+  version with local method mapping, ecoinvent 3.8 or 3.12, and an explicit local LCIA
+  method package. Use `format="simapro"` to retain the legacy CSV exporter.
+- Reject missing or ambiguous openLCA providers before publishing the archive;
+  preserve signed amounts and separate process/product IDs across scenarios.
+
 ## [2.5.2] - 2026-09-10
 
 ### Added

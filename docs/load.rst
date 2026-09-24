@@ -76,7 +76,7 @@ to its maintained guide or reference.
 
    <span id="as-simapro-csv-files-for-openlca"></span>
 
-**As Simapro CSV files for OpenLCA** — :doc:`/user_guide/export/openlca`
+**As JSON-LD packages for openLCA** — :doc:`/user_guide/export/openlca`
 
 .. raw:: html
 
