@@ -2694,7 +2694,7 @@ class ElectricityValidation(BaseDatasetValidator):
 
         # check that the sum of photovoltaic electricity input and
         # input from medium voltage electricity in the low voltage
-        # market is superior to 1
+        # market is at least 1, allowing for floating-point roundoff
 
         for ds in self.database:
             if (
@@ -2719,8 +2719,11 @@ class ElectricityValidation(BaseDatasetValidator):
                     ]
                 )
 
-                if pv_sum + mv_sum < 1:
-                    message = f"Electricity market PV and MV share is incorrect: {pv_sum + mv_sum} instead of > 1."
+                total_share = pv_sum + mv_sum
+                if total_share < 1 and not math.isclose(
+                    total_share, 1.0, rel_tol=1e-12
+                ):
+                    message = f"Electricity market PV and MV share is incorrect: {total_share} instead of >= 1."
                     self.log_issue(
                         ds,
                         "incorrect electricity market PV and MV share",

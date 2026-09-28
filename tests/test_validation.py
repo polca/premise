@@ -11,6 +11,7 @@ from premise.inventory_imports import canonicalize_classification_key
 from premise.validation import (
     BaseDatasetValidator,
     DatasetNormalizer,
+    ElectricityValidation,
     PremiseValidationError,
     TransportValidation,
     normalize_exact_deterministic_exchange_duplicates,
@@ -116,6 +117,67 @@ def test_transport_energy_filters_require_technosphere_exchanges():
     validator.check_vehicle_efficiency("transport, passenger car")
 
     assert validator.major_issues_log == []
+
+
+@pytest.mark.parametrize(
+    ("medium_voltage_share", "valid"),
+    [
+        pytest.param(0.8999999999999999, True, id="roundoff-below-one"),
+        pytest.param(0.9, True, id="exactly-one"),
+        pytest.param(0.92, True, id="distribution-losses"),
+        pytest.param(0.899999, False, id="small-shortfall"),
+        pytest.param(0.89, False, id="one-percent-shortfall"),
+    ],
+)
+def test_low_voltage_electricity_mix_lower_bound(medium_voltage_share, valid):
+    validator = object.__new__(ElectricityValidation)
+    validator.model = "image"
+    validator.scenario = "SSP2-VLHO"
+    validator.year = 2050
+    validator.regions = ["WEU"]
+    validator.iam_data = SimpleNamespace(
+        electricity_mix=xr.DataArray(
+            [[[0.9], [0.1]]],
+            dims=("region", "variables", "year"),
+            coords={
+                "region": ["WEU"],
+                "variables": ["hydro", "solar pv residential"],
+                "year": [2050],
+            },
+        )
+    )
+    validator.database = [
+        {
+            "name": "market group for electricity, low voltage",
+            "reference product": "electricity, low voltage",
+            "location": "WEU",
+            "unit": "kilowatt hour",
+            "exchanges": [
+                {
+                    "name": "electricity production, photovoltaic, residential",
+                    "amount": 0.1,
+                },
+                {
+                    "name": "market group for electricity, medium voltage",
+                    "amount": medium_voltage_share,
+                },
+            ],
+        }
+    ]
+    validator.major_issues_log = []
+    validator.minor_issues_log = []
+    validator.validation_issues = []
+
+    validator.check_electricity_mix()
+
+    if valid:
+        assert validator._finalize_logs().valid
+    else:
+        with pytest.raises(
+            PremiseValidationError,
+            match="LEGACY.INCORRECT_ELECTRICITY_MARKET_PV_AND_MV_SHARE",
+        ):
+            validator._finalize_logs()
 
 
 def test_consequential_validation_recomputes_and_caches_an_independent_mix(

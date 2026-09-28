@@ -3,7 +3,7 @@ metadata:
     Reviewed unsuppressed validation-warning counts. A new rule or a count above
     the recorded value fails certification unless the exception is documented
     by a narrow version/system-model suppression.
-  validation_ruleset_version: 5
+  validation_ruleset_version: 6
 cases:
   ecoinvent-3.12-cutoff-image-SSP2-M-2050:
     warning_rule_counts:
