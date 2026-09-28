@@ -3860,6 +3860,7 @@ market for light fuel oil (SPS),light fuel oil,1920:Manufacture of refined petro
 "glass cullets recovery, from cadmium telluride photovoltaic module treatment","glass cullets, recovered from cadmium telluride photovoltaic module treatment",3821:Treatment and disposal of non-hazardous waste,39990: Other wastes n.e.c.
 "glass cullets recovery, from crystalline silicon photovoltaic module treatment","glass cullets, recovered from crystalline silicon photovoltaic module treatment",3821:Treatment and disposal of non-hazardous waste,39990: Other wastes n.e.c.
 "heat production, electric boiler, industrial","heat, district or industrial",3530:Steam and air conditioning supply,17300: Steam and hot water
+"heat production, nuclear cogeneration","heat, district or industrial",3530:Steam and air conditioning supply,17300: Steam and hot water
 "hydrogen cyanide supply mix, ecoinvent migration",hydrogen cyanide,2011:Manufacture of basic chemicals,"34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
 "hydrogen fluoride production, photovoltaic supply chain",hydrogen fluoride,2011:Manufacture of basic chemicals,16390: Other minerals n.e.c.
 "hydrogen liquefaction, electricity-based proxy","hydrogen, liquid",2011:Manufacture of basic chemicals,"34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
