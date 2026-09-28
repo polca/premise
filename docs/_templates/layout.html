@@ -1,0 +1,28 @@
+{% extends "!layout.html" %}
+
+{% block extrabody %}
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="hub-header">
+  <a class="hub-brand" href="{{ pathto(master_doc) }}">
+    <img src="{{ pathto('_static/premise-logo.png', 1) }}" alt="Premise">
+    <span><strong>Documentation</strong><small>Prospective life-cycle inventories</small></span>
+  </a>
+  <nav aria-label="Premise resources">
+    <a href="https://premisedash-6f5a0259c487.herokuapp.com/">Premise Hub <span aria-hidden="true">↗</span></a>
+    <a href="https://github.com/polca/premise">GitHub <span aria-hidden="true">↗</span></a>
+  </nav>
+</header>
+{% endblock %}
+
+{% block sidebartitle %}
+<p class="hub-sidebar-label">Explore the documentation</p>
+{% include "searchbox.html" %}
+{% endblock %}
+
+{% block mobile_nav %}
+<button type="button" data-toggle="wy-nav-top" aria-label="Toggle documentation navigation"><span class="fa fa-bars" aria-hidden="true"></span> Navigation</button>
+{% endblock %}
+
+{% block document %}
+<div id="main-content" tabindex="-1">{{ super() }}</div>
+{% endblock %}

@@ -1,13 +1,118 @@
 import json
 import pickle
+from copy import deepcopy
 from pathlib import Path
 from unittest.mock import call, patch
+
+import numpy as np
+import pytest
+from wurst import rescale_exchange as wurst_rescale_exchange
 
 from premise import __version__
 from premise.export import exc_codes, fetch_exchange_code
 from premise.geomap import Geomap
+from premise.inventory_store import CompactInventoryStore, InventoryStore
 from premise.utils import *
 from premise.fuels.utils import get_crops_properties
+import premise.utils as utils_module
+
+
+@pytest.mark.parametrize(
+    ("value", "expected"),
+    [
+        (None, False),
+        ("", False),
+        ("None", False),
+        ("nan", False),
+        ("metadata", True),
+        ([], True),
+        ({}, True),
+        ((), True),
+        (set(), True),
+        (False, True),
+        (0, True),
+        (float("nan"), False),
+        (np.float32("nan"), False),
+        (np.float64(1.0), True),
+        (np.int64(0), True),
+        (np.bool_(False), True),
+        (np.array([np.nan, np.nan]), True),
+    ],
+)
+def test_has_cache_value_preserves_legacy_presence_semantics(value, expected):
+    assert utils_module._has_cache_value(value) is expected
+
+
+def test_scenario_exchange_presence_checks_metadata_truth_only_once(monkeypatch):
+    calls = 0
+    original = utils_module._has_cache_value
+
+    def counted(value):
+        nonlocal calls
+        calls += 1
+        return original(value)
+
+    monkeypatch.setattr(utils_module, "_has_cache_value", counted)
+
+    assert utils_module._scenario_cache_exchange_field_is_restored("amount", 0)
+    assert not utils_module._scenario_cache_exchange_field_is_restored("comment", "")
+    assert calls == 2
+
+
+def test_end_of_process_can_preserve_applied_functions_for_repeated_exports():
+    scenario = {
+        "database": [{"name": "temporary export payload"}],
+        "applied functions": ["update_electricity"],
+        "cache": {"temporary": True},
+        "index": {"temporary": True},
+    }
+
+    result = end_of_process(scenario, preserve_applied_functions=True)
+
+    assert result == {
+        "applied functions": ["update_electricity"],
+        "cache": {},
+        "index": {},
+    }
+
+
+@pytest.mark.parametrize("remove_uncertainty", [False, True])
+def test_rescale_exchanges_accepts_compact_exchange_mappings(
+    tmp_path, remove_uncertainty
+):
+    exchange = {
+        "name": "input",
+        "product": "product",
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "amount": 2.0,
+        "uncertainty type": 3,
+        "loc": 2.0,
+        "scale": 0.4,
+        "minimum": 1.0,
+        "maximum": 3.0,
+    }
+    data = [
+        {
+            "name": "consumer",
+            "reference product": "service",
+            "location": "GLO",
+            "unit": "unit",
+            "exchanges": [deepcopy(exchange)],
+        }
+    ]
+    checkpoint = CompactInventoryStore(data).checkpoint(
+        tmp_path / "rescale.inventory-store"
+    )
+    activity = InventoryStore.open(checkpoint)._checkout_materialized()[0]
+    compact_exchange = activity["exchanges"][0]
+    expected = deepcopy(exchange)
+    wurst_rescale_exchange(expected, 2.5, remove_uncertainty)
+
+    rescale_exchanges(activity, 2.5, remove_uncertainty=remove_uncertainty)
+
+    assert compact_exchange.copy() == expected
 
 
 def _write_cache_manifest(cache_ref, *shard_files):
@@ -221,6 +326,105 @@ def test_scenario_cache_preserves_regionalized_without_metadata_reload(tmp_path)
     assert scenario["database"][0]["classifications"] == [("CPC", "17100")]
 
 
+def test_scenario_compatible_store_matches_legacy_cache_roundtrip(tmp_path):
+    database = [
+        {
+            "database": "test-db",
+            "code": "activity-code",
+            "name": "activity",
+            "reference product": "service",
+            "location": "GLO",
+            "unit": "unit",
+            "regionalized": False,
+            "comment": "None",
+            "has_downstream_consumer": False,
+            "empty metadata": [],
+            "meaningful metadata": {"kept": True},
+            "exchanges": [
+                {
+                    "name": "activity",
+                    "product": "service",
+                    "location": "None",
+                    "unit": "unit",
+                    "type": "production",
+                    "amount": 0,
+                    "uncertainty type": 0,
+                    "production volume": float("nan"),
+                    "comment": 0,
+                    "categories": [],
+                    "custom false": False,
+                    "custom value": "kept",
+                }
+            ],
+        }
+    ]
+    legacy_database = deepcopy(database)
+    database_ref, metadata_ref = create_scenario_cache(
+        legacy_database,
+        tmp_path / "scenario-cache.pickle",
+    )
+    scenario = {
+        "database filepath": database_ref,
+        "database metadata filepath": metadata_ref,
+    }
+    load_database(
+        scenario,
+        original_database=[],
+        delete=False,
+        load_metadata=True,
+    )
+
+    compact = CompactInventoryStore(
+        deepcopy(database),
+        scenario_cache_compatibility=True,
+    ).materialize()
+
+    assert compact == scenario["database"]
+
+
+def test_scenario_cache_compacts_each_exchange_only_once(tmp_path, monkeypatch):
+    calls = 0
+    original = utils_module._trim_scenario_exchange
+
+    def counted(exchange):
+        nonlocal calls
+        calls += 1
+        return original(exchange)
+
+    monkeypatch.setattr(utils_module, "_trim_scenario_exchange", counted)
+    database = [
+        {
+            "name": "market for test",
+            "reference product": "test product",
+            "location": "GLO",
+            "unit": "kilogram",
+            "exchanges": [
+                {
+                    "name": "market for test",
+                    "product": "test product",
+                    "location": "GLO",
+                    "unit": "kilogram",
+                    "amount": 1.0,
+                    "type": "production",
+                    "comment": "metadata",
+                },
+                {
+                    "name": "input",
+                    "product": "input",
+                    "location": "GLO",
+                    "unit": "kilogram",
+                    "amount": 2.0,
+                    "type": "technosphere",
+                },
+            ],
+        }
+    ]
+
+    create_scenario_cache(database, tmp_path / "scenario-cache.pickle")
+
+    assert calls == 2
+
+
 def test_create_cache_writes_legacy_database_and_manifest_metadata(tmp_path):
     cache_ref = tmp_path / "db-cache.pickle"
     database = [
@@ -254,6 +458,7 @@ def test_create_cache_writes_legacy_database_and_manifest_metadata(tmp_path):
         Path(str(cache_ref).replace(".pickle", " (metadata).pickle"))
     )
     assert load_cached_database(cache_ref) == trimmed
+    assert trimmed[0]["comment"] == "hello"
     assert trimmed[0]["classifications"] == [("CPC", "12345")]
     assert list(iter_cached_metadata(metadata_ref))[0] == {
         ("market for test", "test product", "GLO"): {"foo": "bar"}

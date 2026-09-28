@@ -12,6 +12,8 @@ import uuid
 
 from .export import biosphere_flows_dictionary
 from .logger import create_logger
+from .provenance import record_change_event
+from .inventory_store import get_scenario_inventory, replace_scenario_inventory
 from .transformation import (
     BaseTransformation,
     IAMDataCollection,
@@ -21,6 +23,7 @@ from .transformation import (
     ws,
 )
 from .validation import CementValidation
+from .validation_framework import record_validation_phase
 
 logger = create_logger("cement")
 
@@ -32,7 +35,7 @@ def _update_cement(scenario, version, system_model):
         return scenario
 
     cement = Cement(
-        database=scenario["database"],
+        database=get_scenario_inventory(scenario),
         model=scenario["model"],
         pathway=scenario["pathway"],
         iam_data=scenario["iam data"],
@@ -52,7 +55,7 @@ def _update_cement(scenario, version, system_model):
         cement.create_cement_production_datasets()
         cement.create_cement_market_datasets()
         cement.relink_datasets()
-        scenario["database"] = cement.database
+        replace_scenario_inventory(scenario, cement.database)
         scenario["index"] = cement.index
         scenario["cache"] = cement.cache
 
@@ -65,7 +68,7 @@ def _update_cement(scenario, version, system_model):
             iam_data=scenario["iam data"],
         )
 
-        validate.run_cement_checks()
+        record_validation_phase(scenario, validate.run_cement_checks())
     else:
         print("No cement markets found in IAM data. Skipping.")
 
@@ -964,21 +967,6 @@ class Cement(BaseTransformation):
         )
 
     def write_log(self, dataset, status="created"):
-        """
-        Write log file.
-        """
+        """Record a structured cement provenance event."""
 
-        logger.info(
-            f"{status}|{self.model}|{self.scenario}|{self.year}|"
-            f"{dataset['name']}|{dataset['location']}|"
-            f"{dataset.get('log parameters', {}).get('initial energy input per ton clinker', '')}|"
-            f"{dataset.get('log parameters', {}).get('energy scaling factor', '')}|"
-            f"{dataset.get('log parameters', {}).get('new energy input per ton clinker', '')}|"
-            f"{dataset.get('log parameters', {}).get('carbon capture rate', '')}|"
-            f"{dataset.get('log parameters', {}).get('initial fossil CO2', '')}|"
-            f"{dataset.get('log parameters', {}).get('initial biogenic CO2', '')}|"
-            f"{dataset.get('log parameters', {}).get('new fossil CO2', '')}|"
-            f"{dataset.get('log parameters', {}).get('new biogenic CO2', '')}|"
-            f"{dataset.get('log parameters', {}).get('electricity generated', '')}|"
-            f"{dataset.get('log parameters', {}).get('electricity consumed', '')}"
-        )
+        record_change_event(self, dataset, status, sector="cement")

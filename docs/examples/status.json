@@ -1,0 +1,28 @@
+{
+  "inspect_inventory.py": {
+    "classification": "self-contained executable",
+    "execution": "Passed in isolated storage",
+    "review_date": "2026-09-07"
+  },
+  "interpret_changes.py": {
+    "classification": "self-contained executable",
+    "execution": "Passed; illustrative arithmetic, not an LCA",
+    "review_date": "2026-09-07"
+  },
+  "validation_findings.py": {
+    "classification": "self-contained executable",
+    "execution": "Passed; illustrative findings using actual report types",
+    "review_date": "2026-09-07"
+  },
+  "preflight.py": {
+    "classification": "preflight executable",
+    "execution": "Passed pure failure cases; real project/database-name check performed without writing an inventory",
+    "review_date": "2026-09-07"
+  },
+  "first_scenario.py": {
+    "classification": "licensed executable",
+    "execution": "Passed: full update, validation, Brightway export and automatic scenario/change reports; 42754 activities",
+    "review_date": "2026-09-07",
+    "output_database": "docs-review-remind-SSP2-NPi-2025-20260907"
+  }
+}

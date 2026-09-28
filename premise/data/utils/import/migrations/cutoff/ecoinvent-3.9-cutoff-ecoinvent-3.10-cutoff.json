@@ -74,6 +74,21 @@
         "unit": "kg",
         "name": "1,1-difluoroethane production, HFC-152a",
         "reference product": "1,1-difluoroethane, HFC-152a",
+        "location": "US",
+        "comment": "Backward alias for the PV inventory spelling; the following canonical rule retains forward migration precedence."
+      },
+      "target": {
+        "unit": "kg",
+        "name": "1,1-difluoroethane production, hfc-152a",
+        "reference product": "1,1-difluoroethane, hfc-152a",
+        "location": "US"
+      }
+    },
+    {
+      "source": {
+        "unit": "kg",
+        "name": "1,1-difluoroethane production, HFC-152a",
+        "reference product": "1,1-difluoroethane, HFC-152a",
         "location": "US"
       },
       "target": {
@@ -7446,6 +7461,49 @@
         "reference product": "electric arc furnace secondary metallurgy slag, for recovery",
         "location": "RER"
       }
+    },
+    {
+      "source": {
+        "unit": "kg",
+        "name": "chlor-alkali electrolysis, mercury cell",
+        "reference product": "sodium hydroxide, without water, in 50% solution state",
+        "location": "RoW",
+        "comment": "Backward geographical proxy for the GLO mercury-cell co-product; retains mercury-cell technology."
+      },
+      "target": {
+        "unit": "kg",
+        "name": "chlor-alkali electrolysis, mercury cell",
+        "reference product": "sodium hydroxide, without water, in 50% solution state",
+        "location": "GLO"
+      }
+    },
+    {
+      "source": {
+        "unit": "kWh",
+        "name": "treatment of municipal solid waste, incineration",
+        "reference product": "electricity, for reuse in municipal waste incineration only",
+        "location": "CH"
+      },
+      "target": {
+        "unit": "kWh",
+        "name": "treatment of municipal solid waste, municipal incineration FAE",
+        "reference product": "electricity, for reuse in municipal waste incineration only",
+        "location": "CH"
+      }
+    },
+    {
+      "source": {
+        "unit": "MJ",
+        "name": "treatment of municipal solid waste, incineration",
+        "reference product": "heat, for reuse in municipal waste incineration only",
+        "location": "CH"
+      },
+      "target": {
+        "unit": "MJ",
+        "name": "treatment of municipal solid waste, municipal incineration FAE",
+        "reference product": "heat, for reuse in municipal waste incineration only",
+        "location": "CH"
+      }
     }
   ],
   "disaggregate": [
@@ -14594,6 +14652,24 @@
           "reference product": "xylene, mixed",
           "location": "RER",
           "allocation": 0.8824247063962822
+        }
+      ]
+    },
+    {
+      "source": {
+        "unit": "kg",
+        "name": "market for sodium hydroxide, without water, in 50% solution state",
+        "reference product": "sodium hydroxide, without water, in 50% solution state",
+        "location": "GLO",
+        "comment": "Backward proxy for average production, absent in 3.9: use the global market mix. Keep after the existing market disaggregation so forward regional market shares retain precedence."
+      },
+      "targets": [
+        {
+          "unit": "kg",
+          "name": "chlor-alkali electrolysis, average production",
+          "reference product": "sodium hydroxide, without water, in 50% solution state",
+          "location": "RER",
+          "allocation": 1.0
         }
       ]
     }

@@ -1,0 +1,639 @@
+[
+  {
+    "url": "http://dx.doi.org/10.1016/j.jclepro.2008.08.014",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "URL https://dx.doi.org/10.1016/j.jclepro.2008.08.014 is not safe to open (non-retryable error)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "http://dx.doi.org/10.1016/j.jclepro.2019.01.312",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "URL https://dx.doi.org/10.1016/j.jclepro.2019.01.312 is not safe to open (non-retryable error)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "http://greet.es.anl.gov/publication-2lli584z",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "URL https://greet.es.anl.gov/publication-2lli584z is not safe to open (non-retryable error)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "http://task39.sites.olt.ubc.ca/files/2019/04/Task-39-GHS-models-Final-Report-Phase-1.pdf",
+    "attempted_on": "2026-09-07",
+    "access": "Retrieved; full-text verification not implied",
+    "detail": " (https://task39.sites.olt.ubc.ca/files/2019/04/Task-39-GHS-models-Final-Report-Phase-1.pdf)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "http://www.esu-services.ch/fileadmin/download/publicLCI/meili-2021-LCI%20for%20the%20oil%20and%20gas%20extraction.pdf",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "Provider returned an internal error",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://about.bnef.com/",
+    "attempted_on": "2026-09-07",
+    "access": "Retrieved; full-text verification not implied",
+    "detail": "BloombergNEF (https://about.bnef.com/)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://brightway.dev/",
+    "attempted_on": "2026-09-07",
+    "access": "Retrieved; full-text verification not implied",
+    "detail": "Brightway LCA Software Framework — Brightway documentation (https://brightway.dev/)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://bureau-industrial-transformation.jrc.ec.europa.eu/sites/default/files/2020-03/superseded_clm_bref_1201.pdf",
+    "attempted_on": "2026-09-07",
+    "access": "Retrieved; full-text verification not implied",
+    "detail": "1. General information about the Cement industry\t2 (https://bureau-industrial-transformation.jrc.ec.europa.eu/sites/default/files/2020-03/superseded_clm_bref_1201.pdf)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://docs.nrel.gov/docs/fy25osti/95135.pdf",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "Provider returned an internal error",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://doi.org/10.1007/s11367-020-01737-5",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "Provider returned an internal error",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://doi.org/10.1007/s11367-020-01791-z",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "Provider returned an internal error",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://doi.org/10.1016/j.apenergy.2020.115958",
+    "attempted_on": "2026-09-07",
+    "access": "Retrieved; full-text verification not implied",
+    "detail": "Uncovering the true cost of hydrogen production routes using life cycle monetisation - ScienceDirect (https://doi.org/10.1016/j.apenergy.2020.115958)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://doi.org/10.1016/j.clet.2022.100499",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "Failed to fetch https://doi.org/10.1016/j.clet.2022.100499: (403) Forbidden",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://doi.org/10.1016/j.egyr.2022.11.025",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "URL https://doi.org/10.1016/j.egyr.2022.11.025 is not safe to open (non-retryable error)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://doi.org/10.1016/j.est.2021.102759",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "URL https://doi.org/10.1016/j.est.2021.102759 is not safe to open (non-retryable error)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://doi.org/10.1016/j.ijggc.2013.03.003",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "URL https://doi.org/10.1016/j.ijggc.2013.03.003 is not safe to open (non-retryable error)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://doi.org/10.1016/j.ijhydene.2016.09.167",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "URL https://doi.org/10.1016/j.ijhydene.2016.09.167 is not safe to open (non-retryable error)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://doi.org/10.1016/j.ijhydene.2019.02.230",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "URL https://doi.org/10.1016/j.ijhydene.2019.02.230 is not safe to open (non-retryable error)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://doi.org/10.1016/j.ijhydene.2020.02.121",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "URL https://doi.org/10.1016/j.ijhydene.2020.02.121 is not safe to open (non-retryable error)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://doi.org/10.1016/j.ijhydene.2022.02.150",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "URL https://doi.org/10.1016/j.ijhydene.2022.02.150 is not safe to open (non-retryable error)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://doi.org/10.1016/j.jclepro.2017.03.129",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "URL https://doi.org/10.1016/j.jclepro.2017.03.129 is not safe to open (non-retryable error)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://doi.org/10.1016/j.jclepro.2020.121339",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "Failed to fetch https://doi.org/10.1016/j.jclepro.2020.121339: Cache miss",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://doi.org/10.1016/j.jclepro.2020.125680",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "URL https://doi.org/10.1016/j.jclepro.2020.125680 is not safe to open (non-retryable error)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://doi.org/10.1016/j.jclepro.2022.130474",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "Failed to fetch https://doi.org/10.1016/j.jclepro.2022.130474: (500) Redirected to https://linkinghub.elsevier.com/retrieve/pii/S0959652622001172 which is not safe to open (non-retryable error)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://doi.org/10.1016/j.jclepro.2022.132514",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "URL https://doi.org/10.1016/j.jclepro.2022.132514 is not safe to open (non-retryable error)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://doi.org/10.1016/j.jclepro.2024.141884",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "URL https://doi.org/10.1016/j.jclepro.2024.141884 is not safe to open (non-retryable error)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://doi.org/10.1016/j.renene.2019.07.010",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "URL https://doi.org/10.1016/j.renene.2019.07.010 is not safe to open (non-retryable error)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://doi.org/10.1016/j.resconrec.2021.105619",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "Failed to fetch https://doi.org/10.1016/j.resconrec.2021.105619: (403) Forbidden",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://doi.org/10.1016/j.resconrec.2022.106567",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "Failed to fetch https://doi.org/10.1016/j.resconrec.2022.106567: Error fetching",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://doi.org/10.1016/j.resconrec.2022.106586",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "URL https://doi.org/10.1016/j.resconrec.2022.106586 is not safe to open (non-retryable error)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://doi.org/10.1016/j.resconrec.2022.106611",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "Failed to fetch https://doi.org/10.1016/j.resconrec.2022.106611: (403) Forbidden",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://doi.org/10.1016/j.resconrec.2023.107362",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "URL https://doi.org/10.1016/j.resconrec.2023.107362 is not safe to open (non-retryable error)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://doi.org/10.1016/j.rser.2023.113830",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "URL https://doi.org/10.1016/j.rser.2023.113830 is not safe to open (non-retryable error)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://doi.org/10.1016/j.scitotenv.2012.07.044",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "URL https://doi.org/10.1016/j.scitotenv.2012.07.044 is not safe to open (non-retryable error)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://doi.org/10.1016/j.scitotenv.2023.162038",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "Failed to fetch https://doi.org/10.1016/j.scitotenv.2023.162038: (403) Forbidden",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://doi.org/10.1016/j.wasman.2021.04.046",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "URL https://doi.org/10.1016/j.wasman.2021.04.046 is not safe to open (non-retryable error)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://doi.org/10.1021/acs.est.8b02073",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "URL https://doi.org/10.1021/acs.est.8b02073 is not safe to open (non-retryable error)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://doi.org/10.1021/acs.est.8b05313",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "URL https://doi.org/10.1021/acs.est.8b05313 is not safe to open (non-retryable error)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://doi.org/10.1021/acssuschemeng.1c01915",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "Failed to fetch https://doi.org/10.1021/acssuschemeng.1c01915: (403) Forbidden",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://doi.org/10.1021/acssuschemeng.3c00141",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "Failed to fetch https://doi.org/10.1021/acssuschemeng.3c00141: (403) Forbidden",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://doi.org/10.1038/s41467-022-31146-1",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "URL https://doi.org/10.1038/s41467-022-31146-1 is not safe to open (non-retryable error)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://doi.org/10.1039/C9SE00986H",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "URL https://doi.org/10.1039/C9SE00986H is not safe to open (non-retryable error)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://doi.org/10.1039/D2SE90051C",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "URL https://doi.org/10.1039/D2SE90051C is not safe to open (non-retryable error)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://doi.org/10.1039/D5EE01356A",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "URL https://doi.org/10.1039/D5EE01356A is not safe to open (non-retryable error)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://doi.org/10.1111/jiec.13234",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "URL https://doi.org/10.1111/jiec.13234 is not safe to open (non-retryable error)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://doi.org/10.3389/feart.2021.726336",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "URL https://doi.org/10.3389/feart.2021.726336 is not safe to open (non-retryable error)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://doi.org/10.3390/rs13040743",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "Failed to fetch https://doi.org/10.3390/rs13040743: (429) Too Many Requests",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://doi.org/10.3390/su141710901",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "Failed to fetch https://doi.org/10.3390/su141710901: (429) Too Many Requests",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://doi.org/10.69766/WJTE1771",
+    "attempted_on": "2026-09-07",
+    "access": "Retrieved; full-text verification not implied",
+    "detail": "Life Cycle Inventories of Photovoltaic Systems - IEA-PVPS (https://doi.org/10.69766/WJTE1771)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://ec.europa.eu/clima/eu-action/transport-emissions/road-transport-reducing-co2-emissions-vehicles/vehicle-energy-consumption-calculation-tool-vecto_en",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "URL https://ec.europa.eu/clima/eu-action/transport-emissions/road-transport-reducing-co2-emissions-vehicles/vehicle-energy-consumption-calculation-tool-vecto_en is not safe to open (non-retryable error)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://ec.europa.eu/environment/pdf/waste/mining/MWEI%20BREF.pdf",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "Failed to fetch https://ec.europa.eu/environment/pdf/waste/mining/MWEI%20BREF.pdf: (400) Content length is too large: 12496799",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://ecoinvent.org/the-ecoinvent-database/data-formats/ecospold2/",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "URL https://ecoinvent.org/the-ecoinvent-database/data-formats/ecospold2/ is not safe to open (non-retryable error)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://gains.iiasa.ac.at/gains/EUN/index.login",
+    "attempted_on": "2026-09-07",
+    "access": "Login page only",
+    "detail": "GAINS Europe online (https://gains.iiasa.ac.at/gains/EUN/index.login)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://gains.iiasa.ac.at/gains/IAM/index.login",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "URL https://gains.iiasa.ac.at/gains/IAM/index.login is not safe to open (non-retryable error)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://globaltailingsreview.org/wp-content/uploads/2020/08/global-industry-standard-on-tailings-management.pdf",
+    "attempted_on": "2026-09-07",
+    "access": "Retrieved; full-text verification not implied",
+    "detail": " (https://globaltailingsreview.org/wp-content/uploads/2020/08/global-industry-standard-on-tailings-management.pdf)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://globaltailingsreview.org/wp-content/uploads/2020/09/Ch-II-Mine-Tailings-Facilities_Overview-and-Industry-Trends.pdf",
+    "attempted_on": "2026-09-07",
+    "access": "Retrieved; full-text verification not implied",
+    "detail": " (https://globaltailingsreview.org/wp-content/uploads/2020/09/Ch-II-Mine-Tailings-Facilities_Overview-and-Industry-Trends.pdf)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://globaltailingsreview.org/wpcontent/uploads/2020/09",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "Provider returned an internal error",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://greet.es.anl.gov/publication-update_cobalt",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "Provider returned an internal error",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://iea.blob.core.windows.net/assets/3a99654f-ffff-469f-b83c-bf0386ed8537/pv_roadmap.pdf",
+    "attempted_on": "2026-09-07",
+    "access": "Retrieved; full-text verification not implied",
+    "detail": "Technology Roadmap - Solar Photovoltaic Energy (https://iea.blob.core.windows.net/assets/3a99654f-ffff-469f-b83c-bf0386ed8537/pv_roadmap.pdf)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://international-aluminium.org/resource/aluminium-sector-greenhouse-gas-pathways-to-2050-2021/",
+    "attempted_on": "2026-09-07",
+    "access": "Retrieved; full-text verification not implied",
+    "detail": "Aluminium Sector Greenhouse Gas Pathways to 2050 - International Aluminium Institute (https://international-aluminium.org/resource/aluminium-sector-greenhouse-gas-pathways-to-2050-2021/)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://link.springer.com/article/10.1007/s11367-020-01791-z",
+    "attempted_on": "2026-09-07",
+    "access": "Retrieved; full-text verification not implied",
+    "detail": "Ex ante life cycle assessment of GaAs/Si nanowire–based tandem solar cells: a benchmark for industrialization | The International Journal of Life Cycle Assessment | Springer Nature Link (https://link.springer.com/article/10.1007/s11367-020-01791-z)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://pubs.acs.org/doi/abs/10.1021/es500191g",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "Provider returned an internal error",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://pubs.rsc.org/en/Content/ArticleLanding/2021/SE/D0SE01637C",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "Provider returned an internal error",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://pubs.rsc.org/en/content/articlelanding/2020/se/d0se00067a",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "Provider returned an internal error",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://pubs.rsc.org/en/content/articlelanding/2022/se/d2se00096b",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "Provider returned an internal error",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://sancold.org.za/wp-content/uploads/2024/05/SANCOLD-Your-Tailings-Dam-2020.pdf",
+    "attempted_on": "2026-09-07",
+    "access": "Retrieved; full-text verification not implied",
+    "detail": " (https://sancold.org.za/wp-content/uploads/2024/05/SANCOLD-Your-Tailings-Dam-2020.pdf)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://treeze.ch/fileadmin/user_upload/downloads/PublicLCI/Schori_2012_NaturalGas.pdf",
+    "attempted_on": "2026-09-07",
+    "access": "Retrieved; full-text verification not implied",
+    "detail": "Life Cycle Inventory of Natural Gas Supply (https://treeze.ch/fileadmin/user_upload/downloads/PublicLCI/Schori_2012_NaturalGas.pdf)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://treeze.ch/fileadmin/user_upload/downloads/Publications/Case_Studies/Energy/Future-PV-LCA-IEA-PVPS-Task-12-March-2015.pdf",
+    "attempted_on": "2026-09-07",
+    "access": "Retrieved; full-text verification not implied",
+    "detail": "LCA of future photovoltaics electricity production (https://treeze.ch/fileadmin/user_upload/downloads/Publications/Case_Studies/Energy/Future-PV-LCA-IEA-PVPS-Task-12-March-2015.pdf)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://unctad.org/system/files/official-document/ser-rp-2022d5_en.pdf",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "Provider returned an internal error",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://www.bafu.admin.ch/dam/en/sd-web/lggkMIGXeKNu/real-driving-emissions-from-diesel-passenger-cars-measured-by-remote-sensing-and-as-compared-with-pems-and-chassis-dynamometer-measurements-conox-task-2-report.pdf",
+    "attempted_on": "2026-09-07",
+    "access": "Retrieved; full-text verification not implied",
+    "detail": "Tttt (https://www.bafu.admin.ch/dam/en/sd-web/lggkMIGXeKNu/real-driving-emissions-from-diesel-passenger-cars-measured-by-remote-sensing-and-as-compared-with-pems-and-chassis-dynamometer-measurements-conox-task-2-report.pdf)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://www.cambridge.org/core/books/transition-to-hydrogen/43144AF26ED80E7106B675A6E83B1579",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "Provider returned an internal error",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://www.csem.ch/en/news/photovoltaic-technology-breakthrough-achieving-31.25-efficiency/",
+    "attempted_on": "2026-09-07",
+    "access": "Retrieved; full-text verification not implied",
+    "detail": "31.25% efficiency breakthrough in photovoltaic technology (https://www.csem.ch/en/news/photovoltaic-technology-breakthrough-achieving-31.25-efficiency/)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://www.fvv-net.de/fileadmin/user_upload/medien/materialien/FVV-Kraftstoffstudie_LBST_2013-10-30.pdf",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "URL https://www.fvv-net.de/fileadmin/user_upload/medien/materialien/FVV-Kraftstoffstudie_LBST_2013-10-30.pdf is not safe to open (non-retryable error)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://www.guru99.com/etl-extract-load-process.html#:~:text=ETL%20is%20a%20process%20that,is%20Extract%2C%20Transform%20and%20Load",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "Failed to fetch https://www.guru99.com/etl-extract-load-process.html: (403) Forbidden",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://www.hecla.com/wp-content/uploads/Hecla-2021-TailingsMgmt_FactSheet.pdf",
+    "attempted_on": "2026-09-07",
+    "access": "Retrieved; full-text verification not implied",
+    "detail": " (https://www.hecla.com/wp-content/uploads/Hecla-2021-TailingsMgmt_FactSheet.pdf)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://www.irena.org/Publications/2025/Jul/Renewable-energy-statistics-2025",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "Failed to fetch https://www.irena.org/Publications/2025/Jul/Renewable-energy-statistics-2025: (403) Forbidden",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://www.ise.fraunhofer.de/content/dam/ise/de/documents/publications/studies/Photovoltaics-Report.pdf",
+    "attempted_on": "2026-09-07",
+    "access": "Retrieved; full-text verification not implied",
+    "detail": "Photovoltaics Report (https://www.ise.fraunhofer.de/content/dam/ise/de/documents/publications/studies/Photovoltaics-Report.pdf)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://www.mdpi.com/2313-0105/5/2/48",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "Provider returned an internal error",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://www.nature.com/articles/s41560-023-01355-z",
+    "attempted_on": "2026-09-07",
+    "access": "Retrieved; full-text verification not implied",
+    "detail": "Energy consumption of current and future production of lithium-ion and post lithium-ion battery cells | Nature Energy (https://www.nature.com/articles/s41560-023-01355-z)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://www.nature.com/articles/s41598-021-84897-0",
+    "attempted_on": "2026-09-07",
+    "access": "Retrieved; full-text verification not implied",
+    "detail": "Tailings facility disclosures reveal stability risks | Scientific Reports (https://www.nature.com/articles/s41598-021-84897-0)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://www.now-gmbh.de/wp-content/uploads/2020/09/indwede-studie_v04.1.pdf",
+    "attempted_on": "2026-09-07",
+    "access": "Retrieved; full-text verification not implied",
+    "detail": "Studie IndWEDe Industrialisierung der Wasser­elektrolyse in ­Deutschland: ­Chancen und ­Herausforderungen für nachhaltigen Wasserstoff für Verkehr, Strom und ­Wärme (https://www.now-gmbh.de/wp-content/uploads/2020/09/indwede-studie_v04.1.pdf)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://www.nrel.gov/docs/libraries/pv/champion-module-efficiencies.pdf",
+    "attempted_on": "2026-09-07",
+    "access": "Retrieved; full-text verification not implied",
+    "detail": "modulePVeff(rev241218) (https://www.nrel.gov/docs/libraries/pv/champion-module-efficiencies.pdf)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://www.oxfordpv.com/mainstream",
+    "attempted_on": "2026-09-07",
+    "access": "Retrieved; full-text verification not implied",
+    "detail": "Mainstream (https://www.oxfordpv.com/mainstream)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://www.psi.ch/en/media/72391/download",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "Provider returned an internal error",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://www.psi.ch/sites/default/files/2019-09/Cozzolino_377125_%20Research%20Project%20Report.pdf",
+    "attempted_on": "2026-09-07",
+    "access": "Retrieved; full-text verification not implied",
+    "detail": "Cozzolino_377125_ Research Project Report.pdf (https://www.psi.ch/sites/default/files/2019-09/Cozzolino_377125_%20Research%20Project%20Report.pdf)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://www.psi.ch/sites/default/files/import/ta/PublicationTab/BSc_Mattia_Maeder_2016.pdf",
+    "attempted_on": "2026-09-07",
+    "access": "Retrieved; full-text verification not implied",
+    "detail": "Thesis_Final_MM.pdf (https://www.psi.ch/sites/default/files/import/ta/PublicationTab/BSc_Mattia_Maeder_2016.pdf)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://www.qualenergia.it/wp-content/uploads/2024/06/ITRPV-15th-Edition-2024-2.pdf",
+    "attempted_on": "2026-09-07",
+    "access": "Retrieved; full-text verification not implied",
+    "detail": " (https://www.qualenergia.it/wp-content/uploads/2024/06/ITRPV-15th-Edition-2024-2.pdf)",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://www.sciencedirect.com/science/article/pii/S0927024823001101",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "Provider returned an internal error",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://www.sciencedirect.com/science/article/pii/S095965261832170X",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "Provider returned an internal error",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://www2.bgs.ac.uk/mineralsuk/statistics/worldStatistics.html",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "Provider returned an internal error",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  },
+  {
+    "url": "https://zenodo.org/records/5720779",
+    "attempted_on": "2026-09-07",
+    "access": "Fetch failed",
+    "detail": "Provider returned an internal error",
+    "review_level": "See sector review and individual notes; retrieval alone is not scientific validation"
+  }
+]

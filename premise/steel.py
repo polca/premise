@@ -7,9 +7,12 @@ from collections import defaultdict
 
 from .data_collection import IAMDataCollection
 from .logger import create_logger
+from .provenance import record_change_event
+from .inventory_store import get_scenario_inventory, replace_scenario_inventory
 from .transformation import BaseTransformation, ws
 from .utils import rescale_exchanges
 from .validation import SteelValidation
+from .validation_framework import record_validation_phase
 from .activity_maps import InventorySet
 
 logger = create_logger("steel")
@@ -22,7 +25,7 @@ def _update_steel(scenario, version, system_model):
         return scenario
 
     steel = Steel(
-        database=scenario["database"],
+        database=get_scenario_inventory(scenario),
         model=scenario["model"],
         pathway=scenario["pathway"],
         iam_data=scenario["iam data"],
@@ -37,7 +40,7 @@ def _update_steel(scenario, version, system_model):
     steel.create_steel_production_activities()
     steel.create_steel_markets()
     steel.relink_datasets()
-    scenario["database"] = steel.database
+    replace_scenario_inventory(scenario, steel.database)
     scenario["cache"] = steel.cache
     scenario["index"] = steel.index
 
@@ -54,7 +57,7 @@ def _update_steel(scenario, version, system_model):
         iam_data=scenario["iam data"],
         system_model=system_model,
     )
-    validate.run_steel_checks()
+    record_validation_phase(scenario, validate.run_steel_checks())
 
     return scenario
 
@@ -420,15 +423,6 @@ class Steel(BaseTransformation):
         return dataset
 
     def write_log(self, dataset, status="created"):
-        """
-        Write log file.
-        """
+        """Record a structured steel provenance event."""
 
-        logger.info(
-            f"{status}|{self.model}|{self.scenario}|{self.year}|"
-            f"{dataset['name']}|{dataset['location']}|"
-            f"{dataset.get('log parameters', {}).get('carbon capture rate', '')}|"
-            f"{dataset.get('log parameters', {}).get('thermal efficiency change', '')}|"
-            f"{dataset.get('log parameters', {}).get('primary steel share', '')}|"
-            f"{dataset.get('log parameters', {}).get('secondary steel share', '')}"
-        )
+        record_change_event(self, dataset, status, sector="steel")

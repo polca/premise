@@ -203,9 +203,9 @@ def strip_string_from_spaces(database: List[dict]) -> List[dict]:
 def _extract_parameters(parameters: Any) -> Dict[str, Any]:
     if isinstance(parameters, dict):
         return {
-            name: value["amount"]
+            name: value["amount"] if isinstance(value, dict) else value
             for name, value in parameters.items()
-            if isinstance(value, dict) and "amount" in value
+            if not isinstance(value, dict) or "amount" in value
         }
 
     return {

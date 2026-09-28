@@ -1,0 +1,46 @@
+name,location,kg_co2eq_per_kwh
+"electricity production mix, photovoltaic",CH,0.02810360760541703
+"electricity production, photovoltaic, 10 kwp slanted-roof, single-crystalline silicon, panel, mounted, annual yield 1300 kwh/kwp",REF,0.02005376627504444
+"electricity production, photovoltaic, 250 kwp flat-roof, single-crystalline silicon, panel, mounted, annual yield 1300 kwh/kwp",REF,0.01777076492001053
+"electricity production, photovoltaic, 10 mwp ground-mounted, single-crystalline silicon, panel, mounted, annual yield 1300 kwh/kwp",REF,0.016937371410018665
+"electricity production, photovoltaic, 10 kwp slanted-roof, single-crystalline silicon, panel, mounted, annual yield 1000 kwh/kwp",REF,0.026069896157557778
+"electricity production, photovoltaic, 250 kwp flat-roof, single-crystalline silicon, panel, mounted, annual yield 1000 kwh/kwp",REF,0.023101994396013757
+"electricity production, photovoltaic, 10 mwp ground-mounted, single-crystalline silicon, panel, mounted, annual yield 1000 kwh/kwp",REF,0.02201858283302429
+"electricity production, photovoltaic, 10 kwp slanted-roof, cadmium telluride, panel, mounted, annual yield 1300 kwh/kwp",REF,0.016797737178819817
+"electricity production, photovoltaic, 250 kwp flat-roof, cadmium telluride, panel, mounted, annual yield 1300 kwh/kwp",REF,0.01466670485434859
+"electricity production, photovoltaic, 10 mwp ground-mounted, cadmium telluride, panel, mounted, annual yield 1300 kwh/kwp",REF,0.013781828636879101
+"electricity production, photovoltaic, 10 kwp slanted-roof, cadmium telluride, panel, mounted, annual yield 1000 kwh/kwp",REF,0.021837058332465766
+"electricity production, photovoltaic, 250 kwp flat-roof, cadmium telluride, panel, mounted, annual yield 1000 kwh/kwp",REF,0.019066716310653195
+"electricity production, photovoltaic, 10 mwp ground-mounted, cadmium telluride, panel, mounted, annual yield 1000 kwh/kwp",REF,0.017916377227942835
+"electricity production mix, photovoltaic",AT,0.024426478546455146
+"electricity production mix, photovoltaic",BE,0.03024153916632514
+"electricity production mix, photovoltaic",CZ,0.025971724774945196
+"electricity production mix, photovoltaic",DK,0.025679157055699304
+"electricity production mix, photovoltaic",FI,0.030200722549878156
+"electricity production mix, photovoltaic",FR,0.022659280389561637
+"electricity production mix, photovoltaic",DE,0.027122970287289803
+"electricity production mix, photovoltaic",GR,0.01853429988217714
+"electricity production mix, photovoltaic",HU,0.022484863455679266
+"electricity production mix, photovoltaic",IE,0.03079680350090661
+"electricity production mix, photovoltaic",IT,0.023629822217055424
+"electricity production mix, photovoltaic",LU,0.028613913513956032
+"electricity production mix, photovoltaic",NL,0.028108221620411766
+"electricity production mix, photovoltaic",NO,0.03396843217477297
+"electricity production mix, photovoltaic",PT,0.017584687713665087
+"electricity production mix, photovoltaic",ES,0.016049265647918996
+"electricity production mix, photovoltaic",SE,0.030209179093255486
+"electricity production mix, photovoltaic",GB,0.02772631406869932
+"electricity production mix, photovoltaic",TR,0.017283662709151763
+"electricity production mix, photovoltaic",US,0.015571953032391674
+"electricity production mix, photovoltaic",CA,0.021146455051452948
+"electricity production mix, photovoltaic",MX,0.014114851292191106
+"electricity production mix, photovoltaic",CL,0.013897074831983202
+"electricity production mix, photovoltaic",JP,0.02250255693523606
+"electricity production mix, photovoltaic",AU,0.017198594254793968
+"electricity production mix, photovoltaic",KR,0.018930063085290473
+"electricity production mix, photovoltaic",NZ,0.019731453777608342
+"electricity production mix, photovoltaic",IL,0.015110089309639474
+"electricity production mix, photovoltaic",MY,0.01845824056159916
+"electricity production mix, photovoltaic",ZA,0.014356957647628264
+"electricity production mix, photovoltaic",TH,0.015902155303592416
+"electricity production mix, photovoltaic",CN,0.025686050499053162

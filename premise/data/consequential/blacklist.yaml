@@ -203,6 +203,24 @@
     reference product: cadmium sludge from zinc electrolysis
     location: GLO
 
+- name: treatment of municipal solid waste, municipal incineration FAE
+  reference product: electricity, for reuse in municipal waste incineration only
+  unit: kilowatt hour
+  location: CH
+  replacement:
+    name: market for electricity, for reuse in municipal waste incineration only
+    reference product: electricity, for reuse in municipal waste incineration only
+    location: CH
+
+- name: treatment of municipal solid waste, municipal incineration FAE
+  reference product: heat, for reuse in municipal waste incineration only
+  unit: megajoule
+  location: CH
+  replacement:
+    name: market for heat, for reuse in municipal waste incineration only
+    reference product: heat, for reuse in municipal waste incineration only
+    location: CH
+
 - name: treatment of municipal solid waste, incineration
   reference product: electricity, for reuse in municipal waste incineration only
   unit: kilowatt hour
@@ -310,6 +328,55 @@
     name: market for iron ore concentrate
     reference product: iron ore concentrate
     location: GLO
+
+- name: tissue paper production
+  reference product: tissue paper
+  unit: kilogram
+  location: RER
+  replacement:
+    name: market for tissue paper
+    reference product: tissue paper
+    location: GLO
+
+- name: tissue paper production, recycled
+  reference product: tissue paper
+  unit: kilogram
+  location: RER
+  replacement:
+    name: market for tissue paper
+    reference product: tissue paper
+    location: GLO
+
+- name: soda production, solvay process
+  reference product: calcium chloride
+  unit: kilogram
+  location: RER
+  replacement:
+    name: market for calcium chloride
+    reference product: calcium chloride
+    location: RER
+
+- name: chlor-alkali electrolysis, average production
+  reference product: sodium hydroxide, without water, in 50% solution state
+  unit: kilogram
+  location: RER
+  replacement:
+    name: market for sodium hydroxide, without water, in 50% solution state
+    reference product: sodium hydroxide, without water, in 50% solution state
+    location:
+      "<3.10": GLO
+      ">=3.10": RER
+
+- name: chlor-alkali electrolysis, mercury cell
+  reference product: sodium hydroxide, without water, in 50% solution state
+  unit: kilogram
+  location: GLO
+  replacement:
+    name: market for sodium hydroxide, without water, in 50% solution state
+    reference product: sodium hydroxide, without water, in 50% solution state
+    location:
+      "<3.10": GLO
+      ">=3.10": RoW
 
 - name: chlor-alkali electrolysis, membrane cell
   reference product: sodium hydroxide, without water, in 50% solution state

@@ -1,0 +1,8 @@
+include CHANGELOG.md
+include CITATION.cff
+include LICENSE
+include README.md
+recursive-include docs *.csv *.inc *.md *.png *.rst *.svg
+prune docs/.ipynb_checkpoints
+prune docs/_templates/.ipynb_checkpoints
+global-exclude .DS_Store *.py[cod]

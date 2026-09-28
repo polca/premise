@@ -16,6 +16,8 @@ from .transformation import (
 )
 from .utils import DATA_DIR
 from .logger import create_logger
+from .provenance import record_change_event
+from .inventory_store import get_scenario_inventory, replace_scenario_inventory
 from .geomap import Geomap
 from .activity_maps import InventorySet
 
@@ -27,7 +29,7 @@ TAILINGS_WASTE_SHARES = DATA_DIR / "mining" / "tailings_activities.yaml"
 
 def _update_mining(scenario, version, system_model):
     mining = Mining(
-        database=scenario["database"],
+        database=get_scenario_inventory(scenario),
         model=scenario["model"],
         pathway=scenario["pathway"],
         iam_data=scenario["iam data"],
@@ -40,7 +42,7 @@ def _update_mining(scenario, version, system_model):
 
     mining.update_tailings_treatment()
     mining.relink_datasets()
-    scenario["database"] = mining.database
+    replace_scenario_inventory(scenario, mining.database)
     scenario["cache"] = mining.cache
     scenario["index"] = mining.index
 
@@ -273,5 +275,6 @@ class Mining(BaseTransformation):
 
 
 def write_log(self, dataset, status="updated"):
-    txt = f"{status}|{self.model}|{self.scenario}|{self.year}|{dataset['name']}|{dataset.get('reference product', '')}|{dataset['location']}"
-    logger.info(txt)
+    """Record a structured mining provenance event."""
+
+    record_change_event(self, dataset, status, sector="mining")

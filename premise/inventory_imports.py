@@ -9,8 +9,9 @@ import logging
 import uuid
 import unicodedata
 from functools import lru_cache
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 from typing import Dict, List, Union
+from urllib.parse import urlsplit
 import json
 from collections import deque
 
@@ -29,6 +30,7 @@ from .clean_datasets import remove_categories, remove_uncertainty
 from .data_collection import get_delimiter
 from .filesystem_constants import DATA_DIR, DIR_CACHED_DB, INVENTORY_DIR
 from .geomap import Geomap
+from .utils import rescale_exchange
 
 FILEPATH_CONSEQUENTIAL_BLACKLIST = DATA_DIR / "consequential" / "blacklist.yaml"
 CORRESPONDENCE_BIO_FLOWS = (
@@ -40,6 +42,11 @@ TEMP_CSV_FILE = DIR_CACHED_DB / "temp.csv"
 TEMP_EXCEL_FILE = DIR_CACHED_DB / "temp.xlsx"
 
 MIGRATIONS_DIR = DATA_DIR / "utils" / "import" / "migrations"
+
+_MATCH_IGNORED_KEYS = frozenset({"unit", "allocation", "comment"})
+_COMPILED_MIGRATION_CACHE_SIZE = 64
+_COMPILED_RULE_INDEX_CACHE = {}
+_COMPILED_BIOSPHERE_RULE_CACHE = {}
 
 
 logging.basicConfig(
@@ -202,6 +209,28 @@ def normalize_version(v: str) -> str:
     return v
 
 
+def _migration_resource_signature(folder: Path) -> tuple:
+    """Return a cheap invalidation signature for packaged migration JSONs."""
+
+    return tuple(
+        (str(filepath), stat.st_mtime_ns, stat.st_size)
+        for filepath in sorted(folder.glob("*.json"))
+        for stat in (filepath.stat(),)
+    )
+
+
+@lru_cache(maxsize=8)
+def _load_migration_descriptors(folder_name: str, signature: tuple) -> tuple:
+    """Parse an unchanged migration resource set once per Python process."""
+
+    del signature  # Included in the cache key; paths are read below.
+    descriptors = []
+    for filepath in sorted(Path(folder_name).glob("*.json")):
+        with filepath.open(encoding="utf-8") as stream:
+            descriptors.append((filepath, json.load(stream)))
+    return tuple(descriptors)
+
+
 def discover_biosphere_migrations(debug=False):
     folder = MIGRATIONS_DIR / "biosphere"
     migrations = {}
@@ -209,9 +238,8 @@ def discover_biosphere_migrations(debug=False):
     if debug:
         print(f"[migration] Looking for biosphere JSONs in: {folder}")
 
-    for fp in sorted(folder.glob("*.json")):
-        with fp.open(encoding="utf-8") as f:
-            data = json.load(f)
+    signature = _migration_resource_signature(folder)
+    for fp, data in _load_migration_descriptors(str(folder), signature):
 
         raw_src = data["source_id"].split("-")[1]  # e.g. "3.5-biosphere"
         raw_dst = data["target_id"].split("-")[1]
@@ -237,9 +265,8 @@ def discover_available_migrations(debug: bool = False) -> Dict[tuple, dict]:
     if debug:
         print(f"[migration] Looking for JSONs in: {folder}")
 
-    for fp in sorted(folder.glob("*.json")):
-        with fp.open(encoding="utf-8") as f:
-            data = json.load(f)
+    signature = _migration_resource_signature(folder)
+    for fp, data in _load_migration_descriptors(str(folder), signature):
 
         # example source_id: "ecoinvent-3.5-cutoff"
         try:
@@ -336,19 +363,57 @@ def matches_source(exc: dict, source: dict) -> bool:
     Only keys present in `source` are checked, except for keys we
     deliberately ignore: 'unit', 'allocation', 'comment'.
     """
-    IGNORE_KEYS = {"unit", "allocation", "comment"}
-
     for key, value in source.items():
-        if key in IGNORE_KEYS:
+        if key in _MATCH_IGNORED_KEYS:
             continue
         if exc.get(key) != value:
             return False
     return True
 
 
+def _compile_rule_index(rules: list, selector: str):
+    """Compile heterogeneous rule shapes while preserving file order."""
+
+    cache_key = id(rules), selector
+    cached = _COMPILED_RULE_INDEX_CACHE.get(cache_key)
+    if cached is not None and cached[0] is rules:
+        return cached[1]
+
+    by_shape = {}
+    for position, rule in enumerate(rules):
+        specifications = rule[selector] if selector == "targets" else (rule[selector],)
+        for specification in specifications:
+            fields = tuple(
+                key for key in specification if key not in _MATCH_IGNORED_KEYS
+            )
+            values = tuple(specification.get(field) for field in fields)
+            by_shape.setdefault(fields, {}).setdefault(values, []).append(
+                (position, rule)
+            )
+    compiled = tuple((fields, matches) for fields, matches in by_shape.items())
+    # Retain the source list alongside the index, preventing Python object-id
+    # reuse from returning an index compiled for an unrelated caller list.
+    _COMPILED_RULE_INDEX_CACHE[cache_key] = rules, compiled
+    if len(_COMPILED_RULE_INDEX_CACHE) > _COMPILED_MIGRATION_CACHE_SIZE:
+        _COMPILED_RULE_INDEX_CACHE.pop(next(iter(_COMPILED_RULE_INDEX_CACHE)))
+    return compiled
+
+
+def _match_compiled_rule(payload: dict, compiled):
+    best = None
+    for fields, matches in compiled:
+        values = tuple(payload.get(field) for field in fields)
+        candidates = matches.get(values)
+        if candidates and (best is None or candidates[0][0] < best[0]):
+            best = candidates[0]
+    return None if best is None else best[1]
+
+
 def apply_disaggregation(db: list, disaggregate_rules: list):
     if not disaggregate_rules:
         return
+
+    compiled_rules = _compile_rule_index(disaggregate_rules, "source")
 
     for ds in db:
         new_exchanges = []
@@ -358,16 +423,11 @@ def apply_disaggregation(db: list, disaggregate_rules: list):
                 new_exchanges.append(exc)
                 continue
 
-            rule = next(
-                (r for r in disaggregate_rules if matches_source(exc, r["source"])),
-                None,
-            )
+            rule = _match_compiled_rule(exc, compiled_rules)
 
             if rule is None:
                 new_exchanges.append(exc)
                 continue
-
-            original_amount = exc["amount"]
 
             for tgt in rule["targets"]:
                 new_exc = exc.copy()
@@ -380,7 +440,7 @@ def apply_disaggregation(db: list, disaggregate_rules: list):
                     new_exc["product"] = tgt["reference product"]
 
                 alloc = tgt.get("allocation", 1.0)
-                new_exc["amount"] = original_amount * alloc
+                rescale_exchange(new_exc, alloc, remove_uncertainty=False)
 
                 new_exc.pop("input", None)
 
@@ -397,6 +457,8 @@ def apply_aggregation(db: list, disaggregate_rules: list):
     if not disaggregate_rules:
         return
 
+    compiled_targets = _compile_rule_index(disaggregate_rules, "targets")
+
     for ds in db:
         exchanges = ds["exchanges"]
         new_exchanges = []
@@ -410,13 +472,12 @@ def apply_aggregation(db: list, disaggregate_rules: list):
                 new_exchanges.append(exc)
                 continue
 
-            applied_rule = False
+            target_match = _match_compiled_rule(exc, compiled_targets)
+            applied_rule = target_match is not None
 
-            for rule in disaggregate_rules:
+            if target_match is not None:
+                rule = target_match
                 targets = rule["targets"]
-
-                if not any(matches_source(exc, t) for t in targets):
-                    continue
 
                 matching_indices = []
                 total_amount = 0.0
@@ -435,24 +496,22 @@ def apply_aggregation(db: list, disaggregate_rules: list):
                             first_match = ex2
 
                 if not matching_indices:
-                    continue
+                    applied_rule = False
+                else:
+                    new_exc = first_match.copy()
+                    src = rule["source"]
 
-                new_exc = first_match.copy()
-                src = rule["source"]
+                    for field in ("name", "reference product", "location"):
+                        if field in src:
+                            new_exc[field] = src[field]
 
-                for field in ("name", "reference product", "location"):
-                    if field in src:
-                        new_exc[field] = src[field]
+                    if "reference product" in src:
+                        new_exc["product"] = src["reference product"]
 
-                if "reference product" in src:
-                    new_exc["product"] = src["reference product"]
+                    new_exc["amount"] = total_amount
+                    new_exc.pop("input", None)
 
-                new_exc["amount"] = total_amount
-                new_exc.pop("input", None)
-
-                new_exchanges.append(new_exc)
-                applied_rule = True
-                break
+                    new_exchanges.append(new_exc)
 
             if not applied_rule:
                 new_exchanges.append(exc)
@@ -468,31 +527,31 @@ def apply_backward_replace(db: list, replace_rules: list):
     if not replace_rules:
         return
 
+    compiled_rules = _compile_rule_index(replace_rules, "target")
+
     for ds in db:
         for exc in ds["exchanges"]:
             if exc.get("type") not in ("technosphere", "biosphere"):
                 continue
 
-            for rule in replace_rules:
-                src = rule["source"]
-                tgt = rule["target"]
+            rule = _match_compiled_rule(exc, compiled_rules)
+            if rule is None:
+                continue
+            src = rule["source"]
+            for field in (
+                "name",
+                "reference product",
+                "location",
+                "uuid",
+                "formula",
+            ):
+                if field in src:
+                    exc[field] = src[field]
 
-                if matches_source(exc, tgt):
-                    for field in (
-                        "name",
-                        "reference product",
-                        "location",
-                        "uuid",
-                        "formula",
-                    ):
-                        if field in src:
-                            exc[field] = src[field]
+            if "reference product" in src:
+                exc["product"] = src["reference product"]
 
-                    if "reference product" in src:
-                        exc["product"] = src["reference product"]
-
-                    exc.pop("input", None)
-                    break
+            exc.pop("input", None)
 
 
 def apply_forward_replace(db: list, replace_rules: list):
@@ -543,47 +602,50 @@ def apply_biosphere_migration(db, biosphere_rules):
     if not biosphere_rules:
         return
 
-    # --- DELETE rules ---
-    for ds in db:
-        new_ex = []
-        for exc in ds["exchanges"]:
-            if exc.get("type") != "biosphere":
-                new_ex.append(exc)
+    cache_key = id(biosphere_rules)
+    cached = _COMPILED_BIOSPHERE_RULE_CACHE.get(cache_key)
+    if cached is not None and cached[0] is biosphere_rules:
+        delete_names, replacements = cached[1]
+    else:
+        delete_names = frozenset(
+            rule["source"].get("name") for rule in biosphere_rules.get("delete", [])
+        )
+        replacements = {}
+        for rule in biosphere_rules.get("replace", []):
+            source = rule["source"]
+            replacements.setdefault(source.get("name"), []).append(
+                (source.get("unit"), "unit" in source, rule["target"])
+            )
+        replacements = {
+            name: tuple(candidates) for name, candidates in replacements.items()
+        }
+        _COMPILED_BIOSPHERE_RULE_CACHE[cache_key] = (
+            biosphere_rules,
+            (delete_names, replacements),
+        )
+        if len(_COMPILED_BIOSPHERE_RULE_CACHE) > _COMPILED_MIGRATION_CACHE_SIZE:
+            _COMPILED_BIOSPHERE_RULE_CACHE.pop(
+                next(iter(_COMPILED_BIOSPHERE_RULE_CACHE))
+            )
+
+    for dataset in db:
+        migrated = []
+        for exchange in dataset["exchanges"]:
+            if exchange.get("type") != "biosphere":
+                migrated.append(exchange)
                 continue
-
-            should_delete = False
-            for rule in biosphere_rules.get("delete", []):
-                src = rule["source"]
-                # UUID is ignored
-                if exc.get("name") == src.get("name"):
-                    should_delete = True
-                    break
-
-            if not should_delete:
-                new_ex.append(exc)
-
-        ds["exchanges"] = new_ex
-
-    # --- REPLACE rules ---
-    for ds in db:
-        for exc in ds["exchanges"]:
-            if exc.get("type") != "biosphere":
+            name = exchange.get("name")
+            if name in delete_names:
                 continue
-
-            for rule in biosphere_rules.get("replace", []):
-                src = rule["source"]
-
-                # UUID ignored
-                if exc.get("name") != src.get("name"):
+            for unit, unit_required, target in replacements.get(name, ()):
+                if unit_required and exchange.get("unit") != unit:
                     continue
-                if "unit" in src and exc.get("unit") != src["unit"]:
-                    continue
-
-                # Apply all target attributes EXCEPT uuid
-                for key, val in rule["target"].items():
-                    if key == "uuid":
-                        continue
-                    exc[key] = val
+                for key, value in target.items():
+                    if key != "uuid":
+                        exchange[key] = value
+                break
+            migrated.append(exchange)
+        dataset["exchanges"] = migrated
 
 
 def apply_migration_step(
@@ -881,11 +943,11 @@ class BaseInventoryImport:
     Base class for inventories that are to be merged with the wurst database.
 
     :ivar database: the target database for the import (the ecoinvent database),
-    unpacked to a list of dicts
+        unpacked to a list of dicts
     :ivar version_in: the ecoinvent database version of the inventory to import
     :ivar version_out: the ecoinvent database version the imported inventories
-    should comply with
-    :ivar path: the filepath of the inventories to import
+        should comply with
+    :ivar path: the local filepath or HTTP(S) URL of the inventories to import
 
     """
 
@@ -897,6 +959,7 @@ class BaseInventoryImport:
         path: Union[str, Path],
         system_model: str,
         keep_uncertainty_data: bool = False,
+        preloaded_importer=None,
     ) -> None:
         """Create a :class:`BaseInventoryImport` instance."""
         self.database = database
@@ -919,18 +982,31 @@ class BaseInventoryImport:
         self.import_product_index = {}
 
         print(f"Importing {path}")
-        if "http" in str(path):
+        if isinstance(path, str) and urlsplit(path).scheme in ("http", "https"):
+            # A URL is not a filesystem path: Path changes its separators and
+            # can corrupt both the scheme and the query string.
             r = requests.head(path)
             if r.status_code != 200:
                 raise ValueError("The file at {} could not be found.".format(path))
         else:
-            if not Path(path).exists():
+            self.path = Path(path)
+            if not self.path.exists():
                 raise FileNotFoundError(
                     f"The inventory file {path} could not be found."
                 )
 
-        self.path = Path(path) if isinstance(path, str) else path
-        self.import_db = self.load_inventory()
+        self.import_db = (
+            preloaded_importer
+            if preloaded_importer is not None
+            else self.load_inventory()
+        )
+
+    @property
+    def inventory_filename(self) -> str:
+        """Get a diagnostic filename without treating a URL as a local path."""
+        if isinstance(self.path, str):
+            return PurePosixPath(urlsplit(self.path).path).name
+        return self.path.name
 
     def _build_database_product_index(self) -> dict:
         """Build product lookup tables for the source database."""
@@ -1020,10 +1096,7 @@ class BaseInventoryImport:
             )
             table = PrettyTable(["Name", "Reference product", "Location", "File"])
 
-            if isinstance(self.path, str):
-                name = self.path
-            else:
-                name = self.path.name
+            name = self.inventory_filename
 
             for dataset in already_exist:
                 table.add_row(
@@ -1504,7 +1577,7 @@ class BaseInventoryImport:
                 None,
                 exc[2],
                 "technosphere",
-                self.path.name,
+                self.inventory_filename,
             )
         )
 
@@ -1567,13 +1640,13 @@ class BaseInventoryImport:
 
                                     if key not in self.biosphere_dict:
                                         print(
-                                            f"Could not find a biosphere flow for {key} in {self.path.name}. Exchange deleted."
+                                            f"Could not find a biosphere flow for {key} in {self.inventory_filename}. Exchange deleted."
                                         )
                                         y["delete"] = True
 
                                 except KeyError:
                                     print(
-                                        f"Could not find a biosphere flow for {key} in {self.path.name}. Exchange deleted."
+                                        f"Could not find a biosphere flow for {key} in {self.inventory_filename}. Exchange deleted."
                                     )
                                     y["delete"] = True
                             y["name"] = new_key[0]
@@ -1586,7 +1659,7 @@ class BaseInventoryImport:
                             y["categories"] = (key[1], "unspecified")
                         else:
                             print(
-                                f"Could not find a biosphere flow for {key} or {fallback_key} in {self.path.name}. Exchange deleted."
+                                f"Could not find a biosphere flow for {key} or {fallback_key} in {self.inventory_filename}. Exchange deleted."
                             )
                             y["delete"] = True
 
@@ -1597,7 +1670,7 @@ class BaseInventoryImport:
                         )
                     except KeyError:
                         print(
-                            f"Could not find a biosphere flow for {key} in {self.path.name}. Flow ignored."
+                            f"Could not find a biosphere flow for {key} in {self.inventory_filename}. Flow ignored."
                         )
                         # remove the exchange if it is not linked
                         y["delete"] = True
@@ -1747,9 +1820,16 @@ class DefaultInventory(BaseInventoryImport):
         path,
         system_model,
         keep_uncertainty_data,
+        preloaded_importer=None,
     ):
         super().__init__(
-            database, version_in, version_out, path, system_model, keep_uncertainty_data
+            database,
+            version_in,
+            version_out,
+            path,
+            system_model,
+            keep_uncertainty_data,
+            preloaded_importer,
         )
 
     def load_inventory(self) -> bw2io.ExcelImporter:
@@ -1780,7 +1860,10 @@ class DefaultInventory(BaseInventoryImport):
             print("Remove uncertainty data.")
             self.import_db.data = remove_uncertainty(self.import_db.data)
         else:
-            check_uncertainty_data(self.import_db.data, filename=Path(self.path).stem)
+            check_uncertainty_data(
+                self.import_db.data,
+                filename=PurePosixPath(self.inventory_filename).stem,
+            )
 
         # Check for duplicates
         self.check_for_already_existing_datasets()
@@ -1894,18 +1977,10 @@ class AdditionalInventory(BaseInventoryImport):
             raise ConnectionError(f"Error downloading the file: {e}") from e
 
     def load_inventory(self):
-        path_str = str(self.path)
-
-        if "http" in path_str:
-            if ":/" in path_str and "://" not in path_str:
-                path_str = path_str.replace(":/", "://")
-            self.download_file(
-                path_str,
-                TEMP_CSV_FILE if path_str.endswith(".csv") else TEMP_EXCEL_FILE,
-            )
-            temp_file_path = (
-                TEMP_CSV_FILE if path_str.endswith(".csv") else TEMP_EXCEL_FILE
-            )
+        if isinstance(self.path, str):
+            suffix = PurePosixPath(urlsplit(self.path).path).suffix
+            temp_file_path = TEMP_CSV_FILE if suffix == ".csv" else TEMP_EXCEL_FILE
+            self.download_file(self.path, temp_file_path)
         else:
             temp_file_path = self.path
 

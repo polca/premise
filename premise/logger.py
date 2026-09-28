@@ -41,26 +41,3 @@ def create_logger(handler: str) -> logging.Logger:
         is_config_loaded = True
 
     return logging.getLogger(handler)
-
-
-def empty_log_files() -> None:
-    """Delete every ``.log`` file in :data:`DIR_LOG_REPORT` if possible.
-
-    The function removes log files created during previous runs. When the file
-    cannot be removed because it is still locked, it is truncated instead so
-    that subsequent log entries start fresh.
-
-    :return: ``None``. The log directory is modified in place.
-    :rtype: None
-    """
-
-    for file in DIR_LOG_REPORT.iterdir():
-        if file.suffix == ".log":
-            try:
-                file.unlink()
-            except PermissionError:
-                try:
-                    with open(file, "w", encoding="utf-8") as log_file:
-                        log_file.write("")
-                except PermissionError:
-                    pass

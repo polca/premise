@@ -1,0 +1,38 @@
+{
+  "segments": [
+    {
+      "segment": "residential",
+      "matched_countries": 169,
+      "master_median_g_co2eq_per_kwh": 26.252740856406735,
+      "corrected_median_g_co2eq_per_kwh": 13.096524349145769,
+      "median_country_change_percent": -49.92376045301795,
+      "minimum_change_percent": -56.585176033150475,
+      "maximum_change_percent": -35.51082199150296
+    },
+    {
+      "segment": "commercial",
+      "matched_countries": 169,
+      "master_median_g_co2eq_per_kwh": 19.63718945249804,
+      "corrected_median_g_co2eq_per_kwh": 10.925592494223448,
+      "median_country_change_percent": -43.72759871891656,
+      "minimum_change_percent": -50.91585340911866,
+      "maximum_change_percent": -31.371253960008804
+    },
+    {
+      "segment": "combined",
+      "matched_countries": 156,
+      "master_median_g_co2eq_per_kwh": 20.03960307365657,
+      "corrected_median_g_co2eq_per_kwh": 11.257553004182213,
+      "median_country_change_percent": -43.734115497722414,
+      "minimum_change_percent": -50.56330482827014,
+      "maximum_change_percent": -30.08726337547718
+    }
+  ],
+  "matched_pairs": 494,
+  "new_pairs": 256,
+  "lost_pairs": 0,
+  "maximum_sensitivity_difference_percent": 4.41671925921483e-05,
+  "database": "premise_pv2026_fixed_remind_SSP2-NPi_2025_ei312_cutoff",
+  "native_export": true,
+  "all_scores_positive_finite": true
+}

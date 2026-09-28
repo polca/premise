@@ -1,0 +1,220 @@
+country,location,year,generation_gwh,flag
+Andorra,AD,2023,4,
+United Arab Em,AE,2023,13312,e
+Afghanistan,AF,2023,117,e
+Antigua Barb,AG,2023,23,e
+Anguilla,AI,2023,4,
+Albania,AL,2023,297,
+Armenia,AM,2023,733,e
+Angola,AO,2023,441,e
+Argentina,AR,2023,3293,e
+Amer Samoa,AS,2023,4,e
+Austria,AT,2023,6395,
+Australia,AU,2023,41965,
+Aruba,AW,2023,26,
+Azerbaijan,AZ,2023,81,
+Bosnia Herzg,BA,2023,253,
+Barbados,BB,2023,112,
+Bangladesh,BD,2023,1181,e
+Belgium,BE,2023,7820,
+Burkina Faso,BF,2023,195,e
+Bulgaria,BG,2023,3521,
+Bahrain,BH,2023,92,
+Burundi,BI,2023,16,e
+Benin,BJ,2023,48,e
+St Barth,BL,2023,0,
+Brunei Darsm,BN,2023,4,e
+Bolivia,BO,2023,370,e
+BES Islands,BQ,2023,9,
+Brazil,BR,2023,50642,e
+Bahamas,BS,2023,24,e
+Bhutan,BT,2023,1,e
+Botswana,BW,2023,6,e
+Belarus,BY,2023,157,
+Belize,BZ,2023,9,e
+Canada,CA,2023,7071,
+Congo DR,CD,2023,30,e
+Cent Afr Rep,CF,2023,57,e
+Congo Rep,CG,2023,1,e
+Switzerland,CH,2023,4624,
+Cote d Ivoire,CI,2023,37,e
+Cook Is,CK,2023,9,o
+Chile,CL,2023,18310,e
+Cameroon,CM,2023,117,e
+China,CN,2023,583854,e
+Colombia,CO,2023,1234,e
+Costa Rica,CR,2023,107,
+Cuba,CU,2023,190,e
+Cabo Verde,CV,2023,7,e
+Curacao,CW,2023,14,e
+Cyprus,CY,2023,831,
+Czechia,CZ,2023,2892,
+Germany,DE,2023,63576,
+Djibouti,DJ,2023,1,e
+Denmark,DK,2023,3363,
+Dominica,DM,2023,0,
+Dominican Rep,DO,2023,1725,
+Algeria,DZ,2023,771,e
+Ecuador,EC,2023,41,
+Estonia,EE,2023,721,
+Egypt,EG,2023,4849,o
+Eritrea,ER,2023,47,e
+Spain,ES,2023,43463,
+Ethiopia,ET,2023,34,e
+Finland,FI,2023,716,
+Fiji,FJ,2023,14,
+Falklands Malv,FK,2023,0,e
+Micronesia,FM,2023,10,e
+Faroe Islands,FO,2023,0,
+France,FR,2023,22126,
+Gabon,GA,2023,1,e
+UK,GB,2023,13889,
+Grenada,GD,2023,4,
+Georgia,GE,2023,1,
+Fr Guiana,GF,2023,61,o
+Ghana,GH,2023,259,e
+Greenland,GL,2023,1,
+Gambia,GM,2023,3,e
+Guinea,GN,2023,26,e
+Guadeloupe,GP,2023,112,
+Eq Guinea,GQ,2023,0,e
+Greece,GR,2023,8894,
+Guatemala,GT,2023,247,e
+Guam,GU,2023,141,
+Guinea Bissau,GW,2023,3,e
+Guyana,GY,2023,22,e
+China HK SAR,HK,2023,210,
+Honduras,HN,2023,1022,e
+Croatia,HR,2023,413,
+Haiti,HT,2023,4,e
+Hungary,HU,2023,6925,
+Indonesia,ID,2023,713,o
+Ireland,IE,2023,646,
+Israel,IL,2023,7845,
+India,IN,2023,108134,e
+Iraq,IQ,2023,377,e
+Iran IR,IR,2023,736,e
+Iceland,IS,2023,5,
+Italy,IT,2023,30711,
+Jamaica,JM,2023,134,o
+Jordan,JO,2023,4564,
+Japan,JP,2023,96459,
+Kenya,KE,2023,879,e
+Cambodia,KH,2023,896,e
+Kiribati,KI,2023,7,e
+Comoros,KM,2023,4,e
+St Kitts Nevis,KN,2023,5,e
+Korea DPR,KP,2023,167,e
+Korea Rep,KR,2023,29903,
+Kuwait,KW,2023,57,
+Cayman Is,KY,2023,23,
+Kazakhstan,KZ,2023,1873,e
+Lao PDR,LA,2023,96,e
+Lebanon,LB,2023,1550,e
+St Lucia,LC,2023,8,e
+Sri Lanka,LK,2023,998,e
+Liberia,LR,2023,4,e
+Lesotho,LS,2023,1,e
+Lithuania,LT,2023,688,
+Luxembourg,LU,2023,294,
+Latvia,LV,2023,239,
+Libya,LY,2023,8,e
+Morocco,MA,2023,640,
+Moldova Rep,MD,2023,132,e
+Montenegro,ME,2023,17,
+St Martin,MF,2023,2,
+Madagascar,MG,2023,96,e
+Marshall Is,MH,2023,3,e
+North Macedonia,MK,2023,355,
+Mali,ML,2023,66,e
+Myanmar,MM,2023,324,e
+Mongolia,MN,2023,201,e
+Martinique,MQ,2023,108,
+Mauritania,MR,2023,119,e
+Montserrat,MS,2023,2,
+Malta,MT,2023,309,
+Mauritius,MU,2023,151,e
+Maldives,MV,2023,83,e
+Malawi,MW,2023,13,e
+Mexico,MX,2023,23575,o
+Malaysia,MY,2023,460,e
+Mozambique,MZ,2023,69,e
+Namibia,NA,2023,506,e
+New Caledon,NC,2023,285,o
+Niger,NE,2023,130,e
+Nigeria,NG,2023,268,e
+Nicaragua,NI,2023,31,o
+Netherlands,NL,2023,19578,
+Norway,NO,2023,374,
+Nepal,NP,2023,117,e
+Nauru,NR,2023,5,e
+Niue,NU,2023,0,
+New Zealand,NZ,2023,370,
+Oman,OM,2023,2057,e
+Panama,PA,2023,877,o
+Peru,PE,2023,1016,e
+Fr Polynesia,PF,2023,45,e
+Papua N Guin,PG,2023,6,e
+Philippines,PH,2023,2676,e
+Pakistan,PK,2023,900,e
+Poland,PL,2023,11107,
+Puerto Rico,PR,2023,1189,e
+Palestine,PS,2023,351,e
+Portugal,PT,2023,5160,
+Palau,PW,2023,29,e
+Paraguay,PY,2023,2,e
+Qatar,QA,2023,1882,
+Reunion,RE,2023,295,o
+Romania,RO,2023,2227,
+Serbia,RS,2023,178,
+Russian Fed,RU,2023,3224,e
+Rwanda,RW,2023,37,e
+Saudi Arabia,SA,2023,4797,e
+Solomon Is,SB,2023,7,e
+Seychelles,SC,2023,21,e
+Sudan,SD,2023,126,e
+Sweden,SE,2023,3114,
+Singapore,SG,2023,1051,e
+Slovenia,SI,2023,984,
+Slovakia,SK,2023,605,
+Sierra Leone,SL,2023,22,e
+Senegal,SN,2023,423,e
+Somalia,SO,2023,72,e
+Suriname,SR,2023,11,e
+South Sudan,SS,2023,7,e
+Sao Tome Prn,ST,2023,0,e
+El Salvador,SV,2023,1200,e
+Syrian AR,SY,2023,102,
+Eswatini,SZ,2023,48,e
+Turks Caicos,TC,2023,5,e
+Chad,TD,2023,3,e
+Togo,TG,2023,77,
+Thailand,TH,2023,5434,o
+Tokelau,TK,2023,2,e
+Timor Leste,TL,2023,0,e
+Turkmenistan,TM,2023,0,e
+Tunisia,TN,2023,914,e
+Tonga,TO,2023,11,e
+Türkiye,TR,2023,22091,
+Trinidad Tobago,TT,2023,6,o
+Tuvalu,TV,2023,2,e
+Chinese Taipei,TW,2023,12909,o
+Tanzania,TZ,2023,34,e
+Ukraine,UA,2023,8046,e
+Uganda,UG,2023,122,e
+USA,US,2023,214436,
+Uruguay,UY,2023,431,e
+Uzbekistan,UZ,2023,622,e
+St Vincent Gren,VC,2023,7,e
+Venezuela,VE,2023,6,
+Br Virgin Is,VG,2023,2,e
+US Virgin Is,VI,2023,19,e
+Viet Nam,VN,2023,25696,e
+Vanuatu,VU,2023,7,e
+Samoa,WS,2023,20,
+Kosovo*,XK,2023,9,
+Yemen,YE,2023,510,e
+Mayotte,YT,2023,46,
+South Africa,ZA,2023,12535,e
+Zambia,ZM,2023,164,e
+Zimbabwe,ZW,2023,77,e
