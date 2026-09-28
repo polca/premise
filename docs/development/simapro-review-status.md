@@ -1,5 +1,11 @@
 # SimaPro export review status
 
+Update, 28 September 2026: the public `write_db_to_simapro()` now uses
+Brightpath exclusively; the earlier CSV writer has been removed. The integration
+records classification fallbacks and excluded biosphere exchanges in an export
+report. See the [current export guide](../user_guide/export/simapro.rst).
+The review below records the comparison state before that integration.
+
 Review decisions as of 2026-09-25. The other SimaPro comparison reports in this
 directory are chronological snapshots, not statements of the latest code behavior.
 
