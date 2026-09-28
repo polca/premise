@@ -23,15 +23,11 @@ from .filesystem_constants import DATA_DIR
 def load_method_mapping(method_package, version):
     """Check optional runtime support and load the exact local biosphere mapping."""
     if sys.version_info < (3, 12):
-        raise RuntimeError(
-            "JSON-LD export requires Python 3.12+ and Brightpath. "
-            "Use format='simapro' for the legacy CSV exporter on older Python."
-        )
+        raise RuntimeError("JSON-LD export requires Python 3.12+ and Brightpath.")
     source_tables = {"3.8": "flows_biosphere_38.csv", "3.12": "flows_biosphere_312.csv"}
     if str(version) not in source_tables:
         raise ValueError(
-            "The JSON-LD method mapping currently supports ecoinvent 3.8 and 3.12. "
-            "Use format='simapro' for other versions."
+            "The JSON-LD method mapping currently supports ecoinvent 3.8 and 3.12."
         )
     if method_package is None:
         raise ValueError(

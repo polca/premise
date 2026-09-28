@@ -181,6 +181,7 @@ def test_report_input_reads_effective_values_without_mutation(tmp_path, checkpoi
 def test_simapro_releases_export_inventory_and_reuses_source(tmp_path, monkeypatch):
     import weakref
     import premise.new_database as module
+    import premise.simapro_export as simapro_module
 
     original = [dict(name="original", exchanges=[])]
     loads = []
@@ -197,14 +198,12 @@ def test_simapro_releases_export_inventory_and_reuses_source(tmp_path, monkeypat
         loads.append(True)
         return original
 
-    class Export:
-        def __init__(self, scenario, **kwargs):
-            self.db = scenario["database"]
-            self.unmatched_category_flows = []
-            exporters.append(weakref.ref(self))
+    class Inventory(list):
+        pass
 
-        def export_db_to_simapro(self):
-            pass
+    def export_scenario(scenario, filepath, version, system_model):
+        exporters.append(weakref.ref(scenario["database"]))
+        return tmp_path / "export.csv"
 
     def reports():
         assert all(reference() is None for reference in exporters)
@@ -216,13 +215,14 @@ def test_simapro_releases_export_inventory_and_reuses_source(tmp_path, monkeypat
     monkeypatch.setattr(database, "_ensure_semantic_certification", lambda *_: None)
     monkeypatch.setattr(database, "_record_export_validation_phase", lambda *_: None)
     monkeypatch.setattr(database, "_run_automatic_reports", reports)
-    monkeypatch.setattr(module, "Export", Export)
+    monkeypatch.setattr(simapro_module, "check_brightpath", lambda: None)
+    monkeypatch.setattr(simapro_module, "export_scenario", export_scenario)
     monkeypatch.setattr(
         module,
         "load_database",
         lambda scenario, **_: {
             **scenario,
-            "database": [dict(name="exported", exchanges=[])],
+            "database": Inventory([dict(name="exported", exchanges=[])]),
         },
     )
     monkeypatch.setattr(module, "_prepare_database", lambda **_: None)

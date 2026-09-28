@@ -590,14 +590,6 @@ def _export_to_matrices(obj):
     obj.export_db_to_matrices()
 
 
-def _export_to_simapro(obj):
-    obj.export_db_to_simapro()
-
-
-def _export_to_olca(obj):
-    obj.export_db_to_simapro(olca_compartments=True)
-
-
 def check_presence_biosphere_database(biosphere_name: str) -> str:
     """
     Check that the biosphere database is present in the current project.
@@ -3036,13 +3028,17 @@ class NewDatabase:
 
     def write_db_to_simapro(self, filepath: str = None):
         """
-        Exports database as a CSV file to be imported in Simapro 9.x
+        Export prepared scenarios as SimaPro CSV files.
 
-        :param filepath: path provided by the user to store the exported import file
+        :param filepath: Output directory (defaults to ``export/simapro``).
         :type filepath: str
+        :return: Paths to the Brightpath CSVs.
 
         """
+        from .simapro_export import check_brightpath, export_scenario
 
+        check_brightpath()
+        artifacts = []
         filepath = filepath or Path(Path.cwd() / "export" / "simapro")
 
         if not os.path.exists(filepath):
@@ -3080,21 +3076,11 @@ class NewDatabase:
             self._record_export_validation_phase(
                 scenario_definition, scenario, "simapro"
             )
-            export = Export(
-                scenario=scenario,
-                filepath=filepath,
-                version=self.version,
-                system_model=self.system_model,
+            artifacts.append(
+                export_scenario(scenario, filepath, self.version, self.system_model)
             )
-            export.export_db_to_simapro()
-
-            if len(export.unmatched_category_flows) > 0:
-                scenario["unmatched category flows"] = export.unmatched_category_flows
 
             end_of_process(scenario)
-            # Export keeps a reference to the complete prepared inventory.
-            # Release it before loading the next scenario or building reports.
-            del export
 
         if (
             getattr(self, "generate_reports", False)
@@ -3112,26 +3098,18 @@ class NewDatabase:
         del original_database
         self._run_automatic_reports()
         delete_all_pickles()
+        return artifacts
 
-    def write_db_to_olca(
-        self, filepath: str = None, *, method_package=None, format: str = "jsonld"
-    ):
+    def write_db_to_olca(self, filepath: str = None, *, method_package=None):
         """Export prepared scenarios to openLCA JSON-LD ZIP packages.
 
         :param filepath: Output directory (defaults to ``export/olca``).
         :param method_package: Matching local ecoinvent LCIA JSON-LD directory or ZIP.
-        :param format: ``jsonld`` (Python 3.12+ and Brightpath) or legacy ``simapro``.
-        :return: Paths to JSON-LD ZIPs, or ``None`` for the legacy CSV route.
+        :return: Paths to the Brightpath JSON-LD ZIPs.
         """
-        if format not in {"jsonld", "simapro"}:
-            raise ValueError("format must be 'jsonld' or 'simapro'.")
-        method_mapping = None
-        if format == "jsonld":
-            from .olca_export import export_scenario, load_method_mapping
+        from .olca_export import export_scenario, load_method_mapping
 
-            method_mapping = load_method_mapping(method_package, self.version)
-        elif method_package is not None:
-            raise ValueError("method_package is only used with format='jsonld'.")
+        method_mapping = load_method_mapping(method_package, self.version)
         artifacts = []
 
         filepath = filepath or Path(Path.cwd() / "export" / "olca")
@@ -3139,7 +3117,7 @@ class NewDatabase:
         if not os.path.exists(filepath):
             os.makedirs(filepath)
 
-        print(f"Write {format} import file(s) for openLCA.")
+        print("Write JSON-LD import file(s) for openLCA.")
         original_database = self._load_original_database()
 
         for scenario_definition in self.scenarios:
@@ -3173,33 +3151,25 @@ class NewDatabase:
                 scenario_definition, scenario, "openlca"
             )
 
-            if format == "jsonld":
-                try:
-                    artifacts.append(
-                        export_scenario(
-                            scenario,
-                            filepath,
-                            self.version,
-                            self.system_model,
-                            method_mapping,
-                        )
+            try:
+                artifacts.append(
+                    export_scenario(
+                        scenario,
+                        filepath,
+                        self.version,
+                        self.system_model,
+                        method_mapping,
                     )
-                except Exception:
-                    self._try_automatic_failed_report()
-                    raise
-            else:
-                Export(
-                    scenario=scenario,
-                    filepath=filepath,
-                    version=self.version,
-                    system_model=self.system_model,
-                ).export_db_to_simapro(olca_compartments=True)
+                )
+            except Exception:
+                self._try_automatic_failed_report()
+                raise
 
             end_of_process(scenario)
 
         self._run_automatic_reports()
         delete_all_pickles()
-        return artifacts if format == "jsonld" else None
+        return artifacts
 
     def write_datapackage(
         self,
