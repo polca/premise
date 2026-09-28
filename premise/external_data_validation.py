@@ -239,16 +239,24 @@ def check_inventories(
 
     # Initialize a defaultdict to count occurrences of each dataset
     dataset_usage = defaultdict(list)
+    shared_dataset_variables = defaultdict(list)
 
     # Iterate over the production pathways
     for variable, pathway in configuration["production pathways"].items():
-        if pathway["ecoinvent alias"].get("new dataset", False):
-            continue
         # Extract the relevant keys for the dataset
         dataset_key = (
             pathway["ecoinvent alias"]["name"],
             pathway["ecoinvent alias"]["reference product"],
         )
+
+        if pathway["ecoinvent alias"].get("new dataset", False):
+            # New markets can supply several independent scenario demands.
+            # Keep every variable binding even though d_datasets processes the
+            # shared inventory once, keyed by its name and reference product.
+            shared_dataset_variables[
+                tuple(value.lower() for value in dataset_key)
+            ].append(variable)
+            continue
 
         # Increment the usage count
         dataset_usage[dataset_key].append(variable)
@@ -640,7 +648,12 @@ def check_inventories(
                     f"Please make sure the unit is specified in the inventory data or in the markets section of the config file."
                 )
 
-            mapping[val["variable"]] = [ds]
+            variables = shared_dataset_variables.get(
+                (ds["name"].lower(), ds["reference product"].lower()),
+                [val["variable"]],
+            )
+            for variable in variables:
+                mapping[variable] = [ds.copy()]
 
     return inventory_data, database, configuration, mapping
 
