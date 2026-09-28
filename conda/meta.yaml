@@ -17,12 +17,12 @@ outputs:
     requirements:
       host:
         - pip
-        - python >=3.10
+        - python >=3.12
         - setuptools
         - wheel
       run:
         - bw2data <4.0.0
-        - python >=3.10
+        - python >=3.12
         - bottleneck
         - bw2io
         - ecoinvent_interface
@@ -50,7 +50,7 @@ outputs:
         - unfold
     test:
       requires:
-        - python >=3.10
+        - python >=3.12
       imports:
         - premise
       commands:
@@ -63,13 +63,13 @@ outputs:
     requirements:
       host:
         - pip
-        - python >=3.10
+        - python >=3.12
         - setuptools
         - wheel
       run:
         - bw2data >=4.0.0
         - bw_processing >=1.0
-        - python >=3.10
+        - python >=3.12
         - bottleneck
         - bw2io
         - ecoinvent_interface
@@ -97,7 +97,7 @@ outputs:
         - unfold
     test:
       requires:
-        - python >=3.10
+        - python >=3.12
       imports:
         - premise
       commands:
