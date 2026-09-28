@@ -8,14 +8,21 @@ ICEV:
       - electric
 EV:
   ecoinvent_aliases:
+    # EN15804 scrap co-products can share the equipment activity name and unit.
     fltr:
-      - electric motor production, vehicle
-      - electric motor production
+      name:
+        - electric motor production, vehicle
+        - electric motor production
+      reference product: electric motor
 ### At this point, we assume that DDPM are used for offshore and Gearbox onshore.
 Wind-DDPM:
   ecoinvent_aliases:
+    # Apply turbine intensities to equipment outputs, not scrap co-products.
     fltr:
-      - direct drive
+      name: direct drive
+      reference product:
+        - wind power plant
+        - wind turbine
     mask:
       - fixed
       - market
@@ -23,8 +30,12 @@ Wind-DDPM:
 Wind-Gearbox:
   ecoinvent_aliases:
     fltr:
-      - wind power plant construction
-      - wind turbine construction
+      name:
+        - wind power plant construction
+        - wind turbine construction
+      reference product:
+        - wind power plant
+        - wind turbine
     mask:
       - fixed
       - market
