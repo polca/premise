@@ -320,6 +320,18 @@ def check_inventories(
         for pathway, val in configuration["production pathways"].items()
     }
 
+    # Export bindings describe demand, not inventory transformations. Keep
+    # them separate so a direct-regionalization entry can retain its existing
+    # precedence without discarding the activity's scenario variables.
+    export_mappings = {
+        key: {
+            "variables": tuple(shared_dataset_variables.get(key, [values["variable"]])),
+            "name": values["original name"],
+            "reference product": values["original reference product"],
+        }
+        for key, values in d_datasets.items()
+    }
+
     # direct regionalization
     if "regionalize" in configuration:
         d_datasets.update(
@@ -570,6 +582,7 @@ def check_inventories(
     mapping = {}
 
     for key, val in d_datasets.items():
+        export_mapping = export_mappings.get(tuple(value.lower() for value in key))
         if val.get("exists in original database") is True:
             mask = val.get("mask")
             duplicate_name = None
@@ -606,21 +619,27 @@ def check_inventories(
                         exc["name"] = duplicate_name
                     database.append(ds)
 
-            if "variable" in val:
-                mapping[val["variable"]] = [
-                    {
-                        "name": val["original name"],
-                        "reference product": val["original reference product"],
-                        "unit": candidates[0]["unit"],
-                    }
-                ]
+            if export_mapping is not None:
+                for variable in export_mapping["variables"]:
+                    mapping[variable] = [
+                        {
+                            "name": export_mapping["name"],
+                            "reference product": export_mapping["reference product"],
+                            "unit": candidates[0]["unit"],
+                        }
+                    ]
         else:
+            # A regionalization-only imported activity has already been
+            # flagged above and does not declare any demand to export.
+            if export_mapping is None:
+                continue
+
             # new dataset
             unit = [
                 act
                 for act in inventory_data
-                if act["name"] == val["original name"]
-                and act["reference product"] == val["original reference product"]
+                if act["name"] == export_mapping["name"]
+                and act["reference product"] == export_mapping["reference product"]
             ]
             if len(unit) > 0:
                 unit = unit[0]["unit"]
@@ -629,16 +648,16 @@ def check_inventories(
                 # we need to look into the `markets` section of the config file
                 for market in configuration.get("markets", {}):
                     if (
-                        market["name"] == val["original name"]
+                        market["name"] == export_mapping["name"]
                         and market["reference product"]
-                        == val["original reference product"]
+                        == export_mapping["reference product"]
                     ):
                         unit = market["unit"]
                         break
 
             ds = {
-                "name": val["original name"],
-                "reference product": val["original reference product"],
+                "name": export_mapping["name"],
+                "reference product": export_mapping["reference product"],
             }
             if unit:
                 ds["unit"] = unit
@@ -648,11 +667,7 @@ def check_inventories(
                     f"Please make sure the unit is specified in the inventory data or in the markets section of the config file."
                 )
 
-            variables = shared_dataset_variables.get(
-                (ds["name"].lower(), ds["reference product"].lower()),
-                [val["variable"]],
-            )
-            for variable in variables:
+            for variable in export_mapping["variables"]:
                 mapping[variable] = [ds.copy()]
 
     return inventory_data, database, configuration, mapping
