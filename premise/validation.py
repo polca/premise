@@ -2122,6 +2122,11 @@ class TransportValidation(BaseDatasetValidator):
         )
 
     def validate_emissions(self, ds, actual, expected, pollutant):
+        # A zero reference factor (e.g. lead for EURO-6 gasoline cars) is
+        # satisfied by zero inventory emissions, including an absent exchange.
+        if actual == expected == 0.0:
+            return
+
         if actual == 0.0:
             message = f"No emission factor found for {pollutant}."
             self.log_issue(ds, f"no emission factor for {pollutant}", message)
@@ -2799,7 +2804,14 @@ class ElectricityValidation(BaseDatasetValidator):
                         [x for x in efficiencies if x in ds["name"].lower()][0]
                     ]
 
-                    if not eff["min"] <= efficiency <= eff["max"]:
+                    # Float32 inventory amounts can put a boundary value
+                    # slightly outside the range after conversion to efficiency.
+                    within_bounds = eff["min"] <= efficiency <= eff["max"]
+                    at_boundary = any(
+                        math.isclose(efficiency, bound, rel_tol=1e-7)
+                        for bound in (eff["min"], eff["max"])
+                    )
+                    if not (within_bounds or at_boundary):
                         message = f"Current eff.: {efficiency}. Min: {eff['min']}. Max: {eff['max']}."
                         self.log_issue(
                             ds,
