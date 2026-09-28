@@ -408,6 +408,9 @@ class Emissions(BaseTransformation):
                     continue
 
                 log_parameters = copy.deepcopy(dataset.get("log parameters", {}))
+                # Only pollutants processed before this activity pass are skipped.
+                # All compartments for a newly processed pollutant must be scaled.
+                previously_processed = frozenset(log_parameters)
                 log_changed = False
                 for exchange_id in exchange_ids:
                     exchange = store._storage_exchange(exchange_id)
@@ -424,7 +427,7 @@ class Emissions(BaseTransformation):
                     )
                     if not 1 > scaling_factor > 0:
                         continue
-                    if gains_pollutant in log_parameters:
+                    if gains_pollutant in previously_processed:
                         continue
 
                     transaction.patch_exchange(
@@ -479,6 +482,9 @@ class Emissions(BaseTransformation):
             if exc["type"] == "biosphere" and exc["name"] in relevant
         ]
 
+        # Keep the idempotence guard fixed for this activity pass. Updating the
+        # log inside the loop must not skip later compartments of the same pollutant.
+        previously_processed = frozenset(dataset.get("log parameters", {}))
         for exc in biosphere_excs:
             gains_pollutant = self.ei_pollutants[exc["name"]]
             scaling_factor = self.find_gains_emissions_change(
@@ -492,7 +498,7 @@ class Emissions(BaseTransformation):
             )
 
             if 1 > scaling_factor > 0:
-                if gains_pollutant not in dataset.get("log parameters", {}):
+                if gains_pollutant not in previously_processed:
                     rescale_exchange(exc, scaling_factor, remove_uncertainty=False)
 
                     logp = dataset.setdefault("log parameters", {})
