@@ -65,6 +65,7 @@ from .filesystem_constants import (
 from .fuels.base import _update_fuels
 from .heat import _update_heat
 from .inventory_imports import (
+    BIOSPHERE_MIGRATION_CACHE_VERSION,
     AdditionalInventory,
     BaseInventoryImport,
     DefaultInventory,
@@ -985,7 +986,10 @@ class NewDatabase:
             ):
                 digest.update(path.name.encode())
                 digest.update(path.read_bytes())
-            inventory_label += f"_pv2026_{digest.hexdigest()[:16]}"
+            inventory_label += (
+                f"_pv2026_{digest.hexdigest()[:16]}"
+                f"_biosphere{BIOSPHERE_MIGRATION_CACHE_VERSION}"
+            )
         return (
             DIR_CACHED_DB
             / f"cached_{''.join(tuple(map(str, __version__)))}_v{CACHE_SCHEMA_VERSION}_"
