@@ -1488,53 +1488,80 @@ class Electricity(BaseTransformation):
         return dataset
 
     def correct_hydropower_water_emissions(self) -> None:
-        """
-        Correct the emissions of water for hydropower plants.
-        In Swiss datasets, water evaporation is too high.
-        We use a new factor from Flury and Frischknecht (2021) to correct this.
+        """Correct Swiss reservoir and pumped-storage evaporation, conserving water.
+
+        Flury and Frischknecht (2012), sections 4.1.3 and 4.2.1, use the same
+        evaporation for both technologies. Keep each dataset's turbine-water
+        withdrawal and calculate its discharge as withdrawal minus evaporation.
         https://treeze.ch/fileadmin/user_upload/downloads/Publications/Case_Studies/Energy/flury-2012-hydroelectric-power-generation.pdf
         """
-
-        water_factor = get_water_consumption_factors()
-
-        hydropower_datasets = ws.get_many(
+        factors = get_water_consumption_factors()
+        for dataset in ws.get_many(
             self.database,
-            *[
-                ws.contains("name", "electricity production, hydro, reservoir"),
-                ws.equals("location", "CH"),
-                ws.equals("unit", "kilowatt hour"),
-            ],
-        )
-
-        for name, flows in water_factor.items():
-            for dataset in hydropower_datasets:
-                if name in dataset["name"]:
-                    for flow in flows:
-                        for exc in ws.biosphere(
-                            dataset,
-                            ws.equals("name", flow["name"]),
-                            ws.equals("unit", flow["unit"]),
-                            ws.equals("categories", (flow["categories"],)),
-                        ):
-                            if exc["amount"] == 0:
-                                # A relative uncertainty cannot be rescaled from zero.
-                                exc["amount"] = flow["amount"]
-                                exc["uncertainty type"] = 0
-                                exc["loc"] = exc["amount"]
-                                for field in (
-                                    "scale",
-                                    "shape",
-                                    "minimum",
-                                    "maximum",
-                                    "negative",
-                                ):
-                                    exc.pop(field, None)
-                            else:
-                                rescale_exchange(
-                                    exc,
-                                    flow["amount"] / exc["amount"],
-                                    remove_uncertainty=False,
-                                )
+            ws.equals("location", "CH"),
+            ws.equals("unit", "kilowatt hour"),
+        ):
+            settings = next(
+                (
+                    value
+                    for name, value in factors.items()
+                    if dataset["name"] == name
+                    or dataset["name"].startswith(name + ",")
+                    or dataset["name"].startswith(name + "_")
+                ),
+                None,
+            )
+            if settings is None:
+                continue
+            withdrawal = list(
+                ws.biosphere(
+                    dataset,
+                    ws.equals("name", "Water, turbine use, unspecified natural origin"),
+                    ws.equals("unit", "cubic meter"),
+                    ws.equals("categories", ("natural resource", "in water")),
+                )
+            )
+            water = {}
+            for compartment in ("air", "water"):
+                water[compartment] = [
+                    exc
+                    for exc in ws.biosphere(dataset)
+                    if exc["name"] == "Water"
+                    and exc["unit"] == "cubic meter"
+                    and tuple(exc.get("categories", ()))
+                    in ((compartment,), (compartment, "unspecified"))
+                ]
+            if not withdrawal or any(len(flows) != 1 for flows in water.values()):
+                raise ValueError(
+                    f"Cannot balance hydropower water flows for {dataset['name']} "
+                    f"in CH: expected turbine withdrawal and one discharge and evaporation flow"
+                )
+            amount_in = sum(exc["amount"] for exc in withdrawal)
+            evaporation = settings["evaporation"]
+            if not np.isfinite(amount_in) or not 0 <= evaporation <= amount_in:
+                raise ValueError(
+                    f"Invalid hydropower water balance for {dataset['name']} in CH: "
+                    f"withdrawal={amount_in}, evaporation={evaporation}"
+                )
+            for compartment, amount in (
+                ("air", evaporation),
+                ("water", amount_in - evaporation),
+            ):
+                exc = water[compartment][0]
+                if exc["amount"] == amount:
+                    continue
+                if exc["amount"] == 0 or amount == 0:
+                    # Relative uncertainty cannot be rescaled from/to zero.
+                    exc["amount"] = amount
+                    exc["uncertainty type"] = 0
+                    exc["loc"] = amount
+                    for field in ("scale", "shape", "minimum", "maximum", "negative"):
+                        exc.pop(field, None)
+                else:
+                    rescale_exchange(
+                        exc, amount / exc["amount"], remove_uncertainty=False
+                    )
+                    exc["amount"] = amount
 
     def update_efficiency_of_solar_pv(self) -> None:
         """
