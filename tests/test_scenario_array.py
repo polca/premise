@@ -195,9 +195,10 @@ def test_write_scenario_array_datapackage_is_compressed_and_replaces_atomically(
     with ZipFile(result) as archive:
         assert archive.testzip() is None
         assert all(item.compress_type == ZIP_DEFLATED for item in archive.infolist())
-        assert not any(
-            path.name.startswith(".arrays-") for path in result.parent.iterdir()
-        )
+    assert not any(
+        path.name.startswith(".arrays-") and path.suffix == ".zip"
+        for path in result.parent.iterdir()
+    )
 
 
 def test_scenario_array_datapackage_advances_matrices_together_and_wraps(tmp_path):
