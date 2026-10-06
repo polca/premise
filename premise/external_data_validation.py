@@ -10,10 +10,8 @@ from typing import List, Union
 import datapackage
 import numpy as np
 import pandas as pd
-import wurst.searching as ws
 import yaml
 from datapackage import Package, exceptions, validate
-from prettytable import PrettyTable
 from schema import And, Optional, Or, Schema, Use
 
 from .efficiency_bounds import output_data, validate_policy
@@ -259,6 +257,58 @@ def flag_activities_to_adjust(
     return dataset
 
 
+def copy_external_provider(source: dict, name: str) -> dict:
+    """Clone a provider without changing its shared background identity.
+
+    Retain source allocation and exchanges, but discard previous external
+    transformation flags. Keep a source's requested geographic regionalization
+    so shared non-efficiency pathways still obtain local providers.
+    Store provenance for clients which calculate physical
+    efficiencies from the source's allocation factor. Geographic regionalization
+    may subsequently move the copy; its original location remains available.
+    """
+    dataset = copy.deepcopy(source)
+    for field in (
+        "input",
+        "regions",
+        "region mapping",
+        "production volume variable",
+        "adjust efficiency",
+        "technosphere filters",
+        "biosphere filters",
+        "absolute efficiency",
+        "efficiency bounds",
+        "efficiency output data",
+        "efficiency bounds audit",
+        "excludes technosphere",
+        "excludes biosphere",
+        "replaces",
+        "replaces in",
+        "replacement ratio",
+    ):
+        dataset.pop(field, None)
+    dataset["external scenario source"] = {
+        key: source[key]
+        for key in ("name", "reference product", "location", "unit", "code")
+        if key in source
+    }
+    dataset["name"] = name
+    dataset["code"] = uuid.uuid4().hex
+    for exc in dataset["exchanges"]:
+        # A self-input must still refer to this process, not its unadjusted source.
+        is_self_input = (
+            exc.get("type") == "technosphere"
+            and exc.get("name") == source["name"]
+            and exc.get("product") == source["reference product"]
+            and exc.get("location") == source["location"]
+        )
+        if exc["type"] == "production" or is_self_input:
+            exc["name"] = name
+            exc.pop("input", None)
+        exc.pop("output", None)
+    return dataset
+
+
 def check_inventories(
     configuration: dict,
     inventory_data: list,
@@ -277,56 +327,53 @@ def check_inventories(
     :param model: IAM model
     """
 
-    # Initialize a defaultdict to count occurrences of each dataset
+    # Efficiency targets belong to the external pathway, never to the shared
+    # background provider. Even the first use needs its own copy. Preserve the
+    # established direct-regionalization precedence (it overrides pathway flags).
     dataset_usage = defaultdict(list)
     shared_dataset_variables = defaultdict(list)
-
-    # Iterate over the production pathways
-    for variable, pathway in configuration["production pathways"].items():
-        # Extract the relevant keys for the dataset
-        dataset_key = (
-            pathway["ecoinvent alias"]["name"],
-            pathway["ecoinvent alias"]["reference product"],
+    direct_regionalization = {
+        (v["name"].lower(), v["reference product"].lower())
+        for v in configuration.get("regionalize", {}).get("datasets", [])
+    }
+    occupied = {
+        (d["name"].lower(), d["reference product"].lower())
+        for d in database + inventory_data
+    }
+    occupied.update(
+        (
+            v["ecoinvent alias"]["name"].lower(),
+            v["ecoinvent alias"]["reference product"].lower(),
         )
-
-        if pathway["ecoinvent alias"].get("new dataset", False):
-            # New markets can supply several independent scenario demands.
-            # Keep every variable binding even though d_datasets processes the
-            # shared inventory once, keyed by its name and reference product.
-            shared_dataset_variables[
-                tuple(value.lower() for value in dataset_key)
-            ].append(variable)
+        for v in configuration["production pathways"].values()
+    )
+    for variable, pathway in configuration["production pathways"].items():
+        alias = pathway["ecoinvent alias"]
+        key = (alias["name"].lower(), alias["reference product"].lower())
+        if alias.get("new dataset", False):
+            shared_dataset_variables[key].append(variable)
             continue
-
-        # Increment the usage count
-        dataset_usage[dataset_key].append(variable)
-
-    if any(len(x) > 1 for x in dataset_usage.values()):
-        d = {}
-        rows = []
-        for k, v in dataset_usage.items():
-            if len(v) > 1:
-                rows.append((k[0][:50], k[1][:50]))
-                for _, val in enumerate(v[1:]):
-                    d[val] = k
-
-        # print a Prettytable
-        print("The following datasets will be duplicated:")
-        table = PrettyTable()
-        # adjust width of columns
-        table.field_names = ["Name", "Reference product"]
-        table._max_width = {"Name": 50, "Reference product": 50}
-        for row in rows:
-            table.add_row(row)
-        print(table)
-
-        for k, v in d.items():
-            configuration["production pathways"][k]["ecoinvent alias"][
-                "duplicate"
-            ] = True
-            configuration["production pathways"][k]["ecoinvent alias"][
-                "name"
-            ] += f"_{k}"
+        isolate_efficiency = (
+            alias.get("exists in original database", True)
+            and bool(pathway.get("efficiency"))
+            and key not in direct_regionalization
+        )
+        if isolate_efficiency or dataset_usage[key]:
+            # Keep the source name explicitly: underscores are valid characters
+            # in both inventory names and arbitrary user pathway labels.
+            source_name = alias["name"]
+            name = f"{source_name}_{variable}"
+            suffix = 2
+            while (name.lower(), key[1]) in occupied:
+                name = f"{source_name}_{variable}_external_{suffix}"
+                suffix += 1
+            alias.update({"duplicate": True, "source name": source_name, "name": name})
+            if isolate_efficiency:
+                # A selected background proxy can be outside the external
+                # regions. Materialize the copy there before applying targets.
+                alias["regionalize"] = True
+            occupied.add((name.lower(), key[1]))
+        dataset_usage[key].append(variable)
 
     geo = Geomap(model=model)
 
@@ -340,6 +387,7 @@ def check_inventories(
             ),
             "new dataset": val["ecoinvent alias"].get("new dataset", False),
             "duplicate": val["ecoinvent alias"].get("duplicate", False),
+            "source name": val["ecoinvent alias"].get("source name"),
             "original name": val["ecoinvent alias"]["name"],
             "original reference product": val["ecoinvent alias"]["reference product"],
             "regionalize": val["ecoinvent alias"].get("regionalize", False),
@@ -628,36 +676,28 @@ def check_inventories(
             duplicate_name = None
             if val.get("duplicate") is True:
                 duplicate_name = val["original name"]
-                # duplicate_name = key[0]
-                key = (key[0].split("_")[0], key[1])
+                key = (val["source name"], key[1])
 
             potential_candidates = identify_potential_candidates(
                 database, inventory_data, key, mask
             )
 
-            try:
-                candidates = adjust_candidates_or_raise_error(
-                    potential_candidates,
-                    scenario_data,
-                    key,
-                    year,
-                    val,
-                    inventory_data,
-                )
-            except ValueError as e:
-                print(f"Error processing dataset {key[0]} and {key[1]}: {e}")
-                print(key, val, potential_candidates)
-                print()
+            if duplicate_name:
+                # Copy BEFORE setting efficiency, replacement or regionalization
+                # flags. Otherwise those settings leak back into the source and
+                # into other pathways sharing it.
+                potential_candidates = [
+                    copy_external_provider(ds, duplicate_name)
+                    for ds in potential_candidates
+                ]
+
+            candidates = adjust_candidates_or_raise_error(
+                potential_candidates, scenario_data, key, year, val, inventory_data
+            )
 
             if duplicate_name:
-                for candidate in candidates:
-                    # deep copy the candidate
-                    ds = copy.deepcopy(candidate)
-                    ds["code"] = str(uuid.uuid4().hex)
-                    ds["name"] = duplicate_name
-                    for exc in ws.production(ds):
-                        exc["name"] = duplicate_name
-                    database.append(ds)
+                # One proxy can serve multiple external regions; append it once.
+                database.extend({ds["code"]: ds for ds in candidates}.values())
 
             if export_mapping is not None:
                 for variable in export_mapping["variables"]:

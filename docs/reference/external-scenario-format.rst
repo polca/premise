@@ -224,6 +224,17 @@ In practice, this will reduce the input of electricity over time for that datase
 If you do not specify **includes**, then the efficiency gains will apply to all
 flows (of type *technosphere* and *biosphere*).
 
+When a production pathway applies **efficiency** changes to an existing
+inventory, **premise** creates a dedicated provider copy before applying those
+changes. The custom markets and exported demand mappings use that copy. Other
+consumers retain the original provider and its background-scenario treatment.
+Separate pathways receive independent copies, including when they start from the
+same inventory. Production allocation metadata and source identity are retained.
+Explicit **replaces** and **replaces in** instructions still control intentional
+supplier replacement; copying does not disable those instructions. A direct
+**regionalize** entry for the same inventory retains its existing precedence over
+pathway transformation settings.
+
 The field **reference year**
 indicates the baseline year **premise** should use to calculate the factor
 by which the flows should be scaled by. For example, if the electrolyzer
