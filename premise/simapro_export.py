@@ -14,7 +14,7 @@ from .olca_export import _identity, _plain, build_process_categories
 
 
 def check_brightpath():
-    """Fail before scenario preparation when the optional writer is unavailable."""
+    """Fail before scenario preparation when the writer is unavailable."""
     if sys.version_info < (3, 12):
         raise RuntimeError("Brightpath SimaPro export requires Python 3.12+.")
     try:

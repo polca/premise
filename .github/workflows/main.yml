@@ -96,6 +96,10 @@ jobs:
           pip check
 
 
+      - name: Verify Brightpath export support
+        run: |
+          python -c "from premise.simapro_export import check_brightpath; check_brightpath(); from brightpath.formats.openlca_methods import OpenLCAMethodMapping"
+
       - name: Run tests
         run: |
           pytest -m "not slow" --instafail

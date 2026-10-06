@@ -6,6 +6,10 @@ All notable changes to this project are documented in this file.
 
 ### Breaking changes
 
+- Require Brightpath from a pinned GitHub revision for Python installations
+  and build the same source as a dependency of both Conda variants. Export integration tests now fail when Brightpath is unavailable
+  instead of skipping; CI and Conda package checks verify its export APIs.
+
 - Require Python 3.12 or newer in the Python package and both Conda variants.
   Align CI and documentation builds with Python 3.12.
 - Use Brightpath exclusively for SimaPro CSV and openLCA JSON-LD exports.

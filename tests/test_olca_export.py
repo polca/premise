@@ -2,7 +2,6 @@
 
 import csv
 import json
-import sys
 import uuid
 import zipfile
 from copy import deepcopy
@@ -21,9 +20,8 @@ def uid(value):
 
 @pytest.fixture
 def mapping(tmp_path):
-    if sys.version_info < (3, 12):
-        pytest.skip("Brightpath requires Python 3.12")
-    methods = pytest.importorskip("brightpath.formats.openlca_methods")
+    from brightpath.formats import openlca_methods as methods
+
     root = tmp_path / "methods"
     entities = {
         "flows": {
@@ -343,7 +341,8 @@ def test_ei38_biosphere_has_unique_uuids_and_preserves_compartments():
     [("3.8", "flows_biosphere_38.csv"), ("3.12", "flows_biosphere_312.csv")],
 )
 def test_method_mapping_selects_exact_source_version(monkeypatch, version, filename):
-    module = pytest.importorskip("brightpath.formats.openlca_methods")
+    from brightpath.formats import openlca_methods as module
+
     calls = []
     monkeypatch.setattr(
         module,

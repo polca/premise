@@ -3,7 +3,6 @@
 from copy import deepcopy
 import csv
 import json
-import sys
 
 import pytest
 
@@ -12,9 +11,6 @@ from premise import simapro_export
 
 @pytest.fixture
 def brightpath():
-    if sys.version_info < (3, 12):
-        pytest.skip("Brightpath requires Python 3.12")
-    pytest.importorskip("brightpath")
     simapro_export.check_brightpath()
 
 

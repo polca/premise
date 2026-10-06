@@ -24,17 +24,16 @@ system model. It does not run a background-database migration.
      - ``write_db_to_olca(method_package=...)``
      - Brightpath JSON-LD ZIP and biosphere coverage report
 
-Both Brightpath routes require Python 3.12 or newer and a compatible Brightpath
-installation in the same Python environment as Premise. Brightpath is an
-optional dependency. Use a checkout with the SimaPro classification, folder and
-full-inventory unit mappings, and the versioned openLCA method-mapping API::
+Both Brightpath routes require Python 3.12 or newer. Brightpath
+is a required dependency installed with Premise, including both Conda variants.
+Until a compatible registry release is available, Python installations use
+the pinned GitHub revision ``5c0cf00940556d5f379941df636276148db594c9``
+and require Git. Conda builds package that same revision as a separate
+Brightpath dependency. It provides the SimaPro classification, folder and
+full-inventory unit mappings, and the versioned openLCA method-mapping API.
 
-    python -m pip install /path/to/brightpath
-
-See the `Brightpath repository <https://github.com/romainsacchi/brightpath>`_
-for its source and installation instructions. Export checks report missing
-Python or library support before preparing scenarios. SimaPro CSV and openLCA
-JSON-LD exports both use Brightpath exclusively.
+Export checks report missing Python or library support before preparing
+scenarios. SimaPro CSV and openLCA JSON-LD exports both use Brightpath exclusively.
 
 Each export writes files for you to import into the destination application.
 The openLCA route additionally needs a matching local LCIA method package to

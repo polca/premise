@@ -1,4 +1,4 @@
-"""Export complete prepared scenarios through the optional Brightpath codec."""
+"""Export complete prepared scenarios through the Brightpath codec."""
 
 from __future__ import annotations
 
@@ -21,7 +21,7 @@ from .filesystem_constants import DATA_DIR
 
 
 def load_method_mapping(method_package, version):
-    """Check optional runtime support and load the exact local biosphere mapping."""
+    """Check runtime support and load the exact local biosphere mapping."""
     if sys.version_info < (3, 12):
         raise RuntimeError("JSON-LD export requires Python 3.12+ and Brightpath.")
     source_tables = {"3.8": "flows_biosphere_38.csv", "3.12": "flows_biosphere_312.csv"}
