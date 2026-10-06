@@ -14,7 +14,9 @@ import wurst.searching as ws
 import yaml
 from datapackage import Package, exceptions, validate
 from prettytable import PrettyTable
-from schema import And, Optional, Schema, Use
+from schema import And, Optional, Or, Schema, Use
+
+from .efficiency_bounds import output_data, validate_policy
 
 from .geomap import Geomap
 from .utils import load_constants
@@ -23,7 +25,12 @@ config = load_constants()
 
 
 def find_iam_efficiency_change(
-    variable: Union[str, list], location: str, efficiency_data, year: int
+    variable: Union[str, list],
+    location: str,
+    efficiency_data,
+    year: int,
+    *,
+    absolute: bool = False,
 ) -> float:
     """
     Return the relative change in efficiency for `variable` in `location`
@@ -33,7 +40,12 @@ def find_iam_efficiency_change(
     :return: relative efficiency change (e.g., 1.05)
     """
 
-    scaling_factor = 1
+    # A missing relative change is neutral (1); a missing absolute target
+    # must remain inactive (0), never become a synthetic 100% efficiency.
+    fallback = 0.0 if absolute else 1.0
+    scaling_factor = fallback
+    if location not in efficiency_data.region.values:
+        return fallback
 
     if variable in efficiency_data.variables.values:
         if year in efficiency_data.coords["year"].values:
@@ -47,8 +59,14 @@ def find_iam_efficiency_change(
                 )
             ).values.item(0)
 
-        if np.isnan(scaling_factor) or np.isinf(scaling_factor):
-            scaling_factor = 1
+        if np.isnan(scaling_factor):
+            scaling_factor = fallback
+        elif np.isinf(scaling_factor):
+            if absolute:
+                raise ValueError(
+                    f"Nonfinite absolute efficiency for {variable} in {location}"
+                )
+            scaling_factor = fallback
 
     return scaling_factor
 
@@ -107,6 +125,7 @@ def flag_activities_to_adjust(
                             region,
                             scenario_data["efficiency"],
                             year,
+                            absolute=k.get("absolute", False),
                         )
                         for region in regions
                     },
@@ -125,6 +144,7 @@ def flag_activities_to_adjust(
                                 region,
                                 scenario_data["efficiency"],
                                 year,
+                                absolute=k.get("absolute", False),
                             )
                             for region in regions
                         },
@@ -143,6 +163,7 @@ def flag_activities_to_adjust(
                             region,
                             scenario_data["efficiency"],
                             year,
+                            absolute=k.get("absolute", False),
                         )
                         for region in regions
                     },
@@ -161,6 +182,7 @@ def flag_activities_to_adjust(
                                 region,
                                 scenario_data["efficiency"],
                                 year,
+                                absolute=k.get("absolute", False),
                             )
                             for region in regions
                         },
@@ -183,6 +205,24 @@ def flag_activities_to_adjust(
 
             if d_absolute_eff:
                 dataset["absolute efficiency"] = d_absolute_eff
+
+            dataset["efficiency bounds"] = {}
+            dataset["efficiency output data"] = {}
+            for setting in dataset_vars["efficiency"]:
+                policy = {key: setting[key] for key in ("bounds",) if key in setting}
+                validate_policy(policy)
+                if policy and not setting.get("absolute", False):
+                    raise ValueError(
+                        "Efficiency bounds are supported for absolute external targets only"
+                    )
+                variable = setting["variable"]
+                dataset["efficiency bounds"][variable] = policy
+                dataset["efficiency output data"][variable] = output_data(
+                    scenario_data,
+                    year,
+                    dataset_vars.get("production volume variable"),
+                    setting.get("heat pathway"),
+                )
 
         # define exclusion filters
         for k in dataset_vars["efficiency"]:
@@ -766,6 +806,11 @@ def check_config_file(datapackage: datapackage.Package) -> int:
                                 Optional("biosphere"): list,
                             },
                             Optional("absolute"): bool,
+                            Optional("bounds"): {
+                                "min": Or(int, float),
+                                "max": Or(int, float),
+                            },
+                            Optional("heat pathway"): str,
                         }
                     ],
                     Optional("except regions"): And(
@@ -868,6 +913,21 @@ def check_config_file(datapackage: datapackage.Package) -> int:
     )
 
     file_schema.validate(config_file)
+
+    for pathway in config_file["production pathways"].values():
+        for setting in pathway.get("efficiency", []):
+            validate_policy(setting)
+            if any(
+                key in setting for key in ("bounds", "heat pathway")
+            ) and not setting.get("absolute", False):
+                raise ValueError(
+                    "Efficiency bounds/output diagnostics require an absolute external target"
+                )
+            if (
+                setting.get("heat pathway")
+                and setting["heat pathway"] not in config_file["production pathways"]
+            ):
+                raise ValueError(f"Unknown heat pathway: {setting['heat pathway']}")
 
     if "markets" in config_file:
         # check that providers composing the market

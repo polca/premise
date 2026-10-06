@@ -329,3 +329,52 @@ Indicating this will adjust the indicated flows in any activity that uses the ma
 In this example, the ammonia supplier will be replaced in all
 activities whose reference product contains the string **urea**
 and location in **DE**.
+
+
+Explicit bounds for external absolute efficiencies
+-------------------------------------------------
+
+An external production pathway may declare optional limits alongside an
+absolute efficiency variable::
+
+    efficiency:
+      - variable: Example electrical efficiency
+        absolute: true
+        bounds:
+          min: 0.05
+          max: 0.30
+        # Optional diagnostic; key of another configured production pathway:
+        heat pathway: example heat output
+
+``bounds`` uses the same units as the supplied target (for an electrical
+fuel-conversion efficiency, fractions rather than percentages). Both limits
+must be finite and strictly positive, with ``min <= max``. Premise clips the
+target first and then computes ``current_efficiency / applied_target``.
+There are no implicit limits and no technology identification: the datapackage
+author chooses the eligible pathways, their physical basis and their bounds.
+The mechanism is restricted to absolute external-scenario targets. Built-in
+IAM transformations and relative efficiency changes are unchanged.
+
+Omitting ``bounds`` applies the supplied target without clipping. A zero target
+retains the existing missing/inactive-target behaviour and does not become the
+lower bound. Negative or nonfinite targets are rejected. Source scenario values
+remain unchanged. The activity's ``efficiency bounds audit`` records requested
+and applied targets, limits, clipping status and an optional combined-output
+check. A clipped activity also receives an explanatory comment; the ordinary
+transformation log records the applied efficiency.
+
+Neither electricity nor heat production data are needed for clipping. The
+optional ``heat pathway`` must name another configured production pathway.
+When both output series are available with convertible annual energy units,
+Premise reports ``electrical_efficiency * (1 + heat/electricity)`` for the raw
+and bounded targets. Missing values or incompatible units produce a
+``not_available`` diagnostic and do not prevent electrical-efficiency clipping.
+This ratio is inferred from the declared electrical-efficiency basis; it does
+not independently verify fuel consumption. Values above 100% are reported,
+not automatically corrected, because the heating-value basis must be known.
+
+The old external routine attempted to bound a scaling factor using the target
+itself. That did not enforce the documented final-efficiency interval and also
+affected unrelated process types. Explicit target bounds replace that implicit
+behaviour. Existing datapackages that depended on it should supply intentional
+limits in their configuration.
