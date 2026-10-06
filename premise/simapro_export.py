@@ -19,14 +19,20 @@ def check_brightpath():
         raise RuntimeError("Brightpath SimaPro export requires Python 3.12+.")
     try:
         from brightpath.formats.simapro_csv import write_simapro_csv  # noqa: F401
+        from brightpath.profiles.simapro_biosphere import (
+            FINAL_WASTE_NAMES,
+        )  # noqa: F401
+        from brightpath.profiles.simapro_category_types import (
+            resolve_category_type,
+        )  # noqa: F401
         from brightpath.profiles.simapro_waste import (
             resolve_classified_waste,
         )  # noqa: F401
         from brightpath.utils import get_simapro_units
     except ImportError as error:
         raise ImportError(
-            "Install Brightpath with SimaPro classification and full-inventory "
-            "unit support in this Python environment (see the SimaPro export guide)."
+            "Install the pinned Brightpath revision with SimaPro category-type "
+            "and final-waste support (see the SimaPro export guide)."
         ) from error
     if (
         not {"kilogram day", "cubic meter-year", "guest night"}
@@ -48,6 +54,9 @@ def build_document(scenario, version, system_model):
         TechnosphereProfile,
     )
     from brightpath.models import InventoryDocument
+    from brightpath.profiles.simapro_biosphere import FINAL_WASTE_NAMES
+    from brightpath.profiles.simapro_categories import split_simapro_category
+    from brightpath.profiles.simapro_category_types import resolve_category_type
     from brightpath.profiles.simapro_waste import resolve_classified_waste
     from brightpath.utils import is_blacklisted
 
@@ -67,6 +76,7 @@ def build_document(scenario, version, system_model):
     fallback_classifications = []
     excluded = []
     classification_counts = Counter()
+    category_type_counts = Counter()
     for dataset in data:
         identity = _identity(dataset)
         production = [e for e in dataset["exchanges"] if e.get("type") == "production"]
@@ -92,9 +102,18 @@ def build_document(scenario, version, system_model):
         ):
             dataset["comment"] = "Exported by premise (no source comment)."
         normalize_activity_parameters(dataset)
+        native_type = (dataset.get("simapro metadata") or {}).get("Category type")
+        if not output.get("simapro category") and native_type:
+            kind, _ = split_simapro_category(native_type)
+            output["simapro category"] = kind + "/Classified"
         resolution = resolve_classified_waste(dataset)
         classification_counts[resolution.rule] += 1
-        if resolution.waste is None:
+        category_resolution = resolve_category_type(dataset, resolution)
+        explicit = resolution.rule == "explicit_category"
+        category_type_counts[
+            "explicit_category" if explicit else category_resolution.rule
+        ] += 1
+        if not explicit and category_resolution.category_type is None:
             entry = categories.get(
                 (dataset["name"].lower(), dataset["reference product"].lower())
             )
@@ -107,12 +126,21 @@ def build_document(scenario, version, system_model):
                 dataset["name"], dataset["reference product"], categories
             )
             category = main + "/" + sub.replace("\\", "/")
+            if resolution.waste is False and main == "waste treatment":
+                raise ValueError(
+                    f"SimaPro fallback {category!r} conflicts with Brightpath's "
+                    f"non-waste classification for {identity!r}."
+                )
             output["simapro category"] = category
             fallback_classifications.append(
                 {
                     "activity": list(identity),
                     "category": category,
-                    "reason": resolution.rule,
+                    "reason": (
+                        resolution.rule
+                        if resolution.waste is None
+                        else category_resolution.rule
+                    ),
                     "source": "premise_mapping" if mapped else "default_category",
                 }
             )
@@ -138,10 +166,14 @@ def build_document(scenario, version, system_model):
                 exchange["type"] == "biosphere"
                 and (exchange.get("categories") or [None])[0] == "inventory indicator"
             )
+            unsupported_indicator = indicator and not (
+                exchange["name"] in FINAL_WASTE_NAMES
+                or exchange.get("simapro section") == "Final waste flows"
+            )
             blacklisted = exchange["type"] == "biosphere" and is_blacklisted(
                 exchange, "ecoinvent"
             )
-            if indicator or blacklisted:
+            if unsupported_indicator or blacklisted:
                 excluded.append(
                     {
                         "activity": list(identity),
@@ -151,13 +183,13 @@ def build_document(scenario, version, system_model):
                         "unit": exchange["unit"],
                         "amount": amount,
                         "reason": (
-                            "inventory_indicator"
-                            if indicator
+                            "unsupported_inventory_indicator"
+                            if unsupported_indicator
                             else "brightpath_blacklist"
                         ),
                     }
                 )
-            if not indicator:
+            if not unsupported_indicator:
                 retained.append(exchange)
         dataset["exchanges"] = retained
 
@@ -181,6 +213,7 @@ def build_document(scenario, version, system_model):
         "source_version": str(version),
         "system_model": system_model,
         "classification_rules": dict(classification_counts),
+        "category_type_rules": dict(category_type_counts),
         "classification_fallbacks": fallback_classifications,
         "excluded_exchanges": excluded,
     }

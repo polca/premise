@@ -44,6 +44,13 @@ All notable changes to this project are documented in this file.
 
 ### Fixed
 
+- Preserve supported SimaPro final-waste indicators instead of removing all
+  inventory indicators. Pin Brightpath 1.0.0a2 from GitHub in Python and Conda
+  for retained biosphere flows and product-aware category types across ecoinvent
+  releases. Preserve explicit categories, report unresolved product-role fallbacks,
+  and reject fallbacks that conflict with resolved non-waste status. Unsupported
+  indicators remain individually reported exclusions.
+
 - Avoided false electricity-share validation errors caused by floating-point
   rounding at the lower bound of one, while retaining checks for real shortfalls.
 - Restricted electric-motor and wind-turbine material mappings to equipment

@@ -133,7 +133,10 @@ def test_exclusions_and_reviewed_classification_fallback_are_reported(
             }
         },
     )
-    for name, compartment in (("Oxygen", "air"), ("indicator", "inventory indicator")):
+    for name, compartment in (
+        ("Gangue, in ground", "natural resource"),
+        ("indicator", "inventory indicator"),
+    ):
         dataset["exchanges"].append(
             {
                 "type": "biosphere",
@@ -150,11 +153,192 @@ def test_exclusions_and_reviewed_classification_fallback_are_reported(
         path = simapro_export.export_scenario(scenario, tmp_path, "3.12", "cutoff")
     report = json.loads(path.with_suffix(".export-report.json").read_text())
     assert {entry["reason"] for entry in report["excluded_exchanges"]} == {
-        "inventory_indicator",
+        "unsupported_inventory_indicator",
         "brightpath_blacklist",
     }
     assert report["classification_fallbacks"][0]["category"] == "material/Reviewed"
     assert report["issue_counts"]["simapro_exchange_unused"] == 1
+
+
+@pytest.mark.parametrize("version", ["3.8", "3.9.1", "3.10", "3.12"])
+@pytest.mark.parametrize("system_model", ["cutoff", "consequential"])
+def test_supported_biosphere_and_final_waste_flows_reach_writer(
+    brightpath, scenario, tmp_path, version, system_model
+):
+    flows = [
+        ("Oxygen", "natural resource", "kilogram"),
+        ("Radon-222", "air", "kilo Becquerel"),
+        (
+            "Water, turbine use, unspecified natural origin",
+            "natural resource",
+            "cubic meter",
+        ),
+        ("Waste mass, total, placed in landfill", "inventory indicator", "kilogram"),
+        ("Organic carbon, placed in landfill", "inventory indicator", "kilogram"),
+    ]
+    dataset = scenario["database"][1]
+    for name, compartment, unit in flows:
+        dataset["exchanges"].append(
+            {
+                "type": "biosphere",
+                "name": name,
+                "categories": (compartment,),
+                "unit": unit,
+                "amount": 0.25,
+                "uncertainty type": 3,
+                "loc": 0.25,
+                "scale": 0.1,
+            }
+        )
+    source = deepcopy(scenario)
+    path = simapro_export.export_scenario(scenario, tmp_path, version, system_model)
+    assert scenario == source
+    written = rows(path)
+    for name, _, _ in flows:
+        assert any(row and row[0] == name for row in written)
+    # The first process has no final waste; locate the populated section.
+    final_waste = next(
+        written[i + 1 : i + 3]
+        for i, row in enumerate(written)
+        if row == ["Final waste flows"] and written[i + 1]
+    )
+    assert {row[0] for row in final_waste} == {flows[3][0], flows[4][0]}
+    for row in final_waste:
+        assert row[2:5] == ["kg", "0.25", "Normal"]
+        assert float(row[5]) == pytest.approx(0.01)
+    report = json.loads(path.with_suffix(".export-report.json").read_text())
+    assert report["excluded_exchanges"] == []
+
+
+def test_native_final_waste_provenance_is_preserved(brightpath, scenario, tmp_path):
+    scenario["database"][1]["exchanges"].append(
+        {
+            "type": "biosphere",
+            "name": "Native final waste",
+            "unit": "kilogram",
+            "categories": ("inventory indicator", "waste"),
+            "amount": 0.75,
+            "simapro section": "Final waste flows",
+        }
+    )
+    path = simapro_export.export_scenario(scenario, tmp_path, "3.12", "cutoff")
+    assert any(row and row[0] == "Native final waste" for row in rows(path))
+    assert (
+        json.loads(path.with_suffix(".export-report.json").read_text())[
+            "excluded_exchanges"
+        ]
+        == []
+    )
+
+
+@pytest.mark.parametrize(
+    "product,unit,isic,cpc,expected",
+    [
+        ("electricity, medium voltage", "kilowatt hour", "3510", "17100", "energy"),
+        ("transport, freight", "ton kilometer", "4923", "65119", "transport"),
+        ("operation, machine", "hour", "2599", "85990", "use"),
+        ("metal working", "kilogram", "2599", "88731", "processing"),
+        ("waste paperboard, unsorted", "kilogram", "3830", "39240", "material"),
+    ],
+)
+def test_category_types_take_precedence_over_legacy_mapping(
+    brightpath, tmp_path, monkeypatch, product, unit, isic, cpc, expected
+):
+    import premise.export
+
+    dataset = activity("market for " + product, product, amount=1, unit=unit)
+    dataset["classifications"] = [("ISIC rev.4 ecoinvent", isic), ("CPC", cpc)]
+    monkeypatch.setattr(
+        premise.export,
+        "get_simapro_category_of_exchange",
+        lambda: {
+            (dataset["name"], product): {
+                "category": "waste treatment",
+                "sub_category": "Obsolete",
+            }
+        },
+    )
+    scenario = {
+        "model": "image",
+        "pathway": "SSP2-Test",
+        "year": 2050,
+        "database": [dataset],
+    }
+    source = deepcopy(scenario)
+    path = simapro_export.export_scenario(scenario, tmp_path, "3.12", "cutoff")
+    written = rows(path)
+    assert written[written.index(["Category type"]) + 1] == [expected]
+    report = json.loads(path.with_suffix(".export-report.json").read_text())
+    assert report["classification_fallbacks"] == []
+    assert sum(report["category_type_rules"].values()) == 1
+    assert scenario == source
+
+
+@pytest.mark.parametrize("explicit_production", [False, True])
+def test_explicit_category_type_is_not_replaced_by_fallback(
+    brightpath, scenario, tmp_path, explicit_production
+):
+    dataset = scenario["database"][1]
+    dataset["classifications"] = []
+    dataset["simapro metadata"] = {"Category type": "processing"}
+    if explicit_production:
+        dataset["exchanges"][0]["simapro category"] = "use/Reviewed"
+    source = deepcopy(scenario)
+    path = simapro_export.export_scenario(scenario, tmp_path, "3.12", "cutoff")
+    written = rows(path)
+    kinds = [
+        written[i + 1][0] for i, row in enumerate(written) if row == ["Category type"]
+    ]
+    assert kinds == ["waste treatment", "use" if explicit_production else "processing"]
+    assert (
+        json.loads(path.with_suffix(".export-report.json").read_text())[
+            "classification_fallbacks"
+        ]
+        == []
+    )
+    assert scenario == source
+
+
+def test_unresolved_non_waste_role_uses_reported_fallback(
+    brightpath, scenario, monkeypatch
+):
+    import premise.export
+
+    dataset = scenario["database"][1]
+    dataset["classifications"] = [("ISIC rev.4 ecoinvent", "6419")]
+    key = (dataset["name"], dataset["reference product"])
+    mapping = {key: {"category": "processing", "sub_category": "Services"}}
+    monkeypatch.setattr(
+        premise.export, "get_simapro_category_of_exchange", lambda: mapping
+    )
+    document, report = simapro_export.build_document(scenario, "3.12", "cutoff")
+    assert (
+        report["classification_fallbacks"][0]["reason"]
+        == "non_waste_product_role_unresolved"
+    )
+    assert document.data[1]["exchanges"][0]["simapro category"] == "processing/Services"
+    mapping[key]["category"] = "waste treatment"
+    with pytest.raises(ValueError, match="conflicts with Brightpath's non-waste"):
+        simapro_export.build_document(scenario, "3.12", "cutoff")
+
+
+def test_supported_indicator_with_wrong_unit_is_not_discarded(
+    brightpath, scenario, tmp_path
+):
+    from brightpath.exceptions import SimaProSerializationError
+
+    scenario["database"][1]["exchanges"].append(
+        {
+            "type": "biosphere",
+            "name": "Organic carbon, placed in landfill",
+            "unit": "cubic meter",
+            "categories": ("inventory indicator",),
+            "amount": 1,
+        }
+    )
+    with pytest.raises(SimaProSerializationError):
+        simapro_export.export_scenario(scenario, tmp_path, "3.12", "cutoff")
+    assert list(tmp_path.iterdir()) == []
 
 
 @pytest.mark.parametrize(
