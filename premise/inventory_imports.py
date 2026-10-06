@@ -23,6 +23,7 @@ import yaml
 from packaging.specifiers import SpecifierSet
 from packaging.version import Version
 from bw2io import CSVImporter, ExcelImporter
+from bw2io.units import normalize_units
 from prettytable import PrettyTable
 from wurst import searching as ws
 
@@ -47,6 +48,8 @@ _MATCH_IGNORED_KEYS = frozenset({"unit", "allocation", "comment"})
 _COMPILED_MIGRATION_CACHE_SIZE = 64
 _COMPILED_RULE_INDEX_CACHE = {}
 _COMPILED_BIOSPHERE_RULE_CACHE = {}
+# Imported inventories produced by name-only biosphere migrations are stale.
+BIOSPHERE_MIGRATION_CACHE_VERSION = 2
 
 
 logging.basicConfig(
@@ -598,6 +601,70 @@ def apply_forward_replace(db: list, replace_rules: list):
                 exc.pop("input", None)
 
 
+def _biosphere_categories(categories):
+    if isinstance(categories, str):
+        categories = categories.split("::")
+    categories = tuple(categories or ())
+    if len(categories) == 1:
+        categories += ("unspecified",)
+    return categories
+
+
+@lru_cache(maxsize=8)
+def _biosphere_flows_by_uuid(version):
+    return {code: fields for fields, code in get_biosphere_code(version).items()}
+
+
+def _biosphere_migration_flows(database_id):
+    if not database_id:
+        return {}
+    version = normalize_version(database_id.split("-")[1])
+    return _biosphere_flows_by_uuid(version)
+
+
+def _biosphere_rule_descriptor(descriptor, flows):
+    """Recover compartments and normalized units omitted by migration JSONs."""
+    result = dict(descriptor)
+    fields = flows.get(result.get("uuid"))
+    if fields is not None:
+        name, compartment, subcompartment, unit = fields
+        result.update(name=name, categories=(compartment, subcompartment), unit=unit)
+    elif "categories" in result:
+        result["categories"] = _biosphere_categories(result["categories"])
+    if "unit" in result:
+        result["unit"] = normalize_units(result["unit"])
+    return result
+
+
+def _matches_biosphere_rule(exchange, source):
+    source_uuid = source.get("uuid")
+    if source_uuid:
+        linked = exchange.get("input")
+        exchange_uuid = exchange.get("uuid") or (
+            linked[1]
+            if isinstance(linked, (tuple, list)) and len(linked) == 2
+            else None
+        )
+        if exchange_uuid:
+            return exchange_uuid == source_uuid
+        # Without a link, a UUID rule needs its full flow descriptor. Matching
+        # only the name can turn a resource into an emission or delete every
+        # compartment of a substance when just one flow was removed.
+        if not all(k in source for k in ("name", "categories", "unit")):
+            return False
+    if exchange.get("name") != source.get("name"):
+        return False
+    if (
+        "categories" in source
+        and _biosphere_categories(exchange.get("categories")) != source["categories"]
+    ):
+        return False
+    return (
+        "unit" not in source
+        or normalize_units(exchange.get("unit", "")) == source["unit"]
+    )
+
+
 def apply_biosphere_migration(db, biosphere_rules):
     if not biosphere_rules:
         return
@@ -605,23 +672,21 @@ def apply_biosphere_migration(db, biosphere_rules):
     cache_key = id(biosphere_rules)
     cached = _COMPILED_BIOSPHERE_RULE_CACHE.get(cache_key)
     if cached is not None and cached[0] is biosphere_rules:
-        delete_names, replacements = cached[1]
+        deletions, replacements = cached[1]
     else:
-        delete_names = frozenset(
-            rule["source"].get("name") for rule in biosphere_rules.get("delete", [])
-        )
-        replacements = {}
+        source_flows = _biosphere_migration_flows(biosphere_rules.get("source_id"))
+        target_flows = _biosphere_migration_flows(biosphere_rules.get("target_id"))
+        deletions, replacements = {}, {}
+        for rule in biosphere_rules.get("delete", []):
+            source = _biosphere_rule_descriptor(rule["source"], source_flows)
+            deletions.setdefault(source.get("name"), []).append(source)
         for rule in biosphere_rules.get("replace", []):
-            source = rule["source"]
-            replacements.setdefault(source.get("name"), []).append(
-                (source.get("unit"), "unit" in source, rule["target"])
-            )
-        replacements = {
-            name: tuple(candidates) for name, candidates in replacements.items()
-        }
+            source = _biosphere_rule_descriptor(rule["source"], source_flows)
+            target = _biosphere_rule_descriptor(rule["target"], target_flows)
+            replacements.setdefault(source.get("name"), []).append((source, target))
         _COMPILED_BIOSPHERE_RULE_CACHE[cache_key] = (
             biosphere_rules,
-            (delete_names, replacements),
+            (deletions, replacements),
         )
         if len(_COMPILED_BIOSPHERE_RULE_CACHE) > _COMPILED_MIGRATION_CACHE_SIZE:
             _COMPILED_BIOSPHERE_RULE_CACHE.pop(
@@ -635,14 +700,24 @@ def apply_biosphere_migration(db, biosphere_rules):
                 migrated.append(exchange)
                 continue
             name = exchange.get("name")
-            if name in delete_names:
+            if any(
+                _matches_biosphere_rule(exchange, source)
+                for source in deletions.get(name, ())
+            ):
                 continue
-            for unit, unit_required, target in replacements.get(name, ()):
-                if unit_required and exchange.get("unit") != unit:
+            for source, target in replacements.get(name, ()):
+                if not _matches_biosphere_rule(exchange, source):
                     continue
                 for key, value in target.items():
                     if key != "uuid":
                         exchange[key] = value
+                # Linking runs after migration; never keep a stale provider.
+                exchange.pop("input", None)
+                if "uuid" in exchange:
+                    if target.get("uuid"):
+                        exchange["uuid"] = target["uuid"]
+                    else:
+                        exchange.pop("uuid")
                 break
             migrated.append(exchange)
         dataset["exchanges"] = migrated

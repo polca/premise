@@ -23,6 +23,7 @@ from .activity_maps import InventorySet
 from .clean_datasets import get_biosphere_flow_uuid
 from .data_collection import IAMDataCollection
 from .external_data_validation import check_inventories, find_iam_efficiency_change
+from .efficiency_bounds import bound_external_efficiency
 from .filesystem_constants import DATA_DIR
 from .inventory_imports import (
     AdditionalInventory,
@@ -242,6 +243,8 @@ def adjust_efficiency(dataset: dict, fuels_specs: dict, fuel_map_reverse: dict) 
     :return: adjusted dataset
     """
 
+    # Cache before either exchange family is changed so both get one factor.
+    absolute_adjustments = {}
     # loop through the type of flows to adjust
     for eff_type in ["technosphere", "biosphere"]:
         if f"{eff_type} filters" in dataset:
@@ -256,58 +259,48 @@ def adjust_efficiency(dataset: dict, fuels_specs: dict, fuel_map_reverse: dict) 
 
                 if absolute_efficiency is True:
 
-                    # first, fetch expected efficiency
-                    expected_efficiency = v[1][dataset["location"]]
-
-                    if expected_efficiency in (0.0, 1.0):
-                        continue
-
-                    # then, fetch the current efficiency
-                    current_efficiency = dataset.get("current efficiency")
-
-                    if expected_efficiency in (0.0, 1.0):
-                        continue
-
-                    if current_efficiency is None:
-                        current_efficiency = find_fuel_efficiency(
-                            dataset=dataset,
-                            energy_out=3.6 if dataset["unit"] == "kilowatt hour" else 1,
-                            fuel_specs=fuels_specs,
-                            fuel_map_reverse=fuel_map_reverse,
+                    if k not in absolute_adjustments:
+                        requested = v[1][dataset["location"]]
+                        policy = dataset.get("efficiency bounds", {}).get(k, {})
+                        outputs = (
+                            dataset.get("efficiency output data", {})
+                            .get(k, {})
+                            .get(dataset["location"])
                         )
-                        dataset["current efficiency"] = current_efficiency
-
-                    # we bound the final efficiency to (0.05, 0.6)
-
-                    lower_bound = expected_efficiency / 0.60
-                    upper_bound = expected_efficiency / 0.05
-
-                    scaling_factor = np.clip(
-                        current_efficiency / expected_efficiency,
-                        lower_bound,
-                        upper_bound,
-                    )
-
-                    if scaling_factor >= 1.5:
-                        print(
-                            f"Warning: Efficiency factor for {dataset['name'][:50]} in {dataset['location']} is {scaling_factor}."
+                        expected_efficiency, bounds_record = bound_external_efficiency(
+                            dataset, requested, policy, outputs
                         )
-
-                    # log the old and new efficiency
-
-                    dataset.setdefault("log parameters", {})[
-                        f"old efficiency"
-                    ] = current_efficiency
-                    dataset.setdefault("log parameters", {})[
-                        f"new efficiency"
-                    ] = expected_efficiency
-
-                    if "comment" not in dataset:
-                        dataset["comment"] = ""
-
-                    dataset[
-                        "comment"
-                    ] += f" Original efficiency: {current_efficiency:.2f}. New efficiency: {expected_efficiency:.2f}."
+                        if requested == 0:
+                            absolute_adjustments[k] = None
+                        else:
+                            current_efficiency = dataset.get("current efficiency")
+                            if current_efficiency is None:
+                                current_efficiency = find_fuel_efficiency(
+                                    dataset=dataset,
+                                    energy_out=(
+                                        3.6 if dataset["unit"] == "kilowatt hour" else 1
+                                    ),
+                                    fuel_specs=fuels_specs,
+                                    fuel_map_reverse=fuel_map_reverse,
+                                )
+                                dataset["current efficiency"] = current_efficiency
+                            scaling_factor = current_efficiency / expected_efficiency
+                            absolute_adjustments[k] = scaling_factor
+                            dataset.setdefault("log parameters", {}).update(
+                                {
+                                    "old efficiency": current_efficiency,
+                                    "requested efficiency": requested,
+                                    "new efficiency": expected_efficiency,
+                                    "efficiency clipped": bounds_record["clipped"],
+                                }
+                            )
+                            dataset["comment"] = dataset.get("comment", "") + (
+                                f" Original efficiency: {current_efficiency:.8g}. "
+                                f"Applied efficiency: {expected_efficiency:.8g}."
+                            )
+                    scaling_factor = absolute_adjustments[k]
+                    if scaling_factor is None:
+                        continue
 
                 else:
                     # the scaling factor is the inverse of the efficiency change
@@ -337,7 +330,12 @@ def adjust_efficiency(dataset: dict, fuels_specs: dict, fuel_map_reverse: dict) 
                             )
                         )
 
-                if not np.isclose(scaling_factor, 1, rtol=1e-3):
+                if not np.isclose(
+                    scaling_factor,
+                    1,
+                    rtol=1e-12 if absolute_efficiency else 1e-3,
+                    atol=0,
+                ):
 
                     if eff_type == "technosphere":
                         # adjust technosphere flows

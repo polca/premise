@@ -109,8 +109,8 @@
   },
   {
     "page": "user_guide/export/index.rst",
-    "review_date": "2026-09-07",
-    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_date": "2026-09-28",
+    "disposition": "Explained Brightpath's role, optional Python 3.12+ setup, output formats, and removal of legacy export routes against the implemented exporters.",
     "review_level": "Documentation screening, not independent scientific validation"
   },
   {
@@ -127,14 +127,14 @@
   },
   {
     "page": "user_guide/export/simapro.rst",
-    "review_date": "2026-09-07",
-    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_date": "2026-09-28",
+    "disposition": "Documented the Brightpath-only exporter, import workflow, classification fallbacks, and excluded-flow report; native SimaPro calculation remains unverified.",
     "review_level": "Documentation screening, not independent scientific validation"
   },
   {
     "page": "user_guide/export/openlca.rst",
-    "review_date": "2026-09-07",
-    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_date": "2026-09-28",
+    "disposition": "Explained Brightpath JSON-LD serialization and local method-package mapping; scoped the existing openLCA engine comparison to its tested demand and climate method.",
     "review_level": "Documentation screening, not independent scientific validation"
   },
   {

@@ -1,61 +1,95 @@
 Exporting to openLCA
-======================
+===================
 
-*premise* can export the databases as a modified version of Simapro-CSV files compatible with `OpenLCA <https://www.openlca.org/>`__.
+JSON-LD packages
+----------------
 
-This is done as follows:
+``write_db_to_olca`` uses `Brightpath
+<https://github.com/romainsacchi/brightpath>`_ to export each complete scenario
+as an openLCA JSON-LD ZIP. Premise prepares and validates the inventory, and
+Brightpath writes the processes, flows, units and provider references directly
+into the package. No intermediate SimaPro CSV is needed.
+
+The integration supports ecoinvent 3.8 and 3.12 with an explicit matching openLCA
+method package. Premise requires Python 3.12 or newer.
+
+Follow the Brightpath installation instructions in :doc:`index`. This route
+needs its versioned ``OpenLCAMethodMapping`` API and ``conflict_policy`` option;
+an older installation without that API cannot be used for this export.
+
+After creating and updating ``ndb`` (see :doc:`/getting_started/first-scenario`):
 
 .. code-block:: python
 
-    ndb.write_db_to_olca()
+    archives = ndb.write_db_to_olca(
+        filepath="export/olca",
+        method_package="/path/to/ecoinvent 3.12 LCIA Methods 2025-12-01",
+    )
 
-.. note::
+``method_package`` accepts a directory or a ZIP containing the JSON-LD ``flows``,
+``flow_properties``, and ``unit_groups`` folders at its root. Licensed method
+contents are read locally and are not bundled with Premise.
 
-    The categorization of imported activities may differ from OpenLCA's
-    original classification.
+Brightpath uses these definitions to map the scenario's biosphere flows to the
+elementary-flow identities, flow properties, and units expected by the installed
+openLCA methods. This is why the package must match the source ecoinvent version.
+It provides the export's flow mapping; you also import the methods themselves
+into openLCA when setting up the destination database.
 
+For each scenario, Premise writes an ``openlca_export_*.zip`` and a matching
+``*.biosphere-coverage.json`` report. Scenario-specific UUIDs let different
+scenarios coexist without replacing one another's processes or product flows.
+Repeated exports of the same scenario use the same IDs. Missing or ambiguous
+technosphere suppliers cause export to fail before an archive is published.
 
-Then, create a database from scratch (in older versions this is the “create empty database” option).
+Processes are grouped directly into category folders, without ``premise`` or
+scenario wrapper folders. Premise expands the dataset's ISIC rev.4 ecoinvent
+code into division (two digits), group (three digits), and class (four digits)
+folders, using the official `UN ISIC Rev.4 titles
+<https://unstats.un.org/unsd/classifications/Econ/Download/In%20Text/ISIC_Rev_4_english_structure.Txt>`_.
+For example, crop production appears under ``01 - Crop and animal production,
+hunting and related service activities``, then ``011 - Growing of non-perennial
+crops``, then its four-digit class. Ecoinvent-specific extensions appear beneath
+their deepest recognized ancestor; unrecognized codes go under
+``Unclassified ISIC``. Leading zeros are preserved and processes are exported
+in category order, so folder names support numeric ordering in openLCA.
 
-.. image:: /olca_fig0.png
-   :width: 500pt
-   :align: center
-   :alt: OpenLCA create database interface screenshot
+Missing ISIC values are assigned from
+classified suppliers of the same reference product and unit only when all
+suppliers agree. Otherwise, the source CPC classification is used, with
+``Unclassified`` as the final fallback. This export-only grouping does not alter
+the source inventory or its classifications. Scenario identity remains encoded
+in process and product UUIDs, independently of folder placement.
 
-.. note::
+To use the export:
 
-    In older versions the import steps were different (an empty database had to be used for the import,
-    rather than a complete reference database with the openLCA elementary flows), as this complete reference
-    version will have flows not required by Premise.
+1. Create a fresh openLCA database and import the matching ecoinvent LCIA
+   method package as JSON-LD.
+2. Import the scenario ZIP as JSON-LD into that same database.
+3. Create a product system from an exported process and calculate with a method
+   from the imported package. Use its default providers when linking processes.
 
-Import the file as a SimaPro CSV (import>other>Other LCA formats>SimaPro CSV).
+The scenario includes all its technosphere providers. Matched elementary flows
+reference definitions from the method package. Other inventory flows remain in
+the export and are listed in the coverage report; they have no characterization
+factors in this package. The inspected 2025-12-01 package matches 8,955 of the
+9,850 source biosphere flows. Presence does not imply coverage by every method.
+No product systems or LCIA methods are generated by the inventory exporter.
 
-.. image:: /olca_fig1.png
-   :width: 500pt
-   :align: center
-   :alt: OpenLCA import SimaPro CSV interface screenshot
+For ecoinvent 3.8, the exporter preserves flows with conflicting method-package
+names, compartments, or units under distinct, deterministic UUIDs. They remain
+in the inventory but receive no characterization from that package. The coverage
+report records both identities, the original and exported UUIDs, and the reason
+under ``conflicting_method_package_flow``. This avoids linking a source substance
+to a conflicting package definition. Even apparent spelling differences are
+kept separate until verified; review coverage before interpreting LCIA results.
+Version 3.12 retains strict rejection of conflicting definitions.
 
-
-You will need to select "SimaproCSV_Import.csv" as mapping file to use.
-
-.. image:: /olca_fig2.png
-   :width: 500pt
-   :align: center
-   :alt: OpenLCA mapping file selection screenshot
-
-Then import the ecoinvent impact assessment methods (available for free on OpenLCA's `Nexus <https://nexus.openlca.org/>`__ platform)
-into the Premise database as JSON-LD.
-
-.. image:: /olca_fig3.png
-   :width: 500pt
-   :align: center
-   :alt: OpenLCA import impact assessment methods screenshot
-
-Select the option "Overwrite all existing datasets" before importing, because our elementary flows may have
-more descriptions or never update existing data set to keep the descriptions from the CSV export of Premise for
-the elementary flows.
-
-.. image:: /olca_fig4.png
-   :width: 500pt
-   :align: center
-   :alt: OpenLCA overwrite datasets option screenshot
+The exporter retains signed exchange amounts, including negative production.
+A deterministic comparison of an ecoinvent 3.8 scenario in openLCA 2.6.2 matched
+four climate indicators from Brightway within ``5.01e-8`` relative difference,
+using the same method-package factors and flow coverage. This validates that
+specific demand and method, rather than every scenario or method. Lognormal
+parameters are converted to geometric parameters by Brightpath; Monte Carlo
+equivalence and truncation behavior remain unverified. Full scenarios are
+materialized in memory during serialization.
