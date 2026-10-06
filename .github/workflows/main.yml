@@ -140,14 +140,6 @@ jobs:
           skip-existing: true
           verbose: true
 
-      - name: Publish distribution 📦 to Test PyPI if Push
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          password: ${{ secrets.TEST_PYPI_API_TOKEN }}
-          repository-url: https://test.pypi.org/legacy/
-          skip-existing: true
-          verbose: true
-
   conda:
     name: (${{ matrix.python-version }}, ubuntu-latest)
     runs-on: ubuntu-latest
