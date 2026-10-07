@@ -6,50 +6,14 @@ package:
   name: {{ name }}
   version: {{ version }}
 
-# Build Brightpath from the same GitHub revision used by requirements.txt.
 source:
-  - path: ..
-    folder: premise-src
-  - url: https://codeload.github.com/romainsacchi/brightpath/tar.gz/5c0cf00940556d5f379941df636276148db594c9
-    sha256: aeb246be91406ed5061582edd971e2c1f11bd17eb3a6dd613956df87c08ae9c5
-    folder: brightpath-src
+  path: ..
 
 outputs:
-  - name: brightpath
-    version: 1.0.0a1
-    build:
-      noarch: python
-      number: 0
-      string: github_5c0cf009_0
-      script: python -m pip install "$SRC_DIR/brightpath-src" --no-deps --no-build-isolation -vv
-    requirements:
-      host:
-        - python >=3.12
-        - pip
-        - setuptools >=77
-        - wheel
-      run:
-        - python >=3.12
-        - bw2io
-        - olca-schema >=2.6.2,<3
-        - pyyaml >=6
-        - xlsxwriter >=3
-    test:
-      imports:
-        - brightpath
-        - brightpath.formats.openlca_methods
-        - brightpath.formats.simapro_csv
-        - brightpath.profiles.simapro_waste
-    about:
-      home: https://github.com/romainsacchi/brightpath
-      license: BSD-3-Clause
-      license_file: brightpath-src/LICENSE
-      summary: Validate, migrate, and exchange life-cycle inventories across LCA formats.
-
   - name: premise-bw2
     build:
       noarch: python
-      script: python -m pip install "$SRC_DIR/premise-src" --no-deps --no-build-isolation -vv
+      script: python -m pip install "$SRC_DIR" --no-deps --no-build-isolation -vv
     requirements:
       host:
         - pip
@@ -60,7 +24,7 @@ outputs:
         - bw2data <4.0.0
         - python >=3.12
         - bottleneck
-        - {{ pin_subpackage("brightpath", exact=True) }}
+        - brightpath >=1.0.0a4,<2
         - bw2io
         - ecoinvent_interface
         - constructive_geometries>=1.0.0
@@ -98,7 +62,7 @@ outputs:
   - name: premise-bw25
     build:
       noarch: python
-      script: python -m pip install "$SRC_DIR/premise-src" --no-deps --no-build-isolation -vv
+      script: python -m pip install "$SRC_DIR" --no-deps --no-build-isolation -vv
     requirements:
       host:
         - pip
@@ -110,7 +74,7 @@ outputs:
         - bw_processing >=1.0
         - python >=3.12
         - bottleneck
-        - {{ pin_subpackage("brightpath", exact=True) }}
+        - brightpath >=1.0.0a4,<2
         - bw2io
         - ecoinvent_interface
         - constructive_geometries>=1.0.0
@@ -155,4 +119,4 @@ about:
   license: BSD License
   summary: 'Coupling Integrated Assessment Models and Life Cycle Assessment.'
 license_family: BSD
-license_file: premise-src/LICENSE
+license_file: LICENSE

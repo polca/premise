@@ -2,6 +2,7 @@
 
 from collections import Counter
 from dataclasses import asdict
+import hashlib
 import json
 import math
 from pathlib import Path
@@ -19,14 +20,21 @@ def check_brightpath():
         raise RuntimeError("Brightpath SimaPro export requires Python 3.12+.")
     try:
         from brightpath.formats.simapro_csv import write_simapro_csv  # noqa: F401
+        from brightpath.profiles.simapro_biosphere import (
+            FINAL_WASTE_NAMES,
+            resolve_ecoinvent_flow_name,
+        )  # noqa: F401
+        from brightpath.profiles.simapro_category_types import (
+            resolve_category_type,
+        )  # noqa: F401
         from brightpath.profiles.simapro_waste import (
             resolve_classified_waste,
         )  # noqa: F401
         from brightpath.utils import get_simapro_units
     except ImportError as error:
         raise ImportError(
-            "Install Brightpath with SimaPro classification and full-inventory "
-            "unit support in this Python environment (see the SimaPro export guide)."
+            "Install the pinned Brightpath revision with SimaPro category-type "
+            "and final-waste support (see the SimaPro export guide)."
         ) from error
     if (
         not {"kilogram day", "cubic meter-year", "guest night"}
@@ -48,6 +56,9 @@ def build_document(scenario, version, system_model):
         TechnosphereProfile,
     )
     from brightpath.models import InventoryDocument
+    from brightpath.profiles.simapro_biosphere import FINAL_WASTE_NAMES
+    from brightpath.profiles.simapro_categories import split_simapro_category
+    from brightpath.profiles.simapro_category_types import resolve_category_type
     from brightpath.profiles.simapro_waste import resolve_classified_waste
     from brightpath.utils import is_blacklisted
 
@@ -67,6 +78,7 @@ def build_document(scenario, version, system_model):
     fallback_classifications = []
     excluded = []
     classification_counts = Counter()
+    category_type_counts = Counter()
     for dataset in data:
         identity = _identity(dataset)
         production = [e for e in dataset["exchanges"] if e.get("type") == "production"]
@@ -92,9 +104,18 @@ def build_document(scenario, version, system_model):
         ):
             dataset["comment"] = "Exported by premise (no source comment)."
         normalize_activity_parameters(dataset)
+        native_type = (dataset.get("simapro metadata") or {}).get("Category type")
+        if not output.get("simapro category") and native_type:
+            kind, _ = split_simapro_category(native_type)
+            output["simapro category"] = kind + "/Classified"
         resolution = resolve_classified_waste(dataset)
         classification_counts[resolution.rule] += 1
-        if resolution.waste is None:
+        category_resolution = resolve_category_type(dataset, resolution)
+        explicit = resolution.rule == "explicit_category"
+        category_type_counts[
+            "explicit_category" if explicit else category_resolution.rule
+        ] += 1
+        if not explicit and category_resolution.category_type is None:
             entry = categories.get(
                 (dataset["name"].lower(), dataset["reference product"].lower())
             )
@@ -107,12 +128,21 @@ def build_document(scenario, version, system_model):
                 dataset["name"], dataset["reference product"], categories
             )
             category = main + "/" + sub.replace("\\", "/")
+            if resolution.waste is False and main == "waste treatment":
+                raise ValueError(
+                    f"SimaPro fallback {category!r} conflicts with Brightpath's "
+                    f"non-waste classification for {identity!r}."
+                )
             output["simapro category"] = category
             fallback_classifications.append(
                 {
                     "activity": list(identity),
                     "category": category,
-                    "reason": resolution.rule,
+                    "reason": (
+                        resolution.rule
+                        if resolution.waste is None
+                        else category_resolution.rule
+                    ),
                     "source": "premise_mapping" if mapped else "default_category",
                 }
             )
@@ -138,10 +168,14 @@ def build_document(scenario, version, system_model):
                 exchange["type"] == "biosphere"
                 and (exchange.get("categories") or [None])[0] == "inventory indicator"
             )
+            unsupported_indicator = indicator and not (
+                exchange["name"] in FINAL_WASTE_NAMES
+                or exchange.get("simapro section") == "Final waste flows"
+            )
             blacklisted = exchange["type"] == "biosphere" and is_blacklisted(
                 exchange, "ecoinvent"
             )
-            if indicator or blacklisted:
+            if unsupported_indicator or blacklisted:
                 excluded.append(
                     {
                         "activity": list(identity),
@@ -151,17 +185,17 @@ def build_document(scenario, version, system_model):
                         "unit": exchange["unit"],
                         "amount": amount,
                         "reason": (
-                            "inventory_indicator"
-                            if indicator
+                            "unsupported_inventory_indicator"
+                            if unsupported_indicator
                             else "brightpath_blacklist"
                         ),
                     }
                 )
-            if not indicator:
+            if not unsupported_indicator:
                 retained.append(exchange)
         dataset["exchanges"] = retained
 
-    assign_simapro_category_paths(data)
+    category_paths = assign_simapro_category_paths(data)
     metadata = assign_simapro_provenance(data, scenario, version, system_model)
     context = InventoryContext(
         format=FormatProfile("simapro_csv"),
@@ -181,6 +215,8 @@ def build_document(scenario, version, system_model):
         "source_version": str(version),
         "system_model": system_model,
         "classification_rules": dict(classification_counts),
+        "category_type_rules": dict(category_type_counts),
+        "shortened_category_paths": category_paths,
         "classification_fallbacks": fallback_classifications,
         "excluded_exchanges": excluded,
     }
@@ -242,10 +278,15 @@ def assign_simapro_provenance(
         f"ecoinvent {version} ({system_model}); "
         f"{scenario['model']} / {scenario['pathway']} / {scenario['year']}"
     )
+    system_name = _shorten_simapro_label(
+        f"ei{version} {system_model} {scenario['model']} "
+        f"{scenario['pathway']} {scenario['year']}",
+        50,
+    )
     documentation = "https://premise.readthedocs.io/en/latest/introduction.html"
     defaults = {
         "Generator": generator,
-        "System description": label,
+        "System description": system_name,
         "External documents": documentation,
     }
     for dataset in datasets:
@@ -265,10 +306,19 @@ def assign_simapro_provenance(
                 dataset[top_level] = metadata[field]
     return {
         "system description": {
-            "name": label,
+            "name": system_name,
+            "category": "Others",
             "description": f"Prepared by {generator}. Scenario: {label}. {documentation}",
         }
     }
+
+
+def _shorten_simapro_label(value, limit):
+    """Keep labels stable and distinct when SimaPro requires shorter text."""
+    if len(value) <= limit:
+        return value
+    suffix = "~" + hashlib.sha256(value.encode("utf-8")).hexdigest()[:10]
+    return value[: limit - len(suffix)].rstrip() + suffix
 
 
 def assign_simapro_category_paths(datasets):
@@ -277,7 +327,21 @@ def assign_simapro_category_paths(datasets):
     Call on the detached export payload. Only folder metadata is assigned;
     production categories and waste-identification evidence are left untouched.
     Missing ISIC uses the same consensus/CPC/Unclassified fallbacks as openLCA.
+    Apply one component limit throughout the hierarchy, so a shared parent keeps
+    the same label for all children. Return the original/shortened path mappings.
     """
     categories = build_process_categories(datasets)
+    depth = max((path.count("/") + 1 for path in categories.values()), default=1)
+    # Desktop permits 255 characters; keep space for import-side folder labels.
+    component_limit = min(60, (240 - (depth - 1)) // depth)
+    shortened = {}
     for dataset in datasets:
-        dataset["simapro category path"] = categories[_identity(dataset)]
+        original = categories[_identity(dataset)]
+        path = "/".join(
+            _shorten_simapro_label(part, component_limit)
+            for part in original.split("/")
+        )
+        dataset["simapro category path"] = path
+        if path != original:
+            shortened[original] = path
+    return shortened

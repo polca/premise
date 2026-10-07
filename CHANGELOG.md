@@ -6,8 +6,9 @@ All notable changes to this project are documented in this file.
 
 ### Breaking changes
 
-- Require Brightpath from a pinned GitHub revision for Python installations
-  and build the same source as a dependency of both Conda variants. Export integration tests now fail when Brightpath is unavailable
+- Require Brightpath 1.0.0a4 or newer (below 2.0) from PyPI and the
+  `romainsacchi` Conda channel, replacing the temporary GitHub source pin and
+  bundled Conda build. Export integration tests now fail when Brightpath is unavailable
   instead of skipping; CI and Conda package checks verify its export APIs.
 
 - Require Python 3.12 or newer in the Python package and both Conda variants.
@@ -43,6 +44,20 @@ All notable changes to this project are documented in this file.
   preserve signed amounts and separate process/product IDs across scenarios.
 
 ### Fixed
+
+- Correct SimaPro Desktop import failures using Brightpath 1.0.0a4: bounded
+  process identifiers, waste-specific allocation fields, and early text-limit
+  checks. Keep generated system-description labels within 50 characters and
+  shorten ISIC folder components to at most 60 characters with an export-report
+  mapping. Include the required system-description category and preserve the
+  native volume-based salt-water resource name.
+
+- Preserve supported SimaPro final-waste indicators instead of removing all
+  inventory indicators. Use Brightpath's retained biosphere flows and
+  product-aware category types across ecoinvent
+  releases. Preserve explicit categories, report unresolved product-role fallbacks,
+  and reject fallbacks that conflict with resolved non-waste status. Unsupported
+  indicators remain individually reported exclusions.
 
 - Avoided false electricity-share validation errors caused by floating-point
   rounding at the lower bound of one, while retaining checks for real shortfalls.
