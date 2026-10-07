@@ -5,6 +5,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
+from premise import scenario_array
 from premise.scenario_array import (
     _load_scenario_array_dependencies,
     _scenario_dataframe_to_arrays,
@@ -156,9 +157,8 @@ def test_scenario_dataframe_to_arrays_wraps_unresolved_keys_with_context():
     assert "scenario-project" in message
 
 
-def test_write_scenario_array_datapackage_is_compressed_and_replaces_atomically(
-    tmp_path,
-):
+@pytest.fixture
+def scenario_array_export(tmp_path):
     bw_processing = pytest.importorskip("bw_processing")
     from fsspec.implementations.zip import ZipFileSystem
 
@@ -182,22 +182,113 @@ def test_write_scenario_array_datapackage_is_compressed_and_replaces_atomically(
     destination.parent.mkdir()
     destination.write_bytes(b"old artifact")
 
-    result = _write_scenario_array_datapackage(
+    filesystems = []
+
+    def tracked_zip_filesystem(*args, **kwargs):
+        filesystem = ZipFileSystem(*args, **kwargs)
+        filesystems.append(filesystem)
+        return filesystem
+
+    kwargs = dict(
         dataframe=scenario_dataframe(),
         scenario_labels=SCENARIO_LABELS,
         filepath=destination,
         name="scenario-db",
         metadata={"brightway_project": "scenario-project", "scenario_count": 3},
-        dependencies=(bw_processing, ids.__getitem__, labels, ZipFileSystem),
+        dependencies=(bw_processing, ids.__getitem__, labels, tracked_zip_filesystem),
     )
+    return kwargs, filesystems
+
+
+def test_write_scenario_array_datapackage_is_compressed_and_replaces_atomically(
+    scenario_array_export, monkeypatch
+):
+    kwargs, filesystems = scenario_array_export
+    destination = kwargs["filepath"]
+    replace = scenario_array.os.replace
+    replaced = []
+
+    def replace_closed_zip(source, target):
+        # Enforce Windows handle requirements even when this test runs on Unix.
+        assert filesystems[0].zip.fp is None
+        assert filesystems[0].fo.closed
+        assert destination.read_bytes() == b"old artifact"
+        replaced.append(target)
+        replace(source, target)
+
+    monkeypatch.setattr(scenario_array.os, "replace", replace_closed_zip)
+    result = _write_scenario_array_datapackage(**kwargs)
 
     assert result == destination.resolve()
+    assert replaced == [destination.resolve()]
     with ZipFile(result) as archive:
         assert archive.testzip() is None
         assert all(item.compress_type == ZIP_DEFLATED for item in archive.infolist())
-        assert not any(
-            path.name.startswith(".arrays-") for path in result.parent.iterdir()
+    assert not any(
+        path.name.startswith(".arrays-") and path.suffix == ".zip"
+        for path in result.parent.iterdir()
+    )
+
+
+@pytest.mark.parametrize(
+    "stage,error_type",
+    [
+        ("create", OSError),
+        ("write", OSError),
+        ("write", KeyboardInterrupt),
+        ("finalize", OSError),
+        ("close", OSError),
+        ("replace", PermissionError),
+    ],
+)
+def test_failed_scenario_array_export_preserves_destination_and_cleans_up(
+    scenario_array_export, monkeypatch, stage, error_type
+):
+    kwargs, filesystems = scenario_array_export
+    bw_processing, get_id, labels, zip_filesystem = kwargs["dependencies"]
+    failure = error_type(f"Failed during {stage}")
+
+    def fail(*args, **kwargs):
+        raise failure
+
+    if stage == "create":
+        monkeypatch.setattr(bw_processing, "create_datapackage", fail)
+    elif stage == "write":
+        monkeypatch.setattr(bw_processing.Datapackage, "add_persistent_array", fail)
+    elif stage == "finalize":
+        monkeypatch.setattr(bw_processing.Datapackage, "finalize_serialization", fail)
+    elif stage == "close":
+
+        def failing_close_filesystem(*args, **kwargs):
+            filesystem = zip_filesystem(*args, **kwargs)
+            close = filesystem.of.__exit__
+
+            def fail_after_close(*args):
+                close(*args)
+                monkeypatch.setattr(filesystem.of, "__exit__", close)
+                raise failure
+
+            monkeypatch.setattr(filesystem.of, "__exit__", fail_after_close)
+            return filesystem
+
+        kwargs["dependencies"] = (
+            bw_processing,
+            get_id,
+            labels,
+            failing_close_filesystem,
         )
+    else:
+        monkeypatch.setattr(scenario_array.os, "replace", fail)
+
+    with pytest.raises(error_type) as error:
+        _write_scenario_array_datapackage(**kwargs)
+
+    assert error.value is failure
+    assert filesystems[0].zip.fp is None
+    assert filesystems[0].fo.closed
+    destination = kwargs["filepath"]
+    assert destination.read_bytes() == b"old artifact"
+    assert list(destination.parent.iterdir()) == [destination]
 
 
 def test_scenario_array_datapackage_advances_matrices_together_and_wraps(tmp_path):

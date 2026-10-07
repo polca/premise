@@ -45,6 +45,10 @@ All notable changes to this project are documented in this file.
 
 ### Fixed
 
+- Close the underlying scenario-array ZIP file before replacing its destination
+  so exports work on Windows. Remove temporary files after failed or interrupted
+  writes and preserve any existing export when writing, closing, or replacing fails.
+
 - Include IAM-region coverage in high-, medium-, and low-voltage electricity
   market comments. Preserve scenario provenance in period-average markets and
   append coverage after their averaging description, for all export formats.

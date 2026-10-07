@@ -1,7 +1,7 @@
 """Build sequential Brightway scenario-array datapackages."""
 
 import os
-import tempfile
+import uuid
 import zipfile
 from pathlib import Path
 from typing import Callable
@@ -182,6 +182,22 @@ def _scenario_dataframe_to_arrays(
     return resources
 
 
+def _release_zip_filesystem(filesystem) -> None:
+    """Fully close a ``ZipFileSystem`` so its path can be renamed on Windows.
+
+    ``filesystem.close()`` is not enough: it closes the zip archive but leaves
+    the underlying file open. This helper also closes that file handle.
+    """
+
+    try:
+        filesystem.close()
+    finally:
+        of = getattr(filesystem, "of", None)
+        if of is not None and hasattr(of, "__exit__"):
+            of.__exit__(None, None, None)
+            filesystem.of = None
+
+
 def _write_scenario_array_datapackage(
     *,
     dataframe: pd.DataFrame,
@@ -191,7 +207,7 @@ def _write_scenario_array_datapackage(
     metadata: dict,
     dependencies=None,
 ) -> Path:
-    """Write a compressed datapackage to a temporary file and atomically replace it."""
+    """Write a compressed datapackage ZIP to ``filepath`` via atomic replace."""
 
     bw_processing, get_id, labels, ZipFileSystem = (
         dependencies or _load_scenario_array_dependencies()
@@ -210,47 +226,38 @@ def _write_scenario_array_datapackage(
 
     filepath = filepath.expanduser().resolve()
     filepath.parent.mkdir(parents=True, exist_ok=True)
-    descriptor, temporary_name = tempfile.mkstemp(
-        prefix=f".{filepath.stem}-",
-        suffix=".zip",
-        dir=filepath.parent,
-    )
-    os.close(descriptor)
-    temporary_path = Path(temporary_name)
-    filesystem = None
-
+    temporary_path = filepath.with_name(f".{filepath.stem}-{uuid.uuid4().hex}.zip")
     try:
         filesystem = ZipFileSystem(
             str(temporary_path), mode="w", compression=zipfile.ZIP_DEFLATED
         )
-        datapackage_name = (
-            bw_processing.clean_datapackage_name(name) or "scenario_array"
-        )
-        datapackage = bw_processing.create_datapackage(
-            fs=filesystem,
-            name=datapackage_name,
-            metadata=metadata,
-            sequential=True,
-            sum_intra_duplicates=False,
-            sum_inter_duplicates=False,
-        )
-
-        for matrix, resource in resources.items():
-            datapackage.add_persistent_array(
-                matrix=matrix,
-                name=bw_processing.clean_datapackage_name(
-                    f"{name} {matrix.replace('_', ' ')}"
-                ),
-                **resource,
+        try:
+            datapackage_name = (
+                bw_processing.clean_datapackage_name(name) or "scenario_array"
+            )
+            datapackage = bw_processing.create_datapackage(
+                fs=filesystem,
+                name=datapackage_name,
+                metadata=metadata,
+                sequential=True,
+                sum_intra_duplicates=False,
+                sum_inter_duplicates=False,
             )
 
-        datapackage.finalize_serialization()
-        filesystem = None
+            for matrix, resource in resources.items():
+                datapackage.add_persistent_array(
+                    matrix=matrix,
+                    name=bw_processing.clean_datapackage_name(
+                        f"{name} {matrix.replace('_', ' ')}"
+                    ),
+                    **resource,
+                )
+
+            datapackage.finalize_serialization()
+        finally:
+            _release_zip_filesystem(filesystem)
+
         os.replace(temporary_path, filepath)
-    except Exception:
-        if filesystem is not None:
-            filesystem.close()
-        raise
     finally:
         temporary_path.unlink(missing_ok=True)
 
