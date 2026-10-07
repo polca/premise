@@ -2,22 +2,22 @@
   "inspect_inventory.py": {
     "classification": "self-contained executable",
     "execution": "Passed in isolated storage",
-    "review_date": "2026-09-07"
+    "review_date": "2026-10-07"
   },
   "interpret_changes.py": {
     "classification": "self-contained executable",
     "execution": "Passed; illustrative arithmetic, not an LCA",
-    "review_date": "2026-09-07"
+    "review_date": "2026-10-07"
   },
   "validation_findings.py": {
     "classification": "self-contained executable",
     "execution": "Passed; illustrative findings using actual report types",
-    "review_date": "2026-09-07"
+    "review_date": "2026-10-07"
   },
   "preflight.py": {
     "classification": "preflight executable",
-    "execution": "Passed pure failure cases; real project/database-name check performed without writing an inventory",
-    "review_date": "2026-09-07"
+    "execution": "Passed synthetic project/database-name checks and five invalid-input cases in isolated storage; no inventory written",
+    "review_date": "2026-10-07"
   },
   "first_scenario.py": {
     "classification": "licensed executable",

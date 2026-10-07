@@ -66,17 +66,32 @@ Changelog
 ---------
 Release notes are maintained in [`CHANGELOG.md`](CHANGELOG.md).
 
-What's new in 2.5.2
+What's new in 2.5.3
 -------------------
 
-Version 2.5.2 improves transport, inventory imports, and scenario updates. It:
+**Brightpath now powers Premise's openLCA and SimaPro exports.** Version 2.5.3
+produces native **openLCA JSON-LD packages** containing processes, flows, units,
+and provider links, replacing the previous openLCA-compatible SimaPro CSV route.
+For **SimaPro**, Brightpath produces more accurate CSVs with corrected flow
+mappings, units, classifications, waste-treatment conventions, and metadata
+that respect SimaPro Desktop's import requirements. Export reports identify
+biosphere coverage gaps; SimaPro reports also document classification fallbacks.
 
-- fixes passenger-car fuel selection and adds a configurable, provisional
-  combustion-car energy floor;
-- preserves exchange uncertainty during inventory disaggregation;
-- improves photovoltaic inventory compatibility and efficiency updates;
-- corrects REMIND chemical energy mappings and unavailable-pathway handling; and
-- speeds up structured change-report generation.
+This release also:
+
+- restores IAM-region coverage in electricity-market comments;
+- preserves emitted-carbon balances when blending fuels in inventories with
+  carbon capture and applies GAINS reductions across all pollutant compartments;
+- corrects Swiss hydropower water balances and biosphere-flow migrations;
+- preserves custom-scenario mappings, isolates provider efficiency changes,
+  and supports explicit absolute-efficiency bounds; and
+- fixes scenario-array ZIP export on Windows and cleans up failed exports.
+
+**Upgrading requires Python 3.12 or newer.** Brightpath 1.0.0a4 or newer (below
+2.0) is installed as a dependency. openLCA export supports ecoinvent 3.8 and
+3.12 and requires a matching local LCIA method package. Export calls no longer
+accept the legacy `backend` or `format` selectors. Custom datapackages that
+relied on implicit absolute-efficiency limits must declare explicit `bounds`.
 
 It builds on the main changes introduced in 2.5.0:
 
@@ -101,7 +116,7 @@ database = ndb.materialize_inventory()
 ```
 
 See the [2.5 migration and release guide](https://premise.readthedocs.io/en/latest/release_2_5.html)
-and the [full 2.5.2 changelog](CHANGELOG.md#252---2026-09-10) for details.
+and the [full 2.5.3 changelog](CHANGELOG.md#253---2026-10-07) for details.
 
 
 Documentation
