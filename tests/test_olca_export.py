@@ -13,20 +13,22 @@ import pytest
 
 from premise import olca_export
 
+# This public biosphere identity also occurs in full ecoinvent scenarios.
+FOSSIL_CO2_ID = "349b29d1-3e58-4c66-98b9-9d1a076efd2e"
+
 
 def uid(value):
     return str(uuid.uuid5(uuid.NAMESPACE_URL, value))
 
 
 @pytest.fixture
-def mapping(tmp_path):
-    from brightpath.formats import openlca_methods as methods
-
+def method_package(tmp_path):
+    """Minimal local package compatible with the bundled ecoinvent biosphere."""
     root = tmp_path / "methods"
     entities = {
         "flows": {
-            "@id": uid("emission"),
-            "name": "Emission",
+            "@id": FOSSIL_CO2_ID,
+            "name": "Carbon dioxide, fossil",
             "flowType": "ELEMENTARY_FLOW",
             "category": "Elementary flows/Emission to air/unspecified",
             "flowProperties": [
@@ -58,12 +60,12 @@ def mapping(tmp_path):
     for folder, entity in entities.items():
         (root / folder).mkdir(parents=True)
         (root / folder / "entity.json").write_text(json.dumps(entity))
-    source = tmp_path / "source.csv"
-    with source.open("w", newline="") as stream:
-        csv.writer(stream).writerow(
-            ["Emission", "air", "unspecified", "kilogram", uid("emission")]
-        )
-    return methods.OpenLCAMethodMapping(root, source)
+    return root
+
+
+@pytest.fixture
+def mapping(method_package):
+    return olca_export.load_method_mapping(method_package, "3.12")
 
 
 @pytest.fixture
@@ -91,7 +93,7 @@ def scenario():
     a["exchanges"].append(
         {
             "type": "biosphere",
-            "name": "Emission",
+            "name": "Carbon dioxide, fossil",
             "categories": ("air", "unspecified"),
             "unit": "kilogram",
             "amount": np.float64(2),
@@ -129,7 +131,7 @@ def test_closed_scenario_signs_mapping_and_nonmutation(scenario, mapping, tmp_pa
     assert exchange["flow"]["@id"] == supplier["exchanges"][0]["flow"]["@id"]
     assert exchange["amount"] == -3
     assert supplier["exchanges"][0]["amount"] == -1
-    assert supplier["exchanges"][1]["flow"]["@id"] == uid("emission")
+    assert supplier["exchanges"][1]["flow"]["@id"] == FOSSIL_CO2_ID
     assert supplier["exchanges"][1]["unit"]["@id"] == uid("kg")
     assert all(str(uuid.UUID(p["@id"])) == p["@id"] for p in processes.values())
     assert path.with_suffix(".biosphere-coverage.json").exists()
@@ -193,8 +195,8 @@ def test_optional_runtime_errors(monkeypatch):
         olca_export.load_method_mapping(None, "3.12")
 
 
-def test_newdatabase_keeps_preparation_and_reports(
-    scenario, mapping, tmp_path, monkeypatch
+def test_newdatabase_loads_method_package_and_keeps_preparation_and_reports(
+    scenario, method_package, tmp_path, monkeypatch
 ):
     import premise.new_database as module
 
@@ -203,7 +205,6 @@ def test_newdatabase_keeps_preparation_and_reports(
     ndb.scenarios = [definition]
     ndb.version, ndb.system_model, ndb.biosphere_name = "3.12", "cutoff", "biosphere3"
     calls = []
-    monkeypatch.setattr(olca_export, "load_method_mapping", lambda *a: mapping)
     monkeypatch.setattr(ndb, "_load_original_database", lambda: [])
     monkeypatch.setattr(
         ndb, "_ensure_semantic_certification", lambda s: calls.append("certify")
@@ -217,8 +218,18 @@ def test_newdatabase_keeps_preparation_and_reports(
     )
     monkeypatch.setattr(ndb, "_run_automatic_reports", lambda: calls.append("reports"))
     monkeypatch.setattr(module, "delete_all_pickles", lambda: calls.append("cleanup"))
-    result = ndb.write_db_to_olca(tmp_path, method_package="methods")
+    # Keep method loading and JSON-LD writing real, as in nightly certification.
+    result = ndb.write_db_to_olca(tmp_path, method_package=method_package)
     assert len(result) == 1 and result[0].is_file()
+    supplier = next(
+        p for p in entities(result[0], "processes") if p["name"] == "supplier"
+    )
+    emission = supplier["exchanges"][1]
+    assert emission["flow"]["@id"] == FOSSIL_CO2_ID
+    assert emission["flow"]["name"] == "Carbon dioxide, fossil"
+    assert emission["unit"]["@id"] == uid("kg")
+    assert emission["amount"] == 2
+    assert result[0].with_suffix(".biosphere-coverage.json").is_file()
     assert calls == ["certify", "prepare", "record", "reports", "cleanup"]
     assert "database" not in definition
 
@@ -227,7 +238,7 @@ def test_unspecified_subcompartment_is_normalized(scenario, mapping, tmp_path):
     scenario["database"][0]["exchanges"][1]["categories"] = ("air",)
     path = olca_export.export_scenario(scenario, tmp_path, "3.12", "cutoff", mapping)
     supplier = next(p for p in entities(path, "processes") if p["name"] == "supplier")
-    assert supplier["exchanges"][1]["flow"]["@id"] == uid("emission")
+    assert supplier["exchanges"][1]["flow"]["@id"] == FOSSIL_CO2_ID
     assert scenario["database"][0]["exchanges"][1]["categories"] == ("air",)
 
 
