@@ -6,8 +6,9 @@ All notable changes to this project are documented in this file.
 
 ### Breaking changes
 
-- Require Brightpath from a pinned GitHub revision for Python installations
-  and build the same source as a dependency of both Conda variants. Export integration tests now fail when Brightpath is unavailable
+- Require Brightpath 1.0.0a4 or newer (below 2.0) from PyPI and the
+  `romainsacchi` Conda channel, replacing the temporary GitHub source pin and
+  bundled Conda build. Export integration tests now fail when Brightpath is unavailable
   instead of skipping; CI and Conda package checks verify its export APIs.
 
 - Require Python 3.12 or newer in the Python package and both Conda variants.
@@ -52,8 +53,8 @@ All notable changes to this project are documented in this file.
   native volume-based salt-water resource name.
 
 - Preserve supported SimaPro final-waste indicators instead of removing all
-  inventory indicators. Pin Brightpath 1.0.0a2 from GitHub in Python and Conda
-  for retained biosphere flows and product-aware category types across ecoinvent
+  inventory indicators. Use Brightpath's retained biosphere flows and
+  product-aware category types across ecoinvent
   releases. Preserve explicit categories, report unresolved product-role fallbacks,
   and reject fallbacks that conflict with resolved non-waste status. Unsupported
   indicators remain individually reported exclusions.

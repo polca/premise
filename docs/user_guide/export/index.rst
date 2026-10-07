@@ -26,10 +26,8 @@ system model. It does not run a background-database migration.
 
 Both Brightpath routes require Python 3.12 or newer. Brightpath
 is a required dependency installed with Premise, including both Conda variants.
-Until a compatible registry release is available, Python installations use
-the pinned GitHub revision ``b48e816ddfe982d08a58db153a724b887db7ca26``
-and require Git. Conda builds package that same revision as a separate
-Brightpath dependency. It provides the SimaPro classification, folder and
+Premise requires ``brightpath>=1.0.0a4,<2`` from PyPI or the ``romainsacchi``
+Conda channel. It provides the SimaPro classification, folder and
 full-inventory unit mappings, and the versioned openLCA method-mapping API.
 
 Export checks report missing Python or library support before preparing
