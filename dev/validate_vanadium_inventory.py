@@ -147,6 +147,7 @@ def main():
     parser.add_argument("--baseline-workbook", type=Path)
     parser.add_argument("--resume", action="store_true")
     args = parser.parse_args()
+    (ROOT / "results").mkdir(exist_ok=True)
     assert PROJECT in bd.projects
     bd.projects.set_current(PROJECT)
     assert PROJECT in bd.databases and "biosphere" in bd.databases
