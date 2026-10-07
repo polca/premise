@@ -753,7 +753,7 @@ class Electricity(BaseTransformation):
             if period != 0:
                 # this dataset is for a period of time
                 new_dataset["name"] += f", {period}-year period"
-                new_dataset["comment"] = (
+                new_dataset["comment"] += (
                     f" Average electricity mix over a {period}"
                     f"-year period {self.year}-{self.year + period}."
                 )
@@ -895,7 +895,7 @@ class Electricity(BaseTransformation):
                     "renewable share": solar_amount / (1 + distr_loss),
                 }
             )
-            return new_dataset
+            return self.add_geo_definition_metadata(new_dataset)
 
         if self.system_model == "consequential":
             periods = [
@@ -984,7 +984,7 @@ class Electricity(BaseTransformation):
             if period != 0:
                 # this dataset is for a period of time
                 new_dataset["name"] += f", {period}-year period"
-                new_dataset["comment"] = (
+                new_dataset["comment"] += (
                     f" Average electricity mix over a {period}"
                     f"-year period {self.year}-{self.year + period}."
                 )
@@ -1097,7 +1097,7 @@ class Electricity(BaseTransformation):
                 }
             )
 
-            return new_dataset
+            return self.add_geo_definition_metadata(new_dataset)
 
         if self.system_model == "consequential":
             periods = [
@@ -1269,7 +1269,7 @@ class Electricity(BaseTransformation):
             if period != 0:
                 # this dataset is for a period of time
                 new_dataset["name"] += f", {period}-year period"
-                new_dataset["comment"] = (
+                new_dataset["comment"] += (
                     f" Average electricity mix over a {period}"
                     f"-year period {self.year}-{self.year + period}."
                 )
@@ -1322,7 +1322,7 @@ class Electricity(BaseTransformation):
                 }
             )
 
-            return new_dataset
+            return self.add_geo_definition_metadata(new_dataset)
 
         if self.system_model == "consequential":
             periods = [

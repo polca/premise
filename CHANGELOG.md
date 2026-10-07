@@ -45,6 +45,10 @@ All notable changes to this project are documented in this file.
 
 ### Fixed
 
+- Include IAM-region coverage in high-, medium-, and low-voltage electricity
+  market comments. Preserve scenario provenance in period-average markets and
+  append coverage after their averaging description, for all export formats.
+
 - Correct SimaPro Desktop import failures using Brightpath 1.0.0a4: bounded
   process identifiers, waste-specific allocation fields, and early text-limit
   checks. Keep generated system-description labels within 50 characters and
