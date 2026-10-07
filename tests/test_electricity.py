@@ -180,6 +180,24 @@ def get_db():
     return dummy_db, version
 
 
+def hydro_water_exchange(name, categories, amount):
+    return {
+        "name": name,
+        "categories": categories,
+        "amount": amount,
+        "type": "biosphere",
+        "unit": "cubic meter",
+    }
+
+
+def hydro_withdrawal(amount):
+    return hydro_water_exchange(
+        "Water, turbine use, unspecified natural origin",
+        ("natural resource", "in water"),
+        amount,
+    )
+
+
 def test_correct_hydropower_water_emissions_rescales_uncertainty():
     original_amount = 0.029221678
     water_to_air = {
@@ -218,7 +236,12 @@ def test_correct_hydropower_water_emissions_rescales_uncertainty():
             "name": "electricity production, hydro, reservoir, alpine region",
             "location": "CH",
             "unit": "kilowatt hour",
-            "exchanges": [water_to_air, unmatched_exchange],
+            "exchanges": [
+                water_to_air,
+                unmatched_exchange,
+                hydro_withdrawal(0.81),
+                hydro_water_exchange("Water", ("water",), 0.780778322),
+            ],
         },
         {
             "name": "electricity production, hydro, reservoir, alpine region",
@@ -260,7 +283,11 @@ def test_correct_hydropower_water_emissions_handles_zero_amount():
             "name": "electricity production, hydro, reservoir, alpine region",
             "location": "CH",
             "unit": "kilowatt hour",
-            "exchanges": [water_to_reservoir],
+            "exchanges": [
+                water_to_reservoir,
+                hydro_withdrawal(0.81),
+                hydro_water_exchange("Water", ("air",), 0.029221678),
+            ],
         }
     ]
 

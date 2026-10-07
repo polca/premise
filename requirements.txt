@@ -1,5 +1,6 @@
 numpy<2.0.0
 bottleneck
+brightpath>=1.0.0a4,<2
 bw2data
 bw2io
 ecoinvent_interface

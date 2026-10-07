@@ -13,17 +13,18 @@ outputs:
   - name: premise-bw2
     build:
       noarch: python
-      script: "python -m pip install . --no-deps --no-build-isolation -vv"
+      script: python -m pip install "$SRC_DIR" --no-deps --no-build-isolation -vv
     requirements:
       host:
         - pip
-        - python >=3.10
+        - python >=3.12
         - setuptools
         - wheel
       run:
         - bw2data <4.0.0
-        - python >=3.10
+        - python >=3.12
         - bottleneck
+        - brightpath >=1.0.0a4,<2
         - bw2io
         - ecoinvent_interface
         - constructive_geometries>=1.0.0
@@ -50,27 +51,30 @@ outputs:
         - unfold
     test:
       requires:
-        - python >=3.10
+        - python >=3.12
       imports:
         - premise
+        - brightpath
       commands:
         - python -c "import premise; print(premise.__version__)"
+        - python -c "from premise.simapro_export import check_brightpath; check_brightpath(); from brightpath.formats.openlca_methods import OpenLCAMethodMapping"
 
   - name: premise-bw25
     build:
       noarch: python
-      script: "python -m pip install . --no-deps --no-build-isolation -vv"
+      script: python -m pip install "$SRC_DIR" --no-deps --no-build-isolation -vv
     requirements:
       host:
         - pip
-        - python >=3.10
+        - python >=3.12
         - setuptools
         - wheel
       run:
         - bw2data >=4.0.0
         - bw_processing >=1.0
-        - python >=3.10
+        - python >=3.12
         - bottleneck
+        - brightpath >=1.0.0a4,<2
         - bw2io
         - ecoinvent_interface
         - constructive_geometries>=1.0.0
@@ -97,11 +101,13 @@ outputs:
         - unfold
     test:
       requires:
-        - python >=3.10
+        - python >=3.12
       imports:
         - premise
+        - brightpath
       commands:
         - python -c "import premise; print(premise.__version__)"
+        - python -c "from premise.simapro_export import check_brightpath; check_brightpath(); from brightpath.formats.openlca_methods import OpenLCAMethodMapping"
 
 channels:
   - conda-forge

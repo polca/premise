@@ -1,0 +1,17 @@
+# ISIC Rev.4 category titles
+
+Source: United Nations Statistics Division, ISIC Revision 4, English structure.
+https://unstats.un.org/unsd/classifications/Econ/Download/In%20Text/ISIC_Rev_4_english_structure.Txt
+
+Retrieved: 2026-09-24.
+Source SHA-256: `18b645efc5a0b001fda5852cfd0690eb579011651e405631e50cb2d271ee2cc6`.
+
+`isic_rev4.csv` retains the source's numeric division, group and class codes
+and English descriptions, including leading zeroes. Alphabetic sections are
+omitted so the openLCA tree starts at divisions. Encoding is UTF-8 and line
+endings are LF. No titles were rewritten in the resource. The exporter replaces
+slashes within a title with hyphens to avoid unintended folder levels.
+
+This classification is attributed to UNSD; Premise does not claim authorship
+or relicense it under the software's license. No ecoinvent inventory data are
+included in this resource. The table is bundled for offline, reproducible export.

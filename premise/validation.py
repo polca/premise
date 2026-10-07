@@ -2122,6 +2122,11 @@ class TransportValidation(BaseDatasetValidator):
         )
 
     def validate_emissions(self, ds, actual, expected, pollutant):
+        # A zero reference factor (e.g. lead for EURO-6 gasoline cars) is
+        # satisfied by zero inventory emissions, including an absent exchange.
+        if actual == expected == 0.0:
+            return
+
         if actual == 0.0:
             message = f"No emission factor found for {pollutant}."
             self.log_issue(ds, f"no emission factor for {pollutant}", message)
@@ -2694,7 +2699,7 @@ class ElectricityValidation(BaseDatasetValidator):
 
         # check that the sum of photovoltaic electricity input and
         # input from medium voltage electricity in the low voltage
-        # market is superior to 1
+        # market is at least 1, allowing for floating-point roundoff
 
         for ds in self.database:
             if (
@@ -2719,8 +2724,11 @@ class ElectricityValidation(BaseDatasetValidator):
                     ]
                 )
 
-                if pv_sum + mv_sum < 1:
-                    message = f"Electricity market PV and MV share is incorrect: {pv_sum + mv_sum} instead of > 1."
+                total_share = pv_sum + mv_sum
+                if total_share < 1 and not math.isclose(
+                    total_share, 1.0, rel_tol=1e-12
+                ):
+                    message = f"Electricity market PV and MV share is incorrect: {total_share} instead of >= 1."
                     self.log_issue(
                         ds,
                         "incorrect electricity market PV and MV share",
@@ -2796,7 +2804,14 @@ class ElectricityValidation(BaseDatasetValidator):
                         [x for x in efficiencies if x in ds["name"].lower()][0]
                     ]
 
-                    if not eff["min"] <= efficiency <= eff["max"]:
+                    # Float32 inventory amounts can put a boundary value
+                    # slightly outside the range after conversion to efficiency.
+                    within_bounds = eff["min"] <= efficiency <= eff["max"]
+                    at_boundary = any(
+                        math.isclose(efficiency, bound, rel_tol=1e-7)
+                        for bound in (eff["min"], eff["max"])
+                    )
+                    if not (within_bounds or at_boundary):
                         message = f"Current eff.: {efficiency}. Min: {eff['min']}. Max: {eff['max']}."
                         self.log_issue(
                             ds,

@@ -467,7 +467,7 @@ basic oxygen furnace secondary metallurgy slag to market for basic oxygen furnac
 batter wheat mix production,wheat flour mix,material,Agricultural\Food\Transformation
 battery 50kw,battery 50kw,material,Electronics\Battery\Transformation
 "battery cell assembly, li-s",battery cell,material,Electronics\Battery\Transformation
-"battery cell deactivation, for lis battery",cells to deactivation,material,Electronics\Battery\Transformation
+"battery cell deactivation, for lis battery",cells to deactivation,waste treatment,Electronics\Battery\Transformation
 "battery cell production, Li-ion","battery cell, Li-ion",material,Electronics\Battery\Transformation
 "battery cell production, Li-ion, LFP","battery cell, Li-ion, LFP",material,Electronics\Battery\Transformation
 "battery cell production, Li-ion, LiMn2O4","battery cell, Li-ion, LiMn2O4",material,Electronics\Battery\Transformation
@@ -487,7 +487,7 @@ battery 50kw,battery 50kw,material,Electronics\Battery\Transformation
 battery charger,battery charger,material,Electronics\Battery\Transformation
 "battery management system assembly, for vrfb system","battery management system, for vrfb system",material,Electronics\Battery\Transformation
 "battery management system production, for Li-ion battery","battery management system, for Li-ion battery",material,Electronics\Battery\Transformation
-"battery module disassembly, for lis battery",disassembled battery module,material,Electronics\Battery\Transformation
+"battery module disassembly, for lis battery",disassembled battery module,waste treatment,Electronics\Battery\Transformation
 "battery module packaging production, Li-ion","battery module packaging, Li-ion",material,Electronics\Battery\Transformation
 "battery module production, for lis battery","battery, lis module",material,Electronics\Battery\Transformation
 "battery module production, for sib battery","battery, sib module",material,Electronics\Battery\Transformation
@@ -1093,7 +1093,7 @@ cell container,cell container,material,Electronics\Battery\Transformation
 "cell module production, nmc811, for home storage system","cell module, nmc811, for home storage system",material,Electronics\Battery\Transformation
 "cell production, hybrid flow battery (HFB), 40kWh","cell, HFB",material,Electronics\Battery\Transformation
 "cell production, organic flow battery (OFB), 40kWh","cell, OFB",material,Electronics\Battery\Transformation
-"cell separation and grinding, for lis battery",deactivated cell,material,Electronics\Battery\Transformation
+"cell separation and grinding, for lis battery",deactivated cell,waste treatment,Electronics\Battery\Transformation
 cellulose fibre production,cellulose fibre,material,Construction\Insulation\Transformation
 cement cast plaster floor production,cement cast plaster floor,material,Construction\Coverings\Transformation
 cement factory construction,cement factory,material,Construction\Binders\Transformation\Infrastructure
@@ -1394,10 +1394,10 @@ clay to generic market for supplementary cementitious materials,supplementary ce
 "clear-cutting, shrubland to arable land","land tenure, arable land, measured as carbon net primary productivity",material,Others\Obsolete
 clefting/splitting of energy wood,clefting of energy wood,processing,Wood\Transformation
 clinker production,clinker,material,Chemicals\Inorganic\Transformation
-clinker production,electric arc furnace slag,material,Chemicals\Inorganic\Transformation
-clinker production,copper slag,material,Chemicals\Inorganic\Transformation
-clinker production,municipal solid waste,material,Chemicals\Inorganic\Transformation
-clinker production,waste mineral oil,material,Chemicals\Inorganic\Transformation
+clinker production,electric arc furnace slag,waste treatment,Chemicals\Inorganic\Transformation
+clinker production,copper slag,waste treatment,Chemicals\Inorganic\Transformation
+clinker production,municipal solid waste,waste treatment,Chemicals\Inorganic\Transformation
+clinker production,waste mineral oil,waste treatment,Chemicals\Inorganic\Transformation
 clinker production,biowaste,waste treatment,Biowaste\Transformation
 clinker production,pyrite ash,waste treatment,Construction waste\Transformation
 clinker production,"soil, contaminated",waste treatment,Construction waste\Transformation
@@ -1425,15 +1425,15 @@ clinker production,"wood ash mixture, pure",waste treatment,Others\Transformatio
 clinker production,blast furnace slag,material,Others\Transformation
 clinker production,used vegetable cooking oil,material,Chemicals\Inorganic\Transformation
 clinker production,"waste building wood, chrome preserved",waste treatment,Construction waste\Transformation
-clinker production,zinc slag,material,Chemicals\Inorganic\Transformation
+clinker production,zinc slag,waste treatment,Chemicals\Inorganic\Transformation
 "clinker production, average",clinker,material,Chemicals\Inorganic\Transformation
 "clinker production, average",hard coal ash,waste treatment,Others\Transformation
 "clinker production, average",blast furnace slag,material,Others\Transformation
 "clinker production, average","wood ash mixture, pure",waste treatment,Others\Transformation
-"clinker production, average",mill scale,material,Others\Transformation
+"clinker production, average",mill scale,waste treatment,Others\Transformation
 "clinker production, average",zinc slag,waste treatment,Others\Transformation
-"clinker production, average",waste mineral oil,material,Others\Transformation
-"clinker production, average",copper slag,material,Others\Transformation
+"clinker production, average",waste mineral oil,waste treatment,Others\Transformation
+"clinker production, average",copper slag,waste treatment,Others\Transformation
 "clinker production, average","waste textile, soiled",waste treatment,Others\Transformation
 "clinker production, average","soil, contaminated",waste treatment,Construction waste\Transformation
 "clinker production, average",waste foundry sand,waste treatment,Others\Transformation
@@ -2827,7 +2827,7 @@ evaporation of natural gas,"natural gas, high pressure",material,Fuels\Natural g
 "evaporation of natural gas, import from US","natural gas, high pressure",material,Fuels\Natural gas\Market
 "excavation, hydraulic digger","excavation, hydraulic digger",transport,Building equipment\Transformation
 "excavation, skid-steer loader","excavation, skid-steer loader",transport,Building equipment\Transformation
-"exhaust abatement, for perovskite",abated exhaust,energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
+"exhaust abatement, for perovskite",abated exhaust,waste treatment,Electricity by fuel\Photovoltaic\Market\Infrastructure
 "exhaust air outlet production, steel/aluminium, 85x365 mm","exhaust air outlet, steel/aluminium, 85x365 mm",material,Construction\Ventilation\Transformation
 "exhaust air roof hood production, steel, DN 400","exhaust air roof hood, steel, DN 400",material,Construction\Ventilation\Transformation
 "exhaust air valve production, in-wall housing, plastic/steel, DN 125","exhaust air valve, in-wall housing, plastic/steel, DN 125",material,Construction\Ventilation\Transformation
@@ -3964,7 +3964,7 @@ hydrogen transmission pipeline installation,"pipeline, for hydrogen transmission
 "hydrogen, used in a fuel cell in a single deck coach or urban bus",heat,material,Fuels\Others\Transformation
 "hydrogen, used in a fuel cell in container ship",heat,waste treatment,Fuels\Others\Transformation
 hydrogenation of hydrogen,"hydrogen, hydrogenated",material,Fuels\Others\Transformation
-"hydrometallurgical recycling, for lis battery",lithium carbonate,material,Electronics\Battery\Transformation
+"hydrometallurgical recycling, for lis battery",lithium carbonate,waste treatment,Electronics\Battery\Transformation
 "hydropower plant construction, reservoir","hydropower plant, reservoir",energy,Electricity by fuel\Hydro\Reservoir\Transformation\Infrastructure
 "hydropower plant construction, reservoir, alpine region","hydropower plant, reservoir, alpine region",energy,Electricity by fuel\Hydro\Reservoir\Transformation\Infrastructure
 "hydropower plant construction, reservoir, non-alpine regions","hydropower plant, reservoir, non-alpine regions",energy,Electricity by fuel\Hydro\Reservoir\Transformation\Infrastructure
@@ -4051,7 +4051,7 @@ injection moulding,injection moulding,processing,Plastics\Transformation
 "inorganic phosphorus, as P2O5 to generic market for organo-mineral phosphorus, as P2O5","organo-mineral phosphorus fertiliser, as P2O5",material,Chemicals\Fertilisers (organic)\Market
 "inorganic potassium fertiliser, as K2O to generic market for organic potassium fertiliser, as K2O","organic potassium fertiliser, as K2O",material,Chemicals\Fertilisers (inorganic)\Market
 "inorganic potassium fertiliser, as K2O to generic market for organo-mineral potassium fertiliser, as K2O","organo-mineral potassium fertiliser, as K2O",material,Chemicals\Fertilisers (organic)\Market
-"installation disassembly, for lis battery",disassembled installation,material,Electronics\Battery\Transformation
+"installation disassembly, for lis battery",disassembled installation,waste treatment,Electronics\Battery\Transformation
 "installation production, for lis battery",installation,material,Electronics\Battery\Transformation
 "insulated gate bipolar transistor production, for electric vehicle applications","insulated gate bipolar transistor, electric vehicle application",material,Electronics\Component\Transformation
 "insulation spiral-seam duct production, rockwool, DN 400, 30 mm","insulation spiral-seam duct, rockwool, DN 400, 30 mm",material,Construction\Ventilation\Transformation
@@ -9744,7 +9744,7 @@ market for used printed wiring boards,used printed wiring boards,waste treatment
 "market for used purse seiner, steel","used purse seiner, steel",waste treatment,Transport\Market
 "market for used purse seiner, wood","used purse seiner, wood",waste treatment,Transport\Market
 market for used railway track,used railway track,waste treatment,Transport\Market
-market for used redox-flow battery,used redox-flow battery,material,Electronics\Battery\Market
+market for used redox-flow battery,used redox-flow battery,waste treatment,Electronics\Battery\Market
 "market for used reefer, intermodal shipping container, 40-foot, high-cube","used reefer, intermodal shipping container, 40-foot, high-cube",waste treatment,Transport\Market
 market for used refrigerant R-12,used refrigerant R-12,waste treatment,Others\Market
 market for used refrigerant R-600a,used refrigerant R-600a,waste treatment,Others\Market
@@ -12118,9 +12118,9 @@ printed wiring board mounting facility construction,printed wiring board mountin
 "process control system assembly, for vrfb system","process control system, for vrfb system",material,Others\Obsolete
 "process cooling, water, for perovskite","cooling water, conditioned",energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
 "process cooling, water, for perovskite","cooling water, used",energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
-"process exhaust ventilators, acidic, for perovskite production","exhaust, acidic",energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
-"process exhaust ventilators, caustic, for perovskite production","exhaust, caustic",energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
-"process exhaust ventilators, general, for perovskite production","exhaust, general",energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
+"process exhaust ventilators, acidic, for perovskite production","exhaust, acidic",waste treatment,Electricity by fuel\Photovoltaic\Market\Infrastructure
+"process exhaust ventilators, caustic, for perovskite production","exhaust, caustic",waste treatment,Electricity by fuel\Photovoltaic\Market\Infrastructure
+"process exhaust ventilators, general, for perovskite production","exhaust, general",waste treatment,Electricity by fuel\Photovoltaic\Market\Infrastructure
 "process-specific burdens, hazardous waste incineration plant","process-specific burdens, hazardous waste incineration plant",processing,Waste\Transformation
 "process-specific burdens, import of copper to Switzerland","process-specific burdens, import of copper to Switzerland",processing,Waste\Transformation
 "process-specific burdens, inert material landfill","process-specific burdens, inert material landfill",processing,Waste\Transformation
@@ -12657,9 +12657,9 @@ shed construction,shed,material,Agricultural\Plant production\Other\Transformati
 "sheet rolling, chromium steel","sheet rolling, chromium steel",processing,Metals\Chipless shaping\Transformation
 "sheet rolling, copper","sheet rolling, copper",processing,Metals\Chipless shaping\Transformation
 "sheet rolling, steel","sheet rolling, steel",processing,Metals\Chipless shaping\Transformation
-"shredding and sorting, cell, for lis battery",shredded and sorted cell components,material,Electronics\Battery\Transformation
-"shredding and sorting, installation, for lis battery",shredded and sorted installation components,material,Electronics\Battery\Transformation
-"shredding and sorting, module, for lis battery",shredded and sorted module components,material,Electronics\Battery\Transformation
+"shredding and sorting, cell, for lis battery",shredded and sorted cell components,waste treatment,Electronics\Battery\Transformation
+"shredding and sorting, installation, for lis battery",shredded and sorted installation components,waste treatment,Electronics\Battery\Transformation
+"shredding and sorting, module, for lis battery",shredded and sorted module components,waste treatment,Electronics\Battery\Transformation
 "silane, at plant","silane, at plant",energy,Electricity by fuel\Photovoltaic\Market\Infrastructure
 "silencer production, steel, DN 125","silencer, steel, DN 125",material,Construction\Ventilation\Transformation
 "silencer production, steel, DN 315, 50 mm","silencer, steel, DN 315, 50 mm",material,Construction\Ventilation\Transformation
@@ -17434,3 +17434,4 @@ zirconium oxide production,zirconium oxide,material,Chemicals\Inorganic\Transfor
 zucchini production,zucchini,material,Agricultural\Plant production\Vegetables\Transformation
 "zucchini production, conventional, plain region",zucchini,material,Agricultural\Plant production\Fruits\Transformation
 "zucchini production, organic, plain region","zucchini, organic",material,Agricultural\Plant production\Fruits\Transformation
+"treatment of effluent from nitrogen trifluoride production, wastewater treatment, class 3",effluent from nitrogen trifluoride production,waste treatment,Wastewater treatment\Transformation

@@ -2,6 +2,83 @@
 
 All notable changes to this project are documented in this file.
 
+## Unreleased
+
+### Breaking changes
+
+- Require Brightpath 1.0.0a4 or newer (below 2.0) from PyPI and the
+  `romainsacchi` Conda channel, replacing the temporary GitHub source pin and
+  bundled Conda build. Export integration tests now fail when Brightpath is unavailable
+  instead of skipping; CI and Conda package checks verify its export APIs.
+
+- Require Python 3.12 or newer in the Python package and both Conda variants.
+  Align CI and documentation builds with Python 3.12.
+- Use Brightpath exclusively for SimaPro CSV and openLCA JSON-LD exports.
+  Remove the legacy CSV writer and the `backend`/`format` export selectors.
+  openLCA exports require a matching local LCIA method package and currently
+  support ecoinvent 3.8 and 3.12.
+
+### Changed
+
+- Export SimaPro scenarios through Brightpath with ISIC folders, scenario
+  provenance, preserved reference quantities and uncertainty, and a JSON report
+  listing classification fallbacks and excluded biosphere exchanges. Retain
+  Premise's certification, preparation and automatic reporting workflow.
+- Explain Brightpath setup, format conversion, import steps and coverage reports
+  in the SimaPro and openLCA export guides.
+
+- Enable ecoinvent 3.8 JSON-LD exports with the matching local method package.
+  Remove eight conflicting biosphere UUID aliases using the imported 3.8 XML
+  definitions. Preserve method-package metadata conflicts as separate,
+  uncharacterized flows with explicit coverage diagnostics.
+
+- Place openLCA processes in nested ISIC division/group/class folders with
+  official UN titles and numeric ordering, with unambiguous product/unit
+  matching and CPC fallbacks; omit scenario wrappers.
+
+- `write_db_to_olca` now writes scenario-specific Brightpath JSON-LD ZIP packages
+  and biosphere coverage reports. This route requires Python 3.12+, a Brightpath
+  version with local method mapping, ecoinvent 3.8 or 3.12, and an explicit local LCIA
+  method package.
+- Reject missing or ambiguous openLCA providers before publishing the archive;
+  preserve signed amounts and separate process/product IDs across scenarios.
+
+### Fixed
+
+- Include IAM-region coverage in high-, medium-, and low-voltage electricity
+  market comments. Preserve scenario provenance in period-average markets and
+  append coverage after their averaging description, for all export formats.
+
+- Correct SimaPro Desktop import failures using Brightpath 1.0.0a4: bounded
+  process identifiers, waste-specific allocation fields, and early text-limit
+  checks. Keep generated system-description labels within 50 characters and
+  shorten ISIC folder components to at most 60 characters with an export-report
+  mapping. Include the required system-description category and preserve the
+  native volume-based salt-water resource name.
+
+- Preserve supported SimaPro final-waste indicators instead of removing all
+  inventory indicators. Use Brightpath's retained biosphere flows and
+  product-aware category types across ecoinvent
+  releases. Preserve explicit categories, report unresolved product-role fallbacks,
+  and reject fallbacks that conflict with resolved non-waste status. Unsupported
+  indicators remain individually reported exclusions.
+
+- Avoided false electricity-share validation errors caused by floating-point
+  rounding at the lower bound of one, while retaining checks for real shortfalls.
+- Restricted electric-motor and wind-turbine material mappings to equipment
+  reference products, preventing aluminium scrap co-products in ecoinvent 3.12
+  EN15804 from triggering inappropriate capacity conversions.
+- Added the missing ISIC 3530 and CPC 17300 classifications for nuclear
+  cogeneration heat, resolving the classification warning during import.
+
+### Validation
+
+- Refreshed 33 LCIA regression references after the photovoltaic inventory and
+  fuel-carbon accounting updates, retaining the existing tolerances. Verified
+  130 scores across 26 scenario builds and nine source/system-model cases.
+  Added an isolated-build validation utility and documented the
+  [reference review](docs/development/lcia-regression-reference-review.md).
+
 ## [2.5.2] - 2026-09-10
 
 ### Added

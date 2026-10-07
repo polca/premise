@@ -793,7 +793,6 @@ Chlorine;water;ground-;kilogram;d17f1c53-ff95-4005-9f1b-131ca9791cdb
 Radium-224;water;ocean;kilo Becquerel;0a7de246-d762-4210-8656-56e1f26249b6
 2,4-D ester;water;surface water;kilogram;e6367875-dd2b-4d12-8d03-94cf2e607815
 Fish, pelagic, in ocean;natural resource;biotic;kilogram;d22719d0-8afd-45d3-b9eb-222112f84cc7
-Fish, pelagic, in ocean;natural resource;in water;kilogram;d22719d0-8afd-45d3-b9eb-222112f84cc7
 Pendimethalin;air;non-urban air or from high stacks;kilogram;e4e17609-7a80-455d-a4e3-88af8695f987
 Toluene, 2-chloro;water;ground-;kilogram;7fee540e-a611-40bf-beec-72a1b883c6d3
 Copper;air;unspecified;kilogram;ec8144d6-d123-43b1-9c17-a295422a0498
@@ -1954,7 +1953,6 @@ Radiation, electromagnetic;air;unspecified;megajoule;1ff59fcb-f634-422c-bbbf-63d
 Fluosilicic acid;air;low population density, long-term;kilogram;08c96ec9-3284-4871-8d79-7a43a164e96a
 1,3-Dioxolan-2-one;water;unspecified;kilogram;5b7d620e-2238-5ec9-888a-6999218b6974
 Fish, demersal, in ocean;natural resource;biotic;kilogram;55219a64-a6ed-4675-9210-7ed14c82a05f
-Fish, demersal, in ocean;natural resource;in water;kilogram;55219a64-a6ed-4675-9210-7ed14c82a05f
 Occupation, forest, primary (non-use);natural resource;land;square meter-year;0f923637-e322-44d8-9ff2-9c765d75e253
 Zirconium-95;air;lower stratosphere + upper troposphere;kilo Becquerel;ae941326-4981-44fa-8be1-8757aab10d00
 Barium-140;air;unspecified;kilo Becquerel;634463b6-08b4-487a-b0af-4e19fbe8bca2
@@ -2682,7 +2680,6 @@ Antimony-122;water;ground-, long-term;kilo Becquerel;f6d61373-a3bc-41c8-9867-eef
 Cadmium, ion;water;ground-;kilogram;3937f5a5-b4a4-434d-9fc3-1d29064fc3f8
 Ethylene diamine;water;ground-;kilogram;ab79f4bd-b0cd-40f3-b3e1-20bf24802730
 Beta-cyfluthrin;air;non-urban air or from high stacks;kilogram;ffaaffd3-5deb-4508-9e5f-e47f551ac2b8
-Cyfluthrin;air;non-urban air or from high stacks;kilogram;dd786e61-d387-4dc4-8314-2a5f958e7168
 Acetonitrile;water;ground-, long-term;kilogram;3cee5838-69ba-44f9-bc30-84f82bff2dd9
 Triallate;air;low population density, long-term;kilogram;66bb79b7-e919-5a20-8ee6-dac7bae45e91
 Acrylonitrile;air;non-urban air or from high stacks;kilogram;5b5879b0-6fbf-48ce-bff3-4292bda15526
@@ -4366,7 +4363,6 @@ Ethane, 1,1,1,2-tetrafluoro-, HFC-134a;air;lower stratosphere + upper tropospher
 Silver;soil;unspecified;kilogram;7da45a0b-0dcf-413c-8de0-44d8ebca9e6e
 Manganese-54;water;ground-, long-term;kilo Becquerel;a04ea618-06a0-45b4-b116-a49603ba70ea
 [Deleted]Carfentrazone ethyl ester;soil;agricultural;kilogram;d07867e3-66a8-4454-babd-78dc7f9a21f8
-Carfentrazone ethyl ester;soil;agricultural;kilogram;d07867e3-66a8-4454-babd-78dc7f9a21f8
 Niobium-95;air;lower stratosphere + upper troposphere;kilo Becquerel;8e70c356-ceaa-4f83-8a06-55ec5eadd14a
 1,4-Butanediol;water;unspecified;kilogram;d835b7aa-288b-4b3a-966b-3f64f36ed220
 Methanesulfonic acid;air;lower stratosphere + upper troposphere;kilogram;4b470546-8110-49f5-af13-1bf7eb11b78e
@@ -4429,7 +4425,3 @@ Acetyl chloride;water;ground-, long-term;kilogram;3d36c0c1-aff6-4ec3-ba35-18831b
 Nitrogen;water;ground-, long-term;kilogram;42eeb663-34dc-4394-8a07-e4d8e45a7e2d
 Ammonium carbonate;air;low population density, long-term;kilogram;15c4a3e0-bd82-4acd-a8fd-58aba60dd9fc
 2,4-D ester;air;non-urban air or from high stacks;kilogram;99e1284e-58fc-4652-bc24-b796b858b24e
-Thiophanat-methyl;soil;agricultural;kilogram;423112a9-b4c4-4041-8854-57bffde7b9cc
-Flurochloridone;soil;agricultural;kilogram;a0544534-e298-46a9-bbd2-949902ac1487
-Chlorotoluron;soil;agricultural;kilogram;e8bc4c9e-c34f-4983-aea0-2433f3397a3a
-Tri-allate;soil;agricultural;kilogram;c5c25aa6-d630-40bd-bed7-4e718c877ef4

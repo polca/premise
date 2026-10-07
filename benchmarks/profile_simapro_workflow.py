@@ -111,10 +111,6 @@ class Recorder:
                 result = original(*args, **kwargs)
                 if hasattr(result, "reused"):
                     record["certificate_reused"] = result.reused
-                if name == "export_db_to_simapro":
-                    record["unmatched_flow_categories"] = len(
-                        args[0].unmatched_category_flows
-                    )
                 return result
 
         patches.enter_context(patch.object(owner, name, wrapped))
@@ -182,8 +178,8 @@ def instrument(recorder, patches):
     import premise.validation as validation
     import premise.change_report as change_report
     import premise.export as export_module
+    import premise.simapro_export as simapro_export
     from premise import NewDatabase
-    from premise.export import Export
     from premise.validation_framework import InventoryGraphValidator
 
     for name in vars(ndb_module):
@@ -215,7 +211,7 @@ def instrument(recorder, patches):
     recorder.wrap(
         export_module, "check_geographical_linking", "export_preparation", patches
     )
-    recorder.wrap(Export, "export_db_to_simapro", "csv_export", patches)
+    recorder.wrap(simapro_export, "export_scenario", "csv_export", patches)
     recorder.wrap(
         NewDatabase,
         "generate_change_report",

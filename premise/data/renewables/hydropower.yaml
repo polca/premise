@@ -1,15 +1,10 @@
-# this file provides correction regarding water evaporation
-# and discharge for some hydropower electricity datasets
+# Swiss operational evaporation, in cubic metres per kWh.
+# Flury and Frischknecht (2012), sections 4.1.3 and 4.2.1:
+# https://treeze.ch/fileadmin/user_upload/downloads/Publications/Case_Studies/Energy/flury-2012-hydroelectric-power-generation.pdf
+# Discharge is calculated from each inventory's turbine withdrawal, not copied
+# between reservoir (typically 0.81 m3) and pumped storage (typically 4.3 m3).
 ---
-
 electricity production, hydro, reservoir, alpine region:
-  - name: Water
-    categories: water
-    unit: cubic meter
-    amount: 0.80825
-    type: biosphere
-  - name: Water
-    categories: air
-    unit: cubic meter
-    amount: 0.00175
-    type: biosphere
+  evaporation: 0.00175
+electricity production, hydro, pumped storage:
+  evaporation: 0.00175

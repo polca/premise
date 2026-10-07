@@ -5,6 +5,7 @@ import xarray as xr
 import premise.metals as metals_module
 import premise.metals_rules as metals_rules_module
 import premise.validation as validation_module
+from premise.activity_maps import InventorySet
 from premise.filesystem_constants import DATA_DIR
 from premise.metals import (
     Metals,
@@ -263,6 +264,83 @@ def test_both_nuclear_aluminium_rules_are_applied_once():
         }
     )
     assert len(metals.material_decisions) == 2
+
+
+@pytest.mark.parametrize(
+    ("technology", "name", "product", "unit", "factor"),
+    [
+        (
+            "Wind-DDPM",
+            "wind power plant construction, 800kW, moving parts, direct drive",
+            "wind power plant, 800kW, moving parts",
+            "unit",
+            0.8,
+        ),
+        (
+            "Wind-Gearbox",
+            "wind power plant construction, 2MW, offshore, moving parts",
+            "wind power plant, 2MW, offshore, moving parts",
+            "unit",
+            2.0,
+        ),
+        (
+            "Wind-DDPM",
+            "wind turbine construction, 750kW, onshore, direct drive",
+            "wind turbine, 750kW, onshore",
+            "unit",
+            0.75,
+        ),
+        (
+            "EV",
+            "electric motor production, vehicle",
+            "electric motor, vehicle",
+            "kilogram",
+            0.0018867924528301887,
+        ),
+    ],
+)
+def test_material_plan_excludes_scrap_coproducts(
+    technology, name, product, unit, factor
+):
+    from copy import deepcopy
+
+    equipment = {
+        "name": name,
+        "reference product": product,
+        "location": "RER",
+        "unit": unit,
+        "exchanges": [],
+    }
+    scrap = {
+        **equipment,
+        "reference product": "aluminium scrap, new",
+        "unit": "kilogram",
+    }
+    database = [scrap, equipment]
+    before = deepcopy(database)
+    metals = object.__new__(Metals)
+    metals.activities_metals_map = InventorySet(
+        database, "3.12"
+    ).generate_metals_activities_map()
+    rules = [
+        rule
+        for rule in load_material_rules().enabled_rules
+        if rule.technology == technology
+    ]
+    metals.material_rules_by_technology = {technology: rules}
+    metals.material_policies = load_material_rules().policies
+    metals.technology_conversions_by_name = {
+        c.activity_name: c for c in load_technology_conversions()
+    }
+    metals.db_index = {}
+
+    plan = metals._compile_material_update_plan()
+
+    assert metals.activities_metals_map[technology] == [equipment]
+    assert plan
+    assert all(item["dataset"] is equipment for item in plan)
+    assert all(item["conversion_factor"] == pytest.approx(factor) for item in plan)
+    assert database == before
 
 
 def test_material_plan_deduplicates_dataset_rule_pairs():

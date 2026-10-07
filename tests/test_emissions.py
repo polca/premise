@@ -197,8 +197,13 @@ def test_store_native_emissions_matches_dictionary_path_exactly(backend):
 
     assert store.materialize() == [expected]
     assert store.generation == (1 if backend is CompactInventoryStore else 0)
-    # Legacy semantics update only the first exchange for a repeated pollutant.
-    assert store.materialize()[0]["exchanges"][1]["amount"] == 5.0
+    # Every compartment receives the same independently expected GAINS factor.
+    assert store.materialize()[0]["exchanges"][0]["amount"] == pytest.approx(
+        10.0 * 110 / 400
+    )
+    assert store.materialize()[0]["exchanges"][1]["amount"] == pytest.approx(
+        5.0 * 110 / 400
+    )
 
 
 def test_store_gains_mapping_matches_legacy_filter_semantics():
