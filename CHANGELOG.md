@@ -2,7 +2,29 @@
 
 All notable changes to this project are documented in this file.
 
-## Unreleased
+## [2.5.4] - Unreleased
+
+### Fixed
+
+- Correct attributional allocation in the South African vanadium source
+  inventory (#286). Replace the ilmenite and sodium-sulfate substitution
+  credits with documented economic allocation of shared burdens. Assign
+  mining resources to their respective products, preserving the vanadium
+  and iron carried by magnetite and assigning titanium to the ilmenite
+  co-product. This removes the avoided-ilmenite extraction credit that could
+  produce negative titanium totals after the metals update.
+- Normalize the South African vanadium intermediates to one kilogram,
+  preserving the existing steel/slag allocation and the Chinese route.
+  Align lognormal uncertainty parameters with the corrected exchange amounts
+  and retain waste-treatment and recycling directions.
+- Invalidate the additional-inventory cache when the vanadium workbook
+  changes. Existing exported databases must be regenerated to receive the
+  correction.
+
+### Documentation
+
+- Document the allocation prices, proxy limitations and the unresolved
+  physical vanadium-yield inconsistency in the published source tables.
 
 ## [2.5.3] - 2026-10-07
 

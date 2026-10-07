@@ -1,0 +1,266 @@
+{
+  "baseline": {
+    "project": "ecoinvent-3.12-cutoff",
+    "source_database": "ecoinvent-3.12-cutoff",
+    "source_version": "3.12",
+    "system_model": "cutoff",
+    "scenario": {
+      "model": "remind",
+      "pathway": "SSP1-PkBudg1000",
+      "year": 2050
+    },
+    "method": [
+      "IPCC 2021",
+      "climate change: total (excl. biogenic CO2)",
+      "global warming potential (GWP100)"
+    ],
+    "variant": "baseline",
+    "source": [
+      {
+        "name": "vanadium pentoxide production",
+        "reference product": "vanadium pentoxide",
+        "location": "ZA",
+        "unit": "kilogram",
+        "functional_unit": 1,
+        "titanium_kg": 0.7356712015331852,
+        "iron_kg": 9.326554270471826,
+        "vanadium_kg": 0.20921792906618444,
+        "climate_kg_CO2_eq": 21.39228752714503
+      },
+      {
+        "name": "vanadium pentoxide production",
+        "reference product": "vanadium pentoxide",
+        "location": "CN",
+        "unit": "kilogram",
+        "functional_unit": 1,
+        "titanium_kg": 2.1266240674436414,
+        "iron_kg": 16.2148191755395,
+        "vanadium_kg": 1.4551284619559307e-07,
+        "climate_kg_CO2_eq": 29.609913936284872
+      },
+      {
+        "name": "vanadium bearing magnetite production",
+        "reference product": "vanadium bearing magnetite",
+        "location": "CN",
+        "unit": "kilogram",
+        "functional_unit": 1,
+        "titanium_kg": 0.12977488431271275,
+        "iron_kg": 0.9855752521736775,
+        "vanadium_kg": 8.147203528149365e-10,
+        "climate_kg_CO2_eq": 1.4838661974895504
+      },
+      {
+        "name": "vanadium bearing magnetite production",
+        "reference product": "vanadium bearing magnetite",
+        "location": "ZA",
+        "unit": "kilogram",
+        "functional_unit": 1,
+        "titanium_kg": 0.04364570378537426,
+        "iron_kg": 0.5467315849288958,
+        "vanadium_kg": 0.01241830089592257,
+        "climate_kg_CO2_eq": 0.038484631643710125
+      },
+      {
+        "name": "vanadium-redox flow battery system assembly, 8.3 megawatt hour",
+        "reference product": "vanadium-redox flow battery system",
+        "location": "RER",
+        "unit": "unit",
+        "functional_unit": 1,
+        "titanium_kg": 57476.25651934705,
+        "iron_kg": 737494.2009348237,
+        "vanadium_kg": 16288.666713374027,
+        "climate_kg_CO2_eq": 2253923.9434381435
+      }
+    ],
+    "scenario_results": [
+      {
+        "name": "vanadium pentoxide production",
+        "reference product": "vanadium pentoxide",
+        "location": "ZA",
+        "unit": "kilogram",
+        "functional_unit": 1,
+        "titanium_kg": -1.6436429533492771,
+        "iron_kg": 0.0719847893698157,
+        "vanadium_kg": 0.20922643832731214,
+        "climate_kg_CO2_eq": 5.330736895888744
+      },
+      {
+        "name": "vanadium pentoxide production",
+        "reference product": "vanadium pentoxide",
+        "location": "CN",
+        "unit": "kilogram",
+        "functional_unit": 1,
+        "titanium_kg": 0.0004695760069843139,
+        "iron_kg": 16.15689845316858,
+        "vanadium_kg": 1.3111886288969162e-05,
+        "climate_kg_CO2_eq": 22.277354405201812
+      },
+      {
+        "name": "vanadium bearing magnetite production",
+        "reference product": "vanadium bearing magnetite",
+        "location": "CN",
+        "unit": "kilogram",
+        "functional_unit": 1,
+        "titanium_kg": 2.641992713734111e-05,
+        "iron_kg": 0.9825601896233498,
+        "vanadium_kg": 7.038972580908351e-07,
+        "climate_kg_CO2_eq": 1.1686448102448983
+      },
+      {
+        "name": "vanadium bearing magnetite production",
+        "reference product": "vanadium bearing magnetite",
+        "location": "ZA",
+        "unit": "kilogram",
+        "functional_unit": 1,
+        "titanium_kg": -0.09756932915605143,
+        "iron_kg": 0.00021177532660705885,
+        "vanadium_kg": 0.012418334567779212,
+        "climate_kg_CO2_eq": 0.027473800306278433
+      },
+      {
+        "name": "vanadium-redox flow battery system assembly, 8.3 megawatt hour",
+        "reference product": "vanadium-redox flow battery system",
+        "location": "RER",
+        "unit": "unit",
+        "functional_unit": 1,
+        "titanium_kg": -127783.98190848972,
+        "iron_kg": 12406.826444557431,
+        "vanadium_kg": 16289.7301929655,
+        "climate_kg_CO2_eq": 665834.454099454
+      }
+    ],
+    "elapsed_seconds": 125.09428783399926
+  },
+  "corrected": {
+    "project": "ecoinvent-3.12-cutoff",
+    "source_database": "ecoinvent-3.12-cutoff",
+    "source_version": "3.12",
+    "system_model": "cutoff",
+    "scenario": {
+      "model": "remind",
+      "pathway": "SSP1-PkBudg1000",
+      "year": 2050
+    },
+    "method": [
+      "IPCC 2021",
+      "climate change: total (excl. biogenic CO2)",
+      "global warming potential (GWP100)"
+    ],
+    "variant": "corrected",
+    "source": [
+      {
+        "name": "vanadium pentoxide production",
+        "reference product": "vanadium pentoxide",
+        "location": "ZA",
+        "unit": "kilogram",
+        "functional_unit": 1,
+        "titanium_kg": 0.0004188736984350609,
+        "iron_kg": 11.900929010443901,
+        "vanadium_kg": 0.20697568449726414,
+        "climate_kg_CO2_eq": 21.411988019128867
+      },
+      {
+        "name": "vanadium pentoxide production",
+        "reference product": "vanadium pentoxide",
+        "location": "CN",
+        "unit": "kilogram",
+        "functional_unit": 1,
+        "titanium_kg": 2.1266240675081667,
+        "iron_kg": 16.214819166076023,
+        "vanadium_kg": 1.455128975470403e-07,
+        "climate_kg_CO2_eq": 29.609913957794557
+      },
+      {
+        "name": "vanadium bearing magnetite production",
+        "reference product": "vanadium bearing magnetite",
+        "location": "CN",
+        "unit": "kilogram",
+        "functional_unit": 1,
+        "titanium_kg": 0.12977488431270287,
+        "iron_kg": 0.9855752514764113,
+        "vanadium_kg": 8.147219578428276e-10,
+        "climate_kg_CO2_eq": 1.4838661961246002
+      },
+      {
+        "name": "vanadium bearing magnetite production",
+        "reference product": "vanadium bearing magnetite",
+        "location": "ZA",
+        "unit": "kilogram",
+        "functional_unit": 1,
+        "titanium_kg": 2.0464627201719757e-06,
+        "iron_kg": 0.7063316190412433,
+        "vanadium_kg": 0.012418300901281674,
+        "climate_kg_CO2_eq": 0.03249179051237314
+      },
+      {
+        "name": "vanadium-redox flow battery system assembly, 8.3 megawatt hour",
+        "reference product": "vanadium-redox flow battery system",
+        "location": "RER",
+        "unit": "unit",
+        "functional_unit": 1,
+        "titanium_kg": 233.2426838616974,
+        "iron_kg": 937921.949582367,
+        "vanadium_kg": 16114.096933690893,
+        "climate_kg_CO2_eq": 2255457.7226995938
+      }
+    ],
+    "scenario_results": [
+      {
+        "name": "vanadium pentoxide production",
+        "reference product": "vanadium pentoxide",
+        "location": "ZA",
+        "unit": "kilogram",
+        "functional_unit": 1,
+        "titanium_kg": 0.0002123993067215537,
+        "iron_kg": 0.07996787468364015,
+        "vanadium_kg": 0.20698444604853772,
+        "climate_kg_CO2_eq": 5.363810657781753
+      },
+      {
+        "name": "vanadium pentoxide production",
+        "reference product": "vanadium pentoxide",
+        "location": "CN",
+        "unit": "kilogram",
+        "functional_unit": 1,
+        "titanium_kg": 0.00047410469878841736,
+        "iron_kg": 16.156898475440542,
+        "vanadium_kg": 1.3105707323411768e-05,
+        "climate_kg_CO2_eq": 22.277354620719294
+      },
+      {
+        "name": "vanadium bearing magnetite production",
+        "reference product": "vanadium bearing magnetite",
+        "location": "CN",
+        "unit": "kilogram",
+        "functional_unit": 1,
+        "titanium_kg": 2.6607955858170323e-05,
+        "iron_kg": 0.982560190707254,
+        "vanadium_kg": 7.036407438202417e-07,
+        "climate_kg_CO2_eq": 1.1686448244904688
+      },
+      {
+        "name": "vanadium bearing magnetite production",
+        "reference product": "vanadium bearing magnetite",
+        "location": "ZA",
+        "unit": "kilogram",
+        "functional_unit": 1,
+        "titanium_kg": 1.454366214853038e-06,
+        "iron_kg": 0.00026997159760172676,
+        "vanadium_kg": 0.012418337648755207,
+        "climate_kg_CO2_eq": 0.025781635547986535
+      },
+      {
+        "name": "vanadium-redox flow battery system assembly, 8.3 megawatt hour",
+        "reference product": "vanadium-redox flow battery system",
+        "location": "RER",
+        "unit": "unit",
+        "functional_unit": 1,
+        "titanium_kg": 198.5139787250526,
+        "iron_kg": 13028.350178025195,
+        "vanadium_kg": 16115.179696691892,
+        "climate_kg_CO2_eq": 668409.41504209
+      }
+    ],
+    "elapsed_seconds": 50.64165866699477
+  }
+}

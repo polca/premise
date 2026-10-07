@@ -123,3 +123,73 @@ The end product is vanadium pentoxide, which is available under the following da
 * vanadium pentoxide production
 
 These inventories can be found here: `LCI_vanadium <https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/additional_inventories/lci-batteries-vanadium.xlsx>`__.
+
+Vanadium co-product allocation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Starting with 2.5.4, the South African route in
+``premise/data/additional_inventories/lci-batteries-vanadium.xlsx`` uses
+attributional allocation for its ilmenite and sodium-sulfate co-products.
+The quantities below refer to Weber et al. (2018),
+`supporting information <https://acs.figshare.com/articles/journal_contribution/Life_Cycle_Assessment_of_a_Vanadium_Redox_Flow_Battery/7033001>`__,
+Tables S9 and S12--S14. Allocation assumptions are also recorded in the
+workbook's skipped ``Allocation 2.5.4`` sheet and in exchange comments.
+
+* Mining jointly produces 1.53 kg vanadium-bearing magnetite and 0.46 kg
+  ilmenite. Shared energy, infrastructure, emissions and land/water burdens
+  receive an economic allocation of **58.6856% to magnetite**. The share is
+  ``(1.53 * 0.075168516669567) / (1.53 * 0.075168516669567 + 0.46 * 0.176011)``.
+  Both prices are EUR2005/kg from the magnetite and ilmenite production
+  exchanges of ecoinvent 3.12 cut-off's ``ilmenite - magnetite mine operation``
+  at GLO. Ordinary magnetite is a price proxy for vanadium-bearing magnetite;
+  no vanadium premium is assumed. This fixed foreground assumption is used
+  across supported background versions, rather than recalculated at import.
+* Iron and vanadium extraction are assigned to the magnetite stream at
+  ``1.08 / 1.53`` and ``0.019 / 1.53`` kg per kg magnetite. Titanium extraction
+  is assigned to the separated ilmenite co-product. These element-specific
+  resource flows are not economically scaled. The former negative
+  ``ilmenite - magnetite mine operation`` input is removed. Thus the later
+  metals resource correction cannot retain an avoided-ilmenite extraction
+  credit after zeroing the mine's direct titanium flow.
+* The slag inventory already encoded **50% economic allocation** through a
+  reference output of ``0.1226 = 0.0613 / 0.5``. Normalizing this output to one
+  kilogram preserves that allocation. Despite its legacy name, the reference
+  quantity represents V2O5 contained in slag, not bulk slag at 25% V2O5.
+* Refining produces 1 kg V2O5 and 1 kg sodium sulfate, while consuming 0.5 kg
+  sodium sulfate. The chemical input is retained and the negative
+  sodium-sulfate market input is removed. Shared burdens receive an economic
+  allocation of **98.9280% to V2O5**, calculated as
+  ``6.46 / (6.46 + 140 / 2000)``. Both prices refer to 2010 USD: 6.46 USD/lb
+  V2O5 from the `USGS 2014 vanadium summary <https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/mineral-pubs/vanadium/mcs-2014-vanad.pdf>`__
+  and 140 USD/short ton sodium sulfate from the
+  `USGS 2011 sodium-sulfate summary <https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/mineral-pubs/sodium-sulfate/mcs-2011-nasul.pdf>`__.
+  A short ton contains 2000 lb. These US prices are historical geographic
+  proxies for the South African refinery, not current market prices.
+
+The historical ``Allocation titanium-vanadium`` sheet is retained for
+provenance but is not used: its approximately 77/23 split combines contained
+metal quantities and a titanium-slag price instead of comparable mining
+outputs. The Chinese vanadium route retains its original allocation and
+exchange amounts. Recyclable iron-scrap outputs and waste-treatment signs
+are retained; the cut-off background classifies unsorted iron scrap as a
+recyclable output without an avoided-primary-production benefit.
+
+All affected South African datasets are normalized to one kilogram of their
+reference product. For lognormal uncertainty, ``loc = ln(abs(amount))`` and
+the existing relative ``scale`` is retained. Negative exchanges keep their
+negative flag. Formula caches in unaffected workbook cells are preserved so
+that a spreadsheet application does not need to recalculate them before import.
+
+.. important::
+
+   This correction resolves co-product allocation and the negative titanium
+   credit. It does not establish a closed physical vanadium balance for the
+   published metallurgical chain: Table S9 reports 0.034 kg V2O5 entering the
+   ore route, while Tables S12--S13 describe a 0.0613 kg V2O5 slag stream.
+   The source yields are retained, and this discrepancy requires clarification
+   before those yields can be revised. Economic allocation and physical
+   recovery yields must not be confused.
+
+The additional-inventory cache includes the workbook's content hash.
+Previously exported Brightway databases or files must be regenerated;
+installing the new package does not modify them in place.

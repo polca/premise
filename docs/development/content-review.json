@@ -175,8 +175,8 @@
   },
   {
     "page": "methodology/battery-stationary.rst",
-    "review_date": "2026-09-07",
-    "disposition": "Compared current implementation and shared helpers; corrected exchange scope, conditions and route accounting; removed migration/internal narratives; added a scope process diagram.",
+    "review_date": "2026-10-07",
+    "disposition": "Documented the 2.5.4 source-inventory allocation correction, source prices, normalization, uncertainty and unresolved metallurgical-yield limitation; checked against Weber supporting information, USGS tables and the imported workbook.",
     "review_level": "Documentation screening, not independent scientific validation"
   },
   {

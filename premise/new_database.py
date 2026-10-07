@@ -990,6 +990,10 @@ class NewDatabase:
                 f"_pv2026_{digest.hexdigest()[:16]}"
                 f"_biosphere{BIOSPHERE_MIGRATION_CACHE_VERSION}"
             )
+            inventory_label += (
+                "_vanadium_"
+                + hashlib.sha256(FILEPATH_VANADIUM.read_bytes()).hexdigest()[:16]
+            )
         return (
             DIR_CACHED_DB
             / f"cached_{''.join(tuple(map(str, __version__)))}_v{CACHE_SCHEMA_VERSION}_"

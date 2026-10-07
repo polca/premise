@@ -1,5 +1,5 @@
 {% set name = "premise" %}
-{% set version = environ.get('VERSION', "2.5.3") %}
+{% set version = environ.get('VERSION', "2.5.4") %}
 
 
 package:
