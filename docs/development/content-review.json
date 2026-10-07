@@ -127,8 +127,8 @@
   },
   {
     "page": "user_guide/export/simapro.rst",
-    "review_date": "2026-09-28",
-    "disposition": "Documented the Brightpath-only exporter, import workflow, classification fallbacks, and excluded-flow report; native SimaPro calculation remains unverified.",
+    "review_date": "2026-10-07",
+    "disposition": "Updated native import evidence for the complete REMIND SSP1-PkBudg1000 2050 ecoinvent 3.12 cut-off scenario; SimaPro LCIA equivalence remains unverified.",
     "review_level": "Documentation screening, not independent scientific validation"
   },
   {
@@ -469,8 +469,8 @@
   },
   {
     "page": "development/releases-2-5.rst",
-    "review_date": "2026-09-07",
-    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_date": "2026-10-07",
+    "disposition": "Added the 2.5.3 migration requirements for Python, Brightpath exports, local openLCA method packages, and explicit external efficiency bounds; explained scenario regeneration.",
     "review_level": "Documentation screening, not independent scientific validation"
   },
   {

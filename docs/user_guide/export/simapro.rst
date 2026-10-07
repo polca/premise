@@ -29,8 +29,9 @@ Import the CSV using SimaPro's CSV import facility, then check process linking
 and elementary-flow matching in the destination database. The file contains
 the complete scenario inventory; it does not install LCIA methods. Methods and
 their elementary-flow definitions must be available in SimaPro to calculate
-impacts. Native SimaPro import and LCIA equivalence have not yet been validated
-for this integration.
+impacts. A complete REMIND SSP1-PkBudg1000 2050 scenario from ecoinvent 3.12
+cut-off was imported into SimaPro without errors or warnings. This verifies
+import structure for that scenario; SimaPro LCIA equivalence remains unverified.
 
 How the export works
 --------------------
