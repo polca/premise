@@ -22,6 +22,7 @@ def check_brightpath():
         from brightpath.formats.simapro_csv import write_simapro_csv  # noqa: F401
         from brightpath.profiles.simapro_biosphere import (
             FINAL_WASTE_NAMES,
+            resolve_ecoinvent_flow_name,
         )  # noqa: F401
         from brightpath.profiles.simapro_category_types import (
             resolve_category_type,
@@ -306,6 +307,7 @@ def assign_simapro_provenance(
     return {
         "system description": {
             "name": system_name,
+            "category": "Others",
             "description": f"Prepared by {generator}. Scenario: {label}. {documentation}",
         }
     }
@@ -331,7 +333,7 @@ def assign_simapro_category_paths(datasets):
     categories = build_process_categories(datasets)
     depth = max((path.count("/") + 1 for path in categories.values()), default=1)
     # Desktop permits 255 characters; keep space for import-side folder labels.
-    component_limit = (240 - (depth - 1)) // depth
+    component_limit = min(60, (240 - (depth - 1)) // depth)
     shortened = {}
     for dataset in datasets:
         original = categories[_identity(dataset)]

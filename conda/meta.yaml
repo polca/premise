@@ -10,17 +10,17 @@ package:
 source:
   - path: ..
     folder: premise-src
-  - url: https://codeload.github.com/romainsacchi/brightpath/tar.gz/b48e816ddfe982d08a58db153a724b887db7ca26
-    sha256: a3d3af03a3dc5e3d0efd9fa8734f51eb57f7b884fe5d9a5f108438cc3981308d
+  - url: https://codeload.github.com/romainsacchi/brightpath/tar.gz/cbd2f7241538cfcfeb7f9363c443ac71228a74ca
+    sha256: d24699798dfd80f3cf92fef0cd850a5082b9af1c5a98228ec1d0c3b575a97f87
     folder: brightpath-src
 
 outputs:
   - name: brightpath
-    version: 1.0.0a3
+    version: 1.0.0a4
     build:
       noarch: python
       number: 0
-      string: github_b48e816d_0
+      string: github_cbd2f724_0
       script: python -m pip install "$SRC_DIR/brightpath-src" --no-deps --no-build-isolation -vv
     requirements:
       host:

@@ -93,12 +93,13 @@ def test_simapro_paths_reuse_openlca_hierarchy_without_changing_waste_status():
     ]
     before = deepcopy(datasets)
     expected = build_process_categories(datasets)
-    assign_simapro_category_paths(datasets)
-    assign_simapro_category_paths(datasets)
+    shortened = assign_simapro_category_paths(datasets)
+    assert assign_simapro_category_paths(datasets) == shortened
     for dataset, original in zip(datasets, before):
+        full_path = expected[_identity(original)]
         assert dataset == {
             **original,
-            "simapro category path": expected[_identity(original)],
+            "simapro category path": shortened.get(full_path, full_path),
         }
     assert datasets[0]["simapro category path"].startswith("01 - ")
     assert "/011 - " in datasets[0]["simapro category path"]
@@ -115,6 +116,7 @@ def test_system_description_name_fits_desktop_and_full_context_is_retained(pathw
     system = result["system description"]
     assert len(system["name"]) <= 50
     assert pathway in system["description"]
+    assert system["category"] == "Others"
     assert "2050" in system["description"]
     assert datasets[0]["simapro metadata"]["System description"] == system["name"]
     other = assign_simapro_provenance(
@@ -145,6 +147,7 @@ def test_long_isic_paths_fit_desktop_with_consistent_parents_and_audit():
         path = ds["simapro category path"]
         full = full_paths[_identity(ds)]
         assert len(path) <= 240
+        assert all(len(component) <= 60 for component in path.split("/"))
         assert len(path.split("/")) == len(full.split("/"))
         assert [p.split(" - ")[0] for p in path.split("/")] == [
             p.split(" - ")[0] for p in full.split("/")

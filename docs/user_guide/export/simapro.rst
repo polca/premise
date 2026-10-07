@@ -59,9 +59,10 @@ installed ecoinvent library.
 Long folder components receive a stable shortened label while retaining the
 ISIC codes and hierarchy. The full-to-shortened mapping is recorded under
 ``shortened_category_paths`` in the export report. Generated paths stay within
-240 characters to leave room below SimaPro Desktop's 255-character limit.
+240 characters to leave room below SimaPro Desktop's 255-character limit, and
+each folder name stays within its separate 60-character limit.
 The system-description reference uses a label of at most 50 characters;
-its definition retains the complete scenario provenance.
+its definition retains the complete scenario provenance and a required category.
 
 Product or waste-treatment status determines exchange placement and signs;
 folder placement is a separate decision. Brightpath uses explicit production
