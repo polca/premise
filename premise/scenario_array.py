@@ -191,15 +191,11 @@ def _release_zip_filesystem(filesystem) -> None:
 
     try:
         filesystem.close()
-    except Exception:
-        pass
-    of = getattr(filesystem, "of", None)
-    if of is not None and hasattr(of, "__exit__"):
-        try:
+    finally:
+        of = getattr(filesystem, "of", None)
+        if of is not None and hasattr(of, "__exit__"):
             of.__exit__(None, None, None)
-        except Exception:
-            pass
-        filesystem.of = None
+            filesystem.of = None
 
 
 def _write_scenario_array_datapackage(
@@ -231,42 +227,38 @@ def _write_scenario_array_datapackage(
     filepath = filepath.expanduser().resolve()
     filepath.parent.mkdir(parents=True, exist_ok=True)
     temporary_path = filepath.with_name(f".{filepath.stem}-{uuid.uuid4().hex}.zip")
-    filesystem = ZipFileSystem(
-        str(temporary_path), mode="w", compression=zipfile.ZIP_DEFLATED
-    )
     try:
-        datapackage_name = (
-            bw_processing.clean_datapackage_name(name) or "scenario_array"
+        filesystem = ZipFileSystem(
+            str(temporary_path), mode="w", compression=zipfile.ZIP_DEFLATED
         )
-        datapackage = bw_processing.create_datapackage(
-            fs=filesystem,
-            name=datapackage_name,
-            metadata=metadata,
-            sequential=True,
-            sum_intra_duplicates=False,
-            sum_inter_duplicates=False,
-        )
-
-        for matrix, resource in resources.items():
-            datapackage.add_persistent_array(
-                matrix=matrix,
-                name=bw_processing.clean_datapackage_name(
-                    f"{name} {matrix.replace('_', ' ')}"
-                ),
-                **resource,
+        try:
+            datapackage_name = (
+                bw_processing.clean_datapackage_name(name) or "scenario_array"
+            )
+            datapackage = bw_processing.create_datapackage(
+                fs=filesystem,
+                name=datapackage_name,
+                metadata=metadata,
+                sequential=True,
+                sum_intra_duplicates=False,
+                sum_inter_duplicates=False,
             )
 
-        datapackage.finalize_serialization()
-    finally:
-        _release_zip_filesystem(filesystem)
+            for matrix, resource in resources.items():
+                datapackage.add_persistent_array(
+                    matrix=matrix,
+                    name=bw_processing.clean_datapackage_name(
+                        f"{name} {matrix.replace('_', ' ')}"
+                    ),
+                    **resource,
+                )
 
-    try:
+            datapackage.finalize_serialization()
+        finally:
+            _release_zip_filesystem(filesystem)
+
         os.replace(temporary_path, filepath)
-    except BaseException:
-        try:
-            temporary_path.unlink(missing_ok=True)
-        except OSError:
-            pass
-        raise
+    finally:
+        temporary_path.unlink(missing_ok=True)
 
     return filepath
