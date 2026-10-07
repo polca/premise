@@ -56,6 +56,12 @@ Process folders and category types
 Folders use the same ISIC revision 4 hierarchy as :doc:`openlca`, with CPC and
 ``Unclassified`` fallbacks. These folders can differ from those in SimaPro's
 installed ecoinvent library.
+Long folder components receive a stable shortened label while retaining the
+ISIC codes and hierarchy. The full-to-shortened mapping is recorded under
+``shortened_category_paths`` in the export report. Generated paths stay within
+240 characters to leave room below SimaPro Desktop's 255-character limit.
+The system-description reference uses a label of at most 50 characters;
+its definition retains the complete scenario provenance.
 
 Product or waste-treatment status determines exchange placement and signs;
 folder placement is a separate decision. Brightpath uses explicit production

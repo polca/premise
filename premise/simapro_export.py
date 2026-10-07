@@ -2,6 +2,7 @@
 
 from collections import Counter
 from dataclasses import asdict
+import hashlib
 import json
 import math
 from pathlib import Path
@@ -193,7 +194,7 @@ def build_document(scenario, version, system_model):
                 retained.append(exchange)
         dataset["exchanges"] = retained
 
-    assign_simapro_category_paths(data)
+    category_paths = assign_simapro_category_paths(data)
     metadata = assign_simapro_provenance(data, scenario, version, system_model)
     context = InventoryContext(
         format=FormatProfile("simapro_csv"),
@@ -214,6 +215,7 @@ def build_document(scenario, version, system_model):
         "system_model": system_model,
         "classification_rules": dict(classification_counts),
         "category_type_rules": dict(category_type_counts),
+        "shortened_category_paths": category_paths,
         "classification_fallbacks": fallback_classifications,
         "excluded_exchanges": excluded,
     }
@@ -275,10 +277,15 @@ def assign_simapro_provenance(
         f"ecoinvent {version} ({system_model}); "
         f"{scenario['model']} / {scenario['pathway']} / {scenario['year']}"
     )
+    system_name = _shorten_simapro_label(
+        f"ei{version} {system_model} {scenario['model']} "
+        f"{scenario['pathway']} {scenario['year']}",
+        50,
+    )
     documentation = "https://premise.readthedocs.io/en/latest/introduction.html"
     defaults = {
         "Generator": generator,
-        "System description": label,
+        "System description": system_name,
         "External documents": documentation,
     }
     for dataset in datasets:
@@ -298,10 +305,18 @@ def assign_simapro_provenance(
                 dataset[top_level] = metadata[field]
     return {
         "system description": {
-            "name": label,
+            "name": system_name,
             "description": f"Prepared by {generator}. Scenario: {label}. {documentation}",
         }
     }
+
+
+def _shorten_simapro_label(value, limit):
+    """Keep labels stable and distinct when SimaPro requires shorter text."""
+    if len(value) <= limit:
+        return value
+    suffix = "~" + hashlib.sha256(value.encode("utf-8")).hexdigest()[:10]
+    return value[: limit - len(suffix)].rstrip() + suffix
 
 
 def assign_simapro_category_paths(datasets):
@@ -310,7 +325,21 @@ def assign_simapro_category_paths(datasets):
     Call on the detached export payload. Only folder metadata is assigned;
     production categories and waste-identification evidence are left untouched.
     Missing ISIC uses the same consensus/CPC/Unclassified fallbacks as openLCA.
+    Apply one component limit throughout the hierarchy, so a shared parent keeps
+    the same label for all children. Return the original/shortened path mappings.
     """
     categories = build_process_categories(datasets)
+    depth = max((path.count("/") + 1 for path in categories.values()), default=1)
+    # Desktop permits 255 characters; keep space for import-side folder labels.
+    component_limit = (240 - (depth - 1)) // depth
+    shortened = {}
     for dataset in datasets:
-        dataset["simapro category path"] = categories[_identity(dataset)]
+        original = categories[_identity(dataset)]
+        path = "/".join(
+            _shorten_simapro_label(part, component_limit)
+            for part in original.split("/")
+        )
+        dataset["simapro category path"] = path
+        if path != original:
+            shortened[original] = path
+    return shortened

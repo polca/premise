@@ -1,6 +1,6 @@
 numpy<2.0.0
 bottleneck
-brightpath @ git+https://github.com/romainsacchi/brightpath.git@59d79c92a93774aa9847b8bea1a9cd80486b6b77
+brightpath @ git+https://github.com/romainsacchi/brightpath.git@b48e816ddfe982d08a58db153a724b887db7ca26
 bw2data
 bw2io
 ecoinvent_interface

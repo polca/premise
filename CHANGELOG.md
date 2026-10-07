@@ -44,6 +44,11 @@ All notable changes to this project are documented in this file.
 
 ### Fixed
 
+- Correct SimaPro Desktop import failures using Brightpath 1.0.0a3: bounded
+  process identifiers, waste-specific allocation fields, and early text-limit
+  checks. Keep generated system-description labels within 50 characters and
+  shorten long ISIC folder components consistently with an export-report mapping.
+
 - Preserve supported SimaPro final-waste indicators instead of removing all
   inventory indicators. Pin Brightpath 1.0.0a2 from GitHub in Python and Conda
   for retained biosphere flows and product-aware category types across ecoinvent
