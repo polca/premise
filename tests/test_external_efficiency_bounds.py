@@ -299,3 +299,55 @@ def test_small_absolute_adjustment_is_not_skipped_at_a_configured_boundary():
     adjust_efficiency(ds, {}, {})
     assert ds["exchanges"][0]["amount"] == pytest.approx(2 * 0.3001 / 0.30)
     assert ds["exchanges"][1]["amount"] == pytest.approx(3 * 0.3001 / 0.30)
+
+
+def test_excludes_are_kept_for_every_efficiency_variable():
+    production = xr.DataArray(
+        [[[1.0, 1.0]]],
+        dims=("region", "variables", "year"),
+        coords={"region": ["CH"], "variables": ["power"], "year": [2020, 2050]},
+    )
+    efficiency = xr.DataArray(
+        [[[2.0, 2.0], [2.0, 2.0]]],
+        dims=("region", "variables", "year"),
+        coords={
+            "region": ["CH"],
+            "variables": ["electricity efficiency", "heat efficiency"],
+            "year": [2020, 2050],
+        },
+    )
+    values = {
+        "production volume variable": "power",
+        "efficiency": [
+            {
+                "variable": "electricity efficiency",
+                "includes": {"technosphere": ["electricity"]},
+                "excludes": {"technosphere": ["hydro"]},
+            },
+            {
+                "variable": "heat efficiency",
+                "includes": {"technosphere": ["heat"]},
+                "excludes": {"technosphere": ["wood"]},
+            },
+        ],
+        "replaces": [],
+        "replaces in": [],
+        "replacement ratio": 1,
+        "regionalize": False,
+    }
+    ds = plant()
+    ds["exchanges"] = [
+        {"name": n, "type": "technosphere", "unit": "kilowatt hour", "amount": 1.0}
+        for n in ("electricity, grid", "electricity, hydro", "heat, gas", "heat, wood")
+    ]
+    flag_activities_to_adjust(
+        ds, {"production volume": production, "efficiency": efficiency}, 2035, values
+    )
+    adjust_efficiency(ds, {}, {})
+    amounts = {exc["name"]: exc["amount"] for exc in ds["exchanges"]}
+    assert amounts == {
+        "electricity, grid": 0.5,
+        "electricity, hydro": 1.0,
+        "heat, gas": 0.5,
+        "heat, wood": 1.0,
+    }
