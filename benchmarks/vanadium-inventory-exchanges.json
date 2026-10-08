@@ -1,0 +1,1462 @@
+{
+  "mining_share": 0.5868558156610613,
+  "refinery_share": 0.9892802450229708,
+  "changes": [
+    {
+      "activity": "vanadium pentoxide production",
+      "exchange": "Carbon dioxide, fossil",
+      "before": 0.16,
+      "after": 0.15828483920367534,
+      "reason": "Original amount 0.16; scale 0.9892802450229708."
+    },
+    {
+      "activity": "vanadium pentoxide production",
+      "exchange": "Oxygen",
+      "before": 0.0564,
+      "after": 0.055795405819295554,
+      "reason": "Original amount 0.0564; scale 0.9892802450229708."
+    },
+    {
+      "activity": "vanadium pentoxide production",
+      "exchange": "Sulfur dioxide",
+      "before": 0.23,
+      "after": 0.2275344563552833,
+      "reason": "Original amount 0.23; scale 0.9892802450229708."
+    },
+    {
+      "activity": "vanadium pentoxide production",
+      "exchange": "Transformation, from dump site, slag compartment",
+      "before": 0.47,
+      "after": 0.46496171516079626,
+      "reason": "Original amount 0.47; scale 0.9892802450229708."
+    },
+    {
+      "activity": "vanadium pentoxide production",
+      "exchange": "Water",
+      "before": 8.45e-05,
+      "after": 8.359418070444103e-05,
+      "reason": "Original amount 8.449999999999999e-05; scale 0.9892802450229708."
+    },
+    {
+      "activity": "vanadium pentoxide production",
+      "exchange": "vanadium pentoxide production",
+      "before": 1,
+      "after": 1.0,
+      "reason": "Original amount 1; scale 0.9892802450229708."
+    },
+    {
+      "activity": "vanadium pentoxide production",
+      "exchange": "market for sodium sulfate, anhydrite",
+      "before": -0.5,
+      "after": null,
+      "reason": "co-product handled by allocation, without an avoided-production input"
+    },
+    {
+      "activity": "vanadium pentoxide production",
+      "exchange": "market for iron scrap, unsorted",
+      "before": -0.065,
+      "after": -0.0643032159264931,
+      "reason": "Original amount -0.065; scale 0.9892802450229708."
+    },
+    {
+      "activity": "vanadium pentoxide production",
+      "exchange": "market for ammonium sulfate",
+      "before": 0.31,
+      "after": 0.30667687595712095,
+      "reason": "Original amount 0.31; scale 0.9892802450229708."
+    },
+    {
+      "activity": "vanadium pentoxide production",
+      "exchange": "market for electricity, medium voltage",
+      "before": 0.2,
+      "after": 0.1978560490045942,
+      "reason": "Original amount 0.2; scale 0.9892802450229708."
+    },
+    {
+      "activity": "vanadium pentoxide production",
+      "exchange": "market for soda ash, dense",
+      "before": 0.37,
+      "after": 0.3660336906584992,
+      "reason": "Original amount 0.37; scale 0.9892802450229708."
+    },
+    {
+      "activity": "vanadium pentoxide production",
+      "exchange": "market for sodium sulfate, anhydrite",
+      "before": 0.5,
+      "after": 0.4946401225114854,
+      "reason": "Original amount 0.5; scale 0.9892802450229708."
+    },
+    {
+      "activity": "vanadium pentoxide production",
+      "exchange": "market for sulfuric acid",
+      "before": 0.46,
+      "after": 0.4550689127105666,
+      "reason": "Original amount 0.46; scale 0.9892802450229708."
+    },
+    {
+      "activity": "vanadium pentoxide production",
+      "exchange": "market for transport, freight, lorry, unspecified",
+      "before": 0.0771,
+      "after": 0.07627350689127105,
+      "reason": "Original amount 0.0771; scale 0.9892802450229708."
+    },
+    {
+      "activity": "vanadium pentoxide production",
+      "exchange": "market for water, deionised",
+      "before": 3.16,
+      "after": 3.126125574272588,
+      "reason": "Original amount 3.16; scale 0.9892802450229708."
+    },
+    {
+      "activity": "vanadium pentoxide production",
+      "exchange": "market group for heat, district or industrial, natural gas",
+      "before": 0.93,
+      "after": 0.9200306278713629,
+      "reason": "Original amount 0.93; scale 0.9892802450229708."
+    },
+    {
+      "activity": "vanadium pentoxide production",
+      "exchange": "market group for transport, freight train",
+      "before": 0.46,
+      "after": 0.4550689127105666,
+      "reason": "Original amount 0.46; scale 0.9892802450229708."
+    },
+    {
+      "activity": "vanadium pentoxide production",
+      "exchange": "market group for transport, freight, lorry, unspecified",
+      "before": 0.0771,
+      "after": 0.07627350689127105,
+      "reason": "Original amount 0.0771; scale 0.9892802450229708."
+    },
+    {
+      "activity": "vanadium pentoxide production",
+      "exchange": "treatment of spent solvent mixture, hazardous waste incineration, with energy recovery",
+      "before": -0.0632,
+      "after": -0.06252251148545176,
+      "reason": "Original amount -0.06320000000000001; scale 0.9892802450229708."
+    },
+    {
+      "activity": "vanadium pentoxide production",
+      "exchange": "vanadium slag production",
+      "before": 1.35,
+      "after": 1.3355283307810106,
+      "reason": "Original amount 1.35; scale 0.9892802450229708."
+    },
+    {
+      "activity": "vanadium pentoxide bearing cast iron, production",
+      "exchange": "Benzene",
+      "before": 2.285e-06,
+      "after": 1.7310606060606061e-06,
+      "reason": "Original amount 2.285e-06; scale 0.7575757575757576."
+    },
+    {
+      "activity": "vanadium pentoxide bearing cast iron, production",
+      "exchange": "Benzene, hexachloro-",
+      "before": 2e-08,
+      "after": 1.5151515151515152e-08,
+      "reason": "Original amount 2e-08; scale 0.7575757575757576."
+    },
+    {
+      "activity": "vanadium pentoxide bearing cast iron, production",
+      "exchange": "Cadmium II",
+      "before": 3.65e-08,
+      "after": 2.7651515151515152e-08,
+      "reason": "Original amount 3.65e-08; scale 0.7575757575757576."
+    },
+    {
+      "activity": "vanadium pentoxide bearing cast iron, production",
+      "exchange": "Carbon monoxide, fossil",
+      "before": 0.00232,
+      "after": 0.0017575757575757575,
+      "reason": "Original amount 0.00232; scale 0.7575757575757576."
+    },
+    {
+      "activity": "vanadium pentoxide bearing cast iron, production",
+      "exchange": "Chromium III",
+      "before": 1.254e-06,
+      "after": 9.5e-07,
+      "reason": "Original amount 1.254e-06; scale 0.7575757575757576."
+    },
+    {
+      "activity": "vanadium pentoxide bearing cast iron, production",
+      "exchange": "Copper ion",
+      "before": 2.305e-07,
+      "after": 1.7462121212121212e-07,
+      "reason": "Original amount 2.305e-07; scale 0.7575757575757576."
+    },
+    {
+      "activity": "vanadium pentoxide bearing cast iron, production",
+      "exchange": "Dioxins, measured as 2,3,7,8-tetrachlorodibenzo-p-dioxin",
+      "before": 4.535e-12,
+      "after": 3.435606060606061e-12,
+      "reason": "Original amount 4.535e-12; scale 0.7575757575757576."
+    },
+    {
+      "activity": "vanadium pentoxide bearing cast iron, production",
+      "exchange": "Hydrocarbons, aromatic",
+      "before": 7.7008e-05,
+      "after": 5.833939393939394e-05,
+      "reason": "Original amount 7.700800000000001e-05; scale 0.7575757575757576."
+    },
+    {
+      "activity": "vanadium pentoxide bearing cast iron, production",
+      "exchange": "Hydrochloric acid",
+      "before": 5.2e-06,
+      "after": 3.93939393939394e-06,
+      "reason": "Original amount 5.2e-06; scale 0.7575757575757576."
+    },
+    {
+      "activity": "vanadium pentoxide bearing cast iron, production",
+      "exchange": "Hydrogen fluoride",
+      "before": 2.35e-06,
+      "after": 1.7803030303030302e-06,
+      "reason": "Original amount 2.35e-06; scale 0.7575757575757576."
+    },
+    {
+      "activity": "vanadium pentoxide bearing cast iron, production",
+      "exchange": "Lead II",
+      "before": 1.808e-06,
+      "after": 1.3696969696969697e-06,
+      "reason": "Original amount 1.808e-06; scale 0.7575757575757576."
+    },
+    {
+      "activity": "vanadium pentoxide bearing cast iron, production",
+      "exchange": "Mercury II",
+      "before": 2.238e-06,
+      "after": 1.6954545454545455e-06,
+      "reason": "Original amount 2.238e-06; scale 0.7575757575757576."
+    },
+    {
+      "activity": "vanadium pentoxide bearing cast iron, production",
+      "exchange": "Nickel II",
+      "before": 7.005e-07,
+      "after": 5.306818181818182e-07,
+      "reason": "Original amount 7.005e-07; scale 0.7575757575757576."
+    },
+    {
+      "activity": "vanadium pentoxide bearing cast iron, production",
+      "exchange": "Nitrogen oxides",
+      "before": 0.00018,
+      "after": 0.00013636363636363637,
+      "reason": "Original amount 0.00018; scale 0.7575757575757576."
+    },
+    {
+      "activity": "vanadium pentoxide bearing cast iron, production",
+      "exchange": "PAH, polycyclic aromatic hydrocarbons",
+      "before": 3.725e-08,
+      "after": 2.821969696969697e-08,
+      "reason": "Original amount 3.725e-08; scale 0.7575757575757576."
+    },
+    {
+      "activity": "vanadium pentoxide bearing cast iron, production",
+      "exchange": "Particulate Matter, < 2.5 um",
+      "before": 0.00016596,
+      "after": 0.00012572727272727272,
+      "reason": "Original amount 0.00016596; scale 0.7575757575757576."
+    },
+    {
+      "activity": "vanadium pentoxide bearing cast iron, production",
+      "exchange": "Particulate Matter, > 10 um",
+      "before": 5.8575e-05,
+      "after": 4.4375e-05,
+      "reason": "Original amount 5.8575e-05; scale 0.7575757575757576."
+    },
+    {
+      "activity": "vanadium pentoxide bearing cast iron, production",
+      "exchange": "Particulate Matter, > 2.5 um and < 10um",
+      "before": 0.00016596,
+      "after": 0.00012572727272727272,
+      "reason": "Original amount 0.00016596; scale 0.7575757575757576."
+    },
+    {
+      "activity": "vanadium pentoxide bearing cast iron, production",
+      "exchange": "Polychlorinated biphenyls",
+      "before": 2.325e-08,
+      "after": 1.7613636363636364e-08,
+      "reason": "Original amount 2.325e-08; scale 0.7575757575757576."
+    },
+    {
+      "activity": "vanadium pentoxide bearing cast iron, production",
+      "exchange": "Sulfur dioxide",
+      "before": 7.7e-05,
+      "after": 5.833333333333333e-05,
+      "reason": "Original amount 7.7e-05; scale 0.7575757575757576."
+    },
+    {
+      "activity": "vanadium pentoxide bearing cast iron, production",
+      "exchange": "Water",
+      "before": 0.00319502825248071,
+      "after": 0.0024204759488490224,
+      "reason": "Original amount 0.00319502825248071; scale 0.7575757575757576."
+    },
+    {
+      "activity": "vanadium pentoxide bearing cast iron, production",
+      "exchange": "Water",
+      "before": 0.00202134440463065,
+      "after": 0.0015313215186595834,
+      "reason": "Original amount 0.00202134440463065; scale 0.7575757575757576."
+    },
+    {
+      "activity": "vanadium pentoxide bearing cast iron, production",
+      "exchange": "Water, cooling, unspecified natural origin",
+      "before": 0.00521637265711136,
+      "after": 0.0039517974675086056,
+      "reason": "Original amount 0.00521637265711136; scale 0.7575757575757576."
+    },
+    {
+      "activity": "vanadium pentoxide bearing cast iron, production",
+      "exchange": "Zinc II",
+      "before": 2.294e-05,
+      "after": 1.737878787878788e-05,
+      "reason": "Original amount 2.294e-05; scale 0.7575757575757576."
+    },
+    {
+      "activity": "vanadium pentoxide bearing cast iron, production",
+      "exchange": "vanadium pentoxide bearing cast iron, production",
+      "before": 1.32,
+      "after": 1.0,
+      "reason": "Original amount 1.32; scale 0.7575757575757576."
+    },
+    {
+      "activity": "vanadium pentoxide bearing cast iron, production",
+      "exchange": "market for anode, for metal electrolysis",
+      "before": 0.003,
+      "after": 0.0022727272727272726,
+      "reason": "Original amount 0.003; scale 0.7575757575757576."
+    },
+    {
+      "activity": "vanadium pentoxide bearing cast iron, production",
+      "exchange": "market for electric arc furnace converter",
+      "before": 4e-11,
+      "after": 3.03030303030303e-11,
+      "reason": "Original amount 4e-11; scale 0.7575757575757576."
+    },
+    {
+      "activity": "vanadium pentoxide bearing cast iron, production",
+      "exchange": "market for electric arc furnace dust",
+      "before": -0.0096,
+      "after": -0.007272727272727272,
+      "reason": "Original amount -0.009599999999999999; scale 0.7575757575757576."
+    },
+    {
+      "activity": "vanadium pentoxide bearing cast iron, production",
+      "exchange": "market for electric arc furnace slag",
+      "before": -0.0928,
+      "after": -0.0703030303030303,
+      "reason": "Original amount -0.09279999999999999; scale 0.7575757575757576."
+    },
+    {
+      "activity": "vanadium pentoxide bearing cast iron, production",
+      "exchange": "market for electricity, medium voltage",
+      "before": 0.42,
+      "after": 0.3181818181818182,
+      "reason": "Original amount 0.42; scale 0.7575757575757576."
+    },
+    {
+      "activity": "vanadium pentoxide bearing cast iron, production",
+      "exchange": "market for hard coal",
+      "before": 0.014,
+      "after": 0.010606060606060607,
+      "reason": "Original amount 0.014; scale 0.7575757575757576."
+    },
+    {
+      "activity": "vanadium pentoxide bearing cast iron, production",
+      "exchange": "market for inert waste, for final disposal",
+      "before": -0.005,
+      "after": -0.003787878787878788,
+      "reason": "Original amount -0.005; scale 0.7575757575757576."
+    },
+    {
+      "activity": "vanadium pentoxide bearing cast iron, production",
+      "exchange": "market for iron scrap, sorted, pressed",
+      "before": 0.38675,
+      "after": 0.2929924242424242,
+      "reason": "Original amount 0.38675; scale 0.7575757575757576."
+    },
+    {
+      "activity": "vanadium pentoxide bearing cast iron, production",
+      "exchange": "market for natural gas, high pressure",
+      "before": 0.025,
+      "after": 0.01893939393939394,
+      "reason": "Original amount 0.025; scale 0.7575757575757576."
+    },
+    {
+      "activity": "vanadium pentoxide bearing cast iron, production",
+      "exchange": "market for oxygen, liquid",
+      "before": 0.0507,
+      "after": 0.038409090909090914,
+      "reason": "Original amount 0.0507; scale 0.7575757575757576."
+    },
+    {
+      "activity": "vanadium pentoxide bearing cast iron, production",
+      "exchange": "market for quicklime, in pieces, loose",
+      "before": 0.055,
+      "after": 0.041666666666666664,
+      "reason": "Original amount 0.055; scale 0.7575757575757576."
+    },
+    {
+      "activity": "vanadium pentoxide bearing cast iron, production",
+      "exchange": "market for refractory, basic, packed",
+      "before": 0.0135,
+      "after": 0.010227272727272727,
+      "reason": "Original amount 0.0135; scale 0.7575757575757576."
+    },
+    {
+      "activity": "vanadium pentoxide bearing cast iron, production",
+      "exchange": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "before": 1.46,
+      "after": 1.106060606060606,
+      "reason": "Original amount 1.46; scale 0.7575757575757576."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "Arsenic ion",
+      "before": 2e-13,
+      "after": 1.36986301369863e-13,
+      "reason": "Original amount 2e-13; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "Cadmium II",
+      "before": 2.1e-10,
+      "after": 1.4383561643835617e-10,
+      "reason": "Original amount 2.1e-10; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "Cadmium II",
+      "before": 3.1e-12,
+      "after": 2.1232876712328767e-12,
+      "reason": "Original amount 3.1e-12; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "Carbon dioxide, fossil",
+      "before": 0.0237,
+      "after": 0.016232876712328766,
+      "reason": "Original amount 0.0237; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "Carbon monoxide, fossil",
+      "before": 0.00021,
+      "after": 0.00014383561643835615,
+      "reason": "Original amount 0.00021; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "Chromium III",
+      "before": 2.7e-09,
+      "after": 1.8493150684931507e-09,
+      "reason": "Original amount 2.7e-09; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "Chromium III",
+      "before": 4.96e-11,
+      "after": 3.397260273972603e-11,
+      "reason": "Original amount 4.96e-11; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "Cobalt II",
+      "before": 6.2e-12,
+      "after": 4.2465753424657534e-12,
+      "reason": "Original amount 6.2e-12; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "Copper ion",
+      "before": 4.6e-09,
+      "after": 3.150684931506849e-09,
+      "reason": "Original amount 4.6e-09; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "Copper ion",
+      "before": 6.2e-12,
+      "after": 4.2465753424657534e-12,
+      "reason": "Original amount 6.2e-12; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "Dinitrogen monoxide",
+      "before": 1.5e-09,
+      "after": 1.0273972602739725e-09,
+      "reason": "Original amount 1.5e-09; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "Dioxins, measured as 2,3,7,8-tetrachlorodibenzo-p-dioxin",
+      "before": 5.7e-15,
+      "after": 3.904109589041096e-15,
+      "reason": "Original amount 5.7e-15; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "Hydrocarbons, aliphatic, alkanes, unspecified",
+      "before": 2.25e-05,
+      "after": 1.541095890410959e-05,
+      "reason": "Original amount 2.25e-05; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "Hydrochloric acid",
+      "before": 2.5e-05,
+      "after": 1.7123287671232875e-05,
+      "reason": "Original amount 2.5e-05; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "Hydrogen fluoride",
+      "before": 1.99e-05,
+      "after": 1.3630136986301368e-05,
+      "reason": "Original amount 1.99e-05; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "Hydrogen fluoride",
+      "before": 2.59429822928332e-07,
+      "after": 1.7769165953995342e-07,
+      "reason": "Original amount 2.59429822928332e-07; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "Iron ion",
+      "before": 6.60632563175246e-09,
+      "after": 4.5248805696934655e-09,
+      "reason": "Original amount 6.60632563175246e-09; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "Lead II",
+      "before": 6.65e-08,
+      "after": 4.554794520547946e-08,
+      "reason": "Original amount 6.650000000000001e-08; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "Lead II",
+      "before": 3.47489805077245e-12,
+      "after": 2.380067158063322e-12,
+      "reason": "Original amount 3.47489805077245e-12; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "Manganese II",
+      "before": 1.86e-09,
+      "after": 1.2739726027397259e-09,
+      "reason": "Original amount 1.86e-09; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "Manganese II",
+      "before": 2.3e-08,
+      "after": 1.5753424657534245e-08,
+      "reason": "Original amount 2.3e-08; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "Mercury II",
+      "before": 5.53572086952709e-11,
+      "after": 3.79158963666239e-11,
+      "reason": "Original amount 5.53572086952709e-11; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "Mercury II",
+      "before": 2.5e-10,
+      "after": 1.7123287671232877e-10,
+      "reason": "Original amount 2.5e-10; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "Mercury II",
+      "before": 4.51627128365379e-13,
+      "after": 3.0933364956532804e-13,
+      "reason": "Original amount 4.51627128365379e-13; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "Methane, fossil",
+      "before": 3.41643499208438e-11,
+      "after": 2.3400239671810823e-11,
+      "reason": "Original amount 3.41643499208438e-11; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "NMVOC, non-methane volatile organic compounds",
+      "before": 4.2e-11,
+      "after": 2.876712328767123e-11,
+      "reason": "Original amount 4.2e-11; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "Nickel II",
+      "before": 1.5e-08,
+      "after": 1.0273972602739724e-08,
+      "reason": "Original amount 1.5e-08; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "Nickel II",
+      "before": 3.47489805077245e-12,
+      "after": 2.380067158063322e-12,
+      "reason": "Original amount 3.47489805077245e-12; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "Nitrate",
+      "before": 6.39257007342419e-09,
+      "after": 4.378472653030267e-09,
+      "reason": "Original amount 6.39257007342419e-09; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "Nitrogen oxides",
+      "before": 0.000315,
+      "after": 0.00021575342465753424,
+      "reason": "Original amount 0.000315; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "Nitrogen oxides",
+      "before": 1.10020168568621e-07,
+      "after": 7.535627984152123e-08,
+      "reason": "Original amount 1.10020168568621e-07; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "PAH, polycyclic aromatic hydrocarbons",
+      "before": 1.9e-10,
+      "after": 1.3013698630136985e-10,
+      "reason": "Original amount 1.9e-10; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "Particulate Matter, < 2.5 um",
+      "before": 7.5e-05,
+      "after": 5.136986301369862e-05,
+      "reason": "Original amount 7.499999999999999e-05; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "Particulate Matter, < 2.5 um",
+      "before": 1.89822243677843e-07,
+      "after": 1.300152353957829e-07,
+      "reason": "Original amount 1.89822243677843e-07; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "Particulate Matter, > 10 um",
+      "before": 3.2812391688682e-07,
+      "after": 2.2474240882658903e-07,
+      "reason": "Original amount 3.2812391688682e-07; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "Particulate Matter, > 2.5 um and < 10um",
+      "before": 2.24900078890688e-07,
+      "after": 1.5404114992512876e-07,
+      "reason": "Original amount 2.24900078890688e-07; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "Phosphorus",
+      "before": 4.16914687269334e-10,
+      "after": 2.8555800497899587e-10,
+      "reason": "Original amount 4.16914687269334e-10; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "Silver I",
+      "before": 3.16065911032405e-11,
+      "after": 2.164835007071267e-11,
+      "reason": "Original amount 3.16065911032405e-11; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "Sulfur dioxide",
+      "before": 0.000131,
+      "after": 8.972602739726028e-05,
+      "reason": "Original amount 0.000131; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "Sulfur dioxide",
+      "before": 5.26350225251074e-07,
+      "after": 3.6051385291169453e-07,
+      "reason": "Original amount 5.26350225251074e-07; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "Suspended solids, unspecified",
+      "before": 2.22525017131485e-08,
+      "after": 1.5241439529553767e-08,
+      "reason": "Original amount 2.22525017131485e-08; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "Vanadium V",
+      "before": 8.55e-08,
+      "after": 5.856164383561644e-08,
+      "reason": "Original amount 8.55e-08; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "Water",
+      "before": 8.67617283762244e-05,
+      "after": 5.9425841353578354e-05,
+      "reason": "Original amount 8.67617283762244e-05; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "Water",
+      "before": 1.53108932428631e-05,
+      "after": 1.0486913180043218e-05,
+      "reason": "Original amount 1.53108932428631e-05; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "Water, unspecified natural origin",
+      "before": 9e-05,
+      "after": 6.164383561643835e-05,
+      "reason": "Original amount 9.000000000000001e-05; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "Zinc II",
+      "before": 5.62e-08,
+      "after": 3.84931506849315e-08,
+      "reason": "Original amount 5.62e-08; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "Zinc II",
+      "before": 1.38977652325058e-11,
+      "after": 9.519017282538219e-12,
+      "reason": "Original amount 1.38977652325058e-11; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "before": 1.46,
+      "after": 1.0,
+      "reason": "Original amount 1.46; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "heat production, heavy fuel oil, at industrial furnace 1MW",
+      "before": 0.0233,
+      "after": 0.015958904109589042,
+      "reason": "Original amount 0.0233; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "market for activated bentonite",
+      "before": 0.04,
+      "after": 0.0273972602739726,
+      "reason": "Original amount 0.04; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "market for aluminium oxide factory",
+      "before": 2.5e-11,
+      "after": 1.7123287671232877e-11,
+      "reason": "Original amount 2.5e-11; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "market for chromium",
+      "before": 5.97e-06,
+      "after": 4.08904109589041e-06,
+      "reason": "Original amount 5.97e-06; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "market for dolomite",
+      "before": 0.00137,
+      "after": 0.0009383561643835616,
+      "reason": "Original amount 0.00137; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "market for electricity, high voltage",
+      "before": 0.00229,
+      "after": 0.0015684931506849313,
+      "reason": "Original amount 0.00229; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "market for electricity, medium voltage",
+      "before": 0.025,
+      "after": 0.017123287671232876,
+      "reason": "Original amount 0.025; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "market for hard coal",
+      "before": 0.013,
+      "after": 0.008904109589041096,
+      "reason": "Original amount 0.013; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "market for heat, district or industrial, natural gas",
+      "before": 0.0655,
+      "after": 0.04486301369863013,
+      "reason": "Original amount 0.0655; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "market for lime",
+      "before": 0.00057,
+      "after": 0.00039041095890410954,
+      "reason": "Original amount 0.00057; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "market for lubricating oil",
+      "before": 4.6e-07,
+      "after": 3.150684931506849e-07,
+      "reason": "Original amount 4.6e-07; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "market for scrap steel",
+      "before": -3.26e-06,
+      "after": -2.232876712328767e-06,
+      "reason": "Original amount -3.26e-06; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "market for sodium hydroxide, without water, in 50% solution state",
+      "before": 3.29e-06,
+      "after": 2.2534246575342464e-06,
+      "reason": "Original amount 3.29e-06; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "market for solvent, organic",
+      "before": 4e-09,
+      "after": 2.7397260273972604e-09,
+      "reason": "Original amount 4e-09; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "market for spent solvent mixture",
+      "before": -1.57171754341237e-09,
+      "after": -1.0765188653509383e-09,
+      "reason": "Original amount -1.57171754341237e-09; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "market for spent solvent mixture",
+      "before": -6.70858370033955e-08,
+      "after": -4.594920342698322e-08,
+      "reason": "Original amount -6.70858370033955e-08; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "market for steel, unalloyed",
+      "before": 3.38e-05,
+      "after": 2.315068493150685e-05,
+      "reason": "Original amount 3.38e-05; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "market for tap water",
+      "before": 0.0216,
+      "after": 0.014794520547945205,
+      "reason": "Original amount 0.0216; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "market for waste mineral oil",
+      "before": -1.17224937520432e-09,
+      "after": -8.029105309618629e-10,
+      "reason": "Original amount -1.17224937520432e-09; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "market for waste mineral oil",
+      "before": -4.73520893358979e-08,
+      "after": -3.243293790129993e-08,
+      "reason": "Original amount -4.73520893358979e-08; scale 0.684931506849315."
+    },
+    {
+      "activity": "pre-reduced vanadium pentoxide bearing magnetite production",
+      "exchange": "vanadium bearing magnetite production",
+      "before": 1.53,
+      "after": 1.047945205479452,
+      "reason": "Original amount 1.53; scale 0.684931506849315."
+    },
+    {
+      "activity": "vanadium bearing magnetite production",
+      "exchange": "Iron",
+      "before": 0.7058823529411765,
+      "after": 0.7058823529411765,
+      "reason": "Element-specific extraction assigned to the magnetite output; no economic allocation of this flow."
+    },
+    {
+      "activity": "vanadium bearing magnetite production",
+      "exchange": "Occupation, mineral extraction site",
+      "before": 0.001627450980392157,
+      "after": 0.000955079072546433,
+      "reason": "Original amount 0.001627450980392157; scale 0.5868558156610613."
+    },
+    {
+      "activity": "vanadium bearing magnetite production",
+      "exchange": "Particulate Matter, < 2.5 um",
+      "before": 1.1568627450980392e-05,
+      "after": 6.789116298824042e-06,
+      "reason": "Original amount 1.156862745098039e-05; scale 0.5868558156610613."
+    },
+    {
+      "activity": "vanadium bearing magnetite production",
+      "exchange": "Particulate Matter, > 10 um",
+      "before": 0.00015490196078431372,
+      "after": 9.090511654357615e-05,
+      "reason": "Original amount 0.0001549019607843137; scale 0.5868558156610613."
+    },
+    {
+      "activity": "vanadium bearing magnetite production",
+      "exchange": "Particulate Matter, > 2.5 um and < 10um",
+      "before": 6.254901960784313e-05,
+      "after": 3.6707255920760494e-05,
+      "reason": "Original amount 6.254901960784313e-05; scale 0.5868558156610613."
+    },
+    {
+      "activity": "vanadium bearing magnetite production",
+      "exchange": "Titanium",
+      "before": 0.16339869281045752,
+      "after": null,
+      "reason": "co-product handled by allocation, without an avoided-production input"
+    },
+    {
+      "activity": "vanadium bearing magnetite production",
+      "exchange": "Transformation, from forest, unspecified",
+      "before": 5.4183006535947706e-05,
+      "after": 3.179761249562221e-05,
+      "reason": "Original amount 5.418300653594771e-05; scale 0.5868558156610613."
+    },
+    {
+      "activity": "vanadium bearing magnetite production",
+      "exchange": "Transformation, to mineral extraction site",
+      "before": 5.4183006535947706e-05,
+      "after": 3.179761249562221e-05,
+      "reason": "Original amount 5.418300653594771e-05; scale 0.5868558156610613."
+    },
+    {
+      "activity": "vanadium bearing magnetite production",
+      "exchange": "Vanadium",
+      "before": 0.01241830065359477,
+      "after": 0.01241830065359477,
+      "reason": "Element-specific extraction assigned to the magnetite output; no economic allocation of this flow."
+    },
+    {
+      "activity": "vanadium bearing magnetite production",
+      "exchange": "Water",
+      "before": 0.005745098039215686,
+      "after": 0.0033715441958566852,
+      "reason": "Original amount 0.005745098039215686; scale 0.5868558156610613."
+    },
+    {
+      "activity": "vanadium bearing magnetite production",
+      "exchange": "Water",
+      "before": 3.254901960784314e-05,
+      "after": 1.910158145092866e-05,
+      "reason": "Original amount 3.254901960784314e-05; scale 0.5868558156610613."
+    },
+    {
+      "activity": "vanadium bearing magnetite production",
+      "exchange": "Water, well, in ground",
+      "before": 2.9973856209150325e-05,
+      "after": 1.759033183412828e-05,
+      "reason": "Original amount 2.997385620915032e-05; scale 0.5868558156610613."
+    },
+    {
+      "activity": "vanadium bearing magnetite production",
+      "exchange": "vanadium bearing magnetite production",
+      "before": 1,
+      "after": 1.0,
+      "reason": "Original amount 1; scale 0.5868558156610613."
+    },
+    {
+      "activity": "vanadium bearing magnetite production",
+      "exchange": "ilmenite - magnetite mine operation",
+      "before": -0.3006535947712418,
+      "after": null,
+      "reason": "co-product handled by allocation, without an avoided-production input"
+    },
+    {
+      "activity": "vanadium bearing magnetite production",
+      "exchange": "market for blasting",
+      "before": 0.00010130718954248366,
+      "after": 5.945271335128399e-05,
+      "reason": "Original amount 0.0001013071895424837; scale 0.5868558156610613."
+    },
+    {
+      "activity": "vanadium bearing magnetite production",
+      "exchange": "market for conveyor belt",
+      "before": 3.633986928104575e-08,
+      "after": 2.1326263627944447e-08,
+      "reason": "Original amount 3.633986928104575e-08; scale 0.5868558156610613."
+    },
+    {
+      "activity": "vanadium bearing magnetite production",
+      "exchange": "market for diesel, burned in diesel-electric generating set, 10MW",
+      "before": 0.015555555555555557,
+      "after": 0.009128868243616509,
+      "reason": "Original amount 0.01555555555555556; scale 0.5868558156610613."
+    },
+    {
+      "activity": "vanadium bearing magnetite production",
+      "exchange": "market for electricity, medium voltage",
+      "before": 0.009411764705882352,
+      "after": 0.005523348853280576,
+      "reason": "Original amount 0.009411764705882352; scale 0.5868558156610613."
+    },
+    {
+      "activity": "vanadium bearing magnetite production",
+      "exchange": "market for industrial machine, heavy, unspecified",
+      "before": 7.973856209150327e-06,
+      "after": 4.679503889584933e-06,
+      "reason": "Original amount 7.973856209150327e-06; scale 0.5868558156610613."
+    },
+    {
+      "activity": "vanadium bearing magnetite production",
+      "exchange": "market for mine infrastructure, open cast, ilmenite from hard-rock ore",
+      "before": 2.0130718954248366e-11,
+      "after": 1.1813829491739012e-11,
+      "reason": "Original amount 2.013071895424837e-11; scale 0.5868558156610613."
+    },
+    {
+      "activity": "vanadium bearing magnetite production",
+      "exchange": "market for petrol, unleaded",
+      "before": 0.04098039215686275,
+      "after": 0.024049581465325848,
+      "reason": "Original amount 0.04098039215686275; scale 0.5868558156610613."
+    },
+    {
+      "activity": "vanadium bearing magnetite production",
+      "exchange": "market for recultivation, ilmenite mine",
+      "before": 5.4183006535947706e-05,
+      "after": 3.179761249562221e-05,
+      "reason": "Original amount 5.418300653594771e-05; scale 0.5868558156610613."
+    },
+    {
+      "activity": "vanadium bearing magnetite production",
+      "exchange": "market group for heat, central or small-scale, natural gas",
+      "before": 0.010065359477124183,
+      "after": 0.005906914745869506,
+      "reason": "Original amount 0.01006535947712418; scale 0.5868558156610613."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "Argon-40",
+      "before": 0.00329,
+      "after": 0.026835236541598695,
+      "reason": "Original amount 0.00329; scale 8.156606851549755."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "Benzene",
+      "before": 2.29e-06,
+      "after": 1.867862969004894e-05,
+      "reason": "Original amount 2.29e-06; scale 8.156606851549755."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "Benzene, hexachloro-",
+      "before": 2e-08,
+      "after": 1.631321370309951e-07,
+      "reason": "Original amount 2e-08; scale 8.156606851549755."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "Cadmium II",
+      "before": 3.65e-08,
+      "after": 2.977161500815661e-07,
+      "reason": "Original amount 3.65e-08; scale 8.156606851549755."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "Carbon monoxide, fossil",
+      "before": 0.00232,
+      "after": 0.01892332789559543,
+      "reason": "Original amount 0.00232; scale 8.156606851549755."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "Chloride",
+      "before": 1.82e-06,
+      "after": 1.4845024469820555e-05,
+      "reason": "Original amount 1.82e-06; scale 8.156606851549755."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "Chromium III",
+      "before": 1.25e-06,
+      "after": 1.0195758564437194e-05,
+      "reason": "Original amount 1.25e-06; scale 8.156606851549755."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "Chromium VI",
+      "before": 1.92e-09,
+      "after": 1.566068515497553e-08,
+      "reason": "Original amount 1.92e-09; scale 8.156606851549755."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "Copper ion",
+      "before": 2.31e-07,
+      "after": 1.8841761827079934e-06,
+      "reason": "Original amount 2.31e-07; scale 8.156606851549755."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "Dioxins, measured as 2,3,7,8-tetrachlorodibenzo-p-dioxin",
+      "before": 4.54e-12,
+      "after": 3.703099510603589e-11,
+      "reason": "Original amount 4.54e-12; scale 8.156606851549755."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "Hydrocarbons, aromatic",
+      "before": 7.7e-05,
+      "after": 0.0006280587275693312,
+      "reason": "Original amount 7.7e-05; scale 8.156606851549755."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "Hydrochloric acid",
+      "before": 5.2e-06,
+      "after": 4.241435562805873e-05,
+      "reason": "Original amount 5.2e-06; scale 8.156606851549755."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "Hydrogen fluoride",
+      "before": 2.35e-06,
+      "after": 1.9168026101141925e-05,
+      "reason": "Original amount 2.35e-06; scale 8.156606851549755."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "Lead II",
+      "before": 1.81e-06,
+      "after": 1.4763458401305058e-05,
+      "reason": "Original amount 1.81e-06; scale 8.156606851549755."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "Mercury II",
+      "before": 2.24e-06,
+      "after": 1.8270799347471453e-05,
+      "reason": "Original amount 2.24e-06; scale 8.156606851549755."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "Nickel II",
+      "before": 7.01e-07,
+      "after": 5.717781402936379e-06,
+      "reason": "Original amount 7.01e-07; scale 8.156606851549755."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "Nitrogen oxides",
+      "before": 0.00018,
+      "after": 0.001468189233278956,
+      "reason": "Original amount 0.00018; scale 8.156606851549755."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "PAH, polycyclic aromatic hydrocarbons",
+      "before": 3.73e-08,
+      "after": 3.042414355628059e-07,
+      "reason": "Original amount 3.73e-08; scale 8.156606851549755."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "Particulate Matter, < 2.5 um",
+      "before": 0.00017,
+      "after": 0.0013866231647634585,
+      "reason": "Original amount 0.00017; scale 8.156606851549755."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "Particulate Matter, > 10 um",
+      "before": 5.86e-05,
+      "after": 0.0004779771615008157,
+      "reason": "Original amount 5.86e-05; scale 8.156606851549755."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "Particulate Matter, > 2.5 um and < 10um",
+      "before": 0.00017,
+      "after": 0.0013866231647634585,
+      "reason": "Original amount 0.00017; scale 8.156606851549755."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "Particulate Matter, > 2.5 um and < 10um",
+      "before": 0.00017,
+      "after": 0.0013866231647634585,
+      "reason": "Original amount 0.00017; scale 8.156606851549755."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "Polychlorinated biphenyls",
+      "before": 2.33e-08,
+      "after": 1.9004893964110929e-07,
+      "reason": "Original amount 2.33e-08; scale 8.156606851549755."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "Sulfur dioxide",
+      "before": 7.7e-05,
+      "after": 0.0006280587275693312,
+      "reason": "Original amount 7.7e-05; scale 8.156606851549755."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "Water",
+      "before": 0.0023,
+      "after": 0.018760195758564437,
+      "reason": "Original amount 0.0023; scale 8.156606851549755."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "Water",
+      "before": 0.0088716527537463,
+      "after": 0.07236258363577733,
+      "reason": "Original amount 0.0088716527537463; scale 8.156606851549755."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "Water, unspecified natural origin",
+      "before": 0.0023,
+      "after": 0.018760195758564437,
+      "reason": "Original amount 0.0023; scale 8.156606851549755."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "Water, unspecified natural origin",
+      "before": 0.00522,
+      "after": 0.04257748776508972,
+      "reason": "Original amount 0.00522; scale 8.156606851549755."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "Zinc II",
+      "before": 2.29e-05,
+      "after": 0.0001867862969004894,
+      "reason": "Original amount 2.29e-05; scale 8.156606851549755."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "vanadium slag production",
+      "before": 0.1226,
+      "after": 1.0,
+      "reason": "Original amount 0.1226; scale 8.156606851549755."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "vanadium pentoxide bearing cast iron, production",
+      "before": 1.32,
+      "after": 10.766721044045678,
+      "reason": "Original amount 1.32; scale 8.156606851549755."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "market for aluminium, wrought alloy",
+      "before": 1.48e-05,
+      "after": 0.00012071778140293638,
+      "reason": "Original amount 1.48e-05; scale 8.156606851549755."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "market for anode, for metal electrolysis",
+      "before": 0.003,
+      "after": 0.024469820554649267,
+      "reason": "Original amount 0.003; scale 8.156606851549755."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "market for argon, liquid",
+      "before": 0.00329,
+      "after": 0.026835236541598695,
+      "reason": "Original amount 0.00329; scale 8.156606851549755."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "market for cast iron",
+      "before": 5.15e-05,
+      "after": 0.0004200652528548124,
+      "reason": "Original amount 5.15e-05; scale 8.156606851549755."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "market for diesel, burned in building machine",
+      "before": 0.00346,
+      "after": 0.02822185970636215,
+      "reason": "Original amount 0.00346; scale 8.156606851549755."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "market for electric arc furnace converter",
+      "before": 4.02495006663275e-11,
+      "after": 3.2829935290642336e-10,
+      "reason": "Original amount 4.02495006663275e-11; scale 8.156606851549755."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "market for electric arc furnace secondary metallurgy slag",
+      "before": -0.0498,
+      "after": -0.40619902120717777,
+      "reason": "Original amount -0.0498; scale 8.156606851549755."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "market for electric arc furnace slag",
+      "before": 0.0928,
+      "after": 0.7569331158238173,
+      "reason": "Original amount 0.09279999999999999; scale 8.156606851549755."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "market for electricity, low voltage",
+      "before": 0.034,
+      "after": 0.2773246329526917,
+      "reason": "Original amount 0.034; scale 8.156606851549755."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "market for electricity, medium voltage",
+      "before": 0.54,
+      "after": 4.404567699836868,
+      "reason": "Original amount 0.54; scale 8.156606851549755."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "market for ethylene glycol",
+      "before": 3.32e-08,
+      "after": 2.7079934747145184e-07,
+      "reason": "Original amount 3.32e-08; scale 8.156606851549755."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "market for ferrochromium, high-carbon, 68% Cr",
+      "before": 0.00011,
+      "after": 0.0008972267536704731,
+      "reason": "Original amount 0.00011; scale 8.156606851549755."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "market for ferromanganese, high-coal, 74.5% Mn",
+      "before": 4.45e-05,
+      "after": 0.0003629690048939641,
+      "reason": "Original amount 4.45e-05; scale 8.156606851549755."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "market for ferrosilicon",
+      "before": 0.0037,
+      "after": 0.030179445350734097,
+      "reason": "Original amount 0.0037; scale 8.156606851549755."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "market for hard coal",
+      "before": 0.014,
+      "after": 0.11419249592169657,
+      "reason": "Original amount 0.014; scale 8.156606851549755."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "market for heat, district or industrial, natural gas",
+      "before": 1.23,
+      "after": 10.032626427406198,
+      "reason": "Original amount 1.23; scale 8.156606851549755."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "market for inert waste, for final disposal",
+      "before": -0.005,
+      "after": -0.040783034257748776,
+      "reason": "Original amount -0.005; scale 8.156606851549755."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "market for iron scrap, unsorted",
+      "before": -5.15e-05,
+      "after": -0.0004200652528548124,
+      "reason": "Original amount -5.15e-05; scale 8.156606851549755."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "market for molybdenum trioxide",
+      "before": 1.41e-05,
+      "after": 0.00011500815660685156,
+      "reason": "Original amount 1.41e-05; scale 8.156606851549755."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "market for natural gas, high pressure",
+      "before": 0.025,
+      "after": 0.2039151712887439,
+      "reason": "Original amount 0.025; scale 8.156606851549755."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "market for nickel, class 1",
+      "before": 3.32e-05,
+      "after": 0.0002707993474714519,
+      "reason": "Original amount 3.32e-05; scale 8.156606851549755."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "market for oxygen, liquid",
+      "before": 0.0507,
+      "after": 0.4135399673735726,
+      "reason": "Original amount 0.0507; scale 8.156606851549755."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "market for propane, burned in building machine",
+      "before": 0.00273,
+      "after": 0.02226753670473083,
+      "reason": "Original amount 0.00273; scale 8.156606851549755."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "market for quicklime, in pieces, loose",
+      "before": 0.055,
+      "after": 0.44861337683523655,
+      "reason": "Original amount 0.055; scale 8.156606851549755."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "market for refractory, basic, packed",
+      "before": 0.0135,
+      "after": 0.11011419249592169,
+      "reason": "Original amount 0.0135; scale 8.156606851549755."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "market for spent solvent mixture",
+      "before": -3.32e-08,
+      "after": -2.7079934747145184e-07,
+      "reason": "Original amount -3.32e-08; scale 8.156606851549755."
+    },
+    {
+      "activity": "vanadium slag production",
+      "exchange": "treatment of electric arc furnace dust, residual material landfill",
+      "before": -0.0096,
+      "after": -0.07830342577487764,
+      "reason": "Original amount -0.009599999999999999; scale 8.156606851549755."
+    }
+  ]
+}

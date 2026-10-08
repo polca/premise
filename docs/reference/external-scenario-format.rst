@@ -224,6 +224,17 @@ In practice, this will reduce the input of electricity over time for that datase
 If you do not specify **includes**, then the efficiency gains will apply to all
 flows (of type *technosphere* and *biosphere*).
 
+When a production pathway applies **efficiency** changes to an existing
+inventory, **premise** creates a dedicated provider copy before applying those
+changes. The custom markets and exported demand mappings use that copy. Other
+consumers retain the original provider and its background-scenario treatment.
+Separate pathways receive independent copies, including when they start from the
+same inventory. Production allocation metadata and source identity are retained.
+Explicit **replaces** and **replaces in** instructions still control intentional
+supplier replacement; copying does not disable those instructions. A direct
+**regionalize** entry for the same inventory retains its existing precedence over
+pathway transformation settings.
+
 The field **reference year**
 indicates the baseline year **premise** should use to calculate the factor
 by which the flows should be scaled by. For example, if the electrolyzer
@@ -329,3 +340,52 @@ Indicating this will adjust the indicated flows in any activity that uses the ma
 In this example, the ammonia supplier will be replaced in all
 activities whose reference product contains the string **urea**
 and location in **DE**.
+
+
+Explicit bounds for external absolute efficiencies
+-------------------------------------------------
+
+An external production pathway may declare optional limits alongside an
+absolute efficiency variable::
+
+    efficiency:
+      - variable: Example electrical efficiency
+        absolute: true
+        bounds:
+          min: 0.05
+          max: 0.30
+        # Optional diagnostic; key of another configured production pathway:
+        heat pathway: example heat output
+
+``bounds`` uses the same units as the supplied target (for an electrical
+fuel-conversion efficiency, fractions rather than percentages). Both limits
+must be finite and strictly positive, with ``min <= max``. Premise clips the
+target first and then computes ``current_efficiency / applied_target``.
+There are no implicit limits and no technology identification: the datapackage
+author chooses the eligible pathways, their physical basis and their bounds.
+The mechanism is restricted to absolute external-scenario targets. Built-in
+IAM transformations and relative efficiency changes are unchanged.
+
+Omitting ``bounds`` applies the supplied target without clipping. A zero target
+retains the existing missing/inactive-target behaviour and does not become the
+lower bound. Negative or nonfinite targets are rejected. Source scenario values
+remain unchanged. The activity's ``efficiency bounds audit`` records requested
+and applied targets, limits, clipping status and an optional combined-output
+check. A clipped activity also receives an explanatory comment; the ordinary
+transformation log records the applied efficiency.
+
+Neither electricity nor heat production data are needed for clipping. The
+optional ``heat pathway`` must name another configured production pathway.
+When both output series are available with convertible annual energy units,
+Premise reports ``electrical_efficiency * (1 + heat/electricity)`` for the raw
+and bounded targets. Missing values or incompatible units produce a
+``not_available`` diagnostic and do not prevent electrical-efficiency clipping.
+This ratio is inferred from the declared electrical-efficiency basis; it does
+not independently verify fuel consumption. Values above 100% are reported,
+not automatically corrected, because the heating-value basis must be known.
+
+The old external routine attempted to bound a scaling factor using the target
+itself. That did not enforce the documented final-efficiency interval and also
+affected unrelated process types. Explicit target bounds replace that implicit
+behaviour. Existing datapackages that depended on it should supply intentional
+limits in their configuration.

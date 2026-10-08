@@ -2106,7 +2106,12 @@ class IAMDataCollection:
                                 eff_arr.loc[{"variables": var}] / denom
                             )
                             # turn NaNs from division by 0 / missing into ones (neutral factor)
-                            eff_arr = eff_arr.fillna(1)
+                            # Normalize only this relative series. Filling the
+                            # whole array would turn missing absolute targets
+                            # into synthetic 100% efficiencies.
+                            eff_arr.loc[{"variables": var}] = eff_arr.loc[
+                                {"variables": var}
+                            ].fillna(1)
 
                 data[i]["efficiency"] = eff_arr
 

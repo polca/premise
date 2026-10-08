@@ -2,6 +2,143 @@
 
 All notable changes to this project are documented in this file.
 
+## [2.5.4] - Unreleased
+
+### Fixed
+
+- Correct attributional allocation in the South African vanadium source
+  inventory (#286). Replace the ilmenite and sodium-sulfate substitution
+  credits with documented economic allocation of shared burdens. Assign
+  mining resources to their respective products, preserving the vanadium
+  and iron carried by magnetite and assigning titanium to the ilmenite
+  co-product. This removes the avoided-ilmenite extraction credit that could
+  produce negative titanium totals after the metals update.
+- Normalize the South African vanadium intermediates to one kilogram,
+  preserving the existing steel/slag allocation and the Chinese route.
+  Align lognormal uncertainty parameters with the corrected exchange amounts
+  and retain waste-treatment and recycling directions.
+- Invalidate the additional-inventory cache when the vanadium workbook
+  changes. Existing exported databases must be regenerated to receive the
+  correction.
+
+### Documentation
+
+- Document the allocation prices, proxy limitations and the unresolved
+  physical vanadium-yield inconsistency in the published source tables.
+
+## [2.5.3] - 2026-10-07
+
+Brightpath now powers Premise's exports to openLCA and SimaPro. For openLCA,
+Premise produces native JSON-LD packages containing processes, flows, units,
+and provider links, replacing the previous route through openLCA-compatible
+SimaPro CSVs. For SimaPro, Brightpath produces more accurate CSVs with corrected
+elementary-flow mappings, units, classifications, waste-treatment conventions,
+and metadata that respect SimaPro Desktop's import requirements.
+
+### Breaking changes
+
+- Require Python 3.12 or newer in the Python package and both Conda variants.
+  Align CI and documentation builds with Python 3.12.
+- Require `brightpath>=1.0.0a4,<2` from PyPI or the `romainsacchi` Conda
+  channel. Brightpath is installed as a package dependency; no GitHub source
+  installation is needed.
+- Use Brightpath exclusively for SimaPro CSV and openLCA JSON-LD exports.
+  Remove the legacy CSV writer and the `backend`/`format` export selectors.
+  openLCA exports require a matching local LCIA method package and currently
+  support ecoinvent 3.8 and 3.12.
+- Replace implicit external-scenario absolute-efficiency clipping with explicit,
+  optional `bounds`. Datapackages that relied on the former implicit limits
+  must declare their intended bounds; unbounded targets are applied as supplied.
+
+### Added
+
+- Export each scenario directly to an openLCA JSON-LD ZIP with linked providers,
+  scenario-specific process/product UUIDs, and a biosphere coverage report.
+  Match elementary flows against the supplied ecoinvent LCIA method package;
+  preserve unmatched flows and report method-package conflicts explicitly.
+- Add optional minimum/maximum bounds and combined electricity/heat diagnostics
+  for external absolute-efficiency targets. Record requested and applied
+  efficiencies, preserve missing targets, and apply adjustments consistently
+  to technosphere and biosphere exchanges.
+
+### Changed
+
+- Export SimaPro scenarios through Brightpath with ISIC folders, scenario
+  provenance, preserved reference quantities and uncertainty, and a JSON report
+  listing classification fallbacks and excluded biosphere exchanges. Retain
+  Premise's certification, preparation and automatic reporting workflow.
+- Place exported processes in nested ISIC division/group/class folders with
+  official UN titles and numeric ordering, with unambiguous product/unit
+  matching and CPC fallbacks. openLCA folders omit scenario wrappers while
+  retaining scenario identity in process and product UUIDs.
+- Explain Brightpath setup, format conversion, import steps and coverage reports
+  in the SimaPro and openLCA export guides.
+
+### Fixed
+
+- Preserve total emitted CO2 when reclassifying fossil and biogenic carbon in
+  gas and liquid-fuel blends, including inventories with carbon capture.
+  Repeated updates replace earlier transfers instead of accumulating them;
+  retain capture inputs, air compartments, negative flows and uncertainty.
+  Handle missing compartment metadata. Regenerate existing scenarios to apply
+  these corrections.
+- Apply GAINS pollutant reductions to every matching compartment and alias,
+  once per activity, in both dictionary and compact-store inventories.
+- Correct Swiss reservoir and pumped-storage evaporation while conserving
+  each inventory's turbine-water balance and relative uncertainty. Reject
+  incomplete or invalid water balances.
+- Match biosphere migrations by UUID or complete flow identity, including
+  compartments and units, instead of names alone. Remove stale provider links
+  and invalidate caches created with the former migration rules.
+- Keep external efficiency adjustments local to their copied, regionalized
+  providers without changing shared background consumers. Preserve allocation,
+  self-inputs, and the intended replacement scope.
+- Retain every scenario-variable mapping when pathways share a new inventory,
+  and preserve export mappings during direct regionalization.
+- Close the underlying scenario-array ZIP file before replacing its destination
+  so exports work on Windows. Remove temporary files after failed or interrupted
+  writes and preserve any existing export when writing, closing, or replacing fails.
+- Include IAM-region coverage in high-, medium-, and low-voltage electricity
+  market comments. Preserve scenario provenance in period-average markets and
+  append coverage after their averaging description, for all export formats.
+- Correct SimaPro Desktop import failures using Brightpath 1.0.0a4: bounded
+  process identifiers, waste-specific allocation fields, and early text-limit
+  checks. Keep generated system-description labels within 50 characters and
+  shorten ISIC folder components to at most 60 characters with an export-report
+  mapping. Include the required system-description category and preserve the
+  native volume-based salt-water resource name.
+- Preserve supported SimaPro final-waste indicators instead of removing all
+  inventory indicators. Use Brightpath's retained biosphere flows and
+  product-aware category types across ecoinvent releases. Preserve explicit
+  categories, report unresolved product-role fallbacks, and reject fallbacks
+  that conflict with resolved non-waste status. Unsupported indicators remain
+  individually reported exclusions.
+- Remove eight conflicting ecoinvent 3.8 biosphere UUID aliases using the
+  imported XML definitions. Preserve openLCA method-package metadata conflicts
+  as separate, uncharacterized flows with explicit coverage diagnostics.
+  Reject missing or ambiguous providers before publishing the archive.
+- Avoid false emission and electricity-efficiency validation failures for valid
+  zero factors and floating-point roundoff, while retaining checks for material
+  discrepancies and electricity-share shortfalls.
+- Restrict electric-motor and wind-turbine material mappings to equipment
+  reference products, preventing aluminium scrap co-products in ecoinvent 3.12
+  EN15804 from triggering inappropriate capacity conversions.
+- Add the missing ISIC 3530 and CPC 17300 classifications for nuclear
+  cogeneration heat, resolving the classification warning during import.
+
+### Validation
+
+- Require Brightpath export integration tests to run instead of skipping when
+  the dependency is unavailable. CI and Conda package checks verify its APIs.
+- Confirmed a complete REMIND SSP1-PkBudg1000 2050 export from ecoinvent 3.12
+  cut-off imported into SimaPro without errors or warnings. This verifies
+  import structure for that scenario; SimaPro LCIA equivalence remains unverified.
+- Refreshed 33 LCIA regression references after the photovoltaic inventory and
+  fuel-carbon accounting updates, retaining the existing tolerances. Verified
+  130 scores across 26 scenario builds and nine source/system-model cases.
+  Added an isolated-build validation utility and documented the
+  [reference review](docs/development/lcia-regression-reference-review.md).
+
 ## [2.5.2] - 2026-09-10
 
 ### Added

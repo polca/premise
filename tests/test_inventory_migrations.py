@@ -288,7 +288,7 @@ def test_compiled_backward_replacement_and_biosphere_precedence():
         {"name": "changed flow", "unit": "m3", "type": "biosphere"},
     )
     biosphere_rules = {
-        "delete": [{"source": {"uuid": "ignored", "name": "deleted flow"}}],
+        "delete": [{"source": {"name": "deleted flow"}}],
         "replace": [
             {
                 "source": {"name": "changed flow", "unit": "kg"},

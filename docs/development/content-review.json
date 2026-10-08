@@ -109,8 +109,8 @@
   },
   {
     "page": "user_guide/export/index.rst",
-    "review_date": "2026-09-07",
-    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_date": "2026-09-28",
+    "disposition": "Explained Brightpath's role, optional Python 3.12+ setup, output formats, and removal of legacy export routes against the implemented exporters.",
     "review_level": "Documentation screening, not independent scientific validation"
   },
   {
@@ -127,14 +127,14 @@
   },
   {
     "page": "user_guide/export/simapro.rst",
-    "review_date": "2026-09-07",
-    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_date": "2026-10-07",
+    "disposition": "Updated native import evidence for the complete REMIND SSP1-PkBudg1000 2050 ecoinvent 3.12 cut-off scenario; SimaPro LCIA equivalence remains unverified.",
     "review_level": "Documentation screening, not independent scientific validation"
   },
   {
     "page": "user_guide/export/openlca.rst",
-    "review_date": "2026-09-07",
-    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_date": "2026-09-28",
+    "disposition": "Explained Brightpath JSON-LD serialization and local method-package mapping; scoped the existing openLCA engine comparison to its tested demand and climate method.",
     "review_level": "Documentation screening, not independent scientific validation"
   },
   {
@@ -175,8 +175,8 @@
   },
   {
     "page": "methodology/battery-stationary.rst",
-    "review_date": "2026-09-07",
-    "disposition": "Compared current implementation and shared helpers; corrected exchange scope, conditions and route accounting; removed migration/internal narratives; added a scope process diagram.",
+    "review_date": "2026-10-07",
+    "disposition": "Documented the 2.5.4 source-inventory allocation correction, source prices, normalization, uncertainty and unresolved metallurgical-yield limitation; checked against Weber supporting information, USGS tables and the imported workbook.",
     "review_level": "Documentation screening, not independent scientific validation"
   },
   {
@@ -469,8 +469,8 @@
   },
   {
     "page": "development/releases-2-5.rst",
-    "review_date": "2026-09-07",
-    "disposition": "Retained after editorial/consistency screening; external and scientific limitations recorded separately.",
+    "review_date": "2026-10-07",
+    "disposition": "Added the 2.5.3 migration requirements for Python, Brightpath exports, local openLCA method packages, and explicit external efficiency bounds; explained scenario regeneration.",
     "review_level": "Documentation screening, not independent scientific validation"
   },
   {

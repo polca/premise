@@ -1,7 +1,7 @@
 Installation and requirements
 ===============================
 
-The package requires **Python 3.10 or newer**, as declared in
+The package requires **Python 3.12 or newer**, as declared in
 ``pyproject.toml``. Use a separate Python environment for each Brightway generation.
 Ecoinvent data are supplied by the user, not bundled with *premise*.
 
