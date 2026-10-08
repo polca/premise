@@ -6,6 +6,9 @@ All notable changes to this project are documented in this file.
 
 ### Fixed
 
+- Apply market `efficiency` filters in external scenarios the same way as
+  production pathways: plain flow names under `includes` no longer raise an
+  AttributeError, and `excludes` is now applied instead of ignored.
 - Correct attributional allocation in the South African vanadium source
   inventory (#286). Replace the ilmenite and sodium-sulfate substitution
   credits with documented economic allocation of shared burdens. Assign
