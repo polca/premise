@@ -6,6 +6,10 @@ All notable changes to this project are documented in this file.
 
 ### Fixed
 
+- Keep the efficiency `excludes` of every variable in an external
+  scenario. Only the last variable's excludes were kept, so flows the
+  other variables excluded were scaled anyway. Results change for configs
+  where two variables exclude the same flow type.
 - Correct attributional allocation in the South African vanadium source
   inventory (#286). Replace the ilmenite and sodium-sulfate substitution
   credits with documented economic allocation of shared burdens. Assign

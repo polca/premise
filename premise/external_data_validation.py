@@ -223,16 +223,12 @@ def flag_activities_to_adjust(
                 )
 
         # define exclusion filters
+        # One entry per efficiency variable, like the filters above.
+        excludes = defaultdict(dict)
         for k in dataset_vars["efficiency"]:
-            if "excludes" in k:
-                if "technosphere" in k.get("excludes", {}):
-                    dataset["excludes technosphere"] = {
-                        k["variable"]: k["excludes"]["technosphere"]
-                    }
-                if "biosphere" in k.get("excludes", {}):
-                    dataset["excludes biosphere"] = {
-                        k["variable"]: k["excludes"]["biosphere"]
-                    }
+            for flow_type, excluded in k.get("excludes", {}).items():
+                excludes[f"excludes {flow_type}"][k["variable"]] = excluded
+        dataset.update(excludes)
 
     if dataset_vars["replaces"]:
         dataset["replaces"] = dataset_vars["replaces"]
