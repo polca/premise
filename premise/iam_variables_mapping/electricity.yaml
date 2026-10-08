@@ -176,6 +176,7 @@ Biomass ST:
   iam_aliases:
     image: Secondary Energy|Electricity|Biomass|w/o CCS|1
     message: Secondary Energy|Electricity|Biomass|Solids|w/o CCS|2
+    open-prom: Secondary Energy|Electricity|Biofuels|w/o CCS
     tiam-ucl: Secondary Energy|Electricity|Biomass combustion|w/o CCS
     gcam: Secondary Energy|Electricity|Biomass ST
   max_efficiency: 0.3
@@ -194,6 +195,7 @@ Biomass ST CCS:
     tiam-ucl: Efficiency|Electricity|Biomass combustion|w CCS
     gcam: Efficiency|Electricity|Biomass ST CCS
   iam_aliases:
+    open-prom: Secondary Energy|Electricity|Biofuels|w/ CCS
     tiam-ucl: Secondary Energy|Electricity|Biomass combustion|w CCS
     gcam: Secondary Energy|Electricity|Biomass ST CCS
   max_efficiency: 0.25
@@ -382,6 +384,7 @@ Coal PC:
     gcam: Secondary Energy|Electricity|Coal PC
     image: Secondary Energy|Electricity|Coal|w/o CCS|1
     message: Secondary Energy|Electricity|Coal|w/o CCS|3
+    open-prom: Secondary Energy|Electricity|Coal|w/o CCS
     remind: SE|Electricity|Coal|++|Pulverised Coal w/o CC
     remind-eu: SE|Electricity|Coal|++|Pulverised Coal w/o CC
     tiam-ucl: Secondary Energy|Electricity|Existing coal generation|w/o CCS
@@ -418,6 +421,7 @@ Coal PC CCS:
   iam_aliases:
     gcam: Secondary Energy|Electricity|Coal PC CCS
     message: Secondary Energy|Electricity|Coal|w/ CCS|2
+    open-prom: Secondary Energy|Electricity|Coal|w/ CCS
     witch: Secondary Energy|Electricity|Coal|w/ CCS|1
   max_efficiency: 0.35
 Coal PCU:
@@ -546,6 +550,7 @@ Gas CC:
     gcam: Secondary Energy|Electricity|Gas CC
     image: Secondary Energy|Electricity|Gas|w/o CCS|2
     message: Secondary Energy|Electricity|Gas|w/o CCS|1
+    open-prom: Secondary Energy|Electricity|Gas|w/o CCS
     remind: SE|Electricity|Gas|++|Combined Cycle w/o CC
     remind-eu: SE|Electricity|Gas|++|Combined Cycle w/o CC
     tiam-ucl: Secondary Energy|Electricity|Gas CCGT|w/o CCS
@@ -582,6 +587,7 @@ Gas CC CCS:
     gcam: Secondary Energy|Electricity|Gas CC CCS
     image: Secondary Energy|Electricity|Gas|w/ CCS|1
     message: Secondary Energy|Electricity|Gas|w/ CCS|1
+    open-prom: Secondary Energy|Electricity|Gas|w/ CCS
     remind: SE|Electricity|Gas|++|Combined Cycle w/ CC
     remind-eu: SE|Electricity|Gas|++|Combined Cycle w/ CC
     tiam-ucl: Secondary Energy|Electricity|Gas CCGT|w CCS
@@ -748,6 +754,7 @@ Geothermal:
     gcam: Secondary Energy|Electricity|Geothermal
     image: Secondary Energy|Electricity|Other
     message: Secondary Energy|Electricity|Geothermal
+    open-prom: Secondary Energy|Electricity|Geothermal and other renewable sources
     remind: SE|Electricity|+|Geothermal
     remind-eu: SE|Electricity|+|Geothermal
     tiam-ucl: Secondary Energy|Electricity|Geothermal
@@ -764,6 +771,7 @@ Hydro:
     gcam: Secondary Energy|Electricity|Hydro
     image: Secondary Energy|Electricity|Hydro
     message: Secondary Energy|Electricity|Hydro
+    open-prom: Secondary Energy|Electricity|Hydro
     remind: SE|Electricity|+|Hydro
     remind-eu: SE|Electricity|+|Hydro
     tiam-ucl: Secondary Energy|Electricity|Impoundment hydro
@@ -801,6 +809,7 @@ Nuclear:
     gcam: Secondary Energy|Electricity|Nuclear
     image: Secondary Energy|Electricity|Nuclear
     message: Secondary Energy|Electricity|Nuclear
+    open-prom: Secondary Energy|Electricity|Nuclear
     remind: SE|Electricity|+|Nuclear
     remind-eu: SE|Electricity|+|Nuclear
     tiam-ucl: Secondary Energy|Electricity|Nuclear
@@ -931,6 +940,7 @@ Oil ST:
     gcam: Secondary Energy|Electricity|Oil ST
     image: Secondary Energy|Electricity|Oil|w/o CCS|1
     message: Secondary Energy|Electricity|Oil|w/o CCS|2
+    open-prom: Secondary Energy|Electricity|Oil|w/o CCS
     remind: SE|Electricity|Oil|w/o CC
     remind-eu: SE|Electricity|Oil|w/o CC
     tiam-ucl: Secondary Energy|Electricity|Existing oil electric generation|w/o CCS
@@ -964,6 +974,7 @@ Solar PV Centralized:
     gcam: Secondary Energy|Electricity|Solar PV Centralized
     image: Secondary Energy|Electricity|Solar|PV|1
     message: Secondary Energy|Electricity|Solar|PV|Commercial
+    open-prom: Secondary Energy|Electricity|Solar
     remind: SE|Electricity|Solar|+|PV
     remind-eu: SE|Electricity|Solar|+|PV
     tiam-ucl: Secondary Energy|Electricity|Concentrated Solar PV centralised
@@ -990,6 +1001,7 @@ Storage, Hydrogen:
     fltr:
     - electricity production, from hydrogen-fired one gigawatt gas turbine, for grid balancing
   iam_aliases:
+    open-prom: Secondary Energy|Electricity|Hydrogen
     remind: SE|Electricity|+|Hydrogen
     remind-eu: SE|Electricity|+|Hydrogen
 Wave:
@@ -1028,6 +1040,7 @@ Wind Onshore:
     gcam: Secondary Energy|Electricity|Wind Onshore
     image: Secondary Energy|Electricity|Wind|1
     message: Secondary Energy|Electricity|Wind|Onshore
+    open-prom: Secondary Energy|Electricity|Wind
     remind: SE|Electricity|Wind|+|Onshore
     remind-eu: SE|Electricity|Wind|+|Onshore
     tiam-ucl: Secondary Energy|Electricity|Onshore wind centralised
