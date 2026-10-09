@@ -68,7 +68,7 @@ Additional validation:
   LCI, interpolation, caches and importer behaviour. The combined run also
   required isolating an existing test that overwrote a shared matrix fixture.
 
-- 54 premise tests pass across cohort evolution, lifecycle structure, actual
+- 60 premise tests pass across cohort evolution, lifecycle structure, actual
   export, producer validation, curation and legacy temporal rules.
 - An actual exported lifecycle fixture passes 32 signed annual calendar/LCI
   cases in TRAILS, with direct/Brightway solvers, root/non-root accounting,
@@ -98,8 +98,9 @@ python dev/stock_vintage/curate_observations.py \
   --input-dir /path/to/local/downloads --output /tmp/stock-observations.json
 ```
 
-The current extraction yields 32 observations: UK cars/HGVs for 2014–2025,
-Quebec pipes for 2020/2022, and two US-WECC power technologies for 2020–2022.
+The current extraction yields 43 observations: UK cars/HGVs for 2014–2025,
+a narrower articulated 32–40 tonne diesel subgroup for 2015–2025, Quebec pipes
+for 2020/2022, and two US-WECC power technologies for 2020–2022.
 Raw downloads stay outside the repository. The acquisition manifest records URLs
 and hashes. The table below reports 2022 observations, not validated service
 distributions.
@@ -107,7 +108,8 @@ distributions.
 | Pilot observation | Selected stock | Unknown cohort share | Remaining conversion |
 |---|---:|---:|---|
 | UK battery-electric passenger cars | 628,984 vehicles | 0.0568% | First-use year as manufacture proxy; mileage weighting; chassis/battery/replacement boundaries |
-| UK heavy goods vehicles | 536,519 vehicles | 2.3759% | Gross-weight/EURO-class correspondence and tonne-kilometre weighting |
+| UK heavy goods vehicles (broad comparison) | 536,519 vehicles | 2.3759% | Replaced as primary candidate by narrower subgroup below |
+| UK articulated diesel goods vehicles, 32–40 tonnes | 14,231 vehicles | 2.6000% plus one pre-1980 vehicle | EURO-class correspondence and tonne-kilometre weighting remain |
 | US-WECC operating PV | 27,649.8 MW AC | 0% | Technology/mounting correspondence, output weighting, AC/DC basis and replacements |
 | US-WECC operating natural-gas CCGT excluding CHP | 50,099.8 MW AC | 0% | Generator-to-plant/component boundary and output weighting |
 | Quebec public potable-water pipes | 45,114 km | 5.1603% | Annualisation of construction bins, pre-1940 tail, unknown dates, service weighting |
@@ -139,6 +141,13 @@ are retained. The survey's inclusion of federal organisations changes in 2022;
 the 2020–2022 difference must not be interpreted as pure additions/retirements.
 [Table 34-10-0289-01](https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=3410028901).
 
+See [pilot boundary refinements](pilot-boundary-findings.md) for reproducible
+truck selection and the power-service audit. The audit narrows CCGT candidates
+to 41,476.3 MW in complete single-cohort blocks and PV to 1,844.5 MW of fixed-tilt
+crystalline-silicon capacity. These are candidates with explicit exclusions;
+output weights, component boundaries and technology proxies still need validation.
+The power audit resolves five numeric-padding joins and rejects ambiguous IDs.
+
 ## Real inventory boundaries found
 
 Read-only inspection used the local `ecoinvent-3.12-cutoff` Brightway database.
@@ -151,13 +160,16 @@ The following are candidates, not blanket group mappings:
 - Heavy-lorry transport consumes a 40-tonne lorry through a market; manufacture
   embeds a signed used-lorry exchange. The HGV observation is broader than this
   lorry size and any EURO-specific transport activity.
-- US-WECC 570 kWp PV and CCGT service activities exist and have explicit capital
-  inputs. Their market/manufacture component and disposal boundaries still need
-  full traversal and documented choices.
+- US-WECC 570 kWp PV and CCGT service activities have explicit capital inputs.
+  PV construction includes initial/replacement inverter quantities, with disposal
+  embedded in component inventories. CCGT's reviewed direct construction inputs
+  have no explicit disposal port. Further component tracing remains.
 - The Quebec **tap-water market**, rather than treatment-plant production,
   consumes the water-network input measured in kilometres. Its supplier market
   leads to network construction in RoW. This is a declared manufacturing proxy,
-  distinct from the Quebec service geography.
+  distinct from the Quebec service geography. Network construction includes
+  tanks as well as pipes and embeds material disposal; those boundaries now
+  have explicit follow-up actions in the refinement document.
 
 Markets cannot all be classified as transparent wrappers: the tap-water market
 is itself a service caller with a genuine capital input. Conversely, the

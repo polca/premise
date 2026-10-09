@@ -1,11 +1,12 @@
 """Curation checks for exact underlying stock values and explicit missingness."""
 
+import csv
 from zipfile import ZipFile
 from xml.etree import ElementTree as ET
 
 import pytest
 
-from dev.stock_vintage.curate_observations import NS, uk_vehicles
+from dev.stock_vintage.curate_observations import NS, uk_articulated_trucks, uk_vehicles
 
 
 def fixture_ods(path, *, total="1.008", missing_low=False):
@@ -90,3 +91,66 @@ def test_suppressed_numeric_value_is_not_interpreted_as_zero(tmp_path):
     fixture_ods(path, missing_low=True)
     with pytest.raises(ValueError, match="Missing numeric"):
         uk_vehicles(path)
+
+
+def truck_fixture(path, *, unknown="7", duplicate=False):
+    keys = [
+        "Geography",
+        "TaxClass",
+        "WheelPlan",
+        "WheelPlanDetailed",
+        "BodyTypeDetailed",
+        "RoadUsing",
+        "MaximumGrossWeightBand",
+        "YearFirstUsed",
+        "Fuel",
+        "2022",
+    ]
+    base = [
+        "United Kingdom",
+        "Goods",
+        "Articulated",
+        "Articulated: 2 and 3 axle",
+        "Tractor",
+        "1",
+        "I: Over 32 and up to 40 tonnes",
+        "2020",
+        "Diesel",
+        "100",
+    ]
+    rows = [base]
+    for year, value in [("Before 1980", "2"), ("Unknown", unknown), ("2023", "[z]")]:
+        rows.append(base[:7] + [year, "Diesel", value])
+    rows.append(["England"] + base[1:])  # Overlapping geography must not be added.
+    rows.append(base[:6] + ["J: Over 40 and up to 44 tonnes"] + base[7:])
+    if duplicate:
+        rows.append(base)
+    with path.open("w", newline="") as stream:
+        writer = csv.writer(stream)
+        writer.writerow(keys)
+        writer.writerows(rows)
+
+
+def test_truck_subgroup_retains_open_and_unknown_bins_without_geographic_overlap(
+    tmp_path,
+):
+    path = tmp_path / "trucks.csv"
+    truck_fixture(path)
+    (row,) = uk_articulated_trucks(path, years=[2022])
+    assert row["total_stock"] == 109
+    assert row["unknown_stock"] == 7
+    assert row["cohorts"] == [{"cohort_year": 2020, "stock": 100}]
+    assert row["unresolved_bins"][0]["stock"] == 2
+    assert row["unresolved_bins"][0]["start_year"] is None
+
+
+@pytest.mark.parametrize(
+    "option,match", [("duplicate", "Duplicate"), ("unknown", "Unresolved")]
+)
+def test_truck_ambiguous_rows_and_suppressed_counts_fail(tmp_path, option, match):
+    path = tmp_path / "trucks.csv"
+    truck_fixture(
+        path, **({"duplicate": True} if option == "duplicate" else {"unknown": "[c]"})
+    )
+    with pytest.raises(ValueError, match=match):
+        uk_articulated_trucks(path, years=[2022])

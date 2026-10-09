@@ -20,6 +20,7 @@ from xml.etree import ElementTree as ET
 from zipfile import ZipFile
 
 PINNED = {
+    "df_VEH0520.csv": "3a5aa09ff40d16c7a71dbc697ed072d16ea37c27e9f8a31dc50c0dd0cf1376bf",
     "veh1111.ods": "bc3529975f7fa9e12181b64397cb1e619ae78926130146b64f5c35b9e268d1cc",
     "canada-infrastructure.zip": "4a5cac2fde5dcbf08da296449125b4f1e21b955074bcdaccf5f430edefaaa09b",
     "eia8602020.zip": "ce519fd0b02c74b8c4231dc023bf07f922ae5f2a018fcaf88914502f61aa89ea",
@@ -243,6 +244,97 @@ def canadian_pipes(path: Path):
     return observations
 
 
+def uk_articulated_trucks(path: Path, years=range(2015, 2026)):
+    """Retain exact first-use cohorts for a bounded 32–40 tonne truck fleet.
+
+    Geography rows overlap, so use United Kingdom once. The pre-1980 open bin
+    and unknown year stay unresolved. First-use year is not an EURO standard.
+    """
+    years = list(years)
+    totals = {year: Counter() for year in years}
+    seen = set()
+    selectors = {
+        "Geography": "United Kingdom",
+        "TaxClass": "Goods",
+        "WheelPlan": "Articulated",
+        "RoadUsing": "1",
+        "MaximumGrossWeightBand": "I: Over 32 and up to 40 tonnes",
+        "Fuel": "Diesel",
+    }
+    with path.open(newline="", encoding="utf-8-sig") as stream:
+        reader = csv.DictReader(stream)
+        identity_fields = reader.fieldnames[:9]
+        required = set(selectors) | {"YearFirstUsed"} | {str(y) for y in years}
+        if not required.issubset(reader.fieldnames):
+            raise ValueError("Truck source columns changed")
+        for row in reader:
+            if any(row[k] != value for k, value in selectors.items()):
+                continue
+            key = tuple(row[k] for k in identity_fields)
+            if key in seen:
+                raise ValueError("Duplicate selected truck source row")
+            seen.add(key)
+            label = row["YearFirstUsed"]
+            if label not in {"Unknown", "Before 1980"} and not label.isdigit():
+                raise ValueError(f"Unrecognised first-use category: {label}")
+            for year in years:
+                raw = row[str(year)]
+                if raw == "[z]" and label.isdigit() and int(label) > year:
+                    continue  # Future first-use cohort is not applicable.
+                if not raw.isdigit():
+                    raise ValueError(f"Unresolved truck count {raw!r} for {year}")
+                value = int(raw)
+                if label.isdigit() and value and not 1980 <= int(label) <= year:
+                    raise ValueError("Truck cohort is outside the observation year")
+                totals[year][label] += value
+    observations = []
+    for year, counts in totals.items():
+        total = sum(counts.values())
+        if total <= 0:
+            raise ValueError("No selected articulated-truck stock")
+        unknown, open_bin = counts["Unknown"], counts["Before 1980"]
+        cohorts = [
+            {"cohort_year": int(label), "stock": value}
+            for label, value in sorted(counts.items())
+            if label.isdigit() and value > 0
+        ]
+        assert sum(c["stock"] for c in cohorts) + unknown + open_bin == total
+        observations.append(
+            {
+                "group": "heavy_trucks_32_40t",
+                "geography": "United Kingdom",
+                "observation_year": year,
+                "observation_date": f"{year}-12-31",
+                "unit": "vehicle",
+                "source_id": "S02",
+                "file": path.name,
+                "source_selection": selectors,
+                "cohort_date_semantics": "year of first use, not manufacture or EURO class",
+                "cohorts": cohorts,
+                "unresolved_bins": [
+                    {
+                        "label": "Before 1980",
+                        "end_year": 1979,
+                        "start_year": None,
+                        "stock": open_bin,
+                    }
+                ],
+                "unknown_stock": unknown,
+                "unknown_share": unknown / total,
+                "total_stock": total,
+                "assumptions": [
+                    "Licensed road-using articulated diesel goods vehicles; 32 < maximum gross weight <= 40 tonnes",
+                    "The UK geography is selected once; constituent nations and Great Britain are not added",
+                    "First-use year does not identify EURO class or physical retirement",
+                    "Stock counts are not tonne-kilometre weights; loading and mileage need separate treatment",
+                    "Counts reconcile selected rows, not an independently published subgroup total",
+                    "UK 2014 cells in the downloaded detailed file are not applicable; curated series starts in 2015",
+                ],
+            }
+        )
+    return observations
+
+
 def xlsx_records(archive, name, sheet):
     import openpyxl
 
@@ -380,6 +472,11 @@ def main():
     root = args.input_dir
     sources = [
         source(
+            root / "df_VEH0520.csv",
+            "S02",
+            "https://assets.publishing.service.gov.uk/media/69ef3f04ed93f72cf816340e/df_VEH0520.csv",
+        ),
+        source(
             root / "veh1111.ods",
             "S02",
             "https://assets.publishing.service.gov.uk/media/69ef3555606c20d41216341a/veh1111.ods",
@@ -401,6 +498,7 @@ def main():
     observations = uk_vehicles(root / "veh1111.ods") + canadian_pipes(
         root / "canada-infrastructure.zip"
     )
+    observations.extend(uk_articulated_trucks(root / "df_VEH0520.csv"))
     for year in (2020, 2021, 2022):
         observations.extend(eia_generators(root / f"eia860{year}.zip", year))
     data = {
