@@ -22,6 +22,7 @@ from datapackage import Package
 import bw2data
 
 from . import __version__
+from .stock_vintage import StockVintageExport
 from .data_collection import get_delimiter
 from .new_database import (
     IAM_OUTPUT_DIR,
@@ -98,6 +99,7 @@ class TrailsDataPackage:
         use_absolute_efficiency=False,
         biosphere_name="biosphere3",
         generate_reports: bool = True,
+        stock_vintage_profiles: dict | None = None,
     ):
         assert "model" in scenario, "Missing `model` key in `scenario`."
         assert "pathway" in scenario, "Missing `pathway` key in `scenario`."
@@ -107,6 +109,18 @@ class TrailsDataPackage:
             years = self._infer_years_from_scenario(scenario, key)
 
         self.years = years
+        self.stock_vintage_export = (
+            StockVintageExport(stock_vintage_profiles)
+            if stock_vintage_profiles is not None
+            else None
+        )
+        if self.stock_vintage_export is not None:
+            context = self.stock_vintage_export.context
+            if (
+                context["source_version"] != source_version
+                or context["system_model"] != system_model
+            ):
+                raise ValueError("Stock-vintage source version/system model mismatch")
 
         # build self.scenarios, a list of dictionaries (scenario)
         # each dictionary has a `year` field, from `years`
@@ -881,6 +895,19 @@ class TrailsDataPackage:
 
         package.infer("trails_temp/**/*.yaml")
         package.infer()
+        stock_export = getattr(self, "stock_vintage_export", None)
+        if stock_export is not None:
+            stock_metadata = stock_export.write_resource(Path.cwd() / "trails_temp")
+            package.add_resource(
+                {
+                    "name": "stock-vintage",
+                    "path": "trails_temp/stock_vintage.json",
+                    "profile": "data-resource",
+                    "format": "json",
+                    "mediatype": "application/json",
+                }
+            )
+            package.descriptor["stock_vintage"] = stock_metadata
 
         package.descriptor["name"] = name.replace(" ", "_").lower()
         package.descriptor["title"] = name.capitalize()
@@ -903,6 +930,15 @@ class TrailsDataPackage:
                 "url": "https://creativecommons.org/publicdomain/zero/1.0/",
             }
         ]
+        if stock_export is not None:
+            # A generated timing resource does not relicense the underlying
+            # ecoinvent inventory or its source observations.
+            package.descriptor.pop("licenses", None)
+            package.descriptor["rights"] = (
+                "Original inventory and observation-source rights apply. "
+                "This experimental package makes no blanket open-data claim; "
+                "consult the profile provenance and source manifest."
+            )
 
         if contributors is None:
             contributors = [
@@ -1302,6 +1338,7 @@ class TrailsDataPackage:
         - end_of_life: one-pulse (type 6) at dataset lifetime + 1 from CSV
         - nested lifecycle services: one-pulse (type 6) at the caller year
         """
+        stock_export = getattr(self, "stock_vintage_export", None)
         stock_assets = getattr(self, "stock_asset_params", {})  # (name, ref) -> params
         end_of_life = getattr(self, "end_of_life_suppliers", set())
         biomass_growth = getattr(self, "biomass_growth_params", {})
@@ -1480,8 +1517,12 @@ class TrailsDataPackage:
             "temporal_max",
             "temporal_offsets",
             "temporal_weights",
+            "temporal_amount_source",
         )
         for s, scenario in enumerate(self.datapackage.scenarios):
+            matched_stock_bindings = set()
+            if stock_export is not None:
+                stock_export.validate_scenario(scenario)
             get_store = getattr(self.datapackage, "get_inventory_store", None)
             persist = (
                 scenario.get("_inventory_checkpoint") is not None
@@ -1547,6 +1588,15 @@ class TrailsDataPackage:
 
                         if exc_type != "technosphere":
                             continue
+
+                        if stock_export is not None:
+                            binding, override = stock_export.parameters(
+                                ds, e, scenario["year"]
+                            )
+                            if override is not None:
+                                e.update(override)
+                                matched_stock_bindings.add(binding)
+                                continue
 
                         sup_name = (e.get("name") or "").strip()
                         sup_ref = (
@@ -1633,6 +1683,9 @@ class TrailsDataPackage:
                                 transaction.patch_exchange(
                                     exchange_id, updates, activity_id=activity.id
                                 )
+
+                if stock_export is not None:
+                    stock_export.validate_matches(matched_stock_bindings)
 
             if get_store is None:
                 self.datapackage.scenarios[s] = dump_database(scenario)
