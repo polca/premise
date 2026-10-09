@@ -77,6 +77,41 @@ def number(value):
     return None
 
 
+def complete_block_membership(candidates, members, reference_year):
+    """Reject hidden same-unit members and partial commissioning-year output.
+
+    Membership must include every generator sheet, not just the operating
+    technology subset. This deliberately excludes mixed and rebuilt blocks;
+    it does not infer a whole-block construction date from component dates.
+    """
+    accepted, rejected = [], []
+    for block in candidates:
+        key = (block["plant_code"], block["unit_code"])
+        rows = members.get(key, [])
+        ids = [generator_id(r["Generator ID"]) for r in rows]
+        reasons = []
+        if len(ids) != len(set(ids)) or set(ids) != set(block["generator_ids"]):
+            reasons.append("unexpected_or_duplicate_unit_members")
+        for row in rows:
+            if (
+                row["sheet"] != "Operable"
+                or row["Status"] != "OP"
+                or row["Technology"] != "Natural Gas Fired Combined Cycle"
+                or row["Energy Source 1"] != "NG"
+                or row["Associated with Combined Heat and Power System"] != "N"
+                or row.get("Operating Year") != block["cohort_year"]
+                or row["Prime Mover"] not in {"CT", "CA", "CS"}
+            ):
+                reasons.append("incompatible_unit_member")
+        if block["cohort_year"] >= reference_year:
+            reasons.append("partial_initial_year_output")
+        if reasons:
+            rejected.append({**block, "membership_exclusions": sorted(set(reasons))})
+        else:
+            accepted.append(block)
+    return accepted, rejected
+
+
 def audit(root, year=2022):
     observations = {
         row["group"]: row for row in eia_generators(root / f"eia860{year}.zip", year)
@@ -147,9 +182,21 @@ def audit(root, year=2022):
                 "capacity_mw_ac": capacity,
                 "net_generation_mwh": math.fsum(values),
                 "generator_count": len(rows),
+                "generator_ids": sorted(generator_id(r["generator_id"]) for r in rows),
                 "zero_or_negative_component_outputs": sum(v <= 0 for v in values),
             }
         )
+    members = defaultdict(list)
+    candidate_keys = {(b["plant_code"], b["unit_code"]) for b in eligible}
+    with ZipFile(root / f"eia860{year}.zip") as archive:
+        for sheet in ("Operable", "Retired and Canceled", "Proposed"):
+            for _, row in xlsx_records(archive, f"3_1_Generator_Y{year}.xlsx", sheet):
+                key = (row["Plant Code"], str(row["Unit Code"]).strip())
+                if key in candidate_keys:
+                    members[key].append({**row, "sheet": sheet})
+    eligible, membership_exclusions = complete_block_membership(eligible, members, year)
+    for block in membership_exclusions:
+        excluded["failed_full_membership_or_year_check"] += block["capacity_mw_ac"]
     # PV material/mounting limits are explicit. EIA's crystalline category does
     # not separate mono-Si and multi-Si, or prove ground versus rooftop mounting.
     pv_lookup = {(r["plant_code"], generator_id(r["generator_id"])): r for r in pv}
@@ -207,6 +254,12 @@ def audit(root, year=2022):
             "numeric_identity_aliases": aliases,
             "unmatched_generators": missing,
             "candidate_blocks": eligible,
+            "membership_exclusions": membership_exclusions,
+            "membership_sheets_checked": [
+                "Operable",
+                "Retired and Canceled",
+                "Proposed",
+            ],
             "excluded_capacity_mw_ac": dict(excluded),
             "candidate_capacity_mw_ac": math.fsum(
                 r["capacity_mw_ac"] for r in eligible
@@ -215,8 +268,8 @@ def audit(root, year=2022):
                 r["net_generation_mwh"] for r in eligible
             ),
             "remaining_checks": [
-                "Confirm all unit members against excluded/nonoperating/retired generator records",
-                "Unit-code/component and reported generation boundaries require review",
+                "Shared initial operation year is a construction-date proxy; later refurbishments are not identified",
+                "Calendar-year generation weights end-year operating stock; within-year availability is not reconstructed",
                 "Compare component-capacity and complete-block cohort sensitivities",
             ],
         },

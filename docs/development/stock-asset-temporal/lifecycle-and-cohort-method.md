@@ -42,6 +42,13 @@ parameter denotes total service life, with scale `mean / Gamma(1 + 1/shape)`;
 it is not mean age in the stock. Fixed life is an analytical test/sensitivity
 case and rejects observed survivors at or beyond its specified lifetime.
 
+The optional `quartic_capacity` law supplies the continuous remaining-capacity
+analogue `S(a) = max(0, 1 - (a/(1.25 L))**4)`. It is not the native REMIND
+discrete vintage implementation. Observed cohorts beyond its finite support
+require an explicitly supplied exponential residual-life extension. The
+[CCGT pilot method](ccgt-pilot-method.md) explains the source, indexing limitation
+and sensitivities; this is not a library default lifetime.
+
 This annual convention suits the December observations in the vehicle source.
 It makes the interval `(t,t+1]` a retirement event in year `t+1`; a surviving
 asset is never disposed in an already elapsed year. It refines the general
@@ -61,7 +68,9 @@ For each year the report retains opening stock, natural retirement, excess
 exits, additions, closing stock and a numerical balance residual. A territorial
 exit is not physical disposal: exports and geographic reclassification can
 remove stock while an asset remains in use. `retirement_record` refuses to turn
-future territorial excess exits into physical end-of-life events.
+future territorial excess exits into physical end-of-life events. The same
+guard applies to `service_exit`, which denotes loss of operating service without
+evidence of physical disposal (for example, mothballed capacity).
 
 ## Retirement conditional on service
 
@@ -123,6 +132,12 @@ year. These boundaries remain release requirements for the empirical pilots.
 The rewrite requires `uncertainty_mode="deterministic"`. Products of uncertain
 coefficients and lifted ports do not preserve the original Monte Carlo
 correlations. The implementation makes no stochastic-equivalence claim.
+
+For a reviewed capital chain with no embedded lifecycle exchange to move,
+`scope_capital_chain` copies the caller and explicit market/manufacturer chain,
+preserving all quantities and providing internal zero-shift bindings. It rejects
+unlisted internal links and cycles. No disposal amount is invented. This is the
+CCGT boundary, tested independently with non-unit production and signed inputs.
 
 ## Evidence and reproduction
 

@@ -23,24 +23,43 @@ def _nonnegative(value, label):
 
 @dataclass(frozen=True)
 class SurvivalLaw:
-    """Fixed or Weibull service life; mean is total life, not observed age."""
+    """Declared survival or remaining-capacity law, never an observed-age density.
+
+    ``quartic_capacity`` is the continuous analogue of REMIND depreciation:
+    S(a) = max(0, 1 - (a / (1.25 * mean_years))**4). It does not reproduce the
+    native model's discrete vintage/period indexing. Observed survivors beyond
+    its finite support require an explicit residual-life extension assumption.
+    """
 
     family: str
     mean_years: float
     shape: float | None = None
+    overage_remaining_years: float | None = None
 
     def __post_init__(self):
         if _nonnegative(self.mean_years, "mean_years") <= 0:
             raise ValueError("Mean lifetime must be positive")
         object.__setattr__(self, "mean_years", float(self.mean_years))
-        if self.family not in {"fixed", "weibull"}:
+        if self.family not in {"fixed", "weibull", "quartic_capacity"}:
             raise ValueError("Unsupported survival family")
         if self.family == "weibull":
             if self.shape is None or _nonnegative(self.shape, "shape") <= 0:
                 raise ValueError("Weibull shape must be positive")
             object.__setattr__(self, "shape", float(self.shape))
         elif self.shape is not None:
-            raise ValueError("A fixed lifetime has no shape parameter")
+            raise ValueError("Only Weibull survival accepts a shape parameter")
+        if self.overage_remaining_years is not None:
+            if (
+                self.family != "quartic_capacity"
+                or _nonnegative(self.overage_remaining_years, "overage_remaining_years")
+                <= 0
+            ):
+                raise ValueError(
+                    "Only quartic capacity accepts a positive overage extension"
+                )
+            object.__setattr__(
+                self, "overage_remaining_years", float(self.overage_remaining_years)
+            )
 
     def conditional(self, age, years):
         """Return P(T > age+years | T > age), using stable log-survival."""
@@ -51,6 +70,17 @@ class SurvivalLaw:
                     "Observed survivor is incompatible with fixed lifetime"
                 )
             return float(age + years < self.mean_years)
+        if self.family == "quartic_capacity":
+            maximum = 1.25 * self.mean_years
+            current = max(0.0, 1 - (age / maximum) ** 4)
+            if current == 0:
+                if self.overage_remaining_years is None:
+                    raise ValueError(
+                        "Observed survivor exceeds quartic capacity support"
+                    )
+                return math.exp(-years / self.overage_remaining_years)
+            future = max(0.0, 1 - ((age + years) / maximum) ** 4)
+            return future / current
         scale = self.mean_years / math.gamma(1 + 1 / self.shape)
         difference = ((age + years) / scale) ** self.shape - (age / scale) ** self.shape
         return math.exp(-difference)
@@ -77,14 +107,20 @@ def evolve_stock(
     """Project stock using either annual gross additions or closing-stock targets.
 
     A declining target below natural survivors requires an explicit
-    ``early_exit_kind`` (physical_retirement or territorial_exit). Excess exits
+    ``early_exit_kind`` (physical_retirement, territorial_exit or service_exit). Excess exits
     are proportional across surviving cohorts, a declared modelling assumption.
-    Territorial exits must not later be mistaken for physical disposal.
+    Territorial exits or removal from operating service must not later be
+    mistaken for physical disposal.
     """
     reference_year = calendar_year(reference_year)
     if mode not in {"gross_additions", "stock_target"}:
         raise ValueError("Choose gross_additions or stock_target explicitly")
-    if early_exit_kind not in {None, "physical_retirement", "territorial_exit"}:
+    if early_exit_kind not in {
+        None,
+        "physical_retirement",
+        "territorial_exit",
+        "service_exit",
+    }:
         raise ValueError("Unknown early_exit_kind")
     current = {}
     for cohort, value in initial_stock.items():
@@ -208,11 +244,13 @@ def retirement_record(
         or max_years <= 0
     ):
         raise ValueError("Require positive horizon and tail tolerance <= 1e-10")
-    if projection.early_exit_kind == "territorial_exit" and any(
+    if projection.early_exit_kind in {"territorial_exit", "service_exit"} and any(
         row["year"] > service_year and row["early_exits"] > 0
         for row in projection.balances
     ):
-        raise ValueError("Territorial exits do not establish physical retirement dates")
+        raise ValueError(
+            "Territorial exits or service exits do not establish physical retirement dates"
+        )
     weights = {
         calendar_year(cohort): _nonnegative(value, "weight")
         for cohort, value in weights.items()

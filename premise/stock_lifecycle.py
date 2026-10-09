@@ -60,6 +60,83 @@ def _relink(exchange, dataset, owner):
             exchange[field] = dataset[field]
 
 
+def scope_capital_chain(database, *, caller, chain, context_id):
+    """Copy one reviewed linear capital chain without moving any exchanges.
+
+    This supports capital inventories with no selected embedded lifecycle port.
+    Explicit zero-shift bindings describe internal market/manufacturer links;
+    material and energy inputs retain their own background roles. A branched or
+    cyclic selected chain is rejected rather than partially scoped.
+    """
+    if not isinstance(context_id, str) or not context_id.strip() or not chain:
+        raise ValueError("A context and an explicit capital chain are required")
+    lookup = {identity(d): d for d in database}
+    if len(lookup) != len(database):
+        raise ValueError("Ambiguous capital activity identity")
+    keys = [identity(caller)] + [identity(d) for d in chain]
+    if len(set(keys)) != len(keys) or any(k not in lookup for k in keys):
+        raise ValueError("Capital chain must contain distinct existing activities")
+    links = set(zip(keys, keys[1:]))
+    for a, b in links:
+        _edge(lookup[a], b)
+    for key in keys:
+        _production(lookup[key])
+        for exchange in lookup[key]["exchanges"]:
+            if exchange["type"] == "technosphere":
+                supplier = identity(exchange, exchange=True)
+                if supplier in keys and (key, supplier) not in links:
+                    raise ValueError(
+                        "Selected capital chain has an extra internal edge"
+                    )
+    copies = {}
+    for i, key in enumerate(keys):
+        original = lookup[key]
+        role = "service" if i == 0 else "capital"
+        copy = deepcopy(original)
+        token = hashlib.sha256(
+            json.dumps([context_id, "chain", key]).encode()
+        ).hexdigest()[:24]
+        copy["name"] = f"{original['name']} [stock context {context_id}: {role}]"
+        copy["database"] = original.get("database", "stock-vintage")
+        copy["code"] = f"stock-{token}"
+        copy["stock_vintage_context"] = context_id
+        copy["stock_vintage_role"] = role
+        copy["stock_vintage_original_identity"] = _metadata(key)
+        copy.pop("id", None)
+        if identity(copy) in lookup:
+            raise ValueError("Capital context already exists; choose a unique context")
+        copies[key] = copy
+    for key, copy in copies.items():
+        for exchange in copy["exchanges"]:
+            exchange["output"] = (copy["database"], copy["code"])
+            if exchange["type"] == "production":
+                _relink(exchange, copy, copy)
+            elif exchange["type"] == "technosphere":
+                supplier = identity(exchange, exchange=True)
+                if (key, supplier) in links:
+                    _relink(exchange, copies[supplier], copy)
+    audit = {
+        "context_id": context_id,
+        "caller": _metadata(identity(copies[keys[0]])),
+        "capital_root": _metadata(identity(copies[keys[1]])),
+        "original_caller": _metadata(keys[0]),
+        "original_root": _metadata(keys[1]),
+        "preserved_capital_amount": _amount(_edge(lookup[keys[0]], keys[1])),
+        "copied_capital_activities": len(chain),
+        "lifted_exchanges": [],
+        "lifecycle_adapters": 0,
+        "zero_shift_bindings": [
+            {
+                "caller": _metadata(identity(copies[a])),
+                "supplier": _metadata(identity(copies[b])),
+            }
+            for a, b in zip(keys[1:], keys[2:])
+        ],
+        "scope": "Explicit capital chain only; no exchanges removed or invented; deterministic equivalence",
+    }
+    return list(database) + list(copies.values()), audit
+
+
 def split_embedded_lifecycle(database, *, caller, paths, context_id, uncertainty_mode):
     """Return a new inventory list and an auditable deterministic rewrite.
 

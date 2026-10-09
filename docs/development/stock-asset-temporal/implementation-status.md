@@ -4,6 +4,35 @@ Updated 9 October 2026. Work is in progress on `feat/stock-vintage-pilots` in
 both repositories. No pilot is promoted and public defaults remain unchanged.
 The planning branch remains an unchanged reference.
 
+## CCGT observation-to-export milestone
+
+The [CCGT method](ccgt-pilot-method.md) documents a complete-block EIA reference
+and exact REMIND leaf-variable reconstruction. Membership checks now examine all
+three EIA-860 generator sheets. The accepted 91 blocks have 41,476.3 MW AC and
+159,002,044.49 MWh of 2022 output; all began operation before the reference year.
+Service weighting is observed output by commissioning cohort, with equal-capacity
+weighting as a sensitivity. The 410.5 MW already older than the quartic curve's
+support are preserved with an explicit, sensitivity-tested remaining-life proxy.
+
+Both local SSP2-NPi2025 and SSP2-PkBudg650 files produce seven cases for every
+service year in 2022–2030. Annual balance, output totals, full-load-hour limits
+and five-year additions integrals are checked. Capacity-target and
+reported-additions cases retain their discrepancy from the other constraint;
+neither is represented as native IAM vintage output. The focused premise suite
+now has 69 passing tests.
+
+The actual premise exporter has created legacy and corrected packages from the
+complete 26,533-activity ecoinvent 3.12 cut-off inventory, using constant technology
+at anchors 2022/2025/2030. Three scoped CCGT activities and an explicit internal
+zero-shift binding prevent a duplicate construction shift. This is a real
+inventory timing/conservation experiment, not an IAM-transformed background LCA.
+The restricted inventory extract, packages and IAM-derived series remain local.
+
+The first real TRAILS comparison found a static conservation discrepancy in the
+legacy calculation. A full comparison with graph-operator diagnostics is in
+progress. This milestone does not yet pass the third release requirement, and
+no empirical pilot is promoted.
+
 ## Implemented software foundation
 
 TRAILS commit `7af0bd1` adds an opt-in annual profile resource. Profiles contain

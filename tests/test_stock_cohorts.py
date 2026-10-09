@@ -163,3 +163,32 @@ def test_unresolved_retirement_tail_cannot_be_normalised_away():
     )
     with pytest.raises(ValueError, match="excessive tail"):
         retirement_record(p, 2020, {2020: 1}, max_years=10)
+
+
+def test_quartic_capacity_is_conditional_and_retains_declared_overage_survivors():
+    law = SurvivalLaw("quartic_capacity", 35, overage_remaining_years=5)
+    assert law.conditional(0, 0) == 1
+    assert law.conditional(20, 10) == pytest.approx(
+        (1 - (30 / 43.75) ** 4) / (1 - (20 / 43.75) ** 4)
+    )
+    assert law.conditional(43, 1) == 0
+    assert law.conditional(47, 1) == pytest.approx(math.exp(-1 / 5))
+    with pytest.raises(ValueError, match="exceeds quartic"):
+        SurvivalLaw("quartic_capacity", 35).conditional(47, 0)
+    p = evolve_stock({1975: 290}, 2022, {2023: 0}, law, mode="gross_additions")
+    assert p.stocks[2022][1975] == 290
+    assert p.stocks[2023][1975] == pytest.approx(290 * math.exp(-1 / 5))
+
+
+def test_operating_capacity_exit_is_not_a_physical_disposal_date():
+    p = evolve_stock(
+        {2020: 10},
+        2022,
+        {2023: 1},
+        SurvivalLaw("weibull", 35, 4),
+        mode="stock_target",
+        early_exit_kind="service_exit",
+    )
+    assert p.balances[0]["early_exits"] > 0
+    with pytest.raises(ValueError, match="service exits"):
+        retirement_record(p, 2022, {2020: 1})

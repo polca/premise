@@ -4,6 +4,7 @@ import numpy as np
 import pytest
 
 from premise.stock_lifecycle import (
+    scope_capital_chain,
     split_embedded_lifecycle,
     validate_lifecycle_anchor_audits,
 )
@@ -81,6 +82,41 @@ def solve(database, target):
     fu = np.zeros(len(database))
     fu[indices[identity(target)]] = 1
     return b @ np.linalg.solve(a, fu)
+
+
+def test_capital_chain_copy_preserves_nonunit_signed_inventory_without_lifecycle():
+    database = [
+        activity("service", 2, {"market": 0.4, "other": -0.5}),
+        activity("market", 2, {"manufacturer": 2.0}),
+        activity("manufacturer", 3, {"other": 6}, {"manufacture": 1}),
+        activity("other", 1, None, {"other": 2}),
+        activity("other service", 1, {"market": 0.7}),
+    ]
+    before = deepcopy(database)
+    updated, audit = scope_capital_chain(
+        database, caller=database[0], chain=database[1:3], context_id="chain"
+    )
+    assert database == before
+    assert updated[: len(database)] == before
+    assert len(updated) == len(database) + 3
+    assert audit["preserved_capital_amount"] == 0.4
+    assert audit["lifted_exchanges"] == []
+    assert len(audit["zero_shift_bindings"]) == 1
+    assert np.allclose(
+        solve(updated, audit["caller"]), solve(database, database[0]), rtol=1e-13
+    )
+    assert np.allclose(
+        solve(updated, database[4]), solve(database, database[4]), rtol=1e-13
+    )
+    with pytest.raises(ValueError, match="already exists"):
+        scope_capital_chain(
+            updated, caller=database[0], chain=database[1:3], context_id="chain"
+        )
+    database[2]["exchanges"].append(deepcopy(database[0]["exchanges"][1]))
+    with pytest.raises(ValueError, match="extra internal edge"):
+        scope_capital_chain(
+            database, caller=database[0], chain=database[1:3], context_id="other"
+        )
 
 
 def test_scoped_lifecycle_split_preserves_all_static_flows_and_other_users():
