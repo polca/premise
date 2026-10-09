@@ -2,6 +2,16 @@
 
 This inner repository contains a structured workflow to review, diagnose, and update stock-asset temporal distributions in TRAILS using ecoinvent-based evidence, IEDC lifetimes, and Codex-supported validation.
 
+## Stock-asset modelling revision
+
+The [stock-asset temporal strategy and implementation plan](../../docs/development/stock-asset-temporal/README.md)
+documents the proposed replacement for the current parameter-review workflow.
+It covers all stock-asset groups, exchange roles, source evidence, explicit annual
+profiles, validation, and coordinated changes in premise and TRAILS. It also
+distinguishes a homogeneous lifetime-service baseline from optional heterogeneous
+allocation. The plan is a design proposal; the workflow below describes the
+existing implementation and has not yet been migrated.
+
 ---
 
 ## 📁 Repository Structure
