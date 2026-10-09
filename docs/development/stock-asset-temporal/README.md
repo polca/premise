@@ -1,6 +1,7 @@
 # Stock-asset temporal modelling: strategy and implementation plan
 
-Status: proposed design; implementation has not started.
+Status: opt-in implementation in progress; no pilot promoted.
+See [implementation status](implementation-status.md) for evidence and remaining gates.
 Reviewed: 9 October 2026.
 Planning branch: `plan/stock-asset-temporal-distributions`, based on `trals`.
 
@@ -19,14 +20,15 @@ composition and production attribution of every service consuming that supplier.
 This plan covers changes in both `polca/premise` and `romainsacchi/trails`.
 The planning documents live in premise because the source parameter table and
 review workflow live here. TRAILS implementation will need a coordinated branch
-and release. This documentation branch changes neither inventories nor runtime
-behaviour.
+and release. The original planning branch changes neither inventories nor runtime
+behaviour. This implementation branch adds experimental opt-in behaviour.
 
 ## Read the documents in this order
 
 | Document | Purpose |
 |---|---|
 | [Strategy](strategy.md) | Modelling definitions, equations, scope, and decisions |
+| [Implemented profile resource](profile-resource-v1.md) | Experimental producer/consumer wire format and opt-in behaviour |
 | [Data contract](data-contract.md) | Source records, exchange roles, generated profiles, and package compatibility |
 | [Asset review](asset-review.md) | Evidence hierarchy and review instructions for all 23 existing groups |
 | [Solutions by group](group-solutions.md) | Selected model, primary data, future evolution, fallback and validation gate for each of the 23 groups |
