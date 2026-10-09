@@ -28,7 +28,11 @@ Use measured exchange coverage and contribution sensitivity to order subsequent
 work. A global empirical profile for every small component is unlikely to be a
 reasonable first-release target.
 
-The companion [source register](data-source-register.md) records 28 source
+The [solutions by group](group-solutions.md) select a modelling route, primary
+data, future evolution and fallback for each of the 23 groups, including exact
+local machinery-survival leads. Use these recipes to start implementation.
+
+The companion [source register](data-source-register.md) records 29 source
 families, their access status, relevant fields and limitations. The
 [local inventory](local-source-inventory.csv) records all 20 inspected workbooks
 with row counts, hashes, scope and declared licence metadata. The

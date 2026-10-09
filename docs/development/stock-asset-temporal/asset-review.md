@@ -3,6 +3,10 @@
 Status: review specification. No new empirical default values are approved by
 this document. Existing lifetime evidence must be checked before reuse.
 
+The [solutions by group](group-solutions.md) now recommend concrete models, data,
+future rules and fallbacks. Apply the checklist here when implementing them;
+the recommendations do not constitute calibrated defaults.
+
 The [data search campaign](data-search-campaign.md) now assesses feasibility for
 every group. Its [source register](data-source-register.md) distinguishes sources
 inspected locally from documentation-only leads. The

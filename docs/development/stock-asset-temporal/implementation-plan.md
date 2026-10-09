@@ -87,6 +87,10 @@ earlier. Repository: premise. Can proceed alongside P3.
       inventory, external source register and initial file-level spot checks.
 - [x] Screen actual local IAM exports and document the
       [native/reconstructed cohort routes](iam-scenario-assessment.md).
+- [x] Select [a solution and data route for every group](group-solutions.md),
+      including explicit future/fallback rules and component-renewal decisions.
+- [ ] Implement each selected recipe with an unnormalised cohort/event table,
+      service conversion, provenance, annual weights and coverage/amount checks.
 - [ ] Obtain exact-run REMIND/EDGE-Transport cohort outputs and reporting
       metadata; preserve Stock and Cap variables before scenario filtering.
 - [ ] Request expanded IMAGE stock/capacity/addition/lifetime exports when

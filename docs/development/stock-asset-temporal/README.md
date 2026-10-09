@@ -29,8 +29,9 @@ behaviour.
 | [Strategy](strategy.md) | Modelling definitions, equations, scope, and decisions |
 | [Data contract](data-contract.md) | Source records, exchange roles, generated profiles, and package compatibility |
 | [Asset review](asset-review.md) | Evidence hierarchy and review instructions for all 23 existing groups |
+| [Solutions by group](group-solutions.md) | Selected model, primary data, future evolution, fallback and validation gate for each of the 23 groups |
 | [Data search campaign](data-search-campaign.md) | Available evidence, difficulty by asset group, acquisition priorities, effort and stopping rules |
-| [Source register](data-source-register.md) | 28 external source families, access status, file checks and limitations |
+| [Source register](data-source-register.md) | 29 external source families, access status, file checks and limitations |
 | [IAM scenario assessment](iam-scenario-assessment.md) | Audit of actual local IMAGE/REMIND and other exports; native cohort and reconstruction routes |
 | [Implementation plan](implementation-plan.md) | Work packages, dependencies, repository ownership, and completion criteria |
 | [Validation and rollout](validation-and-rollout.md) | Analytical tests, integration checks, scientific comparison, and release stages |
@@ -100,6 +101,7 @@ not unique suppliers or counts of exchanges matched in a built database.
 - [x] Check the distinction between stock composition and service allocation.
 - [x] Document the proposed strategy and staged implementation.
 - [x] Inventory local lifetime evidence and screen external stock-data sources.
+- [x] Propose a concrete data/model/fallback recipe for every stock-asset group.
 - [x] Audit 20 IMAGE/REMIND source files and screen 21 other IAM exports for
       stock-building variables; identify native REMIND cohort-export routes.
 - [ ] Produce the complete per-row and per-exchange migration audit.
