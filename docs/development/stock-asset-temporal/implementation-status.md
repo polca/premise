@@ -51,6 +51,41 @@ python dev/stock_vintage/check_roundtrip.py \
   /tmp/stock-roundtrip/synthetic_stock.zip --output /tmp/stock-roundtrip/checks.json
 ```
 
+## Conditional retirement and lifecycle integration
+
+The new [method and evidence](lifecycle-and-cohort-method.md) documents
+`stock_cohorts` (observed initial survivors, conditional survival, annual balance,
+service weighting and conditional retirement) and `stock_lifecycle` (scoped
+service/capital copies, signed embedded-disposal separation, zero-shift
+wrappers and cross-anchor quantity checks). The annual convention is end-year
+stock; retirements in `(t,t+1]` occur in year `t+1`. No empirical lifetime
+default is introduced. The rewrite is deterministic and does not preserve
+Monte Carlo coefficient correlations.
+
+Additional validation:
+
+- 163 focused TRAILS tests pass across stock/lifecycle routing, legacy routing,
+  LCI, interpolation, caches and importer behaviour. The combined run also
+  required isolating an existing test that overwrote a shared matrix fixture.
+
+- 54 premise tests pass across cohort evolution, lifecycle structure, actual
+  export, producer validation, curation and legacy temporal rules.
+- An actual exported lifecycle fixture passes 32 signed annual calendar/LCI
+  cases in TRAILS, with direct/Brightway solvers, root/non-root accounting,
+  interpolation disabled/enabled, and repeated/reversed service years.
+- Two real static rewrites preserve all 3,297 biosphere flows in the complete
+  26,533-activity ecoinvent 3.12 cut-off system. Maximum absolute errors are
+  `2.22e-15` for car chassis and `2.22e-16` for the lorry. The report distinguishes
+  processed matrix precision from raw dataset metadata.
+- The lifecycle fixture exposed graph and frontier year-clamping bugs. Stock
+  packages now preserve physical event years outside the background horizon;
+  only coefficient selection maps to available matrices. Storage also covers
+  successive routed offsets. Legacy package behaviour is retained.
+
+This is structural and synthetic evidence. Empirical survival selection, service
+weighting, remaining component boundaries and real corrected timing still need
+the pilot-specific checks below.
+
 ## Public observations curated
 
 `dev/stock_vintage/curate_observations.py` verifies pinned input hashes and retains
@@ -135,10 +170,10 @@ capital machinery used to manufacture those components is a separate stock.
 All five pilots still require evidence for all three gates:
 
 1. **Roles and lifecycle boundaries.** Inventory audit is underway. Car/truck
-   end-of-life is demonstrably embedded in manufacture. Separate it with scoped
-   inventories/virtual activities and demonstrate static equivalence before
-   assigning retirement conditional on survival to the service year. Do not
-   shift embedded disposal into the past or apply a stock curve twice.
+   end-of-life is demonstrably embedded in manufacture. Scoped separation now
+   passes real static equivalence, and synthetic disposal is conditional on
+   survival to service. Remaining new/replacement-component boundaries and
+   empirical timing still require review; do not duplicate the stock shift.
 2. **Stock/service/future balance.** Initial public observations are curated.
    Unknown dates, bins and geography/technology proxies need explicit baseline
    assumptions and sensitivity cases. Service weighting and REMIND stock/

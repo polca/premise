@@ -28,6 +28,7 @@ behaviour. This implementation branch adds experimental opt-in behaviour.
 | Document | Purpose |
 |---|---|
 | [Strategy](strategy.md) | Modelling definitions, equations, scope, and decisions |
+| [Conditional retirement and lifecycle separation](lifecycle-and-cohort-method.md) | Implemented stock transitions, scoped inventory rewrites, calendar semantics and evidence |
 | [Implemented profile resource](profile-resource-v1.md) | Experimental producer/consumer wire format and opt-in behaviour |
 | [Data contract](data-contract.md) | Source records, exchange roles, generated profiles, and package compatibility |
 | [Asset review](asset-review.md) | Evidence hierarchy and review instructions for all 23 existing groups |
