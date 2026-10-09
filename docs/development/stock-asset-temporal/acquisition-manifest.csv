@@ -1,0 +1,5 @@
+source_id,retrieved_on,local_research_filename,url,bytes,sha256,inspection
+S01,2026-10-09,eurostat-carage-de2024.json,https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/road_eqs_carage?lang=EN&geo=DE&time=2024,2471,8339ea601361891276402ba1bbbcc8f386ef302c49a0da3384613e419fd9dd1a,API subset inspected; five bins sum to total
+S02,2026-10-09,veh1111.ods,https://assets.publishing.service.gov.uk/media/69ef3555606c20d41216341a/veh1111.ods,1937093,bc3529975f7fa9e12181b64397cb1e619ae78926130146b64f5c35b9e268d1cc,ODS fields and notes inspected; totals not validated
+S12,2026-10-09,recs2020-codebook.xlsx,https://www.eia.gov/consumption/residential/data/2020/xls/RECS%202020%20Codebook%20for%20Public%20File%20-%20v7.xlsx,58382,747f5a3d39a1f3b34c4f5041a388c556664497bb4c74c5cac71a97f157f0ad07,Codebook inspected; microdata not retrieved
+S14,2026-10-09,canada-infrastructure.zip,https://www150.statcan.gc.ca/n1/tbl/csv/34100289-eng.zip,6172662,4a5cac2fde5dcbf08da296449125b4f1e21b955074bcdaccf5f430edefaaa09b,Complete CSV parsed; 602532 records; no profile validated

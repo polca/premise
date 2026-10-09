@@ -3,6 +3,13 @@
 Status: review specification. No new empirical default values are approved by
 this document. Existing lifetime evidence must be checked before reuse.
 
+The [data search campaign](data-search-campaign.md) now assesses feasibility for
+every group. Its [source register](data-source-register.md) distinguishes sources
+inspected locally from documentation-only leads. The
+[IAM assessment](iam-scenario-assessment.md) adds a scenario-consistent route for
+REMIND transport and energy-conversion assets, subject to period and initial-stock
+validation.
+
 ## Baseline coverage
 
 The 23 identifiers below are the groups in

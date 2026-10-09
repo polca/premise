@@ -1,0 +1,991 @@
+collection,variable,unit,families,files_present,regions_min,regions_max,nonempty_cells_min,nonempty_cells_max,nonzero_cells_min,nonzero_cells_max
+image 3.4,Energy Service|Transportation|Freight|Heavy Truck|Fuel Cell Vehicle|Biofuels,billion tkm/yr,service,8,27,27,405,405,301,302
+image 3.4,Energy Service|Transportation|Freight|Heavy Truck|Fuel Cell Vehicle|Gasoline,billion tkm/yr,service,8,27,27,405,405,264,303
+image 3.4,Energy Service|Transportation|Freight|Heavy Truck|Fuel Cell Vehicle|Hydrogen,billion tkm/yr,service,8,27,27,405,405,336,336
+image 3.4,Energy Service|Transportation|Freight|Heavy Truck|Hybrid engine|Biofuel,billion tkm/yr,service,8,27,27,405,405,311,313
+image 3.4,Energy Service|Transportation|Freight|Heavy Truck|Hybrid engine|Diesel,billion tkm/yr,service,8,27,27,405,405,358,405
+image 3.4,Energy Service|Transportation|Freight|Heavy Truck|Hybrid engine|Gasoline,billion tkm/yr,service,8,27,27,405,405,351,405
+image 3.4,Energy Service|Transportation|Freight|Heavy Truck|Hybrid engine|Hydrogen,billion tkm/yr,service,8,27,27,405,405,343,345
+image 3.4,Energy Service|Transportation|Freight|Heavy Truck|Hybrid engine|LNG,billion tkm/yr,service,8,27,27,405,405,248,297
+image 3.4,Energy Service|Transportation|Freight|Heavy Truck|Internal Combustion Engine Efficient|Gasoline,billion tkm/yr,service,8,27,27,405,405,350,405
+image 3.4,Energy Service|Transportation|Freight|Heavy Truck|Internal Combustion Engine|Biofuel,billion tkm/yr,service,8,27,27,405,405,353,369
+image 3.4,Energy Service|Transportation|Freight|Heavy Truck|Internal Combustion Engine|Diesel,billion tkm/yr,service,8,27,27,405,405,342,405
+image 3.4,Energy Service|Transportation|Freight|Heavy Truck|Internal Combustion Engine|Gasoline,billion tkm/yr,service,8,27,27,405,405,368,405
+image 3.4,Energy Service|Transportation|Freight|Heavy Truck|Internal Combustion Engine|Hydrogen,billion tkm/yr,service,8,27,27,405,405,338,341
+image 3.4,Energy Service|Transportation|Freight|Heavy Truck|Plug-in electric vehicle 10km|Biofuel,billion tkm/yr,service,8,27,27,405,405,375,375
+image 3.4,Energy Service|Transportation|Freight|Heavy Truck|Plug-in electric vehicle 10km|Oil,billion tkm/yr,service,8,27,27,405,405,364,404
+image 3.4,Energy Service|Transportation|Freight|Heavy Truck|Plug-in electric vehicle 30km|Biofuel,billion tkm/yr,service,8,27,27,405,405,374,374
+image 3.4,Energy Service|Transportation|Freight|Heavy Truck|Plug-in electric vehicle 30km|Oil,billion tkm/yr,service,8,27,27,405,405,359,386
+image 3.4,Energy Service|Transportation|Freight|Heavy Truck|Plug-in electric vehicle 60km|Biofuel,billion tkm/yr,service,8,27,27,405,405,354,354
+image 3.4,Energy Service|Transportation|Freight|Heavy Truck|Plug-in electric vehicle 60km|Oil,billion tkm/yr,service,8,27,27,405,405,367,370
+image 3.4,Energy Service|Transportation|Freight|Medium Truck|Fuel Cell Vehicle|Biofuels,billion tkm/yr,service,8,27,27,405,405,303,304
+image 3.4,Energy Service|Transportation|Freight|Medium Truck|Fuel Cell Vehicle|Gasoline,billion tkm/yr,service,8,27,27,405,405,289,323
+image 3.4,Energy Service|Transportation|Freight|Medium Truck|Fuel Cell Vehicle|Hydrogen,billion tkm/yr,service,8,27,27,405,405,336,336
+image 3.4,Energy Service|Transportation|Freight|Medium Truck|Hybrid engine|Biofuel,billion tkm/yr,service,8,27,27,405,405,315,317
+image 3.4,Energy Service|Transportation|Freight|Medium Truck|Hybrid engine|Diesel,billion tkm/yr,service,8,27,27,405,405,346,405
+image 3.4,Energy Service|Transportation|Freight|Medium Truck|Hybrid engine|Gasoline,billion tkm/yr,service,8,27,27,405,405,357,405
+image 3.4,Energy Service|Transportation|Freight|Medium Truck|Hybrid engine|Hydrogen,billion tkm/yr,service,8,27,27,405,405,348,349
+image 3.4,Energy Service|Transportation|Freight|Medium Truck|Hybrid engine|LNG,billion tkm/yr,service,8,27,27,405,405,258,295
+image 3.4,Energy Service|Transportation|Freight|Medium Truck|Internal Combustion Engine Efficient|Gasoline,billion tkm/yr,service,8,27,27,405,405,347,405
+image 3.4,Energy Service|Transportation|Freight|Medium Truck|Internal Combustion Engine|Biofuel,billion tkm/yr,service,8,27,27,405,405,350,366
+image 3.4,Energy Service|Transportation|Freight|Medium Truck|Internal Combustion Engine|Diesel,billion tkm/yr,service,8,27,27,405,405,353,405
+image 3.4,Energy Service|Transportation|Freight|Medium Truck|Internal Combustion Engine|Gasoline,billion tkm/yr,service,8,27,27,405,405,352,405
+image 3.4,Energy Service|Transportation|Freight|Medium Truck|Internal Combustion Engine|Hydrogen,billion tkm/yr,service,8,27,27,405,405,343,345
+image 3.4,Energy Service|Transportation|Freight|Medium Truck|Plug-in electric vehicle 10km|Biofuel,billion tkm/yr,service,8,27,27,405,405,383,383
+image 3.4,Energy Service|Transportation|Freight|Medium Truck|Plug-in electric vehicle 10km|Oil,billion tkm/yr,service,8,27,27,405,405,370,405
+image 3.4,Energy Service|Transportation|Freight|Medium Truck|Plug-in electric vehicle 30km|Biofuel,billion tkm/yr,service,8,27,27,405,405,377,377
+image 3.4,Energy Service|Transportation|Freight|Medium Truck|Plug-in electric vehicle 30km|Oil,billion tkm/yr,service,8,27,27,405,405,377,398
+image 3.4,Energy Service|Transportation|Freight|Medium Truck|Plug-in electric vehicle 60km|Biofuel,billion tkm/yr,service,8,27,27,405,405,362,362
+image 3.4,Energy Service|Transportation|Freight|Medium Truck|Plug-in electric vehicle 60km|Oil,billion tkm/yr,service,8,27,27,405,405,367,367
+image 3.4,Energy Service|Transportation|Passenger,billion pkm/yr,service,8,27,27,405,405,405,405
+image 3.4,Energy Service|Transportation|Passenger|Aviation,billion pkm/yr,service,8,27,27,405,405,405,405
+image 3.4,Energy Service|Transportation|Passenger|Cycling,billion pkm/yr,service,8,27,27,405,405,405,405
+image 3.4,Energy Service|Transportation|Passenger|Domestic Aviation,billion pkm/yr,service,8,27,27,405,405,405,405
+image 3.4,Energy Service|Transportation|Passenger|Railways,billion pkm/yr,service,8,27,27,405,405,400,400
+image 3.4,Energy Service|Transportation|Passenger|Road,billion pkm/yr,service,8,27,27,405,405,405,405
+image 3.4,Energy Service|Transportation|Passenger|Road|Bus,billion pkm/yr,service,8,27,27,405,405,405,405
+image 3.4,Energy Service|Transportation|Passenger|Road|Light-Duty Vehicle,billion pkm/yr,service,8,27,27,405,405,405,405
+image 3.4,Energy Service|Transportation|Passenger|Walking,billion pkm/yr,service,8,27,27,405,405,405,405
+remind 3.5.2,Cap|Biochar,Mt Biochar/yr,capacity,12,13,25,247,475,80,269
+remind 3.5.2,Cap|Carbon Management|DAC,Mt CO2/yr,capacity,12,13,25,247,475,195,375
+remind 3.5.2,Cap|Electricity,GW,capacity,12,13,25,247,475,247,475
+remind 3.5.2,Cap|Electricity|+|Biomass,GW,capacity,12,13,25,247,475,202,415
+remind 3.5.2,Cap|Electricity|+|Coal,GW,capacity,12,13,25,247,475,211,424
+remind 3.5.2,Cap|Electricity|+|Gas,GW,capacity,12,13,25,247,475,221,463
+remind 3.5.2,Cap|Electricity|+|Geothermal,GW,capacity,12,13,25,247,475,244,461
+remind 3.5.2,Cap|Electricity|+|Hydro,GW,capacity,12,13,25,247,475,247,475
+remind 3.5.2,Cap|Electricity|+|Hydrogen,GW,capacity,12,13,25,247,475,182,350
+remind 3.5.2,Cap|Electricity|+|Nuclear,GW,capacity,12,13,25,247,475,184,360
+remind 3.5.2,Cap|Electricity|+|Oil,GW,capacity,12,13,25,247,475,195,375
+remind 3.5.2,Cap|Electricity|+|Solar,GW,capacity,12,13,25,247,475,245,469
+remind 3.5.2,Cap|Electricity|+|Wind,GW,capacity,12,13,25,247,475,247,475
+remind 3.5.2,Cap|Electricity|Biomass|CHP,GW,capacity,12,13,25,247,475,171,371
+remind 3.5.2,Cap|Electricity|Biomass|w/ CC,GW,capacity,12,13,25,247,475,120,281
+remind 3.5.2,Cap|Electricity|Biomass|w/o CC,GW,capacity,12,13,25,247,475,183,390
+remind 3.5.2,Cap|Electricity|CHP,GW,capacity,12,13,25,247,475,178,384
+remind 3.5.2,Cap|Electricity|Coal|+|w/ CC,GW,capacity,12,13,25,247,475,152,309
+remind 3.5.2,Cap|Electricity|Coal|+|w/o CC,GW,capacity,12,13,25,247,475,191,395
+remind 3.5.2,Cap|Electricity|Coal|CHP,GW,capacity,12,13,25,247,475,163,343
+remind 3.5.2,Cap|Electricity|Coal|IGCC|+|w/ CC,GW,capacity,12,13,25,247,475,152,309
+remind 3.5.2,Cap|Electricity|Coal|IGCC|+|w/o CC,GW,capacity,12,13,25,247,475,151,326
+remind 3.5.2,Cap|Electricity|Coal|Other Fossil Adjusted,GW,capacity,12,13,25,247,475,211,417
+remind 3.5.2,Cap|Electricity|Coal|w/o CC|Other Fossil Adjusted,GW,capacity,12,13,25,247,475,159,321
+remind 3.5.2,Cap|Electricity|Estimated firm capacity counting hydro at 0p6,GW,capacity,12,13,25,247,475,247,475
+remind 3.5.2,Cap|Electricity|Gas|+|w/ CC,GW,capacity,12,13,25,247,475,163,320
+remind 3.5.2,Cap|Electricity|Gas|+|w/o CC,GW,capacity,12,13,25,247,475,206,460
+remind 3.5.2,Cap|Electricity|Gas|CC|+|w/ CC,GW,capacity,12,13,25,247,475,163,320
+remind 3.5.2,Cap|Electricity|Gas|CC|+|w/o CC,GW,capacity,12,13,25,247,475,172,336
+remind 3.5.2,Cap|Electricity|Gas|CHP,GW,capacity,12,13,25,247,475,157,330
+remind 3.5.2,Cap|Electricity|Gas|GT,GW,capacity,12,13,25,247,475,200,459
+remind 3.5.2,Cap|Electricity|Non-Biomass Renewables,GW,capacity,12,13,25,247,475,247,475
+remind 3.5.2,Cap|Electricity|Oil|w/o CC,GW,capacity,12,13,25,247,475,195,375
+remind 3.5.2,Cap|Electricity|Other Fossil|Other Fossil Adjusted,GW,capacity,12,13,25,247,475,117,225
+remind 3.5.2,Cap|Electricity|Solar|+|CSP,GW,capacity,12,13,25,247,475,224,416
+remind 3.5.2,Cap|Electricity|Solar|+|PV,GW,capacity,12,13,25,247,475,245,469
+remind 3.5.2,Cap|Electricity|Storage|Battery,GW,capacity,12,13,25,247,475,198,386
+remind 3.5.2,Cap|Electricity|Storage|Battery|For PV,GW,capacity,12,13,25,247,475,195,376
+remind 3.5.2,Cap|Electricity|Storage|Battery|For Wind,GW,capacity,12,13,25,247,475,163,382
+remind 3.5.2,Cap|Electricity|Wind|+|Offshore,GW,capacity,12,13,25,247,475,209,409
+remind 3.5.2,Cap|Electricity|Wind|+|Onshore,GW,capacity,12,13,25,247,475,247,475
+remind 3.5.2,Cap|Gases,GW,capacity,12,13,25,247,475,247,475
+remind 3.5.2,Cap|Gases|+|Biomass,GW,capacity,12,13,25,247,475,214,446
+remind 3.5.2,Cap|Gases|+|Coal,GW,capacity,12,13,25,247,475,171,327
+remind 3.5.2,Cap|Gases|+|Hydrogen,GW,capacity,12,13,25,247,475,182,350
+remind 3.5.2,Cap|Gases|+|Natural Gas,GW,capacity,12,13,25,247,475,232,464
+remind 3.5.2,Cap|Heat,GW,capacity,12,13,25,247,475,243,471
+remind 3.5.2,Cap|Heat|+|Biomass,GW,capacity,12,13,25,247,475,189,432
+remind 3.5.2,Cap|Heat|+|Coal,GW,capacity,12,13,25,247,475,172,375
+remind 3.5.2,Cap|Heat|+|Electricity|Heat Pump,GW,capacity,12,13,25,247,475,231,459
+remind 3.5.2,Cap|Heat|+|Gas,GW,capacity,12,13,25,247,475,170,345
+remind 3.5.2,Cap|Heat|+|Solar,GW,capacity,12,13,25,247,475,0,0
+remind 3.5.2,Cap|Hydrogen,GW,capacity,12,13,25,247,475,247,475
+remind 3.5.2,Cap|Hydrogen|+|Biomass,GW,capacity,12,13,25,247,475,165,343
+remind 3.5.2,Cap|Hydrogen|+|Coal,GW,capacity,12,13,25,247,475,197,387
+remind 3.5.2,Cap|Hydrogen|+|Electricity,GW,capacity,12,13,25,247,475,198,380
+remind 3.5.2,Cap|Hydrogen|+|Gas,GW,capacity,12,13,25,247,475,190,398
+remind 3.5.2,Cap|Hydrogen|Biomass|+|w/ CC,GW,capacity,12,13,25,247,475,128,288
+remind 3.5.2,Cap|Hydrogen|Biomass|+|w/o CC,GW,capacity,12,13,25,247,475,162,317
+remind 3.5.2,Cap|Hydrogen|Coal|+|w/ CC,GW,capacity,12,13,25,247,475,147,303
+remind 3.5.2,Cap|Hydrogen|Coal|+|w/o CC,GW,capacity,12,13,25,247,475,67,110
+remind 3.5.2,Cap|Hydrogen|Fossil,GW,capacity,12,13,25,247,475,210,434
+remind 3.5.2,Cap|Hydrogen|Fossil|+|w/ CC,GW,capacity,12,13,25,247,475,157,340
+remind 3.5.2,Cap|Hydrogen|Fossil|+|w/o CC,GW,capacity,12,13,25,247,475,105,262
+remind 3.5.2,Cap|Hydrogen|Gas|+|w/ CC,GW,capacity,12,13,25,247,475,137,304
+remind 3.5.2,Cap|Hydrogen|Gas|+|w/o CC,GW,capacity,12,13,25,247,475,101,262
+remind 3.5.2,Cap|Liquids,GW,capacity,12,13,25,247,475,247,475
+remind 3.5.2,Cap|Liquids|+|Biomass,GW,capacity,12,13,25,247,475,232,456
+remind 3.5.2,Cap|Liquids|+|Coal,GW,capacity,12,13,25,247,475,176,333
+remind 3.5.2,Cap|Liquids|+|Gas,GW,capacity,12,13,25,247,475,59,148
+remind 3.5.2,Cap|Liquids|+|Hydrogen,GW,capacity,12,13,25,247,475,195,375
+remind 3.5.2,Cap|Liquids|+|Oil,GW,capacity,12,13,25,247,475,226,454
+remind 3.5.2,Cap|Liquids|Fossil,GW,capacity,12,13,25,247,475,234,464
+remind 3.5.2,Cap|Solids,GW,capacity,12,13,25,247,475,247,475
+remind 3.5.2,Cap|Solids|+|Biomass,GW,capacity,12,13,25,247,475,243,475
+remind 3.5.2,Cap|Solids|+|Coal,GW,capacity,12,13,25,247,475,245,475
+remind 3.5.2,Cumulative Cap|Biochar,Mt Biochar/yr,cumulative_capacity,12,13,25,247,475,160,378
+remind 3.5.2,Cumulative Cap|Carbon Management|DAC,Mt CO2/yr,cumulative_capacity,12,13,25,247,475,208,400
+remind 3.5.2,Cumulative Cap|Electricity,GW,cumulative_capacity,12,13,25,247,475,234,450
+remind 3.5.2,Cumulative Cap|Electricity|+|Biomass,GW,cumulative_capacity,12,13,25,247,475,234,450
+remind 3.5.2,Cumulative Cap|Electricity|+|Coal,GW,cumulative_capacity,12,13,25,247,475,234,450
+remind 3.5.2,Cumulative Cap|Electricity|+|Gas,GW,cumulative_capacity,12,13,25,247,475,234,450
+remind 3.5.2,Cumulative Cap|Electricity|+|Geothermal,GW,cumulative_capacity,12,13,25,247,475,234,448
+remind 3.5.2,Cumulative Cap|Electricity|+|Hydro,GW,cumulative_capacity,12,13,25,247,475,234,450
+remind 3.5.2,Cumulative Cap|Electricity|+|Hydrogen,GW,cumulative_capacity,12,13,25,247,475,195,375
+remind 3.5.2,Cumulative Cap|Electricity|+|Nuclear,GW,cumulative_capacity,12,13,25,247,475,234,431
+remind 3.5.2,Cumulative Cap|Electricity|+|Oil,GW,cumulative_capacity,12,13,25,247,475,234,450
+remind 3.5.2,Cumulative Cap|Electricity|+|Solar,GW,cumulative_capacity,12,13,25,247,475,234,450
+remind 3.5.2,Cumulative Cap|Electricity|+|Wind,GW,cumulative_capacity,12,13,25,247,475,234,450
+remind 3.5.2,Cumulative Cap|Electricity|Biomass|CHP,GW,cumulative_capacity,12,13,25,247,475,231,446
+remind 3.5.2,Cumulative Cap|Electricity|Biomass|w/ CC,GW,cumulative_capacity,12,13,25,247,475,193,375
+remind 3.5.2,Cumulative Cap|Electricity|Biomass|w/o CC,GW,cumulative_capacity,12,13,25,247,475,234,450
+remind 3.5.2,Cumulative Cap|Electricity|CHP,GW,cumulative_capacity,12,13,25,247,475,234,450
+remind 3.5.2,Cumulative Cap|Electricity|Coal|+|w/ CC,GW,cumulative_capacity,12,13,25,247,475,207,396
+remind 3.5.2,Cumulative Cap|Electricity|Coal|+|w/o CC,GW,cumulative_capacity,12,13,25,247,475,234,450
+remind 3.5.2,Cumulative Cap|Electricity|Coal|CHP,GW,cumulative_capacity,12,13,25,247,475,232,448
+remind 3.5.2,Cumulative Cap|Electricity|Coal|IGCC|+|w/ CC,GW,cumulative_capacity,12,13,25,247,475,207,396
+remind 3.5.2,Cumulative Cap|Electricity|Coal|IGCC|+|w/o CC,GW,cumulative_capacity,12,13,25,247,475,222,428
+remind 3.5.2,Cumulative Cap|Electricity|Gas|+|w/ CC,GW,cumulative_capacity,12,13,25,247,475,206,395
+remind 3.5.2,Cumulative Cap|Electricity|Gas|+|w/o CC,GW,cumulative_capacity,12,13,25,247,475,234,450
+remind 3.5.2,Cumulative Cap|Electricity|Gas|CC|+|w/ CC,GW,cumulative_capacity,12,13,25,247,475,206,395
+remind 3.5.2,Cumulative Cap|Electricity|Gas|CC|+|w/o CC,GW,cumulative_capacity,12,13,25,247,475,234,450
+remind 3.5.2,Cumulative Cap|Electricity|Gas|CHP,GW,cumulative_capacity,12,13,25,247,475,229,445
+remind 3.5.2,Cumulative Cap|Electricity|Gas|GT,GW,cumulative_capacity,12,13,25,247,475,234,450
+remind 3.5.2,Cumulative Cap|Electricity|Non-Biomass Renewables,GW,cumulative_capacity,12,13,25,247,475,234,450
+remind 3.5.2,Cumulative Cap|Electricity|Oil|w/o CC,GW,cumulative_capacity,12,13,25,247,475,234,450
+remind 3.5.2,Cumulative Cap|Electricity|Solar|+|CSP,GW,cumulative_capacity,12,13,25,247,475,231,433
+remind 3.5.2,Cumulative Cap|Electricity|Solar|+|PV,GW,cumulative_capacity,12,13,25,247,475,234,450
+remind 3.5.2,Cumulative Cap|Electricity|Storage|Battery,GW,cumulative_capacity,12,13,25,247,475,211,411
+remind 3.5.2,Cumulative Cap|Electricity|Storage|Battery|For PV,GW,cumulative_capacity,12,13,25,247,475,208,399
+remind 3.5.2,Cumulative Cap|Electricity|Storage|Battery|For Wind,GW,cumulative_capacity,12,13,25,247,475,177,403
+remind 3.5.2,Cumulative Cap|Electricity|Wind|+|Offshore,GW,cumulative_capacity,12,13,25,247,475,222,434
+remind 3.5.2,Cumulative Cap|Electricity|Wind|+|Onshore,GW,cumulative_capacity,12,13,25,247,475,234,450
+remind 3.5.2,Cumulative Cap|Gases,GW,cumulative_capacity,12,13,25,247,475,234,450
+remind 3.5.2,Cumulative Cap|Gases|+|Biomass,GW,cumulative_capacity,12,13,25,247,475,228,443
+remind 3.5.2,Cumulative Cap|Gases|+|Coal,GW,cumulative_capacity,12,13,25,247,475,234,447
+remind 3.5.2,Cumulative Cap|Gases|+|Hydrogen,GW,cumulative_capacity,12,13,25,247,475,195,375
+remind 3.5.2,Cumulative Cap|Gases|+|Natural Gas,GW,cumulative_capacity,12,13,25,247,475,234,450
+remind 3.5.2,Cumulative Cap|Heat,GW,cumulative_capacity,12,13,25,247,475,234,450
+remind 3.5.2,Cumulative Cap|Heat|+|Biomass,GW,cumulative_capacity,12,13,25,247,475,234,450
+remind 3.5.2,Cumulative Cap|Heat|+|Coal,GW,cumulative_capacity,12,13,25,247,475,232,448
+remind 3.5.2,Cumulative Cap|Heat|+|Electricity|Heat Pump,GW,cumulative_capacity,12,13,25,247,475,226,442
+remind 3.5.2,Cumulative Cap|Heat|+|Gas,GW,cumulative_capacity,12,13,25,247,475,232,448
+remind 3.5.2,Cumulative Cap|Heat|+|Solar,GW,cumulative_capacity,12,13,25,247,475,0,0
+remind 3.5.2,Cumulative Cap|Hydrogen,GW,cumulative_capacity,12,13,25,247,475,234,450
+remind 3.5.2,Cumulative Cap|Hydrogen|+|Biomass,GW,cumulative_capacity,12,13,25,247,475,202,391
+remind 3.5.2,Cumulative Cap|Hydrogen|+|Coal,GW,cumulative_capacity,12,13,25,247,475,234,450
+remind 3.5.2,Cumulative Cap|Hydrogen|+|Electricity,GW,cumulative_capacity,12,13,25,247,475,211,405
+remind 3.5.2,Cumulative Cap|Hydrogen|+|Gas,GW,cumulative_capacity,12,13,25,247,475,234,450
+remind 3.5.2,Cumulative Cap|Hydrogen|Biomass|+|w/ CC,GW,cumulative_capacity,12,13,25,247,475,193,372
+remind 3.5.2,Cumulative Cap|Hydrogen|Biomass|+|w/o CC,GW,cumulative_capacity,12,13,25,247,475,201,390
+remind 3.5.2,Cumulative Cap|Hydrogen|Coal|+|w/ CC,GW,cumulative_capacity,12,13,25,247,475,201,378
+remind 3.5.2,Cumulative Cap|Hydrogen|Coal|+|w/o CC,GW,cumulative_capacity,12,13,25,247,475,234,450
+remind 3.5.2,Cumulative Cap|Hydrogen|Fossil,GW,cumulative_capacity,12,13,25,247,475,234,450
+remind 3.5.2,Cumulative Cap|Hydrogen|Fossil|+|w/ CC,GW,cumulative_capacity,12,13,25,247,475,207,406
+remind 3.5.2,Cumulative Cap|Hydrogen|Fossil|+|w/o CC,GW,cumulative_capacity,12,13,25,247,475,234,450
+remind 3.5.2,Cumulative Cap|Hydrogen|Gas|+|w/ CC,GW,cumulative_capacity,12,13,25,247,475,207,406
+remind 3.5.2,Cumulative Cap|Hydrogen|Gas|+|w/o CC,GW,cumulative_capacity,12,13,25,247,475,234,450
+remind 3.5.2,Cumulative Cap|Liquids,GW,cumulative_capacity,12,13,25,247,475,234,450
+remind 3.5.2,Cumulative Cap|Liquids|+|Biomass,GW,cumulative_capacity,12,13,25,247,475,222,436
+remind 3.5.2,Cumulative Cap|Liquids|+|Coal,GW,cumulative_capacity,12,13,25,247,475,212,396
+remind 3.5.2,Cumulative Cap|Liquids|+|Gas,GW,cumulative_capacity,12,13,25,247,475,124,169
+remind 3.5.2,Cumulative Cap|Liquids|+|Hydrogen,GW,cumulative_capacity,12,13,25,247,475,208,400
+remind 3.5.2,Cumulative Cap|Liquids|+|Oil,GW,cumulative_capacity,12,13,25,247,475,234,450
+remind 3.5.2,Cumulative Cap|Liquids|Fossil,GW,cumulative_capacity,12,13,25,247,475,234,450
+remind 3.5.2,Cumulative Cap|Solids,GW,cumulative_capacity,12,13,25,247,475,234,450
+remind 3.5.2,Cumulative Cap|Solids|+|Biomass,GW,cumulative_capacity,12,13,25,247,475,234,450
+remind 3.5.2,Cumulative Cap|Solids|+|Coal,GW,cumulative_capacity,12,13,25,247,475,234,450
+remind 3.5.2,ES|Buildings|Floor Space,bn m2,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport,billion (p|t)km/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport with bunkers,billion (p|t)km/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport with bunkers|BEV,billion (p|t)km/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport with bunkers|Electric,billion (p|t)km/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport with bunkers|FCEV,billion (p|t)km/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport with bunkers|Gases,billion (p|t)km/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport with bunkers|Hybrid electric,billion (p|t)km/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport with bunkers|Hydrogen,billion (p|t)km/yr,service,12,13,25,247,475,195,375
+remind 3.5.2,ES|Transport with bunkers|Liquids,billion (p|t)km/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|BEV,billion (p|t)km/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Bunkers|Freight,billion tkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Bunkers|Freight|International Shipping,billion tkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Bunkers|Freight|International Shipping|Liquids,billion tkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Bunkers|Freight|International Shipping|Liquids|Biomass,billion tkm/yr,service,12,13,25,247,475,193,429
+remind 3.5.2,ES|Transport|Bunkers|Freight|International Shipping|Liquids|Fossil,billion tkm/yr,service,12,13,25,247,475,201,456
+remind 3.5.2,ES|Transport|Bunkers|Freight|International Shipping|Liquids|Hydrogen,billion tkm/yr,service,12,13,25,247,475,132,328
+remind 3.5.2,ES|Transport|Bunkers|Freight|Liquids,billion tkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Bunkers|Freight|Liquids|Biomass,billion tkm/yr,service,12,13,25,247,475,193,429
+remind 3.5.2,ES|Transport|Bunkers|Freight|Liquids|Fossil,billion tkm/yr,service,12,13,25,247,475,201,456
+remind 3.5.2,ES|Transport|Bunkers|Freight|Liquids|Hydrogen,billion tkm/yr,service,12,13,25,247,475,132,328
+remind 3.5.2,ES|Transport|Bunkers|Pass,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Bunkers|Pass|International Aviation,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Bunkers|Pass|International Aviation|Liquids,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Bunkers|Pass|International Aviation|Liquids|Biomass,billion pkm/yr,service,12,13,25,247,475,193,429
+remind 3.5.2,ES|Transport|Bunkers|Pass|International Aviation|Liquids|Fossil,billion pkm/yr,service,12,13,25,247,475,201,456
+remind 3.5.2,ES|Transport|Bunkers|Pass|International Aviation|Liquids|Hydrogen,billion pkm/yr,service,12,13,25,247,475,132,328
+remind 3.5.2,ES|Transport|Bunkers|Pass|Liquids,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Bunkers|Pass|Liquids|Biomass,billion pkm/yr,service,12,13,25,247,475,193,429
+remind 3.5.2,ES|Transport|Bunkers|Pass|Liquids|Fossil,billion pkm/yr,service,12,13,25,247,475,201,456
+remind 3.5.2,ES|Transport|Bunkers|Pass|Liquids|Hydrogen,billion pkm/yr,service,12,13,25,247,475,132,328
+remind 3.5.2,ES|Transport|Electric,billion (p|t)km/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|FCEV,billion (p|t)km/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Freight,billion tkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Freight with bunkers,billion tkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Freight with bunkers|BEV,billion tkm/yr,service,12,13,25,247,475,203,383
+remind 3.5.2,ES|Transport|Freight with bunkers|Electric,billion tkm/yr,service,12,13,25,247,475,243,471
+remind 3.5.2,ES|Transport|Freight with bunkers|FCEV,billion tkm/yr,service,12,13,25,247,475,201,381
+remind 3.5.2,ES|Transport|Freight with bunkers|Gases,billion tkm/yr,service,12,13,25,247,475,227,425
+remind 3.5.2,ES|Transport|Freight with bunkers|Liquids,billion tkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Freight|BEV,billion tkm/yr,service,12,13,25,247,475,203,383
+remind 3.5.2,ES|Transport|Freight|Domestic Shipping,billion tkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Freight|Domestic Shipping|Liquids,billion tkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Freight|Domestic Shipping|Liquids|Biomass,billion tkm/yr,service,12,13,25,247,475,207,440
+remind 3.5.2,ES|Transport|Freight|Domestic Shipping|Liquids|Fossil,billion tkm/yr,service,12,13,25,247,475,204,452
+remind 3.5.2,ES|Transport|Freight|Domestic Shipping|Liquids|Hydrogen,billion tkm/yr,service,12,13,25,247,475,139,332
+remind 3.5.2,ES|Transport|Freight|Electric,billion tkm/yr,service,12,13,25,247,475,243,471
+remind 3.5.2,ES|Transport|Freight|FCEV,billion tkm/yr,service,12,13,25,247,475,201,381
+remind 3.5.2,ES|Transport|Freight|Gases,billion tkm/yr,service,12,13,25,247,475,227,425
+remind 3.5.2,ES|Transport|Freight|Gases|Biomass,billion tkm/yr,service,12,13,25,227,425,180,384
+remind 3.5.2,ES|Transport|Freight|Gases|Fossil,billion tkm/yr,service,12,13,25,227,425,170,414
+remind 3.5.2,ES|Transport|Freight|Gases|Hydrogen,billion tkm/yr,service,12,13,25,227,425,33,205
+remind 3.5.2,ES|Transport|Freight|Liquids,billion tkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Freight|Liquids|Biomass,billion tkm/yr,service,12,13,25,247,475,207,440
+remind 3.5.2,ES|Transport|Freight|Liquids|Fossil,billion tkm/yr,service,12,13,25,247,475,204,452
+remind 3.5.2,ES|Transport|Freight|Liquids|Hydrogen,billion tkm/yr,service,12,13,25,247,475,139,332
+remind 3.5.2,ES|Transport|Freight|Long distance,billion tkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Freight|Rail,billion tkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Freight|Rail|Electric,billion tkm/yr,service,12,13,25,247,475,243,471
+remind 3.5.2,ES|Transport|Freight|Rail|Liquids,billion tkm/yr,service,12,13,25,247,475,246,474
+remind 3.5.2,ES|Transport|Freight|Rail|Liquids|Biomass,billion tkm/yr,service,12,13,25,246,474,206,439
+remind 3.5.2,ES|Transport|Freight|Rail|Liquids|Fossil,billion tkm/yr,service,12,13,25,246,474,203,451
+remind 3.5.2,ES|Transport|Freight|Rail|Liquids|Hydrogen,billion tkm/yr,service,12,13,25,246,474,138,331
+remind 3.5.2,ES|Transport|Freight|Road,billion tkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Freight|Road|BEV,billion tkm/yr,service,12,13,25,247,475,203,383
+remind 3.5.2,ES|Transport|Freight|Road|FCEV,billion tkm/yr,service,12,13,25,247,475,201,381
+remind 3.5.2,ES|Transport|Freight|Road|Gases,billion tkm/yr,service,12,13,25,247,475,227,425
+remind 3.5.2,ES|Transport|Freight|Road|Gases|Biomass,billion tkm/yr,service,12,13,25,227,425,180,384
+remind 3.5.2,ES|Transport|Freight|Road|Gases|Fossil,billion tkm/yr,service,12,13,25,227,425,170,414
+remind 3.5.2,ES|Transport|Freight|Road|Gases|Hydrogen,billion tkm/yr,service,12,13,25,227,425,33,205
+remind 3.5.2,ES|Transport|Freight|Road|Heavy,billion tkm/yr,service,12,13,25,247,475,228,456
+remind 3.5.2,ES|Transport|Freight|Road|Heavy|BEV,billion tkm/yr,service,12,13,25,247,475,190,370
+remind 3.5.2,ES|Transport|Freight|Road|Heavy|FCEV,billion tkm/yr,service,12,13,25,247,475,188,368
+remind 3.5.2,ES|Transport|Freight|Road|Heavy|Gases,billion tkm/yr,service,12,13,25,247,475,204,388
+remind 3.5.2,ES|Transport|Freight|Road|Heavy|Gases|Biomass,billion tkm/yr,service,12,13,25,204,388,168,359
+remind 3.5.2,ES|Transport|Freight|Road|Heavy|Gases|Fossil,billion tkm/yr,service,12,13,25,204,388,154,377
+remind 3.5.2,ES|Transport|Freight|Road|Heavy|Gases|Hydrogen,billion tkm/yr,service,12,13,25,204,388,33,203
+remind 3.5.2,ES|Transport|Freight|Road|Heavy|Liquids,billion tkm/yr,service,12,13,25,247,475,228,456
+remind 3.5.2,ES|Transport|Freight|Road|Heavy|Liquids|Biomass,billion tkm/yr,service,12,13,25,228,456,191,423
+remind 3.5.2,ES|Transport|Freight|Road|Heavy|Liquids|Fossil,billion tkm/yr,service,12,13,25,228,456,188,434
+remind 3.5.2,ES|Transport|Freight|Road|Heavy|Liquids|Hydrogen,billion tkm/yr,service,12,13,25,228,456,130,323
+remind 3.5.2,ES|Transport|Freight|Road|Heavy|Truck(18t),billion tkm/yr,service,12,13,25,247,475,226,454
+remind 3.5.2,ES|Transport|Freight|Road|Heavy|Truck(18t)|BEV,billion tkm/yr,service,12,13,25,247,475,186,366
+remind 3.5.2,ES|Transport|Freight|Road|Heavy|Truck(18t)|FCEV,billion tkm/yr,service,12,13,25,247,475,184,364
+remind 3.5.2,ES|Transport|Freight|Road|Heavy|Truck(18t)|Gases,billion tkm/yr,service,12,13,25,247,475,196,380
+remind 3.5.2,ES|Transport|Freight|Road|Heavy|Truck(18t)|Gases|Biomass,billion tkm/yr,service,12,13,25,196,380,168,359
+remind 3.5.2,ES|Transport|Freight|Road|Heavy|Truck(18t)|Gases|Fossil,billion tkm/yr,service,12,13,25,196,380,146,369
+remind 3.5.2,ES|Transport|Freight|Road|Heavy|Truck(18t)|Gases|Hydrogen,billion tkm/yr,service,12,13,25,196,380,33,203
+remind 3.5.2,ES|Transport|Freight|Road|Heavy|Truck(18t)|Liquids,billion tkm/yr,service,12,13,25,247,475,226,454
+remind 3.5.2,ES|Transport|Freight|Road|Heavy|Truck(18t)|Liquids|Biomass,billion tkm/yr,service,12,13,25,226,454,189,421
+remind 3.5.2,ES|Transport|Freight|Road|Heavy|Truck(18t)|Liquids|Fossil,billion tkm/yr,service,12,13,25,226,454,186,432
+remind 3.5.2,ES|Transport|Freight|Road|Heavy|Truck(18t)|Liquids|Hydrogen,billion tkm/yr,service,12,13,25,226,454,130,323
+remind 3.5.2,ES|Transport|Freight|Road|Heavy|Truck(26t),billion tkm/yr,service,12,13,25,247,475,205,433
+remind 3.5.2,ES|Transport|Freight|Road|Heavy|Truck(26t)|BEV,billion tkm/yr,service,12,13,25,247,475,171,351
+remind 3.5.2,ES|Transport|Freight|Road|Heavy|Truck(26t)|FCEV,billion tkm/yr,service,12,13,25,247,475,169,349
+remind 3.5.2,ES|Transport|Freight|Road|Heavy|Truck(26t)|Gases,billion tkm/yr,service,12,13,25,247,475,185,369
+remind 3.5.2,ES|Transport|Freight|Road|Heavy|Truck(26t)|Gases|Biomass,billion tkm/yr,service,12,13,25,185,369,152,341
+remind 3.5.2,ES|Transport|Freight|Road|Heavy|Truck(26t)|Gases|Fossil,billion tkm/yr,service,12,13,25,185,369,135,358
+remind 3.5.2,ES|Transport|Freight|Road|Heavy|Truck(26t)|Gases|Hydrogen,billion tkm/yr,service,12,13,25,185,369,31,195
+remind 3.5.2,ES|Transport|Freight|Road|Heavy|Truck(26t)|Liquids,billion tkm/yr,service,12,13,25,247,475,205,433
+remind 3.5.2,ES|Transport|Freight|Road|Heavy|Truck(26t)|Liquids|Biomass,billion tkm/yr,service,12,13,25,205,433,179,406
+remind 3.5.2,ES|Transport|Freight|Road|Heavy|Truck(26t)|Liquids|Fossil,billion tkm/yr,service,12,13,25,205,433,165,411
+remind 3.5.2,ES|Transport|Freight|Road|Heavy|Truck(26t)|Liquids|Hydrogen,billion tkm/yr,service,12,13,25,205,433,123,312
+remind 3.5.2,ES|Transport|Freight|Road|Heavy|Truck(40t),billion tkm/yr,service,12,13,25,247,475,205,433
+remind 3.5.2,ES|Transport|Freight|Road|Heavy|Truck(40t)|BEV,billion tkm/yr,service,12,13,25,247,475,171,351
+remind 3.5.2,ES|Transport|Freight|Road|Heavy|Truck(40t)|FCEV,billion tkm/yr,service,12,13,25,247,475,169,349
+remind 3.5.2,ES|Transport|Freight|Road|Heavy|Truck(40t)|Gases,billion tkm/yr,service,12,13,25,247,475,185,354
+remind 3.5.2,ES|Transport|Freight|Road|Heavy|Truck(40t)|Gases|Biomass,billion tkm/yr,service,12,13,25,185,354,152,326
+remind 3.5.2,ES|Transport|Freight|Road|Heavy|Truck(40t)|Gases|Fossil,billion tkm/yr,service,12,13,25,185,354,135,347
+remind 3.5.2,ES|Transport|Freight|Road|Heavy|Truck(40t)|Gases|Hydrogen,billion tkm/yr,service,12,13,25,185,354,31,185
+remind 3.5.2,ES|Transport|Freight|Road|Heavy|Truck(40t)|Liquids,billion tkm/yr,service,12,13,25,247,475,205,433
+remind 3.5.2,ES|Transport|Freight|Road|Heavy|Truck(40t)|Liquids|Biomass,billion tkm/yr,service,12,13,25,205,433,179,406
+remind 3.5.2,ES|Transport|Freight|Road|Heavy|Truck(40t)|Liquids|Fossil,billion tkm/yr,service,12,13,25,205,433,165,411
+remind 3.5.2,ES|Transport|Freight|Road|Heavy|Truck(40t)|Liquids|Hydrogen,billion tkm/yr,service,12,13,25,205,433,123,312
+remind 3.5.2,ES|Transport|Freight|Road|Light,billion tkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Freight|Road|Light|BEV,billion tkm/yr,service,12,13,25,247,475,195,375
+remind 3.5.2,ES|Transport|Freight|Road|Light|FCEV,billion tkm/yr,service,12,13,25,247,475,193,373
+remind 3.5.2,ES|Transport|Freight|Road|Light|Gases,billion tkm/yr,service,12,13,25,247,475,223,421
+remind 3.5.2,ES|Transport|Freight|Road|Light|Gases|Biomass,billion tkm/yr,service,12,13,25,223,421,179,383
+remind 3.5.2,ES|Transport|Freight|Road|Light|Gases|Fossil,billion tkm/yr,service,12,13,25,223,421,166,410
+remind 3.5.2,ES|Transport|Freight|Road|Light|Gases|Hydrogen,billion tkm/yr,service,12,13,25,223,421,33,205
+remind 3.5.2,ES|Transport|Freight|Road|Light|Liquids,billion tkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Freight|Road|Light|Liquids|Biomass,billion tkm/yr,service,12,13,25,247,475,207,440
+remind 3.5.2,ES|Transport|Freight|Road|Light|Liquids|Fossil,billion tkm/yr,service,12,13,25,247,475,204,452
+remind 3.5.2,ES|Transport|Freight|Road|Light|Liquids|Hydrogen,billion tkm/yr,service,12,13,25,247,475,139,332
+remind 3.5.2,ES|Transport|Freight|Road|Light|Truck(0-3_5t),billion tkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Freight|Road|Light|Truck(0-3_5t)|BEV,billion tkm/yr,service,12,13,25,247,475,195,375
+remind 3.5.2,ES|Transport|Freight|Road|Light|Truck(0-3_5t)|FCEV,billion tkm/yr,service,12,13,25,247,475,193,373
+remind 3.5.2,ES|Transport|Freight|Road|Light|Truck(0-3_5t)|Gases,billion tkm/yr,service,12,13,25,247,475,223,421
+remind 3.5.2,ES|Transport|Freight|Road|Light|Truck(0-3_5t)|Gases|Biomass,billion tkm/yr,service,12,13,25,223,421,179,383
+remind 3.5.2,ES|Transport|Freight|Road|Light|Truck(0-3_5t)|Gases|Fossil,billion tkm/yr,service,12,13,25,223,421,166,410
+remind 3.5.2,ES|Transport|Freight|Road|Light|Truck(0-3_5t)|Gases|Hydrogen,billion tkm/yr,service,12,13,25,223,421,33,205
+remind 3.5.2,ES|Transport|Freight|Road|Light|Truck(0-3_5t)|Liquids,billion tkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Freight|Road|Light|Truck(0-3_5t)|Liquids|Biomass,billion tkm/yr,service,12,13,25,247,475,207,440
+remind 3.5.2,ES|Transport|Freight|Road|Light|Truck(0-3_5t)|Liquids|Fossil,billion tkm/yr,service,12,13,25,247,475,204,452
+remind 3.5.2,ES|Transport|Freight|Road|Light|Truck(0-3_5t)|Liquids|Hydrogen,billion tkm/yr,service,12,13,25,247,475,139,332
+remind 3.5.2,ES|Transport|Freight|Road|Light|Truck(7_5t),billion tkm/yr,service,12,13,25,247,475,245,473
+remind 3.5.2,ES|Transport|Freight|Road|Light|Truck(7_5t)|BEV,billion tkm/yr,service,12,13,25,247,475,195,375
+remind 3.5.2,ES|Transport|Freight|Road|Light|Truck(7_5t)|FCEV,billion tkm/yr,service,12,13,25,247,475,193,373
+remind 3.5.2,ES|Transport|Freight|Road|Light|Truck(7_5t)|Gases,billion tkm/yr,service,12,13,25,247,475,211,395
+remind 3.5.2,ES|Transport|Freight|Road|Light|Truck(7_5t)|Gases|Biomass,billion tkm/yr,service,12,13,25,211,395,175,370
+remind 3.5.2,ES|Transport|Freight|Road|Light|Truck(7_5t)|Gases|Fossil,billion tkm/yr,service,12,13,25,211,395,154,384
+remind 3.5.2,ES|Transport|Freight|Road|Light|Truck(7_5t)|Gases|Hydrogen,billion tkm/yr,service,12,13,25,211,395,33,205
+remind 3.5.2,ES|Transport|Freight|Road|Light|Truck(7_5t)|Liquids,billion tkm/yr,service,12,13,25,247,475,245,473
+remind 3.5.2,ES|Transport|Freight|Road|Light|Truck(7_5t)|Liquids|Biomass,billion tkm/yr,service,12,13,25,245,473,206,438
+remind 3.5.2,ES|Transport|Freight|Road|Light|Truck(7_5t)|Liquids|Fossil,billion tkm/yr,service,12,13,25,245,473,202,450
+remind 3.5.2,ES|Transport|Freight|Road|Light|Truck(7_5t)|Liquids|Hydrogen,billion tkm/yr,service,12,13,25,245,473,139,332
+remind 3.5.2,ES|Transport|Freight|Road|Liquids,billion tkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Freight|Road|Liquids|Biomass,billion tkm/yr,service,12,13,25,247,475,207,440
+remind 3.5.2,ES|Transport|Freight|Road|Liquids|Fossil,billion tkm/yr,service,12,13,25,247,475,204,452
+remind 3.5.2,ES|Transport|Freight|Road|Liquids|Hydrogen,billion tkm/yr,service,12,13,25,247,475,139,332
+remind 3.5.2,ES|Transport|Freight|Short-Medium distance,billion tkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Gases,billion (p|t)km/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Hybrid electric,billion (p|t)km/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Hydrogen,billion (p|t)km/yr,service,12,13,25,247,475,195,375
+remind 3.5.2,ES|Transport|Liquids,billion (p|t)km/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass with bunkers,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass with bunkers|BEV,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass with bunkers|Electric,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass with bunkers|FCEV,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass with bunkers|Gases,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass with bunkers|Hybrid electric,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass with bunkers|Hydrogen,billion pkm/yr,service,12,13,25,247,475,195,375
+remind 3.5.2,ES|Transport|Pass with bunkers|Liquids,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Aviation,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Aviation|Hydrogen,billion pkm/yr,service,12,13,25,247,475,195,375
+remind 3.5.2,ES|Transport|Pass|Aviation|Liquids,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Aviation|Liquids|Biomass,billion pkm/yr,service,12,13,25,247,475,213,450
+remind 3.5.2,ES|Transport|Pass|Aviation|Liquids|Fossil,billion pkm/yr,service,12,13,25,247,475,205,456
+remind 3.5.2,ES|Transport|Pass|Aviation|Liquids|Hydrogen,billion pkm/yr,service,12,13,25,247,475,141,332
+remind 3.5.2,ES|Transport|Pass|BEV,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Domestic Aviation,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Domestic Aviation|Hydrogen,billion pkm/yr,service,12,13,25,247,475,195,375
+remind 3.5.2,ES|Transport|Pass|Domestic Aviation|Liquids,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Domestic Aviation|Liquids|Biomass,billion pkm/yr,service,12,13,25,247,475,207,440
+remind 3.5.2,ES|Transport|Pass|Domestic Aviation|Liquids|Fossil,billion pkm/yr,service,12,13,25,247,475,204,452
+remind 3.5.2,ES|Transport|Pass|Domestic Aviation|Liquids|Hydrogen,billion pkm/yr,service,12,13,25,247,475,139,332
+remind 3.5.2,ES|Transport|Pass|Electric,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|FCEV,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Gases,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Gases|Biomass,billion pkm/yr,service,12,13,25,247,475,182,405
+remind 3.5.2,ES|Transport|Pass|Gases|Fossil,billion pkm/yr,service,12,13,25,247,475,190,464
+remind 3.5.2,ES|Transport|Pass|Gases|Hydrogen,billion pkm/yr,service,12,13,25,247,475,33,209
+remind 3.5.2,ES|Transport|Pass|Hybrid electric,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Hydrogen,billion pkm/yr,service,12,13,25,247,475,195,375
+remind 3.5.2,ES|Transport|Pass|Liquids,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Liquids|Biomass,billion pkm/yr,service,12,13,25,247,475,219,455
+remind 3.5.2,ES|Transport|Pass|Liquids|Fossil,billion pkm/yr,service,12,13,25,247,475,210,452
+remind 3.5.2,ES|Transport|Pass|Liquids|Hydrogen,billion pkm/yr,service,12,13,25,247,475,150,337
+remind 3.5.2,ES|Transport|Pass|Long distance,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Non-motorized,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Non-motorized|Cycle,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Non-motorized|Walk,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Rail,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Rail|Electric,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Rail|HSR,billion pkm/yr,service,12,13,25,247,475,231,459
+remind 3.5.2,ES|Transport|Pass|Rail|HSR|Electric,billion pkm/yr,service,12,13,25,247,475,231,459
+remind 3.5.2,ES|Transport|Pass|Rail|Liquids,billion pkm/yr,service,12,13,25,247,475,246,474
+remind 3.5.2,ES|Transport|Pass|Rail|Liquids|Biomass,billion pkm/yr,service,12,13,25,246,474,206,439
+remind 3.5.2,ES|Transport|Pass|Rail|Liquids|Fossil,billion pkm/yr,service,12,13,25,246,474,203,451
+remind 3.5.2,ES|Transport|Pass|Rail|Liquids|Hydrogen,billion pkm/yr,service,12,13,25,246,474,138,331
+remind 3.5.2,ES|Transport|Pass|Rail|non-HSR,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Rail|non-HSR|Electric,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Rail|non-HSR|Liquids,billion pkm/yr,service,12,13,25,247,475,246,474
+remind 3.5.2,ES|Transport|Pass|Rail|non-HSR|Liquids|Biomass,billion pkm/yr,service,12,13,25,246,474,206,439
+remind 3.5.2,ES|Transport|Pass|Rail|non-HSR|Liquids|Fossil,billion pkm/yr,service,12,13,25,246,474,203,451
+remind 3.5.2,ES|Transport|Pass|Rail|non-HSR|Liquids|Hydrogen,billion pkm/yr,service,12,13,25,246,474,138,331
+remind 3.5.2,ES|Transport|Pass|Road,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Road|BEV,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Road|Bus,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Road|Bus|BEV,billion pkm/yr,service,12,13,25,247,475,203,393
+remind 3.5.2,ES|Transport|Pass|Road|Bus|FCEV,billion pkm/yr,service,12,13,25,247,475,197,385
+remind 3.5.2,ES|Transport|Pass|Road|Bus|Gases,billion pkm/yr,service,12,13,25,247,475,240,458
+remind 3.5.2,ES|Transport|Pass|Road|Bus|Gases|Biomass,billion pkm/yr,service,12,13,25,240,458,179,398
+remind 3.5.2,ES|Transport|Pass|Road|Bus|Gases|Fossil,billion pkm/yr,service,12,13,25,240,458,183,447
+remind 3.5.2,ES|Transport|Pass|Road|Bus|Gases|Hydrogen,billion pkm/yr,service,12,13,25,240,458,33,209
+remind 3.5.2,ES|Transport|Pass|Road|Bus|Liquids,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Road|Bus|Liquids|Biomass,billion pkm/yr,service,12,13,25,247,475,207,440
+remind 3.5.2,ES|Transport|Pass|Road|Bus|Liquids|Fossil,billion pkm/yr,service,12,13,25,247,475,204,452
+remind 3.5.2,ES|Transport|Pass|Road|Bus|Liquids|Hydrogen,billion pkm/yr,service,12,13,25,247,475,139,332
+remind 3.5.2,ES|Transport|Pass|Road|FCEV,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Road|Gases,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Road|Gases|Biomass,billion pkm/yr,service,12,13,25,247,475,182,405
+remind 3.5.2,ES|Transport|Pass|Road|Gases|Fossil,billion pkm/yr,service,12,13,25,247,475,190,464
+remind 3.5.2,ES|Transport|Pass|Road|Gases|Hydrogen,billion pkm/yr,service,12,13,25,247,475,33,209
+remind 3.5.2,ES|Transport|Pass|Road|Hybrid electric,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Road|LDV,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Road|LDV|BEV,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Road|LDV|FCEV,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|BEV,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|FCEV,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Gases,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Gases|Biomass,billion pkm/yr,service,12,13,25,247,475,182,405
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Gases|Fossil,billion pkm/yr,service,12,13,25,247,475,190,464
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Gases|Hydrogen,billion pkm/yr,service,12,13,25,247,475,33,209
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Hybrid electric,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Large,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Large|BEV,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Large|FCEV,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Gases,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Gases|Biomass,billion pkm/yr,service,12,13,25,247,475,182,405
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Gases|Fossil,billion pkm/yr,service,12,13,25,247,475,190,464
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Gases|Hydrogen,billion pkm/yr,service,12,13,25,247,475,33,209
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Hybrid electric,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car,billion pkm/yr,service,12,5,5,95,95,95,95
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|BEV,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|FCEV,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|Gases,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|Gases|Biomass,billion pkm/yr,service,12,13,25,247,475,182,405
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|Gases|Fossil,billion pkm/yr,service,12,13,25,247,475,190,464
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|Gases|Hydrogen,billion pkm/yr,service,12,13,25,247,475,33,209
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|Hybrid electric,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|Liquids,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|Liquids|Biomass,billion pkm/yr,service,12,13,25,247,475,206,451
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|Liquids|Fossil,billion pkm/yr,service,12,13,25,247,475,208,452
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|Liquids|Hydrogen,billion pkm/yr,service,12,13,25,247,475,146,334
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|BEV,billion pkm/yr,service,12,5,5,95,95,95,95
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|FCEV,billion pkm/yr,service,12,5,5,95,95,95,95
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Gases,billion pkm/yr,service,12,5,5,95,95,95,95
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Gases|Biomass,billion pkm/yr,service,12,5,5,95,95,69,75
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Gases|Fossil,billion pkm/yr,service,12,5,5,95,95,65,95
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Gases|Hydrogen,billion pkm/yr,service,12,5,5,95,95,15,36
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Hybrid electric,billion pkm/yr,service,12,5,5,95,95,95,95
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Liquids,billion pkm/yr,service,12,5,5,95,95,95,95
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Liquids|Biomass,billion pkm/yr,service,12,5,5,95,95,92,95
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Liquids|Fossil,billion pkm/yr,service,12,5,5,95,95,73,95
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Liquids|Hydrogen,billion pkm/yr,service,12,5,5,95,95,61,71
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Liquids,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Liquids|Biomass,billion pkm/yr,service,12,13,25,247,475,206,451
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Liquids|Fossil,billion pkm/yr,service,12,13,25,247,475,208,452
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Liquids|Hydrogen,billion pkm/yr,service,12,13,25,247,475,146,334
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Van,billion pkm/yr,service,12,7,12,133,228,129,218
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|BEV,billion pkm/yr,service,12,7,12,133,228,129,218
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|FCEV,billion pkm/yr,service,12,7,12,133,228,129,218
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|Gases,billion pkm/yr,service,12,7,12,133,228,129,218
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|Gases|Biomass,billion pkm/yr,service,12,7,12,129,218,109,200
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|Gases|Fossil,billion pkm/yr,service,12,7,12,129,218,101,208
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|Gases|Hydrogen,billion pkm/yr,service,12,7,12,129,218,23,119
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|Hybrid electric,billion pkm/yr,service,12,7,12,133,228,129,218
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|Liquids,billion pkm/yr,service,12,7,12,133,228,129,218
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|Liquids|Biomass,billion pkm/yr,service,12,7,12,129,218,120,209
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|Liquids|Fossil,billion pkm/yr,service,12,7,12,129,218,108,206
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|Liquids|Hydrogen,billion pkm/yr,service,12,7,12,129,218,85,172
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Liquids,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Liquids|Biomass,billion pkm/yr,service,12,13,25,247,475,206,451
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Liquids|Fossil,billion pkm/yr,service,12,13,25,247,475,208,452
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Liquids|Hydrogen,billion pkm/yr,service,12,13,25,247,475,146,334
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Medium,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Medium|BEV,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Medium|Compact Car,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Medium|Compact Car|BEV,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Medium|Compact Car|FCEV,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Medium|Compact Car|Gases,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Medium|Compact Car|Gases|Biomass,billion pkm/yr,service,12,13,25,247,475,182,405
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Medium|Compact Car|Gases|Fossil,billion pkm/yr,service,12,13,25,247,475,190,464
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Medium|Compact Car|Gases|Hydrogen,billion pkm/yr,service,12,13,25,247,475,33,209
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Medium|Compact Car|Hybrid electric,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Medium|Compact Car|Liquids,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Medium|Compact Car|Liquids|Biomass,billion pkm/yr,service,12,13,25,247,475,206,451
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Medium|Compact Car|Liquids|Fossil,billion pkm/yr,service,12,13,25,247,475,208,452
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Medium|Compact Car|Liquids|Hydrogen,billion pkm/yr,service,12,13,25,247,475,146,334
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Medium|FCEV,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Medium|Gases,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Medium|Gases|Biomass,billion pkm/yr,service,12,13,25,247,475,182,405
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Medium|Gases|Fossil,billion pkm/yr,service,12,13,25,247,475,190,464
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Medium|Gases|Hydrogen,billion pkm/yr,service,12,13,25,247,475,33,209
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Medium|Hybrid electric,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Medium|Liquids,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Medium|Liquids|Biomass,billion pkm/yr,service,12,13,25,247,475,206,451
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Medium|Liquids|Fossil,billion pkm/yr,service,12,13,25,247,475,208,452
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Medium|Liquids|Hydrogen,billion pkm/yr,service,12,13,25,247,475,146,334
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car,billion pkm/yr,service,12,8,20,152,380,152,380
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|BEV,billion pkm/yr,service,12,8,20,152,380,152,380
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|FCEV,billion pkm/yr,service,12,8,20,152,380,152,380
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Gases,billion pkm/yr,service,12,8,20,152,380,152,380
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Gases|Biomass,billion pkm/yr,service,12,8,20,152,380,123,330
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Gases|Fossil,billion pkm/yr,service,12,8,20,152,380,107,369
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Gases|Hydrogen,billion pkm/yr,service,12,8,20,152,380,21,186
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Hybrid electric,billion pkm/yr,service,12,8,20,152,380,152,380
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Liquids,billion pkm/yr,service,12,8,20,152,380,152,380
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Liquids|Biomass,billion pkm/yr,service,12,8,20,152,380,137,369
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Liquids|Fossil,billion pkm/yr,service,12,8,20,152,380,122,358
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Liquids|Hydrogen,billion pkm/yr,service,12,8,20,152,380,88,273
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Small,billion pkm/yr,service,12,12,24,228,456,228,456
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Small|BEV,billion pkm/yr,service,12,12,24,228,456,228,456
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Small|FCEV,billion pkm/yr,service,12,12,24,228,456,228,456
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Gases,billion pkm/yr,service,12,12,24,228,456,228,456
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Gases|Biomass,billion pkm/yr,service,12,12,24,228,456,167,390
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Gases|Fossil,billion pkm/yr,service,12,12,24,228,456,182,445
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Gases|Hydrogen,billion pkm/yr,service,12,12,24,228,456,27,207
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Hybrid electric,billion pkm/yr,service,12,12,24,228,456,228,456
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Liquids,billion pkm/yr,service,12,12,24,228,456,228,456
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Liquids|Biomass,billion pkm/yr,service,12,12,24,228,456,187,432
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Liquids|Fossil,billion pkm/yr,service,12,12,24,228,456,196,433
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Liquids|Hydrogen,billion pkm/yr,service,12,12,24,228,456,132,320
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car,billion pkm/yr,service,12,12,17,228,323,226,313
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|BEV,billion pkm/yr,service,12,12,17,228,323,226,313
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|FCEV,billion pkm/yr,service,12,12,17,228,323,226,313
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Gases,billion pkm/yr,service,12,12,17,228,323,226,313
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Gases|Biomass,billion pkm/yr,service,12,12,17,226,313,165,274
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Gases|Fossil,billion pkm/yr,service,12,12,17,226,313,180,303
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Gases|Hydrogen,billion pkm/yr,service,12,12,17,226,313,27,141
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Hybrid electric,billion pkm/yr,service,12,12,17,228,323,226,313
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Liquids,billion pkm/yr,service,12,12,17,228,323,226,313
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Liquids|Biomass,billion pkm/yr,service,12,12,17,226,313,185,291
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Liquids|Fossil,billion pkm/yr,service,12,12,17,226,313,194,300
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Liquids|Hydrogen,billion pkm/yr,service,12,12,17,226,313,132,224
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car,billion pkm/yr,service,12,12,24,228,456,228,456
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car|BEV,billion pkm/yr,service,12,12,24,228,456,228,456
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car|FCEV,billion pkm/yr,service,12,12,24,228,456,228,456
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car|Gases,billion pkm/yr,service,12,12,24,228,456,228,456
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car|Gases|Biomass,billion pkm/yr,service,12,12,24,228,456,167,390
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car|Gases|Fossil,billion pkm/yr,service,12,12,24,228,456,182,445
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car|Gases|Hydrogen,billion pkm/yr,service,12,12,24,228,456,27,207
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car|Hybrid electric,billion pkm/yr,service,12,12,24,228,456,228,456
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car|Liquids,billion pkm/yr,service,12,12,24,228,456,228,456
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car|Liquids|Biomass,billion pkm/yr,service,12,12,24,228,456,187,432
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car|Liquids|Fossil,billion pkm/yr,service,12,12,24,228,456,196,433
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car|Liquids|Hydrogen,billion pkm/yr,service,12,12,24,228,456,132,320
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Gases,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Gases|Biomass,billion pkm/yr,service,12,13,25,247,475,182,405
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Gases|Fossil,billion pkm/yr,service,12,13,25,247,475,190,464
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Gases|Hydrogen,billion pkm/yr,service,12,13,25,247,475,33,209
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Hybrid electric,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Liquids,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Liquids|Biomass,billion pkm/yr,service,12,13,25,247,475,206,451
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Liquids|Fossil,billion pkm/yr,service,12,13,25,247,475,208,452
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Liquids|Hydrogen,billion pkm/yr,service,12,13,25,247,475,146,334
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Three Wheelers,billion pkm/yr,service,12,2,2,38,38,38,38
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Three Wheelers|BEV,billion pkm/yr,service,12,2,2,38,38,34,34
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Three Wheelers|Liquids,billion pkm/yr,service,12,2,2,38,38,38,38
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Three Wheelers|Liquids|Biomass,billion pkm/yr,service,12,2,2,38,38,26,34
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Three Wheelers|Liquids|Fossil,billion pkm/yr,service,12,2,2,38,38,34,38
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Three Wheelers|Liquids|Hydrogen,billion pkm/yr,service,12,2,2,38,38,22,30
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Three Wheelers|Rickshaw,billion pkm/yr,service,12,2,2,38,38,38,38
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Three Wheelers|Rickshaw|BEV,billion pkm/yr,service,12,2,2,38,38,34,34
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Three Wheelers|Rickshaw|Liquids,billion pkm/yr,service,12,2,2,38,38,38,38
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Three Wheelers|Rickshaw|Liquids|Biomass,billion pkm/yr,service,12,2,2,38,38,26,34
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Three Wheelers|Rickshaw|Liquids|Fossil,billion pkm/yr,service,12,2,2,38,38,34,38
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Three Wheelers|Rickshaw|Liquids|Hydrogen,billion pkm/yr,service,12,2,2,38,38,22,30
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Two Wheelers,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Two Wheelers|BEV,billion pkm/yr,service,12,13,25,247,475,210,394
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Two Wheelers|Liquids,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Two Wheelers|Liquids|Biomass,billion pkm/yr,service,12,13,25,247,475,206,451
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Two Wheelers|Liquids|Fossil,billion pkm/yr,service,12,13,25,247,475,208,452
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Two Wheelers|Liquids|Hydrogen,billion pkm/yr,service,12,13,25,247,475,146,334
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Two Wheelers|Moped,billion pkm/yr,service,12,11,23,209,437,209,437
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Two Wheelers|Moped|BEV,billion pkm/yr,service,12,11,23,209,437,173,357
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Two Wheelers|Moped|Liquids,billion pkm/yr,service,12,11,23,209,437,209,437
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Two Wheelers|Moped|Liquids|Biomass,billion pkm/yr,service,12,11,23,209,437,181,418
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Two Wheelers|Moped|Liquids|Fossil,billion pkm/yr,service,12,11,23,209,437,177,414
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Two Wheelers|Moped|Liquids|Hydrogen,billion pkm/yr,service,12,11,23,209,437,119,310
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(50-250cc),billion pkm/yr,service,12,12,24,228,456,228,456
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(50-250cc)|BEV,billion pkm/yr,service,12,12,24,228,456,195,379
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(50-250cc)|Liquids,billion pkm/yr,service,12,12,24,228,456,228,456
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(50-250cc)|Liquids|Biomass,billion pkm/yr,service,12,12,24,228,456,187,432
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(50-250cc)|Liquids|Fossil,billion pkm/yr,service,12,12,24,228,456,196,433
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(50-250cc)|Liquids|Hydrogen,billion pkm/yr,service,12,12,24,228,456,132,320
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(>250cc),billion pkm/yr,service,12,12,24,228,456,228,456
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(>250cc)|BEV,billion pkm/yr,service,12,12,24,228,456,186,370
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(>250cc)|Liquids,billion pkm/yr,service,12,12,24,228,456,228,456
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(>250cc)|Liquids|Biomass,billion pkm/yr,service,12,12,24,228,456,193,434
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(>250cc)|Liquids|Fossil,billion pkm/yr,service,12,12,24,228,456,189,433
+remind 3.5.2,ES|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(>250cc)|Liquids|Hydrogen,billion pkm/yr,service,12,12,24,228,456,131,320
+remind 3.5.2,ES|Transport|Pass|Road|Liquids,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Pass|Road|Liquids|Biomass,billion pkm/yr,service,12,13,25,247,475,219,455
+remind 3.5.2,ES|Transport|Pass|Road|Liquids|Fossil,billion pkm/yr,service,12,13,25,247,475,210,452
+remind 3.5.2,ES|Transport|Pass|Road|Liquids|Hydrogen,billion pkm/yr,service,12,13,25,247,475,150,337
+remind 3.5.2,ES|Transport|Pass|Short-Medium distance,billion pkm/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Rail,billion (p|t)km/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Rail|Electric,billion (p|t)km/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Rail|Liquids,billion (p|t)km/yr,service,12,13,25,247,475,246,474
+remind 3.5.2,ES|Transport|Rail|Liquids|Biomass,billion (p|t)km/yr,service,12,13,25,246,474,206,439
+remind 3.5.2,ES|Transport|Rail|Liquids|Fossil,billion (p|t)km/yr,service,12,13,25,246,474,203,451
+remind 3.5.2,ES|Transport|Rail|Liquids|Hydrogen,billion (p|t)km/yr,service,12,13,25,246,474,138,331
+remind 3.5.2,ES|Transport|Road,billion (p|t)km/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Road|BEV,billion (p|t)km/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Road|FCEV,billion (p|t)km/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Road|Gases,billion (p|t)km/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Road|Hybrid electric,billion (p|t)km/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,ES|Transport|Road|Liquids,billion (p|t)km/yr,service,12,13,25,247,475,247,475
+remind 3.5.2,New Cap|Biochar,Mt Biochar/yr/yr,new_capacity,12,13,25,247,475,20,220
+remind 3.5.2,New Cap|Carbon Management|DAC,Mt CO2/yr/yr,new_capacity,12,13,25,247,475,157,400
+remind 3.5.2,New Cap|Electricity,GW/yr,new_capacity,12,13,25,247,475,247,475
+remind 3.5.2,New Cap|Electricity|+|Biomass,GW/yr,new_capacity,12,13,25,247,475,169,352
+remind 3.5.2,New Cap|Electricity|+|Coal,GW/yr,new_capacity,12,13,25,247,475,169,328
+remind 3.5.2,New Cap|Electricity|+|Gas,GW/yr,new_capacity,12,13,25,247,475,173,437
+remind 3.5.2,New Cap|Electricity|+|Geothermal,GW/yr,new_capacity,12,13,25,247,475,246,469
+remind 3.5.2,New Cap|Electricity|+|Hydro,GW/yr,new_capacity,12,13,25,247,475,247,475
+remind 3.5.2,New Cap|Electricity|+|Hydrogen,GW/yr,new_capacity,12,13,25,247,475,193,375
+remind 3.5.2,New Cap|Electricity|+|Nuclear,GW/yr,new_capacity,12,13,25,247,475,100,197
+remind 3.5.2,New Cap|Electricity|+|Oil,GW/yr,new_capacity,12,13,25,247,475,130,252
+remind 3.5.2,New Cap|Electricity|+|Solar,GW/yr,new_capacity,12,13,25,247,475,246,473
+remind 3.5.2,New Cap|Electricity|+|Wind,GW/yr,new_capacity,12,13,25,247,475,244,475
+remind 3.5.2,New Cap|Electricity|Biomass|CHP,GW/yr,new_capacity,12,13,25,247,475,149,301
+remind 3.5.2,New Cap|Electricity|Biomass|w/ CC,GW/yr,new_capacity,12,13,25,247,475,52,172
+remind 3.5.2,New Cap|Electricity|Biomass|w/o CC,GW/yr,new_capacity,12,13,25,247,475,169,330
+remind 3.5.2,New Cap|Electricity|CHP,GW/yr,new_capacity,12,13,25,247,475,164,326
+remind 3.5.2,New Cap|Electricity|Coal|+|w/ CC,GW/yr,new_capacity,12,13,25,247,475,76,182
+remind 3.5.2,New Cap|Electricity|Coal|+|w/o CC,GW/yr,new_capacity,12,13,25,247,475,166,318
+remind 3.5.2,New Cap|Electricity|Coal|CHP,GW/yr,new_capacity,12,13,25,247,475,156,306
+remind 3.5.2,New Cap|Electricity|Coal|IGCC|+|w/ CC,GW/yr,new_capacity,12,13,25,247,475,76,182
+remind 3.5.2,New Cap|Electricity|Coal|IGCC|+|w/o CC,GW/yr,new_capacity,12,13,25,247,475,143,278
+remind 3.5.2,New Cap|Electricity|Gas|+|w/ CC,GW/yr,new_capacity,12,13,25,247,475,84,193
+remind 3.5.2,New Cap|Electricity|Gas|+|w/o CC,GW/yr,new_capacity,12,13,25,247,475,169,436
+remind 3.5.2,New Cap|Electricity|Gas|CC|+|w/ CC,GW/yr,new_capacity,12,13,25,247,475,84,193
+remind 3.5.2,New Cap|Electricity|Gas|CC|+|w/o CC,GW/yr,new_capacity,12,13,25,247,475,169,321
+remind 3.5.2,New Cap|Electricity|Gas|CHP,GW/yr,new_capacity,12,13,25,247,475,152,302
+remind 3.5.2,New Cap|Electricity|Gas|GT,GW/yr,new_capacity,12,13,25,247,475,158,424
+remind 3.5.2,New Cap|Electricity|Non-Biomass Renewables,GW/yr,new_capacity,12,13,25,247,475,247,475
+remind 3.5.2,New Cap|Electricity|Oil|w/o CC,GW/yr,new_capacity,12,13,25,247,475,130,252
+remind 3.5.2,New Cap|Electricity|Solar|+|CSP,GW/yr,new_capacity,12,13,25,247,475,236,441
+remind 3.5.2,New Cap|Electricity|Solar|+|PV,GW/yr,new_capacity,12,13,25,247,475,246,473
+remind 3.5.2,New Cap|Electricity|Storage|Battery,GW/yr,new_capacity,12,13,25,247,475,206,411
+remind 3.5.2,New Cap|Electricity|Storage|Battery|For PV,GW/yr,new_capacity,12,13,25,247,475,201,399
+remind 3.5.2,New Cap|Electricity|Storage|Battery|For Wind,GW/yr,new_capacity,12,13,25,247,475,169,403
+remind 3.5.2,New Cap|Electricity|Wind|+|Offshore,GW/yr,new_capacity,12,13,25,247,475,219,434
+remind 3.5.2,New Cap|Electricity|Wind|+|Onshore,GW/yr,new_capacity,12,13,25,247,475,243,475
+remind 3.5.2,New Cap|Gases,GW/yr,new_capacity,12,13,25,247,475,246,475
+remind 3.5.2,New Cap|Gases|+|Biomass,GW/yr,new_capacity,12,13,25,247,475,164,393
+remind 3.5.2,New Cap|Gases|+|Coal,GW/yr,new_capacity,12,13,25,247,475,130,249
+remind 3.5.2,New Cap|Gases|+|Hydrogen,GW/yr,new_capacity,12,13,25,247,475,191,373
+remind 3.5.2,New Cap|Gases|+|Natural Gas,GW/yr,new_capacity,12,13,25,247,475,205,457
+remind 3.5.2,New Cap|Heat,GW/yr,new_capacity,12,13,25,247,475,243,474
+remind 3.5.2,New Cap|Heat|+|Biomass,GW/yr,new_capacity,12,13,25,247,475,162,390
+remind 3.5.2,New Cap|Heat|+|Coal,GW/yr,new_capacity,12,13,25,247,475,158,308
+remind 3.5.2,New Cap|Heat|+|Electricity|Heat Pump,GW/yr,new_capacity,12,13,25,247,475,194,407
+remind 3.5.2,New Cap|Heat|+|Gas,GW/yr,new_capacity,12,13,25,247,475,154,308
+remind 3.5.2,New Cap|Heat|+|Solar,GW/yr,new_capacity,12,13,25,247,475,0,0
+remind 3.5.2,New Cap|Hydrogen,GW/yr,new_capacity,12,13,25,247,475,247,475
+remind 3.5.2,New Cap|Hydrogen|+|Biomass,GW/yr,new_capacity,12,13,25,247,475,127,315
+remind 3.5.2,New Cap|Hydrogen|+|Coal,GW/yr,new_capacity,12,13,25,247,475,98,223
+remind 3.5.2,New Cap|Hydrogen|+|Electricity,GW/yr,new_capacity,12,13,25,247,475,200,404
+remind 3.5.2,New Cap|Hydrogen|+|Gas,GW/yr,new_capacity,12,13,25,247,475,113,236
+remind 3.5.2,New Cap|Hydrogen|Biomass|+|w/ CC,GW/yr,new_capacity,12,13,25,247,475,75,245
+remind 3.5.2,New Cap|Hydrogen|Biomass|+|w/o CC,GW/yr,new_capacity,12,13,25,247,475,121,241
+remind 3.5.2,New Cap|Hydrogen|Coal|+|w/ CC,GW/yr,new_capacity,12,13,25,247,475,81,192
+remind 3.5.2,New Cap|Hydrogen|Coal|+|w/o CC,GW/yr,new_capacity,12,13,25,247,475,19,33
+remind 3.5.2,New Cap|Hydrogen|Fossil,GW/yr,new_capacity,12,13,25,247,475,151,327
+remind 3.5.2,New Cap|Hydrogen|Fossil|+|w/ CC,GW/yr,new_capacity,12,13,25,247,475,110,258
+remind 3.5.2,New Cap|Hydrogen|Fossil|+|w/o CC,GW/yr,new_capacity,12,13,25,247,475,76,147
+remind 3.5.2,New Cap|Hydrogen|Gas|+|w/ CC,GW/yr,new_capacity,12,13,25,247,475,68,158
+remind 3.5.2,New Cap|Hydrogen|Gas|+|w/o CC,GW/yr,new_capacity,12,13,25,247,475,74,145
+remind 3.5.2,New Cap|Liquids,GW/yr,new_capacity,12,13,25,247,475,247,475
+remind 3.5.2,New Cap|Liquids|+|Biomass,GW/yr,new_capacity,12,13,25,247,475,225,453
+remind 3.5.2,New Cap|Liquids|+|Coal,GW/yr,new_capacity,12,13,25,247,475,131,258
+remind 3.5.2,New Cap|Liquids|+|Gas,GW/yr,new_capacity,12,13,25,247,475,48,150
+remind 3.5.2,New Cap|Liquids|+|Hydrogen,GW/yr,new_capacity,12,13,25,247,475,137,325
+remind 3.5.2,New Cap|Liquids|+|Oil,GW/yr,new_capacity,12,13,25,247,475,200,432
+remind 3.5.2,New Cap|Liquids|Fossil,GW/yr,new_capacity,12,13,25,247,475,200,432
+remind 3.5.2,New Cap|Solids,GW/yr,new_capacity,12,13,25,247,475,246,475
+remind 3.5.2,New Cap|Solids|+|Biomass,GW/yr,new_capacity,12,13,25,247,475,221,458
+remind 3.5.2,New Cap|Solids|+|Coal,GW/yr,new_capacity,12,13,25,247,475,223,466
+remind 3.5.2,Sales|Transport|Freight|Road,million veh,sales_transport,12,13,25,247,475,247,475
+remind 3.5.2,Sales|Transport|Freight|Road|BEV,million veh,sales_transport,12,13,25,247,475,202,382
+remind 3.5.2,Sales|Transport|Freight|Road|FCEV,million veh,sales_transport,12,13,25,247,475,200,380
+remind 3.5.2,Sales|Transport|Freight|Road|Gases,million veh,sales_transport,12,13,25,247,475,226,398
+remind 3.5.2,Sales|Transport|Freight|Road|Heavy,million veh,sales_transport,12,13,25,247,475,225,453
+remind 3.5.2,Sales|Transport|Freight|Road|Heavy|BEV,million veh,sales_transport,12,13,25,247,475,187,367
+remind 3.5.2,Sales|Transport|Freight|Road|Heavy|FCEV,million veh,sales_transport,12,13,25,247,475,185,365
+remind 3.5.2,Sales|Transport|Freight|Road|Heavy|Gases,million veh,sales_transport,12,13,25,247,475,201,345
+remind 3.5.2,Sales|Transport|Freight|Road|Heavy|Liquids,million veh,sales_transport,12,13,25,247,475,225,453
+remind 3.5.2,Sales|Transport|Freight|Road|Heavy|Truck(18t),million veh,sales_transport,12,13,25,247,475,223,451
+remind 3.5.2,Sales|Transport|Freight|Road|Heavy|Truck(18t)|BEV,million veh,sales_transport,12,13,25,247,475,182,362
+remind 3.5.2,Sales|Transport|Freight|Road|Heavy|Truck(18t)|FCEV,million veh,sales_transport,12,13,25,247,475,180,360
+remind 3.5.2,Sales|Transport|Freight|Road|Heavy|Truck(18t)|Gases,million veh,sales_transport,12,13,25,247,475,193,337
+remind 3.5.2,Sales|Transport|Freight|Road|Heavy|Truck(18t)|Liquids,million veh,sales_transport,12,13,25,247,475,223,451
+remind 3.5.2,Sales|Transport|Freight|Road|Heavy|Truck(26t),million veh,sales_transport,12,13,25,247,475,205,433
+remind 3.5.2,Sales|Transport|Freight|Road|Heavy|Truck(26t)|BEV,million veh,sales_transport,12,13,25,247,475,171,351
+remind 3.5.2,Sales|Transport|Freight|Road|Heavy|Truck(26t)|FCEV,million veh,sales_transport,12,13,25,247,475,169,349
+remind 3.5.2,Sales|Transport|Freight|Road|Heavy|Truck(26t)|Gases,million veh,sales_transport,12,13,25,247,475,185,329
+remind 3.5.2,Sales|Transport|Freight|Road|Heavy|Truck(26t)|Liquids,million veh,sales_transport,12,13,25,247,475,205,433
+remind 3.5.2,Sales|Transport|Freight|Road|Heavy|Truck(40t),million veh,sales_transport,12,13,25,247,475,205,433
+remind 3.5.2,Sales|Transport|Freight|Road|Heavy|Truck(40t)|BEV,million veh,sales_transport,12,13,25,247,475,171,351
+remind 3.5.2,Sales|Transport|Freight|Road|Heavy|Truck(40t)|FCEV,million veh,sales_transport,12,13,25,247,475,169,349
+remind 3.5.2,Sales|Transport|Freight|Road|Heavy|Truck(40t)|Gases,million veh,sales_transport,12,13,25,247,475,185,319
+remind 3.5.2,Sales|Transport|Freight|Road|Heavy|Truck(40t)|Liquids,million veh,sales_transport,12,13,25,247,475,205,433
+remind 3.5.2,Sales|Transport|Freight|Road|Light,million veh,sales_transport,12,13,25,247,475,247,475
+remind 3.5.2,Sales|Transport|Freight|Road|Light|BEV,million veh,sales_transport,12,13,25,247,475,195,375
+remind 3.5.2,Sales|Transport|Freight|Road|Light|FCEV,million veh,sales_transport,12,13,25,247,475,193,373
+remind 3.5.2,Sales|Transport|Freight|Road|Light|Gases,million veh,sales_transport,12,13,25,247,475,223,395
+remind 3.5.2,Sales|Transport|Freight|Road|Light|Liquids,million veh,sales_transport,12,13,25,247,475,247,475
+remind 3.5.2,Sales|Transport|Freight|Road|Light|Truck(0-3_5t),million veh,sales_transport,12,13,25,247,475,247,475
+remind 3.5.2,Sales|Transport|Freight|Road|Light|Truck(0-3_5t)|BEV,million veh,sales_transport,12,13,25,247,475,195,375
+remind 3.5.2,Sales|Transport|Freight|Road|Light|Truck(0-3_5t)|FCEV,million veh,sales_transport,12,13,25,247,475,193,373
+remind 3.5.2,Sales|Transport|Freight|Road|Light|Truck(0-3_5t)|Gases,million veh,sales_transport,12,13,25,247,475,223,395
+remind 3.5.2,Sales|Transport|Freight|Road|Light|Truck(0-3_5t)|Liquids,million veh,sales_transport,12,13,25,247,475,247,475
+remind 3.5.2,Sales|Transport|Freight|Road|Light|Truck(7_5t),million veh,sales_transport,12,13,25,247,475,245,473
+remind 3.5.2,Sales|Transport|Freight|Road|Light|Truck(7_5t)|BEV,million veh,sales_transport,12,13,25,247,475,195,375
+remind 3.5.2,Sales|Transport|Freight|Road|Light|Truck(7_5t)|FCEV,million veh,sales_transport,12,13,25,247,475,193,373
+remind 3.5.2,Sales|Transport|Freight|Road|Light|Truck(7_5t)|Gases,million veh,sales_transport,12,13,25,247,475,210,354
+remind 3.5.2,Sales|Transport|Freight|Road|Light|Truck(7_5t)|Liquids,million veh,sales_transport,12,13,25,247,475,245,473
+remind 3.5.2,Sales|Transport|Freight|Road|Liquids,million veh,sales_transport,12,13,25,247,475,247,475
+remind 3.5.2,Sales|Transport|Pass|Road,million veh,sales_transport,12,13,25,247,475,247,475
+remind 3.5.2,Sales|Transport|Pass|Road|BEV,million veh,sales_transport,12,13,25,247,475,247,475
+remind 3.5.2,Sales|Transport|Pass|Road|Bus,million veh,sales_transport,12,13,25,247,475,247,475
+remind 3.5.2,Sales|Transport|Pass|Road|Bus|BEV,million veh,sales_transport,12,13,25,247,475,203,393
+remind 3.5.2,Sales|Transport|Pass|Road|Bus|FCEV,million veh,sales_transport,12,13,25,247,475,197,385
+remind 3.5.2,Sales|Transport|Pass|Road|Bus|Gases,million veh,sales_transport,12,13,25,247,475,240,457
+remind 3.5.2,Sales|Transport|Pass|Road|Bus|Liquids,million veh,sales_transport,12,13,25,247,475,247,475
+remind 3.5.2,Sales|Transport|Pass|Road|FCEV,million veh,sales_transport,12,13,25,247,475,247,475
+remind 3.5.2,Sales|Transport|Pass|Road|Gases,million veh,sales_transport,12,13,25,247,475,247,475
+remind 3.5.2,Sales|Transport|Pass|Road|Hybrid electric,million veh,sales_transport,12,13,25,247,475,247,475
+remind 3.5.2,Sales|Transport|Pass|Road|LDV,million veh,sales_transport,12,13,25,247,475,247,475
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|BEV,million veh,sales_transport,12,13,25,247,475,247,475
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|FCEV,million veh,sales_transport,12,13,25,247,475,247,475
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers,million veh,sales_transport,12,13,25,247,475,247,475
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|BEV,million veh,sales_transport,12,13,25,247,475,247,475
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|FCEV,million veh,sales_transport,12,13,25,247,475,247,475
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Gases,million veh,sales_transport,12,13,25,247,475,247,475
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Hybrid electric,million veh,sales_transport,12,13,25,247,475,247,475
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Large,million veh,sales_transport,12,13,25,247,475,247,475
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Large|BEV,million veh,sales_transport,12,13,25,247,475,247,475
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Large|FCEV,million veh,sales_transport,12,13,25,247,475,247,475
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Large|Gases,million veh,sales_transport,12,13,25,247,475,247,475
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Large|Hybrid electric,million veh,sales_transport,12,13,25,247,475,247,475
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car,million veh,sales_transport,12,5,5,95,95,95,95
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV,million veh,sales_transport,12,13,25,247,475,247,475
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|BEV,million veh,sales_transport,12,13,25,247,475,247,475
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|FCEV,million veh,sales_transport,12,13,25,247,475,247,475
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|Gases,million veh,sales_transport,12,13,25,247,475,247,475
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|Hybrid electric,million veh,sales_transport,12,13,25,247,475,247,475
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|Liquids,million veh,sales_transport,12,13,25,247,475,247,475
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|BEV,million veh,sales_transport,12,5,5,95,95,95,95
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|FCEV,million veh,sales_transport,12,5,5,95,95,95,95
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Gases,million veh,sales_transport,12,5,5,95,95,95,95
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Hybrid electric,million veh,sales_transport,12,5,5,95,95,95,95
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Liquids,million veh,sales_transport,12,5,5,95,95,95,95
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Large|Liquids,million veh,sales_transport,12,13,25,247,475,247,475
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Large|Van,million veh,sales_transport,12,7,12,133,228,129,218
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|BEV,million veh,sales_transport,12,7,12,133,228,129,218
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|FCEV,million veh,sales_transport,12,7,12,133,228,129,218
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|Gases,million veh,sales_transport,12,7,12,133,228,129,218
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|Hybrid electric,million veh,sales_transport,12,7,12,133,228,129,218
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|Liquids,million veh,sales_transport,12,7,12,133,228,129,218
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Liquids,million veh,sales_transport,12,13,25,247,475,247,475
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Medium,million veh,sales_transport,12,13,25,247,475,247,475
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Medium|BEV,million veh,sales_transport,12,13,25,247,475,247,475
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Medium|Compact Car,million veh,sales_transport,12,13,25,247,475,247,475
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Medium|Compact Car|BEV,million veh,sales_transport,12,13,25,247,475,247,475
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Medium|Compact Car|FCEV,million veh,sales_transport,12,13,25,247,475,247,475
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Medium|Compact Car|Gases,million veh,sales_transport,12,13,25,247,475,247,475
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Medium|Compact Car|Hybrid electric,million veh,sales_transport,12,13,25,247,475,247,475
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Medium|Compact Car|Liquids,million veh,sales_transport,12,13,25,247,475,247,475
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Medium|FCEV,million veh,sales_transport,12,13,25,247,475,247,475
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Medium|Gases,million veh,sales_transport,12,13,25,247,475,247,475
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Medium|Hybrid electric,million veh,sales_transport,12,13,25,247,475,247,475
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Medium|Liquids,million veh,sales_transport,12,13,25,247,475,247,475
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car,million veh,sales_transport,12,8,20,152,380,152,380
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|BEV,million veh,sales_transport,12,8,20,152,380,152,380
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|FCEV,million veh,sales_transport,12,8,20,152,380,152,380
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Gases,million veh,sales_transport,12,8,20,152,380,152,380
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Hybrid electric,million veh,sales_transport,12,8,20,152,380,152,380
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Liquids,million veh,sales_transport,12,8,20,152,380,152,380
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Small,million veh,sales_transport,12,12,24,228,456,228,456
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Small|BEV,million veh,sales_transport,12,12,24,228,456,228,456
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Small|FCEV,million veh,sales_transport,12,12,24,228,456,228,456
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Small|Gases,million veh,sales_transport,12,12,24,228,456,228,456
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Small|Hybrid electric,million veh,sales_transport,12,12,24,228,456,228,456
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Small|Liquids,million veh,sales_transport,12,12,24,228,456,228,456
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car,million veh,sales_transport,12,12,17,228,323,226,313
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|BEV,million veh,sales_transport,12,12,17,228,323,226,313
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|FCEV,million veh,sales_transport,12,12,17,228,323,226,313
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Gases,million veh,sales_transport,12,12,17,228,323,226,313
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Hybrid electric,million veh,sales_transport,12,12,17,228,323,226,313
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Liquids,million veh,sales_transport,12,12,17,228,323,226,313
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car,million veh,sales_transport,12,12,24,228,456,228,456
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car|BEV,million veh,sales_transport,12,12,24,228,456,228,456
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car|FCEV,million veh,sales_transport,12,12,24,228,456,228,456
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car|Gases,million veh,sales_transport,12,12,24,228,456,228,456
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car|Hybrid electric,million veh,sales_transport,12,12,24,228,456,228,456
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car|Liquids,million veh,sales_transport,12,12,24,228,456,228,456
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Gases,million veh,sales_transport,12,13,25,247,475,247,475
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Hybrid electric,million veh,sales_transport,12,13,25,247,475,247,475
+remind 3.5.2,Sales|Transport|Pass|Road|LDV|Liquids,million veh,sales_transport,12,13,25,247,475,247,475
+remind 3.5.2,Sales|Transport|Pass|Road|Liquids,million veh,sales_transport,12,13,25,247,475,247,475
+remind 3.5.2,Stock|Transport|Freight|Road,million veh,stock_transport,12,13,25,247,475,247,475
+remind 3.5.2,Stock|Transport|Freight|Road|BEV,million veh,stock_transport,12,13,25,247,475,203,383
+remind 3.5.2,Stock|Transport|Freight|Road|FCEV,million veh,stock_transport,12,13,25,247,475,201,381
+remind 3.5.2,Stock|Transport|Freight|Road|Gases,million veh,stock_transport,12,13,25,247,475,227,425
+remind 3.5.2,Stock|Transport|Freight|Road|Heavy,million veh,stock_transport,12,13,25,247,475,228,456
+remind 3.5.2,Stock|Transport|Freight|Road|Heavy|BEV,million veh,stock_transport,12,13,25,247,475,190,370
+remind 3.5.2,Stock|Transport|Freight|Road|Heavy|FCEV,million veh,stock_transport,12,13,25,247,475,188,368
+remind 3.5.2,Stock|Transport|Freight|Road|Heavy|Gases,million veh,stock_transport,12,13,25,247,475,204,388
+remind 3.5.2,Stock|Transport|Freight|Road|Heavy|Liquids,million veh,stock_transport,12,13,25,247,475,228,456
+remind 3.5.2,Stock|Transport|Freight|Road|Heavy|Truck(18t),million veh,stock_transport,12,13,25,247,475,226,454
+remind 3.5.2,Stock|Transport|Freight|Road|Heavy|Truck(18t)|BEV,million veh,stock_transport,12,13,25,247,475,186,366
+remind 3.5.2,Stock|Transport|Freight|Road|Heavy|Truck(18t)|FCEV,million veh,stock_transport,12,13,25,247,475,184,364
+remind 3.5.2,Stock|Transport|Freight|Road|Heavy|Truck(18t)|Gases,million veh,stock_transport,12,13,25,247,475,196,380
+remind 3.5.2,Stock|Transport|Freight|Road|Heavy|Truck(18t)|Liquids,million veh,stock_transport,12,13,25,247,475,226,454
+remind 3.5.2,Stock|Transport|Freight|Road|Heavy|Truck(26t),million veh,stock_transport,12,13,25,247,475,205,433
+remind 3.5.2,Stock|Transport|Freight|Road|Heavy|Truck(26t)|BEV,million veh,stock_transport,12,13,25,247,475,171,351
+remind 3.5.2,Stock|Transport|Freight|Road|Heavy|Truck(26t)|FCEV,million veh,stock_transport,12,13,25,247,475,169,349
+remind 3.5.2,Stock|Transport|Freight|Road|Heavy|Truck(26t)|Gases,million veh,stock_transport,12,13,25,247,475,185,369
+remind 3.5.2,Stock|Transport|Freight|Road|Heavy|Truck(26t)|Liquids,million veh,stock_transport,12,13,25,247,475,205,433
+remind 3.5.2,Stock|Transport|Freight|Road|Heavy|Truck(40t),million veh,stock_transport,12,13,25,247,475,205,433
+remind 3.5.2,Stock|Transport|Freight|Road|Heavy|Truck(40t)|BEV,million veh,stock_transport,12,13,25,247,475,171,351
+remind 3.5.2,Stock|Transport|Freight|Road|Heavy|Truck(40t)|FCEV,million veh,stock_transport,12,13,25,247,475,169,349
+remind 3.5.2,Stock|Transport|Freight|Road|Heavy|Truck(40t)|Gases,million veh,stock_transport,12,13,25,247,475,185,354
+remind 3.5.2,Stock|Transport|Freight|Road|Heavy|Truck(40t)|Liquids,million veh,stock_transport,12,13,25,247,475,205,433
+remind 3.5.2,Stock|Transport|Freight|Road|Light,million veh,stock_transport,12,13,25,247,475,247,475
+remind 3.5.2,Stock|Transport|Freight|Road|Light|BEV,million veh,stock_transport,12,13,25,247,475,195,375
+remind 3.5.2,Stock|Transport|Freight|Road|Light|FCEV,million veh,stock_transport,12,13,25,247,475,193,373
+remind 3.5.2,Stock|Transport|Freight|Road|Light|Gases,million veh,stock_transport,12,13,25,247,475,223,421
+remind 3.5.2,Stock|Transport|Freight|Road|Light|Liquids,million veh,stock_transport,12,13,25,247,475,247,475
+remind 3.5.2,Stock|Transport|Freight|Road|Light|Truck(0-3_5t),million veh,stock_transport,12,13,25,247,475,247,475
+remind 3.5.2,Stock|Transport|Freight|Road|Light|Truck(0-3_5t)|BEV,million veh,stock_transport,12,13,25,247,475,195,375
+remind 3.5.2,Stock|Transport|Freight|Road|Light|Truck(0-3_5t)|FCEV,million veh,stock_transport,12,13,25,247,475,193,373
+remind 3.5.2,Stock|Transport|Freight|Road|Light|Truck(0-3_5t)|Gases,million veh,stock_transport,12,13,25,247,475,223,421
+remind 3.5.2,Stock|Transport|Freight|Road|Light|Truck(0-3_5t)|Liquids,million veh,stock_transport,12,13,25,247,475,247,475
+remind 3.5.2,Stock|Transport|Freight|Road|Light|Truck(7_5t),million veh,stock_transport,12,13,25,247,475,245,473
+remind 3.5.2,Stock|Transport|Freight|Road|Light|Truck(7_5t)|BEV,million veh,stock_transport,12,13,25,247,475,195,375
+remind 3.5.2,Stock|Transport|Freight|Road|Light|Truck(7_5t)|FCEV,million veh,stock_transport,12,13,25,247,475,193,373
+remind 3.5.2,Stock|Transport|Freight|Road|Light|Truck(7_5t)|Gases,million veh,stock_transport,12,13,25,247,475,211,395
+remind 3.5.2,Stock|Transport|Freight|Road|Light|Truck(7_5t)|Liquids,million veh,stock_transport,12,13,25,247,475,245,473
+remind 3.5.2,Stock|Transport|Freight|Road|Liquids,million veh,stock_transport,12,13,25,247,475,247,475
+remind 3.5.2,Stock|Transport|Pass|Road,million veh,stock_transport,12,13,25,247,475,247,475
+remind 3.5.2,Stock|Transport|Pass|Road|BEV,million veh,stock_transport,12,13,25,247,475,247,475
+remind 3.5.2,Stock|Transport|Pass|Road|Bus,million veh,stock_transport,12,13,25,247,475,247,475
+remind 3.5.2,Stock|Transport|Pass|Road|Bus|BEV,million veh,stock_transport,12,13,25,247,475,203,393
+remind 3.5.2,Stock|Transport|Pass|Road|Bus|FCEV,million veh,stock_transport,12,13,25,247,475,197,385
+remind 3.5.2,Stock|Transport|Pass|Road|Bus|Gases,million veh,stock_transport,12,13,25,247,475,240,458
+remind 3.5.2,Stock|Transport|Pass|Road|Bus|Liquids,million veh,stock_transport,12,13,25,247,475,247,475
+remind 3.5.2,Stock|Transport|Pass|Road|FCEV,million veh,stock_transport,12,13,25,247,475,247,475
+remind 3.5.2,Stock|Transport|Pass|Road|Gases,million veh,stock_transport,12,13,25,247,475,247,475
+remind 3.5.2,Stock|Transport|Pass|Road|Hybrid electric,million veh,stock_transport,12,13,25,247,475,247,475
+remind 3.5.2,Stock|Transport|Pass|Road|LDV,million veh,stock_transport,12,13,25,247,475,247,475
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|BEV,million veh,stock_transport,12,13,25,247,475,247,475
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|FCEV,million veh,stock_transport,12,13,25,247,475,247,475
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers,million veh,stock_transport,12,13,25,247,475,247,475
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|BEV,million veh,stock_transport,12,13,25,247,475,247,475
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|FCEV,million veh,stock_transport,12,13,25,247,475,247,475
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Gases,million veh,stock_transport,12,13,25,247,475,247,475
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Hybrid electric,million veh,stock_transport,12,13,25,247,475,247,475
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Large,million veh,stock_transport,12,13,25,247,475,247,475
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Large|BEV,million veh,stock_transport,12,13,25,247,475,247,475
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Large|FCEV,million veh,stock_transport,12,13,25,247,475,247,475
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Large|Gases,million veh,stock_transport,12,13,25,247,475,247,475
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Large|Hybrid electric,million veh,stock_transport,12,13,25,247,475,247,475
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car,million veh,stock_transport,12,5,5,95,95,95,95
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV,million veh,stock_transport,12,13,25,247,475,247,475
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|BEV,million veh,stock_transport,12,13,25,247,475,247,475
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|FCEV,million veh,stock_transport,12,13,25,247,475,247,475
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|Gases,million veh,stock_transport,12,13,25,247,475,247,475
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|Hybrid electric,million veh,stock_transport,12,13,25,247,475,247,475
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|Liquids,million veh,stock_transport,12,13,25,247,475,247,475
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|BEV,million veh,stock_transport,12,5,5,95,95,95,95
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|FCEV,million veh,stock_transport,12,5,5,95,95,95,95
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Gases,million veh,stock_transport,12,5,5,95,95,95,95
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Hybrid electric,million veh,stock_transport,12,5,5,95,95,95,95
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Liquids,million veh,stock_transport,12,5,5,95,95,95,95
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Large|Liquids,million veh,stock_transport,12,13,25,247,475,247,475
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Large|Van,million veh,stock_transport,12,7,12,133,228,129,218
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|BEV,million veh,stock_transport,12,7,12,133,228,129,218
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|FCEV,million veh,stock_transport,12,7,12,133,228,129,218
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|Gases,million veh,stock_transport,12,7,12,133,228,129,218
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|Hybrid electric,million veh,stock_transport,12,7,12,133,228,129,218
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|Liquids,million veh,stock_transport,12,7,12,133,228,129,218
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Liquids,million veh,stock_transport,12,13,25,247,475,247,475
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Medium,million veh,stock_transport,12,13,25,247,475,247,475
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Medium|BEV,million veh,stock_transport,12,13,25,247,475,247,475
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Medium|Compact Car,million veh,stock_transport,12,13,25,247,475,247,475
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Medium|Compact Car|BEV,million veh,stock_transport,12,13,25,247,475,247,475
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Medium|Compact Car|FCEV,million veh,stock_transport,12,13,25,247,475,247,475
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Medium|Compact Car|Gases,million veh,stock_transport,12,13,25,247,475,247,475
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Medium|Compact Car|Hybrid electric,million veh,stock_transport,12,13,25,247,475,247,475
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Medium|Compact Car|Liquids,million veh,stock_transport,12,13,25,247,475,247,475
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Medium|FCEV,million veh,stock_transport,12,13,25,247,475,247,475
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Medium|Gases,million veh,stock_transport,12,13,25,247,475,247,475
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Medium|Hybrid electric,million veh,stock_transport,12,13,25,247,475,247,475
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Medium|Liquids,million veh,stock_transport,12,13,25,247,475,247,475
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car,million veh,stock_transport,12,8,20,152,380,152,380
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|BEV,million veh,stock_transport,12,8,20,152,380,152,380
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|FCEV,million veh,stock_transport,12,8,20,152,380,152,380
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Gases,million veh,stock_transport,12,8,20,152,380,152,380
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Hybrid electric,million veh,stock_transport,12,8,20,152,380,152,380
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Liquids,million veh,stock_transport,12,8,20,152,380,152,380
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Small,million veh,stock_transport,12,12,24,228,456,228,456
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Small|BEV,million veh,stock_transport,12,12,24,228,456,228,456
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Small|FCEV,million veh,stock_transport,12,12,24,228,456,228,456
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Small|Gases,million veh,stock_transport,12,12,24,228,456,228,456
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Small|Hybrid electric,million veh,stock_transport,12,12,24,228,456,228,456
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Small|Liquids,million veh,stock_transport,12,12,24,228,456,228,456
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car,million veh,stock_transport,12,12,17,228,323,226,313
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|BEV,million veh,stock_transport,12,12,17,228,323,226,313
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|FCEV,million veh,stock_transport,12,12,17,228,323,226,313
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Gases,million veh,stock_transport,12,12,17,228,323,226,313
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Hybrid electric,million veh,stock_transport,12,12,17,228,323,226,313
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Liquids,million veh,stock_transport,12,12,17,228,323,226,313
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car,million veh,stock_transport,12,12,24,228,456,228,456
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car|BEV,million veh,stock_transport,12,12,24,228,456,228,456
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car|FCEV,million veh,stock_transport,12,12,24,228,456,228,456
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car|Gases,million veh,stock_transport,12,12,24,228,456,228,456
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car|Hybrid electric,million veh,stock_transport,12,12,24,228,456,228,456
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car|Liquids,million veh,stock_transport,12,12,24,228,456,228,456
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Gases,million veh,stock_transport,12,13,25,247,475,247,475
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Hybrid electric,million veh,stock_transport,12,13,25,247,475,247,475
+remind 3.5.2,Stock|Transport|Pass|Road|LDV|Liquids,million veh,stock_transport,12,13,25,247,475,247,475
+remind 3.5.2,Stock|Transport|Pass|Road|Liquids,million veh,stock_transport,12,13,25,247,475,247,475
+remind 3.5.2,Tech|Biochar|w/ heat and power|Lifetime,years,lifetime,12,13,25,247,475,247,475
+remind 3.5.2,Tech|Biochar|w/ heat|Lifetime,years,lifetime,12,13,25,247,475,247,475
+remind 3.5.2,Tech|Biochar|w/ liquids|Lifetime,years,lifetime,12,13,25,247,475,247,475
+remind 3.5.2,Tech|Biochar|w/o co-product|Lifetime,years,lifetime,12,13,25,247,475,247,475
+remind 3.5.2,Tech|CO2 Storage|Lifetime,years,lifetime,12,13,25,247,475,247,475
+remind 3.5.2,Tech|DAC|Lifetime,years,lifetime,12,13,25,247,475,247,475
+remind 3.5.2,Tech|Electricity|Biomass|Combined Heat and Power w/o CC|Lifetime,years,lifetime,12,13,25,247,475,247,475
+remind 3.5.2,Tech|Electricity|Biomass|Gasification Combined Cycle w/ CC|Lifetime,years,lifetime,12,13,25,247,475,247,475
+remind 3.5.2,Tech|Electricity|Biomass|Gasification Combined Cycle w/o CC|Lifetime,years,lifetime,12,13,25,247,475,247,475
+remind 3.5.2,Tech|Electricity|Coal|Combined Heat and Power w/o CC|Lifetime,years,lifetime,12,13,25,247,475,247,475
+remind 3.5.2,Tech|Electricity|Coal|Gasification Combined Cycle w/ CC|Lifetime,years,lifetime,12,13,25,247,475,247,475
+remind 3.5.2,Tech|Electricity|Coal|Gasification Combined Cycle w/o CC|Lifetime,years,lifetime,12,13,25,247,475,247,475
+remind 3.5.2,Tech|Electricity|Coal|Pulverised Coal w/o CC|Lifetime,years,lifetime,12,13,25,247,475,247,475
+remind 3.5.2,Tech|Electricity|Gas|Combined Cycle w/ CC|Lifetime,years,lifetime,12,13,25,247,475,247,475
+remind 3.5.2,Tech|Electricity|Gas|Combined Cycle w/o CC|Lifetime,years,lifetime,12,13,25,247,475,247,475
+remind 3.5.2,Tech|Electricity|Gas|Combined Heat and Power w/o CC|Lifetime,years,lifetime,12,13,25,247,475,247,475
+remind 3.5.2,Tech|Electricity|Gas|Gas Turbine|Lifetime,years,lifetime,12,13,25,247,475,247,475
+remind 3.5.2,Tech|Electricity|Geothermal|Lifetime,years,lifetime,12,13,25,247,475,247,475
+remind 3.5.2,Tech|Electricity|Hydrogen|Lifetime,years,lifetime,12,13,25,247,475,247,475
+remind 3.5.2,Tech|Electricity|Hydro|Lifetime,years,lifetime,12,13,25,247,475,247,475
+remind 3.5.2,Tech|Electricity|Nuclear|Lifetime,years,lifetime,12,13,25,247,475,247,475
+remind 3.5.2,Tech|Electricity|Oil|DOT|Lifetime,years,lifetime,12,13,25,247,475,247,475
+remind 3.5.2,Tech|Electricity|Solar|CSP|Lifetime,years,lifetime,12,13,25,247,475,247,475
+remind 3.5.2,Tech|Electricity|Solar|PV|Lifetime,years,lifetime,12,13,25,247,475,247,475
+remind 3.5.2,Tech|Electricity|Storage|Battery|For CSP|Lifetime,years,lifetime,12,13,25,247,475,247,475
+remind 3.5.2,Tech|Electricity|Storage|Battery|For PV|Lifetime,years,lifetime,12,13,25,247,475,247,475
+remind 3.5.2,Tech|Electricity|Storage|Battery|For Wind Offshore|Lifetime,years,lifetime,12,13,25,247,475,247,475
+remind 3.5.2,Tech|Electricity|Storage|Battery|For Wind Onshore|Lifetime,years,lifetime,12,13,25,247,475,247,475
+remind 3.5.2,Tech|Electricity|Wind|Offshore|Lifetime,years,lifetime,12,13,25,247,475,247,475
+remind 3.5.2,Tech|Electricity|Wind|Onshore|Lifetime,years,lifetime,12,13,25,247,475,247,475
+remind 3.5.2,Tech|Gases|Biomass|w/o CC|Lifetime,years,lifetime,12,13,25,247,475,247,475
+remind 3.5.2,Tech|Gases|Fossil|Coal|w/o CC|Lifetime,years,lifetime,12,13,25,247,475,247,475
+remind 3.5.2,Tech|Gases|Hydrogen|Lifetime,years,lifetime,12,13,25,247,475,247,475
+remind 3.5.2,Tech|Heat|Biomass|Lifetime,years,lifetime,12,13,25,247,475,247,475
+remind 3.5.2,Tech|Heat|Coal|Lifetime,years,lifetime,12,13,25,247,475,247,475
+remind 3.5.2,Tech|Heat|Electricity|Heat Pump|Lifetime,years,lifetime,12,13,25,247,475,247,475
+remind 3.5.2,Tech|Heat|Gas|Lifetime,years,lifetime,12,13,25,247,475,247,475
+remind 3.5.2,Tech|Hydrogen|Biomass|w/ CC|Lifetime,years,lifetime,12,13,25,247,475,247,475
+remind 3.5.2,Tech|Hydrogen|Biomass|w/o CC|Lifetime,years,lifetime,12,13,25,247,475,247,475
+remind 3.5.2,Tech|Hydrogen|Coal|w/ CC|Lifetime,years,lifetime,12,13,25,247,475,247,475
+remind 3.5.2,Tech|Hydrogen|Coal|w/o CC|Lifetime,years,lifetime,12,13,25,247,475,247,475
+remind 3.5.2,Tech|Hydrogen|Electricity|Lifetime,years,lifetime,12,13,25,247,475,247,475
+remind 3.5.2,Tech|Hydrogen|Gas|w/ CC|Lifetime,years,lifetime,12,13,25,247,475,247,475
+remind 3.5.2,Tech|Hydrogen|Gas|w/o CC|Lifetime,years,lifetime,12,13,25,247,475,247,475
+remind 3.5.2,Tech|Liquids|Biomass|BioFTR|w/ CC|Lifetime,years,lifetime,12,13,25,247,475,247,475
+remind 3.5.2,Tech|Liquids|Biomass|BioFTR|w/o CC|Lifetime,years,lifetime,12,13,25,247,475,247,475
+remind 3.5.2,Tech|Liquids|Biomass|Biodiesel|Lifetime,years,lifetime,12,13,25,247,475,247,475
+remind 3.5.2,Tech|Liquids|Biomass|Conventional Ethanol|Lifetime,years,lifetime,12,13,25,247,475,247,475
+remind 3.5.2,Tech|Liquids|Biomass|Lignocellulosic Ethanol|Lifetime,years,lifetime,12,13,25,247,475,247,475
+remind 3.5.2,Tech|Liquids|Fossil|Coal|w/ CC|Lifetime,years,lifetime,12,13,25,247,475,247,475
+remind 3.5.2,Tech|Liquids|Fossil|Coal|w/o CC|Lifetime,years,lifetime,12,13,25,247,475,247,475
+remind 3.5.2,Tech|Liquids|Fossil|Oil|Lifetime,years,lifetime,12,13,25,247,475,247,475
+remind 3.5.2,Tech|Liquids|Hydrogen|Lifetime,years,lifetime,12,13,25,247,475,247,475

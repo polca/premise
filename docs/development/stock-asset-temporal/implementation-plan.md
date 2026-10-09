@@ -80,7 +80,17 @@ would reject it; record resolutions in this plan.
 
 ## P2 — Curate sources and exchange roles
 
-Dependency: P1. Repository: premise. Can proceed alongside P3.
+Dependency: P1 for final curation/schema decisions. Source discovery can start
+earlier. Repository: premise. Can proceed alongside P3.
+
+- [x] Produce the [data search campaign](data-search-campaign.md), local workbook
+      inventory, external source register and initial file-level spot checks.
+- [x] Screen actual local IAM exports and document the
+      [native/reconstructed cohort routes](iam-scenario-assessment.md).
+- [ ] Obtain exact-run REMIND/EDGE-Transport cohort outputs and reporting
+      metadata; preserve Stock and Cap variables before scenario filtering.
+- [ ] Request expanded IMAGE stock/capacity/addition/lifetime exports when
+      authorised, with initial cohorts, survival and date conventions.
 
 - [ ] Apply the [asset-group checklist](asset-review.md) to all 23 groups.
 - [ ] Extract lifetime and stock-age claims separately, preserving exact source
@@ -103,6 +113,9 @@ Dependency: P1, using synthetic and pilot data from P2. Repository: premise or
 a small shared dependency only if justified during design.
 
 - [ ] Read observed cohorts or reconstruct them from additions and survival.
+- [ ] Accept validated native IAM stock/service cohorts; for reconstructed
+      scenarios preserve gross-addition period totals, initial vintages, and
+      early-retirement/idle-capacity conventions. Reconcile against IAM stocks.
 - [ ] Support fixed lifetime and documented stochastic survival families, with
       named parameters and valid domains.
 - [ ] Implement stationary fallback, initial-stock evolution, and future gross

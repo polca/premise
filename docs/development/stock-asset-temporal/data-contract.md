@@ -78,6 +78,33 @@ standard deviation must be parsed into their actual meanings. Invalid Weibull
 parameters or ambiguous source metadata are review failures, not an invitation
 to substitute another family silently.
 
+### IAM source and period metadata
+
+The [actual-scenario audit](iam-scenario-assessment.md) requires these additional
+source concepts when importing IAM stock information. These are design
+requirements, not fields already supported by the loader:
+
+- Model and reporting-code versions, run/scenario identity, native region and
+  versioned geography/technology crosswalk; keep overlapping aggregates apart.
+- Exact source variable and original unit, plus whether a value is a stock,
+  annual rate, period total or service flow. Record represented period bounds
+  and the transformation from model periods to reporting years.
+- Cohort origin: observed, native model output, reconstructed, or assumed
+  initial stock. Identify historical calibration separately from future model
+  output, including assumptions before the first reporting year.
+- Original cohort date and its meaning: manufacture, construction,
+  commissioning or first service; separate refurbishment and replacement dates.
+- Survival kernel/parameter definition, initial-vintage source, transfers,
+  early retirement and idle-capacity treatment, with reconciliation residuals.
+- Service units and utilisation/load conversion; identify whether inventory
+  efficiencies already represent the fleet to prevent a second adjustment.
+
+Store unnormalised cohort stock and service quantities alongside generated
+weights. Native service cohorts do not by themselves establish individual
+lifetime-service denominators. Keep the allocation convention explicit.
+Missing region/technology rows are not zero; restricted source exports must
+not silently supply empty cohort profiles.
+
 ## 4. Example generated profile
 
 This synthetic example corresponds to the worked allocation example in

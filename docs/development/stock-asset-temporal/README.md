@@ -29,6 +29,9 @@ behaviour.
 | [Strategy](strategy.md) | Modelling definitions, equations, scope, and decisions |
 | [Data contract](data-contract.md) | Source records, exchange roles, generated profiles, and package compatibility |
 | [Asset review](asset-review.md) | Evidence hierarchy and review instructions for all 23 existing groups |
+| [Data search campaign](data-search-campaign.md) | Available evidence, difficulty by asset group, acquisition priorities, effort and stopping rules |
+| [Source register](data-source-register.md) | 28 external source families, access status, file checks and limitations |
+| [IAM scenario assessment](iam-scenario-assessment.md) | Audit of actual local IMAGE/REMIND and other exports; native cohort and reconstruction routes |
 | [Implementation plan](implementation-plan.md) | Work packages, dependencies, repository ownership, and completion criteria |
 | [Validation and rollout](validation-and-rollout.md) | Analytical tests, integration checks, scientific comparison, and release stages |
 | [Evidence and references](evidence-and-references.md) | Audited revisions, reproduced findings, source links, and limitations |
@@ -96,6 +99,9 @@ not unique suppliers or counts of exchanges matched in a built database.
 - [x] Reproduce representative passenger-car runtime weights.
 - [x] Check the distinction between stock composition and service allocation.
 - [x] Document the proposed strategy and staged implementation.
+- [x] Inventory local lifetime evidence and screen external stock-data sources.
+- [x] Audit 20 IMAGE/REMIND source files and screen 21 other IAM exports for
+      stock-building variables; identify native REMIND cohort-export routes.
 - [ ] Produce the complete per-row and per-exchange migration audit.
 - [ ] Implement and validate the proposed data contract and generator.
 - [ ] Review and migrate all stock-asset groups.
@@ -110,6 +116,13 @@ code-fence balance, JSON example validity, coverage of all 23 workbook groups,
 and agreement with the 987-row baseline. The Python reproduction examples and
 both worked lifetime-allocation examples were executed successfully. No runtime
 implementation changes or full LCA recalculations are part of this branch.
+
+The data-search revision adds hashed source inventories and four external
+file/codebook spot checks. These establish availability, not approved stock
+profiles. REMIND is the strongest local scenario source: stocks, sales, capacity
+additions and energy-technology lifetimes are present, while native transport
+cohorts and exact reporting versions still need acquisition. The local IMAGE
+exports require expansion. See the IAM assessment for the scope of these claims.
 
 ## Scope boundaries
 
