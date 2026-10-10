@@ -151,6 +151,15 @@ single and nested component cuts, non-unit production, signed disposal, full
 static biosphere equivalence and zero disposal in the manufacture-only branch.
 The audit retains the original graph's activity scales for each scoped node.
 
+`lift_scoped_biosphere` uses those audited scales to separate an exact direct
+biosphere exchange into a pure biosphere adapter. In the PV pilot this dates
+lifetime land occupation at service, while both original land-transformation
+flows stay at construction. The transferred amount retains its original units
+and sign; it is not divided by lifetime again. The source inventory and original
+audit are immutable inputs. Tests verify full static biosphere equivalence,
+preserved transformation and rejection of varying per-capital biosphere amounts
+across anchors. Direct occupation timing is also checked in the actual consumer.
+
 For the current four-activity car/truck paths, four activities are added: one
 scoped service, two capital nodes and one lifecycle adapter. Full yearly cohort
 copies are unnecessary when lifecycle quantities per capital unit are invariant.

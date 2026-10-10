@@ -1,8 +1,8 @@
 # PV parent stock, active inverters and lifecycle boundaries
 
-Experimental bounded pilot, 10 October 2026. Cohort generation and analytical
-checks are implemented. The component-level real export and TRAILS comparison
-are still pending; this document does not approve promotion.
+Experimental bounded pilot, 10 October 2026. Cohorts, component separation and
+the real export are implemented. Matrix equivalence and signed event-calendar
+checks pass; full temporal LCI is running. This document does not approve promotion.
 
 ## Observed population and units
 
@@ -76,7 +76,7 @@ inverter intervals 10/20 years, and reported-additions reconstruction. The share
 original inventory coefficient preserved, not forecasts of changed material
 requirements under alternative lifetimes.
 
-## Components and unresolved export work
+## Component quantities and timing assumptions
 
 The source plant contains one inverter replacement over thirty years. Its 3.126
 500-kW inverter equivalents include material sizing as well as two generations;
@@ -89,10 +89,21 @@ must not be applied.
 
 The plant's panel parameter explicitly contains **2% lifetime replacement plus
 1% handling loss**. Treating the entire 3% as a younger operating stock would be
-incorrect. The exporter must distinguish installation, occasional maintenance
+incorrect. The exporter distinguishes installation, occasional maintenance
 and disposal. Neither replacement dates nor failure-age distributions for these
-small panel replacements are observed; service-year maintenance is a candidate
-explicit fallback, with alternative timing to be tested.
+small panel replacements are observed. The declared fallback attributes the
+already-amortised maintenance quantity at the requested service year. It is an
+expected maintenance burden, not an observed active-panel cohort distribution.
+
+For the complete panel-manufacture coefficient, timing shares are `101/103` at
+parent installation and `2/103` at service. For product disposal, shares are
+`100/103` at conditional parent retirement, `2/103` at maintenance and `1/103`
+at installation handling. The replacement panels' terminal disposal replaces
+the failed initial panels' terminal share. Thus one nominal lifetime recovers
+101 initial/handling and two maintenance manufactures, with 100 terminal, two
+maintenance and one handling disposals. No coefficient or lifetime denominator
+is applied again. This convention is distinct from the regular active-inverter
+model, for which component generations are reconstructed explicitly.
 
 Direct source review also establishes:
 
@@ -100,21 +111,41 @@ Direct source review also establishes:
   every negative exchange to inverter retirement would misdate packaging.
 - Panel production distinguishes municipal factory waste, process oil and
   wastewater from polymer streams described as including end-of-life disposal.
-  Some polymer totals include manufacturing losses. Their split must be declared
-  or bounded; a negative sign alone is insufficient classification evidence.
+  Some polymer totals include manufacturing losses. Their unknown split is an
+  explicit `--polymer-eol-share` timing fraction. The primary value 1 is the
+  end-of-life endpoint; value 0 is the factory-waste endpoint. Neither is a
+  measured partition, and endpoint sensitivity remains part of release evidence.
 - Mounting-system plastic input comments identify packaging, while some matching
   waste comments call it end of life. Preserve the quantity and document this
-  source inconsistency with a timing sensitivity.
+  source inconsistency: installation is primary and
+  `--mounting-packaging-at-retirement` supplies the opposite timing endpoint.
 - Mounting and electrical installation include end-of-life ports; the mounting
-  system also embeds land occupation. These need an explicit lifecycle review.
+  system also embeds land occupation. The exporter dates occupation at service,
+  retains both transformation flows at installation and invents no land recovery.
 - Component factories are independently used capital. They must not receive the
   blanket zero shift assigned to newly installed PV components.
 
 Raw ecoinvent comments and inventory coefficients remain in restricted local
 audit files. Exact reviewed supplier codes, input hashes and timing roles belong
 in the exporter audit; they must be validated against a new database revision.
-The real static rewrite, signed temporal pulses, full LCI conservation, annual
-cache/interpolation and legacy comparison are outstanding release work.
+`export_pv_pilot.py` reads an exact reviewed register of 82 negative ports.
+Thirty-five factory/packaging ports remain with manufacture; 47 ports are lifted
+for disposal or ambiguous timing. Two component-manufacture ports and one direct
+occupation port are also lifted. The complete 26,533-activity source becomes
+26,596 activities through 63 scoped copies/adapters. Inverter/panel manufacture
+adapters supply the scoped remainder with embedded disposal removed. All 58
+internal links receive zero shifts, while independent factory capital retains
+its background timing. Anchor-invariance validation includes lifted direct
+biosphere quantities as well as technosphere quantities.
+
+The actual exporter produced constant-background 2022/2025/2030 packages. The
+corrected consumer passed the full matrix rewrite with maximum componentwise
+relative residuals `2.61e-13` for A and `1.83e-15` for B. All 510 signed annual
+port checks and 58 zero-shift links pass, including repeated/reversed service
+years. The interpolation cache was created successfully. Full temporal LCI,
+confirmed warm-cache load, the actual occupation date, no-interpolation and
+legacy comparisons are still running or pending, as are waste-timing endpoint
+comparisons. These partial results do not meet the third release requirement.
 
 ## Reproduce the cohort evidence
 
@@ -127,14 +158,28 @@ python -m pytest tests/test_stock_cohorts.py tests/test_stock_pv.py \
   tests/test_stock_ccgt.py tests/test_stock_power_service.py
 ```
 
-Repeat generation for SSP2-PkBudg650. The four focused test modules have 46
-passing tests. Two local runs each produced 72 annual case records plus paired
+Repeat generation for SSP2-PkBudg650. Two local runs each produced 72 annual case records plus paired
 inverter and parent retirement profiles. Annual stock-balance residuals are no
 larger than `4.55e-13 MW AC`. Restricted IAM files and derived series remain local;
 the public repository contains methods, scripts and synthetic tests.
 
-The broader cohort/lifecycle/export suite passes 80 tests, including nested
-component separation. In TRAILS, `dev/stock_vintage/report_pv_sensitivity.py`
+The broader cohort/lifecycle/export suite passes 82 tests, including nested
+component separation, panel quantity partition, land occupation and anchor
+invariance. TRAILS has 89 passing focused profile/verifier tests, including
+positive/negative direct occupation dates with caller losses. In TRAILS,
+`dev/stock_vintage/report_pv_sensitivity.py`
 accepts the two local cohort JSON files and an `--output-dir`. It writes a
 144-row CSV, input-hash manifest and PNG/SVG/PDF figure distinguishing observed
 parent stock from modelled inverter dates. These derived artifacts remain local.
+
+```sh
+# premise environment; keep outputs outside repositories
+PYTHONPATH="$PWD" python dev/stock_vintage/export_pv_pilot.py \
+  --inventory /private/local/ecoinvent-3.12-cutoff-local.json.gz \
+  --cohorts /private/local/pv-npi2025-cohorts.json \
+  --output-dir /private/local/pv-real-primary
+
+# TRAILS environment
+python dev/stock_vintage/check_pv_pilot.py /private/local/pv-real-primary \
+  --cache --output /private/local/pv-real-primary/checks-warm-2023.json
+```

@@ -4,6 +4,7 @@ import numpy as np
 import pytest
 
 from premise.stock_lifecycle import (
+    lift_scoped_biosphere,
     scope_capital_chain,
     split_embedded_lifecycle,
     validate_lifecycle_anchor_audits,
@@ -173,6 +174,67 @@ def test_component_manufacture_cut_excludes_embedded_disposal(nested):
             context_id="invalid",
             uncertainty_mode="deterministic",
             component_cuts=[[database[1], database[3]]],
+        )
+
+
+def test_scoped_biosphere_lifting_separates_service_occupation_and_transformation():
+    database = example()
+    source = database[2]
+    source["exchanges"][-1].update(
+        input=("biosphere", "manufacture"),
+        unit="square meter-year",
+        categories=("land",),
+    )
+    source["exchanges"].append(
+        {
+            "type": "biosphere",
+            "input": ("biosphere", "transformation"),
+            "name": "transformation",
+            "unit": "square meter",
+            "categories": ("land",),
+            "amount": 3,
+        }
+    )
+    scoped, audit = split_embedded_lifecycle(
+        database,
+        caller=database[0],
+        paths=[[database[1], source, database[4]]],
+        context_id="land",
+        uncertainty_mode="deterministic",
+    )
+    node = next(
+        r for r in audit["scoped_nodes"] if identity(r["original"]) == identity(source)
+    )
+    before = deepcopy(scoped)
+    updated, revised = lift_scoped_biosphere(
+        scoped,
+        audit,
+        [{"source": node["scoped"], "flow": ("biosphere", "manufacture")}],
+    )
+    assert scoped == before
+    assert "lifted_biosphere" not in audit
+    assert solve(updated, revised["caller"]) == pytest.approx(
+        solve(database, database[0])
+    )
+    row = revised["lifted_biosphere"][0]
+    assert row["amount_per_calling_dataset"] == pytest.approx(0.24)
+    assert row["amount_per_service_unit"] == pytest.approx(0.12)
+    validate_lifecycle_anchor_audits([revised, deepcopy(revised)])
+    changed_anchor = deepcopy(revised)
+    changed_anchor["lifted_biosphere"][0]["coefficient_per_capital_unit"] *= 2
+    with pytest.raises(ValueError, match="vary by manufacture anchor"):
+        validate_lifecycle_anchor_audits([revised, changed_anchor])
+    changed = next(d for d in updated if identity(d) == identity(node["scoped"]))
+    assert [
+        (e["name"], e["amount"])
+        for e in changed["exchanges"]
+        if e["type"] == "biosphere"
+    ] == [("transformation", 3)]
+    with pytest.raises(ValueError, match="one exact"):
+        lift_scoped_biosphere(
+            updated,
+            revised,
+            [{"source": node["scoped"], "flow": ("biosphere", "manufacture")}],
         )
 
 

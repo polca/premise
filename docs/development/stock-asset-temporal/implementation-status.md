@@ -87,8 +87,13 @@ test recovers one initial and one replacement inverter without applying a second
 amortisation factor. All 46 focused cohort, PV and existing power tests pass.
 Source review separately identified panel handling losses and occasional
 replacement, factory waste versus disposal, and conflicting packaging comments.
-Component export, land-use review and actual temporal LCI remain outstanding;
-the three PV requirements are not yet claimed complete.
+The real component export now preserves the full source system while separating
+47 waste ports, two component-manufacture ports and direct land occupation.
+Source inconsistencies remain explicit waste-timing endpoint sensitivities.
+Matrix equivalence, 510 signed annual port checks and 58 internal zero shifts
+pass; full LCI, occupation-date and cache/legacy comparisons are running or
+pending. The latest focused suites pass 82 producer and 89 consumer tests.
+The three PV requirements are not yet claimed complete.
 
 ## Implemented software foundation
 

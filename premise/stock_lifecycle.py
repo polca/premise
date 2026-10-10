@@ -395,6 +395,108 @@ def split_embedded_lifecycle(
     return result, audit
 
 
+def lift_scoped_biosphere(database, audit, selections):
+    """Move reviewed direct biosphere quantities to separately timed adapters.
+
+    Each selection provides a scoped ``source`` identity and a two-part ``flow``
+    input key. Only nodes and activity scales from a preceding audited rewrite
+    are accepted. This supports lifetime land occupation at the service date
+    without moving installation land transformation or inventing land recovery.
+    No timing classification is inferred here. Original inputs are not mutated.
+    """
+    lookup = {identity(d): d for d in database}
+    if len(lookup) != len(database):
+        raise ValueError("Ambiguous biosphere lifting inventory")
+    nodes = {identity(row["scoped"]): row for row in audit["scoped_nodes"]}
+    caller_key = identity(audit["caller"])
+    if caller_key not in lookup:
+        raise ValueError("Scoped biosphere caller is absent")
+    selected, seen = [], set()
+    for selection in selections:
+        source = identity(selection["source"])
+        flow = tuple(selection["flow"])
+        if len(flow) != 2 or any(not isinstance(v, str) or not v for v in flow):
+            raise ValueError("Biosphere flow requires a database/code key")
+        if source not in nodes or source not in lookup or (source, flow) in seen:
+            raise ValueError(
+                "Biosphere selection requires a distinct scoped source/flow"
+            )
+        if lookup[source].get("stock_vintage_context") != audit["context_id"]:
+            raise ValueError("Biosphere source is outside the audited context")
+        matches = [
+            e
+            for e in lookup[source]["exchanges"]
+            if e["type"] == "biosphere" and tuple(e["input"]) == flow
+        ]
+        if len(matches) != 1:
+            raise ValueError("Biosphere selection needs one exact exchange")
+        selected.append((source, flow, matches[0]))
+        seen.add((source, flow))
+    changes = {
+        k: deepcopy(lookup[k]) for k in {caller_key} | {s for s, _, _ in selected}
+    }
+    caller = changes[caller_key]
+    updated_audit = deepcopy(audit)
+    lifted = updated_audit.setdefault("lifted_biosphere", [])
+    adapters = []
+    for source, flow, original in selected:
+        node = nodes[source]
+        amount = node["activity_scale_per_calling_dataset"] * _amount(original)
+        token = hashlib.sha256(
+            json.dumps([audit["context_id"], source, flow]).encode()
+        ).hexdigest()[:24]
+        adapter = {
+            "name": f"{original['name']} [stock context {audit['context_id']}: biosphere-{token}]",
+            "reference product": original["name"],
+            "unit": original["unit"],
+            "location": caller["location"],
+            "database": caller["database"],
+            "code": f"stock-{token}",
+            "stock_vintage_context": audit["context_id"],
+            "stock_vintage_role": "biosphere-adapter",
+            "exchanges": [],
+        }
+        production = {"type": "production", "amount": 1.0, "uncertainty type": 0}
+        _relink(production, adapter, adapter)
+        biosphere = {
+            k: deepcopy(original[k]) for k in ("name", "unit", "categories", "input")
+        }
+        biosphere.update(
+            type="biosphere",
+            amount=1.0,
+            output=(adapter["database"], adapter["code"]),
+            **{"uncertainty type": 0},
+        )
+        adapter["exchanges"] = [production, biosphere]
+        exchange = {"type": "technosphere", "amount": amount, "uncertainty type": 0}
+        _relink(exchange, adapter, caller)
+        caller["exchanges"].append(exchange)
+        changes[source]["exchanges"] = [
+            e
+            for e in changes[source]["exchanges"]
+            if not (e["type"] == "biosphere" and tuple(e["input"]) == flow)
+        ]
+        adapters.append(adapter)
+        lifted.append(
+            {
+                "original_source": node["original"],
+                "scoped_source": node["scoped"],
+                "flow_input": flow,
+                "original_amount": _amount(original),
+                "coefficient_per_capital_unit": node["activity_scale_per_capital_unit"]
+                * _amount(original),
+                "amount_per_calling_dataset": amount,
+                "amount_per_service_unit": amount / _net_caller_production(caller),
+                "caller": _metadata(identity(caller)),
+                "supplier": _metadata(identity(adapter)),
+            }
+        )
+    keys = [identity(d) for d in adapters]
+    if len(set(keys)) != len(keys) or set(keys) & lookup.keys():
+        raise ValueError("Biosphere lifting creates an existing adapter identity")
+    return [changes.get(identity(d), d) for d in database] + adapters, updated_audit
+
+
 def validate_lifecycle_anchor_audits(audits):
     """Require invariant lifted coefficients per capital unit across anchors.
 
@@ -408,12 +510,25 @@ def validate_lifecycle_anchor_audits(audits):
     reference = audits[0]
 
     def coefficients(audit):
-        return {
-            (identity(row["original_caller"]), identity(row["original_supplier"])): row[
-                "coefficient_per_capital_unit"
-            ]
+        values = {
+            (
+                "technosphere",
+                identity(row["original_caller"]),
+                identity(row["original_supplier"]),
+            ): row["coefficient_per_capital_unit"]
             for row in audit["lifted_exchanges"]
         }
+        values.update(
+            {
+                (
+                    "biosphere",
+                    identity(row["original_source"]),
+                    tuple(row["flow_input"]),
+                ): row["coefficient_per_capital_unit"]
+                for row in audit.get("lifted_biosphere", [])
+            }
+        )
+        return values
 
     expected = coefficients(reference)
     for audit in audits:

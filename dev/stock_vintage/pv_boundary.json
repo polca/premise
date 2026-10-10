@@ -1,0 +1,370 @@
+{
+  "reviewed_version": "ecoinvent 3.12 cut-off",
+  "interpretation": "Explicit reviewed port identities; no quantity data. Conflicting packaging and mixed polymer waste require labelled timing assumptions.",
+  "producers": {
+    "6242b747386e58fa255b4a31c393593d": {
+      "name": "inverter production, 500kW",
+      "location": "RoW",
+      "negative_ports": {
+        "5845b6313d91d9d546abc18ea5dab230": {
+          "name": "market for used printed wiring boards",
+          "role": "inverter_disposal"
+        },
+        "b342908a2b3ba7e55c573649be83b1c7": {
+          "name": "market for waste mineral oil",
+          "role": "inverter_disposal"
+        },
+        "c1ba499055ef1973ba66f692b4a968d1": {
+          "name": "waste paperboard, unsorted, Recycled Content cut-off",
+          "role": "retain_packaging"
+        },
+        "766146901fabac3a4f898bc4b6e3c6da": {
+          "name": "market for waste plastic, industrial electronics",
+          "role": "inverter_disposal"
+        },
+        "6db648b66c41c53e7aebc2b0c72fb679": {
+          "name": "market for waste polyethylene",
+          "role": "retain_packaging"
+        },
+        "acd12afd60904410acfe3347c7c49ed5": {
+          "name": "market for waste polyethylene",
+          "role": "retain_packaging"
+        },
+        "374d7ed7fc87d5095c3816e8147707de": {
+          "name": "market for waste polyethylene",
+          "role": "retain_packaging"
+        },
+        "e08ab0147a3ab8921cdd44550b5b5da7": {
+          "name": "market for waste polyethylene",
+          "role": "retain_packaging"
+        },
+        "cdd5ac3f39a9a6e660ff06d4516ef29c": {
+          "name": "market for waste polyethylene",
+          "role": "retain_packaging"
+        },
+        "fcd4ba416ce6b00ce1f66b12c89c3ff0": {
+          "name": "market for waste polyethylene",
+          "role": "retain_packaging"
+        },
+        "db7a70cc5d7b8c42c82ffab1a57a7d14": {
+          "name": "market for waste polyethylene",
+          "role": "retain_packaging"
+        },
+        "6ea558186373dc01dd38578e0aed7481": {
+          "name": "market for waste polystyrene",
+          "role": "retain_packaging"
+        },
+        "d16a6111a239fe8e3f2b05c877660391": {
+          "name": "market for waste polystyrene",
+          "role": "retain_packaging"
+        },
+        "0b076787dd9e96d9c5e576637817825c": {
+          "name": "market for waste polystyrene",
+          "role": "retain_packaging"
+        },
+        "b079bd5a445dadd5c532f25b09ce7be3": {
+          "name": "market for waste polystyrene",
+          "role": "retain_packaging"
+        },
+        "a269fb62894b2883b943770bb31ec8d0": {
+          "name": "market for waste polystyrene",
+          "role": "retain_packaging"
+        },
+        "e15adcda7ec14cb20ba29d7a22819775": {
+          "name": "market for waste polystyrene",
+          "role": "retain_packaging"
+        },
+        "3eae8d4144b1d5266af4c6d2ffabff04": {
+          "name": "market for waste polystyrene",
+          "role": "retain_packaging"
+        }
+      }
+    },
+    "46bacc3721e739aa29b81e10d6cbd4a1": {
+      "name": "inverter production, 500kW",
+      "location": "RER",
+      "negative_ports": {
+        "5845b6313d91d9d546abc18ea5dab230": {
+          "name": "market for used printed wiring boards",
+          "role": "inverter_disposal"
+        },
+        "622da2ca1adb310e3677ef87658d4c46": {
+          "name": "market for waste mineral oil",
+          "role": "inverter_disposal"
+        },
+        "32a9ced4b0d4573dddf3fab811719a0c": {
+          "name": "market for waste mineral oil",
+          "role": "inverter_disposal"
+        },
+        "c1ba499055ef1973ba66f692b4a968d1": {
+          "name": "waste paperboard, unsorted, Recycled Content cut-off",
+          "role": "retain_packaging"
+        },
+        "cf50400f552fff0e1b7e01dbc30166ec": {
+          "name": "market for waste plastic, industrial electronics",
+          "role": "inverter_disposal"
+        },
+        "a3e610bc19fc4eb2f1c3645705853f70": {
+          "name": "market group for waste polyethylene",
+          "role": "retain_packaging"
+        },
+        "5583baa631418d8b2d8a3edc93417fd7": {
+          "name": "market group for waste polystyrene",
+          "role": "retain_packaging"
+        }
+      }
+    },
+    "fd161edc1cc8431efe8372632f2e4848": {
+      "name": "photovoltaic mounting system production, for 570kWp open ground module",
+      "location": "GLO",
+      "negative_ports": {
+        "f3f2945056609341864319041ed46d58": {
+          "name": "aluminium scrap, post-consumer, Recycled Content cut-off",
+          "role": "mounting_disposal"
+        },
+        "bfb980147508c24624d2657c897a1462": {
+          "name": "iron scrap, unsorted, Recycled Content cut-off",
+          "role": "mounting_disposal"
+        },
+        "c1ba499055ef1973ba66f692b4a968d1": {
+          "name": "waste paperboard, unsorted, Recycled Content cut-off",
+          "role": "retain_packaging"
+        },
+        "d2029ee2dc4fa618fa93107b03be95b1": {
+          "name": "market for waste polyethylene/polypropylene product",
+          "role": "mounting_ambiguous_packaging"
+        },
+        "687ea0fb3999b8cf40ba92e5c6598b6f": {
+          "name": "market for waste polyethylene/polypropylene product",
+          "role": "mounting_ambiguous_packaging"
+        },
+        "2d727e174c8afa89727091ccdb08c770": {
+          "name": "market for waste polyethylene/polypropylene product",
+          "role": "mounting_ambiguous_packaging"
+        },
+        "81f567dae96693f5052d23eff2b649f3": {
+          "name": "market for waste polystyrene isolation, flame-retardant",
+          "role": "mounting_ambiguous_packaging"
+        },
+        "c3cb5091ec808ee7f614235d5b46a444": {
+          "name": "market for waste polystyrene isolation, flame-retardant",
+          "role": "mounting_ambiguous_packaging"
+        },
+        "48dc2a1f3cd435411b3c89d2d379cb09": {
+          "name": "market for waste polystyrene isolation, flame-retardant",
+          "role": "mounting_ambiguous_packaging"
+        },
+        "02b21d91690c132f0ad0e1eb2b97de10": {
+          "name": "market for waste reinforced concrete",
+          "role": "mounting_disposal"
+        },
+        "576b86e7d0c0989532c2e82a352080c9": {
+          "name": "market for waste reinforced concrete",
+          "role": "mounting_disposal"
+        },
+        "9b432d92b47bd8aaebff26a8d81b808c": {
+          "name": "market for waste reinforced concrete",
+          "role": "mounting_disposal"
+        }
+      }
+    },
+    "7b0e3daf856e66d0e087fdb2bfb2a177": {
+      "name": "photovoltaic panel production, multi-Si wafer",
+      "location": "RoW",
+      "negative_ports": {
+        "47f53fa559de91eef2cf320acd218095": {
+          "name": "market for municipal solid waste",
+          "role": "retain_factory_waste"
+        },
+        "a40dd98312322f2de20f34ff4fc26360": {
+          "name": "market for municipal solid waste",
+          "role": "retain_factory_waste"
+        },
+        "b1cc32912f0bf103c0fdee5245bfbdfc": {
+          "name": "market for municipal solid waste",
+          "role": "retain_factory_waste"
+        },
+        "bdcb5308e9c12198e9b4315d60c2343e": {
+          "name": "market for municipal solid waste",
+          "role": "retain_factory_waste"
+        },
+        "330ffe9dde6b929a1172de848faceab0": {
+          "name": "market for municipal solid waste",
+          "role": "retain_factory_waste"
+        },
+        "adaaaabca241b1e9501b86101ef65c2d": {
+          "name": "market for municipal solid waste",
+          "role": "retain_factory_waste"
+        },
+        "cfd2394155a9fd186fefa1ad38264788": {
+          "name": "market for municipal solid waste",
+          "role": "retain_factory_waste"
+        },
+        "15fb4f1ffe7a495b10aa164e96b76f7e": {
+          "name": "market for municipal solid waste",
+          "role": "retain_factory_waste"
+        },
+        "b342908a2b3ba7e55c573649be83b1c7": {
+          "name": "market for waste mineral oil",
+          "role": "retain_factory_waste"
+        },
+        "da2df6e7d0a3403c352ff09a8d2edbde": {
+          "name": "market for waste plastic, mixture",
+          "role": "panel_mixed_polymer"
+        },
+        "eaeea1dff047353d3699d0c640cbe171": {
+          "name": "market for waste plastic, mixture",
+          "role": "panel_mixed_polymer"
+        },
+        "7ebaaf4ca1aa185084f5c92119ef77d8": {
+          "name": "market for waste plastic, mixture",
+          "role": "panel_mixed_polymer"
+        },
+        "4e7934c863cfa0c715fe23f213970f07": {
+          "name": "market for waste plastic, mixture",
+          "role": "panel_mixed_polymer"
+        },
+        "e56e64807f4675b0a62c380eb236d013": {
+          "name": "market for waste plastic, mixture",
+          "role": "panel_mixed_polymer"
+        },
+        "6e3e16e9faed916ce6681b75a99687c7": {
+          "name": "market for waste plastic, mixture",
+          "role": "panel_mixed_polymer"
+        },
+        "bc6724a19b80c387c0dfe698c51ef1a8": {
+          "name": "market for waste plastic, mixture",
+          "role": "panel_mixed_polymer"
+        },
+        "b4be6af1875b8862de43fe5e0176988e": {
+          "name": "market for waste polyvinylfluoride",
+          "role": "panel_mixed_polymer"
+        },
+        "3a4ee69e2048c6bacf5e35ec9f3d037f": {
+          "name": "market for wastewater, average",
+          "role": "retain_factory_waste"
+        },
+        "296ecd1847d36c69cf068dc171e853bb": {
+          "name": "market for wastewater, average",
+          "role": "retain_factory_waste"
+        }
+      }
+    },
+    "026641b5e4abd0e086197f96be64c2cb": {
+      "name": "photovoltaic panel production, multi-Si wafer",
+      "location": "RER",
+      "negative_ports": {
+        "32e859d795d88cf69184268aa4662e8f": {
+          "name": "market group for municipal solid waste",
+          "role": "retain_factory_waste"
+        },
+        "622da2ca1adb310e3677ef87658d4c46": {
+          "name": "market for waste mineral oil",
+          "role": "retain_factory_waste"
+        },
+        "32a9ced4b0d4573dddf3fab811719a0c": {
+          "name": "market for waste mineral oil",
+          "role": "retain_factory_waste"
+        },
+        "6260d213d2ebf93961d0bb53748656ed": {
+          "name": "market group for waste plastic, mixture",
+          "role": "panel_mixed_polymer"
+        },
+        "7f7a85923d526e40183a01313d41f38c": {
+          "name": "market for waste polyvinylfluoride",
+          "role": "panel_mixed_polymer"
+        },
+        "07861136669ab1caa5d46d496c0a14b7": {
+          "name": "market for wastewater, average",
+          "role": "retain_factory_waste"
+        },
+        "0c50d83e7f0ce3e01d262dc7a0b76cfd": {
+          "name": "market for wastewater, average",
+          "role": "retain_factory_waste"
+        }
+      }
+    },
+    "a0bd9dedbe92e8610de876ab86a111f9": {
+      "name": "photovoltaics, electric installation for 570kWp module, open ground",
+      "location": "GLO",
+      "negative_ports": {
+        "7bf71886a695b516b2f591beab2c96d6": {
+          "name": "market for waste copper",
+          "role": "electrical_disposal"
+        },
+        "2ce8f54e9819569798ef7afdd9961513": {
+          "name": "market for waste copper",
+          "role": "electrical_disposal"
+        },
+        "7907c15d3793eddb71efeea4a4790224": {
+          "name": "market for waste copper",
+          "role": "electrical_disposal"
+        },
+        "054fef237ae24ad357e5f3426d658439": {
+          "name": "market for waste electric wiring",
+          "role": "electrical_disposal"
+        },
+        "a0dabdd7b71be5025dcf599057b3e9ca": {
+          "name": "market for waste electric wiring",
+          "role": "electrical_disposal"
+        },
+        "d2029ee2dc4fa618fa93107b03be95b1": {
+          "name": "market for waste polyethylene/polypropylene product",
+          "role": "electrical_disposal"
+        },
+        "687ea0fb3999b8cf40ba92e5c6598b6f": {
+          "name": "market for waste polyethylene/polypropylene product",
+          "role": "electrical_disposal"
+        },
+        "2d727e174c8afa89727091ccdb08c770": {
+          "name": "market for waste polyethylene/polypropylene product",
+          "role": "electrical_disposal"
+        },
+        "a3ec718b99d6233bac809974353fdc7a": {
+          "name": "market for waste polyvinylchloride",
+          "role": "electrical_disposal"
+        },
+        "588fa8c3338c2bf3ffb3b12a74b99d84": {
+          "name": "market for waste polyvinylchloride",
+          "role": "electrical_disposal"
+        },
+        "f5145901ae418f22dd3d2a4a65a9e187": {
+          "name": "market group for waste polyvinylchloride",
+          "role": "electrical_disposal"
+        },
+        "5cbca03d3d2ce42069ac04dc853e21ba": {
+          "name": "market for waste polyvinylchloride",
+          "role": "electrical_disposal"
+        },
+        "3228224ac8346228bbadf398f9943bee": {
+          "name": "market for waste polyvinylchloride",
+          "role": "electrical_disposal"
+        },
+        "77b08900c5186abec743226749d0a67d": {
+          "name": "market for waste polyvinylchloride",
+          "role": "electrical_disposal"
+        },
+        "0ac51375fe26a5be604c24fc5e588848": {
+          "name": "market for waste polyvinylchloride",
+          "role": "electrical_disposal"
+        },
+        "290656fbe5d95622bfcc309d7d309ab5": {
+          "name": "market for waste polyvinylchloride",
+          "role": "electrical_disposal"
+        },
+        "3da6fd8e0b1b6181dc1a76994549baea": {
+          "name": "market for waste steel",
+          "role": "electrical_disposal"
+        },
+        "8cf31d02658eab892d210dc156a450de": {
+          "name": "market for waste steel",
+          "role": "electrical_disposal"
+        },
+        "99d0868b7baed35791c271d81bbb7e61": {
+          "name": "market for waste steel",
+          "role": "electrical_disposal"
+        }
+      }
+    }
+  }
+}
