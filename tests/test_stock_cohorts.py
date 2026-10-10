@@ -4,10 +4,138 @@ import pytest
 
 from premise.stock_cohorts import (
     SurvivalLaw,
+    active_component_records,
     evolve_stock,
     retirement_record,
     service_weights,
 )
+
+
+def component_projection(survival=None):
+    return evolve_stock(
+        {2000: 1},
+        2000,
+        {year: 0 for year in range(2001, 2030)},
+        survival or SurvivalLaw("fixed", 30),
+        mode="gross_additions",
+    )
+
+
+@pytest.mark.parametrize(
+    "year,birth,end",
+    [
+        (2005, 2000, 2015),
+        (2015, 2015, 2030),
+        (2029, 2015, 2030),
+    ],
+)
+def test_active_component_dates_current_generation(year, birth, end):
+    result = active_component_records(
+        component_projection(),
+        year,
+        {2000: 1},
+        interval_years=15,
+    )
+    assert result["manufacture"]["event_years"] == [birth]
+    assert result["retirement"]["event_years"] == [end]
+    assert result["manufacture"]["weights"] == [1]
+    assert result["retirement"]["weights"] == [1]
+    assert result["exchange_amount_changed"] is False
+
+
+def test_common_amortisation_recovers_two_inverters_over_thirty_services():
+    # Two equivalent inverters already amortised over thirty equal annual
+    # services: reapplying a one-half factor would undercount both components.
+    p = component_projection()
+    production, disposal = {}, {}
+    coefficient = 2 / 30
+    for year in range(2000, 2030):
+        result = active_component_records(p, year, {2000: 1}, interval_years=15)
+        for role, totals in [("manufacture", production), ("retirement", disposal)]:
+            record = result[role]
+            for event, weight in zip(record["event_years"], record["weights"]):
+                totals[event] = totals.get(event, 0) + coefficient * weight
+        assert all(
+            row["manufacture_year"] <= year < row["retirement_year"]
+            for row in result["joint_events"]
+        )
+    assert production == pytest.approx({2000: 1, 2015: 1})
+    assert disposal == pytest.approx({2015: 1, 2030: 1})
+
+
+def test_different_parent_cohorts_can_share_active_component_dates():
+    p = evolve_stock(
+        {2000: 2, 2015: 3},
+        2020,
+        {},
+        SurvivalLaw("fixed", 30),
+        mode="gross_additions",
+    )
+    result = active_component_records(
+        p, 2020, {2000: 0.2, 2015: 0.8}, interval_years=15
+    )
+    assert result["manufacture"]["event_years"] == [2015]
+    assert result["manufacture"]["weights"] == pytest.approx([1])
+    assert result["retirement"]["event_years"] == [2030]
+    assert result["retirement"]["weights"] == pytest.approx([1])
+    assert {row["component_generation"] for row in result["joint_events"]} == {0, 1}
+
+
+def test_component_retires_at_parent_failure_or_next_replacement():
+    p = component_projection(SurvivalLaw("weibull", 30, 3))
+    result = active_component_records(p, 2012, {2000: 1}, interval_years=15)
+    scale = 30 / math.gamma(1 + 1 / 3)
+    r13 = math.exp(-((13 / scale) ** 3 - (12 / scale) ** 3))
+    r14 = math.exp(-((14 / scale) ** 3 - (12 / scale) ** 3))
+    record = result["retirement"]
+    assert dict(zip(record["event_years"], record["weights"])) == pytest.approx(
+        {2013: 1 - r13, 2014: r13 - r14, 2015: r14}
+    )
+    assert result["manufacture"]["event_years"] == [2000]
+
+
+@pytest.mark.parametrize(
+    "year,birth,end",
+    [
+        (2008, 2000, 2009),
+        (2009, 2009, 2017),
+        (2017, 2017, 2025),
+        (2025, 2025, 2030),
+    ],
+)
+def test_fractional_component_milestones_use_first_following_year(year, birth, end):
+    result = active_component_records(
+        component_projection(),
+        year,
+        {2000: 1},
+        interval_years=25 / 3,
+    )
+    assert result["manufacture"]["event_years"] == [birth]
+    assert result["retirement"]["event_years"] == [end]
+
+
+@pytest.mark.parametrize("interval", [0, 0.5, -1, float("nan"), True])
+def test_invalid_component_interval_rejected(interval):
+    with pytest.raises(ValueError):
+        active_component_records(
+            component_projection(),
+            2010,
+            {2000: 1},
+            interval_years=interval,
+        )
+
+
+def test_component_disposal_rejects_territorial_parent_exit():
+    p = evolve_stock(
+        {2000: 1},
+        2020,
+        {2021: 0.5},
+        SurvivalLaw("fixed", 30),
+        mode="stock_target",
+        early_exit_kind="territorial_exit",
+    )
+    with pytest.raises(ValueError, match="Territorial exits"):
+        active_component_records(p, 2020, {2000: 1}, interval_years=15)
 
 
 def test_observed_initial_stock_is_not_survival_weighted_twice():

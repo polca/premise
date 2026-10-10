@@ -119,6 +119,63 @@ def test_capital_chain_copy_preserves_nonunit_signed_inventory_without_lifecycle
         )
 
 
+@pytest.mark.parametrize("nested", [False, True])
+def test_component_manufacture_cut_excludes_embedded_disposal(nested):
+    database = [
+        activity("service", 2, {"plant": 2}),
+        activity("plant", 3, {"component-market": 4}, {"plant-build": 7}),
+        activity("component-market", 2, {"component": 6}, {"transport": 5}),
+        activity("component", 3, {"disposal": -9}, {"component-build": 11}),
+        activity("disposal", 1, None, {"disposal": 13}),
+    ]
+    before = deepcopy(database)
+    cuts = [[database[1], database[2]]]
+    if nested:
+        cuts.append([database[2], database[3]])
+    updated, audit = split_embedded_lifecycle(
+        database,
+        caller=database[0],
+        paths=[database[1:]],
+        context_id="replacement",
+        uncertainty_mode="deterministic",
+        component_cuts=cuts,
+    )
+    assert database == before
+    assert solve(updated, audit["caller"]) == pytest.approx(solve(before, before[0]))
+    lookup = {identity(d): d for d in updated}
+    # The selected component branch must contain zero disposal after the split;
+    # its separately dated end-of-life port retains the full signed amount.
+    for row in audit["lifted_exchanges"]:
+        isolated = solve(updated, row["supplier"])
+        if row["boundary_kind"] == "component":
+            assert isolated[1] == 0  # alphabetical flow: component-build, disposal
+        else:
+            assert row["amount_per_calling_dataset"] == pytest.approx(-24)
+    component_ports = [
+        r for r in audit["lifted_exchanges"] if r["boundary_kind"] == "component"
+    ]
+    assert len(component_ports) == 1 + nested
+    for binding in audit["zero_shift_bindings"]:
+        caller = lookup[identity(binding["caller"])]
+        assert (
+            sum(
+                e["type"] == "technosphere"
+                and identity(e, exchange=True) == identity(binding["supplier"])
+                for e in caller["exchanges"]
+            )
+            == 1
+        )
+    with pytest.raises(ValueError, match="distinct edges"):
+        split_embedded_lifecycle(
+            database,
+            caller=database[0],
+            paths=[database[1:]],
+            context_id="invalid",
+            uncertainty_mode="deterministic",
+            component_cuts=[[database[1], database[3]]],
+        )
+
+
 def test_scoped_lifecycle_split_preserves_all_static_flows_and_other_users():
     database = example()
     before = deepcopy(database)

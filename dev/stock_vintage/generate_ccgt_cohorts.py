@@ -32,12 +32,15 @@ VARIABLES = {
 REFERENCE = 2022
 
 
-def read_iam(path, expected_hash, scenario, end_year):
+def read_iam(
+    path, expected_hash, scenario, end_year, *, variables=None, required_lifetime=35
+):
     """Require exact source identity, unique leaf rows, units and finite values."""
     if hashlib.sha256(path.read_bytes()).hexdigest() != expected_hash:
         raise ValueError("IAM file differs from the reviewed manifest")
     required_years = list(range(2020, end_year + 6, 5))
-    inverse = {variable: (key, unit) for key, (variable, unit) in VARIABLES.items()}
+    variables = VARIABLES if variables is None else variables
+    inverse = {variable: (key, unit) for key, (variable, unit) in variables.items()}
     values = {}
     with path.open(newline="", encoding="utf-8-sig") as stream:
         for row in csv.DictReader(stream, delimiter=";"):
@@ -58,12 +61,14 @@ def read_iam(path, expected_hash, scenario, end_year):
                 if not math.isfinite(value) or value < 0:
                     raise ValueError(f"Invalid IAM value for {key}/{year}")
                 values[key][year] = value
-    if set(values) != set(VARIABLES):
+    if set(values) != set(variables):
         raise ValueError(
-            "Missing CCGT leaf variables; aggregate gas variables are not substitutes"
+            "Missing selected technology leaf variables; aggregate variables are not substitutes"
         )
-    if set(values["lifetime"].values()) != {35.0}:
-        raise ValueError("This pilot requires the reviewed constant 35-year lifetime")
+    if set(values["lifetime"].values()) != {float(required_lifetime)}:
+        raise ValueError(
+            f"This pilot requires the reviewed constant {required_lifetime}-year lifetime"
+        )
     return values
 
 

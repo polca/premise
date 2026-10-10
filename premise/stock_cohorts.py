@@ -310,3 +310,77 @@ def retirement_record(
     raise ValueError(
         "Retirement horizon leaves excessive tail mass; extend it explicitly"
     )
+
+
+def active_component_records(projection, service_year, weights, *, interval_years):
+    """Date the component currently serving each surviving parent asset.
+
+    Assume installation at parent commissioning and deterministic replacement
+    every declared interval while the parent survives. A component serving the
+    requested year was installed at the last scheduled replacement; its end is
+    the earlier of the next replacement and conditional parent retirement.
+    Preserve common-amortised exchange totals: no new component-count or lifetime
+    multiplier is returned. ``joint_events`` proves the manufacture/end pairing.
+    Fractional milestones are assigned to the first integer year at/after them.
+    """
+    service_year = calendar_year(service_year)
+    interval = _nonnegative(interval_years, "interval_years")
+    if interval < 1:
+        raise ValueError("Annual component calendars require interval_years >= 1")
+    weights = {
+        calendar_year(cohort): _nonnegative(value, "weight")
+        for cohort, value in weights.items()
+    }
+    # Validate the entire service distribution and physical-retirement meaning
+    # before deriving per-cohort components. In particular territorial exits
+    # are not interpreted as component disposal.
+    retirement_record(projection, service_year, weights)
+    manufacture, retirement, joint = {}, {}, []
+    for cohort, weight in sorted(weights.items()):
+        if weight == 0:
+            continue
+        age = service_year - cohort
+        generation = math.floor(age / interval)
+        birth = math.ceil(cohort + generation * interval)
+        scheduled_end = math.ceil(cohort + (generation + 1) * interval)
+        if not birth <= service_year < scheduled_end:
+            raise ValueError("Component milestone is inconsistent with service year")
+        parent = retirement_record(projection, service_year, {cohort: 1.0})
+        conditional = {}
+        for year, probability in zip(parent["event_years"], parent["weights"]):
+            end = min(year, scheduled_end)
+            conditional[end] = conditional.get(end, 0.0) + probability
+        manufacture[birth] = manufacture.get(birth, 0.0) + weight
+        for end, probability in sorted(conditional.items()):
+            amount = weight * probability
+            retirement[end] = retirement.get(end, 0.0) + amount
+            joint.append(
+                {
+                    "parent_cohort_year": cohort,
+                    "component_generation": generation,
+                    "manufacture_year": birth,
+                    "retirement_year": end,
+                    "weight": amount,
+                }
+            )
+
+    def record(values):
+        values = dict(sorted(values.items()))
+        if not math.isclose(math.fsum(values.values()), 1.0, rel_tol=0, abs_tol=1e-10):
+            raise ValueError("Component marginal does not conserve service weights")
+        return {
+            "service_year": service_year,
+            "event_years": list(values),
+            "weights": list(values.values()),
+        }
+
+    return {
+        "manufacture": record(manufacture),
+        "retirement": record(retirement),
+        "joint_events": joint,
+        "interval_years": interval,
+        "milestone_rounding": "ceiling_to_annual_end_year",
+        "allocation_basis": "common_amortisation",
+        "exchange_amount_changed": False,
+        "assumption": "Regular replacement while parent remains in service; no observed component-history claim",
+    }

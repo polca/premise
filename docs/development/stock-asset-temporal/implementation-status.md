@@ -73,6 +73,23 @@ legacy comparison are running at this checkpoint; the third water requirement
 is not yet claimed complete. There are 77 passing focused premise tests and two
 independent analytical tests protecting the new full-matrix verifier.
 
+## PV observed-parent and active-component milestone
+
+The [PV method](pv-pilot-method.md) now documents 363 complete EIA plants with
+1,294.8 MW AC, 1,629.2 MW DC and observed annual generation, including fourteen
+zero-output plants in stock. The two pinned REMIND scenarios each generate eight
+cases across 2022–2030. The reference is service weighted; future trends remain
+an explicitly labelled USA-to-WECC reconstruction.
+
+The new active-component algorithm dates inverter manufacture and end of life
+conditional on the component providing service. A thirty-service analytical
+test recovers one initial and one replacement inverter without applying a second
+amortisation factor. All 46 focused cohort, PV and existing power tests pass.
+Source review separately identified panel handling losses and occasional
+replacement, factory waste versus disposal, and conflicting packaging comments.
+Component export, land-use review and actual temporal LCI remain outstanding;
+the three PV requirements are not yet claimed complete.
+
 ## Implemented software foundation
 
 TRAILS commit `7af0bd1` adds an opt-in annual profile resource. Profiles contain

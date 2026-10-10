@@ -39,8 +39,9 @@ N(c,t+1) = N(c,t) S(t+1-c) / S(t-c)
 The implementation evaluates conditional survival directly; Weibull log-survival
 differences avoid division by underflowed absolute survival. A Weibull mean
 parameter denotes total service life, with scale `mean / Gamma(1 + 1/shape)`;
-it is not mean age in the stock. Fixed life is an analytical test/sensitivity
-case and rejects observed survivors at or beyond its specified lifetime.
+it is not mean age in the stock. Fixed life rejects observed survivors at or
+beyond its specified lifetime. It is used in analytical tests and, explicitly
+as a design-life assumption, in the bounded PV primary case.
 
 The optional `quartic_capacity` law supplies the continuous remaining-capacity
 analogue `S(a) = max(0, 1 - (a/(1.25 L))**4)`. It is not the native REMIND
@@ -90,6 +91,35 @@ These are expected cohort calculations, not individual lifetime sampling.
 Territorial movement, uncertain age bins, varying utilisation and alternative
 survival assumptions require separate empirical sensitivities.
 
+## Date the component currently providing service
+
+`active_component_records` handles regular replacement inside surviving parent
+assets. For parent commissioning year `c`, service year `t` and replacement
+interval `d`, the current component generation is `floor((t-c)/d)`. Manufacture
+is the corresponding installation milestone, rounded up to an integer year.
+Component end of life is the earlier of the next replacement milestone and
+parent retirement conditional on service in `t`. The output retains paired
+manufacture/end events as well as their two marginals; every pair satisfies
+`manufacture <= t < end`. Parent service weights aggregate these records.
+
+This does not apply the replacement count again. If a 30-year plant uses an
+initial inverter and one replacement at year 15, the source coefficient already
+contains two equivalent inverters divided by lifetime service. With thirty equal
+annual services, dating that unchanged `2/30` coefficient to the active inverter
+recovers one manufactured at commissioning and one at year 15. End-of-life
+totals likewise recover one at year 15 and one at year 30. Halving the coefficient
+again would undercount the two components. The analytical test integrates all
+thirty services and checks these four event totals independently.
+
+The rule assumes known commissioning and regular replacements; it does not
+infer observed component ages from parent stock data. Interval and parent-life
+sensitivities change dates while preserving the existing coefficient. They do
+not constitute a new, internally re-amortised material-demand forecast. A
+territorial or operating-service exit remains insufficient evidence for physical
+component disposal. Irregular small maintenance replacements and installation
+losses require separately documented roles, rather than a fictitious periodic
+replacement of every component. See the [PV method](pv-pilot-method.md).
+
 ## Separate embedded disposal without changing the static inventory
 
 The audited car-chassis and lorry manufacture activities include disposal
@@ -112,6 +142,14 @@ The rewrite accepts shared or merging acyclic paths and non-unit reference
 production, rejects ambiguous identities and does not mutate its inputs. The
 audit lists copied identities, lifted coefficients, original units and required
 zero-shift bindings. It supplies no automatic scientific classification.
+
+Optional `component_cuts` identify exact internal edges to lift as well. Such
+an adapter supplies the scoped component with its selected disposal ports already
+removed. Pointing it back to the original component would reintroduce embedded
+disposal and double count the separately lifted end-of-life flow. Tests cover
+single and nested component cuts, non-unit production, signed disposal, full
+static biosphere equivalence and zero disposal in the manufacture-only branch.
+The audit retains the original graph's activity scales for each scoped node.
 
 For the current four-activity car/truck paths, four activities are added: one
 scoped service, two capital nodes and one lifecycle adapter. Full yearly cohort

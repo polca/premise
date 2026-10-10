@@ -156,7 +156,9 @@ def scope_capital_chain(database, *, caller, chain, context_id):
     return list(database) + list(copies.values()), audit
 
 
-def split_embedded_lifecycle(database, *, caller, paths, context_id, uncertainty_mode):
+def split_embedded_lifecycle(
+    database, *, caller, paths, context_id, uncertainty_mode, component_cuts=()
+):
     """Return a new inventory list and an auditable deterministic rewrite.
 
     ``paths`` contains identity lists starting at one capital supplier and ending
@@ -164,6 +166,12 @@ def split_embedded_lifecycle(database, *, caller, paths, context_id, uncertainty
     paths may share a prefix or merge. ``uncertainty_mode`` must explicitly be
     ``deterministic``: lifted products of coefficients do not preserve Monte
     Carlo correlations. Existing inputs are never mutated, including on error.
+
+    Optional ``component_cuts`` are exact caller/supplier pairs within the
+    selected capital graph. These inputs are also lifted to the service caller,
+    pointing to the scoped component whose own lifecycle ports have already
+    been separated. This permits current-component manufacture and disposal
+    to receive distinct dates without leaving embedded disposal in manufacture.
     """
     if uncertainty_mode != "deterministic":
         raise ValueError("Only deterministic lifecycle splitting is implemented")
@@ -195,6 +203,17 @@ def split_embedded_lifecycle(database, *, caller, paths, context_id, uncertainty
     links = {(a, b) for path in keys for a, b in zip(path[:-2], path[1:-1])}
     if cuts & links or any(b in nodes for _, b in cuts):
         raise ValueError("A lifecycle endpoint cannot also be a copied capital node")
+    internal_cuts = set()
+    for pair in component_cuts:
+        if len(pair) != 2:
+            raise ValueError("Component cuts require explicit caller/supplier pairs")
+        edge = tuple(identity(record) for record in pair)
+        if edge not in links or edge in internal_cuts:
+            raise ValueError(
+                "Component cuts must be distinct edges in the scoped graph"
+            )
+        internal_cuts.add(edge)
+    cuts |= internal_cuts
     for a, b in cuts | links:
         _edge(lookup[a], b)
     root_exchange = _edge(lookup[caller_key], root)
@@ -302,9 +321,12 @@ def split_embedded_lifecycle(database, *, caller, paths, context_id, uncertainty
         )
         adapter.pop("parameters", None)
         adapter["exchanges"] = []
+        # Internal component cuts deliver the scoped remainder, not the original
+        # component that still embeds its lifetime disposal requirements.
+        target = clones[supplier] if (parent, supplier) in internal_cuts else endpoint
         for kind, supplier_dataset in (
             ("production", adapter),
-            ("technosphere", endpoint),
+            ("technosphere", target),
         ):
             exchange = {"type": kind, "amount": 1.0, "uncertainty type": 0}
             _relink(exchange, supplier_dataset, adapter)
@@ -314,7 +336,10 @@ def split_embedded_lifecycle(database, *, caller, paths, context_id, uncertainty
         rewritten_caller["exchanges"].append(new_exchange)
         adapters.append(adapter)
         zero_shift.append(
-            {"caller": _metadata(identity(adapter)), "supplier": _metadata(supplier)}
+            {
+                "caller": _metadata(identity(adapter)),
+                "supplier": _metadata(identity(target)),
+            }
         )
         lifted.append(
             {
@@ -328,6 +353,9 @@ def split_embedded_lifecycle(database, *, caller, paths, context_id, uncertainty
                 "caller": _metadata(identity(rewritten_caller)),
                 "supplier": _metadata(identity(adapter)),
                 "original_uncertainty_type": original.get("uncertainty type", 0),
+                "boundary_kind": (
+                    "component" if (parent, supplier) in internal_cuts else "lifecycle"
+                ),
             }
         )
     names = [
@@ -351,6 +379,16 @@ def split_embedded_lifecycle(database, *, caller, paths, context_id, uncertainty
         "zero_shift_bindings": zero_shift,
         "copied_capital_activities": len(clones),
         "lifecycle_adapters": len(adapters),
+        "scoped_nodes": [
+            {
+                "original": _metadata(key),
+                "scoped": _metadata(identity(clones[key])),
+                "activity_scale_per_calling_dataset": _amount(root_exchange)
+                * scales[key],
+                "activity_scale_per_capital_unit": scales[key],
+            }
+            for key in order
+        ],
         "scope": "Explicit path rewrite only; no timing, cohort, or scientific-role inference",
         "uncertainty_limit": "Lifted coefficient products preserve deterministic amounts, not Monte Carlo correlations",
     }
