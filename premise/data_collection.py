@@ -1270,6 +1270,34 @@ class IAMDataCollection:
 
         return grouped_labels
 
+    def stock_vintage_weights(self, asset_id, region, year=None, *, basis="service"):
+        """Read exact preprocessed annual cohort shares; no flodym is needed here."""
+        from .iam_stock_vintage import stock_vintage_weights
+
+        return stock_vintage_weights(
+            self.data, asset_id, region, self.year if year is None else year,
+            basis=basis,
+        )
+
+    def stock_vintage_profile(
+        self, *, asset_id, region, years, report_path, asset_unit, service_unit,
+        profile_id=None,
+    ):
+        """Build an opt-in export profile from this IAM file and its hashed report."""
+        from .iam_stock_vintage import stock_vintage_profile, verified_report
+
+        report = verified_report(report_path, self.iam_source_path)
+        if (
+            report["model"].lower() != self.model.lower()
+            or report["assumptions"]["scenario"] != self.pathway
+        ):
+            raise ValueError("Stock-vintage report scenario does not match the collection")
+        return stock_vintage_profile(
+            self.data, asset_id=asset_id, region=region, years=years,
+            report_path=report_path, scenario_path=self.iam_source_path,
+            asset_unit=asset_unit, service_unit=service_unit, profile_id=profile_id,
+        )
+
     def __get_iam_data(
         self,
         key: bytes,
@@ -1326,6 +1354,7 @@ class IAMDataCollection:
                 url = get_scenario_url(self.model, self.pathway)
                 file_path = download_csv(file_name + ".csv", url, download_folder)
 
+        self.iam_source_path = file_path
         external_fingerprint = stable_fingerprint(
             getattr(self, "external_scenarios", None)
         )
