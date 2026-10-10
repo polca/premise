@@ -15,7 +15,8 @@ portalocker>=2.8
 pywin32; platform_system == "Windows"
 premise_gwp
 prettytable
-pyarrow
+# PyArrow 26 requires NumPy >=2; premise still uses NumPy 1.x.
+pyarrow<26
 pycountry
 pyYaml
 requests
