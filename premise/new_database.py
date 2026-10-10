@@ -994,6 +994,10 @@ class NewDatabase:
                 "_vanadium_"
                 + hashlib.sha256(FILEPATH_VANADIUM.read_bytes()).hexdigest()[:16]
             )
+            inventory_label += (
+                "_h2tanks_"
+                + hashlib.sha256(FILEPATH_TRUCKS.read_bytes()).hexdigest()[:16]
+            )
         return (
             DIR_CACHED_DB
             / f"cached_{''.join(tuple(map(str, __version__)))}_v{CACHE_SCHEMA_VERSION}_"

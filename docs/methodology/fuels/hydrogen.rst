@@ -415,3 +415,48 @@ Detailed supply-chain names
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. include:: /reference/generated/hydrogen-variants.inc
+
+
+Vehicle hydrogen tank inventories
+---------------------------------
+
+The HDPE- and aluminium-lined 700-bar tank activities in ``lci-trucks.xlsx``
+produce one kg of dry tank assembly, including tank balance of plant and
+excluding stored hydrogen. The quantities come from `Evangelisti et al. (2017)
+<https://doi.org/10.1016/j.jclepro.2016.11.159>`_ and its
+`supplementary inventory tables
+<https://ars.els-cdn.com/content/image/1-s2.0-S0959652616320212-mmc1.docx>`_.
+The supplement was checked on 10 October 2026 (SHA256
+``ca9470c504f61ef58e2e5cc3cad8c06d6cecf17073074ac2ce19dca3678ac49d``).
+
+The paper's main text, scenario labels and supplementary output masses are
+inconsistent. Identify the recipes by their materials: the table headed S16
+contains HDPE, while S17 contains an aluminium liner. Previously, their material
+quantities were divided by 119 and 93 kg, respectively, producing 0.737059 and
+1.216871 kg of material inputs per kg of tank.
+
+The corrected denominators are the sums of the listed materials: **87.71 kg
+for HDPE and 113.169 kg for aluminium**. Material proportions are retained and
+now sum to one kg per kg of dry assembly. The differences from the supplement's
+nominal 93 and 119 kg outputs are approximately stored hydrogen, but the paper
+does not state that boundary unambiguously. Dry-mass normalization is an explicit
+modelling choice; no unidentified missing material is added.
+
+Manufacturing electricity is published as 12.87 and 16.422 **MJ per assembly**.
+Dividing by 3.6 MJ/kWh and the respective dry mass gives 0.0407593 and
+0.0403084 kWh/kg. Previously these MJ values had been treated as kWh.
+Steel working and sheet rolling are processing services and do not add material
+mass. Aluminium sheet and ingot both contribute to the aluminium purchase.
+
+Dataset and exchange comments record the source, formulas and boundary. Existing
+supplier proxies, including AlLi for aluminium, are retained; this correction
+does not establish current vehicle composition, sizing or manufacturing yields.
+The separate generic carbon-fibre assembly and HDPE liner activities use other
+source recipes and are outside this correction.
+
+``tests/test_hydrogen_tank_inventories.py`` checks material closure and energy
+units after Brightway Excel import and its preparation strategies, without
+writing a database, plus quantity preservation through migrations to ecoinvent
+3.9--3.12. The supplementary-inventory cache key includes the tank workbook
+content, so rebuilding cannot reuse the old recipes. Existing generated
+databases must still be rebuilt before their tank inventories change.

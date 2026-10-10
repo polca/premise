@@ -6,6 +6,13 @@ All notable changes to this project are documented in this file.
 
 ### Fixed
 
+- Correct the HDPE- and aluminium-lined 700-bar hydrogen tank inventories in
+  `lci-trucks.xlsx` to one kg of dry assembly using the published material sums.
+  Convert manufacturing electricity from MJ to kWh and retain processing services
+  separately from material mass. Document the source inconsistencies and verify
+  the quantities after Excel import on both supported Brightway stacks.
+  Invalidate cached supplementary inventories when the tank workbook changes.
+
 - Correct attributional allocation in the South African vanadium source
   inventory (#286). Replace the ilmenite and sodium-sulfate substitution
   credits with documented economic allocation of shared burdens. Assign
