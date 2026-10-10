@@ -50,6 +50,29 @@ A reproducible script generates the 126-row scenario/sensitivity table and
 PNG/SVG/PDF figure. Restricted artifacts remain local. Final promotion review
 and the other four pilot comparisons remain unfinished.
 
+## Water-network observation-to-export milestone
+
+The [water method](water-pilot-method.md) now separates Quebec pipe length from
+water-storage counts using the same pinned Statistics Canada source. Its 2022
+stocks are 45,114 km and 974 storage assets; unknown dates comprise 5.16% and
+25.56%, respectively. Thirteen explicit annualisation, missing-date, survival,
+service and future-stock scenarios generate 234 asset/case/year records.
+No IAM water forecast is implied. The primary case holds each stock total
+constant with inferred replacement additions and conditional retirement.
+
+The actual inventory export preserves the tap-water market's 0.191 own-product
+loss, giving net output 0.809 kg per activity. Scoped copies separate nine tank
+material ports, two tank-disposal ports and 22 pipe/network-disposal ports. All
+amounts, signs and geographic supplier identities remain. Zero shifts prevent
+a second age or disposal offset. Both real packages use the full source database
+and constant technology at 2022/2025/2030 under an explicitly non-IAM label.
+
+The real consumer has passed the complete matrix identity for the rewrite,
+signed annual pulses and all internal zero-shift links. Full temporal LCI and
+legacy comparison are running at this checkpoint; the third water requirement
+is not yet claimed complete. There are 77 passing focused premise tests and two
+independent analytical tests protecting the new full-matrix verifier.
+
 ## Implemented software foundation
 
 TRAILS commit `7af0bd1` adds an opt-in annual profile resource. Profiles contain

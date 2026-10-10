@@ -44,6 +44,19 @@ def _edge(dataset, supplier):
     return rows[0]
 
 
+def _net_caller_production(dataset):
+    """Retain a service market's own-product losses in its copied diagonal."""
+    key = identity(dataset)
+    amount = _production(dataset) - math.fsum(
+        _amount(e)
+        for e in dataset["exchanges"]
+        if e["type"] == "technosphere" and identity(e, exchange=True) == key
+    )
+    if amount <= 0:
+        raise ValueError("Service caller must have positive net reference production")
+    return amount
+
+
 def _metadata(key):
     return dict(zip(IDENTITY_FIELDS, key))
 
@@ -77,6 +90,7 @@ def scope_capital_chain(database, *, caller, chain, context_id):
     if len(set(keys)) != len(keys) or any(k not in lookup for k in keys):
         raise ValueError("Capital chain must contain distinct existing activities")
     links = set(zip(keys, keys[1:]))
+    caller_production = _net_caller_production(lookup[keys[0]])
     for a, b in links:
         _edge(lookup[a], b)
     for key in keys:
@@ -84,7 +98,11 @@ def scope_capital_chain(database, *, caller, chain, context_id):
         for exchange in lookup[key]["exchanges"]:
             if exchange["type"] == "technosphere":
                 supplier = identity(exchange, exchange=True)
-                if supplier in keys and (key, supplier) not in links:
+                if (
+                    supplier in keys
+                    and (key, supplier) not in links
+                    and not key == supplier == keys[0]
+                ):
                     raise ValueError(
                         "Selected capital chain has an extra internal edge"
                     )
@@ -113,7 +131,7 @@ def scope_capital_chain(database, *, caller, chain, context_id):
                 _relink(exchange, copy, copy)
             elif exchange["type"] == "technosphere":
                 supplier = identity(exchange, exchange=True)
-                if (key, supplier) in links:
+                if (key, supplier) in links or key == supplier == keys[0]:
                     _relink(exchange, copies[supplier], copy)
     audit = {
         "context_id": context_id,
@@ -122,6 +140,7 @@ def scope_capital_chain(database, *, caller, chain, context_id):
         "original_caller": _metadata(keys[0]),
         "original_root": _metadata(keys[1]),
         "preserved_capital_amount": _amount(_edge(lookup[keys[0]], keys[1])),
+        "caller_net_reference_production": caller_production,
         "copied_capital_activities": len(chain),
         "lifted_exchanges": [],
         "lifecycle_adapters": 0,
@@ -180,7 +199,7 @@ def split_embedded_lifecycle(database, *, caller, paths, context_id, uncertainty
         _edge(lookup[a], b)
     root_exchange = _edge(lookup[caller_key], root)
     production = {key: _production(lookup[key]) for key in nodes}
-    caller_production = _production(lookup[caller_key])
+    caller_production = _net_caller_production(lookup[caller_key])
     incoming = {key: 0 for key in nodes}
     successors = defaultdict(list)
     for a, b in links:
@@ -233,6 +252,11 @@ def split_embedded_lifecycle(database, *, caller, paths, context_id, uncertainty
     for exchange in rewritten_caller["exchanges"]:
         exchange["output"] = (rewritten_caller["database"], rewritten_caller["code"])
         if exchange["type"] == "production":
+            _relink(exchange, rewritten_caller, rewritten_caller)
+        elif (
+            exchange["type"] == "technosphere"
+            and identity(exchange, exchange=True) == caller_key
+        ):
             _relink(exchange, rewritten_caller, rewritten_caller)
     _relink(_edge(rewritten_caller, root), clones[root], rewritten_caller)
     zero_shift = []
@@ -322,6 +346,7 @@ def split_embedded_lifecycle(database, *, caller, paths, context_id, uncertainty
         "original_caller": _metadata(caller_key),
         "caller": _metadata(identity(rewritten_caller)),
         "preserved_capital_amount": _amount(root_exchange),
+        "caller_net_reference_production": caller_production,
         "lifted_exchanges": lifted,
         "zero_shift_bindings": zero_shift,
         "copied_capital_activities": len(clones),

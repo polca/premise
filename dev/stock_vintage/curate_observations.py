@@ -169,6 +169,18 @@ def uk_vehicles(path: Path):
 
 
 def canadian_pipes(path: Path):
+    return canadian_water_assets(path, "Total linear potable water assets")
+
+
+def canadian_water_assets(path: Path, asset: str):
+    """Keep pipe lengths and storage counts separate, including unknown dates."""
+    definitions = {
+        "Total linear potable water assets": ("potable_water_pipes", "kilometer"),
+        "Water storage assets": ("potable_water_storage", "unit"),
+    }
+    if asset not in definitions:
+        raise ValueError("Unsupported water asset boundary")
+    group, unit = definitions[asset]
     selected = defaultdict(list)
     with ZipFile(path) as archive:
         with TextIOWrapper(
@@ -177,8 +189,7 @@ def canadian_pipes(path: Path):
             for row_number, row in enumerate(csv.DictReader(stream), start=2):
                 if (
                     row["GEO"] == "Quebec"
-                    and row["Core public infrastructure assets"]
-                    == "Total linear potable water assets"
+                    and row["Core public infrastructure assets"] == asset
                     and row["Public organizations"] == "All public organizations"
                     and row["Measures"] == "Number"
                 ):
@@ -199,6 +210,8 @@ def canadian_pipes(path: Path):
             if not row["VALUE"] or row["STATUS"] in {"F", "x"}:
                 raise ValueError(f"Missing/suppressed selected pipe stock: {row}")
             value = float(row["VALUE"])
+            if not math.isfinite(value) or value < 0:
+                raise ValueError("Invalid water stock quantity")
             record = {
                 "construction_bin": label,
                 "stock": value,
@@ -218,11 +231,12 @@ def canadian_pipes(path: Path):
         total = math.fsum(c["stock"] for c in cohorts) + unknown["stock"]
         observations.append(
             {
-                "group": "potable_water_pipes",
+                "group": group,
                 "geography": "CA-QC",
                 "observation_year": year,
                 "observation_date": f"{year}-12-31",
-                "unit": "kilometer",
+                "unit": unit,
+                "source_asset": asset,
                 "source_id": "S14",
                 "source_uom": "Number",
                 "cohorts": cohorts,
@@ -234,7 +248,7 @@ def canadian_pipes(path: Path):
                 "cohort_date_semantics": "completed construction",
                 "unit_evidence": "https://www.statcan.gc.ca/en/statistical-programs/instrument/5173_Q12_V3#s2",
                 "assumptions": [
-                    "Survey questions 13 and 15 specify kilometres for linear potable-water assets",
+                    "Survey questions 13 and 15 specify kilometres for linear assets and counts for water storage assets",
                     "Selected aggregate only; do not add local/transmission/unknown-diameter children again",
                     "2022 includes federal organisations unlike 2020; changes are not pure additions/retirements",
                     "Open pre-1940 bin and unknown dates are retained, not converted to an assumed age here",

@@ -158,6 +158,54 @@ def test_scoped_lifecycle_split_preserves_all_static_flows_and_other_users():
     assert audit["caller"]["name"] != audit["original_caller"]["name"]
 
 
+@pytest.mark.parametrize("split", [False, True])
+def test_caller_own_product_losses_remain_in_scoped_net_production(split):
+    database = [
+        activity("service", 1, {"service": 0.2, "market": 0.4}),
+        activity("market", 1, {"manufacturer": 1}),
+        activity("manufacturer", 1, {"disposal": -2}, {"manufacture": 3}),
+        activity("disposal", 1, None, {"disposal": 5}),
+    ]
+    if split:
+        updated, audit = split_embedded_lifecycle(
+            database,
+            caller=database[0],
+            paths=[database[1:]],
+            context_id="losses",
+            uncertainty_mode="deterministic",
+        )
+        assert audit["lifted_exchanges"][0]["amount_per_service_unit"] == -1
+    else:
+        updated, audit = scope_capital_chain(
+            database,
+            caller=database[0],
+            chain=database[1:3],
+            context_id="losses",
+        )
+    copy = next(d for d in updated if identity(d) == identity(audit["caller"]))
+    own_inputs = [
+        e
+        for e in copy["exchanges"]
+        if e["type"] == "technosphere" and identity(e, exchange=True) == identity(copy)
+    ]
+    assert len(own_inputs) == 1 and own_inputs[0]["amount"] == 0.2
+    assert audit["caller_net_reference_production"] == pytest.approx(0.8)
+    assert audit["preserved_capital_amount"] == 0.4
+    assert solve(updated, copy) == pytest.approx([-5, 1.5])
+    assert solve(updated, copy) == pytest.approx(solve(database, database[0]))
+
+
+def test_nonpositive_net_service_production_is_rejected():
+    database = [
+        activity("service", 1, {"service": 1, "capital": 0.4}),
+        activity("capital"),
+    ]
+    with pytest.raises(ValueError, match="positive net"):
+        scope_capital_chain(
+            database, caller=database[0], chain=database[1:], context_id="losses"
+        )
+
+
 def test_shared_path_prefix_is_not_counted_twice():
     database = example()
     database[2]["exchanges"].append(

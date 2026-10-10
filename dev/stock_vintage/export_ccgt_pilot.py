@@ -127,7 +127,18 @@ def set_local_rights(path):
     os.replace(temporary, path)
 
 
-def export(inventory, directory, report, payload, anchors, name):
+def export(
+    inventory,
+    directory,
+    report,
+    payload,
+    anchors,
+    name,
+    *,
+    model="remind",
+    pathway=None,
+):
+    pathway = pathway or report["iam_source"]["scenario"]
     directory.mkdir(parents=True, exist_ok=True)
     if (directory / "trails_temp").exists() or (directory / f"{name}.zip").exists():
         raise ValueError(
@@ -138,7 +149,7 @@ def export(inventory, directory, report, payload, anchors, name):
     obj = TrailsDataPackage.__new__(TrailsDataPackage)
     obj.datapackage = database
     obj.stock_vintage_export = StockVintageExport(payload) if payload else None
-    obj.scenario_names = ["remind - " + report["iam_source"]["scenario"]]
+    obj.scenario_names = [model + " - " + pathway]
     (
         obj.stock_asset_params,
         obj.end_of_life_suppliers,
@@ -152,8 +163,8 @@ def export(inventory, directory, report, payload, anchors, name):
         os.chdir(directory)
         for year in anchors:
             scenario = {
-                "model": "remind",
-                "pathway": report["iam_source"]["scenario"],
+                "model": model,
+                "pathway": pathway,
                 "year": year,
                 "_inventory_store": CompactInventoryStore(deepcopy(inventory)),
             }
@@ -163,7 +174,8 @@ def export(inventory, directory, report, payload, anchors, name):
             Export(
                 scenario=loaded,
                 filepath=directory
-                / "trails_temp/inventories/remind"
+                / "trails_temp/inventories"
+                / model
                 / scenario["pathway"]
                 / str(year),
                 version="3.12",
@@ -182,22 +194,13 @@ def export(inventory, directory, report, payload, anchors, name):
         os.chdir(previous)
 
 
-def main():
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--inventory", type=Path, required=True)
-    parser.add_argument("--cohorts", type=Path, required=True)
-    parser.add_argument("--case", default="primary")
-    parser.add_argument("--output-dir", type=Path, required=True)
-    parser.add_argument("--skip-legacy", action="store_true")
-    args = parser.parse_args()
-    args.output_dir = args.output_dir.resolve()
-    raw_hash = hashlib.sha256(args.inventory.read_bytes()).hexdigest()
-    manifest = json.loads(
-        args.inventory.with_suffix(args.inventory.suffix + ".manifest.json").read_text()
-    )
+def load_source_inventory(path):
+    """Validate the restricted source once for each independently exported pilot."""
+    raw_hash = hashlib.sha256(path.read_bytes()).hexdigest()
+    manifest = json.loads(path.with_suffix(path.suffix + ".manifest.json").read_text())
     if raw_hash != manifest["sha256"]:
         raise ValueError("Inventory extract differs from its local manifest")
-    with gzip.open(args.inventory, "rt") as stream:
+    with gzip.open(path, "rt") as stream:
         source = json.load(stream)
     if source["source_version"] != "3.12" or source["system_model"] != "cutoff":
         raise ValueError("This pilot requires ecoinvent 3.12 cut-off")
@@ -212,6 +215,19 @@ def main():
                 raise ValueError(
                     f"Exporter cannot represent source biosphere flow {exc['input'][1]}"
                 )
+    return inventory, raw_hash
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--inventory", type=Path, required=True)
+    parser.add_argument("--cohorts", type=Path, required=True)
+    parser.add_argument("--case", default="primary")
+    parser.add_argument("--output-dir", type=Path, required=True)
+    parser.add_argument("--skip-legacy", action="store_true")
+    args = parser.parse_args()
+    args.output_dir = args.output_dir.resolve()
+    inventory, raw_hash = load_source_inventory(args.inventory)
     lookup = {d["code"]: d for d in inventory}
     selected = [lookup[code] for code in CODES]
     updated, audit = scope_capital_chain(

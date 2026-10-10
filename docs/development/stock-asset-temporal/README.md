@@ -28,6 +28,7 @@ behaviour. This implementation branch adds experimental opt-in behaviour.
 | Document | Purpose |
 |---|---|
 | [Strategy](strategy.md) | Modelling definitions, equations, scope, and decisions |
+| [Water-network pilot method](water-pilot-method.md) | Separate observed pipe/storage cohorts, annual and survival assumptions, exact component/disposal boundary |
 | [CCGT pilot method](ccgt-pilot-method.md) | Complete-block observations, exact IAM leaves, annual reconstruction, sensitivities and the real inventory boundary |
 | [Pilot boundary refinements](pilot-boundary-findings.md) | Narrower truck/power populations, output-join coverage and lifecycle findings |
 | [Conditional retirement and lifecycle separation](lifecycle-and-cohort-method.md) | Implemented stock transitions, scoped inventory rewrites, calendar semantics and evidence |
