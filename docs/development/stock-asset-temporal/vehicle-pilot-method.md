@@ -2,7 +2,7 @@
 
 Updated 10 October 2026. These are bounded, opt-in UK timing pilots with EUR
 scenario-growth proxies. Both generators, exporters and full signed consumer checks are complete for
-these bounded pilots. Final private evidence archiving remains outstanding. See [implementation status](implementation-status.md).
+these bounded pilots. Private evidence archiving and independent verification are complete. See [implementation status](implementation-status.md).
 
 ## Populations, dates and service
 
@@ -202,7 +202,7 @@ componentwise relative residual is `3.04e-16`. Parent manufacture and disposal
 retain the combined selected fossil-CO2 burden `0.001759251805 kg/tkm`, matching
 the legacy parent attribution. Service-year maintenance contributes another
 `0.000459593998 kg/tkm`, outside that legacy parent subtotal. The third bounded
-truck requirement is now met; final campaign review remains outstanding.
+truck requirement is now met; final campaign review and private archiving are complete.
 
 The TRAILS script `report_vehicle_sensitivity.py` produces a 468-row CSV and
 PNG/SVG/PDF figure from all four cohort reports, with an input-hash manifest.

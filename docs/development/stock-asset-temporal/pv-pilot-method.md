@@ -3,7 +3,7 @@
 Experimental bounded pilot, 10 October 2026. Cohorts, component separation and
 the real export are implemented. Matrix equivalence and signed event-calendar
 checks and full signed temporal LCI pass, including the two ambiguity endpoints.
-Final private evidence archiving remains outstanding.
+Private evidence archiving and independent verification are complete.
 
 ## Observed population and units
 
@@ -224,4 +224,4 @@ inspected. Inputs are the three `checks-2030.json` reports under
 This resolves the three requirements for the bounded constant-technology PV
 pilot, including its explicit timing ambiguity. It does not validate native IAM
 vintages, historical technologies or a public stock dataset. Final campaign
-review and private evidence archiving remain outstanding.
+review and private evidence archiving are complete.

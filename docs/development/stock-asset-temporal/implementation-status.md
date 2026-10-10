@@ -1,8 +1,7 @@
 # Implementation status and release evidence
 
 Reviewed 10 October 2026. All five bounded pilots meet the three methodological
-and producer/consumer requirements. Final private evidence archiving is in
-progress. Both implementation repositories use `feat/stock-vintage-pilots`.
+and producer/consumer requirements. The private evidence archive and independent verification are complete. Both implementation repositories use `feat/stock-vintage-pilots`.
 The planning worktree and original checkouts are preserved. Public defaults,
 legacy parameter meanings and source Brightway databases are unchanged.
 
@@ -63,7 +62,7 @@ attribution requires invariant lifted coefficients across anchors. The rewrites
 are deterministic; preserving Monte Carlo correlations is outside this claim.
 
 Use the paired implementation code including premise `edc89b46` and TRAILS
-`a3ef279`, or their reviewed branch descendants; the private archive will pin
+`a3ef279`, or their reviewed branch descendants; the private archive pins
 exact delivered revisions. Premise uses Python 3.12 and this TRAILS revision
 Python 3.11. There is no assigned public minimum release version yet.
 An actual baseline-reader check at TRAILS `b7d1bb78` loads a corrected synthetic
@@ -115,7 +114,7 @@ independent verification and concurrent load. Full-LCI peak RSS and isolated
 native solve time were not instrumented. Bounded native streaming completes the
 water comparison without materialising roughly 9.6 billion entries per demand.
 
-## Relation to the original plan and remaining work
+## Relation to the original plan and final sign-off
 
 This is the bounded P0–P5 opt-in route; P5 explicitly permits limited pilot
 coverage. The 23-group strategy and data search campaign remain the expansion
@@ -124,10 +123,20 @@ heterogeneous individual-life allocation (P6), study/manuscript reassessment and
 default promotion (P7) are separate tasks. No provider contact, purchase, merge
 or publication has occurred.
 
-The remaining completion step is durable private evidence preservation and its
-verification. TRAILS `archive_private_evidence.py` requires all twelve corrected
-full-LCI reports and all three regression suites to pass, checks source hashes,
-and saves source/data/package artifacts, environment versions and clean code
-revisions outside Git. Restricted raw inventories, IAM files and derived series
-must remain local. The archive itself does not replace this methodological
-review. The final evidence location and sign-off will be recorded after copying.
+The private archive is complete at
+`~/Library/Application Support/trails/stock-vintage-evidence/2026-10-10-pilots`.
+It contains 163 hash-verified artifacts (1,128,568,509 bytes), twelve corrected
+full-LCI reports, regression XML/logs, source/code snapshots, restricted inputs
+and environment versions. Its manifest SHA-256 is
+`c15467bdb209ece5c556248c16edc6257dae034dd121b9a6c935b4f5fe726231`.
+Code snapshots pin premise `da7edd7ab87e644affad7fc879bf141d9cc8c0ba` and TRAILS
+`62eacddb764d876978165ccb2828fa07be7e508f`; subsequent sign-off changes are
+documentation only. The sibling `2026-10-10-pilots-verification` directory
+contains independent hash checks, 210/340 relocated BEV/water annual checks and
+eight complete synthetic lifecycle LCI cases. All passed.
+
+The bounded five-pilot goal is ready for review, with no remaining blocking
+methodological or data gap under its declared common-amortisation assumptions.
+The documented empirical gaps limit generalisation and remain visible.
+Restricted inputs/derived results remain local; no merge, default promotion or
+publication is implied. The original planning worktree remains unchanged.

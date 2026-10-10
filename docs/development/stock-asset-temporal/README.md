@@ -1,6 +1,6 @@
 # Stock-asset temporal modelling: strategy and implementation plan
 
-Status: all five bounded opt-in pilots validated; private evidence archiving in progress.
+Status: all five bounded opt-in pilots validated; private evidence archived and verified.
 See [implementation status](implementation-status.md) for evidence and remaining gates.
 Reviewed: 10 October 2026.
 Planning branch: `plan/stock-asset-temporal-distributions`, based on `trals`.
