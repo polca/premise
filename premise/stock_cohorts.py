@@ -86,12 +86,62 @@ class SurvivalLaw:
         return math.exp(-difference)
 
 
+@dataclass(frozen=True)
+class AnnualVehicleSurvival:
+    """Declared annual vehicle kernel based on the pinned EDGE fleet routine.
+
+    ``service_life`` is the maximum included integer age, not a mean lifetime.
+    S(0)=1; S(a)=1-((a-0.5)/service_life)**4 for 1<=a<=service_life;
+    S(a)=0 beyond it. This differs from the power-capacity 1.25L rule. Using
+    the kernel for physical retirement is a separate, explicit pilot assumption.
+    Observed survivors beyond support require a residual-life extension.
+    """
+
+    service_life: int
+    overage_remaining_years: float | None = None
+
+    def __post_init__(self):
+        life = _nonnegative(self.service_life, "service_life")
+        if life < 1 or int(life) != life:
+            raise ValueError("Vehicle service_life must be a positive integer age")
+        object.__setattr__(self, "service_life", int(life))
+        if self.overage_remaining_years is not None:
+            tail = _nonnegative(self.overage_remaining_years, "overage_remaining_years")
+            if tail <= 0:
+                raise ValueError(
+                    "Observed overage vehicles require positive residual life"
+                )
+            object.__setattr__(self, "overage_remaining_years", tail)
+
+    @property
+    def family(self):
+        return "edge_annual_vehicle"
+
+    def conditional(self, age, years):
+        age, years = _nonnegative(age, "age"), _nonnegative(years, "years")
+        if int(age) != age or int(years) != years:
+            raise ValueError("Vehicle kernel uses integer annual ages and steps")
+        if age > self.service_life:
+            if self.overage_remaining_years is None:
+                raise ValueError("Observed vehicle exceeds annual kernel support")
+            return math.exp(-years / self.overage_remaining_years)
+
+        def remaining(a):
+            if a == 0:
+                return 1.0
+            if a > self.service_life:
+                return 0.0
+            return 1 - ((a - 0.5) / self.service_life) ** 4
+
+        return remaining(age + years) / remaining(age)
+
+
 @dataclass
 class StockProjection:
     reference_year: int
     stocks: dict[int, dict[int, float]]
     balances: list[dict]
-    survival: SurvivalLaw
+    survival: SurvivalLaw | AnnualVehicleSurvival
     early_exit_kind: str | None
 
 

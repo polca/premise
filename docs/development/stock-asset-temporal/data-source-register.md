@@ -121,3 +121,23 @@ the [IAM scenario assessment](iam-scenario-assessment.md) for files, variables,
 units, model semantics and feasible reconstruction routes. Scenario stocks and
 gross additions can complement these historical observations; they cannot
 retroactively identify the unknown initial cohorts by themselves.
+
+## Pinned transport-model code for the bounded vehicle pilots
+
+- **S30 — EDGE-Transport**, commit
+  `1124c9967e9644b41977c4750640629d51b5494b`: the default service-life table,
+  annual vehicle-depreciation kernel and fleet-composition routine. The declared
+  licence is GPL-3. Parameter values are model defaults, not observed mean lives.
+  [Pinned source tree](https://github.com/pik-piam/edgeTransport/tree/1124c9967e9644b41977c4750640629d51b5494b).
+- **S31 — reporttransport**, commit
+  `eb4046a859b25363eb8460ced06561010cb4653d`: annual Sales selection and service
+  reporting/harmonisation. The declared licence is LGPL-3. Sales selects the
+  construction cohort matching the calendar year; service can be harmonised
+  separately from stock.
+  [Pinned source tree](https://github.com/pik-piam/reporttransport/tree/eb4046a859b25363eb8460ced06561010cb4653d).
+
+The acquisition manifest pins five inspected files, with URL, byte count and
+SHA-256. Downloaded R source stays in local research storage; it is not copied
+into this repository. Neither commit has been linked conclusively to the local
+REMIND run. The [vehicle method](vehicle-pilot-method.md) explains the resulting
+reconstruction assumptions and records the distinction from native IAM vintages.

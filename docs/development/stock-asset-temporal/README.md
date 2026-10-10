@@ -154,3 +154,8 @@ heterogeneous extension additionally requires conservation of population-level
 allocated asset production and explained changes to inventory totals. Both need
 coherent lifecycle events and quantified uncertainty. The homogeneous correction
 can be completed and released without implementing the optional extension.
+
+The implementation branch now includes the [vehicle pilot method](vehicle-pilot-method.md),
+with annual UK car/truck reconstructions and explicit battery, service and
+physical-retirement assumptions. Its current validation status is tracked in
+[implementation status](implementation-status.md).

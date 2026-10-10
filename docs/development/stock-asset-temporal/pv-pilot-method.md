@@ -183,3 +183,28 @@ PYTHONPATH="$PWD" python dev/stock_vintage/export_pv_pilot.py \
 python dev/stock_vintage/check_pv_pilot.py /private/local/pv-real-primary \
   --cache --output /private/local/pv-real-primary/checks-warm-2023.json
 ```
+
+## Completed full-LCI checks, 10 October 2026
+
+The primary corrected package now passes full LCI for demand +1 and −2 in both
+2023 (annual interpolation, confirmed warm-cache reload) and 2030 (no
+interpolation). All 9,847 biosphere rows agree with the independent year-wise
+reference; maximum absolute error is `1.78e-14`, and the largest componentwise
+operator residual is `2.57e-16`. These figures use the same UMFPACK backend and
+complement the complete rewrite identity, rather than asserting independent
+numerical conditioning across different solvers.
+
+The direct land-occupation adapter returns `0.026653982919539 m²·year/kWh`
+exactly at the requested service year, with sign reversal and scaling for
+negative demand. Capital-attributed fossil CO2 summed over all revised roles
+is `0.008559121266763 kg/kWh`, unchanged within numerical tolerance. Its role
+split and calendar distributions are retained in the local JSON evidence.
+
+For the 2030 service, corrected parent construction has mean age 5.69750 years.
+Legacy raw construction has mean age 13.50179; the old no-interpolation calendar
+clamp reduces its reported mean to 7.31900. The legacy negative-reference sign
+error is a separate operator-conservation failure and is not attributed to
+stock weighting. The checked local reports are `checks-warm-2023.json`,
+`checks-2030.json` and `checks-legacy-2030.json` in `pv-real-primary`.
+Waste-polymer and mounting-packaging timing endpoints still require actual
+export/consumer comparison before the pilot is promoted.

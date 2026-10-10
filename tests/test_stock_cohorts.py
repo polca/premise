@@ -3,12 +3,44 @@ import math
 import pytest
 
 from premise.stock_cohorts import (
+    AnnualVehicleSurvival,
     SurvivalLaw,
     active_component_records,
     evolve_stock,
     retirement_record,
     service_weights,
 )
+
+
+def test_vehicle_kernel_uses_included_terminal_age_and_differs_from_power_law():
+    law = AnnualVehicleSurvival(20)
+    assert law.conditional(0, 0) == 1
+    assert law.conditional(0, 20) == pytest.approx(1 - (39 / 40) ** 4)
+    assert law.conditional(0, 21) == 0
+    assert law.conditional(20, 1) == 0
+    assert SurvivalLaw("quartic_capacity", 20).conditional(20, 1) > 0
+    assert law.conditional(10, 1) == pytest.approx(
+        (1 - (21 / 40) ** 4) / (1 - (19 / 40) ** 4)
+    )
+
+
+def test_vehicle_overage_survivors_need_an_explicit_remaining_life_proxy():
+    with pytest.raises(ValueError, match="exceeds"):
+        AnnualVehicleSurvival(15).conditional(16, 0)
+    law = AnnualVehicleSurvival(15, overage_remaining_years=3)
+    assert law.conditional(40, 1) == pytest.approx(math.exp(-1 / 3))
+    p = evolve_stock({1980: 10}, 2022, {2023: 0}, law, mode="gross_additions")
+    assert p.stocks[2022] == {1980: 10}
+    assert p.stocks[2023][1980] == pytest.approx(10 * math.exp(-1 / 3))
+    record = retirement_record(p, 2022, {1980: 1})
+    assert min(record["event_years"]) == 2023
+    assert sum(record["weights"]) == pytest.approx(1)
+
+
+@pytest.mark.parametrize("life", [0, -1, 15.5, float("nan"), True])
+def test_vehicle_kernel_rejects_invalid_service_life(life):
+    with pytest.raises(ValueError):
+        AnnualVehicleSurvival(life)
 
 
 def component_projection(survival=None):

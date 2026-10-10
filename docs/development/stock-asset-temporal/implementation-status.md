@@ -91,9 +91,36 @@ The real component export now preserves the full source system while separating
 47 waste ports, two component-manufacture ports and direct land occupation.
 Source inconsistencies remain explicit waste-timing endpoint sensitivities.
 Matrix equivalence, 510 signed annual port checks and 58 internal zero shifts
-pass; full LCI, occupation-date and cache/legacy comparisons are running or
-pending. The latest focused suites pass 82 producer and 89 consumer tests.
-The three PV requirements are not yet claimed complete.
+pass. Full LCI now passes for both demand signs in 2023 with annual interpolation
+and a confirmed warm-cache reload, and in 2030 without interpolation. All 9,847
+biosphere flows agree with the independent year-wise calculation to a maximum
+absolute error of `1.78e-14`; operator componentwise relative residual is at most
+`2.57e-16`. Direct land occupation is in the requested service year for both
+signs. Capital-attributed fossil CO2 remains `0.00855912127 kg/kWh`; the corrected
+2030 parent mean age is 5.69750 years, versus legacy raw 13.50179 years (clamped
+7.31900). Legacy retains its separately reported negative-production sign error.
+The waste-timing endpoint comparisons remain outstanding, so the three PV
+requirements are not yet claimed complete. The previous focused producer and
+consumer suites passed 82 and 89 tests.
+
+## Vehicle cohort reconstruction milestone
+
+The [vehicle method](vehicle-pilot-method.md) fixes the bounded observed UK
+populations, source survival semantics, service-index interpretation and battery
+assumptions. Primary cohorts contain 628,318 known post-2009 BEVs (99.8941% of
+observed BEVs) and all 14,231 selected articulated diesel trucks of 32–40 tonnes.
+Unknown dates and the single pre-1980 truck have explicit policies and bounds.
+
+Pinned EDGE code establishes an annual vehicle kernel distinct from the
+power-capacity law; pinned reporttransport code identifies Sales as calendar-year
+entrants. Exact-run native cohorts and parameter versions remain unavailable.
+The two exact local REMIND scenarios generate 468 annual case/year records for
+2022–2030, with independent stock/sales residuals and no silent unit conversions.
+Territorial exits are separated from assumed physical retirement. Active
+battery timing preserves the original 1.5 equivalent packs per nominal car life
+without becoming a forecast of pack counts. The 61 focused cohort, vehicle,
+PV and CCGT tests pass. Actual vehicle exports and full consumer checks are
+still required; neither vehicle pilot is promoted.
 
 ## Implemented software foundation
 
