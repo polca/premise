@@ -119,8 +119,10 @@ The two exact local REMIND scenarios generate 468 annual case/year records for
 Territorial exits are separated from assumed physical retirement. Active
 battery timing preserves the original 1.5 equivalent packs per nominal car life
 without becoming a forecast of pack counts. The 61 focused cohort, vehicle,
-PV and CCGT tests pass. Actual vehicle exports and full consumer checks are
-still required; neither vehicle pilot is promoted.
+PV and CCGT tests pass. The truck exporter now separates manufacture, disposal and maintenance, with
+scoped event markets preventing repeated delays. Its 32 focused lifecycle and
+vehicle tests pass; the real inventory export is running. The car exporter and
+full vehicle consumer checks remain required. Neither vehicle pilot is promoted.
 
 ## Implemented software foundation
 

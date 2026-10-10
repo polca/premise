@@ -1,8 +1,8 @@
 # Passenger-BEV and articulated-truck vintage reconstruction
 
 Updated 10 October 2026. These are bounded, opt-in UK timing pilots with EUR
-scenario-growth proxies. The annual generators are implemented; actual vehicle
-inventory export and consumer validation remain outstanding. Neither pilot is
+scenario-growth proxies. The annual generators and truck exporter are implemented; actual vehicle
+consumer validation remains outstanding, and the car exporter is still needed. Neither pilot is
 promoted. See [implementation status](implementation-status.md).
 
 ## Populations, dates and service
@@ -173,3 +173,28 @@ addresses/hashes, mathematical definitions and an independent implementation,
 not copies of those R files. Restricted ecoinvent and IAM raw/derived data and
 generated packages stay local. These checks establish the reconstruction layer;
 the real producer/consumer release requirement remains open.
+
+## Truck event-market boundary implementation
+
+`export_truck_pilot.py` now lifts the used-lorry exchange from the manufacturer's
+inventory, keeps all three manufacturing-wastewater inputs at manufacture, and
+scopes the used-lorry and maintenance markets. Both markets have two reviewed
+geographic providers. Their internal links are instantaneous at the already
+assigned disposal or service year, respectively. This prevents the original
+maintenance spread or a market-derived disposal delay from being applied again.
+The market's signed reference production and all coefficients remain intact.
+Factory capital retains its independent stock age.
+
+The generic `scope_event_market` helper changes only callers already in a
+reviewed pilot context. Analytical tests prove static equivalence with negative
+and non-unit reference production, unchanged source inputs and other callers,
+and no zero-shift override on unrelated inputs. The 32 focused lifecycle,
+lifecycle-export and vehicle tests pass. The actual complete-inventory truck
+legacy/corrected export is running; no consumer result is claimed yet.
+
+The TRAILS script `report_vehicle_sensitivity.py` produces a 468-row CSV and
+PNG/SVG/PDF figure from all four cohort reports, with an input-hash manifest.
+The figure was inspected. It shows parent-age sensitivity to service weighting,
+survival support and stock versus sales constraints; the CSV also retains
+battery/disposal dates, territorial exits and both constraint residuals. All
+IAM-derived figures and tables remain local under the source rights.

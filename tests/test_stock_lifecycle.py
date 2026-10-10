@@ -6,10 +6,93 @@ import pytest
 from premise.stock_lifecycle import (
     lift_scoped_biosphere,
     scope_capital_chain,
+    scope_event_market,
     split_embedded_lifecycle,
     validate_lifecycle_anchor_audits,
 )
 from premise.stock_vintage import identity
+
+
+def test_event_market_keeps_negative_production_and_zeroes_only_event_providers():
+    original = example()
+    original[4] = activity(
+        "disposal",
+        -2,
+        {"treatment-a": -0.5, "treatment-b": -1.5, "other": 0.2},
+        {"disposal": 7},
+    )
+    original += [
+        activity("treatment-a", -1, bio={"end": 3}),
+        activity("treatment-b", -1, bio={"end": 5}),
+    ]
+    before = deepcopy(original)
+    revised, audit = split_embedded_lifecycle(
+        original,
+        caller=original[0],
+        paths=[[original[1], original[2], original[4]]],
+        context_id="event",
+        uncertainty_mode="deterministic",
+    )
+    old_audit = deepcopy(audit)
+    adapter = audit["lifted_exchanges"][0]["supplier"]
+    revised, audit = scope_event_market(
+        revised,
+        audit,
+        caller=adapter,
+        supplier=original[4],
+        event_suppliers=original[-2:],
+    )
+    assert original == before
+    assert old_audit["zero_shift_bindings"] != audit["zero_shift_bindings"]
+    branch = audit["event_markets"][0]
+    assert branch["reference_production"] == -2
+    assert branch["amount_per_calling_dataset"] == 1
+    assert solve(revised, audit["caller"]) == pytest.approx(
+        solve(original, original[0])
+    )
+    assert solve(revised, original[-3]) == pytest.approx(solve(original, original[-3]))
+    zeros = {
+        (identity(b["caller"]), identity(b["supplier"]))
+        for b in audit["zero_shift_bindings"]
+    }
+    assert (identity(adapter), identity(branch["supplier"])) in zeros
+    assert (identity(adapter), identity(original[4])) not in zeros
+    assert (identity(branch["supplier"]), identity(original[5])) not in zeros
+    for provider in original[-2:]:
+        assert (identity(branch["supplier"]), identity(provider)) in zeros
+
+
+def test_direct_maintenance_market_preserves_quantity_and_requires_scoped_caller():
+    original = example()
+    original += [
+        activity("maintenance-market", 2, {"maintenance": 2}),
+        activity("maintenance", bio={"maint": 4}),
+    ]
+    original[0]["exchanges"].extend(
+        activity("service", tech={"maintenance-market": 0.3})["exchanges"][1:]
+    )
+    revised, audit = scope_capital_chain(
+        original, caller=original[0], chain=original[1:3], context_id="maint"
+    )
+    with pytest.raises(ValueError, match="reviewed context"):
+        scope_event_market(
+            revised,
+            audit,
+            caller=original[0],
+            supplier=original[-2],
+            event_suppliers=[original[-1]],
+        )
+    revised, audit = scope_event_market(
+        revised,
+        audit,
+        caller=audit["caller"],
+        supplier=original[-2],
+        event_suppliers=[original[-1]],
+    )
+    assert audit["event_markets"][0]["amount_per_calling_dataset"] == 0.3
+    assert solve(revised, audit["caller"]) == pytest.approx(
+        solve(original, original[0])
+    )
 
 
 def activity(name, production=1.0, tech=None, bio=None):

@@ -395,6 +395,95 @@ def split_embedded_lifecycle(
     return result, audit
 
 
+def scope_event_market(database, audit, *, caller, supplier, event_suppliers):
+    """Scope one reviewed market and date its event providers without a new lag.
+
+    The caller must already belong to this lifecycle context. This works for a
+    direct service-year maintenance input or an adapter delivering a disposal
+    market. Signed reference production and all market coefficients are retained.
+    Only the explicitly named event-provider links receive zero-shift bindings;
+    freight and independent capital keep their existing background roles.
+    """
+    lookup = {identity(d): d for d in database}
+    if len(lookup) != len(database):
+        raise ValueError("Ambiguous event-market identity")
+    caller_key, supplier_key = identity(caller), identity(supplier)
+    if caller_key not in lookup or supplier_key not in lookup:
+        raise ValueError("Event market or its caller is absent")
+    owner, original = lookup[caller_key], lookup[supplier_key]
+    if owner.get("stock_vintage_context") != audit["context_id"]:
+        raise ValueError("Event market requires a caller in the reviewed context")
+    original_exchange = _edge(owner, supplier_key)
+    providers = [identity(d) for d in event_suppliers]
+    if not providers or len(set(providers)) != len(providers):
+        raise ValueError("Event providers must be explicit, nonempty and unique")
+    if any(k not in lookup or k in {caller_key, supplier_key} for k in providers):
+        raise ValueError("Event providers must be distinct existing activities")
+    for key in providers:
+        _edge(original, key)
+    productions = [e for e in original["exchanges"] if e["type"] == "production"]
+    if (
+        len(productions) != 1
+        or identity(productions[0], exchange=True) != supplier_key
+        or _amount(productions[0]) == 0
+    ):
+        raise ValueError("Event market requires one nonzero matching production")
+    if any(
+        e["type"] == "technosphere" and identity(e, exchange=True) == supplier_key
+        for e in original["exchanges"]
+    ):
+        raise ValueError(
+            "Event-market self-consumption needs a separate boundary review"
+        )
+    context = audit["context_id"]
+    clone = deepcopy(original)
+    clone["name"] = f"{original['name']} [stock context {context}: capital]"
+    clone["code"] = (
+        "stock-"
+        + hashlib.sha256(
+            json.dumps([context, "event-market", supplier_key]).encode()
+        ).hexdigest()[:24]
+    )
+    clone["database"] = original.get("database", "stock-vintage")
+    clone["stock_vintage_context"] = context
+    clone["stock_vintage_role"] = "capital"
+    clone["stock_vintage_original_identity"] = _metadata(supplier_key)
+    clone.pop("id", None)
+    if identity(clone) in lookup:
+        raise ValueError("Event market already scoped in this context")
+    for exchange in clone["exchanges"]:
+        exchange["output"] = (clone["database"], clone["code"])
+        if exchange["type"] == "production":
+            _relink(exchange, clone, clone)
+    owner_copy = deepcopy(owner)
+    _relink(_edge(owner_copy, supplier_key), clone, owner_copy)
+    result = [owner_copy if identity(d) == caller_key else d for d in database]
+    result.append(clone)
+    audit = deepcopy(audit)
+    for binding in audit["zero_shift_bindings"]:
+        if (
+            identity(binding["caller"]) == caller_key
+            and identity(binding["supplier"]) == supplier_key
+        ):
+            binding["supplier"] = _metadata(identity(clone))
+    audit["zero_shift_bindings"].extend(
+        {"caller": _metadata(identity(clone)), "supplier": _metadata(key)}
+        for key in providers
+    )
+    audit["copied_capital_activities"] += 1
+    audit.setdefault("event_markets", []).append(
+        {
+            "caller": _metadata(caller_key),
+            "original_supplier": _metadata(supplier_key),
+            "supplier": _metadata(identity(clone)),
+            "amount_per_calling_dataset": _amount(original_exchange),
+            "reference_production": _amount(productions[0]),
+            "zero_shift_event_suppliers": [_metadata(key) for key in providers],
+        }
+    )
+    return result, audit
+
+
 def lift_scoped_biosphere(database, audit, selections):
     """Move reviewed direct biosphere quantities to separately timed adapters.
 
