@@ -190,3 +190,20 @@ def test_mismatched_report_context_rejected(iam_files):
             asset_unit="unit",
             service_unit="km",
         )
+
+
+def test_replaced_source_cannot_relabel_an_already_loaded_array(iam_files):
+    path, report_path, report = iam_files
+    obj = load(path)
+    path.write_bytes(path.read_bytes() + b"\n")
+    report["output_sha256"] = hashlib.sha256(path.read_bytes()).hexdigest()
+    report_path.write_text(json.dumps(report))
+    with pytest.raises(ValueError, match="reload"):
+        obj.stock_vintage_profile(
+            asset_id="cars",
+            region="EUR",
+            years=[2020],
+            report_path=report_path,
+            asset_unit="unit",
+            service_unit="km",
+        )

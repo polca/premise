@@ -1286,6 +1286,8 @@ class IAMDataCollection:
         """Build an opt-in export profile from this IAM file and its hashed report."""
         from .iam_stock_vintage import stock_vintage_profile, verified_report
 
+        if file_signature(self.iam_source_path) != self._iam_source_signature:
+            raise ValueError("IAM source changed after loading; reload the collection")
         report = verified_report(report_path, self.iam_source_path)
         if (
             report["model"].lower() != self.model.lower()
@@ -1355,6 +1357,7 @@ class IAMDataCollection:
                 file_path = download_csv(file_name + ".csv", url, download_folder)
 
         self.iam_source_path = file_path
+        self._iam_source_signature = file_signature(file_path)
         external_fingerprint = stable_fingerprint(
             getattr(self, "external_scenarios", None)
         )
