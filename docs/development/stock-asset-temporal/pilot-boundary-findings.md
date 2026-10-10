@@ -135,3 +135,67 @@ The local CIRCOMOD vehicle workbook also mixes lifetime assumptions with ACEA
 mean fleet ages; its UK 2021 car and commercial-vehicle figures are mean ages,
 not survival parameters. The source-review work must not recreate the original
 error by renaming those values as lifetimes.
+
+
+## 10 October: complete-plant PV boundary
+
+The power audit now checks every PV member of each candidate plant against the
+Operable, Retired and Canceled, and Proposed generator sheets. The conservative
+subset requires only selected fixed-tilt crystalline PV, a single commissioning
+year preceding 2022, positive recorded DC capacity, and nonnegative annual
+plant PV generation no greater than 8,760 hours times AC capacity. Zero-output
+plants remain in stock; they have zero service weight in the reference year.
+Mixed-cohort plants are excluded instead of allocating their output by an
+unobserved within-plant utilisation rule. Hidden/proposed/retired members are also
+excluded; this deliberately narrow choice is not a claim that a proposed
+addition generated electricity during 2022.
+
+The accepted subset has 363 plants and 444 generators: 1,294.8 MW AC,
+1,629.2 MW DC, and 2,049,897.43 MWh. Commissioning years span 2005–2021, and
+14 accepted plants report zero generation. Mean ages are 5.6049 years using AC
+capacity, 5.5971 using DC capacity, and 5.5844 using reported generation.
+The 49 excluded candidate plants account for 549.7 MW AC. Exclusion reasons
+in the machine report can overlap and must not be added as mutually exclusive
+capacity totals. This is a subset of the earlier 1,844.5 MW candidate population,
+not all WECC solar PV.
+
+`complete_pv_membership` checks exact generator membership before accepting
+plant output; its tests cover zero output, AC/DC separation, mixed dates,
+reference-year starts, hidden retired members, mixed technology, missing DC and
+impossible annual output. The existing CCGT audit remains unchanged in result.
+These checks provide a generation-weighted starting population. Crystalline
+silicon still does not identify mono/multi-Si, and fixed tilt does not prove
+open-ground mounting. The selected inventory remains a declared technology
+proxy. PV future cohorts and the replacement/disposal runtime checks remain open.
+
+## 10 October: transport component quantities confirmed
+
+Read-only inspection of the actual electric-car service comments confirms a
+262 kg battery, 150,000 km vehicle life, and 100,000 km battery life. The source
+battery coefficient of 0.00262 kg/km represents 1.5 packs over the assumed
+vehicle life, including replacement. It is not one 393 kg initial battery. The
+matching used-battery coefficient is negative with the same magnitude. Separate
+initial/replacement manufacture and their disposal dates while retaining this
+original total under common amortisation.
+
+Car-body manufacture states that glider and drivetrain end-of-life burdens are
+embedded in the component inventories, in addition to manual dismantling at
+assembly. The earlier proof lifting dismantling alone establishes its scoped
+static equivalence, not a complete car lifecycle boundary. Those component paths
+must be reviewed and timed explicitly. Maintenance is a life-aggregated package
+consumed per kilometre; it needs a service-year role rather than an inherited
+asset-age profile.
+
+For the selected 40-tonne lorry, the source capital and maintenance amounts are
+based on 540,000 vehicle-kilometres and its average load factor. The negative
+used-lorry input is vehicle end of life. The negative wastewater-from-production
+input is manufacturing waste and must remain at manufacture. Genuine factory
+capital remains an independently aged stock.
+
+The actual NPi MIF contains Stock, Sales and ES leaf variables for four-wheel
+BEVs and liquid-fuel 40-tonne trucks. The current premise REMIND topology places
+GB in EUR. A UK pilot still uses a regional proxy; these exports do not prove
+native UK cohorts. Sales has unit `million veh`, so do not transfer the
+power-capacity centred-rate convention without verifying its reporting meaning.
+Passenger ES is passenger-kilometres while the source car service is kilometres;
+absolute conversion needs an occupancy assumption.

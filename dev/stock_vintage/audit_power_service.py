@@ -112,6 +112,67 @@ def complete_block_membership(candidates, members, reference_year):
     return accepted, rejected
 
 
+def complete_pv_membership(candidates, generators, members, reference_year):
+    """Select whole single-cohort PV plants with unambiguous annual output.
+
+    This conservative pilot excludes any hidden, retired or proposed PV member.
+    It avoids allocating plant output between mounting/material types or cohorts.
+    """
+    accepted, rejected = [], []
+    by_plant = defaultdict(list)
+    for row in generators:
+        by_plant[row["plant_code"]].append(row)
+    for plant in candidates:
+        selected = by_plant[plant["plant_code"]]
+        rows = members.get(plant["plant_code"], [])
+        ids = [generator_id(r["Generator ID"]) for r in rows]
+        chosen = {generator_id(r["generator_id"]) for r in selected}
+        cohorts = set(plant["commissioning_years"])
+        reasons = []
+        if not plant["all_operating_pv_matches_selected_technology"]:
+            reasons.append("mixed_plant_material_or_mounting")
+        if len(ids) != len(set(ids)) or set(ids) != chosen:
+            reasons.append("unexpected_or_duplicate_PV_members")
+        if len(cohorts) != 1:
+            reasons.append("mixed_commissioning_cohorts")
+        elif next(iter(cohorts)) >= reference_year:
+            reasons.append("partial_initial_year_output")
+        for row in rows:
+            if (
+                row["sheet"] != "Operable"
+                or row.get("Status") != "OP"
+                or row.get("Technology") != "Solar Photovoltaic"
+                or row.get("Prime Mover") != "PV"
+                or row.get("Operating Year") not in cohorts
+            ):
+                reasons.append("incompatible_PV_member")
+        generation = plant["net_pv_generation_mwh"]
+        capacity = plant["selected_capacity_mw_ac"]
+        if generation is None or not math.isfinite(generation) or generation < 0:
+            reasons.append("missing_or_negative_annual_generation")
+        elif capacity <= 0 or generation > capacity * 8760:
+            reasons.append("annual_generation_exceeds_AC_bound")
+        if not selected or any(
+            r["dc_capacity_mw"] is None
+            or not math.isfinite(r["dc_capacity_mw"])
+            or r["dc_capacity_mw"] <= 0
+            for r in selected
+        ):
+            reasons.append("missing_positive_DC_capacity")
+        if reasons:
+            rejected.append({**plant, "membership_exclusions": sorted(set(reasons))})
+        else:
+            accepted.append(
+                {
+                    **plant,
+                    "cohort_year": next(iter(cohorts)),
+                    "generator_ids": sorted(chosen),
+                    "capacity_mw_dc": math.fsum(r["dc_capacity_mw"] for r in selected),
+                }
+            )
+    return accepted, rejected
+
+
 def audit(root, year=2022):
     observations = {
         row["group"]: row for row in eia_generators(root / f"eia860{year}.zip", year)
@@ -245,6 +306,18 @@ def audit(root, year=2022):
                 "commissioning_years": sorted({r["cohort_year"] for r in rows}),
             }
         )
+    pv_members = defaultdict(list)
+    with ZipFile(root / f"eia860{year}.zip") as archive:
+        for sheet in ("Operable", "Retired and Canceled", "Proposed"):
+            for _, row in xlsx_records(archive, f"3_1_Generator_Y{year}.xlsx", sheet):
+                if row["Plant Code"] in by_plant and (
+                    row.get("Prime Mover") == "PV"
+                    or row.get("Technology") == "Solar Photovoltaic"
+                ):
+                    pv_members[row["Plant Code"]].append({**row, "sheet": sheet})
+    complete_pv, pv_exclusions = complete_pv_membership(
+        plant_candidates, selected, pv_members, year
+    )
     return {
         "stage": "join_and_boundary_audit_not_approved_profiles",
         "year": year,
@@ -280,9 +353,19 @@ def audit(root, year=2022):
             ),
             "candidate_generators": selected,
             "plant_candidates": plant_candidates,
+            "complete_plant_candidates": complete_pv,
+            "membership_exclusions": pv_exclusions,
+            "complete_capacity_mw_ac": math.fsum(
+                r["selected_capacity_mw_ac"] for r in complete_pv
+            ),
+            "complete_capacity_mw_dc": math.fsum(
+                r["capacity_mw_dc"] for r in complete_pv
+            ),
+            "complete_generation_mwh": math.fsum(
+                r["net_pv_generation_mwh"] for r in complete_pv
+            ),
             "remaining_checks": [
-                "Retired and nonoperating same-plant PV can contribute to annual output",
-                "Mixed commissioning years need within-plant output allocation and part-year exposure",
+                "The conservative complete-plant subset excludes mixed, retired, proposed and reference-year commissioning members; compare excluded coverage",
                 "Crystalline silicon does not establish mono versus multi-Si",
                 "Fixed tilt does not establish open-ground mounting",
                 "Reconcile DC kWp inventory basis with AC stock and future capacity inputs",
