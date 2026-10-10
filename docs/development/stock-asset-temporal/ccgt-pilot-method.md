@@ -1,6 +1,6 @@
 # US-WECC CCGT pilot: observations, reconstruction and inventory boundary
 
-Updated 9 October 2026. This bounded pilot is opt-in and is not a proposed
+Updated 10 October 2026. This bounded pilot is opt-in and is not a proposed
 global default. It covers non-CHP natural-gas combined-cycle power plants,
 with a 2022 observed reference and annual service profiles for 2022–2030.
 The code supports reconstruction through 2050, but the longer horizon is not
@@ -197,8 +197,11 @@ release requirements belong in [implementation status](implementation-status.md)
 The 69 focused premise tests pass after these additions. Both local IAM
 pathways produce all seven reconstruction cases for 2022–2030. The primary case
 closes the stock target; the reported-additions case closes reported additions;
-their other residuals remain visible. Real-package TRAILS checks are still
-pending at this documentation checkpoint. No CCGT release approval is implied.
+their other residuals remain visible. Real-package corrected TRAILS checks now pass for 2023 with annual interpolation
+and a warm cache, and 2030 without interpolation, for positive and negative
+functional units. See the exact error bounds and the retained legacy sign-error
+and calendar-clamping diagnostics in the implementation status. This establishes
+the bounded constant-technology reference case; final promotion review remains.
 
 EIA observations use its government-data reuse policy with attribution. Local
 ecoinvent and IAM inputs, generated inventory packages and derived scenario

@@ -1,10 +1,10 @@
 # Implementation and pilot evidence
 
-Updated 9 October 2026. Work is in progress on `feat/stock-vintage-pilots` in
+Updated 10 October 2026. Work is in progress on `feat/stock-vintage-pilots` in
 both repositories. No pilot is promoted and public defaults remain unchanged.
 The planning branch remains an unchanged reference.
 
-## CCGT observation-to-export milestone
+## CCGT real-inventory validation milestone
 
 The [CCGT method](ccgt-pilot-method.md) documents a complete-block EIA reference
 and exact REMIND leaf-variable reconstruction. Membership checks now examine all
@@ -28,10 +28,27 @@ zero-shift binding prevent a duplicate construction shift. This is a real
 inventory timing/conservation experiment, not an IAM-transformed background LCA.
 The restricted inventory extract, packages and IAM-derived series remain local.
 
-The first real TRAILS comparison found a static conservation discrepancy in the
-legacy calculation. A full comparison with graph-operator diagnostics is in
-progress. This milestone does not yet pass the third release requirement, and
-no empirical pilot is promoted.
+TRAILS commit `d5dd3af` fixes the opt-in routing of suppliers with negative
+reference production. The real cooling-tower residue market exposed the old
+absolute-denominator error. Legacy results retain the old convention and its
+conservation discrepancy is reported explicitly.
+
+The corrected real CCGT case now passes all three bounded release requirements:
+annual capital dates and quantities, internal zero shift, repeated and reversed
+requests, both signs, 2023 with annual interpolation and a warm cache, and 2030
+without interpolation. The graph identity has componentwise residuals below
+`1.2e-16`; all 9,847 exported biosphere rows match an independently assembled
+year-wise calculation within `2.22e-16`. That reference uses the same sparse
+backend; the one-shot SuperLU comparison remains a separate conditioning
+diagnostic. The focused TRAILS regression suite has 161 passing tests.
+
+For a 2030 kWh, capital-attributed fossil CO2 is about `3.83763e-4 kg` in both
+variants. Corrected timing has mean age 23.4754 years. The old raw construction
+profile has mean age 16.9338 years, but legacy calendar clamping reduces the
+reported no-interpolation mean to 7.8052 years. These are distinct effects.
+A reproducible script generates the 126-row scenario/sensitivity table and
+PNG/SVG/PDF figure. Restricted artifacts remain local. Final promotion review
+and the other four pilot comparisons remain unfinished.
 
 ## Implemented software foundation
 
