@@ -189,8 +189,15 @@ The generic `scope_event_market` helper changes only callers already in a
 reviewed pilot context. Analytical tests prove static equivalence with negative
 and non-unit reference production, unchanged source inputs and other callers,
 and no zero-shift override on unrelated inputs. The 32 focused lifecycle,
-lifecycle-export and vehicle tests pass. The actual complete-inventory truck
-legacy/corrected export is running; no consumer result is claimed yet.
+lifecycle-export and vehicle tests pass. The actual complete-inventory truck export now contains 26,533 source and
+26,539 corrected activities: the service caller, two parent nodes, one disposal
+adapter and two event-market copies. The three direct coefficients are
+`+9.65e-8`, `-9.65e-8` and `+9.65e-8` per tkm for manufacture, disposal and
+maintenance. Full matrix equivalence passes with relative A/B residuals below
+`4.88e-17`/`4.49e-17`; all 30 signed annual pulses and six internal zero shifts
+pass. The annual interpolation cache was built and its subsequent reload is
+confirmed. Full 2023 warm-cache and 2030 no-interpolation LCIs, plus legacy
+comparison, are running. The third release requirement remains open.
 
 The TRAILS script `report_vehicle_sensitivity.py` produces a 468-row CSV and
 PNG/SVG/PDF figure from all four cohort reports, with an input-hash manifest.

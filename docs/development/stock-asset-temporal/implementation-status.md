@@ -121,8 +121,11 @@ battery timing preserves the original 1.5 equivalent packs per nominal car life
 without becoming a forecast of pack counts. The 61 focused cohort, vehicle,
 PV and CCGT tests pass. The truck exporter now separates manufacture, disposal and maintenance, with
 scoped event markets preventing repeated delays. Its 32 focused lifecycle and
-vehicle tests pass; the real inventory export is running. The car exporter and
-full vehicle consumer checks remain required. Neither vehicle pilot is promoted.
+vehicle tests pass. The real export adds six scoped activities; complete matrix
+equivalence, 30 signed annual pulses and six zero shifts pass. Cache reload is
+confirmed. Full 2023/2030 truck LCI and legacy comparisons are running. The car
+exporter and full vehicle consumer checks remain required. Neither vehicle
+pilot is promoted.
 
 ## Implemented software foundation
 
