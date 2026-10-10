@@ -239,3 +239,26 @@ below `2.08e-13`/`3.01e-17`; all 210 signed annual port checks and 30 internal
 zero shifts pass. The annual interpolation cache was built and its subsequent
 reload confirmed. Full 2023 warm-cache and 2030 no-interpolation LCI checks,
 and the legacy comparison, remain running. The third requirement is still open.
+
+
+## Raw distribution versus actual parent calendar
+
+A separate TRAILS graph-only comparison loads both real packages for all five
+pilots, checks unchanged parent totals and confirms that corrected manufacture
+dates survive routing. For a 2030 passenger-car service, the legacy raw mean age
+is 8 years, its routed mean is 6.13333 years, and the corrected mean is 3.61071.
+For the selected truck, both legacy means are zero and the corrected mean is
+7.46110 years. The exact legacy `lorry production, 40 metric ton` row is classified
+as `throughput_process`; it has no stock spread. This is a missing vintage
+assignment, not merely a poorly chosen lifetime distribution. Parent timing
+checks do not replace the running full-LCI and component/lifecycle checks.
+
+Legacy full-LCI reports are complete for both signed functional units. Their
+numerical accumulation agrees with their routed graph, but the separate operator
+identity fails because of the existing negative-reference production convention.
+Maximum positive-demand residuals are `0.00524` for cars and `0.000302415789474`
+for trucks. Keep these quantity errors separate from stock weighting and from
+legacy calendar clamping. Restricted local role-attributed series retain direct
+BEV battery and maintenance roots; the older truck legacy report attributes only
+its parent capital, so maintenance must not be silently included in that
+particular comparison total.
