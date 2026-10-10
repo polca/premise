@@ -127,7 +127,11 @@ PV and CCGT tests pass. The truck exporter now separates manufacture, disposal a
 scoped event markets preventing repeated delays. Its 32 focused lifecycle and
 vehicle tests pass. The real export adds six scoped activities; complete matrix
 equivalence, 30 signed annual pulses and six zero shifts pass. Cache reload is
-confirmed. Full 2023/2030 truck LCI and legacy comparisons are running. The BEV exporter
+confirmed. Full signed 2023/2030 truck LCI now passes across all 9,847 biosphere
+rows (maximum absolute error `4.00e-15`, operator relative residual `3.04e-16`).
+The parent/disposal selected CO2 subtotal remains unchanged, with maintenance
+reported separately. All three bounded truck requirements now have evidence.
+The BEV exporter
 now lifts 17 parent end-of-life ports, keeps factory scraps at manufacture and
 separates battery and maintenance timing through six scoped event markets.
 Its signed direct-waste adapter preserves negative reference production.
@@ -135,7 +139,8 @@ The 45 focused producer tests and 14 shared consumer tests pass. Actual BEV
 export adds 31 scoped activities; full matrix A/B relative residuals are below
 `2.08e-13`/`3.01e-17`. All 210 signed annual port checks and 30 internal zero
 shifts pass, and the annual cache reload is confirmed. Full signed 2023/2030
-LCI and legacy comparisons remain running. Neither vehicle pilot is promoted.
+LCI and legacy comparisons remain running for BEVs. Final campaign promotion
+review remains outstanding.
 
 ## Implemented software foundation
 

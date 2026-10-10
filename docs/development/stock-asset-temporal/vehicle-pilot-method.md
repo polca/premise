@@ -196,8 +196,14 @@ adapter and two event-market copies. The three direct coefficients are
 maintenance. Full matrix equivalence passes with relative A/B residuals below
 `4.88e-17`/`4.49e-17`; all 30 signed annual pulses and six internal zero shifts
 pass. The annual interpolation cache was built and its subsequent reload is
-confirmed. Full 2023 warm-cache and 2030 no-interpolation LCIs, plus legacy
-comparison, are running. The third release requirement remains open.
+confirmed. Full 2023 warm-cache and 2030 no-interpolation LCIs now pass for
+both +1 and −2 demand. All 9,847 biosphere rows agree with the independent
+year-wise reference; maximum absolute flow error is `4.00e-15` and operator
+componentwise relative residual is `3.04e-16`. Parent manufacture and disposal
+retain the combined selected fossil-CO2 burden `0.001759251805 kg/tkm`, matching
+the legacy parent attribution. Service-year maintenance contributes another
+`0.000459593998 kg/tkm`, outside that legacy parent subtotal. The third bounded
+truck requirement is now met; final campaign review remains outstanding.
 
 The TRAILS script `report_vehicle_sensitivity.py` produces a 468-row CSV and
 PNG/SVG/PDF figure from all four cohort reports, with an input-hash manifest.
