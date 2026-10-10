@@ -233,5 +233,9 @@ lifecycle/profile/vehicle tests passed; the final binding-preservation check
 also passes the 20-test lifecycle suite. The shared consumer verifier's
 14 lifecycle/streaming tests pass. `check_bev_pilot.py` additionally retains
 legacy direct battery and maintenance attribution roots for a complete role
-comparison. These are software checks; the actual complete-inventory export
-is running and the BEV consumer release requirement remains open.
+comparison. The actual complete-inventory export now contains 26,564 activities,
+31 more than the source. Full matrix equivalence has A/B relative residuals
+below `2.08e-13`/`3.01e-17`; all 210 signed annual port checks and 30 internal
+zero shifts pass. The annual interpolation cache was built and its subsequent
+reload confirmed. Full 2023 warm-cache and 2030 no-interpolation LCI checks,
+and the legacy comparison, remain running. The third requirement is still open.

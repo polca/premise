@@ -99,9 +99,13 @@ absolute error of `1.78e-14`; operator componentwise relative residual is at mos
 signs. Capital-attributed fossil CO2 remains `0.00855912127 kg/kWh`; the corrected
 2030 parent mean age is 5.69750 years, versus legacy raw 13.50179 years (clamped
 7.31900). Legacy retains its separately reported negative-production sign error.
-The waste-timing endpoint comparisons remain outstanding, so the three PV
-requirements are not yet claimed complete. The previous focused producer and
-consumer suites passed 82 and 89 tests.
+Both waste-timing endpoints now pass full signed 2030 LCI, with maximum flow
+error `2.67e-14` and operator relative residual `2.57e-16`. The local endpoint
+report proves unchanged totals for every role and unchanged calendars for
+unaffected roles. Polymer and mounting-packaging timing ambiguities remain
+explicit sensitivities. All three requirements now have evidence for the
+bounded PV pilot; final campaign review and archiving remain outstanding.
+The previous focused producer and consumer suites passed 82 and 89 tests.
 
 ## Vehicle cohort reconstruction milestone
 
@@ -127,9 +131,11 @@ confirmed. Full 2023/2030 truck LCI and legacy comparisons are running. The BEV 
 now lifts 17 parent end-of-life ports, keeps factory scraps at manufacture and
 separates battery and maintenance timing through six scoped event markets.
 Its signed direct-waste adapter preserves negative reference production.
-The 45 focused producer tests and 14 shared consumer tests pass; actual BEV
-export and full consumer checks are running or pending. Neither vehicle pilot
-is promoted.
+The 45 focused producer tests and 14 shared consumer tests pass. Actual BEV
+export adds 31 scoped activities; full matrix A/B relative residuals are below
+`2.08e-13`/`3.01e-17`. All 210 signed annual port checks and 30 internal zero
+shifts pass, and the annual cache reload is confirmed. Full signed 2023/2030
+LCI and legacy comparisons remain running. Neither vehicle pilot is promoted.
 
 ## Implemented software foundation
 

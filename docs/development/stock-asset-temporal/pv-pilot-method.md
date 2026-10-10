@@ -206,5 +206,21 @@ clamp reduces its reported mean to 7.31900. The legacy negative-reference sign
 error is a separate operator-conservation failure and is not attributed to
 stock weighting. The checked local reports are `checks-warm-2023.json`,
 `checks-2030.json` and `checks-legacy-2030.json` in `pv-real-primary`.
-Waste-polymer and mounting-packaging timing endpoints still require actual
-export/consumer comparison before the pilot is promoted.
+Both timing endpoints now have actual exports and full 2030 LCI checks for
+positive and negative demand. All 9,847 flows agree with the independent
+reference (maximum absolute error `2.67e-14`); the largest operator relative
+residual is `2.57e-16`. Every role's total is unchanged, and unrelated roles keep
+their calendars. The mixed-polymer fossil-CO2 burden is `6.03418e-6 kg/kWh`;
+its mean emission year moves from 2053.54 to 2024.41 when the ambiguous flow is
+assigned to manufacture. Mounting packaging retains `1.48751e-8 kg/kWh` while
+its mean moves from 2024.30 to 2054.30 when assigned to retirement. These means
+include upstream processes and do not claim measured disposal dates.
+
+TRAILS `report_pv_endpoints.py` checks those invariants and writes a 590-row
+calendar table, hash-pinned summary and PNG/SVG/PDF figure. The figure was
+inspected. Inputs are the three `checks-2030.json` reports under
+`pv-real-primary`, `pv-polymer-manufacture` and `pv-mounting-eol`.
+This resolves the three requirements for the bounded constant-technology PV
+pilot, including its explicit timing ambiguity. It does not validate native IAM
+vintages, historical technologies or a public stock dataset. Final campaign
+review and private evidence archiving remain outstanding.
