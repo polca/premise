@@ -96,6 +96,10 @@ jobs:
           pip check
 
 
+      - name: Verify numerical runtime imports
+        run: |
+          python -c "import numpy as np; import pyarrow as pa; from premise import NewDatabase; assert pa.array(np.array([1.0])).to_pylist() == [1.0]; print(f'NumPy {np.__version__}, PyArrow {pa.__version__}')"
+
       - name: Verify Brightpath export support
         run: |
           python -c "from premise.simapro_export import check_brightpath; check_brightpath(); from brightpath.formats.openlca_methods import OpenLCAMethodMapping"

@@ -6,6 +6,10 @@ All notable changes to this project are documented in this file.
 
 ### Fixed
 
+- Constrain PyArrow to versions below 26 across pip, Brightway extras and conda.
+  PyArrow 26 requires NumPy 2 and prevented test collection with premise's
+  NumPy 1.x dependency. Check the numerical runtime imports explicitly in CI.
+
 - Correct the HDPE- and aluminium-lined 700-bar hydrogen tank inventories in
   `lci-trucks.xlsx` to one kg of dry assembly using the published material sums.
   Convert manufacturing electricity from MJ to kWh and retain processing services

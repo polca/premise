@@ -38,7 +38,7 @@ outputs:
         - portalocker >=2.8
         - premise_gwp
         - prettytable
-        - pyarrow
+        - pyarrow <26
         - pycountry
         - pyYaml
         - requests
@@ -88,7 +88,7 @@ outputs:
         - portalocker >=2.8
         - premise_gwp
         - prettytable
-        - pyarrow
+        - pyarrow <26
         - pycountry
         - pyYaml
         - requests
