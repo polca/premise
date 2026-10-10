@@ -155,3 +155,21 @@ The cohort generator provides 13 sensitivity cases, with nine annual service and
 retirement records for each of two asset groups. Public observations retain
 Statistics Canada attribution and its Open Licence. Source ecoinvent inventories,
 exported matrices and derived inventory time series remain local.
+
+
+## Completed real LCI evidence
+
+Full corrected LCI passes for both +1 and −2 demand in 2023 with annual
+interpolation and in 2030 without interpolation. All 9,847 biosphere rows agree
+with the independent year-wise calculation: maximum absolute error `7.60e-16`,
+maximum operator componentwise relative residual `6.45e-16`. The four revised
+roles retain a combined selected fossil-CO2 burden of `5.61788661753e-5 kg/kg
+water`, equal to the legacy network subtotal. A separate confirmed warm-cache
+run checks annual pulses and zero shifts; the original full 2023 process itself
+loaded cold. The signed full-LCI report must not be described as a warm run.
+
+The full verifier streams about 9.6 billion entries per signed demand in bounded
+windows. It does not materialise the complete activity/flow/year/root tensor.
+All three requirements now have evidence for this bounded pilot. Unknown storage
+dates, count-to-tank-volume correspondence and physical retirement assumptions
+remain explicit applicability limits, with the documented sensitivities.

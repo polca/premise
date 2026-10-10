@@ -1,8 +1,8 @@
 # Stock-asset temporal modelling: strategy and implementation plan
 
-Status: opt-in implementation in progress; no pilot promoted.
+Status: all five bounded opt-in pilots validated; private evidence archiving in progress.
 See [implementation status](implementation-status.md) for evidence and remaining gates.
-Reviewed: 9 October 2026.
+Reviewed: 10 October 2026.
 Planning branch: `plan/stock-asset-temporal-distributions`, based on `trals`.
 
 ## Purpose
@@ -28,6 +28,7 @@ behaviour. This implementation branch adds experimental opt-in behaviour.
 | Document | Purpose |
 |---|---|
 | [Strategy](strategy.md) | Modelling definitions, equations, scope, and decisions |
+| [Vehicle pilot method](vehicle-pilot-method.md) | UK BEV/truck stock reconstruction, survival, service and component boundaries |
 | [Water-network pilot method](water-pilot-method.md) | Separate observed pipe/storage cohorts, annual and survival assumptions, exact component/disposal boundary |
 | [CCGT pilot method](ccgt-pilot-method.md) | Complete-block observations, exact IAM leaves, annual reconstruction, sensitivities and the real inventory boundary |
 | [PV pilot method](pv-pilot-method.md) | Complete-plant observations, parent and active-inverter cohorts, replacement and waste boundaries |
@@ -38,7 +39,7 @@ behaviour. This implementation branch adds experimental opt-in behaviour.
 | [Asset review](asset-review.md) | Evidence hierarchy and review instructions for all 23 existing groups |
 | [Solutions by group](group-solutions.md) | Selected model, primary data, future evolution, fallback and validation gate for each of the 23 groups |
 | [Data search campaign](data-search-campaign.md) | Available evidence, difficulty by asset group, acquisition priorities, effort and stopping rules |
-| [Source register](data-source-register.md) | 29 external source families, access status, file checks and limitations |
+| [Source register](data-source-register.md) | 31 external source families, access status, file checks and limitations |
 | [IAM scenario assessment](iam-scenario-assessment.md) | Audit of actual local IMAGE/REMIND and other exports; native cohort and reconstruction routes |
 | [Implementation plan](implementation-plan.md) | Work packages, dependencies, repository ownership, and completion criteria |
 | [Validation and rollout](validation-and-rollout.md) | Analytical tests, integration checks, scientific comparison, and release stages |

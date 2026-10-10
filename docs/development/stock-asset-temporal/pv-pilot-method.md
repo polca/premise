@@ -2,7 +2,8 @@
 
 Experimental bounded pilot, 10 October 2026. Cohorts, component separation and
 the real export are implemented. Matrix equivalence and signed event-calendar
-checks pass; full temporal LCI is running. This document does not approve promotion.
+checks and full signed temporal LCI pass, including the two ambiguity endpoints.
+Final private evidence archiving remains outstanding.
 
 ## Observed population and units
 
@@ -144,8 +145,8 @@ relative residuals `2.61e-13` for A and `1.83e-15` for B. All 510 signed annual
 port checks and 58 zero-shift links pass, including repeated/reversed service
 years. The interpolation cache was created successfully. Full temporal LCI,
 confirmed warm-cache load, the actual occupation date, no-interpolation and
-legacy comparisons are still running or pending, as are waste-timing endpoint
-comparisons. These partial results do not meet the third release requirement.
+legacy and waste-timing endpoint comparisons are complete; results are reported
+below. Together they satisfy the third bounded release requirement.
 
 ## Reproduce the cohort evidence
 

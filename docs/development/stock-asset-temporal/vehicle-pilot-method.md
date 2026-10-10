@@ -1,9 +1,8 @@
 # Passenger-BEV and articulated-truck vintage reconstruction
 
 Updated 10 October 2026. These are bounded, opt-in UK timing pilots with EUR
-scenario-growth proxies. The annual generators and both vehicle exporters are implemented; full vehicle
-consumer validation remains outstanding. Neither pilot is
-promoted. See [implementation status](implementation-status.md).
+scenario-growth proxies. Both generators, exporters and full signed consumer checks are complete for
+these bounded pilots. Final private evidence archiving remains outstanding. See [implementation status](implementation-status.md).
 
 ## Populations, dates and service
 
@@ -106,7 +105,7 @@ Exports, storage and dismantling delays are not observed by the stock table.
 
 ## Inventory boundaries and retained amortisation
 
-These exact ecoinvent 3.12 cut-off callers are the planned integration targets:
+These exact ecoinvent 3.12 cut-off callers are the reviewed integration targets:
 
 | Caller / port | Original quantity | Required timing role |
 |---|---|---|
@@ -172,7 +171,7 @@ S31 code LGPL-3 in their pinned DESCRIPTION files; the repository commits source
 addresses/hashes, mathematical definitions and an independent implementation,
 not copies of those R files. Restricted ecoinvent and IAM raw/derived data and
 generated packages stay local. These checks establish the reconstruction layer;
-the real producer/consumer release requirement remains open.
+the completed real producer/consumer evidence is reported below.
 
 ## Truck event-market boundary implementation
 
@@ -243,8 +242,15 @@ comparison. The actual complete-inventory export now contains 26,564 activities,
 31 more than the source. Full matrix equivalence has A/B relative residuals
 below `2.08e-13`/`3.01e-17`; all 210 signed annual port checks and 30 internal
 zero shifts pass. The annual interpolation cache was built and its subsequent
-reload confirmed. Full 2023 warm-cache and 2030 no-interpolation LCI checks,
-and the legacy comparison, remain running. The third requirement is still open.
+reload confirmed. Full LCI now passes for +1 and −2 demand in 2023 with a confirmed warm cache
+and in 2030 without interpolation. All 9,847 rows agree with the independently
+assembled reference, with maximum absolute error `2.85e-14` and operator relative
+residual `1.83e-16`. Parent manufacture and disposal together retain the selected
+CO2 subtotal `0.0101749154251 kg/km`; battery manufacture and maintenance retain
+their source totals. Corrected battery disposal is `0.000236239284 kg/km`, versus
+legacy `0.000105526486 kg/km`, because signed reference production is now treated
+correctly. That quantity difference is distinct from the stock timing revision.
+All three bounded BEV requirements now have evidence.
 
 
 ## Raw distribution versus actual parent calendar
@@ -257,7 +263,7 @@ For the selected truck, both legacy means are zero and the corrected mean is
 7.46110 years. The exact legacy `lorry production, 40 metric ton` row is classified
 as `throughput_process`; it has no stock spread. This is a missing vintage
 assignment, not merely a poorly chosen lifetime distribution. Parent timing
-checks do not replace the running full-LCI and component/lifecycle checks.
+checks complement the completed full-LCI and component/lifecycle checks.
 
 Legacy full-LCI reports are complete for both signed functional units. Their
 numerical accumulation agrees with their routed graph, but the separate operator

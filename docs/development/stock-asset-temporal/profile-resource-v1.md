@@ -59,3 +59,15 @@ unknown stock, service weighting, source rights, boundary review, stock balance
 and lifecycle chronology. Those requirements extend beyond this parser. No
 blanket CC0 claim is attached to a corrected package: inventory and observation
 source rights remain applicable.
+
+
+## Verified reader compatibility, 10 October 2026
+
+The preserved TRAILS `b7d1bb78` reader was run against the actual premise-generated
+synthetic annual package. It loads the file but ignores the annual resource:
+for service year 2021 it emits `{2009: 0.05, 2020: 0.20}` instead of
+`{2010: 0.10, 2021: 0.15}`. The corrected opt-in reader produces the latter.
+Use the paired premise/TRAILS implementation branches, including premise
+`edc89b46` and TRAILS `a3ef279` or their reviewed descendants. The evidence archive
+pins exact code. No claim is made that old readers reject unknown metadata or
+that a public minimum release version has already been published.
