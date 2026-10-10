@@ -9,8 +9,53 @@ from premise.stock_lifecycle import (
     scope_event_market,
     split_embedded_lifecycle,
     validate_lifecycle_anchor_audits,
+    wrap_scoped_exchange,
 )
 from premise.stock_vintage import identity
+
+
+def test_direct_waste_adapter_preserves_signed_quantity_with_negative_supplier():
+    original = example()
+    original += [
+        activity("waste-market", -2, {"waste-treatment": -2}),
+        activity("waste-treatment", -1, bio={"waste": 4}),
+    ]
+    original[0]["exchanges"].extend(
+        activity("service", tech={"waste-market": -0.3})["exchanges"][1:]
+    )
+    before = deepcopy(original)
+    revised, audit = scope_capital_chain(
+        original, caller=original[0], chain=original[1:3], context_id="waste"
+    )
+    revised, audit = scope_event_market(
+        revised,
+        audit,
+        caller=audit["caller"],
+        supplier=original[-2],
+        event_suppliers=[original[-1]],
+    )
+    market = audit["event_markets"][0]["supplier"]
+    audit["zero_shift_bindings"].append({"caller": audit["caller"], "supplier": market})
+    revised, audit = wrap_scoped_exchange(revised, audit, supplier=market)
+    assert original == before
+    row = audit["direct_lifecycle"][0]
+    assert row["amount_per_calling_dataset"] == -0.3
+    assert row["amount_per_service_unit"] == -0.15  # service reference output is two
+    adapter = next(d for d in revised if identity(d) == identity(row["supplier"]))
+    assert [(e["type"], e["amount"]) for e in adapter["exchanges"]] == [
+        ("production", 1),
+        ("technosphere", 1),
+    ]
+    assert solve(revised, audit["caller"]) == pytest.approx(
+        solve(original, original[0])
+    )
+    assert audit["event_markets"][0]["reference_production"] == -2
+    zeros = {
+        (identity(b["caller"]), identity(b["supplier"]))
+        for b in audit["zero_shift_bindings"]
+    }
+    assert (identity(audit["caller"]), identity(adapter)) in zeros
+    assert (identity(audit["caller"]), identity(market)) not in zeros
 
 
 def test_event_market_keeps_negative_production_and_zeroes_only_event_providers():

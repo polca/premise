@@ -1,0 +1,170 @@
+{
+  "source": "ecoinvent 3.12 cutoff; exact source extract hash recorded by exporter",
+  "producers": {
+    "7da6cdfd32c431ed2ba85292f4245601": {
+      "name": "passenger car production, electric, without battery",
+      "location": "GLO",
+      "negative_ports": {
+        "b2b87b17558f05e7c59185e446aabbcd": {
+          "name": "market for waste glass",
+          "role": "parent_disposal"
+        },
+        "8f7cbee906eb28773b001cce58a35e39": {
+          "name": "market for waste glass",
+          "role": "parent_disposal"
+        },
+        "5d1a89fd1ae354df8ae1fc8cd9edc36e": {
+          "name": "market group for waste glass",
+          "role": "parent_disposal"
+        },
+        "8facf3cc6813989fc0a8334550c347a0": {
+          "name": "market for waste glass",
+          "role": "parent_disposal"
+        },
+        "f0efc7394dd082cdc8635031ec983290": {
+          "name": "market for waste glass",
+          "role": "parent_disposal"
+        },
+        "e20e4eeb7ad357786496fe7084f27ccf": {
+          "name": "market for waste glass",
+          "role": "parent_disposal"
+        },
+        "909015f6406e8fd2ad86a5f03d542bb0": {
+          "name": "market for waste glass",
+          "role": "parent_disposal"
+        },
+        "05a4efc90836e64de678234657cb54dd": {
+          "name": "market for waste glass",
+          "role": "parent_disposal"
+        },
+        "b342908a2b3ba7e55c573649be83b1c7": {
+          "name": "market for waste mineral oil",
+          "role": "parent_disposal"
+        },
+        "622da2ca1adb310e3677ef87658d4c46": {
+          "name": "market for waste mineral oil",
+          "role": "parent_disposal"
+        },
+        "32a9ced4b0d4573dddf3fab811719a0c": {
+          "name": "market for waste mineral oil",
+          "role": "parent_disposal"
+        },
+        "d5c136bef12011b61a94c384f3e1ae6d": {
+          "name": "market for waste rubber, unspecified",
+          "role": "parent_disposal"
+        },
+        "f1cfa74b8829e0b9a1ded34eca4814f5": {
+          "name": "market for waste rubber, unspecified",
+          "role": "parent_disposal"
+        },
+        "66057df4283e9fd269d1f30f52dd9a42": {
+          "name": "market for waste rubber, unspecified",
+          "role": "parent_disposal"
+        }
+      }
+    },
+    "29a48be7895bd8dc309d8038e0550d2f": {
+      "name": "glider production, passenger car",
+      "location": "GLO",
+      "negative_ports": {
+        "b09ad743afc57063fbc8508781768450": {
+          "name": "aluminium scrap, new, Recycled Content cut-off",
+          "role": "retain_manufacturing_scrap"
+        },
+        "bfb980147508c24624d2657c897a1462": {
+          "name": "iron scrap, unsorted, Recycled Content cut-off",
+          "role": "retain_manufacturing_scrap"
+        },
+        "994f3b0ac8d9523e1a04f873414aea3c": {
+          "name": "market for used glider, passenger car",
+          "role": "parent_disposal"
+        },
+        "cf50400f552fff0e1b7e01dbc30166ec": {
+          "name": "market for waste plastic, industrial electronics",
+          "role": "retain_manufacturing_scrap"
+        },
+        "766146901fabac3a4f898bc4b6e3c6da": {
+          "name": "market for waste plastic, industrial electronics",
+          "role": "retain_manufacturing_scrap"
+        }
+      }
+    },
+    "e97752f4497434685e1b3564f30167b9": {
+      "name": "powertrain production, for electric passenger car",
+      "location": "GLO",
+      "negative_ports": {
+        "f8e6ec04b455187c9f2eb0ff5606fb96": {
+          "name": "market for used powertrain from electric passenger car, manual dismantling",
+          "role": "parent_disposal"
+        }
+      }
+    }
+  },
+  "event_markets": {
+    "b0fd1b4c1f6ae4e070b3aab88f515752": {
+      "name": "market for manual dismantling of used electric passenger car",
+      "providers": [
+        {
+          "code": "ee4cb227e1295c789b13af132c7bec48",
+          "name": "manual dismantling of used electric passenger car",
+          "location": "GLO"
+        }
+      ]
+    },
+    "994f3b0ac8d9523e1a04f873414aea3c": {
+      "name": "market for used glider, passenger car",
+      "providers": [
+        {
+          "code": "4ef6e327052451803119b8a438bd3a03",
+          "name": "treatment of used glider, passenger car, shredding",
+          "location": "GLO"
+        }
+      ]
+    },
+    "f8e6ec04b455187c9f2eb0ff5606fb96": {
+      "name": "market for used powertrain from electric passenger car, manual dismantling",
+      "providers": [
+        {
+          "code": "abf673decc73d62fdb58742014a09bb8",
+          "name": "treatment of used powertrain for electric passenger car, manual dismantling",
+          "location": "GLO"
+        }
+      ]
+    },
+    "809a4e0018b2e9537c1e60908266285d": {
+      "name": "market for used Li-ion battery",
+      "providers": [
+        {
+          "code": "0beb59f36d514b91a6f430c81284f385",
+          "name": "treatment of used Li-ion battery, pyrometallurgical treatment",
+          "location": "GLO"
+        },
+        {
+          "code": "7ccb7dd5440fe71953c3e1092757f68e",
+          "name": "treatment of used Li-ion battery, hydrometallurgical treatment",
+          "location": "GLO"
+        }
+      ]
+    },
+    "a4a0486b7b56a2dabc996c2afee952dd": {
+      "name": "market for maintenance, passenger car, electric, without battery",
+      "providers": [
+        {
+          "code": "dd8a4529b9ed974fe283e1b1fb0b54b2",
+          "name": "maintenance, passenger car, electric, without battery",
+          "location": "GLO"
+        }
+      ]
+    },
+    "e1d755b861af4b3480d82c8e2d83ed26": {
+      "name": "market for battery, Li-ion, LiMn2O4, rechargeable",
+      "providers": [
+        {
+          "code": "d9dca3428047487dcf00c5789ea843c8",
+          "name": "battery production, Li-ion, LiMn2O4, rechargeable",
+          "location": "GLO"
+        }
+      ]
+    }
+  }
+}

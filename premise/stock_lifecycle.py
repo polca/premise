@@ -484,6 +484,72 @@ def scope_event_market(database, audit, *, caller, supplier, event_suppliers):
     return result, audit
 
 
+def wrap_scoped_exchange(database, audit, *, supplier):
+    """Give a direct scoped-caller exchange a positive-unit timing adapter.
+
+    Keep the original signed coefficient. In particular, a negative waste input
+    can be dated at a positive-unit adapter while the supplier's negative
+    reference production is retained downstream. No waste quantity is inverted
+    or converted to an unsigned amount as part of the rewrite.
+    """
+    lookup = {identity(d): d for d in database}
+    if len(lookup) != len(database):
+        raise ValueError("Ambiguous direct-exchange activity identity")
+    caller_key, supplier_key = identity(audit["caller"]), identity(supplier)
+    if caller_key not in lookup or supplier_key not in lookup:
+        raise ValueError("Direct exchange boundary is absent")
+    owner, target = lookup[caller_key], lookup[supplier_key]
+    if owner.get("stock_vintage_context") != audit["context_id"]:
+        raise ValueError("Direct exchange requires a scoped service caller")
+    coefficient = _amount(_edge(owner, supplier_key))
+    token = hashlib.sha256(
+        json.dumps([audit["context_id"], "direct", supplier_key]).encode()
+    ).hexdigest()[:24]
+    adapter = deepcopy(target)
+    adapter.update(
+        name=f"{target['name']} [stock context {audit['context_id']}: lifecycle-direct-{token}]",
+        code=f"stock-{token}",
+        database=target.get("database", "stock-vintage"),
+        stock_vintage_context=audit["context_id"],
+        stock_vintage_role="lifecycle",
+        exchanges=[],
+    )
+    for key in ("id", "parameters", "stock_vintage_original_identity"):
+        adapter.pop(key, None)
+    if identity(adapter) in lookup:
+        raise ValueError("Direct exchange already wrapped in this context")
+    for kind, node in (("production", adapter), ("technosphere", target)):
+        exchange = {"type": kind, "amount": 1.0, "uncertainty type": 0}
+        _relink(exchange, node, adapter)
+        adapter["exchanges"].append(exchange)
+    owner_copy = deepcopy(owner)
+    _relink(_edge(owner_copy, supplier_key), adapter, owner_copy)
+    result = [owner_copy if identity(d) == caller_key else d for d in database]
+    result.append(adapter)
+    audit = deepcopy(audit)
+    for binding in audit["zero_shift_bindings"]:
+        if (
+            identity(binding["caller"]) == caller_key
+            and identity(binding["supplier"]) == supplier_key
+        ):
+            binding["supplier"] = _metadata(identity(adapter))
+    audit["zero_shift_bindings"].append(
+        {"caller": _metadata(identity(adapter)), "supplier": _metadata(supplier_key)}
+    )
+    audit["lifecycle_adapters"] += 1
+    audit.setdefault("direct_lifecycle", []).append(
+        {
+            "caller": _metadata(caller_key),
+            "supplier": _metadata(identity(adapter)),
+            "original_supplier": _metadata(supplier_key),
+            "amount_per_calling_dataset": coefficient,
+            "amount_per_service_unit": coefficient
+            / audit["caller_net_reference_production"],
+        }
+    )
+    return result, audit
+
+
 def lift_scoped_biosphere(database, audit, selections):
     """Move reviewed direct biosphere quantities to separately timed adapters.
 

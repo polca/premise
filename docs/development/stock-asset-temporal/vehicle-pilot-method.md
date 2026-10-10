@@ -1,8 +1,8 @@
 # Passenger-BEV and articulated-truck vintage reconstruction
 
 Updated 10 October 2026. These are bounded, opt-in UK timing pilots with EUR
-scenario-growth proxies. The annual generators and truck exporter are implemented; actual vehicle
-consumer validation remains outstanding, and the car exporter is still needed. Neither pilot is
+scenario-growth proxies. The annual generators and both vehicle exporters are implemented; full vehicle
+consumer validation remains outstanding. Neither pilot is
 promoted. See [implementation status](implementation-status.md).
 
 ## Populations, dates and service
@@ -205,3 +205,33 @@ The figure was inspected. It shows parent-age sensitivity to service weighting,
 survival support and stock versus sales constraints; the CSV also retains
 battery/disposal dates, territorial exits and both constraint residuals. All
 IAM-derived figures and tables remain local under the source rights.
+
+## BEV boundary implementation
+
+`export_bev_pilot.py` and `bev_boundary.json` now record all 20 negative producer
+ports reviewed across car assembly, glider and powertrain. Four glider scrap
+ports remain at manufacture. Fourteen assembly waste ports, used glider and
+used powertrain are lifted to parent retirement, together with the positive
+manual-dismantling input: 17 parent end-of-life ports in total. Source comments
+identify the assembly glass, oil and tyre rubber as dismantling outputs; they
+are not production scraps. The source dismantling unit is explicitly per kg
+of vehicle, so its coefficient is preserved.
+
+Six reviewed markets receive scoped copies: manual dismantling, used glider,
+used powertrain, battery manufacture, used battery and battery-free maintenance.
+Their exact provider identities are pinned in the boundary register. Freight
+inputs remain. The new battery-market-to-producer link is instantaneous at the
+active battery date; it cannot inherit the old ten-year battery stock profile.
+The used-battery market retains its negative reference production. A separate
+positive-unit adapter preserves the original `-0.00262 kg/km` signed port while
+letting the consumer apply the correct production-sign conversion downstream.
+
+`wrap_scoped_exchange` is tested against an independent dense static system,
+including negative/non-unit reference production, original-source immutability
+and preservation of existing zero-shift bindings. The 45 focused producer
+lifecycle/profile/vehicle tests passed; the final binding-preservation check
+also passes the 20-test lifecycle suite. The shared consumer verifier's
+14 lifecycle/streaming tests pass. `check_bev_pilot.py` additionally retains
+legacy direct battery and maintenance attribution roots for a complete role
+comparison. These are software checks; the actual complete-inventory export
+is running and the BEV consumer release requirement remains open.
