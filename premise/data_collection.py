@@ -1275,12 +1275,22 @@ class IAMDataCollection:
         from .iam_stock_vintage import stock_vintage_weights
 
         return stock_vintage_weights(
-            self.data, asset_id, region, self.year if year is None else year,
+            self.data,
+            asset_id,
+            region,
+            self.year if year is None else year,
             basis=basis,
         )
 
     def stock_vintage_profile(
-        self, *, asset_id, region, years, report_path, asset_unit, service_unit,
+        self,
+        *,
+        asset_id,
+        region,
+        years,
+        report_path,
+        asset_unit,
+        service_unit,
         profile_id=None,
     ):
         """Build an opt-in export profile from this IAM file and its hashed report."""
@@ -1293,11 +1303,19 @@ class IAMDataCollection:
             report["model"].lower() != self.model.lower()
             or report["assumptions"]["scenario"] != self.pathway
         ):
-            raise ValueError("Stock-vintage report scenario does not match the collection")
+            raise ValueError(
+                "Stock-vintage report scenario does not match the collection"
+            )
         return stock_vintage_profile(
-            self.data, asset_id=asset_id, region=region, years=years,
-            report_path=report_path, scenario_path=self.iam_source_path,
-            asset_unit=asset_unit, service_unit=service_unit, profile_id=profile_id,
+            self.data,
+            asset_id=asset_id,
+            region=region,
+            years=years,
+            report_path=report_path,
+            scenario_path=self.iam_source_path,
+            asset_unit=asset_unit,
+            service_unit=service_unit,
+            profile_id=profile_id,
         )
 
     def __get_iam_data(
