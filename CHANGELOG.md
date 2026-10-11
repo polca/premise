@@ -6,6 +6,22 @@ All notable changes to this project are documented in this file.
 
 ### Fixed
 
+- Check metal-intensity units and use kg metal/kg motor for EVs. Distinguish
+  missing intensities from zero and record every material-rule outcome. Reject
+  overlapping writes; preserve the shared ICEV engine until its conflicting
+  vehicle-specific component assumptions can be represented separately.
+- Retain small metal producer shares and all freight modes, sum routes by
+  country, and apply the primary transport fraction once. Preserve source
+  markets explicitly when a supplier route is unavailable; validate the shares
+  actually applied and resolve serialized selectors consistently.
+  Select air freight in tonne-kilometres instead of aircraft manufacture in units.
+- Exclude recycling from virgin-resource additions, preserve non-metal resource
+  flows, and check upstream resource supply through markets. Reset uncertainty
+  on intentional zeros and rescale positive corrected resource distributions.
+  Preserve primary extraction when a mine consumes trace metal reagents.
+- Preserve metals diagnostics and applied-share mappings through compact
+  inventory serialization. Add paired RELICS resource-use and climate audits.
+
 - Constrain PyArrow to versions below 26 across pip, Brightway extras and conda.
   PyArrow 26 requires NumPy 2 and prevented test collection with premise's
   NumPy 1.x dependency. Check the numerical runtime imports explicitly in CI.

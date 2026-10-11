@@ -239,10 +239,11 @@ cases:
         heat_natural_gas_europe: 0.043
         diesel_europe: 1.147
         cement_portland_europe: 0.864
-        steel_low_alloyed_glo: 1.8816609917041642
+        # 2026-10-11 metals transport/unit correctness audit.
+        steel_low_alloyed_glo: 2.0022511065208146
       test2:
         # IMAGE SSP2-VLHO 2050 with the updated IEA PVPS 2026 inventories.
-        electricity_low_voltage_ch: 0.01897114198748734
+        electricity_low_voltage_ch: 0.01963575644309365
         heat_natural_gas_europe: 0.0514
         diesel_europe: 0.7612
         cement_portland_europe: 0.673
@@ -296,4 +297,5 @@ cases:
         heat_natural_gas_europe: 0.18575024143750546
         diesel_europe: 0.8185846695889004
         cement_portland_europe: 0.8731092422926864
-        steel_low_alloyed_glo: 0.9151738406362014
+        # 2026-10-11 metals transport/unit correctness audit.
+        steel_low_alloyed_glo: 0.9732937653615192

@@ -63,6 +63,26 @@ these direct overrides; background scenario updates remain active.
 For material updates not covered by a preservation policy, an explicit
 conversion factor and matching activity unit are required. Missing conversions
 stop the material update plan before application instead of defaulting to one.
+The loader retains the intensity unit and checks it against the conversion.
+Missing metal/technology pairs remain missing; they are not converted to zero.
+A specified zero range removes the corresponding direct input. Every compiled
+rule records an applied or preserved outcome, including unavailable intensities.
+
+EV intensities in the runtime CSV are in kg metal/kg motor. The three motor
+activities therefore use a conversion of one, rather than 0.1 MW/53 kg.
+For example, the 2020 aluminium intensity is 0.2252697267 kg/kg motor.
+The separate boron and neodymium magnet rules include the reference motor's
+53/1.98 motor-to-magnet mass ratio and compound conversions. They describe that
+reference motor; they do not establish a vehicle-specific magnet composition
+for every motor type (the scooter has a different magnet fraction).
+
+The shared passenger-car engine is explicitly preserved. Its competing Pt/Pd
+factors, 1/0.260129659643436 and 1/0.3051750380517504, derive from the petrol
+and diesel car engine inputs respectively in ecoinvent 3.12. Both vehicles use
+the same engine provider, so a global overwrite cannot satisfy both mass bases.
+Separate component inventories are needed before applying these vehicle-level
+intensities to the engine. Other overlapping rules that write the same activity
+and input product are rejected before material updates begin.
 
 The ``set_direct_amount`` operation sets a configured direct technosphere
 input. It does not claim to set the total metal content of the complete supply
@@ -94,7 +114,9 @@ according to physical mass balance: extraction of individual elements in the
 ore is fully attributed to the production of the respective metal; while other
 elementary and intermediate flows follow an economic allocation, which is the
 default option to deal with multi-functionality in ecoinvent. As discussed in
-`Berger <https://doi.org/10.1007/s11367-020-01737-5>`__ et al. (2023), this approach ensures a correct mass balance.
+`Berger <https://doi.org/10.1007/s11367-020-01737-5>`__ et al. (2020), this is a
+resource-attribution convention. It does not validate physical recovery yields,
+ore grades or the allocation of the remaining inventory.
 
 For example, the amount of platinum resource included in the dataset representing
 the mining of 1 kg of platinum is set to 1 kg, while the amount of other
@@ -104,7 +126,8 @@ titanium dioxide products, the target resource flow is set to the target-metal
 content of 1 kg of the reference product instead of being forced to 1 kg. If
 no explicit content factor is known for an ore, concentrate, or mineral product,
 the original target resource amount in the dataset is retained while the other
-co-mined in-ground resource flows are set to zero.
+co-mined metal resource flows are set to zero. Non-target non-metal resource
+flows, including gangue, are preserved.
 
 The correction is data-driven and applied directly from the transformed
 database. *premise* scans non-market datasets from the mining-share mapping and
@@ -117,7 +140,17 @@ left unchanged.
 The matched target flow is set to the target-metal content of the reference
 product, and other co-mined in-ground resource flows are set to zero. For
 mapped pure-metal suppliers that do not contain a target resource flow, the
-missing in-ground metal flow is added at 1 kg per kg of reference product.
+missing in-ground metal flow is added at 1 kg per kg of reference product only
+with primary-route evidence and when it is not already supplied upstream.
+Markets are traversed when checking the upstream chain. A missing supplier,
+cycle or depth limit is unresolved evidence, not proof that extraction is absent.
+Such cases preserve the source and emit a diagnostic. Waste treatment,
+recovery and recycling activities never acquire virgin extraction flows through
+this correction. Activities with non-kilogram reference units are excluded.
+Primary mines retain their own extraction when they consume metal-containing
+reagents. For other producers, upstream presence can remove a duplicate direct
+resource only when the positive target-bearing feed mass covers the target
+amount. This is a conservative screening condition, not a recovery-yield model.
 Generic carrier intermediates whose resource attribution is handled by
 downstream metal-specific datasets, such as platinum group metal concentrate,
 have their direct metal resource flows cleared to avoid double counting.
@@ -126,10 +159,12 @@ metal-bearing products such as copper-cobalt ore; broader labels such as
 lead-zinc concentrates remain ambiguous unless an explicit factor exists for
 that product.
 
-If the target
-flow is missing or ambiguous for a mapped metal-bearing dataset that cannot be
-inferred safely, *premise* raises an error instead of silently applying a
-partial correction.
+Ambiguous or duplicate targets in strict correction calls raise errors. Other
+unresolved activity roles and upstream chains produce preservation diagnostics.
+Intentional zero resource flows are deterministic and lose their former
+uncertainty parameters. Positive corrected flows retain proportionally rescaled
+distribution parameters; this propagates source uncertainty, rather than
+estimating uncertainty in the attribution convention itself.
 
 The markets are relinked to metals-consuming activities throughout the database.
 
@@ -158,8 +193,20 @@ For cut-off markets, eligible secondary-supply exchanges are copied from an
 existing source market when their positive total does not exceed one. Primary
 supply fills the remaining share; transport additions are weighted by that
 primary share. Without usable secondary inputs the market uses primary supply
-only. Consequential markets exclude this copied secondary supply. Market
-creation is skipped if no primary suppliers can be constructed.
+only. Consequential markets exclude this copied secondary supply. If a configured
+primary route is unavailable, the entire source market is preserved and the
+missing route is recorded; the available routes are not renormalized silently.
+Regional proxies retain existing suppliers and use a recorded geographical
+fallback when needed. Unresolved or duplicate final suppliers raise an error.
+
+All positive producer shares are retained, including shares below one percent.
+Transport includes all available modes and sums production routes within each
+country. All providers must be freight services in tonne-kilometres; aircraft
+manufacturing markets measured in aircraft units are explicitly excluded.
+A primary input of 0.75 kg travelling 1000 weighted km contributes
+0.75 tonne-km. Missing transport coverage is recorded and is not treated as
+evidence of zero transport. The market validator checks the applied supplier
+shares and retained secondary fraction, not the unused split YAML assumptions.
 
 Mining and refining markets creation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -192,6 +239,22 @@ quantities. Source-preservation policies prevent specified overlays; they do
 not freeze upstream suppliers. Unknown ore/compound content and unavailable
 providers have the fallback behavior documented below. A corrected resource
 mass balance is not an independent validation of the whole mining inventory.
+Unit validation also does not validate component scope: the current EV lithium
+rule assigns battery-grade lithium carbonate directly to a motor. The motor,
+battery and whole-vehicle assumptions need a separate source-data review.
+In particular, these fixes do not supply a dynamic scrap-stock model, future
+ore-grade or recovery-yield projections, endogenous metal demand, or marginal
+supplier projections for consequential modelling. Endpoint-held intensities
+and mostly historical country shares remain explicit prospective assumptions.
+
+RELICS indicators can compare extraction by element in kg per functional unit
+alongside climate change. They should be reported separately by element and
+with biosphere-mapping coverage. They do not measure scarcity, supply risk,
+installed metal content or the plausibility of a future supply scenario.
+
+The October 2026 correctness audit and its reproducible commands are recorded
+in ``results/metals-correctness/README.rst``. It includes paired resource and
+climate scores, biosphere coverage, compatibility builds and backend checks.
 
 .. raw:: html
 

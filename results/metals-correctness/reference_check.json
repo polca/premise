@@ -1,0 +1,10 @@
+{
+  "reference_sha256": "f7971b2f197d8faa966c73a6269fbd13c160127fcb2c8a8bbe03c7b4b423dd4e",
+  "tolerance": {
+    "relative": 0.03,
+    "absolute": 1e-09
+  },
+  "scores_checked": 25,
+  "mismatches": 0,
+  "note": "Recompares recorded scores; does not repeat the LCA solves."
+}
