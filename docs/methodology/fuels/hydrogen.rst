@@ -418,7 +418,7 @@ Detailed supply-chain names
 
 
 Vehicle hydrogen tank inventories
----------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The HDPE- and aluminium-lined 700-bar tank activities in ``lci-trucks.xlsx``
 produce one kg of dry tank assembly, including tank balance of plant and
