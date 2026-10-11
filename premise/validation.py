@@ -3923,8 +3923,6 @@ class MetalsValidation(BaseDatasetValidator):
 
     def run_metals_checks(self):
         self.check_market_balance()
-        self.check_split_yaml_consistency()
-        self.check_interpolation()
         self.check_excel_shares_preserved()
         self.check_material_rule_applications()
         return self._finalize_logs()
@@ -3954,6 +3952,13 @@ class MetalsValidation(BaseDatasetValidator):
             )
 
         decisions = getattr(self, "material_decisions", ())
+        if len(decisions) != metrics.get("compiled pairs", len(decisions)):
+            self.log_issue(
+                {"name": "metals material update"},
+                "metal material decisions incomplete",
+                "Every compiled material rule must produce an applied or preserved decision.",
+                issue_type="major",
+            )
         counts = defaultdict(int)
         examples = {}
         for decision in decisions:
@@ -3987,6 +3992,12 @@ class MetalsValidation(BaseDatasetValidator):
         Check that the inputs of the metals markets sum to 1
         """
         for metal in self.metals_list:
+            if any(
+                d.get("reason") == "market_preserved_supplier_missing"
+                and d.get("metal") == metal
+                for d in getattr(self, "market_diagnostics", ())
+            ):
+                continue
             try:
                 name = f"market for {metal}"
                 ds = ws.get_one(
@@ -3995,7 +4006,13 @@ class MetalsValidation(BaseDatasetValidator):
                     ws.equals("location", "World"),
                     ws.equals("unit", "kilogram"),
                 )
-            except Exception:
+            except (ws.NoResults, ws.MultipleResults) as error:
+                self.log_issue(
+                    {"name": f"market for {metal}", "location": "World"},
+                    "metal market missing or ambiguous",
+                    str(error),
+                    issue_type="major",
+                )
                 continue
 
             total_kg_inputs = sum(
@@ -4012,180 +4029,81 @@ class MetalsValidation(BaseDatasetValidator):
                     issue_type="major",
                 )
 
-    def check_split_yaml_consistency(self):
-        """
-        Check that the split YAML files for metals sum to 1 for each metal
-        """
-        for metal, data in self.prim_sec_split.items():
-            for year in data["shares"]["primary"]:
-                primary = data["shares"]["primary"].get(year, 0)
-                secondary = data["shares"]["secondary"].get(year, 0)
-                total = primary + secondary
-                if not np.isclose(total, 1.0, rtol=1e-3):
-                    message = (
-                        f"Metal {metal} shares for year {year} do not sum to 1: "
-                        f"primary={primary}, secondary={secondary}, total={total}."
-                    )
-                    self.log_issue(
-                        {"name": metal, "year": year},
-                        "metal shares do not sum to 1",
-                        message,
-                        issue_type="major",
-                    )
-
-    def check_interpolation(self):
-        """
-        Check that the interpolation of metal shares is consistent
-        """
-        test_cases = [
-            ({2020: 0.8, 2050: 0.5}, 2020, 0.8),
-            ({2020: 0.8, 2050: 0.5}, 2050, 0.5),
-            ({2020: 0.8, 2050: 0.5}, 2035, 0.65),
-            ({2020: 1.0}, 2040, 1.0),
-        ]
-
-        for shares, year, expected in test_cases:
-            result = self.interpolate_by_year(year, shares)
-            if not np.isclose(result, expected, rtol=1e-3):
-                message = (
-                    f"Interpolation for year {year} with shares {shares} "
-                    f"expected {expected}, got {result}."
-                )
-                self.log_issue(
-                    {"year": year, "shares": shares},
-                    "interpolation error",
-                    message,
-                    issue_type="major",
-                )
-
     def check_excel_shares_preserved(self):
+        """Check the final suppliers against the shares actually used in construction.
+
+        Primary country/route shares come from the complete workbook; secondary
+        shares come from the retained source market (zero for consequential).
+        The legacy primary_secondary_split.yaml is not used by this model.
         """
-        Verify that the shares from Excel are preserved in the final markets.
-        This should catch normalization bugs
-        """
-
-        mining_shares_df = getattr(self, "mining_shares_mapping", None)
-        if mining_shares_df is None:
-            mining_shares_df = _load_mining_shares_mapping_for_validation(self.version)
-
-        country_codes = dict(
-            zip(
-                mining_shares_df["Country"].unique(),
-                coco.convert(mining_shares_df["Country"].unique(), to="ISO2"),
-            )
-        )
-        country_codes["France (French Guiana)"] = "GF"
-
-        # Group df by metal
-        for metal in mining_shares_df["Metal"].unique():
-            metal_df = mining_shares_df[mining_shares_df["Metal"] == metal]
-
-            # Find the 'World' market
-            try:
-                market = ws.get_one(
+        for metal, applied in getattr(self, "applied_market_shares", {}).items():
+            markets = list(
+                ws.get_many(
                     self.database,
                     ws.equals("name", f"market for {metal}"),
+                    ws.equals("reference product", metal),
                     ws.equals("location", "World"),
-                    ws.equals("unit", "kilogram"),
                 )
-            except ws.NoResults:
-                continue
-
-            # Find year
-            year_cols = sorted([int(col) for col in metal_df.columns if col.isdigit()])
-            if not year_cols:
+            )
+            if len(markets) != 1:
+                continue  # check_market_balance reports missing/ambiguous markets.
+            market = markets[0]
+            expected = defaultdict(float)
+            actual = defaultdict(float)
+            for kind, share in (
+                ("primary", applied["primary share"]),
+                ("secondary", applied["secondary share"]),
+            ):
+                suppliers = applied[f"{kind} suppliers"]
+                if not np.isclose(
+                    sum(e["amount"] for e in suppliers), share, rtol=1e-9, atol=1e-12
+                ):
+                    self.log_issue(
+                        market,
+                        "metal applied split mismatch",
+                        f"{kind} supplier amounts differ from the applied {share} fraction.",
+                        issue_type="major",
+                    )
+                for exc in suppliers:
+                    expected[(exc["name"], exc["product"], exc["location"])] += exc[
+                        "amount"
+                    ]
+            for exc in market["exchanges"]:
+                if exc["type"] == "technosphere" and exc.get("unit") == "kilogram":
+                    actual[(exc["name"], exc["product"], exc["location"])] += exc[
+                        "amount"
+                    ]
+            for key in expected.keys() | actual.keys():
+                if not np.isclose(actual[key], expected[key], rtol=1e-9, atol=1e-12):
+                    self.log_issue(
+                        market,
+                        "metal market share mismatch",
+                        f"Supplier {key!r}: expected {expected[key]}, found {actual[key]}.",
+                        issue_type="major",
+                    )
+            if self.system_model == "consequential" and applied["secondary share"] != 0:
                 self.log_issue(
                     market,
-                    "missing metals year columns",
-                    f"No year columns found for {metal}.",
+                    "metal consequential secondary share",
+                    "Consequential markets must not inherit an attributional recycling share.",
                     issue_type="major",
                 )
-                continue
-            min_year, max_year = year_cols[0], year_cols[-1]
-            year_to_use = max(min_year, min(self.year, max_year))
-            year_col = str(year_to_use)
-
-            # APPLY THE SAME FILTERING AS metals.py:
-            metal_df_filtered = metal_df[metal_df["Work done"] == "Yes"].copy()
-            metal_df_filtered = metal_df_filtered[
-                metal_df_filtered[year_col] >= 0.01
-            ].copy()
-
-            # Add up the shares in the excel by country (across all the different datasets)
-            country_totals_excel = metal_df_filtered.groupby("Country")[year_col].sum()
-            # Normalize the shares
-            total_excel = country_totals_excel.sum()
-            if total_excel > 0:
-                expected_shares = country_totals_excel / total_excel
-            else:
-                continue
-
-            # Get the shares from the market so we can compare
-            actual_shares = {}
-            for exc in market["exchanges"]:
-                if (
-                    exc["type"] == "technosphere"
-                    and exc.get("location")
-                    and exc["unit"] == "kilogram"
-                ):
-                    loc = exc["location"]
-                    if loc not in actual_shares:
-                        actual_shares[loc] = 0
-                    actual_shares[loc] += exc["amount"]
-
-            # Get primary share for this metal
-            primary_share = self.get_primary_share_for_metal(metal)
-
-            # Compare for significant producers
-            for country_long in country_totals_excel.index:
-                country_short = country_codes.get(country_long)
-                if not country_short:
-                    continue
-
-                expected = expected_shares.get(country_long, 0) * primary_share
-                actual = actual_shares.get(country_short, 0)
-
-                if (
-                    expected > 0.01 and self.system_model != "consequential"
-                ):  # Only check significant shares
-                    relative_error = (
-                        abs(actual - expected) / expected
-                        if expected > 0
-                        else float("inf")
-                    )
-
-                    if relative_error > 0.3:  # More than 30% error
-                        message = (
-                            f"{country_long} should have {expected:.2%} of {metal} market "
-                            f"(Excel sum: {country_totals_excel.get(country_long, 0):.2%}, "
-                            f"normalized: {expected_shares.get(country_long, 0):.2%}, "
-                            f"with primary share {primary_share:.2%}), but has {actual:.2%}."
-                        )
-                        self.log_issue(
-                            market,
-                            "metal market share mismatch",
-                            message,
-                            issue_type="major",
-                        )
-
-    def get_primary_share_for_metal(self, metal):
-        """
-        Get the primary share for a given metal from the prim_sec_split data.
-        """
-        if not self.prim_sec_split or metal not in self.prim_sec_split:
-            return 1.0  # Default to 100% primary if not found
-
-        entry = self.prim_sec_split[metal]
-        primary_shares = entry["shares"]["primary"]
-
-        # Use interpolate_by_year if available
-        if self.interpolate_by_year:
-            return self.interpolate_by_year(self.year, primary_shares)
-
-        # Fallback to simple lookup
-        if self.year in primary_shares:
-            return primary_shares[self.year]
-        elif 2020 in primary_shares:
-            return primary_shares[2020]
-        else:
-            return 1.0
+        for diagnostic in getattr(self, "market_diagnostics", ()):
+            self.log_issue(
+                {
+                    "name": diagnostic.get(
+                        "metal", diagnostic.get("name", "metals market")
+                    ),
+                    "location": diagnostic.get("country"),
+                },
+                f"metal {diagnostic['reason']}",
+                str(diagnostic),
+                issue_type="minor",
+            )
+        for diagnostic in getattr(self, "resource_diagnostics", ()):
+            self.log_issue(
+                diagnostic,
+                "metal resource correction preserved",
+                str(diagnostic),
+                issue_type="minor",
+            )

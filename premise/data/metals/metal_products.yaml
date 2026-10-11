@@ -4246,3 +4246,16 @@ activity_policies:
   - '*'
   action: preserve_source
   reason: IEA PVPS 2026 cell inventories already represent metals through metallization pastes and other components. Generic capacity-based direct metal inputs would overlap with this material structure.
+
+- id: preserve-shared-icev-engine
+  technology: ICEV
+  activity:
+    name: internal combustion engine production, passenger car
+    reference_product: internal combustion engine, passenger car
+  locations: ['*']
+  action: preserve_source
+  reason: >-
+    The two Pt/Pd factors are inverse engine inputs of petrol (1/0.260129659643436)
+    and diesel (1/0.3051750380517504) vehicles. Both vehicles use the same engine
+    provider. A single global overwrite cannot satisfy both mass bases; preserve
+    the source engine until separate vehicle-specific component inventories exist.

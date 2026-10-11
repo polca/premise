@@ -45,7 +45,7 @@ from .transformation import (
     Set,
     ws,
 )
-from .utils import DATA_DIR
+from .utils import DATA_DIR, rescale_exchange
 from .validation import MetalsValidation
 from .validation_framework import record_validation_phase
 
@@ -381,6 +381,9 @@ def _update_metals(scenario, version, system_model):
         "transformed activities": list(metals._validation_targets.values()),
         "material decisions": list(metals.material_decisions),
         "material update metrics": dict(metals.material_update_metrics),
+        "applied market shares": dict(metals.applied_market_shares),
+        "market diagnostics": list(metals.market_diagnostics),
+        "resource diagnostics": list(metals.resource_diagnostics),
     }
 
     validate = MetalsValidation(
@@ -395,10 +398,20 @@ def _update_metals(scenario, version, system_model):
     )
 
     mining_shares_mapping = load_mining_shares_mapping(metals.version)
-    validate.prim_sec_split = metals.prim_sec_split
+    validate.applied_market_shares = metals.applied_market_shares
+    validate.market_diagnostics = metals.market_diagnostics
+    validate.resource_diagnostics = metals.resource_diagnostics
     validate.mining_shares_mapping = mining_shares_mapping
     validate.interpolate_by_year = interpolate_by_year
-    validate.metals_list = mining_shares_mapping["Metal"].unique().tolist()
+    validate.metals_list = (
+        mining_shares_mapping.loc[
+            (mining_shares_mapping["Work done"] == "Yes")
+            & mining_shares_mapping["Country"].notna(),
+            "Metal",
+        ]
+        .unique()
+        .tolist()
+    )
     validate.material_update_diagnostics = metals.material_update_diagnostics
     validate.material_decisions = metals.material_decisions
     validate.material_update_metrics = metals.material_update_metrics
@@ -450,15 +463,33 @@ def load_metals_transport():
     return df
 
 
-def build_transport_lookup(dataframe: pd.DataFrame) -> Dict[tuple, int]:
-    """Map country/metal keys to the final matching transport row position."""
+def build_transport_lookup(dataframe: pd.DataFrame) -> Dict[tuple, list[int]]:
+    """Retain every mode/route for each country and metal."""
+    lookup = defaultdict(list)
+    for position, key in enumerate(zip(dataframe["country"], dataframe["Metal"])):
+        lookup[key].append(position)
+    return dict(lookup)
 
-    return {
-        (country, metal): position
-        for position, (country, metal) in enumerate(
-            zip(dataframe["country"], dataframe["Metal"])
-        )
+
+def select_transport_provider(database, mode: str) -> dict:
+    """Select freight services in tonne-km, never vehicle manufacture in units."""
+    terms = {
+        "air": ("aircraft", "long haul"),
+        "sea": ("sea", "container ship"),
+        "railway": ("train",),
+        "road": ("lorry", "unspecified"),
     }
+    return ws.get_one(
+        database,
+        ws.either(
+            ws.startswith("name", "market for transport, freight"),
+            ws.startswith("name", "market group for transport, freight"),
+        ),
+        ws.equals("unit", "ton kilometer"),
+        ws.equals("location", "GLO"),
+        ws.exclude(ws.contains("name", "reefer")),
+        *[ws.contains("name", term) for term in terms[mode]],
+    )
 
 
 @lru_cache(maxsize=None)
@@ -818,6 +849,18 @@ def extract_reference_products_from_filter(value) -> List[str]:
     return []
 
 
+def parse_mining_filter(value):
+    """Parse the workbook's serialized selectors at a single boundary."""
+    if isinstance(value, str):
+        try:
+            value = ast.literal_eval(value)
+        except (ValueError, SyntaxError) as error:
+            raise MetalsConfigError(f"Invalid mining filter {value!r}") from error
+    if not isinstance(value, (dict, list)):
+        raise MetalsConfigError(f"Invalid mining filter {value!r}")
+    return value
+
+
 def is_secondary_metal_supply_exchange(
     exchange: dict, reference_product: Optional[str] = None
 ) -> bool:
@@ -1015,9 +1058,36 @@ def get_reference_product_resource_flow_name(reference_product: str) -> Optional
     return None
 
 
-def can_add_missing_target_resource_exchange(dataset: dict) -> bool:
-    """Return True when a missing target flow can be inferred safely."""
+def classify_resource_activity(dataset: dict, primary_route: bool = False) -> str:
+    """Separate extraction attribution from secondary and downstream supply.
+
+    A pure reference product alone is not evidence of virgin extraction. The
+    mining-share mapping provides explicit primary-route evidence when present.
+    """
     if is_market_dataset(dataset):
+        return "market"
+    if dataset.get("unit") != "kilogram":
+        return "unsupported_unit"
+    name = dataset.get("name", "").lower()
+    if any(term in name for term in SECONDARY_METAL_SUPPLY_TERMS):
+        return "secondary"
+    if is_downstream_attributed_resource_carrier_dataset(dataset):
+        return "carrier"
+    if has_metal_extraction_context(dataset):
+        return "extraction"
+    if primary_route or has_resolved_target_resource_context(dataset):
+        return "primary_or_coproduct"
+    return "unresolved"
+
+
+def can_add_missing_target_resource_exchange(
+    dataset: dict, primary_route: bool = False
+) -> bool:
+    """Return True when a missing target flow can be inferred safely."""
+    if classify_resource_activity(dataset, primary_route) not in {
+        "extraction",
+        "primary_or_coproduct",
+    }:
         return False
 
     flow_name = get_reference_product_resource_flow_name(
@@ -1029,6 +1099,18 @@ def can_add_missing_target_resource_exchange(dataset: dict) -> bool:
     return is_pure_target_resource_product(
         dataset.get("reference product", ""), flow_name
     )
+
+
+def set_resource_amount(exchange: dict, amount: float) -> None:
+    """Rescale positive distributions; make intentional zero/new values deterministic."""
+    old_amount = float(exchange.get("amount", 0))
+    if amount > 0 and old_amount > 0:
+        rescale_exchange(exchange, amount / old_amount, remove_uncertainty=False)
+    else:
+        exchange["uncertainty type"] = 0
+        for field in ("loc", "scale", "shape", "minimum", "maximum", "negative"):
+            exchange.pop(field, None)
+    exchange["amount"] = amount
 
 
 def make_target_resource_exchange(flow_name: str, amount: float) -> dict:
@@ -1231,12 +1313,16 @@ def correct_metal_resource_exchanges(
     if resource_exchanges is None:
         resource_exchanges = get_in_ground_resource_exchanges(dataset)
 
-    if is_market_dataset(dataset):
+    if classify_resource_activity(dataset, strict) in {
+        "market",
+        "secondary",
+        "unsupported_unit",
+    }:
         return False
 
     if not resource_exchanges:
         if add_missing_target_resource and can_add_missing_target_resource_exchange(
-            dataset
+            dataset, primary_route=True
         ):
             flow_name = get_reference_product_resource_flow_name(
                 dataset.get("reference product", "")
@@ -1262,7 +1348,8 @@ def correct_metal_resource_exchanges(
 
     if is_downstream_attributed_resource_carrier_dataset(dataset):
         for exc in resource_exchanges:
-            exc["amount"] = 0.0
+            if is_metal_resource_flow(exc.get("name", "")):
+                set_resource_amount(exc, 0.0)
         return True
 
     matching_resource_exchanges = get_matching_resource_exchanges(
@@ -1306,9 +1393,11 @@ def correct_metal_resource_exchanges(
     target_amount, _ = get_target_resource_amount(dataset, target_exchange)
 
     for exc in resource_exchanges:
+        if not is_metal_resource_flow(exc.get("name", "")):
+            continue
         is_target = exc is target_exchange
         new_amount = target_amount if is_target else 0.0
-        exc["amount"] = new_amount
+        set_resource_amount(exc, new_amount)
 
     return True
 
@@ -1409,49 +1498,16 @@ class Metals(BaseTransformation):
         self.alt_names = load_metals_alternative_names()
 
         self.metals_transport_activities = {
-            "air": ws.get_one(
-                self.database,
-                ws.contains("name", "aircraft"),
-                ws.contains("name", "freight"),
-                ws.contains("name", "belly"),
-                ws.contains("name", "long haul"),
-                ws.contains("name", "market"),
-                ws.equals("location", "GLO"),
-            ),
-            "sea": ws.get_one(
-                self.database,
-                ws.contains("name", "transport"),
-                ws.contains("name", "freight"),
-                ws.contains("name", "sea"),
-                ws.contains("name", "container ship"),
-                ws.contains("name", "market"),
-                ws.exclude(ws.contains("name", "reefer")),
-                ws.equals("location", "GLO"),
-            ),
-            "railway": ws.get_one(
-                self.database,
-                ws.contains("name", "transport"),
-                ws.contains("name", "freight"),
-                ws.contains("name", "train"),
-                ws.contains("name", "market"),
-                ws.exclude(ws.contains("name", "reefer")),
-                ws.equals("location", "GLO"),
-            ),
-            "road": ws.get_one(
-                self.database,
-                ws.contains("name", "transport"),
-                ws.contains("name", "freight"),
-                ws.contains("name", "lorry"),
-                ws.contains("name", "market"),
-                ws.contains("name", "unspecified"),
-                ws.exclude(ws.contains("name", "reefer")),
-                ws.equals("location", "GLO"),
-            ),
+            mode: select_transport_provider(self.database, mode)
+            for mode in ("air", "sea", "railway", "road")
         }
 
         self.build_db_indexes()
         self.material_update_diagnostics: List[dict] = []
         self.material_decisions: List[dict] = []
+        self.market_diagnostics: List[dict] = []
+        self.resource_diagnostics: List[dict] = []
+        self.applied_market_shares: Dict[str, dict] = {}
         self.material_update_plan = self._compile_material_update_plan()
         self.material_update_metrics = {
             "compiled pairs": len(self.material_update_plan),
@@ -1480,6 +1536,7 @@ class Metals(BaseTransformation):
 
         plan: List[dict] = []
         seen: Dict[tuple[int, str], float | None] = {}
+        writers = {}
         for technology, mapped_datasets in self.activities_metals_map.items():
             rules = self.material_rules_by_technology.get(technology, ())
             if not rules:
@@ -1498,8 +1555,22 @@ class Metals(BaseTransformation):
                         conversion_factor = (
                             None
                             if self._material_policy_for(target, technology)
-                            else self._technology_conversion_factor(mapped_dataset)
+                            else self._technology_conversion_factor(
+                                mapped_dataset, technology
+                            )
                         )
+                        if conversion_factor is not None and rule.provider is not None:
+                            product = rule.provider.for_version(
+                                self.version
+                            ).reference_product.lower()
+                            write_key = (id(target), product)
+                            previous = writers.get(write_key)
+                            if previous is not None and previous != rule.id:
+                                raise MetalsConfigError(
+                                    f"Overlapping material rules {previous!r} and {rule.id!r} "
+                                    f"write {product!r} in {target.get('name')!r}."
+                                )
+                            writers[write_key] = rule.id
                         key = (id(target), rule.id)
                         if key in seen:
                             if seen[key] != conversion_factor:
@@ -1574,7 +1645,7 @@ class Metals(BaseTransformation):
         conversion_factor = (
             None
             if self._material_policy_for(dataset, technology)
-            else self._technology_conversion_factor(dataset)
+            else self._technology_conversion_factor(dataset, technology)
         )
         for rule in self.material_rules_by_technology.get(technology, ()):
             if rule.target.kind == "mapped_activity":
@@ -1606,7 +1677,9 @@ class Metals(BaseTransformation):
                 conversion_factor=conversion_factor,
             )
 
-    def _technology_conversion_factor(self, dataset: dict) -> float:
+    def _technology_conversion_factor(
+        self, dataset: dict, technology: str | None = None
+    ) -> float:
         """Require a declared conversion before applying a material intensity."""
 
         conversion = self.technology_conversions_by_name.get(dataset.get("name"))
@@ -1623,6 +1696,21 @@ class Metals(BaseTransformation):
                 f"{dataset.get('name')!r}: expected {conversion.ecoinvent_unit!r}, "
                 f"got {dataset.get('unit')!r}."
             )
+        if technology is not None:
+            factors = self.precomputed_medians
+            if technology in factors.origin_var.values:
+                if "intensity_unit" not in factors.coords:
+                    raise MetalsConfigError(
+                        "Material intensity data is missing unit metadata; rebuild the IAM data cache."
+                    )
+                intensity_unit = factors.intensity_unit.sel(
+                    origin_var=technology
+                ).item()
+                if intensity_unit != conversion.intensity_unit:
+                    raise MetalsConfigError(
+                        f"Material-intensity conversion unit mismatch for {dataset.get('name')!r}: "
+                        f"source {intensity_unit!r}, conversion {conversion.intensity_unit!r}."
+                    )
         return conversion.factor
 
     def _material_policy_for(
@@ -1653,6 +1741,19 @@ class Metals(BaseTransformation):
         values: dict,
     ) -> None:
         self._validation_targets[id(dataset)] = dataset
+        provider = (
+            rule.provider.for_version(getattr(self, "version", None))
+            if rule.provider
+            else None
+        )
+        values = {
+            "material rule id": rule.id,
+            "technology": rule.technology,
+            "element": rule.element,
+            "provider name": provider.name if provider else None,
+            "provider product": provider.reference_product if provider else None,
+            **values,
+        }
         self.material_decisions.append(
             {
                 "activity": {
@@ -1729,7 +1830,19 @@ class Metals(BaseTransformation):
             use_factors = self.precomputed_medians.sel(
                 metal=rule.element, origin_var=technology
             )
-        except (KeyError, ValueError):
+        except KeyError:
+            self._record_material_decision(
+                dataset,
+                rule,
+                status="skipped",
+                reason_code="metals.material_rule.intensity_missing",
+                explanation="No intensity is available for this metal/technology pair; source input preserved.",
+                values={
+                    "material rule id": rule.id,
+                    "technology": technology,
+                    "element": rule.element,
+                },
+            )
             return
 
         exchange_factor = rule.exchange_amount_factor or 1.0
@@ -1744,8 +1857,27 @@ class Metals(BaseTransformation):
         max_value = (
             use_factors.sel(variable="max").item() * exchange_factor * conversion_factor
         )
-        if median_value == 0 or np.isnan(median_value):
+        if np.isnan(median_value):
+            self._record_material_decision(
+                dataset,
+                rule,
+                status="skipped",
+                reason_code="metals.material_rule.intensity_missing",
+                explanation="No intensity is available for this metal/technology pair; source input preserved.",
+                values={
+                    "material rule id": rule.id,
+                    "technology": technology,
+                    "element": rule.element,
+                },
+            )
             return
+        if (
+            not all(np.isfinite(v) for v in (min_value, median_value, max_value))
+            or not 0 <= min_value <= median_value <= max_value
+        ):
+            raise MetalsConfigError(
+                f"Invalid intensity bounds for material rule {rule.id!r}."
+            )
 
         old_amount = self._direct_material_amount(
             dataset, provider_selector.reference_product
@@ -1764,6 +1896,28 @@ class Metals(BaseTransformation):
             "old direct amount": old_amount,
             "target direct amount": median_value,
         }
+
+        if median_value == 0 and max_value == 0:
+            # A known zero must remove the previous positive input even if its
+            # replacement provider is absent in this database version.
+            dataset["exchanges"] = [
+                exc
+                for exc in dataset.get("exchanges", [])
+                if not (
+                    exc.get("type") == "technosphere"
+                    and exc.get("product", "").lower()
+                    == provider_selector.reference_product.lower()
+                )
+            ]
+            self._record_material_decision(
+                dataset,
+                rule,
+                status="updated",
+                reason_code="metals.material_rule.zero_intensity",
+                explanation="Removed the direct material input because its specified intensity range is zero.",
+                values=values,
+            )
+            return
 
         try:
             provider = self.get_metal_market_dataset(
@@ -1822,8 +1976,8 @@ class Metals(BaseTransformation):
         reference product, that target flow is set to the target-metal content
         of one kilogram of the reference product. Pure target-metal products
         are set to 1 kg; metal-bearing intermediates use explicit content
-        factors. Other in-ground kilogram natural resource flows are set to
-        zero.
+        factors. Other co-mined metal resource flows are set to zero;
+        non-metal resource flows are preserved.
         """
 
         self.build_in_ground_resource_exchange_index()
@@ -1836,6 +1990,40 @@ class Metals(BaseTransformation):
             self.get_existing_in_ground_resource_flow_names()
             | self.get_biosphere_in_ground_resource_flow_names()
         )
+        provider_index = self.build_exchange_provider_index()
+        upstream = {}
+        for ds in self.database:
+            if id(ds) not in considered_dataset_ids:
+                continue
+            matches = get_target_resource_exchanges(
+                ds, self._get_in_ground_resource_exchanges(ds)
+            )
+            if len(matches) != 1:
+                continue
+            # A mine's reagents can contain the same element as its output.
+            # That upstream demand does not replace extraction at the mine.
+            role = classify_resource_activity(ds, id(ds) in strict_dataset_ids)
+            target_amount = get_target_resource_amount(ds, matches[0])[0]
+            feed_mass = sum(
+                exc.get("amount", 0)
+                for exc in ds.get("exchanges", [])
+                if exc.get("type") == "technosphere"
+                and exc.get("unit") == "kilogram"
+                and exc.get("amount", 0) > 0
+                and exchange_may_carry_target_resource(exc, matches[0]["name"])
+            )
+            if (
+                role == "primary_or_coproduct"
+                and target_amount > 0
+                and feed_mass >= target_amount
+            ):
+                upstream[id(ds)] = self.target_resource_is_supplied_upstream(
+                    ds,
+                    matches[0]["name"],
+                    provider_index,
+                    {},
+                    planned_resource_ids=missing_target_dataset_ids,
+                )
 
         for ds in self.database:
             if id(ds) not in considered_dataset_ids:
@@ -1859,13 +2047,29 @@ class Metals(BaseTransformation):
                 ): exchange.get("amount")
                 for exchange in resource_exchanges
             }
-            corrected = correct_metal_resource_exchanges(
-                ds,
-                strict=id(ds) in strict_dataset_ids,
-                add_missing_target_resource=id(ds) in missing_target_dataset_ids,
-                target_resource_flow_name=target_resource_flow_name,
-                resource_exchanges=resource_exchanges,
-            )
+            role = classify_resource_activity(ds, id(ds) in strict_dataset_ids)
+            if upstream.get(id(ds)) is True and role not in {
+                "secondary",
+                "market",
+                "unsupported_unit",
+            }:
+                for exchange in resource_exchanges:
+                    if is_metal_resource_flow(exchange.get("name", "")):
+                        set_resource_amount(exchange, 0.0)
+                corrected = True
+            elif id(ds) in upstream and upstream[id(ds)] is None:
+                corrected = False
+                self._record_resource_diagnostic(ds, "upstream_unresolved")
+            else:
+                corrected = correct_metal_resource_exchanges(
+                    ds,
+                    strict=id(ds) in strict_dataset_ids,
+                    add_missing_target_resource=id(ds) in missing_target_dataset_ids,
+                    target_resource_flow_name=target_resource_flow_name,
+                    resource_exchanges=resource_exchanges,
+                )
+            if not corrected:
+                self._record_resource_diagnostic(ds, f"preserved_{role}")
             after = {
                 (
                     exchange.get("name"),
@@ -1896,6 +2100,18 @@ class Metals(BaseTransformation):
                         },
                     },
                 )
+
+    def _record_resource_diagnostic(self, dataset, reason):
+        if not hasattr(self, "resource_diagnostics"):
+            self.resource_diagnostics = []
+        self.resource_diagnostics.append(
+            {
+                "name": dataset.get("name"),
+                "product": dataset.get("reference product"),
+                "location": dataset.get("location"),
+                "reason": reason,
+            }
+        )
 
     def build_in_ground_resource_exchange_index(self) -> None:
         """Index qualifying in-ground exchanges once for the correction pass."""
@@ -1930,7 +2146,10 @@ class Metals(BaseTransformation):
                 continue
 
             resource_exchanges = self._get_in_ground_resource_exchanges(dataset)
-            if resource_exchanges and (
+            if any(
+                is_metal_resource_flow(exc.get("name", ""))
+                for exc in resource_exchanges
+            ) and (
                 has_metal_extraction_context(dataset)
                 or has_resolved_target_resource_context(dataset)
                 or is_downstream_attributed_resource_carrier_dataset(dataset)
@@ -2004,10 +2223,11 @@ class Metals(BaseTransformation):
         cache: dict,
         max_depth: int = 12,
         visited: Optional[Set[int]] = None,
-    ) -> bool:
+        planned_resource_ids: Optional[Set[int]] = None,
+    ) -> Optional[bool]:
         """Return True if direct technosphere suppliers already carry the target."""
         if max_depth < 0:
-            return False
+            return None
 
         cache_key = (id(dataset), normalize_resource_label(flow_name), max_depth)
         if cache_key in cache:
@@ -2015,6 +2235,7 @@ class Metals(BaseTransformation):
 
         visited = visited or set()
         visited.add(id(dataset))
+        unresolved = False
 
         for exc in dataset.get("exchanges", []):
             if exc.get("type") != "technosphere" or exc.get("amount", 0) <= 0:
@@ -2026,38 +2247,41 @@ class Metals(BaseTransformation):
                 (exc.get("name"), exc.get("product"), exc.get("location")),
                 [],
             )
+            if len(providers) != 1:
+                unresolved = True
+                continue
             for provider in providers:
                 if id(provider) in visited:
-                    continue
-                if is_market_dataset(provider) and (
-                    normalize_resource_label(provider.get("reference product", ""))
-                    == normalize_resource_label(flow_name)
-                ):
+                    unresolved = True
                     continue
                 if is_downstream_attributed_resource_carrier_dataset(provider):
                     continue
-                if dataset_may_carry_target_resource(
-                    provider, flow_name
-                ) and self.dataset_has_target_resource_exchange(
-                    provider,
-                    flow_name,
-                    self._get_in_ground_resource_exchanges(provider),
+                if dataset_may_carry_target_resource(provider, flow_name) and (
+                    id(provider) in (planned_resource_ids or set())
+                    or self.dataset_has_target_resource_exchange(
+                        provider,
+                        flow_name,
+                        self._get_in_ground_resource_exchanges(provider),
+                    )
                 ):
                     cache[cache_key] = True
                     return True
-                if self.target_resource_is_supplied_upstream(
+                supplied = self.target_resource_is_supplied_upstream(
                     provider,
                     flow_name,
                     provider_index,
                     cache,
                     max_depth=max_depth - 1,
                     visited=visited.copy(),
-                ):
+                    planned_resource_ids=planned_resource_ids,
+                )
+                if supplied is True:
                     cache[cache_key] = True
                     return True
+                unresolved |= supplied is None
 
-        cache[cache_key] = False
-        return False
+        # Negative reachability depends on the visited path; never cache it.
+        return None if unresolved else False
 
     def get_missing_target_resource_dataset_ids(
         self, strict_dataset_ids: Set[int]
@@ -2069,19 +2293,40 @@ class Metals(BaseTransformation):
         already provide the target resource through a target-bearing product.
         This avoids double-counting normal production chains whose upstream ore
         or concentrate dataset is corrected separately, while still adding the
-        target flow for byproduct and recovered-metal routes whose upstream
-        co-mined flows are zeroed or absent.
+        target flow for eligible primary byproduct routes whose upstream
+        co-mined flows are zeroed or absent. Recycling routes are excluded.
         """
         provider_index = self.build_exchange_provider_index()
         cache = {}
         dataset_ids = set()
+        # Potential extraction boundaries without target-bearing inputs. Resolve
+        # these before downstream refiners so two missing flows cannot both be
+        # filled along the same chain merely because of database iteration order.
+        leaf_candidates = {
+            id(ds)
+            for ds in self.database
+            if id(ds) in strict_dataset_ids
+            and not self._get_in_ground_resource_exchanges(ds)
+            and can_add_missing_target_resource_exchange(ds, primary_route=True)
+            and not any(
+                exc.get("type") == "technosphere"
+                and exc.get("amount", 0) > 0
+                and exchange_may_carry_target_resource(
+                    exc,
+                    get_reference_product_resource_flow_name(ds["reference product"]),
+                )
+                for exc in ds.get("exchanges", [])
+            )
+        }
 
         for dataset in self.database:
             if id(dataset) not in strict_dataset_ids:
                 continue
             if self._get_in_ground_resource_exchanges(dataset):
                 continue
-            if not can_add_missing_target_resource_exchange(dataset):
+            if not can_add_missing_target_resource_exchange(
+                dataset, primary_route=True
+            ):
                 continue
 
             flow_name = get_reference_product_resource_flow_name(
@@ -2089,9 +2334,16 @@ class Metals(BaseTransformation):
             )
             if not flow_name:
                 continue
-            if self.target_resource_is_supplied_upstream(
-                dataset, flow_name, provider_index, cache
-            ):
+            supplied = self.target_resource_is_supplied_upstream(
+                dataset,
+                flow_name,
+                provider_index,
+                cache,
+                planned_resource_ids=leaf_candidates,
+            )
+            if supplied is not False:
+                if supplied is None:
+                    self._record_resource_diagnostic(dataset, "upstream_unresolved")
                 continue
 
             dataset_ids.add(id(dataset))
@@ -2112,8 +2364,8 @@ class Metals(BaseTransformation):
 
         for _, row in grouped.iterrows():
             try:
-                proc_filter = ast.literal_eval(row["Process"])
-                ref_prod_filter = ast.literal_eval(row["Reference product"])
+                proc_filter = parse_mining_filter(row["Process"])
+                ref_prod_filter = parse_mining_filter(row["Reference product"])
             except (ValueError, SyntaxError) as exc:
                 logger.warning(
                     f"[Metals] Invalid mining-share mapping filter skipped: {exc}"
@@ -2127,7 +2379,9 @@ class Metals(BaseTransformation):
                     continue
                 if self._get_in_ground_resource_exchanges(
                     dataset
-                ) or can_add_missing_target_resource_exchange(dataset):
+                ) or can_add_missing_target_resource_exchange(
+                    dataset, primary_route=True
+                ):
                     dataset_ids.add(id(dataset))
 
         self._mining_share_dataset_ids_cache = frozenset(dataset_ids)
@@ -2181,11 +2435,19 @@ class Metals(BaseTransformation):
                 else:
                     share = share.iloc[:, self.year - 2020]
 
-                share = share.values[0]
-                shares[(name, ref_prod, short_location)] = share
+                if not np.isfinite(share.to_numpy()).all() or (share < 0).any():
+                    raise MetalsConfigError(
+                        f"Invalid mining shares for {name!r} in {long_location!r}."
+                    )
+                share = share.sum()
+                if not np.isfinite(share) or share < 0:
+                    raise MetalsConfigError(
+                        f"Invalid mining share for {name!r} in {long_location!r}: {share!r}"
+                    )
+                key = (name, ref_prod, short_location)
+                shares[key] = shares.get(key, 0.0) + share
 
-        # filter-out shares that are below 1% and normalize the rest
-        shares = {k: v for k, v in shares.items() if v >= 0.01}
+        shares = {k: v for k, v in shares.items() if v > 0}
         if not shares:
             return {}
 
@@ -2263,13 +2525,14 @@ class Metals(BaseTransformation):
 
         for (_, _), group in df.groupby(["Process_str", "Reference_product_str"]):
             try:
-                proc_filter = ast.literal_eval(group["Process"].iloc[0])
-                ref_prod_filter = ast.literal_eval(group["Reference product"].iloc[0])
-            except (ValueError, SyntaxError) as exc:
-                logger.error(
-                    f"[Metals] Invalid filter expression for process/reference product: {exc}"
+                proc_filter = parse_mining_filter(group["Process"].iloc[0])
+                ref_prod_filter = parse_mining_filter(
+                    group["Reference product"].iloc[0]
                 )
-                continue
+            except (ValueError, SyntaxError) as exc:
+                raise MetalsConfigError(
+                    f"Invalid mining supplier selector: {exc}"
+                ) from exc
 
             try:
                 subset = self.get_datasets_matching_filters(
@@ -2285,12 +2548,11 @@ class Metals(BaseTransformation):
                 continue
 
             if not subset:
-                logger.warning(
+                raise MetalsConfigError(
                     f"[Metals] No datasets found for filter combination:\n"
                     f"  name: {proc_filter}\n"
                     f"  reference product: {ref_prod_filter}"
                 )
-                continue
 
             first_match = subset[0]
             name = first_match["name"]
@@ -2305,6 +2567,13 @@ class Metals(BaseTransformation):
             shares = self.get_shares(
                 group, new_locations, name, ref_prod, normalize=False
             )
+            if not shares:
+                continue
+            new_locations = {
+                c: loc
+                for c, loc in new_locations.items()
+                if (name, ref_prod, loc) in shares
+            }
             geography_mapping = self.get_geo_mapping(group, new_locations)
 
             # if not, we create it
@@ -2341,6 +2610,11 @@ class Metals(BaseTransformation):
             self.database.append(dataset)
             self.add_to_index(dataset)
             self.write_log(dataset, "created")
+
+        self._market_provider_index = self.build_exchange_provider_index()
+        unresolved = [exc for exc in new_exchanges if not self.activity_exists(exc)]
+        if unresolved:
+            raise MetalsConfigError(f"Unresolved mining suppliers: {unresolved!r}")
 
         return new_exchanges
 
@@ -2485,6 +2759,20 @@ class Metals(BaseTransformation):
         # check if market already exists
         # if so, remove it
 
+        # Preserve the entire source market if any positive primary route is
+        # unavailable. Renormalizing only the available routes hides lost supply.
+        for _, row in df.drop_duplicates(["Process", "Reference product"]).iterrows():
+            if not self.get_datasets_matching_filters(
+                parse_mining_filter(row["Process"]),
+                parse_mining_filter(row["Reference product"]),
+            ):
+                self._record_market_diagnostic(
+                    "market_preserved_supplier_missing",
+                    metal=metal,
+                    process=row["Process"],
+                    product=row["Reference product"],
+                )
+                return None
         primary_exchanges = self.create_region_specific_markets(df)
 
         if not primary_exchanges:
@@ -2524,6 +2812,7 @@ class Metals(BaseTransformation):
             p_share = max(0, 1 - s_share)
         else:
             p_share = 1.0
+            s_share = 0.0
             secondary_exchanges = []
 
         # add mining exchanges
@@ -2532,22 +2821,29 @@ class Metals(BaseTransformation):
             exc["amount"] *= p_share
         dataset["exchanges"].extend(primary_exchanges)
 
-        if secondary_exchanges:
-            dataset["exchanges"].extend(secondary_exchanges)
-
         # add transport exchanges
+        # Primary exchanges already include the primary fraction. Secondary
+        # transport is embodied in the retained recycling supply chains.
         trspt_exc = self.add_transport_to_market(dataset, metal)
-        for exc in trspt_exc:
-            exc["amount"] *= p_share
         if len(trspt_exc) > 0:
             dataset["exchanges"].extend(trspt_exc)
+        dataset["exchanges"].extend(secondary_exchanges)
 
-        # # filter out None
-        dataset["exchanges"] = [
-            exc
-            for exc in dataset["exchanges"]
-            if self.activity_exists(exc) or exc["type"] == "production"
+        unresolved = [
+            exc for exc in dataset["exchanges"] if not self.activity_exists(exc)
         ]
+        if unresolved:
+            raise MetalsConfigError(
+                f"Unresolved suppliers in {market_name!r}: {unresolved!r}"
+            )
+        if not hasattr(self, "applied_market_shares"):
+            self.applied_market_shares = {}
+        self.applied_market_shares[metal] = {
+            "primary share": p_share,
+            "secondary share": s_share,
+            "primary suppliers": [dict(exc) for exc in primary_exchanges],
+            "secondary suppliers": [dict(exc) for exc in secondary_exchanges],
+        }
 
         # remove old market dataset
         for old_market in ws.get_many(
@@ -2574,6 +2870,17 @@ class Metals(BaseTransformation):
         if exchange.get("type") != "technosphere":
             return True
 
+        if hasattr(self, "_market_provider_index"):
+            matches = self._market_provider_index.get(
+                (
+                    exchange.get("name"),
+                    exchange.get("product"),
+                    exchange.get("location"),
+                ),
+                [],
+            )
+            return len(matches) == 1 and matches[0].get("unit") == exchange.get("unit")
+
         activities = list(
             ws.get_many(
                 self.database,
@@ -2583,26 +2890,14 @@ class Metals(BaseTransformation):
             )
         )
 
-        return len(activities) > 0
+        return len(activities) == 1
 
     def substitute_old_markets(self, new_dataset: dict, df_metal: pd.DataFrame) -> None:
         """
         Substitute all old market links with the new 'World' market for the given metal key.
         Uses flexible matching based on Reference product field in Excel.
         """
-        old_ref_products = set()
-
-        for _, row in df_metal.iterrows():
-            ref_field = row.get("Reference product")
-            if isinstance(ref_field, dict):
-                if "either" in ref_field:
-                    old_ref_products.update(
-                        q.get("equals") for q in ref_field["either"] if "equals" in q
-                    )
-                elif "equals" in ref_field:
-                    old_ref_products.add(ref_field["equals"])
-            elif isinstance(ref_field, str):
-                old_ref_products.add(ref_field)
+        old_ref_products = self.get_old_market_reference_products(df_metal)
 
         for ref_prod in old_ref_products:
             old_markets = list(
@@ -2645,6 +2940,7 @@ class Metals(BaseTransformation):
                                     "location": new_dataset["location"],
                                 }
                             )
+                            exc.pop("input", None)
                             modified = True
 
                     if modified:
@@ -2664,77 +2960,74 @@ class Metals(BaseTransformation):
         It falls back to any matching activity if the specified region does not work.
         """
 
-        geo_map_filtered = {
-            k: self.db_index_full[name][reference_product][v][0]
-            for k, v in geography_mapping.items()
-            if self.db_index_full[name][reference_product].get(v)
-            and not self.is_in_index(
-                {"name": name, "reference product": reference_product, "location": k}
-            )
-        }
-
-        if (
-            not geo_map_filtered
-            and name in self.db_index_full
-            and reference_product in self.db_index_full[name]
-        ):
-            # Get any available activity to use as proxy
-            available_locations = list(
-                self.db_index_full[name][reference_product].keys()
-            )
-            if available_locations:
-                proxy_activity = self.db_index_full[name][reference_product][
-                    available_locations[0]
-                ][0]
-
-                logger.warning(
-                    f"Falling back to proxy activity for {name}, {reference_product}. "
-                    f"Using location '{available_locations[0]}' for regions: "
-                    f"{[k for k in new_locations.values() if not self.is_in_index({'name': name, 'reference product': reference_product, 'location': k})]}"
+        candidates = self.db_index.get(name, {}).get(reference_product, [])
+        if not candidates:
+            raise MetalsConfigError(f"No proxy for {name!r} / {reference_product!r}.")
+        by_location = defaultdict(list)
+        for candidate in candidates:
+            by_location[candidate["location"]].append(candidate)
+        fallback = sorted(
+            by_location, key=lambda loc: (loc != "RoW", loc != "GLO", loc)
+        )[0]
+        geo_map_filtered = {}
+        for location in sorted(set(new_locations.values())):
+            identity = {
+                "name": name,
+                "reference product": reference_product,
+                "location": location,
+            }
+            if self.is_in_index(identity):
+                continue
+            source = (geography_mapping or {}).get(location)
+            if source not in by_location:
+                self._record_market_diagnostic(
+                    "proxy_fallback",
+                    name=name,
+                    product=reference_product,
+                    country=location,
+                    requested=source,
+                    selected=fallback,
                 )
-
-                # Build geo_map_filtered with this proxy for all needed locations
-                geo_map_filtered = {
-                    k: proxy_activity
-                    for k in new_locations.values()
-                    if not self.is_in_index(
-                        {
-                            "name": name,
-                            "reference product": reference_product,
-                            "location": k,
-                        }
-                    )
-                }
-
+                source = fallback
+            if len(by_location[source]) != 1:
+                raise MetalsConfigError(
+                    f"Ambiguous mining proxy: {name!r}, {reference_product!r}, {source!r}."
+                )
+            geo_map_filtered[location] = by_location[source][0]
         if not geo_map_filtered:
-            logger.error(
-                f"Failed to create activities for {name} in locations: "
-                f"{list(new_locations.values())}"
-            )
             return {}
-
-        datasets = self.db_index.get(name, {}).get(reference_product, [])
-
         return self.fetch_proxies(
-            datasets=datasets,
-            regions=new_locations.values(),
+            datasets=candidates,
+            regions=list(geo_map_filtered),
             geo_mapping=geo_map_filtered,
+            unlist=False,
         )
 
     def add_transport_to_market(self, dataset, metal) -> list:
-
-        origin_shares = {
-            e["location"]: e["amount"]
-            for e in dataset["exchanges"]
-            if e["type"] == "technosphere"
-        }
+        origin_shares = defaultdict(float)
+        for exc in dataset["exchanges"]:
+            if exc["type"] == "technosphere" and exc.get("unit") == "kilogram":
+                origin_shares[exc["location"]] += exc["amount"]
 
         exc_map = defaultdict(float)
 
         for c, share in origin_shares.items():
+            if share <= 0:
+                continue
+            trspt_data = self.get_weighted_average_distance(c, metal)
+            if trspt_data.empty:
+                self._record_market_diagnostic(
+                    "transport_missing", metal=metal, country=c, share=share
+                )
             if metal in self.alt_names:
-                trspt_data = self.get_weighted_average_distance(c, metal)
                 for _, row in trspt_data.iterrows():
+                    provider = self.metals_transport_activities[
+                        row["TransportMode Label"].lower()
+                    ]
+                    if provider.get("unit") != "ton kilometer":
+                        raise MetalsConfigError(
+                            f"Freight provider must use ton kilometer: {provider.get('name')!r}."
+                        )
                     key = (
                         self.metals_transport_activities[
                             row["TransportMode Label"].lower()
@@ -2768,10 +3061,15 @@ class Metals(BaseTransformation):
         if not alt_metal:
             return pd.DataFrame()  # fallback
 
-        row_position = self.transport_lookup.get((country, alt_metal))
-        if row_position is None:
+        row_positions = self.transport_lookup.get((country, alt_metal))
+        if row_positions is None:
             return pd.DataFrame()
-        return self.metals_transport.iloc[[row_position]]
+        return self.metals_transport.iloc[row_positions]
+
+    def _record_market_diagnostic(self, reason, **values):
+        if not hasattr(self, "market_diagnostics"):
+            self.market_diagnostics = []
+        self.market_diagnostics.append({"reason": reason, **values})
 
     def create_metal_markets(self):
         dataframe = load_mining_shares_mapping(self.version)

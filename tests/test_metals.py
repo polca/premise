@@ -1,6 +1,10 @@
 import pytest
 import pandas as pd
 import xarray as xr
+import numpy as np
+from copy import deepcopy
+from dataclasses import replace
+from premise.data_collection import get_metals_intensity_factors_data
 
 import premise.metals as metals_module
 import premise.metals_rules as metals_rules_module
@@ -18,6 +22,7 @@ from premise.metals import (
     is_secondary_metal_supply_exchange,
     matches_filter_query,
     update_exchanges,
+    select_transport_provider,
 )
 from premise.metals_rules import (
     MetalsConfigError,
@@ -295,7 +300,7 @@ def test_both_nuclear_aluminium_rules_are_applied_once():
             "electric motor production, vehicle",
             "electric motor, vehicle",
             "kilogram",
-            0.0018867924528301887,
+            1.0,
         ),
     ],
 )
@@ -329,6 +334,8 @@ def test_material_plan_excludes_scrap_coproducts(
     ]
     metals.material_rules_by_technology = {technology: rules}
     metals.material_policies = load_material_rules().policies
+    metals.version = "3.12"
+    metals.precomputed_medians = get_metals_intensity_factors_data().sel(year=2020)
     metals.technology_conversions_by_name = {
         c.activity_name: c for c in load_technology_conversions()
     }
@@ -360,6 +367,8 @@ def test_material_plan_deduplicates_dataset_rule_pairs():
     metals.activities_metals_map = {"Nuclear": [dataset, dataset]}
     metals.material_rules_by_technology = {"Nuclear": rules}
     metals.material_policies = load_material_rules().policies
+    metals.version = "3.12"
+    metals.precomputed_medians = get_metals_intensity_factors_data().sel(year=2020)
     metals.technology_conversions_by_name = {
         c.activity_name: c for c in load_technology_conversions()
     }
@@ -540,7 +549,7 @@ def test_mining_share_loader_returns_unfiltered_source_values(monkeypatch):
     assert loaded["2030"].tolist() == [0.004, 0.996]
 
 
-def test_transport_lookup_preserves_last_duplicate_row_and_frame_metadata():
+def test_transport_lookup_preserves_all_modes_and_frame_metadata():
     dataframe = pd.DataFrame(
         {
             "country": ["CH", "CH", "DE"],
@@ -556,7 +565,7 @@ def test_transport_lookup_preserves_last_duplicate_row_and_frame_metadata():
 
     result = metals.get_weighted_average_distance("CH", "copper")
 
-    pd.testing.assert_frame_equal(result, dataframe.iloc[[1]])
+    pd.testing.assert_frame_equal(result, dataframe.iloc[[0, 1]])
 
 
 def test_metals_validation_reuses_supplied_mining_shares(monkeypatch):
@@ -948,7 +957,12 @@ def test_create_market_uses_secondary_share_from_existing_market_instead_of_yaml
     metals.remove_from_index = lambda dataset: None
     metals.is_in_index = lambda dataset: False
 
-    df_metal = pd.DataFrame({"Reference product": ["{'equals': 'copper'}"]})
+    df_metal = pd.DataFrame(
+        {
+            "Process": ["{'equals': 'primary copper production'}"],
+            "Reference product": ["{'equals': 'copper'}"],
+        }
+    )
 
     market = metals.create_market("copper", df_metal)
     exchanges = {
@@ -996,7 +1010,12 @@ def test_create_market_ignores_existing_secondary_market_for_consequential():
     metals.remove_from_index = lambda dataset: None
     metals.is_in_index = lambda dataset: False
 
-    df_metal = pd.DataFrame({"Reference product": ["{'equals': 'copper'}"]})
+    df_metal = pd.DataFrame(
+        {
+            "Process": ["{'equals': 'primary copper production'}"],
+            "Reference product": ["{'equals': 'copper'}"],
+        }
+    )
 
     market = metals.create_market("copper", df_metal)
     exchanges = [exc for exc in market["exchanges"] if exc["type"] == "technosphere"]
@@ -1295,7 +1314,7 @@ def test_post_allocation_correction_uses_stibnite_alias():
     assert correct_metal_resource_exchanges(dataset, strict=True) is True
     amounts = {exc["name"]: exc["amount"] for exc in dataset["exchanges"]}
     assert amounts["Antimony"] == pytest.approx(0.24943856834512806)
-    assert amounts["Gangue"] == 0.0
+    assert amounts["Gangue"] == 0.6
 
 
 def test_post_allocation_correction_uses_phosphate_alias():
@@ -1313,7 +1332,7 @@ def test_post_allocation_correction_uses_phosphate_alias():
     assert correct_metal_resource_exchanges(dataset, strict=True) is True
     amounts = {exc["name"]: exc["amount"] for exc in dataset["exchanges"]}
     assert amounts["Phosphorus"] == 0.2
-    assert amounts["Fluorine"] == 0.0
+    assert amounts["Fluorine"] == 0.8
 
 
 def test_post_allocation_correction_clears_downstream_attributed_carriers():
@@ -1400,7 +1419,7 @@ def test_post_allocation_correction_preserves_unresolved_concentrate_content():
     amounts = {exc["name"]: exc["amount"] for exc in dataset["exchanges"]}
     assert amounts["Copper"] == 0.271842
     assert amounts["Gold"] == 0.0
-    assert amounts["Gangue"] == 0.0
+    assert amounts["Gangue"] == 30.58
 
 
 def test_post_allocation_correction_clears_generic_pgm_carrier():
@@ -1442,8 +1461,8 @@ def test_post_allocation_correction_clears_non_extraction_carriers():
 
     assert corrected is True
     assert {exc["name"]: exc["amount"] for exc in dataset["exchanges"]} == {
-        "Sodium chloride": 0.0,
-        "Sodium sulfate": 0.0,
+        "Sodium chloride": 1.0,
+        "Sodium sulfate": 0.02,
     }
 
 
@@ -1807,9 +1826,9 @@ def test_missing_target_detection_ignores_downstream_attributed_carriers():
     assert id(platinum_refinery) in missing_target_ids
     assert id(tin_production) not in missing_target_ids
     assert id(cadmium_production) in missing_target_ids
-    assert id(silver_production) in missing_target_ids
+    assert id(silver_production) not in missing_target_ids
     assert id(gold_refinery) not in missing_target_ids
-    assert id(catalyst_treatment) in missing_target_ids
+    assert id(catalyst_treatment) not in missing_target_ids
     assert id(lithium_production) in missing_target_ids
     assert id(cobalt_production) in missing_target_ids
     assert id(economic_cobalt_production) in missing_target_ids
@@ -1831,6 +1850,8 @@ def test_material_plan_rejects_missing_or_incompatible_conversion_before_updates
         invalid["name"] = "new unconfigured photovoltaic cell production"
     metals = object.__new__(Metals)
     metals.material_policies = load_material_rules().policies
+    metals.version = "3.12"
+    metals.precomputed_medians = get_metals_intensity_factors_data().sel(year=2020)
     metals.technology_conversions_by_name = {
         c.activity_name: c for c in load_technology_conversions()
     }
@@ -1867,6 +1888,8 @@ def test_material_plan_rejects_missing_or_incompatible_conversion_before_updates
 )
 def test_material_conversion_is_explicit_and_unit_checked(name, unit, expected):
     metals = object.__new__(Metals)
+    metals.version = "3.12"
+    metals.precomputed_medians = get_metals_intensity_factors_data().sel(year=2020)
     metals.technology_conversions_by_name = {
         c.activity_name: c for c in load_technology_conversions()
     }
@@ -1893,3 +1916,534 @@ def test_redox_flow_battery_stacks_do_not_match_sofc_material_rules():
         for n in names
     ]
     assert not InventorySet(db, "3.12").generate_metals_activities_map().get("SOFC - Y")
+
+
+def test_intensity_data_preserves_units_and_distinguishes_missing_from_zero():
+    factors = get_metals_intensity_factors_data()
+    assert factors.intensity_unit.sel(origin_var="EV").item() == "kg metal/kg motor"
+    assert factors.sel(
+        metal="Aluminium", origin_var="EV", year=2020, variable="median"
+    ).item() == pytest.approx(0.2252697267412005)
+    assert (
+        factors.sel(
+            metal="Platinum", origin_var="SOFC - Y", year=2020, variable="median"
+        ).item()
+        == 0
+    )
+    assert np.isnan(
+        factors.sel(
+            metal="Scandium", origin_var="SOFC - Y", year=2020, variable="median"
+        ).item()
+    )
+
+
+def test_ev_intensity_applies_per_kg_motor_without_capacity_conversion():
+    metals = _metals_for_material_rule_tests("EV", "Aluminium", 1)
+    metals.precomputed_medians = get_metals_intensity_factors_data().sel(year=2020)
+    metals.technology_conversions_by_name = {
+        c.activity_name: c for c in load_technology_conversions()
+    }
+    rule = next(
+        r
+        for r in load_material_rules().enabled_rules
+        if r.technology == "EV" and r.element == "Aluminium"
+    )
+    provider = market_dataset(
+        rule.provider.name, rule.provider.reference_product, "GLO", []
+    )
+    metals.get_metal_market_dataset = lambda *args: provider
+    dataset = market_dataset(
+        "electric motor production, vehicle", "electric motor, vehicle", "RER", []
+    )
+    conversion = metals._technology_conversion_factor(dataset, "EV")
+    metals._apply_material_rule(
+        dataset=dataset, technology="EV", rule=rule, conversion_factor=conversion
+    )
+    assert dataset["exchanges"][0]["amount"] == pytest.approx(
+        0.2252697267412005 * rule.exchange_amount_factor
+    )
+    assert conversion == 1
+
+
+def test_unit_mismatch_and_overlap_fail_before_mutation():
+    metals = _metals_for_material_rule_tests("EV", "Aluminium", 1)
+    metals.precomputed_medians = get_metals_intensity_factors_data().sel(year=2020)
+    metals.technology_conversions_by_name = {
+        c.activity_name: c for c in load_technology_conversions()
+    }
+    dataset = market_dataset(
+        "electric motor production, vehicle", "electric motor, vehicle", "RER", []
+    )
+    rule = next(
+        r
+        for r in load_material_rules().enabled_rules
+        if r.technology == "EV" and r.element == "Aluminium"
+    )
+    metals.activities_metals_map = {"EV": [dataset]}
+    metals.material_rules_by_technology = {
+        "EV": [rule, replace(rule, id="conflicting-aluminium")]
+    }
+    with pytest.raises(MetalsConfigError, match="Overlapping"):
+        metals._compile_material_update_plan()
+    metals.material_rules_by_technology = {"EV": [rule]}
+    conversion = metals.technology_conversions_by_name[dataset["name"]]
+    metals.technology_conversions_by_name[dataset["name"]] = replace(
+        conversion, intensity_unit="kg/MW"
+    )
+    with pytest.raises(MetalsConfigError, match="unit mismatch"):
+        metals._compile_material_update_plan()
+    assert dataset["exchanges"] == []
+
+
+@pytest.mark.parametrize(
+    "intensity,remaining,reason",
+    [(0, 0, "zero_intensity"), (np.nan, 1, "intensity_missing")],
+)
+def test_zero_and_missing_intensities_have_distinct_recorded_outcomes(
+    intensity, remaining, reason
+):
+    rule = next(
+        r
+        for r in load_material_rules().enabled_rules
+        if r.technology == "SOFC - Y" and r.element == "Platinum"
+    )
+    metals = _metals_for_material_rule_tests("SOFC - Y", "Platinum", intensity)
+    dataset = market_dataset(
+        "fuel cell production",
+        "fuel cell",
+        "GLO",
+        [technosphere_exchange("market for platinum", "platinum", "GLO", 1)],
+    )
+    metals._apply_material_rule(
+        dataset=dataset, technology="SOFC - Y", rule=rule, conversion_factor=1
+    )
+    assert len(dataset["exchanges"]) == remaining
+    assert len(metals.material_decisions) == 1
+    assert metals.material_decisions[0]["reason code"].endswith(reason)
+
+
+def test_shared_icev_engine_has_explicit_preservation_decisions():
+    metals = _metals_for_material_rule_tests("ICEV", "Platinum", 1)
+    dataset = market_dataset(
+        "internal combustion engine production, passenger car",
+        "internal combustion engine, passenger car",
+        "GLO",
+        [technosphere_exchange("market for platinum", "platinum", "GLO", 0.00001)],
+    )
+    before = deepcopy(dataset)
+    rules = [
+        r
+        for r in load_material_rules().enabled_rules
+        if r.technology == "ICEV" and r.element == "Platinum"
+    ]
+    for rule in rules:
+        metals._apply_material_rule(
+            dataset=dataset, technology="ICEV", rule=rule, conversion_factor=None
+        )
+    assert len(rules) == len(metals.material_decisions) == 2
+    assert dataset == before
+    assert all(
+        d["reason code"].endswith("preserved_source") for d in metals.material_decisions
+    )
+
+
+@pytest.mark.parametrize(
+    "name",
+    [
+        "treatment of automobile catalyst",
+        "palladium recovery from scrap",
+        "recycling of palladium",
+    ],
+)
+def test_recycling_never_acquires_or_scales_virgin_resource(name):
+    for exchanges in ([], [biosphere_resource("Palladium", 0.002)]):
+        dataset = market_dataset(name, "palladium", "RoW", exchanges)
+        before = deepcopy(dataset)
+        assert not correct_metal_resource_exchanges(
+            dataset, strict=True, add_missing_target_resource=True
+        )
+        assert dataset == before
+
+
+def test_resource_uncertainty_is_rescaled_or_removed_and_gangue_preserved():
+    copper = {
+        **biosphere_resource("Copper", 0.5),
+        "uncertainty type": 2,
+        "loc": np.log(0.5),
+        "scale": 0.2,
+    }
+    gold = {
+        **biosphere_resource("Gold", 0.1),
+        "uncertainty type": 2,
+        "loc": np.log(0.1),
+        "scale": 0.3,
+        "negative": False,
+    }
+    gangue = biosphere_resource("Gangue", 3)
+    dataset = market_dataset(
+        "copper mine operation", "copper", "CL", [copper, gold, gangue]
+    )
+    correct_metal_resource_exchanges(dataset, strict=True)
+    assert copper["amount"] == 1
+    assert np.exp(copper["loc"]) == pytest.approx(1)
+    assert copper["scale"] == 0.2
+    assert gold["amount"] == 0 and gold["uncertainty type"] == 0
+    assert not {"loc", "scale", "negative"} & gold.keys()
+    assert gangue["amount"] == 3
+
+
+def test_resource_search_traverses_markets_and_treats_missing_links_as_unknown():
+    ore = market_dataset(
+        "gold mine", "gold, unrefined", "GLO", [biosphere_resource("Gold", 0.8)]
+    )
+    market = market_dataset(
+        "market for gold",
+        "gold",
+        "GLO",
+        [technosphere_exchange(ore["name"], ore["reference product"], "GLO", 1.25)],
+    )
+    refinery = market_dataset(
+        "gold refining",
+        "gold",
+        "GLO",
+        [technosphere_exchange(market["name"], "gold", "GLO", 1)],
+    )
+    metals = object.__new__(Metals)
+    metals.database = [ore, market, refinery]
+    assert (
+        metals.target_resource_is_supplied_upstream(
+            refinery, "Gold", metals.build_exchange_provider_index(), {}
+        )
+        is True
+    )
+    metals.database = [refinery]
+    assert (
+        metals.target_resource_is_supplied_upstream(
+            refinery, "Gold", metals.build_exchange_provider_index(), {}
+        )
+        is None
+    )
+    assert metals.get_missing_target_resource_dataset_ids({id(refinery)}) == set()
+
+
+def test_transport_sums_all_modes_and_routes_with_one_primary_weight():
+    metals = object.__new__(Metals)
+    metals.alt_names = {"copper": "Copper"}
+    metals.metals_transport = pd.DataFrame(
+        {
+            "country": ["CL"] * 4,
+            "Metal": ["Copper"] * 4,
+            "TransportMode Label": ["Air", "Sea", "Road", "Railway"],
+            "Weighted Distance (km)": [100, 500, 200, 200],
+        }
+    )
+    metals.transport_lookup = build_transport_lookup(metals.metals_transport)
+    metals.metals_transport_activities = {
+        mode.lower(): {"name": mode, "reference product": mode, "unit": "ton kilometer"}
+        for mode in ["Air", "Sea", "Road", "Railway"]
+    }
+    dataset = {
+        "exchanges": [
+            technosphere_exchange("mine A", "copper", "CL", 0.3),
+            technosphere_exchange("mine B", "copper", "CL", 0.45),
+        ]
+    }
+    exchanges = metals.add_transport_to_market(dataset, "copper")
+    assert len(exchanges) == 4
+    assert sum(e["amount"] for e in exchanges) == pytest.approx(0.75)
+    assert {e["name"]: e["amount"] for e in exchanges}["Sea"] == pytest.approx(0.375)
+
+
+def test_mining_shares_keep_small_producers_and_sum_duplicate_country_routes():
+    metals = object.__new__(Metals)
+    metals.year = 2035
+    df = pd.DataFrame(
+        {
+            "Country": ["Chile", "Chile", "Peru"],
+            "2020": [0.5, 0.495, 0.005],
+            "2030": [0.4, 0.595, 0.005],
+        }
+    )
+    shares = metals.get_shares(df, {"Chile": "CL", "Peru": "PE"}, "mine", "copper")
+    assert shares[("mine", "copper", "PE")] == pytest.approx(0.005)
+    assert shares[("mine", "copper", "CL")] == pytest.approx(0.995)
+
+
+def test_serialized_reference_product_selector_relinks_grade_fallback():
+    metals = object.__new__(Metals)
+    old = market_dataset("market for lithium carbonate", "lithium carbonate", "GLO", [])
+    new = market_dataset(
+        "market for lithium carbonate, battery grade",
+        "lithium carbonate, battery grade",
+        "World",
+        [],
+    )
+    consumer = market_dataset(
+        "consumer",
+        "consumer",
+        "GLO",
+        [
+            {
+                **technosphere_exchange(
+                    old["name"], old["reference product"], "GLO", 2
+                ),
+                "input": ("old", "code"),
+            }
+        ],
+    )
+    metals.database = [old, new, consumer]
+    metals.write_log = lambda *args: None
+    metals.substitute_old_markets(
+        new, pd.DataFrame({"Reference product": ["{'equals': 'lithium carbonate'}"]})
+    )
+    assert consumer["exchanges"][0]["product"] == new["reference product"]
+    assert consumer["exchanges"][0]["location"] == "World"
+    assert "input" not in consumer["exchanges"][0]
+
+
+def test_two_missing_resource_flows_are_filled_only_at_extraction_boundary():
+    ore = market_dataset("gold mine", "gold", "GLO", [])
+    refinery = market_dataset(
+        "gold refinery",
+        "gold",
+        "CH",
+        [technosphere_exchange("gold mine", "gold", "GLO", 1)],
+    )
+    metals = object.__new__(Metals)
+    metals.database = [refinery, ore]  # downstream first must not affect the result
+    assert metals.get_missing_target_resource_dataset_ids({id(ore), id(refinery)}) == {
+        id(ore)
+    }
+
+
+def test_resource_search_cycles_are_unresolved_not_absence():
+    a = market_dataset(
+        "gold A", "gold", "GLO", [technosphere_exchange("gold B", "gold", "GLO", 1)]
+    )
+    b = market_dataset(
+        "gold B", "gold", "GLO", [technosphere_exchange("gold A", "gold", "GLO", 1)]
+    )
+    metals = object.__new__(Metals)
+    metals.database = [a, b]
+    assert (
+        metals.target_resource_is_supplied_upstream(
+            a, "Gold", metals.build_exchange_provider_index(), {}
+        )
+        is None
+    )
+    assert metals.get_missing_target_resource_dataset_ids({id(a), id(b)}) == set()
+
+
+def test_market_missing_one_route_preserves_source_instead_of_renormalizing():
+    metals = object.__new__(Metals)
+    metals.database = [market_dataset("mine A", "copper", "CL", [])]
+    metals.create_region_specific_markets = lambda _: pytest.fail(
+        "mutated suppliers before checking missing route"
+    )
+    df = pd.DataFrame(
+        {
+            "Process": ["{'equals': 'mine A'}", "{'equals': 'absent mine'}"],
+            "Reference product": ["{'equals': 'copper'}"] * 2,
+        }
+    )
+    assert metals.create_market("copper", df) is None
+    assert metals.market_diagnostics[0]["reason"] == "market_preserved_supplier_missing"
+
+
+def test_market_transport_uses_primary_fraction_once():
+    metals = object.__new__(Metals)
+    metals.database = []
+    metals.create_region_specific_markets = lambda _: [
+        technosphere_exchange("mine", "copper", "CL", 1)
+    ]
+    metals.build_secondary_market_exchanges_from_existing_market = lambda _: [
+        technosphere_exchange("recycling", "copper", "GLO", 0.25)
+    ]
+    observed = []
+
+    def transport(dataset, _):
+        observed.extend(deepcopy(dataset["exchanges"][1:]))
+        return [
+            {
+                **technosphere_exchange(
+                    "transport", "transport", "GLO", sum(e["amount"] for e in observed)
+                ),
+                "unit": "ton kilometer",
+            }
+        ]
+
+    metals.add_transport_to_market = transport
+    metals.activity_exists = lambda _: True
+    market = metals.create_market(
+        "copper", pd.DataFrame(columns=["Process", "Reference product"])
+    )
+    assert sum(e["amount"] for e in observed) == pytest.approx(0.75)
+    assert next(
+        e["amount"] for e in market["exchanges"] if e["unit"] == "ton kilometer"
+    ) == pytest.approx(0.75)
+
+
+def test_validation_uses_applied_suppliers_and_catches_even_small_share_loss():
+    validator = object.__new__(validation_module.MetalsValidation)
+    primary = technosphere_exchange("mine", "copper", "CL", 0.75)
+    secondary = technosphere_exchange("recycling", "copper", "GLO", 0.25)
+    validator.database = [
+        market_dataset(
+            "market for copper",
+            "copper",
+            "World",
+            [deepcopy(primary), deepcopy(secondary)],
+        )
+    ]
+    validator.system_model = "cutoff"
+    validator.applied_market_shares = {
+        "copper": {
+            "primary share": 0.75,
+            "secondary share": 0.25,
+            "primary suppliers": [primary],
+            "secondary suppliers": [secondary],
+        }
+    }
+    validator.prim_sec_split = {"copper": {"shares": {"primary": {2020: 0.1}}}}
+    issues = []
+    validator.log_issue = lambda *args, **kwargs: issues.append((args, kwargs))
+    validator.check_excel_shares_preserved()
+    assert issues == []
+    validator.database[0]["exchanges"][0]["amount"] -= 0.001
+    validator.check_excel_shares_preserved()
+    assert len(issues) == 1 and issues[0][1]["issue_type"] == "major"
+
+
+@pytest.mark.parametrize("count", [0, 2])
+def test_validation_reports_missing_or_duplicate_market(count):
+    validator = object.__new__(validation_module.MetalsValidation)
+    validator.metals_list = ["copper"]
+    validator.database = [
+        market_dataset("market for copper", "copper", "World", []) for _ in range(count)
+    ]
+    issues = []
+    validator.log_issue = lambda *args, **kwargs: issues.append((args, kwargs))
+    validator.check_market_balance()
+    assert len(issues) == 1 and issues[0][1]["issue_type"] == "major"
+
+
+def test_air_transport_selects_freight_service_not_aircraft_manufacture():
+    aircraft = {
+        "name": "market for aircraft, belly freight, long haul",
+        "reference product": "aircraft, belly freight, long haul",
+        "unit": "unit",
+        "location": "GLO",
+    }
+    freight = {
+        "name": "market for transport, freight, aircraft, long haul",
+        "reference product": "transport, freight, aircraft, long haul",
+        "unit": "ton kilometer",
+        "location": "GLO",
+    }
+    assert select_transport_provider([aircraft, freight], "air") is freight
+    with pytest.raises(metals_module.ws.NoResults):
+        select_transport_provider([aircraft], "air")
+
+
+@pytest.mark.parametrize(
+    "name",
+    [
+        "market group for transport, freight train",
+        "market group for transport, freight, train, fleet average",
+    ],
+)
+def test_freight_selector_accepts_supported_rail_market_names(name):
+    provider = {"name": name, "unit": "ton kilometer", "location": "GLO"}
+    assert select_transport_provider([provider], "railway") is provider
+
+
+def test_partial_proxy_mapping_falls_back_for_each_missing_country():
+    metals = object.__new__(Metals)
+    source = market_dataset("mine", "copper", "GLO", [])
+    metals.db_index = {"mine": {"copper": [source]}}
+    metals.is_in_index = lambda ds: ds["location"] == "CL"
+    captured = {}
+
+    def proxies(**kwargs):
+        captured.update(kwargs)
+        return {}
+
+    metals.fetch_proxies = proxies
+    metals.create_new_mining_activity(
+        "mine",
+        "copper",
+        {"Chile": "CL", "Peru": "PE", "Zambia": "ZM"},
+        {"PE": "GLO", "ZM": "missing"},
+    )
+    assert captured["geo_mapping"] == {"PE": source, "ZM": source}
+    assert captured["unlist"] is False
+    assert metals.market_diagnostics[0]["country"] == "ZM"
+
+
+@pytest.mark.parametrize("share", [np.nan, -0.1, np.inf])
+def test_invalid_individual_mining_share_cannot_be_hidden_by_aggregation(share):
+    metals = object.__new__(Metals)
+    metals.year = 2035
+    df = pd.DataFrame(
+        {"Country": ["Chile", "Chile"], "2020": [share, 1], "2030": [share, 1]}
+    )
+    with pytest.raises(MetalsConfigError, match="Invalid mining"):
+        metals.get_shares(df, {"Chile": "CL"}, "mine", "copper")
+
+
+def test_mine_reagent_does_not_displace_virgin_extraction(monkeypatch):
+    mine = market_dataset(
+        "copper mine operation",
+        "copper",
+        "CL",
+        [
+            biosphere_resource("Copper", 0.5),
+            technosphere_exchange(
+                "market for copper sulfate", "copper sulfate", "GLO", 0.000001
+            ),
+        ],
+    )
+    reagent = market_dataset(
+        "market for copper sulfate",
+        "copper sulfate",
+        "GLO",
+        [biosphere_resource("Copper", 0.2)],
+    )
+    metals = object.__new__(Metals)
+    metals.database = [mine, reagent]
+    metals.version = "3.12"
+    metals._validation_targets = {}
+    metals.get_mining_share_dataset_ids = lambda: {id(mine)}
+    metals.get_mapped_metal_dataset_ids = lambda: {id(mine)}
+    monkeypatch.setattr(
+        metals_module, "record_change_event", lambda *args, **kwargs: None
+    )
+    metals.post_allocation_correction()
+    assert mine["exchanges"][0]["amount"] == 1
+
+
+def test_refinery_resource_is_counted_once_with_full_upstream_feed(monkeypatch):
+    mine = market_dataset(
+        "gold mine operation", "gold", "GLO", [biosphere_resource("Gold", 0.5)]
+    )
+    refinery = market_dataset(
+        "gold refining",
+        "gold",
+        "CH",
+        [
+            biosphere_resource("Gold", 0.5),
+            technosphere_exchange("gold mine operation", "gold", "GLO", 1),
+        ],
+    )
+    metals = object.__new__(Metals)
+    metals.database = [refinery, mine]
+    metals.version = "3.12"
+    metals._validation_targets = {}
+    metals.get_mining_share_dataset_ids = lambda: {id(mine), id(refinery)}
+    metals.get_mapped_metal_dataset_ids = lambda: {id(mine), id(refinery)}
+    monkeypatch.setattr(
+        metals_module, "record_change_event", lambda *args, **kwargs: None
+    )
+    metals.post_allocation_correction()
+    assert mine["exchanges"][0]["amount"] == 1
+    assert refinery["exchanges"][0]["amount"] == 0

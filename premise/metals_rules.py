@@ -14,6 +14,9 @@ from .utils import DATA_DIR
 
 MATERIAL_RULES_PATH = DATA_DIR / "metals" / "metal_products.yaml"
 CONVERSION_FACTORS_PATH = DATA_DIR / "metals" / "technology_conversion_factors.yaml"
+INTENSITY_UNITS = frozenset(
+    {"kg/MW", "kg/kWh", "kg metal/kg vehicle", "kg metal/kg motor"}
+)
 
 
 class MetalsConfigError(ValueError):
@@ -431,6 +434,10 @@ def load_technology_conversions() -> tuple[TechnologyConversion, ...]:
                 f"{context}: duplicate activity selector {activity_name!r}."
             )
         activities.add(activity_name)
+        if raw.get("intensity_unit") not in INTENSITY_UNITS:
+            raise MetalsConfigError(
+                f"{context}: unknown intensity_unit {raw.get('intensity_unit')!r}."
+            )
         conversions.append(
             TechnologyConversion(
                 id=conversion_id,

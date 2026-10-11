@@ -16,16 +16,16 @@ conversions:
   activity:
     name: electric motor production, for electric scooter
   ecoinvent_unit: kilogram
-  intensity_unit: kg/MW
-  factor: 0.0018867924528301887
+  intensity_unit: kg metal/kg motor
+  factor: 1.0
   description: This dataset describes the production of an electric motor suitable for an electric scooter. The entries are given on a function of kg of device. The original data was collected for a device of approximately 5.8kg. The dataset is based on direct inspection of existing commercial devices of current technology.
   comment: Same as electric car
 - id: electric-motor-production-vehicle
   activity:
     name: electric motor production, vehicle
   ecoinvent_unit: kilogram
-  intensity_unit: kg/MW
-  factor: 0.0018867924528301887
+  intensity_unit: kg metal/kg motor
+  factor: 1.0
   description: 'The module reflects an average electric motor used in BEV or HEV
 
     Geography:  Data valid for average electric motor
@@ -36,12 +36,12 @@ conversions:
   activity:
     name: electric motor production, vehicle (electric powertrain)
   ecoinvent_unit: kilogram
-  intensity_unit: kg/MW
-  factor: 0.0018867924528301887
+  intensity_unit: kg metal/kg motor
+  factor: 1.0
   description: 'This dataset describes an electric motor used for an electric passenger car. It is based on direct information from the Swiss manufacturer Brusa. The electric motor has a maximal output power of about 100kW The entries are given as a function of kg device. The specific motor which was used for this dataset weights 53 kg.
 
     Technology:  This dataset is based on current, high-level standard.'
-  comment: We divide the motor power by its weight. We obtain MWp/(kg of motor). This unit allows us to use the (kg of materials)/MW, as the reference flow unit is in kg
+  comment: Runtime metals_db.csv intensities are kg metal/kg motor; no capacity conversion applies.
 - id: wind-power-plant-construction-800kw-moving-parts
   activity:
     name: wind power plant construction, 800kW, moving parts
