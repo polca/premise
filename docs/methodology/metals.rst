@@ -151,6 +151,26 @@ Primary mines retain their own extraction when they consume metal-containing
 reagents. For other producers, upstream presence can remove a duplicate direct
 resource only when the positive target-bearing feed mass covers the target
 amount. This is a conservative screening condition, not a recovery-yield model.
+
+The material-path check uses kilogram inputs and their reference product, using
+the supplier name only when a product is missing. Energy and service exchanges
+with industry names such as ``electricity, cobalt industry`` are not material
+feeds. Carrier suppliers must still resolve uniquely before traversal stops at
+their downstream-attribution boundary.
+
+``primary zinc production from concentrate`` has an explicit primary extraction
+boundary for the ``zinc`` output fed by ``zinc concentrate``. Its small zinc and
+zinc-oxide process inputs can return through the zinc market to the same primary
+producers; those loops do not replace extraction from the concentrate. All
+positive target-bearing suppliers must resolve uniquely, the concentrate feed
+must weigh at least 1 kg per kg output, and the other target-bearing inputs must
+total less than 1 kg even assuming pure metal. These are applicability checks
+for the existing attribution convention, not inferred grades or yields. The
+regional boundaries are planned together before checking downstream consumers,
+so one producer's extraction cannot conceal missing attribution at others.
+The zinc and zinc-oxide input amounts and their supply-chain burdens are retained.
+Cycles without such an explicit boundary remain unresolved.
+
 Generic carrier intermediates whose resource attribution is handled by
 downstream metal-specific datasets, such as platinum group metal concentrate,
 have their direct metal resource flows cleared to avoid double counting.

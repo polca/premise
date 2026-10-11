@@ -1,0 +1,59 @@
+market,name,product,location,score_contribution
+zinc,primary zinc production from concentrate,zinc,CA,0.0469397053618582
+zinc,zinc mine operation,"limestone, milled, loose",GLO,6.684446719701787e-05
+cobalt,cobalt production,sulfuric acid,GLO,2.8731137025349858e-05
+cobalt,cobalt production,ferronickel,GLO,1.06490780757628e-05
+zinc,zinc mine operation,bulk lead-zinc concentrate,GLO,1.030455084484367e-05
+cobalt,cobalt production,"electrolyte, copper-rich",GLO,6.365357113421451e-07
+cobalt,cobalt production,copper cake,GLO,6.025802832840917e-07
+zinc,zinc mine operation,"limestone, crushed, washed",GLO,2.7736103293658913e-07
+zinc,anthraquinone production,anthraquinone,RoW,1.094105897064211e-07
+zinc,cobalt production,ferronickel,GLO,6.358239136536015e-08
+cobalt,cobalt production,nickel sulfate,GLO,2.025014218383103e-08
+zinc,zinc mine operation,sand,FR,1.834898696664989e-08
+zinc,cobalt production,"electrolyte, copper-rich",GLO,1.5689303882777062e-08
+zinc,cobalt production,sulfuric acid,GLO,1.5445060018839475e-08
+zinc,anthraquinone production,anthraquinone,RER,1.5151273178985863e-08
+zinc,cobalt production,copper cake,GLO,1.4860195961463439e-08
+cobalt,cobalt production,"electrolyte, nickel-rich",GLO,1.1017042088602916e-08
+zinc,"sodium percarbonate production, powder","sodium percarbonate, powder",RoW,8.28654462095908e-09
+zinc,"zeolite production, powder","zeolite, powder",RoW,7.713307383888009e-09
+zinc,citric acid production,citric acid,CN,6.629984562589159e-09
+zinc,zinc mine operation,sand,CN,4.692336876182003e-09
+zinc,zinc mine operation,sand,US,4.582840340464362e-09
+zinc,"zeolite production, powder","zeolite, powder",RER,3.630863762921585e-09
+zinc,zinc mine operation,sand,NL,2.884305091912094e-09
+cobalt,cobalt production,ammonium sulfate,GLO,2.3881082783485138e-09
+zinc,"polycarboxylates production, 40% active substance","polycarboxylates, 40% active substance",RoW,1.959773548039576e-09
+zinc,"nylon 6-6 production, glass-filled","nylon 6-6, glass-filled",RoW,1.517504403189751e-09
+zinc,citric acid production,citric acid,RoW,8.743496393142928e-10
+cobalt,"zeolite production, powder","zeolite, powder",RoW,7.994687152075213e-10
+cobalt,citric acid production,citric acid,CN,7.595934934541269e-10
+zinc,"nylon 6-6 production, glass-filled","nylon 6-6, glass-filled",RER,7.494317645819016e-10
+zinc,zinc mine operation,sand,IT,7.210762729780235e-10
+zinc,zinc mine operation,sand,TR,5.92884921679905e-10
+zinc,zinc mine operation,sand,DE,5.573652271362176e-10
+zinc,zinc mine operation,sand,BG,4.4733435370648387e-10
+zinc,nylon 6 production,nylon 6,RoW,4.232752995430868e-10
+zinc,soy-based resin production,"polyester resin, unsaturated",RoW,4.0827804760023893e-10
+zinc,zinc mine operation,sand,RU,3.899152895601599e-10
+cobalt,"zeolite production, powder","zeolite, powder",RER,3.8843257160880497e-10
+zinc,"sodium percarbonate production, powder","sodium percarbonate, powder",RER,3.7062408630754637e-10
+zinc,zinc mine operation,sand,ES,3.202112763097169e-10
+zinc,zinc mine operation,sand,PL,2.852257187167075e-10
+zinc,zinc mine operation,sand,GB,2.830891932208288e-10
+zinc,cobalt production,nickel sulfate,GLO,2.6396783716687653e-10
+zinc,zinc mine operation,sand,CA,2.577179892058607e-10
+zinc,citric acid production,citric acid,RNA,2.4837895771696025e-10
+zinc,"polycarboxylates production, 40% active substance","polycarboxylates, 40% active substance",RER,2.3852485261132835e-10
+cobalt,"sodium percarbonate production, powder","sodium percarbonate, powder",RoW,2.3015911778118938e-10
+zinc,zinc mine operation,sand,MY,2.2433484246487972e-10
+zinc,zinc mine operation,sand,AU,2.1365221498548686e-10
+zinc,zinc mine operation,sand,AR,2.002989696731894e-10
+zinc,zinc mine operation,sand,ID,1.8801395364859305e-10
+zinc,citric acid production,citric acid,RER,1.762217915574315e-10
+zinc,"grain oriented electrical steel production, 0.23 mm coil","grain oriented electrical steel, 0.23 mm coil",RER,1.4882676159067913e-10
+zinc,zinc mine operation,sand,MX,1.3887394531727283e-10
+zinc,soy-based resin production,"polyester resin, unsaturated",US,1.355087945459161e-10
+zinc,zinc mine operation,sand,ZA,1.1697459802146096e-10
+cobalt,citric acid production,citric acid,RoW,1.1062864384223376e-10

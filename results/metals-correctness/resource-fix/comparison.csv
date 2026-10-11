@@ -1,0 +1,125 @@
+market product,indicator,cutoff before,cutoff after,cutoff percent change,cutoff status,cutoff before location,cutoff after location,consequential before,consequential after,consequential percent change,consequential status,consequential before location,consequential after location
+aluminium hydroxide,Aluminium,0.34189646487642145,0.34189646487642145,0.0,comparable,World,World,0.34198361560795054,0.34198361560795054,0.0,comparable,World,World
+"aluminium oxide, metallurgical",Aluminium,0.5231751023082134,0.5231751023082134,0.0,comparable,World,World,0.5692914458273016,0.5692914458273016,0.0,comparable,World,World
+"aluminium, cast alloy",Aluminium,0.31338577201943674,0.31338577201943674,0.0,comparable,World,World,1.0891159913381117,1.0891159913381117,0.0,comparable,World,World
+"aluminium, primary, ingot",Aluminium,1.004152951995831,1.004152951995831,0.0,comparable,World,World,1.0886582110322456,1.0886582110322456,0.0,comparable,World,World
+"aluminium, primary, liquid",Aluminium,1.0050235931938793,1.0050235931938793,0.0,comparable,World,World,1.0898122538258714,1.0898122538258714,0.0,comparable,World,World
+antimony,Antimony,0.9999999906726804,0.9999999906726804,0.0,comparable,World,World,0.9999999941939524,0.9999999941939524,0.0,comparable,World,World
+bauxite,Aluminium,0.1932993776363207,0.1932993776363207,0.0,comparable,World,World,0.1933060120578526,0.1933060120578526,0.0,comparable,World,World
+bentonite,no dedicated RELICS indicator,,,,no dedicated RELICS indicator,World,World,,,,no dedicated RELICS indicator,World,World
+beryllium,Beryllium,0.9991179360415022,0.9991179360415022,0.0,comparable,World,World,0.9991179360516387,0.9991179360516387,0.0,comparable,World,World
+beryllium hydroxide,Beryllium,0.20945869076536563,0.20945869076536563,0.0,comparable,World,World,0.20945869076546778,0.20945869076546778,0.0,comparable,World,World
+"boric acid, anhydrous, powder",Boron,0.33425945996120704,0.33425945996120704,0.0,comparable,World,World,0.3343775555931586,0.3343775555931586,0.0,comparable,World,World
+boric oxide,Boron,0.6232945865052543,0.6232945865052543,0.0,comparable,World,World,0.6235696878465548,0.6235696878465548,0.0,comparable,World,World
+boron carbide,Boron,1.5568717639744791,1.5568717639744791,0.0,comparable,World,World,1.5577901203304452,1.5577901203304452,0.0,comparable,World,World
+boron trifluoride,Boron,0.3208085861351025,0.3208085861351025,0.0,comparable,World,World,0.32101696259907725,0.32101696259907725,0.0,comparable,World,World
+cadmium,Cadmium,1.0000000324114566,1.0000000324114566,0.0,comparable,World,World,0.9999996798245421,0.9999996798245421,0.0,comparable,GLO,GLO
+calcium borates,Boron,0.16967418687895822,0.16967418687895822,0.0,comparable,World,World,0.1697236862473685,0.1697236862473685,0.0,comparable,World,World
+cerium oxide,Cerium,0.0037246499739419796,0.0037246499739419796,0.0,comparable,World,World,-0.0351192640909344,-0.0351192640909344,0.0,comparable,World,World
+chromite ore concentrate,Chromium,0.26568068168292086,0.26568068168292086,0.0,comparable,World,World,0.26567799996827124,0.26567799996827124,0.0,comparable,World,World
+chromium,Chromium,1.000094462833861,1.000094462833861,0.0,comparable,World,World,1.0000260545887463,1.0000260545887463,0.0,comparable,World,World
+cobalt,Cobalt,4.065580848974077e-05,0.9943293284124262,2445625.1382993376,comparable,World,World,-5.929983104131423e-09,0.9999990436602462,16863438428.57713,comparable,World,World
+cobalt hydroxide,Cobalt,1.2854871633917112e-06,2.441493353968876e-06,89.92747835202682,comparable,World,World,1.2412217865091683e-09,6.836848408100397e-07,54981.6017122005,comparable,World,World
+cobalt sulfate,Cobalt,1.5494473403865606e-05,1.7377479508840596e-05,12.152759605919957,comparable,World,World,-2.9422465464342775e-09,-3.2094306268687946e-07,-10808.09548492229,comparable,World,World
+"copper concentrate, sulfide ore",Copper,0.2474749258671849,0.2474749258671849,0.0,comparable,World,World,0.6705239540541225,0.6705239540541225,0.0,comparable,GLO,GLO
+"copper, anode",Copper,0.9001099277441152,0.9001099277441152,0.0,comparable,World,World,2.555608556371913,2.555608556371913,0.0,comparable,GLO,GLO
+"copper, cathode",Copper,0.7631967459373146,0.7631967459373146,0.0,comparable,World,World,3.0048764369962235,3.0048764369962235,0.0,comparable,GLO,GLO
+copper-cobalt ore,Cobalt,2.6083132675720815e-07,6.043290162592761e-07,131.69341803095946,comparable,World,World,2.112226316734523e-10,2.1135970291993862e-07,99964.89420447059,comparable,World,World
+copper-cobalt ore,Copper,0.00011473588439891751,0.00011473588439891751,0.0,comparable,World,World,0.00022643127197596944,0.00022643127197596944,0.0,comparable,World,World
+dolomite,Dolomite,1.0000705633723002,1.0000705633723002,0.0,comparable,World,World,1.00007302736399,1.00007302736399,0.0,comparable,World,World
+dysprosium oxide,Dysprosium,0.22734874792158213,0.22734874792158213,0.0,comparable,World,World,0.019315585999892314,0.019315585999892314,0.0,comparable,GLO,GLO
+erbium oxide,Erbium,0.02064370166321426,0.02064370166321426,0.0,comparable,World,World,0.009468284743758704,0.009468284743758704,0.0,comparable,GLO,GLO
+europium oxide,Europium,0.00463546791775157,0.00463546791775157,0.0,comparable,World,World,0.004214064994519836,0.004214064994519836,0.0,comparable,World,World
+"ferroniobium, 66% Nb",Niobium,1.0635488440220564,1.0635488440220564,0.0,comparable,World,World,1.135877278950363,1.135877278950363,0.0,comparable,World,World
+gadolinium oxide,Gadolinium,0.024675648869726924,0.024675648869726924,0.0,comparable,World,World,0.028089662064635052,0.028089662064635052,0.0,comparable,GLO,GLO
+"gallium, high-grade",Gallium,1.0000000471321084,1.0000000471321084,0.0,comparable,World,World,1.0000000259580963,1.0000000259580963,0.0,comparable,World,World
+"germanium, concentrate",Germanium,1.0000000224512255,1.0000000224512255,0.0,comparable,World,World,1.0000000224146461,1.0000000224146461,0.0,comparable,World,World
+gold,Gold,0.9962402586654244,0.9962402586654244,0.0,comparable,World,World,0.9318330071953514,0.9318330071953514,0.0,comparable,GLO,GLO
+graphite,Graphite,1.0000003365585257,1.0000003365585257,0.0,comparable,World,World,1.000000268347729,1.000000268347729,0.0,comparable,World,World
+"graphite ore, mined",Graphite,,,,market unavailable in one or both builds,,,,,,market unavailable in one or both builds,,
+hafnium sponge,Hafnium,1.0000000214185474,1.0000000214185474,0.0,comparable,World,World,1.0000000037288506,1.0000000037288506,0.0,comparable,World,World
+hafnium tetrachloride,Hafnium,3.6325080046834686e-09,3.6325080046834686e-09,0.0,comparable,World,World,-3.1205231925293395e-09,-3.1205231925293395e-09,0.0,comparable,World,World
+holmium oxide,Holmium,0.011679623750817186,0.011679623750817186,0.0,comparable,World,World,0.0036236645416420263,0.0036236645416420263,0.0,comparable,GLO,GLO
+"ilmenite, 54% titanium dioxide",Titanium,0.32461437105836116,0.32461437105836116,0.0,comparable,World,World,0.32443184286119026,0.32443184286119026,0.0,comparable,GLO,GLO
+indium,Indium,1.0000003007215046,1.0000003007215046,0.0,comparable,World,World,1.0000000059470457,1.0000000059470457,0.0,comparable,World,World
+"indium rich leaching residues, from zinc production",Indium,3.0083877631816944e-11,3.0083877631816944e-11,0.0,comparable,World,World,-1.1310307706791016e-14,-1.1310307706791016e-14,0.0,comparable,GLO,GLO
+iridium,Iridium,1.0000000008135443,1.0000000008135443,0.0,comparable,World,World,1.0000000008147283,1.0000000008147283,0.0,comparable,World,World
+iron ore concentrate,Iron,0.6847171590194937,0.6847171590194937,0.0,comparable,World,World,0.8296657025828391,0.8296657025828391,0.0,comparable,GLO,GLO
+lanthanum oxide,Lanthanum,0.06371845250476345,0.06371845250476345,0.0,comparable,World,World,0.16367664465440163,0.16367664465440163,0.0,comparable,World,World
+lanthanum-cerium oxide,Cerium,0.4301130022068587,0.4301130022068587,0.0,comparable,World,World,0.5657717516271905,0.5657717516271905,0.0,comparable,World,World
+lanthanum-cerium oxide,Lanthanum,0.30654404809043956,0.30654404809043956,0.0,comparable,World,World,0.4025910126390683,0.4025910126390683,0.0,comparable,World,World
+lead,Lead,0.45117379472530317,0.45117379472530317,0.0,comparable,World,World,1.0001633640990448,1.0001633640990448,0.0,comparable,World,World
+lead concentrate,Lead,0.00018961131485021446,0.00018961131485021446,0.0,comparable,World,World,5.997120322426128e-09,5.997120322426128e-09,0.0,comparable,GLO,GLO
+"lithium carbonate, battery grade",Lithium,0.1729956352466798,0.1729956352466798,0.0,comparable,World,World,0.17314113147102428,0.17314113147102428,0.0,comparable,World,World
+"lithium hydroxide, battery grade",Lithium,0.42034236454101864,0.42034236454101864,0.0,comparable,World,World,0.42034055628520006,0.42034055628520006,0.0,comparable,World,World
+lutetium oxide,no dedicated RELICS indicator,,,,no dedicated RELICS indicator,World,World,,,,no dedicated RELICS indicator,GLO,GLO
+magnesium,Magnesium,1.0000782016527856,1.0000782016527856,0.0,comparable,World,World,1.000029579468953,1.000029579468953,0.0,comparable,World,World
+manganese,Manganese,1.0004514254428452,1.0004514254428452,0.0,comparable,World,World,1.0005731933399025,1.0005731933399025,0.0,comparable,World,World
+manganese concentrate,Manganese,0.26307018123802606,0.26307018123802606,0.0,comparable,World,World,0.26309231822715645,0.26309231822715645,0.0,comparable,World,World
+molybdenite,Molybdenum,0.5454715535793357,0.5454715535793357,0.0,comparable,World,World,1.2679215519535325,1.2679215519535325,0.0,comparable,GLO,GLO
+molybdenum,Molybdenum,1.0000033983658776,1.0000033983658776,0.0,comparable,World,World,2.3248596519239957,2.3248596519239957,0.0,comparable,World,World
+neodymium oxide,Neodymium,0.1405095090618916,0.1405095090618916,0.0,comparable,World,World,0.14765365866908828,0.14765365866908828,0.0,comparable,World,World
+"nickel concentrate, 16% Ni",Nickel,0.17454375412881998,0.17454375412881998,0.0,comparable,World,World,0.17683425474141698,0.17683425474141698,0.0,comparable,GLO,GLO
+"nickel, class 1",Nickel,1.166162366630729,1.166162366630729,0.0,comparable,World,World,1.2034968767743672,1.2034968767743672,0.0,comparable,World,World
+palladium,Palladium,0.8445206348330438,0.8445206348330438,0.0,comparable,World,World,1.2793058271214663,1.2793058271214663,0.0,comparable,GLO,GLO
+"phosphate rock, beneficiated",Phosphorus,0.16022871698897054,0.16022871698897054,0.0,comparable,World,World,0.16022262763995393,0.16022262763995393,0.0,comparable,World,World
+"phosphoric acid, fertiliser grade, without water, in 70% solution state",Phosphorus,0.25377332895397925,0.25377332895397925,0.0,comparable,World,World,0.26590961485993936,0.26590961485993936,0.0,comparable,World,World
+"phosphorus, white, liquid",Phosphorus,4.2129779616338405,4.2129779616338405,0.0,comparable,World,World,4.212818635213747,4.212818635213747,0.0,comparable,World,World
+platinum,Platinum,0.9554459412917667,0.9554459412917667,0.0,comparable,World,World,1.236354075528914,1.236354075528914,0.0,comparable,GLO,GLO
+platinum group metal concentrate,Iridium,-9.365826131347978e-18,-9.365826131347978e-18,0.0,comparable,World,World,-1.646400539415594e-18,-1.646400539415594e-18,0.0,comparable,World,World
+platinum group metal concentrate,Palladium,1.750934370760369e-09,1.750934370760369e-09,0.0,comparable,World,World,-2.4594198669238073e-08,-2.4594198669238073e-08,0.0,comparable,World,World
+platinum group metal concentrate,Platinum,4.488062194092953e-09,4.488062194092953e-09,0.0,comparable,World,World,1.2131818788789995e-08,1.2131818788789995e-08,0.0,comparable,World,World
+platinum group metal concentrate,Rhodium,2.5441591852961573e-12,2.5441591852961573e-12,0.0,comparable,World,World,5.863081657299302e-12,5.863081657299302e-12,0.0,comparable,World,World
+platinum group metal concentrate,Ruthenium,2.882701073497673e-14,2.882701073497673e-14,0.0,comparable,World,World,3.486852895784364e-14,3.486852895784364e-14,0.0,comparable,World,World
+potash salt,Potassium,0.08301587443161147,0.08301587443161147,0.0,comparable,World,World,0.08301597998246173,0.08301597998246173,0.0,comparable,World,World
+praseodymium oxide,Praseodymium,0.11469619460161785,0.11469619460161785,0.0,comparable,World,World,0.058827947362370764,0.058827947362370764,0.0,comparable,GLO,GLO
+pyrochlore concentrate,Niobium,0.6861592891888442,0.6861592891888442,0.0,comparable,World,World,0.7328240113736891,0.7328240113736891,0.0,comparable,GLO,GLO
+rare earth carbonate concentrate,Cerium,0.013514775647595536,0.013514775647595536,0.0,comparable,World,World,0.013500014551349096,0.013500014551349096,0.0,comparable,World,World
+rare earth carbonate concentrate,Dysprosium,0.015800064748287188,0.015800064748287188,0.0,comparable,World,World,0.015800006703391774,0.015800006703391774,0.0,comparable,World,World
+rare earth carbonate concentrate,Erbium,0.008100017751444522,0.008100017751444522,0.0,comparable,World,World,0.008100004057516381,0.008100004057516381,0.0,comparable,World,World
+rare earth carbonate concentrate,Europium,0.0027000747613448676,0.0027000747613448676,0.0,comparable,World,World,0.0027000013715329447,0.0027000013715329447,0.0,comparable,World,World
+rare earth carbonate concentrate,Gadolinium,0.02110024029676559,0.02110024029676559,0.0,comparable,World,World,0.021100009692322213,0.021100009692322213,0.0,comparable,World,World
+rare earth carbonate concentrate,Holmium,0.003100006802386096,0.003100006802386096,0.0,comparable,World,World,0.003100001561500004,0.003100001561500004,0.0,comparable,World,World
+rare earth carbonate concentrate,Lanthanum,0.12250945949306707,0.12250945949306707,0.0,comparable,World,World,0.12250006119054452,0.12250006119054452,0.0,comparable,World,World
+rare earth carbonate concentrate,Neodymium,0.09930508746135804,0.09930508746135804,0.0,comparable,World,World,0.099300047853838,0.099300047853838,0.0,comparable,World,World
+rare earth carbonate concentrate,Praseodymium,0.027301660426921323,0.027301660426921323,0.0,comparable,World,World,0.027300014403444536,0.027300014403444536,0.0,comparable,World,World
+rare earth carbonate concentrate,Samarium,0.02160038738986385,0.02160038738986385,0.0,comparable,World,World,0.021600010816601747,0.021600010816601747,0.0,comparable,World,World
+rare earth carbonate concentrate,Scandium,9.633317659569539e-09,9.633317659569539e-09,0.0,comparable,World,World,3.6046036673755166e-11,3.6046036673755166e-11,0.0,comparable,World,World
+rare earth carbonate concentrate,Terbium,0.0027000246940237704,0.0027000246940237704,0.0,comparable,World,World,0.002700001329409761,0.002700001329409761,0.0,comparable,World,World
+rare earth carbonate concentrate,Thulium,0.0009000019335775351,0.0009000019335775351,0.0,comparable,World,World,0.0009000004120300305,0.0009000004120300305,0.0,comparable,World,World
+rare earth carbonate concentrate,Ytterbium,0.008000017704758397,0.008000017704758397,0.0,comparable,World,World,0.008000004179890809,0.008000004179890809,0.0,comparable,World,World
+rare earth carbonate concentrate,Yttrium,0.10250033582721996,0.10250033582721996,0.0,comparable,World,World,0.10250004765114953,0.10250004765114953,0.0,comparable,World,World
+rhenium,Rhenium,0.9999999853149389,0.9999999853149389,0.0,comparable,World,World,1.0000000065340375,1.0000000065340375,0.0,comparable,World,World
+ruthenium,Ruthenium,0.9999999792988185,0.9999999792988185,0.0,comparable,World,World,0.9999999793462868,0.9999999793462868,0.0,comparable,World,World
+"rutile, 95% titanium dioxide",Titanium,0.5724229157596027,0.5724229157596027,0.0,comparable,World,World,0.5998442432863904,0.5998442432863904,0.0,comparable,GLO,GLO
+samarium oxide,Samarium,0.0013468242865837606,0.0013468242865837606,0.0,comparable,World,World,0.034487073408241954,0.034487073408241954,0.0,comparable,World,World
+sand,no dedicated RELICS indicator,,,,no dedicated RELICS indicator,World,World,,,,no dedicated RELICS indicator,RoW,RoW
+scandium oxide,Scandium,2.6665878238064654e-08,2.6665878238064654e-08,0.0,comparable,World,World,-1.3869407991386774e-12,-1.3869407991386774e-12,0.0,comparable,GLO,GLO
+selenium,Selenium,1.0000000309225316,1.0000000309225316,0.0,comparable,World,World,0.999999843917743,0.999999843917743,0.0,comparable,GLO,GLO
+silica sand,no dedicated RELICS indicator,,,,no dedicated RELICS indicator,World,World,,,,no dedicated RELICS indicator,World,World
+"silicon, metallurgical grade",Silicon,0.0019702091273355723,0.0019702091273355723,0.0,comparable,World,World,0.002268110119641531,0.002268110119641531,0.0,comparable,World,World
+silver,Silver,0.8622976798154847,0.8622976798154847,0.0,comparable,World,World,1.001766568846691,1.001766568846691,0.0,comparable,GLO,GLO
+sodium borates,Boron,3.993916747134268e-07,3.993916747134268e-07,0.0,comparable,World,World,7.209685800192342e-05,7.209685800192342e-05,0.0,comparable,World,World
+spodumene,Spodumene,0.9999999939782014,0.9999999939782014,0.0,comparable,World,World,0.9999999916546161,0.9999999916546161,0.0,comparable,World,World
+stibnite concentrate,Antimony,0.24943876773378829,0.24943876773378829,0.0,comparable,World,World,0.24943876859836192,0.24943876859836192,0.0,comparable,World,World
+"strontium sulfate, 90% SrSO4",Strontium,0.5724303498977589,0.5724303498977589,0.0,comparable,World,World,0.5724303536782926,0.5724303536782926,0.0,comparable,World,World
+sulfur,Sulfur,1.0000957083398365,1.0000957083398365,0.0,comparable,World,World,-1.1428817739790483e-06,-1.1428817739790483e-06,0.0,comparable,GLO,GLO
+"tantalum concentrate, 30% Ta2O5",Tantalum,0.3521737556989204,0.3521737556989204,0.0,comparable,World,World,0.35217380366525275,0.35217380366525275,0.0,comparable,World,World
+"tellurium, semiconductor-grade",Tellurium,1.000000013086643,1.000000013086643,0.0,comparable,World,World,0.9999794494123981,0.9999794494123981,0.0,comparable,World,World
+terbium oxide,Terbium,0.055512632938024824,0.055512632938024824,0.0,comparable,World,World,0.003664047406750349,0.003664047406750349,0.0,comparable,GLO,GLO
+thulium oxide,Thulium,0.011373541301845,0.011373541301845,0.0,comparable,World,World,0.001052031592835195,0.001052031592835195,0.0,comparable,GLO,GLO
+tin,Tin,1.0000004944114607,1.0000004944114607,0.0,comparable,World,World,1.000000746009132,1.000000746009132,0.0,comparable,World,World
+tin concentrate,Tin,0.48379308560811674,0.48379308560811674,0.0,comparable,World,World,0.4837932499420637,0.4837932499420637,0.0,comparable,World,World
+titanium,Titanium,1.000086484638345,1.000086484638345,0.0,comparable,World,World,1.0277942394405923,1.0277942394405923,0.0,comparable,World,World
+titanium sponge,Titanium,1.0000105743911443,1.0000105743911443,0.0,comparable,World,World,1.0277335107334673,1.0277335107334673,0.0,comparable,World,World
+titanium tetrachloride,Titanium,0.2523028870683217,0.2523028870683217,0.0,comparable,World,World,0.25930668710286625,0.25930668710286625,0.0,comparable,World,World
+tungsten concentrate,Tungsten,0.6872666596596759,0.6872666596596759,0.0,comparable,World,World,0.6872666611474614,0.6872666611474614,0.0,comparable,World,World
+"uranium ore, as U",no dedicated RELICS indicator,,,,no dedicated RELICS indicator,World,World,,,,no dedicated RELICS indicator,World,World
+vanadium bearing magnetite,Iron,0.5801312671664763,0.5801312671664763,0.0,comparable,World,World,0.8994183915099931,0.8994183915099931,0.0,comparable,World,World
+vanadium bearing magnetite,Vanadium,0.005208961383114572,0.005208961383114572,0.0,comparable,World,World,0.005208959362142733,0.005208959362142733,0.0,comparable,World,World
+vanadium pentoxide,Vanadium,0.06346974323442771,0.06346974323442771,0.0,comparable,World,World,0.06347020827735143,0.06347020827735143,0.0,comparable,World,World
+ytterbium oxide,Ytterbium,0.0035539380978451807,0.0035539380978451807,0.0,comparable,World,World,0.013339938164941997,0.013339938164941997,0.0,comparable,World,World
+yttrium oxide,Yttrium,0.015129888341416783,0.015129888341416783,0.0,comparable,World,World,0.1702471202059163,0.1702471202059163,0.0,comparable,World,World
+zinc,Zinc,0.047017435482707676,1.002903025750793,2033.044934191798,comparable,World,World,0.048884020802659106,1.0443184641875893,2036.318672319161,comparable,World,World
+zinc concentrate,Zinc,4.04998694564612e-05,0.0003352402702892085,727.7564219055168,comparable,World,World,4.9571380490739796e-05,0.0010582785670991547,2034.8579697046098,comparable,GLO,GLO
+zircon,Zirconium,0.41791493693894305,0.41791493693894305,0.0,comparable,World,World,0.7317650815834811,0.7317650815834811,0.0,comparable,GLO,GLO

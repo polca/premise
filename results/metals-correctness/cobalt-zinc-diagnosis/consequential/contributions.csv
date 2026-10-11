@@ -1,0 +1,26 @@
+market,name,product,location,score_contribution
+zinc,primary zinc production from concentrate,zinc,CA,0.048881790828601605
+zinc,"sodium percarbonate production, powder","sodium percarbonate, powder",RoW,9.891108090595398e-07
+zinc,"sodium perborate production, tetrahydrate, powder","sodium perborate, tetrahydrate, powder",RoW,5.239133906755172e-07
+zinc,"sodium percarbonate production, powder","sodium percarbonate, powder",RER,4.573269222497885e-07
+zinc,"sodium perborate production, tetrahydrate, powder","sodium perborate, tetrahydrate, powder",RER,2.402768639268083e-07
+zinc,"zeolite production, powder","zeolite, powder",RoW,6.663664466366739e-09
+cobalt,"sodium percarbonate production, powder","sodium percarbonate, powder",RoW,-6.269069878263646e-09
+zinc,"nylon 6-6 production, glass-filled","nylon 6-6, glass-filled",RoW,4.712174783188298e-09
+zinc,"zeolite production, powder","zeolite, powder",RER,3.239827794986466e-09
+zinc,"nylon 6-6 production, glass-filled","nylon 6-6, glass-filled",RER,2.327145447362257e-09
+cobalt,"sodium perborate production, tetrahydrate, powder","sodium perborate, tetrahydrate, powder",RoW,-2.264403645778859e-09
+cobalt,"sodium percarbonate production, powder","sodium percarbonate, powder",RER,1.2389685767584814e-09
+zinc,citric acid production,citric acid,CN,1.2119696004030075e-09
+zinc,nylon 6 production,nylon 6,RoW,6.57568896718331e-10
+cobalt,"sodium perborate production, tetrahydrate, powder","sodium perborate, tetrahydrate, powder",RER,4.754661196289568e-10
+zinc,soy-based resin production,"polyester resin, unsaturated",RoW,-3.58558313804601e-10
+zinc,nylon 6 production,nylon 6,RER,3.2501431976517657e-10
+cobalt,cobalt production,cobalt acetate,GLO,2.925524991434912e-10
+cobalt,"zeolite production, powder","zeolite, powder",RoW,2.305655111092549e-10
+zinc,"particleboard production, cement bonded","particleboard, cement bonded",RoW,1.647252730343849e-10
+zinc,citric acid production,citric acid,RoW,1.592323787824379e-10
+zinc,"polycarboxylates production, 40% active substance","polycarboxylates, 40% active substance",RER,1.4127886219160256e-10
+zinc,soy-based resin production,"polyester resin, unsaturated",US,-1.2303940143752574e-10
+cobalt,"zeolite production, powder","zeolite, powder",RER,1.0188591320709984e-10
+cobalt,"grain oriented electrical steel production, 0.23 mm coil","grain oriented electrical steel, 0.23 mm coil",RER,1.0184232943344947e-10

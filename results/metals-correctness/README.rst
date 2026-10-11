@@ -6,6 +6,13 @@ correctness changes in ``3002c98f`` on ``fix/metals-correctness``. It tests
 implementation contracts and reports their numerical consequences. It does not establish
 the physical plausibility of the prospective metal supply assumptions.
 
+The subsequent all-market RELICS comparison in ``markets/README.rst`` and
+``markets/report.html`` exposes missing cobalt and zinc extraction attribution
+that the selected-product audit below did not detect. Those historical score
+reductions were accounting gaps. ``cobalt-zinc-diagnosis/README.rst`` traces their
+causes; ``resource-fix/README.rst`` records the follow-up correction and fresh
+RELICS results. The original software-test results remain valid.
+
 Design and reproducibility
 --------------------------
 

@@ -6,6 +6,11 @@ All notable changes to this project are documented in this file.
 
 ### Fixed
 
+- Restore cobalt and primary zinc extraction attribution after upstream checks
+  encountered electricity or process-input loops. Match material inputs by
+  product and kilogram unit, and plan zinc concentrate attribution boundaries
+  across regional producers. Keep missing links and unsupported cycles
+  unresolved, and preserve secondary-supply safeguards.
 - Check metal-intensity units and use kg metal/kg motor for EVs. Distinguish
   missing intensities from zero and record every material-rule outcome. Reject
   overlapping writes; preserve the shared ICEV engine until its conflicting

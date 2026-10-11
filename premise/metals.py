@@ -135,6 +135,13 @@ RESOURCE_CARRIER_DATASETS_WITH_DOWNSTREAM_ATTRIBUTION = {
         "copper-cobalt ore",
     ),
 }
+# Explicit downstream attribution boundary for the concentrate whose resource
+# flows are cleared above. Zinc/zinc-oxide process inputs do not replace this
+# primary feed; they retain their own supply-chain burdens. This is a resource
+# allocation convention, not an inferred ore grade or recovery yield.
+PRIMARY_RESOURCE_ATTRIBUTION_FEEDS = {
+    ("primary zinc production from concentrate", "zinc"): "zinc concentrate",
+}
 METAL_RESOURCE_FLOW_NAMES = {
     "Aluminium",
     "Antimony",
@@ -1276,14 +1283,16 @@ def dataset_may_carry_target_resource(dataset: dict, flow_name: str) -> bool:
 
 
 def exchange_may_carry_target_resource(exchange: dict, flow_name: str) -> bool:
-    """Return True if a technosphere exchange can be on the target-resource path."""
-    labels = [
-        exchange.get("product", ""),
-        exchange.get("name", ""),
-    ]
-    return any(
-        product_label_may_carry_target_resource(label, flow_name) for label in labels
-    )
+    """Match a kilogram material input, rather than its supplier's industry name.
+
+    Use the name only when the product is missing, so an identifiable but broken
+    material link remains unresolved. Include attribution carriers here: their
+    provider must resolve before the traversal can stop at that boundary.
+    """
+    if exchange.get("unit") != "kilogram":
+        return False
+    label = exchange.get("product") or exchange.get("name", "")
+    return resource_flow_matches_reference_product(flow_name, label)
 
 
 def has_metal_extraction_context(dataset: dict) -> bool:
@@ -2283,6 +2292,47 @@ class Metals(BaseTransformation):
         # Negative reachability depends on the visited path; never cache it.
         return None if unresolved else False
 
+    @staticmethod
+    def has_primary_resource_attribution_feed(
+        dataset: dict, flow_name: str, provider_index: Dict[tuple, List[dict]]
+    ) -> bool:
+        """Recognize an explicit primary feed despite circular auxiliary inputs.
+
+        All target-bearing links must resolve uniquely. The configured carrier
+        feed must weigh at least the pure-metal output, and the other inputs
+        must weigh less than that output even assuming 100% metal content. These
+        checks bound the rule's applicability; they do not estimate recovery.
+        """
+        feed_product = PRIMARY_RESOURCE_ATTRIBUTION_FEEDS.get(
+            (dataset.get("name"), dataset.get("reference product"))
+        )
+        if not feed_product or not can_add_missing_target_resource_exchange(
+            dataset, primary_route=True
+        ):
+            return False
+
+        feed_mass, other_mass = 0.0, 0.0
+        for exc in dataset.get("exchanges", []):
+            if (
+                exc.get("type") != "technosphere"
+                or exc.get("amount", 0) <= 0
+                or not exchange_may_carry_target_resource(exc, flow_name)
+            ):
+                continue
+            providers = provider_index.get(
+                (exc.get("name"), exc.get("product"), exc.get("location")), []
+            )
+            if len(providers) != 1 or providers[0].get("unit") != "kilogram":
+                return False
+            if exc.get("product") == feed_product:
+                if not is_downstream_attributed_resource_carrier_dataset(providers[0]):
+                    return False
+                feed_mass += exc["amount"]
+            else:
+                other_mass += exc["amount"]
+
+        return feed_mass >= 1.0 and other_mass < 1.0
+
     def get_missing_target_resource_dataset_ids(
         self, strict_dataset_ids: Set[int]
     ) -> Set[int]:
@@ -2298,16 +2348,33 @@ class Metals(BaseTransformation):
         """
         provider_index = self.build_exchange_provider_index()
         cache = {}
-        dataset_ids = set()
+        # Plan the explicitly declared primary boundaries together, before any
+        # regional supplier is examined. Otherwise a surviving Canadian zinc
+        # flow can conceal missing extraction on all the other market branches.
+        dataset_ids = {
+            id(ds)
+            for ds in self.database
+            if id(ds) in strict_dataset_ids
+            and not self._get_in_ground_resource_exchanges(ds)
+            and self.has_primary_resource_attribution_feed(
+                ds,
+                get_reference_product_resource_flow_name(
+                    ds.get("reference product", "")
+                ),
+                provider_index,
+            )
+        }
         # Potential extraction boundaries without target-bearing inputs. Resolve
         # these before downstream refiners so two missing flows cannot both be
         # filled along the same chain merely because of database iteration order.
-        leaf_candidates = {
+        leaf_candidates = dataset_ids | {
             id(ds)
             for ds in self.database
             if id(ds) in strict_dataset_ids
             and not self._get_in_ground_resource_exchanges(ds)
             and can_add_missing_target_resource_exchange(ds, primary_route=True)
+            and (ds.get("name"), ds.get("reference product"))
+            not in PRIMARY_RESOURCE_ATTRIBUTION_FEEDS
             and not any(
                 exc.get("type") == "technosphere"
                 and exc.get("amount", 0) > 0
@@ -2322,11 +2389,22 @@ class Metals(BaseTransformation):
         for dataset in self.database:
             if id(dataset) not in strict_dataset_ids:
                 continue
+            if id(dataset) in dataset_ids:
+                self._record_resource_diagnostic(dataset, "primary_feed_attribution")
+                continue
             if self._get_in_ground_resource_exchanges(dataset):
                 continue
             if not can_add_missing_target_resource_exchange(
                 dataset, primary_route=True
             ):
+                continue
+            if (
+                dataset.get("name"),
+                dataset.get("reference product"),
+            ) in PRIMARY_RESOURCE_ATTRIBUTION_FEEDS:
+                # A declared boundary that failed its feed checks must not fall
+                # back to the generic absence rule or become a planned leaf.
+                self._record_resource_diagnostic(dataset, "primary_feed_unresolved")
                 continue
 
             flow_name = get_reference_product_resource_flow_name(

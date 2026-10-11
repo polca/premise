@@ -1,0 +1,697 @@
+{
+  "project": "metals-correctness-3.12-consequential",
+  "before": "metals-audit-final-consequential",
+  "after": "metals-audit-resource-fix-consequential",
+  "scenario": {
+    "model": "image",
+    "pathway": "SSP2-M",
+    "year": 2050
+  },
+  "scope": "metals-only update",
+  "functional unit": "1 kg of each market product",
+  "database_fingerprints": {
+    "metals-audit-final-consequential": "b3a896e3a5e9cebb009b4c3c8e4ea3d909db8b01736092ef3e99b921ee64ad70",
+    "metals-audit-resource-fix-consequential": "e745765db9190c2b7571bd7be263e725cefb98f6691c8fa3cdd54ae4241751c1"
+  },
+  "methods": [
+    [
+      "RELICS",
+      "metals extraction",
+      "Aluminium"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Antimony"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Arsenic"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Barium"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Beryllium"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Boron"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Cadmium"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Cerium"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Chromium"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Cobalt"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Copper"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Dolomite"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Dysprosium"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Erbium"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Europium"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Gadolinium"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Gallium"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Germanium"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Gold"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Graphite"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Hafnium"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Holmium"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Indium"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Iridium"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Iron"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Lanthanum"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Lead"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Lithium"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Magnesium"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Manganese"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Mercury"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Molybdenum"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Neodymium"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Nickel"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Niobium"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Palladium"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Phosphorus"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Platinum"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Potassium"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Praseodymium"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Rhenium"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Rhodium"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Rubidium"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Ruthenium"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Samarium"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Scandium"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Selenium"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Silicon"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Silver"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Sodium"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Spodumene"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Strontium"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Sulfur"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Tantalum"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Tellurium"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Terbium"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Thulium"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Tin"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Titanium"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Tungsten"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Vanadium"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Ytterbium"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Yttrium"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Zinc"
+    ],
+    [
+      "RELICS",
+      "metals extraction",
+      "Zirconium"
+    ]
+  ],
+  "relics_mapping_sha256": "c2cde55d0468c6153937b3707ec692b83cda426d0028837fc211550d9c4e0af0",
+  "relics_version": "0.0.6",
+  "market_mapping_sha256": "f51b1fec81cd6ff2693e5d3f9e05ffde3a54e79a15b27e7d9e63d88095acc5ff",
+  "configured_markets": 103,
+  "indicator_count": 65,
+  "own_indicator_selection": {
+    "aluminium hydroxide": [
+      "Aluminium"
+    ],
+    "aluminium oxide, metallurgical": [
+      "Aluminium"
+    ],
+    "aluminium, cast alloy": [
+      "Aluminium"
+    ],
+    "aluminium, primary, ingot": [
+      "Aluminium"
+    ],
+    "aluminium, primary, liquid": [
+      "Aluminium"
+    ],
+    "antimony": [
+      "Antimony"
+    ],
+    "bauxite": [
+      "Aluminium"
+    ],
+    "bentonite": [],
+    "beryllium": [
+      "Beryllium"
+    ],
+    "beryllium hydroxide": [
+      "Beryllium"
+    ],
+    "boric acid, anhydrous, powder": [
+      "Boron"
+    ],
+    "boric oxide": [
+      "Boron"
+    ],
+    "boron carbide": [
+      "Boron"
+    ],
+    "boron trifluoride": [
+      "Boron"
+    ],
+    "cadmium": [
+      "Cadmium"
+    ],
+    "calcium borates": [
+      "Boron"
+    ],
+    "cerium oxide": [
+      "Cerium"
+    ],
+    "chromite ore concentrate": [
+      "Chromium"
+    ],
+    "chromium": [
+      "Chromium"
+    ],
+    "cobalt": [
+      "Cobalt"
+    ],
+    "cobalt hydroxide": [
+      "Cobalt"
+    ],
+    "cobalt sulfate": [
+      "Cobalt"
+    ],
+    "copper concentrate, sulfide ore": [
+      "Copper"
+    ],
+    "copper, anode": [
+      "Copper"
+    ],
+    "copper, cathode": [
+      "Copper"
+    ],
+    "copper-cobalt ore": [
+      "Copper",
+      "Cobalt"
+    ],
+    "dolomite": [
+      "Dolomite"
+    ],
+    "dysprosium oxide": [
+      "Dysprosium"
+    ],
+    "erbium oxide": [
+      "Erbium"
+    ],
+    "europium oxide": [
+      "Europium"
+    ],
+    "ferroniobium, 66% Nb": [
+      "Niobium"
+    ],
+    "gadolinium oxide": [
+      "Gadolinium"
+    ],
+    "gallium, high-grade": [
+      "Gallium"
+    ],
+    "germanium, concentrate": [
+      "Germanium"
+    ],
+    "gold": [
+      "Gold"
+    ],
+    "graphite": [
+      "Graphite"
+    ],
+    "graphite ore, mined": [
+      "Graphite"
+    ],
+    "hafnium sponge": [
+      "Hafnium"
+    ],
+    "hafnium tetrachloride": [
+      "Hafnium"
+    ],
+    "holmium oxide": [
+      "Holmium"
+    ],
+    "ilmenite, 54% titanium dioxide": [
+      "Titanium"
+    ],
+    "indium": [
+      "Indium"
+    ],
+    "indium rich leaching residues, from zinc production": [
+      "Indium"
+    ],
+    "iridium": [
+      "Iridium"
+    ],
+    "iron ore concentrate": [
+      "Iron"
+    ],
+    "lanthanum oxide": [
+      "Lanthanum"
+    ],
+    "lanthanum-cerium oxide": [
+      "Lanthanum",
+      "Cerium"
+    ],
+    "lead": [
+      "Lead"
+    ],
+    "lead concentrate": [
+      "Lead"
+    ],
+    "lithium carbonate, battery grade": [
+      "Lithium"
+    ],
+    "lithium hydroxide, battery grade": [
+      "Lithium"
+    ],
+    "lutetium oxide": [],
+    "magnesium": [
+      "Magnesium"
+    ],
+    "manganese": [
+      "Manganese"
+    ],
+    "manganese concentrate": [
+      "Manganese"
+    ],
+    "molybdenite": [
+      "Molybdenum"
+    ],
+    "molybdenum": [
+      "Molybdenum"
+    ],
+    "neodymium oxide": [
+      "Neodymium"
+    ],
+    "nickel concentrate, 16% Ni": [
+      "Nickel"
+    ],
+    "nickel, class 1": [
+      "Nickel"
+    ],
+    "palladium": [
+      "Palladium"
+    ],
+    "phosphate rock, beneficiated": [
+      "Phosphorus"
+    ],
+    "phosphoric acid, fertiliser grade, without water, in 70% solution state": [
+      "Phosphorus"
+    ],
+    "phosphorus, white, liquid": [
+      "Phosphorus"
+    ],
+    "platinum": [
+      "Platinum"
+    ],
+    "platinum group metal concentrate": [
+      "Platinum",
+      "Palladium",
+      "Rhodium",
+      "Ruthenium",
+      "Iridium"
+    ],
+    "potash salt": [
+      "Potassium"
+    ],
+    "praseodymium oxide": [
+      "Praseodymium"
+    ],
+    "pyrochlore concentrate": [
+      "Niobium"
+    ],
+    "rare earth carbonate concentrate": [
+      "Lanthanum",
+      "Cerium",
+      "Praseodymium",
+      "Neodymium",
+      "Samarium",
+      "Europium",
+      "Gadolinium",
+      "Terbium",
+      "Dysprosium",
+      "Holmium",
+      "Erbium",
+      "Thulium",
+      "Ytterbium",
+      "Scandium",
+      "Yttrium"
+    ],
+    "rhenium": [
+      "Rhenium"
+    ],
+    "ruthenium": [
+      "Ruthenium"
+    ],
+    "rutile, 95% titanium dioxide": [
+      "Titanium"
+    ],
+    "samarium oxide": [
+      "Samarium"
+    ],
+    "sand": [],
+    "scandium oxide": [
+      "Scandium"
+    ],
+    "selenium": [
+      "Selenium"
+    ],
+    "silica sand": [],
+    "silicon, metallurgical grade": [
+      "Silicon"
+    ],
+    "silver": [
+      "Silver"
+    ],
+    "sodium borates": [
+      "Boron"
+    ],
+    "spodumene": [
+      "Spodumene"
+    ],
+    "stibnite concentrate": [
+      "Antimony"
+    ],
+    "strontium sulfate, 90% SrSO4": [
+      "Strontium"
+    ],
+    "sulfur": [
+      "Sulfur"
+    ],
+    "tantalum concentrate, 30% Ta2O5": [
+      "Tantalum"
+    ],
+    "tellurium, semiconductor-grade": [
+      "Tellurium"
+    ],
+    "terbium oxide": [
+      "Terbium"
+    ],
+    "thulium oxide": [
+      "Thulium"
+    ],
+    "tin": [
+      "Tin"
+    ],
+    "tin concentrate": [
+      "Tin"
+    ],
+    "titanium": [
+      "Titanium"
+    ],
+    "titanium sponge": [
+      "Titanium"
+    ],
+    "titanium tetrachloride": [
+      "Titanium"
+    ],
+    "tungsten concentrate": [
+      "Tungsten"
+    ],
+    "uranium ore, as U": [],
+    "vanadium bearing magnetite": [
+      "Vanadium",
+      "Iron"
+    ],
+    "vanadium pentoxide": [
+      "Vanadium"
+    ],
+    "ytterbium oxide": [
+      "Ytterbium"
+    ],
+    "yttrium oxide": [
+      "Yttrium"
+    ],
+    "zinc": [
+      "Zinc"
+    ],
+    "zinc concentrate": [
+      "Zinc"
+    ],
+    "zircon": [
+      "Zirconium"
+    ]
+  },
+  "cross_checks": [
+    {
+      "stage": "before",
+      "product": "copper, cathode",
+      "original": null,
+      "score": 3.0048764369962235
+    },
+    {
+      "stage": "before",
+      "product": "gold",
+      "original": null,
+      "score": 0.9318330071953514
+    },
+    {
+      "stage": "after",
+      "product": "copper, cathode",
+      "original": null,
+      "score": 3.0048764369962235
+    },
+    {
+      "stage": "after",
+      "product": "gold",
+      "original": null,
+      "score": 0.9318330071953514
+    }
+  ],
+  "seconds": 140.43201799993403
+}

@@ -2447,3 +2447,210 @@ def test_refinery_resource_is_counted_once_with_full_upstream_feed(monkeypatch):
     metals.post_allocation_correction()
     assert mine["exchanges"][0]["amount"] == 1
     assert refinery["exchanges"][0]["amount"] == 0
+
+
+@pytest.mark.parametrize(
+    "name,product,unit,expected",
+    [
+        (
+            "market for electricity, cobalt industry",
+            "electricity, cobalt industry",
+            "kilowatt hour",
+            False,
+        ),
+        ("heat for cobalt industry", "heat, cobalt industry", "megajoule", False),
+        ("cobalt production", "sulfuric acid", "kilogram", False),
+        ("cobalt sulfate production", "cobalt sulfate", "kilogram", True),
+        ("copper-cobalt mining", "copper-cobalt ore", "kilogram", True),
+        ("market for cobalt", None, "kilogram", True),
+    ],
+)
+def test_resource_path_uses_material_unit_and_product(name, product, unit, expected):
+    exchange = technosphere_exchange(name, product, "GLO", 1)
+    exchange["unit"] = unit
+    assert (
+        metals_module.exchange_may_carry_target_resource(exchange, "Cobalt") is expected
+    )
+
+
+def run_resource_correction(database, primary, monkeypatch):
+    metals = object.__new__(Metals)
+    metals.database = database
+    metals.version = "3.12"
+    metals._validation_targets = {}
+    metals.get_mining_share_dataset_ids = lambda: {id(ds) for ds in primary}
+    metals.get_mapped_metal_dataset_ids = lambda: {id(ds) for ds in primary}
+    monkeypatch.setattr(
+        metals_module, "record_change_event", lambda *args, **kwargs: None
+    )
+    metals.post_allocation_correction()
+    return metals
+
+
+def test_cobalt_attribution_survives_industry_electricity_cycle(monkeypatch):
+    ore = market_dataset(
+        "copper-cobalt mining",
+        "copper-cobalt ore",
+        "CD",
+        [biosphere_resource("Cobalt", 0.01)],
+    )
+    electricity = market_dataset(
+        "market for electricity, cobalt industry",
+        "electricity, cobalt industry",
+        "GLO",
+        [],
+    )
+    electricity["unit"] = "kilowatt hour"
+    power = technosphere_exchange(
+        electricity["name"], electricity["reference product"], "GLO", 3
+    )
+    power["unit"] = "kilowatt hour"
+    electricity["exchanges"] = [{**power, "amount": 0.0046}]
+    intermediate = market_dataset(
+        "cobalt hydroxide production",
+        "cobalt hydroxide",
+        "CD",
+        [technosphere_exchange(ore["name"], "copper-cobalt ore", "CD", 100), power],
+    )
+    cobalt = market_dataset(
+        "cobalt metal production, from copper mining, via electrolysis, economic allocation",
+        "cobalt",
+        "CN",
+        [technosphere_exchange(intermediate["name"], "cobalt hydroxide", "CD", 2)],
+    )
+    database = [cobalt, intermediate, ore, electricity]
+    before_inputs = [
+        deepcopy(ds["exchanges"]) for ds in (cobalt, intermediate, electricity)
+    ]
+    metals = run_resource_correction(database, [cobalt, ore], monkeypatch)
+    assert metals.dataset_has_target_resource_exchange(cobalt, "Cobalt")
+    assert not metals.dataset_has_target_resource_exchange(ore, "Cobalt")
+    assert not any(
+        d["reason"] == "upstream_unresolved"
+        for d in getattr(metals, "resource_diagnostics", [])
+    )
+    for ds, before in zip((cobalt, intermediate, electricity), before_inputs):
+        assert [e for e in ds["exchanges"] if e["type"] == "technosphere"] == before
+    first = deepcopy(database)
+    metals.post_allocation_correction()
+    assert database == first
+
+
+@pytest.mark.parametrize("reverse", [False, True])
+@pytest.mark.parametrize("canada_has_resource", [False, True])
+def test_zinc_primary_attribution_survives_auxiliary_cycles(
+    monkeypatch, reverse, canada_has_resource
+):
+    concentrate = market_dataset(
+        "market for zinc concentrate",
+        "zinc concentrate",
+        "GLO",
+        [],
+    )
+    name = "primary zinc production from concentrate"
+    feed = technosphere_exchange(concentrate["name"], "zinc concentrate", "GLO", 1.5)
+    china = market_dataset(
+        name,
+        "zinc",
+        "CN",
+        [
+            deepcopy(feed),
+            technosphere_exchange("market for zinc", "zinc", "World", 0.003),
+            technosphere_exchange("zinc oxide production", "zinc oxide", "GLO", 0.04),
+        ],
+    )
+    canada = market_dataset(name, "zinc", "CA", [deepcopy(feed)])
+    if canada_has_resource:
+        canada["exchanges"].append(biosphere_resource("Zinc", 1))
+    market = market_dataset(
+        "market for zinc",
+        "zinc",
+        "World",
+        [
+            technosphere_exchange(name, "zinc", "CN", 0.95),
+            technosphere_exchange(name, "zinc", "CA", 0.05),
+        ],
+    )
+    oxide = market_dataset(
+        "zinc oxide production",
+        "zinc oxide",
+        "GLO",
+        [
+            technosphere_exchange(market["name"], "zinc", "World", 0.8),
+        ],
+    )
+    refinery = market_dataset(
+        "zinc refining",
+        "zinc",
+        "CH",
+        [
+            technosphere_exchange(market["name"], "zinc", "World", 1),
+        ],
+    )
+    secondary = market_dataset("zinc recycling", "zinc", "GLO", [deepcopy(feed)])
+    database = [refinery, china, market, oxide, canada, concentrate, secondary]
+    if reverse:
+        database.reverse()
+    before_inputs = {
+        id(ds): deepcopy([e for e in ds["exchanges"] if e["type"] == "technosphere"])
+        for ds in database
+    }
+    metals = run_resource_correction(
+        database, [china, canada, refinery, secondary], monkeypatch
+    )
+    for ds in (china, canada):
+        resources = metals_module.get_in_ground_resource_exchanges(ds)
+        assert len(resources) == 1 and resources[0]["amount"] == 1
+    for ds in (refinery, secondary, concentrate):
+        assert not metals.dataset_has_target_resource_exchange(ds, "Zinc")
+    for ds in database:
+        assert [
+            e for e in ds["exchanges"] if e["type"] == "technosphere"
+        ] == before_inputs[id(ds)]
+    first = deepcopy(database)
+    metals.post_allocation_correction()
+    assert database == first
+
+
+@pytest.mark.parametrize(
+    "failure",
+    ["missing", "ambiguous", "missing_auxiliary", "insufficient", "full_metal_feed"],
+)
+def test_primary_zinc_boundary_requires_supported_feed(failure):
+    concentrate = market_dataset(
+        "market for zinc concentrate", "zinc concentrate", "GLO", []
+    )
+    zinc = market_dataset(
+        "primary zinc production from concentrate",
+        "zinc",
+        "CN",
+        [technosphere_exchange(concentrate["name"], "zinc concentrate", "GLO", 1.5)],
+    )
+    database = [zinc, concentrate]
+    if failure == "missing":
+        database.remove(concentrate)
+    elif failure == "ambiguous":
+        database.append(deepcopy(concentrate))
+    elif failure == "insufficient":
+        zinc["exchanges"][0]["amount"] = 0.01
+    elif failure == "missing_auxiliary":
+        zinc["exchanges"].append(
+            technosphere_exchange("missing zinc", "zinc", "GLO", 0.01)
+        )
+    else:
+        supplier = market_dataset(
+            "zinc supplier", "zinc", "GLO", [biosphere_resource("Zinc", 1)]
+        )
+        zinc["exchanges"].append(
+            technosphere_exchange(supplier["name"], "zinc", "GLO", 1)
+        )
+        database.append(supplier)
+    metals = object.__new__(Metals)
+    metals.database = database
+    index = metals.build_exchange_provider_index()
+    assert not metals.has_primary_resource_attribution_feed(zinc, "Zinc", index)
+    assert metals.get_missing_target_resource_dataset_ids({id(zinc)}) == set()
+    if failure in {"missing", "ambiguous", "missing_auxiliary"}:
+        assert (
+            metals.target_resource_is_supplied_upstream(zinc, "Zinc", index, {}) is None
+        )
