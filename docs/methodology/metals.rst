@@ -71,10 +71,23 @@ rule records an applied or preserved outcome, including unavailable intensities.
 EV intensities in the runtime CSV are in kg metal/kg motor. The three motor
 activities therefore use a conversion of one, rather than 0.1 MW/53 kg.
 For example, the 2020 aluminium intensity is 0.2252697267 kg/kg motor.
-The separate boron and neodymium magnet rules include the reference motor's
-53/1.98 motor-to-magnet mass ratio and compound conversions. They describe that
-reference motor; they do not establish a vehicle-specific magnet composition
-for every motor type (the scooter has a different magnet fraction).
+Unit compatibility alone does not establish component scope. The EV summary
+includes whole-vehicle observations from Cullbrand and Magnusson's
+`The Use of Potentially Critical Materials in Passenger Cars
+<https://odr.chalmers.se/items/0926d689-2b39-4acf-950d-673f8d6660b7>`_,
+Table 8 (printed pages 33–34). Its 6256.55 g lithium total belongs to a hybrid
+car, predominantly its battery. Dividing by a 53 kg motor reproduces the CSV's
+0.1180481 kg/kg; it does not turn this into a motor composition.
+
+Rules using these mixed-scope EV summaries now have an explicit
+``preserve_reason`` and leave source inputs intact, at every year. The
+unverified scandium component boundary is also preserved. The shared boron and
+neodymium magnet rules are preserved: their 53/1.98 conversion belongs to one
+reference motor and cannot be imposed on the shared magnet supplier. These
+decisions remain in the change report; rules are not silently removed.
+Component-resolved observations and distinct suppliers are needed to re-enable
+these overlays. Battery rules remain separate; motor lithium is not moved to
+a battery without a validated battery composition and functional unit.
 
 The shared passenger-car engine is explicitly preserved. Its competing Pt/Pd
 factors, 1/0.260129659643436 and 1/0.3051750380517504, derive from the petrol
@@ -101,12 +114,22 @@ Transformation
 
 Premise builds metal markets and applies the configured in-ground resource
 allocation rules before updating direct material inputs and relinking.
-Material intensities are interpolated within the available year range and
-held at the endpoints outside it. Each direct material amount uses the
+Material intensities are interpolated within each metal/technology pair's
+observed year range. Outside that range, the source input is preserved and a
+``year_outside_support`` decision records the requested and supported years.
+A 2020-only aluminium observation does not become a 2050 projection because
+neodymium has a 2050 observation. Each applied direct material amount uses the
 configured activity-unit conversion and compound/content factor.
 
 Post-allocation correction
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This correction applies to attributional databases only. Consequential
+databases retain their source resource exchanges and substitution credits.
+Applying an economic-allocation correction there can both add extraction at
+refining and remove resource burdens associated with displaced coproducts.
+These operations conflict with the source model's substitution convention; see
+ecoinvent's `system-model documentation <https://support.ecoinvent.org/system-models>`_.
 
 Regarding the co-production of metals in multifunctional processes
 (i.e., co-mining of metals), *premise* modifies the database to allocate
@@ -213,7 +236,8 @@ For cut-off markets, eligible secondary-supply exchanges are copied from an
 existing source market when their positive total does not exceed one. Primary
 supply fills the remaining share; transport additions are weighted by that
 primary share. Without usable secondary inputs the market uses primary supply
-only. Consequential markets exclude this copied secondary supply. If a configured
+only. Consequential markets retain their source marginal suppliers: historical
+average country shares are not evidence of future marginal supply. If a configured
 primary route is unavailable, the entire source market is preserved and the
 missing route is recorded; the available routes are not renormalized silently.
 Regional proxies retain existing suppliers and use a recorded geographical
@@ -224,8 +248,11 @@ Transport includes all available modes and sums production routes within each
 country. All providers must be freight services in tonne-kilometres; aircraft
 manufacturing markets measured in aircraft units are explicitly excluded.
 A primary input of 0.75 kg travelling 1000 weighted km contributes
-0.75 tonne-km. Missing transport coverage is recorded and is not treated as
-evidence of zero transport. The market validator checks the applied supplier
+0.75 tonne-km. Before creating proxies or relinking a market, all positive
+primary origins must have transport observations. Otherwise the source market
+is preserved, with the missing origins and their fraction of primary supply
+recorded. A recorded zero distance is distinguished from absent data. Negative,
+non-finite distances and unknown modes are rejected. The market validator checks the applied supplier
 shares and retained secondary fraction, not the unused split YAML assumptions.
 
 Mining and refining markets creation
@@ -243,6 +270,11 @@ For certain markets where data was available, *premise* incorporates projections
 from `BNEF <https://about.bnef.com/>`_ regarding the development of future mining and refining projects to
 forecast the market shares' evolution up to 2030.
 
+Replacement markets are built only within the years declared in this workbook
+(currently 2020–2030). Interpolation uses the actual year labels. Outside that
+range, source markets are preserved instead of carrying the 2030 shares
+forward implicitly. Zero-share routes do not require a production provider.
+
 The file used to build the global supply markets for mined and refined metals is `mining_shares_mapping.xlsx <https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/metals/mining_shares_mapping.xlsx>`_.
 
 Additionally, global metal supply markets modeled account for the average transport
@@ -259,13 +291,25 @@ quantities. Source-preservation policies prevent specified overlays; they do
 not freeze upstream suppliers. Unknown ore/compound content and unavailable
 providers have the fallback behavior documented below. A corrected resource
 mass balance is not an independent validation of the whole mining inventory.
-Unit validation also does not validate component scope: the current EV lithium
-rule assigns battery-grade lithium carbonate directly to a motor. The motor,
-battery and whole-vehicle assumptions need a separate source-data review.
+Unverified EV component overlays are now preserved as described above.
 In particular, these fixes do not supply a dynamic scrap-stock model, future
 ore-grade or recovery-yield projections, endogenous metal demand, or marginal
-supplier projections for consequential modelling. Endpoint-held intensities
-and mostly historical country shares remain explicit prospective assumptions.
+supplier projections for consequential modelling. Preserving source data
+prevents unsupported overrides; it does not make inherited inventories current
+or establish the physical feasibility of a future scenario.
+
+The scenario mapping at ``mapping["metals"]["methodology"]`` records these
+limitations and decision counts. ``material decisions``, ``market diagnostics``
+and ``resource diagnostics`` give activity-level evidence. Passing numerical
+validation does not mean that all configured markets or materials were updated.
+For example, a 2050 build now preserves all markets whose share data end in 2030.
+
+Removing the remaining methodological barriers requires independently sourced
+inputs: component bills of materials; grades and recovery yields with consistent
+allocation boundaries; stocks, lifetimes, collection and recycling losses; and
+scenario-specific mining capacities and marginal supplier choices. These need
+sensitivity analysis and external validation, not calibration of RELICS scores
+to 1 kg/kg. Zinc's explicit attribution boundary remains a convention.
 
 RELICS indicators can compare extraction by element in kg per functional unit
 alongside climate change. They should be reported separately by element and

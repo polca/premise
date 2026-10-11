@@ -6,6 +6,10 @@ checks in the ``e54ac3e2`` build. It preserves the post-allocation convention:
 one kilogram of the target resource per kilogram of pure primary metal, with
 the corresponding generic carrier extraction attributed downstream.
 
+Historical audit: ``../conservative-defaults/README.rst`` documents the later
+restriction of this convention to attributional databases. Consequential source
+resource flows and marginal markets are now preserved.
+
 Implementation
 --------------
 

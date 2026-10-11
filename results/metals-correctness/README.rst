@@ -13,6 +13,11 @@ reductions were accounting gaps. ``cobalt-zinc-diagnosis/README.rst`` traces the
 causes; ``resource-fix/README.rst`` records the follow-up correction and fresh
 RELICS results. The original software-test results remain valid.
 
+``conservative-defaults/README.rst`` records the subsequent safeguards for
+component scope, temporal support, transport coverage and system-model
+consistency. It supersedes the use of economic-allocation corrections in
+consequential inventories and contains the current paired scores.
+
 Design and reproducibility
 --------------------------
 

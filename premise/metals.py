@@ -11,7 +11,7 @@ import ast
 import re
 from functools import lru_cache
 from typing import Optional
-from collections import defaultdict
+from collections import Counter, defaultdict
 
 import country_converter as coco
 import numpy as np
@@ -391,6 +391,7 @@ def _update_metals(scenario, version, system_model):
         "applied market shares": dict(metals.applied_market_shares),
         "market diagnostics": list(metals.market_diagnostics),
         "resource diagnostics": list(metals.resource_diagnostics),
+        "methodology": metals.methodology_summary(),
     }
 
     validate = MetalsValidation(
@@ -462,8 +463,21 @@ def load_metals_transport():
 
     # remove rows without values under Weighted Average Distance
     df = df.loc[~df["Weighted Distance (km)"].isnull()]
-    # remove rows with value 0 under Weighted Average Distance
-    df = df.loc[df["Weighted Distance (km)"] != 0]
+    distances = pd.to_numeric(df["Weighted Distance (km)"], errors="raise")
+    if not np.isfinite(distances).all() or (distances < 0).any():
+        raise MetalsConfigError(
+            "Metal freight distances must be finite and nonnegative."
+        )
+    if (
+        not df["TransportMode Label"]
+        .str.lower()
+        .isin({"air", "sea", "railway", "road"})
+        .all()
+    ):
+        raise MetalsConfigError("Unsupported metal freight mode.")
+    # An explicit zero is an observation; a missing row is a coverage gap.
+    df = df.copy()
+    df["Weighted Distance (km)"] = distances
 
     df["country"] = df["Country"]
 
@@ -1433,6 +1447,27 @@ def interpolate_by_year(target_year: int, data: dict) -> float:
                 return v0 + (v1 - v0) * (target_year - y0) / (y1 - y0)
 
 
+def mining_shares_for_year(df: pd.DataFrame, year: int) -> pd.Series | None:
+    """Select/interpolate declared shares, without inventing endpoint forecasts."""
+    columns = {int(str(c)): c for c in df.columns if str(c).isdigit()}
+    if not columns:
+        raise MetalsConfigError("Mining shares have no observation-year columns.")
+    years = sorted(columns)
+    values = df[[columns[y] for y in years]].apply(pd.to_numeric, errors="raise")
+    if not np.isfinite(values.to_numpy()).all() or (values < 0).any().any():
+        raise MetalsConfigError(
+            "Invalid mining shares: must be finite and nonnegative."
+        )
+    if not years[0] <= year <= years[-1]:
+        return None
+    if year in columns:
+        return values[columns[year]]
+    lower = max(y for y in years if y < year)
+    upper = min(y for y in years if y > year)
+    weight = (year - lower) / (upper - lower)
+    return values[columns[lower]] * (1 - weight) + values[columns[upper]] * weight
+
+
 class Metals(BaseTransformation):
     """
     Class that modifies metal demand of different technologies
@@ -1472,7 +1507,12 @@ class Metals(BaseTransformation):
         self.version = version
 
         self.metals = iam_data.metals_intensity_factors  # 1
-        # Precompute the median values for each metal and origin_var for the year 2020
+        if not {"source_year_min", "source_year_max"} <= set(self.metals.coords):
+            raise MetalsConfigError(
+                "Metal intensity data is missing observation-year metadata; rebuild the IAM data cache."
+            )
+        # Select the requested year, then check each pair's actual support before
+        # applying a rule. Filling endpoints in the array is not a forecast.
         available_years = sorted(self.metals.coords["year"].values)
         clamped_year = max(available_years[0], min(self.year, available_years[-1]))
 
@@ -1563,7 +1603,8 @@ class Metals(BaseTransformation):
                     for target in targets:
                         conversion_factor = (
                             None
-                            if self._material_policy_for(target, technology)
+                            if rule.preserve_reason
+                            or self._material_policy_for(target, technology)
                             else self._technology_conversion_factor(
                                 mapped_dataset, technology
                             )
@@ -1803,6 +1844,16 @@ class Metals(BaseTransformation):
     ) -> None:
         """Calculate and apply, preserve, or diagnose one material rule."""
 
+        if rule.preserve_reason:
+            self._record_material_decision(
+                dataset,
+                rule,
+                status="skipped",
+                reason_code="metals.material_rule.component_scope_unverified",
+                explanation=rule.preserve_reason,
+                values={},
+            )
+            return
         policy = self._material_policy_for(dataset, technology)
         if policy is not None:
             self._record_material_decision(
@@ -1880,6 +1931,30 @@ class Metals(BaseTransformation):
                 },
             )
             return
+        temporal_values = {}
+        if hasattr(self, "year"):
+            first = float(use_factors.source_year_min.item())
+            last = float(use_factors.source_year_max.item())
+            temporal_values = {
+                "requested year": self.year,
+                "source year minimum": first,
+                "source year maximum": last,
+                "temporal treatment": "within observed range",
+            }
+            if not first <= self.year <= last:
+                self._record_material_decision(
+                    dataset,
+                    rule,
+                    status="skipped",
+                    reason_code="metals.material_rule.year_outside_support",
+                    explanation=(
+                        "Preserved source input: the requested year is outside this "
+                        "metal/technology series' observation range. No endpoint "
+                        "hold or extrapolation is treated as a future projection."
+                    ),
+                    values={**temporal_values, "temporal treatment": "preserve source"},
+                )
+                return
         if (
             not all(np.isfinite(v) for v in (min_value, median_value, max_value))
             or not 0 <= min_value <= median_value <= max_value
@@ -1892,6 +1967,7 @@ class Metals(BaseTransformation):
             dataset, provider_selector.reference_product
         )
         values = {
+            **temporal_values,
             "material rule id": rule.id,
             "technology": technology,
             "element": rule.element,
@@ -1988,6 +2064,13 @@ class Metals(BaseTransformation):
         factors. Other co-mined metal resource flows are set to zero;
         non-metal resource flows are preserved.
         """
+
+        if getattr(self, "system_model", None) == "consequential":
+            self._record_resource_diagnostic(
+                {"name": "consequential resource inventory"},
+                "preserved_consequential_substitution",
+            )
+            return
 
         self.build_in_ground_resource_exchange_index()
         considered_dataset_ids = self.get_considered_metal_dataset_ids()
@@ -2495,28 +2578,12 @@ class Metals(BaseTransformation):
         """
         shares = {}
 
-        # we fetch the shares for each location in df
-        # and we interpolate if necessary between the columns
-        # 2020 to 2030
-
+        selected = mining_shares_for_year(df, self.year)
+        if selected is None:
+            return {}
         for long_location, short_location in new_locations.items():
-            share = df.loc[df["Country"] == long_location, "2020":"2030"]
+            share = selected.loc[df["Country"] == long_location]
             if len(share) > 0:
-
-                # we interpolate depending on if self.year is between 2020 and 2030
-                # otherwise, we back or forward fill
-
-                if self.year < 2020:
-                    share = share.iloc[:, 0]
-                elif self.year > 2030:
-                    share = share.iloc[:, -1]
-                else:
-                    share = share.iloc[:, self.year - 2020]
-
-                if not np.isfinite(share.to_numpy()).all() or (share < 0).any():
-                    raise MetalsConfigError(
-                        f"Invalid mining shares for {name!r} in {long_location!r}."
-                    )
                 share = share.sum()
                 if not np.isfinite(share) or share < 0:
                     raise MetalsConfigError(
@@ -2834,8 +2901,48 @@ class Metals(BaseTransformation):
                 - 'Country': country names to create new datasets for.
                 - Production share columns per year (e.g., '2020', '2030', ...)
         """
-        # check if market already exists
-        # if so, remove it
+        if getattr(self, "system_model", None) == "consequential":
+            self._record_market_diagnostic(
+                "market_preserved_consequential",
+                metal=metal,
+                explanation="Historical average production shares do not identify marginal suppliers.",
+            )
+            return None
+
+        if hasattr(self, "year"):
+            shares = mining_shares_for_year(df, self.year)
+            if shares is None:
+                years = sorted(int(str(c)) for c in df.columns if str(c).isdigit())
+                self._record_market_diagnostic(
+                    "market_preserved_year_outside_support",
+                    metal=metal,
+                    requested_year=self.year,
+                    first_year=years[0],
+                    last_year=years[-1],
+                )
+                return None
+            # Zero routes do not supply this market and need no provider.
+            df = df.loc[shares > 0].copy()
+            shares = shares.loc[shares > 0]
+            total = shares.sum()
+            if total <= 0:
+                self._record_market_diagnostic(
+                    "market_preserved_zero_supply", metal=metal
+                )
+                return None
+            missing = {}
+            for country, share in shares.groupby(df["Country"]).sum().items():
+                location = self.country_codes[country]
+                if self.get_weighted_average_distance(location, metal).empty:
+                    missing[location] = missing.get(location, 0) + float(share / total)
+            if missing:
+                self._record_market_diagnostic(
+                    "market_preserved_transport_missing",
+                    metal=metal,
+                    missing_primary_fraction=sum(missing.values()),
+                    missing_origins=missing,
+                )
+                return None
 
         # Preserve the entire source market if any positive primary route is
         # unavailable. Renormalizing only the available routes hides lost supply.
@@ -3148,6 +3255,24 @@ class Metals(BaseTransformation):
         if not hasattr(self, "market_diagnostics"):
             self.market_diagnostics = []
         self.market_diagnostics.append({"reason": reason, **values})
+
+    def methodology_summary(self):
+        """Expose assumptions separately from successful numerical validation."""
+        return {
+            "system model": self.system_model,
+            "requested year": self.year,
+            "unsupported years": "preserve source; no extrapolation or endpoint hold",
+            "consequential supply": "preserve source marginal markets and substitution resource flows",
+            "attributional resource correction": "declared attribution convention; not a physical recovery model",
+            "recycling": "source-market shares; no dynamic scrap-stock model",
+            "mining constraints": "not modelled; no ore-grade, capacity or depletion projection",
+            "market decisions": dict(
+                Counter(d["reason"] for d in self.market_diagnostics)
+            ),
+            "material decisions": dict(
+                Counter(d["reason code"] for d in self.material_decisions)
+            ),
+        }
 
     def create_metal_markets(self):
         dataframe = load_mining_shares_mapping(self.version)

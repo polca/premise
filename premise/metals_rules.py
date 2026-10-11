@@ -68,6 +68,7 @@ class MaterialRule:
     intensity_form: str | None = None
     allocation_group: str | None = None
     comment: str | None = None
+    preserve_reason: str | None = None
 
 
 @dataclass(frozen=True, slots=True)
@@ -213,6 +214,7 @@ def load_material_rules() -> MetalsRulesConfig:
         "intensity_form",
         "allocation_group",
         "comment",
+        "preserve_reason",
     }
     for index, raw in enumerate(raw_rules):
         context = f"rules[{index}]"
@@ -306,6 +308,11 @@ def load_material_rules() -> MetalsRulesConfig:
                     required=False,
                 ),
                 comment=_text(raw.get("comment"), f"{context}.comment", required=False),
+                preserve_reason=_text(
+                    raw.get("preserve_reason"),
+                    f"{context}.preserve_reason",
+                    required=False,
+                ),
             )
         )
 

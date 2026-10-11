@@ -3975,6 +3975,19 @@ class MetalsValidation(BaseDatasetValidator):
             )
             counts[key] += 1
             examples[key] = decision
+        for reason in (
+            "metals.material_rule.component_scope_unverified",
+            "metals.material_rule.year_outside_support",
+        ):
+            affected = [d for d in decisions if d.get("reason code") == reason]
+            if affected:
+                self.log_issue(
+                    {"name": "metals material update"},
+                    reason,
+                    f"Preserved {len(affected)} material-rule applications. "
+                    "See material decisions for the affected activities, source years and scope evidence.",
+                    issue_type="minor",
+                )
         for key, count in counts.items():
             if count <= 1:
                 continue
@@ -3993,7 +4006,7 @@ class MetalsValidation(BaseDatasetValidator):
         """
         for metal in self.metals_list:
             if any(
-                d.get("reason") == "market_preserved_supplier_missing"
+                d.get("reason", "").startswith("market_preserved_")
                 and d.get("metal") == metal
                 for d in getattr(self, "market_diagnostics", ())
             ):
@@ -4101,6 +4114,8 @@ class MetalsValidation(BaseDatasetValidator):
                 issue_type="minor",
             )
         for diagnostic in getattr(self, "resource_diagnostics", ()):
+            if diagnostic.get("reason") == "primary_feed_attribution":
+                continue  # Successful attribution, not a preserved/unresolved input.
             self.log_issue(
                 diagnostic,
                 "metal resource correction preserved",

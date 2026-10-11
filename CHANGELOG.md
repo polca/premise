@@ -6,8 +6,21 @@ All notable changes to this project are documented in this file.
 
 ### Fixed
 
-- Restore cobalt and primary zinc extraction attribution after upstream checks
-  encountered electricity or process-input loops. Match material inputs by
+- Preserve source metal inputs when component scope or temporal support is
+  unverified, including rules based on mixed vehicle/motor observations or
+  unverified shared-magnet conversions. Record per-series source-year ranges
+  and explicit gap decisions.
+  Unsupported years no longer imply an endpoint-held material forecast.
+- Preserve consequential marginal markets and substitution resource flows
+  instead of applying average-share and economic-allocation corrections. In
+  the ecoinvent 3.12 IMAGE SSP2-M 2050 metals audit, this restores copper
+  extraction from 3.00488 to 0.90723 kg Cu/kg cathode, matching the source model.
+- Preserve metal markets with unsupported years or incomplete transport
+  coverage before creating proxies. Report missing origins and their fraction
+  of primary supply, and distinguish observed zero distances from missing data.
+- Restore cobalt and primary zinc extraction attribution in attributional
+  databases after upstream checks encountered electricity or process-input
+  loops. Match material inputs by
   product and kilogram unit, and plan zinc concentrate attribution boundaries
   across regional producers. Keep missing links and unsupported cycles
   unresolved, and preserve secondary-supply safeguards.
@@ -55,6 +68,10 @@ All notable changes to this project are documented in this file.
 
 ### Documentation
 
+- Document conservative metals defaults and remaining requirements for future
+  mining and recycling scenarios. Add reproducible paired RELICS results for
+  95 available markets and 65 indicators, six validated build configurations,
+  and evidence tracing the motor-component and consequential copper issues.
 - Document the allocation prices, proxy limitations and the unresolved
   physical vanadium-yield inconsistency in the published source tables.
 

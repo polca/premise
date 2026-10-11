@@ -1,0 +1,517 @@
+[
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "aluminium hydroxide",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "aluminium oxide, metallurgical",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "aluminium, cast alloy",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "aluminium, primary, ingot",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "aluminium, primary, liquid",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "antimony",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "bauxite",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "bentonite",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "beryllium",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "beryllium hydroxide",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "boric acid, anhydrous, powder",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "boric oxide",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "boron carbide",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "boron trifluoride",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "cadmium",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "calcium borates",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "cerium oxide",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "chromite ore concentrate",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "chromium",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "cobalt",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "cobalt hydroxide",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "cobalt sulfate",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "copper concentrate, sulfide ore",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "copper, anode",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "copper, cathode",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "copper-cobalt ore",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "dolomite",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "dysprosium oxide",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "erbium oxide",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "europium oxide",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "ferroniobium, 66% Nb",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "gadolinium oxide",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "gallium, high-grade",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "germanium, concentrate",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "gold",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "graphite",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "graphite ore, mined",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "hafnium sponge",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "hafnium tetrachloride",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "holmium oxide",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "ilmenite, 54% titanium dioxide",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "indium",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "indium rich leaching residues, from zinc production",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "iridium",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "iron ore concentrate",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "lanthanum oxide",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "lanthanum-cerium oxide",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "lead",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "lead concentrate",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "lithium carbonate, battery grade",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "lithium hydroxide, battery grade",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "lutetium oxide",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "magnesium",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "manganese",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "manganese concentrate",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "molybdenite",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "molybdenum",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "neodymium oxide",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "nickel concentrate, 16% Ni",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "nickel, class 1",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "palladium",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "phosphate rock, beneficiated",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "phosphoric acid, fertiliser grade, without water, in 70% solution state",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "phosphorus, white, liquid",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "platinum",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "platinum group metal concentrate",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "potash salt",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "praseodymium oxide",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "pyrochlore concentrate",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "rare earth carbonate concentrate",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "rhenium",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "ruthenium",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "rutile, 95% titanium dioxide",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "samarium oxide",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "sand",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "scandium oxide",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "selenium",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "silica sand",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "silicon, metallurgical grade",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "silver",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "sodium borates",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "spodumene",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "stibnite concentrate",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "strontium sulfate, 90% SrSO4",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "sulfur",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "tantalum concentrate, 30% Ta2O5",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "tellurium, semiconductor-grade",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "terbium oxide",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "thulium oxide",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "tin",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "tin concentrate",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "titanium",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "titanium sponge",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "titanium tetrachloride",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "tungsten concentrate",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "uranium ore, as U",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "vanadium bearing magnetite",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "vanadium pentoxide",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "ytterbium oxide",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "yttrium oxide",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "zinc",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "zinc concentrate",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  },
+  {
+    "reason": "market_preserved_consequential",
+    "metal": "zircon",
+    "explanation": "Historical average production shares do not identify marginal suppliers."
+  }
+]

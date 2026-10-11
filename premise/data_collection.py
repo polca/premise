@@ -145,6 +145,9 @@ def get_metals_intensity_factors_data() -> xr.DataArray:
     from .metals_rules import MetalsConfigError, INTENSITY_UNITS
 
     keys = ["metal", "origin_var", "year"]
+    df["year"] = pd.to_numeric(df["year"], errors="raise")
+    if not np.isfinite(df["year"]).all() or (df["year"] % 1 != 0).any():
+        raise MetalsConfigError("Metal intensity years must be finite integers.")
     if df[keys + ["unit"]].isna().any().any() or df.duplicated(keys).any():
         raise MetalsConfigError(
             "Metal intensities require unique, complete metal/technology/year keys."
@@ -163,6 +166,7 @@ def get_metals_intensity_factors_data() -> xr.DataArray:
             "Metal intensities must be finite, nonnegative, and have min <= median <= max."
         )
     df[values.columns] = values
+    source_years = df.groupby(["metal", "origin_var"])["year"].agg(["min", "max"])
     df = df.melt(
         id_vars=["metal", "year", "origin_var"],
         value_vars=["mean", "median", "min", "max"],
@@ -174,15 +178,20 @@ def get_metals_intensity_factors_data() -> xr.DataArray:
         .to_xarray()
     )
 
-    array = array.interpolate_na(dim="year", method="linear", fill_value="extrapolate")
+    # Interpolate only between observations. Endpoint filling supports array
+    # selection; consumers must check the per-series observation range before
+    # applying an intensity. A global year range is not evidence for every pair.
+    array = array.interpolate_na(dim="year", method="linear")
     array = array.bfill(dim="year")
     array = array.ffill(dim="year")
     # Absent metal/technology pairs remain missing; measured zero is meaningful.
     array = array.assign_coords(
+        source_year_min=source_years["min"].to_xarray(),
+        source_year_max=source_years["max"].to_xarray(),
         intensity_unit=(
             "origin_var",
             [next(iter(units.loc[v])) for v in array.origin_var.values],
-        )
+        ),
     )
 
     return array

@@ -23,6 +23,7 @@ from premise.metals import (
     matches_filter_query,
     update_exchanges,
     select_transport_provider,
+    mining_shares_for_year,
 )
 from premise.metals_rules import (
     MetalsConfigError,
@@ -346,7 +347,14 @@ def test_material_plan_excludes_scrap_coproducts(
     assert metals.activities_metals_map[technology] == [equipment]
     assert plan
     assert all(item["dataset"] is equipment for item in plan)
-    assert all(item["conversion_factor"] == pytest.approx(factor) for item in plan)
+    assert all(
+        (
+            item["conversion_factor"] is None
+            if item["rule"].preserve_reason
+            else item["conversion_factor"] == pytest.approx(factor)
+        )
+        for item in plan
+    )
     assert database == before
 
 
@@ -977,7 +985,7 @@ def test_create_market_uses_secondary_share_from_existing_market_instead_of_yaml
     ] == pytest.approx(0.25)
 
 
-def test_create_market_ignores_existing_secondary_market_for_consequential():
+def test_create_market_preserves_existing_marginal_market_for_consequential():
     metals = object.__new__(Metals)
     metals.system_model = "consequential"
     metals.prim_sec_split = {}
@@ -1017,12 +1025,9 @@ def test_create_market_ignores_existing_secondary_market_for_consequential():
         }
     )
 
-    market = metals.create_market("copper", df_metal)
-    exchanges = [exc for exc in market["exchanges"] if exc["type"] == "technosphere"]
-
-    assert exchanges == [
-        technosphere_exchange("primary copper production", "copper", "GLO", 1.0)
-    ]
+    before = deepcopy(metals.database)
+    assert metals.create_market("copper", df_metal) is None
+    assert metals.database == before
 
 
 def test_post_allocation_correction_sets_target_to_one_and_others_to_zero():
@@ -2156,7 +2161,7 @@ def test_transport_sums_all_modes_and_routes_with_one_primary_weight():
 
 def test_mining_shares_keep_small_producers_and_sum_duplicate_country_routes():
     metals = object.__new__(Metals)
-    metals.year = 2035
+    metals.year = 2030
     df = pd.DataFrame(
         {
             "Country": ["Chile", "Chile", "Peru"],
@@ -2654,3 +2659,187 @@ def test_primary_zinc_boundary_requires_supported_feed(failure):
         assert (
             metals.target_resource_is_supplied_upstream(zinc, "Zinc", index, {}) is None
         )
+
+
+@pytest.mark.parametrize("element", ["Lithium", "Platinum", "Neodymium", "Boron"])
+def test_unverified_ev_component_scope_preserves_existing_inputs(element):
+    rule = next(
+        r
+        for r in load_material_rules().enabled_rules
+        if r.technology == "EV" and r.element == element
+    )
+    metals = _metals_for_material_rule_tests("EV", element, 100)
+    dataset = market_dataset(
+        "electric motor production, vehicle",
+        "electric motor, vehicle",
+        "GLO",
+        [technosphere_exchange("existing component", "existing component", "GLO", 0.4)],
+    )
+    before = deepcopy(dataset)
+    metals.get_metal_market_dataset = lambda *args: pytest.fail(
+        "provider lookup for unverified scope"
+    )
+    metals._apply_material_rule(
+        dataset=dataset, technology="EV", rule=rule, conversion_factor=None
+    )
+    assert dataset == before
+    assert metals.material_decisions[0]["reason code"].endswith(
+        "component_scope_unverified"
+    )
+
+
+@pytest.mark.parametrize(
+    "year,applied", [(2020, True), (2025, False), (2050, False), (2019, False)]
+)
+def test_material_year_support_is_per_pair_not_global(year, applied):
+    metals = _metals_for_material_rule_tests("EV", "Aluminium", 1)
+    metals.year = year
+    metals.precomputed_medians = get_metals_intensity_factors_data().sel(year=2020)
+    rule = next(
+        r
+        for r in load_material_rules().enabled_rules
+        if r.technology == "EV" and r.element == "Aluminium"
+    )
+    dataset = market_dataset("motor", "motor", "GLO", [])
+    provider = market_dataset(
+        rule.provider.name, rule.provider.reference_product, "GLO", []
+    )
+    metals.get_metal_market_dataset = lambda *args: provider
+    metals._apply_material_rule(
+        dataset=dataset, technology="EV", rule=rule, conversion_factor=1
+    )
+    assert bool(dataset["exchanges"]) is applied
+    assert metals.material_decisions[0]["source year maximum"] == 2020
+    if not applied:
+        assert metals.material_decisions[0]["reason code"].endswith(
+            "year_outside_support"
+        )
+
+
+def test_intensity_loader_does_not_extrapolate_other_series_endpoints(
+    tmp_path, monkeypatch
+):
+    import premise.data_collection as collection
+
+    directory = tmp_path / "metals"
+    directory.mkdir()
+    rows = [
+        ["Gold", "kg/MW", 2020, 4, 4, 3, 5, "A"],
+        ["Gold", "kg/MW", 2030, 2, 2, 1, 3, "A"],
+        ["Silver", "kg/MW", 2025, 9, 9, 8, 10, "B"],
+        ["Silver", "kg/MW", 2050, 9, 9, 8, 10, "B"],
+    ]
+    pd.DataFrame(
+        rows,
+        columns=["metal", "unit", "year", "mean", "median", "min", "max", "origin_var"],
+    ).to_csv(directory / "metals_db.csv", index=False)
+    monkeypatch.setattr(collection, "DATA_DIR", tmp_path)
+    array = collection.get_metals_intensity_factors_data.__wrapped__()
+    pair = array.sel(metal="Gold", origin_var="A", variable="median")
+    assert pair.sel(year=2025).item() == 3
+    assert pair.sel(year=2050).item() == 2  # selection fill, not a permitted forecast
+    assert pair.source_year_max.item() == 2030
+    assert np.isnan(array.sel(metal="Gold", origin_var="B")).all()
+
+
+def test_consequential_correction_preserves_substitution_and_all_resource_flows():
+    dataset = market_dataset(
+        "joint mine",
+        "molybdenite",
+        "GLO",
+        [
+            technosphere_exchange("copper market", "copper, cathode", "GLO", -2),
+            {
+                "name": "Copper",
+                "type": "biosphere",
+                "unit": "kilogram",
+                "categories": ("natural resource", "in ground"),
+                "amount": 3,
+            },
+        ],
+    )
+    metals = object.__new__(Metals)
+    metals.system_model = "consequential"
+    metals.database = [dataset]
+    before = deepcopy(dataset)
+    metals.build_in_ground_resource_exchange_index = lambda: pytest.fail(
+        "economic correction entered"
+    )
+    metals.post_allocation_correction()
+    assert dataset == before
+    assert (
+        metals.resource_diagnostics[0]["reason"]
+        == "preserved_consequential_substitution"
+    )
+
+
+def test_consequential_market_preserved_before_any_supplier_changes():
+    metals = object.__new__(Metals)
+    metals.system_model = "consequential"
+    metals.create_region_specific_markets = lambda _: pytest.fail(
+        "changed marginal supply"
+    )
+    assert metals.create_market("copper", pd.DataFrame()) is None
+    assert metals.market_diagnostics[0]["reason"] == "market_preserved_consequential"
+
+
+def test_mining_share_interpolation_and_no_endpoint_forecast():
+    frame = pd.DataFrame(
+        {"Country": ["A", "B"], "2020": [0.4, 0.6], "2030": [0.8, 0.2]}
+    )
+    assert mining_shares_for_year(frame, 2025).tolist() == pytest.approx([0.6, 0.4])
+    assert mining_shares_for_year(frame, 2050) is None
+    assert mining_shares_for_year(frame, 2019) is None
+    frame.loc[0, "2030"] = -1
+    with pytest.raises(MetalsConfigError, match="nonnegative"):
+        mining_shares_for_year(frame, 2025)
+
+
+@pytest.mark.parametrize(
+    "year,reason", [(2050, "year_outside_support"), (2020, "transport_missing")]
+)
+def test_market_gaps_preserve_source_before_mutating_proxies(year, reason):
+    metals = object.__new__(Metals)
+    metals.system_model = "cutoff"
+    metals.year = year
+    metals.country_codes = {"Chile": "CL", "Peru": "PE"}
+    metals.get_weighted_average_distance = lambda country, _: (
+        pd.DataFrame({"distance": [2]}) if country == "CL" else pd.DataFrame()
+    )
+    metals.create_region_specific_markets = lambda _: pytest.fail(
+        "modified supplier before coverage check"
+    )
+    frame = pd.DataFrame(
+        {"Country": ["Chile", "Peru"], "2020": [0.75, 0.25], "2030": [0.75, 0.25]}
+    )
+    before = frame.copy(deep=True)
+    assert metals.create_market("copper", frame) is None
+    pd.testing.assert_frame_equal(frame, before)
+    diagnostic = metals.market_diagnostics[0]
+    assert diagnostic["reason"] == "market_preserved_" + reason
+    if year == 2020:
+        assert diagnostic["missing_primary_fraction"] == 0.25
+        assert diagnostic["missing_origins"] == {"PE": 0.25}
+
+
+def test_zero_freight_distance_is_coverage_and_invalid_distances_fail(
+    tmp_path, monkeypatch
+):
+    directory = tmp_path / "metals"
+    directory.mkdir()
+    path = directory / "transport_markets_data.csv"
+    data = pd.DataFrame(
+        {
+            "Country": ["CL"],
+            "Metal": ["Copper"],
+            "TransportMode Label": ["Road"],
+            "Weighted Distance (km)": [0],
+        }
+    )
+    data.to_csv(path, index=False)
+    monkeypatch.setattr(metals_module, "DATA_DIR", tmp_path)
+    assert len(metals_module.load_metals_transport()) == 1
+    data["Weighted Distance (km)"] = -1
+    data.to_csv(path, index=False)
+    with pytest.raises(MetalsConfigError, match="nonnegative"):
+        metals_module.load_metals_transport()

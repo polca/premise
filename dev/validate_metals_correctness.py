@@ -22,6 +22,7 @@ def main():
     parser.add_argument("--source", required=True)
     parser.add_argument("--biosphere", required=True)
     parser.add_argument("--version", default="3.12")
+    parser.add_argument("--year", type=int, default=2050)
     parser.add_argument("--system-model", default="cutoff")
     parser.add_argument("--backend", default="compact", choices=("compact", "legacy"))
     parser.add_argument("--uncertainty", action="store_true")
@@ -50,7 +51,7 @@ def main():
     output.mkdir(parents=True, exist_ok=True)
     started = time.perf_counter()
     ndb = NewDatabase(
-        scenarios=[{"model": "image", "pathway": "SSP2-M", "year": 2050}],
+        scenarios=[{"model": "image", "pathway": "SSP2-M", "year": args.year}],
         source_db=args.source,
         source_version=args.version,
         source_type="brightway",
@@ -121,13 +122,14 @@ def main():
         "market diagnostics",
         "resource diagnostics",
         "applied market shares",
+        "methodology",
     ):
         (output / f"{name.replace(' ', '_')}.json").write_text(
             json.dumps(mapping.get(name, []), indent=2, default=str)
         )
     metadata = vars(args) | {
         "audit_project": audit_project,
-        "scenario": {"model": "image", "pathway": "SSP2-M", "year": 2050},
+        "scenario": {"model": "image", "pathway": "SSP2-M", "year": args.year},
         "seconds": time.perf_counter() - started,
         "update_seconds": update_seconds,
         "source_fingerprint": ndb._validation_source_fingerprint(),

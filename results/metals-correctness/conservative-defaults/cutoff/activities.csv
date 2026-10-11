@@ -1,0 +1,207 @@
+stage,market product,database,name,location,code,functional unit,unit,status
+before,aluminium hydroxide,metals-audit-resource-fix-cutoff,market for aluminium hydroxide,World,9e5e1d49-5efb-441b-8780-7d7c70863b32,1,kilogram,available
+before,"aluminium oxide, metallurgical",metals-audit-resource-fix-cutoff,"market for aluminium oxide, metallurgical",World,c2d77fd2-0df8-4a91-84fc-87165c1331ac,1,kilogram,available
+before,"aluminium, cast alloy",metals-audit-resource-fix-cutoff,"market for aluminium, cast alloy",World,0101add9-a803-4ddc-8389-e7aa22900a01,1,kilogram,available
+before,"aluminium, primary, ingot",metals-audit-resource-fix-cutoff,"market for aluminium, primary, ingot",World,99f5e825-fc01-4c09-b03f-6f4990e33bb0,1,kilogram,available
+before,"aluminium, primary, liquid",metals-audit-resource-fix-cutoff,"market for aluminium, primary, liquid",World,64ecad95-7ca9-41ba-95e5-f7a8017bb7a1,1,kilogram,available
+before,antimony,metals-audit-resource-fix-cutoff,market for antimony,World,ef7482c2-ae1d-4f7f-a8bf-2857d2769662,1,kilogram,available
+before,bauxite,metals-audit-resource-fix-cutoff,market for bauxite,World,a4ef624d-1ca3-4801-88af-550041908126,1,kilogram,available
+before,bentonite,metals-audit-resource-fix-cutoff,market for bentonite,World,3dda6b9b-5231-4167-91d8-11469c10aaa0,1,kilogram,available
+before,beryllium,metals-audit-resource-fix-cutoff,market for beryllium,World,1dd2c5a9-7deb-493a-ac6d-16f116701fe4,1,kilogram,available
+before,beryllium hydroxide,metals-audit-resource-fix-cutoff,market for beryllium hydroxide,World,45fe1261-5fdf-4ac8-ab26-ecf2fcfd432c,1,kilogram,available
+before,"boric acid, anhydrous, powder",metals-audit-resource-fix-cutoff,"market for boric acid, anhydrous, powder",World,c9a70548-bc5f-4976-be80-a3e189d72cdb,1,kilogram,available
+before,boric oxide,metals-audit-resource-fix-cutoff,market for boric oxide,World,ee7ac0f8-a5d3-4fb5-800d-62b9fe5e058b,1,kilogram,available
+before,boron carbide,metals-audit-resource-fix-cutoff,market for boron carbide,World,71999624-7b6c-4849-9e06-2b8d23d70a6b,1,kilogram,available
+before,boron trifluoride,metals-audit-resource-fix-cutoff,market for boron trifluoride,World,163c64ff-3984-4bb0-93b9-89d319573039,1,kilogram,available
+before,cadmium,metals-audit-resource-fix-cutoff,market for cadmium,World,4fa1ed1a-cb7a-4db1-b224-2ee02ac30bf6,1,kilogram,available
+before,calcium borates,metals-audit-resource-fix-cutoff,market for calcium borates,World,d9b5ec53-3cf8-4baa-9920-fd32dcb365ee,1,kilogram,available
+before,cerium oxide,metals-audit-resource-fix-cutoff,market for cerium oxide,World,aa928455-c66e-4caf-898c-8530a16ff080,1,kilogram,available
+before,chromite ore concentrate,metals-audit-resource-fix-cutoff,market for chromite ore concentrate,World,d717a611-5611-46e6-9e5d-2982352fc3ae,1,kilogram,available
+before,chromium,metals-audit-resource-fix-cutoff,market for chromium,World,6a5b6a2c-aaad-4e7a-8dfe-8503b15487d8,1,kilogram,available
+before,cobalt,metals-audit-resource-fix-cutoff,market for cobalt,World,f6fd1b54-38d7-4d4a-b874-1c0c32890df4,1,kilogram,available
+before,cobalt hydroxide,metals-audit-resource-fix-cutoff,market for cobalt hydroxide,World,d26d7639-e128-435d-946f-fb8781412881,1,kilogram,available
+before,cobalt sulfate,metals-audit-resource-fix-cutoff,market for cobalt sulfate,World,43169a3d-9edb-4bde-b045-99d40b6887c1,1,kilogram,available
+before,"copper concentrate, sulfide ore",metals-audit-resource-fix-cutoff,"market for copper concentrate, sulfide ore",World,81bccd70-3b5f-4cb2-bee8-7d8d2dfd3800,1,kilogram,available
+before,"copper, anode",metals-audit-resource-fix-cutoff,"market for copper, anode",World,e916a4fb-b93c-401f-86ac-909ba43e7f15,1,kilogram,available
+before,"copper, cathode",metals-audit-resource-fix-cutoff,"market for copper, cathode",World,14be2edb-7b94-480a-b70c-46bd8497d46b,1,kilogram,available
+before,copper-cobalt ore,metals-audit-resource-fix-cutoff,market for copper-cobalt ore,World,a66e3f43-303d-4627-8ac6-a7d7a524caff,1,kilogram,available
+before,dolomite,metals-audit-resource-fix-cutoff,market for dolomite,World,2bd13f08-7178-404b-a8ef-d14867ca2525,1,kilogram,available
+before,dysprosium oxide,metals-audit-resource-fix-cutoff,market for dysprosium oxide,World,de69ae38-c25c-4fd3-a492-e227ca734e6a,1,kilogram,available
+before,erbium oxide,metals-audit-resource-fix-cutoff,market for erbium oxide,World,e53c50e1-7839-46f3-a92f-6738a7fd11f7,1,kilogram,available
+before,europium oxide,metals-audit-resource-fix-cutoff,market for europium oxide,World,85fd1041-3d27-4719-850d-aec085b11ae8,1,kilogram,available
+before,"ferroniobium, 66% Nb",metals-audit-resource-fix-cutoff,"market for ferroniobium, 66% Nb",World,526dce9e-8696-4e5b-a87c-f06b62d7b1a8,1,kilogram,available
+before,gadolinium oxide,metals-audit-resource-fix-cutoff,market for gadolinium oxide,World,081eeb15-9252-454a-ad7a-e6c4fa2c656a,1,kilogram,available
+before,"gallium, high-grade",metals-audit-resource-fix-cutoff,"market for gallium, high-grade",World,d9562a4b-6ee8-4ed6-8999-96b46481ee05,1,kilogram,available
+before,"germanium, concentrate",metals-audit-resource-fix-cutoff,"market for germanium, concentrate",World,2b6ff58d-93bc-48dd-92ce-32ffac8e1eea,1,kilogram,available
+before,gold,metals-audit-resource-fix-cutoff,market for gold,World,e5bae864-e150-48e4-8023-bd90b93c1062,1,kilogram,available
+before,graphite,metals-audit-resource-fix-cutoff,market for graphite,World,d0017ac7-6e7b-449a-aefa-a03fcb29a813,1,kilogram,available
+before,"graphite ore, mined",metals-audit-resource-fix-cutoff,,,,1,kilogram,no matching global market
+before,hafnium sponge,metals-audit-resource-fix-cutoff,market for hafnium sponge,World,e6b491d2-b911-44e2-ac00-cfd73def9c00,1,kilogram,available
+before,hafnium tetrachloride,metals-audit-resource-fix-cutoff,market for hafnium tetrachloride,World,57f90495-2789-403c-a673-0b328868729e,1,kilogram,available
+before,holmium oxide,metals-audit-resource-fix-cutoff,market for holmium oxide,World,cba7088a-7679-462e-9568-20d3ed24480b,1,kilogram,available
+before,"ilmenite, 54% titanium dioxide",metals-audit-resource-fix-cutoff,"market for ilmenite, 54% titanium dioxide",World,c77de184-b041-4780-94d8-b3c1f6971204,1,kilogram,available
+before,indium,metals-audit-resource-fix-cutoff,market for indium,World,4e6d6515-f772-4fc7-8e87-efcb5a62b157,1,kilogram,available
+before,"indium rich leaching residues, from zinc production",metals-audit-resource-fix-cutoff,"market for indium rich leaching residues, from zinc production",World,0c6954fa-479d-4a27-8657-ab91d3304d24,1,kilogram,available
+before,iridium,metals-audit-resource-fix-cutoff,market for iridium,World,bb7b895a-20e7-49bf-971b-ab4596aa8bf7,1,kilogram,available
+before,iron ore concentrate,metals-audit-resource-fix-cutoff,market for iron ore concentrate,World,d2872b48-8876-40c2-9d98-20eba5910b48,1,kilogram,available
+before,lanthanum oxide,metals-audit-resource-fix-cutoff,market for lanthanum oxide,World,8a4d0623-08df-49f9-9358-3998942177de,1,kilogram,available
+before,lanthanum-cerium oxide,metals-audit-resource-fix-cutoff,market for lanthanum-cerium oxide,World,af4459b5-9e06-4f7d-beb9-3449aea68646,1,kilogram,available
+before,lead,metals-audit-resource-fix-cutoff,market for lead,World,532268d7-9b8d-41ad-b802-427572994715,1,kilogram,available
+before,lead concentrate,metals-audit-resource-fix-cutoff,market for lead concentrate,World,41a0ee54-57d6-42af-b761-b390739091f4,1,kilogram,available
+before,"lithium carbonate, battery grade",metals-audit-resource-fix-cutoff,"market for lithium carbonate, battery grade",World,9480c4a2-adb7-4c31-8c35-025abf1be3f3,1,kilogram,available
+before,"lithium hydroxide, battery grade",metals-audit-resource-fix-cutoff,"market for lithium hydroxide, battery grade",World,e921433a-4ce9-4030-a334-25c1d1ff1918,1,kilogram,available
+before,lutetium oxide,metals-audit-resource-fix-cutoff,market for lutetium oxide,World,859b1f0a-2f64-4225-a271-e089feb3c315,1,kilogram,available
+before,magnesium,metals-audit-resource-fix-cutoff,market for magnesium,World,cf36fe88-40e0-44da-b3eb-f233d6314f3a,1,kilogram,available
+before,manganese,metals-audit-resource-fix-cutoff,market for manganese,World,583f9dee-3888-4554-8ab1-95502b2caa5e,1,kilogram,available
+before,manganese concentrate,metals-audit-resource-fix-cutoff,market for manganese concentrate,World,0baae729-cae8-44e7-b747-985cb5da2281,1,kilogram,available
+before,molybdenite,metals-audit-resource-fix-cutoff,market for molybdenite,World,9591d663-8edf-4eb2-962b-e8fa79ad450c,1,kilogram,available
+before,molybdenum,metals-audit-resource-fix-cutoff,market for molybdenum,World,e6c9b6df-1e62-4103-ab7e-eb35c5e26b1b,1,kilogram,available
+before,neodymium oxide,metals-audit-resource-fix-cutoff,market for neodymium oxide,World,4b7e0c9f-05fe-40b1-84ef-236a12b38645,1,kilogram,available
+before,"nickel concentrate, 16% Ni",metals-audit-resource-fix-cutoff,"market for nickel concentrate, 16% Ni",World,cd7dcdc2-a122-4622-9ecf-f82df1152d39,1,kilogram,available
+before,"nickel, class 1",metals-audit-resource-fix-cutoff,"market for nickel, class 1",World,b9b01b86-d25e-4002-8c20-ff42b9974444,1,kilogram,available
+before,palladium,metals-audit-resource-fix-cutoff,market for palladium,World,4104aba9-a161-4259-97d7-52935fed20b9,1,kilogram,available
+before,"phosphate rock, beneficiated",metals-audit-resource-fix-cutoff,"market for phosphate rock, beneficiated",World,1f40fd82-83b7-4ba4-85cb-2e03db01e72a,1,kilogram,available
+before,"phosphoric acid, fertiliser grade, without water, in 70% solution state",metals-audit-resource-fix-cutoff,"market for phosphoric acid, fertiliser grade, without water, in 70% solution state",World,90b8bb44-660e-42af-945b-b7d26029fbf5,1,kilogram,available
+before,"phosphorus, white, liquid",metals-audit-resource-fix-cutoff,"market for phosphorus, white, liquid",World,68a78dd5-90d2-4b23-8346-bf2659ccffcf,1,kilogram,available
+before,platinum,metals-audit-resource-fix-cutoff,market for platinum,World,ab866070-e6da-471f-8cc9-ea36cfb91ea9,1,kilogram,available
+before,platinum group metal concentrate,metals-audit-resource-fix-cutoff,market for platinum group metal concentrate,World,e8f4951a-0dfc-4b5d-8c9b-4173ad3ff7bb,1,kilogram,available
+before,potash salt,metals-audit-resource-fix-cutoff,market for potash salt,World,8e15ad95-84cc-42aa-81d2-5668d4e754ef,1,kilogram,available
+before,praseodymium oxide,metals-audit-resource-fix-cutoff,market for praseodymium oxide,World,c4439cd0-c520-463d-828c-ad274695c659,1,kilogram,available
+before,pyrochlore concentrate,metals-audit-resource-fix-cutoff,market for pyrochlore concentrate,World,b3abe2a0-180e-4938-8d38-a007d145c9d0,1,kilogram,available
+before,rare earth carbonate concentrate,metals-audit-resource-fix-cutoff,market for rare earth carbonate concentrate,World,ba46b2a6-225a-4d70-96e9-a9965799cc88,1,kilogram,available
+before,rhenium,metals-audit-resource-fix-cutoff,market for rhenium,World,8ea96ba4-cbf1-4e80-8ca3-471a7280615d,1,kilogram,available
+before,ruthenium,metals-audit-resource-fix-cutoff,market for ruthenium,World,8e775753-cb4e-407c-aab3-190f497f7300,1,kilogram,available
+before,"rutile, 95% titanium dioxide",metals-audit-resource-fix-cutoff,"market for rutile, 95% titanium dioxide",World,279f87a2-f212-4fac-872f-ec9fe5389151,1,kilogram,available
+before,samarium oxide,metals-audit-resource-fix-cutoff,market for samarium oxide,World,94c03fb9-fe19-4971-8f37-00e72f134d6a,1,kilogram,available
+before,sand,metals-audit-resource-fix-cutoff,market for sand,World,fc37973e-e96f-4224-b467-5e210f05fc9d,1,kilogram,available
+before,scandium oxide,metals-audit-resource-fix-cutoff,market for scandium oxide,World,0050a9da-c2d9-429b-8a71-85f95bcbe62d,1,kilogram,available
+before,selenium,metals-audit-resource-fix-cutoff,market for selenium,World,410f6da2-bdf3-480f-baf2-610f547a9005,1,kilogram,available
+before,silica sand,metals-audit-resource-fix-cutoff,market for silica sand,World,7cc29da3-8e45-4ec1-9eb7-468cb36a8767,1,kilogram,available
+before,"silicon, metallurgical grade",metals-audit-resource-fix-cutoff,"market for silicon, metallurgical grade",World,d393228c-47bd-472e-b12d-48b7341889cd,1,kilogram,available
+before,silver,metals-audit-resource-fix-cutoff,market for silver,World,b7e1848c-a512-4789-b999-e4e5f0a110f8,1,kilogram,available
+before,sodium borates,metals-audit-resource-fix-cutoff,market for sodium borates,World,b9f3b8df-6a39-4b0c-9882-8b2b03b5a9bd,1,kilogram,available
+before,spodumene,metals-audit-resource-fix-cutoff,market for spodumene,World,60312078-904d-4849-9f92-429af1483010,1,kilogram,available
+before,stibnite concentrate,metals-audit-resource-fix-cutoff,market for stibnite concentrate,World,5c643320-772a-40be-8238-d4ebae96849e,1,kilogram,available
+before,"strontium sulfate, 90% SrSO4",metals-audit-resource-fix-cutoff,"market for strontium sulfate, 90% SrSO4",World,13b64151-f680-4252-ad52-d9c1c896b9bd,1,kilogram,available
+before,sulfur,metals-audit-resource-fix-cutoff,market for sulfur,World,a99669e2-e001-4c04-b27c-c6e5d5ab09da,1,kilogram,available
+before,"tantalum concentrate, 30% Ta2O5",metals-audit-resource-fix-cutoff,"market for tantalum concentrate, 30% Ta2O5",World,8f6d7395-5ace-4784-ba31-ef67b8122c0b,1,kilogram,available
+before,"tellurium, semiconductor-grade",metals-audit-resource-fix-cutoff,"market for tellurium, semiconductor-grade",World,0ae8b413-caf0-46a1-8f1e-4e0792bd1aca,1,kilogram,available
+before,terbium oxide,metals-audit-resource-fix-cutoff,market for terbium oxide,World,1f0c87e9-887e-4eb1-a478-0b8718138c1a,1,kilogram,available
+before,thulium oxide,metals-audit-resource-fix-cutoff,market for thulium oxide,World,d97a7d7a-ea5b-4bd5-ad2d-b5fa18992e3e,1,kilogram,available
+before,tin,metals-audit-resource-fix-cutoff,market for tin,World,914cd15a-dfe0-4d9d-b1a0-083cbf8b49c6,1,kilogram,available
+before,tin concentrate,metals-audit-resource-fix-cutoff,market for tin concentrate,World,20b28a9e-5e11-434c-b579-58a22e8c1b13,1,kilogram,available
+before,titanium,metals-audit-resource-fix-cutoff,market for titanium,World,094e9e3f-d934-4298-ba65-30d06f7992da,1,kilogram,available
+before,titanium sponge,metals-audit-resource-fix-cutoff,market for titanium sponge,World,6c9bce65-ce08-407e-b030-7da15c720956,1,kilogram,available
+before,titanium tetrachloride,metals-audit-resource-fix-cutoff,market for titanium tetrachloride,World,805f5c01-c180-4d5c-a3b5-380fd4e99f88,1,kilogram,available
+before,tungsten concentrate,metals-audit-resource-fix-cutoff,market for tungsten concentrate,World,1aedcaa2-f878-4980-9050-2a52792f386a,1,kilogram,available
+before,"uranium ore, as U",metals-audit-resource-fix-cutoff,"market for uranium ore, as U",World,d31a3424-0e93-4a20-862f-c2de365b2a71,1,kilogram,available
+before,vanadium bearing magnetite,metals-audit-resource-fix-cutoff,market for vanadium bearing magnetite,World,56108978-203b-4bfd-9c7c-347d27d19e46,1,kilogram,available
+before,vanadium pentoxide,metals-audit-resource-fix-cutoff,market for vanadium pentoxide,World,b372ba0a-7768-4828-abca-b0601b0015c9,1,kilogram,available
+before,ytterbium oxide,metals-audit-resource-fix-cutoff,market for ytterbium oxide,World,48ade7eb-b77f-4be2-8c1e-fe7372e221ac,1,kilogram,available
+before,yttrium oxide,metals-audit-resource-fix-cutoff,market for yttrium oxide,World,4686b745-7407-4bda-9bc0-77ec2a7e36ea,1,kilogram,available
+before,zinc,metals-audit-resource-fix-cutoff,market for zinc,World,6ba74946-c70e-4d31-b895-7320c77a4337,1,kilogram,available
+before,zinc concentrate,metals-audit-resource-fix-cutoff,market for zinc concentrate,World,a1ccc7cb-3234-4856-b18e-a2f7e856fcaf,1,kilogram,available
+before,zircon,metals-audit-resource-fix-cutoff,market for zircon,World,c17c8fb5-f239-448f-b909-e122f6285e2c,1,kilogram,available
+after,aluminium hydroxide,metals-audit-conservative-cutoff,market for aluminium hydroxide,GLO,c3e958c258df4fd4b7b9d68b9849fffe,1,kilogram,available
+after,"aluminium oxide, metallurgical",metals-audit-conservative-cutoff,"market for aluminium oxide, metallurgical",RoW,03fb9f50fd3b485d99cbfcc7b57e5c04,1,kilogram,available
+after,"aluminium, cast alloy",metals-audit-conservative-cutoff,"market for aluminium, cast alloy",GLO,d91ca784d9ea4beeab685b1f610095f4,1,kilogram,available
+after,"aluminium, primary, ingot",metals-audit-conservative-cutoff,"market for aluminium, primary, ingot",RoW,396b68f81be5492da136e147199199f1,1,kilogram,available
+after,"aluminium, primary, liquid",metals-audit-conservative-cutoff,"market for aluminium, primary, liquid",GLO,3be01994a5684d4695967316d21fd10a,1,kilogram,available
+after,antimony,metals-audit-conservative-cutoff,market for antimony,GLO,5119a4b949db435784a49f8dc342c3b8,1,kilogram,available
+after,bauxite,metals-audit-conservative-cutoff,market for bauxite,RoW,3e6d91343d8d44f191bc176b23bfa94c,1,kilogram,available
+after,bentonite,metals-audit-conservative-cutoff,market for bentonite,GLO,3fef990ec5424ee88d27d969faa84e02,1,kilogram,available
+after,beryllium,metals-audit-conservative-cutoff,market for beryllium,GLO,e8a00c2366ae498a91bdbe4f0b924f9b,1,kilogram,available
+after,beryllium hydroxide,metals-audit-conservative-cutoff,market for beryllium hydroxide,GLO,57df2f491e394c93bcd626b28ed1d3ad,1,kilogram,available
+after,"boric acid, anhydrous, powder",metals-audit-conservative-cutoff,"market for boric acid, anhydrous, powder",GLO,b19fd07a963e4cd29e58169c16558356,1,kilogram,available
+after,boric oxide,metals-audit-conservative-cutoff,market for boric oxide,GLO,588e0889108248e6af3963a7036b0b43,1,kilogram,available
+after,boron carbide,metals-audit-conservative-cutoff,market for boron carbide,GLO,069fbb34777541ef8f5245e3ceb52a75,1,kilogram,available
+after,boron trifluoride,metals-audit-conservative-cutoff,market for boron trifluoride,GLO,1397117df2f34bfeb8d1702267458c27,1,kilogram,available
+after,cadmium,metals-audit-conservative-cutoff,market for cadmium,GLO,5594379789c54c89a9eae8af900dd194,1,kilogram,available
+after,calcium borates,metals-audit-conservative-cutoff,market for calcium borates,GLO,49da7182fe3d483ba259837d873fc87c,1,kilogram,available
+after,cerium oxide,metals-audit-conservative-cutoff,market for cerium oxide,GLO,2c69e1b1a7eb4a41aee0a1aa12f719ef,1,kilogram,available
+after,chromite ore concentrate,metals-audit-conservative-cutoff,market for chromite ore concentrate,GLO,174e10e0d2d144d285947ff959fd9d68,1,kilogram,available
+after,chromium,metals-audit-conservative-cutoff,market for chromium,GLO,30743d51d31b40f48ac6911a840b4aa1,1,kilogram,available
+after,cobalt,metals-audit-conservative-cutoff,market for cobalt,GLO,ab8e2d56d1074fc198655175976d02d4,1,kilogram,available
+after,cobalt hydroxide,metals-audit-conservative-cutoff,market for cobalt hydroxide,GLO,b4697c4f804e4523883ab0b7abca4691,1,kilogram,available
+after,cobalt sulfate,metals-audit-conservative-cutoff,market for cobalt sulfate,RoW,b6019782f8654dd6ade60ac18b670f71,1,kilogram,available
+after,"copper concentrate, sulfide ore",metals-audit-conservative-cutoff,"market for copper concentrate, sulfide ore",GLO,6ad9fce72808440ba09cecbc7a41ec60,1,kilogram,available
+after,"copper, anode",metals-audit-conservative-cutoff,"market for copper, anode",GLO,587a4f8dc6a341e2b86ad268db171141,1,kilogram,available
+after,"copper, cathode",metals-audit-conservative-cutoff,"market for copper, cathode",GLO,8056bafd9c1b44e9afd23b53a08bfce2,1,kilogram,available
+after,copper-cobalt ore,metals-audit-conservative-cutoff,,,,1,kilogram,no matching global market
+after,dolomite,metals-audit-conservative-cutoff,market for dolomite,RoW,f2618e761222429196ca5862138371d2,1,kilogram,available
+after,dysprosium oxide,metals-audit-conservative-cutoff,market for dysprosium oxide,GLO,1ea7890c8fc44d4889e714511b590528,1,kilogram,available
+after,erbium oxide,metals-audit-conservative-cutoff,market for erbium oxide,GLO,049f8003e0ff44e19eb675dbb12cb233,1,kilogram,available
+after,europium oxide,metals-audit-conservative-cutoff,market for europium oxide,GLO,cdfadd7060234787af18aad565a303d5,1,kilogram,available
+after,"ferroniobium, 66% Nb",metals-audit-conservative-cutoff,"market for ferroniobium, 66% Nb",GLO,9e6394bf4a844325a635f580ef27d59f,1,kilogram,available
+after,gadolinium oxide,metals-audit-conservative-cutoff,market for gadolinium oxide,GLO,c160d590f2f94a0b9c650890afabe103,1,kilogram,available
+after,"gallium, high-grade",metals-audit-conservative-cutoff,"market for gallium, high-grade",GLO,b23459c98215402399182dc7fd889a6f,1,kilogram,available
+after,"germanium, concentrate",metals-audit-conservative-cutoff,,,,1,kilogram,no matching global market
+after,gold,metals-audit-conservative-cutoff,market for gold,GLO,43323987d78a44d8bcc00d2787cc2112,1,kilogram,available
+after,graphite,metals-audit-conservative-cutoff,market for graphite,GLO,3c9b4d7104394016a900d0c158694f6b,1,kilogram,available
+after,"graphite ore, mined",metals-audit-conservative-cutoff,,,,1,kilogram,no matching global market
+after,hafnium sponge,metals-audit-conservative-cutoff,market for hafnium sponge,GLO,acbd28c5491a4851ab7065a55ab23062,1,kilogram,available
+after,hafnium tetrachloride,metals-audit-conservative-cutoff,market for hafnium tetrachloride,GLO,0ddb8dd0f37242cfbffecffd6a788044,1,kilogram,available
+after,holmium oxide,metals-audit-conservative-cutoff,market for holmium oxide,GLO,56cd226fa23542e6bfe60521714442b9,1,kilogram,available
+after,"ilmenite, 54% titanium dioxide",metals-audit-conservative-cutoff,"market for ilmenite, 54% titanium dioxide",GLO,10c1ebca9eef43b9b2625599f68fb207,1,kilogram,available
+after,indium,metals-audit-conservative-cutoff,market for indium,GLO,84a7d4412263413599937b24123b841b,1,kilogram,available
+after,"indium rich leaching residues, from zinc production",metals-audit-conservative-cutoff,"market for indium rich leaching residues, from zinc production",GLO,aca6d32573d844a7b54aecdd6cede1d1,1,kilogram,available
+after,iridium,metals-audit-conservative-cutoff,,,,1,kilogram,no matching global market
+after,iron ore concentrate,metals-audit-conservative-cutoff,market for iron ore concentrate,GLO,c3873da9506c483fae085072adf03391,1,kilogram,available
+after,lanthanum oxide,metals-audit-conservative-cutoff,market for lanthanum oxide,GLO,739e50ee6ede40669c8d01b41f1f65d3,1,kilogram,available
+after,lanthanum-cerium oxide,metals-audit-conservative-cutoff,market for lanthanum-cerium oxide,GLO,61fa023c29574ff592e4c9efa61753f3,1,kilogram,available
+after,lead,metals-audit-conservative-cutoff,market for lead,GLO,b749c3e8217e4d3c92fe29fbe82d9c1d,1,kilogram,available
+after,lead concentrate,metals-audit-conservative-cutoff,market for lead concentrate,GLO,3f6b38e20baa46dea122f87e5ab17917,1,kilogram,available
+after,"lithium carbonate, battery grade",metals-audit-conservative-cutoff,"market for lithium carbonate, battery grade",GLO,9fd100a1e6e348dca04a45d4451e0482,1,kilogram,available
+after,"lithium hydroxide, battery grade",metals-audit-conservative-cutoff,"market for lithium hydroxide, battery grade",GLO,198837f3c06945d7bc3b701cb85b3df8,1,kilogram,available
+after,lutetium oxide,metals-audit-conservative-cutoff,market for lutetium oxide,GLO,b1a26ed5d4e0451888004e45a37212b0,1,kilogram,available
+after,magnesium,metals-audit-conservative-cutoff,market for magnesium,GLO,3e5d10355e8645e09905af6afb8c527e,1,kilogram,available
+after,manganese,metals-audit-conservative-cutoff,market for manganese,GLO,1250e4a034a44d9ea150cb9b018c36f2,1,kilogram,available
+after,manganese concentrate,metals-audit-conservative-cutoff,market for manganese concentrate,GLO,d267e1f0cbb845909ce83ec9fc1d9747,1,kilogram,available
+after,molybdenite,metals-audit-conservative-cutoff,market for molybdenite,GLO,147f0bb029424a14a2d9c5f434330923,1,kilogram,available
+after,molybdenum,metals-audit-conservative-cutoff,market for molybdenum,GLO,934b554f18794951ab877991448e4e87,1,kilogram,available
+after,neodymium oxide,metals-audit-conservative-cutoff,market for neodymium oxide,GLO,5baa00e4c8f24c4cbcbf4794e5810a75,1,kilogram,available
+after,"nickel concentrate, 16% Ni",metals-audit-conservative-cutoff,"market for nickel concentrate, 16% Ni",GLO,580e90addc3e47b0ad52ab374f9d3e2c,1,kilogram,available
+after,"nickel, class 1",metals-audit-conservative-cutoff,"market for nickel, class 1",GLO,ae16d16a75e84a8c9600ff097450429c,1,kilogram,available
+after,palladium,metals-audit-conservative-cutoff,market for palladium,GLO,c06c1113ef11444fa08967025493523d,1,kilogram,available
+after,"phosphate rock, beneficiated",metals-audit-conservative-cutoff,"market for phosphate rock, beneficiated",RoW,17fe106bda7f445f9625dc9d86d53d04,1,kilogram,available
+after,"phosphoric acid, fertiliser grade, without water, in 70% solution state",metals-audit-conservative-cutoff,"market for phosphoric acid, fertiliser grade, without water, in 70% solution state",RoW,c92f972c299e42a5875330beb176bd32,1,kilogram,available
+after,"phosphorus, white, liquid",metals-audit-conservative-cutoff,"market for phosphorus, white, liquid",GLO,1f91dca2a2a14a0088be97afd04cfdfd,1,kilogram,available
+after,platinum,metals-audit-conservative-cutoff,market for platinum,GLO,3d112ccbbb804a3aafdc2bf0d16c9f32,1,kilogram,available
+after,platinum group metal concentrate,metals-audit-conservative-cutoff,,,,1,kilogram,no matching global market
+after,potash salt,metals-audit-conservative-cutoff,market for potash salt,RoW,6a615a722bab44609d33169150603f89,1,kilogram,available
+after,praseodymium oxide,metals-audit-conservative-cutoff,market for praseodymium oxide,GLO,4200330ce0504a12a48f455f2bfd2974,1,kilogram,available
+after,pyrochlore concentrate,metals-audit-conservative-cutoff,market for pyrochlore concentrate,GLO,48bb11e76b024be992691381b72da2b9,1,kilogram,available
+after,rare earth carbonate concentrate,metals-audit-conservative-cutoff,market for rare earth carbonate concentrate,GLO,a6686a58cb9d4747a26e9a363d9a6868,1,kilogram,available
+after,rhenium,metals-audit-conservative-cutoff,,,,1,kilogram,no matching global market
+after,ruthenium,metals-audit-conservative-cutoff,,,,1,kilogram,no matching global market
+after,"rutile, 95% titanium dioxide",metals-audit-conservative-cutoff,"market for rutile, 95% titanium dioxide",GLO,3b33f0ca01544208aa3dcffdc17472dc,1,kilogram,available
+after,samarium oxide,metals-audit-conservative-cutoff,market for samarium oxide,GLO,4a061308363e4f49b0fdd83b566bd81e,1,kilogram,available
+after,sand,metals-audit-conservative-cutoff,market for sand,RoW,29e07a0931f24dcaaf2ac825510a9bd6,1,kilogram,available
+after,scandium oxide,metals-audit-conservative-cutoff,market for scandium oxide,GLO,23f51696f05d49ceb5e66e6533ba2aff,1,kilogram,available
+after,selenium,metals-audit-conservative-cutoff,market for selenium,GLO,74622f49c83f4a4da184515d9333673c,1,kilogram,available
+after,silica sand,metals-audit-conservative-cutoff,market for silica sand,GLO,7e18d50a923c4f10a645064034198a47,1,kilogram,available
+after,"silicon, metallurgical grade",metals-audit-conservative-cutoff,"market for silicon, metallurgical grade",GLO,3337af801a42407b95790dd9f1a3db98,1,kilogram,available
+after,silver,metals-audit-conservative-cutoff,market for silver,GLO,3dfbbed115e74687a9d9bbb276ae12c9,1,kilogram,available
+after,sodium borates,metals-audit-conservative-cutoff,market for sodium borates,GLO,39bb41389f6641e4affd54fff88c28ba,1,kilogram,available
+after,spodumene,metals-audit-conservative-cutoff,market for spodumene,GLO,22cb625ca34b46eab9d338f7ee341b3b,1,kilogram,available
+after,stibnite concentrate,metals-audit-conservative-cutoff,market for stibnite concentrate,GLO,b90007d2dffb4a22878a8a805150ef4e,1,kilogram,available
+after,"strontium sulfate, 90% SrSO4",metals-audit-conservative-cutoff,"market for strontium sulfate, 90% SrSO4",GLO,8ac2c50c69ca495a9e5008d47248a7e4,1,kilogram,available
+after,sulfur,metals-audit-conservative-cutoff,market for sulfur,GLO,19ee64dbd4d448c49508d42d214ca86f,1,kilogram,available
+after,"tantalum concentrate, 30% Ta2O5",metals-audit-conservative-cutoff,"market for tantalum concentrate, 30% Ta2O5",GLO,9044920439314cd9bea8b9622fe74620,1,kilogram,available
+after,"tellurium, semiconductor-grade",metals-audit-conservative-cutoff,"market for tellurium, semiconductor-grade",GLO,6eb90632053c4ddc89d8e2b2fb6265ec,1,kilogram,available
+after,terbium oxide,metals-audit-conservative-cutoff,market for terbium oxide,GLO,48bbeea0552047428c84db8411bb5362,1,kilogram,available
+after,thulium oxide,metals-audit-conservative-cutoff,market for thulium oxide,GLO,9b5789a87e454802afcd04b954d54ea7,1,kilogram,available
+after,tin,metals-audit-conservative-cutoff,market for tin,GLO,ee75a56365ba421c964ec44edc2c7f65,1,kilogram,available
+after,tin concentrate,metals-audit-conservative-cutoff,market for tin concentrate,GLO,2185e4983979450999afeafbfa71ba31,1,kilogram,available
+after,titanium,metals-audit-conservative-cutoff,market for titanium,GLO,64f7fc0f98b044108ae9e09c7a3d6e76,1,kilogram,available
+after,titanium sponge,metals-audit-conservative-cutoff,market for titanium sponge,GLO,97a4667bb2c242f5845f96b92a4ea996,1,kilogram,available
+after,titanium tetrachloride,metals-audit-conservative-cutoff,market for titanium tetrachloride,GLO,8ab1b42238644ff7a5f0996614c4ba11,1,kilogram,available
+after,tungsten concentrate,metals-audit-conservative-cutoff,market for tungsten concentrate,GLO,4da0e16470114f4399114f78d0fda0ba,1,kilogram,available
+after,"uranium ore, as U",metals-audit-conservative-cutoff,"market for uranium ore, as U",GLO,66053f777eec4d448e28a2c901f9f006,1,kilogram,available
+after,vanadium bearing magnetite,metals-audit-conservative-cutoff,,,,1,kilogram,no matching global market
+after,vanadium pentoxide,metals-audit-conservative-cutoff,market for vanadium pentoxide,GLO,044784d7cda544fab40a0a4e114b3541,1,kilogram,available
+after,ytterbium oxide,metals-audit-conservative-cutoff,market for ytterbium oxide,GLO,d8fadba40f7b41a190a6e38c10963d13,1,kilogram,available
+after,yttrium oxide,metals-audit-conservative-cutoff,market for yttrium oxide,GLO,bea714c6f7a14861b904602869158b94,1,kilogram,available
+after,zinc,metals-audit-conservative-cutoff,market for zinc,GLO,ff75f283395f49a4965351e9c5880e4b,1,kilogram,available
+after,zinc concentrate,metals-audit-conservative-cutoff,market for zinc concentrate,GLO,8eb94a272fff4cc4b272966f6d1bfc0b,1,kilogram,available
+after,zircon,metals-audit-conservative-cutoff,market for zircon,GLO,34ee2f14d0384a6b90c64da949926f00,1,kilogram,available
