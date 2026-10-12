@@ -9,9 +9,9 @@ when an exchange occurs relative to the activity reference year.
 
 The temporal reference point is year ``0`` of the activity. Negative offsets
 represent exchanges that happened before the reference product is supplied, for
-example biomass carbon uptake before forest harvest. Positive offsets represent
-future exchanges, for example maintenance, end-of-life treatment, or long-term
-emissions.
+example crop carbon uptake before harvest. Positive offsets represent future
+exchanges, for example forest regrowth after harvest, maintenance, end-of-life
+treatment, or long-term emissions.
 
 
 How the table is used
@@ -134,9 +134,22 @@ Rows tagged ``biomass_growth`` are applied only to biosphere exchanges named
 ``Carbon dioxide, in air``. The amount of the CO2 exchange is not changed. Only
 its timing metadata is changed.
 
-Most agricultural rows still use simple uniform uptake over the crop or
-perennial lifetime. The forestry rows for the matched species below use a
-nonlinear annual profile derived from the ALIGNED T1.2 forest carbon flux model.
+Forestry and woody-biomass uptake represents regeneration following harvest.
+The harvested biomass is assigned the next growth cycle's CO2 uptake, with no
+additional delay for replanting. This replaces the previous allocation of
+uptake before harvest; the existing uptake amount is counted once. The rule
+also covers the tagged forest-residue, debarking, imported-wood, cork, bamboo,
+and short-rotation willow growth profiles. It changes only the uptake exchange,
+without shifting the biomass supply or other forestry exchanges.
+
+The reference point is the supplying activity's harvest year. For biomass used
+in the same year, regrowth therefore follows use. If another exchange specifies
+storage or a processing delay, that timing remains separate; uptake is not
+re-anchored to the final combustion year.
+
+Agricultural crop profiles retain their existing pre-harvest timing. The
+forestry rows for the matched species below use a nonlinear annual profile
+derived from the ALIGNED T1.2 forest carbon flux model.
 
 The profile follows the cumulative biomass-growth curve used in the ALIGNED
 spreadsheet model, based on De Rosa et al. (2017):
@@ -147,9 +160,18 @@ spreadsheet model, based on De Rosa et al. (2017):
 
 where ``T`` is the rotation time and ``t`` is the stand age. Annual weights are
 computed from year-to-year differences in ``C(t)``, then normalized to sum to
-``1``. Offsets are annual midpoints shifted by ``-T`` so that uptake occurs
-before harvest. For example, a 30-year rotation has offsets from ``-29.5`` to
-``-0.5`` years and peaks around the middle of the rotation.
+``1``. Offsets are annual stand-age midpoints after harvest. Relative to the
+previous pre-harvest profiles, each offset is increased by ``T``; the weights
+and their order are preserved. For example, a 30-year rotation has offsets from
+``0.5`` to ``29.5`` years and peaks around the middle of the rotation. Spruce's
+83-year profile runs from ``0.5`` to ``82.5`` years. Fractional rotations retain
+their shorter final bin.
+
+Uniform forestry profiles are likewise shifted from ``[-T, 0]`` to ``[0, T]``.
+The triangular bamboo profile's bounds and mode are shifted by its two-year
+rotation, preserving its original one-year support width: bounds ``[0, 1]``
+and mode ``1``. The rotation estimates and profile shapes are retained; the
+post-harvest placement is a modelling assumption, documented in ``param_notes``.
 
 The current forestry update uses rotation-time values from the ALIGNED managed
 forest database and the growth profile from the ALIGNED T1.2 LCA Carbon Flux
@@ -202,6 +224,35 @@ This profile is a timing profile only. Parameters such as mean annual increment,
 wood density, and carbon fraction affect the amount of carbon in the ALIGNED
 model, but they cancel out when the annual uptake curve is normalized into
 TRAILS timing weights.
+
+
+Wood-chip suppliers
+-------------------
+
+Sawmill chip production, wood-manufacturing chip co-products, drying, and
+post-consumer chip recovery are tagged ``throughput_process``. This tag does not
+assign a delay to the biomass supply exchange. In the reviewed ecoinvent
+3.10--3.12 cutoff inventories, the matched processing activities have no direct
+``Carbon dioxide, in air`` exchange. For sawmill chips, uptake occurs upstream
+in forestry activities, where the ``biomass_growth`` rules apply.
+
+The table retains both the older ``wet`` sawmill-chip product names and the
+ecoinvent 3.12 ``green`` names. Post-consumer chip recovery likewise has entries
+with and without ``dry`` in the product name. These are separate exact-match
+aliases; the loader does not rewrite product names. The legacy spruce-chip
+drying entry is retained, although it was not found in the reviewed databases.
+
+Unused growth distributions and unsupported 15-year lifetimes have been removed
+from these processing rows. No storage or drying duration is inferred from an
+asset lifetime. A blank lifetime also means that the row supplies no lifetime
+context for maintenance or end-of-life inputs; none of the matched processing
+activities in the reviewed databases had inputs selected by those rules.
+
+Willow short-rotation coppice is a cultivation activity with direct CO2 uptake.
+Both its older product name and its ecoinvent 3.12 dry-mass product name use
+``biomass_growth``, with uniform regrowth uptake from year ``0`` to ``2``. This
+is the same two-year rotation assumption for both aliases, not a delay applied
+to the willow supply exchange.
 
 
 Long-term emissions

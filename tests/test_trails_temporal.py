@@ -61,6 +61,141 @@ def test_hydrogen_heat_dac_activities_have_twenty_year_lifetimes():
         assert dataset_lifetimes[(name, "carbon dioxide, captured")] == 20
 
 
+@pytest.mark.parametrize(
+    "growth_name, growth_product, expected_timing",
+    [
+        pytest.param(
+            "willow production, short rotation coppice",
+            "wood chips and particles, willow",
+            {"temporal_distribution": 4, "temporal_min": 0.0, "temporal_max": 2.0},
+            id="willow-legacy",
+        ),
+        pytest.param(
+            "willow production, short rotation coppice",
+            "wood chips and particles, willow, dry, measured as dry mass",
+            {"temporal_distribution": 4, "temporal_min": 0.0, "temporal_max": 2.0},
+            id="willow-dry-mass",
+        ),
+        pytest.param(
+            "softwood forestry, spruce, sustainable forest management",
+            "wood chips, green, measured as dry mass",
+            {
+                "temporal_distribution": 6,
+                "temporal_offsets": [year + 0.5 for year in range(83)],
+            },
+            id="spruce-discrete",
+        ),
+        pytest.param(
+            "hardwood forestry, oak, sustainable forest management",
+            "wood chips, green, measured as dry mass",
+            {
+                "temporal_distribution": 6,
+                "temporal_offsets": [year + 0.5 for year in range(123)] + [123.25],
+            },
+            id="oak-fractional-rotation",
+        ),
+        pytest.param(
+            "softwood forestry, mixed species, sustainable forest management",
+            "wood chips, wet, measured as dry mass",
+            {"temporal_distribution": 4, "temporal_min": 0.0, "temporal_max": 15.0},
+            id="mixed-forest-uniform",
+        ),
+        pytest.param(
+            "bamboo forestry, sustainable forest management",
+            "bamboo culm",
+            {
+                "temporal_distribution": 5,
+                "temporal_min": 0.0,
+                "temporal_max": 1.0,
+                "temporal_loc": 1.0,
+            },
+            id="bamboo-triangular",
+        ),
+        pytest.param(
+            "supply of forest residue",
+            "forest residue",
+            {"temporal_distribution": 4, "temporal_min": 0.0, "temporal_max": 12.0},
+            id="forest-residue",
+        ),
+        pytest.param(
+            "maize grain production",
+            "maize grain",
+            {"temporal_distribution": 4, "temporal_min": -1.0, "temporal_max": 0.0},
+            id="crop-pre-harvest",
+        ),
+    ],
+)
+def test_biomass_growth_times_only_uptake(
+    growth_name, growth_product, expected_timing, monkeypatch, tmp_path
+):
+    uptake = {"type": "biosphere", "name": "Carbon dioxide, in air", "amount": 1.75}
+    emission = {"type": "biosphere", "name": "Carbon dioxide, fossil", "amount": 0.1}
+    inputs = [
+        {
+            "type": "technosphere",
+            "name": name,
+            "product": product,
+            "amount": 1.0,
+        }
+        for name, product in (
+            (growth_name, growth_product),
+            (
+                "wood chips production, hardwood, at sawmill",
+                "wood chips, wet, measured as dry mass",
+            ),
+            (
+                "wood chips production, hardwood, at sawmill",
+                "wood chips, green, measured as dry mass",
+            ),
+        )
+    ]
+    scenario = {
+        "database": [
+            {
+                "name": "biomass consumer",
+                "reference product": "heat",
+                "exchanges": inputs,
+            },
+            {
+                "name": growth_name,
+                "reference product": growth_product,
+                "exchanges": [uptake, emission],
+            },
+        ]
+    }
+    obj = TrailsDataPackage.__new__(TrailsDataPackage)
+    (
+        obj.stock_asset_params,
+        obj.end_of_life_suppliers,
+        obj.biomass_growth_params,
+        obj.maintenance_suppliers,
+        obj.long_term_biosphere_params,
+        obj.dataset_lifetimes,
+    ) = obj._load_temporal_specs_from_csv(trails.FILEPATH_TEMPORAL_PARAMETERS)
+    obj.datapackage = SimpleNamespace(scenarios=[scenario], database="db")
+    monkeypatch.chdir(tmp_path)
+    monkeypatch.setattr(trails, "load_database", lambda scenario, _: scenario)
+    monkeypatch.setattr(trails, "dump_database", lambda scenario: scenario)
+
+    obj.add_temporal_distributions()
+
+    for field, expected in expected_timing.items():
+        assert uptake[field] == expected
+    if uptake["temporal_distribution"] == 6:
+        weights = uptake["temporal_weights"]
+        assert len(weights) == len(uptake["temporal_offsets"])
+        assert all(weight >= 0 for weight in weights)
+        assert sum(weights) == pytest.approx(1.0)
+    assert uptake["amount"] == 1.75
+    assert emission == {
+        "type": "biosphere",
+        "name": "Carbon dioxide, fossil",
+        "amount": 0.1,
+    }
+    assert all("temporal_distribution" not in exchange for exchange in inputs)
+    assert all(exchange["amount"] == 1.0 for exchange in inputs)
+
+
 def test_nested_lifecycle_services_are_scheduled_in_the_caller_year(
     monkeypatch, tmp_path
 ):
