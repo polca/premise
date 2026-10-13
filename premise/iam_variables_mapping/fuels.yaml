@@ -118,6 +118,7 @@ wood chips:
     - market for biomass, used as fuel
     - market for lignocellulosic biomass, used as fuel
 natural gas:
+  lhv reference unit: cubic meter
   lhv:
     unit: megajoule
     value: 36
@@ -293,7 +294,7 @@ methane, from coal:
     unit: megajoule
     value: 47.5
   co2: 0.06
-  biogenic_share: 1
+  biogenic_share: 0
   iam_aliases:
     gcam: Secondary Energy|Production|Natural Gas|Coal
   ecoinvent_aliases:
@@ -1834,7 +1835,7 @@ kerosene, synthetic, from natural gas, energy allocation:
     unit: megajoule
     value: 43
   co2: 0.0715
-  biogenic_share: 1
+  biogenic_share: 0
   iam_aliases:
     tiam-ucl: Secondary Energy|Liquids|Natural Gas|FT|Kerosene|w/o CCS
   eff_aliases:
@@ -1850,7 +1851,7 @@ kerosene, synthetic, from natural gas, energy allocation, with CCS:
     unit: megajoule
     value: 43
   co2: 0.0715
-  biogenic_share: 1
+  biogenic_share: 0
   iam_aliases:
     tiam-ucl: Secondary Energy|Liquids|Natural Gas|FT|Kerosene|w CCS
   eff_aliases:

@@ -7,6 +7,7 @@ from .liquid_fuels import SyntheticFuelsMixin
 from .markets import FuelMarketsMixin
 from .utils import fetch_mapping
 from .config import FUEL_GROUPS
+from .properties import annotate_cng_properties
 from ..transformation import (
     BaseTransformation,
 )
@@ -65,7 +66,8 @@ def _update_fuels(scenario, version, system_model):
             )
         fuels.clear_validation_provenance()
         fuels.relink_datasets()
-        replace_scenario_inventory(scenario, fuels.database)
+        annotate_cng_properties(fuels.database)
+            replace_scenario_inventory(scenario, fuels.database)
         scenario["cache"] = fuels.cache
         scenario["index"] = fuels.index
 

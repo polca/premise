@@ -6,6 +6,18 @@ All notable changes to this project are documented in this file.
 
 ### Fixed
 
+- Preserve reference energy when creating petrol, diesel, gas and other fuel
+  blends; normalize IAM energy shares before supplier-unit conversions. Record
+  supplier carbon origin and oxidation potential, including DAC and mixed
+  captured-carbon sources, and validate energy rather than summed fuel mass.
+- Use the documented 46.5 MJ/kg delivered-CNG value in refreshed car/truck
+  purchases and vehicle accounting. Preserve compression recipes and disclose
+  the difference between upstream gas energy and delivered fuel energy.
+
+- Regionalize vehicle-grade natural-gas compression before its market, so CNG
+  consumers reach regional gas and electricity suppliers. Preserve compression
+  quantities and losses, and make original geographic forwarding activities
+  supply one kilogram per kilogram. Rebuild scenarios to apply the correction.
 - Replace automatic car/truck pollutant clamping with read-only plausibility
   diagnostics. Preserve cold-start, evaporative and speciated emissions and
   their uncertainty metadata; retain IAM efficiency adjustments.
