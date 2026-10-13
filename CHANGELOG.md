@@ -6,6 +6,15 @@ All notable changes to this project are documented in this file.
 
 ### Fixed
 
+- Replace automatic car/truck pollutant clamping with read-only plausibility
+  diagnostics. Preserve cold-start, evaporative and speciated emissions and
+  their uncertainty metadata; retain IAM efficiency adjustments.
+- Match transport air pollutants by explicit species aliases and EURO classes
+  by complete labels. Keep methane separate from NMVOC, THC separate from PAH,
+  and PM2.5 separate from coarse particles; resolve EURO-VI and EURO-6ab correctly.
+- Report unavailable emission boundaries and fuel references explicitly, retain
+  errors for invalid masses/units, and tolerate roundoff at diagnostic thresholds.
+  Regenerate exported databases to receive these changes.
 - Correct attributional allocation in the South African vanadium source
   inventory (#286). Replace the ilmenite and sodium-sulfate substitution
   credits with documented economic allocation of shared burdens. Assign

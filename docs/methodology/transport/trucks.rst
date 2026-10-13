@@ -18,9 +18,15 @@ fleet data exist, builds regional transport markets. The generated service is
 expressed per tonne-kilometre; vehicle manufacturing and battery capacity have
 separate reference units.
 
+The current replacement workbook uses 2020 Regional delivery vehicles, with
+400 km design range and cycle-specific payload and mileage. See
+:doc:`/development/regional-truck-refresh-2026` for battery specifications,
+proxy assumptions and the controlled EF 3.1 comparison. Historical long-haul
+labels in the market examples below do not define this workbook's driving cycle.
+
 .. figure:: /_static/process-diagrams/transport-trucks.svg
    :class: process-diagram
-   :alt: Trucks transformation: Regionalize mapped transport activities; Apply available efficiency factors; If fleet data exist: build markets and set batteries; Redirect eligible freight consumers; Apply matched exhaust factors.
+   :alt: Trucks transformation: Regionalize mapped transport activities; Apply available efficiency factors; If fleet data exist: build markets and set batteries; Redirect eligible freight consumers; Check emission plausibility without changing amounts.
    :align: center
 
 Inputs and applicability
@@ -53,26 +59,42 @@ triangular bounds. Capacity is interpolated between configured years and held
 at endpoint values outside the range; it is not simply scaled by vehicle
 fuel efficiency.
 
-For matched combustion powertrains and emissions classes, the exhaust step
-compares air-pollutant totals with packaged factors and calculated fuel use.
-A zero total or a value within 50% of the expected total is left unchanged.
-A larger deviation is clamped to the 90–110% interval around that expectation.
-This can modify pollutant totals independently of the IAM efficiency factor.
+The legacy selector uses manufacturing names containing ``truck``. The current
+workbook uses ``lorry production`` names, which it does not match. Consequently,
+these activities retain nominal capacity times one plus lifetime replacements;
+all 42 production activities were checked in the 2020 build. The projected-size
+mechanism should not be assumed to have overwritten their physical batteries.
+
+Transport emission checks are read-only. Exact air-flow aliases and complete
+EURO-class labels select the packaged hot-exhaust references; methane does not
+include NMVOC, and EURO-VI trucks do not use EURO-V coefficients. Recognized
+fuel markets and market groups provide fuel energy in MJ per reference activity.
+Invalid matched emission masses, units and supported fuel inputs remain errors.
+A missing fuel reference produces a diagnostic instead of a zero-fuel assumption.
+
+For comparable named flows, the inherited 0.5–2 times hot-reference screen
+produces warnings without changing inventory amounts or uncertainty metadata.
+This is a heuristic, not an empirical bound or a EURO certification check.
+Cold starts, evaporation, deterioration and model calibration are not
+reconstructed from the final exchanges, so a disagreement alone does not prove
+an inventory error. Residual NMVOC is not compared with parent NMHC, and missing
+THC aggregates are reported as unavailable checks. Use the source model's
+component inventory to investigate hot, cold-start and evaporation terms.
 
 When an efficiency factor is applied, **all biosphere exchanges** in the
 selected transport activity are rescaled along with the filtered energy
 inputs. Other technosphere exchanges, such as vehicle manufacture and road
 infrastructure, are not selected by this efficiency operation. This
-biosphere scaling precedes the additional car/truck exhaust adjustment.
+biosphere scaling precedes the read-only car/truck emission diagnostics.
 
 Premise regionalizes mapped transport activities even when fleet data are
 absent. For an available efficiency signal, it applies the inverse efficiency
 change to technosphere inputs selected by the technology's fuel-name filters.
 If the efficiency array or mapped variable is missing, that energy adjustment
 is unchanged. Regional markets are built only when fleet data are available.
-Cars and trucks also receive the implemented exhaust-factor
-normalization for matched fuel, size and emissions-class cases. This is
-separate from IAM efficiency changes and the GAINS emissions update.
+Cars and trucks receive read-only emission diagnostics for matched fuel, size
+and emissions-class cases. These checks are separate from IAM efficiency
+changes and the GAINS emissions update; they never normalize pollutant amounts.
 
 
 Markets and downstream links
@@ -242,7 +264,8 @@ tonne-kilometre input becomes 0.1/1.1 = 0.0909 kWh. Inspect the changed fuel
 or electricity exchange and its supplier separately. For an available fleet
 market, check service weights and units, then inspect an actual consumer link.
 Use ``Market Changes`` and ``Key Changes`` to distinguish composition,
-energy use and any exhaust-factor corrections.
+energy use and supply changes. Review the validation report separately for
+read-only emission diagnostics.
 
 Sources and inventory details
 -------------------------------

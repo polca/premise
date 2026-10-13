@@ -10,7 +10,7 @@ from functools import lru_cache
 import numpy as np
 import pandas as pd
 import yaml
-from .car_energy import car_class, fuel_balance, minimum_energy
+from .car_energy import car_class, fuel_balance, fuel_spec, minimum_energy
 from .inventory_normalization import (
     normalize_inventory_numeric_types,
     normalize_inventory_uncertainty,
@@ -196,6 +196,72 @@ def load_car_exhaust_pollutants():
             nested_dict[powertrain][euro_class][component] = value
 
     return nested_dict
+
+
+TRANSPORT_POLLUTANT_ALIASES = {
+    "lead": {"lead", "lead ii"},
+    "carbon monoxide": {
+        "carbon monoxide",
+        "carbon monoxide, fossil",
+        "carbon monoxide, non-fossil",
+    },
+    "methane": {"methane", "methane, fossil", "methane, non-fossil"},
+    "nmvoc": {
+        "nmvoc",
+        "nmvoc, non-methane volatile organic compounds",
+        "non-methane hydrocarbon",
+    },
+    "hydrocarbon": {"hydrocarbon", "hydrocarbons"},
+    "hydrocarbons": {"hydrocarbon", "hydrocarbons"},
+    "particulate": {
+        "particulate matter, < 2.5 um",
+        "particulates, < 2.5 um",
+        "particulate matters 2.5",
+    },
+    "dinitrogen monoxide": {"dinitrogen monoxide", "dinitrogen oxide"},
+    "ethene": {"ethene", "ethylene"},
+    "propene": {"propene", "propylene"},
+    "pah": {
+        "pah, polycyclic aromatic hydrocarbons",
+        "pah polycyclic aromatic hydrocarbons",
+    },
+    "pah polycyclic aromatic hydrocarbons": {
+        "pah, polycyclic aromatic hydrocarbons",
+        "pah polycyclic aromatic hydrocarbons",
+    },
+}
+
+TRANSPORT_EURO_CLASSES = {
+    "EURO-III": "3",
+    "EURO-IV": "4",
+    "EURO-V": "5",
+    "EURO-VI": "6",
+    "EURO-2": "2",
+    "EURO-3": "3",
+    "EURO-4": "4",
+    "EURO-5": "5",
+    "EURO-6": "6.2",
+    "EURO-6ab": "6",
+}
+
+
+def transport_emission_class(name):
+    """Resolve the complete EURO label to the packaged coefficient key.
+
+    Keep the existing generic car EURO-6 convention (6.2); it does not establish
+    a more specific certification class. Roman VI and car 6ab are separate keys.
+    """
+    return TRANSPORT_EURO_CLASSES.get(name.rsplit(", ", 1)[-1])
+
+
+def matches_transport_air_pollutant(exchange, pollutant):
+    """Match explicit air-flow aliases, never a substring of another species."""
+    categories = exchange.get("categories") or ()
+    if exchange.get("type") != "biosphere" or not categories or categories[0] != "air":
+        return False
+    name = exchange.get("name", "").casefold()
+    pollutant = pollutant.casefold()
+    return name in TRANSPORT_POLLUTANT_ALIASES.get(pollutant, {pollutant})
 
 
 @lru_cache(maxsize=1)
@@ -2045,18 +2111,6 @@ class TransportValidation(BaseDatasetValidator):
     def __init__(self, model, scenario, year, regions, database, iam_data):
         super().__init__(model, scenario, year, regions, database)
         self.iam_data = iam_data
-        self.euro_class_map = {
-            "EURO-III": 3,
-            "EURO-IV": 4,
-            "EURO-V": 5,
-            "EURO-VI": 6,
-            "EURO-2": 2,
-            "EURO-3": 3,
-            "EURO-4": 4,
-            "EURO-5": 5,
-            "EURO-6": 6.2,
-            "EURO-6ab": 6.0,
-        }
         self.exhaust = None
 
     def validate_and_normalize_exchanges(self):
@@ -2095,49 +2149,80 @@ class TransportValidation(BaseDatasetValidator):
                 )
 
     def calculate_fuel_consumption(self, ds):
-        if car_class(ds["name"]) is not None:
-            energy, _, _, production = fuel_balance(ds)
-            return energy * production
-        fuel_consumption = sum(
-            x["amount"] * 43
-            for x in ds["exchanges"]
-            if x["name"].startswith(("market for diesel", "market for petrol"))
-            and x["unit"] == "kilogram"
-        )
-        if fuel_consumption == 0:
-            fuel_consumption = sum(
-                x["amount"] * 47.5
-                for x in ds["exchanges"]
-                if "natural gas" in x["name"] and x["unit"] == "kilogram"
-            )
-        return fuel_consumption
+        """Return fuel LHV in MJ per reference activity; reject missing fuel.
+
+        Cars and trucks share the explicit market/market-group and unit lookup.
+        A missing or unsupported fuel is not evidence of zero fuel energy.
+        """
+        energy = 0.0
+        for exchange in ds["exchanges"]:
+            if exchange.get("type") != "technosphere":
+                continue
+            properties = fuel_spec(exchange.get("name", ""), exchange.get("unit", ""))
+            if properties is None:
+                continue
+            amount = float(exchange["amount"])
+            if not math.isfinite(amount) or amount < 0:
+                raise ValueError(
+                    "Transport fuel amounts must be finite and nonnegative"
+                )
+            energy += amount * properties[0]
+        if not math.isfinite(energy):
+            raise ValueError("Transport fuel energy must be finite")
+        if energy <= 0:
+            raise LookupError("No positive supported transport fuel input")
+        return energy
 
     def calculate_actual_emission(self, ds, pollutant):
         return sum(
             x["amount"]
             for x in ds["exchanges"]
-            if pollutant.lower() in x["name"].lower()
-            and x["type"] == "biosphere"
-            and x.get("categories", [None])[0] == "air"
+            if matches_transport_air_pollutant(x, pollutant)
         )
 
     def validate_emissions(self, ds, actual, expected, pollutant):
-        # A zero reference factor (e.g. lead for EURO-6 gasoline cars) is
-        # satisfied by zero inventory emissions, including an absent exchange.
+        """Report a hot-factor diagnostic without changing combined emissions.
+
+        The inherited twofold screen is a heuristic, not a calibrated bound or
+        a regulatory limit. A disagreement cannot establish an inventory error:
+        cold starts, evaporation, deterioration and calibration may be present.
+        """
+        if not all(math.isfinite(value) and value >= 0 for value in (actual, expected)):
+            self.log_issue(
+                ds,
+                "invalid transport emission amount",
+                f"{pollutant}: actual={actual}, hot reference={expected}; "
+                "emission amounts and references must be finite and nonnegative.",
+                issue_type="major",
+            )
+            return
         if actual == expected == 0.0:
             return
-
         if actual == 0.0:
-            message = f"No emission factor found for {pollutant}."
-            self.log_issue(ds, f"no emission factor for {pollutant}", message)
-            return
-
-        if not math.isclose(actual, expected, rel_tol=0.5):
-            message = (
-                f"Emission factor for {pollutant} is {actual}; expected approximately "
-                f"{expected}."
+            self.log_issue(
+                ds,
+                "transport emission unavailable",
+                f"No positive inventory emission for {pollutant}; hot-only "
+                f"reference={expected} kg per reference activity. "
+                "An absent or zero flow is not a missing coefficient.",
             )
-            self.log_issue(ds, "incorrect emission factor", message, issue_type="major")
+            return
+        lower, upper = 0.5 * expected, 2 * expected
+        # Accept numerical noise at a boundary without widening the scientific screen.
+        within = lower <= actual <= upper or any(
+            math.isclose(actual, bound, rel_tol=1e-6) for bound in (lower, upper)
+        )
+        if not within:
+            self.log_issue(
+                ds,
+                "transport hot emission diagnostic",
+                f"{pollutant}: combined inventory={actual} kg; hot-only "
+                f"reference={expected} kg per reference activity. Outside "
+                "the heuristic 0.5–2 × screen. Cold starts, evaporation, "
+                "deterioration and model calibration are not reconstructed; "
+                "this is not a like-for-like total-emission or EURO-limit check. "
+                "Inventory preserved; investigate using the component inventory.",
+            )
 
     def check_pollutant_emissions(self, vehicle_name):
 
@@ -2153,37 +2238,101 @@ class TransportValidation(BaseDatasetValidator):
         ]
 
         for ds in relevant_ds:
-            powertrain = ds["name"].split(", ")[-3]
-            euro_class = next((x for x in self.euro_class_map if x in ds["name"]), None)
+            parts = ds["name"].split(", ")
+            if len(parts) < 3:
+                continue
+            powertrain = parts[-3]
+            if powertrain not in self.exhaust:
+                continue
+            euro_class = transport_emission_class(ds["name"])
+            factors = self.exhaust[powertrain].get(euro_class)
+            if factors is not None and vehicle_name == "transport, freight, lorry":
+                factors = factors.get(parts[-2].removesuffix(" gross weight"))
+            if factors is None:
+                self.log_issue(
+                    ds,
+                    "transport emission reference unavailable",
+                    "No exact powertrain/EURO-class/size reference; "
+                    "inventory preserved without selecting a neighbouring class.",
+                )
+                continue
+            try:
+                fuel_consumption = self.calculate_fuel_consumption(ds)
+            except LookupError as error:
+                self.log_issue(
+                    ds,
+                    "transport emission fuel reference unavailable",
+                    f"Cannot construct a hot reference: {error}. "
+                    "Inventory preserved; no zero-fuel assumption.",
+                )
+                fuel_consumption = None
+            except (ValueError, TypeError) as error:
+                self.log_issue(
+                    ds,
+                    "invalid transport fuel input",
+                    f"Cannot construct a hot reference: {error}.",
+                    issue_type="major",
+                )
+                fuel_consumption = None
 
-            size = None
-            if vehicle_name == "transport, freight, lorry":
-                size = ds["name"].split(", ")[4].replace(" gross weight", "")
-
-            fuel_consumption = self.calculate_fuel_consumption(ds)
-
-            if powertrain in self.exhaust:
-                if str(self.euro_class_map[euro_class]) in self.exhaust[powertrain]:
-                    if size is None:
-                        for pollutant, expected_value in self.exhaust[powertrain][
-                            str(self.euro_class_map[euro_class])
-                        ].items():
-                            expected_value /= 1000  # g/MJ to kg/MJ
-                            expected_value *= fuel_consumption
-                            actual = self.calculate_actual_emission(ds, pollutant)
-                            self.validate_emissions(
-                                ds, actual, expected_value, pollutant
-                            )
-                    else:
-                        for pollutant, expected_value in self.exhaust[powertrain][
-                            str(self.euro_class_map[euro_class])
-                        ][size].items():
-                            expected_value /= 1000
-                            expected_value *= fuel_consumption
-                            actual = self.calculate_actual_emission(ds, pollutant)
-                            self.validate_emissions(
-                                ds, actual, expected_value, pollutant
-                            )
+            unavailable = []
+            for pollutant, factor in factors.items():
+                exchanges = [
+                    x
+                    for x in ds["exchanges"]
+                    if matches_transport_air_pollutant(x, pollutant)
+                ]
+                invalid = False
+                for exchange in exchanges:
+                    amount = exchange.get("amount")
+                    if (
+                        not isinstance(amount, (int, float, np.number))
+                        or not math.isfinite(amount)
+                        or amount < 0
+                    ):
+                        self.log_issue(
+                            ds,
+                            "invalid transport emission amount",
+                            f"{exchange['name']}: {amount!r}; expected a finite "
+                            "nonnegative mass.",
+                            issue_type="major",
+                        )
+                        invalid = True
+                    if exchange.get("unit") != "kilogram":
+                        self.log_issue(
+                            ds,
+                            "invalid transport emission unit",
+                            f"{exchange['name']}: {exchange.get('unit')!r}; "
+                            "expected kilogram.",
+                            issue_type="major",
+                        )
+                        invalid = True
+                if invalid:
+                    continue
+                if pollutant == "NMVOC":
+                    unavailable.append(
+                        "NMVOC is a residual/speciated flow, not the parent NMHC total"
+                    )
+                    continue
+                if pollutant == "Hydrocarbon" and not exchanges:
+                    unavailable.append(
+                        "aggregate THC is not exported; named species cannot substitute for it"
+                    )
+                    continue
+                if fuel_consumption is not None:
+                    self.validate_emissions(
+                        ds,
+                        sum(x["amount"] for x in exchanges),
+                        factor / 1000 * fuel_consumption,
+                        pollutant,
+                    )
+            if unavailable:
+                self.log_issue(
+                    ds,
+                    "transport emission scope unavailable",
+                    "; ".join(sorted(unavailable))
+                    + ". No aggregate was synthesized; inventory preserved.",
+                )
 
     def check_vehicle_efficiency(
         self,
@@ -2218,7 +2367,9 @@ class TransportValidation(BaseDatasetValidator):
                         and x["type"] == "technosphere"
                     ]
                 )
-                if electricity_consumption > 0:
+                # FCEV electricity is hydrogen compression at the refuelling
+                # station, not battery traction; BEV consumption bounds do not apply.
+                if electricity_consumption > 0 and "fuel cell" not in ds["name"]:
                     if (
                         electricity_consumption < elec_minimum
                         or electricity_consumption > elec_maximum
@@ -2248,7 +2399,11 @@ class TransportValidation(BaseDatasetValidator):
                     fuel_consumption += sum(
                         [
                             x["amount"]
-                            * (47.5 if x["unit"] == "kilogram" else 36)
+                            * (
+                                46.5
+                                if "vehicle grade" in x["name"]
+                                else 47.5 if x["unit"] == "kilogram" else 36
+                            )
                             / 42.6
                             for x in ds["exchanges"]
                             if (
