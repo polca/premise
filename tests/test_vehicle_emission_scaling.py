@@ -113,6 +113,29 @@ def transformer(dataset, kind, factor):
     return tr
 
 
+@pytest.mark.parametrize("source_kind", ["direct intensity", "energy/service", "unavailable"])
+def test_vehicle_records_the_regional_iam_efficiency_source(source_kind):
+    dataset = vehicle("car")
+    transform = transformer(dataset, "car", 1.0)
+    transform.iam_data.passenger_car_efficiencies.attrs[
+        "vehicle efficiency sources"
+    ] = {
+        "vehicle": {
+            "intensity variable": "Energy intensity|Car",
+            "intensity unit": "MJ/vehkm",
+            "reference year": 2020,
+            "by region": {"EUR": source_kind, "USA": "direct intensity"},
+        }
+    }
+    transform.adjust_transport_efficiency(dataset)
+    record = dataset["log parameters"]["IAM efficiency source"]
+    assert record["kind"] == source_kind
+    assert record["reference year"] == 2020
+    assert record["intensity variable"] == (
+        "Energy intensity|Car" if source_kind == "direct intensity" else None
+    )
+
+
 @pytest.mark.parametrize("kind", ["car", "truck"])
 @pytest.mark.parametrize("factor", [1.0, 0.8, 1.2])
 @pytest.mark.parametrize("compact", [False, True])
