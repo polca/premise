@@ -23,6 +23,7 @@ from .utils import eidb_label, rescale_exchanges, rescale_exchange
 from .car_energy import apply_floor, car_class, fuel_balance
 from .fuels.carbon import update_vehicle_fuel_co2
 from .vehicle_emissions import fuel_proportional_emission
+from .vehicle_energy import vehicle_energy_exchange
 from .vehicle_hydrogen import (
     compression_electricity,
     finish_hydrogen_compression,
@@ -446,6 +447,8 @@ class Transport(BaseTransformation):
                                 for v in self.vehicle_fuel_map[variable]
                             ]
                         ),
+                        lambda exchange: self.vehicle_type not in {"car", "truck"}
+                        or vehicle_energy_exchange(exchange),
                         lambda exchange: compression is None
                         or not compression_electricity(exchange, compression[0]),
                     ],

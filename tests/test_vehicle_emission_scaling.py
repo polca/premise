@@ -75,6 +75,20 @@ def vehicle(kind, compact=False):
                 unit="kilogram",
                 amount=0.002,
             ),
+            dict(
+                name="lorry production, diesel, 40 metric ton",
+                product="truck",
+                type="technosphere",
+                unit="unit",
+                amount=1e-7,
+            ),
+            dict(
+                name="market for diesel engine",
+                product="diesel engine",
+                type="technosphere",
+                unit="kilogram",
+                amount=0.01,
+            ),
         ],
     }
     if compact:
