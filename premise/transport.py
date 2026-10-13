@@ -21,6 +21,7 @@ from .inventory_store import get_scenario_inventory, replace_scenario_inventory
 from .transformation import BaseTransformation, IAMDataCollection
 from .utils import eidb_label, rescale_exchanges, rescale_exchange
 from .car_energy import apply_floor, car_class, fuel_balance
+from .fuels.carbon import update_vehicle_fuel_co2
 from .validation import (
     CarValidation,
     TruckValidation,
@@ -73,6 +74,11 @@ def _update_vehicles(scenario, vehicle_type, version, system_model):
     if fleet_data[vehicle_type] is not None:
         trspt.create_vehicle_markets()
         trspt.relink_transport_datasets()
+
+    if vehicle_type in {"car", "truck"}:
+        # Reuse the fuel module's accounting after regional supplier linking,
+        # IAM efficiency scaling and any passenger-car energy floor.
+        update_vehicle_fuel_co2(trspt.database, version, vehicle_type)
 
     replace_scenario_inventory(scenario, trspt.database)
     scenario["cache"] = trspt.cache

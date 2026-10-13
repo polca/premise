@@ -2509,6 +2509,60 @@ class TransportValidation(BaseDatasetValidator):
         self.validate_and_normalize_exchanges()
         self.check_vehicles()
 
+    def check_vehicle_fuel_carbon(self, vehicle_name):
+        """Check the split against current fuel links, independent of saved totals."""
+        from .fuels.carbon import VEHICLE_CO2_KEY, vehicle_fuel_carbon
+        from .fuels.properties import activity_key
+
+        providers = {activity_key(ds): ds for ds in self.database}
+        for ds in self.database:
+            if (
+                not ds.get("name", "").startswith(vehicle_name)
+                or VEHICLE_CO2_KEY not in ds
+            ):
+                continue
+            try:
+                balance = vehicle_fuel_carbon(ds, providers)
+            except (KeyError, TypeError, ValueError) as error:
+                self.log_issue(
+                    ds, "invalid vehicle fuel carbon", str(error), issue_type="major"
+                )
+                continue
+            if balance is None:
+                continue
+            if balance["status"] == "unresolved":
+                self.log_issue(
+                    ds,
+                    "vehicle fuel carbon unavailable",
+                    "; ".join(balance["reasons"]),
+                    issue_type="minor",
+                )
+                continue
+            for name, field in (
+                ("Carbon dioxide, fossil", "fossil CO2 kg"),
+                ("Carbon dioxide, non-fossil", "non-fossil CO2 kg"),
+            ):
+                amounts = [
+                    e["amount"]
+                    for e in ds["exchanges"]
+                    if e.get("type") == "biosphere"
+                    and e.get("name") == name
+                    and e.get("categories", (None,))[0] == "air"
+                    and e.get("unit") == "kilogram"
+                ]
+                actual = sum(value for value in amounts if value >= 0)
+                if any(
+                    not math.isfinite(value) for value in amounts
+                ) or not math.isclose(
+                    actual, balance[field], rel_tol=1e-8, abs_tol=1e-12
+                ):
+                    self.log_issue(
+                        ds,
+                        "vehicle fuel carbon split incorrect",
+                        f"{name}: {actual} kg; final linked fuel requires {balance[field]} kg.",
+                        issue_type="major",
+                    )
+
 
 class TruckValidation(TransportValidation):
 
@@ -2518,6 +2572,7 @@ class TruckValidation(TransportValidation):
 
     def run_checks(self):
         self.run_vehicle_checks()
+        self.check_vehicle_fuel_carbon("transport, freight, lorry,")
         self.check_vehicle_efficiency(
             vehicle_name="transport, freight, lorry",
             fossil_minimum=0.0,
@@ -2537,6 +2592,7 @@ class CarValidation(TransportValidation):
 
     def run_checks(self):
         self.run_vehicle_checks()
+        self.check_vehicle_fuel_carbon("transport, passenger car,")
         self.check_pollutant_emissions(vehicle_name="transport, passenger car")
         self.check_vehicle_efficiency(
             vehicle_name="transport, passenger car",

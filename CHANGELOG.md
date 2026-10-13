@@ -6,6 +6,11 @@ All notable changes to this project are documented in this file.
 
 ### Fixed
 
+- Refresh car/truck fossil and non-fossil CO2 from the final linked fuel
+  suppliers after regionalization and efficiency adjustment, using the fuel
+  module's shared reclassification routine. Scale stored CO2 transfers with
+  their exchanges and validate each carbon fraction independently. Rebuild
+  scenarios to apply this correction; existing saved databases are unchanged.
 - Preserve reference energy when creating petrol, diesel, gas and other fuel
   blends; normalize IAM energy shares before supplier-unit conversions. Record
   supplier carbon origin and oxidation potential, including DAC and mixed

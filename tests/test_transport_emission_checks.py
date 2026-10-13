@@ -307,5 +307,8 @@ def test_update_does_not_normalize_pollutants(monkeypatch, vehicle):
         transport, "replace_scenario_inventory", lambda s, d: s.update(database=d)
     )
     monkeypatch.setattr(transport, "record_validation_phase", lambda *args: None)
+    # This dispatch fixture has no linked fuel providers. Their separate CO2
+    # accounting is exercised by test_vehicle_fuel_carbon.py.
+    monkeypatch.setattr(transport, "update_vehicle_fuel_co2", lambda *args: None)
     transport._update_vehicles(scenario, vehicle, "3.12", "cutoff")
     assert ds == before
