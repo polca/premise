@@ -29,7 +29,8 @@ class HydrogenMixin:
         )
 
         # Create markets for hydrogen
-        self.process_and_add_markets(
+        self.process_and_add_fuel_markets(
+            reference_fuel="hydrogen",
             name="market for hydrogen, gaseous, low pressure",
             reference_product="hydrogen, gaseous, low pressure",
             unit="kilogram",

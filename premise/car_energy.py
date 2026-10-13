@@ -57,8 +57,9 @@ def fuel_spec(name, unit):
         return None
     props = fuel_properties()[family]
     if family == "natural gas" and unit == "kilogram":
-        # Existing transport convention, MJ/kg; packaged gas LHV is MJ/m3.
-        lhv = 47.5
+        # Delivered CNG calorific value documented by the ecoinvent market.
+        # The upstream compression recipe has a different energy boundary.
+        lhv = 46.5
     elif (family == "natural gas" and unit == "cubic meter") or (
         family != "natural gas" and unit == "kilogram"
     ):

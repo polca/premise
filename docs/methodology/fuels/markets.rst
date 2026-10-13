@@ -36,6 +36,61 @@ amounts. The amount sum can differ from one for fuels with different heating
 values. Consumer carbon dioxide handling uses the linked fuel composition;
 the detailed examples below illustrate those separate operations.
 
+Reference energy and carbon properties
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Fuel markets normalize eligible IAM energy shares before converting them into
+supplier quantities. For energy share ``s`` and supplier heating value ``H``,
+the purchased quantity is ``s * H_reference / H``. It is not subsequently
+normalized to one kilogram or one cubic metre. The reference values are
+42.6 MJ/kg for petrol, 43 MJ/kg for diesel and kerosene, 36 MJ/m3 for natural
+gas, 120 MJ/kg for hydrogen and 45.5 MJ/kg for LPG. Methane suppliers expressed
+in kilograms use their 47.5 MJ/kg property; their conversion into the gas
+market is based on energy, not an assumed density.
+
+The ``premise fuel properties`` metadata record actual supplier quantities,
+units, energy and full-oxidation fossil/non-fossil CO2 potential. For example,
+a 50/50 energy mix of petrol and ethanol purchases 0.5 kg petrol plus
+``0.5 * 42.6 / 26.5`` kg ethanol per reference kilogram. Consumer purchases
+must not be adjusted a second time using the physical mixture's average LHV.
+Market electricity, transport and infrastructure remain additional burdens.
+World properties follow the production-weighted regional markets.
+
+Synthetic-fuel carbon origin is traced through carbon-bearing inputs. Direct
+air capture is atmospheric carbon, represented as non-fossil combustion CO2;
+cement and waste-incineration capture retain the explicit biogenic shares of
+the capture inventories. Coal-derived carbon remains fossil. The source of
+hydrogen does not establish the origin of carbon. Unknown origins retain an
+explicit unresolved CO2 amount and a validation diagnostic. These properties
+describe oxidation potential separately from upstream capture credits and
+other carbon-containing pollutants; they are not an elemental carbon closure.
+
+Vehicle-grade natural gas
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The kilogram-based vehicle-grade natural-gas market obtains compressed gas
+from a regional ``natural gas production, medium pressure, vehicle grade``
+activity. Premise regionalizes this compression provider before the market,
+so its upstream high-pressure gas and compression electricity use the same
+IAM region whenever those suppliers are available. The inherited gas-volume
+conversion, electricity quantity, infrastructure requirements and direct losses
+are preserved. Compression remains part of fuel supply rather than a second
+electricity purchase in the vehicle inventory.
+
+Original geographic production and market activities become forwarding
+activities with one kilogram of the same product from their IAM replacement.
+Global originals use the World replacement where available. This forwarding
+balance is distinct from an energy-normalized fuel blend whose supplier masses
+can legitimately sum to more than one kilogram.
+
+The delivered CNG reference is **46.5 MJ/kg**, as documented by the ecoinvent
+vehicle-grade gas market. The refreshed car/truck adapters preserve modelled
+energy by dividing it by 46.5; their former 47.5 MJ/kg conversion understated
+purchases by approximately 2.15%. This leaves the compression recipe unchanged.
+The inherited 1.360544 m3/kg gas input represents about 48.98 MJ/kg at the
+36 MJ/m3 reference. Metadata record this upstream/delivered boundary difference
+explicitly; it is not attributed entirely to measured methane losses.
+
 CO2 emissions update
 ~~~~~~~~~~~~~~~~~~~~~~
 

@@ -52,7 +52,7 @@ def test_petrol_variants_reclassify_consumer_carbon_only_once():
     fuels._filter_biodiesel_feedstocks = lambda: None
     fuels._filter_bioethanol_feedstocks = lambda: None
     created = []
-    fuels.process_and_add_markets = lambda **kwargs: created.append(kwargs["name"])
+    fuels.process_and_add_fuel_markets = lambda **kwargs: created.append(kwargs["name"])
     fuels.is_in_index = lambda exchange, location: exchange["name"] in created
     fuels.biosphere_flows = {
         ("Carbon dioxide, non-fossil", "air", "unspecified", "kilogram"): "bio-co2"
@@ -195,7 +195,7 @@ def test_diesel_markets_receive_the_marginal_blend():
     fuels._filter_bioethanol_feedstocks = lambda: None
     market_calls = []
     carbon_calls = []
-    fuels.process_and_add_markets = lambda **kwargs: market_calls.append(kwargs)
+    fuels.process_and_add_fuel_markets = lambda **kwargs: market_calls.append(kwargs)
     fuels.update_fuel_carbon_dioxide_emissions = lambda **kwargs: carbon_calls.append(
         kwargs
     )

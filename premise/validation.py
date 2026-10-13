@@ -1853,7 +1853,12 @@ class HeatValidation(BaseDatasetValidator):
                 # add input of natural gas
                 nat_gas = sum(
                     [
-                        exc["amount"] * (36 if exc["unit"] == "cubic meter" else 47.5)
+                        exc["amount"]
+                        * (
+                            36
+                            if exc["unit"] == "cubic meter"
+                            else 46.5 if "vehicle grade" in exc["name"] else 47.5
+                        )
                         for exc in ds["exchanges"]
                         if "natural gas" in exc["name"]
                         and exc["type"] == "technosphere"
@@ -1867,7 +1872,12 @@ class HeatValidation(BaseDatasetValidator):
 
                 lpg = sum(
                     [
-                        exc["amount"] * (36 if exc["unit"] == "cubic meter" else 47.5)
+                        exc["amount"]
+                        * (
+                            36
+                            if exc["unit"] == "cubic meter"
+                            else 46.5 if "vehicle grade" in exc["name"] else 47.5
+                        )
                         for exc in ds["exchanges"]
                         if "liquefied petroleum gas" in exc["name"]
                         and exc["type"] == "technosphere"
@@ -1933,7 +1943,12 @@ class HeatValidation(BaseDatasetValidator):
                 # add input of methane
                 methane = sum(
                     [
-                        exc["amount"] * (36 if exc["unit"] == "cubic meter" else 47.5)
+                        exc["amount"]
+                        * (
+                            36
+                            if exc["unit"] == "cubic meter"
+                            else 46.5 if "vehicle grade" in exc["name"] else 47.5
+                        )
                         for exc in ds["exchanges"]
                         if "methane" in exc["name"]
                         and exc["type"] == "technosphere"
@@ -3020,7 +3035,11 @@ class FuelsValidation(BaseDatasetValidator):
         self.technology_map = technology_map or {}
 
     def check_consequential_fuel_supplier_vectors(self):
-        """Reject average or incomplete vectors in consequential fuel markets."""
+        """Reject average or incomplete energy vectors in consequential markets."""
+        from .fuels.properties import PROPERTIES_KEY, energy_per_unit
+        from .utils import get_fuel_properties
+
+        specifications = get_fuel_properties()
 
         if self.system_model != "consequential":
             return
@@ -3119,7 +3138,15 @@ class FuelsValidation(BaseDatasetValidator):
                     if technology is None:
                         unmatched.append(key)
                     else:
-                        actual[technology] += float(exchange["amount"])
+                        amount = float(exchange["amount"])
+                        if PROPERTIES_KEY in market:
+                            amount *= energy_per_unit(
+                                technology, exchange["unit"], specifications
+                            )
+                            amount /= market[PROPERTIES_KEY][
+                                "reference energy MJ per unit"
+                            ]
+                        actual[technology] += amount
                 for technology, expected_share in expected.items():
                     if not math.isclose(
                         actual.get(technology, 0.0),
@@ -3149,8 +3176,33 @@ class FuelsValidation(BaseDatasetValidator):
             )
 
     def check_fuel_market_composition(self):
-        # check that the fuel markets inputs
-        # equal to 1
+        from .fuels.properties import PROPERTIES_KEY, supplied_energy
+
+        for ds in self.database:
+            if PROPERTIES_KEY not in ds:
+                continue
+            if ds[PROPERTIES_KEY]["unresolved CO2 kg per unit"] > 1e-12:
+                self.log_issue(
+                    ds,
+                    "fuel carbon origin unresolved",
+                    "Fuel properties retain oxidation carbon with unknown origin; inspect component provenance.",
+                    issue_type="minor",
+                )
+            expected = ds[PROPERTIES_KEY].get(
+                "upstream fuel energy MJ per unit",
+                ds[PROPERTIES_KEY]["reference energy MJ per unit"],
+            )
+            actual = supplied_energy(ds)
+            if not math.isfinite(actual) or not math.isclose(
+                actual, expected, rel_tol=1e-6
+            ):
+                self.log_issue(
+                    ds,
+                    "fuel market energy does not match reference",
+                    f"Fuel inputs supply {actual} MJ; reference output requires {expected} MJ.",
+                    issue_type="major",
+                )
+        # Legacy, unannotated markets retain their previous composition check.
 
         fuel_market_names = [
             "market for petrol, low-sulfur",
@@ -3163,7 +3215,8 @@ class FuelsValidation(BaseDatasetValidator):
 
         for ds in self.database:
             if (
-                any(ds["name"].startswith(x) for x in fuel_market_names)
+                PROPERTIES_KEY not in ds
+                and any(ds["name"].startswith(x) for x in fuel_market_names)
                 and ds["location"] in self.regions
                 and ds["location"] != "World"
             ):

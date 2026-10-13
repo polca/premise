@@ -1127,6 +1127,7 @@ class BaseTransformation:
         conversion_factor=None,
         flip_treatment_supplier_sign=False,
         retain_validation_technology=False,
+        normalize_before_conversion=False,
     ):
         """
         Generalized method to create and add regionalized market datasets.
@@ -1145,6 +1146,10 @@ class BaseTransformation:
             Retain a transient IAM-technology label on supplier exchanges so
             an incremental validator can distinguish technologies sharing the
             same provider. Callers must remove these labels after validation.
+        normalize_before_conversion : bool, optional
+            Normalize the eligible supplier shares before applying quantity
+            conversions. Energy-based fuel markets use this to retain their
+            reference heating value when suppliers have different units/LHVs.
         additional_exchanges_fn : callable, optional
             Function to add extra exchanges to the market dataset (e.g., transport, losses).
         """
@@ -1226,6 +1231,7 @@ class BaseTransformation:
             # add geographical coverage definition
             self.add_geo_definition_metadata(market_dataset)
 
+            unconverted_share = 0.0
             for technology, activities in mapping.items():
                 if (technology, region) in technology_shares_dict:
                     share = technology_shares_dict.get((technology, region), 0)
@@ -1258,6 +1264,7 @@ class BaseTransformation:
                             conversion_factor.get(technology, 1.0),
                         )
                         for supplier in suppliers:
+                            unconverted_share += share * supplier.get("share", 1.0)
                             exchange = {
                                 "name": supplier["name"],
                                 "product": supplier["reference product"],
@@ -1276,10 +1283,14 @@ class BaseTransformation:
             )
 
             # normalize the shares
-            total_share = sum(
-                exc["amount"]
-                for exc in market_dataset["exchanges"]
-                if exc["type"] == "technosphere"
+            total_share = (
+                unconverted_share
+                if normalize_before_conversion
+                else sum(
+                    exc["amount"]
+                    for exc in market_dataset["exchanges"]
+                    if exc["type"] == "technosphere"
+                )
             )
             if total_share > 0:
                 for exc in market_dataset["exchanges"]:
