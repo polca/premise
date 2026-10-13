@@ -1,4 +1,15 @@
 {
+  "hydrogen_compression_adaptation": {
+    "electricity kWh per kg H2": 2.450619246770454,
+    "inlet pressure bar": 30,
+    "tank pressure bar": 700,
+    "hydrogen product": "hydrogen, gaseous, low pressure",
+    "electricity product": "electricity, low voltage",
+    "delivery source": "Premise hydrogen supply, distributed by pipeline: arrives at 30 bar",
+    "compression model": "carculator_utils.inventory.hydrogen_compression_electricity; default temperature, stages and efficiencies",
+    "boundary": "Tank compression after pipeline delivery; pipeline preparation remains in hydrogen supply",
+    "approved on": "2026-10-13"
+  },
   "cng_supply_basis": {
     "delivered_LHV_MJ_per_kg": 46.5,
     "source": "ecoinvent vehicle-grade natural gas market comment",
@@ -16,74 +27,34 @@
   "auxiliary_count": 33,
   "retained_legacy_components": 26,
   "legacy_components_version": "3.7",
-  "legacy_components_sha256": "196784a01755af691eb74758b03921997bf15e9f08dcdbdec6a3361e1051d061",
+  "legacy_components_sha256": "447f235dd706460be1cd4aba169f840cb9f336d512dbbe65f557a1a1890c4527",
   "noise_exchanges": 1248,
-  "sha256": "73a103f184861f8f88a4f32d90c8726761e036101680c87303031980b5679df4",
+  "sha256": "d832e963158dcc5f0922d4cc4464eaea9d756d3acb0b2d9b6b14179a45bb28d6",
   "export_version": "3.12",
   "commits": {
     "carculator_truck": "6ec213d3def0381d7e2fe587bc888a3a9d18ba2f",
-    "carculator_utils": "9bafa0d25d883a9cc10ce3400ec1c27a8b9cc930",
-    "premise": "a7c19af5251532ccccbc3d36f88504c0bbd2cc46"
+    "carculator_utils": "0f1bcc689389e7ef697927f584baa77455651778",
+    "premise": "97c4d41e431595dc6ca0a158985ee733b381b677"
   },
   "source_sha256": {
     "/Users/romain/GitHub/carculator_truck/carculator_truck/model.py": "2692b4c11ebe95a045729fc7d6234c7230ff6230396f3acd4fa8923e980fec12",
     "/Users/romain/GitHub/carculator_truck/carculator_truck/data/default_parameters.json": "99fc8b91b93384eb397a1cb6826dceea4fff2f73ea98d689ccdcd67182569f33",
     "/Users/romain/GitHub/carculator_truck/carculator_truck/data/payloads.yaml": "3e08a544e63a48f1a7af2d00b48d44136cbc5b94297344ab9db1bd80ce37b5bb",
     "/Users/romain/GitHub/carculator_utils/carculator_utils/hot_emissions.py": "ad1785e64e83d050d33212faa52a1b5e119247ad8cede7eda13df1e2cce9262b",
-    "/Users/romain/GitHub/carculator_utils/dev/regenerate_premise_trucks.py": "62d3582c9dc0ea9b51da1eb4374fc00244231d33594919f8a5fd6be4789c488c"
+    "/Users/romain/GitHub/carculator_utils/carculator_utils/model.py": "925b9414e11f0a12c8463606fc25f2a77c23ae97954afb392a210c9910a2cc63",
+    "/Users/romain/GitHub/carculator_utils/dev/regenerate_premise_trucks.py": "f4cff596c56e80c0a03197912a3cf88f5d1788d3ecff7b0193eef5a522cdaa23"
   },
-  "frozen_raw_generation": {
-    "source_generation": "/Users/romain/GitHub/carculator_utils/results/premise_trucks_regional_20261013/generated",
-    "source_provenance": {
-      "year": 2020,
-      "country": "CH",
-      "cycle": "Regional delivery",
-      "target_range_km": 400,
-      "defaults": "Current 2020 cycle-specific load/mileage, sizing, lifetime and replacement values",
-      "proxy_policy": "Energy-preserving gasoline/LPG conversions approved by user 2026-10-13; retained diesel/diesel-hybrid/CNG manufacture and non-CO2 factors explicitly documented",
-      "transport_count": 52,
-      "production_count": 42,
-      "auxiliary_count": 33,
-      "retained_legacy_components": 26,
-      "legacy_components_version": "3.7",
-      "legacy_components_sha256": "942c1732879bc1365eba3bde104eb5d820ee0755ba7bbb808f63fbf44dfd13c7",
-      "noise_exchanges": 1248,
-      "sha256": "c3f6ad2b0a7b308e309ced549236231bfffdd5d5353a42db7bb72ffdde221557",
-      "export_version": "3.12",
-      "commits": {
-        "carculator_truck": "6ec213d3def0381d7e2fe587bc888a3a9d18ba2f",
-        "carculator_utils": "9bafa0d25d883a9cc10ce3400ec1c27a8b9cc930",
-        "premise": "a7c19af5251532ccccbc3d36f88504c0bbd2cc46"
-      },
-      "source_sha256": {
-        "/Users/romain/GitHub/carculator_truck/carculator_truck/model.py": "2692b4c11ebe95a045729fc7d6234c7230ff6230396f3acd4fa8923e980fec12",
-        "/Users/romain/GitHub/carculator_truck/carculator_truck/data/default_parameters.json": "99fc8b91b93384eb397a1cb6826dceea4fff2f73ea98d689ccdcd67182569f33",
-        "/Users/romain/GitHub/carculator_truck/carculator_truck/data/payloads.yaml": "3e08a544e63a48f1a7af2d00b48d44136cbc5b94297344ab9db1bd80ce37b5bb",
-        "/Users/romain/GitHub/carculator_utils/carculator_utils/hot_emissions.py": "ad1785e64e83d050d33212faa52a1b5e119247ad8cede7eda13df1e2cce9262b",
-        "/Users/romain/GitHub/carculator_utils/dev/regenerate_premise_trucks.py": "dfb73aa0918c7ffeb82835de8bed57b91b7154182e9003e3d9271a465583d038"
-      }
-    },
-    "raw_sha256": {
-      "raw.json": "5e70a9e6300f813b6d780a2ea66487ae57e646ff5cc11292eaea25f554ca9296",
-      "model_parameters.json": "e0b68534c1392ac18932282de300848a73774de2d3df654d6278681e3766896d"
-    },
-    "purpose": "Reapply only fuel adapter; no vehicle model corrections in this step"
-  },
-  "hydrogen_compression_adaptation": {
-    "electricity kWh per kg H2": 2.450619246770454,
-    "inlet pressure bar": 30,
-    "tank pressure bar": 700,
-    "hydrogen product": "hydrogen, gaseous, low pressure",
-    "electricity product": "electricity, low voltage",
-    "delivery source": "Premise hydrogen supply, distributed by pipeline: arrives at 30 bar",
-    "compression model": "carculator_utils.inventory.hydrogen_compression_electricity; default temperature, stages and efficiencies",
-    "boundary": "Tank compression after pipeline delivery; pipeline preparation remains in hydrogen supply",
-    "approved on": "2026-10-13",
-    "previous generic inlet pressure bar": 25,
-    "previous electricity kWh per kg H2": 2.6162381574523983,
-    "previous workbook sha256": "1741cb6235ebd7ad8a52f7be8bea43b6f804e0c414578c1d4a48380bab711a1c",
-    "services updated": 7,
-    "installer sha256": "75fe0a091cfb1c9ec2e9389019c189c187797bac29a9d5bd3eb5493ccd5d0bc1",
-    "policy": "Only compression electricity and its metadata change; hydrogen and hardware unchanged"
+  "phev_capacity_correction": {
+    "before sha256": "73a103f184861f8f88a4f32d90c8726761e036101680c87303031980b5679df4",
+    "after sha256": "d832e963158dcc5f0922d4cc4464eaea9d756d3acb0b2d9b6b14179a45bb28d6",
+    "datasets": 127,
+    "material exchange changes": 0,
+    "float-rounding exchange changes": 22,
+    "maximum rounding absolute difference": 2.560021653152944e-05,
+    "raw model inventory sha256": "5db465c89b248df641fbda0508e52ddf3b001979815e2deafd36f6c92f0192ec",
+    "model parameters sha256": "f3a80984404f54f45c6919e29754b667aa9ba0630faf08c434fcec3548c507cf",
+    "installer sha256": "7b918284f55692f783db4e5afe09cb6f03c3d521ba7dc5d27124ef588391391b",
+    "policy": "Use the full electric-mode pack, independently of utility factor; range uses depth of discharge; replacement counts await separate review",
+    "prior provenance sha256": "d2c9491076d6fd601a5261e34dc73365ef233f201b651495a300087a1b1aba2a"
   }
 }
