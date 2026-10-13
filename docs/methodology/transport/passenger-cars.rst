@@ -56,10 +56,23 @@ an inventory error. Residual NMVOC is not compared with parent NMHC, and missing
 THC aggregates are reported as unavailable checks. Use the source model's
 component inventory to investigate hot, cold-start and evaporation terms.
 
-The IAM factor describes final energy per transport service relative to 2020
-(vehicle-kilometres for cars, tonne-kilometres for trucks). It is not an engine
-or motor efficiency alone. The current default limits the efficiency index to
-1.25, corresponding to a maximum 20% energy reduction.
+The IAM factor describes final energy per reported transport service relative
+to 2020; it is not an engine or motor efficiency alone. Check the scenario's
+actual units: the audited REMIND SSP2-NPi file reports passenger-kilometres
+for cars and tonne-kilometres for trucks. The car transformation applies that
+relative passenger-service intensity to fixed-occupancy vehicle-kilometre
+inventories; this is not an independent reconstruction of vehicle efficiency
+or occupancy trends. The mapping file's vehicle-kilometre comment does not
+establish the units of the supplied scenario. The current default limits the
+efficiency index to 1.25, corresponding to a maximum 20% energy reduction.
+
+Missing service/energy alias pairs currently produce an index of one. This
+fallback does not establish that the scenario projects no technical change.
+The audited file lacks several requested car BEV/FCEV/PHEV energy labels.
+Its large-car class also includes SUVs, unlike some requested aliases.
+Do not substitute energy-carrier totals for individual technologies without
+checking hybrid contributions and class coverage. Likewise, zero 2020 activity
+can cause an index to use backfilled data from a later year.
 
 Energy scaling changes fuel-derived CO2, sulphur emissions and generic-air
 methane leakage. Compartmented HBEFA hot, cold-start and evaporative emissions
