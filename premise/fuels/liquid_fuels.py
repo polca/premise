@@ -1,4 +1,4 @@
-from .carbon import reclassify_fuel_co2
+from .carbon import is_vehicle_fuel_consumer, reclassify_fuel_co2
 from collections import defaultdict
 
 from ..transformation import ws
@@ -513,7 +513,9 @@ class SyntheticFuelsMixin:
                     sum_fuel += exc["amount"]
                     non_fossil_fuel += exc["amount"] * min(1.0, max(0.0, share))
 
-            if sum_fuel == 0:
+            if sum_fuel == 0 or is_vehicle_fuel_consumer(ds):
+                # Road vehicles use final linked supplier carbon properties
+                # after all fuel chains have been completed and relinked.
                 continue
 
             reclassify_fuel_co2(

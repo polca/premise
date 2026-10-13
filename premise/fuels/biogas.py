@@ -1,4 +1,4 @@
-from .carbon import reclassify_fuel_co2
+from .carbon import is_vehicle_fuel_consumer, reclassify_fuel_co2
 from .properties import CNG_ENERGY_MJ_PER_KG
 from .utils import fetch_mapping
 from .config import METHANE_SOURCES
@@ -230,7 +230,7 @@ class BiogasMixin:
                     sum_ng += co2
                     non_fossil_ng += co2 * min(1.0, max(0.0, share))
 
-            if sum_ng == 0:
+            if sum_ng == 0 or is_vehicle_fuel_consumer(ds):
                 continue
 
             reclassify_fuel_co2(

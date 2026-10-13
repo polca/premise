@@ -99,9 +99,35 @@ fuel markets to update the way CO2 emissions are modelled. Based on the fuel
 market composition, CO2 emissions within the fuel-consuming activity are
 split between fossil and non-fossil emissions.
 
-The table below shows the example where the CO2 emissions of a 3.5t truck
-have been split into biogenic and fossil fractions after re-link to the
-new diesel market of the REMIND region for India.
+For passenger-car and truck services, the common fuel-carbon helper runs after
+fuel relinking and again after vehicle regionalization and efficiency changes.
+It calculates each CO2 fraction as the sum of the **final purchased quantity
+times the linked supplier's oxidation factor**. Carbon shares need not equal
+IAM energy shares. A clone must use its actual supplier, rather than inherit
+its template's regional split. The positive exhaust CO2 pool follows the
+full-oxidation convention; separate CO, CH4 and NMVOC emissions and negative
+capture credits remain unchanged. This is not an elemental carbon closure.
+
+The ``premise vehicle fuel CO2`` record identifies the actual suppliers, their
+quantities and factors, the reference production and the resulting emissions.
+Unknown carbon origin remains an explicit diagnostic. LPG without a scenario
+route uses the documented fossil fallback, 45.5 MJ/kg and 0.0631 kg CO2/MJ,
+and records its actual supplier geography. Forwarding activities and vehicles
+without direct combustion fuel do not receive a direct exhaust pool.
+
+The existing reclassification helper handles the fossil/non-fossil transfer.
+Stored transfer amounts scale with their exchanges, so a later update cannot
+reuse a pre-efficiency amount. Reclassification itself does not rescale other
+fuel transfers. Repeating the final vehicle-carbon calculation is idempotent.
+Validation independently compares both CO2 fractions with the current links.
+Industrial consumers retain their existing residual-emissions treatment,
+including the limit on emissions that can be reclassified after CCS; the
+vehicle-specific full-oxidation calculation does not apply to them.
+
+The historical illustrative table below shows a classification-only change
+for a 3.5t truck after linking to an Indian regional diesel market. Current
+builds calculate the amounts from their actual linked fuel properties; total
+CO2 can also change when those properties differ from the original inventory.
 
  ========================================== =========== ========== ================ ===========
   Output                                     before      after      _                _

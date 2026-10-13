@@ -38,12 +38,14 @@ FUELS_PROPERTIES = VARIABLES_DIR / "fuels.yaml"
 EFFICIENCY_RATIO_SOLAR_PV = DATA_DIR / "renewables" / "efficiency_solar_PV.csv"
 CACHE_MANIFEST_SUFFIX = ".manifest.json"
 CACHE_SCHEMA_VERSION = 6
+FUEL_CO2_TRANSFER_KEY = "premise fuel CO2 reclassification"
 
 
 def rescale_exchange(
     exchange: MutableMapping[str, Any],
     value: Number,
     remove_uncertainty: bool = True,
+    scale_fuel_co2_transfers: bool = True,
 ) -> MutableMapping[str, Any]:
     """Rescale a dictionary-compatible exchange and its uncertainty fields.
 
@@ -55,6 +57,13 @@ def rescale_exchange(
     assert isinstance(value, Number), "Constant factor ``value`` must be a number"
 
     exchange["amount"] *= value
+    if scale_fuel_co2_transfers and FUEL_CO2_TRANSFER_KEY in exchange:
+        # Transfers are exchange amounts, not fractions. Keep them on the same
+        # basis through efficiency changes, load normalization and cloning.
+        exchange[FUEL_CO2_TRANSFER_KEY] = {
+            fuel: amount * value
+            for fuel, amount in exchange[FUEL_CO2_TRANSFER_KEY].items()
+        }
 
     if not remove_uncertainty and "uncertainty type" in exchange:
         uncertainty_type = exchange["uncertainty type"]
