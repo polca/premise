@@ -1260,7 +1260,7 @@ class NewDatabase:
             (FILEPATH_TWO_WHEELERS, "3.7"),
             (FILEPATH_TRUCKS, "3.7"),
             (FILEPATH_BUSES, "3.7"),
-            (FILEPATH_PASS_CARS, "3.7"),
+            (FILEPATH_PASS_CARS, "3.12"),
             (FILEPATH_RAIL_FREIGHT, "3.9"),
             (FILEPATH_PV_GAAS, "3.10"),
             (FILEPATH_PV_PEROVSKITE, "3.10"),
