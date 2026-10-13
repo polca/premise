@@ -1,4 +1,11 @@
 {
+  "phev_battery_replacement_policy": {
+    "formula": "clip(lifetime km * electric utility factor * electric-mode net stored kJ/km / 3600 / nominal kWh / cycle life - 1, 0, 3)",
+    "cycle_basis": "equivalent full cycles of nominal capacity; no additional DoD divisor",
+    "energy_boundary": "inherited net stored-energy approximation; not gross charge/discharge throughput",
+    "calendar_ageing": "no separate truck calendar-age model",
+    "explicit_inputs": "nonzero counts retained for the whole pack; conflicting PHEV inputs rejected"
+  },
   "hydrogen_compression_adaptation": {
     "electricity kWh per kg H2": 2.450619246770454,
     "inlet pressure bar": 30,
@@ -27,34 +34,34 @@
   "auxiliary_count": 33,
   "retained_legacy_components": 26,
   "legacy_components_version": "3.7",
-  "legacy_components_sha256": "447f235dd706460be1cd4aba169f840cb9f336d512dbbe65f557a1a1890c4527",
+  "legacy_components_sha256": "bef560656f6e669eb4c331f8fc5ddbe5b7dc5b5ef7bf1a080daf612dbf24b469",
   "noise_exchanges": 1248,
-  "sha256": "d832e963158dcc5f0922d4cc4464eaea9d756d3acb0b2d9b6b14179a45bb28d6",
+  "sha256": "066298016513965491102cf2698e59e69fa26719f0a4db0c5a1df4143218d65d",
   "export_version": "3.12",
   "commits": {
-    "carculator_truck": "6ec213d3def0381d7e2fe587bc888a3a9d18ba2f",
-    "carculator_utils": "0f1bcc689389e7ef697927f584baa77455651778",
-    "premise": "97c4d41e431595dc6ca0a158985ee733b381b677"
+    "carculator_truck": "05733a7bba77e9f536ac44a38ac13d5b7dae83db",
+    "carculator_utils": "02fc553e469646a33c578bba1250604515a444d1",
+    "premise": "b37eb82571d3cb1cc390531bcc290790dc921819"
   },
   "source_sha256": {
-    "/Users/romain/GitHub/carculator_truck/carculator_truck/model.py": "2692b4c11ebe95a045729fc7d6234c7230ff6230396f3acd4fa8923e980fec12",
+    "/Users/romain/GitHub/carculator_truck/carculator_truck/model.py": "a90ae9698cc00973e7e1a7fb95e6757b2390e02e7c4a286b3cb8f0659e16f4fc",
     "/Users/romain/GitHub/carculator_truck/carculator_truck/data/default_parameters.json": "99fc8b91b93384eb397a1cb6826dceea4fff2f73ea98d689ccdcd67182569f33",
     "/Users/romain/GitHub/carculator_truck/carculator_truck/data/payloads.yaml": "3e08a544e63a48f1a7af2d00b48d44136cbc5b94297344ab9db1bd80ce37b5bb",
     "/Users/romain/GitHub/carculator_utils/carculator_utils/hot_emissions.py": "ad1785e64e83d050d33212faa52a1b5e119247ad8cede7eda13df1e2cce9262b",
-    "/Users/romain/GitHub/carculator_utils/carculator_utils/model.py": "925b9414e11f0a12c8463606fc25f2a77c23ae97954afb392a210c9910a2cc63",
-    "/Users/romain/GitHub/carculator_utils/dev/regenerate_premise_trucks.py": "f4cff596c56e80c0a03197912a3cf88f5d1788d3ecff7b0193eef5a522cdaa23"
+    "/Users/romain/GitHub/carculator_utils/carculator_utils/model.py": "56d7ce2a9f02ae5d517f3ccbe703e304074bd3282c24af17fc60144201dff3a0",
+    "/Users/romain/GitHub/carculator_utils/dev/regenerate_premise_trucks.py": "7a7036ddbd2bab437ab99dccc1920fd67e67aaed69b410d76928678860ae6f37"
   },
-  "phev_capacity_correction": {
-    "before sha256": "73a103f184861f8f88a4f32d90c8726761e036101680c87303031980b5679df4",
-    "after sha256": "d832e963158dcc5f0922d4cc4464eaea9d756d3acb0b2d9b6b14179a45bb28d6",
+  "phev_replacement_correction": {
+    "before sha256": "d832e963158dcc5f0922d4cc4464eaea9d756d3acb0b2d9b6b14179a45bb28d6",
+    "after sha256": "066298016513965491102cf2698e59e69fa26719f0a4db0c5a1df4143218d65d",
     "datasets": 127,
-    "material exchange changes": 0,
-    "float-rounding exchange changes": 22,
-    "maximum rounding absolute difference": 2.560021653152944e-05,
-    "raw model inventory sha256": "5db465c89b248df641fbda0508e52ddf3b001979815e2deafd36f6c92f0192ec",
-    "model parameters sha256": "f3a80984404f54f45c6919e29754b667aa9ba0630faf08c434fcec3548c507cf",
-    "installer sha256": "7b918284f55692f783db4e5afe09cb6f03c3d521ba7dc5d27124ef588391391b",
-    "policy": "Use the full electric-mode pack, independently of utility factor; range uses depth of discharge; replacement counts await separate review",
-    "prior provenance sha256": "d2c9491076d6fd601a5261e34dc73365ef233f201b651495a300087a1b1aba2a"
+    "material exchange changes": 7,
+    "float-rounding exchange changes": 0,
+    "maximum rounding absolute difference": 0,
+    "raw model inventory sha256": "249cdf1345645024e0a180c8c886827e700aacd185bab30c3fe21a01c7515310",
+    "model parameters sha256": "7ebc7451c6432d556152ea6fdb4fcb6cd5ec637e127368dff4ba2335637d8a02",
+    "installer sha256": "7e9c179ac8cebfb88c85318a8e52d7f0d2002341b16f3ac2529811960c61bc9c",
+    "policy": "Truck net lifetime electric energy is weighted before subtracting the first pack; cars use the approved 200000 vehicle-km and 18-year limits; each count belongs to the physical pack",
+    "prior provenance sha256": "dc63adc760ca02018bbd2aae7642aaeab7c12c379cdd3ab1595d39ac44e38ab2"
   }
 }
