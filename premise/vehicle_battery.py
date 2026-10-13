@@ -1,7 +1,8 @@
 """Constant-range battery accounting, without a vehicle model at runtime.
 
-The final operating-electricity ratio already includes all IAM improvements.
-Scale usable capacity by that ratio; do not apply another mass/energy feedback.
+The operating-electricity ratio before payload normalization includes the IAM
+improvements. Scale usable capacity by that ratio without a mass/energy feedback.
+BEV trucks retain payload utilization and normalize service inputs to their load.
 Imported metadata supplies the 2020 design and precomputed wear relationships.
 """
 
@@ -60,7 +61,7 @@ def cell_density(chemistry, year):
 
 
 def battery_state(spec, energy_factor, density, year):
-    """Return a closed-form design; duty, DoD, charging and other hardware stay fixed."""
+    """Return a constant-range design, retaining BEV truck payload utilization."""
     positive = (
         energy_factor,
         density,
@@ -81,9 +82,40 @@ def battery_state(spec, energy_factor, density, year):
     delta = mass - spec["pack mass kg"]
     curb = spec["curb mass kg"] + delta
     driving = spec["driving mass kg"] + delta
+    payload = {}
+    gross = spec.get("gross mass kg")
+    if gross is not None:
+        cargo = spec["cargo mass kg"]
+        available = gross - spec["driving mass kg"] + cargo
+        passengers = spec["driving mass kg"] - spec["curb mass kg"] - cargo
+        if (
+            any(not math.isfinite(x) or x <= 0 for x in (gross, cargo, available))
+            or cargo > available + 1e-4
+            or passengers < -1e-4
+        ):
+            raise ValueError("Invalid baseline truck payload or gross mass")
+        future_available = available - delta
+        if future_available <= 0:
+            raise ValueError(
+                "Resized battery leaves no payload within truck gross mass"
+            )
+        if spec.get("family") == "truck" and spec["powertrain"] == "BEV":
+            utilization = cargo / available
+            future_cargo = cargo - utilization * delta
+            driving += future_cargo - cargo
+            payload["payload normalization factor"] = cargo / future_cargo
+        else:
+            future_cargo = cargo
+            utilization = cargo / future_available
+        payload.update(
+            {
+                "cargo mass kg": future_cargo,
+                "available payload kg": future_available,
+                "capacity utilization": utilization,
+            }
+        )
     if min(curb, driving) <= 0 or curb < mass:
         raise ValueError("Resized battery is inconsistent with vehicle mass")
-    gross = spec.get("gross mass kg")
     if gross is not None and driving > gross + 1e-4:
         raise ValueError("Resized battery exceeds the approved truck gross mass")
     result = {
@@ -102,12 +134,7 @@ def battery_state(spec, energy_factor, density, year):
         "lifetime capacity kWh": capacity * (1 + replacements),
         "method": "constant-range accounting; IAM energy already includes mass effects",
     }
-    if gross is not None:
-        result["cargo mass kg"] = spec["cargo mass kg"]
-        result["available payload kg"] = gross - driving + spec["cargo mass kg"]
-        result["capacity utilization"] = (
-            spec["cargo mass kg"] / result["available payload kg"]
-        )
+    result.update(payload)
     return result
 
 
@@ -136,7 +163,7 @@ def electricity_per_service(dataset):
 
 def mass_factors(spec, state):
     """Evaluate a few precomputed mass powers; no driving-cycle calculation."""
-    delta = state["pack mass kg"] - spec["pack mass kg"]
+    delta = state["driving mass kg"] - spec["driving mass kg"]
     factors = {
         "curb": state["curb mass kg"] / spec["curb mass kg"],
         "driving": state["driving mass kg"] / spec["driving mass kg"],
@@ -180,12 +207,22 @@ def _resize_mass_exchanges(dataset, spec, state):
 
 def _record(dataset, state):
     dataset[STATE_KEY] = dict(state)
+    payload_note = ""
+    if "payload normalization factor" in state:
+        payload_note = (
+            f" BEV truck payload utilization remains {state['capacity utilization']:.6g}; "
+            f"cargo is {state['cargo mass kg']:.6g} kg with "
+            f"{state['available payload kg']:.6g} kg available payload. "
+            "Service inputs are normalized to this cargo per tonne-kilometre. "
+            "IAM electricity per vehicle-km is retained without further load feedback."
+        )
     note = (
         f" Scenario battery design ({state['year']}, {dataset['location']}): "
         f"{state['capacity kWh']:.6g} kWh nominal, {state['pack mass kg']:.6g} kg pack; "
         f"{state['electric range km']:.6g} km electric range retained. "
-        "IAM energy is the final operating target, including mass effects. "
-        "Other hardware, charging efficiency, DoD and usage retain the 2020 design. "
+        "IAM energy is the operating target before payload normalization. "
+        "Other hardware, charging efficiency, DoD and distance usage retain the 2020 design."
+        f"{payload_note} "
         "Original model specifications below describe the 2020 baseline."
     )
     old_note = dataset.get("premise battery sizing comment", "")
@@ -220,7 +257,18 @@ def resize_regional_batteries(transport):
     additions = []
     for ds in services.values():
         spec = specification(ds)
+        previous = ds.get(STATE_KEY)
         factor = electricity_per_service(ds) / spec["grid kWh per service"]
+        if spec.get("family") == "truck" and spec["powertrain"] == "BEV":
+            if ds["unit"] != "ton kilometer":
+                raise ValueError(
+                    "BEV truck payload normalization requires tonne-kilometres"
+                )
+            # Undo any previous per-tkm normalization before sizing from per-vkm energy.
+            if previous:
+                factor /= previous.get("payload normalization factor", 1.0)
+        if previous and math.isclose(factor, previous["energy factor"], rel_tol=1e-12):
+            factor = previous["energy factor"]
         if math.isclose(factor, 1, rel_tol=1e-12):
             factor = 1.0
         density = cell_density(spec["chemistry"], transport.year)
@@ -248,6 +296,16 @@ def resize_regional_batteries(transport):
         source_key = exchange["name"], _product(exchange), exchange["location"]
         source = providers[source_key]
         _resize_mass_exchanges(ds, spec, state)
+        normalization = state.get("payload normalization factor", 1.0)
+        old_normalization = (
+            previous.get("payload normalization factor", 1.0) if previous else 1.0
+        )
+        if normalization != old_normalization:
+            for exc in ds["exchanges"]:
+                if exc["type"] != "production":
+                    rescale_exchange(
+                        exc, normalization / old_normalization, remove_uncertainty=False
+                    )
         _record(ds, state)
         if factor == 1 and density == spec["cell density kWh/kg"]:
             continue

@@ -24,6 +24,7 @@ def spec():
     return {
         "version": 1,
         "baseline year": 2020,
+        "family": "car",
         "powertrain": "BEV",
         "chemistry": "NMC-622",
         "capacity kWh": 84.0,
@@ -86,11 +87,15 @@ def test_invalid_energy_target_rejected(spec, factor):
 
 def test_truck_payload_cannot_be_silently_clipped(spec):
     spec["gross mass kg"] = 2250
+    spec["cargo mass kg"] = 125
+    spec["powertrain"] = "PHEV-d"
     with pytest.raises(ValueError, match="gross mass"):
         battery_state(spec, 2, 0.24, 2050)
 
 
 def test_smaller_pack_frees_payload_but_retains_the_actual_load(spec):
+    spec["family"] = "truck"
+    spec["powertrain"] = "PHEV-d"
     spec["gross mass kg"] = 2250
     spec["cargo mass kg"] = 125
     result = battery_state(spec, 0.8, 0.24, 2050)
@@ -100,6 +105,65 @@ def test_smaller_pack_frees_payload_but_retains_the_actual_load(spec):
     assert result["cell mass kg"] + result["balance of pack mass kg"] == pytest.approx(
         result["pack mass kg"]
     )
+
+
+@pytest.fixture
+def truck_spec(spec):
+    spec.update(
+        {
+            "family": "truck",
+            "gross mass kg": 4075,
+            "cargo mass kg": 1000,
+            "driving mass kg": 3075,
+        }
+    )
+    for terms in spec["wear terms"].values():
+        for term in terms:
+            term[1] = 3075
+    return spec
+
+
+@pytest.mark.parametrize(
+    "factor,cargo,available,driving",
+    [(0.8, 1050, 2100, 3025), (1, 1000, 2000, 3075), (1.2, 950, 1900, 3125)],
+)
+def test_bev_truck_keeps_utilization_when_pack_changes(
+    truck_spec, factor, cargo, available, driving
+):
+    result = battery_state(truck_spec, factor, 0.24, 2050)
+    assert result["cargo mass kg"] == pytest.approx(cargo)
+    assert result["available payload kg"] == pytest.approx(available)
+    assert result["driving mass kg"] == pytest.approx(driving)
+    assert result["capacity utilization"] == 0.5
+    assert result["payload normalization factor"] == pytest.approx(1000 / cargo)
+    assert result["driving mass kg"] - result["curb mass kg"] - cargo == pytest.approx(
+        75
+    )
+    assert mass_factors(truck_spec, result)["brake"] == pytest.approx(
+        (driving / 3075) ** (2 / 3)
+    )
+
+
+def test_full_bev_truck_retains_gross_driving_mass(truck_spec):
+    truck_spec["cargo mass kg"] = 2000
+    truck_spec["driving mass kg"] = 4075
+    result = battery_state(truck_spec, 0.8, 0.24, 2050)
+    assert result["cargo mass kg"] == 2100
+    assert result["capacity utilization"] == 1
+    assert result["driving mass kg"] == 4075
+    assert mass_factors(truck_spec, result)["brake"] == 1
+
+
+@pytest.mark.parametrize("cargo", [0, -1, 3100, float("nan"), float("inf")])
+def test_invalid_bev_truck_payload_is_rejected(truck_spec, cargo):
+    truck_spec["cargo mass kg"] = cargo
+    with pytest.raises(ValueError, match="baseline truck payload"):
+        battery_state(truck_spec, 0.8, 0.26, 2050)
+
+
+def test_bev_truck_cannot_sacrifice_all_payload_for_battery(truck_spec):
+    with pytest.raises(ValueError, match="no payload"):
+        battery_state(truck_spec, 5, 0.24, 2050)
 
 
 @pytest.mark.parametrize("grid", [0, -1, float("nan"), float("inf")])
@@ -187,18 +251,109 @@ def transformer(spec, *, compact=False, year=2050, factor=0.8, production=1):
             exchange("NOx", "", "kilogram", 1e-6, type="biosphere"),
         ],
     }
+    if spec.get("family") == "truck":
+        source.update(
+            name="lorry production, battery electric, 3.5t",
+            **{"reference product": "lorry"},
+        )
+        source["exchanges"][0].update(name=source["name"], product="lorry")
+        source["exchanges"].append(
+            exchange("assembly", "assembly operation, for lorry", "kilogram", 2000)
+        )
+        service.update(
+            name="transport, freight, lorry, battery electric 3.5t gross weight",
+            unit="ton kilometer",
+            **{"reference product": "transport, freight, lorry"},
+        )
+        service["exchanges"][0].update(
+            product=service["reference product"], unit=service["unit"]
+        )
+        service["exchanges"][1].update(name=source["name"], product="lorry")
+        service["exchanges"][4]["product"] = "road wear emissions, lorry"
+        service["exchanges"][5]["product"] = "maintenance, lorry"
     if compact:
         for ds in (source, service):
             ds["exchanges"] = [compact_exchange_payload(e) for e in ds["exchanges"]]
     added = []
     tr = SimpleNamespace(
         year=year,
-        vehicle_type="car",
+        vehicle_type=spec.get("family", "car"),
         database=[source, service],
         vehicle_map={"BEV": [service]},
         add_to_index=lambda data: added.extend(data),
     )
     return tr, source, service, added
+
+
+@pytest.mark.parametrize("compact", [False, True])
+@pytest.mark.parametrize("production", [1, 2])
+def test_bev_payload_normalizes_all_service_burdens_once(
+    truck_spec, compact, production
+):
+    tr, source, service, added = transformer(
+        truck_spec, compact=compact, production=production
+    )
+    original = deepcopy(source)
+    old = [e["amount"] for e in service["exchanges"]]
+    service["exchanges"][1].update(
+        {"uncertainty type": 4, "minimum": old[1] * 0.9, "maximum": old[1] * 1.1}
+    )
+    resize_regional_batteries(tr)
+    assert source == original
+    # Reconstruct pack, driver and load independently from the capacity and density.
+    pack = 67.2 / (0.7 * 0.26)
+    curb = 1500 + pack
+    cargo = (4075 - curb - 75) / 2
+    load_ratio = 1000 / cargo
+    driving_ratio = (curb + 75 + cargo) / 3075
+    state = service[STATE_KEY]
+    assert state["cargo mass kg"] == pytest.approx(cargo)
+    assert state["capacity utilization"] == 0.5
+    assert state["energy factor"] == 0.8
+    assert service["exchanges"][0]["amount"] == production
+    for index in (1, 2, 5, 6):
+        assert service["exchanges"][index]["amount"] == pytest.approx(
+            old[index] * load_ratio
+        )
+    purchase = service["exchanges"][1]
+    assert purchase["amount"] / production == pytest.approx(1 / (200000 * cargo / 1000))
+    assert purchase["minimum"] == pytest.approx(old[1] * 0.9 * load_ratio)
+    assert purchase["maximum"] == pytest.approx(old[1] * 1.1 * load_ratio)
+    assert service["exchanges"][3]["amount"] == pytest.approx(
+        old[3] * driving_ratio * load_ratio
+    )
+    wear = 0.8 * driving_ratio ** (2 / 3) + 0.2 * driving_ratio ** (10 / 11)
+    assert service["exchanges"][4]["amount"] == pytest.approx(
+        old[4] * wear * load_ratio
+    )
+    per_km = service["exchanges"][2]["amount"] / production * cargo / 1000
+    assert per_km == pytest.approx(0.21 * 0.8)
+    assert state["capacity kWh"] * 0.8 / (per_km * 0.8) == pytest.approx(400)
+    # Per-vehicle manufacture is resized but never divided by freight load.
+    assert added[0]["exchanges"][1]["amount"] == pytest.approx(84)
+    assert added[0]["exchanges"][2]["amount"] == 25
+    assert added[0]["exchanges"][3]["amount"] == pytest.approx(curb)
+    once = deepcopy(tr.database)
+    resize_regional_batteries(tr)
+    assert tr.database == once
+    assert len(added) == 1
+
+
+def test_bev_payload_requires_tkm_service(truck_spec):
+    tr, _, service, _ = transformer(truck_spec)
+    service["unit"] = "kilometer"
+    with pytest.raises(ValueError, match="tonne-kilometres"):
+        resize_regional_batteries(tr)
+
+
+def test_2020_bev_truck_keeps_original_load_and_every_exchange(truck_spec):
+    tr, _, service, added = transformer(truck_spec, year=2020, factor=1)
+    before = deepcopy([d["exchanges"] for d in tr.database])
+    resize_regional_batteries(tr)
+    assert [d["exchanges"] for d in tr.database] == before
+    assert not added
+    assert service[STATE_KEY]["cargo mass kg"] == 1000
+    assert service[STATE_KEY]["payload normalization factor"] == 1
 
 
 @pytest.mark.parametrize("compact", [False, True])
