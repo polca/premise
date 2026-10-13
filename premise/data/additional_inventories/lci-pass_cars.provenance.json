@@ -1,0 +1,110 @@
+{
+  "cng_supply_basis": {
+    "delivered_LHV_MJ_per_kg": 46.5,
+    "source": "ecoinvent vehicle-grade natural gas market comment",
+    "policy": "Preserve model energy and source compression recipe; upstream gas energy is not delivered LHV",
+    "approved_on": "2026-10-13"
+  },
+  "year": 2020,
+  "country": "CH",
+  "starts_per_day": 1.8,
+  "annual_mileage_policy": "Unchanged 2020 defaults: combustion cars 12000 km/year; BEV Micro 6000 km/year.",
+  "starts_source": "https://www.bafu.admin.ch/dam/en/sd-web/rMTT3CcvG0fJ/Switzerland%27s%20National%20Inventory%20Document%202026%20%28GHG%20inventory%201990-2024%29.pdf#page=167",
+  "starts_source_locator": "Table 3-90, passenger cars, 2020 column; selected by user 2026-10-13",
+  "cold_start_factors_source": {
+    "database": "HBEFA",
+    "version": "5.1",
+    "model": "carculator",
+    "reference": "the original LCA model, carculator, uses emission factors for cold start, evaporative and running emissions from the HBEFA 5.1 emissions handbook.",
+    "confirmed_on": "2026-10-13",
+    "scope": "Passenger-car cold-start, evaporative and running emission factors; no coefficient changes."
+  },
+  "transport_count": 74,
+  "production_count": 73,
+  "auxiliaries": [
+    "glider lightweighting, carculator passenger car 2020",
+    "fuel cell Balance of Plant production, 1 kWe, proton exchange membrane (PEM), carculator passenger car 2020",
+    "fuel cell stack production, 1 kWe, proton exchange membrane (PEM), carculator passenger car 2020",
+    "fuel tank, compressed hydrogen gas, 700bar, with HDPE liner, carculator passenger car 2020",
+    "carbon fiber production, weaved, at factory, carculator passenger car 2020",
+    "carbon fiber production, fiber drying and sizing, carculator passenger car 2020",
+    "carbon fiber production, fiber stabilization, carbonization, electrolysis and washing, carculator passenger car 2020",
+    "carbon fiber production, exhaust gas treatment 2, carculator passenger car 2020",
+    "carbon fiber production, fiber winding and unwinding, carculator passenger car 2020",
+    "carbon fiber production, exhaust gas treatment 1, carculator passenger car 2020",
+    "carbon fiber production, fiber relaxation, carculator passenger car 2020",
+    "carbon fiber production, fiber coagulation, stretching, washing, sizing and drying, carculator passenger car 2020",
+    "polyacrylonitrile production (PAN) by polymerisation, carculator passenger car 2020",
+    "polymer electrolyte membrane (Nafion) production, carculator passenger car 2020",
+    "fuel tank assembly, compressed natural gas, 200 bar, carculator passenger car 2020"
+  ],
+  "noise_exchanges": 1776,
+  "sha256": "21dbea85b5dc8bfecdd96fca339817dbb6681d961d1fb35c5f4a9a8793597363",
+  "export_version": "3.12",
+  "commits": {
+    "carculator": "ddcac198bb0831dc4001e1f63a97d84ec65481f8",
+    "carculator_utils": "9bafa0d25d883a9cc10ce3400ec1c27a8b9cc930",
+    "premise": "a7c19af5251532ccccbc3d36f88504c0bbd2cc46"
+  },
+  "source_sha256": {
+    "carculator_utils/carculator_utils/hot_emissions.py": "ad1785e64e83d050d33212faa52a1b5e119247ad8cede7eda13df1e2cce9262b",
+    "carculator_utils/carculator_utils/data/emission_factors/provenance.json": "a39f3be05bddb6c07e97da0b8f96edcefa4751c2a1e36cfd72760aab2155c095",
+    "carculator_utils/dev/regenerate_premise_cars.py": "fc15632fa333e1e1dd80e3f28c6cf0519dfa1dd5e0b510324b6644e3377e1c30"
+  },
+  "frozen_raw_generation": {
+    "source_generation": "/Users/romain/GitHub/carculator_utils/results/premise_cars_cold_start_20261013/generated",
+    "source_provenance": {
+      "year": 2020,
+      "country": "CH",
+      "starts_per_day": 1.8,
+      "annual_mileage_policy": "Unchanged 2020 defaults: combustion cars 12000 km/year; BEV Micro 6000 km/year.",
+      "starts_source": "https://www.bafu.admin.ch/dam/en/sd-web/rMTT3CcvG0fJ/Switzerland%27s%20National%20Inventory%20Document%202026%20%28GHG%20inventory%201990-2024%29.pdf#page=167",
+      "starts_source_locator": "Table 3-90, passenger cars, 2020 column; selected by user 2026-10-13",
+      "cold_start_factors_source": {
+        "database": "HBEFA",
+        "version": "5.1",
+        "model": "carculator",
+        "reference": "the original LCA model, carculator, uses emission factors for cold start, evaporative and running emissions from the HBEFA 5.1 emissions handbook.",
+        "confirmed_on": "2026-10-13",
+        "scope": "Passenger-car cold-start, evaporative and running emission factors; no coefficient changes."
+      },
+      "transport_count": 74,
+      "production_count": 73,
+      "auxiliaries": [
+        "glider lightweighting, carculator passenger car 2020",
+        "fuel cell Balance of Plant production, 1 kWe, proton exchange membrane (PEM), carculator passenger car 2020",
+        "fuel cell stack production, 1 kWe, proton exchange membrane (PEM), carculator passenger car 2020",
+        "fuel tank, compressed hydrogen gas, 700bar, with HDPE liner, carculator passenger car 2020",
+        "carbon fiber production, weaved, at factory, carculator passenger car 2020",
+        "carbon fiber production, fiber drying and sizing, carculator passenger car 2020",
+        "carbon fiber production, fiber stabilization, carbonization, electrolysis and washing, carculator passenger car 2020",
+        "carbon fiber production, exhaust gas treatment 2, carculator passenger car 2020",
+        "carbon fiber production, fiber winding and unwinding, carculator passenger car 2020",
+        "carbon fiber production, exhaust gas treatment 1, carculator passenger car 2020",
+        "carbon fiber production, fiber relaxation, carculator passenger car 2020",
+        "carbon fiber production, fiber coagulation, stretching, washing, sizing and drying, carculator passenger car 2020",
+        "polyacrylonitrile production (PAN) by polymerisation, carculator passenger car 2020",
+        "polymer electrolyte membrane (Nafion) production, carculator passenger car 2020",
+        "fuel tank assembly, compressed natural gas, 200 bar, carculator passenger car 2020"
+      ],
+      "noise_exchanges": 1776,
+      "sha256": "56b8a1e22517e4d3d874a334fc7cd79eef5fe87264c454beec3d01846e03d452",
+      "export_version": "3.12",
+      "commits": {
+        "carculator": "ddcac198bb0831dc4001e1f63a97d84ec65481f8",
+        "carculator_utils": "9bafa0d25d883a9cc10ce3400ec1c27a8b9cc930",
+        "premise": "a7c19af5251532ccccbc3d36f88504c0bbd2cc46"
+      },
+      "source_sha256": {
+        "carculator_utils/carculator_utils/hot_emissions.py": "ad1785e64e83d050d33212faa52a1b5e119247ad8cede7eda13df1e2cce9262b",
+        "carculator_utils/carculator_utils/data/emission_factors/provenance.json": "a39f3be05bddb6c07e97da0b8f96edcefa4751c2a1e36cfd72760aab2155c095",
+        "carculator_utils/dev/regenerate_premise_cars.py": "621e3a369a5b5bc757ecc9cb9f73a7ff8363031c231cf785431c5791d605a658"
+      }
+    },
+    "raw_sha256": {
+      "raw.json": "b5338063d9104a4aeb0e82e17d0257e959baa370fc0fdbde528206f7ceffc6b6",
+      "model_parameters.json": "e9c8e22b92c117eb6f8cdea7330965f47bb0ac4c8d0b04a2da5b57de18105409"
+    },
+    "purpose": "Reapply only fuel adapter; no vehicle model corrections in this step"
+  }
+}
