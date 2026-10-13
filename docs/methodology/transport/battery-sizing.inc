@@ -3,19 +3,37 @@ Constant-range battery accounting
 
 Refreshed car and truck inventories carry a ``vehicle battery sizing`` metadata
 contract for BEV and plug-in-hybrid energy batteries. Premise uses the final
-traction-electricity purchase per service, after scenario efficiency scaling,
-relative to that contract's 2020 purchase. If this ratio is ``f``, then:
+traction-electricity purchase after scenario efficiency scaling, relative to
+that contract's 2020 purchase, before any payload normalization. If this ratio
+is ``f``, then:
 
 * nominal capacity = 2020 nominal capacity × ``f``;
 * pack mass = 2020 pack mass × ``f`` × 2020 cell density / scenario cell density;
-* curb and driving mass = their respective 2020 values + the pack-mass change.
+* curb mass = 2020 curb mass + the pack-mass change;
+* driving mass additionally includes any change in carried cargo, as below.
 
 This is an accounting approximation. The IAM energy target represents the
 combined improvement, including any mass benefit. No additional energy saving
 is calculated from the lighter vehicle. Charging efficiency, depth of discharge,
-cell mass fraction, lifetime, annual distance, load and non-battery hardware
-retain the original 2020 design. Density follows Premise's existing projection
+cell mass fraction, lifetime, annual distance and non-battery hardware retain
+the original 2020 design. Density follows Premise's existing projection
 for the original chemistry, independently of the upstream MIX capacity market.
+
+For BEV trucks, payload capacity is gross mass minus curb mass and driver mass.
+The 2020 ratio of carried cargo to that capacity stays fixed. A lighter pack thus
+increases available payload and carried cargo; a heavier pack decreases both.
+All non-production exchanges in the tonne-kilometre service, including truck
+manufacture, electricity, maintenance and direct emissions, are multiplied by
+2020 cargo / new cargo. The service's output stays one tonne-kilometre and
+per-vehicle manufacturing inventories are not divided by cargo. Road and wear
+adjustments use the new loaded driving mass before this normalization.
+
+The IAM improvement is interpreted at the original load; electricity per
+vehicle-kilometre retains that target when the load changes. The explicit payload
+benefit is additional to this improvement. No further physical energy response
+to cargo is simulated. This is a fixed-utilization accounting assumption, not
+a claim that each IAM independently projects this payload increase. Cars and
+PHEV trucks retain their 2020 actual loads.
 
 For PHEVs the ratio uses grid electricity and preserves electric-mode range
 at unchanged electric-driving share. It does not use aggregate fuel-plus-electric
