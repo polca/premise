@@ -403,20 +403,39 @@ class Transport(BaseTransformation):
         source = data.attrs.get("vehicle efficiency sources", {}).get(variable)
         if source and dataset["location"] in source["by region"]:
             source_kind = source["by region"][dataset["location"]]
+            prefix = "fallback " if source_kind == "proxy intensity" else ""
             dataset.setdefault("log parameters", {})["IAM efficiency source"] = {
                 "kind": source_kind,
                 "reference year": source["reference year"],
                 "intensity variable": (
-                    source["intensity variable"]
-                    if source_kind == "direct intensity"
+                    source[f"{prefix}intensity variable"]
+                    if source_kind in {"direct intensity", "proxy intensity"}
                     else None
                 ),
                 "intensity unit": (
-                    source["intensity unit"]
-                    if source_kind == "direct intensity"
+                    source[f"{prefix}intensity unit"]
+                    if source_kind in {"direct intensity", "proxy intensity"}
                     else None
                 ),
             }
+            old_note = dataset.pop("premise vehicle efficiency proxy comment", "")
+            if old_note:
+                dataset["comment"] = dataset.get("comment", "").replace(old_note, "", 1)
+            if source_kind == "proxy intensity":
+                record = dataset["log parameters"]["IAM efficiency source"]
+                record["native intensity variable"] = source["intensity variable"]
+                record["reason"] = (
+                    "Native regional intensity and energy/service signal unavailable"
+                )
+                note = (
+                    f" IAM efficiency proxy ({self.model}, {dataset['location']}): "
+                    f"{record['intensity variable']}; relative to 2020. "
+                    "Native regional efficiency unavailable; only the relative energy trend "
+                    "is borrowed. Baseline vehicle specifications and fleet volumes are retained."
+                )
+                comment = dataset.get("comment", "")
+                dataset["comment"] = note + comment
+                dataset["premise vehicle efficiency proxy comment"] = note
 
         if variable in data.coords["variables"].values:
             efficiency = self.find_iam_efficiency_change(

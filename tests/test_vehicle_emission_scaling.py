@@ -136,6 +136,38 @@ def test_vehicle_records_the_regional_iam_efficiency_source(source_kind):
     )
 
 
+def test_proxy_metadata_names_actual_series_and_comment_is_not_duplicated():
+    dataset = vehicle("car")
+    transform = transformer(dataset, "car", 1.0)
+    source = {
+        "intensity variable": "Energy intensity|Large Car|BEV",
+        "intensity unit": "MJ/vehkm",
+        "fallback intensity variable": "Energy intensity|Large Car and SUV|BEV",
+        "fallback intensity unit": "MJ/vehkm",
+        "reference year": 2020,
+        "by region": {"EUR": "proxy intensity"},
+    }
+    transform.iam_data.passenger_car_efficiencies.attrs[
+        "vehicle efficiency sources"
+    ] = {"vehicle": source}
+    for _ in range(2):
+        transform.adjust_transport_efficiency(dataset)
+        record = dataset["log parameters"]["IAM efficiency source"]
+        assert record["kind"] == "proxy intensity"
+        assert record["intensity variable"] == source["fallback intensity variable"]
+        assert record["native intensity variable"] == source["intensity variable"]
+        assert record["intensity unit"] == "MJ/vehkm"
+        assert dataset["comment"].count("IAM efficiency proxy") == 1
+    source["by region"]["EUR"] = "direct intensity"
+    transform.adjust_transport_efficiency(dataset)
+    assert "IAM efficiency proxy" not in dataset["comment"]
+    assert "premise vehicle efficiency proxy comment" not in dataset
+    assert (
+        dataset["log parameters"]["IAM efficiency source"]["intensity variable"]
+        == source["intensity variable"]
+    )
+
+
 @pytest.mark.parametrize("kind", ["car", "truck"])
 @pytest.mark.parametrize("factor", [1.0, 0.8, 1.2])
 @pytest.mark.parametrize("compact", [False, True])
