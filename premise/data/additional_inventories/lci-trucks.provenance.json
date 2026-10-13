@@ -1,0 +1,72 @@
+{
+  "cng_supply_basis": {
+    "delivered_LHV_MJ_per_kg": 46.5,
+    "source": "ecoinvent vehicle-grade natural gas market comment",
+    "policy": "Preserve model energy and source compression recipe; upstream gas energy is not delivered LHV",
+    "approved_on": "2026-10-13"
+  },
+  "year": 2020,
+  "country": "CH",
+  "cycle": "Regional delivery",
+  "target_range_km": 400,
+  "defaults": "Current 2020 cycle-specific load/mileage, sizing, lifetime and replacement values",
+  "proxy_policy": "Energy-preserving gasoline/LPG conversions approved by user 2026-10-13; retained diesel/diesel-hybrid/CNG manufacture and non-CO2 factors explicitly documented",
+  "transport_count": 52,
+  "production_count": 42,
+  "auxiliary_count": 33,
+  "retained_legacy_components": 26,
+  "legacy_components_version": "3.7",
+  "legacy_components_sha256": "196784a01755af691eb74758b03921997bf15e9f08dcdbdec6a3361e1051d061",
+  "noise_exchanges": 1248,
+  "sha256": "1741cb6235ebd7ad8a52f7be8bea43b6f804e0c414578c1d4a48380bab711a1c",
+  "export_version": "3.12",
+  "commits": {
+    "carculator_truck": "6ec213d3def0381d7e2fe587bc888a3a9d18ba2f",
+    "carculator_utils": "9bafa0d25d883a9cc10ce3400ec1c27a8b9cc930",
+    "premise": "a7c19af5251532ccccbc3d36f88504c0bbd2cc46"
+  },
+  "source_sha256": {
+    "/Users/romain/GitHub/carculator_truck/carculator_truck/model.py": "2692b4c11ebe95a045729fc7d6234c7230ff6230396f3acd4fa8923e980fec12",
+    "/Users/romain/GitHub/carculator_truck/carculator_truck/data/default_parameters.json": "99fc8b91b93384eb397a1cb6826dceea4fff2f73ea98d689ccdcd67182569f33",
+    "/Users/romain/GitHub/carculator_truck/carculator_truck/data/payloads.yaml": "3e08a544e63a48f1a7af2d00b48d44136cbc5b94297344ab9db1bd80ce37b5bb",
+    "/Users/romain/GitHub/carculator_utils/carculator_utils/hot_emissions.py": "ad1785e64e83d050d33212faa52a1b5e119247ad8cede7eda13df1e2cce9262b",
+    "/Users/romain/GitHub/carculator_utils/dev/regenerate_premise_trucks.py": "62d3582c9dc0ea9b51da1eb4374fc00244231d33594919f8a5fd6be4789c488c"
+  },
+  "frozen_raw_generation": {
+    "source_generation": "/Users/romain/GitHub/carculator_utils/results/premise_trucks_regional_20261013/generated",
+    "source_provenance": {
+      "year": 2020,
+      "country": "CH",
+      "cycle": "Regional delivery",
+      "target_range_km": 400,
+      "defaults": "Current 2020 cycle-specific load/mileage, sizing, lifetime and replacement values",
+      "proxy_policy": "Energy-preserving gasoline/LPG conversions approved by user 2026-10-13; retained diesel/diesel-hybrid/CNG manufacture and non-CO2 factors explicitly documented",
+      "transport_count": 52,
+      "production_count": 42,
+      "auxiliary_count": 33,
+      "retained_legacy_components": 26,
+      "legacy_components_version": "3.7",
+      "legacy_components_sha256": "942c1732879bc1365eba3bde104eb5d820ee0755ba7bbb808f63fbf44dfd13c7",
+      "noise_exchanges": 1248,
+      "sha256": "c3f6ad2b0a7b308e309ced549236231bfffdd5d5353a42db7bb72ffdde221557",
+      "export_version": "3.12",
+      "commits": {
+        "carculator_truck": "6ec213d3def0381d7e2fe587bc888a3a9d18ba2f",
+        "carculator_utils": "9bafa0d25d883a9cc10ce3400ec1c27a8b9cc930",
+        "premise": "a7c19af5251532ccccbc3d36f88504c0bbd2cc46"
+      },
+      "source_sha256": {
+        "/Users/romain/GitHub/carculator_truck/carculator_truck/model.py": "2692b4c11ebe95a045729fc7d6234c7230ff6230396f3acd4fa8923e980fec12",
+        "/Users/romain/GitHub/carculator_truck/carculator_truck/data/default_parameters.json": "99fc8b91b93384eb397a1cb6826dceea4fff2f73ea98d689ccdcd67182569f33",
+        "/Users/romain/GitHub/carculator_truck/carculator_truck/data/payloads.yaml": "3e08a544e63a48f1a7af2d00b48d44136cbc5b94297344ab9db1bd80ce37b5bb",
+        "/Users/romain/GitHub/carculator_utils/carculator_utils/hot_emissions.py": "ad1785e64e83d050d33212faa52a1b5e119247ad8cede7eda13df1e2cce9262b",
+        "/Users/romain/GitHub/carculator_utils/dev/regenerate_premise_trucks.py": "dfb73aa0918c7ffeb82835de8bed57b91b7154182e9003e3d9271a465583d038"
+      }
+    },
+    "raw_sha256": {
+      "raw.json": "5e70a9e6300f813b6d780a2ea66487ae57e646ff5cc11292eaea25f554ca9296",
+      "model_parameters.json": "e0b68534c1392ac18932282de300848a73774de2d3df654d6278681e3766896d"
+    },
+    "purpose": "Reapply only fuel adapter; no vehicle model corrections in this step"
+  }
+}

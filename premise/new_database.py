@@ -297,6 +297,7 @@ FILEPATH_RHENIUM = INVENTORY_DIR / "lci-rhenium.xlsx"
 FILEPATH_PGM = INVENTORY_DIR / "lci-PGM.xlsx"
 FILEPATH_TWO_WHEELERS = INVENTORY_DIR / "lci-two_wheelers.xlsx"
 FILEPATH_TRUCKS = INVENTORY_DIR / "lci-trucks.xlsx"
+FILEPATH_TRUCK_LEGACY_COMPONENTS = INVENTORY_DIR / "lci-truck-legacy-components.xlsx"
 FILEPATH_BUSES = INVENTORY_DIR / "lci-buses.xlsx"
 FILEPATH_PASS_CARS = INVENTORY_DIR / "lci-pass_cars.xlsx"
 FILEPATH_RAIL_FREIGHT = INVENTORY_DIR / "lci-rail-freight.xlsx"
@@ -1262,7 +1263,9 @@ class NewDatabase:
             (FILEPATH_GERMANIUM, "3.9"),
             (FILEPATH_RHENIUM, "3.9"),
             (FILEPATH_TWO_WHEELERS, "3.7"),
-            (FILEPATH_TRUCKS, "3.7"),
+            # Preserve shared component suppliers used by other inventories.
+            (FILEPATH_TRUCK_LEGACY_COMPONENTS, "3.7"),
+            (FILEPATH_TRUCKS, "3.12"),
             (FILEPATH_BUSES, "3.7"),
             (FILEPATH_PASS_CARS, "3.12"),
             (FILEPATH_RAIL_FREIGHT, "3.9"),
