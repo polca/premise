@@ -398,6 +398,24 @@ class Transport(BaseTransformation):
 
         variable = self.rev_map[dataset["name"]]
 
+        source = data.attrs.get("vehicle efficiency sources", {}).get(variable)
+        if source and dataset["location"] in source["by region"]:
+            source_kind = source["by region"][dataset["location"]]
+            dataset.setdefault("log parameters", {})["IAM efficiency source"] = {
+                "kind": source_kind,
+                "reference year": source["reference year"],
+                "intensity variable": (
+                    source["intensity variable"]
+                    if source_kind == "direct intensity"
+                    else None
+                ),
+                "intensity unit": (
+                    source["intensity unit"]
+                    if source_kind == "direct intensity"
+                    else None
+                ),
+            }
+
         if variable in data.coords["variables"].values:
             efficiency = self.find_iam_efficiency_change(
                 data=data,

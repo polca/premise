@@ -56,23 +56,45 @@ an inventory error. Residual NMVOC is not compared with parent NMHC, and missing
 THC aggregates are reported as unavailable checks. Use the source model's
 component inventory to investigate hot, cold-start and evaporation terms.
 
-The IAM factor describes final energy per reported transport service relative
-to 2020; it is not an engine or motor efficiency alone. Check the scenario's
-actual units: the audited REMIND SSP2-NPi file reports passenger-kilometres
-for cars and tonne-kilometres for trucks. The car transformation applies that
-relative passenger-service intensity to fixed-occupancy vehicle-kilometre
-inventories; this is not an independent reconstruction of vehicle efficiency
-or occupancy trends. The mapping file's vehicle-kilometre comment does not
-establish the units of the supplied scenario. The current default limits the
-efficiency index to 1.25, corresponding to a maximum 20% energy reduction.
+Optional ``energy_intensity_aliases`` provide technology-specific final-energy
+intensities in MJ/vehicle-km. REMIND and REMIND-EU use these when available,
+with an efficiency index equal to intensity(2020) divided by intensity(year).
+A positive modeled 2020 intensity remains usable even when fleet activity is
+zero. The original REMIND reports describe fleet intensities, not the physical
+specification of a newly manufactured vehicle or motor efficiency alone.
+The current default still caps the index at 1.25 (at most 20% less energy)
+and prevents deterioration over time.
 
-Missing service/energy alias pairs currently produce an index of one. This
-fallback does not establish that the scenario projects no technical change.
-The audited file lacks several requested car BEV/FCEV/PHEV energy labels.
-Its large-car class also includes SUVs, unlike some requested aliases.
-Do not substitute energy-carrier totals for individual technologies without
-checking hybrid contributions and class coverage. Likewise, zero 2020 activity
-can cause an index to use backfilled data from a later year.
+A direct series must have a finite positive 2020 value. Gaps in other years
+can use the same series' nearest available values. If direct data are absent,
+an available regional energy/service pair provides the fallback. Otherwise
+the index is one, explicitly marked as unavailable in the array's
+``vehicle efficiency sources`` attribute and the transformed vehicle's
+``log parameters / IAM efficiency source``. Missing regions or classes never
+inherit a direct trend from neighbouring technologies. In particular, EUR's
+Large Car and SUV category is not automatically assigned to separate Large
+Car inventories, nor duplicated in fleet volumes.
+
+Other IAMs without direct-intensity mappings retain their existing
+energy/service calculation. Its denominator matters: IMAGE reports passenger-
+and tonne-kilometres, while the inspected TIAM-UCL distance series use
+vehicle-kilometres. Such service intensities can incorporate occupancy/load
+changes. Missing MESSAGE vehicle mappings do not create a synthetic vehicle
+projection. Do not substitute pooled electricity or liquid-fuel demand for
+individual technologies without accounting for hybrid contributions.
+
+The original REMIND preprocessing must retain ``Energy intensity`` variables
+in addition to ``Efficiency``. ``scripts/restore_vehicle_intensities.py`` can
+append the mapped rows to an encrypted scenario from its matching original.
+It verifies model/pathway and existing transport values, preserves the existing
+plaintext bytes, and writes a new encrypted file plus hashes for review.
+Existing scenario archives without these rows use the documented fallback.
+
+Vehicle energy inputs are selected by their fuel/electricity product and unit,
+in addition to the IAM fuel mapping. A name containing a fuel, such as lorry
+production, diesel, does not make manufacture or equipment an energy input.
+Efficiency improvements therefore do not reduce the number of vehicles
+manufactured per unit of transport service.
 
 Energy scaling changes fuel-derived CO2, sulphur emissions and generic-air
 methane leakage. Compartmented HBEFA hot, cold-start and evaporative emissions
