@@ -6,6 +6,11 @@ All notable changes to this project are documented in this file.
 
 ### Fixed
 
+- Couple explicitly identified vehicle hydrogen tank-compression electricity
+  to final hydrogen demand, preserving other electricity uses. Align refreshed
+  car/truck preparation with the pipeline inventory's documented 30-bar
+  delivery and 700-bar tanks (2.45062 kWh/kg H2). Preserve the role through
+  Excel import and regional relinking, and validate the final energy balance.
 - Refresh car/truck fossil and non-fossil CO2 from the final linked fuel
   suppliers after regionalization and efficiency adjustment, using the fuel
   module's shared reclassification routine. Scale stored CO2 transfers with

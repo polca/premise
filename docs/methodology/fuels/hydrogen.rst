@@ -42,6 +42,38 @@ Without an IAM signal, electrolysis uses the external electricity-requirement
 trajectory. Other pathways keep their feedstock amount in this adjustment.
 The energy-floor limitation below qualifies the IAM branch.
 
+Vehicle tank compression
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+The generated low-pressure hydrogen market includes the imported
+``hydrogen supply, distributed by pipeline`` service. Its source comment
+states delivery at **30 bar**, after transmission, storage and distribution.
+Its electricity includes those upstream operations, not final preparation for
+the refreshed vehicle's 700-bar tank. The legacy ``add_compression_electricity``
+helper for other delivery routes is not called by this market-generation path.
+
+The refreshed car/truck adapters apply the carculator_utils intercooled
+compression model from 30 to 700 bar, using its default 300 K, three equal-ratio
+stages, 0.56 isentropic efficiency and 0.92 motor efficiency. This requires
+**2.450619 kWh/kg H2**, replacing the generic 25-bar assumption's 2.616238.
+These are the model's tank-compression assumptions; precooling and fast-fill
+overpressure are outside this calculation.
+
+The activity-level ``hydrogen tank compression`` metadata identify the fuel,
+electricity product, pressures, model and specific electricity requirement.
+This contract survives exchange aggregation and geographic relinking, which
+can discard individual exchange comments. During transport efficiency
+adjustment, identified compression is excluded from generic electricity
+scaling, then calculated once from final hydrogen consumption. Other uses
+merged into the same electricity product retain their original remainder.
+``premise hydrogen compression balance`` records the resulting amounts;
+validation checks them against the current fuel and electricity exchanges.
+
+Legacy inventories without this explicit role do not acquire an inferred
+compression burden. The upstream pipeline recipe is unchanged. Both the
+pipeline service and vehicle tank compression therefore follow hydrogen demand
+at their respective stages. Rebuild scenarios to receive the correction.
+
 Hydrogen supply chains
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

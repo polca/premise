@@ -22,6 +22,12 @@ from .transformation import BaseTransformation, IAMDataCollection
 from .utils import eidb_label, rescale_exchanges, rescale_exchange
 from .car_energy import apply_floor, car_class, fuel_balance
 from .fuels.carbon import update_vehicle_fuel_co2
+from .vehicle_hydrogen import (
+    compression_electricity,
+    finish_hydrogen_compression,
+    prepare_hydrogen_compression,
+    record_hydrogen_compression_balances,
+)
 from .validation import (
     CarValidation,
     TruckValidation,
@@ -79,6 +85,7 @@ def _update_vehicles(scenario, vehicle_type, version, system_model):
         # Reuse the fuel module's accounting after regional supplier linking,
         # IAM efficiency scaling and any passenger-car energy floor.
         update_vehicle_fuel_co2(trspt.database, version, vehicle_type)
+        record_hydrogen_compression_balances(trspt.database, vehicle_type)
 
     replace_scenario_inventory(scenario, trspt.database)
     scenario["cache"] = trspt.cache
@@ -367,6 +374,8 @@ class Transport(BaseTransformation):
         :return: dataset with adjusted transport efficiency
         """
 
+        compression = prepare_hydrogen_compression(dataset)
+
         if self.vehicle_type == "car":
             data = self.iam_data.passenger_car_efficiencies
         elif self.vehicle_type == "truck":
@@ -383,6 +392,7 @@ class Transport(BaseTransformation):
             raise ValueError("Unknown vehicle type.")
 
         if data is None:
+            finish_hydrogen_compression(dataset, compression)
             return dataset
 
         variable = self.rev_map[dataset["name"]]
@@ -428,7 +438,9 @@ class Transport(BaseTransformation):
                                 ws.contains("name", v["name"])
                                 for v in self.vehicle_fuel_map[variable]
                             ]
-                        )
+                        ),
+                        lambda exchange: compression is None
+                        or not compression_electricity(exchange, compression[0]),
                     ],
                 )
 
@@ -457,6 +469,7 @@ class Transport(BaseTransformation):
                     }
                 )
 
+        finish_hydrogen_compression(dataset, compression)
         self.write_log(dataset)
 
         return dataset

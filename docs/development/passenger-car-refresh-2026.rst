@@ -432,5 +432,22 @@ Reproduction and aggregate diagnostics are in the sibling checkout under
 ``dev/build_premise_vehicle_carbon.py``, ``dev/audit_premise_vehicle_carbon.py``
 and ``results/premise_vehicle_carbon_20261013``. Saved LCIA comparisons remain
 historical until the planned final controlled rebuild. Hydrogen compression
-electricity is the next remediation step; hardware and future sizing remain
-open.
+electricity was subsequently corrected as described below; hardware and future
+sizing remain open.
+
+Hydrogen tank-compression correction
+-------------------------------------
+
+All eight FCEV car templates now carry an explicit compression contract and
+use the approved 30-bar pipeline delivery boundary. With the existing 700-bar
+tank and compressor assumptions, electricity is 2.450619 kWh/kg H2 instead of
+2.616238. Premise preserves that specific requirement through efficiency changes
+and keeps other electricity uses separate. The upstream pipeline preparation
+is already included in the hydrogen market and remains unchanged.
+
+The full 2020/2050 builds each pass 147 marked hydrogen-vehicle checks (80 cars
+and 67 trucks), with zero validation errors and the same existing warning
+identities. The focused suite passes 365 tests, including 23 new hydrogen
+cases and real Excel import. Only the identified vehicle compression electricity
+coefficients change. Report and reproduction scripts are in
+``carculator_utils/results/premise_vehicle_hydrogen_20261013`` and ``dev/``.
