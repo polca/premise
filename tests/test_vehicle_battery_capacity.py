@@ -73,3 +73,28 @@ def test_phev_lifetime_capacity_purchased_once(catalogue):
             or e["name"] == "market for used Li-ion battery"
             for e in production["exchanges"]
         )
+
+
+def test_phev_replacements_follow_the_family_lifetime_policy(catalogue):
+    _, parameters = catalogue
+    for row in parameters:
+        lifetime = float(row["lifetime kilometers"])
+        if row["name"].startswith("transport, passenger car,"):
+            battery_km = float(row["battery lifetime kilometers"])
+            assert battery_km == 200000
+            expected = max(
+                lifetime / battery_km - 1,
+                lifetime / float(row["kilometers per year"]) / 18 - 1,
+                0,
+            )
+        else:
+            # Regional delivery: 60 km electric per 400-km trip, with a
+            # nominal pack storing 60/DoD electric-km per equivalent full cycle.
+            electric_km = lifetime * float(row["electric utility factor"])
+            one_pack_km = (
+                60 / float(row["battery DoD"]) * float(row["battery cycle life"])
+            )
+            expected = min(max(electric_km / one_pack_km - 1, 0), 3)
+        assert float(row["battery lifetime replacements"]) == pytest.approx(
+            expected, abs=2e-6
+        )

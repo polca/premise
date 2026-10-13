@@ -1,4 +1,11 @@
 {
+  "phev_battery_replacement_policy": {
+    "distance_km": 200000,
+    "distance_basis": "total vehicle distance, not electric-mode distance",
+    "calendar_years": 18,
+    "formula": "max(0, lifetime km / battery lifetime km - 1, lifetime km / annual km / 18 - 1)",
+    "approved_on": "2026-10-13"
+  },
   "hydrogen_compression_adaptation": {
     "electricity kWh per kg H2": 2.450619246770454,
     "inlet pressure bar": 30,
@@ -50,31 +57,32 @@
     "fuel tank assembly, compressed natural gas, 200 bar, carculator passenger car 2020"
   ],
   "noise_exchanges": 1776,
-  "sha256": "78119c1fca07aeb5967c348286f1823424f301d88f8e72dbe5f753f561b81773",
+  "sha256": "7dee87a677840c5883e289dd086a790d0817893f1fe6ce6446a067b637fc2b56",
   "export_version": "3.12",
   "commits": {
-    "carculator": "ddcac198bb0831dc4001e1f63a97d84ec65481f8",
-    "carculator_utils": "0f1bcc689389e7ef697927f584baa77455651778",
-    "premise": "97c4d41e431595dc6ca0a158985ee733b381b677"
+    "carculator": "198412e5b9ab5ac43cd439a2bcfd9416b0c5070a",
+    "carculator_utils": "02fc553e469646a33c578bba1250604515a444d1",
+    "premise": "b37eb82571d3cb1cc390531bcc290790dc921819"
   },
   "source_sha256": {
     "carculator_utils/carculator_utils/hot_emissions.py": "ad1785e64e83d050d33212faa52a1b5e119247ad8cede7eda13df1e2cce9262b",
-    "carculator_utils/carculator_utils/model.py": "925b9414e11f0a12c8463606fc25f2a77c23ae97954afb392a210c9910a2cc63",
-    "carculator/carculator/model.py": "05960cdd0b77264f67228100480e739e8da30ee089cd83f181f3dc5c9fee974c",
+    "carculator_utils/carculator_utils/model.py": "56d7ce2a9f02ae5d517f3ccbe703e304074bd3282c24af17fc60144201dff3a0",
+    "carculator/carculator/model.py": "c964cf4be3daa0320e973e9dc50b2628724cf2d8136df3a3d6865436003402d9",
+    "carculator/carculator/data/default_parameters.json": "0b08285b9e8f8293b4245c9a37587b01d98438b43f09ae99672396ced230933b",
     "carculator_utils/carculator_utils/data/emission_factors/provenance.json": "a39f3be05bddb6c07e97da0b8f96edcefa4751c2a1e36cfd72760aab2155c095",
-    "carculator_utils/dev/regenerate_premise_cars.py": "9c4ea78b28acc2f235bc141aaaa02a856d1e8e8f5c80b63b85ca2d28de0f0401"
+    "carculator_utils/dev/regenerate_premise_cars.py": "bf039fec395bd12814997db8e59ac7fc3b455f91f3da5463bea0106a8941cad9"
   },
-  "phev_capacity_correction": {
-    "before sha256": "4759dd34f7118902aaa360ae2f0c8982979a09b46652ab3c120b73b3082c94bb",
-    "after sha256": "78119c1fca07aeb5967c348286f1823424f301d88f8e72dbe5f753f561b81773",
+  "phev_replacement_correction": {
+    "before sha256": "78119c1fca07aeb5967c348286f1823424f301d88f8e72dbe5f753f561b81773",
+    "after sha256": "7dee87a677840c5883e289dd086a790d0817893f1fe6ce6446a067b637fc2b56",
     "datasets": 162,
-    "material exchange changes": 16,
-    "float-rounding exchange changes": 1,
-    "maximum rounding absolute difference": 6.938893903907228e-18,
-    "raw model inventory sha256": "2ab437116b2eae357e46836023af866a6efd87bf6cb0343a26664abf20a97305",
-    "model parameters sha256": "7c4814d976b8a873e04c3be1e03fcda88d1456696642bb77262623866a97e5c5",
-    "installer sha256": "7b918284f55692f783db4e5afe09cb6f03c3d521ba7dc5d27124ef588391391b",
-    "policy": "Use the full electric-mode pack, independently of utility factor; range uses depth of discharge; replacement counts await separate review",
-    "prior provenance sha256": "94a465603bbc3d0de877e852c6521e4da745ba8639abb9c4a39d7c41039bc1bc"
+    "material exchange changes": 0,
+    "float-rounding exchange changes": 0,
+    "maximum rounding absolute difference": 0,
+    "raw model inventory sha256": "bab9ac274f3583b12af76b820010ff519eaba2ed848d7ec6bf5f4fdab64e6c47",
+    "model parameters sha256": "33e217cda9b56682290ce029b5716892018a55deced31b453e839dc35cc861d4",
+    "installer sha256": "7e9c179ac8cebfb88c85318a8e52d7f0d2002341b16f3ac2529811960c61bc9c",
+    "policy": "Truck net lifetime electric energy is weighted before subtracting the first pack; cars use the approved 200000 vehicle-km and 18-year limits; each count belongs to the physical pack",
+    "prior provenance sha256": "a71881727d8a4793eff8c1812d0bf15f2792fa6b98a94d1573a29f5c696f9e96"
   }
 }
