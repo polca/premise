@@ -24,6 +24,7 @@ from .car_energy import apply_floor, car_class, fuel_balance
 from .fuels.carbon import update_vehicle_fuel_co2
 from .vehicle_emissions import fuel_proportional_emission
 from .vehicle_energy import vehicle_energy_exchange
+from .vehicle_battery import resize_regional_batteries, SPEC_KEY as BATTERY_SIZING_KEY
 from .vehicle_hydrogen import (
     compression_electricity,
     finish_hydrogen_compression,
@@ -237,6 +238,7 @@ class Transport(BaseTransformation):
             mapping=self.vehicle_map,
             efficiency_adjustment_fn=self.adjust_transport_efficiency,
         )
+        resize_regional_batteries(self)
 
     def create_vehicle_markets(self) -> list:
         """
@@ -520,6 +522,8 @@ class Transport(BaseTransformation):
         Adjust battery size for truck datasets.
         """
 
+        if BATTERY_SIZING_KEY in ds:
+            return
         # detect size in name
         size = [s for s in self.battery_size["truck"] if s in ds["name"]][0]
 

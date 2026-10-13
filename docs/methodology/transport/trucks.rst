@@ -412,3 +412,5 @@ When doing:
 
 *premise* will create fleet average vehicles for each IAM region. The inventories can be consulted
 here: `LCItrucks <https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/additional_inventories/lci-trucks.xlsx>`__.
+
+.. include:: battery-sizing.inc
