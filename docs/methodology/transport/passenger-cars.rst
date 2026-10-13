@@ -304,3 +304,5 @@ remote-sensing data from `Sjodin <https://www.bafu.admin.ch/dam/en/sd-web/lggkMI
 here: `LCIpasscars <https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/additional_inventories/lci-pass_cars.xlsx>`__.
 
 At the moment, these inventories do not supply inputs to other activities in the LCI database.
+
+.. include:: battery-sizing.inc
