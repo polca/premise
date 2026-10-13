@@ -98,3 +98,72 @@ def test_phev_replacements_follow_the_family_lifetime_policy(catalogue):
         assert float(row["battery lifetime replacements"]) == pytest.approx(
             expected, abs=2e-6
         )
+
+
+@pytest.fixture(scope="module")
+def truck_hevs():
+    datasets = ExcelImporter(str(INVENTORY_DIR / "lci-trucks.xlsx")).data
+    with (INVENTORY_DIR / "lci-trucks.parameters.csv").open() as stream:
+        parameters = [
+            row for row in csv.DictReader(stream) if row["powertrain"] == "HEV-d"
+        ]
+    assert len(parameters) == 9  # seven diesel HEVs and two gasoline proxies
+    return {d["name"]: d for d in datasets}, parameters
+
+
+def test_hev_storage_and_lifetime_capacity_reach_the_inventory(truck_hevs):
+    datasets, parameters = truck_hevs
+    for row in parameters:
+        capacity = float(row["electric energy stored"])
+        mass = float(row["energy battery mass"])
+        assert capacity > 0 and mass > 0
+        assert capacity == pytest.approx(
+            mass
+            * float(row["battery cell mass share"])
+            * float(row["battery cell energy density"]),
+            rel=1e-6,
+        )
+        lifetime_energy = float(row["lifetime kilometers"]) * float(
+            row["HEV discharged stored kWh per km"]
+        )
+        expected_packs = min(
+            max(lifetime_energy / capacity / float(row["battery cycle life"]), 1), 4
+        )
+        assert float(row["battery lifetime replacements"]) + 1 == pytest.approx(
+            expected_packs, rel=2e-6
+        )
+        service = datasets[row["name"]]
+        production = datasets[
+            next(
+                e["name"]
+                for e in service["exchanges"]
+                if e["name"].startswith("lorry production,")
+            )
+        ]
+        purchases = [
+            e
+            for e in production["exchanges"]
+            if e["name"] == "market for battery capacity (MIX scenario)"
+        ]
+        assert len(purchases) == 1
+        assert purchases[0]["unit"] == "kilowatt hour"
+        assert purchases[0]["amount"] == pytest.approx(
+            capacity * expected_packs, rel=2e-6
+        )
+        assert not any(
+            e["name"].startswith("market for battery, Li-")
+            or e["name"] == "market for used Li-ion battery"
+            for e in production["exchanges"]
+        )
+        assert 0 < float(row["HEV regeneration reuse fraction"]) <= 1
+
+
+def test_hev_comments_disclose_sources_and_the_approved_mix_proxy(truck_hevs):
+    datasets, parameters = truck_hevs
+    for row in parameters:
+        comment = datasets[row["name"]]["comment"]
+        assert "A123 Systems (2014)" in comment
+        assert "carculator_truck" in comment
+        assert "MIX capacity-market proxy" in comment
+        assert "No mass-equivalence correction" in comment
+        assert "not a high-power pack quotation" in comment
