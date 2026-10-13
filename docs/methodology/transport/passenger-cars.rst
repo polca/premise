@@ -16,7 +16,7 @@ separate reference units.
 
 .. figure:: /_static/process-diagrams/transport-passenger-cars.svg
    :class: process-diagram
-   :alt: Cars transformation: Regionalize mapped transport activities; Apply available efficiency factors; If fleet data exist: build service markets; Retain consumer selection; Apply matched exhaust factors.
+   :alt: Cars transformation: Regionalize mapped transport activities; Apply available efficiency factors; If fleet data exist: build service markets; Retain consumer selection; Check emission plausibility without changing amounts.
    :align: center
 
 Inputs and applicability
@@ -40,26 +40,36 @@ After the setup in :doc:`/getting_started/first-scenario`:
 Transformation
 ----------------
 
-For matched combustion powertrains and emissions classes, the exhaust step
-compares air-pollutant totals with packaged factors and calculated fuel use.
-A zero total or a value within 50% of the expected total is left unchanged.
-A larger deviation is clamped to the 90–110% interval around that expectation.
-This can modify pollutant totals independently of the IAM efficiency factor.
+Transport emission checks are read-only. Exact air-flow aliases and complete
+EURO-class labels select the packaged hot-exhaust references; methane does not
+include NMVOC, and EURO-VI trucks do not use EURO-V coefficients. Recognized
+fuel markets and market groups provide fuel energy in MJ per reference activity.
+Invalid matched emission masses, units and supported fuel inputs remain errors.
+A missing fuel reference produces a diagnostic instead of a zero-fuel assumption.
+
+For comparable named flows, the inherited 0.5–2 times hot-reference screen
+produces warnings without changing inventory amounts or uncertainty metadata.
+This is a heuristic, not an empirical bound or a EURO certification check.
+Cold starts, evaporation, deterioration and model calibration are not
+reconstructed from the final exchanges, so a disagreement alone does not prove
+an inventory error. Residual NMVOC is not compared with parent NMHC, and missing
+THC aggregates are reported as unavailable checks. Use the source model's
+component inventory to investigate hot, cold-start and evaporation terms.
 
 When an efficiency factor is applied, **all biosphere exchanges** in the
 selected transport activity are rescaled along with the filtered energy
 inputs. Other technosphere exchanges, such as vehicle manufacture and road
 infrastructure, are not selected by this efficiency operation. This
-biosphere scaling precedes the additional car/truck exhaust adjustment.
+biosphere scaling precedes the read-only car/truck emission diagnostics.
 
 Premise regionalizes mapped transport activities even when fleet data are
 absent. For an available efficiency signal, it applies the inverse efficiency
 change to technosphere inputs selected by the technology's fuel-name filters.
 If the efficiency array or mapped variable is missing, that energy adjustment
 is unchanged. Regional markets are built only when fleet data are available.
-Cars and trucks also receive the implemented exhaust-factor
-normalization for matched fuel, size and emissions-class cases. This is
-separate from IAM efficiency changes and the GAINS emissions update.
+Cars and trucks receive read-only emission diagnostics for matched fuel, size
+and emissions-class cases. These checks are separate from IAM efficiency
+changes and the GAINS emissions update; they never normalize pollutant amounts.
 
 
 Provisional combustion-car energy floor
@@ -67,7 +77,7 @@ Provisional combustion-car energy floor
 
 Mapped conventional diesel, gasoline and compressed-gas cars with an available
 IAM efficiency signal receive a configurable minimum fuel-energy demand after
-the IAM adjustment and before exhaust normalization. Battery-electric, fuel-cell,
+the IAM adjustment and before the read-only emission checks. Battery-electric, fuel-cell,
 plug-in hybrid and non-car transport datasets are outside this floor's scope.
 Missing efficiency data do not trigger a source-inventory correction.
 
@@ -83,8 +93,7 @@ For projected energy demand ``E`` and minimum ``E_min``, the final demand is
 Their proportions and existing fossil/non-fossil CO2 shares are preserved;
 vehicle manufacture, road infrastructure and non-exhaust burdens are not
 scaled by this additional correction. Ambiguous particulate flows are not
-assumed to be exhaust. The existing subsequent exhaust-factor normalization
-remains in place. The older IAM adjustment's all-biosphere scaling convention
+assumed to be exhaust. Subsequent hot-factor diagnostics do not alter emissions. The older IAM adjustment's all-biosphere scaling convention
 is unchanged by this additional floor.
 
 Fuel selection explicitly recognizes petrol as well as gasoline markets,
@@ -147,7 +156,8 @@ kilometre input becomes 0.1/1.1 = 0.0909 kWh. Inspect the changed fuel
 or electricity exchange and its supplier separately. For an available fleet
 market, check service weights and units, then inspect an actual consumer link.
 Use ``Market Changes`` and ``Key Changes`` to distinguish composition,
-energy use and any exhaust-factor corrections.
+energy use and supply changes. Review the validation report separately for
+read-only emission diagnostics.
 
 Sources and inventory details
 -------------------------------

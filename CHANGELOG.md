@@ -6,6 +6,15 @@ All notable changes to this project are documented in this file.
 
 ### Fixed
 
+- Replace automatic car/truck pollutant clamping with read-only plausibility
+  diagnostics. Preserve cold-start, evaporative and speciated emissions and
+  their uncertainty metadata; retain IAM efficiency adjustments.
+- Match transport air pollutants by explicit species aliases and EURO classes
+  by complete labels. Keep methane separate from NMVOC, THC separate from PAH,
+  and PM2.5 separate from coarse particles; resolve EURO-VI and EURO-6ab correctly.
+- Report unavailable emission boundaries and fuel references explicitly, retain
+  errors for invalid masses/units, and tolerate roundoff at diagnostic thresholds.
+  Regenerate exported databases to receive these changes.
 - Preserve source metal inputs when component scope or temporal support is
   unverified, including rules based on mixed vehicle/motor observations or
   unverified shared-magnet conversions. Record per-series source-year ranges
