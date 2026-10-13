@@ -81,11 +81,25 @@ an inventory error. Residual NMVOC is not compared with parent NMHC, and missing
 THC aggregates are reported as unavailable checks. Use the source model's
 component inventory to investigate hot, cold-start and evaporation terms.
 
-When an efficiency factor is applied, **all biosphere exchanges** in the
-selected transport activity are rescaled along with the filtered energy
-inputs. Other technosphere exchanges, such as vehicle manufacture and road
-infrastructure, are not selected by this efficiency operation. This
-biosphere scaling precedes the read-only car/truck emission diagnostics.
+The IAM factor describes final energy per transport service relative to 2020
+(vehicle-kilometres for cars, tonne-kilometres for trucks). It is not an engine
+or motor efficiency alone. The current default limits the efficiency index to
+1.25, corresponding to a maximum 20% energy reduction.
+
+Energy scaling changes fuel-derived CO2, sulphur emissions and generic-air
+methane leakage. Compartmented HBEFA hot, cold-start and evaporative emissions
+retain their source factors: NOx, exhaust PM, CO, NMVOC, formaldehyde and PAHs
+are not reduced merely because an IAM uses less energy per kilometre.
+Refrigerant losses, wear, vehicle manufacture and road infrastructure also
+retain their own physical basis. Generic-air methane leakage is distinguished
+from HBEFA combustion methane in urban/rural/highway air subcompartments.
+These rules follow the refreshed carculator inventory equations; unknown flows
+are not assigned a fuel relationship. They do not supply new future EURO-class
+or fuel-blend-dependent non-CO2 emission factors.
+
+The fuel module subsequently recomputes fossil/non-fossil combustion CO2 from
+the final regional suppliers and fuel purchases. The emission plausibility
+checks remain read-only.
 
 Premise regionalizes mapped transport activities even when fleet data are
 absent. For an available efficiency signal, it applies the inverse efficiency

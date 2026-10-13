@@ -56,11 +56,25 @@ an inventory error. Residual NMVOC is not compared with parent NMHC, and missing
 THC aggregates are reported as unavailable checks. Use the source model's
 component inventory to investigate hot, cold-start and evaporation terms.
 
-When an efficiency factor is applied, **all biosphere exchanges** in the
-selected transport activity are rescaled along with the filtered energy
-inputs. Other technosphere exchanges, such as vehicle manufacture and road
-infrastructure, are not selected by this efficiency operation. This
-biosphere scaling precedes the read-only car/truck emission diagnostics.
+The IAM factor describes final energy per transport service relative to 2020
+(vehicle-kilometres for cars, tonne-kilometres for trucks). It is not an engine
+or motor efficiency alone. The current default limits the efficiency index to
+1.25, corresponding to a maximum 20% energy reduction.
+
+Energy scaling changes fuel-derived CO2, sulphur emissions and generic-air
+methane leakage. Compartmented HBEFA hot, cold-start and evaporative emissions
+retain their source factors: NOx, exhaust PM, CO, NMVOC, formaldehyde and PAHs
+are not reduced merely because an IAM uses less energy per kilometre.
+Refrigerant losses, wear, vehicle manufacture and road infrastructure also
+retain their own physical basis. Generic-air methane leakage is distinguished
+from HBEFA combustion methane in urban/rural/highway air subcompartments.
+These rules follow the refreshed carculator inventory equations; unknown flows
+are not assigned a fuel relationship. They do not supply new future EURO-class
+or fuel-blend-dependent non-CO2 emission factors.
+
+The fuel module subsequently recomputes fossil/non-fossil combustion CO2 from
+the final regional suppliers and fuel purchases. The emission plausibility
+checks remain read-only.
 
 Premise regionalizes mapped transport activities even when fleet data are
 absent. For an available efficiency signal, it applies the inverse efficiency
@@ -92,17 +106,17 @@ For projected energy demand ``E`` and minimum ``E_min``, the final demand is
 ``max(E, E_min)``. When binding, fuel inputs are multiplied by ``E_min/E``.
 Their proportions and existing fossil/non-fossil CO2 shares are preserved;
 vehicle manufacture, road infrastructure and non-exhaust burdens are not
-scaled by this additional correction. Ambiguous particulate flows are not
-assumed to be exhaust. Subsequent hot-factor diagnostics do not alter emissions. The older IAM adjustment's all-biosphere scaling convention
-is unchanged by this additional floor.
+scaled by this additional correction. Both the IAM step and this floor apply the same fuel-derived emission
+selection described above. Neither scales HBEFA distance/start/evaporation
+factors or assumes ambiguous particulate flows are fuel-proportional.
+Subsequent hot-factor diagnostics do not alter emissions.
 
 Fuel selection explicitly recognizes petrol as well as gasoline markets,
 including market groups. This fixes cases where IAM scaling previously changed
 emissions but missed petrol inputs. The same old alias could wrongly select
 ``Passenger car, gasoline, ...`` manufacture inputs; these are now left at
 their source recipe amounts instead of following fuel-efficiency changes.
-Gas is supported in kg (47.5 MJ/kg, existing
-transport convention) or m3 (packaged fuel properties); liquid fuels use their
+Gas is supported in kg (46.5 MJ/kg, documented delivered CNG) or m3 (packaged fuel properties); liquid fuels use their
 packaged MJ/kg values. Unsupported units, invalid reference production, missing
 supported fuel inputs and non-finite or negative quantities fail explicitly.
 

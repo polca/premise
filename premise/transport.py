@@ -22,6 +22,7 @@ from .transformation import BaseTransformation, IAMDataCollection
 from .utils import eidb_label, rescale_exchanges, rescale_exchange
 from .car_energy import apply_floor, car_class, fuel_balance
 from .fuels.carbon import update_vehicle_fuel_co2
+from .vehicle_emissions import fuel_proportional_emission
 from .vehicle_hydrogen import (
     compression_electricity,
     finish_hydrogen_compression,
@@ -374,8 +375,6 @@ class Transport(BaseTransformation):
         :return: dataset with adjusted transport efficiency
         """
 
-        compression = prepare_hydrogen_compression(dataset)
-
         if self.vehicle_type == "car":
             data = self.iam_data.passenger_car_efficiencies
         elif self.vehicle_type == "truck":
@@ -392,27 +391,37 @@ class Transport(BaseTransformation):
             raise ValueError("Unknown vehicle type.")
 
         if data is None:
+            compression = prepare_hydrogen_compression(dataset)
             finish_hydrogen_compression(dataset, compression)
             return dataset
 
         variable = self.rev_map[dataset["name"]]
 
         if variable in data.coords["variables"].values:
-            scaling_factor = 1 / self.find_iam_efficiency_change(
+            efficiency = self.find_iam_efficiency_change(
                 data=data,
                 variable=variable,
                 location=dataset["location"],
             )
+            if self.vehicle_type in {"car", "truck"} and (
+                not math.isfinite(efficiency) or efficiency <= 0
+            ):
+                raise ValueError(
+                    "Road-vehicle IAM efficiency must be positive and finite"
+                )
+            scaling_factor = 1 / efficiency
         else:
             # if not found, we assume that the efficiency is 1
             scaling_factor = 1
 
-        if self.vehicle_type == "car" and (
+        if self.vehicle_type in {"car", "truck"} and (
             not math.isfinite(scaling_factor) or scaling_factor <= 0
         ):
             raise ValueError(
-                "Passenger-car IAM scaling factor must be positive and finite"
+                "Road-vehicle IAM scaling factor must be positive and finite"
             )
+
+        compression = prepare_hydrogen_compression(dataset)
 
         if scaling_factor != 1:
             if self.vehicle_type == "car" and car_class(dataset["name"]) is not None:
@@ -421,10 +430,8 @@ class Transport(BaseTransformation):
                 _, _, fuels, _ = fuel_balance(dataset)
                 for exchange in fuels:
                     rescale_exchange(exchange, scaling_factor, remove_uncertainty=False)
-                # Preserve the existing IAM biosphere-scaling convention here.
-                # The additional floor below selects combustion flows only.
                 for exchange in dataset["exchanges"]:
-                    if exchange.get("type") == "biosphere":
+                    if fuel_proportional_emission(exchange):
                         rescale_exchange(
                             exchange, scaling_factor, remove_uncertainty=False
                         )
@@ -442,6 +449,11 @@ class Transport(BaseTransformation):
                         lambda exchange: compression is None
                         or not compression_electricity(exchange, compression[0]),
                     ],
+                    biosphere_filters=(
+                        [fuel_proportional_emission]
+                        if self.vehicle_type in {"car", "truck"}
+                        else None
+                    ),
                 )
 
             dataset.setdefault("log parameters", {}).update(
@@ -449,6 +461,14 @@ class Transport(BaseTransformation):
             )
 
             txt = f" Fuel/energy efficiency adjusted by a factor of {scaling_factor} according to the scenario."
+            if self.vehicle_type in {"car", "truck"}:
+                txt += (
+                    " Direct-emission scaling is limited to fuel-derived CO2,"
+                    " sulphur and generic-air methane leakage. HBEFA hot,"
+                    " cold-start and evaporative factors, refrigerant losses"
+                    " and distance/wear burdens retain their model basis;"
+                    " IAM energy intensity alone does not change them."
+                )
             if "comment" not in dataset:
                 dataset["comment"] = txt
             else:

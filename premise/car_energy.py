@@ -11,6 +11,7 @@ from functools import lru_cache
 import yaml
 
 from .filesystem_constants import DATA_DIR, VARIABLES_DIR
+from .vehicle_emissions import fuel_proportional_emission
 
 
 @lru_cache(maxsize=1)
@@ -139,23 +140,10 @@ def apply_floor(dataset, config=None):
     for exc in fuels:
         rescale_exchange(exc, ratio, remove_uncertainty=False)
         changed.append(exc["name"])
-    # Only exhaust air flows, not tyre/brake wear, road dust, noise or resources.
-    exhaust = (
-        "Carbon dioxide",
-        "Carbon monoxide",
-        "Methane",
-        "Nitrogen oxides",
-        "Dinitrogen monoxide",
-        "Sulfur dioxide",
-        "Ammonia",
-        "NMVOC",
-    )
+    # Match the IAM step: fuel-derived emissions follow the final fuel demand.
+    # Distance/start-based HBEFA factors do not follow this energy correction.
     for exc in dataset["exchanges"]:
-        if (
-            exc.get("type") == "biosphere"
-            and exc.get("categories", [None])[0] == "air"
-            and exc.get("name", "").startswith(exhaust)
-        ):
+        if fuel_proportional_emission(exc):
             rescale_exchange(exc, ratio, remove_uncertainty=False)
             changed.append(exc["name"])
     event = {
