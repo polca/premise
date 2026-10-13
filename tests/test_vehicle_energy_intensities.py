@@ -79,6 +79,130 @@ def test_missing_region_never_borrows_another_region_or_technology():
     assert sources["small car"]["by region"]["EUR"] == "direct intensity"
 
 
+def test_explicit_proxy_supplies_only_missing_regions_and_preserves_input():
+    data = scenario(
+        {"Large": [[np.nan] * 3, [2, 1.9, 1.8]], "SUV": [[4, 3.6, 3.2], [4, 3, 2]]},
+        regions=("EUR", "USA"),
+    )
+    original = data.copy(deep=True)
+    result = calculate(
+        data,
+        production_labels={},
+        energy_labels={},
+        intensity_labels={"large": "Large"},
+        intensity_fallback_labels={"large": "SUV"},
+    )
+    np.testing.assert_allclose(result.sel(region="EUR"), [[1, 4 / 3.6, 1.25]])
+    np.testing.assert_allclose(result.sel(region="USA"), [[1, 2 / 1.9, 2 / 1.8]])
+    assert result.attrs["vehicle efficiency sources"]["large"]["by region"] == {
+        "EUR": "proxy intensity",
+        "USA": "direct intensity",
+    }
+    assert (
+        result.attrs["vehicle efficiency sources"]["large"][
+            "fallback intensity variable"
+        ]
+        == "SUV"
+    )
+    xr.testing.assert_identical(data, original)
+
+
+def test_native_energy_service_takes_priority_over_proxy():
+    result = calculate(
+        scenario({"ES": [10, 20, 30], "FE": [1, 1.9, 2.7], "SUV": [4, 3, 2]}),
+        intensity_fallback_labels={"car": "SUV"},
+    )
+    np.testing.assert_allclose(result, [[[1, 1 / 0.95, 1 / 0.9]]])
+    assert (
+        result.attrs["vehicle efficiency sources"]["car"]["by region"]["EUR"]
+        == "energy/service"
+    )
+
+
+@pytest.mark.parametrize("baseline", [0, -1, np.nan, np.inf])
+def test_proxy_requires_its_own_positive_2020_reference(baseline):
+    result = calculate(
+        scenario({"SUV": [baseline, 3, 2]}), intensity_fallback_labels={"car": "SUV"}
+    )
+    np.testing.assert_array_equal(result, 1)
+    assert (
+        result.attrs["vehicle efficiency sources"]["car"]["by region"]["EUR"]
+        == "unavailable"
+    )
+
+
+@pytest.mark.parametrize(
+    "values,expected", [([4, np.nan, 3.2], [1, 1.25, 1.25]), ([4, 5, 6], [1, 1, 1])]
+)
+def test_proxy_keeps_existing_gap_and_monotonicity_policy(values, expected):
+    result = calculate(
+        scenario({"SUV": values}), intensity_fallback_labels={"car": "SUV"}
+    )
+    np.testing.assert_allclose(result, [[expected]])
+
+
+def test_proxy_never_borrows_a_different_regions_series():
+    data = scenario({"SUV": [[np.nan] * 3, [4, 3.6, 3.2]]}, regions=("EUR", "USA"))
+    result = calculate(data, intensity_fallback_labels={"car": "SUV"})
+    np.testing.assert_array_equal(result.sel(region="EUR"), 1)
+    assert result.sel(region="USA", year=2050).item() == 1.25
+
+
+def test_absent_proxy_is_explicitly_unavailable():
+    result = calculate(
+        scenario({"other": [1, 2, 3]}), intensity_fallback_labels={"car": "SUV"}
+    )
+    np.testing.assert_array_equal(result, 1)
+    assert (
+        result.attrs["vehicle efficiency sources"]["car"]["by region"]["EUR"]
+        == "unavailable"
+    )
+
+
+def test_proxy_requires_vehicle_kilometre_units():
+    with pytest.raises(ValueError, match="unsupported unit"):
+        calculate(
+            scenario({"SUV": [4, 3, 2]}, unit="MJ/pkm"),
+            intensity_fallback_labels={"car": "SUV"},
+        )
+
+
+def test_multiple_proxy_intensities_cannot_be_summed():
+    with pytest.raises(ValueError, match="cannot be summed"):
+        calculate(
+            scenario({"SUV": [4, 3, 2]}), intensity_fallback_labels={"car": ["SUV"]}
+        )
+
+
+def test_proxy_without_2020_does_not_infer_baseline():
+    result = calculate(
+        scenario({"SUV": [4, 3]}, years=(2025, 2050)),
+        intensity_fallback_labels={"car": "SUV"},
+    )
+    np.testing.assert_array_equal(result, 1)
+
+
+def test_large_car_proxy_mapping_is_powertrain_specific_and_efficiency_only():
+    path = (
+        Path(__file__).parents[1]
+        / "premise/iam_variables_mapping/transport_passenger_cars.yaml"
+    )
+    mapping = yaml.safe_load(path.read_text())
+    proxies = {
+        k: v for k, v in mapping.items() if "energy_intensity_fallback_aliases" in v
+    }
+    assert len(proxies) == 5
+    for technology, spec in proxies.items():
+        assert technology.endswith(", large")
+        assert set(spec["energy_intensity_fallback_aliases"]) == {"remind", "remind-eu"}
+        for model, proxy in spec["energy_intensity_fallback_aliases"].items():
+            native = spec["energy_intensity_aliases"][model]
+            assert proxy == native.replace("|Large Car|", "|Large Car and SUV|")
+            for field in ("iam_aliases", "energy_use_aliases"):
+                assert "|Large Car|" in spec[field][model]
+                assert "|Large Car and SUV|" not in spec[field][model]
+
+
 @pytest.mark.parametrize("baseline", [0, -1, np.nan, np.inf])
 def test_invalid_direct_baseline_is_not_backfilled_from_future(baseline):
     result = calculate(scenario({"I": [baseline, 2, 1]}))
@@ -141,6 +265,10 @@ def test_models_without_direct_aliases_retain_existing_multifuel_calculation(mod
     )
     assert all(
         model not in spec.get("energy_intensity_aliases", {})
+        for spec in mapping.values()
+    )
+    assert all(
+        model not in spec.get("energy_intensity_fallback_aliases", {})
         for spec in mapping.values()
     )
     data = scenario(

@@ -67,13 +67,24 @@ and prevents deterioration over time.
 
 A direct series must have a finite positive 2020 value. Gaps in other years
 can use the same series' nearest available values. If direct data are absent,
-an available regional energy/service pair provides the fallback. Otherwise
-the index is one, explicitly marked as unavailable in the array's
+an available regional energy/service pair provides the fallback. An explicit
+``energy_intensity_fallback_aliases`` mapping can then provide a same-region
+proxy when both native calculation paths are unavailable. Otherwise the index
+is one, explicitly marked as unavailable in the array's
 ``vehicle efficiency sources`` attribute and the transformed vehicle's
-``log parameters / IAM efficiency source``. Missing regions or classes never
-inherit a direct trend from neighbouring technologies. In particular, EUR's
-Large Car and SUV category is not automatically assigned to separate Large
-Car inventories, nor duplicated in fleet volumes.
+``log parameters / IAM efficiency source``. No other technology's trend is
+inferred without an explicit mapping.
+
+For REMIND/REMIND-EU Large cars, the configured proxy is the same powertrain's
+``Large Car and SUV`` direct intensity, normalized to its own positive 2020
+reference. Native Large Car trends take priority wherever available. The proxy
+changes only relative efficiency: the original 2020 vehicle and the native
+fleet-volume mappings remain in place, without duplicating SUV fleet volumes.
+The usual cap and monotonicity rules apply. A missing or invalid proxy reference
+leaves the signal unavailable. The source log and dataset comment explicitly
+identify the proxy series, region and reason. This is a modelling assumption
+about relative trends, not evidence that Large cars and SUVs have identical
+absolute energy consumption or hardware.
 
 Other IAMs without direct-intensity mappings retain their existing
 energy/service calculation. Its denominator matters: IMAGE reports passenger-
