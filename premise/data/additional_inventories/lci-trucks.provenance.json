@@ -18,7 +18,7 @@
   "legacy_components_version": "3.7",
   "legacy_components_sha256": "196784a01755af691eb74758b03921997bf15e9f08dcdbdec6a3361e1051d061",
   "noise_exchanges": 1248,
-  "sha256": "1741cb6235ebd7ad8a52f7be8bea43b6f804e0c414578c1d4a48380bab711a1c",
+  "sha256": "73a103f184861f8f88a4f32d90c8726761e036101680c87303031980b5679df4",
   "export_version": "3.12",
   "commits": {
     "carculator_truck": "6ec213d3def0381d7e2fe587bc888a3a9d18ba2f",
@@ -68,5 +68,22 @@
       "model_parameters.json": "e0b68534c1392ac18932282de300848a73774de2d3df654d6278681e3766896d"
     },
     "purpose": "Reapply only fuel adapter; no vehicle model corrections in this step"
+  },
+  "hydrogen_compression_adaptation": {
+    "electricity kWh per kg H2": 2.450619246770454,
+    "inlet pressure bar": 30,
+    "tank pressure bar": 700,
+    "hydrogen product": "hydrogen, gaseous, low pressure",
+    "electricity product": "electricity, low voltage",
+    "delivery source": "Premise hydrogen supply, distributed by pipeline: arrives at 30 bar",
+    "compression model": "carculator_utils.inventory.hydrogen_compression_electricity; default temperature, stages and efficiencies",
+    "boundary": "Tank compression after pipeline delivery; pipeline preparation remains in hydrogen supply",
+    "approved on": "2026-10-13",
+    "previous generic inlet pressure bar": 25,
+    "previous electricity kWh per kg H2": 2.6162381574523983,
+    "previous workbook sha256": "1741cb6235ebd7ad8a52f7be8bea43b6f804e0c414578c1d4a48380bab711a1c",
+    "services updated": 7,
+    "installer sha256": "75fe0a091cfb1c9ec2e9389019c189c187797bac29a9d5bd3eb5493ccd5d0bc1",
+    "policy": "Only compression electricity and its metadata change; hydrogen and hardware unchanged"
   }
 }

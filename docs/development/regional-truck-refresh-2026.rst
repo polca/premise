@@ -153,6 +153,24 @@ car/truck CO2 exchanges. The focused suite passes 342 tests, including 18 new
 carbon-accounting cases. Reproduction and aggregate diagnostics are in the
 sibling checkout under ``dev/build_premise_vehicle_carbon.py``,
 ``dev/audit_premise_vehicle_carbon.py`` and
-``results/premise_vehicle_carbon_20261013``. Hydrogen compression electricity
-is next; battery hardware, future resizing and the final controlled EF 3.1
-comparison remain open.
+``results/premise_vehicle_carbon_20261013``. Battery hardware, future resizing
+and the final controlled EF 3.1 comparison remain open.
+
+Hydrogen tank-compression correction
+-------------------------------------
+
+All seven FCEV truck templates now carry an explicit compression contract and
+use the approved 30-bar pipeline delivery boundary, with 2.450619 kWh/kg H2
+for their existing 700-bar tanks. Premise couples this electricity to final
+hydrogen purchases. The EUR 40 t truck now uses 0.01519764 kWh/tkm in 2020 and
+0.01215811 in 2050, matching the 20% hydrogen-demand reduction. Previously its
+electricity stayed at 0.01622473 kWh/tkm in both years. The total correction
+combines the documented inlet-pressure change with the scaling repair.
+
+The upstream pipeline service's compression remains in the fuel market; it
+ends at 30 bar and does not replace the separate vehicle tank stage. All
+147 marked hydrogen car/truck services pass in each full build, with zero
+validation errors and unchanged existing warning identities. The suite passes
+365 tests, including 23 new hydrogen cases. Report and reproduction scripts
+are in ``carculator_utils/results/premise_vehicle_hydrogen_20261013`` and
+``dev/``. PHEV physical-capacity aggregation is the next planned issue.

@@ -39,7 +39,7 @@
     "fuel tank assembly, compressed natural gas, 200 bar, carculator passenger car 2020"
   ],
   "noise_exchanges": 1776,
-  "sha256": "21dbea85b5dc8bfecdd96fca339817dbb6681d961d1fb35c5f4a9a8793597363",
+  "sha256": "4759dd34f7118902aaa360ae2f0c8982979a09b46652ab3c120b73b3082c94bb",
   "export_version": "3.12",
   "commits": {
     "carculator": "ddcac198bb0831dc4001e1f63a97d84ec65481f8",
@@ -106,5 +106,22 @@
       "model_parameters.json": "e9c8e22b92c117eb6f8cdea7330965f47bb0ac4c8d0b04a2da5b57de18105409"
     },
     "purpose": "Reapply only fuel adapter; no vehicle model corrections in this step"
+  },
+  "hydrogen_compression_adaptation": {
+    "electricity kWh per kg H2": 2.450619246770454,
+    "inlet pressure bar": 30,
+    "tank pressure bar": 700,
+    "hydrogen product": "hydrogen, gaseous, low pressure",
+    "electricity product": "electricity, low voltage",
+    "delivery source": "Premise hydrogen supply, distributed by pipeline: arrives at 30 bar",
+    "compression model": "carculator_utils.inventory.hydrogen_compression_electricity; default temperature, stages and efficiencies",
+    "boundary": "Tank compression after pipeline delivery; pipeline preparation remains in hydrogen supply",
+    "approved on": "2026-10-13",
+    "previous generic inlet pressure bar": 25,
+    "previous electricity kWh per kg H2": 2.6162381574523983,
+    "previous workbook sha256": "21dbea85b5dc8bfecdd96fca339817dbb6681d961d1fb35c5f4a9a8793597363",
+    "services updated": 8,
+    "installer sha256": "75fe0a091cfb1c9ec2e9389019c189c187797bac29a9d5bd3eb5493ccd5d0bc1",
+    "policy": "Only compression electricity and its metadata change; hydrogen and hardware unchanged"
   }
 }
