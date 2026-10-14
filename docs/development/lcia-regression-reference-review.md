@@ -173,3 +173,45 @@ against the references present at calculation time.
 Older versions and EN15804 passed the metals compatibility builds documented in
 that audit. Their full-scenario LCIA references were not recertified or changed
 in this review.
+
+## Fuel-energy and cross-version review, 14 October 2026
+
+All 11 source/system-model cases were rebuilt from encrypted IAM inputs at
+`83b9c0ae`. The review covered 31 scenario databases and 155 climate scores.
+Every scenario build passed validation after removing recursive source-market
+suppliers from generated fuel markets. That correction was required because an
+ecoinvent LPG market could otherwise be relinked to the new World LPG market,
+while the World market already purchased regional outputs.
+
+The unchanged 3% relative tolerance identified 65 references for refresh. The
+other 90 values remain unchanged.
+
+| Case | Scores checked | References refreshed |
+| --- | ---: | ---: |
+| ecoinvent-3.8-cutoff | 15 | 8 |
+| ecoinvent-3.8-consequential | 15 | 5 |
+| ecoinvent-3.9.1-cutoff | 15 | 8 |
+| ecoinvent-3.9.1-consequential | 15 | 6 |
+| ecoinvent-3.10-cutoff | 15 | 8 |
+| ecoinvent-3.10-consequential | 15 | 5 |
+| ecoinvent-3.11-cutoff | 10 | 5 |
+| ecoinvent-3.11-consequential | 15 | 5 |
+| ecoinvent-3.12-cutoff | 10 | 4 |
+| ecoinvent-3.12-consequential | 15 | 4 |
+| ecoinvent-3.12-EN15804 | 15 | 7 |
+
+The changes follow the expected affected pathways: 15 electricity scores moved
+by +3.50% to +8.84%, 15 diesel scores by +5.59% to +26.14%, seven cement scores
+by +3.20% to +3.89%, and 28 steel scores by +3.02% to +9.26%. No heat reference
+changed. The steel pattern is consistent with the 11 October metals audit; the
+diesel and downstream electricity/cement changes are consistent with the later
+energy-preserving fuel-market normalization in `531fa008`.
+
+The largest change was ecoinvent 3.8 cutoff / TIAM / diesel, from
+0.14569424734924133 to 0.1837842111464194 (+26.14%). Its regional market is
+97.85% used-cooking-oil biodiesel by energy. The corrected 38 MJ/kg basis buys
+1.1072645311 kg rather than the legacy 0.9785128415 kg mass-normalized amount.
+A supplier-score counterfactual attributes 0.0196497417 kg CO2-eq of the
+0.0380899638 kg CO2-eq increase directly to this quantity correction; the same
+energy correction also propagates through upstream fuel markets. This causal
+check supports refreshing the value despite its larger percentage change.
