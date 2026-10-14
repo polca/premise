@@ -2371,6 +2371,11 @@ class TransportValidation(BaseDatasetValidator):
                 ):
                     self.check_car_fuel_energy(ds)
                     continue
+                if vehicle_name == "transport, passenger car" and ds["name"].startswith(
+                    "transport, passenger car, battery electric,"
+                ):
+                    self.check_car_electric_energy(ds, elec_minimum, elec_maximum)
+                    continue
                 electricity_consumption = sum(
                     [
                         x["amount"]
@@ -2461,6 +2466,58 @@ class TransportValidation(BaseDatasetValidator):
                                 message,
                                 issue_type="major",
                             )
+
+    def check_car_electric_energy(self, ds, minimum=0.1, maximum=0.35):
+        """Validate purchased grid energy; heuristic bounds remain warnings.
+
+        A fixed present-day lower bound cannot certify future vehicle energy.
+        Keep positive, finite, per-vehicle-km accounting mandatory without
+        clipping a source inventory or its IAM efficiency trajectory.
+        """
+        electricity = [
+            e
+            for e in ds["exchanges"]
+            if e.get("type") == "technosphere"
+            and (
+                e.get("product", "").startswith("electricity,")
+                or e.get("name", "").startswith(
+                    ("market for electricity", "market group for electricity")
+                )
+            )
+        ]
+        production = [e for e in ds["exchanges"] if e.get("type") == "production"]
+        valid = (
+            ds.get("unit") in ("kilometer", "vehicle-kilometer")
+            and len(production) == 1
+            and production[0].get("unit") == ds["unit"]
+            and math.isfinite(production[0]["amount"])
+            and production[0]["amount"] > 0
+            and bool(electricity)
+            and all(
+                e.get("unit") == "kilowatt hour"
+                and math.isfinite(e["amount"])
+                and e["amount"] >= 0
+                for e in electricity
+            )
+        )
+        energy = (
+            sum(e["amount"] for e in electricity) / production[0]["amount"]
+            if valid
+            else 0
+        )
+        if not valid or energy <= 0:
+            self.log_issue(
+                ds,
+                "invalid car electricity accounting",
+                "BEV requires positive finite purchased kWh per vehicle-km and one positive reference production exchange.",
+                issue_type="major",
+            )
+        elif not minimum <= energy <= maximum:
+            self.log_issue(
+                ds,
+                "car electricity plausibility",
+                f"Purchased energy is {energy * 100} kWh/100 vehicle-km, outside the heuristic {minimum * 100}–{maximum * 100} range. Inventory preserved; review source specifications and IAM efficiency adjustment.",
+            )
 
     def check_car_fuel_energy(self, ds):
         """Read-only, fuel-specific checks independent of the floor binding."""
