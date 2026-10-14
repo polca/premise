@@ -6,6 +6,10 @@ All notable changes to this project are documented in this file.
 
 ### Fixed
 
+- Include petrol alongside electricity in every gasoline plug-in hybrid car's
+  operating-fuel mapping, and recognize petrol in the gasoline hybrid mapping.
+  IAM efficiency improvements now affect both PHEV energy inputs; final fuel
+  carbon accounting follows the corrected purchases. Rebuild scenarios to apply.
 - Couple explicitly identified vehicle hydrogen tank-compression electricity
   to final hydrogen demand, preserving other electricity uses. Align refreshed
   car/truck preparation with the pipeline inventory's documented 30-bar

@@ -451,3 +451,26 @@ identities. The focused suite passes 365 tests, including 23 new hydrogen
 cases and real Excel import. Only the identified vehicle compression electricity
 coefficients change. Report and reproduction scripts are in
 ``carculator_utils/results/premise_vehicle_hydrogen_20261013`` and ``dev/``.
+
+Hybrid operating-fuel mapping correction
+----------------------------------------
+
+The 2026-10-14 catalogue audit found that the Mini, Small, Medium, Medium SUV
+and Van gasoline PHEV mappings selected electricity but omitted petrol.
+An IAM improvement therefore reduced grid purchases while leaving fuel
+consumption unchanged. The Large PHEV mapping already selected both inputs.
+
+All six gasoline PHEV mappings now select both electricity and petrol,
+low-sulfur. The gasoline HEV mapping also recognizes this petrol product while
+retaining its gasoline alias. The existing efficiency routine and final fuel
+module carbon refresh handle the correction; no additional runtime model is
+introduced. Batteries continue to follow electric-mode consumption. HBEFA
+emissions remain separate from the IAM energy multiplier and retain any
+applicable GAINS adjustment.
+
+Regression tests use the packaged mappings and actual transport transformation
+for all six PHEV size classes and the gasoline HEV, with dictionary and compact
+exchanges, unchanged/improving/worsening efficiency, energy conservation and
+unchanged manufacturing and distance-based emissions. Earlier saved databases
+must be rebuilt. Full-build evidence and remaining physical/emission concerns
+are recorded in ``carculator_utils/results/premise_vehicle_plausibility_20261014``.

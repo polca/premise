@@ -247,6 +247,7 @@
   ecoinvent_fuel_aliases:
     fltr:
       - electricity
+      - petrol, low-sulfur
 'passenger car, diesel hybrid, medium':
   iam_aliases:
       tiam-ucl: Distance|Transport|Car|Diesel Hybrid|Diesel
@@ -347,6 +348,7 @@
   ecoinvent_fuel_aliases:
       fltr:
       - gasoline
+      - petrol, low-sulfur
 'passenger car, battery electric, mini':
   iam_aliases:
     remind: ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|BEV
@@ -423,6 +425,7 @@
   ecoinvent_fuel_aliases:
     fltr:
       - electricity
+      - petrol, low-sulfur
 'passenger car, gasoline, mini':
   iam_aliases:
     remind: ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Liquids
@@ -511,6 +514,7 @@
   ecoinvent_fuel_aliases:
     fltr:
       - electricity
+      - petrol, low-sulfur
 'passenger car, gasoline, medium SUV':
   iam_aliases:
     remind: ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|Liquids
@@ -597,6 +601,7 @@
   ecoinvent_fuel_aliases:
     fltr:
       - electricity
+      - petrol, low-sulfur
 'passenger car, gasoline, small':
   iam_aliases:
     remind: ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car|Liquids
@@ -683,6 +688,7 @@
   ecoinvent_fuel_aliases:
     fltr:
       - electricity
+      - petrol, low-sulfur
 'passenger car, gasoline, van':
   iam_aliases:
     remind: ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|Liquids
