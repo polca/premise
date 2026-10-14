@@ -41,7 +41,6 @@ from .utils import (
     HiddenPrints,
     get_fuel_properties,
     rescale_exchange,
-    rescale_exchanges,
 )
 
 LOG_CONFIG = DATA_DIR / "utils" / "logging" / "logconfig.yaml"
@@ -1105,27 +1104,30 @@ class ExternalScenario(BaseTransformation):
                 ineff["variable"], region, eff_data, self.year
             )
 
-            if "includes" not in ineff:
-                rescale_exchanges(datatset, scaling_factor, remove_uncertainty=False)
+            includes = ineff.get("includes")
+            excludes = ineff.get("excludes", {})
+            for flow_type, select in (
+                ("technosphere", ws.technosphere),
+                ("biosphere", ws.biosphere),
+            ):
+                # No `includes` means every flow; otherwise only the listed families.
+                if includes is not None and flow_type not in includes:
+                    continue
+                fltr = []
+                names = []
+                for y in (includes or {}).get(flow_type, []):
+                    # Plain names, as in production pathways, or {field: value} pairs.
+                    if isinstance(y, str):
+                        names.append(y)
+                    else:
+                        fltr.extend(wurst.contains(k, v) for k, v in y.items())
+                if names:
+                    fltr.append(ws.either(*[ws.contains("name", x) for x in names]))
+                if excludes.get(flow_type):
+                    fltr.append(ws.doesnt_contain_any("name", excludes[flow_type]))
 
-            else:
-                if "technosphere" in ineff["includes"]:
-                    fltr = []
-                    for y in ineff["includes"]["technosphere"]:
-                        for k, v in y.items():
-                            fltr.append(wurst.contains(k, v))
-
-                    for exc in ws.technosphere(datatset, *(fltr or [])):
-                        rescale_exchange(exc, scaling_factor, remove_uncertainty=False)
-
-                if "biosphere" in ineff["includes"]:
-                    fltr = []
-                    for y in ineff["includes"]["biosphere"]:
-                        for k, v in y.items():
-                            fltr.append(wurst.contains(k, v))
-
-                    for exc in ws.biosphere(datatset, *(fltr or [])):
-                        rescale_exchange(exc, scaling_factor, remove_uncertainty=False)
+                for exc in select(datatset, *fltr):
+                    rescale_exchange(exc, scaling_factor, remove_uncertainty=False)
         return datatset
 
     def get_region_for_non_null_production_volume(self, i, variables):

@@ -6,6 +6,9 @@ All notable changes to this project are documented in this file.
 
 ### Fixed
 
+- Apply market `efficiency` filters in external scenarios the same way as
+  production pathways: plain flow names under `includes` no longer raise an
+  AttributeError, and `excludes` is now applied instead of ignored.
 - Keep the efficiency `excludes` of every variable in an external
   scenario. Only the last variable's excludes were kept, so flows the
   other variables excluded were scaled anyway. Results change for configs
