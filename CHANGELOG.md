@@ -9,6 +9,13 @@ All notable changes to this project are documented in this file.
 - Apply market `efficiency` filters in external scenarios the same way as
   production pathways: plain flow names under `includes` no longer raise an
   AttributeError, and `excludes` is now applied instead of ignored.
+- Keep the efficiency `excludes` of every variable in an external
+  scenario. Only the last variable's excludes were kept, so flows the
+  other variables excluded were scaled anyway. Results change for configs
+  where two variables exclude the same flow type.
+- Avoid recursive regional-to-World fuel-market links by preferring direct
+  fuel-production suppliers when a mapped source market has the same product
+  identity as the prospective market.
 - Integrate the vehicle refresh into master while retaining the corrected
   legacy hydrogen-tank recipes in their new component workbook. Include car,
   truck and legacy-component workbook content in supplementary-inventory cache
