@@ -21,9 +21,17 @@ def test_fcev_power_pack_and_purchased_capacity(family, count):
     for row in rows:
         number = lambda field: float(row[field])
         assert number("battery power") > 0
-        assert number("fuel cell power") / number("fuel cell own consumption") + number(
-            "battery power"
-        ) == pytest.approx(number("power"), rel=2e-6)
+        required_dc = (
+            number("power") / number("electric motor efficiency")
+            + number("auxiliary power demand") / 1000
+        )
+        net_stack = number("fuel cell power") / number("fuel cell own consumption")
+        assert net_stack + number("battery power") == pytest.approx(
+            required_dc, rel=2e-6
+        )
+        assert net_stack / required_dc == pytest.approx(
+            number("fuel cell power share"), rel=2e-6
+        )
         assert number("battery cell mass") / number(
             "energy battery mass"
         ) == pytest.approx(number("battery cell mass share"), rel=2e-6)
@@ -58,5 +66,9 @@ def test_fcev_power_pack_and_purchased_capacity(family, count):
                 "battery power"
             )
             assert "complement of net fuel-cell power" in ds["comment"]
+            assert (
+                "motor shaft power divided by motor/inverter efficiency"
+                in ds["comment"]
+            )
             if family == "trucks":
                 assert "peak-power capability remains unverified" in ds["comment"]
