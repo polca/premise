@@ -995,6 +995,21 @@ class NewDatabase:
                 "_vanadium_"
                 + hashlib.sha256(FILEPATH_VANADIUM.read_bytes()).hexdigest()[:16]
             )
+            # Vehicle and final-energy updates must invalidate the imported
+            # inventory cache as well as the scenario/export provenance.
+            vehicle_digest = hashlib.sha256()
+            for path in (
+                FILEPATH_PASS_CARS,
+                FILEPATH_TRUCKS,
+                FILEPATH_TRUCK_LEGACY_COMPONENTS,
+                FILEPATH_BUSES,
+                FILEPATH_TWO_WHEELERS,
+                FILEPATH_RAIL_FREIGHT,
+                FILEPATH_FINAL_ENERGY,
+            ):
+                vehicle_digest.update(path.name.encode())
+                vehicle_digest.update(path.read_bytes())
+            inventory_label += "_vehicles_" + vehicle_digest.hexdigest()[:16]
         return (
             DIR_CACHED_DB
             / f"cached_{''.join(tuple(map(str, __version__)))}_v{CACHE_SCHEMA_VERSION}_"

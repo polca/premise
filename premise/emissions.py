@@ -48,10 +48,11 @@ def fetch_mapping(filepath: str) -> dict:
 
 
 def _update_emissions(scenario, version, system_model, gains_scenario):
+    from .vehicle_energy_use import refresh_vehicle_energy_emissions
 
     if scenario["iam data"].gains_data_IAM is None:
         print("No pollutant emissions scenario data available -- skipping")
-        return scenario
+        return refresh_vehicle_energy_emissions(scenario)
 
     store = scenario.get("_inventory_store")
     if isinstance(store, (CompactInventoryStore, LegacyInventoryStore)):
@@ -76,7 +77,7 @@ def _update_emissions(scenario, version, system_model, gains_scenario):
                 emissions.iter_updated_legacy_inventory(store),
                 take_ownership=True,
             )
-        return scenario
+        return refresh_vehicle_energy_emissions(scenario)
 
     emissions = Emissions(
         database=get_scenario_inventory(scenario),
@@ -92,7 +93,7 @@ def _update_emissions(scenario, version, system_model, gains_scenario):
     emissions.update_emissions_in_database()
     replace_scenario_inventory(scenario, emissions.database)
 
-    return scenario
+    return refresh_vehicle_energy_emissions(scenario)
 
 
 class Emissions(BaseTransformation):

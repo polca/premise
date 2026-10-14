@@ -32,6 +32,26 @@ def _update_final_energy(
 
     final_energy.regionalize_heating_datasets()
 
+    # Reconstruct scoped transport wrappers from the already updated regional
+    # vehicle service and production inventories. This propagates scenario
+    # energy and battery sizing once, before final supplier relinking.
+    from .vehicle_energy_use import (
+        SOURCE_KEY,
+        normalize,
+        select_source,
+        source_name,
+        VehicleLookup,
+    )
+
+    vehicles = VehicleLookup(final_energy.database)
+    for dataset in final_energy.database:
+        name = source_name(dataset["name"])
+        if name and SOURCE_KEY in dataset and dataset.get("unit") == "megajoule":
+            if dataset.get("emptied"):
+                continue
+            source = select_source(vehicles, name, dataset["location"])
+            normalize(dataset, source, vehicles)
+
     final_energy.relink_datasets()
     replace_scenario_inventory(scenario, final_energy.database)
     scenario["index"] = final_energy.index
