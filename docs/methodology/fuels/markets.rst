@@ -56,6 +56,12 @@ must not be adjusted a second time using the physical mixture's average LHV.
 Market electricity, transport and infrastructure remain additional burdens.
 World properties follow the production-weighted regional markets.
 
+When an ecoinvent mapping offers both a direct fuel producer and a source market
+with the same product and name as the prospective regional market, Premise uses
+the direct producer. Retaining the source market would make relinking connect the
+regional market to the new World market, while the World market already purchases
+regional outputs, creating a recursive supply loop.
+
 Synthetic-fuel carbon origin is traced through carbon-bearing inputs. Direct
 air capture is atmospheric carbon, represented as non-fossil combustion CO2;
 cement and waste-incineration capture retain the explicit biogenic shares of

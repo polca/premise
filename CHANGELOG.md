@@ -6,6 +6,9 @@ All notable changes to this project are documented in this file.
 
 ### Fixed
 
+- Avoid recursive regional-to-World fuel-market links by preferring direct
+  fuel-production suppliers when a mapped source market has the same product
+  identity as the prospective market.
 - Integrate the vehicle refresh into master while retaining the corrected
   legacy hydrogen-tank recipes in their new component workbook. Include car,
   truck and legacy-component workbook content in supplementary-inventory cache
