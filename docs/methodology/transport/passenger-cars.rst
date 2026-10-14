@@ -225,96 +225,27 @@ Sources and inventory details
 Source inventories and coverage
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The following datasets for passenger cars are imported.
+The 2020 refresh contains 74 RER transport services, 73 manufacturing recipes
+and 15 supporting components. Services retain the selected catalogue's exact
+names and use one vehicle-kilometre; manufacturing uses one vehicle. Combustion
+variants use EURO-6. Historical EURO classes are excluded; electric vehicles
+have no EURO class. The model uses Swiss climate, WLTC, 12,000 km/year and the
+approved 1.8 cold starts/hot soaks per day.
 
- =============================================================================== ==================
-  Passenger car datasets                                                          location
- =============================================================================== ==================
-  transport, passenger car, gasoline, Large                                       all IAM regions
-  transport, passenger car, diesel, Large                                         all IAM regions
-  transport, passenger car, compressed gas, Large                                 all IAM regions
-  transport, passenger car, plugin gasoline hybrid, Large                         all IAM regions
-  transport, passenger car, plugin diesel hybrid, Large                           all IAM regions
-  transport, passenger car, fuel cell electric, Large                             all IAM regions
-  transport, passenger car, battery electric Large                                all IAM regions
-  transport, passenger car, gasoline hybrid, Large                                all IAM regions
-  transport, passenger car, diesel hybrid, Large                                  all IAM regions
-  transport, passenger car, gasoline, Large SUV                                   all IAM regions
-  transport, passenger car, diesel, Large SUV                                     all IAM regions
-  transport, passenger car, compressed gas, Large SUV                             all IAM regions
-  transport, passenger car, plugin gasoline hybrid, Large SUV                     all IAM regions
-  transport, passenger car, plugin diesel hybrid, Large SUV                       all IAM regions
-  transport, passenger car, fuel cell electric, Large SUV                         all IAM regions
-  transport, passenger car, battery electric Large SUV                            all IAM regions
-  transport, passenger car, gasoline hybrid, Large SUV                            all IAM regions
-  transport, passenger car, diesel hybrid, Large SUV                              all IAM regions
-  transport, passenger car, gasoline, Lower medium                                all IAM regions
-  transport, passenger car, diesel, Lower medium                                  all IAM regions
-  transport, passenger car, compressed gas, Lower medium                          all IAM regions
-  transport, passenger car, plugin gasoline hybrid, Lower medium                  all IAM regions
-  transport, passenger car, plugin diesel hybrid, Lower medium                    all IAM regions
-  transport, passenger car, fuel cell electric, Lower medium                      all IAM regions
-  transport, passenger car, battery electric Lower medium                         all IAM regions
-  transport, passenger car, gasoline hybrid, Lower medium                         all IAM regions
-  transport, passenger car, diesel hybrid, Lower medium                           all IAM regions
-  transport, passenger car, gasoline, Medium                                      all IAM regions
-  transport, passenger car, diesel, Medium                                        all IAM regions
-  transport, passenger car, compressed gas, Medium                                all IAM regions
-  transport, passenger car, plugin gasoline hybrid, Medium                        all IAM regions
-  transport, passenger car, plugin diesel hybrid, Medium                          all IAM regions
-  transport, passenger car, fuel cell electric, Medium                            all IAM regions
-  transport, passenger car, battery electric Medium                               all IAM regions
-  transport, passenger car, gasoline hybrid, Medium                               all IAM regions
-  transport, passenger car, diesel hybrid, Medium                                 all IAM regions
-  transport, passenger car, gasoline, Medium SUV                                  all IAM regions
-  transport, passenger car, diesel, Medium SUV                                    all IAM regions
-  transport, passenger car, compressed gas, Medium SUV                            all IAM regions
-  transport, passenger car, plugin gasoline hybrid, Medium SUV                    all IAM regions
-  transport, passenger car, plugin diesel hybrid, Medium SUV                      all IAM regions
-  transport, passenger car, fuel cell electric, Medium SUV                        all IAM regions
-  transport, passenger car, battery electric Medium SUV                           all IAM regions
-  transport, passenger car, gasoline hybrid, Medium SUV                           all IAM regions
-  transport, passenger car, diesel hybrid, Medium SUV                             all IAM regions
-  transport, passenger car, battery electric Micro                                all IAM regions
-  transport, passenger car, gasoline, Mini                                        all IAM regions
-  transport, passenger car, diesel, Mini                                          all IAM regions
-  transport, passenger car, compressed gas, Mini                                  all IAM regions
-  transport, passenger car, plugin gasoline hybrid, Mini                          all IAM regions
-  transport, passenger car, plugin diesel hybrid, Mini                            all IAM regions
-  transport, passenger car, fuel cell electric, Mini                              all IAM regions
-  transport, passenger car, battery electric Mini                                 all IAM regions
-  transport, passenger car, gasoline hybrid, Mini                                 all IAM regions
-  transport, passenger car, diesel hybrid, Mini                                   all IAM regions
-  transport, passenger car, gasoline, Small                                       all IAM regions
-  transport, passenger car, diesel, Small                                         all IAM regions
-  transport, passenger car, compressed gas, Small                                 all IAM regions
-  transport, passenger car, plugin gasoline hybrid, Small                         all IAM regions
-  transport, passenger car, plugin diesel hybrid, Small                           all IAM regions
-  transport, passenger car, fuel cell electric, Small                             all IAM regions
-  transport, passenger car, battery electric Small                                all IAM regions
-  transport, passenger car, gasoline hybrid, Small                                all IAM regions
-  transport, passenger car, diesel hybrid, Small                                  all IAM regions
-  transport, passenger car, gasoline, Van                                         all IAM regions
-  transport, passenger car, diesel, Van                                           all IAM regions
-  transport, passenger car, compressed gas, Van                                   all IAM regions
-  transport, passenger car, plugin diesel hybrid, Van                             all IAM regions
-  transport, passenger car, fuel cell electric, Van                               all IAM regions
-  transport, passenger car, battery electric Van                                  all IAM regions
-  transport, passenger car, gasoline hybrid, Van                                  all IAM regions
-  transport, passenger car, diesel hybrid, Van                                    all IAM regions
- =============================================================================== ==================
+The current catalogue is in
+`lci-pass_cars.xlsx <https://github.com/polca/premise/blob/trals/premise/data/additional_inventories/lci-pass_cars.xlsx>`_
+and its ``lci-pass_cars.parameters.csv`` companion. Only technologies matched by
+``transport_passenger_cars.yaml`` are regionalized; RER coverage does not imply
+that every variant has IAM fleet data. Regionalized RER entries can become
+forwarding activities. LPG retains its explicit CNG manufacturing/efficiency
+proxy and fossil supply policy.
 
-Inventories are from `Sacchi2 <https://www.psi.ch/en/media/72391/download>`__ et al. 2022. The vehicles are available
-for different years and emission standards and for each IAM region.
-
-
-NOx and PM 2.5 emissions are further updated based on
-remote-sensing data from `Sjodin <https://www.bafu.admin.ch/dam/en/sd-web/lggkMIGXeKNu/real-driving-emissions-from-diesel-passenger-cars-measured-by-remote-sensing-and-as-compared-with-pems-and-chassis-dynamometer-measurements-conox-task-2-report.pdf>`__ et al. 2018.
-
-*premise* creates fleet markets where the required scenario data are available. The inventories can be consulted
-here: `LCIpasscars <https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/additional_inventories/lci-pass_cars.xlsx>`__.
-
-At the moment, these inventories do not supply inputs to other activities in the LCI database.
+PHEVs use one full physical pack across both modes, calibrated from 2020
+manufacturer references and documented size/density proxies (8.8--24 kWh).
+FCEV buffers use the approved late-2020 Mirai reference, scaled to required
+buffer power; the Medium car has 1.60 kWh and 57.3 kg. The ten-second discharge
+rating does not establish charging capability. See :doc:`campaign-closeout`
+for retained limitations and the scope of the completed verification.
 
 .. include:: battery-sizing.inc
 
