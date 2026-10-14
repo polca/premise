@@ -464,3 +464,11 @@ conversions:
   intensity_unit: kg metal/kg vehicle
   factor: 1.0
   comment: Explicit identity conversion retaining the existing ICEV mass-based material-intensity proxy for one kilogram of lorry frame.
+
+- id: regional-truck-frame-per-kilogram
+  activity:
+    name: frame, blanks and saddle, for lorry, carculator regional truck 2020
+  ecoinvent_unit: kilogram
+  intensity_unit: kg metal/kg vehicle
+  factor: 1.0
+  comment: Same per-kilogram material-intensity conversion as the original lorry-frame activity; qualified name isolates the updated component recipe.
