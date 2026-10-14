@@ -6,6 +6,11 @@ All notable changes to this project are documented in this file.
 
 ### Fixed
 
+- Refresh 2020 passenger-car PHEVs with paired capacity/mass calibration and
+  one physical battery across both driving modes. Preserve the calibrated
+  density offset when applying future chemistry-density improvements, using
+  the existing constant-range arithmetic. Sources, explicit mass/size proxies
+  and the MIX-market physical-mass boundary are recorded in dataset metadata.
 - Refresh hybrid car/truck hot exhaust with the shared model's corrected
   petrol/diesel deterioration lookup. Preserve cold starts, fuel demand and
   PHEV driving shares. Document combustion-engine ageing as a hybrid proxy;

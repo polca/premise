@@ -60,6 +60,19 @@ def cell_density(chemistry, year):
     return float(np.interp(year, years, [targets[y]["mean"] for y in years]))
 
 
+def projected_cell_density(spec, year):
+    """Preserve a calibrated pack's baseline while applying the chemistry trend."""
+    basis = spec.get("density projection basis", "absolute chemistry density")
+    if basis not in {"relative chemistry trend", "absolute chemistry density"}:
+        raise ValueError(f"Unknown battery density projection basis: {basis}")
+    if year == 2020:
+        return spec["cell density kWh/kg"]
+    density = cell_density(spec["chemistry"], year)
+    if basis == "relative chemistry trend":
+        density *= spec["cell density kWh/kg"] / cell_density(spec["chemistry"], 2020)
+    return density
+
+
 def battery_state(spec, energy_factor, density, year):
     """Return a constant-range design, retaining BEV truck payload utilization."""
     positive = (
@@ -271,10 +284,7 @@ def resize_regional_batteries(transport):
             factor = previous["energy factor"]
         if math.isclose(factor, 1, rel_tol=1e-12):
             factor = 1.0
-        density = cell_density(spec["chemistry"], transport.year)
-        # Preserve the exact float32 baseline used by the original model.
-        if transport.year == 2020:
-            density = spec["cell density kWh/kg"]
+        density = projected_cell_density(spec, transport.year)
         state = battery_state(spec, factor, density, transport.year)
         if ds.get(STATE_KEY) == state:
             continue

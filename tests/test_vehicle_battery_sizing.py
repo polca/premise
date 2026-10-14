@@ -14,6 +14,7 @@ from premise.vehicle_battery import (
     battery_state,
     cell_density,
     mass_factors,
+    projected_cell_density,
     resize_regional_batteries,
     specification,
 )
@@ -77,6 +78,38 @@ def test_density_projection_is_the_existing_original_chemistry_series():
     assert cell_density("NMC-622", 2030) == pytest.approx(0.24666666666666667)
     assert cell_density("NMC-622", 2050) == 0.26
     assert cell_density("NMC-622", 2100) == 0.26
+
+
+@pytest.mark.parametrize(
+    "year,density_ratio", [(2020, 1), (2030, 37 / 36), (2050, 13 / 12)]
+)
+def test_calibrated_phev_retains_pack_density_offset_and_range(
+    spec, year, density_ratio
+):
+    spec.update(
+        {
+            "powertrain": "PHEV-p",
+            "capacity kWh": 12,
+            "pack mass kg": 118.5,
+            "cell density kWh/kg": 12 / (118.5 * 0.7),
+            "density projection basis": "relative chemistry trend",
+        }
+    )
+    density = projected_cell_density(spec, year)
+    factor = 1 if year == 2020 else 0.8
+    result = battery_state(spec, factor, density, year)
+    assert result["capacity kWh"] == pytest.approx(12 * factor)
+    assert result["pack mass kg"] == pytest.approx(118.5 * factor / density_ratio)
+    assert result["cell mass kg"] * density == pytest.approx(12 * factor)
+    assert result["electric range km"] == spec["electric range km"]
+
+
+def test_legacy_density_projection_and_unknown_basis(spec):
+    assert projected_cell_density(spec, 2020) == spec["cell density kWh/kg"]
+    assert projected_cell_density(spec, 2050) == 0.26
+    spec["density projection basis"] = "misspelled trend"
+    with pytest.raises(ValueError, match="Unknown battery density"):
+        projected_cell_density(spec, 2050)
 
 
 @pytest.mark.parametrize("factor", [0, -1, float("nan"), float("inf")])
