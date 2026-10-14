@@ -6,6 +6,7 @@ from types import SimpleNamespace
 import pytest
 import xarray as xr
 
+from premise.activity_maps import InventorySet
 from premise.car_energy import apply_floor
 from premise.inventory_store import compact_exchange_payload
 from premise.transport import Transport
@@ -181,6 +182,84 @@ def test_only_fuel_driven_flows_follow_iam_energy(kind, factor, compact):
         for field in ("amount", "loc", "scale"):
             assert ds["exchanges"][i][field] == pytest.approx(before[i][field] * factor)
     for i in [0, *range(6, len(before))]:
+        assert dict(ds["exchanges"][i]) == before[i]
+
+
+@pytest.mark.parametrize(
+    "technology,size,plug_in",
+    [
+        *[
+            (f"passenger car, plugin gasoline hybrid, {size}", size, True)
+            for size in ("large", "medium", "mini", "medium SUV", "small", "van")
+        ],
+        ("passenger car, hybrid gasoline, medium", "medium", False),
+    ],
+)
+@pytest.mark.parametrize("factor", [1.0, 0.8, 1.2])
+@pytest.mark.parametrize("compact", [False, True])
+def test_packaged_hybrid_fuel_mapping_scales_petrol_and_electricity(
+    technology, size, plug_in, factor, compact
+):
+    """Use the real mappings: PHEVs must retain the same fuel/grid energy ratio."""
+    ds = vehicle("car")
+    label = "plugin gasoline hybrid" if plug_in else "gasoline hybrid"
+    ds["name"] = f"transport, passenger car, {label}, {size.title()}, EURO-6"
+    ds["exchanges"].append(
+        dict(
+            name="market group for electricity, low voltage",
+            product="electricity, low voltage",
+            unit="kilowatt hour",
+            type="technosphere",
+            amount=0.1 if plug_in else 0,
+        )
+    )
+    # A fuel-labelled manufacturing input is never an operating fuel purchase.
+    ds["exchanges"].append(
+        dict(
+            name="market for petrol engine",
+            product="petrol engine",
+            unit="kilogram",
+            type="technosphere",
+            amount=0.05,
+        )
+    )
+    suppliers = [
+        dict(
+            name=e["name"],
+            **{"reference product": e.get("product", e["name"])},
+            unit=e["unit"],
+            location="EUR",
+            exchanges=[],
+        )
+        for e in ds["exchanges"]
+        if e["type"] == "technosphere"
+    ]
+    suppliers.append(
+        dict(
+            name="market for gasoline",
+            **{"reference product": "gasoline"},
+            unit="kilogram",
+            location="EUR",
+            exchanges=[],
+        )
+    )
+    if compact:
+        ds["exchanges"] = [compact_exchange_payload(e) for e in ds["exchanges"]]
+    before = [deepcopy(dict(e)) for e in ds["exchanges"]]
+    transport = transformer(ds, "car", factor)
+    transport.vehicle_fuel_map = {
+        "vehicle": InventorySet(suppliers).generate_vehicle_fuel_map("car")[technology]
+    }
+    transport.adjust_transport_efficiency(ds)
+    petrol = ds["exchanges"][1]["amount"]
+    grid = ds["exchanges"][-2]["amount"]
+    assert petrol * 42.6 == pytest.approx(2 * factor)
+    assert grid == pytest.approx((0.1 if plug_in else 0) * factor)
+    assert petrol * 42.6 + grid * 3.6 == pytest.approx(
+        (2.36 if plug_in else 2) * factor
+    )
+    assert dict(ds["exchanges"][-1]) == before[-1]
+    for i in range(6, len(before) - 2):
         assert dict(ds["exchanges"][i]) == before[i]
 
 
