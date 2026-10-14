@@ -452,7 +452,8 @@ Detailed supply-chain names
 Vehicle hydrogen tank inventories
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The HDPE- and aluminium-lined 700-bar tank activities in ``lci-trucks.xlsx``
+The original HDPE- and aluminium-lined 700-bar tank activities are retained in
+``lci-truck-legacy-components.xlsx`` after the 2020 truck refresh. They
 produce one kg of dry tank assembly, including tank balance of plant and
 excluding stored hydrogen. The quantities come from `Evangelisti et al. (2017)
 <https://doi.org/10.1016/j.jclepro.2016.11.159>`_ and its
@@ -489,6 +490,7 @@ source recipes and are outside this correction.
 ``tests/test_hydrogen_tank_inventories.py`` checks material closure and energy
 units after Brightway Excel import and its preparation strategies, without
 writing a database, plus quantity preservation through migrations to ecoinvent
-3.9--3.12. The supplementary-inventory cache key includes the tank workbook
-content, so rebuilding cannot reuse the old recipes. Existing generated
-databases must still be rebuilt before their tank inventories change.
+3.9--3.12. The supplementary-inventory cache key includes the car, truck and
+legacy-component workbooks, so rebuilding cannot reuse the old recipes.
+Existing generated databases must still be rebuilt before their tank inventories
+change.

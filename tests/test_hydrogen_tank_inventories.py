@@ -11,7 +11,7 @@ from bw2io.strategies import csv_numerize, normalize_units
 def inventories():
     path = (
         Path(__file__).resolve().parents[1]
-        / "premise/data/additional_inventories/lci-trucks.xlsx"
+        / "premise/data/additional_inventories/lci-truck-legacy-components.xlsx"
     )
     importer = ExcelImporter(path)
     # These tank recipes need numeric/unit preparation, not biosphere
@@ -95,7 +95,7 @@ def test_tank_correction_survives_premise_migration(version, monkeypatch):
 
     path = (
         Path(__file__).resolve().parents[1]
-        / "premise/data/additional_inventories/lci-trucks.xlsx"
+        / "premise/data/additional_inventories/lci-truck-legacy-components.xlsx"
     )
     monkeypatch.setattr(
         DefaultInventory, "display_unlinked_exchanges", lambda self: None
@@ -124,12 +124,19 @@ def test_tank_correction_survives_premise_migration(version, monkeypatch):
         assert all("Evangelisti" in e["comment"] for e in exchanges.values())
 
 
-def test_tank_content_changes_invalidate_only_inventory_cache(tmp_path, monkeypatch):
+@pytest.mark.parametrize(
+    "constant",
+    ["FILEPATH_PASS_CARS", "FILEPATH_TRUCKS", "FILEPATH_TRUCK_LEGACY_COMPONENTS"],
+)
+def test_vehicle_content_changes_invalidate_only_inventory_cache(
+    tmp_path, monkeypatch, constant
+):
     import premise.new_database as module
 
-    workbook = tmp_path / "trucks.xlsx"
-    workbook.write_bytes(module.FILEPATH_TRUCKS.read_bytes())
-    monkeypatch.setattr(module, "FILEPATH_TRUCKS", workbook)
+    original = getattr(module, constant)
+    workbook = tmp_path / original.name
+    workbook.write_bytes(original.read_bytes())
+    monkeypatch.setattr(module, constant, workbook)
     model = object.__new__(module.NewDatabase)
     model.keep_imports_uncertainty = False
     model.keep_source_db_uncertainty = False

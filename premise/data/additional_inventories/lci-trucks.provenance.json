@@ -68,7 +68,7 @@
   "auxiliary_count": 33,
   "retained_legacy_components": 26,
   "legacy_components_version": "3.7",
-  "legacy_components_sha256": "f84fe3a83b11c125cf3ac8d97499e123cac0ba9c5441e14f6f41bda09c69faad",
+  "legacy_components_sha256": "adabbb0422b021df6418988464e7e42acf2682e8ba872e09dfda01ecd1e9b2b6",
   "noise_exchanges": 1248,
   "sha256": "69173285fcb595de439cf503ff5706378923ea6a1a1b58cf4c154643df6c4df7",
   "export_version": "3.12",
@@ -800,5 +800,14 @@
         }
       }
     }
+  },
+  "legacy component corrections": {
+    "source revision": "ff79a88d0e7fc85f116cbe8387a458ac824e94b6",
+    "source workbook sha256": "e4a4b581c35c08e5a9f18a37cdd7bf6306172fd68234c43390bffc0779a7e3ca",
+    "activities": [
+      "Fuel tank, compressed hydrogen gas, 700bar, with HDPE liner",
+      "Fuel tank, compressed hydrogen gas, 700bar, with aluminium liner"
+    ],
+    "boundary": "Preserve the master-branch dry-mass and MJ-to-kWh correction after splitting the original truck workbook. Other 24 legacy activities and regenerated vehicle workbooks unchanged."
   }
 }

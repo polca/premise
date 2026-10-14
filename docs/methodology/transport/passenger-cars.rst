@@ -233,7 +233,7 @@ have no EURO class. The model uses Swiss climate, WLTC, 12,000 km/year and the
 approved 1.8 cold starts/hot soaks per day.
 
 The current catalogue is in
-`lci-pass_cars.xlsx <https://github.com/polca/premise/blob/trals/premise/data/additional_inventories/lci-pass_cars.xlsx>`_
+`lci-pass_cars.xlsx <https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-pass_cars.xlsx>`_
 and its ``lci-pass_cars.parameters.csv`` companion. Only technologies matched by
 ``transport_passenger_cars.yaml`` are regionalized; RER coverage does not imply
 that every variant has IAM fleet data. Regionalized RER entries can become

@@ -995,10 +995,15 @@ class NewDatabase:
                 "_vanadium_"
                 + hashlib.sha256(FILEPATH_VANADIUM.read_bytes()).hexdigest()[:16]
             )
-            inventory_label += (
-                "_h2tanks_"
-                + hashlib.sha256(FILEPATH_TRUCKS.read_bytes()).hexdigest()[:16]
-            )
+            digest = hashlib.sha256()
+            for path in (
+                FILEPATH_PASS_CARS,
+                FILEPATH_TRUCKS,
+                FILEPATH_TRUCK_LEGACY_COMPONENTS,
+            ):
+                digest.update(path.name.encode())
+                digest.update(path.read_bytes())
+            inventory_label += f"_vehicles_{digest.hexdigest()[:16]}"
         return (
             DIR_CACHED_DB
             / f"cached_{''.join(tuple(map(str, __version__)))}_v{CACHE_SCHEMA_VERSION}_"

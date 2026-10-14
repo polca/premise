@@ -6,6 +6,10 @@ All notable changes to this project are documented in this file.
 
 ### Fixed
 
+- Integrate the vehicle refresh into master while retaining the corrected
+  legacy hydrogen-tank recipes in their new component workbook. Include car,
+  truck and legacy-component workbook content in supplementary-inventory cache
+  keys; preserve the existing background cache.
 - Refresh 2020 passenger-car PHEVs with paired capacity/mass calibration and
   one physical battery across both driving modes. Preserve the calibrated
   density offset when applying future chemistry-density improvements, using

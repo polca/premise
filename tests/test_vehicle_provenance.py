@@ -130,6 +130,13 @@ def test_installed_workbooks_have_sources_and_match_their_companions():
     importer = ExcelImporter(str(INVENTORY_DIR / "lci-truck-legacy-components.xlsx"))
     assert importer.db_name == "lci-truck-legacy-components"
     assert len(importer.data) == 26
+    sidecar = json.loads((INVENTORY_DIR / "lci-trucks.provenance.json").read_text())
+    assert (
+        sidecar["legacy_components_sha256"]
+        == hashlib.sha256(
+            (INVENTORY_DIR / "lci-truck-legacy-components.xlsx").read_bytes()
+        ).hexdigest()
+    )
     for ds in importer.data:
         assert ds["source"]
         assert SPEC_KEY not in ds and "model publication" not in ds
