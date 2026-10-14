@@ -529,17 +529,20 @@ def info_on_utils_functions():
 
 
 def warning_about_biogenic_co2() -> None:
-    """Explain why biogenic CO₂ flows should be characterised explicitly."""
+    """Recommend climate indicators that track non-fossil CO₂ uptake and release."""
     table = PrettyTable(["Warning"])
     table.add_row(
         [
-            "Because some of the scenarios can yield LCI databases\n"
-            "containing net negative emission technologies (NET),\n"
-            "it is advised to account for biogenic CO2 flows when calculating\n"
-            "Global Warming potential indicators.\n"
-            "`premise_gwp` provides characterization factors for such flows.\n"
-            "It also provides factors for hydrogen emissions to air.\n\n"
-            "Within your Brightway project:\n"
+            "Some scenarios include negative emission technologies, such as\n"
+            "carbon dioxide removal (CDR). We recommend using a climate\n"
+            "change indicator that accounts for both the uptake and release\n"
+            "of non-fossil CO2, for example:\n\n"
+            "IPCC 2021 (incl. biogenic CO2)\n"
+            "  climate change: total (incl. biogenic CO2)\n"
+            "  global warming potential (GWP100)\n\n"
+            "Alternatively, use the methods installed by `premise_gwp`,\n"
+            "which also account for indirect greenhouse gases, such as hydrogen.\n\n"
+            "To install the `premise_gwp` methods in your Brightway project:\n"
             "from premise_gwp import add_premise_gwp\n"
             "add_premise_gwp()"
         ]
