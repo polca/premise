@@ -1,0 +1,38 @@
+{
+  "cutoff": {
+    "before_scores_reproduced": 6630,
+    "before_score_mismatches": 0,
+    "before_score_max_abs_difference": 0.0,
+    "new_scores": 6175,
+    "configured_markets": 103,
+    "available_markets": 95,
+    "unavailable_global_markets": [
+      "copper-cobalt ore",
+      "germanium, concentrate",
+      "graphite ore, mined",
+      "iridium",
+      "platinum group metal concentrate",
+      "rhenium",
+      "ruthenium",
+      "vanadium bearing magnetite"
+    ]
+  },
+  "consequential": {
+    "before_scores_reproduced": 6630,
+    "before_score_mismatches": 0,
+    "before_score_max_abs_difference": 0.0,
+    "new_scores": 6175,
+    "configured_markets": 103,
+    "available_markets": 95,
+    "unavailable_global_markets": [
+      "copper-cobalt ore",
+      "germanium, concentrate",
+      "graphite ore, mined",
+      "iridium",
+      "platinum group metal concentrate",
+      "rhenium",
+      "ruthenium",
+      "vanadium bearing magnetite"
+    ]
+  }
+}

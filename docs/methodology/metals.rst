@@ -63,6 +63,39 @@ these direct overrides; background scenario updates remain active.
 For material updates not covered by a preservation policy, an explicit
 conversion factor and matching activity unit are required. Missing conversions
 stop the material update plan before application instead of defaulting to one.
+The loader retains the intensity unit and checks it against the conversion.
+Missing metal/technology pairs remain missing; they are not converted to zero.
+A specified zero range removes the corresponding direct input. Every compiled
+rule records an applied or preserved outcome, including unavailable intensities.
+
+EV intensities in the runtime CSV are in kg metal/kg motor. The three motor
+activities therefore use a conversion of one, rather than 0.1 MW/53 kg.
+For example, the 2020 aluminium intensity is 0.2252697267 kg/kg motor.
+Unit compatibility alone does not establish component scope. The EV summary
+includes whole-vehicle observations from Cullbrand and Magnusson's
+`The Use of Potentially Critical Materials in Passenger Cars
+<https://odr.chalmers.se/items/0926d689-2b39-4acf-950d-673f8d6660b7>`_,
+Table 8 (printed pages 33–34). Its 6256.55 g lithium total belongs to a hybrid
+car, predominantly its battery. Dividing by a 53 kg motor reproduces the CSV's
+0.1180481 kg/kg; it does not turn this into a motor composition.
+
+Rules using these mixed-scope EV summaries now have an explicit
+``preserve_reason`` and leave source inputs intact, at every year. The
+unverified scandium component boundary is also preserved. The shared boron and
+neodymium magnet rules are preserved: their 53/1.98 conversion belongs to one
+reference motor and cannot be imposed on the shared magnet supplier. These
+decisions remain in the change report; rules are not silently removed.
+Component-resolved observations and distinct suppliers are needed to re-enable
+these overlays. Battery rules remain separate; motor lithium is not moved to
+a battery without a validated battery composition and functional unit.
+
+The shared passenger-car engine is explicitly preserved. Its competing Pt/Pd
+factors, 1/0.260129659643436 and 1/0.3051750380517504, derive from the petrol
+and diesel car engine inputs respectively in ecoinvent 3.12. Both vehicles use
+the same engine provider, so a global overwrite cannot satisfy both mass bases.
+Separate component inventories are needed before applying these vehicle-level
+intensities to the engine. Other overlapping rules that write the same activity
+and input product are rejected before material updates begin.
 
 The ``set_direct_amount`` operation sets a configured direct technosphere
 input. It does not claim to set the total metal content of the complete supply
@@ -81,12 +114,22 @@ Transformation
 
 Premise builds metal markets and applies the configured in-ground resource
 allocation rules before updating direct material inputs and relinking.
-Material intensities are interpolated within the available year range and
-held at the endpoints outside it. Each direct material amount uses the
+Material intensities are interpolated within each metal/technology pair's
+observed year range. Outside that range, the source input is preserved and a
+``year_outside_support`` decision records the requested and supported years.
+A 2020-only aluminium observation does not become a 2050 projection because
+neodymium has a 2050 observation. Each applied direct material amount uses the
 configured activity-unit conversion and compound/content factor.
 
 Post-allocation correction
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This correction applies to attributional databases only. Consequential
+databases retain their source resource exchanges and substitution credits.
+Applying an economic-allocation correction there can both add extraction at
+refining and remove resource burdens associated with displaced coproducts.
+These operations conflict with the source model's substitution convention; see
+ecoinvent's `system-model documentation <https://support.ecoinvent.org/system-models>`_.
 
 Regarding the co-production of metals in multifunctional processes
 (i.e., co-mining of metals), *premise* modifies the database to allocate
@@ -94,7 +137,9 @@ according to physical mass balance: extraction of individual elements in the
 ore is fully attributed to the production of the respective metal; while other
 elementary and intermediate flows follow an economic allocation, which is the
 default option to deal with multi-functionality in ecoinvent. As discussed in
-`Berger <https://doi.org/10.1007/s11367-020-01737-5>`__ et al. (2023), this approach ensures a correct mass balance.
+`Berger <https://doi.org/10.1007/s11367-020-01737-5>`__ et al. (2020), this is a
+resource-attribution convention. It does not validate physical recovery yields,
+ore grades or the allocation of the remaining inventory.
 
 For example, the amount of platinum resource included in the dataset representing
 the mining of 1 kg of platinum is set to 1 kg, while the amount of other
@@ -104,7 +149,8 @@ titanium dioxide products, the target resource flow is set to the target-metal
 content of 1 kg of the reference product instead of being forced to 1 kg. If
 no explicit content factor is known for an ore, concentrate, or mineral product,
 the original target resource amount in the dataset is retained while the other
-co-mined in-ground resource flows are set to zero.
+co-mined metal resource flows are set to zero. Non-target non-metal resource
+flows, including gangue, are preserved.
 
 The correction is data-driven and applied directly from the transformed
 database. *premise* scans non-market datasets from the mining-share mapping and
@@ -117,7 +163,37 @@ left unchanged.
 The matched target flow is set to the target-metal content of the reference
 product, and other co-mined in-ground resource flows are set to zero. For
 mapped pure-metal suppliers that do not contain a target resource flow, the
-missing in-ground metal flow is added at 1 kg per kg of reference product.
+missing in-ground metal flow is added at 1 kg per kg of reference product only
+with primary-route evidence and when it is not already supplied upstream.
+Markets are traversed when checking the upstream chain. A missing supplier,
+cycle or depth limit is unresolved evidence, not proof that extraction is absent.
+Such cases preserve the source and emit a diagnostic. Waste treatment,
+recovery and recycling activities never acquire virgin extraction flows through
+this correction. Activities with non-kilogram reference units are excluded.
+Primary mines retain their own extraction when they consume metal-containing
+reagents. For other producers, upstream presence can remove a duplicate direct
+resource only when the positive target-bearing feed mass covers the target
+amount. This is a conservative screening condition, not a recovery-yield model.
+
+The material-path check uses kilogram inputs and their reference product, using
+the supplier name only when a product is missing. Energy and service exchanges
+with industry names such as ``electricity, cobalt industry`` are not material
+feeds. Carrier suppliers must still resolve uniquely before traversal stops at
+their downstream-attribution boundary.
+
+``primary zinc production from concentrate`` has an explicit primary extraction
+boundary for the ``zinc`` output fed by ``zinc concentrate``. Its small zinc and
+zinc-oxide process inputs can return through the zinc market to the same primary
+producers; those loops do not replace extraction from the concentrate. All
+positive target-bearing suppliers must resolve uniquely, the concentrate feed
+must weigh at least 1 kg per kg output, and the other target-bearing inputs must
+total less than 1 kg even assuming pure metal. These are applicability checks
+for the existing attribution convention, not inferred grades or yields. The
+regional boundaries are planned together before checking downstream consumers,
+so one producer's extraction cannot conceal missing attribution at others.
+The zinc and zinc-oxide input amounts and their supply-chain burdens are retained.
+Cycles without such an explicit boundary remain unresolved.
+
 Generic carrier intermediates whose resource attribution is handled by
 downstream metal-specific datasets, such as platinum group metal concentrate,
 have their direct metal resource flows cleared to avoid double counting.
@@ -126,10 +202,12 @@ metal-bearing products such as copper-cobalt ore; broader labels such as
 lead-zinc concentrates remain ambiguous unless an explicit factor exists for
 that product.
 
-If the target
-flow is missing or ambiguous for a mapped metal-bearing dataset that cannot be
-inferred safely, *premise* raises an error instead of silently applying a
-partial correction.
+Ambiguous or duplicate targets in strict correction calls raise errors. Other
+unresolved activity roles and upstream chains produce preservation diagnostics.
+Intentional zero resource flows are deterministic and lose their former
+uncertainty parameters. Positive corrected flows retain proportionally rescaled
+distribution parameters; this propagates source uncertainty, rather than
+estimating uncertainty in the attribution convention itself.
 
 The markets are relinked to metals-consuming activities throughout the database.
 
@@ -158,8 +236,24 @@ For cut-off markets, eligible secondary-supply exchanges are copied from an
 existing source market when their positive total does not exceed one. Primary
 supply fills the remaining share; transport additions are weighted by that
 primary share. Without usable secondary inputs the market uses primary supply
-only. Consequential markets exclude this copied secondary supply. Market
-creation is skipped if no primary suppliers can be constructed.
+only. Consequential markets retain their source marginal suppliers: historical
+average country shares are not evidence of future marginal supply. If a configured
+primary route is unavailable, the entire source market is preserved and the
+missing route is recorded; the available routes are not renormalized silently.
+Regional proxies retain existing suppliers and use a recorded geographical
+fallback when needed. Unresolved or duplicate final suppliers raise an error.
+
+All positive producer shares are retained, including shares below one percent.
+Transport includes all available modes and sums production routes within each
+country. All providers must be freight services in tonne-kilometres; aircraft
+manufacturing markets measured in aircraft units are explicitly excluded.
+A primary input of 0.75 kg travelling 1000 weighted km contributes
+0.75 tonne-km. Before creating proxies or relinking a market, all positive
+primary origins must have transport observations. Otherwise the source market
+is preserved, with the missing origins and their fraction of primary supply
+recorded. A recorded zero distance is distinguished from absent data. Negative,
+non-finite distances and unknown modes are rejected. The market validator checks the applied supplier
+shares and retained secondary fraction, not the unused split YAML assumptions.
 
 Mining and refining markets creation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -175,6 +269,11 @@ and `USGS <https://doi.org/10.3133/mcs2023>`_, in addition to data from
 For certain markets where data was available, *premise* incorporates projections
 from `BNEF <https://about.bnef.com/>`_ regarding the development of future mining and refining projects to
 forecast the market shares' evolution up to 2030.
+
+Replacement markets are built only within the years declared in this workbook
+(currently 2020–2030). Interpolation uses the actual year labels. Outside that
+range, source markets are preserved instead of carrying the 2030 shares
+forward implicitly. Zero-share routes do not require a production provider.
 
 The file used to build the global supply markets for mined and refined metals is `mining_shares_mapping.xlsx <https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/metals/mining_shares_mapping.xlsx>`_.
 
@@ -192,6 +291,34 @@ quantities. Source-preservation policies prevent specified overlays; they do
 not freeze upstream suppliers. Unknown ore/compound content and unavailable
 providers have the fallback behavior documented below. A corrected resource
 mass balance is not an independent validation of the whole mining inventory.
+Unverified EV component overlays are now preserved as described above.
+In particular, these fixes do not supply a dynamic scrap-stock model, future
+ore-grade or recovery-yield projections, endogenous metal demand, or marginal
+supplier projections for consequential modelling. Preserving source data
+prevents unsupported overrides; it does not make inherited inventories current
+or establish the physical feasibility of a future scenario.
+
+The scenario mapping at ``mapping["metals"]["methodology"]`` records these
+limitations and decision counts. ``material decisions``, ``market diagnostics``
+and ``resource diagnostics`` give activity-level evidence. Passing numerical
+validation does not mean that all configured markets or materials were updated.
+For example, a 2050 build now preserves all markets whose share data end in 2030.
+
+Removing the remaining methodological barriers requires independently sourced
+inputs: component bills of materials; grades and recovery yields with consistent
+allocation boundaries; stocks, lifetimes, collection and recycling losses; and
+scenario-specific mining capacities and marginal supplier choices. These need
+sensitivity analysis and external validation, not calibration of RELICS scores
+to 1 kg/kg. Zinc's explicit attribution boundary remains a convention.
+
+RELICS indicators can compare extraction by element in kg per functional unit
+alongside climate change. They should be reported separately by element and
+with biosphere-mapping coverage. They do not measure scarcity, supply risk,
+installed metal content or the plausibility of a future supply scenario.
+
+The October 2026 correctness audit and its reproducible commands are recorded
+in ``results/metals-correctness/README.rst``. It includes paired resource and
+climate scores, biosphere coverage, compatibility builds and backend checks.
 
 .. raw:: html
 

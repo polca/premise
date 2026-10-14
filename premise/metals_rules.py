@@ -14,6 +14,9 @@ from .utils import DATA_DIR
 
 MATERIAL_RULES_PATH = DATA_DIR / "metals" / "metal_products.yaml"
 CONVERSION_FACTORS_PATH = DATA_DIR / "metals" / "technology_conversion_factors.yaml"
+INTENSITY_UNITS = frozenset(
+    {"kg/MW", "kg/kWh", "kg metal/kg vehicle", "kg metal/kg motor"}
+)
 
 
 class MetalsConfigError(ValueError):
@@ -65,6 +68,7 @@ class MaterialRule:
     intensity_form: str | None = None
     allocation_group: str | None = None
     comment: str | None = None
+    preserve_reason: str | None = None
 
 
 @dataclass(frozen=True, slots=True)
@@ -210,6 +214,7 @@ def load_material_rules() -> MetalsRulesConfig:
         "intensity_form",
         "allocation_group",
         "comment",
+        "preserve_reason",
     }
     for index, raw in enumerate(raw_rules):
         context = f"rules[{index}]"
@@ -303,6 +308,11 @@ def load_material_rules() -> MetalsRulesConfig:
                     required=False,
                 ),
                 comment=_text(raw.get("comment"), f"{context}.comment", required=False),
+                preserve_reason=_text(
+                    raw.get("preserve_reason"),
+                    f"{context}.preserve_reason",
+                    required=False,
+                ),
             )
         )
 
@@ -431,6 +441,10 @@ def load_technology_conversions() -> tuple[TechnologyConversion, ...]:
                 f"{context}: duplicate activity selector {activity_name!r}."
             )
         activities.add(activity_name)
+        if raw.get("intensity_unit") not in INTENSITY_UNITS:
+            raise MetalsConfigError(
+                f"{context}: unknown intensity_unit {raw.get('intensity_unit')!r}."
+            )
         conversions.append(
             TechnologyConversion(
                 id=conversion_id,

@@ -1,0 +1,55 @@
+{
+  "project": "metals-correctness-3.12-consequential",
+  "database": "metals-audit-final-consequential",
+  "scenario": {
+    "model": "image",
+    "pathway": "SSP2-M",
+    "year": 2050
+  },
+  "functional_unit": "1 kg of market product",
+  "unit": "kg extracted element",
+  "database_fingerprints": {
+    "ecoinvent-3.12-consequential": "9844126948afeace561795b0729707e5fc4471426b18bd5fb3533ecf880267f4",
+    "metals-audit-before-consequential": "18ad4db5f07f0d936497393106058e46777a34d9b0349fc54d166574fb72562d",
+    "metals-audit-final-consequential": "b3a896e3a5e9cebb009b4c3c8e4ea3d909db8b01736092ef3e99b921ee64ad70"
+  },
+  "metals_py_sha256": "de52caabf3cd1140adcf9248cfc56709b76e3fbdbb4411b1060be70f7048932b",
+  "scores": [
+    {
+      "product": "cobalt",
+      "method": [
+        "RELICS",
+        "metals extraction",
+        "Cobalt"
+      ],
+      "market_key": [
+        "metals-audit-final-consequential",
+        "4b591741-9ecd-4854-97da-aef13f9bf938"
+      ],
+      "before": 0.999999087703355,
+      "after": -5.929983104131421e-09,
+      "restoring_previous_additions_only": 0.9999990436602463,
+      "restoration_increment": 0.9999990495902293,
+      "changed_routes": 17,
+      "contribution_sum": -5.9299831041314235e-09
+    },
+    {
+      "product": "zinc",
+      "method": [
+        "RELICS",
+        "metals extraction",
+        "Zinc"
+      ],
+      "market_key": [
+        "metals-audit-final-consequential",
+        "bdc86c07-4097-4fcc-9123-b7784575b9c4"
+      ],
+      "before": 1.0442703853308275,
+      "after": 0.048884020802659106,
+      "restoring_previous_additions_only": 1.0443184641875893,
+      "restoration_increment": 0.9954344433849303,
+      "changed_routes": 29,
+      "contribution_sum": 0.048884020802659106
+    }
+  ]
+}

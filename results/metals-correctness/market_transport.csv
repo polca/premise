@@ -1,0 +1,505 @@
+system_model,metal,freight_provider,unit,before,after,primary_share,secondary_share
+cutoff,"aluminium oxide, metallurgical","market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.07957301283584851,1.0,0.0
+cutoff,"aluminium oxide, metallurgical","market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,8.890649881295287,8.648219743692959,1.0,0.0
+cutoff,"aluminium oxide, metallurgical","market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.603295233499271,1.0,0.0
+cutoff,"aluminium oxide, metallurgical","market group for transport, freight, train, fleet average",ton kilometer,0.0,0.39340398403094445,1.0,0.0
+cutoff,"aluminium, cast alloy","market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.020958070858076886,0.3117547333240509,0.6882452666759491
+cutoff,"aluminium, cast alloy","market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,0.4856962968268975,1.5020732132969685,0.3117547333240509,0.6882452666759491
+cutoff,"aluminium, cast alloy","market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.6786551584266862,0.3117547333240509,0.6882452666759491
+cutoff,"aluminium, cast alloy","market group for transport, freight, train, fleet average",ton kilometer,0.0,0.022330428818521722,0.3117547333240509,0.6882452666759491
+cutoff,antimony,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.6644123333268295,1.0,0.0
+cutoff,antimony,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,5.240793168624202,5.2387684156209,1.0,0.0
+cutoff,antimony,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,2.5412881769589317,1.0,0.0
+cutoff,antimony,"market group for transport, freight, train, fleet average",ton kilometer,0.0,0.4387600433419728,1.0,0.0
+cutoff,bentonite,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.015411781016737,1.0,0.0
+cutoff,bentonite,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,5.085941492304172,4.7797509354114895,1.0,0.0
+cutoff,bentonite,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,2.1906721560258067,1.0,0.0
+cutoff,bentonite,"market group for transport, freight, train, fleet average",ton kilometer,0.0,0.6647137490939805,1.0,0.0
+cutoff,"boric acid, anhydrous, powder","market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.480818007972065,1.0,0.0
+cutoff,"boric acid, anhydrous, powder","market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,9.289465654907744,9.178497452257421,1.0,0.0
+cutoff,"boric acid, anhydrous, powder","market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,1.7273518828746446,1.0,0.0
+cutoff,"boric acid, anhydrous, powder","market group for transport, freight, train, fleet average",ton kilometer,0.0,0.024229564725777204,1.0,0.0
+cutoff,boric oxide,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.480818007972065,1.0,0.0
+cutoff,boric oxide,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,9.289465654907744,9.178497452257421,1.0,0.0
+cutoff,boric oxide,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,1.7273518828746446,1.0,0.0
+cutoff,boric oxide,"market group for transport, freight, train, fleet average",ton kilometer,0.0,0.024229564725777204,1.0,0.0
+cutoff,boron carbide,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.09841943936811509,1.0,0.0
+cutoff,boron carbide,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,4.514056050276246,4.457861791234289,1.0,0.0
+cutoff,boron carbide,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.37953054729244456,1.0,0.0
+cutoff,boron carbide,"market group for transport, freight, train, fleet average",ton kilometer,0.0,1.1415904828291004,1.0,0.0
+cutoff,boron trifluoride,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.0965560677224111,1.0,0.0
+cutoff,boron trifluoride,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,5.297636244959068,5.267607448946547,1.0,0.0
+cutoff,boron trifluoride,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.6305262505561298,1.0,0.0
+cutoff,boron trifluoride,"market group for transport, freight, train, fleet average",ton kilometer,0.0,0.10614905964159523,1.0,0.0
+cutoff,cerium oxide,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,2.58909537620563,1.0,0.0
+cutoff,cerium oxide,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,3.5673971021042084,3.560419621297195,1.0,0.0
+cutoff,cerium oxide,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.023008449564978,1.0,0.0
+cutoff,cerium oxide,"market group for transport, freight, train, fleet average",ton kilometer,0.0,3.1782225910466004,1.0,0.0
+cutoff,chromite ore concentrate,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.009537991586388241,1.0,0.0
+cutoff,chromite ore concentrate,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,4.444707666735082,4.563992341586795,1.0,0.0
+cutoff,chromite ore concentrate,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,5.893346526385107,1.0,0.0
+cutoff,chromite ore concentrate,"market group for transport, freight, train, fleet average",ton kilometer,0.0,1.7079856091794743,1.0,0.0
+cutoff,cobalt,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.23428490891609435,0.9942837420385331,0.0057162579614669085
+cutoff,cobalt,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,9.46099358561366,9.55428789229222,0.9942837420385331,0.0057162579614669085
+cutoff,cobalt,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.5351527751730465,0.9942837420385331,0.0057162579614669085
+cutoff,cobalt,"market group for transport, freight, train, fleet average",ton kilometer,0.0,0.3695435320269616,0.9942837420385331,0.0057162579614669085
+cutoff,cobalt hydroxide,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.007779559080278172,1.0,0.0
+cutoff,cobalt hydroxide,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,4.097673878014231,4.0358512242184315,1.0,0.0
+cutoff,cobalt hydroxide,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,2.2126504198180004,1.0,0.0
+cutoff,cobalt hydroxide,"market group for transport, freight, train, fleet average",ton kilometer,0.0,0.04952787931768401,1.0,0.0
+cutoff,cobalt sulfate,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.01928442971071572,1.0,0.0
+cutoff,cobalt sulfate,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,9.199766888808416,9.038684546004916,1.0,0.0
+cutoff,cobalt sulfate,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.7496143923592737,1.0,0.0
+cutoff,cobalt sulfate,"market group for transport, freight, train, fleet average",ton kilometer,0.0,0.028271280199362533,1.0,0.0
+cutoff,"copper concentrate, sulfide ore","market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.013556149344929543,1.0,0.0
+cutoff,"copper concentrate, sulfide ore","market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,9.469577042044659,10.260688109369204,1.0,0.0
+cutoff,"copper concentrate, sulfide ore","market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,1.099149943747649,1.0,0.0
+cutoff,"copper concentrate, sulfide ore","market group for transport, freight, train, fleet average",ton kilometer,0.0,0.20266949959978403,1.0,0.0
+cutoff,"copper, anode","market for transport, freight, aircraft, long haul",ton kilometer,0.0,1.3964477150731163,1.0,0.0
+cutoff,"copper, anode","market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,3.9823094275958963,3.96618612869595,1.0,0.0
+cutoff,"copper, anode","market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.9062968328427096,1.0,0.0
+cutoff,"copper, anode","market group for transport, freight, train, fleet average",ton kilometer,0.0,1.1122908197838397,1.0,0.0
+cutoff,"copper, cathode","market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.23009283315167312,0.8006574672161832,0.19934253278381675
+cutoff,"copper, cathode","market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,2.59542893177555,3.672360628817529,0.8006574672161832,0.19934253278381675
+cutoff,"copper, cathode","market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.4572252350656245,0.8006574672161832,0.19934253278381675
+cutoff,"copper, cathode","market group for transport, freight, train, fleet average",ton kilometer,0.0,1.254756049450423,0.8006574672161832,0.19934253278381675
+cutoff,copper-cobalt ore,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.22324872992294023,1.0,0.0
+cutoff,copper-cobalt ore,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,4.942315779883081,4.941619008226753,1.0,0.0
+cutoff,copper-cobalt ore,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,4.197717532983528,1.0,0.0
+cutoff,copper-cobalt ore,"market group for transport, freight, train, fleet average",ton kilometer,0.0,1.0911795929044883,1.0,0.0
+cutoff,dolomite,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.03327294749647532,1.0,0.0
+cutoff,dolomite,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,3.119903226154782,3.0064287703003307,1.0,0.0
+cutoff,dolomite,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.48863691262006115,1.0,0.0
+cutoff,dolomite,"market group for transport, freight, train, fleet average",ton kilometer,0.0,0.7902830421346998,1.0,0.0
+cutoff,dysprosium oxide,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,2.602464811,1.0,0.0
+cutoff,dysprosium oxide,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,3.961478357,3.961478357,1.0,0.0
+cutoff,dysprosium oxide,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.01651388748,1.0,0.0
+cutoff,dysprosium oxide,"market group for transport, freight, train, fleet average",ton kilometer,0.0,3.57134129,1.0,0.0
+cutoff,erbium oxide,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,2.602464811,1.0,0.0
+cutoff,erbium oxide,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,3.961478357,3.961478357,1.0,0.0
+cutoff,erbium oxide,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.01651388748,1.0,0.0
+cutoff,erbium oxide,"market group for transport, freight, train, fleet average",ton kilometer,0.0,3.57134129,1.0,0.0
+cutoff,europium oxide,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,2.602464811,1.0,0.0
+cutoff,europium oxide,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,3.961478357,3.961478357,1.0,0.0
+cutoff,europium oxide,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.01651388748,1.0,0.0
+cutoff,europium oxide,"market group for transport, freight, train, fleet average",ton kilometer,0.0,3.57134129,1.0,0.0
+cutoff,"ferroniobium, 66% Nb","market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.08721934095144,1.0,0.0
+cutoff,"ferroniobium, 66% Nb","market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,13.812039835759998,13.812039835759998,1.0,0.0
+cutoff,"ferroniobium, 66% Nb","market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.19732414771088,1.0,0.0
+cutoff,"ferroniobium, 66% Nb","market group for transport, freight, train, fleet average",ton kilometer,0.0,0.031234009911280003,1.0,0.0
+cutoff,gadolinium oxide,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,2.602464811,1.0,0.0
+cutoff,gadolinium oxide,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,3.961478357,3.961478357,1.0,0.0
+cutoff,gadolinium oxide,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.01651388748,1.0,0.0
+cutoff,gadolinium oxide,"market group for transport, freight, train, fleet average",ton kilometer,0.0,3.57134129,1.0,0.0
+cutoff,"germanium, concentrate","market for transport, freight, aircraft, long haul",ton kilometer,0.0,1.412628635180488,1.0,0.0
+cutoff,"germanium, concentrate","market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,4.649276865579268,4.649276865579268,1.0,0.0
+cutoff,"germanium, concentrate","market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,1.8366825025518294,1.0,0.0
+cutoff,"germanium, concentrate","market group for transport, freight, train, fleet average",ton kilometer,0.0,0.31311810214344515,1.0,0.0
+cutoff,graphite,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.04443428519479253,1.0,0.0
+cutoff,graphite,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,6.543736010581698,6.514351309624535,1.0,0.0
+cutoff,graphite,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,1.4653714529731239,1.0,0.0
+cutoff,graphite,"market group for transport, freight, train, fleet average",ton kilometer,0.0,0.5935331231476939,1.0,0.0
+cutoff,hafnium sponge,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,1.6302003631474,1.0,0.0
+cutoff,hafnium sponge,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,7.634799333556,7.634799333556,1.0,0.0
+cutoff,hafnium sponge,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,3.3417153951965,1.0,0.0
+cutoff,hafnium sponge,"market group for transport, freight, train, fleet average",ton kilometer,0.0,0.073191204904705,1.0,0.0
+cutoff,hafnium tetrachloride,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,1.6302003631474,1.0,0.0
+cutoff,hafnium tetrachloride,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,7.634799333556,7.634799333556,1.0,0.0
+cutoff,hafnium tetrachloride,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,3.3417153951965,1.0,0.0
+cutoff,hafnium tetrachloride,"market group for transport, freight, train, fleet average",ton kilometer,0.0,0.073191204904705,1.0,0.0
+cutoff,holmium oxide,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,2.602464811,1.0,0.0
+cutoff,holmium oxide,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,3.961478357,3.961478357,1.0,0.0
+cutoff,holmium oxide,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.01651388748,1.0,0.0
+cutoff,holmium oxide,"market group for transport, freight, train, fleet average",ton kilometer,0.0,3.57134129,1.0,0.0
+cutoff,"ilmenite, 54% titanium dioxide","market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.021683016681195395,1.0,0.0
+cutoff,"ilmenite, 54% titanium dioxide","market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,6.159102704575049,6.466641000334717,1.0,0.0
+cutoff,"ilmenite, 54% titanium dioxide","market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,2.2172353177704376,1.0,0.0
+cutoff,"ilmenite, 54% titanium dioxide","market group for transport, freight, train, fleet average",ton kilometer,0.0,1.090257005601795,1.0,0.0
+cutoff,indium,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,1.27723349296906,1.0,0.0
+cutoff,indium,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,3.8289827674080867,3.851670822540974,1.0,0.0
+cutoff,indium,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,1.8222637733775067,1.0,0.0
+cutoff,indium,"market group for transport, freight, train, fleet average",ton kilometer,0.0,0.35653662463795,1.0,0.0
+cutoff,iron ore concentrate,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.05914688605276082,1.0,0.0
+cutoff,iron ore concentrate,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,8.06454799096341,8.021259854071829,1.0,0.0
+cutoff,iron ore concentrate,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,1.5005223944855353,1.0,0.0
+cutoff,iron ore concentrate,"market group for transport, freight, train, fleet average",ton kilometer,0.0,0.5214016926750555,1.0,0.0
+cutoff,lanthanum oxide,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,2.58909537620563,1.0,0.0
+cutoff,lanthanum oxide,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,3.5673971021042084,3.560419621297195,1.0,0.0
+cutoff,lanthanum oxide,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.023008449564978,1.0,0.0
+cutoff,lanthanum oxide,"market group for transport, freight, train, fleet average",ton kilometer,0.0,3.1782225910466004,1.0,0.0
+cutoff,lanthanum-cerium oxide,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,2.58909537620563,1.0,0.0
+cutoff,lanthanum-cerium oxide,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,3.5673971021042084,3.560419621297195,1.0,0.0
+cutoff,lanthanum-cerium oxide,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.023008449564978,1.0,0.0
+cutoff,lanthanum-cerium oxide,"market group for transport, freight, train, fleet average",ton kilometer,0.0,3.1782225910466004,1.0,0.0
+cutoff,lead,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.038045522900010675,0.4508379483719125,0.5491620516280875
+cutoff,lead,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,1.3310402689730723,2.7436932739925273,0.4508379483719125,0.5491620516280875
+cutoff,lead,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,1.1171063593671249,0.4508379483719125,0.5491620516280875
+cutoff,lead,"market group for transport, freight, train, fleet average",ton kilometer,0.0,0.09780216875604753,0.4508379483719125,0.5491620516280875
+cutoff,lead concentrate,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.01607952205163556,1.0,0.0
+cutoff,lead concentrate,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,11.816400366808653,11.106880964625313,1.0,0.0
+cutoff,lead concentrate,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,1.4870417820267265,1.0,0.0
+cutoff,lead concentrate,"market group for transport, freight, train, fleet average",ton kilometer,0.0,0.265493232274136,1.0,0.0
+cutoff,"lithium hydroxide, battery grade","market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.05267237751573224,1.0,0.0
+cutoff,"lithium hydroxide, battery grade","market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,8.39456190005654,8.397793102259516,1.0,0.0
+cutoff,"lithium hydroxide, battery grade","market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.3631460986086731,1.0,0.0
+cutoff,"lithium hydroxide, battery grade","market group for transport, freight, train, fleet average",ton kilometer,0.0,0.32257447374091774,1.0,0.0
+cutoff,lutetium oxide,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,2.602464811,1.0,0.0
+cutoff,lutetium oxide,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,3.961478357,3.961478357,1.0,0.0
+cutoff,lutetium oxide,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.01651388748,1.0,0.0
+cutoff,lutetium oxide,"market group for transport, freight, train, fleet average",ton kilometer,0.0,3.57134129,1.0,0.0
+cutoff,magnesium,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.38691587309215014,1.0,0.0
+cutoff,magnesium,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,3.790140133235614,3.8090709958233786,1.0,0.0
+cutoff,magnesium,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,3.080269704333675,1.0,0.0
+cutoff,magnesium,"market group for transport, freight, train, fleet average",ton kilometer,0.0,2.0182248534483147,1.0,0.0
+cutoff,manganese,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.5576580271966951,0.9999975200062181,2.479993781889789e-06
+cutoff,manganese,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,5.353237764969664,5.353251040998958,0.9999975200062181,2.479993781889789e-06
+cutoff,manganese,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,2.0222757049312126,0.9999975200062181,2.479993781889789e-06
+cutoff,manganese,"market group for transport, freight, train, fleet average",ton kilometer,0.0,0.39289822427734805,0.9999975200062181,2.479993781889789e-06
+cutoff,manganese concentrate,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.022323427274505994,1.0,0.0
+cutoff,manganese concentrate,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,5.302320574273989,5.248822040599531,1.0,0.0
+cutoff,manganese concentrate,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,5.980183727570161,1.0,0.0
+cutoff,manganese concentrate,"market group for transport, freight, train, fleet average",ton kilometer,0.0,1.4477504337979288,1.0,0.0
+cutoff,molybdenite,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.038395384086218044,1.0,0.0
+cutoff,molybdenite,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,1.9271283701577293,8.806011994330882,1.0,0.0
+cutoff,molybdenite,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.9365626125108076,1.0,0.0
+cutoff,molybdenite,"market group for transport, freight, train, fleet average",ton kilometer,0.0,0.4459479811642208,1.0,0.0
+cutoff,molybdenum,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,1.6893302645261217,1.0,0.0
+cutoff,molybdenum,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,3.757412252962806,3.6852876277971096,1.0,0.0
+cutoff,molybdenum,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.5222527040828857,1.0,0.0
+cutoff,molybdenum,"market group for transport, freight, train, fleet average",ton kilometer,0.0,1.330266632095089,1.0,0.0
+cutoff,neodymium oxide,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,2.58909537620563,1.0,0.0
+cutoff,neodymium oxide,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,3.5673971021042084,3.560419621297195,1.0,0.0
+cutoff,neodymium oxide,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.023008449564978,1.0,0.0
+cutoff,neodymium oxide,"market group for transport, freight, train, fleet average",ton kilometer,0.0,3.1782225910466004,1.0,0.0
+cutoff,"nickel concentrate, 16% Ni","market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.01895312565731407,1.0,0.0
+cutoff,"nickel concentrate, 16% Ni","market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,6.092698865449928,6.050227120817,1.0,0.0
+cutoff,"nickel concentrate, 16% Ni","market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.003524745251848193,9.540144146611704,1.0,0.0
+cutoff,"nickel concentrate, 16% Ni","market group for transport, freight, train, fleet average",ton kilometer,0.0,0.12047890162125122,1.0,0.0
+cutoff,"nickel, class 1","market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.03969924980429923,0.9979715353474603,0.0020284646525396965
+cutoff,"nickel, class 1","market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,10.97539934327382,10.552170116133297,0.9979715353474603,0.0020284646525396965
+cutoff,"nickel, class 1","market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.5881917558198864,0.9979715353474603,0.0020284646525396965
+cutoff,"nickel, class 1","market group for transport, freight, train, fleet average",ton kilometer,0.0,0.11363175852685273,0.9979715353474603,0.0020284646525396965
+cutoff,"phosphate rock, beneficiated","market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.10332299607433652,1.0,0.0
+cutoff,"phosphate rock, beneficiated","market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,3.6419910190501152,3.560832902349881,1.0,0.0
+cutoff,"phosphate rock, beneficiated","market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,1.3009040098255082,1.0,0.0
+cutoff,"phosphate rock, beneficiated","market group for transport, freight, train, fleet average",ton kilometer,0.0,0.8283721674961699,1.0,0.0
+cutoff,"phosphoric acid, fertiliser grade, without water, in 70% solution state","market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.021396005613260997,1.0,0.0
+cutoff,"phosphoric acid, fertiliser grade, without water, in 70% solution state","market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,9.051994332837001,9.051994332837001,1.0,0.0
+cutoff,"phosphoric acid, fertiliser grade, without water, in 70% solution state","market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.24671412683214403,1.0,0.0
+cutoff,"phosphoric acid, fertiliser grade, without water, in 70% solution state","market group for transport, freight, train, fleet average",ton kilometer,0.0,0.376638589798914,1.0,0.0
+cutoff,platinum,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,2.746153067664948,0.955399613827467,0.044600386172533035
+cutoff,platinum,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,5.421487641851907,5.633032028545612,0.955399613827467,0.044600386172533035
+cutoff,platinum,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,1.5546644608950266,0.955399613827467,0.044600386172533035
+cutoff,platinum,"market group for transport, freight, train, fleet average",ton kilometer,0.0,1.6089671959463185,0.955399613827467,0.044600386172533035
+cutoff,potash salt,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.0039048402446713727,1.0,0.0
+cutoff,potash salt,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,4.3250720684053565,4.38700788560486,1.0,0.0
+cutoff,potash salt,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.1388413151025272,1.0,0.0
+cutoff,potash salt,"market group for transport, freight, train, fleet average",ton kilometer,0.0,1.2857509118101271,1.0,0.0
+cutoff,praseodymium oxide,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,2.58909537620563,1.0,0.0
+cutoff,praseodymium oxide,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,3.5673971021042084,3.560419621297195,1.0,0.0
+cutoff,praseodymium oxide,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.023008449564978,1.0,0.0
+cutoff,praseodymium oxide,"market group for transport, freight, train, fleet average",ton kilometer,0.0,3.1782225910466004,1.0,0.0
+cutoff,pyrochlore concentrate,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.1424860042619804,1.0,0.0
+cutoff,pyrochlore concentrate,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,18.10248222997468,17.884653888655183,1.0,0.0
+cutoff,pyrochlore concentrate,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.1524634518144603,1.0,0.0
+cutoff,pyrochlore concentrate,"market group for transport, freight, train, fleet average",ton kilometer,0.0,0.029736076701779364,1.0,0.0
+cutoff,"rutile, 95% titanium dioxide","market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.013276951107864777,1.0,0.0
+cutoff,"rutile, 95% titanium dioxide","market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,8.012130486698654,9.858668977268815,1.0,0.0
+cutoff,"rutile, 95% titanium dioxide","market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,2.0802189109699314,1.0,0.0
+cutoff,"rutile, 95% titanium dioxide","market group for transport, freight, train, fleet average",ton kilometer,0.0,0.8428951400105007,1.0,0.0
+cutoff,samarium oxide,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,2.58909537620563,1.0,0.0
+cutoff,samarium oxide,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,3.5673971021042084,3.560419621297195,1.0,0.0
+cutoff,samarium oxide,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.023008449564978,1.0,0.0
+cutoff,samarium oxide,"market group for transport, freight, train, fleet average",ton kilometer,0.0,3.1782225910466004,1.0,0.0
+cutoff,scandium oxide,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,2.7686378545347154,1.0,0.0
+cutoff,scandium oxide,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,2.750691388138607,2.750691388138607,1.0,0.0
+cutoff,scandium oxide,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.048546766415537,1.0,0.0
+cutoff,scandium oxide,"market group for transport, freight, train, fleet average",ton kilometer,0.0,2.8177181623788,1.0,0.0
+cutoff,silica sand,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.02521938827727586,1.0,0.0
+cutoff,silica sand,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,3.5767061985429907,3.5749976514831983,1.0,0.0
+cutoff,silica sand,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.12314701272014371,1.0,0.0
+cutoff,silica sand,"market group for transport, freight, train, fleet average",ton kilometer,0.0,0.8695014711111145,1.0,0.0
+cutoff,silver,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.06492622300565296,0.9153634788563068,0.08463652114369324
+cutoff,silver,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,10.075499635604162,11.361836076240104,0.9153634788563068,0.08463652114369324
+cutoff,silver,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,1.0446231221389362,0.9153634788563068,0.08463652114369324
+cutoff,silver,"market group for transport, freight, train, fleet average",ton kilometer,0.0,0.17970207556272924,0.9153634788563068,0.08463652114369324
+cutoff,sodium borates,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.15006917580487256,1.0,0.0
+cutoff,sodium borates,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,6.742364896291543,6.741163078745339,1.0,0.0
+cutoff,sodium borates,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,1.3544564902602778,1.0,0.0
+cutoff,sodium borates,"market group for transport, freight, train, fleet average",ton kilometer,0.0,1.6344440290908404,1.0,0.0
+cutoff,stibnite concentrate,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.026951578768994854,1.0,0.0
+cutoff,stibnite concentrate,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,5.589840490394986,5.588387968089675,1.0,0.0
+cutoff,stibnite concentrate,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,1.8063574125641737,1.0,0.0
+cutoff,stibnite concentrate,"market group for transport, freight, train, fleet average",ton kilometer,0.0,1.1367990700242334,1.0,0.0
+cutoff,"strontium sulfate, 90% SrSO4","market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.004388921328704211,1.0,0.0
+cutoff,"strontium sulfate, 90% SrSO4","market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,5.952782608245338,5.934031221037679,1.0,0.0
+cutoff,"strontium sulfate, 90% SrSO4","market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,1.008053826787582,1.0,0.0
+cutoff,"strontium sulfate, 90% SrSO4","market group for transport, freight, train, fleet average",ton kilometer,0.0,0.03284965026512758,1.0,0.0
+cutoff,sulfur,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.024224417620572345,1.0,0.0
+cutoff,sulfur,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,7.998994322850035,8.073613161289208,1.0,0.0
+cutoff,sulfur,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.03343339002659609,0.8374859637433643,1.0,0.0
+cutoff,sulfur,"market group for transport, freight, train, fleet average",ton kilometer,0.0,0.23331208371865678,1.0,0.0
+cutoff,"tantalum concentrate, 30% Ta2O5","market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.0233022711352517,1.0,0.0
+cutoff,"tantalum concentrate, 30% Ta2O5","market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,8.341863118336097,8.262725199213474,1.0,0.0
+cutoff,"tantalum concentrate, 30% Ta2O5","market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,4.839780370631226,1.0,0.0
+cutoff,"tantalum concentrate, 30% Ta2O5","market group for transport, freight, train, fleet average",ton kilometer,0.0,1.4312365393272368,1.0,0.0
+cutoff,"tellurium, semiconductor-grade","market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.08686914191028916,1.0,0.0
+cutoff,"tellurium, semiconductor-grade","market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,5.520176772484759,5.483192950960468,1.0,0.0
+cutoff,"tellurium, semiconductor-grade","market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,1.0742093706537459,1.0,0.0
+cutoff,"tellurium, semiconductor-grade","market group for transport, freight, train, fleet average",ton kilometer,0.0,0.26437406207243563,1.0,0.0
+cutoff,terbium oxide,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,2.602464811,1.0,0.0
+cutoff,terbium oxide,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,3.961478357,3.961478357,1.0,0.0
+cutoff,terbium oxide,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.01651388748,1.0,0.0
+cutoff,terbium oxide,"market group for transport, freight, train, fleet average",ton kilometer,0.0,3.57134129,1.0,0.0
+cutoff,thulium oxide,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,2.602464811,1.0,0.0
+cutoff,thulium oxide,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,3.961478357,3.961478357,1.0,0.0
+cutoff,thulium oxide,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.01651388748,1.0,0.0
+cutoff,thulium oxide,"market group for transport, freight, train, fleet average",ton kilometer,0.0,3.57134129,1.0,0.0
+cutoff,tin,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.2416794883254274,1.0,0.0
+cutoff,tin,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,9.69375907855548,9.610426095980008,1.0,0.0
+cutoff,tin,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.21867921113399214,1.0,0.0
+cutoff,tin,"market group for transport, freight, train, fleet average",ton kilometer,0.0,0.1474985601668928,1.0,0.0
+cutoff,tin concentrate,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.019582002505851785,1.0,0.0
+cutoff,tin concentrate,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,4.7450602773934225,4.804985958370478,1.0,0.0
+cutoff,tin concentrate,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,2.3150081490177663,1.0,0.0
+cutoff,tin concentrate,"market group for transport, freight, train, fleet average",ton kilometer,0.0,0.2458408582244234,1.0,0.0
+cutoff,titanium,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,1.7217403387092785,1.0,0.0
+cutoff,titanium,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,3.874270737271134,3.874270737271134,1.0,0.0
+cutoff,titanium,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,1.2785995576927833,1.0,0.0
+cutoff,titanium,"market group for transport, freight, train, fleet average",ton kilometer,0.0,1.9791552306701032,1.0,0.0
+cutoff,tungsten concentrate,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.010403687880756596,1.0,0.0
+cutoff,tungsten concentrate,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,3.0989035337106556,3.2121746772772735,1.0,0.0
+cutoff,tungsten concentrate,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,1.6624493005928567,1.0,0.0
+cutoff,tungsten concentrate,"market group for transport, freight, train, fleet average",ton kilometer,0.0,0.5880163524722738,1.0,0.0
+cutoff,"uranium ore, as U","market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.04478407505926859,1.0,0.0
+cutoff,"uranium ore, as U","market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,6.195193465445268,8.178570033788398,1.0,0.0
+cutoff,"uranium ore, as U","market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.5244692969049911,1.0,0.0
+cutoff,"uranium ore, as U","market group for transport, freight, train, fleet average",ton kilometer,0.0,0.2063899315126156,1.0,0.0
+cutoff,vanadium bearing magnetite,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.08632841144590861,1.0,0.0
+cutoff,vanadium bearing magnetite,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,11.536709275950484,11.504450316589963,1.0,0.0
+cutoff,vanadium bearing magnetite,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,1.2794698312657975,1.0,0.0
+cutoff,vanadium bearing magnetite,"market group for transport, freight, train, fleet average",ton kilometer,0.0,0.5739101081817349,1.0,0.0
+cutoff,ytterbium oxide,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,2.602464811,1.0,0.0
+cutoff,ytterbium oxide,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,3.961478357,3.961478357,1.0,0.0
+cutoff,ytterbium oxide,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.01651388748,1.0,0.0
+cutoff,ytterbium oxide,"market group for transport, freight, train, fleet average",ton kilometer,0.0,3.57134129,1.0,0.0
+cutoff,yttrium oxide,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,2.602464811,1.0,0.0
+cutoff,yttrium oxide,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,3.961478357,3.961478357,1.0,0.0
+cutoff,yttrium oxide,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.01651388748,1.0,0.0
+cutoff,yttrium oxide,"market group for transport, freight, train, fleet average",ton kilometer,0.0,3.57134129,1.0,0.0
+cutoff,zinc,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.025995823624043353,1.0,0.0
+cutoff,zinc,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,4.365917937651099,4.298928019463269,1.0,0.0
+cutoff,zinc,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.7895204768534003,1.0,0.0
+cutoff,zinc,"market group for transport, freight, train, fleet average",ton kilometer,0.0,1.6717031430614568,1.0,0.0
+cutoff,zinc concentrate,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.030929981560121573,0.9999337778208428,6.622217915719375e-05
+cutoff,zinc concentrate,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,9.422049343578431,8.793336928543374,0.9999337778208428,6.622217915719375e-05
+cutoff,zinc concentrate,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,1.739830688099001,0.9999337778208428,6.622217915719375e-05
+cutoff,zinc concentrate,"market group for transport, freight, train, fleet average",ton kilometer,0.0,0.336742447903969,0.9999337778208428,6.622217915719375e-05
+cutoff,zircon,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.6198897247345189,1.0,0.0
+cutoff,zircon,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,8.337220108929422,8.241336452237183,1.0,0.0
+cutoff,zircon,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.4165803476754267,1.0,0.0
+cutoff,zircon,"market group for transport, freight, train, fleet average",ton kilometer,0.0,0.000245459827074293,1.0,0.0
+consequential,"aluminium oxide, metallurgical","market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.07957301283584851,1.0,0.0
+consequential,"aluminium oxide, metallurgical","market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,8.890649881295287,8.648219743692959,1.0,0.0
+consequential,"aluminium oxide, metallurgical","market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.603295233499271,1.0,0.0
+consequential,"aluminium oxide, metallurgical","market group for transport, freight, train, fleet average",ton kilometer,0.0,0.39340398403094445,1.0,0.0
+consequential,"aluminium, cast alloy","market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.06722615125875948,1.0,0.0
+consequential,"aluminium, cast alloy","market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,4.9973374912672615,4.8181248036919175,1.0,0.0
+consequential,"aluminium, cast alloy","market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,2.176888065790051,1.0,0.0
+consequential,"aluminium, cast alloy","market group for transport, freight, train, fleet average",ton kilometer,0.0,0.07162819496091034,1.0,0.0
+consequential,antimony,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.6644123333268295,1.0,0.0
+consequential,antimony,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,5.240793168624202,5.2387684156209,1.0,0.0
+consequential,antimony,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,2.5412881769589317,1.0,0.0
+consequential,antimony,"market group for transport, freight, train, fleet average",ton kilometer,0.0,0.4387600433419728,1.0,0.0
+consequential,bentonite,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.015411781016737,1.0,0.0
+consequential,bentonite,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,5.085941492304172,4.7797509354114895,1.0,0.0
+consequential,bentonite,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,2.1906721560258067,1.0,0.0
+consequential,bentonite,"market group for transport, freight, train, fleet average",ton kilometer,0.0,0.6647137490939805,1.0,0.0
+consequential,"boric acid, anhydrous, powder","market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.480818007972065,1.0,0.0
+consequential,"boric acid, anhydrous, powder","market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,9.289465654907744,9.178497452257421,1.0,0.0
+consequential,"boric acid, anhydrous, powder","market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,1.7273518828746446,1.0,0.0
+consequential,"boric acid, anhydrous, powder","market group for transport, freight, train, fleet average",ton kilometer,0.0,0.024229564725777204,1.0,0.0
+consequential,boric oxide,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.480818007972065,1.0,0.0
+consequential,boric oxide,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,9.289465654907744,9.178497452257421,1.0,0.0
+consequential,boric oxide,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,1.7273518828746446,1.0,0.0
+consequential,boric oxide,"market group for transport, freight, train, fleet average",ton kilometer,0.0,0.024229564725777204,1.0,0.0
+consequential,boron carbide,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.09841943936811509,1.0,0.0
+consequential,boron carbide,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,4.514056050276246,4.457861791234289,1.0,0.0
+consequential,boron carbide,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.37953054729244456,1.0,0.0
+consequential,boron carbide,"market group for transport, freight, train, fleet average",ton kilometer,0.0,1.1415904828291004,1.0,0.0
+consequential,boron trifluoride,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.0965560677224111,1.0,0.0
+consequential,boron trifluoride,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,5.297636244959068,5.267607448946547,1.0,0.0
+consequential,boron trifluoride,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.6305262505561298,1.0,0.0
+consequential,boron trifluoride,"market group for transport, freight, train, fleet average",ton kilometer,0.0,0.10614905964159523,1.0,0.0
+consequential,cerium oxide,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,2.58909537620563,1.0,0.0
+consequential,cerium oxide,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,3.5673971021042084,3.560419621297195,1.0,0.0
+consequential,cerium oxide,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.023008449564978,1.0,0.0
+consequential,cerium oxide,"market group for transport, freight, train, fleet average",ton kilometer,0.0,3.1782225910466004,1.0,0.0
+consequential,chromite ore concentrate,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.009537991586388241,1.0,0.0
+consequential,chromite ore concentrate,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,4.444707666735082,4.563992341586795,1.0,0.0
+consequential,chromite ore concentrate,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,5.893346526385107,1.0,0.0
+consequential,chromite ore concentrate,"market group for transport, freight, train, fleet average",ton kilometer,0.0,1.7079856091794743,1.0,0.0
+consequential,cobalt,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.2356318413049289,1.0,0.0
+consequential,cobalt,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,9.57009109593461,9.6092166534912,1.0,0.0
+consequential,cobalt,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.5382294334571417,1.0,0.0
+consequential,cobalt,"market group for transport, freight, train, fleet average",ton kilometer,0.0,0.37166808266351004,1.0,0.0
+consequential,cobalt hydroxide,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.007779559080278172,1.0,0.0
+consequential,cobalt hydroxide,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,4.097673878014231,4.0358512242184315,1.0,0.0
+consequential,cobalt hydroxide,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,2.2126504198180004,1.0,0.0
+consequential,cobalt hydroxide,"market group for transport, freight, train, fleet average",ton kilometer,0.0,0.04952787931768401,1.0,0.0
+consequential,cobalt sulfate,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.01928442971071572,1.0,0.0
+consequential,cobalt sulfate,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,9.199766888808416,9.038684546004916,1.0,0.0
+consequential,cobalt sulfate,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.7496143923592737,1.0,0.0
+consequential,cobalt sulfate,"market group for transport, freight, train, fleet average",ton kilometer,0.0,0.028271280199362533,1.0,0.0
+consequential,copper-cobalt ore,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.22324872992294023,1.0,0.0
+consequential,copper-cobalt ore,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,4.942315779883081,4.941619008226753,1.0,0.0
+consequential,copper-cobalt ore,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,4.197717532983528,1.0,0.0
+consequential,copper-cobalt ore,"market group for transport, freight, train, fleet average",ton kilometer,0.0,1.0911795929044883,1.0,0.0
+consequential,dolomite,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.03327294749647532,1.0,0.0
+consequential,dolomite,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,3.119903226154782,3.0064287703003307,1.0,0.0
+consequential,dolomite,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.48863691262006115,1.0,0.0
+consequential,dolomite,"market group for transport, freight, train, fleet average",ton kilometer,0.0,0.7902830421346998,1.0,0.0
+consequential,europium oxide,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,2.602464811,1.0,0.0
+consequential,europium oxide,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,3.961478357,3.961478357,1.0,0.0
+consequential,europium oxide,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.01651388748,1.0,0.0
+consequential,europium oxide,"market group for transport, freight, train, fleet average",ton kilometer,0.0,3.57134129,1.0,0.0
+consequential,"ferroniobium, 66% Nb","market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.08721934095144,1.0,0.0
+consequential,"ferroniobium, 66% Nb","market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,13.812039835759998,13.812039835759998,1.0,0.0
+consequential,"ferroniobium, 66% Nb","market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.19732414771088,1.0,0.0
+consequential,"ferroniobium, 66% Nb","market group for transport, freight, train, fleet average",ton kilometer,0.0,0.031234009911280003,1.0,0.0
+consequential,"germanium, concentrate","market for transport, freight, aircraft, long haul",ton kilometer,0.0,1.412628635180488,1.0,0.0
+consequential,"germanium, concentrate","market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,4.649276865579268,4.649276865579268,1.0,0.0
+consequential,"germanium, concentrate","market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,1.8366825025518294,1.0,0.0
+consequential,"germanium, concentrate","market group for transport, freight, train, fleet average",ton kilometer,0.0,0.31311810214344515,1.0,0.0
+consequential,graphite,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.04443428519479253,1.0,0.0
+consequential,graphite,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,6.543736010581698,6.514351309624535,1.0,0.0
+consequential,graphite,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,1.4653714529731239,1.0,0.0
+consequential,graphite,"market group for transport, freight, train, fleet average",ton kilometer,0.0,0.5935331231476939,1.0,0.0
+consequential,hafnium sponge,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,1.6302003631474,1.0,0.0
+consequential,hafnium sponge,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,7.634799333556,7.634799333556,1.0,0.0
+consequential,hafnium sponge,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,3.3417153951965,1.0,0.0
+consequential,hafnium sponge,"market group for transport, freight, train, fleet average",ton kilometer,0.0,0.073191204904705,1.0,0.0
+consequential,hafnium tetrachloride,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,1.6302003631474,1.0,0.0
+consequential,hafnium tetrachloride,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,7.634799333556,7.634799333556,1.0,0.0
+consequential,hafnium tetrachloride,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,3.3417153951965,1.0,0.0
+consequential,hafnium tetrachloride,"market group for transport, freight, train, fleet average",ton kilometer,0.0,0.073191204904705,1.0,0.0
+consequential,indium,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,1.27723349296906,1.0,0.0
+consequential,indium,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,3.8289827674080867,3.851670822540974,1.0,0.0
+consequential,indium,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,1.8222637733775067,1.0,0.0
+consequential,indium,"market group for transport, freight, train, fleet average",ton kilometer,0.0,0.35653662463795,1.0,0.0
+consequential,lanthanum oxide,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,2.58909537620563,1.0,0.0
+consequential,lanthanum oxide,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,3.5673971021042084,3.560419621297195,1.0,0.0
+consequential,lanthanum oxide,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.023008449564978,1.0,0.0
+consequential,lanthanum oxide,"market group for transport, freight, train, fleet average",ton kilometer,0.0,3.1782225910466004,1.0,0.0
+consequential,lanthanum-cerium oxide,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,2.58909537620563,1.0,0.0
+consequential,lanthanum-cerium oxide,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,3.5673971021042084,3.560419621297195,1.0,0.0
+consequential,lanthanum-cerium oxide,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.023008449564978,1.0,0.0
+consequential,lanthanum-cerium oxide,"market group for transport, freight, train, fleet average",ton kilometer,0.0,3.1782225910466004,1.0,0.0
+consequential,lead,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.08438846604950291,1.0,0.0
+consequential,lead,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,6.548626331959288,6.085763818020826,1.0,0.0
+consequential,lead,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,2.4778445634429667,1.0,0.0
+consequential,lead,"market group for transport, freight, train, fleet average",ton kilometer,0.0,0.21693419799561098,1.0,0.0
+consequential,"lithium hydroxide, battery grade","market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.05267237751573224,1.0,0.0
+consequential,"lithium hydroxide, battery grade","market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,8.39456190005654,8.397793102259516,1.0,0.0
+consequential,"lithium hydroxide, battery grade","market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.3631460986086731,1.0,0.0
+consequential,"lithium hydroxide, battery grade","market group for transport, freight, train, fleet average",ton kilometer,0.0,0.32257447374091774,1.0,0.0
+consequential,magnesium,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.38691587309215014,1.0,0.0
+consequential,magnesium,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,3.790140133235614,3.8090709958233786,1.0,0.0
+consequential,magnesium,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,3.080269704333675,1.0,0.0
+consequential,magnesium,"market group for transport, freight, train, fleet average",ton kilometer,0.0,2.0182248534483147,1.0,0.0
+consequential,manganese,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.5576594101885647,1.0,0.0
+consequential,manganese,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,5.353264317061178,5.353264317061178,1.0,0.0
+consequential,manganese,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,2.0222807201748236,1.0,0.0
+consequential,manganese,"market group for transport, freight, train, fleet average",ton kilometer,0.0,0.3928991986649177,1.0,0.0
+consequential,manganese concentrate,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.022323427274505994,1.0,0.0
+consequential,manganese concentrate,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,5.302320574273989,5.248822040599531,1.0,0.0
+consequential,manganese concentrate,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,5.980183727570161,1.0,0.0
+consequential,manganese concentrate,"market group for transport, freight, train, fleet average",ton kilometer,0.0,1.4477504337979288,1.0,0.0
+consequential,molybdenum,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,1.6893302645261217,1.0,0.0
+consequential,molybdenum,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,3.757412252962806,3.6852876277971096,1.0,0.0
+consequential,molybdenum,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.5222527040828857,1.0,0.0
+consequential,molybdenum,"market group for transport, freight, train, fleet average",ton kilometer,0.0,1.330266632095089,1.0,0.0
+consequential,neodymium oxide,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,2.58909537620563,1.0,0.0
+consequential,neodymium oxide,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,3.5673971021042084,3.560419621297195,1.0,0.0
+consequential,neodymium oxide,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.023008449564978,1.0,0.0
+consequential,neodymium oxide,"market group for transport, freight, train, fleet average",ton kilometer,0.0,3.1782225910466004,1.0,0.0
+consequential,"nickel, class 1","market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.03977994201054771,1.0,0.0
+consequential,"nickel, class 1","market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,11.020054267036764,10.573618327159387,1.0,0.0
+consequential,"nickel, class 1","market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.5893873071390735,1.0,0.0
+consequential,"nickel, class 1","market group for transport, freight, train, fleet average",ton kilometer,0.0,0.11386272503983788,1.0,0.0
+consequential,"phosphate rock, beneficiated","market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.10332299607433652,1.0,0.0
+consequential,"phosphate rock, beneficiated","market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,3.6419910190501152,3.560832902349881,1.0,0.0
+consequential,"phosphate rock, beneficiated","market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,1.3009040098255082,1.0,0.0
+consequential,"phosphate rock, beneficiated","market group for transport, freight, train, fleet average",ton kilometer,0.0,0.8283721674961699,1.0,0.0
+consequential,"phosphoric acid, fertiliser grade, without water, in 70% solution state","market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.021396005613260997,1.0,0.0
+consequential,"phosphoric acid, fertiliser grade, without water, in 70% solution state","market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,9.051994332837001,9.051994332837001,1.0,0.0
+consequential,"phosphoric acid, fertiliser grade, without water, in 70% solution state","market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.24671412683214403,1.0,0.0
+consequential,"phosphoric acid, fertiliser grade, without water, in 70% solution state","market group for transport, freight, train, fleet average",ton kilometer,0.0,0.376638589798914,1.0,0.0
+consequential,potash salt,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.0039048402446713727,1.0,0.0
+consequential,potash salt,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,4.3250720684053565,4.38700788560486,1.0,0.0
+consequential,potash salt,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.1388413151025272,1.0,0.0
+consequential,potash salt,"market group for transport, freight, train, fleet average",ton kilometer,0.0,1.2857509118101271,1.0,0.0
+consequential,samarium oxide,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,2.58909537620563,1.0,0.0
+consequential,samarium oxide,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,3.5673971021042084,3.560419621297195,1.0,0.0
+consequential,samarium oxide,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.023008449564978,1.0,0.0
+consequential,samarium oxide,"market group for transport, freight, train, fleet average",ton kilometer,0.0,3.1782225910466004,1.0,0.0
+consequential,silica sand,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.02521938827727586,1.0,0.0
+consequential,silica sand,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,3.5767061985429907,3.5749976514831983,1.0,0.0
+consequential,silica sand,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.12314701272014371,1.0,0.0
+consequential,silica sand,"market group for transport, freight, train, fleet average",ton kilometer,0.0,0.8695014711111145,1.0,0.0
+consequential,sodium borates,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.15006917580487256,1.0,0.0
+consequential,sodium borates,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,6.742364896291543,6.741163078745339,1.0,0.0
+consequential,sodium borates,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,1.3544564902602778,1.0,0.0
+consequential,sodium borates,"market group for transport, freight, train, fleet average",ton kilometer,0.0,1.6344440290908404,1.0,0.0
+consequential,stibnite concentrate,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.026951578768994854,1.0,0.0
+consequential,stibnite concentrate,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,5.589840490394986,5.588387968089675,1.0,0.0
+consequential,stibnite concentrate,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,1.8063574125641737,1.0,0.0
+consequential,stibnite concentrate,"market group for transport, freight, train, fleet average",ton kilometer,0.0,1.1367990700242334,1.0,0.0
+consequential,"strontium sulfate, 90% SrSO4","market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.004388921328704211,1.0,0.0
+consequential,"strontium sulfate, 90% SrSO4","market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,5.952782608245338,5.934031221037679,1.0,0.0
+consequential,"strontium sulfate, 90% SrSO4","market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,1.008053826787582,1.0,0.0
+consequential,"strontium sulfate, 90% SrSO4","market group for transport, freight, train, fleet average",ton kilometer,0.0,0.03284965026512758,1.0,0.0
+consequential,"tantalum concentrate, 30% Ta2O5","market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.0233022711352517,1.0,0.0
+consequential,"tantalum concentrate, 30% Ta2O5","market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,8.341863118336097,8.262725199213474,1.0,0.0
+consequential,"tantalum concentrate, 30% Ta2O5","market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,4.839780370631226,1.0,0.0
+consequential,"tantalum concentrate, 30% Ta2O5","market group for transport, freight, train, fleet average",ton kilometer,0.0,1.4312365393272368,1.0,0.0
+consequential,"tellurium, semiconductor-grade","market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.08686914191028916,1.0,0.0
+consequential,"tellurium, semiconductor-grade","market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,5.520176772484759,5.483192950960468,1.0,0.0
+consequential,"tellurium, semiconductor-grade","market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,1.0742093706537459,1.0,0.0
+consequential,"tellurium, semiconductor-grade","market group for transport, freight, train, fleet average",ton kilometer,0.0,0.26437406207243563,1.0,0.0
+consequential,tin,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.2416794883254274,1.0,0.0
+consequential,tin,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,9.69375907855548,9.610426095980008,1.0,0.0
+consequential,tin,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.21867921113399214,1.0,0.0
+consequential,tin,"market group for transport, freight, train, fleet average",ton kilometer,0.0,0.1474985601668928,1.0,0.0
+consequential,tin concentrate,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.019582002505851785,1.0,0.0
+consequential,tin concentrate,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,4.7450602773934225,4.804985958370478,1.0,0.0
+consequential,tin concentrate,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,2.3150081490177663,1.0,0.0
+consequential,tin concentrate,"market group for transport, freight, train, fleet average",ton kilometer,0.0,0.2458408582244234,1.0,0.0
+consequential,titanium,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,1.7217403387092785,1.0,0.0
+consequential,titanium,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,3.874270737271134,3.874270737271134,1.0,0.0
+consequential,titanium,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,1.2785995576927833,1.0,0.0
+consequential,titanium,"market group for transport, freight, train, fleet average",ton kilometer,0.0,1.9791552306701032,1.0,0.0
+consequential,tungsten concentrate,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.010403687880756596,1.0,0.0
+consequential,tungsten concentrate,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,3.0989035337106556,3.2121746772772735,1.0,0.0
+consequential,tungsten concentrate,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,1.6624493005928567,1.0,0.0
+consequential,tungsten concentrate,"market group for transport, freight, train, fleet average",ton kilometer,0.0,0.5880163524722738,1.0,0.0
+consequential,"uranium ore, as U","market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.04478407505926859,1.0,0.0
+consequential,"uranium ore, as U","market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,6.195193465445268,8.178570033788398,1.0,0.0
+consequential,"uranium ore, as U","market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.5244692969049911,1.0,0.0
+consequential,"uranium ore, as U","market group for transport, freight, train, fleet average",ton kilometer,0.0,0.2063899315126156,1.0,0.0
+consequential,vanadium bearing magnetite,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.08632841144590861,1.0,0.0
+consequential,vanadium bearing magnetite,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,11.536709275950484,11.504450316589963,1.0,0.0
+consequential,vanadium bearing magnetite,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,1.2794698312657975,1.0,0.0
+consequential,vanadium bearing magnetite,"market group for transport, freight, train, fleet average",ton kilometer,0.0,0.5739101081817349,1.0,0.0
+consequential,ytterbium oxide,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,2.602464811,1.0,0.0
+consequential,ytterbium oxide,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,3.961478357,3.961478357,1.0,0.0
+consequential,ytterbium oxide,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.01651388748,1.0,0.0
+consequential,ytterbium oxide,"market group for transport, freight, train, fleet average",ton kilometer,0.0,3.57134129,1.0,0.0
+consequential,yttrium oxide,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,2.602464811,1.0,0.0
+consequential,yttrium oxide,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,3.961478357,3.961478357,1.0,0.0
+consequential,yttrium oxide,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.01651388748,1.0,0.0
+consequential,yttrium oxide,"market group for transport, freight, train, fleet average",ton kilometer,0.0,3.57134129,1.0,0.0
+consequential,zinc,"market for transport, freight, aircraft, long haul",ton kilometer,0.0,0.025995823624043353,1.0,0.0
+consequential,zinc,"market for transport, freight, sea, container ship, heavy fuel oil",ton kilometer,4.365917937651099,4.298928019463269,1.0,0.0
+consequential,zinc,"market group for transport, freight, lorry, diesel, unspecified",ton kilometer,0.0,0.7895204768534003,1.0,0.0
+consequential,zinc,"market group for transport, freight, train, fleet average",ton kilometer,0.0,1.6717031430614568,1.0,0.0

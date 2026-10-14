@@ -38,12 +38,14 @@ FUELS_PROPERTIES = VARIABLES_DIR / "fuels.yaml"
 EFFICIENCY_RATIO_SOLAR_PV = DATA_DIR / "renewables" / "efficiency_solar_PV.csv"
 CACHE_MANIFEST_SUFFIX = ".manifest.json"
 CACHE_SCHEMA_VERSION = 6
+FUEL_CO2_TRANSFER_KEY = "premise fuel CO2 reclassification"
 
 
 def rescale_exchange(
     exchange: MutableMapping[str, Any],
     value: Number,
     remove_uncertainty: bool = True,
+    scale_fuel_co2_transfers: bool = True,
 ) -> MutableMapping[str, Any]:
     """Rescale a dictionary-compatible exchange and its uncertainty fields.
 
@@ -55,6 +57,13 @@ def rescale_exchange(
     assert isinstance(value, Number), "Constant factor ``value`` must be a number"
 
     exchange["amount"] *= value
+    if scale_fuel_co2_transfers and FUEL_CO2_TRANSFER_KEY in exchange:
+        # Transfers are exchange amounts, not fractions. Keep them on the same
+        # basis through efficiency changes, load normalization and cloning.
+        exchange[FUEL_CO2_TRANSFER_KEY] = {
+            fuel: amount * value
+            for fuel, amount in exchange[FUEL_CO2_TRANSFER_KEY].items()
+        }
 
     if not remove_uncertainty and "uncertainty type" in exchange:
         uncertainty_type = exchange["uncertainty type"]
@@ -529,17 +538,20 @@ def info_on_utils_functions():
 
 
 def warning_about_biogenic_co2() -> None:
-    """Explain why biogenic CO₂ flows should be characterised explicitly."""
+    """Recommend climate indicators that track non-fossil CO₂ uptake and release."""
     table = PrettyTable(["Warning"])
     table.add_row(
         [
-            "Because some of the scenarios can yield LCI databases\n"
-            "containing net negative emission technologies (NET),\n"
-            "it is advised to account for biogenic CO2 flows when calculating\n"
-            "Global Warming potential indicators.\n"
-            "`premise_gwp` provides characterization factors for such flows.\n"
-            "It also provides factors for hydrogen emissions to air.\n\n"
-            "Within your Brightway project:\n"
+            "Some scenarios include negative emission technologies, such as\n"
+            "carbon dioxide removal (CDR). We recommend using a climate\n"
+            "change indicator that accounts for both the uptake and release\n"
+            "of non-fossil CO2, for example:\n\n"
+            "IPCC 2021 (incl. biogenic CO2)\n"
+            "  climate change: total (incl. biogenic CO2)\n"
+            "  global warming potential (GWP100)\n\n"
+            "Alternatively, use the methods installed by `premise_gwp`,\n"
+            "which also account for indirect greenhouse gases, such as hydrogen.\n\n"
+            "To install the `premise_gwp` methods in your Brightway project:\n"
             "from premise_gwp import add_premise_gwp\n"
             "add_premise_gwp()"
         ]

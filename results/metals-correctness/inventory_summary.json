@@ -1,0 +1,22 @@
+[
+  {
+    "system_model": "cutoff",
+    "common_activities": 32840,
+    "added_activities": 0,
+    "removed_activities": 27,
+    "resource_exchange_changes": {
+      "decreased": 173,
+      "increased": 1549
+    }
+  },
+  {
+    "system_model": "consequential",
+    "common_activities": 27576,
+    "added_activities": 0,
+    "removed_activities": 761,
+    "resource_exchange_changes": {
+      "decreased": 56,
+      "increased": 391
+    }
+  }
+]

@@ -20,3 +20,5 @@ implementation details. Dated measurements and audit notes follow.
    /development/consequential-validation-history
    /development/documentation-audit
    /development/scientific-update-backlog
+   /development/passenger-car-refresh-2026
+   /development/regional-truck-refresh-2026

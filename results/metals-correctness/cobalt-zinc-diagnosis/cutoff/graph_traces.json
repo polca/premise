@@ -1,0 +1,2766 @@
+{
+  "cobalt": {
+    "root": [
+      "cobalt metal production, from copper mining, via electrolysis, economic allocation",
+      "cobalt",
+      "CN"
+    ],
+    "stage": "immediately before post-allocation correction",
+    "upstream_result": null,
+    "ablation_exclusion": "non-kilogram inputs (the cobalt-industry electricity chain)",
+    "upstream_result_with_exclusion": false,
+    "route_count": 17,
+    "nodes": 7,
+    "edges": [
+      {
+        "from": [
+          "cobalt metal production, from copper mining, via electrolysis, economic allocation",
+          "cobalt",
+          "CN"
+        ],
+        "to": [
+          "cobalt sulfate production, from copper mining, economic allocation",
+          "cobalt sulfate",
+          "CN"
+        ],
+        "unit": "kilogram",
+        "amount": 2.630000114440918,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "cobalt sulfate production, from copper mining, economic allocation",
+          "cobalt sulfate",
+          "CN"
+        ],
+        "to": [
+          "cobalt hydroxide, via hydrometallurigcal ore procesing, economic allocation",
+          "cobalt hydroxide",
+          "CD"
+        ],
+        "unit": "kilogram",
+        "amount": 1.0867999792099,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "cobalt hydroxide, via hydrometallurigcal ore procesing, economic allocation",
+          "cobalt hydroxide",
+          "CD"
+        ],
+        "to": [
+          "copper-cobalt mining, artisanal",
+          "copper-cobalt ore",
+          "CD"
+        ],
+        "unit": "kilogram",
+        "amount": 14.800000190734863,
+        "excluded_carrier": true
+      },
+      {
+        "from": [
+          "cobalt hydroxide, via hydrometallurigcal ore procesing, economic allocation",
+          "cobalt hydroxide",
+          "CD"
+        ],
+        "to": [
+          "copper-cobalt mining, industrial, economic allocation",
+          "copper-cobalt ore",
+          "CD"
+        ],
+        "unit": "kilogram",
+        "amount": 59.20000076293945,
+        "excluded_carrier": true
+      },
+      {
+        "from": [
+          "cobalt hydroxide, via hydrometallurigcal ore procesing, economic allocation",
+          "cobalt hydroxide",
+          "CD"
+        ],
+        "to": [
+          "market for electricity, medium voltage, cobalt industry",
+          "electricity, medium voltage, cobalt industry",
+          "GLO"
+        ],
+        "unit": "kilowatt hour",
+        "amount": 3.00866961479187,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "market for electricity, medium voltage, cobalt industry",
+          "electricity, medium voltage, cobalt industry",
+          "GLO"
+        ],
+        "to": [
+          "electricity voltage transformation from high to medium voltage, cobalt industry",
+          "electricity, medium voltage, cobalt industry",
+          "GLO"
+        ],
+        "unit": "kilowatt hour",
+        "amount": 1.0,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "market for electricity, medium voltage, cobalt industry",
+          "electricity, medium voltage, cobalt industry",
+          "GLO"
+        ],
+        "to": [
+          "market for electricity, medium voltage, cobalt industry",
+          "electricity, medium voltage, cobalt industry",
+          "GLO"
+        ],
+        "unit": "kilowatt hour",
+        "amount": 0.004600000102072954,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "electricity voltage transformation from high to medium voltage, cobalt industry",
+          "electricity, medium voltage, cobalt industry",
+          "GLO"
+        ],
+        "to": [
+          "market for electricity, high voltage, cobalt industry",
+          "electricity, high voltage, cobalt industry",
+          "GLO"
+        ],
+        "unit": "kilowatt hour",
+        "amount": 1.0074000358581543,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "market for electricity, high voltage, cobalt industry",
+          "electricity, high voltage, cobalt industry",
+          "GLO"
+        ],
+        "to": [
+          "market for electricity, high voltage, cobalt industry",
+          "electricity, high voltage, cobalt industry",
+          "GLO"
+        ],
+        "unit": "kilowatt hour",
+        "amount": 0.03350000083446503,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "market for electricity, high voltage, cobalt industry",
+          "electricity, high voltage, cobalt industry",
+          "GLO"
+        ],
+        "to": [
+          "electricity production, cobalt industry",
+          "electricity, high voltage, cobalt industry",
+          "GLO"
+        ],
+        "unit": "kilowatt hour",
+        "amount": 1.0,
+        "excluded_carrier": false
+      }
+    ],
+    "unresolved_links": [],
+    "resource_terminals": [],
+    "representative_paths": [
+      [
+        [
+          "cobalt metal production, from copper mining, via electrolysis, economic allocation",
+          "cobalt",
+          "CN"
+        ]
+      ],
+      [
+        [
+          "cobalt metal production, from copper mining, via electrolysis, economic allocation",
+          "cobalt",
+          "CN"
+        ],
+        [
+          "cobalt sulfate production, from copper mining, economic allocation",
+          "cobalt sulfate",
+          "CN"
+        ]
+      ],
+      [
+        [
+          "cobalt metal production, from copper mining, via electrolysis, economic allocation",
+          "cobalt",
+          "CN"
+        ],
+        [
+          "cobalt sulfate production, from copper mining, economic allocation",
+          "cobalt sulfate",
+          "CN"
+        ],
+        [
+          "cobalt hydroxide, via hydrometallurigcal ore procesing, economic allocation",
+          "cobalt hydroxide",
+          "CD"
+        ]
+      ],
+      [
+        [
+          "cobalt metal production, from copper mining, via electrolysis, economic allocation",
+          "cobalt",
+          "CN"
+        ],
+        [
+          "cobalt sulfate production, from copper mining, economic allocation",
+          "cobalt sulfate",
+          "CN"
+        ],
+        [
+          "cobalt hydroxide, via hydrometallurigcal ore procesing, economic allocation",
+          "cobalt hydroxide",
+          "CD"
+        ],
+        [
+          "market for electricity, medium voltage, cobalt industry",
+          "electricity, medium voltage, cobalt industry",
+          "GLO"
+        ]
+      ],
+      [
+        [
+          "cobalt metal production, from copper mining, via electrolysis, economic allocation",
+          "cobalt",
+          "CN"
+        ],
+        [
+          "cobalt sulfate production, from copper mining, economic allocation",
+          "cobalt sulfate",
+          "CN"
+        ],
+        [
+          "cobalt hydroxide, via hydrometallurigcal ore procesing, economic allocation",
+          "cobalt hydroxide",
+          "CD"
+        ],
+        [
+          "market for electricity, medium voltage, cobalt industry",
+          "electricity, medium voltage, cobalt industry",
+          "GLO"
+        ],
+        [
+          "electricity voltage transformation from high to medium voltage, cobalt industry",
+          "electricity, medium voltage, cobalt industry",
+          "GLO"
+        ]
+      ],
+      [
+        [
+          "cobalt metal production, from copper mining, via electrolysis, economic allocation",
+          "cobalt",
+          "CN"
+        ],
+        [
+          "cobalt sulfate production, from copper mining, economic allocation",
+          "cobalt sulfate",
+          "CN"
+        ],
+        [
+          "cobalt hydroxide, via hydrometallurigcal ore procesing, economic allocation",
+          "cobalt hydroxide",
+          "CD"
+        ],
+        [
+          "market for electricity, medium voltage, cobalt industry",
+          "electricity, medium voltage, cobalt industry",
+          "GLO"
+        ],
+        [
+          "electricity voltage transformation from high to medium voltage, cobalt industry",
+          "electricity, medium voltage, cobalt industry",
+          "GLO"
+        ],
+        [
+          "market for electricity, high voltage, cobalt industry",
+          "electricity, high voltage, cobalt industry",
+          "GLO"
+        ]
+      ],
+      [
+        [
+          "cobalt metal production, from copper mining, via electrolysis, economic allocation",
+          "cobalt",
+          "CN"
+        ],
+        [
+          "cobalt sulfate production, from copper mining, economic allocation",
+          "cobalt sulfate",
+          "CN"
+        ],
+        [
+          "cobalt hydroxide, via hydrometallurigcal ore procesing, economic allocation",
+          "cobalt hydroxide",
+          "CD"
+        ],
+        [
+          "market for electricity, medium voltage, cobalt industry",
+          "electricity, medium voltage, cobalt industry",
+          "GLO"
+        ],
+        [
+          "electricity voltage transformation from high to medium voltage, cobalt industry",
+          "electricity, medium voltage, cobalt industry",
+          "GLO"
+        ],
+        [
+          "market for electricity, high voltage, cobalt industry",
+          "electricity, high voltage, cobalt industry",
+          "GLO"
+        ],
+        [
+          "electricity production, cobalt industry",
+          "electricity, high voltage, cobalt industry",
+          "GLO"
+        ]
+      ]
+    ]
+  },
+  "zinc": {
+    "root": [
+      "primary zinc production from concentrate",
+      "zinc",
+      "CN"
+    ],
+    "stage": "immediately before post-allocation correction",
+    "upstream_result": null,
+    "ablation_exclusion": "positive zinc and zinc-oxide feeds on primary zinc producers",
+    "upstream_result_with_exclusion": false,
+    "route_count": 31,
+    "nodes": 36,
+    "edges": [
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "CN"
+        ],
+        "to": [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        "unit": "kilogram",
+        "amount": 0.002324656816199422,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "CN"
+        ],
+        "to": [
+          "market for zinc concentrate",
+          "zinc concentrate",
+          "World"
+        ],
+        "unit": "kilogram",
+        "amount": 1.4927475452423096,
+        "excluded_carrier": true
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "CN"
+        ],
+        "to": [
+          "market for zinc oxide",
+          "zinc oxide",
+          "GLO"
+        ],
+        "unit": "kilogram",
+        "amount": 0.038328610360622406,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        "to": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "DZ"
+        ],
+        "unit": "kilogram",
+        "amount": 5.9552410536364495e-05,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        "to": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "AU"
+        ],
+        "unit": "kilogram",
+        "amount": 0.033690969516470506,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        "to": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "BE"
+        ],
+        "unit": "kilogram",
+        "amount": 0.019542079513263776,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        "to": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "BR"
+        ],
+        "unit": "kilogram",
+        "amount": 0.017969866538940917,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        "to": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "BG"
+        ],
+        "unit": "kilogram",
+        "amount": 0.005447388070877694,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        "to": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "CA"
+        ],
+        "unit": "kilogram",
+        "amount": 0.046807461277511855,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        "to": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "CN"
+        ],
+        "unit": "kilogram",
+        "amount": 0.4543189153622659,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        "to": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "FI"
+        ],
+        "unit": "kilogram",
+        "amount": 0.021426693285518515,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        "to": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "FR"
+        ],
+        "unit": "kilogram",
+        "amount": 0.011646456641840738,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        "to": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "DE"
+        ],
+        "unit": "kilogram",
+        "amount": 0.012775898910633857,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        "to": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "IN"
+        ],
+        "unit": "kilogram",
+        "amount": 0.05274819559863095,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        "to": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "IR"
+        ],
+        "unit": "kilogram",
+        "amount": 0.010106308093486489,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        "to": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "IT"
+        ],
+        "unit": "kilogram",
+        "amount": 0.010255922523898049,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        "to": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "JP"
+        ],
+        "unit": "kilogram",
+        "amount": 0.037991988352604596,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        "to": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "KZ"
+        ],
+        "unit": "kilogram",
+        "amount": 0.023169554718999015,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        "to": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "KR"
+        ],
+        "unit": "kilogram",
+        "amount": 0.07184291329688275,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        "to": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "KP"
+        ],
+        "unit": "kilogram",
+        "amount": 0.0011001061059673248,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        "to": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "MX"
+        ],
+        "unit": "kilogram",
+        "amount": 0.025997560815405683,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        "to": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "NA"
+        ],
+        "unit": "kilogram",
+        "amount": 0.003404183002386701,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        "to": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "NL"
+        ],
+        "unit": "kilogram",
+        "amount": 0.018569791068728435,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        "to": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "NO"
+        ],
+        "unit": "kilogram",
+        "amount": 0.013640274280214507,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        "to": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "PE"
+        ],
+        "unit": "kilogram",
+        "amount": 0.02407853572415628,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        "to": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "PL"
+        ],
+        "unit": "kilogram",
+        "amount": 0.011828663549151757,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        "to": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "RU"
+        ],
+        "unit": "kilogram",
+        "amount": 0.016571998380291778,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        "to": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "ES"
+        ],
+        "unit": "kilogram",
+        "amount": 0.037183586381695576,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        "to": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "TH"
+        ],
+        "unit": "kilogram",
+        "amount": 0.0004403064678523619,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        "to": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "US"
+        ],
+        "unit": "kilogram",
+        "amount": 0.011191746118040918,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        "to": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "UZ"
+        ],
+        "unit": "kilogram",
+        "amount": 0.0054464786498300945,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        "to": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "VN"
+        ],
+        "unit": "kilogram",
+        "amount": 0.0007466053439164908,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "market for zinc oxide",
+          "zinc oxide",
+          "GLO"
+        ],
+        "to": [
+          "zinc oxide production",
+          "zinc oxide",
+          "RoW"
+        ],
+        "unit": "kilogram",
+        "amount": 0.7451327443122864,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "market for zinc oxide",
+          "zinc oxide",
+          "GLO"
+        ],
+        "to": [
+          "zinc oxide production",
+          "zinc oxide",
+          "RER"
+        ],
+        "unit": "kilogram",
+        "amount": 0.2548672556877136,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "DZ"
+        ],
+        "to": [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        "unit": "kilogram",
+        "amount": 0.002324656816199422,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "DZ"
+        ],
+        "to": [
+          "market for zinc concentrate",
+          "zinc concentrate",
+          "World"
+        ],
+        "unit": "kilogram",
+        "amount": 1.4927475452423096,
+        "excluded_carrier": true
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "DZ"
+        ],
+        "to": [
+          "market for zinc oxide",
+          "zinc oxide",
+          "GLO"
+        ],
+        "unit": "kilogram",
+        "amount": 0.038328610360622406,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "AU"
+        ],
+        "to": [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        "unit": "kilogram",
+        "amount": 0.002324656816199422,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "AU"
+        ],
+        "to": [
+          "market for zinc concentrate",
+          "zinc concentrate",
+          "World"
+        ],
+        "unit": "kilogram",
+        "amount": 1.4927475452423096,
+        "excluded_carrier": true
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "AU"
+        ],
+        "to": [
+          "market for zinc oxide",
+          "zinc oxide",
+          "GLO"
+        ],
+        "unit": "kilogram",
+        "amount": 0.038328610360622406,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "BE"
+        ],
+        "to": [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        "unit": "kilogram",
+        "amount": 0.002324656816199422,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "BE"
+        ],
+        "to": [
+          "market for zinc concentrate",
+          "zinc concentrate",
+          "World"
+        ],
+        "unit": "kilogram",
+        "amount": 1.4927475452423096,
+        "excluded_carrier": true
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "BE"
+        ],
+        "to": [
+          "market for zinc oxide",
+          "zinc oxide",
+          "GLO"
+        ],
+        "unit": "kilogram",
+        "amount": 0.038328610360622406,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "BR"
+        ],
+        "to": [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        "unit": "kilogram",
+        "amount": 0.002324656816199422,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "BR"
+        ],
+        "to": [
+          "market for zinc concentrate",
+          "zinc concentrate",
+          "World"
+        ],
+        "unit": "kilogram",
+        "amount": 1.4927475452423096,
+        "excluded_carrier": true
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "BR"
+        ],
+        "to": [
+          "market for zinc oxide",
+          "zinc oxide",
+          "GLO"
+        ],
+        "unit": "kilogram",
+        "amount": 0.038328610360622406,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "BG"
+        ],
+        "to": [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        "unit": "kilogram",
+        "amount": 0.002324656816199422,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "BG"
+        ],
+        "to": [
+          "market for zinc concentrate",
+          "zinc concentrate",
+          "World"
+        ],
+        "unit": "kilogram",
+        "amount": 1.4927475452423096,
+        "excluded_carrier": true
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "BG"
+        ],
+        "to": [
+          "market for zinc oxide",
+          "zinc oxide",
+          "GLO"
+        ],
+        "unit": "kilogram",
+        "amount": 0.038328610360622406,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "CA"
+        ],
+        "to": [
+          "market for zinc concentrate",
+          "zinc concentrate",
+          "World"
+        ],
+        "unit": "kilogram",
+        "amount": 1.8849350214004517,
+        "excluded_carrier": true
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "FI"
+        ],
+        "to": [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        "unit": "kilogram",
+        "amount": 0.002324656816199422,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "FI"
+        ],
+        "to": [
+          "market for zinc concentrate",
+          "zinc concentrate",
+          "World"
+        ],
+        "unit": "kilogram",
+        "amount": 1.4927475452423096,
+        "excluded_carrier": true
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "FI"
+        ],
+        "to": [
+          "market for zinc oxide",
+          "zinc oxide",
+          "GLO"
+        ],
+        "unit": "kilogram",
+        "amount": 0.038328610360622406,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "FR"
+        ],
+        "to": [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        "unit": "kilogram",
+        "amount": 0.002324656816199422,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "FR"
+        ],
+        "to": [
+          "market for zinc concentrate",
+          "zinc concentrate",
+          "World"
+        ],
+        "unit": "kilogram",
+        "amount": 1.4927475452423096,
+        "excluded_carrier": true
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "FR"
+        ],
+        "to": [
+          "market for zinc oxide",
+          "zinc oxide",
+          "GLO"
+        ],
+        "unit": "kilogram",
+        "amount": 0.038328610360622406,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "DE"
+        ],
+        "to": [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        "unit": "kilogram",
+        "amount": 0.002324656816199422,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "DE"
+        ],
+        "to": [
+          "market for zinc concentrate",
+          "zinc concentrate",
+          "World"
+        ],
+        "unit": "kilogram",
+        "amount": 1.4927475452423096,
+        "excluded_carrier": true
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "DE"
+        ],
+        "to": [
+          "market for zinc oxide",
+          "zinc oxide",
+          "GLO"
+        ],
+        "unit": "kilogram",
+        "amount": 0.038328610360622406,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "IN"
+        ],
+        "to": [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        "unit": "kilogram",
+        "amount": 0.002324656816199422,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "IN"
+        ],
+        "to": [
+          "market for zinc concentrate",
+          "zinc concentrate",
+          "World"
+        ],
+        "unit": "kilogram",
+        "amount": 1.4927475452423096,
+        "excluded_carrier": true
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "IN"
+        ],
+        "to": [
+          "market for zinc oxide",
+          "zinc oxide",
+          "GLO"
+        ],
+        "unit": "kilogram",
+        "amount": 0.038328610360622406,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "IR"
+        ],
+        "to": [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        "unit": "kilogram",
+        "amount": 0.002324656816199422,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "IR"
+        ],
+        "to": [
+          "market for zinc concentrate",
+          "zinc concentrate",
+          "World"
+        ],
+        "unit": "kilogram",
+        "amount": 1.4927475452423096,
+        "excluded_carrier": true
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "IR"
+        ],
+        "to": [
+          "market for zinc oxide",
+          "zinc oxide",
+          "GLO"
+        ],
+        "unit": "kilogram",
+        "amount": 0.038328610360622406,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "IT"
+        ],
+        "to": [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        "unit": "kilogram",
+        "amount": 0.002324656816199422,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "IT"
+        ],
+        "to": [
+          "market for zinc concentrate",
+          "zinc concentrate",
+          "World"
+        ],
+        "unit": "kilogram",
+        "amount": 1.4927475452423096,
+        "excluded_carrier": true
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "IT"
+        ],
+        "to": [
+          "market for zinc oxide",
+          "zinc oxide",
+          "GLO"
+        ],
+        "unit": "kilogram",
+        "amount": 0.038328610360622406,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "JP"
+        ],
+        "to": [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        "unit": "kilogram",
+        "amount": 0.002324656816199422,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "JP"
+        ],
+        "to": [
+          "market for zinc concentrate",
+          "zinc concentrate",
+          "World"
+        ],
+        "unit": "kilogram",
+        "amount": 1.4927475452423096,
+        "excluded_carrier": true
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "JP"
+        ],
+        "to": [
+          "market for zinc oxide",
+          "zinc oxide",
+          "GLO"
+        ],
+        "unit": "kilogram",
+        "amount": 0.038328610360622406,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "KZ"
+        ],
+        "to": [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        "unit": "kilogram",
+        "amount": 0.002324656816199422,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "KZ"
+        ],
+        "to": [
+          "market for zinc concentrate",
+          "zinc concentrate",
+          "World"
+        ],
+        "unit": "kilogram",
+        "amount": 1.4927475452423096,
+        "excluded_carrier": true
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "KZ"
+        ],
+        "to": [
+          "market for zinc oxide",
+          "zinc oxide",
+          "GLO"
+        ],
+        "unit": "kilogram",
+        "amount": 0.038328610360622406,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "KR"
+        ],
+        "to": [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        "unit": "kilogram",
+        "amount": 0.002324656816199422,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "KR"
+        ],
+        "to": [
+          "market for zinc concentrate",
+          "zinc concentrate",
+          "World"
+        ],
+        "unit": "kilogram",
+        "amount": 1.4927475452423096,
+        "excluded_carrier": true
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "KR"
+        ],
+        "to": [
+          "market for zinc oxide",
+          "zinc oxide",
+          "GLO"
+        ],
+        "unit": "kilogram",
+        "amount": 0.038328610360622406,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "KP"
+        ],
+        "to": [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        "unit": "kilogram",
+        "amount": 0.002324656816199422,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "KP"
+        ],
+        "to": [
+          "market for zinc concentrate",
+          "zinc concentrate",
+          "World"
+        ],
+        "unit": "kilogram",
+        "amount": 1.4927475452423096,
+        "excluded_carrier": true
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "KP"
+        ],
+        "to": [
+          "market for zinc oxide",
+          "zinc oxide",
+          "GLO"
+        ],
+        "unit": "kilogram",
+        "amount": 0.038328610360622406,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "MX"
+        ],
+        "to": [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        "unit": "kilogram",
+        "amount": 0.002324656816199422,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "MX"
+        ],
+        "to": [
+          "market for zinc concentrate",
+          "zinc concentrate",
+          "World"
+        ],
+        "unit": "kilogram",
+        "amount": 1.4927475452423096,
+        "excluded_carrier": true
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "MX"
+        ],
+        "to": [
+          "market for zinc oxide",
+          "zinc oxide",
+          "GLO"
+        ],
+        "unit": "kilogram",
+        "amount": 0.038328610360622406,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "NA"
+        ],
+        "to": [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        "unit": "kilogram",
+        "amount": 0.002324656816199422,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "NA"
+        ],
+        "to": [
+          "market for zinc concentrate",
+          "zinc concentrate",
+          "World"
+        ],
+        "unit": "kilogram",
+        "amount": 1.4927475452423096,
+        "excluded_carrier": true
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "NA"
+        ],
+        "to": [
+          "market for zinc oxide",
+          "zinc oxide",
+          "GLO"
+        ],
+        "unit": "kilogram",
+        "amount": 0.038328610360622406,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "NL"
+        ],
+        "to": [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        "unit": "kilogram",
+        "amount": 0.002324656816199422,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "NL"
+        ],
+        "to": [
+          "market for zinc concentrate",
+          "zinc concentrate",
+          "World"
+        ],
+        "unit": "kilogram",
+        "amount": 1.4927475452423096,
+        "excluded_carrier": true
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "NL"
+        ],
+        "to": [
+          "market for zinc oxide",
+          "zinc oxide",
+          "GLO"
+        ],
+        "unit": "kilogram",
+        "amount": 0.038328610360622406,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "NO"
+        ],
+        "to": [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        "unit": "kilogram",
+        "amount": 0.002324656816199422,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "NO"
+        ],
+        "to": [
+          "market for zinc concentrate",
+          "zinc concentrate",
+          "World"
+        ],
+        "unit": "kilogram",
+        "amount": 1.4927475452423096,
+        "excluded_carrier": true
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "NO"
+        ],
+        "to": [
+          "market for zinc oxide",
+          "zinc oxide",
+          "GLO"
+        ],
+        "unit": "kilogram",
+        "amount": 0.038328610360622406,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "PE"
+        ],
+        "to": [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        "unit": "kilogram",
+        "amount": 0.002324656816199422,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "PE"
+        ],
+        "to": [
+          "market for zinc concentrate",
+          "zinc concentrate",
+          "World"
+        ],
+        "unit": "kilogram",
+        "amount": 1.4927475452423096,
+        "excluded_carrier": true
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "PE"
+        ],
+        "to": [
+          "market for zinc oxide",
+          "zinc oxide",
+          "GLO"
+        ],
+        "unit": "kilogram",
+        "amount": 0.038328610360622406,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "PL"
+        ],
+        "to": [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        "unit": "kilogram",
+        "amount": 0.002324656816199422,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "PL"
+        ],
+        "to": [
+          "market for zinc concentrate",
+          "zinc concentrate",
+          "World"
+        ],
+        "unit": "kilogram",
+        "amount": 1.4927475452423096,
+        "excluded_carrier": true
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "PL"
+        ],
+        "to": [
+          "market for zinc oxide",
+          "zinc oxide",
+          "GLO"
+        ],
+        "unit": "kilogram",
+        "amount": 0.038328610360622406,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "RU"
+        ],
+        "to": [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        "unit": "kilogram",
+        "amount": 0.002324656816199422,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "RU"
+        ],
+        "to": [
+          "market for zinc concentrate",
+          "zinc concentrate",
+          "World"
+        ],
+        "unit": "kilogram",
+        "amount": 1.4927475452423096,
+        "excluded_carrier": true
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "RU"
+        ],
+        "to": [
+          "market for zinc oxide",
+          "zinc oxide",
+          "GLO"
+        ],
+        "unit": "kilogram",
+        "amount": 0.038328610360622406,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "ES"
+        ],
+        "to": [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        "unit": "kilogram",
+        "amount": 0.002324656816199422,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "ES"
+        ],
+        "to": [
+          "market for zinc concentrate",
+          "zinc concentrate",
+          "World"
+        ],
+        "unit": "kilogram",
+        "amount": 1.4927475452423096,
+        "excluded_carrier": true
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "ES"
+        ],
+        "to": [
+          "market for zinc oxide",
+          "zinc oxide",
+          "GLO"
+        ],
+        "unit": "kilogram",
+        "amount": 0.038328610360622406,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "TH"
+        ],
+        "to": [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        "unit": "kilogram",
+        "amount": 0.002324656816199422,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "TH"
+        ],
+        "to": [
+          "market for zinc concentrate",
+          "zinc concentrate",
+          "World"
+        ],
+        "unit": "kilogram",
+        "amount": 1.4927475452423096,
+        "excluded_carrier": true
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "TH"
+        ],
+        "to": [
+          "market for zinc oxide",
+          "zinc oxide",
+          "GLO"
+        ],
+        "unit": "kilogram",
+        "amount": 0.038328610360622406,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "US"
+        ],
+        "to": [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        "unit": "kilogram",
+        "amount": 0.002324656816199422,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "US"
+        ],
+        "to": [
+          "market for zinc concentrate",
+          "zinc concentrate",
+          "World"
+        ],
+        "unit": "kilogram",
+        "amount": 1.4927475452423096,
+        "excluded_carrier": true
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "US"
+        ],
+        "to": [
+          "market for zinc oxide",
+          "zinc oxide",
+          "GLO"
+        ],
+        "unit": "kilogram",
+        "amount": 0.038328610360622406,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "UZ"
+        ],
+        "to": [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        "unit": "kilogram",
+        "amount": 0.002324656816199422,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "UZ"
+        ],
+        "to": [
+          "market for zinc concentrate",
+          "zinc concentrate",
+          "World"
+        ],
+        "unit": "kilogram",
+        "amount": 1.4927475452423096,
+        "excluded_carrier": true
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "UZ"
+        ],
+        "to": [
+          "market for zinc oxide",
+          "zinc oxide",
+          "GLO"
+        ],
+        "unit": "kilogram",
+        "amount": 0.038328610360622406,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "VN"
+        ],
+        "to": [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        "unit": "kilogram",
+        "amount": 0.002324656816199422,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "VN"
+        ],
+        "to": [
+          "market for zinc concentrate",
+          "zinc concentrate",
+          "World"
+        ],
+        "unit": "kilogram",
+        "amount": 1.4927475452423096,
+        "excluded_carrier": true
+      },
+      {
+        "from": [
+          "primary zinc production from concentrate",
+          "zinc",
+          "VN"
+        ],
+        "to": [
+          "market for zinc oxide",
+          "zinc oxide",
+          "GLO"
+        ],
+        "unit": "kilogram",
+        "amount": 0.038328610360622406,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "zinc oxide production",
+          "zinc oxide",
+          "RoW"
+        ],
+        "to": [
+          "zinc scrap, post-consumer to generic market for zinc",
+          "zinc",
+          "GLO"
+        ],
+        "unit": "kilogram",
+        "amount": 0.8452600240707397,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "zinc oxide production",
+          "zinc oxide",
+          "RER"
+        ],
+        "to": [
+          "zinc scrap, post-consumer to generic market for zinc",
+          "zinc",
+          "GLO"
+        ],
+        "unit": "kilogram",
+        "amount": 0.8452600240707397,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "zinc scrap, post-consumer to generic market for zinc",
+          "zinc",
+          "GLO"
+        ],
+        "to": [
+          "market for zinc scrap, post-consumer",
+          "zinc scrap, post-consumer",
+          "GLO"
+        ],
+        "unit": "kilogram",
+        "amount": 1.0,
+        "excluded_carrier": false
+      },
+      {
+        "from": [
+          "market for zinc scrap, post-consumer",
+          "zinc scrap, post-consumer",
+          "GLO"
+        ],
+        "to": [
+          "zinc scrap, post-consumer, Recycled Content cut-off",
+          "zinc scrap, post-consumer",
+          "GLO"
+        ],
+        "unit": "kilogram",
+        "amount": 1.0,
+        "excluded_carrier": false
+      }
+    ],
+    "unresolved_links": [],
+    "resource_terminals": [],
+    "representative_paths": [
+      [
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "CN"
+        ]
+      ],
+      [
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "CN"
+        ],
+        [
+          "market for zinc",
+          "zinc",
+          "World"
+        ]
+      ],
+      [
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "CN"
+        ],
+        [
+          "market for zinc oxide",
+          "zinc oxide",
+          "GLO"
+        ]
+      ],
+      [
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "CN"
+        ],
+        [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "DZ"
+        ]
+      ],
+      [
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "CN"
+        ],
+        [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "AU"
+        ]
+      ],
+      [
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "CN"
+        ],
+        [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "BE"
+        ]
+      ],
+      [
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "CN"
+        ],
+        [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "BR"
+        ]
+      ],
+      [
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "CN"
+        ],
+        [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "BG"
+        ]
+      ],
+      [
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "CN"
+        ],
+        [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "CA"
+        ]
+      ],
+      [
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "CN"
+        ],
+        [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "FI"
+        ]
+      ],
+      [
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "CN"
+        ],
+        [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "FR"
+        ]
+      ],
+      [
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "CN"
+        ],
+        [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "DE"
+        ]
+      ],
+      [
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "CN"
+        ],
+        [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "IN"
+        ]
+      ],
+      [
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "CN"
+        ],
+        [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "IR"
+        ]
+      ],
+      [
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "CN"
+        ],
+        [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "IT"
+        ]
+      ],
+      [
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "CN"
+        ],
+        [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "JP"
+        ]
+      ],
+      [
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "CN"
+        ],
+        [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "KZ"
+        ]
+      ],
+      [
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "CN"
+        ],
+        [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "KR"
+        ]
+      ],
+      [
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "CN"
+        ],
+        [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "KP"
+        ]
+      ],
+      [
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "CN"
+        ],
+        [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "MX"
+        ]
+      ],
+      [
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "CN"
+        ],
+        [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "NA"
+        ]
+      ],
+      [
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "CN"
+        ],
+        [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "NL"
+        ]
+      ],
+      [
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "CN"
+        ],
+        [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "NO"
+        ]
+      ],
+      [
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "CN"
+        ],
+        [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "PE"
+        ]
+      ],
+      [
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "CN"
+        ],
+        [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "PL"
+        ]
+      ],
+      [
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "CN"
+        ],
+        [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "RU"
+        ]
+      ],
+      [
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "CN"
+        ],
+        [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "ES"
+        ]
+      ],
+      [
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "CN"
+        ],
+        [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "TH"
+        ]
+      ],
+      [
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "CN"
+        ],
+        [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "US"
+        ]
+      ],
+      [
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "CN"
+        ],
+        [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "UZ"
+        ]
+      ],
+      [
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "CN"
+        ],
+        [
+          "market for zinc",
+          "zinc",
+          "World"
+        ],
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "VN"
+        ]
+      ],
+      [
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "CN"
+        ],
+        [
+          "market for zinc oxide",
+          "zinc oxide",
+          "GLO"
+        ],
+        [
+          "zinc oxide production",
+          "zinc oxide",
+          "RoW"
+        ]
+      ],
+      [
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "CN"
+        ],
+        [
+          "market for zinc oxide",
+          "zinc oxide",
+          "GLO"
+        ],
+        [
+          "zinc oxide production",
+          "zinc oxide",
+          "RER"
+        ]
+      ],
+      [
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "CN"
+        ],
+        [
+          "market for zinc oxide",
+          "zinc oxide",
+          "GLO"
+        ],
+        [
+          "zinc oxide production",
+          "zinc oxide",
+          "RoW"
+        ],
+        [
+          "zinc scrap, post-consumer to generic market for zinc",
+          "zinc",
+          "GLO"
+        ]
+      ],
+      [
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "CN"
+        ],
+        [
+          "market for zinc oxide",
+          "zinc oxide",
+          "GLO"
+        ],
+        [
+          "zinc oxide production",
+          "zinc oxide",
+          "RoW"
+        ],
+        [
+          "zinc scrap, post-consumer to generic market for zinc",
+          "zinc",
+          "GLO"
+        ],
+        [
+          "market for zinc scrap, post-consumer",
+          "zinc scrap, post-consumer",
+          "GLO"
+        ]
+      ],
+      [
+        [
+          "primary zinc production from concentrate",
+          "zinc",
+          "CN"
+        ],
+        [
+          "market for zinc oxide",
+          "zinc oxide",
+          "GLO"
+        ],
+        [
+          "zinc oxide production",
+          "zinc oxide",
+          "RoW"
+        ],
+        [
+          "zinc scrap, post-consumer to generic market for zinc",
+          "zinc",
+          "GLO"
+        ],
+        [
+          "market for zinc scrap, post-consumer",
+          "zinc scrap, post-consumer",
+          "GLO"
+        ],
+        [
+          "zinc scrap, post-consumer, Recycled Content cut-off",
+          "zinc scrap, post-consumer",
+          "GLO"
+        ]
+      ]
+    ]
+  }
+}

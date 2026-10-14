@@ -1,0 +1,723 @@
+[
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "aluminium hydroxide",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "aluminium oxide, metallurgical",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "aluminium, cast alloy",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "aluminium, primary, ingot",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "aluminium, primary, liquid",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "antimony",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "bauxite",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "bentonite",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "beryllium",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "beryllium hydroxide",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "boric acid, anhydrous, powder",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "boric oxide",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "boron carbide",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "boron trifluoride",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "cadmium",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "calcium borates",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "cerium oxide",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "chromite ore concentrate",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "chromium",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "cobalt",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "cobalt hydroxide",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "cobalt sulfate",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "copper concentrate, sulfide ore",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "copper, anode",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "copper, cathode",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "copper-cobalt ore",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "dolomite",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "dysprosium oxide",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "erbium oxide",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "europium oxide",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "ferroniobium, 66% Nb",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "gadolinium oxide",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "gallium, high-grade",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "germanium, concentrate",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "gold",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "graphite",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "graphite ore, mined",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "hafnium sponge",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "hafnium tetrachloride",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "holmium oxide",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "ilmenite, 54% titanium dioxide",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "indium",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "indium rich leaching residues, from zinc production",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "iridium",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "iron ore concentrate",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "lanthanum oxide",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "lanthanum-cerium oxide",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "lead",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "lead concentrate",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "lithium carbonate, battery grade",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "lithium hydroxide, battery grade",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "lutetium oxide",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "magnesium",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "manganese",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "manganese concentrate",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "molybdenite",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "molybdenum",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "neodymium oxide",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "nickel concentrate, 16% Ni",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "nickel, class 1",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "palladium",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "phosphate rock, beneficiated",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "phosphoric acid, fertiliser grade, without water, in 70% solution state",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "phosphorus, white, liquid",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "platinum",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "platinum group metal concentrate",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "potash salt",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "praseodymium oxide",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "pyrochlore concentrate",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "rare earth carbonate concentrate",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "rhenium",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "ruthenium",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "rutile, 95% titanium dioxide",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "samarium oxide",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "sand",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "scandium oxide",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "selenium",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "silica sand",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "silicon, metallurgical grade",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "silver",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "sodium borates",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "spodumene",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "stibnite concentrate",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "strontium sulfate, 90% SrSO4",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "sulfur",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "tantalum concentrate, 30% Ta2O5",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "tellurium, semiconductor-grade",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "terbium oxide",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "thulium oxide",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "tin",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "tin concentrate",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "titanium",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "titanium sponge",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "titanium tetrachloride",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "tungsten concentrate",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "uranium ore, as U",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "vanadium bearing magnetite",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "vanadium pentoxide",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "ytterbium oxide",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "yttrium oxide",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "zinc",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "zinc concentrate",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  },
+  {
+    "reason": "market_preserved_year_outside_support",
+    "metal": "zircon",
+    "requested_year": 2050,
+    "first_year": 2020,
+    "last_year": 2030
+  }
+]

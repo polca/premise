@@ -1,0 +1,813 @@
+{
+  "fcev_battery_policy": {
+    "profile": {
+      "nominal_kwh": 25.0,
+      "pack_kg": 238.0,
+      "charge_kw": 36.0,
+      "discharge_kw": 50.0,
+      "discharge_10s_kw": 150.0,
+      "cell_mass_share": 0.7
+    },
+    "source": "AKASOL AKASYSTEM 15 OEM 37 PRC, May 2021 manufacturer specification, explicit proxy for 2020 FCEV trucks: 25 kWh, 238 kg, 36 kW continuous charge, 50 kW continuous RMS discharge, 150 kW discharge for 10 s. https://www.act-news.com/wp-content/uploads/2020/11/210525_LowRes_AK_Datenblatt_AKASystem_15-OEM-37-PRC_2021_2159x2794mm_EN.pdf",
+    "power_boundary": "Continuous charging cap after direct auxiliary use; instantaneous cycle discharge bounded by the continuous RMS rating, without repeated pulse assumptions. Rated motor buffer also bounded by the 10-second discharge rating.",
+    "sizing": "Maximum of inherited 20 kWh + 6% H2 energy floor, cycle continuous-discharge requirement and rated short-pulse requirement. Explicit capacity retained and validated.",
+    "mass_boundary": "Complete pack 238 kg per 25 kWh; 70% cell allocation and NMC-622 manufacture are retained proxies, not measured AKASOL cell specifications.",
+    "limits": "Conditioned-pack proxy; no electrothermal, ageing, SOC-window or fuel-cell ramp validation. Generic chemistry costs and replacement assumptions retained.",
+    "lca_proxy": "MIX capacity market per nominal kWh including replacements; physical mass mismatch documented without mass-equivalence correction.",
+    "future_hardware": "Premise retains the regenerated 2020 FCEV hardware; no runtime cycle simulation.",
+    "approved_on": "2026-10-14"
+  },
+  "hev_battery_policy": {
+    "profile": {
+      "cell_energy_kwh": 0.01485,
+      "cell_mass_kg": 0.205,
+      "cell_charge_kw": 0.066,
+      "cell_discharge_kw": 0.4,
+      "usable_share": 0.6,
+      "cell_mass_share": 0.7
+    },
+    "source": "A123 Systems (2014), Battery Pack Design, Validation, and Assembly Guide using A123 Systems Nanophosphate Cells, document 493005-002 Rev 02, Tables 4 and 30-33; AHR32113M1Ultra-B. https://ctc.chontech.ac.th/files/220427099180464_24051016164406.pdf",
+    "power_boundary": "Full motor discharge rating; excess braking power is curtailed at the pack continuous charge limit",
+    "energy_boundary": "Periodic finite regenerative buffer, no grid or engine charging; actual stored discharge sets equivalent full cycles",
+    "cycle_life_and_cost": "Inherited generic chemistry assumptions, not qualified for this high-power cell",
+    "lca_proxy": "User explicitly retains MIX capacity market and documents physical mass/chemistry mismatch; no mass-equivalence correction",
+    "approved_on": "2026-10-13"
+  },
+  "phev_battery_replacement_policy": {
+    "formula": "clip(lifetime km * electric utility factor * electric-mode net stored kJ/km / 3600 / nominal kWh / cycle life - 1, 0, 3)",
+    "cycle_basis": "equivalent full cycles of nominal capacity; no additional DoD divisor",
+    "energy_boundary": "inherited net stored-energy approximation; not gross charge/discharge throughput",
+    "calendar_ageing": "no separate truck calendar-age model",
+    "explicit_inputs": "nonzero counts retained for the whole pack; conflicting PHEV inputs rejected"
+  },
+  "hydrogen_compression_adaptation": {
+    "electricity kWh per kg H2": 2.450619246770454,
+    "inlet pressure bar": 30,
+    "tank pressure bar": 700,
+    "hydrogen product": "hydrogen, gaseous, low pressure",
+    "electricity product": "electricity, low voltage",
+    "delivery source": "Premise hydrogen supply, distributed by pipeline: arrives at 30 bar",
+    "compression model": "carculator_utils.inventory.hydrogen_compression_electricity; default temperature, stages and efficiencies",
+    "boundary": "Tank compression after pipeline delivery; pipeline preparation remains in hydrogen supply",
+    "approved on": "2026-10-13"
+  },
+  "cng_supply_basis": {
+    "delivered_LHV_MJ_per_kg": 46.5,
+    "source": "ecoinvent vehicle-grade natural gas market comment",
+    "policy": "Preserve model energy and source compression recipe; upstream gas energy is not delivered LHV",
+    "approved_on": "2026-10-13"
+  },
+  "year": 2020,
+  "country": "CH",
+  "cycle": "Regional delivery",
+  "target_range_km": 400,
+  "defaults": "Current 2020 cycle-specific load/mileage, sizing, lifetime and replacement values",
+  "proxy_policy": "Energy-preserving gasoline/LPG conversions approved by user 2026-10-13; retained diesel/diesel-hybrid/CNG manufacture and non-CO2 factors explicitly documented",
+  "transport_count": 52,
+  "production_count": 42,
+  "auxiliary_count": 33,
+  "retained_legacy_components": 26,
+  "legacy_components_version": "3.7",
+  "legacy_components_sha256": "adabbb0422b021df6418988464e7e42acf2682e8ba872e09dfda01ecd1e9b2b6",
+  "noise_exchanges": 1248,
+  "sha256": "69173285fcb595de439cf503ff5706378923ea6a1a1b58cf4c154643df6c4df7",
+  "export_version": "3.12",
+  "commits": {
+    "carculator_truck": "4d28ac63a31057dec6879c863370eacae52b1c18",
+    "carculator_utils": "d5479554cbb27ee0be6d11858c9d80697f55a4d6",
+    "premise": "d8dec84438cdffc8858811c0ec0588eda16dfaa8"
+  },
+  "source_sha256": {
+    "/Users/romain/GitHub/carculator_truck/carculator_truck/model.py": "9f9d40b6041f5c2673d9beaac509b3efb78a3d52b8474d15ec07e2b42f2d8f72",
+    "/Users/romain/GitHub/carculator_truck/carculator_truck/hybrid_battery.py": "fa91dbc33b1e4374324e5c8166aef11694802ab80e14092518562b5d4e309239",
+    "/Users/romain/GitHub/carculator_truck/carculator_truck/fuel_cell_battery.py": "a2ea3530efd9aba26e6ff84f82e017a3a31f0fc02f47ce5da585b479c21feefa",
+    "/Users/romain/GitHub/carculator_truck/carculator_truck/inventory.py": "071259a94158ae2af32c2690fd8be5182a0256e5cf4edeb3b9e68bbb60fc1d25",
+    "/Users/romain/GitHub/carculator_truck/carculator_truck/data/extra_parameters.json": "466e5826240594c527b1b3e5123b9f4edc1a730fa1f7aef42b26423f16e641ac",
+    "/Users/romain/GitHub/carculator_truck/carculator_truck/data/default_parameters.json": "a1da127f70f6c8eeed62e0c284356a04148e1a24f858b7af3aaba6cf698fbc4e",
+    "/Users/romain/GitHub/carculator_truck/carculator_truck/data/payloads.yaml": "3e08a544e63a48f1a7af2d00b48d44136cbc5b94297344ab9db1bd80ce37b5bb",
+    "/Users/romain/GitHub/carculator_utils/carculator_utils/hot_emissions.py": "f6c0ad5b23ecadbbd70b7680c462fa5ae689456852bc34e377bd192f7fc57e0f",
+    "/Users/romain/GitHub/carculator_utils/carculator_utils/model.py": "105b6465c7008de25994b04945049e1f91f00cf0a49495d82de5362670300b48",
+    "/Users/romain/GitHub/carculator_utils/carculator_utils/energy_consumption.py": "92f955dfcd14d5a8733500d92c8477e1b60e59e0d244ec16409d79f417fab19f",
+    "/Users/romain/GitHub/carculator_utils/dev/regenerate_premise_trucks.py": "f20d31702e910521538a01ca9182e47a1830065ac539ebd10cae080a8592baa9",
+    "/Users/romain/GitHub/carculator_utils/dev/premise_vehicle_battery_metadata.py": "dffd9125283ebfad536aef53520ad25cd5a50465a355d3144f32cf055e5e515b"
+  },
+  "generation provenance": {
+    "schema version": 1,
+    "family": "truck",
+    "original model": "carculator_truck",
+    "model publication": "Sacchi, R., Bauer, C., Cox, B. L. (2021). Does Size Matter? The Influence of Size, Load Factor, Range Autonomy, and Application Type on the Life Cycle Assessment of Current and Future Medium- and Heavy-Duty Vehicles. Environmental Science & Technology 55(8), 5224-5235. https://doi.org/10.1021/acs.est.0c07773",
+    "model generation date": "2026-10-14",
+    "libraries": {
+      "carculator_truck": {
+        "version": "0.5.2",
+        "recorded git revision": "4d28ac63a31057dec6879c863370eacae52b1c18"
+      },
+      "carculator_utils": {
+        "version": "1.3.7",
+        "recorded git revision": "d5479554cbb27ee0be6d11858c9d80697f55a4d6"
+      }
+    },
+    "source revision boundary": "Recorded repository HEADs; file hashes identify the actual generation sources, including any uncommitted changes.",
+    "source file sha256": {
+      "carculator_truck/carculator_truck/model.py": "9f9d40b6041f5c2673d9beaac509b3efb78a3d52b8474d15ec07e2b42f2d8f72",
+      "carculator_truck/carculator_truck/hybrid_battery.py": "fa91dbc33b1e4374324e5c8166aef11694802ab80e14092518562b5d4e309239",
+      "carculator_truck/carculator_truck/fuel_cell_battery.py": "a2ea3530efd9aba26e6ff84f82e017a3a31f0fc02f47ce5da585b479c21feefa",
+      "carculator_truck/carculator_truck/inventory.py": "071259a94158ae2af32c2690fd8be5182a0256e5cf4edeb3b9e68bbb60fc1d25",
+      "carculator_truck/carculator_truck/data/extra_parameters.json": "466e5826240594c527b1b3e5123b9f4edc1a730fa1f7aef42b26423f16e641ac",
+      "carculator_truck/carculator_truck/data/default_parameters.json": "a1da127f70f6c8eeed62e0c284356a04148e1a24f858b7af3aaba6cf698fbc4e",
+      "carculator_truck/carculator_truck/data/payloads.yaml": "3e08a544e63a48f1a7af2d00b48d44136cbc5b94297344ab9db1bd80ce37b5bb",
+      "carculator_utils/carculator_utils/hot_emissions.py": "f6c0ad5b23ecadbbd70b7680c462fa5ae689456852bc34e377bd192f7fc57e0f",
+      "carculator_utils/carculator_utils/model.py": "105b6465c7008de25994b04945049e1f91f00cf0a49495d82de5362670300b48",
+      "carculator_utils/carculator_utils/energy_consumption.py": "92f955dfcd14d5a8733500d92c8477e1b60e59e0d244ec16409d79f417fab19f",
+      "carculator_utils/dev/regenerate_premise_trucks.py": "f20d31702e910521538a01ca9182e47a1830065ac539ebd10cae080a8592baa9",
+      "carculator_utils/dev/premise_vehicle_battery_metadata.py": "dffd9125283ebfad536aef53520ad25cd5a50465a355d3144f32cf055e5e515b"
+    },
+    "artifacts": {
+      "raw.json": {
+        "sha256": "34246b8a7b0e5d8a585278299be05e73b3e59da511b93cf57b6026ce13685e18"
+      },
+      "model_parameters.json": {
+        "sha256": "13462ca8a318f8c9ada1effd66f0695f3aeae1b5548b28d2c6f088c7c2090333"
+      },
+      "vehicle_parameters.csv": {
+        "sha256": "4edc35daff2c0c2609d6bdac5311a88238350e3dd0a00138a1730d4821e1206f",
+        "companion file": "lci-trucks.parameters.csv"
+      },
+      "noise_audit.csv": {
+        "sha256": "2d0d601d9d6902e6cfc399c8651e31ff28ce54f7f55719b53c0172ec3691a050",
+        "companion file": "lci-trucks.noise.csv"
+      }
+    },
+    "baseline year": 2020,
+    "climate": "CH; Swiss annual-average thermal-demand assumptions",
+    "driving cycle": "Regional delivery",
+    "noise boundary": "Direct noise flows omitted from Premise imports; retained in noise_audit.csv identified by SHA-256.",
+    "FCEV battery profile": {
+      "profile": {
+        "nominal_kwh": 25.0,
+        "pack_kg": 238.0,
+        "charge_kw": 36.0,
+        "discharge_kw": 50.0,
+        "discharge_10s_kw": 150.0,
+        "cell_mass_share": 0.7
+      },
+      "source": "AKASOL AKASYSTEM 15 OEM 37 PRC, May 2021 manufacturer specification, explicit proxy for 2020 FCEV trucks: 25 kWh, 238 kg, 36 kW continuous charge, 50 kW continuous RMS discharge, 150 kW discharge for 10 s. https://www.act-news.com/wp-content/uploads/2020/11/210525_LowRes_AK_Datenblatt_AKASystem_15-OEM-37-PRC_2021_2159x2794mm_EN.pdf",
+      "power_boundary": "Continuous charging cap after direct auxiliary use; instantaneous cycle discharge bounded by the continuous RMS rating, without repeated pulse assumptions. Rated motor buffer also bounded by the 10-second discharge rating.",
+      "sizing": "Maximum of inherited 20 kWh + 6% H2 energy floor, cycle continuous-discharge requirement and rated short-pulse requirement. Explicit capacity retained and validated.",
+      "mass_boundary": "Complete pack 238 kg per 25 kWh; 70% cell allocation and NMC-622 manufacture are retained proxies, not measured AKASOL cell specifications.",
+      "limits": "Conditioned-pack proxy; no electrothermal, ageing, SOC-window or fuel-cell ramp validation. Generic chemistry costs and replacement assumptions retained.",
+      "lca_proxy": "MIX capacity market per nominal kWh including replacements; physical mass mismatch documented without mass-equivalence correction.",
+      "future_hardware": "Premise retains the regenerated 2020 FCEV hardware; no runtime cycle simulation.",
+      "approved_on": "2026-10-14"
+    }
+  },
+  "schema version": 2,
+  "workbook": "lci-trucks.xlsx",
+  "previous provenance": {
+    "hev_battery_policy": {
+      "profile": {
+        "cell_energy_kwh": 0.01485,
+        "cell_mass_kg": 0.205,
+        "cell_charge_kw": 0.066,
+        "cell_discharge_kw": 0.4,
+        "usable_share": 0.6,
+        "cell_mass_share": 0.7
+      },
+      "source": "A123 Systems (2014), Battery Pack Design, Validation, and Assembly Guide using A123 Systems Nanophosphate Cells, document 493005-002 Rev 02, Tables 4 and 30-33; AHR32113M1Ultra-B. https://ctc.chontech.ac.th/files/220427099180464_24051016164406.pdf",
+      "power_boundary": "Full motor discharge rating; excess braking power is curtailed at the pack continuous charge limit",
+      "energy_boundary": "Periodic finite regenerative buffer, no grid or engine charging; actual stored discharge sets equivalent full cycles",
+      "cycle_life_and_cost": "Inherited generic chemistry assumptions, not qualified for this high-power cell",
+      "lca_proxy": "User explicitly retains MIX capacity market and documents physical mass/chemistry mismatch; no mass-equivalence correction",
+      "approved_on": "2026-10-13"
+    },
+    "phev_battery_replacement_policy": {
+      "formula": "clip(lifetime km * electric utility factor * electric-mode net stored kJ/km / 3600 / nominal kWh / cycle life - 1, 0, 3)",
+      "cycle_basis": "equivalent full cycles of nominal capacity; no additional DoD divisor",
+      "energy_boundary": "inherited net stored-energy approximation; not gross charge/discharge throughput",
+      "calendar_ageing": "no separate truck calendar-age model",
+      "explicit_inputs": "nonzero counts retained for the whole pack; conflicting PHEV inputs rejected"
+    },
+    "hydrogen_compression_adaptation": {
+      "electricity kWh per kg H2": 2.450619246770454,
+      "inlet pressure bar": 30,
+      "tank pressure bar": 700,
+      "hydrogen product": "hydrogen, gaseous, low pressure",
+      "electricity product": "electricity, low voltage",
+      "delivery source": "Premise hydrogen supply, distributed by pipeline: arrives at 30 bar",
+      "compression model": "carculator_utils.inventory.hydrogen_compression_electricity; default temperature, stages and efficiencies",
+      "boundary": "Tank compression after pipeline delivery; pipeline preparation remains in hydrogen supply",
+      "approved on": "2026-10-13"
+    },
+    "cng_supply_basis": {
+      "delivered_LHV_MJ_per_kg": 46.5,
+      "source": "ecoinvent vehicle-grade natural gas market comment",
+      "policy": "Preserve model energy and source compression recipe; upstream gas energy is not delivered LHV",
+      "approved_on": "2026-10-13"
+    },
+    "year": 2020,
+    "country": "CH",
+    "cycle": "Regional delivery",
+    "target_range_km": 400,
+    "defaults": "Current 2020 cycle-specific load/mileage, sizing, lifetime and replacement values",
+    "proxy_policy": "Energy-preserving gasoline/LPG conversions approved by user 2026-10-13; retained diesel/diesel-hybrid/CNG manufacture and non-CO2 factors explicitly documented",
+    "transport_count": 52,
+    "production_count": 42,
+    "auxiliary_count": 33,
+    "retained_legacy_components": 26,
+    "legacy_components_version": "3.7",
+    "legacy_components_sha256": "1a1068a271edccd86ec3f8c06492a6cf320052bf56aecea4e54aba17869bcefd",
+    "noise_exchanges": 1248,
+    "sha256": "3799ed5f1256b819de47a11c8204437c6dfa089dc14e17c6fa696435f7e26401",
+    "export_version": "3.12",
+    "commits": {
+      "carculator_truck": "36242704a4d9b73f600398b622d1c48c70f5b77a",
+      "carculator_utils": "4bff8f6eea42aa9544c7482286bf15aa3eba4e56",
+      "premise": "8fc0975e93decac91ac107a6c359efd26be9c8a6"
+    },
+    "source_sha256": {
+      "/Users/romain/GitHub/carculator_truck/carculator_truck/model.py": "5786d62fd4de3ad6c6f3346318beac22b79ccbcd27723cd8fbff5da105a42d8c",
+      "/Users/romain/GitHub/carculator_truck/carculator_truck/hybrid_battery.py": "fa91dbc33b1e4374324e5c8166aef11694802ab80e14092518562b5d4e309239",
+      "/Users/romain/GitHub/carculator_truck/carculator_truck/inventory.py": "071259a94158ae2af32c2690fd8be5182a0256e5cf4edeb3b9e68bbb60fc1d25",
+      "/Users/romain/GitHub/carculator_truck/carculator_truck/data/extra_parameters.json": "466e5826240594c527b1b3e5123b9f4edc1a730fa1f7aef42b26423f16e641ac",
+      "/Users/romain/GitHub/carculator_truck/carculator_truck/data/default_parameters.json": "a1da127f70f6c8eeed62e0c284356a04148e1a24f858b7af3aaba6cf698fbc4e",
+      "/Users/romain/GitHub/carculator_truck/carculator_truck/data/payloads.yaml": "3e08a544e63a48f1a7af2d00b48d44136cbc5b94297344ab9db1bd80ce37b5bb",
+      "/Users/romain/GitHub/carculator_utils/carculator_utils/hot_emissions.py": "f6c0ad5b23ecadbbd70b7680c462fa5ae689456852bc34e377bd192f7fc57e0f",
+      "/Users/romain/GitHub/carculator_utils/carculator_utils/model.py": "105b6465c7008de25994b04945049e1f91f00cf0a49495d82de5362670300b48",
+      "/Users/romain/GitHub/carculator_utils/dev/regenerate_premise_trucks.py": "49a9609ee3de1ead16f6d16377847a830cf6d4ee48592efdd9aaead08467860d",
+      "/Users/romain/GitHub/carculator_utils/dev/premise_vehicle_battery_metadata.py": "dffd9125283ebfad536aef53520ad25cd5a50465a355d3144f32cf055e5e515b"
+    },
+    "generation provenance": {
+      "schema version": 1,
+      "family": "truck",
+      "original model": "carculator_truck",
+      "model publication": "Sacchi, R., Bauer, C., Cox, B. L. (2021). Does Size Matter? The Influence of Size, Load Factor, Range Autonomy, and Application Type on the Life Cycle Assessment of Current and Future Medium- and Heavy-Duty Vehicles. Environmental Science & Technology 55(8), 5224-5235. https://doi.org/10.1021/acs.est.0c07773",
+      "model generation date": "2026-10-14",
+      "libraries": {
+        "carculator_truck": {
+          "version": "0.5.2",
+          "recorded git revision": "36242704a4d9b73f600398b622d1c48c70f5b77a"
+        },
+        "carculator_utils": {
+          "version": "1.3.7",
+          "recorded git revision": "4bff8f6eea42aa9544c7482286bf15aa3eba4e56"
+        }
+      },
+      "source revision boundary": "Recorded repository HEADs; file hashes identify the actual generation sources, including any uncommitted changes.",
+      "source file sha256": {
+        "carculator_truck/carculator_truck/model.py": "5786d62fd4de3ad6c6f3346318beac22b79ccbcd27723cd8fbff5da105a42d8c",
+        "carculator_truck/carculator_truck/hybrid_battery.py": "fa91dbc33b1e4374324e5c8166aef11694802ab80e14092518562b5d4e309239",
+        "carculator_truck/carculator_truck/inventory.py": "071259a94158ae2af32c2690fd8be5182a0256e5cf4edeb3b9e68bbb60fc1d25",
+        "carculator_truck/carculator_truck/data/extra_parameters.json": "466e5826240594c527b1b3e5123b9f4edc1a730fa1f7aef42b26423f16e641ac",
+        "carculator_truck/carculator_truck/data/default_parameters.json": "a1da127f70f6c8eeed62e0c284356a04148e1a24f858b7af3aaba6cf698fbc4e",
+        "carculator_truck/carculator_truck/data/payloads.yaml": "3e08a544e63a48f1a7af2d00b48d44136cbc5b94297344ab9db1bd80ce37b5bb",
+        "carculator_utils/carculator_utils/hot_emissions.py": "f6c0ad5b23ecadbbd70b7680c462fa5ae689456852bc34e377bd192f7fc57e0f",
+        "carculator_utils/carculator_utils/model.py": "105b6465c7008de25994b04945049e1f91f00cf0a49495d82de5362670300b48",
+        "carculator_utils/dev/regenerate_premise_trucks.py": "49a9609ee3de1ead16f6d16377847a830cf6d4ee48592efdd9aaead08467860d",
+        "carculator_utils/dev/premise_vehicle_battery_metadata.py": "dffd9125283ebfad536aef53520ad25cd5a50465a355d3144f32cf055e5e515b"
+      },
+      "artifacts": {
+        "raw.json": {
+          "sha256": "ea64c3c39156a91a528d954fe8f362d1b5728d70903423d5bb89d18d15f8e6a6"
+        },
+        "model_parameters.json": {
+          "sha256": "01a1e52a722b2738f1e70e2eec1a591a07f4e96f2360f14a8b44d29067d9a19c"
+        },
+        "vehicle_parameters.csv": {
+          "sha256": "68af6a3122d84e2394fcd95c7a391bf7807eaa0d50a2c8c5ca4987ce31029ecd",
+          "companion file": "lci-trucks.parameters.csv"
+        },
+        "noise_audit.csv": {
+          "sha256": "2d0d601d9d6902e6cfc399c8651e31ff28ce54f7f55719b53c0172ec3691a050",
+          "companion file": "lci-trucks.noise.csv"
+        }
+      },
+      "baseline year": 2020,
+      "climate": "CH; Swiss annual-average thermal-demand assumptions",
+      "driving cycle": "Regional delivery",
+      "noise boundary": "Direct noise flows omitted from Premise imports; retained in noise_audit.csv identified by SHA-256."
+    },
+    "schema version": 2,
+    "workbook": "lci-trucks.xlsx",
+    "previous provenance": {
+      "hev_battery_policy": {
+        "profile": {
+          "cell_energy_kwh": 0.01485,
+          "cell_mass_kg": 0.205,
+          "cell_charge_kw": 0.066,
+          "cell_discharge_kw": 0.4,
+          "usable_share": 0.6,
+          "cell_mass_share": 0.7
+        },
+        "source": "A123 Systems (2014), Battery Pack Design, Validation, and Assembly Guide using A123 Systems Nanophosphate Cells, document 493005-002 Rev 02, Tables 4 and 30-33; AHR32113M1Ultra-B. https://ctc.chontech.ac.th/files/220427099180464_24051016164406.pdf",
+        "power_boundary": "Full motor discharge rating; excess braking power is curtailed at the pack continuous charge limit",
+        "energy_boundary": "Periodic finite regenerative buffer, no grid or engine charging; actual stored discharge sets equivalent full cycles",
+        "cycle_life_and_cost": "Inherited generic chemistry assumptions, not qualified for this high-power cell",
+        "lca_proxy": "User explicitly retains MIX capacity market and documents physical mass/chemistry mismatch; no mass-equivalence correction",
+        "approved_on": "2026-10-13"
+      },
+      "phev_battery_replacement_policy": {
+        "formula": "clip(lifetime km * electric utility factor * electric-mode net stored kJ/km / 3600 / nominal kWh / cycle life - 1, 0, 3)",
+        "cycle_basis": "equivalent full cycles of nominal capacity; no additional DoD divisor",
+        "energy_boundary": "inherited net stored-energy approximation; not gross charge/discharge throughput",
+        "calendar_ageing": "no separate truck calendar-age model",
+        "explicit_inputs": "nonzero counts retained for the whole pack; conflicting PHEV inputs rejected"
+      },
+      "hydrogen_compression_adaptation": {
+        "electricity kWh per kg H2": 2.450619246770454,
+        "inlet pressure bar": 30,
+        "tank pressure bar": 700,
+        "hydrogen product": "hydrogen, gaseous, low pressure",
+        "electricity product": "electricity, low voltage",
+        "delivery source": "Premise hydrogen supply, distributed by pipeline: arrives at 30 bar",
+        "compression model": "carculator_utils.inventory.hydrogen_compression_electricity; default temperature, stages and efficiencies",
+        "boundary": "Tank compression after pipeline delivery; pipeline preparation remains in hydrogen supply",
+        "approved on": "2026-10-13"
+      },
+      "cng_supply_basis": {
+        "delivered_LHV_MJ_per_kg": 46.5,
+        "source": "ecoinvent vehicle-grade natural gas market comment",
+        "policy": "Preserve model energy and source compression recipe; upstream gas energy is not delivered LHV",
+        "approved_on": "2026-10-13"
+      },
+      "year": 2020,
+      "country": "CH",
+      "cycle": "Regional delivery",
+      "target_range_km": 400,
+      "defaults": "Current 2020 cycle-specific load/mileage, sizing, lifetime and replacement values",
+      "proxy_policy": "Energy-preserving gasoline/LPG conversions approved by user 2026-10-13; retained diesel/diesel-hybrid/CNG manufacture and non-CO2 factors explicitly documented",
+      "transport_count": 52,
+      "production_count": 42,
+      "auxiliary_count": 33,
+      "retained_legacy_components": 26,
+      "legacy_components_version": "3.7",
+      "legacy_components_sha256": "202a28bad7be4180264185adb78718969ff8a97d1d0dec2db22c2f1aa64e4aea",
+      "noise_exchanges": 1248,
+      "sha256": "631ee194a1abfe1cc301f5804760db8f7bede80b76a3c29f93a69d9e34c447a9",
+      "export_version": "3.12",
+      "commits": {
+        "carculator_truck": "36242704a4d9b73f600398b622d1c48c70f5b77a",
+        "carculator_utils": "0160a641e0196a0430cb70e1ea79376318223554",
+        "premise": "b5ffa9625aa19e6f66d095e8361c8ed7aa0e6532"
+      },
+      "source_sha256": {
+        "/Users/romain/GitHub/carculator_truck/carculator_truck/model.py": "24972b4b74934e41f4bcb206a2ff63e28a0b6bdab3c2b63af7594a1668fbea7e",
+        "/Users/romain/GitHub/carculator_truck/carculator_truck/hybrid_battery.py": "fa91dbc33b1e4374324e5c8166aef11694802ab80e14092518562b5d4e309239",
+        "/Users/romain/GitHub/carculator_truck/carculator_truck/inventory.py": "071259a94158ae2af32c2690fd8be5182a0256e5cf4edeb3b9e68bbb60fc1d25",
+        "/Users/romain/GitHub/carculator_truck/carculator_truck/data/extra_parameters.json": "466e5826240594c527b1b3e5123b9f4edc1a730fa1f7aef42b26423f16e641ac",
+        "/Users/romain/GitHub/carculator_truck/carculator_truck/data/default_parameters.json": "6a4bb161aff677bbe02c57bbb377759ae420fcd0af6befb178ae1da960e57d11",
+        "/Users/romain/GitHub/carculator_truck/carculator_truck/data/payloads.yaml": "3e08a544e63a48f1a7af2d00b48d44136cbc5b94297344ab9db1bd80ce37b5bb",
+        "/Users/romain/GitHub/carculator_utils/carculator_utils/hot_emissions.py": "f6c0ad5b23ecadbbd70b7680c462fa5ae689456852bc34e377bd192f7fc57e0f",
+        "/Users/romain/GitHub/carculator_utils/carculator_utils/model.py": "105b6465c7008de25994b04945049e1f91f00cf0a49495d82de5362670300b48",
+        "/Users/romain/GitHub/carculator_utils/dev/regenerate_premise_trucks.py": "2a8a3323e9911fb98717c05756a362da97ead71a67b2a7c97917b3a0b07d4c16",
+        "/Users/romain/GitHub/carculator_utils/dev/premise_vehicle_battery_metadata.py": "dffd9125283ebfad536aef53520ad25cd5a50465a355d3144f32cf055e5e515b"
+      },
+      "generation provenance": {
+        "schema version": 1,
+        "family": "truck",
+        "original model": "carculator_truck",
+        "model publication": "Sacchi, R., Bauer, C., Cox, B. L. (2021). Does Size Matter? The Influence of Size, Load Factor, Range Autonomy, and Application Type on the Life Cycle Assessment of Current and Future Medium- and Heavy-Duty Vehicles. Environmental Science & Technology 55(8), 5224-5235. https://doi.org/10.1021/acs.est.0c07773",
+        "model generation date": "2026-10-14",
+        "libraries": {
+          "carculator_truck": {
+            "version": "0.5.2",
+            "recorded git revision": "36242704a4d9b73f600398b622d1c48c70f5b77a"
+          },
+          "carculator_utils": {
+            "version": "1.3.7",
+            "recorded git revision": "0160a641e0196a0430cb70e1ea79376318223554"
+          }
+        },
+        "source revision boundary": "Recorded repository HEADs; file hashes identify the actual generation sources, including any uncommitted changes.",
+        "source file sha256": {
+          "carculator_truck/carculator_truck/model.py": "24972b4b74934e41f4bcb206a2ff63e28a0b6bdab3c2b63af7594a1668fbea7e",
+          "carculator_truck/carculator_truck/hybrid_battery.py": "fa91dbc33b1e4374324e5c8166aef11694802ab80e14092518562b5d4e309239",
+          "carculator_truck/carculator_truck/inventory.py": "071259a94158ae2af32c2690fd8be5182a0256e5cf4edeb3b9e68bbb60fc1d25",
+          "carculator_truck/carculator_truck/data/extra_parameters.json": "466e5826240594c527b1b3e5123b9f4edc1a730fa1f7aef42b26423f16e641ac",
+          "carculator_truck/carculator_truck/data/default_parameters.json": "6a4bb161aff677bbe02c57bbb377759ae420fcd0af6befb178ae1da960e57d11",
+          "carculator_truck/carculator_truck/data/payloads.yaml": "3e08a544e63a48f1a7af2d00b48d44136cbc5b94297344ab9db1bd80ce37b5bb",
+          "carculator_utils/carculator_utils/hot_emissions.py": "f6c0ad5b23ecadbbd70b7680c462fa5ae689456852bc34e377bd192f7fc57e0f",
+          "carculator_utils/carculator_utils/model.py": "105b6465c7008de25994b04945049e1f91f00cf0a49495d82de5362670300b48",
+          "carculator_utils/dev/regenerate_premise_trucks.py": "2a8a3323e9911fb98717c05756a362da97ead71a67b2a7c97917b3a0b07d4c16",
+          "carculator_utils/dev/premise_vehicle_battery_metadata.py": "dffd9125283ebfad536aef53520ad25cd5a50465a355d3144f32cf055e5e515b"
+        },
+        "artifacts": {
+          "raw.json": {
+            "sha256": "b813ae983f2268b2a39e018b98efd44f575ab920a3e84cbd957077e4c4131cf9"
+          },
+          "model_parameters.json": {
+            "sha256": "bff604c6a276afd6554813f9a29a914ef5a076e727461806350035918a914457"
+          },
+          "vehicle_parameters.csv": {
+            "sha256": "af770502ad15ffc9837ce8da67b51f2deb0327f6bbaaab1ec3fe8580c7495ff9",
+            "companion file": "lci-trucks.parameters.csv"
+          },
+          "noise_audit.csv": {
+            "sha256": "2d0d601d9d6902e6cfc399c8651e31ff28ce54f7f55719b53c0172ec3691a050",
+            "companion file": "lci-trucks.noise.csv"
+          }
+        },
+        "baseline year": 2020,
+        "climate": "CH; Swiss annual-average thermal-demand assumptions",
+        "driving cycle": "Regional delivery",
+        "noise boundary": "Direct noise flows omitted from Premise imports; retained in noise_audit.csv identified by SHA-256."
+      },
+      "schema version": 2,
+      "workbook": "lci-trucks.xlsx",
+      "previous provenance": {
+        "hev_battery_policy": {
+          "profile": {
+            "cell_energy_kwh": 0.01485,
+            "cell_mass_kg": 0.205,
+            "cell_charge_kw": 0.066,
+            "cell_discharge_kw": 0.4,
+            "usable_share": 0.6,
+            "cell_mass_share": 0.7
+          },
+          "source": "A123 Systems (2014), Battery Pack Design, Validation, and Assembly Guide using A123 Systems Nanophosphate Cells, document 493005-002 Rev 02, Tables 4 and 30-33; AHR32113M1Ultra-B. https://ctc.chontech.ac.th/files/220427099180464_24051016164406.pdf",
+          "power_boundary": "Full motor discharge rating; excess braking power is curtailed at the pack continuous charge limit",
+          "energy_boundary": "Periodic finite regenerative buffer, no grid or engine charging; actual stored discharge sets equivalent full cycles",
+          "cycle_life_and_cost": "Inherited generic chemistry assumptions, not qualified for this high-power cell",
+          "lca_proxy": "User explicitly retains MIX capacity market and documents physical mass/chemistry mismatch; no mass-equivalence correction",
+          "approved_on": "2026-10-13"
+        },
+        "phev_battery_replacement_policy": {
+          "formula": "clip(lifetime km * electric utility factor * electric-mode net stored kJ/km / 3600 / nominal kWh / cycle life - 1, 0, 3)",
+          "cycle_basis": "equivalent full cycles of nominal capacity; no additional DoD divisor",
+          "energy_boundary": "inherited net stored-energy approximation; not gross charge/discharge throughput",
+          "calendar_ageing": "no separate truck calendar-age model",
+          "explicit_inputs": "nonzero counts retained for the whole pack; conflicting PHEV inputs rejected"
+        },
+        "hydrogen_compression_adaptation": {
+          "electricity kWh per kg H2": 2.450619246770454,
+          "inlet pressure bar": 30,
+          "tank pressure bar": 700,
+          "hydrogen product": "hydrogen, gaseous, low pressure",
+          "electricity product": "electricity, low voltage",
+          "delivery source": "Premise hydrogen supply, distributed by pipeline: arrives at 30 bar",
+          "compression model": "carculator_utils.inventory.hydrogen_compression_electricity; default temperature, stages and efficiencies",
+          "boundary": "Tank compression after pipeline delivery; pipeline preparation remains in hydrogen supply",
+          "approved on": "2026-10-13"
+        },
+        "cng_supply_basis": {
+          "delivered_LHV_MJ_per_kg": 46.5,
+          "source": "ecoinvent vehicle-grade natural gas market comment",
+          "policy": "Preserve model energy and source compression recipe; upstream gas energy is not delivered LHV",
+          "approved_on": "2026-10-13"
+        },
+        "year": 2020,
+        "country": "CH",
+        "cycle": "Regional delivery",
+        "target_range_km": 400,
+        "defaults": "Current 2020 cycle-specific load/mileage, sizing, lifetime and replacement values",
+        "proxy_policy": "Energy-preserving gasoline/LPG conversions approved by user 2026-10-13; retained diesel/diesel-hybrid/CNG manufacture and non-CO2 factors explicitly documented",
+        "transport_count": 52,
+        "production_count": 42,
+        "auxiliary_count": 33,
+        "retained_legacy_components": 26,
+        "legacy_components_version": "3.7",
+        "legacy_components_sha256": "2df2ceca0c3d894e5c808d2803e5e66e7e00fc67f4d4a4e2e32d24c218c34f3d",
+        "noise_exchanges": 1248,
+        "sha256": "f999e5bb58dc8b678ebfaa4fc7ba10dbd4d8cd79e99d9a56e3b72409d6179759",
+        "export_version": "3.12",
+        "commits": {
+          "carculator_truck": "c075a6f65996f7f622a85810d7e4c6fae998d641",
+          "carculator_utils": "060a7e9be38992a70ac9699da228efd147b72a01",
+          "premise": "caa9ff1906017253613783c8bad77aa8fc153eee"
+        },
+        "source_sha256": {
+          "/Users/romain/GitHub/carculator_truck/carculator_truck/model.py": "1c1fb51e9f732ffdcbd25a5cac71614c01f09904be97717e034432078c302591",
+          "/Users/romain/GitHub/carculator_truck/carculator_truck/hybrid_battery.py": "fa91dbc33b1e4374324e5c8166aef11694802ab80e14092518562b5d4e309239",
+          "/Users/romain/GitHub/carculator_truck/carculator_truck/inventory.py": "071259a94158ae2af32c2690fd8be5182a0256e5cf4edeb3b9e68bbb60fc1d25",
+          "/Users/romain/GitHub/carculator_truck/carculator_truck/data/extra_parameters.json": "466e5826240594c527b1b3e5123b9f4edc1a730fa1f7aef42b26423f16e641ac",
+          "/Users/romain/GitHub/carculator_truck/carculator_truck/data/default_parameters.json": "6a4bb161aff677bbe02c57bbb377759ae420fcd0af6befb178ae1da960e57d11",
+          "/Users/romain/GitHub/carculator_truck/carculator_truck/data/payloads.yaml": "3e08a544e63a48f1a7af2d00b48d44136cbc5b94297344ab9db1bd80ce37b5bb",
+          "/Users/romain/GitHub/carculator_utils/carculator_utils/hot_emissions.py": "f6c0ad5b23ecadbbd70b7680c462fa5ae689456852bc34e377bd192f7fc57e0f",
+          "/Users/romain/GitHub/carculator_utils/carculator_utils/model.py": "48510d3286d0a217066dcf9c882eda4264b6168494ced170960fd085f59595ab",
+          "/Users/romain/GitHub/carculator_utils/dev/regenerate_premise_trucks.py": "fbb87888887c1fbf445c282165f4f7a79c375957bf16e47c4fa5b49aca1a5689",
+          "/Users/romain/GitHub/carculator_utils/dev/premise_vehicle_battery_metadata.py": "2eb650f0aa3e8673dea98a3e02e7ac2cdc59e12a4e325deab16b100ccd1d8f38"
+        },
+        "generation provenance": {
+          "schema version": 1,
+          "family": "truck",
+          "original model": "carculator_truck",
+          "model publication": "Sacchi, R., Bauer, C., Cox, B. L. (2021). Does Size Matter? The Influence of Size, Load Factor, Range Autonomy, and Application Type on the Life Cycle Assessment of Current and Future Medium- and Heavy-Duty Vehicles. Environmental Science & Technology 55(8), 5224-5235. https://doi.org/10.1021/acs.est.0c07773",
+          "model generation date": "2026-10-14",
+          "libraries": {
+            "carculator_truck": {
+              "version": "0.5.2",
+              "recorded git revision": "c075a6f65996f7f622a85810d7e4c6fae998d641"
+            },
+            "carculator_utils": {
+              "version": "1.3.7",
+              "recorded git revision": "060a7e9be38992a70ac9699da228efd147b72a01"
+            }
+          },
+          "source revision boundary": "Recorded repository HEADs; file hashes identify the actual generation sources, including any uncommitted changes.",
+          "source file sha256": {
+            "carculator_truck/carculator_truck/model.py": "1c1fb51e9f732ffdcbd25a5cac71614c01f09904be97717e034432078c302591",
+            "carculator_truck/carculator_truck/hybrid_battery.py": "fa91dbc33b1e4374324e5c8166aef11694802ab80e14092518562b5d4e309239",
+            "carculator_truck/carculator_truck/inventory.py": "071259a94158ae2af32c2690fd8be5182a0256e5cf4edeb3b9e68bbb60fc1d25",
+            "carculator_truck/carculator_truck/data/extra_parameters.json": "466e5826240594c527b1b3e5123b9f4edc1a730fa1f7aef42b26423f16e641ac",
+            "carculator_truck/carculator_truck/data/default_parameters.json": "6a4bb161aff677bbe02c57bbb377759ae420fcd0af6befb178ae1da960e57d11",
+            "carculator_truck/carculator_truck/data/payloads.yaml": "3e08a544e63a48f1a7af2d00b48d44136cbc5b94297344ab9db1bd80ce37b5bb",
+            "carculator_utils/carculator_utils/hot_emissions.py": "f6c0ad5b23ecadbbd70b7680c462fa5ae689456852bc34e377bd192f7fc57e0f",
+            "carculator_utils/carculator_utils/model.py": "48510d3286d0a217066dcf9c882eda4264b6168494ced170960fd085f59595ab",
+            "carculator_utils/dev/regenerate_premise_trucks.py": "fbb87888887c1fbf445c282165f4f7a79c375957bf16e47c4fa5b49aca1a5689",
+            "carculator_utils/dev/premise_vehicle_battery_metadata.py": "2eb650f0aa3e8673dea98a3e02e7ac2cdc59e12a4e325deab16b100ccd1d8f38"
+          },
+          "artifacts": {
+            "raw.json": {
+              "sha256": "4cb5c2f005045557c3317e3fba617f852cd8a6d2ba219d8e12e683bed6edfaaf"
+            },
+            "model_parameters.json": {
+              "sha256": "8b8464a0bd14e7bfd93f834df0cc034158b77103a8c9940f8f29ba488353b2b2"
+            },
+            "vehicle_parameters.csv": {
+              "sha256": "f17aa0ca08b2c2fb2398e5695a1d89891251f3bc9f21446571bafd86c32bff9f",
+              "companion file": "lci-trucks.parameters.csv"
+            },
+            "noise_audit.csv": {
+              "sha256": "2d0d601d9d6902e6cfc399c8651e31ff28ce54f7f55719b53c0172ec3691a050",
+              "companion file": "lci-trucks.noise.csv"
+            }
+          },
+          "baseline year": 2020,
+          "climate": "CH; Swiss annual-average thermal-demand assumptions",
+          "driving cycle": "Regional delivery",
+          "noise boundary": "Direct noise flows omitted from Premise imports; retained in noise_audit.csv identified by SHA-256."
+        },
+        "schema version": 2,
+        "workbook": "lci-trucks.xlsx",
+        "previous provenance": {
+          "hev_battery_policy": {
+            "profile": {
+              "cell_energy_kwh": 0.01485,
+              "cell_mass_kg": 0.205,
+              "cell_charge_kw": 0.066,
+              "cell_discharge_kw": 0.4,
+              "usable_share": 0.6,
+              "cell_mass_share": 0.7
+            },
+            "source": "A123 Systems (2014), Battery Pack Design, Validation, and Assembly Guide using A123 Systems Nanophosphate Cells, document 493005-002 Rev 02, Tables 4 and 30-33; AHR32113M1Ultra-B. https://ctc.chontech.ac.th/files/220427099180464_24051016164406.pdf",
+            "power_boundary": "Full motor discharge rating; excess braking power is curtailed at the pack continuous charge limit",
+            "energy_boundary": "Periodic finite regenerative buffer, no grid or engine charging; actual stored discharge sets equivalent full cycles",
+            "cycle_life_and_cost": "Inherited generic chemistry assumptions, not qualified for this high-power cell",
+            "lca_proxy": "User explicitly retains MIX capacity market and documents physical mass/chemistry mismatch; no mass-equivalence correction",
+            "approved_on": "2026-10-13"
+          },
+          "phev_battery_replacement_policy": {
+            "formula": "clip(lifetime km * electric utility factor * electric-mode net stored kJ/km / 3600 / nominal kWh / cycle life - 1, 0, 3)",
+            "cycle_basis": "equivalent full cycles of nominal capacity; no additional DoD divisor",
+            "energy_boundary": "inherited net stored-energy approximation; not gross charge/discharge throughput",
+            "calendar_ageing": "no separate truck calendar-age model",
+            "explicit_inputs": "nonzero counts retained for the whole pack; conflicting PHEV inputs rejected"
+          },
+          "hydrogen_compression_adaptation": {
+            "electricity kWh per kg H2": 2.450619246770454,
+            "inlet pressure bar": 30,
+            "tank pressure bar": 700,
+            "hydrogen product": "hydrogen, gaseous, low pressure",
+            "electricity product": "electricity, low voltage",
+            "delivery source": "Premise hydrogen supply, distributed by pipeline: arrives at 30 bar",
+            "compression model": "carculator_utils.inventory.hydrogen_compression_electricity; default temperature, stages and efficiencies",
+            "boundary": "Tank compression after pipeline delivery; pipeline preparation remains in hydrogen supply",
+            "approved on": "2026-10-13"
+          },
+          "cng_supply_basis": {
+            "delivered_LHV_MJ_per_kg": 46.5,
+            "source": "ecoinvent vehicle-grade natural gas market comment",
+            "policy": "Preserve model energy and source compression recipe; upstream gas energy is not delivered LHV",
+            "approved_on": "2026-10-13"
+          },
+          "year": 2020,
+          "country": "CH",
+          "cycle": "Regional delivery",
+          "target_range_km": 400,
+          "defaults": "Current 2020 cycle-specific load/mileage, sizing, lifetime and replacement values",
+          "proxy_policy": "Energy-preserving gasoline/LPG conversions approved by user 2026-10-13; retained diesel/diesel-hybrid/CNG manufacture and non-CO2 factors explicitly documented",
+          "transport_count": 52,
+          "production_count": 42,
+          "auxiliary_count": 33,
+          "retained_legacy_components": 26,
+          "legacy_components_version": "3.7",
+          "legacy_components_sha256": "c621a89d5ec35ab004b62edf8d2f2e2e3eb1b13a7a70eda328fe63520234b4a7",
+          "noise_exchanges": 1248,
+          "sha256": "33ec7051102722bde5ef6d30d541705c288388b3d91272561b970e051a554513",
+          "export_version": "3.12",
+          "commits": {
+            "carculator_truck": "c075a6f65996f7f622a85810d7e4c6fae998d641",
+            "carculator_utils": "d19bf76423c0299e788ddd440d8df257cdee5092",
+            "premise": "1745f1ffdc1b0aa9fe0b2eb544acbcdee28b2e08"
+          },
+          "source_sha256": {
+            "/Users/romain/GitHub/carculator_truck/carculator_truck/model.py": "1c1fb51e9f732ffdcbd25a5cac71614c01f09904be97717e034432078c302591",
+            "/Users/romain/GitHub/carculator_truck/carculator_truck/hybrid_battery.py": "fa91dbc33b1e4374324e5c8166aef11694802ab80e14092518562b5d4e309239",
+            "/Users/romain/GitHub/carculator_truck/carculator_truck/inventory.py": "071259a94158ae2af32c2690fd8be5182a0256e5cf4edeb3b9e68bbb60fc1d25",
+            "/Users/romain/GitHub/carculator_truck/carculator_truck/data/extra_parameters.json": "466e5826240594c527b1b3e5123b9f4edc1a730fa1f7aef42b26423f16e641ac",
+            "/Users/romain/GitHub/carculator_truck/carculator_truck/data/default_parameters.json": "6a4bb161aff677bbe02c57bbb377759ae420fcd0af6befb178ae1da960e57d11",
+            "/Users/romain/GitHub/carculator_truck/carculator_truck/data/payloads.yaml": "3e08a544e63a48f1a7af2d00b48d44136cbc5b94297344ab9db1bd80ce37b5bb",
+            "/Users/romain/GitHub/carculator_utils/carculator_utils/hot_emissions.py": "ad1785e64e83d050d33212faa52a1b5e119247ad8cede7eda13df1e2cce9262b",
+            "/Users/romain/GitHub/carculator_utils/carculator_utils/model.py": "48510d3286d0a217066dcf9c882eda4264b6168494ced170960fd085f59595ab",
+            "/Users/romain/GitHub/carculator_utils/dev/regenerate_premise_trucks.py": "fbb87888887c1fbf445c282165f4f7a79c375957bf16e47c4fa5b49aca1a5689",
+            "/Users/romain/GitHub/carculator_utils/dev/premise_vehicle_battery_metadata.py": "2eb650f0aa3e8673dea98a3e02e7ac2cdc59e12a4e325deab16b100ccd1d8f38"
+          },
+          "generation provenance": {
+            "schema version": 1,
+            "family": "truck",
+            "original model": "carculator_truck",
+            "model publication": "Sacchi, R., Bauer, C., Cox, B. L. (2021). Does Size Matter? The Influence of Size, Load Factor, Range Autonomy, and Application Type on the Life Cycle Assessment of Current and Future Medium- and Heavy-Duty Vehicles. Environmental Science & Technology 55(8), 5224-5235. https://doi.org/10.1021/acs.est.0c07773",
+            "model generation date": "2026-10-14",
+            "libraries": {
+              "carculator_truck": {
+                "version": "0.5.2",
+                "recorded git revision": "c075a6f65996f7f622a85810d7e4c6fae998d641"
+              },
+              "carculator_utils": {
+                "version": "1.3.7",
+                "recorded git revision": "d19bf76423c0299e788ddd440d8df257cdee5092"
+              }
+            },
+            "source revision boundary": "Recorded repository HEADs; file hashes identify the actual generation sources, including any uncommitted changes.",
+            "source file sha256": {
+              "carculator_truck/carculator_truck/model.py": "1c1fb51e9f732ffdcbd25a5cac71614c01f09904be97717e034432078c302591",
+              "carculator_truck/carculator_truck/hybrid_battery.py": "fa91dbc33b1e4374324e5c8166aef11694802ab80e14092518562b5d4e309239",
+              "carculator_truck/carculator_truck/inventory.py": "071259a94158ae2af32c2690fd8be5182a0256e5cf4edeb3b9e68bbb60fc1d25",
+              "carculator_truck/carculator_truck/data/extra_parameters.json": "466e5826240594c527b1b3e5123b9f4edc1a730fa1f7aef42b26423f16e641ac",
+              "carculator_truck/carculator_truck/data/default_parameters.json": "6a4bb161aff677bbe02c57bbb377759ae420fcd0af6befb178ae1da960e57d11",
+              "carculator_truck/carculator_truck/data/payloads.yaml": "3e08a544e63a48f1a7af2d00b48d44136cbc5b94297344ab9db1bd80ce37b5bb",
+              "carculator_utils/carculator_utils/hot_emissions.py": "ad1785e64e83d050d33212faa52a1b5e119247ad8cede7eda13df1e2cce9262b",
+              "carculator_utils/carculator_utils/model.py": "48510d3286d0a217066dcf9c882eda4264b6168494ced170960fd085f59595ab",
+              "carculator_utils/dev/regenerate_premise_trucks.py": "fbb87888887c1fbf445c282165f4f7a79c375957bf16e47c4fa5b49aca1a5689",
+              "carculator_utils/dev/premise_vehicle_battery_metadata.py": "2eb650f0aa3e8673dea98a3e02e7ac2cdc59e12a4e325deab16b100ccd1d8f38"
+            },
+            "artifacts": {
+              "raw.json": {
+                "sha256": "c86e28ecc60060bba90c62c1b988583b84ec43a45f759bedf45346226a9219e9"
+              },
+              "model_parameters.json": {
+                "sha256": "8b8464a0bd14e7bfd93f834df0cc034158b77103a8c9940f8f29ba488353b2b2"
+              },
+              "vehicle_parameters.csv": {
+                "sha256": "f17aa0ca08b2c2fb2398e5695a1d89891251f3bc9f21446571bafd86c32bff9f",
+                "companion file": "lci-trucks.parameters.csv"
+              },
+              "noise_audit.csv": {
+                "sha256": "2d0d601d9d6902e6cfc399c8651e31ff28ce54f7f55719b53c0172ec3691a050",
+                "companion file": "lci-trucks.noise.csv"
+              }
+            },
+            "baseline year": 2020,
+            "climate": "CH; Swiss annual-average thermal-demand assumptions",
+            "driving cycle": "Regional delivery",
+            "noise boundary": "Direct noise flows omitted from Premise imports; retained in noise_audit.csv identified by SHA-256."
+          },
+          "schema version": 2,
+          "workbook": "lci-trucks.xlsx",
+          "previous provenance": {
+            "schema version": 2,
+            "workbook": "lci-trucks.xlsx",
+            "sha256": "68a01680b40b18f55efddc96f1df6167de55d794958e2f695d59701c69fc0331",
+            "generation provenance": {
+              "schema version": 1,
+              "family": "truck",
+              "original model": "carculator_truck",
+              "model publication": "Sacchi, R., Bauer, C., Cox, B. L. (2021). Does Size Matter? The Influence of Size, Load Factor, Range Autonomy, and Application Type on the Life Cycle Assessment of Current and Future Medium- and Heavy-Duty Vehicles. Environmental Science & Technology 55(8), 5224-5235. https://doi.org/10.1021/acs.est.0c07773",
+              "model generation date": "2026-10-13",
+              "libraries": {
+                "carculator_truck": {
+                  "version": "0.5.2",
+                  "recorded git revision": "fb0106ea89bb928c24c718559e2163c504233481"
+                },
+                "carculator_utils": {
+                  "version": "1.3.7",
+                  "recorded git revision": "142185c1abdb7cce08842196d3c90a47d70b9773"
+                }
+              },
+              "source revision boundary": "Recorded repository HEADs; file hashes identify the actual generation sources, including any uncommitted changes.",
+              "source file sha256": {
+                "carculator_truck/carculator_truck/model.py": "1c1fb51e9f732ffdcbd25a5cac71614c01f09904be97717e034432078c302591",
+                "carculator_truck/carculator_truck/hybrid_battery.py": "fa91dbc33b1e4374324e5c8166aef11694802ab80e14092518562b5d4e309239",
+                "carculator_truck/carculator_truck/inventory.py": "071259a94158ae2af32c2690fd8be5182a0256e5cf4edeb3b9e68bbb60fc1d25",
+                "carculator_truck/carculator_truck/data/extra_parameters.json": "466e5826240594c527b1b3e5123b9f4edc1a730fa1f7aef42b26423f16e641ac",
+                "carculator_truck/carculator_truck/data/default_parameters.json": "6a4bb161aff677bbe02c57bbb377759ae420fcd0af6befb178ae1da960e57d11",
+                "carculator_truck/carculator_truck/data/payloads.yaml": "3e08a544e63a48f1a7af2d00b48d44136cbc5b94297344ab9db1bd80ce37b5bb",
+                "carculator_utils/carculator_utils/hot_emissions.py": "ad1785e64e83d050d33212faa52a1b5e119247ad8cede7eda13df1e2cce9262b",
+                "carculator_utils/carculator_utils/model.py": "56d7ce2a9f02ae5d517f3ccbe703e304074bd3282c24af17fc60144201dff3a0",
+                "carculator_utils/dev/regenerate_premise_trucks.py": "7a417481441c2543570a72e93f4ed2d5d46200bc176a24ee9e5e5924ae59b2ae",
+                "carculator_utils/dev/premise_vehicle_battery_metadata.py": "2eb650f0aa3e8673dea98a3e02e7ac2cdc59e12a4e325deab16b100ccd1d8f38"
+              },
+              "artifacts": {
+                "raw.json": {
+                  "sha256": "462c811dcf3147eda4e1d5722ce0dc0c4bcae0109e9ff0d1a8960d6e9cb42e65"
+                },
+                "model_parameters.json": {
+                  "sha256": "fe43982e9d175a55d53ccbe5fd79a3f545880703fea88967aa6c8bcebb45e139"
+                },
+                "vehicle_parameters.csv": {
+                  "sha256": "e7a9ffd853ec52988ed288e84192aff6ec477cf08e215cf59a2b69758b1411c7",
+                  "companion file": "lci-trucks.parameters.csv"
+                },
+                "noise_audit.csv": {
+                  "sha256": "2d0d601d9d6902e6cfc399c8651e31ff28ce54f7f55719b53c0172ec3691a050",
+                  "companion file": "lci-trucks.noise.csv"
+                }
+              },
+              "baseline year": 2020,
+              "climate": "CH; Swiss annual-average thermal-demand assumptions",
+              "driving cycle": "Regional delivery",
+              "noise boundary": "Direct noise flows omitted from Premise imports; retained in noise_audit.csv identified by SHA-256."
+            },
+            "previous provenance": {
+              "hev_battery_policy": {
+                "profile": {
+                  "cell_energy_kwh": 0.01485,
+                  "cell_mass_kg": 0.205,
+                  "cell_charge_kw": 0.066,
+                  "cell_discharge_kw": 0.4,
+                  "usable_share": 0.6,
+                  "cell_mass_share": 0.7
+                },
+                "source": "A123 Systems (2014), Battery Pack Design, Validation, and Assembly Guide using A123 Systems Nanophosphate Cells, document 493005-002 Rev 02, Tables 4 and 30-33; AHR32113M1Ultra-B. https://ctc.chontech.ac.th/files/220427099180464_24051016164406.pdf",
+                "power_boundary": "Full motor discharge rating; excess braking power is curtailed at the pack continuous charge limit",
+                "energy_boundary": "Periodic finite regenerative buffer, no grid or engine charging; actual stored discharge sets equivalent full cycles",
+                "cycle_life_and_cost": "Inherited generic chemistry assumptions, not qualified for this high-power cell",
+                "lca_proxy": "User explicitly retains MIX capacity market and documents physical mass/chemistry mismatch; no mass-equivalence correction",
+                "approved_on": "2026-10-13"
+              },
+              "phev_battery_replacement_policy": {
+                "formula": "clip(lifetime km * electric utility factor * electric-mode net stored kJ/km / 3600 / nominal kWh / cycle life - 1, 0, 3)",
+                "cycle_basis": "equivalent full cycles of nominal capacity; no additional DoD divisor",
+                "energy_boundary": "inherited net stored-energy approximation; not gross charge/discharge throughput",
+                "calendar_ageing": "no separate truck calendar-age model",
+                "explicit_inputs": "nonzero counts retained for the whole pack; conflicting PHEV inputs rejected"
+              },
+              "hydrogen_compression_adaptation": {
+                "electricity kWh per kg H2": 2.450619246770454,
+                "inlet pressure bar": 30,
+                "tank pressure bar": 700,
+                "hydrogen product": "hydrogen, gaseous, low pressure",
+                "electricity product": "electricity, low voltage",
+                "delivery source": "Premise hydrogen supply, distributed by pipeline: arrives at 30 bar",
+                "compression model": "carculator_utils.inventory.hydrogen_compression_electricity; default temperature, stages and efficiencies",
+                "boundary": "Tank compression after pipeline delivery; pipeline preparation remains in hydrogen supply",
+                "approved on": "2026-10-13"
+              },
+              "cng_supply_basis": {
+                "delivered_LHV_MJ_per_kg": 46.5,
+                "source": "ecoinvent vehicle-grade natural gas market comment",
+                "policy": "Preserve model energy and source compression recipe; upstream gas energy is not delivered LHV",
+                "approved_on": "2026-10-13"
+              },
+              "year": 2020,
+              "country": "CH",
+              "cycle": "Regional delivery",
+              "target_range_km": 400,
+              "defaults": "Current 2020 cycle-specific load/mileage, sizing, lifetime and replacement values",
+              "proxy_policy": "Energy-preserving gasoline/LPG conversions approved by user 2026-10-13; retained diesel/diesel-hybrid/CNG manufacture and non-CO2 factors explicitly documented",
+              "transport_count": 52,
+              "production_count": 42,
+              "auxiliary_count": 33,
+              "retained_legacy_components": 26,
+              "legacy_components_version": "3.7",
+              "legacy_components_sha256": "72592630a3605bd06bdf8eefb08da72a541fa4c4b56c75c1fca4b1bd5797dc4b",
+              "noise_exchanges": 1248,
+              "sha256": "cdb52b3375b51be507bfe7093216ddabbe8f5bf4e40da685da3ddc48db376b18",
+              "export_version": "3.12",
+              "commits": {
+                "carculator_truck": "e49c0d8f13051a4a712a1fac271c5990618d7894",
+                "carculator_utils": "ea55c5e0dc34c32748b496e39127d54ca2faa8c7",
+                "premise": "0be3f0335bfc9a52d1a4f7103fc7ab49e4e779d2"
+              },
+              "source_sha256": {
+                "/Users/romain/GitHub/carculator_truck/carculator_truck/model.py": "1c1fb51e9f732ffdcbd25a5cac71614c01f09904be97717e034432078c302591",
+                "/Users/romain/GitHub/carculator_truck/carculator_truck/hybrid_battery.py": "fa91dbc33b1e4374324e5c8166aef11694802ab80e14092518562b5d4e309239",
+                "/Users/romain/GitHub/carculator_truck/carculator_truck/inventory.py": "071259a94158ae2af32c2690fd8be5182a0256e5cf4edeb3b9e68bbb60fc1d25",
+                "/Users/romain/GitHub/carculator_truck/carculator_truck/data/extra_parameters.json": "466e5826240594c527b1b3e5123b9f4edc1a730fa1f7aef42b26423f16e641ac",
+                "/Users/romain/GitHub/carculator_truck/carculator_truck/data/default_parameters.json": "6a4bb161aff677bbe02c57bbb377759ae420fcd0af6befb178ae1da960e57d11",
+                "/Users/romain/GitHub/carculator_truck/carculator_truck/data/payloads.yaml": "3e08a544e63a48f1a7af2d00b48d44136cbc5b94297344ab9db1bd80ce37b5bb",
+                "/Users/romain/GitHub/carculator_utils/carculator_utils/hot_emissions.py": "ad1785e64e83d050d33212faa52a1b5e119247ad8cede7eda13df1e2cce9262b",
+                "/Users/romain/GitHub/carculator_utils/carculator_utils/model.py": "56d7ce2a9f02ae5d517f3ccbe703e304074bd3282c24af17fc60144201dff3a0",
+                "/Users/romain/GitHub/carculator_utils/dev/regenerate_premise_trucks.py": "4f9b50098c4d5ebe68a20b4bcf145bafecac6350496495911d7155cae528f3ff"
+              }
+            },
+            "metadata update": {
+              "date": "2026-10-14",
+              "before workbook sha256": "82309c4c6ad25583cb997955320264b4250cfa6a8115143dd38b05cb0ea9ea1d",
+              "before sidecar sha256": "3a6812db475c59c06c2661f6643bada2a27a1580d11368d80ec813c91758e1d5",
+              "boundary": "Metadata and workbook database header only; no model regeneration or exchange changes."
+            }
+          }
+        }
+      }
+    }
+  },
+  "legacy component corrections": {
+    "source revision": "ff79a88d0e7fc85f116cbe8387a458ac824e94b6",
+    "source workbook sha256": "e4a4b581c35c08e5a9f18a37cdd7bf6306172fd68234c43390bffc0779a7e3ca",
+    "activities": [
+      "Fuel tank, compressed hydrogen gas, 700bar, with HDPE liner",
+      "Fuel tank, compressed hydrogen gas, 700bar, with aluminium liner"
+    ],
+    "boundary": "Preserve the master-branch dry-mass and MJ-to-kWh correction after splitting the original truck workbook. Other 24 legacy activities and regenerated vehicle workbooks unchanged."
+  }
+}

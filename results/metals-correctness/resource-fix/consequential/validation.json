@@ -1,0 +1,45 @@
+{
+  "datasets": 27576,
+  "non_resource_exchanges_unchanged": true,
+  "resource_changes": 46,
+  "changes_by_resource": {
+    "Zinc": 29,
+    "Cobalt": 17
+  },
+  "prior_scores_reproduced": 6630,
+  "scenario": {
+    "model": "image",
+    "pathway": "SSP2-M",
+    "year": 2050
+  },
+  "source_fingerprint": "b56820316f853590d1d5b40c30e53596feac53aa946722585b22492728e0e5f8",
+  "code_sha256": {
+    "metals.py": "9e5d4e8a61b122098d8d2cd22b0dfa0f376efa3b7d28ab5a800c32dba4d59a82",
+    "metals_rules.py": "83d0c218c5e3be0e5d71c8f2dcc092c4d09c68a7db5101d716bfc1c6e9584a21",
+    "data_collection.py": "e4a9a34f0b6c0cccef41d8e237a6dfeb27faceecb81060b96ad78276a7393dd3",
+    "validation.py": "5e67026bd0ab2ee49dc8c497c2bc2a563eeb66e63370f1857bcfd1834b3308ff"
+  },
+  "configuration_sha256": {
+    "mining_shares_mapping.xlsx": "f51b1fec81cd6ff2693e5d3f9e05ffde3a54e79a15b27e7d9e63d88095acc5ff",
+    "transport_activities_mapping.yml": "c2380307775937dfa7d70d88fb508d74182be48ade9916eec8402712ffeae795",
+    "BGS_mapping.xlsx": "af7b704e8eac0fb87b05a1576ebeceeebffeb70bafceb49e691018e4b1076b3e",
+    "primary_secondary_split.yaml": "cb56e74eb4ce0fa2d24cc96f6eacc681df2a6989c4edb7e1cbe346ebea54c8e1",
+    "metal_products.yaml": "f6eb9c91a13d5196d9a32b9c30839c7075c55217fe15ed59cbb295247417f864",
+    "SI_2_Material_requirements.xlsx": "d4867f30a10432e2143115e86af1f65aab0a7ab0d581f19d1e52eab980f6a050",
+    "metals_db.xlsx": "81d84db676c753f20de6f5ace9ae97145cc5ed8d3788e9f6c42e45a3c3d9b554",
+    "ecoinvent_factors.csv": "087ee79608b5ad22f10b62a0e2dc16249fe11349dbbaacbe345a50959aca2266",
+    "secondary_supply_activities.yaml": "7fa070cf59aae49260d8464e6e7315bed521edfe919ccb591e2eddef5147ed65",
+    "technology_conversion_factors.yaml": "7dce85b928bf97251a7010f6514a6b5847afb8812a416eab6cd868f2f5108c60",
+    "metals_db.csv": "6959bee53dcfdf12c12dd0718f87696bb97a576062adec3df4ef4febc219eb96",
+    "transport_activities_mapping.yaml": "a0c06664a42582141bbbd3e83746cb7036322b21f9dadb81b39c150d7780ae9f",
+    "activities_mapping.yml": "cd17ba5687b302f337823312362c47b53cf4598292df0ad165484988ca1bfba6",
+    "transport_markets_data.csv": "1b1054017fd31070cad5d3d9457b07f30ff3da70b3897a3fa58f3220ce1a8131"
+  },
+  "verified_export_equivalent": true,
+  "verified_code_sha256": {
+    "metals.py": "cb47c34c761a1c5965305972e12f1b30d3bb49f5eb5cdf5e8ca0f76cc860456b",
+    "metals_rules.py": "83d0c218c5e3be0e5d71c8f2dcc092c4d09c68a7db5101d716bfc1c6e9584a21",
+    "data_collection.py": "e4a9a34f0b6c0cccef41d8e237a6dfeb27faceecb81060b96ad78276a7393dd3",
+    "validation.py": "5e67026bd0ab2ee49dc8c497c2bc2a563eeb66e63370f1857bcfd1834b3308ff"
+  }
+}

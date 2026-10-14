@@ -1,0 +1,67 @@
+stage,market,activity,product,location,contribution
+source,"copper, cathode",molybdenite mine operation,molybdenite,GLO,-1.4087247527268583
+source,"copper, cathode","copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",RoW,0.6243861868233573
+source,"copper, cathode","copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",CL,0.5231470135062267
+source,"copper, cathode","copper production, cathode, solvent extraction and electrowinning process","copper, cathode",GLO,0.3164490249187688
+source,"copper, cathode","copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",CN,0.21920299093064816
+source,"copper, cathode","copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",AU,0.12274615112229209
+source,"copper, cathode","copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",US,0.10435112402568648
+source,"copper, cathode","copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",RU,0.0958192732153123
+source,"copper, cathode","copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",CA,0.09148772548526027
+source,"copper, cathode","copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",ID,0.07525095408699127
+source,"copper, cathode",Remaining contributions,,,0.14311401769815335
+source,sulfur,"sodium sulfate production, from natural sources","sodium sulfate, anhydrite",RoW,-9.237176928184947e-07
+source,sulfur,cobalt production,cobalt,GLO,5.306422251306611e-07
+source,sulfur,"sodium sulfate production, from natural sources","sodium sulfate, anhydrite",RER,-2.1887694462639007e-07
+source,sulfur,zinc mine operation,zinc concentrate,GLO,8.336619143598672e-09
+source,sulfur,citric acid production,citric acid,CN,-1.0128506327588097e-09
+source,sulfur,nylon 6 production,nylon 6,RoW,6.390418775579587e-10
+source,sulfur,"nylon 6-6 production, glass-filled","nylon 6-6, glass-filled",RoW,6.354680435465399e-10
+source,sulfur,"sodium nitrate production, unrefined from caliche ore mining","sodium nitrate, unrefined",CL,4.670823404024635e-10
+source,sulfur,"nylon 6-6 production, glass-filled","nylon 6-6, glass-filled",RER,3.1383100846301275e-10
+source,sulfur,nylon 6 production,nylon 6,RER,3.023243332905198e-10
+source,sulfur,Remaining contributions,,,-4.291621470918659e-10
+previous,"copper, cathode","electrorefining of copper, anode","copper, cathode",GLO,0.7852615144015287
+previous,"copper, cathode","copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",RoW,0.624302046690765
+previous,"copper, cathode","copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",CL,0.5230765160160344
+previous,"copper, cathode","copper production, cathode, solvent extraction and electrowinning process","copper, cathode",GLO,0.22130113372620994
+previous,"copper, cathode","copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",CN,0.21917345189037027
+previous,"copper, cathode","copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",AU,0.1227296102736177
+previous,"copper, cathode","copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",US,0.10433706202752417
+previous,"copper, cathode","copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",RU,0.09580636093998754
+previous,"copper, cathode","copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",CA,0.09147539691439283
+previous,"copper, cathode","copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",ID,0.07524081352752951
+previous,"copper, cathode",Remaining contributions,,,0.14217252990022144
+previous,sulfur,"sodium sulfate production, from natural sources","sodium sulfate, anhydrite",RoW,-9.246004675642226e-07
+previous,sulfur,"sodium sulfate production, from natural sources","sodium sulfate, anhydrite",RER,-2.186377610177174e-07
+previous,sulfur,citric acid production,citric acid,CN,-1.433539921595111e-09
+previous,sulfur,nylon 6 production,nylon 6,RoW,6.432578307319982e-10
+previous,sulfur,"nylon 6-6 production, glass-filled","nylon 6-6, glass-filled",RoW,6.431939135845517e-10
+previous,sulfur,"sodium nitrate production, unrefined from caliche ore mining","sodium nitrate, unrefined",CL,4.799136671874625e-10
+previous,sulfur,"nylon 6-6 production, glass-filled","nylon 6-6, glass-filled",RER,3.176464915942228e-10
+previous,sulfur,nylon 6 production,nylon 6,RER,3.043540519947752e-10
+previous,sulfur,citric acid production,citric acid,RoW,-2.1310987524385555e-10
+previous,sulfur,"polyvinylidenchloride production, granulate","polyvinylidenchloride, granulate",RoW,-1.0395775091185235e-10
+previous,sulfur,Remaining contributions,,,-2.3766723191250065e-10
+conservative,"copper, cathode",molybdenite mine operation,molybdenite,GLO,-1.4087247878916431
+conservative,"copper, cathode","copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",RoW,0.6243862034069386
+conservative,"copper, cathode","copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",CL,0.5231470274009145
+conservative,"copper, cathode","copper production, cathode, solvent extraction and electrowinning process","copper, cathode",GLO,0.3164490340289445
+conservative,"copper, cathode","copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",CN,0.21920299675263902
+conservative,"copper, cathode","copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",AU,0.12274615438240712
+conservative,"copper, cathode","copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",US,0.104351126797233
+conservative,"copper, cathode","copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",RU,0.09581927576025445
+conservative,"copper, cathode","copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",CA,0.0914877279151573
+conservative,"copper, cathode","copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",ID,0.07525095608564267
+conservative,"copper, cathode",Remaining contributions,,,0.1431140243358895
+conservative,sulfur,"sodium sulfate production, from natural sources","sodium sulfate, anhydrite",RoW,-9.237472570226851e-07
+conservative,sulfur,cobalt production,cobalt,GLO,5.306419415391853e-07
+conservative,sulfur,"sodium sulfate production, from natural sources","sodium sulfate, anhydrite",RER,-2.1888086854923965e-07
+conservative,sulfur,zinc mine operation,zinc concentrate,GLO,8.336643368997632e-09
+conservative,sulfur,citric acid production,citric acid,CN,-1.0395680796466914e-09
+conservative,sulfur,nylon 6 production,nylon 6,RoW,6.390409293814292e-10
+conservative,sulfur,"nylon 6-6 production, glass-filled","nylon 6-6, glass-filled",RoW,6.354667760122957e-10
+conservative,sulfur,"sodium nitrate production, unrefined from caliche ore mining","sodium nitrate, unrefined",CL,4.670731808708214e-10
+conservative,sulfur,"nylon 6-6 production, glass-filled","nylon 6-6, glass-filled",RER,3.138303824900211e-10
+conservative,sulfur,nylon 6 production,nylon 6,RER,3.023238609034962e-10
+conservative,sulfur,Remaining contributions,,,-4.339196447257318e-10

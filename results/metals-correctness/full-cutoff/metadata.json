@@ -1,0 +1,23 @@
+{
+  "project": "metals-correctness-3.12-cutoff",
+  "biosphere": "ecoinvent-3.12-biosphere",
+  "source": "ecoinvent-3.12-cutoff",
+  "before": "metals-audit-before-full-cutoff",
+  "after": "metals-audit-final-full-cutoff",
+  "output": "results/metals-correctness/full-cutoff",
+  "reuse_scores": "/private/tmp/metals-score-reference-cache/full-cutoff",
+  "relics_version": "0.0.6",
+  "relics_mapping_sha256": "c2cde55d0468c6153937b3707ec692b83cda426d0028837fc211550d9c4e0af0",
+  "bw2calc_version": "2.4.0",
+  "characterized_indicators": 66,
+  "unmatched_patterns": 4,
+  "database_fingerprints": {
+    "ecoinvent-3.12-cutoff": "60add02291fe72157ac0445b309f67395f14797163395b6601691a5b27d34c57",
+    "metals-audit-before-full-cutoff": "ae19f0943257cf238374de8a9f5159b66ac0702e1c6f472f756adc630d866ba0",
+    "metals-audit-final-full-cutoff": "daa8dbbb8df231815e081173ab0b1615d9764f1412e0e339766bf1aae0a1e655"
+  },
+  "reused_stages": [
+    "source",
+    "before"
+  ]
+}

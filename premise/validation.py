@@ -10,7 +10,7 @@ from functools import lru_cache
 import numpy as np
 import pandas as pd
 import yaml
-from .car_energy import car_class, fuel_balance, minimum_energy
+from .car_energy import car_class, fuel_balance, fuel_spec, minimum_energy
 from .inventory_normalization import (
     normalize_inventory_numeric_types,
     normalize_inventory_uncertainty,
@@ -196,6 +196,72 @@ def load_car_exhaust_pollutants():
             nested_dict[powertrain][euro_class][component] = value
 
     return nested_dict
+
+
+TRANSPORT_POLLUTANT_ALIASES = {
+    "lead": {"lead", "lead ii"},
+    "carbon monoxide": {
+        "carbon monoxide",
+        "carbon monoxide, fossil",
+        "carbon monoxide, non-fossil",
+    },
+    "methane": {"methane", "methane, fossil", "methane, non-fossil"},
+    "nmvoc": {
+        "nmvoc",
+        "nmvoc, non-methane volatile organic compounds",
+        "non-methane hydrocarbon",
+    },
+    "hydrocarbon": {"hydrocarbon", "hydrocarbons"},
+    "hydrocarbons": {"hydrocarbon", "hydrocarbons"},
+    "particulate": {
+        "particulate matter, < 2.5 um",
+        "particulates, < 2.5 um",
+        "particulate matters 2.5",
+    },
+    "dinitrogen monoxide": {"dinitrogen monoxide", "dinitrogen oxide"},
+    "ethene": {"ethene", "ethylene"},
+    "propene": {"propene", "propylene"},
+    "pah": {
+        "pah, polycyclic aromatic hydrocarbons",
+        "pah polycyclic aromatic hydrocarbons",
+    },
+    "pah polycyclic aromatic hydrocarbons": {
+        "pah, polycyclic aromatic hydrocarbons",
+        "pah polycyclic aromatic hydrocarbons",
+    },
+}
+
+TRANSPORT_EURO_CLASSES = {
+    "EURO-III": "3",
+    "EURO-IV": "4",
+    "EURO-V": "5",
+    "EURO-VI": "6",
+    "EURO-2": "2",
+    "EURO-3": "3",
+    "EURO-4": "4",
+    "EURO-5": "5",
+    "EURO-6": "6.2",
+    "EURO-6ab": "6",
+}
+
+
+def transport_emission_class(name):
+    """Resolve the complete EURO label to the packaged coefficient key.
+
+    Keep the existing generic car EURO-6 convention (6.2); it does not establish
+    a more specific certification class. Roman VI and car 6ab are separate keys.
+    """
+    return TRANSPORT_EURO_CLASSES.get(name.rsplit(", ", 1)[-1])
+
+
+def matches_transport_air_pollutant(exchange, pollutant):
+    """Match explicit air-flow aliases, never a substring of another species."""
+    categories = exchange.get("categories") or ()
+    if exchange.get("type") != "biosphere" or not categories or categories[0] != "air":
+        return False
+    name = exchange.get("name", "").casefold()
+    pollutant = pollutant.casefold()
+    return name in TRANSPORT_POLLUTANT_ALIASES.get(pollutant, {pollutant})
 
 
 @lru_cache(maxsize=1)
@@ -1787,7 +1853,12 @@ class HeatValidation(BaseDatasetValidator):
                 # add input of natural gas
                 nat_gas = sum(
                     [
-                        exc["amount"] * (36 if exc["unit"] == "cubic meter" else 47.5)
+                        exc["amount"]
+                        * (
+                            36
+                            if exc["unit"] == "cubic meter"
+                            else 46.5 if "vehicle grade" in exc["name"] else 47.5
+                        )
                         for exc in ds["exchanges"]
                         if "natural gas" in exc["name"]
                         and exc["type"] == "technosphere"
@@ -1801,7 +1872,12 @@ class HeatValidation(BaseDatasetValidator):
 
                 lpg = sum(
                     [
-                        exc["amount"] * (36 if exc["unit"] == "cubic meter" else 47.5)
+                        exc["amount"]
+                        * (
+                            36
+                            if exc["unit"] == "cubic meter"
+                            else 46.5 if "vehicle grade" in exc["name"] else 47.5
+                        )
                         for exc in ds["exchanges"]
                         if "liquefied petroleum gas" in exc["name"]
                         and exc["type"] == "technosphere"
@@ -1867,7 +1943,12 @@ class HeatValidation(BaseDatasetValidator):
                 # add input of methane
                 methane = sum(
                     [
-                        exc["amount"] * (36 if exc["unit"] == "cubic meter" else 47.5)
+                        exc["amount"]
+                        * (
+                            36
+                            if exc["unit"] == "cubic meter"
+                            else 46.5 if "vehicle grade" in exc["name"] else 47.5
+                        )
                         for exc in ds["exchanges"]
                         if "methane" in exc["name"]
                         and exc["type"] == "technosphere"
@@ -2045,18 +2126,6 @@ class TransportValidation(BaseDatasetValidator):
     def __init__(self, model, scenario, year, regions, database, iam_data):
         super().__init__(model, scenario, year, regions, database)
         self.iam_data = iam_data
-        self.euro_class_map = {
-            "EURO-III": 3,
-            "EURO-IV": 4,
-            "EURO-V": 5,
-            "EURO-VI": 6,
-            "EURO-2": 2,
-            "EURO-3": 3,
-            "EURO-4": 4,
-            "EURO-5": 5,
-            "EURO-6": 6.2,
-            "EURO-6ab": 6.0,
-        }
         self.exhaust = None
 
     def validate_and_normalize_exchanges(self):
@@ -2095,49 +2164,80 @@ class TransportValidation(BaseDatasetValidator):
                 )
 
     def calculate_fuel_consumption(self, ds):
-        if car_class(ds["name"]) is not None:
-            energy, _, _, production = fuel_balance(ds)
-            return energy * production
-        fuel_consumption = sum(
-            x["amount"] * 43
-            for x in ds["exchanges"]
-            if x["name"].startswith(("market for diesel", "market for petrol"))
-            and x["unit"] == "kilogram"
-        )
-        if fuel_consumption == 0:
-            fuel_consumption = sum(
-                x["amount"] * 47.5
-                for x in ds["exchanges"]
-                if "natural gas" in x["name"] and x["unit"] == "kilogram"
-            )
-        return fuel_consumption
+        """Return fuel LHV in MJ per reference activity; reject missing fuel.
+
+        Cars and trucks share the explicit market/market-group and unit lookup.
+        A missing or unsupported fuel is not evidence of zero fuel energy.
+        """
+        energy = 0.0
+        for exchange in ds["exchanges"]:
+            if exchange.get("type") != "technosphere":
+                continue
+            properties = fuel_spec(exchange.get("name", ""), exchange.get("unit", ""))
+            if properties is None:
+                continue
+            amount = float(exchange["amount"])
+            if not math.isfinite(amount) or amount < 0:
+                raise ValueError(
+                    "Transport fuel amounts must be finite and nonnegative"
+                )
+            energy += amount * properties[0]
+        if not math.isfinite(energy):
+            raise ValueError("Transport fuel energy must be finite")
+        if energy <= 0:
+            raise LookupError("No positive supported transport fuel input")
+        return energy
 
     def calculate_actual_emission(self, ds, pollutant):
         return sum(
             x["amount"]
             for x in ds["exchanges"]
-            if pollutant.lower() in x["name"].lower()
-            and x["type"] == "biosphere"
-            and x.get("categories", [None])[0] == "air"
+            if matches_transport_air_pollutant(x, pollutant)
         )
 
     def validate_emissions(self, ds, actual, expected, pollutant):
-        # A zero reference factor (e.g. lead for EURO-6 gasoline cars) is
-        # satisfied by zero inventory emissions, including an absent exchange.
+        """Report a hot-factor diagnostic without changing combined emissions.
+
+        The inherited twofold screen is a heuristic, not a calibrated bound or
+        a regulatory limit. A disagreement cannot establish an inventory error:
+        cold starts, evaporation, deterioration and calibration may be present.
+        """
+        if not all(math.isfinite(value) and value >= 0 for value in (actual, expected)):
+            self.log_issue(
+                ds,
+                "invalid transport emission amount",
+                f"{pollutant}: actual={actual}, hot reference={expected}; "
+                "emission amounts and references must be finite and nonnegative.",
+                issue_type="major",
+            )
+            return
         if actual == expected == 0.0:
             return
-
         if actual == 0.0:
-            message = f"No emission factor found for {pollutant}."
-            self.log_issue(ds, f"no emission factor for {pollutant}", message)
-            return
-
-        if not math.isclose(actual, expected, rel_tol=0.5):
-            message = (
-                f"Emission factor for {pollutant} is {actual}; expected approximately "
-                f"{expected}."
+            self.log_issue(
+                ds,
+                "transport emission unavailable",
+                f"No positive inventory emission for {pollutant}; hot-only "
+                f"reference={expected} kg per reference activity. "
+                "An absent or zero flow is not a missing coefficient.",
             )
-            self.log_issue(ds, "incorrect emission factor", message, issue_type="major")
+            return
+        lower, upper = 0.5 * expected, 2 * expected
+        # Accept numerical noise at a boundary without widening the scientific screen.
+        within = lower <= actual <= upper or any(
+            math.isclose(actual, bound, rel_tol=1e-6) for bound in (lower, upper)
+        )
+        if not within:
+            self.log_issue(
+                ds,
+                "transport hot emission diagnostic",
+                f"{pollutant}: combined inventory={actual} kg; hot-only "
+                f"reference={expected} kg per reference activity. Outside "
+                "the heuristic 0.5–2 × screen. Cold starts, evaporation, "
+                "deterioration and model calibration are not reconstructed; "
+                "this is not a like-for-like total-emission or EURO-limit check. "
+                "Inventory preserved; investigate using the component inventory.",
+            )
 
     def check_pollutant_emissions(self, vehicle_name):
 
@@ -2153,37 +2253,101 @@ class TransportValidation(BaseDatasetValidator):
         ]
 
         for ds in relevant_ds:
-            powertrain = ds["name"].split(", ")[-3]
-            euro_class = next((x for x in self.euro_class_map if x in ds["name"]), None)
+            parts = ds["name"].split(", ")
+            if len(parts) < 3:
+                continue
+            powertrain = parts[-3]
+            if powertrain not in self.exhaust:
+                continue
+            euro_class = transport_emission_class(ds["name"])
+            factors = self.exhaust[powertrain].get(euro_class)
+            if factors is not None and vehicle_name == "transport, freight, lorry":
+                factors = factors.get(parts[-2].removesuffix(" gross weight"))
+            if factors is None:
+                self.log_issue(
+                    ds,
+                    "transport emission reference unavailable",
+                    "No exact powertrain/EURO-class/size reference; "
+                    "inventory preserved without selecting a neighbouring class.",
+                )
+                continue
+            try:
+                fuel_consumption = self.calculate_fuel_consumption(ds)
+            except LookupError as error:
+                self.log_issue(
+                    ds,
+                    "transport emission fuel reference unavailable",
+                    f"Cannot construct a hot reference: {error}. "
+                    "Inventory preserved; no zero-fuel assumption.",
+                )
+                fuel_consumption = None
+            except (ValueError, TypeError) as error:
+                self.log_issue(
+                    ds,
+                    "invalid transport fuel input",
+                    f"Cannot construct a hot reference: {error}.",
+                    issue_type="major",
+                )
+                fuel_consumption = None
 
-            size = None
-            if vehicle_name == "transport, freight, lorry":
-                size = ds["name"].split(", ")[4].replace(" gross weight", "")
-
-            fuel_consumption = self.calculate_fuel_consumption(ds)
-
-            if powertrain in self.exhaust:
-                if str(self.euro_class_map[euro_class]) in self.exhaust[powertrain]:
-                    if size is None:
-                        for pollutant, expected_value in self.exhaust[powertrain][
-                            str(self.euro_class_map[euro_class])
-                        ].items():
-                            expected_value /= 1000  # g/MJ to kg/MJ
-                            expected_value *= fuel_consumption
-                            actual = self.calculate_actual_emission(ds, pollutant)
-                            self.validate_emissions(
-                                ds, actual, expected_value, pollutant
-                            )
-                    else:
-                        for pollutant, expected_value in self.exhaust[powertrain][
-                            str(self.euro_class_map[euro_class])
-                        ][size].items():
-                            expected_value /= 1000
-                            expected_value *= fuel_consumption
-                            actual = self.calculate_actual_emission(ds, pollutant)
-                            self.validate_emissions(
-                                ds, actual, expected_value, pollutant
-                            )
+            unavailable = []
+            for pollutant, factor in factors.items():
+                exchanges = [
+                    x
+                    for x in ds["exchanges"]
+                    if matches_transport_air_pollutant(x, pollutant)
+                ]
+                invalid = False
+                for exchange in exchanges:
+                    amount = exchange.get("amount")
+                    if (
+                        not isinstance(amount, (int, float, np.number))
+                        or not math.isfinite(amount)
+                        or amount < 0
+                    ):
+                        self.log_issue(
+                            ds,
+                            "invalid transport emission amount",
+                            f"{exchange['name']}: {amount!r}; expected a finite "
+                            "nonnegative mass.",
+                            issue_type="major",
+                        )
+                        invalid = True
+                    if exchange.get("unit") != "kilogram":
+                        self.log_issue(
+                            ds,
+                            "invalid transport emission unit",
+                            f"{exchange['name']}: {exchange.get('unit')!r}; "
+                            "expected kilogram.",
+                            issue_type="major",
+                        )
+                        invalid = True
+                if invalid:
+                    continue
+                if pollutant == "NMVOC":
+                    unavailable.append(
+                        "NMVOC is a residual/speciated flow, not the parent NMHC total"
+                    )
+                    continue
+                if pollutant == "Hydrocarbon" and not exchanges:
+                    unavailable.append(
+                        "aggregate THC is not exported; named species cannot substitute for it"
+                    )
+                    continue
+                if fuel_consumption is not None:
+                    self.validate_emissions(
+                        ds,
+                        sum(x["amount"] for x in exchanges),
+                        factor / 1000 * fuel_consumption,
+                        pollutant,
+                    )
+            if unavailable:
+                self.log_issue(
+                    ds,
+                    "transport emission scope unavailable",
+                    "; ".join(sorted(unavailable))
+                    + ". No aggregate was synthesized; inventory preserved.",
+                )
 
     def check_vehicle_efficiency(
         self,
@@ -2218,7 +2382,9 @@ class TransportValidation(BaseDatasetValidator):
                         and x["type"] == "technosphere"
                     ]
                 )
-                if electricity_consumption > 0:
+                # FCEV electricity is hydrogen compression at the refuelling
+                # station, not battery traction; BEV consumption bounds do not apply.
+                if electricity_consumption > 0 and "fuel cell" not in ds["name"]:
                     if (
                         electricity_consumption < elec_minimum
                         or electricity_consumption > elec_maximum
@@ -2248,7 +2414,11 @@ class TransportValidation(BaseDatasetValidator):
                     fuel_consumption += sum(
                         [
                             x["amount"]
-                            * (47.5 if x["unit"] == "kilogram" else 36)
+                            * (
+                                46.5
+                                if "vehicle grade" in x["name"]
+                                else 47.5 if x["unit"] == "kilogram" else 36
+                            )
                             / 42.6
                             for x in ds["exchanges"]
                             if (
@@ -2339,6 +2509,132 @@ class TransportValidation(BaseDatasetValidator):
         self.validate_and_normalize_exchanges()
         self.check_vehicles()
 
+    def check_hydrogen_compression(self, vehicle_name):
+        """Check recorded preparation electricity against current H2 purchases."""
+        from .vehicle_hydrogen import (
+            BALANCE_KEY,
+            COMPRESSION_KEY,
+            compression_electricity,
+            compression_specification,
+            hydrogen_amount,
+        )
+
+        for ds in self.database:
+            if (
+                not ds.get("name", "").startswith(vehicle_name)
+                or COMPRESSION_KEY not in ds
+                or ds.get("emptied", False)
+            ):
+                continue
+            try:
+                specification = compression_specification(ds)
+                hydrogen = hydrogen_amount(ds, specification)
+                balance = ds[BALANCE_KEY]
+                residual = balance["other electricity kWh"]
+                if not math.isfinite(residual) or residual < 0:
+                    raise ValueError("Invalid other-electricity remainder")
+                expected = hydrogen * specification["electricity kWh per kg H2"]
+                amounts = [
+                    e["amount"]
+                    for e in ds["exchanges"]
+                    if compression_electricity(e, specification)
+                ]
+                if not amounts or any(not math.isfinite(x) or x < 0 for x in amounts):
+                    raise ValueError("Invalid compression electricity purchases")
+                if not math.isclose(
+                    sum(amounts), expected + residual, rel_tol=1e-8, abs_tol=1e-12
+                ):
+                    raise ValueError(
+                        f"Electricity is {sum(amounts)} kWh; final H2 requires "
+                        f"{expected} kWh compression plus {residual} kWh other uses"
+                    )
+                if not math.isclose(
+                    balance["compression electricity kWh"],
+                    expected,
+                    rel_tol=1e-8,
+                    abs_tol=1e-12,
+                ):
+                    raise ValueError(
+                        "Compression record does not follow final hydrogen demand"
+                    )
+            except (KeyError, TypeError, ValueError) as error:
+                self.log_issue(
+                    ds,
+                    "incorrect hydrogen compression electricity",
+                    str(error),
+                    issue_type="major",
+                )
+
+    def check_lpg_supply(self, vehicle_type):
+        """Check LPG identity, coverage and final energy/carbon independently of saved logs."""
+        from .vehicle_lpg import describe_lpg_supply, services_and_providers
+
+        services, providers = services_and_providers(self.database, vehicle_type)
+        for dataset in services:
+            try:
+                describe_lpg_supply(dataset, providers, self)
+            except (KeyError, TypeError, ValueError) as error:
+                self.log_issue(
+                    dataset,
+                    "invalid LPG vehicle supply",
+                    str(error),
+                    issue_type="major",
+                )
+
+    def check_vehicle_fuel_carbon(self, vehicle_name):
+        """Check the split against current fuel links, independent of saved totals."""
+        from .fuels.carbon import VEHICLE_CO2_KEY, vehicle_fuel_carbon
+        from .fuels.properties import activity_key
+
+        providers = {activity_key(ds): ds for ds in self.database}
+        for ds in self.database:
+            if (
+                not ds.get("name", "").startswith(vehicle_name)
+                or VEHICLE_CO2_KEY not in ds
+            ):
+                continue
+            try:
+                balance = vehicle_fuel_carbon(ds, providers)
+            except (KeyError, TypeError, ValueError) as error:
+                self.log_issue(
+                    ds, "invalid vehicle fuel carbon", str(error), issue_type="major"
+                )
+                continue
+            if balance is None:
+                continue
+            if balance["status"] == "unresolved":
+                self.log_issue(
+                    ds,
+                    "vehicle fuel carbon unavailable",
+                    "; ".join(balance["reasons"]),
+                    issue_type="minor",
+                )
+                continue
+            for name, field in (
+                ("Carbon dioxide, fossil", "fossil CO2 kg"),
+                ("Carbon dioxide, non-fossil", "non-fossil CO2 kg"),
+            ):
+                amounts = [
+                    e["amount"]
+                    for e in ds["exchanges"]
+                    if e.get("type") == "biosphere"
+                    and e.get("name") == name
+                    and e.get("categories", (None,))[0] == "air"
+                    and e.get("unit") == "kilogram"
+                ]
+                actual = sum(value for value in amounts if value >= 0)
+                if any(
+                    not math.isfinite(value) for value in amounts
+                ) or not math.isclose(
+                    actual, balance[field], rel_tol=1e-8, abs_tol=1e-12
+                ):
+                    self.log_issue(
+                        ds,
+                        "vehicle fuel carbon split incorrect",
+                        f"{name}: {actual} kg; final linked fuel requires {balance[field]} kg.",
+                        issue_type="major",
+                    )
+
 
 class TruckValidation(TransportValidation):
 
@@ -2348,6 +2644,9 @@ class TruckValidation(TransportValidation):
 
     def run_checks(self):
         self.run_vehicle_checks()
+        self.check_vehicle_fuel_carbon("transport, freight, lorry,")
+        self.check_lpg_supply("truck")
+        self.check_hydrogen_compression("transport, freight, lorry,")
         self.check_vehicle_efficiency(
             vehicle_name="transport, freight, lorry",
             fossil_minimum=0.0,
@@ -2367,6 +2666,9 @@ class CarValidation(TransportValidation):
 
     def run_checks(self):
         self.run_vehicle_checks()
+        self.check_vehicle_fuel_carbon("transport, passenger car,")
+        self.check_lpg_supply("car")
+        self.check_hydrogen_compression("transport, passenger car,")
         self.check_pollutant_emissions(vehicle_name="transport, passenger car")
         self.check_vehicle_efficiency(
             vehicle_name="transport, passenger car",
@@ -2865,7 +3167,11 @@ class FuelsValidation(BaseDatasetValidator):
         self.technology_map = technology_map or {}
 
     def check_consequential_fuel_supplier_vectors(self):
-        """Reject average or incomplete vectors in consequential fuel markets."""
+        """Reject average or incomplete energy vectors in consequential markets."""
+        from .fuels.properties import PROPERTIES_KEY, energy_per_unit
+        from .utils import get_fuel_properties
+
+        specifications = get_fuel_properties()
 
         if self.system_model != "consequential":
             return
@@ -2964,7 +3270,15 @@ class FuelsValidation(BaseDatasetValidator):
                     if technology is None:
                         unmatched.append(key)
                     else:
-                        actual[technology] += float(exchange["amount"])
+                        amount = float(exchange["amount"])
+                        if PROPERTIES_KEY in market:
+                            amount *= energy_per_unit(
+                                technology, exchange["unit"], specifications
+                            )
+                            amount /= market[PROPERTIES_KEY][
+                                "reference energy MJ per unit"
+                            ]
+                        actual[technology] += amount
                 for technology, expected_share in expected.items():
                     if not math.isclose(
                         actual.get(technology, 0.0),
@@ -2994,8 +3308,33 @@ class FuelsValidation(BaseDatasetValidator):
             )
 
     def check_fuel_market_composition(self):
-        # check that the fuel markets inputs
-        # equal to 1
+        from .fuels.properties import PROPERTIES_KEY, supplied_energy
+
+        for ds in self.database:
+            if PROPERTIES_KEY not in ds:
+                continue
+            if ds[PROPERTIES_KEY]["unresolved CO2 kg per unit"] > 1e-12:
+                self.log_issue(
+                    ds,
+                    "fuel carbon origin unresolved",
+                    "Fuel properties retain oxidation carbon with unknown origin; inspect component provenance.",
+                    issue_type="minor",
+                )
+            expected = ds[PROPERTIES_KEY].get(
+                "upstream fuel energy MJ per unit",
+                ds[PROPERTIES_KEY]["reference energy MJ per unit"],
+            )
+            actual = supplied_energy(ds)
+            if not math.isfinite(actual) or not math.isclose(
+                actual, expected, rel_tol=1e-6
+            ):
+                self.log_issue(
+                    ds,
+                    "fuel market energy does not match reference",
+                    f"Fuel inputs supply {actual} MJ; reference output requires {expected} MJ.",
+                    issue_type="major",
+                )
+        # Legacy, unannotated markets retain their previous composition check.
 
         fuel_market_names = [
             "market for petrol, low-sulfur",
@@ -3008,7 +3347,8 @@ class FuelsValidation(BaseDatasetValidator):
 
         for ds in self.database:
             if (
-                any(ds["name"].startswith(x) for x in fuel_market_names)
+                PROPERTIES_KEY not in ds
+                and any(ds["name"].startswith(x) for x in fuel_market_names)
                 and ds["location"] in self.regions
                 and ds["location"] != "World"
             ):
@@ -3923,8 +4263,6 @@ class MetalsValidation(BaseDatasetValidator):
 
     def run_metals_checks(self):
         self.check_market_balance()
-        self.check_split_yaml_consistency()
-        self.check_interpolation()
         self.check_excel_shares_preserved()
         self.check_material_rule_applications()
         return self._finalize_logs()
@@ -3954,6 +4292,13 @@ class MetalsValidation(BaseDatasetValidator):
             )
 
         decisions = getattr(self, "material_decisions", ())
+        if len(decisions) != metrics.get("compiled pairs", len(decisions)):
+            self.log_issue(
+                {"name": "metals material update"},
+                "metal material decisions incomplete",
+                "Every compiled material rule must produce an applied or preserved decision.",
+                issue_type="major",
+            )
         counts = defaultdict(int)
         examples = {}
         for decision in decisions:
@@ -3970,6 +4315,19 @@ class MetalsValidation(BaseDatasetValidator):
             )
             counts[key] += 1
             examples[key] = decision
+        for reason in (
+            "metals.material_rule.component_scope_unverified",
+            "metals.material_rule.year_outside_support",
+        ):
+            affected = [d for d in decisions if d.get("reason code") == reason]
+            if affected:
+                self.log_issue(
+                    {"name": "metals material update"},
+                    reason,
+                    f"Preserved {len(affected)} material-rule applications. "
+                    "See material decisions for the affected activities, source years and scope evidence.",
+                    issue_type="minor",
+                )
         for key, count in counts.items():
             if count <= 1:
                 continue
@@ -3987,6 +4345,12 @@ class MetalsValidation(BaseDatasetValidator):
         Check that the inputs of the metals markets sum to 1
         """
         for metal in self.metals_list:
+            if any(
+                d.get("reason", "").startswith("market_preserved_")
+                and d.get("metal") == metal
+                for d in getattr(self, "market_diagnostics", ())
+            ):
+                continue
             try:
                 name = f"market for {metal}"
                 ds = ws.get_one(
@@ -3995,7 +4359,13 @@ class MetalsValidation(BaseDatasetValidator):
                     ws.equals("location", "World"),
                     ws.equals("unit", "kilogram"),
                 )
-            except Exception:
+            except (ws.NoResults, ws.MultipleResults) as error:
+                self.log_issue(
+                    {"name": f"market for {metal}", "location": "World"},
+                    "metal market missing or ambiguous",
+                    str(error),
+                    issue_type="major",
+                )
                 continue
 
             total_kg_inputs = sum(
@@ -4012,180 +4382,83 @@ class MetalsValidation(BaseDatasetValidator):
                     issue_type="major",
                 )
 
-    def check_split_yaml_consistency(self):
-        """
-        Check that the split YAML files for metals sum to 1 for each metal
-        """
-        for metal, data in self.prim_sec_split.items():
-            for year in data["shares"]["primary"]:
-                primary = data["shares"]["primary"].get(year, 0)
-                secondary = data["shares"]["secondary"].get(year, 0)
-                total = primary + secondary
-                if not np.isclose(total, 1.0, rtol=1e-3):
-                    message = (
-                        f"Metal {metal} shares for year {year} do not sum to 1: "
-                        f"primary={primary}, secondary={secondary}, total={total}."
-                    )
-                    self.log_issue(
-                        {"name": metal, "year": year},
-                        "metal shares do not sum to 1",
-                        message,
-                        issue_type="major",
-                    )
-
-    def check_interpolation(self):
-        """
-        Check that the interpolation of metal shares is consistent
-        """
-        test_cases = [
-            ({2020: 0.8, 2050: 0.5}, 2020, 0.8),
-            ({2020: 0.8, 2050: 0.5}, 2050, 0.5),
-            ({2020: 0.8, 2050: 0.5}, 2035, 0.65),
-            ({2020: 1.0}, 2040, 1.0),
-        ]
-
-        for shares, year, expected in test_cases:
-            result = self.interpolate_by_year(year, shares)
-            if not np.isclose(result, expected, rtol=1e-3):
-                message = (
-                    f"Interpolation for year {year} with shares {shares} "
-                    f"expected {expected}, got {result}."
-                )
-                self.log_issue(
-                    {"year": year, "shares": shares},
-                    "interpolation error",
-                    message,
-                    issue_type="major",
-                )
-
     def check_excel_shares_preserved(self):
+        """Check the final suppliers against the shares actually used in construction.
+
+        Primary country/route shares come from the complete workbook; secondary
+        shares come from the retained source market (zero for consequential).
+        The legacy primary_secondary_split.yaml is not used by this model.
         """
-        Verify that the shares from Excel are preserved in the final markets.
-        This should catch normalization bugs
-        """
-
-        mining_shares_df = getattr(self, "mining_shares_mapping", None)
-        if mining_shares_df is None:
-            mining_shares_df = _load_mining_shares_mapping_for_validation(self.version)
-
-        country_codes = dict(
-            zip(
-                mining_shares_df["Country"].unique(),
-                coco.convert(mining_shares_df["Country"].unique(), to="ISO2"),
-            )
-        )
-        country_codes["France (French Guiana)"] = "GF"
-
-        # Group df by metal
-        for metal in mining_shares_df["Metal"].unique():
-            metal_df = mining_shares_df[mining_shares_df["Metal"] == metal]
-
-            # Find the 'World' market
-            try:
-                market = ws.get_one(
+        for metal, applied in getattr(self, "applied_market_shares", {}).items():
+            markets = list(
+                ws.get_many(
                     self.database,
                     ws.equals("name", f"market for {metal}"),
+                    ws.equals("reference product", metal),
                     ws.equals("location", "World"),
-                    ws.equals("unit", "kilogram"),
                 )
-            except ws.NoResults:
-                continue
-
-            # Find year
-            year_cols = sorted([int(col) for col in metal_df.columns if col.isdigit()])
-            if not year_cols:
+            )
+            if len(markets) != 1:
+                continue  # check_market_balance reports missing/ambiguous markets.
+            market = markets[0]
+            expected = defaultdict(float)
+            actual = defaultdict(float)
+            for kind, share in (
+                ("primary", applied["primary share"]),
+                ("secondary", applied["secondary share"]),
+            ):
+                suppliers = applied[f"{kind} suppliers"]
+                if not np.isclose(
+                    sum(e["amount"] for e in suppliers), share, rtol=1e-9, atol=1e-12
+                ):
+                    self.log_issue(
+                        market,
+                        "metal applied split mismatch",
+                        f"{kind} supplier amounts differ from the applied {share} fraction.",
+                        issue_type="major",
+                    )
+                for exc in suppliers:
+                    expected[(exc["name"], exc["product"], exc["location"])] += exc[
+                        "amount"
+                    ]
+            for exc in market["exchanges"]:
+                if exc["type"] == "technosphere" and exc.get("unit") == "kilogram":
+                    actual[(exc["name"], exc["product"], exc["location"])] += exc[
+                        "amount"
+                    ]
+            for key in expected.keys() | actual.keys():
+                if not np.isclose(actual[key], expected[key], rtol=1e-9, atol=1e-12):
+                    self.log_issue(
+                        market,
+                        "metal market share mismatch",
+                        f"Supplier {key!r}: expected {expected[key]}, found {actual[key]}.",
+                        issue_type="major",
+                    )
+            if self.system_model == "consequential" and applied["secondary share"] != 0:
                 self.log_issue(
                     market,
-                    "missing metals year columns",
-                    f"No year columns found for {metal}.",
+                    "metal consequential secondary share",
+                    "Consequential markets must not inherit an attributional recycling share.",
                     issue_type="major",
                 )
-                continue
-            min_year, max_year = year_cols[0], year_cols[-1]
-            year_to_use = max(min_year, min(self.year, max_year))
-            year_col = str(year_to_use)
-
-            # APPLY THE SAME FILTERING AS metals.py:
-            metal_df_filtered = metal_df[metal_df["Work done"] == "Yes"].copy()
-            metal_df_filtered = metal_df_filtered[
-                metal_df_filtered[year_col] >= 0.01
-            ].copy()
-
-            # Add up the shares in the excel by country (across all the different datasets)
-            country_totals_excel = metal_df_filtered.groupby("Country")[year_col].sum()
-            # Normalize the shares
-            total_excel = country_totals_excel.sum()
-            if total_excel > 0:
-                expected_shares = country_totals_excel / total_excel
-            else:
-                continue
-
-            # Get the shares from the market so we can compare
-            actual_shares = {}
-            for exc in market["exchanges"]:
-                if (
-                    exc["type"] == "technosphere"
-                    and exc.get("location")
-                    and exc["unit"] == "kilogram"
-                ):
-                    loc = exc["location"]
-                    if loc not in actual_shares:
-                        actual_shares[loc] = 0
-                    actual_shares[loc] += exc["amount"]
-
-            # Get primary share for this metal
-            primary_share = self.get_primary_share_for_metal(metal)
-
-            # Compare for significant producers
-            for country_long in country_totals_excel.index:
-                country_short = country_codes.get(country_long)
-                if not country_short:
-                    continue
-
-                expected = expected_shares.get(country_long, 0) * primary_share
-                actual = actual_shares.get(country_short, 0)
-
-                if (
-                    expected > 0.01 and self.system_model != "consequential"
-                ):  # Only check significant shares
-                    relative_error = (
-                        abs(actual - expected) / expected
-                        if expected > 0
-                        else float("inf")
-                    )
-
-                    if relative_error > 0.3:  # More than 30% error
-                        message = (
-                            f"{country_long} should have {expected:.2%} of {metal} market "
-                            f"(Excel sum: {country_totals_excel.get(country_long, 0):.2%}, "
-                            f"normalized: {expected_shares.get(country_long, 0):.2%}, "
-                            f"with primary share {primary_share:.2%}), but has {actual:.2%}."
-                        )
-                        self.log_issue(
-                            market,
-                            "metal market share mismatch",
-                            message,
-                            issue_type="major",
-                        )
-
-    def get_primary_share_for_metal(self, metal):
-        """
-        Get the primary share for a given metal from the prim_sec_split data.
-        """
-        if not self.prim_sec_split or metal not in self.prim_sec_split:
-            return 1.0  # Default to 100% primary if not found
-
-        entry = self.prim_sec_split[metal]
-        primary_shares = entry["shares"]["primary"]
-
-        # Use interpolate_by_year if available
-        if self.interpolate_by_year:
-            return self.interpolate_by_year(self.year, primary_shares)
-
-        # Fallback to simple lookup
-        if self.year in primary_shares:
-            return primary_shares[self.year]
-        elif 2020 in primary_shares:
-            return primary_shares[2020]
-        else:
-            return 1.0
+        for diagnostic in getattr(self, "market_diagnostics", ()):
+            self.log_issue(
+                {
+                    "name": diagnostic.get(
+                        "metal", diagnostic.get("name", "metals market")
+                    ),
+                    "location": diagnostic.get("country"),
+                },
+                f"metal {diagnostic['reason']}",
+                str(diagnostic),
+                issue_type="minor",
+            )
+        for diagnostic in getattr(self, "resource_diagnostics", ()):
+            if diagnostic.get("reason") == "primary_feed_attribution":
+                continue  # Successful attribution, not a preserved/unresolved input.
+            self.log_issue(
+                diagnostic,
+                "metal resource correction preserved",
+                str(diagnostic),
+                issue_type="minor",
+            )

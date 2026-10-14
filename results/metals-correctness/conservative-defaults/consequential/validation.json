@@ -1,0 +1,2297 @@
+[
+  {
+    "phase_id": "sector:metals",
+    "kind": "sector",
+    "rule_results": [
+      {
+        "rule_id": "LEGACY.METALS_MATERIAL_RULE_COMPONENT_SCOPE_UNVERIFIED",
+        "severity": "warning",
+        "applicability": "applicable",
+        "checked_object_count": 1,
+        "expected": null,
+        "actual": {
+          "issue_count": 1
+        },
+        "tolerance": null,
+        "issues": [
+          {
+            "rule_id": "LEGACY.METALS_MATERIAL_RULE_COMPONENT_SCOPE_UNVERIFIED",
+            "severity": "warning",
+            "message": "Preserved 78 material-rule applications. See material decisions for the affected activities, source years and scope evidence.",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "metals material update",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          }
+        ]
+      },
+      {
+        "rule_id": "LEGACY.METALS_MATERIAL_RULE_YEAR_OUTSIDE_SUPPORT",
+        "severity": "warning",
+        "applicability": "applicable",
+        "checked_object_count": 1,
+        "expected": null,
+        "actual": {
+          "issue_count": 1
+        },
+        "tolerance": null,
+        "issues": [
+          {
+            "rule_id": "LEGACY.METALS_MATERIAL_RULE_YEAR_OUTSIDE_SUPPORT",
+            "severity": "warning",
+            "message": "Preserved 566 material-rule applications. See material decisions for the affected activities, source years and scope evidence.",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "metals material update",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          }
+        ]
+      },
+      {
+        "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+        "severity": "warning",
+        "applicability": "applicable",
+        "checked_object_count": 103,
+        "expected": null,
+        "actual": {
+          "issue_count": 103
+        },
+        "tolerance": null,
+        "issues": [
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'aluminium hydroxide', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "aluminium hydroxide",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'aluminium oxide, metallurgical', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "aluminium oxide, metallurgical",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'aluminium, cast alloy', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "aluminium, cast alloy",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'aluminium, primary, ingot', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "aluminium, primary, ingot",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'aluminium, primary, liquid', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "aluminium, primary, liquid",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'antimony', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "antimony",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'bauxite', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "bauxite",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'bentonite', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "bentonite",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'beryllium', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "beryllium",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'beryllium hydroxide', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "beryllium hydroxide",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'boric acid, anhydrous, powder', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "boric acid, anhydrous, powder",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'boric oxide', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "boric oxide",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'boron carbide', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "boron carbide",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'boron trifluoride', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "boron trifluoride",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'cadmium', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "cadmium",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'calcium borates', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "calcium borates",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'cerium oxide', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "cerium oxide",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'chromite ore concentrate', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "chromite ore concentrate",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'chromium', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "chromium",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'cobalt', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "cobalt",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'cobalt hydroxide', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "cobalt hydroxide",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'cobalt sulfate', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "cobalt sulfate",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'copper concentrate, sulfide ore', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "copper concentrate, sulfide ore",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'copper, anode', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "copper, anode",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'copper, cathode', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "copper, cathode",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'copper-cobalt ore', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "copper-cobalt ore",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'dolomite', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "dolomite",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'dysprosium oxide', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "dysprosium oxide",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'erbium oxide', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "erbium oxide",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'europium oxide', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "europium oxide",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'ferroniobium, 66% Nb', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "ferroniobium, 66% Nb",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'gadolinium oxide', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "gadolinium oxide",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'gallium, high-grade', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "gallium, high-grade",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'germanium, concentrate', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "germanium, concentrate",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'gold', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "gold",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'graphite', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "graphite",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'graphite ore, mined', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "graphite ore, mined",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'hafnium sponge', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "hafnium sponge",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'hafnium tetrachloride', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "hafnium tetrachloride",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'holmium oxide', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "holmium oxide",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'ilmenite, 54% titanium dioxide', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "ilmenite, 54% titanium dioxide",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'indium', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "indium",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'indium rich leaching residues, from zinc production', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "indium rich leaching residues, from zinc production",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'iridium', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "iridium",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'iron ore concentrate', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "iron ore concentrate",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'lanthanum oxide', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "lanthanum oxide",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'lanthanum-cerium oxide', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "lanthanum-cerium oxide",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'lead', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "lead",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'lead concentrate', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "lead concentrate",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'lithium carbonate, battery grade', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "lithium carbonate, battery grade",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'lithium hydroxide, battery grade', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "lithium hydroxide, battery grade",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'lutetium oxide', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "lutetium oxide",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'magnesium', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "magnesium",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'manganese', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "manganese",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'manganese concentrate', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "manganese concentrate",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'molybdenite', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "molybdenite",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'molybdenum', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "molybdenum",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'neodymium oxide', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "neodymium oxide",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'nickel concentrate, 16% Ni', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "nickel concentrate, 16% Ni",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'nickel, class 1', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "nickel, class 1",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'palladium', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "palladium",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'phosphate rock, beneficiated', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "phosphate rock, beneficiated",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'phosphoric acid, fertiliser grade, without water, in 70% solution state', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "phosphoric acid, fertiliser grade, without water, in 70% solution state",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'phosphorus, white, liquid', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "phosphorus, white, liquid",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'platinum', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "platinum",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'platinum group metal concentrate', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "platinum group metal concentrate",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'potash salt', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "potash salt",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'praseodymium oxide', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "praseodymium oxide",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'pyrochlore concentrate', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "pyrochlore concentrate",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'rare earth carbonate concentrate', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "rare earth carbonate concentrate",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'rhenium', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "rhenium",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'ruthenium', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "ruthenium",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'rutile, 95% titanium dioxide', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "rutile, 95% titanium dioxide",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'samarium oxide', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "samarium oxide",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'sand', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "sand",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'scandium oxide', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "scandium oxide",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'selenium', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "selenium",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'silica sand', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "silica sand",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'silicon, metallurgical grade', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "silicon, metallurgical grade",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'silver', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "silver",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'sodium borates', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "sodium borates",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'spodumene', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "spodumene",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'stibnite concentrate', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "stibnite concentrate",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'strontium sulfate, 90% SrSO4', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "strontium sulfate, 90% SrSO4",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'sulfur', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "sulfur",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'tantalum concentrate, 30% Ta2O5', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "tantalum concentrate, 30% Ta2O5",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'tellurium, semiconductor-grade', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "tellurium, semiconductor-grade",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'terbium oxide', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "terbium oxide",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'thulium oxide', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "thulium oxide",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'tin', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "tin",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'tin concentrate', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "tin concentrate",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'titanium', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "titanium",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'titanium sponge', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "titanium sponge",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'titanium tetrachloride', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "titanium tetrachloride",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'tungsten concentrate', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "tungsten concentrate",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'uranium ore, as U', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "uranium ore, as U",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'vanadium bearing magnetite', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "vanadium bearing magnetite",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'vanadium pentoxide', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "vanadium pentoxide",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'ytterbium oxide', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "ytterbium oxide",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'yttrium oxide', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "yttrium oxide",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'zinc', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "zinc",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'zinc concentrate', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "zinc concentrate",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MARKET_PRESERVED_CONSEQUENTIAL",
+            "severity": "warning",
+            "message": "{'reason': 'market_preserved_consequential', 'metal': 'zircon', 'explanation': 'Historical average production shares do not identify marginal suppliers.'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "zircon",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          }
+        ]
+      },
+      {
+        "rule_id": "LEGACY.METAL_MATERIAL_PROVIDER_UNAVAILABLE",
+        "severity": "warning",
+        "applicability": "applicable",
+        "checked_object_count": 3,
+        "expected": null,
+        "actual": {
+          "issue_count": 3
+        },
+        "tolerance": null,
+        "issues": [
+          {
+            "rule_id": "LEGACY.METAL_MATERIAL_PROVIDER_UNAVAILABLE",
+            "severity": "warning",
+            "message": "Could not find metal provider 'market for iridium' / 'iridium'.",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "electrolyzer production, 1MWe, PEM, Stack",
+              null,
+              "RER"
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MATERIAL_PROVIDER_UNAVAILABLE",
+            "severity": "warning",
+            "message": "Could not find metal provider 'market for germanium, concentrate' / 'germanium, concentrate'.",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "photovoltaic laminate production, a-Si",
+              null,
+              "RoW"
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          },
+          {
+            "rule_id": "LEGACY.METAL_MATERIAL_PROVIDER_UNAVAILABLE",
+            "severity": "warning",
+            "message": "Could not find metal provider 'market for germanium, concentrate' / 'germanium, concentrate'.",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "photovoltaic laminate production, a-Si",
+              null,
+              "US"
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          }
+        ]
+      },
+      {
+        "rule_id": "LEGACY.METAL_RESOURCE_CORRECTION_PRESERVED",
+        "severity": "warning",
+        "applicability": "applicable",
+        "checked_object_count": 1,
+        "expected": null,
+        "actual": {
+          "issue_count": 1
+        },
+        "tolerance": null,
+        "issues": [
+          {
+            "rule_id": "LEGACY.METAL_RESOURCE_CORRECTION_PRESERVED",
+            "severity": "warning",
+            "message": "{'name': 'consequential resource inventory', 'product': None, 'location': None, 'reason': 'preserved_consequential_substitution'}",
+            "applicability": "applicable",
+            "checked_object_count": 1,
+            "activity_id": null,
+            "activity_key": [
+              "consequential resource inventory",
+              null,
+              null
+            ],
+            "activity_code": null,
+            "exchange_id": null,
+            "expected": null,
+            "actual": null,
+            "tolerance": null,
+            "suppressed": false,
+            "suppression_explanation": null
+          }
+        ]
+      }
+    ],
+    "elapsed_seconds": 0.0,
+    "reused": false
+  },
+  {
+    "phase_id": "sector:metals:contract",
+    "kind": "sector",
+    "rule_results": [
+      {
+        "rule_id": "METHOD.METALS.TARGET_COVERAGE",
+        "severity": "error",
+        "applicability": "applicable",
+        "checked_object_count": 1008,
+        "expected": ">= 1 target",
+        "actual": 1008,
+        "tolerance": null,
+        "issues": []
+      },
+      {
+        "rule_id": "METHOD.METALS.PHYSICAL_BOUNDS",
+        "severity": "error",
+        "applicability": "applicable",
+        "checked_object_count": 3832,
+        "expected": null,
+        "actual": {
+          "issue_count": 0
+        },
+        "tolerance": null,
+        "issues": []
+      },
+      {
+        "rule_id": "METHOD.METALS.MARKET_COMPOSITION",
+        "severity": "error",
+        "applicability": "not_applicable",
+        "checked_object_count": 0,
+        "expected": null,
+        "actual": {
+          "issue_count": 0
+        },
+        "tolerance": null,
+        "issues": []
+      }
+    ],
+    "elapsed_seconds": 0.006261083064600825,
+    "reused": false
+  }
+]

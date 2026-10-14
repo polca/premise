@@ -1,0 +1,60 @@
+Vehicle and component provenance
+--------------------------------
+
+The refreshed car and truck workbooks preserve ``source``, ``model``,
+``model version``, ``model publication`` and ``vehicle inventory provenance``
+through Excel import and Brightway export. The structured provenance is JSON
+in the workbook. It identifies the original model and shared-library version,
+recorded source revisions and file hashes, baseline year, climate, cycle,
+usage assumptions, proxy decisions, generation date and metadata-update date.
+The publication describes the model; recent corrections are identified by
+source hashes and are not claimed to have appeared in that publication.
+
+The passenger-car model reference is Sacchi et al. (2022),
+`When, where and how can the electrification of passenger cars reduce greenhouse
+gas emissions? <https://doi.org/10.1016/j.rser.2022.112475>`_. The truck model
+reference is Sacchi, Bauer and Cox (2021),
+`Does Size Matter? <https://doi.org/10.1021/acs.est.0c07773>`_. Bundled components
+retain their own activity-specific sources. A model citation does not replace
+the literature source for a fuel cell, tank or material recipe. Missing
+component references are stated explicitly instead of being inferred.
+
+Original-model specification comments and ``baseline vehicle parameters``
+describe **2020 vehicles**. After transformation, ``premise vehicle provenance``
+separately records the IAM, pathway, scenario year, actual dataset location,
+reference production, final operating-energy purchases and their supplier
+locations/units, efficiency adjustments and any scenario battery specifications.
+Forwarding services are identified as such and do not claim direct fuel use.
+The original provenance stays unchanged on regional clones. Combustion and
+hydrogen tanks retain their baseline design under the current policy.
+
+FCEV baseline metadata records vehicle power, gross fuel-cell power, its
+gross/net multiplier and complementary DC buffer power. Cars use Toyota's
+late-2020 Mirai pack reference (1.2432 kWh, 44.6 kg, 31.5 kW for ten seconds),
+scaled to required power. Charging and continuous-output limits are not inferred.
+Trucks use the approved AKASOL pack proxy with paired energy/mass and continuous
+charging/discharge ratings; the inherited energy rule remains a lower bound.
+Both profiles disclose their source edition, internal cell allocation,
+chemistry/cost proxies and the MIX capacity-market manufacturing-mass mismatch.
+The update does not resize FCEV buffers or hydrogen tanks for future scenarios.
+
+Hybrid hot-exhaust deterioration uses the same petrol/diesel engine mapping
+as the source hot-emission factors. Comments disclose this combustion-engine
+ageing proxy, its vehicle-lifetime mileage basis and the single PHEV mode
+weighting. Cold-start and evaporative factors retain their separate treatment.
+The correction does not validate the retained high truck NOx coefficients.
+
+The ``lci-pass_cars.provenance.json`` and ``lci-trucks.provenance.json`` companion
+files identify the installed workbook hashes and retain earlier provenance.
+The corresponding ``*.parameters.csv`` and ``*.noise.csv`` files preserve the
+full generated parameter tables and excluded direct-noise flows. Their hashes
+are recorded in the provenance. Noise is not included in the imported inventory.
+The raw model export is identified by hash; the private audit retains that
+export without distributing the full background inventory.
+
+``lci-truck-legacy-components.xlsx`` retains 26 original compatibility recipes
+on their ecoinvent 3.7 import basis. Their original sources, descriptions and
+remarks are preserved under ``inventory provenance``. They are not labelled as
+newly generated carculator_truck inventories. The three workbook database
+headers match their respective filenames, and service/production identities
+and supplier links are preserved.
