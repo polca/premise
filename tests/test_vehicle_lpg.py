@@ -266,7 +266,10 @@ def test_installed_lpg_templates_have_the_approved_energy_and_proxy_contract():
                 and e.get("reference product", e.get("product")) == LPG
             ]
             assert len(fuel) == 1 and fuel[0]["unit"] == "kilogram"
-            assert spec["fuel kg per service"] == fuel[0]["amount"]
+            # JSON metadata and Excel numeric cells round-trip independently.
+            assert spec["fuel kg per service"] == pytest.approx(
+                fuel[0]["amount"], rel=1e-14
+            )
             assert spec["energy MJ per service"] == pytest.approx(
                 fuel[0]["amount"] * 45.5
             )

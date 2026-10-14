@@ -1,6 +1,7 @@
 """The supplied PHEV inventories must purchase the full installed battery."""
 
 import csv
+import json
 
 import pytest
 from bw2io import ExcelImporter
@@ -43,6 +44,37 @@ def test_phev_capacity_agrees_with_physical_pack(catalogue):
         assert p["energy battery mass"] == pytest.approx(
             p["battery cell mass"] + p["battery BoP mass"], rel=1e-6
         )
+
+
+def test_car_phev_calibration_survives_excel_and_keeps_relative_density(catalogue):
+    datasets, rows = catalogue
+    cars = [r for r in rows if r["name"].startswith("transport, passenger car,")]
+    if not cars:
+        pytest.skip("Passenger-car calibration only")
+    expected = {
+        "Mini": (8.8, 120),
+        "Small": (8.8, 120),
+        "Lower medium": (13, 128.375),
+        "Medium": (12, 118.5),
+        "Large": (12, 118.5),
+        "Medium SUV": (18.1, 178.7375),
+        "Large SUV": (24, 226.8),
+        "Van": (13.6, 134.3),
+    }
+    for row in cars:
+        capacity, mass = expected[row["size"]]
+        assert float(row["electric energy stored"]) == pytest.approx(capacity, rel=2e-6)
+        assert float(row["energy battery mass"]) == pytest.approx(mass, rel=2e-6)
+        service = datasets[row["name"]]
+        specification = json.loads(service["vehicle battery sizing"])
+        assert specification["density projection basis"] == "relative chemistry trend"
+        provenance = json.loads(service["vehicle inventory provenance"])
+        pack = provenance["PHEV battery calibration"]
+        assert pack["capacity kWh"] == capacity
+        assert pack["pack mass kg"] == pytest.approx(mass)
+        assert pack["capacity source"] in service["comment"]
+        assert pack["mass source"] in service["comment"]
+        assert "MIX capacity market" in service["comment"]
 
 
 def test_phev_lifetime_capacity_purchased_once(catalogue):
