@@ -71,7 +71,20 @@ def test_fcev_power_pack_and_purchased_capacity(family, count):
                 in ds["comment"]
             )
             if family == "trucks":
-                assert "peak-power capability remains unverified" in ds["comment"]
+                assert "Documented FCEV traction-pack proxy" in ds["comment"]
+                assert "May 2021" in ds["comment"]
+                assert "physical mass mismatch" in ds["comment"]
+                assert "FCEV battery profile" in spec
+                assert number("energy battery mass") == pytest.approx(
+                    number("electric energy stored") * 238 / 25, rel=2e-6
+                )
+                assert number("FCEV continuous charge kW") == pytest.approx(
+                    number("electric energy stored") * 36 / 25, rel=2e-6
+                )
+                assert number("FCEV power minimum capacity kWh") <= number(
+                    "electric energy stored"
+                ) * (1 + 3e-6)
+                assert number("battery power") <= number("FCEV 10s discharge kW")
                 if row["size"] in {"3.5t", "7.5t"}:
                     expected = {"3.5t": 57, "7.5t": 129}[row["size"]]
                     assert number("power") == expected
