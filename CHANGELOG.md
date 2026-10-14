@@ -6,6 +6,11 @@ All notable changes to this project are documented in this file.
 
 ### Fixed
 
+- Refresh FCEV car templates with corrected buffer power and complete pack
+  mass from carculator_utils. Retain truck inventory coefficients while
+  recording their corrected nonzero buffer-power requirement and the
+  unverified traction-cell power capability. Preserve vehicle identities,
+  battery-capacity markets and regional fuel accounting.
 - Include petrol alongside electricity in every gasoline plug-in hybrid car's
   operating-fuel mapping, and recognize petrol in the gasoline hybrid mapping.
   IAM efficiency improvements now affect both PHEV energy inputs; final fuel

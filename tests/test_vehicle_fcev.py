@@ -1,0 +1,62 @@
+"""Installed FCEV templates retain net power, physical packs and kWh purchases."""
+
+import csv
+import json
+
+import pytest
+from bw2io import ExcelImporter
+
+from premise.filesystem_constants import INVENTORY_DIR
+
+
+@pytest.mark.parametrize("family,count", [("pass_cars", 8), ("trucks", 7)])
+def test_fcev_power_pack_and_purchased_capacity(family, count):
+    datasets = {
+        d["name"]: d
+        for d in ExcelImporter(str(INVENTORY_DIR / f"lci-{family}.xlsx")).data
+    }
+    with (INVENTORY_DIR / f"lci-{family}.parameters.csv").open() as stream:
+        rows = [r for r in csv.DictReader(stream) if r["powertrain"] == "FCEV"]
+    assert len(rows) == count
+    for row in rows:
+        number = lambda field: float(row[field])
+        assert number("battery power") > 0
+        assert number("fuel cell power") / number("fuel cell own consumption") + number(
+            "battery power"
+        ) == pytest.approx(number("power"), rel=2e-6)
+        assert number("battery cell mass") / number(
+            "energy battery mass"
+        ) == pytest.approx(number("battery cell mass share"), rel=2e-6)
+        assert number("battery cell mass") + number(
+            "battery BoP mass"
+        ) == pytest.approx(number("energy battery mass"), rel=2e-6)
+        assert number("battery cell mass") * number(
+            "battery cell energy density"
+        ) == pytest.approx(number("electric energy stored"), rel=2e-6)
+        service = datasets[row["name"]]
+        (vehicle,) = [
+            e
+            for e in service["exchanges"]
+            if e["type"] == "technosphere"
+            and e["unit"] == "unit"
+            and e["name"].lower().startswith(("passenger car,", "lorry production,"))
+        ]
+        production = datasets[vehicle["name"]]
+        (battery,) = [
+            e
+            for e in production["exchanges"]
+            if e["name"] == "market for battery capacity (MIX scenario)"
+        ]
+        assert battery["amount"] == pytest.approx(
+            number("electric energy stored")
+            * (1 + number("battery lifetime replacements")),
+            rel=2e-6,
+        )
+        for ds in (service, production):
+            spec = json.loads(ds["vehicle inventory provenance"])
+            assert spec["baseline vehicle parameters"]["battery power"] == number(
+                "battery power"
+            )
+            assert "complement of net fuel-cell power" in ds["comment"]
+            if family == "trucks":
+                assert "peak-power capability remains unverified" in ds["comment"]
