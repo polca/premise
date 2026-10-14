@@ -6,6 +6,10 @@ All notable changes to this project are documented in this file.
 
 ### Fixed
 
+- Keep the efficiency `excludes` of every variable in an external
+  scenario. Only the last variable's excludes were kept, so flows the
+  other variables excluded were scaled anyway. Results change for configs
+  where two variables exclude the same flow type.
 - Avoid recursive regional-to-World fuel-market links by preferring direct
   fuel-production suppliers when a mapped source market has the same product
   identity as the prospective market.
