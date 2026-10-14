@@ -72,3 +72,12 @@ def test_fcev_power_pack_and_purchased_capacity(family, count):
             )
             if family == "trucks":
                 assert "peak-power capability remains unverified" in ds["comment"]
+                if row["size"] in {"3.5t", "7.5t"}:
+                    expected = {"3.5t": 57, "7.5t": 129}[row["size"]]
+                    assert number("power") == expected
+                    assert number("rated power") == expected
+                    assert (
+                        spec["baseline vehicle parameters"]["rated power"] == expected
+                    )
+                    assert "Documented motor-only proxy" in ds["comment"]
+                    assert "not a complete FCEV calibration" in ds["comment"]
