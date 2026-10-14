@@ -1,0 +1,49 @@
+product,name,location,before_direct_resource,after_direct_resource,supply_per_kg_market,restoration_score_increment
+cobalt,"cobalt metal production, from copper mining, via electrolysis, economic allocation",CN,1.0,0,0.6786371679268547,0.6786371679268547
+zinc,primary zinc production from concentrate,CN,1.0,0,0.47445261370762387,0.47445261370762387
+cobalt,"cobalt metal production, from copper mining, via electrolysis, economic allocation",FI,1.0,0,0.1084674178425632,0.1084674178425632
+zinc,primary zinc production from concentrate,KR,1.0,0,0.07502672375395578,0.07502672375395578
+zinc,primary zinc production from concentrate,IN,1.0,0,0.0550857971823554,0.0550857971823554
+cobalt,"cobalt metal production, from copper mining, via electrolysis, economic allocation",CA,1.0,0,0.044753148276024904,0.044753148276024904
+zinc,primary zinc production from concentrate,JP,1.0,0,0.03967565127202418,0.03967565127202418
+zinc,primary zinc production from concentrate,ES,1.0,0,0.038831423004717876,0.038831423004717876
+zinc,primary zinc production from concentrate,AU,1.0,0,0.035184027296854395,0.035184027296854395
+cobalt,"cobalt metal production, from copper mining, via electrolysis, economic allocation",NO,1.0,0,0.030842875156648172,0.030842875156648172
+cobalt,"cobalt metal production, from copper mining, via electrolysis, economic allocation",JP,1.0,0,0.028521971179839612,0.028521971179839612
+zinc,primary zinc production from concentrate,MX,1.0,0,0.027149674427816985,0.027149674427816985
+zinc,primary zinc production from concentrate,PE,1.0,0,0.025145604888239935,0.025145604888239935
+cobalt,"cobalt metal production, from copper mining, via electrolysis, economic allocation",AU,1.0,0,0.02436949268781199,0.02436949268781199
+zinc,primary zinc production from concentrate,KZ,1.0,0,0.024196342165921543,0.024196342165921543
+zinc,primary zinc production from concentrate,FI,1.0,0,0.022376242914537804,0.022376242914537804
+zinc,primary zinc production from concentrate,BE,1.0,0,0.020408110770676068,0.020408110770676068
+zinc,primary zinc production from concentrate,NL,1.0,0,0.01939273491138963,0.01939273491138963
+zinc,primary zinc production from concentrate,BR,1.0,0,0.01876622404340722,0.01876622404340722
+cobalt,"cobalt metal production, from copper mining, via electrolysis, economic allocation",MG,1.0,0,0.017799152179053843,0.017799152179053843
+zinc,primary zinc production from concentrate,RU,1.0,0,0.01730640715314629,0.01730640715314629
+cobalt,"cobalt metal production, from copper mining, via electrolysis, economic allocation",MA,1.0,0,0.015663072719616724,0.015663072719616724
+zinc,primary zinc production from concentrate,NO,1.0,0,0.014244759872353538,0.014244759872353538
+cobalt,"cobalt metal production, from copper mining, via electrolysis, economic allocation",RU,1.0,0,0.014205690226410406,0.014205690226410406
+zinc,primary zinc production from concentrate,DE,1.0,0,0.013342078628526863,0.013342078628526863
+zinc,primary zinc production from concentrate,PL,1.0,0,0.012352865582357452,0.012352865582357452
+zinc,primary zinc production from concentrate,FR,1.0,0,0.012162584123373963,0.012162584123373963
+zinc,primary zinc production from concentrate,US,1.0,0,0.011687722257132679,0.011687722257132679
+cobalt,"cobalt metal production, from copper mining, via electrolysis, economic allocation",BE,1.0,0,0.011134885082520304,0.011134885082520304
+zinc,primary zinc production from concentrate,IT,1.0,0,0.010710426420967794,0.010710426420967794
+zinc,primary zinc production from concentrate,IR,1.0,0,0.010554181906513823,0.010554181906513823
+cobalt,"cobalt metal production, from copper mining, via electrolysis, economic allocation",NC,1.0,0,0.008915483064224858,0.008915483064224858
+cobalt,"cobalt metal production, from copper mining, via electrolysis, economic allocation",ZM,1.0,0,0.008614007709509122,0.008614007709509122
+cobalt,"cobalt metal production, from copper mining, via electrolysis, economic allocation",ZA,1.0,0,0.006853635532496971,0.006853635532496971
+zinc,primary zinc production from concentrate,BG,1.0,0,0.005688795885893162,0.005688795885893162
+zinc,primary zinc production from concentrate,UZ,1.0,0,0.0056878461465991285,0.0056878461465991285
+zinc,primary zinc production from concentrate,NA,1.0,0,0.003555043652196429,0.003555043652196429
+zinc,primary zinc production from concentrate,KP,1.0,0,0.001148858604754243,0.001148858604754243
+zinc,primary zinc production from concentrate,VN,1.0,0,0.0007796920720176216,0.0007796920720176216
+cobalt,"cobalt metal production, from copper mining, via electrolysis, economic allocation",FR,1.0,0,0.0004923588764681482,0.0004923588764681482
+zinc,primary zinc production from concentrate,TH,1.0,0,0.0004598191909006355,0.0004598191909006355
+cobalt,"cobalt metal production, from copper mining, via electrolysis, economic allocation",BR,1.0,0,0.0002923854220566491,0.0002923854220566491
+cobalt,"cobalt metal production, from copper mining, via electrolysis, economic allocation",CD,1.0,0,0.00028481066250049005,0.00028481066250049005
+cobalt,"cobalt metal production, from copper mining, via electrolysis, economic allocation",IN,1.0,0,0.00015149504562928914,0.00015149504562928914
+zinc,primary zinc production from concentrate,DZ,1.0,0,6.219154920405761e-05,6.219154920405761e-05
+zinc,primary zinc production from concentrate,RoW,1.0,0,-5.280864924337221e-13,-5.280864924337221e-13
+zinc,primary zinc production from concentrate,CA-QC,1.0,1.0,0.0,0.0
+zinc,primary zinc production from concentrate,CA,1.0,1.0,0.048881790828601605,0.0

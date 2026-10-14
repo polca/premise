@@ -1,0 +1,25 @@
+stage,label,database,code,name,product,location,unit,functional unit
+source,motor_powertrain,ecoinvent-3.12-consequential,64c5d3371e4a7f3c69ebba72e05c78e8,"electric motor production, vehicle (electric powertrain)","electric motor, electric passenger car",GLO,kilogram,1
+source,motor_scooter,ecoinvent-3.12-consequential,268c5e8d929797f57000c277315bbf16,"electric motor production, for electric scooter","electric motor, for electric scooter",GLO,kilogram,1
+source,magnet,ecoinvent-3.12-consequential,e365a14bc6870f64f77036c78cb2cd2d,"permanent magnet production, for electric motor","permanent magnet, for electric motor",GLO,kilogram,1
+source,car_diesel,ecoinvent-3.12-consequential,6dcbb15225840fb3bd98088e8b3b31c2,"passenger car production, diesel","passenger car, diesel",GLO,kilogram,1
+source,car_petrol,ecoinvent-3.12-consequential,13daca64d8403a0e02e5f496cc92d3b9,"passenger car production, petrol/natural gas","passenger car, petrol/natural gas",GLO,kilogram,1
+source,copper,ecoinvent-3.12-consequential,ef54ab308af5f4fd324d0260771004cc,"market for copper, cathode","copper, cathode",GLO,kilogram,1
+source,gold,ecoinvent-3.12-consequential,fd42908ed3b822318e21ee4a4c197f53,market for gold,gold,GLO,kilogram,1
+source,electricity_ch,ecoinvent-3.12-consequential,1759867f66ab5a4df18281b35fdcdb16,"market for electricity, low voltage","electricity, low voltage",CH,kilowatt hour,1
+before,motor_powertrain,metals-audit-before-consequential,088b29bc424f44809aaceeeda4ed08eb,"electric motor production, vehicle (electric powertrain)","electric motor, electric passenger car",GLO,kilogram,1
+before,motor_scooter,metals-audit-before-consequential,3206445ee50c4e3f9ee4a6443cfb7586,"electric motor production, for electric scooter","electric motor, for electric scooter",GLO,kilogram,1
+before,magnet,metals-audit-before-consequential,9e10fff6557449918d8b9e2234580b4c,"permanent magnet production, for electric motor","permanent magnet, for electric motor",GLO,kilogram,1
+before,car_diesel,metals-audit-before-consequential,fb2a575efb8245fcb2149bcc33dd30d4,"passenger car production, diesel","passenger car, diesel",GLO,kilogram,1
+before,car_petrol,metals-audit-before-consequential,5bae8c2ad43647afb777eac6285119a4,"passenger car production, petrol/natural gas","passenger car, petrol/natural gas",GLO,kilogram,1
+before,copper,metals-audit-before-consequential,59699f8a-5b0f-45dd-b1e5-f2c68eb72e2d,"market for copper, cathode","copper, cathode",World,kilogram,1
+before,gold,metals-audit-before-consequential,a38624a8-cb31-4f61-aa99-74a97efff1c6,market for gold,gold,World,kilogram,1
+before,electricity_ch,metals-audit-before-consequential,489ef6b0bc1b4c9d81d0ac0fc8ed10fe,"market for electricity, low voltage","electricity, low voltage",CH,kilowatt hour,1
+after,motor_powertrain,metals-audit-final-consequential,6f0776d35dcd461f8df1020da26e589d,"electric motor production, vehicle (electric powertrain)","electric motor, electric passenger car",GLO,kilogram,1
+after,motor_scooter,metals-audit-final-consequential,38f6806dff684bd2b2d87b60e3c7889a,"electric motor production, for electric scooter","electric motor, for electric scooter",GLO,kilogram,1
+after,magnet,metals-audit-final-consequential,b8e041609ce84a1d95b9beb74f75f95e,"permanent magnet production, for electric motor","permanent magnet, for electric motor",GLO,kilogram,1
+after,car_diesel,metals-audit-final-consequential,7bebbfec5d4b4c88a5db22160e51d79a,"passenger car production, diesel","passenger car, diesel",GLO,kilogram,1
+after,car_petrol,metals-audit-final-consequential,835090548c1f4f89a4782147025e698c,"passenger car production, petrol/natural gas","passenger car, petrol/natural gas",GLO,kilogram,1
+after,copper,metals-audit-final-consequential,c673b56103a64e589368af8d7629145b,"market for copper, cathode","copper, cathode",GLO,kilogram,1
+after,gold,metals-audit-final-consequential,cb2171e3ba8d48d2ae9c9ddd5e46fe62,market for gold,gold,GLO,kilogram,1
+after,electricity_ch,metals-audit-final-consequential,e43440d1b8674c17915ec6ab43d99839,"market for electricity, low voltage","electricity, low voltage",CH,kilowatt hour,1

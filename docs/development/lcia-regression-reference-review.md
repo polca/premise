@@ -135,3 +135,41 @@ unchanged.
 | ecoinvent-3.9.1-cutoff / test2 / electricity_low_voltage_ch | 0.0205869131 | 0.01895557864 | -7.92% |
 | ecoinvent-3.9.1-cutoff / test3 / electricity_low_voltage_ch | 0.01313291012 | 0.01217674843 | -7.28% |
 | ecoinvent-3.9.1-cutoff / test3 / steel_low_alloyed_glo | 0.8488257253 | 0.8118015598 | -4.36% |
+
+## Metals correctness review, 11 October 2026
+
+The metals corrections in `3002c98f` change direct material conversions, producer
+shares and freight inputs. Paired full builds compare an untouched `fe02694ac5`
+checkout with the corrected implementation in isolated Brightway projects.
+The same encrypted IAM data, sources, scenario definitions, methods and functional
+units are used. All 25 baseline climate scores satisfy the existing references.
+Three corrected scores exceed the unchanged 3% tolerance and are refreshed below;
+the other 22 references remain unchanged.
+
+| Case / scenario / activity | Previous reference | Fresh baseline | Corrected reference |
+| --- | ---: | ---: | ---: |
+| 3.12 cutoff / test1 / steel_low_alloyed_glo | 1.8816609917041642 | 1.8802364533034677 | 2.0022511065208146 |
+| 3.12 cutoff / test2 / electricity_low_voltage_ch | 0.01897114198748734 | 0.0189694614911037 | 0.01963575644309365 |
+| 3.12 consequential / test3 / steel_low_alloyed_glo | 0.9151738406362014 | 0.915152545340846 | 0.9732937653615192 |
+
+The steel changes are consistent with restored freight inputs. For example, the
+cutoff iron-ore-concentrate market previously retained sea transport only; it now
+also includes 1.50052 tonne-km of road, 0.52140 of rail and 0.05915 of air freight
+per kilogram. Supplier-share changes and corrected direct material inputs also
+affect supply chains. These total-score comparisons do not assign a separate
+causal percentage to each correction. In-ground metal-flow corrections do not
+directly contribute to IPCC GWP.
+
+The cutoff climate calculation preceded the final resource-only mine/reagent
+guard and metadata-serialization correction; neither changes its technosphere
+or IPCC scores. The final RELICS comparisons include both corrections. Detailed
+commands, coverage gaps and methodological limitations are in
+[the metals audit](../../results/metals-correctness/README.rst). Its
+`regression_comparison.csv` records all 25 paired scores and
+`reference_check.json` compares them with the updated reference file without
+repeating the LCA solves. The raw regression JSON files retain their comparisons
+against the references present at calculation time.
+
+Older versions and EN15804 passed the metals compatibility builds documented in
+that audit. Their full-scenario LCIA references were not recertified or changed
+in this review.

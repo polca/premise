@@ -18,9 +18,15 @@ fleet data exist, builds regional transport markets. The generated service is
 expressed per tonne-kilometre; vehicle manufacturing and battery capacity have
 separate reference units.
 
+The current replacement workbook uses 2020 Regional delivery vehicles, with
+400 km design range and cycle-specific payload and mileage. See
+:doc:`/development/regional-truck-refresh-2026` for battery specifications,
+proxy assumptions and the controlled EF 3.1 comparison. Historical long-haul
+labels in the market examples below do not define this workbook's driving cycle.
+
 .. figure:: /_static/process-diagrams/transport-trucks.svg
    :class: process-diagram
-   :alt: Trucks transformation: Regionalize mapped transport activities; Apply available efficiency factors; If fleet data exist: build markets and set batteries; Redirect eligible freight consumers; Apply matched exhaust factors.
+   :alt: Trucks transformation: Regionalize mapped transport activities; Apply available efficiency factors; If fleet data exist: build markets and set batteries; Redirect eligible freight consumers; Check emission plausibility without changing amounts.
    :align: center
 
 Inputs and applicability
@@ -53,26 +59,91 @@ triangular bounds. Capacity is interpolated between configured years and held
 at endpoint values outside the range; it is not simply scaled by vehicle
 fuel efficiency.
 
-For matched combustion powertrains and emissions classes, the exhaust step
-compares air-pollutant totals with packaged factors and calculated fuel use.
-A zero total or a value within 50% of the expected total is left unchanged.
-A larger deviation is clamped to the 90–110% interval around that expectation.
-This can modify pollutant totals independently of the IAM efficiency factor.
+The legacy selector uses manufacturing names containing ``truck``. The current
+workbook uses ``lorry production`` names, which it does not match. Consequently,
+these activities retain nominal capacity times one plus lifetime replacements;
+all 42 production activities were checked in the 2020 build. The projected-size
+mechanism should not be assumed to have overwritten their physical batteries.
 
-When an efficiency factor is applied, **all biosphere exchanges** in the
-selected transport activity are rescaled along with the filtered energy
-inputs. Other technosphere exchanges, such as vehicle manufacture and road
-infrastructure, are not selected by this efficiency operation. This
-biosphere scaling precedes the additional car/truck exhaust adjustment.
+Transport emission checks are read-only. Exact air-flow aliases and complete
+EURO-class labels select the packaged hot-exhaust references; methane does not
+include NMVOC, and EURO-VI trucks do not use EURO-V coefficients. Recognized
+fuel markets and market groups provide fuel energy in MJ per reference activity.
+Invalid matched emission masses, units and supported fuel inputs remain errors.
+A missing fuel reference produces a diagnostic instead of a zero-fuel assumption.
+
+For comparable named flows, the inherited 0.5–2 times hot-reference screen
+produces warnings without changing inventory amounts or uncertainty metadata.
+This is a heuristic, not an empirical bound or a EURO certification check.
+Cold starts, evaporation, deterioration and model calibration are not
+reconstructed from the final exchanges, so a disagreement alone does not prove
+an inventory error. Residual NMVOC is not compared with parent NMHC, and missing
+THC aggregates are reported as unavailable checks. Use the source model's
+component inventory to investigate hot, cold-start and evaporation terms.
+
+Optional ``energy_intensity_aliases`` provide technology-specific final-energy
+intensities in MJ/vehicle-km. REMIND and REMIND-EU use these when available,
+with an efficiency index equal to intensity(2020) divided by intensity(year).
+A positive modeled 2020 intensity remains usable even when fleet activity is
+zero. The original REMIND reports describe fleet intensities, not the physical
+specification of a newly manufactured vehicle or motor efficiency alone.
+The current default still caps the index at 1.25 (at most 20% less energy)
+and prevents deterioration over time.
+
+A direct series must have a finite positive 2020 value. Gaps in other years
+can use the same series' nearest available values. If direct data are absent,
+an available regional energy/service pair provides the fallback. Otherwise
+the index is one, explicitly marked as unavailable in the array's
+``vehicle efficiency sources`` attribute and the transformed vehicle's
+``log parameters / IAM efficiency source``. Missing regions or classes never
+inherit a direct trend from neighbouring technologies. In particular, EUR's
+Large Car and SUV category is not automatically assigned to separate Large
+Car inventories, nor duplicated in fleet volumes.
+
+Other IAMs without direct-intensity mappings retain their existing
+energy/service calculation. Its denominator matters: IMAGE reports passenger-
+and tonne-kilometres, while the inspected TIAM-UCL distance series use
+vehicle-kilometres. Such service intensities can incorporate occupancy/load
+changes. Missing MESSAGE vehicle mappings do not create a synthetic vehicle
+projection. Do not substitute pooled electricity or liquid-fuel demand for
+individual technologies without accounting for hybrid contributions.
+
+The original REMIND preprocessing must retain ``Energy intensity`` variables
+in addition to ``Efficiency``. ``scripts/restore_vehicle_intensities.py`` can
+append the mapped rows to an encrypted scenario from its matching original.
+It verifies model/pathway and existing transport values, preserves the existing
+plaintext bytes, and writes a new encrypted file plus hashes for review.
+Existing scenario archives without these rows use the documented fallback.
+
+Vehicle energy inputs are selected by their fuel/electricity product and unit,
+in addition to the IAM fuel mapping. A name containing a fuel, such as lorry
+production, diesel, does not make manufacture or equipment an energy input.
+Efficiency improvements therefore do not reduce the number of vehicles
+manufactured per unit of transport service.
+
+Energy scaling changes fuel-derived CO2, sulphur emissions and generic-air
+methane leakage. Compartmented HBEFA hot, cold-start and evaporative emissions
+retain their source factors: NOx, exhaust PM, CO, NMVOC, formaldehyde and PAHs
+are not reduced merely because an IAM uses less energy per kilometre.
+Refrigerant losses, wear, vehicle manufacture and road infrastructure also
+retain their own physical basis. Generic-air methane leakage is distinguished
+from HBEFA combustion methane in urban/rural/highway air subcompartments.
+These rules follow the refreshed carculator inventory equations; unknown flows
+are not assigned a fuel relationship. They do not supply new future EURO-class
+or fuel-blend-dependent non-CO2 emission factors.
+
+The fuel module subsequently recomputes fossil/non-fossil combustion CO2 from
+the final regional suppliers and fuel purchases. The emission plausibility
+checks remain read-only.
 
 Premise regionalizes mapped transport activities even when fleet data are
 absent. For an available efficiency signal, it applies the inverse efficiency
 change to technosphere inputs selected by the technology's fuel-name filters.
 If the efficiency array or mapped variable is missing, that energy adjustment
 is unchanged. Regional markets are built only when fleet data are available.
-Cars and trucks also receive the implemented exhaust-factor
-normalization for matched fuel, size and emissions-class cases. This is
-separate from IAM efficiency changes and the GAINS emissions update.
+Cars and trucks receive read-only emission diagnostics for matched fuel, size
+and emissions-class cases. These checks are separate from IAM efficiency
+changes and the GAINS emissions update; they never normalize pollutant amounts.
 
 
 Markets and downstream links
@@ -102,22 +173,11 @@ IAM region, and more specifically:
 
 The current market builder names its general market
 ``market for transport, freight, lorry`` and appends a size where supported.
-The following inventory examples describe size and haul variants; their names
-should not be treated as the exact output names of every current build:
-
- ========================================================================================= =============================================================
-  truck transport dataset name                                                              description
- ========================================================================================= =============================================================
-  transport, freight, lorry, 3.5t gross weight, unspecified powertrain, long haul           fleet average, for 3.5t size class, long haul
-  transport, freight, lorry, 7.5t gross weight, unspecified powertrain, long haul           fleet average, for 7.5t size class, long haul
-  transport, freight, lorry, 18t gross weight, unspecified powertrain, long haul            fleet average, for 18t size class, long haul
-  transport, freight, lorry, 26t gross weight, unspecified powertrain, long haul            fleet average, for 26t size class, long haul
-  transport, freight, lorry, 40t gross weight, unspecified powertrain, long haul            fleet average, for 40t size class, long haul
-  transport, freight, lorry, unspecified, long haul                                         fleet average, all powertrain types, all size classes
- ========================================================================================= =============================================================
-
-The mapping file linking IAM variables to the truck datasets is available
-here: https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1143960a24964a5fe/premise/iam_variables_mapping/transport_road_freight.yaml
+For the current names and available size markets, inspect the generated
+``market for transport, freight, lorry`` activities and
+``iam_variables_mapping/transport_road_freight.yaml``. The regenerated vehicle
+inputs use Regional delivery; old long-haul labels are not the current output
+catalogue. Fleet averages remain conditional on available IAM service volumes.
 
 Relinking
 ~~~~~~~~~~~
@@ -242,101 +302,45 @@ tonne-kilometre input becomes 0.1/1.1 = 0.0909 kWh. Inspect the changed fuel
 or electricity exchange and its supplier separately. For an available fleet
 market, check service weights and units, then inspect an actual consumer link.
 Use ``Market Changes`` and ``Key Changes`` to distinguish composition,
-energy use and any exhaust-factor corrections.
+energy use and supply changes. Review the validation report separately for
+read-only emission diagnostics.
 
 Sources and inventory details
 -------------------------------
 
-Process context
-~~~~~~~~~~~~~~~~~
+Process context and source inventories
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The following size classes of medium and heavy duty trucks are imported:
+The refreshed truck catalogue contains 52 RER services, 42 manufacturing recipes
+and 33 supporting components. Gross-mass classes are 3.5, 7.5, 18, 26, 32, 40 and
+60 tonnes. Native powertrains include diesel, compressed gas, diesel hybrid,
+plug-in diesel hybrid, battery electric and fuel-cell electric. Ten gasoline/LPG
+variants use explicit energy-preserving manufacture/combustion proxies.
 
-- 3.5t
-- 7.5t
-- 18t
-- 26t
-- 40t
+All regenerated templates use the **Regional delivery** cycle, a **400 km**
+baseline design range and 2020 defaults under Swiss climate. The source model
+also supports Urban delivery and Long haul, but this workbook does not contain
+three cycle variants. Combustion templates use EURO-VI; electric vehicles have
+no EURO class. Transport is expressed per tonne-kilometre, using modelled cargo
+rather than gross vehicle mass.
 
-These weights refer to the vehicle gross mass (the maximum weight the vehicle is
-allowed to reach, fully loaded).
+The current catalogue is in
+`lci-trucks.xlsx <https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-trucks.xlsx>`_
+and its ``lci-trucks.parameters.csv`` companion. Exact names are preserved from
+the selected service catalogue. Only mapped technologies are regionalized;
+unmatched 32 t/60 t services do not acquire fleet data simply because templates
+exist. The separate legacy-component workbook preserves 26 compatibility
+recipes for other vehicle families.
 
-Each truck is available for a variety of powertrain types:
+HEVs now have coupled high-power buffer sizing. FCEV trucks use the approved
+AKASOL reference with charging/discharge checks; 3.5/7.5 t motors use documented
+57/129 kW proxies. Premise purchases nominal kWh through its MIX capacity market,
+with the physical manufacturing-mass mismatch recorded explicitly. Corrected
+2020 FCEV hardware remains fixed in future scenarios. See
+:doc:`campaign-closeout` for the source references, final checks and limitations.
 
-- fuel cell electric
-- battery electric
-- diesel hybrid
-- plugin diesel hybrid
-- diesel
-- compressed gas
+.. include:: battery-sizing.inc
 
-but also for different driving cycles, to which a range autonomy
-of the vehicle is associated:
+.. include:: lpg-fallback.inc
 
-- urban delivery (required range autonomy of 150 km)
-- regional delivery (required range autonomy of 400 km)
-- long haul (required range autonomy of 800 km)
-
-Those are driving cycles developed for the software `VECTO <https://ec.europa.eu/clima/eu-action/transport-emissions/road-transport-reducing-co2-emissions-vehicles/vehicle-energy-consumption-calculation-tool-vecto_en>`__,
-which have become standard in measuring the CO2 emissions of trucks.
-
-The truck vehicle model is from `Sacchi <https://pubs.acs.org/doi/abs/10.1021/acs.est.0c07773>`__ et al, 2021.
-
-Source inventories
-~~~~~~~~~~~~~~~~~~~~
-
-The following datasets for medium and heavy-duty trucks are imported.
-
- ================================================================================== ==================
-  Truck datasets                                                                     location
- ================================================================================== ==================
-  transport, freight, lorry, battery electric 3.5t gross weight                      all IAM regions
-  transport, freight, lorry, fuel cell electric, 3.5t gross weight                   all IAM regions
-  transport, freight, lorry, diesel hybrid, 3.5t gross weight, EURO-VI               all IAM regions
-  transport, freight, lorry, diesel, 3.5t gross weight, EURO-VI                      all IAM regions
-  transport, freight, lorry, compressed gas, 3.5t gross weight, EURO-VI              all IAM regions
-  transport, freight, lorry, plugin diesel hybrid, 3.5t gross weight, EURO-VI        all IAM regions
-  transport, freight, lorry, battery electric 7.5t gross weight                      all IAM regions
-  transport, freight, lorry, fuel cell electric, 7.5t gross weight                   all IAM regions
-  transport, freight, lorry, diesel hybrid, 7.5t gross weight, EURO-VI               all IAM regions
-  transport, freight, lorry, diesel, 7.5t gross weight, EURO-VI                      all IAM regions
-  transport, freight, lorry, compressed gas, 7.5t gross weight, EURO-VI              all IAM regions
-  transport, freight, lorry, plugin diesel hybrid, 7.5t gross weight, EURO-VI        all IAM regions
-  transport, freight, lorry, battery electric 18t gross weight                       all IAM regions
-  transport, freight, lorry, fuel cell electric, 18t gross weight                    all IAM regions
-  transport, freight, lorry, diesel hybrid, 18t gross weight, EURO-VI                all IAM regions
-  transport, freight, lorry, diesel, 18t gross weight, EURO-VI                       all IAM regions
-  transport, freight, lorry, compressed gas, 18t gross weight, EURO-VI               all IAM regions
-  transport, freight, lorry, plugin diesel hybrid, 18t gross weight, EURO-VI         all IAM regions
-  transport, freight, lorry, battery electric 26t gross weight                       all IAM regions
-  transport, freight, lorry, fuel cell electric, 26t gross weight                    all IAM regions
-  transport, freight, lorry, diesel hybrid, 26t gross weight, EURO-VI                all IAM regions
-  transport, freight, lorry, diesel, 26t gross weight, EURO-VI                       all IAM regions
-  transport, freight, lorry, compressed gas, 26t gross weight, EURO-VI               all IAM regions
-  transport, freight, lorry, plugin diesel hybrid, 26t gross weight, EURO-VI         all IAM regions
-  transport, freight, lorry, battery electric 32t gross weight                       all IAM regions
-  transport, freight, lorry, fuel cell electric, 32t gross weight                    all IAM regions
-  transport, freight, lorry, diesel hybrid, 32t gross weight, EURO-VI                all IAM regions
-  transport, freight, lorry, diesel, 32t gross weight, EURO-VI                       all IAM regions
-  transport, freight, lorry, compressed gas, 32t gross weight, EURO-VI               all IAM regions
-  transport, freight, lorry, plugin diesel hybrid, 32t gross weight, EURO-VI         all IAM regions
-  transport, freight, lorry, battery electric 40t gross weight                       all IAM regions
-  transport, freight, lorry, fuel cell electric, 40t gross weight                    all IAM regions
-  transport, freight, lorry, diesel hybrid, 40t gross weight, EURO-VI                all IAM regions
-  transport, freight, lorry, diesel, 40t gross weight, EURO-VI                       all IAM regions
-  transport, freight, lorry, compressed gas, 40t gross weight, EURO-VI               all IAM regions
-  transport, freight, lorry, plugin diesel hybrid, 40t gross weight, EURO-VI         all IAM regions
- ================================================================================== ==================
-
-
-Inventories are from `Sacchi3 <https://pubs.acs.org/doi/abs/10.1021/acs.est.0c07773>`__ et al. 2021. The vehicles are available
-for different years and emission standards and for each IAM region.
-
-When doing:
-
-.. code-block:: python
-
-    ndb.update("trucks")
-
-*premise* will create fleet average vehicles for each IAM region. The inventories can be consulted
-here: `LCItrucks <https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/additional_inventories/lci-trucks.xlsx>`__.
+.. include:: vehicle-provenance.inc

@@ -21,11 +21,21 @@ from .inventory_store import get_scenario_inventory, replace_scenario_inventory
 from .transformation import BaseTransformation, IAMDataCollection
 from .utils import eidb_label, rescale_exchanges, rescale_exchange
 from .car_energy import apply_floor, car_class, fuel_balance
+from .fuels.carbon import update_vehicle_fuel_co2
+from .vehicle_emissions import fuel_proportional_emission
+from .vehicle_energy import vehicle_energy_exchange
+from .vehicle_lpg import record_lpg_supply
+from .vehicle_provenance import record_vehicle_provenance
+from .vehicle_battery import resize_regional_batteries, SPEC_KEY as BATTERY_SIZING_KEY
+from .vehicle_hydrogen import (
+    compression_electricity,
+    finish_hydrogen_compression,
+    prepare_hydrogen_compression,
+    record_hydrogen_compression_balances,
+)
 from .validation import (
     CarValidation,
     TruckValidation,
-    load_car_exhaust_pollutants,
-    load_truck_exhaust_pollutants,
 )
 from .validation_framework import record_validation_phase
 
@@ -76,14 +86,13 @@ def _update_vehicles(scenario, vehicle_type, version, system_model):
         trspt.create_vehicle_markets()
         trspt.relink_transport_datasets()
 
-    if vehicle_type == "car":
-        trspt.normalize_pollutant_emissions(
-            "transport, passenger car", load_car_exhaust_pollutants()
-        )
-    elif vehicle_type == "truck":
-        trspt.normalize_pollutant_emissions(
-            "transport, freight, lorry", load_truck_exhaust_pollutants()
-        )
+    if vehicle_type in {"car", "truck"}:
+        # Reuse the fuel module's accounting after regional supplier linking,
+        # IAM efficiency scaling and any passenger-car energy floor.
+        update_vehicle_fuel_co2(trspt.database, version, vehicle_type)
+        record_hydrogen_compression_balances(trspt.database, vehicle_type)
+        record_lpg_supply(trspt)
+        record_vehicle_provenance(trspt)
 
     replace_scenario_inventory(scenario, trspt.database)
     scenario["cache"] = trspt.cache
@@ -223,84 +232,6 @@ class Transport(BaseTransformation):
             if not v:
                 print(f"Vehicle map is empty for {self.vehicle_type}.")
 
-    def normalize_pollutant_emissions(self, vehicle_name: str, exhaust: dict) -> None:
-        """Repair historical HBEFA factors before read-only validation."""
-
-        euro_class_map = {
-            "EURO-III": 3,
-            "EURO-IV": 4,
-            "EURO-V": 5,
-            "EURO-VI": 6,
-            "EURO-2": 2,
-            "EURO-3": 3,
-            "EURO-4": 4,
-            "EURO-5": 5,
-            "EURO-6": 6.2,
-            "EURO-6ab": 6.0,
-        }
-        relevant = [
-            dataset
-            for dataset in self.database
-            if dataset["name"].startswith(vehicle_name)
-            and dataset["location"] in self.regions
-            and any(
-                fuel in dataset["name"]
-                for fuel in ("gasoline", "diesel", "compressed gas")
-            )
-        ]
-        for dataset in relevant:
-            powertrain = dataset["name"].split(", ")[-3]
-            euro_class = next(
-                (item for item in euro_class_map if item in dataset["name"]), None
-            )
-            if powertrain not in exhaust or euro_class is None:
-                continue
-            factors = exhaust[powertrain].get(str(euro_class_map[euro_class]))
-            if factors is None:
-                continue
-            if vehicle_name == "transport, freight, lorry":
-                size = dataset["name"].split(", ")[4].replace(" gross weight", "")
-                factors = factors.get(size)
-                if factors is None:
-                    continue
-
-            fuel_consumption = sum(
-                exchange["amount"] * 43
-                for exchange in dataset["exchanges"]
-                if exchange["name"].startswith(
-                    ("market for diesel", "market for petrol")
-                )
-                and exchange["unit"] == "kilogram"
-            )
-            if fuel_consumption == 0:
-                fuel_consumption = sum(
-                    exchange["amount"] * 47.5
-                    for exchange in dataset["exchanges"]
-                    if "natural gas" in exchange["name"]
-                    and exchange["unit"] == "kilogram"
-                )
-
-            if self.vehicle_type == "car" and car_class(dataset["name"]) is not None:
-                # Same energy accounting as the floor and read-only validation.
-                energy, _, _, production = fuel_balance(dataset)
-                fuel_consumption = energy * production
-
-            for pollutant, factor in factors.items():
-                expected = factor / 1000 * fuel_consumption
-                actual = sum(
-                    exchange["amount"]
-                    for exchange in dataset["exchanges"]
-                    if pollutant.lower() in exchange["name"].lower()
-                    and exchange["type"] == "biosphere"
-                    and exchange.get("categories", [None])[0] == "air"
-                )
-                if actual == 0 or math.isclose(actual, expected, rel_tol=0.5):
-                    continue
-                normalized = float(np.clip(actual, 0.9 * expected, 1.1 * expected))
-                for exchange in dataset["exchanges"]:
-                    if pollutant.lower() in exchange["name"].lower():
-                        exchange["amount"] *= normalized / actual
-
     def regionalize_transport_datasets(self):
         """
         Regionalize transport datasets, which are currently only available in RER, CA and RoW.
@@ -311,6 +242,7 @@ class Transport(BaseTransformation):
             mapping=self.vehicle_map,
             efficiency_adjustment_fn=self.adjust_transport_efficiency,
         )
+        resize_regional_batteries(self)
 
     def create_vehicle_markets(self) -> list:
         """
@@ -466,26 +398,74 @@ class Transport(BaseTransformation):
             raise ValueError("Unknown vehicle type.")
 
         if data is None:
+            compression = prepare_hydrogen_compression(dataset)
+            finish_hydrogen_compression(dataset, compression)
             return dataset
 
         variable = self.rev_map[dataset["name"]]
 
+        source = data.attrs.get("vehicle efficiency sources", {}).get(variable)
+        if source and dataset["location"] in source["by region"]:
+            source_kind = source["by region"][dataset["location"]]
+            prefix = "fallback " if source_kind == "proxy intensity" else ""
+            dataset.setdefault("log parameters", {})["IAM efficiency source"] = {
+                "kind": source_kind,
+                "reference year": source["reference year"],
+                "intensity variable": (
+                    source[f"{prefix}intensity variable"]
+                    if source_kind in {"direct intensity", "proxy intensity"}
+                    else None
+                ),
+                "intensity unit": (
+                    source[f"{prefix}intensity unit"]
+                    if source_kind in {"direct intensity", "proxy intensity"}
+                    else None
+                ),
+            }
+            old_note = dataset.pop("premise vehicle efficiency proxy comment", "")
+            if old_note:
+                dataset["comment"] = dataset.get("comment", "").replace(old_note, "", 1)
+            if source_kind == "proxy intensity":
+                record = dataset["log parameters"]["IAM efficiency source"]
+                record["native intensity variable"] = source["intensity variable"]
+                record["reason"] = (
+                    "Native regional intensity and energy/service signal unavailable"
+                )
+                note = (
+                    f" IAM efficiency proxy ({self.model}, {dataset['location']}): "
+                    f"{record['intensity variable']}; relative to 2020. "
+                    "Native regional efficiency unavailable; only the relative energy trend "
+                    "is borrowed. Baseline vehicle specifications and fleet volumes are retained."
+                )
+                comment = dataset.get("comment", "")
+                dataset["comment"] = note + comment
+                dataset["premise vehicle efficiency proxy comment"] = note
+
         if variable in data.coords["variables"].values:
-            scaling_factor = 1 / self.find_iam_efficiency_change(
+            efficiency = self.find_iam_efficiency_change(
                 data=data,
                 variable=variable,
                 location=dataset["location"],
             )
+            if self.vehicle_type in {"car", "truck"} and (
+                not math.isfinite(efficiency) or efficiency <= 0
+            ):
+                raise ValueError(
+                    "Road-vehicle IAM efficiency must be positive and finite"
+                )
+            scaling_factor = 1 / efficiency
         else:
             # if not found, we assume that the efficiency is 1
             scaling_factor = 1
 
-        if self.vehicle_type == "car" and (
+        if self.vehicle_type in {"car", "truck"} and (
             not math.isfinite(scaling_factor) or scaling_factor <= 0
         ):
             raise ValueError(
-                "Passenger-car IAM scaling factor must be positive and finite"
+                "Road-vehicle IAM scaling factor must be positive and finite"
             )
+
+        compression = prepare_hydrogen_compression(dataset)
 
         if scaling_factor != 1:
             if self.vehicle_type == "car" and car_class(dataset["name"]) is not None:
@@ -494,10 +474,8 @@ class Transport(BaseTransformation):
                 _, _, fuels, _ = fuel_balance(dataset)
                 for exchange in fuels:
                     rescale_exchange(exchange, scaling_factor, remove_uncertainty=False)
-                # Preserve the existing IAM biosphere-scaling convention here.
-                # The additional floor below selects combustion flows only.
                 for exchange in dataset["exchanges"]:
-                    if exchange.get("type") == "biosphere":
+                    if fuel_proportional_emission(exchange):
                         rescale_exchange(
                             exchange, scaling_factor, remove_uncertainty=False
                         )
@@ -511,8 +489,17 @@ class Transport(BaseTransformation):
                                 ws.contains("name", v["name"])
                                 for v in self.vehicle_fuel_map[variable]
                             ]
-                        )
+                        ),
+                        lambda exchange: self.vehicle_type not in {"car", "truck"}
+                        or vehicle_energy_exchange(exchange),
+                        lambda exchange: compression is None
+                        or not compression_electricity(exchange, compression[0]),
                     ],
+                    biosphere_filters=(
+                        [fuel_proportional_emission]
+                        if self.vehicle_type in {"car", "truck"}
+                        else None
+                    ),
                 )
 
             dataset.setdefault("log parameters", {}).update(
@@ -520,6 +507,14 @@ class Transport(BaseTransformation):
             )
 
             txt = f" Fuel/energy efficiency adjusted by a factor of {scaling_factor} according to the scenario."
+            if self.vehicle_type in {"car", "truck"}:
+                txt += (
+                    " Direct-emission scaling is limited to fuel-derived CO2,"
+                    " sulphur and generic-air methane leakage. HBEFA hot,"
+                    " cold-start and evaporative factors, refrigerant losses"
+                    " and distance/wear burdens retain their model basis;"
+                    " IAM energy intensity alone does not change them."
+                )
             if "comment" not in dataset:
                 dataset["comment"] = txt
             else:
@@ -540,6 +535,7 @@ class Transport(BaseTransformation):
                     }
                 )
 
+        finish_hydrogen_compression(dataset, compression)
         self.write_log(dataset)
 
         return dataset
@@ -549,6 +545,8 @@ class Transport(BaseTransformation):
         Adjust battery size for truck datasets.
         """
 
+        if BATTERY_SIZING_KEY in ds:
+            return
         # detect size in name
         size = [s for s in self.battery_size["truck"] if s in ds["name"]][0]
 

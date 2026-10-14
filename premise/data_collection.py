@@ -142,6 +142,31 @@ def get_metals_intensity_factors_data() -> xr.DataArray:
 
     filepath = Path(DATA_DIR / "metals" / "metals_db.csv")
     df = pd.read_csv(filepath)
+    from .metals_rules import MetalsConfigError, INTENSITY_UNITS
+
+    keys = ["metal", "origin_var", "year"]
+    df["year"] = pd.to_numeric(df["year"], errors="raise")
+    if not np.isfinite(df["year"]).all() or (df["year"] % 1 != 0).any():
+        raise MetalsConfigError("Metal intensity years must be finite integers.")
+    if df[keys + ["unit"]].isna().any().any() or df.duplicated(keys).any():
+        raise MetalsConfigError(
+            "Metal intensities require unique, complete metal/technology/year keys."
+        )
+    units = df.groupby("origin_var")["unit"].agg(set)
+    if any(len(values) != 1 or not values <= INTENSITY_UNITS for values in units):
+        raise MetalsConfigError("Metal intensities have unknown or inconsistent units.")
+    values = df[["mean", "median", "min", "max"]].apply(pd.to_numeric, errors="raise")
+    if (
+        not np.isfinite(values.to_numpy()).all()
+        or (values < 0).any().any()
+        or (values["median"] < values["min"]).any()
+        or (values["median"] > values["max"]).any()
+    ):
+        raise MetalsConfigError(
+            "Metal intensities must be finite, nonnegative, and have min <= median <= max."
+        )
+    df[values.columns] = values
+    source_years = df.groupby(["metal", "origin_var"])["year"].agg(["min", "max"])
     df = df.melt(
         id_vars=["metal", "year", "origin_var"],
         value_vars=["mean", "median", "min", "max"],
@@ -153,10 +178,21 @@ def get_metals_intensity_factors_data() -> xr.DataArray:
         .to_xarray()
     )
 
-    array = array.interpolate_na(dim="year", method="linear", fill_value="extrapolate")
+    # Interpolate only between observations. Endpoint filling supports array
+    # selection; consumers must check the per-series observation range before
+    # applying an intensity. A global year range is not evidence for every pair.
+    array = array.interpolate_na(dim="year", method="linear")
     array = array.bfill(dim="year")
     array = array.ffill(dim="year")
-    array = array.fillna(0)
+    # Absent metal/technology pairs remain missing; measured zero is meaningful.
+    array = array.assign_coords(
+        source_year_min=source_years["min"].to_xarray(),
+        source_year_max=source_years["max"].to_xarray(),
+        intensity_unit=(
+            "origin_var",
+            [next(iter(units.loc[v])) for v in array.origin_var.values],
+        ),
+    )
 
     return array
 
@@ -517,6 +553,10 @@ class IAMDataCollection:
             IAM_TRANS_ROADFREIGHT_VARS, variable="energy_use_aliases"
         )
 
+        roadfreight_intensity_vars = self.__get_iam_variable_labels(
+            IAM_TRANS_ROADFREIGHT_VARS, variable="energy_intensity_aliases"
+        )
+
         railfreight_prod_vars = self.__get_iam_variable_labels(
             IAM_TRANS_RAILFREIGHT_VARS, variable="iam_aliases"
         )
@@ -539,6 +579,14 @@ class IAMDataCollection:
 
         passenger_cars_energy_vars = self.__get_iam_variable_labels(
             IAM_TRANS_PASS_CARS_VARS, variable="energy_use_aliases"
+        )
+
+        passenger_cars_intensity_vars = self.__get_iam_variable_labels(
+            IAM_TRANS_PASS_CARS_VARS, variable="energy_intensity_aliases"
+        )
+
+        passenger_cars_intensity_fallback_vars = self.__get_iam_variable_labels(
+            IAM_TRANS_PASS_CARS_VARS, variable="energy_intensity_fallback_aliases"
         )
 
         bus_prod_vars = self.__get_iam_variable_labels(
@@ -580,12 +628,15 @@ class IAMDataCollection:
             + list(other_vars.values())
             + list(roadfreight_prod_vars.values())
             + list(roadfreight_energy_vars.values())
+            + list(roadfreight_intensity_vars.values())
             + list(railfreight_prod_vars.values())
             + list(railfreight_energy_vars.values())
             + list(seafreight_prod_vars.values())
             + list(seafreight_energy_vars.values())
             + list(passenger_cars_prod_vars.values())
             + list(passenger_cars_energy_vars.values())
+            + list(passenger_cars_intensity_vars.values())
+            + list(passenger_cars_intensity_fallback_vars.values())
             + list(bus_prod_vars.values())
             + list(bus_energy_vars.values())
             + list(two_wheelers_prod_vars.values())
@@ -947,10 +998,11 @@ class IAMDataCollection:
             efficiency_labels_by_carrier=cdr_efficiency_index_vars,
         )
 
-        self.road_freight_efficiencies = self.get_iam_efficiencies(
+        self.road_freight_efficiencies = self.get_vehicle_efficiencies(
             data=data,
             production_labels=roadfreight_prod_vars,
             energy_labels=roadfreight_energy_vars,
+            intensity_labels=roadfreight_intensity_vars,
         )
         # we may want to limit the efficiency change for vehicles
         # as we know those won't improve a lot more in the future
@@ -983,10 +1035,12 @@ class IAMDataCollection:
                 None, 1.25
             )
 
-        self.passenger_car_efficiencies = self.get_iam_efficiencies(
+        self.passenger_car_efficiencies = self.get_vehicle_efficiencies(
             data=data,
             production_labels=passenger_cars_prod_vars,
             energy_labels=passenger_cars_energy_vars,
+            intensity_labels=passenger_cars_intensity_vars,
+            intensity_fallback_labels=passenger_cars_intensity_fallback_vars,
         )
         # we may want to limit the efficiency change for vehicles
         # as we know those won't improve a lot more in the future
@@ -1734,6 +1788,143 @@ class IAMDataCollection:
             return None
 
         return xr.concat(carrier_efficiencies, dim="carrier")
+
+    def get_vehicle_efficiencies(
+        self,
+        data: xr.DataArray,
+        production_labels: dict,
+        energy_labels: dict,
+        intensity_labels: dict = None,
+        intensity_fallback_labels: dict = None,
+    ) -> Union[xr.DataArray, None]:
+        """Prefer optional vehicle energy intensities, normalized to 2020.
+
+        The returned efficiency index is intensity(2020) / intensity(year).
+        Direct series require a positive, finite 2020 value and MJ/vehicle-km
+        units. They can describe technologies with no fleet activity. Missing
+        years can use the same series' nearest available values. A different
+        technology is used only through an explicit intensity fallback mapping,
+        in the same region and only when both native calculation paths fail.
+
+        Without direct-intensity mappings, preserve the existing IAM-specific
+        energy/service calculation. With mappings, use an available local
+        energy/service pair before a mapped proxy, otherwise return one and
+        record that the signal is unavailable. Proxies supply relative energy
+        trends only; production volumes are untouched. Caps apply at the caller.
+        """
+        if not intensity_labels and not intensity_fallback_labels:
+            return self.get_iam_efficiencies(
+                data=data,
+                production_labels=production_labels,
+                energy_labels=energy_labels,
+            )
+
+        if not data.year.min() <= self.year <= data.year.max():
+            raise KeyError(f"{self.year} is outside the IAM year range")
+
+        template = xr.ones_like(data.isel(variables=0, drop=True))
+        intensity_labels = intensity_labels or {}
+        intensity_fallback_labels = intensity_fallback_labels or {}
+        results, sources = [], {}
+        for technology in dict.fromkeys(
+            [*production_labels, *intensity_labels, *intensity_fallback_labels]
+        ):
+            service = self.__as_list(production_labels.get(technology, []))
+            energy = self.__as_list(energy_labels.get(technology, []))
+            available = xr.zeros_like(template.isel(year=0, drop=True), dtype=bool)
+            result = template.copy(deep=True)
+            if (
+                service
+                and energy
+                and all(name in data.variables.values for name in service + energy)
+            ):
+                service_data = data.sel(variables=service)
+                energy_data = data.sel(variables=energy)
+                valid_pair = (
+                    np.isfinite(service_data).all("variables")
+                    & np.isfinite(energy_data).all("variables")
+                    & (abs(service_data.sum("variables")) > 0)
+                    & (abs(energy_data.sum("variables")) > 0)
+                )
+                available = valid_pair.any("year")
+                # One technology at a time prevents fix_efficiencies from
+                # filling an absent regional signal with a neighbour's values.
+                legacy = self.get_iam_efficiencies(
+                    data=data,
+                    production_labels={technology: production_labels[technology]},
+                    energy_labels={technology: energy_labels[technology]},
+                ).sel(variables=technology, drop=True)
+                result = xr.where(available, legacy, result)
+
+            regional_sources = {
+                str(region): (
+                    "energy/service"
+                    if available.sel(region=region).item()
+                    else "unavailable"
+                )
+                for region in data.region.values
+            }
+            variable = intensity_labels.get(technology)
+            fallback = intensity_fallback_labels.get(technology)
+            for candidate, is_proxy in ((variable, False), (fallback, True)):
+                if candidate is not None and not isinstance(candidate, str):
+                    raise ValueError(
+                        f"Vehicle intensity for {technology!r} must name one series; "
+                        "intensities cannot be summed."
+                    )
+                if candidate not in data.variables.values:
+                    continue
+                unit = data.attrs.get("unit", {}).get(candidate)
+                if unit not in {"MJ/vehkm", "MJ/vkm"}:
+                    raise ValueError(
+                        f"Vehicle intensity {candidate!r} has unsupported unit {unit!r}; "
+                        "expected MJ/vehicle-km."
+                    )
+                intensity = data.sel(variables=candidate, drop=True)
+                if 2020 in data.year.values:
+                    reference = intensity.sel(year=2020, drop=True)
+                    valid_reference = np.isfinite(reference) & (reference > 0)
+                    if is_proxy:
+                        valid_reference &= ~available
+                    positive = intensity.where(np.isfinite(intensity) & (intensity > 0))
+                    filled = positive.bfill("year").ffill("year")
+                    direct = reference.where(valid_reference) / filled
+                    direct = fix_efficiencies(
+                        direct.expand_dims(variables=[technology]).copy(deep=True),
+                        self.min_year,
+                    ).sel(variables=technology, drop=True)
+                    result = xr.where(valid_reference, direct, result)
+                    available = available | valid_reference
+                    for region in data.region.values:
+                        if valid_reference.sel(region=region).item():
+                            regional_sources[str(region)] = (
+                                "proxy intensity" if is_proxy else "direct intensity"
+                            )
+
+            sources[technology] = {
+                "intensity variable": variable,
+                "intensity unit": data.attrs.get("unit", {}).get(variable),
+                "reference year": 2020,
+                "by region": regional_sources,
+            }
+            if fallback is not None:
+                sources[technology].update(
+                    {
+                        "fallback intensity variable": fallback,
+                        "fallback intensity unit": data.attrs.get("unit", {}).get(
+                            fallback
+                        ),
+                    }
+                )
+            results.append(result.expand_dims(variables=[technology]))
+
+        if not results:
+            return None
+        result = xr.concat(results, dim="variables").transpose(
+            "region", "variables", "year"
+        )
+        result.attrs = {"vehicle efficiency sources": sources}
+        return result
 
     def get_iam_efficiencies(
         self,

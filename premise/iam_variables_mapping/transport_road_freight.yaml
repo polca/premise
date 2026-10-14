@@ -1,5 +1,6 @@
 # mapping between premise and IAM terminology regarding road freight transport
-# transport volumes (ES, in billion tkm/y) and energy use (FE)
+# transport volumes (ES; units depend on IAM), energy use (FE), and optional
+# vehicle energy intensity (MJ/vehicle-km; distinct from fleet volumes)
 ---
 
 
@@ -9,6 +10,9 @@ truck, battery electric, 3.5 metric ton:
     remind-eu: ES|Transport|Freight|Road|Light|Truck(0-3_5t)|BEV
     tiam-ucl: Distance|Transport|Truck|Light|Electric|Electricity
     gcam: Distance|Transport|Freight|Road|Light truck|BEV
+  energy_intensity_aliases:
+    remind: Energy intensity|Transport|Freight|Road|Light|Truck(0-3_5t)|BEV
+    remind-eu: Energy intensity|Transport|Freight|Road|Light|Truck(0-3_5t)|BEV
   energy_use_aliases:
     remind: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Electricity
     remind-eu: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Electricity
@@ -26,6 +30,9 @@ truck, fuel cell electric, 3.5 metric ton:
     remind: ES|Transport|Freight|Road|Light|Truck(0-3_5t)|FCEV
     remind-eu: ES|Transport|Freight|Road|Light|Truck(0-3_5t)|FCEV
     gcam: Distance|Transport|Freight|Road|Light truck|FCEV
+  energy_intensity_aliases:
+    remind: Energy intensity|Transport|Freight|Road|Light|Truck(0-3_5t)|FCEV
+    remind-eu: Energy intensity|Transport|Freight|Road|Light|Truck(0-3_5t)|FCEV
   energy_use_aliases:
     remind: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Hydrogen
     remind-eu: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Hydrogen
@@ -67,6 +74,9 @@ truck, diesel, 3.5 metric ton:
     remind-eu: ES|Transport|Freight|Road|Light|Truck(0-3_5t)|Liquids
     tiam-ucl: Distance|Transport|Truck|Light|Diesel|Diesel
     gcam: Distance|Transport|Freight|Road|Light truck|Liquids
+  energy_intensity_aliases:
+    remind: Energy intensity|Transport|Freight|Road|Light|Truck(0-3_5t)|Liquids
+    remind-eu: Energy intensity|Transport|Freight|Road|Light|Truck(0-3_5t)|Liquids
   energy_use_aliases:
     remind: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Liquids
     remind-eu: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Liquids
@@ -115,6 +125,9 @@ truck, compressed gas, 3.5 metric ton:
     remind-eu: ES|Transport|Freight|Road|Light|Truck(0-3_5t)|Gases
     tiam-ucl: Distance|Transport|Truck|Light|Natural Gas|Natural Gas
     gcam: Distance|Transport|Freight|Road|Light truck|NG
+  energy_intensity_aliases:
+    remind: Energy intensity|Transport|Freight|Road|Light|Truck(0-3_5t)|Gases
+    remind-eu: Energy intensity|Transport|Freight|Road|Light|Truck(0-3_5t)|Gases
   energy_use_aliases:
     remind: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Gases
     remind-eu: FE|Transport|Freight|Road|Light|Truck(0-3_5t)|Gases
@@ -147,6 +160,9 @@ truck, battery electric, 7.5 metric ton:
     tiam-ucl: Distance|Transport|Truck|Commercial|Electric|Electricity
     witch: Energy Service|Transportation|Freight|Truck|Battery-Electric
     gcam: Distance|Transport|Freight|Road|Medium truck|BEV
+  energy_intensity_aliases:
+    remind: Energy intensity|Transport|Freight|Road|Light|Truck(7_5t)|BEV
+    remind-eu: Energy intensity|Transport|Freight|Road|Light|Truck(7_5t)|BEV
   energy_use_aliases:
     remind: FE|Transport|Freight|Road|Light|Truck(7_5t)|Electricity
     remind-eu: FE|Transport|Freight|Road|Light|Truck(7_5t)|Electricity
@@ -169,6 +185,9 @@ truck, fuel cell electric, 7.5 metric ton:
       - Distance|Transport|Truck|Commercial|Hydrogen Fuel Cell|Truck Hydrogen
     witch: Energy Service|Transportation|Freight|Truck|Fuel-Cell-Electric
     gcam: Distance|Transport|Freight|Road|Medium truck|FCEV
+  energy_intensity_aliases:
+    remind: Energy intensity|Transport|Freight|Road|Light|Truck(7_5t)|FCEV
+    remind-eu: Energy intensity|Transport|Freight|Road|Light|Truck(7_5t)|FCEV
   energy_use_aliases:
     remind: FE|Transport|Freight|Road|Light|Truck(7_5t)|Hydrogen
     remind-eu: FE|Transport|Freight|Road|Light|Truck(7_5t)|Hydrogen
@@ -216,6 +235,9 @@ truck, diesel, 7.5 metric ton:
     tiam-ucl: Distance|Transport|Truck|Commercial|Diesel|Diesel
     witch: Energy Service|Transportation|Freight|Truck|Internal Combustion
     gcam: Distance|Transport|Freight|Road|Medium truck|Liquids
+  energy_intensity_aliases:
+    remind: Energy intensity|Transport|Freight|Road|Light|Truck(7_5t)|Liquids
+    remind-eu: Energy intensity|Transport|Freight|Road|Light|Truck(7_5t)|Liquids
   energy_use_aliases:
     remind: FE|Transport|Freight|Road|Light|Truck(7_5t)|Liquids
     remind-eu: FE|Transport|Freight|Road|Light|Truck(7_5t)|Liquids
@@ -266,6 +288,9 @@ truck, compressed gas, 7.5 metric ton:
     remind: ES|Transport|Freight|Road|Light|Truck(7_5t)|Gases
     remind-eu: ES|Transport|Freight|Road|Light|Truck(7_5t)|Gases
     tiam-ucl: Distance|Transport|Truck|Commercial|Natural Gas|Natural Gas
+  energy_intensity_aliases:
+    remind: Energy intensity|Transport|Freight|Road|Light|Truck(7_5t)|Gases
+    remind-eu: Energy intensity|Transport|Freight|Road|Light|Truck(7_5t)|Gases
   energy_use_aliases:
     remind: FE|Transport|Freight|Road|Light|Truck(7_5t)|Gases
     remind-eu: FE|Transport|Freight|Road|Light|Truck(7_5t)|Gases
@@ -296,6 +321,9 @@ truck, battery electric, 18 metric ton:
     remind-eu: ES|Transport|Freight|Road|Heavy|Truck(18t)|BEV
     image: Energy Service|Transportation|Freight|Medium Truck|Battery Electric
     gcam: Distance|Transport|Freight|Road|Heavy truck|BEV
+  energy_intensity_aliases:
+    remind: Energy intensity|Transport|Freight|Road|Heavy|Truck(18t)|BEV
+    remind-eu: Energy intensity|Transport|Freight|Road|Heavy|Truck(18t)|BEV
   energy_use_aliases:
     remind: FE|Transport|Freight|Road|Heavy|Truck(18t)|Electricity
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(18t)|Electricity
@@ -320,6 +348,9 @@ truck, fuel cell electric, 18 metric ton:
       - Energy Service|Transportation|Freight|Medium Truck|Internal Combustion Engine|Hydrogen
       - Energy Service|Transportation|Freight|Medium Truck|Hybrid engine|Hydrogen
     gcam: Distance|Transport|Freight|Road|Heavy truck|FCEV
+  energy_intensity_aliases:
+    remind: Energy intensity|Transport|Freight|Road|Heavy|Truck(18t)|FCEV
+    remind-eu: Energy intensity|Transport|Freight|Road|Heavy|Truck(18t)|FCEV
   energy_use_aliases:
     remind: FE|Transport|Freight|Road|Heavy|Truck(18t)|Hydrogen
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(18t)|Hydrogen
@@ -367,6 +398,9 @@ truck, diesel, 18 metric ton:
       - Energy Service|Transportation|Freight|Medium Truck|Internal Combustion Engine|Biofuel
       - Energy Service|Transportation|Freight|Medium Truck|Internal Combustion Engine|Diesel
     gcam: Distance|Transport|Freight|Road|Heavy truck|Liquids
+  energy_intensity_aliases:
+    remind: Energy intensity|Transport|Freight|Road|Heavy|Truck(18t)|Liquids
+    remind-eu: Energy intensity|Transport|Freight|Road|Heavy|Truck(18t)|Liquids
   energy_use_aliases:
     remind: FE|Transport|Freight|Road|Heavy|Truck(18t)|Liquids
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(18t)|Liquids
@@ -410,6 +444,9 @@ truck, compressed gas, 18 metric ton:
     remind-eu: ES|Transport|Freight|Road|Heavy|Truck(18t)|Gases
     image: Energy Service|Transportation|Freight|Medium Truck|Hybrid engine|LNG
     tiam-ucl: Distance|Transport|Truck|Medium|Natural Gas|Natural Gas
+  energy_intensity_aliases:
+    remind: Energy intensity|Transport|Freight|Road|Heavy|Truck(18t)|Gases
+    remind-eu: Energy intensity|Transport|Freight|Road|Heavy|Truck(18t)|Gases
   energy_use_aliases:
     remind: FE|Transport|Freight|Road|Heavy|Truck(18t)|Gases
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(18t)|Gases
@@ -454,6 +491,9 @@ truck, battery electric, 26 metric ton:
   iam_aliases:
     remind: ES|Transport|Freight|Road|Heavy|Truck(26t)|BEV
     remind-eu: ES|Transport|Freight|Road|Heavy|Truck(26t)|BEV
+  energy_intensity_aliases:
+    remind: Energy intensity|Transport|Freight|Road|Heavy|Truck(26t)|BEV
+    remind-eu: Energy intensity|Transport|Freight|Road|Heavy|Truck(26t)|BEV
   energy_use_aliases:
     remind: FE|Transport|Freight|Road|Heavy|Truck(26t)|Electricity
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(26t)|Electricity
@@ -468,6 +508,9 @@ truck, fuel cell electric, 26 metric ton:
   iam_aliases:
     remind: ES|Transport|Freight|Road|Heavy|Truck(26t)|FCEV
     remind-eu: ES|Transport|Freight|Road|Heavy|Truck(26t)|FCEV
+  energy_intensity_aliases:
+    remind: Energy intensity|Transport|Freight|Road|Heavy|Truck(26t)|FCEV
+    remind-eu: Energy intensity|Transport|Freight|Road|Heavy|Truck(26t)|FCEV
   energy_use_aliases:
     remind: FE|Transport|Freight|Road|Heavy|Truck(26t)|Hydrogen
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(26t)|Hydrogen
@@ -482,6 +525,9 @@ truck, diesel, 26 metric ton:
   iam_aliases:
     remind: ES|Transport|Freight|Road|Heavy|Truck(26t)|Liquids
     remind-eu: ES|Transport|Freight|Road|Heavy|Truck(26t)|Liquids
+  energy_intensity_aliases:
+    remind: Energy intensity|Transport|Freight|Road|Heavy|Truck(26t)|Liquids
+    remind-eu: Energy intensity|Transport|Freight|Road|Heavy|Truck(26t)|Liquids
   energy_use_aliases:
     remind: FE|Transport|Freight|Road|Heavy|Truck(26t)|Liquids
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(26t)|Liquids
@@ -496,6 +542,9 @@ truck, compressed gas, 26 metric ton:
   iam_aliases:
     remind: ES|Transport|Freight|Road|Heavy|Truck(26t)|Gases
     remind-eu: ES|Transport|Freight|Road|Heavy|Truck(26t)|Gases
+  energy_intensity_aliases:
+    remind: Energy intensity|Transport|Freight|Road|Heavy|Truck(26t)|Gases
+    remind-eu: Energy intensity|Transport|Freight|Road|Heavy|Truck(26t)|Gases
   energy_use_aliases:
     remind: FE|Transport|Freight|Road|Heavy|Truck(26t)|Gases
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(26t)|Gases
@@ -511,6 +560,9 @@ truck, battery electric, 40 metric ton:
     remind: ES|Transport|Freight|Road|Heavy|Truck(40t)|BEV
     remind-eu: ES|Transport|Freight|Road|Heavy|Truck(40t)|BEV
     image: Energy Service|Transportation|Freight|Heavy Truck|Battery Electric
+  energy_intensity_aliases:
+    remind: Energy intensity|Transport|Freight|Road|Heavy|Truck(40t)|BEV
+    remind-eu: Energy intensity|Transport|Freight|Road|Heavy|Truck(40t)|BEV
   energy_use_aliases:
     remind: FE|Transport|Freight|Road|Heavy|Truck(40t)|Electricity
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(40t)|Electricity
@@ -532,6 +584,9 @@ truck, fuel cell electric, 40 metric ton:
       - Energy Service|Transportation|Freight|Heavy Truck|Fuel Cell Vehicle|Gasoline
       - Energy Service|Transportation|Freight|Heavy Truck|Fuel Cell Vehicle|Hydrogen
       - Energy Service|Transportation|Freight|Heavy Truck|Internal Combustion Engine|Hydrogen
+  energy_intensity_aliases:
+    remind: Energy intensity|Transport|Freight|Road|Heavy|Truck(40t)|FCEV
+    remind-eu: Energy intensity|Transport|Freight|Road|Heavy|Truck(40t)|FCEV
   energy_use_aliases:
     remind: FE|Transport|Freight|Road|Heavy|Truck(40t)|Hydrogen
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(40t)|Hydrogen
@@ -577,6 +632,12 @@ truck, diesel, 40 metric ton:
       - Energy Service|Transportation|Freight|Heavy Truck|Internal Combustion Engine|Biofuel
       - Energy Service|Transportation|Freight|Heavy Truck|Internal Combustion Engine|Diesel
 
+  energy_intensity_aliases:
+
+    remind: Energy intensity|Transport|Freight|Road|Heavy|Truck(40t)|Liquids
+
+    remind-eu: Energy intensity|Transport|Freight|Road|Heavy|Truck(40t)|Liquids
+
   energy_use_aliases:
     remind: FE|Transport|Freight|Road|Heavy|Truck(40t)|Liquids
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(40t)|Liquids
@@ -617,6 +678,9 @@ truck, compressed gas, 40 metric ton:
     remind-eu: ES|Transport|Freight|Road|Heavy|Truck(40t)|Gases
     image: Energy Service|Transportation|Freight|Heavy Truck|Hybrid engine|LNG
     tiam-ucl: Distance|Transport|Truck|Heavy|Natural Gas|Natural Gas
+  energy_intensity_aliases:
+    remind: Energy intensity|Transport|Freight|Road|Heavy|Truck(40t)|Gases
+    remind-eu: Energy intensity|Transport|Freight|Road|Heavy|Truck(40t)|Gases
   energy_use_aliases:
     remind: FE|Transport|Freight|Road|Heavy|Truck(40t)|Gases
     remind-eu: FE|Transport|Freight|Road|Heavy|Truck(40t)|Gases

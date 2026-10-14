@@ -1,0 +1,23 @@
+{
+  "project": "metals-correctness-3.12-consequential",
+  "biosphere": "ecoinvent-3.12-biosphere",
+  "source": "ecoinvent-3.12-consequential",
+  "before": "metals-audit-before-consequential",
+  "after": "metals-audit-final-consequential",
+  "output": "results/metals-correctness/consequential",
+  "reuse_scores": "/private/tmp/metals-score-reference-cache/consequential",
+  "relics_version": "0.0.6",
+  "relics_mapping_sha256": "c2cde55d0468c6153937b3707ec692b83cda426d0028837fc211550d9c4e0af0",
+  "bw2calc_version": "2.4.0",
+  "characterized_indicators": 66,
+  "unmatched_patterns": 4,
+  "database_fingerprints": {
+    "ecoinvent-3.12-consequential": "9844126948afeace561795b0729707e5fc4471426b18bd5fb3533ecf880267f4",
+    "metals-audit-before-consequential": "18ad4db5f07f0d936497393106058e46777a34d9b0349fc54d166574fb72562d",
+    "metals-audit-final-consequential": "b3a896e3a5e9cebb009b4c3c8e4ea3d909db8b01736092ef3e99b921ee64ad70"
+  },
+  "reused_stages": [
+    "source",
+    "before"
+  ]
+}

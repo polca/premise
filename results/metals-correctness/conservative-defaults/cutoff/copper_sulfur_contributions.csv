@@ -1,0 +1,67 @@
+stage,market,activity,product,location,contribution
+source,"copper, cathode","copper production, cathode, solvent extraction and electrowinning process","copper, cathode",GLO,0.2417667768621371
+source,"copper, cathode","copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",RoW,0.15580866237664523
+source,"copper, cathode","copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",CL,0.13333259018957058
+source,"copper, cathode",molybdenite mine operation,"copper concentrate, sulfide ore",GLO,0.06239743643851377
+source,"copper, cathode","copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",CN,0.04474606153486237
+source,"copper, cathode","copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",AU,0.03287747991134838
+source,"copper, cathode","copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",RU,0.025264219729954733
+source,"copper, cathode","copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",CA,0.024169497464481823
+source,"copper, cathode","copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",US,0.02271973473822705
+source,"copper, cathode","copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",ID,0.020155920067849744
+source,"copper, cathode",Remaining contributions,,,0.06816253490678814
+source,sulfur,cobalt production,sulfur,GLO,1.0261555714114384e-05
+source,sulfur,cobalt production,ferronickel,GLO,2.383884033962609e-06
+source,sulfur,"sodium sulfate production, from natural sources","sodium sulfate, anhydrite",RoW,8.836541548208353e-07
+source,sulfur,zinc mine operation,zinc concentrate,GLO,8.300369097055186e-07
+source,sulfur,cobalt production,cobalt,GLO,6.03365765741318e-07
+source,sulfur,cobalt production,"copper concentrate, sulfide ore",GLO,4.878287811886859e-07
+source,sulfur,cobalt production,"nickel, class 1",GLO,4.302748097666485e-07
+source,sulfur,cobalt production,"copper, anode",GLO,3.8667228682636443e-07
+source,sulfur,cobalt production,sulfuric acid,GLO,2.5661173101308666e-07
+source,sulfur,cobalt production,cobalt hydroxide,GLO,9.096373250806443e-08
+source,sulfur,Remaining contributions,,,3.1092877326517376e-07
+previous,"copper, cathode","copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",CL,0.17030105178093283
+previous,"copper, cathode","copper production, cathode, solvent extraction and electrowinning process","copper, cathode",CN,0.06819733916397801
+previous,"copper, cathode",molybdenite mine operation,"copper concentrate, sulfide ore",PE,0.061698614373665576
+previous,"copper, cathode","copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",CN,0.040605150204300194
+previous,"copper, cathode","copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",US,0.03151725734437601
+previous,"copper, cathode","copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",AU,0.027422932648478792
+previous,"copper, cathode","copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",RU,0.026402481725064764
+previous,"copper, cathode","copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",ZM,0.02596883792330111
+previous,"copper, cathode",molybdenite mine operation,"copper concentrate, sulfide ore",MX,0.01929842365523846
+previous,"copper, cathode","copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",ID,0.018262833830631826
+previous,"copper, cathode",Remaining contributions,,,0.27352182348513343
+previous,sulfur,"sulfur production, petroleum refinery operation",sulfur,CN,0.12888846879417218
+previous,sulfur,"sulfur production, petroleum refinery operation",sulfur,US,0.11524597178909235
+previous,sulfur,"sulfur production, petroleum refinery operation",sulfur,RU,0.09137579703916746
+previous,sulfur,"sulfur production, petroleum refinery operation",sulfur,IQ,0.08858110889102101
+previous,sulfur,"sulfur production, petroleum refinery operation",sulfur,CA,0.06952228902341
+previous,sulfur,"sulfur production, petroleum refinery operation",sulfur,SA,0.051170447385097635
+previous,sulfur,"sulfur production, petroleum refinery operation",sulfur,KZ,0.03701788423227009
+previous,sulfur,primary zinc production from concentrate,sulfur,CN,0.03404160733460849
+previous,sulfur,"sulfur production, petroleum refinery operation",sulfur,AE,0.033969304902121654
+previous,sulfur,"sulfur production, petroleum refinery operation",sulfur,KR,0.028112819047443866
+previous,sulfur,Remaining contributions,,,0.32217000990248923
+conservative,"copper, cathode","copper production, cathode, solvent extraction and electrowinning process","copper, cathode",GLO,0.1723488139757682
+conservative,"copper, cathode","copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",RoW,0.15580866657019746
+conservative,"copper, cathode","copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",CL,0.1333325937781849
+conservative,"copper, cathode",molybdenite mine operation,"copper concentrate, sulfide ore",GLO,0.06239743811792562
+conservative,"copper, cathode","copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",CN,0.04474606273919176
+conservative,"copper, cathode","copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",AU,0.03287748079623778
+conservative,"copper, cathode","copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",RU,0.02526422040993508
+conservative,"copper, cathode","copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",CA,0.024169498114997984
+conservative,"copper, cathode","copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",US,0.0227197353497232
+conservative,"copper, cathode","copper mine operation and beneficiation, sulfide ore","copper concentrate, sulfide ore",ID,0.02015592061034144
+conservative,"copper, cathode",Remaining contributions,,,0.0740007927769949
+conservative,sulfur,"sulfur production, petroleum refinery operation",sulfur,RoW,0.6634984730242246
+conservative,sulfur,"sulfur production, petroleum refinery operation",sulfur,Europe without Switzerland,0.14176820542169316
+conservative,sulfur,"sulfur production, petroleum refinery operation",sulfur,IN,0.10020045470663701
+conservative,sulfur,"sulfur production, petroleum refinery operation",sulfur,BR,0.018475352285198744
+conservative,sulfur,primary zinc production from concentrate,sulfur,RoW,0.00387981478741983
+conservative,sulfur,"sulfur production, petroleum refinery operation",sulfur,ZA,0.0024258903090585266
+conservative,sulfur,"sulfur production, petroleum refinery operation",sulfur,PE,0.0018939310638584714
+conservative,sulfur,"sulfur production, petroleum refinery operation",sulfur,CO,0.0014405329933259753
+conservative,sulfur,cobalt production,sulfur,GLO,0.00022132123255696155
+conservative,sulfur,"rare earth oxides production, from rare earth oxide concentrate, 70% REO",sulfur,CN-SC,4.159886677696684e-06
+conservative,sulfur,Remaining contributions,,,3.854551554827168e-06

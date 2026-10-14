@@ -1,4 +1,4 @@
-from .carbon import reclassify_fuel_co2
+from .carbon import is_vehicle_fuel_consumer, reclassify_fuel_co2
 from collections import defaultdict
 
 from ..transformation import ws
@@ -239,7 +239,8 @@ class SyntheticFuelsMixin:
                     "market for petrol, low-sulfur",
                     "market for petrol, unleaded",
                 ]:
-                    self.process_and_add_markets(
+                    self.process_and_add_fuel_markets(
+                        reference_fuel="gasoline",
                         name=market_name,
                         reference_product=market_name.replace("market for ", ""),
                         unit="kilogram",
@@ -297,7 +298,8 @@ class SyntheticFuelsMixin:
                     "market group for diesel, low-sulfur",
                     "market group for diesel",
                 ]:
-                    self.process_and_add_markets(
+                    self.process_and_add_fuel_markets(
+                        reference_fuel="diesel",
                         name=market_name,
                         reference_product=market_name.replace(
                             "market for ", ""
@@ -344,7 +346,8 @@ class SyntheticFuelsMixin:
                 and self.iam_data.kerosene_blend.sel(variables=k).sum() > 0
             }
             if mapping:
-                self.process_and_add_markets(
+                self.process_and_add_fuel_markets(
+                    reference_fuel="kerosene",
                     name="market for kerosene",
                     reference_product="kerosene",
                     unit="kilogram",
@@ -385,7 +388,8 @@ class SyntheticFuelsMixin:
                 and self.iam_data.lpg_blend.sel(variables=k).sum() > 0
             }
             if mapping:
-                self.process_and_add_markets(
+                self.process_and_add_fuel_markets(
+                    reference_fuel="liquefied petroleum gas",
                     name="market for liquefied petroleum gas",
                     reference_product="liquefied petroleum gas",
                     unit="kilogram",
@@ -509,7 +513,9 @@ class SyntheticFuelsMixin:
                     sum_fuel += exc["amount"]
                     non_fossil_fuel += exc["amount"] * min(1.0, max(0.0, share))
 
-            if sum_fuel == 0:
+            if sum_fuel == 0 or is_vehicle_fuel_consumer(ds):
+                # Road vehicles use final linked supplier carbon properties
+                # after all fuel chains have been completed and relinked.
                 continue
 
             reclassify_fuel_co2(

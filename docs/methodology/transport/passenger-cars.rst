@@ -16,7 +16,7 @@ separate reference units.
 
 .. figure:: /_static/process-diagrams/transport-passenger-cars.svg
    :class: process-diagram
-   :alt: Cars transformation: Regionalize mapped transport activities; Apply available efficiency factors; If fleet data exist: build service markets; Retain consumer selection; Apply matched exhaust factors.
+   :alt: Cars transformation: Regionalize mapped transport activities; Apply available efficiency factors; If fleet data exist: build service markets; Retain consumer selection; Check emission plausibility without changing amounts.
    :align: center
 
 Inputs and applicability
@@ -40,26 +40,96 @@ After the setup in :doc:`/getting_started/first-scenario`:
 Transformation
 ----------------
 
-For matched combustion powertrains and emissions classes, the exhaust step
-compares air-pollutant totals with packaged factors and calculated fuel use.
-A zero total or a value within 50% of the expected total is left unchanged.
-A larger deviation is clamped to the 90–110% interval around that expectation.
-This can modify pollutant totals independently of the IAM efficiency factor.
+Transport emission checks are read-only. Exact air-flow aliases and complete
+EURO-class labels select the packaged hot-exhaust references; methane does not
+include NMVOC, and EURO-VI trucks do not use EURO-V coefficients. Recognized
+fuel markets and market groups provide fuel energy in MJ per reference activity.
+Invalid matched emission masses, units and supported fuel inputs remain errors.
+A missing fuel reference produces a diagnostic instead of a zero-fuel assumption.
 
-When an efficiency factor is applied, **all biosphere exchanges** in the
-selected transport activity are rescaled along with the filtered energy
-inputs. Other technosphere exchanges, such as vehicle manufacture and road
-infrastructure, are not selected by this efficiency operation. This
-biosphere scaling precedes the additional car/truck exhaust adjustment.
+For comparable named flows, the inherited 0.5–2 times hot-reference screen
+produces warnings without changing inventory amounts or uncertainty metadata.
+This is a heuristic, not an empirical bound or a EURO certification check.
+Cold starts, evaporation, deterioration and model calibration are not
+reconstructed from the final exchanges, so a disagreement alone does not prove
+an inventory error. Residual NMVOC is not compared with parent NMHC, and missing
+THC aggregates are reported as unavailable checks. Use the source model's
+component inventory to investigate hot, cold-start and evaporation terms.
+
+Optional ``energy_intensity_aliases`` provide technology-specific final-energy
+intensities in MJ/vehicle-km. REMIND and REMIND-EU use these when available,
+with an efficiency index equal to intensity(2020) divided by intensity(year).
+A positive modeled 2020 intensity remains usable even when fleet activity is
+zero. The original REMIND reports describe fleet intensities, not the physical
+specification of a newly manufactured vehicle or motor efficiency alone.
+The current default still caps the index at 1.25 (at most 20% less energy)
+and prevents deterioration over time.
+
+A direct series must have a finite positive 2020 value. Gaps in other years
+can use the same series' nearest available values. If direct data are absent,
+an available regional energy/service pair provides the fallback. An explicit
+``energy_intensity_fallback_aliases`` mapping can then provide a same-region
+proxy when both native calculation paths are unavailable. Otherwise the index
+is one, explicitly marked as unavailable in the array's
+``vehicle efficiency sources`` attribute and the transformed vehicle's
+``log parameters / IAM efficiency source``. No other technology's trend is
+inferred without an explicit mapping.
+
+For REMIND/REMIND-EU Large cars, the configured proxy is the same powertrain's
+``Large Car and SUV`` direct intensity, normalized to its own positive 2020
+reference. Native Large Car trends take priority wherever available. The proxy
+changes only relative efficiency: the original 2020 vehicle and the native
+fleet-volume mappings remain in place, without duplicating SUV fleet volumes.
+The usual cap and monotonicity rules apply. A missing or invalid proxy reference
+leaves the signal unavailable. The source log and dataset comment explicitly
+identify the proxy series, region and reason. This is a modelling assumption
+about relative trends, not evidence that Large cars and SUVs have identical
+absolute energy consumption or hardware.
+
+Other IAMs without direct-intensity mappings retain their existing
+energy/service calculation. Its denominator matters: IMAGE reports passenger-
+and tonne-kilometres, while the inspected TIAM-UCL distance series use
+vehicle-kilometres. Such service intensities can incorporate occupancy/load
+changes. Missing MESSAGE vehicle mappings do not create a synthetic vehicle
+projection. Do not substitute pooled electricity or liquid-fuel demand for
+individual technologies without accounting for hybrid contributions.
+
+The original REMIND preprocessing must retain ``Energy intensity`` variables
+in addition to ``Efficiency``. ``scripts/restore_vehicle_intensities.py`` can
+append the mapped rows to an encrypted scenario from its matching original.
+It verifies model/pathway and existing transport values, preserves the existing
+plaintext bytes, and writes a new encrypted file plus hashes for review.
+Existing scenario archives without these rows use the documented fallback.
+
+Vehicle energy inputs are selected by their fuel/electricity product and unit,
+in addition to the IAM fuel mapping. A name containing a fuel, such as lorry
+production, diesel, does not make manufacture or equipment an energy input.
+Efficiency improvements therefore do not reduce the number of vehicles
+manufactured per unit of transport service.
+
+Energy scaling changes fuel-derived CO2, sulphur emissions and generic-air
+methane leakage. Compartmented HBEFA hot, cold-start and evaporative emissions
+retain their source factors: NOx, exhaust PM, CO, NMVOC, formaldehyde and PAHs
+are not reduced merely because an IAM uses less energy per kilometre.
+Refrigerant losses, wear, vehicle manufacture and road infrastructure also
+retain their own physical basis. Generic-air methane leakage is distinguished
+from HBEFA combustion methane in urban/rural/highway air subcompartments.
+These rules follow the refreshed carculator inventory equations; unknown flows
+are not assigned a fuel relationship. They do not supply new future EURO-class
+or fuel-blend-dependent non-CO2 emission factors.
+
+The fuel module subsequently recomputes fossil/non-fossil combustion CO2 from
+the final regional suppliers and fuel purchases. The emission plausibility
+checks remain read-only.
 
 Premise regionalizes mapped transport activities even when fleet data are
 absent. For an available efficiency signal, it applies the inverse efficiency
 change to technosphere inputs selected by the technology's fuel-name filters.
 If the efficiency array or mapped variable is missing, that energy adjustment
 is unchanged. Regional markets are built only when fleet data are available.
-Cars and trucks also receive the implemented exhaust-factor
-normalization for matched fuel, size and emissions-class cases. This is
-separate from IAM efficiency changes and the GAINS emissions update.
+Cars and trucks receive read-only emission diagnostics for matched fuel, size
+and emissions-class cases. These checks are separate from IAM efficiency
+changes and the GAINS emissions update; they never normalize pollutant amounts.
 
 
 Provisional combustion-car energy floor
@@ -67,7 +137,7 @@ Provisional combustion-car energy floor
 
 Mapped conventional diesel, gasoline and compressed-gas cars with an available
 IAM efficiency signal receive a configurable minimum fuel-energy demand after
-the IAM adjustment and before exhaust normalization. Battery-electric, fuel-cell,
+the IAM adjustment and before the read-only emission checks. Battery-electric, fuel-cell,
 plug-in hybrid and non-car transport datasets are outside this floor's scope.
 Missing efficiency data do not trigger a source-inventory correction.
 
@@ -82,18 +152,17 @@ For projected energy demand ``E`` and minimum ``E_min``, the final demand is
 ``max(E, E_min)``. When binding, fuel inputs are multiplied by ``E_min/E``.
 Their proportions and existing fossil/non-fossil CO2 shares are preserved;
 vehicle manufacture, road infrastructure and non-exhaust burdens are not
-scaled by this additional correction. Ambiguous particulate flows are not
-assumed to be exhaust. The existing subsequent exhaust-factor normalization
-remains in place. The older IAM adjustment's all-biosphere scaling convention
-is unchanged by this additional floor.
+scaled by this additional correction. Both the IAM step and this floor apply the same fuel-derived emission
+selection described above. Neither scales HBEFA distance/start/evaporation
+factors or assumes ambiguous particulate flows are fuel-proportional.
+Subsequent hot-factor diagnostics do not alter emissions.
 
 Fuel selection explicitly recognizes petrol as well as gasoline markets,
 including market groups. This fixes cases where IAM scaling previously changed
 emissions but missed petrol inputs. The same old alias could wrongly select
 ``Passenger car, gasoline, ...`` manufacture inputs; these are now left at
 their source recipe amounts instead of following fuel-efficiency changes.
-Gas is supported in kg (47.5 MJ/kg, existing
-transport convention) or m3 (packaged fuel properties); liquid fuels use their
+Gas is supported in kg (46.5 MJ/kg, documented delivered CNG) or m3 (packaged fuel properties); liquid fuels use their
 packaged MJ/kg values. Unsupported units, invalid reference production, missing
 supported fuel inputs and non-finite or negative quantities fail explicitly.
 
@@ -147,7 +216,8 @@ kilometre input becomes 0.1/1.1 = 0.0909 kWh. Inspect the changed fuel
 or electricity exchange and its supplier separately. For an available fleet
 market, check service weights and units, then inspect an actual consumer link.
 Use ``Market Changes`` and ``Key Changes`` to distinguish composition,
-energy use and any exhaust-factor corrections.
+energy use and supply changes. Review the validation report separately for
+read-only emission diagnostics.
 
 Sources and inventory details
 -------------------------------
@@ -155,93 +225,30 @@ Sources and inventory details
 Source inventories and coverage
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The following datasets for passenger cars are imported.
+The 2020 refresh contains 74 RER transport services, 73 manufacturing recipes
+and 15 supporting components. Services retain the selected catalogue's exact
+names and use one vehicle-kilometre; manufacturing uses one vehicle. Combustion
+variants use EURO-6. Historical EURO classes are excluded; electric vehicles
+have no EURO class. The model uses Swiss climate, WLTC, 12,000 km/year and the
+approved 1.8 cold starts/hot soaks per day.
 
- =============================================================================== ==================
-  Passenger car datasets                                                          location
- =============================================================================== ==================
-  transport, passenger car, gasoline, Large                                       all IAM regions
-  transport, passenger car, diesel, Large                                         all IAM regions
-  transport, passenger car, compressed gas, Large                                 all IAM regions
-  transport, passenger car, plugin gasoline hybrid, Large                         all IAM regions
-  transport, passenger car, plugin diesel hybrid, Large                           all IAM regions
-  transport, passenger car, fuel cell electric, Large                             all IAM regions
-  transport, passenger car, battery electric Large                                all IAM regions
-  transport, passenger car, gasoline hybrid, Large                                all IAM regions
-  transport, passenger car, diesel hybrid, Large                                  all IAM regions
-  transport, passenger car, gasoline, Large SUV                                   all IAM regions
-  transport, passenger car, diesel, Large SUV                                     all IAM regions
-  transport, passenger car, compressed gas, Large SUV                             all IAM regions
-  transport, passenger car, plugin gasoline hybrid, Large SUV                     all IAM regions
-  transport, passenger car, plugin diesel hybrid, Large SUV                       all IAM regions
-  transport, passenger car, fuel cell electric, Large SUV                         all IAM regions
-  transport, passenger car, battery electric Large SUV                            all IAM regions
-  transport, passenger car, gasoline hybrid, Large SUV                            all IAM regions
-  transport, passenger car, diesel hybrid, Large SUV                              all IAM regions
-  transport, passenger car, gasoline, Lower medium                                all IAM regions
-  transport, passenger car, diesel, Lower medium                                  all IAM regions
-  transport, passenger car, compressed gas, Lower medium                          all IAM regions
-  transport, passenger car, plugin gasoline hybrid, Lower medium                  all IAM regions
-  transport, passenger car, plugin diesel hybrid, Lower medium                    all IAM regions
-  transport, passenger car, fuel cell electric, Lower medium                      all IAM regions
-  transport, passenger car, battery electric Lower medium                         all IAM regions
-  transport, passenger car, gasoline hybrid, Lower medium                         all IAM regions
-  transport, passenger car, diesel hybrid, Lower medium                           all IAM regions
-  transport, passenger car, gasoline, Medium                                      all IAM regions
-  transport, passenger car, diesel, Medium                                        all IAM regions
-  transport, passenger car, compressed gas, Medium                                all IAM regions
-  transport, passenger car, plugin gasoline hybrid, Medium                        all IAM regions
-  transport, passenger car, plugin diesel hybrid, Medium                          all IAM regions
-  transport, passenger car, fuel cell electric, Medium                            all IAM regions
-  transport, passenger car, battery electric Medium                               all IAM regions
-  transport, passenger car, gasoline hybrid, Medium                               all IAM regions
-  transport, passenger car, diesel hybrid, Medium                                 all IAM regions
-  transport, passenger car, gasoline, Medium SUV                                  all IAM regions
-  transport, passenger car, diesel, Medium SUV                                    all IAM regions
-  transport, passenger car, compressed gas, Medium SUV                            all IAM regions
-  transport, passenger car, plugin gasoline hybrid, Medium SUV                    all IAM regions
-  transport, passenger car, plugin diesel hybrid, Medium SUV                      all IAM regions
-  transport, passenger car, fuel cell electric, Medium SUV                        all IAM regions
-  transport, passenger car, battery electric Medium SUV                           all IAM regions
-  transport, passenger car, gasoline hybrid, Medium SUV                           all IAM regions
-  transport, passenger car, diesel hybrid, Medium SUV                             all IAM regions
-  transport, passenger car, battery electric Micro                                all IAM regions
-  transport, passenger car, gasoline, Mini                                        all IAM regions
-  transport, passenger car, diesel, Mini                                          all IAM regions
-  transport, passenger car, compressed gas, Mini                                  all IAM regions
-  transport, passenger car, plugin gasoline hybrid, Mini                          all IAM regions
-  transport, passenger car, plugin diesel hybrid, Mini                            all IAM regions
-  transport, passenger car, fuel cell electric, Mini                              all IAM regions
-  transport, passenger car, battery electric Mini                                 all IAM regions
-  transport, passenger car, gasoline hybrid, Mini                                 all IAM regions
-  transport, passenger car, diesel hybrid, Mini                                   all IAM regions
-  transport, passenger car, gasoline, Small                                       all IAM regions
-  transport, passenger car, diesel, Small                                         all IAM regions
-  transport, passenger car, compressed gas, Small                                 all IAM regions
-  transport, passenger car, plugin gasoline hybrid, Small                         all IAM regions
-  transport, passenger car, plugin diesel hybrid, Small                           all IAM regions
-  transport, passenger car, fuel cell electric, Small                             all IAM regions
-  transport, passenger car, battery electric Small                                all IAM regions
-  transport, passenger car, gasoline hybrid, Small                                all IAM regions
-  transport, passenger car, diesel hybrid, Small                                  all IAM regions
-  transport, passenger car, gasoline, Van                                         all IAM regions
-  transport, passenger car, diesel, Van                                           all IAM regions
-  transport, passenger car, compressed gas, Van                                   all IAM regions
-  transport, passenger car, plugin diesel hybrid, Van                             all IAM regions
-  transport, passenger car, fuel cell electric, Van                               all IAM regions
-  transport, passenger car, battery electric Van                                  all IAM regions
-  transport, passenger car, gasoline hybrid, Van                                  all IAM regions
-  transport, passenger car, diesel hybrid, Van                                    all IAM regions
- =============================================================================== ==================
+The current catalogue is in
+`lci-pass_cars.xlsx <https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-pass_cars.xlsx>`_
+and its ``lci-pass_cars.parameters.csv`` companion. Only technologies matched by
+``transport_passenger_cars.yaml`` are regionalized; RER coverage does not imply
+that every variant has IAM fleet data. Regionalized RER entries can become
+forwarding activities. LPG retains its explicit CNG manufacturing/efficiency
+proxy and fossil supply policy.
 
-Inventories are from `Sacchi2 <https://www.psi.ch/en/media/72391/download>`__ et al. 2022. The vehicles are available
-for different years and emission standards and for each IAM region.
+PHEVs use one full physical pack across both modes, calibrated from 2020
+manufacturer references and documented size/density proxies (8.8--24 kWh).
+FCEV buffers use the approved late-2020 Mirai reference, scaled to required
+buffer power; the Medium car has 1.60 kWh and 57.3 kg. The ten-second discharge
+rating does not establish charging capability. See :doc:`campaign-closeout`
+for retained limitations and the scope of the completed verification.
 
+.. include:: battery-sizing.inc
 
-NOx and PM 2.5 emissions are further updated based on
-remote-sensing data from `Sjodin <https://www.bafu.admin.ch/dam/en/sd-web/lggkMIGXeKNu/real-driving-emissions-from-diesel-passenger-cars-measured-by-remote-sensing-and-as-compared-with-pems-and-chassis-dynamometer-measurements-conox-task-2-report.pdf>`__ et al. 2018.
+.. include:: lpg-fallback.inc
 
-*premise* creates fleet markets where the required scenario data are available. The inventories can be consulted
-here: `LCIpasscars <https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/additional_inventories/lci-pass_cars.xlsx>`__.
-
-At the moment, these inventories do not supply inputs to other activities in the LCI database.
+.. include:: vehicle-provenance.inc

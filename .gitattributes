@@ -1,0 +1,3 @@
+# Preserve byte-level provenance hashes of the generated audit companions.
+premise/data/additional_inventories/lci-*.noise.csv -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+premise/data/additional_inventories/lci-*.parameters.csv -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

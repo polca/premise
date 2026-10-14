@@ -3855,10 +3855,10 @@ class _ScenarioActivityReference(Mapping[str, Any]):
 
 
 def _compact_scenario_mapping(
-    mapping: Mapping[str, Mapping[str, Iterable[Mapping[str, Any]]]],
+    mapping: Mapping[str, Mapping[str, Any]],
     store: CompactInventoryStore,
     checkpoint: Path,
-) -> dict[str, dict[str, list[Mapping[str, Any]]]]:
+) -> dict[str, dict[str, Any]]:
     """Replace store-owned mapping payloads with shared lazy references."""
 
     activity_ids = {
@@ -3867,11 +3867,16 @@ def _compact_scenario_mapping(
     }
     resolver = _CheckpointActivityResolver(checkpoint)
     references: dict[ActivityId, _ScenarioActivityReference] = {}
-    compacted: dict[str, dict[str, list[Mapping[str, Any]]]] = {}
+    compacted: dict[str, dict[str, Any]] = {}
 
     for sector, sector_mapping in mapping.items():
         compacted[sector] = {}
         for variable, activities in sector_mapping.items():
+            if isinstance(activities, Mapping):
+                # Sector diagnostics/metrics are metadata, not an iterable of
+                # activity references. Iteration would silently keep only keys.
+                compacted[sector][variable] = copy.deepcopy(activities)
+                continue
             compacted_activities: list[Mapping[str, Any]] = []
             for activity in activities:
                 activity_id = activity_ids.get(id(activity))
@@ -3891,15 +3896,18 @@ def _compact_scenario_mapping(
 
 
 def _hydrate_scenario_mapping(
-    mapping: Mapping[str, Mapping[str, Iterable[Mapping[str, Any]]]],
+    mapping: Mapping[str, Mapping[str, Any]],
     activities_by_id: Mapping[ActivityId, dict[str, Any]],
-) -> dict[str, dict[str, list[Mapping[str, Any]]]]:
+) -> dict[str, dict[str, Any]]:
     """Rebind lazy mapping entries to an incremental update's working graph."""
 
-    hydrated: dict[str, dict[str, list[Mapping[str, Any]]]] = {}
+    hydrated: dict[str, dict[str, Any]] = {}
     for sector, sector_mapping in mapping.items():
         hydrated[sector] = {}
         for variable, activities in sector_mapping.items():
+            if isinstance(activities, Mapping):
+                hydrated[sector][variable] = copy.deepcopy(activities)
+                continue
             hydrated[sector][variable] = [
                 (
                     activities_by_id.get(activity._activity_id, activity)

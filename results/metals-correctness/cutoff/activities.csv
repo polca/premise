@@ -1,0 +1,25 @@
+stage,label,database,code,name,product,location,unit,functional unit
+source,motor_powertrain,ecoinvent-3.12-cutoff,85393eaf0beef6e509d687a73d9f587c,"electric motor production, vehicle (electric powertrain)","electric motor, electric passenger car",GLO,kilogram,1
+source,motor_scooter,ecoinvent-3.12-cutoff,358aaeb1bb46986a4c24d36f62fba15a,"electric motor production, for electric scooter","electric motor, for electric scooter",GLO,kilogram,1
+source,magnet,ecoinvent-3.12-cutoff,523e527d2bfe6667ed267cf44e000b8f,"permanent magnet production, for electric motor","permanent magnet, for electric motor",GLO,kilogram,1
+source,car_diesel,ecoinvent-3.12-cutoff,83705166fff35f09829218d276475fed,"passenger car production, diesel","passenger car, diesel",GLO,kilogram,1
+source,car_petrol,ecoinvent-3.12-cutoff,f4bd22f820254c321b2b74facaa49757,"passenger car production, petrol/natural gas","passenger car, petrol/natural gas",GLO,kilogram,1
+source,copper,ecoinvent-3.12-cutoff,00b74e5b1b33973a2047619b39655506,"market for copper, cathode","copper, cathode",GLO,kilogram,1
+source,gold,ecoinvent-3.12-cutoff,e8bad36c3d2ebe27cdfc2a22b4fca2d0,market for gold,gold,GLO,kilogram,1
+source,electricity_ch,ecoinvent-3.12-cutoff,bdcaa00af04527bcea80a3be4914f720,"market for electricity, low voltage","electricity, low voltage",CH,kilowatt hour,1
+before,motor_powertrain,metals-audit-before-cutoff,530d208f98334f07adccd8aa2db993e4,"electric motor production, vehicle (electric powertrain)","electric motor, electric passenger car",GLO,kilogram,1
+before,motor_scooter,metals-audit-before-cutoff,b7b2dd5d0a3a43ed9ed38da0c27044f9,"electric motor production, for electric scooter","electric motor, for electric scooter",GLO,kilogram,1
+before,magnet,metals-audit-before-cutoff,db931f2fe19b4f36a676a0461d925db7,"permanent magnet production, for electric motor","permanent magnet, for electric motor",GLO,kilogram,1
+before,car_diesel,metals-audit-before-cutoff,a7101be33d3c492e801023c6adb7e5f1,"passenger car production, diesel","passenger car, diesel",GLO,kilogram,1
+before,car_petrol,metals-audit-before-cutoff,cdd48f31e994481aa6c3d24adb93e18c,"passenger car production, petrol/natural gas","passenger car, petrol/natural gas",GLO,kilogram,1
+before,copper,metals-audit-before-cutoff,141644ad-a1b6-41a0-bad6-ed3a4b219abf,"market for copper, cathode","copper, cathode",World,kilogram,1
+before,gold,metals-audit-before-cutoff,2f0a636c-adde-474f-a23c-b0f793a924eb,market for gold,gold,World,kilogram,1
+before,electricity_ch,metals-audit-before-cutoff,6e8745a495f14909a8594a1e082daf1b,"market for electricity, low voltage","electricity, low voltage",CH,kilowatt hour,1
+after,motor_powertrain,metals-audit-final-cutoff,c4b442bd50a34502913912c17f521f17,"electric motor production, vehicle (electric powertrain)","electric motor, electric passenger car",GLO,kilogram,1
+after,motor_scooter,metals-audit-final-cutoff,c438610f9bbf4e658b4d81f41b5a333e,"electric motor production, for electric scooter","electric motor, for electric scooter",GLO,kilogram,1
+after,magnet,metals-audit-final-cutoff,6ba35813095b4cf9a90b66b0b3cf1839,"permanent magnet production, for electric motor","permanent magnet, for electric motor",GLO,kilogram,1
+after,car_diesel,metals-audit-final-cutoff,527e6d698f684b26bff35800ba56136c,"passenger car production, diesel","passenger car, diesel",GLO,kilogram,1
+after,car_petrol,metals-audit-final-cutoff,6fcd9b0e6673497d9ca5cab2455efbe5,"passenger car production, petrol/natural gas","passenger car, petrol/natural gas",GLO,kilogram,1
+after,copper,metals-audit-final-cutoff,b5813263-bddb-41e7-935c-6198b4a16ce2,"market for copper, cathode","copper, cathode",World,kilogram,1
+after,gold,metals-audit-final-cutoff,a080063d-be31-439f-a30a-a9d67954dafe,market for gold,gold,World,kilogram,1
+after,electricity_ch,metals-audit-final-cutoff,dd3ead8bded74c678321604fa154d048,"market for electricity, low voltage","electricity, low voltage",CH,kilowatt hour,1

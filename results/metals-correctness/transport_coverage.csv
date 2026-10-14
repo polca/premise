@@ -1,0 +1,175 @@
+system_model,metal,primary share,primary share with transport,primary share without transport
+cutoff,aluminium hydroxide,1.0,0,1.0000000000000002
+cutoff,"aluminium oxide, metallurgical",1.0,1.0,0.0
+cutoff,"aluminium, cast alloy",0.3117547333240509,0.3117547333240509,0.0
+cutoff,"aluminium, primary, ingot",1.0,0,1.0
+cutoff,"aluminium, primary, liquid",1.0,0,1.0
+cutoff,antimony,1.0,0.9992147799161444,0.0007852200838555787
+cutoff,bauxite,1.0,1.1102230246251565e-16,0.9999999999999999
+cutoff,bentonite,1.0,1.0,0.0
+cutoff,beryllium,1.0,0,1.0
+cutoff,beryllium hydroxide,1.0,0,1.0
+cutoff,"boric acid, anhydrous, powder",1.0,1.0,0.0
+cutoff,boric oxide,1.0,1.0,0.0
+cutoff,boron carbide,1.0,0.948744769874477,0.05125523012552302
+cutoff,boron trifluoride,1.0,1.0,0.0
+cutoff,cadmium,1.0,1.1102230246251565e-16,0.9999999999999999
+cutoff,calcium borates,1.0,0,1.0
+cutoff,cerium oxide,1.0,1.0,0.0
+cutoff,chromite ore concentrate,1.0,1.0,0.0
+cutoff,chromium,1.0,0,1.0
+cutoff,cobalt,0.9942837420385331,0.9942837420385331,0.0
+cutoff,cobalt hydroxide,1.0,0.9498974927465723,0.05010250725342765
+cutoff,cobalt sulfate,1.0,1.0,0.0
+cutoff,"copper concentrate, sulfide ore",1.0,0.9994205214135004,0.0005794785864996488
+cutoff,"copper, anode",1.0,0.9973599772985174,0.002640022701482515
+cutoff,"copper, cathode",0.8006574672161832,0.8002768652434818,0.0003806019727014229
+cutoff,copper-cobalt ore,1.0,0.9340260566824842,0.0659739433175158
+cutoff,dolomite,1.0,1.0,0.0
+cutoff,dysprosium oxide,1.0,1.0,0.0
+cutoff,erbium oxide,1.0,1.0,0.0
+cutoff,europium oxide,1.0,1.0,0.0
+cutoff,"ferroniobium, 66% Nb",1.0,1.0,0.0
+cutoff,gadolinium oxide,1.0,1.0,0.0
+cutoff,"gallium, high-grade",1.0,0,1.0
+cutoff,"germanium, concentrate",1.0,1.0,0.0
+cutoff,gold,0.995573343059732,0,0.9955733430597321
+cutoff,graphite,1.0,0.9989919922743103,0.001008007725689678
+cutoff,hafnium sponge,1.0,1.0,0.0
+cutoff,hafnium tetrachloride,1.0,1.0,0.0
+cutoff,holmium oxide,1.0,1.0,0.0
+cutoff,"ilmenite, 54% titanium dioxide",1.0,1.0,0.0
+cutoff,indium,1.0,1.0,0.0
+cutoff,"indium rich leaching residues, from zinc production",1.0,0,1.0
+cutoff,iridium,1.0,0,1.0
+cutoff,iron ore concentrate,1.0,0.9999785285819525,2.1471418047499566e-05
+cutoff,lanthanum oxide,1.0,1.0,0.0
+cutoff,lanthanum-cerium oxide,1.0,1.0,0.0
+cutoff,lead,0.4508379483719125,0.4508379483719125,0.0
+cutoff,lead concentrate,1.0,0.9974092505560503,0.0025907494439496095
+cutoff,"lithium carbonate, battery grade",0.9991595853934996,1.1102230246251565e-16,0.9991595853934995
+cutoff,"lithium hydroxide, battery grade",1.0,1.0,0.0
+cutoff,lutetium oxide,1.0,1.0,0.0
+cutoff,magnesium,1.0,1.0,0.0
+cutoff,manganese,0.9999975200062181,0.9999975200062181,0.0
+cutoff,manganese concentrate,1.0,0.9994202464737394,0.0005797535262606499
+cutoff,molybdenite,1.0,0.999993200844999,6.7991550010164695e-06
+cutoff,molybdenum,1.0,0.9650917783937812,0.03490822160621876
+cutoff,neodymium oxide,1.0,1.0,0.0
+cutoff,"nickel concentrate, 16% Ni",1.0,0.9979445975732684,0.0020554024267316895
+cutoff,"nickel, class 1",0.9979715353474603,0.9803415096018441,0.01763002574561627
+cutoff,palladium,0.8445144834113307,1.1102230246251565e-16,0.8445144834113306
+cutoff,"phosphate rock, beneficiated",1.0,0.9985859754373625,0.0014140245626375128
+cutoff,"phosphoric acid, fertiliser grade, without water, in 70% solution state",1.0,1.0,0.0
+cutoff,"phosphorus, white, liquid",1.0,0,1.0
+cutoff,platinum,0.955399613827467,0.955399613827467,0.0
+cutoff,platinum group metal concentrate,1.0,0,1.0
+cutoff,potash salt,1.0,1.0,0.0
+cutoff,praseodymium oxide,1.0,1.0,0.0
+cutoff,pyrochlore concentrate,1.0,1.0,0.0
+cutoff,rare earth carbonate concentrate,1.0,1.1102230246251565e-16,0.9999999999999999
+cutoff,rhenium,1.0,0,1.0
+cutoff,ruthenium,1.0,0,1.0
+cutoff,"rutile, 95% titanium dioxide",1.0,1.0,0.0
+cutoff,samarium oxide,1.0,1.0,0.0
+cutoff,sand,1.0,0,1.0
+cutoff,scandium oxide,1.0,1.0,0.0
+cutoff,selenium,1.0,0,1.0000000000000002
+cutoff,silica sand,1.0,1.0,0.0
+cutoff,"silicon, metallurgical grade",1.0,0,1.0
+cutoff,silver,0.9153634788563068,0.9107069759062293,0.004656502950077494
+cutoff,sodium borates,1.0,1.0,0.0
+cutoff,spodumene,1.0,0,1.0
+cutoff,stibnite concentrate,1.0,1.0,0.0
+cutoff,"strontium sulfate, 90% SrSO4",1.0,1.0,0.0
+cutoff,sulfur,1.0,0.971478087328204,0.02852191267179608
+cutoff,"tantalum concentrate, 30% Ta2O5",1.0,1.0,0.0
+cutoff,"tellurium, semiconductor-grade",1.0,1.0,0.0
+cutoff,terbium oxide,1.0,1.0,0.0
+cutoff,thulium oxide,1.0,1.0,0.0
+cutoff,tin,1.0,1.0,0.0
+cutoff,tin concentrate,1.0,0.999503457130598,0.0004965428694020196
+cutoff,titanium,1.0,1.0,0.0
+cutoff,titanium sponge,1.0,0,1.0
+cutoff,titanium tetrachloride,1.0,0,1.0
+cutoff,tungsten concentrate,1.0,0.9988840780252645,0.001115921974735526
+cutoff,"uranium ore, as U",1.0,0.8202689120251845,0.17973108797481557
+cutoff,vanadium bearing magnetite,1.0,1.0,0.0
+cutoff,vanadium pentoxide,1.0,0,1.0
+cutoff,ytterbium oxide,1.0,1.0,0.0
+cutoff,yttrium oxide,1.0,1.0,0.0
+cutoff,zinc,1.0,0.9965958169976133,0.003404183002386701
+cutoff,zinc concentrate,0.9999337778208428,0.9912716144447902,0.008662163376052637
+cutoff,zircon,1.0,0.8279293897453065,0.1720706102546935
+consequential,aluminium hydroxide,1.0,0,1.0000000000000002
+consequential,"aluminium oxide, metallurgical",1.0,1.0,0.0
+consequential,"aluminium, cast alloy",1.0,1.0,0.0
+consequential,"aluminium, primary, ingot",1.0,0,1.0
+consequential,"aluminium, primary, liquid",1.0,0,1.0
+consequential,antimony,1.0,0.9992147799161444,0.0007852200838555787
+consequential,bauxite,1.0,1.1102230246251565e-16,0.9999999999999999
+consequential,bentonite,1.0,1.0,0.0
+consequential,beryllium,1.0,0,1.0
+consequential,beryllium hydroxide,1.0,0,1.0
+consequential,"boric acid, anhydrous, powder",1.0,1.0,0.0
+consequential,boric oxide,1.0,1.0,0.0
+consequential,boron carbide,1.0,0.948744769874477,0.05125523012552302
+consequential,boron trifluoride,1.0,1.0,0.0
+consequential,calcium borates,1.0,0,1.0
+consequential,cerium oxide,1.0,1.0,0.0
+consequential,chromite ore concentrate,1.0,1.0,0.0
+consequential,chromium,1.0,0,1.0
+consequential,cobalt,1.0,1.0,0.0
+consequential,cobalt hydroxide,1.0,0.9498974927465723,0.05010250725342765
+consequential,cobalt sulfate,1.0,1.0,0.0
+consequential,copper-cobalt ore,1.0,0.9340260566824842,0.0659739433175158
+consequential,dolomite,1.0,1.0,0.0
+consequential,europium oxide,1.0,1.0,0.0
+consequential,"ferroniobium, 66% Nb",1.0,1.0,0.0
+consequential,"gallium, high-grade",1.0,0,1.0
+consequential,"germanium, concentrate",1.0,1.0,0.0
+consequential,graphite,1.0,0.9989919922743103,0.001008007725689678
+consequential,hafnium sponge,1.0,1.0,0.0
+consequential,hafnium tetrachloride,1.0,1.0,0.0
+consequential,indium,1.0,1.0,0.0
+consequential,iridium,1.0,0,1.0
+consequential,lanthanum oxide,1.0,1.0,0.0
+consequential,lanthanum-cerium oxide,1.0,1.0,0.0
+consequential,lead,1.0,1.0,0.0
+consequential,"lithium carbonate, battery grade",1.0,0,1.0
+consequential,"lithium hydroxide, battery grade",1.0,1.0,0.0
+consequential,magnesium,1.0,1.0,0.0
+consequential,manganese,1.0,1.0,0.0
+consequential,manganese concentrate,1.0,0.9994202464737394,0.0005797535262606499
+consequential,molybdenum,1.0,0.9650917783937812,0.03490822160621876
+consequential,neodymium oxide,1.0,1.0,0.0
+consequential,"nickel, class 1",1.0,0.9823341396811702,0.017665860318829718
+consequential,"phosphate rock, beneficiated",1.0,0.9985859754373625,0.0014140245626375128
+consequential,"phosphoric acid, fertiliser grade, without water, in 70% solution state",1.0,1.0,0.0
+consequential,"phosphorus, white, liquid",1.0,0,1.0
+consequential,platinum group metal concentrate,1.0,0,1.0
+consequential,potash salt,1.0,1.0,0.0
+consequential,rare earth carbonate concentrate,1.0,1.1102230246251565e-16,0.9999999999999999
+consequential,rhenium,1.0,0,1.0
+consequential,ruthenium,1.0,0,1.0
+consequential,samarium oxide,1.0,1.0,0.0
+consequential,silica sand,1.0,1.0,0.0
+consequential,"silicon, metallurgical grade",1.0,0,1.0
+consequential,sodium borates,1.0,1.0,0.0
+consequential,spodumene,1.0,0,1.0
+consequential,stibnite concentrate,1.0,1.0,0.0
+consequential,"strontium sulfate, 90% SrSO4",1.0,1.0,0.0
+consequential,"tantalum concentrate, 30% Ta2O5",1.0,1.0,0.0
+consequential,"tellurium, semiconductor-grade",1.0,1.0,0.0
+consequential,tin,1.0,1.0,0.0
+consequential,tin concentrate,1.0,0.999503457130598,0.0004965428694020196
+consequential,titanium,1.0,1.0,0.0
+consequential,titanium sponge,1.0,0,1.0
+consequential,titanium tetrachloride,1.0,0,1.0
+consequential,tungsten concentrate,1.0,0.9988840780252645,0.001115921974735526
+consequential,"uranium ore, as U",1.0,0.8202689120251845,0.17973108797481557
+consequential,vanadium bearing magnetite,1.0,1.0,0.0
+consequential,vanadium pentoxide,1.0,0,1.0
+consequential,ytterbium oxide,1.0,1.0,0.0
+consequential,yttrium oxide,1.0,1.0,0.0
+consequential,zinc,1.0,0.9965958169976133,0.003404183002386701

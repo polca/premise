@@ -1,0 +1,7 @@
+stage,database,activity,product,location,code,functional_unit,unit,method,score
+source,ecoinvent-3.12-cutoff,"market for copper, cathode","copper, cathode",GLO,00b74e5b1b33973a2047619b39655506,1,kilogram,"[""RELICS"", ""metals extraction"", ""Copper""]",0.8314009142203793
+source,ecoinvent-3.12-cutoff,market for sulfur,sulfur,GLO,8837c57aa71a3d9ced2b3172f2f95916,1,kilogram,"[""RELICS"", ""metals extraction"", ""Sulfur""]",1.6925776692912694e-05
+previous,metals-audit-resource-fix-cutoff,"market for copper, cathode","copper, cathode",World,14be2edb-7b94-480a-b70c-46bd8497d46b,1,kilogram,"[""RELICS"", ""metals extraction"", ""Copper""]",0.763196746135101
+previous,metals-audit-resource-fix-cutoff,market for sulfur,sulfur,World,a99669e2-e001-4c04-b27c-c6e5d5ab09da,1,kilogram,"[""RELICS"", ""metals extraction"", ""Sulfur""]",1.000095708340894
+conservative,metals-audit-conservative-cutoff,"market for copper, cathode","copper, cathode",GLO,8056bafd9c1b44e9afd23b53a08bfce2,1,kilogram,"[""RELICS"", ""metals extraction"", ""Copper""]",0.7678212232394986
+conservative,metals-audit-conservative-cutoff,market for sulfur,sulfur,GLO,19ee64dbd4d448c49508d42d214ca86f,1,kilogram,"[""RELICS"", ""metals extraction"", ""Sulfur""]",0.9338119902622057

@@ -1015,13 +1015,20 @@ def test_compact_scenario_mapping_keeps_metadata_lazy_and_lossless(inventory, tm
     mapping = {
         "electricity": {
             "grid": [mapped_activity, mapped_activity, detached_activity],
-        }
+        },
+        "metals": {
+            "material update metrics": {"compiled pairs": 2, "executed pairs": 2},
+            "applied market shares": {
+                "copper": {"primary share": 0.75, "secondary share": 0.25}
+            },
+        },
     }
     store = CompactInventoryStore(inventory, take_ownership=True)
     checkpoint = store.checkpoint(tmp_path / "scenario.inventory-store")
 
     compacted = _compact_scenario_mapping(mapping, store, checkpoint)
     first, repeated, detached = compacted["electricity"]["grid"]
+    assert pickle.loads(pickle.dumps(compacted["metals"])) == mapping["metals"]
 
     assert first is repeated
     assert first is not mapped_activity
@@ -1059,6 +1066,11 @@ def test_compact_scenario_mapping_keeps_metadata_lazy_and_lossless(inventory, tm
     assert hydrated_first is hydrated_repeated
     assert hydrated_first is working_copy[0]
     assert hydrated_detached is detached_activity
+    assert hydrated["metals"] == mapping["metals"]
+    hydrated["metals"]["applied market shares"]["copper"]["primary share"] = 0.5
+    assert (
+        compacted["metals"]["applied market shares"]["copper"]["primary share"] == 0.75
+    )
 
 
 def test_checkpoint_corruption_and_schema_are_rejected(inventory, tmp_path):

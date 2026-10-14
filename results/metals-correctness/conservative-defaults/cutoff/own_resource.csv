@@ -1,0 +1,125 @@
+market product,indicator,unit,before,after,change,percent change,before location,after location,status
+aluminium hydroxide,Aluminium,kg resource/kg market product,0.34189646487642145,0.3425191959223896,0.0006227310459681612,0.18214024125497977,World,GLO,comparable
+"aluminium oxide, metallurgical",Aluminium,kg resource/kg market product,0.5231751023082134,0.5092266054529113,-0.013948496855302084,-2.6661239790965308,World,RoW,comparable
+"aluminium, cast alloy",Aluminium,kg resource/kg market product,0.31338577201943674,0.31361461557453774,0.0002288435551009993,0.07302295621985226,World,GLO,comparable
+"aluminium, primary, ingot",Aluminium,kg resource/kg market product,1.004152951995831,1.0094206510266919,0.005267699030860884,0.5245913005972773,World,RoW,comparable
+"aluminium, primary, liquid",Aluminium,kg resource/kg market product,1.0050235931938793,1.0070516555101203,0.002028062316240975,0.20179250815356142,World,GLO,comparable
+antimony,Antimony,kg resource/kg market product,0.9999999906726804,1.0000000125155952,2.1842914810221714e-08,2.184291501395756e-06,World,GLO,comparable
+bauxite,Aluminium,kg resource/kg market product,0.1932993776363207,0.1933099248294425,1.0547193121795972e-05,0.0054564030421452156,World,RoW,comparable
+bentonite,no dedicated RELICS indicator,,,,,,World,GLO,no dedicated RELICS indicator
+beryllium,Beryllium,kg resource/kg market product,0.9991179360415022,0.9991179657264686,2.9684966373899613e-08,2.971117352923442e-06,World,GLO,comparable
+beryllium hydroxide,Beryllium,kg resource/kg market product,0.20945869076536563,0.20945869386196275,3.0965971176133422e-09,1.478380823587851e-06,World,GLO,comparable
+"boric acid, anhydrous, powder",Boron,kg resource/kg market product,0.33425945996120704,0.3342593704597976,-8.950140945040985e-08,-2.677602885518844e-05,World,GLO,comparable
+boric oxide,Boron,kg resource/kg market product,0.6232945865052543,0.6232941574242221,-4.290810321494476e-07,-6.884080841376448e-05,World,GLO,comparable
+boron carbide,Boron,kg resource/kg market product,1.5568717639744791,1.5568709701314158,-7.938430632847826e-07,-5.098962430009075e-05,World,GLO,comparable
+boron trifluoride,Boron,kg resource/kg market product,0.3208085861351025,0.32080828300181885,-3.031332836411771e-07,-9.449038982813204e-05,World,GLO,comparable
+cadmium,Cadmium,kg resource/kg market product,1.0000000324114566,1.0000000230909016,-9.32055499447415e-09,-9.320554692381397e-07,World,GLO,comparable
+calcium borates,Boron,kg resource/kg market product,0.16967418687895822,0.1696742666290148,7.975005658633627e-08,4.7001879339034746e-05,World,GLO,comparable
+cerium oxide,Cerium,kg resource/kg market product,0.0037246499739419796,0.5068271357026366,0.5031024857286946,13507.376243363791,World,GLO,comparable
+chromite ore concentrate,Chromium,kg resource/kg market product,0.26568068168292086,0.2656585764280091,-2.210525491175286e-05,-0.008320234189301948,World,GLO,comparable
+chromium,Chromium,kg resource/kg market product,1.000094462833861,1.0001446292003908,5.0166366529769135e-05,0.005016162812022581,World,GLO,comparable
+cobalt,Cobalt,kg resource/kg market product,0.9943293284124262,0.9943934918699038,6.416345747761731e-05,0.0064529382413030575,World,GLO,comparable
+cobalt hydroxide,Cobalt,kg resource/kg market product,2.441493353968876e-06,0.11336282799014719,0.11336038649679321,4643075.776246341,World,GLO,comparable
+cobalt sulfate,Cobalt,kg resource/kg market product,1.7377479508840596e-05,0.06806809627306364,0.0680507187935548,391602.9292909525,World,RoW,comparable
+"copper concentrate, sulfide ore",Copper,kg resource/kg market product,0.2474749258671849,0.2565802240435529,0.009105298176368015,3.679281100685997,World,GLO,comparable
+"copper, anode",Copper,kg resource/kg market product,0.9001099277441152,0.9075221484344473,0.007412220690332094,0.8234794953221817,World,GLO,comparable
+"copper, cathode",Copper,kg resource/kg market product,0.7631967459373146,0.7678212231166166,0.004624477179302033,0.6059351279888536,World,GLO,comparable
+copper-cobalt ore,Cobalt,kg resource/kg market product,6.043290162592761e-07,,,,World,,market unavailable in one or both builds
+copper-cobalt ore,Copper,kg resource/kg market product,0.00011473588439891751,,,,World,,market unavailable in one or both builds
+dolomite,Dolomite,kg resource/kg market product,1.0000705633723002,1.000028000463511,-4.25629087892343e-05,-0.004255990561876906,World,RoW,comparable
+dysprosium oxide,Dysprosium,kg resource/kg market product,0.22734874792158213,0.18506200966064124,-0.0422867382609409,-18.59994332386936,World,GLO,comparable
+erbium oxide,Erbium,kg resource/kg market product,0.02064370166321426,0.016803942797631564,-0.003839758865582698,-18.600147048360515,World,GLO,comparable
+europium oxide,Europium,kg resource/kg market product,0.00463546791775157,0.003720642967595652,-0.0009148249501559178,-19.735331284520093,World,GLO,comparable
+"ferroniobium, 66% Nb",Niobium,kg resource/kg market product,1.0635488440220564,0.9976605695895759,-0.06588827443248046,-6.195133848607149,World,GLO,comparable
+gadolinium oxide,Gadolinium,kg resource/kg market product,0.024675648869726924,0.02014643197966775,-0.004529216890059175,-18.35500624105492,World,GLO,comparable
+"gallium, high-grade",Gallium,kg resource/kg market product,1.0000000471321084,1.0000000390071122,-8.124996231373416e-09,-8.124995848425231e-07,World,GLO,comparable
+"germanium, concentrate",Germanium,kg resource/kg market product,1.0000000224512255,,,,World,,market unavailable in one or both builds
+gold,Gold,kg resource/kg market product,0.9962402586654244,0.9940513163330441,-0.002188942332380317,-0.21972032482532383,World,GLO,comparable
+graphite,Graphite,kg resource/kg market product,1.0000003365585257,1.0000001044929814,-2.3206554433663484e-07,-2.3206546623302365e-05,World,GLO,comparable
+"graphite ore, mined",Graphite,kg resource/kg market product,,,,,,,market unavailable in one or both builds
+hafnium sponge,Hafnium,kg resource/kg market product,1.0000000214185474,1.0000000001106026,-2.130794474197728e-08,-2.1307944285592066e-06,World,GLO,comparable
+hafnium tetrachloride,Hafnium,kg resource/kg market product,3.6325080046834686e-09,5.53336845978009e-11,-3.5771743200856676e-09,-98.4767085295763,World,GLO,comparable
+holmium oxide,Holmium,kg resource/kg market product,0.011679623750817186,0.009507197032587457,-0.002172426718229729,-18.600142989004514,World,GLO,comparable
+"ilmenite, 54% titanium dioxide",Titanium,kg resource/kg market product,0.32461437105836116,0.3245469510693034,-6.74199890577376e-05,-0.020769255790470356,World,GLO,comparable
+indium,Indium,kg resource/kg market product,1.0000003007215046,1.0000000805548954,-2.2016660916612807e-07,-2.2016654295731402e-05,World,GLO,comparable
+"indium rich leaching residues, from zinc production",Indium,kg resource/kg market product,3.0083877631816944e-11,9.444474538853618e-12,-2.0639403092963324e-11,-68.60619281051366,World,GLO,comparable
+iridium,Iridium,kg resource/kg market product,1.0000000008135443,,,,World,,market unavailable in one or both builds
+iron ore concentrate,Iron,kg resource/kg market product,0.6847171590194937,0.7696332968609939,0.0849161378415002,12.401637190325278,World,GLO,comparable
+lanthanum oxide,Lanthanum,kg resource/kg market product,0.06371845250476345,0.1637199499758883,0.10000149747112484,156.9427591852595,World,GLO,comparable
+lanthanum-cerium oxide,Cerium,kg resource/kg market product,0.4301130022068587,0.4301131952476171,1.9304075837833778e-07,4.488140497680112e-05,World,GLO,comparable
+lanthanum-cerium oxide,Lanthanum,kg resource/kg market product,0.30654404809043956,0.3065439826200113,-6.547042824545102e-08,-2.1357592376458506e-05,World,GLO,comparable
+lead,Lead,kg resource/kg market product,0.45117379472530317,0.40062200807174464,-0.05055178665355853,-11.20450417213104,World,GLO,comparable
+lead concentrate,Lead,kg resource/kg market product,0.00018961131485021446,0.00013026821860341982,-5.934309624679464e-05,-31.29723365595211,World,GLO,comparable
+"lithium carbonate, battery grade",Lithium,kg resource/kg market product,0.1729956352466798,0.400325400116983,0.22732976487030318,131.4078037553645,World,GLO,comparable
+"lithium hydroxide, battery grade",Lithium,kg resource/kg market product,0.42034236454101864,0.4203416681765827,-6.963644359481158e-07,-0.00016566601291984734,World,GLO,comparable
+lutetium oxide,no dedicated RELICS indicator,,,,,,World,GLO,no dedicated RELICS indicator
+magnesium,Magnesium,kg resource/kg market product,1.0000782016527856,1.0000611414422307,-1.706021055492002e-05,-0.0017058876522581287,World,GLO,comparable
+manganese,Manganese,kg resource/kg market product,1.0004514254428452,1.0000156228302806,-0.0004358026125645953,-0.04356059689471573,World,GLO,comparable
+manganese concentrate,Manganese,kg resource/kg market product,0.26307018123802606,0.26297018295260527,-9.999828542078815e-05,-0.038012018294961994,World,GLO,comparable
+molybdenite,Molybdenum,kg resource/kg market product,0.5454715535793357,0.5454682304898435,-3.323089492246467e-06,-0.000609214077331925,World,GLO,comparable
+molybdenum,Molybdenum,kg resource/kg market product,1.0000033983658776,0.9999947234972109,-8.674868666735946e-06,-0.0008674839186458462,World,GLO,comparable
+neodymium oxide,Neodymium,kg resource/kg market product,0.1405095090618916,0.17723685673601985,0.03672734767412825,26.13869190728621,World,GLO,comparable
+"nickel concentrate, 16% Ni",Nickel,kg resource/kg market product,0.17454375412881998,0.1743955077218755,-0.0001482464069444689,-0.08493366473317479,World,GLO,comparable
+"nickel, class 1",Nickel,kg resource/kg market product,1.166162366630729,1.0584771055715376,-0.1076852610591914,-9.234156764148988,World,GLO,comparable
+palladium,Palladium,kg resource/kg market product,0.8445206348330438,0.8445204591549503,-1.7567809351692887e-07,-2.0802107878827526e-05,World,GLO,comparable
+"phosphate rock, beneficiated",Phosphorus,kg resource/kg market product,0.16022871698897054,0.1613839598081105,0.001155242819139951,0.7209961115893309,World,RoW,comparable
+"phosphoric acid, fertiliser grade, without water, in 70% solution state",Phosphorus,kg resource/kg market product,0.25377332895397925,0.2628505300782945,0.00907720112431526,3.5768932699627283,World,RoW,comparable
+"phosphorus, white, liquid",Phosphorus,kg resource/kg market product,4.2129779616338405,4.056272827803764,-0.15670513383007645,-3.719581143246817,World,GLO,comparable
+platinum,Platinum,kg resource/kg market product,0.9554459412917667,0.9554447065922723,-1.2346994944234524e-06,-0.00012922756181832053,World,GLO,comparable
+platinum group metal concentrate,Iridium,kg resource/kg market product,-9.365826131347978e-18,,,,World,,market unavailable in one or both builds
+platinum group metal concentrate,Palladium,kg resource/kg market product,1.750934370760369e-09,,,,World,,market unavailable in one or both builds
+platinum group metal concentrate,Platinum,kg resource/kg market product,4.488062194092953e-09,,,,World,,market unavailable in one or both builds
+platinum group metal concentrate,Rhodium,kg resource/kg market product,2.5441591852961573e-12,,,,World,,market unavailable in one or both builds
+platinum group metal concentrate,Ruthenium,kg resource/kg market product,2.882701073497673e-14,,,,World,,market unavailable in one or both builds
+potash salt,Potassium,kg resource/kg market product,0.08301587443161147,0.0830156730241915,-2.0140741997798361e-07,-0.00024261314038666565,World,RoW,comparable
+praseodymium oxide,Praseodymium,kg resource/kg market product,0.11469619460161785,0.2840923983082285,0.16939620370661068,147.6912152970603,World,GLO,comparable
+pyrochlore concentrate,Niobium,kg resource/kg market product,0.6861592891888442,0.6436510427570986,-0.042508246431745556,-6.195098878862,World,GLO,comparable
+rare earth carbonate concentrate,Cerium,kg resource/kg market product,0.013514775647595536,0.011003857931671508,-0.002510917715924028,-18.579055852627157,World,GLO,comparable
+rare earth carbonate concentrate,Dysprosium,kg resource/kg market product,0.015800064748287188,0.012861245554224984,-0.0029388191940622043,-18.600045258553692,World,GLO,comparable
+rare earth carbonate concentrate,Erbium,kg resource/kg market product,0.008100017751444522,0.006593407829265036,-0.0015066099221794863,-18.60008173328761,World,GLO,comparable
+rare earth carbonate concentrate,Europium,kg resource/kg market product,0.0027000747613448676,0.002197871831017143,-0.0005022029303277248,-18.599593519313697,World,GLO,comparable
+rare earth carbonate concentrate,Gadolinium,kg resource/kg market product,0.02110024029676559,0.0171756160406985,-0.003924624256067089,-18.59990313318226,World,GLO,comparable
+rare earth carbonate concentrate,Holmium,kg resource/kg market product,0.003100006802386096,0.0025234030034048073,-0.0005766037989812889,-18.60008173328759,World,GLO,comparable
+rare earth carbonate concentrate,Lanthanum,kg resource/kg market product,0.12250945949306707,0.09972435059007846,-0.022785108902988613,-18.598652705898225,World,GLO,comparable
+rare earth carbonate concentrate,Neodymium,kg resource/kg market product,0.09930508746135804,0.08083520447971518,-0.018469882981642857,-18.599130672766314,World,GLO,comparable
+rare earth carbonate concentrate,Praseodymium,kg resource/kg market product,0.027301660426921323,0.022223839755722515,-0.005077820671198809,-18.5989445029934,World,GLO,comparable
+rare earth carbonate concentrate,Samarium,kg resource/kg market product,0.02160038738986385,0.01758276231947452,-0.00401762507038933,-18.599782484802247,World,GLO,comparable
+rare earth carbonate concentrate,Scandium,kg resource/kg market product,9.633317659569539e-09,9.848407830504294e-09,2.1509017093475551e-10,2.2327735732983887,World,GLO,comparable
+rare earth carbonate concentrate,Terbium,kg resource/kg market product,0.0027000246940237704,0.002197821351935443,-0.0005022033420883274,-18.599953667086947,World,GLO,comparable
+rare earth carbonate concentrate,Thulium,kg resource/kg market product,0.0009000019335775351,0.000732600838330945,-0.0001674010952465902,-18.60008173328759,World,GLO,comparable
+rare earth carbonate concentrate,Ytterbium,kg resource/kg market product,0.008000017704758397,0.006512007872995855,-0.0014880098317625427,-18.600081733287627,World,GLO,comparable
+rare earth carbonate concentrate,Yttrium,kg resource/kg market product,0.10250033582721996,0.08343521071757928,-0.019065125109640674,-18.600061117631718,World,GLO,comparable
+rhenium,Rhenium,kg resource/kg market product,0.9999999853149389,,,,World,,market unavailable in one or both builds
+ruthenium,Ruthenium,kg resource/kg market product,0.9999999792988185,,,,World,,market unavailable in one or both builds
+"rutile, 95% titanium dioxide",Titanium,kg resource/kg market product,0.5724229157596027,0.5866207898447879,0.014197874085185247,2.4803119676550214,World,GLO,comparable
+samarium oxide,Samarium,kg resource/kg market product,0.0013468242865837606,0.0012541576220737507,-9.266666451000988e-05,-6.880382647766193,World,GLO,comparable
+sand,no dedicated RELICS indicator,,,,,,World,RoW,no dedicated RELICS indicator
+scandium oxide,Scandium,kg resource/kg market product,2.6665878238064654e-08,3.9002253603283294e-08,1.233637536521864e-08,46.262775428145744,World,GLO,comparable
+selenium,Selenium,kg resource/kg market product,1.0000000309225316,1.0000000482944953,1.7371963645373967e-08,1.7371963108188888e-06,World,GLO,comparable
+silica sand,no dedicated RELICS indicator,,,,,,World,GLO,no dedicated RELICS indicator
+"silicon, metallurgical grade",Silicon,kg resource/kg market product,0.0019702091273355723,0.0017482599223929537,-0.00022194920494261858,-11.265261228526198,World,GLO,comparable
+silver,Silver,kg resource/kg market product,0.8622976798154847,0.8581725019695196,-0.004125177845965111,-0.47839370817370414,World,GLO,comparable
+sodium borates,Boron,kg resource/kg market product,3.993916747134268e-07,2.1688327242741548e-07,-1.8250840228601133e-07,-45.69659655949652,World,GLO,comparable
+spodumene,Spodumene,kg resource/kg market product,0.9999999939782014,1.000000011462071,1.7483869685364084e-08,1.7483869790648426e-06,World,GLO,comparable
+stibnite concentrate,Antimony,kg resource/kg market product,0.24943876773378829,0.24943878020012986,1.2466341570149808e-08,4.997756236293799e-06,World,GLO,comparable
+"strontium sulfate, 90% SrSO4",Strontium,kg resource/kg market product,0.5724303498977589,0.5724303469407424,-2.957016520532818e-09,-5.16572281861185e-07,World,GLO,comparable
+sulfur,Sulfur,kg resource/kg market product,1.0000957083398365,0.9338119902594377,-0.06628371808039879,-6.627737478288959,World,GLO,comparable
+"tantalum concentrate, 30% Ta2O5",Tantalum,kg resource/kg market product,0.3521737556989204,0.3496485806271107,-0.0025251750718097155,-0.7170253407435995,World,GLO,comparable
+"tellurium, semiconductor-grade",Tellurium,kg resource/kg market product,1.000000013086643,1.0000000000467133,-1.3039929802616257e-08,-1.3039929631967352e-06,World,GLO,comparable
+terbium oxide,Terbium,kg resource/kg market product,0.055512632938024824,0.04518758463694493,-0.010325048301079894,-18.599457014778853,World,GLO,comparable
+thulium oxide,Thulium,kg resource/kg market product,0.011373541301845,0.009258047034272163,-0.002115494267572836,-18.60013703233894,World,GLO,comparable
+tin,Tin,kg resource/kg market product,1.0000004944114607,0.9999998416327363,-6.527787244081651e-07,-6.52778401667042e-05,World,GLO,comparable
+tin concentrate,Tin,kg resource/kg market product,0.48379308560811674,0.4837927981594235,-2.874486932369358e-07,-5.941562659491493e-05,World,GLO,comparable
+titanium,Titanium,kg resource/kg market product,1.000086484638345,1.014554464883323,0.014467980244977863,1.4466729095144033,World,GLO,comparable
+titanium sponge,Titanium,kg resource/kg market product,1.0000105743911443,1.0145338875684073,0.014523313177263075,1.4523159603692775,World,GLO,comparable
+titanium tetrachloride,Titanium,kg resource/kg market product,0.2523028870683217,0.2559779422941816,0.003675055225859869,1.4566045076070382,World,GLO,comparable
+tungsten concentrate,Tungsten,kg resource/kg market product,0.6872666596596759,0.687266637574633,-2.2085042905573005e-08,-3.2134605389572053e-06,World,GLO,comparable
+"uranium ore, as U",no dedicated RELICS indicator,,,,,,World,GLO,no dedicated RELICS indicator
+vanadium bearing magnetite,Iron,kg resource/kg market product,0.5801312671664763,,,,World,,market unavailable in one or both builds
+vanadium bearing magnetite,Vanadium,kg resource/kg market product,0.005208961383114572,,,,World,,market unavailable in one or both builds
+vanadium pentoxide,Vanadium,kg resource/kg market product,0.06346974323442771,0.022767445514886176,-0.040702297719541536,-64.12866295867336,World,GLO,comparable
+ytterbium oxide,Ytterbium,kg resource/kg market product,0.0035539380978451807,0.0028928982847206807,-0.0006610398131245,-18.60020616355982,World,GLO,comparable
+yttrium oxide,Yttrium,kg resource/kg market product,0.015129888341416783,0.012310491815759692,-0.002819396525657091,-18.63461555059354,World,GLO,comparable
+zinc,Zinc,kg resource/kg market product,1.002903025750793,1.0027065769762546,-0.00019644877453828258,-0.01958801294783383,World,GLO,comparable
+zinc concentrate,Zinc,kg resource/kg market product,0.0003352402702892085,0.0002260452584206711,-0.0001091950118685374,-32.57216436865892,World,GLO,comparable
+zircon,Zirconium,kg resource/kg market product,0.41791493693894305,0.4446659623942048,0.026751025455261757,6.401069473898717,World,GLO,comparable

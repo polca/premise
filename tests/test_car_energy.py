@@ -14,7 +14,7 @@ from premise.validation import CarValidation
 
 def car(energy=0.8, fuel="natural gas", unit="kilogram", production=1):
     lhv = {
-        "natural gas": 47.5 if unit == "kilogram" else 36,
+        "natural gas": 46.5 if unit == "kilogram" else 36,
         "diesel": 43,
         "petrol": 42.6,
     }[fuel]

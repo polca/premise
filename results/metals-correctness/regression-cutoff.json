@@ -1,0 +1,139 @@
+{
+  "case": "ecoinvent-3.12-cutoff",
+  "git_revision": "fe02694ac5eb0b7c35c9f7f09c3d628ab23f0384",
+  "environment": {
+    "premise_source_version": "2.5.4",
+    "premise_source_path": "/Users/romain/GitHub/premise/premise/__init__.py",
+    "installed_distributions": {
+      "premise": "2.5.4",
+      "bw2data": "4.6",
+      "bw2calc": "2.4.0",
+      "bw2io": "0.9.14"
+    }
+  },
+  "biosphere": "ecoinvent-3.12-biosphere",
+  "system_model": "cutoff",
+  "functional_unit_amount": 1,
+  "method": [
+    "ecoinvent-3.12",
+    "IPCC 2013",
+    "climate change",
+    "global warming potential (GWP100)"
+  ],
+  "method_unit": "kg CO2-Eq",
+  "scenarios": {
+    "test1": {
+      "model": "remind",
+      "pathway": "SSP3-rollBack",
+      "year": 2050
+    },
+    "test2": {
+      "model": "image",
+      "pathway": "SSP2-VLHO",
+      "year": 2050
+    }
+  },
+  "databases": {
+    "test1": "metals-regression-20261011-test1",
+    "test2": "metals-regression-20261011-test2"
+  },
+  "validation": {
+    "test1": {
+      "ruleset_version": 6,
+      "errors": 0,
+      "warnings": 1496
+    },
+    "test2": {
+      "ruleset_version": 6,
+      "errors": 0,
+      "warnings": 1511
+    }
+  },
+  "tolerance": {
+    "relative": 0.03,
+    "absolute": 1e-09
+  },
+  "scores": [
+    {
+      "scenario": "test1",
+      "activity": "electricity_low_voltage_ch",
+      "score": 0.14731056800902256,
+      "expected": 0.147,
+      "relative_change": 0.0021127075443712062,
+      "matches_reference": true
+    },
+    {
+      "scenario": "test1",
+      "activity": "heat_natural_gas_europe",
+      "score": 0.04424787759544415,
+      "expected": 0.043,
+      "relative_change": 0.029020409196375718,
+      "matches_reference": true
+    },
+    {
+      "scenario": "test1",
+      "activity": "diesel_europe",
+      "score": 1.1716143696358674,
+      "expected": 1.147,
+      "relative_change": 0.021459781722639404,
+      "matches_reference": true
+    },
+    {
+      "scenario": "test1",
+      "activity": "cement_portland_europe",
+      "score": 0.8758912649856412,
+      "expected": 0.864,
+      "relative_change": 0.013763038177825537,
+      "matches_reference": true
+    },
+    {
+      "scenario": "test1",
+      "activity": "steel_low_alloyed_glo",
+      "score": 2.0022511065208146,
+      "expected": 1.8816609917041642,
+      "relative_change": 0.06408705678031601,
+      "matches_reference": false
+    },
+    {
+      "scenario": "test2",
+      "activity": "electricity_low_voltage_ch",
+      "score": 0.01963575644309365,
+      "expected": 0.01897114198748734,
+      "relative_change": 0.03503291768332484,
+      "matches_reference": false
+    },
+    {
+      "scenario": "test2",
+      "activity": "heat_natural_gas_europe",
+      "score": 0.05131653192889545,
+      "expected": 0.0514,
+      "relative_change": -0.0016238924339406768,
+      "matches_reference": true
+    },
+    {
+      "scenario": "test2",
+      "activity": "diesel_europe",
+      "score": 0.7604319155733525,
+      "expected": 0.7612,
+      "relative_change": -0.0010090441758374702,
+      "matches_reference": true
+    },
+    {
+      "scenario": "test2",
+      "activity": "cement_portland_europe",
+      "score": 0.6704216716016058,
+      "expected": 0.673,
+      "relative_change": -0.003831097174434195,
+      "matches_reference": true
+    },
+    {
+      "scenario": "test2",
+      "activity": "steel_low_alloyed_glo",
+      "score": 1.2322707411571159,
+      "expected": 1.204,
+      "relative_change": 0.02348068202418263,
+      "matches_reference": true
+    }
+  ],
+  "wall_seconds": 1086.3959211250767
+}
