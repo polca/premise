@@ -37,6 +37,12 @@ input does not validate lithium-ion traction-cell capability. This limitation
 is explicit in service and production comments. The update does not resize
 FCEV buffers or hydrogen tanks for future scenarios.
 
+Hybrid hot-exhaust deterioration uses the same petrol/diesel engine mapping
+as the source hot-emission factors. Comments disclose this combustion-engine
+ageing proxy, its vehicle-lifetime mileage basis and the single PHEV mode
+weighting. Cold-start and evaporative factors retain their separate treatment.
+The correction does not validate the retained high truck NOx coefficients.
+
 The ``lci-pass_cars.provenance.json`` and ``lci-trucks.provenance.json`` companion
 files identify the installed workbook hashes and retain earlier provenance.
 The corresponding ``*.parameters.csv`` and ``*.noise.csv`` files preserve the
