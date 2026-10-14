@@ -15,7 +15,7 @@ def air(name, amount, **extra):
         unit="kilogram",
         amount=amount,
         categories=("air", "urban air close to ground"),
-        **extra
+        **extra,
     )
 
 
@@ -143,7 +143,7 @@ def test_combined_emissions_are_preserved_and_order_independent():
             air(
                 "Carbon monoxide, fossil",
                 0.000759,
-                **{"uncertainty type": 3, "loc": 0.000759, "scale": 1e-5}
+                **{"uncertainty type": 3, "loc": 0.000759, "scale": 1e-5},
             ),
             air("Methane, fossil", 5.38683e-6),
             air("NMVOC, non-methane volatile organic compounds", 69.0586e-6),
@@ -291,7 +291,7 @@ def test_update_does_not_normalize_pollutants(monkeypatch, vehicle):
                 "sea_freight_fleet",
             )
         },
-        regions=["EUR"]
+        regions=["EUR"],
     )
     scenario = {
         "iam data": iam,

@@ -114,7 +114,9 @@ def transformer(dataset, kind, factor):
     return tr
 
 
-@pytest.mark.parametrize("source_kind", ["direct intensity", "energy/service", "unavailable"])
+@pytest.mark.parametrize(
+    "source_kind", ["direct intensity", "energy/service", "unavailable"]
+)
 def test_vehicle_records_the_regional_iam_efficiency_source(source_kind):
     dataset = vehicle("car")
     transform = transformer(dataset, "car", 1.0)
