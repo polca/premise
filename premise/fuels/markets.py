@@ -24,9 +24,7 @@ from .properties import (
 class FuelMarketsMixin:
 
     @staticmethod
-    def _prefer_non_recursive_market_suppliers(
-        mapping, name, reference_product, unit
-    ):
+    def _prefer_non_recursive_market_suppliers(mapping, name, reference_product, unit):
         """Drop source markets that would relink to the market being created.
 
         Some ecoinvent fuel mappings contain both direct production datasets and
