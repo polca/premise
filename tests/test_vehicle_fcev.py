@@ -70,6 +70,18 @@ def test_fcev_power_pack_and_purchased_capacity(family, count):
                 "motor shaft power divided by motor/inverter efficiency"
                 in ds["comment"]
             )
+            if family == "pass_cars":
+                assert "30 November 2020" in ds["comment"]
+                assert "10 seconds" in ds["comment"]
+                assert "charging remains unconstrained" in ds["comment"]
+                assert "physical mass mismatch" in ds["comment"]
+                assert "FCEV battery profile" in spec
+                assert number("electric energy stored") == pytest.approx(
+                    number("battery power") / 31.5 * (310.8 * 4 / 1000), rel=3e-6
+                )
+                assert number("energy battery mass") == pytest.approx(
+                    number("battery power") / 31.5 * 44.6, rel=3e-6
+                )
             if family == "trucks":
                 assert "Documented FCEV traction-pack proxy" in ds["comment"]
                 assert "May 2021" in ds["comment"]
