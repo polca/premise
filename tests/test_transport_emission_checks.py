@@ -263,6 +263,7 @@ def test_update_does_not_normalize_pollutants(monkeypatch, vehicle):
     class StubTransport:
         def __init__(self, **kwargs):
             self.database = kwargs["database"]
+            self.vehicle_type = kwargs["vehicle_type"]
             self.cache, self.index, self.vehicle_map = {}, {}, {}
 
         def regionalize_transport_datasets(self):

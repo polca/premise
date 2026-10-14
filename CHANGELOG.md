@@ -6,6 +6,10 @@ All notable changes to this project are documented in this file.
 
 ### Fixed
 
+- Refresh hybrid car/truck hot exhaust with the shared model's corrected
+  petrol/diesel deterioration lookup. Preserve cold starts, fuel demand and
+  PHEV driving shares. Document combustion-engine ageing as a hybrid proxy;
+  the retained high truck NOx coefficients remain scientifically unverified.
 - Refresh FCEV car templates with corrected buffer power and complete pack
   mass from carculator_utils. Retain truck inventory coefficients while
   recording their corrected nonzero buffer-power requirement and the
