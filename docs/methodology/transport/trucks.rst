@@ -416,3 +416,5 @@ here: `LCItrucks <https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1
 .. include:: battery-sizing.inc
 
 .. include:: lpg-fallback.inc
+
+.. include:: vehicle-provenance.inc

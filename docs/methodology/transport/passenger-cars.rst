@@ -319,3 +319,5 @@ At the moment, these inventories do not supply inputs to other activities in the
 .. include:: battery-sizing.inc
 
 .. include:: lpg-fallback.inc
+
+.. include:: vehicle-provenance.inc
