@@ -199,6 +199,7 @@ def vehicle_fuel_carbon(dataset, providers):
             properties is None
             and provider is not None
             and stem == "liquefied petroleum gas"
+            and key[1] == "liquefied petroleum gas"
             and exchange["unit"] == "kilogram"
         ):
             # Explicit user-approved exception where the IAM has no LPG route.

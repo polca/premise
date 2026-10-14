@@ -317,3 +317,5 @@ here: `LCIpasscars <https://github.com/polca/premise/blob/76dbf845ef73bb765024dd
 At the moment, these inventories do not supply inputs to other activities in the LCI database.
 
 .. include:: battery-sizing.inc
+
+.. include:: lpg-fallback.inc

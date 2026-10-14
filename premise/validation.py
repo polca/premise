@@ -2565,6 +2565,22 @@ class TransportValidation(BaseDatasetValidator):
                     issue_type="major",
                 )
 
+    def check_lpg_supply(self, vehicle_type):
+        """Check LPG identity, coverage and final energy/carbon independently of saved logs."""
+        from .vehicle_lpg import describe_lpg_supply, services_and_providers
+
+        services, providers = services_and_providers(self.database, vehicle_type)
+        for dataset in services:
+            try:
+                describe_lpg_supply(dataset, providers, self)
+            except (KeyError, TypeError, ValueError) as error:
+                self.log_issue(
+                    dataset,
+                    "invalid LPG vehicle supply",
+                    str(error),
+                    issue_type="major",
+                )
+
     def check_vehicle_fuel_carbon(self, vehicle_name):
         """Check the split against current fuel links, independent of saved totals."""
         from .fuels.carbon import VEHICLE_CO2_KEY, vehicle_fuel_carbon
@@ -2629,6 +2645,7 @@ class TruckValidation(TransportValidation):
     def run_checks(self):
         self.run_vehicle_checks()
         self.check_vehicle_fuel_carbon("transport, freight, lorry,")
+        self.check_lpg_supply("truck")
         self.check_hydrogen_compression("transport, freight, lorry,")
         self.check_vehicle_efficiency(
             vehicle_name="transport, freight, lorry",
@@ -2650,6 +2667,7 @@ class CarValidation(TransportValidation):
     def run_checks(self):
         self.run_vehicle_checks()
         self.check_vehicle_fuel_carbon("transport, passenger car,")
+        self.check_lpg_supply("car")
         self.check_hydrogen_compression("transport, passenger car,")
         self.check_pollutant_emissions(vehicle_name="transport, passenger car")
         self.check_vehicle_efficiency(
