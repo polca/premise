@@ -173,22 +173,11 @@ IAM region, and more specifically:
 
 The current market builder names its general market
 ``market for transport, freight, lorry`` and appends a size where supported.
-The following inventory examples describe size and haul variants; their names
-should not be treated as the exact output names of every current build:
-
- ========================================================================================= =============================================================
-  truck transport dataset name                                                              description
- ========================================================================================= =============================================================
-  transport, freight, lorry, 3.5t gross weight, unspecified powertrain, long haul           fleet average, for 3.5t size class, long haul
-  transport, freight, lorry, 7.5t gross weight, unspecified powertrain, long haul           fleet average, for 7.5t size class, long haul
-  transport, freight, lorry, 18t gross weight, unspecified powertrain, long haul            fleet average, for 18t size class, long haul
-  transport, freight, lorry, 26t gross weight, unspecified powertrain, long haul            fleet average, for 26t size class, long haul
-  transport, freight, lorry, 40t gross weight, unspecified powertrain, long haul            fleet average, for 40t size class, long haul
-  transport, freight, lorry, unspecified, long haul                                         fleet average, all powertrain types, all size classes
- ========================================================================================= =============================================================
-
-The mapping file linking IAM variables to the truck datasets is available
-here: https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1143960a24964a5fe/premise/iam_variables_mapping/transport_road_freight.yaml
+For the current names and available size markets, inspect the generated
+``market for transport, freight, lorry`` activities and
+``iam_variables_mapping/transport_road_freight.yaml``. The regenerated vehicle
+inputs use Regional delivery; old long-haul labels are not the current output
+catalogue. Fleet averages remain conditional on available IAM service volumes.
 
 Relinking
 ~~~~~~~~~~~
@@ -319,99 +308,36 @@ read-only emission diagnostics.
 Sources and inventory details
 -------------------------------
 
-Process context
-~~~~~~~~~~~~~~~~~
+Process context and source inventories
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The following size classes of medium and heavy duty trucks are imported:
+The refreshed truck catalogue contains 52 RER services, 42 manufacturing recipes
+and 33 supporting components. Gross-mass classes are 3.5, 7.5, 18, 26, 32, 40 and
+60 tonnes. Native powertrains include diesel, compressed gas, diesel hybrid,
+plug-in diesel hybrid, battery electric and fuel-cell electric. Ten gasoline/LPG
+variants use explicit energy-preserving manufacture/combustion proxies.
 
-- 3.5t
-- 7.5t
-- 18t
-- 26t
-- 40t
+All regenerated templates use the **Regional delivery** cycle, a **400 km**
+baseline design range and 2020 defaults under Swiss climate. The source model
+also supports Urban delivery and Long haul, but this workbook does not contain
+three cycle variants. Combustion templates use EURO-VI; electric vehicles have
+no EURO class. Transport is expressed per tonne-kilometre, using modelled cargo
+rather than gross vehicle mass.
 
-These weights refer to the vehicle gross mass (the maximum weight the vehicle is
-allowed to reach, fully loaded).
+The current catalogue is in
+`lci-trucks.xlsx <https://github.com/polca/premise/blob/trals/premise/data/additional_inventories/lci-trucks.xlsx>`_
+and its ``lci-trucks.parameters.csv`` companion. Exact names are preserved from
+the selected service catalogue. Only mapped technologies are regionalized;
+unmatched 32 t/60 t services do not acquire fleet data simply because templates
+exist. The separate legacy-component workbook preserves 26 compatibility
+recipes for other vehicle families.
 
-Each truck is available for a variety of powertrain types:
-
-- fuel cell electric
-- battery electric
-- diesel hybrid
-- plugin diesel hybrid
-- diesel
-- compressed gas
-
-but also for different driving cycles, to which a range autonomy
-of the vehicle is associated:
-
-- urban delivery (required range autonomy of 150 km)
-- regional delivery (required range autonomy of 400 km)
-- long haul (required range autonomy of 800 km)
-
-Those are driving cycles developed for the software `VECTO <https://ec.europa.eu/clima/eu-action/transport-emissions/road-transport-reducing-co2-emissions-vehicles/vehicle-energy-consumption-calculation-tool-vecto_en>`__,
-which have become standard in measuring the CO2 emissions of trucks.
-
-The truck vehicle model is from `Sacchi <https://pubs.acs.org/doi/abs/10.1021/acs.est.0c07773>`__ et al, 2021.
-
-Source inventories
-~~~~~~~~~~~~~~~~~~~~
-
-The following datasets for medium and heavy-duty trucks are imported.
-
- ================================================================================== ==================
-  Truck datasets                                                                     location
- ================================================================================== ==================
-  transport, freight, lorry, battery electric 3.5t gross weight                      all IAM regions
-  transport, freight, lorry, fuel cell electric, 3.5t gross weight                   all IAM regions
-  transport, freight, lorry, diesel hybrid, 3.5t gross weight, EURO-VI               all IAM regions
-  transport, freight, lorry, diesel, 3.5t gross weight, EURO-VI                      all IAM regions
-  transport, freight, lorry, compressed gas, 3.5t gross weight, EURO-VI              all IAM regions
-  transport, freight, lorry, plugin diesel hybrid, 3.5t gross weight, EURO-VI        all IAM regions
-  transport, freight, lorry, battery electric 7.5t gross weight                      all IAM regions
-  transport, freight, lorry, fuel cell electric, 7.5t gross weight                   all IAM regions
-  transport, freight, lorry, diesel hybrid, 7.5t gross weight, EURO-VI               all IAM regions
-  transport, freight, lorry, diesel, 7.5t gross weight, EURO-VI                      all IAM regions
-  transport, freight, lorry, compressed gas, 7.5t gross weight, EURO-VI              all IAM regions
-  transport, freight, lorry, plugin diesel hybrid, 7.5t gross weight, EURO-VI        all IAM regions
-  transport, freight, lorry, battery electric 18t gross weight                       all IAM regions
-  transport, freight, lorry, fuel cell electric, 18t gross weight                    all IAM regions
-  transport, freight, lorry, diesel hybrid, 18t gross weight, EURO-VI                all IAM regions
-  transport, freight, lorry, diesel, 18t gross weight, EURO-VI                       all IAM regions
-  transport, freight, lorry, compressed gas, 18t gross weight, EURO-VI               all IAM regions
-  transport, freight, lorry, plugin diesel hybrid, 18t gross weight, EURO-VI         all IAM regions
-  transport, freight, lorry, battery electric 26t gross weight                       all IAM regions
-  transport, freight, lorry, fuel cell electric, 26t gross weight                    all IAM regions
-  transport, freight, lorry, diesel hybrid, 26t gross weight, EURO-VI                all IAM regions
-  transport, freight, lorry, diesel, 26t gross weight, EURO-VI                       all IAM regions
-  transport, freight, lorry, compressed gas, 26t gross weight, EURO-VI               all IAM regions
-  transport, freight, lorry, plugin diesel hybrid, 26t gross weight, EURO-VI         all IAM regions
-  transport, freight, lorry, battery electric 32t gross weight                       all IAM regions
-  transport, freight, lorry, fuel cell electric, 32t gross weight                    all IAM regions
-  transport, freight, lorry, diesel hybrid, 32t gross weight, EURO-VI                all IAM regions
-  transport, freight, lorry, diesel, 32t gross weight, EURO-VI                       all IAM regions
-  transport, freight, lorry, compressed gas, 32t gross weight, EURO-VI               all IAM regions
-  transport, freight, lorry, plugin diesel hybrid, 32t gross weight, EURO-VI         all IAM regions
-  transport, freight, lorry, battery electric 40t gross weight                       all IAM regions
-  transport, freight, lorry, fuel cell electric, 40t gross weight                    all IAM regions
-  transport, freight, lorry, diesel hybrid, 40t gross weight, EURO-VI                all IAM regions
-  transport, freight, lorry, diesel, 40t gross weight, EURO-VI                       all IAM regions
-  transport, freight, lorry, compressed gas, 40t gross weight, EURO-VI               all IAM regions
-  transport, freight, lorry, plugin diesel hybrid, 40t gross weight, EURO-VI         all IAM regions
- ================================================================================== ==================
-
-
-Inventories are from `Sacchi3 <https://pubs.acs.org/doi/abs/10.1021/acs.est.0c07773>`__ et al. 2021. The vehicles are available
-for different years and emission standards and for each IAM region.
-
-When doing:
-
-.. code-block:: python
-
-    ndb.update("trucks")
-
-*premise* will create fleet average vehicles for each IAM region. The inventories can be consulted
-here: `LCItrucks <https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/additional_inventories/lci-trucks.xlsx>`__.
+HEVs now have coupled high-power buffer sizing. FCEV trucks use the approved
+AKASOL reference with charging/discharge checks; 3.5/7.5 t motors use documented
+57/129 kW proxies. Premise purchases nominal kWh through its MIX capacity market,
+with the physical manufacturing-mass mismatch recorded explicitly. Corrected
+2020 FCEV hardware remains fixed in future scenarios. See
+:doc:`campaign-closeout` for the source references, final checks and limitations.
 
 .. include:: battery-sizing.inc
 

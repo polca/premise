@@ -28,14 +28,15 @@ Forwarding services are identified as such and do not claim direct fuel use.
 The original provenance stays unchanged on regional clones. Combustion and
 hydrogen tanks retain their baseline design under the current policy.
 
-FCEV baseline metadata records total vehicle power, gross fuel-cell power,
-its gross/net multiplier and complementary battery power, in kW. The car
-pack uses the corrected cell fraction of total pack mass. Truck buffers retain
-the model's 20 kWh plus 6% of hydrogen chemical energy assumption. Their
-recorded battery power is a requirement; the inherited lead-acid specific-power
-input does not validate lithium-ion traction-cell capability. This limitation
-is explicit in service and production comments. The update does not resize
-FCEV buffers or hydrogen tanks for future scenarios.
+FCEV baseline metadata records vehicle power, gross fuel-cell power, its
+gross/net multiplier and complementary DC buffer power. Cars use Toyota's
+late-2020 Mirai pack reference (1.2432 kWh, 44.6 kg, 31.5 kW for ten seconds),
+scaled to required power. Charging and continuous-output limits are not inferred.
+Trucks use the approved AKASOL pack proxy with paired energy/mass and continuous
+charging/discharge ratings; the inherited energy rule remains a lower bound.
+Both profiles disclose their source edition, internal cell allocation,
+chemistry/cost proxies and the MIX capacity-market manufacturing-mass mismatch.
+The update does not resize FCEV buffers or hydrogen tanks for future scenarios.
 
 Hybrid hot-exhaust deterioration uses the same petrol/diesel engine mapping
 as the source hot-emission factors. Comments disclose this combustion-engine

@@ -15,11 +15,24 @@ All notable changes to this project are documented in this file.
   petrol/diesel deterioration lookup. Preserve cold starts, fuel demand and
   PHEV driving shares. Document combustion-engine ageing as a hybrid proxy;
   the retained high truck NOx coefficients remain scientifically unverified.
-- Refresh FCEV car templates with corrected buffer power and complete pack
-  mass from carculator_utils. Retain truck inventory coefficients while
-  recording their corrected nonzero buffer-power requirement and the
-  unverified traction-cell power capability. Preserve vehicle identities,
-  battery-capacity markets and regional fuel accounting.
+- Refresh all eight FCEV cars with the approved power-scaled Mirai pack and all
+  seven FCEV trucks with paired AKASOL pack ratings, including truck charging and
+  discharge constraints. Small FCEV truck motors use 57/129 kW proxies. Preserve
+  net electrical allocation, complete physical mass, nominal capacity-market
+  purchases, original names and documented manufacturing-proxy limitations.
+- Add finite high-power HEV truck storage and corrected PHEV capacity/replacement
+  purchases. Keep manufacture and disposal within the battery-capacity markets.
+- Preserve BEV/PHEV baseline range with simple future capacity/mass arithmetic
+  and chemistry-density trends. Lighter BEV truck batteries increase payload at
+  fixed utilization, consistently reducing kilometre-based burdens per tonne-km.
+  Corrected FCEV hardware and hydrogen tanks retain their 2020 design.
+- Restore optional mapped vehicle energy-intensity signals and use the approved
+  REMIND Large Car/SUV efficiency-only fallback without copying SUV fleet volumes.
+  Keep documented fossil LPG supply where no IAM pathway exists.
+- Preserve vehicle/model/component sources, baseline specifications and final
+  regional fuel/battery metadata through import and export. Declare the material
+  conversion for regenerated truck frames. The campaign refreshes cars and
+  trucks; bus and two-wheeler workbooks retain their previous inventories.
 - Include petrol alongside electricity in every gasoline plug-in hybrid car's
   operating-fuel mapping, and recognize petrol in the gasoline hybrid mapping.
   IAM efficiency improvements now affect both PHEV energy inputs; final fuel
@@ -117,6 +130,11 @@ All notable changes to this project are documented in this file.
 
 ### Documentation
 
+- Close the vehicle campaign and replace superseded inventory/cycle descriptions
+  with the final 2020 catalogue, retained proxy limitations and verification
+  scope. Update model sources and paired battery references. Incremental EF 3.1
+  results are retained; no complete original-legacy-versus-final comparison is
+  claimed. Rebuild saved databases to receive the inventory corrections.
 - Document conservative metals defaults and remaining requirements for future
   mining and recycling scenarios. Add reproducible paired RELICS results for
   95 available markets and 65 indicators, six validated build configurations,
