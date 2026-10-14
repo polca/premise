@@ -28,6 +28,15 @@ Forwarding services are identified as such and do not claim direct fuel use.
 The original provenance stays unchanged on regional clones. Combustion and
 hydrogen tanks retain their baseline design under the current policy.
 
+FCEV baseline metadata records total vehicle power, gross fuel-cell power,
+its gross/net multiplier and complementary battery power, in kW. The car
+pack uses the corrected cell fraction of total pack mass. Truck buffers retain
+the model's 20 kWh plus 6% of hydrogen chemical energy assumption. Their
+recorded battery power is a requirement; the inherited lead-acid specific-power
+input does not validate lithium-ion traction-cell capability. This limitation
+is explicit in service and production comments. The update does not resize
+FCEV buffers or hydrogen tanks for future scenarios.
+
 The ``lci-pass_cars.provenance.json`` and ``lci-trucks.provenance.json`` companion
 files identify the installed workbook hashes and retain earlier provenance.
 The corresponding ``*.parameters.csv`` and ``*.noise.csv`` files preserve the

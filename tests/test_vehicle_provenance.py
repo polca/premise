@@ -121,7 +121,10 @@ def test_installed_workbooks_have_sources_and_match_their_companions():
             assert ds["source"] and ds["model"] and ds["model version"]
             spec = json.loads(ds[SPEC_KEY])
             assert spec["baseline year"] == 2020
-            assert spec["model generation date"] == "2026-10-13"
+            assert (
+                spec["model generation date"]
+                == sidecar["generation provenance"]["model generation date"]
+            )
             assert ds["source"] == spec["activity source"]
             assert "https://doi.org/" in ds["model publication"]
     importer = ExcelImporter(str(INVENTORY_DIR / "lci-truck-legacy-components.xlsx"))
