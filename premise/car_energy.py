@@ -155,7 +155,4 @@ def apply_floor(dataset, config=None):
         "carbon split": "retained; generic fuel-market composition not inferred",
     }
     dataset.setdefault("log parameters", {})["car energy floor"] = event
-    dataset["comment"] = dataset.get("comment", "") + (
-        f" Provisional car energy floor applied: {energy:.8g} -> {minimum:.8g} MJ/vehicle-km."
-    )
     return event
