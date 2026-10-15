@@ -405,8 +405,7 @@ def test_relink_technosphere_exchanges_preserves_exchange_roles(monkeypatch):
 
     assert len(result["exchanges"]) == 2
     assert {
-        (exchange["comment"], exchange["amount"])
-        for exchange in result["exchanges"]
+        (exchange["comment"], exchange["amount"]) for exchange in result["exchanges"]
     } == {
         ("Hydrogen tank compression", 0.02),
         ("Auxiliary electricity", 0.01),

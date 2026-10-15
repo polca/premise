@@ -81,9 +81,7 @@ def test_tank_correction_survives_premise_migration(version, monkeypatch):
     importer.prepare_inventory()
     name = "fuel tank, compressed hydrogen gas, 700bar, with HDPE liner"
     (tank,) = [d for d in importer.import_db.data if d["name"] == name]
-    exchanges = {
-        e["name"]: e for e in tank["exchanges"] if e["type"] == "technosphere"
-    }
+    exchanges = {e["name"]: e for e in tank["exchanges"] if e["type"] == "technosphere"}
     services = {"metal working, average for chromium steel product manufacturing"}
     materials = [
         e

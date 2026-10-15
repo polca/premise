@@ -52,9 +52,7 @@ def vehicle(kind="truck", *, compact=False, residual=0):
                 unit="kilowatt hour",
                 type="technosphere",
                 amount=0.025 + residual,
-                comment=(
-                    f"{COMPRESSION_COMMENT}, 30 to 700 bar: 2.5 kWh/kg H2."
-                ),
+                comment=(f"{COMPRESSION_COMMENT}, 30 to 700 bar: 2.5 kWh/kg H2."),
                 **{"uncertainty type": 3, "loc": 0.025 + residual, "scale": 0.001},
             ),
             dict(
