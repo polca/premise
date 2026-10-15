@@ -134,8 +134,7 @@
         "companion file": "lci-trucks.parameters.csv"
       },
       "noise_audit.csv": {
-        "sha256": "2d0d601d9d6902e6cfc399c8651e31ff28ce54f7f55719b53c0172ec3691a050",
-        "companion file": "lci-trucks.noise.csv"
+        "sha256": "2d0d601d9d6902e6cfc399c8651e31ff28ce54f7f55719b53c0172ec3691a050"
       }
     },
     "baseline year": 2020,
@@ -277,8 +276,7 @@
           "companion file": "lci-trucks.parameters.csv"
         },
         "noise_audit.csv": {
-          "sha256": "2d0d601d9d6902e6cfc399c8651e31ff28ce54f7f55719b53c0172ec3691a050",
-          "companion file": "lci-trucks.noise.csv"
+          "sha256": "2d0d601d9d6902e6cfc399c8651e31ff28ce54f7f55719b53c0172ec3691a050"
         }
       },
       "baseline year": 2020,
@@ -402,8 +400,7 @@
             "companion file": "lci-trucks.parameters.csv"
           },
           "noise_audit.csv": {
-            "sha256": "2d0d601d9d6902e6cfc399c8651e31ff28ce54f7f55719b53c0172ec3691a050",
-            "companion file": "lci-trucks.noise.csv"
+            "sha256": "2d0d601d9d6902e6cfc399c8651e31ff28ce54f7f55719b53c0172ec3691a050"
           }
         },
         "baseline year": 2020,
@@ -527,8 +524,7 @@
               "companion file": "lci-trucks.parameters.csv"
             },
             "noise_audit.csv": {
-              "sha256": "2d0d601d9d6902e6cfc399c8651e31ff28ce54f7f55719b53c0172ec3691a050",
-              "companion file": "lci-trucks.noise.csv"
+              "sha256": "2d0d601d9d6902e6cfc399c8651e31ff28ce54f7f55719b53c0172ec3691a050"
             }
           },
           "baseline year": 2020,
@@ -652,8 +648,7 @@
                 "companion file": "lci-trucks.parameters.csv"
               },
               "noise_audit.csv": {
-                "sha256": "2d0d601d9d6902e6cfc399c8651e31ff28ce54f7f55719b53c0172ec3691a050",
-                "companion file": "lci-trucks.noise.csv"
+                "sha256": "2d0d601d9d6902e6cfc399c8651e31ff28ce54f7f55719b53c0172ec3691a050"
               }
             },
             "baseline year": 2020,
@@ -708,8 +703,7 @@
                   "companion file": "lci-trucks.parameters.csv"
                 },
                 "noise_audit.csv": {
-                  "sha256": "2d0d601d9d6902e6cfc399c8651e31ff28ce54f7f55719b53c0172ec3691a050",
-                  "companion file": "lci-trucks.noise.csv"
+                  "sha256": "2d0d601d9d6902e6cfc399c8651e31ff28ce54f7f55719b53c0172ec3691a050"
                 }
               },
               "baseline year": 2020,

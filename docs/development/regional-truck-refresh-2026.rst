@@ -74,8 +74,9 @@ remain proxy assumptions. Regional scenario markets determine fuel blends and
 electricity; hydrogen compression electricity is retained.
 
 ``lci-trucks.parameters.csv`` records all service specifications.
-``lci-trucks.noise.csv`` retains 1,248 custom noise exchanges omitted from the
-Premise import. ``lci-trucks.provenance.json`` records source and workbook hashes.
+The 1,248 custom noise exchanges omitted from the Premise import are archived
+under ``dev/data/vehicle_inventory_audit``. ``lci-trucks.provenance.json``
+records source and workbook hashes.
 
 Controlled comparison
 ---------------------

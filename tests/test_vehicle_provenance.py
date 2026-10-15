@@ -109,14 +109,15 @@ def test_installed_workbooks_have_sources_and_match_their_companions():
         assert importer.db_name == stem and len(importer.data) == count
         sidecar = json.loads(path.with_suffix(".provenance.json").read_text())
         assert sidecar["sha256"] == hashlib.sha256(path.read_bytes()).hexdigest()
-        for name in ("vehicle_parameters.csv", "noise_audit.csv"):
-            info = sidecar["generation provenance"]["artifacts"][name]
-            assert (
-                hashlib.sha256(
-                    (INVENTORY_DIR / info["companion file"]).read_bytes()
-                ).hexdigest()
-                == info["sha256"]
-            )
+        info = sidecar["generation provenance"]["artifacts"][
+            "vehicle_parameters.csv"
+        ]
+        assert (
+            hashlib.sha256(
+                (INVENTORY_DIR / info["companion file"]).read_bytes()
+            ).hexdigest()
+            == info["sha256"]
+        )
         for ds in importer.data:
             assert ds["source"] and ds["model"] and ds["model version"]
             spec = json.loads(ds[SPEC_KEY])

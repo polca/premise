@@ -24,9 +24,11 @@ Generation choices
 * LPG: CNG efficiency, manufacture including its CNG tank, maintenance and
   non-CO2 combustion factors; LPG-specific fuel consumption and CO2. CNG-specific
   pump-to-tank methane leakage is excluded (zero in the current model defaults).
-* Noise is omitted from premise imports and retained in ``lci-pass_cars.noise.csv``.
-  ``lci-pass_cars.parameters.csv`` and ``lci-pass_cars.provenance.json`` record
-  model values, replacement counts, source revisions and workbook hash.
+* Noise is omitted from premise imports. The excluded flows are archived under
+  ``dev/data/vehicle_inventory_audit`` rather than installed as additional
+  inventories. ``lci-pass_cars.parameters.csv`` and
+  ``lci-pass_cars.provenance.json`` record model values, replacement counts,
+  source revisions and workbook hash.
 
 Custom supporting components carry a passenger-car suffix to prevent old
 bus/truck component imports from replacing corrected car recipes. The workbook

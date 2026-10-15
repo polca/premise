@@ -130,8 +130,7 @@
         "companion file": "lci-pass_cars.parameters.csv"
       },
       "noise_audit.csv": {
-        "sha256": "89e49cd51ab0372fb3b27fe2d337c00ab65eb81f1008e7d54b58d61f597ba165",
-        "companion file": "lci-pass_cars.noise.csv"
+        "sha256": "89e49cd51ab0372fb3b27fe2d337c00ab65eb81f1008e7d54b58d61f597ba165"
       }
     },
     "baseline year": 2020,
@@ -349,8 +348,7 @@
           "companion file": "lci-pass_cars.parameters.csv"
         },
         "noise_audit.csv": {
-          "sha256": "89e49cd51ab0372fb3b27fe2d337c00ab65eb81f1008e7d54b58d61f597ba165",
-          "companion file": "lci-pass_cars.noise.csv"
+          "sha256": "89e49cd51ab0372fb3b27fe2d337c00ab65eb81f1008e7d54b58d61f597ba165"
         }
       },
       "baseline year": 2020,
@@ -553,8 +551,7 @@
             "companion file": "lci-pass_cars.parameters.csv"
           },
           "noise_audit.csv": {
-            "sha256": "89e49cd51ab0372fb3b27fe2d337c00ab65eb81f1008e7d54b58d61f597ba165",
-            "companion file": "lci-pass_cars.noise.csv"
+            "sha256": "89e49cd51ab0372fb3b27fe2d337c00ab65eb81f1008e7d54b58d61f597ba165"
           }
         },
         "baseline year": 2020,
@@ -755,8 +752,7 @@
               "companion file": "lci-pass_cars.parameters.csv"
             },
             "noise_audit.csv": {
-              "sha256": "61d819ec7b1ab1a0623948132808961709209106806fd612a99b45eafbbdb4a3",
-              "companion file": "lci-pass_cars.noise.csv"
+              "sha256": "61d819ec7b1ab1a0623948132808961709209106806fd612a99b45eafbbdb4a3"
             }
           },
           "baseline year": 2020,
@@ -879,8 +875,7 @@
                 "companion file": "lci-pass_cars.parameters.csv"
               },
               "noise_audit.csv": {
-                "sha256": "61d819ec7b1ab1a0623948132808961709209106806fd612a99b45eafbbdb4a3",
-                "companion file": "lci-pass_cars.noise.csv"
+                "sha256": "61d819ec7b1ab1a0623948132808961709209106806fd612a99b45eafbbdb4a3"
               }
             },
             "baseline year": 2020,
@@ -932,8 +927,7 @@
                   "companion file": "lci-pass_cars.parameters.csv"
                 },
                 "noise_audit.csv": {
-                  "sha256": "61d819ec7b1ab1a0623948132808961709209106806fd612a99b45eafbbdb4a3",
-                  "companion file": "lci-pass_cars.noise.csv"
+                  "sha256": "61d819ec7b1ab1a0623948132808961709209106806fd612a99b45eafbbdb4a3"
                 }
               },
               "baseline year": 2020,
