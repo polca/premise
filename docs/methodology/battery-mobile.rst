@@ -69,6 +69,35 @@ which scenario supplies a study.
 Vehicle inventories determine where mobile capacity is consumed;
 :doc:`transport/overview` explains the separate fleet update.
 
+Constant-range vehicle capacity
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Marked passenger cars, trucks and electric buses resize their battery capacity
+in proportion to operating grid electricity per vehicle-kilometre relative to
+the 2020 design. This holds range fixed, with no additional mass/energy feedback
+on the IAM efficiency. Battery purchases remain nominal kWh times one plus
+lifetime replacements. Energy-density improvements are applied in the capacity
+markets, never as a second reduction of these kWh purchases.
+
+Cars retain occupancy; BEV trucks retain payload utilization and adjust their
+tonne-kilometre normalization. The ten electric bus variants in
+``lci-buses.xlsx`` retain passenger occupancy and the existing replacement
+policy. Their capacity-only metadata uses exact inventory exchanges; it does
+not infer physical pack mass, road wear or curb mass from rounded comments.
+Overnight, opportunity-charging and battery-equipped trolleybuses all use the
+same capacity rule. Their original MIX or LTO supplier links are retained.
+
+For fixed lifetime, occupancy and replacement count, both battery capacity and
+electricity per kilometre change by the same factor, leaving purchased battery
+capacity per MJ constant. For example, the 13 m single-deck overnight bus uses
+399 kWh in 2020. If electricity use halves, it uses 199.5 kWh, rather than
+allocating the original 399 kWh over half as much lifetime electricity.
+Effective battery kg/MJ can still change through market density and chemistry.
+
+Run ``python scripts/update_bus_battery_sizing.py`` after a compatible bus inventory
+refresh to regenerate these metadata rows. It checks the source capacity,
+lifetime and occupancy before writing and changes no exchange amounts.
+
 
 Assumptions and limitations
 -----------------------------

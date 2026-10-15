@@ -4,6 +4,8 @@ The operating-electricity ratio before payload normalization includes the IAM
 improvements. Scale usable capacity by that ratio without a mass/energy feedback.
 BEV trucks retain payload utilization and normalize service inputs to their load.
 Imported metadata supplies the 2020 design and precomputed wear relationships.
+Buses carry a capacity-only contract: their passenger occupancy and non-battery
+exchanges stay fixed; no physical mass or wear model is inferred from comments.
 """
 
 import json
@@ -43,6 +45,11 @@ def specification(dataset):
     grid = spec["grid kWh per service"]
     if not math.isfinite(grid) or grid <= 0:
         raise ValueError("Battery sizing requires positive reference electricity")
+    scope = spec.get("sizing scope", "capacity and mass")
+    if scope not in {"capacity and mass", "capacity only"}:
+        raise ValueError(f"Unknown battery sizing scope: {scope}")
+    if scope == "capacity only" and spec.get("family") != "bus":
+        raise ValueError("Capacity-only sizing is supported for buses")
     return spec
 
 
@@ -151,6 +158,28 @@ def battery_state(spec, energy_factor, density, year):
     return result
 
 
+def bus_capacity_state(spec, energy_factor, year):
+    """Keep range and passenger occupancy fixed without inferring bus mass."""
+    if any(
+        not math.isfinite(value) or value <= 0
+        for value in (energy_factor, spec["capacity kWh"])
+    ):
+        raise ValueError("Battery sizing requires finite positive design values")
+    replacements = spec["replacements"]
+    if not math.isfinite(replacements) or replacements < 0:
+        raise ValueError("Battery replacements must be finite and nonnegative")
+    capacity = spec["capacity kWh"] * energy_factor
+    return {
+        "year": year,
+        "energy factor": energy_factor,
+        "capacity kWh": capacity,
+        "replacements": replacements,
+        "lifetime capacity kWh": capacity * (1 + replacements),
+        "method": "constant-range capacity accounting; fixed passenger occupancy; "
+        "IAM energy already includes mass effects; density is applied in capacity markets",
+    }
+
+
 def _product(exchange):
     return exchange.get("product", exchange.get("reference product", ""))
 
@@ -229,7 +258,7 @@ def resize_regional_batteries(transport):
     supplier geographies are retained; it is not a manufacturing-location claim.
     Legacy inventories without a sizing contract are left on their own policy.
     """
-    if transport.vehicle_type not in {"car", "truck"} or transport.year < 2020:
+    if transport.vehicle_type not in {"car", "truck", "bus"} or transport.year < 2020:
         return
     services = {}
     for datasets in transport.vehicle_map.values():
@@ -260,8 +289,15 @@ def resize_regional_batteries(transport):
             factor = previous["energy factor"]
         if math.isclose(factor, 1, rel_tol=1e-12):
             factor = 1.0
-        density = projected_cell_density(spec, transport.year)
-        state = battery_state(spec, factor, density, transport.year)
+        capacity_only = spec.get("sizing scope") == "capacity only"
+        density = (
+            None if capacity_only else projected_cell_density(spec, transport.year)
+        )
+        state = (
+            bus_capacity_state(spec, factor, transport.year)
+            if capacity_only
+            else battery_state(spec, factor, density, transport.year)
+        )
         if ds.get(STATE_KEY) == state:
             continue
         vehicles = [
@@ -269,10 +305,9 @@ def resize_regional_batteries(transport):
             for e in ds["exchanges"]
             if e["type"] == "technosphere"
             and e["unit"] == "unit"
-            and (
-                e["name"].lower().startswith("passenger car,")
-                or e["name"].startswith("lorry production,")
-            )
+            and e["name"]
+            .lower()
+            .startswith(("passenger car,", "lorry production,", "passenger bus,"))
         ]
         if len(vehicles) != 1:
             raise ValueError(
@@ -281,7 +316,8 @@ def resize_regional_batteries(transport):
         exchange = vehicles[0]
         source_key = exchange["name"], _product(exchange), exchange["location"]
         source = providers[source_key]
-        _resize_mass_exchanges(ds, spec, state)
+        if not capacity_only:
+            _resize_mass_exchanges(ds, spec, state)
         normalization = state.get("payload normalization factor", 1.0)
         old_normalization = (
             previous.get("payload normalization factor", 1.0) if previous else 1.0
@@ -293,7 +329,7 @@ def resize_regional_batteries(transport):
                         exc, normalization / old_normalization, remove_uncertainty=False
                     )
         _store_state(ds, state)
-        if factor == 1 and density == spec["cell density kWh/kg"]:
+        if factor == 1 and (capacity_only or density == spec["cell density kWh/kg"]):
             continue
         target_key = source_key[:2] + (ds["location"],)
         if target_key in providers:
@@ -332,9 +368,10 @@ def resize_regional_batteries(transport):
                 f"(1 + {state['replacements']:.12g} lifetime replacements), "
                 f"{transport.year} regional constant-range design. "
                 "Capacity market includes manufacture and end of life. "
-                "Physical pack chemistry/density and the MIX supply recipe are distinct."
+                "Capacity-market density and chemistry are applied separately."
             )
-            _resize_mass_exchanges(target, spec, state)
+            if not capacity_only:
+                _resize_mass_exchanges(target, spec, state)
             _store_state(target, state)
             note = (
                 "Production location denotes regional design; original component "

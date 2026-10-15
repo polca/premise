@@ -121,7 +121,7 @@ def test_final_energy_battery_allocation_survives_real_cache_and_runtime_update(
     ) == pytest.approx(1 / 3.6)
 
 
-@pytest.fixture(scope="module", params=["pass_cars", "trucks"])
+@pytest.fixture(scope="module", params=["pass_cars", "trucks", "buses"])
 def catalogue(request):
     data = ExcelImporter(INVENTORY_DIR / f"lci-{request.param}.xlsx").data
     for dataset in data:
@@ -171,11 +171,11 @@ def test_source_cache_preserves_range_sizing_and_MJ_allocation(
         if SPEC_KEY in original:
             assert by_name[original["name"]].get(SPEC_KEY) == original[SPEC_KEY]
 
-    name = (
-        "transport, passenger car, battery electric, Medium"
-        if family == "pass_cars"
-        else "transport, freight, lorry, battery electric, 3.5 metric ton"
-    )
+    name = {
+        "pass_cars": "transport, passenger car, battery electric, Medium",
+        "trucks": "transport, freight, lorry, battery electric, 3.5 metric ton",
+        "buses": "transport, passenger bus, battery electric - overnight charging, 13m single deck urban bus",
+    }[family]
     service = by_name[name]
     from premise.vehicle_battery import specification
 
@@ -202,17 +202,20 @@ def test_source_cache_preserves_range_sizing_and_MJ_allocation(
     assert state["capacity kWh"] == pytest.approx(
         spec["capacity kWh"] * factor, rel=2e-6
     )
-    assert state["electric range km"] == pytest.approx(spec["electric range km"])
-    assert state["cell mass kg"] * state["cell density kWh/kg"] == pytest.approx(
-        state["capacity kWh"], rel=2e-6
-    )
+    if family != "buses":
+        assert state["electric range km"] == pytest.approx(spec["electric range km"])
+        assert state["cell mass kg"] * state["cell density kWh/kg"] == pytest.approx(
+            state["capacity kWh"], rel=2e-6
+        )
 
     link = next(
         e
         for e in service["exchanges"]
         if e["type"] == "technosphere"
         and e["unit"] == "unit"
-        and e["name"].lower().startswith(("passenger car,", "lorry production,"))
+        and e["name"]
+        .lower()
+        .startswith(("passenger car,", "lorry production,", "passenger bus,"))
     )
     provider = next(
         d
@@ -228,7 +231,7 @@ def test_source_cache_preserves_range_sizing_and_MJ_allocation(
     actual_per_MJ = purchase["amount"] * link["amount"] / (energy[0]["amount"] * 3.6)
     # Independent lifetime calculation: payload changes cancel when both the
     # freight-service and energy denominators are treated consistently.
-    service_per_km = spec.get("cargo mass kg", 1000) / 1000
+    service_per_km = spec.get("passengers", spec.get("cargo mass kg", 1000) / 1000)
     expected_per_MJ = (
         spec["capacity kWh"]
         * factor
