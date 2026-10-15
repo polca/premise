@@ -511,6 +511,12 @@ def refresh_vehicle_energy_emissions(scenario):
     from .inventory_store import get_scenario_inventory, replace_scenario_inventory
     from .vehicle_emissions import fuel_proportional_emission
 
+    store = scenario.get("_inventory_store")
+    if store is not None and not any(
+        SOURCE_KEY in activity for activity in store.iter_activities()
+    ):
+        return scenario
+
     database = get_scenario_inventory(scenario)
     wrappers = [d for d in database if SOURCE_KEY in d and not d.get("emptied")]
     if not wrappers:
