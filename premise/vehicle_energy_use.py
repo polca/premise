@@ -10,7 +10,6 @@ import json
 import math
 import re
 
-
 POLICY = "energy-specific equipment; excludes chassis, body, roads and whole-vehicle maintenance"
 SOURCE_KEY = "energy use source"
 
@@ -47,21 +46,17 @@ def source_name(name):
     power = (
         "battery electric"
         if electric
-        else "fuel cell electric"
-        if hydrogen
-        else "compressed gas"
-        if gas
-        else "diesel"
-        if diesel
-        else "gasoline"
+        else (
+            "fuel cell electric"
+            if hydrogen
+            else "compressed gas" if gas else "diesel" if diesel else "gasoline"
+        )
     )
     if "passenger train" in n or "freight train" in n or "tram" in n:
         power = (
             "electric"
             if electric
-            else "fuel cell, hydrogen"
-            if hydrogen
-            else "diesel-electric"
+            else "fuel cell, hydrogen" if hydrogen else "diesel-electric"
         )
         return f"transport, freight train, {power}"
     if "passenger car" in n:
@@ -281,13 +276,15 @@ def normalize(wrapper, source, database, *, preserve_fuel=True):
     main = (
         "electricity"
         if wrapper["name"].startswith("electricity")
-        else "hydrogen"
-        if wrapper["name"].startswith("hydrogen")
-        else "gas"
-        if wrapper["name"].startswith(("compressed gas", "biomethane"))
-        else "diesel"
-        if "diesel" in wrapper["name"]
-        else "gasoline"
+        else (
+            "hydrogen"
+            if wrapper["name"].startswith("hydrogen")
+            else (
+                "gas"
+                if wrapper["name"].startswith(("compressed gas", "biomethane"))
+                else "diesel" if "diesel" in wrapper["name"] else "gasoline"
+            )
+        )
     )
     energies = [e for e in source["exchanges"] if carrier(e) == main]
     q = sum(float(e["amount"]) * energy_per_unit(e) for e in energies)
@@ -367,9 +364,11 @@ def normalize(wrapper, source, database, *, preserve_fuel=True):
                     continue
                 decision = equipment(component)
                 row = {
-                    "supplier": identity(component)
-                    if component.get("location")
-                    else component["name"],
+                    "supplier": (
+                        identity(component)
+                        if component.get("location")
+                        else component["name"]
+                    ),
                     "amount per vehicle": component["amount"],
                     "vehicle per source service": e["amount"],
                 }
@@ -510,6 +509,12 @@ def refresh_vehicle_energy_emissions(scenario):
     """
     from .inventory_store import get_scenario_inventory, replace_scenario_inventory
     from .vehicle_emissions import fuel_proportional_emission
+
+    store = scenario.get("_inventory_store")
+    if store is not None and not any(
+        SOURCE_KEY in activity for activity in store.iter_activities()
+    ):
+        return scenario
 
     database = get_scenario_inventory(scenario)
     wrappers = [d for d in database if SOURCE_KEY in d and not d.get("emptied")]

@@ -6,6 +6,10 @@ All notable changes to this project are documented in this file.
 
 ### Fixed
 
+- Constrain PyArrow to versions below 26 across pip, Brightway extras and conda.
+  PyArrow 26 requires NumPy 2 and prevented test collection with premise's
+  NumPy 1.x dependency. Check the numerical runtime imports explicitly in CI.
+
 - Refresh 2020 passenger-car PHEVs with paired capacity/mass calibration and
   one physical battery across both driving modes. Preserve the calibrated
   density offset when applying future chemistry-density improvements, using
