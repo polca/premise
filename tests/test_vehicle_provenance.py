@@ -29,21 +29,5 @@ def test_installed_workbooks_have_sources_and_provenance():
             )
             assert ds["source"] == spec["activity source"]
             assert "https://doi.org/" in ds["model publication"]
-    importer = ExcelImporter(str(INVENTORY_DIR / "lci-truck-legacy-components.xlsx"))
-    assert importer.db_name == "lci-truck-legacy-components"
-    assert len(importer.data) == 26
-    sidecar = json.loads((AUDIT_DIR / "lci-trucks.provenance.json").read_text())
-    assert (
-        sidecar["legacy_components_sha256"]
-        == hashlib.sha256(
-            (INVENTORY_DIR / "lci-truck-legacy-components.xlsx").read_bytes()
-        ).hexdigest()
-    )
-    for ds in importer.data:
-        assert ds["source"]
-        assert SPEC_KEY not in ds and "model publication" not in ds
-        assert (
-            json.loads(ds["inventory provenance"])["role"]
-            == "retained legacy component"
-        )
+    assert not (INVENTORY_DIR / "lci-truck-legacy-components.xlsx").exists()
     assert not list(INVENTORY_DIR.glob("*.provenance.json"))

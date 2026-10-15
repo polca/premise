@@ -66,11 +66,28 @@
   "transport_count": 52,
   "production_count": 42,
   "auxiliary_count": 33,
-  "retained_legacy_components": 26,
-  "legacy_components_version": "3.7",
-  "legacy_components_sha256": "adabbb0422b021df6418988464e7e42acf2682e8ba872e09dfda01ecd1e9b2b6",
+  "component identity migration": {
+    "date": "2026-10-15",
+    "renamed refreshed components": 20,
+    "transferred unchanged to lci-buses.xlsx": [
+      "Electrical equipment",
+      "Transformers"
+    ],
+    "removed duplicate EV charger activities": [
+      "lci-buses.xlsx",
+      "lci-final-energy.xlsx"
+    ],
+    "consumer relinking": "Bus, final-energy and ship exchanges formerly using the old hydrogen tank assembly now use the corrected refreshed HDPE tank.",
+    "retired legacy-only activities": [
+      "fuel tank assembly, compressed hydrogen gas, 700bar",
+      "HDPE tank liner",
+      "Fuel tank, compressed hydrogen gas, 700bar, with aluminium liner",
+      "cabin, for lorry"
+    ],
+    "boundary": "Component identity consolidation; refreshed truck exchange amounts are unchanged."
+  },
   "noise_exchanges": 1248,
-  "sha256": "69173285fcb595de439cf503ff5706378923ea6a1a1b58cf4c154643df6c4df7",
+  "sha256": "de8504fb5fa01bae5b4e39b95348a2d71b08e37992e77489ad583419bd870612",
   "export_version": "3.12",
   "commits": {
     "carculator_truck": "4d28ac63a31057dec6879c863370eacae52b1c18",
@@ -789,13 +806,10 @@
       }
     }
   },
-  "legacy component corrections": {
+  "hydrogen tank correction": {
     "source revision": "ff79a88d0e7fc85f116cbe8387a458ac824e94b6",
     "source workbook sha256": "e4a4b581c35c08e5a9f18a37cdd7bf6306172fd68234c43390bffc0779a7e3ca",
-    "activities": [
-      "Fuel tank, compressed hydrogen gas, 700bar, with HDPE liner",
-      "Fuel tank, compressed hydrogen gas, 700bar, with aluminium liner"
-    ],
-    "boundary": "Preserve the master-branch dry-mass and MJ-to-kWh correction after splitting the original truck workbook. Other 24 legacy activities and regenerated vehicle workbooks unchanged."
+    "activity": "fuel tank, compressed hydrogen gas, 700bar, with HDPE liner",
+    "boundary": "The refreshed truck workbook retains the approved dry-mass and MJ-to-kWh correction."
   }
 }

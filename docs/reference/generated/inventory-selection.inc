@@ -244,9 +244,6 @@
    * - ``lci-syngas.xlsx``
      - 3.9
      - All supported configurations
-   * - ``lci-truck-legacy-components.xlsx``
-     - 3.7
-     - All supported configurations
    * - ``lci-trucks.xlsx``
      - 3.12
      - All supported configurations
