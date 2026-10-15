@@ -10,11 +10,12 @@ import xarray as xr
 from premise.inventory_store import compact_exchange_payload
 from premise.transport import Transport
 from premise.vehicle_hydrogen import (
-    BALANCE_KEY,
+    COMPRESSION_COMMENT,
     COMPRESSION_KEY,
+    compression_electricity,
     finish_hydrogen_compression,
+    hydrogen_amount,
     prepare_hydrogen_compression,
-    record_hydrogen_compression_balances,
 )
 
 
@@ -51,6 +52,9 @@ def vehicle(kind="truck", *, compact=False, residual=0):
                 unit="kilowatt hour",
                 type="technosphere",
                 amount=0.025 + residual,
+                comment=(
+                    f"{COMPRESSION_COMMENT}, 30 to 700 bar: 2.5 kWh/kg H2."
+                ),
                 **{"uncertainty type": 3, "loc": 0.025 + residual, "scale": 0.001},
             ),
             dict(
@@ -63,6 +67,21 @@ def vehicle(kind="truck", *, compact=False, residual=0):
             ),
         ],
     }
+    if residual:
+        ds["exchanges"][2]["amount"] -= residual
+        ds["exchanges"][2]["loc"] -= residual
+        ds["exchanges"].insert(
+            3,
+            dict(
+                name="market group for electricity, low voltage",
+                product=specification["electricity product"],
+                location="EUR",
+                unit="kilowatt hour",
+                type="technosphere",
+                amount=residual,
+                comment="Auxiliary electricity, separate from tank compression.",
+            ),
+        )
     if compact:
         ds["exchanges"] = [compact_exchange_payload(e) for e in ds["exchanges"]]
     return ds
@@ -105,18 +124,35 @@ def test_compression_follows_final_hydrogen_with_unrelated_power_unchanged(
     assert ds == once
 
 
-def test_merged_auxiliary_electricity_and_alias_are_not_scaled_twice():
+def test_separate_auxiliary_electricity_and_alias_are_not_scaled_twice():
     ds = vehicle("car", residual=0.005)
     transformer(ds, "car", 0.8, electricity_alias=True).adjust_transport_efficiency(ds)
-    assert ds["exchanges"][2]["amount"] == pytest.approx(0.005 + 0.025 * 0.8)
-    assert ds[BALANCE_KEY]["other electricity kWh"] == pytest.approx(0.005)
+    low_voltage = [
+        exchange
+        for exchange in ds["exchanges"]
+        if exchange.get("product") == "electricity, low voltage"
+    ]
+    assert len(low_voltage) == 2
+    compression = [
+        exchange
+        for exchange in low_voltage
+        if exchange["comment"].startswith(COMPRESSION_COMMENT)
+    ]
+    auxiliary = [
+        exchange
+        for exchange in low_voltage
+        if not exchange["comment"].startswith(COMPRESSION_COMMENT)
+    ]
+    assert compression[0]["amount"] == pytest.approx(0.025 * 0.8)
+    assert auxiliary[0]["amount"] == pytest.approx(0.005)
 
 
-def test_no_iam_efficiency_keeps_compression_and_records_boundary():
+def test_no_iam_efficiency_keeps_documented_compression_exchange():
     ds = vehicle()
     transformer(ds, "truck", 1, data=False).adjust_transport_efficiency(ds)
     assert ds["exchanges"][2]["amount"] == 0.025
-    assert ds[BALANCE_KEY]["compression electricity kWh"] == 0.025
+    assert ds["exchanges"][2]["comment"].startswith(COMPRESSION_COMMENT)
+    assert "premise hydrogen compression balance" not in ds
 
 
 def test_unmarked_inventory_has_no_assumed_electricity_purpose():
@@ -125,7 +161,7 @@ def test_unmarked_inventory_has_no_assumed_electricity_purpose():
     assert prepare_hydrogen_compression(ds) is None
     transformer(ds, "truck", 0.8).adjust_transport_efficiency(ds)
     assert ds["exchanges"][2]["amount"] == 0.025
-    assert BALANCE_KEY not in ds
+    assert "premise hydrogen compression balance" not in ds
 
 
 @pytest.mark.parametrize("bad_amount", [-1, float("nan"), float("inf"), 0.01])
@@ -147,16 +183,6 @@ def test_provider_split_retains_supply_shares():
     transformer(ds, "truck", 0.8).adjust_transport_efficiency(ds)
     assert first["amount"] == pytest.approx(0.008)
     assert second["amount"] == pytest.approx(0.012)
-
-
-def test_retained_templates_and_forwarders_have_distinct_accounting():
-    template = vehicle()
-    forwarder = vehicle()
-    forwarder["emptied"] = True
-    forwarder[BALANCE_KEY] = {"stale": 1}
-    record_hydrogen_compression_balances([template, forwarder], "truck")
-    assert template[BALANCE_KEY]["compression electricity kWh"] == 0.025
-    assert BALANCE_KEY not in forwarder
 
 
 def test_validator_detects_unscaled_electricity_from_current_fuel_input():
@@ -201,5 +227,13 @@ def test_installed_workbooks_retain_explicit_role_through_excel_import():
             assert spec["tank pressure bar"] == 700
             assert spec["electricity kWh per kg H2"] == pytest.approx(expected)
             prepared = prepare_hydrogen_compression(ds)
-            assert prepared[2] == pytest.approx(0, abs=1e-12)
+            compression = [
+                exchange
+                for exchange in ds["exchanges"]
+                if compression_electricity(exchange, spec)
+            ]
+            assert prepared[1] == compression
+            assert sum(exchange["amount"] for exchange in compression) == pytest.approx(
+                hydrogen_amount(ds, spec) * spec["electricity kWh per kg H2"]
+            )
     assert counts == [8, 7]

@@ -26,10 +26,9 @@ from .vehicle_emissions import fuel_proportional_emission
 from .vehicle_energy import vehicle_energy_exchange
 from .vehicle_battery import resize_regional_batteries, SPEC_KEY as BATTERY_SIZING_KEY
 from .vehicle_hydrogen import (
-    compression_electricity,
+    compression_electricity_product,
     finish_hydrogen_compression,
     prepare_hydrogen_compression,
-    record_hydrogen_compression_balances,
 )
 from .validation import (
     CarValidation,
@@ -88,7 +87,6 @@ def _update_vehicles(scenario, vehicle_type, version, system_model):
         # Reuse the fuel module's accounting after regional supplier linking,
         # IAM efficiency scaling and any passenger-car energy floor.
         update_vehicle_fuel_co2(trspt.database, version, vehicle_type)
-        record_hydrogen_compression_balances(trspt.database, vehicle_type)
 
     replace_scenario_inventory(scenario, trspt.database)
     scenario["cache"] = trspt.cache
@@ -489,7 +487,9 @@ class Transport(BaseTransformation):
                         lambda exchange: self.vehicle_type not in {"car", "truck"}
                         or vehicle_energy_exchange(exchange),
                         lambda exchange: compression is None
-                        or not compression_electricity(exchange, compression[0]),
+                        or not compression_electricity_product(
+                            exchange, compression[0]
+                        ),
                     ],
                     biosphere_filters=(
                         [fuel_proportional_emission]

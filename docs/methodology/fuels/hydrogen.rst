@@ -61,13 +61,14 @@ overpressure are outside this calculation.
 
 The activity-level ``hydrogen tank compression`` metadata identify the fuel,
 electricity product, pressures, model and specific electricity requirement.
-This contract survives exchange aggregation and geographic relinking, which
-can discard individual exchange comments. During transport efficiency
-adjustment, identified compression is excluded from generic electricity
-scaling, then calculated once from final hydrogen consumption. Other uses
-merged into the same electricity product retain their original remainder.
-``premise hydrogen compression balance`` records the resulting amounts;
-validation checks them against the current fuel and electricity exchanges.
+The corresponding electricity exchanges carry a ``Hydrogen tank compression``
+comment. Exchange comments are retained during geographic relinking and form
+part of the aggregation identity, so compression and other electricity uses
+remain separate and self-describing even when they use the same supplier.
+During transport efficiency adjustment, that electricity product is excluded
+from generic scaling and the commented compression exchange is calculated once
+from final hydrogen consumption. Validation reads the exchange directly rather
+than relying on a duplicate activity-level balance record.
 
 Legacy inventories without this explicit role do not acquire an inferred
 compression burden. The upstream pipeline recipe is unchanged. Both the

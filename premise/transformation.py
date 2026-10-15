@@ -22,7 +22,6 @@ from typing import Any, Dict, List, NamedTuple, Sequence, Set, Tuple, Union
 import numpy as np
 import xarray as xr
 import yaml
-from _operator import itemgetter
 from constructive_geometries import resolved_row
 from wurst import reference_product
 from wurst import searching as ws
@@ -399,9 +398,9 @@ def new_exchange(exc, location, factor):
 
 
 def _relinked_exchange(exc, location, factor=1.0, *, name=None, product=None):
-    """Return only fields consumed by the relinking aggregation pass."""
+    """Return relinking fields while retaining an exchange's documented role."""
 
-    return {
+    relinked = {
         "name": exc["name"] if name is None else name,
         "product": exc["product"] if product is None else product,
         "unit": exc["unit"],
@@ -409,6 +408,9 @@ def _relinked_exchange(exc, location, factor=1.0, *, name=None, product=None):
         "type": "technosphere",
         "amount": exc["amount"] * factor,
     }
+    if "comment" in exc:
+        relinked["comment"] = exc["comment"]
+    return relinked
 
 
 def allocate_inputs(exc, lst, exchange_factory=new_exchange):
@@ -1980,7 +1982,9 @@ class BaseTransformation:
             for exc, fields in selected_candidates:
                 name, effective_product, _location, unit, amount = fields
                 if exc.get("uncertainty type", 0) != 0:
-                    old_uncertainty[(name, effective_product, unit)] = {
+                    old_uncertainty[
+                        (name, effective_product, unit, exc.get("comment"))
+                    ] = {
                         "uncertainty type": exc.get("uncertainty type", 0),
                         "amount": amount,
                         "loc": exc.get("loc"),
@@ -1994,25 +1998,30 @@ class BaseTransformation:
             # to compare with the new exchanges
             excs_to_relink_dict = defaultdict(float)
             relink_amounts = defaultdict(float)
-            for _, fields in selected_candidates:
+            for exc, fields in selected_candidates:
                 name, effective_product, location, unit, amount = fields
                 excs_to_relink_dict[effective_product] += amount
-                relink_amounts[(name, effective_product, location, unit)] += amount
+                relink_amounts[
+                    (name, effective_product, location, unit, exc.get("comment"))
+                ] += amount
 
-            # Create a set of unique exchanges to relink
-            # turn this into a list of dictionaries
-            unique_excs_to_relink = [
-                dict(items)
-                for items in {
-                    (
-                        ("name", fields[0]),
-                        ("product", fields[1]),
-                        ("location", fields[2]),
-                        ("unit", fields[3]),
-                    )
-                    for _, fields in selected_candidates
+            # Keep documented uses separate even when they share a supplier.
+            unique_excs_to_relink = []
+            seen = set()
+            for exchange, fields in selected_candidates:
+                key = (*fields[:4], exchange.get("comment"))
+                if key in seen:
+                    continue
+                seen.add(key)
+                candidate = {
+                    "name": fields[0],
+                    "product": fields[1],
+                    "location": fields[2],
+                    "unit": fields[3],
                 }
-            ]
+                if "comment" in exchange:
+                    candidate["comment"] = exchange["comment"]
+                unique_excs_to_relink.append(candidate)
 
             # Process exchanges to relink
             new_exchanges = self.process_exchanges_to_relink(
@@ -2025,7 +2034,12 @@ class BaseTransformation:
             # apply uncertainties, if any
             if old_uncertainty:
                 for exc in new_exchanges:
-                    key = (exc["name"], exc["product"], exc["unit"])
+                    key = (
+                        exc["name"],
+                        exc["product"],
+                        exc["unit"],
+                        exc.get("comment"),
+                    )
                     if key in old_uncertainty:
                         exc["uncertainty type"] = old_uncertainty[key][
                             "uncertainty type"
@@ -2101,6 +2115,7 @@ class BaseTransformation:
                         exc["product"],
                         exc["location"],
                         exc["unit"],
+                        exc.get("comment"),
                     )
                 ]
             entries, amount = self.find_new_exchange_entries(
@@ -2110,7 +2125,11 @@ class BaseTransformation:
                 amount=amount,
             )
             if amount != 0:
-                new_exchanges.extend(self.create_new_exchanges(entries, amount))
+                new_exchanges.extend(
+                    self.create_new_exchanges(
+                        entries, amount, comment=exc.get("comment")
+                    )
+                )
         # Make exchanges unique and sum amounts for duplicates
         return self.summarize_exchanges(new_exchanges)
 
@@ -2273,43 +2292,78 @@ class BaseTransformation:
             amount = sum(
                 e["amount"]
                 for e in ws.technosphere(act)
-                if (e["name"], e["product"], e["location"], e["unit"])
-                == (exc["name"], exc["product"], exc["location"], exc["unit"])
+                if (
+                    e["name"],
+                    e["product"],
+                    e["location"],
+                    e["unit"],
+                    e.get("comment"),
+                )
+                == (
+                    exc["name"],
+                    exc["product"],
+                    exc["location"],
+                    exc["unit"],
+                    exc.get("comment"),
+                )
             )
 
         return entries, amount
 
-    def create_new_exchanges(self, entries, amount):
-        return [
-            {
-                "name": e[0],
-                "product": e[1],
-                "amount": amount * e[-1],
+    def create_new_exchanges(self, entries, amount, comment=None):
+        exchanges = []
+        for entry in entries:
+            exchange = {
+                "name": entry[0],
+                "product": entry[1],
+                "amount": amount * entry[-1],
                 "type": "technosphere",
-                "unit": e[3],
-                "location": e[2],
+                "unit": entry[3],
+                "location": entry[2],
             }
-            for e in entries
-        ]
+            if comment is not None:
+                exchange["comment"] = comment
+            exchanges.append(exchange)
+        return exchanges
 
     def summarize_exchanges(self, new_exchanges):
+        def identity(exchange):
+            return (
+                exchange["name"],
+                exchange["product"],
+                exchange["location"],
+                exchange["unit"],
+                exchange.get("comment"),
+            )
+
+        def sort_key(exchange):
+            comment = exchange.get("comment")
+            return (
+                exchange["name"],
+                exchange["product"],
+                exchange["location"],
+                exchange["unit"],
+                comment is not None,
+                "" if comment is None else str(comment),
+            )
+
         grouped_exchanges = groupby(
-            sorted(
-                new_exchanges, key=itemgetter("name", "product", "location", "unit")
-            ),
-            key=itemgetter("name", "product", "location", "unit"),
+            sorted(new_exchanges, key=sort_key),
+            key=identity,
         )
-        summarized = (
-            {
+        summarized = []
+        for (name, product, location, unit, comment), exchanges in grouped_exchanges:
+            exchange = {
                 "name": name,
-                "product": prod,
-                "location": loc,
+                "product": product,
+                "location": location,
                 "unit": unit,
                 "type": "technosphere",
-                "amount": sum(e["amount"] for e in excs),
+                "amount": sum(item["amount"] for item in exchanges),
             }
-            for (name, prod, loc, unit), excs in grouped_exchanges
-        )
+            if comment is not None:
+                exchange["comment"] = comment
+            summarized.append(exchange)
         return [compact_exchange_payload(exchange) for exchange in summarized]
 
     def find_iam_efficiency_change(
@@ -2441,6 +2495,8 @@ class BaseTransformation:
                 "amount": exchange["amount"] * e[-1],
                 "uncertainty type": exchange.get("uncertainty type", 0),
             }
+            if "comment" in exchange:
+                new_exc["comment"] = exchange["comment"]
 
             for key in ["loc", "scale", "negative", "minimum", "maximum"]:
                 if key in exchange:
@@ -2884,7 +2940,12 @@ class BaseTransformation:
 
                 uncertainty_type = exc.get("uncertainty type", 0)
                 if uncertainty_type != 0:
-                    uncertainty_key = (exc["name"], product, exc["unit"])
+                    uncertainty_key = (
+                        exc["name"],
+                        product,
+                        exc["unit"],
+                        exc.get("comment"),
+                    )
                     uncertainty = {
                         "uncertainty type": uncertainty_type,
                         "amount": amount,
@@ -2915,7 +2976,7 @@ class BaseTransformation:
 
         # make unique list of exchanges from new_exchanges
         # and sum the amounts of exchanges with the same name,
-        # product, location and unit
+        # product, location, unit and documented role
 
         grouped_exchanges = defaultdict(float)
         for exc in new_exchanges:
@@ -2924,11 +2985,13 @@ class BaseTransformation:
                 exc["product"],
                 exc["location"],
                 exc["unit"],
+                exc.get("comment"),
             )
             grouped_exchanges[key] += exc["amount"]
 
-        new_exchanges = [
-            {
+        new_exchanges = []
+        for (name, prod, location, unit, comment), amount in grouped_exchanges.items():
+            exchange = {
                 "name": name,
                 "product": prod,
                 "location": location,
@@ -2936,13 +2999,19 @@ class BaseTransformation:
                 "type": "technosphere",
                 "amount": amount,
             }
-            for (name, prod, location, unit), amount in grouped_exchanges.items()
-        ]
+            if comment is not None:
+                exchange["comment"] = comment
+            new_exchanges.append(exchange)
 
         # apply uncertainties, if any
         if old_uncertainty:
             for exc in new_exchanges:
-                key = (exc["name"], exc["product"], exc["unit"])
+                key = (
+                    exc["name"],
+                    exc["product"],
+                    exc["unit"],
+                    exc.get("comment"),
+                )
                 if key in old_uncertainty:
                     exc["uncertainty type"] = old_uncertainty[key]["uncertainty type"]
                     loc, scale, minimum, maximum, negative = (

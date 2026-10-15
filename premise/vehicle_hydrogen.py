@@ -7,7 +7,7 @@ from collections.abc import Mapping
 from .utils import rescale_exchange
 
 COMPRESSION_KEY = "hydrogen tank compression"
-BALANCE_KEY = "premise hydrogen compression balance"
+COMPRESSION_COMMENT = "Hydrogen tank compression"
 
 
 def compression_specification(dataset):
@@ -29,14 +29,21 @@ def compression_specification(dataset):
     return specification
 
 
-def compression_electricity(exchange, specification):
-    """Select the documented supply product, including market-group relinks."""
+def compression_electricity_product(exchange, specification):
+    """Select electricity inputs that use the documented compression product."""
     return (
         exchange.get("type") == "technosphere"
         and exchange.get("product", exchange.get("reference product"))
         == specification["electricity product"]
         and exchange.get("unit") == "kilowatt hour"
     )
+
+
+def compression_electricity(exchange, specification):
+    """Select electricity inputs explicitly documented as tank compression."""
+    return compression_electricity_product(exchange, specification) and str(
+        exchange.get("comment", "")
+    ).startswith(COMPRESSION_COMMENT)
 
 
 def hydrogen_amount(dataset, specification):
@@ -60,13 +67,7 @@ def hydrogen_amount(dataset, specification):
 
 
 def prepare_hydrogen_compression(dataset):
-    """Separate the identified compression burden before efficiency scaling.
-
-    Other uses of the same electricity product can be merged by relinking.
-    Retain that residual unchanged; the specific compression intensity alone
-    determines the amount following H2 consumption. Legacy unmarked inventories
-    are not assigned an inferred compression purpose.
-    """
+    """Identify and validate the documented compression exchanges."""
     specification = compression_specification(dataset)
     if specification is None:
         return None
@@ -77,28 +78,27 @@ def prepare_hydrogen_compression(dataset):
         not math.isfinite(e["amount"]) or e["amount"] < 0 for e in exchanges
     ):
         raise ValueError("Compression electricity must be finite and nonnegative")
-    total = sum(e["amount"] for e in exchanges)
-    compression = (
+    recorded = sum(e["amount"] for e in exchanges)
+    expected = (
         hydrogen_amount(dataset, specification)
         * specification["electricity kWh per kg H2"]
     )
-    residual = total - compression
-    if residual < -max(1e-12, total * 1e-8):
+    if not math.isclose(recorded, expected, rel_tol=1e-8, abs_tol=1e-12):
         raise ValueError(
-            "Recorded electricity is below the specified hydrogen compression"
+            f"Compression electricity is {recorded} kWh; hydrogen use requires "
+            f"{expected} kWh"
         )
-    return specification, exchanges, max(0.0, residual)
+    return specification, exchanges
 
 
 def finish_hydrogen_compression(dataset, prepared):
     """Set compression from final H2 demand without scaling it a second time."""
     if prepared is None:
         return
-    specification, exchanges, residual = prepared
+    specification, exchanges = prepared
     hydrogen = hydrogen_amount(dataset, specification)
-    compression = hydrogen * specification["electricity kWh per kg H2"]
+    target = hydrogen * specification["electricity kWh per kg H2"]
     old_total = sum(e["amount"] for e in exchanges)
-    target = compression + residual
     if old_total == 0 and target > 0:
         raise ValueError("Cannot allocate compression to an empty electricity supply")
     if old_total > 0 and not math.isclose(
@@ -106,29 +106,3 @@ def finish_hydrogen_compression(dataset, prepared):
     ):
         for exchange in exchanges:
             rescale_exchange(exchange, target / old_total, remove_uncertainty=False)
-    dataset[BALANCE_KEY] = {
-        "hydrogen kg": hydrogen,
-        "electricity kWh per kg H2": specification["electricity kWh per kg H2"],
-        "compression electricity kWh": compression,
-        "other electricity kWh": residual,
-        "electricity product": specification["electricity product"],
-        "boundary": "Vehicle tank compression after delivered hydrogen supply",
-    }
-
-
-def record_hydrogen_compression_balances(database, vehicle_type):
-    """Cover retained templates and clear records on forwarding originals."""
-    prefix = {
-        "car": "transport, passenger car,",
-        "truck": "transport, freight, lorry,",
-    }[vehicle_type]
-    for dataset in database:
-        if (
-            not dataset.get("name", "").startswith(prefix)
-            or COMPRESSION_KEY not in dataset
-        ):
-            continue
-        if dataset.get("emptied", False):
-            dataset.pop(BALANCE_KEY, None)
-        elif BALANCE_KEY not in dataset:
-            finish_hydrogen_compression(dataset, prepare_hydrogen_compression(dataset))
