@@ -210,9 +210,9 @@ def test_historical_high_fuel_energy_is_read_only_warning():
     validator.validation_issues = []
     validator.check_car_fuel_energy(ds)
     assert ds == before
-    assert [(issue.rule_id, issue.severity) for issue in validator.validation_issues] == [
-        ("LEGACY.CAR_FUEL_ENERGY_PLAUSIBILITY", "warning")
-    ]
+    assert [
+        (issue.rule_id, issue.severity) for issue in validator.validation_issues
+    ] == [("LEGACY.CAR_FUEL_ENERGY_PLAUSIBILITY", "warning")]
     validator._finalize_logs()
 
     ds["exchanges"][3]["amount"] *= 2
