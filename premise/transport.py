@@ -491,14 +491,6 @@ class Transport(BaseTransformation):
             )
 
             txt = f" Fuel/energy efficiency adjusted by a factor of {scaling_factor} according to the scenario."
-            if self.vehicle_type in {"car", "truck"}:
-                txt += (
-                    " Direct-emission scaling is limited to fuel-derived CO2,"
-                    " sulphur and generic-air methane leakage. HBEFA hot,"
-                    " cold-start and evaporative factors, refrigerant losses"
-                    " and distance/wear burdens retain their model basis;"
-                    " IAM energy intensity alone does not change them."
-                )
             if "comment" not in dataset:
                 dataset["comment"] = txt
             else:
