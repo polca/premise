@@ -47,6 +47,12 @@ fuel markets and market groups provide fuel energy in MJ per reference activity.
 Invalid matched emission masses, units and supported fuel inputs remain errors.
 A missing fuel reference produces a diagnostic instead of a zero-fuel assumption.
 
+The inherited 4.26 MJ/vehicle-km upper fuel-energy screen produces a warning.
+It is a plausibility heuristic rather than a physical maximum; historical IAM
+adjustments or vehicle size can exceed it. Fuel amounts are preserved, while
+violations of the configured energy floor and fuel-specific CO2 mismatches
+remain errors.
+
 For comparable named flows, the inherited 0.5–2 times hot-reference screen
 produces warnings without changing inventory amounts or uncertainty metadata.
 This is a heuristic, not an empirical bound or a EURO certification check.
