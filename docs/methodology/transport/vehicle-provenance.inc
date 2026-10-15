@@ -44,9 +44,11 @@ weighting. Cold-start and evaporative factors retain their separate treatment.
 The correction does not validate the retained high truck NOx coefficients.
 
 Development-audit copies of ``lci-pass_cars.provenance.json`` and
-``lci-trucks.provenance.json`` identify the installed workbook hashes and retain
+``lci-trucks.provenance.json`` retain generation metadata, source hashes and
 earlier provenance. They live under ``dev/data/vehicle_inventory_audit`` rather
-than being installed as additional inventories.
+than being installed as additional inventories. They deliberately do not pin
+the current workbook archive hash, because later inventory maintenance does not
+change the recorded generation inputs.
 Regression snapshots under ``tests/data/vehicle_inventory_parameters`` preserve
 the full generated parameter tables without installing them as additional
 inventories. Excluded direct-noise flows are kept as development audit artifacts

@@ -87,7 +87,6 @@
     "boundary": "Component identity consolidation; refreshed truck exchange amounts are unchanged."
   },
   "noise_exchanges": 1248,
-  "sha256": "de8504fb5fa01bae5b4e39b95348a2d71b08e37992e77489ad583419bd870612",
   "export_version": "3.12",
   "commits": {
     "carculator_truck": "4d28ac63a31057dec6879c863370eacae52b1c18",

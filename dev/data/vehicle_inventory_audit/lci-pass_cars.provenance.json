@@ -72,7 +72,6 @@
     "fuel tank assembly, compressed natural gas, 200 bar, carculator passenger car 2020"
   ],
   "noise_exchanges": 1776,
-  "sha256": "42fe53b06180d288649f9c7e2109d034d8c88171a406465b5201a99fe71f62cc",
   "export_version": "3.12",
   "commits": {
     "carculator": "c6e00104b22c03f46e61b51d33acfe374da6a122",

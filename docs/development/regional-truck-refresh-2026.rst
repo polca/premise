@@ -79,7 +79,7 @@ all service specifications used by regression tests.
 The 1,248 custom noise exchanges omitted from the Premise import are archived
 under ``dev/data/vehicle_inventory_audit``. The
 ``lci-trucks.provenance.json`` file in that directory records source and
-workbook hashes.
+generation metadata.
 
 Controlled comparison
 ---------------------

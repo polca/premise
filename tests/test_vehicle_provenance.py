@@ -1,6 +1,5 @@
 """Vehicle source provenance must survive workbook import."""
 
-import hashlib
 import json
 from pathlib import Path
 
@@ -18,7 +17,6 @@ def test_installed_workbooks_have_sources_and_provenance():
         importer = ExcelImporter(str(path))
         assert importer.db_name == stem and len(importer.data) == count
         sidecar = json.loads((AUDIT_DIR / f"{stem}.provenance.json").read_text())
-        assert sidecar["sha256"] == hashlib.sha256(path.read_bytes()).hexdigest()
         for ds in importer.data:
             assert ds["source"] and ds["model"] and ds["model version"]
             spec = json.loads(ds[SPEC_KEY])

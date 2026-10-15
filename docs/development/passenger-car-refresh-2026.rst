@@ -29,7 +29,7 @@ Generation choices
   inventories. A parameter snapshot under
   ``tests/data/vehicle_inventory_parameters`` supports regression tests, while
   ``dev/data/vehicle_inventory_audit/lci-pass_cars.provenance.json`` records
-  source revisions and the installed workbook hash.
+  source revisions and generation metadata.
 
 Custom supporting components carry a passenger-car suffix to prevent old
 bus/truck component imports from replacing corrected car recipes. The workbook
