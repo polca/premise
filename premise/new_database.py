@@ -976,6 +976,23 @@ class NewDatabase:
         )
         uncertainty_label = "w_uncertainty" if uncertainty else "wo_uncertainty"
         inventory_label = "_inventories" if inventories else ""
+        if inventories:
+            # Vehicle specifications and energy wrappers must move together.
+            # These also invalidate compact source checkpoints via their cache
+            # references, without invalidating the unmodified source database.
+            digest = hashlib.sha256()
+            for path in (
+                FILEPATH_PASS_CARS,
+                FILEPATH_TRUCKS,
+                FILEPATH_BUSES,
+                FILEPATH_TWO_WHEELERS,
+                FILEPATH_RAIL_FREIGHT,
+                FILEPATH_FINAL_ENERGY,
+                FILEPATH_BATTERY_CAPACITY,
+            ):
+                digest.update(path.name.encode())
+                digest.update(path.read_bytes())
+            inventory_label += f"_vehicles_{digest.hexdigest()[:16]}"
         return (
             DIR_CACHED_DB
             / f"cached_{''.join(tuple(map(str, __version__)))}_v{CACHE_SCHEMA_VERSION}_"

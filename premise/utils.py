@@ -37,7 +37,9 @@ from .geomap import Geomap
 FUELS_PROPERTIES = VARIABLES_DIR / "fuels.yaml"
 EFFICIENCY_RATIO_SOLAR_PV = DATA_DIR / "renewables" / "efficiency_solar_PV.csv"
 CACHE_MANIFEST_SUFFIX = ".manifest.json"
-CACHE_SCHEMA_VERSION = 6
+# Version 6 removed vehicle sizing specifications before transformations and
+# propagated that loss into compact source checkpoints. Rebuild both caches.
+CACHE_SCHEMA_VERSION = 7
 FUEL_CO2_TRANSFER_KEY = "premise fuel CO2 reclassification"
 
 
@@ -1149,6 +1151,8 @@ def trim_exchanges(exc: Dict[str, Any]) -> Dict[str, Any]:
 _CACHE_TRIMMED_DATASET_FIELDS = {
     "pv capacity kwp",
     "pv technology",
+    "vehicle battery sizing",
+    "energy use source",
     "name",
     "reference product",
     "location",
@@ -1161,6 +1165,8 @@ _CACHE_TRIMMED_DATASET_FIELDS = {
 _CACHE_METADATA_EXCLUDED_FIELDS = {
     "pv capacity kwp",
     "pv technology",
+    "vehicle battery sizing",
+    "energy use source",
     "name",
     "reference product",
     "location",
