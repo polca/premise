@@ -66,28 +66,34 @@ Changelog
 ---------
 Release notes are maintained in [`CHANGELOG.md`](CHANGELOG.md).
 
-What's new in 2.5.3
+What's new in 2.5.5
 -------------------
 
-**Brightpath now powers Premise's openLCA and SimaPro exports.** Version 2.5.3
-produces native **openLCA JSON-LD packages** containing processes, flows, units,
-and provider links, replacing the previous openLCA-compatible SimaPro CSV route.
-For **SimaPro**, Brightpath produces more accurate CSVs with corrected flow
-mappings, units, classifications, waste-treatment conventions, and metadata
-that respect SimaPro Desktop's import requirements. Export reports identify
-biosphere coverage gaps; SimaPro reports also document classification fallbacks.
+**Version 2.5.5 refreshes passenger-car and truck inventories and corrects
+vehicle energy, battery and metals accounting.** The packaged 2020 inventories
+include revised PHEV, HEV and fuel-cell components with documented source and
+proxy limitations. Scenario generation requires no carculator installation.
 
 This release also:
 
-- restores IAM-region coverage in electricity-market comments;
-- preserves emitted-carbon balances when blending fuels in inventories with
-  carbon capture and applies GAINS reductions across all pollutant compartments;
-- corrects Swiss hydropower water balances and biosphere-flow migrations;
-- preserves custom-scenario mappings, isolates provider efficiency changes,
-  and supports explicit absolute-efficiency bounds; and
-- fixes scenario-array ZIP export on Windows and cleans up failed exports.
+- preserves electric range when resizing car, truck and bus batteries, and
+  applies density improvements to NMC532 capacity markets;
+- rebuilds final-energy transport activities from the updated vehicles with
+  consistent energy and battery allocations per MJ;
+- corrects fuel energy, final-supplier CO2, regional CNG supply, hydrogen tank
+  compression and the HDPE-lined 700-bar tank recipe;
+- preserves consequential metals accounting and source inventories where
+  future material intensities or transport routes are unsupported;
+- fixes external-scenario market-efficiency filters and per-variable excludes;
+  and
+- constrains PyArrow below 26 for compatibility with NumPy 1.x.
 
-**Upgrading requires Python 3.12 or newer.** Brightpath 1.0.0a4 or newer (below
+**Regenerate scenario databases and exports to apply these changes.** Updating
+the package does not modify saved databases. The vehicle modelling assumptions
+and remaining limitations are described in the
+[transport methodology](https://premise.readthedocs.io/en/latest/methodology/transport/index.html).
+
+**Python 3.12 or newer is required**, as in 2.5.3. Brightpath 1.0.0a4 or newer (below
 2.0) is installed as a dependency. openLCA export supports ecoinvent 3.8 and
 3.12 and requires a matching local LCIA method package. Export calls no longer
 accept the legacy `backend` or `format` selectors. Custom datapackages that
@@ -115,8 +121,8 @@ activities = store.find({"location": "CH"})
 database = ndb.materialize_inventory()
 ```
 
-See the [2.5 migration and release guide](https://premise.readthedocs.io/en/latest/release_2_5.html)
-and the [full 2.5.3 changelog](CHANGELOG.md#253---2026-10-07) for details.
+See the [2.5 migration and release guide](https://premise.readthedocs.io/en/latest/development/releases-2-5.html)
+and the [full 2.5.5 changelog](CHANGELOG.md#255---2026-10-15) for details.
 
 
 Documentation

@@ -85,8 +85,8 @@
   },
   {
     "page": "user_guide/updates.rst",
-    "review_date": "2026-09-07",
-    "disposition": "Corrected final-energy scope; update order retained.",
+    "review_date": "2026-10-15",
+    "disposition": "Updated final-energy scope to include marked transport energy-use reconstruction.",
     "review_level": "Documentation screening, not independent scientific validation"
   },
   {
@@ -199,8 +199,8 @@
   },
   {
     "page": "methodology/final-energy.rst",
-    "review_date": "2026-09-07",
-    "disposition": "Compared current implementation and shared helpers; corrected exchange scope, conditions and route accounting; removed migration/internal narratives; added a scope process diagram.",
+    "review_date": "2026-10-15",
+    "disposition": "Documented current marked vehicle energy-use normalization, equipment boundary and emissions refresh; updated the process diagram.",
     "review_level": "Documentation screening, not independent scientific validation"
   },
   {
@@ -223,8 +223,8 @@
   },
   {
     "page": "methodology/battery-mobile.rst",
-    "review_date": "2026-09-07",
-    "disposition": "Compared current implementation and shared helpers; corrected exchange scope, conditions and route accounting; removed migration/internal narratives; added a scope process diagram.",
+    "review_date": "2026-10-15",
+    "disposition": "Reviewed constant-range bus capacity accounting and NMC532 aliases against the installed workbooks and density configuration.",
     "review_level": "Documentation screening, not independent scientific validation"
   },
   {
@@ -289,8 +289,8 @@
   },
   {
     "page": "methodology/transport/buses.rst",
-    "review_date": "2026-09-07",
-    "disposition": "Compared current implementation and shared helpers; corrected exchange scope, conditions and route accounting; removed migration/internal narratives; added a scope process diagram.",
+    "review_date": "2026-10-15",
+    "disposition": "Documented capacity-only constant-range sizing for all ten electric bus variants against vehicle_battery and packaged metadata.",
     "review_level": "Documentation screening, not independent scientific validation"
   },
   {
@@ -469,8 +469,8 @@
   },
   {
     "page": "development/releases-2-5.rst",
-    "review_date": "2026-10-07",
-    "disposition": "Added the 2.5.3 migration requirements for Python, Brightpath exports, local openLCA method packages, and explicit external efficiency bounds; explained scenario regeneration.",
+    "review_date": "2026-10-15",
+    "disposition": "Updated 2.5.5 upgrade guidance and verified 2.5.4 contents against the published PyPI source archive and release tag.",
     "review_level": "Documentation screening, not independent scientific validation"
   },
   {
@@ -541,8 +541,8 @@
   },
   {
     "page": "methodology/transport/campaign-closeout.rst",
-    "review_date": "2026-10-14",
-    "disposition": "Reviewed as the vehicle-campaign closeout summary; it distinguishes the validated campaign snapshots from the narrower master integration and retains unresolved scientific limitations.",
+    "review_date": "2026-10-15",
+    "disposition": "Distinguished the original campaign from subsequent shared-component integration and bus sizing included in 2.5.5.",
     "review_level": "Documentation and implementation consistency; not independent inventory validation"
   }
 ]

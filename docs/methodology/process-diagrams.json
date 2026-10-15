@@ -358,7 +358,7 @@
     "guard": "No GAINS-IAM data: leave emissions unchanged"
   },
   "final-energy": {
-    "title": "End-use heating regionalization",
+    "title": "Final-energy heating and transport activities",
     "steps": [
       {
         "title": "Select mapped heating activities",
@@ -369,12 +369,12 @@
         "detail": "Assign mapped production volumes"
       },
       {
-        "title": "Relink suppliers",
-        "detail": "Use available prospective energy supply"
+        "title": "Rebuild marked transport activities per MJ",
+        "detail": "Use updated vehicles, scoped equipment and purchased traction energy"
       },
       {
-        "title": "Retain the activity reference unit",
-        "detail": "No general recalculation of all end-use demand"
+        "title": "Relink suppliers",
+        "detail": "Retain reference units and use prospective energy and equipment supply"
       }
     ],
     "guard": "No final-energy data: leave the sector unchanged"

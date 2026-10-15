@@ -1,5 +1,5 @@
 Exporting to SimaPro
-===================
+======================
 
 ``write_db_to_simapro`` uses `Brightpath
 <https://github.com/romainsacchi/brightpath>`_ to write one SimaPro CSV per
@@ -7,7 +7,7 @@ scenario. Install Brightpath in the same Python 3.12+ environment as Premise,
 as described in :doc:`index`.
 
 Write and import a scenario
---------------------------
+-----------------------------
 
 After creating and updating ``ndb`` (see :doc:`/getting_started/first-scenario`):
 

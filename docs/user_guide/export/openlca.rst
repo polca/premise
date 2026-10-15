@@ -1,5 +1,5 @@
 Exporting to openLCA
-===================
+======================
 
 JSON-LD packages
 ----------------

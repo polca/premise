@@ -55,7 +55,10 @@ version used.
   ``premise/data/GAINS_emission_factors/``.
 * **renewable**: updates wind turbine (and related) inventories and regional deployment. Data:
   ``premise/data/renewables/``.
-* **final energy**: regionalizes mapped end-use heating datasets and relinks their suppliers when final-energy data are available; it does not construct general downstream carrier mixes. Mappings:
+* **final energy**: regionalizes mapped end-use heating datasets, rebuilds marked
+  transport energy-use activities from updated vehicle inventories per MJ, and
+  relinks suppliers when final-energy data are available. See
+  :doc:`/methodology/final-energy` for the equipment boundary. Mappings:
   ``premise/iam_variables_mapping/final_energy.yaml``. Data: ``premise/data/energy/``.
 * **external**: applies user-provided external scenarios to override or extend IAM data.
 

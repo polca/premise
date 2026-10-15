@@ -343,7 +343,7 @@ and location in **DE**.
 
 
 Explicit bounds for external absolute efficiencies
--------------------------------------------------
+----------------------------------------------------
 
 An external production pathway may declare optional limits alongside an
 absolute efficiency variable::

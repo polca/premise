@@ -147,3 +147,6 @@ premise = [
     "iam_variables_mapping/topologies/*.json",
     "fuels/*.py",
 ]
+
+[tool.setuptools.exclude-package-data]
+premise = ["data/iam_output_files/*"]

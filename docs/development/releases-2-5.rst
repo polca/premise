@@ -5,6 +5,48 @@ Premise 2.5 release and migration guide
    :local:
    :depth: 1
 
+Version 2.5.5 refreshes the packaged 2020 passenger-car and regional-delivery
+truck inventories and corrects their prospective energy, fuel-carbon and
+battery accounting. It also fixes external-scenario efficiency filters and
+preserves source metals inventories where temporal or supply-route coverage
+is incomplete.
+
+Upgrading to 2.5.5
+--------------------
+
+- Regenerate scenario databases and exports. Updating the package does not
+  modify previously written inventories. Changed fuel, vehicle and material
+  accounting can change LCIA results.
+- Review the documented vehicle proxies and remaining limitations in
+  :doc:`/methodology/transport/passenger-cars`,
+  :doc:`/methodology/transport/trucks` and
+  :doc:`/methodology/transport/campaign-closeout`. The refreshed inventories
+  are packaged; carculator is not a runtime dependency.
+- BEV/PHEV cars and trucks retain baseline range as electricity demand changes.
+  Electric buses now use the same capacity rule with unchanged occupancy and
+  replacement counts. NMC532 capacity markets receive their configured density
+  trajectory. See :doc:`/methodology/battery-mobile`.
+- Final-energy transport activities use the updated vehicle inventories and
+  consistent energy and battery allocations per MJ. See
+  :doc:`/methodology/final-energy`.
+- Review retained source inventories and diagnostics where metals assumptions
+  lack support; see :doc:`/methodology/metals`. Consequential inventories retain
+  marginal markets and substitution accounting.
+- Keep PyArrow below 26, as declared by the package and Conda recipes, for
+  compatibility with NumPy 1.x. Python and exporter requirements introduced
+  in 2.5.3 remain in effect.
+
+Version 2.5.4
+-------------
+
+The published 2.5.4 package corrects attributional allocation and reference
+quantities in the South African vanadium inventory. See
+:doc:`/methodology/battery-stationary` for the allocation and source limitations.
+The hydrogen-tank corrections are included in 2.5.5.
+
+Brightpath exports in 2.5.3
+-----------------------------
+
 Version 2.5.3 introduces **Brightpath as the exporter for openLCA and SimaPro**.
 openLCA receives native JSON-LD packages containing processes, flows, units,
 and provider links, replacing the previous openLCA-compatible SimaPro CSV
@@ -19,7 +61,7 @@ on Windows. GAINS reductions apply across every matching pollutant compartment,
 and electricity-market comments again describe IAM-region coverage.
 
 Upgrading to 2.5.3
------------------
+--------------------
 
 - Use **Python 3.12 or newer**. Premise installs
   ``brightpath>=1.0.0a4,<2`` from PyPI; Conda environments also need the
@@ -39,7 +81,7 @@ Upgrading to 2.5.3
   or imported into another LCA application.
 
 Earlier 2.5 releases
--------------------
+----------------------
 
 Version 2.5.2 corrects passenger-car fuel selection, adds a configurable
 provisional combustion-car energy floor, and preserves exchange uncertainty

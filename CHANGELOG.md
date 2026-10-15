@@ -2,7 +2,27 @@
 
 All notable changes to this project are documented in this file.
 
-## [2.5.4] - Unreleased
+## [2.5.5] - 2026-10-15
+
+This release refreshes passenger-car and truck inventories, corrects vehicle
+energy and battery accounting, and makes metals transformations more
+conservative where source coverage is incomplete. Regenerate scenario databases
+and exports to apply these changes; upgrading does not change saved databases.
+
+### Changed
+
+- Refresh the 2020 passenger-car catalogue and regional-delivery truck
+  inventories using current carculator models, with documented powertrain,
+  driving-cycle and component proxies. Runtime scenario generation uses the
+  packaged inventories and requires no carculator installation.
+- Rebuild final-energy transport activities from their corresponding vehicle
+  services and manufacturing inventories. Normalize electricity and fuel use
+  to one MJ using final scenario energy demand, propagate battery sizing and
+  refresh direct emissions after the emissions update.
+- Consolidate shared vehicle components across car, truck, bus, shipping and
+  final-energy inventories. Use the refreshed EV chargers without stationary
+  storage buffers. Keep provenance and noise audit sidecars under `dev/` and
+  parameter snapshots under `tests/data/`, outside runtime package data.
 
 ### Fixed
 
@@ -16,10 +36,10 @@ All notable changes to this project are documented in this file.
 - Avoid recursive regional-to-World fuel-market links by preferring direct
   fuel-production suppliers when a mapped source market has the same product
   identity as the prospective market.
-- Integrate the vehicle refresh into master while retaining the corrected
-  legacy hydrogen-tank recipes in their new component workbook. Include car,
-  truck and legacy-component workbook content in supplementary-inventory cache
-  keys; preserve the existing background cache.
+- Preserve vehicle battery-sizing and exchange-role metadata through source
+  caches and compact checkpoints. Include vehicle, final-energy and
+  battery-capacity workbooks in supplementary-inventory cache keys so changed
+  specifications invalidate cached imports.
 - Refresh 2020 passenger-car PHEVs with paired capacity/mass calibration and
   one physical battery across both driving modes. Preserve the calibrated
   density offset when applying future chemistry-density improvements, using
@@ -40,13 +60,19 @@ All notable changes to this project are documented in this file.
   and chemistry-density trends. Lighter BEV truck batteries increase payload at
   fixed utilization, consistently reducing kilometre-based burdens per tonne-km.
   Corrected FCEV hardware and hydrogen tanks retain their 2020 design.
+- Resize the ten battery-electric bus variants with operating electricity use
+  to preserve their 2020 range, occupancy and replacement policy. Retain MIX/LTO
+  capacity suppliers; apply density and chemistry changes in capacity markets.
+- Apply the configured density trajectory to NMC532 capacity markets, including
+  manufacture and end of life. Retain NMC523 aliases for older inventories.
 - Restore optional mapped vehicle energy-intensity signals and use the approved
   REMIND Large Car/SUV efficiency-only fallback without copying SUV fleet volumes.
   Keep documented fossil LPG supply where no IAM pathway exists.
 - Preserve vehicle/model/component sources, baseline specifications and final
   regional fuel/battery metadata through import and export. Declare the material
-  conversion for regenerated truck frames. The campaign refreshes cars and
-  trucks; bus and two-wheeler workbooks retain their previous inventories.
+  conversion for regenerated truck frames. Bus and two-wheeler vehicle designs
+  retain their previous inventories, with shared component links consolidated
+  and electric-bus battery-sizing metadata added separately.
 - Include petrol alongside electricity in every gasoline plug-in hybrid car's
   operating-fuel mapping, and recognize petrol in the gasoline hybrid mapping.
   IAM efficiency improvements now affect both PHEV energy inputs; final fuel
@@ -119,6 +145,10 @@ All notable changes to this project are documented in this file.
 - Constrain PyArrow to versions below 26 across pip, Brightway extras and conda.
   PyArrow 26 requires NumPy 2 and prevented test collection with premise's
   NumPy 1.x dependency. Check the numerical runtime imports explicitly in CI.
+- Include documentation build inputs and checking scripts in the source
+  distribution, and exclude locally downloaded IAM scenario files from release
+  archives. Restore Sphinx logging after loading the lazy build API so autodoc
+  imports cannot silently disable build warnings.
 
 - Correct the HDPE-lined 700-bar hydrogen tank inventory in `lci-trucks.xlsx`
   to one kg of dry assembly using the published material sum. Convert
@@ -126,6 +156,24 @@ All notable changes to this project are documented in this file.
   separately from material mass. Document the source inconsistencies and verify
   the quantities after Excel import on both supported Brightway stacks. Remove
   the unused aluminium alternative with the legacy compatibility workbook.
+
+### Documentation
+
+- Close the vehicle campaign and replace superseded inventory/cycle descriptions
+  with the final 2020 catalogue, retained proxy limitations and verification
+  scope. Update model sources and paired battery references. Incremental EF 3.1
+  results are retained; no complete original-legacy-versus-final comparison is
+  claimed. Rebuild saved databases to receive the inventory corrections.
+- Document conservative metals defaults and remaining requirements for future
+  mining and recycling scenarios. Add reproducible paired RELICS results for
+  95 available markets and 65 indicators, six validated build configurations,
+  and evidence tracing the motor-component and consequential copper issues.
+- Update the README and release guide for 2.5.5, including constant-range bus
+  sizing, final-energy normalization and the NMC532 density correction.
+
+## [2.5.4] - 2026-10-07
+
+### Fixed
 
 - Correct attributional allocation in the South African vanadium source
   inventory (#286). Replace the ilmenite and sodium-sulfate substitution
@@ -144,15 +192,6 @@ All notable changes to this project are documented in this file.
 
 ### Documentation
 
-- Close the vehicle campaign and replace superseded inventory/cycle descriptions
-  with the final 2020 catalogue, retained proxy limitations and verification
-  scope. Update model sources and paired battery references. Incremental EF 3.1
-  results are retained; no complete original-legacy-versus-final comparison is
-  claimed. Rebuild saved databases to receive the inventory corrections.
-- Document conservative metals defaults and remaining requirements for future
-  mining and recycling scenarios. Add reproducible paired RELICS results for
-  95 available markets and 65 indicators, six validated build configurations,
-  and evidence tracing the motor-component and consequential copper issues.
 - Document the allocation prices, proxy limitations and the unresolved
   physical vanadium-yield inconsistency in the published source tables.
 

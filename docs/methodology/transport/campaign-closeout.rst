@@ -3,9 +3,11 @@
 
 The fixing campaign was closed on 14 October 2026. The installed passenger-car
 and truck workbooks, parameter/noise companions and provenance records contain
-the completed corrections. Bus and two-wheeler workbooks retain their previous
-inventories. Rebuild scenarios to apply changes; existing saved databases are
-unchanged. No new release or version increment is implied by this closeout.
+the completed corrections. Bus and two-wheeler vehicle designs retain their
+previous inventories. Subsequent integration consolidates shared component
+links, and electric buses receive capacity-only constant-range metadata; see
+:doc:`buses`. These changes are included in 2.5.5. Rebuild scenarios to apply
+them; existing saved databases are unchanged.
 
 Completed corrections
 -----------------------
