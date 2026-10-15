@@ -112,6 +112,30 @@ jobs:
           IAM_FILES_KEY: ${{ secrets.IAM_FILES_KEY }}
           EI_USERNAME: ${{ secrets.EI_USERNAME }}
           EI_PASSWORD: ${{ secrets.EI_PASSWORD }}
+
+      # Fork pull requests cannot access the licensed database credentials.
+      # Every push and same-repository pull request must pass a fresh full build
+      # before the dependent PyPI and conda publication jobs can run.
+      - name: Build ecoinvent 3.12 cutoff and validate Brightway results
+        if: >-
+          github.event_name == 'push' ||
+          github.event.pull_request.head.repo.full_name == github.repository
+        env:
+          IAM_FILES_KEY: ${{ secrets.IAM_FILES_KEY }}
+          EI_USERNAME: ${{ secrets.EI_USERNAME }}
+          EI_PASSWORD: ${{ secrets.EI_PASSWORD }}
+          PYTHONHASHSEED: "0"
+        run: |
+          python - <<'PY'
+          import os
+
+          required = ("IAM_FILES_KEY", "EI_USERNAME", "EI_PASSWORD")
+          missing = [name for name in required if not os.environ.get(name)]
+          if missing:
+              raise SystemExit("Full build requires CI secrets: " + ", ".join(missing))
+          PY
+          pytest -q --instafail tests/test_process_ei312_cutoff.py::test_brightway
+
   Pypi:
     runs-on: ubuntu-latest
     needs: build

@@ -75,3 +75,46 @@ def test_shared_component_suppliers_are_unique_and_consumers_use_them():
         if exchange["type"] == "technosphere"
     }
     assert {"Electrical equipment", "Transformers"} <= catenary_suppliers
+
+
+def test_all_bundled_hydrogen_tank_consumers_resolve():
+    """Check cross-workbook closure, including rail, without an ecoinvent licence."""
+    from collections import Counter
+
+    datasets = [
+        dataset
+        for stem in (
+            "lci-trucks",
+            "lci-buses",
+            "lci-pass_cars",
+            "lci-rail-freight",
+            "lci-final-energy",
+            "lci-ships",
+        )
+        for dataset in _load(stem)
+    ]
+
+    def identity(record):
+        return (
+            record["name"].lower(),
+            record["reference product"].lower(),
+            record["location"],
+            record["unit"],
+        )
+
+    suppliers = Counter(identity(dataset) for dataset in datasets)
+    checked = []
+    for dataset in datasets:
+        for exchange in dataset["exchanges"]:
+            if exchange["type"] != "technosphere":
+                continue
+            if exchange.get("reference product", "").lower() != "hydrogen tank":
+                continue
+            assert suppliers[identity(exchange)] == 1, (
+                dataset["name"],
+                identity(exchange),
+                suppliers[identity(exchange)],
+            )
+            checked.append(dataset["name"])
+    assert "production of locomotive, fuel cell, hydrogen" in checked
+    assert "hydrogen, used in a fuel cell in a passenger train" in checked

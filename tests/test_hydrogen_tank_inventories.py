@@ -92,3 +92,47 @@ def test_tank_correction_survives_premise_migration(version, monkeypatch):
     electricity = exchanges["market group for electricity, low voltage"]
     assert electricity["unit"] == "kilowatt hour"
     assert electricity["amount"] * 87.71 * 3.6 == pytest.approx(12.87)
+
+
+@pytest.mark.parametrize("version", ["3.9", "3.10", "3.11", "3.12"])
+def test_restored_rail_tank_preserves_dry_mass_energy_and_links(version, monkeypatch):
+    from premise.filesystem_constants import INVENTORY_DIR
+    from premise.inventory_imports import DefaultInventory
+
+    monkeypatch.setattr(
+        DefaultInventory, "display_unlinked_exchanges", lambda self: None
+    )
+    importer = DefaultInventory(
+        [], "3.9", version, INVENTORY_DIR / "lci-rail-freight.xlsx", "cutoff", False
+    )
+    importer.prepare_inventory()
+    name = "fuel tank, compressed hydrogen gas, 700bar, with aluminium liner"
+    (tank,) = [d for d in importer.import_db.data if d["name"] == name]
+    assert tank["unit"] == "kilogram"
+    assert tank["reference product"] == "hydrogen tank"
+    assert "83b9c0ae" in tank["inventory provenance"]
+    exchanges = {e["name"]: e for e in tank["exchanges"] if e["type"] == "technosphere"}
+    materials = {
+        "market for steel, chromium steel 18/8": 10.591,
+        "epoxy resin production, liquid": 29.75,
+        "carbon fiber production, weaved, at factory, carculator regional truck 2020": 19.873,
+        "market for aluminium alloy, AlLi": 35.7 + 7.021,
+        "market for glass fibre": 5.593,
+        "market for polyurethane, flexible foam": 4.641,
+    }
+    assert sum(materials.values()) == pytest.approx(113.169)
+    assert sum(exchanges[k]["amount"] for k in materials) == pytest.approx(1)
+    for key, mass in materials.items():
+        assert exchanges[key]["amount"] == pytest.approx(mass / 113.169, rel=1e-12)
+    electricity = exchanges["market group for electricity, low voltage"]
+    assert electricity["unit"] == "kilowatt hour"
+    assert electricity["amount"] * 113.169 * 3.6 == pytest.approx(16.422)
+    (locomotive,) = [
+        d
+        for d in importer.import_db.data
+        if d["name"] == "production of locomotive, fuel cell, hydrogen"
+    ]
+    (purchase,) = [e for e in locomotive["exchanges"] if e["name"] == name]
+    assert purchase["unit"] == tank["unit"]
+    assert purchase["product"] == tank["reference product"]
+    assert purchase["amount"] == pytest.approx(30323.84571428572)
