@@ -2510,9 +2510,8 @@ class TransportValidation(BaseDatasetValidator):
         self.check_vehicles()
 
     def check_hydrogen_compression(self, vehicle_name):
-        """Check recorded preparation electricity against current H2 purchases."""
+        """Check documented compression electricity against current H2 purchases."""
         from .vehicle_hydrogen import (
-            BALANCE_KEY,
             COMPRESSION_KEY,
             compression_electricity,
             compression_specification,
@@ -2529,10 +2528,6 @@ class TransportValidation(BaseDatasetValidator):
             try:
                 specification = compression_specification(ds)
                 hydrogen = hydrogen_amount(ds, specification)
-                balance = ds[BALANCE_KEY]
-                residual = balance["other electricity kWh"]
-                if not math.isfinite(residual) or residual < 0:
-                    raise ValueError("Invalid other-electricity remainder")
                 expected = hydrogen * specification["electricity kWh per kg H2"]
                 amounts = [
                     e["amount"]
@@ -2542,20 +2537,11 @@ class TransportValidation(BaseDatasetValidator):
                 if not amounts or any(not math.isfinite(x) or x < 0 for x in amounts):
                     raise ValueError("Invalid compression electricity purchases")
                 if not math.isclose(
-                    sum(amounts), expected + residual, rel_tol=1e-8, abs_tol=1e-12
+                    sum(amounts), expected, rel_tol=1e-8, abs_tol=1e-12
                 ):
                     raise ValueError(
-                        f"Electricity is {sum(amounts)} kWh; final H2 requires "
-                        f"{expected} kWh compression plus {residual} kWh other uses"
-                    )
-                if not math.isclose(
-                    balance["compression electricity kWh"],
-                    expected,
-                    rel_tol=1e-8,
-                    abs_tol=1e-12,
-                ):
-                    raise ValueError(
-                        "Compression record does not follow final hydrogen demand"
+                        f"Compression electricity is {sum(amounts)} kWh; final H2 "
+                        f"requires {expected} kWh"
                     )
             except (KeyError, TypeError, ValueError) as error:
                 self.log_issue(
@@ -2582,16 +2568,13 @@ class TransportValidation(BaseDatasetValidator):
                 )
 
     def check_vehicle_fuel_carbon(self, vehicle_name):
-        """Check the split against current fuel links, independent of saved totals."""
-        from .fuels.carbon import VEHICLE_CO2_KEY, vehicle_fuel_carbon
+        """Check the split directly against current fuel links."""
+        from .fuels.carbon import vehicle_fuel_carbon
         from .fuels.properties import activity_key
 
         providers = {activity_key(ds): ds for ds in self.database}
         for ds in self.database:
-            if (
-                not ds.get("name", "").startswith(vehicle_name)
-                or VEHICLE_CO2_KEY not in ds
-            ):
+            if not ds.get("name", "").startswith(vehicle_name):
                 continue
             try:
                 balance = vehicle_fuel_carbon(ds, providers)

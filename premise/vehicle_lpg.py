@@ -12,8 +12,6 @@ from .fuels.properties import PROPERTIES_KEY, activity_key
 from .vehicle_energy import vehicle_energy_exchange
 
 SPEC_KEY = "vehicle lpg policy"
-STATE_KEY = "premise vehicle LPG supply"
-COMMENT_KEY = "premise vehicle LPG comment"
 LPG = "liquefied petroleum gas"
 
 
@@ -212,46 +210,3 @@ def describe_lpg_supply(dataset, providers, context):
         "proxy boundary": spec["proxy boundary"],
         "CNG pump-to-tank methane leakage": spec["CNG pump-to-tank methane leakage"],
     }
-
-
-def record_lpg_supply(transport):
-    """Add current final-link coverage to marked services, including unmapped templates."""
-    services, providers = services_and_providers(
-        transport.database, transport.vehicle_type
-    )
-    for dataset in services:
-        old_note = dataset.pop(COMMENT_KEY, "")
-        comment = (
-            dataset.get("comment", "").replace(old_note, "", 1)
-            if old_note
-            else dataset.get("comment", "")
-        )
-        try:
-            state = describe_lpg_supply(dataset, providers, transport)
-        except (KeyError, TypeError, ValueError) as error:
-            state = {"status": "invalid", "reason": str(error)}
-        if state is None:
-            dataset.pop(STATE_KEY, None)
-            dataset["comment"] = comment
-            continue
-        dataset[STATE_KEY] = state
-        if state["status"] == "resolved":
-            suppliers = "; ".join(
-                f"{s['name']} ({s['location']}, {s['unit']})"
-                for s in state["suppliers"]
-            )
-            coverage = (
-                "No scenario LPG blend is represented by these fossil suppliers. "
-                if state["supply mode"] == "fossil fallback"
-                else "Carbon origin follows the linked supplier properties. "
-            )
-            efficiency = (
-                "No LPG efficiency mapping for this IAM; 2020 operating energy retained. "
-                if state["LPG efficiency mapping"] == "unavailable"
-                else f"Explicit LPG efficiency mapping; applied energy multiplier {state['applied energy factor']:.8g}. "
-            )
-            note = f" LPG supply ({transport.model}, {transport.scenario}, {transport.year}): {suppliers}. {coverage}{efficiency}"
-        else:
-            note = f" LPG supply validation failed: {state['reason']}. "
-        dataset[COMMENT_KEY] = note
-        dataset["comment"] = note + comment

@@ -350,38 +350,6 @@ def test_default_import_selects_exactly_one_pv_core(monkeypatch, version, system
     assert paths["lci-PV-CIGS.xlsx"] == "3.7"
 
 
-@pytest.mark.parametrize(
-    "version,system_model",
-    [("3.12", "cutoff"), ("3.11", "cutoff"), ("3.12", "consequential")],
-)
-def test_pv_workbook_edits_invalidate_inventory_cache_only(
-    monkeypatch, tmp_path, version, system_model
-):
-    import premise.new_database as module
-
-    for field in (
-        "FILEPATH_PHOTOVOLTAICS_2026",
-        "FILEPATH_PHOTOVOLTAICS_2026_ELECTRICITY",
-        "FILEPATH_PHOTOVOLTAICS_CIGS",
-    ):
-        path = tmp_path / f"{field}.xlsx"
-        path.write_bytes(b"first revision")
-        monkeypatch.setattr(module, field, path)
-    database = module.NewDatabase.__new__(module.NewDatabase)
-    database.source_type = "brightway"
-    database.version = version
-    database.system_model = system_model
-    database.keep_source_db_uncertainty = False
-    database.keep_imports_uncertainty = True
-    original = database._database_cache_path("source", inventories=True)
-    source = database._database_cache_path("source")
-    module.FILEPATH_PHOTOVOLTAICS_2026_ELECTRICITY.write_bytes(
-        b"changed country recipes"
-    )
-    assert database._database_cache_path("source", inventories=True) != original
-    assert database._database_cache_path("source") == source
-
-
 def test_all_new_silicon_cells_preserve_material_inventory_and_uncertainty(inventories):
     from premise.activity_maps import InventorySet
     from premise.metals import Metals

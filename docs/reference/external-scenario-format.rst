@@ -371,8 +371,7 @@ retains the existing missing/inactive-target behaviour and does not become the
 lower bound. Negative or nonfinite targets are rejected. Source scenario values
 remain unchanged. The activity's ``efficiency bounds audit`` records requested
 and applied targets, limits, clipping status and an optional combined-output
-check. A clipped activity also receives an explanatory comment; the ordinary
-transformation log records the applied efficiency.
+check. The ordinary transformation log records the applied efficiency.
 
 Neither electricity nor heat production data are needed for clipping. The
 optional ``heat pathway`` must name another configured production pathway.

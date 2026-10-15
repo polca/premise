@@ -24,14 +24,11 @@ from .car_energy import apply_floor, car_class, fuel_balance
 from .fuels.carbon import update_vehicle_fuel_co2
 from .vehicle_emissions import fuel_proportional_emission
 from .vehicle_energy import vehicle_energy_exchange
-from .vehicle_lpg import record_lpg_supply
-from .vehicle_provenance import record_vehicle_provenance
 from .vehicle_battery import resize_regional_batteries, SPEC_KEY as BATTERY_SIZING_KEY
 from .vehicle_hydrogen import (
-    compression_electricity,
+    compression_electricity_product,
     finish_hydrogen_compression,
     prepare_hydrogen_compression,
-    record_hydrogen_compression_balances,
 )
 from .validation import (
     CarValidation,
@@ -90,9 +87,6 @@ def _update_vehicles(scenario, vehicle_type, version, system_model):
         # Reuse the fuel module's accounting after regional supplier linking,
         # IAM efficiency scaling and any passenger-car energy floor.
         update_vehicle_fuel_co2(trspt.database, version, vehicle_type)
-        record_hydrogen_compression_balances(trspt.database, vehicle_type)
-        record_lpg_supply(trspt)
-        record_vehicle_provenance(trspt)
 
     replace_scenario_inventory(scenario, trspt.database)
     scenario["cache"] = trspt.cache
@@ -422,24 +416,12 @@ class Transport(BaseTransformation):
                     else None
                 ),
             }
-            old_note = dataset.pop("premise vehicle efficiency proxy comment", "")
-            if old_note:
-                dataset["comment"] = dataset.get("comment", "").replace(old_note, "", 1)
             if source_kind == "proxy intensity":
                 record = dataset["log parameters"]["IAM efficiency source"]
                 record["native intensity variable"] = source["intensity variable"]
                 record["reason"] = (
                     "Native regional intensity and energy/service signal unavailable"
                 )
-                note = (
-                    f" IAM efficiency proxy ({self.model}, {dataset['location']}): "
-                    f"{record['intensity variable']}; relative to 2020. "
-                    "Native regional efficiency unavailable; only the relative energy trend "
-                    "is borrowed. Baseline vehicle specifications and fleet volumes are retained."
-                )
-                comment = dataset.get("comment", "")
-                dataset["comment"] = note + comment
-                dataset["premise vehicle efficiency proxy comment"] = note
 
         if variable in data.coords["variables"].values:
             efficiency = self.find_iam_efficiency_change(
@@ -493,7 +475,9 @@ class Transport(BaseTransformation):
                         lambda exchange: self.vehicle_type not in {"car", "truck"}
                         or vehicle_energy_exchange(exchange),
                         lambda exchange: compression is None
-                        or not compression_electricity(exchange, compression[0]),
+                        or not compression_electricity_product(
+                            exchange, compression[0]
+                        ),
                     ],
                     biosphere_filters=(
                         [fuel_proportional_emission]
@@ -507,14 +491,6 @@ class Transport(BaseTransformation):
             )
 
             txt = f" Fuel/energy efficiency adjusted by a factor of {scaling_factor} according to the scenario."
-            if self.vehicle_type in {"car", "truck"}:
-                txt += (
-                    " Direct-emission scaling is limited to fuel-derived CO2,"
-                    " sulphur and generic-air methane leakage. HBEFA hot,"
-                    " cold-start and evaporative factors, refrigerant losses"
-                    " and distance/wear burdens retain their model basis;"
-                    " IAM energy intensity alone does not change them."
-                )
             if "comment" not in dataset:
                 dataset["comment"] = txt
             else:

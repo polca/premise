@@ -85,6 +85,34 @@ def test_summarize_exchanges_uses_compact_payloads():
     assert bool(getattr(summarized[0], "_premise_compact_exchange", False)) is True
 
 
+def test_summarize_exchanges_keeps_documented_uses_separate():
+    transformation = object.__new__(BaseTransformation)
+    base = {
+        "name": "market for electricity, low voltage",
+        "product": "electricity, low voltage",
+        "location": "GLO",
+        "unit": "kilowatt hour",
+        "amount": 1.0,
+    }
+
+    summarized = transformation.summarize_exchanges(
+        [
+            {**base, "comment": "Hydrogen tank compression"},
+            {**base, "amount": 2.0, "comment": "Auxiliary electricity"},
+            {**base, "amount": 3.0},
+        ]
+    )
+
+    assert len(summarized) == 3
+    assert {
+        (exchange.get("comment"), exchange["amount"]) for exchange in summarized
+    } == {
+        (None, 3.0),
+        ("Auxiliary electricity", 2.0),
+        ("Hydrogen tank compression", 1.0),
+    }
+
+
 def make_market_transformation(monkeypatch, technology_shares):
     transformation = object.__new__(BaseTransformation)
     transformation.regions = ["WEU"]
@@ -344,6 +372,44 @@ def test_relink_prepass_preserves_order_totals_and_uncertainty(monkeypatch):
         "scale": 0.2,
     }
     assert sum(exchange["amount"] for exchange in result["exchanges"]) == 6.2
+
+
+def test_relink_technosphere_exchanges_preserves_exchange_roles(monkeypatch):
+    transformation = object.__new__(BaseTransformation)
+    base = {
+        "name": "market for electricity, low voltage",
+        "product": "electricity, low voltage",
+        "location": "GLO",
+        "unit": "kilowatt hour",
+        "type": "technosphere",
+    }
+    dataset = {
+        "name": "hydrogen vehicle",
+        "location": "CH",
+        "exchanges": [
+            {**base, "amount": 0.02, "comment": "Hydrogen tank compression"},
+            {**base, "amount": 0.01, "comment": "Auxiliary electricity"},
+        ],
+    }
+
+    monkeypatch.setattr(
+        transformation,
+        "find_candidates",
+        lambda dataset, *, technosphere_exchanges, **kwargs: [
+            transformation_module._relinked_exchange(exchange, "GLO")
+            for exchange in technosphere_exchanges
+        ],
+    )
+
+    result = transformation.relink_technosphere_exchanges(dataset)
+
+    assert len(result["exchanges"]) == 2
+    assert {
+        (exchange["comment"], exchange["amount"]) for exchange in result["exchanges"]
+    } == {
+        ("Hydrogen tank compression", 0.02),
+        ("Auxiliary electricity", 0.01),
+    }
 
 
 def test_provider_groups_preserve_order_and_invalidate_after_index_mutation():

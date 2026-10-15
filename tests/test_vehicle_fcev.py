@@ -2,11 +2,14 @@
 
 import csv
 import json
+from pathlib import Path
 
 import pytest
 from bw2io import ExcelImporter
 
 from premise.filesystem_constants import INVENTORY_DIR
+
+PARAMETERS_DIR = Path(__file__).parent / "data" / "vehicle_inventory_parameters"
 
 
 @pytest.mark.parametrize("family,count", [("pass_cars", 8), ("trucks", 7)])
@@ -15,7 +18,7 @@ def test_fcev_power_pack_and_purchased_capacity(family, count):
         d["name"]: d
         for d in ExcelImporter(str(INVENTORY_DIR / f"lci-{family}.xlsx")).data
     }
-    with (INVENTORY_DIR / f"lci-{family}.parameters.csv").open() as stream:
+    with (PARAMETERS_DIR / f"lci-{family}.parameters.csv").open() as stream:
         rows = [r for r in csv.DictReader(stream) if r["powertrain"] == "FCEV"]
     assert len(rows) == count
     for row in rows:

@@ -403,7 +403,13 @@ def test_regional_clone_and_idempotent_mass_updates(spec, compact, production):
     assert target["location"] == service["exchanges"][1]["location"] == "EUR"
     assert target["exchanges"][1]["location"] == "GLO"
     assert target["exchanges"][1]["amount"] == pytest.approx(84)
+    assert "67.2 kWh nominal" in target["exchanges"][1]["comment"]
     assert target["exchanges"][2]["amount"] == 25
+    assert target["comment"] == (
+        "Production location denotes regional design; original component supplier "
+        "geographies are retained."
+    )
+    assert "comment" not in service
     assert service["exchanges"][1]["amount"] == production / 200000
     assert service["exchanges"][2]["amount"] == 0.21 * 0.8 * production
     assert service["exchanges"][6]["amount"] == 1e-6

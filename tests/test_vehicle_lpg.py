@@ -11,12 +11,9 @@ from premise.fuels.properties import PROPERTIES_KEY, activity_key
 from premise.inventory_store import compact_exchange_payload
 from premise.validation import CarValidation
 from premise.vehicle_lpg import (
-    COMMENT_KEY,
     LPG,
     SPEC_KEY,
-    STATE_KEY,
     describe_lpg_supply,
-    record_lpg_supply,
     services_and_providers,
 )
 
@@ -98,16 +95,20 @@ def example(kind="car", *, model="remind", production=1, compact=False):
     return context, dataset, supplier
 
 
+def describe(context, dataset):
+    _, providers = services_and_providers(context.database, context.vehicle_type)
+    return describe_lpg_supply(dataset, providers, context)
+
+
 @pytest.mark.parametrize("kind", ["car", "truck"])
 @pytest.mark.parametrize("compact", [False, True])
 @pytest.mark.parametrize("production", [1, 2])
-def test_fallback_is_fossil_and_records_actual_geography_without_changing_exchanges(
+def test_fallback_is_fossil_and_reports_actual_geography_without_mutation(
     kind, compact, production
 ):
     context, ds, _ = example(kind, compact=compact, production=production)
-    before = deepcopy(ds["exchanges"])
-    record_lpg_supply(context)
-    state = ds[STATE_KEY]
+    before = deepcopy(ds)
+    state = describe(context, ds)
     assert state["status"] == "resolved"
     assert state["supply mode"] == "fossil fallback"
     assert state["LPG efficiency mapping"] == "unavailable"
@@ -115,11 +116,8 @@ def test_fallback_is_fossil_and_records_actual_geography_without_changing_exchan
     assert state["energy MJ per service"] == pytest.approx(4.55)
     assert state["fossil CO2 kg per service"] == pytest.approx(0.287105)
     assert state["non-fossil CO2 kg per service"] == 0
-    assert ds["exchanges"] == before
-    once = deepcopy(ds)
-    record_lpg_supply(context)
-    assert ds == once
-    assert ds["comment"].count("LPG supply (") == 1
+    assert ds == before
+    assert describe(context, ds) == state
 
 
 @pytest.mark.parametrize("kind", ["car", "truck"])
@@ -135,8 +133,7 @@ def test_explicit_tiam_lpg_efficiency_and_linked_blend_are_preserved(kind):
     ds["exchanges"][1]["amount"] *= 0.8
     ds["log parameters"] = {"efficiency change": 0.8}
     update_vehicle_fuel_co2(context.database, "3.12")
-    record_lpg_supply(context)
-    state = ds[STATE_KEY]
+    state = describe(context, ds)
     assert state["status"] == "resolved"
     assert state["supply mode"] == "linked supplier properties"
     assert state["LPG efficiency mapping"] == "declared"
@@ -144,7 +141,6 @@ def test_explicit_tiam_lpg_efficiency_and_linked_blend_are_preserved(kind):
     assert state["energy MJ per service"] == pytest.approx(3.64)
     assert state["fossil CO2 kg per service"] == pytest.approx(0.12)
     assert state["non-fossil CO2 kg per service"] == pytest.approx(0.12)
-    assert "No scenario LPG blend" not in ds["comment"]
 
 
 @pytest.mark.parametrize(
@@ -165,8 +161,7 @@ def test_validation_recomputes_current_inputs_and_catches_regressions(
     mutation, message
 ):
     context, ds, supplier = example()
-    record_lpg_supply(context)
-    assert ds[STATE_KEY]["status"] == "resolved"
+    assert describe(context, ds)["status"] == "resolved"
     if mutation == "cng":
         ds["exchanges"][1].update(
             name="market for natural gas, vehicle grade",
@@ -211,8 +206,6 @@ def test_validation_recomputes_current_inputs_and_catches_regressions(
     validator.check_lpg_supply("car")
     assert len(issues) == 1 and message in issues[0][0][2]
     assert issues[0][1]["issue_type"] == "major"
-    record_lpg_supply(context)
-    assert ds[STATE_KEY]["status"] == "invalid"
 
 
 def test_cng_combustion_methane_is_distinct_from_removed_leakage():
@@ -226,19 +219,16 @@ def test_cng_combustion_methane_is_distinct_from_removed_leakage():
             categories=("air", "urban air close to ground"),
         )
     )
-    record_lpg_supply(context)
-    assert ds[STATE_KEY]["status"] == "resolved"
+    assert describe(context, ds)["status"] == "resolved"
 
 
-def test_forwarder_loses_stale_supply_metadata():
+def test_forwarder_is_excluded_from_direct_supply_description():
     context, ds, _ = example()
-    record_lpg_supply(context)
     ds["exchanges"] = [
         ds["exchanges"][0],
         dict(ds["exchanges"][0], type="technosphere", location="EUR"),
     ]
-    record_lpg_supply(context)
-    assert STATE_KEY not in ds and COMMENT_KEY not in ds
+    assert describe(context, ds) is None
     assert ds["comment"] == "original model"
 
 

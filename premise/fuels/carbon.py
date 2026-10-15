@@ -8,7 +8,6 @@ from ..utils import FUEL_CO2_TRANSFER_KEY, rescale_exchange
 from .properties import PROPERTIES_KEY, activity_key
 
 _TRANSFER_KEY = FUEL_CO2_TRANSFER_KEY
-VEHICLE_CO2_KEY = "premise vehicle fuel CO2"
 _VEHICLE_FUEL_KEY = "vehicle operating fuel"
 
 
@@ -296,15 +295,6 @@ def replace_vehicle_fuel_co2(dataset, balance, biosphere_flows):
         ):
             raise ValueError("Vehicle CO2 amounts must be finite")
     target_fossil, target_bio = balance["fossil CO2 kg"], balance["non-fossil CO2 kg"]
-    actual = {
-        name: sum(e["amount"] for e in selected if e["name"] == name)
-        for name in ("Carbon dioxide, fossil", "Carbon dioxide, non-fossil")
-    }
-    if dataset.get(VEHICLE_CO2_KEY) == balance and all(
-        math.isclose(actual[name], target, rel_tol=1e-12, abs_tol=1e-15)
-        for name, target in zip(actual, (target_fossil, target_bio))
-    ):
-        return
     working = {
         "name": dataset["name"],
         "exchanges": [deepcopy(dict(e)) for e in selected],
@@ -373,7 +363,6 @@ def replace_vehicle_fuel_co2(dataset, balance, biosphere_flows):
         next(replacements) if _positive_air_co2(e) else e for e in dataset["exchanges"]
     ]
     dataset["exchanges"].extend(working["exchanges"][len(selected) :])
-    dataset[VEHICLE_CO2_KEY] = balance
 
 
 def update_vehicle_fuel_co2(database, version, vehicle_type=None):
@@ -386,10 +375,5 @@ def update_vehicle_fuel_co2(database, version, vehicle_type=None):
         if not is_vehicle_fuel_consumer(dataset, vehicle_type):
             continue
         balance = vehicle_fuel_carbon(dataset, providers)
-        if balance is None:
-            # A regionalized original can have become a forwarding activity.
-            dataset.pop(VEHICLE_CO2_KEY, None)
-        elif balance["status"] == "unresolved":
-            dataset[VEHICLE_CO2_KEY] = balance
-        else:
+        if balance is not None and balance["status"] == "resolved":
             replace_vehicle_fuel_co2(dataset, balance, flows)

@@ -44,9 +44,9 @@ Verification boundary
 The build counts and LCIA comparisons below describe the campaign's ``trals``
 snapshots. Integration into ``master`` preserves its independent metals and
 hydrogen-tank corrections and excludes TRAILS temporal functionality. The
-corrected legacy tanks now live in ``lci-truck-legacy-components.xlsx``. This
-integration has focused regression checks; it does not rerun the full scenario
-LCIA comparison or update score-regression reference values.
+corrected HDPE tank is part of ``lci-trucks.xlsx``. This integration has focused
+regression checks; it does not rerun the full scenario LCIA comparison or update
+score-regression reference values.
 
 The final REMIND SSP2-NPi / ecoinvent 3.12 cutoff builds contain 42,564 activities
 in 2020 and 42,795 in 2050, with zero validation errors and unchanged 401/468

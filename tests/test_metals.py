@@ -42,14 +42,11 @@ def test_yaml_material_configuration_is_complete_and_valid():
 
     assert len(config.rules) == 308
     assert len(config.enabled_rules) == 281
-    assert len(conversions) == 63
+    assert len(conversions) == 62
     by_name = {item.activity_name: item for item in conversions}
-    original = by_name["frame, blanks and saddle, for lorry"]
-    regional = by_name[
-        "frame, blanks and saddle, for lorry, carculator regional truck 2020"
-    ]
-    assert regional.ecoinvent_unit == original.ecoinvent_unit == "kilogram"
-    assert regional.factor == original.factor == 1
+    frame = by_name["frame, blanks and saddle, for lorry"]
+    assert frame.ecoinvent_unit == "kilogram"
+    assert frame.factor == 1
 
     aluminium = [
         rule

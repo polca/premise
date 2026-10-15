@@ -81,10 +81,10 @@ reference. Native Large Car trends take priority wherever available. The proxy
 changes only relative efficiency: the original 2020 vehicle and the native
 fleet-volume mappings remain in place, without duplicating SUV fleet volumes.
 The usual cap and monotonicity rules apply. A missing or invalid proxy reference
-leaves the signal unavailable. The source log and dataset comment explicitly
-identify the proxy series, region and reason. This is a modelling assumption
-about relative trends, not evidence that Large cars and SUVs have identical
-absolute energy consumption or hardware.
+leaves the signal unavailable. The structured source log identifies the proxy
+series, region and reason. This is a modelling assumption about relative trends,
+not evidence that Large cars and SUVs have identical absolute energy consumption
+or hardware.
 
 Other IAMs without direct-intensity mappings retain their existing
 energy/service calculation. Its denominator matters: IMAGE reports passenger-
@@ -234,7 +234,7 @@ approved 1.8 cold starts/hot soaks per day.
 
 The current catalogue is in
 `lci-pass_cars.xlsx <https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-pass_cars.xlsx>`_
-and its ``lci-pass_cars.parameters.csv`` companion. Only technologies matched by
+and its generated parameter snapshot is retained with the test data. Only technologies matched by
 ``transport_passenger_cars.yaml`` are regionalized; RER coverage does not imply
 that every variant has IAM fleet data. Regionalized RER entries can become
 forwarding activities. LPG retains its explicit CNG manufacturing/efficiency

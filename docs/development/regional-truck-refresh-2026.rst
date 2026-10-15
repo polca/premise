@@ -59,12 +59,13 @@ Import and supply contracts
 ---------------------------
 
 ``lci-trucks.xlsx`` contains 52 services, 42 vehicle-production activities and
-33 qualified supporting components and is imported as ecoinvent 3.12.
-``lci-truck-legacy-components.xlsx`` retains 26 old shared component suppliers
-for other inventories and keeps its ecoinvent 3.7 migration. The qualified
-lorry frame receives the same explicit per-kilogram metal conversion as the
-original frame. This avoids changing other vehicle recipes through shared
-component names.
+33 supporting components and is imported as ecoinvent 3.12. Refreshed
+replacements for established shared components use their canonical,
+unqualified identities, so bus, final-energy and ship inventories link to the
+new recipes directly. The two catenary suppliers not generated with the truck
+refresh, ``Electrical equipment`` and ``Transformers``, are owned by
+``lci-buses.xlsx``. The lorry frame keeps its explicit per-kilogram metal
+conversion.
 
 The ten gasoline/LPG variants retain documented diesel/diesel-hybrid and CNG
 proxies. Conversions preserve modelled fuel energy, using 42.6 MJ/kg gasoline
@@ -73,9 +74,12 @@ LPG omits generic-air CNG leakage. Manufacture and non-CO2 combustion emissions
 remain proxy assumptions. Regional scenario markets determine fuel blends and
 electricity; hydrogen compression electricity is retained.
 
-``lci-trucks.parameters.csv`` records all service specifications.
-``lci-trucks.noise.csv`` retains 1,248 custom noise exchanges omitted from the
-Premise import. ``lci-trucks.provenance.json`` records source and workbook hashes.
+The parameter snapshot under ``tests/data/vehicle_inventory_parameters`` records
+all service specifications used by regression tests.
+The 1,248 custom noise exchanges omitted from the Premise import are archived
+under ``dev/data/vehicle_inventory_audit``. The
+``lci-trucks.provenance.json`` file in that directory records source and
+workbook hashes.
 
 Controlled comparison
 ---------------------
@@ -101,9 +105,11 @@ and the old fossil/biogenic carbon split. It is not simply a technology trend.
 The build has zero validation errors and 401 warnings, the baseline warning
 count. All 3,429 non-production template exchanges link; all 38 selectors,
 42 production battery quantities and 205 EUR non-CO2 checks pass. The affected
-metals suite passes 81 tests. No existing non-truck activity recipes change;
-33 qualified supporting activities are added. Upstream LCIA results can still
-change because freight transport is used throughout the database.
+metals suite passes 81 tests. Twenty established shared component identities
+now resolve to their refreshed recipes, while 13 new supporting activities
+retain qualified names. Results for bus, final-energy and ship inventories can
+therefore change through those refreshed suppliers, in addition to the
+widespread effects of freight transport.
 
 Independent SuperLU solves reproduce the scores within 9.92e-8 relative
 difference, with maximum demand residual 3.11e-15. The original solver's

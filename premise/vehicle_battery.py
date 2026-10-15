@@ -218,32 +218,8 @@ def _resize_mass_exchanges(dataset, spec, state):
             )
 
 
-def _record(dataset, state):
+def _store_state(dataset, state):
     dataset[STATE_KEY] = dict(state)
-    payload_note = ""
-    if "payload normalization factor" in state:
-        payload_note = (
-            f" BEV truck payload utilization remains {state['capacity utilization']:.6g}; "
-            f"cargo is {state['cargo mass kg']:.6g} kg with "
-            f"{state['available payload kg']:.6g} kg available payload. "
-            "Service inputs are normalized to this cargo per tonne-kilometre. "
-            "IAM electricity per vehicle-km is retained without further load feedback."
-        )
-    note = (
-        f" Scenario battery design ({state['year']}, {dataset['location']}): "
-        f"{state['capacity kWh']:.6g} kWh nominal, {state['pack mass kg']:.6g} kg pack; "
-        f"{state['electric range km']:.6g} km electric range retained. "
-        "IAM energy is the operating target before payload normalization. "
-        "Other hardware, charging efficiency, DoD and distance usage retain the 2020 design."
-        f"{payload_note} "
-        "Original model specifications below describe the 2020 baseline."
-    )
-    old_note = dataset.get("premise battery sizing comment", "")
-    comment = dataset.get("comment", "")
-    if old_note:
-        comment = comment.replace(old_note, "", 1)
-    dataset["comment"] = note + comment
-    dataset["premise battery sizing comment"] = note
 
 
 def resize_regional_batteries(transport):
@@ -316,7 +292,7 @@ def resize_regional_batteries(transport):
                     rescale_exchange(
                         exc, normalization / old_normalization, remove_uncertainty=False
                     )
-        _record(ds, state)
+        _store_state(ds, state)
         if factor == 1 and density == spec["cell density kWh/kg"]:
             continue
         target_key = source_key[:2] + (ds["location"],)
@@ -359,10 +335,14 @@ def resize_regional_batteries(transport):
                 "Physical pack chemistry/density and the MIX supply recipe are distinct."
             )
             _resize_mass_exchanges(target, spec, state)
-            _record(target, state)
-            target[
-                "comment"
-            ] += " Production location denotes regional design; original component supplier geographies are retained."
+            _store_state(target, state)
+            note = (
+                "Production location denotes regional design; original component "
+                "supplier geographies are retained."
+            )
+            target["comment"] = (
+                f"{target['comment']} {note}" if target.get("comment") else note
+            )
             providers[target_key] = target
             additions.append(target)
         exchange["location"] = target["location"]

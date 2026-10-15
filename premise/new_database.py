@@ -65,7 +65,6 @@ from .filesystem_constants import (
 from .fuels.base import _update_fuels
 from .heat import _update_heat
 from .inventory_imports import (
-    BIOSPHERE_MIGRATION_CACHE_VERSION,
     AdditionalInventory,
     BaseInventoryImport,
     DefaultInventory,
@@ -297,7 +296,6 @@ FILEPATH_RHENIUM = INVENTORY_DIR / "lci-rhenium.xlsx"
 FILEPATH_PGM = INVENTORY_DIR / "lci-PGM.xlsx"
 FILEPATH_TWO_WHEELERS = INVENTORY_DIR / "lci-two_wheelers.xlsx"
 FILEPATH_TRUCKS = INVENTORY_DIR / "lci-trucks.xlsx"
-FILEPATH_TRUCK_LEGACY_COMPONENTS = INVENTORY_DIR / "lci-truck-legacy-components.xlsx"
 FILEPATH_BUSES = INVENTORY_DIR / "lci-buses.xlsx"
 FILEPATH_PASS_CARS = INVENTORY_DIR / "lci-pass_cars.xlsx"
 FILEPATH_RAIL_FREIGHT = INVENTORY_DIR / "lci-rail-freight.xlsx"
@@ -978,32 +976,6 @@ class NewDatabase:
         )
         uncertainty_label = "w_uncertainty" if uncertainty else "wo_uncertainty"
         inventory_label = "_inventories" if inventories else ""
-        if inventories:
-            digest = hashlib.sha256()
-            for path in (
-                FILEPATH_PHOTOVOLTAICS_2026,
-                FILEPATH_PHOTOVOLTAICS_2026_ELECTRICITY,
-                FILEPATH_PHOTOVOLTAICS_CIGS,
-            ):
-                digest.update(path.name.encode())
-                digest.update(path.read_bytes())
-            inventory_label += (
-                f"_pv2026_{digest.hexdigest()[:16]}"
-                f"_biosphere{BIOSPHERE_MIGRATION_CACHE_VERSION}"
-            )
-            inventory_label += (
-                "_vanadium_"
-                + hashlib.sha256(FILEPATH_VANADIUM.read_bytes()).hexdigest()[:16]
-            )
-            digest = hashlib.sha256()
-            for path in (
-                FILEPATH_PASS_CARS,
-                FILEPATH_TRUCKS,
-                FILEPATH_TRUCK_LEGACY_COMPONENTS,
-            ):
-                digest.update(path.name.encode())
-                digest.update(path.read_bytes())
-            inventory_label += f"_vehicles_{digest.hexdigest()[:16]}"
         return (
             DIR_CACHED_DB
             / f"cached_{''.join(tuple(map(str, __version__)))}_v{CACHE_SCHEMA_VERSION}_"
@@ -1268,8 +1240,6 @@ class NewDatabase:
             (FILEPATH_GERMANIUM, "3.9"),
             (FILEPATH_RHENIUM, "3.9"),
             (FILEPATH_TWO_WHEELERS, "3.7"),
-            # Preserve shared component suppliers used by other inventories.
-            (FILEPATH_TRUCK_LEGACY_COMPONENTS, "3.7"),
             (FILEPATH_TRUCKS, "3.12"),
             (FILEPATH_BUSES, "3.7"),
             (FILEPATH_PASS_CARS, "3.12"),

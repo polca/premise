@@ -140,10 +140,4 @@ def bound_external_efficiency(dataset, target, policy=None, outputs=None):
         ),
     }
     dataset.setdefault("efficiency bounds audit", []).append(record)
-    if record["clipped"]:
-        dataset["comment"] = dataset.get("comment", "") + (
-            f" External-scenario efficiency bounded: requested {target:.12g}, "
-            f"applied {applied:.12g}, configured bounds {bounds}. "
-            "This modelling assumption does not modify the source scenario data."
-        )
     return applied, record

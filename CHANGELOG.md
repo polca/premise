@@ -120,12 +120,12 @@ All notable changes to this project are documented in this file.
   PyArrow 26 requires NumPy 2 and prevented test collection with premise's
   NumPy 1.x dependency. Check the numerical runtime imports explicitly in CI.
 
-- Correct the HDPE- and aluminium-lined 700-bar hydrogen tank inventories in
-  `lci-trucks.xlsx` to one kg of dry assembly using the published material sums.
-  Convert manufacturing electricity from MJ to kWh and retain processing services
+- Correct the HDPE-lined 700-bar hydrogen tank inventory in `lci-trucks.xlsx`
+  to one kg of dry assembly using the published material sum. Convert
+  manufacturing electricity from MJ to kWh and retain processing services
   separately from material mass. Document the source inconsistencies and verify
-  the quantities after Excel import on both supported Brightway stacks.
-  Invalidate cached supplementary inventories when the tank workbook changes.
+  the quantities after Excel import on both supported Brightway stacks. Remove
+  the unused aluminium alternative with the legacy compatibility workbook.
 
 - Correct attributional allocation in the South African vanadium source
   inventory (#286). Replace the ilmenite and sodium-sulfate substitution
