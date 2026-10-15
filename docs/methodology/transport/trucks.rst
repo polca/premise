@@ -326,7 +326,7 @@ rather than gross vehicle mass.
 
 The current catalogue is in
 `lci-trucks.xlsx <https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-trucks.xlsx>`_
-and its ``lci-trucks.parameters.csv`` companion. Exact names are preserved from
+and its generated parameter snapshot is retained with the test data. Exact names are preserved from
 the selected service catalogue. Only mapped technologies are regionalized;
 unmatched 32 t/60 t services do not acquire fleet data simply because templates
 exist. The separate legacy-component workbook preserves 26 compatibility

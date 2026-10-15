@@ -26,9 +26,9 @@ Generation choices
   pump-to-tank methane leakage is excluded (zero in the current model defaults).
 * Noise is omitted from premise imports. The excluded flows are archived under
   ``dev/data/vehicle_inventory_audit`` rather than installed as additional
-  inventories. ``lci-pass_cars.parameters.csv`` and
-  ``lci-pass_cars.provenance.json`` record model values, replacement counts,
-  source revisions and workbook hash.
+  inventories. A parameter snapshot under
+  ``tests/data/vehicle_inventory_parameters`` supports regression tests, while
+  ``lci-pass_cars.provenance.json`` records source revisions and workbook hash.
 
 Custom supporting components carry a passenger-car suffix to prevent old
 bus/truck component imports from replacing corrected car recipes. The workbook

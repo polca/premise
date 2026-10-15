@@ -1,6 +1,7 @@
 """Independent delivered-energy and carbon-origin regression expectations."""
 
 from copy import deepcopy
+from pathlib import Path
 from types import SimpleNamespace
 
 import pytest
@@ -18,6 +19,8 @@ from premise.fuels.properties import (
 from premise.transformation import BaseTransformation
 from premise.utils import get_fuel_properties
 from premise.validation import FuelsValidation
+
+PARAMETERS_DIR = Path(__file__).parent / "data" / "vehicle_inventory_parameters"
 
 
 def activity(name, product="fuel", unit="kilogram", inputs=(), **metadata):
@@ -383,11 +386,10 @@ def test_consequential_validator_compares_energy_shares(monkeypatch):
 @pytest.mark.parametrize("stem,count", [("lci-pass_cars", 8), ("lci-trucks", 7)])
 def test_installed_cng_vehicle_purchase_preserves_recorded_model_energy(stem, count):
     import csv
-    from pathlib import Path
     import openpyxl
 
     root = Path(__file__).resolve().parents[1] / "premise/data/additional_inventories"
-    with (root / f"{stem}.parameters.csv").open() as stream:
+    with (PARAMETERS_DIR / f"{stem}.parameters.csv").open() as stream:
         parameters = {row["name"]: row for row in csv.DictReader(stream)}
     workbook = openpyxl.load_workbook(
         root / f"{stem}.xlsx", read_only=True, data_only=True

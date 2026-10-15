@@ -1,11 +1,14 @@
 """Check exported hybrid exhaust against source factors, separately from the model."""
 
 import csv
+from pathlib import Path
 
 import pytest
 from bw2io import ExcelImporter
 
 from premise.filesystem_constants import INVENTORY_DIR
+
+PARAMETERS_DIR = Path(__file__).parent / "data" / "vehicle_inventory_parameters"
 
 # Source: carculator_utils/data/emission_factors/{car,truck}/
 # EF_HBEFA42_exhaust.csv, car/EF_HBEFA42_non_exhaust.csv and degradation_EF.csv.
@@ -37,7 +40,7 @@ def test_installed_hybrid_hot_exhaust_ages_once_with_separate_cold_starts(
         d["name"]: d
         for d in ExcelImporter(str(INVENTORY_DIR / f"lci-{family}.xlsx")).data
     }
-    with (INVENTORY_DIR / f"lci-{family}.parameters.csv").open() as stream:
+    with (PARAMETERS_DIR / f"lci-{family}.parameters.csv").open() as stream:
         rows = [
             r
             for r in csv.DictReader(stream)

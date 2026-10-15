@@ -234,7 +234,7 @@ approved 1.8 cold starts/hot soaks per day.
 
 The current catalogue is in
 `lci-pass_cars.xlsx <https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-pass_cars.xlsx>`_
-and its ``lci-pass_cars.parameters.csv`` companion. Only technologies matched by
+and its generated parameter snapshot is retained with the test data. Only technologies matched by
 ``transport_passenger_cars.yaml`` are regionalized; RER coverage does not imply
 that every variant has IAM fleet data. Regionalized RER entries can become
 forwarding activities. LPG retains its explicit CNG manufacturing/efficiency

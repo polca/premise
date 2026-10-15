@@ -73,7 +73,8 @@ LPG omits generic-air CNG leakage. Manufacture and non-CO2 combustion emissions
 remain proxy assumptions. Regional scenario markets determine fuel blends and
 electricity; hydrogen compression electricity is retained.
 
-``lci-trucks.parameters.csv`` records all service specifications.
+The parameter snapshot under ``tests/data/vehicle_inventory_parameters`` records
+all service specifications used by regression tests.
 The 1,248 custom noise exchanges omitted from the Premise import are archived
 under ``dev/data/vehicle_inventory_audit``. ``lci-trucks.provenance.json``
 records source and workbook hashes.

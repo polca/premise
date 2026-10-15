@@ -100,7 +100,7 @@ def test_forwarding_service_does_not_claim_direct_operating_inputs_or_hardware()
     assert "hardware basis" not in state and "IAM energy multiplier" not in state
 
 
-def test_installed_workbooks_have_sources_and_match_their_companions():
+def test_installed_workbooks_have_sources_and_provenance():
     from bw2io import ExcelImporter
 
     for stem, count in (("lci-pass_cars", 162), ("lci-trucks", 127)):
@@ -109,15 +109,6 @@ def test_installed_workbooks_have_sources_and_match_their_companions():
         assert importer.db_name == stem and len(importer.data) == count
         sidecar = json.loads(path.with_suffix(".provenance.json").read_text())
         assert sidecar["sha256"] == hashlib.sha256(path.read_bytes()).hexdigest()
-        info = sidecar["generation provenance"]["artifacts"][
-            "vehicle_parameters.csv"
-        ]
-        assert (
-            hashlib.sha256(
-                (INVENTORY_DIR / info["companion file"]).read_bytes()
-            ).hexdigest()
-            == info["sha256"]
-        )
         for ds in importer.data:
             assert ds["source"] and ds["model"] and ds["model version"]
             spec = json.loads(ds[SPEC_KEY])

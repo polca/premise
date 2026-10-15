@@ -130,8 +130,7 @@
         "sha256": "13462ca8a318f8c9ada1effd66f0695f3aeae1b5548b28d2c6f088c7c2090333"
       },
       "vehicle_parameters.csv": {
-        "sha256": "4edc35daff2c0c2609d6bdac5311a88238350e3dd0a00138a1730d4821e1206f",
-        "companion file": "lci-trucks.parameters.csv"
+        "sha256": "4edc35daff2c0c2609d6bdac5311a88238350e3dd0a00138a1730d4821e1206f"
       },
       "noise_audit.csv": {
         "sha256": "2d0d601d9d6902e6cfc399c8651e31ff28ce54f7f55719b53c0172ec3691a050"
@@ -272,8 +271,7 @@
           "sha256": "01a1e52a722b2738f1e70e2eec1a591a07f4e96f2360f14a8b44d29067d9a19c"
         },
         "vehicle_parameters.csv": {
-          "sha256": "68af6a3122d84e2394fcd95c7a391bf7807eaa0d50a2c8c5ca4987ce31029ecd",
-          "companion file": "lci-trucks.parameters.csv"
+          "sha256": "68af6a3122d84e2394fcd95c7a391bf7807eaa0d50a2c8c5ca4987ce31029ecd"
         },
         "noise_audit.csv": {
           "sha256": "2d0d601d9d6902e6cfc399c8651e31ff28ce54f7f55719b53c0172ec3691a050"
@@ -396,8 +394,7 @@
             "sha256": "bff604c6a276afd6554813f9a29a914ef5a076e727461806350035918a914457"
           },
           "vehicle_parameters.csv": {
-            "sha256": "af770502ad15ffc9837ce8da67b51f2deb0327f6bbaaab1ec3fe8580c7495ff9",
-            "companion file": "lci-trucks.parameters.csv"
+            "sha256": "af770502ad15ffc9837ce8da67b51f2deb0327f6bbaaab1ec3fe8580c7495ff9"
           },
           "noise_audit.csv": {
             "sha256": "2d0d601d9d6902e6cfc399c8651e31ff28ce54f7f55719b53c0172ec3691a050"
@@ -520,8 +517,7 @@
               "sha256": "8b8464a0bd14e7bfd93f834df0cc034158b77103a8c9940f8f29ba488353b2b2"
             },
             "vehicle_parameters.csv": {
-              "sha256": "f17aa0ca08b2c2fb2398e5695a1d89891251f3bc9f21446571bafd86c32bff9f",
-              "companion file": "lci-trucks.parameters.csv"
+              "sha256": "f17aa0ca08b2c2fb2398e5695a1d89891251f3bc9f21446571bafd86c32bff9f"
             },
             "noise_audit.csv": {
               "sha256": "2d0d601d9d6902e6cfc399c8651e31ff28ce54f7f55719b53c0172ec3691a050"
@@ -644,8 +640,7 @@
                 "sha256": "8b8464a0bd14e7bfd93f834df0cc034158b77103a8c9940f8f29ba488353b2b2"
               },
               "vehicle_parameters.csv": {
-                "sha256": "f17aa0ca08b2c2fb2398e5695a1d89891251f3bc9f21446571bafd86c32bff9f",
-                "companion file": "lci-trucks.parameters.csv"
+                "sha256": "f17aa0ca08b2c2fb2398e5695a1d89891251f3bc9f21446571bafd86c32bff9f"
               },
               "noise_audit.csv": {
                 "sha256": "2d0d601d9d6902e6cfc399c8651e31ff28ce54f7f55719b53c0172ec3691a050"
@@ -699,8 +694,7 @@
                   "sha256": "fe43982e9d175a55d53ccbe5fd79a3f545880703fea88967aa6c8bcebb45e139"
                 },
                 "vehicle_parameters.csv": {
-                  "sha256": "e7a9ffd853ec52988ed288e84192aff6ec477cf08e215cf59a2b69758b1411c7",
-                  "companion file": "lci-trucks.parameters.csv"
+                  "sha256": "e7a9ffd853ec52988ed288e84192aff6ec477cf08e215cf59a2b69758b1411c7"
                 },
                 "noise_audit.csv": {
                   "sha256": "2d0d601d9d6902e6cfc399c8651e31ff28ce54f7f55719b53c0172ec3691a050"

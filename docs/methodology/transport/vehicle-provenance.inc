@@ -46,13 +46,13 @@ The correction does not validate the retained high truck NOx coefficients.
 
 The ``lci-pass_cars.provenance.json`` and ``lci-trucks.provenance.json`` companion
 files identify the installed workbook hashes and retain earlier provenance.
-The corresponding ``*.parameters.csv`` files preserve the full generated
-parameter tables. Excluded direct-noise flows are kept as development audit
-artifacts under ``dev/data/vehicle_inventory_audit`` instead of being installed
-as additional inventories. Their generation hashes remain recorded in the
-provenance. Noise is not included in the imported inventory. The raw model
-export is identified by hash; the private audit retains that export without
-distributing the full background inventory.
+Regression snapshots under ``tests/data/vehicle_inventory_parameters`` preserve
+the full generated parameter tables without installing them as additional
+inventories. Excluded direct-noise flows are kept as development audit artifacts
+under ``dev/data/vehicle_inventory_audit``. Their generation hashes remain
+recorded in the provenance. Noise is not included in the imported inventory.
+The raw model export is identified by hash; the private audit retains that
+export without distributing the full background inventory.
 
 ``lci-truck-legacy-components.xlsx`` retains 26 original compatibility recipes
 on their ecoinvent 3.7 import basis. Their original sources, descriptions and
