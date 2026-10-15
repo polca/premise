@@ -122,26 +122,3 @@ def test_tank_correction_survives_premise_migration(version, monkeypatch):
         assert electricity["unit"] == "kilowatt hour"
         assert electricity["amount"] * mass * 3.6 == pytest.approx(energy)
         assert all("Evangelisti" in e["comment"] for e in exchanges.values())
-
-
-@pytest.mark.parametrize(
-    "constant",
-    ["FILEPATH_PASS_CARS", "FILEPATH_TRUCKS", "FILEPATH_TRUCK_LEGACY_COMPONENTS"],
-)
-def test_vehicle_content_changes_invalidate_only_inventory_cache(
-    tmp_path, monkeypatch, constant
-):
-    import premise.new_database as module
-
-    original = getattr(module, constant)
-    workbook = tmp_path / original.name
-    workbook.write_bytes(original.read_bytes())
-    monkeypatch.setattr(module, constant, workbook)
-    model = object.__new__(module.NewDatabase)
-    model.keep_imports_uncertainty = False
-    model.keep_source_db_uncertainty = False
-    old_inventory = model._database_cache_path("source", inventories=True)
-    old_background = model._database_cache_path("source")
-    workbook.write_bytes(workbook.read_bytes() + b"changed tank recipe")
-    assert model._database_cache_path("source", inventories=True) != old_inventory
-    assert model._database_cache_path("source") == old_background

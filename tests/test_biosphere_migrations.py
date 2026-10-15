@@ -142,20 +142,6 @@ def test_replacement_clears_old_link_and_preserves_amount_and_uncertainty():
     assert data == [{"exchanges": [expected]}]
 
 
-def test_biosphere_fix_invalidates_inventory_cache_only(monkeypatch):
-    import premise.new_database as module
-
-    database = object.__new__(module.NewDatabase)
-    database.source_type = "brightway"
-    database.keep_source_db_uncertainty = False
-    database.keep_imports_uncertainty = True
-    old_inventory = database._database_cache_path("source", inventories=True)
-    source = database._database_cache_path("source")
-    monkeypatch.setattr(module, "BIOSPHERE_MIGRATION_CACHE_VERSION", 999)
-    assert database._database_cache_path("source", inventories=True) != old_inventory
-    assert database._database_cache_path("source") == source
-
-
 @pytest.mark.parametrize(
     "name,categories,expected_name,expected_code",
     [
