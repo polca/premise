@@ -21,9 +21,13 @@ NMC111:
       minimum: 0.180
       maximum: 0.220
 
-NMC523:
+NMC532:
   ecoinvent_aliases:
     name:
+     - market for battery, Li-ion, NMC532
+     - market for battery capacity, Li-ion, NMC532
+     - market for battery capacity, Li-ion, NMC532, stationary
+     # Retain the historical aliases for inventories using the old spelling.
      - market for battery, Li-ion, NMC523
      - market for battery capacity, Li-ion, NMC523
      - market for battery capacity, Li-ion, NMC523, stationary
