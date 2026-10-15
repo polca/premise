@@ -2529,17 +2529,26 @@ class TransportValidation(BaseDatasetValidator):
                 ds, "invalid car fuel accounting", str(error), issue_type="major"
             )
             return
-        # Preserve the previous upper plausibility bound in energy units.
         if (
             minimum is not None
             and energy < minimum
             and not math.isclose(energy, minimum, rel_tol=1e-12)
-        ) or energy > 4.26:
+        ):
             self.log_issue(
                 ds,
                 "fuel consumption incorrect",
-                f"Fuel energy is {energy} MJ/vehicle-km; minimum={minimum}, maximum=4.26.",
+                f"Fuel energy is {energy} MJ/vehicle-km; minimum={minimum}.",
                 issue_type="major",
+            )
+        # The inherited upper screen is not a physical maximum. Historical
+        # IAM adjustments and vehicle size can legitimately exceed it.
+        if energy > 4.26:
+            self.log_issue(
+                ds,
+                "car fuel energy plausibility",
+                f"Fuel energy is {energy} MJ/vehicle-km, above the heuristic "
+                "4.26 MJ/vehicle-km screen. Inventory preserved; investigate "
+                "the baseline vehicle and IAM efficiency adjustment.",
             )
         actual_co2 = (
             sum(
