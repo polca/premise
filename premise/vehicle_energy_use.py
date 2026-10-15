@@ -92,7 +92,8 @@ def carrier(e):
     p = e.get("product", e.get("reference product", "")) or ""
     n = e["name"].lower()
     u = e["unit"]
-    if p.startswith("electricity") and u == "kilowatt hour":
+    # Storage capacity is battery equipment, even though it also uses kWh.
+    if (p == "electricity" or p.startswith("electricity,")) and u == "kilowatt hour":
         return "electricity"
     if (
         p == "hydrogen"
@@ -160,6 +161,9 @@ def energy_per_unit(e):
 def equipment(e):
     """Explicit component classes; uncertain mixed components are not guessed."""
     n = e["name"].lower()
+    if "maintenance" in n and any(kind in n for kind in ("scooter", "bicycle")):
+        # Whole-vehicle maintenance "without battery" is not battery equipment.
+        return False
     return any(
         t in n
         for t in (

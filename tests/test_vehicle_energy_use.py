@@ -228,3 +228,42 @@ def test_hydrogen_tank_is_equipment_not_an_energy_purchase():
     tank = exc("fuel tank, compressed hydrogen gas", 1, "kilogram", "hydrogen tank")
     assert ve.carrier(tank) is None
     assert ve.equipment(tank)
+
+
+def test_storage_capacity_is_not_operating_electricity_and_keeps_fuel_geography():
+    wrapper, source, vehicle = model("kilometer", 1)
+    grid = exc(
+        "Swiss electricity market", 1 / 3.6, "kilowatt hour", "electricity, low voltage"
+    )
+    grid["location"] = "CH"
+    pack = exc(
+        "battery capacity market",
+        0.001,
+        "kilowatt hour",
+        "electricity storage capacity",
+    )
+    wrapper["exchanges"].extend([grid, pack])
+    assert ve.carrier(pack) is None
+    assert ve.equipment(pack)
+    ve.normalize(wrapper, source, [source, vehicle])
+    purchases = [e for e in wrapper["exchanges"] if ve.carrier(e) == "electricity"]
+    assert len(purchases) == 1
+    assert purchases[0]["name"] == grid["name"]
+    assert purchases[0]["location"] == "CH"
+    assert purchases[0]["amount"] == pytest.approx(1 / 3.6)
+
+
+@pytest.mark.parametrize(
+    "name",
+    [
+        "market for maintenance, electric scooter, without battery",
+        "maintenance, electric bicycle, without battery",
+    ],
+)
+def test_whole_two_wheeler_maintenance_is_outside_energy_equipment_boundary(name):
+    wrapper, source, vehicle = model("kilometer", 1)
+    maintenance = exc(name, 1, "unit")
+    source["exchanges"].append(maintenance)
+    assert not ve.equipment(maintenance)
+    ve.normalize(wrapper, source, [source, vehicle])
+    assert name not in {e["name"] for e in wrapper["exchanges"]}

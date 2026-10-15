@@ -196,6 +196,39 @@ def test_co2_checked_even_above_floor_and_validator_does_not_mutate():
     assert ds == before
 
 
+def test_historical_high_fuel_energy_is_read_only_warning():
+    ds = car(4.3491151705384254)
+    before = deepcopy(ds)
+    validator = object.__new__(CarValidation)
+    validator.model, validator.scenario, validator.year = (
+        "remind-eu",
+        "SSP2-PkBudg1000",
+        2005,
+    )
+    validator.major_issues_log = []
+    validator.minor_issues_log = []
+    validator.validation_issues = []
+    validator.check_car_fuel_energy(ds)
+    assert ds == before
+    assert [(issue.rule_id, issue.severity) for issue in validator.validation_issues] == [
+        ("LEGACY.CAR_FUEL_ENERGY_PLAUSIBILITY", "warning")
+    ]
+    validator._finalize_logs()
+
+    ds["exchanges"][3]["amount"] *= 2
+    validator.check_car_fuel_energy(ds)
+    assert any(
+        issue.rule_id == "LEGACY.CO2_EMISSIONS_INCORRECT" and issue.severity == "error"
+        for issue in validator.validation_issues
+    )
+
+
+def test_fuel_floor_violation_remains_error():
+    assert [issue[::2] for issue in validate(car(0.8))] == [
+        ("fuel consumption incorrect", "major")
+    ]
+
+
 def test_recorded_neu_2050_regression():
     ds = car(1.9635545928637712 / 100 * 42.6)
     ds["exchanges"][3]["amount"] = 0.04700672745633079
