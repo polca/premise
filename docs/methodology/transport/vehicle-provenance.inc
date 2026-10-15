@@ -20,13 +20,12 @@ the literature source for a fuel cell, tank or material recipe. Missing
 component references are stated explicitly instead of being inferred.
 
 Original-model specification comments and ``baseline vehicle parameters``
-describe **2020 vehicles**. After transformation, ``premise vehicle provenance``
-separately records the IAM, pathway, scenario year, actual dataset location,
-reference production, final operating-energy purchases and their supplier
-locations/units, efficiency adjustments and any scenario battery specifications.
-Forwarding services are identified as such and do not claim direct fuel use.
-The original provenance stays unchanged on regional clones. Combustion and
-hydrogen tanks retain their baseline design under the current policy.
+describe **2020 vehicles** and stay unchanged on regional clones. Scenario IAM,
+pathway and year are recorded once in the database metadata; final locations,
+operating-energy purchases and suppliers remain directly available from the
+transformed activities and exchanges. They are not duplicated in an additional
+per-activity provenance record. Combustion and hydrogen tanks retain their
+baseline design under the current policy.
 
 FCEV baseline metadata records vehicle power, gross fuel-cell power, its
 gross/net multiplier and complementary DC buffer power. Cars use Toyota's
