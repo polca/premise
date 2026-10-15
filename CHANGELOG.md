@@ -154,8 +154,15 @@ and exports to apply these changes; upgrading does not change saved databases.
   to one kg of dry assembly using the published material sum. Convert
   manufacturing electricity from MJ to kWh and retain processing services
   separately from material mass. Document the source inconsistencies and verify
-  the quantities after Excel import on both supported Brightway stacks. Remove
-  the unused aluminium alternative with the legacy compatibility workbook.
+  the quantities after Excel import on both supported Brightway stacks.
+- Restore the aluminium-lined 700-bar hydrogen tank supplier in
+  `lci-rail-freight.xlsx`, preserving corrected dry-mass and manufacturing-energy
+  quantities. Verify that bundled hydrogen-tank consumers, including fuel-cell
+  locomotives and final-energy passenger-train activities, resolve uniquely.
+- Require a fresh ecoinvent 3.12 cut-off build, Brightway export and LCIA
+  regression checks in CI before dependent publication jobs can run. Missing
+  credentials fail this gate on pushes and same-repository pull requests;
+  external fork pull requests retain the unlicensed test suite.
 
 ### Documentation
 
