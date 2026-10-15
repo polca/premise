@@ -125,7 +125,7 @@ The end product is vanadium pentoxide, which is available under the following da
 These inventories can be found here: `LCI_vanadium <https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/additional_inventories/lci-batteries-vanadium.xlsx>`__.
 
 Vanadium co-product allocation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Starting with 2.5.4, the South African route in
 ``premise/data/additional_inventories/lci-batteries-vanadium.xlsx`` uses

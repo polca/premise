@@ -1,5 +1,5 @@
 Explicit LPG supply and vehicle proxies
---------------------------------------
+---------------------------------------
 
 The refreshed medium LPG car and four LPG trucks retain CNG vehicle manufacture,
 including the tank, efficiency, maintenance and non-CO2 combustion factors as

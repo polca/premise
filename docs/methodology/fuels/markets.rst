@@ -37,7 +37,7 @@ values. Consumer carbon dioxide handling uses the linked fuel composition;
 the detailed examples below illustrate those separate operations.
 
 Reference energy and carbon properties
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Fuel markets normalize eligible IAM energy shares before converting them into
 supplier quantities. For energy share ``s`` and supplier heating value ``H``,

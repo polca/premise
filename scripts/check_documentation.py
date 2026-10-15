@@ -193,6 +193,7 @@ def check(root, repo):
         ],
         "methodology/transport/index": [
             "overview",
+            "campaign-closeout",
             "two-wheelers",
             "passenger-cars",
             "trucks",
@@ -229,6 +230,8 @@ def check(root, repo):
             "consequential-validation-history",
             "documentation-audit",
             "scientific-update-backlog",
+            "passenger-car-refresh-2026",
+            "regional-truck-refresh-2026",
         ],
     }
     for name, expected in expected_orders.items():

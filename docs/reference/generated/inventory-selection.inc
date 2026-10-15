@@ -182,7 +182,7 @@
      - 3.10
      - All supported configurations
    * - ``lci-pass_cars.xlsx``
-     - 3.7
+     - 3.12
      - All supported configurations
    * - ``lci-rail-freight.xlsx``
      - 3.9
@@ -244,8 +244,11 @@
    * - ``lci-syngas.xlsx``
      - 3.9
      - All supported configurations
-   * - ``lci-trucks.xlsx``
+   * - ``lci-truck-legacy-components.xlsx``
      - 3.7
+     - All supported configurations
+   * - ``lci-trucks.xlsx``
+     - 3.12
      - All supported configurations
    * - ``lci-two_wheelers.xlsx``
      - 3.7

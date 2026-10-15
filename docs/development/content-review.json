@@ -526,5 +526,23 @@
     "review_date": "2026-09-07",
     "disposition": "Compared current implementation and shared helpers; corrected exchange scope, conditions and route accounting; removed migration/internal narratives; added a scope process diagram.",
     "review_level": "Implementation consistency; not independent inventory validation"
+  },
+  {
+    "page": "development/passenger-car-refresh-2026.rst",
+    "review_date": "2026-10-14",
+    "disposition": "Retained as the implementation and validation record for the October 2026 passenger-car inventory refresh, including its comparison boundary, artifacts and stated limitations.",
+    "review_level": "Documentation and implementation consistency; not independent inventory validation"
+  },
+  {
+    "page": "development/regional-truck-refresh-2026.rst",
+    "review_date": "2026-10-14",
+    "disposition": "Retained as the implementation and validation record for the October 2026 regional-truck inventory refresh, including its proxy assumptions, comparison boundary and stated limitations.",
+    "review_level": "Documentation and implementation consistency; not independent inventory validation"
+  },
+  {
+    "page": "methodology/transport/campaign-closeout.rst",
+    "review_date": "2026-10-14",
+    "disposition": "Reviewed as the vehicle-campaign closeout summary; it distinguishes the validated campaign snapshots from the narrower master integration and retains unresolved scientific limitations.",
+    "review_level": "Documentation and implementation consistency; not independent inventory validation"
   }
 ]
