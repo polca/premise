@@ -39,6 +39,7 @@ def test_external_scaling_uses_bounded_target_once_for_both_exchange_families(
     target, expected
 ):
     ds = plant()
+    ds["comment"] = "Source inventory comment."
     ds.update(
         {
             "absolute efficiency": {"arbitrary variable": True},
@@ -59,6 +60,7 @@ def test_external_scaling_uses_bounded_target_once_for_both_exchange_families(
     assert record["applied_efficiency"] == expected
     assert record["combined_efficiency_check"]["status"] == "not_available"
     assert ds["log parameters"]["new efficiency"] == expected
+    assert ds["comment"] == "Source inventory comment."
 
 
 def test_no_technology_inference_even_for_known_combustion_names():

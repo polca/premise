@@ -293,10 +293,6 @@ def adjust_efficiency(dataset: dict, fuels_specs: dict, fuel_map_reverse: dict) 
                                     "efficiency clipped": bounds_record["clipped"],
                                 }
                             )
-                            dataset["comment"] = dataset.get("comment", "") + (
-                                f" Original efficiency: {current_efficiency:.8g}. "
-                                f"Applied efficiency: {expected_efficiency:.8g}."
-                            )
                     scaling_factor = absolute_adjustments[k]
                     if scaling_factor is None:
                         continue
