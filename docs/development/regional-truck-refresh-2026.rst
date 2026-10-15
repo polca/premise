@@ -76,8 +76,9 @@ electricity; hydrogen compression electricity is retained.
 The parameter snapshot under ``tests/data/vehicle_inventory_parameters`` records
 all service specifications used by regression tests.
 The 1,248 custom noise exchanges omitted from the Premise import are archived
-under ``dev/data/vehicle_inventory_audit``. ``lci-trucks.provenance.json``
-records source and workbook hashes.
+under ``dev/data/vehicle_inventory_audit``. The
+``lci-trucks.provenance.json`` file in that directory records source and
+workbook hashes.
 
 Controlled comparison
 ---------------------

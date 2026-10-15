@@ -1,8 +1,11 @@
 # Vehicle inventory audit artifacts
 
-The CSV files in this directory preserve direct noise exchanges generated with
-the October 2026 passenger-car and truck inventory refreshes. Premise does not
-import these exchanges, and the files are not runtime package data.
+The CSV files preserve direct noise exchanges generated with the October 2026
+passenger-car and truck inventory refreshes. Premise does not import these
+exchanges.
 
-Their SHA-256 values remain recorded in the corresponding provenance JSON files
-under `premise/data/additional_inventories`.
+The JSON files preserve source revisions, generation metadata, and hashes for
+the installed vehicle workbooks and excluded audit artifacts. Regression tests
+verify those hashes, but Premise does not read the JSON files at runtime.
+
+None of the files in this directory are runtime package data.

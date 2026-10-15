@@ -2,10 +2,12 @@
 
 import hashlib
 import json
+from pathlib import Path
 
 from premise.filesystem_constants import INVENTORY_DIR
 
 SPEC_KEY = "vehicle inventory provenance"
+AUDIT_DIR = Path(__file__).parents[1] / "dev" / "data" / "vehicle_inventory_audit"
 
 
 def test_installed_workbooks_have_sources_and_provenance():
@@ -15,7 +17,7 @@ def test_installed_workbooks_have_sources_and_provenance():
         path = INVENTORY_DIR / f"{stem}.xlsx"
         importer = ExcelImporter(str(path))
         assert importer.db_name == stem and len(importer.data) == count
-        sidecar = json.loads(path.with_suffix(".provenance.json").read_text())
+        sidecar = json.loads((AUDIT_DIR / f"{stem}.provenance.json").read_text())
         assert sidecar["sha256"] == hashlib.sha256(path.read_bytes()).hexdigest()
         for ds in importer.data:
             assert ds["source"] and ds["model"] and ds["model version"]
@@ -30,7 +32,7 @@ def test_installed_workbooks_have_sources_and_provenance():
     importer = ExcelImporter(str(INVENTORY_DIR / "lci-truck-legacy-components.xlsx"))
     assert importer.db_name == "lci-truck-legacy-components"
     assert len(importer.data) == 26
-    sidecar = json.loads((INVENTORY_DIR / "lci-trucks.provenance.json").read_text())
+    sidecar = json.loads((AUDIT_DIR / "lci-trucks.provenance.json").read_text())
     assert (
         sidecar["legacy_components_sha256"]
         == hashlib.sha256(
@@ -44,3 +46,4 @@ def test_installed_workbooks_have_sources_and_provenance():
             json.loads(ds["inventory provenance"])["role"]
             == "retained legacy component"
         )
+    assert not list(INVENTORY_DIR.glob("*.provenance.json"))

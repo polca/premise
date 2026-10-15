@@ -43,8 +43,10 @@ ageing proxy, its vehicle-lifetime mileage basis and the single PHEV mode
 weighting. Cold-start and evaporative factors retain their separate treatment.
 The correction does not validate the retained high truck NOx coefficients.
 
-The ``lci-pass_cars.provenance.json`` and ``lci-trucks.provenance.json`` companion
-files identify the installed workbook hashes and retain earlier provenance.
+Development-audit copies of ``lci-pass_cars.provenance.json`` and
+``lci-trucks.provenance.json`` identify the installed workbook hashes and retain
+earlier provenance. They live under ``dev/data/vehicle_inventory_audit`` rather
+than being installed as additional inventories.
 Regression snapshots under ``tests/data/vehicle_inventory_parameters`` preserve
 the full generated parameter tables without installing them as additional
 inventories. Excluded direct-noise flows are kept as development audit artifacts
