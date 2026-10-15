@@ -2568,16 +2568,13 @@ class TransportValidation(BaseDatasetValidator):
                 )
 
     def check_vehicle_fuel_carbon(self, vehicle_name):
-        """Check the split against current fuel links, independent of saved totals."""
-        from .fuels.carbon import VEHICLE_CO2_KEY, vehicle_fuel_carbon
+        """Check the split directly against current fuel links."""
+        from .fuels.carbon import vehicle_fuel_carbon
         from .fuels.properties import activity_key
 
         providers = {activity_key(ds): ds for ds in self.database}
         for ds in self.database:
-            if (
-                not ds.get("name", "").startswith(vehicle_name)
-                or VEHICLE_CO2_KEY not in ds
-            ):
+            if not ds.get("name", "").startswith(vehicle_name):
                 continue
             try:
                 balance = vehicle_fuel_carbon(ds, providers)
