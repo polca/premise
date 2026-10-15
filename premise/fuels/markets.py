@@ -109,11 +109,6 @@ class FuelMarketsMixin:
                     f"Fuel energy does not close for {activity_key(dataset)}"
                 )
             dataset[PROPERTIES_KEY] = properties
-            dataset["comment"] += (
-                f" One reference {kwargs['unit']} supplies {reference:g} MJ lower-heating-value fuel energy. "
-                "IAM shares are energy shares; physical supplier quantities can sum to more or less than one. "
-                "Ancillary processing energy is additional. Carbon origin is recorded separately from capture credits."
-            )
             if callback:
                 callback(dataset)
 
