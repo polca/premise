@@ -1,6 +1,7 @@
 # mapping between GAINS-IAM regions and IAM regions
 ---
 AFRI_EAST:
+  open-prom: SSA
   message: AFR
   remind: SSA
   remind-eu: SSA
@@ -9,6 +10,7 @@ AFRI_EAST:
   gcam: "South Africa"
   witch: "ssa"
 AFRI_NORT:
+  open-prom: MEA
   message: AFR
   remind: MEA
   remind-eu: MEA
@@ -17,6 +19,7 @@ AFRI_NORT:
   gcam: "South Africa"
   witch: "mena"
 AFRI_WEST:
+  open-prom: SSA
   message: AFR
   remind: SSA
   remind-eu: SSA
@@ -25,6 +28,7 @@ AFRI_WEST:
   gcam: "South Africa"
   witch: "ssa"
 ASIA_STAN:
+  open-prom: OAS
   message: PAS
   remind: OAS
   remind-eu: OAS
@@ -33,6 +37,7 @@ ASIA_STAN:
   gcam: "Southeast Asia"
   witch: "ccasia"
 BRAZ_WHOL:
+  open-prom: LAM
   message: LAM
   remind: LAM
   remind-eu: LAM
@@ -41,6 +46,7 @@ BRAZ_WHOL:
   gcam: Brazil
   witch: brazil
 CANA_WHOL:
+  open-prom: CAZ
   message: NAM
   remind: CAZ
   remind-eu: CAZ
@@ -49,6 +55,7 @@ CANA_WHOL:
   gcam: Canada
   witch: canada
 CEAM_REST:
+  open-prom: LAM
   message: LAM
   remind: LAM
   remind-eu: LAM
@@ -57,6 +64,18 @@ CEAM_REST:
   gcam: "Central America and Caribbean"
   witch: laca
 CENT_EURO:
+  open-prom:
+    - BGR
+    - CZE
+    - EST
+    - HRV
+    - HUN
+    - LTU
+    - LVA
+    - POL
+    - ROU
+    - SVK
+    - SVN
   message: EEU
   remind: EUR
   remind-eu: EUR
@@ -65,6 +84,7 @@ CENT_EURO:
   gcam: EU-15
   witch: "eu27"
 CHIN_PLUS:
+  open-prom: CHA
   message: CHN
   remind: CHA
   remind-eu: CHA
@@ -73,6 +93,7 @@ CHIN_PLUS:
   gcam: China
   witch: china
 INDI_WHOL:
+  open-prom: IND
   message: SAS
   remind: IND
   remind-eu: IND
@@ -81,6 +102,7 @@ INDI_WHOL:
   gcam: India
   witch: india
 INDO_PLUS:
+  open-prom: OAS
   message: PAS
   remind: OAS
   remind-eu: OAS
@@ -89,6 +111,7 @@ INDO_PLUS:
   gcam: Indonesia
   witch: indonesia
 JAPA_WHOL:
+  open-prom: JPN
   message: PAO
   remind: JPN
   remind-eu: JPN
@@ -97,6 +120,7 @@ JAPA_WHOL:
   gcam: Japan
   witch: japan
 KORE_AALL:
+  open-prom: OAS
   message: PAS
   remind: OAS
   remind-eu: OAS
@@ -105,6 +129,7 @@ KORE_AALL:
   gcam: "South Korea"
   witch: korea
 LAME_REST:
+  open-prom: LAM
   message: LAM
   remind: LAM
   remind-eu: LAM
@@ -113,6 +138,7 @@ LAME_REST:
   gcam: "South America_Southern"
   witch: laca
 MEXI_WHOL:
+  open-prom: LAM
   message: LAM
   remind: LAM
   remind-eu: LAM
@@ -121,6 +147,7 @@ MEXI_WHOL:
   gcam: Mexico
   witch: mexico
 MIDD_EAST:
+  open-prom: MEA
   message: MEA
   remind: MEA
   remind-eu: MEA
@@ -129,6 +156,7 @@ MIDD_EAST:
   gcam: "Middle East"
   witch: mena
 OCEA_WHOL:
+  open-prom: CAZ
   message: PAO
   remind: CAZ
   remind-eu: CAZ
@@ -137,6 +165,7 @@ OCEA_WHOL:
   gcam: Australia_NZ
   witch: oceania
 RUSS_PLUS:
+  open-prom: REF
   message: FSU
   remind: REF
   remind-eu: REF
@@ -145,6 +174,7 @@ RUSS_PLUS:
   gcam: Russia
   witch: te
 SAFR_WHOL:
+  open-prom: SSA
   message: AFR
   remind: SSA
   remind-eu: SSA
@@ -153,6 +183,7 @@ SAFR_WHOL:
   gcam: "South Africa"
   witch: southafrica
 SOEA_ASIA:
+  open-prom: OAS
   message: PAS
   remind: OAS
   remind-eu: OAS
@@ -161,6 +192,7 @@ SOEA_ASIA:
   gcam: "Southeast Asia"
   witch: seasia
 SOUA_REST:
+  open-prom: OAS
   message: SAS
   remind: OAS
   remind-eu: OAS
@@ -169,6 +201,7 @@ SOUA_REST:
   gcam: "Southeast Asia"
   witch: sasia
 TURK_WHOL:
+  open-prom: MEA
   message: WEU
   remind: MEA
   remind-eu: MEA
@@ -177,6 +210,7 @@ TURK_WHOL:
   gcam: "Middle East"
   witch: mena
 UKRA_PLUS:
+  open-prom: REF
   message: FSU
   remind: REF
   remind-eu: REF
@@ -185,6 +219,7 @@ UKRA_PLUS:
   gcam: EU-15
   witch: te
 USAM_WHOL:
+  open-prom: USA
   message: NAM
   remind: USA
   remind-eu: USA
@@ -193,6 +228,25 @@ USAM_WHOL:
   gcam: USA
   witch: usa
 WEST_EURO:
+  open-prom:
+    - AUT
+    - BEL
+    - CYP
+    - DNK
+    - ESP
+    - FIN
+    - FRA
+    - DEU
+    - GBR
+    - GRC
+    - IRL
+    - ITA
+    - LUX
+    - MLT
+    - NLD
+    - PRT
+    - SWE
+    - NEU
   message: WEU
   remind: NEU
   remind-eu: NEU

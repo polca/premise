@@ -8,13 +8,17 @@
 
 direct air capture (solvent, high-temp, gas heat) with storage:
   iam_aliases:
+    open-prom: Carbon Removal|Geological Storage|Direct Air Capture
     remind: Emi|CO2|CDR|+|DACCS
     remind-eu: Emi|CO2|CDR|+|DACCS
     image:
       - Carbon Removal|Geological Storage|Direct Air Capture|Liquid Solvent
       - Carbon Capture|Geological Storage|Direct Air Capture
   energy_use_aliases:
+    electricity:
+      open-prom: Final Energy|Carbon Management|Direct Air Capture|Electricity
     gases:
+      open-prom: Final Energy|Carbon Management|Direct Air Capture|Natural Gas
       image:
         - Final Energy|Carbon Management|Direct Air Capture|Liquid Solvent|Gases
         - Final Energy|Carbon Management|Direct Air Capture|Gases
@@ -128,15 +132,18 @@ direct air capture (sorbent, low-temp) with storage:
 
 enhanced rock weathering:
   iam_aliases:
+    open-prom: Carbon Removal|Enhanced Weathering
     remind: Emi|CO2|CDR|+|EW
     remind-eu: Emi|CO2|CDR|+|EW
     image: Carbon Removal|Enhanced Weathering
   energy_use_aliases:
     electricity:
+      open-prom: Final Energy|Carbon Management|Enhanced Weathering|Electricity
       remind: FE|CDR|EW|+|Electricity
       remind-eu: FE|CDR|EW|+|Electricity
       image: Final Energy|Carbon Management|Enhanced Weathering|Electricity
     diesel:
+      open-prom: Final Energy|Carbon Management|Enhanced Weathering|Fossil Diesel Oil
       remind: FE|CDR|EW|+|Diesel
       remind-eu: FE|CDR|EW|+|Diesel
   ecoinvent_aliases:

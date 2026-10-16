@@ -10,6 +10,7 @@ train, electric:
     image: Energy Service|Transportation|Freight|Train|Electricity
     gcam: Distance|Transport|Freight|Rail|Freight Rail|Electric
   energy_use_aliases:
+    open-prom: Final Energy|Transportation|Goods Transport - Rail|Electricity
     remind: FE|Transport|Freight|Rail|Electricity
     remind-eu: FE|Transport|Freight|Rail|Electricity
     tiam-ucl: Final Energy|Transport|Rail|Freight|Electricity
@@ -43,6 +44,7 @@ train, diesel-electric:
       - Distance|Transport|Freight|Rail|Freight Rail|Hybrid Liquids
       - Distance|Transport|Freight|Rail|Freight Rail|Coal
   energy_use_aliases:
+    open-prom: Final Energy|Transportation|Goods Transport - Rail|Fossil Diesel Oil
     remind: 
       - FE|Transport|Freight|Rail|Liquids|Fossil
       - FE|Transport|Freight|Rail|Liquids|Biomass
@@ -78,6 +80,7 @@ train, fuel cell:
     image: Energy Service|Transportation|Freight|Train|Hydrogen
     gcam: Distance|Transport|Freight|Rail|Freight Rail|FCEV
   energy_use_aliases:
+    open-prom: Final Energy|Transportation|Goods Transport - Rail|Hydrogen
     remind: FE|Transport|Freight|Rail|Liquids|Hydrogen
     remind-eu: FE|Transport|Freight|Rail|Liquids|Hydrogen
     image: Final Energy|Transportation|Freight|Train|Hydrogen

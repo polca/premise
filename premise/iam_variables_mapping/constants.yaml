@@ -21,6 +21,7 @@ SUPPORTED_MODELS:
   - tiam-ucl
   - gcam
   - witch
+  - open-prom
 
 SUPPORTED_PATHWAYS:
   - SSP2-Base
@@ -220,6 +221,48 @@ LIST_WITCH_REGIONS:
   - brazil
   - sasia
   - ccasia
+  - World
+
+LIST_OPEN-PROM_REGIONS:
+  - AUT
+  - BEL
+  - BGR
+  - CYP
+  - CZE
+  - DNK
+  - ESP
+  - FIN
+  - FRA
+  - DEU
+  - EST
+  - GBR
+  - GRC
+  - HRV
+  - HUN
+  - IRL
+  - ITA
+  - LTU
+  - LUX
+  - LVA
+  - MLT
+  - NLD
+  - POL
+  - PRT
+  - ROU
+  - SVK
+  - SVN
+  - SWE
+  - NEU
+  - USA
+  - CAZ
+  - LAM
+  - CHA
+  - IND
+  - JPN
+  - OAS
+  - MEA
+  - SSA
+  - REF
   - World
 
 

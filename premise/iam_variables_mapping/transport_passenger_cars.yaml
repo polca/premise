@@ -138,6 +138,7 @@
     remind: Energy intensity|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|BEV
     remind-eu: Energy intensity|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|BEV
   energy_use_aliases:
+    open-prom: Final Energy|Transportation|Passenger Transport - Cars|Electricity
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|BEV
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|BEV
     tiam-ucl: Final Energy|Transport|Car|Electric|Electricity
@@ -164,6 +165,7 @@
     remind: Energy intensity|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|FCEV
     remind-eu: Energy intensity|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|FCEV
   energy_use_aliases:
+    open-prom: Final Energy|Transportation|Passenger Transport - Cars|Hydrogen
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|FCEV
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|FCEV
     tiam-ucl:
@@ -191,6 +193,7 @@
     remind: Energy intensity|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Gases
     remind-eu: Energy intensity|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Gases
   energy_use_aliases:
+    open-prom: Final Energy|Transportation|Passenger Transport - Cars|Natural Gas
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Gases
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Gases
     tiam-ucl: Final Energy|Transport|Car|Natural Gas|Natural Gas
@@ -209,6 +212,7 @@
   iam_aliases:
     tiam-ucl: Distance|Transport|Car|Liquefied Petroleum Gas|Liquefied Petroleum Gas
   energy_use_aliases:
+    open-prom: Final Energy|Transportation|Passenger Transport - Cars|Liquefied Petroleum Gas
     tiam-ucl: Final Energy|Transport|Car|Liquefied Petroleum Gas|Liquefied Petroleum Gas
 
   ecoinvent_aliases:
@@ -286,6 +290,7 @@
       tiam-ucl: Distance|Transport|Car|Diesel|Diesel
       witch: Energy Service|Transportation|Passenger|Light-Duty Vehicles|Internal Combustion
   energy_use_aliases:
+      open-prom: Final Energy|Transportation|Passenger Transport - Cars|Fossil Diesel Oil
       tiam-ucl: Final Energy|Transport|Car|Diesel|Diesel
       witch: 
         - Final Energy|Transportation|Light-Duty Vehicle|Internal Combustion|Liquids|Oil
@@ -315,6 +320,7 @@
     remind: Energy intensity|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Liquids
     remind-eu: Energy intensity|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Liquids
   energy_use_aliases:
+    open-prom: Final Energy|Transportation|Passenger Transport - Cars|Fossil Gasoline
     remind: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Liquids
     remind-eu: FE|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Liquids
     tiam-ucl:
