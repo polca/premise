@@ -23,6 +23,11 @@ and exports to apply these changes; upgrading does not change saved databases.
   final-energy inventories. Use the refreshed EV chargers without stationary
   storage buffers. Keep provenance and noise audit sidecars under `dev/` and
   parameter snapshots under `tests/data/`, outside runtime package data.
+- Remove 28 redundant model-suffixed car/truck component definitions and reuse
+  15 existing canonical suppliers. Relink surviving car, truck, final-energy
+  and rail inputs without changing their amounts. Preserve canonical recipe
+  uncertainty and model-specific provenance in consumer comments and the audit
+  manifest. Rebuild scenario databases to apply this source-inventory cleanup.
 
 ### Fixed
 

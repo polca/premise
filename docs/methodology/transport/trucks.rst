@@ -312,7 +312,13 @@ Process context and source inventories
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The refreshed truck catalogue contains 52 RER services, 42 manufacturing recipes
-and 33 supporting components. Gross-mass classes are 3.5, 7.5, 18, 26, 32, 40 and
+and 20 supporting components. Shared fuel-cell, membrane, lightweighting and
+carbon-fibre components reuse the existing canonical inventories instead of
+model-suffixed copies. Their original quantities, uncertainty and background
+declarations are retained, with normal import migrations adapting them to the
+selected background. Model-specific provenance remains in the development
+audit manifest and consumer comments.
+Gross-mass classes are 3.5, 7.5, 18, 26, 32, 40 and
 60 tonnes. Native powertrains include diesel, compressed gas, diesel hybrid,
 plug-in diesel hybrid, battery electric and fuel-cell electric. Ten gasoline/LPG
 variants use explicit energy-preserving manufacture/combustion proxies.
@@ -329,8 +335,8 @@ The current catalogue is in
 and its generated parameter snapshot is retained with the test data. Exact names are preserved from
 the selected service catalogue. Only mapped technologies are regionalized;
 unmatched 32 t/60 t services do not acquire fleet data simply because templates
-exist. The separate legacy-component workbook preserves 26 compatibility
-recipes for other vehicle families.
+exist. Compatibility recipes remain with their canonical suppliers; there is
+no separate legacy-component workbook.
 
 HEVs now have coupled high-power buffer sizing. FCEV trucks use the approved
 AKASOL reference with charging/discharge checks; 3.5/7.5 t motors use documented

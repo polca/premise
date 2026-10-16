@@ -65,7 +65,7 @@
   "proxy_policy": "Energy-preserving gasoline/LPG conversions approved by user 2026-10-13; retained diesel/diesel-hybrid/CNG manufacture and non-CO2 factors explicitly documented",
   "transport_count": 52,
   "production_count": 42,
-  "auxiliary_count": 33,
+  "auxiliary_count": 20,
   "component identity migration": {
     "date": "2026-10-15",
     "renamed refreshed components": 20,
@@ -810,5 +810,26 @@
     "source workbook sha256": "e4a4b581c35c08e5a9f18a37cdd7bf6306172fd68234c43390bffc0779a7e3ca",
     "activity": "fuel tank, compressed hydrogen gas, 700bar, with HDPE liner",
     "boundary": "The refreshed truck workbook retains the approved dry-mass and MJ-to-kWh correction."
+  },
+  "shared component reuse": {
+    "date": "2026-10-16",
+    "manifest": "shared-component-reuse.json",
+    "removed model-specific definitions": [
+      "glider lightweighting, carculator regional truck 2020",
+      "fuel cell Balance of Plant production, 1 kWe, proton exchange membrane (PEM), carculator regional truck 2020",
+      "fuel cell stack production, 1 kWe, proton exchange membrane (PEM), carculator regional truck 2020",
+      "carbon fiber production, weaved, at factory, carculator regional truck 2020",
+      "carbon fiber production, fiber drying and sizing, carculator regional truck 2020",
+      "carbon fiber production, fiber stabilization, carbonization, electrolysis and washing, carculator regional truck 2020",
+      "carbon fiber production, exhaust gas treatment 2, carculator regional truck 2020",
+      "carbon fiber production, fiber winding and unwinding, carculator regional truck 2020",
+      "carbon fiber production, exhaust gas treatment 1, carculator regional truck 2020",
+      "carbon fiber production, fiber relaxation, carculator regional truck 2020",
+      "carbon fiber production, fiber coagulation, stretching, washing, sizing and drying, carculator regional truck 2020",
+      "polyacrylonitrile production (PAN) by polymerisation, carculator regional truck 2020",
+      "polymer electrolyte membrane (Nafion) production, carculator regional truck 2020"
+    ],
+    "retained activity count": 114,
+    "boundary": "Original generation provenance is unchanged. Canonical shared suppliers retain their own original sources, background profiles and uncertainty; model-specific metadata is preserved in the manifest and consumer provenance."
   }
 }

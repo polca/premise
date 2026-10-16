@@ -12,7 +12,7 @@ AUDIT_DIR = Path(__file__).parents[1] / "dev" / "data" / "vehicle_inventory_audi
 def test_installed_workbooks_have_sources_and_provenance():
     from bw2io import ExcelImporter
 
-    for stem, count in (("lci-pass_cars", 162), ("lci-trucks", 127)):
+    for stem, count in (("lci-pass_cars", 147), ("lci-trucks", 114)):
         path = INVENTORY_DIR / f"{stem}.xlsx"
         importer = ExcelImporter(str(path))
         assert importer.db_name == stem and len(importer.data) == count

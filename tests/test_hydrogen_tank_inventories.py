@@ -25,10 +25,7 @@ def test_imported_tank_closes_dry_mass_and_preserves_source_energy(inventories):
     energy = 12.87
     materials = {
         "market for aluminium alloy, AlLi": 7.09,
-        (
-            "carbon fiber production, weaved, at factory, "
-            "carculator regional truck 2020"
-        ): 19.78,
+        "carbon fiber production, weaved, at factory": 19.78,
         "epoxy resin production, liquid": 29.67,
         "market for glass fibre": 5.6,
         "polyethylene production, high density, granulate": 10.26,
@@ -115,7 +112,7 @@ def test_restored_rail_tank_preserves_dry_mass_energy_and_links(version, monkeyp
     materials = {
         "market for steel, chromium steel 18/8": 10.591,
         "epoxy resin production, liquid": 29.75,
-        "carbon fiber production, weaved, at factory, carculator regional truck 2020": 19.873,
+        "carbon fiber production, weaved, at factory": 19.873,
         "market for aluminium alloy, AlLi": 35.7 + 7.021,
         "market for glass fibre": 5.593,
         "market for polyurethane, flexible foam": 4.641,

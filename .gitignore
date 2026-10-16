@@ -2,7 +2,13 @@
 .idea/
 *.egg-info/
 logs/
-dev/
+/dev/*
+!/dev/data/
+/dev/data/*
+!/dev/data/vehicle_inventory_audit/
+/dev/data/vehicle_inventory_audit/*
+!/dev/data/vehicle_inventory_audit/component-reuse-plan.json
+!/dev/data/vehicle_inventory_audit/shared-component-reuse.json
 *.egg/
 build/
 dist/

@@ -231,8 +231,14 @@ Sources and inventory details
 Source inventories and coverage
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The 2020 refresh contains 74 RER transport services, 73 manufacturing recipes
-and 15 supporting components. Services retain the selected catalogue's exact
+The 2020 refresh contains 74 RER transport services and 73 manufacturing recipes.
+Supporting components reuse the existing canonical inventories shared with
+trucks, two-wheelers, fuel cells and carbon-fibre production, rather than
+duplicating them under model-specific names. Their original quantities,
+uncertainty and source-background declarations are retained; normal import
+migrations adapt them to the selected background. Removed model-specific
+provenance remains in the development audit manifest and consumer comments.
+Services retain the selected catalogue's exact
 names and use one vehicle-kilometre; manufacturing uses one vehicle. Combustion
 variants use EURO-6. Historical EURO classes are excluded; electric vehicles
 have no EURO class. The model uses Swiss climate, WLTC, 12,000 km/year and the

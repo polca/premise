@@ -54,23 +54,7 @@
   },
   "transport_count": 74,
   "production_count": 73,
-  "auxiliaries": [
-    "glider lightweighting, carculator passenger car 2020",
-    "fuel cell Balance of Plant production, 1 kWe, proton exchange membrane (PEM), carculator passenger car 2020",
-    "fuel cell stack production, 1 kWe, proton exchange membrane (PEM), carculator passenger car 2020",
-    "fuel tank, compressed hydrogen gas, 700bar, with HDPE liner, carculator passenger car 2020",
-    "carbon fiber production, weaved, at factory, carculator passenger car 2020",
-    "carbon fiber production, fiber drying and sizing, carculator passenger car 2020",
-    "carbon fiber production, fiber stabilization, carbonization, electrolysis and washing, carculator passenger car 2020",
-    "carbon fiber production, exhaust gas treatment 2, carculator passenger car 2020",
-    "carbon fiber production, fiber winding and unwinding, carculator passenger car 2020",
-    "carbon fiber production, exhaust gas treatment 1, carculator passenger car 2020",
-    "carbon fiber production, fiber relaxation, carculator passenger car 2020",
-    "carbon fiber production, fiber coagulation, stretching, washing, sizing and drying, carculator passenger car 2020",
-    "polyacrylonitrile production (PAN) by polymerisation, carculator passenger car 2020",
-    "polymer electrolyte membrane (Nafion) production, carculator passenger car 2020",
-    "fuel tank assembly, compressed natural gas, 200 bar, carculator passenger car 2020"
-  ],
+  "auxiliaries": [],
   "noise_exchanges": 1776,
   "export_version": "3.12",
   "commits": {
@@ -1026,5 +1010,28 @@
         }
       }
     }
+  },
+  "shared component reuse": {
+    "date": "2026-10-16",
+    "manifest": "shared-component-reuse.json",
+    "removed model-specific definitions": [
+      "glider lightweighting, carculator passenger car 2020",
+      "fuel cell Balance of Plant production, 1 kWe, proton exchange membrane (PEM), carculator passenger car 2020",
+      "fuel cell stack production, 1 kWe, proton exchange membrane (PEM), carculator passenger car 2020",
+      "fuel tank, compressed hydrogen gas, 700bar, with HDPE liner, carculator passenger car 2020",
+      "carbon fiber production, weaved, at factory, carculator passenger car 2020",
+      "carbon fiber production, fiber drying and sizing, carculator passenger car 2020",
+      "carbon fiber production, fiber stabilization, carbonization, electrolysis and washing, carculator passenger car 2020",
+      "carbon fiber production, exhaust gas treatment 2, carculator passenger car 2020",
+      "carbon fiber production, fiber winding and unwinding, carculator passenger car 2020",
+      "carbon fiber production, exhaust gas treatment 1, carculator passenger car 2020",
+      "carbon fiber production, fiber relaxation, carculator passenger car 2020",
+      "carbon fiber production, fiber coagulation, stretching, washing, sizing and drying, carculator passenger car 2020",
+      "polyacrylonitrile production (PAN) by polymerisation, carculator passenger car 2020",
+      "polymer electrolyte membrane (Nafion) production, carculator passenger car 2020",
+      "fuel tank assembly, compressed natural gas, 200 bar, carculator passenger car 2020"
+    ],
+    "retained activity count": 147,
+    "boundary": "Original generation provenance is unchanged. Canonical shared suppliers retain their own original sources, background profiles and uncertainty; model-specific metadata is preserved in the manifest and consumer provenance."
   }
 }

@@ -1,0 +1,552 @@
+{
+  "format": "premise-shared-component-reuse-plan-v1",
+  "date": "2026-10-16",
+  "source_commit": "d5362d8ce1df66c20c7e71c91051a1b88e46c583",
+  "source_workbook_sha256": {
+    "lci-BIGCC.xlsx": "71909f109098cf56f467290d60a4664d51dbd7c333645213380382d7a82ec07b",
+    "lci-Carma-CCS.xlsx": "d7730a087717eca7ac4044f6edb2eed3eeb2caaa4a657db6b2bd1af38afc3b1c",
+    "lci-ESU-oil-and-gas.xlsx": "b783c1d3454a4372e5fa6b2a834f72eefbd57207c445e6489c17eef93083f654",
+    "lci-PGM.xlsx": "a8048d3255edf3f132efe045e79957802ee7a83d8235065ee66a0891e1b4f8a3",
+    "lci-PV-2026-electricity.xlsx": "86cb704cc228a8f4eb69160d88bc3841c9055882436d8a0799cf1744e9e15713",
+    "lci-PV-2026.xlsx": "d7aeb360d0bc4f11e5ce97517e82be9b4518f4dac9145ee22a90837296957943",
+    "lci-PV-CIGS.xlsx": "bce79867d1f295bccea53ec9bc70cd4137e55189ef4bb8e61239973185dbdd85",
+    "lci-PV-GaAs.xlsx": "ad3b41093f8151262b2fb015a721c74e02d8c3d1e3a01ead39783e5bebb99a5e",
+    "lci-PV-perovskite.xlsx": "2e0cde0b710fdc47ff087f33cb42b0a9e7f67295df81db750351b45de31c88d8",
+    "lci-PV.xlsx": "31dafb7647195da3cc42bfe1185e99929c6eb100bbc411b1274e59bcdcc3877b",
+    "lci-afforestation.xlsx": "420548d7eeded7548ad4abffb8993545a75c8dc99c0ed520fa268dec2a81903b",
+    "lci-ammonia.xlsx": "8b22cb0e3abcf9d1d5bca2ca5336746c5c9df0c4988ead726e965095a8668e73",
+    "lci-batteries-LiO2.xlsx": "5c2cf71df392c7a63bd2474bd50e0d30972991659fc07a3229e1888d660f4df9",
+    "lci-batteries-LiS.xlsx": "e6ff6e2888795dcf7f694d8079d46e19d77c6939325e9dceeac5884180999f8f",
+    "lci-batteries-NMC111-811-NCA-LFP.xlsx": "26f3ccfa755b9ba08e6a9cc6bef3d17136f44e1464128ac467853df0049c8aa3",
+    "lci-batteries-NMC622-NMC532.xlsx": "f602e5ecda6d2b97b364274209fca612c1f8188911c4b43ab311d1afa6fa9efe",
+    "lci-batteries-NMC955-LTO.xlsx": "7ef6d03fed575a7f66f8036551665a19ea38dc3f0f4f71022ff550a1364a2957",
+    "lci-batteries-SIB.xlsx": "f05ad8a1ce2d5994e5bb398725d74e0ad58b0ae7206f2a76649a22f62bf669c8",
+    "lci-batteries-organic-and-hybrid-redox-flow.xlsx": "e7e9db414bdf677ca5b0401d4305cd68870ddf8a902d6941bf8c293eff60da1a",
+    "lci-batteries-vanadium-redox-flow.xlsx": "a60a97cb71cb908ad873642d363219cd5a1468fd24b89ab8e34fd61474f528ff",
+    "lci-batteries-vanadium.xlsx": "9f7eb56010ef8e62934ced9548a8c88e913df4353fdbf294d66c2992f30d19a1",
+    "lci-battery-capacity.xlsx": "14fb2e26ac07e3ad593ae926a2a6a04a5614bb9022bcad43eedeb44f3d3ac281",
+    "lci-biochar-spruce.xlsx": "8e5d2ee5f487a992cf8e70ca2150b734ea662779974bfc329e9d886c442e0522",
+    "lci-biofuels.xlsx": "e832e259089a034567838769eeb1ce022ddb99fd029d73bcde79cfeb7ee526fa",
+    "lci-biogas.xlsx": "306a4e40295e90ced1c98fb6a1d2f961024ba162c2a5a8d21e59faa36ac8b3e7",
+    "lci-buses.xlsx": "3bd0a61524279d8bc0f4bdc1d41a91ef99746da873664da3566a40bbaa40285c",
+    "lci-carbon-capture.xlsx": "469edb7e3886d5895f4c261be00d60351936b845842b5ec86e32e5af39d86756",
+    "lci-carbon-fiber.xlsx": "fd0ca75cac842acde4cdf63fb8f96393f331e184e020cb832246f723dc416124",
+    "lci-co-firing-power-plants.xlsx": "80af935faa719c965a7a4130ddef10a7ec5b1adb0a2d5f4a53a27e76ee7080cc",
+    "lci-coastal-enhanced-weathering.xlsx": "f63beffd4c0295e0641638ef8cdc4652faa8ad7999c66c0f21a492ef38021447",
+    "lci-cobalt.xlsx": "9bdc3e41182089663cf1f4f85c2be96eb0f257b314f5b96beb4ea24cdde4e3c7",
+    "lci-combined-heat-power-plant-CCS.xlsx": "794ae4c0fb686a141f8be82793d4f25b88bee017d9931548c45481fd53aeaac5",
+    "lci-concentrating-solar-power.xlsx": "443761a9f96290a591f3fa93e39ada6ac31bd776f178b8ba0a43f2120e82fdd7",
+    "lci-electric-boiler-industrial.xlsx": "f45cbda54fdaad64a8c3c93655d9029af9efbb1f283124e097e9b7c3cb618d15",
+    "lci-electric-heating.xlsx": "3512eb335c22eb497eb899ab5ad1e751a7c48c169a7e157ce4a33efe149ec02a",
+    "lci-final-energy.xlsx": "fed1b398f56f9f4c16147e4f8c2ddeb33df4439b24f3d4b5d0d0322e2f700024",
+    "lci-fuel_cell.xlsx": "75d9ece3c482677bc669b708739171fc3c89a9470bd779b20f90e4f96fcf5c61",
+    "lci-geothermal.xlsx": "32df331ecf8fad0bee7fe636502477f88f30c0f9129f803af942f4cefa4a2280",
+    "lci-germanium.xlsx": "dfd9c6fe10cd01ea9557ba3f2c537d8af88e20d6323957ac0683f9b3fb4569fd",
+    "lci-graphite.xlsx": "4d7b8e317cf3259416d766d49b42d560a19b98c418c26ab600e12f159f394330",
+    "lci-heat-pump-high-temp.xlsx": "45fe4cb749d8fc4fbee887f9ea84dd0e307431fbf0b9d5b48bf448e9268c9ac0",
+    "lci-home-batteries.xlsx": "cfa47d38d59c27839f2fd0415f7b8e6491a7f2115b90dc88415238afc7bd5b37",
+    "lci-hydrogen-coal-gasification.xlsx": "92ac7c81bcfc17e5a0cfad37c3139c1d1eab3a3b7cb9f829db23d804b40c79a2",
+    "lci-hydrogen-coal-gasification_CCS.xlsx": "a895e2209e62ab5add61218d01461993ef2cf243d1ac894c4ee1977455967a99",
+    "lci-hydrogen-distribution.xlsx": "08d0681e141be815def1d288c779767010627d69f88931a0688da569be9c378c",
+    "lci-hydrogen-electrolysis.xlsx": "46ee1f4a6828adc90cc2fd05cf48a4b2d3693cbd29eff73a5c47085f64fd31d3",
+    "lci-hydrogen-heating.xlsx": "10d63e8fa285e71e63a244af38ef16e30082ce6e56f3b87a7c1658bad9c96888",
+    "lci-hydrogen-oil.xlsx": "ab60a875e86b76d2fdb1ace58b4bb9a7acdf8ff09fb8e79031b8e4881df8d3f5",
+    "lci-hydrogen-pyrolysis.xlsx": "57a0fd2a938643e1f39fb04940c086cd732d0b9805c3c4eb6b3abe6d9dc7772f",
+    "lci-hydrogen-smr-atr-biogas.xlsx": "11707c10d2b00a19d2a52e3c59bda51c0b2ee4a947f1efae441e95d6411d3922",
+    "lci-hydrogen-smr-atr-natgas.xlsx": "8a280717b91a4657218188e206510456a5a8c69e4723394a617a1920849449e7",
+    "lci-hydrogen-thermochemical-water-splitting.xlsx": "d95de7b5b9d20aad030a24324f21a91f77beff941c6f9717c73ebc7b358c27e5",
+    "lci-hydrogen-turbine.xlsx": "ed08b5dde9d03cfc4e7f3487d9143219598b97320e4b29e4721b98131d090ba1",
+    "lci-hydrogen-wood-gasification.xlsx": "87011f945bbec96cd89e1d4c95449512ea0c5788d19d709a437a9bb530748a0c",
+    "lci-lithium.xlsx": "415eced99a20665d7790d404db62dccbec1206c8c1ff95d0e8d7e47637c02355",
+    "lci-methanol-heating.xlsx": "68105f69f8685756477ff290138e2d9fec9097c60f88d97614647aa97e3f595d",
+    "lci-nuclear-heat.xlsx": "2c1b0bb76aecdecbc634cfc3caee31f6f46b39e54eb26c83f599d44eba0fd7af",
+    "lci-nuclear_EPR.xlsx": "a99693c925d9723fa77679db85a269ca1e7a845bbec62acc2c7e281f4826d71d",
+    "lci-nuclear_SMR.xlsx": "4ccbee001d2c9d3ede711904bbc1cac2f079aa56b4792b38d15d80ff68f0fb1e",
+    "lci-ocean-liming.xlsx": "bd9fa90c8e9e41954d69abb02f1415a4abc44a16a143390a0125380ba310672e",
+    "lci-pass_cars.xlsx": "42fe53b06180d288649f9c7e2109d034d8c88171a406465b5201a99fe71f62cc",
+    "lci-rail-freight.xlsx": "c5a0856fe3b08e8936661d4a4fe5f6245552d58fd00dcfb2cd2ce5abd3adf299",
+    "lci-rhenium.xlsx": "b0ef3a435fb2e2f435962f8211a541d91a58e0f56174dafe4d7966f9c70109d3",
+    "lci-ships.xlsx": "737900238a5d192540efd13c7fb0f03995ab3301fa05ee9603913a23923eda0c",
+    "lci-steel.xlsx": "e6267989c571a6143b3d2b389630b52f6c2a14155041d6eb2c9b9ca35b1ce264",
+    "lci-sulfidic-tailings.xlsx": "c1cc808b45e08dd120eb8bf0564b015040413b53d65f62c0731e40693b1c21ff",
+    "lci-synfuels-from-FT-from-coal-gasification-with-CCS.xlsx": "fba00a4d247b62d74ff4c69671530934e5fc091e3bbcbb451c86700c3753ac71",
+    "lci-synfuels-from-FT-from-coal-gasification.xlsx": "1c226d611dc0724eda9c8cf38b6a20e2e3c7309089ab0410cfde5b239d9eea48",
+    "lci-synfuels-from-FT-from-electrolysis.xlsx": "06cf473728f731c29acf2a2323721c9e98ef58763d7d6f20f9d6118ef92f7163",
+    "lci-synfuels-from-FT-from-natural-gas.xlsx": "aeaa8a436bd60b5a6ca21226ff6e5eea006169187e66d82eac8686dbef625e59",
+    "lci-synfuels-from-FT-from-wood-gasification-with-CCS.xlsx": "4091e91f24f4fbbbcf35c448493903e25fcf6a48347dd81a24a6892a4467091b",
+    "lci-synfuels-from-FT-from-wood-gasification.xlsx": "b5b05cadfc8657373617cf74ff2209c26b7d5fee5ba96cb02dc468081a84cf50",
+    "lci-synfuels-from-FT.xlsx": "a74d30ac6abccb5bb80a04a2967b6ebdd82945421240c27587ca11b924e73ac8",
+    "lci-synfuels-from-methanol-from-cement-plant.xlsx": "9572e2684ca9f42140980f2d4181fb6043aefda32bafcd865a5e426671a85449",
+    "lci-synfuels-from-methanol-from-coal-with-CCS.xlsx": "627916a32435ce15d45252b34d9ac06eab59a9cf9ff1710534c44610f4f1d5a1",
+    "lci-synfuels-from-methanol-from-coal.xlsx": "e47ff00246d2826d5c7780d2547e6f435192a5534f56f31d965e1c306c26f2ef",
+    "lci-synfuels-from-methanol-from-electrolysis.xlsx": "0813c4594c0924b46b130c295b84b2afc18de5e767e44d4727cee67d67eb0215",
+    "lci-synfuels-from-methanol-from-wood.xlsx": "d897cb5764b0d2be1db00a900af1411764057cd9d75d62a0b4724728c83567cf",
+    "lci-synfuels-from-methanol.xlsx": "78f7264a5e078786cad23f99aed24a739b0f764219ded375fc6361802776dca4",
+    "lci-syngas-from-coal.xlsx": "9ad3b2165727d93bfe324bcb52d2192efd986aee107efcfa994716e6c846ef96",
+    "lci-syngas.xlsx": "32b6a23118682535bb60fef8af440d78645a3da9408ed570d1b25e8eac4fbdad",
+    "lci-trucks.xlsx": "d482465b4885dfbb1128674d1cc6a70cb5c16e82c2b8354bc59e0f85fa31f37d",
+    "lci-two_wheelers.xlsx": "dc4b03a5f5aa16a05bf6392cff09849ac6336452571efb0f4a549de540c28b85",
+    "lci-waste-CHP.xlsx": "1d522a5e9632e83cf9abfdec5615a4f5d1d75703f3eb483076dd74aa1b457f2c",
+    "lci-wave_energy.xlsx": "1ff8233fdcb43a3d3127471aee639518715d01ba877afb2ae820f441d4a7242c"
+  },
+  "expected_removed_activity_count": 28,
+  "expected_relinked_retained_exchange_count": 174,
+  "canonical_policy": "Reuse the 15 existing canonical recipes with their original quantities and uncertainty. Removed model-specific provenance is retained in the application manifest; consumer vehicle provenance remains unchanged. Compare backgrounds through the standard import migrations, not by relabeling source inventories.",
+  "review_basis": {
+    "common_background": "ecoinvent 3.12 cutoff",
+    "maximum_common_net_coefficient_relative_difference": 5.3581720193635967e-8,
+    "precision": "Remaining numerical differences are float32/aggregation-scale; do not round the original canonical recipes.",
+    "compartments": "The importer interprets missing subcompartments as unspecified.",
+    "uncertainty": "Retain the existing canonical supplier uncertainties rather than the model-generated copies without uncertainty."
+  },
+  "aliases": [
+    {
+      "source_file": "lci-pass_cars.xlsx",
+      "source": {
+        "name": "glider lightweighting, carculator passenger car 2020",
+        "reference_product": "glider lightweighting",
+        "location": "GLO",
+        "unit": "kilogram"
+      },
+      "canonical_file": "lci-two_wheelers.xlsx",
+      "canonical": {
+        "name": "Glider lightweighting",
+        "reference_product": "Glider lightweighting",
+        "location": "GLO",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "source_file": "lci-pass_cars.xlsx",
+      "source": {
+        "name": "fuel cell Balance of Plant production, 1 kWe, proton exchange membrane (PEM), carculator passenger car 2020",
+        "reference_product": "fuel cell Balance of Plant, 1 kWe, proton exchange membrane (PEM)",
+        "location": "GLO",
+        "unit": "unit"
+      },
+      "canonical_file": "lci-fuel_cell.xlsx",
+      "canonical": {
+        "name": "fuel cell Balance of Plant production, 1 kWe, proton exchange membrane (PEM)",
+        "reference_product": "fuel cell Balance of Plant, 1 kWe, proton exchange membrane (PEM)",
+        "location": "GLO",
+        "unit": "unit"
+      }
+    },
+    {
+      "source_file": "lci-pass_cars.xlsx",
+      "source": {
+        "name": "fuel cell stack production, 1 kWe, proton exchange membrane (PEM), carculator passenger car 2020",
+        "reference_product": "fuel cell stack, 1 kWe, proton exchange membrane (PEM)",
+        "location": "GLO",
+        "unit": "unit"
+      },
+      "canonical_file": "lci-fuel_cell.xlsx",
+      "canonical": {
+        "name": "fuel cell stack production, 1 kWe, proton exchange membrane (PEM)",
+        "reference_product": "fuel cell stack, 1 kWe, proton exchange membrane (PEM)",
+        "location": "GLO",
+        "unit": "unit"
+      }
+    },
+    {
+      "source_file": "lci-pass_cars.xlsx",
+      "source": {
+        "name": "fuel tank, compressed hydrogen gas, 700bar, with HDPE liner, carculator passenger car 2020",
+        "reference_product": "hydrogen tank",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "canonical_file": "lci-trucks.xlsx",
+      "canonical": {
+        "name": "fuel tank, compressed hydrogen gas, 700bar, with HDPE liner",
+        "reference_product": "hydrogen tank",
+        "location": "RER",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "source_file": "lci-pass_cars.xlsx",
+      "source": {
+        "name": "carbon fiber production, weaved, at factory, carculator passenger car 2020",
+        "reference_product": "carbon fiber, weaved",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "canonical_file": "lci-carbon-fiber.xlsx",
+      "canonical": {
+        "name": "carbon fiber production, weaved, at factory",
+        "reference_product": "carbon fiber, weaved",
+        "location": "RER",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "source_file": "lci-pass_cars.xlsx",
+      "source": {
+        "name": "carbon fiber production, fiber drying and sizing, carculator passenger car 2020",
+        "reference_product": "carbon fiber, dried and sized",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "canonical_file": "lci-carbon-fiber.xlsx",
+      "canonical": {
+        "name": "carbon fiber production, fiber drying and sizing",
+        "reference_product": "carbon fiber, dried and sized",
+        "location": "RER",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "source_file": "lci-pass_cars.xlsx",
+      "source": {
+        "name": "carbon fiber production, fiber stabilization, carbonization, electrolysis and washing, carculator passenger car 2020",
+        "reference_product": "carbon fiber, washed",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "canonical_file": "lci-carbon-fiber.xlsx",
+      "canonical": {
+        "name": "carbon fiber production, fiber stabilization, carbonization, electrolysis and washing",
+        "reference_product": "carbon fiber, washed",
+        "location": "RER",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "source_file": "lci-pass_cars.xlsx",
+      "source": {
+        "name": "carbon fiber production, exhaust gas treatment 2, carculator passenger car 2020",
+        "reference_product": "carbon fiber production, exhaust gas treatment 2",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "canonical_file": "lci-carbon-fiber.xlsx",
+      "canonical": {
+        "name": "carbon fiber production, exhaust gas treatment 2",
+        "reference_product": "carbon fiber production, exhaust gas treatment 2",
+        "location": "RER",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "source_file": "lci-pass_cars.xlsx",
+      "source": {
+        "name": "carbon fiber production, fiber winding and unwinding, carculator passenger car 2020",
+        "reference_product": "carbon fiber, unwound",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "canonical_file": "lci-carbon-fiber.xlsx",
+      "canonical": {
+        "name": "carbon fiber production, fiber winding and unwinding",
+        "reference_product": "carbon fiber, unwound",
+        "location": "RER",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "source_file": "lci-pass_cars.xlsx",
+      "source": {
+        "name": "carbon fiber production, exhaust gas treatment 1, carculator passenger car 2020",
+        "reference_product": "carbon fiber production, exhaust gas treatment 1",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "canonical_file": "lci-carbon-fiber.xlsx",
+      "canonical": {
+        "name": "carbon fiber production, exhaust gas treatment 1",
+        "reference_product": "carbon fiber production, exhaust gas treatment 1",
+        "location": "RER",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "source_file": "lci-pass_cars.xlsx",
+      "source": {
+        "name": "carbon fiber production, fiber relaxation, carculator passenger car 2020",
+        "reference_product": "carbon fiber, relaxed",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "canonical_file": "lci-carbon-fiber.xlsx",
+      "canonical": {
+        "name": "carbon fiber production, fiber relaxation",
+        "reference_product": "carbon fiber, relaxed",
+        "location": "RER",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "source_file": "lci-pass_cars.xlsx",
+      "source": {
+        "name": "carbon fiber production, fiber coagulation, stretching, washing, sizing and drying, carculator passenger car 2020",
+        "reference_product": "carbon fiber, dried",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "canonical_file": "lci-carbon-fiber.xlsx",
+      "canonical": {
+        "name": "carbon fiber production, fiber coagulation, stretching, washing, sizing and drying",
+        "reference_product": "carbon fiber, dried",
+        "location": "RER",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "source_file": "lci-pass_cars.xlsx",
+      "source": {
+        "name": "polyacrylonitrile production (PAN) by polymerisation, carculator passenger car 2020",
+        "reference_product": "polyacrylonitrile",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "canonical_file": "lci-carbon-fiber.xlsx",
+      "canonical": {
+        "name": "polyacrylonitrile production (PAN) by polymerisation",
+        "reference_product": "polyacrylonitrile",
+        "location": "RER",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "source_file": "lci-pass_cars.xlsx",
+      "source": {
+        "name": "polymer electrolyte membrane (Nafion) production, carculator passenger car 2020",
+        "reference_product": "polymer electrolyte membrane (Nafion)",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "canonical_file": "lci-fuel_cell.xlsx",
+      "canonical": {
+        "name": "polymer electrolyte membrane (Nafion) production",
+        "reference_product": "polymer electrolyte membrane (Nafion)",
+        "location": "RER",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "source_file": "lci-pass_cars.xlsx",
+      "source": {
+        "name": "fuel tank assembly, compressed natural gas, 200 bar, carculator passenger car 2020",
+        "reference_product": "fuel tank, compressed natural gas, 200 bar",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "canonical_file": "lci-trucks.xlsx",
+      "canonical": {
+        "name": "fuel tank assembly, compressed natural gas, 200 bar",
+        "reference_product": "fuel tank, compressed natural gas, 200 bar",
+        "location": "RER",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "source_file": "lci-trucks.xlsx",
+      "source": {
+        "name": "glider lightweighting, carculator regional truck 2020",
+        "reference_product": "glider lightweighting",
+        "location": "GLO",
+        "unit": "kilogram"
+      },
+      "canonical_file": "lci-two_wheelers.xlsx",
+      "canonical": {
+        "name": "Glider lightweighting",
+        "reference_product": "Glider lightweighting",
+        "location": "GLO",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "source_file": "lci-trucks.xlsx",
+      "source": {
+        "name": "fuel cell Balance of Plant production, 1 kWe, proton exchange membrane (PEM), carculator regional truck 2020",
+        "reference_product": "fuel cell Balance of Plant, 1 kWe, proton exchange membrane (PEM)",
+        "location": "GLO",
+        "unit": "unit"
+      },
+      "canonical_file": "lci-fuel_cell.xlsx",
+      "canonical": {
+        "name": "fuel cell Balance of Plant production, 1 kWe, proton exchange membrane (PEM)",
+        "reference_product": "fuel cell Balance of Plant, 1 kWe, proton exchange membrane (PEM)",
+        "location": "GLO",
+        "unit": "unit"
+      }
+    },
+    {
+      "source_file": "lci-trucks.xlsx",
+      "source": {
+        "name": "fuel cell stack production, 1 kWe, proton exchange membrane (PEM), carculator regional truck 2020",
+        "reference_product": "fuel cell stack, 1 kWe, proton exchange membrane (PEM)",
+        "location": "GLO",
+        "unit": "unit"
+      },
+      "canonical_file": "lci-fuel_cell.xlsx",
+      "canonical": {
+        "name": "fuel cell stack production, 1 kWe, proton exchange membrane (PEM)",
+        "reference_product": "fuel cell stack, 1 kWe, proton exchange membrane (PEM)",
+        "location": "GLO",
+        "unit": "unit"
+      }
+    },
+    {
+      "source_file": "lci-trucks.xlsx",
+      "source": {
+        "name": "carbon fiber production, weaved, at factory, carculator regional truck 2020",
+        "reference_product": "carbon fiber, weaved",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "canonical_file": "lci-carbon-fiber.xlsx",
+      "canonical": {
+        "name": "carbon fiber production, weaved, at factory",
+        "reference_product": "carbon fiber, weaved",
+        "location": "RER",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "source_file": "lci-trucks.xlsx",
+      "source": {
+        "name": "carbon fiber production, fiber drying and sizing, carculator regional truck 2020",
+        "reference_product": "carbon fiber, dried and sized",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "canonical_file": "lci-carbon-fiber.xlsx",
+      "canonical": {
+        "name": "carbon fiber production, fiber drying and sizing",
+        "reference_product": "carbon fiber, dried and sized",
+        "location": "RER",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "source_file": "lci-trucks.xlsx",
+      "source": {
+        "name": "carbon fiber production, fiber stabilization, carbonization, electrolysis and washing, carculator regional truck 2020",
+        "reference_product": "carbon fiber, washed",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "canonical_file": "lci-carbon-fiber.xlsx",
+      "canonical": {
+        "name": "carbon fiber production, fiber stabilization, carbonization, electrolysis and washing",
+        "reference_product": "carbon fiber, washed",
+        "location": "RER",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "source_file": "lci-trucks.xlsx",
+      "source": {
+        "name": "carbon fiber production, exhaust gas treatment 2, carculator regional truck 2020",
+        "reference_product": "carbon fiber production, exhaust gas treatment 2",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "canonical_file": "lci-carbon-fiber.xlsx",
+      "canonical": {
+        "name": "carbon fiber production, exhaust gas treatment 2",
+        "reference_product": "carbon fiber production, exhaust gas treatment 2",
+        "location": "RER",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "source_file": "lci-trucks.xlsx",
+      "source": {
+        "name": "carbon fiber production, fiber winding and unwinding, carculator regional truck 2020",
+        "reference_product": "carbon fiber, unwound",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "canonical_file": "lci-carbon-fiber.xlsx",
+      "canonical": {
+        "name": "carbon fiber production, fiber winding and unwinding",
+        "reference_product": "carbon fiber, unwound",
+        "location": "RER",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "source_file": "lci-trucks.xlsx",
+      "source": {
+        "name": "carbon fiber production, exhaust gas treatment 1, carculator regional truck 2020",
+        "reference_product": "carbon fiber production, exhaust gas treatment 1",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "canonical_file": "lci-carbon-fiber.xlsx",
+      "canonical": {
+        "name": "carbon fiber production, exhaust gas treatment 1",
+        "reference_product": "carbon fiber production, exhaust gas treatment 1",
+        "location": "RER",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "source_file": "lci-trucks.xlsx",
+      "source": {
+        "name": "carbon fiber production, fiber relaxation, carculator regional truck 2020",
+        "reference_product": "carbon fiber, relaxed",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "canonical_file": "lci-carbon-fiber.xlsx",
+      "canonical": {
+        "name": "carbon fiber production, fiber relaxation",
+        "reference_product": "carbon fiber, relaxed",
+        "location": "RER",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "source_file": "lci-trucks.xlsx",
+      "source": {
+        "name": "carbon fiber production, fiber coagulation, stretching, washing, sizing and drying, carculator regional truck 2020",
+        "reference_product": "carbon fiber, dried",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "canonical_file": "lci-carbon-fiber.xlsx",
+      "canonical": {
+        "name": "carbon fiber production, fiber coagulation, stretching, washing, sizing and drying",
+        "reference_product": "carbon fiber, dried",
+        "location": "RER",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "source_file": "lci-trucks.xlsx",
+      "source": {
+        "name": "polyacrylonitrile production (PAN) by polymerisation, carculator regional truck 2020",
+        "reference_product": "polyacrylonitrile",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "canonical_file": "lci-carbon-fiber.xlsx",
+      "canonical": {
+        "name": "polyacrylonitrile production (PAN) by polymerisation",
+        "reference_product": "polyacrylonitrile",
+        "location": "RER",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "source_file": "lci-trucks.xlsx",
+      "source": {
+        "name": "polymer electrolyte membrane (Nafion) production, carculator regional truck 2020",
+        "reference_product": "polymer electrolyte membrane (Nafion)",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "canonical_file": "lci-fuel_cell.xlsx",
+      "canonical": {
+        "name": "polymer electrolyte membrane (Nafion) production",
+        "reference_product": "polymer electrolyte membrane (Nafion)",
+        "location": "RER",
+        "unit": "kilogram"
+      }
+    }
+  ]
+}
