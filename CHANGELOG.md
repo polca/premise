@@ -6,6 +6,12 @@ All notable changes to this project are documented in this file.
 
 ### Fixed
 
+- Propagate triangular battery-mass uncertainty through the inverse of cell
+  energy density: positive lower mass bounds follow maximum density and
+  upper mass bounds follow minimum density. Preserve the reversed ordering
+  for signed disposal bounds and support positive magnitude bounds with a
+  negative sign flag. Manufacturing and equal-mass disposal now retain
+  mirrored ranges over time; deterministic amounts and modes are unchanged.
 - Match both NMC955 capacity markets to the manufactured pack's 72.591% cell
   mass fraction, replacing the generic 71% assumption. At the unchanged 2020
   mean cell density, buy 4.05171 kg pack/kWh instead of 4.14250 kg. Recalculate

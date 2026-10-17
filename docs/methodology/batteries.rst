@@ -101,8 +101,8 @@ The workbook formulas reference their cell-fraction metadata field, and their
 cached values are updated for direct import.
 
 The existing annual density trajectory is retained. The source correction
-sets the baseline bounds; propagation of those bounds through future density
-changes is a separate runtime issue. Matching nominal cell and pack masses
+sets the baseline bounds, which follow the inverse-density rule described
+below when projected to future years. Matching nominal cell and pack masses
 does not validate the projected cell performance or replacement schedule.
 
 Capacity and remaining coverage
@@ -134,6 +134,33 @@ gap is reported without adding an assumed material. The capacity-market
 allocation now matches the pack's 72.591% cell fraction; the energy-density
 trajectory remains a separate assumption. Rebuild scenario databases to
 apply the new inventory; saved results remain unchanged until regenerated.
+
+Battery mass uncertainty over time
+----------------------------------
+
+For fixed capacity and cell mass fraction, pack mass is inversely proportional
+to cell energy density. When scaling triangular mass uncertainties, the lower
+positive mass bound therefore follows the maximum-density trajectory and the
+upper positive bound follows the minimum-density trajectory. Signed negative
+disposal bounds follow the opposite ordering: their lower bound is the negative
+of maximum mass and their upper bound is the negative of minimum mass.
+The scaling uses each numerical bound's sign, so positive magnitude bounds
+combined with a negative sign flag retain the positive-mass ordering.
+
+For NMC955 in 2050, using the configured cell-density range 0.34–0.40 kWh/kg
+and the manufactured cell fraction 0.72591, manufacturing mass bounds are
+3.443953107134493–4.051709537805285 kg/kWh. The previous runtime calculation
+gave 3.198718056162067–4.362340602370358 kg/kWh. Equal-mass signed disposal
+bounds now mirror manufacture at −4.051709537805285 to −3.443953107134493
+kg/kWh. The deterministic manufacture/disposal amounts remain
+±3.625213796983676 kg/kWh.
+
+This correction preserves deterministic amounts, triangular modes, uncertainty
+types and sign flags. Linear interpolation between 2020 and 2050 and endpoint
+values outside that interval are retained. It concerns marginal parameter
+bounds and does not define correlations between exchanges or validate the
+underlying density or lifetime assumptions. Rebuild scenario databases to
+apply the runtime correction.
 
 .. raw:: html
 

@@ -229,10 +229,10 @@ def test_capacity_conversion_uses_manufactured_cell_fraction(
 
 
 @pytest.mark.parametrize("year,density", [(2020, 0.34), (2035, 0.36), (2050, 0.38)])
-def test_capacity_mean_remains_one_kwh_after_density_change(
+def test_capacity_mean_and_bounds_follow_density_change(
     inventory, capacity_inventory, year, density
 ):
-    from premise.battery import Battery
+    from premise.battery import Battery, load_cell_energy_density
 
     pack = activity(inventory, "battery production, Li-ion, NMC955")
     fraction = exchange(pack, CELL)["amount"] / exchange(pack, pack["name"])["amount"]
@@ -243,11 +243,20 @@ def test_capacity_mean_remains_one_kwh_after_density_change(
     battery.year = year
     battery.write_log = lambda *args, **kwargs: None
     battery.adjust_battery_mass()
+    targets = load_cell_energy_density()
+    fraction_of_period = (year - 2020) / 30
     for market in battery.database:
         manufacture = exchange(market, "market for battery, Li-ion, NMC955")
         disposal = exchange(market, "market for used Li-ion battery")
         assert manufacture["amount"] * fraction * density == pytest.approx(1)
         assert disposal["amount"] == -manufacture["amount"]
+        target = targets[market["name"]]
+        densities = {
+            key: (1 - fraction_of_period) * target[2020][key]
+            + fraction_of_period * target[2050][key]
+            for key in ("mean", "minimum", "maximum")
+        }
+        assert_capacity_mass_balance(market, fraction, densities)
 
 
 @pytest.mark.parametrize("version", ["3.10", "3.11", "3.12"])

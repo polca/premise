@@ -115,3 +115,86 @@ def test_active_mobile_mix_chemistries_have_density_aliases(year):
         targets["market for battery capacity, Li-ion, NMC523"]
         == targets["market for battery capacity, Li-ion, NMC532"]
     )
+
+
+@pytest.mark.parametrize(
+    "name",
+    [
+        "market for battery capacity, Li-ion, NMC955",
+        "market for battery capacity, Li-ion, NMC955, stationary",
+        "market for battery capacity, Li-ion, NMC532",
+        "market for battery capacity, Li-ion, NMC811",
+        "market for battery capacity, Li-ion, LFP",
+    ],
+)
+@pytest.mark.parametrize("year", [2010, 2020, 2035, 2050, 2070])
+def test_density_uncertainty_follows_inverse_mass_and_signed_bounds(name, year):
+    targets = load_cell_energy_density()[name]
+    cell_fraction = 0.8
+    before = {k: 1 / (v * cell_fraction) for k, v in targets[2020].items()}
+    manufacture = {
+        "name": "market for battery, test",
+        "product": "battery, test",
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "amount": before["mean"],
+        "uncertainty type": 5,
+        "loc": before["mean"],
+        "minimum": before["maximum"],
+        "maximum": before["minimum"],
+    }
+    disposal = {
+        **manufacture,
+        "name": "market for used battery, test",
+        "amount": -before["mean"],
+        "loc": -before["mean"],
+        "minimum": -before["minimum"],
+        "maximum": -before["maximum"],
+        "negative": True,
+    }
+    # Support positive magnitude bounds with a negative sign flag as well;
+    # their numerical bounds obey the positive-mass rule.
+    magnitude_disposal = {
+        **manufacture,
+        "name": "market for used battery, magnitude test",
+        "amount": -before["mean"],
+        "negative": True,
+    }
+    operation = {
+        "name": "market for electricity, medium voltage",
+        "type": "technosphere",
+        "unit": "kilowatt hour",
+        "amount": 2,
+    }
+    market = {
+        "name": name,
+        "exchanges": [manufacture, disposal, magnitude_disposal, operation],
+    }
+    battery = object.__new__(Battery)
+    battery.database = [market]
+    battery.year = year
+    battery.write_log = lambda *args, **kwargs: None
+    battery.adjust_battery_mass()
+
+    fraction = (min(max(year, 2020), 2050) - 2020) / 30
+    densities = {
+        k: (1 - fraction) * targets[2020][k] + fraction * targets[2050][k]
+        for k in ("mean", "minimum", "maximum")
+    }
+    mean = 1 / (densities["mean"] * cell_fraction)
+    lower = 1 / (densities["maximum"] * cell_fraction)
+    upper = 1 / (densities["minimum"] * cell_fraction)
+    for exchange in (manufacture, magnitude_disposal):
+        assert exchange["loc"] == pytest.approx(mean)
+        assert exchange["minimum"] == pytest.approx(lower)
+        assert exchange["maximum"] == pytest.approx(upper)
+    assert manufacture["amount"] == pytest.approx(mean)
+    assert disposal["amount"] == magnitude_disposal["amount"] == pytest.approx(-mean)
+    assert disposal["loc"] == pytest.approx(-mean)
+    assert disposal["minimum"] == pytest.approx(-upper)
+    assert disposal["maximum"] == pytest.approx(-lower)
+    assert disposal["minimum"] == pytest.approx(-manufacture["maximum"])
+    assert disposal["maximum"] == pytest.approx(-manufacture["minimum"])
+    assert disposal["negative"] is magnitude_disposal["negative"] is True
+    assert operation["amount"] == 2

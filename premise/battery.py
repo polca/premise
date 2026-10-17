@@ -320,8 +320,19 @@ class Battery(BaseTransformation):
                     exc["amount"] *= float(scaling_factor)
                     if exc.get("uncertainty type") == 5:
                         exc["loc"] *= float(scaling_factor)
-                        exc["minimum"] *= float(scaling_factor_min)
-                        exc["maximum"] *= float(scaling_factor_max)
+                        # Mass is inverse to density: a positive lower mass
+                        # bound follows maximum density. Signed negative bounds
+                        # reverse that ordering; positive magnitude bounds keep it.
+                        exc["minimum"] *= float(
+                            scaling_factor_max
+                            if exc["minimum"] >= 0
+                            else scaling_factor_min
+                        )
+                        exc["maximum"] *= float(
+                            scaling_factor_min
+                            if exc["maximum"] >= 0
+                            else scaling_factor_max
+                        )
 
                 ds["log parameters"]["new battery mass"] = sum(
                     e["amount"]
