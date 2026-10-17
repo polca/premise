@@ -45,8 +45,9 @@ the location and bounds are also rescaled using their respective trajectories.
 
 The operation scales an existing pack-mass coefficient; it does not rebuild a
 cell-to-pack engineering model. The source inventory therefore retains its
-pack composition. The density targets below must not be interpreted as
-whole-pack densities or converted directly into an absolute kg/kWh figure.
+pack composition. Most density targets below describe cells, not whole packs.
+VRFB instead uses a fixed whole-system reference derived below; its configured
+density and capacity-market kg/kWh share that installed-system basis.
 
 Markets and downstream links
 ------------------------------
@@ -88,8 +89,9 @@ Sources and inventory details
 Configured density targets
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-These cell-density targets and mass factors are generated from the packaged
-configuration. They are not whole-pack densities or absolute pack masses.
+These density targets and mass factors are generated from the packaged
+configuration. Except for the explicit VRFB whole-system reference below, they
+are not whole-pack densities or absolute pack masses.
 The aliases determine which capacity markets receive each trajectory.
 
 .. include:: /reference/generated/battery-density.inc
@@ -108,12 +110,11 @@ The dataset providing electricity is the following:
 * electricity supply, high voltage, from vanadium-redox flow battery system
 
 The power capacity for this application is 1MW and the net storage capacity 6 MWh.
-The net capacity considers the internal inefficiencies of the batteries and the
-min Sate-of-Charge, requiring a certain oversizing of the batteries.
-For providing net 6 MWh, a nominal capacity of 8.3 MWh is required for the
-VRFB with the assumed operation parameters. The assumed lifetime of the stack
-is 10 years. The lifetime of the system is 20 years or 8176
-cycle-life (49,000 MWh).
+The original publication associates 6 MWh usable output with an 8.3 MWh nominal
+label, and gives a 10-year stack life and 20-year system life. The current
+reference correction below derives capacity independently from the electrolyte
+charge; those original capacity/output numbers no longer define its functional
+unit. The legacy assembly name is retained as a stable identifier.
 
 These inventories can be found here: `LCI_vanadium_redox_flow_batteries <https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/additional_inventories/lci-batteries-vanadium-redox-flow.xlsx>`__.
 
@@ -123,6 +124,138 @@ The end product is vanadium pentoxide, which is available under the following da
 * vanadium pentoxide production
 
 These inventories can be found here: `LCI_vanadium <https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/additional_inventories/lci-batteries-vanadium.xlsx>`__.
+
+VRFB reference correction: composition, charge and lifetime
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The former electrolyte purchased 0.286 kg V2O5, 0.196 kg sulfuric acid,
+0.004899 kg phosphoric acid and 0.863 kg water per kg output. These were the
+original supporting Table S8's **one-litre, 1.35 kg** batch inputs. In addition
+to that unit mismatch, the authors subsequently corrected the excessive V2O5
+dose. Their `updated archive <https://zenodo.org/records/10589869>`__ still
+warns of another unspecified error. This correction does not identify or claim
+to resolve that warning, and does not import the archive's processes or
+recycling parameters.
+
+The independent reconstruction and its limitations are recorded in
+``data/battery/vanadium_reference_design.json``. Reproduce the workbook edits
+offline using ``python scripts/update_vanadium_reference_inventory.py``.
+The authoring script guards the source layout and main coefficients, retains
+unrelated formulas and their cached values, and does not rewrite already
+corrected files. It does not read or write a Brightway database.
+
+Electrolyte and preparation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The solution follows the nominal composition in
+`Oxkem VOS16, issue 1 (2024)
+<https://www.oxkem.com/wp-content/uploads/2025/04/Vanadium-Electrolyte-TDS-1.6mol.L.pdf>`__:
+1.6 mol V/litre, 4.2 mol total sulfate/litre, density 1.36 kg/litre and equal
+amounts of V(III) and V(IV). Phosphoric acid is selected at 0.05 mol/litre,
+the lower end of its stated customer-specific range. This also distinguishes
+total sulfate from free acid, rather than treating the source's 2 M sulfate
+statement as a complete commercial-electrolyte specification.
+
+Per kg finished solution, purchase 0.106987059 kg V2O5, 0.302891029 kg pure
+equivalent sulfuric acid and 0.003602721 kg pure equivalent phosphoric acid.
+The latter supplier is specified without water in an 85% solution state;
+its implicit carrier contributes another 0.000635774 kg water. A conditioning
+service adds 0.600000182 kg deionised water and accounts for preparation.
+V(V) to mean V(III/IV) needs 1.5 electrons per V atom. With oxygen evolution
+at the counter-electrode, this releases 0.014116765 kg O2 per kg product.
+Feeds including acid-carried water equal product plus O2; dilution water is
+not added twice. These are complete-conversion, pure-equivalent material
+quantities, not measured plant yields.
+
+Reduction electricity uses
+`Martin, Schafner and Turek (2020), Table 6 and Equation 5
+<https://d-nb.info/1260641937/34>`__:
+1.69 kWh per kg **elemental vanadium**, giving 0.101283688 kWh per kg solution.
+The experiment used 4 M sulfate at 30 degrees C and 50 mA/cm2. Applying it to
+the 4.2 M product with German electricity is an explicit process/location
+proxy. Peripheral energy, thermal conditioning and manufacturing-equipment
+wear (including electrodes and membranes) are coverage gaps. Process solvent
+recirculation is not a new source of purchased or recycled vanadium.
+Historical Table S8 freight distances are retained as proxies, with freight
+quantities proportional to the corrected V2O5 shipment mass.
+
+Installed capacity and voltage assumption
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Retain the source's individual hardware masses, including 272,220 kg solution,
+32,589 kg tanks, a 10,016 kg stack and 5,125 kg periphery. Their sum is
+319,950 kg, 2 kg above the printed Table S1 total; use the component sum for
+installed mass. Periphery includes the source's 3,000 kg inverter assumption.
+Its modern power-to-mass specification is not independently validated.
+
+Both reservoirs contain active vanadium. A paired discharge transfers one
+electron per **pair** of vanadium atoms across those reservoirs, as shown by
+`Li et al. (2011), Equations 1--3
+<https://www.pnnl.gov/sites/default/files/media/file/at/publications/333_926201145351.pdf>`__.
+Use that paper's 1.25 V standard potential as a transparent nominal reference,
+not a measured cycle-average voltage. The capacity calculation is
+
+.. math::
+
+   Q_{\mathrm{Ah}} &= \frac{m_{\mathrm{solution}}}{\rho}
+       c_V \frac{F}{2\times3600}, \\
+   E_{\mathrm{kWh}} &= Q_{\mathrm{Ah}} U_{\mathrm{ref}} / 1000.
+
+This gives 4,291,705.41 cell-equivalent Ah and **5,364.631763 nominal reference
+kWh** for the retained system. One nominal kWh buys 59.640627 kg installed
+system, including 50.743464 kg electrolyte and **3.041116 kg contained V**.
+The legacy activity name containing ``8.3 megawatt hour`` is an identifier,
+not a capacity input. The source's 19.4 Wh/kg effective density is not used as
+gross capacity, and no extra 21% balance-of-plant mass factor is imposed.
+
+The configuration fixes this whole-system reference at 0.0167670941 kWh/kg
+for all years. The original 2020--2050 density trajectory changed the amount
+of an unchanged electrolyte without a supporting concentration, voltage or
+hardware redesign; it is removed for VRFB only. Old triangular capacity bounds
+mixed incompatible designs and are replaced by a deterministic reference.
+This does not imply zero engineering uncertainty: for example, changing the
+reference voltage from 1.25 V to 1.2/1.4 V gives 3.168/2.715 kg V per nominal
+kWh. These conditional comparisons are not a measured probability interval.
+
+Lifetime and disposal
+^^^^^^^^^^^^^^^^^^^^^^^
+
+The kilogram market represents installed equipment plus one replacement
+stack over the source's 20-year system life and 10-year stack life. The
+replacement is a lifecycle burden; it does not double installed electrolyte
+or increase nominal capacity. A dedicated VRFB waste market sends the same
+materials to existing treatments: two stacks, one electrolyte fill, one tank
+and one set of periphery. Its treatment inputs sum to
+``1 + 10016/319950`` kg per kg installed equipment, matching manufacture
+including replacement. The capacity market purchases equal signed installed
+mass for manufacture and this lifecycle waste service.
+
+The standalone electricity supplier retains 8,176 cycles over 20 years,
+selects a 95% usable SOC fraction and uses 75% round-trip efficiency. At the
+reference voltage, delivered lifetime output is 41,668,167.83 kWh. Initial
+system, stack replacement and disposal all use that denominator; charging
+requires ``1/0.75`` kWh per delivered kWh. At this boundary a usable SOC window
+is applied once, and the round-trip loss is not also subtracted from the
+already defined delivered output. This reference convention is not a measured
+SOC-dependent operating model or a reproduction of the source's 6/8.3 MWh
+performance claim.
+
+The generic legacy waste market used by other chemistries retains its previous
+quantities; its dependent Excel formulas are frozen so the VRFB service
+correction does not change those other recipes. Existing treatment technology
+and primary/secondary market shares remain unchanged. The generic mixed-storage
+consumer's lifetime-throughput allocation is a separate limitation; only the
+standalone VRFB supplier receives the specific lifetime reconstruction here.
+
+Conditioning imports before the main VRFB workbook, which contains the dedicated
+waste market; capacity imports follow both. The two VRFB workbooks and capacity
+workbook participate in the import-cache fingerprint, invalidating stale
+compact checkpoints through their import-cache references. Rebuild scenarios
+to apply this correction. Saved scenario databases, indicators and dashboards
+are not regenerated. In-memory tests establish internal concentration, charge,
+mass and allocation consistency, not complete commercial-design validation or
+corrected system-level vanadium results. Upstream extraction/refining yields
+and preparation-equipment coverage remain separate limitations.
 
 Vanadium co-product allocation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

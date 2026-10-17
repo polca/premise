@@ -6,6 +6,18 @@ All notable changes to this project are documented in this file.
 
 ### Fixed
 
+- Reconstruct vanadium redox-flow electrolyte on a documented 1.6 M V,
+  4.2 M sulfate reference instead of mixing one litre of the original,
+  excessive-V2O5 recipe with one kilogram of output. Include electrochemical
+  preparation electricity, oxygen release, acid-carried water and freight
+  proportional to corrected feed mass. Derive nominal capacity from both
+  reservoirs' paired vanadium charge at an explicit 1.25 V reference potential;
+  hold the resulting design fixed instead of halving unchanged equipment by
+  2050. Align installed mass, lifetime stack replacement, VRFB-specific disposal
+  and the standalone electricity service. Package sources, assumptions and an
+  offline updater; invalidate import caches. This is a transparent reference
+  model with remaining performance and process-coverage gaps, not a validated
+  commercial design. Rebuild scenarios to apply it; saved results are unchanged.
 - Restore the recognized native passenger-car combustion drivetrain's aluminium
   input to its published historical source in ecoinvent 3.10–3.12 cutoff.
   Correct manufacturing scrap and proportional post-consumer aluminium together,

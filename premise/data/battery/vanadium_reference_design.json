@@ -1,0 +1,41 @@
+{
+  "revision": 1,
+  "sources": [
+    {"id": "Weber2018", "doi": "10.1021/acs.est.8b02073", "url": "https://zenodo.org/records/10589869", "basis": "Supporting Tables S1, S8, S29-S30: historical hardware, original electrolyte and operation. The updated archive corrects V2O5 but explicitly warns of another unspecified error; its processes are not imported wholesale."},
+    {"id": "Oxkem2024", "url": "https://www.oxkem.com/wp-content/uploads/2025/04/Vanadium-Electrolyte-TDS-1.6mol.L.pdf", "basis": "VOS16, issue 1, 2024-08-02: nominal 1.6 M V, 4.2 M total sulfate, density 1.36 kg/L, 50:50 V(III)/V(IV). Select 0.05 M H3PO4 from its customer-specific 0.05-0.12 M range."},
+    {"id": "Martin2020", "doi": "10.1002/ente.202000522", "url": "https://d-nb.info/1260641937/34", "basis": "Electrochemical V(V) reduction with oxygen evolution. Table 6: 1.69 kWh per kg ELEMENTAL VANADIUM at 50 mA/cm2 and 30 degC. Equation 5 establishes this denominator. Applying it to the 4.2 M sulfate product is an explicit process proxy; study electrolyte uses 4 M sulfate. Peripheral energy and electrode/membrane/factory wear are coverage gaps."},
+    {"id": "Li2011", "doi": "10.1002/aenm.201100008", "url": "https://www.pnnl.gov/sites/default/files/media/file/at/publications/333_926201145351.pdf", "basis": "Equations 1-3: paired one-electron V half-reactions, 1.25 V standard cell potential. Use 1.25 V as a transparent nominal reference, not a measured cycle-average voltage or a claimed commercial performance."}
+  ],
+  "electrolyte": {
+    "vanadium_mol_L": 1.6,
+    "sulfate_mol_L": 4.2,
+    "phosphoric_acid_mol_L": 0.05,
+    "density_kg_L": 1.36,
+    "vanadium_III_fraction": 0.5,
+    "phosphoric_acid_purchase_mass_fraction": 0.85,
+    "electricity_kWh_per_kg_V": 1.69,
+    "electrons_per_V_reduction": 1.5
+  },
+  "constants": {"V_kg_mol": 0.0509415, "O_kg_mol": 0.015999, "H2SO4_kg_mol": 0.098079, "H3PO4_kg_mol": 0.097994, "faraday_C_mol": 96485.33212, "reference_cell_voltage_V": 1.25},
+  "hardware_kg": {
+    "stack": {"membrane": 150, "electrode": 419, "bipolar_plate": 5490, "current_collector": 1970, "cell_frame": 306, "gaskets": 428, "stack_frame": 1253},
+    "electrolyte": 272220,
+    "tank": 32589,
+    "periphery": {"pumps": 580, "pipes": 332, "inverters": 3000, "cables": 177, "process_control": 13, "heat_exchanger": 1023}
+  },
+  "lifetime": {"years": 20, "stack_years": 10, "cycles_per_day": 1.12, "days_per_year": 365, "usable_SOC_fraction": 0.95, "round_trip_efficiency": 0.75},
+  "original_electrolyte_transport_tkm_per_batch": {"lorry": 0.02, "train": 0.121, "sea": 3.813, "barge": 0.173, "lorry_ZA": 0.187},
+  "original_transport_V2O5_batch_kg": 0.286,
+  "limits": [
+    "Independent reconstruction with stated engineering assumptions. The authors' unspecified remaining-error warning is not resolved or attributed to a particular cause. No author contact was made.",
+    "Historical hardware and current documented solution specification are combined as a reference model. No measured full-system discharge curve, current density, power rating or temperature management is revalidated.",
+    "Compute nominal gross DC-equivalent capacity from paired vanadium charge at the stated reference voltage. Do not equate the source's inconsistent 8.3 MWh label, 6 MWh usable output and 19.4 Wh/kg with this reconstruction.",
+    "The legacy assembly name containing 8.3 megawatt hour remains a stable identifier only. Capacity is derived from charge, not that name.",
+    "Component rows sum to 319950 kg, 2 kg above the printed 319948 kg total. Use the row sum for installed mass; one lifetime stack replacement is included separately.",
+    "Stoichiometric pure-equivalent feeds at complete conversion; no new metallurgical yields or primary/secondary shares. Existing upstream vanadium route limitations remain.",
+    "For electrochemical preparation, emitted O2 = 1.5/4 mol per mol V. Water closes product plus O2 mass, allowing for water implicit in the 85% phosphoric-acid supplier.",
+    "Legacy transport distances are retained as route proxies, but freight follows the corrected V2O5 shipment mass. No source archive recycling parameters are adopted.",
+    "The VRFB-specific waste market matches installed material plus the replacement stack. Existing treatment recipes and generic other-chemistry waste market are preserved.",
+    "Fixed design at all years. The generic mixed-storage consumer's throughput allocation remains a separate limitation; no complete system metal-result correction is claimed."
+  ]
+}

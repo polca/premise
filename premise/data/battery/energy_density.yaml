@@ -234,16 +234,17 @@ VRFB:
      - market for battery, redox-flow, Vanadium
      - market for battery capacity, redox-flow, Vanadium, stationary
   target:
-      # current value from https://doi.org/10.1021/acs.est.8b02073; http://dx.doi.org/10.1016/j.apenergy.2014.09.081
+      # Fixed whole-system reference, not a cell-learning trajectory.
+      # Paired V charge at 1.25 V / 319950 kg installed system; see
+      # vanadium_reference_design.json and stationary battery documentation.
       2020:
-        mean: 0.0194
-        minimum: 0.010
-        maximum: 0.030
-      #  future value doubles, from https://doi.org/10.1039/C7CP07456E
+        mean: 0.01676709411659144
+        minimum: 0.01676709411659144
+        maximum: 0.01676709411659144
       2050:
-        mean: 0.040
-        minimum: 0.020
-        maximum: 0.060
+        mean: 0.01676709411659144
+        minimum: 0.01676709411659144
+        maximum: 0.01676709411659144
 
 ORFB:
   ecoinvent_aliases:

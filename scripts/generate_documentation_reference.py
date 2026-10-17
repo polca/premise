@@ -128,8 +128,8 @@ def generate():
     result["battery-density.inc"] = table(
         [
             "Chemistry",
-            "2020 mean (kWh/kg cell)",
-            "2050 mean (kWh/kg cell)",
+            "2020 mean (kWh/kg reference)",
+            "2050 mean (kWh/kg reference)",
             "2050 mass factor",
         ],
         [

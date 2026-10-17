@@ -289,6 +289,7 @@ FILEPATH_VANADIUM = INVENTORY_DIR / "lci-batteries-vanadium.xlsx"
 FILEPATH_VANADIUM_REDOX_BATTERY = (
     INVENTORY_DIR / "lci-batteries-vanadium-redox-flow.xlsx"
 )
+FILEPATH_VRFB_REFERENCE = INVENTORY_DIR / "lci-vrfb-reference-conditioning.xlsx"
 FILEPATH_ORGANIC_REDOX_BATTERY = (
     INVENTORY_DIR / "lci-batteries-organic-and-hybrid-redox-flow.xlsx"
 )
@@ -1002,6 +1003,8 @@ class NewDatabase:
                 FILEPATH_BATTERY_CAPACITY,
                 FILEPATH_ASSB_BATTERIES,
                 FILEPATH_ELECTRIC_CAR_MECHANICAL,
+                FILEPATH_VANADIUM_REDOX_BATTERY,
+                FILEPATH_VRFB_REFERENCE,
             ):
                 digest.update(path.name.encode())
                 digest.update(path.read_bytes())
@@ -1220,6 +1223,7 @@ class NewDatabase:
             (FILEPATH_LIS_BATTERY, "3.9"),
             (FILEPATH_LIO2_BATTERY, "3.9"),
             (FILEPATH_VANADIUM, "3.9"),
+            (FILEPATH_VRFB_REFERENCE, "3.10"),
             (FILEPATH_VANADIUM_REDOX_BATTERY, "3.9"),
             (FILEPATH_ORGANIC_REDOX_BATTERY, "3.9"),
             (FILEPATH_SIB_BATTERY, "3.9"),

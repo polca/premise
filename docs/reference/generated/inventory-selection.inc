@@ -37,6 +37,9 @@
    * - ``lci-ammonia.xlsx``
      - 3.9
      - All supported configurations
+   * - ``lci-batteries-ASSB.xlsx``
+     - 3.10
+     - All supported configurations
    * - ``lci-batteries-LiO2.xlsx``
      - 3.9
      - All supported configurations
@@ -101,6 +104,9 @@
      - 3.9
      - All supported configurations
    * - ``lci-electric-boiler-industrial.xlsx``
+     - 3.10
+     - All supported configurations
+   * - ``lci-electric-car-mechanical-powertrain.xlsx``
      - 3.10
      - All supported configurations
    * - ``lci-electric-heating.xlsx``
@@ -249,6 +255,9 @@
      - All supported configurations
    * - ``lci-two_wheelers.xlsx``
      - 3.7
+     - All supported configurations
+   * - ``lci-vrfb-reference-conditioning.xlsx``
+     - 3.10
      - All supported configurations
    * - ``lci-waste-CHP.xlsx``
      - 3.10
