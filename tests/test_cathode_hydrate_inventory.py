@@ -140,3 +140,24 @@ def test_lto_cell_back_calculates_lithium_equivalents_and_bound_water(inventorie
     )
     assert supply[3] - expected_oxide * 0.25 == pytest.approx(added_water)
     assert_hydration_balance(oxide, 0.25)
+
+
+@pytest.mark.parametrize(
+    "constant", ["FILEPATH_BATTERIES_NMC_NCA_LFP", "FILEPATH_BATTERIES_NMC955_LTO"]
+)
+def test_changed_cathode_workbook_invalidates_import_cache(
+    constant, tmp_path, monkeypatch
+):
+    import premise.new_database as module
+
+    obj = object.__new__(module.NewDatabase)
+    obj.version = "3.12"
+    obj.keep_source_db_uncertainty = obj.keep_imports_uncertainty = False
+    path = tmp_path / "cathode.xlsx"
+    path.write_bytes(b"old reagent basis")
+    monkeypatch.setattr(module, constant, path)
+    source = obj._database_cache_path("test")
+    previous = obj._database_cache_path("test", inventories=True)
+    path.write_bytes(b"corrected hydrate basis")
+    assert obj._database_cache_path("test", inventories=True) != previous
+    assert obj._database_cache_path("test") == source
