@@ -6,9 +6,6 @@ All notable changes to this project are documented in this file.
 
 ### Fixed
 
-- Include the common NMC/NCA/LFP and NMC955/LTO workbook contents in the
-  import-cache fingerprint, so corrected cathode hydrate quantities cannot
-  be replaced by a reused inventory cache. Source database caches are unchanged.
 - Preserve anhydrous-LiOH equivalents when custom NCA and NMC811 oxides
   purchase battery-grade lithium hydroxide monohydrate: 0.438071575 and
   0.431062430 kg/kg oxide respectively. Release the added water of
