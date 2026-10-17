@@ -57,13 +57,13 @@ def _update_battery(scenario, version, system_model):
         index=scenario.get("index"),
     )
 
-    battery.adjust_battery_mass()
-
     if (
         battery.iam_data.battery_mobile_scenarios is not None
         or battery.iam_data.battery_stationary_scenarios is not None
     ):
         battery.adjust_battery_market_shares()
+
+    battery.adjust_battery_mass()
 
     replace_scenario_inventory(scenario, battery.database)
     scenario["index"] = battery.index
@@ -152,6 +152,9 @@ class Battery(BaseTransformation):
                 "NMC811": "market for battery capacity, Li-ion, NMC811",
                 "NMC900-Si": "market for battery capacity, Li-ion, NMC955",
                 "SIB": "market for battery capacity, Sodium-ion, SiB",
+                "ASSB (polymer)": "market for battery capacity, ASSB, polymer",
+                "ASSB (oxidic)": "market for battery capacity, ASSB, oxidic",
+                "ASSB (sulfidic)": "market for battery capacity, ASSB, sulfidic",
             }.items()
         }
 
@@ -168,12 +171,19 @@ class Battery(BaseTransformation):
             }.items()
         }
 
-        self._adjust_shares(
-            market_datasets_stationary, datasets_mapping_stationary, "stationary"
+        updates = (
+            (market_datasets_stationary, datasets_mapping_stationary, "stationary"),
+            (market_datasets_mobile, datasets_mapping_mobile, "mobile"),
         )
-        self._adjust_shares(market_datasets_mobile, datasets_mapping_mobile, "mobile")
+        # Check every applicable market before changing shares or pack masses.
+        for update in updates:
+            self._adjust_shares(*update, validate_only=True)
+        for update in updates:
+            self._adjust_shares(*update)
 
-    def _adjust_shares(self, market_datasets, datasets_mapping, market_type):
+    def _adjust_shares(
+        self, market_datasets, datasets_mapping, market_type, *, validate_only=False
+    ):
         """
         Adjust the shares within the datasets.
         """
@@ -184,6 +194,7 @@ class Battery(BaseTransformation):
         if battery_scenarios is None:
             return
 
+        updates = []
         for ds in ws.get_many(
             self.database,
             ws.either(*[ws.equals("name", name) for name in market_datasets]),
@@ -212,6 +223,37 @@ class Battery(BaseTransformation):
             # replace NaNs with zeros
             shares = shares.fillna(0)
 
+            represented = {
+                datasets_mapping[exc["name"]]
+                for exc in ws.technosphere(ds)
+                if exc["name"] in datasets_mapping and exc.get("unit") == ds.get("unit")
+            }
+            missing = {
+                chemistry: float(shares.sel(chemistry=chemistry).item())
+                for chemistry in shares.chemistry.values
+                if shares.sel(chemistry=chemistry).item() > 0
+                and chemistry not in represented
+            }
+            if missing:
+                details = ", ".join(
+                    f"{chemistry}: {share:.6g}"
+                    for chemistry, share in sorted(missing.items())
+                )
+                raise ValueError(
+                    f"Cannot update {market_type} battery market {ds['name']!r} "
+                    f"in {ds.get('location', 'unknown')} for scenario "
+                    f"{market_datasets[ds['name']]!r}, year {self.year}: "
+                    f"positive chemistry shares lack mapped capacity exchanges "
+                    f"({details}). Supply chemistry-specific inventories and "
+                    "market mappings before rebuilding. Unsupported shares "
+                    "must not be substituted or discarded by normalization."
+                )
+            updates.append((ds, shares))
+
+        if validate_only:
+            return
+
+        for ds, shares in updates:
             for exc in ws.technosphere(ds):
                 if exc["name"] in datasets_mapping:
                     exc["amount"] = shares.sel(

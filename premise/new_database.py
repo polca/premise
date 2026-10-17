@@ -306,6 +306,7 @@ FILEPATH_RAIL_FREIGHT = INVENTORY_DIR / "lci-rail-freight.xlsx"
 FILEPATH_PV_GAAS = INVENTORY_DIR / "lci-PV-GaAs.xlsx"
 FILEPATH_PV_PEROVSKITE = INVENTORY_DIR / "lci-PV-perovskite.xlsx"
 FILEPATH_BATTERY_CAPACITY = INVENTORY_DIR / "lci-battery-capacity.xlsx"
+FILEPATH_ASSB_BATTERIES = INVENTORY_DIR / "lci-batteries-ASSB.xlsx"
 FILEPATH_BIOCHAR = INVENTORY_DIR / "lci-biochar-spruce.xlsx"
 FILEPATH_ENHANCED_WEATHERING = INVENTORY_DIR / "lci-coastal-enhanced-weathering.xlsx"
 FILEPATH_OCEAN_LIMING = INVENTORY_DIR / "lci-ocean-liming.xlsx"
@@ -981,7 +982,8 @@ class NewDatabase:
         uncertainty_label = "w_uncertainty" if uncertainty else "wo_uncertainty"
         inventory_label = "_inventories" if inventories else ""
         if inventories:
-            # Vehicle specifications and energy wrappers must move together.
+            # Vehicle specifications, wrappers and battery inventories must
+            # move together, including chemistry-specific capacity suppliers.
             # These also invalidate compact source checkpoints via their cache
             # references, without invalidating the unmodified source database.
             digest = hashlib.sha256()
@@ -993,6 +995,7 @@ class NewDatabase:
                 FILEPATH_RAIL_FREIGHT,
                 FILEPATH_FINAL_ENERGY,
                 FILEPATH_BATTERY_CAPACITY,
+                FILEPATH_ASSB_BATTERIES,
             ):
                 digest.update(path.name.encode())
                 digest.update(path.read_bytes())
@@ -1210,6 +1213,7 @@ class NewDatabase:
             (FILEPATH_VANADIUM_REDOX_BATTERY, "3.9"),
             (FILEPATH_ORGANIC_REDOX_BATTERY, "3.9"),
             (FILEPATH_SIB_BATTERY, "3.9"),
+            (FILEPATH_ASSB_BATTERIES, "3.10"),
             (FILEPATH_BATTERY_CAPACITY, "3.10"),
             (FILEPATH_HOME_STORAGE_BATTERIES, "3.9"),
             (FILEPATH_IND_HEAT_PUMP, "3.11"),

@@ -3972,3 +3972,18 @@ silane production,silane,2011:Manufacture of basic chemicals,"34210: Hydrogen, n
 "vinyl fluoride production, photovoltaic supply chain",vinyl fluoride,2011:Manufacture of basic chemicals,16390: Other minerals n.e.c.
 "wafer factory construction, photovoltaic supply chain",wafer factory,4290:Construction of other civil engineering projects,53269: Other constructions for manufacturing
 "wafer factory construction, steel construction, simulated data","wafer factory, steel construction, simulated data",4290:Construction of other civil engineering projects,53269: Other constructions for manufacturing
+"polyethylene oxide production, proxy, for ASSB","polyethylene oxide, for ASSB",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
+"polymer electrolyte production, PEO-LiTFSI, for ASSB","polymer electrolyte, PEO-LiTFSI, for ASSB",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
+"oxide electrolyte production, LLZO, for ASSB","oxide electrolyte, LLZO, for ASSB",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
+"battery cell production, ASSB, polymer","battery cell, ASSB, polymer",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
+"battery cell production, ASSB, oxidic","battery cell, ASSB, oxidic",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
+"battery cell production, ASSB, sulfidic","battery cell, ASSB, sulfidic",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
+"battery production, ASSB, polymer","battery, ASSB, polymer",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
+"market for battery, ASSB, polymer","battery, ASSB, polymer",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
+"market for battery capacity, ASSB, polymer",electricity storage capacity,2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
+"battery production, ASSB, oxidic","battery, ASSB, oxidic",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
+"market for battery, ASSB, oxidic","battery, ASSB, oxidic",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
+"market for battery capacity, ASSB, oxidic",electricity storage capacity,2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
+"battery production, ASSB, sulfidic","battery, ASSB, sulfidic",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
+"market for battery, ASSB, sulfidic","battery, ASSB, sulfidic",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
+"market for battery capacity, ASSB, sulfidic",electricity storage capacity,2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries

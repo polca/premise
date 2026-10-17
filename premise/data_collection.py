@@ -1146,17 +1146,8 @@ class IAMDataCollection:
             na_filter=False,
         )
 
-        # add the sum of ASSB (oxidic), ASSB (polymer) and ASSB (sulfidic) to SIB
-        data.loc[
-            data["chemistry"].isin(
-                [
-                    "ASSB (oxidic)",
-                    "ASSB (polymer)",
-                    "ASSB (sulfidic)",
-                ]
-            ),
-            "chemistry",
-        ] = "SIB"
+        # Preserve solid-state chemistry identities. Missing inventories are
+        # reported by the market update; they are not sodium-ion batteries.
 
         # add NMC900 to NMC900-Si
         data.loc[data["chemistry"] == "NMC900", "chemistry"] = "NMC900-Si"

@@ -81,7 +81,7 @@ def test_installed_nmc532_capacity_mass_follows_density(year, density):
             assert exchange["amount"] == before
 
 
-@pytest.mark.parametrize("year", [2020, 2035, 2050])
+@pytest.mark.parametrize("year", [2010, 2015, 2020, 2021, 2035, 2050])
 def test_active_mobile_mix_chemistries_have_density_aliases(year):
     from bw2io import ExcelImporter
     from premise.data_collection import IAMDataCollection

@@ -6,6 +6,17 @@ All notable changes to this project are documented in this file.
 
 ### Fixed
 
+- Preserve mobile all-solid-state battery (ASSB) chemistry shares instead of
+  assigning polymer, oxide and sulfide batteries to sodium-ion. Add distinct,
+  documented reference-design inventories and capacity markets: LFP/PEO-LiTFSI,
+  NMC811/LLZO and NMC811/LiGPS/LiPS. Reconstruct their per-kWh materials from
+  published sources, normalize the sulfide cathode/yield basis and restore
+  original area-based nickel-plating units. Include explicit pack-hardware
+  and treatment proxies; hold baseline designs fixed without an assumed
+  density trajectory. Package source provenance and an offline workbook
+  generator. Check positive chemistry coverage before changing any shares
+  or masses so unsupported chemistries cannot be silently substituted or
+  discarded by normalization. Rebuild scenarios; saved results are unchanged.
 - Normalize the recognized Canadian integrated cement plant's refractory input
   to one plant for ecoinvent 3.11 and 3.12. Its original numerator used the
   lifetime output of all 13 surveyed plants, overstating refractory intensity

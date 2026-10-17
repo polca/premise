@@ -293,3 +293,45 @@ LEAD-ACID:
         mean: 0.035
         minimum: 0.030
         maximum: 0.040
+
+# Published baseline reference design; no assumed annual density improvement.
+ASSB-polymer:
+  ecoinvent_aliases:
+    name: market for battery capacity, ASSB, polymer
+  target:
+    2020:
+      mean: 0.1708073285047623
+      minimum: 0.1708073285047623
+      maximum: 0.1708073285047623
+    2050:
+      mean: 0.1708073285047623
+      minimum: 0.1708073285047623
+      maximum: 0.1708073285047623
+
+# Published baseline reference design; no assumed annual density improvement.
+ASSB-oxidic:
+  ecoinvent_aliases:
+    name: market for battery capacity, ASSB, oxidic
+  target:
+    2020:
+      mean: 0.3161617539697314
+      minimum: 0.3161617539697314
+      maximum: 0.3161617539697314
+    2050:
+      mean: 0.3161617539697314
+      minimum: 0.3161617539697314
+      maximum: 0.3161617539697314
+
+# Published baseline reference design; no assumed annual density improvement.
+ASSB-sulfidic:
+  ecoinvent_aliases:
+    name: market for battery capacity, ASSB, sulfidic
+  target:
+    2020:
+      mean: 0.3166231748883239
+      minimum: 0.3166231748883239
+      maximum: 0.3166231748883239
+    2050:
+      mean: 0.3166231748883239
+      minimum: 0.3166231748883239
+      maximum: 0.3166231748883239

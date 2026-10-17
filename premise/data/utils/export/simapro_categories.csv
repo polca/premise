@@ -17436,3 +17436,18 @@ zucchini production,zucchini,material,Agricultural\Plant production\Vegetables\T
 "zucchini production, conventional, plain region",zucchini,material,Agricultural\Plant production\Fruits\Transformation
 "zucchini production, organic, plain region","zucchini, organic",material,Agricultural\Plant production\Fruits\Transformation
 "treatment of effluent from nitrogen trifluoride production, wastewater treatment, class 3",effluent from nitrogen trifluoride production,waste treatment,Wastewater treatment\Transformation
+"polyethylene oxide production, proxy, for assb","polyethylene oxide, for assb",material,Electronics\Battery\Transformation
+"polymer electrolyte production, peo-litfsi, for assb","polymer electrolyte, peo-litfsi, for assb",material,Electronics\Battery\Transformation
+"oxide electrolyte production, llzo, for assb","oxide electrolyte, llzo, for assb",material,Electronics\Battery\Transformation
+"battery cell production, assb, polymer","battery cell, assb, polymer",material,Electronics\Battery\Transformation
+"battery cell production, assb, oxidic","battery cell, assb, oxidic",material,Electronics\Battery\Transformation
+"battery cell production, assb, sulfidic","battery cell, assb, sulfidic",material,Electronics\Battery\Transformation
+"battery production, assb, polymer","battery, assb, polymer",material,Electronics\Battery\Transformation
+"market for battery capacity, assb, polymer",electricity storage capacity,material,Electronics\Battery\Transformation
+"battery production, assb, oxidic","battery, assb, oxidic",material,Electronics\Battery\Transformation
+"market for battery capacity, assb, oxidic",electricity storage capacity,material,Electronics\Battery\Transformation
+"battery production, assb, sulfidic","battery, assb, sulfidic",material,Electronics\Battery\Transformation
+"market for battery capacity, assb, sulfidic",electricity storage capacity,material,Electronics\Battery\Transformation
+"market for battery, assb, polymer","battery, assb, polymer",material,Electronics\Battery\Transformation
+"market for battery, assb, oxidic","battery, assb, oxidic",material,Electronics\Battery\Transformation
+"market for battery, assb, sulfidic","battery, assb, sulfidic",material,Electronics\Battery\Transformation

@@ -69,6 +69,146 @@ which scenario supplies a study.
 Vehicle inventories determine where mobile capacity is consumed;
 :doc:`transport/overview` explains the separate fleet update.
 
+Solid-state chemistry mapping and reference inventories
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The mobile source forecast distinguishes ``ASSB (polymer)``, ``ASSB (oxidic)``
+and ``ASSB (sulfidic)`` from ``SIB``. Earlier versions renamed all three ASSB
+categories to SIB before grouping the source data. In MIX in 2040, each category
+has a 7.8% share: the previous mapping therefore reported 31.2% sodium-ion
+instead of 7.8% sodium-ion and 23.4% solid-state batteries. The forecast ends
+in 2040 and its endpoint is held thereafter. In PLiB, the solid-state shares
+total 36% at that endpoint. Total-share closure did not detect this composition
+error. The SIB inventory represents a sodium-ion NMMT design, not these lithium
+solid-state batteries.
+
+The three source identities are now retained and each has its own capacity
+market in ``lci-batteries-ASSB.xlsx``. The published reference designs below
+are explicit representatives for the forecast categories, not measured fleet
+averages. Their nominal installed-capacity basis is independent of cycle life;
+vehicle inventories still determine lifetime output and replacements.
+
+.. list-table:: Fixed baseline cell designs and installed pack purchases
+   :header-rows: 1
+
+   * - Forecast category
+     - Cell design
+     - kWh/kg cell
+     - kg pack/kWh
+   * - ASSB (polymer)
+     - LFP / lithium / PEO-LiTFSI, bipolar pouch
+     - 0.1708073285
+     - 8.065117902
+   * - ASSB (oxidic)
+     - NMC811 / lithium / LLZO, bipolar pouch
+     - 0.3161617540
+     - 4.357203949
+   * - ASSB (sulfidic)
+     - NMC811 / lithium / LiGPS + LiPS, cylindrical
+     - 0.3166231749
+     - 4.350854113
+
+All designs are held at their published baseline throughout scenario years.
+The optimal variants are alternatives, not an assumed annual progression.
+No density improvement or probability distribution is inferred. Existing
+liquid-electrolyte and sodium-ion trajectories are retained.
+
+Inventory construction and documented adaptations
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The polymer and oxide cell materials and manufacturing energy follow the
+baseline reference designs of
+`Zhang et al. (2025) <https://doi.org/10.1016/j.jclepro.2025.146607>`__.
+The author model is pinned to revision
+``40c51d668689dd7ce64bd22def55f61d864facc5`` of the
+`dimensioning repository <https://github.com/Shan253/All_solid_state_battery_dimensioning_model>`__.
+Full-precision outputs retain separate cathode active material, carbon, binder,
+lithium, collectors, electrolyte and pouch layers. Their retained dry material
+inputs sum to one kg per kg cell. Cathode mass times specific capacity times
+voltage reproduces the reported cell energy. Manufacturing energy is converted
+from kWh per kWh cell capacity to energy per kg cell using this same density.
+German process electricity is an explicit supply-location choice.
+
+The
+`electrolyte supplement <https://ars.els-cdn.com/content/image/1-s2.0-S0959652625019572-mmc1.pdf?download=true>`__
+provides PEO-LiTFSI mixing/heating/drying (S12) and LLZO synthesis (S13).
+S12 labels its polymer as polyethylene although the chemistry is polyethylene
+oxide. The explicit PEO material proxy instead uses one kg ethylene oxide per
+kg addition polymer; polymerization energy and catalyst coverage remain gaps.
+The existing LiS supplement supplies the same LiTFSI salt and lithium foil.
+PVDF uses the existing battery inventory's polyvinylfluoride proxy. LLZO
+retains the published reagent inputs, emissions, transport and factory;
+alumina uses the non-metallurgical market, and unspecified process waste
+uses a hazardous-incineration proxy. These choices do not establish complete
+manufacturing chemistry or losses not reported by the source.
+
+The sulfide inventory follows the scaled-production reference in
+`Rietdorf et al. (2024) <https://doi.org/10.1007/s11367-024-02355-1>`__,
+SM1 cell sizing and SM2 ``Scenario 1``. The catholyte contains germanium;
+this choice is not representative of every sulfide electrolyte. All SM2
+exchanges are multiplied by 0.9934412043717087: this normalizes its gross
+NMC811 feed through the published cathode, assembly and final-cell yields
+(0.92178405, 0.970299 and 0.95) and 200 Ah/kg at 3.75 V to exactly one kWh.
+Retained cathode is 1.333333333 kg/kWh; gross purchases include losses.
+Cell mass and capacity use the explicit SM1 mass model rather than its
+inconsistent volumetric density. Published germanium resource/heat and
+acrylonitrile binder proxies are retained as process-coverage limitations.
+
+The sulfide coating exchanges are reconstructed from the original
+`Chordia et al. (2021) <https://doi.org/10.1007/s11367-021-01976-0>`__
+Tables S5-10/S5-11. The later supplement treats its 0.610659 square metres
+of plating per source kWh as 0.610659 kg nickel. The original coating needs
+``1e-6 m * 8900 kg/m3 / 0.95 = 0.00936842105 kg nickel/m2``.
+After capacity normalization, nickel feed for plating is approximately
+0.00568339 kg/kWh, not 0.606654 kg/kWh. Water, electricity, emissions, sludge
+and wastewater follow the original per-square-metre process too; mg and
+cubic decimetres are converted to kg and cubic metres. The nickel-in-sulfamate
+water emission uses the dissolved nickel-ion flow proxy.
+The area is independently recovered from the surface-cleaning inventory:
+9.770544 kg water divided by 16 kg water per square metre (S5-9), with the
+same area obtained from its caustic-soda and sulfuric-acid inputs.
+
+Pack hardware and treatment boundary
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Each pack uses 0.72591 kg of its own ASSB cell per kg pack. Non-cell components
+and assembly are copied from the existing NMC955 pack, including BMS, module
+packaging, cooling and pack materials. This is an explicit generic hardware
+proxy, not a published ASSB pack design. No conventional cell is copied.
+For cell density ``rho``, the capacity market buys
+``1 / (0.72591 * rho)`` kg pack per kWh and sends the same mass to the existing
+used Li-ion battery market as a treatment proxy. ASSB-specific recovery yields,
+pack redesign, lifetime and primary/secondary shares are not asserted.
+
+Coverage checks and reproducibility
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Before changing any mobile/stationary scenario shares or pack masses, the
+battery update verifies that every positive forecast chemistry has a mapped
+capacity exchange with the market's unit. A missing mapping, absent exchange
+or kilogram exchange in place of kWh raises ``ValueError`` naming the market,
+scenario, year and missing shares. Completely represented mixes retain
+normalization for source rounding; unsupported positive shares cannot be
+silently removed. Interpolation and endpoint clamping are retained. Inventory
+linking remains a separate check: a named exchange alone does not establish
+that its supplier exists.
+
+``data/battery/solid_state_reference_designs.json`` records source links,
+revisions, supplement hashes, full-precision model outputs, source exchange
+rows and local adaptations. Run
+``python scripts/update_solid_state_battery_inventories.py`` to reconstruct
+the workbook without internet or a Brightway database. The script also replaces
+three unused zero-share placeholders in each of the four mobile scenario
+markets, preserving all other capacity-workbook cells, formulas and caches.
+The ``battery`` update uses these distinct suppliers after normal inventory
+import and migration. The existing NMC900/NMC900-Si aggregation remains a
+separate proxy requiring assessment. Germanium is present in the sulfide LCI;
+metal-indicator methods that omit it do not report that demand.
+
+Rebuild scenarios to apply these inventories. Saved scenario databases and
+results are not rewritten by the source correction. Arithmetic, unit, mass and
+supplier checks do not validate the future commercial design assumptions.
+
 Constant-range vehicle capacity
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
