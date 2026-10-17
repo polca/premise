@@ -2,6 +2,18 @@
 
 All notable changes to this project are documented in this file.
 
+## [Unreleased]
+
+### Fixed
+
+- Normalize the NMC955 battery market to purchase 1 kg of complete battery
+  production per kilogram sold, replacing the erroneous 0.72591 kg purchase.
+  The 0.72591 kg cell fraction is already included inside pack manufacture;
+  applying it again at market level understated manufacturing inputs. Preserve
+  that internal cell fraction and market freight. Rebuild scenario databases
+  to apply this correction; cell chemistry and performance require separate
+  validation.
+
 ## [2.5.5] - 2026-10-15
 
 This release refreshes passenger-car and truck inventories, corrects vehicle
