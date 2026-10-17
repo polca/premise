@@ -2226,6 +2226,11 @@ class Metals(BaseTransformation):
                 if note in original_comment
                 else (original_comment + "\n" + note).strip()
             )
+        if rule.design_group and rule.comment:
+            note = f"Matched material design {rule.design_group}: {rule.comment}"
+            comment = str(dataset["exchanges"][-1].get("comment") or "")
+            if note not in comment:
+                dataset["exchanges"][-1]["comment"] = (comment + "\n" + note).strip()
         self._record_material_decision(
             dataset,
             rule,

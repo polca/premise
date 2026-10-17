@@ -1,6 +1,7 @@
 {
-  "design_id": "pemel-nrel-87625-loading-trajectory-v2",
+  "design_id": "pemel-nrel-87625-catalysts-and-coatings-v3",
   "baseline_design_id": "pemel-nrel-87625-2022-baseline-v1",
+  "catalyst_trajectory_design_id": "pemel-nrel-87625-loading-trajectory-v2",
   "source": {
     "title": "Updated Manufactured Cost Analysis for Proton Exchange Membrane Water Electrolyzers",
     "authors": "Badgett et al.",
@@ -44,6 +45,81 @@
     "sensitivity": "fixed-baseline retains 2 mg Ir/cm2 and 1 mg Pt/cm2 at all supported years; all other inputs and the support endpoints are identical.",
     "uncertainty": "Scenario assumptions, not measured future observations. Deterministic paired design points; do not independently sample metal bounds."
   },
+  "hardware_coatings": {
+    "default_case": "reference",
+    "platinum_density_kg_m3": 21450,
+    "sources": [
+      {
+        "url": "https://docs.nlr.gov/docs/fy24osti/87625.pdf",
+        "basis": "Table 1 and Figure 3: Pt-coated PTL and titanium BPP, 877 cm2 active area, 35 x 35 cm (1225 cm2) plate footprint, PTL active area plus 10% buffer. Printed page 30: PTL Pt film 0.1 micrometre. Figure 4 and section 2.1: component manufacturing, PVD; report does not specify BPP Pt thickness or all face counts. Geometry, process diagrams and coating page visually checked."
+      },
+      {
+        "url": "https://physics.nist.gov/cgi-bin/Star/compos.pl?matno=078",
+        "basis": "NIST platinum density 21.45 g/cm3 = 21450 kg/m3."
+      },
+      {
+        "url": "https://docs.nlr.gov/docs/fy19osti/72740.pdf",
+        "basis": "Earlier Mayyas report uses gold at 100 nm on PTL/BPP; do not silently interpret its gold as platinum or copy its substrate design."
+      },
+      {
+        "url": "https://mds.umicore.com/en/electroplating/news-media/news/ultra-thin-uniform-platinum-coating-for-ptls-in-pem-electrolysers/",
+        "basis": "Manufacturer PTL coating range 20-100 nm, published 25 March 2026. Context for thin-film sensitivity only; not a BPP thickness, historical observation, or full-stack durability validation."
+      }
+    ],
+    "cases": {
+      "reference": {
+        "thickness_nm": 100,
+        "PTL_faces": 2,
+        "BPP_faces": 2,
+        "PTL_area_factor": 1.1,
+        "BPP_footprint_cm2": 1225,
+        "interpretation": "User-selected nominal flat-film reference, not a measured complete commercial stack."
+      },
+      "one-face": {
+        "thickness_nm": 100,
+        "PTL_faces": 1,
+        "BPP_faces": 1,
+        "PTL_area_factor": 1.1,
+        "BPP_footprint_cm2": 1225,
+        "interpretation": "One nominal coated face on each component; sensitivity, not a validated complete design."
+      },
+      "thin-film": {
+        "thickness_nm": 20,
+        "PTL_faces": 2,
+        "BPP_faces": 2,
+        "PTL_area_factor": 1.1,
+        "BPP_footprint_cm2": 1225,
+        "interpretation": "20 nm on both components as an engineering sensitivity. Manufacturer reports 20-100 nm for PTLs, not this full stack or bipolar plate design."
+      },
+      "active-area": {
+        "thickness_nm": 100,
+        "PTL_faces": 2,
+        "BPP_faces": 2,
+        "PTL_area_factor": 1,
+        "BPP_footprint_cm2": 877,
+        "interpretation": "Coat only the nominal active area on both components; sensitivity to masking/footprint assumptions."
+      },
+      "none": {
+        "thickness_nm": 0,
+        "PTL_faces": 2,
+        "BPP_faces": 2,
+        "PTL_area_factor": 1.1,
+        "BPP_footprint_cm2": 1225,
+        "interpretation": "Diagnostic catalyst-only comparison. Coating coverage is deliberately absent, not evidence of zero physical coating."
+      }
+    },
+    "geometry_and_boundary_assumptions": [
+      "User selected 100 nm on both faces of each PTL and BPP. BPP Pt-film thickness and coated-face counts are explicit engineering assumptions; the report directly specifies only the PTL film thickness.",
+      "One anode PTL per cell, two nominal flat faces; PTL coated footprint is 1.1 times active area. Treat the stated buffer as part of this reference footprint, not another manufacturing-yield multiplier.",
+      "Two full flat BPP-face equivalents per cell: internal shared plate faces plus terminal-facing surfaces. Do not add another two-face end-plate or multiply an already summed face area by cell count again.",
+      "Full 35 x 35 cm plate planes are the reference footprint, without deductions for ports, seal masks or edges. Microscopic pore/fibre area, coating penetration, flow-channel developed surface and film discontinuity are not separately resolved. These sensitivities are not guaranteed physical bounds.",
+      "Normalize equivalent cell count and coated areas to exactly 1 MW at 2 A/cm2 and 1.9 V. The source rounded 300-cell assembly gives 999780 W, not exactly 1 MW.",
+      "Coating mass = nominal projected coated area x film thickness x bulk Pt density. It is a retained flat-film reference with 100% incorporation at the direct metal-input boundary. No measured deposition utilization, manufacturing rejects/recovery, sputtering energy or end-of-life treatment is inferred.",
+      "Hold hardware coating geometry and thickness fixed across 2020-2050 in each case. Electrode catalyst loading reductions are separate and remain prospective; no additional coating-thrifting forecast has been approved.",
+      "Selected Pt CSV coefficient is cathode catalyst plus PTL coating plus BPP coating. Runtime replaces the original direct Pt input with this total; it must not append the total to the old 0.75 kg cathode input or count a second coating component.",
+      "Coatings follow the existing replacement-inclusive stack allocation, with four stacks over the hydrogen-system reference life. Do not add another independent lifetime or replacement factor."
+    ]
+  },
   "application": {
     "technology": "PEMEL",
     "target_activity": "electrolyzer production, 1MWe, PEM, Stack",
@@ -56,7 +132,7 @@
       2022,
       2050
     ],
-    "temporal_policy": "Default prospective case: hold the 2022 baseline in 2020-2022, then linearly reduce both loadings to the paired NREL Table A-7 case by assumed 2050. Source does not assign that date. Preserve source outside 2020-2050. A fixed-baseline sensitivity is available offline.",
+    "temporal_policy": "Default prospective case: hold the 2022 baseline in 2020-2022, then linearly reduce both loadings to the paired NREL Table A-7 case by assumed 2050. Source does not assign that date. Preserve source outside 2020-2050. A fixed-baseline sensitivity is available offline. Hardware coatings are fixed in each selected coating case; prospective catalyst reductions are retained.",
     "uncertainty": "Deterministic paired scenario with explicit loading and unchanged-durability assumptions. Identical bounds do not imply zero engineering uncertainty."
   },
   "historical_observations": [
@@ -375,6 +451,98 @@
       "origin_var": "PEMEL"
     }
   ],
+  "previous_catalyst_only_rows": [
+    {
+      "metal": "Iridium",
+      "unit": "kg/MW",
+      "year": "2020.0",
+      "mean": "0.5263157894736843",
+      "median": "0.5263157894736843",
+      "min": "0.5263157894736843",
+      "max": "0.5263157894736843",
+      "origin_var": "PEMEL"
+    },
+    {
+      "metal": "Platinum",
+      "unit": "kg/MW",
+      "year": "2020.0",
+      "mean": "0.26315789473684215",
+      "median": "0.26315789473684215",
+      "min": "0.26315789473684215",
+      "max": "0.26315789473684215",
+      "origin_var": "PEMEL"
+    },
+    {
+      "metal": "Ruthenium",
+      "unit": "kg/MW",
+      "year": "2020.0",
+      "mean": "0.0",
+      "median": "0.0",
+      "min": "0.0",
+      "max": "0.0",
+      "origin_var": "PEMEL"
+    },
+    {
+      "metal": "Iridium",
+      "unit": "kg/MW",
+      "year": "2050.0",
+      "mean": "0.10526315789473685",
+      "median": "0.10526315789473685",
+      "min": "0.10526315789473685",
+      "max": "0.10526315789473685",
+      "origin_var": "PEMEL"
+    },
+    {
+      "metal": "Platinum",
+      "unit": "kg/MW",
+      "year": "2050.0",
+      "mean": "0.026315789473684213",
+      "median": "0.026315789473684213",
+      "min": "0.026315789473684213",
+      "max": "0.026315789473684213",
+      "origin_var": "PEMEL"
+    },
+    {
+      "metal": "Ruthenium",
+      "unit": "kg/MW",
+      "year": "2050.0",
+      "mean": "0.0",
+      "median": "0.0",
+      "min": "0.0",
+      "max": "0.0",
+      "origin_var": "PEMEL"
+    },
+    {
+      "metal": "Iridium",
+      "unit": "kg/MW",
+      "year": "2022.0",
+      "mean": "0.5263157894736843",
+      "median": "0.5263157894736843",
+      "min": "0.5263157894736843",
+      "max": "0.5263157894736843",
+      "origin_var": "PEMEL"
+    },
+    {
+      "metal": "Platinum",
+      "unit": "kg/MW",
+      "year": "2022.0",
+      "mean": "0.26315789473684215",
+      "median": "0.26315789473684215",
+      "min": "0.26315789473684215",
+      "max": "0.26315789473684215",
+      "origin_var": "PEMEL"
+    },
+    {
+      "metal": "Ruthenium",
+      "unit": "kg/MW",
+      "year": "2022.0",
+      "mean": "0.0",
+      "median": "0.0",
+      "min": "0.0",
+      "max": "0.0",
+      "origin_var": "PEMEL"
+    }
+  ],
   "citation_audit": {
     "identifier": "Stahl_2016",
     "workbook_reference_title": "Life cycle assessment of an alkaline fuel cell CHP system",
@@ -384,15 +552,15 @@
     "status": "Mismatch verified; true numerical source unresolved. Its catalyst observations are not used by this replacement. Original historical workbook preserved. Potassium and titanium observations remain separate source-review issues."
   },
   "limits": [
-    "Matched active-electrode catalyst reference, not a complete reconstruction or validation of all stack hardware and manufacturing.",
+    "Matched active-electrode catalyst and explicit nominal flat-film Pt hardware-coating reference, not a complete stack manufacturing or lifetime validation.",
+    "Hardware coatings include the user-selected geometry/thickness assumptions in hardware_coatings. Their calculated quantity is not a measured commercial stack BOM; microscopic surfaces, process losses and energy remain gaps.",
     "Ruthenium zero belongs to this pure-Ir anode/Pt cathode design. It does not assert that all PEM catalysts lack Ru.",
     "Source loadings are contained PGM metal, not oxide mass. MW scaling uses cell terminal DC power; system AC power and delivered hydrogen energy are different boundaries.",
     "Exact 1 MW area is used. Source rounded geometry produces 999780 W, a 0.022% difference. Cell count is not multiplied into the already summed area again.",
-    "PTL and bipolar plate platinum coatings are additional to cathode catalyst; their complete quantity is unresolved and is not claimed included in the catalyst-only Pt input. Source mentions 0.1 micrometre PTL coating but complete face counts, coating areas/yields and bipolar-plate coating thickness need separate reconciliation.",
     "Retained catalyst mass is represented with 100% incorporation at the direct refined-metal purchase boundary. Catalyst manufacturing losses, recovery, processing and electrode life are not independently validated; no factory-line cost yield is treated as a measured metal yield.",
-    "Existing non-catalyst materials, hydrogen-output/energy coefficients and 45000-hour nominal stack life with its replacement count are retained source proxies. The source is not asserted to match NREL complete system performance or lifetime.",
+    "Other hardware materials, hydrogen-output/energy coefficients and 45000-hour nominal stack life with its replacement count are retained source proxies. The source is not asserted to match NREL complete system performance or lifetime.",
     "The source hydrogen recipe uses 54 kWh/kg while the NREL reference separately reports 51.1 stack + 4.2 BOP kWh/kg. These are distinct model assumptions; the catalyst correction does not claim a jointly validated complete hydrogen-system design.",
-    "Future loading reduction follows a theoretical isolated NREL sensitivity assigned to 2050 by this scenario. It is not demonstrated joint performance, lifetime and commercial adoption. Fixed-baseline sensitivity is retained; hardware coatings remain separate.",
+    "Future loading reduction follows a theoretical isolated NREL sensitivity assigned to 2050 by this scenario. It is not demonstrated joint performance, lifetime and commercial adoption. Fixed-baseline sensitivity is retained; hardware-coating quantities are calculated separately from electrode loadings.",
     "No primary/secondary-share, refinery-allocation, throughput or accepted scenario-result changes are made by this authoring step."
   ]
 }

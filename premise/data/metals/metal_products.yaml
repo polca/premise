@@ -1420,7 +1420,7 @@ rules:
   intensity_form: indium
 - id: pemel-iridium-iridium
   enabled: true
-  design_group: pemel-nrel-87625-loading-trajectory-v2
+  design_group: pemel-nrel-87625-catalysts-and-coatings-v3
   technology: PEMEL
   target:
     kind: mapped_activity
@@ -2918,7 +2918,7 @@ rules:
   comment: This exchange is already present
 - id: pemel-platinum-platinum
   enabled: true
-  design_group: pemel-nrel-87625-loading-trajectory-v2
+  design_group: pemel-nrel-87625-catalysts-and-coatings-v3
   technology: PEMEL
   target:
     kind: mapped_activity
@@ -2930,7 +2930,7 @@ rules:
   application: set_direct_amount
   ecoinvent_form: platinum
   intensity_form: platinum
-  comment: Matched cathode catalyst loading from the prospective NREL 87625 loading scenario; excludes unresolved additional hardware coatings. See pem_catalyst_reference.json.
+  comment: Matched Pt total comprises cathode catalyst plus separate PTL and bipolar-plate coatings. Default coating case assumes 100 nm on both nominal faces using documented footprint proxies; catalyst loadings decline separately. See pem_catalyst_reference.json for component calculation, sensitivities and remaining coverage gaps.
 - id: ael-platinum-platinum
   enabled: true
   technology: AEL
@@ -3099,7 +3099,7 @@ rules:
   intensity_form: ruthenium
 - id: pemel-ruthenium-ruthenium
   enabled: true
-  design_group: pemel-nrel-87625-loading-trajectory-v2
+  design_group: pemel-nrel-87625-catalysts-and-coatings-v3
   technology: PEMEL
   target:
     kind: mapped_activity

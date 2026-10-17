@@ -181,7 +181,7 @@ Table 1 (printed page 5), Figure 3 and section 3. The anode contains
    m_{Ir} = A_{sum} \times 2\ mg/cm^2 \times 10^{-6}\ kg/mg
              = 0.526315789\ kg/MW
 
-   m_{Pt} = A_{sum} \times 1\ mg/cm^2 \times 10^{-6}\ kg/mg
+   m_{Pt,catalyst} = A_{sum} \times 1\ mg/cm^2 \times 10^{-6}\ kg/mg
              = 0.263157895\ kg/MW
 
 This pure-Ir anode has zero Ru. That zero is specific to the chosen design;
@@ -197,7 +197,9 @@ For the default **prospective** case, hold the 2022 baseline over 2020–2022
 (the 2020 value is a backcast proxy). From 2022 to 2050, reduce both loadings
 linearly to the report's paired very-low-PGM case in Table A-7 (printed
 page 65): 0.4 mg Ir/cm² and 0.1 mg Pt/cm². This gives **0.105263158 kg Ir/MW**
-and **0.026315789 kg Pt/MW** in 2050, reductions of 80% and 90% respectively.
+and **0.026315789 kg cathode-catalyst Pt/MW** in 2050, reductions of 80% and
+90% respectively for electrode catalysts. Add hardware coating Pt separately
+as described below; 0.026315789 kg/MW is not the total Pt requirement.
 Ru remains zero throughout. Intermediate years follow the same common
 calendar fraction; their Ir/Pt ratio evolves with the paired loadings rather
 than combining independent sample medians.
@@ -233,12 +235,14 @@ The reference inputs, projection assumptions, previous constant coefficients,
 historical observations, citation audit and limits are packaged in
 ``data/metals/pem_catalyst_reference.json``. Run
 ``python scripts/update_pem_catalyst_reference.py`` to reproduce only the nine
-PEMEL catalyst CSV rows at 2020, 2022 and 2050. The updater guards recognized
+PEMEL Ir/Pt/Ru CSV rows at 2020, 2022 and 2050. Pt rows contain the combined
+cathode-catalyst and selected hardware-coating quantity. The updater guards recognized
 source values, preserves unrelated records including embedded newlines,
 and is byte-idempotent.
 
 The **fixed-baseline** sensitivity retains 0.526315789 kg Ir/MW and
-0.263157895 kg Pt/MW over the same years. Export a separate full intensity
+0.263157895 kg cathode-catalyst Pt/MW over the same years. With the default
+hardware coatings, its total Pt is 0.545034298 kg/MW throughout. Export a separate full intensity
 CSV without changing runtime data:
 
 .. code-block:: console
@@ -254,15 +258,88 @@ An alternative CSV export alone does not alter an existing build or point
 premise to the exported file. Both cases retain the same non-catalyst inputs;
 this switch affects only the matched PEMEL catalyst series.
 
-This correction covers retained active-electrode catalyst, with 100%
-incorporation assumed at the direct metal-purchase boundary. Catalyst
-manufacturing losses, recovery, process energy and electrode life remain
-unverified. NREL also describes additional platinum coatings on porous
-transport layers and bipolar plates; those quantities are unresolved and
-**are not included** in the catalyst-only Pt coefficient. The report's
-0.1 µm PTL coating does not alone establish complete coated area, face counts,
-deposition yields or bipolar-plate coating mass. No factory-line cost yield
-is interpreted as a measured metal recovery yield.
+Platinum hardware coatings
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The original stack has a direct 0.75 kg Pt input labelled cathode catalyst;
+it has no separate hardware-coating input or coating-service activity.
+NREL's Table 1 separately specifies Pt-coated anode PTLs and bipolar plates.
+Including cathode catalyst alone therefore leaves the selected reference
+incomplete. The runtime Pt input now replaces the old direct input with
+**cathode catalyst + PTL coating + bipolar-plate coating**, once. These
+components are calculated separately in the offline updater and reference
+JSON; they are not appended on top of the old 0.75 kg recipe.
+
+The user-selected coating reference assumes a **100 nm Pt film on both
+nominal flat faces of each anode PTL and bipolar plate**. The report directly
+specifies 100 nm only for the PTL (printed page 30). Applying that thickness
+to bipolar plates and choosing both faces are explicit engineering
+assumptions. Figure 3 gives an 877 cm² active cell area, PTL area plus a 10%
+processing buffer, and 35 × 35 cm (1225 cm²) plate footprint. Use these as
+nominal coated footprints: 1.1 times active area for the PTL, and the full
+plate plane for bipolar plates, without subtracting ports or masked seals.
+Do not apply another 10% manufacturing-loss multiplier. The earlier
+`Mayyas report <https://docs.nlr.gov/docs/fy19osti/72740.pdf>`_ used a gold
+coating; its gold is not silently interpreted as additional platinum.
+
+Using `NIST's Pt density <https://physics.nist.gov/cgi-bin/Star/compos.pl?matno=078>`_
+of 21.45 g/cm³ (21,450 kg/m³):
+
+.. math::
+
+   N_{equiv} = \frac{263157.895\ cm^2}{877\ cm^2/cell}
+
+   m_{Pt,PTL} = \frac{263157.895}{10^4}\ m^2
+                 \times 1.1 \times 2 \times 100\times10^{-9}\ m
+                 \times 21450\ kg/m^3
+                 = 0.124184211\ kg/MW
+
+   m_{Pt,BPP} = N_{equiv} \times \frac{1225}{10^4}\ m^2
+                 \times 2 \times 100\times10^{-9}\ m
+                 \times 21450\ kg/m^3
+                 = 0.157692192\ kg/MW
+
+Exact 1 MW normalization uses about 300.066 cell equivalents; the source's
+rounded 300-cell assembly is 999,780 W. Two bipolar-plate face equivalents
+per cell represent the internal shared faces and terminal-facing surfaces;
+do not add two further whole, two-sided end plates. These are projected
+flat-film areas, not measured microscopic fibre or pore surface areas.
+
+The resulting coating reference is **0.281876403 kg Pt/MW**. With unchanged
+coating geometry at all years, total Pt declines from **0.545034298 kg/MW**
+in 2020–2022 to **0.308192192 kg/MW** in 2050. Electrode catalyst retains
+its 90% reduction; the total declines by about 43.5% because the coating
+has no separately established future-thrifting trajectory. Coatings use
+the existing replacement-inclusive stack allocation: four stacks imply
+four coating sets, not another lifetime or replacement multiplier.
+
+Export explicit sensitivities without changing the runtime CSV:
+
+.. code-block:: console
+
+   python scripts/update_pem_catalyst_reference.py --coating-case one-face --output /tmp/metals-one-face.csv
+   python scripts/update_pem_catalyst_reference.py --coating-case thin-film --output /tmp/metals-thin-film.csv
+   python scripts/update_pem_catalyst_reference.py --coating-case active-area --output /tmp/metals-active-area.csv
+   python scripts/update_pem_catalyst_reference.py --coating-case none --output /tmp/metals-catalyst-only.csv
+
+``one-face`` halves the nominal coated-face count. ``thin-film`` uses 20 nm
+on both components, one fifth of reference coating mass. A
+`manufacturer reports 20–100 nm for PTLs <https://mds.umicore.com/en/electroplating/news-media/news/ultra-thin-uniform-platinum-coating-for-ptls-in-pem-electrolysers/>`_,
+but that does not validate a 20 nm bipolar plate or this complete system.
+``active-area`` coats only active-area planes, omitting the PTL buffer and
+outer plate footprint. ``none`` reproduces the previous catalyst-only
+comparison; it deliberately omits coverage and is not evidence of zero
+physical coating. Combine any coating case with either catalyst scenario.
+These are engineering sensitivities, not statistical bounds or demonstrated
+commercial designs. The default is ``--coating-case reference``.
+
+Retained catalyst and nominal flat-film coating masses assume 100%
+incorporation at the direct metal-purchase boundary. Real pore/fibre area,
+coating penetration, flow-channel surface, masks, discontinuity, deposition
+utilization, manufacturing rejects/recovery, process energy and treatment
+remain unresolved. No factory-line cost yield is interpreted as a measured
+metal recovery yield. The overall inventory remains a reference model with
+these gaps; the coating addition does not validate the entire stack.
 
 Other hardware remains unchanged. In particular, the potassium and titanium
 observations linked to ``Stahl_2016`` still need separate review. The retained

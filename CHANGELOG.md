@@ -6,6 +6,17 @@ All notable changes to this project are documented in this file.
 
 ### Fixed
 
+- Include a separate nominal Pt hardware-coating calculation in the matched
+  PEM Pt total: 0.124184 kg/MW for anode PTLs plus 0.157692 kg/MW for bipolar
+  plates. The user-selected reference uses 100 nm on both nominal flat faces,
+  with NREL footprint data and NIST Pt density; plate-coating thickness/face counts
+  are explicit assumptions, not measured complete-stack data. Replace the
+  previous direct Pt amount once, retaining prospective electrode reductions
+  and existing lifetime allocation. Provide one-face, thin-film, active-area
+  and omitted-coating diagnostic exports; document process/geometry gaps and
+  retain prior coefficients. Record the design description in exchanges.
+  Saved scenarios/results are unchanged; restart Python and rebuild to apply.
+
 - Restore prospective reductions for the matched PEM catalyst design instead
   of holding its 2022 baseline constant. Apply NREL 87625's paired low-loading
   case (0.4 mg Ir/cm², 0.1 mg Pt/cm²) in assumed 2050, with linear loading

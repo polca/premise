@@ -25,6 +25,9 @@ def source():
 ROOT = Path(__file__).resolve().parents[1]
 REFERENCE = ROOT / "premise/data/metals/pem_catalyst_reference.json"
 CSV_PATH = ROOT / "premise/data/metals/metals_db.csv"
+PTL_PT = 0.12418421052631581
+BPP_PT = 0.15769219228230213
+COATING_PT = PTL_PT + BPP_PT
 spec = importlib.util.spec_from_file_location(
     "pem_updater", ROOT / "scripts/update_pem_catalyst_reference.py"
 )
@@ -119,10 +122,24 @@ def test_complete_design_replaces_mixed_inputs_without_ru_supplier(
     ir_loading = 2 * (1 - fraction) + 0.4 * fraction
     pt_loading = 1 * (1 - fraction) + 0.1 * fraction
     assert actual == pytest.approx(
-        {"iridium": ir_loading / 3.8, "platinum": pt_loading / 3.8, "ruthenium": 0}
+        {
+            "iridium": ir_loading / 3.8,
+            "platinum": pt_loading / 3.8 + COATING_PT,
+            "ruthenium": 0,
+        }
     )
     assert actual["iridium"] / actual["platinum"] == pytest.approx(
-        ir_loading / pt_loading
+        ir_loading / (pt_loading + COATING_PT * 3.8)
+    )
+    platinum = [
+        e
+        for e in ds["exchanges"]
+        if e["type"] == "technosphere" and e.get("product") == "platinum"
+    ]
+    assert len(platinum) == 1  # replace the old 0.75 kg; never add to it
+    assert (
+        "cathode catalyst plus separate PTL and bipolar-plate coatings"
+        in platinum[0]["comment"]
     )
     assert iridium(ds)[0]["location"] == "ZA"
 
@@ -228,7 +245,7 @@ def test_both_catalysts_back_calculate_through_existing_hydrogen_allocation(sour
     activity = np.linalg.solve(matrix, [lifetime_kg, 0, 0, 0])
     fraction = 13 / 28  # 2035 lies 13 years into the 2022-2050 scenario.
     ir_kg = (2 * (1 - fraction) + 0.4 * fraction) / 3.8
-    pt_kg = (1 * (1 - fraction) + 0.1 * fraction) / 3.8
+    pt_kg = (1 * (1 - fraction) + 0.1 * fraction) / 3.8 + COATING_PT
     assert activity == pytest.approx([lifetime_kg, 4, 4 * ir_kg, 4 * pt_kg])
 
 
@@ -319,7 +336,7 @@ def test_fixed_baseline_sensitivity_round_trip_and_real_runtime(
     m.precomputed_medians = factors.sel(year=2050)
     m.update_metal_use(ds, "PEMEL")
     assert amounts(ds) == pytest.approx(
-        {"iridium": 20 / 38, "platinum": 10 / 38, "ruthenium": 0}
+        {"iridium": 20 / 38, "platinum": 10 / 38 + COATING_PT, "ruthenium": 0}
     )
     assert all(d["status"] == "updated" for d in m.material_decisions)
     updater.update(fixed, scenario="prospective")
@@ -344,4 +361,72 @@ def test_previous_fixed_reference_migrates_and_unknown_scenario_is_rejected(tmp_
     before = path.read_bytes()
     with pytest.raises(ValueError, match="Unknown PEM catalyst scenario"):
         updater.update(path, scenario="unknown")
+    assert path.read_bytes() == before
+
+
+def test_coating_mass_back_calculates_from_faces_area_nm_and_density():
+    reference = json.loads(REFERENCE.read_text())
+    actual = updater.coating_components(reference)
+    # Independent centimetre/gram calculation, with exact-MW normalization.
+    # 100 nm = 1e-5 cm. Source density is 21.45 g/cm3.
+    cells = 1e6 / (877 * 2 * 1.9)
+    ptl = cells * (877 * 1.1) * 2 * 1e-5 * 21.45 / 1000
+    bpp = cells * (35 * 35) * 2 * 1e-5 * 21.45 / 1000
+    assert actual == pytest.approx({"PTL": ptl, "bipolar_plate": bpp})
+    assert actual == pytest.approx({"PTL": PTL_PT, "bipolar_plate": BPP_PT})
+    assert cells == pytest.approx(300 / 0.99978)
+    # Shared internal plates and terminal-facing surfaces give 2N face
+    # equivalents, rather than adding two whole two-sided end plates again.
+    assert sum(actual.values()) == pytest.approx(COATING_PT)
+
+
+@pytest.mark.parametrize(
+    "case,expected_coating",
+    [
+        ("reference", COATING_PT),
+        ("one-face", COATING_PT / 2),
+        ("thin-film", COATING_PT / 5),
+        ("active-area", 4 * (1000 / 38) * 100e-9 * 21450),
+        ("none", 0),
+    ],
+)
+def test_coating_sensitivities_use_actual_loader_and_stack_without_double_counting(
+    source, tmp_path, monkeypatch, case, expected_coating
+):
+    import premise.data_collection as data_module
+
+    ds, providers = deepcopy(source)
+    providers.append(platinum_market())
+    m = grouped_model(providers, 2050)
+    original = CSV_PATH.read_bytes()
+    folder = tmp_path / "metals"
+    folder.mkdir()
+    alternate = folder / "metals_db.csv"
+    updater.update(CSV_PATH, coating_case=case, output_path=alternate)
+    assert CSV_PATH.read_bytes() == original
+    first = alternate.read_bytes()
+    updater.update(alternate, coating_case=case)
+    assert alternate.read_bytes() == first
+    monkeypatch.setattr(data_module, "DATA_DIR", tmp_path)
+    factors = data_module.get_metals_intensity_factors_data.__wrapped__()
+    m.precomputed_medians = factors.sel(year=2050)
+    m.update_metal_use(ds, "PEMEL")
+    assert amounts(ds) == pytest.approx(
+        {
+            "iridium": 0.4 / 3.8,
+            "platinum": 0.1 / 3.8 + expected_coating,
+            "ruthenium": 0,
+        }
+    )
+    assert all(d["status"] == "updated" for d in m.material_decisions)
+    updater.update(alternate)
+    assert alternate.read_bytes() == original
+
+
+def test_unknown_coating_case_does_not_change_file(tmp_path):
+    path = tmp_path / "metals.csv"
+    before = CSV_PATH.read_bytes()
+    path.write_bytes(before)
+    with pytest.raises(ValueError, match="Unknown PEM coating case"):
+        updater.update(path, coating_case="unknown")
     assert path.read_bytes() == before
