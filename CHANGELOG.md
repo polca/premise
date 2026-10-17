@@ -6,6 +6,15 @@ All notable changes to this project are documented in this file.
 
 ### Fixed
 
+- Normalize the recognized Canadian integrated cement plant's refractory input
+  to one plant for ecoinvent 3.11 and 3.12. Its original numerator used the
+  lifetime output of all 13 surveyed plants, overstating refractory intensity
+  in the national-average clinker route by a factor of 13. Guard the exact
+  source identity and coefficient, preserve relative input uncertainty, and
+  record the correction in source comments. Revise affected source-cache keys
+  so existing lists and compact checkpoints cannot bypass the correction.
+  Other plant inputs and clinker/cement allocations are retained. Rebuild
+  scenarios to apply this source normalization.
 - Propagate triangular battery-mass uncertainty through the inverse of cell
   energy density: positive lower mass bounds follow maximum density and
   upper mass bounds follow minimum density. Preserve the reversed ordering

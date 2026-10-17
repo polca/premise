@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import csv
 import pprint
+from numbers import Number
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple, Union
 
@@ -21,6 +22,9 @@ from wurst import searching as ws
 from ._bw2_backend_compat import ActivityDataset, ExchangeDataset, SQLiteBackend
 from .data_collection import get_delimiter
 from .filesystem_constants import DATA_DIR
+
+CA_CEMENT_REFRACTORY_VERSIONS = frozenset({"3.11", "3.12"})
+CA_CEMENT_REFRACTORY_CACHE_REVISION = 1
 
 try:
     from bw2data.configuration import labels
@@ -731,6 +735,94 @@ class DatabaseCleaner:
                     }
                 )
 
+    def correct_canadian_cement_refractory(self) -> int:
+        """Normalize the recognized 13-plant refractory numerator to one plant.
+
+        The native Canadian plant is one unit, but its refractory input uses
+        all 13 surveyed plants' lifetime clinker output. Guard the source
+        identity and coefficient; leave other recipes and allocation unchanged.
+        """
+        if self.version not in CA_CEMENT_REFRACTORY_VERSIONS:
+            return 0
+
+        from .utils import rescale_exchange
+
+        corrected = 0
+        for dataset in self.database:
+            if (
+                dataset.get("name"),
+                dataset.get("reference product"),
+                dataset.get("location"),
+                dataset.get("unit"),
+            ) != (
+                "integrated cement plant construction",
+                "integrated cement plant",
+                "CA",
+                "unit",
+            ):
+                continue
+            if dataset.get("activity") not in (
+                None,
+                "",
+                "085620b0-f171-5666-8400-a7bcb0aacd6f",
+            ):
+                continue
+            production = [e for e in dataset["exchanges"] if e["type"] == "production"]
+            if (
+                len(production) != 1
+                or production[0].get("unit") != "unit"
+                or not isinstance(production[0].get("amount"), Number)
+                or not np.isclose(production[0]["amount"], 1, rtol=0, atol=1e-12)
+            ):
+                continue
+            matches = [
+                e
+                for e in dataset["exchanges"]
+                if (
+                    e.get("type"),
+                    e.get("name"),
+                    e.get("product") or e.get("reference product"),
+                    e.get("location"),
+                    e.get("unit"),
+                )
+                == (
+                    "technosphere",
+                    "market for refractory, basic, packed",
+                    "refractory, basic, packed",
+                    "GLO",
+                    "kilogram",
+                )
+            ]
+            if len(matches) != 1:
+                continue
+            exchange = matches[0]
+            amount = exchange.get("amount")
+            if (
+                not isinstance(amount, Number)
+                # Allow float32 storage rounding, not a changed recipe.
+                or not np.isclose(amount, 1492307607.08133, rtol=1e-7, atol=0)
+                or exchange.get("formula")
+                or exchange.get("uncertainty type") not in (None, 0, 1, 2, 3, 4, 5)
+            ):
+                continue
+            rescale_exchange(exchange, 1 / 13, remove_uncertainty=False)
+            if exchange.get("uncertainty type") in (None, 0) and "loc" in exchange:
+                exchange["loc"] = exchange["amount"]
+            note = (
+                "Premise CA cement refractory normalization v1: divided this input "
+                f"from {float(amount):.15g} kg by 13 to represent one average plant. "
+                "The native rate is 0.00130904176059766 kg refractory/kg clinker; "
+                "11.4 million tonnes/year is output from 13 plants, over 100 years. "
+                "See ecoinvent v3.11 change report, section 10.1.1 (page 134). "
+                "Other machinery and clinker/cement allocation are unchanged."
+            )
+            exchange["comment"] = (
+                (exchange.get("comment") or "") + "\n" + note
+            ).strip()
+            dataset["comment"] = ((dataset.get("comment") or "") + "\n" + note).strip()
+            corrected += 1
+        return corrected
+
     def prepare_datasets(self, keep_uncertainty_data: bool) -> List[dict]:
         """Run the standard cleaning pipeline on the loaded database.
 
@@ -756,6 +848,12 @@ class DatabaseCleaner:
         # Remove empty exchanges
         print("Remove empty exchanges.")
         remove_nones(self.database)
+
+        corrected = self.correct_canadian_cement_refractory()
+        if corrected:
+            print(
+                f"Normalized Canadian cement refractory input in {corrected} dataset(s)."
+            )
 
         # correct carbon and energy balance
         self.correct_biogas_activities()

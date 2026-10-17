@@ -31,7 +31,11 @@ from .cache_cleanup import with_cache_session
 from .battery import _update_battery
 from .biomass import _update_biomass
 from .cement import _update_cement
-from .clean_datasets import DatabaseCleaner
+from .clean_datasets import (
+    CA_CEMENT_REFRACTORY_CACHE_REVISION,
+    CA_CEMENT_REFRACTORY_VERSIONS,
+    DatabaseCleaner,
+)
 from .data_collection import IAMDataCollection
 from .carbon_dioxide_removal import _update_cdr
 from .change_report import (
@@ -993,11 +997,21 @@ class NewDatabase:
                 digest.update(path.name.encode())
                 digest.update(path.read_bytes())
             inventory_label += f"_vehicles_{digest.hexdigest()[:16]}"
+        source_label = ""
+        if (
+            not inventories
+            and getattr(self, "version", None) in CA_CEMENT_REFRACTORY_VERSIONS
+        ):
+            # Re-extract affected sources so legacy lists and compact checkpoints
+            # cannot retain the original 13-plant refractory numerator.
+            source_label = (
+                f"_ca_cement_refractory_v{CA_CEMENT_REFRACTORY_CACHE_REVISION}"
+            )
         return (
             DIR_CACHED_DB
             / f"cached_{''.join(tuple(map(str, __version__)))}_v{CACHE_SCHEMA_VERSION}_"
             f"{self._cache_database_name(db_name)}_{uncertainty_label}"
-            f"{inventory_label}.pickle"
+            f"{inventory_label}{source_label}.pickle"
         )
 
     @staticmethod
