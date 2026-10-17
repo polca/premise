@@ -6,6 +6,13 @@ All notable changes to this project are documented in this file.
 
 ### Fixed
 
+- Match both NMC955 capacity markets to the manufactured pack's 72.591% cell
+  mass fraction, replacing the generic 71% assumption. At the unchanged 2020
+  mean cell density, buy 4.05171 kg pack/kWh instead of 4.14250 kg. Recalculate
+  manufacturing and equal-mass end-of-life uncertainty bounds from the same
+  cell fraction, preserving formulas and cached values. Rebuild scenarios to
+  apply this allocation correction; cell-density and lifetime assumptions
+  require separate validation.
 - Give NMC955 cells a dedicated dry silicon-graphite anode mixture instead of
   buying a complete anode that already contains collector foil. Keep 0.2 kg
   dry paste and 0.12 kg separate copper foil per nominal kilogram of cell.

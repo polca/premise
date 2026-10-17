@@ -1,4 +1,6 @@
-"""Check NMC955 pack, dry-anode and collector boundaries without ecoinvent."""
+"""Check NMC955 material and capacity boundaries without ecoinvent."""
+
+from copy import deepcopy
 
 import pytest
 from bw2io import ExcelImporter
@@ -8,11 +10,20 @@ from premise.filesystem_constants import INVENTORY_DIR
 PASTE = "anode paste production, silicon-graphite, for Li-ion battery, NMC955"
 PRODUCT = "anode paste, silicon-graphite, for Li-ion battery, NMC955"
 CELL = "battery cell production, Li-ion, NMC955"
+CAPACITY_MARKETS = (
+    "market for battery capacity, Li-ion, NMC955",
+    "market for battery capacity, Li-ion, NMC955, stationary",
+)
 
 
 @pytest.fixture(scope="module")
 def inventory():
     return ExcelImporter(INVENTORY_DIR / "lci-batteries-NMC955-LTO.xlsx").data
+
+
+@pytest.fixture(scope="module")
+def capacity_inventory():
+    return ExcelImporter(INVENTORY_DIR / "lci-battery-capacity.xlsx").data
 
 
 def activity(inventory, name):
@@ -178,3 +189,85 @@ def test_dry_anode_boundary_survives_premise_migration(version, monkeypatch):
     ]
     assert all(e["unit"] == "cubic meter" for e in wastewater)
     assert sum(e["amount"] for e in wastewater) == pytest.approx(-0.00096)
+
+
+def assert_capacity_mass_balance(market, cell_fraction, densities):
+    manufacture = exchange(market, "market for battery, Li-ion, NMC955")
+    disposal = exchange(market, "market for used Li-ion battery")
+    assert market["battery cell mass share"] == pytest.approx(cell_fraction)
+    assert manufacture["unit"] == disposal["unit"] == "kilogram"
+    assert manufacture["uncertainty type"] == disposal["uncertainty type"] == 5
+    # Cell kg per pack kg * cell kWh per cell kg * pack kg = one kWh.
+    assert manufacture["amount"] * cell_fraction * densities["mean"] == pytest.approx(1)
+    assert manufacture["minimum"] * cell_fraction * densities[
+        "maximum"
+    ] == pytest.approx(1)
+    assert manufacture["maximum"] * cell_fraction * densities[
+        "minimum"
+    ] == pytest.approx(1)
+    assert manufacture["minimum"] <= manufacture["loc"] <= manufacture["maximum"]
+    assert manufacture["loc"] == manufacture["amount"]
+    assert disposal["amount"] == -manufacture["amount"]
+    assert disposal["loc"] == -manufacture["loc"]
+    assert disposal["minimum"] == -manufacture["maximum"]
+    assert disposal["maximum"] == -manufacture["minimum"]
+    assert disposal["negative"] is True
+
+
+@pytest.mark.parametrize("name", CAPACITY_MARKETS)
+def test_capacity_conversion_uses_manufactured_cell_fraction(
+    inventory, capacity_inventory, name
+):
+    from premise.battery import load_cell_energy_density
+
+    pack = activity(inventory, "battery production, Li-ion, NMC955")
+    fraction = exchange(pack, CELL)["amount"] / exchange(pack, pack["name"])["amount"]
+    market = activity(capacity_inventory, name)
+    assert_capacity_mass_balance(
+        market, fraction, load_cell_energy_density()[name][2020]
+    )
+
+
+@pytest.mark.parametrize("year,density", [(2020, 0.34), (2035, 0.36), (2050, 0.38)])
+def test_capacity_mean_remains_one_kwh_after_density_change(
+    inventory, capacity_inventory, year, density
+):
+    from premise.battery import Battery
+
+    pack = activity(inventory, "battery production, Li-ion, NMC955")
+    fraction = exchange(pack, CELL)["amount"] / exchange(pack, pack["name"])["amount"]
+    battery = object.__new__(Battery)
+    battery.database = [
+        deepcopy(activity(capacity_inventory, name)) for name in CAPACITY_MARKETS
+    ]
+    battery.year = year
+    battery.write_log = lambda *args, **kwargs: None
+    battery.adjust_battery_mass()
+    for market in battery.database:
+        manufacture = exchange(market, "market for battery, Li-ion, NMC955")
+        disposal = exchange(market, "market for used Li-ion battery")
+        assert manufacture["amount"] * fraction * density == pytest.approx(1)
+        assert disposal["amount"] == -manufacture["amount"]
+
+
+@pytest.mark.parametrize("version", ["3.10", "3.11", "3.12"])
+def test_capacity_conversion_survives_premise_migration(
+    inventory, version, monkeypatch
+):
+    from premise.battery import load_cell_energy_density
+    from premise.inventory_imports import DefaultInventory
+
+    monkeypatch.setattr(
+        DefaultInventory, "display_unlinked_exchanges", lambda self: None
+    )
+    importer = DefaultInventory(
+        [], "3.10", version, INVENTORY_DIR / "lci-battery-capacity.xlsx", "cutoff", True
+    )
+    importer.prepare_inventory()
+    pack = activity(inventory, "battery production, Li-ion, NMC955")
+    fraction = exchange(pack, CELL)["amount"] / exchange(pack, pack["name"])["amount"]
+    targets = load_cell_energy_density()
+    for name in CAPACITY_MARKETS:
+        assert_capacity_mass_balance(
+            activity(importer.import_db.data, name), fraction, targets[name][2020]
+        )

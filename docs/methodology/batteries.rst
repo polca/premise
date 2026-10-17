@@ -81,6 +81,30 @@ normal inventory migration. These process quantities are an
 explicit proxy for the revised silicon mixture. Collector-foil manufacture is
 supplied separately, and cell-assembly energy is retained at cell level.
 
+NMC955 cell-to-pack capacity allocation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Both mobile and stationary NMC955 capacity markets use the manufactured pack's
+0.72591 kg cells/kg pack, replacing the generic 0.71 assumption. At cell
+density ``rho`` in kWh/kg cell, one kWh requires
+``1 / (rho * 0.72591)`` kg pack. The pack recipe's remaining 27.409% consists
+of other pack components. The 2020 cell densities remain 0.300, 0.340 and
+0.380 kWh/kg cell for the minimum, mean and maximum respectively.
+
+The resulting baseline pack purchase is 4.051709537805285 kg/kWh, with
+mass bounds 3.625213796983677–4.591937476179324 kg/kWh. Minimum mass corresponds
+to maximum density. This is a 2.19173% decrease from the previous 4.142502071251036
+kg/kWh mean. Manufacturing and end of life use equal pack mass; disposal is
+negative, with bounds equal to the negatives of the opposite manufacturing
+bounds. The triangular uncertainty type and disposal sign flag are retained.
+The workbook formulas reference their cell-fraction metadata field, and their
+cached values are updated for direct import.
+
+The existing annual density trajectory is retained. The source correction
+sets the baseline bounds; propagation of those bounds through future density
+changes is a separate runtime issue. Matching nominal cell and pack masses
+does not validate the projected cell performance or replacement schedule.
+
 Capacity and remaining coverage
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -93,9 +117,11 @@ the positive and negative materials support approximately 107.117 and
 124.175 Ah per nominal kg cell. This passes a theoretical charge screen;
 it does not establish practical discharge performance.
 
-At the unchanged 2050 capacity-market mass, that theoretical screen gives
-1.06636 kWh per nominal kWh. A separate published cell-design benchmark of
-230 Ah/kg positive active material and 3.73 V gives 0.89905 kWh instead
+After the cell-fraction correction, the retained 2050 density trajectory buys
+3.625213796983677 kg pack per nominal kWh, containing 2.631578947368421 kg cells.
+At this mass, the theoretical screen gives 1.04298 kWh per nominal kWh.
+A separate published cell-design benchmark of 230 Ah/kg positive active
+material and 3.73 V gives 0.87935 kWh instead
 (`Stephens et al., 2025, Table 4
 <https://doi.org/10.1016/j.jpowsour.2025.236170>`__). That benchmark is not a
 validated NMC955 replacement design. Practical utilization, reversible silicon
@@ -104,10 +130,9 @@ yield and lifetime still require assessment.
 
 The cell's other retained material inputs sum to 0.9919 kg per nominal kg
 cell, including this dry paste. The remaining 0.0081 kg source rounding/coverage
-gap is reported without adding an assumed material. The capacity markets also
-retain their separate 71% cell-mass assumption, while the pack contains
-72.591% cells. Neither that allocation mismatch nor the energy-density
-trajectory is changed by the anode correction. Rebuild scenario databases to
+gap is reported without adding an assumed material. The capacity-market
+allocation now matches the pack's 72.591% cell fraction; the energy-density
+trajectory remains a separate assumption. Rebuild scenario databases to
 apply the new inventory; saved results remain unchanged until regenerated.
 
 .. raw:: html
