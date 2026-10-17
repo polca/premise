@@ -12,6 +12,7 @@ import re
 
 POLICY = "energy-specific equipment; excludes chassis, body, roads and whole-vehicle maintenance"
 SOURCE_KEY = "energy use source"
+COMMON_AUXILIARY_BATTERY = "auxiliary battery, passenger car, historical proxy"
 
 
 class VehicleLookup:
@@ -161,6 +162,12 @@ def energy_per_unit(e):
 def equipment(e):
     """Explicit component classes; uncertain mixed components are not guessed."""
     n = e["name"].lower()
+    if (
+        e.get("product") or e.get("reference product")
+    ) == COMMON_AUXILIARY_BATTERY or n == f"market for {COMMON_AUXILIARY_BATTERY}":
+        # Keep this explicitly provisional, common component in the full car;
+        # it is not part of technology-specific energy consumption equipment.
+        return False
     if "maintenance" in n and any(kind in n for kind in ("scooter", "bicycle")):
         # Whole-vehicle maintenance "without battery" is not battery equipment.
         return False
@@ -436,6 +443,15 @@ def normalize(wrapper, source, database, *, preserve_fuel=True):
                         }
                     )
                 else:
+                    if (
+                        component.get("product") or component.get("reference product")
+                    ) == COMMON_AUXILIARY_BATTERY:
+                        row["boundary reason"] = (
+                            "Common low-voltage auxiliary battery; historical "
+                            "source proxy retained in the full vehicle, excluded "
+                            "from energy-specific equipment. EV specification "
+                            "and independent replacement life remain unresolved."
+                        )
                     excluded.append(row)
         elif (
             e["type"] == "biosphere"

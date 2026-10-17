@@ -6,6 +6,16 @@ All notable changes to this project are documented in this file.
 
 ### Fixed
 
+- Replace the whole-combustion-engine material proxy in all 17 BEV/FCEV car
+  production inventories with separate electric gearbox/cooling and provisional
+  common auxiliary-battery inputs. Preserve nominal combined component mass,
+  separate electric modules, traction batteries, fuel cells and driving specs.
+  Update both passenger-car final-energy wrappers; exclude the labelled common
+  auxiliary battery from their energy-specific boundary. The full vehicles
+  retain the prior direct lead burden as an explicitly historical proxy.
+  Add sourced component manufacturing/scrap/treatment inventories, an offline
+  update script, import ordering and cache invalidation. Existing ICE/hybrid
+  inventories and saved scenario results are unchanged.
 - Preserve mobile all-solid-state battery (ASSB) chemistry shares instead of
   assigning polymer, oxide and sulfide batteries to sodium-ion. Add distinct,
   documented reference-design inventories and capacity markets: LFP/PEO-LiTFSI,

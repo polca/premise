@@ -302,6 +302,9 @@ FILEPATH_TWO_WHEELERS = INVENTORY_DIR / "lci-two_wheelers.xlsx"
 FILEPATH_TRUCKS = INVENTORY_DIR / "lci-trucks.xlsx"
 FILEPATH_BUSES = INVENTORY_DIR / "lci-buses.xlsx"
 FILEPATH_PASS_CARS = INVENTORY_DIR / "lci-pass_cars.xlsx"
+FILEPATH_ELECTRIC_CAR_MECHANICAL = (
+    INVENTORY_DIR / "lci-electric-car-mechanical-powertrain.xlsx"
+)
 FILEPATH_RAIL_FREIGHT = INVENTORY_DIR / "lci-rail-freight.xlsx"
 FILEPATH_PV_GAAS = INVENTORY_DIR / "lci-PV-GaAs.xlsx"
 FILEPATH_PV_PEROVSKITE = INVENTORY_DIR / "lci-PV-perovskite.xlsx"
@@ -996,6 +999,7 @@ class NewDatabase:
                 FILEPATH_FINAL_ENERGY,
                 FILEPATH_BATTERY_CAPACITY,
                 FILEPATH_ASSB_BATTERIES,
+                FILEPATH_ELECTRIC_CAR_MECHANICAL,
             ):
                 digest.update(path.name.encode())
                 digest.update(path.read_bytes())
@@ -1277,6 +1281,7 @@ class NewDatabase:
             (FILEPATH_TWO_WHEELERS, "3.7"),
             (FILEPATH_TRUCKS, "3.12"),
             (FILEPATH_BUSES, "3.7"),
+            (FILEPATH_ELECTRIC_CAR_MECHANICAL, "3.10"),
             (FILEPATH_PASS_CARS, "3.12"),
             (FILEPATH_RAIL_FREIGHT, "3.9"),
             (FILEPATH_PV_GAAS, "3.10"),

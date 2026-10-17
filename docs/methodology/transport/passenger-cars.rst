@@ -225,6 +225,94 @@ Use ``Market Changes`` and ``Key Changes`` to distinguish composition,
 energy use and supply changes. Review the validation report separately for
 read-only emission diagnostics.
 
+Electric mechanical-powertrain inventory correction
+----------------------------------------------------
+
+Carculator's imported BEV and fuel-cell cars previously assigned their
+mechanical-powertrain mass to ``market for internal combustion engine,
+passenger car``. That supplier represents a whole combustion drivetrain,
+including starting and exhaust equipment. A medium BEV's 89.879898 kg proxy
+therefore purchased about 0.523 g platinum and 0.098 g palladium directly from
+its catalyst recipe, despite already having separate electric-motor and control
+inventories. These are direct source ingredients, not the car's full impact.
+
+The 17 BEV/FCEV production variants now use
+``lci-electric-car-mechanical-powertrain.xlsx``. Its mechanical recipe draws
+only on the electric gearbox and cooling components in
+`Notter et al. (2010), supporting Table S3
+<https://pstorage-acs-6854636.s3.amazonaws.com/4414579/es903729a_si_001.pdf>`__
+(PDF page 6). That table's caption repeats ICE, but its heading and component
+rows describe electric equipment. The 25 kg retained reference comprises
+steel/aluminium gearbox parts and cooling materials. Source waste factors
+produce 1.2212 kg gross material purchases per kg equipment; manufacturing
+scrap removes 0.2212 kg. Motor, inverter, converter, charger, PDU, traction
+battery and fuel-cell links remain separate. The source's motor, controller,
+charger and cable rows are not copied into this mechanical recipe.
+
+Assembly energy, water, transport and factory inputs use a mass-allocated
+proxy from the complete 97.51 kg historical electric reference. This is not
+measured gearbox-only manufacturing. The existing model component mass is
+retained; neither torque sizing nor a modern bill of materials is validated.
+The updated material shares are an explicit historical technology proxy.
+
+A dedicated mechanical end-of-life process sends retained steel and aluminium
+to existing cutoff scrap destinations. Polymers/rubber use mixed-plastic
+treatment, coolant uses hazardous-waste incineration and a generic manual
+facility rate supplies dismantling infrastructure. Retained end-of-life flows
+sum to one kg. These are stated treatment proxies. The motor/electronics
+scrap fractions are not applied to mechanical equipment, and no new
+primary/secondary scenario or future recycling efficiency is imposed.
+
+Common auxiliary battery and mass accounting
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The old source's starter-battery ingredients are isolated as a provisional
+common auxiliary-battery input in full vehicles. On its 275 kg reference basis,
+that historical component contains 13 kg lead, 4 kg case material and 1 kg
+acid. Its case retains the original PPS material proxy and gross loss factor;
+these do not establish a modern battery chemistry or composition.
+
+For original nominal proxy demand ``M`` kg, full vehicle production now buys
+``M * 257/275`` kg mechanical equipment and ``M * 18/275`` kg of the historical
+auxiliary proxy. Their sum remains ``M``; this is a bookkeeping split, not a
+new measured battery specification. Direct lead remains
+``M * 18/275 * 13/18 = M * 13/275`` kg. For the medium BEV this gives
+83.996850 kg mechanical equipment and 5.883048 kg historical battery-equivalent
+input, preserving 4.248868 kg direct lead in the full vehicle.
+
+The labelled common component is excluded when constructing energy-specific
+per-MJ inventories, as are the common glider and road. This does not claim zero
+lead throughout EV supply chains. Battery voltage/capacity, actual mass,
+calendar replacement life and common-system consistency across combustion
+vehicles remain unresolved. Existing whole-vehicle maintenance is retained;
+no independent auxiliary-battery replacement schedule is inferred.
+
+Both electric and hydrogen passenger-car final-energy wrappers use the
+mechanical fraction divided by their actual lifetime purchased-energy basis.
+Motor, controls, traction-capacity and fuel-cell quantities, fuel supply,
+emissions, occupancy, lifetime and performance parameters are preserved.
+Their source metadata records the common component as excluded and retains
+the original model provenance together with the local correction.
+
+Reproduction and limits
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+``data/transport/electric_mechanical_powertrain.json`` records the source,
+component masses, waste factors, allocation basis and treatment limitations.
+After a compatible car inventory refresh, run
+``python scripts/update_electric_car_mechanical_inventory.py``. The script
+builds the component workbook, patches the 17 electric vehicle production
+activities and changes ten cells in the two final-energy wrappers. All 459
+final-energy formulas and their cached values are retained. Existing
+combustion/hybrid activities and all other source activities remain unchanged.
+
+The new suppliers load before passenger cars, and their workbook participates
+in the import-cache fingerprint. Rebuild scenarios to apply the correction;
+saved databases, indicators and dashboards are not regenerated. Source
+allocation checks validate units, material balance and the per-MJ arithmetic;
+they do not certify a contemporary EV design. The background combustion-engine
+recipe remains a separate audit issue for real combustion vehicles.
+
 Sources and inventory details
 -------------------------------
 

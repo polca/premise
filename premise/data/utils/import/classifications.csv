@@ -3987,3 +3987,9 @@ silane production,silane,2011:Manufacture of basic chemicals,"34210: Hydrogen, n
 "battery production, ASSB, sulfidic","battery, ASSB, sulfidic",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
 "market for battery, ASSB, sulfidic","battery, ASSB, sulfidic",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
 "market for battery capacity, ASSB, sulfidic",electricity storage capacity,2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
+"mechanical powertrain production, electric passenger car","mechanical powertrain, electric passenger car",2930:Manufacture of parts and accessories for motor vehicles,49129: Other parts and accessories of motor vehicles
+"market for mechanical powertrain, electric passenger car","mechanical powertrain, electric passenger car",2930:Manufacture of parts and accessories for motor vehicles,49129: Other parts and accessories of motor vehicles
+"treatment of used mechanical powertrain, electric passenger car","used mechanical powertrain, electric passenger car",3830:Materials recovery,89410: Metal waste and scrap recovery (recycling) services
+"market for used mechanical powertrain, electric passenger car","used mechanical powertrain, electric passenger car",3830:Materials recovery,89410: Metal waste and scrap recovery (recycling) services
+"auxiliary battery production, passenger car, historical proxy","auxiliary battery, passenger car, historical proxy",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
+"market for auxiliary battery, passenger car, historical proxy","auxiliary battery, passenger car, historical proxy",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries

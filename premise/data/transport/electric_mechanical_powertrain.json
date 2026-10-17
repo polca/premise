@@ -1,0 +1,90 @@
+{
+  "source_version": "3.10",
+  "source": {
+    "doi": "https://doi.org/10.1021/es903729a",
+    "supplement": "https://pstorage-acs-6854636.s3.amazonaws.com/4414579/es903729a_si_001.pdf",
+    "supplement_sha256": "e92b35853d380aee2c674e83fbf790fd5353c933c713e94d60c1a6a73f6633e0",
+    "tables": "S2 and S3, PDF pages 5 and 6",
+    "basis": "Historical component-resolved reference, not a validated contemporary vehicle design."
+  },
+  "mechanical_reference": {
+    "retained_mass_kg": 25,
+    "components": [
+      {
+        "component": "gearbox internals",
+        "material": "steel, low-alloyed, hot rolled",
+        "retained_kg": 10,
+        "gross_factor": 1.25
+      },
+      {
+        "component": "gearbox housing",
+        "material": "aluminium, cast alloy",
+        "retained_kg": 9,
+        "gross_factor": 1.25
+      },
+      {
+        "component": "cooler and fan",
+        "material": "reinforcing steel",
+        "retained_kg": 0.9,
+        "gross_factor": 1.5
+      },
+      {
+        "component": "cooler",
+        "material": "aluminium, cast alloy",
+        "retained_kg": 0.6,
+        "gross_factor": 1.25
+      },
+      {
+        "component": "cooler and fan",
+        "material": "polyethylene, high density, granulate",
+        "retained_kg": 0.6,
+        "gross_factor": 1.1
+      },
+      {
+        "component": "coolant",
+        "material": "ethylene glycol",
+        "retained_kg": 2.1,
+        "gross_factor": 1
+      },
+      {
+        "component": "coolant piping",
+        "material": "polyphenylene sulfide",
+        "retained_kg": 1.2,
+        "gross_factor": 1.1
+      },
+      {
+        "component": "coolant piping",
+        "material": "synthetic rubber",
+        "retained_kg": 0.6,
+        "gross_factor": 1
+      }
+    ],
+    "whole_electric_reference_mass_kg": 97.51,
+    "whole_electric_electricity_kWh": 243,
+    "whole_electric_heat_MJ": 252,
+    "whole_electric_light_fuel_oil_MJ": 7,
+    "whole_electric_water_kg": 365,
+    "whole_electric_road_freight_tkm": 6,
+    "whole_electric_rail_freight_tkm": 60,
+    "whole_electric_vehicle_factory_unit": 3.3e-08
+  },
+  "historical_auxiliary": {
+    "ice_reference_kg": 275,
+    "retained_battery_kg": 18,
+    "retained_lead_kg": 13,
+    "retained_case_proxy_PPS_kg": 4,
+    "case_gross_factor": 1.1,
+    "retained_acid_kg": 1,
+    "basis": "Source-role decomposition of the pre-existing whole-ICE proxy. The reference-equivalent 18/275 mass share preserves its lead burden in full vehicle LCIs; it does not identify an EV battery voltage, capacity, measured mass or replacement count."
+  },
+  "boundaries": [
+    "Replace the whole-ICE proxy only in native BEV/FCEV car production; combustion/hybrid car inventories are unchanged.",
+    "Split existing nominal proxy mass into historical auxiliary share 18/275 and mechanical remainder 257/275; preserve their sum, driving specifications and all separate motor, controller, converter, charger, PDU, traction battery and fuel-cell links.",
+    "Use only gearbox and cooling material rows from the electric source. Do not copy its motor, controller, charger or cables; existing vehicle modules own those components. Cable coverage within those modules remains a separate issue.",
+    "Full vehicle LCIs retain the historical auxiliary battery as a labelled provisional component. The final-energy boundary excludes that common component; this is not a zero-lead statement for all EV equipment.",
+    "Assembly energy, water, freight and factory are a mass-allocated proxy from the complete 97.51 kg electric reference. They are not measured gearbox-only manufacturing data.",
+    "Manufacturing scrap follows gross minus retained source materials. End-of-life mechanical treatment uses its own retained-material fractions and a generic manual-treatment facility rate of 1.6e-8 unit/kg. Do not use the electronics/motor scrap fractions for mechanical equipment.",
+    "End-of-life plastics/rubber use waste-plastic mixture treatment, coolant uses hazardous-waste incineration and the provisional auxiliary battery uses the existing lead-acid scrap market. These are treatment proxies, not measured recycling efficiencies or a future primary/secondary scenario.",
+    "Existing combustion-car starter/auxiliary boundary and independent modern low-voltage battery specifications remain follow-up issues."
+  ]
+}

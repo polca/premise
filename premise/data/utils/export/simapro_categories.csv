@@ -17451,3 +17451,9 @@ zucchini production,zucchini,material,Agricultural\Plant production\Vegetables\T
 "market for battery, assb, polymer","battery, assb, polymer",material,Electronics\Battery\Transformation
 "market for battery, assb, oxidic","battery, assb, oxidic",material,Electronics\Battery\Transformation
 "market for battery, assb, sulfidic","battery, assb, sulfidic",material,Electronics\Battery\Transformation
+"mechanical powertrain production, electric passenger car","mechanical powertrain, electric passenger car",material,Transport\Road\Transformation
+"market for mechanical powertrain, electric passenger car","mechanical powertrain, electric passenger car",material,Transport\Road\Transformation
+"treatment of used mechanical powertrain, electric passenger car","used mechanical powertrain, electric passenger car",waste treatment,Transport\Road\Transformation
+"market for used mechanical powertrain, electric passenger car","used mechanical powertrain, electric passenger car",waste treatment,Transport\Road\Transformation
+"auxiliary battery production, passenger car, historical proxy","auxiliary battery, passenger car, historical proxy",material,Transport\Road\Transformation
+"market for auxiliary battery, passenger car, historical proxy","auxiliary battery, passenger car, historical proxy",material,Transport\Road\Transformation
