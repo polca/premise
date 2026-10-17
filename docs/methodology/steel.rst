@@ -121,6 +121,48 @@ category before selecting the remaining suppliers. Market construction is
 limited to matching steel families; rolled, chromium and designated residue
 or grain-related market names are excluded.
 
+Generic-market grade exclusions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Generic unalloyed steel previously admitted any supplier whose name began
+with ``steel production, electric``. That also admitted bearing,
+case-hardening, high-strength low-alloy and weathering grades, assigning
+their specialised alloy ingredients to otherwise generic steel uses.
+
+The authoritative terms are ``generic_market_exclusions`` under
+``steel - secondary`` in ``iam_variables_mapping/steel.yaml``. They are
+shared generic-market constraints, separate from production-route aliases;
+adding a term requires no Python or version-specific change. The same list
+also retains the existing rolled/removed/residue/grain exclusions.
+
+Apply these version-independent exclusions to candidate suppliers for
+generic unalloyed and low-alloyed markets. Check both activity
+name and reference product, normalizing case, punctuation and hyphens.
+Exclusions cover bearing, case-hardening/case-hardened, high-strength
+low-alloy/HSLA, weathering, chromium/stainless, tool, spring, electrical,
+silicon and maraging grades. Do not use a blanket ``carbon`` or ``alloy``
+exclusion: ordinary carbon and structural steels remain eligible, as does
+the existing generic low-alloyed electric-steel proxy. No dataset version,
+identifier, or newly preferred version-specific producer determines eligibility.
+
+This constraint applies when constructing generic markets. Specialty
+activities remain in the production-route mapping, including their regional
+and efficiency updates; markets explicitly naming those grades are not
+rebuilt as generic steel. Existing generic-family matching and supplier
+weighting still determine the mix of eligible ordinary grades. That mix is
+not newly validated as an application-specific steel-grade distribution.
+
+Keep every IAM production-route key and its production quantities. The
+exclusions change eligible grades within each route, preserving the intended
+route shares and existing consequential blacklist. An active route without
+an eligible supplier raises the market builder's missing-supplier error;
+it is not silently dropped and renormalized into another route. This does
+not revise primary/secondary assumptions or remove alloying inputs from
+legitimate specialty-steel activities. A decrease in the imposed niobium
+contribution does not establish that actual physical niobium demand is zero.
+Restart Python and rebuild scenarios to apply the filter; saved inventories,
+indicators and dashboards are unchanged.
+
 Steel markets
 ~~~~~~~~~~~~~~~
 

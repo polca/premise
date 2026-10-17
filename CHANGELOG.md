@@ -6,6 +6,17 @@ All notable changes to this project are documented in this file.
 
 ### Fixed
 
+- Exclude specialty steel grades from generic steel markets with one shared,
+  version-independent filter on activity name and reference product. Define
+  the exclusions in `steel.yaml`, separately from production-route aliases. Normalize
+  punctuation/case so bearing, case-hardening, HSLA and weathering variants,
+  along with named specialty alloy/electrical grades, cannot enter through the
+  broad electric-steel prefix. Retain ordinary carbon/structural steel and
+  generic low-alloyed electric steel without version-specific supplier lists.
+  Keep production-route mappings and IAM quantities intact, preserve explicit
+  specialty markets, and fail on missing eligible suppliers instead of moving
+  their route share. Saved scenarios/results are unchanged; rebuild to apply.
+
 - Include a separate nominal Pt hardware-coating calculation in the matched
   PEM Pt total: 0.124184 kg/MW for anode PTLs plus 0.157692 kg/MW for bipolar
   plates. The user-selected reference uses 100 nm on both nominal flat faces,
