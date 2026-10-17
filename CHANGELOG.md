@@ -6,6 +6,16 @@ All notable changes to this project are documented in this file.
 
 ### Fixed
 
+- Restore prospective reductions for the matched PEM catalyst design instead
+  of holding its 2022 baseline constant. Apply NREL 87625's paired low-loading
+  case (0.4 mg Ir/cm², 0.1 mg Pt/cm²) in assumed 2050, with linear loading
+  reductions after an explicit 2022 knot. Keep the operating point at
+  2 A/cm² and 1.9 V: 2050 intensities are 0.105263 kg Ir/MW and 0.026316 kg
+  Pt/MW. The source does not date achievement or demonstrate unchanged
+  durability; document the calendar and retained-lifetime assumptions. Keep
+  a constant-loading sensitivity, with a separate CSV export option, and
+  preserve complete-design guards. Saved scenario results are unchanged.
+
 - Replace independently combined PEM catalyst observations with the matched
   NREL 87625 baseline: 0.526316 kg Ir and 0.263158 kg Pt per nominal MW of
   stack DC capacity, with zero Ru for this pure-Ir design. Hold the reference

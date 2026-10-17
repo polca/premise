@@ -193,24 +193,66 @@ exactly 1 MW of nominal stack DC terminal power; AC-system power and delivered
 hydrogen energy have different boundaries. Treating the existing ``1MWe``
 activity as this DC stack reference is an explicit capacity-basis proxy.
 
-Hold this matched reference constant over the configured 2020–2050 support.
-These endpoints represent a fixed 2022 reference applied to scenarios, not
-measured 2020 observations or achieved 2050 targets. This removes the previous
-independent Ir/Pt learning assumptions and can increase future PGM use.
-Equal CSV mean/median/min/max values specify a deterministic design, not
-zero engineering uncertainty. Outside this support, preserve source inputs.
-The ``design_group`` on the three catalyst rules requires complete configured
-membership, supported finite intensities, and valid kilogram suppliers for
-both positive inputs before changing any member. A missing or incompatible
-supplier cannot leave a partially changed catalyst set. No Ru market is
-required to apply its explicit zero. Provenance identifies the matched group
-and fixed-reference temporal treatment.
+For the default **prospective** case, hold the 2022 baseline over 2020–2022
+(the 2020 value is a backcast proxy). From 2022 to 2050, reduce both loadings
+linearly to the report's paired very-low-PGM case in Table A-7 (printed
+page 65): 0.4 mg Ir/cm² and 0.1 mg Pt/cm². This gives **0.105263158 kg Ir/MW**
+and **0.026315789 kg Pt/MW** in 2050, reductions of 80% and 90% respectively.
+Ru remains zero throughout. Intermediate years follow the same common
+calendar fraction; their Ir/Pt ratio evolves with the paired loadings rather
+than combining independent sample medians.
 
-The reference inputs, historical coefficients, citation audit and limits are
-packaged in ``data/metals/pem_catalyst_reference.json``. Run
-``python scripts/update_pem_catalyst_reference.py`` to reproduce only the six
-PEMEL catalyst CSV rows. The updater guards recognized source values, preserves
-unrelated records including embedded newlines, and is byte-idempotent.
+The report does **not** assign a calendar date to this case. Reaching it in
+2050 and interpolating linearly are explicit scenario assumptions, not a
+published forecast or achieved observations. Section 3.5 and Figure 25 treat
+these as theoretical isolated changes. Use only the loading-reduction case;
+do not also credit the report's separate 5 A/cm² current-density case.
+Retain 2 A/cm² and 1.9 V/cell (3.8 W/cm²), the same nominal DC capacity,
+hydrogen productivity and replacement schedule. Thus only catalyst loading
+changes: there is no additional reduction from higher power density,
+efficiency or longer life. The common 2022 knot prevents improvement being
+credited before the reference's status year.
+
+Lower loading at unchanged performance and durability is an assumption.
+The report explicitly warns of degradation and efficiency trade-offs,
+especially under dynamic operation; this is not a demonstrated commercial
+trajectory. The unchanged lifetime allocation remains a separate proxy,
+as described below. Evaluate the constant-loading sensitivity alongside the
+prospective case when assessing how this assumption affects metal demand.
+
+Equal CSV mean/median/min/max values specify a deterministic scenario, not
+zero engineering uncertainty. Outside the 2020–2050 support, preserve source
+inputs. The ``design_group`` on the three catalyst rules requires complete
+configured membership, supported finite intensities, and valid kilogram
+suppliers for both positive inputs before changing any member. A missing or
+incompatible supplier cannot leave a partially changed catalyst set. No Ru
+market is required to apply its explicit zero. Provenance identifies the
+matched group, requested year, selected intensities and temporal support.
+
+The reference inputs, projection assumptions, previous constant coefficients,
+historical observations, citation audit and limits are packaged in
+``data/metals/pem_catalyst_reference.json``. Run
+``python scripts/update_pem_catalyst_reference.py`` to reproduce only the nine
+PEMEL catalyst CSV rows at 2020, 2022 and 2050. The updater guards recognized
+source values, preserves unrelated records including embedded newlines,
+and is byte-idempotent.
+
+The **fixed-baseline** sensitivity retains 0.526315789 kg Ir/MW and
+0.263157895 kg Pt/MW over the same years. Export a separate full intensity
+CSV without changing runtime data:
+
+.. code-block:: console
+
+   python scripts/update_pem_catalyst_reference.py --scenario fixed-baseline --output /tmp/metals-fixed-baseline.csv
+
+For an intentional sensitivity build, omit ``--output`` to select the
+constant case in the local runtime CSV, then rebuild scenarios. Run the
+updater with its default ``--scenario prospective`` to restore the default.
+Restart Python before rebuilding after a switch, because the material-data
+loader caches its array within a Python process.
+An alternative CSV export alone does not alter an existing build or point
+premise to the exported file. Both cases retain the same non-catalyst inputs;
+this switch affects only the matched PEMEL catalyst series.
 
 This correction covers retained active-electrode catalyst, with 100%
 incorporation assumed at the direct metal-purchase boundary. Catalyst

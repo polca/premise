@@ -94,8 +94,10 @@ def iridium(ds):
     "year,expected",
     [
         (2020, 2 / (2 * 1.9)),
-        (2035, 2 / (2 * 1.9)),
-        (2050, 2 / (2 * 1.9)),
+        (2021, 2 / (2 * 1.9)),
+        (2022, 2 / (2 * 1.9)),
+        (2035, (2 * (1 - 13 / 28) + 0.4 * 13 / 28) / (2 * 1.9)),
+        (2050, 0.4 / (2 * 1.9)),
     ],
 )
 def test_real_stack_uses_exact_existing_refinery_and_kg_per_MW(
@@ -338,7 +340,7 @@ def test_iridium_back_calculates_through_real_hydrogen_lifetime_allocation(sourc
     )
     activity = np.linalg.solve(matrix, [lifetime_hydrogen, 0.0, 0.0])
     assert activity[1] == pytest.approx(stacks)
-    assert activity[2] == pytest.approx(stacks * 2 / (2 * 1.9))
+    assert activity[2] == pytest.approx(stacks * 0.4 / (2 * 1.9))
     assert hydrogen == next(
         d for d in ExcelImporter(path).data if d["name"] == hydrogen["name"]
     )

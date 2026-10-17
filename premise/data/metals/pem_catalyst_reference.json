@@ -1,5 +1,6 @@
 {
-  "design_id": "pemel-nrel-87625-2022-baseline-v1",
+  "design_id": "pemel-nrel-87625-loading-trajectory-v2",
+  "baseline_design_id": "pemel-nrel-87625-2022-baseline-v1",
   "source": {
     "title": "Updated Manufactured Cost Analysis for Proton Exchange Membrane Water Electrolyzers",
     "authors": "Badgett et al.",
@@ -8,7 +9,7 @@
     "represented_status_year": 2022,
     "doi": "10.2172/2311140",
     "url": "https://docs.nlr.gov/docs/fy24osti/87625.pdf",
-    "basis": "Table 1 (printed page 5, PDF page 18), Figure 3 (printed page 6), section 3 (printed page 28). Table and figures visually checked.",
+    "basis": "Table 1 (printed page 5, PDF page 18), Figure 3 (printed page 6), section 3 (printed page 28). Table and figures visually checked. Future loading case: Table A-7 (printed page 65, PDF page 78); section 3.5 and Figure 25 (printed pages 45-50) treat this as an isolated theoretical change. Table visually checked.",
     "pdf_sha256": "75b08bb69054b31fe2de265805e78cb475b9ff3c09149ba14d4059b097a95322"
   },
   "reference": {
@@ -27,6 +28,22 @@
     "temperature_C": 80,
     "cathode_pressure_bar": 30
   },
+  "projection": {
+    "scenario": "prospective",
+    "baseline_year": 2022,
+    "endpoint_year": 2050,
+    "contained_metal_loadings_mg_cm2": {
+      "Iridium": 0.4,
+      "Platinum": 0.1,
+      "Ruthenium": 0
+    },
+    "basis": "NREL 87625 Table A-7 very-low-PGM loading case; Figure 25 applies isolated changes individually. Use its paired loadings without combining the separate high-current-density case.",
+    "calendar_assumption": "The source does not date achievement. Assign 2050 as an explicit scenario assumption, not a published prediction. Hold the 2022 baseline for the 2020 backcast; interpolate linearly from 2022 to 2050.",
+    "operating_point": "Retain 2 A/cm2 and 1.9 V/cell throughout. No current-density, efficiency, nominal-capacity or hydrogen-productivity improvement is credited by this catalyst-only scenario.",
+    "durability": "Retain source nominal 45000-hour stack life and replacement-inclusive four-stack lifetime allocation. This is an explicit unchanged-durability assumption, not a validated outcome at lower loading. NREL warns of performance and durability trade-offs.",
+    "sensitivity": "fixed-baseline retains 2 mg Ir/cm2 and 1 mg Pt/cm2 at all supported years; all other inputs and the support endpoints are identical.",
+    "uncertainty": "Scenario assumptions, not measured future observations. Deterministic paired design points; do not independently sample metal bounds."
+  },
   "application": {
     "technology": "PEMEL",
     "target_activity": "electrolyzer production, 1MWe, PEM, Stack",
@@ -36,10 +53,11 @@
     "MW_per_target_unit": 1,
     "years": [
       2020,
+      2022,
       2050
     ],
-    "temporal_policy": "Fixed 2022 reference applied as a scenario proxy across 2020-2050, not historical observations at the endpoint years. Preserve source outside this configured support.",
-    "uncertainty": "Deterministic paired design. Do not sample independent element medians or interpret identical bounds as zero engineering uncertainty."
+    "temporal_policy": "Default prospective case: hold the 2022 baseline in 2020-2022, then linearly reduce both loadings to the paired NREL Table A-7 case by assumed 2050. Source does not assign that date. Preserve source outside 2020-2050. A fixed-baseline sensitivity is available offline.",
+    "uncertainty": "Deterministic paired scenario with explicit loading and unchanged-durability assumptions. Identical bounds do not imply zero engineering uncertainty."
   },
   "historical_observations": [
     {
@@ -295,6 +313,68 @@
       "origin_var": "PEMEL"
     }
   ],
+  "previous_fixed_reference_rows": [
+    {
+      "metal": "Iridium",
+      "unit": "kg/MW",
+      "year": "2020.0",
+      "mean": "0.5263157894736843",
+      "median": "0.5263157894736843",
+      "min": "0.5263157894736843",
+      "max": "0.5263157894736843",
+      "origin_var": "PEMEL"
+    },
+    {
+      "metal": "Platinum",
+      "unit": "kg/MW",
+      "year": "2020.0",
+      "mean": "0.26315789473684215",
+      "median": "0.26315789473684215",
+      "min": "0.26315789473684215",
+      "max": "0.26315789473684215",
+      "origin_var": "PEMEL"
+    },
+    {
+      "metal": "Ruthenium",
+      "unit": "kg/MW",
+      "year": "2020.0",
+      "mean": "0.0",
+      "median": "0.0",
+      "min": "0.0",
+      "max": "0.0",
+      "origin_var": "PEMEL"
+    },
+    {
+      "metal": "Iridium",
+      "unit": "kg/MW",
+      "year": "2050.0",
+      "mean": "0.5263157894736843",
+      "median": "0.5263157894736843",
+      "min": "0.5263157894736843",
+      "max": "0.5263157894736843",
+      "origin_var": "PEMEL"
+    },
+    {
+      "metal": "Platinum",
+      "unit": "kg/MW",
+      "year": "2050.0",
+      "mean": "0.26315789473684215",
+      "median": "0.26315789473684215",
+      "min": "0.26315789473684215",
+      "max": "0.26315789473684215",
+      "origin_var": "PEMEL"
+    },
+    {
+      "metal": "Ruthenium",
+      "unit": "kg/MW",
+      "year": "2050.0",
+      "mean": "0.0",
+      "median": "0.0",
+      "min": "0.0",
+      "max": "0.0",
+      "origin_var": "PEMEL"
+    }
+  ],
   "citation_audit": {
     "identifier": "Stahl_2016",
     "workbook_reference_title": "Life cycle assessment of an alkaline fuel cell CHP system",
@@ -312,7 +392,7 @@
     "Retained catalyst mass is represented with 100% incorporation at the direct refined-metal purchase boundary. Catalyst manufacturing losses, recovery, processing and electrode life are not independently validated; no factory-line cost yield is treated as a measured metal yield.",
     "Existing non-catalyst materials, hydrogen-output/energy coefficients and 45000-hour nominal stack life with its replacement count are retained source proxies. The source is not asserted to match NREL complete system performance or lifetime.",
     "The source hydrogen recipe uses 54 kWh/kg while the NREL reference separately reports 51.1 stack + 4.2 BOP kWh/kg. These are distinct model assumptions; the catalyst correction does not claim a jointly validated complete hydrogen-system design.",
-    "Published future technology targets/sensitivities are not implemented as achieved chronological improvements. Applying this fixed baseline can raise future PGM use relative to the former independent learning assumptions.",
+    "Future loading reduction follows a theoretical isolated NREL sensitivity assigned to 2050 by this scenario. It is not demonstrated joint performance, lifetime and commercial adoption. Fixed-baseline sensitivity is retained; hardware coatings remain separate.",
     "No primary/secondary-share, refinery-allocation, throughput or accepted scenario-result changes are made by this authoring step."
   ]
 }

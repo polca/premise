@@ -2099,7 +2099,7 @@ class Metals(BaseTransformation):
                 "source year minimum": first,
                 "source year maximum": last,
                 "temporal treatment": (
-                    "fixed reference within configured support"
+                    "matched design within configured support"
                     if rule.design_group
                     else "within observed range"
                 ),

@@ -85,7 +85,7 @@ def test_published_loading_and_power_basis():
     assert (1e6 - rounded_W) / 1e6 == pytest.approx(0.00022)
 
 
-@pytest.mark.parametrize("year", [2020, 2035, 2050])
+@pytest.mark.parametrize("year", [2020, 2021, 2022, 2035, 2050])
 @pytest.mark.parametrize("execution", ["activity", "compiled"])
 def test_complete_design_replaces_mixed_inputs_without_ru_supplier(
     source, year, execution
@@ -115,10 +115,15 @@ def test_complete_design_replaces_mixed_inputs_without_ru_supplier(
         m.database = [ds]
         m.update_metals_use_in_database()
     actual = amounts(ds)
+    fraction = max(0, (year - 2022) / 28)
+    ir_loading = 2 * (1 - fraction) + 0.4 * fraction
+    pt_loading = 1 * (1 - fraction) + 0.1 * fraction
     assert actual == pytest.approx(
-        {"iridium": 20 / 38, "platinum": 10 / 38, "ruthenium": 0}
+        {"iridium": ir_loading / 3.8, "platinum": pt_loading / 3.8, "ruthenium": 0}
     )
-    assert actual["iridium"] / actual["platinum"] == pytest.approx(2)
+    assert actual["iridium"] / actual["platinum"] == pytest.approx(
+        ir_loading / pt_loading
+    )
     assert iridium(ds)[0]["location"] == "ZA"
 
     def other(d):
@@ -131,7 +136,7 @@ def test_complete_design_replaces_mixed_inputs_without_ru_supplier(
         d["design group"] == catalysts()[0].design_group for d in m.material_decisions
     )
     assert all(
-        d["temporal treatment"] == "fixed reference within configured support"
+        d["temporal treatment"] == "matched design within configured support"
         for d in m.material_decisions
     )
     after = deepcopy(ds)
@@ -221,7 +226,10 @@ def test_both_catalysts_back_calculate_through_existing_hydrogen_allocation(sour
     matrix[2, 1] = -actual["iridium"]
     matrix[3, 1] = -actual["platinum"]
     activity = np.linalg.solve(matrix, [lifetime_kg, 0, 0, 0])
-    assert activity == pytest.approx([lifetime_kg, 4, 4 * 20 / 38, 4 * 10 / 38])
+    fraction = 13 / 28  # 2035 lies 13 years into the 2022-2050 scenario.
+    ir_kg = (2 * (1 - fraction) + 0.4 * fraction) / 3.8
+    pt_kg = (1 * (1 - fraction) + 0.1 * fraction) / 3.8
+    assert activity == pytest.approx([lifetime_kg, 4, 4 * ir_kg, 4 * pt_kg])
 
 
 @pytest.mark.parametrize("change", ["disabled", "technology", "target", "bad text"])
@@ -284,3 +292,56 @@ def test_authoring_preserves_unrelated_csv_records_and_is_guarded(tmp_path):
     with pytest.raises(ValueError, match="Unrecognized"):
         updater.update(path)
     assert path.read_bytes() == unknown
+
+
+def test_fixed_baseline_sensitivity_round_trip_and_real_runtime(
+    source, tmp_path, monkeypatch
+):
+    import premise.data_collection as data_module
+
+    ds, providers = deepcopy(source)
+    providers.append(platinum_market())
+    m = grouped_model(providers, 2050)
+    original = CSV_PATH.read_bytes()
+    folder = tmp_path / "metals"
+    folder.mkdir()
+    fixed = folder / "metals_db.csv"
+    updater.update(CSV_PATH, scenario="fixed-baseline", output_path=fixed)
+    fixed_bytes = fixed.read_bytes()
+    assert CSV_PATH.read_bytes() == original
+    updater.update(fixed, scenario="fixed-baseline")
+    assert fixed.read_bytes() == fixed_bytes
+
+    # Read the alternative through the actual loader without replacing runtime
+    # source files or disturbing its process-local cache.
+    monkeypatch.setattr(data_module, "DATA_DIR", tmp_path)
+    factors = data_module.get_metals_intensity_factors_data.__wrapped__()
+    m.precomputed_medians = factors.sel(year=2050)
+    m.update_metal_use(ds, "PEMEL")
+    assert amounts(ds) == pytest.approx(
+        {"iridium": 20 / 38, "platinum": 10 / 38, "ruthenium": 0}
+    )
+    assert all(d["status"] == "updated" for d in m.material_decisions)
+    updater.update(fixed, scenario="prospective")
+    assert fixed.read_bytes() == original
+
+
+def test_previous_fixed_reference_migrates_and_unknown_scenario_is_rejected(tmp_path):
+    reference = json.loads(REFERENCE.read_text())
+    path = tmp_path / "v1.csv"
+    with path.open("w", newline="") as stream:
+        rows = reference["previous_fixed_reference_rows"]
+        writer = csv.DictWriter(stream, fieldnames=list(rows[0]), lineterminator="\n")
+        writer.writeheader()
+        writer.writerows(rows)
+    updater.update(path)
+    with path.open() as stream:
+        rows = list(csv.DictReader(stream))
+    assert len(rows) == 9
+    assert {float(r["year"]) for r in rows} == {2020, 2022, 2050}
+    ir = next(r for r in rows if r["metal"] == "Iridium" and r["year"] == "2050.0")
+    assert float(ir["median"]) == pytest.approx(0.4 / 3.8)
+    before = path.read_bytes()
+    with pytest.raises(ValueError, match="Unknown PEM catalyst scenario"):
+        updater.update(path, scenario="unknown")
+    assert path.read_bytes() == before
