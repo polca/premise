@@ -329,6 +329,7 @@ anionic resin production,anionic resin,material,Chemicals\Others\Transformation
 anode factory construction,anode factory,material,Metals\Extraction\Transformation\Infrastructure
 "anode paste, LFP","anode paste, LFP",material,Electronics\Battery\Transformation
 "anode paste, lto","anode paste, lto",material,Electronics\Battery\Transformation
+"anode paste production, silicon-graphite, for li-ion battery, nmc955","anode paste, silicon-graphite, for li-ion battery, nmc955",material,Electronics\Battery\Transformation
 "anode production, for metal electrolysis","anode, for metal electrolysis",material,Metals\Extraction\Transformation
 "anode production, graphite, for Li-ion battery","anode, graphite, for Li-ion battery",material,Electronics\Battery\Transformation
 "anode production, graphite, for lithium-ion battery","anode, graphite, for lithium-ion battery",material,Others\Obsolete

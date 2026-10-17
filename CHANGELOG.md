@@ -6,6 +6,15 @@ All notable changes to this project are documented in this file.
 
 ### Fixed
 
+- Give NMC955 cells a dedicated dry silicon-graphite anode mixture instead of
+  buying a complete anode that already contains collector foil. Keep 0.2 kg
+  dry paste and 0.12 kg separate copper foil per nominal kilogram of cell.
+  Implement the documented 9% graphite substitution as 85.54% graphite,
+  8.46% silicon and 6% additives/binders in dry paste. Retain documented
+  mixing/drying energy, solvent and infrastructure through an explicit source
+  proxy. See the batteries documentation for the source basis and remaining
+  capacity, lifetime and whole-cell mass limitations. Rebuild scenario databases
+  to apply this correction.
 - Normalize the NMC955 battery market to purchase 1 kg of complete battery
   production per kilogram sold, replacing the erroneous 0.72591 kg purchase.
   The 0.72591 kg cell fraction is already included inside pack manufacture;
