@@ -311,7 +311,86 @@ in the import-cache fingerprint. Rebuild scenarios to apply the correction;
 saved databases, indicators and dashboards are not regenerated. Source
 allocation checks validate units, material balance and the per-MJ arithmetic;
 they do not certify a contemporary EV design. The background combustion-engine
-recipe remains a separate audit issue for real combustion vehicles.
+recipe's remaining mass-accounting limitations are described below.
+
+Historical combustion-drivetrain aluminium correction
+------------------------------------------------------
+
+Source basis and quantities
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For ecoinvent 3.10, 3.11 and 3.12 cutoff, source cleaning corrects the recognized
+native ``internal combustion engine production, passenger car`` recipe and its
+linked shredding treatment together. The nominal reference is the historical
+275 kg complete combustion drivetrain, not a measured contemporary bare engine.
+
+The aluminium component rows in
+`Notter et al. (2010), supporting Table S2
+<https://pstorage-acs-6854636.s3.amazonaws.com/4414579/es903729a_si_001.pdf>`__
+(PDF page 5) sum to 49.5 kg retained aluminium. Their 1.25 gross purchase factor
+gives 61.875 kg input and 12.375 kg manufacturing scrap. This agrees with the
+grouped aluminium input in Althaus and Gauch (2010), Table 80. The native
+recipe instead purchases 170.07 kg and exports 34.014 kg manufacturing scrap
+on that same reference. The excess gross purchase equals the recipe's
+108.195 kg low-alloy steel purchase, but this arithmetic is not proof of how
+the error arose.
+
+The correction uses a single factor ``61.875/170.07`` for gross aluminium,
+manufacturing aluminium scrap and post-consumer aluminium scrap:
+
+.. list-table:: Aluminium flows per nominal kg of combustion drivetrain
+   :header-rows: 1
+   :widths: 48 26 26
+
+   * - Flow (kg)
+     - Native
+     - Corrected
+   * - Cast-alloy input
+     - 0.618436364
+     - 0.225
+   * - Manufacturing scrap (outflow magnitude)
+     - 0.123687273
+     - 0.045
+   * - Retained after manufacturing allowance
+     - 0.494749091
+     - 0.18
+   * - Post-consumer scrap (outflow magnitude)
+     - 0.408771
+     - 0.148719384
+
+Post-consumer recovery retains the native ratio of about 82.62188% of retained
+aluminium. This is an inherited, unvalidated treatment assumption, not a new
+recycling-efficiency estimate. Negative cutoff scrap and waste-reference signs
+are preserved. No primary/secondary market shares change.
+
+Guards, cache handling and limitations
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The correction requires unique GLO kilogram production, waste-market and
+shredding activities, their original signed reference outputs and waste links,
+and all three original aluminium coefficients. The raw production activity
+UUID is checked when available. Exact cutoff scrap supplier identities exclude
+other system-model recipes. Changed formulas, unrecognized uncertainty types,
+ambiguous suppliers and unsupported versions leave the entire chain unchanged.
+Float32 source-storage rounding is tolerated. Rescaling preserves relative
+uncertainty and existing comments; appended comments identify the source and
+the retained treatment assumption. Repeated cleaning does not rescale again.
+
+Affected source-cache names include ``ice_aluminium_v1``. This also invalidates
+compact checkpoints that refer to the previous source cache, forcing source
+cleaning before new scenarios use it. Import caches are not rewritten. Source
+Brightway databases, vendor files and saved scenario results are not modified.
+
+This is an aluminium correction, not complete mass closure. Steel purchases and
+manufacturing scrap still have a separate source-factor discrepancy. The
+nominal 275 kg includes fuel/operating fluids in the source; native manufacture
+omits the initial fuel. Other treatment outputs and generic shredder emissions
+are retained. Named treatment outflows total approximately 0.745090 kg per
+nominal kg after removing the excess aluminium, versus 1.005142 kg before.
+The missing mass is explicitly unresolved; no invented material is assigned to
+residue, and no universal ``275/220`` rescaling is applied. Vehicle component
+demands and performance specifications are unchanged. The separate electric
+mechanical/auxiliary inventories above are not targets of this correction.
 
 Sources and inventory details
 -------------------------------

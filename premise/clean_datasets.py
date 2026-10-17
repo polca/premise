@@ -25,6 +25,8 @@ from .filesystem_constants import DATA_DIR
 
 CA_CEMENT_REFRACTORY_VERSIONS = frozenset({"3.11", "3.12"})
 CA_CEMENT_REFRACTORY_CACHE_REVISION = 1
+ICE_ALUMINIUM_VERSIONS = frozenset({"3.10", "3.11", "3.12"})
+ICE_ALUMINIUM_CACHE_REVISION = 1
 
 try:
     from bw2data.configuration import labels
@@ -823,6 +825,146 @@ class DatabaseCleaner:
             corrected += 1
         return corrected
 
+    def correct_passenger_car_engine_aluminium(self) -> int:
+        """Restore source aluminium purchases, scrap and proportional recovery.
+
+        Apply the three edits together only to the recognized native cutoff
+        production/treatment chain. Preserve its nominal mass and inherited
+        recovery fraction; this does not close the complete drivetrain budget.
+        """
+        if self.version not in ICE_ALUMINIUM_VERSIONS:
+            return 0
+
+        from .utils import rescale_exchange
+
+        engine = "internal combustion engine, passenger car"
+        used = f"used {engine}"
+        production_name = "internal combustion engine production, passenger car"
+        treatment_name = f"treatment of {used}, shredding"
+
+        def dataset(name, product, output):
+            matches = [
+                d
+                for d in self.database
+                if (
+                    d.get("name"),
+                    d.get("reference product"),
+                    d.get("location"),
+                    d.get("unit"),
+                )
+                == (name, product, "GLO", "kilogram")
+            ]
+            if len(matches) != 1:
+                return None
+            ds = matches[0]
+            outputs = [e for e in ds["exchanges"] if e.get("type") == "production"]
+            if (
+                len(outputs) != 1
+                or outputs[0].get("unit") != "kilogram"
+                or not isinstance(outputs[0].get("amount"), Number)
+                or not np.isclose(outputs[0]["amount"], output, rtol=0, atol=1e-12)
+                or outputs[0].get("formula")
+            ):
+                return None
+            return ds
+
+        def exchange(ds, name, product, amount):
+            matches = [
+                e
+                for e in ds["exchanges"]
+                if (
+                    e.get("type"),
+                    e.get("name"),
+                    e.get("product") or e.get("reference product"),
+                    e.get("location"),
+                    e.get("unit"),
+                )
+                == ("technosphere", name, product, "GLO", "kilogram")
+            ]
+            if len(matches) != 1:
+                return None
+            exc = matches[0]
+            if (
+                not isinstance(exc.get("amount"), Number)
+                or not np.isclose(exc["amount"], amount, rtol=1e-7, atol=0)
+                or exc.get("formula")
+                or exc.get("uncertainty type") not in (None, 0, 1, 2, 3, 4, 5)
+            ):
+                return None
+            return exc
+
+        production = dataset(production_name, engine, 1)
+        treatment = dataset(treatment_name, used, -1)
+        market = dataset(f"market for {used}", used, -1)
+        if any(d is None for d in (production, treatment, market)):
+            return 0
+        if production.get("activity") not in (
+            None,
+            "",
+            "8f58b3aa-a2d2-5bb6-a286-965d91f95bd7",
+        ):
+            return 0
+        # The negative waste links and cutoff scrap identities also guard the
+        # system model. Do not change an allocation/substitution recipe.
+        links = [
+            exchange(production, f"market for {used}", used, -1),
+            exchange(market, treatment_name, used, -1),
+        ]
+        edits = [
+            (
+                production,
+                exchange(
+                    production,
+                    "market for aluminium, cast alloy",
+                    "aluminium, cast alloy",
+                    170.07 / 275,
+                ),
+            ),
+            (
+                production,
+                exchange(
+                    production,
+                    "aluminium scrap, new, Recycled Content cut-off",
+                    "aluminium scrap, new",
+                    -34.014 / 275,
+                ),
+            ),
+            (
+                treatment,
+                exchange(
+                    treatment,
+                    "aluminium scrap, post-consumer, Recycled Content cut-off",
+                    "aluminium scrap, post-consumer",
+                    -0.408771,
+                ),
+            ),
+        ]
+        if any(e is None for e in links) or any(e is None for _, e in edits):
+            return 0
+
+        factor = 61.875 / 170.07
+        note = (
+            "Premise passenger-car ICE aluminium correction v1: source gross "
+            "aluminium is 61.875 kg, with 12.375 kg manufacturing scrap and "
+            "49.5 kg retained per nominal 275 kg drivetrain (Notter et al. 2010, "
+            "supporting Table S2, https://doi.org/10.1021/es903729a; "
+            "Althaus and Gauch 2010, Table 80). Replace the native 170.07 kg "
+            "gross input and scale its manufacturing and post-consumer scrap "
+            "by 61.875/170.07 together. Post-consumer recovery retains the native "
+            "82.62188% of retained aluminium as an unvalidated treatment proxy. "
+            "Other treatment flows/emissions and nominal masses are unchanged; "
+            "the remaining steel, fluid/reference-mass and treatment mass gaps "
+            "are unresolved. No balancing residue or new recovery rate is inferred."
+        )
+        for ds, exc in edits:
+            rescale_exchange(exc, factor, remove_uncertainty=False)
+            if exc.get("uncertainty type") in (None, 0) and "loc" in exc:
+                exc["loc"] = exc["amount"]
+            exc["comment"] = ((exc.get("comment") or "") + "\n" + note).strip()
+        for ds in (production, treatment):
+            ds["comment"] = ((ds.get("comment") or "") + "\n" + note).strip()
+        return 1
+
     def prepare_datasets(self, keep_uncertainty_data: bool) -> List[dict]:
         """Run the standard cleaning pipeline on the loaded database.
 
@@ -854,6 +996,9 @@ class DatabaseCleaner:
             print(
                 f"Normalized Canadian cement refractory input in {corrected} dataset(s)."
             )
+
+        if self.correct_passenger_car_engine_aluminium():
+            print("Corrected passenger-car engine aluminium input and scrap chain.")
 
         # correct carbon and energy balance
         self.correct_biogas_activities()

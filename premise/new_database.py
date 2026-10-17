@@ -34,6 +34,8 @@ from .cement import _update_cement
 from .clean_datasets import (
     CA_CEMENT_REFRACTORY_CACHE_REVISION,
     CA_CEMENT_REFRACTORY_VERSIONS,
+    ICE_ALUMINIUM_CACHE_REVISION,
+    ICE_ALUMINIUM_VERSIONS,
     DatabaseCleaner,
 )
 from .data_collection import IAMDataCollection
@@ -1014,6 +1016,10 @@ class NewDatabase:
             source_label = (
                 f"_ca_cement_refractory_v{CA_CEMENT_REFRACTORY_CACHE_REVISION}"
             )
+        if not inventories and getattr(self, "version", None) in ICE_ALUMINIUM_VERSIONS:
+            # Re-extract both manufacturing and treatment; old source lists and
+            # compact checkpoints must not retain the inconsistent aluminium.
+            source_label += f"_ice_aluminium_v{ICE_ALUMINIUM_CACHE_REVISION}"
         return (
             DIR_CACHED_DB
             / f"cached_{''.join(tuple(map(str, __version__)))}_v{CACHE_SCHEMA_VERSION}_"

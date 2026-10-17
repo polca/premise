@@ -6,6 +6,15 @@ All notable changes to this project are documented in this file.
 
 ### Fixed
 
+- Restore the recognized native passenger-car combustion drivetrain's aluminium
+  input to its published historical source in ecoinvent 3.10–3.12 cutoff.
+  Correct manufacturing scrap and proportional post-consumer aluminium together,
+  preserving the inherited recovery fraction as a treatment proxy. Guard the
+  complete native production/waste-market/treatment chain, preserve relative
+  uncertainty and provenance, and invalidate affected source caches/checkpoints.
+  This removes excess aluminium; it does not resolve the separate ferrous-scrap,
+  fluid/reference-mass or complete treatment-mass discrepancies. Rebuild scenarios
+  to apply it; saved databases and results are unchanged.
 - Replace the whole-combustion-engine material proxy in all 17 BEV/FCEV car
   production inventories with separate electric gearbox/cooling and provisional
   common auxiliary-battery inputs. Preserve nominal combined component mass,
