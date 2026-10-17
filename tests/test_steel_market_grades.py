@@ -8,9 +8,9 @@ import xarray as xr
 import yaml
 
 from premise.filesystem_constants import DATA_DIR
-from premise.steel import Steel, is_specialty_steel
-import premise.steel as steel_module
-from premise.activity_maps import get_mapping
+from premise.steel import Steel
+import premise.activity_maps as maps_module
+from premise.activity_maps import InventorySet, STEEL_TECHS, act_fltr, get_mapping
 
 SUPPORTED = yaml.safe_load(
     (DATA_DIR.parent / "iam_variables_mapping/constants.yaml").read_text()
@@ -54,16 +54,14 @@ def activity(name, product, location="R1", niobium=0):
 @pytest.mark.parametrize(
     "grade",
     [
-        "rolled",
-        "removed",
-        "residue",
-        "grain oriented",
         "bearing",
         "case hardening",
         "case-hardening",
-        "case–hardened",
+        "case hardened",
+        "case-hardened",
         "high strength low alloy",
-        "High-Strength Low-Alloyed",
+        "high-strength low-alloy",
+        "hsla",
         "HSLA",
         "weathering A",
         "weathering B",
@@ -77,10 +75,11 @@ def activity(name, product, location="R1", niobium=0):
     ],
 )
 @pytest.mark.parametrize("field", ["name", "reference product"])
-def test_specialty_exclusions_cover_name_product_and_spelling(grade, field):
-    ds = activity("steel production, electric", "steel, carbon")
-    ds[field] = f"steel, {grade}"
-    assert is_specialty_steel(ds)
+def test_standard_secondary_alias_masks_exclude_specialties(grade, field):
+    ds = activity("steel production, electric arc furnace", "steel, carbon")
+    ds[field] += f", {grade}"
+    aliases = get_mapping(STEEL_TECHS, "ecoinvent_aliases")["steel - secondary"]
+    assert not act_fltr([ds], **aliases)
 
 
 @pytest.mark.parametrize(
@@ -92,7 +91,10 @@ def test_specialty_exclusions_cover_name_product_and_spelling(grade, field):
             "steel production, electric arc furnace, structural",
             "steel, structural, 100% scrap",
         ),
-        ("steel production, converter, unalloyed", "steel, unalloyed"),
+        (
+            "steel production, blast furnace-basic oxygen furnace, unalloyed",
+            "steel, unalloyed",
+        ),
         (
             "steel production, blast furnace-basic oxygen furnace, with carbon capture and storage, unalloyed",
             "steel, unalloyed",
@@ -100,7 +102,9 @@ def test_specialty_exclusions_cover_name_product_and_spelling(grade, field):
     ],
 )
 def test_ordinary_steel_and_carbon_capture_routes_remain_eligible(name, product):
-    assert not is_specialty_steel(activity(name, product))
+    ds = activity(name, product)
+    mapping = InventorySet([ds]).generate_steel_map()
+    assert any(ds in suppliers for suppliers in mapping.values())
 
 
 def model(version="3.12", system_model="cutoff"):
@@ -115,7 +119,7 @@ def model(version="3.12", system_model="cutoff"):
             dims=("region", "variables", "year"),
             coords={
                 "region": ["R1", "R2"],
-                "variables": ["steel - primary", "steel - secondary"],
+                "variables": ["steel - primary - BF/BOF", "steel - secondary"],
                 "year": [2050],
             },
         )
@@ -125,7 +129,9 @@ def model(version="3.12", system_model="cutoff"):
         for grade in ("unalloyed", "low-alloyed"):
             primary.append(
                 activity(
-                    f"steel production, converter, {grade}", f"steel, {grade}", region
+                    f"steel production, blast furnace-basic oxygen furnace, {grade}",
+                    f"steel, {grade}",
+                    region,
                 )
             )
         for name, product in [
@@ -167,9 +173,9 @@ def model(version="3.12", system_model="cutoff"):
                     niobium=0.003 if "high strength" in name else 0,
                 )
             )
-    obj.steel_map = {"steel - primary": primary, "steel - secondary": secondary}
     obj.database = primary + secondary
-    for grade in ("unalloyed", "low-alloyed", "bearing", "high strength low alloy"):
+    obj.steel_map = InventorySet(obj.database, version, "remind").generate_steel_map()
+    for grade in ("unalloyed", "low-alloyed"):
         obj.database.append(
             activity(f"market for steel, {grade}", f"steel, {grade}", "RER")
         )
@@ -188,10 +194,16 @@ def test_real_market_builder_preserves_routes_and_specialty_datasets(
 ):
     obj = model(version, system_model)
     before_mapping = deepcopy(obj.steel_map)
-    specialty_before = [deepcopy(ds) for ds in obj.database if is_specialty_steel(ds)]
+    specialty_terms = ("bearing", "case hardening", "high strength", "weathering")
+
+    def specialty(ds):
+        return any(term in ds["name"] for term in specialty_terms)
+
+    specialty_before = [deepcopy(ds) for ds in obj.database if specialty(ds)]
+    assert all(not specialty(ds) for values in obj.steel_map.values() for ds in values)
     obj.create_steel_markets()
     assert obj.steel_map == before_mapping
-    assert [ds for ds in obj.database if is_specialty_steel(ds)] == specialty_before
+    assert [ds for ds in obj.database if specialty(ds)] == specialty_before
     assert {ds["reference product"] for ds in obj.emptied} == {
         "steel, unalloyed",
         "steel, low-alloyed",
@@ -201,13 +213,14 @@ def test_real_market_builder_preserves_routes_and_specialty_datasets(
     for ds in new:
         flows = [e for e in ds["exchanges"] if e["type"] == "technosphere"]
         assert sum(e["amount"] for e in flows) == pytest.approx(1)
-        assert not any(
-            is_specialty_steel({"name": e["name"], "reference product": e["product"]})
-            for e in flows
-        )
+        assert not any(specialty(e) for e in flows)
         if ds["location"] == "World":
             continue
-        converter = sum(e["amount"] for e in flows if "converter" in e["name"])
+        converter = sum(
+            e["amount"]
+            for e in flows
+            if "blast furnace-basic oxygen furnace" in e["name"]
+        )
         electric = sum(e["amount"] for e in flows if "electric" in e["name"])
         expected = 0.6 if ds["location"] == "R1" else 0.2
         assert converter == pytest.approx(expected if system_model == "cutoff" else 1)
@@ -224,9 +237,7 @@ def test_real_market_builder_preserves_routes_and_specialty_datasets(
 
 def test_empty_electric_route_is_not_silently_reallocated_to_converter():
     obj = model()
-    obj.steel_map["steel - secondary"] = [
-        ds for ds in obj.steel_map["steel - secondary"] if is_specialty_steel(ds)
-    ]
+    obj.steel_map["steel - secondary"] = []
     before = deepcopy(obj.database)
     with pytest.raises(
         ValueError, match="No activity found for technology steel - secondary"
@@ -235,38 +246,36 @@ def test_empty_electric_route_is_not_silently_reallocated_to_converter():
     assert obj.database == before
 
 
-def test_yaml_controls_exclusions_without_changing_production_route_aliases(
-    tmp_path, monkeypatch
-):
-    original = yaml.safe_load(steel_module.STEEL_TECHS.read_text())
+def test_yaml_masks_control_the_standard_inventory_mapping(tmp_path, monkeypatch):
+    original = yaml.safe_load(STEEL_TECHS.read_text())
+    assert all("generic_market_exclusions" not in entry for entry in original.values())
     changed = deepcopy(original)
-    changed["steel - secondary"]["generic_market_exclusions"].append("structural")
+    changed["steel - secondary"]["ecoinvent_aliases"]["mask"]["name"].append(
+        "structural"
+    )
     path = tmp_path / "steel.yaml"
     path.write_text(yaml.safe_dump(changed))
-    structural = activity(
+    ds = activity(
         "steel production, electric arc furnace, structural",
         "steel, structural, 100% scrap",
     )
-    assert not is_specialty_steel(structural)
-    monkeypatch.setattr(steel_module, "STEEL_TECHS", path)
-    assert is_specialty_steel(structural)
-    assert get_mapping(path, "ecoinvent_aliases") == get_mapping(
-        DATA_DIR.parent / "iam_variables_mapping/steel.yaml", "ecoinvent_aliases"
-    )
-    assert changed.keys() == original.keys()  # no synthetic reporting technology
+    assert InventorySet([ds]).generate_steel_map()["steel - secondary"] == [ds]
+    monkeypatch.setattr(maps_module, "STEEL_TECHS", path)
+    assert InventorySet([ds]).generate_steel_map()["steel - secondary"] == []
+    assert changed.keys() == original.keys()
 
 
-@pytest.mark.parametrize("value", [None, [], "bearing", [True], [""]])
-def test_invalid_yaml_exclusions_fail_instead_of_admitting_specialties(
-    tmp_path, monkeypatch, value
-):
-    changed = yaml.safe_load(steel_module.STEEL_TECHS.read_text())
-    if value is None:
-        changed["steel - secondary"].pop("generic_market_exclusions")
-    else:
-        changed["steel - secondary"]["generic_market_exclusions"] = value
-    path = tmp_path / "steel.yaml"
-    path.write_text(yaml.safe_dump(changed))
-    monkeypatch.setattr(steel_module, "STEEL_TECHS", path)
-    with pytest.raises(ValueError, match="generic_market_exclusions"):
-        is_specialty_steel(activity("steel production, electric", "steel, carbon"))
+def test_excluded_specialties_still_use_existing_other_steel_regionalization():
+    obj = model()
+    special = next(d for d in obj.database if "high strength" in d["name"])
+    assert all(special not in values for values in obj.steel_map.values())
+    calls = []
+
+    def capture(**kwargs):
+        calls.append(kwargs)
+
+    obj.process_and_add_activities = capture
+    obj.create_steel_production_activities()
+    assert calls[0]["mapping"] is obj.steel_map
+    assert special in calls[1]["mapping"]["other"]
+    assert "efficiency_adjustment_fn" not in calls[1]

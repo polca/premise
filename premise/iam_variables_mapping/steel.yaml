@@ -481,37 +481,47 @@ steel - secondary:
   ecoinvent_aliases:
     fltr:
       - steel production, electric
+    # Exclude specialty grades using the standard mapping masks in all versions.
+    # Keep ordinary carbon/structural and generic low-alloyed electric steel.
     mask:
       name:
         - hot rolled
         - chromium
+        - bearing
+        - case hardening
+        - case-hardening
+        - case hardened
+        - case-hardened
+        - high strength low alloy
+        - high-strength low-alloy
+        - hsla
+        - HSLA
+        - weathering
+        - stainless
+        - tool
+        - spring
+        - electrical
+        - silicon
+        - maraging
       reference product:
         - heat
-
-  # Shared by generic unalloyed/low-alloyed markets in every source version.
-  # Check both activity name and reference product, ignoring case/punctuation.
-  # Keep this separate from ecoinvent_aliases.mask: specialty production
-  # activities still need regional/efficiency updates for their explicit uses.
-  # Do not exclude carbon, structural or generic low-alloyed steel as a group.
-  generic_market_exclusions:
-    # Existing non-generic market forms remain excluded as well.
-    - rolled
-    - removed
-    - residue
-    - grain
-    - bearing
-    - case hardening
-    - case hardened
-    - high strength low alloy
-    - hsla
-    - weathering
-    - chromium
-    - stainless
-    - tool
-    - spring
-    - electrical
-    - silicon
-    - maraging
+        - chromium
+        - bearing
+        - case hardening
+        - case-hardening
+        - case hardened
+        - case-hardened
+        - high strength low alloy
+        - high-strength low-alloy
+        - hsla
+        - HSLA
+        - weathering
+        - stainless
+        - tool
+        - spring
+        - electrical
+        - silicon
+        - maraging
 
 #sponge iron - DRI w/o CCS:
 #  iam_aliases:

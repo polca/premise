@@ -121,46 +121,37 @@ category before selecting the remaining suppliers. Market construction is
 limited to matching steel families; rolled, chromium and designated residue
 or grain-related market names are excluded.
 
-Generic-market grade exclusions
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Steel-grade alias masks
+~~~~~~~~~~~~~~~~~~~~~~~~
 
-Generic unalloyed steel previously admitted any supplier whose name began
-with ``steel production, electric``. That also admitted bearing,
-case-hardening, high-strength low-alloy and weathering grades, assigning
-their specialised alloy ingredients to otherwise generic steel uses.
+Specialty-grade exclusions are defined in the existing
+``steel - secondary -> ecoinvent_aliases -> mask`` entries of
+``iam_variables_mapping/steel.yaml``, using the same mapping mechanism as
+the primary BF/BOF route's ``ecoinvent_aliases.mask``. There is no separate
+generic-market configuration field or Python grade-classification filter.
 
-The authoritative terms are ``generic_market_exclusions`` under
-``steel - secondary`` in ``iam_variables_mapping/steel.yaml``. They are
-shared generic-market constraints, separate from production-route aliases;
-adding a term requires no Python or version-specific change. The same list
-also retains the existing rolled/removed/residue/grain exclusions.
+The ``name`` and ``reference product`` masks exclude bearing, case-hardening,
+high-strength low-alloy/HSLA, weathering and other explicitly named specialty
+grades. Hyphenated variants are listed where needed. As with other mapping
+files, the standard loader applies literal substring masks to their specified
+fields; any matching mask excludes the activity. Existing hot-rolled,
+chromium and heat exclusions remain. Do not use a blanket ``carbon`` or
+``alloy`` mask: ordinary carbon and structural steels and the existing generic
+low-alloyed electric-steel proxy remain eligible.
 
-Apply these version-independent exclusions to candidate suppliers for
-generic unalloyed and low-alloyed markets. Check both activity
-name and reference product, normalizing case, punctuation and hyphens.
-Exclusions cover bearing, case-hardening/case-hardened, high-strength
-low-alloy/HSLA, weathering, chromium/stainless, tool, spring, electrical,
-silicon and maraging grades. Do not use a blanket ``carbon`` or ``alloy``
-exclusion: ordinary carbon and structural steels remain eligible, as does
-the existing generic low-alloyed electric-steel proxy. No dataset version,
-identifier, or newly preferred version-specific producer determines eligibility.
+This list applies to every source version. It contains no dataset identifiers,
+version conditions or preferred producer list. The secondary mapping supplied
+to market construction therefore excludes the specialty recipes that were
+previously admitted by the broad electric-steel prefix. The existing market
+builder retains IAM route quantities, supplier weighting and consequential
+policy. An active route without eligible suppliers raises its existing
+missing-supplier error, rather than transferring its share to another route.
 
-This constraint applies when constructing generic markets. Specialty
-activities remain in the production-route mapping, including their regional
-and efficiency updates; markets explicitly naming those grades are not
-rebuilt as generic steel. Existing generic-family matching and supplier
-weighting still determine the mix of eligible ordinary grades. That mix is
-not newly validated as an application-specific steel-grade distribution.
-
-Keep every IAM production-route key and its production quantities. The
-exclusions change eligible grades within each route, preserving the intended
-route shares and existing consequential blacklist. An active route without
-an eligible supplier raises the market builder's missing-supplier error;
-it is not silently dropped and renormalized into another route. This does
-not revise primary/secondary assumptions or remove alloying inputs from
-legitimate specialty-steel activities. A decrease in the imposed niobium
-contribution does not establish that actual physical niobium demand is zero.
-Restart Python and rebuild scenarios to apply the filter; saved inventories,
+Excluded specialty activities are not deleted. They pass through the existing
+``other`` steel regionalization path, outside the generic IAM route's energy
+efficiency adjustment. This change does not establish an application-specific
+ordinary-grade distribution or demonstrate zero physical niobium demand.
+Restart Python and rebuild scenarios to apply the masks; saved inventories,
 indicators and dashboards are unchanged.
 
 Steel markets

@@ -6,17 +6,14 @@ All notable changes to this project are documented in this file.
 
 ### Fixed
 
-- Exclude specialty steel grades from generic steel markets with one shared,
-  version-independent filter on activity name and reference product. Define
-  the exclusions in `steel.yaml`, separately from production-route aliases. Normalize
-  punctuation/case so bearing, case-hardening, HSLA and weathering variants,
-  along with named specialty alloy/electrical grades, cannot enter through the
-  broad electric-steel prefix. Retain ordinary carbon/structural steel and
-  generic low-alloyed electric steel without version-specific supplier lists.
-  Keep production-route mappings and IAM quantities intact, preserve explicit
-  specialty markets, and fail on missing eligible suppliers instead of moving
-  their route share. Saved scenarios/results are unchanged; rebuild to apply.
-
+- Exclude specialty steel grades using the existing `ecoinvent_aliases.mask`
+  name and reference-product entries for the secondary steel route in
+  `steel.yaml`. Keep the standard mapping loader and market-selection code;
+  remove the separate generic-market field and custom Python filter. Retain
+  ordinary carbon/structural and generic low-alloyed electric steel across
+  versions, with existing IAM route quantities and consequential policy.
+  Specialty production remains available through other-steel regionalization.
+  Saved scenarios/results are unchanged; restart Python and rebuild to apply.
 - Include a separate nominal Pt hardware-coating calculation in the matched
   PEM Pt total: 0.124184 kg/MW for anode PTLs plus 0.157692 kg/MW for bipolar
   plates. The user-selected reference uses 100 nm on both nominal flat faces,

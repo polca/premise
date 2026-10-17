@@ -4,7 +4,6 @@ Integrates projections regarding steel production.
 
 from typing import List
 from collections import defaultdict
-import re
 
 from .data_collection import IAMDataCollection
 from .logger import create_logger
@@ -14,49 +13,9 @@ from .transformation import BaseTransformation, ws
 from .utils import rescale_exchanges
 from .validation import SteelValidation
 from .validation_framework import record_validation_phase
-from .activity_maps import InventorySet, STEEL_TECHS, get_mapping
+from .activity_maps import InventorySet
 
 logger = create_logger("steel")
-
-
-def _normalize_grade(text: str) -> str:
-    return re.sub(r"[\W_]+", " ", text.casefold()).strip()
-
-
-def get_specialty_steel_terms() -> tuple[str, ...]:
-    """Read shared generic-market exclusions, separately from route aliases."""
-    rules = get_mapping(STEEL_TECHS, "generic_market_exclusions")
-    if not rules:
-        raise ValueError("steel.yaml must define generic_market_exclusions.")
-    terms = []
-    for technology, exclusions in rules.items():
-        if (
-            not isinstance(exclusions, list)
-            or not exclusions
-            or any(
-                not isinstance(term, str) or not _normalize_grade(term)
-                for term in exclusions
-            )
-        ):
-            raise ValueError(
-                f"steel.yaml: {technology}.generic_market_exclusions "
-                "must be a nonempty list of nonempty terms."
-            )
-        terms.extend(_normalize_grade(term) for term in exclusions)
-    return tuple(terms)
-
-
-def is_specialty_steel(dataset: dict) -> bool:
-    """Exclude named specialty grades from generic markets in every version.
-
-    Do not exclude 'alloy' or 'carbon': generic low-alloyed electric steel
-    remains an eligible proxy, as do ordinary carbon and structural steels.
-    """
-    description = " ".join(
-        str(dataset.get(field, "")) for field in ("name", "reference product")
-    )
-    description = _normalize_grade(description)
-    return any(term in description for term in get_specialty_steel_terms())
 
 
 def _update_steel(scenario, version, system_model):
@@ -161,9 +120,12 @@ class Steel(BaseTransformation):
             ws.contains("name", "market for steel"),
             ws.equals("unit", "kilogram"),
             ws.contains("reference product", "steel"),
+            ws.doesnt_contain_any(
+                "name", ["chromium", "rolled", "removed", "residue", "grain"]
+            ),
         ):
 
-            if ds.get("regionalized", False) is True or is_specialty_steel(ds):
+            if ds.get("regionalized", False) is True:
                 continue
 
             mapping = {}
@@ -183,13 +145,6 @@ class Steel(BaseTransformation):
                     ]
                     for k, v in self.steel_map.items()
                 }
-
-            # Grade compatibility is a market constraint, not a change to the
-            # production-route mapping or to scenario route quantities.
-            mapping = {
-                technology: [ds for ds in suppliers if not is_specialty_steel(ds)]
-                for technology, suppliers in mapping.items()
-            }
 
             self.process_and_add_markets(
                 name=ds["name"],
