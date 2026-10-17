@@ -6,6 +6,13 @@ All notable changes to this project are documented in this file.
 
 ### Fixed
 
+- Preserve anhydrous-LiOH equivalents when custom NCA and NMC811 oxides
+  purchase battery-grade lithium hydroxide monohydrate: 0.438071575 and
+  0.431062430 kg/kg oxide respectively. Release the added water of
+  crystallisation through the existing water-to-air flow. Document the
+  inherited, unresolved reaction-water/oxygen discrepancy separately;
+  retain source doses, yields, precursor and energy boundaries. Native
+  anhydrous suppliers, metal factors and saved results are unchanged.
 - Replace the SOEC stack's obsolete mixed Sm/Eu/Gd yttrium proxy with a
   matched, stoichiometric YSZ/YDC pure-oxide reference in the source workbook
   and runtime coefficients. Preserve the existing stack capacity scaling;

@@ -69,6 +69,69 @@ which scenario supplies a study.
 Vehicle inventories determine where mobile capacity is consumed;
 :doc:`transport/overview` explains the separate fleet update.
 
+Lithium hydroxide hydration in custom cathode oxides
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The custom ``NCA oxide`` and ``NMC811 oxide`` activities in
+``lci-batteries-NMC111-811-NCA-LFP.xlsx`` buy ``lithium hydroxide, battery grade``.
+That packaged product represents LiOH·H₂O, following
+`Kelly et al. (2021) <https://doi.org/10.1016/j.resconrec.2021.105762>`__.
+The previous quantities, 0.25 and 0.246 kg respectively, were retained from
+anhydrous-LiOH recipes. An equal mass of monohydrate supplies less lithium.
+The duplicate NCA oxide block in ``lci-batteries-NMC955-LTO.xlsx`` has the
+same correction, including its water emission, so import order cannot
+restore the old reagent amount.
+
+The correction preserves the rounded anhydrous doses in the existing
+workbook. Using Li = 6.94, H = 1.008 and O = 15.999 g/mol, each kg of
+anhydrous LiOH requires ``41.962 / 23.947 = 1.75228629891`` kg monohydrate:
+
+.. list-table:: Quantities per kg custom oxide output
+   :header-rows: 1
+
+   * - Activity
+     - LiOH·H₂O purchased, kg
+     - Additional bound water released, kg
+     - Total retained water emission, m³
+   * - NCA oxide
+     - 0.438071574728
+     - 0.188071574728
+     - 0.000383691575
+   * - NMC811 oxide
+     - 0.431062429532
+     - 0.185062429532
+     - 0.000380682430
+
+The added water of crystallisation exits through the existing water-to-air
+flow during calcination, using 1,000 kg/m³. The substitution conserves the
+LiOH mole dose, and its extra H, O and total mass equal the added emitted
+water exactly. It introduces no new reaction-yield or excess-lithium factor.
+Precursor quantities, nominal oxide output, electricity and existing
+transport activities are retained. The greater monohydrate purchase carries
+its supplier's existing upstream production and transport burdens.
+No separate drying-energy estimate is added to the existing aggregate
+calcination electricity; the changed reagent's thermal demand is unresolved.
+
+The anhydrous source is the
+`Crenna et al. (2021) supplement
+<https://ars.els-cdn.com/content/image/1-s2.0-S0921344921002287-mmc2.xlsx>`__,
+``NMC811`` J191–J196 and ``NCA`` J191–J196. Dai et al. (2018),
+`GREET cathode update <https://greet.anl.gov/publication-update_bom_cm>`__,
+Table 5, independently reports 0.246 kg LiOH/kg NMC811; its NCA material
+entries are unspecified and are not evidence for the 0.25 kg NCA dose.
+That dose comes from the Crenna workbook. This correction does not replace
+the rounded doses with full-precision or independently optimized recipes.
+
+Only the hydration increment is balanced here. The inherited
+``0.00019562 m³`` reaction-water baseline is retained and remains unvalidated.
+The original Crenna NCA recipe contains 0.04 kg oxygen and 0.00024 m³ water;
+the packaged inventory omits that oxygen and repeats the NMC811 water value.
+Those are separate reaction-balance discrepancies. This change does not
+establish full atomic closure or the correctness of the complete LTO cell.
+Ordinary anhydrous LiOH suppliers, native ecoinvent cathode inventories,
+metal-characterization factors and primary/secondary shares are unchanged.
+Rebuild scenario databases before deriving updated system results.
+
 Solid-state chemistry mapping and reference inventories
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
