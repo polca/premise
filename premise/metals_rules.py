@@ -69,6 +69,7 @@ class MaterialRule:
     allocation_group: str | None = None
     comment: str | None = None
     preserve_reason: str | None = None
+    existing_provider_fallback: ProviderSelector | None = None
 
 
 @dataclass(frozen=True, slots=True)
@@ -215,6 +216,7 @@ def load_material_rules() -> MetalsRulesConfig:
         "allocation_group",
         "comment",
         "preserve_reason",
+        "existing_provider_fallback",
     }
     for index, raw in enumerate(raw_rules):
         context = f"rules[{index}]"
@@ -273,6 +275,33 @@ def load_material_rules() -> MetalsRulesConfig:
         elif enabled:
             raise MetalsConfigError(f"{context}.provider: required for enabled rule.")
 
+        fallback_raw = raw.get("existing_provider_fallback")
+        fallback = None
+        if fallback_raw is not None:
+            fallback_context = f"{context}.existing_provider_fallback"
+            if not isinstance(fallback_raw, Mapping):
+                raise MetalsConfigError(f"{fallback_context}: expected a mapping.")
+            _check_keys(
+                fallback_raw,
+                allowed={"name", "reference_product"},
+                required={"name", "reference_product"},
+                context=fallback_context,
+            )
+            fallback = ProviderSelector(
+                _text(fallback_raw["name"], f"{fallback_context}.name"),
+                _text(
+                    fallback_raw["reference_product"],
+                    f"{fallback_context}.reference_product",
+                ),
+            )
+            if (
+                provider is None
+                or fallback.reference_product != provider.reference_product
+            ):
+                raise MetalsConfigError(
+                    f"{fallback_context}: must retain the configured provider's reference product."
+                )
+
         application = _text(raw.get("application"), f"{context}.application")
         if application != "set_direct_amount":
             raise MetalsConfigError(
@@ -286,6 +315,7 @@ def load_material_rules() -> MetalsRulesConfig:
                 target=_selector(raw.get("target"), f"{context}.target"),
                 element=element,
                 provider=provider,
+                existing_provider_fallback=fallback,
                 exchange_amount_factor=_number(
                     raw.get("exchange_amount_factor"),
                     f"{context}.exchange_amount_factor",

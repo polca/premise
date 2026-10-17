@@ -6,6 +6,15 @@ All notable changes to this project are documented in this file.
 
 ### Fixed
 
+- Apply the configured PEM-electrolyzer iridium trajectory when its requested
+  metal market is absent, using an explicit fallback to the existing refinery
+  input. Require the same product, kilogram unit, unique supplier/geography
+  and one-kg reference output. Preserve ambiguous or incompatible recipes with
+  diagnostics; keep a valid configured market preferred. Record the actual
+  supplier and selection in provenance and direct-metal comparisons. Source
+  intensities, stack lifetime, supply mixes and other metal rules are unchanged;
+  the trajectory is enabled, not independently validated as a catalyst design.
+  Rebuild scenarios to apply it; saved results are unchanged.
 - Reconstruct vanadium redox-flow electrolyte on a documented 1.6 M V,
   4.2 M sulfate reference instead of mixing one litre of the original,
   excessive-V2O5 recipe with one kilogram of output. Include electrochemical

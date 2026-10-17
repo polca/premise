@@ -121,6 +121,58 @@ A 2020-only aluminium observation does not become a 2050 projection because
 neodymium has a 2050 observation. Each applied direct material amount uses the
 configured activity-unit conversion and compound/content factor.
 
+Existing-provider fallback for PEM iridium
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The ``pemel-iridium-iridium`` rule requests ``market for iridium``. Market
+creation can be skipped because PGM freight observations are absent or the
+mining-share series does not cover the requested year. Previously, that also
+prevented application of the separate, supported material-intensity series:
+the PEM stack kept its original 0.8 kg iridium input at every year.
+
+The rule now explicitly declares ``existing_provider_fallback`` for
+``platinum group metal, extraction and refinery operations`` producing
+``iridium``. This supplier comes from ``lci-PGM.xlsx``; it is not assumed to
+exist as a native ecoinvent iridium market. The existing stack uses its
+South African activity. When the requested market is absent, retain that
+same supplier and geography instead of constructing a new mix. A valid
+configured market remains preferred when available.
+
+The fallback requires exactly one existing nonnegative kilogram iridium
+technosphere input, the declared supplier identity, no custom exchange formula,
+and one active supplier at its existing location in the current database.
+The supplier must produce one kg of the same reference product. Missing,
+duplicate, changed-product or incompatible-unit matches preserve the input
+and record an explicit diagnostic. A wrong unit on a present configured
+market raises a configuration error. Other material rules do not opt into
+this fallback; no producer is selected for an absent source input.
+
+The unchanged intensity CSV gives 0.738017429 kg Ir/MW in 2020 and
+0.194994161 kg Ir/MW in 2050, with interpolation inside that supported range.
+The conversion file identifies the activity as one **1 MWe stack per unit**,
+so its conversion is one MW/unit: these coefficients become kg Ir per stack,
+without a factor of 1,000 or a conversion to kg/kWh. Bounds use the same
+conversion. Outside the material series' own year range, the original input
+is still preserved. The mining-market observation range does not redefine
+the material-intensity observation range.
+
+Hydrogen-output, stack lifetime, replacement and operating-energy coefficients
+are retained. The source hydrogen recipe's stack demand already includes its
+replacement count; changing kg Ir/stack does not add another lifetime factor.
+Provenance records the requested market, actual refinery, retained location,
+selection mode and converted target. Geographic market-preference rank is
+unset for an existing local supplier. The exchange retains its source comment
+with an appended correction note; direct-metal comparisons include the
+declared fallback provider.
+
+This fixes rule execution, not the independent validity of the underlying
+catalyst trajectory. The source database mixes observations from different
+PEM catalyst designs; paired Ir/Ru/Pt composition, power density, capacity
+boundary and the unresolved citation require separate review. No new
+ruthenium input, primary/secondary share, freight assumption or market mix
+is inferred here. Rebuild scenarios to apply the runtime correction; source
+workbooks, saved databases, indicators and dashboards are not rewritten.
+
 Post-allocation correction
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

@@ -39,7 +39,9 @@ def configured_metal_products() -> frozenset[tuple[str, str]]:
             rule.provider,
             rule.provider.for_version("3.11"),
             rule.provider.for_version("3.12"),
+            rule.existing_provider_fallback,
         )
+        if provider is not None
     )
 
 

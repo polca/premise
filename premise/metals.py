@@ -1680,6 +1680,90 @@ class Metals(BaseTransformation):
             f"{reference_product!r}."
         )
 
+    def _material_rule_provider(self, dataset, rule, selector):
+        """Prefer the market; allow only an explicitly declared existing input.
+
+        A missing market must not lead to an arbitrary regional producer or
+        another product form. Resolve a unique already used supplier in the
+        current database, with the same location and a one-kg reference output.
+        """
+        try:
+            provider = self.get_metal_market_dataset(
+                selector.name, selector.reference_product
+            )
+            if (
+                rule.existing_provider_fallback is not None
+                and provider.get("unit") != "kilogram"
+            ):
+                raise MetalsConfigError(
+                    f"Material rule {rule.id!r} requires a kilogram provider, got {provider.get('unit')!r}."
+                )
+            return provider, None
+        except ws.NoResults as error:
+            if rule.existing_provider_fallback is None:
+                raise
+            market_error = str(error)
+
+        def unavailable(reason):
+            raise ws.NoResults(
+                f"{market_error} Existing-input fallback unavailable: {reason}."
+            )
+
+        fallback = rule.existing_provider_fallback.for_version(self.version)
+        exchanges = [
+            exc
+            for exc in dataset.get("exchanges", ())
+            if exc.get("type") == "technosphere"
+            and exc.get("product", "").lower() == selector.reference_product.lower()
+        ]
+        if len(exchanges) != 1:
+            unavailable("expected one existing material input")
+        exchange = exchanges[0]
+        amount = exchange.get("amount")
+        if (
+            exchange.get("name") != fallback.name
+            or exchange.get("product") != fallback.reference_product
+            or exchange.get("unit") != "kilogram"
+            or not exchange.get("location")
+            or exchange.get("formula")
+            or isinstance(amount, bool)
+            or not isinstance(amount, (int, float, np.number))
+            or not np.isfinite(amount)
+            or amount < 0
+        ):
+            unavailable("unrecognized material identity, unit or coefficient")
+        providers = [
+            provider
+            for provider in self.db_index.get(fallback.name, {}).get(
+                fallback.reference_product, ()
+            )
+            if provider.get("location") == exchange["location"]
+            and self.is_in_index(provider)
+        ]
+        if len(providers) != 1:
+            unavailable("missing or ambiguous supplier at the existing location")
+        provider = providers[0]
+        outputs = [
+            exc
+            for exc in provider.get("exchanges", ())
+            if exc.get("type") == "production"
+        ]
+        if (
+            provider.get("name") != fallback.name
+            or provider.get("reference product") != fallback.reference_product
+            or provider.get("unit") != "kilogram"
+            or len(outputs) != 1
+            or outputs[0].get("unit") != "kilogram"
+            or outputs[0].get("product", "").lower()
+            != selector.reference_product.lower()
+            or outputs[0].get("formula")
+            or isinstance(outputs[0].get("amount"), bool)
+            or not isinstance(outputs[0].get("amount"), (int, float, np.number))
+            or not np.isclose(outputs[0]["amount"], 1, rtol=0, atol=1e-12)
+        ):
+            unavailable("supplier is not a one-kg output of the same material")
+        return provider, exchange
+
     def update_metal_use(
         self,
         dataset: dict,
@@ -2005,8 +2089,8 @@ class Metals(BaseTransformation):
             return
 
         try:
-            provider = self.get_metal_market_dataset(
-                provider_selector.name, provider_selector.reference_product
+            provider, existing_exchange = self._material_rule_provider(
+                dataset, rule, provider_selector
             )
         except ws.NoResults as error:
             diagnostic = {
@@ -2027,9 +2111,18 @@ class Metals(BaseTransformation):
             )
             return
 
+        values["requested provider name"] = provider_selector.name
+        values["provider name"] = provider["name"]
         values["provider location"] = provider.get("location")
-        values["provider fallback rank"] = ("World", "GLO", "RoW").index(
-            provider.get("location")
+        values["provider selection"] = (
+            "existing input fallback"
+            if existing_exchange is not None
+            else "configured market"
+        )
+        values["provider fallback rank"] = (
+            None
+            if existing_exchange is not None
+            else ("World", "GLO", "RoW").index(provider.get("location"))
         )
         update_exchanges(
             activity=dataset,
@@ -2039,6 +2132,20 @@ class Metals(BaseTransformation):
             min_value=min_value,
             max_value=max_value,
         )
+        if existing_exchange is not None:
+            note = (
+                f"Premise material rule {rule.id}: configured market unavailable; "
+                "retained the existing refinery supplier and geography. "
+                f"Set {median_value:.15g} kg {provider_selector.reference_product} "
+                "per activity output using the configured intensity and explicit "
+                "technology conversion. This does not validate the catalyst design."
+            )
+            original_comment = str(existing_exchange.get("comment") or "")
+            dataset["exchanges"][-1]["comment"] = (
+                original_comment
+                if note in original_comment
+                else (original_comment + "\n" + note).strip()
+            )
         self._record_material_decision(
             dataset,
             rule,
