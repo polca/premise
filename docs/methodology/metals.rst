@@ -115,8 +115,9 @@ Transformation
 Premise builds metal markets and applies the configured in-ground resource
 allocation rules before updating direct material inputs and relinking.
 Material intensities are interpolated within each metal/technology pair's
-observed year range. Outside that range, the source input is preserved and a
-``year_outside_support`` decision records the requested and supported years.
+supported year range. Outside that range, the source input is preserved and
+a decision records the temporal restriction (``year_outside_support`` for
+individual rules, ``design_incomplete`` for a matched design).
 A 2020-only aluminium observation does not become a 2050 projection because
 neodymium has a 2050 observation. Each applied direct material amount uses the
 configured activity-unit conversion and compound/content factor.
@@ -147,31 +148,91 @@ and record an explicit diagnostic. A wrong unit on a present configured
 market raises a configuration error. Other material rules do not opt into
 this fallback; no producer is selected for an absent source input.
 
-The unchanged intensity CSV gives 0.738017429 kg Ir/MW in 2020 and
-0.194994161 kg Ir/MW in 2050, with interpolation inside that supported range.
 The conversion file identifies the activity as one **1 MWe stack per unit**,
-so its conversion is one MW/unit: these coefficients become kg Ir per stack,
-without a factor of 1,000 or a conversion to kg/kWh. Bounds use the same
-conversion. Outside the material series' own year range, the original input
-is still preserved. The mining-market observation range does not redefine
-the material-intensity observation range.
+so its conversion is one MW/unit: kg/MW becomes kg per stack, without a
+factor of 1,000 or a conversion to kg/kWh. Hydrogen-output, stack lifetime,
+replacement and operating-energy coefficients are retained. The source hydrogen
+recipe's stack demand already includes replacements; changing kg/stack does
+not add another lifetime factor. Provenance records the requested market,
+actual refinery, retained location, selection mode and converted target.
+Direct-metal comparisons include the declared fallback provider.
 
-Hydrogen-output, stack lifetime, replacement and operating-energy coefficients
-are retained. The source hydrogen recipe's stack demand already includes its
-replacement count; changing kg Ir/stack does not add another lifetime factor.
-Provenance records the requested market, actual refinery, retained location,
-selection mode and converted target. Geographic market-preference rank is
-unset for an existing local supplier. The exchange retains its source comment
-with an appended correction note; direct-metal comparisons include the
-declared fallback provider.
+Matched PEM catalyst reference
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This fixes rule execution, not the independent validity of the underlying
-catalyst trajectory. The source database mixes observations from different
-PEM catalyst designs; paired Ir/Ru/Pt composition, power density, capacity
-boundary and the unresolved citation require separate review. No new
-ruthenium input, primary/secondary share, freight assumption or market mix
-is inferred here. Rebuild scenarios to apply the runtime correction; source
-workbooks, saved databases, indicators and dashboards are not rewritten.
+The previous PEMEL CSV independently combined medians from ten Ir and Pt
+observations with a Ru loading from one experimental Ru-Ir catalyst. This
+mix did not represent a documented electrode design. The ``Stahl_2016``
+workbook citation also actually identifies Staffell and Ingram's 2010 alkaline
+fuel-cell CHP paper; its true numerical source remains unresolved. The
+historical workbook and all 25 source observations are preserved, but its
+catalyst observations no longer determine the runtime coefficients.
+
+Use the matched 2022 baseline in Badgett et al. (2024),
+`NREL/TP-6A20-87625 <https://docs.nlr.gov/docs/fy24osti/87625.pdf>`_,
+Table 1 (printed page 5), Figure 3 and section 3. The anode contains
+2 mg Ir/cm² and the cathode 1 mg Pt/cm² at 2 A/cm² and 1.9 V/cell:
+
+.. math::
+
+   A_{sum} = \frac{10^6\ W}{2\ A/cm^2 \times 1.9\ V}
+             = 263157.895\ cm^2
+
+   m_{Ir} = A_{sum} \times 2\ mg/cm^2 \times 10^{-6}\ kg/mg
+             = 0.526315789\ kg/MW
+
+   m_{Pt} = A_{sum} \times 1\ mg/cm^2 \times 10^{-6}\ kg/mg
+             = 0.263157895\ kg/MW
+
+This pure-Ir anode has zero Ru. That zero is specific to the chosen design;
+it does not describe every PEM catalyst. Loadings refer to contained metal,
+not oxide mass. The summed area already includes every cell: multiplying by
+300 cells again would double-count the stack. The report's rounded
+300 × 877 cm² geometry gives 999,780 W, 0.022% below 1 MW. Normalize to
+exactly 1 MW of nominal stack DC terminal power; AC-system power and delivered
+hydrogen energy have different boundaries. Treating the existing ``1MWe``
+activity as this DC stack reference is an explicit capacity-basis proxy.
+
+Hold this matched reference constant over the configured 2020–2050 support.
+These endpoints represent a fixed 2022 reference applied to scenarios, not
+measured 2020 observations or achieved 2050 targets. This removes the previous
+independent Ir/Pt learning assumptions and can increase future PGM use.
+Equal CSV mean/median/min/max values specify a deterministic design, not
+zero engineering uncertainty. Outside this support, preserve source inputs.
+The ``design_group`` on the three catalyst rules requires complete configured
+membership, supported finite intensities, and valid kilogram suppliers for
+both positive inputs before changing any member. A missing or incompatible
+supplier cannot leave a partially changed catalyst set. No Ru market is
+required to apply its explicit zero. Provenance identifies the matched group
+and fixed-reference temporal treatment.
+
+The reference inputs, historical coefficients, citation audit and limits are
+packaged in ``data/metals/pem_catalyst_reference.json``. Run
+``python scripts/update_pem_catalyst_reference.py`` to reproduce only the six
+PEMEL catalyst CSV rows. The updater guards recognized source values, preserves
+unrelated records including embedded newlines, and is byte-idempotent.
+
+This correction covers retained active-electrode catalyst, with 100%
+incorporation assumed at the direct metal-purchase boundary. Catalyst
+manufacturing losses, recovery, process energy and electrode life remain
+unverified. NREL also describes additional platinum coatings on porous
+transport layers and bipolar plates; those quantities are unresolved and
+**are not included** in the catalyst-only Pt coefficient. The report's
+0.1 µm PTL coating does not alone establish complete coated area, face counts,
+deposition yields or bipolar-plate coating mass. No factory-line cost yield
+is interpreted as a measured metal recovery yield.
+
+Other hardware remains unchanged. In particular, the potassium and titanium
+observations linked to ``Stahl_2016`` still need separate review. The retained
+hydrogen recipe uses 54 kWh/kg H₂, 20 years, 8,000 hours/year, 18.52 kg H₂/h,
+and three replacements (four stacks total); its specifications list 45,000
+hours nominal stack life. Thus demand is four stacks per 2,963,200 kg H₂,
+not another lifetime multiplier on catalyst mass. NREL separately reports
+51.1 stack + 4.2 balance-of-plant kWh/kg H₂. This targeted change does not claim
+that the full hydrogen system matches NREL's performance, hardware or lifetime.
+No primary/secondary share or supply mix is changed. Rebuild scenarios to
+apply it; source inventories, saved databases, indicators and dashboards are
+not rewritten.
 
 Post-allocation correction
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~

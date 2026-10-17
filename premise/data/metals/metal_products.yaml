@@ -1420,6 +1420,7 @@ rules:
   intensity_form: indium
 - id: pemel-iridium-iridium
   enabled: true
+  design_group: pemel-nrel-87625-2022-baseline-v1
   technology: PEMEL
   target:
     kind: mapped_activity
@@ -1430,7 +1431,7 @@ rules:
   existing_provider_fallback:
     name: platinum group metal, extraction and refinery operations
     reference_product: iridium
-  comment: If the configured market is absent, retain one already linked kilogram iridium refinery supplier and its geography. Check exact identity and one-kg reference output; do not select another producer or infer a market mix. This enables the existing trajectory, not independent validation of its catalyst design.
+  comment: If the configured market is absent, retain one already linked kilogram iridium refinery supplier and its geography. Check exact identity and one-kg reference output; do not select another producer or infer a market mix. Apply only with the matched NREL 87625 catalyst group; see pem_catalyst_reference.json for the fixed baseline and limitations.
   exchange_amount_factor: 1.0
   application: set_direct_amount
   ecoinvent_form: iridium
@@ -2917,6 +2918,7 @@ rules:
   comment: This exchange is already present
 - id: pemel-platinum-platinum
   enabled: true
+  design_group: pemel-nrel-87625-2022-baseline-v1
   technology: PEMEL
   target:
     kind: mapped_activity
@@ -2928,7 +2930,7 @@ rules:
   application: set_direct_amount
   ecoinvent_form: platinum
   intensity_form: platinum
-  comment: This exchange is already present
+  comment: Matched cathode catalyst loading from the fixed NREL 87625 reference; excludes unresolved additional hardware coatings. See pem_catalyst_reference.json.
 - id: ael-platinum-platinum
   enabled: true
   technology: AEL
@@ -3097,6 +3099,7 @@ rules:
   intensity_form: ruthenium
 - id: pemel-ruthenium-ruthenium
   enabled: true
+  design_group: pemel-nrel-87625-2022-baseline-v1
   technology: PEMEL
   target:
     kind: mapped_activity
@@ -3108,6 +3111,7 @@ rules:
   application: set_direct_amount
   ecoinvent_form: ruthenium
   intensity_form: ruthenium
+  comment: Explicit zero for the selected pure-Ir anode and Pt cathode reference. Do not mix the independent Xu Ru-Ir experimental loading into this design.
 - id: icev-samarium-samarium-oxide
   enabled: true
   technology: ICEV

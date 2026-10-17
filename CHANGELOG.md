@@ -6,6 +6,18 @@ All notable changes to this project are documented in this file.
 
 ### Fixed
 
+- Replace independently combined PEM catalyst observations with the matched
+  NREL 87625 baseline: 0.526316 kg Ir and 0.263158 kg Pt per nominal MW of
+  stack DC capacity, with zero Ru for this pure-Ir design. Hold the reference
+  fixed over 2020–2050 rather than assume independent future metal reductions.
+  Guard the complete catalyst group before changing inputs; preserve source
+  recipes if required suppliers or supported intensities are unavailable.
+  Package primary-source inputs, historical observations, citation mismatch,
+  limitations and an offline CSV updater. This covers active-electrode catalyst;
+  additional Pt hardware coatings, other materials, processing and full system
+  performance remain unresolved. Lifetime allocation and saved results are
+  unchanged; rebuild scenarios to apply it.
+
 - Apply the configured PEM-electrolyzer iridium trajectory when its requested
   metal market is absent, using an explicit fallback to the existing refinery
   input. Require the same product, kilogram unit, unique supplier/geography

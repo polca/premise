@@ -62,7 +62,11 @@ def model(providers, year=2050, version="3.12", material_rule=None):
         else factors.interp(year=selected)
     )
     m.material_policies = load_material_rules().policies
-    m.material_rules_by_technology = {"PEMEL": [material_rule or rule()]}
+    # Isolate supplier-fallback behavior here; full matched-design tests are separate.
+    selected_rule = material_rule or rule()
+    m.material_rules_by_technology = {
+        "PEMEL": [replace(selected_rule, design_group=None)]
+    }
     m.technology_conversions_by_name = {
         c.activity_name: c for c in load_technology_conversions()
     }
@@ -89,9 +93,9 @@ def iridium(ds):
 @pytest.mark.parametrize(
     "year,expected",
     [
-        (2020, 0.7380174291938998),
-        (2035, (0.7380174291938998 + 0.19499416146756746) / 2),
-        (2050, 0.19499416146756746),
+        (2020, 2 / (2 * 1.9)),
+        (2035, 2 / (2 * 1.9)),
+        (2050, 2 / (2 * 1.9)),
     ],
 )
 def test_real_stack_uses_exact_existing_refinery_and_kg_per_MW(
@@ -115,10 +119,8 @@ def test_real_stack_uses_exact_existing_refinery_and_kg_per_MW(
         e for e in original["exchanges"] if e not in iridium(original)
     ]
     assert providers == before
-    assert new["uncertainty type"] == 5
-    factors = m.precomputed_medians.sel(metal="Iridium", origin_var="PEMEL")
-    assert new["minimum"] == pytest.approx(factors.sel(variable="min").item())
-    assert new["maximum"] == pytest.approx(factors.sel(variable="max").item())
+    assert new["uncertainty type"] == 0
+    assert "minimum" not in new and "maximum" not in new
     assert old["comment"] in new["comment"]
     (decision,) = m.material_decisions
     assert decision["status"] == "updated"
@@ -336,7 +338,7 @@ def test_iridium_back_calculates_through_real_hydrogen_lifetime_allocation(sourc
     )
     activity = np.linalg.solve(matrix, [lifetime_hydrogen, 0.0, 0.0])
     assert activity[1] == pytest.approx(stacks)
-    assert activity[2] == pytest.approx(stacks * 0.19499416146756746)
+    assert activity[2] == pytest.approx(stacks * 2 / (2 * 1.9))
     assert hydrogen == next(
         d for d in ExcelImporter(path).data if d["name"] == hydrogen["name"]
     )

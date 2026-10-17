@@ -1918,6 +1918,65 @@ class Metals(BaseTransformation):
             computed_target_values=values,
         )
 
+    def _material_design_guard(self, dataset, technology, rule):
+        """Preflight every member before changing a matched material design."""
+
+        if not rule.design_group:
+            return None
+        expected = {
+            r.id
+            for r in load_material_rules().enabled_rules
+            if r.design_group == rule.design_group
+        }
+        members = [
+            r
+            for r in self.material_rules_by_technology.get(technology, ())
+            if r.design_group == rule.design_group
+        ]
+        if not expected or {r.id for r in members} != expected:
+            return "The configured matched design is incomplete."
+        for member in members:
+            if member.preserve_reason or member.provider is None:
+                return f"Design member {member.id!r} cannot be applied."
+            try:
+                factors = self.precomputed_medians.sel(
+                    metal=member.element, origin_var=technology
+                )
+                values = [
+                    float(factors.sel(variable=v).item())
+                    for v in ("min", "median", "max")
+                ]
+            except KeyError:
+                return f"Design member {member.id!r} has no intensity."
+            if not all(np.isfinite(v) for v in values) or not (
+                0 <= values[0] <= values[1] <= values[2]
+            ):
+                return f"Design member {member.id!r} has invalid intensity bounds."
+            if hasattr(self, "year") and not (
+                float(factors.source_year_min.item())
+                <= self.year
+                <= float(factors.source_year_max.item())
+            ):
+                return (
+                    f"Design member {member.id!r} supports "
+                    f"{float(factors.source_year_min.item()):g}–"
+                    f"{float(factors.source_year_max.item()):g}, "
+                    f"not requested year {self.year}."
+                )
+            if values[2] > 0:
+                try:
+                    provider, _ = self._material_rule_provider(
+                        dataset, member, member.provider.for_version(self.version)
+                    )
+                    if provider.get("unit") != "kilogram":
+                        raise MetalsConfigError(
+                            f"Material rule {member.id!r} requires a kilogram "
+                            f"provider, got {provider.get('unit')!r}."
+                        )
+                except ws.NoResults as error:
+                    return str(error)
+        return None
+
     def _apply_material_rule(
         self,
         *,
@@ -1968,6 +2027,22 @@ class Metals(BaseTransformation):
             )
 
         if rule.provider is None or rule.element is None:
+            return
+        design_error = self._material_design_guard(dataset, technology, rule)
+        if design_error:
+            self._record_material_decision(
+                dataset,
+                rule,
+                status="skipped",
+                reason_code="metals.material_rule.design_incomplete",
+                explanation=(
+                    f"Preserved matched design {rule.design_group!r}: {design_error}"
+                ),
+                values={
+                    "design group": rule.design_group,
+                    "requested year": getattr(self, "year", None),
+                },
+            )
             return
         provider_selector = rule.provider.for_version(self.version)
         try:
@@ -2023,7 +2098,11 @@ class Metals(BaseTransformation):
                 "requested year": self.year,
                 "source year minimum": first,
                 "source year maximum": last,
-                "temporal treatment": "within observed range",
+                "temporal treatment": (
+                    "fixed reference within configured support"
+                    if rule.design_group
+                    else "within observed range"
+                ),
             }
             if not first <= self.year <= last:
                 self._record_material_decision(
@@ -2052,6 +2131,7 @@ class Metals(BaseTransformation):
         )
         values = {
             **temporal_values,
+            **({"design group": rule.design_group} if rule.design_group else {}),
             "material rule id": rule.id,
             "technology": technology,
             "element": rule.element,

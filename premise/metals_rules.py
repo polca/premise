@@ -70,6 +70,7 @@ class MaterialRule:
     comment: str | None = None
     preserve_reason: str | None = None
     existing_provider_fallback: ProviderSelector | None = None
+    design_group: str | None = None
 
 
 @dataclass(frozen=True, slots=True)
@@ -217,6 +218,7 @@ def load_material_rules() -> MetalsRulesConfig:
         "comment",
         "preserve_reason",
         "existing_provider_fallback",
+        "design_group",
     }
     for index, raw in enumerate(raw_rules):
         context = f"rules[{index}]"
@@ -316,6 +318,9 @@ def load_material_rules() -> MetalsRulesConfig:
                 element=element,
                 provider=provider,
                 existing_provider_fallback=fallback,
+                design_group=_text(
+                    raw.get("design_group"), f"{context}.design_group", required=False
+                ),
                 exchange_amount_factor=_number(
                     raw.get("exchange_amount_factor"),
                     f"{context}.exchange_amount_factor",
@@ -408,6 +413,21 @@ def load_material_rules() -> MetalsRulesConfig:
                 "whose factors sum to one."
             )
 
+    design_groups: dict[str, list[MaterialRule]] = {}
+    for rule in rules:
+        if rule.design_group:
+            design_groups.setdefault(rule.design_group, []).append(rule)
+    for name, members in design_groups.items():
+        if (
+            len(members) < 2
+            or len({(r.technology, r.target) for r in members}) != 1
+            or len({r.enabled for r in members}) != 1
+            or any(r.provider is None or r.preserve_reason for r in members)
+        ):
+            raise MetalsConfigError(
+                f"Matched design {name!r} requires at least two rules with the "
+                "same technology, target and enabled status, and applicable providers."
+            )
     return MetalsRulesConfig(tuple(rules), tuple(policies))
 
 
