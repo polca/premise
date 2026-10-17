@@ -36,7 +36,11 @@ spec.loader.exec_module(updater)
 
 
 def catalysts():
-    return [r for r in load_material_rules().enabled_rules if r.design_group]
+    return [
+        r
+        for r in load_material_rules().enabled_rules
+        if r.design_group and r.technology == "PEMEL"
+    ]
 
 
 def platinum_market():

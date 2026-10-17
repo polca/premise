@@ -604,7 +604,13 @@ rules:
   application: set_direct_amount
   ecoinvent_form: cerium oxide
   intensity_form: cerium
-  comment: CeO2  // This exchange is already present
+  design_group: soec-ysz-ydc-ceramics-v1
+  comment: >-
+    Matched YSZ/YDC pure-oxide recipe; 8 mol% Y2O3 in YSZ and
+    Ce0.8Y0.2O1.9 in YDC. Retain the existing 2050 Y target by
+    proportionally reducing all ceramic oxides, an explicit prospective
+    assumption rather than a demonstrated future stack. Capacity scaling
+    and composition limits are documented in soec_ceramic_reference.json.
 - id: wind-ddpm-chromium-steel-chromium-steel-18-8
   enabled: true
   technology: Wind-DDPM
@@ -3883,10 +3889,17 @@ rules:
   provider:
     name: market for yttrium oxide
     reference_product: yttrium oxide
-  exchange_amount_factor: 1.2699311632510744
+  exchange_amount_factor: 1.269931649034529
   application: set_direct_amount
   ecoinvent_form: yttrium oxide
   intensity_form: yttrium
+  design_group: soec-ysz-ydc-ceramics-v1
+  comment: >-
+    Matched YSZ/YDC pure-oxide recipe; 8 mol% Y2O3 in YSZ and
+    Ce0.8Y0.2O1.9 in YDC. Retain the existing 2050 Y target by
+    proportionally reducing all ceramic oxides, an explicit prospective
+    assumption rather than a demonstrated future stack. Capacity scaling
+    and composition limits are documented in soec_ceramic_reference.json.
 - id: wind-ddee-zinc-zinc
   enabled: true
   technology: Wind-DDEE
@@ -4051,7 +4064,13 @@ rules:
   application: set_direct_amount
   ecoinvent_form: zirconium oxide
   intensity_form: zirconium
-  comment: This exchange is already present
+  design_group: soec-ysz-ydc-ceramics-v1
+  comment: >-
+    Matched YSZ/YDC pure-oxide recipe; 8 mol% Y2O3 in YSZ and
+    Ce0.8Y0.2O1.9 in YDC. Retain the existing 2050 Y target by
+    proportionally reducing all ceramic oxides, an explicit prospective
+    assumption rather than a demonstrated future stack. Capacity scaling
+    and composition limits are documented in soec_ceramic_reference.json.
 - id: nuclear-zirconium-zirconium-oxide
   enabled: true
   technology: Nuclear

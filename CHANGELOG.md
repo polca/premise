@@ -6,6 +6,15 @@ All notable changes to this project are documented in this file.
 
 ### Fixed
 
+- Replace the SOEC stack's obsolete mixed Sm/Eu/Gd yttrium proxy with a
+  matched, stoichiometric YSZ/YDC pure-oxide reference in the source workbook
+  and runtime coefficients. Preserve the existing stack capacity scaling;
+  document composition assumptions, source-access limits and remaining
+  whole-stack gaps. Retain the 2050 Y target by proportionally reducing Y,
+  Zr and Ce together, an explicit prospective assumption; provide fixed-recipe
+  and linear-capacity CSV sensitivity exports. Guard the three ceramic rules
+  against partial application and retain existing hydrogen lifetime allocation.
+  Saved scenarios/results are unchanged; restart Python and rebuild to apply.
 - Exclude specialty steel grades using the existing `ecoinvent_aliases.mask`
   name and reference-product entries for the secondary steel route in
   `steel.yaml`. Keep the standard mapping loader and market-selection code;

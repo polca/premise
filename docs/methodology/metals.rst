@@ -353,6 +353,126 @@ No primary/secondary share or supply mix is changed. Rebuild scenarios to
 apply it; source inventories, saved databases, indicators and dashboards are
 not rewritten.
 
+Matched SOEC ceramic reference
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The SOEC stack previously retained 37.7 kg of mixed Sm/Eu/Gd oxide while the
+metals update added explicit yttrium oxide. Gerloff (2021),
+`section 2.2.3 <https://doi.org/10.1016/j.est.2021.102759>`_, used mixed
+rare-earth concentrate as an environmental-impact proxy for unavailable
+yttrium data. It was not a measured physical ingredient. Retaining both
+representations introduced overlapping component supply chains; this was
+not direct double-counting of measured yttrium by a yttrium indicator.
+Concentrate masses and purity labels also cannot be treated as assays of
+the pure oxides.
+
+The reference in ``soec_ceramic_reference.json`` reconciles just the YSZ
+electrolyte and YDC blocking-layer package. It uses 0.425 kg YSZ and
+0.262 kg YDC per source kW, and retains Gerloff's existing 0.88 capacity
+exponent from 1 kW to 1 MW. This gives 185.519229 kg YSZ and 114.367148 kg
+YDC per nominal 1 MW stack. The reference compositions are:
+
+* YSZ: 8 mol% Y₂O₃ among the binary oxides, with 92 mol% ZrO₂.
+* YDC: Ce₀.₈Y₀.₂O₁.₉, with 20% Y on cation sites. Its oxide mixture
+  contains 0.1 mole Y₂O₃ per 0.8 mole CeO₂.
+
+These are explicit reference compositions, not 8% and 20% mass fractions.
+Pure-oxide inputs are calculated with the documented molar masses:
+
+.. math::
+
+   w_{Y_2O_3,YSZ} = \frac{0.08 M_{Y_2O_3}}
+      {0.08 M_{Y_2O_3} + 0.92 M_{ZrO_2}}
+
+   w_{Y_2O_3,YDC} = \frac{0.1 M_{Y_2O_3}}
+      {0.1 M_{Y_2O_3} + 0.8 M_{CeO_2}}
+
+The resulting purchases are 41.612603 kg Y₂O₃, 160.019911 kg ZrO₂ and
+98.253863 kg CeO₂ per stack, summing to 299.886377 kg ceramic. The two
+obsolete proxy exchanges are replaced by the separately calculated Y₂O₃
+contributions; this is not a one-for-one mass substitution. Both the source
+Excel inventory and runtime CSV use the same oxide basis. The three rules
+share a ``design_group``: missing suppliers, incompatible units, missing
+coefficients or unsupported years prevent a partial ceramic update.
+Within the support, direct oxides are replaced once, not added on top.
+
+.. list-table:: Contained-metal coefficients, kg metal per nominal MW stack
+   :header-rows: 1
+
+   * - Year
+     - Y
+     - Zr
+     - Ce
+   * - 2020
+     - 32.767592
+     - 118.466316
+     - 79.987324
+   * - 2050, prospective assumption
+     - 6.016672
+     - 21.752377
+     - 14.686997
+
+Source access and interpretation are recorded explicitly. The original
+Gerloff supplement Figure 5 and Häfele (2016) supplement Figure S1/Table S2
+were inspected. The latter identifies YDC, not GDC, and alternative air
+electrodes. The Häfele main-article numerical bill of materials was not
+directly accessible. The 0.425/0.262 kg source component masses are
+reconstructed from Gerloff's rounded entries and the attributed Häfele
+observations in the packaged ``SI_2_Material_requirements.xlsx``. Without
+the capacity exponent, the reference chemistry reproduces its separately
+attributed Y, Zr and Ce quantities within 0.001 kg/MW. Primary experimental
+sources in the JSON support the chemical conventions; they do not validate
+this manufacturer's complete stack. Historical workbook observations remain
+unchanged and prior runtime rows are retained in the reference JSON.
+
+Future treatment and sensitivities
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The user-selected prospective assumption retains the existing 2050 central
+target of 6.016672 kg Y/MW. All three oxide inputs decline linearly together
+from 2020 to 2050, maintaining ceramic composition and component ratio.
+This assumes an 81.64% reduction in ceramic mass per MW. It is not an
+independently demonstrated future design, performance improvement or
+durability guarantee. Steel, non-ceramic electrode inputs and manufacturing
+energy are not automatically reduced with this package; existing hydrogen
+efficiency and lifetime assumptions are retained. YSZ in any separately
+omitted fuel-electrode support is not covered by this calculation.
+
+The old 2050 lower and upper limits combined different designs. They are
+not retained as independent uncertainty bounds on a matched recipe.
+Reference rows are deterministic (mean = median = min = max), with
+explicit scenario sensitivities instead:
+
+.. code-block:: console
+
+   python scripts/update_soec_ceramic_reference.py
+   python scripts/update_soec_ceramic_reference.py --scenario fixed-baseline --output /tmp/metals-soec-fixed.csv
+   python scripts/update_soec_ceramic_reference.py --scenario linear-capacity --output /tmp/metals-soec-linear.csv
+
+``fixed-baseline`` holds the corrected ceramic package constant through
+2050. ``linear-capacity`` scales the source component masses linearly to
+1 MW, increasing the 2020 package by a factor of 2.290868 relative to the
+default. It retains the same absolute 2050 Y target, so its stronger
+subsequent reduction is also an assumption. These exports leave runtime
+data and the source workbook unchanged. The original sublinear capacity
+exponent is retained for continuity, not established as correct physical
+area scaling. Use the linear case to assess this material sensitivity.
+
+The workbook always contains the corrected baseline reference. The default
+updater reproduces this workbook and the prospective runtime rows. An
+alternative CSV alone does not select it in premise. Restart Python and
+rebuild scenario databases to apply changed runtime coefficients.
+
+Oxide purchases assume complete incorporation. Production losses,
+deposition rejects/recovery and additional ceramic fabrication remain gaps.
+Alternative air-electrode recipes, uncertain La/Sr amounts, the glass-sealant
+silicone proxy, Ni/YSZ support, steel and whole-stack manufacture/lifetime
+require separate review. Existing SOEC specifications allocate one initial
+stack plus seven replacements over 3,776,000 kg lifetime H₂ output. Those
+eight stacks already multiply each stack's oxide recipe; kg/MW must not be
+multiplied by eight again. The correction does not validate all system-level
+SOEC metal demand. Primary/secondary shares and saved results are unchanged.
+
 Post-allocation correction
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
