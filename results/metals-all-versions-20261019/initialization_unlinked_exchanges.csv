@@ -1,0 +1,119 @@
+version,system_model,name,reference_product,location,categories,unit,type,inventory
+3.6,cutoff,"heat production, biomethane, at boiler condensing modulating <100kW","heat, central or small-scale, biomethane",Europe without Switzerland,None,megajoule,technosphere,lci-carbon-capture.xlsx
+3.6,cutoff,market for NMC811 oxide,NMC811 oxide,RoW,None,kilogram,technosphere,lci-batteries-ASSB.xlsx
+3.6,cutoff,"market for aluminium collector foil, for Li-ion battery","aluminium collector foil, for Li-ion battery",GLO,None,kilogram,technosphere,lci-batteries-ASSB.xlsx
+3.6,cutoff,"market for aluminium collector foil, for Li-ion battery","aluminium collector foil, for Li-ion battery",GLO,None,kilogram,technosphere,lci-batteries-SIB.xlsx
+3.6,cutoff,"market for aluminium, in mixed metal scrap","aluminium, in mixed metal scrap",Europe without Switzerland,None,kilogram,technosphere,lci-batteries-LiO2.xlsx
+3.6,cutoff,"market for anode, graphite, for Li-ion battery","anode, graphite, for Li-ion battery",RoW,None,kilogram,technosphere,lci-batteries-NMC622-NMC532.xlsx
+3.6,cutoff,market for basic oxygen furnace dust,basic oxygen furnace dust,IN,None,kilogram,technosphere,lci-batteries-vanadium.xlsx
+3.6,cutoff,market for basic oxygen furnace dust,basic oxygen furnace dust,RER,None,kilogram,technosphere,lci-steel.xlsx
+3.6,cutoff,market for basic oxygen furnace dust,basic oxygen furnace dust,RoW,None,kilogram,technosphere,lci-batteries-vanadium.xlsx
+3.6,cutoff,market for basic oxygen furnace secondary metallurgy slag,basic oxygen furnace secondary metallurgy slag,RoW,None,kilogram,technosphere,lci-batteries-vanadium.xlsx
+3.6,cutoff,market for basic oxygen furnace slag,basic oxygen furnace slag,RER,None,kilogram,technosphere,lci-steel.xlsx
+3.6,cutoff,market for basic oxygen furnace slag,basic oxygen furnace slag,RoW,None,kilogram,technosphere,lci-batteries-vanadium.xlsx
+3.6,cutoff,market for basic oxygen furnace sludge,basic oxygen furnace sludge,RER,None,kilogram,technosphere,lci-steel.xlsx
+3.6,cutoff,market for basic oxygen furnace sludge,basic oxygen furnace sludge,RoW,None,kilogram,technosphere,lci-batteries-vanadium.xlsx
+3.6,cutoff,"market for battery module packaging, Li-ion","battery module packaging, Li-ion",GLO,None,kilogram,technosphere,lci-batteries-ASSB.xlsx
+3.6,cutoff,"market for battery module packaging, Li-ion","battery module packaging, Li-ion",GLO,None,kilogram,technosphere,lci-batteries-NMC622-NMC532.xlsx
+3.6,cutoff,"market for battery module packaging, Li-ion","battery module packaging, Li-ion",GLO,None,kilogram,technosphere,lci-batteries-NMC955-LTO.xlsx
+3.6,cutoff,"market for battery, lead acid, rechargeable, stationary","battery, lead acid, rechargeable, stationary",GLO,None,kilogram,technosphere,lci-battery-capacity.xlsx
+3.6,cutoff,market for blast furnace dust,blast furnace dust,RER,None,kilogram,technosphere,lci-steel.xlsx
+3.6,cutoff,market for blast furnace dust,blast furnace dust,RoW,None,kilogram,technosphere,lci-steel.xlsx
+3.6,cutoff,"market for carbon dioxide, in chemical industry","carbon dioxide, in chemical industry",GLO,None,kilogram,technosphere,lci-batteries-LiS.xlsx
+3.6,cutoff,"market for carbon dioxide, in chemical industry","carbon dioxide, in chemical industry",GLO,None,kilogram,technosphere,lci-biofuels.xlsx
+3.6,cutoff,"market for copper collector foil, for Li-ion battery","copper collector foil, for Li-ion battery",GLO,None,kilogram,technosphere,lci-batteries-ASSB.xlsx
+3.6,cutoff,"market for copper collector foil, for Li-ion battery","copper collector foil, for Li-ion battery",GLO,None,kilogram,technosphere,lci-batteries-organic-and-hybrid-redox-flow.xlsx
+3.6,cutoff,market for diammonium phosphate,diammonium phosphate,RER,None,kilogram,technosphere,lci-batteries-vanadium.xlsx
+3.6,cutoff,market for diammonium phosphate,diammonium phosphate,RER,None,kilogram,technosphere,lci-biofuels.xlsx
+3.6,cutoff,market for electric arc furnace secondary metallurgy slag,electric arc furnace secondary metallurgy slag,RoW,None,kilogram,technosphere,lci-batteries-vanadium.xlsx
+3.6,cutoff,"market for electricity, medium voltage, cobalt industry","electricity, medium voltage, cobalt industry",GLO,None,kilowatt hour,technosphere,lci-cobalt.xlsx
+3.6,cutoff,"market for hydrogen, gaseous, low pressure","hydrogen, gaseous, low pressure",RER,None,kilogram,technosphere,lci-ammonia.xlsx
+3.6,cutoff,"market for hydrogen, gaseous, low pressure","hydrogen, gaseous, low pressure",RER,None,kilogram,technosphere,lci-carbon-capture.xlsx
+3.6,cutoff,"market for hydrogen, gaseous, low pressure","hydrogen, gaseous, low pressure",RER,None,kilogram,technosphere,lci-synfuels-from-FT.xlsx
+3.6,cutoff,"market for hydrogen, gaseous, low pressure","hydrogen, gaseous, low pressure",RER,None,kilogram,technosphere,lci-synfuels-from-methanol.xlsx
+3.6,cutoff,"market for hydrogen, gaseous, low pressure","hydrogen, gaseous, low pressure",RER,None,kilogram,technosphere,lci-syngas.xlsx
+3.6,cutoff,market for lithium iron phosphate,lithium iron phosphate,RoW,None,kilogram,technosphere,lci-batteries-ASSB.xlsx
+3.6,cutoff,market for mill scale,mill scale,RER,None,kilogram,technosphere,lci-steel.xlsx
+3.6,cutoff,market for mill scale,mill scale,RoW,None,kilogram,technosphere,lci-batteries-vanadium.xlsx
+3.6,cutoff,market for polyurethane adhesive,polyurethane adhesive,GLO,None,kilogram,technosphere,lci-PV-perovskite.xlsx
+3.6,cutoff,"market for synthetic graphite, battery grade","synthetic graphite, battery grade",CN,None,kilogram,technosphere,lci-batteries-NMC955-LTO.xlsx
+3.6,cutoff,market for urea ammonium nitrate mix,urea ammonium nitrate mix,RoW,None,kilogram,technosphere,lci-biofuels.xlsx
+3.6,cutoff,market for yttrium oxide,yttrium oxide,GLO,None,kilogram,technosphere,lci-hydrogen-electrolysis.xlsx
+3.6,cutoff,nutrient supply from ammonium sulfate,"inorganic nitrogen fertiliser, as N",RER,None,kilogram,technosphere,lci-PV-2026.xlsx
+3.6,cutoff,"treatment of hazardous waste, hazardous waste incineration, with energy recovery","hazardous waste, for incineration",CH,None,kilogram,technosphere,lci-nuclear_EPR.xlsx
+3.6,cutoff,"treatment of hazardous waste, hazardous waste incineration, with energy recovery","hazardous waste, for incineration",Europe without Switzerland,None,kilogram,technosphere,lci-batteries-ASSB.xlsx
+3.6,cutoff,"treatment of hazardous waste, hazardous waste incineration, with energy recovery","hazardous waste, for incineration",Europe without Switzerland,None,kilogram,technosphere,lci-batteries-organic-and-hybrid-redox-flow.xlsx
+3.6,cutoff,"treatment of spent solvent mixture, hazardous waste incineration, with energy recovery",spent solvent mixture,Europe without Switzerland,None,kilogram,technosphere,lci-batteries-organic-and-hybrid-redox-flow.xlsx
+3.6,cutoff,"treatment of spent solvent mixture, hazardous waste incineration, with energy recovery",spent solvent mixture,RoW,None,kilogram,technosphere,lci-batteries-vanadium.xlsx
+3.6,cutoff,vanadium-titanomagnetite mine operation and beneficiation,iron ore concentrate,CN,None,kilogram,technosphere,lci-batteries-vanadium.xlsx
+3.7,cutoff,market for NMC811 oxide,NMC811 oxide,RoW,None,kilogram,technosphere,lci-batteries-ASSB.xlsx
+3.7,cutoff,"market for aluminium collector foil, for Li-ion battery","aluminium collector foil, for Li-ion battery",GLO,None,kilogram,technosphere,lci-batteries-ASSB.xlsx
+3.7,cutoff,"market for aluminium collector foil, for Li-ion battery","aluminium collector foil, for Li-ion battery",GLO,None,kilogram,technosphere,lci-batteries-SIB.xlsx
+3.7,cutoff,"market for anode, graphite, for Li-ion battery","anode, graphite, for Li-ion battery",RoW,None,kilogram,technosphere,lci-batteries-NMC622-NMC532.xlsx
+3.7,cutoff,"market for battery module packaging, Li-ion","battery module packaging, Li-ion",GLO,None,kilogram,technosphere,lci-batteries-ASSB.xlsx
+3.7,cutoff,"market for battery module packaging, Li-ion","battery module packaging, Li-ion",GLO,None,kilogram,technosphere,lci-batteries-NMC622-NMC532.xlsx
+3.7,cutoff,"market for battery module packaging, Li-ion","battery module packaging, Li-ion",GLO,None,kilogram,technosphere,lci-batteries-NMC955-LTO.xlsx
+3.7,cutoff,"market for battery, lead acid, rechargeable, stationary","battery, lead acid, rechargeable, stationary",GLO,None,kilogram,technosphere,lci-battery-capacity.xlsx
+3.7,cutoff,"market for copper collector foil, for Li-ion battery","copper collector foil, for Li-ion battery",GLO,None,kilogram,technosphere,lci-batteries-ASSB.xlsx
+3.7,cutoff,"market for copper collector foil, for Li-ion battery","copper collector foil, for Li-ion battery",GLO,None,kilogram,technosphere,lci-batteries-organic-and-hybrid-redox-flow.xlsx
+3.7,cutoff,"market for hydrogen, gaseous, low pressure","hydrogen, gaseous, low pressure",RER,None,kilogram,technosphere,lci-ammonia.xlsx
+3.7,cutoff,"market for hydrogen, gaseous, low pressure","hydrogen, gaseous, low pressure",RER,None,kilogram,technosphere,lci-carbon-capture.xlsx
+3.7,cutoff,"market for hydrogen, gaseous, low pressure","hydrogen, gaseous, low pressure",RER,None,kilogram,technosphere,lci-synfuels-from-FT.xlsx
+3.7,cutoff,"market for hydrogen, gaseous, low pressure","hydrogen, gaseous, low pressure",RER,None,kilogram,technosphere,lci-synfuels-from-methanol.xlsx
+3.7,cutoff,"market for hydrogen, gaseous, low pressure","hydrogen, gaseous, low pressure",RER,None,kilogram,technosphere,lci-syngas.xlsx
+3.7,cutoff,market for lithium iron phosphate,lithium iron phosphate,RoW,None,kilogram,technosphere,lci-batteries-ASSB.xlsx
+3.7,cutoff,"market for synthetic graphite, battery grade","synthetic graphite, battery grade",CN,None,kilogram,technosphere,lci-batteries-NMC955-LTO.xlsx
+3.7,cutoff,vanadium-titanomagnetite mine operation and beneficiation,iron ore concentrate,CN,None,kilogram,technosphere,lci-batteries-vanadium.xlsx
+3.7.1,cutoff,market for NMC811 oxide,NMC811 oxide,RoW,None,kilogram,technosphere,lci-batteries-ASSB.xlsx
+3.7.1,cutoff,"market for aluminium collector foil, for Li-ion battery","aluminium collector foil, for Li-ion battery",GLO,None,kilogram,technosphere,lci-batteries-ASSB.xlsx
+3.7.1,cutoff,"market for aluminium collector foil, for Li-ion battery","aluminium collector foil, for Li-ion battery",GLO,None,kilogram,technosphere,lci-batteries-SIB.xlsx
+3.7.1,cutoff,"market for anode, graphite, for Li-ion battery","anode, graphite, for Li-ion battery",RoW,None,kilogram,technosphere,lci-batteries-NMC622-NMC532.xlsx
+3.7.1,cutoff,"market for battery module packaging, Li-ion","battery module packaging, Li-ion",GLO,None,kilogram,technosphere,lci-batteries-ASSB.xlsx
+3.7.1,cutoff,"market for battery module packaging, Li-ion","battery module packaging, Li-ion",GLO,None,kilogram,technosphere,lci-batteries-NMC622-NMC532.xlsx
+3.7.1,cutoff,"market for battery module packaging, Li-ion","battery module packaging, Li-ion",GLO,None,kilogram,technosphere,lci-batteries-NMC955-LTO.xlsx
+3.7.1,cutoff,"market for battery, lead acid, rechargeable, stationary","battery, lead acid, rechargeable, stationary",GLO,None,kilogram,technosphere,lci-battery-capacity.xlsx
+3.7.1,cutoff,"market for copper collector foil, for Li-ion battery","copper collector foil, for Li-ion battery",GLO,None,kilogram,technosphere,lci-batteries-ASSB.xlsx
+3.7.1,cutoff,"market for copper collector foil, for Li-ion battery","copper collector foil, for Li-ion battery",GLO,None,kilogram,technosphere,lci-batteries-organic-and-hybrid-redox-flow.xlsx
+3.7.1,cutoff,"market for hydrogen, gaseous, low pressure","hydrogen, gaseous, low pressure",RER,None,kilogram,technosphere,lci-ammonia.xlsx
+3.7.1,cutoff,"market for hydrogen, gaseous, low pressure","hydrogen, gaseous, low pressure",RER,None,kilogram,technosphere,lci-carbon-capture.xlsx
+3.7.1,cutoff,"market for hydrogen, gaseous, low pressure","hydrogen, gaseous, low pressure",RER,None,kilogram,technosphere,lci-synfuels-from-FT.xlsx
+3.7.1,cutoff,"market for hydrogen, gaseous, low pressure","hydrogen, gaseous, low pressure",RER,None,kilogram,technosphere,lci-synfuels-from-methanol.xlsx
+3.7.1,cutoff,"market for hydrogen, gaseous, low pressure","hydrogen, gaseous, low pressure",RER,None,kilogram,technosphere,lci-syngas.xlsx
+3.7.1,cutoff,market for lithium iron phosphate,lithium iron phosphate,RoW,None,kilogram,technosphere,lci-batteries-ASSB.xlsx
+3.7.1,cutoff,"market for synthetic graphite, battery grade","synthetic graphite, battery grade",CN,None,kilogram,technosphere,lci-batteries-NMC955-LTO.xlsx
+3.7.1,cutoff,vanadium-titanomagnetite mine operation and beneficiation,iron ore concentrate,CN,None,kilogram,technosphere,lci-batteries-vanadium.xlsx
+3.8,cutoff,market for lithium iron phosphate,lithium iron phosphate,RoW,None,kilogram,technosphere,lci-batteries-ASSB.xlsx
+3.8,consequential,"aluminium scrap, new, Recycled Content cut-off","aluminium scrap, new",GLO,None,kilogram,technosphere,lci-electric-car-mechanical-powertrain.xlsx
+3.8,consequential,"aluminium scrap, new, Recycled Content cut-off","aluminium scrap, new",GLO,None,kilogram,technosphere,lci-two_wheelers.xlsx
+3.8,consequential,"aluminium scrap, post-consumer, Recycled Content cut-off","aluminium scrap, post-consumer",GLO,None,kilogram,technosphere,lci-electric-car-mechanical-powertrain.xlsx
+3.8,consequential,market for lithium iron phosphate,lithium iron phosphate,RoW,None,kilogram,technosphere,lci-batteries-ASSB.xlsx
+3.8,consequential,"polyethylene, high density, granulate, recycled to generic market for high density PE granulate","polyethylene, high density, granulate",Europe without Switzerland,None,kilogram,technosphere,lci-batteries-ASSB.xlsx
+3.9,consequential,"aluminium scrap, new, Recycled Content cut-off","aluminium scrap, new",GLO,None,kilogram,technosphere,lci-electric-car-mechanical-powertrain.xlsx
+3.9,consequential,"aluminium scrap, new, Recycled Content cut-off","aluminium scrap, new",GLO,None,kilogram,technosphere,lci-two_wheelers.xlsx
+3.9,consequential,"aluminium scrap, post-consumer, Recycled Content cut-off","aluminium scrap, post-consumer",GLO,None,kilogram,technosphere,lci-electric-car-mechanical-powertrain.xlsx
+3.9,consequential,"polyethylene, high density, granulate, recycled to generic market for high density PE granulate","polyethylene, high density, granulate",Europe without Switzerland,None,kilogram,technosphere,lci-batteries-ASSB.xlsx
+3.9.1,consequential,"aluminium scrap, new, Recycled Content cut-off","aluminium scrap, new",GLO,None,kilogram,technosphere,lci-electric-car-mechanical-powertrain.xlsx
+3.9.1,consequential,"aluminium scrap, new, Recycled Content cut-off","aluminium scrap, new",GLO,None,kilogram,technosphere,lci-two_wheelers.xlsx
+3.9.1,consequential,"aluminium scrap, post-consumer, Recycled Content cut-off","aluminium scrap, post-consumer",GLO,None,kilogram,technosphere,lci-electric-car-mechanical-powertrain.xlsx
+3.9.1,consequential,"polyethylene, high density, granulate, recycled to generic market for high density PE granulate","polyethylene, high density, granulate",Europe without Switzerland,None,kilogram,technosphere,lci-batteries-ASSB.xlsx
+3.10,consequential,"aluminium scrap, new, Recycled Content cut-off","aluminium scrap, new",GLO,None,kilogram,technosphere,lci-electric-car-mechanical-powertrain.xlsx
+3.10,consequential,"aluminium scrap, new, Recycled Content cut-off","aluminium scrap, new",GLO,None,kilogram,technosphere,lci-two_wheelers.xlsx
+3.10,consequential,"aluminium scrap, post-consumer, Recycled Content cut-off","aluminium scrap, post-consumer",GLO,None,kilogram,technosphere,lci-electric-car-mechanical-powertrain.xlsx
+3.10,consequential,"polyethylene, high density, granulate, recycled to generic market for high density PE granulate","polyethylene, high density, granulate",Europe without Switzerland,None,kilogram,technosphere,lci-batteries-ASSB.xlsx
+3.10.1,consequential,"aluminium scrap, new, Recycled Content cut-off","aluminium scrap, new",GLO,None,kilogram,technosphere,lci-electric-car-mechanical-powertrain.xlsx
+3.10.1,consequential,"aluminium scrap, new, Recycled Content cut-off","aluminium scrap, new",GLO,None,kilogram,technosphere,lci-two_wheelers.xlsx
+3.10.1,consequential,"aluminium scrap, post-consumer, Recycled Content cut-off","aluminium scrap, post-consumer",GLO,None,kilogram,technosphere,lci-electric-car-mechanical-powertrain.xlsx
+3.10.1,consequential,"polyethylene, high density, granulate, recycled to generic market for high density PE granulate","polyethylene, high density, granulate",Europe without Switzerland,None,kilogram,technosphere,lci-batteries-ASSB.xlsx
+3.11,consequential,"aluminium scrap, new, Recycled Content cut-off","aluminium scrap, new",GLO,None,kilogram,technosphere,lci-electric-car-mechanical-powertrain.xlsx
+3.11,consequential,"aluminium scrap, new, Recycled Content cut-off","aluminium scrap, new",GLO,None,kilogram,technosphere,lci-two_wheelers.xlsx
+3.11,consequential,"aluminium scrap, post-consumer, Recycled Content cut-off","aluminium scrap, post-consumer",GLO,None,kilogram,technosphere,lci-electric-car-mechanical-powertrain.xlsx
+3.11,consequential,"polyethylene, high density, granulate, recycled to generic market for polyethylene, high density, granulate","polyethylene, high density, granulate",RoW,None,kilogram,technosphere,lci-batteries-ASSB.xlsx
+3.12,consequential,"aluminium scrap, new, Recycled Content cut-off","aluminium scrap, new",GLO,None,kilogram,technosphere,lci-electric-car-mechanical-powertrain.xlsx
+3.12,consequential,"aluminium scrap, new, Recycled Content cut-off","aluminium scrap, new",GLO,None,kilogram,technosphere,lci-two_wheelers.xlsx
+3.12,consequential,"aluminium scrap, post-consumer, Recycled Content cut-off","aluminium scrap, post-consumer",GLO,None,kilogram,technosphere,lci-electric-car-mechanical-powertrain.xlsx
+3.12,consequential,"polyethylene, high density, granulate, recycled to generic market for polyethylene, high density, granulate","polyethylene, high density, granulate",RoW,None,kilogram,technosphere,lci-batteries-ASSB.xlsx
+3.12,EN15804,"aluminium scrap, new, Recycled Content cut-off","aluminium scrap, new",GLO,None,kilogram,technosphere,lci-electric-car-mechanical-powertrain.xlsx
+3.12,EN15804,"aluminium scrap, new, Recycled Content cut-off","aluminium scrap, new",GLO,None,kilogram,technosphere,lci-two_wheelers.xlsx
+3.12,EN15804,"aluminium scrap, post-consumer, Recycled Content cut-off","aluminium scrap, post-consumer",GLO,None,kilogram,technosphere,lci-electric-car-mechanical-powertrain.xlsx
+3.12,EN15804,"iron scrap, unsorted, Recycled Content cut-off","iron scrap, unsorted",GLO,None,kilogram,technosphere,lci-electric-car-mechanical-powertrain.xlsx
+3.12,EN15804,"iron scrap, unsorted, Recycled Content cut-off","iron scrap, unsorted",GLO,None,kilogram,technosphere,lci-two_wheelers.xlsx

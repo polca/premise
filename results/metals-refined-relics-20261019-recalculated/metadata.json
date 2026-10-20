@@ -1,0 +1,58 @@
+{
+  "project": "metals-correctness-3.12-cutoff",
+  "source": "ecoinvent-3.12-cutoff",
+  "database": "metals-refined-relics-20261019-recalculated",
+  "biosphere": "ecoinvent-3.12-biosphere",
+  "version": "3.12",
+  "system_model": "cutoff",
+  "scenario": {
+    "model": "image",
+    "pathway": "SSP2-M",
+    "year": 2020
+  },
+  "updates": [
+    "metals.post_allocation_correction"
+  ],
+  "encrypted_iam": true,
+  "full_metals_update_limitation": "Full metals update remains blocked by a missing conversion for polyethylene terephthalate adhesive film production, for fuel cells, which the fuel-cell equipment mapping selects. The traction-motor mapping blocker has been fixed.",
+  "metals_sha256": "e4db576a84ba76c71defb630c033f04b8850b526477e2044c13d611bb3097c7e",
+  "activities_mapping_sha256": "04cc09ce20eae1fb9f577bf2c9d5375cb5d468fe8508c686744b6252f12c7c75",
+  "git_commit": "be81c5a490f84810b8008928f91492b63edbb232",
+  "build_seconds": 6.990028291998897,
+  "export_gold_resource_check": 1.0,
+  "corrected_datasets": 160,
+  "relics_version": "0.0.6",
+  "relics_mapping_sha256": "c2cde55d0468c6153937b3707ec692b83cda426d0028837fc211550d9c4e0af0",
+  "database_fingerprints": {
+    "ecoinvent-3.12-cutoff": "60add02291fe72157ac0445b309f67395f14797163395b6601691a5b27d34c57",
+    "metals-refined-relics-20261019-recalculated": "6a30df8efc92373d01f4145fd474181af39f90dbe43f03dd034ae3b80cd14eea"
+  },
+  "selected_producers": 128,
+  "elements": 33,
+  "within_5_percent": 104,
+  "within_10_percent": 107,
+  "seconds": 37.283922041999176,
+  "selection": "individual kilogram elemental primary producers; markets, concentrates, compounds, alloys, unrefined and secondary outputs excluded",
+  "source_comparison": "matching original ecoinvent identities; imported foreground producers may have no source counterpart",
+  "benchmark": "1 kg extracted/kg refined product; screening convention, not proof of physical recovery or purity",
+  "numerical_verification": {
+    "producers": 128,
+    "max_absolute_residual": 2.3283064365386963e-10,
+    "max_direct_lcia_difference": 1.3322676295501878e-15,
+    "reference_production_amounts_all_one": true
+  },
+  "comparison_with_previous_audit": {
+    "directory": "results/metals-refined-relics-20261019",
+    "matched_producers": 128,
+    "max_absolute_score_difference": 0.0,
+    "changed_by_more_than_1e_minus_8": 0
+  },
+  "calculation_completed_utc": "2026-10-19T15:01:18.383373+00:00",
+  "indicators_per_producer": 65,
+  "analysis_scripts_sha256": {
+    "dev/audit_refined_metals_relics.py": "2805bb2b9717c564ccb9c3fe3126c3609af1b3963284b1b74b8d686e21eaea39",
+    "dev/diagnose_refined_metals_relics.py": "180ad4f229bc588e2d8a4bc8fb256d0b1dde7649cc1719553f257151278f7cd3",
+    "dev/report_refined_metals_relics.py": "41875cfd3a22316023cd2e86ed85267d7030394118f28e97a90d4ec531885257",
+    "dev/package_refined_metals_relics.py": "4d664c0e95f9a30b5d454c753d86e1d483f2312be5e2fdcd052cf0a78cc90a22"
+  }
+}

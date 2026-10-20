@@ -150,15 +150,38 @@ def test_mechanical_end_of_life_uses_its_own_materials(mechanical):
         if e["type"] == "technosphere" and e["unit"] == "kilogram"
     ]
     assert sum(e["amount"] for e in waste) == pytest.approx(-1)
+    assert feed(treatment, "market for iron scrap, unsorted") == pytest.approx(-0.436)
     assert feed(
-        treatment, "iron scrap, unsorted, Recycled Content cut-off"
-    ) == pytest.approx(-0.436)
-    assert feed(
-        treatment, "aluminium scrap, post-consumer, Recycled Content cut-off"
+        treatment, "market for aluminium scrap, post-consumer"
     ) == pytest.approx(-0.384)
     assert not any(
         "copper" in e["name"] or "electronics scrap" in e["name"] for e in waste
     )
+
+
+def test_vehicle_scrap_uses_native_markets_in_both_workbooks(mechanical):
+    inventories = [
+        mechanical,
+        ExcelImporter(INVENTORY_DIR / "lci-two_wheelers.xlsx").data,
+    ]
+    locations = {
+        "iron scrap, unsorted": "GLO",
+        "aluminium scrap, new": "RoW",
+        "aluminium scrap, post-consumer": "GLO",
+    }
+    checked = 0
+    for datasets in inventories:
+        for dataset in datasets:
+            for exchange in dataset["exchanges"]:
+                product = exchange.get("product") or exchange.get("reference product")
+                if exchange["type"] != "technosphere" or product not in locations:
+                    continue
+                assert exchange["name"] == f"market for {product}"
+                assert exchange["location"] == locations[product]
+                assert exchange["unit"] == "kilogram"
+                assert exchange["amount"] < 0
+                checked += 1
+    assert checked == 20
 
 
 def test_common_battery_does_not_mean_zero_full_vehicle_lead(cars, mechanical):

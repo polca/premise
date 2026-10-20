@@ -1,0 +1,488 @@
+[
+  {
+    "name": "primary zinc production from concentrate",
+    "product": "zinc",
+    "location": "CA-QC",
+    "reason": "primary_feed_attribution"
+  },
+  {
+    "name": "primary zinc production from concentrate",
+    "product": "zinc",
+    "location": "RoW",
+    "reason": "primary_feed_attribution"
+  },
+  {
+    "name": "aluminium production, primary, liquid, prebake",
+    "product": "aluminium, primary, liquid",
+    "location": "IAI Area, Gulf Cooperation Council",
+    "reason": "preserved_unresolved"
+  },
+  {
+    "name": "processing of nickel-rich materials",
+    "product": "nickel, class 1",
+    "location": "GLO",
+    "reason": "preserved_unresolved"
+  },
+  {
+    "name": "molybdenum production",
+    "product": "molybdenum",
+    "location": "RER",
+    "reason": "preserved_unresolved"
+  },
+  {
+    "name": "smelting and refining of nickel concentrate, 16% Ni",
+    "product": "nickel, class 1",
+    "location": "GLO",
+    "reason": "preserved_extraction"
+  },
+  {
+    "name": "tin production",
+    "product": "tin",
+    "location": "PE",
+    "reason": "preserved_unresolved"
+  },
+  {
+    "name": "aluminium production, primary, liquid, prebake",
+    "product": "aluminium, primary, liquid",
+    "location": "CN",
+    "reason": "preserved_unresolved"
+  },
+  {
+    "name": "primary zinc production from concentrate",
+    "product": "copper, cathode",
+    "location": "RoW",
+    "reason": "preserved_extraction"
+  },
+  {
+    "name": "beryllium production",
+    "product": "beryllium",
+    "location": "US",
+    "reason": "preserved_unresolved"
+  },
+  {
+    "name": "aluminium alloy production, Metallic Matrix Composite",
+    "product": "copper, cathode",
+    "location": "RoW",
+    "reason": "preserved_unresolved"
+  },
+  {
+    "name": "aluminium production, primary, liquid, prebake",
+    "product": "aluminium, primary, liquid",
+    "location": "UN-OCEANIA",
+    "reason": "preserved_unresolved"
+  },
+  {
+    "name": "aluminium production, primary, liquid, prebake",
+    "product": "aluminium, primary, liquid",
+    "location": "CA",
+    "reason": "preserved_unresolved"
+  },
+  {
+    "name": "sand quarry operation, extraction from river bed",
+    "product": "sand",
+    "location": "RoW",
+    "reason": "preserved_extraction"
+  },
+  {
+    "name": "dolomite production",
+    "product": "dolomite",
+    "location": "RoW",
+    "reason": "preserved_unresolved"
+  },
+  {
+    "name": "sodium nitrate production, unrefined from caliche ore mining",
+    "product": "sodium nitrate, unrefined",
+    "location": "CL",
+    "reason": "preserved_extraction"
+  },
+  {
+    "name": "aluminium production, primary, liquid, prebake",
+    "product": "aluminium, primary, liquid",
+    "location": "RoW",
+    "reason": "preserved_unresolved"
+  },
+  {
+    "name": "aluminium production, primary, liquid, prebake",
+    "product": "aluminium, primary, liquid",
+    "location": "IAI Area, Asia, without China and GCC",
+    "reason": "preserved_unresolved"
+  },
+  {
+    "name": "gravel and sand quarry operation",
+    "product": "sand",
+    "location": "CH",
+    "reason": "preserved_extraction"
+  },
+  {
+    "name": "primary zinc production from concentrate",
+    "product": "silver",
+    "location": "RoW",
+    "reason": "preserved_extraction"
+  },
+  {
+    "name": "aluminium production, primary, ingot",
+    "product": "aluminium, primary, ingot",
+    "location": "IAI Area, Western and Central Europe",
+    "reason": "preserved_unresolved"
+  },
+  {
+    "name": "niobium mine operation and beneficiation, from pyrochlore ore",
+    "product": "barite",
+    "location": "BR",
+    "reason": "preserved_extraction"
+  },
+  {
+    "name": "vermiculite mine operation",
+    "product": "vermiculite",
+    "location": "ZA",
+    "reason": "preserved_extraction"
+  },
+  {
+    "name": "zinc mine operation",
+    "product": "limestone, milled, loose",
+    "location": "GLO",
+    "reason": "preserved_extraction"
+  },
+  {
+    "name": "smelting and refining of nickel concentrate, 7% Ni",
+    "product": "nickel, class 1",
+    "location": "CN",
+    "reason": "preserved_extraction"
+  },
+  {
+    "name": "titanium sponge production, from titanium tetrachloride",
+    "product": "titanium sponge",
+    "location": "JP",
+    "reason": "preserved_unresolved"
+  },
+  {
+    "name": "beryllium production",
+    "product": "beryllium",
+    "location": "RoW",
+    "reason": "preserved_unresolved"
+  },
+  {
+    "name": "electrorefining of copper, anode",
+    "product": "copper, cathode",
+    "location": "GLO",
+    "reason": "preserved_unresolved"
+  },
+  {
+    "name": "gold refinery operation",
+    "product": "gold",
+    "location": "ZA",
+    "reason": "preserved_unresolved"
+  },
+  {
+    "name": "potash salt production",
+    "product": "potash salt",
+    "location": "RoW",
+    "reason": "preserved_unresolved"
+  },
+  {
+    "name": "rare earth element mine operation and beneficiation, ion adsorption clays",
+    "product": "rare earth carbonate concentrate",
+    "location": "CN",
+    "reason": "preserved_extraction"
+  },
+  {
+    "name": "sand quarry operation, extraction from river bed",
+    "product": "sand",
+    "location": "BR",
+    "reason": "preserved_extraction"
+  },
+  {
+    "name": "dolomite production",
+    "product": "dolomite",
+    "location": "RER",
+    "reason": "preserved_unresolved"
+  },
+  {
+    "name": "rare earth element mine operation and beneficiation, bastnaesite and monazite ore",
+    "product": "rare earth oxide concentrate, 50% REO",
+    "location": "CN-NM",
+    "reason": "preserved_extraction"
+  },
+  {
+    "name": "aluminium alloy production, AlLi",
+    "product": "copper, cathode",
+    "location": "RoW",
+    "reason": "preserved_unresolved"
+  },
+  {
+    "name": "ilmenite - magnetite mine operation",
+    "product": "magnetite",
+    "location": "GLO",
+    "reason": "preserved_extraction"
+  },
+  {
+    "name": "zinc mine operation",
+    "product": "limestone, crushed, washed",
+    "location": "GLO",
+    "reason": "preserved_extraction"
+  },
+  {
+    "name": "aluminium production, primary, ingot",
+    "product": "aluminium, primary, ingot",
+    "location": "IAI Area, Russia and Eastern Europe",
+    "reason": "preserved_unresolved"
+  },
+  {
+    "name": "niobium mine operation and beneficiation, from pyrochlore ore",
+    "product": "barite",
+    "location": "RoW",
+    "reason": "preserved_extraction"
+  },
+  {
+    "name": "antimony production",
+    "product": "antimony",
+    "location": "RoW",
+    "reason": "preserved_unresolved"
+  },
+  {
+    "name": "aluminium production, primary, liquid, prebake",
+    "product": "aluminium, primary, liquid",
+    "location": "IAI Area, Africa",
+    "reason": "preserved_unresolved"
+  },
+  {
+    "name": "bentonite quarry operation",
+    "product": "bentonite",
+    "location": "RoW",
+    "reason": "preserved_extraction"
+  },
+  {
+    "name": "zinc mine operation",
+    "product": "sand",
+    "location": "GLO",
+    "reason": "preserved_extraction"
+  },
+  {
+    "name": "tin production",
+    "product": "tin",
+    "location": "RoW",
+    "reason": "preserved_unresolved"
+  },
+  {
+    "name": "aluminium production, primary, ingot",
+    "product": "aluminium, primary, ingot",
+    "location": "CA",
+    "reason": "preserved_unresolved"
+  },
+  {
+    "name": "aluminium production, primary, ingot",
+    "product": "aluminium, primary, ingot",
+    "location": "IAI Area, Gulf Cooperation Council",
+    "reason": "preserved_unresolved"
+  },
+  {
+    "name": "aluminium production, primary, ingot",
+    "product": "aluminium, primary, ingot",
+    "location": "RoW",
+    "reason": "preserved_unresolved"
+  },
+  {
+    "name": "colemanite mine operation and beneficiation",
+    "product": "calcium borates",
+    "location": "TR",
+    "reason": "preserved_extraction"
+  },
+  {
+    "name": "gold mine operation with extraction",
+    "product": "gold-silver, ingot",
+    "location": "PE",
+    "reason": "preserved_extraction"
+  },
+  {
+    "name": "gold-silver mine operation and beneficiation",
+    "product": "gold-silver, ingot",
+    "location": "CA-QC",
+    "reason": "preserved_extraction"
+  },
+  {
+    "name": "primary zinc production from concentrate",
+    "product": "lead",
+    "location": "RoW",
+    "reason": "preserved_extraction"
+  },
+  {
+    "name": "rare earth element mine operation and beneficiation, bastnaesite ore",
+    "product": "rare earth oxide concentrate, 70% REO",
+    "location": "CN-SC",
+    "reason": "preserved_extraction"
+  },
+  {
+    "name": "aluminium production, primary, liquid, prebake",
+    "product": "aluminium, primary, liquid",
+    "location": "IAI Area, Russia and Eastern Europe",
+    "reason": "preserved_unresolved"
+  },
+  {
+    "name": "aluminium alloy production, Metallic Matrix Composite",
+    "product": "copper, cathode",
+    "location": "CA-QC",
+    "reason": "preserved_unresolved"
+  },
+  {
+    "name": "bentonite quarry operation",
+    "product": "bentonite",
+    "location": "DE",
+    "reason": "preserved_extraction"
+  },
+  {
+    "name": "copper production, cathode, solvent extraction and electrowinning process",
+    "product": "sulfuric acid",
+    "location": "GLO",
+    "reason": "preserved_extraction"
+  },
+  {
+    "name": "antimony production",
+    "product": "antimony",
+    "location": "CN",
+    "reason": "preserved_unresolved"
+  },
+  {
+    "name": "aluminium production, primary, ingot",
+    "product": "aluminium, primary, ingot",
+    "location": "UN-OCEANIA",
+    "reason": "preserved_unresolved"
+  },
+  {
+    "name": "aluminium production, primary, ingot",
+    "product": "aluminium, primary, ingot",
+    "location": "IAI Area, Africa",
+    "reason": "preserved_unresolved"
+  },
+  {
+    "name": "colemanite mine operation and beneficiation",
+    "product": "calcium borates",
+    "location": "RoW",
+    "reason": "preserved_extraction"
+  },
+  {
+    "name": "sand quarry operation, extraction from river bed",
+    "product": "sand",
+    "location": "IN",
+    "reason": "preserved_extraction"
+  },
+  {
+    "name": "potash salt production",
+    "product": "potash salt",
+    "location": "RER",
+    "reason": "preserved_unresolved"
+  },
+  {
+    "name": "rare earth element mine operation and beneficiation, ion adsorption clays",
+    "product": "rare earth carbonate concentrate",
+    "location": "RoW",
+    "reason": "preserved_extraction"
+  },
+  {
+    "name": "gravel and sand quarry operation",
+    "product": "sand",
+    "location": "RoW",
+    "reason": "preserved_extraction"
+  },
+  {
+    "name": "manganese production",
+    "product": "manganese",
+    "location": "RER",
+    "reason": "preserved_unresolved"
+  },
+  {
+    "name": "aluminium production, primary, liquid, prebake",
+    "product": "aluminium, primary, liquid",
+    "location": "IAI Area, Western and Central Europe",
+    "reason": "preserved_unresolved"
+  },
+  {
+    "name": "aluminium production, primary, ingot",
+    "product": "aluminium, primary, ingot",
+    "location": "IAI Area, South America",
+    "reason": "preserved_unresolved"
+  },
+  {
+    "name": "molybdenum production",
+    "product": "molybdenum",
+    "location": "RoW",
+    "reason": "preserved_unresolved"
+  },
+  {
+    "name": "aluminium production, primary, liquid, prebake",
+    "product": "aluminium, primary, liquid",
+    "location": "IAI Area, South America",
+    "reason": "preserved_unresolved"
+  },
+  {
+    "name": "chromium production",
+    "product": "chromium",
+    "location": "RoW",
+    "reason": "preserved_unresolved"
+  },
+  {
+    "name": "titanium production",
+    "product": "titanium",
+    "location": "GLO",
+    "reason": "preserved_unresolved"
+  },
+  {
+    "name": "zinc mine operation",
+    "product": "bulk lead-zinc concentrate",
+    "location": "GLO",
+    "reason": "preserved_extraction"
+  },
+  {
+    "name": "titanium sponge production, from titanium tetrachloride",
+    "product": "titanium sponge",
+    "location": "CN",
+    "reason": "preserved_unresolved"
+  },
+  {
+    "name": "gold refinery operation",
+    "product": "gold",
+    "location": "RoW",
+    "reason": "preserved_unresolved"
+  },
+  {
+    "name": "aluminium alloy production, AlLi",
+    "product": "copper, cathode",
+    "location": "CA-QC",
+    "reason": "preserved_unresolved"
+  },
+  {
+    "name": "titanium sponge production, from titanium tetrachloride",
+    "product": "titanium sponge",
+    "location": "RoW",
+    "reason": "preserved_unresolved"
+  },
+  {
+    "name": "manganese production",
+    "product": "manganese",
+    "location": "RoW",
+    "reason": "preserved_unresolved"
+  },
+  {
+    "name": "aluminium production, primary, ingot",
+    "product": "aluminium, primary, ingot",
+    "location": "IAI Area, Asia, without China and GCC",
+    "reason": "preserved_unresolved"
+  },
+  {
+    "name": "vermiculite mine operation",
+    "product": "vermiculite",
+    "location": "RoW",
+    "reason": "preserved_extraction"
+  },
+  {
+    "name": "chromium production",
+    "product": "chromium",
+    "location": "RER",
+    "reason": "preserved_unresolved"
+  },
+  {
+    "name": "aluminium production, primary, ingot",
+    "product": "aluminium, primary, ingot",
+    "location": "CN",
+    "reason": "preserved_unresolved"
+  }
+]

@@ -1,0 +1,31 @@
+{
+  "broader_suite_passed": 394,
+  "broader_suite_failed": 21,
+  "baseline_inventory_tests_failed": 21,
+  "identical_failed_test_ids": true,
+  "new_failures": 0,
+  "failures": [
+    "::test_capacity_pack_cell_and_end_of_life_close[2020-oxidic]",
+    "::test_capacity_pack_cell_and_end_of_life_close[2020-polymer]",
+    "::test_capacity_pack_cell_and_end_of_life_close[2020-sulfidic]",
+    "::test_capacity_pack_cell_and_end_of_life_close[2035-oxidic]",
+    "::test_capacity_pack_cell_and_end_of_life_close[2035-polymer]",
+    "::test_capacity_pack_cell_and_end_of_life_close[2035-sulfidic]",
+    "::test_capacity_pack_cell_and_end_of_life_close[2050-oxidic]",
+    "::test_capacity_pack_cell_and_end_of_life_close[2050-polymer]",
+    "::test_capacity_pack_cell_and_end_of_life_close[2050-sulfidic]",
+    "::test_common_battery_does_not_mean_zero_full_vehicle_lead",
+    "::test_electric_cars_do_not_buy_combustion_engines",
+    "::test_electrolyte_identity_and_lithium_supply_are_explicit",
+    "::test_final_energy_reconstructs_mechanics_and_excludes_common_battery[electricity, used in passenger car]",
+    "::test_final_energy_reconstructs_mechanics_and_excludes_common_battery[hydrogen, used in a fuel cell in a passenger car]",
+    "::test_foreground_solve_closes_treatment_and_keeps_auxiliary_separate",
+    "::test_premise_import_retains_capacity_identity_and_biosphere_links[3.10]",
+    "::test_premise_import_retains_capacity_identity_and_biosphere_links[3.11]",
+    "::test_premise_import_retains_capacity_identity_and_biosphere_links[3.12]",
+    "::test_premise_import_retains_internal_products_and_waste_signs[3.10]",
+    "::test_premise_import_retains_internal_products_and_waste_signs[3.11]",
+    "::test_premise_import_retains_internal_products_and_waste_signs[3.12]"
+  ],
+  "explanation": "The same failures reproduce with HEAD tests and the pre-market workbooks. These tests contain stale names and counts following earlier inventory changes."
+}

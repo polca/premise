@@ -1,0 +1,158 @@
+{
+  "confirmed_recent_introductions": [
+    {
+      "inventory": "lci-batteries-ASSB.xlsx",
+      "exchange_pattern": "market for lithium iron phosphate",
+      "introduced_commit": "9b2fbc2f",
+      "date": "2026-10-17",
+      "subject": "Fix solid-state battery chemistry mapping with sourced reference inventories"
+    },
+    {
+      "inventory": "lci-batteries-ASSB.xlsx",
+      "exchange_pattern": "recycled to generic market",
+      "introduced_commit": "9b2fbc2f",
+      "date": "2026-10-17",
+      "subject": "Fix solid-state battery chemistry mapping with sourced reference inventories"
+    },
+    {
+      "inventory": "lci-electric-car-mechanical-powertrain.xlsx",
+      "exchange_pattern": "aluminium scrap, new, Recycled Content cut-off",
+      "introduced_commit": "16afce8e",
+      "date": "2026-10-17",
+      "subject": "Replace electric-car combustion proxy with component-specific mechanical equipment"
+    },
+    {
+      "inventory": "lci-electric-car-mechanical-powertrain.xlsx",
+      "exchange_pattern": "aluminium scrap, post-consumer, Recycled Content cut-off",
+      "introduced_commit": "16afce8e",
+      "date": "2026-10-17",
+      "subject": "Replace electric-car combustion proxy with component-specific mechanical equipment"
+    },
+    {
+      "inventory": "lci-two_wheelers.xlsx",
+      "exchange_pattern": "aluminium scrap, new, Recycled Content cut-off",
+      "introduced_commit": "457d6d7d",
+      "date": "2026-10-18",
+      "subject": "fix(inventory): retain two-wheeler mechanical energy equipment without gliders"
+    },
+    {
+      "inventory": "lci-two_wheelers.xlsx",
+      "exchange_pattern": "iron scrap, unsorted, Recycled Content cut-off",
+      "introduced_commit": "457d6d7d",
+      "date": "2026-10-18",
+      "subject": "fix(inventory): retain two-wheeler mechanical energy equipment without gliders"
+    }
+  ],
+  "source_candidate_check": [
+    {
+      "database": "ecoinvent-3.12-consequential",
+      "native_matches": [
+        {
+          "name": "market for aluminium scrap, new",
+          "reference product": "aluminium scrap, new",
+          "location": "RER",
+          "unit": "kilogram"
+        },
+        {
+          "name": "market for aluminium scrap, new",
+          "reference product": "aluminium scrap, new",
+          "location": "RoW",
+          "unit": "kilogram"
+        },
+        {
+          "name": "market for aluminium scrap, post-consumer",
+          "reference product": "aluminium scrap, post-consumer",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        {
+          "name": "market for iron scrap, unsorted",
+          "reference product": "iron scrap, unsorted",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        {
+          "name": "market for polyethylene, high density, granulate",
+          "reference product": "polyethylene, high density, granulate",
+          "location": "RER",
+          "unit": "kilogram"
+        },
+        {
+          "name": "market for polyethylene, high density, granulate",
+          "reference product": "polyethylene, high density, granulate",
+          "location": "RoW",
+          "unit": "kilogram"
+        }
+      ]
+    },
+    {
+      "database": "ecoinvent-3.12-EN15804",
+      "native_matches": [
+        {
+          "name": "market for aluminium scrap, new",
+          "reference product": "aluminium scrap, new",
+          "location": "RER",
+          "unit": "kilogram"
+        },
+        {
+          "name": "market for aluminium scrap, new",
+          "reference product": "aluminium scrap, new",
+          "location": "RoW",
+          "unit": "kilogram"
+        },
+        {
+          "name": "market for aluminium scrap, post-consumer",
+          "reference product": "aluminium scrap, post-consumer",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        {
+          "name": "market for iron scrap, unsorted",
+          "reference product": "iron scrap, unsorted",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        {
+          "name": "market for polyethylene, high density, granulate",
+          "reference product": "polyethylene, high density, granulate",
+          "location": "RER",
+          "unit": "kilogram"
+        },
+        {
+          "name": "market for polyethylene, high density, granulate",
+          "reference product": "polyethylene, high density, granulate",
+          "location": "RoW",
+          "unit": "kilogram"
+        }
+      ]
+    },
+    {
+      "database": "ecoinvent-3.8-cutoff",
+      "native_matches": []
+    }
+  ],
+  "older_reference_check": {
+    "baseline_commit": "0977de334f5336aa7a31b07668b3aae553c0ee83",
+    "baseline_date": "2026-10-16",
+    "references_already_present": [
+      {
+        "file": "lci-ammonia.xlsx",
+        "reference": "market for hydrogen, gaseous, low pressure"
+      },
+      {
+        "file": "lci-syngas.xlsx",
+        "reference": "market for hydrogen, gaseous, low pressure"
+      },
+      {
+        "file": "lci-batteries-NMC622-NMC532.xlsx",
+        "reference": "market for battery module packaging, Li-ion"
+      },
+      {
+        "file": "lci-batteries-NMC622-NMC532.xlsx",
+        "reference": "market for anode, graphite, for Li-ion battery"
+      }
+    ],
+    "limitation": "Presence in historical workbook confirms older references, not that a historical complete build was executed or failed."
+  },
+  "assessment": "Recent ASSB and vehicle inventory additions require explicit version/system-model compatibility rules. Older releases also expose a mix of older missing migrations and suppliers absent from the release. Native candidate availability alone does not establish an equivalent environmental model; replacement must preserve intended material scope, quantities and exchange direction."
+}

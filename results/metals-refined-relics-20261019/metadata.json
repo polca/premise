@@ -1,0 +1,48 @@
+{
+  "project": "metals-correctness-3.12-cutoff",
+  "source": "ecoinvent-3.12-cutoff",
+  "database": "metals-refined-relics-20261019-corrected",
+  "biosphere": "ecoinvent-3.12-biosphere",
+  "version": "3.12",
+  "system_model": "cutoff",
+  "scenario": {
+    "model": "image",
+    "pathway": "SSP2-M",
+    "year": 2020
+  },
+  "updates": [
+    "metals.post_allocation_correction"
+  ],
+  "encrypted_iam": true,
+  "full_metals_update_limitation": "Missing material-intensity conversion for electric motor production, asynchronous, traction; correction-only mode avoids this unrelated overlay",
+  "metals_sha256": "e4db576a84ba76c71defb630c033f04b8850b526477e2044c13d611bb3097c7e",
+  "git_commit": "f890ef3606454b0de056951b4eefca6cc0a746ac",
+  "build_seconds": 7.069856041984167,
+  "export_gold_resource_check": 1.0,
+  "corrected_datasets": 160,
+  "relics_version": "0.0.6",
+  "relics_mapping_sha256": "c2cde55d0468c6153937b3707ec692b83cda426d0028837fc211550d9c4e0af0",
+  "database_fingerprints": {
+    "ecoinvent-3.12-cutoff": "60add02291fe72157ac0445b309f67395f14797163395b6601691a5b27d34c57",
+    "metals-refined-relics-20261019-corrected": "c1cb1ec9342d38281348707a446f0351a03f2433461deba374741d4f13cd4faa"
+  },
+  "selected_producers": 128,
+  "elements": 33,
+  "within_5_percent": 104,
+  "within_10_percent": 107,
+  "seconds": 35.67240816698177,
+  "selection": "individual kilogram elemental primary producers; markets, concentrates, compounds, alloys, unrefined and secondary outputs excluded",
+  "source_comparison": "matching original ecoinvent identities; imported foreground producers may have no source counterpart",
+  "benchmark": "1 kg extracted/kg refined product; screening convention, not proof of physical recovery or purity",
+  "numerical_verification": {
+    "producers": 128,
+    "max_absolute_residual": 2.3283064365386963e-10,
+    "max_direct_lcia_difference": 1.3322676295501878e-15,
+    "reference_production_amounts_all_one": true
+  },
+  "analysis_scripts_sha256": {
+    "dev/audit_refined_metals_relics.py": "d6e1bcc95d8c67f626bcd5caf514f5a5609b06d7b12894df977c1bd3a641cdea",
+    "dev/diagnose_refined_metals_relics.py": "180ad4f229bc588e2d8a4bc8fb256d0b1dde7649cc1719553f257151278f7cd3",
+    "dev/report_refined_metals_relics.py": "518ad2458ded72c5f855bb74feaabcd4538f6054455b9b58d3825bdd76a9c67b"
+  }
+}

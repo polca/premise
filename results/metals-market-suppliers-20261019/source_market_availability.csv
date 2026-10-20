@@ -1,0 +1,91 @@
+case,market_name,reference_product,matching_activities,locations
+3.6-cutoff,"market for aluminium scrap, new","aluminium scrap, new",2,"RER, RoW"
+3.6-cutoff,"market for aluminium scrap, post-consumer","aluminium scrap, post-consumer",1,GLO
+3.6-cutoff,"market for iron scrap, unsorted","iron scrap, unsorted",1,GLO
+3.6-cutoff,"market for polyethylene, high density, granulate","polyethylene, high density, granulate",1,GLO
+3.6-cutoff,market for lithium iron phosphate,lithium iron phosphate,0,
+3.7-cutoff,"market for aluminium scrap, new","aluminium scrap, new",2,"RER, RoW"
+3.7-cutoff,"market for aluminium scrap, post-consumer","aluminium scrap, post-consumer",1,GLO
+3.7-cutoff,"market for iron scrap, unsorted","iron scrap, unsorted",1,GLO
+3.7-cutoff,"market for polyethylene, high density, granulate","polyethylene, high density, granulate",1,GLO
+3.7-cutoff,market for lithium iron phosphate,lithium iron phosphate,0,
+3.7.1-cutoff,"market for aluminium scrap, new","aluminium scrap, new",2,"RER, RoW"
+3.7.1-cutoff,"market for aluminium scrap, post-consumer","aluminium scrap, post-consumer",1,GLO
+3.7.1-cutoff,"market for iron scrap, unsorted","iron scrap, unsorted",1,GLO
+3.7.1-cutoff,"market for polyethylene, high density, granulate","polyethylene, high density, granulate",1,GLO
+3.7.1-cutoff,market for lithium iron phosphate,lithium iron phosphate,0,
+3.8-cutoff,"market for aluminium scrap, new","aluminium scrap, new",2,"RER, RoW"
+3.8-cutoff,"market for aluminium scrap, post-consumer","aluminium scrap, post-consumer",1,GLO
+3.8-cutoff,"market for iron scrap, unsorted","iron scrap, unsorted",1,GLO
+3.8-cutoff,"market for polyethylene, high density, granulate","polyethylene, high density, granulate",1,GLO
+3.8-cutoff,market for lithium iron phosphate,lithium iron phosphate,0,
+3.8-consequential,"market for aluminium scrap, new","aluminium scrap, new",2,"RER, RoW"
+3.8-consequential,"market for aluminium scrap, post-consumer","aluminium scrap, post-consumer",1,GLO
+3.8-consequential,"market for iron scrap, unsorted","iron scrap, unsorted",1,GLO
+3.8-consequential,"market for polyethylene, high density, granulate","polyethylene, high density, granulate",1,GLO
+3.8-consequential,market for lithium iron phosphate,lithium iron phosphate,0,
+3.9-cutoff,"market for aluminium scrap, new","aluminium scrap, new",2,"RER, RoW"
+3.9-cutoff,"market for aluminium scrap, post-consumer","aluminium scrap, post-consumer",1,GLO
+3.9-cutoff,"market for iron scrap, unsorted","iron scrap, unsorted",1,GLO
+3.9-cutoff,"market for polyethylene, high density, granulate","polyethylene, high density, granulate",1,GLO
+3.9-cutoff,market for lithium iron phosphate,lithium iron phosphate,2,"CN, RoW"
+3.9-consequential,"market for aluminium scrap, new","aluminium scrap, new",2,"RER, RoW"
+3.9-consequential,"market for aluminium scrap, post-consumer","aluminium scrap, post-consumer",1,GLO
+3.9-consequential,"market for iron scrap, unsorted","iron scrap, unsorted",1,GLO
+3.9-consequential,"market for polyethylene, high density, granulate","polyethylene, high density, granulate",1,GLO
+3.9-consequential,market for lithium iron phosphate,lithium iron phosphate,2,"CN, RoW"
+3.9.1-cutoff,"market for aluminium scrap, new","aluminium scrap, new",2,"RER, RoW"
+3.9.1-cutoff,"market for aluminium scrap, post-consumer","aluminium scrap, post-consumer",1,GLO
+3.9.1-cutoff,"market for iron scrap, unsorted","iron scrap, unsorted",1,GLO
+3.9.1-cutoff,"market for polyethylene, high density, granulate","polyethylene, high density, granulate",1,GLO
+3.9.1-cutoff,market for lithium iron phosphate,lithium iron phosphate,2,"CN, RoW"
+3.9.1-consequential,"market for aluminium scrap, new","aluminium scrap, new",2,"RER, RoW"
+3.9.1-consequential,"market for aluminium scrap, post-consumer","aluminium scrap, post-consumer",1,GLO
+3.9.1-consequential,"market for iron scrap, unsorted","iron scrap, unsorted",1,GLO
+3.9.1-consequential,"market for polyethylene, high density, granulate","polyethylene, high density, granulate",1,GLO
+3.9.1-consequential,market for lithium iron phosphate,lithium iron phosphate,2,"CN, RoW"
+3.10-cutoff,"market for aluminium scrap, new","aluminium scrap, new",2,"RER, RoW"
+3.10-cutoff,"market for aluminium scrap, post-consumer","aluminium scrap, post-consumer",1,GLO
+3.10-cutoff,"market for iron scrap, unsorted","iron scrap, unsorted",1,GLO
+3.10-cutoff,"market for polyethylene, high density, granulate","polyethylene, high density, granulate",1,GLO
+3.10-cutoff,market for lithium iron phosphate,lithium iron phosphate,2,"CN, RoW"
+3.10-consequential,"market for aluminium scrap, new","aluminium scrap, new",2,"RER, RoW"
+3.10-consequential,"market for aluminium scrap, post-consumer","aluminium scrap, post-consumer",1,GLO
+3.10-consequential,"market for iron scrap, unsorted","iron scrap, unsorted",1,GLO
+3.10-consequential,"market for polyethylene, high density, granulate","polyethylene, high density, granulate",1,GLO
+3.10-consequential,market for lithium iron phosphate,lithium iron phosphate,2,"CN, RoW"
+3.10.1-cutoff,"market for aluminium scrap, new","aluminium scrap, new",2,"RER, RoW"
+3.10.1-cutoff,"market for aluminium scrap, post-consumer","aluminium scrap, post-consumer",1,GLO
+3.10.1-cutoff,"market for iron scrap, unsorted","iron scrap, unsorted",1,GLO
+3.10.1-cutoff,"market for polyethylene, high density, granulate","polyethylene, high density, granulate",1,GLO
+3.10.1-cutoff,market for lithium iron phosphate,lithium iron phosphate,2,"CN, RoW"
+3.10.1-consequential,"market for aluminium scrap, new","aluminium scrap, new",2,"RER, RoW"
+3.10.1-consequential,"market for aluminium scrap, post-consumer","aluminium scrap, post-consumer",1,GLO
+3.10.1-consequential,"market for iron scrap, unsorted","iron scrap, unsorted",1,GLO
+3.10.1-consequential,"market for polyethylene, high density, granulate","polyethylene, high density, granulate",1,GLO
+3.10.1-consequential,market for lithium iron phosphate,lithium iron phosphate,2,"CN, RoW"
+3.11-cutoff,"market for aluminium scrap, new","aluminium scrap, new",2,"RER, RoW"
+3.11-cutoff,"market for aluminium scrap, post-consumer","aluminium scrap, post-consumer",1,GLO
+3.11-cutoff,"market for iron scrap, unsorted","iron scrap, unsorted",1,GLO
+3.11-cutoff,"market for polyethylene, high density, granulate","polyethylene, high density, granulate",1,GLO
+3.11-cutoff,market for lithium iron phosphate,lithium iron phosphate,2,"CN, RoW"
+3.11-consequential,"market for aluminium scrap, new","aluminium scrap, new",2,"RER, RoW"
+3.11-consequential,"market for aluminium scrap, post-consumer","aluminium scrap, post-consumer",1,GLO
+3.11-consequential,"market for iron scrap, unsorted","iron scrap, unsorted",1,GLO
+3.11-consequential,"market for polyethylene, high density, granulate","polyethylene, high density, granulate",1,GLO
+3.11-consequential,market for lithium iron phosphate,lithium iron phosphate,2,"CN, RoW"
+3.12-cutoff,"market for aluminium scrap, new","aluminium scrap, new",2,"RER, RoW"
+3.12-cutoff,"market for aluminium scrap, post-consumer","aluminium scrap, post-consumer",1,GLO
+3.12-cutoff,"market for iron scrap, unsorted","iron scrap, unsorted",1,GLO
+3.12-cutoff,"market for polyethylene, high density, granulate","polyethylene, high density, granulate",6,"IN, JP, KR, RER, RoW, US"
+3.12-cutoff,market for lithium iron phosphate,lithium iron phosphate,2,"CN, RoW"
+3.12-consequential,"market for aluminium scrap, new","aluminium scrap, new",2,"RER, RoW"
+3.12-consequential,"market for aluminium scrap, post-consumer","aluminium scrap, post-consumer",1,GLO
+3.12-consequential,"market for iron scrap, unsorted","iron scrap, unsorted",1,GLO
+3.12-consequential,"market for polyethylene, high density, granulate","polyethylene, high density, granulate",6,"IN, JP, KR, RER, RoW, US"
+3.12-consequential,market for lithium iron phosphate,lithium iron phosphate,2,"CN, RoW"
+3.12-EN15804,"market for aluminium scrap, new","aluminium scrap, new",2,"RER, RoW"
+3.12-EN15804,"market for aluminium scrap, post-consumer","aluminium scrap, post-consumer",1,GLO
+3.12-EN15804,"market for iron scrap, unsorted","iron scrap, unsorted",1,GLO
+3.12-EN15804,"market for polyethylene, high density, granulate","polyethylene, high density, granulate",6,"IN, JP, KR, RER, RoW, US"
+3.12-EN15804,market for lithium iron phosphate,lithium iron phosphate,2,"CN, RoW"

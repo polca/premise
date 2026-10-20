@@ -3,6 +3,7 @@ import pytest
 
 import premise.activity_maps as activity_maps_module
 from premise.activity_maps import InventorySet, act_fltr
+from premise.new_database import config as premise_config
 from premise.inventory_store import (
     IndexedInventoryList,
     get_wurst_query_diagnostics,
@@ -106,6 +107,55 @@ def test_act_fltr_preserves_or_includes_and_excludes_any_mask_match():
     )
 
     assert result == [database[0]]
+
+
+@pytest.mark.parametrize("version", premise_config["SUPPORTED_EI_VERSIONS"])
+def test_silicon_cell_mapping_excludes_substrate_preparation_and_coproducts(version):
+    cells = [
+        {"name": name, "reference product": product}
+        for name, product in [
+            (
+                "photovoltaic cell production, multi-Si wafer",
+                "photovoltaic cell, multi-Si wafer",
+            ),
+            (
+                "photovoltaic cell production, single-Si wafer",
+                "photovoltaic cell, single-Si wafer",
+            ),
+            ("photovoltaic cell production, ribbon-Si", "photovoltaic cell, ribbon-Si"),
+            (
+                "photovoltaic cell, multi-Si, at plant",
+                "photovoltaic cell, multi-Si, at plant",
+            ),
+            (
+                "photovoltaic cell, single-Si, at plant",
+                "photovoltaic cell, single-Si, at plant",
+            ),
+            (
+                "photovoltaic cell production, multicrystalline silicon",
+                "photovoltaic cell, multicrystalline silicon",
+            ),
+            (
+                "photovoltaic cell production, single-crystalline silicon, perc",
+                "photovoltaic cell, single-crystalline silicon, perc",
+            ),
+            (
+                "photovoltaic cell production, single-crystalline silicon, topcon, plasma-enhanced chemical vapour deposition",
+                "photovoltaic cell, single-crystalline silicon, topcon, plasma-enhanced chemical vapour deposition",
+            ),
+        ]
+    ]
+    substrate = {
+        "name": "gallium arsenide substrate preparation, for photovoltaic cell production",
+        "reference product": "gallium arsenide substrate preparation, for photovoltaic cells",
+    }
+    scrap = {**cells[0], "reference product": "aluminium scrap, new"}
+
+    mapping = InventorySet(
+        [substrate, scrap, *cells], version
+    ).generate_metals_activities_map()
+
+    assert mapping["c-Si"] == cells
 
 
 def test_generate_sets_supports_filters_without_a_name_prefilter():

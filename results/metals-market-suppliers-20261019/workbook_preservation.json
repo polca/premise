@@ -1,0 +1,26 @@
+[
+  {
+    "file": "lci-batteries-ASSB.xlsx",
+    "changed_parts": [
+      "xl/worksheets/sheet1.xml"
+    ],
+    "numeric_and_formula_cells_unchanged": 327,
+    "other_archive_parts_unchanged": true
+  },
+  {
+    "file": "lci-electric-car-mechanical-powertrain.xlsx",
+    "changed_parts": [
+      "xl/worksheets/sheet1.xml"
+    ],
+    "numeric_and_formula_cells_unchanged": 253,
+    "other_archive_parts_unchanged": true
+  },
+  {
+    "file": "lci-two_wheelers.xlsx",
+    "changed_parts": [
+      "xl/worksheets/sheet27.xml"
+    ],
+    "numeric_and_formula_cells_unchanged": 138,
+    "other_archive_parts_unchanged": true
+  }
+]

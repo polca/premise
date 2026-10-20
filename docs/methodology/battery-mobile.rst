@@ -217,6 +217,11 @@ Cell mass and capacity use the explicit SM1 mass model rather than its
 inconsistent volumetric density. Published germanium resource/heat and
 acrylonitrile binder proxies are retained as process-coverage limitations.
 
+HDPE supply uses the native ``market for polyethylene, high density, granulate``
+instead of the source's cutoff-specific recycled-material supplier. The kg
+input is retained; recycling content follows the target market mix. The 3.10
+global market is migrated to the target release's regional markets when needed.
+
 The sulfide coating exchanges are reconstructed from the original
 `Chordia et al. (2021) <https://doi.org/10.1007/s11367-021-01976-0>`__
 Tables S5-10/S5-11. The later supplement treats its 0.610659 square metres

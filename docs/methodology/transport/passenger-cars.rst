@@ -256,7 +256,10 @@ retained; neither torque sizing nor a modern bill of materials is validated.
 The updated material shares are an explicit historical technology proxy.
 
 A dedicated mechanical end-of-life process sends retained steel and aluminium
-to existing cutoff scrap destinations. Polymers/rubber use mixed-plastic
+to native scrap markets. Manufacturing aluminium scrap uses the RoW market, since no
+global market exists; post-consumer aluminium and unsorted iron use their
+global markets. Signed scrap quantities are retained across system models.
+Polymers/rubber use mixed-plastic
 treatment, coolant uses hazardous-waste incineration and a generic manual
 facility rate supplies dismantling infrastructure. Retained end-of-life flows
 sum to one kg. These are stated treatment proxies. The motor/electronics

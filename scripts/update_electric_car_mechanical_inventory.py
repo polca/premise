@@ -166,14 +166,16 @@ def inventories():
     feeds.extend(
         [
             exchange(
-                "iron scrap, unsorted, Recycled Content cut-off",
+                "market for iron scrap, unsorted",
                 "iron scrap, unsorted",
                 -scrap_iron,
             ),
             exchange(
-                "aluminium scrap, new, Recycled Content cut-off",
+                "market for aluminium scrap, new",
                 "aluminium scrap, new",
                 -scrap_al,
+                "RoW",
+                comment="Native scrap market; RoW is the non-European destination for this global equipment reference.",
             ),
             exchange(
                 "market for waste plastic, mixture",
@@ -204,12 +206,12 @@ def inventories():
         USED,
         [
             exchange(
-                "iron scrap, unsorted, Recycled Content cut-off",
+                "market for iron scrap, unsorted",
                 "iron scrap, unsorted",
                 -sum(retained[n] for n in iron),
             ),
             exchange(
-                "aluminium scrap, post-consumer, Recycled Content cut-off",
+                "market for aluminium scrap, post-consumer",
                 "aluminium scrap, post-consumer",
                 -retained["aluminium, cast alloy"],
             ),
@@ -235,7 +237,7 @@ def inventories():
             ),
         ],
         "Dedicated mechanical treatment: retained steel/aluminium, polymers/rubber "
-        "and coolant sum to 1 kg. Uses existing cutoff scrap destinations and "
+        "and coolant sum to 1 kg. Uses native scrap markets and "
         "documented generic treatment proxies, not future recovery efficiencies.",
         production=-1,
     )

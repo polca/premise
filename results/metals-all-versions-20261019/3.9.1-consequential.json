@@ -1,0 +1,17 @@
+{
+  "id": "3.9.1-consequential",
+  "version": "3.9.1",
+  "system_model": "consequential",
+  "premise_system_model": "consequential",
+  "source": "ecoinvent-3.9.1-consequential",
+  "project": "ecoinvent-3.9.1-consequential",
+  "biosphere": "ecoinvent-3.9.1-biosphere",
+  "available": true,
+  "status": "failed",
+  "scenarios": [],
+  "stage": "initialization",
+  "error_type": "ValueError",
+  "error": "Fix the unlinked exchanges before proceeding",
+  "seconds": 20.89435808302369,
+  "completed_utc": "2026-10-19T20:40:07.438996+00:00"
+}

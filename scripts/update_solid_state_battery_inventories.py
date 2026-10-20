@@ -325,6 +325,15 @@ def sulfide_cell(source):
             loc = "RoW"
         if name == "market for xylene":
             name = "market for xylene, mixed"
+        if name.startswith(
+            "polyethylene, high density, granulate, recycled to generic market"
+        ):
+            name, loc = "market for polyethylene, high density, granulate", "GLO"
+            comment += (
+                " Native HDPE market replaces the source's cutoff-specific recycled supplier. "
+                "The original quantity is retained; the supplied market mix determines recycling content. "
+                "The 3.10 global market is migrated to the target release's regional markets."
+            )
         unit = {
             "kg": "kilogram",
             "kWh": "kilowatt hour",

@@ -1,0 +1,20 @@
+version,source_system_model,status,scenario_years_passed,stage,preserved_component_datasets,note
+3.5,cutoff,not_available,,,,No local cutoff source; official ecoinvent catalogue exposes only apos for 3.5 with the stored account.
+3.6,cutoff,failed,,initialization,,"lci-PV-2026.xlsx, lci-PV-perovskite.xlsx, lci-ammonia.xlsx, lci-batteries-ASSB.xlsx, lci-batteries-LiO2.xlsx, lci-batteries-LiS.xlsx, lci-batteries-NMC622-NMC532.xlsx, lci-batteries-NMC955-LTO.xlsx, lci-batteries-SIB.xlsx, lci-batteries-organic-and-hybrid-redox-flow.xlsx, lci-batteries-vanadium.xlsx, lci-battery-capacity.xlsx, lci-biofuels.xlsx, lci-carbon-capture.xlsx, lci-cobalt.xlsx, lci-hydrogen-electrolysis.xlsx, lci-nuclear_EPR.xlsx, lci-steel.xlsx, lci-synfuels-from-FT.xlsx, lci-synfuels-from-methanol.xlsx, lci-syngas.xlsx: Fix the unlinked exchanges before proceeding"
+3.7,cutoff,failed,,initialization,,"lci-ammonia.xlsx, lci-batteries-ASSB.xlsx, lci-batteries-NMC622-NMC532.xlsx, lci-batteries-NMC955-LTO.xlsx, lci-batteries-SIB.xlsx, lci-batteries-organic-and-hybrid-redox-flow.xlsx, lci-batteries-vanadium.xlsx, lci-battery-capacity.xlsx, lci-carbon-capture.xlsx, lci-synfuels-from-FT.xlsx, lci-synfuels-from-methanol.xlsx, lci-syngas.xlsx: Fix the unlinked exchanges before proceeding"
+3.7.1,cutoff,failed,,initialization,,"lci-ammonia.xlsx, lci-batteries-ASSB.xlsx, lci-batteries-NMC622-NMC532.xlsx, lci-batteries-NMC955-LTO.xlsx, lci-batteries-SIB.xlsx, lci-batteries-organic-and-hybrid-redox-flow.xlsx, lci-batteries-vanadium.xlsx, lci-battery-capacity.xlsx, lci-carbon-capture.xlsx, lci-synfuels-from-FT.xlsx, lci-synfuels-from-methanol.xlsx, lci-syngas.xlsx: Fix the unlinked exchanges before proceeding"
+3.8,cutoff,failed,,initialization,,lci-batteries-ASSB.xlsx: Fix the unlinked exchanges before proceeding
+3.8,consequential,failed,,initialization,,lci-batteries-ASSB.xlsx: Fix the unlinked exchanges before proceeding
+3.9,cutoff,passed,"2020, 2050",,6,
+3.9,consequential,passed,"2020, 2050",,6,
+3.9.1,cutoff,passed,"2020, 2050",,6,
+3.9.1,consequential,passed,"2020, 2050",,6,
+3.10,cutoff,passed,"2020, 2050",,6,
+3.10,consequential,passed,"2020, 2050",,6,
+3.10.1,cutoff,passed,"2020, 2050",,6,
+3.10.1,consequential,passed,"2020, 2050",,6,
+3.11,cutoff,passed,"2020, 2050",,6,
+3.11,consequential,passed,"2020, 2050",,6,
+3.12,cutoff,passed,"2020, 2050",,6,
+3.12,consequential,passed,"2020, 2050",,6,
+3.12,EN15804,passed,"2020, 2050",,6,

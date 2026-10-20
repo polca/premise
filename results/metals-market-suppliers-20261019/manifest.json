@@ -1,0 +1,190 @@
+[
+  {
+    "id": "3.5-cutoff",
+    "version": "3.5",
+    "system_model": "cutoff",
+    "premise_system_model": "cutoff",
+    "source": "ecoinvent-3.5-cutoff",
+    "available": false
+  },
+  {
+    "id": "3.6-cutoff",
+    "version": "3.6",
+    "system_model": "cutoff",
+    "premise_system_model": "cutoff",
+    "source": "ecoinvent-3.6-cutoff",
+    "project": "brightpath-reference-3.6-cutoff",
+    "biosphere": "ecoinvent-3.6-biosphere",
+    "available": true
+  },
+  {
+    "id": "3.7-cutoff",
+    "version": "3.7",
+    "system_model": "cutoff",
+    "premise_system_model": "cutoff",
+    "source": "ecoinvent-3.7-cutoff",
+    "project": "brightpath-reference-3.7-cutoff",
+    "biosphere": "ecoinvent-3.7-biosphere",
+    "available": true
+  },
+  {
+    "id": "3.7.1-cutoff",
+    "version": "3.7.1",
+    "system_model": "cutoff",
+    "premise_system_model": "cutoff",
+    "source": "ecoinvent-3.7.1-cutoff",
+    "project": "premise-metals-version-3.7.1-cutoff-20261019",
+    "biosphere": "ecoinvent-3.7.1-biosphere",
+    "available": true
+  },
+  {
+    "id": "3.8-cutoff",
+    "version": "3.8",
+    "system_model": "cutoff",
+    "premise_system_model": "cutoff",
+    "source": "ecoinvent-3.8-cutoff",
+    "project": "ecoinvent-3.8-cutoff",
+    "biosphere": "ecoinvent-3.8-biosphere",
+    "available": true
+  },
+  {
+    "id": "3.8-consequential",
+    "version": "3.8",
+    "system_model": "consequential",
+    "premise_system_model": "consequential",
+    "source": "ecoinvent-3.8-consequential",
+    "project": "ecoinvent-3.8-consequential",
+    "biosphere": "ecoinvent-3.8-biosphere",
+    "available": true
+  },
+  {
+    "id": "3.9-cutoff",
+    "version": "3.9",
+    "system_model": "cutoff",
+    "premise_system_model": "cutoff",
+    "source": "ecoinvent-3.9-cutoff",
+    "project": "ecoinvent-3.9-cutoff",
+    "biosphere": "ecoinvent-3.9-biosphere",
+    "available": true
+  },
+  {
+    "id": "3.9-consequential",
+    "version": "3.9",
+    "system_model": "consequential",
+    "premise_system_model": "consequential",
+    "source": "ecoinvent-3.9-consequential",
+    "project": "brightpath-reference-3.9-consequential",
+    "biosphere": "ecoinvent-3.9-biosphere",
+    "available": true
+  },
+  {
+    "id": "3.9.1-cutoff",
+    "version": "3.9.1",
+    "system_model": "cutoff",
+    "premise_system_model": "cutoff",
+    "source": "ecoinvent-3.9.1-cutoff",
+    "project": "ecoinvent-3.9.1-cutoff",
+    "biosphere": "ecoinvent-3.9.1-biosphere",
+    "available": true
+  },
+  {
+    "id": "3.9.1-consequential",
+    "version": "3.9.1",
+    "system_model": "consequential",
+    "premise_system_model": "consequential",
+    "source": "ecoinvent-3.9.1-consequential",
+    "project": "ecoinvent-3.9.1-consequential",
+    "biosphere": "ecoinvent-3.9.1-biosphere",
+    "available": true
+  },
+  {
+    "id": "3.10-cutoff",
+    "version": "3.10",
+    "system_model": "cutoff",
+    "premise_system_model": "cutoff",
+    "source": "ecoinvent-3.10-cutoff",
+    "project": "ecoinvent-3.10-cutoff",
+    "biosphere": "ecoinvent-3.10-biosphere",
+    "available": true
+  },
+  {
+    "id": "3.10-consequential",
+    "version": "3.10",
+    "system_model": "consequential",
+    "premise_system_model": "consequential",
+    "source": "ecoinvent-3.10-consequential",
+    "project": "ecoinvent-3.10-consequential",
+    "biosphere": "ecoinvent-3.10-biosphere",
+    "available": true
+  },
+  {
+    "id": "3.10.1-cutoff",
+    "version": "3.10.1",
+    "system_model": "cutoff",
+    "premise_system_model": "cutoff",
+    "source": "ecoinvent-3.10.1-cutoff",
+    "project": "premise-metals-version-3.10.1-cutoff-20261019",
+    "biosphere": "ecoinvent-3.10.1-biosphere",
+    "available": true
+  },
+  {
+    "id": "3.10.1-consequential",
+    "version": "3.10.1",
+    "system_model": "consequential",
+    "premise_system_model": "consequential",
+    "source": "ecoinvent-3.10.1-consequential",
+    "project": "premise-metals-version-3.10.1-consequential-20261019",
+    "biosphere": "ecoinvent-3.10.1-biosphere",
+    "available": true
+  },
+  {
+    "id": "3.11-cutoff",
+    "version": "3.11",
+    "system_model": "cutoff",
+    "premise_system_model": "cutoff",
+    "source": "ecoinvent-3.11-cutoff",
+    "project": "ecoinvent-3.11-cutoff",
+    "biosphere": "biosphere-3.11",
+    "available": true
+  },
+  {
+    "id": "3.11-consequential",
+    "version": "3.11",
+    "system_model": "consequential",
+    "premise_system_model": "consequential",
+    "source": "ecoinvent-3.11-consequential",
+    "project": "ecoinvent-3.11-consequential",
+    "biosphere": "ecoinvent-3.11-biosphere",
+    "available": true
+  },
+  {
+    "id": "3.12-cutoff",
+    "version": "3.12",
+    "system_model": "cutoff",
+    "premise_system_model": "cutoff",
+    "source": "ecoinvent-3.12-cutoff",
+    "project": "ecoinvent-3.12-cutoff",
+    "biosphere": "ecoinvent-3.12-biosphere",
+    "available": true
+  },
+  {
+    "id": "3.12-consequential",
+    "version": "3.12",
+    "system_model": "consequential",
+    "premise_system_model": "consequential",
+    "source": "ecoinvent-3.12-consequential",
+    "project": "ecoinvent-3.12-consequential",
+    "biosphere": "ecoinvent-3.12-biosphere",
+    "available": true
+  },
+  {
+    "id": "3.12-EN15804",
+    "version": "3.12",
+    "system_model": "EN15804",
+    "premise_system_model": "cutoff",
+    "source": "ecoinvent-3.12-EN15804",
+    "project": "ecoinvent-3.12-EN15804",
+    "biosphere": "ecoinvent-3.12-biosphere",
+    "available": true
+  }
+]

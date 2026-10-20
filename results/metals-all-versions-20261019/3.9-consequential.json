@@ -1,0 +1,17 @@
+{
+  "id": "3.9-consequential",
+  "version": "3.9",
+  "system_model": "consequential",
+  "premise_system_model": "consequential",
+  "source": "ecoinvent-3.9-consequential",
+  "project": "brightpath-reference-3.9-consequential",
+  "biosphere": "ecoinvent-3.9-biosphere",
+  "available": true,
+  "status": "failed",
+  "scenarios": [],
+  "stage": "initialization",
+  "error_type": "ValueError",
+  "error": "Fix the unlinked exchanges before proceeding",
+  "seconds": 20.91204695799388,
+  "completed_utc": "2026-10-19T20:38:46.103727+00:00"
+}

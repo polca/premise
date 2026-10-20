@@ -1,0 +1,17 @@
+{
+  "id": "3.12-EN15804",
+  "version": "3.12",
+  "system_model": "EN15804",
+  "premise_system_model": "cutoff",
+  "source": "ecoinvent-3.12-EN15804",
+  "project": "ecoinvent-3.12-EN15804",
+  "biosphere": "ecoinvent-3.12-biosphere",
+  "available": true,
+  "status": "failed",
+  "scenarios": [],
+  "stage": "initialization",
+  "error_type": "ValueError",
+  "error": "Fix the unlinked exchanges before proceeding",
+  "seconds": 29.897152250021463,
+  "completed_utc": "2026-10-19T20:44:39.720962+00:00"
+}

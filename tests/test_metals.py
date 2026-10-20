@@ -30,6 +30,7 @@ from premise.metals_rules import (
     load_material_rules,
     load_technology_conversions,
 )
+from premise.new_database import config as premise_config
 from premise.metal_input_comparison import (
     compare_direct_metal_inputs,
     configured_metal_products,
@@ -307,10 +308,32 @@ def test_both_nuclear_aluminium_rules_are_applied_once():
             "kilogram",
             1.0,
         ),
+        (
+            "PEMFC",
+            "fuel cell stack production, 1 kWe, proton exchange membrane (PEM)",
+            "fuel cell stack, 1 kWe, proton exchange membrane (PEM)",
+            "unit",
+            0.001,
+        ),
+        (
+            "AEL",
+            "electrolyzer production, 1MWe, AEC, Stack",
+            "electrolyzer, 1MWe, AEC, Stack",
+            "unit",
+            1.0,
+        ),
+        (
+            "HTEL - Yttrium",
+            "electrolyzer production, 1MWe, SOEC, Stack",
+            "electrolyzer, 1MWe, SOEC, Stack",
+            "unit",
+            1.0,
+        ),
     ],
 )
+@pytest.mark.parametrize("version", premise_config["SUPPORTED_EI_VERSIONS"])
 def test_material_plan_excludes_scrap_coproducts(
-    technology, name, product, unit, factor
+    technology, name, product, unit, factor, version
 ):
     from copy import deepcopy
 
@@ -330,7 +353,7 @@ def test_material_plan_excludes_scrap_coproducts(
     before = deepcopy(database)
     metals = object.__new__(Metals)
     metals.activities_metals_map = InventorySet(
-        database, "3.12"
+        database, version
     ).generate_metals_activities_map()
     rules = [
         rule
@@ -339,7 +362,7 @@ def test_material_plan_excludes_scrap_coproducts(
     ]
     metals.material_rules_by_technology = {technology: rules}
     metals.material_policies = load_material_rules().policies
-    metals.version = "3.12"
+    metals.version = version
     metals.precomputed_medians = get_metals_intensity_factors_data().sel(year=2020)
     metals.technology_conversions_by_name = {
         c.activity_name: c for c in load_technology_conversions()
@@ -1972,6 +1995,181 @@ def test_ev_intensity_applies_per_kg_motor_without_capacity_conversion():
         0.2252697267412005 * rule.exchange_amount_factor
     )
     assert conversion == 1
+
+
+@pytest.mark.parametrize("version", premise_config["SUPPORTED_EI_VERSIONS"])
+def test_ev_material_plan_excludes_rail_traction_and_industrial_motors(version):
+    road_motors = [
+        market_dataset(name, product, location, [])
+        for name, product, location in [
+            ("electric motor production, vehicle", "electric motor, vehicle", "RER"),
+            ("electric motor production, vehicle", "electric motor, vehicle", "RoW"),
+            (
+                "electric motor production, vehicle (electric powertrain)",
+                "electric motor, electric passenger car",
+                "GLO",
+            ),
+            (
+                "electric motor production, for electric scooter",
+                "electric motor, for electric scooter",
+                "GLO",
+            ),
+        ]
+    ]
+    other_motors = [
+        market_dataset(
+            name,
+            product,
+            "GLO",
+            [
+                technosphere_exchange(
+                    "market for copper, cathode", "copper, cathode", "GLO", 0.09995002
+                )
+            ],
+        )
+        for name, product in [
+            (
+                "electric motor production, asynchronous, traction",
+                "electric motor, asynchronous, traction",
+            ),
+            ("electric motor production, industrial", "electric motor, industrial"),
+        ]
+    ]
+    database = [*other_motors, *road_motors]
+    before = deepcopy(database)
+    metals = _metals_for_material_rule_tests("EV", "Aluminium", 1)
+    metals.activities_metals_map = InventorySet(
+        database, version
+    ).generate_metals_activities_map()
+    metals.material_rules_by_technology = {
+        "EV": [r for r in load_material_rules().enabled_rules if r.technology == "EV"]
+    }
+    metals.precomputed_medians = get_metals_intensity_factors_data().sel(year=2020)
+    metals.technology_conversions_by_name = {
+        c.activity_name: c for c in load_technology_conversions()
+    }
+    metals.db_index = {}
+    metals.version = version
+
+    plan = metals._compile_material_update_plan()
+
+    assert metals.activities_metals_map["EV"] == road_motors
+    assert {id(item["dataset"]) for item in plan} == {id(d) for d in road_motors}
+    assert all(
+        (
+            item["conversion_factor"] is None
+            if item["rule"].preserve_reason
+            else item["conversion_factor"] == 1
+        )
+        for item in plan
+    )
+    assert database == before
+
+
+@pytest.mark.parametrize(
+    "technology,stack_name,stack_product,factor",
+    [
+        (
+            "PEMFC",
+            "fuel cell stack production, 1 kWe, proton exchange membrane (PEM)",
+            "fuel cell stack, 1 kWe, proton exchange membrane (PEM)",
+            0.001,
+        ),
+        (
+            "AEL",
+            "electrolyzer production, 1MWe, AEC, Stack",
+            "electrolyzer, 1MWe, AEC, Stack",
+            1.0,
+        ),
+        (
+            "HTEL - Yttrium",
+            "electrolyzer production, 1MWe, SOEC, Stack",
+            "electrolyzer, 1MWe, SOEC, Stack",
+            1.0,
+        ),
+    ],
+)
+@pytest.mark.parametrize("version", premise_config["SUPPORTED_EI_VERSIONS"])
+def test_stack_material_plan_excludes_materials_and_other_equipment(
+    technology, stack_name, stack_product, factor, version
+):
+    stack = market_dataset(
+        stack_name,
+        stack_product,
+        "GLO",
+        [],
+    )
+    stack["unit"] = "unit"
+    other_datasets = [
+        market_dataset(name, product, "GLO", [])
+        for name, product in [
+            (
+                "polyethylene terephthalate adhesive film production, for fuel cells",
+                "polyethylene terephthalate adhesive film, for fuel cells",
+            ),
+            ("membrane production, PEM", "membrane, PEM"),
+            (
+                "fuel cell system assembly, 1 kWe, proton exchange membrane (PEM)",
+                "fuel cell system, 1 kWe, proton exchange membrane (PEM)",
+            ),
+            (
+                "fuel cell production, stack solid oxide, 125kW electrical, future",
+                "fuel cell, stack solid oxide, 125kW electrical, future",
+            ),
+            (
+                "electrolyzer production, 1MWe, PEM, Stack",
+                "electrolyzer, 1MWe, PEM, Stack",
+            ),
+            (
+                "motor drive assembly production, electrolysis, AEC",
+                "motor drive assembly, electrolysis, AEC",
+            ),
+            (
+                "motor drive assembly production, electrolysis, SOEC",
+                "motor drive assembly, electrolysis, SOEC",
+            ),
+            (
+                "glass seal production, SOEC, barium alumino-borosilicate",
+                "glass seal, SOEC, barium alumino-borosilicate",
+            ),
+            (
+                "electrolyzer production, 1MWe, AEC, Balance of Plant",
+                "electrolyzer, 1MWe, AEC, Balance of Plant",
+            ),
+            (
+                "electrolyzer production, 1MWe, SOEC, Balance of Plant",
+                "electrolyzer, 1MWe, SOEC, Balance of Plant",
+            ),
+        ]
+    ]
+    for dataset in other_datasets:
+        if "motor drive" in dataset["name"] or "electrolyzer" in dataset["name"]:
+            dataset["unit"] = "unit"
+    database = [*other_datasets, stack]
+    before = deepcopy(database)
+    metals = object.__new__(Metals)
+    metals.activities_metals_map = InventorySet(
+        database, version
+    ).generate_metals_activities_map()
+    config = load_material_rules()
+    metals.material_rules_by_technology = {
+        technology: [r for r in config.enabled_rules if r.technology == technology]
+    }
+    metals.material_policies = config.policies
+    metals.precomputed_medians = get_metals_intensity_factors_data().sel(year=2020)
+    metals.technology_conversions_by_name = {
+        c.activity_name: c for c in load_technology_conversions()
+    }
+    metals.version = version
+    metals.db_index = {}
+
+    plan = metals._compile_material_update_plan()
+
+    assert metals.activities_metals_map[technology] == [stack]
+    assert len(plan) == len(metals.material_rules_by_technology[technology])
+    assert all(item["dataset"] is stack for item in plan)
+    assert all(item["conversion_factor"] == factor for item in plan)
+    assert database == before
 
 
 def test_unit_mismatch_and_overlap_fail_before_mutation():

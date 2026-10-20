@@ -122,6 +122,30 @@ def test_sulfide_cathode_yields_purchase_exactly_one_kwh(inventory, sources):
     ] * 200 * 3.75 == pytest.approx(data["cell_energy_Wh"])
 
 
+def test_sulfide_hdpe_uses_market_with_original_material_quantity(inventory, sources):
+    cell = activity(inventory, "battery cell production, ASSB, sulfidic")
+    (exchange,) = [
+        e
+        for e in cell["exchanges"]
+        if (e.get("reference product") or e.get("product"))
+        == "polyethylene, high density, granulate"
+    ]
+    (source,) = [
+        r
+        for r in sources["rietdorf_scenario_1_rows"]
+        if r["flow"] == "polyethylene, high density, granulate"
+    ]
+    expected = (
+        source["amount"]
+        * cell["source capacity normalization"]
+        * cell["battery cell energy density"]
+    )
+    assert exchange["name"] == "market for polyethylene, high density, granulate"
+    assert exchange["location"] == "GLO"
+    assert exchange["unit"] == "kilogram"
+    assert exchange["amount"] == pytest.approx(expected)
+
+
 def test_sulfide_plating_uses_area_and_original_process_units(inventory, sources):
     cell = activity(inventory, "battery cell production, ASSB, sulfidic")
     normalization = cell["source capacity normalization"]

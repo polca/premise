@@ -1,0 +1,17 @@
+{
+  "id": "3.8-cutoff",
+  "version": "3.8",
+  "system_model": "cutoff",
+  "premise_system_model": "cutoff",
+  "source": "ecoinvent-3.8-cutoff",
+  "project": "ecoinvent-3.8-cutoff",
+  "biosphere": "ecoinvent-3.8-biosphere",
+  "available": true,
+  "status": "failed",
+  "scenarios": [],
+  "stage": "initialization",
+  "error_type": "ValueError",
+  "error": "Fix the unlinked exchanges before proceeding",
+  "seconds": 7.643154541001422,
+  "completed_utc": "2026-10-19T20:56:34.151729+00:00"
+}

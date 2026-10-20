@@ -71,6 +71,27 @@ rule records an applied or preserved outcome, including unavailable intensities.
 EV intensities in the runtime CSV are in kg metal/kg motor. The three motor
 activities therefore use a conversion of one, rather than 0.1 MW/53 kg.
 For example, the 2020 aluminium intensity is 0.2252697267 kg/kg motor.
+
+The EV mapping selects the vehicle-motor and electric-scooter production
+families. The asynchronous rail traction motor has its own engineering
+composition and is outside this road-vehicle mapping. Its production name
+must not trigger a generic EV material overlay or require a road-motor
+conversion merely because it starts with ``electric motor production``.
+
+The PEMFC mapping selects the production and reference-product names of the
+configured 1 kWe proton-exchange-membrane fuel-cell stack. Its conversion is
+0.001 MW per stack. Adhesive films, membranes, system assemblies and other
+activities mentioning fuel cells or PEM are outside this stack-level mapping.
+
+The AEL and HTEL mappings likewise select the configured 1 MWe AEC and SOEC
+stack activities and reference products. Both conversions are one MW per
+stack. Motor-drive assemblies, balance-of-plant equipment and glass seals
+retain their own inventories rather than receiving stack-level intensities.
+
+The c-Si mapping requires a silicon-cell reference product as well as a
+matching activity name. Substrate-preparation services and scrap co-products
+therefore do not receive cell-level material intensities.
+
 Unit compatibility alone does not establish component scope. The EV summary
 includes whole-vehicle observations from Cullbrand and Magnusson's
 `The Use of Potentially Critical Materials in Passenger Cars

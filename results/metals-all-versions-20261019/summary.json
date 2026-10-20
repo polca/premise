@@ -1,0 +1,857 @@
+{
+  "scope": "Complete metals update; IMAGE SSP2-M 2020 and 2050; compact backend; no scenario DB exports.",
+  "configuration_sha256": {
+    "activities_mapping.yml": "be4295e0c129afff95b77de28fb1ec2dc5d2ef33a3380b7215c477ae431112c4",
+    "metal_products.yaml": "e9df3c10d124df64d28a2123c2784fd1f3bd12874cfbf54730d6e2cf6fa00467",
+    "technology_conversion_factors.yaml": "e7df575052373770a9c3bc633e10231af047e10b1e62809791209dde8388994d"
+  },
+  "counts": {
+    "not_available": 1,
+    "failed": 12,
+    "passed": 6
+  },
+  "cases": [
+    {
+      "id": "3.5-cutoff",
+      "version": "3.5",
+      "system_model": "cutoff",
+      "premise_system_model": "cutoff",
+      "source": "ecoinvent-3.5-cutoff",
+      "available": false,
+      "status": "not_available",
+      "source_availability_note": "No local cutoff source; official ecoinvent catalogue exposes only apos for 3.5 with the stored account."
+    },
+    {
+      "id": "3.6-cutoff",
+      "version": "3.6",
+      "system_model": "cutoff",
+      "premise_system_model": "cutoff",
+      "source": "ecoinvent-3.6-cutoff",
+      "project": "brightpath-reference-3.6-cutoff",
+      "biosphere": "ecoinvent-3.6-biosphere",
+      "available": true,
+      "status": "failed",
+      "scenarios": [],
+      "stage": "initialization",
+      "error_type": "ValueError",
+      "error": "Fix the unlinked exchanges before proceeding",
+      "seconds": 24.47240670901374,
+      "completed_utc": "2026-10-19T20:36:12.485449+00:00",
+      "unlinked_exchange_identities": 47,
+      "failed_inventory_imports": [
+        "lci-PV-2026.xlsx",
+        "lci-PV-perovskite.xlsx",
+        "lci-ammonia.xlsx",
+        "lci-batteries-ASSB.xlsx",
+        "lci-batteries-LiO2.xlsx",
+        "lci-batteries-LiS.xlsx",
+        "lci-batteries-NMC622-NMC532.xlsx",
+        "lci-batteries-NMC955-LTO.xlsx",
+        "lci-batteries-SIB.xlsx",
+        "lci-batteries-organic-and-hybrid-redox-flow.xlsx",
+        "lci-batteries-vanadium.xlsx",
+        "lci-battery-capacity.xlsx",
+        "lci-biofuels.xlsx",
+        "lci-carbon-capture.xlsx",
+        "lci-cobalt.xlsx",
+        "lci-hydrogen-electrolysis.xlsx",
+        "lci-nuclear_EPR.xlsx",
+        "lci-steel.xlsx",
+        "lci-synfuels-from-FT.xlsx",
+        "lci-synfuels-from-methanol.xlsx",
+        "lci-syngas.xlsx"
+      ],
+      "failure_classification": "default inventory import; metals update not reached"
+    },
+    {
+      "id": "3.7-cutoff",
+      "version": "3.7",
+      "system_model": "cutoff",
+      "premise_system_model": "cutoff",
+      "source": "ecoinvent-3.7-cutoff",
+      "project": "brightpath-reference-3.7-cutoff",
+      "biosphere": "ecoinvent-3.7-biosphere",
+      "available": true,
+      "status": "failed",
+      "scenarios": [],
+      "stage": "initialization",
+      "error_type": "ValueError",
+      "error": "Fix the unlinked exchanges before proceeding",
+      "seconds": 22.957060582994018,
+      "completed_utc": "2026-10-19T20:36:38.050579+00:00",
+      "unlinked_exchange_identities": 18,
+      "failed_inventory_imports": [
+        "lci-ammonia.xlsx",
+        "lci-batteries-ASSB.xlsx",
+        "lci-batteries-NMC622-NMC532.xlsx",
+        "lci-batteries-NMC955-LTO.xlsx",
+        "lci-batteries-SIB.xlsx",
+        "lci-batteries-organic-and-hybrid-redox-flow.xlsx",
+        "lci-batteries-vanadium.xlsx",
+        "lci-battery-capacity.xlsx",
+        "lci-carbon-capture.xlsx",
+        "lci-synfuels-from-FT.xlsx",
+        "lci-synfuels-from-methanol.xlsx",
+        "lci-syngas.xlsx"
+      ],
+      "failure_classification": "default inventory import; metals update not reached"
+    },
+    {
+      "id": "3.7.1-cutoff",
+      "version": "3.7.1",
+      "system_model": "cutoff",
+      "premise_system_model": "cutoff",
+      "source": "ecoinvent-3.7.1-cutoff",
+      "project": "premise-metals-version-3.7.1-cutoff-20261019",
+      "biosphere": "ecoinvent-3.7.1-biosphere",
+      "available": true,
+      "status": "failed",
+      "scenarios": [],
+      "stage": "initialization",
+      "error_type": "ValueError",
+      "error": "Fix the unlinked exchanges before proceeding",
+      "seconds": 21.020521917002043,
+      "completed_utc": "2026-10-19T20:45:47.825829+00:00",
+      "unlinked_exchange_identities": 18,
+      "failed_inventory_imports": [
+        "lci-ammonia.xlsx",
+        "lci-batteries-ASSB.xlsx",
+        "lci-batteries-NMC622-NMC532.xlsx",
+        "lci-batteries-NMC955-LTO.xlsx",
+        "lci-batteries-SIB.xlsx",
+        "lci-batteries-organic-and-hybrid-redox-flow.xlsx",
+        "lci-batteries-vanadium.xlsx",
+        "lci-battery-capacity.xlsx",
+        "lci-carbon-capture.xlsx",
+        "lci-synfuels-from-FT.xlsx",
+        "lci-synfuels-from-methanol.xlsx",
+        "lci-syngas.xlsx"
+      ],
+      "failure_classification": "default inventory import; metals update not reached"
+    },
+    {
+      "id": "3.8-cutoff",
+      "version": "3.8",
+      "system_model": "cutoff",
+      "premise_system_model": "cutoff",
+      "source": "ecoinvent-3.8-cutoff",
+      "project": "ecoinvent-3.8-cutoff",
+      "biosphere": "ecoinvent-3.8-biosphere",
+      "available": true,
+      "status": "failed",
+      "scenarios": [],
+      "stage": "initialization",
+      "error_type": "ValueError",
+      "error": "Fix the unlinked exchanges before proceeding",
+      "seconds": 23.81717662498704,
+      "completed_utc": "2026-10-19T20:37:04.449796+00:00",
+      "unlinked_exchange_identities": 1,
+      "failed_inventory_imports": [
+        "lci-batteries-ASSB.xlsx"
+      ],
+      "failure_classification": "default inventory import; metals update not reached"
+    },
+    {
+      "id": "3.8-consequential",
+      "version": "3.8",
+      "system_model": "consequential",
+      "premise_system_model": "consequential",
+      "source": "ecoinvent-3.8-consequential",
+      "project": "ecoinvent-3.8-consequential",
+      "biosphere": "ecoinvent-3.8-biosphere",
+      "available": true,
+      "status": "failed",
+      "scenarios": [],
+      "stage": "initialization",
+      "error_type": "ValueError",
+      "error": "Fix the unlinked exchanges before proceeding",
+      "seconds": 20.848854542011395,
+      "completed_utc": "2026-10-19T20:37:27.829604+00:00",
+      "unlinked_exchange_identities": 5,
+      "failed_inventory_imports": [
+        "lci-batteries-ASSB.xlsx",
+        "lci-electric-car-mechanical-powertrain.xlsx",
+        "lci-two_wheelers.xlsx"
+      ],
+      "failure_classification": "default inventory import; metals update not reached"
+    },
+    {
+      "id": "3.9-cutoff",
+      "version": "3.9",
+      "system_model": "cutoff",
+      "premise_system_model": "cutoff",
+      "source": "ecoinvent-3.9-cutoff",
+      "project": "ecoinvent-3.9-cutoff",
+      "biosphere": "ecoinvent-3.9-biosphere",
+      "available": true,
+      "status": "passed",
+      "scenarios": [
+        {
+          "model": "image",
+          "pathway": "SSP2-M",
+          "year": 2020,
+          "datasets": 25185,
+          "material_update_metrics": {
+            "compiled pairs": 926,
+            "executed pairs": 926,
+            "provider index lookups": 66
+          },
+          "validation_issue_counts": {
+            "warning": 270
+          },
+          "warning_counts_by_rule": {
+            "LEGACY.METALS_MATERIAL_RULE_COMPONENT_SCOPE_UNVERIFIED": 1,
+            "LEGACY.METALS_MATERIAL_RULE_YEAR_OUTSIDE_SUPPORT": 1,
+            "LEGACY.METAL_MARKET_PRESERVED_TRANSPORT_MISSING": 51,
+            "LEGACY.METAL_MATERIAL_PROVIDER_UNAVAILABLE": 8,
+            "LEGACY.METAL_RESOURCE_CORRECTION_PRESERVED": 209
+          },
+          "component_input_groups_unchanged": 24
+        },
+        {
+          "model": "image",
+          "pathway": "SSP2-M",
+          "year": 2050,
+          "datasets": 24548,
+          "material_update_metrics": {
+            "compiled pairs": 926,
+            "executed pairs": 926,
+            "provider index lookups": 22
+          },
+          "validation_issue_counts": {
+            "warning": 189
+          },
+          "warning_counts_by_rule": {
+            "LEGACY.METALS_MATERIAL_RULE_COMPONENT_SCOPE_UNVERIFIED": 1,
+            "LEGACY.METALS_MATERIAL_RULE_YEAR_OUTSIDE_SUPPORT": 1,
+            "LEGACY.METAL_MARKET_PRESERVED_YEAR_OUTSIDE_SUPPORT": 103,
+            "LEGACY.METAL_MATERIAL_PROVIDER_UNAVAILABLE": 2,
+            "LEGACY.METAL_RESOURCE_CORRECTION_PRESERVED": 82
+          },
+          "component_input_groups_unchanged": 24
+        }
+      ],
+      "mapping_counts": {
+        "ICEV": 3,
+        "EV": 4,
+        "Wind-DDPM": 0,
+        "Wind-Gearbox": 6,
+        "PEMFC": 1,
+        "SOFC - Y": 2,
+        "PEMEL": 1,
+        "AEL": 1,
+        "HTEL - Yttrium": 1,
+        "c-Si": 26,
+        "a-Si": 2,
+        "CIGS": 3,
+        "CdTe": 4,
+        "perovskite": 3,
+        "Parabolic Trough - PB": 2,
+        "CSP Tower - PB": 2,
+        "Nuclear": 15
+      },
+      "preserved_component_datasets": 6,
+      "seconds": 51.810805584012996,
+      "completed_utc": "2026-10-19T20:38:22.951303+00:00"
+    },
+    {
+      "id": "3.9-consequential",
+      "version": "3.9",
+      "system_model": "consequential",
+      "premise_system_model": "consequential",
+      "source": "ecoinvent-3.9-consequential",
+      "project": "brightpath-reference-3.9-consequential",
+      "biosphere": "ecoinvent-3.9-biosphere",
+      "available": true,
+      "status": "failed",
+      "scenarios": [],
+      "stage": "initialization",
+      "error_type": "ValueError",
+      "error": "Fix the unlinked exchanges before proceeding",
+      "seconds": 20.91204695799388,
+      "completed_utc": "2026-10-19T20:38:46.103727+00:00",
+      "unlinked_exchange_identities": 4,
+      "failed_inventory_imports": [
+        "lci-batteries-ASSB.xlsx",
+        "lci-electric-car-mechanical-powertrain.xlsx",
+        "lci-two_wheelers.xlsx"
+      ],
+      "failure_classification": "default inventory import; metals update not reached"
+    },
+    {
+      "id": "3.9.1-cutoff",
+      "version": "3.9.1",
+      "system_model": "cutoff",
+      "premise_system_model": "cutoff",
+      "source": "ecoinvent-3.9.1-cutoff",
+      "project": "ecoinvent-3.9.1-cutoff",
+      "biosphere": "ecoinvent-3.9.1-biosphere",
+      "available": true,
+      "status": "passed",
+      "scenarios": [
+        {
+          "model": "image",
+          "pathway": "SSP2-M",
+          "year": 2020,
+          "datasets": 25168,
+          "material_update_metrics": {
+            "compiled pairs": 926,
+            "executed pairs": 926,
+            "provider index lookups": 66
+          },
+          "validation_issue_counts": {
+            "warning": 270
+          },
+          "warning_counts_by_rule": {
+            "LEGACY.METALS_MATERIAL_RULE_COMPONENT_SCOPE_UNVERIFIED": 1,
+            "LEGACY.METALS_MATERIAL_RULE_YEAR_OUTSIDE_SUPPORT": 1,
+            "LEGACY.METAL_MARKET_PRESERVED_TRANSPORT_MISSING": 51,
+            "LEGACY.METAL_MATERIAL_PROVIDER_UNAVAILABLE": 8,
+            "LEGACY.METAL_RESOURCE_CORRECTION_PRESERVED": 209
+          },
+          "component_input_groups_unchanged": 24
+        },
+        {
+          "model": "image",
+          "pathway": "SSP2-M",
+          "year": 2050,
+          "datasets": 24531,
+          "material_update_metrics": {
+            "compiled pairs": 926,
+            "executed pairs": 926,
+            "provider index lookups": 22
+          },
+          "validation_issue_counts": {
+            "warning": 189
+          },
+          "warning_counts_by_rule": {
+            "LEGACY.METALS_MATERIAL_RULE_COMPONENT_SCOPE_UNVERIFIED": 1,
+            "LEGACY.METALS_MATERIAL_RULE_YEAR_OUTSIDE_SUPPORT": 1,
+            "LEGACY.METAL_MARKET_PRESERVED_YEAR_OUTSIDE_SUPPORT": 103,
+            "LEGACY.METAL_MATERIAL_PROVIDER_UNAVAILABLE": 2,
+            "LEGACY.METAL_RESOURCE_CORRECTION_PRESERVED": 82
+          },
+          "component_input_groups_unchanged": 24
+        }
+      ],
+      "mapping_counts": {
+        "ICEV": 3,
+        "EV": 4,
+        "Wind-DDPM": 0,
+        "Wind-Gearbox": 6,
+        "PEMFC": 1,
+        "SOFC - Y": 2,
+        "PEMEL": 1,
+        "AEL": 1,
+        "HTEL - Yttrium": 1,
+        "c-Si": 26,
+        "a-Si": 2,
+        "CIGS": 3,
+        "CdTe": 4,
+        "perovskite": 3,
+        "Parabolic Trough - PB": 2,
+        "CSP Tower - PB": 2,
+        "Nuclear": 15
+      },
+      "preserved_component_datasets": 6,
+      "seconds": 54.88357641699258,
+      "completed_utc": "2026-10-19T20:39:43.471503+00:00"
+    },
+    {
+      "id": "3.9.1-consequential",
+      "version": "3.9.1",
+      "system_model": "consequential",
+      "premise_system_model": "consequential",
+      "source": "ecoinvent-3.9.1-consequential",
+      "project": "ecoinvent-3.9.1-consequential",
+      "biosphere": "ecoinvent-3.9.1-biosphere",
+      "available": true,
+      "status": "failed",
+      "scenarios": [],
+      "stage": "initialization",
+      "error_type": "ValueError",
+      "error": "Fix the unlinked exchanges before proceeding",
+      "seconds": 20.89435808302369,
+      "completed_utc": "2026-10-19T20:40:07.438996+00:00",
+      "unlinked_exchange_identities": 4,
+      "failed_inventory_imports": [
+        "lci-batteries-ASSB.xlsx",
+        "lci-electric-car-mechanical-powertrain.xlsx",
+        "lci-two_wheelers.xlsx"
+      ],
+      "failure_classification": "default inventory import; metals update not reached"
+    },
+    {
+      "id": "3.10-cutoff",
+      "version": "3.10",
+      "system_model": "cutoff",
+      "premise_system_model": "cutoff",
+      "source": "ecoinvent-3.10-cutoff",
+      "project": "ecoinvent-3.10-cutoff",
+      "biosphere": "ecoinvent-3.10-biosphere",
+      "available": true,
+      "status": "passed",
+      "scenarios": [
+        {
+          "model": "image",
+          "pathway": "SSP2-M",
+          "year": 2020,
+          "datasets": 27451,
+          "material_update_metrics": {
+            "compiled pairs": 926,
+            "executed pairs": 926,
+            "provider index lookups": 65
+          },
+          "validation_issue_counts": {
+            "warning": 268
+          },
+          "warning_counts_by_rule": {
+            "LEGACY.METALS_MATERIAL_RULE_COMPONENT_SCOPE_UNVERIFIED": 1,
+            "LEGACY.METALS_MATERIAL_RULE_YEAR_OUTSIDE_SUPPORT": 1,
+            "LEGACY.METAL_MARKET_PRESERVED_TRANSPORT_MISSING": 51,
+            "LEGACY.METAL_MATERIAL_PROVIDER_UNAVAILABLE": 6,
+            "LEGACY.METAL_RESOURCE_CORRECTION_PRESERVED": 209
+          },
+          "component_input_groups_unchanged": 24
+        },
+        {
+          "model": "image",
+          "pathway": "SSP2-M",
+          "year": 2050,
+          "datasets": 26814,
+          "material_update_metrics": {
+            "compiled pairs": 926,
+            "executed pairs": 926,
+            "provider index lookups": 22
+          },
+          "validation_issue_counts": {
+            "warning": 189
+          },
+          "warning_counts_by_rule": {
+            "LEGACY.METALS_MATERIAL_RULE_COMPONENT_SCOPE_UNVERIFIED": 1,
+            "LEGACY.METALS_MATERIAL_RULE_YEAR_OUTSIDE_SUPPORT": 1,
+            "LEGACY.METAL_MARKET_PRESERVED_YEAR_OUTSIDE_SUPPORT": 103,
+            "LEGACY.METAL_MATERIAL_PROVIDER_UNAVAILABLE": 2,
+            "LEGACY.METAL_RESOURCE_CORRECTION_PRESERVED": 82
+          },
+          "component_input_groups_unchanged": 24
+        }
+      ],
+      "mapping_counts": {
+        "ICEV": 3,
+        "EV": 4,
+        "Wind-DDPM": 0,
+        "Wind-Gearbox": 6,
+        "PEMFC": 1,
+        "SOFC - Y": 2,
+        "PEMEL": 1,
+        "AEL": 1,
+        "HTEL - Yttrium": 1,
+        "c-Si": 26,
+        "a-Si": 2,
+        "CIGS": 3,
+        "CdTe": 4,
+        "perovskite": 3,
+        "Parabolic Trough - PB": 2,
+        "CSP Tower - PB": 2,
+        "Nuclear": 15
+      },
+      "preserved_component_datasets": 6,
+      "seconds": 58.485840000008466,
+      "completed_utc": "2026-10-19T20:41:08.529661+00:00"
+    },
+    {
+      "id": "3.10-consequential",
+      "version": "3.10",
+      "system_model": "consequential",
+      "premise_system_model": "consequential",
+      "source": "ecoinvent-3.10-consequential",
+      "project": "ecoinvent-3.10-consequential",
+      "biosphere": "ecoinvent-3.10-biosphere",
+      "available": true,
+      "status": "failed",
+      "scenarios": [],
+      "stage": "initialization",
+      "error_type": "ValueError",
+      "error": "Fix the unlinked exchanges before proceeding",
+      "seconds": 22.57925504099694,
+      "completed_utc": "2026-10-19T20:41:33.470576+00:00",
+      "unlinked_exchange_identities": 4,
+      "failed_inventory_imports": [
+        "lci-batteries-ASSB.xlsx",
+        "lci-electric-car-mechanical-powertrain.xlsx",
+        "lci-two_wheelers.xlsx"
+      ],
+      "failure_classification": "default inventory import; metals update not reached"
+    },
+    {
+      "id": "3.10.1-cutoff",
+      "version": "3.10.1",
+      "system_model": "cutoff",
+      "premise_system_model": "cutoff",
+      "source": "ecoinvent-3.10.1-cutoff",
+      "project": "premise-metals-version-3.10.1-cutoff-20261019",
+      "biosphere": "ecoinvent-3.10.1-biosphere",
+      "available": true,
+      "status": "passed",
+      "scenarios": [
+        {
+          "model": "image",
+          "pathway": "SSP2-M",
+          "year": 2020,
+          "datasets": 27451,
+          "material_update_metrics": {
+            "compiled pairs": 926,
+            "executed pairs": 926,
+            "provider index lookups": 65
+          },
+          "validation_issue_counts": {
+            "warning": 268
+          },
+          "warning_counts_by_rule": {
+            "LEGACY.METALS_MATERIAL_RULE_COMPONENT_SCOPE_UNVERIFIED": 1,
+            "LEGACY.METALS_MATERIAL_RULE_YEAR_OUTSIDE_SUPPORT": 1,
+            "LEGACY.METAL_MARKET_PRESERVED_TRANSPORT_MISSING": 51,
+            "LEGACY.METAL_MATERIAL_PROVIDER_UNAVAILABLE": 6,
+            "LEGACY.METAL_RESOURCE_CORRECTION_PRESERVED": 209
+          },
+          "component_input_groups_unchanged": 24
+        },
+        {
+          "model": "image",
+          "pathway": "SSP2-M",
+          "year": 2050,
+          "datasets": 26814,
+          "material_update_metrics": {
+            "compiled pairs": 926,
+            "executed pairs": 926,
+            "provider index lookups": 22
+          },
+          "validation_issue_counts": {
+            "warning": 189
+          },
+          "warning_counts_by_rule": {
+            "LEGACY.METALS_MATERIAL_RULE_COMPONENT_SCOPE_UNVERIFIED": 1,
+            "LEGACY.METALS_MATERIAL_RULE_YEAR_OUTSIDE_SUPPORT": 1,
+            "LEGACY.METAL_MARKET_PRESERVED_YEAR_OUTSIDE_SUPPORT": 103,
+            "LEGACY.METAL_MATERIAL_PROVIDER_UNAVAILABLE": 2,
+            "LEGACY.METAL_RESOURCE_CORRECTION_PRESERVED": 82
+          },
+          "component_input_groups_unchanged": 24
+        }
+      ],
+      "mapping_counts": {
+        "ICEV": 3,
+        "EV": 4,
+        "Wind-DDPM": 0,
+        "Wind-Gearbox": 6,
+        "PEMFC": 1,
+        "SOFC - Y": 2,
+        "PEMEL": 1,
+        "AEL": 1,
+        "HTEL - Yttrium": 1,
+        "c-Si": 26,
+        "a-Si": 2,
+        "CIGS": 3,
+        "CdTe": 4,
+        "perovskite": 3,
+        "Parabolic Trough - PB": 2,
+        "CSP Tower - PB": 2,
+        "Nuclear": 15
+      },
+      "preserved_component_datasets": 6,
+      "seconds": 55.85033095799736,
+      "completed_utc": "2026-10-19T20:46:45.926756+00:00"
+    },
+    {
+      "id": "3.10.1-consequential",
+      "version": "3.10.1",
+      "system_model": "consequential",
+      "premise_system_model": "consequential",
+      "source": "ecoinvent-3.10.1-consequential",
+      "project": "premise-metals-version-3.10.1-consequential-20261019",
+      "biosphere": "ecoinvent-3.10.1-biosphere",
+      "available": true,
+      "status": "failed",
+      "scenarios": [],
+      "stage": "initialization",
+      "error_type": "ValueError",
+      "error": "Fix the unlinked exchanges before proceeding",
+      "seconds": 22.326114915980725,
+      "completed_utc": "2026-10-19T20:47:10.469251+00:00",
+      "unlinked_exchange_identities": 4,
+      "failed_inventory_imports": [
+        "lci-batteries-ASSB.xlsx",
+        "lci-electric-car-mechanical-powertrain.xlsx",
+        "lci-two_wheelers.xlsx"
+      ],
+      "failure_classification": "default inventory import; metals update not reached"
+    },
+    {
+      "id": "3.11-cutoff",
+      "version": "3.11",
+      "system_model": "cutoff",
+      "premise_system_model": "cutoff",
+      "source": "ecoinvent-3.11-cutoff",
+      "project": "ecoinvent-3.11-cutoff",
+      "biosphere": "biosphere-3.11",
+      "available": true,
+      "status": "passed",
+      "scenarios": [
+        {
+          "model": "image",
+          "pathway": "SSP2-M",
+          "year": 2020,
+          "datasets": 29310,
+          "material_update_metrics": {
+            "compiled pairs": 926,
+            "executed pairs": 926,
+            "provider index lookups": 65
+          },
+          "validation_issue_counts": {
+            "warning": 252
+          },
+          "warning_counts_by_rule": {
+            "LEGACY.METALS_MATERIAL_RULE_COMPONENT_SCOPE_UNVERIFIED": 1,
+            "LEGACY.METALS_MATERIAL_RULE_YEAR_OUTSIDE_SUPPORT": 1,
+            "LEGACY.METAL_MARKET_PRESERVED_TRANSPORT_MISSING": 52,
+            "LEGACY.METAL_MATERIAL_PROVIDER_UNAVAILABLE": 6,
+            "LEGACY.METAL_RESOURCE_CORRECTION_PRESERVED": 192
+          },
+          "component_input_groups_unchanged": 24
+        },
+        {
+          "model": "image",
+          "pathway": "SSP2-M",
+          "year": 2050,
+          "datasets": 28679,
+          "material_update_metrics": {
+            "compiled pairs": 926,
+            "executed pairs": 926,
+            "provider index lookups": 22
+          },
+          "validation_issue_counts": {
+            "warning": 186
+          },
+          "warning_counts_by_rule": {
+            "LEGACY.METALS_MATERIAL_RULE_COMPONENT_SCOPE_UNVERIFIED": 1,
+            "LEGACY.METALS_MATERIAL_RULE_YEAR_OUTSIDE_SUPPORT": 1,
+            "LEGACY.METAL_MARKET_PRESERVED_YEAR_OUTSIDE_SUPPORT": 103,
+            "LEGACY.METAL_MATERIAL_PROVIDER_UNAVAILABLE": 2,
+            "LEGACY.METAL_RESOURCE_CORRECTION_PRESERVED": 79
+          },
+          "component_input_groups_unchanged": 24
+        }
+      ],
+      "mapping_counts": {
+        "ICEV": 3,
+        "EV": 4,
+        "Wind-DDPM": 0,
+        "Wind-Gearbox": 6,
+        "PEMFC": 1,
+        "SOFC - Y": 2,
+        "PEMEL": 1,
+        "AEL": 1,
+        "HTEL - Yttrium": 1,
+        "c-Si": 26,
+        "a-Si": 2,
+        "CIGS": 3,
+        "CdTe": 4,
+        "perovskite": 3,
+        "Parabolic Trough - PB": 2,
+        "CSP Tower - PB": 2,
+        "Nuclear": 15
+      },
+      "preserved_component_datasets": 6,
+      "seconds": 64.70462395899813,
+      "completed_utc": "2026-10-19T20:42:41.124425+00:00"
+    },
+    {
+      "id": "3.11-consequential",
+      "version": "3.11",
+      "system_model": "consequential",
+      "premise_system_model": "consequential",
+      "source": "ecoinvent-3.11-consequential",
+      "project": "ecoinvent-3.11-consequential",
+      "biosphere": "ecoinvent-3.11-biosphere",
+      "available": true,
+      "status": "failed",
+      "scenarios": [],
+      "stage": "initialization",
+      "error_type": "ValueError",
+      "error": "Fix the unlinked exchanges before proceeding",
+      "seconds": 25.81878395800595,
+      "completed_utc": "2026-10-19T20:43:09.586473+00:00",
+      "unlinked_exchange_identities": 4,
+      "failed_inventory_imports": [
+        "lci-batteries-ASSB.xlsx",
+        "lci-electric-car-mechanical-powertrain.xlsx",
+        "lci-two_wheelers.xlsx"
+      ],
+      "failure_classification": "default inventory import; metals update not reached"
+    },
+    {
+      "id": "3.12-cutoff",
+      "version": "3.12",
+      "system_model": "cutoff",
+      "premise_system_model": "cutoff",
+      "source": "ecoinvent-3.12-cutoff",
+      "project": "ecoinvent-3.12-cutoff",
+      "biosphere": "ecoinvent-3.12-biosphere",
+      "available": true,
+      "status": "passed",
+      "scenarios": [
+        {
+          "model": "image",
+          "pathway": "SSP2-M",
+          "year": 2020,
+          "datasets": 30431,
+          "material_update_metrics": {
+            "compiled pairs": 926,
+            "executed pairs": 926,
+            "provider index lookups": 65
+          },
+          "validation_issue_counts": {
+            "warning": 252
+          },
+          "warning_counts_by_rule": {
+            "LEGACY.METALS_MATERIAL_RULE_COMPONENT_SCOPE_UNVERIFIED": 1,
+            "LEGACY.METALS_MATERIAL_RULE_YEAR_OUTSIDE_SUPPORT": 1,
+            "LEGACY.METAL_MARKET_PRESERVED_TRANSPORT_MISSING": 52,
+            "LEGACY.METAL_MATERIAL_PROVIDER_UNAVAILABLE": 6,
+            "LEGACY.METAL_RESOURCE_CORRECTION_PRESERVED": 192
+          },
+          "component_input_groups_unchanged": 24
+        },
+        {
+          "model": "image",
+          "pathway": "SSP2-M",
+          "year": 2050,
+          "datasets": 29800,
+          "material_update_metrics": {
+            "compiled pairs": 926,
+            "executed pairs": 926,
+            "provider index lookups": 22
+          },
+          "validation_issue_counts": {
+            "warning": 186
+          },
+          "warning_counts_by_rule": {
+            "LEGACY.METALS_MATERIAL_RULE_COMPONENT_SCOPE_UNVERIFIED": 1,
+            "LEGACY.METALS_MATERIAL_RULE_YEAR_OUTSIDE_SUPPORT": 1,
+            "LEGACY.METAL_MARKET_PRESERVED_YEAR_OUTSIDE_SUPPORT": 103,
+            "LEGACY.METAL_MATERIAL_PROVIDER_UNAVAILABLE": 2,
+            "LEGACY.METAL_RESOURCE_CORRECTION_PRESERVED": 79
+          },
+          "component_input_groups_unchanged": 24
+        }
+      ],
+      "mapping_counts": {
+        "ICEV": 3,
+        "EV": 4,
+        "Wind-DDPM": 0,
+        "Wind-Gearbox": 6,
+        "PEMFC": 1,
+        "SOFC - Y": 2,
+        "PEMEL": 1,
+        "AEL": 1,
+        "HTEL - Yttrium": 1,
+        "c-Si": 26,
+        "a-Si": 2,
+        "CIGS": 3,
+        "CdTe": 4,
+        "perovskite": 3,
+        "Parabolic Trough - PB": 2,
+        "CSP Tower - PB": 2,
+        "Nuclear": 15
+      },
+      "preserved_component_datasets": 6,
+      "seconds": 26.537014875008026,
+      "completed_utc": "2026-10-19T20:43:39.646345+00:00"
+    },
+    {
+      "id": "3.12-consequential",
+      "version": "3.12",
+      "system_model": "consequential",
+      "premise_system_model": "consequential",
+      "source": "ecoinvent-3.12-consequential",
+      "project": "ecoinvent-3.12-consequential",
+      "biosphere": "ecoinvent-3.12-biosphere",
+      "available": true,
+      "status": "failed",
+      "scenarios": [],
+      "stage": "initialization",
+      "error_type": "ValueError",
+      "error": "Fix the unlinked exchanges before proceeding",
+      "seconds": 25.267969459004235,
+      "completed_utc": "2026-10-19T20:44:07.128916+00:00",
+      "unlinked_exchange_identities": 4,
+      "failed_inventory_imports": [
+        "lci-batteries-ASSB.xlsx",
+        "lci-electric-car-mechanical-powertrain.xlsx",
+        "lci-two_wheelers.xlsx"
+      ],
+      "failure_classification": "default inventory import; metals update not reached"
+    },
+    {
+      "id": "3.12-EN15804",
+      "version": "3.12",
+      "system_model": "EN15804",
+      "premise_system_model": "cutoff",
+      "source": "ecoinvent-3.12-EN15804",
+      "project": "ecoinvent-3.12-EN15804",
+      "biosphere": "ecoinvent-3.12-biosphere",
+      "available": true,
+      "status": "failed",
+      "scenarios": [],
+      "stage": "initialization",
+      "error_type": "ValueError",
+      "error": "Fix the unlinked exchanges before proceeding",
+      "seconds": 29.897152250021463,
+      "completed_utc": "2026-10-19T20:44:39.720962+00:00",
+      "unlinked_exchange_identities": 5,
+      "failed_inventory_imports": [
+        "lci-electric-car-mechanical-powertrain.xlsx",
+        "lci-two_wheelers.xlsx"
+      ],
+      "failure_classification": "default inventory import; metals update not reached"
+    }
+  ],
+  "regression_tests": {
+    "passed": 282,
+    "failed": 0,
+    "files": [
+      "tests/test_metals.py",
+      "tests/test_activity_maps.py",
+      "tests/test_metals_change_report.py"
+    ],
+    "version_parameters": [
+      "3.5",
+      "3.6",
+      "3.7",
+      "3.7.1",
+      "3.8",
+      "3.9",
+      "3.9.1",
+      "3.10",
+      "3.10.1",
+      "3.11",
+      "3.12"
+    ],
+    "scope": "Fixtures for mapping selection, co-product exclusion and material-plan conversion checks; does not substitute for full integration."
+  },
+  "scenario_runs_passed": 12,
+  "code_sha256": {
+    "premise/metals.py": "e4db576a84ba76c71defb630c033f04b8850b526477e2044c13d611bb3097c7e",
+    "premise/metals_rules.py": "12c328fb5fa3e858e12a2d2e4ee9c3082aca157880ee8f206ad219a6f8b578e9",
+    "premise/activity_maps.py": "cf5b99f1d96b7271a76982caef1e4d47fb12809b90eb77b4b0ba94cfdc5886e0",
+    "premise/new_database.py": "b716aaa296e310d36c520613eb53d0304f1a9d4897840bb745dbea08065435d2",
+    "tests/test_metals.py": "0f2e777945aa30ee5dbc7381e64909e134a3d1146c3d423f8d0c59ce1d5d56b8",
+    "tests/test_activity_maps.py": "6db47700e6307bc3b62c9310836aef828e753a0edc0844697ba41810284f4204"
+  },
+  "analysis_scripts_sha256": {
+    "dev/test_metals_all_versions.py": "792b8e90fe48689f2d601eccd933e5917d2e43ac2e60167deca255c80973e860",
+    "dev/import_missing_metals_test_sources.py": "4bc0798b66107aec3fd830e320d32b35ae91f397c66f849b7307733e641982be",
+    "dev/report_metals_version_tests.py": "561a22cc089641c1c86717d6a8e9f4e718b0d5f59e5b0eab9c05ad46a4a47245"
+  }
+}
