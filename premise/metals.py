@@ -2267,14 +2267,21 @@ class Metals(BaseTransformation):
             return
 
         self.build_in_ground_resource_exchange_index()
-        considered_dataset_ids = self.get_considered_metal_dataset_ids()
-        strict_dataset_ids = self.get_mapped_metal_dataset_ids()
-        missing_target_dataset_ids = self.get_missing_target_resource_dataset_ids(
-            considered_dataset_ids
-        )
+        from .metals_resource_boundaries import build_resource_boundary_plan
+
         resource_flow_names = (
             self.get_existing_in_ground_resource_flow_names()
             | self.get_biosphere_in_ground_resource_flow_names()
+        )
+        boundary_plan = build_resource_boundary_plan(self.database, resource_flow_names)
+        considered_dataset_ids = (
+            self.get_considered_metal_dataset_ids() - boundary_plan.reserved_ids
+        )
+        strict_dataset_ids = (
+            self.get_mapped_metal_dataset_ids() - boundary_plan.reserved_ids
+        )
+        missing_target_dataset_ids = self.get_missing_target_resource_dataset_ids(
+            considered_dataset_ids
         )
         provider_index = self.build_exchange_provider_index()
         upstream = {}
@@ -2386,6 +2393,45 @@ class Metals(BaseTransformation):
                         },
                     },
                 )
+
+        self._apply_resource_boundary_plan(boundary_plan)
+
+    def _apply_resource_boundary_plan(self, plan):
+        """Apply validated elementary-flow assignments without changing suppliers."""
+        from .metals_resource_boundaries import ground_resources
+
+        for dataset, reason in plan.diagnostics:
+            self._record_resource_diagnostic(dataset, reason)
+        for dataset, element, amount, reason in plan.assignments:
+            matches = ground_resources(dataset, element)
+            old_amount = matches[0]["amount"] if matches else 0.0
+            if old_amount == amount:
+                continue
+            if matches:
+                set_resource_amount(matches[0], amount)
+            else:
+                dataset.setdefault("exchanges", []).append(
+                    make_target_resource_exchange(element, amount)
+                )
+            self._in_ground_resource_exchange_index[id(dataset)] = (
+                get_in_ground_resource_exchanges(dataset)
+            )
+            self._validation_targets[id(dataset)] = dataset
+            self._record_resource_diagnostic(dataset, reason)
+            record_change_event(
+                self,
+                dataset,
+                "updated",
+                sector="metals",
+                reason_code="metals.scoped_resource_attribution",
+                explanation="Applied a dataset-specific primary resource attribution boundary.",
+                algorithm=reason,
+                computed_target_values={
+                    "resource": element,
+                    "old amount": old_amount,
+                    "new amount": amount,
+                },
+            )
 
     def _record_resource_diagnostic(self, dataset, reason):
         if not hasattr(self, "resource_diagnostics"):

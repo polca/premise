@@ -574,6 +574,14 @@ so one producer's extraction cannot conceal missing attribution at others.
 The zinc and zinc-oxide input amounts and their supply-chain burdens are retained.
 Cycles without such an explicit boundary remain unresolved.
 
+Copper-cathode and silver co-products of ``primary zinc production from
+concentrate`` have corresponding exact primary boundaries. A positive uniquely
+resolved zinc-concentrate feed must cover at least 1 kg/kg output, while named
+target-bearing reagent inputs must total less than 1 kg/kg. Those reagents and
+their upstream burdens are retained; they cannot replace the missing primary
+co-product extraction. Failed supplier/unit/flow checks preserve the candidate
+and emit a diagnostic instead of falling back to generic attribution.
+
 Generic carrier intermediates whose resource attribution is handled by
 downstream metal-specific datasets, such as platinum group metal concentrate,
 have their direct metal resource flows cleared to avoid double counting.
