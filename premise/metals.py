@@ -31,6 +31,7 @@ from .metals_rules import (
     material_rules_as_dataframe_records,
 )
 from .provenance import record_change_event
+from .metals_resource_boundaries import build_resource_boundary_plan, ground_resources
 from .inventory_store import (
     filter_biosphere_category,
     get_scenario_inventory,
@@ -2267,8 +2268,6 @@ class Metals(BaseTransformation):
             return
 
         self.build_in_ground_resource_exchange_index()
-        from .metals_resource_boundaries import build_resource_boundary_plan
-
         resource_flow_names = (
             self.get_existing_in_ground_resource_flow_names()
             | self.get_biosphere_in_ground_resource_flow_names()
@@ -2398,8 +2397,6 @@ class Metals(BaseTransformation):
 
     def _apply_resource_boundary_plan(self, plan):
         """Apply validated elementary-flow assignments without changing suppliers."""
-        from .metals_resource_boundaries import ground_resources
-
         for dataset, reason in plan.diagnostics:
             self._record_resource_diagnostic(dataset, reason)
         for dataset, element, amount, reason in plan.assignments:
@@ -2417,7 +2414,6 @@ class Metals(BaseTransformation):
                 get_in_ground_resource_exchanges(dataset)
             )
             self._validation_targets[id(dataset)] = dataset
-            self._record_resource_diagnostic(dataset, reason)
             record_change_event(
                 self,
                 dataset,

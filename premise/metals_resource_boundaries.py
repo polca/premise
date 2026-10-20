@@ -75,6 +75,8 @@ def primary_lithium_feed(exchange, product, providers, visited=None):
     if dataset.get("reference product") != product:
         return False
     if dataset.get("name", "").startswith(("market for ", "market group for ")):
+        if any(not e.get("product") for e in material_inputs(dataset)):
+            return False
         branches = [e for e in material_inputs(dataset) if e.get("product") == product]
         return bool(branches) and all(
             primary_lithium_feed(e, product, providers, visited | {id(dataset)})
@@ -235,6 +237,8 @@ def carbonate_branch_resolves(exchange, providers, carrier_ids, visited=None):
         not dataset.get("name", "").startswith(("market for ", "market group for "))
         or dataset.get("reference product") != RARE_EARTH_CARBONATE
     ):
+        return False
+    if any(not e.get("product") for e in material_inputs(dataset)):
         return False
     branches = [
         e for e in material_inputs(dataset) if e.get("product") == RARE_EARTH_CARBONATE

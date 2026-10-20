@@ -4,6 +4,7 @@ import pytest
 
 import premise.metals as metals_module
 from premise.metals import Metals
+from premise.new_database import config as premise_config
 from premise.metals_resource_boundaries import build_resource_boundary_plan
 from premise.metals_resource_boundaries import (
     RARE_EARTH_CARBONATE,
@@ -43,10 +44,10 @@ def resource(element, amount):
     }
 
 
-def correct(database, monkeypatch, system="cutoff"):
+def correct(database, monkeypatch, system="cutoff", version="3.12"):
     metals = object.__new__(Metals)
     metals.database = database
-    metals.version = "3.12"
+    metals.version = version
     metals.system_model = system
     metals._validation_targets = {}
     metals.get_mining_share_dataset_ids = lambda: set()
@@ -409,3 +410,89 @@ def test_rare_earth_boundaries_preserve_consequential(monkeypatch):
     before = deepcopy(database)
     correct(database, monkeypatch, system="consequential")
     assert database == before
+
+
+@pytest.mark.parametrize("kind", ["lithium", "rare_earth"])
+def test_unlabelled_material_market_branch_preserves_boundaries(kind):
+    if kind == "rare_earth":
+        database = carbonate_branch()
+        market = database[1]
+        flows = {"Neodymium", "Dysprosium"}
+    else:
+        mineral = dataset("spodumene mine operation", "spodumene")
+        market = dataset("market for spodumene", "spodumene", [feed(mineral)])
+        carbonate = dataset(
+            "lithium carbonate production, from spodumene",
+            "lithium carbonate",
+            [feed(market, 8)],
+        )
+        database, flows = [mineral, market, carbonate], {"Lithium"}
+    unknown = feed(market, 0.1)
+    unknown.pop("product")
+    market["exchanges"].append(unknown)
+    assert not build_resource_boundary_plan(database, flows).assignments
+
+
+@pytest.mark.parametrize("version", premise_config["SUPPORTED_EI_VERSIONS"])
+@pytest.mark.parametrize("system", ["cutoff", "consequential"])
+def test_boundary_correction_preserves_quantities_and_model_scope_across_versions(
+    version, system, monkeypatch
+):
+    database = carbonate_branch()
+    ore = dataset("market for zinc concentrate", "zinc concentrate")
+    zinc = dataset("market for zinc", "zinc")
+    sand = dataset("market for silica sand", "silica sand")
+    brine = dataset("lithium brine inspissation", "lithium brine, 6.7 % Li")
+    boundaries = [
+        dataset(
+            "primary zinc production from concentrate",
+            "copper, cathode",
+            [feed(ore, 2)],
+        ),
+        dataset("primary zinc production from concentrate", "silver", [feed(ore, 2)]),
+        dataset(
+            "sodium arsenide production from Imperial smelting furnace",
+            "sodium arsenide",
+            [feed(zinc, 0.521)],
+        ),
+        dataset(
+            "silicon production, metallurgical grade",
+            "silicon, metallurgical grade",
+            [feed(sand, 2.7)],
+        ),
+        dataset(
+            "lithium carbonate production, from concentrated brine",
+            "lithium carbonate",
+            [feed(brine, 4.19)],
+        ),
+    ]
+    database.extend([ore, zinc, sand, brine, *boundaries])
+    before = deepcopy(database)
+    metals = correct(database, monkeypatch, system=system, version=version)
+    for old, new in zip(before, database):
+        assert [e for e in old["exchanges"] if e["type"] == "technosphere"] == [
+            e for e in new["exchanges"] if e["type"] == "technosphere"
+        ]
+    if system == "consequential":
+        assert database == before
+    else:
+        available = metals.get_biosphere_in_ground_resource_flow_names()
+        for boundary, element in zip(
+            boundaries, ("Copper", "Silver", "Arsenic", "Silicon", "Lithium")
+        ):
+            resources = [e for e in boundary["exchanges"] if e["type"] == "biosphere"]
+            if element in available:
+                assert (
+                    len(resources) == 1
+                    and resources[0]["name"] == element
+                    and resources[0]["amount"] > 0
+                )
+            else:
+                assert not resources
+                assert any(
+                    d["name"] == boundary["name"] and d["reason"].endswith("unresolved")
+                    for d in metals.resource_diagnostics
+                )
+        first = deepcopy(database)
+        correct(database, monkeypatch, version=version)
+        assert database == first
